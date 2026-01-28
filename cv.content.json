@@ -1,0 +1,260 @@
+{
+  "meta": {
+    "name": "Jim Cresswell",
+    "headline": "Exploratory AI Leader · Zero-to-One Systems · Digital-First Public Services",
+    "locale": "en-GB"
+  },
+  "positioning": {
+    "paragraphs": [
+      "I work on complex, long-term problems that sit at the edge of what is already understood, particularly in early or unstructured contexts where neither the problem nor the path forward is yet well defined. I lead exploratory work: identifying underlying patterns, tensions, and possibilities, and bringing clarity by reframing how systems, constraints, and impacts are understood.",
+      "My background spans physics, software engineering, and digital-first public services, but my centre of gravity is discovery and creation. I'm strongest in zero-to-one phases: forming new conceptual frameworks, giving initial shape to ideas that do not yet have an obvious operational form, and holding responsibility for shaping them into something real that others can build on. In my work, exploration and discovery feed critical analysis, enabling clear judgement and, when appropriate, decisive application once the problem, the viable paths, and a clear vision can be communicated well enough for others to take forward.",
+      "My work is driven by understanding large-scale systems well enough to identify leverage points for meaningful, positive change — designing interventions that create impact not just directly, but over the long term by reshaping how others act and build."
+    ]
+  },
+  "experience": [
+    {
+      "organisation": "Oak National Academy",
+      "role": "Exploratory Leadership in Digital-First Public Services",
+      "start_year": 2019,
+      "end_year": "present",
+      "summary": [
+        "At Oak National Academy, I have worked in exploratory leadership roles on complex, high-impact problem spaces within a live national public service. My work has focused on early, unstructured contexts where decisions about what should and should not be built have direct consequences for teachers' wellbeing, the quality of education, and the safeguarding of pupils.",
+        "A central part of my role has been stepping back from proposed solutions to examine the underlying problems: what outcomes genuinely matter in practice, how interventions affect people over time, and whether building a technical system is the right response at all. Where it is, I focus on forming the initial conceptual and technical shape of systems that can be developed and operated by others with confidence.",
+        "More recently, this has included leading exploratory work on how Oak's publicly available, OGL-licensed curriculum data and resources can be exposed through MCP tools and hybrid semantic search. The intent is not to build new destinations, but to make high-quality curriculum materials discoverable and accessible where teachers already are — including environments such as ChatGPT — and to make it trivial for developers to access and use this data through a clear, well-designed SDK.",
+        "The aim of this work is deliberately indirect: to enable others to create real-world impact beyond Oak itself. By lowering the cost of access to trusted, open curriculum resources, this approach supports third-order impact, where new tools, services, and practices are created by others rather than being centrally designed or owned.",
+        "Across Oak, my contribution has been to lead exploration at the point where problems are still forming, hold responsibility for early judgements with real human consequences, and create the initial conditions from which durable, ethical, and high-impact solutions can emerge."
+      ]
+    }
+  ],
+  "foundations": [
+    {
+      "title": "Research & Sense-Making in Unknown Systems",
+      "description": [
+        "My academic background trained me to work deep into the unknown: forming and testing models, reasoning about complex systems at scale, and reframing problems where existing assumptions break down.",
+        "My published research in cosmology and large-scale structure focused on anomalous and ambiguous phenomena, prioritising conceptual exploration over incremental optimisation.",
+        "This work shaped how I think about systems, uncertainty, second-order effects, and the limits of formal models — instincts that now underpin my exploratory leadership outside academia."
+      ]
+    },
+    {
+      "title": "Applied Exploration in Complex Technical Contexts",
+      "description": [
+        "Before Oak, I worked across technical and public-sector environments including FT Labs and government programmes.",
+        "Across these roles, the consistent thread was early-stage work in complex socio-technical systems: clarifying intent, surfacing hidden assumptions, and shaping systems that could evolve safely under real-world pressure.",
+        "While these roles involved hands-on engineering, the value I brought was upstream: deciding what was worth building, and creating the initial coherence others could extend."
+      ]
+    }
+  ],
+  "capabilities": [
+    "Exploratory leadership in early, unstructured problem spaces",
+    "Zero-to-one system formation and conceptual framing",
+    "Public data treated as shared digital infrastructure",
+    "Designing conditions for high-leverage, responsible AI use",
+    "Judgement and decision-making under real human consequences",
+    "Enabling ecosystems rather than centralising solutions"
+  ],
+  "education": [
+    {
+      "degree": "PhD",
+      "field": "Astrophysics & Cosmology",
+      "institution": "University of Portsmouth"
+    },
+    {
+      "degree": "MSc",
+      "field": "Cosmology",
+      "institution": "University of Sussex"
+    },
+    {
+      "degree": "MPhys",
+      "field": "Physics",
+      "institution": "University of Bath"
+    }
+  ],
+  "links": {
+    "github": "https://github.com/jimCresswell",
+    "public_service": "Oak National Academy"
+  },
+  "tilts": {
+    "public_sector": {
+      "context": "UK Civil Service / Public AI Leadership",
+      "positioning": "I work on complex, long-term problems where AI, data, and public services intersect, particularly in early or unstructured contexts where new forms of public value and access are possible but not yet well understood. I lead exploratory work that reframes what public services could offer, unlocking novel ways for people to benefit from shared data and digital capability. My focus is on shaping the early conditions for high-impact use of AI in public systems, enabling others to create value responsibly and at scale."
+    },
+    "private_ai": {
+      "context": "Private AI Companies / Frontier Exploration",
+      "positioning": "I work on complex, early-stage problem spaces at the frontier of AI capability, where the right questions are not yet clear and premature solutions can distort long-term value. I lead exploratory work that reframes problems, identifies leverage, and gives initial shape to systems before they become products. My strength is turning ambiguity into coherent direction, enabling others to build with lasting impact."
+    },
+    "founder": {
+      "context": "Founder / Origination",
+      "positioning": "I explore complex, high-impact problem spaces where existing models no longer fit and new systems are required. My work centres on discovery and creation: forming new conceptual frameworks, testing what is worth building at all, and shaping the first coherent versions of ideas that can grow beyond me. I'm driven by origination, leverage, and impact that emerges through others rather than incremental optimisation."
+    }
+  },
+  "machine_readable": {
+    "json_ld": {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://jimcresswell.net/#website",
+          "url": "https://jimcresswell.net/",
+          "name": "Jim Cresswell",
+          "inLanguage": "en-GB"
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://jimcresswell.net/cv/#webpage",
+          "url": "https://jimcresswell.net/cv/",
+          "name": "CV — Jim Cresswell",
+          "isPartOf": {
+            "@id": "https://jimcresswell.net/#website"
+          },
+          "inLanguage": "en-GB",
+          "about": {
+            "@id": "https://jimcresswell.net/#person"
+          }
+        },
+        {
+          "@type": "Person",
+          "@id": "https://jimcresswell.net/#person",
+          "name": "Jim Cresswell",
+          "url": "https://jimcresswell.net/",
+          "sameAs": [
+            "https://github.com/jimCresswell"
+          ],
+          "description": "Exploratory AI leader working on zero-to-one systems, digital-first public services, and large-scale systemic change through responsible AI and open data.",
+          "knowsAbout": [
+            "Exploratory leadership",
+            "Systems thinking",
+            "Digital-first public services",
+            "AI-enabled ecosystems",
+            "Open data",
+            "Hybrid semantic search",
+            "Model-assisted software development"
+          ],
+          "hasOccupation": [
+            {
+              "@type": "Occupation",
+              "name": "Exploratory AI Leader",
+              "occupationLocation": {
+                "@type": "Country",
+                "name": "United Kingdom"
+              }
+            }
+          ],
+          "alumniOf": [
+            {
+              "@id": "https://jimcresswell.net/#org-portsmouth"
+            },
+            {
+              "@id": "https://jimcresswell.net/#org-sussex"
+            },
+            {
+              "@id": "https://jimcresswell.net/#org-bath"
+            }
+          ],
+          "worksFor": [
+            {
+              "@id": "https://jimcresswell.net/#org-oak"
+            }
+          ]
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://jimcresswell.net/#org-oak",
+          "name": "Oak National Academy"
+        },
+        {
+          "@type": "CollegeOrUniversity",
+          "@id": "https://jimcresswell.net/#org-portsmouth",
+          "name": "University of Portsmouth"
+        },
+        {
+          "@type": "CollegeOrUniversity",
+          "@id": "https://jimcresswell.net/#org-sussex",
+          "name": "University of Sussex"
+        },
+        {
+          "@type": "CollegeOrUniversity",
+          "@id": "https://jimcresswell.net/#org-bath",
+          "name": "University of Bath"
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "@id": "https://jimcresswell.net/#cred-phd",
+          "credentialCategory": "Doctor of Philosophy",
+          "educationalLevel": "Doctoral",
+          "name": "PhD, Astrophysics & Cosmology",
+          "recognizedBy": {
+            "@id": "https://jimcresswell.net/#org-portsmouth"
+          },
+          "about": [
+            "Cosmology",
+            "Large-scale structure",
+            "Statistical modelling"
+          ]
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "@id": "https://jimcresswell.net/#cred-msc",
+          "credentialCategory": "Master of Science",
+          "educationalLevel": "Master",
+          "name": "MSc, Cosmology",
+          "recognizedBy": {
+            "@id": "https://jimcresswell.net/#org-sussex"
+          }
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "@id": "https://jimcresswell.net/#cred-mphys",
+          "credentialCategory": "Master of Physics",
+          "educationalLevel": "Master",
+          "name": "MPhys, Physics",
+          "recognizedBy": {
+            "@id": "https://jimcresswell.net/#org-bath"
+          }
+        },
+        {
+          "@type": "CreativeWork",
+          "@id": "https://arxiv.org/abs/astro-ph/0512017",
+          "name": "Cosmic microwave background multipole alignments in slab topologies",
+          "author": {
+            "@id": "https://jimcresswell.net/#person"
+          },
+          "identifier": [
+            {
+              "@type": "PropertyValue",
+              "propertyID": "arXiv",
+              "value": "astro-ph/0512017"
+            }
+          ]
+        },
+        {
+          "@type": "ScholarlyArticle",
+          "@id": "https://doi.org/10.1111/j.1365-2966.2008.14082.x",
+          "name": "Scale-dependent galaxy bias in the Sloan Digital Sky Survey as a function of luminosity and colour",
+          "author": [
+            {
+              "@id": "https://jimcresswell.net/#person"
+            }
+          ],
+          "identifier": [
+            {
+              "@type": "PropertyValue",
+              "propertyID": "DOI",
+              "value": "10.1111/j.1365-2966.2008.14082.x"
+            }
+          ]
+        },
+        {
+          "@type": "Thesis",
+          "@id": "https://jimcresswell.net/#thesis-phd",
+          "name": "Luminosity Functions and Galaxy Bias in the Sloan Digital Sky Survey",
+          "author": {
+            "@id": "https://jimcresswell.net/#person"
+          },
+          "inSupportOf": {
+            "@id": "https://jimcresswell.net/#cred-phd"
+          }
+        }
+      ]
+    }
+  }
+}

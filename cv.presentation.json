@@ -1,0 +1,106 @@
+{
+  "presentation": {
+    "defaults": {
+      "layout": {
+        "columns": 1
+      },
+      "typography": {
+        "preferred_families": [
+          "Inter",
+          "Source Sans 3",
+          "Literata"
+        ],
+        "line_height": 1.5
+      },
+      "rendering_guidelines": [
+        "Use whitespace for hierarchy, not rules or boxes",
+        "Avoid icons, charts, or decorative elements",
+        "Ensure print legibility and PDF accessibility",
+        "Single-column layout only"
+      ]
+    },
+    "media": {
+      "print_a4": {
+        "paper_size": "A4",
+        "margin_mm": {
+          "top": 25,
+          "bottom": 25,
+          "left": 25,
+          "right": 25
+        },
+        "scale_pt": {
+          "name": 24,
+          "headline": 12,
+          "section_header": 14,
+          "body": 11
+        },
+        "headline_style": {
+          "transform": "uppercase",
+          "letter_spacing": "0.08em"
+        },
+        "spacing": {
+          "paragraph_gap_mm": 6,
+          "section_gap_mm": 10
+        },
+        "constraints": [
+          "max_pages:2",
+          "no_icons",
+          "high_whitespace"
+        ]
+      },
+      "print_letter": {
+        "paper_size": "Letter",
+        "margin_mm": {
+          "top": 25,
+          "bottom": 25,
+          "left": 25,
+          "right": 25
+        },
+        "scale_pt": {
+          "name": 24,
+          "headline": 12,
+          "section_header": 14,
+          "body": 11
+        },
+        "headline_style": {
+          "transform": "uppercase",
+          "letter_spacing": "0.08em"
+        },
+        "spacing": {
+          "paragraph_gap_mm": 6,
+          "section_gap_mm": 10
+        }
+      },
+      "web": {
+        "max_width_px": 760,
+        "scale_px": {
+          "name": 42,
+          "headline": 16,
+          "section_header": 18,
+          "body": 16
+        },
+        "typography": {
+          "line_height": 1.6
+        },
+        "spacing_px": {
+          "paragraph_gap": 14,
+          "section_gap": 24
+        }
+      },
+      "web_print_css": {
+        "paper_size": "A4",
+        "margin_mm": {
+          "top": 18,
+          "bottom": 18,
+          "left": 18,
+          "right": 18
+        },
+        "notes": [
+          "Use @page { size: A4; margin: ... }",
+          "Avoid widow/orphan lines where possible",
+          "Prefer system fonts or embedded fonts for PDF consistency"
+        ]
+      }
+    }
+  }
+}
