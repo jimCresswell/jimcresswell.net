@@ -1,0 +1,220 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://jimcresswell.net/#website",
+      "url": "https://jimcresswell.net/",
+      "name": "Jim Cresswell",
+      "inLanguage": "en-GB"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://jimcresswell.net/cv/#webpage",
+      "url": "https://jimcresswell.net/cv/",
+      "name": "CV — Jim Cresswell",
+      "isPartOf": {
+        "@id": "https://jimcresswell.net/#website"
+      },
+      "inLanguage": "en-GB",
+      "about": {
+        "@id": "https://jimcresswell.net/#person"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://jimcresswell.net/#person",
+      "name": "Jim Cresswell",
+      "url": "https://jimcresswell.net/",
+      "sameAs": [
+        "https://github.com/jimCresswell",
+        "https://www.linkedin.com/in/jimcresswell",
+        "https://scholar.google.co.uk/citations?user=7yf2vEEAAAAJ&hl=en"
+      ],
+      "description": "Exploratory AI Application leader working on zero-to-one systems, digital-first public services, and large-scale systemic change through responsible AI and open data.",
+      "knowsAbout": [
+        "Exploratory leadership",
+        "Systems thinking",
+        "Digital-first public services",
+        "AI-enabled ecosystems",
+        "Open data",
+        "Hybrid semantic search",
+        "Agentic software development",
+        "Ecology-informed agriculture",
+        "Perennial food systems",
+        "Genetic diversity"
+      ],
+      "hasOccupation": [
+        {
+          "@type": "Occupation",
+          "name": "Exploratory AI Application leader",
+          "description": "Leading technical exploration in uncertain problem spaces where the path and destination are initially unknown. Emphasis on judgment under constraint, trade-off navigation, and building durable foundations rather than rapid scaling. Core work includes technical strategy in ambiguous domains, navigating irreversible decisions with incomplete information, building teams capable of exploratory work, and translating research insights into production systems.",
+          "occupationLocation": {
+            "@type": "Country",
+            "name": "United Kingdom"
+          },
+          "skills": [
+            "Exploratory leadership",
+            "Systems thinking",
+            "Judgment under uncertainty",
+            "Constraint-based decision making",
+            "Research-to-practice translation"
+          ]
+        }
+      ],
+      "hasCredential": [
+        { "@id": "https://jimcresswell.net/#cred-phd" },
+        { "@id": "https://jimcresswell.net/#cred-msc" },
+        { "@id": "https://jimcresswell.net/#cred-mphys" }
+      ],
+      "alumniOf": [
+        {
+          "@id": "https://jimcresswell.net/#org-portsmouth"
+        },
+        {
+          "@id": "https://jimcresswell.net/#org-sussex"
+        },
+        {
+          "@id": "https://jimcresswell.net/#org-bath"
+        }
+      ],
+      "worksFor": [
+        {
+          "@id": "https://jimcresswell.net/#org-oak"
+        }
+      ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://jimcresswell.net/#org-oak",
+      "name": "Oak National Academy"
+    },
+    {
+      "@type": "CollegeOrUniversity",
+      "@id": "https://jimcresswell.net/#org-portsmouth",
+      "name": "University of Portsmouth"
+    },
+    {
+      "@type": "CollegeOrUniversity",
+      "@id": "https://jimcresswell.net/#org-sussex",
+      "name": "University of Sussex"
+    },
+    {
+      "@type": "CollegeOrUniversity",
+      "@id": "https://jimcresswell.net/#org-bath",
+      "name": "University of Bath"
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "@id": "https://jimcresswell.net/#cred-phd",
+      "credentialCategory": "Doctor of Philosophy",
+      "educationalLevel": "Doctoral",
+      "name": "PhD, Astrophysics & Cosmology",
+      "recognizedBy": {
+        "@id": "https://jimcresswell.net/#org-portsmouth"
+      },
+      "about": [
+        "Cosmology",
+        "Large-scale structure",
+        "Statistical modelling"
+      ]
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "@id": "https://jimcresswell.net/#cred-msc",
+      "credentialCategory": "Master of Science",
+      "educationalLevel": "Master",
+      "name": "MSc, Cosmology",
+      "recognizedBy": {
+        "@id": "https://jimcresswell.net/#org-sussex"
+      }
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "@id": "https://jimcresswell.net/#cred-mphys",
+      "credentialCategory": "Master of Physics",
+      "educationalLevel": "Master",
+      "name": "MPhys, Physics",
+      "recognizedBy": {
+        "@id": "https://jimcresswell.net/#org-bath"
+      }
+    },
+    {
+      "@type": "Thesis",
+      "@id": "https://jimcresswell.net/#thesis-mphys",
+      "name": "The Design and Construction of a Theremin",
+      "author": {
+        "@id": "https://jimcresswell.net/#person"
+      },
+      "inSupportOf": {
+        "@id": "https://jimcresswell.net/#cred-mphys"
+      }
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://arxiv.org/abs/astro-ph/0512017",
+      "name": "Cosmic microwave background multipole alignments in slab topologies",
+      "author": {
+        "@id": "https://jimcresswell.net/#person"
+      },
+      "identifier": [
+        {
+          "@type": "PropertyValue",
+          "propertyID": "arXiv",
+          "value": "astro-ph/0512017"
+        }
+      ]
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "https://doi.org/10.1111/j.1365-2966.2008.14082.x",
+      "name": "Scale-dependent galaxy bias in the Sloan Digital Sky Survey as a function of luminosity and colour",
+      "author": [
+        {
+          "@id": "https://jimcresswell.net/#person"
+        }
+      ],
+      "identifier": [
+        {
+          "@type": "PropertyValue",
+          "propertyID": "DOI",
+          "value": "10.1111/j.1365-2966.2008.14082.x"
+        }
+      ]
+    },
+    {
+      "@type": "Thesis",
+      "@id": "https://jimcresswell.net/#thesis-phd",
+      "name": "Luminosity Functions and Galaxy Bias in the Sloan Digital Sky Survey",
+      "author": {
+        "@id": "https://jimcresswell.net/#person"
+      },
+      "inSupportOf": {
+        "@id": "https://jimcresswell.net/#cred-phd"
+      }
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://jimcresswell.net/#practice-exploratory",
+      "name": "Exploratory Technical Leadership Practice",
+      "description": "A methodology for leading technical work in uncertain domains: identifying leverage points in complex systems, designing reversible experiments before irreversible commitments, and building organisational capacity for judgment under constraint.",
+      "author": {
+        "@id": "https://jimcresswell.net/#person"
+      },
+      "about": [
+        "Exploratory leadership",
+        "Zero-to-one systems",
+        "Judgment under uncertainty",
+        "Systems intervention",
+        "Research-to-practice translation"
+      ],
+      "keywords": [
+        "exploratory engineering",
+        "technical strategy",
+        "constraint navigation",
+        "leverage point identification",
+        "reversible experimentation"
+      ]
+    }
+  ]
+}

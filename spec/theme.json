@@ -1,0 +1,58 @@
+{
+  "colors": {
+    "light": {
+      "background": "#faf9f7",
+      "foreground": "#292524",
+      "accent": "#0d5c63",
+      "focusRing": "#0d5c63"
+    },
+    "dark": {
+      "background": "#1c1917",
+      "foreground": "#f5f5f4",
+      "accent": "#14b8a6",
+      "focusRing": "#14b8a6"
+    }
+  },
+  "typography": {
+    "fonts": {
+      "prose": "Literata, Georgia, 'Times New Roman', serif",
+      "structure": "Inter, system-ui, -apple-system, sans-serif"
+    },
+    "scale": {
+      "name": 42,
+      "sectionHeader": 18,
+      "body": 16
+    },
+    "lineHeight": {
+      "prose": 1.7
+    }
+  },
+  "layout": {
+    "maxWidth": 760
+  },
+  "accessibility": {
+    "focusRingWidth": 2,
+    "minTargetSize": 24,
+    "contrastRatios": {
+      "normalText": 4.5,
+      "largeText": 3
+    },
+    "verified": {
+      "light": {
+        "fgOnBg": 14.42,
+        "accentOnBg": 7.32,
+        "bgOnAccent": 7.32,
+        "fgOnAccent": 1.97,
+        "fgOnAccentPass": false
+      },
+      "dark": {
+        "fgOnBg": 16.03,
+        "accentOnBg": 7.03,
+        "bgOnAccent": 7.03,
+        "fgOnAccent": 2.28,
+        "fgOnAccentPass": false
+      },
+      "note": "If accent is used as filled background, use page background color for text, not foreground"
+    }
+  }
+}

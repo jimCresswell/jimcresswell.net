@@ -1,4 +1,14 @@
 {
+  "accessibility": {
+    "wcag": "2.2 AA",
+    "requires": [
+      "visible-focus",
+      "skip-link",
+      "semantic-landmarks",
+      "heading-hierarchy",
+      "prefers-reduced-motion"
+    ]
+  },
   "presentation": {
     "defaults": {
       "layout": {
@@ -7,10 +17,9 @@
       "typography": {
         "preferred_families": [
           "Inter",
-          "Source Sans 3",
           "Literata"
         ],
-        "line_height": 1.5
+        "line_height": 1.7
       },
       "rendering_guidelines": [
         "Use whitespace for hierarchy, not rules or boxes",
@@ -23,10 +32,10 @@
       "print_a4": {
         "paper_size": "A4",
         "margin_mm": {
-          "top": 25,
-          "bottom": 25,
-          "left": 25,
-          "right": 25
+          "top": 18,
+          "bottom": 18,
+          "left": 18,
+          "right": 18
         },
         "scale_pt": {
           "name": 24,
@@ -51,10 +60,10 @@
       "print_letter": {
         "paper_size": "Letter",
         "margin_mm": {
-          "top": 25,
-          "bottom": 25,
-          "left": 25,
-          "right": 25
+          "top": 18,
+          "bottom": 18,
+          "left": 18,
+          "right": 18
         },
         "scale_pt": {
           "name": 24,
@@ -80,7 +89,7 @@
           "body": 16
         },
         "typography": {
-          "line_height": 1.6
+          "line_height": 1.7
         },
         "spacing_px": {
           "paragraph_gap": 14,

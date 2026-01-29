@@ -1,0 +1,353 @@
+@import 'tailwindcss';
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ===== THEME COLORS ===== */
+:root {
+  /* Core colors from spec/theme.json */
+  --background: #faf9f7;
+  --foreground: #292524;
+  --accent: #0d5c63;
+  --focus-ring: #0d5c63;
+  
+  /* Extended palette */
+  --card: #faf9f7;
+  --card-foreground: #292524;
+  --popover: #faf9f7;
+  --popover-foreground: #292524;
+  --primary: #292524;
+  --primary-foreground: #faf9f7;
+  --secondary: #f5f5f4;
+  --secondary-foreground: #292524;
+  --muted: #f5f5f4;
+  --muted-foreground: #737373;
+  --accent-foreground: #faf9f7;
+  --destructive: #ef4444;
+  --destructive-foreground: #fafafa;
+  --border: #e5e5e5;
+  --input: #e5e5e5;
+  --ring: #0d5c63;
+  --radius: 0.5rem;
+
+  /* Shadcn defaults (added/merged, existing preserved) */
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  /* Dark mode colors from spec/theme.json */
+  --background: #1c1917;
+  --foreground: #f5f5f4;
+  --accent: #14b8a6;
+  --focus-ring: #14b8a6;
+  
+  /* Extended palette */
+  --card: #1c1917;
+  --card-foreground: #f5f5f4;
+  --popover: #1c1917;
+  --popover-foreground: #f5f5f4;
+  --primary: #f5f5f4;
+  --primary-foreground: #1c1917;
+  --secondary: #292524;
+  --secondary-foreground: #f5f5f4;
+  --muted: #292524;
+  --muted-foreground: #a3a3a3;
+  --accent-foreground: #1c1917;
+  --destructive: #7f1d1d;
+  --destructive-foreground: #fecaca;
+  --border: #404040;
+  --input: #404040;
+  --ring: #14b8a6;
+
+  /* Shadcn defaults (added/merged, existing preserved) */
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.269 0 0);
+  --sidebar-ring: oklch(0.439 0 0);
+}
+
+/* ===== TAILWIND THEME MAPPING ===== */
+@theme inline {
+  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
+  --font-serif: var(--font-literata), Georgia, 'Times New Roman', serif;
+  
+  /* Enable outline-ring/50 utility */
+  --outline-ring: var(--ring);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+/* ===== CUSTOM UTILITIES ===== */
+@layer utilities {
+  .outline-ring\/50 {
+    outline-color: color-mix(in srgb, var(--ring) 50%, transparent);
+  }
+}
+
+/* ===== BASE LAYER ===== */
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-sans;
+  }
+}
+
+/* ===== FOCUS STYLES ===== */
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+/* ===== SKIP LINK ===== */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  z-index: 50;
+}
+
+.skip-link:focus {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  width: auto;
+  height: auto;
+  overflow: visible;
+  padding: 0.75rem 1rem;
+  background-color: var(--background);
+  color: var(--foreground);
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+  border-radius: 0.25rem;
+}
+
+/* ===== REDUCED MOTION ===== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ===== PRINT STYLES ===== */
+/* Optimised for readability - assuming reader may have reduced vision */
+@media print {
+  @page {
+    size: A4;
+    margin: 18mm 20mm;
+  }
+  
+  body {
+    background: white !important;
+    color: #1a1a1a !important;
+    font-size: 11pt;
+    line-height: 1.6;
+  }
+  
+  .print-hidden {
+    display: none !important;
+  }
+  
+  a {
+    color: inherit !important;
+    text-decoration: none !important;
+  }
+  
+  /* Reset spacing from web styles */
+  main {
+    padding: 0 !important;
+    max-width: none !important;
+  }
+  
+  /* === PAGE 1: Name, Headline, Positioning === */
+  
+  /* Name */
+  h1 {
+    font-size: 22pt !important;
+    margin-bottom: 3mm !important;
+    line-height: 1.2 !important;
+  }
+  
+  /* Headline (under name) */
+  header p {
+    font-size: 10pt !important;
+    margin-bottom: 8mm !important;
+    letter-spacing: 0.04em;
+  }
+  
+  /* Positioning paragraphs */
+  section[aria-labelledby="positioning-heading"] {
+    margin-bottom: 0;
+  }
+  
+  section[aria-labelledby="positioning-heading"] p {
+    margin-bottom: 4mm;
+  }
+  
+  /* === LONG SECTIONS: Start on new page === */
+  
+  /* Experience - new page */
+  section[aria-labelledby="experience-heading"] {
+    break-before: page;
+  }
+  
+  /* Foundations - new page */
+  section[aria-labelledby="foundations-heading"] {
+    break-before: page;
+  }
+  
+  /* === SHORT SECTIONS: Flow together === */
+  
+  /* Capabilities and Education flow naturally */
+  section[aria-labelledby="capabilities-heading"],
+  section[aria-labelledby="education-heading"] {
+    break-before: auto;
+  }
+  
+  /* === TYPOGRAPHY === */
+  
+  /* Section headings */
+  h2 {
+    font-size: 13pt !important;
+    font-weight: 600 !important;
+    margin-bottom: 5mm !important;
+    margin-top: 0 !important;
+  }
+  
+  /* Subsection headings (org names, foundation titles) */
+  h3 {
+    font-size: 11pt !important;
+    font-weight: 600 !important;
+    margin-bottom: 2mm !important;
+  }
+  
+  /* Role/date line */
+  article > p:first-of-type {
+    font-size: 10pt !important;
+    margin-bottom: 3mm !important;
+    color: #404040 !important;
+  }
+  
+  /* Body paragraphs */
+  p {
+    margin-bottom: 3mm;
+    orphans: 3;
+    widows: 3;
+  }
+  
+  /* === SPACING === */
+  
+  /* Section bottom margin */
+  section {
+    margin-bottom: 8mm;
+  }
+  
+  /* Remove trailing margin from last section (Education) to prevent blank page */
+  section:last-of-type {
+    margin-bottom: 0;
+  }
+  
+  /* Experience/foundation entries */
+  article {
+    margin-bottom: 7mm;
+  }
+  
+  article:last-child {
+    margin-bottom: 0;
+  }
+  
+  /* Lists */
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+  
+  li {
+    margin-bottom: 2mm;
+    font-size: 11pt;
+  }
+  
+  /* === PAGE BREAK CONTROL === */
+  
+  /* Keep individual entries together */
+  article {
+    break-inside: avoid;
+  }
+  
+  /* Keep headings with their content */
+  h2, h3 {
+    break-after: avoid;
+  }
+  
+  /* Allow long sections to break internally */
+  section[aria-labelledby="experience-heading"],
+  section[aria-labelledby="foundations-heading"] {
+    break-inside: auto;
+  }
+}
