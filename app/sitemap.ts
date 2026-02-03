@@ -26,7 +26,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       const tilt = getTilt(key);
       if (!tilt) return null;
       return {
-        url: `${baseUrl}/cv/${key.replace("_", "-")}`,
+        url: `${baseUrl}/cv/${key}`,
         lastModified: new Date(),
         changeFrequency: "monthly" as const,
         priority: 0.8,
