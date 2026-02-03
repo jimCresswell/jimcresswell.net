@@ -117,10 +117,11 @@ Each key under `tilts` becomes a route slug:
 
 - `tilts.<key>` → `/cv/<key>/`
 
-Current tilts (from `content/cv.content.json`):
+Current variants:
+- `/cv/` — Main CV (general positioning, covers private sector and founder contexts)
 - `/cv/public_sector/` — UK Civil Service / Public AI Leadership
-- `/cv/private_ai/` — Private AI Companies / Frontier Exploration
-- `/cv/founder/` — Founder / Origination
+
+Note: The JSON file may contain additional tilt definitions (`private_ai`, `founder`) retained for future use. Only `public_sector` is currently active as a variant route.
 
 (Use the actual keys present in the file — do not invent new ones without editing the JSON.)
 

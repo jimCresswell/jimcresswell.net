@@ -39,11 +39,12 @@ This document specifies the placement and behavior of key UI components.
 ## Print Button (CV only)
 
 - **Text**: "Print CV"
-- **Location**: CV page only, below the headline, aligned left
+- **Location**: Header actions slot (right side, before theme toggle), CV pages only
 - **Behavior**: Triggers `window.print()`
 - **Styling**:
   - Text-only (no icon)
-  - Matches body text styling with underline or distinct color
+  - Matches theme toggle styling (text link appearance)
+  - Separator between print button and theme toggle (e.g., `|` or spacing)
 - **Print visibility**: Hidden in print CSS (`@media print { display: none }`)
 - **Accessibility**:
   - Standard button semantics (`<button>`)
@@ -51,16 +52,20 @@ This document specifies the placement and behavior of key UI components.
 
 ---
 
-## Variant Navigation (Strategy A)
+## Variant Navigation
 
-- **Location**: CV page only, at the bottom of the page (before footer)
-- **Heading**: "Other versions" or "CV Variants"
-- **Format**: Simple unordered list of links
-- **Labels**: Use tilt context labels from `cv.content.json -> tilts.<key>.context`
-- **Current variant**: Do not link to current page (show as plain text or omit)
+- **Location**: Integrated into footer, CV pages only
+- **Format**: Inline text with middle dot separators, matching tagline style
+- **Pattern**: `CV variants: Main · Public Sector` (or similar)
+- **Labels**: Short labels (not full context strings)
+- **Current variant**: Not linked (plain text or omitted)
+- **Styling**:
+  - Same typography as footer text
+  - Subtle, not competing with content
+  - Appears above copyright line
 - **Accessibility**:
-  - Semantic list markup (`<ul>`, `<li>`)
-  - Clear link text (context label is sufficient)
+  - Links are inline `<a>` elements
+  - Clear, descriptive link text
 
 ---
 
@@ -68,18 +73,29 @@ This document specifies the placement and behavior of key UI components.
 
 - **Contents**:
   - Logo/name (left)
-  - Theme toggle (right)
+  - Actions slot (right) — optional, page-specific actions
+  - Theme toggle (right, after actions slot)
+- **Actions slot**:
+  - Empty on front page
+  - Contains "Print CV" button on CV pages (`/cv/` and `/cv/<variant>/`)
+  - Separator between actions and theme toggle if both present
+- **Layout**: Single row, space-between or flex with gap
 - **Behavior**:
   - Not sticky (allows full content visibility)
-  - Consistent across all pages
-- **Print**: Show name only, hide theme toggle
+  - Consistent structure across all pages (slot may be empty)
+- **Print**: Show name only, hide actions slot and theme toggle
 
 ---
 
 ## Footer
 
+- **Consistency**: Same footer on all pages (front page, CV, variants)
 - **Contents**:
+  - CV variants line (CV pages only): `CV variants: Main · Public Sector`
   - Copyright or minimal branding
   - Optional: external links (LinkedIn, GitHub)
+- **Layout**:
+  - Variants line above copyright (if present)
+  - Single column, centered or left-aligned
 - **Location**: Bottom of every page
-- **Print**: Hide or simplify
+- **Print**: Hide entirely (variants and copyright not needed in print)
