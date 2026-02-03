@@ -4,7 +4,7 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { PrintButton } from "@/components/print-button";
 import { CVLayout } from "@/components/cv-layout";
-import { cvContent, jsonLd, cvOpenGraph, activeTiltKeys, getTilt, footerLinks } from "@/lib/cv-content";
+import { cvContent, jsonLd, cvOpenGraph, activeTiltKeys, footerLinks } from "@/lib/cv-content";
 
 export const metadata: Metadata = {
   title: cvOpenGraph.title,
@@ -31,7 +31,6 @@ export const metadata: Metadata = {
 const variantNav = [
   { label: "Main", href: "/cv/", isCurrent: true },
   ...activeTiltKeys.map((key) => {
-    const tilt = getTilt(key);
     const label = key === "public_sector" ? "Public Sector" : 
                   key === "private_ai" ? "Private AI" : "Founder";
     return {
