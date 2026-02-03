@@ -343,7 +343,7 @@ export const cvOpenGraph = {
   locale: "en_GB",
   siteName: "Jim Cresswell",
   image: {
-    url: "https://jimcresswell.net/og-image.png",
+    url: "https://jimcresswell.net/icons/og-image.png",
     alt: "Jim Cresswell — CV",
     width: 1200,
     height: 630,

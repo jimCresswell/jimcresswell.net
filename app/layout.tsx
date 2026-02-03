@@ -24,26 +24,10 @@ export const metadata: Metadata = {
   generator: "Next.js",
   manifest: "/manifest.webmanifest",
   icons: {
-    icon: [
-      {
-        url: "/favicon-light.svg",
-        media: "(prefers-color-scheme: light)",
-      },
-      {
-        url: "/favicon-dark.svg",
-        media: "(prefers-color-scheme: dark)",
-      },
-    ],
-    apple: [
-      {
-        url: "/apple-icon-light.svg",
-        media: "(prefers-color-scheme: light)",
-      },
-      {
-        url: "/apple-icon-dark.svg",
-        media: "(prefers-color-scheme: dark)",
-      },
-    ],
+    // Single SVG with CSS media query for dark mode support
+    icon: "/icons/favicon.svg",
+    // Apple Touch Icon must be PNG (iOS requirement)
+    apple: "/icons/apple-touch-icon.png",
   },
   openGraph: {
     type: "website",
@@ -55,7 +39,7 @@ export const metadata: Metadata = {
     siteName: "Jim Cresswell",
     images: [
       {
-        url: "https://jimcresswell.net/og-image.png",
+        url: "https://jimcresswell.net/icons/og-image.png",
         alt: "Jim Cresswell",
         width: 1200,
         height: 630,
