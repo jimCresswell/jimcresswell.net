@@ -359,10 +359,6 @@ export const footerLinks = {
   shiv: "https://www.sphericalhorseinavacuum.com/",
 };
 
-// All tilt keys (for future use)
-export const allTiltKeys = ["public_sector", "private_ai", "founder"] as const;
-export type TiltKey = (typeof allTiltKeys)[number];
-
 // Active tilt keys (only these generate routes)
 export const activeTiltKeys = ["public_sector"] as const;
 export type ActiveTiltKey = (typeof activeTiltKeys)[number];
@@ -372,10 +368,6 @@ export function getTilt(key: string) {
   if (key === "private_ai") return cvContent.tilts.private_ai;
   if (key === "founder") return cvContent.tilts.founder;
   return null;
-}
-
-export function isValidTiltKey(key: string): key is TiltKey {
-  return allTiltKeys.includes(key as TiltKey);
 }
 
 export function isActiveTiltKey(key: string): key is ActiveTiltKey {
