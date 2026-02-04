@@ -49,6 +49,10 @@ export const metadata: Metadata = {
       },
     ],
   },
+  // Opt-in to Chrome's text scaling feature (all sizes use rem)
+  other: {
+    "text-scale": "scale",
+  },
 };
 
 export const viewport: Viewport = {
