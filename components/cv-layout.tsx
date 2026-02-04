@@ -10,7 +10,7 @@ export function CVLayout({ positioning }: CVLayoutProps) {
     <div className="flex flex-col">
       {/* CV Header */}
       <header className="mb-6">
-        <h1 className="font-sans text-[32px] md:text-[42px] font-medium leading-tight tracking-tight text-foreground text-balance mb-2">
+        <h1 className="font-sans text-[2rem] md:text-[2.625rem] font-medium leading-tight tracking-tight text-foreground text-balance mb-2">
           {cvContent.meta.name}
         </h1>
         <p className="font-sans text-sm text-foreground/70 mb-3 md:mb-4">

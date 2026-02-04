@@ -15,14 +15,14 @@ export default function HomePage() {
         <section aria-labelledby="hero-heading" className="mb-6">
           <h1
             id="hero-heading"
-            className="font-sans text-[32px] md:text-[42px] font-medium leading-tight tracking-tight text-foreground text-balance"
+            className="font-sans text-[2rem] md:text-[2.625rem] font-medium leading-tight tracking-tight text-foreground text-balance"
           >
             {content.hero.name}
           </h1>
           <p className="mt-3 md:mt-4 font-sans text-base text-accent">
             {content.hero.tagline}
           </p>
-          <div className="mt-6 flex flex-col gap-[14px]">
+          <div className="mt-6 flex flex-col gap-[0.875rem]">
             {content.hero.summary.map((paragraph, index) => (
               <p
                 key={index}

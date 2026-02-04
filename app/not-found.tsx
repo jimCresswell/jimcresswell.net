@@ -13,7 +13,7 @@ export default function NotFound() {
         id="main-content"
         className="mx-auto max-w-[760px] px-4 py-8 md:px-8 md:py-16 flex flex-col items-center justify-center min-h-[60vh] text-center"
       >
-        <h1 className="font-sans text-[32px] md:text-[42px] font-medium leading-tight tracking-tight text-foreground mb-4">
+        <h1 className="font-sans text-[2rem] md:text-[2.625rem] font-medium leading-tight tracking-tight text-foreground mb-4">
           Page not found
         </h1>
         <p className="font-serif text-base md:text-lg leading-[1.7] text-foreground/80 mb-8 max-w-md">

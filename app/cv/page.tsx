@@ -30,7 +30,7 @@ export const metadata: Metadata = {
 // Base positioning content
 function BasePositioning() {
   return (
-    <div className="flex flex-col gap-[14px]">
+    <div className="flex flex-col gap-[0.875rem]">
       {cvContent.positioning.paragraphs.map((paragraph, index) => (
         <p
           key={index}
