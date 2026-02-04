@@ -158,7 +158,7 @@
 }
 
 /* ===== PRINT STYLES ===== */
-/* Optimised for readability - assuming reader may have reduced vision */
+/* 5-page A4 layout optimised for readability */
 @media print {
   @page {
     size: A4;
@@ -187,23 +187,35 @@
     max-width: none !important;
   }
   
-  /* === PAGE 1: Name, Headline, Positioning === */
+  /* Remove flex gaps */
+  .flex {
+    gap: 0 !important;
+  }
+  
+  /* === PAGE 1: Header + Positioning === */
   
   /* Name */
   h1 {
     font-size: 22pt !important;
     margin-bottom: 3mm !important;
     line-height: 1.2 !important;
+    letter-spacing: -0.01em;
   }
   
-  /* Headline (under name) */
-  header p {
+  /* Email under name */
+  header > p:first-of-type {
     font-size: 10pt !important;
-    margin-bottom: 8mm !important;
-    letter-spacing: 0.04em;
+    margin-bottom: 3mm !important;
   }
   
-  /* Positioning paragraphs */
+  /* Headline */
+  header > p:last-of-type {
+    font-size: 10pt !important;
+    margin-bottom: 7mm !important;
+    letter-spacing: 0.05em;
+  }
+  
+  /* Positioning section */
   section[aria-labelledby="positioning-heading"] {
     margin-bottom: 0;
   }
@@ -212,39 +224,52 @@
     margin-bottom: 4mm;
   }
   
-  /* === LONG SECTIONS: Start on new page === */
+  section[aria-labelledby="positioning-heading"] p:last-child {
+    margin-bottom: 0;
+  }
   
-  /* Experience - new page */
+  /* === PAGE 2-3: Experience (flows naturally) === */
+  
   section[aria-labelledby="experience-heading"] {
     break-before: page;
+    break-inside: auto;
+    margin-top: 0;
   }
   
-  /* Foundations - new page */
+  /* === PAGES 3-4: Foundations (flows after Experience) === */
+  
   section[aria-labelledby="foundations-heading"] {
-    break-before: page;
+    break-before: auto; /* Flows naturally after Experience */
+    margin-top: 6mm;
   }
   
-  /* === SHORT SECTIONS: Flow together === */
+  /* === PAGE 5: Capabilities + Education === */
   
-  /* Capabilities and Education flow naturally */
-  section[aria-labelledby="capabilities-heading"],
+  section[aria-labelledby="capabilities-heading"] {
+    break-before: page;
+    margin-top: 0;
+  }
+  
+  /* Education flows after Capabilities */
   section[aria-labelledby="education-heading"] {
     break-before: auto;
+    margin-top: 8mm;
   }
   
   /* === TYPOGRAPHY === */
   
   /* Section headings */
   h2 {
-    font-size: 13pt !important;
+    font-size: 14pt !important;
     font-weight: 600 !important;
-    margin-bottom: 5mm !important;
+    margin-bottom: 4mm !important;
     margin-top: 0 !important;
+    letter-spacing: 0.01em;
   }
   
   /* Subsection headings (org names, foundation titles) */
   h3 {
-    font-size: 11pt !important;
+    font-size: 12pt !important;
     font-weight: 600 !important;
     margin-bottom: 2mm !important;
   }
@@ -253,35 +278,39 @@
   article > p:first-of-type {
     font-size: 10pt !important;
     margin-bottom: 3mm !important;
-    color: #404040 !important;
+    color: #505050 !important;
   }
   
   /* Body paragraphs */
   p {
-    margin-bottom: 3mm;
+    margin-bottom: 3.5mm;
     orphans: 3;
     widows: 3;
   }
   
   /* === SPACING === */
   
-  /* Section bottom margin */
+  /* Sections */
   section {
-    margin-bottom: 8mm;
+    margin-bottom: 6mm;
   }
   
-  /* Remove trailing margin from last section (Education) to prevent blank page */
   section:last-of-type {
     margin-bottom: 0;
   }
   
   /* Experience/foundation entries */
   article {
-    margin-bottom: 7mm;
+    margin-bottom: 6mm;
   }
   
   article:last-child {
     margin-bottom: 0;
+  }
+  
+  /* Paragraph containers */
+  article > div {
+    display: block !important;
   }
   
   /* Lists */
@@ -291,25 +320,24 @@
   }
   
   li {
-    margin-bottom: 2mm;
+    margin-bottom: 2.5mm;
     font-size: 11pt;
+  }
+  
+  /* Education entries */
+  section[aria-labelledby="education-heading"] li {
+    margin-bottom: 3.5mm;
   }
   
   /* === PAGE BREAK CONTROL === */
   
-  /* Keep individual entries together */
-  article {
+  /* Keep foundation entries together */
+  section[aria-labelledby="foundations-heading"] article {
     break-inside: avoid;
   }
   
   /* Keep headings with their content */
   h2, h3 {
     break-after: avoid;
-  }
-  
-  /* Allow long sections to break internally */
-  section[aria-labelledby="experience-heading"],
-  section[aria-labelledby="foundations-heading"] {
-    break-inside: auto;
   }
 }
