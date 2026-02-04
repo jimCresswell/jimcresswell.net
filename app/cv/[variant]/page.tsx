@@ -6,6 +6,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { PrintButton } from "@/components/print-button";
 import { CVLayout } from "@/components/cv-layout";
 import {
+  cvContent,
   jsonLd,
   cvOpenGraph,
   activeTiltKeys,
@@ -36,7 +37,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {};
   }
 
-  const title = `Jim Cresswell — CV (${tilt.context})`;
+  const title = `${cvContent.meta.name} — CV (${tilt.context})`;
 
   return {
     title,
@@ -63,14 +64,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-// Helper to get short label for variant
-function getVariantLabel(key: string): string {
-  if (key === "public_sector") return "Public Sector";
-  if (key === "private_ai") return "Private AI";
-  if (key === "founder") return "Founder";
-  return key;
-}
-
 export default async function CVVariantPage({ params }: Props) {
   const { variant } = await params;
 
@@ -82,16 +75,6 @@ export default async function CVVariantPage({ params }: Props) {
   if (!tilt) {
     notFound();
   }
-
-  // Build variant navigation for footer
-  const variantNav = [
-    { label: "Main", href: "/cv/", isCurrent: false },
-    ...activeTiltKeys.map((key) => ({
-      label: getVariantLabel(key),
-      href: `/cv/${key}/`,
-      isCurrent: key === variant,
-    })),
-  ];
 
   // Variant positioning content
   const variantPositioning = (
@@ -107,7 +90,7 @@ export default async function CVVariantPage({ params }: Props) {
       <main id="main-content" className="mx-auto max-w-[760px] px-4 py-8 md:px-8 md:py-16">
         <CVLayout positioning={variantPositioning} />
       </main>
-      <SiteFooter links={footerLinks} variants={variantNav} />
+      <SiteFooter links={footerLinks} />
 
       {/* JSON-LD */}
       <script

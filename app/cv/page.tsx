@@ -4,7 +4,7 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { PrintButton } from "@/components/print-button";
 import { CVLayout } from "@/components/cv-layout";
-import { cvContent, jsonLd, cvOpenGraph, activeTiltKeys, footerLinks } from "@/lib/cv-content";
+import { cvContent, jsonLd, cvOpenGraph, footerLinks } from "@/lib/cv-content";
 
 export const metadata: Metadata = {
   title: cvOpenGraph.title,
@@ -26,20 +26,6 @@ export const metadata: Metadata = {
     ],
   },
 };
-
-// Build variant navigation for footer
-const variantNav = [
-  { label: "Main", href: "/cv/", isCurrent: true },
-  ...activeTiltKeys.map((key) => {
-    const label = key === "public_sector" ? "Public Sector" : 
-                  key === "private_ai" ? "Private AI" : "Founder";
-    return {
-      label,
-      href: `/cv/${key}/`,
-      isCurrent: false,
-    };
-  }),
-];
 
 // Base positioning content
 function BasePositioning() {
@@ -65,7 +51,7 @@ export default function CVPage() {
       <main id="main-content" className="mx-auto max-w-[760px] px-4 py-8 md:px-8 md:py-16">
         <CVLayout positioning={<BasePositioning />} />
       </main>
-      <SiteFooter links={footerLinks} variants={variantNav} />
+      <SiteFooter links={footerLinks} />
 
       {/* JSON-LD */}
       <script

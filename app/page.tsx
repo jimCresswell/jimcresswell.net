@@ -3,43 +3,7 @@ import { SkipLink } from "@/components/skip-link";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { footerLinks } from "@/lib/cv-content";
-
-// Content from content/frontpage.content.json
-const content = {
-  meta: {
-    site_section: "home",
-    page: "front_page",
-    title: "Jim Cresswell",
-    locale: "en-GB",
-  },
-  hero: {
-    name: "Jim Cresswell",
-    tagline:
-      "Exploratory AI Application leader · Zero-to-One Systems · Digital-First Public Services",
-    summary: [
-      "I lead exploratory work in early, unstructured problem spaces where the path forward is not yet clear.",
-      "My focus is on identifying leverage in large-scale systems and shaping conditions for meaningful, positive change — often by enabling others through open data and AI-enabled ecosystems.",
-    ],
-  },
-  primary_navigation: [
-    {
-      label: "Here is my CV",
-      href: "/cv/",
-    },
-  ],
-  highlights: [
-    {
-      title: "Exploration → judgement → action",
-      description:
-        "Exploration and discovery feed critical analysis, enabling clear judgement and, when appropriate, decisive application.",
-    },
-    {
-      title: "Public value, open infrastructure",
-      description:
-        "I'm interested in making high-quality public resources discoverable and usable where people already are, including through modern AI interfaces.",
-    },
-  ],
-};
+import content from "@/content/frontpage.content.json";
 
 export default function HomePage() {
   return (

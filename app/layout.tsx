@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Literata } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Analytics } from "@vercel/analytics/next";
+import frontpageContent from "@/content/frontpage.content.json";
 import "./globals.css";
 
 const inter = Inter({
@@ -17,10 +18,13 @@ const literata = Literata({
   display: "swap",
 });
 
+// Site-wide metadata from frontpage content
+const siteTitle = frontpageContent.meta.title;
+const siteDescription = frontpageContent.hero.summary.join(" ");
+
 export const metadata: Metadata = {
-  title: "Jim Cresswell",
-  description:
-    "Exploratory AI Application leader focused on zero-to-one systems, digital-first public services, and high-leverage impact through open data and AI-enabled ecosystems.",
+  title: siteTitle,
+  description: siteDescription,
   generator: "Next.js",
   manifest: "/manifest.webmanifest",
   icons: {
@@ -32,15 +36,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: "https://jimcresswell.net/",
-    title: "Jim Cresswell",
-    description:
-      "Exploratory AI Application leader focused on zero-to-one systems, digital-first public services, and high-leverage impact through open data and AI-enabled ecosystems.",
-    locale: "en_GB",
-    siteName: "Jim Cresswell",
+    title: siteTitle,
+    description: siteDescription,
+    locale: frontpageContent.meta.locale.replace("-", "_"),
+    siteName: siteTitle,
     images: [
       {
         url: "https://jimcresswell.net/icons/og-image.png",
-        alt: "Jim Cresswell",
+        alt: siteTitle,
         width: 1200,
         height: 630,
       },

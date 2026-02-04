@@ -7,7 +7,7 @@
   "positioning": {
     "paragraphs": [
       "I work on high-impact, long-term problem spaces that sit at the edge of what is already understood, particularly in early or unstructured contexts where neither the problem nor the path forward is yet well defined. I lead exploratory work: identifying underlying patterns, tensions, and possibilities, and bringing clarity by reframing how systems, constraints, and impacts are understood.",
-      "My background spans physics, software engineering, and digital-first public services, but my centre of gravity is discovery and creation. I'm strongest in zero-to-one phases: forming new conceptual frameworks, giving initial shape to ideas that do not yet have an obvious operational form, and holding responsibility for shaping them into something real that others can build on. In my work, exploration and discovery feed critical analysis, enabling clear judgement and, when appropriate, decisive application once the problem, the viable paths, and a clear vision can be communicated well enough for others to take forward.",
+      "My background spans physics, software engineering, and digital-first public services, but my centre of gravity is discovery and creation. I'm strongest in zero-to-one phases: forming new conceptual frameworks, giving initial shape to ideas that do not yet have an obvious operational form, and holding responsibility for shaping them into something real that others can build on. In my work, exploration and discovery feed critical analysis, enabling clear judgement and, when appropriate, decisive application once the problem, the viable paths, and a clear vision can be communicated well enough for others to take forward. That responsibility includes knowing when to stop exploring, deliberately constrain scope, or resist attractive but mistimed changes, particularly where doing so protects long-term delivery and innovation rather than optimising for short-term progress.",
       "My work is driven by understanding large-scale systems to identify leverage points for meaningful, positive change — designing interventions that create impact not just directly, but over the long term by reshaping how others act and build."
     ]
   },
@@ -20,9 +20,10 @@
       "summary": [
         "At Oak National Academy, I have worked in exploratory leadership roles on complex, high-impact problem spaces within a live national public service. My work has focused on early, unstructured contexts where decisions about what should and should not be built have direct consequences for teachers' wellbeing, the quality of education, and the safeguarding of pupils.",
         "A central part of my role has been stepping back from proposed solutions to examine the underlying problems: what outcomes genuinely matter in practice, how interventions affect people over time, and whether building a technical system is the right response at all. Where it is, I focus on forming the initial conceptual and technical shape of systems that can be developed and operated by others with confidence.",
+        "At a critical point, I argued for a long-term intervention to address structural delivery risk that was compounding over time: change complexity was rising non-linearly, delivery pace was falling, and meaningful innovation was becoming increasingly unfeasible. Framed internally as continuous improvement rather than a formal rewrite, this work accepted near-term delivery risk to avoid a later, higher-cost rebuild under greater pressure — and four years on, the resulting platform continues to sustain active development.",
         "More recently, this has included leading exploratory work on how Oak's publicly available, OGL-licensed curriculum data and resources can be exposed through MCP tools and hybrid semantic search. The intent is not to build new destinations, but to make high-quality curriculum materials discoverable and accessible where teachers already are — including environments such as ChatGPT — and to make it trivial for developers to access and use this data through a clear, well-designed SDK.",
         "The aim of this work is deliberately indirect: to enable others to create real-world impact beyond Oak itself. By lowering the cost of access to trusted, open curriculum resources, this approach supports third-order impact, where new tools, services, and practices are created by others rather than being centrally designed or owned.",
-        "Across Oak, my contribution has been to lead exploration at the point where problems are still forming, hold responsibility for early judgements with real human consequences, and create the initial conditions from which durable, ethical, and high-impact solutions can emerge."
+        "Across Oak, my contribution has been to lead exploration at the point where problems are still forming, hold responsibility for early judgements whose consequences are felt long after the initial decision is made, and create the initial conditions from which durable, ethical, and high-impact solutions can emerge."
       ]
     }
   ],
@@ -56,10 +57,10 @@
   ],
   "capabilities": [
     "Exploratory leadership in early, unstructured problem spaces",
-    "Zero-to-one system formation and conceptual framing",
+    "Zero-to-one system formation and conceptual framing in contexts where early decisions constrain long-term outcomes",
     "Public data treated as shared digital infrastructure",
     "Designing conditions for high-leverage, responsible AI use",
-    "Judgement and decision-making under real human consequences",
+    "Judgement and decision-making involving irreversible or high-cost trade-offs",
     "Enabling ecosystems rather than centralising solutions"
   ],
   "education": [
@@ -83,13 +84,15 @@
     "email": "contact@jimcresswell.net",
     "github": "https://github.com/jimCresswell",
     "linkedin": "https://www.linkedin.com/in/jimcresswell",
+    "google_scholar": "https://scholar.google.co.uk/citations?user=7yf2vEEAAAAJ&hl=en",
     "oak": "https://www.thenational.academy/"
   },
   "tilts": {
     "_meta": {
       "primary": "public_sector",
       "order": ["public_sector", "private_ai", "founder"],
-      "note": "primary is the default variant; others are contextual reframings, not alternatives"
+      "web_routes": ["public_sector"],
+      "note": "primary is the default variant; others are contextual reframings, not alternatives. Only web_routes variants are exposed on the website; all variants are available for PDF generation."
     },
     "public_sector": {
       "context": "UK Civil Service / Public AI Leadership",
