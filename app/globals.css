@@ -127,7 +127,8 @@
   z-index: 50;
 }
 
-.skip-link:focus,
+/* Only show skip link for keyboard focus, not mouse/programmatic focus
+   :focus-visible matches when browser detects keyboard navigation (WCAG 2.4.7) */
 .skip-link:focus-visible {
   position: fixed;
   top: 0.5rem;
