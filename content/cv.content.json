@@ -1,26 +1,26 @@
 {
   "meta": {
     "name": "Jim Cresswell",
-    "headline": "Exploratory AI Application leader · Zero-to-One Systems · Digital-First Public Services",
+    "headline": "Exploratory AI Application leader · Zero‑to‑One Systems · Digital‑First Public Services",
     "locale": "en-GB"
   },
   "positioning": {
     "paragraphs": [
-      "I work on high-impact, long-term problems, typically in early or unstructured contexts where neither the problem nor the path forward is yet clear. I lead exploratory work with a clear purpose: to surface the underlying structure of complex systems so that meaningful decisions can be made. I determine when exploration has done its job — reframing problems, committing, constraining options, and setting direction in ways that shape outcomes long after the initial work.",
-      "My background spans physics, software engineering, and digital-first public services, but my centre of gravity is disciplined exploration and creation. I'm strongest in zero-to-one phases: forming new conceptual frameworks, giving initial shape to ideas that do not yet have an obvious operational form, and holding responsibility for direction so others can build confidently. Often the work is not improving the current system, but deciding when the existing system is the wrong context, and shaping a viable alternative. In my work, discovery is a method for critical analysis, clear judgement, and articulating a coherent vision that others can execute against.",
-      "My work focuses on changing constraints and dynamics in large-scale systems, so that the default paths lead to different, better outcomes — creating impact that persists beyond my direct involvement."
+      "I work on high‑impact, long‑term problems in early or unstructured contexts where neither the problem nor the path forward is yet clear. I lead exploratory work with a clear purpose: to surface the underlying structure of complex systems so meaningful decisions can be made. I determine when exploration has done its job — framing context, constraining options, and setting direction in ways that shape outcomes long after the initial work.",
+      "My background spans physics, software engineering, and digital‑first public services, but my centre of gravity is disciplined exploration and creation. I'm strongest in zero‑to‑one phases: forming new conceptual frameworks, giving initial shape to ideas that do not yet have an obvious operational form, and holding responsibility for direction so others can build confidently. Often the work is not improving the current system, but deciding when the existing system is the wrong context, and shaping a viable alternative. In my work, discovery is a method for critical analysis, clear judgement, and articulating a coherent vision that others can execute against.",
+      "My work focuses on changing constraints and dynamics in large‑scale systems, so that the default paths lead to different, better outcomes — creating impact that persists beyond my direct involvement."
     ]
   },
   "experience": [
     {
       "organisation": "Oak National Academy",
-      "role": "Exploratory Leadership in Digital-First Public Services",
+      "role": "Exploratory Leadership in Digital‑First Public Services",
       "start_year": 2019,
       "end_year": "present",
       "summary": [
-        "At [Oak National Academy](https://www.oaknational.org.uk/), I lead on complex, high-impact problems by setting foundational technical direction inside a live national public service, enabling durable, ethical, and high-impact solutions to emerge. My responsibility sits in early and unstructured contexts where problem spaces are not yet defined, and decisions about what should and should not be built have direct consequences for teachers' workload, educational quality, and pupil safeguarding.",
-        "At a critical point, I argued for a deeper intervention to address structural delivery risk that was compounding over time, and stood behind that decision as it was taken forward. Change complexity was increasing non-linearly, delivery pace was slowing, and meaningful innovation was becoming increasingly constrained. Rather than pursuing incremental optimisation, I backed a rebuild, accepting and managing near-term delivery and reputational risk to avoid a later, higher-cost failure under significantly greater delivery pressure. Four years on, the platform continues to sustain active development and innovation.",
-        "More recently, my work has focused on treating Oak's openly licensed [curriculum data](https://open-api.thenational.academy/) as public digital infrastructure rather than a product destination. This has included exposing it through a clear SDK and AI-first machine-accessible interfaces (MCP), so high-quality curriculum materials can be accessed where teachers and developers already work, including AI-mediated environments. The intent is deliberately indirect, reflecting organisational constraints and long-term leverage considerations: to preserve optionality, lower the cost of access to trusted public data, and enable others to build tools and practices over time. Across Oak, I have held responsibility for early trade-offs that fixed architectural direction, constrained later options, and materially expanded the organisation's long-term ability to innovate safely."
+        "At [Oak National Academy](https://www.oaknational.org.uk/), I lead on complex, high‑impact problems by setting foundational technical direction inside a live national public service, enabling durable, ethical, and high‑impact solutions to emerge. My responsibility sits in early and unstructured contexts where problem spaces are not yet defined, and decisions about what should and should not be built have direct consequences for teachers' workload, educational quality, and pupil safeguarding.",
+        "At a critical point, I argued for a deeper intervention to address structural delivery risk that was compounding over time, and stood behind that decision as it was taken forward. Change complexity was increasing non‑linearly, delivery pace was slowing, and meaningful innovation was becoming increasingly constrained. Rather than pursuing incremental optimisation, I backed a rebuild, accepting and managing near‑term delivery and reputational risk to avoid a later, higher‑cost failure under significantly greater delivery pressure. Four years on, the platform continues to sustain active development and innovation.",
+        "More recently, my work has focused on treating Oak's openly licensed [curriculum data](https://open-api.thenational.academy/) as public digital infrastructure rather than a product destination. This has included exposing it through a clear SDK and AI‑first machine-accessible interfaces (MCP), so high-quality curriculum materials can be accessed where teachers and developers already work, including AI‑mediated environments. The intent is deliberately indirect, reflecting organisational constraints and long‑term leverage considerations: to preserve optionality, lower the cost of access to trusted public data, and enable others to build tools and practices over time. Across Oak, I have held responsibility for early trade-offs that fixed architectural direction, constrained later options, and materially expanded the organisation's long‑term ability to innovate safely."
       ]
     }
   ],
@@ -29,33 +29,33 @@
       "title": "Research & Sense-Making in Unknown Systems",
       "description": [
         "My academic background trained me to work deep into the unknown: forming and testing models, reasoning about complex systems at scale, and reframing problems where existing assumptions break down.",
-        "My [published research](https://scholar.google.co.uk/citations?hl=en&user=7yf2vEEAAAAJ) in cosmology and large-scale structure focused on anomalous phenomena, prioritising conceptual exploration where incremental understanding is not the right tool.",
-        "This work shaped how I think about systems, uncertainty, and second and third-order effects — instincts that now underpin my exploratory leadership outside academia.",
-        "This period also included non-academic work focused on systems change and leverage points: analysing how shifts in constraints, defaults, and access pathways alter outcomes over time — a lens that now informs my emphasis on enabling ecosystems rather than building destinations."
+        "My [published research](https://scholar.google.co.uk/citations?hl=en&user=7yf2vEEAAAAJ) in cosmology and large‑scale structure focused on anomalous phenomena, prioritising conceptual exploration where incremental understanding was not the right tool.",
+        "This work shaped how I think about systems, uncertainty, and second and third‑order effects — instincts that now underpin my exploratory leadership outside academia.",
+        "This period also included non‑academic work focused on systems change and leverage points: analysing how shifts in constraints, defaults, and access pathways alter outcomes over time — a lens that now informs my emphasis on enabling ecosystems rather than building destinations."
       ]
     },
     {
       "title": "Applied Exploration in Complex Technical Contexts",
       "description": [
-        "Before Oak, I worked across technical environments in the public and private sectors, including the Financial Times Labs, HMPO [the UK Passport Service](https://www.gov.uk/apply-renew-passport), British Airways, and early-career roles at HP Labs.",
-        "At HMPO I normalised specification workshops, establishing shared understanding through whole-team example creation, massively reducing rework.",
-        "Across other roles, I repeatedly shifted technical context rather than optimising within it: instigating the move from bespoke version control to Git and GitHub at British Airways; contributing to the award-winning FT Web App at FT Labs; and automating manual testing at HP Labs while teaching others to adopt the same systems.",
-        "Across these roles, the consistent thread was clarifying intent, surfacing hidden assumptions, and shaping systems that could evolve stably under real-world pressure."
+        "Before Oak, I worked across technical environments in the public and private sectors, including the Financial Times Labs, HMPO [the UK Passport Service](https://www.gov.uk/apply-renew-passport), British Airways, and early‑career roles at HP Labs.",
+        "At HMPO I normalised specification workshops, establishing shared understanding through whole‑team example creation, massively reducing rework.",
+        "Across other roles, I repeatedly shifted technical context rather than optimising within it: instigating the move from bespoke version control to Git and GitHub at British Airways; contributing to the award‑winning FT Web App at FT Labs; and automating manual testing at HP Labs while teaching others to adopt the same systems.",
+        "Across these roles, the consistent thread was clarifying intent, surfacing hidden assumptions, and shaping systems that could evolve stably under real‑world pressure."
       ]
     },
     {
       "title": "Grounded Practice",
       "description": [
         "My undergraduate thesis was on the design and construction of a [Theremin](https://en.wikipedia.org/wiki/Theremin) — an early interest in building at the intersection of physics, craft, and play.",
-        "I previously volunteered as a market gardener with Growing Communities, an organic local-food initiative. I keep an allotment, and breed runner beans and sunflowers, selecting for resilience and genetic diversity.",
-        "I'm interested in ecology-informed food growing, and how perennial systems shift resilience and yield stability in food and materials supply systems."
+        "I previously volunteered as a market gardener with Growing Communities, an organic local‑food initiative. I keep an allotment, and breed runner beans and sunflowers, selecting for resilience and genetic diversity.",
+        "I'm interested in ecology‑informed food growing, and how perennial systems shift resilience and yield stability in food and materials supply systems."
       ]
     }
   ],
   "capabilities": [
     "Zero-to-one leadership: forming systems and fixing early direction in unstructured problem spaces",
-    "Designing conditions for high-leverage, responsible AI use",
-    "Judgement and decision-making involving irreversible or high-cost trade-offs, in contexts where early direction choices constrain long-term outcomes",
+    "Designing conditions for high‑leverage, responsible AI use",
+    "Judgement and decision-making involving irreversible or high‑cost trade-offs, in contexts where early direction choices constrain long‑term outcomes",
     "Enabling ecosystems rather than centralising solutions"
   ],
   "education": [
@@ -91,15 +91,15 @@
     },
     "public_sector": {
       "context": "UK Civil Service / Public AI Leadership",
-      "positioning": "I work on complex, long-term problems where AI, data, and public services intersect, particularly in early or unstructured contexts where new forms of public value and access are possible but not yet well understood. I lead exploratory work that reframes what public services could offer, unlocking novel ways for people to benefit from shared data and digital capability. My focus is on shaping the early conditions for high-impact use of AI in public systems, enabling others to create value responsibly and at scale."
+      "positioning": "I work on complex, long‑term problems where AI, data, and public services intersect, particularly in early or unstructured contexts where new forms of public value and access are possible but not yet well understood. I lead exploratory work that reframes what public services could offer, unlocking novel ways for people to benefit from shared data and digital capability. My focus is on shaping the early conditions for high‑impact use of AI in public systems, enabling others to create value responsibly and at scale."
     },
     "private_ai": {
       "context": "Private AI Companies / Frontier Exploration",
-      "positioning": "I work on complex, early-stage problem spaces at the frontier of AI capability, where the right questions are not yet clear and premature solutions can distort long-term value. I lead exploratory work that reframes problems, identifies leverage, and gives initial shape to systems before they become products. My strength is turning ambiguity into coherent direction, enabling others to build with lasting impact."
+      "positioning": "I work on complex, early‑stage problem spaces at the frontier of AI capability, where the right questions are not yet clear and premature solutions can distort long‑term value. I lead exploratory work that reframes problems, identifies leverage, and gives initial shape to systems before they become products. My strength is turning ambiguity into coherent direction, enabling others to build with lasting impact."
     },
     "founder": {
       "context": "Founder / Origination",
-      "positioning": "I explore complex, high-impact problem spaces where existing models no longer fit and new systems are required. My work centres on discovery and creation: forming new conceptual frameworks, testing what is worth building at all, and shaping the first coherent versions of ideas that can grow beyond me. I'm driven by origination, leverage, and impact that emerges through others rather than incremental optimisation."
+      "positioning": "I explore complex, high‑impact problem spaces where existing models no longer fit and new systems are required. My work centres on discovery and creation: forming new conceptual frameworks, testing what is worth building at all, and shaping the first coherent versions of ideas that can grow beyond me. I'm driven by origination, leverage, and impact that emerges through others rather than incremental optimisation."
     }
   }
 }

@@ -31,16 +31,16 @@
         "https://www.linkedin.com/in/jimcresswell",
         "https://scholar.google.co.uk/citations?user=7yf2vEEAAAAJ&hl=en"
       ],
-      "description": "Exploratory AI Application leader working on zero-to-one systems, digital-first public services, and large-scale systemic change through responsible AI and open data.",
+      "description": "Exploratory AI Application leader working on zero‑to‑one systems, digital‑first public services, and large‑scale systemic change through responsible AI and open data.",
       "knowsAbout": [
         "Exploratory leadership",
         "Systems thinking",
-        "Digital-first public services",
-        "AI-enabled ecosystems",
+        "Digital‑first public services",
+        "AI‑enabled ecosystems",
         "Open data",
         "Hybrid semantic search",
         "Agentic software development",
-        "Ecology-informed agriculture",
+        "Ecology‑informed agriculture",
         "Perennial food systems",
         "Genetic diversity"
       ],
@@ -57,8 +57,8 @@
             "Exploratory leadership",
             "Systems thinking",
             "Judgment under uncertainty",
-            "Constraint-based decision making",
-            "Research-to-practice translation"
+            "Constraint‑based decision making",
+            "Research‑to‑practice translation"
           ]
         }
       ],
@@ -113,7 +113,7 @@
       "recognizedBy": {
         "@id": "https://jimcresswell.net/#org-portsmouth"
       },
-      "about": ["Cosmology", "Large-scale structure", "Statistical modelling"]
+      "about": ["Cosmology", "Large‑scale structure", "Statistical modelling"]
     },
     {
       "@type": "EducationalOccupationalCredential",
@@ -199,10 +199,10 @@
       },
       "about": [
         "Exploratory leadership",
-        "Zero-to-one systems",
+        "Zero‑to‑one systems",
         "Judgment under uncertainty",
         "Systems intervention",
-        "Research-to-practice translation"
+        "Research‑to‑practice translation"
       ],
       "keywords": [
         "exploratory engineering",

@@ -103,6 +103,9 @@
 
   body {
     @apply bg-background text-foreground;
+    /* Prevent automatic hyphenation - keeps compound words together */
+    hyphens: none;
+    -webkit-hyphens: none;
   }
 
   h1,
@@ -112,6 +115,35 @@
   h5,
   h6 {
     @apply font-sans;
+  }
+
+  /* ===== CV CAPABILITIES LIST ===== */
+  /* Subtle bullets for scanability */
+  section[aria-labelledby="capabilities-heading"] ul {
+    list-style-type: disc;
+    list-style-position: outside;
+    padding-left: 1.25em;
+  }
+
+  section[aria-labelledby="capabilities-heading"] li::marker {
+    color: var(--accent);
+    font-size: 0.6em;
+  }
+
+  /* ===== CV EDUCATION LIST ===== */
+  /* Improved visual hierarchy */
+  section[aria-labelledby="education-heading"] li {
+    line-height: 1.5;
+  }
+
+  section[aria-labelledby="education-heading"] li span:first-child {
+    /* Degree - slightly larger weight for emphasis */
+    font-weight: 500;
+  }
+
+  section[aria-labelledby="education-heading"] li br + span {
+    /* Institution - muted color, slightly smaller */
+    font-size: 0.9em;
   }
 }
 
@@ -273,17 +305,17 @@
     margin-top: 6mm;
   }
 
-  /* === PAGE 5: Capabilities + Education === */
+  /* === Capabilities + Education (flows after Foundations on page 4) === */
 
   section[aria-labelledby="capabilities-heading"] {
-    break-before: page;
-    margin-top: 0;
+    break-before: auto;
+    margin-top: 10mm; /* Extra breathing room after Grounded Practice */
   }
 
   /* Education flows after Capabilities */
   section[aria-labelledby="education-heading"] {
     break-before: auto;
-    margin-top: 8mm;
+    margin-top: 10mm; /* Balanced spacing on page 4 */
   }
 
   /* === TYPOGRAPHY === */
@@ -343,10 +375,11 @@
     display: block !important;
   }
 
-  /* Lists */
+  /* Lists - default no bullets */
   ul {
     margin: 0;
     padding: 0;
+    list-style-type: none;
   }
 
   li {
@@ -354,7 +387,22 @@
     font-size: 11pt;
   }
 
-  /* Education entries */
+  /* Capabilities list - subtle bullets */
+  section[aria-labelledby="capabilities-heading"] ul {
+    list-style-type: disc;
+    padding-left: 4mm;
+  }
+
+  section[aria-labelledby="capabilities-heading"] li {
+    padding-left: 1mm;
+  }
+
+  section[aria-labelledby="capabilities-heading"] li::marker {
+    color: #505050;
+    font-size: 0.7em;
+  }
+
+  /* Education entries - no bullets */
   section[aria-labelledby="education-heading"] li {
     margin-bottom: 3.5mm;
   }
