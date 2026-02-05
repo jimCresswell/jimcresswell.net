@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -9,7 +9,7 @@
   --foreground: #292524;
   --accent: #0d5c63;
   --focus-ring: #0d5c63;
-  
+
   /* Extended palette */
   --card: #faf9f7;
   --card-foreground: #292524;
@@ -36,7 +36,7 @@
   --foreground: #f5f5f4;
   --accent: #14b8a6;
   --focus-ring: #14b8a6;
-  
+
   /* Extended palette */
   --card: #1c1917;
   --card-foreground: #f5f5f4;
@@ -59,8 +59,8 @@
 /* ===== TAILWIND THEME MAPPING ===== */
 @theme inline {
   --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
-  --font-serif: var(--font-literata), Georgia, 'Times New Roman', serif;
-  
+  --font-serif: var(--font-literata), Georgia, "Times New Roman", serif;
+
   /* Enable outline-ring/50 utility */
   --outline-ring: var(--ring);
   --color-background: var(--background);
@@ -100,12 +100,17 @@
   * {
     @apply border-border;
   }
-  
+
   body {
     @apply bg-background text-foreground;
   }
-  
-  h1, h2, h3, h4, h5, h6 {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-sans;
   }
 }
@@ -148,9 +153,34 @@
   box-shadow: 0 0.25rem 0.375rem -0.0625rem rgb(0 0 0 / 0.1);
 }
 
+/* ===== CV REFERENCE LINKS ===== */
+/* WCAG 2.2 AA compliant: non-colour distinction (underline), sufficient contrast */
+.cv-ref-link {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 2px;
+  transition:
+    color 150ms ease,
+    text-decoration-color 150ms ease;
+}
+
+.cv-ref-link:hover {
+  color: var(--foreground);
+  text-decoration-color: var(--foreground);
+}
+
+.cv-ref-link:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
 /* ===== REDUCED MOTION ===== */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
@@ -164,36 +194,36 @@
     size: A4;
     margin: 18mm 20mm;
   }
-  
+
   body {
     background: white !important;
     color: #1a1a1a !important;
     font-size: 11pt;
     line-height: 1.6;
   }
-  
+
   .print-hidden {
     display: none !important;
   }
-  
+
   a {
     color: inherit !important;
     text-decoration: none !important;
   }
-  
+
   /* Reset spacing from web styles */
   main {
     padding: 0 !important;
     max-width: none !important;
   }
-  
+
   /* Remove flex gaps */
   .flex {
     gap: 0 !important;
   }
-  
+
   /* === PAGE 1: Header + Positioning === */
-  
+
   /* Name */
   h1 {
     font-size: 22pt !important;
@@ -201,63 +231,63 @@
     line-height: 1.2 !important;
     letter-spacing: -0.01em;
   }
-  
+
   /* Email under name */
   header > p:first-of-type {
     font-size: 10pt !important;
     margin-bottom: 3mm !important;
   }
-  
+
   /* Headline */
   header > p:last-of-type {
     font-size: 10pt !important;
     margin-bottom: 7mm !important;
     letter-spacing: 0.05em;
   }
-  
+
   /* Positioning section */
   section[aria-labelledby="positioning-heading"] {
     margin-bottom: 0;
   }
-  
+
   section[aria-labelledby="positioning-heading"] p {
     margin-bottom: 4mm;
   }
-  
+
   section[aria-labelledby="positioning-heading"] p:last-child {
     margin-bottom: 0;
   }
-  
+
   /* === PAGE 2-3: Experience (flows naturally) === */
-  
+
   section[aria-labelledby="experience-heading"] {
     break-before: page;
     break-inside: auto;
     margin-top: 0;
   }
-  
+
   /* === PAGES 3-4: Foundations (flows after Experience) === */
-  
+
   section[aria-labelledby="foundations-heading"] {
     break-before: auto; /* Flows naturally after Experience */
     margin-top: 6mm;
   }
-  
+
   /* === PAGE 5: Capabilities + Education === */
-  
+
   section[aria-labelledby="capabilities-heading"] {
     break-before: page;
     margin-top: 0;
   }
-  
+
   /* Education flows after Capabilities */
   section[aria-labelledby="education-heading"] {
     break-before: auto;
     margin-top: 8mm;
   }
-  
+
   /* === TYPOGRAPHY === */
-  
+
   /* Section headings */
   h2 {
     font-size: 14pt !important;
@@ -266,78 +296,79 @@
     margin-top: 0 !important;
     letter-spacing: 0.01em;
   }
-  
+
   /* Subsection headings (org names, foundation titles) */
   h3 {
     font-size: 12pt !important;
     font-weight: 600 !important;
     margin-bottom: 2mm !important;
   }
-  
+
   /* Role/date line */
   article > p:first-of-type {
     font-size: 10pt !important;
     margin-bottom: 3mm !important;
     color: #505050 !important;
   }
-  
+
   /* Body paragraphs */
   p {
     margin-bottom: 3.5mm;
     orphans: 3;
     widows: 3;
   }
-  
+
   /* === SPACING === */
-  
+
   /* Sections */
   section {
     margin-bottom: 6mm;
   }
-  
+
   section:last-of-type {
     margin-bottom: 0;
   }
-  
+
   /* Experience/foundation entries */
   article {
     margin-bottom: 6mm;
   }
-  
+
   article:last-child {
     margin-bottom: 0;
   }
-  
+
   /* Paragraph containers */
   article > div {
     display: block !important;
   }
-  
+
   /* Lists */
   ul {
     margin: 0;
     padding: 0;
   }
-  
+
   li {
     margin-bottom: 2.5mm;
     font-size: 11pt;
   }
-  
+
   /* Education entries */
   section[aria-labelledby="education-heading"] li {
     margin-bottom: 3.5mm;
   }
-  
+
   /* === PAGE BREAK CONTROL === */
-  
+
   /* Keep foundation entries together */
   section[aria-labelledby="foundations-heading"] article {
     break-inside: avoid;
   }
-  
+
   /* Keep headings with their content */
-  h2, h3 {
+  h2,
+  h3 {
     break-after: avoid;
   }
 }

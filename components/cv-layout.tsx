@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { cvContent } from "@/lib/cv-content";
+import { RichText } from "@/components/rich-text";
 
 interface CVLayoutProps {
   positioning: ReactNode;
@@ -13,9 +14,7 @@ export function CVLayout({ positioning }: CVLayoutProps) {
         <h1 className="font-sans text-[2rem] md:text-[2.625rem] font-medium leading-tight tracking-tight text-foreground text-balance mb-2">
           {cvContent.meta.name}
         </h1>
-        <p className="font-sans text-sm text-foreground/70 mb-3 md:mb-4">
-          {cvContent.links.email}
-        </p>
+        <p className="font-sans text-sm text-foreground/70 mb-3 md:mb-4">{cvContent.links.email}</p>
         <p className="font-sans text-sm md:text-base uppercase tracking-[0.08em] text-accent">
           {cvContent.meta.headline}
         </p>
@@ -48,11 +47,8 @@ export function CVLayout({ positioning }: CVLayoutProps) {
               </p>
               <div className="flex flex-col gap-3">
                 {exp.summary.map((paragraph, pIndex) => (
-                  <p
-                    key={pIndex}
-                    className="font-serif text-base leading-[1.7] text-foreground"
-                  >
-                    {paragraph}
+                  <p key={pIndex} className="font-serif text-base leading-[1.7] text-foreground">
+                    <RichText>{paragraph}</RichText>
                   </p>
                 ))}
               </div>
@@ -77,11 +73,8 @@ export function CVLayout({ positioning }: CVLayoutProps) {
               </h3>
               <div className="flex flex-col gap-3">
                 {foundation.description.map((paragraph, pIndex) => (
-                  <p
-                    key={pIndex}
-                    className="font-serif text-base leading-[1.7] text-foreground"
-                  >
-                    {paragraph}
+                  <p key={pIndex} className="font-serif text-base leading-[1.7] text-foreground">
+                    <RichText>{paragraph}</RichText>
                   </p>
                 ))}
               </div>
@@ -100,10 +93,7 @@ export function CVLayout({ positioning }: CVLayoutProps) {
         </h2>
         <ul className="flex flex-col gap-2">
           {cvContent.capabilities.map((capability, index) => (
-            <li
-              key={index}
-              className="font-serif text-base leading-[1.7] text-foreground"
-            >
+            <li key={index} className="font-serif text-base leading-[1.7] text-foreground">
               {capability}
             </li>
           ))}
