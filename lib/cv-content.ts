@@ -18,7 +18,7 @@ export const footerLinks = {
   linkedin: cvContent.links.linkedin,
   github: cvContent.links.github,
   google_scholar: cvContent.links.google_scholar,
-  shiv: "https://www.sphericalhorseinavacuum.com/",
+  shiv: cvContent.links.shiv,
 };
 
 // Active tilt keys (only these generate routes)
