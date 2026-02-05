@@ -9,6 +9,7 @@
   },
   "license": "MIT",
   "private": true,
+  "type": "module",
   "homepage": "https://jimcresswell.net",
   "repository": {
     "type": "git",
@@ -30,11 +31,19 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev",
+    "start": "next start",
     "lint": "eslint .",
     "type-check": "tsc --noEmit",
+    "format-check": "prettier --check .",
+    "format": "prettier --write .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "fix": "pnpm format",
+    "check": "pnpm run format-check && pnpm run lint && pnpm run type-check && pnpm run test",
     "knip": "knip",
-    "start": "next start",
-    "generate:icons": "tsx logo/generate-icons.ts"
+    "generate:icons": "tsx logo/generate-icons.ts",
+    "prepare": "husky"
   },
   "packageManager": "pnpm@10.28.2+sha512.41872f037ad22f7348e3b1debbaf7e867cfd448f2726d9cf74c08f19507c31d2c8e7a11525b983febc2df640b5438dee6023ebb1f84ed43cc2d654d2bc326264",
   "dependencies": {
@@ -50,15 +59,20 @@
     "@types/node": "^25.2.0",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@vitest/coverage-v8": "^4.0.18",
     "eslint": "^9.39.2",
     "eslint-config-next": "^16.1.6",
     "fontkit": "^2.0.4",
+    "husky": "^9.1.7",
     "knip": "^5.83.0",
+    "lint-staged": "^16.2.7",
     "postcss": "^8.5",
+    "prettier": "^3.8.1",
     "sharp": "^0.34.5",
     "tailwindcss": "^4.1.9",
     "tsx": "^4.21.0",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^4.0.18"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
