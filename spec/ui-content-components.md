@@ -7,11 +7,13 @@ This document specifies how content from `content/*.json` is rendered. For struc
 ## Content Authority
 
 **The JSON files are the sole source of content.** This specification describes:
+
 - How to **render** content (typography, spacing, hierarchy)
 - What **capacity** the design should accommodate (e.g., "typically 1-3 paragraphs")
 - How to **structure** the markup (semantic elements, accessibility)
 
 This specification does **not**:
+
 - Dictate how much content exists
 - Permit truncation, summarization, or omission
 - Allow invention of content not present in the JSON
@@ -106,7 +108,7 @@ When this document says "1-2 paragraphs" or "array of items," it describes **exp
 
 - **Source**: `cv.content.json → capabilities[]`
 - **Section heading**: "Capabilities" or similar, `<h2>`, 18px Inter
-- **Rendering**: 
+- **Rendering**:
   - Simple unordered list (`<ul>`, `<li>`)
   - Or: Comma-separated prose line
   - Body text styling (16px)
@@ -149,21 +151,21 @@ When this document says "1-2 paragraphs" or "array of items," it describes **exp
 
 ### Typography Assignment
 
-| Content Type | Font | Size | Line Height |
-|--------------|------|------|-------------|
-| Name (h1) | Inter | 42px | 1.2 |
-| Section headers (h2) | Inter | 18px | 1.3 |
-| Entry titles (h3) | Inter | 16px bold | 1.4 |
-| Prose (paragraphs) | Literata | 16px | 1.7 |
-| Lists | Literata or Inter | 16px | 1.5 |
-| Metadata (dates, labels) | Inter | 14px | 1.4 |
+| Content Type             | Font              | Size      | Line Height |
+| ------------------------ | ----------------- | --------- | ----------- |
+| Name (h1)                | Inter             | 42px      | 1.2         |
+| Section headers (h2)     | Inter             | 18px      | 1.3         |
+| Entry titles (h3)        | Inter             | 16px bold | 1.4         |
+| Prose (paragraphs)       | Literata          | 16px      | 1.7         |
+| Lists                    | Literata or Inter | 16px      | 1.5         |
+| Metadata (dates, labels) | Inter             | 14px      | 1.4         |
 
 ### Spacing
 
-| Element | Gap |
-|---------|-----|
-| Paragraphs within a section | 14px |
-| Between sections | 24px |
+| Element                                   | Gap  |
+| ----------------------------------------- | ---- |
+| Paragraphs within a section               | 14px |
+| Between sections                          | 24px |
 | Between entries (experience, foundations) | 24px |
 
 ### Completeness

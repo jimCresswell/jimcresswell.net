@@ -78,9 +78,7 @@ export default async function CVVariantPage({ params }: Props) {
 
   // Variant positioning content
   const variantPositioning = (
-    <p className="font-serif text-base leading-[1.7] text-foreground">
-      {tilt.positioning}
-    </p>
+    <p className="font-serif text-base leading-[1.7] text-foreground">{tilt.positioning}</p>
   );
 
   return (

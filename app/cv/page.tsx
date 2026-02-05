@@ -32,10 +32,7 @@ function BasePositioning() {
   return (
     <div className="flex flex-col gap-[0.875rem]">
       {cvContent.positioning.paragraphs.map((paragraph, index) => (
-        <p
-          key={index}
-          className="font-serif text-base leading-[1.7] text-foreground"
-        >
+        <p key={index} className="font-serif text-base leading-[1.7] text-foreground">
           {paragraph}
         </p>
       ))}

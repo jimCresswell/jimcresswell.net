@@ -16,10 +16,7 @@ export function ThemeToggle() {
   if (!mounted) {
     // Prevent hydration mismatch
     return (
-      <div
-        className="flex items-center gap-1 text-sm print-hidden"
-        aria-hidden="true"
-      >
+      <div className="flex items-center gap-1 text-sm print-hidden" aria-hidden="true">
         <span className="opacity-50">Light</span>
         <span className="opacity-50" aria-hidden="true">
           ·
@@ -76,8 +73,7 @@ export function ThemeToggle() {
         Auto
       </button>
       <div className="sr-only" aria-live="polite">
-        Theme set to{" "}
-        {theme === "system" ? "system preference" : `${theme} mode`}
+        Theme set to {theme === "system" ? "system preference" : `${theme} mode`}
       </div>
     </div>
   );

@@ -27,17 +27,26 @@ export function SiteHeader({ actions }: SiteHeaderProps) {
             <Logo className="h-8 w-8 md:h-9 md:w-9" />
           </Link>
           <span className="h-5 w-px bg-foreground/20" aria-hidden="true" />
-          <nav aria-label="Main navigation" className="flex items-center font-sans text-sm print-hidden">
+          <nav
+            aria-label="Main navigation"
+            className="flex items-center font-sans text-sm print-hidden"
+          >
             {isHome ? (
-              <span className="font-medium underline" aria-current="page">Home</span>
+              <span className="font-medium underline" aria-current="page">
+                Home
+              </span>
             ) : (
               <Link href="/" className="opacity-70 hover:opacity-100 transition-opacity">
                 Home
               </Link>
             )}
-            <span className="mx-2 opacity-50" aria-hidden="true">·</span>
+            <span className="mx-2 opacity-50" aria-hidden="true">
+              ·
+            </span>
             {isCV ? (
-              <span className="font-medium underline" aria-current="page">CV</span>
+              <span className="font-medium underline" aria-current="page">
+                CV
+              </span>
             ) : (
               <Link href="/cv/" className="opacity-70 hover:opacity-100 transition-opacity">
                 CV
@@ -49,7 +58,9 @@ export function SiteHeader({ actions }: SiteHeaderProps) {
           {actions && (
             <>
               {actions}
-              <span className="opacity-30" aria-hidden="true">|</span>
+              <span className="opacity-30" aria-hidden="true">
+                |
+              </span>
             </>
           )}
           <ThemeToggle />

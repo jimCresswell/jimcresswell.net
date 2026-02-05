@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 import type { Metadata, Viewport } from "next";
 import { Inter, Literata } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -68,11 +68,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${inter.variable} ${literata.variable}`}
-      suppressHydrationWarning
-    >
+    <html lang="en" className={`${inter.variable} ${literata.variable}`} suppressHydrationWarning>
       <body className="font-sans antialiased">
         <ThemeProvider
           attribute="class"

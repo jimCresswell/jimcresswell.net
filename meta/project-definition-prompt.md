@@ -14,13 +14,13 @@ This process works for any content-driven site: personal portfolios, CVs, blogs,
 
 ### 1.1 Identify Project Type
 
-| Type | Primary Content | Key Pages | Special Needs |
-|------|-----------------|-----------|---------------|
-| **CV / Personal site** | Bio, experience, credentials | Home, CV, variants | Print CSS, JSON-LD Person |
-| **Visual portfolio** | Images, project descriptions | Gallery, project detail, about | Image optimization, lightbox |
-| **Blog** | Posts, categories, author | Home, post, archive, about | RSS, reading time, dates |
-| **Microbusiness** | Services, contact, location | Home, services, contact | Maps, forms, hours |
-| **Artist/Creator** | Works, exhibitions, press | Gallery, CV, press, contact | Image galleries, chronology |
+| Type                   | Primary Content              | Key Pages                      | Special Needs                |
+| ---------------------- | ---------------------------- | ------------------------------ | ---------------------------- |
+| **CV / Personal site** | Bio, experience, credentials | Home, CV, variants             | Print CSS, JSON-LD Person    |
+| **Visual portfolio**   | Images, project descriptions | Gallery, project detail, about | Image optimization, lightbox |
+| **Blog**               | Posts, categories, author    | Home, post, archive, about     | RSS, reading time, dates     |
+| **Microbusiness**      | Services, contact, location  | Home, services, contact        | Maps, forms, hours           |
+| **Artist/Creator**     | Works, exhibitions, press    | Gallery, CV, press, contact    | Image galleries, chronology  |
 
 ### 1.2 Gather Source Content
 
@@ -33,9 +33,10 @@ This process works for any content-driven site: personal portfolios, CVs, blogs,
 ### 1.3 Identify the Owner's Voice
 
 Ask:
+
 - What makes their writing recognizable?
 - What tensions, trade-offs, or deliberate ambiguities should be preserved?
-- What do they explicitly *not* want to sound like?
+- What do they explicitly _not_ want to sound like?
 - Is there industry jargon they embrace or reject?
 
 Document this as **Character and Tone** (see Phase 2).
@@ -62,32 +63,36 @@ content/
 Create 3-5 specific attributes that describe the feel, not just adjectives:
 
 **Template:**
+
 ```markdown
 The design should express:
+
 - **[Attribute name]**: [What it means visually/structurally]
 - **[Attribute name]**: [What it means visually/structurally]
 ```
 
 **Examples by project type:**
 
-| Type | Example Attributes |
-|------|-------------------|
-| CV | "Inexorable forward motion" — directional energy, content emerges |
-| Portfolio | "Work speaks first" — images dominate, text supports |
-| Blog | "Quiet authority" — generous whitespace, no shouting |
-| Microbusiness | "Approachable expertise" — warm but competent |
+| Type          | Example Attributes                                                |
+| ------------- | ----------------------------------------------------------------- |
+| CV            | "Inexorable forward motion" — directional energy, content emerges |
+| Portfolio     | "Work speaks first" — images dominate, text supports              |
+| Blog          | "Quiet authority" — generous whitespace, no shouting              |
+| Microbusiness | "Approachable expertise" — warm but competent                     |
 
 ### 2.2 Create Anti-Patterns
 
 **"Do Not Optimise For" list** — What the agent should actively avoid:
 
 Universal anti-patterns:
+
 - Animation density or decorative motion
 - Marketing persuasion, hype language
 - Unnecessary component abstraction
 - Heavy gradients, glows, glassmorphism
 
 Project-specific additions:
+
 - CV: Timelines, career arcs, "impact metrics" not in content
 - Portfolio: Infinite scroll, tiny thumbnails, autoplay
 - Blog: Comment sections, share buttons, newsletter popups
@@ -96,6 +101,7 @@ Project-specific additions:
 ### 2.3 Lock Typography and Color
 
 Specify exact values, not ranges:
+
 - Font families with roles (headings vs prose)
 - Font fallback stacks
 - Type scale (specific px values)
@@ -106,6 +112,7 @@ Specify exact values, not ranges:
 ### 2.4 Define Accessibility Requirements
 
 Minimum: WCAG 2.2 AA. Call out specific criteria:
+
 - Contrast ratios (4.5:1 body, 3:1 large text)
 - Focus indicators (2px outline minimum)
 - Target sizes (24×24px minimum)
@@ -114,12 +121,12 @@ Minimum: WCAG 2.2 AA. Call out specific criteria:
 
 ### 2.5 Project-Specific Requirements
 
-| Type | Special Requirements |
-|------|---------------------|
-| CV | Print CSS (A4), PDF-friendly, variants as separate routes |
-| Portfolio | Responsive images, lazy loading, project detail template |
-| Blog | Post template, date formatting, estimated reading time |
-| Microbusiness | Contact form handling, map embed, business hours |
+| Type          | Special Requirements                                      |
+| ------------- | --------------------------------------------------------- |
+| CV            | Print CSS (A4), PDF-friendly, variants as separate routes |
+| Portfolio     | Responsive images, lazy loading, project detail template  |
+| Blog          | Post template, date formatting, estimated reading time    |
+| Microbusiness | Contact form handling, map embed, business hours          |
 
 ---
 
@@ -155,13 +162,13 @@ and unfinished edges in the prose.
 
 Anticipate how the agent might fail:
 
-| Failure Mode | Risk | Mitigation |
-|--------------|------|------------|
-| Helpful rewriting | Breaks voice/cadence | Copy Lock |
-| Editorial compression | Loses nuance | Completeness check |
-| Selective omission | Drops "less important" sections | Explicit section list |
-| Template averaging | Generic result | Character/Tone spec |
-| Over-styling | Decorative clutter | Anti-pattern list |
+| Failure Mode          | Risk                            | Mitigation            |
+| --------------------- | ------------------------------- | --------------------- |
+| Helpful rewriting     | Breaks voice/cadence            | Copy Lock             |
+| Editorial compression | Loses nuance                    | Completeness check    |
+| Selective omission    | Drops "less important" sections | Explicit section list |
+| Template averaging    | Generic result                  | Character/Tone spec   |
+| Over-styling          | Decorative clutter              | Anti-pattern list     |
 
 ### 3.4 Fallback Rules
 
@@ -175,9 +182,10 @@ Anticipate how the agent might fail:
 
 ```markdown
 Before finishing, verify that every field in:
+
 - `content/site.json`
 - `content/[primary].json`
-has been rendered on the appropriate route.
+  has been rendered on the appropriate route.
 
 No truncation, collapsing, "read more", or editorial shortening.
 ```
@@ -189,6 +197,7 @@ No truncation, collapsing, "read more", or editorial shortening.
 ### 4.1 Multi-Agent Review
 
 Have different AI systems review the documents:
+
 - Each has different biases and catches different issues
 - Systematically evaluate suggestions before implementing
 - Don't implement blindly — some suggestions conflict
@@ -196,17 +205,20 @@ Have different AI systems review the documents:
 ### 4.2 Cross-Document Consistency
 
 Verify:
+
 - No conflicting values (colors, spacing, fonts)
 - No orphaned references (files mentioned but not provided)
 - Document precedence is clear and explicit
-- All placeholder values replaced (REPLACE_WITH_*)
+- All placeholder values replaced (REPLACE*WITH*\*)
 
 ### 4.3 Dependency Audit
 
 For any packages specified:
+
 ```bash
 npm view <package> time --json | jq -r 'to_entries | sort_by(.value) | reverse | .[0:3]'
 ```
+
 - Reject packages with no releases in 18+ months
 - Document why each dependency is needed
 - Prefer built-in solutions over dependencies
@@ -218,6 +230,7 @@ npm view <package> time --json | jq -r 'to_entries | sort_by(.value) | reverse |
 ### 5.1 Static Asset Generation
 
 Generate all visual assets before handoff:
+
 - Favicons (light/dark variants if theme-aware)
 - Apple touch icons
 - Open Graph images
@@ -228,6 +241,7 @@ Don't rely on runtime generation for v0 handoff.
 ### 5.2 Image Optimization
 
 For visual portfolios:
+
 - Multiple sizes (thumbnail, preview, full)
 - WebP/AVIF with fallbacks
 - Lazy loading strategy
@@ -236,6 +250,7 @@ For visual portfolios:
 ### 5.3 Verification
 
 Compare generated assets against reference/original:
+
 - Correct colors
 - Correct dimensions
 - Proper centering/positioning
@@ -275,6 +290,7 @@ project/
 ### 6.2 Entry Point Document
 
 The main prompt should include:
+
 1. Source file list with descriptions
 2. Document precedence (when in conflict)
 3. Routes / page structure
@@ -285,6 +301,7 @@ The main prompt should include:
 ### 6.3 README
 
 Explain:
+
 - What files to pass to v0
 - What files are for post-generation
 - Document precedence
@@ -295,6 +312,7 @@ Explain:
 ## Output Checklist
 
 ### Documents
+
 - [ ] Entry point prompt (`v0-prompt.md`)
 - [ ] Design brief with character, tone, anti-patterns
 - [ ] Content files (JSON) with all copy
@@ -305,17 +323,20 @@ Explain:
 - [ ] README explaining structure
 
 ### Assets
+
 - [ ] Logo/favicon variants
 - [ ] Open Graph image
 - [ ] Any required images optimized
 
 ### Project-Specific
+
 - [ ] CV: Print CSS requirements, variant rules
 - [ ] Portfolio: Image gallery spec, project template
 - [ ] Blog: Post template, archive structure
 - [ ] Microbusiness: Contact form handling, map/hours
 
 ### Hygiene
+
 - [ ] .gitignore (no node_modules, OS artifacts)
 - [ ] All placeholder values replaced
 - [ ] No conflicting specs across documents

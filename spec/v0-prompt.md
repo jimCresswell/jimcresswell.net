@@ -5,12 +5,14 @@ You are building jimcresswell.net using the latest stable Next.js (App Router) a
 Read all content from these files. They are the single source of truth:
 
 **Content files** (in `content/`):
+
 - `content/frontpage.content.json` — front page content
 - `content/cv.content.json` — CV content and tilt variants
 - `content/cv.og.json` — Open Graph metadata
 - `content/jsonld.json` — structured data (JSON-LD)
 
 **Spec files** (in `spec/`):
+
 - `spec/jimcresswell.design-brief.md` — design outcomes and requirements
 - `spec/cv.presentation.json` — typography and layout constraints
 - `spec/jimcresswell.cv-variants.md` — variant construction rules
@@ -39,6 +41,7 @@ All copy in `content/*.json` is FINAL.
 If a layout constraint conflicts with content length, **change the layout** (spacing, breaks, flow), never the content.
 
 ### Document Precedence (when in conflict)
+
 1. This prompt
 2. `spec/jimcresswell.design-brief.md`
 3. `spec/cv.presentation.json` + `spec/theme.json`
@@ -53,6 +56,7 @@ Create a minimal, editorial-quality personal site with a front page and CV pages
 "Editorial-quality" refers to typography, spacing, hierarchy, and reading experience — not any change to wording, tone, or structure of the copy.
 
 ### Do Not Optimise For
+
 - Animation density or decorative motion
 - Visual novelty / "portfolio template" aesthetics
 - Marketing persuasion, hype language, or testimonial patterns
@@ -66,6 +70,7 @@ Create a minimal, editorial-quality personal site with a front page and CV pages
 ## Character and Tone
 
 The design should express:
+
 - **Inexorable forward motion**: Subtle asymmetry, left-alignment bias, directional energy. Content emerges rather than appears.
 - **Warmth without softness**: Warm color palette, generous line-height (1.7), breathing room. Caring, not cold.
 - **Non-destructive iconoclasm**: Rounded edges on firm structure. Gentle presentation, unyielding organization.
@@ -91,6 +96,7 @@ Variants are separate resources. Do not blend base CV and tilt copy.
 ## Key Requirements
 
 ### Layout & Typography
+
 - Single-column CV layout, max width 760px
 - **Inter** (via next/font): Headers, labels, metadata — clean, modern, functional
 - **Literata** (via next/font): Prose, positioning, experience narratives — scholarly, warm, persistent
@@ -99,25 +105,30 @@ Variants are separate resources. Do not blend base CV and tilt copy.
 - Whitespace-driven hierarchy — no boxes, rules, or decorative elements
 
 ### Color Direction
+
 - Light mode: warm off-white (#faf9f7), warm charcoal (#292524), accent deep teal (#0d5c63)
 - Dark mode: warm dark (#1c1917), warm cream (#f5f5f4), accent slightly lighter
 - No gradients or decorative color usage
 
 ### Theme
+
 - Light and dark mode via CSS variables + next-themes
 - Support system, light, and dark modes
 - No flash of wrong theme on load
 - Use Tailwind 4 with `attribute="class"` strategy
 
 ### Accessibility (WCAG 2.2 AA)
+
 Full compliance with WCAG 2.2 Level A and AA. Key implementation requirements:
 
 **Contrast & Color**
+
 - Body text: 4.5:1 contrast ratio minimum
 - Large text (≥18pt): 3:1 minimum
 - Links: underline or non-color indicator (not color alone)
 
 **Keyboard & Focus**
+
 - All interactive elements keyboard accessible
 - Skip to content link at page start
 - Visible focus indicator (2px outline or equivalent)
@@ -125,20 +136,24 @@ Full compliance with WCAG 2.2 Level A and AA. Key implementation requirements:
 - Interactive targets: 24×24px minimum (text links in prose exempt)
 
 **Structure & Semantics**
+
 - `<html lang="en">`
 - Proper heading hierarchy (h1 → h2 → h3, no skipped levels)
 - Semantic HTML elements (nav, main, article, section, footer)
 - Unique, descriptive page titles
 
 **Motion & State**
+
 - Respect `prefers-reduced-motion`
 - Theme toggle state announced to assistive tech
 
 **Print**
+
 - Maintains reading order
 - All content visible (no JS-hidden content in print)
 
 ### Print (CV)
+
 - A4 layout with proper margins (18mm)
 - Single column, no page breaks mid-section
 - Avoid widows/orphans
@@ -146,11 +161,13 @@ Full compliance with WCAG 2.2 Level A and AA. Key implementation requirements:
 - **Variant print behaviour**: All variant routes (`/cv/<variant>/`) are independently printable with identical print styling. `/cv/` is the canonical print target; variants inherit the same print layout.
 
 ### SEO & Metadata
+
 - Open Graph metadata from `content/cv.og.json` (no Twitter tags)
 - JSON-LD injected from `content/jsonld.json` on `/cv/` and all variants
 - Proper title and description per page
 
 ### Engineering
+
 - Server components by default, minimal client JS
 - next/font for fonts
 - Lighthouse 95+ target
@@ -193,6 +210,7 @@ Full compliance with WCAG 2.2 Level A and AA. Key implementation requirements:
 ## Completeness Check (Before You Finish)
 
 Verify that every field of user-visible copy from:
+
 - `content/frontpage.content.json`
 - `content/cv.content.json` (including all paragraphs and list items)
 

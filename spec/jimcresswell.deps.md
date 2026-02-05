@@ -37,7 +37,6 @@ Avoid unnecessary libraries. Prefer platform primitives.
   - Keep class usage restrained and readable
   - **Tailwind 4** is specified intentionally. If v0 generates Tailwind 3.x, upgrade post-export or adapt configuration
 
-
 ### @tailwindcss/typography@latest
 
 - **Purpose**: Prose defaults for CV and long-form text
@@ -70,10 +69,11 @@ Avoid unnecessary libraries. Prefer platform primitives.
   - Define theme colours as CSS variables in `:root` and `.dark` selectors
   - Use `suppressHydrationWarning` on `<html>` element
 - **Example setup**:
+
   ```tsx
   // app/layout.tsx
-  import { ThemeProvider } from 'next-themes'
-  
+  import { ThemeProvider } from "next-themes";
+
   export default function RootLayout({ children }) {
     return (
       <html suppressHydrationWarning>
@@ -83,10 +83,9 @@ Avoid unnecessary libraries. Prefer platform primitives.
           </ThemeProvider>
         </body>
       </html>
-    )
+    );
   }
   ```
-
 
 ---
 

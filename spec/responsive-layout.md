@@ -15,13 +15,13 @@ This document defines the responsive behavior of the site. The approach is **mob
 
 ## Breakpoints
 
-| Name | Min-width | Use case |
-|------|-----------|----------|
-| **Base** | 0 | Mobile phones (portrait) |
-| **sm** | 640px | Large phones, small tablets |
-| **md** | 768px | Tablets (portrait) |
-| **lg** | 1024px | Tablets (landscape), small laptops |
-| **xl** | 1280px | Desktops |
+| Name     | Min-width | Use case                           |
+| -------- | --------- | ---------------------------------- |
+| **Base** | 0         | Mobile phones (portrait)           |
+| **sm**   | 640px     | Large phones, small tablets        |
+| **md**   | 768px     | Tablets (portrait)                 |
+| **lg**   | 1024px    | Tablets (landscape), small laptops |
+| **xl**   | 1280px    | Desktops                           |
 
 These align with Tailwind defaults. Use sparingly — most layout is fluid.
 
@@ -32,29 +32,29 @@ These align with Tailwind defaults. Use sparingly — most layout is fluid.
 ### Container
 
 - **Max-width**: 760px (content), centered
-- **Padding**: 
+- **Padding**:
   - Mobile: `1rem` (16px) horizontal
   - Desktop (md+): `2rem` (32px) horizontal
 - **No fixed widths**: Container is fluid up to max-width
 
 ### Typography Scaling
 
-| Element | Mobile (base) | Desktop (md+) |
-|---------|---------------|---------------|
-| Name (h1) | 32px | 42px |
-| Section headers (h2) | 16px | 18px |
-| Body text | 16px | 16px (no change) |
-| Metadata | 14px | 14px (no change) |
+| Element              | Mobile (base) | Desktop (md+)    |
+| -------------------- | ------------- | ---------------- |
+| Name (h1)            | 32px          | 42px             |
+| Section headers (h2) | 16px          | 18px             |
+| Body text            | 16px          | 16px (no change) |
+| Metadata             | 14px          | 14px (no change) |
 
 Body text does not scale — 16px is readable on all devices. Only headings increase.
 
 ### Spacing Scaling
 
-| Element | Mobile | Desktop (md+) |
-|---------|--------|---------------|
-| Section gap | 20px | 24px |
-| Paragraph gap | 12px | 14px |
-| Page vertical padding | 2rem | 4rem |
+| Element               | Mobile | Desktop (md+) |
+| --------------------- | ------ | ------------- |
+| Section gap           | 20px   | 24px          |
+| Paragraph gap         | 12px   | 14px          |
+| Page vertical padding | 2rem   | 4rem          |
 
 ### Line Length
 
@@ -96,7 +96,7 @@ Body text does not scale — 16px is readable on all devices. Only headings incr
 
 ### Hero (Front Page)
 
-- **Mobile**: 
+- **Mobile**:
   - Name at top, tagline below
   - Reduced vertical padding
   - Summary paragraphs full-width
@@ -180,6 +180,7 @@ Print is a separate media query, not a breakpoint:
 ## Anti-Patterns
 
 Do not:
+
 - Use multi-column layouts that reflow to single column
 - Hide content on mobile ("show more on desktop")
 - Use hover-only interactions

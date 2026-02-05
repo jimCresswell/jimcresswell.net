@@ -22,7 +22,10 @@ export function SiteFooter({ links }: SiteFooterProps) {
               &copy; {new Date().getFullYear()} {frontpageContent.hero.name}
             </p>
             {links && (
-              <nav aria-label="External links" className="flex flex-col sm:flex-row sm:gap-4 text-sm">
+              <nav
+                aria-label="External links"
+                className="flex flex-col sm:flex-row sm:gap-4 text-sm"
+              >
                 {links.email && (
                   <span className="opacity-70 py-2 sm:py-0 sm:min-h-[44px] flex items-center">
                     {links.email}

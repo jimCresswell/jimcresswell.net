@@ -15,10 +15,7 @@
         "columns": 1
       },
       "typography": {
-        "preferred_families": [
-          "Inter",
-          "Literata"
-        ],
+        "preferred_families": ["Inter", "Literata"],
         "line_height": 1.7
       },
       "rendering_guidelines": [
@@ -51,11 +48,7 @@
           "paragraph_gap_mm": 6,
           "section_gap_mm": 10
         },
-        "constraints": [
-          "max_pages:2",
-          "no_icons",
-          "high_whitespace"
-        ]
+        "constraints": ["max_pages:2", "no_icons", "high_whitespace"]
       },
       "print_letter": {
         "paper_size": "Letter",

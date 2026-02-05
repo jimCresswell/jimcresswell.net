@@ -6,11 +6,11 @@ This folder contains guidance and checklists for **after** v0 generates the init
 
 ## Contents
 
-| File | Purpose |
-|------|---------|
+| File                     | Purpose                                                               |
+| ------------------------ | --------------------------------------------------------------------- |
 | `hardening-checklist.md` | **Start here** — comprehensive checklist with suggested order of work |
-| `testing-strategy.md` | Detailed testing implementation (Playwright, axe, visual regression) |
-| `deployment-notes.md` | Hosting, security headers, SEO, performance |
+| `testing-strategy.md`    | Detailed testing implementation (Playwright, axe, visual regression)  |
+| `deployment-notes.md`    | Hosting, security headers, SEO, performance                           |
 
 ## Workflow
 

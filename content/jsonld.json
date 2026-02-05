@@ -113,11 +113,7 @@
       "recognizedBy": {
         "@id": "https://jimcresswell.net/#org-portsmouth"
       },
-      "about": [
-        "Cosmology",
-        "Large-scale structure",
-        "Statistical modelling"
-      ]
+      "about": ["Cosmology", "Large-scale structure", "Statistical modelling"]
     },
     {
       "@type": "EducationalOccupationalCredential",

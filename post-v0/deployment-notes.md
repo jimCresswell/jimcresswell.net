@@ -3,12 +3,14 @@
 ## Recommended Hosting
 
 **Vercel** (preferred for Next.js):
+
 - Zero-config deployment
 - Automatic preview deployments
 - Edge functions if needed
 - Built-in analytics (optional)
 
 **Alternatives**:
+
 - Netlify (with Next.js adapter)
 - Cloudflare Pages
 - Self-hosted with Docker
@@ -23,20 +25,20 @@ Add to `next.config.js` or middleware:
 // next.config.js
 const securityHeaders = [
   {
-    key: 'X-Content-Type-Options',
-    value: 'nosniff',
+    key: "X-Content-Type-Options",
+    value: "nosniff",
   },
   {
-    key: 'X-Frame-Options',
-    value: 'DENY',
+    key: "X-Frame-Options",
+    value: "DENY",
   },
   {
-    key: 'Referrer-Policy',
-    value: 'strict-origin-when-cross-origin',
+    key: "Referrer-Policy",
+    value: "strict-origin-when-cross-origin",
   },
   {
-    key: 'Permissions-Policy',
-    value: 'camera=(), microphone=(), geolocation=()',
+    key: "Permissions-Policy",
+    value: "camera=(), microphone=(), geolocation=()",
   },
 ];
 
@@ -44,7 +46,7 @@ module.exports = {
   async headers() {
     return [
       {
-        source: '/:path*',
+        source: "/:path*",
         headers: securityHeaders,
       },
     ];
@@ -67,6 +69,7 @@ Note: `'unsafe-inline'` for styles may be needed for Tailwind. Consider nonce-ba
 ## SEO & Indexing
 
 ### robots.txt
+
 ```
 User-agent: *
 Allow: /
@@ -75,19 +78,22 @@ Sitemap: https://jimcresswell.net/sitemap.xml
 ```
 
 ### sitemap.xml
+
 Next.js App Router can generate this automatically:
+
 ```ts
 // app/sitemap.ts
 export default function sitemap() {
   return [
-    { url: 'https://jimcresswell.net', lastModified: new Date() },
-    { url: 'https://jimcresswell.net/cv', lastModified: new Date() },
+    { url: "https://jimcresswell.net", lastModified: new Date() },
+    { url: "https://jimcresswell.net/cv", lastModified: new Date() },
     // Add variant URLs from tilts
   ];
 }
 ```
 
 ### Canonical URLs
+
 - `/cv/` is canonical for the CV
 - Variants should set `rel="canonical"` to `/cv/` (prevents SEO dilution)
 
@@ -115,6 +121,7 @@ export default function sitemap() {
 ## Monitoring (Optional)
 
 Consider adding after launch:
+
 - Vercel Analytics (free tier)
 - Sentry for error tracking
 - Uptime monitoring (UptimeRobot, Better Uptime)

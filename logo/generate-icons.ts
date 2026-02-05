@@ -46,10 +46,10 @@ const CONFIG = {
     },
   },
   sizes: {
-    favicon: 512,      // SVG viewBox (scales to any size)
-    appleTouch: 180,   // iOS standard
-    pwa192: 192,       // PWA manifest
-    pwa512: 512,       // PWA manifest / splash
+    favicon: 512, // SVG viewBox (scales to any size)
+    appleTouch: 180, // iOS standard
+    pwa192: 192, // PWA manifest
+    pwa512: 512, // PWA manifest / splash
     ogImage: { width: 1200, height: 630 },
   },
 };
@@ -58,11 +58,7 @@ const CONFIG = {
  * Generate SVG path from text using fontkit
  * Returns a single pre-transformed path string
  */
-function getIconPath(
-  font: fontkit.Font,
-  text: string,
-  dimension: number
-): string {
+function getIconPath(font: fontkit.Font, text: string, dimension: number): string {
   const fontSize = dimension * 0.8;
   const scale = fontSize / font.unitsPerEm;
 
@@ -231,10 +227,7 @@ async function generatePng(
   width: number,
   height: number
 ): Promise<void> {
-  await sharp(Buffer.from(svgContent))
-    .png()
-    .resize(width, height)
-    .toFile(outputPath);
+  await sharp(Buffer.from(svgContent)).png().resize(width, height).toFile(outputPath);
 }
 
 async function main() {
@@ -260,7 +253,12 @@ async function main() {
 
   // 2. Apple Touch Icon (PNG required for iOS, use dark theme for contrast)
   const applePath = getIconPath(font, CONFIG.text, CONFIG.sizes.appleTouch);
-  const appleSvg = generateIconSvg(applePath, CONFIG.sizes.appleTouch, light.background, light.foreground);
+  const appleSvg = generateIconSvg(
+    applePath,
+    CONFIG.sizes.appleTouch,
+    light.background,
+    light.foreground
+  );
   await generatePng(
     appleSvg,
     path.join(CONFIG.outputDir, "apple-touch-icon.png"),
@@ -271,7 +269,12 @@ async function main() {
 
   // 3. PWA manifest icons (use dark theme for better visibility)
   const pwa192Path = getIconPath(font, CONFIG.text, CONFIG.sizes.pwa192);
-  const pwa192Svg = generateIconSvg(pwa192Path, CONFIG.sizes.pwa192, light.background, light.foreground);
+  const pwa192Svg = generateIconSvg(
+    pwa192Path,
+    CONFIG.sizes.pwa192,
+    light.background,
+    light.foreground
+  );
   await generatePng(
     pwa192Svg,
     path.join(CONFIG.outputDir, "icon-192.png"),
@@ -281,7 +284,12 @@ async function main() {
   console.log("✅ icon-192.png (PWA manifest)");
 
   const pwa512Path = getIconPath(font, CONFIG.text, CONFIG.sizes.pwa512);
-  const pwa512Svg = generateIconSvg(pwa512Path, CONFIG.sizes.pwa512, light.background, light.foreground);
+  const pwa512Svg = generateIconSvg(
+    pwa512Path,
+    CONFIG.sizes.pwa512,
+    light.background,
+    light.foreground
+  );
   await generatePng(
     pwa512Svg,
     path.join(CONFIG.outputDir, "icon-512.png"),
@@ -297,8 +305,8 @@ async function main() {
     ogPath,
     CONFIG.sizes.ogImage.width,
     CONFIG.sizes.ogImage.height,
-    dark.foreground,  // Use dark theme: light bg (#f5f5f4)
-    dark.background,  // dark text (#1c1917)
+    dark.foreground, // Use dark theme: light bg (#f5f5f4)
+    dark.background, // dark text (#1c1917)
     ogIconSize
   );
   await generatePng(

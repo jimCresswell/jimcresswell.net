@@ -19,9 +19,7 @@ export default function HomePage() {
           >
             {content.hero.name}
           </h1>
-          <p className="mt-3 md:mt-4 font-sans text-base text-accent">
-            {content.hero.tagline}
-          </p>
+          <p className="mt-3 md:mt-4 font-sans text-base text-accent">{content.hero.tagline}</p>
           <div className="mt-6 flex flex-col gap-[0.875rem]">
             {content.hero.summary.map((paragraph, index) => (
               <p
