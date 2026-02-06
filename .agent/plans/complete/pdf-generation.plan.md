@@ -4,7 +4,7 @@ Build-time PDF generation for the CV page. **All implementation work is complete
 
 ## Status: Complete
 
-Remaining items (Vercel Blob store setup, production deploy, E2E tests) are tracked in [e2e-testing-and-quality.plan.md](e2e-testing-and-quality.plan.md).
+All remaining items (Vercel Blob store setup, production deploy, E2E tests) were completed as part of the [E2E testing and quality plan](e2e-testing-and-quality.plan.md).
 
 ## Implementation Summary
 

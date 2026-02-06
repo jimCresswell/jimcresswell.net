@@ -33,7 +33,7 @@ Read [the rules](./rules.md); reflect on them, _apply_ them — they MUST be fol
 ```bash
 pnpm install        # Setup
 pnpm dev            # Development server
-pnpm build          # Production build
+pnpm build          # Production build (next build + PDF generation)
 pnpm start          # Start production server
 pnpm lint           # ESLint
 pnpm type-check     # TypeScript type checking
@@ -43,7 +43,12 @@ pnpm test           # Unit and integration tests (Vitest)
 pnpm test:watch     # Tests in watch mode
 pnpm test:coverage  # Tests with coverage
 pnpm check          # All checks: format, lint, type-check, test, knip
+pnpm test:e2e       # E2E tests — default project (Playwright)
+pnpm test:e2e:pdf   # E2E tests — with-build project (PDF tests)
+pnpm test:e2e:ui    # Playwright UI mode
 ```
+
+**Note:** `test:e2e` is intentionally separate from `pnpm check`. E2E tests are slower (browser automation) and have external dependencies (Chromium). Run them explicitly.
 
 ## Project Structure
 
@@ -57,7 +62,9 @@ docs/               # Project documentation
   architecture/     # System architecture and decision records
   project/          # User stories and requirements
 public/             # Static assets
-e2e/                # End-to-end tests (Playwright) — to be added
+e2e/                # End-to-end tests (Playwright)
+  journeys/         # User story journey tests
+  behaviour/        # Cross-cutting behavioural tests (a11y, SEO, content)
 ```
 
 ## Remember

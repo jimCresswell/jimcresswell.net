@@ -65,3 +65,7 @@ pnpm test:e2e:pdf                      # Run PDF tests
 | `behaviour/seo.e2e-api.test.ts`              | US-09: SEO signals            |
 | `behaviour/content-integrity.e2e-ui.test.ts` | REQ-06: Content matches JSON  |
 | `behaviour/pdf-response.with-build.*`        | REQ-07: PDF HTTP correctness  |
+
+## Accessibility Testing Scope
+
+axe-core covers approximately 30–40% of WCAG criteria automatically: colour contrast, missing labels/ARIA, heading hierarchy, landmark regions, focus management, and link purpose. It cannot verify keyboard-only navigation flow, screen reader comprehension, meaningful reading order, or complex interaction patterns — these require manual review. The automated checks establish a baseline.

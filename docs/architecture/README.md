@@ -30,11 +30,13 @@ At runtime, the Route Handler at `app/cv/pdf/route.ts` serves the PDF binary fro
 
 ### Environment Variables
 
-| Variable                | Scope           | Source                                  | Purpose                          |
-| ----------------------- | --------------- | --------------------------------------- | -------------------------------- |
-| `BLOB_READ_WRITE_TOKEN` | Build + Runtime | Vercel Dashboard → Storage → Blob Store | Read/write access to Vercel Blob |
-| `VERCEL_GIT_COMMIT_SHA` | Build + Runtime | Provided by Vercel automatically        | Deploy key for PDF versioning    |
-| `VERCEL_DEPLOYMENT_ID`  | Build + Runtime | Provided by Vercel automatically        | Fallback deploy key              |
+| Variable                | Scope           | Source                                  | Purpose                                           |
+| ----------------------- | --------------- | --------------------------------------- | ------------------------------------------------- |
+| `BLOB_READ_WRITE_TOKEN` | Build + Runtime | Vercel Dashboard → Storage → Blob Store | Read/write access to Vercel Blob                  |
+| `VERCEL_GIT_COMMIT_SHA` | Build + Runtime | Provided by Vercel automatically        | Deploy key for PDF versioning                     |
+| `VERCEL_DEPLOYMENT_ID`  | Build + Runtime | Provided by Vercel automatically        | Fallback deploy key                               |
+| `PUPPETEER_CACHE_DIR`   | Build           | Vercel project settings                 | Stores Chrome in cached `node_modules/` directory |
+| `LOG_LEVEL`             | Build           | Vercel project settings                 | Controls `pino` log verbosity (default: `info`)   |
 
 ### Local Development
 
@@ -50,10 +52,12 @@ To test the full Blob path locally, add `BLOB_READ_WRITE_TOKEN` to `.env.local` 
 ### Operational Notes
 
 - **Build time**: PDF generation adds ~10–15s to the build (start server, launch Chrome, render, store).
-- **Puppeteer install**: Downloads Chrome for Testing (~280 MB) during `pnpm install`. Not included in the runtime function bundle.
-- **PDF size**: ~195 KB. Well within Vercel Blob's 4.5 MB server upload limit.
-- **Serving cost**: Route Handler proxies ~195 KB per request. CDN-cached with `Cache-Control: public, max-age=31536000, immutable`.
-- **Idempotency**: Build script checks for an existing Blob entry before generating. Re-running with the same deploy key is a no-op.
+- **Chrome installation**: Chrome for Testing (~280 MB) is installed via `npx puppeteer browsers install chrome` in the `buildCommand`. `PUPPETEER_CACHE_DIR=./node_modules/.cache/puppeteer` ensures the binary persists in Vercel's cached `node_modules/` between builds. See [ADR-001](decision-records/001-build-time-pdf-generation.md) for the rationale behind `buildCommand` over `installCommand`.
+- **System libraries**: Vercel's Amazon Linux 2023 image is missing several Chrome dependencies (`nss`, `mesa-libgbm`). These are installed via `dnf` in `buildCommand` on every build (system packages are not cached between builds).
+- **Logging**: `pino` provides structured logging throughout `scripts/generate-pdf.ts`. Set `LOG_LEVEL=debug` in Vercel project settings for verbose build diagnostics.
+- **Every build regenerates**: The PDF is regenerated on every production build (`allowOverwrite: true`). Since content is static per deploy, this ensures the PDF always matches the deployed code.
+- **PDF size**: ~165 KB. Well within Vercel Blob's 4.5 MB server upload limit.
+- **Serving cost**: Route Handler proxies ~165 KB per request. CDN-cached with `Cache-Control: public, max-age=31536000, immutable`.
 - **Stale blobs**: Old deploy PDFs remain in Blob but are never referenced. Clean up if storage costs become relevant.
 - **Fonts**: Full Chrome includes standard font rendering. Web fonts (Inter, Literata) are loaded via `next/font`; `networkidle0` + `document.fonts.ready` ensures they render correctly.
 - **Accessible PDFs**: Full Chrome with `headless: true` produces tagged/accessible PDFs (unlike `@sparticuz/chromium`'s stripped build).
