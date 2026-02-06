@@ -14,9 +14,10 @@ Each ADR follows a lightweight format:
 
 ## Index
 
-| ADR                                     | Title                                          | Status   | Date       |
-| --------------------------------------- | ---------------------------------------------- | -------- | ---------- |
-| [001](001-build-time-pdf-generation.md) | Build-time PDF generation with Puppeteer       | Accepted | 2026-02-06 |
-| [002](002-pdf-serving-architecture.md)  | PDF serving via Route Handler at /cv/pdf       | Accepted | 2026-02-06 |
-| [003](003-print-button-removed.md)      | Print button removed in favour of PDF download | Accepted | 2026-02-06 |
-| [004](004-storybook-deferred.md)        | Storybook deferred in favour of RTL + Vitest   | Accepted | 2026-02-06 |
+| ADR                                      | Title                                          | Status   | Date       |
+| ---------------------------------------- | ---------------------------------------------- | -------- | ---------- |
+| [001](001-build-time-pdf-generation.md)  | Build-time PDF generation with Puppeteer       | Accepted | 2026-02-06 |
+| [002](002-pdf-serving-architecture.md)   | PDF serving via Route Handler at /cv/pdf       | Accepted | 2026-02-06 |
+| [003](003-print-button-removed.md)       | Print button removed in favour of PDF download | Accepted | 2026-02-06 |
+| [004](004-storybook-deferred.md)         | Storybook deferred in favour of RTL + Vitest   | Accepted | 2026-02-06 |
+| [005](005-knip-unused-code-detection.md) | Knip for unused code and dependency detection  | Accepted | 2026-02-06 |
