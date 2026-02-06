@@ -38,6 +38,7 @@ async function storePdf(pdf: Buffer, blobPath: string): Promise<string> {
     const blob = await put(blobPath, pdf, {
       access: "public",
       contentType: "application/pdf",
+      allowOverwrite: true,
     });
     log.info({ url: blob.url, blobPath }, "PDF uploaded to Vercel Blob");
     return blob.url;
