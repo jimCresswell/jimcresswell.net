@@ -12,13 +12,13 @@ Before implementing this plan, read and internalise:
 2. [`.agent/directives/rules.md`](../directives/rules.md) — Core development principles
 3. [`docs/project/user-stories.md`](../../docs/project/user-stories.md) — US-01 defines the front page user story
 4. [`docs/project/requirements.md`](../../docs/project/requirements.md) — REQ-01 (accessibility), REQ-06 (content integrity)
-5. [Content review plan](content-review.plan.md) — Parent plan with broader content observations
+5. [Content review plan](content-review.plan.md) — Parent plan with broader content observations (background context only — this plan is self-contained; the other observations are out of scope here)
 
 ## Context
 
 ### What the front page is
 
-The front page is not a CV landing page. It is Jim's **professional front page** — the primary surface for his professional identity as a whole. The CV is one thing it links to, but the page also needs to represent his broader work, projects, current thinking, and positioning. It is the canonical URL he shares on LinkedIn, in emails, and in conversations.
+The front page is not a CV landing page. It is Jim's **professional front page** at **jimcresswell.net** — the primary surface for his professional identity as a whole. The CV is one thing it links to, but the page also needs to represent his broader work, projects, current thinking, and positioning. It is the canonical URL he shares on LinkedIn, in emails, and in conversations.
 
 Most visitors will arrive here — from a shared link, a search result, or a profile. It needs to answer three questions quickly:
 
@@ -125,9 +125,11 @@ The two summary paragraphs are well-written but abstract. Neither mentions a spe
 
 This is a **content-first** change. Start with the content JSON, then adjust the component if needed, then update the E2E test.
 
-### Step 1: Decide what the front page needs to say
+### Step 1: Decide what the front page needs to say (BLOCKING — requires Jim's input)
 
-This is a content and positioning decision, not a technical one. Jim to provide direction on:
+This is a content and positioning decision, not a technical one. **Do not proceed to Step 2 without Jim's answers to the open questions below.** Present the questions, discuss, and reach decisions before writing any content or code.
+
+Jim to provide direction on:
 
 - What the summary should convey (current focus, professional identity, openness to engagement).
 - What the highlights or content sections should contain (evidence, current work, themes, or a mix).
