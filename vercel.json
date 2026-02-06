@@ -1,0 +1,4 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "installCommand": "dnf install -y nss mesa-libgbm libdrm libxkbcommon libXdamage && pnpm install"
+}

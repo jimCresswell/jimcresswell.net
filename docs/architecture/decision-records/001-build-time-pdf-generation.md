@@ -51,7 +51,39 @@ Key implementation details:
 - `headless: true` (full Chrome, not headless shell) for accessible, tagged PDFs with proper font rendering.
 - The Next.js server is spawned via `node_modules/.bin/next` (pnpm requirement — never `npx`).
 - `networkidle0` + `document.fonts.ready` ensures web fonts (Inter, Literata) load before rendering.
-- The build script is idempotent: it checks for an existing Blob entry before generating.
+
+### Vercel build environment
+
+Vercel's build image uses Amazon Linux 2023. It pre-installs many Chrome dependencies (`gtk3`, `atk`, `at-spi2-atk`, `cups-libs`, `pango`, `alsa-lib`, `libXcomposite`, `libXrandr`, etc.) but is missing several libraries Chrome requires at runtime:
+
+- `nss` (provides `libnss3.so`; depends on `nspr` which provides `libnspr4.so`)
+- `mesa-libgbm` (provides `libgbm.so`)
+- `libdrm` (provides `libdrm.so`)
+- `libxkbcommon` (provides `libxkbcommon.so`)
+- `libXdamage` (provides `libXdamage.so`)
+
+These are installed via `dnf` in the custom `installCommand` in `vercel.json`:
+
+```json
+{
+  "installCommand": "dnf install -y nss mesa-libgbm libdrm libxkbcommon libXdamage && pnpm install"
+}
+```
+
+### Rejected alternatives
+
+**`@sparticuz/chromium` / `@sparticuz/chromium-min`** — rejected because:
+
+- It is a stripped-down `headless_shell` build, not full Chrome.
+- It does not produce accessible or tagged PDFs (no UA accessibility tree export).
+- It ships only Open Sans; the Lambda/build runtime has no system fonts, so Inter and Literata would not render. PDF quality and brand fidelity would be unacceptable.
+- Using it would contradict the core requirement for accessible, properly-typeset PDFs.
+
+**`headless: "shell"` (Puppeteer's legacy headless shell)** — rejected because:
+
+- It is the deprecated legacy headless mode.
+- Like `@sparticuz/chromium`, it is a headless shell binary, not full Chrome.
+- Same accessibility and font limitations as above.
 
 ## Consequences
 
@@ -66,6 +98,7 @@ Key implementation details:
 
 - Adds ~10–15 seconds to the build (start server, launch Chrome, render, store).
 - Chrome for Testing (~280 MB) is downloaded during `pnpm install` in the build environment.
+- Requires a custom `installCommand` in `vercel.json` to install Chrome's missing system library dependencies on Amazon Linux 2023.
 - PDF only updates on new deploys — but since content is static per deploy, this is correct behaviour.
 
 ## Related

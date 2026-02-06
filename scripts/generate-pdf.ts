@@ -192,14 +192,12 @@ async function main(): Promise<void> {
     log.info("Server ready. Launching Puppeteer...");
 
     const launchArgs = ["--no-sandbox", "--disable-setuid-sandbox"];
-    log.debug({ headless: "shell", args: launchArgs }, "Puppeteer launch options");
+    log.debug({ headless: true, args: launchArgs }, "Puppeteer launch options");
 
     const browser = await puppeteer.launch({
-      // Use "shell" mode for compatibility with serverless build environments
-      // (e.g. Vercel) where system libraries for full Chrome may be absent.
-      // The headless shell uses the same Blink rendering engine — PDF output
-      // is identical.
-      headless: "shell",
+      // Full Chrome in new headless mode — required for accessible, tagged
+      // PDFs with correct font rendering (see ADR-001).
+      headless: true,
       args: launchArgs,
     });
 
