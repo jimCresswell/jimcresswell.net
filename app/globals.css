@@ -232,6 +232,8 @@
     color: #1a1a1a !important;
     font-size: 11pt;
     line-height: 1.6;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
 
   .print-hidden {

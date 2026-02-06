@@ -24,6 +24,9 @@ Read [the rules](./rules.md); reflect on them, _apply_ them — they MUST be fol
 
 - [Rules](./rules.md) — Core development principles
 - [Testing Strategy](./testing-strategy.md) — TDD approach and test types
+- [Architecture](../../docs/architecture/) — System architecture and decision records
+- [User Stories](../../docs/project/user-stories.md) — Key user stories
+- [Requirements](../../docs/project/requirements.md) — Non-functional requirements
 
 ## Development Commands
 
@@ -50,7 +53,10 @@ app/                # Next.js App Router pages and layouts
 components/         # React components
 content/            # CV content JSON files
 lib/                # Utility functions and types
-spec/               # Design specs and documentation
+scripts/            # Build-time scripts (PDF generation)
+docs/               # Project documentation
+  architecture/     # System architecture and decision records
+  project/          # User stories and requirements
 public/             # Static assets
 e2e/                # End-to-end tests (Playwright) — to be added
 ```

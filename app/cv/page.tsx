@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { SkipLink } from "@/components/skip-link";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
-import { PrintButton } from "@/components/print-button";
+import { DownloadPdfLink } from "@/components/download-pdf-link";
 import { CVLayout } from "@/components/cv-layout";
 import { cvContent, jsonLd, cvOpenGraph, footerLinks } from "@/lib/cv-content";
 
@@ -44,7 +44,7 @@ export default function CVPage() {
   return (
     <>
       <SkipLink />
-      <SiteHeader actions={<PrintButton />} />
+      <SiteHeader actions={<DownloadPdfLink />} />
       <main id="main-content" className="mx-auto max-w-[760px] px-4 py-8 md:px-8 md:py-16">
         <CVLayout positioning={<BasePositioning />} />
       </main>

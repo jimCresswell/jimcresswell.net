@@ -12,11 +12,13 @@ All content is driven from JSON files in `content/`. The site does not invent or
 
 ### Routes
 
-| Route            | Purpose                                                                    |
-| ---------------- | -------------------------------------------------------------------------- |
-| `/`              | Front page — hero, highlights, navigation                                  |
-| `/cv/`           | Primary CV — positioning, experience, foundations, capabilities, education |
-| `/cv/<variant>/` | CV variants — alternative positioning for different contexts               |
+| Route                 | Purpose                                                                    |
+| --------------------- | -------------------------------------------------------------------------- |
+| `/`                   | Front page — hero, highlights, navigation                                  |
+| `/cv/`                | Primary CV — positioning, experience, foundations, capabilities, education |
+| `/cv/<variant>/`      | CV variants — alternative positioning for different contexts               |
+| `/cv/pdf`             | PDF download / inline display (Route Handler)                              |
+| `/cv/pdf/unavailable` | Branded 404 when PDF has not been generated                                |
 
 Current variants are defined in `content/cv.content.json` under `tilts._meta.web_routes`.
 
@@ -60,11 +62,11 @@ app/                    # Next.js App Router pages and layouts
 
 components/             # React components
   cv-layout.tsx         # Full CV rendering (experience, foundations, etc.)
+  download-pdf-link.tsx # PDF download link (points to /cv/pdf)
   site-header.tsx       # Navigation, theme toggle, page actions
   site-footer.tsx       # Copyright, external links
   rich-text.tsx         # Markdown link rendering in CV prose
   theme-toggle.tsx      # Light / Dark / Auto theme switcher
-  print-button.tsx      # Browser print trigger
   logo.tsx              # SVG logo component
   skip-link.tsx         # Keyboard accessibility skip link
   theme-provider.tsx    # next-themes wrapper
@@ -77,8 +79,15 @@ content/                # Content JSON (single source of truth for all copy)
 
 lib/                    # Utility functions and types
   cv-content.ts         # Content accessors and tilt helpers
-  cv-types.ts           # TypeScript interfaces for CV data
   parse-markdown-links.tsx  # Parses [text](url) in content strings
+  pdf-config.ts         # PDF deploy key and path utilities
+
+scripts/                # Build-time scripts
+  generate-pdf.ts       # Puppeteer PDF generation (runs after next build)
+
+docs/                   # Project documentation
+  architecture/         # System architecture and decision records
+  project/              # User stories and requirements
 
 public/                 # Static assets
   icons/                # Favicon, Apple Touch Icon, OG image
@@ -93,11 +102,11 @@ logo/                   # Logo generation tooling (excluded from lint/build)
 
 **Content-driven rendering** — All user-visible text comes from JSON files in `content/`. Components render content verbatim; they do not edit, summarise, or reorder it.
 
-**Server components by default** — Only three components use `"use client"`: the theme toggle, the print button, and the theme provider. Everything else is server-rendered.
+**Server components by default** — Only two components use `"use client"`: the theme toggle and the theme provider. Everything else is server-rendered.
 
 **Tilt variants** — CV variants share the same experience, foundations, capabilities, and education sections but substitute different positioning text. Variants are defined in the content JSON and generate static routes via `generateStaticParams`.
 
-**Print-first CV** — Comprehensive `@media print` styles produce a clean A4 layout. The existing Print CV button triggers `window.print()`. A build-time PDF generation feature is planned (see `.agent/plans/pdf-generation.plan.md`).
+**Build-time PDF** — The CV PDF is generated at build time using Puppeteer with full Chrome, stored in Vercel Blob (production) or the local filesystem (local builds), and served from `/cv/pdf`. Comprehensive `@media print` CSS drives both the PDF layout and manual browser printing. See [docs/architecture/](docs/architecture/) for details and [decision records](docs/architecture/decision-records/).
 
 **Accessibility** — WCAG 2.2 AA target. Skip link, semantic HTML, heading hierarchy, visible focus indicators, 44px touch targets, `prefers-reduced-motion` respect, theme state announced to assistive technology.
 
@@ -116,18 +125,25 @@ pnpm test           # 4. Unit and integration tests
 
 ## Stack
 
-| Layer           | Technology                                   |
-| --------------- | -------------------------------------------- |
-| Framework       | Next.js 16 (App Router)                      |
-| UI              | React 19, Tailwind CSS 4                     |
-| Fonts           | Inter (sans), Literata (serif) via next/font |
-| Theming         | next-themes (class strategy)                 |
-| Testing         | Vitest                                       |
-| Linting         | ESLint (eslint-config-next)                  |
-| Formatting      | Prettier                                     |
-| Analytics       | Vercel Analytics                             |
-| Hosting         | Vercel                                       |
-| Package manager | pnpm                                         |
+| Layer           | Technology                                    |
+| --------------- | --------------------------------------------- |
+| Framework       | Next.js 16 (App Router)                       |
+| UI              | React 19, Tailwind CSS 4                      |
+| Fonts           | Inter (sans), Literata (serif) via next/font  |
+| Theming         | next-themes (class strategy)                  |
+| PDF generation  | Puppeteer (build-time), Vercel Blob (storage) |
+| Testing         | Vitest, Playwright (E2E)                      |
+| Linting         | ESLint (eslint-config-next)                   |
+| Formatting      | Prettier                                      |
+| Analytics       | Vercel Analytics                              |
+| Hosting         | Vercel                                        |
+| Package manager | pnpm                                          |
+
+## Documentation
+
+- [docs/architecture/](docs/architecture/) — System architecture, PDF generation, operational notes
+- [docs/architecture/decision-records/](docs/architecture/decision-records/) — Architecture Decision Records (ADRs)
+- [docs/project/](docs/project/) — User stories and requirements
 
 ## Agent Directives
 

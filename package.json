@@ -29,7 +29,7 @@
     "node": "24"
   },
   "scripts": {
-    "build": "next build",
+    "build": "next build && tsx scripts/generate-pdf.ts",
     "dev": "next dev",
     "start": "next start",
     "lint": "eslint .",
@@ -40,7 +40,7 @@
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "fix": "pnpm format",
-    "check": "pnpm run format-check && pnpm run lint && pnpm run type-check && pnpm run test",
+    "check": "pnpm run format-check && pnpm run lint && pnpm run type-check && pnpm run test && pnpm run knip",
     "knip": "knip",
     "generate:icons": "tsx logo/generate-icons.ts",
     "prepare": "husky"
@@ -48,6 +48,7 @@
   "packageManager": "pnpm@10.28.2+sha512.41872f037ad22f7348e3b1debbaf7e867cfd448f2726d9cf74c08f19507c31d2c8e7a11525b983febc2df640b5438dee6023ebb1f84ed43cc2d654d2bc326264",
   "dependencies": {
     "@vercel/analytics": "1.6.1",
+    "@vercel/blob": "^2.1.0",
     "next": "16.1.6",
     "next-themes": "^0.4.6",
     "react": "19.2.4",
@@ -67,7 +68,9 @@
     "knip": "^5.83.0",
     "lint-staged": "^16.2.7",
     "postcss": "^8.5",
+    "postcss-load-config": "^6.0.1",
     "prettier": "^3.8.1",
+    "puppeteer": "^24.37.1",
     "sharp": "^0.34.5",
     "tailwindcss": "^4.1.9",
     "tsx": "^4.21.0",
@@ -76,8 +79,9 @@
   },
   "pnpm": {
     "onlyBuiltDependencies": [
-      "sharp",
-      "esbuild"
+      "esbuild",
+      "puppeteer",
+      "sharp"
     ]
   }
 }
