@@ -197,7 +197,8 @@ async function main(): Promise<void> {
 
     const browser = await puppeteer.launch({
       // Full Chrome in new headless mode — required for accessible, tagged
-      // PDFs with correct font rendering (see ADR-001).
+      // PDFs with correct font rendering. See ADR-001 for rationale and
+      // rejected alternatives (@sparticuz/chromium, headless shell).
       headless: true,
       args: launchArgs,
     });
