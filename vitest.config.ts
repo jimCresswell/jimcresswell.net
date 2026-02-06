@@ -6,6 +6,7 @@ export default defineConfig({
     globals: true,
     environment: "node",
     include: ["**/*.test.{ts,tsx}"],
+    exclude: ["node_modules/**", "e2e/**"],
     coverage: {
       provider: "v8",
       reporter: ["text", "html"],

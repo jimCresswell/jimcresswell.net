@@ -14,6 +14,10 @@ const eslintConfig = defineConfig([
     "next-env.d.ts",
     // Project-specific ignores:
     "logo/**",
+    // Playwright output directories:
+    "test-results/**",
+    "playwright-report/**",
+    "blob-report/**",
   ]),
 ]);
 

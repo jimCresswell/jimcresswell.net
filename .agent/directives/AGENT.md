@@ -42,8 +42,7 @@ pnpm format-check   # Prettier check
 pnpm test           # Unit and integration tests (Vitest)
 pnpm test:watch     # Tests in watch mode
 pnpm test:coverage  # Tests with coverage
-pnpm check          # All checks: format, lint, type-check, test
-pnpm knip           # Find unused code
+pnpm check          # All checks: format, lint, type-check, test, knip
 ```
 
 ## Project Structure

@@ -1,5 +1,7 @@
 # Testing Strategy
 
+Always use TDD at ALL levels (unit, integration, E2E).
+
 ## Tooling
 
 - **Vitest** — Unit and integration tests
@@ -9,6 +11,7 @@
 ## Philosophy
 
 - ALWAYS test behaviour, NEVER test implementation.
+- ALL tests must prove something useful about the product code, tests that exercise test code should be deleted.
 - Prefer pure functions and unit tests.
 - Always use TDD at ALL levels (unit, integration, E2E).
 - ALL mocks MUST be simple fakes, injected as arguments to the function under test.

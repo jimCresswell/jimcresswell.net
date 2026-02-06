@@ -11,3 +11,7 @@ pnpm-lock.yaml
 
 # Coverage
 coverage/
+
+# Playwright
+test-results/
+playwright-report/

@@ -41,6 +41,9 @@
     "test:coverage": "vitest run --coverage",
     "fix": "pnpm format",
     "check": "pnpm run format-check && pnpm run lint && pnpm run type-check && pnpm run test && pnpm run knip",
+    "test:e2e": "playwright test --project=default",
+    "test:e2e:pdf": "playwright test --project=with-build",
+    "test:e2e:ui": "playwright test --ui",
     "knip": "knip",
     "generate:icons": "tsx logo/generate-icons.ts",
     "prepare": "husky"
@@ -55,6 +58,8 @@
     "react-dom": "19.2.4"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.11.1",
+    "@playwright/test": "^1.58.1",
     "@tailwindcss/postcss": "^4.1.9",
     "@types/fontkit": "^2.0.8",
     "@types/node": "^25.2.0",
@@ -79,6 +84,7 @@
   },
   "pnpm": {
     "onlyBuiltDependencies": [
+      "@playwright/test",
       "esbuild",
       "puppeteer",
       "sharp"
