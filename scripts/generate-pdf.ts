@@ -1,9 +1,23 @@
-import { spawn, type ChildProcess } from "node:child_process";
+import { execSync, spawn, type ChildProcess } from "node:child_process";
 import fs from "node:fs/promises";
 import net from "node:net";
+import os from "node:os";
 import path from "node:path";
+import pino from "pino";
 import puppeteer from "puppeteer";
-import { getDeployKey, getBlobPath, PDF_FILENAME } from "../lib/pdf-config";
+import { getBlobPath, getDeployKey, PDF_FILENAME } from "../lib/pdf-config";
+
+// ---------------------------------------------------------------------------
+// Logger — level controlled by LOG_LEVEL env var (default: "info")
+// ---------------------------------------------------------------------------
+
+const log = pino({
+  name: "generate-pdf",
+  level: process.env.LOG_LEVEL ?? "info",
+  transport: process.stdout.isTTY
+    ? { target: "pino/file", options: { destination: 1 } }
+    : undefined,
+});
 
 // ---------------------------------------------------------------------------
 // Storage: Blob (Vercel) or local disk
@@ -14,39 +28,26 @@ import { getDeployKey, getBlobPath, PDF_FILENAME } from "../lib/pdf-config";
 const hasBlobToken = Boolean(process.env.BLOB_READ_WRITE_TOKEN);
 
 /**
- * Check whether this deploy's PDF already exists in Blob.
- * Returns false when running locally (no token).
- * Fails fast on unexpected errors (auth, network).
- */
-async function pdfExistsInBlob(blobPath: string): Promise<boolean> {
-  if (!hasBlobToken) return false;
-  const { head, BlobNotFoundError } = await import("@vercel/blob");
-  try {
-    await head(blobPath);
-    return true;
-  } catch (error: unknown) {
-    if (error instanceof BlobNotFoundError) return false;
-    throw error;
-  }
-}
-
-/**
  * Store the PDF in Blob (when token is available) or write to disk.
  * @returns The Blob URL or local file path where the PDF was written.
  */
 async function storePdf(pdf: Buffer, blobPath: string): Promise<string> {
   if (hasBlobToken) {
+    log.debug({ blobPath }, "Uploading PDF to Vercel Blob");
     const { put } = await import("@vercel/blob");
     const blob = await put(blobPath, pdf, {
       access: "public",
       contentType: "application/pdf",
     });
+    log.info({ url: blob.url, blobPath }, "PDF uploaded to Vercel Blob");
     return blob.url;
   }
 
   // Local fallback — write into .next/ (which is .gitignored).
   const localPath = path.resolve(process.cwd(), ".next", PDF_FILENAME);
+  log.debug({ localPath }, "Writing PDF to local disk");
   await fs.writeFile(localPath, pdf);
+  log.info({ localPath }, "PDF written to local disk");
   return localPath;
 }
 
@@ -77,16 +78,71 @@ async function waitForServer(
   { timeout = 30_000, interval = 500 } = {}
 ): Promise<void> {
   const start = Date.now();
+  let attempts = 0;
   while (Date.now() - start < timeout) {
+    attempts++;
     try {
       const res = await fetch(url, { method: "HEAD" });
-      if (res.ok) return;
+      if (res.ok) {
+        log.debug({ url, attempts, elapsedMs: Date.now() - start }, "Server ready");
+        return;
+      }
+      log.debug({ url, status: res.status, attempts }, "Server not ready yet");
     } catch {
       // Server not ready yet — expected during startup.
+      if (attempts % 10 === 0) {
+        log.debug({ url, attempts }, "Server not responding yet");
+      }
     }
     await new Promise((r) => setTimeout(r, interval));
   }
   throw new Error(`Server at ${url} did not become ready within ${timeout}ms`);
+}
+
+/** Probe the system for Chrome dependency info (best-effort). */
+function logSystemInfo(): void {
+  log.debug(
+    {
+      platform: os.platform(),
+      arch: os.arch(),
+      release: os.release(),
+      nodeVersion: process.version,
+    },
+    "System info"
+  );
+
+  // Try to list shared-library dependencies of the Chrome binary.
+  try {
+    const chromePath = puppeteer.executablePath();
+    log.debug({ chromePath }, "Puppeteer executable path");
+
+    // Check the binary exists.
+    try {
+      const stat = execSync(`ls -la "${chromePath}"`, { encoding: "utf-8" });
+      log.debug({ stat: stat.trim() }, "Chrome binary stat");
+    } catch (e) {
+      log.warn({ chromePath, error: String(e) }, "Chrome binary not found");
+    }
+
+    // On Linux, probe ldd for missing shared libraries.
+    if (os.platform() === "linux") {
+      try {
+        const ldd = execSync(`ldd "${chromePath}" 2>&1`, {
+          encoding: "utf-8",
+        });
+        const missing = ldd.split("\n").filter((line) => line.includes("not found"));
+        if (missing.length > 0) {
+          log.warn({ missing }, "Missing shared libraries for Chrome");
+        } else {
+          log.debug("All shared libraries for Chrome are present");
+        }
+      } catch (e) {
+        log.debug({ error: String(e) }, "ldd probe failed (may not be available)");
+      }
+    }
+  } catch (e) {
+    log.debug({ error: String(e) }, "Could not determine Puppeteer executable");
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -100,19 +156,27 @@ async function main(): Promise<void> {
   );
   const blobPath = getBlobPath(deployKey);
 
-  // Skip if this deploy's PDF already exists in Blob (idempotent).
-  if (await pdfExistsInBlob(blobPath)) {
-    console.log(`[generate-pdf] PDF already exists at ${blobPath}, skipping.`);
-    return;
-  }
+  log.info({ deployKey, blobPath, hasBlobToken }, "Starting PDF generation");
+  log.debug(
+    {
+      VERCEL: process.env.VERCEL,
+      VERCEL_ENV: process.env.VERCEL_ENV,
+      VERCEL_GIT_COMMIT_SHA: process.env.VERCEL_GIT_COMMIT_SHA,
+      VERCEL_DEPLOYMENT_ID: process.env.VERCEL_DEPLOYMENT_ID,
+    },
+    "Vercel environment variables"
+  );
+
+  logSystemInfo();
 
   const port = await getFreePort();
   const origin = `http://localhost:${port}`;
 
-  console.log(`[generate-pdf] Starting Next.js on port ${port}...`);
+  log.info({ port, origin }, "Starting Next.js server");
 
   // Resolve the next binary from node_modules (pnpm requirement — never npx).
   const nextBin = path.resolve(process.cwd(), "node_modules", ".bin", "next");
+  log.debug({ nextBin }, "Next.js binary path");
 
   const server: ChildProcess = spawn(nextBin, ["start", "-p", String(port)], {
     stdio: "pipe",
@@ -125,7 +189,10 @@ async function main(): Promise<void> {
 
   try {
     await waitForServer(`${origin}/cv`);
-    console.log("[generate-pdf] Server ready. Launching Puppeteer...");
+    log.info("Server ready. Launching Puppeteer...");
+
+    const launchArgs = ["--no-sandbox", "--disable-setuid-sandbox"];
+    log.debug({ headless: "shell", args: launchArgs }, "Puppeteer launch options");
 
     const browser = await puppeteer.launch({
       // Use "shell" mode for compatibility with serverless build environments
@@ -133,36 +200,46 @@ async function main(): Promise<void> {
       // The headless shell uses the same Blink rendering engine — PDF output
       // is identical.
       headless: "shell",
-      args: ["--no-sandbox", "--disable-setuid-sandbox"],
+      args: launchArgs,
     });
+
+    log.debug("Browser launched successfully");
 
     try {
       const page = await browser.newPage();
-      await page.goto(`${origin}/cv`, { waitUntil: "networkidle0" });
+      const cvUrl = `${origin}/cv`;
+      log.debug({ url: cvUrl }, "Navigating to CV page");
+
+      await page.goto(cvUrl, { waitUntil: "networkidle0" });
+      log.debug("Page loaded (networkidle0)");
 
       // Ensure web fonts (Inter, Literata) have finished loading.
       await page.evaluate(() => document.fonts.ready);
+      log.debug("Fonts loaded");
 
       const pdf = await page.pdf({
         printBackground: true,
         preferCSSPageSize: true, // respects @page { size: A4; margin: 18mm 20mm; }
       });
 
-      console.log(`[generate-pdf] PDF generated (${(pdf.length / 1024).toFixed(1)} KB).`);
+      const sizeKB = (pdf.length / 1024).toFixed(1);
+      log.info({ sizeKB }, "PDF generated");
 
       const destination = await storePdf(Buffer.from(pdf), blobPath);
-      console.log(`[generate-pdf] Stored: ${destination}`);
+      log.info({ destination }, "PDF stored");
     } finally {
       await browser.close();
+      log.debug("Browser closed");
     }
   } finally {
     server.kill("SIGTERM");
+    log.debug("Sent SIGTERM to Next.js server");
     // Give the server a moment to shut down gracefully.
     await new Promise((r) => setTimeout(r, 1_000));
   }
 }
 
 main().catch((err: unknown) => {
-  console.error("[generate-pdf] Fatal error:", err);
+  log.fatal({ err }, "Fatal error");
   process.exit(1);
 });
