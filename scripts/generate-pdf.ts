@@ -128,7 +128,11 @@ async function main(): Promise<void> {
     console.log("[generate-pdf] Server ready. Launching Puppeteer...");
 
     const browser = await puppeteer.launch({
-      headless: true,
+      // Use "shell" mode for compatibility with serverless build environments
+      // (e.g. Vercel) where system libraries for full Chrome may be absent.
+      // The headless shell uses the same Blink rendering engine — PDF output
+      // is identical.
+      headless: "shell",
       args: ["--no-sandbox", "--disable-setuid-sandbox"],
     });
 
