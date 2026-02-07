@@ -2,9 +2,9 @@
 
 Rework the front page from its current placeholder state into Jim's personal front page with a _slight_ project/professional lean because Jim likes projects and impact.
 
-## Status: Content creation (Step 1 — external)
+## Status: Complete
 
-The editorial direction is agreed. The next step is to create the actual content, which will be done outside this codebase and brought back as a JSON file.
+Content authored, implemented, tested, and deployed. All quality gates pass (57 unit/integration tests, 31 E2E tests including WCAG 2.2 AA accessibility). Committed as `d3166a9`.
 
 ---
 
@@ -92,7 +92,7 @@ These decisions are agreed and should not be revisited.
 
 3. **Content sections are interests and curiosities**, not job responsibilities or capability statements. Themes Jim is thinking about right now, framed personally and directly.
 
-4. **Navigation links in the hero area**: CV, GitHub, Google Scholar. These are "see my work" links. LinkedIn, email, and other links remain in the footer only.
+4. **Inline links in the narrative**: CV, GitHub, Google Scholar, Oak, and the research archive are linked naturally within the prose. No separate navigation section — the text is the navigation. The footer provides LinkedIn, GitHub, Google Scholar, and Shiv as secondary links.
 
 5. **Tone**: Personal, direct, warm. Not a pitch. Not corporate. Think of the old landing page tone — "I am a person who cares about these things" — but updated and richer.
 
@@ -134,11 +134,11 @@ These constrain how the content will be used on the site. The content creator sh
 
 ---
 
-## Output specification
+## What was delivered
 
-The deliverable is the text content for the front page, in the following structure. This will be placed into `content/frontpage.content.json` in the codebase.
+The content is a continuous 8-paragraph personal narrative authored by Jim (`landing-content-draft.md`), placed into `content/frontpage.content.json`. The narrative weaves inline markdown links to key destinations — Scholar, GitHub, the research archive, Oak, and `/cv/` — so no separate navigation section is needed.
 
-### Required JSON structure
+### Final JSON structure
 
 ```json
 {
@@ -150,63 +150,34 @@ The deliverable is the text content for the front page, in the following structu
   },
   "hero": {
     "name": "Jim Cresswell",
-    "summary": [
-      "First paragraph text here.",
-      "Second paragraph text here.",
-      "Optional third paragraph."
-    ]
+    "summary": ["paragraph 1", "...", "paragraph 8"]
   },
-  "primary_navigation": [
-    { "label": "...", "href": "/cv/" },
-    { "label": "...", "href": "https://github.com/jimCresswell" },
-    { "label": "...", "href": "https://scholar.google.co.uk/citations?user=7yf2vEEAAAAJ&hl=en" }
-  ],
-  "interests": [
-    {
-      "title": "Short title",
-      "description": "One or two sentences."
-    }
-  ],
-  "links": {
-    "linkedin": "https://www.linkedin.com/in/jimcresswell",
-    "github": "https://github.com/jimCresswell",
-    "google_scholar": "https://scholar.google.co.uk/citations?user=7yf2vEEAAAAJ&hl=en"
-  },
-  "machine_readable_ref": {
-    "shared_json_ld": {
-      "file": "content/jsonld.json"
-    }
-  }
+  "links": { "linkedin": "...", "github": "...", "google_scholar": "..." },
+  "machine_readable_ref": { "shared_json_ld": { "file": "content/jsonld.json" } }
 }
 ```
 
-### Content to create
+Key differences from the original specification:
 
-1. **`hero.summary`** — 2–3 short paragraphs. Personal, direct, warm. Give a flavour of who Jim is: background, what he's interested in, how he thinks. Not a capability pitch. Not a CV summary. Should name concrete things (domains, interests, projects) rather than staying abstract.
-
-2. **`primary_navigation`** — 3 links: CV, GitHub, Google Scholar. The labels should be clear and natural (e.g. "CV", "GitHub", "Google Scholar" — or something warmer if it fits the tone).
-
-3. **`interests`** — 2–5 items, each with a short `title` and a 1–2 sentence `description`. These are interests, curiosities, and things Jim cares about — not achievements or capability statements. They should cover the breadth of who Jim is: professional interests (AI, the open web, open standards, public data, systems thinking), interests (ecosystems,ecology, food growing, understanding and building systems).
+- **`primary_navigation` removed** — inline links in the prose replace the separate nav section. The footer provides secondary links.
+- **`interests` removed** — the narrative covers interests fluidly rather than as discrete cards.
+- **`hero.summary` is 8 paragraphs**, not 2–3. The content is a personal essay, not a summary.
+- **Inline markdown** — text contains `[link text](url)` and `_emphasis_` syntax, rendered by the `parseMarkdownLinks` parser which uses `<Link>` for relative URLs and `<a target="_blank">` for external ones.
 
 ---
 
-## What happens after the content is created and handed back to Cursor.
+## Implementation completed
 
-Once Jim provides the content JSON, the following technical changes are needed in the codebase:
+All technical changes have been made and verified:
 
-1. **Replace** `content/frontpage.content.json` with the new content.
-2. **Update** `app/page.tsx`:
-   - Remove tagline rendering (the `<p>` with `text-accent` class).
-   - Rename `content.highlights` references to `content.interests`.
-   - Update the visually-hidden section heading from "Highlights" to match the new section concept.
-   - Adjust navigation rendering for 3 links (inline with separators; external links get `target="_blank" rel="noopener noreferrer"`).
-3. **Update** `e2e/journeys/home-to-cv.e2e-ui.test.ts`:
-   - Remove tagline assertion.
-   - Update `highlights` loop to use `interests` key.
-   - Update primary navigation assertion for new label.
-4. **Update** `docs/project/user-stories.md`:
-   - US-01 may need broadening — the front page now serves a wider purpose than "decide whether to view his CV."
-5. **Verify**: `pnpm check` and `pnpm test:e2e` pass. Visual check on dev server.
+1. **`content/frontpage.content.json`** — replaced with the narrative content and inline links.
+2. **`app/page.tsx`** — simplified to ~20 lines using the `Prose` component. Tagline, highlights, and nav section all removed.
+3. **`lib/parse-markdown-links.tsx`** — extended to handle relative links (`<Link>`) and `_emphasis_` (`<em>`). CSS class renamed `cv-ref-link` → `inline-link`.
+4. **`lib/strip-inline-markdown.ts`** — new utility to strip markdown for plain-text contexts (meta description in `app/layout.tsx`).
+5. **`e2e/journeys/home-to-cv.e2e-ui.test.ts`** — rewritten: verifies narrative content and the inline CV link journey.
+6. **`docs/project/user-stories.md`** — US-01 broadened from "decide whether to view his CV" to "decide whether to engage further."
+7. **`components/site-footer.tsx`** — copyright text opacity fixed (`opacity-60` → `opacity-65`) to meet WCAG 2.2 AA contrast requirements.
+8. **All quality gates pass**: format, lint, type-check, 57 unit/integration tests, 31 E2E tests (including accessibility).
 
 ---
 

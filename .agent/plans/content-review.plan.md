@@ -136,19 +136,19 @@ Three well-differentiated positioning variants exist (`public_sector`, `private_
 
 Broken out into a separate plan: [front-page-content.plan.md](front-page-content.plan.md).
 
-**Decision:** Active — see linked plan.
+**Decision:** Complete. The front page has been reworked as a continuous personal narrative with inline links. See the linked plan for full details.
 
 ---
 
 ## Files affected
 
-| File                             | Changes                                            |
-| -------------------------------- | -------------------------------------------------- |
-| `content/cv.content.json`        | Headline, positioning, capabilities                |
-| `content/frontpage.content.json` | Highlights, summary, navigation framing            |
-| `content/cv.og.json`             | Update if headline changes                         |
-| `content/jsonld.json`            | Update if headline or capabilities change          |
-| Components                       | May need layout changes if capabilities list grows |
+| File                             | Changes                                            | Status   |
+| -------------------------------- | -------------------------------------------------- | -------- |
+| `content/frontpage.content.json` | Reworked as personal narrative with inline links   | Complete |
+| `content/cv.content.json`        | Headline, positioning, capabilities                | Open     |
+| `content/cv.og.json`             | Update if headline changes                         | Open     |
+| `content/jsonld.json`            | Update if headline or capabilities change          | Open     |
+| Components                       | May need layout changes if capabilities list grows | Open     |
 
 ## Observation 9: Timeline page at `/cv/timeline`
 

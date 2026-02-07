@@ -10,19 +10,19 @@ Small, well-defined sub-plans suitable for Cursor cloud agents. Each plan is sel
 - **Explicit dependencies** — every plan states what must be done first
 - **Quality gates** — every plan ends with `pnpm check` (and `pnpm test:e2e` where relevant)
 
-## Current Plans
+## Plans (all complete)
 
 From [component-audit.plan.md](../component-audit.plan.md):
 
-| Plan                                                       | Description                                     | Dependencies |
-| ---------------------------------------------------------- | ----------------------------------------------- | ------------ |
-| [01-rtl-setup](01-rtl-setup.plan.md)                       | Install and configure React Testing Library     | None         |
-| [02-tailwind-hygiene](02-tailwind-hygiene.plan.md)         | Canonical classes and design tokens             | None         |
-| [03-section-primitives](03-section-primitives.plan.md)     | Extract PageSection, Prose, ArticleEntry        | 01           |
-| [04-site-footer-refactor](04-site-footer-refactor.plan.md) | DRY refactor of SiteFooter + RTL test           | 01           |
-| [05-site-header-refactor](05-site-header-refactor.plan.md) | Data-driven navigation + RTL test               | 01           |
-| [06-cv-layout-refactor](06-cv-layout-refactor.plan.md)     | Use primitives, accept content props + RTL test | 03           |
-| [07-root-layout-shell](07-root-layout-shell.plan.md)       | Move shared shell to root layout                | 04, 05, 06   |
+| Plan                                                       | Description                                     | Status   |
+| ---------------------------------------------------------- | ----------------------------------------------- | -------- |
+| [01-rtl-setup](01-rtl-setup.plan.md)                       | Install and configure React Testing Library     | Complete |
+| [02-tailwind-hygiene](02-tailwind-hygiene.plan.md)         | Canonical classes and design tokens             | Complete |
+| [03-section-primitives](03-section-primitives.plan.md)     | Extract PageSection, Prose, ArticleEntry        | Complete |
+| [04-site-footer-refactor](04-site-footer-refactor.plan.md) | DRY refactor of SiteFooter + RTL test           | Complete |
+| [05-site-header-refactor](05-site-header-refactor.plan.md) | Data-driven navigation + RTL test               | Complete |
+| [06-cv-layout-refactor](06-cv-layout-refactor.plan.md)     | Use primitives, accept content props + RTL test | Complete |
+| [07-root-layout-shell](07-root-layout-shell.plan.md)       | Move shared shell to root layout                | Complete |
 
 ### Dependency Graph
 

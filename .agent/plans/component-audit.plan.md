@@ -2,13 +2,15 @@
 
 Audit and refactor the component layer, design tokens, and page scaffolding before adding a third page. The site is a visible demonstration of engineering discipline — the patterns must scale with rigour and grace.
 
-## Status: Planning
+## Status: Complete
+
+All steps executed and verified. RTL installed, design tokens defined, section primitives extracted, SiteFooter and SiteHeader refactored, CVLayout uses primitives, shared shell in root layout. All quality gates pass.
 
 ## Context
 
-The site currently has two content pages (home, CV) plus error pages. A timeline page at `/cv/timeline` is next. The existing components were built for a two-page site and work, but adding a third page would compound several structural issues. This plan addresses them first.
+The site has two content pages (home, CV) plus error pages. A timeline page at `/cv/timeline` is a potential future addition (see `content-review.plan.md`, Observation 9).
 
-The project uses Next.js 16, React 19, Tailwind CSS 4, and Vitest. There are no component-level tests — only pure function unit tests (Vitest) and E2E tests (Playwright). React Testing Library is not yet installed.
+The project uses Next.js 16, React 19, Tailwind CSS 4, and Vitest with React Testing Library (jsdom). Components have integration tests (`*.integration.test.tsx`) colocated alongside them.
 
 ### Storybook: considered and deferred
 
@@ -292,18 +294,18 @@ components/
 
 ## Execution Order
 
-| Step | What                                                      | Depends on    | Tests                            | Cloud Sub-Plan                              |
-| ---- | --------------------------------------------------------- | ------------- | -------------------------------- | ------------------------------------------- |
-| 1    | RTL setup (Part 6)                                        | Nothing       | Verify setup with a trivial test | [01](cloud/01-rtl-setup.plan.md)            |
-| 2    | Design tokens + canonical classes (Parts 1.1 + 1.2)       | Nothing       | E2E regression                   | [02](cloud/02-tailwind-hygiene.plan.md)     |
-| 3    | Extract `PageSection`, `Prose`, `ArticleEntry` (Part 3.2) | Step 1        | RTL tests for each               | [03](cloud/03-section-primitives.plan.md)   |
-| 4    | Refactor `SiteFooter` (Part 4)                            | Step 1        | RTL test                         | [04](cloud/04-site-footer-refactor.plan.md) |
-| 5    | Refactor `SiteHeader` nav (Part 5)                        | Step 1        | RTL test                         | [05](cloud/05-site-header-refactor.plan.md) |
-| 6    | Refactor `CVLayout` to use primitives (Part 3.3)          | Step 3        | RTL test for CVLayout            | [06](cloud/06-cv-layout-refactor.plan.md)   |
-| 7    | Move shell to root layout (Part 2)                        | Steps 4, 5, 6 | RTL test + E2E regression        | [07](cloud/07-root-layout-shell.plan.md)    |
-| 8    | Full quality gate                                         | All above     | `pnpm check` + `pnpm test:e2e`   | —                                           |
+All steps have been completed.
 
-Steps 1 and 2 have no dependencies and can run in parallel. Steps 3–5 depend on RTL setup but are independent of each other (can run in parallel once step 1 is done). Step 6 depends on step 3 (primitives must exist). Step 7 depends on steps 4, 5, and 6 because the layout refactor moves the header and footer, so those components should be clean first.
+| Step | What                                                      | Status   | Cloud Sub-Plan                              |
+| ---- | --------------------------------------------------------- | -------- | ------------------------------------------- |
+| 1    | RTL setup (Part 6)                                        | Complete | [01](cloud/01-rtl-setup.plan.md)            |
+| 2    | Design tokens + canonical classes (Parts 1.1 + 1.2)       | Complete | [02](cloud/02-tailwind-hygiene.plan.md)     |
+| 3    | Extract `PageSection`, `Prose`, `ArticleEntry` (Part 3.2) | Complete | [03](cloud/03-section-primitives.plan.md)   |
+| 4    | Refactor `SiteFooter` (Part 4)                            | Complete | [04](cloud/04-site-footer-refactor.plan.md) |
+| 5    | Refactor `SiteHeader` nav (Part 5)                        | Complete | [05](cloud/05-site-header-refactor.plan.md) |
+| 6    | Refactor `CVLayout` to use primitives (Part 3.3)          | Complete | [06](cloud/06-cv-layout-refactor.plan.md)   |
+| 7    | Move shell to root layout (Part 2)                        | Complete | [07](cloud/07-root-layout-shell.plan.md)    |
+| 8    | Full quality gate                                         | Complete | —                                           |
 
 ### Cloud sub-plans
 
@@ -328,41 +330,42 @@ Wave 4:             07-root-layout-shell
 
 ## Files Affected
 
-| File                                   | Changes                                                                      |
-| -------------------------------------- | ---------------------------------------------------------------------------- |
-| `package.json`                         | Add `@testing-library/react`, `@testing-library/jest-dom`, `jsdom`           |
-| `vitest.config.ts`                     | Add setup file reference                                                     |
-| `vitest-setup.ts`                      | New — RTL matcher setup                                                      |
-| `app/globals.css`                      | Add theme tokens for content width, title size, prose leading                |
-| `app/layout.tsx`                       | Add shared page shell (SkipLink, SiteHeader, main, SiteFooter)               |
-| `app/cv/layout.tsx`                    | Potentially becomes meaningful (CV-section concerns) or remains pass-through |
-| `app/page.tsx`                         | Remove scaffolding, keep content only                                        |
-| `app/cv/page.tsx`                      | Remove scaffolding, keep content only                                        |
-| `app/cv/[variant]/page.tsx`            | Remove scaffolding, keep content only                                        |
-| `app/not-found.tsx`                    | Remove scaffolding, keep centred content                                     |
-| `app/cv/pdf/unavailable/not-found.tsx` | Remove scaffolding, keep centred content                                     |
-| `components/cv-layout.tsx`             | Refactor to use primitives, accept props                                     |
-| `components/page-section.tsx`          | New — section heading primitive                                              |
-| `components/page-section.test.tsx`     | New — RTL test                                                               |
-| `components/prose.tsx`                 | New — body text primitive                                                    |
-| `components/prose.test.tsx`            | New — RTL test                                                               |
-| `components/article-entry.tsx`         | New — entry/article primitive                                                |
-| `components/article-entry.test.tsx`    | New — RTL test                                                               |
-| `components/cv-layout.test.tsx`        | New — RTL test                                                               |
-| `components/site-header.tsx`           | Data-driven nav                                                              |
-| `components/site-header.test.tsx`      | New — RTL test                                                               |
-| `components/site-footer.tsx`           | DRY link rendering                                                           |
-| `components/site-footer.test.tsx`      | New — RTL test                                                               |
+All changes have been made. Test files use `.integration.test.tsx` naming convention.
+
+| File                                            | What was done                                            |
+| ----------------------------------------------- | -------------------------------------------------------- |
+| `package.json`                                  | Added `@testing-library/react`, `jest-dom`, `jsdom`      |
+| `vitest.config.ts`                              | References `vitest-setup.ts`                             |
+| `vitest-setup.ts`                               | RTL matcher setup                                        |
+| `app/globals.css`                               | Theme tokens: `max-w-page`, title sizes, `leading-prose` |
+| `app/layout.tsx`                                | Shared shell (SkipLink, SiteHeader, main, SiteFooter)    |
+| `app/cv/layout.tsx`                             | Remains a pass-through (no CV-specific concerns yet)     |
+| `app/page.tsx`                                  | Content only — uses `Prose` component                    |
+| `app/cv/page.tsx`                               | Content only                                             |
+| `app/cv/[variant]/page.tsx`                     | Content only                                             |
+| `app/not-found.tsx`                             | Content only (centred within main)                       |
+| `components/page-section.tsx`                   | Section heading primitive                                |
+| `components/page-section.integration.test.tsx`  | RTL integration test                                     |
+| `components/prose.tsx`                          | Body text primitive with RichText                        |
+| `components/prose.integration.test.tsx`         | RTL integration test                                     |
+| `components/article-entry.tsx`                  | Entry/article primitive                                  |
+| `components/article-entry.integration.test.tsx` | RTL integration test                                     |
+| `components/cv-layout.tsx`                      | Uses primitives, accepts content as props                |
+| `components/cv-layout.integration.test.tsx`     | RTL integration test                                     |
+| `components/site-header.tsx`                    | Data-driven nav with `navItems` array                    |
+| `components/site-header.integration.test.tsx`   | RTL integration test                                     |
+| `components/site-footer.tsx`                    | DRY array+map link rendering                             |
+| `components/site-footer.integration.test.tsx`   | RTL integration test                                     |
 
 ---
 
-## Out of Scope
+## Out of Scope (during this plan)
 
-| Item                           | Reason                                                                                                     |
+| Item                           | Status/Reason                                                                                              |
 | ------------------------------ | ---------------------------------------------------------------------------------------------------------- |
-| Timeline page implementation   | Separate plan (content-review.plan.md, Observation 9)                                                      |
-| Content changes                | Separate plan (content-review.plan.md)                                                                     |
-| Front page content             | Separate plan (front-page-content.plan.md)                                                                 |
+| Timeline page implementation   | Separate plan (content-review.plan.md, Observation 9) — still open                                         |
+| CV content changes             | Separate plan (content-review.plan.md, Observations 1–7) — still open                                      |
+| Front page content             | Separate plan (front-page-content.plan.md) — now complete                                                  |
 | Visual regression testing      | No infrastructure; E2E + RTL are sufficient                                                                |
 | Storybook                      | Evaluated and deferred — see [ADR-004](../../docs/architecture/decision-records/004-storybook-deferred.md) |
 | CSS-in-JS or styled-components | Tailwind 4 is the styling system                                                                           |
