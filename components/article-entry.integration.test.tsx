@@ -38,6 +38,30 @@ describe("ArticleEntry", () => {
     expect(paragraphs[0]).toHaveTextContent("Body content");
   });
 
+  it("uses larger heading margin when meta is absent", () => {
+    render(
+      <ArticleEntry heading="No Meta Entry">
+        <p>Body</p>
+      </ArticleEntry>
+    );
+
+    const heading = screen.getByRole("heading", { name: "No Meta Entry", level: 3 });
+    expect(heading).toHaveClass("mb-4");
+    expect(heading).not.toHaveClass("mb-1");
+  });
+
+  it("uses smaller heading margin when meta is present", () => {
+    render(
+      <ArticleEntry heading="With Meta" meta="Some role · 2020–2024">
+        <p>Body</p>
+      </ArticleEntry>
+    );
+
+    const heading = screen.getByRole("heading", { name: "With Meta", level: 3 });
+    expect(heading).toHaveClass("mb-1");
+    expect(heading).not.toHaveClass("mb-4");
+  });
+
   it("renders children within the article", () => {
     render(
       <ArticleEntry heading="Acme Corp">

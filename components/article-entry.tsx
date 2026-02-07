@@ -15,7 +15,9 @@ interface ArticleEntryProps {
 export function ArticleEntry({ heading, meta, children }: ArticleEntryProps) {
   return (
     <article className="flex flex-col">
-      <h3 className="font-sans text-base font-medium text-foreground mb-1">{heading}</h3>
+      <h3 className={`font-sans text-base font-medium text-foreground ${meta ? "mb-1" : "mb-4"}`}>
+        {heading}
+      </h3>
       {meta && <p className="font-sans text-sm text-foreground/70 mb-3">{meta}</p>}
       {children}
     </article>

@@ -1,6 +1,7 @@
 // @vitest-environment jsdom
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen } from "@testing-library/react";
+import { usePathname } from "next/navigation";
 import { SiteHeader } from "./site-header";
 
 // Mock usePathname — the only justified mock for this client component
@@ -13,16 +14,13 @@ vi.mock("next-themes", () => ({
   useTheme: () => ({ theme: "light", setTheme: vi.fn() }),
 }));
 
-let usePathname: ReturnType<typeof vi.fn>;
-
-beforeEach(async () => {
-  const navigation = await import("next/navigation");
-  usePathname = navigation.usePathname as ReturnType<typeof vi.fn>;
+beforeEach(() => {
+  vi.mocked(usePathname).mockReset();
 });
 
 describe("SiteHeader", () => {
   it("renders Home and CV nav items", () => {
-    usePathname.mockReturnValue("/");
+    vi.mocked(usePathname).mockReturnValue("/");
     render(<SiteHeader />);
 
     expect(screen.getByText("Home")).toBeInTheDocument();
@@ -30,7 +28,7 @@ describe("SiteHeader", () => {
   });
 
   it("marks Home as active when pathname is /", () => {
-    usePathname.mockReturnValue("/");
+    vi.mocked(usePathname).mockReturnValue("/");
     render(<SiteHeader />);
 
     const homeElement = screen.getByText("Home");
@@ -44,7 +42,7 @@ describe("SiteHeader", () => {
   });
 
   it("marks CV as active when pathname starts with /cv", () => {
-    usePathname.mockReturnValue("/cv");
+    vi.mocked(usePathname).mockReturnValue("/cv");
     render(<SiteHeader />);
 
     const cvElement = screen.getByText("CV");
@@ -58,7 +56,7 @@ describe("SiteHeader", () => {
   });
 
   it("marks CV as active for nested CV paths like /cv/timeline", () => {
-    usePathname.mockReturnValue("/cv/timeline");
+    vi.mocked(usePathname).mockReturnValue("/cv/timeline");
     render(<SiteHeader />);
 
     const cvElement = screen.getByText("CV");
@@ -66,7 +64,7 @@ describe("SiteHeader", () => {
   });
 
   it("inactive nav items are links with correct href", () => {
-    usePathname.mockReturnValue("/cv");
+    vi.mocked(usePathname).mockReturnValue("/cv");
     render(<SiteHeader />);
 
     const homeLink = screen.getByText("Home");
@@ -74,21 +72,21 @@ describe("SiteHeader", () => {
   });
 
   it("renders download PDF link on CV pages", () => {
-    usePathname.mockReturnValue("/cv");
+    vi.mocked(usePathname).mockReturnValue("/cv");
     render(<SiteHeader />);
 
     expect(screen.getByText("Download PDF")).toBeInTheDocument();
   });
 
   it("does not render download PDF link on non-CV pages", () => {
-    usePathname.mockReturnValue("/");
+    vi.mocked(usePathname).mockReturnValue("/");
     render(<SiteHeader />);
 
     expect(screen.queryByText("Download PDF")).not.toBeInTheDocument();
   });
 
   it("does not match paths that merely start with /cv but are not CV routes", () => {
-    usePathname.mockReturnValue("/cvv");
+    vi.mocked(usePathname).mockReturnValue("/cvv");
     render(<SiteHeader />);
 
     const cvElement = screen.getByText("CV");
