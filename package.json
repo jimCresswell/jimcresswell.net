@@ -70,7 +70,7 @@
     "eslint-config-next": "^16.1.6",
     "fontkit": "^2.0.4",
     "husky": "^9.1.7",
-    "knip": "^5.83.0",
+    "knip": "^5.83.1",
     "lint-staged": "^16.2.7",
     "pino": "^10.3.0",
     "postcss": "^8.5",
