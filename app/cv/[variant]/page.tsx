@@ -86,7 +86,7 @@ export default async function CVVariantPage({ params }: Props) {
       <SkipLink />
       <SiteHeader actions={<DownloadPdfLink />} />
       <main id="main-content" className="mx-auto max-w-content px-4 py-8 md:px-8 md:py-16">
-        <CVLayout positioning={variantPositioning} />
+        <CVLayout content={cvContent} positioning={variantPositioning} />
       </main>
       <SiteFooter links={footerLinks} />
 

@@ -46,7 +46,7 @@ export default function CVPage() {
       <SkipLink />
       <SiteHeader actions={<DownloadPdfLink />} />
       <main id="main-content" className="mx-auto max-w-content px-4 py-8 md:px-8 md:py-16">
-        <CVLayout positioning={<BasePositioning />} />
+        <CVLayout content={cvContent} positioning={<BasePositioning />} />
       </main>
       <SiteFooter links={footerLinks} />
 
