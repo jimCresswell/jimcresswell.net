@@ -86,4 +86,14 @@ describe("SiteHeader", () => {
 
     expect(screen.queryByText("Download PDF")).not.toBeInTheDocument();
   });
+
+  it("does not match paths that merely start with /cv but are not CV routes", () => {
+    usePathname.mockReturnValue("/cvv");
+    render(<SiteHeader />);
+
+    const cvElement = screen.getByText("CV");
+    expect(cvElement.tagName).toBe("A");
+    expect(cvElement).not.toHaveAttribute("aria-current");
+    expect(screen.queryByText("Download PDF")).not.toBeInTheDocument();
+  });
 });

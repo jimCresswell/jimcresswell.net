@@ -10,7 +10,7 @@ import { DownloadPdfLink } from "./download-pdf-link";
 /** Navigation items — adding a link requires only a new entry here. */
 const navItems = [
   { label: "Home", href: "/", match: (path: string) => path === "/" },
-  { label: "CV", href: "/cv/", match: (path: string) => path.startsWith("/cv") },
+  { label: "CV", href: "/cv/", match: (path: string) => path === "/cv" || path.startsWith("/cv/") },
 ];
 
 /**
@@ -22,7 +22,7 @@ const navItems = [
  */
 export function SiteHeader() {
   const pathname = usePathname();
-  const isCV = pathname.startsWith("/cv");
+  const isCV = pathname === "/cv" || pathname.startsWith("/cv/");
 
   return (
     <header className="print-hidden">

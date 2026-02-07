@@ -64,9 +64,9 @@ export function CVLayout({ content, positioning }: CVLayoutProps) {
       {/* Experience */}
       <PageSection id="experience" heading="Experience" className="mb-6">
         <div className="flex flex-col gap-6">
-          {content.experience.map((exp, index) => (
+          {content.experience.map((exp) => (
             <ArticleEntry
-              key={index}
+              key={`${exp.organisation}-${exp.start_year}`}
               heading={exp.organisation}
               meta={`${exp.role} · ${exp.start_year}–${exp.end_year}`}
             >
@@ -83,8 +83,8 @@ export function CVLayout({ content, positioning }: CVLayoutProps) {
       {/* Foundations */}
       <PageSection id="foundations" heading="Foundations" className="mb-6">
         <div className="flex flex-col gap-8">
-          {content.foundations.map((foundation, index) => (
-            <ArticleEntry key={index} heading={foundation.title}>
+          {content.foundations.map((foundation) => (
+            <ArticleEntry key={foundation.title} heading={foundation.title}>
               <div className="flex flex-col gap-3">
                 {foundation.description.map((paragraph, pIndex) => (
                   <Prose key={pIndex}>{paragraph}</Prose>
@@ -109,8 +109,11 @@ export function CVLayout({ content, positioning }: CVLayoutProps) {
       {/* Education */}
       <PageSection id="education" heading="Education">
         <ul className="flex flex-col gap-3">
-          {content.education.map((edu, index) => (
-            <li key={index} className="font-serif text-base text-foreground">
+          {content.education.map((edu) => (
+            <li
+              key={`${edu.degree}-${edu.institution}`}
+              className="font-serif text-base text-foreground"
+            >
               <span className="font-medium">{edu.degree}</span>, {edu.field}
               <br />
               <span className="text-foreground/70">{edu.institution}</span>

@@ -32,7 +32,7 @@ describe("ArticleEntry", () => {
       </ArticleEntry>
     );
 
-    // Only heading paragraph and the body paragraph should exist
+    // Only the body paragraph should exist when meta is undefined
     const paragraphs = container.querySelectorAll("p");
     expect(paragraphs).toHaveLength(1);
     expect(paragraphs[0]).toHaveTextContent("Body content");

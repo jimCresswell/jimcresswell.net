@@ -2,6 +2,7 @@
 import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { SiteFooter } from "./site-footer";
+import frontpageContent from "@/content/frontpage.content.json";
 
 const allLinks = {
   email: "test@example.com",
@@ -12,11 +13,12 @@ const allLinks = {
 };
 
 describe("SiteFooter", () => {
-  it("renders copyright text with the current year and Jim Cresswell", () => {
+  it("renders copyright text with the current year and the site owner name", () => {
     render(<SiteFooter />);
 
     const currentYear = new Date().getFullYear().toString();
-    expect(screen.getByText(new RegExp(`${currentYear}.*Jim Cresswell`))).toBeInTheDocument();
+    const name = frontpageContent.hero.name;
+    expect(screen.getByText(new RegExp(`${currentYear}.*${name}`))).toBeInTheDocument();
   });
 
   it("renders all provided link labels", () => {
