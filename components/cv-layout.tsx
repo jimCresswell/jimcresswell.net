@@ -123,8 +123,8 @@ export function CVLayout({ content, positioning }: CVLayoutProps) {
         </ul>
       </PageSection>
 
-      {/* Download */}
-      <p className="print-hidden mt-9 font-serif text-base text-foreground">
+      {/* Download (screen) / web reference (print) */}
+      <p className="print-hidden mt-10 font-serif text-base text-foreground">
         Download{" "}
         <a
           href="/cv/pdf"
@@ -134,6 +134,9 @@ export function CVLayout({ content, positioning }: CVLayoutProps) {
           this CV as a PDF
         </a>
         .
+      </p>
+      <p className="hidden print:block mt-10 font-serif text-base text-foreground">
+        For the latest version of this CV see jimcresswell.net/cv.
       </p>
     </div>
   );
