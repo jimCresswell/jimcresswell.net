@@ -3,7 +3,6 @@ import frontpageContent from "@/content/frontpage.content.json";
 
 interface SiteFooterProps {
   links?: {
-    email?: string;
     linkedin?: string;
     github?: string;
     google_scholar?: string;
@@ -11,12 +10,9 @@ interface SiteFooterProps {
   };
 }
 
-/** Shared className for all link-style items in the footer (email span and external links). */
+/** Shared className for all external links in the footer. */
 const linkClassName =
   "underline opacity-70 hover:opacity-100 transition-opacity py-2 sm:py-0 sm:min-h-11 flex items-center";
-
-/** Shared className for the email display (not a link, so no underline). */
-const emailClassName = "opacity-70 py-2 sm:py-0 sm:min-h-11 flex items-center";
 
 /**
  * Site footer with copyright notice and optional external links.
@@ -32,7 +28,7 @@ export function SiteFooter({ links }: SiteFooterProps) {
       ].filter((link): link is { label: string; href: string } => link !== null)
     : [];
 
-  const hasLinks = links && (links.email || externalLinks.length > 0);
+  const hasLinks = externalLinks.length > 0;
 
   return (
     <footer className="print-hidden mt-6 border-t border-foreground/10">
@@ -48,7 +44,6 @@ export function SiteFooter({ links }: SiteFooterProps) {
                 aria-label="External links"
                 className="flex flex-col sm:flex-row sm:gap-4 text-sm"
               >
-                {links.email && <span className={emailClassName}>{links.email}</span>}
                 {externalLinks.map((link) => (
                   <Link
                     key={link.label}

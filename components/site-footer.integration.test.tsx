@@ -5,7 +5,6 @@ import { SiteFooter } from "./site-footer";
 import frontpageContent from "@/content/frontpage.content.json";
 
 const allLinks = {
-  email: "test@example.com",
   linkedin: "https://linkedin.com/in/test",
   github: "https://github.com/test",
   google_scholar: "https://scholar.google.com/test",
@@ -28,15 +27,6 @@ describe("SiteFooter", () => {
     expect(screen.getByText("GitHub")).toBeInTheDocument();
     expect(screen.getByText("Google Scholar")).toBeInTheDocument();
     expect(screen.getByText("Shiv")).toBeInTheDocument();
-  });
-
-  it("renders email as text, not as a link", () => {
-    render(<SiteFooter links={allLinks} />);
-
-    expect(screen.getByText("test@example.com")).toBeInTheDocument();
-    // Email should not be rendered as a link
-    const emailElement = screen.getByText("test@example.com");
-    expect(emailElement.tagName).not.toBe("A");
   });
 
   it("renders external links with target=_blank and rel=noopener noreferrer", () => {

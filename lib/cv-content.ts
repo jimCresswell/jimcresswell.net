@@ -14,7 +14,6 @@ export const cvOpenGraph = cvOgJson;
 
 // Shared footer links (consistent across all pages)
 export const footerLinks = {
-  email: cvContent.links.email,
   linkedin: cvContent.links.linkedin,
   github: cvContent.links.github,
   google_scholar: cvContent.links.google_scholar,
