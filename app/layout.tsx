@@ -2,6 +2,10 @@ import React from "react";
 import type { Metadata, Viewport } from "next";
 import { Inter, Literata } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
+import { SkipLink } from "@/components/skip-link";
+import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/site-footer";
+import { footerLinks } from "@/lib/cv-content";
 import { Analytics } from "@vercel/analytics/next";
 import frontpageContent from "@/content/frontpage.content.json";
 import "./globals.css";
@@ -76,7 +80,12 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <SkipLink />
+          <SiteHeader />
+          <main id="main-content" className="mx-auto max-w-page px-4 py-8 md:px-8 md:py-16">
+            {children}
+          </main>
+          <SiteFooter links={footerLinks} />
         </ThemeProvider>
         <Analytics />
       </body>

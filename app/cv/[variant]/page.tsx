@@ -1,9 +1,5 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { SkipLink } from "@/components/skip-link";
-import { SiteHeader } from "@/components/site-header";
-import { SiteFooter } from "@/components/site-footer";
-import { DownloadPdfLink } from "@/components/download-pdf-link";
 import { CVLayout } from "@/components/cv-layout";
 import {
   cvContent,
@@ -12,7 +8,6 @@ import {
   activeTiltKeys,
   getTilt,
   isActiveTiltKey,
-  footerLinks,
 } from "@/lib/cv-content";
 
 interface Props {
@@ -78,17 +73,12 @@ export default async function CVVariantPage({ params }: Props) {
 
   // Variant positioning content
   const variantPositioning = (
-    <p className="font-serif text-base leading-[1.7] text-foreground">{tilt.positioning}</p>
+    <p className="font-serif text-base leading-prose text-foreground">{tilt.positioning}</p>
   );
 
   return (
     <>
-      <SkipLink />
-      <SiteHeader actions={<DownloadPdfLink />} />
-      <main id="main-content" className="mx-auto max-w-[760px] px-4 py-8 md:px-8 md:py-16">
-        <CVLayout positioning={variantPositioning} />
-      </main>
-      <SiteFooter links={footerLinks} />
+      <CVLayout content={cvContent} positioning={variantPositioning} />
 
       {/* JSON-LD */}
       <script

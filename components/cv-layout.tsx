@@ -1,123 +1,126 @@
 import type { ReactNode } from "react";
-import { cvContent } from "@/lib/cv-content";
-import { RichText } from "@/components/rich-text";
+import { PageSection } from "@/components/page-section";
+import { ArticleEntry } from "@/components/article-entry";
+import { Prose } from "@/components/prose";
+
+/** Content shape that CVLayout requires. */
+interface CVContentProps {
+  meta: {
+    name: string;
+    headline: string;
+  };
+  links: {
+    email: string;
+  };
+  experience: Array<{
+    organisation: string;
+    role: string;
+    start_year: number;
+    end_year: string;
+    summary: string[];
+  }>;
+  foundations: Array<{
+    title: string;
+    description: string[];
+  }>;
+  capabilities: string[];
+  education: Array<{
+    degree: string;
+    field: string;
+    institution: string;
+  }>;
+}
 
 interface CVLayoutProps {
+  /** CV content data — injected for testability and decoupling. */
+  content: CVContentProps;
+  /** Positioning section content (varies by CV variant). */
   positioning: ReactNode;
 }
 
-export function CVLayout({ positioning }: CVLayoutProps) {
+/**
+ * CV page layout composed from section primitives.
+ * Renders header, positioning, experience, foundations, capabilities, and education.
+ */
+export function CVLayout({ content, positioning }: CVLayoutProps) {
   return (
     <div className="flex flex-col">
-      {/* CV Header */}
+      {/* CV Header — unique structure, kept inline */}
       <header className="mb-6">
-        <h1 className="font-sans text-[2rem] md:text-[2.625rem] font-medium leading-tight tracking-tight text-foreground text-balance mb-2">
-          {cvContent.meta.name}
+        <h1 className="font-sans text-page-title md:text-page-title-md font-medium leading-tight tracking-tight text-foreground text-balance mb-2">
+          {content.meta.name}
         </h1>
-        <p className="font-sans text-sm text-foreground/70 mb-3 md:mb-4">{cvContent.links.email}</p>
+        <p className="font-sans text-sm text-foreground/70 mb-3 md:mb-4">{content.links.email}</p>
         <p className="font-sans text-sm md:text-base uppercase tracking-[0.08em] text-accent">
-          {cvContent.meta.headline}
+          {content.meta.headline}
         </p>
       </header>
 
       {/* Positioning */}
-      <section aria-labelledby="positioning-heading" className="mb-6">
-        <h2 id="positioning-heading" className="sr-only">
-          Positioning
-        </h2>
+      <PageSection id="positioning" heading="Positioning" srOnly className="mb-6">
         {positioning}
-      </section>
+      </PageSection>
 
       {/* Experience */}
-      <section aria-labelledby="experience-heading" className="mb-6">
-        <h2
-          id="experience-heading"
-          className="font-sans text-base md:text-lg font-medium text-foreground mb-4"
-        >
-          Experience
-        </h2>
+      <PageSection id="experience" heading="Experience" className="mb-6">
         <div className="flex flex-col gap-6">
-          {cvContent.experience.map((exp, index) => (
-            <article key={index} className="flex flex-col">
-              <h3 className="font-sans text-base font-medium text-foreground mb-1">
-                {exp.organisation}
-              </h3>
-              <p className="font-sans text-sm text-foreground/70 mb-3">
-                {exp.role} · {exp.start_year}–{exp.end_year}
-              </p>
+          {content.experience.map((exp) => (
+            <ArticleEntry
+              key={`${exp.organisation}-${exp.start_year}`}
+              heading={exp.organisation}
+              meta={`${exp.role} · ${exp.start_year}–${exp.end_year}`}
+            >
               <div className="flex flex-col gap-3">
                 {exp.summary.map((paragraph, pIndex) => (
-                  <p key={pIndex} className="font-serif text-base leading-[1.7] text-foreground">
-                    <RichText>{paragraph}</RichText>
-                  </p>
+                  <Prose key={pIndex}>{paragraph}</Prose>
                 ))}
               </div>
-            </article>
+            </ArticleEntry>
           ))}
         </div>
-      </section>
+      </PageSection>
 
       {/* Foundations */}
-      <section aria-labelledby="foundations-heading" className="mb-6">
-        <h2
-          id="foundations-heading"
-          className="font-sans text-base md:text-lg font-medium text-foreground mb-4"
-        >
-          Foundations
-        </h2>
+      <PageSection id="foundations" heading="Foundations" className="mb-6">
         <div className="flex flex-col gap-8">
-          {cvContent.foundations.map((foundation, index) => (
-            <article key={index} className="flex flex-col">
-              <h3 className="font-sans text-base font-medium text-foreground mb-4">
-                {foundation.title}
-              </h3>
+          {content.foundations.map((foundation) => (
+            <ArticleEntry key={foundation.title} heading={foundation.title}>
               <div className="flex flex-col gap-3">
                 {foundation.description.map((paragraph, pIndex) => (
-                  <p key={pIndex} className="font-serif text-base leading-[1.7] text-foreground">
-                    <RichText>{paragraph}</RichText>
-                  </p>
+                  <Prose key={pIndex}>{paragraph}</Prose>
                 ))}
               </div>
-            </article>
+            </ArticleEntry>
           ))}
         </div>
-      </section>
+      </PageSection>
 
       {/* Capabilities */}
-      <section aria-labelledby="capabilities-heading" className="mb-6">
-        <h2
-          id="capabilities-heading"
-          className="font-sans text-base md:text-lg font-medium text-foreground mb-4"
-        >
-          Capabilities
-        </h2>
+      <PageSection id="capabilities" heading="Capabilities" className="mb-6">
         <ul className="flex flex-col gap-2">
-          {cvContent.capabilities.map((capability, index) => (
-            <li key={index} className="font-serif text-base leading-[1.7] text-foreground">
+          {content.capabilities.map((capability, index) => (
+            <li key={index} className="font-serif text-base leading-prose text-foreground">
               {capability}
             </li>
           ))}
         </ul>
-      </section>
+      </PageSection>
 
       {/* Education */}
-      <section aria-labelledby="education-heading">
-        <h2
-          id="education-heading"
-          className="font-sans text-base md:text-lg font-medium text-foreground mb-4"
-        >
-          Education
-        </h2>
+      <PageSection id="education" heading="Education">
         <ul className="flex flex-col gap-3">
-          {cvContent.education.map((edu, index) => (
-            <li key={index} className="font-serif text-base text-foreground">
+          {content.education.map((edu) => (
+            <li
+              key={`${edu.degree}-${edu.institution}`}
+              className="font-serif text-base text-foreground"
+            >
               <span className="font-medium">{edu.degree}</span>, {edu.field}
               <br />
               <span className="text-foreground/70">{edu.institution}</span>
             </li>
           ))}
         </ul>
-      </section>
+      </PageSection>
     </div>
   );
 }

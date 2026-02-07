@@ -1,10 +1,6 @@
 import type { Metadata } from "next";
-import { SkipLink } from "@/components/skip-link";
-import { SiteHeader } from "@/components/site-header";
-import { SiteFooter } from "@/components/site-footer";
-import { DownloadPdfLink } from "@/components/download-pdf-link";
 import { CVLayout } from "@/components/cv-layout";
-import { cvContent, jsonLd, cvOpenGraph, footerLinks } from "@/lib/cv-content";
+import { cvContent, jsonLd, cvOpenGraph } from "@/lib/cv-content";
 
 export const metadata: Metadata = {
   title: cvOpenGraph.title,
@@ -30,9 +26,9 @@ export const metadata: Metadata = {
 // Base positioning content
 function BasePositioning() {
   return (
-    <div className="flex flex-col gap-[0.875rem]">
+    <div className="flex flex-col gap-3.5">
       {cvContent.positioning.paragraphs.map((paragraph, index) => (
-        <p key={index} className="font-serif text-base leading-[1.7] text-foreground">
+        <p key={index} className="font-serif text-base leading-prose text-foreground">
           {paragraph}
         </p>
       ))}
@@ -43,12 +39,7 @@ function BasePositioning() {
 export default function CVPage() {
   return (
     <>
-      <SkipLink />
-      <SiteHeader actions={<DownloadPdfLink />} />
-      <main id="main-content" className="mx-auto max-w-[760px] px-4 py-8 md:px-8 md:py-16">
-        <CVLayout positioning={<BasePositioning />} />
-      </main>
-      <SiteFooter links={footerLinks} />
+      <CVLayout content={cvContent} positioning={<BasePositioning />} />
 
       {/* JSON-LD */}
       <script

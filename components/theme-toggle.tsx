@@ -39,7 +39,7 @@ export function ThemeToggle() {
       <button
         type="button"
         onClick={() => setTheme("light")}
-        className={`px-2 py-2 min-h-[44px] flex items-center transition-opacity hover:opacity-100 ${
+        className={`px-2 py-2 min-h-11 flex items-center transition-opacity hover:opacity-100 ${
           theme === "light" ? "font-medium underline" : "opacity-70"
         }`}
         aria-pressed={theme === "light"}
@@ -52,7 +52,7 @@ export function ThemeToggle() {
       <button
         type="button"
         onClick={() => setTheme("dark")}
-        className={`px-2 py-2 min-h-[44px] flex items-center transition-opacity hover:opacity-100 ${
+        className={`px-2 py-2 min-h-11 flex items-center transition-opacity hover:opacity-100 ${
           theme === "dark" ? "font-medium underline" : "opacity-70"
         }`}
         aria-pressed={theme === "dark"}
@@ -65,7 +65,7 @@ export function ThemeToggle() {
       <button
         type="button"
         onClick={() => setTheme("system")}
-        className={`px-2 py-2 min-h-[44px] flex items-center transition-opacity hover:opacity-100 ${
+        className={`px-2 py-2 min-h-11 flex items-center transition-opacity hover:opacity-100 ${
           theme === "system" ? "font-medium underline" : "opacity-70"
         }`}
         aria-pressed={theme === "system"}
