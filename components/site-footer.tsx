@@ -31,7 +31,7 @@ export function SiteFooter({ links }: SiteFooterProps) {
   const hasLinks = externalLinks.length > 0;
 
   return (
-    <footer className="print-hidden mt-6 border-t border-foreground/10">
+    <footer className="print-hidden mt-3 border-t border-foreground/10">
       <div className="mx-auto max-w-page px-4 py-6 md:px-8 md:py-8">
         <div className="flex flex-col gap-3">
           {/* Copyright and external links */}
