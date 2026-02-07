@@ -1,23 +1,34 @@
+import Link from "next/link";
 import type { ReactNode } from "react";
 
 /**
- * Parse markdown-style links in text and return React nodes.
+ * Parse inline markdown (links and emphasis) in text and return React nodes.
  *
- * Syntax: [link text](url)
+ * Supported syntax:
+ * - Links: `[link text](url)` — relative URLs use Next.js `<Link>`, external URLs use `<a>`.
+ * - Emphasis: `_text_` — rendered as `<em>`.
  *
- * Example: "At [Oak National Academy](https://oak.org/), I lead..."
+ * @example
+ * parseMarkdownLinks("Visit [Oak](https://oak.org/) for _great_ resources.")
+ * // => <>Visit <a href="https://oak.org/" ...>Oak</a> for <em>great</em> resources.</>
+ *
+ * @example
+ * parseMarkdownLinks("My [CV is available here](/cv/).")
+ * // => <>My <Link href="/cv/">CV is available here</Link>.</>
  */
 export function parseMarkdownLinks(text: string): ReactNode {
-  // Match markdown links: [text](url)
-  const linkPattern = /\[([^\]]+)\]\(([^)]+)\)/g;
+  // Match markdown links [text](url) or emphasis _text_
+  const pattern = /\[([^\]]+)\]\(([^)]+)\)|_([^_]+)_/g;
 
   const parts: ReactNode[] = [];
   let lastIndex = 0;
   let match: RegExpExecArray | null;
   let keyIndex = 0;
+  let hasMatch = false;
 
-  while ((match = linkPattern.exec(text)) !== null) {
-    const [fullMatch, linkText, url] = match;
+  while ((match = pattern.exec(text)) !== null) {
+    hasMatch = true;
+    const [fullMatch, linkText, url, emphasisText] = match;
     const matchStart = match.index;
 
     // Add text before this match
@@ -25,17 +36,31 @@ export function parseMarkdownLinks(text: string): ReactNode {
       parts.push(text.slice(lastIndex, matchStart));
     }
 
-    parts.push(
-      <a
-        key={`link-${keyIndex++}`}
-        href={url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="cv-ref-link"
-      >
-        {linkText}
-      </a>
-    );
+    if (linkText && url) {
+      // It's a link — use <Link> for relative, <a> for external
+      if (url.startsWith("/")) {
+        parts.push(
+          <Link key={`link-${keyIndex++}`} href={url} className="inline-link">
+            {linkText}
+          </Link>
+        );
+      } else {
+        parts.push(
+          <a
+            key={`link-${keyIndex++}`}
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-link"
+          >
+            {linkText}
+          </a>
+        );
+      }
+    } else if (emphasisText) {
+      // It's emphasis
+      parts.push(<em key={`em-${keyIndex++}`}>{emphasisText}</em>);
+    }
 
     lastIndex = matchStart + fullMatch.length;
   }
@@ -45,8 +70,8 @@ export function parseMarkdownLinks(text: string): ReactNode {
     parts.push(text.slice(lastIndex));
   }
 
-  // If no matches were found, return original text
-  if (parts.length === 0) {
+  // If no matches were found, return original text as a string (not a React node)
+  if (!hasMatch) {
     return text;
   }
 

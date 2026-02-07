@@ -8,6 +8,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { footerLinks } from "@/lib/cv-content";
 import { Analytics } from "@vercel/analytics/next";
 import frontpageContent from "@/content/frontpage.content.json";
+import { stripInlineMarkdown } from "@/lib/strip-inline-markdown";
 import "./globals.css";
 
 const inter = Inter({
@@ -24,7 +25,7 @@ const literata = Literata({
 
 // Site-wide metadata from frontpage content
 const siteTitle = frontpageContent.meta.title;
-const siteDescription = frontpageContent.hero.summary.join(" ");
+const siteDescription = frontpageContent.hero.summary.map(stripInlineMarkdown).join(" ");
 
 export const metadata: Metadata = {
   title: siteTitle,

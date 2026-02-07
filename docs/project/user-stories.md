@@ -7,14 +7,14 @@ Key user stories for jimcresswell.net. Each story describes a behaviour the site
 ## US-01: View the home page
 
 **As a** visitor,
-**I want to** see who Jim is and what he does,
-**so that** I can decide whether to view his CV.
+**I want to** get a sense of who Jim is, what he cares about, and what he works on,
+**so that** I can decide whether to engage further — via his CV, code, research, or other links.
 
 **Acceptance criteria:**
 
-- The home page displays Jim's name, tagline, and summary.
-- A clear link navigates to the CV.
-- Highlight sections provide context on Jim's expertise.
+- The home page displays Jim's name and a personal narrative.
+- Inline links within the narrative connect to the CV, GitHub, Google Scholar, and other relevant destinations.
+- The page works as a personal presence, not just a gateway to the CV.
 
 ---
 

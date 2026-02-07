@@ -171,6 +171,8 @@ However, there is a significant body of career history that the editorial CV eli
 
 Plus education at Portsmouth, Sussex, and Bath — with thesis titles and links.
 
+The original content is at <https://jimcresswell.github.io/cv>.
+
 This history is currently invisible on the site. A dedicated timeline page would serve two purposes:
 
 ### 1. Standalone value
@@ -247,6 +249,7 @@ Entries are ordered reverse-chronologically. The `type` field distinguishes role
 - Should the timeline be linked from the main CV page navigation, or only discoverable via the URL and sitemap? Linking it makes it accessible but risks diluting the editorial CV's focus.
 - Should the education entries be interleaved chronologically with roles, or separated into their own section at the bottom? Interleaving is more honest (the PhD and HP Labs overlapped) but may feel unusual.
 - Should the Obaith entry be presented as a role or as a distinct "research period"? It was a genuine venture but also overlaps with Code Science and early Oak.
+- What do we do with the running for the local elections info? See archive/prior_cv_content.json.bak
 
 ### Decision
 

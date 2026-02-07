@@ -36,7 +36,7 @@ export function SiteFooter({ links }: SiteFooterProps) {
         <div className="flex flex-col gap-3">
           {/* Copyright and external links */}
           <div className="flex flex-col-reverse gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <p className="text-sm opacity-60">
+            <p className="text-sm opacity-65">
               &copy; {new Date().getFullYear()} {frontpageContent.hero.name}
             </p>
             {hasLinks && (
