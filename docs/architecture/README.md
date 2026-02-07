@@ -7,7 +7,7 @@ jimcresswell.net is a Next.js 16 application using the App Router, deployed on V
 ## Key Principles
 
 - **Server components by default** — Client components only where browser APIs are needed (theme toggle, theme provider).
-- **Content-driven rendering** — Single source of truth for all copy in `content/` JSON files.
+- **Content-driven rendering** — Single source of truth for all copy in `content/` JSON files. Content may include inline markdown (`[text](url)` for links, `_text_` for emphasis), which is parsed into React elements at render time by `parseMarkdownLinks` in `lib/parse-markdown-links.tsx`. Relative URLs render as Next.js `<Link>`, external URLs as `<a target="_blank">`.
 - **Build-time PDF generation** — CV PDF generated at build time with full Chrome, served from our own URL.
 - **Accessible** — WCAG 2.2 AA target throughout. Semantic HTML, heading hierarchy, visible focus indicators, 44px touch targets.
 - **No decorative elements** — Editorial aesthetic. UI controls are text-only. No icons, charts, or illustrations.
@@ -16,7 +16,7 @@ jimcresswell.net is a Next.js 16 application using the App Router, deployed on V
 
 | Route                 | Type          | Purpose                                                                    |
 | --------------------- | ------------- | -------------------------------------------------------------------------- |
-| `/`                   | Page          | Home — hero, highlights, navigation                                        |
+| `/`                   | Page          | Home — personal narrative with inline links to CV, GitHub, Scholar, etc.   |
 | `/cv`                 | Page          | Primary CV — positioning, experience, foundations, capabilities, education |
 | `/cv/[variant]`       | Dynamic page  | CV variants with alternative positioning text                              |
 | `/cv/pdf`             | Route Handler | Serves PDF binary (download or inline display)                             |
@@ -67,8 +67,10 @@ To test the full Blob path locally, add `BLOB_READ_WRITE_TOKEN` to `.env.local` 
 
 All significant architectural decisions are recorded as ADRs in [decision-records/](decision-records/).
 
-| ADR                                                      | Title                                          |
-| -------------------------------------------------------- | ---------------------------------------------- |
-| [001](decision-records/001-build-time-pdf-generation.md) | Build-time PDF generation with Puppeteer       |
-| [002](decision-records/002-pdf-serving-architecture.md)  | PDF serving via Route Handler at /cv/pdf       |
-| [003](decision-records/003-print-button-removed.md)      | Print button removed in favour of PDF download |
+| ADR                                                       | Title                                          |
+| --------------------------------------------------------- | ---------------------------------------------- |
+| [001](decision-records/001-build-time-pdf-generation.md)  | Build-time PDF generation with Puppeteer       |
+| [002](decision-records/002-pdf-serving-architecture.md)   | PDF serving via Route Handler at /cv/pdf       |
+| [003](decision-records/003-print-button-removed.md)       | Print button removed in favour of PDF download |
+| [004](decision-records/004-storybook-deferred.md)         | Storybook deferred in favour of RTL + Vitest   |
+| [005](decision-records/005-knip-unused-code-detection.md) | Knip for unused code and dependency detection  |
