@@ -71,18 +71,20 @@ describe("SiteHeader", () => {
     expect(homeLink).toHaveAttribute("href", "/");
   });
 
-  it("renders download PDF link on CV pages", () => {
+  it("renders a link to the PDF download on CV pages", () => {
     vi.mocked(usePathname).mockReturnValue("/cv");
     render(<SiteHeader />);
 
-    expect(screen.getByText("Download PDF")).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /pdf/i })).toHaveAttribute("href", "/cv/pdf");
   });
 
-  it("does not render download PDF link on non-CV pages", () => {
+  it("does not render PDF download link on non-CV pages", () => {
     vi.mocked(usePathname).mockReturnValue("/");
     render(<SiteHeader />);
 
-    expect(screen.queryByText("Download PDF")).not.toBeInTheDocument();
+    const links = screen.getAllByRole("link");
+    const pdfLink = links.find((link) => link.getAttribute("href") === "/cv/pdf");
+    expect(pdfLink).toBeUndefined();
   });
 
   it("does not match paths that merely start with /cv but are not CV routes", () => {
@@ -92,6 +94,8 @@ describe("SiteHeader", () => {
     const cvElement = screen.getByText("CV");
     expect(cvElement.tagName).toBe("A");
     expect(cvElement).not.toHaveAttribute("aria-current");
-    expect(screen.queryByText("Download PDF")).not.toBeInTheDocument();
+    const links = screen.getAllByRole("link");
+    const pdfLink = links.find((link) => link.getAttribute("href") === "/cv/pdf");
+    expect(pdfLink).toBeUndefined();
   });
 });

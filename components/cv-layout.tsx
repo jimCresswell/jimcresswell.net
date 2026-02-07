@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { PageSection } from "@/components/page-section";
 import { ArticleEntry } from "@/components/article-entry";
 import { Prose } from "@/components/prose";
+import { PDF_FILENAME } from "@/lib/pdf-config";
 
 /** Content shape that CVLayout requires. */
 interface CVContentProps {
@@ -121,6 +122,19 @@ export function CVLayout({ content, positioning }: CVLayoutProps) {
           ))}
         </ul>
       </PageSection>
+
+      {/* Download */}
+      <p className="print-hidden mt-3 font-serif text-base text-foreground">
+        Download{" "}
+        <a
+          href="/cv/pdf"
+          download={PDF_FILENAME}
+          className="underline text-accent hover:opacity-80 transition-opacity"
+        >
+          this CV as a PDF
+        </a>
+        .
+      </p>
     </div>
   );
 }

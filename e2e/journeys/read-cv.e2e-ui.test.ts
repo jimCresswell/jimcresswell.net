@@ -32,6 +32,6 @@ test.describe("US-02: Visitor reads the full CV", () => {
     }
 
     // Visitor can download the PDF for offline use
-    await expect(page.getByRole("link", { name: "Download PDF" })).toBeVisible();
+    await expect(page.locator('a[href="/cv/pdf"][download]')).toBeVisible();
   });
 });

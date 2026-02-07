@@ -1,7 +1,7 @@
 import { PDF_FILENAME } from "@/lib/pdf-config";
 
 /**
- * Link to download the pre-generated CV PDF.
+ * Compact link to download the pre-generated CV PDF, used in the site header.
  *
  * Points to `/cv/pdf` which serves the PDF binary. The `download` attribute
  * forces a file download (user stays on the current page) rather than
@@ -16,7 +16,7 @@ export function DownloadPdfLink() {
       download={PDF_FILENAME}
       className="print-hidden font-sans text-base underline text-accent hover:opacity-80 transition-opacity min-h-11 py-2"
     >
-      Download PDF
+      PDF
     </a>
   );
 }

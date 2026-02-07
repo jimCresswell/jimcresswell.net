@@ -5,7 +5,7 @@ test.describe("US-04: Visitor downloads the CV as PDF", () => {
     await page.goto("/cv");
 
     // Download link is visible and discoverable
-    const downloadLink = page.getByRole("link", { name: "Download PDF" });
+    const downloadLink = page.locator('a[href="/cv/pdf"][download]').first();
     await expect(downloadLink).toBeVisible();
 
     // Clicking initiates a file download without navigating away

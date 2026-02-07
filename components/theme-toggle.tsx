@@ -16,7 +16,7 @@ export function ThemeToggle() {
   if (!mounted) {
     // Prevent hydration mismatch
     return (
-      <div className="flex items-center gap-1 text-sm print-hidden" aria-hidden="true">
+      <div className="flex items-center gap-2 text-sm print-hidden" aria-hidden="true">
         <span className="opacity-50">Light</span>
         <span className="opacity-50" aria-hidden="true">
           ·
@@ -32,14 +32,14 @@ export function ThemeToggle() {
 
   return (
     <div
-      className="flex items-center gap-1 text-sm print-hidden"
+      className="flex items-center gap-2 text-sm print-hidden"
       role="group"
       aria-label="Theme selection"
     >
       <button
         type="button"
         onClick={() => setTheme("light")}
-        className={`px-2 py-2 min-h-11 flex items-center transition-opacity hover:opacity-100 ${
+        className={`min-h-11 min-w-11 flex items-center justify-center transition-opacity hover:opacity-100 ${
           theme === "light" ? "font-medium underline" : "opacity-70"
         }`}
         aria-pressed={theme === "light"}
@@ -52,7 +52,7 @@ export function ThemeToggle() {
       <button
         type="button"
         onClick={() => setTheme("dark")}
-        className={`px-2 py-2 min-h-11 flex items-center transition-opacity hover:opacity-100 ${
+        className={`min-h-11 min-w-11 flex items-center justify-center transition-opacity hover:opacity-100 ${
           theme === "dark" ? "font-medium underline" : "opacity-70"
         }`}
         aria-pressed={theme === "dark"}
@@ -65,7 +65,7 @@ export function ThemeToggle() {
       <button
         type="button"
         onClick={() => setTheme("system")}
-        className={`px-2 py-2 min-h-11 flex items-center transition-opacity hover:opacity-100 ${
+        className={`min-h-11 min-w-11 flex items-center justify-center transition-opacity hover:opacity-100 ${
           theme === "system" ? "font-medium underline" : "opacity-70"
         }`}
         aria-pressed={theme === "system"}

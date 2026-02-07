@@ -63,13 +63,11 @@ export function SiteHeader() {
             ))}
           </nav>
         </div>
-        <div className="flex items-center gap-4 print-hidden">
+        <div className="flex items-center gap-3 print-hidden">
           {isCV && (
             <>
               <DownloadPdfLink />
-              <span className="opacity-30" aria-hidden="true">
-                |
-              </span>
+              <span className="h-5 w-px bg-foreground/20" aria-hidden="true" />
             </>
           )}
           <ThemeToggle />

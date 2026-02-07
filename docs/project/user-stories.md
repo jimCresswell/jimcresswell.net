@@ -54,7 +54,7 @@ Key user stories for jimcresswell.net. Each story describes a behaviour the site
 
 **Acceptance criteria:**
 
-- A "Download PDF" link is visible on the CV page.
+- A link to download the PDF is visible on the CV page.
 - Clicking the link downloads a PDF file without navigating away from the page.
 - The downloaded PDF has correct formatting, fonts, and page breaks.
 
