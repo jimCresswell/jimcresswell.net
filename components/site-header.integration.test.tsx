@@ -73,20 +73,17 @@ describe("SiteHeader", () => {
     expect(homeLink).toHaveAttribute("href", "/");
   });
 
-  it("renders actions slot when provided", () => {
-    usePathname.mockReturnValue("/");
-    render(<SiteHeader actions={<button>Download</button>} />);
+  it("renders download PDF link on CV pages", () => {
+    usePathname.mockReturnValue("/cv");
+    render(<SiteHeader />);
 
-    expect(screen.getByRole("button", { name: "Download" })).toBeInTheDocument();
+    expect(screen.getByText("Download PDF")).toBeInTheDocument();
   });
 
-  it("does not render actions separator when actions not provided", () => {
+  it("does not render download PDF link on non-CV pages", () => {
     usePathname.mockReturnValue("/");
-    const { container } = render(<SiteHeader />);
+    render(<SiteHeader />);
 
-    // The pipe separator is only rendered when actions are present
-    const separators = container.querySelectorAll("[aria-hidden='true']");
-    const pipeSeparator = Array.from(separators).find((el) => el.textContent === "|");
-    expect(pipeSeparator).toBeUndefined();
+    expect(screen.queryByText("Download PDF")).not.toBeInTheDocument();
   });
 });

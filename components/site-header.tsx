@@ -5,11 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ThemeToggle } from "./theme-toggle";
 import { Logo } from "./logo";
-import type { ReactNode } from "react";
-
-interface SiteHeaderProps {
-  actions?: ReactNode;
-}
+import { DownloadPdfLink } from "./download-pdf-link";
 
 /** Navigation items — adding a link requires only a new entry here. */
 const navItems = [
@@ -18,11 +14,15 @@ const navItems = [
 ];
 
 /**
- * Site header with logo, data-driven navigation, optional actions slot,
+ * Site header with logo, data-driven navigation, conditional download link,
  * and theme toggle. Hidden in print media via the `print-hidden` class.
+ *
+ * The download PDF link is rendered automatically on CV pages based on the
+ * current pathname — no props required from parent pages.
  */
-export function SiteHeader({ actions }: SiteHeaderProps) {
+export function SiteHeader() {
   const pathname = usePathname();
+  const isCV = pathname.startsWith("/cv");
 
   return (
     <header className="print-hidden">
@@ -64,9 +64,9 @@ export function SiteHeader({ actions }: SiteHeaderProps) {
           </nav>
         </div>
         <div className="flex items-center gap-4 print-hidden">
-          {actions && (
+          {isCV && (
             <>
-              {actions}
+              <DownloadPdfLink />
               <span className="opacity-30" aria-hidden="true">
                 |
               </span>
