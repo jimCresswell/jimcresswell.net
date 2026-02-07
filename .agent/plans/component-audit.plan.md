@@ -292,19 +292,37 @@ components/
 
 ## Execution Order
 
-| Step | What                                                      | Depends on    | Tests                            |
-| ---- | --------------------------------------------------------- | ------------- | -------------------------------- |
-| 1    | RTL setup (Part 6)                                        | Nothing       | Verify setup with a trivial test |
-| 2    | Design tokens (Part 1.2)                                  | Nothing       | E2E regression                   |
-| 3    | Canonical classes (Part 1.1)                              | Nothing       | E2E regression                   |
-| 4    | Extract `PageSection`, `Prose`, `ArticleEntry` (Part 3.2) | RTL setup     | RTL tests for each               |
-| 5    | Refactor `CVLayout` to use primitives (Part 3.3)          | Step 4        | RTL test for CVLayout            |
-| 6    | Refactor `SiteFooter` (Part 4)                            | RTL setup     | RTL test                         |
-| 7    | Refactor `SiteHeader` nav (Part 5)                        | RTL setup     | RTL test                         |
-| 8    | Move shell to root layout (Part 2)                        | Steps 5, 6, 7 | RTL test + E2E regression        |
-| 9    | Full quality gate                                         | All above     | `pnpm check` + `pnpm test:e2e`   |
+| Step | What                                                      | Depends on    | Tests                            | Cloud Sub-Plan                              |
+| ---- | --------------------------------------------------------- | ------------- | -------------------------------- | ------------------------------------------- |
+| 1    | RTL setup (Part 6)                                        | Nothing       | Verify setup with a trivial test | [01](cloud/01-rtl-setup.plan.md)            |
+| 2    | Design tokens + canonical classes (Parts 1.1 + 1.2)       | Nothing       | E2E regression                   | [02](cloud/02-tailwind-hygiene.plan.md)     |
+| 3    | Extract `PageSection`, `Prose`, `ArticleEntry` (Part 3.2) | Step 1        | RTL tests for each               | [03](cloud/03-section-primitives.plan.md)   |
+| 4    | Refactor `SiteFooter` (Part 4)                            | Step 1        | RTL test                         | [04](cloud/04-site-footer-refactor.plan.md) |
+| 5    | Refactor `SiteHeader` nav (Part 5)                        | Step 1        | RTL test                         | [05](cloud/05-site-header-refactor.plan.md) |
+| 6    | Refactor `CVLayout` to use primitives (Part 3.3)          | Step 3        | RTL test for CVLayout            | [06](cloud/06-cv-layout-refactor.plan.md)   |
+| 7    | Move shell to root layout (Part 2)                        | Steps 4, 5, 6 | RTL test + E2E regression        | [07](cloud/07-root-layout-shell.plan.md)    |
+| 8    | Full quality gate                                         | All above     | `pnpm check` + `pnpm test:e2e`   | —                                           |
 
-Steps 2 and 3 are independent and can run in parallel with step 1. Steps 4–7 depend on RTL setup but are independent of each other. Step 8 depends on 5, 6, and 7 because the layout refactor moves the header and footer, so those components should be clean first.
+Steps 1 and 2 have no dependencies and can run in parallel. Steps 3–5 depend on RTL setup but are independent of each other (can run in parallel once step 1 is done). Step 6 depends on step 3 (primitives must exist). Step 7 depends on steps 4, 5, and 6 because the layout refactor moves the header and footer, so those components should be clean first.
+
+### Cloud sub-plans
+
+Each execution step (except the final quality gate) has a corresponding self-contained sub-plan in [`cloud/`](cloud/) designed for Cursor cloud agents. Each sub-plan includes:
+
+- Clear goal and intended impact
+- Full context (current code state, relevant files)
+- Step-by-step instructions
+- Acceptance criteria
+- Dependency chain
+
+**Dependency graph:**
+
+```
+Wave 1 (parallel):  01-rtl-setup  ·  02-tailwind-hygiene
+Wave 2 (parallel):  03-section-primitives  ·  04-site-footer  ·  05-site-header
+Wave 3:             06-cv-layout-refactor
+Wave 4:             07-root-layout-shell
+```
 
 ---
 
