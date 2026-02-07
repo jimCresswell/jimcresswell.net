@@ -4,11 +4,30 @@ Refine the headline, positioning, and capabilities in the editorial CV based on 
 
 ## Status: Planning
 
+## How to use this plan
+
+This is a collaborative editorial session. The observations below identify issues in the CV content; the decisions require Jim's input. The workflow is:
+
+1. Read `content/cv.content.json` to understand the full current content.
+2. Walk through each open observation with Jim, presenting options and getting decisions.
+3. Implement agreed changes in the JSON content file(s) — not in components.
+4. Run quality gates (`pnpm lint && pnpm type-check && pnpm test`) and verify the site visually.
+
+See `.agent/directives/AGENT.md` and `docs/architecture/README.md` for project conventions.
+
 ## Context
 
 The site is technically complete — infrastructure, PDF generation, E2E tests, and deployment all work. The front page has been reworked as a personal narrative (see [completed plan](complete/front-page-content.plan.md)). The editorial CV content has been through several rounds of editing but has not had a structured review against how it reads to its audience.
 
 This plan captures the editorial observations and proposed changes that apply to the CV itself. A separate plan covers the [timeline page](timeline-page.plan.md).
+
+### Content architecture
+
+All user-visible text lives in JSON files under `content/`. Components render content verbatim — they do not invent, summarise, or reorder it. The primary file for this plan is:
+
+- **`content/cv.content.json`** — headline, positioning paragraphs, experience, foundations, capabilities, education, links, and tilt variants.
+
+Changes to CV content mean editing the JSON. If the headline changes, `content/cv.og.json` and `content/jsonld.json` may also need updating for consistency.
 
 ## Audience
 
@@ -69,25 +88,7 @@ Someone skimming might conclude only one employer. Whether this matters depends 
 
 ---
 
-## Observation 4: No concrete technical skills
-
-The content is entirely about thinking and judgement. The site itself demonstrates strong hands-on technical ability (Next.js 16, TypeScript, Puppeteer, Playwright, Tailwind, Vercel), but the CV mentions none of it.
-
-This is a positioning choice — "I am not applying as a developer" — but it means anyone wondering whether Jim can also build things will not find the answer in the CV content.
-
-**Proposed change (accepted in principle):**
-
-Add a Capabilities bullet along the lines of:
-
-> "Hands-on with modern web stacks (TypeScript, React, Next.js) — I built this site"
-
-This closes the gap without undermining the strategic positioning. It also serves as a conversation starter and proof of craft.
-
-**Decision:** Accepted. Exact wording TBD.
-
----
-
-## Observation 5: Capabilities are all meta-level
+## Observations 4 & 5: Capabilities need concrete additions
 
 The current four capabilities are all about how Jim thinks, not what he can do in concrete terms:
 
@@ -96,43 +97,26 @@ The current four capabilities are all about how Jim thinks, not what he can do i
 3. "Judgement and decision-making involving irreversible or high‑cost trade-offs..."
 4. "Enabling ecosystems rather than centralising solutions"
 
-A hiring manager may want at least one or two that map to a job description — something concrete and testable.
+Meanwhile, the site itself demonstrates strong hands-on technical ability (Next.js 16, TypeScript, Puppeteer, Playwright, Tailwind, Vercel), but the CV mentions none of it. A hiring manager may want at least one or two capabilities that map to a job description — something concrete and testable.
 
-**Proposed direction:**
+This is a single decision: **what concrete bullets to add to the capabilities list.** The existing four are strong and should stay. Candidates for additions:
 
-- Keep the existing four (they are strong and distinctive).
-- Add one or two concrete capabilities, e.g.:
-  - "Technical architecture for public-facing services at national scale"
-  - "Structured data and API design for open ecosystems"
-  - The "I built this site" bullet (see Observation 4)
+- "Hands-on with modern web stacks (TypeScript, React, Next.js) — I built this site" (accepted in principle — closes the technical gap without undermining the strategic positioning, and serves as a conversation starter)
+- "Technical architecture for public-facing services at national scale"
+- "Structured data and API design for open ecosystems"
+- "Hands-on with modern PaaS web stacks and data-fluent — not a practicing data scientist, but comfortable across the stack"
 
-**Decision:** TBD — exact additions to be refined.
-
----
-
-## Observation 6: "Grounded Practice" — personality vs. signal
-
-The theremin, allotments, and runner bean breeding section is distinctive and human. It shows breadth, groundedness, and intellectual curiosity. Some readers will love it; others may find it tangential.
-
-It works because it rounds out the narrative — Jim does not just think about systems in the abstract, he works with real ones. The "ecology-informed food growing" thread connects to the systems thinking theme.
-
-**Decision:** Keep as-is. No action needed unless feedback from real readers suggests otherwise.
+**Decision:** Accepted in principle that concrete capabilities should be added. Exact wording and number of additions TBD.
 
 ---
 
-## Observation 7: Tilts are underused
+## Resolved observations (no action required)
 
-Three well-differentiated positioning variants exist (`public_sector`, `private_ai`, `founder`) but only `public_sector` is exposed on the web. The `private_ai` and `founder` variants read well and are available for PDF generation.
+These are kept for context. No further work is needed.
 
-**Current status:** Noted but not actionable yet. The tilt strategy needs further thought — the variants exist and work technically, but the question of how and whether to expose them on the web is open.
-
-**Decision:** Deferred. Revisit when there is clarity on how tilts should be presented to different audiences.
-
----
-
-## Completed observations (for reference)
-
-- **Front page** — Reworked as a personal narrative with inline links. See [completed plan](complete/front-page-content.plan.md).
+- **Observation 6: "Grounded Practice"** — The theremin, allotments, and runner bean breeding section is distinctive and human. It rounds out the narrative and connects to the systems thinking theme. **Decision: Keep as-is.**
+- **Observation 7: Tilts are underused** — Three positioning variants exist (`public_sector`, `private_ai`, `founder`) but only `public_sector` is exposed on the web. **Decision: Deferred.** Revisit when there is clarity on how tilts should be presented to different audiences.
+- **Front page** — Reworked as a personal narrative with inline links. See [completed plan](complete/front-page-content.plan.md). **Decision: Complete.**
 
 ---
 
