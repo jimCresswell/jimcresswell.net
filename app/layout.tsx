@@ -82,7 +82,7 @@ export default function RootLayout({
         >
           <SkipLink />
           <SiteHeader />
-          <main id="main-content" className="mx-auto max-w-content px-4 py-8 md:px-8 md:py-16">
+          <main id="main-content" className="mx-auto max-w-page px-4 py-8 md:px-8 md:py-16">
             {children}
           </main>
           <SiteFooter links={footerLinks} />

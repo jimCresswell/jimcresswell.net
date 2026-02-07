@@ -87,8 +87,8 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 0.25rem);
 
-  /* Content width — replaces max-w-[760px] */
-  --width-content: 760px;
+  /* Content width — drives max-w-page via --container-* namespace */
+  --container-page: 760px;
 
   /* Typography — page title sizes */
   --font-size-page-title: 2rem;

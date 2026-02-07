@@ -26,7 +26,7 @@ export function SiteHeader() {
 
   return (
     <header className="print-hidden">
-      <div className="mx-auto flex max-w-content items-center justify-between px-4 py-4 md:px-8 md:py-6">
+      <div className="mx-auto flex max-w-page items-center justify-between px-4 py-4 md:px-8 md:py-6">
         <div className="flex items-center gap-3 md:gap-4">
           <Link
             href="/"

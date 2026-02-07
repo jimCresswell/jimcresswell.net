@@ -36,7 +36,7 @@ export function SiteFooter({ links }: SiteFooterProps) {
 
   return (
     <footer className="print-hidden mt-6 border-t border-foreground/10">
-      <div className="mx-auto max-w-content px-4 py-6 md:px-8 md:py-8">
+      <div className="mx-auto max-w-page px-4 py-6 md:px-8 md:py-8">
         <div className="flex flex-col gap-3">
           {/* Copyright and external links */}
           <div className="flex flex-col-reverse gap-4 sm:flex-row sm:items-center sm:justify-between">
