@@ -124,7 +124,7 @@ export function CVLayout({ content, positioning }: CVLayoutProps) {
       </PageSection>
 
       {/* Download */}
-      <p className="print-hidden mt-3 font-serif text-base text-foreground">
+      <p className="print-hidden mt-9 -mb-4 font-serif text-base text-foreground">
         Download{" "}
         <a
           href="/cv/pdf"
