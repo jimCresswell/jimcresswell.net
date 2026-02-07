@@ -11,7 +11,7 @@ export function CVLayout({ positioning }: CVLayoutProps) {
     <div className="flex flex-col">
       {/* CV Header */}
       <header className="mb-6">
-        <h1 className="font-sans text-[2rem] md:text-[2.625rem] font-medium leading-tight tracking-tight text-foreground text-balance mb-2">
+        <h1 className="font-sans text-page-title md:text-page-title-md font-medium leading-tight tracking-tight text-foreground text-balance mb-2">
           {cvContent.meta.name}
         </h1>
         <p className="font-sans text-sm text-foreground/70 mb-3 md:mb-4">{cvContent.links.email}</p>
@@ -47,7 +47,7 @@ export function CVLayout({ positioning }: CVLayoutProps) {
               </p>
               <div className="flex flex-col gap-3">
                 {exp.summary.map((paragraph, pIndex) => (
-                  <p key={pIndex} className="font-serif text-base leading-[1.7] text-foreground">
+                  <p key={pIndex} className="font-serif text-base leading-prose text-foreground">
                     <RichText>{paragraph}</RichText>
                   </p>
                 ))}
@@ -73,7 +73,7 @@ export function CVLayout({ positioning }: CVLayoutProps) {
               </h3>
               <div className="flex flex-col gap-3">
                 {foundation.description.map((paragraph, pIndex) => (
-                  <p key={pIndex} className="font-serif text-base leading-[1.7] text-foreground">
+                  <p key={pIndex} className="font-serif text-base leading-prose text-foreground">
                     <RichText>{paragraph}</RichText>
                   </p>
                 ))}
@@ -93,7 +93,7 @@ export function CVLayout({ positioning }: CVLayoutProps) {
         </h2>
         <ul className="flex flex-col gap-2">
           {cvContent.capabilities.map((capability, index) => (
-            <li key={index} className="font-serif text-base leading-[1.7] text-foreground">
+            <li key={index} className="font-serif text-base leading-prose text-foreground">
               {capability}
             </li>
           ))}

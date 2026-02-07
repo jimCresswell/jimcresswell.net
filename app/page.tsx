@@ -10,21 +10,21 @@ export default function HomePage() {
     <>
       <SkipLink />
       <SiteHeader />
-      <main id="main-content" className="mx-auto max-w-[760px] px-4 py-8 md:px-8 md:py-16">
+      <main id="main-content" className="mx-auto max-w-content px-4 py-8 md:px-8 md:py-16">
         {/* Hero Section */}
         <section aria-labelledby="hero-heading" className="mb-6">
           <h1
             id="hero-heading"
-            className="font-sans text-[2rem] md:text-[2.625rem] font-medium leading-tight tracking-tight text-foreground text-balance"
+            className="font-sans text-page-title md:text-page-title-md font-medium leading-tight tracking-tight text-foreground text-balance"
           >
             {content.hero.name}
           </h1>
           <p className="mt-3 md:mt-4 font-sans text-base text-accent">{content.hero.tagline}</p>
-          <div className="mt-6 flex flex-col gap-[0.875rem]">
+          <div className="mt-6 flex flex-col gap-3.5">
             {content.hero.summary.map((paragraph, index) => (
               <p
                 key={index}
-                className="font-serif text-base md:text-lg leading-[1.7] text-foreground"
+                className="font-serif text-base md:text-lg leading-prose text-foreground"
               >
                 {paragraph}
               </p>
@@ -36,7 +36,7 @@ export default function HomePage() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="inline-block font-sans text-base md:text-lg font-medium text-foreground underline hover:opacity-80 transition-opacity min-h-[44px] py-2"
+                className="inline-block font-sans text-base md:text-lg font-medium text-foreground underline hover:opacity-80 transition-opacity min-h-11 py-2"
               >
                 {item.label}
               </Link>
@@ -55,7 +55,7 @@ export default function HomePage() {
                 <h3 className="font-sans text-base md:text-lg font-medium text-foreground">
                   {highlight.title}
                 </h3>
-                <p className="font-serif text-base leading-[1.7] text-foreground">
+                <p className="font-serif text-base leading-prose text-foreground">
                   {highlight.description}
                 </p>
               </article>

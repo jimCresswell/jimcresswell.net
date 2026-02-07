@@ -17,12 +17,12 @@ export function SiteHeader({ actions }: SiteHeaderProps) {
 
   return (
     <header className="print-hidden">
-      <div className="mx-auto flex max-w-[760px] items-center justify-between px-4 py-4 md:px-8 md:py-6">
+      <div className="mx-auto flex max-w-content items-center justify-between px-4 py-4 md:px-8 md:py-6">
         <div className="flex items-center gap-3 md:gap-4">
           <Link
             href="/"
             aria-label="Jim Cresswell — Home"
-            className="text-foreground hover:text-accent transition-colors min-h-[44px] flex items-center print:hover:text-foreground"
+            className="text-foreground hover:text-accent transition-colors min-h-11 flex items-center print:hover:text-foreground"
           >
             <Logo className="h-8 w-8 md:h-9 md:w-9" />
           </Link>

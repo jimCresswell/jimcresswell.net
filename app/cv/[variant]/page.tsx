@@ -78,14 +78,14 @@ export default async function CVVariantPage({ params }: Props) {
 
   // Variant positioning content
   const variantPositioning = (
-    <p className="font-serif text-base leading-[1.7] text-foreground">{tilt.positioning}</p>
+    <p className="font-serif text-base leading-prose text-foreground">{tilt.positioning}</p>
   );
 
   return (
     <>
       <SkipLink />
       <SiteHeader actions={<DownloadPdfLink />} />
-      <main id="main-content" className="mx-auto max-w-[760px] px-4 py-8 md:px-8 md:py-16">
+      <main id="main-content" className="mx-auto max-w-content px-4 py-8 md:px-8 md:py-16">
         <CVLayout positioning={variantPositioning} />
       </main>
       <SiteFooter links={footerLinks} />

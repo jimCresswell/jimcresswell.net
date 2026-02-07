@@ -30,9 +30,9 @@ export const metadata: Metadata = {
 // Base positioning content
 function BasePositioning() {
   return (
-    <div className="flex flex-col gap-[0.875rem]">
+    <div className="flex flex-col gap-3.5">
       {cvContent.positioning.paragraphs.map((paragraph, index) => (
-        <p key={index} className="font-serif text-base leading-[1.7] text-foreground">
+        <p key={index} className="font-serif text-base leading-prose text-foreground">
           {paragraph}
         </p>
       ))}
@@ -45,7 +45,7 @@ export default function CVPage() {
     <>
       <SkipLink />
       <SiteHeader actions={<DownloadPdfLink />} />
-      <main id="main-content" className="mx-auto max-w-[760px] px-4 py-8 md:px-8 md:py-16">
+      <main id="main-content" className="mx-auto max-w-content px-4 py-8 md:px-8 md:py-16">
         <CVLayout positioning={<BasePositioning />} />
       </main>
       <SiteFooter links={footerLinks} />
