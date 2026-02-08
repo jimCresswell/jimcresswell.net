@@ -16,7 +16,10 @@ export function ThemeToggle() {
   if (!mounted) {
     // Prevent hydration mismatch
     return (
-      <div className="flex items-center gap-2 text-sm print-hidden" aria-hidden="true">
+      <div
+        className="flex items-center gap-[clamp(0.125rem,0.5vw,0.5rem)] print-hidden"
+        aria-hidden="true"
+      >
         <span className="opacity-50">Light</span>
         <span className="opacity-50" aria-hidden="true">
           ·
@@ -32,7 +35,7 @@ export function ThemeToggle() {
 
   return (
     <div
-      className="flex items-center gap-2 text-sm print-hidden"
+      className="flex items-center gap-[clamp(0.125rem,0.5vw,0.5rem)] print-hidden"
       role="group"
       aria-label="Theme selection"
     >

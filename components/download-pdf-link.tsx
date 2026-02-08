@@ -14,7 +14,7 @@ export function DownloadPdfLink() {
     <a
       href="/cv/pdf"
       download={PDF_FILENAME}
-      className="print-hidden font-sans text-base underline text-accent hover:opacity-80 transition-opacity min-h-11 py-2"
+      className="print-hidden underline text-accent hover:opacity-80 transition-opacity min-h-11 flex items-center"
     >
       PDF
     </a>

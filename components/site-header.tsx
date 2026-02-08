@@ -26,8 +26,8 @@ export function SiteHeader() {
 
   return (
     <header className="print-hidden">
-      <div className="mx-auto flex max-w-page items-center justify-between px-4 py-4 md:px-8 md:py-6">
-        <div className="flex items-center gap-3 md:gap-4">
+      <div className="mx-auto flex flex-wrap max-w-page items-center justify-between gap-x-6 gap-y-2 px-4 py-4 md:px-8 md:py-6 font-sans text-sm">
+        <div className="flex items-center gap-[clamp(0.375rem,1.5vw,1rem)]">
           <Link
             href="/"
             aria-label="Jim Cresswell — Home"
@@ -36,14 +36,11 @@ export function SiteHeader() {
             <Logo className="h-8 w-8 md:h-9 md:w-9" />
           </Link>
           <span className="h-5 w-px bg-foreground/20" aria-hidden="true" />
-          <nav
-            aria-label="Main navigation"
-            className="flex items-center font-sans text-sm print-hidden"
-          >
+          <nav aria-label="Main navigation" className="flex items-center print-hidden">
             {navItems.map((item, index) => (
               <Fragment key={item.href}>
                 {index > 0 && (
-                  <span className="mx-2 opacity-50" aria-hidden="true">
+                  <span className="mx-[clamp(0.25rem,0.75vw,0.5rem)] opacity-50" aria-hidden="true">
                     ·
                   </span>
                 )}
@@ -63,15 +60,16 @@ export function SiteHeader() {
             ))}
           </nav>
         </div>
-        <div className="flex items-center gap-3 print-hidden">
+
+        <nav aria-label="Page controls" className="flex items-center gap-2 print-hidden">
           {isCV && (
             <>
               <DownloadPdfLink />
-              <span className="h-5 w-px bg-foreground/20" aria-hidden="true" />
+              <span className="ml-1 h-5 w-px bg-foreground/20" aria-hidden="true" />
             </>
           )}
           <ThemeToggle />
-        </div>
+        </nav>
       </div>
     </header>
   );

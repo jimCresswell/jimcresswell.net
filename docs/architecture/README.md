@@ -74,3 +74,4 @@ All significant architectural decisions are recorded as ADRs in [decision-record
 | [003](decision-records/003-print-button-removed.md)       | Print button removed in favour of PDF download |
 | [004](decision-records/004-storybook-deferred.md)         | Storybook deferred in favour of RTL + Vitest   |
 | [005](decision-records/005-knip-unused-code-detection.md) | Knip for unused code and dependency detection  |
+| [006](decision-records/006-header-responsive-layout.md)   | Header responsive layout                       |

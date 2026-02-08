@@ -21,3 +21,4 @@ Each ADR follows a lightweight format:
 | [003](003-print-button-removed.md)       | Print button removed in favour of PDF download | Accepted | 2026-02-06 |
 | [004](004-storybook-deferred.md)         | Storybook deferred in favour of RTL + Vitest   | Accepted | 2026-02-06 |
 | [005](005-knip-unused-code-detection.md) | Knip for unused code and dependency detection  | Accepted | 2026-02-06 |
+| [006](006-header-responsive-layout.md)   | Header responsive layout                       | Accepted | 2026-02-08 |
