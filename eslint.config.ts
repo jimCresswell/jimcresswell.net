@@ -14,6 +14,7 @@ const eslintConfig = defineConfig([
     "next-env.d.ts",
     // Project-specific ignores:
     "logo/**",
+    ".agent/temp/**",
     // Playwright output directories:
     "test-results/**",
     "playwright-report/**",

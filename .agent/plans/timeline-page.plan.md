@@ -11,9 +11,11 @@ This is a collaborative editorial session. The career history below is factual; 
 1. Read `.agent/directives/AGENT.md` and `.agent/directives/rules.md` to understand project conventions and voice.
 2. Read `archive/prior_cv_content.json.bak` for the full career history and prior editorial framing.
 3. Read `content/cv.content.json` to understand the current editorial positioning — LinkedIn entries should be consistent with this voice, not contradict it.
-4. Walk through the open questions with Jim, presenting options and getting decisions. **Do not propose final wording without Jim's input — present options and iterate.**
-5. Draft role descriptions in a shared document or directly in this plan.
-6. Once finalised, Jim updates LinkedIn manually. No code changes are needed.
+4. Read `.agent/temp/linkedin.pdf` for the current LinkedIn profile content (gitignored — may not be present in all environments).
+5. Browse `.agent/temp/old-cv-website/` for Jim's previous CV website (gitignored — may not be present in all environments). This contains the full prior presentation including role descriptions and education details.
+6. Walk through the open questions with Jim, presenting options and getting decisions. **Do not propose final wording without Jim's input — present options and iterate.**
+7. Draft role descriptions in a shared document or directly in this plan.
+8. Once finalised, Jim updates LinkedIn manually. No code changes are needed.
 
 ## Context
 
@@ -46,7 +48,7 @@ Plus education at Portsmouth, Sussex, and Bath — with thesis titles and links.
 
 Jim's career includes several short contracts not captured in the archive: a six-week academic consultancy in the Middle East, a month-long consultancy at a startup called We Predict, and a few months at a startup called Medicspot. These may or may not be worth including on LinkedIn — they add breadth (startup, international) but risk cluttering a profile that benefits from clarity.
 
-The original content is at <https://jimcresswell.github.io/cv>.
+The original CV website is at <https://jimcresswell.github.io/cv> and a full local copy is in `.agent/temp/old-cv-website/` (gitignored). The current LinkedIn profile is exported as `.agent/temp/linkedin.pdf` (gitignored).
 
 ## Content approach
 

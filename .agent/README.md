@@ -12,10 +12,10 @@ Agent-facing documentation and planning for this project. Start with [directives
 │   └── testing-strategy.md   # Testing philosophy, test types, naming conventions
 │
 ├── plans/            ← Current and completed work plans
-│   ├── cloud/                # Self-contained sub-plans for cloud agents
-│   │   └── README.md         # Index with dependency graph
 │   ├── complete/             # Plans that have been fully executed
 │   └── *.plan.md             # Active plans
+│
+├── temp/             ← Gitignored working files (LinkedIn export, old CV website, etc.)
 │
 ├── prompts/          ← Reusable prompt templates
 │   ├── start-right.prompt.md
@@ -41,17 +41,12 @@ Agent-facing documentation and planning for this project. Start with [directives
 
 Active plans describe work that is planned or in progress:
 
-| Plan                                                           | Status   | Description                                                        |
-| -------------------------------------------------------------- | -------- | ------------------------------------------------------------------ |
-| [component-audit.plan.md](plans/component-audit.plan.md)       | Planning | Audit and refactor components, tokens, and page scaffolding        |
-| [content-review.plan.md](plans/content-review.plan.md)         | Planning | Content observations and improvements across the site              |
-| [front-page-content.plan.md](plans/front-page-content.plan.md) | Planning | Rework front page content and positioning (blocked on Jim's input) |
+| Plan                                                                         | Status   | Description                                               |
+| ---------------------------------------------------------------------------- | -------- | --------------------------------------------------------- |
+| [cv-editorial-improvements.plan.md](plans/cv-editorial-improvements.plan.md) | Planning | Headline, positioning, and capabilities review for the CV |
+| [timeline-page.plan.md](plans/timeline-page.plan.md)                         | Planning | LinkedIn career narrative preparation                     |
 
 Completed plans are in [plans/complete/](plans/complete/) for reference.
-
-### Cloud agent sub-plans
-
-The [plans/cloud/](plans/cloud/) directory contains small, self-contained sub-plans designed for Cursor cloud agents. Each includes full context, step-by-step instructions, and acceptance criteria. See the [cloud README](plans/cloud/README.md) for the index and dependency graph.
 
 ### Project documentation (outside .agent)
 
