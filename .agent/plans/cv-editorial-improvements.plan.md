@@ -21,7 +21,7 @@ See `docs/architecture/README.md` for project architecture.
 
 The site is technically complete — infrastructure, PDF generation, E2E tests, and deployment all work. The front page has been reworked as a personal narrative (see [completed plan](complete/front-page-content.plan.md)). The editorial CV content has been through several rounds of editing but has not had a structured review against how it reads to its audience.
 
-This plan captures the editorial observations and proposed changes that apply to the CV itself. A separate plan covers the [timeline page](timeline-page.plan.md).
+This plan captures the editorial observations and proposed changes that apply to the CV itself. A separate plan covers the [LinkedIn career narrative](timeline-page.plan.md) — a preparation document for updating LinkedIn with Jim's full chronological history.
 
 ### Content architecture
 
@@ -89,7 +89,7 @@ Someone skimming might conclude only one employer. Whether this matters depends 
 
 - No change to the structure (it is a deliberate editorial choice).
 - But consider whether the Foundations section headings signal clearly enough that these are professional roles, not hobbies. "Applied Exploration in Complex Technical Contexts" is accurate but does not immediately say "FT Labs, HMPO, BA, HP Labs" — the employers are only revealed inside the prose.
-- Note: the [timeline page](timeline-page.plan.md) directly addresses this by giving readers a place to see the full employer list.
+- Note: LinkedIn directly addresses this — see the [LinkedIn career narrative plan](timeline-page.plan.md) for preparing that content.
 
 **Decision:** TBD.
 

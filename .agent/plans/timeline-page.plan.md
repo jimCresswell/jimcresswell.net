@@ -1,16 +1,29 @@
-# Timeline Page
+# LinkedIn Career Narrative
 
-Add a chronological career history page at `/cv/timeline` to complement the editorial CV.
+Prepare a chronological career narrative in Jim's editorial voice, for use as the canonical reference when updating LinkedIn and answering "what has Jim done, and when?"
 
 ## Status: Planning
 
+## How to use this plan
+
+This is a collaborative editorial session. The career history below is factual; the narrative voice and framing decisions require Jim's input. The workflow is:
+
+1. Read `.agent/directives/AGENT.md` and `.agent/directives/rules.md` to understand project conventions and voice.
+2. Read `archive/prior_cv_content.json.bak` for the full career history and prior editorial framing.
+3. Read `content/cv.content.json` to understand the current editorial positioning — LinkedIn entries should be consistent with this voice, not contradict it.
+4. Walk through the open questions with Jim, presenting options and getting decisions. **Do not propose final wording without Jim's input — present options and iterate.**
+5. Draft role descriptions in a shared document or directly in this plan.
+6. Once finalised, Jim updates LinkedIn manually. No code changes are needed.
+
 ## Context
 
-The editorial CV is a thematic, narrative document — it deliberately groups experience by arc rather than chronology, and only Oak National Academy appears as a standalone entry. This is an intentional positioning choice and works well for its purpose.
+The editorial CV at `/cv` is a thematic, narrative document — it deliberately groups experience by arc rather than chronology, with only Oak National Academy as a standalone entry. This is an intentional positioning choice and works well for its purpose.
 
-However, there is a significant body of career history that the editorial CV elides or compresses. The archive (`archive/prior_cv_content.json.bak`) contains a full chronological record. This history is currently invisible on the site.
+However, there is a significant body of career history that the editorial CV elides or compresses. The archive (`archive/prior_cv_content.json.bak`) contains a full chronological record. LinkedIn is the natural home for this chronological view — it is where recruiters and hiring managers look for career history, dates, and employer names.
 
-This plan was originally Observation 9 in the content review plan. The editorial improvements to the CV itself are tracked separately in [cv-editorial-improvements.plan.md](cv-editorial-improvements.plan.md).
+This plan was originally scoped as a `/cv/timeline` page on the site. That was reconsidered: building a chronological page would duplicate what LinkedIn does well, create ongoing maintenance burden, and dilute the editorial CV's deliberate thematic structure. The valuable work in this plan — career history, narrative voice guidance, open questions — serves better as a preparation document for LinkedIn than as a shipped page.
+
+The editorial improvements to the CV itself are tracked separately in [cv-editorial-improvements.plan.md](cv-editorial-improvements.plan.md).
 
 ## Career history from archive
 
@@ -29,95 +42,37 @@ This plan was originally Observation 9 in the content review plan. The editorial
 
 Plus education at Portsmouth, Sussex, and Bath — with thesis titles and links.
 
+### Career context not in the archive
+
+Jim's career includes several short contracts not captured in the archive: a six-week academic consultancy in the Middle East, a month-long consultancy at a startup called We Predict, and a few months at a startup called Medicspot. These may or may not be worth including on LinkedIn — they add breadth (startup, international) but risk cluttering a profile that benefits from clarity.
+
 The original content is at <https://jimcresswell.github.io/cv>.
-
-## Purpose
-
-### 1. Standalone value
-
-A chronological page complements the editorial CV by giving readers who want a career history a place to find one. The editorial CV answers "what is Jim about?"; the timeline answers "what has Jim done, and when?". Different readers want different things — hiring managers scanning for employer names and dates, recruiters checking tenure, peers satisfying curiosity.
-
-The page should **not** be a visual timeline widget (the design brief's "no timelines" constraint refers to decorative UI elements on the main CV). It should be a clean, text-first page in the same editorial aesthetic as the rest of the site — chronological entries with dates, role, organisation, and a brief description. Think of it as a detailed career record, not a graphic.
-
-### 2. LinkedIn preparation
-
-Jim's LinkedIn profile will need updating to align with the narrative voice and positioning of the new CV. The timeline page is a natural staging ground for this: it forces a review of every role and period, produces written descriptions in the right voice, and creates a canonical reference that LinkedIn entries can be derived from. Once the timeline page is right, updating LinkedIn becomes a matter of adapting format rather than generating content from scratch.
 
 ## Content approach
 
-The timeline content should be authored fresh, not copied verbatim from the archive. The archive is a source of facts (dates, titles, organisations, thesis links) but its prose is in a different voice — it reads as a traditional CV with bullet points. The timeline page should:
+The LinkedIn descriptions should be authored fresh, not copied verbatim from the archive. The archive is a source of facts (dates, titles, organisations, thesis links) but its prose is in a different voice — it reads as a traditional CV with bullet points. LinkedIn entries should:
 
-- Use the same narrative voice as the rest of the site (first person where appropriate, editorial, precise).
+- Use the same narrative voice as the rest of Jim's professional presence (first person where appropriate, editorial, precise).
 - Keep descriptions concise — one to three sentences per role, not bullet lists.
 - Include links where they add value (FT Labs, Oak, HMPO Passport Service, thesis, Google Scholar).
 - Cover the Obaith / systems-change period honestly — this is a distinctive part of the story and connects to the current positioning.
 - Include Code Science Limited as the consulting vehicle, but keep it brief — the substance is in the client roles.
-- Include education with thesis titles (the theremin thesis is a good conversation piece and already referenced in Grounded Practice).
-
-## Content file
-
-A new `content/timeline.content.json` following the same pattern as the other content files. Rough structure:
-
-```json
-{
-  "meta": { "name": "Jim Cresswell", "page": "timeline", "locale": "en-GB" },
-  "entries": [
-    {
-      "type": "role",
-      "organisation": "Oak National Academy",
-      "role": "Principal Engineer",
-      "start_year": 2022,
-      "end_year": "present",
-      "summary": "..."
-    },
-    {
-      "type": "education",
-      "institution": "University of Portsmouth",
-      "degree": "PhD",
-      "field": "Astrophysics & Cosmology",
-      "start_year": 2005,
-      "end_year": 2010,
-      "thesis": { "title": "...", "link": "..." },
-      "summary": "..."
-    }
-  ]
-}
-```
-
-Entries are ordered reverse-chronologically. The `type` field distinguishes roles from education so the page can render them in a single interleaved timeline (the PhD overlaps with the HP Labs role, for example).
-
-## Page and routing
-
-- Route: `app/cv/timeline/page.tsx`
-- Sits under the existing `/cv` layout.
-- Server component, same pattern as the main CV page.
-- Navigation: linked from the main CV page (and possibly the front page) but clearly secondary — the editorial CV is the primary document.
-- Metadata and Open Graph tags following the same pattern as the main CV.
-- Add to `sitemap.ts`.
-
-## Relationship to CV editorial observations
-
-- **Observation 3** (single employer in Experience) — the timeline page directly addresses this. Readers who want to see the full employer list will find it there.
-- **Observation 4** (no concrete technical skills) — timeline role descriptions can naturally mention technologies without a separate skills section.
-- **Observation 7** (tilts underused) — the timeline page does not need tilts; it is factual record, not positioning.
+- Include education with thesis titles (the theremin thesis is a good conversation piece and already referenced in Grounded Practice on the CV).
 
 ## Open questions
 
-- Should the timeline be linked from the main CV page navigation, or only discoverable via the URL and sitemap? Linking it makes it accessible but risks diluting the editorial CV's focus.
-- Should the education entries be interleaved chronologically with roles, or separated into their own section at the bottom? Interleaving is more honest (the PhD and HP Labs overlapped) but may feel unusual.
 - Should the Obaith entry be presented as a role or as a distinct "research period"? It was a genuine venture but also overlaps with Code Science and early Oak.
-- What do we do with the running for the local elections info? See `archive/prior_cv_content.json.bak`.
+- How should the three Oak roles (Senior Developer → Head of DevOps → Principal Engineer) be presented? As one entry with progression, or three separate entries? LinkedIn supports both patterns.
+- Should the short contracts (Middle East, We Predict, Medicspot) appear on LinkedIn? They add breadth but the profile may be stronger without them.
+- What do we do with the running for local elections info? See `archive/prior_cv_content.json.bak`.
+- Should the LinkedIn headline and summary align with the editorial CV's headline, or be adapted for LinkedIn's different audience and search behaviour?
+
+## Relationship to CV editorial observations
+
+- **Observation 3** (single employer in Experience) — LinkedIn directly addresses this concern. Readers who want employer names and dates will find them there, freeing the editorial CV to stay thematic.
+- **Observation 4** (no concrete technical skills) — LinkedIn role descriptions can naturally mention technologies.
+- **Observation 7** (tilts underused) — LinkedIn does not need tilts; it is factual record, not positioning.
 
 ## Decision
 
-Accepted in principle. Content authoring is the primary work; the technical implementation is straightforward. Begin with the content file, then build the page.
-
-## Files affected
-
-| File                            | Changes                                                    | Status |
-| ------------------------------- | ---------------------------------------------------------- | ------ |
-| `content/timeline.content.json` | New content file — career history in narrative voice       | Open   |
-| `app/cv/timeline/page.tsx`      | New server component rendering the timeline                | Open   |
-| `app/sitemap.ts`                | Add `/cv/timeline` route                                   | Open   |
-| E2E tests                       | New journey test for timeline page                         | Open   |
-| `content/cv.content.json`       | Possibly add link to timeline from editorial CV navigation | Open   |
+Accepted as a LinkedIn preparation document. No code changes — this plan produces LinkedIn content, not site features. The editorial CV at `/cv` remains the sole career page on the site.
