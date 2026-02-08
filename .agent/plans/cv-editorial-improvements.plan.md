@@ -8,12 +8,14 @@ Refine the headline, positioning, and capabilities in the editorial CV based on 
 
 This is a collaborative editorial session. The observations below identify issues in the CV content; the decisions require Jim's input. The workflow is:
 
-1. Read `content/cv.content.json` to understand the full current content.
-2. Walk through each open observation with Jim, presenting options and getting decisions.
-3. Implement agreed changes in the JSON content file(s) — not in components.
-4. Run quality gates (`pnpm lint && pnpm type-check && pnpm test`) and verify the site visually.
+1. Read `.agent/directives/AGENT.md` and `.agent/directives/rules.md` to understand project conventions.
+2. Read `content/cv.content.json` to understand the full current content.
+3. Read `archive/prior_cv_content.json.bak` for Jim's full career history and prior editorial framing — essential context for making informed suggestions.
+4. Walk through each open observation with Jim, presenting options and getting decisions. **Do not propose final wording without Jim's input — present options and iterate.**
+5. Implement agreed changes in the JSON content file(s) — not in components.
+6. Run quality gates (`pnpm lint && pnpm type-check && pnpm test`) and verify the site visually.
 
-See `.agent/directives/AGENT.md` and `docs/architecture/README.md` for project conventions.
+See `docs/architecture/README.md` for project architecture.
 
 ## Context
 
@@ -26,8 +28,13 @@ This plan captures the editorial observations and proposed changes that apply to
 All user-visible text lives in JSON files under `content/`. Components render content verbatim — they do not invent, summarise, or reorder it. The primary file for this plan is:
 
 - **`content/cv.content.json`** — headline, positioning paragraphs, experience, foundations, capabilities, education, links, and tilt variants.
+- **`archive/prior_cv_content.json.bak`** — previous version of the CV content with fuller career history. Useful for understanding the narrative arc and what was deliberately edited down.
 
 Changes to CV content mean editing the JSON. If the headline changes, `content/cv.og.json` and `content/jsonld.json` may also need updating for consistency.
+
+### Career context not in any file
+
+Jim's career includes several short contracts not captured in either content file: a six-week academic consultancy in the Middle East, a month-long consultancy at a startup called We Predict, and a few months at a startup called Medicspot. These don't need to be added to the CV, but they provide additional flavour — Jim has breadth beyond the named employers, including startup and international experience.
 
 ## Audience
 
