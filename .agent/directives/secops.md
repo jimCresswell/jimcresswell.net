@@ -2,12 +2,13 @@
 
 Operational security practices for this repository. These rules apply to all contributors — human and AI.
 
-## Git author email
+## Git identity
 
-Use `git@jimcresswell.net` as the author email for all commits in this repository.
+Use `git@jimcresswell.net` as the author email for all commits in this repository. All commits must be GPG-signed.
 
 ```bash
 git config user.email "git@jimcresswell.net"
+git config commit.gpgsign true
 ```
 
 ## Guiding principle
