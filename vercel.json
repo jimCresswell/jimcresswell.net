@@ -1,0 +1,4 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "dnf install -y nss mesa-libgbm libdrm libxkbcommon libXdamage && npx puppeteer browsers install chrome && pnpm run build"
+}

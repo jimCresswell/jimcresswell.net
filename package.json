@@ -1,0 +1,109 @@
+{
+  "name": "@jimcresswell/www",
+  "version": "1.0.0",
+  "description": "Jim Cresswell's personal website",
+  "author": {
+    "name": "Jim Cresswell",
+    "url": "https://www.jimcresswell.net",
+    "email": "contact@jimcresswell.net"
+  },
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "homepage": "https://www.jimcresswell.net",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jimCresswell/new-cv.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jimCresswell/new-cv/issues"
+  },
+  "keywords": [
+    "personal-website",
+    "cv",
+    "nextjs",
+    "react",
+    "tailwindcss"
+  ],
+  "engines": {
+    "node": "24"
+  },
+  "scripts": {
+    "build": "next build && tsx scripts/generate-pdf.ts",
+    "dev": "next dev",
+    "start": "next start",
+    "lint": "eslint .",
+    "type-check": "tsc --noEmit",
+    "format-check": "prettier --check .",
+    "format": "prettier --write .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "fix": "pnpm format",
+    "check": "pnpm run format-check && pnpm run lint && pnpm run type-check && pnpm run test && pnpm run knip && pnpm run gitleaks",
+    "gitleaks": "gitleaks git --redact --verbose",
+    "test:e2e": "playwright test --project=default",
+    "test:e2e:pdf": "playwright test --project=with-build",
+    "test:e2e:ui": "playwright test --ui",
+    "knip": "knip",
+    "generate:icons": "tsx logo/generate-icons.ts",
+    "prepare": "husky",
+    "postbuild": "npx accept-md fix-routes"
+  },
+  "packageManager": "pnpm@10.28.2+sha512.41872f037ad22f7348e3b1debbaf7e867cfd448f2726d9cf74c08f19507c31d2c8e7a11525b983febc2df640b5438dee6023ebb1f84ed43cc2d654d2bc326264",
+  "dependencies": {
+    "accept-md-runtime": "4.0.5",
+    "@vercel/analytics": "1.6.1",
+    "@vercel/blob": "^2.1.0",
+    "next": "16.1.6",
+    "next-themes": "^0.4.6",
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.11.1",
+    "@playwright/test": "^1.58.1",
+    "@tailwindcss/postcss": "^4.1.9",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@types/fontkit": "^2.0.8",
+    "@types/node": "^25.2.0",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@vitest/coverage-v8": "^4.0.18",
+    "eslint": "^9.39.2",
+    "eslint-config-next": "^16.1.6",
+    "fontkit": "^2.0.4",
+    "husky": "^9.1.7",
+    "jsdom": "^28.0.0",
+    "knip": "^5.83.0",
+    "pino": "^10.3.0",
+    "postcss": "^8.5",
+    "postcss-load-config": "^6.0.1",
+    "prettier": "^3.8.1",
+    "puppeteer": "^24.37.1",
+    "sharp": "^0.34.5",
+    "tailwindcss": "^4.1.9",
+    "tsx": "^4.21.0",
+    "typescript": "^5",
+    "vitest": "^4.0.18"
+  },
+  "knip": {
+    "ignore": [
+      ".agent/temp/**",
+      "accept-md.config.js"
+    ],
+    "ignoreBinaries": [
+      "gitleaks",
+      "accept-md"
+    ]
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@playwright/test",
+      "esbuild",
+      "puppeteer",
+      "sharp"
+    ]
+  }
+}

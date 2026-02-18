@@ -1,0 +1,16 @@
+.agent/
+.agent/**
+CHANGELOG.md
+**/archive/**
+**/reference/**
+**/research/**
+**/temp-secrets/**
+
+# Third-party dependencies
+node_modules/**
+**/node_modules/**
+
+
+# Playwright test results
+**/test-results/**
+**/test-artifacts/**
