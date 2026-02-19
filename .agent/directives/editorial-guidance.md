@@ -16,6 +16,10 @@ Impact means climate, ecological, and societal good — as in "impact funding", 
 
 Jim has a founder orientation — origination, not optimisation. He has created projects (Obaith, this website) but has not taken funding or built a commercial product. "Founder" as an explicit personal claim belongs in a tilt variant where the framing supports it, not in the default CV. On the default, the signal is originator energy without the word.
 
+## Commercial sensibility
+
+Jim understands leverage, optionality, and what is worth building as a product — not just as a system. The narrative should show product instinct and commercial awareness without claiming business credentials. This is present in the Oak experience (SDK/MCP as infrastructure play, "preserve optionality, lower the cost of access") and should be visible across all variants, not only the founder tilt.
+
 ## Physics as silent ballast
 
 Jim's PhD in Astrophysics & Cosmology (including published research on model fitting and large-scale structure) provides proven intellectual prowess and rigour without having to claim them. The education section retroactively grounds the playful headline.
@@ -25,6 +29,8 @@ The research domain appears naturally in paragraph 1's list of problem spaces ("
 ## Keyword strategy
 
 Keywords are legitimately carried by JSON-LD structured data (`knowsAbout`, `hasOccupation`) and OpenGraph metadata, freeing narrative content for human readers. "AI" does not need to appear in the default headline — it belongs in tilt-specific headlines (public sector at minimum) and in structured data for machine consumers.
+
+The concepts in `knowsAbout` should still be evidenced or alluded to in narrative content — not as explicit keyword placement, but as natural references that point at the same reality the structured data describes. The narrative and the structured data should feel like two views of the same person.
 
 ## Audience
 
@@ -46,6 +52,8 @@ These were discovered during the headline and first paragraph editing sessions. 
 - **Delivery is honoured, not opposed.** Delivery matters and Jim values it. It's just not where he flourishes. The positioning honours delivery inside the frame claim ("something that can be confidently delivered against") rather than positioning problem-shaping against it.
 - **"My" not "the".** "Shaping the problem is my creative act" — personal claim, not universal. Leaves room for others to create differently. More confident, paradoxically, because it's less sweeping.
 - **Play as creation.** Jim sees creation as inherently playful. The CV's job is to show that the playfulness is earned, not frivolous.
+- **The implicit reading test.** A reader should finish the CV thinking: "This person could found something serious if they chose to." This is not stated — it is the cumulative effect of agency, origination, commercial awareness, and system-level thinking. If the narrative doesn't leave this impression, the fix is in the evidence (experience sections), not the positioning.
+- **Breadth as range, not restlessness.** Jim's career spans research, public services, labs, startups, market gardening, and more. This breadth should read as range and curiosity, not as inability to commit. The experience sections must provide enough staying-power evidence — sustained impact, long-term consequences of decisions, systems that endured — to anchor the forward-leaning positioning.
 
 ## Editorial hierarchy
 

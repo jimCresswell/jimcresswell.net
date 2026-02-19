@@ -2,7 +2,7 @@
 
 Review the Experience section (Oak National Academy) and the Before Oak section (prior_roles) in a single editorial session. Breakout plan from [cv-editorial-improvements.plan.md](cv-editorial-improvements.plan.md).
 
-## Status: Open
+## Status: In Progress — factual audit complete, working through change list
 
 ## Prerequisite: PII security mitigation — Complete
 
@@ -40,6 +40,9 @@ The Experience and Before Oak sections have not received the same editorial atte
 - **Consistency with front page** — the front page hero in `frontpage.content.json` tells a parallel narrative that overlaps with several Before Oak themes (cosmology, published research, ecology, systems thinking, the open web) and with the Oak experience (AI for public benefit). Where concepts appear in both the CV and the front page, any reframing in one should be checked against the other.
 - **Narrative arc** — does the Before Oak → Oak progression tell a coherent story? Does the "origination" thread (now explicit in positioning P2) run through both?
 - **Concision** — all sections should be reviewed for length and level of detail. Oak has three substantial paragraphs; Research has four; Applied Exploration has four; Grounded Practice has three. Are any over-explained or under-explained for the CV context?
+- **Commercial sensibility** — does the narrative show product instinct and commercial awareness? The positioning is strong on system-creation and structural impact but thinner on the sense that Jim understands what is worth building as a product, not just as a system. Oak paragraph 3 (SDK, MCP, infrastructure play, optionality) carries this; check whether the signal is strong enough across all sections. See "Commercial sensibility" in `editorial-guidance.md`.
+- **The implicit reading test** — does the full narrative (positioning + experience + Before Oak) leave a reader thinking: "This person could found something serious if they chose to"? This is a cumulative effect, not a single line. If the impression is missing, the fix is in the evidence sections. See "The implicit reading test" in `editorial-guidance.md`.
+- **Stability evidence** — does the breadth of Jim's career read as range and curiosity, or as restlessness? The experience sections must provide enough staying-power evidence — sustained impact, long-term consequences of decisions, systems that endured — to anchor the forward-leaning positioning. Oak (2020–present, four years of sustained development and innovation) is the primary anchor. The Before Oak sections need careful framing so that movement across FT Labs, HMPO, BA, HP Labs reads as deliberate exploration, not flight. See "Breadth as range, not restlessness" in `editorial-guidance.md`.
 - **Career breadth** — Jim's career includes significant additional experience not currently in the CV (see [Career breadth context](#career-breadth-context) below). The review should consider whether any of this broader experience should be acknowledged — it may not belong in the narrative, but the question should be asked.
 
 ---
@@ -73,6 +76,108 @@ Front page overlap: "found myself in tech" and "fell in love with the open web."
 Three paragraphs covering the Theremin thesis, market gardening/allotment work, and ecology-informed food growing interests. Previously reviewed and kept as-is (distinctive and human). May still benefit from a consistency pass alongside the other sections.
 
 Front page overlap: market garden, sunflowers, ecology, resilience through diversity. The "Play as creation" and "Impact framing" principles from `editorial-guidance.md` are directly relevant here.
+
+---
+
+## Editorial clarifications (from session)
+
+These clarifications were agreed during the editorial session and apply throughout the review:
+
+- **"Ecosystem" language must go.** It is unclear and has already been removed elsewhere. The intent is about systems, context, and creating and holding the conditions for new states to emerge.
+- **"Physics" is not banned.** The goal is to avoid sounding academic in a bad way — leading with disciplinary labels rather than what the thinking produces. The word itself is fine where it describes a concrete thing (e.g. the Theremin thesis).
+- **FT Labs and Oak both rely on and present through the open web.** This is a factual connection that should be visible in the experience sections.
+- **KNOWS_ABOUT claims should be evidenced in narrative content** — not as explicit keyword placement, but as alluded concepts that point at the same reality. This principle has been added to `editorial-guidance.md` under "Keyword strategy."
+
+---
+
+## Factual audit
+
+Before reviewing voice and framing, the experience sections were audited against all settled content (positioning, capabilities, front page, KNOWS_ABOUT, OCCUPATION) to map support, contradictions, and gaps. The frame: settled content as claims, experience sections as evidence.
+
+### Well grounded
+
+- Oak P1 and P2 strongly ground cap 1 (zero-to-one leadership), cap 5 (system-level impact), and most of positioning P1/P2.
+- Oak P3 grounds cap 2 (AI-first interfaces, SDK/MCP, public digital infrastructure).
+- Research P1/P2 ground cap 3 (published research in astrophysics).
+- Applied Exploration provides the breadth evidence for positioning P2's "background spans" claim.
+- Grounded Practice connects well to KNOWS_ABOUT ecological terms and front page themes.
+
+### Significant gaps
+
+1. **Cap 4 has no experience backing.** The four-contractors-to-five-squads growth trajectory, coaching, and translating for non-technical stakeholders are claimed only in the capability text. No experience entry substantiates any of these.
+2. **"Holds so others can build with confidence"** (positioning P2) — no experience entry demonstrates this.
+3. **Research-to-practice translation** (OCCUPATION) and "I carry this rigour; I deploy it where it creates most leverage" (cap 3) — Research P3 asserts this connection but no experience entry shows research training being applied outside academia. The bridge is stated, not demonstrated.
+
+### Framing mismatches
+
+4. **Cap 2 agency exceeds its experience backing.** Cap 2 says Jim "conceived, prototyped, and delivered...end-to-end." Oak P3 uses "my work has focused on" and "this has included" — descriptive, not agentic.
+5. **"Ecosystem" language in Research P4** contradicts a settled editorial decision to remove it.
+
+### Missing connections
+
+6. **The open web** is in KNOWS_ABOUT and on the front page but absent from all experience entries, despite FT Labs and Oak both presenting through it.
+7. Several KNOWS_ABOUT concepts (responsible AI, product strategy, communicating to non-technical stakeholders, computational modelling/model fitting) lack narrative allusion in the experience sections.
+
+### No contradictions found
+
+No experience entry directly contradicts any settled content claim.
+
+---
+
+## Change list
+
+Fourteen items identified from the factual audit. Working through sequentially with Jim.
+
+### Oak P1
+
+| #   | Change                                                                     | Status                                                                             |
+| --- | -------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| 1   | Allude to "holds so others can build with confidence" (positioning P2 gap) | **Done** — Option A: "giving teams a clear frame to build against with confidence" |
+| 2   | Allude to product strategy (KNOWS_ABOUT)                                   | **Done** — "technical and product direction"                                       |
+
+**Decision:** Option A selected. "technical" → "technical and product"; "enabling durable, ethical, and high-impact solutions to emerge" → "giving teams a clear frame to build against with confidence."
+
+### Oak P2
+
+| #   | Change                                                                                           | Status                                       |
+| --- | ------------------------------------------------------------------------------------------------ | -------------------------------------------- |
+| 3   | Ground cap 4 (engineering function growth, coaching, translating for non-technical stakeholders) | Open — decision needed on where and how much |
+| 4   | Allude to communicating with non-technical stakeholders (KNOWS_ABOUT, cap 4)                     | Open — comes with item 3                     |
+
+### Oak P3
+
+| #   | Change                                            | Status |
+| --- | ------------------------------------------------- | ------ |
+| 5   | Strengthen personal agency to match cap 2's claim | Open   |
+| 6   | Name the open web (KNOWS_ABOUT, front page)       | Open   |
+| 7   | Allude to responsible AI (KNOWS_ABOUT)            | Open   |
+
+### Research P1–P3
+
+| #   | Change                                                                  | Status                                 |
+| --- | ----------------------------------------------------------------------- | -------------------------------------- |
+| 8   | Show research-to-practice bridge, not just state it (OCCUPATION, cap 3) | Open — decision needed on what example |
+| 9   | Allude to model fitting / computational modelling (KNOWS_ABOUT, cap 3)  | Open                                   |
+
+### Research P4
+
+| #   | Change                                                                                          | Status                                                                    |
+| --- | ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| 10  | Replace "enabling ecosystems rather than building destinations"                                 | Open                                                                      |
+| 11  | Anchor the non-academic work more concretely (positioning P1 "community-driven systems change") | Open — decision needed on whether to name Obaith or describe type of work |
+
+### Applied Exploration
+
+| #   | Change                                                    | Status                                 |
+| --- | --------------------------------------------------------- | -------------------------------------- |
+| 12  | Connect FT Labs to the open web (KNOWS_ABOUT, front page) | Open                                   |
+| 13  | Strengthen origination thread (positioning P2)            | Open — decision needed on how explicit |
+
+### Grounded Practice
+
+| #   | Change                                            | Status |
+| --- | ------------------------------------------------- | ------ |
+| 14  | No changes identified; consistency pass if needed | N/A    |
 
 ---
 
