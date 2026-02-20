@@ -98,6 +98,8 @@ Completed in a dedicated plan: [meta-seo-content-audit.plan.md](complete/meta-se
 
 **Breakout plan:** [experience-editorial.plan.md](experience-editorial.plan.md) — review the Experience (Oak) and Before Oak (prior_roles) sections in a single editorial session. Both sections read as one narrative arc and framing decisions in one constrain the other. Review criteria: voice/framing, consistency with positioning and structured data, narrative arc (origination thread), and concision.
 
+**Progress:** Oak P1, P2, P3 content changes complete (items 1–7). Full editor sub-agent review completed — identified additional voice issues (items 15–18) and capabilities consistency items (items 19–21) arising from the experience changes. Before Oak items (8–14) still open. Twenty-one items total.
+
 ---
 
 ## Open: Personal knowledge graph

@@ -130,6 +130,7 @@ Audit all entities and relationships across all sources. Present a complete inve
 - **Person** — already exists in JSON-LD (`schema:Person`); review for completeness. Add `sameAs` links (GitHub, LinkedIn, Google Scholar). Include `honorificPrefix`: "Dr", `pronouns`: "he/him".
 - **WebSite** — the website itself (`schema:WebSite`), with `publisher` pointing to Person. Not currently in the JSON-LD.
 - **Organisations** — all employers, universities, volunteer organisations. `schema:Organization` or `schema:CollegeOrUniversity`. Includes all organisations named in the CV and archive, plus additional career breadth organisations listed in `.agent/private/identity.md`.
+  - **Oak National Academy** — the CV narrative uses "a live national public service" for a general audience. The entity node description should carry the precise institutional language: "An operationally independent arms-length body of the Department for Education in the UK" (an executive non-departmental public body). Reference sources: [GOV.UK listing](https://www.gov.uk/government/organisations/oak-national-academy), [Oak About Us](https://www.thenational.academy/about-us/who-we-are) ("an independent public body"), [Oak Curriculum API](https://open-api.thenational.academy/) (OGL, API offering). The entity description serves machine consumers and public-sector-literate readers; the CV narrative serves everyone else.
 - **Roles** — every professional role with title, start date, end date, organisation. `schema:EmployeeRole` or `schema:OrganizationRole`. Full decomposition from the CV, career archive, and `.agent/private/identity.md` (for additional career breadth roles). Includes all roles from the archive plus volunteer and short-engagement roles from the private file.
   - **Note:** Historical role titles are facts and stay as `roleName`. Role `description` fields express what Jim was actually doing — leading change, shaping delivery culture, building capability — not the job-title framing of the era. See "Framing is identity, not history" principle.
 - **Credentials** — degrees plus certifications. `schema:EducationalOccupationalCredential`.
@@ -140,7 +141,12 @@ Audit all entities and relationships across all sources. Present a complete inve
   - MSc: "Observing Cosmological Topology".
   - MPhys: "The Design and Construction of a Theremin".
 - **Publications** — already exist in JSON-LD; cross-check against Google Scholar. `schema:ScholarlyArticle`.
-- **Projects** — this website, Oak open API/SDK/MCP, Obaith, Theremin, data visualisation projects. `schema:CreativeWork` + `additionalType`.
+- **Projects** — this website, Obaith, Theremin, data visualisation projects. `schema:CreativeWork` + `additionalType`.
+- **Services** — services offered by organisations. `schema:WebAPI` or `schema:Service`.
+  - **Oak Curriculum API** — a live service offered by Oak, not a project Jim created. `schema:WebAPI` with `url`: `https://open-api.thenational.academy/` and `provider`: Oak. Offers free access to curriculum data under OGL.
+- **Software** — software Jim conceived and built. `schema:SoftwareSourceCode`.
+  - **Oak SDK/MCP server** — Jim conceived and built this. `schema:SoftwareSourceCode` with `creator`: Jim, `sourceOrganization`: Oak. The [oak-mcp-ecosystem](https://github.com/oaknational/oak-mcp-ecosystem) repo is currently private — add `codeRepository` when it goes public. Relates to the Curriculum API: the SDK/MCP makes the API's data accessible to AI-powered services.
+  - **jimcresswell.net** — this website. `schema:SoftwareSourceCode` with `codeRepository`: `https://github.com/jimCresswell/jimcresswell.net`.
 - **Volunteer roles** — Growing Communities and other volunteer work. `schema:OrganizationRole`. See `.agent/private/identity.md` for the full list.
 
 ### Abstract entities
@@ -179,8 +185,11 @@ Specific (with Schema.org properties):
 - `Thesis.author` → `Person` / `ScholarlyArticle.author` → `Person` (works link back — bidirectional)
 - `Thesis.inSupportOf` → `EducationalOccupationalCredential` (thesis supports credential)
 - `WebSite.publisher` → `Person`
-- `Project.creator` → `Person`
-- `Project.sourceOrganization` → `Organization`
+- `SoftwareSourceCode.creator` → `Person`
+- `SoftwareSourceCode.sourceOrganization` → `Organization`
+- `Organization.makesOffer` → `WebAPI` (e.g. Oak → Curriculum API)
+- `WebAPI.provider` → `Organization`
+- `SoftwareSourceCode` → `WebAPI` (explore `schema:targetProduct` or `schema:about` — SDK/MCP interfaces with the API)
 
 Abstract:
 
@@ -301,9 +310,9 @@ DOIs, arXiv IDs, and other formal identifiers use the Schema.org `PropertyValue`
 
 `EducationalOccupationalCredential` nodes carry `about` arrays for subject areas, e.g. `"about": ["Cosmology", "Large-scale structure", "Statistical modelling"]` on the PhD.
 
-**Organisation URLs:**
+**Organisation URLs and `sameAs`:**
 
-Organisations with public websites carry `url` properties, e.g. `"url": "https://labs.ft.com/"` on FT Labs.
+Organisations with public websites carry `url` properties, e.g. `"url": "https://labs.ft.com/"` on FT Labs. Organisations with authoritative external listings (e.g. GOV.UK, Companies House, Wikipedia) should also carry `sameAs` arrays pointing to those listings — this helps machine consumers reconcile the entity across sources. For example, Oak would carry `"url": "https://www.thenational.academy/"` and `"sameAs": ["https://www.gov.uk/government/organisations/oak-national-academy"]`.
 
 **Role-mediating pattern (Schema.org standard):**
 
@@ -362,7 +371,7 @@ This is the concrete mechanism for "different views traverse different paths."
 With entities in the model, the JSON-LD graph can be significantly richer:
 
 - **Full role history** with `OrganizationRole` nodes — start/end dates, titles, organisations — even for roles not visible on the page.
-- **Projects** as `SoftwareSourceCode` or `CreativeWork` — this website (with `codeRepository` link to [GitHub](https://github.com/jimCresswell/jimcresswell.net)), Oak's open API/SDK/MCP.
+- **Projects and software** as `SoftwareSourceCode` or `CreativeWork` — this website, Oak SDK/MCP server. **Services** as `WebAPI` — Oak Curriculum API.
 - **Volunteer work** — Growing Communities, Obaith, and other volunteer roles.
 - **Richer Person** — all `sameAs` links, comprehensive `knowsAbout`, detailed occupation.
 - **Cross-page graph** — Person and WebSite nodes shared; each page gets its own WebPage node.
@@ -370,9 +379,8 @@ With entities in the model, the JSON-LD graph can be significantly richer:
 ### Schema design decisions
 
 - **Roles**: `OrganizationRole` (Schema.org) allows start/end dates and named positions.
-- **Projects**: `SoftwareSourceCode` with `codeRepository` for this website. `CreativeWork` for non-code projects.
+- **Software**: `SoftwareSourceCode` with `codeRepository`. **Services**: `WebAPI` with `provider` → Organisation. See Phase 1 entity definitions for Oak Curriculum API and SDK/MCP modelling.
 - **Volunteer work**: `VolunteerAction` or a role with a volunteer flag.
-- **Oak MCP ecosystem**: The [oak-mcp-ecosystem](https://github.com/oaknational/oak-mcp-ecosystem) repo is currently private. Flag for inclusion when it goes public.
 
 **Decision:** TBD.
 

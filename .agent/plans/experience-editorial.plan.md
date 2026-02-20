@@ -145,7 +145,7 @@ No experience entry directly contradicts any settled content claim.
 
 ## Change list
 
-Fourteen items identified from the factual audit. Working through sequentially with Jim.
+Twenty-one items identified. Items 1–14 from the factual audit, items 15–21 from the editor sub-agent voice review. Working through sequentially with Jim.
 
 ### Oak P1
 
@@ -182,7 +182,7 @@ Key discoveries during drafting: (1) the "show, don't justify" principle — ear
 - **Cap 5 refined** — "contributes to infrastructure that supports" → "I create infrastructure that lowers the cost of innovation for others, enabling lasting change in" — agentic, shows the enabling mechanism.
 - **KNOWS_ABOUT expanded** — added "Holding space for systems change through second and third-order effects, mediated through the creation of open digital infrastructure" to carry the leverage/enabling concept in structured data.
 
-**Future consistency check:** Cap 2 still says "openly licensed curriculum data." P3 now uses "fully sequenced, pedagogically rigorous...released under the Open Government Licence." The richer description belongs in the experience narrative, but whether cap 2 should reference OGL specifically (signals government provenance and public trust) is worth considering in a future pass.
+**Consistency note:** Cap 2 still says "openly licensed curriculum data." P3 now uses "fully sequenced, pedagogically rigorous...released under the Open Government Licence." This is now tracked as item 19 below.
 
 ### Research P1–P3
 
@@ -210,6 +210,44 @@ Key discoveries during drafting: (1) the "show, don't justify" principle — ear
 | #   | Change                                            | Status |
 | --- | ------------------------------------------------- | ------ |
 | 14  | No changes identified; consistency pass if needed | N/A    |
+
+### Voice and framing issues (from editor review)
+
+Items 15–18 were identified by the editor sub-agent during a full CV voice review.
+
+#### Oak P1
+
+| #   | Change                                                              | Status                                           |
+| --- | ------------------------------------------------------------------- | ------------------------------------------------ |
+| 15  | "My responsibility sits in" — passive framing, Jim is not the actor | Open — should fix, make Jim the explicit subject |
+
+#### Oak P2
+
+| #   | Change                                                                             | Status                                                              |
+| --- | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| 16  | "Rather than pursuing incremental optimisation...to avoid" — justificatory framing | Open — should fix, keep decisiveness but remove defensive reasoning |
+
+#### Research P3
+
+| #   | Change                                                                                                    | Status                                             |
+| --- | --------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
+| 17  | "instincts that now underpin my exploratory leadership outside academia" — tell sentence, self-interprets | Open — should fix, ground in action/effect instead |
+
+#### Applied Exploration
+
+| #   | Change                                                                         | Status                                                          |
+| --- | ------------------------------------------------------------------------------ | --------------------------------------------------------------- |
+| 18  | "massively reducing rework" — imprecise emphatic claim, rest of CV is grounded | Open — consider, improve precision without losing impact signal |
+
+### Capabilities consistency (from editor review)
+
+Items 19–21 affect capabilities, identified during the experience editorial review because the experience changes created new inconsistencies.
+
+| #   | Change                                                                                  | Status                                                     |
+| --- | --------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
+| 19  | Cap 2: "openly licensed curriculum data" doesn't match Oak P3's OGL framing (EDR-001)   | Open — must fix, align with accepted data description      |
+| 20  | Cap 2: bundles two proof points (Oak SDK/MCP + this website) — scannability concern     | Open — consider, ensure one dominant claim per capability  |
+| 21  | Cap 4: "hold space...making the ambiguous navigable" — abstract compared to CV register | Open — should fix, make mechanism and effect more explicit |
 
 ---
 

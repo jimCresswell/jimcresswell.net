@@ -27,9 +27,36 @@ Read [the rules](./rules.md); reflect on them, _apply_ them — they MUST be fol
 - [Editorial Guidance](./editorial-guidance.md) — Jim's editorial voice and identity (read before any content work)
 - [Privacy](./privacy.md) — Psychological safety and PII handling
 - [Security Operations](./secops.md) — Git email, PII audits, operational security
-- [Architecture](../../docs/architecture/) — System architecture and decision records
+- [Architecture](../../docs/architecture/) — System architecture and ADRs
+- [Editorial Decision Records](../../docs/editorial/decision-records/) — Specific editorial decisions with context and rationale (EDRs)
 - [User Stories](../../docs/project/user-stories.md) — Key user stories
 - [Requirements](../../docs/project/requirements.md) — Non-functional requirements
+
+## Editorial Tools
+
+Content work has dedicated tooling. Use these when editing, reviewing, or drafting any content that represents Jim.
+
+### Sub-agents
+
+| Agent                                    | Purpose                                                                                                                                                              |
+| ---------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [editor](../../.cursor/agents/editor.md) | Read-only editorial reviewer. Provides detailed feedback on voice, consistency, and pitfalls — does not write or edit files. The calling agent applies the feedback. |
+
+### Skills
+
+| Skill                                                            | Purpose                                                                                 |
+| ---------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| [editorial-voice](../../.cursor/skills/editorial-voice/SKILL.md) | Practical guidance for applying Jim's voice — two registers, common pitfalls, the check |
+
+### Commands
+
+| Command           | Purpose                                                        |
+| ----------------- | -------------------------------------------------------------- |
+| `/jc-editor`      | Invoke the editor sub-agent for a voice and consistency review |
+| `/jc-gates`       | Run quality gates sequentially, fixing issues as they arise    |
+| `/jc-commit`      | Create a well-formed commit with safety checks                 |
+| `/jc-start-right` | Standard project onboarding                                    |
+| `/jc-plan`        | Structured planning workflow                                   |
 
 ## Development Commands
 
@@ -63,12 +90,17 @@ content/            # CV content JSON files
 lib/                # Utility functions and types
 scripts/            # Build-time scripts (PDF generation)
 docs/               # Project documentation
-  architecture/     # System architecture and decision records
+  architecture/     # System architecture and ADRs
+  editorial/        # Editorial decision records (EDRs)
   project/          # User stories and requirements
 public/             # Static assets
 e2e/                # End-to-end tests (Playwright)
   journeys/         # User story journey tests
   behaviour/        # Cross-cutting behavioural tests (a11y, SEO, content)
+.cursor/
+  agents/           # Sub-agents (editor)
+  commands/         # Custom commands (/jc-editor, /jc-gates, etc.)
+  skills/           # Agent skills (editorial-voice)
 ```
 
 ## Remember
