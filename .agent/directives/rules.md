@@ -47,11 +47,17 @@ Use the right tool for the job:
 - **ESLint** for syntax correctness and code-style adherence
 - **Prettier** for code formatting
 
+## CSS and Accessibility
+
+- **Relative units for scalability** — Use rem/em for text sizing, spacing, focus rings, and border radii. px is only acceptable for design constraints (container max-width) and WCAG minimums (44px touch targets). Layouts must scale with text size at 200%+ zoom.
+- **Work on branches for risky changes** — Use feature branches for experimental or risky changes to protect main from failed Vercel deployments and build-failure notifications.
+
 ## Code Quality
 
 - **Never disable checks** — Never disable type checks, linting, formatting, tests, or Git hooks (`--no-verify`).
 - **Never work around checks** — If a variable is unused, figure out why and fix it. Always fix the root cause.
 - **Quality gates** — Run ALL gates after changes: format → lint → type-check → test → knip → gitleaks. `pnpm check` runs all six; the pre-commit hook enforces this. E2E tests (`pnpm test:e2e`) are separate — run explicitly when needed. See [ADR-005](../../docs/architecture/decision-records/005-knip-unused-code-detection.md) for why Knip is in the gate. Gitleaks scans the full git history to ensure no secrets are committed.
+- **Restart on fix** — After any quality gate fix, restart the full gate sequence from `pnpm format`. Fixes can introduce new issues downstream.
 - **No unused code** — If a function is not used, delete it. If product code is only used in tests, delete it. Delete dead code.
 - **No commented-out code** — Fix it or delete it.
 - **Version with git, not with names** — Fix files in place. Never create parallel versions using naming (e.g. `foo.v2.ts`).
@@ -68,3 +74,5 @@ Use the right tool for the job:
 - **TSDoc everywhere** — All exported functions and non-trivial internal functions MUST have TSDoc comments. Public interfaces should include examples and usage patterns.
 - **Good READMEs** — Each significant directory should have a README explaining what it contains and how to use it.
 - **Inline comments for the "why"** — Comment the reasoning, not the mechanics. The code shows _what_; comments explain _why_.
+- **Content lives in JSON** — Content changes go in `content/*.json`, never hardcoded in components.
+- **Permanent docs never reference ephemeral docs** — Plans (`.agent/plans/`) are ephemeral; permanent documentation (`docs/`, `.agent/directives/`, ADRs, EDRs) must never reference or depend on them. Only the reverse direction is valid.

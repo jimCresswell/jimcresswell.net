@@ -112,6 +112,15 @@ e2e/                # End-to-end tests (Playwright)
   settings.json     # Cursor plugins (Vercel, continual-learning)
 ```
 
+## Agent Behaviour
+
+- **Don't push git commits** unless explicitly asked.
+- **Verify claims with evidence** — check build logs, rendered output, terminal state. Never assume or report success without checking.
+- **Plans must be standalone** — a fresh agent with no prior context must be able to pick up and execute a plan without ambiguity.
+- **Plans must be discoverable** — linked from parent plan, README, and related docs.
+- **Archive docs are historical records** — never update them.
+- **Listen to user priorities** — not document structure. When the user says focus on X, don't get sidetracked by Y.
+
 ## Remember
 
 1. When in doubt, **make it simpler**

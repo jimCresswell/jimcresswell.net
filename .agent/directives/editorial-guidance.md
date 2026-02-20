@@ -8,6 +8,18 @@ A private companion file exists at `.agent/private/identity.md` for agents with 
 
 **Confident, a touch joyful and mischievous, with underlying seriousness.** Content should sound like Jim at his most himself: someone who knows exactly who they are, not someone carefully calibrating a message.
 
+The front page and CV share the same voice but serve different purposes. A reader who encounters both should recognise the same person.
+
+**CV register** — evidential, precise, agentic, scannable. Every sentence carries weight. "I conceived and built" not "my work has focused on." Claims-oriented: the positioning makes abstract claims, the experience sections show them happening.
+
+**Front page register** — narrative, reflective, expansive, invitational. Storytelling register. Room for personal interests, values, openly emotional language ("fell in love with the open web"), ending with openness.
+
+The front page is NOT a lighter version of the CV — it is a different thing entirely. It communicates a flavour of who Jim is through interests and passions, not evidence-based professional capabilities.
+
+**Overlap** — both registers share: cosmology, published research, the open web, ecology, systems thinking, AI for public benefit. Where a concept appears in both, framing must be consistent.
+
+**Process note** — editorial discussions require open conversation for nuanced content decisions. Don't use structured question tools (checkboxes/multiple-choice) for editorial work.
+
 ## Impact framing
 
 Impact means climate, ecological, and societal good — as in "impact funding", not "business impact" or "digital transformation impact". This is a specific community and a specific set of values. The default CV should speak to anyone who cares about creating lasting systemic impact, regardless of sector.
@@ -15,6 +27,14 @@ Impact means climate, ecological, and societal good — as in "impact funding", 
 ## Founder identity
 
 Jim has a founder orientation — origination, not optimisation. He has created projects (Obaith, this website) but has not taken funding or built a commercial product. "Founder" as an explicit personal claim belongs in a tilt variant where the framing supports it, not in the default CV. On the default, the signal is originator energy without the word.
+
+## Product safety, not data safety
+
+At Oak, the data is open by design — access is not constrained. The responsibility concern is specifically about AI products consuming the data: how to make those services reliable, safe, and accurate. This is product safety through technical means, not data safety. The `KNOWS_ABOUT` term "Responsible AI" should be understood in this light.
+
+## Collaborative credit
+
+Don't claim solo credit for collaborative work. "I designed the team structure" should be "as part of a group." Jim holds people to standards within guardrails, intervenes minimally, and delegates to lead engineers across engineering groups. Describe creating conditions, not dictating.
 
 ## Commercial sensibility
 

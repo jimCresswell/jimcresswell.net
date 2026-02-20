@@ -181,6 +181,10 @@ The pre-commit hook ([Husky](https://typicode.github.io/husky/)) runs `pnpm chec
 - [docs/project/](docs/project/) — User stories and requirements
 - [e2e/](e2e/) — E2E test organisation, naming conventions, and test map
 
+## Agent Memory
+
+AI agents working on this codebase learn from their mistakes and from user corrections. Rather than storing that knowledge in agent-specific files that only agents read, a pipeline funnels all insights toward canonical documentation — the same places a human contributor would naturally look. Session-level observations flow through a staging area and eventually graduate to `rules.md`, `editorial-guidance.md`, ADRs, or wherever the content belongs. The pipeline is invisible to consumers: a reader of `rules.md` finds the CSS rem/em rule without needing to know it originated in a transcript mining run three weeks earlier. See [ADR-012](docs/architecture/decision-records/012-agent-memory-pipeline.md).
+
 ## Development Standards
 
 This project has explicit rules for code quality, testing, and editorial voice that apply to all contributors — human and AI. Contributions are by invite only; please do not submit unsolicited pull requests.

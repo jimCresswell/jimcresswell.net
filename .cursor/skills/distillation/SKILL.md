@@ -1,9 +1,9 @@
 ---
 name: distillation
 description: >-
-  Extract high-signal patterns from the napkin into a curated
-  distilled.md rulebook. Triggered when the napkin exceeds
-  ~1,200 lines. Handles archival, deduplication, and rotation.
+  Distil high-signal patterns from napkin and AGENTS.md into
+  distilled.md, then graduate settled entries to permanent
+  docs. Handles archival, deduplication, and rotation.
 version: 1.0.0
 date: 2026-02-16
 ---
@@ -11,17 +11,46 @@ date: 2026-02-16
 # Distillation
 
 Extract actionable rules, patterns, and troubleshooting from
-the session napkin into a compact, curated reference. This
-skill complements the [napkin skill](../napkin/SKILL.md).
+two feeds into a compact, curated reference (`distilled.md`),
+then promote settled entries to permanent documentation.
 
 **Trigger**: When `.agent/memory/napkin.md` exceeds ~500
 lines, or when the user requests distillation.
+
+## The pipeline
+
+Two feeds converge on `distilled.md`, which acts as a staging
+area before entries graduate to permanent docs:
+
+```text
+napkin.md ──────────┐
+                    ├──► distilled.md ──► permanent docs
+AGENTS.md ──────────┘    (staging)        (rules.md, AGENT.md,
+(continual-learning                        editorial-guidance.md,
+ landing pad)                              ADRs, EDRs, docs/)
+```
+
+**Feed 1 — napkin**: Session-level mistakes, corrections,
+and patterns logged during active work. Distilled when the
+napkin exceeds ~500 lines.
+
+**Feed 2 — AGENTS.md**: Insights mined from conversation
+transcripts by the continual-learning skill. `AGENTS.md` is
+a landing pad, not a permanent home. Entries are processed
+during distillation and replaced with **anchors** — brief
+pointers to where the content now lives, preventing the
+learning skill from rediscovering the same insights.
+
+**Graduation**: During consolidation (`/consolidate-docs`),
+entries in `distilled.md` that have become settled are moved
+to their permanent homes. `distilled.md` should contain only
+what is NOT already in permanent documentation.
 
 ## File Layout
 
 ```text
 .agent/memory/
-  distilled.md                    # Curated rulebook (read every session)
+  distilled.md                    # Staging area (read every session)
   napkin.md                       # Current session log
   archive/
     napkin-YYYY-MM-DD.md          # Archived napkins (historical reference)
@@ -31,16 +60,21 @@ lines, or when the user requests distillation.
 
 ### 1. Extract
 
-Read every "Patterns to Remember", "Mistakes Made", "Key
-Insight", and "Lessons" section from the outgoing napkin.
-Collect all entries that would change behaviour if read next
+**From the napkin**: Read every "Patterns to Remember",
+"Mistakes Made", "Key Insight", and "Lessons" section.
+Collect entries that would change behaviour if read next
 session.
 
-Check the following files for recently added memories that should be moved into distilled.md:
+**From AGENTS.md**: Check for new (non-anchored) entries
+added by the continual-learning skill. Move high-signal
+entries to `distilled.md`. Replace moved entries in
+`AGENTS.md` with anchors. Flag low-signal entries for
+review and possible deletion.
+
+**Also check** (for recently added memories):
 
 <!-- All relative to the repo root -->
 
-- @AGENTS.md
 - @CLAUDE.md
 - @.agent/directives/AGENT.md
 
@@ -60,6 +94,8 @@ For each entry:
 ### 3. Prune
 
 The distilled file should not exceed about 200 lines. When it does, move insights into permanent documentation, see [consolidate-docs.md](../../commands/consolidate-docs.md).
+
+Note: **IMPORTANT!** — Do not delete any information, only move and/or edit. Information loss is unacceptable. If you are not sure where to put something, ask the user.
 
 Remove from `distilled.md` anything that is now captured in
 permanent repo documentation:

@@ -62,7 +62,7 @@ Three summary paragraphs with a deliberate arc — a future agent editing any on
 2. **What he did** — the rebuild decision. A specific act of judgment under pressure, with long-term consequences.
 3. **What he's doing now** — the SDK/MCP work. Enabling infrastructure for system-level change, product safety as the live frontier. This is the most forward-looking paragraph and should carry the energy of current, exciting work.
 
-Front page overlap: "responsibly apply AI for public benefit" and the shared headline concept "The more I learn, the bigger the questions get."
+Front page overlap: "responsibly apply AI for public benefit" and the shared concept "The more I learn, the bigger the questions get" (the CV alternate headline uses the short form: "The questions keep getting bigger").
 
 ### Before Oak: Research & Sense-Making in Unknown Systems
 
