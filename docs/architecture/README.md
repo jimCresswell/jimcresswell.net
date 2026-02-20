@@ -102,7 +102,7 @@ To test the full Blob path locally, add `BLOB_READ_WRITE_TOKEN` to `.env.local` 
 
 ## Decision Records
 
-All significant architectural decisions are recorded as ADRs in [decision-records/](decision-records/).
+All significant architectural decisions are recorded as ADRs in [decision-records/](decision-records/). Editorial decisions about content framing, voice, and language are recorded as EDRs in [../editorial/decision-records/](../editorial/decision-records/).
 
 | ADR                                                            | Title                                          |
 | -------------------------------------------------------------- | ---------------------------------------------- |

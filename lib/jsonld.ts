@@ -44,6 +44,7 @@ const KNOWS_ABOUT = [
   "Responsible AI",
   "Open data",
   "National‑scale systems",
+  "Holding space for systems change through second and third‑order effects, mediated through the creation of open digital infrastructure",
   // Technical craft
   "Open API and SDK design",
   "Model Context Protocol (MCP)",

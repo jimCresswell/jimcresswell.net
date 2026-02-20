@@ -14,13 +14,13 @@ Positioning paragraphs, capabilities, `meta.summary`, structured data (`KNOWS_AB
 
 **Remaining work in dedicated plans:**
 
-| Item                                     | Plan                                                                 | Status   |
-| ---------------------------------------- | -------------------------------------------------------------------- | -------- |
-| Experience & Before Oak editorial review | [experience-editorial.plan.md](experience-editorial.plan.md)         | Open     |
-| Personal knowledge graph                 | [personal-knowledge-graph.plan.md](personal-knowledge-graph.plan.md) | Planning |
-| LinkedIn update                          | [linkedin-update.plan.md](linkedin-update.plan.md)                   | Planning |
-| Tilt mechanism                           | No plan yet — see [Deferred](#deferred) below                        | Deferred |
-| Tilt content                             | Depends on tilt mechanism                                            | Deferred |
+| Item                                     | Plan                                                                 | Status      |
+| ---------------------------------------- | -------------------------------------------------------------------- | ----------- |
+| Experience & Before Oak editorial review | [experience-editorial.plan.md](experience-editorial.plan.md)         | In Progress |
+| Personal knowledge graph                 | [personal-knowledge-graph.plan.md](personal-knowledge-graph.plan.md) | Planning    |
+| LinkedIn update                          | [linkedin-update.plan.md](linkedin-update.plan.md)                   | Planning    |
+| Tilt mechanism                           | No plan yet — see [Deferred](#deferred) below                        | Deferred    |
+| Tilt content                             | Depends on tilt mechanism                                            | Deferred    |
 
 ## How to use this plan
 
@@ -133,7 +133,7 @@ Scope expanded well beyond the original JSON-LD enrichment investigation. The pl
 | ~~Factual fix (Oak start_year 2019 → 2020)~~ | Done                                                                                 |
 | ~~Capabilities (concrete additions)~~        | Done — see [capabilities-editorial.plan.md](complete/capabilities-editorial.plan.md) |
 | ~~Meta & SEO content audit~~                 | Done — see [meta-seo-content-audit.plan.md](complete/meta-seo-content-audit.plan.md) |
-| Experience & Before Oak editorial review     | Open — see [experience-editorial.plan.md](experience-editorial.plan.md)              |
+| Experience & Before Oak editorial review     | In Progress — see [experience-editorial.plan.md](experience-editorial.plan.md)       |
 | Personal knowledge graph                     | See [personal-knowledge-graph.plan.md](personal-knowledge-graph.plan.md)             |
 
 ---

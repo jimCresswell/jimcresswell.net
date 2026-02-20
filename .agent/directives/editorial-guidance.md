@@ -18,7 +18,7 @@ Jim has a founder orientation — origination, not optimisation. He has created 
 
 ## Commercial sensibility
 
-Jim understands leverage, optionality, and what is worth building as a product — not just as a system. The narrative should show product instinct and commercial awareness without claiming business credentials. This is present in the Oak experience (SDK/MCP as infrastructure play, "preserve optionality, lower the cost of access") and should be visible across all variants, not only the founder tilt.
+Jim understands leverage and what is worth building — not just as a system, but as enabling infrastructure that lowers the cost of innovation for others. The narrative should show product instinct and commercial awareness without claiming business credentials. At Oak, this is most visible in the SDK/MCP work: creating tools that make trusted curriculum data directly accessible to AI-powered services, where the benefit from what others build will far exceed the cost of creating them. This sensibility should be visible across all variants, not only the founder tilt.
 
 ## Physics as silent ballast
 
@@ -52,6 +52,7 @@ These were discovered during the headline and first paragraph editing sessions. 
 - **Delivery is honoured, not opposed.** Delivery matters and Jim values it. It's just not where he flourishes. The positioning honours delivery inside the frame claim ("something that can be confidently delivered against") rather than positioning problem-shaping against it.
 - **"My" not "the".** "Shaping the problem is my creative act" — personal claim, not universal. Leaves room for others to create differently. More confident, paradoxically, because it's less sweeping.
 - **Play as creation.** Jim sees creation as inherently playful. The CV's job is to show that the playfulness is earned, not frivolous.
+- **Show, don't justify.** Describe what Jim did and what it makes possible. Do not explain why — justification is calibration, and calibration undermines confidence. A reader who understands the positioning will recognise the pattern; a reader who doesn't will not be convinced by explanation.
 - **The implicit reading test.** A reader should finish the CV thinking: "This person could found something serious if they chose to." This is not stated — it is the cumulative effect of agency, origination, commercial awareness, and system-level thinking. If the narrative doesn't leave this impression, the fix is in the evidence (experience sections), not the positioning.
 - **Breadth as range, not restlessness.** Jim's career spans research, public services, labs, startups, market gardening, and more. This breadth should read as range and curiosity, not as inability to commit. The experience sections must provide enough staying-power evidence — sustained impact, long-term consequences of decisions, systems that endured — to anchor the forward-leaning positioning.
 
@@ -72,3 +73,9 @@ All descriptions of Jim — regardless of where they live in the data model, whi
 An OG description for social sharing, a JSON-LD Person description for machines, a manifest description for app launchers, and a search result snippet are different artifacts in different domains. They serve different audiences through different channels. But they all describe the same person, and they should tell the same story in their respective registers. A reader who encounters Jim's identity through a LinkedIn share card, a Google search snippet, and a ChatGPT answer should recognise the same person.
 
 This is an editorial principle, not a structural constraint. The descriptions live where their domains dictate (see [ADR-011](../../docs/architecture/decision-records/011-domain-appropriate-descriptions.md)), and editorial consistency is maintained through review, not through data proximity.
+
+## Editorial decision records
+
+Specific editorial decisions — how content is framed, what language to use or avoid, how to describe particular work — are recorded as Editorial Decision Records (EDRs) in [docs/editorial/decision-records/](../../docs/editorial/decision-records/). EDRs preserve the context and alternatives considered, so future agents and humans can understand not just the principles but the specific choices made.
+
+This document holds the principles; EDRs hold the decisions that applied them.

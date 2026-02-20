@@ -51,11 +51,11 @@ The Experience and Before Oak sections have not received the same editorial atte
 
 ### Experience: Oak National Academy
 
-Three summary paragraphs covering:
+Three summary paragraphs with a deliberate arc — a future agent editing any one paragraph must understand the structure:
 
-1. The overall role — leading on complex, high-impact problems by setting foundational technical direction in a national public service.
-2. A specific decision — arguing for a deeper intervention (the rebuild) and standing behind it.
-3. Recent work — treating curriculum data as public digital infrastructure, SDK/MCP, enabling access in AI-mediated environments.
+1. **Who Jim is at Oak** — the role, the teams, the stakes. Sets the frame for everything that follows.
+2. **What he did** — the rebuild decision. A specific act of judgment under pressure, with long-term consequences.
+3. **What he's doing now** — the SDK/MCP work. Enabling infrastructure for system-level change, product safety as the live frontier. This is the most forward-looking paragraph and should carry the energy of current, exciting work.
 
 Front page overlap: "responsibly apply AI for public benefit" and the shared headline concept "The more I learn, the bigger the questions get."
 
@@ -87,6 +87,25 @@ These clarifications were agreed during the editorial session and apply througho
 - **"Physics" is not banned.** The goal is to avoid sounding academic in a bad way — leading with disciplinary labels rather than what the thinking produces. The word itself is fine where it describes a concrete thing (e.g. the Theremin thesis).
 - **FT Labs and Oak both rely on and present through the open web.** This is a factual connection that should be visible in the experience sections.
 - **KNOWS_ABOUT claims should be evidenced in narrative content** — not as explicit keyword placement, but as alluded concepts that point at the same reality. This principle has been added to `editorial-guidance.md` under "Keyword strategy."
+- **Show, don't justify.** Describing why Jim did something is calibration. Describe what he did and what it makes possible; let the significance speak. This principle has been added to `editorial-guidance.md` under "Editorial principles."
+
+### Oak curriculum data context
+
+Oak's curriculum data is not just "high-quality" — it is fully sequenced, complete (fully resourced), pedagogically rigorous, and openly licensed under the Open Government Licence. These are not isolated pieces of information; this is a complete digital curriculum. That is why easy access is radically game-changing.
+
+Jim did not "treat the data as" public infrastructure — it IS public infrastructure. The data is standards-compliant with an OpenAPI spec. What Jim conceived and built (the SDK and MCP server) makes this data more accessible and directly pluggable into AI-powered services.
+
+### Product safety, not data safety
+
+The data is open by design — access is not constrained. The responsibility concern at Oak is specifically about AI products consuming the data: how to make those services reliable, safe, and accurate. This is product safety through technical means, not data safety. The KNOWS_ABOUT term "Responsible AI" should be understood in this light.
+
+### The enabling vision
+
+Jim's framing of the SDK/MCP work: he is lowering the cost of innovation for others. He did this on his own initiative (vision, not rebellion). The second and third-order effects — what others will create with reliable access to this data — will far outstrip the effort required to create the tools. Teachers are already using AI products to reduce their workloads; developers and edtech companies are already building in this space. Access to trusted, high-quality, fully sequenced curriculum material at this level changes the system.
+
+This framing connects directly to positioning P2: "changing constraints in large-scale systems so that the natural paths lead to different, better outcomes, lasting far beyond my direct involvement." The SDK/MCP work is an instance of that pattern — the experience entry's job is to show it happening, not to re-explain the philosophy.
+
+This reframing is bigger than one paragraph. All content describing the Oak SDK/MCP work — including capabilities, structured data, and any future tilt variants — should reflect it.
 
 ---
 
@@ -139,18 +158,31 @@ Fourteen items identified from the factual audit. Working through sequentially w
 
 ### Oak P2
 
-| #   | Change                                                                                           | Status                                       |
-| --- | ------------------------------------------------------------------------------------------------ | -------------------------------------------- |
-| 3   | Ground cap 4 (engineering function growth, coaching, translating for non-technical stakeholders) | Open — decision needed on where and how much |
-| 4   | Allude to communicating with non-technical stakeholders (KNOWS_ABOUT, cap 4)                     | Open — comes with item 3                     |
+| #   | Change                                                                                           | Status                                      |
+| --- | ------------------------------------------------------------------------------------------------ | ------------------------------------------- |
+| 3   | Ground cap 4 (engineering function growth, coaching, translating for non-technical stakeholders) | **Done** — Option B: new sentence in Oak P1 |
+| 4   | Allude to communicating with non-technical stakeholders (KNOWS_ABOUT, cap 4)                     | **Done** — included in item 3               |
+
+**Decision:** Option B selected — placed in P1 as a dimension of the overall role, not a consequence of the rebuild. "For over five years, I have helped shape the Engineering function from four contractors into five product squads and three platform groups — designing structure, coaching engineers, and translating technical options for non-technical leadership." Jim clarified that the four-contractor stage was the very start (2020), the rebuild came over a year later, and the growth spans the full 5.5-year tenure. "Over five years" chosen over "For over five years" — the latter sounds like a struggle; the former carries the duration with grace.
 
 ### Oak P3
 
-| #   | Change                                            | Status |
-| --- | ------------------------------------------------- | ------ |
-| 5   | Strengthen personal agency to match cap 2's claim | Open   |
-| 6   | Name the open web (KNOWS_ABOUT, front page)       | Open   |
-| 7   | Allude to responsible AI (KNOWS_ABOUT)            | Open   |
+| #   | Change                                            | Status                                                                                                    |
+| --- | ------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| 5   | Strengthen personal agency to match cap 2's claim | **Done** — "I conceived and built" in full P3 rewrite                                                     |
+| 6   | Name the open web (KNOWS_ABOUT, front page)       | **Done** — "on the open web" in P3 rewrite                                                                |
+| 7   | Allude to responsible AI → product safety         | **Done** — "product safety: ensuring AI services that consume this data are reliable, accurate, and safe" |
+
+**Decision:** Full P3 rewrite. The original P3's framing was incorrect (data framed as being "treated as" infrastructure rather than being infrastructure), the voice was passive/descriptive, and the closing tell sentence was redundant after P1/P2 edits. Jim's reframing (see "Oak curriculum data context" and "The enabling vision" in editorial clarifications above) required a substantially different paragraph. The old "deliberately indirect" / "preserve optionality" framing has been replaced by the enabling/leverage vision and the product safety challenge.
+
+Key discoveries during drafting: (1) the "show, don't justify" principle — earlier drafts explained why Jim built the tools rather than stating what they create; (2) the difference between justification ("I built these because...") and confident intent ("the lasting impact is in what others will build"); (3) the data description matters — "fully sequenced, pedagogically rigorous, released under the Open Government Licence" carries enough weight for the reader to see the significance without explanation.
+
+**Additional changes arising from P3 rewrite:**
+
+- **Cap 5 refined** — "contributes to infrastructure that supports" → "I create infrastructure that lowers the cost of innovation for others, enabling lasting change in" — agentic, shows the enabling mechanism.
+- **KNOWS_ABOUT expanded** — added "Holding space for systems change through second and third-order effects, mediated through the creation of open digital infrastructure" to carry the leverage/enabling concept in structured data.
+
+**Future consistency check:** Cap 2 still says "openly licensed curriculum data." P3 now uses "fully sequenced, pedagogically rigorous...released under the Open Government Licence." The richer description belongs in the experience narrative, but whether cap 2 should reference OGL specifically (signals government provenance and public trust) is worth considering in a future pass.
 
 ### Research P1–P3
 
@@ -161,17 +193,17 @@ Fourteen items identified from the factual audit. Working through sequentially w
 
 ### Research P4
 
-| #   | Change                                                                                          | Status                                                                    |
-| --- | ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| 10  | Replace "enabling ecosystems rather than building destinations"                                 | Open                                                                      |
-| 11  | Anchor the non-academic work more concretely (positioning P1 "community-driven systems change") | Open — decision needed on whether to name Obaith or describe type of work |
+| #   | Change                                                                                          | Status                                                                                             |
+| --- | ----------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| 10  | Replace "enabling ecosystems rather than building destinations"                                 | Open — direction given: systems, context, creating and holding conditions for new states to emerge |
+| 11  | Anchor the non-academic work more concretely (positioning P1 "community-driven systems change") | Open — decision needed on whether to name Obaith or describe type of work                          |
 
 ### Applied Exploration
 
-| #   | Change                                                    | Status                                 |
-| --- | --------------------------------------------------------- | -------------------------------------- |
-| 12  | Connect FT Labs to the open web (KNOWS_ABOUT, front page) | Open                                   |
-| 13  | Strengthen origination thread (positioning P2)            | Open — decision needed on how explicit |
+| #   | Change                                                    | Status                                                                              |
+| --- | --------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| 12  | Connect FT Labs to the open web (KNOWS_ABOUT, front page) | Open — Jim confirmed: FT Labs and Oak both rely on and present through the open web |
+| 13  | Strengthen origination thread (positioning P2)            | Open — decision needed on how explicit                                              |
 
 ### Grounded Practice
 
@@ -205,3 +237,13 @@ See `.agent/private/identity.md` for the full list of roles, biographical detail
 - [capabilities-editorial.plan.md](complete/capabilities-editorial.plan.md) — capabilities the experience entries should ground
 - [meta-seo-content-audit.plan.md](complete/meta-seo-content-audit.plan.md) — structured data the experience entries should be consistent with
 - [editorial-guidance.md](../../.agent/directives/editorial-guidance.md) — editorial voice and hierarchy
+
+### Editorial Decision Records
+
+The editorial decisions made during this session are permanently recorded as EDRs:
+
+- [EDR-001: Oak curriculum data description](../../docs/editorial/decision-records/001-oak-curriculum-data-description.md)
+- [EDR-002: Show, don't justify](../../docs/editorial/decision-records/002-show-dont-justify.md)
+- [EDR-003: Ecosystem language removal](../../docs/editorial/decision-records/003-ecosystem-language-removal.md)
+- [EDR-004: Enabling vision — leverage through third-order effects](../../docs/editorial/decision-records/004-enabling-vision-leverage-third-order.md)
+- [EDR-005: Oak P3 rewrite — from passive to confident intent](../../docs/editorial/decision-records/005-oak-p3-rewrite.md)
