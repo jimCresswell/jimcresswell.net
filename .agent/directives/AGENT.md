@@ -32,32 +32,38 @@ Read [the rules](./rules.md); reflect on them, _apply_ them — they MUST be fol
 - [User Stories](../../docs/project/user-stories.md) — Key user stories
 - [Requirements](../../docs/project/requirements.md) — Non-functional requirements
 
-## Editorial Tools
+## Session Start
 
-Content work has dedicated tooling. Use these when editing, reviewing, or drafting any content that represents Jim.
+Every session, read `.agent/memory/distilled.md` and scan `.agent/memory/napkin.md` before doing anything. These contain hard-won patterns and recent context. Update the napkin continuously as you work — log mistakes, corrections, and what works. See the [napkin skill](../../.cursor/skills/napkin/SKILL.md).
+
+## Agent Tools
 
 ### Sub-agents
 
-| Agent                                    | Purpose                                                                                                                                                              |
-| ---------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [editor](../../.cursor/agents/editor.md) | Read-only editorial reviewer. Provides detailed feedback on voice, consistency, and pitfalls — does not write or edit files. The calling agent applies the feedback. |
+| Agent                                    | Purpose                                                                                         |
+| ---------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| [editor](../../.cursor/agents/editor.md) | Read-only editorial reviewer — provides structured feedback on voice, consistency, and pitfalls |
 
 ### Skills
 
-| Skill                                                            | Purpose                                                                                                       |
-| ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| [editorial-voice](../../.cursor/skills/editorial-voice/SKILL.md) | Practical guidance for applying Jim's voice — two registers, common pitfalls, the check                       |
-| [quality-gates](../../.cursor/skills/quality-gates/SKILL.md)     | Run quality gates and fix issues systematically — the full sequence, restart discipline, prohibited shortcuts |
+| Skill                                                            | Purpose                                                             |
+| ---------------------------------------------------------------- | ------------------------------------------------------------------- |
+| [editorial-voice](../../.cursor/skills/editorial-voice/SKILL.md) | Apply Jim's editorial voice — two registers, common pitfalls        |
+| [quality-gates](../../.cursor/skills/quality-gates/SKILL.md)     | Run quality gates with restart-on-fix discipline                    |
+| [napkin](../../.cursor/skills/napkin/SKILL.md)                   | Session learning log — always active, read and update every session |
+| [distillation](../../.cursor/skills/distillation/SKILL.md)       | Rotate napkin into curated distilled.md when it grows large         |
+| [deslop](../../.cursor/skills/cursor-deslop/SKILL.md)            | Remove AI-generated code slop from diffs                            |
 
 ### Commands
 
-| Command           | Purpose                                                        |
-| ----------------- | -------------------------------------------------------------- |
-| `/jc-editor`      | Invoke the editor sub-agent for a voice and consistency review |
-| `/jc-gates`       | Run quality gates sequentially with restart-on-fix discipline  |
-| `/jc-commit`      | Create a well-formed commit with safety checks                 |
-| `/jc-start-right` | Standard project onboarding                                    |
-| `/jc-plan`        | Structured planning workflow                                   |
+| Command             | Purpose                                                        |
+| ------------------- | -------------------------------------------------------------- |
+| `/jc-editor`        | Invoke the editor sub-agent for a voice and consistency review |
+| `/jc-gates`         | Run quality gates sequentially with restart-on-fix discipline  |
+| `/jc-commit`        | Create a well-formed commit with safety checks                 |
+| `/jc-start-right`   | Standard project onboarding                                    |
+| `/jc-plan`          | Structured planning workflow                                   |
+| `/consolidate-docs` | Ensure plans, prompts, and memory are up to date               |
 
 ## Development Commands
 
@@ -98,10 +104,12 @@ public/             # Static assets
 e2e/                # End-to-end tests (Playwright)
   journeys/         # User story journey tests
   behaviour/        # Cross-cutting behavioural tests (a11y, SEO, content)
+.agent/memory/      # Session learning: napkin.md (current), distilled.md (curated)
 .cursor/
   agents/           # Sub-agents (editor)
   commands/         # Custom commands (/jc-editor, /jc-gates, etc.)
-  skills/           # Agent skills (editorial-voice, quality-gates)
+  skills/           # Agent skills (editorial-voice, quality-gates, napkin, distillation, deslop)
+  settings.json     # Cursor plugins (Vercel, continual-learning)
 ```
 
 ## Remember
