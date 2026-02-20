@@ -2,7 +2,11 @@
 
 Review the Experience section (Oak National Academy) and the Before Oak section (prior_roles) in a single editorial session. Breakout plan from [cv-editorial-improvements.plan.md](cv-editorial-improvements.plan.md).
 
-## Status: In Progress — factual audit complete, working through change list
+## Status: In Progress — Oak section complete (items 1–7), Before Oak + voice + capabilities remaining (items 8–21)
+
+### Resume point
+
+**Next session starts at item 8** (Research P1–P3). Items 1–7 (Oak P1, P2, P3) are done and committed. Items 8–14 are the original Before Oak changes. Items 15–18 are voice/framing issues found by the editor sub-agent. Items 19–21 are capabilities consistency items triggered by the Oak changes. Use the editor sub-agent (`/jc-editor`) to review proposed changes before finalising.
 
 ## Prerequisite: PII security mitigation — Complete
 
@@ -18,9 +22,10 @@ This is a collaborative editorial session. Both sections must be reviewed togeth
 4. Read `content/frontpage.content.json` — the front page hero narrative. The front page and CV tell related but distinct stories with significant overlap (cosmology, published research, Oak, ecology, systems thinking, the open web). Where concepts appear in both, framing must be consistent. The front page includes elements the CV deliberately omits (urban rewilding, local government, personal research projects) and vice versa — this is intentional, but both should feel like the same person.
 5. Read `lib/jsonld.ts` — current `KNOWS_ABOUT` and `OCCUPATION`, which the experience entries should be consistent with.
 6. Read `archive/prior_cv_content.json.bak` — full career history with dates and role titles, for fact-checking.
-7. Walk through each section with Jim, presenting options and iterating. **Do not propose final wording without Jim's input.**
-8. Implement agreed changes in `content/cv.content.json` — not in components.
-9. Run full quality gates: `pnpm check` and `pnpm test:e2e`. Verify the site visually.
+7. Read the EDRs linked at the bottom of this plan — they record specific editorial decisions already made. Do not re-litigate them.
+8. Walk through each section with Jim, presenting options and iterating. **Do not propose final wording without Jim's input.** Use the editor sub-agent (`/jc-editor`) to review proposed changes for voice and consistency.
+9. Implement agreed changes in `content/cv.content.json` — not in components.
+10. Run full quality gates: `pnpm check` and `pnpm test:e2e`. Verify the site visually.
 
 ---
 
