@@ -56,4 +56,3 @@ The reframing was bigger than one paragraph:
 - [EDR-001](001-oak-curriculum-data-description.md) — Oak data description
 - [EDR-002](002-show-dont-justify.md) — the principle that resolved the justification problem
 - [EDR-004](004-enabling-vision-leverage-third-order.md) — the enabling vision that replaced "deliberately indirect"
-- [experience-editorial.plan.md](../../../.agent/plans/experience-editorial.plan.md) — change list items 5–7

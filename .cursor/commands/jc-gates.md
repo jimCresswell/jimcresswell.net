@@ -1,63 +1,41 @@
 # Quality Gates
 
-Run the quality gates one by one from the repo root. Fix any and all issues that arise, regardless of location or cause.
-
-After each fix, **restart the quality gate sequence from the beginning**. This prevents regressions to earlier gates from later fixes.
+Run the quality gates sequentially, fixing issues as they arise. Restart the full sequence after every fix.
 
 ## The Sequence
 
-Run each gate in order. If a gate fails, fix the issues before proceeding.
+Run each gate in order from the repo root. If a gate fails, fix the issue and restart from step 1.
 
 ```bash
-pnpm format
-pnpm lint
-pnpm type-check
-pnpm test
-pnpm test:e2e
+pnpm format          # 1. Prettier — auto-fixes formatting
+pnpm lint            # 2. ESLint — syntax and style
+pnpm type-check      # 3. TypeScript — type safety
+pnpm test            # 4. Vitest — unit and integration tests
+pnpm knip            # 5. Knip — unused code and dependencies
+pnpm gitleaks        # 6. Gitleaks — secrets in git history
 ```
 
-**Note**: `pnpm test:e2e` will be available once Playwright is set up. Until then, run the first four gates.
+`pnpm check` runs all six as a single command (using `format-check` instead of `format`). The pre-commit hook runs `pnpm check`.
+
+E2E tests are separate — run explicitly when needed:
+
+```bash
+pnpm test:e2e        # Playwright — UI and API tests
+pnpm test:e2e:pdf    # Playwright — PDF generation tests (requires prior build)
+```
 
 ## Rules
 
-1. **All issues are blocking** — There is no such thing as "someone else's problem"
-2. **Fix, don't disable** — Never use `eslint-disable`, `@ts-ignore`, or similar escapes
-3. **Restart on fix** — After fixing any issue, restart from `pnpm format`
-4. **No skipping** — Every gate must pass before proceeding to the next
-
-## Process
-
-1. Run `pnpm format`
-   - If changes were made, commit them separately
-   - Proceed to next gate
-
-2. Run `pnpm lint`
-   - If issues remain after auto-fix, fix them manually
-   - After manual fixes, restart from step 1
-   - If clean, proceed to next gate
-
-3. Run `pnpm type-check`
-   - If type errors, fix them
-   - After fixes, restart from step 1
-   - If clean, proceed to next gate
-
-4. Run `pnpm test`
-   - If test failures, fix them (product code or tests as appropriate)
-   - After fixes, restart from step 1
-   - If clean, proceed to next gate
-
-5. Run `pnpm test:e2e`
-   - If E2E failures, fix them
-   - After fixes, restart from step 1
-   - If clean, all gates pass
+1. **All issues are blocking** — there is no such thing as "someone else's problem"
+2. **Fix, don't disable** — never use `eslint-disable`, `@ts-ignore`, or similar escapes
+3. **Restart on fix** — after fixing any issue, restart from `pnpm format`
+4. **No skipping** — every gate must pass before proceeding to the next
 
 ## Success Criteria
 
-All gates pass without:
-
-- Disabled checks
-- Skipped tests
-- Type assertions (`as`, `any`, `!`)
-- Ignored errors
+All gates pass without disabled checks, skipped tests, type assertions (`as`, `any`, `!`), or ignored errors.
 
 When complete, confirm: "All quality gates pass."
+
+@.agent/directives/rules.md
+@.agent/directives/testing-strategy.md

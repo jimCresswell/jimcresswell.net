@@ -51,7 +51,7 @@ Use the right tool for the job:
 
 - **Never disable checks** — Never disable type checks, linting, formatting, tests, or Git hooks (`--no-verify`).
 - **Never work around checks** — If a variable is unused, figure out why and fix it. Always fix the root cause.
-- **Quality gates** — Run ALL gates after changes: format → lint → type-check → test → knip → gitleaks. See [ADR-005](../../docs/architecture/decision-records/005-knip-unused-code-detection.md) for why Knip is in the gate. Gitleaks scans the full git history to ensure no secrets are committed.
+- **Quality gates** — Run ALL gates after changes: format → lint → type-check → test → knip → gitleaks. `pnpm check` runs all six; the pre-commit hook enforces this. E2E tests (`pnpm test:e2e`) are separate — run explicitly when needed. See [ADR-005](../../docs/architecture/decision-records/005-knip-unused-code-detection.md) for why Knip is in the gate. Gitleaks scans the full git history to ensure no secrets are committed.
 - **No unused code** — If a function is not used, delete it. If product code is only used in tests, delete it. Delete dead code.
 - **No commented-out code** — Fix it or delete it.
 - **Version with git, not with names** — Fix files in place. Never create parallel versions using naming (e.g. `foo.v2.ts`).

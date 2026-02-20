@@ -44,16 +44,17 @@ Content work has dedicated tooling. Use these when editing, reviewing, or drafti
 
 ### Skills
 
-| Skill                                                            | Purpose                                                                                 |
-| ---------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| [editorial-voice](../../.cursor/skills/editorial-voice/SKILL.md) | Practical guidance for applying Jim's voice — two registers, common pitfalls, the check |
+| Skill                                                            | Purpose                                                                                                       |
+| ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| [editorial-voice](../../.cursor/skills/editorial-voice/SKILL.md) | Practical guidance for applying Jim's voice — two registers, common pitfalls, the check                       |
+| [quality-gates](../../.cursor/skills/quality-gates/SKILL.md)     | Run quality gates and fix issues systematically — the full sequence, restart discipline, prohibited shortcuts |
 
 ### Commands
 
 | Command           | Purpose                                                        |
 | ----------------- | -------------------------------------------------------------- |
 | `/jc-editor`      | Invoke the editor sub-agent for a voice and consistency review |
-| `/jc-gates`       | Run quality gates sequentially, fixing issues as they arise    |
+| `/jc-gates`       | Run quality gates sequentially with restart-on-fix discipline  |
 | `/jc-commit`      | Create a well-formed commit with safety checks                 |
 | `/jc-start-right` | Standard project onboarding                                    |
 | `/jc-plan`        | Structured planning workflow                                   |
@@ -100,7 +101,7 @@ e2e/                # End-to-end tests (Playwright)
 .cursor/
   agents/           # Sub-agents (editor)
   commands/         # Custom commands (/jc-editor, /jc-gates, etc.)
-  skills/           # Agent skills (editorial-voice)
+  skills/           # Agent skills (editorial-voice, quality-gates)
 ```
 
 ## Remember

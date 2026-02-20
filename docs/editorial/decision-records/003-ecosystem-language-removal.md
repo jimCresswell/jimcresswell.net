@@ -26,10 +26,5 @@ This is not a banned word — it is a clarity decision. If a future context aris
 
 ## Consequences
 
-- Research P4 needs updating (item 10 in the experience editorial change list).
+- Research P4 still contains "enabling ecosystems rather than building destinations" — this needs replacing with concrete language about systems, context, and creating and holding conditions for new states to emerge.
 - Any future content work should avoid "ecosystem" and use the specific concept it would stand for.
-- The editorial clarification is recorded in the experience editorial plan for the current session.
-
-## Related
-
-- [experience-editorial.plan.md](../../../.agent/plans/experience-editorial.plan.md) — editorial clarifications section, change list item 10
