@@ -28,3 +28,4 @@ Each ADR follows a lightweight format:
 | [010](010-canonical-url-graph-identity.md)    | Canonical URL and graph identity                 | Accepted | 2026-02-15 |
 | [011](011-domain-appropriate-descriptions.md) | Domain-appropriate descriptions                  | Accepted | 2026-02-16 |
 | [012](012-agent-memory-pipeline.md)           | Agent memory pipeline — funnel to canonical docs | Accepted | 2026-02-20 |
+| [013](013-security-headers.md)                | Security headers and Content Security Policy     | Accepted | 2026-02-23 |
