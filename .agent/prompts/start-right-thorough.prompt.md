@@ -10,13 +10,4 @@ Always ask, "what value are we delivering, through what impact for which users?"
 
 Do not assume you know what the initial step should be, discuss with the user first.
 
-Quality gate definitions for later:
-
-```shell
-# From the repo root, one at a time
-pnpm format
-pnpm lint
-pnpm type-check
-pnpm test
-pnpm test:e2e
-```
+Quality gates: `pnpm check` runs all six gates. `pnpm test:e2e` runs E2E tests separately. See rules.md (Code Quality section) for the full sequence and correct command names.

@@ -78,4 +78,24 @@ test.describe("Markdown content negotiation (accept-md)", () => {
     const body = await response.text();
     expect(body).toContain("Positioning");
   });
+
+  test(".md suffix serves markdown for a CV variant", async ({ request }) => {
+    const response = await request.get("/cv/public_sector.md");
+    expect(response.status()).toBe(200);
+    expect(response.headers()["content-type"]).toContain("text/markdown");
+
+    const body = await response.text();
+    expect(body).toContain("Jim Cresswell");
+  });
+
+  test("/cv/variant/index.md serves markdown for a CV variant (directory-style)", async ({
+    request,
+  }) => {
+    const response = await request.get("/cv/public_sector/index.md");
+    expect(response.status()).toBe(200);
+    expect(response.headers()["content-type"]).toContain("text/markdown");
+
+    const body = await response.text();
+    expect(body).toContain("Jim Cresswell");
+  });
 });

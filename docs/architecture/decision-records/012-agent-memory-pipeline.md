@@ -20,7 +20,7 @@ Agent memory flows through a pipeline that funnels all insights toward canonical
 
 ### The pipeline
 
-Two feeds converge on a staging area (`distilled.md`), from which settled entries graduate to permanent documentation:
+Three feeds converge on permanent documentation. Two flow through a staging area (`distilled.md`); the third flows directly:
 
 ```text
 napkin.md ──────────┐
@@ -28,13 +28,18 @@ napkin.md ──────────┐
 AGENTS.md ──────────┘    (staging)        (rules.md, AGENT.md,
 (continual-learning                        editorial-guidance.md,
  landing pad)                              ADRs, EDRs, docs/)
+                                               ▲
+plans & prompts ───────────────────────────────┘
+(ephemeral work docs — mined during consolidation)
 ```
 
 **Feed 1 — napkin** (`.agent/memory/napkin.md`): Session-level mistakes, corrections, and patterns logged during active work. The [napkin skill](../../../.cursor/skills/napkin/SKILL.md) governs this feed.
 
 **Feed 2 — AGENTS.md**: Insights mined from conversation transcripts by the continual-learning skill. AGENTS.md is a landing pad, not a permanent home.
 
-**Staging — distilled.md** (`.agent/memory/distilled.md`): A compact, curated quick-reference. Entries live here temporarily until they are settled enough to graduate. The [distillation skill](../../../.cursor/skills/distillation/SKILL.md) governs extraction, merging, and pruning.
+**Feed 3 — plans and prompts** (`.agent/plans/`): Ephemeral work documents that accumulate editorial clarifications, architectural context, and decision rationale during collaborative sessions. Plans are the right place for this content while work is in progress, but as decisions settle, the knowledge must move to permanent documentation (ADRs, EDRs, `docs/`, directives) so it is not lost when plans are completed and archived. The [consolidate-docs command](../../../.cursor/commands/consolidate-docs.md) governs this feed.
+
+**Staging — distilled.md** (`.agent/memory/distilled.md`): A compact, curated quick-reference for feeds 1 and 2. Entries live here temporarily until they are settled enough to graduate. The [distillation skill](../../../.cursor/skills/distillation/SKILL.md) governs extraction, merging, and pruning.
 
 **Graduation — permanent docs**: The [consolidate-docs command](../../../.cursor/commands/consolidate-docs.md) moves settled entries to their canonical homes: `rules.md` for engineering rules, `AGENT.md` for agent behaviour, `editorial-guidance.md` for editorial principles, ADRs for architectural decisions, EDRs for editorial decisions, and `docs/` for everything else.
 

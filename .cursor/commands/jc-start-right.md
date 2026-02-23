@@ -32,10 +32,6 @@ Before diving in, pause and ask:
 Run after making changes:
 
 ```bash
-# From repo root, one at a time
-pnpm format
-pnpm lint
-pnpm type-check
-pnpm test
-pnpm test:e2e
+pnpm check       # All six gates with auto-fix (see rules.md)
+pnpm test:e2e    # E2E tests (separate, requires Chromium)
 ```

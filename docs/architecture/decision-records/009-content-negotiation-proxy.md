@@ -6,7 +6,7 @@ Accepted
 
 ## Date
 
-2026-02-15
+2026-02-15 (amended 2026-02-23: self-fetch routing)
 
 ## Context
 
@@ -67,6 +67,22 @@ When the proxy rewrites `/cv.md` to `/api/accept-md?path=/cv`, Next.js sets an `
 
 The fix: the proxy sets `x-accept-md-path` (the handler's _highest_-priority header) to the resolved page path. The handler uses this instead of `x-matched-path`, breaking the cycle.
 
+### Self-fetch routing in production
+
+The accept-md handler works by fetching the page's own HTML from itself — a self-fetch. In development this hits `localhost` and works without issue. In production, the deployment sits behind two layers of protection that both block self-fetches:
+
+1. **Cloudflare** — the public domain (`www.jimcresswell.net`) routes through Cloudflare, which blocks automated traffic by default (Super Bot Fight Mode). The handler's server-side `fetch()` looks like bot traffic to Cloudflare.
+2. **Vercel deployment protection** — Standard Protection is enabled, which protects all domains except the production custom domain. The internal `.vercel.app` deployment URL is therefore protected and returns 401 for unauthenticated requests.
+
+The handler's `baseUrl` determines which URL it self-fetches from. By default it uses `request.nextUrl.origin`, which resolves to the public domain — hitting Cloudflare. The library falls back to `VERCEL_URL` (the `.vercel.app` URL), but that is blocked by deployment protection.
+
+The fix uses both Vercel mechanisms to bypass both layers:
+
+- **`accept-md.config.js`** sets `baseUrl` to `https://${VERCEL_URL}` when on Vercel. Self-fetches go directly to Vercel's infrastructure via the `.vercel.app` domain, bypassing Cloudflare entirely. Locally, `VERCEL_URL` is unset so the handler falls back to `localhost`.
+- **`app/api/accept-md/route.ts`** adds the `x-vercel-protection-bypass` header using `VERCEL_AUTOMATION_BYPASS_SECRET` (a Vercel system environment variable). This lets self-fetches through Standard Protection on the `.vercel.app` URL.
+
+This means the self-fetch never leaves Vercel's infrastructure — it does not traverse the public internet or the Cloudflare proxy. Cloudflare's bot protection can remain fully enabled.
+
 ### JSON-LD content negotiation
 
 Requesting any page with `Accept: application/ld+json` returns the full Schema.org knowledge graph (see ADR-010 for the rationale behind "full graph, not per-page subgraph"). The proxy simply rewrites to `/api/graph`, which serves the same graph that appears as `<script type="application/ld+json">` on the CV page.
@@ -90,6 +106,7 @@ Next.js 16 renamed the `middleware` file convention to `proxy`. The function exp
 - The proxy runs on every non-static, non-API request. The logic is fast (string comparisons on the path and `Accept` header), but it is an extra function invocation per request. Next.js proxies are designed for this and can run at the edge.
 - The `x-accept-md-path` header is a coupling between the proxy and the accept-md handler. If the handler's header priority changes, the proxy must be updated. This is documented in the proxy's TSDoc.
 - The `accept-md-runtime` dependency is a third-party library. It is dynamically configured via `accept-md.config.js`. If the library changes its API, the handler and config need updating.
+- The self-fetch bypass relies on two Vercel-specific mechanisms (`VERCEL_URL` and `VERCEL_AUTOMATION_BYPASS_SECRET`). If deployment protection settings change, or if the bypass secret is rotated, the self-fetch will break with a 401. The E2E test suite (`markdown-content-negotiation.e2e-api.test.ts`) covers all markdown routes and will catch this locally, but production failures require checking Vercel logs.
 
 ## Related
 

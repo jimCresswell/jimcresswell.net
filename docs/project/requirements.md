@@ -92,11 +92,4 @@ The downloadable CV PDF must be high quality and accessible.
 
 The codebase must pass all quality gates before deployment.
 
-- `pnpm format-check` — Code formatting check (Prettier, read-only).
-- `pnpm lint` — Linting (ESLint).
-- `pnpm type-check` — Type checking (TypeScript, strict mode).
-- `pnpm test` — Unit and integration tests (Vitest).
-- `pnpm knip` — Unused code and dependency detection (Knip).
-- `pnpm gitleaks` — Secret scanning across full git history (gitleaks).
-- `pnpm test:e2e` — End-to-end tests (Playwright), when set up.
-- All exported functions must have TSDoc documentation.
+The definitive gate list and command names live in [rules.md](../../.agent/directives/rules.md#code-quality). `pnpm check` runs all six gates; `pnpm test:e2e` and `pnpm test:e2e:pdf` run E2E tests separately. All exported functions must have TSDoc documentation.

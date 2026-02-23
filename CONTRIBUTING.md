@@ -14,8 +14,8 @@ Guidelines for contributing to [www.jimcresswell.net](https://www.jimcresswell.n
 ## Workflow
 
 - Work on a **feature branch** and open a pull request. The repository owner commits to `main` directly; other contributors use branches.
-- A pre-commit hook ([Husky](https://typicode.github.io/husky/)) runs `pnpm check` automatically on every commit — expect ~10–15 seconds. Do not skip it (`--no-verify` is not permitted).
-- Run `pnpm test:e2e` separately before significant changes. E2E tests are not in the pre-commit hook because they require Chromium and are slower.
+- A **pre-commit hook** runs `pnpm check:ci` (read-only quality gates) on every commit — expect ~10–15 seconds. Do not skip it (`--no-verify` is not permitted).
+- A **pre-push hook** runs `pnpm check && pnpm test:e2e && pnpm test:e2e:pdf` — the full gate sequence plus all E2E tests. This takes longer but catches issues before they reach the remote.
 - If adding an architectural decision, create an ADR in `docs/architecture/decision-records/` following the existing format. See the [ADR index](docs/architecture/decision-records/README.md) for examples.
 
 ## Code conventions

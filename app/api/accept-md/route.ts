@@ -57,6 +57,11 @@ export async function GET(request: NextRequest) {
   // Forward headers but avoid sending markdown Accept header to the upstream page fetch
   const headers = new Headers(request.headers);
   headers.delete("accept");
+  // Bypass Vercel deployment protection on self-fetches (the internal .vercel.app
+  // URL is protected under Standard Protection even for production deployments).
+  if (process.env.VERCEL_AUTOMATION_BYPASS_SECRET) {
+    headers.set("x-vercel-protection-bypass", process.env.VERCEL_AUTOMATION_BYPASS_SECRET);
+  }
   try {
     const markdown = await getMarkdownForPath({
       pathname: path,

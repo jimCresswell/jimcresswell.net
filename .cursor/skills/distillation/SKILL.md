@@ -19,8 +19,9 @@ lines, or when the user requests distillation.
 
 ## The pipeline
 
-Two feeds converge on `distilled.md`, which acts as a staging
-area before entries graduate to permanent docs:
+Three feeds converge on permanent documentation. Two flow
+through `distilled.md` as a staging area; the third flows
+directly during consolidation:
 
 ```text
 napkin.md ──────────┐
@@ -28,6 +29,9 @@ napkin.md ──────────┐
 AGENTS.md ──────────┘    (staging)        (rules.md, AGENT.md,
 (continual-learning                        editorial-guidance.md,
  landing pad)                              ADRs, EDRs, docs/)
+                                               ▲
+plans & prompts ───────────────────────────────┘
+(ephemeral — mined during consolidation)
 ```
 
 **Feed 1 — napkin**: Session-level mistakes, corrections,
@@ -41,10 +45,17 @@ during distillation and replaced with **anchors** — brief
 pointers to where the content now lives, preventing the
 learning skill from rediscovering the same insights.
 
+**Feed 3 — plans and prompts**: Ephemeral work documents
+that accumulate settled knowledge during collaborative
+sessions. Mined during consolidation (`/consolidate-docs`);
+settled content moves directly to permanent docs.
+
 **Graduation**: During consolidation (`/consolidate-docs`),
-entries in `distilled.md` that have become settled are moved
-to their permanent homes. `distilled.md` should contain only
-what is NOT already in permanent documentation.
+entries in `distilled.md` that have become settled, and
+content in plans that now functions as permanent
+documentation, are moved to their canonical homes.
+`distilled.md` should contain only what is NOT already in
+permanent documentation.
 
 ## File Layout
 

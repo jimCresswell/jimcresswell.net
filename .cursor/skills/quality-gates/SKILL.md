@@ -9,30 +9,20 @@ Run gates sequentially from the repo root. Fix issues as they arise. After any f
 
 ## The sequence
 
-```bash
-pnpm format          # 1. Prettier — auto-fixes formatting
-pnpm lint            # 2. ESLint — syntax and style
-pnpm type-check      # 3. TypeScript — type safety
-pnpm test            # 4. Vitest — unit and integration tests
-pnpm knip            # 5. Knip — unused code and dependencies
-pnpm gitleaks        # 6. Gitleaks — secrets in git history
-```
+The definitive gate list with all command names lives in [rules.md](../../.agent/directives/rules.md#code-quality). The summary:
 
-`pnpm check` runs all six as a single command (using `format-check` instead of `format`). The pre-commit hook runs `pnpm check`.
+- `pnpm check` runs all six gates with auto-fix (format, lint, typecheck, test, knip, gitleaks).
+- `pnpm check:ci` runs them read-only (used by the pre-commit hook).
+- `pnpm test:e2e` and `pnpm test:e2e:pdf` are separate (E2E, require Chromium).
 
-E2E tests are separate — run explicitly when needed:
-
-```bash
-pnpm test:e2e        # Playwright — UI and API tests
-pnpm test:e2e:pdf    # Playwright — PDF generation tests (requires prior build)
-```
+When running gates individually for restart-on-fix, start from `pnpm format:fix`.
 
 ## Restart-on-fix discipline
 
 If any gate fails:
 
 1. Fix the issue in product code (not by disabling the check).
-2. Restart from `pnpm format`.
+2. Restart from `pnpm format:fix`.
 3. Repeat until all gates pass without fixes.
 
 This matters because a type-check fix might introduce a lint issue, or a test fix might introduce unused code that Knip catches.

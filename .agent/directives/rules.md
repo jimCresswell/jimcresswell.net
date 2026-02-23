@@ -56,8 +56,21 @@ Use the right tool for the job:
 
 - **Never disable checks** — Never disable type checks, linting, formatting, tests, or Git hooks (`--no-verify`).
 - **Never work around checks** — If a variable is unused, figure out why and fix it. Always fix the root cause.
-- **Quality gates** — Run ALL gates after changes: format → lint → type-check → test → knip → gitleaks. `pnpm check` runs all six; the pre-commit hook enforces this. E2E tests (`pnpm test:e2e`) are separate — run explicitly when needed. See [ADR-005](../../docs/architecture/decision-records/005-knip-unused-code-detection.md) for why Knip is in the gate. Gitleaks scans the full git history to ensure no secrets are committed.
-- **Restart on fix** — After any quality gate fix, restart the full gate sequence from `pnpm format`. Fixes can introduce new issues downstream.
+- **Quality gates** — Run ALL gates after changes. `pnpm check` runs the full sequence with auto-fix; `pnpm check:ci` runs it read-only. The six gates, in order:
+  1. `pnpm format:fix` / `pnpm format:check` — Prettier
+  2. `pnpm lint:fix` / `pnpm lint:check` — ESLint
+  3. `pnpm typecheck` — TypeScript
+  4. `pnpm test` — Vitest (unit and integration)
+  5. `pnpm knip` — unused code and dependencies ([ADR-005](../../docs/architecture/decision-records/005-knip-unused-code-detection.md))
+  6. `pnpm gitleaks` — secrets in git history
+
+  E2E tests are separate (slower, require Chromium):
+  - `pnpm test:e2e` — Playwright default project (journeys, behaviour, a11y)
+  - `pnpm test:e2e:pdf` — Playwright with-build project (PDF tests, requires production build on :3001)
+
+  Git hooks enforce this: the pre-commit hook runs `pnpm check:ci`, and the pre-push hook runs `pnpm check && pnpm test:e2e`. PDF tests (`pnpm test:e2e:pdf`) require a prior production build on :3001 and are run explicitly.
+
+- **Restart on fix** — After any quality gate fix, restart the full sequence from `pnpm format:fix`. Fixes can introduce new issues downstream.
 - **No unused code** — If a function is not used, delete it. If product code is only used in tests, delete it. Delete dead code.
 - **No commented-out code** — Fix it or delete it.
 - **Version with git, not with names** — Fix files in place. Never create parallel versions using naming (e.g. `foo.v2.ts`).

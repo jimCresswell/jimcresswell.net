@@ -72,21 +72,22 @@ pnpm install        # Setup
 pnpm dev            # Development server
 pnpm build          # Production build (next build + PDF generation)
 pnpm start          # Start production server
-pnpm lint           # ESLint
-pnpm type-check     # TypeScript type checking
-pnpm format         # Prettier format
-pnpm format-check   # Prettier check
+pnpm format:fix     # Prettier format (auto-fix)
+pnpm format:check   # Prettier check (read-only)
+pnpm lint:fix       # ESLint (auto-fix)
+pnpm lint:check     # ESLint (read-only)
+pnpm typecheck      # TypeScript type checking
 pnpm test           # Unit and integration tests (Vitest)
 pnpm test:watch     # Tests in watch mode
 pnpm test:coverage  # Tests with coverage
-pnpm check          # All checks: format, lint, type-check, test, knip, gitleaks
-pnpm gitleaks       # Scan git history for secrets
+pnpm check          # All quality gates with auto-fix (see rules.md)
+pnpm check:ci       # All quality gates read-only (used by pre-commit hook)
 pnpm test:e2e       # E2E tests — default project (Playwright)
 pnpm test:e2e:pdf   # E2E tests — with-build project (PDF tests)
 pnpm test:e2e:ui    # Playwright UI mode
 ```
 
-**Note:** `test:e2e` is intentionally separate from `pnpm check`. E2E tests are slower (browser automation) and have external dependencies (Chromium). Run them explicitly.
+For the full quality gate sequence, restart-on-fix discipline, and what each gate checks, see [rules.md](./rules.md#code-quality).
 
 ## Project Structure
 

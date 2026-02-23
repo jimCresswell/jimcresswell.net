@@ -36,10 +36,11 @@ pnpm dev            # Development server
 pnpm build          # Production build
 pnpm start          # Start production server
 
-pnpm lint           # ESLint
-pnpm type-check     # TypeScript type checking
-pnpm format         # Prettier format (write)
-pnpm format-check   # Prettier check (read-only)
+pnpm format:fix     # Prettier format (auto-fix)
+pnpm format:check   # Prettier check (read-only)
+pnpm lint:fix       # ESLint (auto-fix)
+pnpm lint:check     # ESLint (read-only)
+pnpm typecheck      # TypeScript type checking
 pnpm test           # Unit and integration tests (Vitest)
 pnpm test:watch     # Tests in watch mode
 pnpm test:coverage  # Tests with coverage report
@@ -47,7 +48,8 @@ pnpm test:e2e       # E2E tests — default project (Playwright, requires browse
 pnpm test:e2e:pdf   # E2E tests — PDF project (requires production build on :3001)
 pnpm test:e2e:ui    # Playwright UI mode (interactive)
 
-pnpm check          # All gates: format-check, lint, type-check, test, knip, gitleaks
+pnpm check          # All six quality gates with auto-fix
+pnpm check:ci       # All six quality gates read-only (used by pre-commit hook)
 pnpm knip           # Find unused exports and dependencies
 pnpm gitleaks       # Scan git history for secrets
 pnpm generate:icons # Regenerate favicon and OG images from logo
@@ -144,16 +146,19 @@ Every page also supports content negotiation: `Accept: text/markdown` for markdo
 
 ## Quality Gates
 
-Run before committing. The pre-commit hook runs `pnpm check` automatically.
+Two Git hooks enforce quality automatically:
+
+- **Pre-commit** — runs `pnpm check:ci` (read-only checks, ~10–15 seconds).
+- **Pre-push** — runs `pnpm check && pnpm test:e2e` (full gates + E2E). PDF tests require a prior build and are run explicitly.
 
 ```bash
-pnpm check          # All gates: format-check, lint, type-check, test, knip, gitleaks
+pnpm check          # All six gates with auto-fix (format, lint, typecheck, test, knip, gitleaks)
+pnpm check:ci       # Same gates, read-only (no auto-fix)
 pnpm test:e2e       # E2E tests (separate — requires Chromium)
+pnpm test:e2e:pdf   # E2E PDF tests (requires production build on :3001)
 ```
 
-`pnpm check` runs, in order: Prettier format check, ESLint, TypeScript type checking, Vitest (unit + integration tests), Knip (unused code detection), and gitleaks (secret scanning). Gitleaks scans the full git history to ensure no secrets are committed — it requires [gitleaks](https://github.com/gitleaks/gitleaks) to be installed (`brew install gitleaks` on macOS).
-
-The pre-commit hook ([Husky](https://typicode.github.io/husky/)) runs `pnpm check` automatically on every commit. Husky is installed by the `prepare` script when you run `pnpm install` — no manual setup needed. The checks are chained with `&&` (fail-fast): if any step fails, subsequent steps do not run. Expect commits to take ~10-15 seconds.
+Both hooks are managed by [Husky](https://typicode.github.io/husky/), installed automatically by the `prepare` script when you run `pnpm install`. Gitleaks scans the full git history to ensure no secrets are committed — it requires [gitleaks](https://github.com/gitleaks/gitleaks) to be installed (`brew install gitleaks` on macOS). For the full gate sequence and restart-on-fix discipline, see [rules.md](.agent/directives/rules.md#code-quality).
 
 **Local development** works without any environment variables. `.env.local` is only needed to test the full Vercel Blob PDF path (see [architecture docs](docs/architecture/README.md) for details).
 
@@ -183,7 +188,7 @@ The pre-commit hook ([Husky](https://typicode.github.io/husky/)) runs `pnpm chec
 
 ## Agent Memory
 
-AI agents working on this codebase learn from their mistakes and from user corrections. Rather than storing that knowledge in agent-specific files that only agents read, a pipeline funnels all insights toward canonical documentation — the same places a human contributor would naturally look. Session-level observations flow through a staging area and eventually graduate to `rules.md`, `editorial-guidance.md`, ADRs, or wherever the content belongs. The pipeline is invisible to consumers: a reader of `rules.md` finds the CSS rem/em rule without needing to know it originated in a transcript mining run three weeks earlier. See [ADR-012](docs/architecture/decision-records/012-agent-memory-pipeline.md).
+AI agents working on this codebase learn from their mistakes, user corrections, and collaborative sessions. Rather than storing that knowledge in agent-specific files that only agents read, three feeds funnel all insights toward canonical documentation — the same places a human contributor would naturally look. Session observations, transcript-mined insights, and settled knowledge from ephemeral plans all converge on `rules.md`, `editorial-guidance.md`, ADRs, and other permanent docs. The pipeline is invisible to consumers: a reader of `rules.md` finds the CSS rem/em rule without needing to know it originated in a transcript mining run three weeks earlier. See [ADR-012](docs/architecture/decision-records/012-agent-memory-pipeline.md).
 
 ## Development Standards
 
