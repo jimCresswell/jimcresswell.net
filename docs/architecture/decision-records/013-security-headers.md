@@ -45,13 +45,13 @@ For a static site with a small, well-understood CSP allowlist, reporting adds co
 
 The CSP allowlist reflects the site's actual resource loading:
 
-| Directive     | Allowed origins                                                                           | Reason                                                                                                        |
-| ------------- | ----------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| `script-src`  | `'self'`, `'unsafe-inline'`, `static.cloudflareinsights.com`                              | Next.js bundles, next-themes/Analytics inline scripts, Cloudflare Web Analytics beacon (injected by CF proxy) |
-| `style-src`   | `'self'`, `'unsafe-inline'`                                                               | Tailwind CSS (external stylesheet), possible inline styles from Next.js                                       |
-| `font-src`    | `'self'`                                                                                  | Fonts self-hosted via `next/font` (Inter, Literata)                                                           |
-| `img-src`     | `'self'`, `data:`, `blob:`                                                                | Local images, possible inline SVGs                                                                            |
-| `connect-src` | `'self'`, `va.vercel-scripts.com`, `vitals.vercel-insights.com`, `cloudflareinsights.com` | RSC data fetches, Vercel Analytics/Speed Insights telemetry, Cloudflare beacon reporting                      |
+| Directive     | Allowed origins                                                                           | Reason                                                                                            |
+| ------------- | ----------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| `script-src`  | `'self'`, `'unsafe-inline'`, `static.cloudflareinsights.com`, `va.vercel-scripts.com`     | Next.js bundles, next-themes/Analytics inline scripts, Cloudflare beacon, Vercel Analytics script |
+| `style-src`   | `'self'`, `'unsafe-inline'`                                                               | Tailwind CSS (external stylesheet), possible inline styles from Next.js                           |
+| `font-src`    | `'self'`                                                                                  | Fonts self-hosted via `next/font` (Inter, Literata)                                               |
+| `img-src`     | `'self'`, `data:`, `blob:`                                                                | Local images, possible inline SVGs                                                                |
+| `connect-src` | `'self'`, `va.vercel-scripts.com`, `vitals.vercel-insights.com`, `cloudflareinsights.com` | RSC data fetches, Vercel Analytics/Speed Insights telemetry, Cloudflare beacon reporting          |
 
 ## Decision
 
