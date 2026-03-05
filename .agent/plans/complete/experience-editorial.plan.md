@@ -1,12 +1,10 @@
 # Experience & Before Oak Editorial Review
 
-Review the Experience section (Oak National Academy) and the Before Oak section (prior_roles) in a single editorial session. Breakout plan from [cv-editorial-improvements.plan.md](cv-editorial-improvements.plan.md).
+Review the Experience section (Oak National Academy) and the Before Oak section (prior_roles) in a single editorial session. Breakout plan from [cv-editorial-improvements.plan.md](../cv-editorial-improvements.plan.md).
 
-## Status: In Progress — Oak section complete (items 1–7), Before Oak + voice + capabilities remaining (items 8–21)
+## Status: Complete — all 21 items done
 
-### Resume point
-
-**Next session starts at item 8** (Research P1–P3). Items 1–7 (Oak P1, P2, P3) are done and committed. Items 8–14 are the original Before Oak changes. Items 15–18 are voice/framing issues found by the editor sub-agent. Items 19–21 are capabilities consistency items triggered by the Oak changes. Use the editor sub-agent (`/jc-editor`) to review proposed changes before finalising.
+All items implemented and passing quality gates. Items 1–7 (Oak) were completed in earlier sessions. Items 8–21 (Before Oak, voice/framing, capabilities) completed 2026-02-20.
 
 ## Prerequisite: PII security mitigation — Complete
 
@@ -31,7 +29,7 @@ This is a collaborative editorial session. Both sections must be reviewed togeth
 
 ## Context
 
-The positioning paragraphs, capabilities, `meta.summary`, structured data (`KNOWS_ABOUT`, `OCCUPATION`), and front page OG description have all been editorially settled and are mutually consistent (see completed [meta-seo-content-audit.plan.md](complete/meta-seo-content-audit.plan.md) and [capabilities-editorial.plan.md](complete/capabilities-editorial.plan.md)). The front page hero narrative (`frontpage.content.json`) has also been carefully edited and sits at tier 3 of the editorial hierarchy. The editorial hierarchy is codified in `editorial-guidance.md`.
+The positioning paragraphs, capabilities, `meta.summary`, structured data (`KNOWS_ABOUT`, `OCCUPATION`), and front page OG description have all been editorially settled and are mutually consistent (see completed [meta-seo-content-audit.plan.md](meta-seo-content-audit.plan.md) and [capabilities-editorial.plan.md](capabilities-editorial.plan.md)). The front page hero narrative (`frontpage.content.json`) has also been carefully edited and sits at tier 3 of the editorial hierarchy. The editorial hierarchy is codified in `editorial-guidance.md`.
 
 The Experience and Before Oak sections have not received the same editorial attention. They were written earlier and may not fully reflect the voice, framing, and terminology that the positioning and capabilities now use.
 
@@ -191,30 +189,30 @@ Key discoveries during drafting: (1) the "show, don't justify" principle — ear
 
 ### Research P1–P3
 
-| #   | Change                                                                  | Status                                 |
-| --- | ----------------------------------------------------------------------- | -------------------------------------- |
-| 8   | Show research-to-practice bridge, not just state it (OCCUPATION, cap 3) | Open — decision needed on what example |
-| 9   | Allude to model fitting / computational modelling (KNOWS_ABOUT, cap 3)  | Open                                   |
+| #   | Change                                                                  | Status                                                                                             |
+| --- | ----------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| 8   | Show research-to-practice bridge, not just state it (OCCUPATION, cap 3) | **Done** — P3 rewritten: CMB observational test + galaxy colour-age disproof. Show, don't tell.    |
+| 9   | Allude to model fitting / computational modelling (KNOWS_ABOUT, cap 3)  | **Done** — P2: "fitting parametric and non-parametric models to large galaxy surveys" + Galaxy Zoo |
 
 ### Research P4
 
-| #   | Change                                                                                          | Status                                                                                             |
-| --- | ----------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| 10  | Replace "enabling ecosystems rather than building destinations"                                 | Open — direction given: systems, context, creating and holding conditions for new states to emerge |
-| 11  | Anchor the non-academic work more concretely (positioning P1 "community-driven systems change") | Open — decision needed on whether to name Obaith or describe type of work                          |
+| #   | Change                                                                                          | Status                                                               |
+| --- | ----------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| 10  | Replace "enabling ecosystems rather than building destinations"                                 | **Done** — "create and hold the conditions for new states to emerge" |
+| 11  | Anchor the non-academic work more concretely (positioning P1 "community-driven systems change") | **Done** — Obaith linked as "independent research"; no founder claim |
 
 ### Applied Exploration
 
-| #   | Change                                                    | Status                                                                              |
-| --- | --------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| 12  | Connect FT Labs to the open web (KNOWS_ABOUT, front page) | Open — Jim confirmed: FT Labs and Oak both rely on and present through the open web |
-| 13  | Strengthen origination thread (positioning P2)            | Open — decision needed on how explicit                                              |
+| #   | Change                                                    | Status                                                                                                     |
+| --- | --------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| 12  | Connect FT Labs to the open web (KNOWS_ABOUT, front page) | **Done** — "a full application experience delivered entirely on the open web, among the first of its kind" |
+| 13  | Strengthen origination thread (positioning P2)            | **Done** — origination signal carried by examples (FT Web App pioneering, Git adoption, test automation)   |
 
 ### Grounded Practice
 
-| #   | Change                                            | Status |
-| --- | ------------------------------------------------- | ------ |
-| 14  | No changes identified; consistency pass if needed | N/A    |
+| #   | Change                                            | Status                                 |
+| --- | ------------------------------------------------- | -------------------------------------- |
+| 14  | No changes identified; consistency pass if needed | **Done** — reviewed, no changes needed |
 
 ### Voice and framing issues (from editor review)
 
@@ -222,37 +220,37 @@ Items 15–18 were identified by the editor sub-agent during a full CV voice rev
 
 #### Oak P1
 
-| #   | Change                                                              | Status                                           |
-| --- | ------------------------------------------------------------------- | ------------------------------------------------ |
-| 15  | "My responsibility sits in" — passive framing, Jim is not the actor | Open — should fix, make Jim the explicit subject |
+| #   | Change                                                              | Status                                                 |
+| --- | ------------------------------------------------------------------- | ------------------------------------------------------ |
+| 15  | "My responsibility sits in" — passive framing, Jim is not the actor | **Done** — "I work in early and unstructured contexts" |
 
 #### Oak P2
 
-| #   | Change                                                                             | Status                                                              |
-| --- | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| 16  | "Rather than pursuing incremental optimisation...to avoid" — justificatory framing | Open — should fix, keep decisiveness but remove defensive reasoning |
+| #   | Change                                                                             | Status                                                                                               |
+| --- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| 16  | "Rather than pursuing incremental optimisation...to avoid" — justificatory framing | **Done** — cut "to avoid a later, higher-cost failure under significantly greater delivery pressure" |
 
 #### Research P3
 
-| #   | Change                                                                                                    | Status                                             |
-| --- | --------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
-| 17  | "instincts that now underpin my exploratory leadership outside academia" — tell sentence, self-interprets | Open — should fix, ground in action/effect instead |
+| #   | Change                                                                                                    | Status                                                              |
+| --- | --------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| 17  | "instincts that now underpin my exploratory leadership outside academia" — tell sentence, self-interprets | **Done** — replaced with factual description of both research lines |
 
 #### Applied Exploration
 
-| #   | Change                                                                         | Status                                                          |
-| --- | ------------------------------------------------------------------------------ | --------------------------------------------------------------- |
-| 18  | "massively reducing rework" — imprecise emphatic claim, rest of CV is grounded | Open — consider, improve precision without losing impact signal |
+| #   | Change                                                                         | Status                                                      |
+| --- | ------------------------------------------------------------------------------ | ----------------------------------------------------------- |
+| 18  | "massively reducing rework" — imprecise emphatic claim, rest of CV is grounded | **Done** — "and reducing rework" (dropped imprecise adverb) |
 
 ### Capabilities consistency (from editor review)
 
 Items 19–21 affect capabilities, identified during the experience editorial review because the experience changes created new inconsistencies.
 
-| #   | Change                                                                                  | Status                                                     |
-| --- | --------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
-| 19  | Cap 2: "openly licensed curriculum data" doesn't match Oak P3's OGL framing (EDR-001)   | Open — must fix, align with accepted data description      |
-| 20  | Cap 2: bundles two proof points (Oak SDK/MCP + this website) — scannability concern     | Open — consider, ensure one dominant claim per capability  |
-| 21  | Cap 4: "hold space...making the ambiguous navigable" — abstract compared to CV register | Open — should fix, make mechanism and effect more explicit |
+| #   | Change                                                                                  | Status                                                                                 |
+| --- | --------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| 19  | Cap 2: "openly licensed curriculum data" doesn't match Oak P3's OGL framing (EDR-001)   | **Done** — "curriculum data released under the Open Government Licence"                |
+| 20  | Cap 2: bundles two proof points (Oak SDK/MCP + this website) — scannability concern     | **Done** — dropped website proof point; links to open-source repo                      |
+| 21  | Cap 4: "hold space...making the ambiguous navigable" — abstract compared to CV register | **Done** — "I hold the long-term technical vision...coach engineers through ambiguity" |
 
 ---
 
@@ -276,17 +274,17 @@ See `.agent/private/identity.md` for the full list of roles, biographical detail
 
 ## Related
 
-- [cv-editorial-improvements.plan.md](cv-editorial-improvements.plan.md) — parent plan
-- [capabilities-editorial.plan.md](complete/capabilities-editorial.plan.md) — capabilities the experience entries should ground
-- [meta-seo-content-audit.plan.md](complete/meta-seo-content-audit.plan.md) — structured data the experience entries should be consistent with
-- [editorial-guidance.md](../../.agent/directives/editorial-guidance.md) — editorial voice and hierarchy
+- [cv-editorial-improvements.plan.md](../cv-editorial-improvements.plan.md) — parent plan
+- [capabilities-editorial.plan.md](capabilities-editorial.plan.md) — capabilities the experience entries should ground
+- [meta-seo-content-audit.plan.md](meta-seo-content-audit.plan.md) — structured data the experience entries should be consistent with
+- [editorial-guidance.md](../../../.agent/directives/editorial-guidance.md) — editorial voice and hierarchy
 
 ### Editorial Decision Records
 
 The editorial decisions made during this session are permanently recorded as EDRs:
 
-- [EDR-001: Oak curriculum data description](../../docs/editorial/decision-records/001-oak-curriculum-data-description.md)
-- [EDR-002: Show, don't justify](../../docs/editorial/decision-records/002-show-dont-justify.md)
-- [EDR-003: Ecosystem language removal](../../docs/editorial/decision-records/003-ecosystem-language-removal.md)
-- [EDR-004: Enabling vision — leverage through third-order effects](../../docs/editorial/decision-records/004-enabling-vision-leverage-third-order.md)
-- [EDR-005: Oak P3 rewrite — from passive to confident intent](../../docs/editorial/decision-records/005-oak-p3-rewrite.md)
+- [EDR-001: Oak curriculum data description](../../../docs/editorial/decision-records/001-oak-curriculum-data-description.md)
+- [EDR-002: Show, don't justify](../../../docs/editorial/decision-records/002-show-dont-justify.md)
+- [EDR-003: Ecosystem language removal](../../../docs/editorial/decision-records/003-ecosystem-language-removal.md)
+- [EDR-004: Enabling vision — leverage through third-order effects](../../../docs/editorial/decision-records/004-enabling-vision-leverage-third-order.md)
+- [EDR-005: Oak P3 rewrite — from passive to confident intent](../../../docs/editorial/decision-records/005-oak-p3-rewrite.md)

@@ -2,7 +2,7 @@
 
 Refine the positioning, capabilities, and structured data in the editorial CV.
 
-## Status: In Progress — positioning, capabilities, and metadata settled; experience and Before Oak sections still open
+## Status: In Progress — positioning, capabilities, metadata, and experience/Before Oak settled; knowledge graph and LinkedIn open
 
 ## Prerequisite: PII security mitigation
 
@@ -14,13 +14,13 @@ Positioning paragraphs, capabilities, `meta.summary`, structured data (`KNOWS_AB
 
 **Remaining work in dedicated plans:**
 
-| Item                                     | Plan                                                                 | Status      |
-| ---------------------------------------- | -------------------------------------------------------------------- | ----------- |
-| Experience & Before Oak editorial review | [experience-editorial.plan.md](experience-editorial.plan.md)         | In Progress |
-| Personal knowledge graph                 | [personal-knowledge-graph.plan.md](personal-knowledge-graph.plan.md) | Planning    |
-| LinkedIn update                          | [linkedin-update.plan.md](linkedin-update.plan.md)                   | Planning    |
-| Tilt mechanism                           | No plan yet — see [Deferred](#deferred) below                        | Deferred    |
-| Tilt content                             | Depends on tilt mechanism                                            | Deferred    |
+| Item                                     | Plan                                                                  | Status   |
+| ---------------------------------------- | --------------------------------------------------------------------- | -------- |
+| Experience & Before Oak editorial review | [experience-editorial.plan.md](complete/experience-editorial.plan.md) | Complete |
+| Personal knowledge graph                 | [personal-knowledge-graph.plan.md](personal-knowledge-graph.plan.md)  | Planning |
+| LinkedIn update                          | [linkedin-update.plan.md](linkedin-update.plan.md)                    | Planning |
+| Tilt mechanism                           | No plan yet — see [Deferred](#deferred) below                         | Deferred |
+| Tilt content                             | Depends on tilt mechanism                                             | Deferred |
 
 ## How to use this plan
 
@@ -94,11 +94,9 @@ Completed in a dedicated plan: [meta-seo-content-audit.plan.md](complete/meta-se
 
 ---
 
-## Open: Experience and Before Oak editorial review
+## Resolved: Experience and Before Oak editorial review
 
-**Breakout plan:** [experience-editorial.plan.md](experience-editorial.plan.md) — review the Experience (Oak) and Before Oak (prior_roles) sections in a single editorial session. Both sections read as one narrative arc and framing decisions in one constrain the other. Review criteria: voice/framing, consistency with positioning and structured data, narrative arc (origination thread), and concision.
-
-**Progress:** Oak P1, P2, P3 content changes complete (items 1–7). Full editor sub-agent review completed — identified additional voice issues (items 15–18) and capabilities consistency items (items 19–21) arising from the experience changes. Before Oak items (8–14) still open. Twenty-one items total.
+**Breakout plan:** [experience-editorial.plan.md](complete/experience-editorial.plan.md) — all 21 items complete. Research rewritten (model fitting, Galaxy Zoo, CMB observational test, colour-age disproof), Applied Exploration connected to the open web with collaborative credit, voice/framing fixes (passive → agentic, justificatory → confident), and capabilities consistency (Cap 2 OGL framing, Cap 4 vision not standards). Quality gates pass.
 
 ---
 
@@ -122,7 +120,7 @@ Scope expanded well beyond the original JSON-LD enrichment investigation. The pl
 
 | File                       | Status                                                                                                                                                                               |
 | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `content/cv.content.json`  | Positioning, capabilities, and meta.summary settled. Experience and Before Oak sections still open for editorial review.                                                             |
+| `content/cv.content.json`  | Positioning, capabilities, meta.summary, experience, and Before Oak all editorially settled.                                                                                         |
 | `lib/jsonld.ts`            | Editorial content updated (knowsAbout expanded, occupation refined). Structural migration to entity model: see [personal-knowledge-graph.plan.md](personal-knowledge-graph.plan.md). |
 | `components/cv-layout.tsx` | Done — `<RichText>` for capabilities, section reorder (Capabilities after Positioning). Knowledge graph: possible `id` attribute binding.                                            |
 
@@ -135,7 +133,7 @@ Scope expanded well beyond the original JSON-LD enrichment investigation. The pl
 | ~~Factual fix (Oak start_year 2019 → 2020)~~ | Done                                                                                 |
 | ~~Capabilities (concrete additions)~~        | Done — see [capabilities-editorial.plan.md](complete/capabilities-editorial.plan.md) |
 | ~~Meta & SEO content audit~~                 | Done — see [meta-seo-content-audit.plan.md](complete/meta-seo-content-audit.plan.md) |
-| Experience & Before Oak editorial review     | In Progress — see [experience-editorial.plan.md](experience-editorial.plan.md)       |
+| ~~Experience & Before Oak editorial review~~ | Done — see [experience-editorial.plan.md](complete/experience-editorial.plan.md)     |
 | Personal knowledge graph                     | See [personal-knowledge-graph.plan.md](personal-knowledge-graph.plan.md)             |
 
 ---

@@ -26,7 +26,7 @@ Impact means climate, ecological, and societal good — as in "impact funding", 
 
 ## Founder identity
 
-Jim has a founder orientation — origination, not optimisation. He has created projects (Obaith, this website) but has not taken funding or built a commercial product. "Founder" as an explicit personal claim belongs in a tilt variant where the framing supports it, not in the default CV. On the default, the signal is originator energy without the word.
+Jim has a founder orientation — origination, not optimisation. He has created research projects (Obaith, Reforest Now) and this website, but has not taken funding or built a commercial product. Obaith was before Oak; Reforest Now was during early Oak. Both were genuine in-depth research projects, not ventures — do not overstate them. "Founder" as an explicit personal claim belongs in a tilt variant where the framing supports it, not in the default CV. On the default, the signal is originator energy without the word. "Zero to one" means seeing a future connection nobody else sees and building towards it — not starting from nothing.
 
 ## Product safety, not data safety
 
@@ -34,7 +34,7 @@ At Oak, the data is open by design — access is not constrained. The responsibi
 
 ## Collaborative credit
 
-Don't claim solo credit for collaborative work. "I designed the team structure" should be "as part of a group." Jim holds people to standards within guardrails, intervenes minimally, and delegates to lead engineers across engineering groups. Describe creating conditions, not dictating.
+Don't claim solo credit for collaborative work. "I designed the team structure" should be "as part of a group." Jim holds people to standards within guardrails, intervenes minimally, and delegates to lead engineers across engineering groups. Describe creating conditions, not dictating. Jim's self-conception is as the vision-setter and creator, not the standards administrator — frame leadership through vision, direction, and coaching, not through process and governance.
 
 ## Commercial sensibility
 
@@ -42,7 +42,7 @@ Jim understands leverage and what is worth building — not just as a system, bu
 
 ## Physics as silent ballast
 
-Jim's PhD in Astrophysics & Cosmology (including published research on model fitting and large-scale structure) provides proven intellectual prowess and rigour without having to claim them. The education section retroactively grounds the playful headline.
+Jim's PhD in Astrophysics & Cosmology (including published research on model fitting and large-scale structure) provides proven intellectual prowess and rigour without having to claim them. The education section retroactively grounds the playful headline. The MSc (Sussex) was observational cosmology — CMB topology; the PhD (Portsmouth) was fitting parametric and non-parametric models to large galaxy surveys, combining traditional survey statistics with Galaxy Zoo citizen science data. These are distinct research lines — never conflate them.
 
 The research domain appears naturally in paragraph 1's list of problem spaces ("the structure of the early Universe") — this reads as breadth, not as an academic identity claim. Paragraph 2 uses the general term "research" rather than "physics" in the background list, keeping the emphasis on the type of work (research) rather than the discipline. The word "physics" does not appear in the positioning. The physicist's insight should be _in_ the thinking, not labelled.
 
