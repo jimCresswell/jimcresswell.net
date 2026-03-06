@@ -1,5 +1,47 @@
 # Napkin
 
+## Session: 2026-03-06 — Practice-Core Evolution
+
+### What Was Done
+
+- Implemented the practice-core-evolution plan: all 3 phases (6 + 3 + 4 = 13 tasks)
+- Phase 1: Evolved practice-core trinity files — added restructuring hydration path to practice-lineage.md, expanded ecosystem survey to include practice maturity, extended "never overwrite" to cover practice mechanisms, added cohesion audit to consolidation spec (both locations), reframed underscore-prefix rule as universal principle, created CHANGELOG.md, updated all "five files" → "six files" references across 5 practice-core files
+- Phase 2: Fixed adapter pointer syntax — all 6 `.cursor/rules/*.mdc` and all 4 `.cursor/agents/*.md` now use `@` prefix (consistent with command/skill adapters), updated practice-index.md
+- Phase 3: Validation passed — all trinity files under ceilings (practice.md 216/250, practice-lineage.md 312/320, practice-bootstrap.md 392/400), self-containment check zero violations, all links resolve, all 6 quality gates pass (66 tests)
+- Tightened practice-lineage.md (325→312): compressed Agent Pattern section, Tightening Process, Adaptation Levels
+- Tightened practice-bootstrap.md (432→392): compressed Prompts section (removed YAML code block template, kept field descriptions), Distillation protocol, Claude Code trigger template example
+
+### Patterns to Remember
+
+- Both practice-lineage.md and practice-bootstrap.md were already OVER their ceilings before this work started (325/320 and 432/400). Tightening must happen BEFORE or DURING additions, not just as a validation step
+- The naive reference-check scripts from practice-lineage.md have word-splitting issues in bash `for link in $links` loops and don't handle markdown anchor fragments (`#section-name`). Results need human judgment — false positives are common
+- When adding a companion file (CHANGELOG.md) to the practice-core package, grep for ALL count references ("five files", "package of five", "all five") across ALL practice-core files before editing — they appear in practice-lineage.md, practice-bootstrap.md, practice.md, index.md, and README.md
+- practice-bootstrap.md Prompts section: the YAML code block template was removed during tightening. The field names are preserved in text description. If agents have trouble constructing prompt frontmatter in future, may need to restore a compact example
+- Consolidation cohesion audit caught two real issues: (1) provenance dates not updated from 2026-03-05 to 2026-03-06 after evolution edits, (2) code-quality.md canonical rule still used old ecosystem-specific wording while practice-lineage.md had the reframed universal principle. Both fixed.
+- AGENT.md is 2 lines over its 150-line ceiling (152/150) — flagged but not tightened. Split strategy suggests extracting dev commands or project structure
+
+## Session: 2026-03-05 — Practice-Core Hydration
+
+### What Was Done
+
+- Hydrated practice-core into the new-cv repo on `feature/practice-core-hydration` branch
+- Phase 1: Canonical-first restructuring — moved 7 commands, 5 skills, 1 agent from `.cursor/` to `.agent/` (canonical), created thin Cursor adapters. Renamed `consolidate-docs` to `jc-consolidate-docs`. Merged two start-right variants into one.
+- Phase 2: New mechanisms — created metacognition directive, 3 technical reviewers (code-reviewer, test-reviewer, type-reviewer), 6 always-applied rules with Cursor triggers, 4 new commands (review, think, step-back, go)
+- Phase 3: Growth governance — added fitness_ceiling frontmatter to all 7 directives and distilled.md, YAML frontmatter to prompts, updated provenance chains on all three trinity files, created experience/ and code-patterns/ directories
+- Phase 4: Validation — created practice-index.md bridge file, updated AGENT.md with full Practice reference, verified all links resolve (practice-index: 100%, AGENT.md: 100%), self-containment check passed, all quality gates pass (66 tests)
+- Fixed broken references in ADR-012 from old `.cursor/` paths to new canonical paths
+
+### Patterns to Remember
+
+- The naive reference check script from practice-lineage.md does not resolve relative paths from source file location — all "broken" results for `./rules.md` etc. are false positives because the file exists relative to AGENT.md's directory
+- Cursor command adapters use `@` prefix for file injection; canonical commands use plain relative paths — strip `@` when canonicalising
+- Skill classification: napkin is `passive` (always on, no trigger), most others are `active` (explicitly invoked)
+- When renaming a command, grep the whole repo for references to the old name — ADRs and other permanent docs may link to it
+- Cursor adapter pointer syntax was inconsistent after hydration: commands/skills used `@`, rules/agents used backticks. User preference: `@` everywhere for consistency.
+- The consolidation command specification appears in TWO places in practice-core: practice-lineage.md §Workflow Commands and practice-bootstrap.md §Required Commands table. Both must be updated together.
+- "Five files" / "package of five" appears in multiple practice-core locations. Adding CHANGELOG.md means all of these need updating — grep before editing.
+- The practice-core has never been through a "restructuring" hydration before (always cold start or return trip). This is genuinely new ground.
+
 ## Session: 2026-02-20 — Experience Editorial: Before Oak, Voice, Capabilities (items 8–21)
 
 ### What Was Done

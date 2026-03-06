@@ -1,3 +1,8 @@
+---
+fitness_ceiling: 50
+split_strategy: Split by responsibility — extract git operations from audit procedures
+---
+
 # Security Operations
 
 Operational security practices for this repository. These rules apply to all contributors — human and AI.

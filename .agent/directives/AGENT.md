@@ -1,3 +1,8 @@
+---
+fitness_ceiling: 150
+split_strategy: Split by responsibility — extract sub-agent roster, development commands, or project structure into separate files
+---
+
 # AGENT.md
 
 This file provides core directives for AI agents working with this codebase. Read ALL of it first, then follow all instructions.
@@ -16,14 +21,19 @@ Always apply the first question: **Ask: could it be simpler without compromising
 **Stack**: Next.js 16, React 19, Tailwind CSS 4, deployed on Vercel
 **Package Manager**: pnpm (REQUIRED — never npm/yarn)
 
+## The Practice
+
+This repo follows the Agentic Engineering Practice. For the full system — principles, structure, tooling, knowledge flow — see [practice-core/index.md](../practice-core/index.md). For navigable links to this repo's artefacts, see [practice-index.md](../practice-index.md).
+
 ## Rules
 
-Read [the rules](./rules.md); reflect on them, _apply_ them — they MUST be followed at ALL times.
+Read [the rules](./rules.md); reflect on them, _apply_ them — they MUST be followed at ALL times. Read [metacognition](./metacognition.md) and apply it before planning.
 
 ## Essential Links
 
 - [Rules](./rules.md) — Core development principles
 - [Testing Strategy](./testing-strategy.md) — TDD approach and test types
+- [Metacognition](./metacognition.md) — Pause and reflect before planning
 - [Editorial Guidance](./editorial-guidance.md) — Jim's editorial voice and identity (read before any content work)
 - [Privacy](./privacy.md) — Psychological safety and PII handling
 - [Security Operations](./secops.md) — Git email, PII audits, operational security
@@ -34,36 +44,39 @@ Read [the rules](./rules.md); reflect on them, _apply_ them — they MUST be fol
 
 ## Session Start
 
-Every session, read `.agent/memory/distilled.md` and scan `.agent/memory/napkin.md` before doing anything. These contain hard-won patterns and recent context. Update the napkin continuously as you work — log mistakes, corrections, and what works. See the [napkin skill](../../.cursor/skills/napkin/SKILL.md).
+Every session, read `.agent/memory/distilled.md` and scan `.agent/memory/napkin.md` before doing anything. These contain hard-won patterns and recent context. Update the napkin continuously as you work — log mistakes, corrections, and what works. See the [napkin skill](../skills/napkin/SKILL.md).
 
 ## Agent Tools
 
 ### Sub-agents
 
-| Agent                                    | Purpose                                                                                         |
-| ---------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| [editor](../../.cursor/agents/editor.md) | Read-only editorial reviewer — provides structured feedback on voice, consistency, and pitfalls |
+| Agent                                                     | Purpose                                               |
+| --------------------------------------------------------- | ----------------------------------------------------- |
+| [editor](../sub-agents/templates/editor.md)               | Editorial reviewer — voice, consistency, and pitfalls |
+| [code-reviewer](../sub-agents/templates/code-reviewer.md) | Gateway reviewer — quality, correctness, and triage   |
+| [test-reviewer](../sub-agents/templates/test-reviewer.md) | TDD compliance and test quality                       |
+| [type-reviewer](../sub-agents/templates/type-reviewer.md) | TypeScript type safety                                |
 
 ### Skills
 
-| Skill                                                            | Purpose                                                             |
-| ---------------------------------------------------------------- | ------------------------------------------------------------------- |
-| [editorial-voice](../../.cursor/skills/editorial-voice/SKILL.md) | Apply Jim's editorial voice — two registers, common pitfalls        |
-| [quality-gates](../../.cursor/skills/quality-gates/SKILL.md)     | Run quality gates with restart-on-fix discipline                    |
-| [napkin](../../.cursor/skills/napkin/SKILL.md)                   | Session learning log — always active, read and update every session |
-| [distillation](../../.cursor/skills/distillation/SKILL.md)       | Rotate napkin into curated distilled.md when it grows large         |
-| [deslop](../../.cursor/skills/cursor-deslop/SKILL.md)            | Remove AI-generated code slop from diffs                            |
+| Skill                                                 | Purpose                                                             |
+| ----------------------------------------------------- | ------------------------------------------------------------------- |
+| [editorial-voice](../skills/editorial-voice/SKILL.md) | Apply Jim's editorial voice — two registers, common pitfalls        |
+| [quality-gates](../skills/quality-gates/SKILL.md)     | Run quality gates with restart-on-fix discipline                    |
+| [napkin](../skills/napkin/SKILL.md)                   | Session learning log — always active, read and update every session |
+| [distillation](../skills/distillation/SKILL.md)       | Rotate napkin into curated distilled.md when it grows large         |
+| [deslop](../skills/deslop/SKILL.md)                   | Remove AI-generated code slop from diffs                            |
 
 ### Commands
 
-| Command             | Purpose                                                        |
-| ------------------- | -------------------------------------------------------------- |
-| `/jc-editor`        | Invoke the editor sub-agent for a voice and consistency review |
-| `/jc-gates`         | Run quality gates sequentially with restart-on-fix discipline  |
-| `/jc-commit`        | Create a well-formed commit with safety checks                 |
-| `/jc-start-right`   | Standard project onboarding                                    |
-| `/jc-plan`          | Structured planning workflow                                   |
-| `/consolidate-docs` | Ensure plans, prompts, and memory are up to date               |
+| Command                | Purpose                                          |
+| ---------------------- | ------------------------------------------------ |
+| `/jc-start-right`      | Ground yourself before beginning work            |
+| `/jc-gates`            | Run quality gates with restart-on-fix discipline |
+| `/jc-commit`           | Create a well-formed commit with safety checks   |
+| `/jc-consolidate-docs` | Ensure plans, prompts, and memory are up to date |
+| `/jc-plan`             | Structured planning workflow                     |
+| `/jc-editor`           | Invoke editorial review                          |
 
 ## Development Commands
 
@@ -92,25 +105,35 @@ For the full quality gate sequence, restart-on-fix discipline, and what each gat
 ## Project Structure
 
 ```
-app/                # Next.js App Router pages and layouts
-components/         # React components
-content/            # CV content JSON files
-lib/                # Utility functions and types
-scripts/            # Build-time scripts (PDF generation)
-docs/               # Project documentation
-  architecture/     # System architecture and ADRs
-  editorial/        # Editorial decision records (EDRs)
-  project/          # User stories and requirements
-public/             # Static assets
-e2e/                # End-to-end tests (Playwright)
-  journeys/         # User story journey tests
-  behaviour/        # Cross-cutting behavioural tests (a11y, SEO, content)
-.agent/memory/      # Session learning: napkin.md (current), distilled.md (curated)
-.cursor/
-  agents/           # Sub-agents (editor)
-  commands/         # Custom commands (/jc-editor, /jc-gates, etc.)
-  skills/           # Agent skills (editorial-voice, quality-gates, napkin, distillation, deslop)
-  settings.json     # Cursor plugins (Vercel, continual-learning)
+app/                    # Next.js App Router pages and layouts
+components/             # React components
+content/                # CV content JSON files
+lib/                    # Utility functions and types
+scripts/                # Build-time scripts (PDF generation)
+docs/                   # Project documentation
+  architecture/         # System architecture and ADRs
+  editorial/            # Editorial decision records (EDRs)
+  project/              # User stories and requirements
+public/                 # Static assets
+e2e/                    # End-to-end tests (Playwright)
+  journeys/             # User story journey tests
+  behaviour/            # Cross-cutting behavioural tests (a11y, SEO, content)
+.agent/                 # Canonical Practice artefacts (platform-agnostic)
+  directives/           # Principles, rules, and operational directives
+  practice-core/        # Portable practice-core files and practice box
+  commands/             # Canonical commands
+  skills/               # Canonical skills
+  rules/                # Canonical always-applied rules
+  sub-agents/templates/ # Canonical sub-agent templates
+  plans/                # Work planning
+  prompts/              # Reusable prompt playbooks
+  memory/               # Napkin, distilled, code patterns
+  experience/           # Experiential records
+.cursor/                # Cursor platform adapters (thin wrappers)
+  agents/               # Sub-agent adapters
+  commands/             # Command adapters
+  skills/               # Skill adapters
+  rules/                # Rule triggers (alwaysApply)
 ```
 
 ## Agent Behaviour

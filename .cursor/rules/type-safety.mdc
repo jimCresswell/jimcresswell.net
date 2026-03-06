@@ -1,0 +1,6 @@
+---
+description: No type shortcuts — no as, any, or non-null assertions
+alwaysApply: true
+---
+
+Read and follow @.agent/rules/type-safety.md

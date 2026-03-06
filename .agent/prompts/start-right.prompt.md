@@ -1,7 +1,21 @@
-Read @.agent/directives/rules.md and @.agent/directives/testing-strategy.md , and take to heart that it is encouraged to take a step back and consider if work is delivering value through impact at the system level, not just fixing the problem right in front of you. Identify and question assumptions. Even before the First Question, ask, are we solving the right problem, at the right layer?
+---
+prompt_id: start-right
+title: "Start Right"
+type: workflow
+status: active
+last_updated: 2026-03-05
+---
 
-**Commit** to excellence in systems architecture, software engineering, and developer experience. Choose architectural correctness over short-term expediency. This requires critical and _long-term_ thinking.
+# Start Right
 
-Do not assume you know what the initial step should be, discuss with the user first.
+Ground yourself before beginning work.
 
-Quality gates: `pnpm check` runs all six gates. `pnpm test:e2e` runs E2E tests separately. See rules.md (Code Quality section) for the full sequence and correct command names.
+Read `.agent/directives/rules.md` and `.agent/directives/testing-strategy.md`. These are the authoritative rules — internalise them.
+
+Ask: what value are we delivering, through what impact, for which users? Are we solving the right problem at the right layer? Could it be simpler? Think about system-level impact, not just the problem in front of you.
+
+Check `.agent/practice-core/incoming/` for incoming practice-core files. If files are present, alert the user.
+
+Discuss the first step with the user before acting.
+
+After each piece of work, run the full quality gate suite one gate at a time. All plans must include TSDoc on logic and state, and READMEs where appropriate.

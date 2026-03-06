@@ -1,3 +1,8 @@
+---
+fitness_ceiling: 120
+split_strategy: Split by responsibility — extract testing rules to testing-strategy.md, type rules to a type-safety directive
+---
+
 # Rules
 
 All of these rules MUST be followed at all times.

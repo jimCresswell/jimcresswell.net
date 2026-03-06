@@ -1,3 +1,7 @@
+---
+fitness_ceiling: 200
+---
+
 # Distilled Learnings
 
 Quick-reference entries that are NOT in permanent docs.

@@ -1,3 +1,11 @@
+---
+prompt_id: project-spec-creation
+title: "Project Definition Document Creation"
+type: workflow
+status: active
+last_updated: 2026-03-05
+---
+
 # Project Definition Document Creation Prompt
 
 You are helping create a comprehensive set of project definition documents for handoff to a generative UI agent (like v0.app, Bolt, or similar). The goal is to produce documents that are:

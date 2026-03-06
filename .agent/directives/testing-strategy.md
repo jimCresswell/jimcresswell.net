@@ -1,3 +1,8 @@
+---
+fitness_ceiling: 100
+split_strategy: Split by test type — separate unit, integration, and E2E strategy into individual files
+---
+
 # Testing Strategy
 
 Always use TDD at ALL levels (unit, integration, E2E).
