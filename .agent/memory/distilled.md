@@ -20,9 +20,8 @@ for full architecture coverage.
 
 ## Troubleshooting
 
-| Symptom                             | Fix                                                       |
-| ----------------------------------- | --------------------------------------------------------- |
-| postcss.config.ts silently ignored  | Rename to postcss.config.mjs — Turbopack limitation       |
-| Pre-commit hook fails on formatting | Run `pnpm format:fix` then retry                          |
-| StrReplace fails on markdown files  | Unicode quotes block matching — read the exact text first |
-| Prettier reformats code fences      | Language tag `text` applied to bare fences                |
+| Symptom                            | Fix                                                       |
+| ---------------------------------- | --------------------------------------------------------- |
+| postcss.config.ts silently ignored | Rename to postcss.config.mjs — Turbopack limitation       |
+| StrReplace fails on markdown files | Unicode quotes block matching — read the exact text first |
+| Prettier reformats code fences     | Language tag `text` applied to bare fences                |

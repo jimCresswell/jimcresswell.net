@@ -1,5 +1,27 @@
 # Napkin
 
+## Session: 2026-03-06 — Plans Roadmap and PKG Plan Restructuring
+
+### What Was Done
+
+- Created `.agent/plans/roadmap.md` — single entry point for all work streams
+- Sequencing decided: knowledge graph first, LinkedIn as derived view (PKG Phase 5)
+- Restructured the two PKG plans with clear boundary:
+  - **Design reference** (personal-knowledge-graph.plan.md) = the WHY. Entity inventory, principles, Schema.org conventions, open questions.
+  - **Implementation** (personal-knowledge-graph-implementation.plan.md) = the WHAT. Phased tasks with acceptance criteria, todos.
+- Removed Phase 6 (Implementation) from the vision plan — replaced with pointer to implementation plan
+- Marked TBD decisions in vision plan with notes on which ADRs have already answered them
+- Rewrote implementation plan in jc-plan format: goals, impacts, acceptance criteria per task
+- Removed duplicated content from implementation plan (was partially copying vision plan context)
+- Added DRY explanation to implementation plan: Person entity defined once, `@id` resolves against root URL, front page is canonical document for the Person entity
+
+### Patterns to Remember
+
+- When two plans exist (design + execution), the execution plan should REFERENCE the design plan for context, not partially duplicate it. Duplication causes the two plans to drift apart.
+- Open "Decision: TBD" markers in plans should note which ADRs have already answered the question. A fresh agent seeing "TBD" will try to resolve it again; noting "partially answered by ADR-008" prevents wasted effort.
+- The Person entity's `@id` fragment (`#person`) resolves against the ROOT URL — this means the front page is the canonical Linked Data document for the Person. Currently backwards (Person only on `/cv`). The PKG corrects this.
+- jc-plan format: every phase needs a goal, intended impact, and acceptance criteria per task. Plans without per-task criteria can't be tracked or verified.
+
 ## Session: 2026-03-06 — Practice-Core Portability Fixes
 
 ### What Was Done

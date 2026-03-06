@@ -4,6 +4,8 @@ Build a unified model where all site outputs — page rendering, Open Graph, JSO
 
 ## Status: Planning
 
+**This is the design reference** — the entity inventory, principles, Schema.org conventions, and open design questions. For phased execution with todos and acceptance criteria, see the [implementation plan](personal-knowledge-graph-implementation.plan.md).
+
 ## How to use this plan
 
 This is a collaborative session. Jim has examples to integrate and a clear vision for the model's scope. Present options at each decision point and iterate.
@@ -121,7 +123,7 @@ This means:
 
 ---
 
-## Phase 1: Entity and relationship audit
+## Design Phase 1: Entity and relationship audit
 
 Audit all entities and relationships across all sources. Present a complete inventory to Jim.
 
@@ -141,7 +143,7 @@ Audit all entities and relationships across all sources. Present a complete inve
   - MSc: "Observing Cosmological Topology".
   - MPhys: "The Design and Construction of a Theremin".
 - **Publications** — already exist in JSON-LD; cross-check against Google Scholar. `schema:ScholarlyArticle`.
-- **Projects** — this website, Obaith, Theremin, data visualisation projects. `schema:CreativeWork` + `additionalType`.
+- **Projects** — this website, Obaith, Reforest Now, Theremin. `schema:CreativeWork` + `additionalType`. Additional projects (e.g. data visualisation work) to be confirmed with Jim during Design Phase 2.
 - **Services** — services offered by organisations. `schema:WebAPI` or `schema:Service`.
   - **Oak Curriculum API** — a live service offered by Oak, not a project Jim created. `schema:WebAPI` with `url`: `https://open-api.thenational.academy/` and `provider`: Oak. Offers free access to curriculum data under OGL.
 - **Software** — software Jim conceived and built. `schema:SoftwareSourceCode`.
@@ -231,7 +233,7 @@ Role `description` fields must be framed for who Jim is now. Historical titles a
 
 ---
 
-## Phase 2: Content model design
+## Design Phase 2: Content model design
 
 Design where entities live and how views consume them.
 
@@ -271,7 +273,7 @@ Jim may have a different preference for how the model should be structured.
 
 **Question for Jim:** How should the entity model relate to the page composition files?
 
-**Decision:** TBD.
+**Decision:** TBD — this is the key open design question for Design Phase 1. Option A (layered files) is assumed in the [implementation plan](personal-knowledge-graph-implementation.plan.md) but not formally decided.
 
 ### Schema.org structural conventions
 
@@ -332,7 +334,7 @@ Person links to publications/theses via `subjectOf`; publications/theses link ba
 
 ---
 
-## Phase 3: Derive all views from the model
+## Design Phase 3: Derive all views from the model
 
 Once the content model is designed, ensure every output derives from it.
 
@@ -379,14 +381,14 @@ With entities in the model, the JSON-LD graph can be significantly richer:
 ### Schema design decisions
 
 - **Roles**: `OrganizationRole` (Schema.org) allows start/end dates and named positions.
-- **Software**: `SoftwareSourceCode` with `codeRepository`. **Services**: `WebAPI` with `provider` → Organisation. See Phase 1 entity definitions for Oak Curriculum API and SDK/MCP modelling.
+- **Software**: `SoftwareSourceCode` with `codeRepository`. **Services**: `WebAPI` with `provider` → Organisation. See Design Phase 1 entity definitions for Oak Curriculum API and SDK/MCP modelling.
 - **Volunteer work**: `VolunteerAction` or a role with a volunteer flag.
 
-**Decision:** TBD.
+**Decision:** Schema.org type mappings are decided in [ADR-008](../../docs/architecture/decision-records/008-schema-org-compliance.md). Specific schema choices for roles, software, and volunteer work remain open — to be resolved during Phase 1 of the [implementation plan](personal-knowledge-graph-implementation.plan.md).
 
 ---
 
-## Phase 4: HTML semantic binding
+## Design Phase 4: HTML semantic binding
 
 Design how graph node IDs map to HTML element IDs in the rendered pages.
 
@@ -402,11 +404,11 @@ The CV page uses `<section>` elements (via `<PageSection>`) with `id` attributes
 
 **Question for Jim:** How tight should the binding be?
 
-**Decision:** TBD.
+**Decision:** TBD — to be resolved during Phase 4 of the [implementation plan](personal-knowledge-graph-implementation.plan.md). The ID scheme is partially decided: [ADR-010](../../docs/architecture/decision-records/010-canonical-url-graph-identity.md) establishes `#person`, `#website`, and the `cv/#webpage` convention. The Design Phase 2 conventions table above extends this to all entity types.
 
 ---
 
-## Phase 5: Consistency and framing review
+## Design Phase 5: Consistency and framing review
 
 Once the model exists and all views derive from it, review consistency across all outputs and ensure framing reflects who Jim is now.
 
@@ -423,7 +425,7 @@ Every role `description` in the graph must be reviewed against the "Framing is i
 
 - Historical role titles stay as facts (`roleName`: "QA Automation Consultant", "Head of Test", "Programme QA Consultant"). These are what the roles were called.
 - Role `description` fields express what Jim was _actually doing_: leading systemic change, shaping delivery culture, creating technical strategies, building organisational capability. Not QA, not devops, not automation — leadership and change using the best levers available.
-- The reader of the JSON-LD graph should see: a physicist who became a technologist, who led increasingly large-scale system change, who now shapes national-scale public services and AI-powered knowledge systems. Not a QA engineer who got promoted.
+- The reader of the JSON-LD graph should see: a leader and originator who brings rigour from research into increasingly large-scale system change, and who now shapes national-scale public services and AI-powered knowledge systems. Not a QA engineer who got promoted. The physics credentials speak for themselves in the structured data — descriptions should not lead with them (see "physics as silent ballast" in editorial-guidance.md).
 
 This pass reviews both visible page content and JSON-LD descriptions. The framing must be consistent everywhere.
 
@@ -431,20 +433,15 @@ This pass reviews both visible page content and JSON-LD descriptions. The framin
 
 ---
 
-## Phase 6: Implementation
+## Implementation
 
-Evolutionary approach — each step is independently valuable:
+For phased execution with todos, acceptance criteria, and progress tracking, see the [implementation plan](personal-knowledge-graph-implementation.plan.md). That plan distils this design reference into five actionable phases:
 
-1. **Move JSON-LD constants into the content model.** Make `KNOWS_ABOUT`, `OCCUPATION`, `CREDENTIAL_DETAILS`, and `PUBLICATIONS` visible in the content layer. `lib/jsonld.ts` imports from the model rather than defining its own constants.
-2. **Create entity definitions.** All entities at all levels: Person, WebSite, all organisations (including Code Science Limited), all roles (full decomposition with dates), all credentials (degrees + certifications), theses, publications, projects. Source from current data, old CV, LinkedIn.
-3. **Write role descriptions.** Each role gets a `description` framed for who Jim is now. Historical titles stay; descriptions express leadership and change. See "Framing is identity, not history" principle.
-4. **Refactor view derivation.** Each view (`lib/cv-content.ts`, `lib/jsonld.ts`, `app/manifest.ts`) imports from the model. Use `ProfilePage` for page nodes.
-5. **Implement subgraph closure.** Build the algorithm that derives page-level JSON-LD from the canonical graph (closure from page node through `@id` references).
-6. **Add JSON-LD to the front page.** Person + relevant entity subset (identity-focused).
-7. **Add HTML `id` attributes** for graph–DOM binding (if decided).
-8. **Expand the JSON-LD graph** — full role history, theses, projects, volunteer work, certifications (JSON-LD only).
-9. **Consistency and framing pass** across all views.
-10. **Add "Knowledge graphs" to `KNOWS_ABOUT`.** Once the graph is built, Jim demonstrably knows about knowledge graphs — add the term to the structured data.
+1. Entity model design (collaborative, produces schema + skeleton)
+2. Entity population (editorial-intensive — role descriptions, constant migration)
+3. View derivation (structural refactoring, no visible change)
+4. New views and enrichment (front page JSON-LD, HTML binding, validation)
+5. LinkedIn as a derived view
 
 ### Quality gates at each step
 
@@ -497,6 +494,7 @@ Evolutionary approach — each step is independently valuable:
 
 ## Related
 
+- [personal-knowledge-graph-implementation.plan.md](personal-knowledge-graph-implementation.plan.md) — phased execution plan with todos and acceptance criteria
 - [cv-editorial-improvements.plan.md](cv-editorial-improvements.plan.md) — parent plan
 - [meta-seo-content-audit.plan.md](complete/meta-seo-content-audit.plan.md) — editorial content fixes (prerequisite — complete)
 - [capabilities-editorial.plan.md](complete/capabilities-editorial.plan.md) — capabilities work (complete — terms added to `KNOWS_ABOUT`)

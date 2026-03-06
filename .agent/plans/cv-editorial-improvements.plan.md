@@ -2,7 +2,7 @@
 
 Refine the positioning, capabilities, and structured data in the editorial CV.
 
-## Status: In Progress — positioning, capabilities, metadata, and experience/Before Oak settled; knowledge graph and LinkedIn open
+## Status: In Progress — positioning, capabilities, metadata, and experience/Before Oak settled; knowledge graph is the active stream, LinkedIn subsumed by PKG Phase 5
 
 ## Prerequisite: PII security mitigation
 
@@ -14,13 +14,14 @@ Positioning paragraphs, capabilities, `meta.summary`, structured data (`KNOWS_AB
 
 **Remaining work in dedicated plans:**
 
-| Item                                     | Plan                                                                  | Status   |
-| ---------------------------------------- | --------------------------------------------------------------------- | -------- |
-| Experience & Before Oak editorial review | [experience-editorial.plan.md](complete/experience-editorial.plan.md) | Complete |
-| Personal knowledge graph                 | [personal-knowledge-graph.plan.md](personal-knowledge-graph.plan.md)  | Planning |
-| LinkedIn update                          | [linkedin-update.plan.md](linkedin-update.plan.md)                    | Planning |
-| Tilt mechanism                           | No plan yet — see [Deferred](#deferred) below                         | Deferred |
-| Tilt content                             | Depends on tilt mechanism                                             | Deferred |
+| Item                                      | Plan                                                                                               | Status   |
+| ----------------------------------------- | -------------------------------------------------------------------------------------------------- | -------- |
+| Experience & Before Oak editorial review  | [experience-editorial.plan.md](complete/experience-editorial.plan.md)                              | Complete |
+| Personal knowledge graph — design         | [personal-knowledge-graph.plan.md](personal-knowledge-graph.plan.md)                               | Planning |
+| Personal knowledge graph — implementation | [personal-knowledge-graph-implementation.plan.md](personal-knowledge-graph-implementation.plan.md) | Pending  |
+| LinkedIn update                           | [linkedin-update.plan.md](linkedin-update.plan.md) — subsumed by PKG Phase 5                       | Subsumed |
+| Tilt mechanism                            | No plan yet — see [Deferred](#deferred) below                                                      | Deferred |
+| Tilt content                              | Depends on tilt mechanism                                                                          | Deferred |
 
 ## How to use this plan
 
