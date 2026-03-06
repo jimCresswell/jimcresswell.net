@@ -1,5 +1,21 @@
 # Napkin
 
+## Session: 2026-03-06 — Practice-Core Portability Fixes
+
+### What Was Done
+
+- Triaged 14 Copilot comments on PR #19 independently — Copilot identified real issues but proposed wrong fixes (would hardcode this repo's paths into a portable package)
+- Fixed practice.md: removed vestigial ADR numbers (114, 117, 119, 124, 125), broken references (schema-first-execution.md, invoke-code-reviewers, pnpm qg), non-canonical paths (architectural-decisions/), aligned distillation threshold ~800→~500
+- Fixed practice-bootstrap.md: removed ADR-114/125 references, made template ADR path a placeholder, aligned thresholds, made portability check ecosystem-agnostic
+- Updated CHANGELOG.md, deleted triage working document
+
+### Patterns to Remember
+
+- Automated reviewers (Copilot, etc.) don't understand the portability architecture of practice-core. They see "this path doesn't exist in this repo" and suggest changing it to match — but practice-core is portable and shouldn't be tied to any specific repo's paths. Independent assessment is always needed.
+- Practice-core defines `.agent/` structure (canonical). It does NOT own `docs/` paths — those are repo-specific and routed through `practice-index.md`. ADR numbers from originating repos are vestigial when the concepts are described inline.
+- ADR-117 was missed in the original plan but caught during implementation — same class of issue as 114/119/124/125. When removing a pattern (vestigial ADR numbers), grep for ALL instances of that pattern, not just the ones explicitly listed.
+- Distillation threshold: practice-core said ~800, canonical skill said ~500. This inconsistency survived the practice-core evolution round because the threshold wasn't in scope. Lesson: during evolution work, run a quick consistency check between practice-core descriptions and the local operational skills/rules they describe.
+
 ## Session: 2026-03-06 — Practice-Core Evolution
 
 ### What Was Done

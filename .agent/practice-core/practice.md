@@ -24,7 +24,7 @@ attribution: "created by [Jim Cresswell](https://www.jimcresswell.net/), evolved
 
 The agentic engineering practice is the self-reinforcing system of principles, structures, agents, and tooling that governs how work happens in this repository. It creates the conditions for safe, high-quality human-AI collaboration. The practice is what produces the product code (SDK, MCP servers, search system) — but it is not the product code itself.
 
-**See also**: For the practice-core files and their roles, see [index.md](index.md). For navigable links to this repo's directives, ADRs, and tools, see [practice-index.md](../practice-index.md) — the bridge between the portable core and the local repo. ADR-119 records the naming decision and conceptual boundary.
+**See also**: For the practice-core files and their roles, see [index.md](index.md). For navigable links to this repo's directives, ADRs, and tools, see [practice-index.md](../practice-index.md) — the bridge between the portable core and the local repo.
 
 ## Three Layers
 
@@ -63,11 +63,11 @@ The principles and learning mechanisms. The First Question ("could it be simpler
 
 ### Structure
 
-The organisational patterns. Directives (`.agent/directives/`), plans (`.agent/plans/`) and their templates (`.agent/plans/templates/`), ADRs (`docs/architecture/architectural-decisions/`), sub-agent prompt architecture (ADR-114), quality gates, and institutional memory (`.agent/memory/`). **Cross-agent standardisation** (AGENTS.md, Agent Skills, MCP, A2A) is an evolving implementation direction to keep the practice portable and platform-agnostic. This layer defines _what_ the practice consists of.
+The organisational patterns. Directives (`.agent/directives/`), plans (`.agent/plans/`) and their templates (`.agent/plans/templates/`), ADRs, sub-agent prompt architecture, quality gates, and institutional memory (`.agent/memory/`). **Cross-agent standardisation** (AGENTS.md, Agent Skills, MCP, A2A) is an evolving implementation direction to keep the practice portable and platform-agnostic. This layer defines _what_ the practice consists of.
 
 ### Tooling
 
-Platform-specific implementations following a canonical-first model (ADR-125): skills, commands, sub-agent templates, and rule policies all live in `.agent/` (platform-agnostic). Thin platform adapters in `.cursor/`, `.claude/`, `.gemini/`, `.agents/` reference canonical content without duplicating it. Entry-point files (`AGENT.md`, `CLAUDE.md`, `AGENTS.md`, `GEMINI.md`) direct each platform to the canonical practice. Plans and sub-agent templates need no adapters — they are consumed directly. Rules have two layers: authoritative policies in `.agent/directives/rules.md` and platform-specific activation triggers (Cursor `.cursor/rules/*.mdc`, Claude Code `.claude/rules/*.md`, or the entry-point chain for Gemini/Codex). This layer defines _how_ the practice is used in a specific environment.
+Platform-specific implementations following a canonical-first model: skills, commands, sub-agent templates, and rule policies all live in `.agent/` (platform-agnostic). Thin platform adapters in `.cursor/`, `.claude/`, `.gemini/`, `.agents/` reference canonical content without duplicating it. Entry-point files (`AGENT.md`, `CLAUDE.md`, `AGENTS.md`, `GEMINI.md`) direct each platform to the canonical practice. Plans and sub-agent templates need no adapters — they are consumed directly. Rules have two layers: authoritative policies in `.agent/directives/rules.md` and platform-specific activation triggers (Cursor `.cursor/rules/*.mdc`, Claude Code `.claude/rules/*.md`, or the entry-point chain for Gemini/Codex). This layer defines _how_ the practice is used in a specific environment.
 
 ## The Knowledge Flow
 
@@ -78,7 +78,7 @@ The knowledge flow is the Practice's central mechanism. It converts raw experien
 ```mermaid
 graph LR
     W[Work] -->|"mistakes &<br/>discoveries"| C["Capture<br/><i>napkin</i>"]
-    C -->|"~800 lines"| R["Refine<br/><i>distilled</i>"]
+    C -->|"~500 lines"| R["Refine<br/><i>distilled</i>"]
     R -->|"settled patterns"| G["Graduate<br/><i>permanent docs</i>"]
     R -->|"proven abstractions"| P[Code Patterns]
     G -->|"update"| E["Enforce<br/><i>rules & directives</i>"]
@@ -92,7 +92,7 @@ Each stage exists because it serves a different audience. The progression from c
 
 | Stage        | Artefact                                | Audience                                | Fitness governor                                        |
 | ------------ | --------------------------------------- | --------------------------------------- | ------------------------------------------------------- |
-| **Capture**  | Napkin                                  | Current session                         | ~800 lines → distillation                               |
+| **Capture**  | Napkin                                  | Current session                         | ~500 lines → distillation                               |
 | **Refine**   | Distilled learnings                     | Future agents                           | ~200 lines → extraction to permanent docs               |
 | **Graduate** | ADRs, governance docs, READMEs, TSDoc   | Everyone — humans and agents            | `fitness_ceiling` frontmatter → split by responsibility |
 | **Enforce**  | Rules, directives, always-applied rules | All agents, automatically               | `fitness_ceiling` frontmatter on directives             |
@@ -104,7 +104,7 @@ Not everything in the napkin survives distillation, and not everything distilled
 
 Every stage has a governor that prevents unbounded growth. Without these, the knowledge flow simply moves the accumulation problem downstream.
 
-- **Napkin** → ~800 lines triggers distillation (see the distillation skill): extract high-signal patterns, archive the rest
+- **Napkin** → ~500 lines triggers distillation (see the distillation skill): extract high-signal patterns, archive the rest
 - **Distilled** → target <200 lines; the primary reduction mechanism is extracting settled entries to permanent docs, not compression
 - **Permanent docs** → each carries a `fitness_ceiling` in YAML frontmatter with a `split_strategy`; exceeding the ceiling triggers splitting by responsibility
 - **Practice-core** → the trinity files carry their own ceilings; exceeding triggers tightening (the same ideas, expressed more concisely)
@@ -127,9 +127,9 @@ The knowledge flow is itself part of the Practice, and the Practice travels via 
 
 ## The Review System
 
-Specialist sub-agents provide targeted review after non-trivial changes. The `invoke-code-reviewers` rule (`.cursor/rules/invoke-code-reviewers.mdc`) is the authoritative source for the full roster, invocation matrix, timing tiers, and triage checklist. The `.agent/directives/AGENT.md` "Available Sub-agents" section lists all reviewers by name.
+Specialist sub-agents provide targeted review after non-trivial changes. The `invoke-reviewers` rule (canonically `.agent/rules/invoke-reviewers.md`) is the authoritative source for the full roster, invocation matrix, timing tiers, and triage checklist. The `.agent/directives/AGENT.md` "Available Sub-agents" section lists all reviewers by name.
 
-Sub-agent prompts follow a three-layer composition architecture (ADR-114): components, templates, and wrappers.
+Sub-agent prompts follow a three-layer composition architecture: components, templates, and wrappers.
 
 ## The Workflow
 
@@ -153,9 +153,9 @@ graph LR
   2. **Collection roadmaps** — e.g. `semantic-search/roadmap.md` milestone sequence
   3. **Active execution plans** — e.g. `semantic-search/active/<plan-name>.md` with YAML frontmatter, phased execution, and deterministic validation. Active plans live in `active/`, completed plans move to `archive/completed/` (e.g. `sdk-workspace-separation.md`)
   4. **Platform-specific plans** — e.g. `.cursor/plans/*.plan.md` (Cursor plans) supplement the lowest-level active plans with session-scoped implementation tasks, batch breakdowns, and review checkpoints. These are created per-session and track fine-grained progress that is too ephemeral for the active plan itself
-  5. **Documentation propagation** — before phase closure, propagate settled outcomes from plans into permanent docs: ADR-119, ADR-124, `.agent/practice-core/practice.md`, and any additionally impacted ADRs/docs/READMEs. Apply `.cursor/commands/jc-consolidate-docs.md`
-- **Templates** (`.agent/plans/templates/`) — reusable plan components (ADR-117)
-- **Quality gates** — see `.agent/directives/rules.md` and `pnpm qg`. All gates are always blocking.
+  5. **Documentation propagation** — before phase closure, propagate settled outcomes from plans into permanent docs: relevant ADRs, `.agent/practice-core/practice.md`, and any additionally impacted docs/READMEs. Apply the consolidate-docs command
+- **Templates** (`.agent/plans/templates/`) — reusable plan components
+- **Quality gates** — see `.agent/directives/rules.md` and the local quality-gate commands. All gates are always blocking.
 
 ## Artefact Map
 
@@ -172,8 +172,8 @@ graph LR
 | `.agent/commands/`                             | Canonical commands (platform-agnostic)                                                                              |
 | `.agent/research/`                             | Research documents and analysis                                                                                     |
 | `.agent/reference-docs/`                       | Supporting reference material                                                                                       |
-| `.cursor/`, `.claude/`, `.gemini/`, `.agents/` | Platform adapters: thin wrappers referencing canonical content (ADR-125)                                            |
-| `docs/architecture/architectural-decisions/`   | Permanent architectural decision records                                                                            |
+| `.cursor/`, `.claude/`, `.gemini/`, `.agents/` | Platform adapters: thin wrappers referencing canonical content                                                      |
+| Repo's ADR directory                           | Permanent architectural decision records (path varies by repo; see [practice-index](../practice-index.md))          |
 
 ## Plasmid Exchange
 
@@ -203,7 +203,7 @@ The full set of Learned Principles, including those about silent degradation, di
 
 ## The Self-Teaching Property
 
-The practice is designed to be discoverable through use. `AGENT.md` links to `rules.md`, which references `testing-strategy.md` and `schema-first-execution.md`. Commands invoke prompts, prompts reference plans, plans use templates. Sub-agents review work against the same rules that guided its creation. The napkin captures what went wrong, distillation extracts rules, and the rules prevent repetition.
+The practice is designed to be discoverable through use. `AGENT.md` links to `rules.md`, which references `testing-strategy.md`. Commands invoke prompts, prompts reference plans, plans use templates. Sub-agents review work against the same rules that guided its creation. The napkin captures what went wrong, distillation extracts rules, and the rules prevent repetition.
 
 If you are new to this repository, start with `.agent/directives/AGENT.md`. Follow the links. The practice will teach itself.
 
@@ -213,4 +213,4 @@ The Practice spans ~1,000+ files. This volume is managed, not accidental — eac
 
 Intentional repetition is a conscious trade-off: the Cardinal Rule appears in ~66 files so that any contributor encounters it within their first few documents. DRY matters for code; discoverability matters for onboarding. The risk is formulation drift, mitigated by the consolidation command.
 
-The Practice should be restructured if: consolidation cannot keep pace with file creation, the distillation cycle takes longer than one session, semantic search for a core concept returns more than 5 equally-weighted hits, or AI agents consistently exhaust context windows reading overlapping content. The last two are leading mechanical indicators measurable before human perception catches up. See ADR-119.
+The Practice should be restructured if: consolidation cannot keep pace with file creation, the distillation cycle takes longer than one session, semantic search for a core concept returns more than 5 equally-weighted hits, or AI agents consistently exhaust context windows reading overlapping content. The last two are leading mechanical indicators measurable before human perception catches up.

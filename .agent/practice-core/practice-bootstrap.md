@@ -53,7 +53,7 @@ Two types need no adapters — consumed directly by all platforms:
 - **Directives** (`.agent/directives/`) — policy documents (AGENT.md, rules.md, testing-strategy.md, metacognition.md). Platform-agnostic by nature. Canonical rules operationalise aspects of these policies; the directives are the authoritative source.
 - **Plans** (`.agent/plans/`) — all platforms read plans from the same canonical location.
 
-A thin wrapper MUST NOT contain substantive instructions or logic not in the canonical source. Add a portability validation script to the quality gates to enforce this (see ADR-125).
+A thin wrapper MUST NOT contain substantive instructions or logic not in the canonical source. Add a portability validation script to the quality gates to enforce this.
 
 ## Metacognition
 
@@ -101,9 +101,9 @@ For the practice-core files and their roles, see
 
 ## Architectural Decisions
 
-| ADR                                                                  | Subject   |
-| -------------------------------------------------------------------- | --------- |
-| [ADR-{nnn}](../docs/architecture/architectural-decisions/{filename}) | {subject} |
+| ADR                                                          | Subject   |
+| ------------------------------------------------------------ | --------- |
+| [ADR-{nnn}](../docs/architecture/{adr-directory}/{filename}) | {subject} |
 
 ## Tools and Workflows
 
@@ -191,7 +191,7 @@ Platform-specific notes (e.g. "In Cursor, use `ReadLints`") may appear in the tr
 
 ## Sub-agents: Templates and Platform Adapters
 
-Canonical sub-agent prompts live in `.agent/sub-agents/templates/*.md` (platform-agnostic). For a production app, use the three-layer composition system (ADR-114): shared components → canonical templates → thin platform adapters.
+Canonical sub-agent prompts live in `.agent/sub-agents/templates/*.md` (platform-agnostic). For a production app, use the three-layer composition system: shared components → canonical templates → thin platform adapters.
 
 Platform adapters contain only activation metadata and a pointer to the canonical template: Cursor `.cursor/agents/*.md`, Claude Code `.claude/agents/*.md`, Gemini CLI `review-*.toml` commands, Codex instructional skills.
 
@@ -362,17 +362,17 @@ The napkin is the capture stage of the learning loop. It is always active.
 
 Add `### Mistakes Made` or `### Corrections` subsections as needed.
 
-**Rotation**: When the napkin exceeds ~800 lines, follow the distillation skill.
+**Rotation**: When the napkin exceeds ~500 lines, follow the distillation skill.
 
 ### Distillation (.agent/skills/distillation/SKILL.md)
 
-Extracts high-signal patterns from the napkin into `distilled.md` (target: <200 lines). **Trigger**: napkin exceeds ~800 lines, or user requests.
+Extracts high-signal patterns from the napkin into `distilled.md` (target: <200 lines). **Trigger**: napkin exceeds ~500 lines, or user requests.
 
 **Protocol**: (1) extract patterns, mistakes, and lessons from the outgoing napkin, (2) merge against existing `distilled.md` — add new, skip duplicates, update refinements, investigate contradictions, (3) prune entries that have graduated to permanent docs, (4) archive the old napkin, (5) start fresh. Entries must be specific, actionable, non-obvious, and terse.
 
 ## Platform Configuration
 
-Each platform requires configuration files (e.g. Cursor's `.cursor/environment.json` with `agentCanUpdateSnapshot: true`, and `.cursor/settings.json` for plugins). These are platform-specific -- consult each platform's documentation and ADR-125 for the full adapter location reference.
+Each platform requires configuration files (e.g. Cursor's `.cursor/environment.json` with `agentCanUpdateSnapshot: true`, and `.cursor/settings.json` for plugins). These are platform-specific -- consult each platform's documentation and the practice-core files for adapter patterns.
 
 ## Bootstrap Checklist
 
@@ -388,5 +388,5 @@ After creating all files, validate:
 8. The napkin rule points to a napkin skill that exists.
 9. Quality gates (`type-check`, `lint`, `build`, `test`) are wired in `package.json`.
 10. The project builds.
-11. **Artefact portability**: canonical skills and commands in `.agent/` contain no platform-specific syntax. All platform adapters are thin wrappers. Run `pnpm portability:check` or equivalent to validate adapter-to-canonical consistency (see ADR-125).
+11. **Artefact portability**: canonical skills and commands in `.agent/` contain no platform-specific syntax. All platform adapters are thin wrappers. Validate adapter-to-canonical consistency (portability check script or manual review).
 12. **Cohesion audit**: all practice-core files are internally consistent, practice-index.md links resolve, and all broader Practice files (directives, rules, commands, prompts, skills) are aligned with the core. No stale descriptions, no contradictions, no outdated wording.

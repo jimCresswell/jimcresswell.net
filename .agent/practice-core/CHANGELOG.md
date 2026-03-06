@@ -13,6 +13,11 @@ practice-core package.
 - Reframed underscore-prefix rule as ecosystem-agnostic principle
 - Added this changelog
 - Updated all "five files" references to "six files" across practice-core
+- Removed vestigial ADR numbers (114, 117, 119, 124, 125) from practice.md and practice-bootstrap.md — concepts already described inline
+- Fixed broken references: `schema-first-execution.md`, `invoke-code-reviewers`, `pnpm qg`
+- Made non-canonical paths generic: ADR directory paths removed from practice-core (routed via practice-index)
+- Aligned distillation threshold to ~500 lines across practice.md and practice-bootstrap.md
+- Made portability check step ecosystem-agnostic in practice-bootstrap.md
 
 ## [new-cv] 2026-03-05
 
