@@ -8,7 +8,7 @@ Follow `.agent/directives/AGENT.md` and `.agent/directives/rules.md`. That is al
 
 ## The Practice-Core Files
 
-The Practice travels between repos as a package of five files. The three **plasmid trinity** files encode the blueprint; the two **entry points** provide orientation for humans and agents receiving the Practice.
+The Practice travels between repos as a package of six files. The three **plasmid trinity** files encode the blueprint; the **entry points** provide orientation; the **changelog** records what changed.
 
 | File                                           | Role                                                                     |
 | ---------------------------------------------- | ------------------------------------------------------------------------ |
@@ -17,6 +17,7 @@ The Practice travels between repos as a package of five files. The three **plasm
 | [practice-bootstrap.md](practice-bootstrap.md) | Blueprint: annotated templates for every artefact type (the **how**)     |
 | [README.md](README.md)                         | Entry point for humans: context and hydration how-to                     |
 | [index.md](index.md)                           | Entry point for agents: operational orientation (this file)              |
+| [CHANGELOG.md](CHANGELOG.md)                   | What changed: repo-tagged summaries for plasmid integration              |
 
 The trinity files carry provenance frontmatter and evolve between repos. For day-to-day work you do not need to read any of these -- they are the blueprint, not the building.
 
@@ -26,7 +27,7 @@ The practice-core files are **portable** — they travel between repos and must 
 
 |                | Portable (travels)               | Local (stays)                  |
 | -------------- | -------------------------------- | ------------------------------ |
-| **Files**      | The five practice-core files     | `.agent/practice-index.md`     |
+| **Files**      | The six practice-core files      | `.agent/practice-index.md`     |
 | **Links**      | Only to each other + the bridge  | To the repo's actual artefacts |
 | **Created by** | Origin repo or prior propagation | Hydration step 8               |
 

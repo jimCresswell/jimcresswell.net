@@ -83,15 +83,15 @@ For the practice-core files and their roles, see
 
 ## Artefact Directories
 
-| Location                                  | What lives there                                        |
-| ----------------------------------------- | ------------------------------------------------------- |
-| [`.agent/directives/`](directives/)       | Principles, rules, and operational directives           |
-| [`.agent/practice-core/`](practice-core/) | Portable practice-core files and practice box           |
-| [`.agent/commands/`](commands/)           | Canonical commands (platform-agnostic)                  |
-| [`.agent/skills/`](skills/)               | Canonical skills (platform-agnostic)                    |
-| [`.agent/rules/`](rules/)                 | Canonical always-applied rules (platform-agnostic)      |
-| [`.agent/sub-agents/`](sub-agents/)       | Canonical sub-agent templates                           |
-| [`.agent/plans/`](plans/)                 | Work planning — active and archived                     |
-| [`.agent/prompts/`](prompts/)             | Reusable prompt playbooks                               |
-| [`.agent/memory/`](memory/)               | Institutional memory — napkin, distilled, code patterns |
-| [`.agent/experience/`](experience/)       | Experiential records across sessions                    |
+| Location                                  | What lives there                                                                 |
+| ----------------------------------------- | -------------------------------------------------------------------------------- |
+| [`.agent/directives/`](directives/)       | Principles, rules, and operational directives                                    |
+| [`.agent/practice-core/`](practice-core/) | Portable practice-core files (trinity, entry points, changelog) and practice box |
+| [`.agent/commands/`](commands/)           | Canonical commands (platform-agnostic)                                           |
+| [`.agent/skills/`](skills/)               | Canonical skills (platform-agnostic)                                             |
+| [`.agent/rules/`](rules/)                 | Canonical always-applied rules (platform-agnostic)                               |
+| [`.agent/sub-agents/`](sub-agents/)       | Canonical sub-agent templates                                                    |
+| [`.agent/plans/`](plans/)                 | Work planning — active and archived                                              |
+| [`.agent/prompts/`](prompts/)             | Reusable prompt playbooks                                                        |
+| [`.agent/memory/`](memory/)               | Institutional memory — napkin, distilled, code patterns                          |
+| [`.agent/experience/`](experience/)       | Experiential records across sessions                                             |

@@ -3,4 +3,4 @@ description: Invoke code-reviewer after non-trivial changes
 alwaysApply: true
 ---
 
-Read and follow `.agent/rules/invoke-reviewers.md`.
+Read and follow @.agent/rules/invoke-reviewers.md

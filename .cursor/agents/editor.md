@@ -6,4 +6,4 @@ tools: Read, Glob, Grep, LS, Shell, ReadLints
 readonly: true
 ---
 
-Read and follow `.agent/sub-agents/templates/editor.md`
+Read and follow @.agent/sub-agents/templates/editor.md

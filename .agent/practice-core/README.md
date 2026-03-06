@@ -18,7 +18,7 @@ This was inspired by the concept of [genetic plasmid exchange](https://en.wikipe
 
 ### Bringing the Practice to a New Repo
 
-The Practice travels as a set of files: three core blueprints (the "plasmid trinity") plus two entry points (this README and an agent-facing index). To hydrate it into a new repository:
+The Practice travels as a set of six files: three core blueprints (the "plasmid trinity"), two entry points (this README and an agent-facing index), and a changelog. To hydrate it into a new repository:
 
 1. Create a directory: `.agent/practice-core/` (or `practice_core` if you prefer underscores).
 2. Drop these files into it.

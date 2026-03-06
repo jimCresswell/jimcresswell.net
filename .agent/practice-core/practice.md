@@ -14,7 +14,7 @@ provenance:
     purpose: "Production SDK ecosystem: adopted practice-core structure, trinity concept, and bootstrap from round-trip"
   - index: 3
     repo: new-cv
-    date: 2026-03-05
+    date: 2026-03-06
     purpose: "Personal website and CV: editorial voice, accessibility, single-developer workflow with learning loop"
 fitness_ceiling: 250
 attribution: "created by [Jim Cresswell](https://www.jimcresswell.net/), evolved by many people and agents in many repos"
@@ -177,7 +177,7 @@ graph LR
 
 ## Plasmid Exchange
 
-The practice is not confined to a single repo. It travels as a package of five files in `.agent/practice-core/`: the plasmid trinity — this file (the **what**), [practice-lineage.md](practice-lineage.md) (the **why**), and [practice-bootstrap.md](practice-bootstrap.md) (the **how**) — plus two entry points: [README.md](README.md) (for humans) and [index.md](index.md) (for agents). The trinity files carry provenance frontmatter and evolve through real work; the entry points provide orientation for the two audiences receiving the Practice. Each repo carries its own Practice instance — there is no hierarchy.
+The practice is not confined to a single repo. It travels as a package of six files in `.agent/practice-core/`: the plasmid trinity — this file (the **what**), [practice-lineage.md](practice-lineage.md) (the **why**), and [practice-bootstrap.md](practice-bootstrap.md) (the **how**) — the entry points [README.md](README.md) (for humans) and [index.md](index.md) (for agents) — and the changelog ([CHANGELOG.md](CHANGELOG.md)). The trinity files carry provenance frontmatter and evolve through real work; the entry points provide orientation; the changelog records what changed. Each repo carries its own Practice instance — there is no hierarchy.
 
 The trinity files always carry YAML frontmatter with a `provenance` array (recording the chain of repos that have evolved the file, each with a `purpose` describing what the Practice is being used for there) and a `fitness_ceiling`. The frontmatter must be complete at all times — files can be copied by anyone at any moment, not only through agent-mediated propagation.
 

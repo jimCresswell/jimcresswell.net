@@ -14,7 +14,7 @@ provenance:
     purpose: "Ecosystem-agnostic hydration: added ecosystem survey preamble for agents hydrating into non-TypeScript repos"
   - index: 3
     repo: new-cv
-    date: 2026-03-05
+    date: 2026-03-06
     purpose: "Personal website and CV: editorial voice, accessibility, single-developer workflow with learning loop"
 fitness_ceiling: 400
 attribution: "created by [Jim Cresswell](https://www.jimcresswell.net/), evolved by many people and agents in many repos"
@@ -22,18 +22,18 @@ attribution: "created by [Jim Cresswell](https://www.jimcresswell.net/), evolved
 
 # Practice Bootstrap
 
-This file completes the plasmid trinity. `practice.md` describes the system (the **what**), `practice-lineage.md` encodes the principles and evolution rules (the **why**), and this file provides annotated templates for every artefact type (the **how**). Two entry points travel with the trinity: `README.md` (for humans) and `index.md` (for agents).
+This file completes the plasmid trinity. `practice.md` describes the system (the **what**), `practice-lineage.md` encodes the principles and evolution rules (the **why**), and this file provides annotated templates for every artefact type (the **how**). Three companion files travel with the trinity: `README.md` (for humans), `index.md` (for agents), and `CHANGELOG.md` (what changed).
 
-An agent reading all five practice-core files has enough information to build a working Practice system from scratch. Templates use `{placeholders}` for project-specific content. The Practice uses a **canonical-first artefact model**: all substantive content lives in `.agent/` (platform-agnostic), and thin platform adapters in `.cursor/`, `.claude/`, `.gemini/`, `.agents/` reference canonical content without duplicating it. Sections below use Cursor as the concrete platform example -- adapt adapter formats to local platforms. Ecosystem conventions use TypeScript/Node.js as examples -- substitute your ecosystem's equivalents.
+An agent reading all six practice-core files has enough information to build a working Practice system from scratch. Templates use `{placeholders}` for project-specific content. The Practice uses a **canonical-first artefact model**: all substantive content lives in `.agent/` (platform-agnostic), and thin platform adapters in `.cursor/`, `.claude/`, `.gemini/`, `.agents/` reference canonical content without duplicating it. Sections below use Cursor as the concrete platform example -- adapt adapter formats to local platforms. Ecosystem conventions use TypeScript/Node.js as examples -- substitute your ecosystem's equivalents.
 
 ## Before You Begin: Ecosystem Survey
 
 The templates below use TypeScript/Node.js/Cursor conventions as concrete examples. Before creating any artefacts, the hydrating agent MUST:
 
-1. **Survey the existing repo**: language(s), test framework(s), linter(s), formatter(s), package manager, build system, and existing quality standards.
+1. **Survey the existing repo**: language(s), test framework(s), linter(s), formatter(s), package manager, build system, and existing quality standards. Also survey existing practice infrastructure: commands, skills, rules, sub-agents, memory pipeline, prompts. Determine the hydration path: cold start (no existing practice), augmentation (partial practice), or restructuring (mature but platform-locked practice).
 2. **Assess alignment**: identify what the repo already has that meets or exceeds Practice principles. Existing standards that are at least as rigorous as the Practice MUST be preserved.
 3. **Adapt templates**: substitute local tooling in every template. File extensions (`*.unit.test.ts` becomes `*_test.go`, `test_*.py`, etc.), tool names (`Vitest` becomes `pytest`, `go test`, etc.), configuration formats, and platform conventions all change.
-4. **Never overwrite**: the Practice enables excellence; it does not replace what has already been achieved.
+4. **Never overwrite**: the Practice enables excellence; it does not replace what has already been achieved. This extends beyond tooling to practice mechanisms: specialised reviewers, additional knowledge flow feeds, editorial systems, domain-specific sub-agents. The local practice may exceed the blueprint in areas the blueprint does not model. These are adaptations, not deviations — preserve and integrate them.
 
 ## The Artefact Model
 
@@ -185,16 +185,7 @@ alwaysApply: true  # or globs: '**/*.test.ts'
 Read and follow `.agent/rules/{name}.md`.
 ```
 
-**Claude Code** (`.claude/rules/*.md`) — path-scoped only; `alwaysApply` rules are enforced via the entry-point chain:
-
-```text
----
-paths:
-  - '**/*.test.ts'
----
-
-Read and follow `.agent/rules/{name}.md`.
-```
+**Claude Code** (`.claude/rules/*.md`) — path-scoped only; `alwaysApply` rules are enforced via the entry-point chain. Same body (`Read and follow ...`) with `paths` YAML instead of `alwaysApply`.
 
 Platform-specific notes (e.g. "In Cursor, use `ReadLints`") may appear in the trigger — they are activation metadata, not policy.
 
@@ -307,40 +298,21 @@ Claude Code (`.claude/commands/jc-*.md`) — YAML frontmatter with `description`
 
 ### Required Commands
 
-| Command          | File                     | Core logic                                                                                                                                                                                                         |
-| ---------------- | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| start-right      | `jc-start-right.md`      | Read and follow the start-right prompt.                                                                                                                                                                            |
-| gates            | `jc-gates.md`            | Run `type-check -> lint -> build -> test` sequentially. All blocking. Restart from beginning after any fix.                                                                                                        |
-| commit           | `jc-commit.md`           | Check status, review diff, verify gates, stage selectively, conventional commit format. Safety: never force push, never amend pushed commits, never `--no-verify`.                                                 |
-| consolidate-docs | `jc-consolidate-docs.md` | Verify documentation is current. Extract any remaining plan content to permanent locations. Update plan/prompt statuses. Write to napkin. Check practice box. Check practice fitness. Consider practice evolution. |
-| plan             | `jc-plan.md`             | Read directives. Create plan with YAML frontmatter, acceptance criteria, risk assessment, non-goals.                                                                                                               |
+| Command          | File                     | Core logic                                                                                                                                                                                                                         |
+| ---------------- | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| start-right      | `jc-start-right.md`      | Read and follow the start-right prompt.                                                                                                                                                                                            |
+| gates            | `jc-gates.md`            | Run `type-check -> lint -> build -> test` sequentially. All blocking. Restart from beginning after any fix.                                                                                                                        |
+| commit           | `jc-commit.md`           | Check status, review diff, verify gates, stage selectively, conventional commit format. Safety: never force push, never amend pushed commits, never `--no-verify`.                                                                 |
+| consolidate-docs | `jc-consolidate-docs.md` | Verify documentation is current. Extract any remaining plan content to permanent locations. Update plan/prompt statuses. Write to napkin. Check practice box. Audit cohesion. Check practice fitness. Consider practice evolution. |
+| plan             | `jc-plan.md`             | Read directives. Create plan with YAML frontmatter, acceptance criteria, risk assessment, non-goals.                                                                                                                               |
 
 ## Prompts (.agent/prompts/)
 
-All prompts carry YAML frontmatter for consistent status tracking and discoverability:
-
-```yaml
----
-prompt_id: { unique-id }
-title: "{Human-readable title}"
-type: workflow | handover
-status: active | completed
-last_updated: YYYY-MM-DD
-parent_plan: { plan_id } # handover prompts only
----
-```
-
-Completed prompts move to `archive/` within the prompts directory. The frontmatter `status` field and the archive location reinforce each other -- belt and braces.
-
-### Prompt Types
-
-**Workflow prompts** (e.g. `start-right`) are evergreen -- they describe a repeatable process, not a specific deliverable. They have no `parent_plan`.
-
-**Handover prompts** describe the context for a specific implementation session. Each references its parent plan via `parent_plan`. When the work completes, the prompt is marked `status: completed` and archived. A new handover is written for the next slice.
+All prompts carry YAML frontmatter: `prompt_id`, `title`, `type` (workflow | handover), `status` (active | completed), `last_updated`, and `parent_plan` (handover only). Completed prompts move to `archive/`. **Workflow prompts** (e.g. `start-right`) are evergreen processes with no `parent_plan`. **Handover prompts** describe specific implementation sessions; archived on completion.
 
 ### start-right.prompt.md
 
-The session entry point. Sections: **Foundation Documents** (read AGENT.md, rules.md, testing-strategy.md), **Project Context** (brief description plus key doc links), **Guiding Questions** (right problem? right layer? simpler? assumptions?), **Practice Box** (check `.agent/practice-core/incoming/` for plasmids), **Process** (discuss first step with user), **Quality Gates** (list the gate commands).
+The session entry point. Sections: **Foundation Documents** (AGENT.md, rules.md, testing-strategy.md), **Guiding Questions** (right problem? right layer? simpler? assumptions?), **Practice Box** (check `.agent/practice-core/incoming/`), **Process** (discuss first step with user), **Quality Gates**.
 
 ## Skills (.agent/skills/)
 
@@ -394,21 +366,9 @@ Add `### Mistakes Made` or `### Corrections` subsections as needed.
 
 ### Distillation (.agent/skills/distillation/SKILL.md)
 
-Distillation extracts high-signal patterns from the napkin into a curated `distilled.md` rulebook.
+Extracts high-signal patterns from the napkin into `distilled.md` (target: <200 lines). **Trigger**: napkin exceeds ~800 lines, or user requests.
 
-**Trigger**: Napkin exceeds ~800 lines, or user requests.
-
-**Target**: `distilled.md` under 200 lines. Every entry earns its place by being actionable.
-
-**Protocol**:
-
-1. **Extract**: Collect all "Patterns to Remember", "Mistakes", and "Lessons" from the outgoing napkin.
-2. **Merge**: Compare against existing `distilled.md`. New insights: add. Duplicates: skip. Refinements: update. Contradictions: investigate.
-3. **Prune**: Entries that have matured into permanent documentation (rules, docs, practice) are removed from `distilled.md`. Create the permanent doc first, then remove the entry.
-4. **Archive**: `cp napkin.md archive/napkin-YYYY-MM-DD.md`
-5. **Fresh start**: Create new `napkin.md` with a session heading.
-
-**Quality**: Entries must be specific, actionable, non-obvious, and terse (1-2 lines).
+**Protocol**: (1) extract patterns, mistakes, and lessons from the outgoing napkin, (2) merge against existing `distilled.md` — add new, skip duplicates, update refinements, investigate contradictions, (3) prune entries that have graduated to permanent docs, (4) archive the old napkin, (5) start fresh. Entries must be specific, actionable, non-obvious, and terse.
 
 ## Platform Configuration
 
@@ -418,7 +378,7 @@ Each platform requires configuration files (e.g. Cursor's `.cursor/environment.j
 
 After creating all files, validate:
 
-1. `.agent/practice-core/` contains all five practice-core files (`practice.md`, `practice-lineage.md`, `practice-bootstrap.md`, `README.md`, `index.md`) and `incoming/.gitkeep`.
+1. `.agent/practice-core/` contains all six practice-core files (`practice.md`, `practice-lineage.md`, `practice-bootstrap.md`, `README.md`, `index.md`, `CHANGELOG.md`) and `incoming/.gitkeep`.
 2. `.agent/practice-index.md` exists, all its links resolve, and its sections match the format specified above.
 3. `AGENT.md` links to `.agent/practice-core/index.md`.
 4. Every file path referenced in AGENT.md, rules, commands, and agents resolves.
