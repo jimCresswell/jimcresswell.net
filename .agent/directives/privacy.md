@@ -1,3 +1,8 @@
+---
+fitness_ceiling: 50
+split_strategy: Split by responsibility — extract PII handling from psychological safety
+---
+
 # Privacy
 
 Rules for handling psychologically sensitive and personally identifiable content in this repository. These rules apply to all contributors — human and AI.

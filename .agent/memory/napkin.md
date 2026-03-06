@@ -1,5 +1,27 @@
 # Napkin
 
+## Session: 2026-03-05 — Practice-Core Hydration
+
+### What Was Done
+
+- Hydrated practice-core into the new-cv repo on `feature/practice-core-hydration` branch
+- Phase 1: Canonical-first restructuring — moved 7 commands, 5 skills, 1 agent from `.cursor/` to `.agent/` (canonical), created thin Cursor adapters. Renamed `consolidate-docs` to `jc-consolidate-docs`. Merged two start-right variants into one.
+- Phase 2: New mechanisms — created metacognition directive, 3 technical reviewers (code-reviewer, test-reviewer, type-reviewer), 6 always-applied rules with Cursor triggers, 4 new commands (review, think, step-back, go)
+- Phase 3: Growth governance — added fitness_ceiling frontmatter to all 7 directives and distilled.md, YAML frontmatter to prompts, updated provenance chains on all three trinity files, created experience/ and code-patterns/ directories
+- Phase 4: Validation — created practice-index.md bridge file, updated AGENT.md with full Practice reference, verified all links resolve (practice-index: 100%, AGENT.md: 100%), self-containment check passed, all quality gates pass (66 tests)
+- Fixed broken references in ADR-012 from old `.cursor/` paths to new canonical paths
+
+### Patterns to Remember
+
+- The naive reference check script from practice-lineage.md does not resolve relative paths from source file location — all "broken" results for `./rules.md` etc. are false positives because the file exists relative to AGENT.md's directory
+- Cursor command adapters use `@` prefix for file injection; canonical commands use plain relative paths — strip `@` when canonicalising
+- Skill classification: napkin is `passive` (always on, no trigger), most others are `active` (explicitly invoked)
+- When renaming a command, grep the whole repo for references to the old name — ADRs and other permanent docs may link to it
+- Cursor adapter pointer syntax was inconsistent after hydration: commands/skills used `@`, rules/agents used backticks. User preference: `@` everywhere for consistency.
+- The consolidation command specification appears in TWO places in practice-core: practice-lineage.md §Workflow Commands and practice-bootstrap.md §Required Commands table. Both must be updated together.
+- "Five files" / "package of five" appears in multiple practice-core locations. Adding CHANGELOG.md means all of these need updating — grep before editing.
+- The practice-core has never been through a "restructuring" hydration before (always cold start or return trip). This is genuinely new ground.
+
 ## Session: 2026-02-20 — Experience Editorial: Before Oak, Voice, Capabilities (items 8–21)
 
 ### What Was Done

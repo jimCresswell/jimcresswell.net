@@ -1,3 +1,8 @@
+---
+fitness_ceiling: 150
+split_strategy: Split by responsibility — extract pitfall examples to a separate reference, or voice register details to register-specific files
+---
+
 # Editorial Guidance
 
 This file describes the editorial constraints and voice for Jim Cresswell's content. Read and internalise it before any content work — editorial changes, tilt variants, front page revisions, LinkedIn preparation, or any other writing that represents Jim.

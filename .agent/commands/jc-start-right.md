@@ -1,14 +1,14 @@
-# Start Right (Thorough)
+# Start Right
 
-Ground yourself rigorously before beginning significant work.
+Ground yourself before beginning work.
 
 ## Foundation Documents
 
 Read and internalise these documents:
 
-1. @.agent/directives/AGENT.md - Entry point and project context
-2. @.agent/directives/rules.md - **THE AUTHORITATIVE RULES**
-3. @.agent/directives/testing-strategy.md - TDD at all levels
+1. `.agent/directives/AGENT.md` — Entry point and project context
+2. `.agent/directives/rules.md` — **THE AUTHORITATIVE RULES**
+3. `.agent/directives/testing-strategy.md` — TDD at all levels
 
 **Plans must include regularly re-reading and re-committing to these foundation documents.**
 
@@ -22,6 +22,10 @@ Before diving in, pause and ask:
 4. **What assumptions am I making? Are they valid?**
 
 Step back and consider if work is delivering value through impact at the system level, not just fixing the problem right in front of you.
+
+## Practice Box
+
+Check `.agent/practice-core/incoming/` for incoming practice-core files. If files are present, alert the user.
 
 ## Commit
 

@@ -1,0 +1,6 @@
+---
+description: TDD at all levels — test first, behaviour not implementation
+alwaysApply: true
+---
+
+Read and follow `.agent/rules/tdd.md`.

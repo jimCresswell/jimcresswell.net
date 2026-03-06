@@ -1,0 +1,6 @@
+---
+description: Read and write napkin continuously every session
+alwaysApply: true
+---
+
+Read and follow `.agent/rules/napkin-always-on.md`.
