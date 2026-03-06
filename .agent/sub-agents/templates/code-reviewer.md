@@ -57,7 +57,7 @@ Categorise by severity:
 
 For each issue: location (file:line), problem, impact, and specific fix.
 
-**Triage to specialists**: If the change involves test additions/modifications, recommend the test-reviewer. If it involves type changes, generics, or type flow, recommend the type-reviewer. If it involves editorial content, recommend the editor.
+**Triage to specialists**: If the change involves test additions/modifications, recommend the test-reviewer. If it involves type changes, generics, or type flow, recommend the type-reviewer. If it involves editorial content, recommend the editor. If it involves entity model files, JSON-LD generation, `@id` conventions, or structured data output, recommend the pkg-reviewer.
 
 ## Output Format
 

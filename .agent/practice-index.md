@@ -53,13 +53,14 @@ For the practice-core files and their roles, see
 
 ### Skills
 
-| Skill                                              | Purpose                                 |
-| -------------------------------------------------- | --------------------------------------- |
-| [napkin](skills/napkin/SKILL.md)                   | Session learning log — always active    |
-| [distillation](skills/distillation/SKILL.md)       | Rotate napkin into curated distilled.md |
-| [editorial-voice](skills/editorial-voice/SKILL.md) | Apply Jim's editorial voice             |
-| [quality-gates](skills/quality-gates/SKILL.md)     | Run quality gates with restart-on-fix   |
-| [deslop](skills/deslop/SKILL.md)                   | Remove AI-generated code slop           |
+| Skill                                              | Purpose                                    |
+| -------------------------------------------------- | ------------------------------------------ |
+| [napkin](skills/napkin/SKILL.md)                   | Session learning log — always active       |
+| [distillation](skills/distillation/SKILL.md)       | Rotate napkin into curated distilled.md    |
+| [editorial-voice](skills/editorial-voice/SKILL.md) | Apply Jim's editorial voice                |
+| [quality-gates](skills/quality-gates/SKILL.md)     | Run quality gates with restart-on-fix      |
+| [deslop](skills/deslop/SKILL.md)                   | Remove AI-generated code slop              |
+| [pkg](skills/pkg/SKILL.md)                         | PKG entity model and structured data guide |
 
 ### Rules
 
@@ -80,6 +81,7 @@ For the practice-core files and their roles, see
 | [code-reviewer](sub-agents/templates/code-reviewer.md) | Gateway reviewer — quality, correctness, triage   |
 | [test-reviewer](sub-agents/templates/test-reviewer.md) | TDD compliance and test quality                   |
 | [type-reviewer](sub-agents/templates/type-reviewer.md) | TypeScript type safety                            |
+| [pkg-reviewer](sub-agents/templates/pkg-reviewer.md)   | PKG specialist — Schema.org, JSON-LD, graph       |
 
 ## Artefact Directories
 

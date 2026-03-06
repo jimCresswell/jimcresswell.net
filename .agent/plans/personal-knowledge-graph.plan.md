@@ -1,6 +1,6 @@
 # Personal Knowledge Graph
 
-Build a unified model where all site outputs — page rendering, Open Graph, JSON-LD, Web App Manifest, sitemap, PDF — are derived views onto the same underlying reality. A personal knowledge graph of entities and typed relationships, with each output as a derived view. Breakout plan from [cv-editorial-improvements.plan.md](cv-editorial-improvements.plan.md).
+Build a unified model where all site outputs — page rendering, Open Graph, JSON-LD, Web App Manifest, sitemap, PDF — are derived views onto the same underlying reality. A personal knowledge graph of entities and typed relationships, with each output as a derived view.
 
 ## Status: Planning
 
@@ -123,13 +123,27 @@ This means:
 
 ---
 
+## Consumer value tiers
+
+Not all structured data is consumed equally. Research (see [research findings](research/pkg-research-findings.md)) reveals a clear hierarchy. This ensures effort is proportional to value.
+
+| Tier                                        | What happens                                                                                  | Entity types                                                                                                                                                                                                                                                          |
+| ------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **1 — Google rich results**                 | Produces visible features in Google Search                                                    | `ProfilePage` (enhanced listings), `WebSite` + `SearchAction` (sitelinks searchbox), `Organization` (knowledge panel)                                                                                                                                                 |
+| **2 — Entity building and E-E-A-T**         | Consumed by Google for entity understanding and trust signals; no visible features            | `Person`, `EmployeeRole` chains, `ScholarlyArticle` with DOIs, `CollegeOrUniversity`                                                                                                                                                                                  |
+| **3 — AI readiness and graph completeness** | Valid Schema.org; invisible to Google; valuable for AI/LLM consumption and the internal model | `Thesis`, `SoftwareSourceCode`, `WebAPI`, `DefinedTerm` (Capability), `Intangible` + `additionalType` (abstract entities), `Statement` (positioning), `EducationalOccupationalCredential`, `Occupation` (outside job-posting context — this site has no job postings) |
+
+Most entity types in this plan are Tier 2 or Tier 3 — effort should be proportional.
+
+---
+
 ## Design Phase 1: Entity and relationship audit
 
 Audit all entities and relationships across all sources. Present a complete inventory to Jim.
 
 ### Specific entities
 
-- **Person** — already exists in JSON-LD (`schema:Person`); review for completeness. Add `sameAs` links (GitHub, LinkedIn, Google Scholar). Include `honorificPrefix`: "Dr", `pronouns`: "he/him".
+- **Person** — already exists in JSON-LD (`schema:Person`); review for completeness. Add `sameAs` links (GitHub, LinkedIn, Google Scholar). Include `honorificPrefix`: "Dr", `pronouns`: "he/him" (a first-class Schema.org property — expects `DefinedTerm`, `StructuredValue`, or `Text`).
 - **WebSite** — the website itself (`schema:WebSite`), with `publisher` pointing to Person. Not currently in the JSON-LD.
 - **Organisations** — all employers, universities, volunteer organisations. `schema:Organization` or `schema:CollegeOrUniversity`. Includes all organisations named in the CV and archive, plus additional career breadth organisations listed in `.agent/private/identity.md`.
   - **Oak National Academy** — the CV narrative uses "a live national public service" for a general audience. The entity node description should carry the precise institutional language: "An operationally independent arms-length body of the Department for Education in the UK" (an executive non-departmental public body). Reference sources: [GOV.UK listing](https://www.gov.uk/government/organisations/oak-national-academy), [Oak About Us](https://www.thenational.academy/about-us/who-we-are) ("an independent public body"), [Oak Curriculum API](https://open-api.thenational.academy/) (OGL, API offering). The entity description serves machine consumers and public-sector-literate readers; the CV narrative serves everyone else.
@@ -138,11 +152,11 @@ Audit all entities and relationships across all sources. Present a complete inve
 - **Credentials** — degrees plus certifications. `schema:EducationalOccupationalCredential`.
   - PhD Astrophysics & Cosmology (Portsmouth), MSc Cosmology (Sussex), MPhys Physics (Bath).
   - Certifications (JSON-LD only — they also appear on [LinkedIn](https://www.linkedin.com/in/jimcresswell), linked from the footer on all pages): Monitoring the Oceans from Space (EUMETSAT), Fire Marshal Course, The Data Scientist's Toolbox (Johns Hopkins University), AgilePM Foundation.
-- **Theses** — linked to their supporting credentials. `schema:Thesis` with `inSupportOf`.
+- **Theses** — linked to their supporting credentials. `schema:Thesis` with `inSupportOf` (Text — e.g. "PhD in Astrophysics & Cosmology") and `about` → `EducationalOccupationalCredential` (typed entity relationship). Note: Schema.org defines `inSupportOf` as expecting `Text`, not an entity reference. Use `Thesis.about → Credential` for the typed link.
   - PhD: "Luminosity Functions and Galaxy Bias in the Sloan Digital Sky Survey".
   - MSc: "Observing Cosmological Topology".
   - MPhys: "The Design and Construction of a Theremin".
-- **Publications** — already exist in JSON-LD; cross-check against Google Scholar. `schema:ScholarlyArticle`.
+- **Publications** — already exist in JSON-LD; cross-check against Google Scholar. `schema:ScholarlyArticle`. **Research note**: Google Scholar does **not** consume JSON-LD — it uses Highwire Press `citation_*` HTML meta tags. `ScholarlyArticle` markup is valuable for Google Search entity-building (Tier 2) but does not reach Google Scholar. **Open decision for Jim**: is Google Scholar indexing from this site a goal? If so, separate `<meta name="citation_*">` tags would be needed.
 - **Projects** — this website, Obaith, Reforest Now, Theremin. `schema:CreativeWork` + `additionalType`. Additional projects (e.g. data visualisation work) to be confirmed with Jim during Design Phase 2.
 - **Services** — services offered by organisations. `schema:WebAPI` or `schema:Service`.
   - **Oak Curriculum API** — a live service offered by Oak, not a project Jim created. `schema:WebAPI` with `url`: `https://open-api.thenational.academy/` and `provider`: Oak. Offers free access to curriculum data under OGL.
@@ -163,7 +177,7 @@ These are real entities at a higher level of abstraction. They currently exist o
 
 These are real expressions of real identities. A positioning narrative is not marketing copy — it's a real statement that a real person makes about a real identity.
 
-- **PositioningNarrative** — the positioning paragraphs. Currently `positioning.paragraphs` — a property of the CV page, but actually an expression of the professional identity. `schema:Statement`.
+- **PositioningNarrative** — the positioning paragraphs. Currently `positioning.paragraphs` — a property of the CV page, but actually an expression of the professional identity. `schema:Statement`. **Research note**: `Statement` exists on Schema.org but is a weak semantic fit — it was designed for factual assertions ("a fun or interesting fact"), not narrative prose. Pragmatically acceptable because the `text` and `about` properties match the need. An alternative is using `description` directly on the ProfessionalIdentity `Intangible`. ADR-008 accepts the `Statement` trade-off. **Open decision for Jim**: keep `Statement` or use `description` on `Intangible`?
 - **Capability** — each capability is a real competence linked to the professional identity and grounded by evidence (Roles, Projects, Publications). `schema:DefinedTerm`.
 - **TiltVariant** — an alternative expression of the professional identity for a specific audience. Currently `tilts.*` entries. `schema:Statement` + `additionalType`.
 
@@ -185,7 +199,8 @@ Specific (with Schema.org properties):
 - `Person.hasCredential` → `EducationalOccupationalCredential` → `Credential.recognizedBy` → `CollegeOrUniversity`
 - `Person.subjectOf` → `Thesis` / `ScholarlyArticle` (Person links to their works)
 - `Thesis.author` → `Person` / `ScholarlyArticle.author` → `Person` (works link back — bidirectional)
-- `Thesis.inSupportOf` → `EducationalOccupationalCredential` (thesis supports credential)
+- `Thesis.inSupportOf` → `Text` (e.g. "PhD in Astrophysics & Cosmology" — Schema.org expects Text, not an entity reference)
+- `Thesis.about` → `EducationalOccupationalCredential` (typed entity relationship — thesis linked to credential)
 - `WebSite.publisher` → `Person`
 - `SoftwareSourceCode.creator` → `Person`
 - `SoftwareSourceCode.sourceOrganization` → `Organization`
@@ -220,7 +235,7 @@ Presentational (with Schema.org properties):
 
 These live in `lib/jsonld.ts` constants and need to move into the content model:
 
-- `KNOWS_ABOUT` — 34 topic strings describing Jim's expertise (expanded during the meta-SEO content audit from 20 to 34, with clustering by domain).
+- `KNOWS_ABOUT` — 34 topic strings describing Jim's expertise (expanded during the meta-SEO content audit from 20 to 34, with clustering by domain). **Research note**: the highest-impact improvement for entity resolution is linking `knowsAbout` items to Wikidata/Wikipedia entities via `sameAs` (e.g. `{"@type": "Thing", "name": "Cosmology", "sameAs": "https://www.wikidata.org/wiki/Q338"}`) rather than bare strings. Optional — bare strings work, entity-linked items work significantly better. **Open decision for Jim**: is this worth the effort for ~34 items?
 - `OCCUPATION` — name, description, location, skills.
 - `CREDENTIAL_DETAILS` — category, level, and subject areas for each degree.
 - `PUBLICATIONS` — 4 works with identifiers (DOIs, arXiv IDs) and relationships.
@@ -294,6 +309,8 @@ These conventions apply when the entity model is serialised as JSON-LD.
 
 IDs that include a page path (e.g. `cv/#role-oak-2020-present`) double as HTML anchor links — the `@id` and the element `id` match, giving humans deep-links and machines stable identifiers.
 
+**Canonical document rule:** an entity's `@id` resolves to the page that is its canonical Linked Data document (the fragment is stripped during HTTP resolution). Site-level entities (`#person`, `#website`, `#org-*`) resolve to the root document. Page-anchored entities (`cv/#role-*`, `cv/#webpage`) resolve to the CV page. If a role entity appears in both the homepage and CV subgraphs, its `@id` still points to the CV page as the canonical description — this is valid in Linked Data and consistent with [ADR-010](../../docs/architecture/decision-records/010-canonical-url-graph-identity.md).
+
 **Structured identifiers (PropertyValue pattern):**
 
 DOIs, arXiv IDs, and other formal identifiers use the Schema.org `PropertyValue` pattern rather than bare strings:
@@ -340,15 +357,22 @@ Once the content model is designed, ensure every output derives from it.
 
 ### View derivation: subgraph closure algorithm
 
-Each page gets a JSON-LD subgraph derived from the canonical entity model:
+Each page gets a JSON-LD subgraph derived from the canonical entity model. The algorithm is a variant of Concise Bounded Description (CBD), a [W3C Member Submission](https://www.w3.org/Submission/CBD/) for extracting a self-contained subgraph rooted at a given entity:
 
 1. Start from the page's root entity (e.g. the `ProfilePage` node for `/cv/`).
 2. Follow `mainEntity` / `about` to reach the `Person` node.
 3. Recursively include every entity referenced by `@id` from already-included entities (closure).
-4. Optionally prune: the homepage may include only the most recent role(s); the CV page includes the full career.
+4. Optionally prune: the homepage may include only the most recent role(s); the CV page includes the full career. The closure function accepts a pruning predicate — pruning policy is configuration, not algorithm.
 5. The canonical `@id` values (e.g. `https://www.jimcresswell.net/#person`, `https://www.jimcresswell.net/cv/#role-oak-2020-present`) stay consistent across pages so consumers can reconcile entities.
 
 This is the concrete mechanism for "different views traverse different paths."
+
+### JSON-LD constraints (confirmed by [research](research/pkg-research-findings.md))
+
+- **Single block per page.** One `<script type="application/ld+json">` containing one `@graph` array. Multiple blocks have unreliable cross-referencing in practice.
+- **JSON-LD 1.0 subset only.** No consumer processes 1.1 features (`@nest`, `@propagate`, `@included`, scoped contexts). Stick to `@context`, `@graph`, `@id`, `@type`, and Schema.org properties.
+- **Self-containment.** Every `@id` reference in a page's subgraph must resolve to a node within the same subgraph. Dangling references are invalid.
+- **Give every entity an `@id`.** Avoid blank nodes (anonymous, not reconcilable across pages). The only exception is genuinely embedded values that never need independent identity (e.g. `PostalAddress`, `PropertyValue` within identifier arrays).
 
 ### Publishing strategy
 
@@ -382,9 +406,9 @@ With entities in the model, the JSON-LD graph can be significantly richer:
 
 - **Roles**: `OrganizationRole` (Schema.org) allows start/end dates and named positions.
 - **Software**: `SoftwareSourceCode` with `codeRepository`. **Services**: `WebAPI` with `provider` → Organisation. See Design Phase 1 entity definitions for Oak Curriculum API and SDK/MCP modelling.
-- **Volunteer work**: `VolunteerAction` or a role with a volunteer flag.
+- **Volunteer work**: `OrganizationRole` with `Person.memberOf` → `OrganizationRole` → `OrganizationRole.memberOf` → `Organization`. Research confirms `VolunteerAction` is for discrete events, not ongoing relationships.
 
-**Decision:** Schema.org type mappings are decided in [ADR-008](../../docs/architecture/decision-records/008-schema-org-compliance.md). Specific schema choices for roles, software, and volunteer work remain open — to be resolved during Phase 1 of the [implementation plan](personal-knowledge-graph-implementation.plan.md).
+**Decision:** Schema.org type mappings are decided in [ADR-008](../../docs/architecture/decision-records/008-schema-org-compliance.md). Volunteer modelling is resolved: `OrganizationRole` with `memberOf` (see [research findings](research/pkg-research-findings.md)). Specific schema choices for roles and software are confirmed in the entity audit above.
 
 ---
 
@@ -448,9 +472,15 @@ For phased execution with todos, acceptance criteria, and progress tracking, see
 - **Visible content unchanged.** After each structural migration step, the rendered HTML of all pages must be byte-identical (or pixel-identical if markup changes are cosmetic, e.g. attribute ordering). Snapshot the current rendered output before starting; diff against it after each step. Editorial changes happen separately, never in the same commit as structural migration.
 - `pnpm check` passes.
 - `pnpm test:e2e` passes.
-- [Schema.org Validator](https://validator.schema.org/) — no errors.
-- [Google Rich Results Test](https://search.google.com/test/rich-results) — all pages pass.
-- Cross-check: every `@id` reference resolves to a defined node.
+
+**Structured data validation** — four-tool workflow (see [research findings](research/pkg-research-findings.md)):
+
+| Tool                                                                    | When            | Purpose                                                                         |
+| ----------------------------------------------------------------------- | --------------- | ------------------------------------------------------------------------------- |
+| Programmatic `@id` resolution check                                     | Development     | Every `@id` reference in a subgraph resolves to a node within the same subgraph |
+| [Schema.org Validator](https://validator.schema.org/)                   | Pre-deployment  | Strict Schema.org spec compliance; validates all syntaxes                       |
+| [Google Rich Results Test](https://search.google.com/test/rich-results) | Post-deployment | Verify Google eligibility; visual preview of which types trigger rich results   |
+| [Google Search Console](https://search.google.com/search-console)       | Ongoing         | Alerts; tracks performance; shows real indexing errors                          |
 
 ---
 
@@ -494,6 +524,7 @@ For phased execution with todos, acceptance criteria, and progress tracking, see
 
 ## Related
 
+- [research/pkg-research-findings.md](research/pkg-research-findings.md) — Schema.org, JSON-LD, Google structured data, and Neo4j research findings
 - [personal-knowledge-graph-implementation.plan.md](personal-knowledge-graph-implementation.plan.md) — phased execution plan with todos and acceptance criteria
 - [cv-editorial-improvements.plan.md](cv-editorial-improvements.plan.md) — parent plan
 - [meta-seo-content-audit.plan.md](complete/meta-seo-content-audit.plan.md) — editorial content fixes (prerequisite — complete)

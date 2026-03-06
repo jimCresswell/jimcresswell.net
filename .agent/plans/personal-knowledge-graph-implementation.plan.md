@@ -37,6 +37,7 @@ Before Phase 2 (editorial-intensive), additionally read:
 4. `.agent/skills/editorial-voice/SKILL.md` — common pitfalls, two registers
 5. `content/cv.content.json` — the `prior_roles` descriptions are exemplars of the right framing for role descriptions
 6. `docs/editorial/decision-records/` — editorial decisions already made
+7. `.agent/private/identity.md` — deeper biographical context, additional career breadth roles, volunteer work (gitignored — local access only)
 
 ## Overview
 
@@ -46,13 +47,13 @@ The Person entity is defined once and its `@id` (`https://www.jimcresswell.net/#
 
 ## Phases
 
-| Phase                         | Key principle                              | Nature                                  |
-| ----------------------------- | ------------------------------------------ | --------------------------------------- |
-| 1. Entity model design        | Design the schema before writing code      | Collaborative, no code changes          |
-| 2. Entity population          | All entities are real, framing is identity | Editorial-intensive, Jim's input needed |
-| 3. View derivation            | Visible content unchanged during migration | Structural refactoring                  |
-| 4. New views and enrichment   | Every entity must be published             | New capabilities                        |
-| 5. LinkedIn as a derived view | LinkedIn is a view, not a parallel effort  | Editorial derivation                    |
+| Phase                         | Key principle                              | Nature                                    |
+| ----------------------------- | ------------------------------------------ | ----------------------------------------- |
+| 1. Entity model design        | Design the schema before writing code      | Collaborative design + skeleton + schemas |
+| 2. Entity population          | All entities are real, framing is identity | Editorial-intensive, Jim's input needed   |
+| 3. View derivation            | Visible content unchanged during migration | Structural refactoring                    |
+| 4. New views and enrichment   | Every entity must be published             | New capabilities                          |
+| 5. LinkedIn as a derived view | LinkedIn is a view, not a parallel effort  | Editorial derivation                      |
 
 ---
 
@@ -69,6 +70,7 @@ The Person entity is defined once and its `@id` (`https://www.jimcresswell.net/#
 - ID scheme: stable, human-readable IDs that map to JSON-LD `@id` fragments and HTML element IDs
 - How page files reference entities: inline IDs vs separate composition layer
 - Where positioning, capabilities, and tilts live in the model
+- TypeScript validation strategy: the entity model needs runtime validation at the JSON boundary (Zod schemas or equivalent) — the project's type-safety rules (no `as`, no `any`, validate external data) require this
 
 #### Tasks
 
@@ -89,13 +91,20 @@ The Person entity is defined once and its `@id` (`https://www.jimcresswell.net/#
 
 4. **Produce an example `entities.json` skeleton**
    - Create a skeleton showing all entity types, relationships, and at least one populated example per type
-   - Impact: concrete reference for Phase 2 population work
-   - Acceptance criteria: skeleton validates as JSON; all entity types from the [Design Phase 1 audit](personal-knowledge-graph.plan.md#design-phase-1-entity-and-relationship-audit) are represented; relationships use `@id` references, not nesting
+   - The file should be valid JSON-LD: include `@context` and `@graph` so any RDF tool (including future Neo4j migration tools like rdflib-neo4j) can consume it directly
+   - Impact: concrete reference for Phase 2 population work; forward-compatible with Linked Data tooling
+   - Acceptance criteria: skeleton validates as JSON-LD (not just JSON); all entity types from the [Design Phase 1 audit](personal-knowledge-graph.plan.md#design-phase-1-entity-and-relationship-audit) are represented; relationships use `@id` references, not nesting
 
 5. **Create an ADR for the entity model design**
    - Document the schema, file structure, ID conventions, and composition mechanism
    - Impact: architectural decision is permanent and discoverable
    - Acceptance criteria: ADR exists in `docs/architecture/decision-records/`; references ADR-007, ADR-008, ADR-010
+
+6. **Create Zod schemas for entity validation**
+   - Define Zod schemas for all entity types so `entities.json` is parsed and validated at build time
+   - The project's type-safety rules require external data validation (no `as`, no `any` — see `rules.md`)
+   - Impact: type errors in entity data surface at build time, not runtime; TypeScript types derive from Zod schemas (single source of truth)
+   - Acceptance criteria: every entity type has a Zod schema; `entities.json` is parsed through the schema at import time; invalid entity data causes a build failure with a helpful error message
 
 ---
 
@@ -144,8 +153,9 @@ The Person entity is defined once and its `@id` (`https://www.jimcresswell.net/#
 
 1. **Rewire `lib/jsonld.ts`**
    - Import entities from the content model; compose the JSON-LD `@graph` from entity data
-   - Impact: JSON-LD graph is derived from entities, not hardcoded constants
-   - Acceptance criteria: `lib/jsonld.ts` imports from entity model; JSON-LD output is structurally equivalent to current output; `pnpm check` and `pnpm test:e2e` pass
+   - **Migration note**: the existing `lib/jsonld.ts` uses `Thesis.inSupportOf` as an entity reference (`{"@id": ".../#cred-mphys"}`), but Schema.org defines `inSupportOf` as expecting `Text`. During this rewire, correct to use `inSupportOf` as `Text` and `Thesis.about` as the typed `@id` reference to the credential (per [research findings](research/pkg-research-findings.md)). This is a structural correction, not an editorial change.
+   - Impact: JSON-LD graph is derived from entities, not hardcoded constants; `inSupportOf` usage becomes Schema.org-compliant
+   - Acceptance criteria: `lib/jsonld.ts` imports from entity model; JSON-LD output is structurally equivalent to current output except for the `inSupportOf` correction; `pnpm check` and `pnpm test:e2e` pass
 
 2. **Rewire `lib/cv-content.ts`**
    - Derive OG metadata from entity model where shared data exists (Person name, links)
@@ -163,9 +173,10 @@ The Person entity is defined once and its `@id` (`https://www.jimcresswell.net/#
    - Acceptance criteria: no duplicated entity data across content files; rendered pages pixel-identical
 
 5. **Implement subgraph closure**
-   - Build the algorithm that derives page-level JSON-LD subgraphs from the canonical graph (see [Design Phase 3](personal-knowledge-graph.plan.md#design-phase-3-derive-all-views-from-the-model))
+   - Build the CBD-inspired closure algorithm (Concise Bounded Description with pruning) that derives page-level JSON-LD subgraphs from the canonical graph (see [Design Phase 3](personal-knowledge-graph.plan.md#design-phase-3-derive-all-views-from-the-model))
+   - The closure function accepts a pruning predicate — pruning policy is configuration, not algorithm. This is a pure function (entity graph in, pruning config in, subgraph array out) — write unit tests first (TDD)
    - Impact: each page can get its own JSON-LD subgraph, scoped to the entities it presents
-   - Acceptance criteria: closure algorithm produces a valid JSON-LD `@graph`; every `@id` reference in the subgraph resolves to a node within the same subgraph; CV page subgraph matches current full graph
+   - Acceptance criteria: closure algorithm produces a valid JSON-LD `@graph`; every `@id` reference in the subgraph resolves to a node within the same subgraph; CV page subgraph matches current full graph; unit tests cover closure, pruning, and dangling-reference detection
 
 ---
 
@@ -186,6 +197,7 @@ The Person entity is defined once and its `@id` (`https://www.jimcresswell.net/#
    - Full role history, all credentials, theses, projects, volunteer work, certifications (JSON-LD only where not on visible pages)
    - Impact: machine consumers see Jim's complete career, not just the editorial selection
    - Acceptance criteria: every entity from `entities.json` appears in at least one published output (page JSON-LD subgraph, `/api/graph` endpoint, OG metadata, or HTML content); the existing `/api/graph` endpoint returns the expanded graph
+   - **Note — Google Scholar**: research confirms Google Scholar does not consume JSON-LD (it uses `citation_*` HTML meta tags). `ScholarlyArticle` markup helps Google Search entity-building but does not reach Scholar. **Decision for Jim**: if Google Scholar indexing from this site is a goal, `<meta name="citation_*">` tags would need to be added separately. This is independent of the graph expansion.
 
 3. **Implement domain-appropriate descriptions**
    - Person entity gets a machine-facing description; pages get their own OG descriptions; manifest gets its own description (completing ADR-011)
@@ -198,9 +210,10 @@ The Person entity is defined once and its `@id` (`https://www.jimcresswell.net/#
    - Acceptance criteria: at minimum, section-level binding (`#experience`, `#education`); entity-level binding if decided
 
 5. **Validate structured data**
-   - Run Schema.org Validator and Google Rich Results Test on all pages
+   - Four-tool validation workflow (see [research findings](research/pkg-research-findings.md)): programmatic `@id` resolution check during development, Schema.org Validator for spec compliance, Google Rich Results Test for Google eligibility, Google Search Console for ongoing monitoring
+   - Programmatic check: every `@id` reference in a page's subgraph resolves to a node within the same subgraph
    - Impact: confidence that the graph is correctly consumed by search engines and AI
-   - Acceptance criteria: no errors from either validator; every `@id` reference resolves
+   - Acceptance criteria: no errors from Schema.org Validator; Rich Results Test shows expected eligible types (ProfilePage, WebSite); every `@id` reference resolves; programmatic check integrated into test suite
 
 6. **Cross-output consistency and framing review**
    - Review all outputs for editorial consistency: OG descriptions, JSON-LD Person description, page prose, manifest description (see [Design Phase 5](personal-knowledge-graph.plan.md#design-phase-5-consistency-and-framing-review))
@@ -255,6 +268,15 @@ The Person entity is defined once and its `@id` (`https://www.jimcresswell.net/#
 - Phase 4+: [Google Rich Results Test](https://search.google.com/test/rich-results) — all pages pass
 - Every `@id` reference resolves to a defined node
 
+**Neo4j forward-compatibility checklist** (see [research findings](research/pkg-research-findings.md) and [future/neo4j-knowledge-graph.plan.md](future/neo4j-knowledge-graph.plan.md)):
+
+- [ ] Every entity has `@id` and `@type` — no exceptions, even abstract entities
+- [ ] Relationships are `{"@id": "..."}` references — no embedded entity definitions
+- [ ] Entity IDs are content-derived slugs — not array positions or hashes
+- [ ] Schema.org property names used as-is — `worksFor`, `alumniOf`, `hasCredential` (map directly to Neo4j relationship types)
+- [ ] Entities file is valid JSON-LD — `@context`, `@graph`, `@id`, `@type` throughout
+- [ ] No deep nesting — flat entity definitions with relationship references
+
 ## Files affected
 
 | File                             | Phase | Changes                                          |
@@ -269,8 +291,14 @@ The Person entity is defined once and its `@id` (`https://www.jimcresswell.net/#
 | `components/cv-layout.tsx`       | 4     | Possibly: entity-level `id` attributes           |
 | `docs/architecture/`             | 1     | New ADR for entity model design                  |
 
+## Agent tooling
+
+- **PKG skill** (`pkg` in `.agent/skills/pkg/SKILL.md`) — compact operational reference for entity model work: type mappings, `@id` conventions, JSON-LD constraints, consumer value tiers, Neo4j checklist, validation workflow, common pitfalls
+- **PKG reviewer** (`pkg-reviewer` in `.agent/sub-agents/templates/pkg-reviewer.md`) — specialist reviewer for Schema.org correctness, JSON-LD constraints, `@id` resolution, consumer value alignment, and Neo4j forward-compatibility. The gateway `code-reviewer` triages to this reviewer for PKG-related changes.
+
 ## Related
 
+- [research/pkg-research-findings.md](research/pkg-research-findings.md) — Schema.org, JSON-LD, Google structured data, and Neo4j research findings
 - [personal-knowledge-graph.plan.md](personal-knowledge-graph.plan.md) — design reference (entity inventory, principles, Schema.org conventions, open questions)
 - [cv-editorial-improvements.plan.md](cv-editorial-improvements.plan.md) — parent plan
 - [linkedin-update.plan.md](linkedin-update.plan.md) — subsumed by Phase 5; retained for editorial questions and API findings

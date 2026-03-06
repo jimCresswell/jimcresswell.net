@@ -56,6 +56,7 @@ Every session, read `.agent/memory/distilled.md` and scan `.agent/memory/napkin.
 | [code-reviewer](../sub-agents/templates/code-reviewer.md) | Gateway reviewer — quality, correctness, and triage   |
 | [test-reviewer](../sub-agents/templates/test-reviewer.md) | TDD compliance and test quality                       |
 | [type-reviewer](../sub-agents/templates/type-reviewer.md) | TypeScript type safety                                |
+| [pkg-reviewer](../sub-agents/templates/pkg-reviewer.md)   | PKG specialist — Schema.org, JSON-LD, graph           |
 
 ### Skills
 
@@ -66,6 +67,7 @@ Every session, read `.agent/memory/distilled.md` and scan `.agent/memory/napkin.
 | [napkin](../skills/napkin/SKILL.md)                   | Session learning log — always active, read and update every session |
 | [distillation](../skills/distillation/SKILL.md)       | Rotate napkin into curated distilled.md when it grows large         |
 | [deslop](../skills/deslop/SKILL.md)                   | Remove AI-generated code slop from diffs                            |
+| [pkg](../skills/pkg/SKILL.md)                         | PKG entity model and structured data guide                          |
 
 ### Commands
 
@@ -80,27 +82,7 @@ Every session, read `.agent/memory/distilled.md` and scan `.agent/memory/napkin.
 
 ## Development Commands
 
-```bash
-pnpm install        # Setup
-pnpm dev            # Development server
-pnpm build          # Production build (next build + PDF generation)
-pnpm start          # Start production server
-pnpm format:fix     # Prettier format (auto-fix)
-pnpm format:check   # Prettier check (read-only)
-pnpm lint:fix       # ESLint (auto-fix)
-pnpm lint:check     # ESLint (read-only)
-pnpm typecheck      # TypeScript type checking
-pnpm test           # Unit and integration tests (Vitest)
-pnpm test:watch     # Tests in watch mode
-pnpm test:coverage  # Tests with coverage
-pnpm check          # All quality gates with auto-fix (see rules.md)
-pnpm check:ci       # All quality gates read-only (used by pre-commit hook)
-pnpm test:e2e       # E2E tests — default project (Playwright)
-pnpm test:e2e:pdf   # E2E tests — with-build project (PDF tests)
-pnpm test:e2e:ui    # Playwright UI mode
-```
-
-For the full quality gate sequence, restart-on-fix discipline, and what each gate checks, see [rules.md](./rules.md#code-quality).
+All commands use `pnpm`. Key commands: `pnpm dev`, `pnpm build`, `pnpm check` (all quality gates with auto-fix), `pnpm test:e2e`. Full gate sequence, restart-on-fix discipline, and individual gates are documented in [rules.md](./rules.md#code-quality). All available scripts are in `package.json`.
 
 ## Project Structure
 

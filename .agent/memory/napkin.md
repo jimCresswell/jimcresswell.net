@@ -1,5 +1,79 @@
 # Napkin
 
+## Session: 2026-03-06 — Consolidation
+
+### What Was Done
+
+- Ran full consolidation checklist (8 items)
+- Fixed AGENT.md fitness ceiling: compressed Development Commands section (154→134/150) — replaced full command listing with a 2-line summary referencing rules.md and package.json
+- Moved skill path depth gotcha from napkin to distilled.md (workspace quick reference)
+- Added "Agent tooling" section to PKG implementation plan — notes existence of pkg skill and pkg-reviewer for agents starting Phase 1
+- Verified: napkin 191 lines (under ~500), distilled.md clean, practice box empty, all practice-index/AGENT.md tables consistent, no candidates for practice evolution
+
+### Patterns to Remember
+
+- The Development Commands section in AGENT.md was the obvious compression target for ceiling compliance — the full listing duplicated information already in rules.md and package.json. Key commands + reference is sufficient.
+- When creating new agent tools (skills, reviewers), add a note to the relevant implementation plans so agents picking up the work know the tooling exists.
+
+## Session: 2026-03-06 — PKG Skill and Reviewer Sub-Agent
+
+### What Was Done
+
+- Created `.agent/skills/pkg/SKILL.md` — compact operational guide for PKG work (type mappings, `@id` conventions, JSON-LD constraints, consumer value tiers, Neo4j checklist, validation workflow, common pitfalls)
+- Created `.agent/sub-agents/templates/pkg-reviewer.md` — specialist reviewer with 7 assessment dimensions (Schema.org correctness, `@id` resolution, JSON-LD constraints, consumer value alignment, Neo4j compatibility, entity completeness, Zod schema coverage)
+- Created `.cursor/agents/pkg-reviewer.md` — Cursor adapter
+- Registered both in practice-index.md, AGENT.md, invoke-reviewers.md, and code-reviewer.md triage instruction
+- Code reviewer caught broken relative paths in the skill — off-by-one depth error on all inline markdown links. Fixed by switching to repo-root-relative inline code paths (matching editorial-voice skill pattern).
+
+### Patterns to Remember
+
+- Files at `.agent/skills/<name>/SKILL.md` are 3 levels deep. Links to `docs/` need `../../../`, not `../../`. The safer pattern (used by editorial-voice) is repo-root-relative inline code paths: `` `docs/architecture/...` `` rather than `[text](../../docs/...)`. Avoids the depth-counting class of error entirely.
+- When creating a new reviewer, also update the code-reviewer template's triage instruction (Step 4) — not just the invoke-reviewers rule. Both need to mention the new specialist.
+- AGENT.md is now 155/150 lines — 5 over ceiling. The split strategy says "extract sub-agent roster, development commands, or project structure." Needs tightening.
+
+## Session: 2026-03-06 — PKG Plans Research-Grounded Improvements
+
+### What Was Done
+
+- Created `.agent/plans/research/pkg-research-findings.md` — consolidated four research sub-agent reports (Schema.org types, JSON-LD best practices, Google structured data, Neo4j compatibility) into a single structured reference
+- Applied 11 improvements to the design reference (`personal-knowledge-graph.plan.md`):
+  - Fixed `Thesis.inSupportOf` (expects Text, not entity reference) in entity audit, relationships, and conventions
+  - Resolved volunteer modelling (OrganizationRole + memberOf, removed VolunteerAction)
+  - Updated `Person.pronouns` as first-class Schema.org property
+  - Added consumer value tiers section after Principles
+  - Added JSON-LD constraints section (CBD, 1.0 subset, self-containment, `@id` rules) to Design Phase 3
+  - Added canonical document rule to Design Phase 2 conventions
+  - Added `knowsAbout` Wikidata entity-linking recommendation
+  - Added Google Scholar finding (citation\_\* meta tags)
+  - Added Statement assessment note
+  - Expanded validation strategy to four-tool workflow
+  - Added research findings link to Related section
+- Applied 9 improvements to the implementation plan (`personal-knowledge-graph-implementation.plan.md`):
+  - Added TypeScript/Zod validation strategy to Phase 1 key decisions
+  - Added JSON-LD validity requirement to skeleton task
+  - Added Zod schema creation as Phase 1 task 6
+  - Added Neo4j forward-compatibility checklist to quality gates
+  - Added `.agent/private/identity.md` to Phase 2 reading requirements
+  - Added CBD pattern reference and TDD note to Phase 3 subgraph closure task
+  - Added `inSupportOf` migration note to Phase 3 task 1
+  - Improved Phase 4 validation task to four-tool workflow
+  - Added Google Scholar decision flag to Phase 4
+- Ran editor and code-reviewer sub-agents, applied their fixes:
+  - Moved `Occupation` from Tier 2 to Tier 3 (this site has no job postings)
+  - Standardised inline annotation labels to "Research note" / "Open decision for Jim"
+  - Trimmed consumer tiers paragraph (removed motivational closing)
+  - Fixed Phase 1 table: "no code changes" → "design + skeleton + schemas"
+  - Removed stale "breakout plan" framing from opening line
+  - Added blank-node exception examples (PostalAddress, PropertyValue)
+
+### Patterns to Remember
+
+- Read exact file text before StrReplace on markdown — Unicode quotes block matching (from distilled.md). Did not hit this issue but the caution is justified.
+- Inline annotations in plan documents should use consistent labels: "Research note" for research-derived context, "Open decision for Jim" for unresolved decisions. The editor caught three different labels in the first pass.
+- When adding a "consumer value tier" to plan documents, the tier assignment must match the actual project context. `Occupation` is Tier 2 in job-posting contexts but Tier 3 on a personal site — editor caught this.
+- Code reviewer caught that adding a new Phase 1 key decision (TypeScript/Zod) without a corresponding task creates a gap. Always pair key decisions with tasks.
+- Code reviewer caught that existing code (`lib/jsonld.ts`) uses `inSupportOf` incorrectly but the implementation plan didn't call out the migration. Always check current code for violations of corrections you're documenting.
+
 ## Session: 2026-03-06 — Plans Roadmap and PKG Plan Restructuring
 
 ### What Was Done
