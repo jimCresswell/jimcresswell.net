@@ -1,15 +1,15 @@
 import type { MetadataRoute } from "next";
-import cvContent from "@/content/cv.content.json";
+import { person } from "@/lib/entities";
 
 /**
- * Web App Manifest — generated from cv.content.json so the description
- * stays in sync with the rest of the site's editorial content.
+ * Web App Manifest — derived from the entity model's Person entity
+ * so the description stays in sync across all site outputs.
  */
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: cvContent.meta.name,
-    short_name: cvContent.meta.name,
-    description: cvContent.meta.summary,
+    name: person.name,
+    short_name: person.name,
+    description: person.description,
     start_url: "/",
     display: "standalone",
     background_color: "#faf9f7",

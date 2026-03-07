@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { CVLayout } from "@/components/cv-layout";
 import { cvContent, cvOpenGraph } from "@/lib/cv-content";
-import { jsonLd } from "@/lib/jsonld";
+import { cvPageJsonLd } from "@/lib/page-jsonld";
 
 export const metadata: Metadata = {
   title: cvOpenGraph.title,
@@ -45,7 +45,7 @@ export default function CVPage() {
       {/* JSON-LD */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(cvPageJsonLd) }}
       />
     </>
   );

@@ -1,5 +1,71 @@
 # Napkin
 
+## Session: 2026-03-07 — Consolidation
+
+### What Was Done
+
+- Ran full consolidation checklist (8 items)
+- Fixed three plan files with stale "Phases 1-3 complete" wording — changed to "code complete" to match the reality that quality gates have not yet passed (design reference, roadmap dependency tree, cv-editorial-improvements)
+- Added ADR-014 (Entity model design) to practice-index.md — was missing from the Architectural Decisions table
+- Added two Schema.org pitfalls to PKG skill common pitfalls table: `isBasedOn` domain (DefinedTerm extends Intangible, not CreativeWork) and `makesOffer` range (expects Offer, not WebAPI). Both already settled in ADR-014 but missing from the operational quick-reference
+- Updated stale distilled.md entry: pronouns/honorific now IN entities.json Person entity, not "not yet in JSON-LD"
+- Verified all fitness ceilings (7 directives, all under ceiling), practice box (empty), napkin length (255 lines, under 500), practice-index cohesion (all 23 link targets resolve, AGENT.md tables match practice-index)
+- Practice evolution: no candidates clearing the three-part bar — the premature-completion lesson is already covered by "Verify claims with evidence" in AGENT.md
+
+### Patterns to Remember
+
+- The "code complete vs complete" distinction keeps recurring. The napkin from the previous session already caught this, but the fix didn't propagate to all plan files. When correcting a status across plan files, grep for ALL instances of the old status wording — three out of four plan files still had the stale "complete" phrasing.
+- When a domain-specific skill (like PKG) has a common pitfalls table, check it during consolidation for pitfalls discovered since the skill was created. ADR findings are permanent records but the quick-reference skill is what agents actually consult during work.
+
+## Session: 2026-03-06 — PKG Phase 4 Completion and Validation Strategy
+
+### What Was Done
+
+- Continued Phase 4 editorial pass: fixed "support climate breakdown" ambiguity in Obaith CreativeWork entity, fixed Code Science Ltd description to be concise vehicle description
+- Fixed all 5 capability descriptions to consistent gerund register (was mixed past-tense fragments and gerunds)
+- Added "fully sequenced, pedagogically rigorous" qualifier to Oak curriculum data in Principal Engineer role description
+- Reflected on Phases 1-4 progress, identified remaining work
+- Evaluated validation tool options: schema-dts, ajv, schemaorg-jsd
+- Updated on-disk execution plan with detailed progress notes, new tasks (schema-dts validation, quality gates), and file inventory
+
+### Patterns to Remember
+
+- schema-dts (Google, 1.5M weekly downloads, zero runtime, types-only) fills the gap between Zod (shape validation) and Schema.org (vocabulary correctness). Catches the exact class of error the pkg-reviewer has been finding manually (isBasedOn on DefinedTerm, makesOffer expecting Offer).
+- schemaorg-jsd is pre-1.0 (v0.17.1) and duplicates Zod's runtime role. Not worth adding alongside schema-dts.
+- ajv alone doesn't add value over Zod for this use case — Zod is already the runtime JSON validator.
+- All Phase 1-4 changes are uncommitted on main (no branch). This is a risk that should be addressed.
+
+### Mistakes Made
+
+- **Marked phases as "completed" without verifying quality gates.** Phases 1-3 were labelled ✅ COMPLETE across four plan files, but `pnpm check` fails at the first gate (Prettier — 13 files unformatted), `pnpm test:e2e` was never run, and the Phase 3 pixel-identical regression check was never formally verified. "Code complete" is not "complete" — quality gates are part of the acceptance criteria. Never mark a phase complete without running the gates.
+- Previous session left capability descriptions in mixed register (gerunds + past-tense fragments). The editor reviewer caught this but it should have been noticed during authoring.
+
+## Session: 2026-03-06 — PKG Implementation Phases 1-3
+
+### What Was Done
+
+- Implemented Phases 1-3 of the personal knowledge graph
+- Phase 1: Resolved 5 design decisions, created entities.json skeleton (50 entities), Zod schemas (16 entity types), ADR-014
+- Phase 2: Migrated KNOWS_ABOUT (35 items, 24 Wikidata-linked), OCCUPATION, CREDENTIAL_DETAILS, PUBLICATIONS from lib/jsonld.ts to entity model. Populated all concrete entities, drafted identity-framed role descriptions, populated abstract/expressive entities from cv.content.json
+- Phase 3: Rewired lib/jsonld.ts from 287 lines of inline constants to 46-line import+URL-rewrite layer. Rewired cv-content.ts and manifest.ts to import Person data from entity model. Implemented subgraph closure algorithm with TDD.
+- PKG reviewer, type reviewer, and test reviewer all invoked. All findings addressed.
+- 128 tests passing (38 unit + 7 integration for entities, 10 for subgraph, 7 for jsonld, plus existing)
+
+### Patterns to Remember
+
+- `isBasedOn` is NOT in the domain of `DefinedTerm` (extends Intangible, not CreativeWork). Capability-to-evidence grounding must be expressed as prose, not typed links.
+- `Organization.makesOffer` expects `Offer`, not `WebAPI`. Use the reverse: `WebAPI.provider → Organization`.
+- `inSupportOf` is Text in Schema.org. The Zod schema enforces this at parse time and the test rejects @id references.
+- `knowsAbout` items without `@id` are technically blank nodes. Acceptable for the skeleton but should get IDs in future.
+- The original KNOWS_ABOUT had 35 items (design ref rounded to ~34). Always count from source, not from estimates.
+- Zod v4 uses `import { z } from "zod"` (named import), not the v3 `import * as z from "zod"`.
+- URL rewriting for deployment-specific JSON-LD: only rewrite strings starting with the canonical base. External URLs (Wikidata, DOI, arXiv, GitHub) pass through unchanged.
+
+### Mistakes Made
+
+- Test initially looked for "Cosmology" knowsAbout item that was replaced during migration. Always match test fixtures to actual data.
+- `makesOffer` on Organization was incorrect Schema.org — pkg-reviewer caught it.
+
 ## Session: 2026-03-06 — Consolidation
 
 ### What Was Done

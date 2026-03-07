@@ -114,14 +114,16 @@ Source: research findings (`.agent/plans/research/pkg-research-findings.md`) —
 
 ## Common pitfalls
 
-| Pitfall               | Wrong                               | Right                                                                       |
-| --------------------- | ----------------------------------- | --------------------------------------------------------------------------- |
-| `inSupportOf` type    | `inSupportOf: {"@id": "#cred-phd"}` | `inSupportOf: "PhD in Astrophysics"` (Text) + `about: {"@id": "#cred-phd"}` |
-| Volunteer modelling   | `VolunteerAction`                   | `OrganizationRole` with `memberOf` chain                                    |
-| Blank nodes           | Entity without `@id`                | Every entity gets a stable `@id`                                            |
-| Cross-page references | Relying on cross-page `@id` merge   | Each subgraph is self-contained                                             |
-| JSON-LD 1.1 features  | `@nest`, scoped contexts            | Stick to 1.0 subset                                                         |
-| Pronouns modelling    | Custom field for pronouns           | `Person.pronouns` — first-class Schema.org property                         |
+| Pitfall               | Wrong                               | Right                                                                                           |
+| --------------------- | ----------------------------------- | ----------------------------------------------------------------------------------------------- |
+| `inSupportOf` type    | `inSupportOf: {"@id": "#cred-phd"}` | `inSupportOf: "PhD in Astrophysics"` (Text) + `about: {"@id": "#cred-phd"}`                     |
+| `isBasedOn` domain    | `isBasedOn` on `DefinedTerm`        | `DefinedTerm` extends `Intangible`, not `CreativeWork` — express evidence in prose (ADR-014 §6) |
+| `makesOffer` range    | `Organization.makesOffer → WebAPI`  | `WebAPI.provider → Organization` — `makesOffer` expects `Offer` intermediary (ADR-014 §7)       |
+| Volunteer modelling   | `VolunteerAction`                   | `OrganizationRole` with `memberOf` chain                                                        |
+| Blank nodes           | Entity without `@id`                | Every entity gets a stable `@id`                                                                |
+| Cross-page references | Relying on cross-page `@id` merge   | Each subgraph is self-contained                                                                 |
+| JSON-LD 1.1 features  | `@nest`, scoped contexts            | Stick to 1.0 subset                                                                             |
+| Pronouns modelling    | Custom field for pronouns           | `Person.pronouns` — first-class Schema.org property                                             |
 
 ## Reference
 

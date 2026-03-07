@@ -1,37 +1,41 @@
 /**
  * Central content accessor for CV data.
  *
- * All CV content originates from `content/cv.content.json`. Derived metadata
- * (Open Graph) is constructed here so that editorial changes flow through
+ * Editorial prose lives in `content/cv.content.json`. Shared entity data
+ * (Person name, description, links) comes from the entity model. Derived
+ * metadata (Open Graph) is constructed here so that changes flow through
  * a single source of truth. JSON-LD is constructed in {@link ./jsonld.ts}.
  */
 import cvContentJson from "@/content/cv.content.json";
+import { person } from "./entities";
 import { SITE_URL } from "./site-config";
 
-/** CV content — single source of truth for all editorial text. */
+/** CV content — editorial prose from the page composition file. */
 export const cvContent = cvContentJson;
 
 /** OG image metadata — static, matches the generated OG image asset. */
 const OG_IMAGE = {
   url: `${SITE_URL}/icons/og-image.png`,
-  alt: `${cvContent.meta.name} — CV`,
+  alt: `${person.name} — CV`,
   width: 1200,
   height: 630,
 };
 
 /**
  * Open Graph metadata for the CV page.
- * Derived from `cv.content.json` — no separate OG file needed.
+ *
+ * Person name and description derive from the entity model. Locale and
+ * page-specific metadata derive from `cv.content.json`.
  *
  * Note: `type` is omitted because page metadata exports hardcode it as
  * `"website"` — it is not an editorial choice that should live here.
  */
 export const cvOpenGraph = {
   url: `${SITE_URL}/cv/`,
-  title: `${cvContent.meta.name} — CV`,
-  description: cvContent.meta.summary,
+  title: `${person.name} — CV`,
+  description: person.description,
   locale: cvContent.meta.locale.replace("-", "_"),
-  siteName: cvContent.meta.name,
+  siteName: person.name,
   image: OG_IMAGE,
 };
 

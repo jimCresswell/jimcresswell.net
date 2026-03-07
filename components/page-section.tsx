@@ -24,7 +24,7 @@ export function PageSection({
 }: PageSectionProps) {
   const headingId = `${id}-heading`;
   return (
-    <section aria-labelledby={headingId} className={className}>
+    <section id={id} aria-labelledby={headingId} className={className}>
       <h2 id={headingId} className={srOnly ? "sr-only" : "text-foreground mb-4"}>
         {heading}
       </h2>

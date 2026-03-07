@@ -3,17 +3,17 @@ name: Personal Knowledge Graph
 overview: Build a unified entity model where all representations of Jim — CV, front page, JSON-LD, LinkedIn, tilts, PDF — are derived views onto a single knowledge graph, designed at all four abstraction levels from the start.
 todos:
   - id: phase1-design
-    content: "Phase 1: Entity model design — schema, ID conventions, page-composition mechanism, example skeleton"
-    status: pending
+    content: "Phase 1: Entity model design — code complete, quality gates not yet passed"
+    status: in_progress
   - id: phase2-populate
-    content: "Phase 2: Entity population — concrete entities, abstract/expressive entities, role descriptions, constant migration"
-    status: pending
+    content: "Phase 2: Entity population — code complete, quality gates not yet passed"
+    status: in_progress
   - id: phase3-wire
-    content: "Phase 3: View derivation — rewire jsonld.ts, cv-content.ts, manifest.ts, page composition; verify no visible change"
-    status: pending
+    content: "Phase 3: View derivation — code complete, quality gates not yet passed"
+    status: in_progress
   - id: phase4-enrich
     content: "Phase 4: New views — front page JSON-LD, expanded graph, domain-appropriate descriptions, HTML binding, validation"
-    status: pending
+    status: in_progress
   - id: phase5-linkedin
     content: "Phase 5: LinkedIn as a derived view — derive all LinkedIn content from the graph"
     status: pending
@@ -22,7 +22,19 @@ isProject: false
 
 # Personal Knowledge Graph — Implementation
 
-**This is the execution plan** — phased tasks with acceptance criteria and progress tracking. For the full entity inventory, principles, Schema.org conventions, and open design questions, see the [design reference](personal-knowledge-graph.plan.md).
+**This is the execution plan** — phased tasks with acceptance criteria and progress tracking. For the full entity inventory, principles, Schema.org conventions, and open design questions, see the [design reference](personal-knowledge-graph.plan.md). For the detailed operational plan (reviewer invocations, skill activations, quality gates), see the [execution plan](personal-knowledge-graph-execution.plan.md).
+
+## Progress (updated 2026-03-06)
+
+| Phase                       | Code           | Quality gates | Key outcome                                               |
+| --------------------------- | -------------- | ------------- | --------------------------------------------------------- |
+| 1. Entity model design      | ✅ Complete    | ⚠️ Not passed | 16 Zod schemas, `content/entities.json` skeleton, ADR-014 |
+| 2. Entity population        | ✅ Complete    | ⚠️ Not passed | ~50 entities across all abstraction levels                |
+| 3. View derivation          | ✅ Complete    | ⚠️ Not passed | `lib/jsonld.ts` 287→46 lines, subgraph closure algorithm  |
+| 4. New views and enrichment | 🔄 In progress | ⚠️ Not passed | 6/9 tasks code-complete                                   |
+| 5. LinkedIn as derived view | ⬜ Pending     | —             | —                                                         |
+
+128 vitest tests passing. All changes uncommitted on `main` (no branch created). **`pnpm check` fails at Prettier** (13 files need formatting). E2E tests not run. The [execution plan](personal-knowledge-graph-execution.plan.md) has detailed per-task status.
 
 ## Reading requirements
 

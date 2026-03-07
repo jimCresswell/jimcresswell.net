@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { CVLayout } from "@/components/cv-layout";
 import { cvContent, cvOpenGraph, activeTiltKeys, getTilt, isActiveTiltKey } from "@/lib/cv-content";
 import { SITE_URL } from "@/lib/site-config";
-import { jsonLd } from "@/lib/jsonld";
+import { cvPageJsonLd } from "@/lib/page-jsonld";
 
 interface Props {
   params: Promise<{ variant: string }>;
@@ -78,7 +78,7 @@ export default async function CVVariantPage({ params }: Props) {
       {/* JSON-LD */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(cvPageJsonLd) }}
       />
     </>
   );

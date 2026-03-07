@@ -1,0 +1,227 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "http://localhost:3000/#website",
+      "url": "http://localhost:3000/",
+      "name": "Jim Cresswell",
+      "inLanguage": "en-GB"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "http://localhost:3000/cv/#webpage",
+      "url": "http://localhost:3000/cv/",
+      "name": "Jim Cresswell — CV",
+      "description": "Shaping high-impact problems for people and planet — AI-powered knowledge systems, national-scale public services, and public digital infrastructure.",
+      "isPartOf": {
+        "@id": "http://localhost:3000/#website"
+      },
+      "inLanguage": "en-GB",
+      "about": {
+        "@id": "http://localhost:3000/#person"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "http://localhost:3000/#person",
+      "name": "Jim Cresswell",
+      "url": "http://localhost:3000/",
+      "sameAs": [
+        "https://github.com/jimCresswell",
+        "https://www.linkedin.com/in/jimcresswell",
+        "https://scholar.google.co.uk/citations?user=7yf2vEEAAAAJ&hl=en"
+      ],
+      "description": "Shaping high-impact problems for people and planet — AI-powered knowledge systems, national-scale public services, and public digital infrastructure.",
+      "knowsAbout": [
+        "Technical leadership",
+        "Systems understanding",
+        "Systems thinking",
+        "Communicating technical impact to non‑technical stakeholders",
+        "Organisational design",
+        "Product strategy",
+        "Zero‑to‑one product creation",
+        "Proof of concept creation",
+        "Rapid prototyping",
+        "Digital‑first public services",
+        "Public services",
+        "Education technology",
+        "AI‑mediated access to knowledge and learning",
+        "Public digital infrastructure",
+        "Responsible AI",
+        "Open data",
+        "National‑scale systems",
+        "Holding space for systems change through second and third‑order effects, mediated through the creation of open digital infrastructure",
+        "Open API and SDK design",
+        "Model Context Protocol (MCP)",
+        "Agentic software engineering",
+        "Software engineering",
+        "The open web",
+        "Semantic search",
+        "Model fitting",
+        "TypeScript",
+        "Node.js",
+        "React",
+        "Next.js",
+        "Google Cloud Platform (GCP)",
+        "PaaS hosting e.g. Vercel, Netlify",
+        "Ecology‑informed agriculture and perennial food systems",
+        "Nature‑based solutions",
+        "Climate tech",
+        "Resilience through diversity"
+      ],
+      "hasOccupation": [
+        {
+          "@type": "Occupation",
+          "name": "Exploration and origination",
+          "description": "Finding the underlying structure in undefined problem spaces — shaping the frame that turns ambiguity into something that can be confidently delivered against. Core work includes identifying leverage in complex systems, navigating irreversible decisions with incomplete information, and setting direction that shapes outcomes long after the initial work.",
+          "occupationLocation": {
+            "@type": "Country",
+            "name": "United Kingdom"
+          },
+          "skills": [
+            "Problem shaping",
+            "Systems understanding",
+            "Judgment under uncertainty",
+            "Constraint‑based decision making",
+            "Research‑to‑practice translation",
+            "Origination",
+            "Architectural direction‑setting"
+          ]
+        }
+      ],
+      "hasCredential": [
+        {
+          "@id": "http://localhost:3000/#cred-phd"
+        },
+        {
+          "@id": "http://localhost:3000/#cred-msc"
+        },
+        {
+          "@id": "http://localhost:3000/#cred-mphys"
+        }
+      ],
+      "alumniOf": [
+        {
+          "@id": "http://localhost:3000/#org-portsmouth"
+        },
+        {
+          "@id": "http://localhost:3000/#org-sussex"
+        },
+        {
+          "@id": "http://localhost:3000/#org-bath"
+        }
+      ],
+      "worksFor": [
+        {
+          "@id": "http://localhost:3000/#org-oak"
+        }
+      ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "http://localhost:3000/#org-oak",
+      "name": "Oak National Academy"
+    },
+    {
+      "@type": "CollegeOrUniversity",
+      "@id": "http://localhost:3000/#org-portsmouth",
+      "name": "University of Portsmouth"
+    },
+    {
+      "@type": "CollegeOrUniversity",
+      "@id": "http://localhost:3000/#org-sussex",
+      "name": "University of Sussex"
+    },
+    {
+      "@type": "CollegeOrUniversity",
+      "@id": "http://localhost:3000/#org-bath",
+      "name": "University of Bath"
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "@id": "http://localhost:3000/#cred-phd",
+      "credentialCategory": "Doctor of Philosophy",
+      "educationalLevel": "Doctoral",
+      "name": "PhD, Astrophysics & Cosmology",
+      "recognizedBy": {
+        "@id": "http://localhost:3000/#org-portsmouth"
+      },
+      "about": ["Cosmology", "Large‑scale structure", "Statistical modelling"]
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "@id": "http://localhost:3000/#cred-msc",
+      "credentialCategory": "Master of Science",
+      "educationalLevel": "Master",
+      "name": "MSc, Cosmology",
+      "recognizedBy": {
+        "@id": "http://localhost:3000/#org-sussex"
+      }
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "@id": "http://localhost:3000/#cred-mphys",
+      "credentialCategory": "Master of Physics",
+      "educationalLevel": "Master",
+      "name": "MPhys, Physics",
+      "recognizedBy": {
+        "@id": "http://localhost:3000/#org-bath"
+      }
+    },
+    {
+      "@type": "Thesis",
+      "@id": "http://localhost:3000/#thesis-mphys",
+      "name": "The Design and Construction of a Theremin",
+      "author": {
+        "@id": "http://localhost:3000/#person"
+      },
+      "inSupportOf": {
+        "@id": "http://localhost:3000/#cred-mphys"
+      }
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://arxiv.org/abs/astro-ph/0512017",
+      "name": "Cosmic microwave background multipole alignments in slab topologies",
+      "author": {
+        "@id": "http://localhost:3000/#person"
+      },
+      "identifier": [
+        {
+          "@type": "PropertyValue",
+          "propertyID": "arXiv",
+          "value": "astro-ph/0512017"
+        }
+      ]
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "https://doi.org/10.1111/j.1365-2966.2008.14082.x",
+      "name": "Scale-dependent galaxy bias in the Sloan Digital Sky Survey as a function of luminosity and colour",
+      "author": [
+        {
+          "@id": "http://localhost:3000/#person"
+        }
+      ],
+      "identifier": [
+        {
+          "@type": "PropertyValue",
+          "propertyID": "DOI",
+          "value": "10.1111/j.1365-2966.2008.14082.x"
+        }
+      ]
+    },
+    {
+      "@type": "Thesis",
+      "@id": "http://localhost:3000/#thesis-phd",
+      "name": "Luminosity Functions and Galaxy Bias in the Sloan Digital Sky Survey",
+      "author": {
+        "@id": "http://localhost:3000/#person"
+      },
+      "inSupportOf": {
+        "@id": "http://localhost:3000/#cred-phd"
+      }
+    }
+  ]
+}

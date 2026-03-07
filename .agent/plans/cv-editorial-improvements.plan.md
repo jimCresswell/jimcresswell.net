@@ -2,7 +2,7 @@
 
 Refine the positioning, capabilities, and structured data in the editorial CV.
 
-## Status: In Progress — positioning, capabilities, metadata, and experience/Before Oak settled; knowledge graph is the active stream, LinkedIn subsumed by PKG Phase 5
+## Status: In Progress — positioning, capabilities, metadata, and experience/Before Oak settled; knowledge graph Phases 1-3 code complete (gates pending), Phase 4 in progress; LinkedIn subsumed by PKG Phase 5
 
 ## Prerequisite: PII security mitigation
 
@@ -14,14 +14,15 @@ Positioning paragraphs, capabilities, `meta.summary`, structured data (`KNOWS_AB
 
 **Remaining work in dedicated plans:**
 
-| Item                                      | Plan                                                                                               | Status   |
-| ----------------------------------------- | -------------------------------------------------------------------------------------------------- | -------- |
-| Experience & Before Oak editorial review  | [experience-editorial.plan.md](complete/experience-editorial.plan.md)                              | Complete |
-| Personal knowledge graph — design         | [personal-knowledge-graph.plan.md](personal-knowledge-graph.plan.md)                               | Planning |
-| Personal knowledge graph — implementation | [personal-knowledge-graph-implementation.plan.md](personal-knowledge-graph-implementation.plan.md) | Pending  |
-| LinkedIn update                           | [linkedin-update.plan.md](linkedin-update.plan.md) — subsumed by PKG Phase 5                       | Subsumed |
-| Tilt mechanism                            | No plan yet — see [Deferred](#deferred) below                                                      | Deferred |
-| Tilt content                              | Depends on tilt mechanism                                                                          | Deferred |
+| Item                                      | Plan                                                                                               | Status         |
+| ----------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------- |
+| Experience & Before Oak editorial review  | [experience-editorial.plan.md](complete/experience-editorial.plan.md)                              | Complete       |
+| Personal knowledge graph — design         | [personal-knowledge-graph.plan.md](personal-knowledge-graph.plan.md)                               | Implementation |
+| Personal knowledge graph — implementation | [personal-knowledge-graph-implementation.plan.md](personal-knowledge-graph-implementation.plan.md) | In progress    |
+| PKG execution plan                        | [personal-knowledge-graph-execution.plan.md](personal-knowledge-graph-execution.plan.md)           | In progress    |
+| LinkedIn update                           | [linkedin-update.plan.md](linkedin-update.plan.md) — subsumed by PKG Phase 5                       | Subsumed       |
+| Tilt mechanism                            | No plan yet — see [Deferred](#deferred) below                                                      | Deferred       |
+| Tilt content                              | Depends on tilt mechanism                                                                          | Deferred       |
 
 ## How to use this plan
 
@@ -101,11 +102,15 @@ Completed in a dedicated plan: [meta-seo-content-audit.plan.md](complete/meta-se
 
 ---
 
-## Open: Personal knowledge graph
+## In progress: Personal knowledge graph
 
-**Breakout plan:** [personal-knowledge-graph.plan.md](personal-knowledge-graph.plan.md) — a personal knowledge graph where all site outputs (page rendering, OG, JSON-LD, manifest, sitemap, PDF) are derived views onto the same underlying reality.
+**Design reference:** [personal-knowledge-graph.plan.md](personal-knowledge-graph.plan.md) — entity inventory, principles, Schema.org conventions. All design decisions resolved.
 
-Scope expanded well beyond the original JSON-LD enrichment investigation. The plan covers: making JSON-LD constants (KNOWS_ABOUT, PUBLICATIONS, OCCUPATION, etc.) visible as content rather than buried in TypeScript; creating a first-class entity model (Person, Organisations, Roles with dates, Credentials, Publications, Projects); cross-page entity sharing; full role history in the graph; HTML semantic binding; editorial consistency across all views. Future consideration: migration to Neo4j (see [future/neo4j-knowledge-graph.plan.md](future/neo4j-knowledge-graph.plan.md)).
+**Implementation:** [personal-knowledge-graph-implementation.plan.md](personal-knowledge-graph-implementation.plan.md) — Phases 1-3 code complete (gates pending), Phase 4 in progress.
+
+**Execution plan:** [personal-knowledge-graph-execution.plan.md](personal-knowledge-graph-execution.plan.md) — detailed operational plan with per-task status. **Start here** for next session.
+
+Phases 1-3 code complete: `content/entities.json` with ~50 entities at all abstraction levels, 16 Zod schemas validating at import time, subgraph closure algorithm for page-specific JSON-LD, all views rewired to derive from the entity model. **Quality gates not yet passed** — `pnpm check` fails at Prettier, E2E tests not run. 128 vitest tests passing, all changes uncommitted on `main`.
 
 ---
 

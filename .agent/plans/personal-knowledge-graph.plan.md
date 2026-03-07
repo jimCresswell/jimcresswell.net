@@ -2,9 +2,9 @@
 
 Build a unified model where all site outputs — page rendering, Open Graph, JSON-LD, Web App Manifest, sitemap, PDF — are derived views onto the same underlying reality. A personal knowledge graph of entities and typed relationships, with each output as a derived view.
 
-## Status: Planning
+## Status: Implementation (design settled, Phases 1-3 code complete, Phase 4 in progress)
 
-**This is the design reference** — the entity inventory, principles, Schema.org conventions, and open design questions. For phased execution with todos and acceptance criteria, see the [implementation plan](personal-knowledge-graph-implementation.plan.md).
+**This is the design reference** — the entity inventory, principles, Schema.org conventions, and resolved design decisions. All design questions have been answered. For phased execution with todos and acceptance criteria, see the [implementation plan](personal-knowledge-graph-implementation.plan.md). For the detailed operational plan (per-task status, reviewer invocations), see the [execution plan](personal-knowledge-graph-execution.plan.md).
 
 ## How to use this plan
 
@@ -156,7 +156,7 @@ Audit all entities and relationships across all sources. Present a complete inve
   - PhD: "Luminosity Functions and Galaxy Bias in the Sloan Digital Sky Survey".
   - MSc: "Observing Cosmological Topology".
   - MPhys: "The Design and Construction of a Theremin".
-- **Publications** — already exist in JSON-LD; cross-check against Google Scholar. `schema:ScholarlyArticle`. **Research note**: Google Scholar does **not** consume JSON-LD — it uses Highwire Press `citation_*` HTML meta tags. `ScholarlyArticle` markup is valuable for Google Search entity-building (Tier 2) but does not reach Google Scholar. **Open decision for Jim**: is Google Scholar indexing from this site a goal? If so, separate `<meta name="citation_*">` tags would be needed.
+- **Publications** — already exist in JSON-LD; cross-check against Google Scholar. `schema:ScholarlyArticle`. **Research note**: Google Scholar does **not** consume JSON-LD — it uses Highwire Press `citation_*` HTML meta tags. `ScholarlyArticle` markup is valuable for Google Search entity-building (Tier 2) but does not reach Google Scholar. **Decision (confirmed)**: Google Scholar indexing from this site is not a goal. Jim manages his Google Scholar entry independently; the PKG links TO it via `sameAs`. No `citation_*` meta tags needed.
 - **Projects** — this website, Obaith, Reforest Now, Theremin. `schema:CreativeWork` + `additionalType`. Additional projects (e.g. data visualisation work) to be confirmed with Jim during Design Phase 2.
 - **Services** — services offered by organisations. `schema:WebAPI` or `schema:Service`.
   - **Oak Curriculum API** — a live service offered by Oak, not a project Jim created. `schema:WebAPI` with `url`: `https://open-api.thenational.academy/` and `provider`: Oak. Offers free access to curriculum data under OGL.
@@ -177,7 +177,7 @@ These are real entities at a higher level of abstraction. They currently exist o
 
 These are real expressions of real identities. A positioning narrative is not marketing copy — it's a real statement that a real person makes about a real identity.
 
-- **PositioningNarrative** — the positioning paragraphs. Currently `positioning.paragraphs` — a property of the CV page, but actually an expression of the professional identity. `schema:Statement`. **Research note**: `Statement` exists on Schema.org but is a weak semantic fit — it was designed for factual assertions ("a fun or interesting fact"), not narrative prose. Pragmatically acceptable because the `text` and `about` properties match the need. An alternative is using `description` directly on the ProfessionalIdentity `Intangible`. ADR-008 accepts the `Statement` trade-off. **Open decision for Jim**: keep `Statement` or use `description` on `Intangible`?
+- **PositioningNarrative** — the positioning paragraphs. Currently `positioning.paragraphs` — a property of the CV page, but actually an expression of the professional identity. `schema:Statement` + `additionalType`. **Decision (confirmed)**: `Statement` is the correct type — these ARE statements Jim is making about his professional identity. `Statement` extends `CreativeWork`, so it inherits `text`, `author`, `inLanguage`, `dateCreated` — nothing is lost vs using `CreativeWork` directly. The positioning belongs to ProfessionalIdentity (not Person directly); the front page narrative is a different entity that relates to Person. `Intangible` + `additionalType` remains correct for abstract identity constructs (ProfessionalIdentity, ResearchBackground, GroundedPractice) because they are non-physical concepts, not authored text.
 - **Capability** — each capability is a real competence linked to the professional identity and grounded by evidence (Roles, Projects, Publications). `schema:DefinedTerm`.
 - **TiltVariant** — an alternative expression of the professional identity for a specific audience. Currently `tilts.*` entries. `schema:Statement` + `additionalType`.
 
@@ -235,7 +235,7 @@ Presentational (with Schema.org properties):
 
 These live in `lib/jsonld.ts` constants and need to move into the content model:
 
-- `KNOWS_ABOUT` — 34 topic strings describing Jim's expertise (expanded during the meta-SEO content audit from 20 to 34, with clustering by domain). **Research note**: the highest-impact improvement for entity resolution is linking `knowsAbout` items to Wikidata/Wikipedia entities via `sameAs` (e.g. `{"@type": "Thing", "name": "Cosmology", "sameAs": "https://www.wikidata.org/wiki/Q338"}`) rather than bare strings. Optional — bare strings work, entity-linked items work significantly better. **Open decision for Jim**: is this worth the effort for ~34 items?
+- `KNOWS_ABOUT` — 34 topic strings describing Jim's expertise (expanded during the meta-SEO content audit from 20 to 34, with clustering by domain). **Decision (confirmed)**: link all ~34 `knowsAbout` items to Wikidata/Wikipedia entities via `sameAs` (e.g. `{"@type": "Thing", "name": "Cosmology", "sameAs": "https://www.wikidata.org/wiki/Q338"}`). This is the highest-impact improvement for entity resolution — significantly more powerful than bare strings for Google entity reconciliation.
 - `OCCUPATION` — name, description, location, skills.
 - `CREDENTIAL_DETAILS` — category, level, and subject areas for each degree.
 - `PUBLICATIONS` — 4 works with identifiers (DOIs, arXiv IDs) and relationships.
@@ -286,9 +286,7 @@ Simpler file structure but the CV content file becomes responsible for non-CV-sp
 
 Jim may have a different preference for how the model should be structured.
 
-**Question for Jim:** How should the entity model relate to the page composition files?
-
-**Decision:** TBD — this is the key open design question for Design Phase 1. Option A (layered files) is assumed in the [implementation plan](personal-knowledge-graph-implementation.plan.md) but not formally decided.
+**Decision (confirmed):** Option A — layered content files. `content/entities.json` holds all entities at all abstraction levels (valid JSON-LD with `@context` and `@graph`). Page composition files (`cv.content.json`, `frontpage.content.json`) become views that reference entities by ID. Cleanest separation of concerns — entities exist independently of any page, and the entity file is directly consumable by RDF/Neo4j tools.
 
 ### Schema.org structural conventions
 
@@ -426,9 +424,7 @@ The CV page uses `<section>` elements (via `<PageSection>`) with `id` attributes
 2. **Entity-level** — Entity `@id` values (e.g. `#org-oak`, `#cred-phd`) added as `id` attributes to corresponding HTML elements. Requires minor component changes.
 3. **Role anchors as navigable IDs** — Role `@id` values like `https://www.jimcresswell.net/cv/#role-oak-2020-present` map to `<section id="role-oak-2020-present">` in the HTML. This gives stable identifiers for the graph, clickable deep-links for humans, and consistent merging across pages and crawlers.
 
-**Question for Jim:** How tight should the binding be?
-
-**Decision:** TBD — to be resolved during Phase 4 of the [implementation plan](personal-knowledge-graph-implementation.plan.md). The ID scheme is partially decided: [ADR-010](../../docs/architecture/decision-records/010-canonical-url-graph-identity.md) establishes `#person`, `#website`, and the `cv/#webpage` convention. The Design Phase 2 conventions table above extends this to all entity types.
+**Decision (confirmed):** All three binding levels, reflecting a multi-scale graph. Section-level IDs (`#experience`, `#education`) for page structure. Entity-level IDs (`#org-oak`, `#cred-phd`) on corresponding HTML elements. Role anchors (`cv/#role-oak-2020-present`) as navigable deep-link URLs. The HTML expresses all three granularities simultaneously — the `@id` and the element `id` match at every level. This extends [ADR-010](../../docs/architecture/decision-records/010-canonical-url-graph-identity.md) which establishes `#person`, `#website`, and the `cv/#webpage` convention.
 
 ---
 

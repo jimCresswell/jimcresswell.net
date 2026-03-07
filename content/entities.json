@@ -1,0 +1,680 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://www.jimcresswell.net/#website",
+      "url": "https://www.jimcresswell.net/",
+      "name": "Jim Cresswell",
+      "publisher": { "@id": "https://www.jimcresswell.net/#person" },
+      "inLanguage": "en-GB"
+    },
+
+    {
+      "@type": "ProfilePage",
+      "@id": "https://www.jimcresswell.net/#webpage",
+      "url": "https://www.jimcresswell.net/",
+      "name": "Jim Cresswell",
+      "isPartOf": { "@id": "https://www.jimcresswell.net/#website" },
+      "inLanguage": "en-GB",
+      "about": { "@id": "https://www.jimcresswell.net/#person" },
+      "mainEntity": { "@id": "https://www.jimcresswell.net/#person" }
+    },
+
+    {
+      "@type": "ProfilePage",
+      "@id": "https://www.jimcresswell.net/cv/#webpage",
+      "url": "https://www.jimcresswell.net/cv/",
+      "name": "Jim Cresswell — CV",
+      "isPartOf": { "@id": "https://www.jimcresswell.net/#website" },
+      "inLanguage": "en-GB",
+      "about": { "@id": "https://www.jimcresswell.net/#person" },
+      "mainEntity": { "@id": "https://www.jimcresswell.net/#person" }
+    },
+
+    {
+      "@type": "Person",
+      "@id": "https://www.jimcresswell.net/#person",
+      "name": "Jim Cresswell",
+      "honorificPrefix": "Dr",
+      "pronouns": "he/him",
+      "url": "https://www.jimcresswell.net/",
+      "description": "Shaping high-impact problems for people and planet — AI-powered knowledge systems, national-scale public services, and public digital infrastructure.",
+      "sameAs": [
+        "https://github.com/jimCresswell",
+        "https://www.linkedin.com/in/jimcresswell",
+        "https://scholar.google.co.uk/citations?user=7yf2vEEAAAAJ&hl=en"
+      ],
+      "email": "contact@jimcresswell.net",
+      "knowsAbout": [
+        {
+          "@type": "Thing",
+          "name": "Technical leadership",
+          "sameAs": "https://www.wikidata.org/wiki/Q2481984"
+        },
+        { "@type": "Thing", "name": "Systems understanding" },
+        {
+          "@type": "Thing",
+          "name": "Systems thinking",
+          "sameAs": "https://www.wikidata.org/wiki/Q106687"
+        },
+        {
+          "@type": "Thing",
+          "name": "Communicating technical impact to non\u2011technical stakeholders"
+        },
+        {
+          "@type": "Thing",
+          "name": "Organisational design",
+          "sameAs": "https://www.wikidata.org/wiki/Q1787567"
+        },
+        { "@type": "Thing", "name": "Product strategy" },
+        { "@type": "Thing", "name": "Zero\u2011to\u2011one product creation" },
+        {
+          "@type": "Thing",
+          "name": "Proof of concept creation",
+          "sameAs": "https://www.wikidata.org/wiki/Q1481573"
+        },
+        {
+          "@type": "Thing",
+          "name": "Rapid prototyping",
+          "sameAs": "https://www.wikidata.org/wiki/Q904804"
+        },
+        {
+          "@type": "Thing",
+          "name": "Digital\u2011first public services",
+          "sameAs": "https://www.wikidata.org/wiki/Q25270788"
+        },
+        {
+          "@type": "Thing",
+          "name": "Public services",
+          "sameAs": "https://www.wikidata.org/wiki/Q161837"
+        },
+        {
+          "@type": "Thing",
+          "name": "Education technology",
+          "sameAs": "https://www.wikidata.org/wiki/Q2512587"
+        },
+        { "@type": "Thing", "name": "AI\u2011mediated access to knowledge and learning" },
+        { "@type": "Thing", "name": "Public digital infrastructure" },
+        {
+          "@type": "Thing",
+          "name": "Responsible AI",
+          "sameAs": "https://www.wikidata.org/wiki/Q111519805"
+        },
+        {
+          "@type": "Thing",
+          "name": "Open data",
+          "sameAs": "https://www.wikidata.org/wiki/Q309901"
+        },
+        { "@type": "Thing", "name": "National\u2011scale systems" },
+        {
+          "@type": "Thing",
+          "name": "Holding space for systems change through second and third\u2011order effects, mediated through the creation of open digital infrastructure"
+        },
+        {
+          "@type": "Thing",
+          "name": "Open API and SDK design",
+          "sameAs": "https://www.wikidata.org/wiki/Q185061"
+        },
+        { "@type": "Thing", "name": "Model Context Protocol (MCP)" },
+        { "@type": "Thing", "name": "Agentic software engineering" },
+        {
+          "@type": "Thing",
+          "name": "Software engineering",
+          "sameAs": "https://www.wikidata.org/wiki/Q80993"
+        },
+        {
+          "@type": "Thing",
+          "name": "The open web",
+          "sameAs": "https://www.wikidata.org/wiki/Q232911"
+        },
+        {
+          "@type": "Thing",
+          "name": "Semantic search",
+          "sameAs": "https://www.wikidata.org/wiki/Q194104"
+        },
+        {
+          "@type": "Thing",
+          "name": "Model fitting",
+          "sameAs": "https://www.wikidata.org/wiki/Q4892500"
+        },
+        {
+          "@type": "Thing",
+          "name": "TypeScript",
+          "sameAs": "https://www.wikidata.org/wiki/Q978185"
+        },
+        { "@type": "Thing", "name": "Node.js", "sameAs": "https://www.wikidata.org/wiki/Q756100" },
+        { "@type": "Thing", "name": "React", "sameAs": "https://www.wikidata.org/wiki/Q19399674" },
+        {
+          "@type": "Thing",
+          "name": "Next.js",
+          "sameAs": "https://www.wikidata.org/wiki/Q56062435"
+        },
+        {
+          "@type": "Thing",
+          "name": "Google Cloud Platform (GCP)",
+          "sameAs": "https://www.wikidata.org/wiki/Q7011606"
+        },
+        {
+          "@type": "Thing",
+          "name": "PaaS hosting e.g. Vercel, Netlify",
+          "sameAs": "https://www.wikidata.org/wiki/Q3136256"
+        },
+        {
+          "@type": "Thing",
+          "name": "Ecology\u2011informed agriculture and perennial food systems",
+          "sameAs": "https://www.wikidata.org/wiki/Q213525"
+        },
+        {
+          "@type": "Thing",
+          "name": "Nature\u2011based solutions",
+          "sameAs": "https://www.wikidata.org/wiki/Q18356856"
+        },
+        {
+          "@type": "Thing",
+          "name": "Climate tech",
+          "sameAs": "https://www.wikidata.org/wiki/Q125928786"
+        },
+        { "@type": "Thing", "name": "Resilience through diversity" }
+      ],
+      "hasOccupation": [{ "@id": "https://www.jimcresswell.net/#occupation" }],
+      "worksFor": [
+        { "@id": "https://www.jimcresswell.net/cv/#role-oak-principal-2022-present" },
+        { "@id": "https://www.jimcresswell.net/cv/#role-oak-devops-2021-2022" },
+        { "@id": "https://www.jimcresswell.net/cv/#role-oak-senior-2020-2020" },
+        { "@id": "https://www.jimcresswell.net/cv/#role-code-science-2018-present" },
+        { "@id": "https://www.jimcresswell.net/cv/#role-obaith-2018-2020" },
+        { "@id": "https://www.jimcresswell.net/cv/#role-hmpo-2017-2017" },
+        { "@id": "https://www.jimcresswell.net/cv/#role-ba-2015-2015" },
+        { "@id": "https://www.jimcresswell.net/cv/#role-ft-labs-2011-2014" },
+        { "@id": "https://www.jimcresswell.net/cv/#role-hp-labs-2009-2010" },
+        { "@id": "https://www.jimcresswell.net/cv/#role-portsmouth-phd-2005-2010" }
+      ],
+      "hasCredential": [
+        { "@id": "https://www.jimcresswell.net/#cred-phd" },
+        { "@id": "https://www.jimcresswell.net/#cred-msc" },
+        { "@id": "https://www.jimcresswell.net/#cred-mphys" },
+        { "@id": "https://www.jimcresswell.net/#cred-eumetsat" },
+        { "@id": "https://www.jimcresswell.net/#cred-agilepm" },
+        { "@id": "https://www.jimcresswell.net/#cred-jhu-data-science" }
+      ],
+      "alumniOf": [
+        { "@id": "https://www.jimcresswell.net/#org-portsmouth" },
+        { "@id": "https://www.jimcresswell.net/#org-sussex" },
+        { "@id": "https://www.jimcresswell.net/#org-bath" }
+      ],
+      "subjectOf": [
+        { "@id": "https://www.jimcresswell.net/#thesis-phd" },
+        { "@id": "https://www.jimcresswell.net/#thesis-msc" },
+        { "@id": "https://www.jimcresswell.net/#thesis-mphys" },
+        { "@id": "https://doi.org/10.1111/j.1365-2966.2008.14082.x" },
+        { "@id": "https://arxiv.org/abs/astro-ph/0512017" }
+      ],
+      "memberOf": [{ "@id": "https://www.jimcresswell.net/#role-growing-communities-volunteer" }]
+    },
+
+    {
+      "@type": "Occupation",
+      "@id": "https://www.jimcresswell.net/#occupation",
+      "name": "Exploration and origination",
+      "description": "Finding the underlying structure in undefined problem spaces — shaping the frame that turns ambiguity into something that can be confidently delivered against. Core work includes identifying leverage in complex systems, navigating irreversible decisions with incomplete information, and setting direction that shapes outcomes long after the initial work.",
+      "occupationLocation": {
+        "@type": "Country",
+        "name": "United Kingdom"
+      },
+      "skills": [
+        "Problem shaping",
+        "Systems understanding",
+        "Judgment under uncertainty",
+        "Constraint\u2011based decision making",
+        "Research\u2011to\u2011practice translation",
+        "Origination",
+        "Architectural direction\u2011setting"
+      ]
+    },
+
+    {
+      "@type": "Organization",
+      "@id": "https://www.jimcresswell.net/#org-oak",
+      "name": "Oak National Academy",
+      "url": "https://www.thenational.academy/",
+      "sameAs": ["https://www.gov.uk/government/organisations/oak-national-academy"],
+      "description": "An operationally independent arms-length body of the Department for Education in the UK."
+    },
+
+    {
+      "@type": "Organization",
+      "@id": "https://www.jimcresswell.net/#org-ft-labs",
+      "name": "FT Labs (Financial Times)",
+      "url": "https://labs.ft.com/"
+    },
+
+    {
+      "@type": "Organization",
+      "@id": "https://www.jimcresswell.net/#org-hmpo",
+      "name": "HM Passport Office",
+      "url": "https://www.gov.uk/apply-renew-passport",
+      "sameAs": ["https://www.gov.uk/government/organisations/hm-passport-office"]
+    },
+
+    {
+      "@type": "Organization",
+      "@id": "https://www.jimcresswell.net/#org-ba",
+      "name": "British Airways",
+      "url": "https://www.britishairways.com/"
+    },
+
+    {
+      "@type": "Organization",
+      "@id": "https://www.jimcresswell.net/#org-hp-labs",
+      "name": "Hewlett-Packard Laboratories"
+    },
+
+    {
+      "@type": "Organization",
+      "@id": "https://www.jimcresswell.net/#org-code-science",
+      "name": "Code Science Limited"
+    },
+
+    {
+      "@type": "Organization",
+      "@id": "https://www.jimcresswell.net/#org-obaith",
+      "name": "Obaith",
+      "url": "https://web.archive.org/web/20211114073948/https://www.obaith.com/"
+    },
+
+    {
+      "@type": "Organization",
+      "@id": "https://www.jimcresswell.net/#org-growing-communities",
+      "name": "Growing Communities"
+    },
+
+    {
+      "@type": "CollegeOrUniversity",
+      "@id": "https://www.jimcresswell.net/#org-portsmouth",
+      "name": "University of Portsmouth",
+      "url": "https://www.port.ac.uk/",
+      "sameAs": ["https://www.wikidata.org/wiki/Q1450938"]
+    },
+
+    {
+      "@type": "CollegeOrUniversity",
+      "@id": "https://www.jimcresswell.net/#org-sussex",
+      "name": "University of Sussex",
+      "url": "https://www.sussex.ac.uk/",
+      "sameAs": ["https://www.wikidata.org/wiki/Q1161297"]
+    },
+
+    {
+      "@type": "CollegeOrUniversity",
+      "@id": "https://www.jimcresswell.net/#org-bath",
+      "name": "University of Bath",
+      "url": "https://www.bath.ac.uk/",
+      "sameAs": ["https://www.wikidata.org/wiki/Q1143289"]
+    },
+
+    {
+      "@type": "EmployeeRole",
+      "@id": "https://www.jimcresswell.net/cv/#role-oak-principal-2022-present",
+      "roleName": "Principal Engineer",
+      "worksFor": { "@id": "https://www.jimcresswell.net/#org-oak" },
+      "startDate": "2022-06",
+      "description": "Setting foundational technical and product direction inside a live national public service. Conceived and built an SDK and MCP server for Oak\u2019s fully sequenced, pedagogically rigorous curriculum data, released under the Open Government Licence and directly accessible to AI-powered services. Helped shape the Engineering function from four contractors into five product squads and three platform groups."
+    },
+
+    {
+      "@type": "EmployeeRole",
+      "@id": "https://www.jimcresswell.net/cv/#role-oak-devops-2021-2022",
+      "roleName": "Head of DevOps and Quality (Consulting)",
+      "worksFor": { "@id": "https://www.jimcresswell.net/#org-oak" },
+      "startDate": "2021-01",
+      "endDate": "2022-06",
+      "description": "Set delivery infrastructure and quality culture during rapid growth from startup to national platform. Established CI/CD, testing strategy, and developer experience foundations that supported the transition to permanent engineering teams."
+    },
+
+    {
+      "@type": "EmployeeRole",
+      "@id": "https://www.jimcresswell.net/cv/#role-oak-senior-2020-2020",
+      "roleName": "Senior Developer (Consulting)",
+      "worksFor": { "@id": "https://www.jimcresswell.net/#org-oak" },
+      "startDate": "2020-08",
+      "endDate": "2020-12",
+      "description": "Joined Oak at an early stage, helping build the remote education platform and driving improvements in code quality, testing, and engineering practices in a high-urgency context."
+    },
+
+    {
+      "@type": "EmployeeRole",
+      "@id": "https://www.jimcresswell.net/cv/#role-code-science-2018-present",
+      "roleName": "Managing Director",
+      "worksFor": { "@id": "https://www.jimcresswell.net/#org-code-science" },
+      "startDate": "2018-02",
+      "description": "Independent practice \u2014 the vehicle for consulting work at Oak National Academy and other public and private sector clients."
+    },
+
+    {
+      "@type": "EmployeeRole",
+      "@id": "https://www.jimcresswell.net/cv/#role-obaith-2018-2020",
+      "roleName": "Founder",
+      "worksFor": { "@id": "https://www.jimcresswell.net/#org-obaith" },
+      "startDate": "2018-01",
+      "endDate": "2020-12",
+      "description": "Research into systems change, leverage points, and how digital services can address climate breakdown, biodiversity loss, and social disconnection."
+    },
+
+    {
+      "@type": "EmployeeRole",
+      "@id": "https://www.jimcresswell.net/cv/#role-hmpo-2017-2017",
+      "roleName": "Programme QA Consultant",
+      "worksFor": { "@id": "https://www.jimcresswell.net/#org-hmpo" },
+      "startDate": "2017-02",
+      "endDate": "2017-12",
+      "description": "Normalised specification workshops across an agile programme of six scrum teams, establishing shared understanding through whole-team example creation and reducing rework on a public-facing microservice architecture."
+    },
+
+    {
+      "@type": "EmployeeRole",
+      "@id": "https://www.jimcresswell.net/cv/#role-ba-2015-2015",
+      "roleName": "QA Automation Consultant",
+      "worksFor": { "@id": "https://www.jimcresswell.net/#org-ba" },
+      "startDate": "2015-03",
+      "endDate": "2015-12",
+      "description": "Shifted delivery practices across executive, design, and development teams — introducing specification by example, instigating adoption of Git and GitHub, and coaching teams on continuous testing and delivery approaches."
+    },
+
+    {
+      "@type": "EmployeeRole",
+      "@id": "https://www.jimcresswell.net/cv/#role-ft-labs-2011-2014",
+      "roleName": "Senior Developer",
+      "worksFor": { "@id": "https://www.jimcresswell.net/#org-ft-labs" },
+      "startDate": "2011-08",
+      "endDate": "2014-07",
+      "description": "Helped build the award-winning FT Web App — a full application experience delivered entirely on the open web, among the first of its kind. Led QA strategy and took technical lead on the FT Windows 8 app."
+    },
+
+    {
+      "@type": "EmployeeRole",
+      "@id": "https://www.jimcresswell.net/cv/#role-hp-labs-2009-2010",
+      "roleName": "Systems Engineer",
+      "worksFor": { "@id": "https://www.jimcresswell.net/#org-hp-labs" },
+      "startDate": "2009-04",
+      "endDate": "2010-11",
+      "description": "Built a test automation framework from manual processes, organising individual efforts into a team system that was used internally by HP for several years."
+    },
+
+    {
+      "@type": "EmployeeRole",
+      "@id": "https://www.jimcresswell.net/cv/#role-portsmouth-phd-2005-2010",
+      "roleName": "PhD Researcher",
+      "worksFor": { "@id": "https://www.jimcresswell.net/#org-portsmouth" },
+      "startDate": "2005-09",
+      "endDate": "2010-12",
+      "description": "Planned and carried out research at the Institute for Cosmology and Gravitation, fitting parametric and non-parametric models to large galaxy surveys. Combined traditional survey statistics with Galaxy Zoo citizen science morphological data, producing published results that influenced observational methodology."
+    },
+
+    {
+      "@type": "OrganizationRole",
+      "@id": "https://www.jimcresswell.net/#role-growing-communities-volunteer",
+      "roleName": "Volunteer Market Gardener",
+      "memberOf": { "@id": "https://www.jimcresswell.net/#org-growing-communities" },
+      "description": "Volunteering with an organic local-food initiative, working in ecology-informed food growing and community-supported agriculture."
+    },
+
+    {
+      "@type": "EducationalOccupationalCredential",
+      "@id": "https://www.jimcresswell.net/#cred-phd",
+      "credentialCategory": "Doctor of Philosophy",
+      "educationalLevel": "Doctoral",
+      "name": "PhD, Astrophysics & Cosmology",
+      "recognizedBy": { "@id": "https://www.jimcresswell.net/#org-portsmouth" },
+      "about": ["Cosmology", "Large\u2011scale structure", "Statistical modelling"]
+    },
+
+    {
+      "@type": "EducationalOccupationalCredential",
+      "@id": "https://www.jimcresswell.net/#cred-msc",
+      "credentialCategory": "Master of Science",
+      "educationalLevel": "Master",
+      "name": "MSc, Cosmology",
+      "recognizedBy": { "@id": "https://www.jimcresswell.net/#org-sussex" }
+    },
+
+    {
+      "@type": "EducationalOccupationalCredential",
+      "@id": "https://www.jimcresswell.net/#cred-mphys",
+      "credentialCategory": "Master of Physics",
+      "educationalLevel": "Master",
+      "name": "MPhys, Physics",
+      "recognizedBy": { "@id": "https://www.jimcresswell.net/#org-bath" }
+    },
+
+    {
+      "@type": "EducationalOccupationalCredential",
+      "@id": "https://www.jimcresswell.net/#cred-eumetsat",
+      "credentialCategory": "Professional Certificate",
+      "name": "EUMETSAT Satellite Meteorology Course"
+    },
+
+    {
+      "@type": "EducationalOccupationalCredential",
+      "@id": "https://www.jimcresswell.net/#cred-agilepm",
+      "credentialCategory": "Professional Certificate",
+      "name": "AgilePM Practitioner"
+    },
+
+    {
+      "@type": "EducationalOccupationalCredential",
+      "@id": "https://www.jimcresswell.net/#cred-jhu-data-science",
+      "credentialCategory": "Professional Certificate",
+      "name": "Data Science Specialization (JHU via Coursera)"
+    },
+
+    {
+      "@type": "CreativeWork",
+      "@id": "https://www.jimcresswell.net/#project-obaith",
+      "additionalType": "https://www.jimcresswell.net/schema/Project",
+      "name": "Obaith",
+      "creator": { "@id": "https://www.jimcresswell.net/#person" },
+      "url": "https://web.archive.org/web/20211114073948/https://www.obaith.com/",
+      "description": "Independent research into systems change, leverage points, and how digital services can address climate breakdown, biodiversity loss, and social disconnection."
+    },
+
+    {
+      "@type": "CreativeWork",
+      "@id": "https://www.jimcresswell.net/#project-reforest-now",
+      "additionalType": "https://www.jimcresswell.net/schema/Project",
+      "name": "Reforest Now",
+      "creator": { "@id": "https://www.jimcresswell.net/#person" },
+      "description": "Data visualisation exploring global reforestation potential."
+    },
+
+    {
+      "@type": "Thesis",
+      "@id": "https://www.jimcresswell.net/#thesis-phd",
+      "name": "Luminosity Functions and Galaxy Bias in the Sloan Digital Sky Survey",
+      "author": { "@id": "https://www.jimcresswell.net/#person" },
+      "inSupportOf": "PhD in Astrophysics & Cosmology",
+      "about": { "@id": "https://www.jimcresswell.net/#cred-phd" }
+    },
+
+    {
+      "@type": "Thesis",
+      "@id": "https://www.jimcresswell.net/#thesis-msc",
+      "name": "Observing Cosmological Topology",
+      "author": { "@id": "https://www.jimcresswell.net/#person" },
+      "inSupportOf": "MSc in Cosmology",
+      "about": { "@id": "https://www.jimcresswell.net/#cred-msc" }
+    },
+
+    {
+      "@type": "Thesis",
+      "@id": "https://www.jimcresswell.net/#thesis-mphys",
+      "name": "The Design and Construction of a Theremin",
+      "author": { "@id": "https://www.jimcresswell.net/#person" },
+      "inSupportOf": "MPhys in Physics",
+      "about": { "@id": "https://www.jimcresswell.net/#cred-mphys" }
+    },
+
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "https://doi.org/10.1111/j.1365-2966.2008.14082.x",
+      "name": "Scale-dependent galaxy bias in the Sloan Digital Sky Survey as a function of luminosity and colour",
+      "author": [{ "@id": "https://www.jimcresswell.net/#person" }],
+      "identifier": [
+        {
+          "@type": "PropertyValue",
+          "propertyID": "DOI",
+          "value": "10.1111/j.1365-2966.2008.14082.x"
+        }
+      ]
+    },
+
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "https://arxiv.org/abs/astro-ph/0512017",
+      "name": "Cosmic microwave background multipole alignments in slab topologies",
+      "author": { "@id": "https://www.jimcresswell.net/#person" },
+      "identifier": [
+        {
+          "@type": "PropertyValue",
+          "propertyID": "arXiv",
+          "value": "astro-ph/0512017"
+        }
+      ]
+    },
+
+    {
+      "@type": "SoftwareSourceCode",
+      "@id": "https://www.jimcresswell.net/#software-jimcresswell-net",
+      "name": "jimcresswell.net",
+      "creator": { "@id": "https://www.jimcresswell.net/#person" },
+      "codeRepository": "https://github.com/jimCresswell/jimcresswell.net"
+    },
+
+    {
+      "@type": "SoftwareSourceCode",
+      "@id": "https://www.jimcresswell.net/#software-oak-mcp",
+      "name": "Oak SDK/MCP Server",
+      "creator": { "@id": "https://www.jimcresswell.net/#person" },
+      "sourceOrganization": { "@id": "https://www.jimcresswell.net/#org-oak" },
+      "description": "TypeScript SDK and Model Context Protocol server providing programmatic and AI-native access to Oak's fully sequenced curriculum data, released under the Open Government Licence.",
+      "codeRepository": "https://github.com/oaknational/oak-open-curriculum-ecosystem"
+    },
+
+    {
+      "@type": "WebAPI",
+      "@id": "https://www.jimcresswell.net/#service-oak-api",
+      "name": "Oak Curriculum API",
+      "url": "https://open-api.thenational.academy/",
+      "provider": { "@id": "https://www.jimcresswell.net/#org-oak" },
+      "description": "Free access to Oak's fully sequenced, pedagogically rigorous curriculum data under the Open Government Licence."
+    },
+
+    {
+      "@type": "Intangible",
+      "@id": "https://www.jimcresswell.net/#professional-identity",
+      "additionalType": "https://www.jimcresswell.net/schema/ProfessionalIdentity",
+      "name": "Professional Identity",
+      "description": "Jim's professional identity — the coherent thread across roles, capabilities, and positioning."
+    },
+
+    {
+      "@type": "Intangible",
+      "@id": "https://www.jimcresswell.net/#research-background",
+      "additionalType": "https://www.jimcresswell.net/schema/ResearchBackground",
+      "name": "Research Background",
+      "description": "Research and sense-making in unknown systems — the academic and independent research that grounds Jim's approach."
+    },
+
+    {
+      "@type": "Intangible",
+      "@id": "https://www.jimcresswell.net/#grounded-practice",
+      "additionalType": "https://www.jimcresswell.net/schema/GroundedPractice",
+      "name": "Grounded Practice",
+      "description": "Grounded practice: food, land, community — the ecological and hands-on work that connects Jim to physical systems."
+    },
+
+    {
+      "@type": "Statement",
+      "@id": "https://www.jimcresswell.net/#positioning-default",
+      "additionalType": "https://www.jimcresswell.net/schema/PositioningNarrative",
+      "name": "Default Positioning",
+      "text": "I\u2019m drawn to problems that don\u2019t have shape yet \u2014 in digital\u2011first public services, AI\u2011mediated access to trusted knowledge, community\u2011driven systems change, and the structure of the early Universe. My work is to find the underlying structure: the frame that turns ambiguity into something that can be confidently delivered against. Shaping the problem is my creative act.\n\nMy background spans digital product creation, software engineering, research, and building national\u2011scale public services \u2014 the common thread is origination: zero\u2011to\u2011one work, before problems have operational form. I set direction early, decide what should and should not be built, and hold that so others can build with confidence. Part of the work is recognising when the existing system is the wrong starting point and shaping what replaces it. The impact I care about is long\u2011term and structural: changing constraints in large\u2011scale systems so that the natural paths lead to different, better outcomes, lasting far beyond my direct involvement.",
+      "about": { "@id": "https://www.jimcresswell.net/#professional-identity" },
+      "author": { "@id": "https://www.jimcresswell.net/#person" },
+      "inLanguage": "en-GB"
+    },
+
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://www.jimcresswell.net/#cap-zero-to-one",
+      "additionalType": "https://www.jimcresswell.net/schema/Capability",
+      "name": "Zero-to-one technical leadership",
+      "description": "Setting architectural direction at national scale and holding the early decisions that shape long-term innovation and reach."
+    },
+
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://www.jimcresswell.net/#cap-ai-interfaces",
+      "additionalType": "https://www.jimcresswell.net/schema/Capability",
+      "name": "Designing and building AI-first interfaces",
+      "description": "Conceiving, prototyping, and delivering AI-native interfaces to trusted curriculum data \u2014 making Oak\u2019s fully sequenced, pedagogically rigorous curriculum accessible as public digital infrastructure in AI\u2011mediated environments, released under the Open Government Licence."
+    },
+
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://www.jimcresswell.net/#cap-research-reasoning",
+      "additionalType": "https://www.jimcresswell.net/schema/Capability",
+      "name": "Research-trained reasoning and systems understanding",
+      "description": "Carrying research-trained rigour \u2014 computational modelling, published astrophysics research \u2014 and deploying it where it creates the most leverage."
+    },
+
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://www.jimcresswell.net/#cap-strategy-leadership",
+      "additionalType": "https://www.jimcresswell.net/schema/Capability",
+      "name": "Strategy and technical leadership at scale",
+      "description": "Shaping Oak\u2019s Engineering function from four contractors into five product squads and three platform groups. Holding the long-term technical vision, translating direction for non-technical stakeholders, and coaching engineers through ambiguity."
+    },
+
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://www.jimcresswell.net/#cap-system-impact",
+      "additionalType": "https://www.jimcresswell.net/schema/Capability",
+      "name": "System-level impact through public services",
+      "description": "Creating infrastructure at Oak that lowers the cost of innovation for others, enabling lasting change in education quality and teacher wellbeing in the UK and beyond."
+    },
+
+    {
+      "@type": "Statement",
+      "@id": "https://www.jimcresswell.net/#tilt-public-sector",
+      "additionalType": "https://www.jimcresswell.net/schema/TiltVariant",
+      "name": "Public Sector Tilt",
+      "text": "I work on complex, long\u2011term problems where AI, data, and public services intersect, particularly in early or unstructured contexts where new forms of public value and access are possible but not yet well understood. I lead exploratory work that reframes what public services could offer, unlocking novel ways for people to benefit from shared data and digital capability. My focus is on shaping the early conditions for high\u2011impact use of AI in public systems, enabling others to create value responsibly and at scale.",
+      "about": { "@id": "https://www.jimcresswell.net/#professional-identity" },
+      "author": { "@id": "https://www.jimcresswell.net/#person" },
+      "inLanguage": "en-GB"
+    },
+
+    {
+      "@type": "Statement",
+      "@id": "https://www.jimcresswell.net/#tilt-private-ai",
+      "additionalType": "https://www.jimcresswell.net/schema/TiltVariant",
+      "name": "Private AI Tilt",
+      "text": "I work on complex, early\u2011stage problem spaces at the frontier of AI capability, where the right questions are not yet clear and premature solutions can distort long\u2011term value. I lead exploratory work that reframes problems, identifies leverage, and gives initial shape to systems before they become products. My strength is turning ambiguity into coherent direction, enabling others to build with lasting impact.",
+      "about": { "@id": "https://www.jimcresswell.net/#professional-identity" },
+      "author": { "@id": "https://www.jimcresswell.net/#person" },
+      "inLanguage": "en-GB"
+    },
+
+    {
+      "@type": "Statement",
+      "@id": "https://www.jimcresswell.net/#tilt-founder",
+      "additionalType": "https://www.jimcresswell.net/schema/TiltVariant",
+      "name": "Founder Tilt",
+      "text": "I explore complex, high\u2011impact problem spaces where existing models no longer fit and new systems are required. My work centres on discovery and creation: forming new conceptual frameworks, testing what is worth building at all, and shaping the first coherent versions of ideas that can grow beyond me. I\u2019m driven by origination, leverage, and impact that emerges through others rather than incremental optimisation.",
+      "about": { "@id": "https://www.jimcresswell.net/#professional-identity" },
+      "author": { "@id": "https://www.jimcresswell.net/#person" },
+      "inLanguage": "en-GB"
+    }
+  ]
+}

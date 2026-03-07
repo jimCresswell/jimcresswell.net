@@ -37,6 +37,7 @@ For the practice-core files and their roles, see
 | [ADR-011](../docs/architecture/decision-records/011-domain-appropriate-descriptions.md) | Domain-appropriate descriptions  |
 | [ADR-012](../docs/architecture/decision-records/012-agent-memory-pipeline.md)           | Agent memory pipeline            |
 | [ADR-013](../docs/architecture/decision-records/013-security-headers.md)                | Security headers                 |
+| [ADR-014](../docs/architecture/decision-records/014-entity-model-design.md)             | Entity model design              |
 
 ## Tools and Workflows
 
