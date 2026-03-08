@@ -60,6 +60,17 @@ describe("jsonLd export", () => {
     expect(systemsThinking?.sameAs).toMatch(/wikidata\.org/);
   });
 
+  it("publishes Knowledge graphs in the exported JSON-LD graph", () => {
+    const jsonLd = buildJsonLd("https://www.jimcresswell.net");
+    const person = jsonLd["@graph"].find((e) => e["@type"] === "Person");
+    if (!person || person["@type"] !== "Person") throw new Error("Person not found");
+
+    const knowledgeGraphs = person.knowsAbout.find((item) => item.name === "Knowledge graphs");
+
+    expect(knowledgeGraphs).toBeDefined();
+    expect(knowledgeGraphs?.sameAs).toBe("https://www.wikidata.org/wiki/Q33002955");
+  });
+
   it("uses preview URL when building a preview deployment graph", () => {
     expect(getPersonId("https://preview-abc123.vercel.app")).toBe(
       "https://preview-abc123.vercel.app/#person"

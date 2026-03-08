@@ -135,6 +135,11 @@
         },
         {
           "@type": "Thing",
+          "name": "Knowledge graphs",
+          "sameAs": "https://www.wikidata.org/wiki/Q33002955"
+        },
+        {
+          "@type": "Thing",
           "name": "Model fitting",
           "sameAs": "https://www.wikidata.org/wiki/Q4892500"
         },
@@ -633,7 +638,7 @@
       "@id": "https://www.jimcresswell.net/#cap-strategy-leadership",
       "additionalType": "https://www.jimcresswell.net/schema/Capability",
       "name": "Strategy and technical leadership at scale",
-      "description": "Shaping Oak\u2019s Engineering function from four contractors into five product squads and three platform groups. Holding the long-term technical vision, translating direction for non-technical stakeholders, and coaching engineers through ambiguity."
+      "description": "Helping shape Oak\u2019s Engineering function from four contractors into five product squads and three platform groups. Holding the long-term technical vision, translating direction for non-technical stakeholders, and coaching engineers through ambiguity."
     },
 
     {

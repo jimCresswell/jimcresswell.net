@@ -44,6 +44,17 @@ describe("Entity model integration", () => {
     expect(people[0]["@id"]).toBe("https://www.jimcresswell.net/#person");
   });
 
+  it("includes Knowledge graphs in Person.knowsAbout with a Wikidata link", () => {
+    const people = entities.filter((e) => e["@type"] === "Person");
+    expect(people).toHaveLength(1);
+
+    const person = people[0];
+    const knowledgeGraphs = person.knowsAbout.find((item) => item.name === "Knowledge graphs");
+
+    expect(knowledgeGraphs).toBeDefined();
+    expect(knowledgeGraphs?.sameAs).toBe("https://www.wikidata.org/wiki/Q33002955");
+  });
+
   it("has no dangling @id references", () => {
     const ids = new Set(entities.map((e) => e["@id"]));
 

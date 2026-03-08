@@ -3,19 +3,25 @@ name: PKG Implementation Execution
 overview: Operationalise the Personal Knowledge Graph implementation plan with explicit reviewer invocations, skill activations, TDD discipline, and quality gates at every step. Five phases from entity model design through LinkedIn as a derived view.
 todos:
   - id: quality-gates
-    content: "Automated gates pass on current tree (`pnpm check:ci`, `pnpm test:e2e`)"
+    content: "Automated gates pass on current tree (`pnpm check`, `pnpm test:e2e`)"
     status: completed
   - id: phase4-consistency
     content: "Phase 4: Cross-output consistency and framing review (comprehensive editorial pass)"
-    status: in_progress
+    status: completed
   - id: phase4-knows-about
     content: "Phase 4: Add 'Knowledge graphs' to knowsAbout with Wikidata link"
-    status: pending
+    status: completed
   - id: phase4-schema-dts
     content: "Phase 4: Add schema-dts compile-time Schema.org vocabulary validation"
-    status: pending
+    status: completed
   - id: phase4-final-gates
     content: "Phase 4: Final quality gates (Schema.org Validator, Rich Results Test, commit)"
+    status: in_progress
+  - id: phase3-regression-proof
+    content: "Phase 3: Formal proof that PKG migration preserved visible site content"
+    status: pending
+  - id: historical-screenshots
+    content: "Post-commit: capture full-page and sectional screenshots from the pre-PKG baseline commit"
     status: pending
   - id: phase5-linkedin
     content: "Phase 5: Derive all LinkedIn content from the graph (headline, About, experience, education, skills)"
@@ -46,31 +52,50 @@ This plan operationalises the two existing PKG plans:
 
 This plan defines the HOW -- reviewer invocations, skill activations, per-task status, and quality gates.
 
-### Current state (updated 2026-03-08, verified 2026-03-08)
+### Current state (updated 2026-03-08, verified 2026-03-08 after latest refactor)
 
-| Phase                       | Code status         | Gate status             | Key metric                                   |
-| --------------------------- | ------------------- | ----------------------- | -------------------------------------------- |
-| 1. Entity model design      | ✅ Code complete    | ✅ Automated gates pass | 17 Zod schemas, ADR-014                      |
-| 2. Entity population        | ✅ Code complete    | ✅ Automated gates pass | ~50 entities in `entities.json`              |
-| 3. View derivation          | ✅ Code complete    | ✅ Automated gates pass | `lib/jsonld.ts` 287→30 lines + shared helper |
-| 4. New views and enrichment | 🔄 Code in progress | ✅ Current tree passes  | 6/8 tasks code-complete; manual checks left  |
-| 5. LinkedIn as derived view | ⬜ Pending          | —                       | —                                            |
+| Phase                       | Code status      | Gate status             | Key metric                                      |
+| --------------------------- | ---------------- | ----------------------- | ----------------------------------------------- |
+| 1. Entity model design      | ✅ Code complete | ✅ Automated gates pass | 17 Zod schemas, ADR-014                         |
+| 2. Entity population        | ✅ Code complete | ✅ Automated gates pass | ~50 entities in `entities.json`                 |
+| 3. View derivation          | ✅ Code complete | ✅ Automated gates pass | `lib/jsonld.ts` 287→30 lines + shared helper    |
+| 4. New views and enrichment | ✅ Code complete | 🔄 Manual checks left   | 8/8 tasks code-complete; manual validators left |
+| 5. LinkedIn as derived view | ⬜ Pending       | —                       | —                                               |
 
-**128 vitest tests passing** across 14 test files. **All PKG and supporting tooling changes remain uncommitted on `main`** (no branch created).
+**132 vitest tests passing across 15 test files, and 46 Playwright E2E tests passing.** Historical PKG work was committed on `feature/pkg-phase1-entity-model` and merged locally into `main` on 2026-03-08. The current follow-up changes for Tasks 4.6-4.8 remain uncommitted on `main` because Jim explicitly asked to continue there.
 
-**Automated gates pass on the current tree.** `pnpm check:ci` and `pnpm test:e2e` both passed on 2026-03-08. Manual Schema.org Validator and Rich Results Test checks remain outstanding. Phase 3 pixel-identical regression check is still not formally verified. Branch-per-phase strategy was missed and all work remains uncommitted on `main`.
+**Automated gates pass on the current tree.** `pnpm check` and `pnpm test:e2e` both passed on 2026-03-08 after completing Tasks 4.6-4.8 and after the later test-simplification refactor that moved schema-org allowlists into product code. Manual Schema.org Validator and Rich Results Test checks remain outstanding. Phase 3 pixel-identical regression check is still not formally verified.
 
 **Dependency/tooling note:** the dependency refresh is complete. `eslint` is intentionally held at `9.x` because `eslint-config-next` is not yet compatible with `10.x` in this repo. ESLint now enforces the repo's policy against `as`, `!`, `vi.doMock`, and `vi.stubGlobal`.
 
 ### What to do next
 
-1. **Complete Task 4.6** — Re-run the editor reviewer to verify the editorial fixes are sufficient. Check "Should Fix" and "Consider" items.
-2. **Complete Task 4.7** — Add "Knowledge graphs" to `knowsAbout` in `content/entities.json` with Wikidata `sameAs` link.
-3. **Complete Task 4.8** — Add `schema-dts` as a devDependency. Create compile-time Schema.org vocabulary validation. TDD.
-4. **Run Phase 4 manual validation** — Schema.org Validator and Rich Results Test. Automated gates already pass on the current tree.
-5. **Decide the recovery path for the missed branch strategy** — all PKG work is still uncommitted on `main`. Discuss with Jim before more structural work.
-6. **Commit all Phase 1-4 changes** — Create a well-structured commit (or series of commits) once the remaining Phase 4 work is finished.
-7. **Phase 5** — LinkedIn as a derived view.
+1. **Run Phase 4 manual validation** — Schema.org Validator and Rich Results Test. Automated gates already pass on the current tree.
+2. **Decide whether to formally verify the Phase 3 render-regression proof now** — snapshots exist, but the comparison has still not been run and recorded.
+3. **Commit the current Phase 4 follow-up changes** — once the remaining manual validation is finished.
+4. **Capture historical screenshots from the pre-PKG baseline** — after the current work is committed, go back to the pre-PKG baseline commit in a safe way and capture screenshots of every part of every page for regression comparison.
+5. **Phase 5** — LinkedIn as a derived view.
+
+### Current worktree snapshot
+
+At the start of the next session, expect the following uncommitted files unless Jim has committed or changed them:
+
+- `.agent/memory/napkin.md`
+- `.agent/plans/personal-knowledge-graph-execution.plan.md`
+- `content/entities.json`
+- `lib/entities.integration.test.ts`
+- `lib/jsonld.integration.test.ts`
+- `lib/schema-org-check.ts`
+- `lib/schema-org-check.integration.test.ts`
+- `package.json`
+- `pnpm-lock.yaml`
+
+These changes correspond to:
+
+- Task 4.6 completion and plan refresh
+- Task 4.7 (`Knowledge graphs` in `knowsAbout`)
+- Task 4.8 (`schema-dts` + schema-org compatibility guard)
+- test simplification/refactor to keep schema-org allowlists in product code instead of tests
 
 ### Key files to understand
 
@@ -85,6 +110,50 @@ This plan defines the HOW -- reviewer invocations, skill activations, per-task s
 | `lib/cv-content.ts`                                             | OG metadata — imports Person from entity model                                        |
 | `eslint.config.ts`                                              | Enforces no `as`, no `!`, no `vi.doMock` / `vi.stubGlobal`                            |
 | `docs/architecture/decision-records/014-entity-model-design.md` | ADR documenting the entity model design                                               |
+
+---
+
+## Proof status: content regression
+
+This section is critical for any fresh agent continuing Phase 4.
+
+### What is currently proven
+
+- **Rendered content matches the current JSON source.** `e2e/behaviour/content-integrity.e2e-ui.test.ts` proves that the CV page renders experience entries, prior roles, capabilities, education, and the public-sector tilt from `content/cv.content.json`.
+- **Core page-level behaviour still works.** `pnpm test:e2e` also covers navigation journeys, SEO tags, accessibility, graph API, markdown negotiation, and theming.
+- **Structured-data output is internally consistent.** `lib/entities.integration.test.ts`, `lib/jsonld.integration.test.ts`, and `lib/schema-org-check.integration.test.ts` prove referential integrity, published-graph behaviour, and schema-org vocabulary constraints for the validated PKG types.
+- **The full graph is richer than the old snapshot.** `lib/jsonld.integration.test.ts` asserts the current graph contains at least as many entities as the pre-migration snapshot.
+
+### What is NOT currently proven
+
+- **We do not have a formal proof that the PKG migration left visible website content unchanged relative to the pre-migration site.**
+- There are pre-migration snapshots at `__snapshots__/cv-content-pre-migration.json` and `__snapshots__/jsonld-pre-migration.json`, but there is no automated or recorded comparison proving byte-identical, text-identical, or pixel-identical output after the migration.
+- The current E2E content-integrity tests prove correctness against the current JSON source, not preservation against the historical pre-migration rendering.
+
+### Practical implication
+
+Do **not** claim “content unchanged” as a verified fact. The accurate statement is:
+
+- visible content appears stable and current behaviour passes all automated tests
+- but the historical regression proof remains incomplete until a before/after comparison is actually run and recorded
+
+### Options to close this gap
+
+1. **Rendered-text proof** — capture current rendered page text for `/`, `/cv`, and `/cv/public_sector`, normalise it, and compare with a trusted pre-migration capture.
+2. **HTML proof** — compare rendered HTML or selected DOM sections before/after, allowing for expected structural differences such as JSON-LD block changes or harmless attribute ordering.
+3. **Pixel proof** — run screenshot comparison for `/`, `/cv`, and `/cv/public_sector` against trusted pre-migration screenshots.
+
+The original design/implementation intent called for pixel-identical or equivalent regression proof; that remains a pending validation task, not a completed one.
+
+### Historical screenshot requirement (Jim instruction, 2026-03-08)
+
+Once the current PKG follow-up work is committed, take screenshots of **every part of every page** from the point in git history **before PKG work started**.
+
+- **Baseline commit:** `b76824a` (`docs: make Practice properly self-contained`) — this is the last commit before the PKG-related plan/doc commits (`a7e5ecd`, `b29dad9`) and before the PKG implementation commits (`4712590`, `0d6c112`).
+- **Safety requirement:** do **not** rewrite history, reset branches, or risk the current worktree. Use a **separate git worktree** or a **detached checkout in another directory**, leaving the current `main` worktree untouched.
+- **Scope:** capture the homepage (`/`), CV (`/cv`), public-sector variant (`/cv/public_sector`), and any other live pages required for a complete visual baseline. For each page, capture both the full page and the constituent sections so later comparison can be granular.
+- **Purpose:** produce a trustworthy pre-PKG visual baseline so we can compare the current site against a point-in-time snapshot from before the entity-model migration began.
+- **Do not perform this step until the current work is committed.**
 
 ---
 
@@ -107,7 +176,7 @@ Per rules.md, use feature branches for risky changes. The PKG is structural work
 
 Each phase merges to main after all quality gates pass and reviews are approved.
 
-**Note:** Phases 1-4 have been worked directly on `main` without branches. All changes remain uncommitted. Before any further structural work, agree the recovery path with Jim: either commit the current Phase 1-4 state on `main` first, or create a rescue branch from the current tree and proceed from there.
+**Note:** The historical branch-recovery problem has been resolved: Phase 1-4 PKG work was committed on `feature/pkg-phase1-entity-model` and merged locally into `main` on 2026-03-08. Jim explicitly asked to continue on `main`, which departs from the preferred branch strategy in `rules.md`. For future risky follow-on work, return to a feature branch where practical.
 
 ## Reviewer protocol
 
@@ -152,7 +221,7 @@ All 5 tasks code-complete. Design decisions resolved with Jim, entity schema def
 - Google Scholar: not a goal (PKG links TO Scholar via `sameAs`)
 - HTML binding depth: all three levels (section, entity, role anchors)
 
-**Remaining:** Automated gates pass on the current tree. No branch created. No commit yet.
+**Remaining:** Historical work already committed and merged locally into `main` on 2026-03-08.
 
 ---
 
@@ -169,7 +238,7 @@ All 4 tasks completed. Entity model populated with ~50 entities across all abstr
 
 **PKG-reviewer findings addressed:** `isBasedOn` removed from DefinedTerm (not in domain), `makesOffer` removed from Organisation (expects Offer, not WebAPI), orphaned roles connected to Person, ArXiv publication retyped to ScholarlyArticle.
 
-**Remaining:** Automated gates pass on the current tree. Role descriptions not all explicitly confirmed by Jim. No branch created. No commit yet.
+**Remaining:** Historical work already committed and merged locally into `main` on 2026-03-08. Role descriptions are not all explicitly confirmed by Jim.
 
 ---
 
@@ -188,11 +257,11 @@ All 6 tasks completed. Every view now derives from the entity model.
 
 **Files changed:** `lib/jsonld.ts`, `lib/cv-content.ts`, `app/manifest.ts`, `app/page.tsx`, `app/cv/page.tsx`, `app/cv/[variant]/page.tsx`. **Files created:** `lib/subgraph.ts`, `lib/subgraph.unit.test.ts`, `lib/page-jsonld.ts`.
 
-**Remaining:** Automated gates pass on the current tree. Pixel-identical regression check not formally verified (snapshots exist in `__snapshots__/` but no comparison run). No branch created. No commit yet.
+**Remaining:** Historical work already committed and merged locally into `main` on 2026-03-08. Pixel-identical regression check not formally verified (snapshots exist in `__snapshots__/` but no comparison run). See **Proof status: content regression** above.
 
 ---
 
-### Phase 4 -- New Views and Enrichment (IN PROGRESS)
+### Phase 4 -- New Views and Enrichment (CODE COMPLETE, MANUAL VALIDATION REMAINING)
 
 **Goal:** Add capabilities the entity model makes possible: front page JSON-LD, expanded graph, domain-appropriate descriptions, HTML binding, validation, and Schema.org vocabulary verification.
 
@@ -220,31 +289,27 @@ Person entity has a machine-facing description. OG and manifest descriptions der
 
 #### Task 4.5 -- Validate structured data ✅ COMPLETE
 
-Programmatic `@id` resolution check implemented in integration tests (`lib/entities.integration.test.ts` — dangling reference detection, `lib/jsonld.integration.test.ts` — subgraph self-containment). Automated gates pass on the current tree (`pnpm check:ci`, `pnpm test:e2e`, both 2026-03-08). Manual Schema.org Validator and Rich Results Test remain outstanding.
+Programmatic `@id` resolution check implemented in integration tests (`lib/entities.integration.test.ts` — dangling reference detection, `lib/jsonld.integration.test.ts` — subgraph self-containment). Automated gates pass on the current tree (`pnpm check`, `pnpm test:e2e`, both 2026-03-08). Manual Schema.org Validator and Rich Results Test remain outstanding.
 
-#### Task 4.6 -- Cross-output consistency and framing review (IN PROGRESS)
+#### Task 4.6 -- Cross-output consistency and framing review ✅ COMPLETE
 
 Editor reviewer invoked for comprehensive editorial pass on `content/entities.json`. Two "Must Fix" issues identified and resolved:
 
 1. **Ambiguous phrasing "support climate breakdown"** — Changed to "address climate breakdown, biodiversity loss, and social disconnection" in the Obaith EmployeeRole and CreativeWork entities.
 2. **Inconsistent capability description register** — Five DefinedTerm/Capability descriptions now all use consistent gerund form ("Setting...", "Conceiving...", "Carrying...", "Shaping...", "Creating..."). Previously mixed past-tense fragments ("Conceived, prototyped, and delivered", "Helped shape") with gerunds.
 
-**Remaining for this task:**
+Editor reviewer re-run completed after the follow-up collaborative-credit fix in `#cap-strategy-leadership` ("Helping shape..."). Verdict: **APPROVED**. Task 4.6 can be marked complete with no remaining blockers. Non-blocking "Consider" items remain for future editorial hardening only.
 
-- Re-verify with editor reviewer that fixes are sufficient
-- Check "Should Fix" and "Consider" items from original editor feedback
-- Verify the Code Science Limited description rework is editorially sound
+#### Task 4.7 -- Add "Knowledge graphs" to KNOWS_ABOUT ✅ COMPLETE
 
-#### Task 4.7 -- Add "Knowledge graphs" to KNOWS_ABOUT (PENDING)
-
-Once the graph is built, Jim demonstrably knows about knowledge graphs. Add to `knowsAbout` in `content/entities.json` with Wikidata `sameAs` link and update Zod schema count expectation if applicable.
+Added `Knowledge graphs` to `Person.knowsAbout` in `content/entities.json` with Wikidata `sameAs` link `https://www.wikidata.org/wiki/Q33002955`. Added integration coverage in `lib/entities.integration.test.ts` and `lib/jsonld.integration.test.ts` so the term is verified both in the entity model and in the published JSON-LD graph.
 
 **Acceptance criteria:**
 
 - Term present in entity model and published JSON-LD
 - Wikidata `sameAs` link included
 
-#### Task 4.8 -- Schema.org vocabulary validation with schema-dts (PENDING — NEW)
+#### Task 4.8 -- Schema.org vocabulary validation with schema-dts ✅ COMPLETE
 
 Add compile-time Schema.org vocabulary validation using `schema-dts` (Google's TypeScript types for Schema.org, 1.5M weekly downloads, zero runtime cost).
 
@@ -263,33 +328,32 @@ Add compile-time Schema.org vocabulary validation using `schema-dts` (Google's T
 **Implementation approach:**
 
 1. `pnpm add -D schema-dts`
-2. Create `lib/schema-org-check.ts` — compile-time type assertions that verify our entity types satisfy schema-dts Schema.org types (using the `Graph` type for `@graph` validation and individual type checks for entity schemas)
+2. Create `lib/schema-org-check.ts` — compile-time validation that rebuilds key PKG entity types as fresh schema-dts literals (Person, Organization, EmployeeRole, ScholarlyArticle, DefinedTerm, Statement, Thesis, WebAPI), plus `Graph` checks for the full graph and page subgraphs
 3. If `tsc --noEmit` passes (already a quality gate), Schema.org vocabulary is correct
-4. Write a companion integration test that validates the complete `entities.json` graph can be assigned to the schema-dts `Graph` type
+4. Write a companion integration test that validates the exported graphs and asserts the product code reports no raw-source vocabulary violations for the validated types
 
 ##### Design decision: why schema-dts, not ajv + schemaorg-jsd
 
 `ajv` + `schemaorg-jsd` (pre-1.0) would provide runtime Schema.org validation but duplicates Zod's role and adds dependency weight. schema-dts provides the same vocabulary correctness at compile time with zero runtime cost, zero bundle size, and backing from Google. The maturity gap (schemaorg-jsd v0.17.1 vs schema-dts v1.1.5) further favours schema-dts.
 
-**Acceptance criteria:**
+**Implemented:** `schema-dts` added as a devDependency. `lib/schema-org-check.ts` now validates the graph in two layers: fresh-literal schema-dts conversions for the core/high-value PKG entity types, and `Graph` assignability for the full graph and page subgraphs. The raw-source allowlist and derived type guard now live in product code as `as const` runtime data, and `lib/schema-org-check.integration.test.ts` simply asserts that the product code reports no vocabulary violations for the validated types.
 
-- `schema-dts` added as devDependency
-- Type-assertion file compiles without errors
-- At least the core entity types (Person, Organization, EmployeeRole, ScholarlyArticle, DefinedTerm, Statement) are verified against schema-dts
-- Invalid Schema.org properties cause `tsc` failure
-- TDD: write the type assertions first, verify they catch a known-bad property, then confirm they pass with current entities
+**TDD note:** manual red-phase proof completed on 2026-03-08 by temporarily adding the historically problematic `isBasedOn` property to the `DefinedTerm` schema-dts bridge and verifying that `pnpm typecheck` failed with `Object literal may only specify known properties, and 'isBasedOn' does not exist in type 'DefinedTermLeaf'`. The temporary bad property was then removed and the tree returned to green.
+
+**Testing/design follow-up applied:** Jim prefers as little definition as possible in tests, and prefers deriving types from runtime `as const` constants where possible. The schema-org allowlist and validated-entity-type definitions now live in product code (`lib/schema-org-check.ts`), and the integration test simply asserts that product code reports no vocabulary violations.
 
 **Reviewers:** Invoke **type-reviewer** (type flow from schema-dts types through our Zod-derived types). Invoke **pkg-reviewer** (Schema.org correctness of the approach). Invoke **code-reviewer** as gateway.
 
 #### Phase 4 quality gates (PARTIAL)
 
-- ✅ `pnpm check:ci` passes on the current tree (2026-03-08)
+- ✅ `pnpm check` passes on the current tree (2026-03-08)
 - ✅ `pnpm test:e2e` passes on the current tree (2026-03-08)
-- No regression to existing page content
+- Rendered content matches the current JSON source (`e2e/behaviour/content-integrity.e2e-ui.test.ts`)
+- Historical content-preservation proof still pending (see **Proof status: content regression**)
 - Every `@id` reference resolves (programmatic test — already in place)
 - Schema.org Validator: no errors (manual, pre-deployment)
 - Google Rich Results Test: ProfilePage and WebSite eligible (manual, post-deployment)
-- schema-dts compile-time check passes (integrated into `tsc --noEmit`)
+- ✅ schema-dts compile-time check passes (integrated into `tsc --noEmit`)
 - All reviewer verdicts APPROVED or APPROVED WITH SUGGESTIONS
 - Neo4j forward-compatibility checklist passes
 
@@ -374,14 +438,15 @@ Throughout all phases:
 - `content/entities.json` -- JSON-LD `@graph` with ~50 entities at all abstraction levels
 - `lib/entities.ts` -- Zod schemas (16 entity types), discriminated union, parse + export
 - `lib/entities.unit.test.ts` -- 38 unit tests for individual schemas
-- `lib/entities.integration.test.ts` -- 7 integration tests (full parse, referential integrity)
+- `lib/entities.integration.test.ts` -- 8 integration tests (full parse, referential integrity, `Knowledge graphs`)
 - `lib/subgraph.ts` -- subgraph closure algorithm (`extractSubgraph`, `findDanglingRefs`)
 - `lib/subgraph.unit.test.ts` -- 10 unit tests for closure and dangling-ref detection
 - `lib/page-jsonld.ts` -- page-specific JSON-LD subgraphs (`frontPageJsonLd`, `cvPageJsonLd`)
-- `lib/jsonld.integration.test.ts` -- 7 integration tests for URL rewriting and graph validity
+- `lib/jsonld.integration.test.ts` -- 8 integration tests for URL rewriting, graph validity, and `Knowledge graphs`
 - `lib/rewrite-jsonld-urls.ts` -- shared URL rewriting with Zod re-validation
 - `docs/architecture/decision-records/014-entity-model-design.md` -- ADR for entity model
-- `lib/schema-org-check.ts` (planned) -- compile-time Schema.org vocabulary assertions
+- `lib/schema-org-check.ts` -- compile-time Schema.org vocabulary assertions and raw-source vocabulary guard
+- `lib/schema-org-check.integration.test.ts` -- 2 integration tests for schema-org compatibility behaviour
 
 ### Modified (Phases 3-4)
 

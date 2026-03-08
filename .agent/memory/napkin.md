@@ -9,6 +9,9 @@
 - Refactored existing violations to use type guards and explicit parsing instead of `as` / `!`
 - Fixed Knip failure by making `ActiveTiltKey` internal to `lib/cv-content.ts`
 - Ran `pnpm check:ci`, then refreshed Playwright browsers after the `@playwright/test` update and re-ran `pnpm test:e2e`
+- Continued PKG Phase 4: completed Task 4.6 editorial re-review, added `Knowledge graphs` with Wikidata `Q33002955` to `Person.knowsAbout`, and added `schema-dts` as a devDependency
+- Implemented a hybrid Schema.org guard: fresh-literal `schema-dts` conversions in `lib/schema-org-check.ts` for core PKG entity types, plus a raw-source allowed-key integration test so unexpected keys in `content/entities.json` cannot hide behind Zod parsing
+- Manually verified the red phase for the historical `DefinedTerm.isBasedOn` failure mode by temporarily adding it to the `schema-dts` bridge, confirming `pnpm typecheck` failed, then removing it and rerunning `pnpm check` + `pnpm test:e2e`
 
 ### Patterns to Remember
 
@@ -18,6 +21,11 @@
 - When PKG status changes, propagate it across the whole plan set (`execution`, `implementation`, parent editorial plan, roadmap, and any design-reference metrics). The stale facts that linger are usually counts and "gates pending" wording, not the headline status.
 - `markdownlint-cli2` needs explicit repo globs. A naive `**/*.md` script will traverse dependency docs and produce huge output; constrain it in `.markdownlint-cli2.jsonc` to authored Markdown only.
 - `knip` can flag formatter/plugin packages as unused when they are loaded indirectly by a CLI option rather than imported in code. `markdownlint-cli2-formatter-pretty` is one of these; the fix is an explicit `knip.ignoreDependencies` entry, not removing the formatter package.
+- `schema-dts` alone is not enough if you only assign already-typed values to broad schema types like `Graph`; that misses the exact excess-property failure mode the PKG plan cares about. For this repo, the robust pattern is: fresh-literal `schema-dts` conversions for key entity types + a raw-source key whitelist test against `content/entities.json`.
+- `schema-dts@1.1.5` lags Schema.org on `Person.pronouns`, so keep `pronouns` in the raw-source allowlist but omit it from the fresh-literal `SchemaPerson` bridge. Treat this as a package gap, not a reason to drop the property from the entity model.
+- Jim prefers as little definition as possible in tests. If a test needs large local fixtures, allowlists, or helper definitions, treat that as a design smell and first ask whether the constant, guard, or validation logic belongs in product code instead.
+- Jim prefers runtime constants with `as const` as the source of truth for derived types and predicate guards. When a type can naturally come from a stable runtime list/object, define the value first and derive the type from it.
+- After the current PKG work is committed, Jim wants a historical visual baseline captured from the point before PKG started. Do this safely via a separate worktree or detached checkout in another directory; never rewrite history or risk the current worktree.
 
 ## Session: 2026-03-07 — Consolidation
 
