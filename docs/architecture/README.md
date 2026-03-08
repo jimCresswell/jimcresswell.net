@@ -59,6 +59,17 @@ The WebPage JSON-LD node's `name` and `description` match the page's HTML `<titl
 
 For a full walkthrough of the content model, see [content-model.md](content-model.md).
 
+## Regression Proofing
+
+The repo includes a non-destructive visual regression harness at `visual-regression-harness/` for ref-to-ref comparison during structural refactors.
+
+- CLI entrypoint: `pnpm visual-regression-harness <base-ref> <target-ref>`
+- Safety model: reads refs with `git rev-parse`, exports snapshots with `git archive`, builds only in temporary directories, and does not touch the caller's worktree, index, refs, or history
+- Output: durable artifacts under `regression-artifacts/visual-regression-harness/`, including full-page screenshots, selected region screenshots, HTML artifacts, metadata JSON, and diff summaries
+- Comparison standard: raw HTML/DOM comparison plus pixel comparison; for the PKG refactor, the default expectation is zero differences unless Jim explicitly reviews and accepts an exception
+
+See `visual-regression-harness/README.md` for operational details.
+
 ## PDF Generation
 
 The CV PDF is generated at build time using Puppeteer with full Chrome for Testing. The build script (`scripts/generate-pdf.ts`) runs after `next build`, starts a local Next.js server, renders `/cv`, and stores the PDF in Vercel Blob (production) or the local filesystem (local builds).

@@ -2,6 +2,14 @@
 
 Agent direction lives in [AGENT.md](.agent/directives/AGENT.md), read it.
 
+## Codex Adapter Model
+
+- `.agent/` contains the canonical skills, rules, commands, and reviewer templates.
+- `.agents/skills/` contains the Codex adapters for repo-local skills and `jc-*` commands.
+- `.codex/config.toml` registers the real Codex reviewer sub-agents, with thin per-agent adapters under `.codex/agents/`.
+- Always-on behaviour comes from this entry point plus [AGENT.md](.agent/directives/AGENT.md) and the canonical rules in `.agent/rules/`; there is no separate `.agents/rules/` layer.
+- If a canonical rule tells you to invoke a command or skill, use the corresponding `.agents/skills/` adapter. Reviewer roles remain canonical in `.agent/sub-agents/templates/` and should be wired through `.codex/`, not `.agents/skills/`.
+
 Entries below are landing pads for the continual-learning skill.
 During distillation, entries are moved to permanent docs and
 replaced with anchors. Do not re-add entries that have anchors.

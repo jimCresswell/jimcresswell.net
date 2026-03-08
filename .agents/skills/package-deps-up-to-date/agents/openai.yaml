@@ -1,0 +1,4 @@
+interface:
+  display_name: "Package Dependency Freshness"
+  short_description: "Dependency freshness checks for package.json projects"
+  default_prompt: "Use $package-deps-up-to-date to audit package.json dependencies and apply semver-safe updates before release."

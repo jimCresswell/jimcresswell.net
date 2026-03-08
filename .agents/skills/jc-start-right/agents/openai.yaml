@@ -1,0 +1,4 @@
+interface:
+  display_name: "Start Right"
+  short_description: "Ground the session before beginning work"
+  default_prompt: "Use $jc-start-right to ground the session in the foundation documents, guiding questions, practice box, and quality expectations before starting work."

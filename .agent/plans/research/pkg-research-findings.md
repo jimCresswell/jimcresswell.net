@@ -239,7 +239,7 @@ Four-tool workflow, each serving a different purpose:
 
 ## Related
 
-- [personal-knowledge-graph.plan.md](../personal-knowledge-graph.plan.md) — design reference
+- [personal-knowledge-graph.plan.md](../personal-knowledge-graph.plan.md) — historical design working notes
 - [personal-knowledge-graph-implementation.plan.md](../personal-knowledge-graph-implementation.plan.md) — implementation plan
 - [ADR-008](../../../docs/architecture/decision-records/008-schema-org-compliance.md) — Schema.org compliance throughout the graph
 - [ADR-010](../../../docs/architecture/decision-records/010-canonical-url-graph-identity.md) — canonical URL and graph identity

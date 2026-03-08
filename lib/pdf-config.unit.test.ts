@@ -32,8 +32,8 @@ describe("getBlobPath", () => {
 
 describe("getLocalPdfPath", () => {
   it("joins the cwd with .next and the PDF filename", () => {
-    const result = getLocalPdfPath("/Users/jim/project");
-    expect(result).toBe(path.join("/Users/jim/project", ".next", "Jim-Cresswell-CV.pdf"));
+    const result = getLocalPdfPath("project");
+    expect(result).toBe(path.join("project", ".next", "Jim-Cresswell-CV.pdf"));
   });
 });
 

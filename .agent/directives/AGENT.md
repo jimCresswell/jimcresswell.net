@@ -50,6 +50,11 @@ Every session, read `.agent/memory/distilled.md` and scan `.agent/memory/napkin.
 
 ### Sub-agents
 
+Canonical reviewer prompts live in `.agent/sub-agents/templates/`. In Codex,
+the project reviewer roster is registered in `.codex/config.toml` and each role
+uses a thin `.codex/agents/*.toml` adapter that points back to the canonical
+template.
+
 | Agent                                                     | Purpose                                               |
 | --------------------------------------------------------- | ----------------------------------------------------- |
 | [editor](../sub-agents/templates/editor.md)               | Editorial reviewer — voice, consistency, and pitfalls |
@@ -60,14 +65,16 @@ Every session, read `.agent/memory/distilled.md` and scan `.agent/memory/napkin.
 
 ### Skills
 
-| Skill                                                 | Purpose                                                             |
-| ----------------------------------------------------- | ------------------------------------------------------------------- |
-| [editorial-voice](../skills/editorial-voice/SKILL.md) | Apply Jim's editorial voice — two registers, common pitfalls        |
-| [quality-gates](../skills/quality-gates/SKILL.md)     | Run quality gates with restart-on-fix discipline                    |
-| [napkin](../skills/napkin/SKILL.md)                   | Session learning log — always active, read and update every session |
-| [distillation](../skills/distillation/SKILL.md)       | Rotate napkin into curated distilled.md when it grows large         |
-| [deslop](../skills/deslop/SKILL.md)                   | Remove AI-generated code slop from diffs                            |
-| [pkg](../skills/pkg/SKILL.md)                         | PKG entity model and structured data guide                          |
+| Skill                                                                 | Purpose                                                             |
+| --------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| [editorial-voice](../skills/editorial-voice/SKILL.md)                 | Apply Jim's editorial voice — two registers, common pitfalls        |
+| [quality-gates](../skills/quality-gates/SKILL.md)                     | Run quality gates with restart-on-fix discipline                    |
+| [napkin](../skills/napkin/SKILL.md)                                   | Session learning log — always active, read and update every session |
+| [distillation](../skills/distillation/SKILL.md)                       | Rotate napkin into curated distilled.md when it grows large         |
+| [author-skills](../skills/author-skills/SKILL.md)                     | Create or update repo-local skills and adapters                     |
+| [deslop](../skills/deslop/SKILL.md)                                   | Remove AI-generated code slop from diffs                            |
+| [pkg](../skills/pkg/SKILL.md)                                         | PKG entity model and structured data guide                          |
+| [package-deps-up-to-date](../skills/package-deps-up-to-date/SKILL.md) | Audit and update `package.json` dependencies safely                 |
 
 ### Commands
 
@@ -86,7 +93,7 @@ All commands use `pnpm`. Key commands: `pnpm dev`, `pnpm build`, `pnpm check` (a
 
 ## Project Structure
 
-```
+```text
 app/                    # Next.js App Router pages and layouts
 components/             # React components
 content/                # CV content JSON files
@@ -111,6 +118,11 @@ e2e/                    # End-to-end tests (Playwright)
   prompts/              # Reusable prompt playbooks
   memory/               # Napkin, distilled, code patterns
   experience/           # Experiential records
+.agents/                # Codex platform adapters
+  skills/               # Thin skill and command wrappers plus adapter-local metadata
+.codex/                 # Codex project configuration
+  config.toml           # Project-local reviewer sub-agent registry
+  agents/               # Thin reviewer adapter files
 .cursor/                # Cursor platform adapters (thin wrappers)
   agents/               # Sub-agent adapters
   commands/             # Command adapters

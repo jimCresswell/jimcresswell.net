@@ -45,14 +45,16 @@ This is the **standalone entry point** for continuing PKG implementation. A fres
 
 ### What this plan is
 
-This plan operationalises the two existing PKG plans:
+This plan operationalises the PKG work:
 
-- [Design reference](personal-knowledge-graph.plan.md) -- entity inventory, principles, Schema.org conventions. All design decisions resolved. The WHY.
-- [Implementation plan](personal-knowledge-graph-implementation.plan.md) -- phased tasks with acceptance criteria. The WHAT.
+- [ADR-014](../../docs/architecture/decision-records/014-entity-model-design.md) and the related ADRs -- the canonical durable PKG design decisions
+- [Historical design working notes](personal-knowledge-graph.plan.md) -- entity audit and design exploration context
+- [Implementation plan](personal-knowledge-graph-implementation.plan.md) -- full phase/task plan with goals, impacts, and acceptance criteria
+- [Visual regression harness plan](visual-regression-harness.plan.md) -- harness-specific refinements, acceptance criteria, and safety invariants
 
-This plan defines the HOW -- reviewer invocations, skill activations, per-task status, and quality gates.
+This plan defines the HOW -- current status, reviewer invocations, skill activations, remaining PKG work, and quality gates.
 
-### Current state (updated 2026-03-08, verified 2026-03-08 after latest refactor)
+### Current state (updated 2026-03-08, verified 2026-03-08 after latest harness run)
 
 | Phase                       | Code status      | Gate status             | Key metric                                      |
 | --------------------------- | ---------------- | ----------------------- | ----------------------------------------------- |
@@ -62,41 +64,21 @@ This plan defines the HOW -- reviewer invocations, skill activations, per-task s
 | 4. New views and enrichment | ✅ Code complete | 🔄 Manual checks left   | 8/8 tasks code-complete; manual validators left |
 | 5. LinkedIn as derived view | ⬜ Pending       | —                       | —                                               |
 
-**132 vitest tests passing across 15 test files, and 46 Playwright E2E tests passing.** Historical PKG work was committed on `feature/pkg-phase1-entity-model` and merged locally into `main` on 2026-03-08. The Phase 4 follow-up was then committed on `main` as `83a16fa` (`feat: complete PKG phase 4 follow-up`). The current uncommitted layer is the later docs-consolidation pass requested immediately afterwards.
+Historical PKG work was committed on `feature/pkg-phase1-entity-model` and merged locally into `main` on 2026-03-08. The Phase 4 follow-up was then committed on `main` as `83a16fa` (`feat: complete PKG phase 4 follow-up`).
 
-**Automated gates pass on the current tree.** `pnpm check` and `pnpm test:e2e` both passed on 2026-03-08 after completing Tasks 4.6-4.8 and after the later test-simplification refactor that moved schema-org allowlists into product code. Manual Schema.org Validator and Rich Results Test checks remain outstanding. Phase 3 pixel-identical regression check is still not formally verified.
+Automated gates pass on the current tree. Manual Schema.org Validator and Rich Results Test checks remain outstanding.
+
+The visual regression harness already exists and has recorded a first real run against `b76824a` vs `HEAD`. At PKG level, the only fact that matters here is: the historical proof remains incomplete because the recorded run surfaced HTML/DOM differences that still need explicit review or resolution. Harness-specific refinement work now lives in [visual-regression-harness.plan.md](visual-regression-harness.plan.md).
 
 **Dependency/tooling note:** the dependency refresh is complete. `eslint` is intentionally held at `9.x` because `eslint-config-next` is not yet compatible with `10.x` in this repo. ESLint now enforces the repo's policy against `as`, `!`, `vi.doMock`, and `vi.stubGlobal`.
 
 ### What to do next
 
-1. **Run Phase 4 manual validation** — Schema.org Validator and Rich Results Test. Automated gates already pass on the current tree.
-2. **Decide whether to formally verify the Phase 3 render-regression proof now** — snapshots exist, but the comparison has still not been run and recorded.
-3. **Decide whether to commit the docs-consolidation pass before or after manual validation** — the worktree is currently dirty only because `/jc-consolidate-docs` was run after `83a16fa`.
-4. **Capture historical screenshots from the pre-PKG baseline** — after the current worktree is committed, go back to the pre-PKG baseline commit in a safe way and capture screenshots of every part of every page for regression comparison.
+1. **Review the current HTML-only regression differences with Jim** — the harness has already shown concrete DOM drift from section-level IDs. Do not normalise or ignore these differences without explicit approval.
+2. **Use the harness plan for tool work** — commit-addressed artifacts, reuse, and comparison filtering are tracked only in [visual-regression-harness.plan.md](visual-regression-harness.plan.md).
+3. **Complete the still-missing entity-level and role-anchor binding** — keep the harness in the loop because the zero-difference rule still applies unless Jim approves specific exceptions.
+4. **Run Phase 4 manual validation** — Schema.org Validator and Rich Results Test once the binding/regression question is settled.
 5. **Phase 5** — LinkedIn as a derived view.
-
-### Current worktree snapshot
-
-At the start of the next session, expect the following uncommitted files unless Jim has committed or changed them:
-
-- `.agent/directives/rules.md`
-- `.agent/directives/testing-strategy.md`
-- `.agent/memory/napkin.md`
-- `.agent/plans/cv-editorial-improvements.plan.md`
-- `.agent/plans/personal-knowledge-graph-execution.plan.md`
-- `.agent/plans/personal-knowledge-graph-implementation.plan.md`
-- `.agent/plans/personal-knowledge-graph.plan.md`
-- `.agent/plans/roadmap.md`
-- `AGENTS.md`
-- `docs/architecture/README.md`
-- `docs/architecture/content-model.md`
-
-These changes correspond to:
-
-- `/jc-consolidate-docs` follow-up after the Phase 4 commit
-- permanent capture of the new testing and type-derivation preferences
-- architecture and plan refresh so the next session starts from the current PKG state
 
 ### Key files to understand
 
@@ -111,6 +93,8 @@ These changes correspond to:
 | `lib/cv-content.ts`                                             | OG metadata — imports Person from entity model                                        |
 | `eslint.config.ts`                                              | Enforces no `as`, no `!`, no `vi.doMock` / `vi.stubGlobal`                            |
 | `docs/architecture/decision-records/014-entity-model-design.md` | ADR documenting the entity model design                                               |
+| `visual-regression-harness.plan.md`                             | Harness-specific roadmap, proof-tool refinements, and safety invariants               |
+| `visual-regression-harness/README.md`                           | Harness usage, artifact layout, and durable tool guidance                             |
 
 ---
 
@@ -127,31 +111,33 @@ This section is critical for any fresh agent continuing Phase 4.
 
 ### What is NOT currently proven
 
-- **We do not have a formal proof that the PKG migration left visible website content unchanged relative to the pre-migration site.**
-- There are pre-migration snapshots at `__snapshots__/cv-content-pre-migration.json` and `__snapshots__/jsonld-pre-migration.json`, but there is no automated or recorded comparison proving byte-identical, text-identical, or pixel-identical output after the migration.
+- **We do not yet have an accepted proof that the PKG migration left website output unchanged relative to the pre-migration site.**
+- We now have a recorded comparison harness run, but it currently fails on HTML/DOM artifacts.
 - The current E2E content-integrity tests prove correctness against the current JSON source, not preservation against the historical pre-migration rendering.
+
+### What is now recorded
+
+- `pnpm visual-regression-harness b76824a HEAD` ran successfully end-to-end using the new non-destructive harness.
+- Durable artifacts were written under `regression-artifacts/visual-regression-harness/b76824a-vs-HEAD/`.
+- `comparison.json` records the exact refs and the safety guarantees used for the run.
+- `diff/summary.json` records the current failures: home and CV HTML artifacts differ, while no pixel diff images were generated.
+- Example diff: `diff/cv/positioning.html.diff.txt` shows the pre-PKG baseline lacked `id="positioning"` on the section, while `HEAD` includes it. Similar differences appear for other section IDs.
 
 ### Practical implication
 
 Do **not** claim “content unchanged” as a verified fact. The accurate statement is:
 
 - visible content appears stable and current behaviour passes all automated tests
-- but the historical regression proof remains incomplete until a before/after comparison is actually run and recorded
+- but the historical regression proof remains incomplete until the recorded harness comparison is reviewed with Jim and any flagged differences are explicitly accepted or resolved
 
-### Options to close this gap
-
-1. **Rendered-text proof** — capture current rendered page text for `/`, `/cv`, and `/cv/public_sector`, normalise it, and compare with a trusted pre-migration capture.
-2. **HTML proof** — compare rendered HTML or selected DOM sections before/after, allowing for expected structural differences such as JSON-LD block changes or harmless attribute ordering.
-3. **Pixel proof** — run screenshot comparison for `/`, `/cv`, and `/cv/public_sector` against trusted pre-migration screenshots.
-
-The original design/implementation intent called for pixel-identical or equivalent regression proof; that remains a pending validation task, not a completed one.
+The original design intent still stands: zero rendered differences unless Jim explicitly approves an exception. Use [visual-regression-harness.plan.md](visual-regression-harness.plan.md) for the harness-side work needed to close the proof gap.
 
 ### Historical screenshot requirement (Jim instruction, 2026-03-08)
 
 Once the current PKG follow-up work is committed, take screenshots of **every part of every page** from the point in git history **before PKG work started**.
 
 - **Baseline commit:** `b76824a` (`docs: make Practice properly self-contained`) — this is the last commit before the PKG-related plan/doc commits (`a7e5ecd`, `b29dad9`) and before the PKG implementation commits (`4712590`, `0d6c112`).
-- **Safety requirement:** do **not** rewrite history, reset branches, or risk the current worktree. Use a **separate git worktree** or a **detached checkout in another directory**, leaving the current `main` worktree untouched.
+- **Safety requirement:** do **not** rewrite history, reset branches, or risk the current worktree. Prefer the new `visual-regression-harness/` export path, which reads refs with `git archive` and never touches the caller's worktree, index, branches, or history.
 - **Scope:** capture the homepage (`/`), CV (`/cv`), public-sector variant (`/cv/public_sector`), and any other live pages required for a complete visual baseline. For each page, capture both the full page and the constituent sections so later comparison can be granular.
 - **Purpose:** produce a trustworthy pre-PKG visual baseline so we can compare the current site against a point-in-time snapshot from before the entity-model migration began.
 - **Do not perform this step until the current work is committed.**
@@ -258,7 +244,7 @@ All 6 tasks completed. Every view now derives from the entity model.
 
 **Files changed:** `lib/jsonld.ts`, `lib/cv-content.ts`, `app/manifest.ts`, `app/page.tsx`, `app/cv/page.tsx`, `app/cv/[variant]/page.tsx`. **Files created:** `lib/subgraph.ts`, `lib/subgraph.unit.test.ts`, `lib/page-jsonld.ts`.
 
-**Remaining:** Historical work already committed and merged locally into `main` on 2026-03-08. Pixel-identical regression check not formally verified (snapshots exist in `__snapshots__/` but no comparison run). See **Proof status: content regression** above.
+**Remaining:** Historical work already committed and merged locally into `main` on 2026-03-08. The new harness comparison against `b76824a` has now been run and recorded, but HTML/DOM differences remain under review and no accepted zero-difference proof exists yet. See **Proof status: content regression** above.
 
 ---
 
@@ -362,7 +348,7 @@ Add compile-time Schema.org vocabulary validation using `schema-dts` (Google's T
 
 ### Phase 5 -- LinkedIn as a Derived View
 
-**Goal:** Derive all LinkedIn content from the knowledge graph. Subsumes the standalone [LinkedIn update plan](linkedin-update.plan.md).
+**Goal:** Derive all LinkedIn content from the knowledge graph.
 
 **Impact:** LinkedIn content is editorially consistent with all other views because it derives from the same source.
 
@@ -407,7 +393,23 @@ From Credential, Publication, and KNOWS_ABOUT entities.
 
 #### Task 5.4 -- Resolve LinkedIn-specific editorial questions
 
-Per the [LinkedIn plan](linkedin-update.plan.md): headline keywords, role grouping, description length, skills section strategy.
+Resolve these decisions directly in this phase:
+
+- headline and About register: close to the editorial CV, or adapted for LinkedIn search behaviour
+- Oak role grouping: one entry, two entries, or three entries
+- whether Obaith stands alone or folds into the Code Science narrative
+- whether short contracts are included
+- whether local elections appear in volunteering/public service
+- description length: concise prose or recruiter-oriented fuller entries
+- skills strategy: whether specific technologies appear in LinkedIn Skills
+
+Automation findings already settled for this phase:
+
+- LinkedIn Profile Edit API is not viable for this repo's use because the required profile-edit permissions are closed to new developers.
+- Browser automation is not acceptable because of LinkedIn's anti-automation controls and account-risk profile.
+- Open self-serve APIs do not support profile editing.
+
+The output of this phase is therefore manual, copy-paste-ready content for Jim. Use [linkedin-update.plan.md](linkedin-update.plan.md) as the preserved reference for source material, role inventory, and the original LinkedIn-specific plan structure.
 
 **Acceptance criteria:**
 
@@ -468,8 +470,10 @@ Throughout all phases:
 ## Related
 
 - [Design reference](personal-knowledge-graph.plan.md) -- entity inventory, principles, Schema.org conventions (the WHY)
-- [Implementation plan](personal-knowledge-graph-implementation.plan.md) -- phased tasks with acceptance criteria (the WHAT)
-- [LinkedIn update plan](linkedin-update.plan.md) -- subsumed by Phase 5; retained for editorial questions
+- [Implementation plan](personal-knowledge-graph-implementation.plan.md) -- full phase/task plan with acceptance criteria (the WHAT)
+- [Historical design working notes](personal-knowledge-graph.plan.md) -- design exploration and audit context
+- [Visual regression harness plan](visual-regression-harness.plan.md) -- harness-specific work and acceptance criteria
+- [linkedin-update.plan.md](linkedin-update.plan.md) -- subsumed LinkedIn reference plan
 - [PKG research findings](research/pkg-research-findings.md) -- Schema.org, JSON-LD, Google structured data, Neo4j research
 - [Neo4j future plan](future/neo4j-knowledge-graph.plan.md) -- shapes design decisions
 - [ADR-007](../../docs/architecture/decision-records/007-dry-content-metadata.md) -- single-source approach

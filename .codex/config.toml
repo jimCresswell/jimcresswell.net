@@ -1,0 +1,26 @@
+
+
+file_opener = "cursor" # or vscode, windsurf, vscode-insiders, none
+
+[features]
+multi_agent = true
+
+[agents."code-reviewer"]
+description = "Gateway reviewer for non-trivial changes."
+config_file = ".codex/agents/code-reviewer.toml"
+
+[agents.editor]
+description = "Editorial reviewer for CV and public-facing content."
+config_file = ".codex/agents/editor.toml"
+
+[agents."test-reviewer"]
+description = "Test quality and TDD compliance reviewer."
+config_file = ".codex/agents/test-reviewer.toml"
+
+[agents."type-reviewer"]
+description = "TypeScript type-safety reviewer."
+config_file = ".codex/agents/type-reviewer.toml"
+
+[agents."pkg-reviewer"]
+description = "Structured-data and PKG specialist reviewer."
+config_file = ".codex/agents/pkg-reviewer.toml"

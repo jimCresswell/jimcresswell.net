@@ -2,7 +2,7 @@
 
 Update Jim's LinkedIn profile to be consistent with the editorial CV, using the career history archive as the canonical factual source and the CV's editorial voice as the stylistic reference.
 
-## Status: Subsumed by [PKG implementation Phase 5](personal-knowledge-graph-implementation.plan.md). Retained as reference for editorial questions (Phase 2) and API investigation findings
+## Status: Subsumed by [PKG implementation Phase 5](personal-knowledge-graph-implementation.plan.md). Retained as a reference plan so its acceptance criteria, source-material checklist, and API findings are not lost.
 
 ## How to use this plan
 
@@ -152,7 +152,7 @@ Plus education entries at Portsmouth, Sussex, and Bath (with thesis titles and l
 
 - [cv-editorial-improvements.plan.md](cv-editorial-improvements.plan.md) — The editorial CV positioning paragraphs are the voice reference for LinkedIn content. LinkedIn entries must not contradict them.
 - [meta-seo-content-audit.plan.md](complete/meta-seo-content-audit.plan.md) — Complete. The CV's `meta.summary`, `KNOWS_ABOUT`, `OCCUPATION`, and capabilities have been editorially updated since this plan was written. Phase 1 should read the current `cv.content.json` and `lib/jsonld.ts` to pick up these changes.
-- [personal-knowledge-graph.plan.md](personal-knowledge-graph.plan.md) — The PKG plan will create a full entity model including all role history with dates. If the PKG plan runs first, the LinkedIn plan can source role data from the entity model rather than the archive. Either ordering works.
+- [personal-knowledge-graph-implementation.plan.md](personal-knowledge-graph-implementation.plan.md) — PKG Phase 5 is the active implementation path. This plan is now reference material for that phase.
 
 ## Decision
 

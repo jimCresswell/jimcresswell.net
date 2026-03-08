@@ -1,5 +1,152 @@
 # Napkin
 
+## Session: 2026-03-08 — Consolidate Docs and Practice-Core Audit
+
+### What Was Done
+
+- Ran the `jc-consolidate-docs` workflow against the current
+  Codex-alignment and PKG-documentation state
+- Updated `practice.md` so the portable Practice model now
+  includes `.codex/` alongside `.agents/` and explains the
+  Codex split between skills/commands and reviewer
+  sub-agents
+- Updated `practice-bootstrap.md`'s top-level Codex adapter
+  summary, added a 2026-03-08 practice-core changelog
+  entry, and updated the Codex alignment roadmap/plan
+  statuses
+- Renamed the portable bootstrap's reviewer table from
+  "Three Agents" to "Core Review Agents" so it reads as a
+  default roster rather than an architectural ceiling
+- Removed the skill-path-depth entry from `distilled.md`
+  because that guidance now lives permanently in
+  `.agent/skills/author-skills/SKILL.md`
+
+### Patterns to Remember
+
+- During consolidation, check whether a distilled entry has
+  been absorbed by a skill or other permanent repo doc, not
+  just ADRs and directives
+- `practice.md` is the portable high-level model and drifts
+  more easily than `practice-bootstrap.md`; when platform
+  architecture changes, audit both files together
+- Portable practice wording should describe defaults, not
+  accidental ceilings; names like "Three Agents" become
+  misleading once local repos add stable specialist reviewers
+- When a practice-core file is near its fitness ceiling,
+  provenance updates compete with content updates. Tighten
+  prose first or leave the provenance unchanged rather than
+  pushing the file over ceiling
+
+## Session: 2026-03-08 — Codex Reviewer Wrapper Removal
+
+### What Was Done
+
+- Removed the `.agents/skills/` reviewer wrappers for
+  `code-reviewer`, `editor`, `test-reviewer`,
+  `type-reviewer`, and `pkg-reviewer`
+- Added the real Codex reviewer roster in `.codex/config.toml`
+  with thin per-agent adapters under `.codex/agents/`
+- Updated Codex-facing docs to say `.agents/skills/` is for
+  skills and `jc-*` command adapters, not reviewer roles
+- Updated the Codex alignment plan so reviewer wrappers are
+  treated as redundant and removed, not retained as aliases
+
+### Patterns to Remember
+
+- In this repo, reviewer prompts stay canonical in
+  `.agent/sub-agents/templates/`; do not model them as
+  Codex skills under `.agents/skills/`
+- The thin Codex adapter pattern for reviewers is:
+  `.codex/config.toml` for registration plus
+  `.codex/agents/*.toml` for role-specific execution policy
+  and a pointer back to the canonical reviewer template
+- Deleting files under `.agents/skills/` required escalated
+  removal even though the repo itself is writable, so expect
+  Codex adapter cleanup in that subtree to need approval
+  when using shell deletion
+  commands
+
+## Session: 2026-03-08 — Local Skill Authoring
+
+### What Was Done
+
+- Created `.agent/skills/author-skills/SKILL.md` as the
+  repo-local guide for creating and updating skills
+- Added `.cursor/skills/author-skills/SKILL.md` and
+  registered the skill in `.agent/practice-index.md` and
+  `.agent/directives/AGENT.md`
+
+### Patterns to Remember
+
+- The repo's canonical `.agent` skills follow
+  `.agent/practice-core/practice-bootstrap.md`, which
+  includes `classification` in frontmatter. The generic
+  system `quick_validate.py` rejects that shape, so do not
+  assume the generic validator applies unchanged to local
+  skills.
+- The bundled `skill-creator` `quick_validate.py` also
+  depends on `PyYAML`; in this environment the default
+  `python3` lacks that module, so manual frontmatter checks
+  are the reliable fallback unless the dependency is
+  provided.
+- Skip the generic skill scaffold when it would introduce
+  `agents/openai.yaml` into `.agent/skills/`; this repo's
+  local pattern is canonical skill plus thin platform
+  adapter.
+- Codex platform adapters in this practice model live under
+  `.agents/skills/`. That namespace is shared by native
+  skill wrappers, Codex command wrappers (`jc-*`), and
+  reviewer-style instructional wrappers.
+- Codex does not have a repo-local `.agents/rules/` layer in
+  this practice. Rule enforcement relies on the entry-point
+  chain (`AGENTS.md` to `.agent/directives/AGENT.md` to the
+  directives and canonical rules), unlike Cursor's
+  `.cursor/rules/*.mdc` triggers.
+- When adding a new local skill, register it in both
+  `.agent/practice-index.md` and `.agent/directives/AGENT.md`
+  so the capability is discoverable from both entry points.
+
+## Session: 2026-03-08 — PKG and Harness Doc Consolidation
+
+### What Was Done
+
+- Consolidated the live PKG planning surface so the execution plan is the only active PKG plan, the harness plan is the only harness-specific roadmap, and the implementation doc is now a compact acceptance-criteria reference
+- Folded the remaining useful LinkedIn-specific material into PKG Phase 5 and retired the separate LinkedIn plan
+- Retired the duplicate PKG closure plan after moving responsibility for harness refinements to the dedicated harness plan
+- Trimmed the roadmap and parent editorial plan back to index/pointer roles instead of repeating PKG and harness status detail
+
+### Patterns to Remember
+
+- When a support tool grows into its own workstream, give it its own plan and remove tool-roadmap detail from the parent delivery plan
+- Parent plans and roadmaps drift fastest when they repeat detailed state from execution plans; keep them as pointers unless they truly own decisions
+
+### Mistakes Made
+
+- I over-compressed the implementation and editorial plans and deleted the subsumed LinkedIn and closure plans before checking whether their acceptance criteria and historical context were preserved elsewhere. In this repo, acceptance criteria stay in plans, and reducing live-doc duplication is not a licence to discard structured plan content.
+
+## Session: 2026-03-08 — Visual Regression Harness Handoff
+
+### What Was Done
+
+- Replaced the earlier `scripts/regression/` prototype with a top-level `visual-regression-harness/` tool intended to survive beyond this refactor
+- Added a Commander CLI entrypoint: `pnpm visual-regression-harness <base-ref> <target-ref>`
+- Made the harness explicitly non-destructive: it resolves refs with `git rev-parse`, exports snapshots with `git archive`, builds only in temporary directories, and never touches the caller's worktree, index, branches, or history
+- Captured full-page screenshots plus HTML artifacts (`document.html`, `main.html`, selected region HTML, metadata JSON) for `/`, `/cv`, and `/cv/public_sector`
+- Ran `pnpm visual-regression-harness b76824a HEAD` and recorded the result under `regression-artifacts/visual-regression-harness/b76824a-vs-HEAD/`
+- Verified the run currently fails on HTML/DOM differences but produces no pixel diff images; the recorded diffs show section-level IDs such as `id="positioning"` and `id="experience"` as at least one concrete cause
+- Updated the PKG closure plan, execution plan, roadmap, implementation plan, and design reference so a fresh session can resume from the recorded harness status rather than rediscovering it
+
+### Patterns to Remember
+
+- For a historical proof tool, compare refs directly rather than leaning on the live worktree. `git archive` into temp directories is a safer default than worktrees when the requirement is zero risk to local state or history.
+- Keep the regression harness implementation-independent. Capture selectors should be structural and content-based where possible, not tied to IDs introduced by the refactor being evaluated.
+- Record the exact artifact directory from the first real failing run. The next session should start from the generated diff summaries instead of re-running blindly.
+- If the harness reports DOM-only differences and no pixel diff images, treat that as a real review question, not a near-pass. The user explicitly wants exceptions reviewed rather than normalised.
+
+### Mistakes Made
+
+- I initially used refactor-specific selectors like `#positioning` in the new harness. That made the tool depend on the very IDs it was supposed to evaluate and caused a timeout against the pre-PKG baseline. I corrected this by switching to structural heading-based locators.
+
 ## Session: 2026-03-08 — Dependency Refresh and Lint Hardening
 
 ### What Was Done
@@ -27,7 +174,7 @@
 - `schema-dts@1.1.5` lags Schema.org on `Person.pronouns`, so keep `pronouns` in the raw-source allowlist but omit it from the fresh-literal `SchemaPerson` bridge. Treat this as a package gap, not a reason to drop the property from the entity model.
 - Jim prefers as little definition as possible in tests. If a test needs large local fixtures, allowlists, or helper definitions, treat that as a design smell and first ask whether the constant, guard, or validation logic belongs in product code instead.
 - Jim prefers runtime constants with `as const` as the source of truth for derived types and predicate guards. When a type can naturally come from a stable runtime list/object, define the value first and derive the type from it.
-- After the current PKG work is committed, Jim wants a historical visual baseline captured from the point before PKG started. Do this safely via a separate worktree or detached checkout in another directory; never rewrite history or risk the current worktree.
+- After the current PKG work is committed, Jim wants a historical visual baseline captured from the point before PKG started. Prefer the non-destructive export-based harness path, or another equally safe no-history-risk checkout approach; never rewrite history or risk the current worktree.
 - When PKG implementation status changes, update both the active plans and the permanent architecture overviews in the same consolidation pass. The easy drift points are counts, commit state, and old descriptions of JSON-LD as module constants rather than entity-model derivation.
 - When a user preference clearly changes a durable engineering rule, graduate it into a permanent directive immediately and add the AGENTS anchor in the same pass; otherwise it lingers as napkin-only context and gets missed in fresh sessions.
 
@@ -228,6 +375,8 @@
 - practice-bootstrap.md Prompts section: the YAML code block template was removed during tightening. The field names are preserved in text description. If agents have trouble constructing prompt frontmatter in future, may need to restore a compact example
 - Consolidation cohesion audit caught two real issues: (1) provenance dates not updated from 2026-03-05 to 2026-03-06 after evolution edits, (2) code-quality.md canonical rule still used old ecosystem-specific wording while practice-lineage.md had the reframed universal principle. Both fixed.
 - AGENT.md is 2 lines over its 150-line ceiling (152/150) — flagged but not tightened. Split strategy suggests extracting dev commands or project structure
+- Shared skill infrastructure rule: reusable instructions, scripts, and references belong in `.agent/skills/`; `.agents/skills/` should stay thin, keeping only wrappers, optional `agents/openai.yaml`, and migration shims when an older Codex-only skill path must keep working
+- Codex adapter rule: do not invent `.agents/rules/`. Always-on behaviour comes from `AGENTS.md` and the canonical `.agent/rules/`; explicit things those rules activate should be surfaced as `.agents/skills/` wrappers for skills and `jc-*` commands, while reviewer roles live in `.codex/config.toml` plus `.codex/agents/*.toml`
 
 ## Session: 2026-03-05 — Practice-Core Hydration
 

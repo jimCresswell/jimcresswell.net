@@ -1,0 +1,4 @@
+interface:
+  display_name: "Author Skills"
+  short_description: "Create or update repo-local skills using the shared .agent infrastructure"
+  default_prompt: "Use $author-skills to create or update a repo-local skill with canonical instructions in `.agent/skills/` and thin adapters in `.agents/skills/` and `.cursor/skills/`."

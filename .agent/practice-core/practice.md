@@ -16,6 +16,10 @@ provenance:
     repo: new-cv
     date: 2026-03-06
     purpose: "Personal website and CV: editorial voice, accessibility, single-developer workflow with learning loop"
+  - index: 4
+    repo: new-cv
+    date: 2026-03-08
+    purpose: "Personal website and CV: Codex reviewer-sub-agent alignment and practice-core consolidation"
 fitness_ceiling: 250
 attribution: "created by [Jim Cresswell](https://www.jimcresswell.net/), evolved by many people and agents in many repos"
 ---
@@ -50,7 +54,7 @@ graph TB
 
     subgraph Tooling ["Tooling — how it is used"]
         CANON["Canonical content<br/>.agent/skills · .agent/commands<br/>.agent/sub-agents"]
-        ADAPT["Platform adapters<br/>.cursor · .claude · .gemini · .agents"]
+        ADAPT["Platform adapters<br/>.cursor · .claude · .gemini · .agents · .codex"]
         ENTRY["Entry points<br/>AGENT.md · CLAUDE.md · AGENTS.md · GEMINI.md"]
     end
 
@@ -67,7 +71,7 @@ The organisational patterns. Directives (`.agent/directives/`), plans (`.agent/p
 
 ### Tooling
 
-Platform-specific implementations following a canonical-first model: skills, commands, sub-agent templates, and rule policies all live in `.agent/` (platform-agnostic). Thin platform adapters in `.cursor/`, `.claude/`, `.gemini/`, `.agents/` reference canonical content without duplicating it. Entry-point files (`AGENT.md`, `CLAUDE.md`, `AGENTS.md`, `GEMINI.md`) direct each platform to the canonical practice. Plans and sub-agent templates need no adapters — they are consumed directly. Rules have two layers: authoritative policies in `.agent/directives/rules.md` and platform-specific activation triggers (Cursor `.cursor/rules/*.mdc`, Claude Code `.claude/rules/*.md`, or the entry-point chain for Gemini/Codex). This layer defines _how_ the practice is used in a specific environment.
+Platform-specific implementations following a canonical-first model: skills, commands, sub-agent templates, and rule policies all live in `.agent/` (platform-agnostic). Thin platform adapters in `.cursor/`, `.claude/`, `.gemini/`, `.agents/`, and `.codex/` reference canonical content without duplicating it. In Codex, `.agents/skills/` carries skills and command-shaped workflows, while `.codex/` carries project sub-agent configuration. Entry-point files (`AGENT.md`, `CLAUDE.md`, `AGENTS.md`, `GEMINI.md`) direct each platform to the canonical practice. Plans and sub-agent templates need no adapters — they are consumed directly. Rules have two layers: authoritative policies in `.agent/directives/rules.md` and platform-specific activation triggers (Cursor `.cursor/rules/*.mdc`, Claude Code `.claude/rules/*.md`, or the entry-point chain for Gemini/Codex). This layer defines _how_ the practice is used in a specific environment.
 
 ## The Knowledge Flow
 
@@ -127,7 +131,7 @@ The knowledge flow is itself part of the Practice, and the Practice travels via 
 
 ## The Review System
 
-Specialist sub-agents provide targeted review after non-trivial changes. The `invoke-reviewers` rule (canonically `.agent/rules/invoke-reviewers.md`) is the authoritative source for the full roster, invocation matrix, timing tiers, and triage checklist. The `.agent/directives/AGENT.md` "Available Sub-agents" section lists all reviewers by name.
+Specialist sub-agents provide targeted review after non-trivial changes. The `invoke-reviewers` rule (canonically `.agent/rules/invoke-reviewers.md`) is the authoritative source for the full roster, invocation matrix, timing tiers, and triage checklist. The `.agent/directives/AGENT.md` "Available Sub-agents" section lists all reviewers by name. In Codex, reviewer roles are registered through `.codex/config.toml` and thin `.codex/agents/*.toml` adapters rather than modelled as skills.
 
 Sub-agent prompts follow a three-layer composition architecture: components, templates, and wrappers.
 
@@ -159,21 +163,21 @@ graph LR
 
 ## Artefact Map
 
-| Location                                       | What lives there                                                                                                    |
-| ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `.agent/directives/`                           | Principles, rules, and operational directives                                                                       |
-| `.agent/practice-core/`                        | Practice-core files: plasmid trinity (practice, lineage, bootstrap), entry points (README, index), and practice box |
-| `.agent/plans/`                                | Work planning — active, archived, and templates                                                                     |
-| `.agent/memory/`                               | Institutional memory — napkin, distilled learnings, and code patterns                                               |
-| `.agent/experience/`                           | Experiential records across sessions                                                                                |
-| `.agent/prompts/`                              | Reusable prompt playbooks                                                                                           |
-| `.agent/sub-agents/`                           | Reviewer prompt architecture (components, templates)                                                                |
-| `.agent/skills/`                               | Canonical skills (platform-agnostic)                                                                                |
-| `.agent/commands/`                             | Canonical commands (platform-agnostic)                                                                              |
-| `.agent/research/`                             | Research documents and analysis                                                                                     |
-| `.agent/reference-docs/`                       | Supporting reference material                                                                                       |
-| `.cursor/`, `.claude/`, `.gemini/`, `.agents/` | Platform adapters: thin wrappers referencing canonical content                                                      |
-| Repo's ADR directory                           | Permanent architectural decision records (path varies by repo; see [practice-index](../practice-index.md))          |
+| Location                                                  | What lives there                                                                                                    |
+| --------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| `.agent/directives/`                                      | Principles, rules, and operational directives                                                                       |
+| `.agent/practice-core/`                                   | Practice-core files: plasmid trinity (practice, lineage, bootstrap), entry points (README, index), and practice box |
+| `.agent/plans/`                                           | Work planning — active, archived, and templates                                                                     |
+| `.agent/memory/`                                          | Institutional memory — napkin, distilled learnings, and code patterns                                               |
+| `.agent/experience/`                                      | Experiential records across sessions                                                                                |
+| `.agent/prompts/`                                         | Reusable prompt playbooks                                                                                           |
+| `.agent/sub-agents/`                                      | Reviewer prompt architecture (components, templates)                                                                |
+| `.agent/skills/`                                          | Canonical skills (platform-agnostic)                                                                                |
+| `.agent/commands/`                                        | Canonical commands (platform-agnostic)                                                                              |
+| `.agent/research/`                                        | Research documents and analysis                                                                                     |
+| `.agent/reference-docs/`                                  | Supporting reference material                                                                                       |
+| `.cursor/`, `.claude/`, `.gemini/`, `.agents/`, `.codex/` | Platform adapters: thin wrappers and project config referencing canonical content                                   |
+| Repo's ADR directory                                      | Permanent architectural decision records (path varies by repo; see [practice-index](../practice-index.md))          |
 
 ## Plasmid Exchange
 

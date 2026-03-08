@@ -14,15 +14,16 @@ Positioning paragraphs, capabilities, `meta.summary`, structured data (`KNOWS_AB
 
 **Remaining work in dedicated plans:**
 
-| Item                                      | Plan                                                                                               | Status         |
-| ----------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------- |
-| Experience & Before Oak editorial review  | [experience-editorial.plan.md](complete/experience-editorial.plan.md)                              | Complete       |
-| Personal knowledge graph — design         | [personal-knowledge-graph.plan.md](personal-knowledge-graph.plan.md)                               | Implementation |
-| Personal knowledge graph — implementation | [personal-knowledge-graph-implementation.plan.md](personal-knowledge-graph-implementation.plan.md) | In progress    |
-| PKG execution plan                        | [personal-knowledge-graph-execution.plan.md](personal-knowledge-graph-execution.plan.md)           | In progress    |
-| LinkedIn update                           | [linkedin-update.plan.md](linkedin-update.plan.md) — subsumed by PKG Phase 5                       | Subsumed       |
-| Tilt mechanism                            | No plan yet — see [Deferred](#deferred) below                                                      | Deferred       |
-| Tilt content                              | Depends on tilt mechanism                                                                          | Deferred       |
+| Item                                      | Plan                                                                                               | Status      |
+| ----------------------------------------- | -------------------------------------------------------------------------------------------------- | ----------- |
+| Experience & Before Oak editorial review  | [experience-editorial.plan.md](complete/experience-editorial.plan.md)                              | Complete    |
+| Personal knowledge graph — implementation | [personal-knowledge-graph-implementation.plan.md](personal-knowledge-graph-implementation.plan.md) | In progress |
+| PKG execution plan                        | [personal-knowledge-graph-execution.plan.md](personal-knowledge-graph-execution.plan.md)           | In progress |
+| Visual regression harness                 | [visual-regression-harness.plan.md](visual-regression-harness.plan.md)                             | In progress |
+| LinkedIn update                           | [linkedin-update.plan.md](linkedin-update.plan.md) — subsumed by PKG Phase 5                       | Subsumed    |
+| Tilt mechanism                            | No plan yet — see [Deferred](#deferred) below                                                      | Deferred    |
+| Tilt content                              | Depends on tilt mechanism                                                                          | Deferred    |
+| PKG durable design decisions              | [ADR-014](../../docs/architecture/decision-records/014-entity-model-design.md) and related ADRs    | Accepted    |
 
 ## How to use this plan
 
@@ -104,11 +105,15 @@ Completed in a dedicated plan: [meta-seo-content-audit.plan.md](complete/meta-se
 
 ## In progress: Personal knowledge graph
 
-**Design reference:** [personal-knowledge-graph.plan.md](personal-knowledge-graph.plan.md) — entity inventory, principles, Schema.org conventions. All design decisions resolved.
-
-**Implementation:** [personal-knowledge-graph-implementation.plan.md](personal-knowledge-graph-implementation.plan.md) — Phases 1-4 code complete (automated gates pass), manual validation pending.
+**Implementation plan:** [personal-knowledge-graph-implementation.plan.md](personal-knowledge-graph-implementation.plan.md) — full phase/task plan with goals, impacts, and acceptance criteria.
 
 **Execution plan:** [personal-knowledge-graph-execution.plan.md](personal-knowledge-graph-execution.plan.md) — detailed operational plan with per-task status. **Start here** for next session.
+
+**Harness plan:** [visual-regression-harness.plan.md](visual-regression-harness.plan.md) — harness-specific refinements and proof-tool work.
+
+**Durable design decisions:** [ADR-014](../../docs/architecture/decision-records/014-entity-model-design.md) and the related ADRs in `docs/architecture/decision-records/`.
+
+**Historical design working notes:** [personal-knowledge-graph.plan.md](personal-knowledge-graph.plan.md) — retained for design exploration context and audit detail, not as the canonical durable design source.
 
 Phases 1-4 code complete: `content/entities.json` with ~50 entities at all abstraction levels, 17 Zod schemas validating at import time, subgraph closure algorithm for page-specific JSON-LD, all views rewired to derive from the entity model, `Knowledge graphs` added to `knowsAbout`, and `schema-dts` validation in place. **Automated gates pass on the current tree** — `pnpm check` and `pnpm test:e2e` both passed on 2026-03-08. Manual Schema.org Validator and Rich Results Test checks remain outstanding, and the historical content-regression proof is still pending.
 

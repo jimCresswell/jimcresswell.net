@@ -4,6 +4,13 @@ Changes to the practice-core files, newest first. Each entry records the repo
 that made the change and what was changed. This file travels with the
 practice-core package.
 
+## [new-cv] 2026-03-08
+
+- Clarified the portable Codex model: `.agents/skills/` is for skills and command-shaped workflows, while real Codex reviewer sub-agents live under `.codex/`
+- Updated `practice.md` to include `.codex/` in the tooling layer, review-system description, and artefact map
+- Updated `practice-bootstrap.md` so its adapter summary and reviewer-roster wording match the `.codex/` reviewer model
+- Aligned the portable Practice wording with the repo's current Codex reviewer architecture
+
 ## [new-cv] 2026-03-06
 
 - Added "Restructuring an Existing Practice" path to practice-lineage.md

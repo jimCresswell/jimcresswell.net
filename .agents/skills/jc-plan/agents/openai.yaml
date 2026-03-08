@@ -1,0 +1,4 @@
+interface:
+  display_name: "Create a Plan"
+  short_description: "Create a structured, standards-aligned plan"
+  default_prompt: "Use $jc-plan to create a structured plan aligned with the repo's rules, testing strategy, documentation requirements, and measurable acceptance criteria."

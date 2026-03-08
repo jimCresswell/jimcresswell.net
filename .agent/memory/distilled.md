@@ -17,7 +17,6 @@ for full architecture coverage.
 - `tsx` (build scripts) does not resolve TypeScript `@/` path aliases — use relative imports
 - "Personal knowledge graph" is the canonical term (not "content entity model")
 - Contact email: <contact@jimcresswell.net>; pronouns: he/him; honorific prefix: Dr (all in `content/entities.json` Person entity)
-- Skills at `.agent/skills/<name>/SKILL.md` are 3 levels deep — use repo-root-relative inline code paths (`` `docs/architecture/...` ``), not relative markdown links, to avoid depth-counting errors
 
 ## Troubleshooting
 

@@ -16,6 +16,10 @@ provenance:
     repo: new-cv
     date: 2026-03-06
     purpose: "Personal website and CV: editorial voice, accessibility, single-developer workflow with learning loop"
+  - index: 4
+    repo: new-cv
+    date: 2026-03-08
+    purpose: "Personal website and CV: Codex reviewer-sub-agent alignment and practice-core consolidation"
 fitness_ceiling: 400
 attribution: "created by [Jim Cresswell](https://www.jimcresswell.net/), evolved by many people and agents in many repos"
 ---
@@ -24,7 +28,7 @@ attribution: "created by [Jim Cresswell](https://www.jimcresswell.net/), evolved
 
 This file completes the plasmid trinity. `practice.md` describes the system (the **what**), `practice-lineage.md` encodes the principles and evolution rules (the **why**), and this file provides annotated templates for every artefact type (the **how**). Three companion files travel with the trinity: `README.md` (for humans), `index.md` (for agents), and `CHANGELOG.md` (what changed).
 
-An agent reading all six practice-core files has enough information to build a working Practice system from scratch. Templates use `{placeholders}` for project-specific content. The Practice uses a **canonical-first artefact model**: all substantive content lives in `.agent/` (platform-agnostic), and thin platform adapters in `.cursor/`, `.claude/`, `.gemini/`, `.agents/` reference canonical content without duplicating it. Sections below use Cursor as the concrete platform example -- adapt adapter formats to local platforms. Ecosystem conventions use TypeScript/Node.js as examples -- substitute your ecosystem's equivalents.
+An agent reading all six practice-core files has enough information to build a working Practice system from scratch. Templates use `{placeholders}` for project-specific content. The Practice uses a **canonical-first artefact model**: all substantive content lives in `.agent/` (platform-agnostic), and thin platform adapters in `.cursor/`, `.claude/`, `.gemini/`, `.agents/`, and `.codex/` reference canonical content without duplicating it. Sections below use Cursor as the concrete platform example -- adapt adapter formats to local platforms. Ecosystem conventions use TypeScript/Node.js as examples -- substitute your ecosystem's equivalents.
 
 ## Before You Begin: Ecosystem Survey
 
@@ -44,7 +48,7 @@ Four artefact types follow the canonical-first model. Canonical content in `.age
 | **Skills**                   | `.agent/skills/*/SKILL.md`         | `.cursor/skills/*/SKILL.md`, `.agents/skills/*/SKILL.md`                                                             |
 | **Rules**                    | `.agent/rules/*.md`                | `.cursor/rules/*.mdc`, `.claude/rules/*.md` (activation triggers only)                                               |
 | **Commands** (`jc-*` prefix) | `.agent/commands/*.md`             | `.cursor/commands/jc-*.md`, `.claude/commands/jc-*.md`, `.gemini/commands/jc-*.toml`, `.agents/skills/jc-*/SKILL.md` |
-| **Sub-agent templates**      | `.agent/sub-agents/templates/*.md` | `.cursor/agents/`, `.claude/agents/`, `.gemini/commands/review-*.toml`, `.agents/skills/`                            |
+| **Sub-agent templates**      | `.agent/sub-agents/templates/*.md` | `.cursor/agents/`, `.claude/agents/`, `.gemini/commands/review-*.toml`, Codex project-agent config in `.codex/`      |
 
 Canonical rules are short operational reinforcements of policy. Each platform trigger wrapper points at either `.agent/rules/*.md` or `.agent/skills/*/SKILL.md` — never both, and never at a directive directly.
 
@@ -71,12 +75,12 @@ The practice-index is the bridge between the portable practice-core and the loca
 
 ### Required sections
 
-| Section                     | Content                                                  |
-| --------------------------- | -------------------------------------------------------- |
-| **Directives**              | Table of directive files with paths and purposes         |
-| **Architectural Decisions** | Table of ADRs referenced by practice.md, with links      |
-| **Tools and Workflows**     | Table of key commands, skills, and rules with links      |
-| **Artefact Directories**    | Table of `.agent/` and `.cursor/` directories with links |
+| Section                     | Content                                                               |
+| --------------------------- | --------------------------------------------------------------------- |
+| **Directives**              | Table of directive files with paths and purposes                      |
+| **Architectural Decisions** | Table of ADRs referenced by practice.md, with links                   |
+| **Tools and Workflows**     | Table of key commands, skills, and rules with links                   |
+| **Artefact Directories**    | Table of `.agent/` and active platform-adapter directories with links |
 
 ### Template
 
@@ -189,11 +193,13 @@ Read and follow `.agent/rules/{name}.md`.
 
 Platform-specific notes (e.g. "In Cursor, use `ReadLints`") may appear in the trigger — they are activation metadata, not policy.
 
+Codex note: this repo does not use a parallel `.agents/rules/` layer. Codex picks up always-on behaviour through the entry-point chain (`AGENTS.md` → `.agent/directives/AGENT.md` → canonical rules). When a rule activates a command or skill, add the corresponding `.agents/skills/` wrapper. Reviewer roles should be configured through Codex project-agent support in `.codex/`, not modelled as skills.
+
 ## Sub-agents: Templates and Platform Adapters
 
 Canonical sub-agent prompts live in `.agent/sub-agents/templates/*.md` (platform-agnostic). For a production app, use the three-layer composition system: shared components → canonical templates → thin platform adapters.
 
-Platform adapters contain only activation metadata and a pointer to the canonical template: Cursor `.cursor/agents/*.md`, Claude Code `.claude/agents/*.md`, Gemini CLI `review-*.toml` commands, Codex instructional skills.
+Platform adapters contain only activation metadata and a pointer to the canonical template: Cursor `.cursor/agents/*.md`, Claude Code `.claude/agents/*.md`, Gemini CLI `review-*.toml` commands, and Codex project-agent config under `.codex/`.
 
 Cursor adapter format (`readonly: true` enforces read-only review at the platform level):
 
@@ -259,13 +265,14 @@ Categorise by severity: Critical (must fix), Important (should fix), Suggestions
     ### Positive Observations
 ```
 
-### The Three Agents
+### Core Review Agents
 
-| Agent           | Specialisation                   | Key assessment areas                                                                                                                                                  |
+Default portable roster. Local practices may add specialist reviewers such as editorial or domain-specific agents.
+| Agent | Specialisation | Key assessment areas |
 | --------------- | -------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `code-reviewer` | Gateway reviewer, always invoked | Correctness, edge cases, security, performance, readability, maintainability, test coverage. Triages to specialists.                                                  |
-| `test-reviewer` | Test quality and TDD compliance  | Test classification (unit/integration), naming conventions, mock simplicity, test value, TDD evidence. Recommends deletion for tests that test mocks or types.        |
-| `type-reviewer` | TypeScript type safety           | Type flow tracing, type widening detection, assertion usage, external boundary validation. Core principle: "why solve at runtime what you can embed at compile time?" |
+| `code-reviewer` | Gateway reviewer, always invoked | Correctness, edge cases, security, performance, readability, maintainability, test coverage. Triages to specialists. |
+| `test-reviewer` | Test quality and TDD compliance | Test classification (unit/integration), naming conventions, mock simplicity, test value, TDD evidence. Recommends deletion for tests that test mocks or types. |
+| `type-reviewer` | TypeScript type safety | Type flow tracing, type widening detection, assertion usage, external boundary validation. Core principle: "why solve at runtime what you can embed at compile time?" |
 
 ## Commands: Canonical and Platform Adapters
 

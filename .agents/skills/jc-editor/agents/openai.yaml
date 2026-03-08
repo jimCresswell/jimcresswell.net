@@ -1,0 +1,4 @@
+interface:
+  display_name: "Editorial Review"
+  short_description: "Delegate content review to the editor reviewer"
+  default_prompt: "Use $jc-editor to get a structured editorial review of the specified Jim Cresswell content from the read-only editor reviewer, then apply the feedback."

@@ -1,10 +1,12 @@
 # Personal Knowledge Graph
 
+> Historical design working document. Durable PKG design decisions belong in `docs/architecture/decision-records/`; use [ADR-014](../../docs/architecture/decision-records/014-entity-model-design.md) and the related ADRs as the canonical source of truth. This file is retained for the full entity audit, design exploration context, and design-phase rationale.
+
 Build a unified model where all site outputs — page rendering, Open Graph, JSON-LD, Web App Manifest, sitemap, PDF — are derived views onto the same underlying reality. A personal knowledge graph of entities and typed relationships, with each output as a derived view.
 
-## Status: Implementation (design settled, Phases 1-4 code complete, manual validation and regression proof pending)
+## Status: Historical design working notes (implementation in progress; durable design decisions recorded in ADR-014 and related ADRs)
 
-**This is the design reference** — the entity inventory, principles, Schema.org conventions, and resolved design decisions. All design questions have been answered. For phased execution with todos and acceptance criteria, see the [implementation plan](personal-knowledge-graph-implementation.plan.md). For the detailed operational plan (per-task status, reviewer invocations), see the [execution plan](personal-knowledge-graph-execution.plan.md).
+This file preserves the entity inventory, principles, Schema.org conventions, and resolved-design rationale that shaped the PKG. It is not the canonical durable design source. For phased execution with todos and acceptance criteria, see the [implementation plan](personal-knowledge-graph-implementation.plan.md). For the detailed operational plan (per-task status, reviewer invocations), see the [execution plan](personal-knowledge-graph-execution.plan.md). For canonical design decisions, use [ADR-014](../../docs/architecture/decision-records/014-entity-model-design.md).
 
 ## How to use this plan
 
@@ -117,7 +119,7 @@ This means:
 - **Framing is identity, not history.** The graph contains Jim's full career history — every role, every title, every date. But expressions (descriptions, roleNames, capability claims) must frame who Jim is _now_, not who he was perceived to be in past contexts. Jim is a leader who used the best levers available at the time to make change. Historical role titles like "QA Automation Consultant" or "Head of Test" are facts (they stay in the graph as roleNames). Descriptions of those roles express what Jim was actually _doing_ — leading systemic change, shaping delivery culture, building capability — not the job-title framing of the era. If someone reads the graph, they should see a leader, not a QA engineer.
 - **Editorial consistency.** All descriptions of the same entity should be editorially consistent — the OG summary, the JSON-LD Person description, and the page prose should tell the same story in their respective registers. Where different contexts need different text, use separate relationships from the same identity construct.
 - **Define once, reference everywhere.** Each entity gets a single identity. Pages compose references, not copies.
-- **Visible content unchanged during technical migration.** When data moves from content files to the entity model, the rendered web pages must remain identical. No editorial regression during structural work. The graph migration is a refactoring — same outputs, better internal structure. Editorial improvements happen as separate, deliberate changes.
+- **Visible content unchanged during technical migration.** When data moves from content files to the entity model, the rendered web pages must remain identical. No editorial regression during structural work. The graph migration is a refactoring — same outputs, better internal structure. Editorial improvements happen as separate, deliberate changes. The proof standard is now explicit: compare HTML/DOM and pixels against a trusted baseline, and treat any difference as a review item rather than auto-acceptable.
 - **Evolutionary, not revolutionary.** The current architecture works. Build on it incrementally. No big-bang refactoring.
 - **Shape for a future graph database.** The JSON-based model should remain compatible with migration to Neo4j (see [future/neo4j-knowledge-graph.plan.md](future/neo4j-knowledge-graph.plan.md)). This means: stable entity IDs, typed relationships as references (not nesting), flat entity definitions, and entities at all abstraction levels modelled as graph nodes.
 
@@ -455,7 +457,7 @@ This pass reviews both visible page content and JSON-LD descriptions. The framin
 
 ## Implementation
 
-For phased execution with todos, acceptance criteria, and progress tracking, see the [implementation plan](personal-knowledge-graph-implementation.plan.md). That plan distils this design reference into five actionable phases:
+For phased execution with todos, acceptance criteria, and progress tracking, see the [implementation plan](personal-knowledge-graph-implementation.plan.md). That plan distils these historical design notes into five actionable phases:
 
 1. Entity model design (collaborative, produces schema + skeleton)
 2. Entity population (editorial-intensive — role descriptions, constant migration)
@@ -465,7 +467,7 @@ For phased execution with todos, acceptance criteria, and progress tracking, see
 
 ### Quality gates at each step
 
-- **Visible content unchanged.** After each structural migration step, the rendered HTML of all pages must be byte-identical (or pixel-identical if markup changes are cosmetic, e.g. attribute ordering). Snapshot the current rendered output before starting; diff against it after each step. Editorial changes happen separately, never in the same commit as structural migration.
+- **Visible content unchanged.** After each structural migration step, run `pnpm visual-regression-harness <base-ref> <target-ref>` against a trusted baseline. The default expectation is zero HTML/DOM differences and zero pixel differences. If the harness flags any DOM-only, metadata-only, or visual change, stop and review it with Jim before proceeding. Editorial changes happen separately, never in the same commit as structural migration.
 - `pnpm check` passes.
 - `pnpm test:e2e` passes.
 
@@ -521,7 +523,7 @@ For phased execution with todos, acceptance criteria, and progress tracking, see
 ## Related
 
 - [research/pkg-research-findings.md](research/pkg-research-findings.md) — Schema.org, JSON-LD, Google structured data, and Neo4j research findings
-- [personal-knowledge-graph-implementation.plan.md](personal-knowledge-graph-implementation.plan.md) — phased execution plan with todos and acceptance criteria
+- [personal-knowledge-graph-implementation.plan.md](personal-knowledge-graph-implementation.plan.md) — compact implementation reference
 - [cv-editorial-improvements.plan.md](cv-editorial-improvements.plan.md) — parent plan
 - [meta-seo-content-audit.plan.md](complete/meta-seo-content-audit.plan.md) — editorial content fixes (prerequisite — complete)
 - [capabilities-editorial.plan.md](complete/capabilities-editorial.plan.md) — capabilities work (complete — terms added to `KNOWS_ABOUT`)
@@ -530,4 +532,3 @@ For phased execution with todos, acceptance criteria, and progress tracking, see
 - [ADR-008](../../docs/architecture/decision-records/008-schema-org-compliance.md) — Schema.org compliance throughout the graph
 - [ADR-011](../../docs/architecture/decision-records/011-domain-appropriate-descriptions.md) — domain-appropriate descriptions (descriptions in different domains are different artifacts)
 - [editorial-guidance.md](../../.agent/directives/editorial-guidance.md) — editorial hierarchy, keyword strategy, audience, editorial voice, cross-domain editorial consistency
-- [linkedin-update.plan.md](linkedin-update.plan.md) — LinkedIn provides additional role data as a source

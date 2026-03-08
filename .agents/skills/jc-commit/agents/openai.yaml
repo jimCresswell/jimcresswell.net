@@ -1,0 +1,4 @@
+interface:
+  display_name: "Commit Current Work"
+  short_description: "Create a safe, well-formed commit"
+  default_prompt: "Use $jc-commit to prepare and make a well-formed commit for the current work, following the repo's safety checks and commit message standards."

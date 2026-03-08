@@ -54,14 +54,16 @@ For the practice-core files and their roles, see
 
 ### Skills
 
-| Skill                                              | Purpose                                    |
-| -------------------------------------------------- | ------------------------------------------ |
-| [napkin](skills/napkin/SKILL.md)                   | Session learning log — always active       |
-| [distillation](skills/distillation/SKILL.md)       | Rotate napkin into curated distilled.md    |
-| [editorial-voice](skills/editorial-voice/SKILL.md) | Apply Jim's editorial voice                |
-| [quality-gates](skills/quality-gates/SKILL.md)     | Run quality gates with restart-on-fix      |
-| [deslop](skills/deslop/SKILL.md)                   | Remove AI-generated code slop              |
-| [pkg](skills/pkg/SKILL.md)                         | PKG entity model and structured data guide |
+| Skill                                                              | Purpose                                      |
+| ------------------------------------------------------------------ | -------------------------------------------- |
+| [napkin](skills/napkin/SKILL.md)                                   | Session learning log — always active         |
+| [distillation](skills/distillation/SKILL.md)                       | Rotate napkin into curated distilled.md      |
+| [author-skills](skills/author-skills/SKILL.md)                     | Create or update repo-local skills           |
+| [editorial-voice](skills/editorial-voice/SKILL.md)                 | Apply Jim's editorial voice                  |
+| [quality-gates](skills/quality-gates/SKILL.md)                     | Run quality gates with restart-on-fix        |
+| [deslop](skills/deslop/SKILL.md)                                   | Remove AI-generated code slop                |
+| [pkg](skills/pkg/SKILL.md)                                         | PKG entity model and structured data guide   |
+| [package-deps-up-to-date](skills/package-deps-up-to-date/SKILL.md) | Audit and update `package.json` dependencies |
 
 ### Rules
 
@@ -84,6 +86,9 @@ For the practice-core files and their roles, see
 | [type-reviewer](sub-agents/templates/type-reviewer.md) | TypeScript type safety                            |
 | [pkg-reviewer](sub-agents/templates/pkg-reviewer.md)   | PKG specialist — Schema.org, JSON-LD, graph       |
 
+Codex reviewer sub-agents are registered in [`.codex/config.toml`](../.codex/config.toml)
+and use thin adapters under [`.codex/agents/`](../.codex/agents/).
+
 ## Artefact Directories
 
 | Location                                  | What lives there                                                                 |
@@ -98,3 +103,6 @@ For the practice-core files and their roles, see
 | [`.agent/prompts/`](prompts/)             | Reusable prompt playbooks                                                        |
 | [`.agent/memory/`](memory/)               | Institutional memory — napkin, distilled, code patterns                          |
 | [`.agent/experience/`](experience/)       | Experiential records across sessions                                             |
+| [`.agents/`](../.agents/)                 | Codex skill and command adapters, plus adapter-local metadata                    |
+| [`.codex/`](../.codex/)                   | Codex project config and thin sub-agent adapters                                 |
+| [`.cursor/`](../.cursor/)                 | Cursor platform adapters — thin wrappers and rule triggers                       |

@@ -1,6 +1,6 @@
 ---
 name: pkg-next-closure
-overview: Close the remaining PKG work by proving the refactor caused no rendered-page changes, completing the still-required HTML binding, running manual structured-data validation, then moving into LinkedIn derivation with specialist review after each implementation slice.
+overview: Historical PKG closure handoff retained so the intermediate closure reasoning is not lost. This document is superseded by the PKG execution plan and the visual regression harness plan.
 todos:
   - id: prove-no-regression
     content: "Build and record dual regression proof: HTML/DOM comparison plus pixel comparison against the pre-PKG baseline, with zero expected rendered differences and user review for any exception."
@@ -12,7 +12,7 @@ todos:
     content: Run manual Schema.org Validator and Rich Results validation after binding/regression work, record results, and sync plans/docs to the actual PKG state.
     status: pending
   - id: commit-safe-baseline-capture
-    content: After current work is committed, capture the full historical visual baseline from the pre-PKG commit using a separate worktree or detached checkout only.
+    content: After current work is committed, capture the full historical visual baseline from the pre-PKG commit using the non-destructive export-based harness path, or another equally safe no-history-risk checkout approach.
     status: pending
   - id: start-phase5-linkedin
     content: Begin LinkedIn-as-derived-view from the graph, using editorial review and PKG review on each content slice.
@@ -21,6 +21,15 @@ isProject: false
 ---
 
 # PKG Next Steps
+
+## Status
+
+Historical handoff note. Superseded by:
+
+- [personal-knowledge-graph-execution.plan.md](personal-knowledge-graph-execution.plan.md) for active PKG work
+- [visual-regression-harness.plan.md](visual-regression-harness.plan.md) for harness-specific work
+
+This file is retained because it contained intermediate closure reasoning that was not in `HEAD` and should not be thrown away.
 
 ## Overview
 
@@ -35,25 +44,38 @@ Two decisions are now fixed and must govern the work:
 
 ## Current Reality
 
-The live handoff document is `[.agent/plans/personal-knowledge-graph-execution.plan.md](/Users/jim/code/personal/new-cv/.agent/plans/personal-knowledge-graph-execution.plan.md)`. It correctly shows Phase 4 as code-complete but not fully closed.
+The live handoff document is [personal-knowledge-graph-execution.plan.md](personal-knowledge-graph-execution.plan.md). It correctly shows Phase 4 as code-complete but not fully closed.
+
+Current proof status:
+
+- A reusable, non-destructive ref-to-ref harness now lives in `visual-regression-harness/`.
+- The CLI entrypoint is `pnpm visual-regression-harness <base-ref> <target-ref>`.
+- The harness resolves refs read-only, exports them with `git archive`, builds them in temporary directories, captures full-page screenshots plus HTML artifacts, and writes durable output only under `regression-artifacts/`.
+- The next harness improvement should make durable artifact directories commit-addressed rather than label-addressed, and should let repeat runs reuse artifacts already captured for the exact same resolved commits.
+- The first real comparison run was `pnpm visual-regression-harness b76824a HEAD`.
+- That run produced **HTML/DOM differences but no pixel diff images**. The current evidence points to DOM-only drift rather than visible rendering drift.
+- The captured diffs show at least one concrete cause already: section-level `id` attributes such as `id="positioning"` and `id="experience"` exist in `HEAD` but not in the pre-PKG baseline.
+- This means the harness has already surfaced a live review decision for Jim: whether those DOM-only changes are acceptable as part of the PKG refactor, or whether they violate the zero-difference rule and must be removed/reworked.
 
 Current implementation sources to lean on:
 
-- `[content/entities.json](/Users/jim/code/personal/new-cv/content/entities.json)`: canonical PKG graph source.
-- `[lib/entities.ts](/Users/jim/code/personal/new-cv/lib/entities.ts)`: parse-time validation and typed access.
-- `[lib/subgraph.ts](/Users/jim/code/personal/new-cv/lib/subgraph.ts)`: graph traversal and dangling-ref checks.
-- `[lib/page-jsonld.ts](/Users/jim/code/personal/new-cv/lib/page-jsonld.ts)`: page-level subgraph derivation.
-- `[components/page-section.tsx](/Users/jim/code/personal/new-cv/components/page-section.tsx)`: only section-level HTML binding exists today.
-- `[app/page.tsx](/Users/jim/code/personal/new-cv/app/page.tsx)`, `[app/cv/page.tsx](/Users/jim/code/personal/new-cv/app/cv/[variant]/page.tsx)`: current page JSON-LD integration points.
+- [content/entities.json](../../content/entities.json): canonical PKG graph source.
+- [lib/entities.ts](../../lib/entities.ts): parse-time validation and typed access.
+- [lib/subgraph.ts](../../lib/subgraph.ts): graph traversal and dangling-ref checks.
+- [lib/page-jsonld.ts](../../lib/page-jsonld.ts): page-level subgraph derivation.
+- [components/page-section.tsx](../../components/page-section.tsx): only section-level HTML binding exists today.
+- [app/page.tsx](../../app/page.tsx), [app/cv/page.tsx](../../app/cv/[variant]/page.tsx): current page JSON-LD integration points.
+- [visual-regression-harness/README.md](../../visual-regression-harness/README.md): usage, artifact layout, and safety guarantees for the harness.
+- [visual-regression-harness/cli.ts](../../visual-regression-harness/cli.ts): CLI entrypoint for ref-to-ref comparison.
 
 Docs that need to stay aligned with reality:
 
-- `[.agent/plans/roadmap.md](/Users/jim/code/personal/new-cv/.agent/plans/roadmap.md)`
-- `[.agent/plans/personal-knowledge-graph.plan.md](/Users/jim/code/personal/new-cv/.agent/plans/personal-knowledge-graph.plan.md)`
-- `[.agent/plans/personal-knowledge-graph-implementation.plan.md](/Users/jim/code/personal/new-cv/.agent/plans/personal-knowledge-graph-implementation.plan.md)`
-- `[.agent/plans/personal-knowledge-graph-execution.plan.md](/Users/jim/code/personal/new-cv/.agent/plans/personal-knowledge-graph-execution.plan.md)`
-- `[docs/architecture/README.md](/Users/jim/code/personal/new-cv/docs/architecture/README.md)`
-- `[docs/architecture/content-model.md](/Users/jim/code/personal/new-cv/docs/architecture/content-model.md)`
+- [.agent/plans/roadmap.md](../../.agent/plans/roadmap.md)
+- [.agent/plans/personal-knowledge-graph.plan.md](../../.agent/plans/personal-knowledge-graph.plan.md)
+- [.agent/plans/personal-knowledge-graph-implementation.plan.md](../../.agent/plans/personal-knowledge-graph-implementation.plan.md)
+- [.agent/plans/personal-knowledge-graph-execution.plan.md](../../.agent/plans/personal-knowledge-graph-execution.plan.md)
+- [docs/architecture/README.md](../../docs/architecture/README.md)
+- [docs/architecture/content-model.md](../../docs/architecture/content-model.md)
 
 ## Phases
 
@@ -68,11 +90,12 @@ Intended impact:
 
 Acceptance criteria:
 
-- A trusted pre-PKG baseline is identified from commit `b76824a` using a safe separate checkout/worktree approach.
+- A trusted pre-PKG baseline is identified from commit `b76824a` using a safe non-destructive export or checkout approach.
 - The proof covers `/`, `/cv`, and `/cv/public_sector` at minimum.
 - HTML/DOM comparison shows no rendered differences.
 - Pixel comparison shows no rendered differences.
 - Any observed difference is treated as a blocker and escalated to Jim before proceeding.
+- The current known DOM-only differences from section-level IDs are explicitly resolved one way or the other, not silently normalised.
 
 Tasks:
 
@@ -81,10 +104,13 @@ Tasks:
    Acceptance criteria: the plan names where DOM snapshots, screenshots, and comparison outputs live, and which pages/sections are in scope.
 2. Capture or reconstruct the pre-PKG baseline safely.
    Impact: comparisons are tied to the actual pre-migration site, not memory.
-   Acceptance criteria: baseline comes from `b76824a` in a separate worktree or detached checkout; the current worktree stays untouched.
+   Acceptance criteria: baseline comes from `b76824a` via a non-destructive export path; the current worktree and git history stay untouched.
 3. Implement the proof tests in TDD order.
    Impact: regression proof becomes executable rather than narrative.
    Acceptance criteria: failing tests exist first, current tree is then brought to green, and both DOM and pixel checks are runnable locally.
+4. Improve artifact identity and reuse.
+   Impact: repeated proof runs become cheaper, clearer, and less error-prone.
+   Acceptance criteria: durable artifact directories are keyed by resolved commit SHAs; the harness can detect when the exact base/target artifact sets already exist on disk and reuse them rather than rebuilding and recapturing unnecessarily.
 
 ### Phase 2: Complete HTML Binding Scope
 
@@ -92,7 +118,7 @@ Goal: finish the still-missing entity-level and role-anchor binding promised by 
 
 Intended impact:
 
-- Brings implementation back into line with [ADR-014](/Users/jim/code/personal/new-cv/docs/architecture/decision-records/014-entity-model-design.md) and the design reference.
+- Brings implementation back into line with [ADR-014](../../docs/architecture/decision-records/014-entity-model-design.md) and the historical design notes.
 - Makes graph identity visible in the DOM at section, entity, and role levels.
 
 Acceptance criteria:
@@ -101,12 +127,13 @@ Acceptance criteria:
 - Entity-level IDs are present where PKG entities are rendered.
 - Role-anchor IDs match the PKG `@id` fragment scheme for rendered role entries.
 - No rendered-page differences are introduced; the Phase 1 DOM and pixel proof remains green.
+- If existing or new binding introduces DOM-only differences, those differences are reviewed with Jim before they are accepted.
 
 Tasks:
 
 1. Map rendered entities to the current component seams.
    Impact: binding is added at the right layer rather than patched in ad hoc.
-   Acceptance criteria: the implementation approach is explicit across `[components/cv-layout.tsx](/Users/jim/code/personal/new-cv/components/cv-layout.tsx)`, `[components/article-entry.tsx](/Users/jim/code/personal/new-cv/components/article-entry.tsx)`, and any page-level wrappers actually rendering the entities.
+   Acceptance criteria: the implementation approach is explicit across [components/cv-layout.tsx](../../components/cv-layout.tsx), [components/article-entry.tsx](../../components/article-entry.tsx), and any page-level wrappers actually rendering the entities.
 2. Add tests first for binding behaviour.
    Impact: keeps the binding work inside repo TDD rules.
    Acceptance criteria: tests prove expected IDs appear for representative sections, entities, and roles before implementation is changed.
@@ -138,7 +165,7 @@ Tasks:
    Acceptance criteria: validator outcomes are captured in the execution plan and reflected in roadmap status.
 2. Synchronise drifted docs.
    Impact: a fresh agent can trust the docs again.
-   Acceptance criteria: implementation/execution/design/roadmap docs agree on Phase 4 closure state, binding scope, and regression-proof standard; architecture docs match the code paths in `[lib/cv-content.ts](/Users/jim/code/personal/new-cv/lib/cv-content.ts)` and `[app/manifest.ts](/Users/jim/code/personal/new-cv/app/manifest.ts)`.
+   Acceptance criteria: implementation/execution/design/roadmap docs agree on Phase 4 closure state, binding scope, and regression-proof standard; architecture docs match the code paths in [lib/cv-content.ts](../../lib/cv-content.ts) and [app/manifest.ts](../../app/manifest.ts).
 
 ### Phase 4: Historical Screenshot Archive
 
@@ -152,7 +179,7 @@ Intended impact:
 Acceptance criteria:
 
 - Work happens only after the current tree is committed.
-- A separate worktree or detached checkout is used.
+- A non-destructive export path such as `git archive`, or another equally safe no-history-risk checkout approach, is used.
 - Full-page and section-level screenshots are captured for all relevant live pages.
 
 ### Phase 5: LinkedIn as a Derived View
@@ -168,7 +195,7 @@ Acceptance criteria:
 
 - PKG Phase 4 is genuinely closed first.
 - LinkedIn headline/About, experience, and supporting sections derive from graph entities, not parallel manual re-definition.
-- Editorial decisions still needing Jim’s input are surfaced explicitly from `[.agent/plans/linkedin-update.plan.md](/Users/jim/code/personal/new-cv/.agent/plans/linkedin-update.plan.md)`.
+- Editorial decisions still needing Jim’s input are surfaced explicitly from [linkedin-update.plan.md](linkedin-update.plan.md).
 
 ## Reviewer Protocol
 
@@ -194,5 +221,5 @@ Minimum review checkpoints:
 - Treat PKG render preservation as a hard requirement: **no rendered-page differences expected**.
 - Do not silently whitelist or normalise differences.
 - If metadata-only differences or any other exceptions seem necessary, stop and review them with Jim first.
-- Re-read `[.agent/directives/AGENT.md](/Users/jim/code/personal/new-cv/.agent/directives/AGENT.md)`, `[.agent/directives/rules.md](/Users/jim/code/personal/new-cv/.agent/directives/rules.md)`, and `[.agent/directives/testing-strategy.md](/Users/jim/code/personal/new-cv/.agent/directives/testing-strategy.md)` before each phase.
+- Re-read [.agent/directives/AGENT.md](../../.agent/directives/AGENT.md), [.agent/directives/rules.md](../../.agent/directives/rules.md), and [.agent/directives/testing-strategy.md](../../.agent/directives/testing-strategy.md) before each phase.
 - Run full gates after each implementation piece, then reviewer passes, then update the execution doc before moving on.

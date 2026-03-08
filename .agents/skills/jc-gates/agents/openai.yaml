@@ -1,0 +1,4 @@
+interface:
+  display_name: "Quality Gates"
+  short_description: "Run and clear the repo quality gates"
+  default_prompt: "Use $jc-gates to run the repo's quality gates, fix issues properly, restart the sequence after each fix, and confirm that all gates pass."

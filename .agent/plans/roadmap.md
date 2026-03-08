@@ -4,13 +4,16 @@ Where everything stands and what depends on what.
 
 ## Active work
 
-| Plan                                                                                         | Status         | Summary                                                                                                                             | Next action                                                                                    |
-| -------------------------------------------------------------------------------------------- | -------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| [CV Editorial Improvements](cv-editorial-improvements.plan.md)                               | In progress    | Parent plan. Positioning, capabilities, metadata, experience, and Before Oak are all settled. Knowledge graph is the active stream. | Wait for PKG manual validation and regression-proof decision.                                  |
-| [Personal Knowledge Graph — design reference](personal-knowledge-graph.plan.md)              | Implementation | Entity inventory, principles, and Schema.org conventions. All design decisions are resolved. The WHY.                               | Reference only — design is settled.                                                            |
-| [Personal Knowledge Graph — implementation](personal-knowledge-graph-implementation.plan.md) | In progress    | Phases 1-4 code complete. Automated gates pass. Manual validation and regression proof remain outstanding. The WHAT.                | Run manual validation, decide the regression-proof path, then capture the historical baseline. |
-| [PKG Execution Plan](personal-knowledge-graph-execution.plan.md)                             | In progress    | Detailed operational plan with reviewer invocations, skill activations, and per-task status. The HOW.                               | **Start here** for next session.                                                               |
-| [LinkedIn Update](linkedin-update.plan.md)                                                   | Subsumed       | LinkedIn content will derive from the knowledge graph in PKG Phase 5. The standalone plan remains useful as editorial reference.    | Wait for PKG Phase 5.                                                                          |
+| Plan                                                                                         | Status      | Summary                                                                                                                                      | Next action                                                                                    |
+| -------------------------------------------------------------------------------------------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| [CV Editorial Improvements](cv-editorial-improvements.plan.md)                               | In progress | Parent plan. Positioning, capabilities, metadata, experience, and Before Oak are all settled. Knowledge graph is the active stream.          | Wait for PKG manual validation and regression-proof decision.                                  |
+| [Personal Knowledge Graph — implementation](personal-knowledge-graph-implementation.plan.md) | In progress | Full phase/task plan with goals, impacts, and acceptance criteria. Durable design decisions live in ADR-014 and related ADRs.                | Run manual validation, decide the regression-proof path, then capture the historical baseline. |
+| [PKG Execution Plan](personal-knowledge-graph-execution.plan.md)                             | In progress | Detailed operational plan with reviewer invocations, skill activations, and per-task status. The active PKG plan.                            | **Start here** for next session.                                                               |
+| [Visual Regression Harness](visual-regression-harness.plan.md)                               | In progress | Harness-specific refinements, acceptance criteria, and proof-tool work.                                                                      | Use for all harness work.                                                                      |
+| [Codex Platform Alignment](codex-platform-alignment.plan.md)                                 | In progress | Real Codex reviewer sub-agents are now wired through `.codex/`; the remaining work is reviewer verification and any final metadata cleanup.  | Run reviewer verification, then close out any remaining cleanup from the findings.             |
+| [LinkedIn Update](linkedin-update.plan.md)                                                   | Subsumed    | LinkedIn content will derive from the knowledge graph in PKG Phase 5. The standalone plan remains useful as a reference for source material. | Wait for PKG Phase 5.                                                                          |
+
+**Durable PKG design decisions live in** [ADR-014](../../docs/architecture/decision-records/014-entity-model-design.md) **and the related ADRs in** `docs/architecture/decision-records/`.
 
 ## Future
 
@@ -32,12 +35,10 @@ These are tracked in the [parent plan](cv-editorial-improvements.plan.md) but ha
 
 ```text
 CV Editorial Improvements (parent)
-├── PKG design reference (the WHY) ← Neo4j (shapes design)
-│   └── PKG implementation (the WHAT)
-│       └── PKG execution plan (the HOW) ← start here
-│           ├── Phases 1–3: code complete (automated gates pass) ✅
-│           ├── Phase 4: code complete, manual validation pending 🔄
-│           └── Phase 5: LinkedIn as derived view (subsumes LinkedIn Update plan)
+├── PKG implementation (plan with acceptance criteria)
+│   ├── PKG execution plan (active) ← start here
+│   ├── Visual regression harness plan (tool-specific work)
+│   └── Phase 5: LinkedIn as derived view (uses LinkedIn Update as reference only)
 └── Tilt mechanism (deferred, no plan yet)
     └── Tilt content (depends on mechanism)
 ```
