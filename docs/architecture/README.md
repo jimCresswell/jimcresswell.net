@@ -42,18 +42,18 @@ The canonical URL for the knowledge graph is `https://www.jimcresswell.net/`. Re
 
 All user-visible text originates from JSON files in `content/`. Derived metadata is constructed at build/render time so that editorial changes flow through a single source of truth (see [ADR-007](decision-records/007-dry-content-metadata.md)).
 
-| Output                | Constructed in       | Source fields used                                                            |
-| --------------------- | -------------------- | ----------------------------------------------------------------------------- |
-| Site URL              | `lib/site-config.ts` | Vercel env vars (`VERCEL_PROJECT_PRODUCTION_URL`, `VERCEL_URL`, `VERCEL_ENV`) |
-| Open Graph (CV pages) | `lib/cv-content.ts`  | `meta.name`, `meta.summary`, `meta.locale`, `SITE_URL`                        |
-| Open Graph (site)     | `app/layout.tsx`     | `frontpage.meta.title`, `frontpage.meta.description`, `SITE_URL`              |
-| JSON-LD               | `lib/jsonld.ts`      | `meta.*`, `education`, `links`, `SITE_URL` + module constants                 |
-| Web App Manifest      | `app/manifest.ts`    | `meta.name`, `meta.summary`                                                   |
-| Robots                | `app/robots.ts`      | `SITE_URL`                                                                    |
-| Sitemap               | `app/sitemap.ts`     | `SITE_URL`, active tilt keys                                                  |
-| Page `<title>`        | Page metadata export | `meta.name` (via `cvOpenGraph.title`)                                         |
+| Output                | Constructed in                                                                    | Source fields used                                                            |
+| --------------------- | --------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| Site URL              | `lib/site-config.ts`                                                              | Vercel env vars (`VERCEL_PROJECT_PRODUCTION_URL`, `VERCEL_URL`, `VERCEL_ENV`) |
+| Open Graph (CV pages) | `lib/cv-content.ts`                                                               | `meta.name`, `meta.summary`, `meta.locale`, `SITE_URL`                        |
+| Open Graph (site)     | `app/layout.tsx`                                                                  | `frontpage.meta.title`, `frontpage.meta.description`, `SITE_URL`              |
+| JSON-LD               | `content/entities.json`, `lib/entities.ts`, `lib/page-jsonld.ts`, `lib/jsonld.ts` | Entity graph, URL rewriting, and page-specific subgraphs                      |
+| Web App Manifest      | `app/manifest.ts`                                                                 | `meta.name`, `meta.summary`                                                   |
+| Robots                | `app/robots.ts`                                                                   | `SITE_URL`                                                                    |
+| Sitemap               | `app/sitemap.ts`                                                                  | `SITE_URL`, active tilt keys                                                  |
+| Page `<title>`        | Page metadata export                                                              | `meta.name` (via `cvOpenGraph.title`)                                         |
 
-The JSON-LD graph also contains structured-data-specific constants (publications, `knowsAbout`, occupation metadata) that have no editorial equivalent in the content file. These are defined in `lib/jsonld.ts` and are designed for search engines and AI systems rather than human readers.
+The JSON-LD graph now derives from the entity model in `content/entities.json`, validated by `lib/entities.ts`, exposed as the full graph by `lib/jsonld.ts`, and sliced into page-specific subgraphs by `lib/page-jsonld.ts`. Structured-data-specific content such as publications, `knowsAbout`, occupation metadata, and abstract identity entities now lives in the entity graph rather than as module constants.
 
 The WebPage JSON-LD node's `name` and `description` match the page's HTML `<title>` and `<meta name="description">` by construction — they use the same derived values.
 

@@ -12,6 +12,8 @@
 - Continued PKG Phase 4: completed Task 4.6 editorial re-review, added `Knowledge graphs` with Wikidata `Q33002955` to `Person.knowsAbout`, and added `schema-dts` as a devDependency
 - Implemented a hybrid Schema.org guard: fresh-literal `schema-dts` conversions in `lib/schema-org-check.ts` for core PKG entity types, plus a raw-source allowed-key integration test so unexpected keys in `content/entities.json` cannot hide behind Zod parsing
 - Manually verified the red phase for the historical `DefinedTerm.isBasedOn` failure mode by temporarily adding it to the `schema-dts` bridge, confirming `pnpm typecheck` failed, then removing it and rerunning `pnpm check` + `pnpm test:e2e`
+- Committed the Phase 4 PKG follow-up on `main` as `83a16fa` (`feat: complete PKG phase 4 follow-up`)
+- Ran `/jc-consolidate-docs`: updated stale PKG status across roadmap/plan docs, moved two new durable preferences into permanent directives, and refreshed architecture docs to describe the entity-model-driven JSON-LD pipeline rather than the old `lib/jsonld.ts` constant model
 
 ### Patterns to Remember
 
@@ -26,6 +28,8 @@
 - Jim prefers as little definition as possible in tests. If a test needs large local fixtures, allowlists, or helper definitions, treat that as a design smell and first ask whether the constant, guard, or validation logic belongs in product code instead.
 - Jim prefers runtime constants with `as const` as the source of truth for derived types and predicate guards. When a type can naturally come from a stable runtime list/object, define the value first and derive the type from it.
 - After the current PKG work is committed, Jim wants a historical visual baseline captured from the point before PKG started. Do this safely via a separate worktree or detached checkout in another directory; never rewrite history or risk the current worktree.
+- When PKG implementation status changes, update both the active plans and the permanent architecture overviews in the same consolidation pass. The easy drift points are counts, commit state, and old descriptions of JSON-LD as module constants rather than entity-model derivation.
+- When a user preference clearly changes a durable engineering rule, graduate it into a permanent directive immediately and add the AGENTS anchor in the same pass; otherwise it lingers as napkin-only context and gets missed in fresh sessions.
 
 ## Session: 2026-03-07 — Consolidation
 
@@ -60,7 +64,7 @@
 - schema-dts (Google, 1.5M weekly downloads, zero runtime, types-only) fills the gap between Zod (shape validation) and Schema.org (vocabulary correctness). Catches the exact class of error the pkg-reviewer has been finding manually (isBasedOn on DefinedTerm, makesOffer expecting Offer).
 - schemaorg-jsd is pre-1.0 (v0.17.1) and duplicates Zod's runtime role. Not worth adding alongside schema-dts.
 - ajv alone doesn't add value over Zod for this use case — Zod is already the runtime JSON validator.
-- All Phase 1-4 changes are uncommitted on main (no branch). This is a risk that should be addressed.
+- All Phase 1-4 changes are uncommitted on main (no branch). This is a risk that should be addressed. Historical note: this described the pre-`83a16fa` state; Phase 4 is now committed and only the later docs-consolidation pass remains uncommitted.
 
 ### Mistakes Made
 
@@ -74,7 +78,7 @@
 - Implemented Phases 1-3 of the personal knowledge graph
 - Phase 1: Resolved 5 design decisions, created entities.json skeleton (50 entities), Zod schemas (16 entity types), ADR-014
 - Phase 2: Migrated KNOWS_ABOUT (35 items, 24 Wikidata-linked), OCCUPATION, CREDENTIAL_DETAILS, PUBLICATIONS from lib/jsonld.ts to entity model. Populated all concrete entities, drafted identity-framed role descriptions, populated abstract/expressive entities from cv.content.json
-- Phase 3: Rewired lib/jsonld.ts from 287 lines of inline constants to 46-line import+URL-rewrite layer. Rewired cv-content.ts and manifest.ts to import Person data from entity model. Implemented subgraph closure algorithm with TDD.
+- Phase 3: Rewired lib/jsonld.ts from 287 lines of inline constants to a 30-line import+URL-rewrite layer. Rewired cv-content.ts and manifest.ts to import Person data from entity model. Implemented subgraph closure algorithm with TDD.
 - PKG reviewer, type reviewer, and test reviewer all invoked. All findings addressed.
 - 128 tests passing (38 unit + 7 integration for entities, 10 for subgraph, 7 for jsonld, plus existing)
 

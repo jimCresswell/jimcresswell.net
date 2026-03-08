@@ -2,7 +2,7 @@
 
 Build a unified model where all site outputs — page rendering, Open Graph, JSON-LD, Web App Manifest, sitemap, PDF — are derived views onto the same underlying reality. A personal knowledge graph of entities and typed relationships, with each output as a derived view.
 
-## Status: Implementation (design settled, Phases 1-3 code complete, Phase 4 in progress)
+## Status: Implementation (design settled, Phases 1-4 code complete, manual validation and regression proof pending)
 
 **This is the design reference** — the entity inventory, principles, Schema.org conventions, and resolved design decisions. All design questions have been answered. For phased execution with todos and acceptance criteria, see the [implementation plan](personal-knowledge-graph-implementation.plan.md). For the detailed operational plan (per-task status, reviewer invocations), see the [execution plan](personal-knowledge-graph-execution.plan.md).
 
@@ -12,7 +12,7 @@ This is a collaborative session. Jim has examples to integrate and a clear visio
 
 1. Read `.agent/directives/AGENT.md` and `.agent/directives/rules.md` — standard project entry point.
 2. Read `.agent/directives/editorial-guidance.md` — voice, audience, keyword strategy, cross-domain editorial consistency.
-3. Read `lib/jsonld.ts` — current JSON-LD graph structure and the constants that are currently invisible to the content model.
+3. Read `content/entities.json`, `lib/entities.ts`, and `lib/jsonld.ts` — the current entity-driven JSON-LD pipeline: graph source, validation layer, and full-graph export.
 4. Read `lib/cv-content.ts` — current OG/metadata derivation.
 5. Read `content/cv.content.json` and `content/frontpage.content.json` — current editorial content.
 6. Read `archive/prior_cv_content.json.bak` — full career history with dates and role titles.
@@ -64,16 +64,16 @@ This means:
 
 ### What works (ADR-007)
 
-| Output            | Derived from          | Source fields                                        |
-| ----------------- | --------------------- | ---------------------------------------------------- |
-| Page rendering    | `cv.content.json`     | All editorial sections                               |
-| Open Graph (CV)   | `lib/cv-content.ts`   | `meta.name`, `meta.summary`, `meta.locale`           |
-| Open Graph (site) | `app/layout.tsx`      | `frontpage.meta.title`, `frontpage.meta.description` |
-| JSON-LD           | `lib/jsonld.ts`       | `meta.*`, `education`, `links` + module constants    |
-| Web App Manifest  | `app/manifest.ts`     | `meta.name`, `meta.summary`                          |
-| Page `<title>`    | Page metadata exports | `meta.name` (via `cvOpenGraph.title`)                |
-| Sitemap           | `app/sitemap.ts`      | Tilt routes via `lib/cv-content.ts`                  |
-| PDF               | Build-time render     | The CV page itself (content flows automatically)     |
+| Output            | Derived from                                                                      | Source fields                                        |
+| ----------------- | --------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| Page rendering    | `cv.content.json`                                                                 | All editorial sections                               |
+| Open Graph (CV)   | `lib/cv-content.ts`                                                               | `meta.name`, `meta.summary`, `meta.locale`           |
+| Open Graph (site) | `app/layout.tsx`                                                                  | `frontpage.meta.title`, `frontpage.meta.description` |
+| JSON-LD           | `content/entities.json`, `lib/entities.ts`, `lib/page-jsonld.ts`, `lib/jsonld.ts` | Entity graph, page selection, and URL rewriting      |
+| Web App Manifest  | `app/manifest.ts`                                                                 | `meta.name`, `meta.summary`                          |
+| Page `<title>`    | Page metadata exports                                                             | `meta.name` (via `cvOpenGraph.title`)                |
+| Sitemap           | `app/sitemap.ts`                                                                  | Tilt routes via `lib/cv-content.ts`                  |
+| PDF               | Build-time render                                                                 | The CV page itself (content flows automatically)     |
 
 ### The seams
 
@@ -263,7 +263,7 @@ The model needs to support:
 
 ### Option A: Layered content files
 
-```
+```text
 content/
   entities.json          # All entities at all abstraction levels: person, orgs, roles, credentials, identity, capabilities, etc.
   cv.content.json        # Page composition: which entities to present, in what order, with what page-specific prose
@@ -274,7 +274,7 @@ The entity file is the shared model — all real entities (specific, abstract, e
 
 ### Option B: Expand cv.content.json with an entities section
 
-```
+```text
 content/
   cv.content.json        # Existing structure + new top-level `entities` key
   frontpage.content.json # References entities from cv.content.json
@@ -335,7 +335,7 @@ Organisations with public websites carry `url` properties, e.g. `"url": "https:/
 
 The `Person → EmployeeRole → Organization` chain uses `worksFor` at both levels:
 
-```
+```text
 Person.worksFor → [EmployeeRole @id]
 EmployeeRole.worksFor → [Organization @id]
 EmployeeRole.roleName, .startDate, .endDate, .description

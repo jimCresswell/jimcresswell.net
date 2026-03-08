@@ -24,6 +24,7 @@ Always apply the first question: **Ask: could it be simpler _without compromisin
 
 - **No type shortcuts** — Never use `as`, `any`, or `!` — they disable the type system.
 - **Type imports must be labelled** — e.g. `import type { Type } from 'package'` or `import { type Type } from 'package'`.
+- **Prefer runtime constants as type sources** — When types and predicate guards derive naturally from a stable runtime list or object, define the runtime value with `as const` and derive the type from it.
 - **Validate external data** — Parse and validate external signals (API responses, file reads, etc.). Use Zod where appropriate.
 - **Single source of truth for types** — Define types once and import them consistently.
 

@@ -62,7 +62,7 @@ This plan defines the HOW -- reviewer invocations, skill activations, per-task s
 | 4. New views and enrichment | ✅ Code complete | 🔄 Manual checks left   | 8/8 tasks code-complete; manual validators left |
 | 5. LinkedIn as derived view | ⬜ Pending       | —                       | —                                               |
 
-**132 vitest tests passing across 15 test files, and 46 Playwright E2E tests passing.** Historical PKG work was committed on `feature/pkg-phase1-entity-model` and merged locally into `main` on 2026-03-08. The current follow-up changes for Tasks 4.6-4.8 remain uncommitted on `main` because Jim explicitly asked to continue there.
+**132 vitest tests passing across 15 test files, and 46 Playwright E2E tests passing.** Historical PKG work was committed on `feature/pkg-phase1-entity-model` and merged locally into `main` on 2026-03-08. The Phase 4 follow-up was then committed on `main` as `83a16fa` (`feat: complete PKG phase 4 follow-up`). The current uncommitted layer is the later docs-consolidation pass requested immediately afterwards.
 
 **Automated gates pass on the current tree.** `pnpm check` and `pnpm test:e2e` both passed on 2026-03-08 after completing Tasks 4.6-4.8 and after the later test-simplification refactor that moved schema-org allowlists into product code. Manual Schema.org Validator and Rich Results Test checks remain outstanding. Phase 3 pixel-identical regression check is still not formally verified.
 
@@ -72,30 +72,31 @@ This plan defines the HOW -- reviewer invocations, skill activations, per-task s
 
 1. **Run Phase 4 manual validation** — Schema.org Validator and Rich Results Test. Automated gates already pass on the current tree.
 2. **Decide whether to formally verify the Phase 3 render-regression proof now** — snapshots exist, but the comparison has still not been run and recorded.
-3. **Commit the current Phase 4 follow-up changes** — once the remaining manual validation is finished.
-4. **Capture historical screenshots from the pre-PKG baseline** — after the current work is committed, go back to the pre-PKG baseline commit in a safe way and capture screenshots of every part of every page for regression comparison.
+3. **Decide whether to commit the docs-consolidation pass before or after manual validation** — the worktree is currently dirty only because `/jc-consolidate-docs` was run after `83a16fa`.
+4. **Capture historical screenshots from the pre-PKG baseline** — after the current worktree is committed, go back to the pre-PKG baseline commit in a safe way and capture screenshots of every part of every page for regression comparison.
 5. **Phase 5** — LinkedIn as a derived view.
 
 ### Current worktree snapshot
 
 At the start of the next session, expect the following uncommitted files unless Jim has committed or changed them:
 
+- `.agent/directives/rules.md`
+- `.agent/directives/testing-strategy.md`
 - `.agent/memory/napkin.md`
+- `.agent/plans/cv-editorial-improvements.plan.md`
 - `.agent/plans/personal-knowledge-graph-execution.plan.md`
-- `content/entities.json`
-- `lib/entities.integration.test.ts`
-- `lib/jsonld.integration.test.ts`
-- `lib/schema-org-check.ts`
-- `lib/schema-org-check.integration.test.ts`
-- `package.json`
-- `pnpm-lock.yaml`
+- `.agent/plans/personal-knowledge-graph-implementation.plan.md`
+- `.agent/plans/personal-knowledge-graph.plan.md`
+- `.agent/plans/roadmap.md`
+- `AGENTS.md`
+- `docs/architecture/README.md`
+- `docs/architecture/content-model.md`
 
 These changes correspond to:
 
-- Task 4.6 completion and plan refresh
-- Task 4.7 (`Knowledge graphs` in `knowsAbout`)
-- Task 4.8 (`schema-dts` + schema-org compatibility guard)
-- test simplification/refactor to keep schema-org allowlists in product code instead of tests
+- `/jc-consolidate-docs` follow-up after the Phase 4 commit
+- permanent capture of the new testing and type-derivation preferences
+- architecture and plan refresh so the next session starts from the current PKG state
 
 ### Key files to understand
 
@@ -211,7 +212,7 @@ After every non-trivial change, invoke the **code-reviewer** sub-agent (the gate
 
 ### Phase 1 -- Entity Model Design (code complete, automated gates pass)
 
-All 5 tasks code-complete. Design decisions resolved with Jim, entity schema defined in `lib/entities.ts` (17 Zod schemas, discriminated union), `content/entities.json` skeleton created as valid JSON-LD `@graph`, ADR-014 documents the entity model design. 38 unit tests + 7 integration tests.
+All 5 tasks code-complete. Design decisions resolved with Jim, entity schema defined in `lib/entities.ts` (17 Zod schemas, discriminated union), `content/entities.json` skeleton created as valid JSON-LD `@graph`, ADR-014 documents the entity model design. 38 unit tests + 8 integration tests.
 
 **Key decisions recorded:**
 
@@ -436,7 +437,7 @@ Throughout all phases:
 ### Created (Phases 1-4)
 
 - `content/entities.json` -- JSON-LD `@graph` with ~50 entities at all abstraction levels
-- `lib/entities.ts` -- Zod schemas (16 entity types), discriminated union, parse + export
+- `lib/entities.ts` -- Zod schemas (17 entity types), discriminated union, parse + export
 - `lib/entities.unit.test.ts` -- 38 unit tests for individual schemas
 - `lib/entities.integration.test.ts` -- 8 integration tests (full parse, referential integrity, `Knowledge graphs`)
 - `lib/subgraph.ts` -- subgraph closure algorithm (`extractSubgraph`, `findDanglingRefs`)

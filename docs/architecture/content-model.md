@@ -65,9 +65,9 @@ To add a new variant: add the variant key and content to `tilts`, add the slug t
 
 ## Derived metadata
 
-All metadata is derived from `cv.content.json` so that editorial changes propagate everywhere automatically. The [Content & Metadata](README.md#content--metadata) section in the architecture overview has the full derivation table showing which module constructs each output (Open Graph, JSON-LD, Web App Manifest, page title) and which source fields it uses.
+All metadata is derived from `content/` so that editorial changes propagate everywhere automatically. The [Content & Metadata](README.md#content--metadata) section in the architecture overview has the full derivation table showing which module constructs each output (Open Graph, JSON-LD, Web App Manifest, page title) and which source fields it uses.
 
-`lib/jsonld.ts` also contains structured-data-specific constants that have no editorial equivalent in the content file: `KNOWS_ABOUT` (topic expertise), `OCCUPATION` (occupation metadata), `CREDENTIAL_DETAILS` (degree details), and `PUBLICATIONS` (thesis and publication records). These are designed for search engines and AI systems rather than human readers.
+The structured-data-specific content that used to live as JSON-LD module constants now lives in `content/entities.json` as part of the personal knowledge graph. `lib/entities.ts` validates that graph, `lib/jsonld.ts` exposes the full graph, and `lib/page-jsonld.ts` derives page-specific subgraphs.
 
 For the rationale behind this single-source approach, see [ADR-007](decision-records/007-dry-content-metadata.md).
 
@@ -81,12 +81,12 @@ For the full generation pipeline and serving architecture, see the [PDF Generati
 
 Every page supports multiple output formats via content negotiation (see [ADR-009](decision-records/009-content-negotiation-proxy.md)). The Next.js proxy (`proxy.ts`) inspects the request and rewrites to the appropriate handler:
 
-| Format   | Access                                                              | Source                                       |
-| -------- | ------------------------------------------------------------------- | -------------------------------------------- |
-| HTML     | Default browser request                                             | Page components rendering content JSON       |
-| Markdown | `Accept: text/markdown`, or `.md` suffix (`/cv.md`, `/cv/index.md`) | HTML converted by `accept-md-runtime`        |
-| JSON-LD  | `Accept: application/ld+json` on any page, or `/api/graph`          | `lib/jsonld.ts` — Schema.org knowledge graph |
-| PDF      | `/cv/pdf`                                                           | Build-time Puppeteer render of `/cv`         |
+| Format   | Access                                                              | Source                                                                 |
+| -------- | ------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| HTML     | Default browser request                                             | Page components rendering content JSON                                 |
+| Markdown | `Accept: text/markdown`, or `.md` suffix (`/cv.md`, `/cv/index.md`) | HTML converted by `accept-md-runtime`                                  |
+| JSON-LD  | `Accept: application/ld+json` on any page, or `/api/graph`          | Entity graph from `content/entities.json`, exposed via `lib/jsonld.ts` |
+| PDF      | `/cv/pdf`                                                           | Build-time Puppeteer render of `/cv`                                   |
 
 The knowledge graph (`/api/graph`) returns the full Schema.org `@graph` regardless of which page URL is requested — the graph models the person, not the page. See [ADR-010](decision-records/010-canonical-url-graph-identity.md) for the rationale.
 

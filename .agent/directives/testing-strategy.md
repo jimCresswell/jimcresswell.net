@@ -19,6 +19,7 @@ Always use TDD at ALL levels (unit, integration, E2E).
 - ALL tests must prove something useful about the product code, tests that exercise test code should be deleted.
 - Prefer pure functions and unit tests.
 - Always use TDD at ALL levels (unit, integration, E2E).
+- Prefer product-owned constants, guards, and validation logic over re-defining them inside tests. If a test needs a large local fixture, allowlist, or helper to explain the domain, that is often a sign the definition belongs in product code.
 - ALL mocks MUST be simple fakes, injected as arguments to the function under test.
 - NEVER manipulate global state in tests — no `process.env` mutations, no `vi.stubGlobal`, no `vi.doMock`. Product code must accept configuration as parameters.
 - NEVER add complex logic to tests — complexity in tests risks testing the test code rather than the code under test.

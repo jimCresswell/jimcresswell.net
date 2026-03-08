@@ -18,10 +18,12 @@ Anchored (already in permanent docs — do not re-add):
 - Content in JSON, not components → [rules.md](.agent/directives/rules.md) Documentation
 - Permanent docs never reference ephemeral → [rules.md](.agent/directives/rules.md) Documentation
 - Gate restart discipline → [rules.md](.agent/directives/rules.md) Code Quality
+- Prefer `as const` runtime values to derive types and guards → [rules.md](.agent/directives/rules.md) Type Safety
 - Front page is not CV-lite, registers differ → [editorial-guidance.md](.agent/directives/editorial-guidance.md) Voice and register
 - Product safety not data safety → [editorial-guidance.md](.agent/directives/editorial-guidance.md)
 - Don't claim solo credit → [editorial-guidance.md](.agent/directives/editorial-guidance.md) Collaborative credit
 - No checkboxes for editorial discussions → [editorial-guidance.md](.agent/directives/editorial-guidance.md) Voice and register
+- Minimise definitions in tests; move real domain rules into product code → [testing-strategy.md](.agent/directives/testing-strategy.md) Philosophy
 
 ## Learned Workspace Facts
 

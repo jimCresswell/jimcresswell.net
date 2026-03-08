@@ -12,8 +12,8 @@ todos:
     content: "Phase 3: View derivation — code complete, automated gates pass on current tree"
     status: completed
   - id: phase4-enrich
-    content: "Phase 4: New views — front page JSON-LD, expanded graph, domain-appropriate descriptions, HTML binding, validation"
-    status: in_progress
+    content: "Phase 4: New views — front page JSON-LD, expanded graph, domain-appropriate descriptions, HTML binding, validation — code complete; manual validators still outstanding"
+    status: completed
   - id: phase5-linkedin
     content: "Phase 5: LinkedIn as a derived view — derive all LinkedIn content from the graph"
     status: pending
@@ -26,15 +26,15 @@ isProject: false
 
 ## Progress (updated 2026-03-08)
 
-| Phase                       | Code           | Gate status             | Key outcome                                                    |
-| --------------------------- | -------------- | ----------------------- | -------------------------------------------------------------- |
-| 1. Entity model design      | ✅ Complete    | ✅ Automated gates pass | 17 Zod schemas, `content/entities.json` skeleton, ADR-014      |
-| 2. Entity population        | ✅ Complete    | ✅ Automated gates pass | ~50 entities across all abstraction levels                     |
-| 3. View derivation          | ✅ Complete    | ✅ Automated gates pass | `lib/jsonld.ts` 287→30 lines, subgraph closure algorithm       |
-| 4. New views and enrichment | 🔄 In progress | ✅ Current tree passes  | Tasks 4.6-4.8, manual validation, and commit still outstanding |
-| 5. LinkedIn as derived view | ⬜ Pending     | —                       | —                                                              |
+| Phase                       | Code        | Gate status             | Key outcome                                                                         |
+| --------------------------- | ----------- | ----------------------- | ----------------------------------------------------------------------------------- |
+| 1. Entity model design      | ✅ Complete | ✅ Automated gates pass | 17 Zod schemas, `content/entities.json` skeleton, ADR-014                           |
+| 2. Entity population        | ✅ Complete | ✅ Automated gates pass | ~50 entities across all abstraction levels                                          |
+| 3. View derivation          | ✅ Complete | ✅ Automated gates pass | `lib/jsonld.ts` 287→30 lines, subgraph closure algorithm                            |
+| 4. New views and enrichment | ✅ Complete | 🔄 Manual checks left   | Tasks 4.1-4.8 code-complete; manual validation left, docs consolidation uncommitted |
+| 5. LinkedIn as derived view | ⬜ Pending  | —                       | —                                                                                   |
 
-128 vitest tests passing. Automated gates pass on the current tree (`pnpm check:ci`, `pnpm test:e2e`, both 2026-03-08). Manual Schema.org Validator and Rich Results Test checks remain outstanding. All changes remain uncommitted on `main` (no branch created). The [execution plan](personal-knowledge-graph-execution.plan.md) has detailed per-task status.
+132 vitest tests passing. Automated gates pass on the current tree (`pnpm check`, `pnpm test:e2e`, both 2026-03-08). Manual Schema.org Validator and Rich Results Test checks remain outstanding, and the historical content-regression proof is still pending. Historical PKG work and the Phase 4 follow-up have already been committed and merged locally into `main`; the current uncommitted layer is the later docs-consolidation pass. The [execution plan](personal-knowledge-graph-execution.plan.md) has detailed per-task status.
 
 ## Reading requirements
 

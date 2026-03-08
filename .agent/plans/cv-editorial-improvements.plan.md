@@ -2,7 +2,7 @@
 
 Refine the positioning, capabilities, and structured data in the editorial CV.
 
-## Status: In Progress — positioning, capabilities, metadata, and experience/Before Oak settled; knowledge graph Phases 1-3 code complete (automated gates pass), Phase 4 in progress; LinkedIn subsumed by PKG Phase 5
+## Status: In Progress — positioning, capabilities, metadata, and experience/Before Oak settled; knowledge graph Phases 1-4 code complete (automated gates pass), manual validation still pending; LinkedIn subsumed by PKG Phase 5
 
 ## Prerequisite: PII security mitigation
 
@@ -106,11 +106,11 @@ Completed in a dedicated plan: [meta-seo-content-audit.plan.md](complete/meta-se
 
 **Design reference:** [personal-knowledge-graph.plan.md](personal-knowledge-graph.plan.md) — entity inventory, principles, Schema.org conventions. All design decisions resolved.
 
-**Implementation:** [personal-knowledge-graph-implementation.plan.md](personal-knowledge-graph-implementation.plan.md) — Phases 1-3 code complete (automated gates pass), Phase 4 in progress.
+**Implementation:** [personal-knowledge-graph-implementation.plan.md](personal-knowledge-graph-implementation.plan.md) — Phases 1-4 code complete (automated gates pass), manual validation pending.
 
 **Execution plan:** [personal-knowledge-graph-execution.plan.md](personal-knowledge-graph-execution.plan.md) — detailed operational plan with per-task status. **Start here** for next session.
 
-Phases 1-3 code complete: `content/entities.json` with ~50 entities at all abstraction levels, 17 Zod schemas validating at import time, subgraph closure algorithm for page-specific JSON-LD, all views rewired to derive from the entity model. **Automated gates pass on the current tree** — `pnpm check:ci` and `pnpm test:e2e` both passed on 2026-03-08. Manual Schema.org Validator and Rich Results Test checks remain outstanding. All changes remain uncommitted on `main`.
+Phases 1-4 code complete: `content/entities.json` with ~50 entities at all abstraction levels, 17 Zod schemas validating at import time, subgraph closure algorithm for page-specific JSON-LD, all views rewired to derive from the entity model, `Knowledge graphs` added to `knowsAbout`, and `schema-dts` validation in place. **Automated gates pass on the current tree** — `pnpm check` and `pnpm test:e2e` both passed on 2026-03-08. Manual Schema.org Validator and Rich Results Test checks remain outstanding, and the historical content-regression proof is still pending.
 
 ---
 
