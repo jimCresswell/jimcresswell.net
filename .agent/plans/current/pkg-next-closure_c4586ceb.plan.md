@@ -27,7 +27,7 @@ isProject: false
 Historical handoff note. Superseded by:
 
 - [personal-knowledge-graph-execution.plan.md](personal-knowledge-graph-execution.plan.md) for active PKG work
-- [visual-regression-harness.plan.md](visual-regression-harness.plan.md) for harness-specific work
+- [visual-regression-harness.plan.md](../active/visual-regression-harness.plan.md) for harness-specific work
 
 This file is retained because it contained intermediate closure reasoning that was not in `HEAD` and should not be thrown away.
 
@@ -70,10 +70,10 @@ Current implementation sources to lean on:
 
 Docs that need to stay aligned with reality:
 
-- [.agent/plans/roadmap.md](../../.agent/plans/roadmap.md)
-- [.agent/plans/personal-knowledge-graph.plan.md](../../.agent/plans/personal-knowledge-graph.plan.md)
-- [.agent/plans/personal-knowledge-graph-implementation.plan.md](../../.agent/plans/personal-knowledge-graph-implementation.plan.md)
-- [.agent/plans/personal-knowledge-graph-execution.plan.md](../../.agent/plans/personal-knowledge-graph-execution.plan.md)
+- [roadmap.md](../roadmap.md)
+- [personal-knowledge-graph.plan.md](personal-knowledge-graph.plan.md)
+- [personal-knowledge-graph-implementation.plan.md](personal-knowledge-graph-implementation.plan.md)
+- [personal-knowledge-graph-execution.plan.md](personal-knowledge-graph-execution.plan.md)
 - [docs/architecture/README.md](../../docs/architecture/README.md)
 - [docs/architecture/content-model.md](../../docs/architecture/content-model.md)
 

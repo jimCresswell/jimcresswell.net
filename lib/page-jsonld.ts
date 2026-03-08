@@ -10,11 +10,10 @@
  * SITE_URL (production, preview, or local).
  */
 import { entities, type EntityGraph } from "./entities";
+import { getPageDocumentContractByRouteKey } from "./page-document-contract";
 import { rewriteEntityGraphUrls } from "./rewrite-jsonld-urls";
 import { extractSubgraph } from "./subgraph";
 import { SITE_URL } from "./site-config";
-
-const CANONICAL_BASE = "https://www.jimcresswell.net";
 
 function buildSubgraph(seedIds: string[]): EntityGraph {
   const subgraph = extractSubgraph(entities, seedIds);
@@ -50,9 +49,9 @@ const softwareSeeds = entities
  * to include all connected entities.
  */
 export const frontPageJsonLd = buildSubgraph([
-  `${CANONICAL_BASE}/#person`,
-  `${CANONICAL_BASE}/#website`,
-  `${CANONICAL_BASE}/#webpage`,
+  "https://www.jimcresswell.net/#person",
+  "https://www.jimcresswell.net/#website",
+  getPageDocumentContractByRouteKey("home").pageEntityCanonicalId,
   ...identitySeeds,
   ...capabilitySeeds,
 ]);
@@ -64,9 +63,9 @@ export const frontPageJsonLd = buildSubgraph([
  * entities. The closure produces the complete graph.
  */
 export const cvPageJsonLd = buildSubgraph([
-  `${CANONICAL_BASE}/#person`,
-  `${CANONICAL_BASE}/#website`,
-  `${CANONICAL_BASE}/cv/#webpage`,
+  "https://www.jimcresswell.net/#person",
+  "https://www.jimcresswell.net/#website",
+  getPageDocumentContractByRouteKey("cv").pageEntityCanonicalId,
   ...identitySeeds,
   ...capabilitySeeds,
   ...softwareSeeds,

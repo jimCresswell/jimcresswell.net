@@ -6,6 +6,35 @@ function isRecord(value: unknown): value is Record<string, unknown> {
   return value !== null && typeof value === "object" && !Array.isArray(value);
 }
 
+function getJsonLdGraph(data: unknown): Array<Record<string, unknown>> {
+  if (!isRecord(data)) {
+    throw new Error("Expected JSON-LD payload to be an object");
+  }
+
+  const graph = data["@graph"];
+  if (!Array.isArray(graph)) {
+    throw new Error("Expected JSON-LD payload to contain an @graph array");
+  }
+
+  if (!graph.every(isRecord)) {
+    throw new Error("Expected every JSON-LD graph entry to be an object");
+  }
+
+  return graph;
+}
+
+function findGraphEntityById(
+  graph: Array<Record<string, unknown>>,
+  entityId: string
+): Record<string, unknown> {
+  const entity = graph.find((candidate) => candidate["@id"] === entityId);
+  if (!entity) {
+    throw new Error(`Expected JSON-LD entity ${entityId}`);
+  }
+
+  return entity;
+}
+
 test.describe("US-09: SEO and discoverability", () => {
   test.describe("home page", () => {
     test("HTML lang attribute matches content locale", async ({ page }) => {
@@ -63,6 +92,55 @@ test.describe("US-09: SEO and discoverability", () => {
       }
       expect(data["@context"]).toBe("https://schema.org");
       expect(data["@graph"]).toBeTruthy();
+    });
+
+    test("aligns the canonical CV page identity with inline JSON-LD", async ({ page }) => {
+      await page.goto("/cv");
+
+      const canonicalUrl = new URL("/cv/", page.url()).toString();
+      await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", canonicalUrl);
+
+      const jsonLd = page.locator('script[type="application/ld+json"]');
+      const content = await jsonLd.textContent();
+      expect(content).toBeTruthy();
+      if (!content) {
+        throw new Error("Expected JSON-LD script content");
+      }
+
+      const pageEntity = findGraphEntityById(
+        getJsonLdGraph(JSON.parse(content)),
+        `${canonicalUrl}#webpage`
+      );
+
+      expect(pageEntity["@type"]).toBe("ProfilePage");
+      expect(pageEntity.url).toBe(canonicalUrl);
+      expect(pageEntity.name).toBe(`${cvContent.meta.name} — CV`);
+    });
+
+    test("treats the public-sector tilt as a canonical alias of the CV page", async ({ page }) => {
+      await page.goto("/cv/public_sector");
+
+      const canonicalUrl = new URL("/cv/", page.url()).toString();
+      await expect(page).toHaveTitle(
+        `${cvContent.meta.name} — CV (${cvContent.tilts.public_sector.context})`
+      );
+      await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", canonicalUrl);
+
+      const jsonLd = page.locator('script[type="application/ld+json"]');
+      const content = await jsonLd.textContent();
+      expect(content).toBeTruthy();
+      if (!content) {
+        throw new Error("Expected JSON-LD script content");
+      }
+
+      const pageEntity = findGraphEntityById(
+        getJsonLdGraph(JSON.parse(content)),
+        `${canonicalUrl}#webpage`
+      );
+
+      expect(pageEntity["@type"]).toBe("ProfilePage");
+      expect(pageEntity.url).toBe(canonicalUrl);
+      expect(pageEntity.name).toBe(`${cvContent.meta.name} — CV`);
     });
   });
 

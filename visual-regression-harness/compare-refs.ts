@@ -3,8 +3,12 @@ import os from "node:os";
 import path from "node:path";
 import { spawn, type ChildProcess } from "node:child_process";
 import { captureSiteArtifacts } from "./capture";
-import { compareArtifactSets } from "./compare";
-import { exportRefToDirectory, resolveRef } from "./export-ref";
+import { compareArtifactSets, type ComparisonSummary } from "./compare";
+import {
+  exportRefToDirectory,
+  resolveSnapshotSource,
+  type ResolvedSnapshotSource,
+} from "./export-ref";
 import {
   ensureDirectory,
   REGRESSION_ARTIFACTS_DIR,
@@ -17,7 +21,9 @@ import {
  *
  * The harness is intentionally non-destructive:
  * - it resolves refs via `git rev-parse`
- * - it exports snapshots via `git archive`
+ * - it exports git refs via `git archive`
+ * - it exports WORKTREE via `git archive` of `HEAD` plus a safe overlay of
+ *   tracked, staged, unstaged, and untracked working-tree changes
  * - it never modifies the caller's worktree, index, refs, or history
  *
  * @param options Comparison configuration.
@@ -31,8 +37,8 @@ export async function compareRefs(options: {
   targetPort?: number;
 }): Promise<string> {
   const repositoryRoot = path.resolve(options.repositoryRoot);
-  const resolvedBaseRef = await resolveRef(repositoryRoot, options.baseRef);
-  const resolvedTargetRef = await resolveRef(repositoryRoot, options.targetRef);
+  const baseSource = await resolveSnapshotSource(repositoryRoot, options.baseRef);
+  const targetSource = await resolveSnapshotSource(repositoryRoot, options.targetRef);
 
   const outputDirectory =
     options.outputDirectory ??
@@ -57,12 +63,20 @@ export async function compareRefs(options: {
       {
         baseRef: options.baseRef,
         targetRef: options.targetRef,
-        resolvedBaseRef,
-        resolvedTargetRef,
+        resolvedBaseRef: baseSource.resolvedRef,
+        resolvedTargetRef: targetSource.resolvedRef,
+        sourceTypes: {
+          base: baseSource.kind,
+          target: targetSource.kind,
+        },
         safety: {
           gitHistoryChanged: false,
           callerWorktreeTouched: false,
-          extractionMethod: "git archive",
+          extractionMethod: getExtractionMethod(baseSource, targetSource),
+          extractionMethods: {
+            base: baseSource.extractionMethod,
+            target: targetSource.extractionMethod,
+          },
         },
       },
       null,
@@ -71,7 +85,7 @@ export async function compareRefs(options: {
     "utf8"
   );
 
-  if (resolvedBaseRef === resolvedTargetRef) {
+  if (shouldSkipComparison(baseSource, targetSource)) {
     await fs.writeFile(
       path.join(outputDirectory, "summary.txt"),
       "Base and target resolve to the same commit. No comparison run was needed.\n",
@@ -109,11 +123,18 @@ export async function compareRefs(options: {
       outputDirectory: targetArtifactsDirectory,
     });
 
-    await compareArtifactSets({
+    const comparison: ComparisonSummary = await compareArtifactSets({
       baselineDirectory: baselineArtifactsDirectory,
       targetDirectory: targetArtifactsDirectory,
       outputDirectory: diffArtifactsDirectory,
     });
+    await fs.writeFile(
+      path.join(outputDirectory, "summary.txt"),
+      comparison.requiresReview
+        ? `Comparison complete. Review required for ${comparison.unexpectedDifferences.length} unexpected difference(s).\n`
+        : "Comparison complete. No unexpected differences were recorded.\n",
+      "utf8"
+    );
 
     return outputDirectory;
   } finally {
@@ -121,6 +142,28 @@ export async function compareRefs(options: {
     await stopServer(targetServer);
     await fs.rm(tempRoot, { recursive: true, force: true });
   }
+}
+
+/**
+ * Decide whether a comparison can be skipped because both sources resolve to
+ * the exact same immutable git snapshot.
+ *
+ * `WORKTREE` must never short-circuit this way, even when it is anchored to
+ * the same `HEAD` commit SHA, because its live overlay may still differ from
+ * the committed tree.
+ *
+ * @param baseSource Resolved base comparison source.
+ * @param targetSource Resolved target comparison source.
+ */
+export function shouldSkipComparison(
+  baseSource: ResolvedSnapshotSource,
+  targetSource: ResolvedSnapshotSource
+): boolean {
+  return (
+    baseSource.kind === "git-ref" &&
+    targetSource.kind === "git-ref" &&
+    baseSource.resolvedRef === targetSource.resolvedRef
+  );
 }
 
 async function ensureDependencies(workingDirectory: string): Promise<void> {
@@ -134,6 +177,15 @@ async function ensureDependencies(workingDirectory: string): Promise<void> {
   await runCommand("pnpm", ["install", "--frozen-lockfile"], workingDirectory, {
     HUSKY: "0",
   });
+}
+
+function getExtractionMethod(
+  baseSource: ResolvedSnapshotSource,
+  targetSource: ResolvedSnapshotSource
+): string {
+  return baseSource.extractionMethod === targetSource.extractionMethod
+    ? baseSource.extractionMethod
+    : "mixed";
 }
 
 async function directoryExists(directoryPath: string): Promise<boolean> {

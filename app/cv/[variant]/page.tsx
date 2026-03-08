@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { CVLayout } from "@/components/cv-layout";
 import { cvContent, cvOpenGraph, activeTiltKeys, getTilt, isActiveTiltKey } from "@/lib/cv-content";
-import { SITE_URL } from "@/lib/site-config";
+import { getPageDocumentContractByVariantKey } from "@/lib/page-document-contract";
 import { cvPageJsonLd } from "@/lib/page-jsonld";
 
 interface Props {
@@ -27,15 +27,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {};
   }
 
-  const title = `${cvContent.meta.name} — CV (${tilt.context})`;
+  const contract = getPageDocumentContractByVariantKey(variant);
+  if (!contract) {
+    return {};
+  }
 
   return {
-    title,
+    title: contract.routeTitle,
     description: cvOpenGraph.description,
     openGraph: {
       type: "website",
-      url: `${SITE_URL}/cv/${variant}/`,
-      title,
+      url: contract.routeUrl,
+      title: contract.routeTitle,
       description: cvOpenGraph.description,
       locale: cvOpenGraph.locale,
       siteName: cvOpenGraph.siteName,
@@ -49,7 +52,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       ],
     },
     alternates: {
-      canonical: `${SITE_URL}/cv/`,
+      canonical: contract.canonicalUrl,
     },
   };
 }

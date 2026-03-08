@@ -42,20 +42,20 @@ The canonical URL for the knowledge graph is `https://www.jimcresswell.net/`. Re
 
 All user-visible text originates from JSON files in `content/`. Derived metadata is constructed at build/render time so that editorial changes flow through a single source of truth (see [ADR-007](decision-records/007-dry-content-metadata.md)).
 
-| Output                | Constructed in                                                                    | Source fields used                                                            |
-| --------------------- | --------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| Site URL              | `lib/site-config.ts`                                                              | Vercel env vars (`VERCEL_PROJECT_PRODUCTION_URL`, `VERCEL_URL`, `VERCEL_ENV`) |
-| Open Graph (CV pages) | `lib/cv-content.ts`                                                               | `meta.name`, `meta.summary`, `meta.locale`, `SITE_URL`                        |
-| Open Graph (site)     | `app/layout.tsx`                                                                  | `frontpage.meta.title`, `frontpage.meta.description`, `SITE_URL`              |
-| JSON-LD               | `content/entities.json`, `lib/entities.ts`, `lib/page-jsonld.ts`, `lib/jsonld.ts` | Entity graph, URL rewriting, and page-specific subgraphs                      |
-| Web App Manifest      | `app/manifest.ts`                                                                 | `meta.name`, `meta.summary`                                                   |
-| Robots                | `app/robots.ts`                                                                   | `SITE_URL`                                                                    |
-| Sitemap               | `app/sitemap.ts`                                                                  | `SITE_URL`, active tilt keys                                                  |
-| Page `<title>`        | Page metadata export                                                              | `meta.name` (via `cvOpenGraph.title`)                                         |
+| Output                | Constructed in                                                                                                                                      | Source fields used                                                                               |
+| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| Site URL              | `lib/site-config.ts`                                                                                                                                | Vercel env vars (`VERCEL_PROJECT_PRODUCTION_URL`, `VERCEL_URL`, `VERCEL_ENV`)                    |
+| Open Graph (CV pages) | `lib/cv-content.ts`                                                                                                                                 | `meta.name`, `meta.summary`, `meta.locale`, `SITE_URL`                                           |
+| Open Graph (site)     | `app/layout.tsx`                                                                                                                                    | `frontpage.meta.title`, `frontpage.meta.description`, `SITE_URL`                                 |
+| JSON-LD               | `content/entities.json`, `lib/entities.ts`, `lib/page-document-contract.ts`, `lib/page-jsonld.ts`, `lib/jsonld.ts`, `lib/search-structured-data.ts` | Entity graph, canonical page identity, URL rewriting, page subgraphs, and rich-result validation |
+| Web App Manifest      | `app/manifest.ts`                                                                                                                                   | `meta.name`, `meta.summary`                                                                      |
+| Robots                | `app/robots.ts`                                                                                                                                     | `SITE_URL`                                                                                       |
+| Sitemap               | `app/sitemap.ts`                                                                                                                                    | `SITE_URL`, active tilt keys                                                                     |
+| Page `<title>`        | Page metadata export                                                                                                                                | `meta.name` (via `cvOpenGraph.title`)                                                            |
 
 The JSON-LD graph now derives from the entity model in `content/entities.json`, validated by `lib/entities.ts`, exposed as the full graph by `lib/jsonld.ts`, and sliced into page-specific subgraphs by `lib/page-jsonld.ts`. Structured-data-specific content such as publications, `knowsAbout`, occupation metadata, and abstract identity entities now lives in the entity graph rather than as module constants.
 
-The WebPage JSON-LD node's `name` and `description` match the page's HTML `<title>` and `<meta name="description">` by construction — they use the same derived values.
+The shared page/document contract in `lib/page-document-contract.ts` defines CV section anchors, canonical page identity, and which page-level JSON-LD views are rich-result-facing. The home page and canonical CV page validate directly against that contract. Tilt routes remain canonical aliases of `/cv/`: their human-facing HTML title can vary by tilt, but their canonical link and inline `ProfilePage` JSON-LD both point at the base CV page. See [ADR-017](decision-records/017-cv-tilt-routes-are-canonical-aliases.md).
 
 For a full walkthrough of the content model, see [content-model.md](content-model.md).
 
@@ -64,11 +64,14 @@ For a full walkthrough of the content model, see [content-model.md](content-mode
 The repo includes a non-destructive visual regression harness at `visual-regression-harness/` for ref-to-ref comparison during structural refactors.
 
 - CLI entrypoint: `pnpm visual-regression-harness <base-ref> <target-ref>`
-- Safety model: reads refs with `git rev-parse`, exports snapshots with `git archive`, builds only in temporary directories, and does not touch the caller's worktree, index, refs, or history
-- Output: durable artifacts under `regression-artifacts/visual-regression-harness/`, including full-page screenshots, selected region screenshots, HTML artifacts, metadata JSON, and diff summaries
-- Comparison standard: raw HTML/DOM comparison plus pixel comparison; for the PKG refactor, the default expectation is zero differences unless Jim explicitly reviews and accepts an exception
+- Special source value: `WORKTREE` snapshots the current live repo state (tracked, staged, unstaged, and untracked non-ignored files) against a known-good git ref
+- Safety model: reads refs with `git rev-parse`, exports git refs with `git archive`, exports `WORKTREE` by overlaying live changes onto an archive of `HEAD`, builds only in temporary directories, and does not touch the caller's worktree, index, refs, or history
+- Output: durable artefacts under `regression-artifacts/visual-regression-harness/`, including full-page screenshots, selected region screenshots, always-written PNG diff images, `*.review.png` strips, HTML artefacts, metadata JSON, `diff/summary.json`, and top-level `summary.txt`
+- Review model: the harness records unexpected differences for approval or rejection; it is a review workflow, not a pass/fail quality gate
+- Comparison standard: screenshots remain strict; `document.html` is explicitly normalised to remove build-specific Next.js and Vercel runtime noise; target-only CV section-anchor additions are auto-accepted only when they match the shared page/document contract exactly
+- Current limitation: capture reuse and `--force` are not implemented yet; each run rebuilds and recaptures from scratch
 
-See `visual-regression-harness/README.md` for operational details.
+See `visual-regression-harness/README.md` and [ADR-016](decision-records/016-review-oriented-visual-regression-harness.md) for operational details and the settled comparison model.
 
 ## PDF Generation
 
@@ -115,16 +118,22 @@ To test the full Blob path locally, add `BLOB_READ_WRITE_TOKEN` to `.env.local` 
 
 All significant architectural decisions are recorded as ADRs in [decision-records/](decision-records/). Editorial decisions about content framing, voice, and language are recorded as EDRs in [../editorial/decision-records/](../editorial/decision-records/).
 
-| ADR                                                            | Title                                          |
-| -------------------------------------------------------------- | ---------------------------------------------- |
-| [001](decision-records/001-build-time-pdf-generation.md)       | Build-time PDF generation with Puppeteer       |
-| [002](decision-records/002-pdf-serving-architecture.md)        | PDF serving via Route Handler at /cv/pdf       |
-| [003](decision-records/003-print-button-removed.md)            | Print button removed in favour of PDF download |
-| [004](decision-records/004-storybook-deferred.md)              | Storybook deferred in favour of RTL + Vitest   |
-| [005](decision-records/005-knip-unused-code-detection.md)      | Knip for unused code and dependency detection  |
-| [006](decision-records/006-header-responsive-layout.md)        | Header responsive layout                       |
-| [007](decision-records/007-dry-content-metadata.md)            | DRY content and metadata consolidation         |
-| [008](decision-records/008-schema-org-compliance.md)           | Schema.org compliance for the knowledge graph  |
-| [009](decision-records/009-content-negotiation-proxy.md)       | Content negotiation via Next.js proxy          |
-| [010](decision-records/010-canonical-url-graph-identity.md)    | Canonical URL and graph identity               |
-| [011](decision-records/011-domain-appropriate-descriptions.md) | Domain-appropriate descriptions                |
+| ADR                                                                      | Title                                                             |
+| ------------------------------------------------------------------------ | ----------------------------------------------------------------- |
+| [001](decision-records/001-build-time-pdf-generation.md)                 | Build-time PDF generation with Puppeteer                          |
+| [002](decision-records/002-pdf-serving-architecture.md)                  | PDF serving via Route Handler at /cv/pdf                          |
+| [003](decision-records/003-print-button-removed.md)                      | Print button removed in favour of PDF download                    |
+| [004](decision-records/004-storybook-deferred.md)                        | Storybook deferred in favour of RTL + Vitest                      |
+| [005](decision-records/005-knip-unused-code-detection.md)                | Knip for unused code and dependency detection                     |
+| [006](decision-records/006-header-responsive-layout.md)                  | Header responsive layout                                          |
+| [007](decision-records/007-dry-content-metadata.md)                      | DRY content and metadata consolidation                            |
+| [008](decision-records/008-schema-org-compliance.md)                     | Schema.org compliance for the knowledge graph                     |
+| [009](decision-records/009-content-negotiation-proxy.md)                 | Content negotiation via Next.js proxy                             |
+| [010](decision-records/010-canonical-url-graph-identity.md)              | Canonical URL and graph identity                                  |
+| [011](decision-records/011-domain-appropriate-descriptions.md)           | Domain-appropriate descriptions                                   |
+| [012](decision-records/012-agent-memory-pipeline.md)                     | Agent memory pipeline                                             |
+| [013](decision-records/013-security-headers.md)                          | Security headers and Content Security Policy                      |
+| [014](decision-records/014-entity-model-design.md)                       | Entity model design for the personal knowledge graph              |
+| [015](decision-records/015-codex-adapter-model.md)                       | Codex adapter model for skills, reviewers, and always-on guidance |
+| [016](decision-records/016-review-oriented-visual-regression-harness.md) | Review-oriented visual regression harness for exported refs       |
+| [017](decision-records/017-cv-tilt-routes-are-canonical-aliases.md)      | CV tilt routes are canonical aliases of the base CV page          |

@@ -2,10 +2,23 @@
 
 ## Status
 
-In progress. Architecture mapping, real Codex reviewer sub-agents, entry-point
-docs, practice docs, and quality-gate verification are complete as of
-2026-03-08. Remaining work is reviewer verification and any final metadata
-cleanup justified by that review.
+Complete as of 2026-03-08. Architecture mapping, real Codex reviewer
+sub-agents, entry-point docs, practice docs, gateway reviewer verification, ADR
+extraction, and quality-gate verification are complete.
+
+## Completion evidence
+
+- Discoverability and cohesion were re-audited across `AGENTS.md`,
+  `.agent/directives/AGENT.md`, `.agent/practice-index.md`, `.agents/skills/`,
+  `.codex/`, and the practice-core docs.
+- Gateway reviewer verification found documentation-cohesion issues only:
+  stale ADR indexes and one napkin note that still implied reviewer wrappers
+  under `.agents/skills/`. Those issues were fixed in the close-out pass; no
+  specialist triage remained necessary.
+- The stable Codex architecture decision has now graduated into
+  `docs/architecture/decision-records/015-codex-adapter-model.md`.
+- Quality-gate verification completed on the aligned tree: `pnpm check` and
+  `pnpm test:e2e` both passed on 2026-03-08.
 
 ## Overview
 

@@ -4,6 +4,7 @@ import { ArticleEntry } from "@/components/article-entry";
 import { Prose } from "@/components/prose";
 import { RichText } from "@/components/rich-text";
 import { HeadlineToggle } from "@/components/headline-toggle";
+import { cvSections } from "@/lib/page-document-contract";
 import { PDF_FILENAME } from "@/lib/pdf-config";
 import { SITE_URL } from "@/lib/site-config";
 
@@ -64,12 +65,21 @@ export function CVLayout({ content, positioning }: CVLayoutProps) {
       </header>
 
       {/* Positioning */}
-      <PageSection id="positioning" heading="Positioning" srOnly className="mb-6">
+      <PageSection
+        id={cvSections.positioning.id}
+        heading={cvSections.positioning.heading}
+        srOnly={cvSections.positioning.srOnly}
+        className="mb-6"
+      >
         {positioning}
       </PageSection>
 
       {/* Capabilities */}
-      <PageSection id="capabilities" heading="Capabilities" className="mb-6">
+      <PageSection
+        id={cvSections.capabilities.id}
+        heading={cvSections.capabilities.heading}
+        className="mb-6"
+      >
         <ul className="flex flex-col gap-2">
           {content.capabilities.map((capability, index) => (
             <li key={index} className="font-serif text-base leading-prose text-foreground">
@@ -80,7 +90,11 @@ export function CVLayout({ content, positioning }: CVLayoutProps) {
       </PageSection>
 
       {/* Experience */}
-      <PageSection id="experience" heading="Experience" className="mb-6">
+      <PageSection
+        id={cvSections.experience.id}
+        heading={cvSections.experience.heading}
+        className="mb-6"
+      >
         <div className="flex flex-col gap-6">
           {content.experience.map((exp) => (
             <ArticleEntry
@@ -99,7 +113,11 @@ export function CVLayout({ content, positioning }: CVLayoutProps) {
       </PageSection>
 
       {/* Before Oak */}
-      <PageSection id="before-oak" heading="Before Oak" className="mb-6">
+      <PageSection
+        id={cvSections.beforeOak.id}
+        heading={cvSections.beforeOak.heading}
+        className="mb-6"
+      >
         <div className="flex flex-col gap-8">
           {content.prior_roles.map((role) => (
             <ArticleEntry key={role.title} heading={role.title}>
@@ -114,7 +132,7 @@ export function CVLayout({ content, positioning }: CVLayoutProps) {
       </PageSection>
 
       {/* Education */}
-      <PageSection id="education" heading="Education">
+      <PageSection id={cvSections.education.id} heading={cvSections.education.heading}>
         <ul className="flex flex-col gap-3">
           {content.education.map((edu) => (
             <li

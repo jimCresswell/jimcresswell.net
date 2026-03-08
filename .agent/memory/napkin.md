@@ -1,5 +1,194 @@
 # Napkin
 
+## Session: 2026-03-08 — Document-as-Data Contract and Rich-Result Proofs
+
+### What Was Done
+
+- Added a shared page/document contract in
+  `lib/page-document-contract.ts` so CV section anchors,
+  canonical page identity, and tilt-route alias rules now live
+  in product code rather than in the harness
+- Added rich-result-facing structured-data validation in
+  `lib/search-structured-data.ts` and proved it with
+  integration tests plus Playwright checks against the running
+  app
+- Updated the harness so expected target-only CV section `id`
+  additions are auto-accepted only when removing them makes
+  the target HTML match the baseline exactly
+- Re-ran the historical harness proof and reduced the review
+  set from 13 section-heavy HTML differences to 5 review
+  items: three `main.html` JSON-LD additions plus the
+  deliberate `/cv/` canonical-link addition in
+  `document.html` and `metadata.json`
+- Re-ran `pnpm check` and the full `pnpm test:e2e`
+  sequentially after the implementation landed; both passed,
+  and the previous Playwright failure was confirmed to be a
+  bad concurrent-run artefact rather than an app regression
+
+### Patterns to Remember
+
+- When HTML is part of the data model, put the contract in
+  product code first and let the harness depend on it. A
+  harness-only allowlist is the wrong abstraction.
+- For structural HTML auto-acceptance, one-way matters. Accept
+  target-only additions of expected anchors; never hide anchor
+  removals or unexpected ids.
+- A new end-to-end SEO assertion is useful precisely because
+  it can expose missing metadata that all the unit and
+  integration checks still miss. The `/cv` canonical link was
+  absent until the new Playwright proof caught it.
+- Re-run the historical harness after any late page-output fix
+  uncovered by E2E. A harness run that started before the fix
+  is stale, even if the diff summary looked cleaner.
+- Do not run `pnpm check` and `pnpm test:e2e` in parallel. The
+  check pipeline runs formatters and fixers, so it can mutate
+  source files underneath the Playwright web server and create
+  fake app errors.
+
+## Session: 2026-03-08 — WORKTREE Harness Proof and Cache Clarification
+
+### What Was Done
+
+- Added the special comparison source value `WORKTREE` to the
+  visual regression harness so a known-good git ref can be
+  compared against the live current repo state, including
+  staged, unstaged, untracked non-ignored files, and tracked
+  deletions
+- Added `export-ref.integration.test.ts` to prove the
+  `WORKTREE` export contains modified tracked files, removes
+  deleted tracked files, and includes untracked files
+- Added `compare-refs.unit.test.ts` to prove the harness only
+  short-circuits when both sides are immutable git refs; a
+  `WORKTREE` comparison must still run even when it is anchored
+  to the same `HEAD` SHA
+- Re-ran `pnpm check` and `pnpm test:e2e` after the final
+  `WORKTREE` helper/test/docs slice
+- Re-ran three harness proofs:
+  1. isolated commit-to-commit deliberate bad visual change
+  2. isolated commit-to-`WORKTREE` deliberate bad visual change
+  3. real repo `b76824a` versus `WORKTREE`
+
+### Patterns to Remember
+
+- The harness did not have any capture cache or reuse model.
+  That is why no `--force` flag existed; there was nothing to
+  bypass yet.
+- `WORKTREE` should be described as a special comparison
+  source, not as a target-only mode. The implementation
+  supports either side using it.
+- The safest way to prove regression detection is with an
+  isolated temp repo built from `git archive` of a historical
+  baseline, then a deliberate visual change. That avoids
+  polluting the real repo's history or worktree.
+- A real-repo `b76824a` versus `WORKTREE` run is valuable even
+  when current in-flight changes are docs/tooling only: it
+  proves the new source mode works against the live workspace
+  and shows whether the current work-in-progress affects the
+  rendered site.
+- The current evidence split is now crisp:
+  deliberate probe regressions produce 22 PNG differences,
+  while the real repo `b76824a` versus `WORKTREE` run produces
+  the same 13 semantic HTML differences and 0 pixel
+  differences previously seen against committed `HEAD`.
+
+## Session: 2026-03-08 — Harness Review Contract Tightening
+
+### What Was Done
+
+- Tightened the harness review contract so `document.html`
+  normalisation notes now report only the rules that
+  actually applied, including hashed next/font classes on
+  the root html element
+- Added harness unit coverage for note precision and for
+  classifying `metadata.json` differences as JSON review
+  items rather than mislabelling them as HTML
+- Repaired plan cross-links after the new
+  `.agent/plans/{active,current,complete,...}` structure
+  landed, and removed a permanent README reference to an
+  ephemeral plan to comply with the repo documentation rule
+- Re-ran `pnpm check`, `pnpm test:e2e`, and
+  `pnpm visual-regression-harness b76824a HEAD`
+
+### Patterns to Remember
+
+- If a permanent README points at `.agent/plans/`, that is a
+  documentation bug in this repo. Permanent docs may point to
+  ADRs and READMEs, not ephemeral plans.
+- When the plans directory is restructured, audit all
+  cross-plan links immediately. The drift points are roadmap
+  tables, active-plan related links, and current-plan
+  references to sibling plans that moved into another
+  subdirectory.
+- Harness review evidence must be precise, not just present.
+  A normalisation note should only appear if that exact
+  normalisation ran; otherwise the diff artefacts stop being
+  trustworthy as audit records.
+- The latest harness rerun was cleaner than the earlier one:
+  `document.html` dropped out of the unexpected set entirely,
+  leaving 13 HTML review items, 0 pixel differences, and 0
+  JSON metadata differences. The remaining review surface is
+  `main.html` plus section HTML, not full-document noise.
+
+## Session: 2026-03-08 — Codex Alignment Close-out
+
+### What Was Done
+
+- Ran the gateway reviewer verification pass against the
+  Codex adapter setup and resolved the remaining
+  documentation-cohesion issues
+- Added ADR-015 to capture the durable Codex adapter model:
+  `.agents/skills/` for skills and command wrappers,
+  `.codex/` for reviewer roles, and no `.agents/rules/`
+  layer
+- Fixed the stale ADR indexes in
+  `docs/architecture/decision-records/README.md` and
+  `docs/architecture/README.md`
+- Marked the Codex platform-alignment plan complete and
+  updated the roadmap to reflect that closure
+- Archived the completed Codex alignment plan under
+  `.agent/plans/complete/`
+
+### Patterns to Remember
+
+- A plan is not complete just because implementation landed;
+  completion also requires explicit verification evidence
+  recorded in the plan or a durable companion document
+- If a platform-integration plan settles a reusable repo
+  architecture, mine it into an ADR before closing the plan
+- Architecture indexes drift easily when new ADRs are added;
+  update both the ADR directory README and any higher-level
+  architecture README in the same pass
+- Archiving a completed root-level plan means fixing any
+  roadmap links and counts in the same edit; otherwise the
+  plan inventory drifts immediately
+
+## Session: 2026-03-08 — Harness Revalidation
+
+### What Was Done
+
+- Re-ran `pnpm visual-regression-harness b76824a HEAD`
+  against committed `HEAD` (`df8911f`) to verify the tool
+  still works end to end
+- Confirmed the harness still completes export, build,
+  capture, and comparison without touching git history or the
+  caller worktree
+- Confirmed the comparison still fails with 16 HTML/DOM
+  differences and no pixel diff images, so the PKG visual
+  proof remains incomplete
+
+### Patterns to Remember
+
+- The harness is operationally proven as a tool when it can
+  export refs, build both sides, serve them, capture
+  artefacts, and fail with a structured diff summary; that is
+  separate from proving the underlying refactor is visually
+  unchanged
+- The current export-build path emits `accept-md` CLI usage
+  text during `postbuild` in temp exports without blocking
+  completion. Treat that as harmless-but-suspicious until the
+  cause is explained; do not silently normalise it away in
+  the harness docs yet
+
 ## Session: 2026-03-08 — Consolidate Docs and Practice-Core Audit
 
 ### What Was Done
@@ -94,9 +283,8 @@
   local pattern is canonical skill plus thin platform
   adapter.
 - Codex platform adapters in this practice model live under
-  `.agents/skills/`. That namespace is shared by native
-  skill wrappers, Codex command wrappers (`jc-*`), and
-  reviewer-style instructional wrappers.
+  `.agents/skills/` for skills and command wrappers, while
+  reviewer roles live under `.codex/`.
 - Codex does not have a repo-local `.agents/rules/` layer in
   this practice. Rule enforcement relies on the entry-point
   chain (`AGENTS.md` to `.agent/directives/AGENT.md` to the

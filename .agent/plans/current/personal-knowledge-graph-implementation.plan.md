@@ -22,7 +22,7 @@ isProject: false
 
 # Personal Knowledge Graph — Implementation
 
-**This is the implementation plan** — phased tasks with acceptance criteria and progress tracking. Durable design decisions belong in `docs/architecture/decision-records/`; use [ADR-014](../../docs/architecture/decision-records/014-entity-model-design.md) and the related ADRs as the canonical PKG design source. [`personal-knowledge-graph.plan.md`](personal-knowledge-graph.plan.md) remains as historical design working material and detailed audit context. For the detailed operational plan (reviewer invocations, skill activations, quality gates), see the [execution plan](personal-knowledge-graph-execution.plan.md). For harness-specific refinements, see the [visual regression harness plan](visual-regression-harness.plan.md).
+**This is the implementation plan** — phased tasks with acceptance criteria and progress tracking. Durable design decisions belong in `docs/architecture/decision-records/`; use [ADR-014](../../docs/architecture/decision-records/014-entity-model-design.md) and the related ADRs as the canonical PKG design source. [`personal-knowledge-graph.plan.md`](personal-knowledge-graph.plan.md) remains as historical design working material and detailed audit context. For the detailed operational plan (reviewer invocations, skill activations, quality gates), see the [execution plan](personal-knowledge-graph-execution.plan.md). For harness-specific refinements, see the [visual regression harness plan](../active/visual-regression-harness.plan.md).
 
 ## Progress (updated 2026-03-08)
 
@@ -319,7 +319,7 @@ The Person entity is defined once and its `@id` (`https://www.jimcresswell.net/#
 - [research/pkg-research-findings.md](research/pkg-research-findings.md) — Schema.org, JSON-LD, Google structured data, and Neo4j research findings
 - [personal-knowledge-graph.plan.md](personal-knowledge-graph.plan.md) — historical design working notes and audit context
 - [personal-knowledge-graph-execution.plan.md](personal-knowledge-graph-execution.plan.md) — operational status and next actions
-- [visual-regression-harness.plan.md](visual-regression-harness.plan.md) — harness-specific work
+- [visual-regression-harness.plan.md](../active/visual-regression-harness.plan.md) — harness-specific work
 - [cv-editorial-improvements.plan.md](cv-editorial-improvements.plan.md) — parent plan
 - [linkedin-update.plan.md](linkedin-update.plan.md) — subsumed LinkedIn reference plan
 - [future/neo4j-knowledge-graph.plan.md](future/neo4j-knowledge-graph.plan.md) — shapes design decisions (stable IDs, typed relationships, flat entities)

@@ -2,6 +2,7 @@
 import { describe, it, expect } from "vitest";
 import { render, screen, within } from "@testing-library/react";
 import { CVLayout } from "./cv-layout";
+import { cvSectionOrder, cvSections } from "@/lib/page-document-contract";
 
 const fakeContent = {
   meta: { name: "Test Person", headline: "Test Headline" },
@@ -119,5 +120,17 @@ describe("CVLayout", () => {
       "aria-labelledby",
       "education-heading"
     );
+  });
+
+  it("renders section anchors from the shared document contract", () => {
+    render(<CVLayout content={fakeContent} positioning={<p>Positioning text</p>} />);
+
+    for (const sectionKey of cvSectionOrder) {
+      const contract = cvSections[sectionKey];
+      expect(screen.getByRole("region", { name: contract.heading })).toHaveAttribute(
+        "id",
+        contract.id
+      );
+    }
   });
 });

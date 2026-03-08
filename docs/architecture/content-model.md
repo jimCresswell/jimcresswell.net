@@ -61,13 +61,18 @@ Variants are defined in `cv.content.json` under `tilts`:
 
 `app/cv/[variant]/page.tsx` uses `generateStaticParams()` to create a static route for each entry in `activeTiltKeys` (derived from `tilts._meta.web_routes` in `lib/cv-content.ts`). At render time, invalid variant slugs return a 404 via `notFound()`. Each variant page sets its canonical URL to `/cv/` via `alternates.canonical`.
 
+Tilt routes are alternate presentations of the canonical CV page, not separate
+page identities. Their HTML title may include the tilt context, but their
+canonical link and inline `ProfilePage` JSON-LD both reuse the base `/cv/`
+identity. See [ADR-017](decision-records/017-cv-tilt-routes-are-canonical-aliases.md).
+
 To add a new variant: add the variant key and content to `tilts`, add the slug to `tilts._meta.web_routes`, and `generateStaticParams` picks it up automatically.
 
 ## Derived metadata
 
 All metadata is derived from `content/` so that editorial changes propagate everywhere automatically. The [Content & Metadata](README.md#content--metadata) section in the architecture overview has the full derivation table showing which module constructs each output (Open Graph, JSON-LD, Web App Manifest, page title) and which source fields it uses.
 
-The structured-data-specific content that used to live as JSON-LD module constants now lives in `content/entities.json` as part of the personal knowledge graph. `lib/entities.ts` validates that graph, `lib/jsonld.ts` exposes the full graph, and `lib/page-jsonld.ts` derives page-specific subgraphs.
+The structured-data-specific content that used to live as JSON-LD module constants now lives in `content/entities.json` as part of the personal knowledge graph. `lib/entities.ts` validates that graph, `lib/jsonld.ts` exposes the full graph, `lib/page-jsonld.ts` derives page-specific subgraphs, and `lib/page-document-contract.ts` defines the page-level anchor and canonical-identity contract those subgraphs must honour.
 
 When structural refactors need before/after proof rather than correctness against the current source, use `pnpm visual-regression-harness <base-ref> <target-ref>`. That harness captures HTML and pixel artifacts from exported git refs without touching the live worktree.
 

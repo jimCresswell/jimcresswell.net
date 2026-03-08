@@ -13,9 +13,11 @@ const program = new Command();
 
 program
   .name("visual-regression-harness")
-  .description("Non-destructive visual and HTML/DOM regression harness for comparing two git refs.")
-  .argument("<baseRef>", "base git ref-like to compare against")
-  .argument("<targetRef>", "target git ref-like to compare to the base")
+  .description(
+    "Non-destructive visual and HTML/DOM regression harness for comparing two git refs, or any git ref against the special WORKTREE source."
+  )
+  .argument("<baseRef>", "base git ref-like to compare against, or WORKTREE")
+  .argument("<targetRef>", "target git ref-like to compare to the base, or WORKTREE")
   .option("--repo-root <path>", "repository root to read from", process.cwd())
   .option("--output-dir <path>", "directory for generated artifacts")
   .option("--base-port <port>", "port for the base snapshot server", parseInteger)

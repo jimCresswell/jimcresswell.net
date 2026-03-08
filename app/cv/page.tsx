@@ -1,14 +1,17 @@
 import type { Metadata } from "next";
 import { CVLayout } from "@/components/cv-layout";
 import { cvContent, cvOpenGraph } from "@/lib/cv-content";
+import { getPageDocumentContractByRouteKey } from "@/lib/page-document-contract";
 import { cvPageJsonLd } from "@/lib/page-jsonld";
+
+const cvPageDocumentContract = getPageDocumentContractByRouteKey("cv");
 
 export const metadata: Metadata = {
   title: cvOpenGraph.title,
   description: cvOpenGraph.description,
   openGraph: {
     type: "website",
-    url: cvOpenGraph.url,
+    url: cvPageDocumentContract.canonicalUrl,
     title: cvOpenGraph.title,
     description: cvOpenGraph.description,
     locale: cvOpenGraph.locale,
@@ -21,6 +24,9 @@ export const metadata: Metadata = {
         height: cvOpenGraph.image.height,
       },
     ],
+  },
+  alternates: {
+    canonical: cvPageDocumentContract.canonicalUrl,
   },
 };
 

@@ -19,7 +19,7 @@ Positioning paragraphs, capabilities, `meta.summary`, structured data (`KNOWS_AB
 | Experience & Before Oak editorial review  | [experience-editorial.plan.md](complete/experience-editorial.plan.md)                              | Complete    |
 | Personal knowledge graph — implementation | [personal-knowledge-graph-implementation.plan.md](personal-knowledge-graph-implementation.plan.md) | In progress |
 | PKG execution plan                        | [personal-knowledge-graph-execution.plan.md](personal-knowledge-graph-execution.plan.md)           | In progress |
-| Visual regression harness                 | [visual-regression-harness.plan.md](visual-regression-harness.plan.md)                             | In progress |
+| Visual regression harness                 | [visual-regression-harness.plan.md](../active/visual-regression-harness.plan.md)                   | In progress |
 | LinkedIn update                           | [linkedin-update.plan.md](linkedin-update.plan.md) — subsumed by PKG Phase 5                       | Subsumed    |
 | Tilt mechanism                            | No plan yet — see [Deferred](#deferred) below                                                      | Deferred    |
 | Tilt content                              | Depends on tilt mechanism                                                                          | Deferred    |
@@ -109,7 +109,7 @@ Completed in a dedicated plan: [meta-seo-content-audit.plan.md](complete/meta-se
 
 **Execution plan:** [personal-knowledge-graph-execution.plan.md](personal-knowledge-graph-execution.plan.md) — detailed operational plan with per-task status. **Start here** for next session.
 
-**Harness plan:** [visual-regression-harness.plan.md](visual-regression-harness.plan.md) — harness-specific refinements and proof-tool work.
+**Harness plan:** [visual-regression-harness.plan.md](../active/visual-regression-harness.plan.md) — harness-specific refinements and proof-tool work.
 
 **Durable design decisions:** [ADR-014](../../docs/architecture/decision-records/014-entity-model-design.md) and the related ADRs in `docs/architecture/decision-records/`.
 
