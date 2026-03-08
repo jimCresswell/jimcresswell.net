@@ -1,5 +1,24 @@
 # Napkin
 
+## Session: 2026-03-08 — Dependency Refresh and Lint Hardening
+
+### What Was Done
+
+- Updated dependencies to current versions, with one compatibility rollback: `eslint` advanced to 10 via `pnpm up -r --latest` but had to be pinned back to `9.x` because `eslint-config-next` and its React plugins are not yet compatible
+- Tightened ESLint to enforce repo policy against TypeScript type assertions, non-null assertions, and `vi.doMock` / `vi.stubGlobal`
+- Refactored existing violations to use type guards and explicit parsing instead of `as` / `!`
+- Fixed Knip failure by making `ActiveTiltKey` internal to `lib/cv-content.ts`
+- Ran `pnpm check:ci`, then refreshed Playwright browsers after the `@playwright/test` update and re-ran `pnpm test:e2e`
+
+### Patterns to Remember
+
+- `pnpm up -r --latest` can move `eslint` ahead of Next's supported range. If `eslint-config-next` starts crashing inside React rules, check peer compatibility before assuming the config is wrong.
+- Updating `@playwright/test` can invalidate the cached browser binaries even when the repo code is fine. If browser E2Es all fail immediately with missing executable errors, run `pnpm exec playwright install` and retry before debugging the app.
+- Flat-config ESLint plus Next presets does not automatically encode local policy. If the repo says "no `as`, no `!`, no `vi.doMock`", those need explicit lint rules or the gates will stay green while violating policy.
+- When PKG status changes, propagate it across the whole plan set (`execution`, `implementation`, parent editorial plan, roadmap, and any design-reference metrics). The stale facts that linger are usually counts and "gates pending" wording, not the headline status.
+- `markdownlint-cli2` needs explicit repo globs. A naive `**/*.md` script will traverse dependency docs and produce huge output; constrain it in `.markdownlint-cli2.jsonc` to authored Markdown only.
+- `knip` can flag formatter/plugin packages as unused when they are loaded indirectly by a CLI option rather than imported in code. `markdownlint-cli2-formatter-pretty` is one of these; the fix is an explicit `knip.ignoreDependencies` entry, not removing the formatter package.
+
 ## Session: 2026-03-07 — Consolidation
 
 ### What Was Done

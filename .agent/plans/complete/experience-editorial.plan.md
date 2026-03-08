@@ -132,13 +132,13 @@ Before reviewing voice and framing, the experience sections were audited against
 
 ### Framing mismatches
 
-4. **Cap 2 agency exceeds its experience backing.** Cap 2 says Jim "conceived, prototyped, and delivered...end-to-end." Oak P3 uses "my work has focused on" and "this has included" — descriptive, not agentic.
-5. **"Ecosystem" language in Research P4** contradicts a settled editorial decision to remove it.
+1. **Cap 2 agency exceeds its experience backing.** Cap 2 says Jim "conceived, prototyped, and delivered...end-to-end." Oak P3 uses "my work has focused on" and "this has included" — descriptive, not agentic.
+2. **"Ecosystem" language in Research P4** contradicts a settled editorial decision to remove it.
 
 ### Missing connections
 
-6. **The open web** is in KNOWS_ABOUT and on the front page but absent from all experience entries, despite FT Labs and Oak both presenting through it.
-7. Several KNOWS_ABOUT concepts (responsible AI, product strategy, communicating to non-technical stakeholders, computational modelling/model fitting) lack narrative allusion in the experience sections.
+1. **The open web** is in KNOWS_ABOUT and on the front page but absent from all experience entries, despite FT Labs and Oak both presenting through it.
+2. Several KNOWS_ABOUT concepts (responsible AI, product strategy, communicating to non-technical stakeholders, computational modelling/model fitting) lack narrative allusion in the experience sections.
 
 ### No contradictions found
 

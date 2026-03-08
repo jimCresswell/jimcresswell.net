@@ -88,7 +88,7 @@ If either fails, fix before proceeding. Do not batch fixes across phases.
 - **gitleaks** — secret scanning, required by quality gates (`brew install gitleaks` on macOS, see [gitleaks releases](https://github.com/gitleaks/gitleaks/releases) for other platforms)
 ```
 
-3. After the existing `pnpm dev` line in the Getting Started code block, add a note about Playwright:
+1. After the existing `pnpm dev` line in the Getting Started code block, add a note about Playwright:
 
 ```markdown
 To run E2E tests, install Playwright browsers once after `pnpm install`:
@@ -136,10 +136,13 @@ pnpm exec playwright install
    ```
 
 3. In the Quality Gates section, change the `pnpm check` comment from:
+
    ```
    pnpm check          # All gates: format, lint, type-check, test, knip, gitleaks
    ```
+
    to:
+
    ```
    pnpm check          # All gates: format-check, lint, type-check, test, knip, gitleaks
    ```
@@ -262,6 +265,7 @@ pnpm exec playwright install
 **Steps:**
 
 1. In the `## Documentation` section, add a bullet:
+
    ```markdown
    - [e2e/](e2e/) — E2E test organisation, naming conventions, and test map
    ```
@@ -279,10 +283,13 @@ pnpm exec playwright install
 **Steps:**
 
 1. In the Key Design Decisions section, find:
+
    ```
    **Server components by default** — Only two components use `"use client"`: the theme toggle and the theme provider. Everything else is server-rendered.
    ```
+
 2. Replace with:
+
    ```
    **Server components by default** — Only three components use `"use client"`: the theme toggle, the theme provider, and the site header. Everything else is server-rendered.
    ```
@@ -452,13 +459,17 @@ Run `pnpm format && pnpm check`. Both must pass.
 
 1. Read `docs/README.md`.
 2. In the "Related" section, find the line:
+
    ```
    - [Agent directives](../.agent/directives/) — Rules and testing strategy for AI agents
    ```
+
 3. Replace with:
+
    ```
    - [Development standards](../.agent/directives/) — Rules, testing strategy, and editorial voice for all contributors
    ```
+
 4. Save the file.
 
 **Acceptance criteria:**
@@ -478,10 +489,12 @@ Run `pnpm format && pnpm check`. Both must pass.
 
 1. Read the REQ-08 section in `docs/project/requirements.md`.
 2. Add two new bullet points to the list:
+
    ```
    - `pnpm knip` — Unused code and dependency detection (Knip).
    - `pnpm gitleaks` — Secret scanning across full git history (gitleaks).
    ```
+
 3. Save the file.
 
 **Acceptance criteria:**
@@ -507,9 +520,11 @@ Run `pnpm format && pnpm check`. Both must pass.
 2. In the directory structure tree under `directives/`, add `editorial-guidance.md` with a comment like `# Jim's editorial voice and identity`. Place it after `testing-strategy.md`.
 3. In the active plans table, change the status of `cv-editorial-improvements.plan.md` from "Planning" to "In Progress".
 4. Add a new row to the active plans table:
+
    ```
    | [onboarding-documentation-review.plan.md](plans/onboarding-documentation-review.plan.md) | In Progress | Documentation accuracy and onboarding flow review |
    ```
+
 5. Save the file.
 
 **Acceptance criteria:**

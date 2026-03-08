@@ -61,13 +61,14 @@ Use the right tool for the job:
 
 - **Never disable checks** — Never disable type checks, linting, formatting, tests, or Git hooks (`--no-verify`).
 - **Never work around checks** — If a variable is unused, figure out why and fix it. Always fix the root cause.
-- **Quality gates** — Run ALL gates after changes. `pnpm check` runs the full sequence with auto-fix; `pnpm check:ci` runs it read-only. The six gates, in order:
+- **Quality gates** — Run ALL gates after changes. `pnpm check` runs the full sequence with auto-fix; `pnpm check:ci` runs it read-only. The seven gates, in order:
   1. `pnpm format:fix` / `pnpm format:check` — Prettier
-  2. `pnpm lint:fix` / `pnpm lint:check` — ESLint
-  3. `pnpm typecheck` — TypeScript
-  4. `pnpm test` — Vitest (unit and integration)
-  5. `pnpm knip` — unused code and dependencies ([ADR-005](../../docs/architecture/decision-records/005-knip-unused-code-detection.md))
-  6. `pnpm gitleaks` — secrets in git history
+  2. `pnpm markdownlint:fix` / `pnpm markdownlint:check` — Markdown linting for authored docs
+  3. `pnpm lint:fix` / `pnpm lint:check` — ESLint
+  4. `pnpm typecheck` — TypeScript
+  5. `pnpm test` — Vitest (unit and integration)
+  6. `pnpm knip` — unused code and dependencies ([ADR-005](../../docs/architecture/decision-records/005-knip-unused-code-detection.md))
+  7. `pnpm gitleaks` — secrets in git history
 
   E2E tests are separate (slower, require Chromium):
   - `pnpm test:e2e` — Playwright default project (journeys, behaviour, a11y)

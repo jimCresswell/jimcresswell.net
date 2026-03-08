@@ -152,7 +152,7 @@ Two Git hooks enforce quality automatically:
 - **Pre-push** — runs `pnpm check && pnpm test:e2e` (full gates + E2E). PDF tests require a prior build and are run explicitly.
 
 ```bash
-pnpm check          # All six gates with auto-fix (format, lint, typecheck, test, knip, gitleaks)
+pnpm check          # All seven gates with auto-fix (format, markdownlint, lint, typecheck, test, knip, gitleaks)
 pnpm check:ci       # Same gates, read-only (no auto-fix)
 pnpm test:e2e       # E2E tests (separate — requires Chromium)
 pnpm test:e2e:pdf   # E2E PDF tests (requires production build on :3001)

@@ -2,6 +2,10 @@ import { describe, it, expect } from "vitest";
 import { EntityGraphSchema, entities, entityGraph } from "./entities";
 import entitiesJson from "@/content/entities.json";
 
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return value !== null && typeof value === "object" && !Array.isArray(value);
+}
+
 describe("Entity model integration", () => {
   it("parses the full entities.json through the graph schema", () => {
     const result = EntityGraphSchema.safeParse(entitiesJson);
@@ -44,11 +48,12 @@ describe("Entity model integration", () => {
     const ids = new Set(entities.map((e) => e["@id"]));
 
     function collectRefs(obj: unknown): string[] {
-      if (!obj || typeof obj !== "object") return [];
       if (Array.isArray(obj)) return obj.flatMap(collectRefs);
-      const record = obj as Record<string, unknown>;
+      if (!isRecord(obj)) return [];
+      const record = obj;
       if ("@id" in record && !("@type" in record)) {
-        return [record["@id"] as string];
+        const id = record["@id"];
+        return typeof id === "string" ? [id] : [];
       }
       return Object.values(record).flatMap(collectRefs);
     }

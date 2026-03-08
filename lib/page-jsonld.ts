@@ -10,28 +10,21 @@
  * SITE_URL (production, preview, or local).
  */
 import { entities, type EntityGraph } from "./entities";
+import { rewriteEntityGraphUrls } from "./rewrite-jsonld-urls";
 import { extractSubgraph } from "./subgraph";
 import { SITE_URL } from "./site-config";
 
 const CANONICAL_BASE = "https://www.jimcresswell.net";
 
-function rewriteUrls(value: unknown): unknown {
-  if (typeof value === "string") {
-    return value.startsWith(CANONICAL_BASE) ? SITE_URL + value.slice(CANONICAL_BASE.length) : value;
-  }
-  if (Array.isArray(value)) return value.map(rewriteUrls);
-  if (value !== null && typeof value === "object") {
-    return Object.fromEntries(Object.entries(value).map(([k, v]) => [k, rewriteUrls(v)]));
-  }
-  return value;
-}
-
 function buildSubgraph(seedIds: string[]): EntityGraph {
   const subgraph = extractSubgraph(entities, seedIds);
-  return rewriteUrls({
-    "@context": "https://schema.org",
-    "@graph": subgraph,
-  }) as EntityGraph;
+  return rewriteEntityGraphUrls(
+    {
+      "@context": "https://schema.org",
+      "@graph": subgraph,
+    },
+    SITE_URL
+  );
 }
 
 const identitySeeds = entities
@@ -53,7 +46,7 @@ const softwareSeeds = entities
  * Front page JSON-LD — identity-focused subgraph.
  *
  * Seeds: Person, WebSite, front page ProfilePage, identity constructs,
- * capabilities, and software. The closure follows references outward
+ * and capabilities. The closure follows references outward
  * to include all connected entities.
  */
 export const frontPageJsonLd = buildSubgraph([

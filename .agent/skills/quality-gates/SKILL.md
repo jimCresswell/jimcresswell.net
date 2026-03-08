@@ -12,11 +12,11 @@ Run gates sequentially from the repo root. Fix issues as they arise. After any f
 
 The definitive gate list with all command names lives in `.agent/directives/rules.md` (Code Quality section). The summary:
 
-- `pnpm check` runs all six gates with auto-fix (format, lint, typecheck, test, knip, gitleaks).
+- `pnpm check` runs all seven gates with auto-fix (format, markdownlint, lint, typecheck, test, knip, gitleaks).
 - `pnpm check:ci` runs them read-only (used by the pre-commit hook).
 - `pnpm test:e2e` and `pnpm test:e2e:pdf` are separate (E2E, require Chromium).
 
-When running gates individually for restart-on-fix, start from `pnpm format:fix`.
+When running gates individually for restart-on-fix, start from `pnpm format:fix`, then `pnpm markdownlint:fix`.
 
 ## Restart-on-fix discipline
 

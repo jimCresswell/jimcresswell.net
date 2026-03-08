@@ -28,7 +28,7 @@ Generate the PDF at **build time** using standard Puppeteer with full Chrome for
 
 ### Build flow
 
-```
+```text
 pnpm build  (runs: next build && tsx scripts/generate-pdf.ts)
                 │
                 ├─ next build              → produces .next/
@@ -84,7 +84,7 @@ An earlier iteration used a custom `installCommand` to prepend `dnf install` bef
 
 Set in Vercel project settings:
 
-```
+```text
 PUPPETEER_CACHE_DIR=./node_modules/.cache/puppeteer
 ```
 

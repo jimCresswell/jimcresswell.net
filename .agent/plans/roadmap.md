@@ -4,13 +4,13 @@ Where everything stands and what depends on what.
 
 ## Active work
 
-| Plan                                                                                         | Status         | Summary                                                                                                                                                                       | Next action                                              |
-| -------------------------------------------------------------------------------------------- | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
-| [CV Editorial Improvements](cv-editorial-improvements.plan.md)                               | In progress    | Parent plan. Positioning, capabilities, metadata, experience, and Before Oak are all settled. Knowledge graph is the active stream; LinkedIn follows from it.                 | Complete PKG Phase 4 remaining tasks.                    |
-| [Personal Knowledge Graph — design reference](personal-knowledge-graph.plan.md)              | Implementation | Entity inventory, principles, Schema.org conventions. All design decisions resolved. The WHY — read this to understand the model.                                             | Reference only — design is settled.                      |
-| [Personal Knowledge Graph — implementation](personal-knowledge-graph-implementation.plan.md) | In progress    | Phases 1-3 code complete, Phase 4 code in progress (6/9 tasks). Quality gates not yet passed. The WHAT.                                                                       | Run `pnpm check`, then complete Phase 4 remaining tasks. |
-| [PKG Execution Plan](personal-knowledge-graph-execution.plan.md)                             | In progress    | Detailed operational plan with reviewer invocations, skill activations, per-task status. The HOW — standalone entry point for continuing work.                                | **Start here** for next session.                         |
-| [LinkedIn Update](linkedin-update.plan.md)                                                   | Subsumed       | LinkedIn content will derive from the knowledge graph (PKG implementation Phase 5). The standalone plan remains as reference for editorial questions and automation findings. | Wait for PKG Phase 5.                                    |
+| Plan                                                                                         | Status         | Summary                                                                                                                                                                            | Next action                                         |
+| -------------------------------------------------------------------------------------------- | -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
+| [CV Editorial Improvements](cv-editorial-improvements.plan.md)                               | In progress    | Parent plan. Positioning, capabilities, metadata, experience, and Before Oak are all settled. Knowledge graph is the active stream; LinkedIn follows from it.                      | Complete PKG Phase 4 remaining tasks.               |
+| [Personal Knowledge Graph — design reference](personal-knowledge-graph.plan.md)              | Implementation | Entity inventory, principles, Schema.org conventions. All design decisions resolved. The WHY — read this to understand the model.                                                  | Reference only — design is settled.                 |
+| [Personal Knowledge Graph — implementation](personal-knowledge-graph-implementation.plan.md) | In progress    | Phases 1-3 code complete, Phase 4 code in progress (Tasks 4.6-4.8 remain). Automated gates pass on the current tree; manual validation and commit are still outstanding. The WHAT. | Complete Tasks 4.6-4.8, then run manual validation. |
+| [PKG Execution Plan](personal-knowledge-graph-execution.plan.md)                             | In progress    | Detailed operational plan with reviewer invocations, skill activations, per-task status. The HOW — standalone entry point for continuing work.                                     | **Start here** for next session.                    |
+| [LinkedIn Update](linkedin-update.plan.md)                                                   | Subsumed       | LinkedIn content will derive from the knowledge graph (PKG implementation Phase 5). The standalone plan remains as reference for editorial questions and automation findings.      | Wait for PKG Phase 5.                               |
 
 ## Future
 
@@ -30,13 +30,13 @@ These are tracked in the [parent plan](cv-editorial-improvements.plan.md) but ha
 
 ## Dependencies
 
-```
+```text
 CV Editorial Improvements (parent)
 ├── PKG design reference (the WHY) ← Neo4j (shapes design)
 │   └── PKG implementation (the WHAT)
 │       └── PKG execution plan (the HOW) ← start here
-│           ├── Phases 1–3: code complete (gates pending) ⚠️
-│           ├── Phase 4: in progress 🔄 (editorial, schema-dts, gates)
+│           ├── Phases 1–3: code complete (automated gates pass) ✅
+│           ├── Phase 4: in progress 🔄 (editorial, knowledge graphs, schema-dts, manual validation)
 │           └── Phase 5: LinkedIn as derived view (subsumes LinkedIn Update plan)
 └── Tilt mechanism (deferred, no plan yet)
     └── Tilt content (depends on mechanism)
@@ -44,7 +44,7 @@ CV Editorial Improvements (parent)
 
 **Sequencing decided:** Knowledge graph first. LinkedIn derives from the graph — it is a view, not a parallel editing effort.
 
-**Current state (2026-03-06):** PKG Phases 1-3 code complete (entity model, population, view derivation). Phase 4 code in progress (6/9 tasks). **Quality gates not yet passed for any phase** — `pnpm check` fails at Prettier (13 files), E2E tests not run. 128 vitest tests passing, all changes uncommitted on `main` (no branch created).
+**Current state (2026-03-08):** PKG Phases 1-3 code complete (entity model, population, view derivation). Phase 4 code in progress (Tasks 4.6-4.8 remain). **Automated gates pass on the current tree** — `pnpm check:ci` and `pnpm test:e2e` both passed on 2026-03-08. Manual Schema.org Validator and Rich Results Test checks remain outstanding. 128 vitest tests passing, all changes still uncommitted on `main` (no branch created).
 
 ## Complete
 

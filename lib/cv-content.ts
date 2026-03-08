@@ -53,7 +53,7 @@ export const footerLinks = {
  */
 export const activeTiltKeys: readonly string[] =
   cvContent.tilts._meta.web_routes ?? cvContent.tilts._meta.order.slice(0, 1);
-export type ActiveTiltKey = (typeof activeTiltKeys)[number];
+type ActiveTiltKey = (typeof activeTiltKeys)[number];
 
 /** Look up a tilt by key. Returns `null` if the key is not recognised. */
 export function getTilt(key: string) {

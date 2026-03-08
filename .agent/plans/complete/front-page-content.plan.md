@@ -47,11 +47,11 @@ Note the tone: personal, direct, broad interests, not a CV pitch. The new front 
 
 ### Links
 
-- CV: https://www.jimcresswell.net/cv/
-- GitHub: https://github.com/jimCresswell
-- Google Scholar: https://scholar.google.co.uk/citations?user=7yf2vEEAAAAJ&hl=en
-- LinkedIn: https://www.linkedin.com/in/jimcresswell
-- Spherical Horse in a Vacuum (personal/fun): https://www.sphericalhorseinavacuum.com/
+- CV: <https://www.jimcresswell.net/cv/>
+- GitHub: <https://github.com/jimCresswell>
+- Google Scholar: <https://scholar.google.co.uk/citations?user=7yf2vEEAAAAJ&hl=en>
+- LinkedIn: <https://www.linkedin.com/in/jimcresswell>
+- Spherical Horse in a Vacuum (personal/fun): <https://www.sphericalhorseinavacuum.com/>
 
 ---
 

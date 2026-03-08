@@ -12,6 +12,10 @@
  */
 import type { Entity } from "./entities";
 
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return value !== null && typeof value === "object" && !Array.isArray(value);
+}
+
 /**
  * Collect `@id` references from an entity, excluding the entity's own `@id`.
  *
@@ -24,12 +28,12 @@ function collectRefs(entity: Entity): string[] {
   const refs: string[] = [];
 
   function walk(value: unknown): void {
-    if (!value || typeof value !== "object") return;
     if (Array.isArray(value)) {
       value.forEach(walk);
       return;
     }
-    const record = value as Record<string, unknown>;
+    if (!isRecord(value)) return;
+    const record = value;
     if ("@id" in record && !("@type" in record)) {
       const id = record["@id"];
       if (typeof id === "string") {
@@ -58,7 +62,8 @@ export function extractSubgraph(
   const queue = [...seedIds];
 
   while (queue.length > 0) {
-    const id = queue.pop()!;
+    const id = queue.pop();
+    if (id === undefined) continue;
     if (included.has(id)) continue;
 
     const entity = entityMap.get(id);

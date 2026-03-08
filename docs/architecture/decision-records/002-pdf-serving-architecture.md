@@ -29,7 +29,7 @@ Serve the PDF via a **Next.js Route Handler** at `app/cv/pdf/route.ts` that prox
 
 ### Route structure
 
-```
+```text
 app/cv/pdf/
   route.ts                    — serves PDF binary or redirects on error
   unavailable/

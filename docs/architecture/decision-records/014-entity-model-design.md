@@ -56,7 +56,7 @@ Section-level (`#experience`), entity-level (`#org-oak`, `#cred-phd`), and role 
 
 ## File structure
 
-```
+```text
 content/
   entities.json           # JSON-LD @graph — all entities with @context
   cv.content.json         # Page composition: entity references + editorial prose

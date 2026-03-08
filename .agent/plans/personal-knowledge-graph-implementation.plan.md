@@ -3,14 +3,14 @@ name: Personal Knowledge Graph
 overview: Build a unified entity model where all representations of Jim — CV, front page, JSON-LD, LinkedIn, tilts, PDF — are derived views onto a single knowledge graph, designed at all four abstraction levels from the start.
 todos:
   - id: phase1-design
-    content: "Phase 1: Entity model design — code complete, quality gates not yet passed"
-    status: in_progress
+    content: "Phase 1: Entity model design — code complete, automated gates pass on current tree"
+    status: completed
   - id: phase2-populate
-    content: "Phase 2: Entity population — code complete, quality gates not yet passed"
-    status: in_progress
+    content: "Phase 2: Entity population — code complete, automated gates pass on current tree"
+    status: completed
   - id: phase3-wire
-    content: "Phase 3: View derivation — code complete, quality gates not yet passed"
-    status: in_progress
+    content: "Phase 3: View derivation — code complete, automated gates pass on current tree"
+    status: completed
   - id: phase4-enrich
     content: "Phase 4: New views — front page JSON-LD, expanded graph, domain-appropriate descriptions, HTML binding, validation"
     status: in_progress
@@ -22,19 +22,19 @@ isProject: false
 
 # Personal Knowledge Graph — Implementation
 
-**This is the execution plan** — phased tasks with acceptance criteria and progress tracking. For the full entity inventory, principles, Schema.org conventions, and open design questions, see the [design reference](personal-knowledge-graph.plan.md). For the detailed operational plan (reviewer invocations, skill activations, quality gates), see the [execution plan](personal-knowledge-graph-execution.plan.md).
+**This is the implementation plan** — phased tasks with acceptance criteria and progress tracking. For the full entity inventory, principles, Schema.org conventions, and open design questions, see the [design reference](personal-knowledge-graph.plan.md). For the detailed operational plan (reviewer invocations, skill activations, quality gates), see the [execution plan](personal-knowledge-graph-execution.plan.md).
 
-## Progress (updated 2026-03-06)
+## Progress (updated 2026-03-08)
 
-| Phase                       | Code           | Quality gates | Key outcome                                               |
-| --------------------------- | -------------- | ------------- | --------------------------------------------------------- |
-| 1. Entity model design      | ✅ Complete    | ⚠️ Not passed | 16 Zod schemas, `content/entities.json` skeleton, ADR-014 |
-| 2. Entity population        | ✅ Complete    | ⚠️ Not passed | ~50 entities across all abstraction levels                |
-| 3. View derivation          | ✅ Complete    | ⚠️ Not passed | `lib/jsonld.ts` 287→46 lines, subgraph closure algorithm  |
-| 4. New views and enrichment | 🔄 In progress | ⚠️ Not passed | 6/9 tasks code-complete                                   |
-| 5. LinkedIn as derived view | ⬜ Pending     | —             | —                                                         |
+| Phase                       | Code           | Gate status             | Key outcome                                                    |
+| --------------------------- | -------------- | ----------------------- | -------------------------------------------------------------- |
+| 1. Entity model design      | ✅ Complete    | ✅ Automated gates pass | 17 Zod schemas, `content/entities.json` skeleton, ADR-014      |
+| 2. Entity population        | ✅ Complete    | ✅ Automated gates pass | ~50 entities across all abstraction levels                     |
+| 3. View derivation          | ✅ Complete    | ✅ Automated gates pass | `lib/jsonld.ts` 287→30 lines, subgraph closure algorithm       |
+| 4. New views and enrichment | 🔄 In progress | ✅ Current tree passes  | Tasks 4.6-4.8, manual validation, and commit still outstanding |
+| 5. LinkedIn as derived view | ⬜ Pending     | —                       | —                                                              |
 
-128 vitest tests passing. All changes uncommitted on `main` (no branch created). **`pnpm check` fails at Prettier** (13 files need formatting). E2E tests not run. The [execution plan](personal-knowledge-graph-execution.plan.md) has detailed per-task status.
+128 vitest tests passing. Automated gates pass on the current tree (`pnpm check:ci`, `pnpm test:e2e`, both 2026-03-08). Manual Schema.org Validator and Rich Results Test checks remain outstanding. All changes remain uncommitted on `main` (no branch created). The [execution plan](personal-knowledge-graph-execution.plan.md) has detailed per-task status.
 
 ## Reading requirements
 
@@ -46,10 +46,10 @@ Before starting any phase, read:
 
 Before Phase 2 (editorial-intensive), additionally read:
 
-4. `.agent/skills/editorial-voice/SKILL.md` — common pitfalls, two registers
-5. `content/cv.content.json` — the `prior_roles` descriptions are exemplars of the right framing for role descriptions
-6. `docs/editorial/decision-records/` — editorial decisions already made
-7. `.agent/private/identity.md` — deeper biographical context, additional career breadth roles, volunteer work (gitignored — local access only)
+1. `.agent/skills/editorial-voice/SKILL.md` — common pitfalls, two registers
+2. `content/cv.content.json` — the `prior_roles` descriptions are exemplars of the right framing for role descriptions
+3. `docs/editorial/decision-records/` — editorial decisions already made
+4. `.agent/private/identity.md` — deeper biographical context, additional career breadth roles, volunteer work (gitignored — local access only)
 
 ## Overview
 
@@ -84,7 +84,7 @@ The Person entity is defined once and its `@id` (`https://www.jimcresswell.net/#
 - Where positioning, capabilities, and tilts live in the model
 - TypeScript validation strategy: the entity model needs runtime validation at the JSON boundary (Zod schemas or equivalent) — the project's type-safety rules (no `as`, no `any`, validate external data) require this
 
-#### Tasks
+#### Phase 1 tasks
 
 1. **Resolve the model structure question**
    - Present Option A (layered files), Option B (expanded cv.content.json), and any alternative to Jim
@@ -128,7 +128,7 @@ The Person entity is defined once and its `@id` (`https://www.jimcresswell.net/#
 
 **Sources:** current content files, `lib/jsonld.ts` constants, `archive/prior_cv_content.json.bak`, Jim's input.
 
-#### Tasks
+#### Phase 2 tasks
 
 1. **Migrate invisible constants**
    - Move `KNOWS_ABOUT`, `OCCUPATION`, `CREDENTIAL_DETAILS`, `PUBLICATIONS` from `lib/jsonld.ts` into the entity model
@@ -161,7 +161,7 @@ The Person entity is defined once and its `@id` (`https://www.jimcresswell.net/#
 
 **Key principle:** Visible content unchanged. Snapshot rendered output before starting; diff after each step. Editorial changes happen separately, never in the same commit as structural migration.
 
-#### Tasks
+#### Phase 3 tasks
 
 1. **Rewire `lib/jsonld.ts`**
    - Import entities from the content model; compose the JSON-LD `@graph` from entity data
@@ -198,7 +198,7 @@ The Person entity is defined once and its `@id` (`https://www.jimcresswell.net/#
 
 **Impact:** The front page becomes the canonical document for the Person entity. The JSON-LD graph covers Jim's complete career. HTML elements are anchored to graph nodes.
 
-#### Tasks
+#### Phase 4 tasks
 
 1. **Add JSON-LD to the front page**
    - Identity-focused subgraph: WebSite + ProfilePage + Person + top capabilities + current role
@@ -238,6 +238,11 @@ The Person entity is defined once and its `@id` (`https://www.jimcresswell.net/#
    - Impact: structured data reflects demonstrated capability
    - Acceptance criteria: term present in entity model and published JSON-LD
 
+8. **Add Schema.org vocabulary validation with `schema-dts`**
+   - Add compile-time Schema.org vocabulary validation alongside the existing Zod shape validation
+   - Impact: invalid Schema.org properties or wrong property/type pairings fail at typecheck time, not only in review
+   - Acceptance criteria: `schema-dts` is added as a devDependency; core entity types are checked against Schema.org vocabulary; `tsc --noEmit` fails on known-bad property usage
+
 ---
 
 ### Phase 5 — LinkedIn as a derived view
@@ -246,7 +251,7 @@ The Person entity is defined once and its `@id` (`https://www.jimcresswell.net/#
 
 **Impact:** LinkedIn content is editorially consistent with the CV and all other views because it derives from the same source.
 
-#### Tasks
+#### Phase 5 tasks
 
 1. **Derive headline and About section**
    - From ProfessionalIdentity + PositioningNarrative entities
@@ -300,7 +305,7 @@ The Person entity is defined once and its `@id` (`https://www.jimcresswell.net/#
 | `lib/cv-content.ts`              | 3     | May import shared entity data                    |
 | `app/page.tsx`                   | 4     | Add JSON-LD to front page                        |
 | `app/manifest.ts`                | 3     | Derive from entity model                         |
-| `components/cv-layout.tsx`       | 4     | Possibly: entity-level `id` attributes           |
+| `components/page-section.tsx`    | 4     | Section-level HTML `id` binding                  |
 | `docs/architecture/`             | 1     | New ADR for entity model design                  |
 
 ## Agent tooling

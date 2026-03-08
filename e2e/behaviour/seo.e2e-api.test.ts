@@ -2,6 +2,10 @@ import { test, expect } from "@playwright/test";
 import frontpageContent from "../../content/frontpage.content.json" with { type: "json" };
 import cvContent from "../../content/cv.content.json" with { type: "json" };
 
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return value !== null && typeof value === "object" && !Array.isArray(value);
+}
+
 test.describe("US-09: SEO and discoverability", () => {
   test.describe("home page", () => {
     test("HTML lang attribute matches content locale", async ({ page }) => {
@@ -48,8 +52,15 @@ test.describe("US-09: SEO and discoverability", () => {
 
       const content = await jsonLd.textContent();
       expect(content).toBeTruthy();
+      if (!content) {
+        throw new Error("Expected JSON-LD script content");
+      }
 
-      const data = JSON.parse(content!) as Record<string, unknown>;
+      const data = JSON.parse(content);
+      expect(isRecord(data)).toBe(true);
+      if (!isRecord(data)) {
+        throw new Error("Expected JSON-LD payload to be an object");
+      }
       expect(data["@context"]).toBe("https://schema.org");
       expect(data["@graph"]).toBeTruthy();
     });

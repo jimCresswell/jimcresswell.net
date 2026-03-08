@@ -3,8 +3,8 @@ name: PKG Implementation Execution
 overview: Operationalise the Personal Knowledge Graph implementation plan with explicit reviewer invocations, skill activations, TDD discipline, and quality gates at every step. Five phases from entity model design through LinkedIn as a derived view.
 todos:
   - id: quality-gates
-    content: "Run pnpm check (fix formatting first), pnpm test:e2e -- blocking all phase completions"
-    status: pending
+    content: "Automated gates pass on current tree (`pnpm check:ci`, `pnpm test:e2e`)"
+    status: completed
   - id: phase4-consistency
     content: "Phase 4: Cross-output consistency and framing review (comprehensive editorial pass)"
     status: in_progress
@@ -46,41 +46,44 @@ This plan operationalises the two existing PKG plans:
 
 This plan defines the HOW -- reviewer invocations, skill activations, per-task status, and quality gates.
 
-### Current state (updated 2026-03-06, verified 2026-03-07)
+### Current state (updated 2026-03-08, verified 2026-03-08)
 
-| Phase                       | Code status         | Quality gates | Key metric                      |
-| --------------------------- | ------------------- | ------------- | ------------------------------- |
-| 1. Entity model design      | ✅ Code complete    | ⚠️ Not passed | 16 Zod schemas, ADR-014         |
-| 2. Entity population        | ✅ Code complete    | ⚠️ Not passed | ~50 entities in `entities.json` |
-| 3. View derivation          | ✅ Code complete    | ⚠️ Not passed | `lib/jsonld.ts` 287→46 lines    |
-| 4. New views and enrichment | 🔄 Code in progress | ⚠️ Not passed | 6/9 tasks code-complete         |
-| 5. LinkedIn as derived view | ⬜ Pending          | —             | —                               |
+| Phase                       | Code status         | Gate status             | Key metric                                   |
+| --------------------------- | ------------------- | ----------------------- | -------------------------------------------- |
+| 1. Entity model design      | ✅ Code complete    | ✅ Automated gates pass | 17 Zod schemas, ADR-014                      |
+| 2. Entity population        | ✅ Code complete    | ✅ Automated gates pass | ~50 entities in `entities.json`              |
+| 3. View derivation          | ✅ Code complete    | ✅ Automated gates pass | `lib/jsonld.ts` 287→30 lines + shared helper |
+| 4. New views and enrichment | 🔄 Code in progress | ✅ Current tree passes  | 6/8 tasks code-complete; manual checks left  |
+| 5. LinkedIn as derived view | ⬜ Pending          | —                       | —                                            |
 
-**128 vitest tests passing** across 14 test files. **All changes uncommitted on `main`** (no branch created).
+**128 vitest tests passing** across 14 test files. **All PKG and supporting tooling changes remain uncommitted on `main`** (no branch created).
 
-**Quality gates NOT yet passed for any phase.** `pnpm check` fails at Prettier (13 files need formatting). E2E tests have not been run. Phase 3 pixel-identical regression check not formally verified. Branch-per-phase strategy not followed.
+**Automated gates pass on the current tree.** `pnpm check:ci` and `pnpm test:e2e` both passed on 2026-03-08. Manual Schema.org Validator and Rich Results Test checks remain outstanding. Phase 3 pixel-identical regression check is still not formally verified. Branch-per-phase strategy was missed and all work remains uncommitted on `main`.
+
+**Dependency/tooling note:** the dependency refresh is complete. `eslint` is intentionally held at `9.x` because `eslint-config-next` is not yet compatible with `10.x` in this repo. ESLint now enforces the repo's policy against `as`, `!`, `vi.doMock`, and `vi.stubGlobal`.
 
 ### What to do next
 
-1. **Run `pnpm check`** — Fix formatting issues first (Prettier), then lint, typecheck, tests, knip, gitleaks. Restart-on-fix discipline. This is blocking everything.
-2. **Run `pnpm test:e2e`** — Verify no regression to rendered pages.
-3. **Complete Task 4.6** — Re-run the editor reviewer to verify the editorial fixes are sufficient. Check "Should Fix" and "Consider" items.
-4. **Complete Task 4.7** — Add "Knowledge graphs" to `knowsAbout` in `content/entities.json` with Wikidata `sameAs` link. Trivial.
-5. **Complete Task 4.8** — Add `schema-dts` as devDependency. Create compile-time Schema.org vocabulary validation. TDD.
-6. **Run Phase 4 quality gates** — Full `pnpm check`, `pnpm test:e2e`, Schema.org Validator, Rich Results Test.
-7. **Commit all Phase 1-4 changes** — Everything is uncommitted. Create a well-structured commit (or series of commits).
-8. **Phase 5** — LinkedIn as a derived view.
+1. **Complete Task 4.6** — Re-run the editor reviewer to verify the editorial fixes are sufficient. Check "Should Fix" and "Consider" items.
+2. **Complete Task 4.7** — Add "Knowledge graphs" to `knowsAbout` in `content/entities.json` with Wikidata `sameAs` link.
+3. **Complete Task 4.8** — Add `schema-dts` as a devDependency. Create compile-time Schema.org vocabulary validation. TDD.
+4. **Run Phase 4 manual validation** — Schema.org Validator and Rich Results Test. Automated gates already pass on the current tree.
+5. **Decide the recovery path for the missed branch strategy** — all PKG work is still uncommitted on `main`. Discuss with Jim before more structural work.
+6. **Commit all Phase 1-4 changes** — Create a well-structured commit (or series of commits) once the remaining Phase 4 work is finished.
+7. **Phase 5** — LinkedIn as a derived view.
 
 ### Key files to understand
 
 | File                                                            | Purpose                                                                               |
 | --------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
 | `content/entities.json`                                         | The entity model — JSON-LD `@graph` with ~50 entities at all abstraction levels       |
-| `lib/entities.ts`                                               | Zod schemas (16 types), discriminated union, parse at import, derive TypeScript types |
+| `lib/entities.ts`                                               | Zod schemas (17 types), discriminated union, parse at import, derive TypeScript types |
 | `lib/subgraph.ts`                                               | Subgraph closure algorithm — `extractSubgraph`, `findDanglingRefs`                    |
 | `lib/page-jsonld.ts`                                            | Page-specific JSON-LD subgraphs (`frontPageJsonLd`, `cvPageJsonLd`)                   |
-| `lib/jsonld.ts`                                                 | Full graph with URL rewriting (46 lines — thin layer over entity model)               |
+| `lib/jsonld.ts`                                                 | Full graph with URL rewriting (30 lines — thin layer over entity model)               |
+| `lib/rewrite-jsonld-urls.ts`                                    | Shared URL-rewrite helper with Zod re-validation                                      |
 | `lib/cv-content.ts`                                             | OG metadata — imports Person from entity model                                        |
+| `eslint.config.ts`                                              | Enforces no `as`, no `!`, no `vi.doMock` / `vi.stubGlobal`                            |
 | `docs/architecture/decision-records/014-entity-model-design.md` | ADR documenting the entity model design                                               |
 
 ---
@@ -104,7 +107,7 @@ Per rules.md, use feature branches for risky changes. The PKG is structural work
 
 Each phase merges to main after all quality gates pass and reviews are approved.
 
-**Note:** Phases 1-3 were implemented directly on `main` without branches. All changes remain uncommitted. Before creating a Phase 4 branch, the Phase 1-3 work must be committed to `main` first (step 7 in "What to do next").
+**Note:** Phases 1-4 have been worked directly on `main` without branches. All changes remain uncommitted. Before any further structural work, agree the recovery path with Jim: either commit the current Phase 1-4 state on `main` first, or create a rescue branch from the current tree and proceed from there.
 
 ## Reviewer protocol
 
@@ -137,23 +140,23 @@ After every non-trivial change, invoke the **code-reviewer** sub-agent (the gate
 
 ---
 
-### Phase 1 -- Entity Model Design (code complete, gates pending)
+### Phase 1 -- Entity Model Design (code complete, automated gates pass)
 
-All 5 tasks code-complete. Design decisions resolved with Jim, entity schema defined in `lib/entities.ts` (16 Zod schemas, discriminated union), `content/entities.json` skeleton created as valid JSON-LD `@graph`, ADR-014 documents the entity model design. 38 unit tests + 7 integration tests.
+All 5 tasks code-complete. Design decisions resolved with Jim, entity schema defined in `lib/entities.ts` (17 Zod schemas, discriminated union), `content/entities.json` skeleton created as valid JSON-LD `@graph`, ADR-014 documents the entity model design. 38 unit tests + 7 integration tests.
 
 **Key decisions recorded:**
 
 - Model structure: Option A (layered content files)
 - Expressive entities: `Statement` for positioning/tilts, `Intangible` + `additionalType` for abstract identity constructs
-- Wikidata linking: all ~34 `knowsAbout` items linked (24 linked so far)
+- Wikidata linking: all 35 `knowsAbout` items linked (24 linked so far)
 - Google Scholar: not a goal (PKG links TO Scholar via `sameAs`)
 - HTML binding depth: all three levels (section, entity, role anchors)
 
-**Remaining:** `pnpm check` (formatting fails), `pnpm test:e2e` not run. No branch created.
+**Remaining:** Automated gates pass on the current tree. No branch created. No commit yet.
 
 ---
 
-### Phase 2 -- Entity Population (code complete, gates pending)
+### Phase 2 -- Entity Population (code complete, automated gates pass)
 
 All 4 tasks completed. Entity model populated with ~50 entities across all abstraction levels.
 
@@ -166,18 +169,18 @@ All 4 tasks completed. Entity model populated with ~50 entities across all abstr
 
 **PKG-reviewer findings addressed:** `isBasedOn` removed from DefinedTerm (not in domain), `makesOffer` removed from Organisation (expects Offer, not WebAPI), orphaned roles connected to Person, ArXiv publication retyped to ScholarlyArticle.
 
-**Remaining:** `pnpm check` (formatting fails), `pnpm test:e2e` not run. Role descriptions not all explicitly confirmed by Jim. No branch created.
+**Remaining:** Automated gates pass on the current tree. Role descriptions not all explicitly confirmed by Jim. No branch created. No commit yet.
 
 ---
 
-### Phase 3 -- View Derivation (code complete, gates pending)
+### Phase 3 -- View Derivation (code complete, automated gates pass)
 
 All 6 tasks completed. Every view now derives from the entity model.
 
 **What was done:**
 
 - Snapshotted pre-migration output for regression testing.
-- Rewired `lib/jsonld.ts` from 287-line inline-constant builder to 46-line import + URL-rewrite layer. All constants removed.
+- Rewired `lib/jsonld.ts` from 287-line inline-constant builder to 30-line import + URL-rewrite layer. All constants removed.
 - Rewired `lib/cv-content.ts` and `app/manifest.ts` to import Person data from entity model (`lib/entities.ts`).
 - Implemented subgraph closure algorithm in `lib/subgraph.ts` — `extractSubgraph` (BFS from seed IDs, follows `@id` refs, excludes `sameAs`/external links) and `findDanglingRefs` (detects broken internal references). 10 unit tests.
 - Created `lib/page-jsonld.ts` — page-specific JSON-LD subgraphs (`frontPageJsonLd`, `cvPageJsonLd`) using seed-based closure and URL rewriting.
@@ -185,7 +188,7 @@ All 6 tasks completed. Every view now derives from the entity model.
 
 **Files changed:** `lib/jsonld.ts`, `lib/cv-content.ts`, `app/manifest.ts`, `app/page.tsx`, `app/cv/page.tsx`, `app/cv/[variant]/page.tsx`. **Files created:** `lib/subgraph.ts`, `lib/subgraph.unit.test.ts`, `lib/page-jsonld.ts`.
 
-**Remaining:** `pnpm check` (formatting fails), `pnpm test:e2e` not run. Pixel-identical regression check not formally verified (snapshots exist in `__snapshots__/` but no comparison run). No branch created.
+**Remaining:** Automated gates pass on the current tree. Pixel-identical regression check not formally verified (snapshots exist in `__snapshots__/` but no comparison run). No branch created. No commit yet.
 
 ---
 
@@ -217,7 +220,7 @@ Person entity has a machine-facing description. OG and manifest descriptions der
 
 #### Task 4.5 -- Validate structured data ✅ COMPLETE
 
-Programmatic `@id` resolution check implemented in integration tests (`lib/entities.integration.test.ts` — dangling reference detection, `lib/jsonld.integration.test.ts` — subgraph self-containment). Manual Schema.org Validator and Rich Results Test deferred to post-deployment.
+Programmatic `@id` resolution check implemented in integration tests (`lib/entities.integration.test.ts` — dangling reference detection, `lib/jsonld.integration.test.ts` — subgraph self-containment). Automated gates pass on the current tree (`pnpm check:ci`, `pnpm test:e2e`, both 2026-03-08). Manual Schema.org Validator and Rich Results Test remain outstanding.
 
 #### Task 4.6 -- Cross-output consistency and framing review (IN PROGRESS)
 
@@ -264,7 +267,7 @@ Add compile-time Schema.org vocabulary validation using `schema-dts` (Google's T
 3. If `tsc --noEmit` passes (already a quality gate), Schema.org vocabulary is correct
 4. Write a companion integration test that validates the complete `entities.json` graph can be assigned to the schema-dts `Graph` type
 
-**Design decision: why schema-dts, not ajv + schemaorg-jsd**
+##### Design decision: why schema-dts, not ajv + schemaorg-jsd
 
 `ajv` + `schemaorg-jsd` (pre-1.0) would provide runtime Schema.org validation but duplicates Zod's role and adds dependency weight. schema-dts provides the same vocabulary correctness at compile time with zero runtime cost, zero bundle size, and backing from Google. The maturity gap (schemaorg-jsd v0.17.1 vs schema-dts v1.1.5) further favours schema-dts.
 
@@ -278,14 +281,14 @@ Add compile-time Schema.org vocabulary validation using `schema-dts` (Google's T
 
 **Reviewers:** Invoke **type-reviewer** (type flow from schema-dts types through our Zod-derived types). Invoke **pkg-reviewer** (Schema.org correctness of the approach). Invoke **code-reviewer** as gateway.
 
-#### Phase 4 quality gates (PENDING)
+#### Phase 4 quality gates (PARTIAL)
 
-- `pnpm check` passes (restart-on-fix)
-- `pnpm test:e2e` passes
+- ✅ `pnpm check:ci` passes on the current tree (2026-03-08)
+- ✅ `pnpm test:e2e` passes on the current tree (2026-03-08)
 - No regression to existing page content
+- Every `@id` reference resolves (programmatic test — already in place)
 - Schema.org Validator: no errors (manual, pre-deployment)
 - Google Rich Results Test: ProfilePage and WebSite eligible (manual, post-deployment)
-- Every `@id` reference resolves (programmatic test — already in place)
 - schema-dts compile-time check passes (integrated into `tsc --noEmit`)
 - All reviewer verdicts APPROVED or APPROVED WITH SUGGESTIONS
 - Neo4j forward-compatibility checklist passes
@@ -376,18 +379,20 @@ Throughout all phases:
 - `lib/subgraph.unit.test.ts` -- 10 unit tests for closure and dangling-ref detection
 - `lib/page-jsonld.ts` -- page-specific JSON-LD subgraphs (`frontPageJsonLd`, `cvPageJsonLd`)
 - `lib/jsonld.integration.test.ts` -- 7 integration tests for URL rewriting and graph validity
+- `lib/rewrite-jsonld-urls.ts` -- shared URL rewriting with Zod re-validation
 - `docs/architecture/decision-records/014-entity-model-design.md` -- ADR for entity model
 - `lib/schema-org-check.ts` (planned) -- compile-time Schema.org vocabulary assertions
 
 ### Modified (Phases 3-4)
 
-- `lib/jsonld.ts` -- rewired from 287-line builder to 46-line import + URL rewrite
+- `lib/jsonld.ts` -- rewired from 287-line builder to 30-line import + URL rewrite
 - `lib/cv-content.ts` -- OG metadata now imports Person from entity model
 - `app/manifest.ts` -- manifest name/description from Person entity
 - `app/page.tsx` -- injects `frontPageJsonLd`
 - `app/cv/page.tsx` -- injects `cvPageJsonLd`
 - `app/cv/[variant]/page.tsx` -- injects `cvPageJsonLd`
 - `components/page-section.tsx` -- `id` attribute added to `<section>` element
+- `eslint.config.ts` -- tightened to enforce type-safety and test-discipline rules
 
 ### Pending
 

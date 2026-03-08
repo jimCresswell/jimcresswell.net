@@ -5,6 +5,26 @@ import nextTs from "eslint-config-next/typescript";
 const eslintConfig = defineConfig([
   ...nextVitals,
   ...nextTs,
+  {
+    files: ["**/*.{ts,tsx}"],
+    rules: {
+      "@typescript-eslint/consistent-type-assertions": ["error", { assertionStyle: "never" }],
+      "@typescript-eslint/no-non-null-assertion": "error",
+      "no-restricted-properties": [
+        "error",
+        {
+          object: "vi",
+          property: "doMock",
+          message: "Use injected fakes or a static vi.mock call instead of vi.doMock.",
+        },
+        {
+          object: "vi",
+          property: "stubGlobal",
+          message: "Inject dependencies instead of mutating globals with vi.stubGlobal.",
+        },
+      ],
+    },
+  },
   // Override default ignores of eslint-config-next
   globalIgnores([
     // Default ignores of eslint-config-next:

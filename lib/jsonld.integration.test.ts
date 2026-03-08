@@ -1,23 +1,24 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
+import { describe, it, expect } from "vitest";
+import { buildJsonLd } from "./jsonld";
 
-vi.mock("./site-config", () => ({
-  SITE_URL: "https://www.jimcresswell.net",
-}));
+function getPersonId(siteUrl: string): string {
+  const person = buildJsonLd(siteUrl)["@graph"].find((entity) => entity["@type"] === "Person");
+  if (!person || person["@type"] !== "Person") {
+    throw new Error("Person not found");
+  }
+  return person["@id"];
+}
 
 describe("jsonLd export", () => {
-  beforeEach(() => {
-    vi.resetModules();
-  });
-
-  it("exports a valid JSON-LD graph with @context and @graph", async () => {
-    const { jsonLd } = await import("./jsonld");
+  it("exports a valid JSON-LD graph with @context and @graph", () => {
+    const jsonLd = buildJsonLd("https://www.jimcresswell.net");
     expect(jsonLd["@context"]).toBe("https://schema.org");
     expect(Array.isArray(jsonLd["@graph"])).toBe(true);
     expect(jsonLd["@graph"].length).toBeGreaterThan(0);
   });
 
-  it("contains all entity types from the entity model", async () => {
-    const { jsonLd } = await import("./jsonld");
+  it("contains all entity types from the entity model", () => {
+    const jsonLd = buildJsonLd("https://www.jimcresswell.net");
     const types = new Set(jsonLd["@graph"].map((e) => e["@type"]));
     expect(types).toContain("Person");
     expect(types).toContain("WebSite");
@@ -29,22 +30,19 @@ describe("jsonLd export", () => {
     expect(types).toContain("ScholarlyArticle");
   });
 
-  it("contains at least as many entities as the pre-migration snapshot", async () => {
-    const { jsonLd } = await import("./jsonld");
+  it("contains at least as many entities as the pre-migration snapshot", () => {
+    const jsonLd = buildJsonLd("https://www.jimcresswell.net");
     expect(jsonLd["@graph"].length).toBeGreaterThanOrEqual(14);
   });
 
-  it("rewrites canonical URLs to SITE_URL", async () => {
-    const { jsonLd } = await import("./jsonld");
-    const person = jsonLd["@graph"].find((e) => e["@type"] === "Person");
-    expect(person).toBeDefined();
-    if (person) {
-      expect(person["@id"]).toBe("https://www.jimcresswell.net/#person");
-    }
+  it("rewrites canonical URLs to SITE_URL", () => {
+    expect(getPersonId("https://www.jimcresswell.net")).toBe(
+      "https://www.jimcresswell.net/#person"
+    );
   });
 
-  it("does not rewrite external URLs", async () => {
-    const { jsonLd } = await import("./jsonld");
+  it("does not rewrite external URLs", () => {
+    const jsonLd = buildJsonLd("https://www.jimcresswell.net");
     const article = jsonLd["@graph"].find(
       (e) => e["@type"] === "ScholarlyArticle" && e["@id"].includes("doi.org")
     );
@@ -54,26 +52,17 @@ describe("jsonLd export", () => {
     }
   });
 
-  it("preserves Wikidata sameAs links on knowsAbout items", async () => {
-    const { jsonLd } = await import("./jsonld");
+  it("preserves Wikidata sameAs links on knowsAbout items", () => {
+    const jsonLd = buildJsonLd("https://www.jimcresswell.net");
     const person = jsonLd["@graph"].find((e) => e["@type"] === "Person");
     if (!person || person["@type"] !== "Person") throw new Error("Person not found");
     const systemsThinking = person.knowsAbout.find((item) => item.name === "Systems thinking");
     expect(systemsThinking?.sameAs).toMatch(/wikidata\.org/);
   });
-});
 
-describe("jsonLd URL rewriting with preview deployment", () => {
-  beforeEach(() => {
-    vi.resetModules();
-  });
-
-  it("uses preview URL when SITE_URL points to a preview deployment", async () => {
-    vi.doMock("./site-config", () => ({
-      SITE_URL: "https://preview-abc123.vercel.app",
-    }));
-    const { jsonLd } = await import("./jsonld");
-    const person = jsonLd["@graph"].find((e) => e["@type"] === "Person");
-    expect(person?.["@id"]).toBe("https://preview-abc123.vercel.app/#person");
+  it("uses preview URL when building a preview deployment graph", () => {
+    expect(getPersonId("https://preview-abc123.vercel.app")).toBe(
+      "https://preview-abc123.vercel.app/#person"
+    );
   });
 });

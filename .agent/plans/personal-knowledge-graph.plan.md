@@ -235,7 +235,7 @@ Presentational (with Schema.org properties):
 
 These live in `lib/jsonld.ts` constants and need to move into the content model:
 
-- `KNOWS_ABOUT` — 34 topic strings describing Jim's expertise (expanded during the meta-SEO content audit from 20 to 34, with clustering by domain). **Decision (confirmed)**: link all ~34 `knowsAbout` items to Wikidata/Wikipedia entities via `sameAs` (e.g. `{"@type": "Thing", "name": "Cosmology", "sameAs": "https://www.wikidata.org/wiki/Q338"}`). This is the highest-impact improvement for entity resolution — significantly more powerful than bare strings for Google entity reconciliation.
+- `KNOWS_ABOUT` — 35 topic strings describing Jim's expertise (expanded during the meta-SEO content audit from 20, with clustering by domain). **Decision (confirmed)**: link all 35 `knowsAbout` items to Wikidata/Wikipedia entities via `sameAs` (e.g. `{"@type": "Thing", "name": "Cosmology", "sameAs": "https://www.wikidata.org/wiki/Q338"}`). This is the highest-impact improvement for entity resolution — significantly more powerful than bare strings for Google entity reconciliation.
 - `OCCUPATION` — name, description, location, skills.
 - `CREDENTIAL_DETAILS` — category, level, and subject areas for each degree.
 - `PUBLICATIONS` — 4 works with identifiers (DOIs, arXiv IDs) and relationships.

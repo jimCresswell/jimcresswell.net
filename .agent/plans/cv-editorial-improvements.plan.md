@@ -2,7 +2,7 @@
 
 Refine the positioning, capabilities, and structured data in the editorial CV.
 
-## Status: In Progress — positioning, capabilities, metadata, and experience/Before Oak settled; knowledge graph Phases 1-3 code complete (gates pending), Phase 4 in progress; LinkedIn subsumed by PKG Phase 5
+## Status: In Progress — positioning, capabilities, metadata, and experience/Before Oak settled; knowledge graph Phases 1-3 code complete (automated gates pass), Phase 4 in progress; LinkedIn subsumed by PKG Phase 5
 
 ## Prerequisite: PII security mitigation
 
@@ -106,11 +106,11 @@ Completed in a dedicated plan: [meta-seo-content-audit.plan.md](complete/meta-se
 
 **Design reference:** [personal-knowledge-graph.plan.md](personal-knowledge-graph.plan.md) — entity inventory, principles, Schema.org conventions. All design decisions resolved.
 
-**Implementation:** [personal-knowledge-graph-implementation.plan.md](personal-knowledge-graph-implementation.plan.md) — Phases 1-3 code complete (gates pending), Phase 4 in progress.
+**Implementation:** [personal-knowledge-graph-implementation.plan.md](personal-knowledge-graph-implementation.plan.md) — Phases 1-3 code complete (automated gates pass), Phase 4 in progress.
 
 **Execution plan:** [personal-knowledge-graph-execution.plan.md](personal-knowledge-graph-execution.plan.md) — detailed operational plan with per-task status. **Start here** for next session.
 
-Phases 1-3 code complete: `content/entities.json` with ~50 entities at all abstraction levels, 16 Zod schemas validating at import time, subgraph closure algorithm for page-specific JSON-LD, all views rewired to derive from the entity model. **Quality gates not yet passed** — `pnpm check` fails at Prettier, E2E tests not run. 128 vitest tests passing, all changes uncommitted on `main`.
+Phases 1-3 code complete: `content/entities.json` with ~50 entities at all abstraction levels, 17 Zod schemas validating at import time, subgraph closure algorithm for page-specific JSON-LD, all views rewired to derive from the entity model. **Automated gates pass on the current tree** — `pnpm check:ci` and `pnpm test:e2e` both passed on 2026-03-08. Manual Schema.org Validator and Rich Results Test checks remain outstanding. All changes remain uncommitted on `main`.
 
 ---
 
@@ -124,23 +124,23 @@ Phases 1-3 code complete: `content/entities.json` with ~50 entities at all abstr
 
 ## Files affected
 
-| File                       | Status                                                                                                                                                                               |
-| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `content/cv.content.json`  | Positioning, capabilities, meta.summary, experience, and Before Oak all editorially settled.                                                                                         |
-| `lib/jsonld.ts`            | Editorial content updated (knowsAbout expanded, occupation refined). Structural migration to entity model: see [personal-knowledge-graph.plan.md](personal-knowledge-graph.plan.md). |
-| `components/cv-layout.tsx` | Done — `<RichText>` for capabilities, section reorder (Capabilities after Positioning). Knowledge graph: possible `id` attribute binding.                                            |
+| File                       | Status                                                                                                                                                 |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `content/cv.content.json`  | Positioning, capabilities, meta.summary, experience, and Before Oak all editorially settled.                                                           |
+| `lib/jsonld.ts`            | Now derives the graph from the entity model and handles URL rewriting. Editorial updates to knowsAbout and occupation live in `content/entities.json`. |
+| `components/cv-layout.tsx` | Done — `<RichText>` for capabilities, section reorder (Capabilities after Positioning). Knowledge graph: possible `id` attribute binding.              |
 
 ---
 
 ## Next steps
 
-| Item                                         | When                                                                                 |
-| -------------------------------------------- | ------------------------------------------------------------------------------------ |
-| ~~Factual fix (Oak start_year 2019 → 2020)~~ | Done                                                                                 |
-| ~~Capabilities (concrete additions)~~        | Done — see [capabilities-editorial.plan.md](complete/capabilities-editorial.plan.md) |
-| ~~Meta & SEO content audit~~                 | Done — see [meta-seo-content-audit.plan.md](complete/meta-seo-content-audit.plan.md) |
-| ~~Experience & Before Oak editorial review~~ | Done — see [experience-editorial.plan.md](complete/experience-editorial.plan.md)     |
-| Personal knowledge graph                     | See [personal-knowledge-graph.plan.md](personal-knowledge-graph.plan.md)             |
+| Item                                         | When                                                                                                                           |
+| -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| ~~Factual fix (Oak start_year 2019 → 2020)~~ | Done                                                                                                                           |
+| ~~Capabilities (concrete additions)~~        | Done — see [capabilities-editorial.plan.md](complete/capabilities-editorial.plan.md)                                           |
+| ~~Meta & SEO content audit~~                 | Done — see [meta-seo-content-audit.plan.md](complete/meta-seo-content-audit.plan.md)                                           |
+| ~~Experience & Before Oak editorial review~~ | Done — see [experience-editorial.plan.md](complete/experience-editorial.plan.md)                                               |
+| Personal knowledge graph                     | See [personal-knowledge-graph-execution.plan.md](personal-knowledge-graph-execution.plan.md) — start here for the next session |
 
 ---
 

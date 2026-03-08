@@ -53,8 +53,8 @@ Knip is installed as a dev dependency (`knip@^5`) and runs as part
 of the `pnpm check` script, which is the project's standard quality
 gate:
 
-```
-pnpm check = format-check → lint → type-check → test → knip → gitleaks
+```text
+pnpm check = format-fix → markdownlint-fix → lint-fix → type-check → test → knip → gitleaks
 ```
 
 This means Knip runs:

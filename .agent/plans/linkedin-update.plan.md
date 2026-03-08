@@ -2,7 +2,7 @@
 
 Update Jim's LinkedIn profile to be consistent with the editorial CV, using the career history archive as the canonical factual source and the CV's editorial voice as the stylistic reference.
 
-## Status: Subsumed by [PKG implementation Phase 5](personal-knowledge-graph-implementation.plan.md). Retained as reference for editorial questions (Phase 2) and API investigation findings.
+## Status: Subsumed by [PKG implementation Phase 5](personal-knowledge-graph-implementation.plan.md). Retained as reference for editorial questions (Phase 2) and API investigation findings
 
 ## How to use this plan
 

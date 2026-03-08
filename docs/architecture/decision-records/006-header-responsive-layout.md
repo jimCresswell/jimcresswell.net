@@ -104,7 +104,7 @@ density of the theme group against the left group at narrow widths.
 
 The outer container uses `flex-wrap` with `justify-between`:
 
-```
+```text
 [site identity]            [page controls]
         ← gap-x-6 (1.5rem minimum) →
 ```
