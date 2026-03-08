@@ -4,7 +4,7 @@ overview: Close the remaining PKG work by proving the refactor caused no rendere
 todos:
   - id: prove-no-regression
     content: "Build and record dual regression proof: HTML/DOM comparison plus pixel comparison against the pre-PKG baseline, with zero expected rendered differences and user review for any exception."
-    status: pending
+    status: in_progress
   - id: complete-html-binding
     content: Implement the still-required entity-level and role-anchor HTML binding, test it first, then re-run the full regression proof and reviewer triage.
     status: pending
