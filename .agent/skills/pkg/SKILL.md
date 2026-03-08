@@ -133,4 +133,4 @@ Source: research findings (`.agent/plans/research/pkg-research-findings.md`) —
 - `docs/architecture/decision-records/008-schema-org-compliance.md` — ADR-008: Schema.org compliance
 - `docs/architecture/decision-records/010-canonical-url-graph-identity.md` — ADR-010: canonical URL and graph identity
 - `docs/architecture/decision-records/011-domain-appropriate-descriptions.md` — ADR-011: domain-appropriate descriptions
-- `.agent/plans/future/neo4j-knowledge-graph.plan.md` — future Neo4j migration (shapes current design)
+- `.agent/plans/icebox/neo4j-knowledge-graph.plan.md` — icebox Neo4j migration plan (shapes current design)

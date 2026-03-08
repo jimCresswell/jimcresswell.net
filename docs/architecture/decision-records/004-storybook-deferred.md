@@ -96,7 +96,6 @@ The migration from RTL to Storybook interaction tests is low-friction. The Testi
 
 ## Related
 
-- [Component audit plan](../../../.agent/plans/complete/component-audit.plan.md) — the refactoring plan that prompted this decision
 - [Storybook 10.2 docs](https://storybook.js.org/docs) — the evaluated version
 - [Storybook Vitest addon](https://storybook.js.org/docs/writing-tests/integrations/vitest-addon) — the specific testing integration evaluated
 - [Storybook Next.js Vite framework](https://storybook.js.org/docs/get-started/frameworks/nextjs-vite) — the Next.js integration

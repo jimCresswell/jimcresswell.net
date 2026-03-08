@@ -121,7 +121,7 @@ This means:
 - **Define once, reference everywhere.** Each entity gets a single identity. Pages compose references, not copies.
 - **Visible content unchanged during technical migration.** When data moves from content files to the entity model, the rendered web pages must remain identical. No editorial regression during structural work. The graph migration is a refactoring — same outputs, better internal structure. Editorial improvements happen as separate, deliberate changes. The proof standard is now explicit: compare HTML/DOM and pixels against a trusted baseline, and treat any difference as a review item rather than auto-acceptable.
 - **Evolutionary, not revolutionary.** The current architecture works. Build on it incrementally. No big-bang refactoring.
-- **Shape for a future graph database.** The JSON-based model should remain compatible with migration to Neo4j (see [future/neo4j-knowledge-graph.plan.md](future/neo4j-knowledge-graph.plan.md)). This means: stable entity IDs, typed relationships as references (not nesting), flat entity definitions, and entities at all abstraction levels modelled as graph nodes.
+- **Shape for a future graph database.** The JSON-based model should remain compatible with migration to Neo4j (see [icebox/neo4j-knowledge-graph.plan.md](../icebox/neo4j-knowledge-graph.plan.md)). This means: stable entity IDs, typed relationships as references (not nesting), flat entity definitions, and entities at all abstraction levels modelled as graph nodes.
 
 ---
 
@@ -527,7 +527,7 @@ For phased execution with todos, acceptance criteria, and progress tracking, see
 - [cv-editorial-improvements.plan.md](cv-editorial-improvements.plan.md) — parent plan
 - [meta-seo-content-audit.plan.md](complete/meta-seo-content-audit.plan.md) — editorial content fixes (prerequisite — complete)
 - [capabilities-editorial.plan.md](complete/capabilities-editorial.plan.md) — capabilities work (complete — terms added to `KNOWS_ABOUT`)
-- [future/neo4j-knowledge-graph.plan.md](future/neo4j-knowledge-graph.plan.md) — future migration to Neo4j; shapes current design decisions
+- [icebox/neo4j-knowledge-graph.plan.md](../icebox/neo4j-knowledge-graph.plan.md) — future migration to Neo4j; shapes current design decisions
 - [ADR-007](../../docs/architecture/decision-records/007-dry-content-metadata.md) — current single-source approach
 - [ADR-008](../../docs/architecture/decision-records/008-schema-org-compliance.md) — Schema.org compliance throughout the graph
 - [ADR-011](../../docs/architecture/decision-records/011-domain-appropriate-descriptions.md) — domain-appropriate descriptions (descriptions in different domains are different artifacts)

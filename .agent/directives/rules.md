@@ -75,6 +75,11 @@ Use the right tool for the job:
   - `pnpm test:e2e` — Playwright default project (journeys, behaviour, a11y)
   - `pnpm test:e2e:pdf` — Playwright with-build project (PDF tests, requires production build on :3001)
 
+  Run `pnpm check` and `pnpm test:e2e` sequentially, never in parallel. The
+  `check` pipeline runs formatters and fixers, so overlapping it with the
+  Playwright web server can create false app failures by mutating source files
+  during the browser run.
+
   Git hooks enforce this: the pre-commit hook runs `pnpm check:ci`, and the pre-push hook runs `pnpm check && pnpm test:e2e`. PDF tests (`pnpm test:e2e:pdf`) require a prior production build on :3001 and are run explicitly.
 
 - **Restart on fix** — After any quality gate fix, restart the full sequence from `pnpm format:fix`. Fixes can introduce new issues downstream.

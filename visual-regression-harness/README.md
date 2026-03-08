@@ -165,3 +165,22 @@ If the harness surfaces any HTML, metadata, or pixel difference:
 1. stop
 2. inspect the generated artefacts
 3. approve or reject the difference explicitly
+
+## Approved historical PKG differences
+
+For the recorded historical comparison `b76824a` versus `WORKTREE`, the
+remaining 5 non-pixel review items are explicitly approved.
+
+Approved category 1:
+
+- page-level JSON-LD `<script type="application/ld+json">` additions in
+  `home/main.html`, `cv/main.html`, and `cv-public-sector/main.html`
+
+Approved category 2:
+
+- the deliberate canonical-page correction on `/cv/`, visible in
+  `cv/document.html` and `cv/metadata.json`
+
+Those approvals are specific to the recorded PKG proof run. They do not turn
+new future differences into auto-accepts. New occurrences still require review
+unless they fall under an explicit documented comparison rule.

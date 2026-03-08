@@ -40,6 +40,7 @@ For the practice-core files and their roles, see
 | [ADR-014](../docs/architecture/decision-records/014-entity-model-design.md)                       | Entity model design              |
 | [ADR-015](../docs/architecture/decision-records/015-codex-adapter-model.md)                       | Codex adapter model              |
 | [ADR-016](../docs/architecture/decision-records/016-review-oriented-visual-regression-harness.md) | Visual regression harness        |
+| [ADR-017](../docs/architecture/decision-records/017-cv-tilt-routes-are-canonical-aliases.md)      | CV tilt route aliases            |
 
 ## Tools and Workflows
 
@@ -101,7 +102,7 @@ and use thin adapters under [`.codex/agents/`](../.codex/agents/).
 | [`.agent/skills/`](skills/)               | Canonical skills (platform-agnostic)                                             |
 | [`.agent/rules/`](rules/)                 | Canonical always-applied rules (platform-agnostic)                               |
 | [`.agent/sub-agents/`](sub-agents/)       | Canonical sub-agent templates                                                    |
-| [`.agent/plans/`](plans/)                 | Work planning — active and archived                                              |
+| [`.agent/plans/`](plans/)                 | Work planning — active, current, complete, icebox, and research                  |
 | [`.agent/prompts/`](prompts/)             | Reusable prompt playbooks                                                        |
 | [`.agent/memory/`](memory/)               | Institutional memory — napkin, distilled, code patterns                          |
 | [`.agent/experience/`](experience/)       | Experiential records across sessions                                             |

@@ -10,7 +10,7 @@ Accepted
 
 ## Context
 
-The site is evolving from a single content file (`cv.content.json`) with derived metadata (ADR-007) towards a personal knowledge graph — a unified entity model where all site outputs (page rendering, Open Graph, JSON-LD, Web App Manifest, sitemap, PDF) are derived views onto the same underlying reality. See [personal-knowledge-graph.plan.md](../../../.agent/plans/personal-knowledge-graph.plan.md).
+The site is evolving from a single content file (`cv.content.json`) with derived metadata (ADR-007) towards a personal knowledge graph — a unified entity model where all site outputs (page rendering, Open Graph, JSON-LD, Web App Manifest, sitemap, PDF) are derived views onto the same underlying reality. That model is now recorded durably in [ADR-014](014-entity-model-design.md).
 
 The knowledge graph models real entities at multiple levels of abstraction:
 
@@ -129,5 +129,4 @@ ADR-007 established `cv.content.json` as the single source of truth, with JSON-L
 - [Schema.org `Intangible`](https://schema.org/Intangible) — base type for abstract entities
 - [Schema.org `DefinedTerm`](https://schema.org/DefinedTerm) — for capabilities and expertise areas
 - [Schema.org `Statement`](https://schema.org/Statement) — for positioning narratives and expressions
-- [personal-knowledge-graph.plan.md](../../../.agent/plans/personal-knowledge-graph.plan.md) — the plan this ADR constrains
-- [future/neo4j-knowledge-graph.plan.md](../../../.agent/plans/future/neo4j-knowledge-graph.plan.md) — future migration; all entities migrate as labelled nodes
+- [ADR-014: Entity model design](014-entity-model-design.md) — the durable knowledge-graph design this ADR constrains

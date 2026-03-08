@@ -22,19 +22,19 @@ isProject: false
 
 # Personal Knowledge Graph — Implementation
 
-**This is the implementation plan** — phased tasks with acceptance criteria and progress tracking. Durable design decisions belong in `docs/architecture/decision-records/`; use [ADR-014](../../docs/architecture/decision-records/014-entity-model-design.md) and the related ADRs as the canonical PKG design source. [`personal-knowledge-graph.plan.md`](personal-knowledge-graph.plan.md) remains as historical design working material and detailed audit context. For the detailed operational plan (reviewer invocations, skill activations, quality gates), see the [execution plan](personal-knowledge-graph-execution.plan.md). For harness-specific refinements, see the [visual regression harness plan](../active/visual-regression-harness.plan.md).
+**This is the implementation plan** — phased tasks with acceptance criteria and progress tracking. Durable design decisions belong in `docs/architecture/decision-records/`; use [ADR-014](../../docs/architecture/decision-records/014-entity-model-design.md) and the related ADRs as the canonical PKG design source. [`personal-knowledge-graph.plan.md`](personal-knowledge-graph.plan.md) remains as historical design working material and detailed audit context. For the detailed operational plan (reviewer invocations, skill activations, quality gates), see the [execution plan](personal-knowledge-graph-execution.plan.md). For the closed harness proof record, see the [completed visual regression harness plan](../complete/visual-regression-harness.plan.md). Potential later harness enhancements now live in the [icebox plan](../icebox/visual-regression-harness-enhancements.plan.md).
 
 ## Progress (updated 2026-03-08)
 
-| Phase                       | Code        | Gate status             | Key outcome                                                                         |
-| --------------------------- | ----------- | ----------------------- | ----------------------------------------------------------------------------------- |
-| 1. Entity model design      | ✅ Complete | ✅ Automated gates pass | 17 Zod schemas, `content/entities.json` skeleton, ADR-014                           |
-| 2. Entity population        | ✅ Complete | ✅ Automated gates pass | ~50 entities across all abstraction levels                                          |
-| 3. View derivation          | ✅ Complete | ✅ Automated gates pass | `lib/jsonld.ts` 287→30 lines, subgraph closure algorithm                            |
-| 4. New views and enrichment | ✅ Complete | 🔄 Manual checks left   | Tasks 4.1-4.8 code-complete; manual validation left, docs consolidation uncommitted |
-| 5. LinkedIn as derived view | ⬜ Pending  | —                       | —                                                                                   |
+| Phase                       | Code        | Gate status             | Key outcome                                               |
+| --------------------------- | ----------- | ----------------------- | --------------------------------------------------------- |
+| 1. Entity model design      | ✅ Complete | ✅ Automated gates pass | 17 Zod schemas, `content/entities.json` skeleton, ADR-014 |
+| 2. Entity population        | ✅ Complete | ✅ Automated gates pass | ~50 entities across all abstraction levels                |
+| 3. View derivation          | ✅ Complete | ✅ Automated gates pass | `lib/jsonld.ts` 287→30 lines, subgraph closure algorithm  |
+| 4. New views and enrichment | ✅ Complete | 🔄 Manual checks left   | Tasks 4.1-4.8 code-complete; manual validation left       |
+| 5. LinkedIn as derived view | ⬜ Pending  | —                       | —                                                         |
 
-132 vitest tests passing. Automated gates pass on the current tree (`pnpm check`, `pnpm test:e2e`, both 2026-03-08). Manual Schema.org Validator and Rich Results Test checks remain outstanding, and the historical content-regression proof is still pending. Historical PKG work and the Phase 4 follow-up have already been committed and merged locally into `main`; the current uncommitted layer is the later docs-consolidation pass. The [execution plan](personal-knowledge-graph-execution.plan.md) has detailed per-task status.
+152 vitest tests passing. Automated gates pass on the current tree (`pnpm check`, `pnpm test:e2e`, both 2026-03-08). Manual Schema.org Validator and Rich Results Test checks remain outstanding. The historical visual-content proof is closed: the harness recorded `0` unexpected pixel differences, and the remaining semantic data-layer artefacts are explicitly approved. Historical PKG work and the Phase 4 follow-up have already been committed and merged locally into `main`. The [execution plan](personal-knowledge-graph-execution.plan.md) has detailed per-task status.
 
 ## Reading requirements
 
@@ -286,7 +286,7 @@ The Person entity is defined once and its `@id` (`https://www.jimcresswell.net/#
 - Phase 4+: [Google Rich Results Test](https://search.google.com/test/rich-results) — all pages pass
 - Every `@id` reference resolves to a defined node
 
-**Neo4j forward-compatibility checklist** (see [research findings](research/pkg-research-findings.md) and [future/neo4j-knowledge-graph.plan.md](future/neo4j-knowledge-graph.plan.md)):
+**Neo4j forward-compatibility checklist** (see [research findings](research/pkg-research-findings.md) and [icebox/neo4j-knowledge-graph.plan.md](../icebox/neo4j-knowledge-graph.plan.md)):
 
 - [ ] Every entity has `@id` and `@type` — no exceptions, even abstract entities
 - [ ] Relationships are `{"@id": "..."}` references — no embedded entity definitions
@@ -319,10 +319,10 @@ The Person entity is defined once and its `@id` (`https://www.jimcresswell.net/#
 - [research/pkg-research-findings.md](research/pkg-research-findings.md) — Schema.org, JSON-LD, Google structured data, and Neo4j research findings
 - [personal-knowledge-graph.plan.md](personal-knowledge-graph.plan.md) — historical design working notes and audit context
 - [personal-knowledge-graph-execution.plan.md](personal-knowledge-graph-execution.plan.md) — operational status and next actions
-- [visual-regression-harness.plan.md](../active/visual-regression-harness.plan.md) — harness-specific work
+- [visual-regression-harness.plan.md](../complete/visual-regression-harness.plan.md) — completed harness proof record
 - [cv-editorial-improvements.plan.md](cv-editorial-improvements.plan.md) — parent plan
 - [linkedin-update.plan.md](linkedin-update.plan.md) — subsumed LinkedIn reference plan
-- [future/neo4j-knowledge-graph.plan.md](future/neo4j-knowledge-graph.plan.md) — shapes design decisions (stable IDs, typed relationships, flat entities)
+- [icebox/neo4j-knowledge-graph.plan.md](../icebox/neo4j-knowledge-graph.plan.md) — shapes design decisions (stable IDs, typed relationships, flat entities)
 - [ADR-007](../../docs/architecture/decision-records/007-dry-content-metadata.md) — current single-source approach
 - [ADR-008](../../docs/architecture/decision-records/008-schema-org-compliance.md) — Schema.org compliance throughout the graph
 - [ADR-010](../../docs/architecture/decision-records/010-canonical-url-graph-identity.md) — canonical URL and graph identity

@@ -72,5 +72,4 @@ This is a forward-looking decision. The current `meta.summary` continues to serv
 
 - [ADR-007: DRY content and metadata consolidation](007-dry-content-metadata.md) — predecessor; this ADR evolves its understanding of `meta.summary`
 - [editorial-guidance.md](../../../.agent/directives/editorial-guidance.md) — editorial consistency principle
-- [meta-seo-content-audit.plan.md](../../../.agent/plans/meta-seo-content-audit.plan.md) — immediate editorial fix for `meta.summary` content
-- [personal-knowledge-graph.plan.md](../../../.agent/plans/personal-knowledge-graph.plan.md) — structural decoupling through the entity model
+- [ADR-014: Entity model design](014-entity-model-design.md) — structural decoupling through the entity model

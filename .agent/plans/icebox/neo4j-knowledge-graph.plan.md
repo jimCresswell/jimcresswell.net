@@ -1,18 +1,39 @@
-# Future: Neo4j Knowledge Graph
+# Icebox: Neo4j Knowledge Graph
 
-Migrate the personal knowledge graph from JSON files to a Neo4j graph database.
+Migrate the personal knowledge graph from JSON files to a Neo4j graph
+database.
 
-## Status: Future
+## Status: Icebox
 
-This is a long-term consideration, not current work. It exists to shape decisions during the [personal knowledge graph](../personal-knowledge-graph.plan.md) work — ensuring the current JSON-based model remains compatible with a future graph database migration.
+This is a long-term consideration, not current work. It exists to shape
+decisions during the
+[personal knowledge graph](../current/personal-knowledge-graph.plan.md)
+work — ensuring the current JSON-based model remains compatible with a
+future graph database migration.
 
 ---
 
 ## Context
 
-The personal knowledge graph represents Jim's career, work, identity, and relationships as real entities and typed relationships at multiple levels of abstraction — from specific entities (Roles, Organisations) through abstract entities (ProfessionalIdentity, ResearchBackground) to expressive entities (PositioningNarrative, Capability, TiltVariant). All are real. All use standard Schema.org types ([ADR-008](../../docs/architecture/decision-records/008-schema-org-compliance.md)). The current implementation uses JSON files in `content/` with TypeScript transforms to derive views (page rendering, JSON-LD, OG, manifest, sitemap, PDF).
+The personal knowledge graph represents Jim's career, work, identity,
+and relationships as real entities and typed relationships at multiple
+levels of abstraction — from specific entities (Roles,
+Organisations) through abstract entities (ProfessionalIdentity,
+ResearchBackground) to expressive entities (PositioningNarrative,
+Capability, TiltVariant). All are real. All use standard Schema.org
+types ([ADR-008](../../docs/architecture/decision-records/008-schema-org-compliance.md)).
+The current implementation uses JSON files in `content/` with
+TypeScript transforms to derive views (page rendering, JSON-LD, OG,
+manifest, sitemap, PDF).
 
-JSON-LD is itself a graph serialisation format (it serialises RDF). The entity model being designed in the current plan is structurally a knowledge graph — entities with stable identities connected by typed relationships. Neo4j is a natural home for this data if the model ever outgrows static files. The labelled property graph model is particularly well suited to the multi-level abstraction architecture, where specific, abstract, expressive, and presentational entities all coexist as nodes with typed relationships.
+JSON-LD is itself a graph serialisation format (it serialises RDF). The
+entity model being designed in the current plan is structurally a
+knowledge graph — entities with stable identities connected by typed
+relationships. Neo4j is a natural home for this data if the model ever
+outgrows static files. The labelled property graph model is
+particularly well suited to the multi-level abstraction architecture,
+where specific, abstract, expressive, and presentational entities all
+coexist as nodes with typed relationships.
 
 ---
 
@@ -27,7 +48,8 @@ JSON-LD is itself a graph serialisation format (it serialises RDF). The entity m
 
 ## What this shapes in current work
 
-These considerations should influence decisions during the personal knowledge graph plan:
+These considerations should influence decisions during the personal
+knowledge graph plan:
 
 - **Stable entity IDs** — use IDs that would survive a migration (e.g. `person-jim`, `org-oak`, `role-oak-principal`). Avoid IDs derived from array position or content hashing.
 - **Typed relationships** — name relationships explicitly (worksFor, alumniOf, author) rather than using generic containment. These become edge labels in Neo4j.
@@ -37,7 +59,10 @@ These considerations should influence decisions during the personal knowledge gr
 
 ### Abstraction levels in the graph
 
-The graph naturally contains entities at different levels of abstraction. This is a central organising principle — what appears "cross-cutting" in a hierarchical content model is just an entity at a higher abstraction level that hasn't been named yet.
+The graph naturally contains entities at different levels of
+abstraction. This is a central organising principle — what appears
+"cross-cutting" in a hierarchical content model is just an entity at a
+higher abstraction level that hasn't been named yet.
 
 | Level          | Examples                                            | Schema.org `@type`                             | In Neo4j                     |
 | -------------- | --------------------------------------------------- | ---------------------------------------------- | ---------------------------- |
@@ -46,9 +71,15 @@ The graph naturally contains entities at different levels of abstraction. This i
 | Expressive     | PositioningNarrative, Capability, TiltVariant       | `Statement`, `DefinedTerm` + `additionalType`  | Nodes with text properties   |
 | Presentational | WebSite, CVPage, FrontPage, OGCard                  | `WebSite`, `ProfilePage`                       | Nodes defining traversals    |
 
-All entities are real and all have standard Schema.org types ([ADR-008](../../docs/architecture/decision-records/008-schema-org-compliance.md)). All migrate to Neo4j as labelled nodes. All can appear in JSON-LD. The difference between levels is abstraction, not validity.
+All entities are real and all have standard Schema.org types
+([ADR-008](../../docs/architecture/decision-records/008-schema-org-compliance.md)).
+All migrate to Neo4j as labelled nodes. All can appear in JSON-LD. The
+difference between levels is abstraction, not validity.
 
-In Neo4j, a Cypher query for the CV page traverses from `(:CVPage)-[:PRESENTS]->(:ProfessionalIdentity)-[:CLAIMS]->(:Capability)-[:GROUNDED_BY]->(:Role)`. The front page traverses a different path through the same graph. Different views, same reality, same database.
+In Neo4j, a Cypher query for the CV page traverses from
+`(:CVPage)-[:PRESENTS]->(:ProfessionalIdentity)-[:CLAIMS]->(:Capability)-[:GROUNDED_BY]->(:Role)`.
+The front page traverses a different path through the same graph.
+Different views, same reality, same database.
 
 ---
 
@@ -64,7 +95,7 @@ In Neo4j, a Cypher query for the CV page traverses from `(:CVPage)-[:PRESENTS]->
 
 ## Related
 
-- [personal-knowledge-graph.plan.md](../personal-knowledge-graph.plan.md) — the current work this future plan shapes
+- [personal-knowledge-graph.plan.md](../current/personal-knowledge-graph.plan.md) — the current work this icebox plan shapes
 - [ADR-008](../../docs/architecture/decision-records/008-schema-org-compliance.md) — Schema.org compliance throughout the graph; all entities have standard types
 - [Neo4j](https://neo4j.com/) — graph database
 - [Cypher Query Language](https://neo4j.com/docs/cypher-manual/current/) — Neo4j's query language

@@ -27,7 +27,7 @@ isProject: false
 Historical handoff note. Superseded by:
 
 - [personal-knowledge-graph-execution.plan.md](personal-knowledge-graph-execution.plan.md) for active PKG work
-- [visual-regression-harness.plan.md](../active/visual-regression-harness.plan.md) for harness-specific work
+- [visual-regression-harness.plan.md](../complete/visual-regression-harness.plan.md) for the completed harness proof record
 
 This file is retained because it contained intermediate closure reasoning that was not in `HEAD` and should not be thrown away.
 

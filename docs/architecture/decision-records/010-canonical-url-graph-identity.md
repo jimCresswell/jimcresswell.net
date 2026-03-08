@@ -84,6 +84,6 @@ During active development of the knowledge graph, the graph endpoint returns `Ca
 - [ADR-008: Schema.org compliance](008-schema-org-compliance.md) — the graph this ADR serves is Schema.org-compliant
 - [ADR-009: Content negotiation proxy](009-content-negotiation-proxy.md) — the routing mechanism
 - [ADR-007: DRY content and metadata consolidation](007-dry-content-metadata.md) — the single-source principle this extends
-- [personal-knowledge-graph.plan.md](../../../.agent/plans/personal-knowledge-graph.plan.md) — the plan that drives this architecture
+- [ADR-014: Entity model design](014-entity-model-design.md) — the durable knowledge-graph design this architecture now serves
 - `app/api/graph/route.ts` — the graph endpoint
 - `proxy.ts` — the content negotiation proxy

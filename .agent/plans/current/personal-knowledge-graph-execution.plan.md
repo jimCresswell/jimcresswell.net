@@ -19,10 +19,10 @@ todos:
     status: in_progress
   - id: phase3-regression-proof
     content: "Phase 3: Formal proof that PKG migration preserved visible site content"
-    status: pending
+    status: completed
   - id: historical-screenshots
     content: "Post-commit: capture full-page and sectional screenshots from the pre-PKG baseline commit"
-    status: pending
+    status: completed
   - id: phase5-linkedin
     content: "Phase 5: Derive all LinkedIn content from the graph (headline, About, experience, education, skills)"
     status: pending
@@ -50,7 +50,8 @@ This plan operationalises the PKG work:
 - [ADR-014](../../docs/architecture/decision-records/014-entity-model-design.md) and the related ADRs -- the canonical durable PKG design decisions
 - [Historical design working notes](personal-knowledge-graph.plan.md) -- entity audit and design exploration context
 - [Implementation plan](personal-knowledge-graph-implementation.plan.md) -- full phase/task plan with goals, impacts, and acceptance criteria
-- [Visual regression harness plan](../active/visual-regression-harness.plan.md) -- harness-specific refinements, acceptance criteria, and safety invariants
+- [Completed visual regression harness plan](../complete/visual-regression-harness.plan.md) -- the closed proof record and accepted PKG artefact decisions
+- [Visual regression harness icebox plan](../icebox/visual-regression-harness-enhancements.plan.md) -- non-active future harness enhancements
 
 This plan defines the HOW -- current status, reviewer invocations, skill activations, remaining PKG work, and quality gates.
 
@@ -68,33 +69,32 @@ Historical PKG work was committed on `feature/pkg-phase1-entity-model` and merge
 
 Automated gates pass on the current tree. Manual Schema.org Validator and Rich Results Test checks remain outstanding.
 
-The visual regression harness already exists and has recorded a first real run against `b76824a` vs `HEAD`. At PKG level, the only fact that matters here is: the historical proof remains incomplete because the recorded run surfaced semantic HTML differences that still need explicit review or resolution. Harness-specific refinement work now lives in [visual-regression-harness.plan.md](../active/visual-regression-harness.plan.md).
+The visual regression harness already exists and the historical proof is now closed for PKG purposes: the recorded `b76824a` versus `WORKTREE` run showed `0` unexpected pixel differences, while the remaining semantic HTML and metadata differences were explicitly approved and documented. The completed record lives in [visual-regression-harness.plan.md](../complete/visual-regression-harness.plan.md); non-active enhancement ideas live in [visual-regression-harness-enhancements.plan.md](../icebox/visual-regression-harness-enhancements.plan.md).
 
 **Dependency/tooling note:** the dependency refresh is complete. `eslint` is intentionally held at `9.x` because `eslint-config-next` is not yet compatible with `10.x` in this repo. ESLint now enforces the repo's policy against `as`, `!`, `vi.doMock`, and `vi.stubGlobal`.
 
 ### What to do next
 
-1. **Review the remaining regression differences with Jim** — the harness now reduces the remaining drift to the three `main.html` JSON-LD additions plus the deliberate canonical-link addition on `/cv/`. The section-level `id` differences are now contract-backed and auto-accepted.
-2. **Use the harness plan for tool work** — commit-addressed artifacts, reuse, and comparison filtering are tracked only in [visual-regression-harness.plan.md](../active/visual-regression-harness.plan.md).
-3. **Complete the still-missing entity-level and role-anchor binding** — keep the harness in the loop because the zero-difference rule still applies unless Jim approves specific exceptions.
-4. **Run Phase 4 manual validation** — Schema.org Validator and Rich Results Test once the binding/regression question is settled.
-5. **Phase 5** — LinkedIn as a derived view.
+1. **Run Phase 4 manual validation** — Schema.org Validator and Rich Results Test are now the main remaining external checks.
+2. **Complete any still-missing entity-level and role-anchor binding** — keep the harness in the loop if page output changes again.
+3. **Phase 5** — LinkedIn as a derived view.
 
 ### Key files to understand
 
-| File                                                            | Purpose                                                                               |
-| --------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| `content/entities.json`                                         | The entity model — JSON-LD `@graph` with ~50 entities at all abstraction levels       |
-| `lib/entities.ts`                                               | Zod schemas (17 types), discriminated union, parse at import, derive TypeScript types |
-| `lib/subgraph.ts`                                               | Subgraph closure algorithm — `extractSubgraph`, `findDanglingRefs`                    |
-| `lib/page-jsonld.ts`                                            | Page-specific JSON-LD subgraphs (`frontPageJsonLd`, `cvPageJsonLd`)                   |
-| `lib/jsonld.ts`                                                 | Full graph with URL rewriting (30 lines — thin layer over entity model)               |
-| `lib/rewrite-jsonld-urls.ts`                                    | Shared URL-rewrite helper with Zod re-validation                                      |
-| `lib/cv-content.ts`                                             | OG metadata — imports Person from entity model                                        |
-| `eslint.config.ts`                                              | Enforces no `as`, no `!`, no `vi.doMock` / `vi.stubGlobal`                            |
-| `docs/architecture/decision-records/014-entity-model-design.md` | ADR documenting the entity model design                                               |
-| `.agent/plans/active/visual-regression-harness.plan.md`         | Harness-specific roadmap, proof-tool refinements, and safety invariants               |
-| `visual-regression-harness/README.md`                           | Harness usage, artifact layout, and durable tool guidance                             |
+| File                                                                 | Purpose                                                                               |
+| -------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `content/entities.json`                                              | The entity model — JSON-LD `@graph` with ~50 entities at all abstraction levels       |
+| `lib/entities.ts`                                                    | Zod schemas (17 types), discriminated union, parse at import, derive TypeScript types |
+| `lib/subgraph.ts`                                                    | Subgraph closure algorithm — `extractSubgraph`, `findDanglingRefs`                    |
+| `lib/page-jsonld.ts`                                                 | Page-specific JSON-LD subgraphs (`frontPageJsonLd`, `cvPageJsonLd`)                   |
+| `lib/jsonld.ts`                                                      | Full graph with URL rewriting (30 lines — thin layer over entity model)               |
+| `lib/rewrite-jsonld-urls.ts`                                         | Shared URL-rewrite helper with Zod re-validation                                      |
+| `lib/cv-content.ts`                                                  | OG metadata — imports Person from entity model                                        |
+| `eslint.config.ts`                                                   | Enforces no `as`, no `!`, no `vi.doMock` / `vi.stubGlobal`                            |
+| `docs/architecture/decision-records/014-entity-model-design.md`      | ADR documenting the entity model design                                               |
+| `.agent/plans/complete/visual-regression-harness.plan.md`            | Closed harness proof record and accepted PKG artefact decisions                       |
+| `.agent/plans/icebox/visual-regression-harness-enhancements.plan.md` | Non-active future harness enhancements                                                |
+| `visual-regression-harness/README.md`                                | Harness usage, artifact layout, and durable tool guidance                             |
 
 ---
 
@@ -109,11 +109,12 @@ This section is critical for any fresh agent continuing Phase 4.
 - **Structured-data output is internally consistent.** `lib/entities.integration.test.ts`, `lib/jsonld.integration.test.ts`, and `lib/schema-org-check.integration.test.ts` prove referential integrity, published-graph behaviour, and schema-org vocabulary constraints for the validated PKG types.
 - **The full graph is richer than the old snapshot.** `lib/jsonld.integration.test.ts` asserts the current graph contains at least as many entities as the pre-migration snapshot.
 
-### What is NOT currently proven
+### What is now proven
 
-- **We do not yet have an accepted proof that the PKG migration left website output unchanged relative to the pre-migration site.**
-- We now have a recorded comparison harness run, but it still records semantic HTML differences that need approval or resolution.
-- The current E2E content-integrity tests prove correctness against the current JSON source, not preservation against the historical pre-migration rendering.
+- **We do now have an accepted proof that the PKG migration preserved the visual site output relative to the pre-migration baseline.**
+- The recorded harness run against `b76824a` versus `WORKTREE` produced `0` unexpected pixel differences across all captured screenshots.
+- The remaining semantic differences were reviewed and explicitly accepted as intentional data-layer additions: page-level JSON-LD blocks plus the corrected canonical metadata on `/cv/`.
+- The current E2E content-integrity tests continue to prove correctness against the current JSON source.
 
 ### What is now recorded
 
@@ -124,25 +125,27 @@ This section is critical for any fresh agent continuing Phase 4.
 - `document.html` now stays out of the review set unless there is a real document-level change such as the deliberate `/cv/` canonical-link addition.
 - Section-level CV anchor ids are now backed by `lib/page-document-contract.ts` and auto-accepted only when the target-only additions match that contract exactly.
 - The remaining review items are the `main.html` JSON-LD block additions on `/`, `/cv`, and `/cv/public_sector`, plus the deliberate `/cv/` canonical-link addition captured in `cv/document.html.diff.txt` and `cv/metadata.json.diff.txt`.
+- Those 5 semantic differences are now explicitly approved and documented in the completed harness plan and the harness README.
 
 ### Practical implication
 
-Do **not** claim “content unchanged” as a verified fact. The accurate statement is:
+Do **not** claim “HTML output unchanged” as a verified fact. The accurate statement is:
 
-- visible content appears stable and current behaviour passes all automated tests
-- but the historical regression proof remains incomplete until the recorded harness comparison is reviewed with Jim and any flagged differences are explicitly accepted or resolved
+- visible content is proven stable against the historical baseline
+- current behaviour passes all automated tests
+- the remaining differences are intentional machine-readable/document-metadata changes, not visual regressions
 
-The original design intent still stands: zero rendered differences unless Jim explicitly approves an exception. Use [visual-regression-harness.plan.md](../active/visual-regression-harness.plan.md) for the harness-side work needed to close the proof gap.
+The original design intent still stands: zero rendered differences unless Jim explicitly approves an exception. That approval now exists for the remaining PKG proof artefacts. Use the completed [visual-regression-harness.plan.md](../complete/visual-regression-harness.plan.md) as the record and the [icebox harness plan](../icebox/visual-regression-harness-enhancements.plan.md) only for future non-active tool work.
 
 ### Historical screenshot requirement (Jim instruction, 2026-03-08)
 
-Once the current PKG follow-up work is committed, take screenshots of **every part of every page** from the point in git history **before PKG work started**.
+This requirement has now been satisfied by the recorded harness captures from the pre-PKG baseline commit.
 
 - **Baseline commit:** `b76824a` (`docs: make Practice properly self-contained`) — this is the last commit before the PKG-related plan/doc commits (`a7e5ecd`, `b29dad9`) and before the PKG implementation commits (`4712590`, `0d6c112`).
 - **Safety requirement:** do **not** rewrite history, reset branches, or risk the current worktree. Prefer the new `visual-regression-harness/` export path, which reads refs with `git archive` and never touches the caller's worktree, index, branches, or history.
 - **Scope:** capture the homepage (`/`), CV (`/cv`), public-sector variant (`/cv/public_sector`), and any other live pages required for a complete visual baseline. For each page, capture both the full page and the constituent sections so later comparison can be granular.
 - **Purpose:** produce a trustworthy pre-PKG visual baseline so we can compare the current site against a point-in-time snapshot from before the entity-model migration began.
-- **Do not perform this step until the current work is committed.**
+- **Status:** complete. The baseline screenshots and sectional captures are now present under the recorded harness artifacts.
 
 ---
 
@@ -474,10 +477,10 @@ Throughout all phases:
 - [Design reference](personal-knowledge-graph.plan.md) -- entity inventory, principles, Schema.org conventions (the WHY)
 - [Implementation plan](personal-knowledge-graph-implementation.plan.md) -- full phase/task plan with acceptance criteria (the WHAT)
 - [Historical design working notes](personal-knowledge-graph.plan.md) -- design exploration and audit context
-- [Visual regression harness plan](../active/visual-regression-harness.plan.md) -- harness-specific work and acceptance criteria
+- [Completed visual regression harness plan](../complete/visual-regression-harness.plan.md) -- closed proof record and accepted artefact decisions
 - [linkedin-update.plan.md](linkedin-update.plan.md) -- subsumed LinkedIn reference plan
 - [PKG research findings](research/pkg-research-findings.md) -- Schema.org, JSON-LD, Google structured data, Neo4j research
-- [Neo4j future plan](future/neo4j-knowledge-graph.plan.md) -- shapes design decisions
+- [Neo4j icebox plan](../icebox/neo4j-knowledge-graph.plan.md) -- shapes design decisions
 - [ADR-007](../../docs/architecture/decision-records/007-dry-content-metadata.md) -- single-source approach
 - [ADR-008](../../docs/architecture/decision-records/008-schema-org-compliance.md) -- Schema.org compliance
 - [ADR-010](../../docs/architecture/decision-records/010-canonical-url-graph-identity.md) -- canonical URL and graph identity
