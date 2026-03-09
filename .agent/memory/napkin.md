@@ -183,3 +183,61 @@
 - If something is genuinely transient, the cleanup step must be explicit in the
   integration flow. "Safe to delete" is weaker than "remove it when done" and
   leaves avoidable ambiguity behind.
+
+## Session: 2026-03-09 — AGENTS Drift Cleanup
+
+### What Was Done
+
+- Validated a user correction to `AGENTS.md` against the actual Codex adapter
+  layout in `.agents/skills/`, `.codex/`, and the canonical reviewer templates
+- Strengthened `.codex/README.md` so the durable Codex model explicitly states
+  that reviewer sub-agents are not skills
+- Promoted the relative-link audit lesson into `jc-consolidate-docs.md`
+- Removed stale pending-distillation residue from `AGENTS.md` and restored the
+  collaborative-credit anchor so the landing pad does not silently lose
+  anti-duplication protection
+- Tightened the outgoing practice-context package so it carries only
+  high-signal local rationale
+- Added a repo-specific Codex adoption report to
+  `.agent/practice-context/outgoing/` so future repos can learn from a
+  completed first-class Codex wiring without pushing that platform detail into
+  the portable Core
+- Corrected the practice-context lifecycle model so `outgoing/` is
+  sender-maintained support material that can build up over time, while
+  `incoming/` is the receiver-side transient surface that must be cleared after
+  integration
+- Updated the consolidation command so changelog updates now trigger an
+  explicit check for whether a supporting outgoing-context note would help a
+  receiving repo
+
+### Patterns to Remember
+
+- If `AGENTS.md` holds stable structural truth, graduate that truth to the
+  canonical docs and keep anchors where appropriate. Landing pads are useful
+  entry points, but they are bad long-term owners of behaviour.
+- The outgoing/incoming split only works if the lifecycle is asymmetric:
+  outgoing may persist and accumulate; incoming must be read, integrated, and
+  then cleared.
+
+## Session: 2026-03-09 — Consolidation Audit Follow-Through
+
+### What Was Done
+
+- Re-ran the consolidation audit after the practice-context, Codex, and
+  changelog-lifecycle work
+- Confirmed the practice box is clean: `.agent/practice-core/incoming/`
+  contains only `.gitkeep`, and `.agent/practice-context/incoming/` contains
+  only its README
+- Tightened stale wording in `lib/cv-content.ts` and ADR-007 so they no longer
+  imply a still-current single-source content model
+- Reclaimed a few lines of headroom in `practice-lineage.md` and
+  `practice-bootstrap.md` so the fitness ceilings stay meaningful
+
+### Patterns to Remember
+
+- Historical ADRs can stay accepted and still need clarification notes when the
+  current architecture has moved on. The goal is not to rewrite history; it is
+  to stop historical wording from masquerading as current truth.
+- Ceiling compliance with zero headroom is fragile. If a core file is sitting
+  one line below its limit, tighten it before the next small change turns
+  routine upkeep into forced restructuring.

@@ -82,15 +82,20 @@ components/                  # React components
   skip-link.tsx              # Keyboard accessibility skip link
   theme-provider.tsx         # next-themes wrapper
 
-content/                     # Content JSON (single source of truth for all copy)
-  cv.content.json            # CV content, tilt variants, links, metadata source
-  frontpage.content.json     # Homepage content
+content/                     # Page-composition JSON plus machine-readable entity graph
+  cv.content.json            # CV content, tilt variants, links, and editorial metadata
+  frontpage.content.json     # Homepage content and editorial metadata
+  entities.json              # Entity graph for JSON-LD and graph-facing metadata
 
 lib/                         # Utility functions and types
   cv-content.ts              # Content accessors and tilt helpers
+  entities.ts                # Entity-graph validation and derived types
+  page-jsonld.ts             # Page-specific JSON-LD subgraph builder
+  page-document-contract.ts  # Shared page identity and anchor contract
   parse-markdown-links.tsx   # Parses [text](url) in content strings
   pdf-config.ts              # PDF deploy key and path utilities
   jsonld.ts                  # Schema.org JSON-LD structured data builder
+  search-structured-data.ts  # Rich-result-facing structured-data validation
   strip-inline-markdown.ts   # Strips markdown syntax for plain-text contexts
 
 proxy.ts                     # Content negotiation (markdown, JSON-LD, .md aliases)

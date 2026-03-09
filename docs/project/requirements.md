@@ -72,7 +72,7 @@ All user-visible text must come from content JSON files (`content/`).
 
 - Components render content verbatim — they do not invent, summarise, or reorder text.
 - Content changes are made in the JSON files, not in component code.
-- This ensures a single source of truth for all copy.
+- This keeps visible copy in explicit content files rather than scattering it through component code.
 
 ---
 

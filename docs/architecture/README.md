@@ -130,22 +130,23 @@ To test the full Blob path locally, add `BLOB_READ_WRITE_TOKEN` to `.env.local` 
 
 All significant architectural decisions are recorded as ADRs in [decision-records/](decision-records/). Editorial decisions about content framing, voice, and language are recorded as EDRs in [../editorial/decision-records/](../editorial/decision-records/).
 
-| ADR                                                                      | Title                                                             |
-| ------------------------------------------------------------------------ | ----------------------------------------------------------------- |
-| [001](decision-records/001-build-time-pdf-generation.md)                 | Build-time PDF generation with Puppeteer                          |
-| [002](decision-records/002-pdf-serving-architecture.md)                  | PDF serving via Route Handler at /cv/pdf                          |
-| [003](decision-records/003-print-button-removed.md)                      | Print button removed in favour of PDF download                    |
-| [004](decision-records/004-storybook-deferred.md)                        | Storybook deferred in favour of RTL + Vitest                      |
-| [005](decision-records/005-knip-unused-code-detection.md)                | Knip for unused code and dependency detection                     |
-| [006](decision-records/006-header-responsive-layout.md)                  | Header responsive layout                                          |
-| [007](decision-records/007-dry-content-metadata.md)                      | DRY content and metadata consolidation                            |
-| [008](decision-records/008-schema-org-compliance.md)                     | Schema.org compliance for the knowledge graph                     |
-| [009](decision-records/009-content-negotiation-proxy.md)                 | Content negotiation via Next.js proxy                             |
-| [010](decision-records/010-canonical-url-graph-identity.md)              | Canonical URL and graph identity                                  |
-| [011](decision-records/011-domain-appropriate-descriptions.md)           | Domain-appropriate descriptions                                   |
-| [012](decision-records/012-agent-memory-pipeline.md)                     | Agent memory pipeline                                             |
-| [013](decision-records/013-security-headers.md)                          | Security headers and Content Security Policy                      |
-| [014](decision-records/014-entity-model-design.md)                       | Entity model design for the personal knowledge graph              |
-| [015](decision-records/015-codex-adapter-model.md)                       | Codex adapter model for skills, reviewers, and always-on guidance |
-| [016](decision-records/016-review-oriented-visual-regression-harness.md) | Review-oriented visual regression harness for exported refs       |
-| [017](decision-records/017-cv-tilt-routes-are-canonical-aliases.md)      | CV tilt routes are canonical aliases of the base CV page          |
+| ADR                                                                          | Title                                                             |
+| ---------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| [001](decision-records/001-build-time-pdf-generation.md)                     | Build-time PDF generation with Puppeteer                          |
+| [002](decision-records/002-pdf-serving-architecture.md)                      | PDF serving via Route Handler at /cv/pdf                          |
+| [003](decision-records/003-print-button-removed.md)                          | Print button removed in favour of PDF download                    |
+| [004](decision-records/004-storybook-deferred.md)                            | Storybook deferred in favour of RTL + Vitest                      |
+| [005](decision-records/005-knip-unused-code-detection.md)                    | Knip for unused code and dependency detection                     |
+| [006](decision-records/006-header-responsive-layout.md)                      | Header responsive layout                                          |
+| [007](decision-records/007-dry-content-metadata.md)                          | DRY content and metadata consolidation                            |
+| [008](decision-records/008-schema-org-compliance.md)                         | Schema.org compliance for the knowledge graph                     |
+| [009](decision-records/009-content-negotiation-proxy.md)                     | Content negotiation via Next.js proxy                             |
+| [010](decision-records/010-canonical-url-graph-identity.md)                  | Canonical URL and graph identity                                  |
+| [011](decision-records/011-domain-appropriate-descriptions.md)               | Domain-appropriate descriptions                                   |
+| [012](decision-records/012-agent-memory-pipeline.md)                         | Agent memory pipeline                                             |
+| [013](decision-records/013-security-headers.md)                              | Security headers and Content Security Policy                      |
+| [014](decision-records/014-entity-model-design.md)                           | Entity model design for the personal knowledge graph              |
+| [015](decision-records/015-codex-adapter-model.md)                           | Codex adapter model for skills, reviewers, and always-on guidance |
+| [016](decision-records/016-review-oriented-visual-regression-harness.md)     | Review-oriented visual regression harness for exported refs       |
+| [017](decision-records/017-cv-tilt-routes-are-canonical-aliases.md)          | CV tilt routes are canonical aliases of the base CV page          |
+| [018](decision-records/018-practice-context-adjunct-for-plasmid-exchange.md) | Practice-context adjunct for plasmid exchange                     |

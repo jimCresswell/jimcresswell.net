@@ -5,10 +5,10 @@ Agent direction lives in [AGENT.md](.agent/directives/AGENT.md), read it.
 ## Codex Adapter Model
 
 - `.agent/` contains the canonical skills, rules, commands, and reviewer templates.
-- `.agents/skills/` contains the Codex adapters for repo-local skills and `jc-*` commands.
+- `.agents/skills/` contains the Codex adapters for repo-local skills and `jc-*` commands. Sub-agents are not skills and live in `.codex/`.
 - `.codex/config.toml` registers the real Codex reviewer sub-agents, with thin per-agent adapters under `.codex/agents/`.
 - Always-on behaviour comes from this entry point plus [AGENT.md](.agent/directives/AGENT.md) and the canonical rules in `.agent/rules/`; there is no separate `.agents/rules/` layer.
-- If a canonical rule tells you to invoke a command or skill, use the corresponding `.agents/skills/` adapter. Reviewer roles remain canonical in `.agent/sub-agents/templates/` and should be wired through `.codex/`, not `.agents/skills/`.
+- If a canonical rule tells you to invoke a command or skill, use the corresponding `.agents/skills/` adapter. Reviewer roles remain canonical in `.agent/sub-agents/templates/` and are wired through platform-specific configuration, in this case of Codex in `.codex/`, see [.codex/README.md](.codex/README.md).
 
 Entries below are landing pads for the continual-learning skill.
 During distillation, entries are moved to permanent docs and
@@ -41,9 +41,3 @@ Anchored (already in permanent docs — do not re-add):
 - Print button removed → [ADR-003](docs/architecture/decision-records/003-print-button-removed.md)
 - JSON-LD ID convention → [ADR-010](docs/architecture/decision-records/010-canonical-url-graph-identity.md)
 - Schema.org compliance → [ADR-008](docs/architecture/decision-records/008-schema-org-compliance.md)
-
-Pending distillation:
-
-- `jc-start-right` workflow ownership is in `.agent/prompts/start-right.prompt.md`; `.agent/commands/jc-start-right.md` stays a thin wrapper.
-- PKG planning keeps one live plan in `.agent/plans/current/`; superseded handoff notes and phase/design artefacts belong in `complete/` or `research/`.
-- After plan-directory moves, run a relative-link audit from each file's own directory to catch stale `../` assumptions.

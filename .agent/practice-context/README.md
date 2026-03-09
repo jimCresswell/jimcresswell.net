@@ -1,13 +1,15 @@
 # Practice Context
 
-This directory is optional and ephemeral.
+This directory is optional and outside the Practice Core.
 
-It is **not** part of the Practice Core. The Core remains the required
-six-file package in `.agent/practice-core/`.
+The Core remains the required six-file package in `.agent/practice-core/`.
+This directory exists to help Practice exchanges travel with a little extra
+context without bloating the Core itself.
 
-Use this directory for extra export or integration context that may help a
-receiving repo understand the sending repo's situation, priorities, or local
-adaptations.
+## Structure
 
-This directory is transient integration material. Remove it when the exchange
-is complete.
+- `outgoing/` — sender-maintained supporting context; may build up over time
+- `incoming/` — received support material and temporary integration notes
+
+`incoming/` is transient. Clear its received files after integration.
+`outgoing/` may remain as the sender's accumulated support material.

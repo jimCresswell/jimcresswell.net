@@ -19,6 +19,13 @@ The site had four separate files containing overlapping editorial content:
 
 The descriptive text in these files overlapped: the OG description, JSON-LD Person description, and manifest description all paraphrased the same positioning. When the headline and first paragraph were reworked editorially, three files needed manual updates to stay in sync. This violated DRY and created a practical obstacle to editorial iteration.
 
+This ADR records that consolidation step. The repo has since evolved into a
+two-layer content model: page-composition JSON still drives visible rendering,
+while the entity graph drives JSON-LD and some graph-facing metadata. The
+current implementation truth now lives in the architecture overview,
+`content-model.md`, and [ADR-014](014-entity-model-design.md). This ADR remains
+the historical decision to collapse the original four-file duplication.
+
 ### Options evaluated
 
 1. **Keep separate files, synchronise manually.** Simple to understand but error-prone. Any editorial change requires updating multiple files.
@@ -58,7 +65,7 @@ A `meta.summary` field was added to `cv.content.json` to serve as the single sho
 
 ## Related
 
-- `content/cv.content.json` — single source of truth
+- `content/cv.content.json` — initial consolidated content source
 - `lib/cv-content.ts` — OG metadata derivation
 - `lib/jsonld.ts` — JSON-LD graph construction
 - `app/manifest.ts` — dynamic manifest generation

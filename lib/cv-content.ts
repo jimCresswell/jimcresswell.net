@@ -3,8 +3,8 @@
  *
  * Editorial prose lives in `content/cv.content.json`. Shared entity data
  * (Person name, description, links) comes from the entity model. Derived
- * metadata (Open Graph) is constructed here so that changes flow through
- * a single source of truth. JSON-LD is constructed in {@link ./jsonld.ts}.
+ * metadata (Open Graph) is constructed here so editorial and entity-backed
+ * fields stay aligned. JSON-LD is constructed in {@link ./jsonld.ts}.
  */
 import cvContentJson from "@/content/cv.content.json";
 import { person } from "./entities";

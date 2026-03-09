@@ -319,7 +319,7 @@ All prompts carry YAML frontmatter: `prompt_id`, `title`, `type` (workflow | han
 
 ### start-right.prompt.md
 
-The session entry point. Sections: **Foundation Documents** (AGENT.md, rules.md, testing-strategy.md), **Guiding Questions** (right problem? right layer? simpler? assumptions?), **Practice Box** (check `.agent/practice-core/incoming/`), **Process** (discuss first step with user), **Quality Gates**.
+The session entry point. Sections: **Foundation Documents** (AGENT.md, rules.md, testing-strategy.md), **Guiding Questions** (right problem? right layer? simpler? assumptions?), **Practice Box** (check `.agent/practice-core/incoming/`; note `.agent/practice-context/incoming/` if present), **Process** (discuss first step with user), **Quality Gates**.
 
 ## Skills (.agent/skills/)
 
@@ -385,7 +385,7 @@ Each platform requires configuration files (e.g. Cursor's `.cursor/environment.j
 
 After creating all files, validate:
 
-1. `.agent/practice-core/` contains all six practice-core files (`practice.md`, `practice-lineage.md`, `practice-bootstrap.md`, `README.md`, `index.md`, `CHANGELOG.md`) and `incoming/.gitkeep`.
+1. `.agent/practice-core/` contains all six practice-core files (`practice.md`, `practice-lineage.md`, `practice-bootstrap.md`, `README.md`, `index.md`, `CHANGELOG.md`) and `incoming/.gitkeep`. Optional `.agent/practice-context/` is not required; `incoming/` there is transient.
 2. `.agent/practice-index.md` exists, all its links resolve, and its sections match the format specified above.
 3. `AGENT.md` links to `.agent/practice-core/index.md`.
 4. Every file path referenced in AGENT.md, rules, commands, and agents resolves.

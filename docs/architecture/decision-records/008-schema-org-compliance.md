@@ -10,7 +10,9 @@ Accepted
 
 ## Context
 
-The site is evolving from a single content file (`cv.content.json`) with derived metadata (ADR-007) towards a personal knowledge graph — a unified entity model where all site outputs (page rendering, Open Graph, JSON-LD, Web App Manifest, sitemap, PDF) are derived views onto the same underlying reality. That model is now recorded durably in [ADR-014](014-entity-model-design.md).
+The site is evolving from a single content file (`cv.content.json`) with derived metadata (ADR-007) towards a personal knowledge graph — a unified entity model intended to let all site outputs (page rendering, Open Graph, JSON-LD, Web App Manifest, sitemap, PDF) derive from the same underlying reality. That target layered design is now recorded durably in [ADR-014](014-entity-model-design.md).
+
+At the time of this ADR, and still in the current implementation, the JSON-LD and graph-facing layers are ahead of page-composition adoption. The current implementation truth lives in the architecture overview and content-model docs; this ADR constrains the graph design and publication model rather than asserting that full graph-backed page composition has already been achieved.
 
 The knowledge graph models real entities at multiple levels of abstraction:
 
@@ -104,7 +106,7 @@ Some entities appear in the JSON-LD structured data but not on visible pages. Th
 
 ### How this evolves ADR-007
 
-ADR-007 established `cv.content.json` as the single source of truth, with JSON-LD derived from it in `lib/jsonld.ts`. This ADR extends that principle: the knowledge graph is the new single source, and JSON-LD remains a derived view — but now the view can express the full graph because every entity has a standard Schema.org type. The `lib/jsonld.ts` module-level constants (`KNOWS_ABOUT`, `PUBLICATIONS`, `OCCUPATION`, `CREDENTIAL_DETAILS`) move into the content model as entities in the graph.
+ADR-007 established `cv.content.json` as the single source of truth, with JSON-LD derived from it in `lib/jsonld.ts`. This ADR extends that principle at the graph-expression layer: the knowledge graph becomes the canonical source for graph entities and JSON-LD publication, while broader graph-backed page composition remains a later adoption step recorded in [ADR-014](014-entity-model-design.md). The `lib/jsonld.ts` module-level constants (`KNOWS_ABOUT`, `PUBLICATIONS`, `OCCUPATION`, `CREDENTIAL_DETAILS`) move into the content model as entities in the graph.
 
 ## Consequences
 

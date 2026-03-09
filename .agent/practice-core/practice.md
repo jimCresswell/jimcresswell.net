@@ -196,7 +196,7 @@ The practice is not confined to a single repo. It travels as a package of six fi
 
 The trinity files always carry YAML frontmatter with a `provenance` array (recording the chain of repos that have evolved the file, each with a `purpose` describing what the Practice is being used for there) and a `fitness_ceiling`. The frontmatter must be complete at all times — files can be copied by anyone at any moment, not only through agent-mediated propagation.
 
-The mechanism is documented in [practice-lineage.md](practice-lineage.md), which serves as both the reference for how exchange works and the source template for outbound propagation.
+The mechanism is documented in [practice-lineage.md](practice-lineage.md), which serves as both the reference for how exchange works and the source template for outbound propagation. Optional exchange context may travel separately in `.agent/practice-context/`, with sender-maintained `outgoing/` material copied into receiver-side `incoming/` when needed.
 
 ### The Practice Box
 
@@ -212,7 +212,7 @@ Principles about the Practice itself, discovered through propagation and evoluti
 - **Separate universal from domain-specific at the file level.** When rules about TDD live in the same file as rules about a specific schema, portability requires line-by-line editing.
 - **If a behaviour must be automatic, it needs a rule, not just a skill.** Skills are documentation — they depend on being discovered and invoked. Always-applied rules fire on every interaction. The learning loop's capture stage (napkin) must be enforced by a rule to be genuinely always-on.
 - **Plasmids need a provenance chain, not just an origin.** A file that only records where it was created will be dismissed by its origin repo as "already mine." The provenance array records every repo that has evolved the file; the last entry tells the receiving repo whether the file has been somewhere new.
-- **Practice-core files must be self-contained.** No navigable markdown links to files outside `practice-core/`, except to `../practice-index.md` — the one known bridge file that practice-core specifies and the hydration process creates. All other external paths appear as code-formatted text only. Self-containment is what makes the Practice transferable.
+- **Practice-core files must be self-contained.** No navigable markdown links to files outside `practice-core/`, except to `../practice-index.md` — the one known bridge file that practice-core specifies and the hydration process creates. All other external paths appear as code-formatted text only. Exchange-specific context belongs in adjacent `.agent/practice-context/`, not in the Core itself.
 
 The full set of Learned Principles, including those about silent degradation, discoverability trade-offs, and stable indexes, is maintained in [practice-lineage.md](practice-lineage.md) §Learned Principles.
 

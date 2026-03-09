@@ -22,25 +22,26 @@ For the practice-core files and their roles, see
 
 ## Architectural Decisions
 
-| ADR                                                                                               | Subject                          |
-| ------------------------------------------------------------------------------------------------- | -------------------------------- |
-| [ADR-001](../docs/architecture/decision-records/001-build-time-pdf-generation.md)                 | Build-time PDF generation        |
-| [ADR-002](../docs/architecture/decision-records/002-pdf-serving-architecture.md)                  | PDF serving architecture         |
-| [ADR-003](../docs/architecture/decision-records/003-print-button-removed.md)                      | Print button removed             |
-| [ADR-004](../docs/architecture/decision-records/004-storybook-deferred.md)                        | Storybook deferred               |
-| [ADR-005](../docs/architecture/decision-records/005-knip-unused-code-detection.md)                | Knip unused code detection       |
-| [ADR-006](../docs/architecture/decision-records/006-header-responsive-layout.md)                  | Header responsive layout         |
-| [ADR-007](../docs/architecture/decision-records/007-dry-content-metadata.md)                      | DRY content metadata             |
-| [ADR-008](../docs/architecture/decision-records/008-schema-org-compliance.md)                     | Schema.org compliance            |
-| [ADR-009](../docs/architecture/decision-records/009-content-negotiation-proxy.md)                 | Content negotiation proxy        |
-| [ADR-010](../docs/architecture/decision-records/010-canonical-url-graph-identity.md)              | Canonical URL and graph identity |
-| [ADR-011](../docs/architecture/decision-records/011-domain-appropriate-descriptions.md)           | Domain-appropriate descriptions  |
-| [ADR-012](../docs/architecture/decision-records/012-agent-memory-pipeline.md)                     | Agent memory pipeline            |
-| [ADR-013](../docs/architecture/decision-records/013-security-headers.md)                          | Security headers                 |
-| [ADR-014](../docs/architecture/decision-records/014-entity-model-design.md)                       | Entity model design              |
-| [ADR-015](../docs/architecture/decision-records/015-codex-adapter-model.md)                       | Codex adapter model              |
-| [ADR-016](../docs/architecture/decision-records/016-review-oriented-visual-regression-harness.md) | Visual regression harness        |
-| [ADR-017](../docs/architecture/decision-records/017-cv-tilt-routes-are-canonical-aliases.md)      | CV tilt route aliases            |
+| ADR                                                                                                   | Subject                          |
+| ----------------------------------------------------------------------------------------------------- | -------------------------------- |
+| [ADR-001](../docs/architecture/decision-records/001-build-time-pdf-generation.md)                     | Build-time PDF generation        |
+| [ADR-002](../docs/architecture/decision-records/002-pdf-serving-architecture.md)                      | PDF serving architecture         |
+| [ADR-003](../docs/architecture/decision-records/003-print-button-removed.md)                          | Print button removed             |
+| [ADR-004](../docs/architecture/decision-records/004-storybook-deferred.md)                            | Storybook deferred               |
+| [ADR-005](../docs/architecture/decision-records/005-knip-unused-code-detection.md)                    | Knip unused code detection       |
+| [ADR-006](../docs/architecture/decision-records/006-header-responsive-layout.md)                      | Header responsive layout         |
+| [ADR-007](../docs/architecture/decision-records/007-dry-content-metadata.md)                          | DRY content metadata             |
+| [ADR-008](../docs/architecture/decision-records/008-schema-org-compliance.md)                         | Schema.org compliance            |
+| [ADR-009](../docs/architecture/decision-records/009-content-negotiation-proxy.md)                     | Content negotiation proxy        |
+| [ADR-010](../docs/architecture/decision-records/010-canonical-url-graph-identity.md)                  | Canonical URL and graph identity |
+| [ADR-011](../docs/architecture/decision-records/011-domain-appropriate-descriptions.md)               | Domain-appropriate descriptions  |
+| [ADR-012](../docs/architecture/decision-records/012-agent-memory-pipeline.md)                         | Agent memory pipeline            |
+| [ADR-013](../docs/architecture/decision-records/013-security-headers.md)                              | Security headers                 |
+| [ADR-014](../docs/architecture/decision-records/014-entity-model-design.md)                           | Entity model design              |
+| [ADR-015](../docs/architecture/decision-records/015-codex-adapter-model.md)                           | Codex adapter model              |
+| [ADR-016](../docs/architecture/decision-records/016-review-oriented-visual-regression-harness.md)     | Visual regression harness        |
+| [ADR-017](../docs/architecture/decision-records/017-cv-tilt-routes-are-canonical-aliases.md)          | CV tilt route aliases            |
+| [ADR-018](../docs/architecture/decision-records/018-practice-context-adjunct-for-plasmid-exchange.md) | Practice exchange context        |
 
 ## Tools and Workflows
 

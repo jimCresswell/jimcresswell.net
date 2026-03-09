@@ -10,7 +10,7 @@ practice-core package.
 - Updated `practice-lineage.md` so the metacognition prompt and `plan` command both carry the outcome-to-value bridge explicitly
 - Tightened `practice.md` to treat plan templates as optional supporting artefacts rather than a required `.agent/plans/templates/` layer
 - Updated the bootstrap practice-index template so `.agent/plans/` no longer implies a mandatory templates subtree
-- Added an optional `.agent/practice-context/` adjunct pattern with lightweight export, hydration, and integration guidance; it is explicitly outside the Core and must be removed when the exchange is complete
+- Added an optional `.agent/practice-context/` adjunct pattern with sender-maintained `outgoing/` support material and transient receiver-side `incoming/`; clear `incoming/` after integration and let agents consider supporting outgoing files when a changelog entry alone would be too thin
 
 ## [new-cv] 2026-03-08
 

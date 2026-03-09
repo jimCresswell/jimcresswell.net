@@ -35,9 +35,9 @@ The practice-core files are **portable** — they travel between repos and must 
 
 The `incoming/` directory is the practice box. When practice-core files arrive from another repo, they land here. Check it at session start (via `start-right`) and during consolidation. See the Integration Flow in `practice-lineage.md` for details.
 
-If `.agent/practice-context/` exists, read it as supporting context during
-hydration or integration. It is optional, ephemeral, and should be removed when
-the exchange is complete.
+If `.agent/practice-context/` exists, read `README.md` and `incoming/` as
+received support during hydration or integration. `incoming/` is transient and
+should be cleared after integration. Local `outgoing/` may persist.
 
 ## Cold Start -- Hydrating a New Repo
 
@@ -49,5 +49,5 @@ If the practice-core files have been placed somewhere other than `.agent/practic
 
 Then follow the Growing a Practice section in [practice-lineage.md](practice-lineage.md). The templates in [practice-bootstrap.md](practice-bootstrap.md) provide artefact specifications -- adapt ALL templates to local tooling and conventions. The templates use TypeScript/Node.js as concrete examples; substitute your ecosystem's equivalents. As part of hydration, create `.agent/practice-index.md` -- the bridge file that carries navigable links to the local repo's artefacts (see the template in [practice-bootstrap.md](practice-bootstrap.md)). See the Bootstrap Checklist in [practice-bootstrap.md](practice-bootstrap.md) for validation.
 
-If `.agent/practice-context/` exists, read it before adapting the Practice. It
-may contain useful local framing from the sending repo.
+If `.agent/practice-context/` exists, read `incoming/` before adapting the
+Practice. It may contain useful framing from the sending repo.
