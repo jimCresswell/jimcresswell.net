@@ -1,4 +1,4 @@
 interface:
   display_name: "Consolidate Docs"
   short_description: "Update plans, memory, and permanent docs coherently"
-  default_prompt: "Use $jc-consolidate-docs to reconcile plans, prompts, napkin, distilled knowledge, and permanent documentation so they are up to date and internally consistent."
+  default_prompt: "Use $jc-consolidate-docs to reconcile plans, prompts, AGENTS.md, napkin, distilled knowledge, and permanent documentation so they are up to date and internally consistent."
