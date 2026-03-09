@@ -1,5 +1,51 @@
 # Napkin
 
+## Session: 2026-03-09 — Track A External Validator Evidence
+
+### What Was Done
+
+- Continued Track A Phase A4 from the live execution handoff rather than
+  starting a new audit
+- Captured the first external-validator evidence note in
+  `.agent/plans/research/graph-rich-result-external-validator-evidence.md`
+- Recorded a successful Schema.org Validator code-mode result for the deployed
+  home-page inline JSON-LD snippet: zero errors, zero warnings
+- Recorded the live validator-side limitations that blocked clean external
+  proof closure:
+  Schema.org URL mode initially claimed the live home URL was not reachable,
+  later requests were redirected into Google's anti-abuse `sorry` flow, and
+  Google Rich Results Test returned `Something went wrong` for both `/` and
+  `/cv/`
+- Updated the roadmap, execution plan, and adjacent proof notes so the new A4
+  note is discoverable and Track A remains explicitly active in Phase A4
+- Ran a follow-up consolidate-docs pass to update the active A4 handoff prompt
+  and the negotiated-media-type slice note so the next session starts from the
+  partial external-validator evidence rather than re-opening already-captured
+  proof
+- Ran the required gate sequence in order:
+  `pnpm format:fix`, `pnpm markdownlint:fix`, `pnpm lint:fix`,
+  `pnpm typecheck`, `pnpm test`, `pnpm knip`, `pnpm gitleaks`,
+  `pnpm test:e2e`
+
+### Mistakes Made
+
+- Started by trying to drive the validator UIs repeatedly. With these tools,
+  repeated automation attempts can trigger anti-abuse behaviour quickly and
+  make later runs less useful than the first successful one.
+
+### Patterns to Remember
+
+- For Track A external validation, start with the emitted live inline JSON-LD
+  snippet and use validator code mode before spending time on URL mode.
+- Record exact external-tool messages. For this slice, the important proof was
+  not only the home Schema.org pass but also the difference between semantic
+  validator feedback and validator-side infrastructure failure.
+- If external validators become unstable, update the live proof note and keep
+  Phase A4 active. Do not silently treat missing external proof as closed.
+- When the proof note changes phase handoff truth, update the active prompt in
+  the same pass. Otherwise the next session starts from stale instructions even
+  when the plans are accurate.
+
 ## Session: 2026-03-09 — Consolidate Docs
 
 ### What Was Done

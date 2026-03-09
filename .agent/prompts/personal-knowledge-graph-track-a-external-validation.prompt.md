@@ -26,8 +26,9 @@ Use
 10. `/Users/jim/code/personal/new-cv/.agent/plans/research/graph-publication-output-audit.md`
 11. `/Users/jim/code/personal/new-cv/.agent/plans/research/graph-negotiated-media-type-refinement.md`
 12. `/Users/jim/code/personal/new-cv/.agent/plans/research/graph-cv-metadata-description-proof.md`
-13. `/Users/jim/code/personal/new-cv/docs/architecture/README.md`
-14. `/Users/jim/code/personal/new-cv/docs/architecture/content-model.md`
+13. `/Users/jim/code/personal/new-cv/.agent/plans/research/graph-rich-result-external-validator-evidence.md`
+14. `/Users/jim/code/personal/new-cv/docs/architecture/README.md`
+15. `/Users/jim/code/personal/new-cv/docs/architecture/content-model.md`
 
 ## Grounding truths to preserve
 
@@ -38,8 +39,13 @@ Use
 - The negotiated media-type slice, home-page emitted-channel proof slice,
   manifest proof slice, and CV metadata description proof slice are complete.
 - Do not start a new audit.
-- The next task is Track A Phase A4 external validator evidence for the
-  rich-result-facing inline graphs on `/` and `/cv/`.
+- External-validator evidence is already partially recorded for Track A Phase
+  A4.
+- The home-page Schema.org Validator code-mode proof has already been captured.
+- The remaining task is to continue from that proof record and determine
+  whether the remaining `/cv/` Schema.org result and Google Rich Results Test
+  verdicts can be captured cleanly or must be recorded as current tool-side
+  limits.
 - Visible HTML still comes from `content/cv.content.json` and
   `content/frontpage.content.json`.
 - The graph currently drives JSON-LD, the manifest, and some metadata.
@@ -50,7 +56,11 @@ Use
 ## Start from the live execution handoff
 
 - begin with the existing Track A proof record, not with new enrichment
-- capture external validator evidence for `/` and `/cv/`
+- continue from
+  `graph-rich-result-external-validator-evidence.md`, not from the older A3
+  proof notes alone
+- do not re-capture the already-recorded home-page Schema.org code-mode pass
+  unless a validator or deployment change makes that necessary
 - keep Track A / Track B boundaries explicit
 - record outcomes and limitations in a discoverable research note if the work
   adds new evidence
@@ -77,8 +87,8 @@ Use
 
 - validate the inline graph outputs for `/` and `/cv/` with the appropriate
   external tools
-- record what succeeded, what could not be proven, and any intentional
-  limitations
+- record what newly succeeded, what still could not be proven, and whether the
+  remaining gaps are now best treated as validator-side limits
 - update the live Track A docs only if the new external evidence changes
   recorded status or next steps
 - update `/Users/jim/code/personal/new-cv/.agent/memory/napkin.md` with
@@ -107,7 +117,7 @@ Use
 ## End by summarising
 
 - what changed
-- what external validator evidence was added for `/` and `/cv/`
+- what additional external validator evidence was added for `/` and `/cv/`
 - whether Track A Phase A4 status changed
-- what proof gaps remain after this slice
+- what proof gaps or accepted validator limits remain after this slice
 - whether any stakeholder decision is still needed

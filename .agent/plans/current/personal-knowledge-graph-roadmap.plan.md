@@ -41,6 +41,7 @@ Use this roadmap together with
 [graph-publication-output-audit.md](../research/graph-publication-output-audit.md),
 [graph-negotiated-media-type-refinement.md](../research/graph-negotiated-media-type-refinement.md),
 [graph-cv-metadata-description-proof.md](../research/graph-cv-metadata-description-proof.md),
+[graph-rich-result-external-validator-evidence.md](../research/graph-rich-result-external-validator-evidence.md),
 [personal-knowledge-graph-execution.plan.md](personal-knowledge-graph-execution.plan.md),
 and
 [personal-knowledge-graph-source-of-truth-design.plan.md](personal-knowledge-graph-source-of-truth-design.plan.md)
@@ -179,7 +180,11 @@ The first Track A Phase A3 refinement slice is now recorded in
 [graph-negotiated-media-type-refinement.md](../research/graph-negotiated-media-type-refinement.md).
 The closing Track A Phase A3 proof slice is now recorded in
 [graph-cv-metadata-description-proof.md](../research/graph-cv-metadata-description-proof.md).
-Track A now moves into Phase A4 external validation.
+Track A Phase A4 external validation is now partially recorded in
+[graph-rich-result-external-validator-evidence.md](../research/graph-rich-result-external-validator-evidence.md).
+That note captures the first external-validator evidence plus the current
+validator-side limitations, so Track A remains in Phase A4 rather than claiming
+closure prematurely.
 
 ### Phase 3 — Track B Design
 

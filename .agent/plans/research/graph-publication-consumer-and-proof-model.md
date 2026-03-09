@@ -12,6 +12,7 @@ Use this note with:
 - [graph-publication-output-audit.md](graph-publication-output-audit.md)
 - [graph-negotiated-media-type-refinement.md](graph-negotiated-media-type-refinement.md)
 - [graph-cv-metadata-description-proof.md](graph-cv-metadata-description-proof.md)
+- [graph-rich-result-external-validator-evidence.md](graph-rich-result-external-validator-evidence.md)
 - [personal-knowledge-graph-source-of-truth-design.plan.md](../current/personal-knowledge-graph-source-of-truth-design.plan.md)
 - [pkg-research-findings.md](pkg-research-findings.md)
 
@@ -139,6 +140,11 @@ graph-derived today. Track A should not claim them.
   `ProfilePage` contract directly, and
   `e2e/behaviour/seo.e2e-api.test.ts` proves that `/` emits the inline
   JSON-LD script with the expected canonical page identity
+- External-validator evidence is now partially recorded in
+  [graph-rich-result-external-validator-evidence.md](graph-rich-result-external-validator-evidence.md):
+  Schema.org Validator code mode recorded a zero-error home-page pass, while
+  Google Rich Results Test and repeated Schema validator runs hit tool-side
+  limitations that keep Track A Phase A4 active
 
 ### Output area: full-graph publication
 
@@ -290,4 +296,6 @@ the same JSON-LD payload is served for both `application/ld+json` and
 `application/json`, with the response `Content-Type` matching the request.
 
 Track A should now move from Phase A3 refinement into Phase A4 external
-validation rather than redefining the consumer model again.
+validation rather than redefining the consumer model again. That Phase A4 work
+is now partially recorded in
+[graph-rich-result-external-validator-evidence.md](graph-rich-result-external-validator-evidence.md).

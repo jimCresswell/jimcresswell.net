@@ -9,6 +9,7 @@ Use this note with:
 
 - [graph-publication-output-audit.md](graph-publication-output-audit.md)
 - [graph-publication-consumer-and-proof-model.md](graph-publication-consumer-and-proof-model.md)
+- [graph-rich-result-external-validator-evidence.md](graph-rich-result-external-validator-evidence.md)
 - [personal-knowledge-graph-execution.plan.md](../current/personal-knowledge-graph-execution.plan.md)
 
 ## Decision
@@ -93,9 +94,12 @@ The following items were closed later in Track A:
 - dedicated automated proof for `/manifest.webmanifest`
 - tighter proof for graph-derived CV metadata descriptions
 
-The remaining open items are:
+That follow-on is now partially recorded in
+[graph-rich-result-external-validator-evidence.md](graph-rich-result-external-validator-evidence.md):
 
-- external validator evidence for the rich-result-facing inline graphs
+- the home-page Schema.org Validator code-mode evidence is now captured
+- the remaining `/cv/` Schema.org result and Google Rich Results Test verdicts
+  are still open because of recorded validator-side limitations
 
 ## Track boundary
 

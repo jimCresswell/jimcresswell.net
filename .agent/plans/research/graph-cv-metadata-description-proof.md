@@ -9,6 +9,7 @@ Use this note with:
 
 - [graph-publication-output-audit.md](graph-publication-output-audit.md)
 - [graph-publication-consumer-and-proof-model.md](graph-publication-consumer-and-proof-model.md)
+- [graph-rich-result-external-validator-evidence.md](graph-rich-result-external-validator-evidence.md)
 - [personal-knowledge-graph-execution.plan.md](../current/personal-knowledge-graph-execution.plan.md)
 
 ## Decision
@@ -69,13 +70,16 @@ Track A now has automated proof that:
 - the emitted head fields on `/cv` and `/cv/public_sector` match that same
   Person description
 
-## What remains open now
+## Follow-on record
 
-The remaining Track A follow-on is external validator evidence for the
-rich-result-facing inline graphs:
+The Track A Phase A4 external-validator follow-on is now recorded in
+[graph-rich-result-external-validator-evidence.md](graph-rich-result-external-validator-evidence.md).
 
-- Schema.org Validator for `/` and `/cv/`
-- Google Rich Results Test for `/` and `/cv/`
+That note captures:
+
+- the recorded Schema.org Validator code-mode result for `/`
+- the current validator-side limitations for `/cv/`
+- the current Google Rich Results Test limitations for both `/` and `/cv/`
 
 ## Track boundary
 

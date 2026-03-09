@@ -30,6 +30,7 @@ Use this plan with
 [graph-publication-output-audit.md](../research/graph-publication-output-audit.md),
 [graph-negotiated-media-type-refinement.md](../research/graph-negotiated-media-type-refinement.md),
 [graph-cv-metadata-description-proof.md](../research/graph-cv-metadata-description-proof.md),
+[graph-rich-result-external-validator-evidence.md](../research/graph-rich-result-external-validator-evidence.md),
 and [pkg-research-findings.md](../research/pkg-research-findings.md).
 
 This is the live execution authority for Track A.
@@ -46,6 +47,12 @@ The closing A3 proof slice is recorded in
 [graph-cv-metadata-description-proof.md](../research/graph-cv-metadata-description-proof.md):
 the existing graph-derived CV description fields are now proven at both the
 metadata-export and emitted-route levels.
+
+The current A4 external-validator record is now in
+[graph-rich-result-external-validator-evidence.md](../research/graph-rich-result-external-validator-evidence.md):
+the live home-page inline graph has a recorded Schema.org Validator code-mode
+pass, while the remaining official-validator work is now truthfully bounded by
+recorded tool-side limitations rather than left implicit.
 
 ## Outcome, impact, and value mechanism
 
@@ -283,9 +290,10 @@ Phase A3 is now complete.
 **Next session start:** continue with Track A Phase A4, not a new audit. Use
 [graph-publication-output-audit.md](../research/graph-publication-output-audit.md)
 and
-[graph-cv-metadata-description-proof.md](../research/graph-cv-metadata-description-proof.md)
-as the latest proof record, then capture external validator evidence for the
-rich-result-facing inline graphs on `/` and `/cv/`.
+[graph-rich-result-external-validator-evidence.md](../research/graph-rich-result-external-validator-evidence.md)
+as the latest proof record. The home-page Schema.org code-mode evidence is now
+captured, and the current blocker is validator-side instability around the
+remaining `/cv/` Schema.org result and Google Rich Results Test verdicts.
 
 #### Tasks
 
