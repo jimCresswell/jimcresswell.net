@@ -51,16 +51,48 @@ test.describe("Knowledge graph API", () => {
     expect(cacheControl).toContain("no-store");
   });
 
-  test("graph is accessible via Accept: application/ld+json on any page", async ({ request }) => {
-    const response = await request.get("/cv", {
+  test("GET /api/graph returns LD+JSON when explicitly requested", async ({ request }) => {
+    const response = await request.get("/api/graph", {
       headers: { Accept: "application/ld+json" },
     });
     expect(response.status()).toBe(200);
+    expect(response.headers()["content-type"]).toContain("application/ld+json");
 
     const data = getGraphPayload(await response.json());
     expect(data["@context"]).toBe("https://schema.org");
-    expect(
-      data["@graph"].find((node) => isRecord(node) && node["@type"] === "Person")
-    ).toBeDefined();
+  });
+
+  test.describe("page-route graph negotiation", () => {
+    [
+      {
+        path: "/",
+        accept: "application/ld+json",
+        expectedContentType: "application/ld+json",
+      },
+      {
+        path: "/cv",
+        accept: "application/json",
+        expectedContentType: "application/json",
+      },
+      {
+        path: "/cv/public_sector",
+        accept: "application/ld+json, application/json;q=0.9",
+        expectedContentType: "application/ld+json",
+      },
+    ].forEach(({ path, accept, expectedContentType }) => {
+      test(`returns the full graph for ${path} when Accept is ${accept}`, async ({ request }) => {
+        const response = await request.get(path, {
+          headers: { Accept: accept },
+        });
+        expect(response.status()).toBe(200);
+        expect(response.headers()["content-type"]).toContain(expectedContentType);
+
+        const data = getGraphPayload(await response.json());
+        expect(data["@context"]).toBe("https://schema.org");
+        expect(
+          data["@graph"].find((node) => isRecord(node) && node["@type"] === "Person")
+        ).toBeDefined();
+      });
+    });
   });
 });

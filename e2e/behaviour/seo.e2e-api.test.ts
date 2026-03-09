@@ -57,6 +57,34 @@ test.describe("US-09: SEO and discoverability", () => {
       );
       await expect(page.locator('meta[property="og:type"]')).toHaveAttribute("content", "website");
     });
+
+    test("emits home-page JSON-LD aligned with the canonical page contract", async ({ page }) => {
+      await page.goto("/");
+
+      const canonicalUrl = new URL("/", page.url()).toString();
+      const jsonLd = page.locator('script[type="application/ld+json"]');
+      await expect(jsonLd).toBeAttached();
+
+      const content = await jsonLd.textContent();
+      expect(content).toBeTruthy();
+      if (!content) {
+        throw new Error("Expected JSON-LD script content");
+      }
+
+      const data = JSON.parse(content);
+      expect(isRecord(data)).toBe(true);
+      if (!isRecord(data)) {
+        throw new Error("Expected JSON-LD payload to be an object");
+      }
+
+      expect(data["@context"]).toBe("https://schema.org");
+
+      const pageEntity = findGraphEntityById(getJsonLdGraph(data), `${canonicalUrl}#webpage`);
+
+      expect(pageEntity["@type"]).toBe("ProfilePage");
+      expect(pageEntity.url).toBe(canonicalUrl);
+      expect(pageEntity.name).toBe(frontpageContent.meta.title);
+    });
   });
 
   test.describe("CV page", () => {

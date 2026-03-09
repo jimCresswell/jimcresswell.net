@@ -84,6 +84,14 @@ Use the right tool for the job:
 
   Git hooks enforce this: the pre-commit hook runs `pnpm check:ci`, and the pre-push hook runs `pnpm check && pnpm test:e2e`. PDF tests (`pnpm test:e2e:pdf`) require a prior production build on :3001 and are run explicitly.
 
+- **Visual regression harness is blocking proof for rendering-risk changes** —
+  If a change can affect rendered output through content-model changes, data or
+  graph infrastructure, metadata wiring, page composition, or rendering
+  plumbing, run `pnpm visual-regression-harness` during implementation on
+  meaningful slices, not only at the end. Unexpected differences block the work
+  until they are reviewed and either fixed or explicitly approved. This proof is
+  separate from `pnpm check` and `pnpm test:e2e`; it complements them.
+
 - **Restart on fix** — After any quality gate fix, restart the full sequence from `pnpm format:fix`. Fixes can introduce new issues downstream.
 - **No unused code** — If a function is not used, delete it. If product code is only used in tests, delete it. Delete dead code.
 - **No commented-out code** — Fix it or delete it.

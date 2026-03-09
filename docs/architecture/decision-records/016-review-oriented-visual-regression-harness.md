@@ -53,6 +53,10 @@ does not fail the command merely because base and target differ.
 
 Operational errors still fail the command; content differences do not.
 
+This does not make the harness optional in workflow terms. For qualifying
+rendering-risk changes, the harness remains blocking proof: unexpected
+differences must be reviewed and resolved before the work can proceed.
+
 ### 3. Screenshot comparison stays strict and reviewable
 
 Screenshot comparison does not support ignore masks by default.
@@ -97,6 +101,8 @@ JSON-LD changes remain review items.
 
 - The harness is now a durable approval workflow rather than a brittle binary
   gate
+- For rendering-risk changes, it is a blocking proof requirement even though
+  the command itself stays review-oriented rather than CI-style pass/fail
 - Historical comparisons can be run safely from active work without touching the
   caller's git state
 - Reviewers can inspect baseline, target, diff, and review-strip screenshots for
@@ -106,6 +112,8 @@ JSON-LD changes remain review items.
   without hiding structural regressions
 - The harness is intentionally unsuitable as a simple pass/fail CI check for UI
   changes; it is a review tool whose outputs need human judgement
+- The harness should be run during implementation on meaningful slices, not
+  deferred until the very end of a refactor
 
 ## Related
 

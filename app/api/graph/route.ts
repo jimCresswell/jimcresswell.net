@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { getRequestedGraphMediaType } from "@/lib/graph-media-type";
 import { jsonLd } from "@/lib/jsonld";
 
 /**
@@ -8,11 +9,15 @@ import { jsonLd } from "@/lib/jsonld";
  * the CV page, but as a standalone JSON response. This makes the graph
  * directly consumable by tools, AI systems, and other programmatic clients.
  */
-export function GET(): NextResponse {
+export function GET(request: Request): NextResponse {
+  const contentType =
+    getRequestedGraphMediaType(request.headers.get("accept")) ?? "application/json";
+
   // TODO: Re-enable caching once the graph stabilises.
-  return NextResponse.json(jsonLd, {
+  return new NextResponse(JSON.stringify(jsonLd), {
     headers: {
       "Cache-Control": "no-store",
+      "Content-Type": `${contentType}; charset=utf-8`,
     },
   });
 }

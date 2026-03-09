@@ -7,10 +7,10 @@ todos:
     status: completed
   - id: track-a-impact-model
     content: Define Track A consumers, channels, intended impacts, and proof criteria before refinement work.
-    status: pending
+    status: completed
   - id: track-a-refinement-and-proof
     content: Execute Track A graph-expression refinement and validation work.
-    status: pending
+    status: in_progress
   - id: track-b-design
     content: Complete the required Track B source-of-truth design once Track A has established the current graph layer's value boundaries.
     status: pending
@@ -31,8 +31,15 @@ Both tracks are required.
 
 Track A comes first.
 
+Track A Phase A1 and Phase A2 are now complete. Track A Phase A3 is now active
+in
+[personal-knowledge-graph-execution.plan.md](personal-knowledge-graph-execution.plan.md).
+
 Use this roadmap together with
 [graph-current-state-audit.md](../research/graph-current-state-audit.md),
+[graph-publication-consumer-and-proof-model.md](../research/graph-publication-consumer-and-proof-model.md),
+[graph-publication-output-audit.md](../research/graph-publication-output-audit.md),
+[graph-negotiated-media-type-refinement.md](../research/graph-negotiated-media-type-refinement.md),
 [personal-knowledge-graph-execution.plan.md](personal-knowledge-graph-execution.plan.md),
 and
 [personal-knowledge-graph-source-of-truth-design.plan.md](personal-knowledge-graph-source-of-truth-design.plan.md)
@@ -136,6 +143,8 @@ the work to improvements that serve real use cases.
 
 - Track A execution is owned by
   [personal-knowledge-graph-execution.plan.md](personal-knowledge-graph-execution.plan.md)
+- the implementation-backed impact model is recorded in
+  [graph-publication-consumer-and-proof-model.md](../research/graph-publication-consumer-and-proof-model.md)
 - the target consumers and output channels are named explicitly
 - each planned refinement can be tied to a stated impact and value mechanism
 - proof criteria exist before implementation starts
@@ -155,7 +164,18 @@ graph's usefulness to the consumers identified in Phase 1.
 
 - Track A changes are implemented from the execution plan, not ad hoc
 - validation and reviewed artefacts are recorded explicitly
+- for rendering-risk slices, blocking harness proof is captured during
+  implementation rather than deferred to the end
 - no Track A work claims graph-backed page composition where none exists
+
+Phase A2 is now complete via
+[graph-publication-output-audit.md](../research/graph-publication-output-audit.md).
+That audit found no confirmed correctness failures in the current Track A
+surfaces. Track A now moves into proof-led refinement and validation rather
+than generic graph enrichment.
+
+The first Track A Phase A3 refinement slice is now recorded in
+[graph-negotiated-media-type-refinement.md](../research/graph-negotiated-media-type-refinement.md).
 
 ### Phase 3 — Track B Design
 

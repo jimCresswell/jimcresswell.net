@@ -11,6 +11,9 @@ practice-core package.
 - Tightened `practice.md` to treat plan templates as optional supporting artefacts rather than a required `.agent/plans/templates/` layer
 - Updated the bootstrap practice-index template so `.agent/plans/` no longer implies a mandatory templates subtree
 - Added an optional `.agent/practice-context/` adjunct pattern with sender-maintained `outgoing/` support material and transient receiver-side `incoming/`; clear `incoming/` after integration and let agents consider supporting outgoing files when a changelog entry alone would be too thin
+- Tightened consolidation truth-maintenance wording so graduation now explicitly
+  reconciles frontmatter status, narrative status, next-step sections, and
+  current-state or audit notes when live documentation changes role
 
 ## [new-cv] 2026-03-08
 

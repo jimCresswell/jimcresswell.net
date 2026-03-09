@@ -111,7 +111,12 @@ Each stage exists because it serves a different audience. The progression from c
 | **Enforce**  | Rules, directives, always-applied rules | All agents, automatically               | `fitness_ceiling` frontmatter on directives             |
 | **Inform**   | Code patterns                           | Engineers facing a recognised situation | Barrier: broadly applicable, proven, recurring, stable  |
 
-Not everything in the napkin survives distillation, and not everything distilled graduates to permanent documentation. Each transition raises the bar. The `/jc-consolidate-docs` command drives the graduation step — it checks which distilled entries have settled into permanent practice and moves them to their discoverable permanent home.
+Not everything in the napkin survives distillation, and not everything
+distilled graduates to permanent documentation. Each transition raises the bar.
+The `/jc-consolidate-docs` command drives the graduation step — it checks which
+distilled entries have settled into permanent practice, moves them to their
+discoverable permanent home, and reconciles live doc truth across frontmatter
+status, narrative status, next-step sections, and current-state or audit notes.
 
 ### Fitness Functions
 

@@ -1,4 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
+import { getRequestedGraphMediaType } from "@/lib/graph-media-type";
 
 /**
  * Content negotiation proxy.
@@ -41,8 +42,8 @@ export function proxy(request: NextRequest): NextResponse {
     return rewriteToAcceptMd(request, pathname);
   }
 
-  // Accept: application/ld+json — serve the knowledge graph
-  if (accept.includes("application/ld+json")) {
+  // Accept: application/ld+json or application/json — serve the knowledge graph
+  if (getRequestedGraphMediaType(accept)) {
     const url = request.nextUrl.clone();
     url.pathname = "/api/graph";
     return NextResponse.rewrite(url);

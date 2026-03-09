@@ -1,5 +1,141 @@
 # Napkin
 
+## Session: 2026-03-09 — Track A Phase A2 Output Audit
+
+### What Was Done
+
+- Verified the live Track A publication surfaces from implementation and
+  targeted tests before editing the plan stack: inline page JSON-LD,
+  `/api/graph`, `Accept: application/ld+json`, `manifest.webmanifest`, and the
+  current graph-derived CV metadata
+- Implemented the first narrow Track A Phase A3 slice for negotiated graph
+  responses: page routes now negotiate to the graph for both
+  `application/ld+json` and `application/json`, and the graph route returns the
+  same JSON-LD payload with a response `Content-Type` that matches the request
+- Added `.agent/plans/research/graph-publication-output-audit.md` as the Track
+  A Phase A2 research note, classifying current findings into correctness
+  problems, weak expression, proof gaps, and deliberate low-priority channels
+- Updated the roadmap, Track A execution plan, Track B design plan, the
+  current-state audit, and the Phase A1 consumer/proof model so they all agree
+  that Track A Phase A2 is complete and Track A Phase A3 is next
+- Raised the visual regression harness from a historical proof asset to a live
+  blocking proof requirement for rendering-risk work, and documented that it
+  must run during implementation rather than only at the end
+- Ran `pnpm visual-regression-harness HEAD WORKTREE` for the current in-flight
+  slice and confirmed no unexpected differences across the captured site
+  surfaces (`/`, `/cv`, `/cv/public_sector`)
+- Corrected a live-stack consistency slip after that work: the roadmap prose
+  already said Track A Phase A3 was active, but its frontmatter todo still said
+  Track A refinement and proof were pending, and the A2 audit next steps still
+  read as if the negotiated media-type slice had not landed yet
+- Corrected one remaining research-note lag after that cleanup: the
+  current-state audit still described the visual regression harness only as a
+  closed historical proof record instead of also reflecting its new live
+  blocking-proof role for rendering-risk slices
+- Promoted the resulting process lesson into permanent docs: the
+  consolidate-docs workflow and portable practice-core wording now explicitly
+  treat frontmatter status, narrative status, next-step sections, and
+  current-state or audit notes as one truth-maintenance pass
+- Tightened the live Track A execution plan so a fresh agent now has an
+  explicit next-session handoff in the plan itself, not only an ordered list in
+  the supporting A2 audit note
+
+### Mistakes Made
+
+- Tried to use `pnpm exec tsx -e` in the sandbox to inspect module outputs more
+  directly. `tsx` attempted to open an IPC pipe under `/var/...` and hit
+  `EPERM`. For this repo, treat `tsx` the same way as local web servers: if the
+  sandbox blocks IPC or binding behaviour and the check matters, rerun with
+  escalation or rely on existing proof surfaces plus source inspection.
+- Let the live plan stack lag one implementation slice behind after shipping
+  the negotiated media-type change. The fix itself was documented, but the
+  execution plan and A1/A2 follow-on notes still read as if that slice had not
+  yet landed.
+- Left one smaller status mismatch behind after tightening the harness rule:
+  roadmap narrative and todo status diverged. When a phase becomes active,
+  check frontmatter task state as well as body text.
+- Missed one secondary research-note update after changing the repo-wide
+  harness rule. When a tool or proof surface changes role, re-check not only
+  live execution plans but also "current state" notes that summarise the stack.
+
+### Patterns to Remember
+
+- A clean Track A audit can legitimately end with "no correctness problems
+  found". If the live evidence is green, the next value may be proof coverage
+  and better channel expression rather than more graph enrichment.
+- For the current publication layer, the clearest refinement opportunities are
+  home-page emitted-channel proof, manifest proof, and the exact contract of
+  `Accept: application/ld+json`. Do not let those gaps get blurred into Track B
+  source-of-truth ambitions.
+- If the same graph payload is served under both `application/ld+json` and
+  `application/json`, centralise the Accept matching in product code. That
+  keeps the proxy rewrite rule and the route response contract from drifting
+  apart.
+- After shipping even a narrow slice from the next phase, check the live parent
+  and follow-on docs immediately. Otherwise the implementation can be truthful
+  while the execution status and open-gap list are one step behind.
+- For plan docs in this repo, narrative status, frontmatter todo status, and
+  "recommended next steps" all need the same pass. Fixing only one of those
+  layers still leaves a stale handoff for the next agent.
+- When a proof mechanism shifts from historical evidence to a live blocking
+  requirement, update both the workflow docs and any audit note that summarises
+  current validation infrastructure. Otherwise the repo truth is split between
+  "how we work now" and "what the architecture note still says".
+- During consolidation, treat frontmatter status, body status, recommended next
+  steps, and current-state summaries as one consistency surface. Updating only
+  one layer leaves a believable but stale handoff.
+- If a supporting research note contains the real ordered next steps, copy the
+  immediate handoff back into the live execution plan as well. A fresh agent
+  should not have to infer the first move by combining multiple docs.
+- When a repo already has a review-oriented harness, "blocking proof
+  requirement" does not have to mean "convert it into CI-style pass/fail". It
+  can mean the review workflow itself becomes mandatory and must happen before
+  work continues.
+
+## Session: 2026-03-09 — Track A Phase A1 Consumer and Proof Model
+
+### What Was Done
+
+- Verified the current rendering path from implementation before touching the
+  graph plans: home-page HTML still comes from `content/frontpage.content.json`
+  and CV/tilt HTML still comes from `content/cv.content.json`
+- Verified the current graph publication path from implementation: inline page
+  JSON-LD, `/api/graph`, `Accept: application/ld+json`, the manifest, and the
+  existing graph-derived CV metadata
+- Added
+  `.agent/plans/research/graph-publication-consumer-and-proof-model.md` as the
+  Track A Phase A1 research note covering consumers, channels, impacts, value
+  mechanisms, proof criteria, validation surfaces, reviewers, and non-goals
+- Updated the live PKG roadmap, execution plan, source-of-truth design plan,
+  and current-state audit so they cross-link the new Phase A1 authority and
+  agree that Track A Phase A2 is next
+
+### Mistakes Made
+
+- Tried to read `app/cv/[variant]/page.tsx` without quoting the path, and zsh
+  expanded the brackets as a glob. Quote route paths with brackets when using
+  shell commands.
+- Broke the repo's gate discipline once by starting `pnpm typecheck` and
+  `pnpm test` in parallel. Even read-only gates should be run one at a time in
+  this repo so the reported evidence is clean and ordered.
+
+### Patterns to Remember
+
+- For Track A planning, derive scope from the code paths that already publish
+  graph outputs. Machine-readable does not automatically mean graph-owned:
+  markdown, PDF, sitemap, robots, and home-page metadata are out of scope
+  unless the implementation really routes them through the graph.
+- The current publication layer has stronger automated proof for inline JSON-LD
+  and the full graph API than it does for the manifest. Track A audits should
+  treat proof gaps as first-class findings, not as implementation trivia.
+- The home-page subgraph is validated in product code, but the repo does not
+  yet have end-to-end proof that the inline JSON-LD script is emitted on `/`.
+  Keep the distinction between graph correctness and emitted-channel proof.
+- Do not question whether the chosen direction is important once the user has
+  already decided it. Treat direction as settled unless the user reopens it.
+- Proof is always required. The right question is whether the current evidence
+  proves the intended outcome, not whether proof itself is necessary.
+
 ## Session: 2026-03-08 — Harness Artefact Approval and Icebox Split
 
 ### What Was Done
@@ -319,3 +455,77 @@
   it to permanent docs and remove the duplicate from `distilled.md`.
 - A plan-topology clean break is not finished until the repo indexes and
   directory maps stop describing the removed layer.
+
+## Session: 2026-03-09 — Roadmap Re-entry Grounding
+
+### What Was Done
+
+- Re-entered the graph work through the adopted
+  `personal-knowledge-graph-roadmap.plan.md` after the plan-stack commit
+- Reconfirmed from `graph-current-state-audit.md` that the current site is
+  still split-owned: page JSON drives visible rendering, while the graph drives
+  JSON-LD, the manifest, and some metadata
+- Reconfirmed that the next active work is Track A Phase A1: define consumers,
+  channels, intended impacts, and proof criteria before any further graph
+  refinement
+
+### Patterns to Remember
+
+- The roadmap is the parent authority, but the first actionable entry point for
+  execution is Track A Phase A1. Do not jump into enrichment work before the
+  impact model is explicit.
+
+## Session: 2026-03-09 — Track A Phase A3 Home-Page Emitted-Channel Proof
+
+### What Was Done
+
+- Added route-level proof in `e2e/behaviour/seo.e2e-api.test.ts` that `/`
+  emits the inline JSON-LD script and that the emitted home `ProfilePage`
+  keeps the canonical root-page identity
+- Added focused contract proof in
+  `lib/page-document-contract.integration.test.ts` that `frontPageJsonLd`
+  still matches the home page-document contract
+- Updated the live Track A execution and research notes so the next handoff is
+  manifest proof first, then tighter CV metadata proof
+
+### Mistakes Made
+
+- Tried to import `page-document-contract.ts` directly into the Playwright SEO
+  spec. Node's ESM runner rejected the module because it depends on JSON
+  imports that the Next/Vite toolchain resolves without explicit
+  `with { type: "json" }` attributes.
+
+### Patterns to Remember
+
+- When an E2E proof needs product-owned contract values from a module that
+  relies on bundler-resolved JSON imports, split the proof cleanly: keep the
+  emitted-channel assertion in Playwright and the contract assertion in Vitest
+  unless there is a deliberate reason to harden the production module for raw
+  Node ESM use.
+- After a proof-only Track A slice lands, update both the execution handoff and
+  the ordered next steps in the A2 audit, even if the active phase does not
+  change.
+
+## Session: 2026-03-09 — Track A Phase A3 Manifest Proof
+
+### What Was Done
+
+- Added `app/manifest.integration.test.ts` to prove that the Track A-owned
+  manifest identity fields stay aligned with `person`
+- Added `e2e/behaviour/manifest.e2e-api.test.ts` to prove that
+  `/manifest.webmanifest` returns `application/manifest+json` and emits the
+  same Track A-owned identity fields
+- Updated the live Track A execution and research notes so the next handoff is
+  the remaining CV metadata description proof gap
+
+### Patterns to Remember
+
+- For Track A manifest work, keep the boundary explicit: prove only `name`,
+  `short_name`, and `description`. Icons, colours, display mode, and
+  `start_url` remain app-owned unless the architecture actually changes.
+- A proof-only metadata-route slice does not need the visual regression harness
+  when no rendered HTML, graph payload, metadata wiring, or rendering plumbing
+  changes.
+- For Playwright API proof that should stay decoupled from app module imports,
+  importing `content/entities.json` with an explicit JSON import attribute is a
+  clean way to source expected graph-backed identity fields.

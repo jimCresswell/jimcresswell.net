@@ -4,7 +4,7 @@ overview: Adopted Track B design plan. Design the graph-backed source-of-truth a
 todos:
   - id: design-entry-condition
     content: Start Track B design only after Track A has defined the current graph layer's impact model.
-    status: pending
+    status: completed
   - id: layered-model-design
     content: Define the layered source-of-truth model and file topology.
     status: pending
@@ -29,6 +29,9 @@ implementation brief.
 
 Use this plan with
 [graph-current-state-audit.md](../research/graph-current-state-audit.md),
+[graph-publication-consumer-and-proof-model.md](../research/graph-publication-consumer-and-proof-model.md),
+[graph-publication-output-audit.md](../research/graph-publication-output-audit.md),
+[graph-negotiated-media-type-refinement.md](../research/graph-negotiated-media-type-refinement.md),
 [personal-knowledge-graph-roadmap.plan.md](personal-knowledge-graph-roadmap.plan.md),
 and [ADR-014](../../../docs/architecture/decision-records/014-entity-model-design.md).
 
@@ -52,6 +55,14 @@ Track B is required, but it is not first.
 Do not treat this plan as active implementation work until Track A has at least
 completed its impact model and confirmed the boundaries of the current graph
 layer.
+
+That entry condition was satisfied on 2026-03-09 by
+[graph-publication-consumer-and-proof-model.md](../research/graph-publication-consumer-and-proof-model.md).
+The latest Track A boundary record is now
+[graph-publication-output-audit.md](../research/graph-publication-output-audit.md).
+The first Track A Phase A3 refinement slice is now recorded in
+[graph-negotiated-media-type-refinement.md](../research/graph-negotiated-media-type-refinement.md).
+Track A Phase A3 remains the active graph task.
 
 No code should be shipped from this plan until its design work is
 decision-complete and an explicit migration plan exists.

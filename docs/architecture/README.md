@@ -91,6 +91,9 @@ The repo includes a non-destructive visual regression harness at `visual-regress
 - Review model: the harness records unexpected differences for approval or rejection; it is a review workflow, not a pass/fail quality gate
 - Comparison standard: screenshots remain strict; `document.html` is explicitly normalised to remove build-specific Next.js and Vercel runtime noise; target-only CV section-anchor additions are auto-accepted only when they match the shared page/document contract exactly
 - Current limitation: capture reuse and `--force` are not implemented yet; each run rebuilds and recaptures from scratch
+- Process rule: for rendering-risk changes to the current captured site
+  surfaces (`/`, `/cv`, `/cv/public_sector`), the harness is blocking proof and
+  should be run during implementation, not only at the end
 
 See `visual-regression-harness/README.md` and [ADR-016](decision-records/016-review-oriented-visual-regression-harness.md) for operational details and the settled comparison model.
 

@@ -47,7 +47,11 @@ Do not assume you know the initial step. Discuss with the user first.
 
 1. Run the full quality gate suite one gate at a time.
 2. Wait for all gates to complete before analysing issues.
-3. Include architectural analysis, not just local fixes.
+3. If the current slice can affect rendered output through data, graph,
+   metadata, content-model, or rendering changes, run the visual regression
+   harness during implementation rather than leaving it until the end.
+   Unexpected differences are blocking until reviewed and resolved.
+4. Include architectural analysis, not just local fixes.
 
 ## Documentation Requirements
 

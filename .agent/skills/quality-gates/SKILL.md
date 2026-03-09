@@ -18,6 +18,12 @@ The definitive gate list with all command names lives in `.agent/directives/rule
 
 When running gates individually for restart-on-fix, start from `pnpm format:fix`, then `pnpm markdownlint:fix`.
 
+For rendering-risk changes, the visual regression harness is also blocking
+proof even though it is not part of `pnpm check`. Run
+`pnpm visual-regression-harness <base-ref> <target-ref>` during implementation
+once a slice could affect rendered output, and rerun it after later slices as
+needed. Do not leave all harness review until the end.
+
 ## Restart-on-fix discipline
 
 If any gate fails:

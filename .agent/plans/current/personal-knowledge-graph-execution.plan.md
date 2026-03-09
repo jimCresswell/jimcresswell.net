@@ -4,13 +4,13 @@ overview: Adopted Track A execution plan. Improve the existing graph layer as a 
 todos:
   - id: phase-a1-impact-model
     content: Define Track A consumers, channels, intended impacts, and proof criteria.
-    status: pending
+    status: completed
   - id: phase-a2-output-audit
     content: Audit current graph-facing outputs against the Track A impact model.
-    status: pending
+    status: completed
   - id: phase-a3-refinement
     content: Implement the agreed graph-expression refinements.
-    status: pending
+    status: in_progress
   - id: phase-a4-proof
     content: Record internal and external validation for the delivered Track A outputs.
     status: pending
@@ -25,10 +25,21 @@ Adopted on 2026-03-09 as the first execution track under
 [personal-knowledge-graph-roadmap.plan.md](personal-knowledge-graph-roadmap.plan.md).
 
 Use this plan with
-[graph-current-state-audit.md](../research/graph-current-state-audit.md) and
-[pkg-research-findings.md](../research/pkg-research-findings.md).
+[graph-current-state-audit.md](../research/graph-current-state-audit.md),
+[graph-publication-consumer-and-proof-model.md](../research/graph-publication-consumer-and-proof-model.md),
+[graph-publication-output-audit.md](../research/graph-publication-output-audit.md),
+[graph-negotiated-media-type-refinement.md](../research/graph-negotiated-media-type-refinement.md),
+and [pkg-research-findings.md](../research/pkg-research-findings.md).
 
 This is the live execution authority for Track A.
+
+Phase A1 and Phase A2 are complete. Phase A3 is now active.
+
+The first A3 slice is recorded in
+[graph-negotiated-media-type-refinement.md](../research/graph-negotiated-media-type-refinement.md):
+the negotiated graph channel now serves the same JSON-LD payload for both
+`application/ld+json` and `application/json`, with the response content type
+matching the request.
 
 ## Outcome, impact, and value mechanism
 
@@ -73,6 +84,30 @@ Track A starts from the current implementation baseline:
 - the manifest and some metadata derive from graph entities
 - visible page rendering still does not derive from the graph
 
+The current Track A outputs in scope are recorded in
+[graph-publication-consumer-and-proof-model.md](../research/graph-publication-consumer-and-proof-model.md).
+That note is the authority for the implementation-backed consumer matrix,
+success model, proof model, and explicit non-goals for the current publication
+layer.
+
+## Phase A1 completion record
+
+Phase A1 is recorded in
+[graph-publication-consumer-and-proof-model.md](../research/graph-publication-consumer-and-proof-model.md).
+
+It makes explicit:
+
+- the named consumers Track A serves today
+- the named channels currently wired to the graph
+- the intended impacts and value mechanisms per output area
+- the proof criteria, validation surfaces, and reviewer expectations
+- the explicit non-goals that keep Track A separate from Track B
+
+Phase A2 is now recorded in
+[graph-publication-output-audit.md](../research/graph-publication-output-audit.md).
+Track A should now refine against that audit rather than redefining the model
+again.
+
 ## Foundations already complete
 
 These are completed groundwork, not the main work of this plan:
@@ -104,6 +139,9 @@ enrichment work from crowding out meaningful publication improvements.
 - each output area has a stated intended impact
 - proof criteria exist before refinement begins
 
+**Completion record:** see
+[graph-publication-consumer-and-proof-model.md](../research/graph-publication-consumer-and-proof-model.md).
+
 #### Tasks
 
 ##### Task A1.1 — Consumer and Channel Matrix
@@ -120,6 +158,7 @@ internal neatness.
 
 - search/indexing consumers are covered
 - programmatic graph consumers are covered
+- browser/install consumers are covered where the graph already feeds output
 - internal validation and reviewer consumers are covered
 - each channel is mapped to the graph aspects it depends on
 
@@ -138,6 +177,7 @@ are valid but not useful.
 
 - each planned refinement category has a success statement
 - validator and review tools are assigned to the relevant channels
+- current proof gaps are identified explicitly
 - intentional non-goals are documented
 
 ### Phase A2 — Output Audit
@@ -154,6 +194,17 @@ expression and from channels that simply do not matter enough.
 - current outputs are audited by consumer and channel
 - each gap is classified clearly
 - no change is justified solely by generic graph richness
+
+**Completion record:** see
+[graph-publication-output-audit.md](../research/graph-publication-output-audit.md).
+
+Phase A2 found no confirmed correctness failures in the current Track A
+surfaces. The live priority is now proof-led refinement:
+
+- tighten CV metadata proof for the graph-derived description fields already in
+  use
+- preserve the now-delivered negotiated graph contract unless a later slice
+  widens its route coverage again
 
 #### Tasks
 
@@ -204,7 +255,28 @@ preserving the current rendering truth.
 
 - changes implement the approved impact model
 - graph publication remains self-consistent and valid
+- for rendering-risk slices, the visual regression harness is run during
+  implementation and unexpected differences are resolved before continuing
 - docs and tests stay honest about current rendering architecture
+
+**Current record:** the negotiated media-type slice is now delivered and proven
+in
+[graph-negotiated-media-type-refinement.md](../research/graph-negotiated-media-type-refinement.md).
+The home-page inline JSON-LD emitted-channel proof slice is also now delivered
+through `e2e/behaviour/seo.e2e-api.test.ts` and
+`lib/page-document-contract.integration.test.ts`.
+The manifest proof slice is also now delivered through
+`app/manifest.integration.test.ts` and
+`e2e/behaviour/manifest.e2e-api.test.ts`.
+The remaining A3 priority is tighter proof for the graph-derived CV metadata
+description fields.
+
+**Next session start:** continue with the next remaining A3 proof slice, not a
+new audit. Use
+[graph-publication-output-audit.md](../research/graph-publication-output-audit.md)
+as the detailed ordered authority and start by tightening proof for the
+graph-derived description fields already emitted on `/cv` and
+`/cv/[variant]`.
 
 #### Tasks
 
@@ -221,6 +293,8 @@ matters.
 
 - each change maps back to a named consumer and channel
 - no compatibility layer or duplicate source is introduced
+- harness proof is captured during implementation whenever a slice could affect
+  the rendered site surfaces already under harness coverage
 - TDD and reviewer discipline are followed for non-trivial changes
 
 ##### Task A3.2 — Plan and Doc Truth Maintenance

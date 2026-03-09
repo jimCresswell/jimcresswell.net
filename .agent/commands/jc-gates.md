@@ -6,6 +6,11 @@ The gate list, command names, and restart-on-fix discipline are defined in `.age
 
 Quick start: `pnpm check` runs all seven gates with auto-fix. If any gate fails, fix the issue and restart from `pnpm format:fix`.
 
+For rendering-risk changes, the visual regression harness is also blocking
+proof. Run it during implementation slices rather than deferring it until all
+coding is finished. Unexpected differences must be reviewed and either fixed or
+explicitly approved before proceeding.
+
 ## Rules
 
 1. **All issues are blocking** — there is no such thing as "someone else's problem"

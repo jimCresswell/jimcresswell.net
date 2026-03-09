@@ -22,6 +22,10 @@ The comparison is strict about what counts as a difference, but it is not a
 quality gate. Unexpected differences are written as review artefacts for human
 approval or rejection.
 
+For rendering-risk work in this repo, it is still a blocking proof
+requirement. The command itself remains review-oriented, but you must run it
+during implementation and resolve unexpected differences before proceeding.
+
 ## Safety
 
 This tool is designed to be safe to run from a dirty repo.
@@ -153,12 +157,19 @@ The harness is not the only proof mechanism for page-as-data behaviour.
 - proving a refactor did not change rendered output
 - checking whether metadata drift appeared between two revisions
 - generating artefacts for human review before accepting intentional UI changes
+- proving rendering-risk infrastructure or content-model changes while the work
+  is still in flight, not only at the end
 
 ## Current PKG rule
 
-For the PKG refactor, rendered-page differences are **not expected** except for
+For the PKG refactor, rendered-page differences are **not expected** across the
+captured site surfaces (`/`, `/cv`, and `/cv/public_sector`) except for
 explicitly documented comparison rules such as the contract-backed CV section
 anchor additions.
+
+The harness is a blocking proof requirement for rendering-risk changes. Run it
+on meaningful implementation slices rather than waiting until all coding is
+done.
 
 If the harness surfaces any HTML, metadata, or pixel difference:
 

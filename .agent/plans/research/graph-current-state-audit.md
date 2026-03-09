@@ -13,6 +13,9 @@ for the current parent planning structure. The metaplan is now a completed
 historical reset record, and the adopted Track A and Track B plans are the live
 successors that inherit this audit as their factual baseline.
 
+The output-level follow-on for Track A is now recorded in
+[graph-publication-output-audit.md](graph-publication-output-audit.md).
+
 ## Executive summary
 
 The repo now has a valid and useful personal knowledge graph foundation, but it
@@ -52,7 +55,9 @@ The main planning correction is therefore:
 
 ### Proof and validation infrastructure
 
-- the visual-regression harness exists and has a closed PKG proof record
+- the visual-regression harness exists, has a closed PKG proof record for the
+  earlier migration work, and is now a live blocking-proof requirement during
+  implementation for rendering-risk changes on its captured site surfaces
 - graph integrity and structured-data checks exist in tests
 - page/document contract logic exists for canonical identity and section IDs
 
@@ -156,6 +161,8 @@ onto the graph:
 - `content/entities.json` plus `lib/entities.ts` are accurately described as the
   graph source and validation layer
 - the completed visual-regression harness record is accurate about proof status
+- the current rules and architecture docs are accurate that the harness is now
+  blocking proof for rendering-risk changes on the captured site surfaces
 
 ### Historical or target-state records that are still valuable
 
@@ -192,6 +199,8 @@ graph-derived and to adopt the new two-track structure with Track A first.
 
 - [graph-metaplan.plan.md](../graph-metaplan.plan.md)
 - [personal-knowledge-graph-roadmap.plan.md](../current/personal-knowledge-graph-roadmap.plan.md) — adopted roadmap authority
+- [graph-publication-consumer-and-proof-model.md](graph-publication-consumer-and-proof-model.md) — Track A Phase A1 consumer, channel, and proof authority
+- [graph-publication-output-audit.md](graph-publication-output-audit.md) — Track A Phase A2 output, proof-gap, and prioritisation audit
 - [personal-knowledge-graph-execution.plan.md](../current/personal-knowledge-graph-execution.plan.md) — adopted Track A execution authority
 - [personal-knowledge-graph-source-of-truth-design.plan.md](../current/personal-knowledge-graph-source-of-truth-design.plan.md) — adopted Track B design authority
 - [personal-knowledge-graph-design-notes.md](personal-knowledge-graph-design-notes.md)

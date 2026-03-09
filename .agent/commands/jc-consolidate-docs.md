@@ -1,6 +1,12 @@
 # Consolidate Docs
 
-1. Make sure all plans and prompts are fully up to date (status lines, completion markers, cross-references). If files have moved, audit relative links from each file's own directory — do not assume root-relative `../` paths still resolve.
+1. Make sure all plans and prompts are fully up to date. Check status lines,
+   frontmatter task states, completion markers, recommended-next-step sections,
+   and cross-references together so the same work is not simultaneously
+   described as both active and pending. If a proof surface or tool has changed
+   role, update current-state and audit notes as well as execution plans. If
+   files have moved, audit relative links from each file's own directory — do
+   not assume root-relative `../` paths still resolve.
 2. Identify any content in ephemeral locations (plans, prompts, napkin, distilled.md, AGENTS.md) that now functions as settled documentation, and move it to non-ephemeral locations such as ADRs, `/docs/`, or READMEs. If you add or materially update a practice-core changelog entry, consider whether `.agent/practice-context/outgoing/` needs a short supporting note or report because the changelog alone would be too thin.
 3. Check whether `distilled.md` contains entries that are now, or should be, captured in permanent documentation — if so, (re)move them from `distilled.md` (the distilled file should only hold what is NOT already in permanent docs).
 4. If the napkin exceeds ~500 lines, follow the distillation skill (`.agent/skills/distillation/SKILL.md`) to rotate it.
