@@ -3,6 +3,7 @@
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
+/** Theme selector that avoids hydration mismatch while preserving accessibility. */
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
@@ -17,18 +18,14 @@ export function ThemeToggle() {
     // Prevent hydration mismatch
     return (
       <div
-        className="flex items-center gap-[clamp(0.125rem,0.5vw,0.5rem)] print-hidden"
+        className="text-muted-foreground flex items-center gap-[clamp(0.125rem,0.5vw,0.5rem)] print-hidden"
         aria-hidden="true"
       >
-        <span className="opacity-50">Light</span>
-        <span className="opacity-50" aria-hidden="true">
-          ·
-        </span>
-        <span className="opacity-50">Dark</span>
-        <span className="opacity-50" aria-hidden="true">
-          ·
-        </span>
-        <span className="opacity-50">Auto</span>
+        <span>Light</span>
+        <span aria-hidden="true">·</span>
+        <span>Dark</span>
+        <span aria-hidden="true">·</span>
+        <span>Auto</span>
       </div>
     );
   }

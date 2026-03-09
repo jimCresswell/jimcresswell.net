@@ -11,6 +11,7 @@ Use this note with:
 - [graph-current-state-audit.md](graph-current-state-audit.md)
 - [graph-publication-output-audit.md](graph-publication-output-audit.md)
 - [graph-negotiated-media-type-refinement.md](graph-negotiated-media-type-refinement.md)
+- [graph-cv-metadata-description-proof.md](graph-cv-metadata-description-proof.md)
 - [personal-knowledge-graph-source-of-truth-design.plan.md](../current/personal-knowledge-graph-source-of-truth-design.plan.md)
 - [pkg-research-findings.md](pkg-research-findings.md)
 
@@ -221,6 +222,16 @@ graph-derived today. Track A should not claim them.
 - `pkg-reviewer` when graph fields change
 - `editor` when wording changes
 
+#### Current proof status
+
+- The CV metadata description proof gap is now closed:
+  `lib/page-document-contract.integration.test.ts` proves the base and active
+  tilt metadata exports keep `description` and `openGraph.description` aligned
+  with `person.description`, and
+  `e2e/behaviour/seo.e2e-api.test.ts` proves that `/cv` and the active
+  `/cv/[variant]` route emit those same description fields in the rendered
+  `<head>`
+
 #### Current scope boundary
 
 - Home-page and site-wide metadata are not graph-derived, so they must not be
@@ -267,7 +278,8 @@ That audit confirmed:
 - no correctness failures in the current Track A surfaces
 - the home-page inline JSON-LD emitted-channel gap is now closed
 - the manifest proof gap is now closed
-- the remaining proof gap is CV metadata field alignment
+- the CV metadata field-alignment proof gap is now closed by
+  [graph-cv-metadata-description-proof.md](graph-cv-metadata-description-proof.md)
 - the clearest weak-expression issue was the negotiated
   `Accept: application/ld+json` channel still resolving to an
   `application/json` response contract
@@ -277,5 +289,5 @@ That negotiated-channel issue is now closed by
 the same JSON-LD payload is served for both `application/ld+json` and
 `application/json`, with the response `Content-Type` matching the request.
 
-Track A Phase A3 should now refine the remaining proof gaps rather than
-redefining the consumer model again.
+Track A should now move from Phase A3 refinement into Phase A4 external
+validation rather than redefining the consumer model again.

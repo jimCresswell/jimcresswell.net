@@ -91,10 +91,10 @@ The following items were closed later in Track A:
 
 - home-page inline JSON-LD emitted-channel proof
 - dedicated automated proof for `/manifest.webmanifest`
+- tighter proof for graph-derived CV metadata descriptions
 
 The remaining open items are:
 
-- tighter proof for graph-derived CV metadata descriptions
 - external validator evidence for the rich-result-facing inline graphs
 
 ## Track boundary

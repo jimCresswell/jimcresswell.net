@@ -177,13 +177,17 @@ The app now has automated proof for:
 
 ### CV metadata field alignment
 
-Current proof covers the canonical CV title, canonical link behaviour, and tilt
-alias handling. It does not yet assert that the emitted description and Open
-Graph description on `/cv` and `/cv/[variant]` remain aligned with
-`person.description`.
+This proof gap is now closed by
+[graph-cv-metadata-description-proof.md](graph-cv-metadata-description-proof.md).
 
-That is not a correctness failure today, but it is a live proof gap for a
-channel Track A already claims.
+The app now has:
+
+- module-level proof in `lib/page-document-contract.integration.test.ts` that
+  the base CV metadata export and active tilt metadata generation keep
+  `description` and `openGraph.description` aligned with `person.description`
+- route-level proof in `e2e/behaviour/seo.e2e-api.test.ts` that `/cv` and the
+  active `/cv/[variant]` route emit those same description fields in the
+  rendered `<head>`
 
 ## Deliberate low-priority channels
 
@@ -223,7 +227,7 @@ Track A now has a truthful working position:
   subgraph
 - the home-page emitted-channel proof gap is now closed
 - the manifest proof gap is now closed
-- the remaining weakest area is CV metadata field alignment
+- the CV metadata field-alignment proof gap is now closed
 - visible HTML still comes from `content/cv.content.json` and
   `content/frontpage.content.json`
 - Track B still owns graph-backed source of truth, graph-backed page
@@ -231,20 +235,10 @@ Track A now has a truthful working position:
 
 ## Recommended next steps
 
-### Track A Phase A3
-
-Start with proof-led refinements, in this order:
-
-1. extend CV metadata proof so `/cv` and `/cv/[variant]` assert the
-   graph-derived description fields they already claim
-2. preserve the negotiated graph contract delivered in
-   [graph-negotiated-media-type-refinement.md](graph-negotiated-media-type-refinement.md)
-   and extend its proof only if future Track A work widens negotiated-route
-   coverage again
-
 ### Track A Phase A4
 
-After A3 lands, record external proof for the rich-result-facing inline graphs:
+Phase A3 proof-led refinement is now complete. The remaining follow-on is
+external proof for the rich-result-facing inline graphs:
 
 - Schema.org Validator for `/` and `/cv/`
 - Google Rich Results Test for `/` and `/cv/`

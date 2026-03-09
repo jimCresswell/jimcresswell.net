@@ -2,9 +2,13 @@
 prompt_id: personal-knowledge-graph-track-a-cv-metadata-proof
 title: "Track A CV Metadata Proof"
 type: handoff
-status: active
+status: completed
 last_updated: 2026-03-09
 ---
+
+This handoff is complete. Use
+`/Users/jim/code/personal/new-cv/.agent/prompts/personal-knowledge-graph-track-a-external-validation.prompt.md`
+for the next Track A session.
 
 Continue Track A of the personal knowledge graph programme in
 `/Users/jim/code/personal/new-cv`.

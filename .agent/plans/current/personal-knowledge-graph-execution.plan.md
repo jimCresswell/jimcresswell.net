@@ -10,10 +10,10 @@ todos:
     status: completed
   - id: phase-a3-refinement
     content: Implement the agreed graph-expression refinements.
-    status: in_progress
+    status: completed
   - id: phase-a4-proof
     content: Record internal and external validation for the delivered Track A outputs.
-    status: pending
+    status: in_progress
 isProject: false
 ---
 
@@ -29,17 +29,23 @@ Use this plan with
 [graph-publication-consumer-and-proof-model.md](../research/graph-publication-consumer-and-proof-model.md),
 [graph-publication-output-audit.md](../research/graph-publication-output-audit.md),
 [graph-negotiated-media-type-refinement.md](../research/graph-negotiated-media-type-refinement.md),
+[graph-cv-metadata-description-proof.md](../research/graph-cv-metadata-description-proof.md),
 and [pkg-research-findings.md](../research/pkg-research-findings.md).
 
 This is the live execution authority for Track A.
 
-Phase A1 and Phase A2 are complete. Phase A3 is now active.
+Phase A1, Phase A2, and Phase A3 are complete. Phase A4 is now active.
 
 The first A3 slice is recorded in
 [graph-negotiated-media-type-refinement.md](../research/graph-negotiated-media-type-refinement.md):
 the negotiated graph channel now serves the same JSON-LD payload for both
 `application/ld+json` and `application/json`, with the response content type
 matching the request.
+
+The closing A3 proof slice is recorded in
+[graph-cv-metadata-description-proof.md](../research/graph-cv-metadata-description-proof.md):
+the existing graph-derived CV description fields are now proven at both the
+metadata-export and emitted-route levels.
 
 ## Outcome, impact, and value mechanism
 
@@ -268,15 +274,18 @@ through `e2e/behaviour/seo.e2e-api.test.ts` and
 The manifest proof slice is also now delivered through
 `app/manifest.integration.test.ts` and
 `e2e/behaviour/manifest.e2e-api.test.ts`.
-The remaining A3 priority is tighter proof for the graph-derived CV metadata
-description fields.
+The CV metadata description proof slice is now also delivered in
+[graph-cv-metadata-description-proof.md](../research/graph-cv-metadata-description-proof.md)
+through `lib/page-document-contract.integration.test.ts` and
+`e2e/behaviour/seo.e2e-api.test.ts`.
+Phase A3 is now complete.
 
-**Next session start:** continue with the next remaining A3 proof slice, not a
-new audit. Use
+**Next session start:** continue with Track A Phase A4, not a new audit. Use
 [graph-publication-output-audit.md](../research/graph-publication-output-audit.md)
-as the detailed ordered authority and start by tightening proof for the
-graph-derived description fields already emitted on `/cv` and
-`/cv/[variant]`.
+and
+[graph-cv-metadata-description-proof.md](../research/graph-cv-metadata-description-proof.md)
+as the latest proof record, then capture external validator evidence for the
+rich-result-facing inline graphs on `/` and `/cv/`.
 
 #### Tasks
 

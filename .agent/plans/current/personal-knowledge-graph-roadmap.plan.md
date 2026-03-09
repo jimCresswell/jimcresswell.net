@@ -31,8 +31,8 @@ Both tracks are required.
 
 Track A comes first.
 
-Track A Phase A1 and Phase A2 are now complete. Track A Phase A3 is now active
-in
+Track A Phase A1, Phase A2, and Phase A3 are now complete. Track A Phase A4 is
+now active in
 [personal-knowledge-graph-execution.plan.md](personal-knowledge-graph-execution.plan.md).
 
 Use this roadmap together with
@@ -40,6 +40,7 @@ Use this roadmap together with
 [graph-publication-consumer-and-proof-model.md](../research/graph-publication-consumer-and-proof-model.md),
 [graph-publication-output-audit.md](../research/graph-publication-output-audit.md),
 [graph-negotiated-media-type-refinement.md](../research/graph-negotiated-media-type-refinement.md),
+[graph-cv-metadata-description-proof.md](../research/graph-cv-metadata-description-proof.md),
 [personal-knowledge-graph-execution.plan.md](personal-knowledge-graph-execution.plan.md),
 and
 [personal-knowledge-graph-source-of-truth-design.plan.md](personal-knowledge-graph-source-of-truth-design.plan.md)
@@ -176,6 +177,9 @@ than generic graph enrichment.
 
 The first Track A Phase A3 refinement slice is now recorded in
 [graph-negotiated-media-type-refinement.md](../research/graph-negotiated-media-type-refinement.md).
+The closing Track A Phase A3 proof slice is now recorded in
+[graph-cv-metadata-description-proof.md](../research/graph-cv-metadata-description-proof.md).
+Track A now moves into Phase A4 external validation.
 
 ### Phase 3 — Track B Design
 

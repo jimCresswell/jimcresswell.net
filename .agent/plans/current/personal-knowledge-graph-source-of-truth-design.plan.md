@@ -60,9 +60,11 @@ That entry condition was satisfied on 2026-03-09 by
 [graph-publication-consumer-and-proof-model.md](../research/graph-publication-consumer-and-proof-model.md).
 The latest Track A boundary record is now
 [graph-publication-output-audit.md](../research/graph-publication-output-audit.md).
-The first Track A Phase A3 refinement slice is now recorded in
-[graph-negotiated-media-type-refinement.md](../research/graph-negotiated-media-type-refinement.md).
-Track A Phase A3 remains the active graph task.
+The Track A Phase A3 refinement slices are now recorded in
+[graph-negotiated-media-type-refinement.md](../research/graph-negotiated-media-type-refinement.md)
+and
+[graph-cv-metadata-description-proof.md](../research/graph-cv-metadata-description-proof.md).
+Track A Phase A4 is now the active graph task.
 
 No code should be shipped from this plan until its design work is
 decision-complete and an explicit migration plan exists.

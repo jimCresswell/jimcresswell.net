@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { metadata as cvMetadata } from "@/app/cv/page";
 import { generateMetadata } from "@/app/cv/[variant]/page";
+import { person } from "@/lib/entities";
 import {
   getPageDocumentContractByRouteKey,
   pageDocumentIntegrityViolations,
@@ -36,7 +37,9 @@ describe("page document contract", () => {
     const contract = getPageDocumentContractByRouteKey("cv");
 
     expect(cvMetadata.title).toBe(contract.routeTitle);
+    expect(cvMetadata.description).toBe(person.description);
     expect(cvMetadata.openGraph?.url).toBe(contract.canonicalUrl);
+    expect(cvMetadata.openGraph?.description).toBe(person.description);
   });
 
   it("canonicalises the public-sector tilt route to the base CV document", async () => {
@@ -47,6 +50,8 @@ describe("page document contract", () => {
     });
 
     expect(metadata.title).toBe(contract.routeTitle);
+    expect(metadata.description).toBe(person.description);
     expect(metadata.alternates?.canonical).toBe(canonicalCvContract.canonicalUrl);
+    expect(metadata.openGraph?.description).toBe(person.description);
   });
 });
