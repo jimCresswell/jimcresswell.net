@@ -1,12 +1,12 @@
-# Personal Knowledge Graph
+# Personal Knowledge Graph Design Notes
 
 > Historical design working document. Durable PKG design decisions belong in `docs/architecture/decision-records/`; use [ADR-014](../../docs/architecture/decision-records/014-entity-model-design.md) and the related ADRs as the canonical source of truth. This file is retained for the full entity audit, design exploration context, and design-phase rationale.
 
 Build a unified model where all site outputs — page rendering, Open Graph, JSON-LD, Web App Manifest, sitemap, PDF — are derived views onto the same underlying reality. A personal knowledge graph of entities and typed relationships, with each output as a derived view.
 
-## Status: Historical design working notes (implementation in progress; durable design decisions recorded in ADR-014 and related ADRs)
+## Status: Research reference (moved out of `current/` on 2026-03-09; active implementation continues in the execution plan; durable design decisions recorded in ADR-014 and related ADRs)
 
-This file preserves the entity inventory, principles, Schema.org conventions, and resolved-design rationale that shaped the PKG. It is not the canonical durable design source. For phased execution with todos and acceptance criteria, see the [implementation plan](personal-knowledge-graph-implementation.plan.md). For the detailed operational plan (per-task status, reviewer invocations), see the [execution plan](personal-knowledge-graph-execution.plan.md). For canonical design decisions, use [ADR-014](../../docs/architecture/decision-records/014-entity-model-design.md).
+This file preserves the entity inventory, principles, Schema.org conventions, and resolved-design rationale that shaped the PKG. It is not the canonical durable design source and it is not the live work queue. For the archived phase model and acceptance criteria, see the [phase model](../complete/personal-knowledge-graph-phase-model.plan.md). For the detailed operational plan (per-task status, reviewer invocations), see the [execution plan](../current/personal-knowledge-graph-execution.plan.md). For canonical design decisions, use [ADR-014](../../docs/architecture/decision-records/014-entity-model-design.md).
 
 ## How to use this plan
 
@@ -19,7 +19,7 @@ This is a collaborative session. Jim has examples to integrate and a clear visio
 5. Read `content/cv.content.json` and `content/frontpage.content.json` — current editorial content.
 6. Read `archive/prior_cv_content.json.bak` — full career history with dates and role titles.
 7. Read `docs/architecture/decision-records/007-dry-content-metadata.md` and `011-domain-appropriate-descriptions.md` — the single-source approach, its evolution, and why descriptions in different domains are different artifacts.
-8. Read the completed [meta-seo-content-audit.plan.md](complete/meta-seo-content-audit.plan.md) — this plan's editorial fixes are the starting point. The content it corrected is the content this plan migrates.
+8. Read the completed [meta-seo-content-audit.plan.md](../complete/meta-seo-content-audit.plan.md) — this plan's editorial fixes are the starting point. The content it corrected is the content this plan migrates.
 9. Review Jim's examples and reference materials.
 10. Walk through each phase below with Jim.
 
@@ -127,7 +127,7 @@ This means:
 
 ## Consumer value tiers
 
-Not all structured data is consumed equally. Research (see [research findings](research/pkg-research-findings.md)) reveals a clear hierarchy. This ensures effort is proportional to value.
+Not all structured data is consumed equally. Research (see [research findings](pkg-research-findings.md)) reveals a clear hierarchy. This ensures effort is proportional to value.
 
 | Tier                                        | What happens                                                                                  | Entity types                                                                                                                                                                                                                                                          |
 | ------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -367,7 +367,7 @@ Each page gets a JSON-LD subgraph derived from the canonical entity model. The a
 
 This is the concrete mechanism for "different views traverse different paths."
 
-### JSON-LD constraints (confirmed by [research](research/pkg-research-findings.md))
+### JSON-LD constraints (confirmed by [research](pkg-research-findings.md))
 
 - **Single block per page.** One `<script type="application/ld+json">` containing one `@graph` array. Multiple blocks have unreliable cross-referencing in practice.
 - **JSON-LD 1.0 subset only.** No consumer processes 1.1 features (`@nest`, `@propagate`, `@included`, scoped contexts). Stick to `@context`, `@graph`, `@id`, `@type`, and Schema.org properties.
@@ -408,7 +408,7 @@ With entities in the model, the JSON-LD graph can be significantly richer:
 - **Software**: `SoftwareSourceCode` with `codeRepository`. **Services**: `WebAPI` with `provider` → Organisation. See Design Phase 1 entity definitions for Oak Curriculum API and SDK/MCP modelling.
 - **Volunteer work**: `OrganizationRole` with `Person.memberOf` → `OrganizationRole` → `OrganizationRole.memberOf` → `Organization`. Research confirms `VolunteerAction` is for discrete events, not ongoing relationships.
 
-**Decision:** Schema.org type mappings are decided in [ADR-008](../../docs/architecture/decision-records/008-schema-org-compliance.md). Volunteer modelling is resolved: `OrganizationRole` with `memberOf` (see [research findings](research/pkg-research-findings.md)). Specific schema choices for roles and software are confirmed in the entity audit above.
+**Decision:** Schema.org type mappings are decided in [ADR-008](../../docs/architecture/decision-records/008-schema-org-compliance.md). Volunteer modelling is resolved: `OrganizationRole` with `memberOf` (see [research findings](pkg-research-findings.md)). Specific schema choices for roles and software are confirmed in the entity audit above.
 
 ---
 
@@ -457,7 +457,7 @@ This pass reviews both visible page content and JSON-LD descriptions. The framin
 
 ## Implementation
 
-For phased execution with todos, acceptance criteria, and progress tracking, see the [implementation plan](personal-knowledge-graph-implementation.plan.md). That plan distils these historical design notes into five actionable phases:
+For the archived phase model and acceptance criteria, see the [phase model](../complete/personal-knowledge-graph-phase-model.plan.md). For live execution, use the [execution plan](../current/personal-knowledge-graph-execution.plan.md). The phase model distils these historical design notes into five actionable phases:
 
 1. Entity model design (collaborative, produces schema + skeleton)
 2. Entity population (editorial-intensive — role descriptions, constant migration)
@@ -471,7 +471,7 @@ For phased execution with todos, acceptance criteria, and progress tracking, see
 - `pnpm check` passes.
 - `pnpm test:e2e` passes.
 
-**Structured data validation** — four-tool workflow (see [research findings](research/pkg-research-findings.md)):
+**Structured data validation** — four-tool workflow (see [research findings](pkg-research-findings.md)):
 
 | Tool                                                                    | When            | Purpose                                                                         |
 | ----------------------------------------------------------------------- | --------------- | ------------------------------------------------------------------------------- |
@@ -496,8 +496,8 @@ For phased execution with todos, acceptance criteria, and progress tracking, see
 | `app/manifest.ts`                    | May derive from shared entity data                                                                      |
 | `components/cv-layout.tsx`           | Possibly: add `id` attributes for graph–DOM binding                                                     |
 | `components/article-entry.tsx`       | Possibly: accept entity `id` attribute                                                                  |
-| `docs/architecture/README.md`        | Update Content & Metadata section                                                                       |
-| `docs/architecture/content-model.md` | Update to reflect entity model                                                                          |
+| `docs/architecture/README.md`        | Updated to describe entity-derived metadata, page/document contract, and rich-result validation         |
+| `docs/architecture/content-model.md` | Updated to reflect the entity model and page-level document contract                                    |
 
 ---
 
@@ -516,17 +516,18 @@ For phased execution with todos, acceptance criteria, and progress tracking, see
 
 ## Sequencing
 
-**Prerequisite complete.** The [meta-seo-content-audit.plan.md](complete/meta-seo-content-audit.plan.md) has been completed. All editorial content in `meta.summary`, `KNOWS_ABOUT`, `OCCUPATION`, front page OG description, and the capabilities has been aligned with the positioning. This plan now operates on correct, editorially settled content throughout — the structural migration can proceed without editorial concerns.
+**Prerequisite complete.** The [meta-seo-content-audit.plan.md](../complete/meta-seo-content-audit.plan.md) has been completed. All editorial content in `meta.summary`, `KNOWS_ABOUT`, `OCCUPATION`, front page OG description, and the capabilities has been aligned with the positioning. This plan now operates on correct, editorially settled content throughout — the structural migration can proceed without editorial concerns.
 
 ---
 
 ## Related
 
-- [research/pkg-research-findings.md](research/pkg-research-findings.md) — Schema.org, JSON-LD, Google structured data, and Neo4j research findings
-- [personal-knowledge-graph-implementation.plan.md](personal-knowledge-graph-implementation.plan.md) — compact implementation reference
-- [cv-editorial-improvements.plan.md](cv-editorial-improvements.plan.md) — parent plan
-- [meta-seo-content-audit.plan.md](complete/meta-seo-content-audit.plan.md) — editorial content fixes (prerequisite — complete)
-- [capabilities-editorial.plan.md](complete/capabilities-editorial.plan.md) — capabilities work (complete — terms added to `KNOWS_ABOUT`)
+- [pkg-research-findings.md](pkg-research-findings.md) — Schema.org, JSON-LD, Google structured data, and Neo4j research findings
+- [personal-knowledge-graph-phase-model.plan.md](../complete/personal-knowledge-graph-phase-model.plan.md) — archived phase model and acceptance criteria
+- [personal-knowledge-graph-execution.plan.md](../current/personal-knowledge-graph-execution.plan.md) — live execution plan
+- [cv-editorial-improvements.plan.md](../current/cv-editorial-improvements.plan.md) — parent plan
+- [meta-seo-content-audit.plan.md](../complete/meta-seo-content-audit.plan.md) — editorial content fixes (prerequisite — complete)
+- [capabilities-editorial.plan.md](../complete/capabilities-editorial.plan.md) — capabilities work (complete — terms added to `KNOWS_ABOUT`)
 - [icebox/neo4j-knowledge-graph.plan.md](../icebox/neo4j-knowledge-graph.plan.md) — future migration to Neo4j; shapes current design decisions
 - [ADR-007](../../docs/architecture/decision-records/007-dry-content-metadata.md) — current single-source approach
 - [ADR-008](../../docs/architecture/decision-records/008-schema-org-compliance.md) — Schema.org compliance throughout the graph

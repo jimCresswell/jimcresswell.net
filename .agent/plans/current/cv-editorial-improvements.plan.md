@@ -2,7 +2,7 @@
 
 Refine the positioning, capabilities, and structured data in the editorial CV.
 
-## Status: In Progress — positioning, capabilities, metadata, and experience/Before Oak settled; knowledge graph Phases 1-4 code complete (automated gates pass), manual validation still pending; LinkedIn subsumed by PKG Phase 5
+## Status: In Progress — editorial CV work is settled; remaining active work is tracked in the dedicated PKG and LinkedIn plans.
 
 ## Prerequisite: PII security mitigation
 
@@ -14,16 +14,15 @@ Positioning paragraphs, capabilities, `meta.summary`, structured data (`KNOWS_AB
 
 **Remaining work in dedicated plans:**
 
-| Item                                      | Plan                                                                                               | Status      |
-| ----------------------------------------- | -------------------------------------------------------------------------------------------------- | ----------- |
-| Experience & Before Oak editorial review  | [experience-editorial.plan.md](complete/experience-editorial.plan.md)                              | Complete    |
-| Personal knowledge graph — implementation | [personal-knowledge-graph-implementation.plan.md](personal-knowledge-graph-implementation.plan.md) | In progress |
-| PKG execution plan                        | [personal-knowledge-graph-execution.plan.md](personal-knowledge-graph-execution.plan.md)           | In progress |
-| Visual regression harness                 | [visual-regression-harness.plan.md](../complete/visual-regression-harness.plan.md)                 | Complete    |
-| LinkedIn update                           | [linkedin-update.plan.md](linkedin-update.plan.md) — subsumed by PKG Phase 5                       | Subsumed    |
-| Tilt mechanism                            | No plan yet — see [Deferred](#deferred) below                                                      | Deferred    |
-| Tilt content                              | Depends on tilt mechanism                                                                          | Deferred    |
-| PKG durable design decisions              | [ADR-014](../../docs/architecture/decision-records/014-entity-model-design.md) and related ADRs    | Accepted    |
+| Item                                     | Plan                                                                                            | Status      |
+| ---------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------- |
+| Experience & Before Oak editorial review | [experience-editorial.plan.md](../complete/experience-editorial.plan.md)                        | Complete    |
+| PKG execution plan                       | [personal-knowledge-graph-execution.plan.md](personal-knowledge-graph-execution.plan.md)        | In progress |
+| Visual regression harness                | [visual-regression-harness.plan.md](../complete/visual-regression-harness.plan.md)              | Complete    |
+| LinkedIn update                          | [linkedin-update.plan.md](linkedin-update.plan.md) — subsumed by PKG Phase 5                    | Subsumed    |
+| Tilt mechanism                           | No plan yet — see [Deferred](#deferred) below                                                   | Deferred    |
+| Tilt content                             | Depends on tilt mechanism                                                                       | Deferred    |
+| PKG durable design decisions             | [ADR-014](../../docs/architecture/decision-records/014-entity-model-design.md) and related ADRs | Accepted    |
 
 ## How to use this plan
 
@@ -41,7 +40,7 @@ See `docs/architecture/README.md` for project architecture, including how conten
 
 ## Context
 
-The site is technically complete — infrastructure, PDF generation, E2E tests, and deployment all work. The front page has been reworked as a personal narrative (see [completed plan](complete/front-page-content.plan.md)). The positioning paragraphs have been editorially settled (two paragraphs — see Decided section below). Content architecture has been consolidated so all metadata derives from content JSON files (see [ADR-007](../../docs/architecture/decision-records/007-dry-content-metadata.md)).
+The site is technically complete — infrastructure, PDF generation, E2E tests, and deployment all work. The front page has been reworked as a personal narrative (see [completed plan](../complete/front-page-content.plan.md)). The positioning paragraphs have been editorially settled (two paragraphs — see Decided section below). Content architecture has been consolidated so all metadata derives from content JSON files (see [ADR-007](../../docs/architecture/decision-records/007-dry-content-metadata.md)).
 
 Additional reference material (gitignored — may not be present in all environments):
 
@@ -85,7 +84,7 @@ All other facts verified as accurate, including: "bespoke version control" at Br
 
 ## Resolved: Capabilities rewritten with concrete anchors
 
-**Breakout plan:** [capabilities-editorial.plan.md](complete/capabilities-editorial.plan.md) — full analysis, decision log, and final text.
+**Breakout plan:** [capabilities-editorial.plan.md](../complete/capabilities-editorial.plan.md) — full analysis, decision log, and final text.
 
 **Decision:** Four strategic-only capabilities replaced with five blended capabilities. Each combines a strategic thread with a concrete, verifiable anchor. Capabilities section moved from after Foundations to after Positioning (most prominent position). Links to public repo, Oak's open API, published research, and the `.agent` directory are inline in capability text. See the breakout plan for the full editorial rationale and decision history.
 
@@ -93,29 +92,29 @@ All other facts verified as accurate, including: "bespoke version control" at Br
 
 ## Resolved: Meta & SEO content audit
 
-Completed in a dedicated plan: [meta-seo-content-audit.plan.md](complete/meta-seo-content-audit.plan.md). That plan fixed `meta.summary`, expanded `KNOWS_ABOUT` (20 → 34 items) and refined `OCCUPATION` in `lib/jsonld.ts`, added a dedicated `meta.description` to `frontpage.content.json` for OG, and updated `app/layout.tsx` to use it. A follow-up editorial pass surfaced "origination" in positioning P2 and refined three capabilities to better bridge narrative content and structured data terms. The editorial hierarchy principle was codified in `editorial-guidance.md`.
+Completed in a dedicated plan: [meta-seo-content-audit.plan.md](../complete/meta-seo-content-audit.plan.md). That plan fixed `meta.summary`, expanded `KNOWS_ABOUT` (20 → 34 items) and refined `OCCUPATION` in `lib/jsonld.ts`, added a dedicated `meta.description` to `frontpage.content.json` for OG, and updated `app/layout.tsx` to use it. A follow-up editorial pass surfaced "origination" in positioning P2 and refined three capabilities to better bridge narrative content and structured data terms. The editorial hierarchy principle was codified in `editorial-guidance.md`.
 
 ---
 
 ## Resolved: Experience and Before Oak editorial review
 
-**Breakout plan:** [experience-editorial.plan.md](complete/experience-editorial.plan.md) — all 21 items complete. Research rewritten (model fitting, Galaxy Zoo, CMB observational test, colour-age disproof), Applied Exploration connected to the open web with collaborative credit, voice/framing fixes (passive → agentic, justificatory → confident), and capabilities consistency (Cap 2 OGL framing, Cap 4 vision not standards). Quality gates pass.
+**Breakout plan:** [experience-editorial.plan.md](../complete/experience-editorial.plan.md) — all 21 items complete. Research rewritten (model fitting, Galaxy Zoo, CMB observational test, colour-age disproof), Applied Exploration connected to the open web with collaborative credit, voice/framing fixes (passive → agentic, justificatory → confident), and capabilities consistency (Cap 2 OGL framing, Cap 4 vision not standards). Quality gates pass.
 
 ---
 
 ## In progress: Personal knowledge graph
 
-**Implementation plan:** [personal-knowledge-graph-implementation.plan.md](personal-knowledge-graph-implementation.plan.md) — full phase/task plan with goals, impacts, and acceptance criteria.
-
 **Execution plan:** [personal-knowledge-graph-execution.plan.md](personal-knowledge-graph-execution.plan.md) — detailed operational plan with per-task status. **Start here** for next session.
+
+**Phase model reference:** [personal-knowledge-graph-phase-model.plan.md](../complete/personal-knowledge-graph-phase-model.plan.md) — archived goals, impacts, tasks, and acceptance criteria for all PKG phases.
 
 **Harness plan:** [visual-regression-harness.plan.md](../complete/visual-regression-harness.plan.md) — completed proof record for the PKG regression work.
 
 **Durable design decisions:** [ADR-014](../../docs/architecture/decision-records/014-entity-model-design.md) and the related ADRs in `docs/architecture/decision-records/`.
 
-**Historical design working notes:** [personal-knowledge-graph.plan.md](personal-knowledge-graph.plan.md) — retained for design exploration context and audit detail, not as the canonical durable design source.
+**Historical design notes:** [personal-knowledge-graph-design-notes.md](../research/personal-knowledge-graph-design-notes.md) — retained for design exploration context and audit detail, not as the canonical durable design source.
 
-Phases 1-4 code complete: `content/entities.json` with ~50 entities at all abstraction levels, 17 Zod schemas validating at import time, subgraph closure algorithm for page-specific JSON-LD, all views rewired to derive from the entity model, `Knowledge graphs` added to `knowsAbout`, and `schema-dts` validation in place. **Automated gates pass on the current tree** — `pnpm check` and `pnpm test:e2e` both passed on 2026-03-08. Manual Schema.org Validator and Rich Results Test checks remain outstanding, and the historical content-regression proof is still pending.
+Use the [execution plan](personal-knowledge-graph-execution.plan.md) as the live PKG source of truth for current phase status, validation state, proof state, and next actions. This parent plan intentionally keeps only the plan map and editorial context.
 
 ---
 
@@ -123,7 +122,7 @@ Phases 1-4 code complete: `content/entities.json` with ~50 entities at all abstr
 
 - **Grounded Practice section** — keep as-is (distinctive and human).
 - **Tilts underused** — deferred to tilt mechanism plan.
-- **Front page** — complete (see [completed plan](complete/front-page-content.plan.md)).
+- **Front page** — complete (see [completed plan](../complete/front-page-content.plan.md)).
 
 ---
 
@@ -142,9 +141,9 @@ Phases 1-4 code complete: `content/entities.json` with ~50 entities at all abstr
 | Item                                         | When                                                                                                                           |
 | -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
 | ~~Factual fix (Oak start_year 2019 → 2020)~~ | Done                                                                                                                           |
-| ~~Capabilities (concrete additions)~~        | Done — see [capabilities-editorial.plan.md](complete/capabilities-editorial.plan.md)                                           |
-| ~~Meta & SEO content audit~~                 | Done — see [meta-seo-content-audit.plan.md](complete/meta-seo-content-audit.plan.md)                                           |
-| ~~Experience & Before Oak editorial review~~ | Done — see [experience-editorial.plan.md](complete/experience-editorial.plan.md)                                               |
+| ~~Capabilities (concrete additions)~~        | Done — see [capabilities-editorial.plan.md](../complete/capabilities-editorial.plan.md)                                        |
+| ~~Meta & SEO content audit~~                 | Done — see [meta-seo-content-audit.plan.md](../complete/meta-seo-content-audit.plan.md)                                        |
+| ~~Experience & Before Oak editorial review~~ | Done — see [experience-editorial.plan.md](../complete/experience-editorial.plan.md)                                            |
 | Personal knowledge graph                     | See [personal-knowledge-graph-execution.plan.md](personal-knowledge-graph-execution.plan.md) — start here for the next session |
 
 ---

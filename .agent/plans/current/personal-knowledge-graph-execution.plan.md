@@ -48,14 +48,16 @@ This is the **standalone entry point** for continuing PKG implementation. A fres
 This plan operationalises the PKG work:
 
 - [ADR-014](../../docs/architecture/decision-records/014-entity-model-design.md) and the related ADRs -- the canonical durable PKG design decisions
-- [Historical design working notes](personal-knowledge-graph.plan.md) -- entity audit and design exploration context
-- [Implementation plan](personal-knowledge-graph-implementation.plan.md) -- full phase/task plan with goals, impacts, and acceptance criteria
+- [Historical design notes](../research/personal-knowledge-graph-design-notes.md) -- entity audit and design exploration context
+- [Archived phase model](../complete/personal-knowledge-graph-phase-model.plan.md) -- full phase/task goals, impacts, tasks, and acceptance criteria
 - [Completed visual regression harness plan](../complete/visual-regression-harness.plan.md) -- the closed proof record and accepted PKG artefact decisions
 - [Visual regression harness icebox plan](../icebox/visual-regression-harness-enhancements.plan.md) -- non-active future harness enhancements
 
 This plan defines the HOW -- current status, reviewer invocations, skill activations, remaining PKG work, and quality gates.
 
-### Current state (updated 2026-03-08, verified 2026-03-08 after latest harness run)
+This is the single live status record for PKG work. Other plans should summarise and point here rather than restating mutable proof, gate, or next-step state.
+
+### Current state (updated 2026-03-08, consolidated 2026-03-09)
 
 | Phase                       | Code status      | Gate status             | Key metric                                      |
 | --------------------------- | ---------------- | ----------------------- | ----------------------------------------------- |
@@ -249,7 +251,7 @@ All 6 tasks completed. Every view now derives from the entity model.
 
 **Files changed:** `lib/jsonld.ts`, `lib/cv-content.ts`, `app/manifest.ts`, `app/page.tsx`, `app/cv/page.tsx`, `app/cv/[variant]/page.tsx`. **Files created:** `lib/subgraph.ts`, `lib/subgraph.unit.test.ts`, `lib/page-jsonld.ts`.
 
-**Remaining:** Historical work already committed and merged locally into `main` on 2026-03-08. The new harness comparison against `b76824a` has now been run and recorded, but HTML/DOM differences remain under review and no accepted zero-difference proof exists yet. See **Proof status: content regression** above.
+**Remaining:** Historical work already committed and merged locally into `main` on 2026-03-08. The harness proof is closed and recorded; the remaining Phase 4 close-out is manual Schema.org Validator and Rich Results validation, plus any follow-up that those external checks uncover. See **Proof status: content regression** above.
 
 ---
 
@@ -341,7 +343,7 @@ Add compile-time Schema.org vocabulary validation using `schema-dts` (Google's T
 - ✅ `pnpm check` passes on the current tree (2026-03-08)
 - ✅ `pnpm test:e2e` passes on the current tree (2026-03-08)
 - Rendered content matches the current JSON source (`e2e/behaviour/content-integrity.e2e-ui.test.ts`)
-- Historical content-preservation proof still pending (see **Proof status: content regression**)
+- Historical content-preservation proof closed with 5 explicitly approved semantic review items and `0` unexpected pixel differences (see **Proof status: content regression**)
 - Every `@id` reference resolves (programmatic test — already in place)
 - Schema.org Validator: no errors (manual, pre-deployment)
 - Google Rich Results Test: ProfilePage and WebSite eligible (manual, post-deployment)
@@ -469,17 +471,16 @@ Throughout all phases:
 
 ### Pending
 
-- `docs/architecture/README.md` -- update Content and Metadata section
 - `.agent/temp/linkedin-update-content.md` -- Phase 5 LinkedIn content
 
 ## Related
 
-- [Design reference](personal-knowledge-graph.plan.md) -- entity inventory, principles, Schema.org conventions (the WHY)
-- [Implementation plan](personal-knowledge-graph-implementation.plan.md) -- full phase/task plan with acceptance criteria (the WHAT)
-- [Historical design working notes](personal-knowledge-graph.plan.md) -- design exploration and audit context
+- [Design reference](../research/personal-knowledge-graph-design-notes.md) -- entity inventory, principles, Schema.org conventions (the WHY)
+- [Phase model](../complete/personal-knowledge-graph-phase-model.plan.md) -- full phase/task plan with acceptance criteria (the WHAT)
+- [Historical design notes](../research/personal-knowledge-graph-design-notes.md) -- design exploration and audit context
 - [Completed visual regression harness plan](../complete/visual-regression-harness.plan.md) -- closed proof record and accepted artefact decisions
 - [linkedin-update.plan.md](linkedin-update.plan.md) -- subsumed LinkedIn reference plan
-- [PKG research findings](research/pkg-research-findings.md) -- Schema.org, JSON-LD, Google structured data, Neo4j research
+- [PKG research findings](../research/pkg-research-findings.md) -- Schema.org, JSON-LD, Google structured data, Neo4j research
 - [Neo4j icebox plan](../icebox/neo4j-knowledge-graph.plan.md) -- shapes design decisions
 - [ADR-007](../../docs/architecture/decision-records/007-dry-content-metadata.md) -- single-source approach
 - [ADR-008](../../docs/architecture/decision-records/008-schema-org-compliance.md) -- Schema.org compliance

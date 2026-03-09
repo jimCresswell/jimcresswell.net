@@ -376,6 +376,6 @@ Acceptance criteria:
 
 ## Related
 
-- [Roadmap](roadmap.md) — overall work-stream status
+- [Roadmap](../roadmap.md) — overall work-stream status
 - [Visual Regression Harness](visual-regression-harness.plan.md) — example of a completed technical plan with a separate icebox for later enhancements
-- [PKG Execution Plan](personal-knowledge-graph-execution.plan.md) — example of a fully operational standalone plan
+- [PKG Execution Plan](../current/personal-knowledge-graph-execution.plan.md) — example of a fully operational standalone plan

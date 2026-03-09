@@ -3,19 +3,64 @@ prompt_id: start-right
 title: "Start Right"
 type: workflow
 status: active
-last_updated: 2026-03-05
+last_updated: 2026-03-09
 ---
 
 # Start Right
 
 Ground yourself before beginning work.
 
-Read `.agent/directives/rules.md` and `.agent/directives/testing-strategy.md`. These are the authoritative rules — internalise them.
+## Foundation Documents
 
-Ask: what value are we delivering, through what impact, for which users? Are we solving the right problem at the right layer? Could it be simpler? Think about system-level impact, not just the problem in front of you.
+Read and internalise these documents:
+
+1. `.agent/directives/AGENT.md` — Entry point and project context
+2. `.agent/directives/rules.md` — **THE AUTHORITATIVE RULES**
+3. `.agent/directives/testing-strategy.md` — TDD at all levels
+
+**Plans must include regularly re-reading and re-committing to these foundation documents.**
+
+## Guiding Questions
+
+Before diving in, pause and ask:
+
+1. **Are we solving the right problem, at the right layer?**
+2. **What value are we delivering, through what impact, for which users?**
+3. **Could it be simpler without compromising quality?**
+4. **What assumptions am I making? Are they valid?**
+
+Step back and consider if work is delivering value through impact at the system level, not just fixing the problem right in front of you.
+
+## Practice Box
 
 Check `.agent/practice-core/incoming/` for incoming practice-core files. If files are present, alert the user.
 
-Discuss the first step with the user before acting.
+## Commit
 
-After each piece of work, run the full quality gate suite one gate at a time. All plans must include TSDoc on logic and state, and READMEs where appropriate.
+Commit to excellence in systems architecture, software engineering, and developer experience. Choose architectural correctness over short-term expediency. This requires critical and long-term thinking.
+
+## Process
+
+Do not assume you know the initial step. Discuss with the user first.
+
+## After Each Piece of Work
+
+1. Run the full quality gate suite one gate at a time.
+2. Wait for all gates to complete before analysing issues.
+3. Include architectural analysis, not just local fixes.
+
+## Documentation Requirements
+
+All plans must include instructions to create:
+
+- TSDoc on logic and state, with extensive examples on public interfaces
+- READMEs where appropriate
+
+## Quality Gates
+
+Run after making changes:
+
+```bash
+pnpm check       # All seven gates with auto-fix (see rules.md)
+pnpm test:e2e    # E2E tests (separate, requires Chromium)
+```

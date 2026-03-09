@@ -1,47 +1,45 @@
 ---
-name: Personal Knowledge Graph
-overview: Build a unified entity model where all representations of Jim — CV, front page, JSON-LD, LinkedIn, tilts, PDF — are derived views onto a single knowledge graph, designed at all four abstraction levels from the start.
+name: Personal Knowledge Graph Phase Model
+overview: Archived PKG phase model retained for full goals, impacts, tasks, and acceptance criteria after live execution ownership moved to the PKG execution plan.
 todos:
-  - id: phase1-design
-    content: "Phase 1: Entity model design — code complete, automated gates pass on current tree"
+  - id: preserve-phase-model
+    content: Preserve the full PKG phase model and acceptance criteria as a non-current reference.
     status: completed
-  - id: phase2-populate
-    content: "Phase 2: Entity population — code complete, automated gates pass on current tree"
+  - id: move-live-ownership
+    content: Move mutable execution status, proof state, and next actions to the PKG execution plan.
     status: completed
-  - id: phase3-wire
-    content: "Phase 3: View derivation — code complete, automated gates pass on current tree"
-    status: completed
-  - id: phase4-enrich
-    content: "Phase 4: New views — front page JSON-LD, expanded graph, domain-appropriate descriptions, HTML binding, validation — code complete; manual validators still outstanding"
-    status: completed
-  - id: phase5-linkedin
-    content: "Phase 5: LinkedIn as a derived view — derive all LinkedIn content from the graph"
-    status: pending
 isProject: false
 ---
 
-# Personal Knowledge Graph — Implementation
+# Personal Knowledge Graph — Phase Model
 
-**This is the implementation plan** — phased tasks with acceptance criteria and progress tracking. Durable design decisions belong in `docs/architecture/decision-records/`; use [ADR-014](../../docs/architecture/decision-records/014-entity-model-design.md) and the related ADRs as the canonical PKG design source. [`personal-knowledge-graph.plan.md`](personal-knowledge-graph.plan.md) remains as historical design working material and detailed audit context. For the detailed operational plan (reviewer invocations, skill activations, quality gates), see the [execution plan](personal-knowledge-graph-execution.plan.md). For the closed harness proof record, see the [completed visual regression harness plan](../complete/visual-regression-harness.plan.md). Potential later harness enhancements now live in the [icebox plan](../icebox/visual-regression-harness-enhancements.plan.md).
+## Status
 
-## Progress (updated 2026-03-08)
+Archived reference as of 2026-03-09. This file preserves the full PKG phase model: goals, impacts, tasks, and acceptance criteria.
 
-| Phase                       | Code        | Gate status             | Key outcome                                               |
-| --------------------------- | ----------- | ----------------------- | --------------------------------------------------------- |
-| 1. Entity model design      | ✅ Complete | ✅ Automated gates pass | 17 Zod schemas, `content/entities.json` skeleton, ADR-014 |
-| 2. Entity population        | ✅ Complete | ✅ Automated gates pass | ~50 entities across all abstraction levels                |
-| 3. View derivation          | ✅ Complete | ✅ Automated gates pass | `lib/jsonld.ts` 287→30 lines, subgraph closure algorithm  |
-| 4. New views and enrichment | ✅ Complete | 🔄 Manual checks left   | Tasks 4.1-4.8 code-complete; manual validation left       |
-| 5. LinkedIn as derived view | ⬜ Pending  | —                       | —                                                         |
+For current work, use the [execution plan](../current/personal-knowledge-graph-execution.plan.md). For historical design reasoning, use the [design notes](../research/personal-knowledge-graph-design-notes.md). Durable architectural decisions live in [ADR-014](../../docs/architecture/decision-records/014-entity-model-design.md) and related ADRs.
 
-152 vitest tests passing. Automated gates pass on the current tree (`pnpm check`, `pnpm test:e2e`, both 2026-03-08). Manual Schema.org Validator and Rich Results Test checks remain outstanding. The historical visual-content proof is closed: the harness recorded `0` unexpected pixel differences, and the remaining semantic data-layer artefacts are explicitly approved. Historical PKG work and the Phase 4 follow-up have already been committed and merged locally into `main`. The [execution plan](personal-knowledge-graph-execution.plan.md) has detailed per-task status.
+## How to use this reference
+
+Use this file for:
+
+- phase goals, impacts, and acceptance criteria
+- full task inventories by phase
+- reference-quality implementation scope
+
+Do not use this file for:
+
+- current phase status
+- proof or validator state
+- latest gate results
+- next-session starting point
 
 ## Reading requirements
 
 Before starting any phase, read:
 
 1. [ADR-014](../../docs/architecture/decision-records/014-entity-model-design.md) plus the related ADRs it references — canonical design decisions
-2. [Historical design working notes](personal-knowledge-graph.plan.md) — entity inventory, audit detail, and design exploration context
+2. [Historical design working notes](../research/personal-knowledge-graph-design-notes.md) — entity inventory, audit detail, and design exploration context
 3. `.agent/directives/editorial-guidance.md` — voice, editorial hierarchy, "physics as silent ballast"
 4. `.agent/directives/rules.md` and `.agent/directives/testing-strategy.md` — project conventions
 
@@ -76,7 +74,7 @@ The Person entity is defined once and its `@id` (`https://www.jimcresswell.net/#
 
 **Impact:** All subsequent phases have a clear, agreed structure to build against. No ambiguity about where entities live or how views reference them.
 
-**Key decisions** (see [ADR-014](../../docs/architecture/decision-records/014-entity-model-design.md) and the [historical design notes](personal-knowledge-graph.plan.md) for context):
+**Key decisions** (see [ADR-014](../../docs/architecture/decision-records/014-entity-model-design.md) and the [historical design notes](../research/personal-knowledge-graph-design-notes.md) for context):
 
 - File structure: layered content files (entities.json + page composition files) vs alternatives
 - Entity shape: flat definitions with typed relationship references (Neo4j-ready)
@@ -93,7 +91,7 @@ The Person entity is defined once and its `@id` (`https://www.jimcresswell.net/#
    - Acceptance criteria: Jim has chosen an option; decision is recorded in this plan and as an ADR
 
 2. **Define the ID scheme**
-   - Agree on ID patterns for all entity types (see [historical design notes](personal-knowledge-graph.plan.md#schema-org-structural-conventions))
+   - Agree on ID patterns for all entity types (see [historical design notes](../research/personal-knowledge-graph-design-notes.md#schema-org-structural-conventions))
    - Impact: IDs are stable across the project lifecycle and compatible with Neo4j migration
    - Acceptance criteria: every entity type has a documented ID pattern; patterns are consistent with ADR-010
 
@@ -166,7 +164,7 @@ The Person entity is defined once and its `@id` (`https://www.jimcresswell.net/#
 
 1. **Rewire `lib/jsonld.ts`**
    - Import entities from the content model; compose the JSON-LD `@graph` from entity data
-   - **Migration note**: the existing `lib/jsonld.ts` uses `Thesis.inSupportOf` as an entity reference (`{"@id": ".../#cred-mphys"}`), but Schema.org defines `inSupportOf` as expecting `Text`. During this rewire, correct to use `inSupportOf` as `Text` and `Thesis.about` as the typed `@id` reference to the credential (per [research findings](research/pkg-research-findings.md)). This is a structural correction, not an editorial change.
+   - **Migration note**: the existing `lib/jsonld.ts` uses `Thesis.inSupportOf` as an entity reference (`{"@id": ".../#cred-mphys"}`), but Schema.org defines `inSupportOf` as expecting `Text`. During this rewire, correct to use `inSupportOf` as `Text` and `Thesis.about` as the typed `@id` reference to the credential (per [research findings](../research/pkg-research-findings.md)). This is a structural correction, not an editorial change.
    - Impact: JSON-LD graph is derived from entities, not hardcoded constants; `inSupportOf` usage becomes Schema.org-compliant
    - Acceptance criteria: `lib/jsonld.ts` imports from entity model; JSON-LD output is structurally equivalent to current output except for the `inSupportOf` correction; `pnpm check` and `pnpm test:e2e` pass
 
@@ -186,7 +184,7 @@ The Person entity is defined once and its `@id` (`https://www.jimcresswell.net/#
    - Acceptance criteria: no duplicated entity data across content files; rendered pages pixel-identical
 
 5. **Implement subgraph closure**
-   - Build the CBD-inspired closure algorithm (Concise Bounded Description with pruning) that derives page-level JSON-LD subgraphs from the canonical graph (see [historical design notes](personal-knowledge-graph.plan.md#design-phase-3-derive-all-views-from-the-model))
+   - Build the CBD-inspired closure algorithm (Concise Bounded Description with pruning) that derives page-level JSON-LD subgraphs from the canonical graph (see [historical design notes](../research/personal-knowledge-graph-design-notes.md#design-phase-3-derive-all-views-from-the-model))
    - The closure function accepts a pruning predicate — pruning policy is configuration, not algorithm. This is a pure function (entity graph in, pruning config in, subgraph array out) — write unit tests first (TDD)
    - Impact: each page can get its own JSON-LD subgraph, scoped to the entities it presents
    - Acceptance criteria: closure algorithm produces a valid JSON-LD `@graph`; every `@id` reference in the subgraph resolves to a node within the same subgraph; CV page subgraph matches current full graph; unit tests cover closure, pruning, and dangling-reference detection
@@ -223,13 +221,13 @@ The Person entity is defined once and its `@id` (`https://www.jimcresswell.net/#
    - Acceptance criteria: section-, entity-, and role-anchor binding all exist, and any resulting HTML/DOM differences are explicitly reviewed with Jim rather than silently accepted
 
 5. **Validate structured data**
-   - Four-tool validation workflow (see [research findings](research/pkg-research-findings.md)): programmatic `@id` resolution check during development, Schema.org Validator for spec compliance, Google Rich Results Test for Google eligibility, Google Search Console for ongoing monitoring
+   - Four-tool validation workflow (see [research findings](../research/pkg-research-findings.md)): programmatic `@id` resolution check during development, Schema.org Validator for spec compliance, Google Rich Results Test for Google eligibility, Google Search Console for ongoing monitoring
    - Programmatic check: every `@id` reference in a page's subgraph resolves to a node within the same subgraph
    - Impact: confidence that the graph is correctly consumed by search engines and AI
    - Acceptance criteria: no errors from Schema.org Validator; Rich Results Test shows expected eligible types (ProfilePage, WebSite); every `@id` reference resolves; programmatic check integrated into test suite
 
 6. **Cross-output consistency and framing review**
-   - Review all outputs for editorial consistency: OG descriptions, JSON-LD Person description, page prose, manifest description (see [historical design notes](personal-knowledge-graph.plan.md#design-phase-5-consistency-and-framing-review))
+   - Review all outputs for editorial consistency: OG descriptions, JSON-LD Person description, page prose, manifest description (see [historical design notes](../research/personal-knowledge-graph-design-notes.md#design-phase-5-consistency-and-framing-review))
    - Review every role `description` against the "Framing is identity, not history" principle — the reader should see a leader and originator, not a job title progression
    - Impact: every representation of Jim tells the same story in its respective register
    - Acceptance criteria: no contradictions between OG, JSON-LD, page prose, and manifest; role descriptions reviewed with Jim; framing pass documented
@@ -248,7 +246,7 @@ The Person entity is defined once and its `@id` (`https://www.jimcresswell.net/#
 
 ### Phase 5 — LinkedIn as a derived view
 
-**Goal:** Derive all LinkedIn content from the knowledge graph. The standalone [LinkedIn update plan](linkedin-update.plan.md) is retained as a subsumed reference so its source-material checklist, editorial questions, role inventory, and API findings are not lost.
+**Goal:** Derive all LinkedIn content from the knowledge graph. The standalone [LinkedIn update plan](../current/linkedin-update.plan.md) is retained as a subsumed reference so its source-material checklist, editorial questions, role inventory, and API findings are not lost.
 
 **Impact:** LinkedIn content is editorially consistent with the CV and all other views because it derives from the same source.
 
@@ -270,7 +268,7 @@ The Person entity is defined once and its `@id` (`https://www.jimcresswell.net/#
    - Acceptance criteria: all sections copy-paste ready; document at `.agent/temp/linkedin-update-content.md`
 
 4. **Resolve LinkedIn-specific editorial questions**
-   - See [LinkedIn plan Phase 2](linkedin-update.plan.md) for open questions (headline keywords, role grouping, description length, skills section)
+   - See [LinkedIn plan Phase 2](../current/linkedin-update.plan.md) for open questions (headline keywords, role grouping, description length, skills section)
    - Impact: LinkedIn-specific decisions are made with Jim's input
    - Acceptance criteria: each question from the LinkedIn plan is answered and recorded
 
@@ -286,7 +284,7 @@ The Person entity is defined once and its `@id` (`https://www.jimcresswell.net/#
 - Phase 4+: [Google Rich Results Test](https://search.google.com/test/rich-results) — all pages pass
 - Every `@id` reference resolves to a defined node
 
-**Neo4j forward-compatibility checklist** (see [research findings](research/pkg-research-findings.md) and [icebox/neo4j-knowledge-graph.plan.md](../icebox/neo4j-knowledge-graph.plan.md)):
+**Neo4j forward-compatibility checklist** (see [research findings](../research/pkg-research-findings.md) and [icebox/neo4j-knowledge-graph.plan.md](../icebox/neo4j-knowledge-graph.plan.md)):
 
 - [ ] Every entity has `@id` and `@type` — no exceptions, even abstract entities
 - [ ] Relationships are `{"@id": "..."}` references — no embedded entity definitions
@@ -316,12 +314,12 @@ The Person entity is defined once and its `@id` (`https://www.jimcresswell.net/#
 
 ## Related
 
-- [research/pkg-research-findings.md](research/pkg-research-findings.md) — Schema.org, JSON-LD, Google structured data, and Neo4j research findings
-- [personal-knowledge-graph.plan.md](personal-knowledge-graph.plan.md) — historical design working notes and audit context
-- [personal-knowledge-graph-execution.plan.md](personal-knowledge-graph-execution.plan.md) — operational status and next actions
-- [visual-regression-harness.plan.md](../complete/visual-regression-harness.plan.md) — completed harness proof record
-- [cv-editorial-improvements.plan.md](cv-editorial-improvements.plan.md) — parent plan
-- [linkedin-update.plan.md](linkedin-update.plan.md) — subsumed LinkedIn reference plan
+- [research/pkg-research-findings.md](../research/pkg-research-findings.md) — Schema.org, JSON-LD, Google structured data, and Neo4j research findings
+- [personal-knowledge-graph-design-notes.md](../research/personal-knowledge-graph-design-notes.md) — historical design working notes and audit context
+- [personal-knowledge-graph-execution.plan.md](../current/personal-knowledge-graph-execution.plan.md) — operational status and next actions
+- [visual-regression-harness.plan.md](visual-regression-harness.plan.md) — completed harness proof record
+- [cv-editorial-improvements.plan.md](../current/cv-editorial-improvements.plan.md) — parent plan
+- [linkedin-update.plan.md](../current/linkedin-update.plan.md) — subsumed LinkedIn reference plan
 - [icebox/neo4j-knowledge-graph.plan.md](../icebox/neo4j-knowledge-graph.plan.md) — shapes design decisions (stable IDs, typed relationships, flat entities)
 - [ADR-007](../../docs/architecture/decision-records/007-dry-content-metadata.md) — current single-source approach
 - [ADR-008](../../docs/architecture/decision-records/008-schema-org-compliance.md) — Schema.org compliance throughout the graph

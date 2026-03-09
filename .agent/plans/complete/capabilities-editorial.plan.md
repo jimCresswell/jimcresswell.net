@@ -166,6 +166,6 @@ All items complete:
 
 - [cv-editorial-improvements.plan.md](../cv-editorial-improvements.plan.md) — parent plan
 - [meta-seo-content-audit.plan.md](meta-seo-content-audit.plan.md) — meta.summary review (deferred from Phase 4)
-- [personal-knowledge-graph.plan.md](../personal-knowledge-graph.plan.md) — personal knowledge graph (KNOWS_ABOUT, JSON-LD, OG, all views)
+- [personal-knowledge-graph-design-notes.md](../research/personal-knowledge-graph-design-notes.md) — personal knowledge graph design notes (KNOWS_ABOUT, JSON-LD, OG, all views)
 - [editorial-guidance.md](../../../.agent/directives/editorial-guidance.md) — editorial voice and constraints
 - [linkedin-update.plan.md](../linkedin-update.plan.md) — LinkedIn content should be consistent with capabilities once settled

@@ -1,35 +1,29 @@
 ---
 name: pkg-next-closure
-overview: Historical PKG closure handoff retained so the intermediate closure reasoning is not lost. This document is superseded by the PKG execution plan and the visual regression harness plan.
+overview: Historical PKG closure handoff retained so the intermediate closure reasoning is not lost. Archived once its live work was absorbed into the PKG execution plan and the completed harness proof record.
 todos:
-  - id: prove-no-regression
-    content: "Build and record dual regression proof: HTML/DOM comparison plus pixel comparison against the pre-PKG baseline, with zero expected rendered differences and user review for any exception."
-    status: in_progress
-  - id: complete-html-binding
-    content: Implement the still-required entity-level and role-anchor HTML binding, test it first, then re-run the full regression proof and reviewer triage.
-    status: pending
-  - id: finish-phase4-validation
-    content: Run manual Schema.org Validator and Rich Results validation after binding/regression work, record results, and sync plans/docs to the actual PKG state.
-    status: pending
-  - id: commit-safe-baseline-capture
-    content: After current work is committed, capture the full historical visual baseline from the pre-PKG commit using the non-destructive export-based harness path, or another equally safe no-history-risk checkout approach.
-    status: pending
-  - id: start-phase5-linkedin
-    content: Begin LinkedIn-as-derived-view from the graph, using editorial review and PKG review on each content slice.
-    status: pending
+  - id: preserve-historical-reasoning
+    content: Preserve the intermediate closure reasoning that informed the final PKG proof workflow.
+    status: completed
+  - id: transfer-live-work
+    content: Transfer active closure work to the PKG execution plan and the completed visual regression harness plan.
+    status: completed
+  - id: archive-handoff
+    content: Archive this superseded handoff outside `current/` so it no longer reads as live work.
+    status: completed
 isProject: false
 ---
 
-# PKG Next Steps
+# PKG Next Steps (Historical Handoff)
 
 ## Status
 
-Historical handoff note. Superseded by:
+Historical handoff note, archived on 2026-03-09. Superseded by:
 
-- [personal-knowledge-graph-execution.plan.md](personal-knowledge-graph-execution.plan.md) for active PKG work
-- [visual-regression-harness.plan.md](../complete/visual-regression-harness.plan.md) for the completed harness proof record
+- [personal-knowledge-graph-execution.plan.md](../current/personal-knowledge-graph-execution.plan.md) for active PKG work
+- [visual-regression-harness.plan.md](visual-regression-harness.plan.md) for the completed harness proof record
 
-This file is retained because it contained intermediate closure reasoning that was not in `HEAD` and should not be thrown away.
+This file is retained because it captured intermediate closure reasoning that should not be thrown away. The phases below are preserved as historical context, not as the active work queue.
 
 ## Overview
 
@@ -44,7 +38,7 @@ Two decisions are now fixed and must govern the work:
 
 ## Current Reality
 
-The live handoff document is [personal-knowledge-graph-execution.plan.md](personal-knowledge-graph-execution.plan.md). It correctly shows Phase 4 as code-complete but not fully closed.
+The live handoff document is [personal-knowledge-graph-execution.plan.md](../current/personal-knowledge-graph-execution.plan.md). It carries the actual closure state from this point onward.
 
 Current proof status:
 
@@ -71,9 +65,9 @@ Current implementation sources to lean on:
 Docs that need to stay aligned with reality:
 
 - [roadmap.md](../roadmap.md)
-- [personal-knowledge-graph.plan.md](personal-knowledge-graph.plan.md)
-- [personal-knowledge-graph-implementation.plan.md](personal-knowledge-graph-implementation.plan.md)
-- [personal-knowledge-graph-execution.plan.md](personal-knowledge-graph-execution.plan.md)
+- [personal-knowledge-graph-design-notes.md](../research/personal-knowledge-graph-design-notes.md)
+- [personal-knowledge-graph-phase-model.plan.md](personal-knowledge-graph-phase-model.plan.md)
+- [personal-knowledge-graph-execution.plan.md](../current/personal-knowledge-graph-execution.plan.md)
 - [docs/architecture/README.md](../../docs/architecture/README.md)
 - [docs/architecture/content-model.md](../../docs/architecture/content-model.md)
 
@@ -195,7 +189,7 @@ Acceptance criteria:
 
 - PKG Phase 4 is genuinely closed first.
 - LinkedIn headline/About, experience, and supporting sections derive from graph entities, not parallel manual re-definition.
-- Editorial decisions still needing Jim’s input are surfaced explicitly from [linkedin-update.plan.md](linkedin-update.plan.md).
+- Editorial decisions still needing Jim’s input are surfaced explicitly from [linkedin-update.plan.md](../current/linkedin-update.plan.md).
 
 ## Reviewer Protocol
 

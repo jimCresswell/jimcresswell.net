@@ -7,7 +7,7 @@ database.
 
 This is a long-term consideration, not current work. It exists to shape
 decisions during the
-[personal knowledge graph](../current/personal-knowledge-graph.plan.md)
+[personal knowledge graph design notes](../research/personal-knowledge-graph-design-notes.md)
 work — ensuring the current JSON-based model remains compatible with a
 future graph database migration.
 
@@ -95,7 +95,7 @@ Different views, same reality, same database.
 
 ## Related
 
-- [personal-knowledge-graph.plan.md](../current/personal-knowledge-graph.plan.md) — the current work this icebox plan shapes
+- [personal-knowledge-graph-design-notes.md](../research/personal-knowledge-graph-design-notes.md) — the design reference this icebox plan shapes
 - [ADR-008](../../docs/architecture/decision-records/008-schema-org-compliance.md) — Schema.org compliance throughout the graph; all entities have standard types
 - [Neo4j](https://neo4j.com/) — graph database
 - [Cypher Query Language](https://neo4j.com/docs/cypher-manual/current/) — Neo4j's query language

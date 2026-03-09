@@ -15,11 +15,12 @@ Compact operational reference for PKG work. For full detail, read the authoritat
 
 Before PKG work, read and internalise:
 
-| Document                                                       | Purpose                                                      |
-| -------------------------------------------------------------- | ------------------------------------------------------------ |
-| `.agent/plans/personal-knowledge-graph.plan.md`                | Design reference — entity inventory, principles, conventions |
-| `.agent/plans/personal-knowledge-graph-implementation.plan.md` | Implementation plan — phased tasks, acceptance criteria      |
-| `.agent/plans/research/pkg-research-findings.md`               | Research findings — verified facts across four domains       |
+| Document                                                             | Purpose                                                      |
+| -------------------------------------------------------------------- | ------------------------------------------------------------ |
+| `.agent/plans/research/personal-knowledge-graph-design-notes.md`     | Design reference — entity inventory, principles, conventions |
+| `.agent/plans/current/personal-knowledge-graph-execution.plan.md`    | Live plan — current status, next actions, reviewer protocol  |
+| `.agent/plans/complete/personal-knowledge-graph-phase-model.plan.md` | Phase model — archived tasks and acceptance criteria         |
+| `.agent/plans/research/pkg-research-findings.md`                     | Research findings — verified facts across four domains       |
 
 Before editorial-intensive phases (entity population, role descriptions), additionally read:
 
@@ -127,8 +128,9 @@ Source: research findings (`.agent/plans/research/pkg-research-findings.md`) —
 
 ## Reference
 
-- `.agent/plans/personal-knowledge-graph.plan.md` — design reference (entity inventory, principles, conventions)
-- `.agent/plans/personal-knowledge-graph-implementation.plan.md` — implementation plan (phased execution)
+- `.agent/plans/research/personal-knowledge-graph-design-notes.md` — design reference (entity inventory, principles, conventions)
+- `.agent/plans/current/personal-knowledge-graph-execution.plan.md` — live plan (current status, next actions, reviewer protocol)
+- `.agent/plans/complete/personal-knowledge-graph-phase-model.plan.md` — phase model (archived goals, tasks, acceptance criteria)
 - `.agent/plans/research/pkg-research-findings.md` — research findings (verified facts across four domains)
 - `docs/architecture/decision-records/008-schema-org-compliance.md` — ADR-008: Schema.org compliance
 - `docs/architecture/decision-records/010-canonical-url-graph-identity.md` — ADR-010: canonical URL and graph identity

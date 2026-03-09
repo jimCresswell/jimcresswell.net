@@ -37,7 +37,7 @@ Additionally, the editorial guidance (formerly `identity.md`) referenced the old
 
 ## Sequencing
 
-**This plan completes before the [personal knowledge graph plan](../personal-knowledge-graph.plan.md) starts.** The knowledge graph plan migrates content into a new entity model. This plan fixes the _content_ of things that are currently in the wrong place. If PKG runs first, it migrates stale content (e.g. "open ecosystems" in `meta.summary`, outdated `KNOWS_ABOUT`) and then needs editorial fixes on top.
+**This plan completes before the [personal knowledge graph design notes](../research/personal-knowledge-graph-design-notes.md) start being implemented.** The knowledge graph work migrates content into a new entity model. This plan fixes the _content_ of things that are currently in the wrong place. If PKG runs first, it migrates stale content (e.g. "open ecosystems" in `meta.summary`, outdated `KNOWS_ABOUT`) and then needs editorial fixes on top.
 
 Specifically:
 
@@ -261,7 +261,7 @@ Both should derive from `cv.meta.name` or `frontpage.hero.name`. Goal 1.
 
 **Type: Technical — can be done independently. Priority: Low.**
 
-The name appears in both `cv.content.json` (`meta.name`) and `frontpage.content.json` (`meta.title`, `hero.name`). The content model already notes this overlap. Unifying to a single source would serve goal 1, but may be better addressed by the [knowledge graph plan](../personal-knowledge-graph.plan.md) which proposes a first-class Person entity.
+The name appears in both `cv.content.json` (`meta.name`) and `frontpage.content.json` (`meta.title`, `hero.name`). The content model already notes this overlap. Unifying to a single source would serve goal 1, but may be better addressed by the [knowledge graph design notes](../research/personal-knowledge-graph-design-notes.md) which propose a first-class Person entity.
 
 **Decision: Deferred to PKG.** Creating an intermediate unification (e.g. shared `person.json`) would be immediately replaced by the knowledge graph plan's Person entity. The duplication is low-risk — the person's name won't change independently between files.
 
@@ -315,7 +315,7 @@ After implementing changes, verify that all outputs are consistent:
 
 ## Scope boundary with the knowledge graph plan
 
-The [personal-knowledge-graph.plan.md](../personal-knowledge-graph.plan.md) also covers JSON-LD constants (`KNOWS_ABOUT`, `OCCUPATION`, `PUBLICATIONS`, `CREDENTIAL_DETAILS`) and the structural question of how descriptions serve different domains. The boundary:
+The [personal-knowledge-graph-design-notes.md](../research/personal-knowledge-graph-design-notes.md) also cover JSON-LD constants (`KNOWS_ABOUT`, `OCCUPATION`, `PUBLICATIONS`, `CREDENTIAL_DETAILS`) and the structural question of how descriptions serve different domains. The boundary:
 
 - **This plan** reviews whether the _editorial content_ of those constants is still consistent with the current capabilities, voice, and positioning. Changes are content decisions (add/remove/reword items). It also fixes the content of `meta.summary` as an interim step.
 - **The knowledge graph plan** addresses the _structural_ question of whether these constants should be promoted to the content model, made visible alongside other editorial content, and integrated into a first-class entity model. It also naturally decouples the domain-appropriate descriptions ([ADR-011](../../docs/architecture/decision-records/011-domain-appropriate-descriptions.md)) — different domains acquire their own descriptions as part of the entity model design.
@@ -328,7 +328,7 @@ The [personal-knowledge-graph.plan.md](../personal-knowledge-graph.plan.md) also
 
 - [cv-editorial-improvements.plan.md](../cv-editorial-improvements.plan.md) — parent plan
 - [capabilities-editorial.plan.md](capabilities-editorial.plan.md) — completed capabilities rewrite (triggered this audit)
-- [personal-knowledge-graph.plan.md](../personal-knowledge-graph.plan.md) — broader entity model work (structural, not editorial — see scope boundary above)
+- [personal-knowledge-graph-design-notes.md](../research/personal-knowledge-graph-design-notes.md) — broader entity model work (structural, not editorial — see scope boundary above)
 - [ADR-007](../../docs/architecture/decision-records/007-dry-content-metadata.md) — current single-string approach (evolved by ADR-011)
 - [ADR-010](../../docs/architecture/decision-records/010-canonical-url-graph-identity.md) — canonical URL (`https://www.jimcresswell.net/`) and graph identity
 - [ADR-011](../../docs/architecture/decision-records/011-domain-appropriate-descriptions.md) — domain-appropriate descriptions (target state)

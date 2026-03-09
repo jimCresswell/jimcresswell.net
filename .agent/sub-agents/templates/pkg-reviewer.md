@@ -20,7 +20,7 @@ Before reviewing, read and internalise:
 | ------------------------------------------------------------------------ | -------------------------------------------------------------------------------------- |
 | `.agent/skills/pkg/SKILL.md`                                             | Compact operational reference — type mappings, constraints, pitfalls                   |
 | `.agent/plans/research/pkg-research-findings.md`                         | Full research context — verified facts across four domains                             |
-| `.agent/plans/personal-knowledge-graph.plan.md`                          | Design reference — entity inventory, principles, conventions                           |
+| `.agent/plans/research/personal-knowledge-graph-design-notes.md`         | Design reference — entity inventory, principles, conventions                           |
 | `docs/architecture/decision-records/008-schema-org-compliance.md`        | Settled decision: Schema.org compliance throughout the graph                           |
 | `docs/architecture/decision-records/010-canonical-url-graph-identity.md` | Settled decision: canonical URL, `@id` conventions, full graph via content negotiation |
 
