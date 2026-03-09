@@ -238,15 +238,14 @@ Track A now has a truthful working position:
 ### Track A Phase A4
 
 Phase A3 proof-led refinement is now complete. The external-proof follow-on is
-now partially recorded in
+now recorded in
 [graph-rich-result-external-validator-evidence.md](graph-rich-result-external-validator-evidence.md):
 
 - Schema.org Validator code-mode evidence is recorded for `/`
 - Schema.org Validator and Google Rich Results Test limitations are recorded
   truthfully instead of being left implicit
-- Track A remains in Phase A4 until the remaining `/cv/` Schema.org result and
-  stable Google Rich Results Test verdicts can be captured or consciously
-  accepted as external-tool limits
+- the remaining `/cv/` Schema.org result and Google Rich Results Test verdicts
+  are now consciously accepted as validator-side limits for this slice
 
-That note is now the discoverable record for both successful results and
-validator-side limitations.
+That note is now the discoverable record for the successful result, accepted
+boundary, and validator-side limitations.

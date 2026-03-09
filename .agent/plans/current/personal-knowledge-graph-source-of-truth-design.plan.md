@@ -7,7 +7,7 @@ todos:
     status: completed
   - id: layered-model-design
     content: Define the layered source-of-truth model and file topology.
-    status: pending
+    status: in_progress
   - id: composition-and-binding-design
     content: Define graph-to-view composition and graph-to-DOM binding.
     status: pending
@@ -24,8 +24,8 @@ isProject: false
 Adopted on 2026-03-09 as the required follow-on Track B plan under
 [personal-knowledge-graph-roadmap.plan.md](personal-knowledge-graph-roadmap.plan.md).
 
-Track A comes first. Treat this as a required design track, not an active
-implementation brief.
+Track A is now complete for the current publication surface. Treat this as the
+active graph design track, not an implementation brief.
 
 Use this plan with
 [graph-current-state-audit.md](../research/graph-current-state-audit.md),
@@ -64,10 +64,23 @@ The Track A Phase A3 refinement slices are now recorded in
 [graph-negotiated-media-type-refinement.md](../research/graph-negotiated-media-type-refinement.md)
 and
 [graph-cv-metadata-description-proof.md](../research/graph-cv-metadata-description-proof.md).
-Track A Phase A4 is now the active graph task.
+Track A Phase A4 is now complete for the current publication surface.
+Track B design is now the active graph task. It remains design-only work.
 
 No code should be shipped from this plan until its design work is
 decision-complete and an explicit migration plan exists.
+
+## Next session start
+
+Begin with Phase B1, not a new audit:
+
+- Task B1.1 — Source-of-Truth Layer Map
+- Task B1.2 — Worked Ownership Examples
+
+The first design slice should define the ownership model and proposed file
+topology for graph-owned facts, authored prose, and composition structures,
+then work those rules through concrete `/` and `/cv` examples without claiming
+that the site is already graph-derived.
 
 ## Problem statement
 

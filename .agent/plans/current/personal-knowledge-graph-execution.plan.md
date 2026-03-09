@@ -13,7 +13,7 @@ todos:
     status: completed
   - id: phase-a4-proof
     content: Record internal and external validation for the delivered Track A outputs.
-    status: in_progress
+    status: completed
 isProject: false
 ---
 
@@ -35,7 +35,7 @@ and [pkg-research-findings.md](../research/pkg-research-findings.md).
 
 This is the live execution authority for Track A.
 
-Phase A1, Phase A2, and Phase A3 are complete. Phase A4 is now active.
+Phase A1, Phase A2, Phase A3, and Phase A4 are complete.
 
 The first A3 slice is recorded in
 [graph-negotiated-media-type-refinement.md](../research/graph-negotiated-media-type-refinement.md):
@@ -51,8 +51,8 @@ metadata-export and emitted-route levels.
 The current A4 external-validator record is now in
 [graph-rich-result-external-validator-evidence.md](../research/graph-rich-result-external-validator-evidence.md):
 the live home-page inline graph has a recorded Schema.org Validator code-mode
-pass, while the remaining official-validator work is now truthfully bounded by
-recorded tool-side limitations rather than left implicit.
+pass, while the remaining official-validator work is now closed as an accepted
+tool-side boundary rather than left implicit.
 
 ## Outcome, impact, and value mechanism
 
@@ -287,13 +287,20 @@ through `lib/page-document-contract.integration.test.ts` and
 `e2e/behaviour/seo.e2e-api.test.ts`.
 Phase A3 is now complete.
 
-**Next session start:** continue with Track A Phase A4, not a new audit. Use
+**Track A closure record:** use
 [graph-publication-output-audit.md](../research/graph-publication-output-audit.md)
 and
 [graph-rich-result-external-validator-evidence.md](../research/graph-rich-result-external-validator-evidence.md)
-as the latest proof record. The home-page Schema.org code-mode evidence is now
-captured, and the current blocker is validator-side instability around the
-remaining `/cv/` Schema.org result and Google Rich Results Test verdicts.
+as the latest proof record. The home-page Schema.org code-mode evidence is
+captured, and the remaining `/cv/` Schema.org and Google Rich Results Test
+gaps are now recorded as accepted validator-side limits for this slice. Do not
+re-open Track A external validation unless the live structured-data output
+changes materially or a new manual validation request is explicit.
+
+**Next active graph task:** continue in
+[personal-knowledge-graph-source-of-truth-design.plan.md](personal-knowledge-graph-source-of-truth-design.plan.md).
+Track B is now the active design track, while implementation remains out of
+scope until that plan is decision-complete.
 
 #### Tasks
 

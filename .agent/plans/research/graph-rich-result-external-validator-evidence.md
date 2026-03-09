@@ -89,23 +89,38 @@ publication shape.
 - That limitation is tool-side proof friction, not a reason to widen Track A or
   change the current page/document contract.
 
+## Follow-up boundary check on 2026-03-09
+
+- A direct fetch of `https://www.jimcresswell.net/cv/` from the current
+  automation environment returned Cloudflare's managed challenge page
+  (`Just a moment...`) instead of the emitted CV HTML, so the earlier
+  live-snippet extraction method could not be repeated cleanly for `/cv/`.
+- A direct fetch of `https://validator.schema.org/` redirected immediately to
+  Google's anti-abuse `sorry` flow before the validator UI loaded.
+- A direct fetch of `https://search.google.com/test/rich-results` served the
+  tool shell, but no stable non-browser submission or result path was available
+  from this environment for the remaining Track A pages.
+
 ## What this proves now
 
 - The live home-page inline graph passes Schema.org Validator code-mode checks
   with zero recorded errors and warnings.
-- The official external-validator requirement is now partially evidenced rather
-  than purely planned.
+- The official external-validator requirement is now partially evidenced and
+  explicitly bounded rather than purely planned.
 - Track A now has a truthful record of validator-side failure modes instead of
   pretending external proof was cleanly available.
+- The remaining proof gap is validator and public-access instability from this
+  automation environment, not a missing internal Track A correctness proof.
 
-## What remains open
+## Accepted boundary for this slice
 
-- a stable external-validator capture for the canonical `/cv/` inline graph in
-  Schema.org Validator
-- a stable Rich Results Test verdict for `/` and `/cv/` once the official tool
-  will return one from a usable environment
+- The remaining `/cv/` Schema.org capture and Google Rich Results Test verdicts
+  are now accepted validator-side limits for Track A Phase A4.
+- Future manual or browser-based retries may add evidence if the live output
+  changes materially or a cleaner validation path becomes available, but Track A
+  does not keep this slice open waiting for that.
 
-Track A Phase A4 therefore remains active.
+Track A Phase A4 is therefore complete for the current publication surface.
 
 ## Track boundary
 

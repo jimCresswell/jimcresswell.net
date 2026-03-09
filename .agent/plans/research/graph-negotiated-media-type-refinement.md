@@ -94,12 +94,12 @@ The following items were closed later in Track A:
 - dedicated automated proof for `/manifest.webmanifest`
 - tighter proof for graph-derived CV metadata descriptions
 
-That follow-on is now partially recorded in
+That follow-on is now recorded in
 [graph-rich-result-external-validator-evidence.md](graph-rich-result-external-validator-evidence.md):
 
 - the home-page Schema.org Validator code-mode evidence is now captured
 - the remaining `/cv/` Schema.org result and Google Rich Results Test verdicts
-  are still open because of recorded validator-side limitations
+  are now accepted validator-side limits for this slice
 
 ## Track boundary
 

@@ -78,8 +78,8 @@ The Track A Phase A4 external-validator follow-on is now recorded in
 That note captures:
 
 - the recorded Schema.org Validator code-mode result for `/`
-- the current validator-side limitations for `/cv/`
-- the current Google Rich Results Test limitations for both `/` and `/cv/`
+- the accepted validator-side boundary for the remaining `/cv/` proof
+- the accepted Google Rich Results Test limits for both `/` and `/cv/`
 
 ## Track boundary
 

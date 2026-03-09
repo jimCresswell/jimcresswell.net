@@ -1,5 +1,69 @@
 # Napkin
 
+## Session: 2026-03-09 — Track A External Validator Boundary Closure
+
+### What Was Done
+
+- Continued from the existing Track A Phase A4 proof record rather than
+  starting a new audit
+- Re-checked whether the remaining `/cv/` Schema.org evidence and any stable
+  Google Rich Results Test verdict could be captured cleanly from this
+  automation environment
+- Confirmed three reinforcing external limits:
+  direct fetch of `https://www.jimcresswell.net/cv/` now returned Cloudflare's
+  managed challenge page, `https://validator.schema.org/` redirected straight
+  to Google's anti-abuse `sorry` flow, and `https://search.google.com/test/rich-results`
+  exposed only the tool shell with no stable non-browser submission path
+- Updated the Track A proof note and live plan stack so the remaining external
+  gap is recorded as an accepted validator-side boundary rather than left open
+  indefinitely
+- Marked the Track A external-validation handoff prompt as completed and
+  updated the Track B entry-condition note so the next session does not restart
+  Phase A4 by mistake
+
+### Mistakes Made
+
+- Went straight to live external fetches before settling the local-preflight
+  question. For this slice the final decision still had to stay anchored to the
+  live/public path, but the local-vs-live split should be stated earlier.
+- Tried to use a long-running local `pnpm dev` session as a preflight source.
+  In this sandbox, a dev server started in one exec session was not reachable
+  from separate commands, so that path was not a reliable way to inspect local
+  output.
+
+### Patterns to Remember
+
+- If the live page fetch itself is now blocked by Cloudflare and the official
+  validator homepage is already redirecting to anti-abuse, treat that as
+  positive evidence that the remaining gap is validator-side boundary rather
+  than open proof debt.
+- For this environment, do not spend long trying to curl a dev server started
+  in a separate interactive exec session. Prefer existing local proof surfaces
+  or a purpose-built background approach if local preflight is genuinely needed.
+
+## Session: 2026-03-09 — Consolidate Docs and Track B Handoff
+
+### What Was Done
+
+- Ran the consolidate-docs pass after closing Track A
+- Confirmed there was no incoming practice-core payload, no distillation
+  rotation needed, and no directive or permanent-doc fitness ceiling breach
+- Promoted Track B design to the active graph task in the roadmap and
+  source-of-truth design plan now that Track A is complete
+- Added a new active handoff prompt for the first Track B slice:
+  `.agent/prompts/personal-knowledge-graph-track-b-source-of-truth-design.prompt.md`
+- Updated the completed Track A prompts so they now point to the active Track B
+  handoff instead of a completed Track A prompt
+
+### Patterns to Remember
+
+- When a track closes, consolidation is not finished until the active handoff
+  chain points at the true next task. Completed prompts that still point to
+  completed prompts are stale even if the plans are correct.
+- For multi-track programmes, the roadmap todo states and the next-session
+  prompt should change in the same pass. Otherwise the status summary and the
+  operator handoff diverge immediately.
+
 ## Session: 2026-03-09 — Track A External Validator Evidence
 
 ### What Was Done

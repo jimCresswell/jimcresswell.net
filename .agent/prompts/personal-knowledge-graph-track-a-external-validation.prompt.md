@@ -2,9 +2,16 @@
 prompt_id: personal-knowledge-graph-track-a-external-validation
 title: "Track A External Validation Evidence"
 type: handoff
-status: active
+status: completed
 last_updated: 2026-03-09
 ---
+
+This handoff is complete. The current external-validator record accepts the
+remaining `/cv/` Schema.org and Google Rich Results Test gaps as validator-side
+limits for Track A Phase A4. Re-open this slice only if the live structured-data
+output changes materially or a fresh manual validation pass is explicitly
+requested. The next active graph task is now
+`/Users/jim/code/personal/new-cv/.agent/prompts/personal-knowledge-graph-track-b-source-of-truth-design.prompt.md`.
 
 Continue Track A of the personal knowledge graph programme in
 `/Users/jim/code/personal/new-cv`.
@@ -35,17 +42,18 @@ Use
 - The live parent authority is `personal-knowledge-graph-roadmap.plan.md`.
 - Track A comes first. Track B remains required but is not the active task.
 - Track A Phase A1, A2, and A3 are complete.
-- Track A Phase A4 is active.
+- Track A Phase A4 is complete for the current publication surface.
 - The negotiated media-type slice, home-page emitted-channel proof slice,
   manifest proof slice, and CV metadata description proof slice are complete.
 - Do not start a new audit.
-- External-validator evidence is already partially recorded for Track A Phase
-  A4.
+- External-validator evidence is already recorded for Track A Phase A4.
 - The home-page Schema.org Validator code-mode proof has already been captured.
-- The remaining task is to continue from that proof record and determine
-  whether the remaining `/cv/` Schema.org result and Google Rich Results Test
-  verdicts can be captured cleanly or must be recorded as current tool-side
-  limits.
+- The remaining task from this handoff was to determine whether the remaining
+  `/cv/` Schema.org result and Google Rich Results Test verdicts could be
+  captured cleanly or had to be recorded as current tool-side limits.
+- That decision is now recorded: the remaining `/cv/` Schema.org result and
+  Google Rich Results Test verdicts are accepted validator-side limits for this
+  slice.
 - Visible HTML still comes from `content/cv.content.json` and
   `content/frontpage.content.json`.
 - The graph currently drives JSON-LD, the manifest, and some metadata.

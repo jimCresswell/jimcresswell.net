@@ -10,10 +10,10 @@ todos:
     status: completed
   - id: track-a-refinement-and-proof
     content: Execute Track A graph-expression refinement and validation work.
-    status: in_progress
+    status: completed
   - id: track-b-design
     content: Complete the required Track B source-of-truth design once Track A has established the current graph layer's value boundaries.
-    status: pending
+    status: in_progress
   - id: track-b-adoption-plan
     content: Turn the Track B design into an implementation-ready migration plan.
     status: pending
@@ -31,9 +31,10 @@ Both tracks are required.
 
 Track A comes first.
 
-Track A Phase A1, Phase A2, and Phase A3 are now complete. Track A Phase A4 is
-now active in
+Track A Phase A1, Phase A2, Phase A3, and Phase A4 are now complete in
 [personal-knowledge-graph-execution.plan.md](personal-knowledge-graph-execution.plan.md).
+Track B design is now the active graph task in
+[personal-knowledge-graph-source-of-truth-design.plan.md](personal-knowledge-graph-source-of-truth-design.plan.md).
 
 Use this roadmap together with
 [graph-current-state-audit.md](../research/graph-current-state-audit.md),
@@ -180,11 +181,12 @@ The first Track A Phase A3 refinement slice is now recorded in
 [graph-negotiated-media-type-refinement.md](../research/graph-negotiated-media-type-refinement.md).
 The closing Track A Phase A3 proof slice is now recorded in
 [graph-cv-metadata-description-proof.md](../research/graph-cv-metadata-description-proof.md).
-Track A Phase A4 external validation is now partially recorded in
+Track A Phase A4 external validation is now recorded in
 [graph-rich-result-external-validator-evidence.md](../research/graph-rich-result-external-validator-evidence.md).
-That note captures the first external-validator evidence plus the current
-validator-side limitations, so Track A remains in Phase A4 rather than claiming
-closure prematurely.
+That note captures the home-page Schema.org Validator pass plus the accepted
+validator-side boundary on the remaining `/cv/` Schema.org and Google Rich
+Results Test evidence, so Track A closes truthfully without widening scope or
+pretending the external tooling was cleaner than it was.
 
 ### Phase 3 — Track B Design
 

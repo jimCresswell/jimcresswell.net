@@ -6,9 +6,9 @@ status: completed
 last_updated: 2026-03-09
 ---
 
-This handoff is complete. Use
-`/Users/jim/code/personal/new-cv/.agent/prompts/personal-knowledge-graph-track-a-external-validation.prompt.md`
-for the next Track A session.
+This handoff is complete. Its Track A follow-on is also complete. Use
+`/Users/jim/code/personal/new-cv/.agent/prompts/personal-knowledge-graph-track-b-source-of-truth-design.prompt.md`
+for the next active graph session.
 
 Continue Track A of the personal knowledge graph programme in
 `/Users/jim/code/personal/new-cv`.
