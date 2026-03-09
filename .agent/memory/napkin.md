@@ -219,6 +219,42 @@
   outgoing may persist and accumulate; incoming must be read, integrated, and
   then cleared.
 
+## Session: 2026-03-09 — Graph Evaluation Grounding
+
+### What Was Done
+
+- Grounded the graph-metaplan evaluation in current implementation evidence,
+  not just the plan stack, by checking the rendering path, JSON-LD
+  publication, graph API, manifest derivation, and graph-related tests
+
+### Patterns to Remember
+
+- When assessing graph plans, verify the live rendering and publication paths
+  first. Otherwise it is too easy to evaluate the plan stack against its own
+  claims rather than against the implemented system.
+
+## Session: 2026-03-09 — Adopted Graph Plan Stack
+
+### What Was Done
+
+- Adopted the graph roadmap, Track A execution plan, and Track B design plan
+  under `.agent/plans/current/`
+- Retired the metaplan in place as a completed reset record
+- Initially replaced the old draft docs with historical stubs so archived links
+  would still resolve
+
+### Mistakes Made
+
+- Treated doc-path preservation as more important than the repo rule against
+  compatibility layers. For plan adoption work here, clean breaks matter more
+  than keeping legacy draft paths alive.
+
+### Patterns to Remember
+
+- When draft plans are promoted to live authority in this repo, remove the old
+  draft files rather than leaving stubs behind. Clean breaks beat compatibility
+  layers, even for planning artefacts.
+
 ## Session: 2026-03-09 — Consolidation Audit Follow-Through
 
 ### What Was Done
@@ -258,3 +294,28 @@
 - If a document is explicitly a preserved draft for later assessment, do not
   leave it under `current/`. A dedicated `drafts/` location removes avoidable
   ambiguity for the next session.
+
+## Session: 2026-03-09 — Consolidation Truthfulness Pass
+
+### What Was Done
+
+- Removed stale `drafts/` descriptions from `.agent/README.md` and
+  `.agent/practice-index.md` after the clean break from preserved graph-plan
+  draft files
+- Promoted three stable repo facts into `docs/architecture/README.md`: the
+  canonical public host, the PostCSS `.mjs` constraint, and the `tsx`
+  path-alias limitation
+- Trimmed those now-permanent facts back out of `distilled.md` and rewired the
+  `AGENTS.md` anchor for the PostCSS gotcha to point at permanent docs again
+- Rechecked the practice box and practice-context surfaces: no incoming
+  material beyond `.gitkeep` and placeholder READMEs
+- Confirmed all directive and practice-core fitness ceilings remain under
+  their declared limits
+
+### Patterns to Remember
+
+- Distilled memory should shrink when a fact graduates. If a quick-reference
+  rule becomes stable enough to shape recurring setup or build decisions, move
+  it to permanent docs and remove the duplicate from `distilled.md`.
+- A plan-topology clean break is not finished until the repo indexes and
+  directory maps stop describing the removed layer.

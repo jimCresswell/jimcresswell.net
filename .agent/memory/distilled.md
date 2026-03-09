@@ -12,16 +12,11 @@ for full architecture coverage.
 
 ## Workspace Quick Reference
 
-- postcss.config must be .mjs — Turbopack silently ignores .ts, causing CSS to fail in production
-- <www.jimcresswell.net> is the canonical domain; Cloudflare redirects the apex to www
-- `tsx` (build scripts) does not resolve TypeScript `@/` path aliases — use relative imports
-- "Personal knowledge graph" is the canonical term (not "content entity model")
 - Contact email: <contact@jimcresswell.net>; pronouns: he/him; honorific prefix: Dr (all in `content/entities.json` Person entity)
 
 ## Troubleshooting
 
 | Symptom                            | Fix                                                       |
 | ---------------------------------- | --------------------------------------------------------- |
-| postcss.config.ts silently ignored | Rename to postcss.config.mjs — Turbopack limitation       |
 | StrReplace fails on markdown files | Unicode quotes block matching — read the exact text first |
 | Prettier reformats code fences     | Language tag `text` applied to bare fences                |

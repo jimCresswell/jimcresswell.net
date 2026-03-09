@@ -95,18 +95,19 @@ and use thin adapters under [`.codex/agents/`](../.codex/agents/).
 
 ## Artefact Directories
 
-| Location                                  | What lives there                                                                 |
-| ----------------------------------------- | -------------------------------------------------------------------------------- |
-| [`.agent/directives/`](directives/)       | Principles, rules, and operational directives                                    |
-| [`.agent/practice-core/`](practice-core/) | Portable practice-core files (trinity, entry points, changelog) and practice box |
-| [`.agent/commands/`](commands/)           | Canonical commands (platform-agnostic)                                           |
-| [`.agent/skills/`](skills/)               | Canonical skills (platform-agnostic)                                             |
-| [`.agent/rules/`](rules/)                 | Canonical always-applied rules (platform-agnostic)                               |
-| [`.agent/sub-agents/`](sub-agents/)       | Canonical sub-agent templates                                                    |
-| [`.agent/plans/`](plans/)                 | Work planning — current, complete, drafts, icebox, and research                  |
-| [`.agent/prompts/`](prompts/)             | Reusable prompt playbooks                                                        |
-| [`.agent/memory/`](memory/)               | Institutional memory — napkin, distilled, code patterns                          |
-| [`.agent/experience/`](experience/)       | Experiential records across sessions                                             |
-| [`.agents/`](../.agents/)                 | Codex skill and command adapters, plus adapter-local metadata                    |
-| [`.codex/`](../.codex/)                   | Codex project config and thin sub-agent adapters                                 |
-| [`.cursor/`](../.cursor/)                 | Cursor platform adapters — thin wrappers and rule triggers                       |
+| Location                                        | What lives there                                                                                         |
+| ----------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| [`.agent/directives/`](directives/)             | Principles, rules, and operational directives                                                            |
+| [`.agent/practice-core/`](practice-core/)       | Portable practice-core files (trinity, entry points, changelog) and practice box                         |
+| [`.agent/commands/`](commands/)                 | Canonical commands (platform-agnostic)                                                                   |
+| [`.agent/skills/`](skills/)                     | Canonical skills (platform-agnostic)                                                                     |
+| [`.agent/rules/`](rules/)                       | Canonical always-applied rules (platform-agnostic)                                                       |
+| [`.agent/sub-agents/`](sub-agents/)             | Canonical sub-agent templates                                                                            |
+| [`.agent/plans/`](plans/)                       | Work planning — current, complete, icebox, research, and roadmap surfaces                                |
+| [`.agent/prompts/`](prompts/)                   | Reusable prompt playbooks                                                                                |
+| [`.agent/memory/`](memory/)                     | Institutional memory — napkin, distilled, code patterns                                                  |
+| [`.agent/experience/`](experience/)             | Experiential records across sessions                                                                     |
+| [`.agent/practice-context/`](practice-context/) | Optional repo-local exchange context — transient incoming workspace and sender-maintained outgoing notes |
+| [`.agents/`](../.agents/)                       | Codex skill and command adapters, plus adapter-local metadata                                            |
+| [`.codex/`](../.codex/)                         | Codex project config and thin sub-agent adapters                                                         |
+| [`.cursor/`](../.cursor/)                       | Cursor platform adapters — thin wrappers and rule triggers                                               |

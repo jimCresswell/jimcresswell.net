@@ -4,6 +4,15 @@
 
 `www.jimcresswell.net` is a Next.js 16 application using the App Router, deployed on Vercel. All user-visible text is rendered from JSON files in `content/` — components render content verbatim and do not invent, summarise, or reorder it.
 
+## Repo-Specific Operational Constraints
+
+- The canonical public host is `www.jimcresswell.net`; Cloudflare redirects
+  the apex domain to `www` before requests reach Vercel.
+- `postcss.config` must remain `postcss.config.mjs`; Turbopack silently
+  ignores a TypeScript PostCSS config in production builds.
+- `scripts/*.ts` executed via `tsx` do not resolve the app's `@/` path
+  aliases; use relative imports in build-time scripts.
+
 ## Key Principles
 
 - **Server components by default** — Client components only where browser APIs are needed (theme toggle, theme provider, site header).

@@ -5,12 +5,13 @@ what is proven, what was exploratory, and what must happen next.
 
 ## Status
 
-Recorded on 2026-03-09 as the grounding document for the graph metaplan.
+Recorded on 2026-03-09 as the grounding document for the graph reset.
 
-Use [graph-metaplan.plan.md](../graph-metaplan.plan.md) for the parent planning
-structure. Candidate roadmap and successor-plan drafts were also captured this
-session, but they are preserved inputs for the next session, not yet the
-authoritative graph-planning stack.
+Use
+[personal-knowledge-graph-roadmap.plan.md](../current/personal-knowledge-graph-roadmap.plan.md)
+for the current parent planning structure. The metaplan is now a completed
+historical reset record, and the adopted Track A and Track B plans are the live
+successors that inherit this audit as their factual baseline.
 
 ## Executive summary
 
@@ -121,17 +122,10 @@ plans claimed.
 | Section binding      | Product contract                                            | Exists                                        |
 | Entity/role binding  | Not truly adopted                                           | Still target state                            |
 
-## What needs to happen next
+## What the adopted plan stack now requires
 
-Before any preserved draft roadmap or successor plan is adopted, the next
-session must assess all work done so far against:
-
-- the outcomes it is trying to produce
-- the impacts those outcomes are meant to create
-- the mechanism by which those outcomes create value
-
-Only then should any draft roadmap or successor plan be adopted, rewritten,
-split, or discarded.
+The outcome/impact/value assessment has now been completed, and the live graph
+stack has been adopted. This audit remains the baseline for both tracks.
 
 ### Track A
 
@@ -174,13 +168,15 @@ onto the graph:
 
 ### Docs that needed reframing during the reset
 
-- `.agent/plans/drafts/personal-knowledge-graph-execution.plan.md`
+- `.agent/plans/current/personal-knowledge-graph-roadmap.plan.md`
+- `.agent/plans/current/personal-knowledge-graph-execution.plan.md`
+- `.agent/plans/current/personal-knowledge-graph-source-of-truth-design.plan.md`
 - `.agent/plans/roadmap.md`
 - `.agent/plans/current/cv-editorial-improvements.plan.md`
 - `.agent/plans/current/linkedin-update.plan.md`
 
 These live planning docs needed to stop implying that the site was already
-graph-derived and to adopt the new two-track structure.
+graph-derived and to adopt the new two-track structure with Track A first.
 
 ## Lessons from this session
 
@@ -195,8 +191,8 @@ graph-derived and to adopt the new two-track structure.
 ## Related documents
 
 - [graph-metaplan.plan.md](../graph-metaplan.plan.md)
-- [personal-knowledge-graph-roadmap.plan.md](../drafts/personal-knowledge-graph-roadmap.plan.md) — preserved draft roadmap input
-- [personal-knowledge-graph-execution.plan.md](../drafts/personal-knowledge-graph-execution.plan.md) — preserved draft Track A execution input
-- [personal-knowledge-graph-source-of-truth-design.plan.md](../drafts/personal-knowledge-graph-source-of-truth-design.plan.md) — preserved draft Track B design input
+- [personal-knowledge-graph-roadmap.plan.md](../current/personal-knowledge-graph-roadmap.plan.md) — adopted roadmap authority
+- [personal-knowledge-graph-execution.plan.md](../current/personal-knowledge-graph-execution.plan.md) — adopted Track A execution authority
+- [personal-knowledge-graph-source-of-truth-design.plan.md](../current/personal-knowledge-graph-source-of-truth-design.plan.md) — adopted Track B design authority
 - [personal-knowledge-graph-design-notes.md](personal-knowledge-graph-design-notes.md)
 - [ADR-014](../../../docs/architecture/decision-records/014-entity-model-design.md)

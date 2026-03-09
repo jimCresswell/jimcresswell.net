@@ -37,7 +37,7 @@ Anchored (already in permanent docs — do not re-add):
 
 Anchored (already in permanent docs — do not re-add):
 
-- postcss.config must be .mjs (Turbopack gotcha) → [distilled.md](.agent/memory/distilled.md) Troubleshooting
+- postcss.config must be .mjs (Turbopack gotcha) → [docs/architecture/README.md](docs/architecture/README.md) Repo-Specific Operational Constraints
 - Print button removed → [ADR-003](docs/architecture/decision-records/003-print-button-removed.md)
 - JSON-LD ID convention → [ADR-010](docs/architecture/decision-records/010-canonical-url-graph-identity.md)
 - Schema.org compliance → [ADR-008](docs/architecture/decision-records/008-schema-org-compliance.md)

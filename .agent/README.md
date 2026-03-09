@@ -12,15 +12,23 @@ Agent-facing documentation and planning for this project. Start with [directives
 │   ├── testing-strategy.md   # Testing philosophy, test types, naming conventions
 │   └── editorial-guidance.md  # Jim's editorial voice and identity
 │
-├── plans/            ← Current and completed work plans
+├── plans/            ← Work planning
+│   ├── current/              # Active plans
 │   ├── complete/             # Plans that have been fully executed
-│   └── *.plan.md             # Active plans
+│   ├── icebox/               # Non-current future work
+│   ├── research/             # Investigations and current-state audits
+│   ├── roadmap.md            # Repo-level roadmap
+│   └── graph-metaplan.plan.md # Completed graph reset record
+│
+├── practice-core/    ← Portable Practice blueprint and incoming practice box
+├── practice-context/ ← Optional repo-local exchange context
+│   ├── incoming/            # Transient received support material
+│   └── outgoing/            # Sender-maintained support material
 │
 ├── temp/             ← Gitignored working files (LinkedIn export, old CV website, etc.)
 │
 ├── prompts/          ← Reusable prompt templates
 │   ├── start-right.prompt.md
-│   ├── start-right-thorough.prompt.md
 │   └── project-spec-creation-process.prompt.md
 │
 ├── research/         ← Technical research and investigation notes
@@ -42,11 +50,13 @@ Agent-facing documentation and planning for this project. Start with [directives
 
 Active plans describe work that is planned or in progress:
 
-| Plan                                                                         | Status      | Description                                                          |
-| ---------------------------------------------------------------------------- | ----------- | -------------------------------------------------------------------- |
-| [cv-editorial-improvements.plan.md](plans/cv-editorial-improvements.plan.md) | In Progress | Headline, positioning, and capabilities review for the CV            |
-| [meta-seo-content-audit.plan.md](plans/meta-seo-content-audit.plan.md)       | Open        | Review all titles, descriptions, OG, JSON-LD, and hardcoded metadata |
-| [linkedin-update.plan.md](plans/linkedin-update.plan.md)                     | Planning    | LinkedIn profile update and API SDK investigation                    |
+| Plan                                                                                                                             | Status      | Description                                                 |
+| -------------------------------------------------------------------------------------------------------------------------------- | ----------- | ----------------------------------------------------------- |
+| [cv-editorial-improvements.plan.md](plans/current/cv-editorial-improvements.plan.md)                                             | In Progress | Parent editorial plan and context map                       |
+| [personal-knowledge-graph-roadmap.plan.md](plans/current/personal-knowledge-graph-roadmap.plan.md)                               | In Progress | Adopted graph roadmap — both tracks required, Track A first |
+| [personal-knowledge-graph-execution.plan.md](plans/current/personal-knowledge-graph-execution.plan.md)                           | In Progress | Track A execution plan for graph expression work            |
+| [personal-knowledge-graph-source-of-truth-design.plan.md](plans/current/personal-knowledge-graph-source-of-truth-design.plan.md) | Planned     | Track B design plan for graph-backed source of truth        |
+| [linkedin-update.plan.md](plans/current/linkedin-update.plan.md)                                                                 | Subsumed    | Downstream LinkedIn reference plan                          |
 
 Completed plans are in [plans/complete/](plans/complete/) for reference.
 

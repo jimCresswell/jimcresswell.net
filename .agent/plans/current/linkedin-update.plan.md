@@ -2,7 +2,7 @@
 
 Update Jim's LinkedIn profile to be consistent with the editorial CV, using the career history archive as the canonical factual source and the CV's editorial voice as the stylistic reference.
 
-## Status: Subsumed by the [graph metaplan](../graph-metaplan.plan.md). Retained as a downstream reference plan so its acceptance criteria, source-material checklist, and API findings are not lost. The preserved graph roadmap and successor-plan drafts are candidate inputs for the next session, not yet the authoritative graph driver.
+## Status: Subsumed by the adopted [graph roadmap](personal-knowledge-graph-roadmap.plan.md). Retained as a downstream reference plan so its acceptance criteria, source-material checklist, and API findings are not lost. Track A comes first, Track B follows, and LinkedIn remains downstream of both.
 
 ## How to use this plan
 
@@ -152,13 +152,14 @@ Plus education entries at Portsmouth, Sussex, and Bath (with thesis titles and l
 
 - [cv-editorial-improvements.plan.md](cv-editorial-improvements.plan.md) — The editorial CV positioning paragraphs are the voice reference for LinkedIn content. LinkedIn entries must not contradict them.
 - [meta-seo-content-audit.plan.md](../complete/meta-seo-content-audit.plan.md) — Complete. The CV's `meta.summary`, `KNOWS_ABOUT`, `OCCUPATION`, and capabilities have been editorially updated since this plan was written. Phase 1 should read the current `cv.content.json` and `lib/jsonld.ts` to pick up these changes.
-- [graph-metaplan.plan.md](../graph-metaplan.plan.md) — current parent plan for graph work.
-- [personal-knowledge-graph-roadmap.plan.md](../drafts/personal-knowledge-graph-roadmap.plan.md) — preserved candidate roadmap draft; LinkedIn remains downstream and must not drive graph architecture.
-- [personal-knowledge-graph-execution.plan.md](../drafts/personal-knowledge-graph-execution.plan.md) — preserved candidate Track A execution draft, not yet a live execution authority.
+- [personal-knowledge-graph-roadmap.plan.md](personal-knowledge-graph-roadmap.plan.md) — current parent roadmap for graph work. LinkedIn remains downstream and must not drive graph architecture.
+- [personal-knowledge-graph-execution.plan.md](personal-knowledge-graph-execution.plan.md) — adopted Track A execution plan, which comes first in sequencing.
+- [personal-knowledge-graph-source-of-truth-design.plan.md](personal-knowledge-graph-source-of-truth-design.plan.md) — adopted Track B design plan, which remains downstream of Track A and upstream of any LinkedIn derivation.
+- [graph-metaplan.plan.md](../graph-metaplan.plan.md) — completed reset record for the graph stack.
 
 ## Decision
 
 Accepted as a LinkedIn preparation and API investigation plan. It is now
 reference material for later downstream derived-view work. LinkedIn does not
-drive the graph architecture, the metaplan, or any future adopted graph
-execution plan.
+drive the graph architecture, the adopted roadmap, or either of the adopted
+graph tracks.

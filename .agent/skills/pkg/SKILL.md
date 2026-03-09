@@ -21,16 +21,16 @@ composition is future Track B work, not current implementation.
 
 Before PKG work, read and internalise:
 
-| Document                                                                      | Purpose                                                        |
-| ----------------------------------------------------------------------------- | -------------------------------------------------------------- |
-| `.agent/plans/graph-metaplan.plan.md`                                         | Parent graph plan — truthful baseline and plan topology        |
-| `.agent/plans/drafts/personal-knowledge-graph-roadmap.plan.md`                | Preserved candidate roadmap draft for next-session assessment  |
-| `.agent/plans/drafts/personal-knowledge-graph-execution.plan.md`              | Preserved candidate Track A execution draft                    |
-| `.agent/plans/research/graph-current-state-audit.md`                          | Observed implementation truth and architecture audit           |
-| `.agent/plans/drafts/personal-knowledge-graph-source-of-truth-design.plan.md` | Preserved candidate Track B design draft                       |
-| `.agent/plans/research/personal-knowledge-graph-design-notes.md`              | Historical design reference — entity inventory and conventions |
-| `.agent/plans/complete/personal-knowledge-graph-phase-model.plan.md`          | Archived phase model and acceptance criteria                   |
-| `.agent/plans/research/pkg-research-findings.md`                              | Research findings — verified facts across four domains         |
+| Document                                                                       | Purpose                                                        |
+| ------------------------------------------------------------------------------ | -------------------------------------------------------------- |
+| `.agent/plans/current/personal-knowledge-graph-roadmap.plan.md`                | Current graph roadmap — two required tracks, Track A first     |
+| `.agent/plans/current/personal-knowledge-graph-execution.plan.md`              | Current Track A execution authority                            |
+| `.agent/plans/research/graph-current-state-audit.md`                           | Observed implementation truth and architecture audit           |
+| `.agent/plans/current/personal-knowledge-graph-source-of-truth-design.plan.md` | Current Track B design authority                               |
+| `.agent/plans/graph-metaplan.plan.md`                                          | Completed reset record — why the current stack exists          |
+| `.agent/plans/research/personal-knowledge-graph-design-notes.md`               | Historical design reference — entity inventory and conventions |
+| `.agent/plans/complete/personal-knowledge-graph-phase-model.plan.md`           | Archived phase model and acceptance criteria                   |
+| `.agent/plans/research/pkg-research-findings.md`                               | Research findings — verified facts across four domains         |
 
 Before editorial-intensive phases (entity population, role descriptions), additionally read:
 
@@ -138,11 +138,11 @@ Source: research findings (`.agent/plans/research/pkg-research-findings.md`) —
 
 ## Reference
 
-- `.agent/plans/graph-metaplan.plan.md` — parent graph plan
-- `.agent/plans/drafts/personal-knowledge-graph-roadmap.plan.md` — preserved candidate roadmap draft
-- `.agent/plans/drafts/personal-knowledge-graph-execution.plan.md` — preserved candidate Track A execution draft
+- `.agent/plans/current/personal-knowledge-graph-roadmap.plan.md` — current graph roadmap
+- `.agent/plans/current/personal-knowledge-graph-execution.plan.md` — current Track A execution plan
 - `.agent/plans/research/graph-current-state-audit.md` — observed implementation baseline
-- `.agent/plans/drafts/personal-knowledge-graph-source-of-truth-design.plan.md` — preserved candidate Track B design draft
+- `.agent/plans/current/personal-knowledge-graph-source-of-truth-design.plan.md` — current Track B design plan
+- `.agent/plans/graph-metaplan.plan.md` — completed reset record
 - `.agent/plans/research/personal-knowledge-graph-design-notes.md` — historical design reference
 - `.agent/plans/complete/personal-knowledge-graph-phase-model.plan.md` — phase model (archived goals, tasks, acceptance criteria)
 - `.agent/plans/research/pkg-research-findings.md` — research findings (verified facts across four domains)

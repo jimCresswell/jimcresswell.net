@@ -1,0 +1,205 @@
+---
+name: Personal Knowledge Graph Roadmap
+overview: Adopted graph roadmap. Both tracks are required. Track A comes first to extract concrete value from the current graph layer, then Track B follows to design and adopt a graph-backed source-of-truth architecture.
+todos:
+  - id: roadmap-adopted
+    content: Adopt the two-track graph roadmap after metaplan evaluation and stakeholder decision.
+    status: completed
+  - id: track-a-impact-model
+    content: Define Track A consumers, channels, intended impacts, and proof criteria before refinement work.
+    status: pending
+  - id: track-a-refinement-and-proof
+    content: Execute Track A graph-expression refinement and validation work.
+    status: pending
+  - id: track-b-design
+    content: Complete the required Track B source-of-truth design once Track A has established the current graph layer's value boundaries.
+    status: pending
+  - id: track-b-adoption-plan
+    content: Turn the Track B design into an implementation-ready migration plan.
+    status: pending
+isProject: false
+---
+
+# Personal Knowledge Graph Roadmap
+
+## Status
+
+Adopted on 2026-03-09 after the graph-metaplan evaluation and stakeholder
+decision.
+
+Both tracks are required.
+
+Track A comes first.
+
+Use this roadmap together with
+[graph-current-state-audit.md](../research/graph-current-state-audit.md),
+[personal-knowledge-graph-execution.plan.md](personal-knowledge-graph-execution.plan.md),
+and
+[personal-knowledge-graph-source-of-truth-design.plan.md](personal-knowledge-graph-source-of-truth-design.plan.md)
+as the live graph-planning stack.
+
+[graph-metaplan.plan.md](../graph-metaplan.plan.md) remains the completed reset
+record that established this structure.
+
+## Strategic outcome
+
+**Outcome:** run the graph programme in two explicit stages: first make the
+current graph layer intentionally valuable, then redesign the site so the graph
+can become the real source of truth.
+
+**Impact:** the repo stops conflating current graph publication with future
+graph-backed composition, while still committing to both forms of value.
+
+**Value mechanism:** Track A improves what the existing graph publishes and
+proves. Track B removes the long-term split between authored page content and
+graph entities.
+
+## Current truth
+
+The roadmap starts from the observed implementation baseline recorded in
+[graph-current-state-audit.md](../research/graph-current-state-audit.md):
+
+- visible page rendering still comes from `content/cv.content.json` and
+  `content/frontpage.content.json`
+- the graph currently drives JSON-LD, the manifest, and some metadata
+- page content and graph entities are related but still structurally separate
+- section-level page/document contracts exist, but entity-level graph-to-DOM
+  binding is not yet adopted in rendered HTML
+
+## Why both tracks are required
+
+### Track A — Graph Expression
+
+The current graph is already real enough to justify deliberate improvement.
+Ignoring it would leave value on the table and weaken the proof that the graph
+layer is worth keeping.
+
+**Outcome:** more useful and better validated graph-facing outputs from the
+architecture that exists today.
+
+**Impact:** stronger entity signals, cleaner machine-readable publication, and
+clearer evidence that the graph serves real consumers.
+
+**Value mechanism:** improved JSON-LD, graph API output, and graph-adjacent
+metadata create value for search/indexing consumers, programmatic clients, and
+future graph-aware tools without destabilising page rendering.
+
+### Track B — Graph as Source of Truth
+
+The current two-layer model is workable but structurally incomplete. If the
+graph is meant to become central rather than auxiliary, the repo needs a
+designed migration path.
+
+**Outcome:** a decision-complete architecture for graph-owned content, explicit
+composition, and phased adoption.
+
+**Impact:** reduced drift between prose and entities, clearer ownership, and a
+truthful basis for saying the site is a view onto the graph.
+
+**Value mechanism:** moving ownership and composition into graph-backed
+structures eliminates duplicated modelling effort and creates one publishable
+reality across HTML, JSON-LD, metadata, and future derived outputs.
+
+## Sequencing
+
+Track A is first because it acts on the architecture that already exists and
+creates near-term value with low structural risk.
+
+Track B remains required, but it follows Track A in priority. Do not let Track
+B design displace Track A execution before Track A has defined:
+
+- which consumers and channels matter now
+- what the current graph layer is expected to achieve
+- where the present architecture's limits actually are
+
+Track B design may begin once Track A has completed its impact model and the
+roadmap boundary still stands, but Track B implementation remains out of scope
+until its design work is decision-complete.
+
+LinkedIn remains downstream of this roadmap. It is a derived-view concern, not
+a driver of graph architecture.
+
+## Phases
+
+### Phase 1 — Track A Establishment
+
+**Goal:** make Track A the live execution path and define what success means for
+the current graph layer.
+
+**Impact:** the repo stops doing generic graph enrichment and instead works from
+a consumer-led value model.
+
+**Value mechanism:** explicit consumers, channels, and proof criteria constrain
+the work to improvements that serve real use cases.
+
+**Acceptance criteria:**
+
+- Track A execution is owned by
+  [personal-knowledge-graph-execution.plan.md](personal-knowledge-graph-execution.plan.md)
+- the target consumers and output channels are named explicitly
+- each planned refinement can be tied to a stated impact and value mechanism
+- proof criteria exist before implementation starts
+
+### Phase 2 — Track A Delivery and Proof
+
+**Goal:** refine graph-facing outputs and record proof that they are correct and
+useful.
+
+**Impact:** the current graph layer becomes an intentional publication surface
+rather than a technically valid but weakly prioritised one.
+
+**Value mechanism:** better-targeted outputs and explicit validation improve the
+graph's usefulness to the consumers identified in Phase 1.
+
+**Acceptance criteria:**
+
+- Track A changes are implemented from the execution plan, not ad hoc
+- validation and reviewed artefacts are recorded explicitly
+- no Track A work claims graph-backed page composition where none exists
+
+### Phase 3 — Track B Design
+
+**Goal:** produce the required source-of-truth design after Track A has
+established the boundary of the current architecture.
+
+**Impact:** future migration work is driven by demonstrated structural needs,
+not by a general preference for elegance.
+
+**Value mechanism:** a design grounded in current limits and proven value
+reduces the risk of unnecessary architectural churn.
+
+**Acceptance criteria:**
+
+- Track B design is owned by
+  [personal-knowledge-graph-source-of-truth-design.plan.md](personal-knowledge-graph-source-of-truth-design.plan.md)
+- the layered model, composition model, binding model, and adoption path are
+  decision-complete
+- Track B remains design-only until the plan says otherwise
+
+### Phase 4 — Track B Adoption Planning
+
+**Goal:** turn the completed design into a phased migration plan for
+implementation.
+
+**Impact:** the repo gets a controlled path from split ownership to a real
+graph-backed source of truth.
+
+**Value mechanism:** explicit phases, review posture, and rollback boundaries
+allow the architecture to evolve without pretending the target state already
+exists.
+
+**Acceptance criteria:**
+
+- the migration is broken into implementable slices
+- source-of-truth adoption work has clear review and proof requirements
+- the graph-backed composition claim is made only when the rendering path is
+  actually graph-backed
+
+## Success criteria for this roadmap
+
+- current implementation truth stays explicit
+- both tracks remain clearly separated
+- Track A is unambiguously first in sequencing
+- Track B remains required and value-led
+- the live graph authority is discoverable from this roadmap, the repo roadmap,
+  and related plans
