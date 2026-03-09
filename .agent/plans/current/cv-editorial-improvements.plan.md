@@ -19,8 +19,9 @@ Positioning paragraphs, capabilities, `meta.summary`, structured data (`KNOWS_AB
 | Experience & Before Oak editorial review | [experience-editorial.plan.md](../complete/experience-editorial.plan.md)                                           | Complete    |
 | Graph current-state audit                | [graph-current-state-audit.md](../research/graph-current-state-audit.md)                                           | Baseline    |
 | Graph roadmap                            | [personal-knowledge-graph-roadmap.plan.md](personal-knowledge-graph-roadmap.plan.md)                               | In progress |
-| Track A execution                        | [personal-knowledge-graph-execution.plan.md](personal-knowledge-graph-execution.plan.md)                           | In progress |
-| Track B source-of-truth design           | [personal-knowledge-graph-source-of-truth-design.plan.md](personal-knowledge-graph-source-of-truth-design.plan.md) | Planned     |
+| Track A execution                        | [personal-knowledge-graph-execution.plan.md](personal-knowledge-graph-execution.plan.md)                           | Complete    |
+| Track B source-of-truth design           | [personal-knowledge-graph-source-of-truth-design.plan.md](personal-knowledge-graph-source-of-truth-design.plan.md) | In progress |
+| Track B B1 layer map                     | [graph-source-of-truth-layer-map.md](../research/graph-source-of-truth-layer-map.md)                               | Complete    |
 | Graph metaplan                           | [graph-metaplan.plan.md](../graph-metaplan.plan.md)                                                                | Complete    |
 | Visual regression harness                | [visual-regression-harness.plan.md](../complete/visual-regression-harness.plan.md)                                 | Complete    |
 | LinkedIn update                          | [linkedin-update.plan.md](linkedin-update.plan.md) — downstream reference, not an architecture driver              | Subsumed    |
@@ -116,6 +117,8 @@ Completed in a dedicated plan: [meta-seo-content-audit.plan.md](../complete/meta
 
 **Track B design:** [personal-knowledge-graph-source-of-truth-design.plan.md](personal-knowledge-graph-source-of-truth-design.plan.md) — adopted required follow-on design track for the graph-backed source-of-truth architecture.
 
+**Track B B1 completion:** [graph-source-of-truth-layer-map.md](../research/graph-source-of-truth-layer-map.md) — completed ownership and topology note. Track B now continues from B2 composition work.
+
 **Graph metaplan:** [graph-metaplan.plan.md](../graph-metaplan.plan.md) — completed reset record for how the graph stack was reframed and adopted.
 
 **Harness plan:** [visual-regression-harness.plan.md](../complete/visual-regression-harness.plan.md) — completed proof record for the historical PKG regression work.
@@ -149,13 +152,13 @@ framing. This parent plan keeps only the editorial context and plan map.
 
 ## Next steps
 
-| Item                                         | When                                                                                                                                                                                                                                          |
-| -------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ~~Factual fix (Oak start_year 2019 → 2020)~~ | Done                                                                                                                                                                                                                                          |
-| ~~Capabilities (concrete additions)~~        | Done — see [capabilities-editorial.plan.md](../complete/capabilities-editorial.plan.md)                                                                                                                                                       |
-| ~~Meta & SEO content audit~~                 | Done — see [meta-seo-content-audit.plan.md](../complete/meta-seo-content-audit.plan.md)                                                                                                                                                       |
-| ~~Experience & Before Oak editorial review~~ | Done — see [experience-editorial.plan.md](../complete/experience-editorial.plan.md)                                                                                                                                                           |
-| Graph work                                   | Start with [personal-knowledge-graph-roadmap.plan.md](personal-knowledge-graph-roadmap.plan.md) and [graph-current-state-audit.md](../research/graph-current-state-audit.md). Track A is first; Track B follows as the required design track. |
+| Item                                         | When                                                                                                                                                                                                                                                                                                                                                                                                   |
+| -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| ~~Factual fix (Oak start_year 2019 → 2020)~~ | Done                                                                                                                                                                                                                                                                                                                                                                                                   |
+| ~~Capabilities (concrete additions)~~        | Done — see [capabilities-editorial.plan.md](../complete/capabilities-editorial.plan.md)                                                                                                                                                                                                                                                                                                                |
+| ~~Meta & SEO content audit~~                 | Done — see [meta-seo-content-audit.plan.md](../complete/meta-seo-content-audit.plan.md)                                                                                                                                                                                                                                                                                                                |
+| ~~Experience & Before Oak editorial review~~ | Done — see [experience-editorial.plan.md](../complete/experience-editorial.plan.md)                                                                                                                                                                                                                                                                                                                    |
+| Graph work                                   | Continue from [personal-knowledge-graph-roadmap.plan.md](personal-knowledge-graph-roadmap.plan.md), [graph-source-of-truth-layer-map.md](../research/graph-source-of-truth-layer-map.md), and [personal-knowledge-graph-source-of-truth-design.plan.md](personal-knowledge-graph-source-of-truth-design.plan.md). Track A is complete for the current publication surface; Track B Phase B2 is active. |
 
 ---
 

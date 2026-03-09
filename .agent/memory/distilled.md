@@ -23,3 +23,6 @@ for full architecture coverage.
 - Playwright import fails on JSON-backed app modules: keep route-emission
   proof in Playwright, but move app-module contract proof to Vitest or import
   raw JSON directly
+- Local Playwright runs against `pnpm dev` can intermittently show a Next.js
+  runtime chunk overlay on 404 routes; stabilise that in a narrow E2E helper
+  instead of changing app code or weakening the assertion

@@ -7,10 +7,10 @@ todos:
     status: completed
   - id: layered-model-design
     content: Define the layered source-of-truth model and file topology.
-    status: in_progress
+    status: completed
   - id: composition-and-binding-design
     content: Define graph-to-view composition and graph-to-DOM binding.
-    status: pending
+    status: in_progress
   - id: migration-and-completeness-design
     content: Define the phased adoption path and publication-completeness model.
     status: pending
@@ -32,6 +32,7 @@ Use this plan with
 [graph-publication-consumer-and-proof-model.md](../research/graph-publication-consumer-and-proof-model.md),
 [graph-publication-output-audit.md](../research/graph-publication-output-audit.md),
 [graph-negotiated-media-type-refinement.md](../research/graph-negotiated-media-type-refinement.md),
+[graph-source-of-truth-layer-map.md](../research/graph-source-of-truth-layer-map.md),
 [personal-knowledge-graph-roadmap.plan.md](personal-knowledge-graph-roadmap.plan.md),
 and [ADR-014](../../../docs/architecture/decision-records/014-entity-model-design.md).
 
@@ -72,15 +73,19 @@ decision-complete and an explicit migration plan exists.
 
 ## Next session start
 
-Begin with Phase B1, not a new audit:
+Phase B1 is now complete via
+[graph-source-of-truth-layer-map.md](../research/graph-source-of-truth-layer-map.md).
 
-- Task B1.1 — Source-of-Truth Layer Map
-- Task B1.2 — Worked Ownership Examples
+Begin with Phase B2, not a new audit:
 
-The first design slice should define the ownership model and proposed file
-topology for graph-owned facts, authored prose, and composition structures,
-then work those rules through concrete `/` and `/cv` examples without claiming
-that the site is already graph-derived.
+- Task B2.1 — Page Selection and Ordering Model
+- Task B2.2 — Tilt Composition Model
+
+Use the B1 note as fixed boundary:
+
+- facts, authored prose, and composition are distinct ownership layers
+- those layers must still resolve into one cohesive graph across multiple files
+- visible HTML is still not graph-derived in the current implementation
 
 ## Problem statement
 
@@ -117,6 +122,9 @@ from recreating today's split model under new names.
 - ownership of domain facts, authored prose, and presentation-specific
   selections is unambiguous
 - worked examples exist for both `/` and `/cv`
+
+**Completion record:** see
+[graph-source-of-truth-layer-map.md](../research/graph-source-of-truth-layer-map.md).
 
 #### Tasks
 

@@ -1,5 +1,6 @@
 import { test, expect } from "@playwright/test";
 import cvContent from "../../content/cv.content.json" with { type: "json" };
+import { gotoAndExpectBrandedNotFound } from "../support/not-found";
 
 test.describe("US-03: Visitor follows a variant link", () => {
   test("variant page shows tailored positioning while preserving shared content", async ({
@@ -27,8 +28,7 @@ test.describe("US-03: Visitor follows a variant link", () => {
   });
 
   test("invalid variant slug returns 404", async ({ page }) => {
-    const response = await page.goto("/cv/nonexistent");
+    const response = await gotoAndExpectBrandedNotFound(page, "/cv/nonexistent");
     expect(response?.status()).toBe(404);
-    await expect(page.getByRole("heading", { name: "Page not found" })).toBeVisible();
   });
 });

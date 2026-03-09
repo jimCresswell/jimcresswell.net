@@ -183,3 +183,70 @@
 - Axe can catch pre-hydration fallback states that route-level SEO and content
   checks never exercise directly. If a client component renders a placeholder
   before mount, its contrast still has to pass.
+
+## Session: 2026-03-09 — Track B Layer Map and Worked Ownership Examples
+
+### What Was Done
+
+- Recorded the first Track B B1 design note in
+  `.agent/plans/research/graph-source-of-truth-layer-map.md`
+- Defined the target as one cohesive graph spread across distinct ownership
+  layers for facts, authored prose, and composition
+- Worked the ownership rules through concrete `/` and `/cv` examples, including
+  tilt behaviour
+- Updated the live Track B plan, roadmap, and active handoff prompt so the next
+  session starts from B2 rather than re-opening B1
+- Ran the consolidate-docs sweep and corrected two stale live planning docs:
+  `.agent/plans/roadmap.md` and
+  `.agent/plans/current/cv-editorial-improvements.plan.md`
+- Collapsed two completed Track A prompts to clean completion records after the
+  consolidate-docs sweep exposed stale active-task instructions under their
+  completed headers
+- Ran the required gate sequence in order:
+  `pnpm format:fix`, `pnpm markdownlint:fix`, `pnpm lint:fix`,
+  `pnpm typecheck`, `pnpm test`, `pnpm knip`, `pnpm gitleaks`,
+  `pnpm test:e2e`
+- Re-ran `pnpm test:e2e` after one transient failure and confirmed the suite
+  passed on the unchanged worktree
+- Stabilised the branded-404 Playwright proof with a small helper that reloads
+  once only when the Next.js runtime chunk overlay appears instead of the page
+- Promoted the Next.js chunk-overlay troubleshooting pattern into
+  `.agent/memory/distilled.md` because it cleared the bar for stable,
+  repo-specific troubleshooting guidance
+
+### Mistakes Made
+
+- The first framing risked sounding like three separate silos. Tightened it so
+  the design now says explicitly that multiple source files still resolve into
+  one cohesive graph through stable IDs.
+- The first full Playwright rerun surfaced a transient Next.js
+  `Runtime ChunkLoadError` overlay on `/cv/nonexistent`, which made the
+  invalid-variant 404 assertion fail even though the unchanged worktree passed
+  on immediate rerun.
+- The first documentation pass missed stale status lines in the broader roadmap
+  and parent editorial plan. The consolidate-docs sweep needs to cover the plan
+  index layer, not only the active graph plan stack.
+- Two completed Track A prompts still contained obsolete active-task bodies.
+  A completion banner alone was not enough; the stale instructions underneath
+  still made the handoff chain misleading.
+
+### Patterns to Remember
+
+- For Track B design, separate storage boundaries from semantic boundaries:
+  multiple files can still be one graph if ownership and IDs are explicit.
+- Durable identity statements can stay in the facts layer when they are
+  first-class domain claims; page-only connective copy belongs in authored
+  prose; route exposure and canonical behaviour stay in composition.
+- For doc-only graph design slices, capture explicitly why the visual
+  regression harness was not required so the proof boundary stays visible.
+- If Playwright fails with a Next.js runtime chunk overlay rather than an app
+  assertion mismatch, inspect the artefact first and rerun on the unchanged
+  worktree before assuming the current slice caused a regression.
+- When the overlay is a known dev-server chunk-load failure and the product
+  behaviour is otherwise correct, keep the mitigation in a narrow E2E helper
+  rather than changing app code or weakening the assertion.
+- After graph-plan status changes, re-check `.agent/plans/roadmap.md` and any
+  parent plan tables, not only the active track plans and prompts.
+- When a prompt becomes complete, strip or replace the old task body instead of
+  only prepending a completion note. Otherwise the prompt still carries stale
+  execution truth.

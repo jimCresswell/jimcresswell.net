@@ -21,13 +21,14 @@ Use
 5. `/Users/jim/code/personal/new-cv/.agent/memory/napkin.md`
 6. `/Users/jim/code/personal/new-cv/.agent/plans/current/personal-knowledge-graph-roadmap.plan.md`
 7. `/Users/jim/code/personal/new-cv/.agent/plans/current/personal-knowledge-graph-source-of-truth-design.plan.md`
-8. `/Users/jim/code/personal/new-cv/.agent/plans/research/graph-current-state-audit.md`
-9. `/Users/jim/code/personal/new-cv/.agent/plans/research/graph-publication-consumer-and-proof-model.md`
-10. `/Users/jim/code/personal/new-cv/.agent/plans/research/graph-publication-output-audit.md`
-11. `/Users/jim/code/personal/new-cv/.agent/plans/research/graph-rich-result-external-validator-evidence.md`
-12. `/Users/jim/code/personal/new-cv/docs/architecture/README.md`
-13. `/Users/jim/code/personal/new-cv/docs/architecture/content-model.md`
-14. `/Users/jim/code/personal/new-cv/docs/architecture/decision-records/014-entity-model-design.md`
+8. `/Users/jim/code/personal/new-cv/.agent/plans/research/graph-source-of-truth-layer-map.md`
+9. `/Users/jim/code/personal/new-cv/.agent/plans/research/graph-current-state-audit.md`
+10. `/Users/jim/code/personal/new-cv/.agent/plans/research/graph-publication-consumer-and-proof-model.md`
+11. `/Users/jim/code/personal/new-cv/.agent/plans/research/graph-publication-output-audit.md`
+12. `/Users/jim/code/personal/new-cv/.agent/plans/research/graph-rich-result-external-validator-evidence.md`
+13. `/Users/jim/code/personal/new-cv/docs/architecture/README.md`
+14. `/Users/jim/code/personal/new-cv/docs/architecture/content-model.md`
+15. `/Users/jim/code/personal/new-cv/docs/architecture/decision-records/014-entity-model-design.md`
 
 ## Grounding truths to preserve
 
@@ -35,13 +36,16 @@ Use
   `personal-knowledge-graph-roadmap.plan.md`.
 - Track A is complete for the current publication surface.
 - Track B design is now the active graph task.
+- Track B Phase B1 is complete and recorded in
+  `graph-source-of-truth-layer-map.md`.
 - Track B remains design-only. Do not ship source-of-truth implementation code
   from this slice.
 - Visible HTML still comes from `content/cv.content.json` and
   `content/frontpage.content.json`.
 - The graph currently drives JSON-LD, the manifest, and some metadata.
 - The current architecture still has split ownership between page-composition
-  JSON and the entity graph.
+  JSON and the entity graph, while the target Track B model is now defined as
+  one cohesive graph across multiple source layers.
 - No compatibility layers, no stub-preservation docs, no edits under
   `.agent/plans/complete/`.
 - Proof is still required, but for this slice the proof is architectural and
@@ -49,7 +53,9 @@ Use
 
 ## Start from the live execution handoff
 
-- begin with Track B Phase B1, not a new audit
+- begin with Track B Phase B2, not a new audit
+- use `graph-source-of-truth-layer-map.md` as the fixed B1 boundary rather than
+  re-deciding ownership
 - use the completed Track A notes to define the boundary of the current
   architecture, not to reopen Track A work
 - keep Track A / Track B boundaries explicit
@@ -58,34 +64,35 @@ Use
 
 ## Active task
 
-Deliver the first Track B design slice:
+Deliver the next Track B design slice:
 
-- Task B1.1 — Source-of-Truth Layer Map
-- Task B1.2 — Worked Ownership Examples
+- Task B2.1 — Page Selection and Ordering Model
+- Task B2.2 — Tilt Composition Model
 
 The output should define:
 
-- which concerns belong to graph-owned facts
-- which concerns belong to authored prose
-- which concerns belong to composition structures
-- the proposed file topology for those layers
-- worked ownership examples for `/` and `/cv`
-- tilt implications where they matter
+- how route/view nodes select facts and prose
+- how ordering and grouping work without recreating today's page JSON shape
+- how page-specific narrative slots sit alongside reusable statement entities
+- how tilt selection, reuse, and canonical behaviour belong to composition
 
 ## Before editing
 
-- confirm the smallest useful design slice that advances Track B without
-  spilling into implementation
-- identify where current plan wording still implies Track B is inactive or
-  under-specified
+- confirm the smallest useful B2 slice that advances Track B without spilling
+  into implementation
+- preserve the B1 ownership boundary rather than reopening it
+- inspect the current page-document and tilt behaviour that B2 will need to
+  model deliberately
 - keep the current rendering and publication boundaries explicit
 
 ## Likely relevant files
 
 - `/Users/jim/code/personal/new-cv/.agent/plans/current/personal-knowledge-graph-source-of-truth-design.plan.md`
 - `/Users/jim/code/personal/new-cv/.agent/plans/current/personal-knowledge-graph-roadmap.plan.md`
+- `/Users/jim/code/personal/new-cv/.agent/plans/research/graph-source-of-truth-layer-map.md`
 - `/Users/jim/code/personal/new-cv/.agent/plans/research/graph-current-state-audit.md`
 - `/Users/jim/code/personal/new-cv/.agent/plans/research/graph-publication-output-audit.md`
+- `/Users/jim/code/personal/new-cv/lib/page-document-contract.ts`
 - `/Users/jim/code/personal/new-cv/docs/architecture/content-model.md`
 - `/Users/jim/code/personal/new-cv/docs/architecture/decision-records/014-entity-model-design.md`
 - `/Users/jim/code/personal/new-cv/content/frontpage.content.json`
@@ -94,8 +101,8 @@ The output should define:
 
 ## Do the work
 
-- produce the first Track B design material for the layered model and worked
-  ownership examples
+- produce the next Track B design material for page selection, ordering, and
+  tilt composition
 - update the live Track B plan and any discoverable supporting note needed to
   keep the design standalone
 - update other live plans or prompts only if status, next steps, or cross-links
@@ -124,6 +131,6 @@ The output should define:
 ## End by summarising
 
 - what design material was added or updated
-- whether Track B Phase B1 status changed
+- whether Track B Phase B2 status changed
 - what open design questions remain after the slice
 - whether any stakeholder decision is needed before Track B continues

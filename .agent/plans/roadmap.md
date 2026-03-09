@@ -7,13 +7,13 @@ Where everything stands and what depends on what.
 | Plan                                                                                      | Status      | Summary                                                                                                                                                            | Next action                                                            |
 | ----------------------------------------------------------------------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------- |
 | [CV Editorial Improvements](current/cv-editorial-improvements.plan.md)                    | In progress | Parent editorial plan. Positioning, capabilities, metadata, experience, and Before Oak are settled. Remaining graph work now runs through the adopted graph stack. | Use the graph roadmap as the live dependency for remaining graph work. |
-| [PKG Roadmap](current/personal-knowledge-graph-roadmap.plan.md)                           | In progress | Parent graph roadmap. Both tracks are required; Track A comes first, Track B follows as the source-of-truth design track.                                          | Complete Track A Phase A1.                                             |
-| [Graph Expression Execution](current/personal-knowledge-graph-execution.plan.md)          | In progress | Live Track A plan for improving the existing graph layer as a deliberate publication surface.                                                                      | Define consumers, channels, and proof criteria.                        |
-| [Source-of-Truth Design](current/personal-knowledge-graph-source-of-truth-design.plan.md) | Planned     | Required Track B follow-on plan for the graph-backed source-of-truth architecture.                                                                                 | Start only after Track A's impact model is complete.                   |
+| [PKG Roadmap](current/personal-knowledge-graph-roadmap.plan.md)                           | In progress | Parent graph roadmap. Track A is complete for the current publication surface; Track B is now the active source-of-truth design track.                             | Advance Track B Phase B2 composition design.                           |
+| [Graph Expression Execution](current/personal-knowledge-graph-execution.plan.md)          | Complete    | Track A plan for improving the existing graph layer as a deliberate publication surface. Completed for the current publication surface.                            | Re-open only if the publication surface changes materially.            |
+| [Source-of-Truth Design](current/personal-knowledge-graph-source-of-truth-design.plan.md) | In progress | Active Track B plan for the graph-backed source-of-truth architecture. Phase B1 is complete; Phase B2 composition design is now active.                            | Deliver Task B2.1 and Task B2.2.                                       |
 | [LinkedIn Update](current/linkedin-update.plan.md)                                        | Subsumed    | Reference-only downstream plan. LinkedIn stays downstream of the graph roadmap and does not drive the architecture.                                                | Wait for later derived-view work.                                      |
 
 **Durable graph design decisions live in** [ADR-014](../../docs/architecture/decision-records/014-entity-model-design.md) **and the related ADRs in** `docs/architecture/decision-records/`.
-**Current graph authorities are** [personal-knowledge-graph-roadmap.plan.md](current/personal-knowledge-graph-roadmap.plan.md), [graph-current-state-audit.md](research/graph-current-state-audit.md), [personal-knowledge-graph-execution.plan.md](current/personal-knowledge-graph-execution.plan.md), **and** [personal-knowledge-graph-source-of-truth-design.plan.md](current/personal-knowledge-graph-source-of-truth-design.plan.md).
+**Current graph authorities are** [personal-knowledge-graph-roadmap.plan.md](current/personal-knowledge-graph-roadmap.plan.md), [graph-current-state-audit.md](research/graph-current-state-audit.md), [personal-knowledge-graph-execution.plan.md](current/personal-knowledge-graph-execution.plan.md), [graph-source-of-truth-layer-map.md](research/graph-source-of-truth-layer-map.md), **and** [personal-knowledge-graph-source-of-truth-design.plan.md](current/personal-knowledge-graph-source-of-truth-design.plan.md).
 **The graph reset record is** [graph-metaplan.plan.md](graph-metaplan.plan.md).
 **Historical PKG references live in** [complete/personal-knowledge-graph-phase-model.plan.md](complete/personal-knowledge-graph-phase-model.plan.md) **and** [research/personal-knowledge-graph-design-notes.md](research/personal-knowledge-graph-design-notes.md).
 
@@ -40,19 +40,21 @@ These are tracked in the [parent plan](current/cv-editorial-improvements.plan.md
 CV Editorial Improvements (parent)
 ├── PKG Roadmap (current graph authority)
 │   ├── Graph current-state audit (research baseline)
-│   ├── Graph Expression Execution (Track A, first)
+│   ├── Graph Expression Execution (Track A, complete)
 │   │   ├── Visual regression harness plan (complete proof record)
 │   │   │   └── Visual regression harness enhancements (icebox)
 │   │   └── LinkedIn update (reference only; downstream)
-│   └── Source-of-truth design (Track B, required follow-on)
+│   └── Source-of-truth design (Track B, active)
+│       ├── Source-of-truth layer map (B1 complete)
 │       └── Neo4j Knowledge Graph (icebox shaping input)
 ├── Graph Metaplan (complete reset record)
 └── Tilt mechanism (deferred, no plan yet)
     └── Tilt content (depends on mechanism)
 ```
 
-**Sequencing:** both tracks are required. Track A is first. Track B starts only
-after Track A establishes the current graph layer's impact model.
+**Sequencing:** both tracks are required. Track A came first and is complete
+for the current publication surface. Track B is now active and is currently in
+Phase B2.
 
 **Current state:** the graph is an active concern, but the visible website is
 still not graph-derived. Use the adopted roadmap and its linked authorities for
