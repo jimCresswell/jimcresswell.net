@@ -103,14 +103,14 @@ graph-derived today. Track A should not claim them.
 
 ### Output area: page subgraphs
 
-**Success statement**
+#### Success statement
 
 - `/` and `/cv/` publish self-contained `@graph` payloads with the correct
   canonical `ProfilePage`, `WebSite`, and `Person` identity
 - tilt routes reuse the canonical CV page entity and do not create a second
   `ProfilePage` identity
 
-**Validation surfaces**
+#### Validation surfaces
 
 - `lib/search-structured-data.ts`
 - `lib/page-document-contract.integration.test.ts`
@@ -118,20 +118,20 @@ graph-derived today. Track A should not claim them.
 - `lib/entities.integration.test.ts`
 - `e2e/behaviour/seo.e2e-api.test.ts`
 
-**External validators**
+#### External validators
 
 - Schema.org Validator for `/` and `/cv/` when structured-data shape changes
 - Google Rich Results Test for `/` and `/cv/` when rich-result-facing markup
   changes
 
-**Reviewers**
+#### Reviewers
 
 - `code-reviewer`
 - `pkg-reviewer`
 - `test-reviewer`
 - `type-reviewer` when schema or validation flow changes
 
-**Current proof status**
+#### Current proof status
 
 - The home-page emitted-channel gap is now closed:
   `lib/page-document-contract.integration.test.ts` proves the home
@@ -141,23 +141,23 @@ graph-derived today. Track A should not claim them.
 
 ### Output area: full-graph publication
 
-**Success statement**
+#### Success statement
 
 - `/api/graph` and `Accept: application/ld+json` both return the
   deployment-specific full graph with the Schema.org context, a non-empty
   `@graph`, and the current no-store iteration behaviour
 
-**Validation surfaces**
+#### Validation surfaces
 
 - `lib/jsonld.integration.test.ts`
 - `e2e/behaviour/graph-api.e2e-api.test.ts`
 
-**External validators**
+#### External validators
 
 - Schema.org Validator or raw JSON-LD inspection when vocabulary or graph
   topology changes materially
 
-**Reviewers**
+#### Reviewers
 
 - `code-reviewer`
 - `pkg-reviewer`
@@ -166,28 +166,28 @@ graph-derived today. Track A should not claim them.
 
 ### Output area: manifest
 
-**Success statement**
+#### Success statement
 
 - manifest `name`, `short_name`, and `description` stay aligned with `person`
   and remain valid browser-install metadata
 
-**Validation surfaces**
+#### Validation surfaces
 
 - `app/manifest.integration.test.ts`
 - `e2e/behaviour/manifest.e2e-api.test.ts`
 - `pnpm typecheck`
 
-**Manual checks**
+#### Manual checks
 
 - Request `/manifest.webmanifest` directly after changes
 - Inspect manifest fields in the browser application panel when needed
 
-**Reviewers**
+#### Reviewers
 
 - `code-reviewer`
 - `type-reviewer` when manifest typing or entity shape changes
 
-**Current proof status**
+#### Current proof status
 
 - The manifest emitted-channel gap is now closed:
   `app/manifest.integration.test.ts` proves the Track A-owned identity fields
@@ -198,30 +198,30 @@ graph-derived today. Track A should not claim them.
 
 ### Output area: graph-derived CV metadata
 
-**Success statement**
+#### Success statement
 
 - `/cv` and `/cv/[variant]` titles, descriptions, Open Graph URL fields, and
   canonical behaviour stay aligned with `person` and the page-document
   contract
 
-**Validation surfaces**
+#### Validation surfaces
 
 - `lib/page-document-contract.integration.test.ts`
 - `e2e/behaviour/seo.e2e-api.test.ts`
 
-**Manual checks**
+#### Manual checks
 
 - Inspect the rendered `<head>` when metadata wiring changes materially
 - Use link-preview tooling only when a metadata change is intended to affect
   unfurl behaviour
 
-**Reviewers**
+#### Reviewers
 
 - `code-reviewer`
 - `pkg-reviewer` when graph fields change
 - `editor` when wording changes
 
-**Current proof gaps**
+#### Current scope boundary
 
 - Home-page and site-wide metadata are not graph-derived, so they must not be
   counted as Track A metadata success

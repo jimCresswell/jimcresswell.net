@@ -85,10 +85,15 @@ This slice closes the following previously-open Track A issues:
 - the proof gap around negotiated page-route coverage for `/` and tilt routes
 - the proof gap around the negotiated response media-type contract
 
-## What remains open after this slice
+## What remains open now
+
+The following items were closed later in Track A:
 
 - home-page inline JSON-LD emitted-channel proof
 - dedicated automated proof for `/manifest.webmanifest`
+
+The remaining open items are:
+
 - tighter proof for graph-derived CV metadata descriptions
 - external validator evidence for the rich-result-facing inline graphs
 

@@ -184,7 +184,7 @@ A good `distilled.md` overall is:
 
 - Do not distil mid-session — the napkin is a working
   document during active work
-- Do not distil if the napkin is under 600 lines — there
+- Do not distil if the napkin is under 500 lines — there
   is not enough content to justify the overhead
 - Do not distil "What Was Done" sections — those are
   session history, not learnings

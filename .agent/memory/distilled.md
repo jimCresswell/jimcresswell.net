@@ -16,7 +16,10 @@ for full architecture coverage.
 
 ## Troubleshooting
 
-| Symptom                            | Fix                                                       |
-| ---------------------------------- | --------------------------------------------------------- |
-| StrReplace fails on markdown files | Unicode quotes block matching — read the exact text first |
-| Prettier reformats code fences     | Language tag `text` applied to bare fences                |
+- `StrReplace` fails on markdown files: Unicode quotes block matching, so read
+  the exact text first
+- Prettier reformats code fences: language tag `text` gets applied to bare
+  fences
+- Playwright import fails on JSON-backed app modules: keep route-emission
+  proof in Playwright, but move app-module contract proof to Vitest or import
+  raw JSON directly
