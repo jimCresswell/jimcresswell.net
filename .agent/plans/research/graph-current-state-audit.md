@@ -1,0 +1,202 @@
+# Graph Current-State Audit
+
+Deep-dive record of what the repo’s graph work currently is, what it is not,
+what is proven, what was exploratory, and what must happen next.
+
+## Status
+
+Recorded on 2026-03-09 as the grounding document for the graph metaplan.
+
+Use [graph-metaplan.plan.md](../graph-metaplan.plan.md) for the parent planning
+structure. Candidate roadmap and successor-plan drafts were also captured this
+session, but they are preserved inputs for the next session, not yet the
+authoritative graph-planning stack.
+
+## Executive summary
+
+The repo now has a valid and useful personal knowledge graph foundation, but it
+does **not** yet have a graph-derived website.
+
+What is true today:
+
+- `content/entities.json` contains a validated entity graph
+- JSON-LD outputs derive from that graph
+- the manifest and some metadata derive from graph entities
+- the visible pages still render from `content/cv.content.json` and
+  `content/frontpage.content.json`
+- the relationship between page content and graph entities is mostly manual,
+  semantic, or coincidental rather than modelled in a composition layer
+
+The main planning correction is therefore:
+
+- keep the graph-expression work
+- stop describing the site as already graph-composed
+- plan graph-as-source-of-truth work as a separate track
+
+## What has been implemented
+
+### Entity foundation
+
+- `content/entities.json` exists as a valid JSON-LD `@graph`
+- `lib/entities.ts` validates the graph at import time with Zod
+- the entity model includes concrete, abstract, and expressive entities
+- the graph is published through full-graph and page-subgraph outputs
+
+### Graph publication
+
+- `lib/jsonld.ts` publishes the full graph
+- `lib/page-jsonld.ts` publishes page-level subgraphs
+- `/`, `/cv`, and the public-sector tilt inject JSON-LD from the entity model
+- the web app manifest derives from the graph’s Person entity
+
+### Proof and validation infrastructure
+
+- the visual-regression harness exists and has a closed PKG proof record
+- graph integrity and structured-data checks exist in tests
+- page/document contract logic exists for canonical identity and section IDs
+
+## What is proven
+
+- the PKG migration did not introduce unexpected pixel-level drift in the
+  recorded historical comparison
+- current rendered content matches the current page JSON sources
+- the structured-data layer is internally validated and referentially checked
+- page identity and some document-level constraints are encoded in product code
+
+## What was exploratory and useful but missed the real target
+
+The initial PKG framing treated the work as if the graph had already become the
+source of truth for the site. That was useful in one narrow sense: it pushed the
+repo toward a serious entity model, page-level JSON-LD, and stronger identity
+rules.
+
+But it missed the larger target:
+
+- page rendering did not migrate to graph-backed composition
+- content files did not become views that reference entities by ID
+- entity-level and role-level HTML binding did not become real rendered-site
+  behaviour
+- “view derivation” was achieved for structured-data outputs, not for visible
+  page composition
+
+So the exploratory work was productive, but it solved a smaller problem than the
+plans claimed.
+
+## What the architecture actually is today
+
+### Visible page rendering
+
+- the home page renders from `content/frontpage.content.json`
+- the CV and tilt pages render from `content/cv.content.json`
+- the rendering path uses those files directly, not graph-owned composition
+
+### Graph-owned outputs
+
+- JSON-LD is graph-derived
+- the manifest is graph-derived
+- some OG and metadata fields derive from graph entities
+
+### Binding layer
+
+- section-level IDs are product-owned and verified
+- page/document contracts exist for route identity and canonical rules
+- there is no fully adopted entity-to-DOM binding layer in the rendered site
+
+### Ownership model
+
+- authored page prose lives in content JSON files
+- graph entities live in `content/entities.json`
+- the repo currently has split ownership, not graph-owned authored content
+
+## Current architecture classification
+
+| Concern              | Current owner                                               | Notes                                         |
+| -------------------- | ----------------------------------------------------------- | --------------------------------------------- |
+| Visible page prose   | `content/cv.content.json`, `content/frontpage.content.json` | Primary source for rendered HTML              |
+| Graph entities       | `content/entities.json`                                     | Canonical machine-readable entity model       |
+| JSON-LD              | Graph-derived                                               | Strong integration                            |
+| Manifest             | Graph-derived                                               | Strong integration                            |
+| OG and some metadata | Mixed                                                       | Some graph-derived, some page-content-derived |
+| Page composition     | Page content JSON                                           | Not graph-derived                             |
+| Section binding      | Product contract                                            | Exists                                        |
+| Entity/role binding  | Not truly adopted                                           | Still target state                            |
+
+## What needs to happen next
+
+Before any preserved draft roadmap or successor plan is adopted, the next
+session must assess all work done so far against:
+
+- the outcomes it is trying to produce
+- the impacts those outcomes are meant to create
+- the mechanism by which those outcomes create value
+
+Only then should any draft roadmap or successor plan be adopted, rewritten,
+split, or discarded.
+
+### Track A
+
+Treat the current graph as a real publication layer and improve it
+deliberately:
+
+- define the impact sought from graph-expression outputs
+- tie output work to real consumer value
+- validate correctness and usefulness explicitly
+
+### Track B
+
+Design and then adopt the architecture that would make the website a true view
+onto the graph:
+
+- define the layered graph model
+- define graph-owned authored content and page-composition strategy
+- cross-link early to surface structural problems
+- migrate deliberately rather than leaving dual ownership in place
+- prove publication completeness across all channels
+
+## Doc-truth alignment
+
+### Accurate as-is
+
+- `docs/architecture/content-model.md` accurately describes current rendering as
+  content-JSON-driven
+- `content/entities.json` plus `lib/entities.ts` are accurately described as the
+  graph source and validation layer
+- the completed visual-regression harness record is accurate about proof status
+
+### Historical or target-state records that are still valuable
+
+- `docs/architecture/decision-records/014-entity-model-design.md` records the
+  intended layered architecture and remains a valid target-state design record
+- `.agent/plans/research/personal-knowledge-graph-design-notes.md` remains
+  useful as historical design exploration
+- `.agent/plans/complete/personal-knowledge-graph-phase-model.plan.md` remains
+  useful as an archive of the previous phase model
+
+### Live docs that needed reframing
+
+- `.agent/plans/current/personal-knowledge-graph-execution.plan.md`
+- `.agent/plans/roadmap.md`
+- `.agent/plans/current/cv-editorial-improvements.plan.md`
+- `.agent/plans/current/linkedin-update.plan.md`
+
+These live planning docs needed to stop implying that the site was already
+graph-derived and to adopt the new two-track structure.
+
+## Lessons from this session
+
+- a valid graph and valid JSON-LD do not automatically make the website
+  graph-derived
+- current-state truth and target-state intent must be named separately in live
+  planning docs
+- if page composition does not reference graph entities explicitly, the repo
+  still has split content ownership even if the graph is rich
+- section-level binding is not enough to claim full graph-to-DOM adoption
+
+## Related documents
+
+- [graph-metaplan.plan.md](../graph-metaplan.plan.md)
+- [personal-knowledge-graph-roadmap.plan.md](../current/personal-knowledge-graph-roadmap.plan.md) — preserved draft roadmap input
+- [personal-knowledge-graph-execution.plan.md](../current/personal-knowledge-graph-execution.plan.md) — preserved draft Track A execution input
+- [personal-knowledge-graph-source-of-truth-design.plan.md](personal-knowledge-graph-source-of-truth-design.plan.md) — preserved draft Track B design input
+- [personal-knowledge-graph-design-notes.md](personal-knowledge-graph-design-notes.md)
+- [ADR-014](../../docs/architecture/decision-records/014-entity-model-design.md)

@@ -14,15 +14,18 @@ Positioning paragraphs, capabilities, `meta.summary`, structured data (`KNOWS_AB
 
 **Remaining work in dedicated plans:**
 
-| Item                                     | Plan                                                                                            | Status      |
-| ---------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------- |
-| Experience & Before Oak editorial review | [experience-editorial.plan.md](../complete/experience-editorial.plan.md)                        | Complete    |
-| PKG execution plan                       | [personal-knowledge-graph-execution.plan.md](personal-knowledge-graph-execution.plan.md)        | In progress |
-| Visual regression harness                | [visual-regression-harness.plan.md](../complete/visual-regression-harness.plan.md)              | Complete    |
-| LinkedIn update                          | [linkedin-update.plan.md](linkedin-update.plan.md) — subsumed by PKG Phase 5                    | Subsumed    |
-| Tilt mechanism                           | No plan yet — see [Deferred](#deferred) below                                                   | Deferred    |
-| Tilt content                             | Depends on tilt mechanism                                                                       | Deferred    |
-| PKG durable design decisions             | [ADR-014](../../docs/architecture/decision-records/014-entity-model-design.md) and related ADRs | Accepted    |
+| Item                                     | Plan                                                                                                                           | Status      |
+| ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ | ----------- |
+| Experience & Before Oak editorial review | [experience-editorial.plan.md](../complete/experience-editorial.plan.md)                                                       | Complete    |
+| Graph metaplan                           | [graph-metaplan.plan.md](../graph-metaplan.plan.md)                                                                            | In progress |
+| Graph roadmap draft                      | [personal-knowledge-graph-roadmap.plan.md](personal-knowledge-graph-roadmap.plan.md)                                           | Draft input |
+| Track A execution draft                  | [personal-knowledge-graph-execution.plan.md](personal-knowledge-graph-execution.plan.md)                                       | Draft input |
+| Track B source-of-truth design draft     | [personal-knowledge-graph-source-of-truth-design.plan.md](../research/personal-knowledge-graph-source-of-truth-design.plan.md) | Draft input |
+| Visual regression harness                | [visual-regression-harness.plan.md](../complete/visual-regression-harness.plan.md)                                             | Complete    |
+| LinkedIn update                          | [linkedin-update.plan.md](linkedin-update.plan.md) — downstream reference, not an architecture driver                          | Subsumed    |
+| Tilt mechanism                           | No plan yet — see [Deferred](#deferred) below                                                                                  | Deferred    |
+| Tilt content                             | Depends on tilt mechanism                                                                                                      | Deferred    |
+| PKG durable design decisions             | [ADR-014](../../docs/architecture/decision-records/014-entity-model-design.md) and related ADRs                                | Accepted    |
 
 ## How to use this plan
 
@@ -104,17 +107,25 @@ Completed in a dedicated plan: [meta-seo-content-audit.plan.md](../complete/meta
 
 ## In progress: Personal knowledge graph
 
-**Execution plan:** [personal-knowledge-graph-execution.plan.md](personal-knowledge-graph-execution.plan.md) — detailed operational plan with per-task status. **Start here** for next session.
+**Graph metaplan:** [graph-metaplan.plan.md](../graph-metaplan.plan.md) — parent plan for graph work, including the truthful baseline and the two-track model.
 
-**Phase model reference:** [personal-knowledge-graph-phase-model.plan.md](../complete/personal-knowledge-graph-phase-model.plan.md) — archived goals, impacts, tasks, and acceptance criteria for all PKG phases.
+**Current-state audit:** [graph-current-state-audit.md](../research/graph-current-state-audit.md) — observed implementation truth, lessons learned, and the current architecture record.
 
-**Harness plan:** [visual-regression-harness.plan.md](../complete/visual-regression-harness.plan.md) — completed proof record for the PKG regression work.
+**Strategic roadmap draft:** [personal-knowledge-graph-roadmap.plan.md](personal-knowledge-graph-roadmap.plan.md) — preserved candidate Track A / Track B roadmap for next-session assessment.
+
+**Track A execution draft:** [personal-knowledge-graph-execution.plan.md](personal-knowledge-graph-execution.plan.md) — preserved candidate graph-expression plan for next-session assessment.
+
+**Track B design draft:** [personal-knowledge-graph-source-of-truth-design.plan.md](../research/personal-knowledge-graph-source-of-truth-design.plan.md) — preserved candidate design plan for graph-backed source-of-truth architecture and phased adoption.
+
+**Harness plan:** [visual-regression-harness.plan.md](../complete/visual-regression-harness.plan.md) — completed proof record for the historical PKG regression work.
 
 **Durable design decisions:** [ADR-014](../../docs/architecture/decision-records/014-entity-model-design.md) and the related ADRs in `docs/architecture/decision-records/`.
 
-**Historical design notes:** [personal-knowledge-graph-design-notes.md](../research/personal-knowledge-graph-design-notes.md) — retained for design exploration context and audit detail, not as the canonical durable design source.
+**Historical references:** [personal-knowledge-graph-phase-model.plan.md](../complete/personal-knowledge-graph-phase-model.plan.md) and [personal-knowledge-graph-design-notes.md](../research/personal-knowledge-graph-design-notes.md) remain useful as archive records, but they are no longer the live planning model.
 
-Use the [execution plan](personal-knowledge-graph-execution.plan.md) as the live PKG source of truth for current phase status, validation state, proof state, and next actions. This parent plan intentionally keeps only the plan map and editorial context.
+Use the metaplan and audit for current graph framing. The roadmap and successor
+plan drafts are preserved inputs for the next session, not yet adopted live
+authorities. This parent plan keeps only the editorial context and plan map.
 
 ---
 
@@ -138,13 +149,13 @@ Use the [execution plan](personal-knowledge-graph-execution.plan.md) as the live
 
 ## Next steps
 
-| Item                                         | When                                                                                                                           |
-| -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| ~~Factual fix (Oak start_year 2019 → 2020)~~ | Done                                                                                                                           |
-| ~~Capabilities (concrete additions)~~        | Done — see [capabilities-editorial.plan.md](../complete/capabilities-editorial.plan.md)                                        |
-| ~~Meta & SEO content audit~~                 | Done — see [meta-seo-content-audit.plan.md](../complete/meta-seo-content-audit.plan.md)                                        |
-| ~~Experience & Before Oak editorial review~~ | Done — see [experience-editorial.plan.md](../complete/experience-editorial.plan.md)                                            |
-| Personal knowledge graph                     | See [personal-knowledge-graph-execution.plan.md](personal-knowledge-graph-execution.plan.md) — start here for the next session |
+| Item                                         | When                                                                                                                                                                                                                          |
+| -------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ~~Factual fix (Oak start_year 2019 → 2020)~~ | Done                                                                                                                                                                                                                          |
+| ~~Capabilities (concrete additions)~~        | Done — see [capabilities-editorial.plan.md](../complete/capabilities-editorial.plan.md)                                                                                                                                       |
+| ~~Meta & SEO content audit~~                 | Done — see [meta-seo-content-audit.plan.md](../complete/meta-seo-content-audit.plan.md)                                                                                                                                       |
+| ~~Experience & Before Oak editorial review~~ | Done — see [experience-editorial.plan.md](../complete/experience-editorial.plan.md)                                                                                                                                           |
+| Graph work                                   | Start with [graph-metaplan.plan.md](../graph-metaplan.plan.md) and [graph-current-state-audit.md](../research/graph-current-state-audit.md). The roadmap and successor-plan drafts are preserved for next-session assessment. |
 
 ---
 

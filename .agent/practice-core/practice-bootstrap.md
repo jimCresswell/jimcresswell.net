@@ -20,15 +20,17 @@ provenance:
     repo: new-cv
     date: 2026-03-08
     purpose: "Personal website and CV: Codex reviewer-sub-agent alignment and practice-core consolidation"
+  - index: 5
+    repo: new-cv
+    date: 2026-03-09
+    purpose: "Personal website and CV: value-traceability planning and practice-core structural tightening"
 fitness_ceiling: 400
 attribution: "created by [Jim Cresswell](https://www.jimcresswell.net/), evolved by many people and agents in many repos"
 ---
 
 # Practice Bootstrap
 
-This file completes the plasmid trinity. `practice.md` describes the system (the **what**), `practice-lineage.md` encodes the principles and evolution rules (the **why**), and this file provides annotated templates for every artefact type (the **how**). Three companion files travel with the trinity: `README.md` (for humans), `index.md` (for agents), and `CHANGELOG.md` (what changed).
-
-An agent reading all six practice-core files has enough information to build a working Practice system from scratch. Templates use `{placeholders}` for project-specific content. The Practice uses a **canonical-first artefact model**: all substantive content lives in `.agent/` (platform-agnostic), and thin platform adapters in `.cursor/`, `.claude/`, `.gemini/`, `.agents/`, and `.codex/` reference canonical content without duplicating it. Sections below use Cursor as the concrete platform example -- adapt adapter formats to local platforms. Ecosystem conventions use TypeScript/Node.js as examples -- substitute your ecosystem's equivalents.
+This file completes the plasmid trinity. `practice.md` describes the system (the **what**), `practice-lineage.md` encodes the principles and evolution rules (the **why**), and this file provides annotated templates for every artefact type (the **how**). Three companion files travel with the trinity: `README.md` (for humans), `index.md` (for agents), and `CHANGELOG.md` (what changed). An agent reading all six practice-core files has enough information to build a working Practice system from scratch. Templates use `{placeholders}` for project-specific content. The Practice uses a **canonical-first artefact model**: all substantive content lives in `.agent/` (platform-agnostic), and thin platform adapters in `.cursor/`, `.claude/`, `.gemini/`, `.agents/`, and `.codex/` reference canonical content without duplicating it. Sections below use Cursor as the concrete platform example -- adapt adapter formats to local platforms. Ecosystem conventions use TypeScript/Node.js as examples -- substitute your ecosystem's equivalents.
 
 ## Before You Begin: Ecosystem Survey
 
@@ -65,9 +67,7 @@ Before planning work, pause.
 
 Reflect on what you are about to do -- those are your thoughts. Think about those reflections -- those are your insights. Consider what those insights teach you about the original problem and your assumptions. How does that change the framing? Why?
 
-This process costs nothing and prevents shallow execution. Apply it before every plan, every architectural decision, and every non-trivial implementation choice.
-
-Create this as `.agent/directives/metacognition.md` (it is universal -- no project-specific content).
+This process costs nothing and prevents shallow execution. Apply it before every plan, every architectural decision, and every non-trivial implementation choice. Create this as `.agent/directives/metacognition.md` (it is universal -- no project-specific content).
 
 ## The Practice Index (.agent/practice-index.md)
 
@@ -118,11 +118,11 @@ For the practice-core files and their roles, see
 
 ## Artefact Directories
 
-| Location                            | What lives there                                        |
-| ----------------------------------- | ------------------------------------------------------- |
-| [`.agent/directives/`](directives/) | Principles, rules, and operational directives           |
-| [`.agent/plans/`](plans/)           | Work planning — active, archived, and templates         |
-| [`.agent/memory/`](memory/)         | Institutional memory — napkin, distilled, code patterns |
+| Location                            | What lives there                                         |
+| ----------------------------------- | -------------------------------------------------------- |
+| [`.agent/directives/`](directives/) | Principles, rules, and operational directives            |
+| [`.agent/plans/`](plans/)           | Work planning — active, archived, and optional templates |
+| [`.agent/memory/`](memory/)         | Institutional memory — napkin, distilled, code patterns  |
 | {additional directories as needed}  |
 ```
 
@@ -311,7 +311,7 @@ Claude Code (`.claude/commands/jc-*.md`) — YAML frontmatter with `description`
 | gates            | `jc-gates.md`            | Run `type-check -> lint -> build -> test` sequentially. All blocking. Restart from beginning after any fix.                                                                                                                        |
 | commit           | `jc-commit.md`           | Check status, review diff, verify gates, stage selectively, conventional commit format. Safety: never force push, never amend pushed commits, never `--no-verify`.                                                                 |
 | consolidate-docs | `jc-consolidate-docs.md` | Verify documentation is current. Extract any remaining plan content to permanent locations. Update plan/prompt statuses. Write to napkin. Check practice box. Audit cohesion. Check practice fitness. Consider practice evolution. |
-| plan             | `jc-plan.md`             | Read directives. Create plan with YAML frontmatter, acceptance criteria, risk assessment, non-goals.                                                                                                                               |
+| plan             | `jc-plan.md`             | Read directives. Create plan with explicit outcome, impact, value mechanism, acceptance criteria, risk assessment, and non-goals.                                                                                                  |
 
 ## Prompts (.agent/prompts/)
 

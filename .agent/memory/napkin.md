@@ -96,3 +96,90 @@
   total. Live execution, archived phase models, and historical design
   notes serve different jobs and should not all compete inside
   `current/`.
+
+## Session: 2026-03-09 — Graph Metaplan Reframe
+
+### What Was Done
+
+- Reframed the graph work around a truthful baseline instead of the old
+  single-sequence PKG narrative
+- Added a parent `graph-metaplan.plan.md`, a strategic
+  `personal-knowledge-graph-roadmap.plan.md`, a `graph-current-state-audit.md`
+  record, and a Track B
+  `personal-knowledge-graph-source-of-truth-design.plan.md`
+- Rewrote `personal-knowledge-graph-execution.plan.md` as the Track A
+  graph-expression plan
+- Updated the repo roadmap, the CV parent plan, LinkedIn reference plan,
+  PKG skill docs, and PKG reviewer prompt so the live plan stack now reflects
+  the two-track structure
+
+### Patterns to Remember
+
+- A valid graph and valid JSON-LD do not mean the website is graph-derived.
+  Live plans must distinguish current implementation truth from target-state
+  architecture.
+- When a planning model has drifted, add an explicit current-state audit
+  before rewriting the plan stack. Otherwise the new structure inherits the
+  old ambiguity.
+
+## Session: 2026-03-09 — Metaplan Boundary and Value Traceability
+
+### What Was Done
+
+- Corrected the graph-metaplan scope so this session ends at the audit and the
+  metaplan itself
+- Preserved the candidate roadmap and successor-plan drafts, but relabelled
+  them as draft inputs for the next session rather than adopted live authority
+- Updated the roadmap, parent plans, PKG skill docs, and reviewer prompt so
+  they point at the metaplan and audit as the current graph authorities
+- Added a durable Practice rule that every non-trivial piece of work must be
+  traceable to a defined outcome, the impact it should create, and the
+  mechanism by which that impact creates value
+
+### Patterns to Remember
+
+- A metaplan is not implemented just because candidate successor docs have been
+  drafted. If the current task is audit plus metaplan authoring, then roadmap
+  and execution drafts must stay explicitly provisional until the next session
+  assesses and adopts them.
+- Goals and impacts are not enough on their own. Plans need the bridge from
+  outcome to impact to value, or they drift into mechanism-first work and can
+  solve only a narrow slice of the intended problem.
+
+## Session: 2026-03-09 — Permanent Graph Truth and Practice-Core Structure
+
+### What Was Done
+
+- Moved the stable current-state graph/content ownership truth out of the graph
+  audit and into `docs/architecture/README.md` and
+  `docs/architecture/content-model.md`
+- Clarified in permanent architecture docs that the site currently uses two
+  related content layers: page-composition JSON for rendered HTML and the
+  entity graph for JSON-LD, manifest, and some metadata
+- Promoted the value-traceability planning rule into `practice-lineage.md` and
+  the practice-core changelog, not just local directives and commands
+- Tightened `practice.md` and `practice-bootstrap.md` so plan templates are
+  treated as optional supporting artefacts rather than as a required
+  `.agent/plans/templates/` subtree
+
+### Patterns to Remember
+
+- If a current-state architecture truth is stable and operationally important,
+  it should not live only in a plan or audit. Move it into permanent
+  architecture docs, especially when it corrects a likely misunderstanding.
+- Practice-Core cohesion needs structural checks, not just content checks. If a
+  repo does not actually rely on a required-looking directory layer, the core
+  should describe that layer as optional or remove the assumption entirely.
+
+## Session: 2026-03-09 — Practice Context Is Transient
+
+### What Was Done
+
+- Tightened the optional `.agent/practice-context/` pattern so the Core now
+  says to remove it when the exchange is complete
+
+### Patterns to Remember
+
+- If something is genuinely transient, the cleanup step must be explicit in the
+  integration flow. "Safe to delete" is weaker than "remove it when done" and
+  leaves avoidable ambiguity behind.

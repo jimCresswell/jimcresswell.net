@@ -11,6 +11,8 @@ All of these rules MUST be followed at all times.
 
 Always apply the first question: **Ask: could it be simpler _without compromising quality_?** The answer will often be no, and that is fine, but bring real critical thinking to the question each time.
 
+- **Trace work to value** — Every non-trivial piece of work must be traceable to a defined outcome, the impact that outcome is meant to create, and the mechanism by which that impact creates value. If you cannot state all three clearly, stop and reframe before planning or implementation.
+
 ## Code Design Principles
 
 - **TDD** — ALWAYS use TDD, prefer pure functions and unit tests. Write tests **FIRST**. Red (run the test to _prove it fails_), Green (run the test to prove it passes, _because product code exists now_), Refactor (improve the product code implementation, now that the _behaviour_ at the interface will remain proven by the test).

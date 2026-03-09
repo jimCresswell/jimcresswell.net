@@ -9,18 +9,28 @@ description: >-
 
 # Personal Knowledge Graph
 
-Compact operational reference for PKG work. For full detail, read the authoritative sources listed below — this skill is a signpost, not a copy.
+Compact operational reference for PKG work. For full detail, read the
+authoritative sources listed below — this skill is a signpost, not a copy.
+
+**Current-state reminder:** the visible website still renders from
+`content/cv.content.json` and `content/frontpage.content.json`. The graph is
+real and operational for JSON-LD and related outputs, but graph-backed page
+composition is future Track B work, not current implementation.
 
 ## Reading requirements
 
 Before PKG work, read and internalise:
 
-| Document                                                             | Purpose                                                      |
-| -------------------------------------------------------------------- | ------------------------------------------------------------ |
-| `.agent/plans/research/personal-knowledge-graph-design-notes.md`     | Design reference — entity inventory, principles, conventions |
-| `.agent/plans/current/personal-knowledge-graph-execution.plan.md`    | Live plan — current status, next actions, reviewer protocol  |
-| `.agent/plans/complete/personal-knowledge-graph-phase-model.plan.md` | Phase model — archived tasks and acceptance criteria         |
-| `.agent/plans/research/pkg-research-findings.md`                     | Research findings — verified facts across four domains       |
+| Document                                                                        | Purpose                                                        |
+| ------------------------------------------------------------------------------- | -------------------------------------------------------------- |
+| `.agent/plans/graph-metaplan.plan.md`                                           | Parent graph plan — truthful baseline and plan topology        |
+| `.agent/plans/current/personal-knowledge-graph-roadmap.plan.md`                 | Preserved candidate roadmap draft for next-session assessment  |
+| `.agent/plans/current/personal-knowledge-graph-execution.plan.md`               | Preserved candidate Track A execution draft                    |
+| `.agent/plans/research/graph-current-state-audit.md`                            | Observed implementation truth and architecture audit           |
+| `.agent/plans/research/personal-knowledge-graph-source-of-truth-design.plan.md` | Preserved candidate Track B design draft                       |
+| `.agent/plans/research/personal-knowledge-graph-design-notes.md`                | Historical design reference — entity inventory and conventions |
+| `.agent/plans/complete/personal-knowledge-graph-phase-model.plan.md`            | Archived phase model and acceptance criteria                   |
+| `.agent/plans/research/pkg-research-findings.md`                                | Research findings — verified facts across four domains         |
 
 Before editorial-intensive phases (entity population, role descriptions), additionally read:
 
@@ -128,8 +138,12 @@ Source: research findings (`.agent/plans/research/pkg-research-findings.md`) —
 
 ## Reference
 
-- `.agent/plans/research/personal-knowledge-graph-design-notes.md` — design reference (entity inventory, principles, conventions)
-- `.agent/plans/current/personal-knowledge-graph-execution.plan.md` — live plan (current status, next actions, reviewer protocol)
+- `.agent/plans/graph-metaplan.plan.md` — parent graph plan
+- `.agent/plans/current/personal-knowledge-graph-roadmap.plan.md` — preserved candidate roadmap draft
+- `.agent/plans/current/personal-knowledge-graph-execution.plan.md` — preserved candidate Track A execution draft
+- `.agent/plans/research/graph-current-state-audit.md` — observed implementation baseline
+- `.agent/plans/research/personal-knowledge-graph-source-of-truth-design.plan.md` — preserved candidate Track B design draft
+- `.agent/plans/research/personal-knowledge-graph-design-notes.md` — historical design reference
 - `.agent/plans/complete/personal-knowledge-graph-phase-model.plan.md` — phase model (archived goals, tasks, acceptance criteria)
 - `.agent/plans/research/pkg-research-findings.md` — research findings (verified facts across four domains)
 - `docs/architecture/decision-records/008-schema-org-compliance.md` — ADR-008: Schema.org compliance

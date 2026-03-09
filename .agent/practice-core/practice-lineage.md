@@ -20,6 +20,10 @@ provenance:
     repo: new-cv
     date: 2026-03-06
     purpose: "Personal website and CV: editorial voice, accessibility, single-developer workflow with learning loop"
+  - index: 5
+    repo: new-cv
+    date: 2026-03-09
+    purpose: "Personal website and CV: value-traceability planning and practice-core structural tightening"
 fitness_ceiling: 320
 attribution: "created by [Jim Cresswell](https://www.jimcresswell.net/), evolved by many people and agents in many repos"
 ---
@@ -28,7 +32,7 @@ attribution: "created by [Jim Cresswell](https://www.jimcresswell.net/), evolved
 
 This is the canonical lineage document for the oak-open-curriculum-ecosystem Practice. It serves two purposes: (1) the reference for how the plasmid exchange mechanism works, and (2) the source template for outbound propagation.
 
-When propagating the Practice to another repo, copy all six practice-core files: the trinity (`practice.md`, this file, and `practice-bootstrap.md`), the entry points (`README.md` and `index.md`), and the changelog (`CHANGELOG.md`). The provenance chain in the trinity frontmatter is already set — the receiving repo appends its own entry when it evolves the files. See §Frontmatter and §Plasmid Exchange below.
+When propagating the Practice to another repo, copy all six practice-core files: the trinity (`practice.md`, this file, and `practice-bootstrap.md`), the entry points (`README.md` and `index.md`), and the changelog (`CHANGELOG.md`). If `.agent/practice-context/` exists, it may accompany the export as optional ephemeral context, but it is not part of the Core. The provenance chain in the trinity frontmatter is already set — the receiving repo appends its own entry when it evolves the files. See §Frontmatter and §Plasmid Exchange below.
 
 ## Frontmatter
 
@@ -87,7 +91,9 @@ Before planning work, pause:
 > Reflect deeply on those thoughts -- those are your reflections.
 > Consider those reflections -- those are your insights.
 >
-> How do your insights change how you see what you have done, what you are doing, and what you will do? What has changed? Why? Would you do anything differently? What is the bridge from action to impact?
+> How do your insights change how you see what you have done, what you are
+> doing, and what you will do? What has changed? Why? Would you do anything
+> differently? What is the bridge from outcome to impact to value?
 
 This process is universal. It costs nothing and prevents shallow execution.
 
@@ -115,7 +121,7 @@ The Practice is driven by slash commands that initiate structured workflows:
 - **review** -- Run gates, triage which specialists are needed, invoke them, consolidate findings into a single report with verdict.
 - **commit** -- Conventional commit workflow with quality gates as pre-check.
 - **consolidate-docs** -- Verify documentation is current (decisions should already be in ADRs/docs from when they were made), extract any remaining plan content to permanent locations, update status markers, check the practice box, audit cohesion (practice-core internal consistency, practice-index links, broader Practice alignment), consider Practice evolution (apply the bar from this lineage doc).
-- **plan** -- Read directives. Create plan with YAML frontmatter, acceptance criteria, risk assessment, non-goals.
+- **plan** -- Read directives. Create plan with explicit outcome, impact, value mechanism, acceptance criteria, risk assessment, and non-goals.
 - **think** -- Structured thinking without acting.
 - **step-back** -- Reflection on approach and assumptions.
 - **go** -- Quick grounding: read AGENT.md, read rules, check task list, proceed.
@@ -196,7 +202,7 @@ When a file exceeds its ceiling: identify grown sections, merge overlapping prin
 
 ## Plasmid Exchange
 
-The Practice is not hierarchical. Each repo carries its own Practice instance, adapted to its own context. The Practice travels as a package of six files: the plasmid trinity — `practice.md` (the what), `practice-lineage.md` (the why), and `practice-bootstrap.md` (the how) — the entry points `README.md` (for humans) and `index.md` (for agents) — and the changelog (`CHANGELOG.md`). All six files travel together.
+The Practice is not hierarchical. Each repo carries its own Practice instance, adapted to its own context. The Practice travels as a package of six required files: the plasmid trinity — `practice.md` (the what), `practice-lineage.md` (the why), and `practice-bootstrap.md` (the how) — the entry points `README.md` (for humans) and `index.md` (for agents) — and the changelog (`CHANGELOG.md`). If `.agent/practice-context/` exists, it may travel alongside them as optional ephemeral supporting material.
 
 ### The Practice Box
 
@@ -212,14 +218,14 @@ The practice box is checked at two points:
 When practice-core files appear in the practice box:
 
 1. **Check the provenance chain.** Read the `provenance` array in the frontmatter. If the last entry's `repo` differs from the local repo name, the file has been evolved elsewhere and may carry new learnings. If the last entry matches the local repo, the file has not been evolved since it left — there is nothing new to integrate.
-2. **Read it.** Read the changelog for a summary of what changed since the last provenance entry matching the local repo. Then read the full files — understand what they learned and why. The `purpose` field in each provenance entry tells you what kind of work shaped the evolution — use this to assess relevance to the local context.
+2. **Read it.** Read the changelog for a summary of what changed since the last provenance entry matching the local repo. Then read the full files — and `.agent/practice-context/` if it exists — to understand what they learned and why. The `purpose` field in each provenance entry tells you what kind of work shaped the evolution — use this to assess relevance to the local context.
 3. **Compare** with the local Practice and Lineage. Identify differences — not just in the lineage doc, but across the full Practice system (directives, rules, skills, commands, prompts). Ask: does the incoming version reveal principles that the local Practice implements implicitly but hasn't named? Does the compression reveal what's essential versus contextual?
 4. **Apply the same bar.** Does the incoming learning meet the structural-change criteria for _this_ repo? (Validated by real work? Prevents recurring mistakes? Stable?)
 5. **Propose changes** to the user. Be specific: which files across the Practice would change and why.
 6. **On approval, apply.** Update Practice, Lineage, rules, skills, commands, prompts, or directives as warranted.
 7. **Record what was taken** in the napkin (for traceability, not attribution).
 8. **Audit cohesion.** (a) Check that all practice-core files (`practice.md`, `practice-lineage.md`, `practice-bootstrap.md`, `index.md`, `README.md`, `CHANGELOG.md`) are internally consistent -- no contradictions, no stale descriptions, no missing cross-references between them. (b) Check that `.agent/practice-index.md` links resolve and are consistent with the updated core. (c) Check that broader Practice files throughout the repo (directives, rules, skills, commands, prompts) are aligned with the updated core -- no outdated wording, no missing references, no contradictions with the new content. This step catches drift that individual edits miss.
-9. **Clear the practice box.** Remove the incoming files. The integration is complete.
+9. **Clear transient exchange material.** Remove the incoming files. If `.agent/practice-context/` exists, remove that too. The integration is complete.
 
 If nothing clears the bar, record that in the napkin too — the incoming material was reviewed and found not applicable to this context. That is a valid outcome.
 
@@ -235,7 +241,7 @@ When the target repo has a mature practice (platform-locked or otherwise), surve
 
 For restructuring: create canonical versions in `.agent/` first, convert platform files to thin adapters second, update references third. Existing mechanisms that exceed the blueprint — specialised reviewers, editorial systems, domain-specific sub-agents — are adaptations, not deviations. Preserve and integrate them.
 
-1. Create the directory structure: `.agent/directives/`, `.agent/practice-core/` (with `incoming/.gitkeep`), `.agent/plans/`, `.agent/prompts/`, `.agent/memory/`, `.cursor/rules/`, `.cursor/commands/`, `.cursor/agents/`. If the practice-core files were received from another repo, they should already include `index.md`, `README.md`, and `CHANGELOG.md` alongside the trinity; if building from scratch, create them (see `practice-bootstrap.md` for templates).
+1. Create the directory structure: `.agent/directives/`, `.agent/practice-core/` (with `incoming/.gitkeep`), `.agent/plans/`, `.agent/prompts/`, `.agent/memory/`, `.cursor/rules/`, `.cursor/commands/`, `.cursor/agents/`. If the practice-core files were received from another repo, they should already include `index.md`, `README.md`, and `CHANGELOG.md` alongside the trinity; if `.agent/practice-context/` exists, read it; if building from scratch, create the required files (see `practice-bootstrap.md` for templates).
 2. Write `AGENT.md` in `.agent/directives/` as a stable structural index: project context, artefacts, rules pointer, sub-agent roster, development commands, repo structure. Link to `.agent/practice-core/index.md` for the full Practice. No mutable state.
 3. Write `rules.md` encoding the Principles above, adapted to local tooling.
 4. Write `testing-strategy.md` encoding the Testing Philosophy above, with local test targets.
@@ -307,6 +313,7 @@ Principles discovered through Practice propagation and evolution. These have cle
 - **If a behaviour must be automatic, it needs a rule, not just a skill.** Skills are documentation — they describe what to do but depend on being discovered and invoked. Always-applied rules fire on every interaction. The learning loop's capture stage (napkin) must be enforced by a rule to be genuinely always-on.
 - **Plasmids need a provenance chain, not just an origin.** A file that only records where it was created will be rejected by its origin repo as "already mine." The provenance array records every repo that has evolved the file; the last entry tells the receiving repo whether the file has been somewhere new. Without it, the plasmid exchange mechanism silently fails.
 - **Documentation is concurrent, not retrospective.** ADRs and README updates produced during work stay accurate and contextual. Documentation deferred to consolidation loses context, goes stale, or never gets written. Consolidation should verify documentation is current, not extract it.
+- **Plans need value traceability, not just activity.** A plan that names tasks and even impacts but cannot explain the outcome it seeks and the mechanism by which that outcome creates value is still under-framed. This gap causes mechanism-first work and late discovery that only a narrow slice of the intended problem was being solved.
 - **Understand local norms before hydrating.** The Practice is ecosystem-agnostic in principle. When hydrating into a new repo, the integrating agent MUST survey the local language(s), test runners, linters, package managers, and existing quality standards BEFORE creating any Practice artefacts. The Practice enables excellence; it does not replace what has already been achieved.
 - **Fitness functions at every stage of knowledge flow.** Ephemeral memory (napkin, distilled) has size constraints, but so must permanent docs. Without ceilings, the consolidation cycle simply moves unbounded growth downstream. Documents in the knowledge flow carry `fitness_ceiling` and `split_strategy` in YAML frontmatter — only shallow-browsing entry points (root README, quickstart, VISION) are exempt. The response to hitting a ceiling is splitting by responsibility, not compression — the goal is discoverability, not density.
 - **Practice-core files must be self-contained.** The practice-core files may reference each other freely, but must not contain navigable markdown links to files outside `practice-core/` — with one exception: `../practice-index.md`, the bridge file that practice-core specifies and the hydration process creates. All other external paths appear as code-formatted text (e.g. `.agent/directives/AGENT.md`) to describe what should exist or where artefacts live. Links like `[AGENT.md](../directives/AGENT.md)` break when the files travel. The practice-index is local to each repo and carries the navigable links to that repo's artefacts.

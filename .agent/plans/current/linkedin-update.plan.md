@@ -2,7 +2,7 @@
 
 Update Jim's LinkedIn profile to be consistent with the editorial CV, using the career history archive as the canonical factual source and the CV's editorial voice as the stylistic reference.
 
-## Status: Subsumed by [PKG Phase 5 in the execution plan](personal-knowledge-graph-execution.plan.md). Retained as a reference plan so its acceptance criteria, source-material checklist, and API findings are not lost.
+## Status: Subsumed by the [graph metaplan](../graph-metaplan.plan.md). Retained as a downstream reference plan so its acceptance criteria, source-material checklist, and API findings are not lost. The preserved graph roadmap and successor-plan drafts are candidate inputs for the next session, not yet the authoritative graph driver.
 
 ## How to use this plan
 
@@ -152,8 +152,13 @@ Plus education entries at Portsmouth, Sussex, and Bath (with thesis titles and l
 
 - [cv-editorial-improvements.plan.md](cv-editorial-improvements.plan.md) — The editorial CV positioning paragraphs are the voice reference for LinkedIn content. LinkedIn entries must not contradict them.
 - [meta-seo-content-audit.plan.md](../complete/meta-seo-content-audit.plan.md) — Complete. The CV's `meta.summary`, `KNOWS_ABOUT`, `OCCUPATION`, and capabilities have been editorially updated since this plan was written. Phase 1 should read the current `cv.content.json` and `lib/jsonld.ts` to pick up these changes.
-- [personal-knowledge-graph-execution.plan.md](personal-knowledge-graph-execution.plan.md) — PKG Phase 5 is tracked from the live execution plan. This plan is now reference material for that phase.
+- [graph-metaplan.plan.md](../graph-metaplan.plan.md) — current parent plan for graph work.
+- [personal-knowledge-graph-roadmap.plan.md](personal-knowledge-graph-roadmap.plan.md) — preserved candidate roadmap draft; LinkedIn remains downstream and must not drive graph architecture.
+- [personal-knowledge-graph-execution.plan.md](personal-knowledge-graph-execution.plan.md) — preserved candidate Track A execution draft, not yet a live execution authority.
 
 ## Decision
 
-Accepted as a LinkedIn preparation and API investigation plan. Track A produces LinkedIn content via collaborative editorial session. Track B investigates and possibly builds tooling. The editorial CV at `/cv` remains unchanged.
+Accepted as a LinkedIn preparation and API investigation plan. It is now
+reference material for later downstream derived-view work. LinkedIn does not
+drive the graph architecture, the metaplan, or any future adopted graph
+execution plan.

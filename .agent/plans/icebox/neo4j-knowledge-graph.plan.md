@@ -7,9 +7,11 @@ database.
 
 This is a long-term consideration, not current work. It exists to shape
 decisions during the
-[personal knowledge graph design notes](../research/personal-knowledge-graph-design-notes.md)
-work — ensuring the current JSON-based model remains compatible with a
-future graph database migration.
+[Track B source-of-truth design work](../research/personal-knowledge-graph-source-of-truth-design.plan.md)
+and the retained
+[historical design notes](../research/personal-knowledge-graph-design-notes.md)
+— ensuring the current JSON-based model remains compatible with a future graph
+database migration.
 
 ---
 

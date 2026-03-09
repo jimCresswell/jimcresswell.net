@@ -4,7 +4,19 @@ How content JSON becomes rendered pages, derived metadata, the PDF, and machine-
 
 ## Overview
 
-All user-visible text originates from JSON files in `content/`. Components render content verbatim — they do not edit, summarise, or reorder it. Metadata (Open Graph, JSON-LD, Web App Manifest, page titles) is derived at build or render time, so editorial changes flow through a single source of truth. See [ADR-007](decision-records/007-dry-content-metadata.md) for the rationale behind this approach.
+All user-visible text originates from JSON files in `content/`. Components
+render content verbatim — they do not edit, summarise, or reorder it.
+
+The current implementation has **two related content layers**, not one unified
+source of truth:
+
+- page-composition JSON (`content/cv.content.json` and `content/frontpage.content.json`) drives visible rendering and most editorial metadata
+- entity-graph JSON (`content/entities.json`) drives JSON-LD, the manifest, and some graph-facing metadata
+
+The site therefore has a strong structured-data layer, but it is **not yet** a
+graph-backed page-composition system. [ADR-014](decision-records/014-entity-model-design.md)
+records the target layered design; this document describes the current
+implementation truth.
 
 ## Content files
 
@@ -70,13 +82,29 @@ To add a new variant: add the variant key and content to `tilts`, add the slug t
 
 ## Derived metadata
 
-All metadata is derived from `content/` so that editorial changes propagate everywhere automatically. The [Content & Metadata](README.md#content--metadata) section in the architecture overview has the full derivation table showing which module constructs each output (Open Graph, JSON-LD, Web App Manifest, page title) and which source fields it uses.
+Metadata is derived from the current content layers rather than from one
+unified source. The [Content & Metadata](README.md#content--metadata) section
+in the architecture overview has the full derivation table showing which module
+constructs each output and which source fields it uses.
+
+Current ownership looks like this:
+
+| Concern              | Current owner                                               | Notes                                         |
+| -------------------- | ----------------------------------------------------------- | --------------------------------------------- |
+| Visible page prose   | `content/cv.content.json`, `content/frontpage.content.json` | Primary source for rendered HTML              |
+| Graph entities       | `content/entities.json`                                     | Canonical machine-readable entity model       |
+| JSON-LD              | Graph-derived                                               | Strong integration                            |
+| Manifest             | Graph-derived                                               | Strong integration                            |
+| OG and some metadata | Mixed                                                       | Some graph-derived, some page-content-derived |
+| Page composition     | Page content JSON                                           | Not graph-derived                             |
 
 The structured-data-specific content that used to live as JSON-LD module constants now lives in `content/entities.json` as part of the personal knowledge graph. `lib/entities.ts` validates that graph, `lib/jsonld.ts` exposes the full graph, `lib/page-jsonld.ts` derives page-specific subgraphs, and `lib/page-document-contract.ts` defines the page-level anchor and canonical-identity contract those subgraphs must honour.
 
 When structural refactors need before/after proof rather than correctness against the current source, use `pnpm visual-regression-harness <base-ref> <target-ref>`. That harness captures HTML and pixel artifacts from exported git refs without touching the live worktree.
 
-For the rationale behind this single-source approach, see [ADR-007](decision-records/007-dry-content-metadata.md).
+For the rationale behind the page-content layer, see
+[ADR-007](decision-records/007-dry-content-metadata.md). For the target layered
+graph design, see [ADR-014](decision-records/014-entity-model-design.md).
 
 ## PDF generation
 
@@ -102,6 +130,8 @@ The site header includes links to the MD, DATA (JSON-LD), and PDF (CV pages only
 ## Adding or changing content
 
 1. **Edit the JSON** — make changes in `content/cv.content.json` (or `content/frontpage.content.json` for the home page).
+   If you are changing graph facts, structured-data descriptions, or shared
+   machine-readable entities, edit `content/entities.json` as well.
 2. **Preview** — run `pnpm dev` and check the result at `http://localhost:3000`.
 3. **Validate** — run `pnpm check`. The content integrity E2E tests verify that rendered content matches the JSON source.
 4. **Editorial voice** — before writing or editing any content, read [editorial-guidance.md](../../.agent/directives/editorial-guidance.md) for Jim's voice, audience, and editorial principles.

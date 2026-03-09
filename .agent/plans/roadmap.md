@@ -4,14 +4,27 @@ Where everything stands and what depends on what.
 
 ## Active work
 
-| Plan                                                                     | Status      | Summary                                                                                                                                      | Next action                                 |
-| ------------------------------------------------------------------------ | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
-| [CV Editorial Improvements](current/cv-editorial-improvements.plan.md)   | In progress | Parent plan. Positioning, capabilities, metadata, experience, and Before Oak are all settled. Knowledge graph is the active stream.          | Wait for PKG manual validation and Phase 5. |
-| [PKG Execution Plan](current/personal-knowledge-graph-execution.plan.md) | In progress | Detailed operational plan with reviewer invocations, skill activations, and per-task status. The active PKG plan.                            | **Start here** for next session.            |
-| [LinkedIn Update](current/linkedin-update.plan.md)                       | Subsumed    | LinkedIn content will derive from the knowledge graph in PKG Phase 5. The standalone plan remains useful as a reference for source material. | Wait for PKG Phase 5.                       |
+| Plan                                                                   | Status      | Summary                                                                                                                                                             | Next action                                           |
+| ---------------------------------------------------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
+| [CV Editorial Improvements](current/cv-editorial-improvements.plan.md) | In progress | Parent editorial plan. Positioning, capabilities, metadata, experience, and Before Oak are settled. Remaining graph work is currently framed by the graph metaplan. | Wait for metaplan implementation in the next session. |
+| [Graph Metaplan](graph-metaplan.plan.md)                               | In progress | Parent graph plan. Records the truthful baseline and defines how the next session must assess recent graph work before adopting a new roadmap and successor plans.  | Use this as the current graph authority.              |
+| [LinkedIn Update](current/linkedin-update.plan.md)                     | Subsumed    | Reference-only downstream plan. LinkedIn stays downstream of the graph roadmap and does not drive the architecture.                                                 | Wait for later derived-view work.                     |
 
-**Durable PKG design decisions live in** [ADR-014](../../docs/architecture/decision-records/014-entity-model-design.md) **and the related ADRs in** `docs/architecture/decision-records/`.
-**PKG supporting references live in** [complete/personal-knowledge-graph-phase-model.plan.md](complete/personal-knowledge-graph-phase-model.plan.md) **and** [research/personal-knowledge-graph-design-notes.md](research/personal-knowledge-graph-design-notes.md).
+**Durable graph design decisions live in** [ADR-014](../../docs/architecture/decision-records/014-entity-model-design.md) **and the related ADRs in** `docs/architecture/decision-records/`.
+**Current graph authorities are** [graph-metaplan.plan.md](graph-metaplan.plan.md) **and** [graph-current-state-audit.md](research/graph-current-state-audit.md).
+**Historical PKG references live in** [complete/personal-knowledge-graph-phase-model.plan.md](complete/personal-knowledge-graph-phase-model.plan.md) **and** [research/personal-knowledge-graph-design-notes.md](research/personal-knowledge-graph-design-notes.md).
+
+## Graph metaplan draft inputs
+
+These documents were captured during metaplan authoring so the work is not
+lost. The next session must assess them against explicit outcomes, intended
+impacts, and value mechanisms before any of them become authoritative.
+
+| Document                                                                                         | Role                                                                 |
+| ------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------- |
+| [PKG Roadmap Draft](current/personal-knowledge-graph-roadmap.plan.md)                            | Candidate strategic roadmap for the proposed Track A / Track B split |
+| [Graph Expression Execution Draft](current/personal-knowledge-graph-execution.plan.md)           | Candidate Track A execution-plan draft                               |
+| [Source-of-Truth Design Draft](research/personal-knowledge-graph-source-of-truth-design.plan.md) | Candidate Track B design-plan draft                                  |
 
 ## Icebox
 
@@ -34,18 +47,28 @@ These are tracked in the [parent plan](current/cv-editorial-improvements.plan.md
 
 ```text
 CV Editorial Improvements (parent)
-├── PKG implementation (plan with acceptance criteria)
-│   ├── PKG execution plan (active) ← start here
+├── Graph Metaplan (current graph authority)
+│   ├── Graph current-state audit (research baseline)
+│   ├── PKG roadmap draft (candidate strategic roadmap)
+│   ├── Graph Expression Execution draft (candidate Track A plan)
+│   └── Source-of-truth design draft (candidate Track B plan)
 │   ├── Visual regression harness plan (complete proof record)
 │   │   └── Visual regression harness enhancements (icebox)
-│   └── Phase 5: LinkedIn as derived view (uses LinkedIn Update as reference only)
+│   └── LinkedIn update (reference only; downstream)
 └── Tilt mechanism (deferred, no plan yet)
     └── Tilt content (depends on mechanism)
 ```
 
-**Sequencing decided:** Knowledge graph first. LinkedIn derives from the graph — it is a view, not a parallel editing effort.
+**Sequencing under assessment:** the preserved drafts currently propose separate
+graph-expression and source-of-truth tracks. The next session must decide
+whether that split stands.
 
-**Current state:** PKG is the active stream. For live validation status, proof state, and the next-session entry point, use the [PKG execution plan](current/personal-knowledge-graph-execution.plan.md). Codex platform alignment is complete; its durable architecture lives in ADR-015.
+**Current state:** the graph is an active concern, but the visible website is
+not yet graph-derived and there is not yet an adopted post-metaplan graph
+roadmap. Use [graph-metaplan.plan.md](graph-metaplan.plan.md) and
+[graph-current-state-audit.md](research/graph-current-state-audit.md) as the
+current authorities. Codex platform alignment is complete; its durable
+architecture lives in ADR-015.
 
 ## Complete
 

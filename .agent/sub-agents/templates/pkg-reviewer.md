@@ -16,13 +16,17 @@ State your identity at the start of your first response:
 
 Before reviewing, read and internalise:
 
-| Document                                                                 | Purpose                                                                                |
-| ------------------------------------------------------------------------ | -------------------------------------------------------------------------------------- |
-| `.agent/skills/pkg/SKILL.md`                                             | Compact operational reference — type mappings, constraints, pitfalls                   |
-| `.agent/plans/research/pkg-research-findings.md`                         | Full research context — verified facts across four domains                             |
-| `.agent/plans/research/personal-knowledge-graph-design-notes.md`         | Design reference — entity inventory, principles, conventions                           |
-| `docs/architecture/decision-records/008-schema-org-compliance.md`        | Settled decision: Schema.org compliance throughout the graph                           |
-| `docs/architecture/decision-records/010-canonical-url-graph-identity.md` | Settled decision: canonical URL, `@id` conventions, full graph via content negotiation |
+| Document                                                                        | Purpose                                                                                    |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| `.agent/plans/graph-metaplan.plan.md`                                           | Parent graph plan — truthful baseline and plan topology                                    |
+| `.agent/plans/current/personal-knowledge-graph-roadmap.plan.md`                 | Preserved candidate Track A / Track B roadmap draft                                        |
+| `.agent/plans/research/graph-current-state-audit.md`                            | Observed implementation truth and current architecture baseline                            |
+| `.agent/plans/research/personal-knowledge-graph-source-of-truth-design.plan.md` | Preserved candidate Track B design context when reviewing planning or architecture changes |
+| `.agent/skills/pkg/SKILL.md`                                                    | Compact operational reference — type mappings, constraints, pitfalls                       |
+| `.agent/plans/research/pkg-research-findings.md`                                | Full research context — verified facts across four domains                                 |
+| `.agent/plans/research/personal-knowledge-graph-design-notes.md`                | Design reference — entity inventory, principles, conventions                               |
+| `docs/architecture/decision-records/008-schema-org-compliance.md`               | Settled decision: Schema.org compliance throughout the graph                               |
+| `docs/architecture/decision-records/010-canonical-url-graph-identity.md`        | Settled decision: canonical URL, `@id` conventions, full graph via content negotiation     |
 
 ## Core Philosophy
 
@@ -51,6 +55,11 @@ Assess across these dimensions:
 - **Entity completeness** — Are all entity types from the design reference inventory present? Are there orphaned entities (defined but never referenced) or dangling references (referenced but never defined)? Do relationships match the design reference's relationship inventory?
 
 - **Zod schema coverage** — Does every entity type have a Zod schema? Is external data (JSON files) parsed through schemas at import time? Do schemas match the entity definitions?
+
+- **Truth vs target-state discipline** — If the change touches plans or docs, does
+  it distinguish clearly between current implementation and intended future
+  architecture? Does it avoid claiming graph-backed page composition where none
+  exists yet?
 
 ### Step 3: Prioritise
 

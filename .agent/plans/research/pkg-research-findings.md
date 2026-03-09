@@ -1,6 +1,9 @@
 # PKG Research Findings
 
-Research conducted March 2026 across four domains: Schema.org types, JSON-LD best practices, Google structured data consumption, and Neo4j compatibility. Findings are organised by topic. Both PKG plans reference this document.
+Research conducted March 2026 across four domains: Schema.org types, JSON-LD
+best practices, Google structured data consumption, and Neo4j compatibility.
+Findings are organised by topic. The graph metaplan and the preserved draft
+roadmap / successor-plan inputs reference this document.
 
 ---
 

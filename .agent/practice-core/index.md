@@ -8,7 +8,7 @@ Follow `.agent/directives/AGENT.md` and `.agent/directives/rules.md`. That is al
 
 ## The Practice-Core Files
 
-The Practice travels between repos as a package of six files. The three **plasmid trinity** files encode the blueprint; the **entry points** provide orientation; the **changelog** records what changed.
+The Practice travels between repos as a package of six required files. The three **plasmid trinity** files encode the blueprint; the **entry points** provide orientation; the **changelog** records what changed. It may be accompanied by an optional `.agent/practice-context/` directory, but that directory is not part of the Core.
 
 | File                                           | Role                                                                     |
 | ---------------------------------------------- | ------------------------------------------------------------------------ |
@@ -35,6 +35,10 @@ The practice-core files are **portable** — they travel between repos and must 
 
 The `incoming/` directory is the practice box. When practice-core files arrive from another repo, they land here. Check it at session start (via `start-right`) and during consolidation. See the Integration Flow in `practice-lineage.md` for details.
 
+If `.agent/practice-context/` exists, read it as supporting context during
+hydration or integration. It is optional, ephemeral, and should be removed when
+the exchange is complete.
+
 ## Cold Start -- Hydrating a New Repo
 
 If `.agent/directives/AGENT.md` does not yet exist, you are hydrating the Practice for the first time.
@@ -44,3 +48,6 @@ If `.agent/directives/AGENT.md` does not yet exist, you are hydrating the Practi
 If the practice-core files have been placed somewhere other than `.agent/practice-core/` (e.g. the repo root, a random directory), move them to `.agent/practice-core/` first -- create the directory and an `incoming/.gitkeep` within it if needed.
 
 Then follow the Growing a Practice section in [practice-lineage.md](practice-lineage.md). The templates in [practice-bootstrap.md](practice-bootstrap.md) provide artefact specifications -- adapt ALL templates to local tooling and conventions. The templates use TypeScript/Node.js as concrete examples; substitute your ecosystem's equivalents. As part of hydration, create `.agent/practice-index.md` -- the bridge file that carries navigable links to the local repo's artefacts (see the template in [practice-bootstrap.md](practice-bootstrap.md)). See the Bootstrap Checklist in [practice-bootstrap.md](practice-bootstrap.md) for validation.
+
+If `.agent/practice-context/` exists, read it before adapting the Practice. It
+may contain useful local framing from the sending repo.

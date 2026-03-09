@@ -7,7 +7,7 @@
 ## Key Principles
 
 - **Server components by default** — Client components only where browser APIs are needed (theme toggle, theme provider, site header).
-- **Content-driven rendering** — Single source of truth for all copy in `content/` JSON files. Content may include inline markdown (`[text](url)` for links, `_text_` for emphasis), which is parsed into React elements at render time by `parseMarkdownLinks` in `lib/parse-markdown-links.tsx`. Relative URLs render as Next.js `<Link>`, external URLs as `<a target="_blank">`.
+- **Content-driven rendering** — Visible copy lives in page-composition JSON under `content/`, while the machine-readable entity graph lives in `content/entities.json`. Content may include inline markdown (`[text](url)` for links, `_text_` for emphasis), which is parsed into React elements at render time by `parseMarkdownLinks` in `lib/parse-markdown-links.tsx`. Relative URLs render as Next.js `<Link>`, external URLs as `<a target="_blank">`.
 - **Build-time PDF generation** — CV PDF generated at build time with full Chrome, served from our own URL.
 - **Accessible** — WCAG 2.2 AA target throughout. Semantic HTML, heading hierarchy, visible focus indicators, 44px touch targets.
 - **No decorative elements** — Editorial aesthetic. UI controls are text-only. No icons, charts, or illustrations.
@@ -40,7 +40,19 @@ The canonical URL for the knowledge graph is `https://www.jimcresswell.net/`. Re
 
 ## Content & Metadata
 
-All user-visible text originates from JSON files in `content/`. Derived metadata is constructed at build/render time so that editorial changes flow through a single source of truth (see [ADR-007](decision-records/007-dry-content-metadata.md)).
+All user-visible text originates from JSON files in `content/`, but the repo
+does not yet have one unified graph-backed source of truth for both page
+composition and machine-readable outputs.
+
+The current implementation uses two related layers:
+
+- page-composition JSON for rendered HTML and most editorial metadata
+- the entity graph in `content/entities.json` for JSON-LD, the manifest, and
+  some graph-facing metadata
+
+[ADR-014](decision-records/014-entity-model-design.md) records the target
+layered design in which the site becomes a view onto graph-owned structures.
+The table below describes the current implementation truth.
 
 | Output                | Constructed in                                                                                                                                      | Source fields used                                                                               |
 | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |

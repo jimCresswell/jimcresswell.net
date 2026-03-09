@@ -4,9 +4,20 @@
 
 Build a unified model where all site outputs — page rendering, Open Graph, JSON-LD, Web App Manifest, sitemap, PDF — are derived views onto the same underlying reality. A personal knowledge graph of entities and typed relationships, with each output as a derived view.
 
-## Status: Research reference (moved out of `current/` on 2026-03-09; active implementation continues in the execution plan; durable design decisions recorded in ADR-014 and related ADRs)
+## Status: Historical research reference (moved out of `current/` on 2026-03-09; current graph authority now runs through the graph metaplan and the graph current-state audit, with preserved draft roadmap and successor-plan inputs awaiting next-session assessment)
 
-This file preserves the entity inventory, principles, Schema.org conventions, and resolved-design rationale that shaped the PKG. It is not the canonical durable design source and it is not the live work queue. For the archived phase model and acceptance criteria, see the [phase model](../complete/personal-knowledge-graph-phase-model.plan.md). For the detailed operational plan (per-task status, reviewer invocations), see the [execution plan](../current/personal-knowledge-graph-execution.plan.md). For canonical design decisions, use [ADR-014](../../docs/architecture/decision-records/014-entity-model-design.md).
+This file preserves the entity inventory, principles, Schema.org conventions,
+and resolved-design rationale that shaped the PKG. It is not the canonical
+durable design source and it is not the live work queue. For the parent graph
+context, see [graph-metaplan.plan.md](../graph-metaplan.plan.md). For the
+strategic split between Track A and Track B, see
+[personal-knowledge-graph-roadmap.plan.md](../current/personal-knowledge-graph-roadmap.plan.md).
+For the preserved candidate Track A execution draft, see
+[personal-knowledge-graph-execution.plan.md](../current/personal-knowledge-graph-execution.plan.md).
+For the preserved candidate Track B design draft, see
+[personal-knowledge-graph-source-of-truth-design.plan.md](personal-knowledge-graph-source-of-truth-design.plan.md).
+For canonical design decisions, use
+[ADR-014](../../docs/architecture/decision-records/014-entity-model-design.md).
 
 ## How to use this plan
 
@@ -457,7 +468,7 @@ This pass reviews both visible page content and JSON-LD descriptions. The framin
 
 ## Implementation
 
-For the archived phase model and acceptance criteria, see the [phase model](../complete/personal-knowledge-graph-phase-model.plan.md). For live execution, use the [execution plan](../current/personal-knowledge-graph-execution.plan.md). The phase model distils these historical design notes into five actionable phases:
+For the archived phase model and acceptance criteria, see the [phase model](../complete/personal-knowledge-graph-phase-model.plan.md). For the preserved candidate execution draft, see the [execution plan](../current/personal-knowledge-graph-execution.plan.md). The phase model distils these historical design notes into five actionable phases:
 
 1. Entity model design (collaborative, produces schema + skeleton)
 2. Entity population (editorial-intensive — role descriptions, constant migration)
@@ -524,7 +535,7 @@ For the archived phase model and acceptance criteria, see the [phase model](../c
 
 - [pkg-research-findings.md](pkg-research-findings.md) — Schema.org, JSON-LD, Google structured data, and Neo4j research findings
 - [personal-knowledge-graph-phase-model.plan.md](../complete/personal-knowledge-graph-phase-model.plan.md) — archived phase model and acceptance criteria
-- [personal-knowledge-graph-execution.plan.md](../current/personal-knowledge-graph-execution.plan.md) — live execution plan
+- [personal-knowledge-graph-execution.plan.md](../current/personal-knowledge-graph-execution.plan.md) — preserved candidate execution draft
 - [cv-editorial-improvements.plan.md](../current/cv-editorial-improvements.plan.md) — parent plan
 - [meta-seo-content-audit.plan.md](../complete/meta-seo-content-audit.plan.md) — editorial content fixes (prerequisite — complete)
 - [capabilities-editorial.plan.md](../complete/capabilities-editorial.plan.md) — capabilities work (complete — terms added to `KNOWS_ABOUT`)

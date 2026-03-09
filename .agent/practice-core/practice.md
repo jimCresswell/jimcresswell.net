@@ -20,6 +20,10 @@ provenance:
     repo: new-cv
     date: 2026-03-08
     purpose: "Personal website and CV: Codex reviewer-sub-agent alignment and practice-core consolidation"
+  - index: 5
+    repo: new-cv
+    date: 2026-03-09
+    purpose: "Personal website and CV: value-traceability planning and practice-core structural tightening"
 fitness_ceiling: 250
 attribution: "created by [Jim Cresswell](https://www.jimcresswell.net/), evolved by many people and agents in many repos"
 ---
@@ -67,7 +71,12 @@ The principles and learning mechanisms. The First Question ("could it be simpler
 
 ### Structure
 
-The organisational patterns. Directives (`.agent/directives/`), plans (`.agent/plans/`) and their templates (`.agent/plans/templates/`), ADRs, sub-agent prompt architecture, quality gates, and institutional memory (`.agent/memory/`). **Cross-agent standardisation** (AGENTS.md, Agent Skills, MCP, A2A) is an evolving implementation direction to keep the practice portable and platform-agnostic. This layer defines _what_ the practice consists of.
+The organisational patterns. Directives (`.agent/directives/`), plans
+(`.agent/plans/`), ADRs, sub-agent prompt architecture, quality gates, and
+institutional memory (`.agent/memory/`). **Cross-agent standardisation**
+(AGENTS.md, Agent Skills, MCP, A2A) is an evolving implementation direction to
+keep the practice portable and platform-agnostic. This layer defines _what_ the
+practice consists of.
 
 ### Tooling
 
@@ -137,13 +146,15 @@ Sub-agent prompts follow a three-layer composition architecture: components, tem
 
 ## The Workflow
 
-Work flows through a predictable sequence: commands invoke prompts, prompts reference plans, plans use templates, quality gates validate the output.
+Work flows through a predictable sequence: commands invoke prompts, prompts
+reference plans, plans may use supporting artefacts such as templates, and
+quality gates validate the output.
 
 ```mermaid
 graph LR
     CMD[Commands] --> PROMPT[Prompts]
     PROMPT --> PLAN[Plans]
-    PLAN --> TMPL[Templates]
+    PLAN --> SUPP[Supporting Artefacts]
     PLAN --> WORK[Implementation]
     WORK --> QG[Quality Gates]
     QG --> REVIEW[Sub-agent Reviews]
@@ -157,8 +168,8 @@ graph LR
   2. **Collection roadmaps** — e.g. `semantic-search/roadmap.md` milestone sequence
   3. **Active execution plans** — e.g. `semantic-search/active/<plan-name>.md` with YAML frontmatter, phased execution, and deterministic validation. Active plans live in `active/`, completed plans move to `archive/completed/` (e.g. `sdk-workspace-separation.md`)
   4. **Platform-specific plans** — e.g. `.cursor/plans/*.plan.md` (Cursor plans) supplement the lowest-level active plans with session-scoped implementation tasks, batch breakdowns, and review checkpoints. These are created per-session and track fine-grained progress that is too ephemeral for the active plan itself
-  5. **Documentation propagation** — before phase closure, propagate settled outcomes from plans into permanent docs: relevant ADRs, `.agent/practice-core/practice.md`, and any additionally impacted docs/READMEs. Apply the consolidate-docs command
-- **Templates** (`.agent/plans/templates/`) — reusable plan components
+  5. **Value traceability** — every non-trivial plan states the outcome sought, the impact it should create, and the mechanism by which that impact creates value; otherwise the work is still under-framed
+  6. **Documentation propagation** — before phase closure, propagate settled outcomes from plans into permanent docs: relevant ADRs, `.agent/practice-core/practice.md`, and any additionally impacted docs/READMEs. Apply the consolidate-docs command
 - **Quality gates** — see `.agent/directives/rules.md` and the local quality-gate commands. All gates are always blocking.
 
 ## Artefact Map
@@ -167,7 +178,7 @@ graph LR
 | --------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
 | `.agent/directives/`                                      | Principles, rules, and operational directives                                                                       |
 | `.agent/practice-core/`                                   | Practice-core files: plasmid trinity (practice, lineage, bootstrap), entry points (README, index), and practice box |
-| `.agent/plans/`                                           | Work planning — active, archived, and templates                                                                     |
+| `.agent/plans/`                                           | Work planning — active, archived, research, and optional supporting templates                                       |
 | `.agent/memory/`                                          | Institutional memory — napkin, distilled learnings, and code patterns                                               |
 | `.agent/experience/`                                      | Experiential records across sessions                                                                                |
 | `.agent/prompts/`                                         | Reusable prompt playbooks                                                                                           |
@@ -207,7 +218,12 @@ The full set of Learned Principles, including those about silent degradation, di
 
 ## The Self-Teaching Property
 
-The practice is designed to be discoverable through use. `AGENT.md` links to `rules.md`, which references `testing-strategy.md`. Commands invoke prompts, prompts reference plans, plans use templates. Sub-agents review work against the same rules that guided its creation. The napkin captures what went wrong, distillation extracts rules, and the rules prevent repetition.
+The practice is designed to be discoverable through use. `AGENT.md` links to
+`rules.md`, which references `testing-strategy.md`. Commands invoke prompts,
+prompts reference plans, and plans may draw on supporting artefacts when
+needed. Sub-agents review work against the same rules that guided its creation.
+The napkin captures what went wrong, distillation extracts rules, and the rules
+prevent repetition.
 
 If you are new to this repository, start with `.agent/directives/AGENT.md`. Follow the links. The practice will teach itself.
 

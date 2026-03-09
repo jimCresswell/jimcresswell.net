@@ -52,7 +52,7 @@ For the practice-core files and their roles, see
 | [jc-gates](commands/jc-gates.md)                       | Run quality gates with restart-on-fix            |
 | [jc-commit](commands/jc-commit.md)                     | Well-formed commit with safety checks            |
 | [jc-consolidate-docs](commands/jc-consolidate-docs.md) | Ensure plans, prompts, and memory are up to date |
-| [jc-plan](commands/jc-plan.md)                         | Create a structured plan                         |
+| [jc-plan](commands/jc-plan.md)                         | Create a structured plan with value traceability |
 | [jc-editor](commands/jc-editor.md)                     | Invoke editorial review                          |
 
 ### Skills
@@ -102,7 +102,7 @@ and use thin adapters under [`.codex/agents/`](../.codex/agents/).
 | [`.agent/skills/`](skills/)               | Canonical skills (platform-agnostic)                                             |
 | [`.agent/rules/`](rules/)                 | Canonical always-applied rules (platform-agnostic)                               |
 | [`.agent/sub-agents/`](sub-agents/)       | Canonical sub-agent templates                                                    |
-| [`.agent/plans/`](plans/)                 | Work planning — active, current, complete, icebox, and research                  |
+| [`.agent/plans/`](plans/)                 | Work planning — current, complete, icebox, research, and preserved drafts        |
 | [`.agent/prompts/`](prompts/)             | Reusable prompt playbooks                                                        |
 | [`.agent/memory/`](memory/)               | Institutional memory — napkin, distilled, code patterns                          |
 | [`.agent/experience/`](experience/)       | Experiential records across sessions                                             |

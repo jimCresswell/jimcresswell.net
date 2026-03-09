@@ -4,6 +4,14 @@ Changes to the practice-core files, newest first. Each entry records the repo
 that made the change and what was changed. This file travels with the
 practice-core package.
 
+## [new-cv] 2026-03-09
+
+- Added value traceability to the portable planning model: non-trivial work now has to state outcome, impact, and value mechanism
+- Updated `practice-lineage.md` so the metacognition prompt and `plan` command both carry the outcome-to-value bridge explicitly
+- Tightened `practice.md` to treat plan templates as optional supporting artefacts rather than a required `.agent/plans/templates/` layer
+- Updated the bootstrap practice-index template so `.agent/plans/` no longer implies a mandatory templates subtree
+- Added an optional `.agent/practice-context/` adjunct pattern with lightweight export, hydration, and integration guidance; it is explicitly outside the Core and must be removed when the exchange is complete
+
 ## [new-cv] 2026-03-08
 
 - Clarified the portable Codex model: `.agents/skills/` is for skills and command-shaped workflows, while real Codex reviewer sub-agents live under `.codex/`
