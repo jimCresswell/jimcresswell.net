@@ -41,3 +41,9 @@ Anchored (already in permanent docs — do not re-add):
 - Print button removed → [ADR-003](docs/architecture/decision-records/003-print-button-removed.md)
 - JSON-LD ID convention → [ADR-010](docs/architecture/decision-records/010-canonical-url-graph-identity.md)
 - Schema.org compliance → [ADR-008](docs/architecture/decision-records/008-schema-org-compliance.md)
+
+Pending distillation:
+
+- `jc-start-right` workflow ownership is in `.agent/prompts/start-right.prompt.md`; `.agent/commands/jc-start-right.md` stays a thin wrapper.
+- PKG planning keeps one live plan in `.agent/plans/current/`; superseded handoff notes and phase/design artefacts belong in `complete/` or `research/`.
+- After plan-directory moves, run a relative-link audit from each file's own directory to catch stale `../` assumptions.
