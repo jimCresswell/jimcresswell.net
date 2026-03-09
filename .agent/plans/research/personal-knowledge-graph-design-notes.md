@@ -1,6 +1,6 @@
 # Personal Knowledge Graph Design Notes
 
-> Historical design working document. Durable PKG design decisions belong in `docs/architecture/decision-records/`; use [ADR-014](../../docs/architecture/decision-records/014-entity-model-design.md) and the related ADRs as the canonical source of truth. This file is retained for the full entity audit, design exploration context, and design-phase rationale.
+> Historical design working document. Durable PKG design decisions belong in `docs/architecture/decision-records/`; use [ADR-014](../../../docs/architecture/decision-records/014-entity-model-design.md) and the related ADRs as the canonical source of truth. This file is retained for the full entity audit, design exploration context, and design-phase rationale.
 
 Build a unified model where all site outputs — page rendering, Open Graph, JSON-LD, Web App Manifest, sitemap, PDF — are derived views onto the same underlying reality. A personal knowledge graph of entities and typed relationships, with each output as a derived view.
 
@@ -11,13 +11,13 @@ and resolved-design rationale that shaped the PKG. It is not the canonical
 durable design source and it is not the live work queue. For the parent graph
 context, see [graph-metaplan.plan.md](../graph-metaplan.plan.md). For the
 strategic split between Track A and Track B, see
-[personal-knowledge-graph-roadmap.plan.md](../current/personal-knowledge-graph-roadmap.plan.md).
+[personal-knowledge-graph-roadmap.plan.md](../drafts/personal-knowledge-graph-roadmap.plan.md).
 For the preserved candidate Track A execution draft, see
-[personal-knowledge-graph-execution.plan.md](../current/personal-knowledge-graph-execution.plan.md).
+[personal-knowledge-graph-execution.plan.md](../drafts/personal-knowledge-graph-execution.plan.md).
 For the preserved candidate Track B design draft, see
-[personal-knowledge-graph-source-of-truth-design.plan.md](personal-knowledge-graph-source-of-truth-design.plan.md).
+[personal-knowledge-graph-source-of-truth-design.plan.md](../drafts/personal-knowledge-graph-source-of-truth-design.plan.md).
 For canonical design decisions, use
-[ADR-014](../../docs/architecture/decision-records/014-entity-model-design.md).
+[ADR-014](../../../docs/architecture/decision-records/014-entity-model-design.md).
 
 ## How to use this plan
 
@@ -63,12 +63,12 @@ A critical organising principle: the graph contains entities at different levels
 
 All of these are real. Jim really is a Person. He really does have a ProfessionalIdentity. That identity really does have Capabilities — real competences, not marketing claims. Those capabilities really are grounded by Roles and Projects. A PositioningNarrative is a real expression of a real identity. A TiltVariant is a real reframing for a real audience. None of these are "editorial constructs" — they are qualities, attributes, and expressions of real entities at different levels of abstraction.
 
-Every entity has a standard Schema.org type ([ADR-008](../../docs/architecture/decision-records/008-schema-org-compliance.md)). For specific entities, Schema.org has precise types. For abstract and expressive entities, Schema.org provides generic types (`Intangible`, `DefinedTerm`, `Statement`) with `additionalType` for domain specificity. There is no class of entity excluded from structured data — the difference between levels is abstraction, not validity.
+Every entity has a standard Schema.org type ([ADR-008](../../../docs/architecture/decision-records/008-schema-org-compliance.md)). For specific entities, Schema.org has precise types. For abstract and expressive entities, Schema.org provides generic types (`Intangible`, `DefinedTerm`, `Statement`) with `additionalType` for domain specificity. There is no class of entity excluded from structured data — the difference between levels is abstraction, not validity.
 
 This means:
 
 - **All entities are real.** A Role has dates. A ProfessionalIdentity has a PositioningNarrative. Both are nodes. Both have typed relationships. Both have Schema.org types. Both can appear in JSON-LD.
-- **"Cross-cutting" dissolves.** The `meta.summary` that currently serves too many masters (OG, JSON-LD, manifest) dissolves naturally: these are different artifacts in different domains, not variants of one description ([ADR-011](../../docs/architecture/decision-records/011-domain-appropriate-descriptions.md)). The Person entity gets its own description (structured data domain). Pages get their own OG descriptions (presentation domain). The manifest gets its own description (application domain). Each lives where its domain dictates. Editorial consistency is an editorial principle (see `editorial-guidance.md`), not a data structure constraint.
+- **"Cross-cutting" dissolves.** The `meta.summary` that currently serves too many masters (OG, JSON-LD, manifest) dissolves naturally: these are different artifacts in different domains, not variants of one description ([ADR-011](../../../docs/architecture/decision-records/011-domain-appropriate-descriptions.md)). The Person entity gets its own description (structured data domain). Pages get their own OG descriptions (presentation domain). The manifest gets its own description (application domain). Each lives where its domain dictates. Editorial consistency is an editorial principle (see `editorial-guidance.md`), not a data structure constraint.
 - **Different views traverse different paths.** The CV page traverses from CVPage through ProfessionalIdentity to Roles and Capabilities. The front page traverses from FrontPage through Person to a different subset. Same graph, different traversals.
 
 ---
@@ -90,15 +90,15 @@ This means:
 
 ### The seams
 
-| Seam                             | Detail                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| -------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| JSON-LD constants are invisible  | `KNOWS_ABOUT`, `OCCUPATION`, `PUBLICATIONS`, `CREDENTIAL_DETAILS` are real facts about Jim buried in TypeScript. They describe how Jim is represented to search engines and AI. They should be visible as content alongside all other entities.                                                                                                                                                                                  |
-| No entity model                  | Content is structured for page sections, not entities. A Role at an Organisation with start/end dates has no representation — it's flattened into prose.                                                                                                                                                                                                                                                                         |
-| Two content files, overlapping   | `cv.content.json` and `frontpage.content.json` both define links. Person attributes (name) appear in both.                                                                                                                                                                                                                                                                                                                       |
-| Front page has no JSON-LD        | The Person entity, publications, organisations — none appear on `/`.                                                                                                                                                                                                                                                                                                                                                             |
-| Content omits known facts        | Full role history (FT Labs, HMPO, BA, HP Labs, short engagements) exists in the archive and LinkedIn but has no structured representation anywhere.                                                                                                                                                                                                                                                                              |
-| No graph–DOM binding             | JSON-LD `@id` values don't map to HTML element IDs. Machines can't connect graph nodes to page content.                                                                                                                                                                                                                                                                                                                          |
-| Descriptions partially conflated | `meta.summary` still serves as CV OG description, manifest description, and page meta description. The front page now has its own `meta.description` in `frontpage.content.json`, decoupling site-level OG from CV content. The entity model would complete the decoupling — each domain gets its own description where it belongs ([ADR-011](../../docs/architecture/decision-records/011-domain-appropriate-descriptions.md)). |
+| Seam                             | Detail                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| -------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| JSON-LD constants are invisible  | `KNOWS_ABOUT`, `OCCUPATION`, `PUBLICATIONS`, `CREDENTIAL_DETAILS` are real facts about Jim buried in TypeScript. They describe how Jim is represented to search engines and AI. They should be visible as content alongside all other entities.                                                                                                                                                                                     |
+| No entity model                  | Content is structured for page sections, not entities. A Role at an Organisation with start/end dates has no representation — it's flattened into prose.                                                                                                                                                                                                                                                                            |
+| Two content files, overlapping   | `cv.content.json` and `frontpage.content.json` both define links. Person attributes (name) appear in both.                                                                                                                                                                                                                                                                                                                          |
+| Front page has no JSON-LD        | The Person entity, publications, organisations — none appear on `/`.                                                                                                                                                                                                                                                                                                                                                                |
+| Content omits known facts        | Full role history (FT Labs, HMPO, BA, HP Labs, short engagements) exists in the archive and LinkedIn but has no structured representation anywhere.                                                                                                                                                                                                                                                                                 |
+| No graph–DOM binding             | JSON-LD `@id` values don't map to HTML element IDs. Machines can't connect graph nodes to page content.                                                                                                                                                                                                                                                                                                                             |
+| Descriptions partially conflated | `meta.summary` still serves as CV OG description, manifest description, and page meta description. The front page now has its own `meta.description` in `frontpage.content.json`, decoupling site-level OG from CV content. The entity model would complete the decoupling — each domain gets its own description where it belongs ([ADR-011](../../../docs/architecture/decision-records/011-domain-appropriate-descriptions.md)). |
 
 ---
 
@@ -126,7 +126,7 @@ This means:
 - **All content decisions are visible.** Nothing that describes Jim (to humans or machines) should be buried in TypeScript constants. If it's about Jim's identity, expertise, or career, it lives in the content model.
 - **All entities are real.** A ProfessionalIdentity is as real as a Role — it's more abstract, not less real. A Capability is a real competence, not a marketing claim. A PositioningNarrative is a real expression of a real identity. The graph models reality at multiple levels of abstraction. There is no hierarchy of validity.
 - **No cross-cutting concerns.** If something seems to span multiple entities, it is an entity at a higher abstraction level that hasn't been named yet. Name it, give it relationships, and the "cross-cutting" dissolves.
-- **Schema.org compliance throughout.** Every entity uses a standard [Schema.org](https://schema.org/) type and standard properties. For specific entities, use the most precise type (`Person`, `Organization`, `OrganizationRole`). For abstract and expressive entities, use generic types (`Intangible`, `DefinedTerm`, `Statement`) with `additionalType` for domain specificity. Every entity can appear in JSON-LD. No entity is excluded from structured data by design. See [ADR-008](../../docs/architecture/decision-records/008-schema-org-compliance.md).
+- **Schema.org compliance throughout.** Every entity uses a standard [Schema.org](https://schema.org/) type and standard properties. For specific entities, use the most precise type (`Person`, `Organization`, `OrganizationRole`). For abstract and expressive entities, use generic types (`Intangible`, `DefinedTerm`, `Statement`) with `additionalType` for domain specificity. Every entity can appear in JSON-LD. No entity is excluded from structured data by design. See [ADR-008](../../../docs/architecture/decision-records/008-schema-org-compliance.md).
 - **Framing is identity, not history.** The graph contains Jim's full career history — every role, every title, every date. But expressions (descriptions, roleNames, capability claims) must frame who Jim is _now_, not who he was perceived to be in past contexts. Jim is a leader who used the best levers available at the time to make change. Historical role titles like "QA Automation Consultant" or "Head of Test" are facts (they stay in the graph as roleNames). Descriptions of those roles express what Jim was actually _doing_ — leading systemic change, shaping delivery culture, building capability — not the job-title framing of the era. If someone reads the graph, they should see a leader, not a QA engineer.
 - **Editorial consistency.** All descriptions of the same entity should be editorially consistent — the OG summary, the JSON-LD Person description, and the page prose should tell the same story in their respective registers. Where different contexts need different text, use separate relationships from the same identity construct.
 - **Define once, reference everywhere.** Each entity gets a single identity. Pages compose references, not copies.
@@ -240,7 +240,7 @@ Presentational (with Schema.org properties):
 - `ProfilePage.about` → `Person` / `ProfilePage.mainEntity` → `Person`
 - `ProfilePage.isPartOf` → `WebSite`
 - `ProfilePage.inLanguage` → `"en-GB"`
-- OGCard — a page-level metadata entity with its own description, appropriate for social sharing context (see [ADR-011](../../docs/architecture/decision-records/011-domain-appropriate-descriptions.md))
+- OGCard — a page-level metadata entity with its own description, appropriate for social sharing context (see [ADR-011](../../../docs/architecture/decision-records/011-domain-appropriate-descriptions.md))
 - ManifestEntry — an application-level metadata entity with its own description, appropriate for app launcher context
 - PDFView → CVPage (renders)
 
@@ -320,7 +320,7 @@ These conventions apply when the entity model is serialised as JSON-LD.
 
 IDs that include a page path (e.g. `cv/#role-oak-2020-present`) double as HTML anchor links — the `@id` and the element `id` match, giving humans deep-links and machines stable identifiers.
 
-**Canonical document rule:** an entity's `@id` resolves to the page that is its canonical Linked Data document (the fragment is stripped during HTTP resolution). Site-level entities (`#person`, `#website`, `#org-*`) resolve to the root document. Page-anchored entities (`cv/#role-*`, `cv/#webpage`) resolve to the CV page. If a role entity appears in both the homepage and CV subgraphs, its `@id` still points to the CV page as the canonical description — this is valid in Linked Data and consistent with [ADR-010](../../docs/architecture/decision-records/010-canonical-url-graph-identity.md).
+**Canonical document rule:** an entity's `@id` resolves to the page that is its canonical Linked Data document (the fragment is stripped during HTTP resolution). Site-level entities (`#person`, `#website`, `#org-*`) resolve to the root document. Page-anchored entities (`cv/#role-*`, `cv/#webpage`) resolve to the CV page. If a role entity appears in both the homepage and CV subgraphs, its `@id` still points to the CV page as the canonical description — this is valid in Linked Data and consistent with [ADR-010](../../../docs/architecture/decision-records/010-canonical-url-graph-identity.md).
 
 **Structured identifiers (PropertyValue pattern):**
 
@@ -419,7 +419,7 @@ With entities in the model, the JSON-LD graph can be significantly richer:
 - **Software**: `SoftwareSourceCode` with `codeRepository`. **Services**: `WebAPI` with `provider` → Organisation. See Design Phase 1 entity definitions for Oak Curriculum API and SDK/MCP modelling.
 - **Volunteer work**: `OrganizationRole` with `Person.memberOf` → `OrganizationRole` → `OrganizationRole.memberOf` → `Organization`. Research confirms `VolunteerAction` is for discrete events, not ongoing relationships.
 
-**Decision:** Schema.org type mappings are decided in [ADR-008](../../docs/architecture/decision-records/008-schema-org-compliance.md). Volunteer modelling is resolved: `OrganizationRole` with `memberOf` (see [research findings](pkg-research-findings.md)). Specific schema choices for roles and software are confirmed in the entity audit above.
+**Decision:** Schema.org type mappings are decided in [ADR-008](../../../docs/architecture/decision-records/008-schema-org-compliance.md). Volunteer modelling is resolved: `OrganizationRole` with `memberOf` (see [research findings](pkg-research-findings.md)). Specific schema choices for roles and software are confirmed in the entity audit above.
 
 ---
 
@@ -437,7 +437,7 @@ The CV page uses `<section>` elements (via `<PageSection>`) with `id` attributes
 2. **Entity-level** — Entity `@id` values (e.g. `#org-oak`, `#cred-phd`) added as `id` attributes to corresponding HTML elements. Requires minor component changes.
 3. **Role anchors as navigable IDs** — Role `@id` values like `https://www.jimcresswell.net/cv/#role-oak-2020-present` map to `<section id="role-oak-2020-present">` in the HTML. This gives stable identifiers for the graph, clickable deep-links for humans, and consistent merging across pages and crawlers.
 
-**Decision (confirmed):** All three binding levels, reflecting a multi-scale graph. Section-level IDs (`#experience`, `#education`) for page structure. Entity-level IDs (`#org-oak`, `#cred-phd`) on corresponding HTML elements. Role anchors (`cv/#role-oak-2020-present`) as navigable deep-link URLs. The HTML expresses all three granularities simultaneously — the `@id` and the element `id` match at every level. This extends [ADR-010](../../docs/architecture/decision-records/010-canonical-url-graph-identity.md) which establishes `#person`, `#website`, and the `cv/#webpage` convention.
+**Decision (confirmed):** All three binding levels, reflecting a multi-scale graph. Section-level IDs (`#experience`, `#education`) for page structure. Entity-level IDs (`#org-oak`, `#cred-phd`) on corresponding HTML elements. Role anchors (`cv/#role-oak-2020-present`) as navigable deep-link URLs. The HTML expresses all three granularities simultaneously — the `@id` and the element `id` match at every level. This extends [ADR-010](../../../docs/architecture/decision-records/010-canonical-url-graph-identity.md) which establishes `#person`, `#website`, and the `cv/#webpage` convention.
 
 ---
 
@@ -468,7 +468,7 @@ This pass reviews both visible page content and JSON-LD descriptions. The framin
 
 ## Implementation
 
-For the archived phase model and acceptance criteria, see the [phase model](../complete/personal-knowledge-graph-phase-model.plan.md). For the preserved candidate execution draft, see the [execution plan](../current/personal-knowledge-graph-execution.plan.md). The phase model distils these historical design notes into five actionable phases:
+For the archived phase model and acceptance criteria, see the [phase model](../complete/personal-knowledge-graph-phase-model.plan.md). For the preserved candidate execution draft, see the [execution plan](../drafts/personal-knowledge-graph-execution.plan.md). The phase model distils these historical design notes into five actionable phases:
 
 1. Entity model design (collaborative, produces schema + skeleton)
 2. Entity population (editorial-intensive — role descriptions, constant migration)
@@ -520,8 +520,8 @@ For the archived phase model and acceptance criteria, see the [phase model](../c
 - [Schema.org](https://schema.org/)
 - [Schema.org Validator](https://validator.schema.org/)
 - [Google Rich Results Test](https://search.google.com/test/rich-results)
-- [ADR-007](../../docs/architecture/decision-records/007-dry-content-metadata.md) — the foundation this plan builds on
-- [ADR-008](../../docs/architecture/decision-records/008-schema-org-compliance.md) — Schema.org compliance throughout the graph
+- [ADR-007](../../../docs/architecture/decision-records/007-dry-content-metadata.md) — the foundation this plan builds on
+- [ADR-008](../../../docs/architecture/decision-records/008-schema-org-compliance.md) — Schema.org compliance throughout the graph
 
 ---
 
@@ -535,12 +535,12 @@ For the archived phase model and acceptance criteria, see the [phase model](../c
 
 - [pkg-research-findings.md](pkg-research-findings.md) — Schema.org, JSON-LD, Google structured data, and Neo4j research findings
 - [personal-knowledge-graph-phase-model.plan.md](../complete/personal-knowledge-graph-phase-model.plan.md) — archived phase model and acceptance criteria
-- [personal-knowledge-graph-execution.plan.md](../current/personal-knowledge-graph-execution.plan.md) — preserved candidate execution draft
+- [personal-knowledge-graph-execution.plan.md](../drafts/personal-knowledge-graph-execution.plan.md) — preserved candidate execution draft
 - [cv-editorial-improvements.plan.md](../current/cv-editorial-improvements.plan.md) — parent plan
 - [meta-seo-content-audit.plan.md](../complete/meta-seo-content-audit.plan.md) — editorial content fixes (prerequisite — complete)
 - [capabilities-editorial.plan.md](../complete/capabilities-editorial.plan.md) — capabilities work (complete — terms added to `KNOWS_ABOUT`)
 - [icebox/neo4j-knowledge-graph.plan.md](../icebox/neo4j-knowledge-graph.plan.md) — future migration to Neo4j; shapes current design decisions
-- [ADR-007](../../docs/architecture/decision-records/007-dry-content-metadata.md) — current single-source approach
-- [ADR-008](../../docs/architecture/decision-records/008-schema-org-compliance.md) — Schema.org compliance throughout the graph
-- [ADR-011](../../docs/architecture/decision-records/011-domain-appropriate-descriptions.md) — domain-appropriate descriptions (descriptions in different domains are different artifacts)
-- [editorial-guidance.md](../../.agent/directives/editorial-guidance.md) — editorial hierarchy, keyword strategy, audience, editorial voice, cross-domain editorial consistency
+- [ADR-007](../../../docs/architecture/decision-records/007-dry-content-metadata.md) — current single-source approach
+- [ADR-008](../../../docs/architecture/decision-records/008-schema-org-compliance.md) — Schema.org compliance throughout the graph
+- [ADR-011](../../../docs/architecture/decision-records/011-domain-appropriate-descriptions.md) — domain-appropriate descriptions (descriptions in different domains are different artifacts)
+- [editorial-guidance.md](../../../.agent/directives/editorial-guidance.md) — editorial hierarchy, keyword strategy, audience, editorial voice, cross-domain editorial consistency

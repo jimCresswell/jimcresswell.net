@@ -20,7 +20,7 @@ isProject: false
 
 Historical handoff note, archived on 2026-03-09. Superseded by:
 
-- [personal-knowledge-graph-execution.plan.md](../current/personal-knowledge-graph-execution.plan.md) for active PKG work
+- [graph-metaplan.plan.md](../graph-metaplan.plan.md) and [graph-current-state-audit.md](../research/graph-current-state-audit.md) for current graph authority
 - [visual-regression-harness.plan.md](visual-regression-harness.plan.md) for the completed harness proof record
 
 This file is retained because it captured intermediate closure reasoning that should not be thrown away. The phases below are preserved as historical context, not as the active work queue.
@@ -38,7 +38,11 @@ Two decisions are now fixed and must govern the work:
 
 ## Current Reality
 
-The live handoff document is [personal-knowledge-graph-execution.plan.md](../current/personal-knowledge-graph-execution.plan.md). It carries the actual closure state from this point onward.
+The current graph authority is [graph-metaplan.plan.md](../graph-metaplan.plan.md)
+with the supporting [current-state audit](../research/graph-current-state-audit.md).
+The preserved execution draft remains in
+[drafts/personal-knowledge-graph-execution.plan.md](../drafts/personal-knowledge-graph-execution.plan.md)
+as a next-session input rather than a live handoff document.
 
 Current proof status:
 
@@ -67,7 +71,7 @@ Docs that need to stay aligned with reality:
 - [roadmap.md](../roadmap.md)
 - [personal-knowledge-graph-design-notes.md](../research/personal-knowledge-graph-design-notes.md)
 - [personal-knowledge-graph-phase-model.plan.md](personal-knowledge-graph-phase-model.plan.md)
-- [personal-knowledge-graph-execution.plan.md](../current/personal-knowledge-graph-execution.plan.md)
+- [graph-metaplan.plan.md](../graph-metaplan.plan.md)
 - [docs/architecture/README.md](../../docs/architecture/README.md)
 - [docs/architecture/content-model.md](../../docs/architecture/content-model.md)
 

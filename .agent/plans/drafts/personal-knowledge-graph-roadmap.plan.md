@@ -32,7 +32,7 @@ discarding it.
 If this draft is adopted, it would work with
 [personal-knowledge-graph-execution.plan.md](personal-knowledge-graph-execution.plan.md)
 as the candidate Track A execution plan and
-[personal-knowledge-graph-source-of-truth-design.plan.md](../research/personal-knowledge-graph-source-of-truth-design.plan.md)
+[personal-knowledge-graph-source-of-truth-design.plan.md](personal-knowledge-graph-source-of-truth-design.plan.md)
 as the candidate Track B design plan.
 
 ## Strategic summary
@@ -212,7 +212,7 @@ coverage across HTML, JSON-LD, OG, manifest, and other relevant outputs.
 ### Candidate design handoff
 
 If this draft is adopted, Track B design should be owned by
-[personal-knowledge-graph-source-of-truth-design.plan.md](../research/personal-knowledge-graph-source-of-truth-design.plan.md).
+[personal-knowledge-graph-source-of-truth-design.plan.md](personal-knowledge-graph-source-of-truth-design.plan.md).
 
 **Primary reviewers:** `code-reviewer`, `pkg-reviewer`, `type-reviewer`,
 `test-reviewer`, and `editor` when content framing is affected.

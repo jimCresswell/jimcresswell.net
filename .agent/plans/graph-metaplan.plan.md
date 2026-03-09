@@ -82,11 +82,11 @@ These are the documents that are authoritative during metaplan authoring.
 These drafts were captured during metaplan authoring so the thinking from this
 session is preserved, but they are not yet authoritative.
 
-| Document                                                                                                                    | Role                                                                 |
-| --------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| [personal-knowledge-graph-roadmap.plan.md](current/personal-knowledge-graph-roadmap.plan.md)                                | Candidate strategic roadmap draft using the proposed two-track model |
-| [personal-knowledge-graph-execution.plan.md](current/personal-knowledge-graph-execution.plan.md)                            | Candidate Track A execution-plan draft                               |
-| [personal-knowledge-graph-source-of-truth-design.plan.md](research/personal-knowledge-graph-source-of-truth-design.plan.md) | Candidate Track B design-plan draft                                  |
+| Document                                                                                                                  | Role                                                                 |
+| ------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| [personal-knowledge-graph-roadmap.plan.md](drafts/personal-knowledge-graph-roadmap.plan.md)                               | Candidate strategic roadmap draft using the proposed two-track model |
+| [personal-knowledge-graph-execution.plan.md](drafts/personal-knowledge-graph-execution.plan.md)                           | Candidate Track A execution-plan draft                               |
+| [personal-knowledge-graph-source-of-truth-design.plan.md](drafts/personal-knowledge-graph-source-of-truth-design.plan.md) | Candidate Track B design-plan draft                                  |
 
 ## Proposed track model for next-session assessment
 
@@ -100,7 +100,7 @@ published graph outputs. The next value comes from making those outputs more
 intentional, useful, and validated, rather than pretending the website is
 already graph-composed.
 
-**Candidate plan draft:** [personal-knowledge-graph-execution.plan.md](current/personal-knowledge-graph-execution.plan.md)
+**Candidate plan draft:** [personal-knowledge-graph-execution.plan.md](drafts/personal-knowledge-graph-execution.plan.md)
 
 ### Track B — Graph as Source of Truth
 
@@ -111,7 +111,7 @@ page composition all derive from graph-owned structures.
 graph entities structurally separate. That creates duplication risk, weak
 binding, and no durable proof that the site is actually a view onto the graph.
 
-**Candidate design-plan draft:** [personal-knowledge-graph-source-of-truth-design.plan.md](research/personal-knowledge-graph-source-of-truth-design.plan.md)
+**Candidate design-plan draft:** [personal-knowledge-graph-source-of-truth-design.plan.md](drafts/personal-knowledge-graph-source-of-truth-design.plan.md)
 
 ## Phases of this metaplan
 

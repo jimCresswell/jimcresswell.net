@@ -17,7 +17,13 @@ isProject: false
 
 Archived reference as of 2026-03-09. This file preserves the full PKG phase model: goals, impacts, tasks, and acceptance criteria.
 
-For current work, use the [execution plan](../current/personal-knowledge-graph-execution.plan.md). For historical design reasoning, use the [design notes](../research/personal-knowledge-graph-design-notes.md). Durable architectural decisions live in [ADR-014](../../docs/architecture/decision-records/014-entity-model-design.md) and related ADRs.
+For current graph work, use the [graph metaplan](../graph-metaplan.plan.md) and
+the [current-state audit](../research/graph-current-state-audit.md). For
+historical design reasoning, use the
+[design notes](../research/personal-knowledge-graph-design-notes.md). Durable
+architectural decisions live in
+[ADR-014](../../docs/architecture/decision-records/014-entity-model-design.md)
+and related ADRs.
 
 ## How to use this reference
 
@@ -316,7 +322,7 @@ The Person entity is defined once and its `@id` (`https://www.jimcresswell.net/#
 
 - [research/pkg-research-findings.md](../research/pkg-research-findings.md) — Schema.org, JSON-LD, Google structured data, and Neo4j research findings
 - [personal-knowledge-graph-design-notes.md](../research/personal-knowledge-graph-design-notes.md) — historical design working notes and audit context
-- [personal-knowledge-graph-execution.plan.md](../current/personal-knowledge-graph-execution.plan.md) — operational status and next actions
+- [personal-knowledge-graph-execution.plan.md](../drafts/personal-knowledge-graph-execution.plan.md) — preserved candidate execution draft
 - [visual-regression-harness.plan.md](visual-regression-harness.plan.md) — completed harness proof record
 - [cv-editorial-improvements.plan.md](../current/cv-editorial-improvements.plan.md) — parent plan
 - [linkedin-update.plan.md](../current/linkedin-update.plan.md) — subsumed LinkedIn reference plan

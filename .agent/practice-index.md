@@ -103,7 +103,7 @@ and use thin adapters under [`.codex/agents/`](../.codex/agents/).
 | [`.agent/skills/`](skills/)               | Canonical skills (platform-agnostic)                                             |
 | [`.agent/rules/`](rules/)                 | Canonical always-applied rules (platform-agnostic)                               |
 | [`.agent/sub-agents/`](sub-agents/)       | Canonical sub-agent templates                                                    |
-| [`.agent/plans/`](plans/)                 | Work planning — current, complete, icebox, research, and preserved drafts        |
+| [`.agent/plans/`](plans/)                 | Work planning — current, complete, drafts, icebox, and research                  |
 | [`.agent/prompts/`](prompts/)             | Reusable prompt playbooks                                                        |
 | [`.agent/memory/`](memory/)               | Institutional memory — napkin, distilled, code patterns                          |
 | [`.agent/experience/`](experience/)       | Experiential records across sessions                                             |

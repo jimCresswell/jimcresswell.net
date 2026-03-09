@@ -14,18 +14,18 @@ Positioning paragraphs, capabilities, `meta.summary`, structured data (`KNOWS_AB
 
 **Remaining work in dedicated plans:**
 
-| Item                                     | Plan                                                                                                                           | Status      |
-| ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ | ----------- |
-| Experience & Before Oak editorial review | [experience-editorial.plan.md](../complete/experience-editorial.plan.md)                                                       | Complete    |
-| Graph metaplan                           | [graph-metaplan.plan.md](../graph-metaplan.plan.md)                                                                            | In progress |
-| Graph roadmap draft                      | [personal-knowledge-graph-roadmap.plan.md](personal-knowledge-graph-roadmap.plan.md)                                           | Draft input |
-| Track A execution draft                  | [personal-knowledge-graph-execution.plan.md](personal-knowledge-graph-execution.plan.md)                                       | Draft input |
-| Track B source-of-truth design draft     | [personal-knowledge-graph-source-of-truth-design.plan.md](../research/personal-knowledge-graph-source-of-truth-design.plan.md) | Draft input |
-| Visual regression harness                | [visual-regression-harness.plan.md](../complete/visual-regression-harness.plan.md)                                             | Complete    |
-| LinkedIn update                          | [linkedin-update.plan.md](linkedin-update.plan.md) — downstream reference, not an architecture driver                          | Subsumed    |
-| Tilt mechanism                           | No plan yet — see [Deferred](#deferred) below                                                                                  | Deferred    |
-| Tilt content                             | Depends on tilt mechanism                                                                                                      | Deferred    |
-| PKG durable design decisions             | [ADR-014](../../docs/architecture/decision-records/014-entity-model-design.md) and related ADRs                                | Accepted    |
+| Item                                     | Plan                                                                                                                         | Status      |
+| ---------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| Experience & Before Oak editorial review | [experience-editorial.plan.md](../complete/experience-editorial.plan.md)                                                     | Complete    |
+| Graph metaplan                           | [graph-metaplan.plan.md](../graph-metaplan.plan.md)                                                                          | In progress |
+| Graph roadmap draft                      | [personal-knowledge-graph-roadmap.plan.md](../drafts/personal-knowledge-graph-roadmap.plan.md)                               | Draft input |
+| Track A execution draft                  | [personal-knowledge-graph-execution.plan.md](../drafts/personal-knowledge-graph-execution.plan.md)                           | Draft input |
+| Track B source-of-truth design draft     | [personal-knowledge-graph-source-of-truth-design.plan.md](../drafts/personal-knowledge-graph-source-of-truth-design.plan.md) | Draft input |
+| Visual regression harness                | [visual-regression-harness.plan.md](../complete/visual-regression-harness.plan.md)                                           | Complete    |
+| LinkedIn update                          | [linkedin-update.plan.md](linkedin-update.plan.md) — downstream reference, not an architecture driver                        | Subsumed    |
+| Tilt mechanism                           | No plan yet — see [Deferred](#deferred) below                                                                                | Deferred    |
+| Tilt content                             | Depends on tilt mechanism                                                                                                    | Deferred    |
+| PKG durable design decisions             | [ADR-014](../../../docs/architecture/decision-records/014-entity-model-design.md) and related ADRs                           | Accepted    |
 
 ## How to use this plan
 
@@ -43,7 +43,7 @@ See `docs/architecture/README.md` for project architecture, including how conten
 
 ## Context
 
-The site is technically complete — infrastructure, PDF generation, E2E tests, and deployment all work. The front page has been reworked as a personal narrative (see [completed plan](../complete/front-page-content.plan.md)). The positioning paragraphs have been editorially settled (two paragraphs — see Decided section below). Content architecture has been consolidated so all metadata derives from content JSON files (see [ADR-007](../../docs/architecture/decision-records/007-dry-content-metadata.md)).
+The site is technically complete — infrastructure, PDF generation, E2E tests, and deployment all work. The front page has been reworked as a personal narrative (see [completed plan](../complete/front-page-content.plan.md)). The positioning paragraphs have been editorially settled (two paragraphs — see Decided section below). Content architecture has been consolidated so all metadata derives from content JSON files (see [ADR-007](../../../docs/architecture/decision-records/007-dry-content-metadata.md)).
 
 Additional reference material (gitignored — may not be present in all environments):
 
@@ -111,15 +111,15 @@ Completed in a dedicated plan: [meta-seo-content-audit.plan.md](../complete/meta
 
 **Current-state audit:** [graph-current-state-audit.md](../research/graph-current-state-audit.md) — observed implementation truth, lessons learned, and the current architecture record.
 
-**Strategic roadmap draft:** [personal-knowledge-graph-roadmap.plan.md](personal-knowledge-graph-roadmap.plan.md) — preserved candidate Track A / Track B roadmap for next-session assessment.
+**Strategic roadmap draft:** [personal-knowledge-graph-roadmap.plan.md](../drafts/personal-knowledge-graph-roadmap.plan.md) — preserved candidate Track A / Track B roadmap for next-session assessment.
 
-**Track A execution draft:** [personal-knowledge-graph-execution.plan.md](personal-knowledge-graph-execution.plan.md) — preserved candidate graph-expression plan for next-session assessment.
+**Track A execution draft:** [personal-knowledge-graph-execution.plan.md](../drafts/personal-knowledge-graph-execution.plan.md) — preserved candidate graph-expression plan for next-session assessment.
 
-**Track B design draft:** [personal-knowledge-graph-source-of-truth-design.plan.md](../research/personal-knowledge-graph-source-of-truth-design.plan.md) — preserved candidate design plan for graph-backed source-of-truth architecture and phased adoption.
+**Track B design draft:** [personal-knowledge-graph-source-of-truth-design.plan.md](../drafts/personal-knowledge-graph-source-of-truth-design.plan.md) — preserved candidate design plan for graph-backed source-of-truth architecture and phased adoption.
 
 **Harness plan:** [visual-regression-harness.plan.md](../complete/visual-regression-harness.plan.md) — completed proof record for the historical PKG regression work.
 
-**Durable design decisions:** [ADR-014](../../docs/architecture/decision-records/014-entity-model-design.md) and the related ADRs in `docs/architecture/decision-records/`.
+**Durable design decisions:** [ADR-014](../../../docs/architecture/decision-records/014-entity-model-design.md) and the related ADRs in `docs/architecture/decision-records/`.
 
 **Historical references:** [personal-knowledge-graph-phase-model.plan.md](../complete/personal-knowledge-graph-phase-model.plan.md) and [personal-knowledge-graph-design-notes.md](../research/personal-knowledge-graph-design-notes.md) remain useful as archive records, but they are no longer the live planning model.
 

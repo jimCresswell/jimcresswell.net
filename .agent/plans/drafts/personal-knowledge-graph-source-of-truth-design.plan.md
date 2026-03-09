@@ -12,9 +12,9 @@ assess it against explicit outcomes, intended impacts, and value mechanisms
 before adopting, rewriting, splitting, or discarding it.
 
 Use [graph-metaplan.plan.md](../graph-metaplan.plan.md) for the parent planning
-context, [graph-current-state-audit.md](graph-current-state-audit.md) for the
-observed baseline, and
-[personal-knowledge-graph-roadmap.plan.md](../current/personal-knowledge-graph-roadmap.plan.md)
+context, [graph-current-state-audit.md](../research/graph-current-state-audit.md)
+for the observed baseline, and
+[personal-knowledge-graph-roadmap.plan.md](personal-knowledge-graph-roadmap.plan.md)
 for the preserved candidate roadmap draft.
 
 ## Goal
@@ -158,7 +158,7 @@ Use:
 
 ## Relationship to historical PKG documents
 
-- [personal-knowledge-graph-design-notes.md](personal-knowledge-graph-design-notes.md)
+- [personal-knowledge-graph-design-notes.md](../research/personal-knowledge-graph-design-notes.md)
   remains the historical design exploration and entity audit
 - [personal-knowledge-graph-phase-model.plan.md](../complete/personal-knowledge-graph-phase-model.plan.md)
   remains the archive of the previous single-sequence model

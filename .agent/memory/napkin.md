@@ -241,3 +241,20 @@
 - Ceiling compliance with zero headroom is fragile. If a core file is sitting
   one line below its limit, tighten it before the next small change turns
   routine upkeep into forced restructuring.
+
+## Session: 2026-03-09 — Draft Plan Topology
+
+### What Was Done
+
+- Created `.agent/plans/drafts/` for preserved graph roadmap and successor-plan
+  drafts
+- Moved the graph roadmap draft, Track A execution draft, and Track B
+  source-of-truth design draft out of `current/` and `research/`
+- Repaired graph-plan, PKG-skill, reviewer, roadmap, and historical-plan
+  references so the metaplan remains the only current graph entry point
+
+### Patterns to Remember
+
+- If a document is explicitly a preserved draft for later assessment, do not
+  leave it under `current/`. A dedicated `drafts/` location removes avoidable
+  ambiguity for the next session.

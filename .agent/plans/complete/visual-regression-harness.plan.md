@@ -99,7 +99,7 @@ path and are tracked in
 
 ## Related
 
-- [PKG execution plan](../current/personal-knowledge-graph-execution.plan.md)
+- [Graph metaplan](../graph-metaplan.plan.md)
 - [visual-regression-harness/README.md](../../visual-regression-harness/README.md)
 - [ADR-016](../../docs/architecture/decision-records/016-review-oriented-visual-regression-harness.md)
 - [ADR-017](../../docs/architecture/decision-records/017-cv-tilt-routes-are-canonical-aliases.md)

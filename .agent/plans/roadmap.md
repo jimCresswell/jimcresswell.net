@@ -20,11 +20,11 @@ These documents were captured during metaplan authoring so the work is not
 lost. The next session must assess them against explicit outcomes, intended
 impacts, and value mechanisms before any of them become authoritative.
 
-| Document                                                                                         | Role                                                                 |
-| ------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------- |
-| [PKG Roadmap Draft](current/personal-knowledge-graph-roadmap.plan.md)                            | Candidate strategic roadmap for the proposed Track A / Track B split |
-| [Graph Expression Execution Draft](current/personal-knowledge-graph-execution.plan.md)           | Candidate Track A execution-plan draft                               |
-| [Source-of-Truth Design Draft](research/personal-knowledge-graph-source-of-truth-design.plan.md) | Candidate Track B design-plan draft                                  |
+| Document                                                                                       | Role                                                                 |
+| ---------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| [PKG Roadmap Draft](drafts/personal-knowledge-graph-roadmap.plan.md)                           | Candidate strategic roadmap for the proposed Track A / Track B split |
+| [Graph Expression Execution Draft](drafts/personal-knowledge-graph-execution.plan.md)          | Candidate Track A execution-plan draft                               |
+| [Source-of-Truth Design Draft](drafts/personal-knowledge-graph-source-of-truth-design.plan.md) | Candidate Track B design-plan draft                                  |
 
 ## Icebox
 

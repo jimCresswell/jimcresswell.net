@@ -172,9 +172,9 @@ onto the graph:
 - `.agent/plans/complete/personal-knowledge-graph-phase-model.plan.md` remains
   useful as an archive of the previous phase model
 
-### Live docs that needed reframing
+### Docs that needed reframing during the reset
 
-- `.agent/plans/current/personal-knowledge-graph-execution.plan.md`
+- `.agent/plans/drafts/personal-knowledge-graph-execution.plan.md`
 - `.agent/plans/roadmap.md`
 - `.agent/plans/current/cv-editorial-improvements.plan.md`
 - `.agent/plans/current/linkedin-update.plan.md`
@@ -195,8 +195,8 @@ graph-derived and to adopt the new two-track structure.
 ## Related documents
 
 - [graph-metaplan.plan.md](../graph-metaplan.plan.md)
-- [personal-knowledge-graph-roadmap.plan.md](../current/personal-knowledge-graph-roadmap.plan.md) — preserved draft roadmap input
-- [personal-knowledge-graph-execution.plan.md](../current/personal-knowledge-graph-execution.plan.md) — preserved draft Track A execution input
-- [personal-knowledge-graph-source-of-truth-design.plan.md](personal-knowledge-graph-source-of-truth-design.plan.md) — preserved draft Track B design input
+- [personal-knowledge-graph-roadmap.plan.md](../drafts/personal-knowledge-graph-roadmap.plan.md) — preserved draft roadmap input
+- [personal-knowledge-graph-execution.plan.md](../drafts/personal-knowledge-graph-execution.plan.md) — preserved draft Track A execution input
+- [personal-knowledge-graph-source-of-truth-design.plan.md](../drafts/personal-knowledge-graph-source-of-truth-design.plan.md) — preserved draft Track B design input
 - [personal-knowledge-graph-design-notes.md](personal-knowledge-graph-design-notes.md)
-- [ADR-014](../../docs/architecture/decision-records/014-entity-model-design.md)
+- [ADR-014](../../../docs/architecture/decision-records/014-entity-model-design.md)

@@ -40,7 +40,7 @@ Read these first:
    draft candidate Track A / Track B roadmap
 4. [pkg-research-findings.md](../research/pkg-research-findings.md) — consumer
    value tiers, validation strategy, and Schema.org research
-5. [ADR-014](../../docs/architecture/decision-records/014-entity-model-design.md)
+5. [ADR-014](../../../docs/architecture/decision-records/014-entity-model-design.md)
    and related ADRs — durable design context
 
 ## What this draft is
@@ -64,7 +64,7 @@ It is **not** the place for:
 - using LinkedIn as an architectural driver
 
 That work belongs to **Track B** in the candidate design draft
-[personal-knowledge-graph-source-of-truth-design.plan.md](../research/personal-knowledge-graph-source-of-truth-design.plan.md).
+[personal-knowledge-graph-source-of-truth-design.plan.md](personal-knowledge-graph-source-of-truth-design.plan.md).
 
 ## Current truth
 

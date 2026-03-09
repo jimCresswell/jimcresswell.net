@@ -153,8 +153,8 @@ Plus education entries at Portsmouth, Sussex, and Bath (with thesis titles and l
 - [cv-editorial-improvements.plan.md](cv-editorial-improvements.plan.md) — The editorial CV positioning paragraphs are the voice reference for LinkedIn content. LinkedIn entries must not contradict them.
 - [meta-seo-content-audit.plan.md](../complete/meta-seo-content-audit.plan.md) — Complete. The CV's `meta.summary`, `KNOWS_ABOUT`, `OCCUPATION`, and capabilities have been editorially updated since this plan was written. Phase 1 should read the current `cv.content.json` and `lib/jsonld.ts` to pick up these changes.
 - [graph-metaplan.plan.md](../graph-metaplan.plan.md) — current parent plan for graph work.
-- [personal-knowledge-graph-roadmap.plan.md](personal-knowledge-graph-roadmap.plan.md) — preserved candidate roadmap draft; LinkedIn remains downstream and must not drive graph architecture.
-- [personal-knowledge-graph-execution.plan.md](personal-knowledge-graph-execution.plan.md) — preserved candidate Track A execution draft, not yet a live execution authority.
+- [personal-knowledge-graph-roadmap.plan.md](../drafts/personal-knowledge-graph-roadmap.plan.md) — preserved candidate roadmap draft; LinkedIn remains downstream and must not drive graph architecture.
+- [personal-knowledge-graph-execution.plan.md](../drafts/personal-knowledge-graph-execution.plan.md) — preserved candidate Track A execution draft, not yet a live execution authority.
 
 ## Decision
 
