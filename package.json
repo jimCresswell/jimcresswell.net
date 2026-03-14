@@ -93,7 +93,7 @@
     "postcss": "^8.5.8",
     "postcss-load-config": "^6.0.1",
     "prettier": "^3.8.1",
-    "puppeteer": "^24.38.0",
+    "puppeteer": "^24.39.1",
     "schema-dts": "^1.1.5",
     "sharp": "^0.34.5",
     "tailwindcss": "^4.2.1",
