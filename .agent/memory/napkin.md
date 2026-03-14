@@ -250,3 +250,19 @@
 - When a prompt becomes complete, strip or replace the old task body instead of
   only prepending a completion note. Otherwise the prompt still carries stale
   execution truth.
+
+## Session: 2026-03-14 — Consolidate-Docs Rule Tightening
+
+### What Was Done
+
+- Promoted the remaining useful detached-worktree workflow lesson into
+  `.agent/commands/jc-consolidate-docs.md`
+- Made the command say explicitly that track- or phase-status changes must
+  reconcile the active plan stack, `.agent/plans/roadmap.md`, and parent-plan
+  summary tables in the same pass
+
+### Patterns to Remember
+
+- For plan-stack status changes, upstream summaries are part of the same source
+  of truth update; do not leave roadmap or parent-plan tables to "catch up"
+  later.
