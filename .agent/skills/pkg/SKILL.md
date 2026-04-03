@@ -21,16 +21,16 @@ composition is future Track B work, not current implementation.
 
 Before PKG work, read and internalise:
 
-| Document                                                                       | Purpose                                                        |
-| ------------------------------------------------------------------------------ | -------------------------------------------------------------- |
-| `.agent/plans/current/personal-knowledge-graph-roadmap.plan.md`                | Current graph roadmap — two required tracks, Track A first     |
-| `.agent/plans/current/personal-knowledge-graph-execution.plan.md`              | Current Track A execution authority                            |
-| `.agent/plans/research/graph-current-state-audit.md`                           | Observed implementation truth and architecture audit           |
+| Document                                                                      | Purpose                                                        |
+| ----------------------------------------------------------------------------- | -------------------------------------------------------------- |
+| `.agent/plans/current/personal-knowledge-graph-roadmap.plan.md`               | Current graph roadmap — two required tracks, Track A first     |
+| `.agent/plans/current/personal-knowledge-graph-execution.plan.md`             | Current Track A execution authority                            |
+| `.agent/plans/research/graph-current-state-audit.md`                          | Observed implementation truth and architecture audit           |
 | `.agent/plans/active/personal-knowledge-graph-source-of-truth-design.plan.md` | Current Track B design authority                               |
-| `.agent/plans/graph-metaplan.plan.md`                                          | Completed reset record — why the current stack exists          |
-| `.agent/plans/research/personal-knowledge-graph-design-notes.md`               | Historical design reference — entity inventory and conventions |
-| `.agent/plans/complete/personal-knowledge-graph-phase-model.plan.md`           | Archived phase model and acceptance criteria                   |
-| `.agent/plans/research/pkg-research-findings.md`                               | Research findings — verified facts across four domains         |
+| `.agent/plans/graph-metaplan.plan.md`                                         | Completed reset record — why the current stack exists          |
+| `.agent/plans/research/personal-knowledge-graph-design-notes.md`              | Historical design reference — entity inventory and conventions |
+| `.agent/plans/complete/personal-knowledge-graph-phase-model.plan.md`          | Archived phase model and acceptance criteria                   |
+| `.agent/plans/research/pkg-research-findings.md`                              | Research findings — verified facts across four domains         |
 
 Before editorial-intensive phases (entity population, role descriptions), additionally read:
 

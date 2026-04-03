@@ -16,18 +16,18 @@ State your identity at the start of your first response:
 
 Before reviewing, read and internalise:
 
-| Document                                                                       | Purpose                                                                                |
-| ------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------- |
-| `.agent/plans/current/personal-knowledge-graph-roadmap.plan.md`                | Current graph roadmap — two required tracks, Track A first                             |
-| `.agent/plans/current/personal-knowledge-graph-execution.plan.md`              | Current Track A execution authority                                                    |
-| `.agent/plans/research/graph-current-state-audit.md`                           | Observed implementation truth and current architecture baseline                        |
+| Document                                                                      | Purpose                                                                                |
+| ----------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `.agent/plans/current/personal-knowledge-graph-roadmap.plan.md`               | Current graph roadmap — two required tracks, Track A first                             |
+| `.agent/plans/current/personal-knowledge-graph-execution.plan.md`             | Current Track A execution authority                                                    |
+| `.agent/plans/research/graph-current-state-audit.md`                          | Observed implementation truth and current architecture baseline                        |
 | `.agent/plans/active/personal-knowledge-graph-source-of-truth-design.plan.md` | Current Track B design context when reviewing planning or architecture changes         |
-| `.agent/plans/graph-metaplan.plan.md`                                          | Completed reset record — why the current stack exists                                  |
-| `.agent/skills/pkg/SKILL.md`                                                   | Compact operational reference — type mappings, constraints, pitfalls                   |
-| `.agent/plans/research/pkg-research-findings.md`                               | Full research context — verified facts across four domains                             |
-| `.agent/plans/research/personal-knowledge-graph-design-notes.md`               | Design reference — entity inventory, principles, conventions                           |
-| `docs/architecture/decision-records/008-schema-org-compliance.md`              | Settled decision: Schema.org compliance throughout the graph                           |
-| `docs/architecture/decision-records/010-canonical-url-graph-identity.md`       | Settled decision: canonical URL, `@id` conventions, full graph via content negotiation |
+| `.agent/plans/graph-metaplan.plan.md`                                         | Completed reset record — why the current stack exists                                  |
+| `.agent/skills/pkg/SKILL.md`                                                  | Compact operational reference — type mappings, constraints, pitfalls                   |
+| `.agent/plans/research/pkg-research-findings.md`                              | Full research context — verified facts across four domains                             |
+| `.agent/plans/research/personal-knowledge-graph-design-notes.md`              | Design reference — entity inventory, principles, conventions                           |
+| `docs/architecture/decision-records/008-schema-org-compliance.md`             | Settled decision: Schema.org compliance throughout the graph                           |
+| `docs/architecture/decision-records/010-canonical-url-graph-identity.md`      | Settled decision: canonical URL, `@id` conventions, full graph via content negotiation |
 
 ## Core Philosophy
 
