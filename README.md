@@ -38,6 +38,8 @@ pnpm start          # Start production server
 
 pnpm format:fix     # Prettier format (auto-fix)
 pnpm format:check   # Prettier check (read-only)
+pnpm markdownlint:fix   # Markdown lint (auto-fix)
+pnpm markdownlint:check # Markdown lint (read-only)
 pnpm lint:fix       # ESLint (auto-fix)
 pnpm lint:check     # ESLint (read-only)
 pnpm typecheck      # TypeScript type checking
@@ -48,10 +50,14 @@ pnpm test:e2e       # E2E tests — default project (Playwright, requires browse
 pnpm test:e2e:pdf   # E2E tests — PDF project (requires production build on :3001)
 pnpm test:e2e:ui    # Playwright UI mode (interactive)
 
-pnpm check          # All six quality gates with auto-fix
-pnpm check:ci       # All six quality gates read-only (used by pre-commit hook)
+pnpm fix            # Format, markdownlint, and lint auto-fix
+pnpm check          # Eight blocking gates with auto-fix
+pnpm check:ci       # The same eight gates read-only (used by pre-commit hook)
 pnpm knip           # Find unused exports and dependencies
 pnpm gitleaks       # Scan git history for secrets
+pnpm portability:check # Validate agent-surface parity and local surface contract
+pnpm practice:fitness   # Strict Practice/doc fitness validation
+pnpm practice:fitness:informational # Advisory Practice/doc fitness report
 pnpm generate:icons # Regenerate favicon and OG images from logo
 ```
 
@@ -103,6 +109,8 @@ accept-md.config.js          # accept-md runtime configuration
 
 scripts/                     # Build-time scripts
   generate-pdf.ts            # Puppeteer PDF generation (runs after next build)
+  validate-portability.mjs   # Thin-wrapper and surface-matrix validation
+  validate-practice-fitness.mjs # Practice/doc fitness validation
 
 e2e/                         # End-to-end tests (Playwright)
   journeys/                  # User story journey tests
@@ -157,13 +165,17 @@ Two Git hooks enforce quality automatically:
 - **Pre-push** — runs `pnpm check && pnpm test:e2e` (full gates + E2E). PDF tests require a prior build and are run explicitly.
 
 ```bash
-pnpm check          # All seven gates with auto-fix (format, markdownlint, lint, typecheck, test, knip, gitleaks)
+pnpm check          # All eight gates with auto-fix (format, markdownlint, lint, typecheck, test, knip, gitleaks, portability)
 pnpm check:ci       # Same gates, read-only (no auto-fix)
 pnpm test:e2e       # E2E tests (separate — requires Chromium)
 pnpm test:e2e:pdf   # E2E PDF tests (requires production build on :3001)
 ```
 
 Both hooks are managed by [Husky](https://typicode.github.io/husky/), installed automatically by the `prepare` script when you run `pnpm install`. Gitleaks scans the full git history to ensure no secrets are committed — it requires [gitleaks](https://github.com/gitleaks/gitleaks) to be installed (`brew install gitleaks` on macOS). For the full gate sequence and restart-on-fix discipline, see [rules.md](.agent/directives/rules.md#code-quality).
+
+Practice/doc fitness is a companion surface rather than part of `pnpm check`:
+run `pnpm practice:fitness:informational` when changing Practice or directive
+docs, and use `pnpm practice:fitness` when you need strict enforcement.
 
 **Local development** works without any environment variables. `.env.local` is only needed to test the full Vercel Blob PDF path (see [architecture docs](docs/architecture/README.md) for details).
 

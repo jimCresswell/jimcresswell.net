@@ -1,0 +1,100 @@
+# Practice Core Provenance
+#
+# Canonical provenance chains for the plasmid trinity files.
+# Each file tracks its own evolution history independently.
+# Entry IDs are UUID v4 values for stable reference.
+# Chain order and date carry chronology.
+# IDs do not replace detailed content comparison during integration.
+# See practice-lineage.md §Provenance for the field specification.
+
+attribution: "created by Jim Cresswell (https://www.jimcresswell.net/), evolved by many people and agents in many repos"
+
+practice.md:
+  - id: 48577dc2-8990-415d-9cd8-a06900be51f6
+    repo: oak-open-curriculum-ecosystem
+    date: 2026-02-26
+    purpose: "Production SDK ecosystem: curriculum SDK, MCP servers, semantic search, 13 specialist reviewers, full learning loop"
+  - id: c1627b53-77da-490e-9332-b59fe7717bd1
+    repo: cloudinary-icon-ingest-poc
+    date: 2026-02-26
+    purpose: "Short-lived POC: build-time SVG icon ingestion from Cloudinary, 3 reviewers, simplified gates"
+  - id: 6ec200f3-5170-4180-9ac1-eaa8bd5c4503
+    repo: oak-open-curriculum-ecosystem
+    date: 2026-02-27
+    purpose: "Production SDK ecosystem: adopted Practice Core structure, trinity concept, and bootstrap from round-trip"
+  - id: 9202bb3e-8384-4cde-a022-40db447bbc35
+    repo: new-cv
+    date: 2026-03-06
+    purpose: "Personal website and CV: editorial voice, accessibility, single-developer workflow with learning loop"
+  - id: f8b945e0-5b38-4d3b-b98f-b7ee53f7e665
+    repo: new-cv
+    date: 2026-03-08
+    purpose: "Personal website and CV: Codex reviewer-sub-agent alignment and Practice Core consolidation"
+  - id: 790538b5-1a69-4afc-8e20-9b3719d42577
+    repo: new-cv
+    date: 2026-03-09
+    purpose: "Personal website and CV: value-traceability planning and Practice Core structural tightening"
+  - id: 362a41be-a569-4cde-bf3b-0f10010ae792
+    repo: new-cv
+    date: 2026-04-03
+    purpose: "Personal website and CV: adopted seven-file provenance, explicit agent-surface contracts, and portability/practice-fitness validation while aligning checks, hooks, and repo-facing docs"
+
+practice-lineage.md:
+  - id: 415e1b79-6eed-4a88-987d-ce9e66c7a5d1
+    repo: oak-open-curriculum-ecosystem
+    date: 2026-02-26
+    purpose: "Production SDK ecosystem: curriculum SDK, MCP servers, semantic search, 13 specialist reviewers, full learning loop"
+  - id: a56be57b-4461-41d3-bc7f-88fb5ccd341e
+    repo: cloudinary-icon-ingest-poc
+    date: 2026-02-26
+    purpose: "Short-lived POC: build-time SVG icon ingestion from Cloudinary, 3 reviewers, simplified gates"
+  - id: 0150d77d-bc10-4adb-9765-80d7d8e28749
+    repo: oak-open-curriculum-ecosystem
+    date: 2026-02-27
+    purpose: "Production SDK ecosystem: adopted Practice Core structure, trinity concept, and bootstrap from round-trip"
+  - id: 8535ff82-8876-41fa-bae4-2179e0f173ec
+    repo: oak-open-curriculum-ecosystem
+    date: 2026-02-28
+    purpose: "Ecosystem-agnostic hydration: labelled ecosystem-specific content, added cold-start path, aligned consolidation with concurrent documentation principle"
+  - id: 0cdc7873-597f-4c0d-9f9b-99990ec296c9
+    repo: new-cv
+    date: 2026-03-06
+    purpose: "Personal website and CV: editorial voice, accessibility, single-developer workflow with learning loop"
+  - id: 0b768802-d618-47d2-900e-5d7f7a19b96a
+    repo: new-cv
+    date: 2026-03-09
+    purpose: "Personal website and CV: value-traceability planning and Practice Core structural tightening"
+  - id: 2d2fb1b1-87fa-4f07-85ad-0b66b7df5d85
+    repo: new-cv
+    date: 2026-04-03
+    purpose: "Personal website and CV: clarified provenance semantics, adopted seven-file exchange, and extended cohesion audits to local tooling docs as well as Practice docs"
+
+practice-bootstrap.md:
+  - id: 6258b94d-fb1d-439d-bcd7-0184b7d46b42
+    repo: cloudinary-icon-ingest-poc
+    date: 2026-02-26
+    purpose: "Short-lived POC: build-time SVG icon ingestion from Cloudinary, 3 reviewers, simplified gates"
+  - id: 20a97489-7f9c-4f74-801c-1bddb4323832
+    repo: oak-open-curriculum-ecosystem
+    date: 2026-02-27
+    purpose: "Production SDK ecosystem: curriculum SDK, MCP servers, semantic search, 13 specialist reviewers, full learning loop"
+  - id: c8e2219b-22d6-48e5-9195-f02c841aee9f
+    repo: oak-open-curriculum-ecosystem
+    date: 2026-02-28
+    purpose: "Ecosystem-agnostic hydration: added ecosystem survey preamble for agents hydrating into non-TypeScript repos"
+  - id: 95b28b45-aeab-4267-88b0-f21499f410ce
+    repo: new-cv
+    date: 2026-03-06
+    purpose: "Personal website and CV: editorial voice, accessibility, single-developer workflow with learning loop"
+  - id: 20da9bd8-0ff5-4791-ad71-a3c155b1ea05
+    repo: new-cv
+    date: 2026-03-08
+    purpose: "Personal website and CV: Codex reviewer-sub-agent alignment and Practice Core consolidation"
+  - id: e06a48af-d0f8-4d13-a966-07474825005c
+    repo: new-cv
+    date: 2026-03-09
+    purpose: "Personal website and CV: value-traceability planning and Practice Core structural tightening"
+  - id: d4871fec-afe4-44fd-9ce6-121b53291120
+    repo: new-cv
+    date: 2026-04-03
+    purpose: "Personal website and CV: added local surface-matrix and validation guidance, plus seven-file bootstrap wording for multi-platform repos"

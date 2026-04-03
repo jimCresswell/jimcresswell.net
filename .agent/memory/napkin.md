@@ -299,3 +299,74 @@
 - For plan-stack status changes, upstream summaries are part of the same source
   of truth update; do not leave roadmap or parent-plan tables to "catch up"
   later.
+
+## Session: 2026-04-03 — Practice Core And Tooling Alignment
+
+### What Was Done
+
+- Updated the local Practice Core from the older six-file/frontmatter model to
+  a seven-file package with `provenance.yml` and four-field fitness metadata
+- Added a local cross-platform surface contract in `.agent/reference/` and
+  wired `scripts/validate-portability.mjs` into `pnpm check`
+- Added `scripts/validate-practice-fitness.mjs` plus package commands for
+  strict and informational Practice/doc fitness checks
+- Aligned local wrappers and adapter names so `deslop`, `pkg`, `start-right`,
+  and `read-practice` match the canonical `.agent/` layer
+- Reconciled README, CONTRIBUTING, requirements, ADR-005, and agent docs with
+  the real hook and script behaviour
+- Ran a consolidate-docs sweep on the PKG handoff chain, fixed stale prompt
+  links that still pointed at the old `new-cv` repo, and converted those
+  prompt references to repo-relative links
+- Tightened `jc-consolidate-docs` so live plan and prompt docs explicitly
+  prefer repo-relative links over hard-coded absolute workspace paths
+- Revisited the incoming provenance UUID migration proposal after the refreshed
+  note landed, adopted it locally, and migrated trinity provenance from
+  positional `index` fields to UUID v4 `id` fields
+- Updated Practice Core, outgoing rationale, and local reference wording so
+  chronology now lives in chain order and `date` while integration still
+  compares detailed content
+- Cleared the integrated UUID migration note from
+  `.agent/practice-context/incoming/`
+- Ran a follow-up consolidate-docs sweep and corrected `.agent/README.md`
+  where the active Track B plan was still labelled `Planned` instead of
+  reflecting the live in-progress state
+- Tightened `jc-consolidate-docs` again so repo-local overview tables or
+  READMEs that advertise live plan state must be reconciled alongside the
+  active plan stack and roadmap
+
+### Mistakes Made
+
+- It was easy to let positional provenance indexes look like stable identity.
+- Non-Practice tooling docs can drift quietly even when the canonical Practice
+  docs are correct; checking only Practice files is not enough.
+- Live prompt stacks can still carry stale repo-root paths even after status
+  and content are otherwise current.
+- The first pass on the UUID migration was too conservative because the local
+  invariant was not stated sharply enough: chronology and identity needed to
+  be separated without weakening the detailed-comparison rule.
+- Repo-level overview docs can drift on plan status even when the active plan
+  stack itself is correct.
+
+### Patterns to Remember
+
+- Provenance entry IDs are UUIDs for stable reference. Chain order and `date`
+  carry chronology.
+- UUIDs remove index-as-version confusion, but integration still compares the
+  detailed content and each entry's `repo`, `date`, and `purpose` instead of
+  reducing the decision to shorthand matching.
+- In a multi-platform agent repo, supported and unsupported surfaces need an
+  explicit written contract. Missing files are not a reliable signal.
+- Portability validation and Practice fitness validation solve different
+  problems. Keep portability blocking in the main gate; keep doc-fitness
+  advisory unless the task explicitly needs strict enforcement.
+- Repo-facing tooling docs are part of the execution contract. When hooks,
+  scripts, or gate counts change, update README, CONTRIBUTING, ADRs, and
+  Practice docs in the same pass.
+- In live plans and prompts, prefer repo-relative links from the file's own
+  directory. Hard-coded absolute workspace paths drift when repos move or are
+  renamed.
+- When a Practice-format migration is non-obvious, write down the exact local
+  invariant it preserves. That makes it much easier to judge whether it really
+  clears the bar here.
+- If a repo README or overview table advertises live plan state, reconcile it
+  in the same pass as the roadmap and active plan stack.

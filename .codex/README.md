@@ -8,3 +8,7 @@ This directory holds Codex-specific project configuration.
 - Reviewer sub-agents are not skills. They live here, not in `.agents/skills/`.
 - `.codex/agents/*.toml` are thin per-agent adapters.
 - Canonical reviewer instructions stay in `.agent/sub-agents/templates/`.
+- The supported and unsupported local platform mappings are documented in
+  `.agent/reference/cross-platform-agent-surface-matrix.md`.
+- After changing Codex adapters or reviewer registration, run
+  `pnpm portability:check`.

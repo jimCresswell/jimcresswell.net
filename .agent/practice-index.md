@@ -8,6 +8,9 @@ created during hydration and stays in the repo. The format is specified by
 For the practice-core files and their roles, see
 [practice-core/index.md](practice-core/index.md).
 
+For the explicit local agent-surface contract, see
+[cross-platform-agent-surface-matrix.md](reference/cross-platform-agent-surface-matrix.md).
+
 ## Directives
 
 | Directive                                                 | Purpose                                     |
@@ -19,6 +22,12 @@ For the practice-core files and their roles, see
 | [metacognition.md](directives/metacognition.md)           | Pause and reflect before planning           |
 | [privacy.md](directives/privacy.md)                       | Psychological safety and PII handling       |
 | [secops.md](directives/secops.md)                         | Git email, PII audits, operational security |
+
+## Reference
+
+| Reference                                                                                  | Purpose                                                                   |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------- |
+| [cross-platform-agent-surface-matrix.md](reference/cross-platform-agent-surface-matrix.md) | Supported and unsupported Cursor, Copilot, Codex, and `.agents/` surfaces |
 
 ## Architectural Decisions
 
@@ -95,12 +104,19 @@ For the practice-core files and their roles, see
 Codex reviewer sub-agents are registered in [`.codex/config.toml`](../.codex/config.toml)
 and use thin adapters under [`.codex/agents/`](../.codex/agents/).
 
+### Validation
+
+| Validation                                                                  | Purpose                                                                         |
+| --------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| [`validate-portability.mjs`](../scripts/validate-portability.mjs)           | Validate thin wrappers, reviewer registration, and the local surface matrix     |
+| [`validate-practice-fitness.mjs`](../scripts/validate-practice-fitness.mjs) | Validate the four-field fitness frontmatter used by Practice and directive docs |
+
 ## Artefact Directories
 
 | Location                                        | What lives there                                                                                         |
 | ----------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
 | [`.agent/directives/`](directives/)             | Principles, rules, and operational directives                                                            |
-| [`.agent/practice-core/`](practice-core/)       | Portable practice-core files (trinity, entry points, changelog) and practice box                         |
+| [`.agent/practice-core/`](practice-core/)       | Portable Practice Core files (trinity, entry points, changelog, provenance) and Practice Box             |
 | [`.agent/commands/`](commands/)                 | Canonical commands (platform-agnostic)                                                                   |
 | [`.agent/skills/`](skills/)                     | Canonical skills (platform-agnostic)                                                                     |
 | [`.agent/rules/`](rules/)                       | Canonical always-applied rules (platform-agnostic)                                                       |
@@ -109,7 +125,9 @@ and use thin adapters under [`.codex/agents/`](../.codex/agents/).
 | [`.agent/prompts/`](prompts/)                   | Reusable prompt playbooks                                                                                |
 | [`.agent/memory/`](memory/)                     | Institutional memory — napkin, distilled, code patterns                                                  |
 | [`.agent/experience/`](experience/)             | Experiential records across sessions                                                                     |
+| [`.agent/reference/`](reference/)               | Stable local reference material, including the cross-platform surface matrix                             |
 | [`.agent/practice-context/`](practice-context/) | Optional repo-local exchange context — transient incoming workspace and sender-maintained outgoing notes |
 | [`.agents/`](../.agents/)                       | Codex skill and command adapters, plus adapter-local metadata                                            |
 | [`.codex/`](../.codex/)                         | Codex project config and thin sub-agent adapters                                                         |
 | [`.cursor/`](../.cursor/)                       | Cursor platform adapters — thin wrappers and rule triggers                                               |
+| [`.github/`](../.github/)                       | GitHub Copilot entry instructions and other GitHub-facing agent surfaces                                 |

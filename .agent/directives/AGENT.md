@@ -1,11 +1,15 @@
 ---
-fitness_ceiling: 150
-split_strategy: Split by responsibility — extract sub-agent roster, development commands, or project structure into separate files
+fitness_line_target: 180
+fitness_line_limit: 220
+fitness_char_limit: 12500
+fitness_line_length: 100
+split_strategy: Extract detail to referenced docs; this file is an index/entry point
 ---
 
 # AGENT.md
 
-This file provides core directives for AI agents working with this codebase. Read ALL of it first, then follow all instructions.
+This file provides core directives for AI agents working with this codebase. Read ALL of it first,
+then follow all instructions.
 
 ## Grounding
 
@@ -23,41 +27,55 @@ Always apply the first question: **Ask: could it be simpler without compromising
 
 ## The Practice
 
-This repo follows the Agentic Engineering Practice. For the full system — principles, structure, tooling, knowledge flow — see [practice-core/index.md](../practice-core/index.md). For navigable links to this repo's artefacts, see [practice-index.md](../practice-index.md).
+This repo follows the Agentic Engineering Practice. For the full system — principles, structure,
+tooling, and knowledge flow — see [practice-core/index.md](../practice-core/index.md). For navigable
+links to this repo's artefacts, validators, and reference surfaces, see
+[practice-index.md](../practice-index.md). For explicit supported and unsupported platform mappings,
+see [cross-platform-agent-surface-matrix.md](../reference/cross-platform-agent-surface-matrix.md).
 
 ## Rules
 
-Read [the rules](./rules.md); reflect on them, _apply_ them — they MUST be followed at ALL times. Read [metacognition](./metacognition.md) and apply it before planning.
+Read [the rules](./rules.md); reflect on them, _apply_ them — they MUST be followed at ALL times.
+Read [metacognition](./metacognition.md) and apply it before planning.
 
 ## Essential Links
 
 - [Rules](./rules.md) — Core development principles
 - [Testing Strategy](./testing-strategy.md) — TDD approach and test types
 - [Metacognition](./metacognition.md) — Pause and reflect before planning
-- [Editorial Guidance](./editorial-guidance.md) — Jim's editorial voice and identity (read before any content work)
+- [Editorial Guidance](./editorial-guidance.md) — Jim's editorial voice and identity (read before
+  any content work)
 - [Privacy](./privacy.md) — Psychological safety and PII handling
 - [Security Operations](./secops.md) — Git email, PII audits, operational security
+- [Cross-Platform Surface Matrix](../reference/cross-platform-agent-surface-matrix.md) — Supported
+  and unsupported agent surfaces
 - [Architecture](../../docs/architecture/) — System architecture and ADRs
-- [Editorial Decision Records](../../docs/editorial/decision-records/) — Specific editorial decisions with context and rationale (EDRs)
+- [Editorial Decision Records](../../docs/editorial/decision-records/) — Specific editorial
+  decisions with context and rationale (EDRs)
 - [User Stories](../../docs/project/user-stories.md) — Key user stories
 - [Requirements](../../docs/project/requirements.md) — Non-functional requirements
 
 ## Session Start
 
-Every session, read `.agent/memory/distilled.md` and scan `.agent/memory/napkin.md` before doing anything. These contain hard-won patterns and recent context. Update the napkin continuously as you work — log mistakes, corrections, and what works. See the [napkin skill](../skills/napkin/SKILL.md).
+Every session, read `.agent/memory/distilled.md` and scan `.agent/memory/napkin.md` before doing
+anything. These contain hard-won patterns and recent context. Update the napkin continuously as you
+work — log mistakes, corrections, and what works. See the [napkin skill](../skills/napkin/SKILL.md).
 
-Then follow the **[start-right skill](../skills/start-right/SKILL.md)** (command: `/jc-start-right`) for foundation documents, guiding questions, practice box, and quality expectations.
+Then follow the **[start-right skill](../skills/start-right/SKILL.md)** (command: `/jc-start-right`)
+for foundation documents, guiding questions, practice box, and quality expectations.
 
-Also read **`.agent/plans/active/README.md`** and the **active plan markdown** in `.agent/plans/active/` — the current execution focus lives in that folder as the real plan file, not only in `plans/current/`. When the primary focus changes, move plans, update that README, and reconcile `roadmap.md` together.
+Also read **`.agent/plans/active/README.md`** and the **active plan markdown** in
+`.agent/plans/active/` — the current execution focus lives in that folder as the real plan file, not
+only in `plans/current/`. When the primary focus changes, move plans, update that README, and
+reconcile `roadmap.md` together.
 
 ## Agent Tools
 
 ### Sub-agents
 
-Canonical reviewer prompts live in `.agent/sub-agents/templates/`. In Codex,
-the project reviewer roster is registered in `.codex/config.toml` and each role
-uses a thin `.codex/agents/*.toml` adapter that points back to the canonical
-template.
+Canonical reviewer prompts live in `.agent/sub-agents/templates/`. In Codex, the project reviewer
+roster is registered in `.codex/config.toml` and each role uses a thin `.codex/agents/*.toml`
+adapter that points back to the canonical template.
 
 | Agent                                                     | Purpose                                               |
 | --------------------------------------------------------- | ----------------------------------------------------- |
@@ -95,7 +113,18 @@ template.
 
 ## Development Commands
 
-All commands use `pnpm`. Key commands: `pnpm dev`, `pnpm build`, `pnpm check` (all quality gates with auto-fix), `pnpm test:e2e`. Full gate sequence, restart-on-fix discipline, and individual gates are documented in [rules.md](./rules.md#code-quality). All available scripts are in `package.json`.
+All commands use `pnpm`. Key commands:
+
+- `pnpm dev` — local development server
+- `pnpm build` — production build
+- `pnpm check` — eight blocking gates with auto-fix, including portability
+- `pnpm test:e2e` — Playwright default project
+- `pnpm test:e2e:ui` — interactive Playwright UI mode
+- `pnpm portability:check` — agent-surface parity validation
+- `pnpm practice:fitness:informational` — advisory Practice/doc fitness report
+
+Full gate sequence, restart-on-fix discipline, and individual checks are documented in
+[rules.md](./rules.md#code-quality). All available scripts are in `package.json`.
 
 ## Project Structure
 
@@ -116,6 +145,7 @@ e2e/                    # End-to-end tests (Playwright)
 .agent/                 # Canonical Practice artefacts (platform-agnostic)
   directives/           # Principles, rules, and operational directives
   practice-core/        # Portable practice-core files and practice box
+  reference/            # Stable local reference docs such as the surface matrix
   commands/             # Canonical commands
   skills/               # Canonical skills
   rules/                # Canonical always-applied rules
@@ -129,6 +159,7 @@ e2e/                    # End-to-end tests (Playwright)
 .codex/                 # Codex project configuration
   config.toml           # Project-local reviewer sub-agent registry
   agents/               # Thin reviewer adapter files
+.github/                # GitHub Copilot and GitHub-facing agent surfaces
 .cursor/                # Cursor platform adapters (thin wrappers)
   agents/               # Sub-agent adapters
   commands/             # Command adapters
@@ -139,11 +170,14 @@ e2e/                    # End-to-end tests (Playwright)
 ## Agent Behaviour
 
 - **Don't push git commits** unless explicitly asked.
-- **Verify claims with evidence** — check build logs, rendered output, terminal state. Never assume or report success without checking.
-- **Plans must be standalone** — a fresh agent with no prior context must be able to pick up and execute a plan without ambiguity.
+- **Verify claims with evidence** — check build logs, rendered output, terminal state. Never assume
+  or report success without checking.
+- **Plans must be standalone** — a fresh agent with no prior context must be able to pick up and
+  execute a plan without ambiguity.
 - **Plans must be discoverable** — linked from parent plan, README, and related docs.
 - **Archive docs are historical records** — never update them.
-- **Listen to user priorities** — not document structure. When the user says focus on X, don't get sidetracked by Y.
+- **Listen to user priorities** — not document structure. When the user says focus on X, don't get
+  sidetracked by Y.
 
 ## Remember
 

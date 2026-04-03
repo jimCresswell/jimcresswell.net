@@ -65,6 +65,7 @@ All plans must include instructions to create:
 Run after making changes:
 
 ```bash
-pnpm check       # All seven gates with auto-fix (see rules.md)
-pnpm test:e2e    # E2E tests (separate, requires Chromium)
+pnpm check                         # All eight gates with auto-fix (see rules.md)
+pnpm test:e2e                      # E2E tests (separate, requires Chromium)
+pnpm practice:fitness:informational # Advisory Practice/doc fitness check when those surfaces changed
 ```

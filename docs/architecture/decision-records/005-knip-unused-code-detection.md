@@ -54,7 +54,7 @@ of the `pnpm check` script, which is the project's standard quality
 gate:
 
 ```text
-pnpm check = format-fix → markdownlint-fix → lint-fix → type-check → test → knip → gitleaks
+pnpm check = format-fix → markdownlint-fix → lint-fix → typecheck → test → knip → gitleaks → portability-check
 ```
 
 This means Knip runs:

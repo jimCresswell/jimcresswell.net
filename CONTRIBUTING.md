@@ -15,7 +15,9 @@ Guidelines for contributing to [www.jimcresswell.net](https://www.jimcresswell.n
 
 - Work on a **feature branch** and open a pull request. The repository owner commits to `main` directly; other contributors use branches.
 - A **pre-commit hook** runs `pnpm check:ci` (read-only quality gates) on every commit — expect ~10–15 seconds. Do not skip it (`--no-verify` is not permitted).
-- A **pre-push hook** runs `pnpm check && pnpm test:e2e && pnpm test:e2e:pdf` — the full gate sequence plus all E2E tests. This takes longer but catches issues before they reach the remote.
+- A **pre-push hook** runs `pnpm check && pnpm test:e2e` — the full gate sequence plus the default E2E suite. PDF tests are explicit because they require a prior production build on `:3001`.
+- If you touch agent tooling or platform adapters, ensure `pnpm portability:check` passes. It is already part of `pnpm check`, but call it out explicitly in your own verification notes.
+- If you touch Practice Core or directive docs that carry the four-field fitness frontmatter, run `pnpm practice:fitness:informational`.
 - If adding an architectural decision, create an ADR in `docs/architecture/decision-records/` following the existing format. See the [ADR index](docs/architecture/decision-records/README.md) for examples.
 
 ## Code conventions
@@ -49,5 +51,7 @@ Assumes TDD familiarity. For the full philosophy and rules, see [testing-strateg
 | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `gitleaks: command not found`     | Install gitleaks — `brew install gitleaks` on macOS, or see [releases](https://github.com/gitleaks/gitleaks/releases) for other platforms.                                                                                |
 | `pnpm check` fails on knip        | Unused export detected. Delete the export, or if it is dynamically used, add a targeted entry to the `knip` field in `package.json`. See [ADR-005](docs/architecture/decision-records/005-knip-unused-code-detection.md). |
+| `pnpm portability:check` fails    | A thin wrapper, reviewer adapter, or surface-matrix entry has drifted from the canonical `.agent/` source. Fix the wrapper or update the local surface contract so they match again.                                      |
+| `pnpm practice:fitness` fails     | A governed doc has exceeded a target or hard limit. Reflow prose, split the doc by responsibility, or explicitly agree a new limit before raising it.                                                                     |
 | Playwright browsers not installed | Run `pnpm exec playwright install`.                                                                                                                                                                                       |
 | PDF not generated locally         | Run `pnpm build` first. `/cv/pdf` redirects to a branded 404 until a build has run.                                                                                                                                       |

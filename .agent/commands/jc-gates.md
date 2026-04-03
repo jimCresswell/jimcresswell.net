@@ -4,7 +4,8 @@ Run the quality gates sequentially, fixing issues as they arise. Restart the ful
 
 The gate list, command names, and restart-on-fix discipline are defined in `.agent/directives/rules.md` (Code Quality section) — the single source of truth.
 
-Quick start: `pnpm check` runs all seven gates with auto-fix. If any gate fails, fix the issue and restart from `pnpm format:fix`.
+Quick start: `pnpm check` runs all eight gates with auto-fix. If any gate
+fails, fix the issue and restart from `pnpm format:fix`.
 
 For rendering-risk changes, the visual regression harness is also blocking
 proof. Run it during implementation slices rather than deferring it until all

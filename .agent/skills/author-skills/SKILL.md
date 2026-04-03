@@ -232,6 +232,8 @@ Update the Skills tables in both:
 
 - `.agent/practice-index.md`
 - `.agent/directives/AGENT.md`
+- `.agent/reference/cross-platform-agent-surface-matrix.md` when the supported
+  adapter surfaces change
 
 Keep the listing text short and aligned across both files.
 If the skill changes how other tooling works, update the
@@ -250,6 +252,7 @@ integration:
 3. confirm the skill appears in `.agent/practice-index.md`
 4. confirm the skill appears in `.agent/directives/AGENT.md`
 5. confirm any file references you added actually resolve
+6. if you changed adapter surfaces, run `pnpm portability:check`
 
 Useful checks:
 

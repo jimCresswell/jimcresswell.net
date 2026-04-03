@@ -1,8 +1,26 @@
-# Practice-Core Changelog
+# Practice Core Changelog
 
-Changes to the practice-core files, newest first. Each entry records the repo
+Changes to the Practice Core files, newest first. Each entry records the repo
 that made the change and what was changed. This file travels with the
-practice-core package.
+Practice Core package.
+
+## [new-cv] 2026-04-03
+
+- Extracted trinity provenance into `provenance.yml` and updated the portable
+  package model from six files to seven
+- Replaced single-value `fitness_ceiling` wording with the four-field fitness
+  model used by the new Practice fitness validator
+- Migrated provenance entries from positional `index` fields to UUID `id`
+  fields; chronology stays in array order and `date`, and integration still
+  compares detailed content rather than shorthand fields alone
+- Added an explicit local cross-platform agent surface contract in
+  `.agent/reference/cross-platform-agent-surface-matrix.md`
+- Added repo-local validation scripts and package commands for portability and
+  Practice fitness, and wired portability validation into `pnpm check`
+- Aligned wrapper surfaces (`deslop`, `pkg`, `start-right`, `read-practice`)
+  and Codex command wrappers with their canonical sources
+- Reconciled README, CONTRIBUTING, requirements, ADR-005, hooks, and related
+  agent docs with the live check, test, and interactive tooling story
 
 ## [new-cv] 2026-03-09
 

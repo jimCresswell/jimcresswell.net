@@ -92,4 +92,9 @@ The downloadable CV PDF must be high quality and accessible.
 
 The codebase must pass all quality gates before deployment.
 
-The definitive gate list and command names live in [rules.md](../../.agent/directives/rules.md#code-quality). `pnpm check` runs all seven gates; `pnpm test:e2e` and `pnpm test:e2e:pdf` run E2E tests separately. All exported functions must have TSDoc documentation.
+The definitive gate list and command names live in
+[rules.md](../../.agent/directives/rules.md#code-quality). `pnpm check` runs
+all eight blocking gates, including portability validation; `pnpm test:e2e`
+and `pnpm test:e2e:pdf` run E2E tests separately. `pnpm practice:fitness`
+exists for governed Practice/doc surfaces and is used intentionally rather than
+on every code change. All exported functions must have TSDoc documentation.

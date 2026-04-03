@@ -38,3 +38,30 @@ turning local rationale into permanent Core doctrine.
 
 Value mechanism: better transfer of high-signal lessons without diluting the
 Core's portability or self-containment.
+
+## 4. Surface contracts and validators
+
+Outcome: record supported versus unsupported agent-platform mappings in a local
+surface matrix, add a portability validator to the blocking check pipeline,
+and add a separate Practice fitness validator for governed docs.
+
+Impact: multi-platform support stops being inferred from scattered files, and
+Practice/doc growth becomes observable without forcing every advisory concern
+into the main gate.
+
+Value mechanism: clearer contracts reduce silent drift, while the split
+between blocking portability checks and advisory doc-fitness checks preserves
+both rigour and judgement.
+
+## 5. Provenance UUID entry IDs
+
+Outcome: replace positional provenance `index` fields with UUID v4 `id`
+fields, while keeping chronology in chain order and `date`.
+
+Impact: provenance stops implying rank or "version numbers", and incoming
+chains can be merged or referenced without renumbering pressure.
+
+Value mechanism: stable entry identifiers reduce exchange friction and future
+cross-reference fragility, while the docs keep the important guardrail
+explicit: integration still compares detailed content rather than shorthand
+fields alone.

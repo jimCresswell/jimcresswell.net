@@ -39,3 +39,15 @@ drift and incorrect deletions of anchors.
 Correction: if an `AGENTS.md` note is stable enough to matter, move it into the
 right canonical doc and leave anchors behind where appropriate. Do not let
 landing pads become long-term owners of structural truth.
+
+## Provenance shorthand matching is a trap
+
+It is tempting to compare Practice lineage by whatever shorthand is most
+visible. Positional indexes were especially misleading because they implied
+identity and rank they did not have. UUIDs fix that part, but they still do
+not replace understanding the actual change.
+
+Correction: when integrating incoming Practice Core files, compare the
+detailed content plus each entry's `repo`, `date`, and `purpose`. Use UUID
+`id` fields for stable entry references, and use array order plus `date` for
+chronology. Do not reduce the decision to UUID or legacy-index matching alone.

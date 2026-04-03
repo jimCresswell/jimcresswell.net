@@ -38,8 +38,10 @@ adoption without turning those details into universal doctrine.
 4. Create one thin `.codex/agents/*.toml` adapter per reviewer.
 5. Point each reviewer adapter back to the canonical prompt in
    `.agent/sub-agents/templates/`.
-6. Make `AGENTS.md` and `.codex/README.md` describe the same model.
-7. Add or update the architectural record once the model is stable.
+6. Document the supported and unsupported surfaces in
+   `.agent/reference/cross-platform-agent-surface-matrix.md`.
+7. Make `AGENTS.md` and `.codex/README.md` describe the same model.
+8. Add or update the architectural record once the model is stable.
 
 ## Validation checklist
 
@@ -48,8 +50,11 @@ adoption without turning those details into universal doctrine.
 - `.codex/config.toml` and `.codex/agents/` describe the reviewer roster
 - reviewer prompts remain canonical in `.agent/sub-agents/templates/`
 - no separate `.agents/rules/` layer appears
+- `.agent/reference/cross-platform-agent-surface-matrix.md` matches the
+  actual wrappers and project config
 - `AGENTS.md`, `.agent/directives/AGENT.md`, `.agent/practice-index.md`,
   `.codex/README.md`, and ADR-015 all tell the same story
+- `pnpm portability:check` passes after any Codex surface change
 
 ## Failure modes this repo hit
 

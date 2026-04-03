@@ -1,18 +1,21 @@
 ---
-fitness_ceiling: 200
+fitness_line_target: 200
+fitness_line_limit: 260
+fitness_char_limit: 12000
+fitness_line_length: 100
 ---
 
 # Distilled Learnings
 
-Quick-reference entries that are NOT in permanent docs.
-Read before every session. See `docs/architecture/README.md`
-for full architecture coverage.
+Quick-reference entries that are NOT in permanent docs. Read before every session. See
+`docs/architecture/README.md` for full architecture coverage.
 
 ---
 
 ## Workspace Quick Reference
 
-- Contact email: <contact@jimcresswell.net>; pronouns: he/him; honorific prefix: Dr (all in `content/entities.json` Person entity)
+- Contact email: <contact@jimcresswell.net>; pronouns: he/him; honorific prefix: Dr (all in
+  `content/entities.json` Person entity)
 
 ## Troubleshooting
 
