@@ -3,14 +3,17 @@ prompt_id: personal-knowledge-graph-track-b-source-of-truth-design
 title: "Track B Source-of-Truth Design"
 type: handoff
 status: active
-last_updated: 2026-03-09
+last_updated: 2026-04-03
 ---
 
 Continue the personal knowledge graph programme in
 `/Users/jim/code/personal/new-cv`.
 
-Use
-[$jc-start-right](/Users/jim/code/personal/new-cv/.agents/skills/jc-start-right/SKILL.md).
+Ground the session first: follow the **start-right** skill
+([`.agent/skills/start-right/SKILL.md`](/Users/jim/code/personal/new-cv/.agent/skills/start-right/SKILL.md))
+or the thin adapter
+[$jc-start-right](/Users/jim/code/personal/new-cv/.agents/skills/jc-start-right/SKILL.md)
+— same workflow (foundation docs, `plans/active/`, practice box, gates).
 
 ## Read first
 
@@ -19,16 +22,18 @@ Use
 3. `/Users/jim/code/personal/new-cv/.agent/directives/testing-strategy.md`
 4. `/Users/jim/code/personal/new-cv/.agent/memory/distilled.md`
 5. `/Users/jim/code/personal/new-cv/.agent/memory/napkin.md`
-6. `/Users/jim/code/personal/new-cv/.agent/plans/current/personal-knowledge-graph-roadmap.plan.md`
-7. `/Users/jim/code/personal/new-cv/.agent/plans/current/personal-knowledge-graph-source-of-truth-design.plan.md`
-8. `/Users/jim/code/personal/new-cv/.agent/plans/research/graph-source-of-truth-layer-map.md`
-9. `/Users/jim/code/personal/new-cv/.agent/plans/research/graph-current-state-audit.md`
-10. `/Users/jim/code/personal/new-cv/.agent/plans/research/graph-publication-consumer-and-proof-model.md`
-11. `/Users/jim/code/personal/new-cv/.agent/plans/research/graph-publication-output-audit.md`
-12. `/Users/jim/code/personal/new-cv/.agent/plans/research/graph-rich-result-external-validator-evidence.md`
-13. `/Users/jim/code/personal/new-cv/docs/architecture/README.md`
-14. `/Users/jim/code/personal/new-cv/docs/architecture/content-model.md`
-15. `/Users/jim/code/personal/new-cv/docs/architecture/decision-records/014-entity-model-design.md`
+6. `/Users/jim/code/personal/new-cv/.agent/plans/roadmap.md`
+7. `/Users/jim/code/personal/new-cv/.agent/plans/active/README.md`
+8. `/Users/jim/code/personal/new-cv/.agent/plans/current/personal-knowledge-graph-roadmap.plan.md`
+9. `/Users/jim/code/personal/new-cv/.agent/plans/active/personal-knowledge-graph-source-of-truth-design.plan.md`
+10. `/Users/jim/code/personal/new-cv/.agent/plans/research/graph-source-of-truth-layer-map.md`
+11. `/Users/jim/code/personal/new-cv/.agent/plans/research/graph-current-state-audit.md`
+12. `/Users/jim/code/personal/new-cv/.agent/plans/research/graph-publication-consumer-and-proof-model.md`
+13. `/Users/jim/code/personal/new-cv/.agent/plans/research/graph-publication-output-audit.md`
+14. `/Users/jim/code/personal/new-cv/.agent/plans/research/graph-rich-result-external-validator-evidence.md`
+15. `/Users/jim/code/personal/new-cv/docs/architecture/README.md`
+16. `/Users/jim/code/personal/new-cv/docs/architecture/content-model.md`
+17. `/Users/jim/code/personal/new-cv/docs/architecture/decision-records/014-entity-model-design.md`
 
 ## Grounding truths to preserve
 
@@ -87,7 +92,7 @@ The output should define:
 
 ## Likely relevant files
 
-- `/Users/jim/code/personal/new-cv/.agent/plans/current/personal-knowledge-graph-source-of-truth-design.plan.md`
+- `/Users/jim/code/personal/new-cv/.agent/plans/active/personal-knowledge-graph-source-of-truth-design.plan.md`
 - `/Users/jim/code/personal/new-cv/.agent/plans/current/personal-knowledge-graph-roadmap.plan.md`
 - `/Users/jim/code/personal/new-cv/.agent/plans/research/graph-source-of-truth-layer-map.md`
 - `/Users/jim/code/personal/new-cv/.agent/plans/research/graph-current-state-audit.md`

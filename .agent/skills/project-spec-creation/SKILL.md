@@ -1,12 +1,10 @@
 ---
-prompt_id: project-spec-creation
-title: "Project Definition Document Creation"
-type: workflow
-status: active
-last_updated: 2026-03-05
+name: project-spec-creation
+classification: active
+description: Create project definition documents for generative UI handoff (v0, Bolt, etc.). Use when specifying a content-driven site for another agent — discovery, design constraints, guardrails, assets, and handoff structure.
 ---
 
-# Project Definition Document Creation Prompt
+# Project Definition Document Creation
 
 You are helping create a comprehensive set of project definition documents for handoff to a generative UI agent (like v0.app, Bolt, or similar). The goal is to produce documents that are:
 
@@ -53,7 +51,7 @@ Document this as **Character and Tone** (see Phase 2).
 
 Convert prose into structured JSON where appropriate:
 
-```
+```text
 content/
 ├── site.json           # Global metadata (name, tagline, social links)
 ├── [primary].json      # Main content (cv.json, portfolio.json, services.json)
@@ -269,7 +267,7 @@ Compare generated assets against reference/original:
 
 ### 6.1 File Organization
 
-```
+```text
 project/
 ├── v0-prompt.md              ← Entry point (read this first)
 ├── README.md                 ← Explains structure and handoff process

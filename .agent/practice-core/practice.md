@@ -207,7 +207,7 @@ The mechanism is documented in [practice-lineage.md](practice-lineage.md), which
 
 `.agent/practice-core/incoming/` is the canonical location for incoming practice-core files. It is normally empty. When files arrive:
 
-- **At session start** (via start-right), agents alert the user.
+- **At session start** (via the `start-right` skill), agents alert the user.
 - **At consolidation** (via `/jc-consolidate-docs` step 8), agents perform the full integration flow: check the provenance chain, compare against the full local Practice system (not just `practice.md` — also rules, skills, commands, prompts, and directives), apply the three-part bar, propose specific changes, and clear the box after integration.
 
 ### Meta-Principles
@@ -224,8 +224,8 @@ The full set of Learned Principles, including those about silent degradation, di
 ## The Self-Teaching Property
 
 The practice is designed to be discoverable through use. `AGENT.md` links to
-`rules.md`, which references `testing-strategy.md`. Commands invoke prompts,
-prompts reference plans, and plans may draw on supporting artefacts when
+`rules.md`, which references `testing-strategy.md`. Commands invoke skills and
+prompts; prompts reference plans, and plans may draw on supporting artefacts when
 needed. Sub-agents review work against the same rules that guided its creation.
 The napkin captures what went wrong, distillation extracts rules, and the rules
 prevent repetition.

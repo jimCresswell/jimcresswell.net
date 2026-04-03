@@ -4,7 +4,7 @@ Agent-facing documentation and planning for this project. Start with [directives
 
 ## Directory Structure
 
-```
+```text
 .agent/
 ├── directives/       ← START HERE
 │   ├── AGENT.md              # Entry point — project context, commands, structure
@@ -25,11 +25,15 @@ Agent-facing documentation and planning for this project. Start with [directives
 │   ├── incoming/            # Transient received support material
 │   └── outgoing/            # Sender-maintained support material
 │
-├── temp/             ← Gitignored working files (LinkedIn export, old CV website, etc.)
+├── skills/           ← Canonical skills (see practice-index.md)
+│   ├── start-right/          # Session grounding (core)
+│   ├── project-spec-creation/  # Generative UI handoff specs (core)
+│   └── …
 │
-├── prompts/          ← Reusable prompt templates
-│   ├── start-right.prompt.md
-│   └── project-spec-creation-process.prompt.md
+├── prompts/          ← Handover and track prompts (not session entry — use skills/start-right)
+│   └── personal-knowledge-graph-*.prompt.md
+│
+├── temp/             ← Gitignored working files (LinkedIn export, old CV website, etc.)
 │
 ├── research/         ← Technical research and investigation notes
 │   └── cloudflare-pdf-render-service.md
@@ -50,13 +54,13 @@ Agent-facing documentation and planning for this project. Start with [directives
 
 Active plans describe work that is planned or in progress:
 
-| Plan                                                                                                                             | Status      | Description                                                 |
-| -------------------------------------------------------------------------------------------------------------------------------- | ----------- | ----------------------------------------------------------- |
-| [cv-editorial-improvements.plan.md](plans/current/cv-editorial-improvements.plan.md)                                             | In Progress | Parent editorial plan and context map                       |
-| [personal-knowledge-graph-roadmap.plan.md](plans/current/personal-knowledge-graph-roadmap.plan.md)                               | In Progress | Adopted graph roadmap — both tracks required, Track A first |
-| [personal-knowledge-graph-execution.plan.md](plans/current/personal-knowledge-graph-execution.plan.md)                           | In Progress | Track A execution plan for graph expression work            |
-| [personal-knowledge-graph-source-of-truth-design.plan.md](plans/current/personal-knowledge-graph-source-of-truth-design.plan.md) | Planned     | Track B design plan for graph-backed source of truth        |
-| [linkedin-update.plan.md](plans/current/linkedin-update.plan.md)                                                                 | Subsumed    | Downstream LinkedIn reference plan                          |
+| Plan                                                                                                                            | Status      | Description                                                 |
+| ------------------------------------------------------------------------------------------------------------------------------- | ----------- | ----------------------------------------------------------- |
+| [cv-editorial-improvements.plan.md](plans/current/cv-editorial-improvements.plan.md)                                            | In Progress | Parent editorial plan and context map                       |
+| [personal-knowledge-graph-roadmap.plan.md](plans/current/personal-knowledge-graph-roadmap.plan.md)                              | In Progress | Adopted graph roadmap — both tracks required, Track A first |
+| [personal-knowledge-graph-execution.plan.md](plans/current/personal-knowledge-graph-execution.plan.md)                          | In Progress | Track A execution plan for graph expression work            |
+| [personal-knowledge-graph-source-of-truth-design.plan.md](plans/active/personal-knowledge-graph-source-of-truth-design.plan.md) | Planned     | Track B design plan for graph-backed source of truth        |
+| [linkedin-update.plan.md](plans/current/linkedin-update.plan.md)                                                                | Subsumed    | Downstream LinkedIn reference plan                          |
 
 Completed plans are in [plans/complete/](plans/complete/) for reference.
 

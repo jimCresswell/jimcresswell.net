@@ -13,7 +13,7 @@ Use this note with:
 - [graph-negotiated-media-type-refinement.md](graph-negotiated-media-type-refinement.md)
 - [graph-cv-metadata-description-proof.md](graph-cv-metadata-description-proof.md)
 - [graph-rich-result-external-validator-evidence.md](graph-rich-result-external-validator-evidence.md)
-- [personal-knowledge-graph-source-of-truth-design.plan.md](../current/personal-knowledge-graph-source-of-truth-design.plan.md)
+- [personal-knowledge-graph-source-of-truth-design.plan.md](../active/personal-knowledge-graph-source-of-truth-design.plan.md)
 - [pkg-research-findings.md](pkg-research-findings.md)
 
 This note is implementation-backed. It defines the current Track A publication

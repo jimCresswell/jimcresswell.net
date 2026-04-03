@@ -22,7 +22,7 @@ isProject: false
 ## Status
 
 Adopted on 2026-03-09 as the required follow-on Track B plan under
-[personal-knowledge-graph-roadmap.plan.md](personal-knowledge-graph-roadmap.plan.md).
+[personal-knowledge-graph-roadmap.plan.md](../current/personal-knowledge-graph-roadmap.plan.md).
 
 Track A is now complete for the current publication surface. Treat this as the
 active graph design track, not an implementation brief.
@@ -33,7 +33,7 @@ Use this plan with
 [graph-publication-output-audit.md](../research/graph-publication-output-audit.md),
 [graph-negotiated-media-type-refinement.md](../research/graph-negotiated-media-type-refinement.md),
 [graph-source-of-truth-layer-map.md](../research/graph-source-of-truth-layer-map.md),
-[personal-knowledge-graph-roadmap.plan.md](personal-knowledge-graph-roadmap.plan.md),
+[personal-knowledge-graph-roadmap.plan.md](../current/personal-knowledge-graph-roadmap.plan.md),
 and [ADR-014](../../../docs/architecture/decision-records/014-entity-model-design.md).
 
 ## Outcome, impact, and value mechanism

@@ -58,16 +58,18 @@ For the practice-core files and their roles, see
 
 ### Skills
 
-| Skill                                                              | Purpose                                      |
-| ------------------------------------------------------------------ | -------------------------------------------- |
-| [napkin](skills/napkin/SKILL.md)                                   | Session learning log — always active         |
-| [distillation](skills/distillation/SKILL.md)                       | Rotate napkin into curated distilled.md      |
-| [author-skills](skills/author-skills/SKILL.md)                     | Create or update repo-local skills           |
-| [editorial-voice](skills/editorial-voice/SKILL.md)                 | Apply Jim's editorial voice                  |
-| [quality-gates](skills/quality-gates/SKILL.md)                     | Run quality gates with restart-on-fix        |
-| [deslop](skills/deslop/SKILL.md)                                   | Remove AI-generated code slop                |
-| [pkg](skills/pkg/SKILL.md)                                         | PKG entity model and structured data guide   |
-| [package-deps-up-to-date](skills/package-deps-up-to-date/SKILL.md) | Audit and update `package.json` dependencies |
+| Skill                                                              | Purpose                                        |
+| ------------------------------------------------------------------ | ---------------------------------------------- |
+| [start-right](skills/start-right/SKILL.md)                         | Core session grounding — `/jc-start-right`     |
+| [project-spec-creation](skills/project-spec-creation/SKILL.md)     | Core — project specs for generative UI handoff |
+| [napkin](skills/napkin/SKILL.md)                                   | Session learning log — always active           |
+| [distillation](skills/distillation/SKILL.md)                       | Rotate napkin into curated distilled.md        |
+| [author-skills](skills/author-skills/SKILL.md)                     | Create or update repo-local skills             |
+| [editorial-voice](skills/editorial-voice/SKILL.md)                 | Apply Jim's editorial voice                    |
+| [quality-gates](skills/quality-gates/SKILL.md)                     | Run quality gates with restart-on-fix          |
+| [deslop](skills/deslop/SKILL.md)                                   | Remove AI-generated code slop                  |
+| [pkg](skills/pkg/SKILL.md)                                         | PKG entity model and structured data guide     |
+| [package-deps-up-to-date](skills/package-deps-up-to-date/SKILL.md) | Audit and update `package.json` dependencies   |
 
 ### Rules
 

@@ -14,7 +14,7 @@ roadmap, see
 For the adopted Track A plan, see
 [personal-knowledge-graph-execution.plan.md](../current/personal-knowledge-graph-execution.plan.md).
 For the adopted Track B plan, see
-[personal-knowledge-graph-source-of-truth-design.plan.md](../current/personal-knowledge-graph-source-of-truth-design.plan.md).
+[personal-knowledge-graph-source-of-truth-design.plan.md](../active/personal-knowledge-graph-source-of-truth-design.plan.md).
 For the historical reset record, see
 [graph-metaplan.plan.md](../graph-metaplan.plan.md). For canonical design decisions, use
 [ADR-014](../../../docs/architecture/decision-records/014-entity-model-design.md).

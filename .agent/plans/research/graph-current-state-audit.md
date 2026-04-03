@@ -177,7 +177,7 @@ onto the graph:
 
 - `.agent/plans/current/personal-knowledge-graph-roadmap.plan.md`
 - `.agent/plans/current/personal-knowledge-graph-execution.plan.md`
-- `.agent/plans/current/personal-knowledge-graph-source-of-truth-design.plan.md`
+- `.agent/plans/active/personal-knowledge-graph-source-of-truth-design.plan.md`
 - `.agent/plans/roadmap.md`
 - `.agent/plans/current/cv-editorial-improvements.plan.md`
 - `.agent/plans/current/linkedin-update.plan.md`
@@ -202,6 +202,6 @@ graph-derived and to adopt the new two-track structure with Track A first.
 - [graph-publication-consumer-and-proof-model.md](graph-publication-consumer-and-proof-model.md) — Track A Phase A1 consumer, channel, and proof authority
 - [graph-publication-output-audit.md](graph-publication-output-audit.md) — Track A Phase A2 output, proof-gap, and prioritisation audit
 - [personal-knowledge-graph-execution.plan.md](../current/personal-knowledge-graph-execution.plan.md) — adopted Track A execution authority
-- [personal-knowledge-graph-source-of-truth-design.plan.md](../current/personal-knowledge-graph-source-of-truth-design.plan.md) — adopted Track B design authority
+- [personal-knowledge-graph-source-of-truth-design.plan.md](../active/personal-knowledge-graph-source-of-truth-design.plan.md) — adopted Track B design authority
 - [personal-knowledge-graph-design-notes.md](personal-knowledge-graph-design-notes.md)
 - [ADR-014](../../../docs/architecture/decision-records/014-entity-model-design.md)

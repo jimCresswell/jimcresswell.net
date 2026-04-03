@@ -154,7 +154,7 @@ Plus education entries at Portsmouth, Sussex, and Bath (with thesis titles and l
 - [meta-seo-content-audit.plan.md](../complete/meta-seo-content-audit.plan.md) — Complete. The CV's `meta.summary`, `KNOWS_ABOUT`, `OCCUPATION`, and capabilities have been editorially updated since this plan was written. Phase 1 should read the current `cv.content.json` and `lib/jsonld.ts` to pick up these changes.
 - [personal-knowledge-graph-roadmap.plan.md](personal-knowledge-graph-roadmap.plan.md) — current parent roadmap for graph work. LinkedIn remains downstream and must not drive graph architecture.
 - [personal-knowledge-graph-execution.plan.md](personal-knowledge-graph-execution.plan.md) — adopted Track A execution plan, which comes first in sequencing.
-- [personal-knowledge-graph-source-of-truth-design.plan.md](personal-knowledge-graph-source-of-truth-design.plan.md) — adopted Track B design plan, which remains downstream of Track A and upstream of any LinkedIn derivation.
+- [personal-knowledge-graph-source-of-truth-design.plan.md](../active/personal-knowledge-graph-source-of-truth-design.plan.md) — adopted Track B design plan, which remains downstream of Track A and upstream of any LinkedIn derivation.
 - [graph-metaplan.plan.md](../graph-metaplan.plan.md) — completed reset record for the graph stack.
 
 ## Decision

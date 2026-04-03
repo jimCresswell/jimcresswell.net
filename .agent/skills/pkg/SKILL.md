@@ -26,7 +26,7 @@ Before PKG work, read and internalise:
 | `.agent/plans/current/personal-knowledge-graph-roadmap.plan.md`                | Current graph roadmap — two required tracks, Track A first     |
 | `.agent/plans/current/personal-knowledge-graph-execution.plan.md`              | Current Track A execution authority                            |
 | `.agent/plans/research/graph-current-state-audit.md`                           | Observed implementation truth and architecture audit           |
-| `.agent/plans/current/personal-knowledge-graph-source-of-truth-design.plan.md` | Current Track B design authority                               |
+| `.agent/plans/active/personal-knowledge-graph-source-of-truth-design.plan.md` | Current Track B design authority                               |
 | `.agent/plans/graph-metaplan.plan.md`                                          | Completed reset record — why the current stack exists          |
 | `.agent/plans/research/personal-knowledge-graph-design-notes.md`               | Historical design reference — entity inventory and conventions |
 | `.agent/plans/complete/personal-knowledge-graph-phase-model.plan.md`           | Archived phase model and acceptance criteria                   |
@@ -141,7 +141,7 @@ Source: research findings (`.agent/plans/research/pkg-research-findings.md`) —
 - `.agent/plans/current/personal-knowledge-graph-roadmap.plan.md` — current graph roadmap
 - `.agent/plans/current/personal-knowledge-graph-execution.plan.md` — current Track A execution plan
 - `.agent/plans/research/graph-current-state-audit.md` — observed implementation baseline
-- `.agent/plans/current/personal-knowledge-graph-source-of-truth-design.plan.md` — current Track B design plan
+- `.agent/plans/active/personal-knowledge-graph-source-of-truth-design.plan.md` — current Track B design plan
 - `.agent/plans/graph-metaplan.plan.md` — completed reset record
 - `.agent/plans/research/personal-knowledge-graph-design-notes.md` — historical design reference
 - `.agent/plans/complete/personal-knowledge-graph-phase-model.plan.md` — phase model (archived goals, tasks, acceptance criteria)

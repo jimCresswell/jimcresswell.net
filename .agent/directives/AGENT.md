@@ -46,6 +46,10 @@ Read [the rules](./rules.md); reflect on them, _apply_ them — they MUST be fol
 
 Every session, read `.agent/memory/distilled.md` and scan `.agent/memory/napkin.md` before doing anything. These contain hard-won patterns and recent context. Update the napkin continuously as you work — log mistakes, corrections, and what works. See the [napkin skill](../skills/napkin/SKILL.md).
 
+Then follow the **[start-right skill](../skills/start-right/SKILL.md)** (command: `/jc-start-right`) for foundation documents, guiding questions, practice box, and quality expectations.
+
+Also read **`.agent/plans/active/README.md`** and the **active plan markdown** in `.agent/plans/active/` — the current execution focus lives in that folder as the real plan file, not only in `plans/current/`. When the primary focus changes, move plans, update that README, and reconcile `roadmap.md` together.
+
 ## Agent Tools
 
 ### Sub-agents
@@ -65,16 +69,18 @@ template.
 
 ### Skills
 
-| Skill                                                                 | Purpose                                                             |
-| --------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| [editorial-voice](../skills/editorial-voice/SKILL.md)                 | Apply Jim's editorial voice — two registers, common pitfalls        |
-| [quality-gates](../skills/quality-gates/SKILL.md)                     | Run quality gates with restart-on-fix discipline                    |
-| [napkin](../skills/napkin/SKILL.md)                                   | Session learning log — always active, read and update every session |
-| [distillation](../skills/distillation/SKILL.md)                       | Rotate napkin into curated distilled.md when it grows large         |
-| [author-skills](../skills/author-skills/SKILL.md)                     | Create or update repo-local skills and adapters                     |
-| [deslop](../skills/deslop/SKILL.md)                                   | Remove AI-generated code slop from diffs                            |
-| [pkg](../skills/pkg/SKILL.md)                                         | PKG entity model and structured data guide                          |
-| [package-deps-up-to-date](../skills/package-deps-up-to-date/SKILL.md) | Audit and update `package.json` dependencies safely                 |
+| Skill                                                                 | Purpose                                                                         |
+| --------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| [start-right](../skills/start-right/SKILL.md)                         | Core session grounding — foundation docs, active plan, practice box, gates      |
+| [project-spec-creation](../skills/project-spec-creation/SKILL.md)     | Core workflow — project definition docs for generative UI handoff (v0, Bolt, …) |
+| [editorial-voice](../skills/editorial-voice/SKILL.md)                 | Apply Jim's editorial voice — two registers, common pitfalls                    |
+| [quality-gates](../skills/quality-gates/SKILL.md)                     | Run quality gates with restart-on-fix discipline                                |
+| [napkin](../skills/napkin/SKILL.md)                                   | Session learning log — always active, read and update every session             |
+| [distillation](../skills/distillation/SKILL.md)                       | Rotate napkin into curated distilled.md when it grows large                     |
+| [author-skills](../skills/author-skills/SKILL.md)                     | Create or update repo-local skills and adapters                                 |
+| [deslop](../skills/deslop/SKILL.md)                                   | Remove AI-generated code slop from diffs                                        |
+| [pkg](../skills/pkg/SKILL.md)                                         | PKG entity model and structured data guide                                      |
+| [package-deps-up-to-date](../skills/package-deps-up-to-date/SKILL.md) | Audit and update `package.json` dependencies safely                             |
 
 ### Commands
 
@@ -114,7 +120,7 @@ e2e/                    # End-to-end tests (Playwright)
   skills/               # Canonical skills
   rules/                # Canonical always-applied rules
   sub-agents/templates/ # Canonical sub-agent templates
-  plans/                # Work planning
+  plans/                # Work planning — active/ holds the primary plan file; see active/README.md
   prompts/              # Reusable prompt playbooks
   memory/               # Napkin, distilled, code patterns
   experience/           # Experiential records

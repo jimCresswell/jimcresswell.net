@@ -84,7 +84,7 @@ This plan is not the place for:
 - using LinkedIn or another downstream view as an architectural driver
 
 That work belongs to
-[personal-knowledge-graph-source-of-truth-design.plan.md](personal-knowledge-graph-source-of-truth-design.plan.md).
+[personal-knowledge-graph-source-of-truth-design.plan.md](../active/personal-knowledge-graph-source-of-truth-design.plan.md).
 
 ## Current truth
 
@@ -298,7 +298,7 @@ re-open Track A external validation unless the live structured-data output
 changes materially or a new manual validation request is explicit.
 
 **Next active graph task:** continue in
-[personal-knowledge-graph-source-of-truth-design.plan.md](personal-knowledge-graph-source-of-truth-design.plan.md).
+[personal-knowledge-graph-source-of-truth-design.plan.md](../active/personal-knowledge-graph-source-of-truth-design.plan.md).
 Track B is now the active design track, while implementation remains out of
 scope until that plan is decision-complete.
 

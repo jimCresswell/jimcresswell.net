@@ -11,7 +11,7 @@ Use this note with:
 - [graph-current-state-audit.md](graph-current-state-audit.md)
 - [graph-publication-consumer-and-proof-model.md](graph-publication-consumer-and-proof-model.md)
 - [graph-negotiated-media-type-refinement.md](graph-negotiated-media-type-refinement.md)
-- [personal-knowledge-graph-source-of-truth-design.plan.md](../current/personal-knowledge-graph-source-of-truth-design.plan.md)
+- [personal-knowledge-graph-source-of-truth-design.plan.md](../active/personal-knowledge-graph-source-of-truth-design.plan.md)
 
 This note is implementation-backed. It audits only the graph publication
 surfaces that exist today. It does not widen Track A into graph-backed page

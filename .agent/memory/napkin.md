@@ -1,5 +1,38 @@
 # Napkin
 
+## Session: 2026-04-03 — Start-right and project-spec as core skills
+
+### What Was Done
+
+- Moved **start-right** and **project-spec-creation** from `.agent/prompts/` to
+  **`.agent/skills/`** (canonical), with **Cursor** and **Codex** thin adapters.
+- **`jc-start-right`** command and **`.agents/skills/jc-start-right`** now read
+  `.agent/skills/start-right/SKILL.md` instead of a prompt file.
+- Updated **AGENT.md**, **practice-index**, **practice-bootstrap**,
+  **practice-lineage**, **practice.md**, and **`.agent/README.md`** so session
+  entry is skill-based; track prompts remain under `prompts/`.
+
+### Patterns to Remember
+
+- **Session grounding** = `start-right` skill, not a prompt. **Generative UI
+  handoff packs** = `project-spec-creation` skill.
+
+## Session: 2026-03-21 — Active plan lives in `plans/active/`
+
+### What Was Done
+
+- Moved **Track B source-of-truth design** into **`active/personal-knowledge-graph-source-of-truth-design.plan.md`** (no separate `CURRENT.md`; **`active/README.md`** names the file and when to move plans on focus change).
+- Updated cross-links from `current/` → `active/` across roadmap, research,
+  prompts, PKG skill, and parent plans.
+- **Start Right**, **AGENT.md**, **jc-consolidate-docs**, and **practice-bootstrap**
+  now describe **`active/`** as the folder that holds the real primary plan file.
+
+### Patterns to Remember
+
+- **`current/`** holds other in-flight plans; the **primary** execution plan file
+  lives under **`active/`**. Reconcile **roadmap** and **`active/README.md`**
+  when moving plans in or out.
+
 ## Session: 2026-03-09 — Track A External Validator Boundary Closure
 
 ### What Was Done

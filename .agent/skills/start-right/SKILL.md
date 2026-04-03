@@ -1,9 +1,7 @@
 ---
-prompt_id: start-right
-title: "Start Right"
-type: workflow
-status: active
-last_updated: 2026-03-09
+name: start-right
+classification: active
+description: Core session workflow — ground yourself before beginning work. Read when starting a session, invoking /jc-start-right, or whenever you need foundation documents, guiding questions, practice box check, and quality expectations.
 ---
 
 # Start Right
@@ -17,6 +15,8 @@ Read and internalise these documents:
 1. `.agent/directives/AGENT.md` — Entry point and project context
 2. `.agent/directives/rules.md` — **THE AUTHORITATIVE RULES**
 3. `.agent/directives/testing-strategy.md` — TDD at all levels
+
+4. **`.agent/plans/active/`** — **The currently active execution plan** lives here as the real markdown file. Read **`active/README.md`** for which file, then open that plan. Do not guess which plan is primary from `current/` alone.
 
 **Plans must include regularly re-reading and re-committing to these foundation documents.**
 

@@ -20,7 +20,7 @@ Positioning paragraphs, capabilities, `meta.summary`, structured data (`KNOWS_AB
 | Graph current-state audit                | [graph-current-state-audit.md](../research/graph-current-state-audit.md)                                           | Baseline    |
 | Graph roadmap                            | [personal-knowledge-graph-roadmap.plan.md](personal-knowledge-graph-roadmap.plan.md)                               | In progress |
 | Track A execution                        | [personal-knowledge-graph-execution.plan.md](personal-knowledge-graph-execution.plan.md)                           | Complete    |
-| Track B source-of-truth design           | [personal-knowledge-graph-source-of-truth-design.plan.md](personal-knowledge-graph-source-of-truth-design.plan.md) | In progress |
+| Track B source-of-truth design           | [personal-knowledge-graph-source-of-truth-design.plan.md](../active/personal-knowledge-graph-source-of-truth-design.plan.md) | In progress |
 | Track B B1 layer map                     | [graph-source-of-truth-layer-map.md](../research/graph-source-of-truth-layer-map.md)                               | Complete    |
 | Graph metaplan                           | [graph-metaplan.plan.md](../graph-metaplan.plan.md)                                                                | Complete    |
 | Visual regression harness                | [visual-regression-harness.plan.md](../complete/visual-regression-harness.plan.md)                                 | Complete    |
@@ -115,7 +115,7 @@ Completed in a dedicated plan: [meta-seo-content-audit.plan.md](../complete/meta
 
 **Track A execution:** [personal-knowledge-graph-execution.plan.md](personal-knowledge-graph-execution.plan.md) — adopted first execution track for graph expression work.
 
-**Track B design:** [personal-knowledge-graph-source-of-truth-design.plan.md](personal-knowledge-graph-source-of-truth-design.plan.md) — adopted required follow-on design track for the graph-backed source-of-truth architecture.
+**Track B design:** [personal-knowledge-graph-source-of-truth-design.plan.md](../active/personal-knowledge-graph-source-of-truth-design.plan.md) — adopted required follow-on design track for the graph-backed source-of-truth architecture.
 
 **Track B B1 completion:** [graph-source-of-truth-layer-map.md](../research/graph-source-of-truth-layer-map.md) — completed ownership and topology note. Track B now continues from B2 composition work.
 
@@ -158,7 +158,7 @@ framing. This parent plan keeps only the editorial context and plan map.
 | ~~Capabilities (concrete additions)~~        | Done — see [capabilities-editorial.plan.md](../complete/capabilities-editorial.plan.md)                                                                                                                                                                                                                                                                                                                |
 | ~~Meta & SEO content audit~~                 | Done — see [meta-seo-content-audit.plan.md](../complete/meta-seo-content-audit.plan.md)                                                                                                                                                                                                                                                                                                                |
 | ~~Experience & Before Oak editorial review~~ | Done — see [experience-editorial.plan.md](../complete/experience-editorial.plan.md)                                                                                                                                                                                                                                                                                                                    |
-| Graph work                                   | Continue from [personal-knowledge-graph-roadmap.plan.md](personal-knowledge-graph-roadmap.plan.md), [graph-source-of-truth-layer-map.md](../research/graph-source-of-truth-layer-map.md), and [personal-knowledge-graph-source-of-truth-design.plan.md](personal-knowledge-graph-source-of-truth-design.plan.md). Track A is complete for the current publication surface; Track B Phase B2 is active. |
+| Graph work                                   | Continue from [personal-knowledge-graph-roadmap.plan.md](personal-knowledge-graph-roadmap.plan.md), [graph-source-of-truth-layer-map.md](../research/graph-source-of-truth-layer-map.md), and [personal-knowledge-graph-source-of-truth-design.plan.md](../active/personal-knowledge-graph-source-of-truth-design.plan.md). Track A is complete for the current publication surface; Track B Phase B2 is active. |
 
 ---
 

@@ -118,11 +118,11 @@ For the practice-core files and their roles, see
 
 ## Artefact Directories
 
-| Location                            | What lives there                                         |
-| ----------------------------------- | -------------------------------------------------------- |
-| [`.agent/directives/`](directives/) | Principles, rules, and operational directives            |
-| [`.agent/plans/`](plans/)           | Work planning — active, archived, and optional templates |
-| [`.agent/memory/`](memory/)         | Institutional memory — napkin, distilled, code patterns  |
+| Location                            | What lives there                                                                                           |
+| ----------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| [`.agent/directives/`](directives/) | Principles, rules, and operational directives                                                              |
+| [`.agent/plans/`](plans/)           | Work planning — **`active/`** holds the primary plan file; `current/`, `complete/`, `icebox/`, `research/` |
+| [`.agent/memory/`](memory/)         | Institutional memory — napkin, distilled, code patterns                                                    |
 | {additional directories as needed}  |
 ```
 
@@ -268,11 +268,12 @@ Categorise by severity: Critical (must fix), Important (should fix), Suggestions
 ### Core Review Agents
 
 Default portable roster. Local practices may add specialist reviewers such as editorial or domain-specific agents.
-| Agent | Specialisation | Key assessment areas |
+
+| Agent           | Specialisation                   | Key assessment areas                                                                                                                                                  |
 | --------------- | -------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `code-reviewer` | Gateway reviewer, always invoked | Correctness, edge cases, security, performance, readability, maintainability, test coverage. Triages to specialists. |
-| `test-reviewer` | Test quality and TDD compliance | Test classification (unit/integration), naming conventions, mock simplicity, test value, TDD evidence. Recommends deletion for tests that test mocks or types. |
-| `type-reviewer` | TypeScript type safety | Type flow tracing, type widening detection, assertion usage, external boundary validation. Core principle: "why solve at runtime what you can embed at compile time?" |
+| `code-reviewer` | Gateway reviewer, always invoked | Correctness, edge cases, security, performance, readability, maintainability, test coverage. Triages to specialists.                                                  |
+| `test-reviewer` | Test quality and TDD compliance  | Test classification (unit/integration), naming conventions, mock simplicity, test value, TDD evidence. Recommends deletion for tests that test mocks or types.        |
+| `type-reviewer` | TypeScript type safety           | Type flow tracing, type widening detection, assertion usage, external boundary validation. Core principle: "why solve at runtime what you can embed at compile time?" |
 
 ## Commands: Canonical and Platform Adapters
 
@@ -307,7 +308,7 @@ Claude Code (`.claude/commands/jc-*.md`) — YAML frontmatter with `description`
 
 | Command          | File                     | Core logic                                                                                                                                                                                                                         |
 | ---------------- | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| start-right      | `jc-start-right.md`      | Read and follow the start-right prompt.                                                                                                                                                                                            |
+| start-right      | `jc-start-right.md`      | Read and follow `.agent/skills/start-right/SKILL.md` (canonical session grounding).                                                                                                                                                |
 | gates            | `jc-gates.md`            | Run `type-check -> lint -> build -> test` sequentially. All blocking. Restart from beginning after any fix.                                                                                                                        |
 | commit           | `jc-commit.md`           | Check status, review diff, verify gates, stage selectively, conventional commit format. Safety: never force push, never amend pushed commits, never `--no-verify`.                                                                 |
 | consolidate-docs | `jc-consolidate-docs.md` | Verify documentation is current. Extract any remaining plan content to permanent locations. Update plan/prompt statuses. Write to napkin. Check practice box. Audit cohesion. Check practice fitness. Consider practice evolution. |
@@ -315,11 +316,7 @@ Claude Code (`.claude/commands/jc-*.md`) — YAML frontmatter with `description`
 
 ## Prompts (.agent/prompts/)
 
-All prompts carry YAML frontmatter: `prompt_id`, `title`, `type` (workflow | handover), `status` (active | completed), `last_updated`, and `parent_plan` (handover only). Completed prompts move to `archive/`. **Workflow prompts** (e.g. `start-right`) are evergreen processes with no `parent_plan`. **Handover prompts** describe specific implementation sessions; archived on completion.
-
-### start-right.prompt.md
-
-The session entry point. Sections: **Foundation Documents** (AGENT.md, rules.md, testing-strategy.md), **Guiding Questions** (right problem? right layer? simpler? assumptions?), **Practice Box** (check `.agent/practice-core/incoming/`; note `.agent/practice-context/incoming/` if present), **Process** (discuss first step with user), **Quality Gates**.
+Track and handover prompts live here (e.g. PKG track prompts). All prompts carry YAML frontmatter: `prompt_id`, `title`, `type` (workflow | handover), `status` (active | completed), `last_updated`, and `parent_plan` (handover only). Completed prompts move to `archive/`. **Session grounding** is not a prompt — it is the **`start-right`** skill (`.agent/skills/start-right/SKILL.md`), invoked via `/jc-start-right` and thin adapters.
 
 ## Skills (.agent/skills/)
 
@@ -391,7 +388,7 @@ After creating all files, validate:
 4. Every file path referenced in AGENT.md, rules, commands, and agents resolves.
 5. Every agent's reading requirements point to files that exist.
 6. `AGENTS.md` links to `AGENT.md`, which links to `rules.md` and `testing-strategy.md`.
-7. The `start-right` prompt references all foundation documents.
+7. The `start-right` skill references all foundation documents.
 8. The napkin rule points to a napkin skill that exists.
 9. Quality gates (`type-check`, `lint`, `build`, `test`) are wired in `package.json`.
 10. The project builds.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Project spec creation"
+  short_description: "Project definition documents for generative UI handoff"
+  default_prompt: "Use the project-spec-creation skill when creating v0/Bolt-style handoff packs: content discovery, design constraints, copy lock, guardrails, assets, and folder structure."

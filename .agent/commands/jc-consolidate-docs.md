@@ -10,7 +10,8 @@
    `../` paths still resolve. When a prompt is completed, do not leave stale
    active-task instructions beneath the completion header; collapse it to a
    truthful completion record and redirect. After any track- or phase-status
-   change, reconcile the active plan stack, `.agent/plans/roadmap.md`, and any
+   change, reconcile the active plan stack, `.agent/plans/roadmap.md`,
+   `.agent/plans/active/` (primary plan file + `README.md`), and any
    parent-plan summary tables in the same pass so status does not drift between
    layers.
 2. Identify any content in ephemeral locations (plans, prompts, napkin, distilled.md, AGENTS.md) that now functions as settled documentation, and move it to non-ephemeral locations such as ADRs, `/docs/`, or READMEs. If you add or materially update a practice-core changelog entry, consider whether `.agent/practice-context/outgoing/` needs a short supporting note or report because the changelog alone would be too thin.

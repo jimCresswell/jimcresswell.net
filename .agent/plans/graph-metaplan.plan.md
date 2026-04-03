@@ -33,7 +33,7 @@ stack:
 - [graph-current-state-audit.md](research/graph-current-state-audit.md)
 - [personal-knowledge-graph-roadmap.plan.md](current/personal-knowledge-graph-roadmap.plan.md)
 - [personal-knowledge-graph-execution.plan.md](current/personal-knowledge-graph-execution.plan.md)
-- [personal-knowledge-graph-source-of-truth-design.plan.md](current/personal-knowledge-graph-source-of-truth-design.plan.md)
+- [personal-knowledge-graph-source-of-truth-design.plan.md](active/personal-knowledge-graph-source-of-truth-design.plan.md)
 
 It remains at this path as a historical record and stable reference target for
 older links.

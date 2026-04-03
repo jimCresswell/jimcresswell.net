@@ -34,7 +34,7 @@ Track A comes first.
 Track A Phase A1, Phase A2, Phase A3, and Phase A4 are now complete in
 [personal-knowledge-graph-execution.plan.md](personal-knowledge-graph-execution.plan.md).
 Track B design is now the active graph task in
-[personal-knowledge-graph-source-of-truth-design.plan.md](personal-knowledge-graph-source-of-truth-design.plan.md).
+[personal-knowledge-graph-source-of-truth-design.plan.md](../active/personal-knowledge-graph-source-of-truth-design.plan.md).
 
 Use this roadmap together with
 [graph-current-state-audit.md](../research/graph-current-state-audit.md),
@@ -46,7 +46,7 @@ Use this roadmap together with
 [graph-source-of-truth-layer-map.md](../research/graph-source-of-truth-layer-map.md),
 [personal-knowledge-graph-execution.plan.md](personal-knowledge-graph-execution.plan.md),
 and
-[personal-knowledge-graph-source-of-truth-design.plan.md](personal-knowledge-graph-source-of-truth-design.plan.md)
+[personal-knowledge-graph-source-of-truth-design.plan.md](../active/personal-knowledge-graph-source-of-truth-design.plan.md)
 as the live graph-planning stack.
 
 [graph-metaplan.plan.md](../graph-metaplan.plan.md) remains the completed reset
@@ -203,7 +203,7 @@ reduces the risk of unnecessary architectural churn.
 **Acceptance criteria:**
 
 - Track B design is owned by
-  [personal-knowledge-graph-source-of-truth-design.plan.md](personal-knowledge-graph-source-of-truth-design.plan.md)
+  [personal-knowledge-graph-source-of-truth-design.plan.md](../active/personal-knowledge-graph-source-of-truth-design.plan.md)
 - the layered model, composition model, binding model, and adoption path are
   decision-complete
 - Track B remains design-only until the plan says otherwise
@@ -217,7 +217,7 @@ That note fixes the first Track B design boundary:
 - the current rendering truth remains unchanged until later adoption work
 
 Phase B2 is now the active Track B design slice in
-[personal-knowledge-graph-source-of-truth-design.plan.md](personal-knowledge-graph-source-of-truth-design.plan.md).
+[personal-knowledge-graph-source-of-truth-design.plan.md](../active/personal-knowledge-graph-source-of-truth-design.plan.md).
 
 ### Phase 4 — Track B Adoption Planning
 

@@ -156,9 +156,9 @@ The flow has two critical properties for propagation:
 
 2. **Self-applicable**: the rules that enforce the Practice are themselves subject to the same evolution process. If consolidation reveals that a rule is wrong, the rule can change — but only if the change clears the three-part bar. The Practice is a ratchet, not a pendulum.
 
-### Prompts
+### Skills and prompts
 
-**Prompts** (`.agent/prompts/`) are reusable playbooks. The `start-right` prompt is the session entry point: read directives, understand context, ask guiding questions, commit. Prompts are not part of the learning loop -- they are how the Practice is applied at the start of a session.
+**Skills** (`.agent/skills/`) hold reusable workflows. The **`start-right`** skill is the session entry point: read directives, understand context, ask guiding questions, commit. It is invoked via `/jc-start-right` and thin adapters. **Prompts** (`.agent/prompts/`) are track or handover playbooks (e.g. PKG phases); they are not the generic session opener.
 
 ## Adaptation Levels
 
@@ -210,7 +210,7 @@ Every repo with a Practice has a canonical location for incoming material: **`.a
 
 The practice box is checked at two points:
 
-1. **Session start** (via the `start-right` prompt) — alert the user if files are present.
+1. **Session start** (via the `start-right` skill) — alert the user if files are present.
 2. **Consolidation** (via the `jc-consolidate-docs` command step 8) — perform the full integration flow.
 
 ### Integration Flow
@@ -246,7 +246,7 @@ For restructuring: create canonical versions in `.agent/` first, convert platfor
 3. Write `rules.md` encoding the Principles above, adapted to local tooling.
 4. Write `testing-strategy.md` encoding the Testing Philosophy above, with local test targets.
 5. Write `metacognition.md` from the condensed version in `practice-bootstrap.md` (it is universal).
-6. Follow `practice-bootstrap.md` for the remaining artefacts: sub-agent definitions, workflow commands, rules, start-right prompt, and skills (napkin, distillation). For each artefact type, create the canonical content in `.agent/` first, then add thin platform adapters. The bootstrap file provides annotated templates and format specifications for every artefact type.
+6. Follow `practice-bootstrap.md` for the remaining artefacts: sub-agent definitions, workflow commands, rules, core skills (`start-right`, `project-spec-creation`), and other skills (napkin, distillation). For each artefact type, create the canonical content in `.agent/` first, then add thin platform adapters. The bootstrap file provides annotated templates and format specifications for every artefact type.
 7. **Practice-core files.** If building from scratch: write all six files in `.agent/practice-core/` — the trinity (`practice.md`, this lineage doc, `practice-bootstrap.md`) each with YAML frontmatter (`provenance` array with index 0 entry, `fitness_ceiling`), plus `README.md` (human entry point), `index.md` (agent entry point), and `CHANGELOG.md`. Add initial learned principles to the lineage doc. If received from another repo: the six files already exist — append a new provenance entry to each trinity file with the new repo name, date, and purpose. The README, index, and changelog are generic and should not need changes beyond appending a new changelog entry.
 8. **Create `.agent/practice-index.md`** — the bridge file that carries navigable links from practice-core to the local repo's artefacts. Practice-core references it via `../practice-index.md`. Use the template in `practice-bootstrap.md`, populating every section with the local repo's actual directives, ADRs, commands, skills, and directories. This file is NOT part of the travelling package — it stays in the repo.
 9. **Validate**: every file reference in every directive, agent, command, and rule resolves. Every agent's first-action file exists. The repo builds. See the Bootstrap Checklist in `practice-bootstrap.md`.

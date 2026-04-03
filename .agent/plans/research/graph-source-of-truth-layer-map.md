@@ -3,7 +3,7 @@
 ## Status
 
 Recorded on 2026-03-09 as the Track B Phase B1 deliverable for
-[personal-knowledge-graph-source-of-truth-design.plan.md](../current/personal-knowledge-graph-source-of-truth-design.plan.md).
+[personal-knowledge-graph-source-of-truth-design.plan.md](../active/personal-knowledge-graph-source-of-truth-design.plan.md).
 
 This note completes:
 
@@ -13,7 +13,7 @@ This note completes:
 ## Use this note with
 
 - [personal-knowledge-graph-roadmap.plan.md](../current/personal-knowledge-graph-roadmap.plan.md)
-- [personal-knowledge-graph-source-of-truth-design.plan.md](../current/personal-knowledge-graph-source-of-truth-design.plan.md)
+- [personal-knowledge-graph-source-of-truth-design.plan.md](../active/personal-knowledge-graph-source-of-truth-design.plan.md)
 - [graph-current-state-audit.md](graph-current-state-audit.md)
 - [graph-publication-output-audit.md](graph-publication-output-audit.md)
 - [content-model.md](../../../docs/architecture/content-model.md)
