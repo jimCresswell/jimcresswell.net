@@ -333,6 +333,10 @@
 - Tightened `jc-consolidate-docs` again so repo-local overview tables or
   READMEs that advertise live plan state must be reconciled alongside the
   active plan stack and roadmap
+- Fixed a push-hook-revealed Playwright flake where `/cv/pdf/unavailable`
+  occasionally rendered Next's dev error shell during accessibility checks;
+  added a narrow PDF-unavailable helper that reloads once, proves the branded
+  page is visible, and only then runs assertions or axe
 
 ### Mistakes Made
 
@@ -346,6 +350,9 @@
   be separated without weakening the detailed-comparison rule.
 - Repo-level overview docs can drift on plan status even when the active plan
   stack itself is correct.
+- A broad accessibility test can accidentally analyse a transient framework
+  error shell unless route-level stabilisation proves the intended page is
+  really what loaded.
 
 ### Patterns to Remember
 
@@ -370,3 +377,5 @@
   clears the bar here.
 - If a repo README or overview table advertises live plan state, reconcile it
   in the same pass as the roadmap and active plan stack.
+- For dev-server-only E2E flakes on branded error routes, use a narrow helper
+  that reloads once and proves the route content before assertions continue.

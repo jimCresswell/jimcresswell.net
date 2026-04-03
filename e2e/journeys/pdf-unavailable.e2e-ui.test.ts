@@ -1,8 +1,9 @@
 import { test, expect } from "@playwright/test";
+import { gotoAndExpectPdfUnavailable } from "../support/pdf-unavailable";
 
 test.describe("US-05: Visitor encounters missing PDF", () => {
   test("visitor sees a helpful error page and can navigate to the online CV", async ({ page }) => {
-    await page.goto("/cv/pdf/unavailable");
+    await gotoAndExpectPdfUnavailable(page);
 
     // Visitor understands what happened
     await expect(page.getByRole("heading", { name: "PDF not found" })).toBeVisible();

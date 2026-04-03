@@ -1,5 +1,7 @@
-import { test, expect } from "@playwright/test";
+import { test, expect, type Page } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
+import { gotoAndExpectBrandedNotFound } from "../support/not-found";
+import { gotoAndExpectPdfUnavailable } from "../support/pdf-unavailable";
 
 const pages = [
   { name: "Home", url: "/" },
@@ -9,12 +11,26 @@ const pages = [
   { name: "404", url: "/non-existent-route" },
 ];
 
+async function gotoStablePage(page: Page, url: string): Promise<void> {
+  if (url === "/cv/pdf/unavailable") {
+    await gotoAndExpectPdfUnavailable(page);
+    return;
+  }
+
+  if (url === "/non-existent-route") {
+    await gotoAndExpectBrandedNotFound(page, url);
+    return;
+  }
+
+  await page.goto(url);
+  await page.waitForLoadState("domcontentloaded");
+}
+
 test.describe("US-08: WCAG 2.2 AA compliance", () => {
   for (const { name, url } of pages) {
     test.describe(name, () => {
       test("passes axe checks in light theme", async ({ page }) => {
-        await page.goto(url);
-        await page.waitForLoadState("domcontentloaded");
+        await gotoStablePage(page, url);
 
         // Ensure light theme
         await page.evaluate(() => {
@@ -26,8 +42,7 @@ test.describe("US-08: WCAG 2.2 AA compliance", () => {
       });
 
       test("passes axe checks in dark theme", async ({ page }) => {
-        await page.goto(url);
-        await page.waitForLoadState("domcontentloaded");
+        await gotoStablePage(page, url);
 
         // Switch to dark theme
         await page.evaluate(() => {
