@@ -2,6 +2,7 @@ import { test, expect } from "@playwright/test";
 import frontpageContent from "../../content/frontpage.content.json" with { type: "json" };
 import cvContent from "../../content/cv.content.json" with { type: "json" };
 import entitiesJson from "../../content/entities.json" with { type: "json" };
+import { gotoAndExpectPublicSectorCv } from "../support/cv-variant";
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return value !== null && typeof value === "object" && !Array.isArray(value);
@@ -174,7 +175,7 @@ test.describe("US-09: SEO and discoverability", () => {
     test("treats the public-sector tilt as a canonical alias of the CV page", async ({ page }) => {
       const expectedDescription = getExpectedPersonDescription();
 
-      await page.goto("/cv/public_sector");
+      await gotoAndExpectPublicSectorCv(page);
 
       const canonicalUrl = new URL("/cv/", page.url()).toString();
       await expect(page).toHaveTitle(

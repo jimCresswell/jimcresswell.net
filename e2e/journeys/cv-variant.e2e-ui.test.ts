@@ -1,12 +1,13 @@
 import { test, expect } from "@playwright/test";
 import cvContent from "../../content/cv.content.json" with { type: "json" };
+import { gotoAndExpectPublicSectorCv } from "../support/cv-variant";
 import { gotoAndExpectBrandedNotFound } from "../support/not-found";
 
 test.describe("US-03: Visitor follows a variant link", () => {
   test("variant page shows tailored positioning while preserving shared content", async ({
     page,
   }) => {
-    await page.goto("/cv/public_sector");
+    await gotoAndExpectPublicSectorCv(page);
 
     // Visitor sees variant-specific positioning framing
     await expect(page.getByText(cvContent.tilts.public_sector.positioning)).toBeVisible();

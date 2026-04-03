@@ -27,5 +27,5 @@ Quick-reference entries that are NOT in permanent docs. Read before every sessio
   proof in Playwright, but move app-module contract proof to Vitest or import
   raw JSON directly
 - Local Playwright runs against `pnpm dev` can intermittently show a Next.js
-  runtime chunk overlay on 404 routes; stabilise that in a narrow E2E helper
-  instead of changing app code or weakening the assertion
+  runtime chunk overlay on some non-root routes; stabilise that in a narrow
+  E2E helper that proves the intended page before assertions continue

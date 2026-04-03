@@ -1,5 +1,6 @@
 import { test, expect, type Page } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
+import { gotoAndExpectPublicSectorCv } from "../support/cv-variant";
 import { gotoAndExpectBrandedNotFound } from "../support/not-found";
 import { gotoAndExpectPdfUnavailable } from "../support/pdf-unavailable";
 
@@ -12,6 +13,11 @@ const pages = [
 ];
 
 async function gotoStablePage(page: Page, url: string): Promise<void> {
+  if (url === "/cv/public_sector") {
+    await gotoAndExpectPublicSectorCv(page);
+    return;
+  }
+
   if (url === "/cv/pdf/unavailable") {
     await gotoAndExpectPdfUnavailable(page);
     return;
