@@ -88,7 +88,7 @@
     "fontkit": "^2.0.4",
     "husky": "^9.1.7",
     "jsdom": "^28.1.0",
-    "knip": "^5.86.0",
+    "knip": "^6.3.0",
     "markdownlint-cli2": "^0.21.0",
     "markdownlint-cli2-formatter-pretty": "^0.0.10",
     "pino": "^10.3.1",
