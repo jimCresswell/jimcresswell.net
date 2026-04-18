@@ -1,9 +1,9 @@
 ---
 name: Practice Core Wholesale Adoption
-overview: Adopt the incoming Practice Core wholesale (eight files plus three required directories, 24 PDRs, new verification surface), drop incidental local divergence, restructure `.agent/prompts/` to canonical form, install the full cross-platform agent framework (rules, sub-agents, skills, commands, hooks, validators) per PDR-009 and PDR-024, and integrate this repo's genuinely-unique substance (PKG, editorial governance, personal-identity defensives, CV-as-product) into the new structure.
+overview: Adopt the incoming Practice Core wholesale (eight files plus three required directories, 24 PDRs, new verification surface), drop incidental local divergence, restructure `.agent/prompts/` to canonical form, install the full cross-platform agent framework (rules, sub-agents, skills, commands, hooks, workflows, validators) across all five required platforms (Cursor, Claude, Codex, Copilot, cross-platform discovery) per PDR-009 and PDR-024, and integrate this repo's genuinely-unique substance (PKG, editorial governance, personal-identity defensives, CV-as-product) into the new structure. Integration-first: no compression, deletion, or fitness-driven trimming during the adoption — those happen in a separate session afterwards.
 todos:
   - id: phase-1-state-of-play
-    content: "Phase 1 — State of play: three-way comparison snapshot, plan check-in, baseline gates green"
+    content: "Phase 1 — State of play snapshot, plan organisation (lifecycle lanes per canonical convention; clear icebox into future/), delete dead Cursor-plugin continual-learning hook state, baseline gates green"
     status: pending
   - id: phase-2-replace-core
     content: "Phase 2 — Replace .agent/practice-core/ wholesale with the incoming package (eight files plus three required directories)"
@@ -18,7 +18,7 @@ todos:
     content: "Phase 5 — Adopt canonical rule set (granular, action-named) with full per-platform activation triggers per PDR-009"
     status: pending
   - id: phase-6-reviewer-roster
-    content: "Phase 6 — Adopt canonical sub-agent reviewer roster with full cross-platform adapter coverage (canonical + Cursor + Codex + Copilot)"
+    content: "Phase 6 — Adopt canonical sub-agent reviewer roster (full canonical + Cursor + Claude + Codex + Copilot adapters) including mcp-reviewer and the four architecture-reviewer personae"
     status: pending
   - id: phase-7-canonical-skills
     content: "Phase 7 — Adopt canonical skills estate: split start-right, add missing canonical skills, populate .agents/skills/ canonical (no-prefix) discovery layer"
@@ -33,13 +33,13 @@ todos:
     content: "Phase 10 — Create missing PDR-024 vital surfaces: practice-core/patterns/, .agent/memory/patterns/, .agent/skills/patterns/, docs/explorations/, hooks layer"
     status: pending
   - id: phase-11-github-adapters
-    content: "Phase 11 — Complete .github/ adapter surface: Copilot reviewer adapters, CODEOWNERS, PR template aligned with the Practice"
+    content: "Phase 11 — Complete .github/ Copilot platform adapter surface: copilot-instructions, CODEOWNERS, PR template, ISSUE templates, REQUIRED workflows for check/validation (build/deploy stays with Vercel), Copilot reviewer adapters"
     status: pending
   - id: phase-12-validation
-    content: "Phase 12 — Adopt validation mechanisms: extend portability validator for PDR-009/024, add validate-subagents, vital-surface validator, fitness vocabulary validator, TDD on each"
+    content: "Phase 12 — Adopt validation mechanisms: extend portability validator for PDR-009/024 across all five platforms, add validate-subagents, vital-surface validator, fitness vocabulary validator, TDD on each. Fitness validators stay informational until integration is complete."
     status: pending
   - id: phase-13-adr-reclassification
-    content: "Phase 13 — Mark ADR-012/015/018 superseded by PDRs; split ADR-016 into product-tooling ADR + new PDR/pattern for the visual-regression discipline"
+    content: "Phase 13 — Mark ADR-012/015/018 superseded by PDRs; split ADR-016 into product-tooling ADR + new PDR/pattern for the visual-regression discipline. Strictly local concerns stay as ADRs; reusable Practice concerns become PDRs in the same numbering scheme."
     status: pending
   - id: phase-14-practice-context-hygiene
     content: "Phase 14 — Practice-context hygiene under PDR-007: clear incoming/, narrow outgoing/ to ephemeral-only, migrate substance to PDRs/patterns/reference"
@@ -57,7 +57,7 @@ isProject: false
 
 ## State of play — three-way comparison
 
-Three estates in tension. The plan exists to converge them
+Three estates in tension. The plan exists to converge them.
 
 ### Host repo (this repo) today
 
@@ -113,7 +113,17 @@ The reference repo demonstrates the executed canonical pattern. It is informativ
 
 ### Convergence target
 
-The plan converges all three estates. Where the host repo has carried incidental drift (`rules.md`, single `start-right`, missing `patterns` skill, missing `subagent-practice-core-protection` rule, partial gate naming, missing reviewer cluster, missing validators, empty hooks, partial `.github/`), it adopts the canon. Where the host repo has unique substance (PKG, editorial governance, personal-identity defensives, CV-as-product, the four-field fitness model, the portability validator, the visual-regression discipline), the substance is integrated into the new structure rather than displaced.
+The plan converges all three estates. Where the host repo has carried incidental drift (`rules.md`, single `start-right`, missing `patterns` skill, missing `subagent-practice-core-protection` rule, partial gate naming, missing reviewer cluster, missing validators, empty hooks, partial `.github/`, no `.claude/` adapter directory), it adopts the canon. Where the host repo has unique substance (PKG, editorial governance, personal-identity defensives, CV-as-product, the four-field fitness model, the portability validator, the visual-regression discipline), the substance is integrated into the new structure rather than displaced.
+
+### Integration-first principle
+
+The adoption is an **inclusion exercise**, not a compression exercise. During every phase:
+
+- **No file is held back, trimmed, summarised, or omitted because of a fitness ceiling.** The four-field fitness vocabulary (`line target`, `line limit`, `char limit`, `line length`) is informational during integration. Fitness validators run in informational mode and never block.
+- **No skill, reviewer, command, rule, hook, or workflow is treated as optional.** If a platform requires an adapter, the adapter is required. If a specialist domain warrants a triplet (reviewer + skill + rule), all three exist.
+- **Compression, deletion, and reduction happen in a dedicated post-integration session.** Once the canonical estate is fully installed, a separate fitness-reconciliation pass enforces ceilings, deletes genuine duplication, and confirms each surface earns its place.
+
+This protects against the common failure mode of integration-time pruning that quietly omits required surfaces because they look "non-essential" in isolation.
 
 ## Foundation alignment
 
@@ -137,7 +147,7 @@ The plan converges all three estates. Where the host repo has carried incidental
 - Single `start-right` skill → split to `start-right-quick` + `start-right-thorough`.
 - `.agent/prompts/` carrying start-right boilerplate and skill-shaped content → audit and migrate.
 - Current six-rule estate → re-derive against the canonical granular action-named rule set.
-- Five-reviewer roster → expand with the canonical reviewers that apply to a UI-bearing TypeScript repo (config-reviewer, docs-adr-reviewer, security-reviewer, accessibility-reviewer, design-system-reviewer, react-component-reviewer, subagent-architect, plus at least one architecture-reviewer persona) per PDR-010.
+- Five-reviewer roster → expand with the canonical reviewers that apply to a UI-bearing TypeScript repo with a knowledge graph and MCP-adjacent work (config-reviewer, docs-adr-reviewer, security-reviewer, accessibility-reviewer, design-system-reviewer, react-component-reviewer, mcp-reviewer, subagent-architect, plus the four architecture-reviewer personae barney/betty/fred/wilma) per PDR-010 / PDR-015.
 - Current `pnpm check` script shape → adopt PDR-008 canonical names.
 - Current `consolidate-docs` shape → adopt new tri-destination patterns + step 8 upstream Core review + PDR-007 outgoing narrowing.
 - ADR-012, ADR-015, ADR-018 → mark superseded by PDR-011 / PDR-009 / PDR-007.
@@ -148,26 +158,72 @@ The plan converges all three estates. Where the host repo has carried incidental
 
 - `jc-*` prefix on commands and command adapters at platform-adapter layer (canonical layer remains bare; the `jc-` prefix lives in `.cursor/commands/` and `.agents/skills/jc-*/`).
 
+## Interaction with active threads
+
+This plan is a structural ratchet that touches the surfaces every other in-flight thread depends on. Recommended sequence: **finish this plan before resuming the other threads**, or at minimum complete Phases 3 (rename `principles.md`), 4 (restructure prompts), 7 (split `start-right`), and 8 (canonical gate names) before touching any thread that handles gates, prompts, or rules.
+
+- **Track B Phase B2.1 — PKG source-of-truth design** ([plan](.agent/plans/active/personal-knowledge-graph-source-of-truth-design.plan.md))
+  - Affected: Phase 7, Phase 15.
+  - The `pkg` skill and `pkg-reviewer` get re-anchored as the canonical PKG cluster in the regenerated practice-index. No substance change.
+- **LinkedIn content prep** ([plan](.agent/plans/current/linkedin-update.plan.md))
+  - Affected: Phase 4.
+  - `linkedin-content-preparation.prompt.md` loses start-right boilerplate, gains a single skill reference. Substance preserved.
+- **Tilt retirement** ([plan](.agent/plans/current/tilt-retirement.plan.md))
+  - Affected: Phase 4, Phase 8.
+  - Prompt restructured (boilerplate stripped); any reference to gate names in the plan needs realignment to PDR-008 canonical names.
+- **Dev-tooling hygiene** ([plan](.agent/plans/current/dev-tooling-hygiene.plan.md))
+  - Affected: Phase 4, Phase 8, Phase 12.
+  - Prompt restructured; gate names canonicalised; the dependency-cruiser ninth-gate work integrates cleanly with the validator estate adopted in Phase 12.
+
+The four prompts retain their `## Grounding truths to preserve` and `## Active task` sections through Phase 4; only start-right boilerplate is replaced with a single skill reference. Plan files are unchanged unless they cite the old gate names or the old `rules.md` filename.
+
 ## Cross-platform adapter coverage required
 
-Every canonical artefact must have full adapter coverage per PDR-009. The matrix:
+Every canonical artefact must have an adapter on every supported platform per PDR-009. Adapters are thin (frontmatter + pointer + activation trigger only); substance lives in canonical layer.
+
+### Required platforms
+
+| Platform                 | Root entry                        | Adapter directory                                                                                          | Status                                        |
+| ------------------------ | --------------------------------- | ---------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
+| Universal contract       | `AGENTS.md`, `CLAUDE.md`          | n/a (root files)                                                                                           | Required                                      |
+| Cursor                   | (reads `.cursor/`)                | `.cursor/{agents,commands,rules,skills}/`                                                                  | Required                                      |
+| Claude Code              | `CLAUDE.md`                       | `.claude/{agents,commands,rules,skills,settings.json}`                                                     | Required (currently absent — must be created) |
+| Codex                    | `AGENTS.md`                       | `.codex/{agents/,config.toml}`                                                                             | Required                                      |
+| Copilot                  | `.github/copilot-instructions.md` | `.github/{copilot-instructions.md,CODEOWNERS,PULL_REQUEST_TEMPLATE.md,ISSUE_TEMPLATE/,workflows/,agents/}` | Required                                      |
+| Cross-platform discovery | (read by any agent host)          | `.agents/skills/<skill-or-jc-command>/SKILL.md`                                                            | Required                                      |
+
+### Adapter matrix per artefact type
 
 - **Canonical rule** (`.agent/rules/<rule>.md`)
-  → `.cursor/rules/<rule>.mdc` (with platform-native activation trigger).
+  → `.cursor/rules/<rule>.mdc` (with Cursor-native `alwaysApply` / glob trigger)
+  → `.claude/rules/<rule>.md` (with Claude-native activation)
+  → `.codex/` rule registration via `config.toml` (Codex has no separate rules layer)
+  → Copilot rule reference via `.github/copilot-instructions.md` (Copilot consumes a single instructions file).
 - **Canonical sub-agent** (`.agent/sub-agents/templates/<reviewer>.md`)
-  → `.cursor/agents/<reviewer>.md` (one or more personae)
+  → `.cursor/agents/<reviewer>.md` (one file per reviewer; multiple personae for the architecture reviewer per PDR-015)
+  → `.claude/agents/<reviewer>.md`
   → `.codex/agents/<reviewer>.toml` registered in `.codex/config.toml`
-  → `.github/` Copilot reviewer wrapper if applicable.
+  → `.github/agents/<reviewer>.md` (Copilot reviewer wrapper) and reference in `copilot-instructions.md`.
 - **Canonical capability skill** (`.agent/skills/<skill>/SKILL.md` + `shared/<skill>.md`)
+  → `.cursor/skills/<skill>/SKILL.md`
+  → `.claude/skills/<skill>/SKILL.md`
   → `.agents/skills/<skill>/SKILL.md` (cross-platform discovery, no prefix)
-  → `.cursor/skills/<skill>/SKILL.md` if Cursor-native skills are used.
+  → Codex: skills surface as command-shaped via `.agents/skills/` and `.codex/` registration.
 - **Canonical command** (`.agent/commands/<bare-name>.md`)
   → `.cursor/commands/jc-<name>.md` (project-namespace prefix at adapter layer)
-  → `.agents/skills/jc-<name>/SKILL.md` (cross-platform command-as-skill discovery).
+  → `.claude/commands/jc-<name>.md`
+  → `.agents/skills/jc-<name>/SKILL.md` (cross-platform command-as-skill discovery)
+  → Codex inherits via `.agents/skills/`.
 - **Canonical hook policy** (`.agent/hooks/policy.json` + `README.md`)
-  → tracked platform-specific activation per the cross-platform matrix.
-- **Cross-platform surface matrix** (`.agent/reference/cross-platform-agent-surface-matrix.md`)
-  is the single explicit contract for supported and unsupported states; updated whenever surfaces change.
+  → Cursor: `.cursor/hooks/<hook>.json` (only when an active hook is required; policy file is the canonical contract)
+  → Claude: `.claude/settings.json` `hooks` section
+  → other platforms inherit declaratively via the policy contract.
+- **Canonical workflow** (`.agent/workflows/` if used; otherwise platform-only)
+  → `.github/workflows/<name>.yml` (REQUIRED — see Phase 11 for the check/validation set; build/deploy stays with Vercel and is not in scope here).
+
+### Cross-platform surface matrix
+
+`.agent/reference/cross-platform-agent-surface-matrix.md` is the single authoritative contract listing every supported platform, every adapter that must exist, and every explicit unsupported state. Phase 15 regenerates it; Phase 12's `validate-vital-surfaces.mjs` consumes it as the source of truth.
 
 ## PDR-024 vital integration surfaces — full enumeration
 
@@ -175,11 +231,11 @@ The plan must produce a working surface for every item below. The Bootstrap Chec
 
 ### Category A — Core → Repo (orientation)
 
-- A1 **Entry-point chain**: root `AGENTS.md` (and `CLAUDE.md` if applicable) → `.agent/directives/AGENT.md` → `principles.md` + `testing-strategy.md` + `metacognition.md` + practice-core trinity.
+- A1 **Entry-point chain**: root `AGENTS.md` and `CLAUDE.md` → `.agent/directives/AGENT.md` → `principles.md` + `testing-strategy.md` + `metacognition.md` + practice-core trinity. Each platform-specific entry (Cursor, Codex, Copilot) routes through the same canonical chain.
 - A2 **Practice-index bridge**: `.agent/practice-index.md` exists; every link resolves.
 - A3 **Start-flow skills**: `start-right-quick` and `start-right-thorough` canonical skills with adapters.
 - A4 **Pattern discovery skill**: `.agent/skills/patterns/SKILL.md` + adapters; points at `practice-core/patterns/` first then `memory/patterns/`.
-- A5 **Rule activation**: every canonical rule has its per-platform activation trigger; Cursor `.cursor/rules/*.mdc`, Codex tracked config, Copilot instructions.
+- A5 **Rule activation**: every canonical rule has its per-platform activation trigger on every required platform — Cursor `.cursor/rules/*.mdc`, Claude `.claude/rules/`, Codex tracked config, Copilot via `copilot-instructions.md`.
 
 ### Category B — Repo → Core (feedback)
 
@@ -200,7 +256,7 @@ The plan must produce a working surface for every item below. The Bootstrap Chec
 
 - D1 **Canonical agent artefact architecture** (PDR-009): canonical-first layered shape validated by portability validator.
 - D2 **Canonical quality-gate naming** (PDR-008): canonical scripts in `package.json`; CI invokes `check:ci`.
-- D3 **Domain specialist capability pattern** (PDR-010): triplet shape (reviewer + skill + rule + optional tooling) for each specialist domain.
+- D3 **Domain specialist capability pattern** (PDR-010): full triplet (reviewer + skill + invoke-rule) for every specialist domain plus operational tooling where the specialism warrants it.
 - D4 **Continuity surfaces + surprise pipeline** (PDR-011): named continuity contract on a canonical surface; split-loop handoff/consolidate.
 - D5 **Dev tooling per ecosystem** (PDR-006): host repo's leading-edge-reference status documented in the bridge or `docs/dev-tooling.md`.
 
@@ -212,15 +268,16 @@ The plan must produce a working surface for every item below. The Bootstrap Chec
 
 ## Validation mechanisms
 
-The Practice ensures its own integrations exist. Validators must be installed, tested with TDD, and wired into the gate sequence.
+The Practice ensures its own integrations exist. Validators are installed, tested with TDD, and wired into the gate sequence. Per the integration-first principle, fitness validators run in informational mode throughout the adoption and only become blocking after the dedicated post-integration reconciliation session.
 
-- **`validate-portability.mjs`** — extend to enforce PDR-009 canonical-first layered architecture: every canonical surface has its required adapters; every adapter is thin (frontmatter + pointer + invocation only); activation triggers are distinct from policies. Split helpers into `validate-portability-helpers.mjs`. Add `validate-portability.unit.test.ts`.
-- **`validate-practice-fitness.mjs`** — already present; add `validate-practice-fitness.unit.test.ts` and helpers split. Add new four-field fitness frontmatter validation for the eight Core files plus principles.md, testing-strategy.md, AGENT.md, metacognition.md.
-- **`validate-subagents.mjs`** (NEW) — every canonical sub-agent has its required platform adapters (Cursor + Codex + optional Copilot); reviewer roster declared in tracked platform config matches canonical. With helpers and unit test.
-- **`validate-vital-surfaces.mjs`** (NEW per PDR-022 + PDR-024) — walks Category A/B/D/E surface paths and exits non-zero if any vital surface is missing. Uses the cross-platform surface matrix as the source of truth for "must exist". With helpers and unit test.
-- **`validate-fitness-vocabulary.mjs`** (NEW) — validates fitness frontmatter keys are from the canonical four-field vocabulary; flags drift. With unit test.
-- **`validate-root-application-version.mjs`** (OPTIONAL — adopt if applicable to this repo's release shape).
-- **Wiring**: every validator runs as part of `pnpm portability:check` (or its canonical-named successor) and contributes to `pnpm check:ci`. The pre-commit hook runs `check:ci`; the pre-push hook runs `check && test:e2e`.
+- **`validate-portability.mjs`** — extend to enforce PDR-009 canonical-first layered architecture across all five required platforms (Cursor, Claude, Codex, Copilot, cross-platform discovery): every canonical surface has its required adapters on every required platform; every adapter is thin (frontmatter + pointer + invocation only); activation triggers are distinct from policies. Split helpers into `validate-portability-helpers.mjs`. Add `validate-portability.unit.test.ts`. Blocking from Phase 12 onwards.
+- **`validate-practice-fitness.mjs`** — extend with four-field fitness frontmatter validation for the eight Core files plus `principles.md`, `testing-strategy.md`, `AGENT.md`, `metacognition.md`. Split helpers; add `validate-practice-fitness.unit.test.ts`. **Informational only during integration**; promoted to blocking by the post-integration fitness reconciliation session.
+- **`validate-subagents.mjs`** (NEW) — every canonical sub-agent has its required platform adapters on every required platform (Cursor + Claude + Codex + Copilot); reviewer roster declared in `.codex/config.toml`, `.claude/`, and `.github/` matches canonical. With helpers and unit test. Blocking from Phase 12 onwards.
+- **`validate-vital-surfaces.mjs`** (NEW per PDR-022 + PDR-024) — walks Category A/B/C/D/E surface paths and exits non-zero if any vital surface is missing. Uses `.agent/reference/cross-platform-agent-surface-matrix.md` as the source of truth for "must exist". With helpers and unit test. Blocking from Phase 12 onwards.
+- **`validate-fitness-vocabulary.mjs`** (NEW) — validates fitness frontmatter keys are from the canonical four-field vocabulary; flags drift. With unit test. **Informational only during integration**; vocabulary lock-in happens at post-integration reconciliation.
+- **Wiring**: every validator is registered in `package.json` and runs as part of `pnpm check` (canonical name per PDR-008). Blocking validators contribute to `pnpm check:ci`; informational validators run with a non-zero exit suppressed during the adoption window. The pre-commit hook runs `check:ci`; the pre-push hook runs `check && test:e2e`.
+
+`validate-root-application-version.mjs` is **not adopted** — this repo is not a monorepo and has no other versions to distinguish from the root. Recorded as explicitly unsupported in the surface matrix.
 
 ## Phase summary
 
@@ -234,25 +291,28 @@ The Practice ensures its own integrations exist. Validators must be installed, t
 8. Adopt PDR-008 canonical gate naming end to end.
 9. Adopt new `consolidate-docs` shape.
 10. Create missing PDR-024 vital surfaces (patterns, explorations, hooks).
-11. Complete `.github/` adapter surface.
-12. Adopt validation mechanisms with TDD.
+11. Complete `.github/` Copilot platform adapter surface (instructions, CODEOWNERS, PR/issue templates, reviewer wrappers, REQUIRED check/validator/e2e workflows).
+12. Adopt validation mechanisms with TDD (blocking surface validators; informational fitness validators during integration).
 13. ADR reclassification + visual-regression PDR/pattern.
 14. Practice-context hygiene under PDR-007.
 15. Anchor unique substance + regenerate practice-index.
 16. Final verification: vital-surfaces walk + Bootstrap Checklist + validators + `check` + `test:e2e`.
 
-## Phase 1 — State of play snapshot, plan check-in, baseline
+## Phase 1 — State of play snapshot, plan organisation, baseline
 
-Outcome: clean baseline with this plan checked in to the repo and current gates passing before any structural change.
-Impact: integration is recoverable; every step has a known starting point; the plan is itself a continuity surface.
+Outcome: clean baseline with this plan checked in to the repo, plan directory aligned with the canonical lifecycle convention, dead Cursor-plugin hooks removed, and current gates passing before any structural change.
+Impact: integration is recoverable; every step has a known starting point; the plan is itself a continuity surface; downstream agents do not hit dead hook references.
 Value mechanism: PDR-011 named continuity contract on a canonical surface.
-Acceptance: plan exists at `.agent/plans/active/practice-core-wholesale-adoption.plan.md`; `.agent/plans/active/README.md` points to it; `git status` clean; `pnpm check` and `pnpm test:e2e` green.
+Acceptance: plan exists at `.agent/plans/active/practice-core-wholesale-adoption.plan.md`; `.agent/plans/active/README.md` points to it; plan-directory lifecycle lanes match the canonical convention (`active/`, `current/`, `future/`, `archive/` semantics); `.cursor/hooks/` cleared of dead `continual-learning` state; `git status` clean; `pnpm check` and `pnpm test:e2e` green.
 
 Tasks:
 
-- Copy this plan into `.agent/plans/active/practice-core-wholesale-adoption.plan.md`.
+- Confirm this plan lives at `.agent/plans/active/practice-core-wholesale-adoption.plan.md`.
 - Update `.agent/plans/active/README.md` to make this the primary plan.
-- Append a "Pre-state snapshot" appendix to the plan listing: current ADRs (with title), current rules, current commands, current skills, current sub-agents, current prompts, current `.cursor/agents/` adapters, current `.codex/agents/` adapters, current `.agents/skills/` entries, current scripts, current `practice-context/` files.
+- Reconcile plan-directory lifecycle lanes against the canonical `plan` command convention: keep `active/` (NOW), `current/` (NEXT), introduce `future/` as the canonical name for strategic later-intent plans (current `icebox/` content moves into `future/`; `icebox/` is removed). Decide explicitly whether `complete/` keeps its name or renames to `archive/` — record the decision in the plan and apply uniformly. Move loose root-level plan files (e.g. `graph-metaplan.plan.md`) into the lane that matches their lifecycle.
+- Update `.agent/plans/README.md` (and any plan-discovery skill) to describe the lane semantics: `active/` in-progress executable, `current/` queued executable, `future/` strategic brief, `archive/` (or `complete/`) completed; `research/` is supplementary reference, not a lifecycle lane.
+- Remove dead Cursor-plugin hook surfaces: delete `.cursor/hooks/state/continual-learning.json` and `.cursor/hooks/state/.gitignore`; remove the empty `.cursor/hooks/state/` and `.cursor/hooks/` directories. The Practice has its own learning loop (napkin → distilled → `consolidate-docs`); the dead `continual-learning` skill from an uninstalled Cursor plugin is fully replaced and must not leave orphaned state.
+- Append a "Pre-state snapshot" appendix to the plan listing: current ADRs (with title), current rules, current commands, current skills, current sub-agents, current prompts, current `.cursor/agents/` adapters, current `.claude/` adapter coverage (currently absent), current `.codex/agents/` adapters, current `.agents/skills/` entries, current scripts, current `practice-context/` files, current `.github/` surface, current GitHub Actions workflow set.
 - Run `pnpm check` and `pnpm test:e2e`; record a green baseline in the plan.
 
 ## Phase 2 — Replace Practice Core wholesale
@@ -270,7 +330,7 @@ Tasks:
 - Confirm `patterns/README.md` is present.
 - Confirm `incoming/.gitkeep` is in place as the Practice Box.
 - Delete `.agent/practice-core/incoming/practice-core/` after verification.
-- Run `pnpm practice:fitness` (informational); if Core files exceed line/char ceilings, defer to Phase 15 reconciliation.
+- Run `pnpm practice:fitness` in informational mode; record output as a working note. Per the integration-first principle, no Core file is trimmed, summarised, or held back during this phase regardless of fitness output. A dedicated post-integration session enforces ceilings.
 
 ## Phase 3 — Rename `rules.md` → `principles.md`
 
@@ -330,14 +390,16 @@ Acceptance: every reviewer in the roster has `<reviewer>.md` canonical, `<review
 
 Tasks:
 
-- Decide reviewer roster for this repo. Required: keep existing 5 (`code-reviewer`, `editor`, `pkg-reviewer`, `test-reviewer`, `type-reviewer`). Add: `accessibility-reviewer`, `design-system-reviewer`, `react-component-reviewer`, `config-reviewer`, `docs-adr-reviewer`, `security-reviewer`, `subagent-architect`, at least one `architecture-reviewer` persona (consider all four — barney/betty/fred/wilma — per PDR-015 reviewer authority and dispatch). Defer reviewers that do not apply (`clerk-reviewer`, `elasticsearch-reviewer`, `sentry-reviewer`, `mcp-reviewer`, `ground-truth-designer`, `release-readiness-reviewer`, `onboarding-reviewer`); record explicit unsupported state in the cross-platform surface matrix.
+- Reviewer roster (required, full): keep existing 5 (`code-reviewer`, `editor`, `pkg-reviewer`, `test-reviewer`, `type-reviewer`); add `accessibility-reviewer`, `design-system-reviewer`, `react-component-reviewer`, `config-reviewer`, `docs-adr-reviewer`, `security-reviewer`, `mcp-reviewer` (this repo authors and integrates with MCP servers, and runs in MCP-rich agent environments), `subagent-architect`, plus all four architecture-reviewer personae (`architecture-reviewer-barney`, `architecture-reviewer-betty`, `architecture-reviewer-fred`, `architecture-reviewer-wilma`) per PDR-015 reviewer authority and dispatch.
+- Reviewers explicitly unsupported here (record in `cross-platform-agent-surface-matrix.md` with one-line rationale): `clerk-reviewer` (no Clerk auth), `elasticsearch-reviewer` (no Elasticsearch), `sentry-reviewer` (no Sentry/OTel pipeline), `ground-truth-designer` (Oak-curriculum-specific), `release-readiness-reviewer` (Vercel handles release), `onboarding-reviewer` (single-contributor repo).
 - Author canonical `<reviewer>.md` files in `.agent/sub-agents/templates/` for each new reviewer (use canonical reference shape; integrate this repo's specifics for the editor and pkg reviewers).
 - Generate `.cursor/agents/<reviewer>.md` adapters for each.
+- Generate `.claude/agents/<reviewer>.md` adapters for each (creating `.claude/agents/` if absent).
 - Generate `.codex/agents/<reviewer>.toml` adapters; update `.codex/config.toml` to register the full roster.
-- Add `.github/` Copilot reviewer wrappers if Copilot Chat reviewers are supported.
-- Add per-specialist `invoke-<reviewer>.md` rules in `.agent/rules/` with `.cursor/rules/<rule>.mdc` adapters (Phase 5 may already have done this).
+- Generate `.github/agents/<reviewer>.md` Copilot reviewer wrappers for the canonical roster (Copilot is a required platform — adapters are not optional).
+- Add per-specialist `invoke-<reviewer>.md` rules in `.agent/rules/` with adapters on every required platform (Cursor `.mdc`, Claude rule, Codex registration, Copilot reference) — Phase 5 may already have produced some.
 - Update `.agent/practice-index.md` reviewer table.
-- Author or extend skills paired with each new reviewer where the specialist warrants a skill (PDR-010 four-layer triplet; specialist skill captures the operational knowledge of how to use the reviewer).
+- Author or extend skills paired with each new reviewer where the specialist warrants a skill (PDR-010 triplet; specialist skill captures the operational knowledge of how to use the reviewer). Skills here are not optional — every domain that gets a reviewer also gets the skill component of the triplet.
 
 ## Phase 7 — Adopt canonical skills estate
 
@@ -383,7 +445,8 @@ Tasks:
 
 - Author the new `.agent/commands/consolidate-docs.md` per the canonical specification (pattern extraction tri-destination, doctrine scan including PDR-shaped, graduation destinations, upstream Core review step 8, PDR-007 outgoing narrowing step 10).
 - Update [`.agents/skills/jc-consolidate-docs/SKILL.md`](.agents/skills/jc-consolidate-docs/SKILL.md) to point at the rewritten command.
-- Update `.cursor/commands/jc-consolidate-docs.md` adapter.
+- Update `.cursor/commands/jc-consolidate-docs.md` adapter; create `.claude/commands/jc-consolidate-docs.md` adapter.
+- Sweep `continual-learning` references across the repo and replace with the Practice learning loop (napkin → distilled → `consolidate-docs`). Files known to need updates: [`AGENTS.md`](AGENTS.md) (replace the "landing pads for the continual-learning skill" framing with the Practice learning loop wording; keep the anchor lists), [`.agent/skills/distillation/SKILL.md`](.agent/skills/distillation/SKILL.md) (update lines that name the continual-learning skill to reference the canonical learning loop). The Practice has its own learning loop; the dead Cursor-plugin terminology is fully replaced.
 - Update prompts that reference consolidation.
 - Run a rehearsal consolidation pass against the current state; capture the upstream-review output as a working note inside the plan.
 
@@ -403,22 +466,26 @@ Tasks:
 - Create `.agent/hooks/policy.json` and `.agent/hooks/README.md` (start with empty/declarative policy if no hooks active; document deliberate-omission per practice-bootstrap.md).
 - Document any deliberately-omitted vital surface in `.agent/reference/cross-platform-agent-surface-matrix.md` with rationale (no silent omissions; no surface absent without explicit recording).
 
-## Phase 11 — Complete `.github/` adapter surface
+## Phase 11 — Complete `.github/` Copilot platform adapter surface
 
-Outcome: `.github/` carries the GitHub-platform Practice adapters: `copilot-instructions.md` (updated), `CODEOWNERS`, `PULL_REQUEST_TEMPLATE.md`, `ISSUE_TEMPLATE/`, optional `workflows/` for CI gating using PDR-008 canonical names.
-Impact: GitHub becomes a fully-supported agent surface; reviewer wrappers and PR templates align with the Practice; Copilot reads the same canonical directives.
-Value mechanism: PDR-009 canonical-first cross-platform; PDR-024 Category A entry-point chain extended to GitHub.
-Acceptance: every required `.github/` artefact is present; Copilot reviewer adapters mirror the canonical reviewer roster (where Copilot supports them); `cross-platform-agent-surface-matrix.md` declares supported / unsupported states explicitly.
+Outcome: `.github/` carries the full GitHub/Copilot Practice platform adapter set: `copilot-instructions.md`, `CODEOWNERS`, `PULL_REQUEST_TEMPLATE.md`, `ISSUE_TEMPLATE/`, `agents/` reviewer wrappers, and **required** `workflows/` for check and validation gating. Build and deploy remain Vercel's responsibility and are deliberately out of scope here.
+Impact: GitHub/Copilot becomes a fully-supported agent surface alongside Cursor, Claude, and Codex; PRs are gated by the same canonical validators that run locally; reviewer wrappers and PR templates align with the Practice.
+Value mechanism: PDR-009 canonical-first cross-platform; PDR-024 Category A entry-point chain extended to GitHub; PDR-022 governance-enforcement-requires-a-scanner extended to PR gates.
+Acceptance: every required `.github/` artefact is present; Copilot reviewer adapters mirror the canonical reviewer roster one-for-one; GitHub Actions workflows run `check:ci` and the validator suite on every PR; `cross-platform-agent-surface-matrix.md` declares the GitHub/Copilot platform fully supported and lists every adapter.
 
 Tasks:
 
-- Update [`.github/copilot-instructions.md`](.github/copilot-instructions.md) to reference `principles.md`, `testing-strategy.md`, the canonical practice-core entry points, and the canonical gate names.
-- Create `.github/CODEOWNERS` mapping practice-core, directives, and core surfaces to the owner; require explicit owner approval per PDR-003.
-- Create `.github/PULL_REQUEST_TEMPLATE.md` with a Practice-aligned PR checklist (gates run, visual-regression invoked if applicable, ADR/PDR/EDR considered, practice-index updated if surfaces changed).
-- Create `.github/ISSUE_TEMPLATE/` if applicable.
-- Add `.github/` Copilot reviewer wrappers for the canonical reviewer roster as thin pointer surfaces (per the canonical reference pattern).
-- If GitHub Actions workflows exist or are added, ensure they invoke `pnpm check:ci` by canonical name.
-- Update `cross-platform-agent-surface-matrix.md` with the GitHub adapter coverage.
+- Update [`.github/copilot-instructions.md`](.github/copilot-instructions.md) to reference `principles.md`, `testing-strategy.md`, `metacognition.md`, the canonical practice-core entry points (`practice-core/practice.md`, `practice-bootstrap.md`, `practice-verification.md`), and the canonical gate names.
+- Create `.github/CODEOWNERS` mapping `.agent/practice-core/`, `.agent/directives/`, and core surfaces to the owner; require explicit owner approval per PDR-003.
+- Create `.github/PULL_REQUEST_TEMPLATE.md` with a Practice-aligned PR checklist (gates run, visual-regression invoked if applicable, ADR/PDR/EDR considered, practice-index updated if surfaces changed, validator suite green).
+- Create `.github/ISSUE_TEMPLATE/` with bug-report and feature-request templates.
+- Create `.github/agents/<reviewer>.md` Copilot reviewer wrappers for every reviewer in the canonical roster (Phase 6) as thin pointer surfaces. Copilot is a required platform; these adapters are not optional.
+- Create the **required** GitHub Actions workflow set for check and validation (build/deploy is Vercel's job and stays out of scope):
+  - `.github/workflows/check.yml` — runs on every PR and push; invokes `pnpm install --frozen-lockfile` then `pnpm check:ci`.
+  - `.github/workflows/validators.yml` — invokes the validator estate from Phase 12 (`pnpm validate-portability`, `pnpm validate-subagents`, `pnpm validate-vital-surfaces`, `pnpm validate-practice-fitness` informational, `pnpm validate-fitness-vocabulary` informational).
+  - `.github/workflows/e2e.yml` — invokes `pnpm test:e2e` against a production build per the production-build E2E pattern.
+  - All workflows pin `actions/checkout`, `pnpm/action-setup`, and `actions/setup-node` to specific versions; node version mirrors `.nvmrc` / `package.json` `engines`.
+- Update `cross-platform-agent-surface-matrix.md` with the GitHub/Copilot adapter coverage; mark Copilot as a fully-supported platform.
 
 ## Phase 12 — Adopt validation mechanisms with TDD
 
@@ -429,29 +496,32 @@ Acceptance: validators exist with helpers split and unit-test companions; each i
 
 Tasks:
 
-- Extend [`scripts/validate-portability.mjs`](scripts/validate-portability.mjs) to enforce PDR-009 canonical-first layered architecture, PDR-024 cross-cutting contracts, PDR-008 canonical gate naming presence in `package.json`. Split helpers into `validate-portability-helpers.mjs`. Author `validate-portability.unit.test.ts` (TDD: write failing test cases for each rule first; then make them pass).
-- Add helpers split and unit test for [`scripts/validate-practice-fitness.mjs`](scripts/validate-practice-fitness.mjs); extend to validate the new four-field fitness frontmatter for the eight Core files plus `principles.md`, `testing-strategy.md`, `AGENT.md`, `metacognition.md`.
-- Author `scripts/validate-subagents.mjs` (+ helpers + `unit.test.ts`): every canonical sub-agent has its required platform adapters; reviewer roster declared in `.codex/config.toml` matches canonical; thin-wrapper contract enforced.
-- Author `scripts/validate-vital-surfaces.mjs` (+ helpers + `unit.test.ts`): walks Category A/B/D/E vital surfaces; uses `cross-platform-agent-surface-matrix.md` as the authoritative supported/unsupported contract; exits non-zero if any required surface is missing or broken.
-- Author `scripts/validate-fitness-vocabulary.mjs` (+ `unit.test.ts`): validates fitness frontmatter keys are from the canonical four-field vocabulary; flags drift.
-- Wire validators into `package.json` scripts; update `pnpm check` (canonical-named) to invoke every validator in sequence.
-- Update [README.md](README.md), [CONTRIBUTING.md](CONTRIBUTING.md), `principles.md` to document the validator estate.
+- Extend [`scripts/validate-portability.mjs`](scripts/validate-portability.mjs) to enforce PDR-009 canonical-first layered architecture across all five required platforms (Cursor, Claude, Codex, Copilot, cross-platform discovery), PDR-024 cross-cutting contracts, PDR-008 canonical gate naming presence in `package.json`. Split helpers into `validate-portability-helpers.mjs`. Author `validate-portability.unit.test.ts` (TDD: write failing test cases for each rule first; then make them pass). Blocking.
+- Add helpers split and unit test for [`scripts/validate-practice-fitness.mjs`](scripts/validate-practice-fitness.mjs); extend to validate the new four-field fitness frontmatter for the eight Core files plus `principles.md`, `testing-strategy.md`, `AGENT.md`, `metacognition.md`. **Informational only during integration**; promoted to blocking by the post-integration fitness reconciliation session.
+- Author `scripts/validate-subagents.mjs` (+ helpers + `unit.test.ts`): every canonical sub-agent has its required platform adapters on all four platforms (Cursor, Claude, Codex, Copilot); reviewer roster declared in `.codex/config.toml`, `.claude/`, and `.github/agents/` matches canonical; thin-wrapper contract enforced. Blocking.
+- Author `scripts/validate-vital-surfaces.mjs` (+ helpers + `unit.test.ts`): walks Category A/B/C/D/E vital surfaces; uses `cross-platform-agent-surface-matrix.md` as the authoritative supported/unsupported contract; exits non-zero if any required surface is missing or broken. Blocking.
+- Author `scripts/validate-fitness-vocabulary.mjs` (+ `unit.test.ts`): validates fitness frontmatter keys are from the canonical four-field vocabulary; flags drift. **Informational only during integration**; vocabulary lock-in happens at post-integration reconciliation.
+- Wire validators into `package.json` scripts; update `pnpm check` (canonical-named) to invoke every blocking validator in sequence; informational validators run separately or with non-zero exit suppressed during the adoption window.
+- Update [README.md](README.md), [CONTRIBUTING.md](CONTRIBUTING.md), `principles.md` to document the validator estate, including the integration-first informational-vs-blocking distinction and the post-integration promotion path.
+
+Note: `validate-root-application-version.mjs` is **not adopted** here — this repo is single-package and has no other versions to distinguish from the root. Recorded as explicitly unsupported in `cross-platform-agent-surface-matrix.md`.
 
 ## Phase 13 — ADR reclassification and visual-regression PDR/pattern
 
-Outcome: ADRs that govern the Practice (not the product) are marked superseded by their canonical PDR equivalents; visual-regression discipline is captured as a portable PDR or pattern (candidate for upstream contribution).
-Impact: ADR estate is honest about scope; the Practice gains a discipline that other UI-bearing repos can adopt; PDR-019 (ADR scope by reusability) satisfied locally.
-Value mechanism: every ADR governs host-product; every PDR governs the Practice; the boundary is clean.
-Acceptance: ADR-012, ADR-015, ADR-018 carry `Superseded by PDR-NNN` headers and concise redirect notes; ADR-016 is split into product-tooling ADR + new local PDR or `practice-core/patterns/` pattern; ADR-005 carries scope-narrowing note per PDR-019.
+Outcome: ADRs that govern the Practice (not the product) are marked superseded by their canonical PDR equivalents; visual-regression discipline is captured as a PDR (because the discipline generalises across rendering-risk repos and is therefore reusable Practice substance).
+Impact: ADR estate is honest about scope; the Practice gains a discipline that other UI-bearing repos can adopt; PDR-019 (ADR scope by reusability) satisfied locally; the ADR-vs-PDR boundary becomes clean and operational.
+Value mechanism: every ADR governs host-product specifics that do not generalise; every PDR governs reusable Practice substance regardless of where it was authored. PDRs are PDRs whether they arrive from upstream Practice integration or originate locally — the distinction is reusability, not provenance.
+Acceptance: ADR-012, ADR-015, ADR-018 carry `Superseded by PDR-NNN` headers and concise redirect notes; ADR-016 is split into product-tooling ADR + new PDR for the visual-regression discipline; ADR-005 carries scope-narrowing note per PDR-019.
 
 Tasks:
 
 - Add `Superseded by PDR-011` to [ADR-012 Agent memory pipeline](docs/architecture/decision-records/012-agent-memory-pipeline.md) with a one-paragraph redirect.
 - Add `Superseded by PDR-009` to [ADR-015 Codex adapter model](docs/architecture/decision-records/015-codex-adapter-model.md).
 - Add `Superseded by PDR-007` to [ADR-018 Practice-context adjunct for plasmid exchange](docs/architecture/decision-records/018-practice-context-adjunct-for-plasmid-exchange.md).
-- For [ADR-016 Visual regression harness](docs/architecture/decision-records/016-review-oriented-visual-regression-harness.md): keep the ADR for the harness tool choice; author a new local PDR (e.g. `PDR-LOCAL-001-rendering-risk-needs-blocking-visual-proof.md` in `.agent/practice-core/decision-records/`) for the discipline. If the discipline generalises across multiple instances, also draft a `practice-core/patterns/` entry as an outbound contribution candidate (executed in Phase 14 if appropriate).
+- For [ADR-016 Visual regression harness](docs/architecture/decision-records/016-review-oriented-visual-regression-harness.md): keep the ADR for this repo's specific harness tool choice; author a new PDR `PDR-NNN-rendering-risk-needs-blocking-visual-proof.md` (where `NNN` is the next available number after the inbound 24) in `.agent/practice-core/decision-records/` for the reusable discipline. The PDR is authored here but is no different in kind from upstream PDRs — it is a candidate for plasmid exchange in the next outbound pass. Pair with a `practice-core/patterns/` entry if a concrete implementation pattern is also worth carrying.
 - For [ADR-005 Knip](docs/architecture/decision-records/005-knip-unused-code-detection.md): add scope-narrowing note tying gate composition to PDR-008 + PDR-020 and tool choice to PDR-006.
-- Update `.agent/practice-index.md` ADR table to reflect superseded states.
+- Update `.agent/practice-index.md` ADR and PDR tables to reflect superseded states and the new local-origin PDR(s).
+- Audit remaining ADRs for any that document reusable Practice substance rather than host-product specifics; promote to PDRs case-by-case. Strictly local concerns stay as ADRs; reusable concerns become PDRs in the same numbering scheme.
 
 ## Phase 14 — Practice-context hygiene under PDR-007
 
@@ -488,11 +558,12 @@ Tasks:
 Outcome: every validator green; every Bootstrap Checklist item passes; every PDR-024 vital surface confirmed present and operational; full gate sequence green on a fresh checkout.
 Impact: hydration is repeatable; the Practice contract is enforced; the integration is provably complete.
 Value mechanism: the verification surface (`practice-verification.md`) is the binding contract; passing it is the definition of done.
-Acceptance: `pnpm portability:check`, `pnpm practice:fitness` (informational and strict), `pnpm validate-subagents`, `pnpm validate-vital-surfaces`, `pnpm validate-fitness-vocabulary`, `pnpm check`, `pnpm check:ci`, `pnpm test:e2e` all green; Bootstrap Checklist items 1–13 walked with evidence captured; Post-Installation Health Check 8 steps walked; Claimed/Installed/Activated audit complete; Fresh-Checkout Acceptance Criteria 1–6 satisfied.
+Acceptance: `pnpm validate-vital-surfaces`, `pnpm validate-portability`, `pnpm validate-subagents` (all blocking), `pnpm validate-practice-fitness` and `pnpm validate-fitness-vocabulary` (informational during this adoption, exit captured for the post-integration session), `pnpm check`, `pnpm check:ci`, `pnpm test:e2e` all green; GitHub Actions workflows green on a PR-shaped run; Bootstrap Checklist items 1–13 walked with evidence captured; Post-Installation Health Check 8 steps walked; Claimed/Installed/Activated audit complete; Fresh-Checkout Acceptance Criteria 1–6 satisfied.
 
 Tasks:
 
-- Run validators in this order: `pnpm validate-vital-surfaces`, `pnpm validate-portability`, `pnpm validate-subagents`, `pnpm validate-practice-fitness`, `pnpm validate-fitness-vocabulary`, `pnpm check`, `pnpm check:ci`, `pnpm test:e2e`. Fix any failures before declaring complete.
+- Run validators in this order: `pnpm validate-vital-surfaces`, `pnpm validate-portability`, `pnpm validate-subagents` (blocking gates), then `pnpm validate-practice-fitness` and `pnpm validate-fitness-vocabulary` (informational; capture output for the post-integration reconciliation session), then `pnpm check`, `pnpm check:ci`, `pnpm test:e2e`. Fix any blocking failure before declaring complete; informational findings are recorded, not fixed in this session.
+- Trigger the GitHub Actions workflow set on a PR; confirm `check.yml`, `validators.yml`, `e2e.yml` all green.
 - Walk every Bootstrap Checklist item in [`.agent/practice-core/practice-verification.md`](.agent/practice-core/practice-verification.md); record evidence for each item in the plan completion section.
 - Walk the Post-Installation Health Check 8 steps; record outcomes.
 - Walk the Claimed/Installed/Activated audit; record any silent gaps and resolve them.
@@ -502,8 +573,9 @@ Tasks:
 
 ## Notes
 
-- The continual-learning slash-command request that arrived earlier in this conversation is not part of this plan and can be handled separately.
-- Each phase ends with the restart-on-fix discipline (a fix in one gate restarts the full sequence). Plan does not commit to commit boundaries; the executing agent decides commit slicing inside each phase, in alignment with `principles.md` and the canonical commit command.
+- The dead `continual-learning` Cursor-plugin skill is fully replaced by the Practice's own learning loop (napkin → distilled → `consolidate-docs`). Phase 1 deletes the orphaned hook state; Phase 9 sweeps any remaining textual references in `AGENTS.md` and `.agent/skills/distillation/SKILL.md`.
+- Each phase ends with the restart-on-fix discipline (a fix in one gate restarts the full sequence). The plan does not commit to commit boundaries; the executing agent decides commit slicing inside each phase, in alignment with `principles.md` and the canonical commit command.
 - The plan file itself is the continuity surface (PDR-011) for this multi-session work; if work pauses, the next session resumes from Phase N's task list.
-- TSDoc on all new validator scripts; READMEs for new directories (`.agent/memory/patterns/`, `docs/explorations/`, `.agent/hooks/`, `.github/ISSUE_TEMPLATE/` if added).
-- The PDR numbering for any new local PDR uses a `PDR-LOCAL-NNN` namespace inside `.agent/practice-core/decision-records/` to distinguish local-authored from network-authored PDRs until graduation; alternative numbering schemes can be agreed during Phase 13 if a different convention is preferred.
+- TSDoc on all new validator scripts; READMEs for new directories (`.agent/memory/patterns/`, `docs/explorations/`, `.agent/hooks/`, `.github/ISSUE_TEMPLATE/` if added, `.claude/` and its sub-directories).
+- All new PDRs (whether arriving from upstream Practice integration or originating locally during Phase 13 and beyond) use the same numbering scheme inside `.agent/practice-core/decision-records/`. Provenance is recorded in the PDR frontmatter, not encoded into the filename. PDRs are PDRs; reusability is the criterion, not authorship origin.
+- Fitness-driven trimming, deletion, deduplication, and ceiling enforcement happen in a dedicated post-integration session — not during this adoption. The integration-first principle is binding for every phase.
