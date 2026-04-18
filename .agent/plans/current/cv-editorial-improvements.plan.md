@@ -14,20 +14,23 @@ Positioning paragraphs, capabilities, `meta.summary`, structured data (`KNOWS_AB
 
 **Remaining work in dedicated plans:**
 
-| Item                                     | Plan                                                                                                                         | Status      |
-| ---------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| Experience & Before Oak editorial review | [experience-editorial.plan.md](../complete/experience-editorial.plan.md)                                                     | Complete    |
-| Graph current-state audit                | [graph-current-state-audit.md](../research/graph-current-state-audit.md)                                                     | Baseline    |
-| Graph roadmap                            | [personal-knowledge-graph-roadmap.plan.md](personal-knowledge-graph-roadmap.plan.md)                                         | In progress |
-| Track A execution                        | [personal-knowledge-graph-execution.plan.md](personal-knowledge-graph-execution.plan.md)                                     | Complete    |
-| Track B source-of-truth design           | [personal-knowledge-graph-source-of-truth-design.plan.md](../active/personal-knowledge-graph-source-of-truth-design.plan.md) | In progress |
-| Track B B1 layer map                     | [graph-source-of-truth-layer-map.md](../research/graph-source-of-truth-layer-map.md)                                         | Complete    |
-| Graph metaplan                           | [graph-metaplan.plan.md](../graph-metaplan.plan.md)                                                                          | Complete    |
-| Visual regression harness                | [visual-regression-harness.plan.md](../complete/visual-regression-harness.plan.md)                                           | Complete    |
-| LinkedIn update                          | [linkedin-update.plan.md](linkedin-update.plan.md) — downstream reference, not an architecture driver                        | Subsumed    |
-| Tilt mechanism                           | No plan yet — see [Deferred](#deferred) below                                                                                | Deferred    |
-| Tilt content                             | Depends on tilt mechanism                                                                                                    | Deferred    |
-| PKG durable design decisions             | [ADR-014](../../../docs/architecture/decision-records/014-entity-model-design.md) and related ADRs                           | Accepted    |
+| Item                                     | Plan                                                                                                                                                                                   | Status             |
+| ---------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------ |
+| Experience & Before Oak editorial review | [experience-editorial.plan.md](../complete/experience-editorial.plan.md)                                                                                                               | Complete           |
+| Graph current-state audit                | [graph-current-state-audit.md](../research/graph-current-state-audit.md)                                                                                                               | Baseline           |
+| Graph roadmap                            | [personal-knowledge-graph-roadmap.plan.md](personal-knowledge-graph-roadmap.plan.md)                                                                                                   | In progress        |
+| Track A execution                        | [personal-knowledge-graph-execution.plan.md](personal-knowledge-graph-execution.plan.md)                                                                                               | Complete           |
+| Track B source-of-truth design           | [personal-knowledge-graph-source-of-truth-design.plan.md](../active/personal-knowledge-graph-source-of-truth-design.plan.md) — single canonical CV view; tilt + A/B deferred door-open | In progress        |
+| Track B B1 layer map                     | [graph-source-of-truth-layer-map.md](../research/graph-source-of-truth-layer-map.md)                                                                                                   | Complete           |
+| Graph metaplan                           | [graph-metaplan.plan.md](../graph-metaplan.plan.md)                                                                                                                                    | Complete           |
+| Visual regression harness                | [visual-regression-harness.plan.md](../complete/visual-regression-harness.plan.md)                                                                                                     | Complete           |
+| LinkedIn update                          | [linkedin-update.plan.md](linkedin-update.plan.md) — collaborative editorial, parallel-runnable                                                                                        | Ready              |
+| Tilt routes (live `/cv/[variant]`)       | [tilt-retirement.plan.md](tilt-retirement.plan.md) — retire routes/components, preserve content as reference                                                                           | In progress        |
+| Tilt mechanism (future re-introduction)  | No plan — door open via preserved reference doc                                                                                                                                        | Deferred door-open |
+| Tilt content (future re-introduction)    | Depends on tilt mechanism                                                                                                                                                              | Deferred door-open |
+| A/B testing                              | No plan — no current infrastructure                                                                                                                                                    | Deferred door-open |
+| Dev-tooling hygiene                      | [dev-tooling-hygiene.plan.md](dev-tooling-hygiene.plan.md) — deps refresh + dependency-cruiser as 9th blocking gate                                                                    | Ready              |
+| PKG durable design decisions             | [ADR-014](../../../docs/architecture/decision-records/014-entity-model-design.md) and related ADRs                                                                                     | Accepted           |
 
 ## How to use this plan
 

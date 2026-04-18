@@ -9,11 +9,17 @@ todos:
     content: Define the layered source-of-truth model and file topology.
     status: completed
   - id: composition-and-binding-design
-    content: Define graph-to-view composition and graph-to-DOM binding.
+    content: Define graph-to-view composition and graph-to-DOM binding for a single canonical CV view.
     status: in_progress
   - id: migration-and-completeness-design
     content: Define the phased adoption path and publication-completeness model.
     status: pending
+  - id: tilt-composition-deferred
+    content: Tilt composition design is deferred door-open. Tilts are being retired in tilt-retirement.plan.md; if reintroduced later, restart from the preserved tilt reference doc and the B1 layer map's tilt-implications section.
+    status: deferred
+  - id: ab-testing-deferred
+    content: A/B testing is deferred door-open. Not in scope for the source-of-truth design.
+    status: deferred
 isProject: false
 ---
 
@@ -71,21 +77,36 @@ Track B design is now the active graph task. It remains design-only work.
 No code should be shipped from this plan until its design work is
 decision-complete and an explicit migration plan exists.
 
+## Scope decision: single canonical CV view
+
+Track B Phase B2 onward is now scoped to a **single canonical CV editorial
+view**. Tilt composition (formerly Task B2.2) and A/B testing are both deferred
+door-open — see [Deferred / door left open](#deferred--door-left-open) below.
+
+Live tilt routes (`/cv/[variant]`) are being retired as code work in
+[`../current/tilt-retirement.plan.md`](../current/tilt-retirement.plan.md). The
+retirement plan preserves the tilt content and canonical-alias rationale as a
+discoverable reference doc so future re-introduction has a real starting point.
+
+This scope decision shrinks the Track B design surface so it can credibly close
+without fabricating tilt composition rules for a feature that is being removed.
+
 ## Next session start
 
 Phase B1 is now complete via
 [graph-source-of-truth-layer-map.md](../research/graph-source-of-truth-layer-map.md).
 
-Begin with Phase B2, not a new audit:
+Begin with Phase B2, not a new audit. **Task B2.1 only.** Task B2.2 has been
+deferred:
 
-- Task B2.1 — Page Selection and Ordering Model
-- Task B2.2 — Tilt Composition Model
+- Task B2.1 — Page Selection and Ordering Model (single canonical CV view)
 
 Use the B1 note as fixed boundary:
 
 - facts, authored prose, and composition are distinct ownership layers
 - those layers must still resolve into one cohesive graph across multiple files
 - visible HTML is still not graph-derived in the current implementation
+- tilts are being retired; do not design tilt composition into B2
 
 ## Problem statement
 
@@ -159,56 +180,48 @@ abstract principles.
 - `/cv` has a worked ownership example
 - tilt implications are noted where relevant
 
-### Phase B2 — Graph-to-View Composition Model
+### Phase B2 — Graph-to-View Composition Model (single canonical CV view)
 
-**Goal:** define how pages become views onto the graph.
+**Goal:** define how the canonical `/cv/` page becomes a view onto the graph.
 
 **Impact:** page rendering can later migrate from file-shaped composition to
-relationship-shaped composition.
+relationship-shaped composition for the single supported view.
 
 **Value mechanism:** explicit composition rules are required before any claim of
-graph-backed rendering is credible.
+graph-backed rendering is credible. Scoping to one canonical view removes the
+largest open question (tilt composition) and lets the design close on real
+boundaries.
 
 **Acceptance criteria:**
 
 - the composition mechanism is explicit
-- the design supports canonical and tilt CV routes
+- the design covers the canonical `/cv/` route and explicitly declares tilt
+  composition out of scope (deferred door-open)
 - the design explains how visible sections map back to graph-owned sources
+- the design does not depend on tilt composition primitives or canonical-alias
+  machinery; if those return later, they re-enter through a separate phase
 
 #### Tasks
 
 ##### Task B2.1 — Page Selection and Ordering Model
 
 **Outcome:** a model for selection, ordering, grouping, and page-specific
-narrative.
+narrative for the canonical CV view.
 
 **Impact:** graph composition can express page structure without relying on
-today's brittle content-file layout.
+today's brittle content-file layout, and without coupling to a feature
+(tilts) that is being retired.
 
 **Value mechanism:** explicit composition logic avoids accidental parallel
-ownership.
+ownership. Single-view scope keeps the model auditable.
 
 **Acceptance criteria:**
 
-- page selection rules are defined
+- page selection rules are defined for the canonical `/cv/` route
 - ordering and grouping rules are defined
 - page-specific narrative is accounted for without breaking shared ownership
-
-##### Task B2.2 — Tilt Composition Model
-
-**Outcome:** a design for how tilt variants derive from shared graph-owned
-structures.
-
-**Impact:** tilt behaviour becomes a real composition concern rather than an
-afterthought.
-
-**Value mechanism:** shared underlying structures reduce duplicate editorial
-maintenance.
-
-**Acceptance criteria:**
-
-- the design supports canonical CV and tilt routes
-- the reuse and variation rules are explicit
+- the design names the seam where tilt composition could re-enter later
+  without rewriting the canonical-view model
 
 ### Phase B3 — Identity and Binding Model
 
@@ -243,7 +256,9 @@ to the same real things.
 
 - required ID levels are named
 - generation and governance rules are explicit
-- tilt identity behaviour is covered
+- tilt identity behaviour is **not required** here (tilts are being retired);
+  the model must remain compatible with later tilt re-introduction without
+  forcing a redesign
 
 ##### Task B3.2 — Binding Examples
 
@@ -379,3 +394,39 @@ Use:
 - `type-reviewer` when the design implies new typing or validation boundaries
 - `test-reviewer` for proof and migration-validation strategy
 - `editor` when authored-content ownership or public framing is affected
+
+## Deferred / door left open
+
+The following items are deliberately out of scope for this Track B design and
+are recorded here so the door is discoverable, not implicit.
+
+### Tilt composition
+
+**Why deferred:** tilts are being retired in
+[`../current/tilt-retirement.plan.md`](../current/tilt-retirement.plan.md).
+Designing tilt composition into Track B would either fabricate rules for a
+removed feature or block this design on a feature that is leaving the codebase.
+
+**Where the content goes:** the retirement plan preserves the tilt content and
+the canonical-alias rationale (currently in
+[ADR-017](../../../docs/architecture/decision-records/017-cv-tilt-routes-are-canonical-aliases.md))
+in a discoverable reference doc under `docs/architecture/reference/`.
+
+**Re-entry condition:** if tilts return as a real product requirement, the
+composition design starts from:
+
+- the preserved tilt reference doc
+- the B1 layer map's [tilt implications section](../research/graph-source-of-truth-layer-map.md#tilt-implications)
+- whatever ADR supersedes ADR-017 at that point
+
+The Track B B2 design must keep the seam clear so that later tilt re-entry
+extends the canonical-view model rather than rewriting it.
+
+### A/B testing
+
+**Why deferred:** no infrastructure for A/B testing exists, and this design
+does not require it. Routing or audience-variant work belongs to a separate
+plan if the requirement returns.
+
+**Re-entry condition:** an explicit A/B testing plan with stated consumers,
+infrastructure choices, and proof model.

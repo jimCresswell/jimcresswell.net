@@ -12,10 +12,13 @@ todos:
     content: Execute Track A graph-expression refinement and validation work.
     status: completed
   - id: track-b-design
-    content: Complete the required Track B source-of-truth design once Track A has established the current graph layer's value boundaries.
+    content: Complete the required Track B source-of-truth design for a single canonical CV view. Tilt composition and A/B testing are deferred door-open.
     status: in_progress
   - id: track-b-adoption-plan
     content: Turn the Track B design into an implementation-ready migration plan.
+    status: pending
+  - id: tilts-retired-prerequisite
+    content: Tilt routes and components are being retired in tilt-retirement.plan.md so Track B can credibly scope to a single canonical CV view.
     status: pending
 isProject: false
 ---
@@ -127,8 +130,16 @@ Track B design may begin once Track A has completed its impact model and the
 roadmap boundary still stands, but Track B implementation remains out of scope
 until its design work is decision-complete.
 
-LinkedIn remains downstream of this roadmap. It is a derived-view concern, not
-a driver of graph architecture.
+Track B is now scoped to a **single canonical CV view**. Tilt composition and
+A/B testing are deferred door-open; live tilt routes are being retired in
+[`tilt-retirement.plan.md`](tilt-retirement.plan.md) so Track B can close on
+real boundaries.
+
+LinkedIn is **not** downstream of this roadmap. It derives from the editorial
+CV content (`content/cv.content.json`) and `editorial-guidance.md`, neither of
+which depends on graph adoption. The earlier "subsumed" framing was incorrect:
+LinkedIn is parallel-runnable as collaborative editorial work and is tracked
+in [`linkedin-update.plan.md`](linkedin-update.plan.md).
 
 ## Phases
 
@@ -191,21 +202,25 @@ pretending the external tooling was cleaner than it was.
 
 ### Phase 3 — Track B Design
 
-**Goal:** produce the required source-of-truth design after Track A has
-established the boundary of the current architecture.
+**Goal:** produce the required source-of-truth design for a single canonical
+CV view after Track A has established the boundary of the current architecture.
 
 **Impact:** future migration work is driven by demonstrated structural needs,
-not by a general preference for elegance.
+not by a general preference for elegance, and is not blocked on tilt
+composition design for a feature being retired.
 
 **Value mechanism:** a design grounded in current limits and proven value
-reduces the risk of unnecessary architectural churn.
+reduces the risk of unnecessary architectural churn. Single-canonical-view
+scope keeps the design auditable.
 
 **Acceptance criteria:**
 
 - Track B design is owned by
   [personal-knowledge-graph-source-of-truth-design.plan.md](../active/personal-knowledge-graph-source-of-truth-design.plan.md)
 - the layered model, composition model, binding model, and adoption path are
-  decision-complete
+  decision-complete for the canonical CV view
+- tilt composition and A/B testing are explicitly deferred door-open with
+  re-entry conditions named
 - Track B remains design-only until the plan says otherwise
 
 Track B Phase B1 is now recorded in

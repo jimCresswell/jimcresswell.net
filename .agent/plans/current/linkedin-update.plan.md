@@ -2,7 +2,17 @@
 
 Update Jim's LinkedIn profile to be consistent with the editorial CV, using the career history archive as the canonical factual source and the CV's editorial voice as the stylistic reference.
 
-## Status: Subsumed by the adopted [graph roadmap](personal-knowledge-graph-roadmap.plan.md). Retained as a downstream reference plan so its acceptance criteria, source-material checklist, and API findings are not lost. Track A comes first, Track B follows, and LinkedIn remains downstream of both.
+## Status: Ready
+
+LinkedIn content derives directly from the editorial CV
+(`content/cv.content.json`) and `editorial-guidance.md`. Neither depends on
+graph adoption, so the earlier "subsumed" framing was incorrect: this plan is
+parallel-runnable with the graph and tilt-retirement plans, not downstream of
+them.
+
+This is collaborative editorial work. Pick it up with the
+`linkedin-content-preparation` handoff prompt
+(`.agent/prompts/linkedin-content-preparation.prompt.md`).
 
 ## How to use this plan
 
@@ -150,16 +160,19 @@ Plus education entries at Portsmouth, Sussex, and Bath (with thesis titles and l
 
 ## Relationship to other plans
 
-- [cv-editorial-improvements.plan.md](cv-editorial-improvements.plan.md) — The editorial CV positioning paragraphs are the voice reference for LinkedIn content. LinkedIn entries must not contradict them.
-- [meta-seo-content-audit.plan.md](../complete/meta-seo-content-audit.plan.md) — Complete. The CV's `meta.summary`, `KNOWS_ABOUT`, `OCCUPATION`, and capabilities have been editorially updated since this plan was written. Phase 1 should read the current `cv.content.json` and `lib/jsonld.ts` to pick up these changes.
-- [personal-knowledge-graph-roadmap.plan.md](personal-knowledge-graph-roadmap.plan.md) — current parent roadmap for graph work. LinkedIn remains downstream and must not drive graph architecture.
-- [personal-knowledge-graph-execution.plan.md](personal-knowledge-graph-execution.plan.md) — adopted Track A execution plan, which comes first in sequencing.
-- [personal-knowledge-graph-source-of-truth-design.plan.md](../active/personal-knowledge-graph-source-of-truth-design.plan.md) — adopted Track B design plan, which remains downstream of Track A and upstream of any LinkedIn derivation.
+LinkedIn content derives from the editorial CV and editorial guidance. Other
+plans are **context, not gates**:
+
+- [cv-editorial-improvements.plan.md](cv-editorial-improvements.plan.md) — the editorial CV positioning paragraphs are the voice reference. LinkedIn entries must not contradict them.
+- [meta-seo-content-audit.plan.md](../complete/meta-seo-content-audit.plan.md) — complete. The CV's `meta.summary`, `KNOWS_ABOUT`, `OCCUPATION`, and capabilities have been editorially updated since this plan was written. Phase 1 should read the current `cv.content.json` and `lib/jsonld.ts` to pick up these changes.
+- [personal-knowledge-graph-roadmap.plan.md](personal-knowledge-graph-roadmap.plan.md) — graph work runs in parallel and does not block LinkedIn. LinkedIn must not drive graph architecture.
+- [personal-knowledge-graph-source-of-truth-design.plan.md](../active/personal-knowledge-graph-source-of-truth-design.plan.md) — Track B design runs in parallel; visible CV content is still file-driven.
+- [tilt-retirement.plan.md](tilt-retirement.plan.md) — the tilt-related positioning preserved by retirement may be useful as supplementary editorial context but is not required to draft LinkedIn content. The canonical `meta.headline` and positioning paragraphs are the primary source.
 - [graph-metaplan.plan.md](../graph-metaplan.plan.md) — completed reset record for the graph stack.
 
 ## Decision
 
-Accepted as a LinkedIn preparation and API investigation plan. It is now
-reference material for later downstream derived-view work. LinkedIn does not
-drive the graph architecture, the adopted roadmap, or either of the adopted
-graph tracks.
+Accepted as a LinkedIn preparation and API investigation plan, **ready to
+execute**. The canonical editorial CV content is the source of truth; the
+five-phase content workflow can be picked up at any time without waiting on
+graph or tilt work.

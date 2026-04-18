@@ -3,7 +3,7 @@ prompt_id: personal-knowledge-graph-track-b-source-of-truth-design
 title: "Track B Source-of-Truth Design"
 type: handoff
 status: active
-last_updated: 2026-04-03
+last_updated: 2026-04-18
 ---
 
 Continue the personal knowledge graph programme in this repo.
@@ -39,9 +39,15 @@ or the thin adapter
 - The live parent authority is
   `personal-knowledge-graph-roadmap.plan.md`.
 - Track A is complete for the current publication surface.
-- Track B design is now the active graph task.
+- Track B design is now the active graph task, **scoped to a single canonical
+  CV view**.
 - Track B Phase B1 is complete and recorded in
   `graph-source-of-truth-layer-map.md`.
+- **Tilt composition design is deferred door-open.** Live tilt routes are
+  being retired in `../plans/current/tilt-retirement.plan.md`; do not design
+  tilt composition into B2. Re-entry, if it ever happens, starts from the
+  preserved tilt reference doc + the B1 layer map's tilt-implications section.
+- A/B testing is also deferred door-open and is not part of this design.
 - Track B remains design-only. Do not ship source-of-truth implementation code
   from this slice.
 - Visible HTML still comes from `content/cv.content.json` and
@@ -68,26 +74,29 @@ or the thin adapter
 
 ## Active task
 
-Deliver the next Track B design slice:
+Deliver the next Track B design slice (single canonical CV view):
 
 - Task B2.1 — Page Selection and Ordering Model
-- Task B2.2 — Tilt Composition Model
+
+Task B2.2 (Tilt Composition Model) is **deferred door-open** — do not design it.
 
 The output should define:
 
-- how route/view nodes select facts and prose
+- how route/view nodes select facts and prose for the canonical `/cv/` route
 - how ordering and grouping work without recreating today's page JSON shape
 - how page-specific narrative slots sit alongside reusable statement entities
-- how tilt selection, reuse, and canonical behaviour belong to composition
+- where the seam sits for later tilt re-introduction without rewriting the
+  canonical-view model
 
 ## Before editing
 
-- confirm the smallest useful B2 slice that advances Track B without spilling
+- confirm the smallest useful B2.1 slice that advances Track B without spilling
   into implementation
 - preserve the B1 ownership boundary rather than reopening it
-- inspect the current page-document and tilt behaviour that B2 will need to
-  model deliberately
+- inspect the current page-document behaviour that B2 will need to model
+  deliberately for the canonical view
 - keep the current rendering and publication boundaries explicit
+- do not block on tilt-retirement; the two threads are parallel-runnable
 
 ## Likely relevant files
 
