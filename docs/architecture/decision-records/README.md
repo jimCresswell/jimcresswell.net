@@ -34,3 +34,4 @@ Each ADR follows a lightweight format:
 | [016](016-review-oriented-visual-regression-harness.md)     | Review-oriented visual regression harness for exported refs       | Accepted | 2026-03-08 |
 | [017](017-cv-tilt-routes-are-canonical-aliases.md)          | CV tilt routes are canonical aliases of the base CV page          | Accepted | 2026-03-08 |
 | [018](018-practice-context-adjunct-for-plasmid-exchange.md) | Practice-context adjunct for plasmid exchange                     | Accepted | 2026-03-09 |
+| [019](019-playwright-against-production-build.md)           | Playwright runs against a production build                        | Accepted | 2026-04-18 |

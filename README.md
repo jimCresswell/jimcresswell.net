@@ -46,8 +46,7 @@ pnpm typecheck      # TypeScript type checking
 pnpm test           # Unit and integration tests (Vitest)
 pnpm test:watch     # Tests in watch mode
 pnpm test:coverage  # Tests with coverage report
-pnpm test:e2e       # E2E tests — default project (Playwright, requires browsers installed)
-pnpm test:e2e:pdf   # E2E tests — PDF project (requires production build on :3001)
+pnpm test:e2e       # E2E tests — full Playwright suite against a production build
 pnpm test:e2e:ui    # Playwright UI mode (interactive)
 
 pnpm fix            # Format, markdownlint, and lint auto-fix
@@ -167,8 +166,7 @@ Two Git hooks enforce quality automatically:
 ```bash
 pnpm check          # All eight gates with auto-fix (format, markdownlint, lint, typecheck, test, knip, gitleaks, portability)
 pnpm check:ci       # Same gates, read-only (no auto-fix)
-pnpm test:e2e       # E2E tests (separate — requires Chromium)
-pnpm test:e2e:pdf   # E2E PDF tests (requires production build on :3001)
+pnpm test:e2e       # E2E tests against production build (separate — requires Chromium)
 ```
 
 Both hooks are managed by [Husky](https://typicode.github.io/husky/), installed automatically by the `prepare` script when you run `pnpm install`. Gitleaks scans the full git history to ensure no secrets are committed — it requires [gitleaks](https://github.com/gitleaks/gitleaks) to be installed (`brew install gitleaks` on macOS). For the full gate sequence and restart-on-fix discipline, see [rules.md](.agent/directives/rules.md#code-quality).

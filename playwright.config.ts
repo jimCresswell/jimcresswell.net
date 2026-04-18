@@ -3,18 +3,19 @@ import { defineConfig, devices } from "@playwright/test";
 /**
  * Playwright configuration for E2E tests.
  *
- * Two projects:
- * - `default` — runs against `pnpm dev` for journey, behaviour, and accessibility tests.
- * - `with-build` — runs against a pre-built production server on port 3001 for PDF tests.
- *   Requires `pnpm build && pnpm start -p 3001` to be running separately.
+ * The default project runs against a production build served by `pnpm start`
+ * on port 3000. The build is run by Playwright's web server (re-used between
+ * runs locally; built fresh on CI) so every test exercises the same artefact
+ * a visitor would see in production. This eliminates dev-only flakes — the
+ * Turbopack `Runtime ChunkLoadError` overlay and the Next.js dev-tools issue
+ * badge — at the source.
  *
- * Tests with `.with-build.` in the filename run only in the `with-build` project.
- * All other tests run in the `default` project.
+ * The PDF is generated as part of `pnpm build` (postbuild script), so PDF
+ * tests no longer need a separate project; they run alongside everything else.
  *
  * Scripts:
- * - `pnpm test:e2e` — runs the default project (most tests)
- * - `pnpm test:e2e:pdf` — runs the with-build project (PDF tests)
- * - `pnpm test:e2e:ui` — opens Playwright UI mode
+ * - `pnpm test:e2e` — run the full E2E suite against the production build
+ * - `pnpm test:e2e:ui` — open Playwright UI mode
  *
  * @see https://playwright.dev/docs/test-configuration
  */
@@ -34,22 +35,13 @@ export default defineConfig({
     {
       name: "default",
       use: { ...devices["Desktop Chrome"] },
-      testIgnore: /\.with-build\./,
-    },
-    {
-      name: "with-build",
-      use: {
-        ...devices["Desktop Chrome"],
-        baseURL: "http://localhost:3001",
-      },
-      testMatch: /\.with-build\./,
     },
   ],
 
   webServer: {
-    command: "pnpm dev",
+    command: "pnpm build && pnpm start --port 3000",
     url: "http://localhost:3000",
     reuseExistingServer: !process.env.CI,
-    timeout: 30_000,
+    timeout: 120_000,
   },
 });

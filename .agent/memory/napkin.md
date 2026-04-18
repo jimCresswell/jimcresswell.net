@@ -1,5 +1,56 @@
 # Napkin
 
+## Session: 2026-04-18 — Playwright against production build, Next 16.2.4
+
+### What Was Done
+
+- Diagnosed Playwright failures in `test-results/` as the dev-server-only
+  Turbopack `Runtime ChunkLoadError` overlay. Reproduced on run 3/3 of
+  `pnpm test:e2e`. Confirmed the failing module path was
+  `*.development.js` — production unaffected.
+- Upgraded **Next.js 16.1.6 → 16.2.4** (and `eslint-config-next` to match).
+  The dev overlay flagged the staleness; upgrading alone did not stop the
+  flake and surfaced a second dev-only failure (a new dev-tools issue badge
+  on `/cv/pdf/unavailable` triggered axe violations).
+- Switched the **default Playwright project to a production build**:
+  `playwright.config.ts` now sets `webServer.command` to
+  `pnpm build && pnpm start --port 3000`, with `timeout: 120_000`.
+- **Collapsed the `with-build` project** into the default project and
+  renamed `*.with-build.*` test files to standard names. PDF generation is
+  part of `pnpm build`, so PDF tests run alongside everything else.
+- Removed `pnpm test:e2e:pdf` script; updated AGENT.md, rules.md,
+  quality-gates skill, README.md, CONTRIBUTING.md, requirements.md, and
+  e2e/README.md.
+- **Simplified E2E support helpers** (`cv-variant.ts`, `not-found.ts`,
+  `pdf-unavailable.ts`) by removing the dev-overlay reload-once branch —
+  no longer needed against a production build.
+- Verified with **5 consecutive full E2E runs** (57 tests, ~11s each after
+  the initial 15s build) — all green.
+- Updated `distilled.md` to replace the dev-server overlay troubleshooting
+  note with the production-build pattern.
+
+### Mistakes Made
+
+- Initially considered extending the per-route stabilising-helper pattern
+  to `/`, `/cv`, and inline-link navigation. That would have scaled poorly
+  (every route gets a helper, every test pays a tax forever) and would have
+  treated the symptom, not the layer where the bug actually lives.
+
+### Patterns to Remember
+
+- For E2E proving user-visible behaviour, **production build is the right
+  layer**. Dev-server transients (chunk-load failures, dev-tools UI) are
+  not part of the contract we care about and should be removed at the
+  source rather than papered over with helpers.
+- When the dev overlay flags a stale framework version, **upgrade first**
+  before adding workarounds. Sometimes it fixes the issue. When it
+  doesn't, re-running with the upgrade still surfaces clearer evidence
+  that the right fix is structural, not a patch.
+- When two test projects exist only because one of them needs the build
+  artefact (here: PDF), check whether the build is also the safer base
+  for the rest of the suite. Often it is, and the projects collapse into
+  one.
+
 ## Session: 2026-04-03 — Start-right and project-spec as core skills
 
 ### What Was Done

@@ -15,7 +15,7 @@ Guidelines for contributing to [www.jimcresswell.net](https://www.jimcresswell.n
 
 - Work on a **feature branch** and open a pull request. The repository owner commits to `main` directly; other contributors use branches.
 - A **pre-commit hook** runs `pnpm check:ci` (read-only quality gates) on every commit — expect ~10–15 seconds. Do not skip it (`--no-verify` is not permitted).
-- A **pre-push hook** runs `pnpm check && pnpm test:e2e` — the full gate sequence plus the default E2E suite. PDF tests are explicit because they require a prior production build on `:3001`.
+- A **pre-push hook** runs `pnpm check && pnpm test:e2e` — the full gate sequence plus the full E2E suite. The Playwright web server runs `pnpm build && pnpm start`, so every test (including PDF) exercises the production build.
 - If you touch agent tooling or platform adapters, ensure `pnpm portability:check` passes. It is already part of `pnpm check`, but call it out explicitly in your own verification notes.
 - If you touch Practice Core or directive docs that carry the four-field fitness frontmatter, run `pnpm practice:fitness:informational`.
 - If adding an architectural decision, create an ADR in `docs/architecture/decision-records/` following the existing format. See the [ADR index](docs/architecture/decision-records/README.md) for examples.

@@ -16,8 +16,9 @@ The definitive gate list with all command names lives in
 - `pnpm check` runs all eight gates with auto-fix (format, markdownlint,
   lint, typecheck, test, knip, gitleaks, portability).
 - `pnpm check:ci` runs them read-only (used by the pre-commit hook).
-- `pnpm test:e2e`, `pnpm test:e2e:pdf`, and `pnpm test:e2e:ui` are separate
-  Playwright surfaces.
+- `pnpm test:e2e` and `pnpm test:e2e:ui` are separate Playwright surfaces.
+  `pnpm test:e2e` runs the full suite (journeys, behaviour, a11y, PDF)
+  against a production build; the build is run by Playwright's web server.
 - When changing Practice Core or directive docs, run
   `pnpm practice:fitness:informational` as an advisory companion check.
 

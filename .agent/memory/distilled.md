@@ -26,6 +26,13 @@ Quick-reference entries that are NOT in permanent docs. Read before every sessio
 - Playwright import fails on JSON-backed app modules: keep route-emission
   proof in Playwright, but move app-module contract proof to Vitest or import
   raw JSON directly
-- Local Playwright runs against `pnpm dev` can intermittently show a Next.js
-  runtime chunk overlay on some non-root routes; stabilise that in a narrow
-  E2E helper that proves the intended page before assertions continue
+
+## Playwright runs against a production build
+
+`pnpm test:e2e` now uses `pnpm build && pnpm start` as its web server.
+Production removes the dev-only Turbopack `Runtime ChunkLoadError` overlay and
+the Next.js dev-tools issue badge that previously caused intermittent E2E
+failures and forced narrow per-route stabilising helpers. PDF generation is
+part of the build, so PDF tests run alongside everything else (no separate
+`with-build` project). When in doubt, prefer producing more proof at the
+production layer over working around dev-server transients in test code.

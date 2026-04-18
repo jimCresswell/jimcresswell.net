@@ -107,9 +107,10 @@ Use the right tool for the job:
   8. `pnpm portability:check` — thin-wrapper and local surface-contract validation
 
   E2E tests are separate (slower, require Chromium):
-  - `pnpm test:e2e` — Playwright default project (journeys, behaviour, a11y)
-  - `pnpm test:e2e:pdf` — Playwright with-build project (PDF tests, requires production build on
-    :3001)
+  - `pnpm test:e2e` — Playwright suite against a production build (journeys,
+    behaviour, a11y, PDF). The web server runs `pnpm build && pnpm start` on
+    port 3000. PDF generation is part of the build, so PDF tests run
+    alongside everything else.
   - `pnpm test:e2e:ui` — interactive Playwright UI mode for local diagnosis
 
   Run `pnpm check` and `pnpm test:e2e` sequentially, never in parallel. The
@@ -118,9 +119,7 @@ Use the right tool for the job:
   during the browser run.
 
   Git hooks enforce this: the pre-commit hook runs `pnpm check:ci`, and the
-  pre-push hook runs `pnpm check && pnpm test:e2e`. PDF tests
-  (`pnpm test:e2e:pdf`) require a prior production build on :3001 and are run
-  explicitly.
+  pre-push hook runs `pnpm check && pnpm test:e2e`.
 
   When changing Practice Core, directives, or other docs that carry the
   four-field fitness frontmatter, run

@@ -118,7 +118,7 @@ All commands use `pnpm`. Key commands:
 - `pnpm dev` — local development server
 - `pnpm build` — production build
 - `pnpm check` — eight blocking gates with auto-fix, including portability
-- `pnpm test:e2e` — Playwright default project
+- `pnpm test:e2e` — Playwright E2E suite against a production build
 - `pnpm test:e2e:ui` — interactive Playwright UI mode
 - `pnpm portability:check` — agent-surface parity validation
 - `pnpm practice:fitness:informational` — advisory Practice/doc fitness report
