@@ -32,16 +32,32 @@ async function gotoStablePage(page: Page, url: string): Promise<void> {
   await page.waitForLoadState("domcontentloaded");
 }
 
+async function setThemeAndWaitForTransitions(page: Page, theme: "light" | "dark"): Promise<void> {
+  await page.evaluate((nextTheme) => {
+    const root = document.documentElement;
+    root.classList.toggle("light", nextTheme === "light");
+    root.classList.toggle("dark", nextTheme === "dark");
+  }, theme);
+
+  // Axe must inspect the settled theme, not the first frame of a colour transition.
+  await page.evaluate(
+    () =>
+      new Promise<void>((resolve) =>
+        requestAnimationFrame(() => requestAnimationFrame(() => resolve()))
+      )
+  );
+  await page.waitForFunction(() =>
+    document.getAnimations().every((animation) => animation.playState === "finished")
+  );
+}
+
 test.describe("US-08: WCAG 2.2 AA compliance", () => {
   for (const { name, url } of pages) {
     test.describe(name, () => {
       test("passes axe checks in light theme", async ({ page }) => {
         await gotoStablePage(page, url);
 
-        // Ensure light theme
-        await page.evaluate(() => {
-          document.documentElement.classList.remove("dark");
-        });
+        await setThemeAndWaitForTransitions(page, "light");
 
         const results = await new AxeBuilder({ page }).analyze();
         expect(results.violations).toEqual([]);
@@ -50,10 +66,7 @@ test.describe("US-08: WCAG 2.2 AA compliance", () => {
       test("passes axe checks in dark theme", async ({ page }) => {
         await gotoStablePage(page, url);
 
-        // Switch to dark theme
-        await page.evaluate(() => {
-          document.documentElement.classList.add("dark");
-        });
+        await setThemeAndWaitForTransitions(page, "dark");
 
         const results = await new AxeBuilder({ page }).analyze();
         expect(results.violations).toEqual([]);

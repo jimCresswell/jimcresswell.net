@@ -8,17 +8,19 @@ Agent-facing documentation and planning for this project. Start with [directives
 .agent/
 ├── directives/       ← START HERE
 │   ├── AGENT.md              # Entry point — project context, commands, structure
-│   ├── rules.md              # Core development rules (TDD, type safety, code quality)
+│   ├── principles.md         # Core development rules (TDD, type safety, code quality)
 │   ├── testing-strategy.md   # Testing philosophy, test types, naming conventions
+│   ├── editorial-strategy.md  # Audience, attention, structure, and evidence
 │   └── editorial-guidance.md  # Jim's editorial voice and identity
 │
 ├── plans/            ← Work planning
-│   ├── current/              # Active plans
-│   ├── complete/             # Plans that have been fully executed
-│   ├── icebox/               # Non-current future work
+│   ├── active/               # Single primary execution plan
+│   ├── current/              # Live but non-primary executable plans
+│   ├── future/               # Strategic later-intent plans with promotion triggers
+│   ├── archive/              # Completed or superseded historical plans
 │   ├── research/             # Investigations and current-state audits
 │   ├── roadmap.md            # Repo-level roadmap
-│   └── graph-metaplan.plan.md # Completed graph reset record
+│   └── README.md             # Lane semantics and move rules
 │
 ├── practice-core/    ← Portable Practice Core, provenance, and incoming practice box
 ├── practice-context/ ← Optional repo-local exchange context
@@ -50,24 +52,28 @@ Agent-facing documentation and planning for this project. Start with [directives
 ### Starting a session
 
 1. Read [directives/AGENT.md](directives/AGENT.md) — project context, stack, commands, structure
-2. Read [directives/rules.md](directives/rules.md) — the authoritative rules; these must be followed at all times
+2. Read [directives/principles.md](directives/principles.md) — the authoritative rules; these must be followed at all times
 3. Read [directives/testing-strategy.md](directives/testing-strategy.md) — TDD approach and test type conventions
 4. If touching agent tooling or platform adapters, read
    [reference/cross-platform-agent-surface-matrix.md](reference/cross-platform-agent-surface-matrix.md)
+5. If writing or reviewing content, read
+   [directives/editorial-strategy.md](directives/editorial-strategy.md) and
+   [directives/editorial-guidance.md](directives/editorial-guidance.md)
 
 ### Understanding what needs doing
 
-Active plans describe work that is planned or in progress:
+The primary plan lives in `plans/active/`; related live work stays in `plans/current/`:
 
-| Plan                                                                                                                            | Status      | Description                                                  |
-| ------------------------------------------------------------------------------------------------------------------------------- | ----------- | ------------------------------------------------------------ |
-| [cv-editorial-improvements.plan.md](plans/current/cv-editorial-improvements.plan.md)                                            | In Progress | Parent editorial plan and context map                        |
-| [personal-knowledge-graph-roadmap.plan.md](plans/current/personal-knowledge-graph-roadmap.plan.md)                              | In Progress | Adopted graph roadmap — both tracks required, Track A first  |
-| [personal-knowledge-graph-execution.plan.md](plans/current/personal-knowledge-graph-execution.plan.md)                          | In Progress | Track A execution plan for graph expression work             |
-| [personal-knowledge-graph-source-of-truth-design.plan.md](plans/active/personal-knowledge-graph-source-of-truth-design.plan.md) | Active      | Primary Track B design plan for graph-backed source of truth |
-| [linkedin-update.plan.md](plans/current/linkedin-update.plan.md)                                                                | Subsumed    | Downstream LinkedIn reference plan                           |
+| Plan                                                                                                                            | Status      | Description                                                 |
+| ------------------------------------------------------------------------------------------------------------------------------- | ----------- | ----------------------------------------------------------- |
+| [personal-knowledge-graph-source-of-truth-design.plan.md](plans/active/personal-knowledge-graph-source-of-truth-design.plan.md) | Active      | Current Track B design plan and primary graph workstream    |
+| [cv-editorial-improvements.plan.md](plans/current/cv-editorial-improvements.plan.md)                                            | In Progress | Parent editorial plan and context map                       |
+| [personal-knowledge-graph-roadmap.plan.md](plans/current/personal-knowledge-graph-roadmap.plan.md)                              | In Progress | Adopted graph roadmap — both tracks required, Track A first |
+| [personal-knowledge-graph-execution.plan.md](plans/current/personal-knowledge-graph-execution.plan.md)                          | Complete    | Track A execution plan for graph expression work            |
+| [practice-core-wholesale-adoption.plan.md](plans/archive/practice-core-wholesale-adoption.plan.md)                              | Complete    | Structural Practice adoption ratchet and migration record   |
+| [linkedin-update.plan.md](plans/current/linkedin-update.plan.md)                                                                | In Progress | LinkedIn working-draft iteration and manual transfer        |
 
-Completed plans are in [plans/complete/](plans/complete/) for reference.
+Completed plans are in [plans/archive/](plans/archive/) for reference.
 
 ### Project documentation (outside .agent)
 

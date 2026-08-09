@@ -254,7 +254,7 @@ ADR-017 marked Accepted and design against rules that no longer apply.
 
 **Acceptance criteria:**
 
-- this plan moves from `current/` to `complete/` once Phase 3 closes
+- this plan moves from `current/` to `archive/` once Phase 3 closes
 - `roadmap.md` Active table row for tilt retirement updates to `Complete` and
   the Deferred table re-entry pointer reads correctly post-retirement
 - `napkin.md` records the slice with mistakes-made and patterns-to-remember

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Start Right Quick"
+  short_description: "Ground the session quickly before beginning work"
+  default_prompt: "Use $jc-start-right-quick to ground the session in the foundation documents, active plan, memory, and inbound Practice surfaces before starting work."

@@ -24,3 +24,51 @@ config_file = ".codex/agents/type-reviewer.toml"
 [agents."pkg-reviewer"]
 description = "Structured-data and PKG specialist reviewer."
 config_file = ".codex/agents/pkg-reviewer.toml"
+
+[agents."accessibility-reviewer"]
+description = "Accessibility reviewer ensuring WCAG compliance and assistive flow coverage."
+config_file = ".codex/agents/accessibility-reviewer.toml"
+
+[agents."config-reviewer"]
+description = "Configuration reviewer for Next.js, PostCSS, and pnpm script guardrails."
+config_file = ".codex/agents/config-reviewer.toml"
+
+[agents."design-system-reviewer"]
+description = "Design-system reviewer focused on tokens, spacing, and responsive rhythm."
+config_file = ".codex/agents/design-system-reviewer.toml"
+
+[agents."docs-adr-reviewer"]
+description = "Documentation and ADR reviewer for decision records and narratives."
+config_file = ".codex/agents/docs-adr-reviewer.toml"
+
+[agents."mcp-reviewer"]
+description = "MCP reviewer ensuring the multi-agent roster and adapters stay coherent."
+config_file = ".codex/agents/mcp-reviewer.toml"
+
+[agents."react-component-reviewer"]
+description = "React component reviewer checking hooks, hydration, and memoisation."
+config_file = ".codex/agents/react-component-reviewer.toml"
+
+[agents."security-reviewer"]
+description = "Security reviewer for headers, secrets, and middleware defences."
+config_file = ".codex/agents/security-reviewer.toml"
+
+[agents."subagent-architect"]
+description = "Subagent architect ensuring the canonical reviewer architecture remains sane."
+config_file = ".codex/agents/subagent-architect.toml"
+
+[agents."architecture-reviewer-barney"]
+description = "Architecture reviewer Barney focused on PKG and graph integrity."
+config_file = ".codex/agents/architecture-reviewer-barney.toml"
+
+[agents."architecture-reviewer-betty"]
+description = "Architecture reviewer Betty guarding navigation and tilt architecture."
+config_file = ".codex/agents/architecture-reviewer-betty.toml"
+
+[agents."architecture-reviewer-fred"]
+description = "Architecture reviewer Fred covering builds, caching, and resilience."
+config_file = ".codex/agents/architecture-reviewer-fred.toml"
+
+[agents."architecture-reviewer-wilma"]
+description = "Architecture reviewer Wilma focused on practice governance and documentation."
+config_file = ".codex/agents/architecture-reviewer-wilma.toml"

@@ -19,7 +19,7 @@ Before reviewing, read and internalise:
 | Document                                | Purpose                                                  |
 | --------------------------------------- | -------------------------------------------------------- |
 | `.agent/directives/AGENT.md`            | Core directives and project context                      |
-| `.agent/directives/rules.md`            | Authoritative rules — **especially Type Safety section** |
+| `.agent/directives/principles.md`       | Authoritative rules — **especially Type Safety section** |
 | `.agent/directives/testing-strategy.md` | TDD expectations                                         |
 
 ## Core Philosophy

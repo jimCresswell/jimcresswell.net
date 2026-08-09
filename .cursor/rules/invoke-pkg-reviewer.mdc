@@ -1,0 +1,6 @@
+---
+description: Route PKG and JSON-LD changes through pkg-reviewer
+globs: "content/**/*,lib/pkg/**/*,lib/jsonld.ts,lib/cv-content.ts,app/**/*"
+---
+
+Read and follow @.agent/rules/invoke-pkg-reviewer.md

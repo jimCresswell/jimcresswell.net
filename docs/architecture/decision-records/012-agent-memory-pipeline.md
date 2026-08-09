@@ -2,7 +2,14 @@
 
 ## Status
 
-Accepted
+Superseded by PDR-011
+
+## Supersession Note
+
+The reusable Practice substance from this ADR now lives in
+[`PDR-011`](../../../.agent/practice-core/decision-records/PDR-011-continuity-surfaces-and-surprise-pipeline.md).
+This ADR remains as the local provenance trail for how the repo first adopted
+the memory-pipeline shape.
 
 ## Date
 
@@ -25,8 +32,8 @@ Three feeds converge on permanent documentation. Two flow through a staging area
 ```text
 napkin.md ──────────┐
                     ├──► distilled.md ──► permanent docs
-AGENTS.md ──────────┘    (staging)        (rules.md, AGENT.md,
-(continual-learning                        editorial-guidance.md,
+AGENTS.md ──────────┘    (staging)        (principles.md, AGENT.md,
+(learning-loop                             editorial-guidance.md,
  landing pad)                              ADRs, EDRs, docs/)
                                                ▲
 plans & prompts ───────────────────────────────┘
@@ -35,21 +42,41 @@ plans & prompts ─────────────────────�
 
 **Feed 1 — napkin** (`.agent/memory/napkin.md`): Session-level mistakes, corrections, and patterns logged during active work. The [napkin skill](../../../.agent/skills/napkin/SKILL.md) governs this feed.
 
-**Feed 2 — AGENTS.md**: Insights mined from conversation transcripts by the continual-learning skill. AGENTS.md is a landing pad, not a permanent home.
+**Feed 2 — AGENTS.md**: Insights mined from conversation transcripts by the
+Practice learning loop. AGENTS.md is a landing pad, not a permanent home.
 
-**Feed 3 — plans and prompts** (`.agent/plans/`): Ephemeral work documents that accumulate editorial clarifications, architectural context, and decision rationale during collaborative sessions. Plans are the right place for this content while work is in progress, but as decisions settle, the knowledge must move to permanent documentation (ADRs, EDRs, `docs/`, directives) so it is not lost when plans are completed and archived. The [consolidate-docs command](../../../.agent/commands/jc-consolidate-docs.md) governs this feed.
+**Feed 3 — plans and prompts** (`.agent/plans/`): Ephemeral work documents that
+accumulate editorial clarifications, architectural context, and decision
+rationale during collaborative sessions. Plans are the right place for this
+content while work is in progress, but as decisions settle, the knowledge must
+move to permanent documentation (ADRs, EDRs, `docs/`, directives) so it is not
+lost when plans are completed and archived. The
+[consolidate-docs command](../../../.agent/commands/consolidate-docs.md)
+governs this feed.
 
 **Staging — distilled.md** (`.agent/memory/distilled.md`): A compact, curated quick-reference for feeds 1 and 2. Entries live here temporarily until they are settled enough to graduate. The [distillation skill](../../../.agent/skills/distillation/SKILL.md) governs extraction, merging, and pruning.
 
-**Graduation — permanent docs**: The [consolidate-docs command](../../../.agent/commands/jc-consolidate-docs.md) moves settled entries to their canonical homes: `rules.md` for engineering rules, `AGENT.md` for agent behaviour, `editorial-guidance.md` for editorial principles, ADRs for architectural decisions, EDRs for editorial decisions, and `docs/` for everything else.
+**Graduation — permanent docs**: The
+[consolidate-docs command](../../../.agent/commands/consolidate-docs.md) moves
+settled entries to their canonical homes: `principles.md` for engineering
+rules, `AGENT.md` for agent behaviour, `editorial-guidance.md` for editorial
+principles, ADRs for architectural decisions, EDRs for editorial decisions, and
+`docs/` for everything else.
 
 ### Anchors prevent re-extraction
 
-When an entry graduates from AGENTS.md, it is replaced with an **anchor** — a brief pointer to where the content now lives. Anchors prevent the continual-learning skill from rediscovering and re-adding the same insight from old transcripts.
+When an entry graduates from AGENTS.md, it is replaced with an **anchor** — a
+brief pointer to where the content now lives. Anchors prevent the learning loop
+from rediscovering and re-adding the same insight from old transcripts.
 
 ### Key invariant
 
-Every insight eventually reaches a location that is discoverable without knowledge of the pipeline. A human reading `rules.md` finds the CSS rem/em rule. An agent reading `editorial-guidance.md` finds the register descriptions. Neither needs to know that these entries originated in a napkin session or a transcript mining run. The pipeline is invisible to consumers — only producers need to understand it.
+Every insight eventually reaches a location that is discoverable without
+knowledge of the pipeline. A human reading `principles.md` finds the CSS rem/em
+rule. An agent reading `editorial-guidance.md` finds the register descriptions.
+Neither needs to know that these entries originated in a napkin session or a
+transcript mining run. The pipeline is invisible to consumers — only producers
+need to understand it.
 
 ## Consequences
 

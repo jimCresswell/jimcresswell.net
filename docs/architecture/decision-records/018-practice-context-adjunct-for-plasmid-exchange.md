@@ -2,7 +2,14 @@
 
 ## Status
 
-Accepted
+Superseded by PDR-007
+
+## Supersession Note
+
+The reusable Practice-context narrowing and Core-boundary decision now lives in
+[`PDR-007`](../../../.agent/practice-core/decision-records/PDR-007-promoting-pdrs-and-patterns-to-first-class-core.md).
+This ADR remains as the local provenance trail for how the repo first named the
+adjunct context surface.
 
 ## Date
 

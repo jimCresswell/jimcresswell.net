@@ -8,8 +8,10 @@ context without bloating the Core itself.
 
 ## Structure
 
-- `outgoing/` — sender-maintained supporting context; may build up over time
+- `outgoing/` — sender-maintained **ephemeral** support for the next exchange
 - `incoming/` — received support material and temporary integration notes
 
-`incoming/` is transient. Clear its received files after integration.
-`outgoing/` may remain as the sender's accumulated support material.
+`incoming/` is transient and should normally contain only `.gitkeep` between
+integrations. `outgoing/` should stay small and disposable; durable substance
+belongs in PDRs, portable patterns, local reference docs, or host-product
+decision records.

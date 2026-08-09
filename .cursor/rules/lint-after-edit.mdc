@@ -1,0 +1,6 @@
+---
+description: Run check and required follow-up proofs after edits
+alwaysApply: true
+---
+
+Read and follow @.agent/rules/lint-after-edit.md

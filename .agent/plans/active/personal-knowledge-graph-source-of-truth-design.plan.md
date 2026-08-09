@@ -72,7 +72,9 @@ The Track A Phase A3 refinement slices are now recorded in
 and
 [graph-cv-metadata-description-proof.md](../research/graph-cv-metadata-description-proof.md).
 Track A Phase A4 is now complete for the current publication surface.
-Track B design is now the active graph task. It remains design-only work.
+Track B design remains the current graph-design workstream. With the Practice
+Core adoption archived on 2026-04-19, this plan is once again the primary
+repo-wide active plan. It remains design-only work.
 
 No code should be shipped from this plan until its design work is
 decision-complete and an explicit migration plan exists.
@@ -100,6 +102,12 @@ Begin with Phase B2, not a new audit. **Task B2.1 only.** Task B2.2 has been
 deferred:
 
 - Task B2.1 — Page Selection and Ordering Model (single canonical CV view)
+
+The fresh first-contact re-integration of the 2026-04-19 upstream Practice
+pack was run and closed on 2026-04-19/20; both incoming directories are back
+to `.gitkeep`-only. See the practice-core CHANGELOG and
+`.agent/prompts/session-continuation.prompt.md` for the integration outcome.
+This plan is the primary product workstream; return to it now.
 
 Use the B1 note as fixed boundary:
 

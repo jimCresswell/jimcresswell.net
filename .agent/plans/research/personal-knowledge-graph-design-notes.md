@@ -16,21 +16,21 @@ For the adopted Track A plan, see
 For the adopted Track B plan, see
 [personal-knowledge-graph-source-of-truth-design.plan.md](../active/personal-knowledge-graph-source-of-truth-design.plan.md).
 For the historical reset record, see
-[graph-metaplan.plan.md](../graph-metaplan.plan.md). For canonical design decisions, use
+[graph-metaplan.plan.md](../archive/graph-metaplan.plan.md). For canonical design decisions, use
 [ADR-014](../../../docs/architecture/decision-records/014-entity-model-design.md).
 
 ## How to use this plan
 
 This is a collaborative session. Jim has examples to integrate and a clear vision for the model's scope. Present options at each decision point and iterate.
 
-1. Read `.agent/directives/AGENT.md` and `.agent/directives/rules.md` — standard project entry point.
+1. Read `.agent/directives/AGENT.md` and `.agent/directives/principles.md` — standard project entry point.
 2. Read `.agent/directives/editorial-guidance.md` — voice, audience, keyword strategy, cross-domain editorial consistency.
 3. Read `content/entities.json`, `lib/entities.ts`, and `lib/jsonld.ts` — the current entity-driven JSON-LD pipeline: graph source, validation layer, and full-graph export.
 4. Read `lib/cv-content.ts` — current OG/metadata derivation.
 5. Read `content/cv.content.json` and `content/frontpage.content.json` — current editorial content.
 6. Read `archive/prior_cv_content.json.bak` — full career history with dates and role titles.
 7. Read `docs/architecture/decision-records/007-dry-content-metadata.md` and `011-domain-appropriate-descriptions.md` — the single-source approach, its evolution, and why descriptions in different domains are different artifacts.
-8. Read the completed [meta-seo-content-audit.plan.md](../complete/meta-seo-content-audit.plan.md) — this plan's editorial fixes are the starting point. The content it corrected is the content this plan migrates.
+8. Read the completed [meta-seo-content-audit.plan.md](../archive/meta-seo-content-audit.plan.md) — this plan's editorial fixes are the starting point. The content it corrected is the content this plan migrates.
 9. Review Jim's examples and reference materials.
 10. Walk through each phase below with Jim.
 
@@ -132,7 +132,7 @@ This means:
 - **Define once, reference everywhere.** Each entity gets a single identity. Pages compose references, not copies.
 - **Visible content unchanged during technical migration.** When data moves from content files to the entity model, the rendered web pages must remain identical. No editorial regression during structural work. The graph migration is a refactoring — same outputs, better internal structure. Editorial improvements happen as separate, deliberate changes. The proof standard is now explicit: compare HTML/DOM and pixels against a trusted baseline, and treat any difference as a review item rather than auto-acceptable.
 - **Evolutionary, not revolutionary.** The current architecture works. Build on it incrementally. No big-bang refactoring.
-- **Shape for a future graph database.** The JSON-based model should remain compatible with migration to Neo4j (see [icebox/neo4j-knowledge-graph.plan.md](../icebox/neo4j-knowledge-graph.plan.md)). This means: stable entity IDs, typed relationships as references (not nesting), flat entity definitions, and entities at all abstraction levels modelled as graph nodes.
+- **Shape for a future graph database.** The JSON-based model should remain compatible with migration to Neo4j (see [future/neo4j-knowledge-graph.plan.md](../future/neo4j-knowledge-graph.plan.md)). This means: stable entity IDs, typed relationships as references (not nesting), flat entity definitions, and entities at all abstraction levels modelled as graph nodes.
 
 ---
 
@@ -468,7 +468,7 @@ This pass reviews both visible page content and JSON-LD descriptions. The framin
 
 ## Implementation
 
-For the archived phase model and acceptance criteria, see the [phase model](../complete/personal-knowledge-graph-phase-model.plan.md). For the adopted Track A execution authority, see the [execution plan](../current/personal-knowledge-graph-execution.plan.md). The phase model distils these historical design notes into five actionable phases:
+For the archived phase model and acceptance criteria, see the [phase model](../archive/personal-knowledge-graph-phase-model.plan.md). For the adopted Track A execution authority, see the [execution plan](../current/personal-knowledge-graph-execution.plan.md). The phase model distils these historical design notes into five actionable phases:
 
 1. Entity model design (collaborative, produces schema + skeleton)
 2. Entity population (editorial-intensive — role descriptions, constant migration)
@@ -527,19 +527,19 @@ For the archived phase model and acceptance criteria, see the [phase model](../c
 
 ## Sequencing
 
-**Prerequisite complete.** The [meta-seo-content-audit.plan.md](../complete/meta-seo-content-audit.plan.md) has been completed. All editorial content in `meta.summary`, `KNOWS_ABOUT`, `OCCUPATION`, front page OG description, and the capabilities has been aligned with the positioning. This plan now operates on correct, editorially settled content throughout — the structural migration can proceed without editorial concerns.
+**Prerequisite complete.** The [meta-seo-content-audit.plan.md](../archive/meta-seo-content-audit.plan.md) has been completed. All editorial content in `meta.summary`, `KNOWS_ABOUT`, `OCCUPATION`, front page OG description, and the capabilities has been aligned with the positioning. This plan now operates on correct, editorially settled content throughout — the structural migration can proceed without editorial concerns.
 
 ---
 
 ## Related
 
 - [pkg-research-findings.md](pkg-research-findings.md) — Schema.org, JSON-LD, Google structured data, and Neo4j research findings
-- [personal-knowledge-graph-phase-model.plan.md](../complete/personal-knowledge-graph-phase-model.plan.md) — archived phase model and acceptance criteria
+- [personal-knowledge-graph-phase-model.plan.md](../archive/personal-knowledge-graph-phase-model.plan.md) — archived phase model and acceptance criteria
 - [personal-knowledge-graph-execution.plan.md](../current/personal-knowledge-graph-execution.plan.md) — adopted Track A execution authority
 - [cv-editorial-improvements.plan.md](../current/cv-editorial-improvements.plan.md) — parent plan
-- [meta-seo-content-audit.plan.md](../complete/meta-seo-content-audit.plan.md) — editorial content fixes (prerequisite — complete)
-- [capabilities-editorial.plan.md](../complete/capabilities-editorial.plan.md) — capabilities work (complete — terms added to `KNOWS_ABOUT`)
-- [icebox/neo4j-knowledge-graph.plan.md](../icebox/neo4j-knowledge-graph.plan.md) — future migration to Neo4j; shapes current design decisions
+- [meta-seo-content-audit.plan.md](../archive/meta-seo-content-audit.plan.md) — editorial content fixes (prerequisite — complete)
+- [capabilities-editorial.plan.md](../archive/capabilities-editorial.plan.md) — capabilities work (complete — terms added to `KNOWS_ABOUT`)
+- [future/neo4j-knowledge-graph.plan.md](../future/neo4j-knowledge-graph.plan.md) — future migration to Neo4j; shapes current design decisions
 - [ADR-007](../../../docs/architecture/decision-records/007-dry-content-metadata.md) — current single-source approach
 - [ADR-008](../../../docs/architecture/decision-records/008-schema-org-compliance.md) — Schema.org compliance throughout the graph
 - [ADR-011](../../../docs/architecture/decision-records/011-domain-appropriate-descriptions.md) — domain-appropriate descriptions (descriptions in different domains are different artifacts)

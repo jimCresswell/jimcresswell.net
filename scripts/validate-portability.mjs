@@ -2,6 +2,12 @@
 
 import fs from "node:fs/promises";
 import path from "node:path";
+import {
+  extractFrontmatter,
+  getFrontmatterValue,
+  parseCodexRegistrations,
+  summaryLine,
+} from "./validate-portability-helpers.mjs";
 
 const repoRoot = process.cwd();
 const issues = [];
@@ -17,6 +23,10 @@ async function exists(relPath) {
 
 async function readText(relPath) {
   return fs.readFile(path.join(repoRoot, relPath), "utf8");
+}
+
+async function readJson(relPath) {
+  return JSON.parse(await readText(relPath));
 }
 
 async function listFiles(relDir, extension) {
@@ -51,59 +61,55 @@ function addIssue(message) {
   issues.push(message);
 }
 
-function extractFrontmatter(content) {
-  const match = content.match(/^---\r?\n([\s\S]*?)\r?\n---/);
-  return match?.[1] ?? null;
-}
+/**
+ * Verifies a wrapper file exists, points at the canonical surface, and (optionally) declares the expected name.
+ *
+ * @param {string} relPath - Relative path to the wrapper file.
+ * @param {string|null} pointer - The string the wrapper must include to reference its canonical source.
+ * @param {string|null} frontmatterName - Expected value for the frontmatter `name` key (when present).
+ * @param {string} label - A user-friendly label used in error messages.
+ */
+async function verifyWrapper(relPath, pointer, frontmatterName, label) {
+  if (!(await exists(relPath))) {
+    addIssue(`${label}: missing ${relPath}`);
+    return null;
+  }
 
-function getFrontmatterValue(frontmatter, key) {
-  const escapedKey = key.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  const regex = new RegExp(`^${escapedKey}:\\s*(.+)$`, "m");
-  const match = frontmatter?.match(regex);
-  return match?.[1]?.trim().replace(/^['"]|['"]$/g, "") ?? "";
-}
+  const content = await readText(relPath);
 
-function parseCodexRegistrations(content) {
-  const registrations = new Map();
-  let currentAgent = null;
+  if (pointer && !content.includes(pointer)) {
+    addIssue(`${relPath}: ${label} must point at ${pointer}`);
+  }
 
-  for (const rawLine of content.split("\n")) {
-    const line = rawLine.trim();
-    const quotedMatch = line.match(/^\[agents\."([^"]+)"\]$/);
-    const bareMatch = line.match(/^\[agents\.([^\]]+)\]$/);
-
-    if (quotedMatch || bareMatch) {
-      currentAgent = quotedMatch?.[1] ?? bareMatch?.[1] ?? null;
-      continue;
-    }
-
-    if (currentAgent == null) {
-      continue;
-    }
-
-    const configMatch = line.match(/^config_file\s*=\s*"([^"]+)"$/);
-    if (configMatch) {
-      registrations.set(currentAgent, configMatch[1]);
-      currentAgent = null;
+  if (frontmatterName) {
+    const frontmatter = extractFrontmatter(content);
+    const actualName = getFrontmatterValue(frontmatter, "name");
+    if (actualName !== frontmatterName) {
+      addIssue(`${relPath}: frontmatter name must be "${frontmatterName}"`);
     }
   }
 
-  return registrations;
+  return content;
 }
 
-function summaryLine(label, count) {
-  return `${label}: ${count}`;
+function buildPointer(canonicalPath, wrapWithAt = true) {
+  return wrapWithAt ? `@${canonicalPath}` : canonicalPath;
 }
 
-const matrixPath = ".agent/reference/cross-platform-agent-surface-matrix.md";
-if (!(await exists(matrixPath))) {
-  addIssue(`Missing required local surface contract: ${matrixPath}`);
+async function validateMatrixPath(matrixPath) {
+  if (!(await exists(matrixPath))) {
+    addIssue(`Missing required local surface contract: ${matrixPath}`);
+  }
 }
 
-const copilotEntryPath = ".github/copilot-instructions.md";
-if (!(await exists(copilotEntryPath))) {
-  addIssue(`Missing GitHub Copilot entry point: ${copilotEntryPath}`);
-} else {
+async function validateCopilotEntry() {
+  const copilotEntryPath = ".github/copilot-instructions.md";
+
+  if (!(await exists(copilotEntryPath))) {
+    addIssue(`Missing GitHub Copilot entry point: ${copilotEntryPath}`);
+    return;
+  }
+
   const copilotContent = await readText(copilotEntryPath);
   if (!copilotContent.includes(".agent/directives/AGENT.md")) {
     addIssue(
@@ -112,144 +118,209 @@ if (!(await exists(copilotEntryPath))) {
   }
 }
 
-const canonicalCommandFiles = await listFiles(".agent/commands", ".md");
-for (const commandFile of canonicalCommandFiles) {
-  const commandName = path.basename(commandFile, ".md");
-  const cursorWrapper = `.cursor/commands/${commandName}.md`;
-  const codexWrapper = `.agents/skills/${commandName}/SKILL.md`;
-  const canonicalReference = `@.agent/commands/${commandName}.md`;
+async function validateCanonicalScripts() {
+  const packageJsonPath = "package.json";
 
-  if (!(await exists(cursorWrapper))) {
-    addIssue(`${commandFile}: missing Cursor command wrapper ${cursorWrapper}`);
-  } else {
-    const content = await readText(cursorWrapper);
-    if (!content.includes(canonicalReference)) {
-      addIssue(`${cursorWrapper}: must point at ${canonicalReference} and stay a thin wrapper`);
-    }
+  if (!(await exists(packageJsonPath))) {
+    addIssue(`Missing package manifest: ${packageJsonPath}`);
+    return;
   }
 
-  if (!(await exists(codexWrapper))) {
-    addIssue(`${commandFile}: missing Codex command wrapper ${codexWrapper}`);
-  } else {
-    const content = await readText(codexWrapper);
-    if (!content.includes(`.agent/commands/${commandName}.md`)) {
-      addIssue(
-        `${codexWrapper}: must point at .agent/commands/${commandName}.md and stay a thin wrapper`
-      );
-    }
-  }
-}
+  const packageJson = await readJson(packageJsonPath);
+  const scripts = packageJson.scripts ?? {};
+  const requiredScripts = [
+    "clean",
+    "build",
+    "dev",
+    "format",
+    "format:fix",
+    "lint",
+    "lint:fix",
+    "typecheck",
+    "test",
+    "check",
+    "check:fix",
+    "check:ci",
+    "fix",
+  ];
 
-const canonicalSkillDirs = await listSubdirs(".agent/skills");
-for (const skillDir of canonicalSkillDirs) {
-  const cursorWrapper = `.cursor/skills/${skillDir}/SKILL.md`;
-  const codexWrapper = `.agents/skills/${skillDir}/SKILL.md`;
-
-  if (!(await exists(cursorWrapper))) {
-    addIssue(`.agent/skills/${skillDir}/SKILL.md: missing Cursor skill wrapper ${cursorWrapper}`);
-  } else {
-    const content = await readText(cursorWrapper);
-    const frontmatter = extractFrontmatter(content);
-    if (getFrontmatterValue(frontmatter, "name") !== skillDir) {
-      addIssue(`${cursorWrapper}: frontmatter name must be "${skillDir}"`);
-    }
-    if (!content.includes(`@.agent/skills/${skillDir}/SKILL.md`)) {
-      addIssue(
-        `${cursorWrapper}: must point at @.agent/skills/${skillDir}/SKILL.md and stay a thin wrapper`
-      );
-    }
-  }
-
-  if (!(await exists(codexWrapper))) {
-    addIssue(`.agent/skills/${skillDir}/SKILL.md: missing Codex skill wrapper ${codexWrapper}`);
-  } else {
-    const content = await readText(codexWrapper);
-    const frontmatter = extractFrontmatter(content);
-    if (getFrontmatterValue(frontmatter, "name") !== skillDir) {
-      addIssue(`${codexWrapper}: frontmatter name must be "${skillDir}"`);
-    }
-    if (!content.includes(`.agent/skills/${skillDir}/SKILL.md`)) {
-      addIssue(
-        `${codexWrapper}: must point at .agent/skills/${skillDir}/SKILL.md and stay a thin wrapper`
-      );
+  for (const scriptName of requiredScripts) {
+    if (typeof scripts[scriptName] !== "string" || scripts[scriptName].trim() === "") {
+      addIssue(`package.json: missing canonical script "${scriptName}"`);
     }
   }
 }
 
-const canonicalRuleFiles = await listFiles(".agent/rules", ".md");
-for (const ruleFile of canonicalRuleFiles) {
-  const ruleName = path.basename(ruleFile, ".md");
-  const cursorRule = `.cursor/rules/${ruleName}.mdc`;
+async function validateCommands() {
+  const canonicalCommandFiles = await listFiles(".agent/commands", ".md");
 
-  if (!(await exists(cursorRule))) {
-    addIssue(`${ruleFile}: missing Cursor rule trigger ${cursorRule}`);
-    continue;
+  for (const commandFile of canonicalCommandFiles) {
+    const commandName = path.basename(commandFile, ".md");
+    const canonicalPath = `.agent/commands/${commandName}.md`;
+    const adapterName = `jc-${commandName}`;
+
+    const wrappers = [
+      {
+        relPath: `.cursor/commands/${adapterName}.md`,
+        pointer: buildPointer(canonicalPath),
+        frontmatterName: null,
+        label: `Cursor command wrapper for ${commandName}`,
+      },
+      {
+        relPath: `.claude/commands/${adapterName}.md`,
+        pointer: buildPointer(canonicalPath),
+        frontmatterName: null,
+        label: `Claude command wrapper for ${commandName}`,
+      },
+      {
+        relPath: `.agents/skills/${adapterName}/SKILL.md`,
+        pointer: buildPointer(canonicalPath, false),
+        frontmatterName: adapterName,
+        label: `Cross-platform command skill for ${commandName}`,
+      },
+    ];
+
+    for (const wrapper of wrappers) {
+      await verifyWrapper(wrapper.relPath, wrapper.pointer, wrapper.frontmatterName, wrapper.label);
+    }
   }
 
-  const content = await readText(cursorRule);
-  if (!content.includes(`@.agent/rules/${ruleName}.md`)) {
-    addIssue(`${cursorRule}: must point at @.agent/rules/${ruleName}.md and stay a thin wrapper`);
-  }
+  return canonicalCommandFiles;
 }
 
-const templateFiles = await listFiles(".agent/sub-agents/templates", ".md");
+async function validateSkills() {
+  const canonicalSkillDirs = await listSubdirs(".agent/skills");
+
+  for (const skillDir of canonicalSkillDirs) {
+    const canonicalPath = `.agent/skills/${skillDir}/SKILL.md`;
+    const wrappers = [
+      {
+        relPath: `.cursor/skills/${skillDir}/SKILL.md`,
+        pointer: buildPointer(canonicalPath),
+        frontmatterName: skillDir,
+        label: `Cursor skill wrapper for ${skillDir}`,
+      },
+      {
+        relPath: `.claude/skills/${skillDir}/SKILL.md`,
+        pointer: buildPointer(canonicalPath),
+        frontmatterName: skillDir,
+        label: `Claude skill wrapper for ${skillDir}`,
+      },
+      {
+        relPath: `.agents/skills/${skillDir}/SKILL.md`,
+        pointer: buildPointer(canonicalPath, false),
+        frontmatterName: skillDir,
+        label: `Cross-platform skill ${skillDir}`,
+      },
+    ];
+
+    for (const wrapper of wrappers) {
+      await verifyWrapper(wrapper.relPath, wrapper.pointer, wrapper.frontmatterName, wrapper.label);
+    }
+  }
+
+  return canonicalSkillDirs;
+}
+
+async function validateRules() {
+  const canonicalRuleFiles = await listFiles(".agent/rules", ".md");
+
+  for (const ruleFile of canonicalRuleFiles) {
+    const ruleName = path.basename(ruleFile, ".md");
+    const canonicalPath = `.agent/rules/${ruleName}.md`;
+    const wrappers = [
+      {
+        relPath: `.cursor/rules/${ruleName}.mdc`,
+        pointer: buildPointer(canonicalPath),
+        frontmatterName: null,
+        label: `Cursor rule trigger ${ruleName}`,
+      },
+      {
+        relPath: `.claude/rules/${ruleName}.md`,
+        pointer: buildPointer(canonicalPath),
+        frontmatterName: null,
+        label: `Claude rule trigger ${ruleName}`,
+      },
+    ];
+
+    for (const wrapper of wrappers) {
+      await verifyWrapper(wrapper.relPath, wrapper.pointer, wrapper.frontmatterName, wrapper.label);
+    }
+  }
+
+  return canonicalRuleFiles;
+}
+
+async function validateSubagents() {
+  const canonicalTemplates = await listFiles(".agent/sub-agents/templates", ".md");
+  const codexConfig = (await exists(codexConfigPath))
+    ? parseCodexRegistrations(await readText(codexConfigPath))
+    : new Map();
+
+  if (!(await exists(codexConfigPath))) {
+    addIssue(`Missing Codex reviewer registry: ${codexConfigPath}`);
+  }
+
+  for (const templateFile of canonicalTemplates) {
+    const templateName = path.basename(templateFile, ".md");
+    const canonicalPath = `.agent/sub-agents/templates/${templateName}.md`;
+    const wrappers = [
+      {
+        relPath: `.cursor/agents/${templateName}.md`,
+        pointer: buildPointer(canonicalPath),
+        frontmatterName: templateName,
+        label: `Cursor reviewer wrapper ${templateName}`,
+      },
+      {
+        relPath: `.claude/agents/${templateName}.md`,
+        pointer: buildPointer(canonicalPath),
+        frontmatterName: templateName,
+        label: `Claude reviewer wrapper ${templateName}`,
+      },
+      {
+        relPath: `.github/agents/${templateName}.md`,
+        pointer: buildPointer(canonicalPath),
+        frontmatterName: templateName,
+        label: `GitHub reviewer wrapper ${templateName}`,
+      },
+    ];
+
+    for (const wrapper of wrappers) {
+      await verifyWrapper(wrapper.relPath, wrapper.pointer, wrapper.frontmatterName, wrapper.label);
+    }
+
+    const codexAdapter = `.codex/agents/${templateName}.toml`;
+    if (!(await exists(codexAdapter))) {
+      addIssue(`${canonicalPath}: missing Codex adapter ${codexAdapter}`);
+    } else {
+      const adapterContent = await readText(codexAdapter);
+      if (!adapterContent.includes(canonicalPath)) {
+        addIssue(`${codexAdapter}: must point at ${canonicalPath}`);
+      }
+    }
+
+    const registeredConfig = codexConfig.get(templateName);
+    if (registeredConfig == null) {
+      addIssue(`${codexConfigPath}: missing [agents.${JSON.stringify(templateName)}] registration`);
+    } else if (registeredConfig !== codexAdapter) {
+      addIssue(`${codexConfigPath}: ${templateName} must register config_file = "${codexAdapter}"`);
+    }
+  }
+
+  return canonicalTemplates;
+}
+
+const matrixPath = ".agent/reference/cross-platform-agent-surface-matrix.md";
 const codexConfigPath = ".codex/config.toml";
-const codexConfig = (await exists(codexConfigPath))
-  ? parseCodexRegistrations(await readText(codexConfigPath))
-  : new Map();
 
-if (!(await exists(codexConfigPath))) {
-  addIssue(`Missing Codex reviewer registry: ${codexConfigPath}`);
-}
+await validateMatrixPath(matrixPath);
+await validateCopilotEntry();
+await validateCanonicalScripts();
 
-for (const templateFile of templateFiles) {
-  const templateName = path.basename(templateFile, ".md");
-  const cursorWrapper = `.cursor/agents/${templateName}.md`;
-  const codexAdapter = `.codex/agents/${templateName}.toml`;
-
-  if (!(await exists(cursorWrapper))) {
-    addIssue(`${templateFile}: missing Cursor reviewer wrapper ${cursorWrapper}`);
-  } else {
-    const content = await readText(cursorWrapper);
-    const frontmatter = extractFrontmatter(content);
-    if (getFrontmatterValue(frontmatter, "name") !== templateName) {
-      addIssue(`${cursorWrapper}: frontmatter name must be "${templateName}"`);
-    }
-    if (!content.includes(`@.agent/sub-agents/templates/${templateName}.md`)) {
-      addIssue(`${cursorWrapper}: must point at @.agent/sub-agents/templates/${templateName}.md`);
-    }
-  }
-
-  if (!(await exists(codexAdapter))) {
-    addIssue(`${templateFile}: missing Codex reviewer adapter ${codexAdapter}`);
-  } else {
-    const content = await readText(codexAdapter);
-    if (!content.includes(`.agent/sub-agents/templates/${templateName}.md`)) {
-      addIssue(`${codexAdapter}: must point at .agent/sub-agents/templates/${templateName}.md`);
-    }
-  }
-
-  const registeredConfig = codexConfig.get(templateName);
-  if (registeredConfig == null) {
-    addIssue(`${codexConfigPath}: missing [agents.${JSON.stringify(templateName)}] registration`);
-  } else if (registeredConfig !== codexAdapter) {
-    addIssue(`${codexConfigPath}: ${templateName} must register config_file = "${codexAdapter}"`);
-  }
-}
-
-const codexAdapterFiles = await listFiles(".codex/agents", ".toml");
-for (const codexAdapterFile of codexAdapterFiles) {
-  const adapterName = path.basename(codexAdapterFile, ".toml");
-  const expectedTemplate = `.agent/sub-agents/templates/${adapterName}.md`;
-
-  if (!codexConfig.has(adapterName)) {
-    addIssue(`${codexAdapterFile}: adapter exists but is not registered in ${codexConfigPath}`);
-  }
-
-  if (!(await exists(expectedTemplate))) {
-    addIssue(`${codexAdapterFile}: expected canonical template ${expectedTemplate} does not exist`);
-  }
-}
+const canonicalCommandFiles = await validateCommands();
+const canonicalSkillDirs = await validateSkills();
+const canonicalRuleFiles = await validateRules();
+const templateFiles = await validateSubagents();
 
 if (issues.length > 0) {
   console.error(

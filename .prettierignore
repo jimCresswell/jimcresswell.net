@@ -18,3 +18,6 @@ playwright-report/
 
 # Agent temp files (gitignored reference material)
 .agent/temp/
+
+# Live append-only ARC channels
+.agent/collaboration/rapid-comms/2026-*.md

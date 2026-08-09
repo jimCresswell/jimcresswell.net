@@ -1,34 +1,14 @@
 # Outgoing Practice Context
 
-This directory carries sender-maintained supporting context for Practice
-exchange.
+This directory is now reserved for **ephemeral** sender-side support for the
+next outbound Practice exchange.
 
-It is not canonical. The canonical portable package remains the seven files in
-`.agent/practice-core/`.
+Durable substance no longer belongs here:
 
-Use these files to explain:
+- Practice governance lives in `.agent/practice-core/decision-records/`
+- portable general patterns live in `.agent/practice-core/patterns/`
+- host-local reference material lives in `.agent/reference/`
+- host-product decisions live in ADRs / EDRs / project docs
 
-- why recent Practice changes were made
-- which local adaptations are specific to this repo
-- which false starts or corrections are worth reusing elsewhere
-- how to adopt repo-specific platform support that is too detailed for the Core
-
-If a change is significant enough to enter the practice-core changelog,
-consider whether the changelog alone is too thin and whether a supporting note
-or report here would help a receiving repo.
-
-Keep this directory small. If something is already obvious from the seven-file
-Core package, its changelog, or the sender repo's canonical permanent docs, do
-not duplicate it here.
-
-## Current outgoing set
-
-- `codex-adoption-report.md` — local Codex wiring choices and adoption order
-- `evolution-rationale.md` — why recent Practice changes mattered here
-- `false-starts-and-corrections.md` — cheap lessons from recent integration
-- `local-adaptations.md` — shapes that are useful locally but not universal
-- `validation-scripts.md` — how this repo uses portability and Practice
-  fitness validation
-
-This directory may be built up over time. When material is shared to another
-repo, copy the relevant files into that repo's `.agent/practice-context/incoming/`.
+Keep this directory short-lived and explicit. If a note still matters after the
+next exchange round, it probably belongs somewhere more durable.

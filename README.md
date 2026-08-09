@@ -37,11 +37,11 @@ pnpm build          # Production build
 pnpm start          # Start production server
 
 pnpm format:fix     # Prettier format (auto-fix)
-pnpm format:check   # Prettier check (read-only)
+pnpm format         # Prettier check (read-only)
 pnpm markdownlint:fix   # Markdown lint (auto-fix)
 pnpm markdownlint:check # Markdown lint (read-only)
 pnpm lint:fix       # ESLint (auto-fix)
-pnpm lint:check     # ESLint (read-only)
+pnpm lint           # ESLint (read-only)
 pnpm typecheck      # TypeScript type checking
 pnpm test           # Unit and integration tests (Vitest)
 pnpm test:watch     # Tests in watch mode
@@ -50,13 +50,15 @@ pnpm test:e2e       # E2E tests — full Playwright suite against a production b
 pnpm test:e2e:ui    # Playwright UI mode (interactive)
 
 pnpm fix            # Format, markdownlint, and lint auto-fix
-pnpm check          # Eight blocking gates with auto-fix
-pnpm check:ci       # The same eight gates read-only (used by pre-commit hook)
+pnpm check          # Blocking gates with auto-fix where appropriate
+pnpm check:ci       # The same blocking gates read-only (used by pre-commit hook)
 pnpm knip           # Find unused exports and dependencies
-pnpm gitleaks       # Scan git history for secrets
-pnpm portability:check # Validate agent-surface parity and local surface contract
-pnpm practice:fitness   # Strict Practice/doc fitness validation
+pnpm secrets:scan   # Scan git history for secrets
+pnpm vital-surfaces:check # Validate the vital Practice surface contract
+pnpm portability:check    # Validate agent-surface parity and local surface contract
+pnpm subagents:check      # Validate reviewer wrappers and Codex registrations
 pnpm practice:fitness:informational # Advisory Practice/doc fitness report
+pnpm fitness-vocabulary:check # Advisory check for canonical fitness frontmatter keys
 pnpm generate:icons # Regenerate favicon and OG images from logo
 ```
 
@@ -164,16 +166,17 @@ Two Git hooks enforce quality automatically:
 - **Pre-push** — runs `pnpm check && pnpm test:e2e` (full gates + E2E). PDF tests require a prior build and are run explicitly.
 
 ```bash
-pnpm check          # All eight gates with auto-fix (format, markdownlint, lint, typecheck, test, knip, gitleaks, portability)
+pnpm check          # Blocking gates with auto-fix (format, markdownlint, lint, typecheck, test, knip, gitleaks, vital surfaces, portability, subagents)
 pnpm check:ci       # Same gates, read-only (no auto-fix)
 pnpm test:e2e       # E2E tests against production build (separate — requires Chromium)
 ```
 
-Both hooks are managed by [Husky](https://typicode.github.io/husky/), installed automatically by the `prepare` script when you run `pnpm install`. Gitleaks scans the full git history to ensure no secrets are committed — it requires [gitleaks](https://github.com/gitleaks/gitleaks) to be installed (`brew install gitleaks` on macOS). For the full gate sequence and restart-on-fix discipline, see [rules.md](.agent/directives/rules.md#code-quality).
+Both hooks are managed by [Husky](https://typicode.github.io/husky/), installed automatically by the `prepare` script when you run `pnpm install`. Gitleaks scans the full git history to ensure no secrets are committed — it requires [gitleaks](https://github.com/gitleaks/gitleaks) to be installed (`brew install gitleaks` on macOS). For the full gate sequence and restart-on-fix discipline, see [principles.md](.agent/directives/principles.md#code-quality).
 
 Practice/doc fitness is a companion surface rather than part of `pnpm check`:
-run `pnpm practice:fitness:informational` when changing Practice or directive
-docs, and use `pnpm practice:fitness` when you need strict enforcement.
+run `pnpm practice:fitness:informational` when changing Practice or
+directive docs, and use `pnpm fitness-vocabulary:check` alongside it when
+you need to check for frontmatter-key drift.
 
 **Local development** works without any environment variables. `.env.local` is only needed to test the full Vercel Blob PDF path (see [architecture docs](docs/architecture/README.md) for details).
 
@@ -203,7 +206,7 @@ docs, and use `pnpm practice:fitness` when you need strict enforcement.
 
 ## Agent Memory
 
-AI agents working on this codebase learn from their mistakes, user corrections, and collaborative sessions. Rather than storing that knowledge in agent-specific files that only agents read, three feeds funnel all insights toward canonical documentation — the same places a human contributor would naturally look. Session observations, transcript-mined insights, and settled knowledge from ephemeral plans all converge on `rules.md`, `editorial-guidance.md`, ADRs, and other permanent docs. The pipeline is invisible to consumers: a reader of `rules.md` finds the CSS rem/em rule without needing to know it originated in a transcript mining run three weeks earlier. See [ADR-012](docs/architecture/decision-records/012-agent-memory-pipeline.md).
+AI agents working on this codebase learn from their mistakes, user corrections, and collaborative sessions. Rather than storing that knowledge in agent-specific files that only agents read, three feeds funnel all insights toward canonical documentation — the same places a human contributor would naturally look. Session observations, transcript-mined insights, and settled knowledge from ephemeral plans all converge on `principles.md`, `editorial-guidance.md`, ADRs, and other permanent docs. The pipeline is invisible to consumers: a reader of `principles.md` finds the CSS rem/em rule without needing to know it originated in a transcript mining run three weeks earlier. See [ADR-012](docs/architecture/decision-records/012-agent-memory-pipeline.md).
 
 ## Development Standards
 
@@ -211,7 +214,7 @@ This project has explicit rules for code quality, testing, and editorial voice t
 
 - [`CONTRIBUTING.md`](CONTRIBUTING.md) — Workflow, conventions, and troubleshooting for contributors
 - [`.agent/directives/AGENT.md`](.agent/directives/AGENT.md) — Project context, commands, structure (start here)
-- [`.agent/directives/rules.md`](.agent/directives/rules.md) — Development rules: TDD, type safety, code quality
+- [`.agent/directives/principles.md`](.agent/directives/principles.md) — Development rules: TDD, type safety, code quality
 - [`.agent/directives/testing-strategy.md`](.agent/directives/testing-strategy.md) — Testing philosophy, test types, naming conventions
 - [`.agent/directives/editorial-guidance.md`](.agent/directives/editorial-guidance.md) — Jim's editorial voice and identity (read before any content work)
 

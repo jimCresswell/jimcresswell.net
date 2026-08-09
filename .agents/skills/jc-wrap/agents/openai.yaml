@@ -1,0 +1,4 @@
+interface:
+  display_name: "Wrap"
+  short_description: "Deep session closeout with handoff and metaloss recursion"
+  default_prompt: "Use $jc-wrap to close the session safely: work-safety evidence, session handoff, conditional consolidation, and the metaloss recursion to its fixed point."

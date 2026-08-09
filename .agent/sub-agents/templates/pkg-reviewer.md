@@ -22,7 +22,7 @@ Before reviewing, read and internalise:
 | `.agent/plans/current/personal-knowledge-graph-execution.plan.md`             | Current Track A execution authority                                                    |
 | `.agent/plans/research/graph-current-state-audit.md`                          | Observed implementation truth and current architecture baseline                        |
 | `.agent/plans/active/personal-knowledge-graph-source-of-truth-design.plan.md` | Current Track B design context when reviewing planning or architecture changes         |
-| `.agent/plans/graph-metaplan.plan.md`                                         | Completed reset record — why the current stack exists                                  |
+| `.agent/plans/archive/graph-metaplan.plan.md`                                 | Completed reset record — why the current stack exists                                  |
 | `.agent/skills/pkg/SKILL.md`                                                  | Compact operational reference — type mappings, constraints, pitfalls                   |
 | `.agent/plans/research/pkg-research-findings.md`                              | Full research context — verified facts across four domains                             |
 | `.agent/plans/research/personal-knowledge-graph-design-notes.md`              | Design reference — entity inventory, principles, conventions                           |

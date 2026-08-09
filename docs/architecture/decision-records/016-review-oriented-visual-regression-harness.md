@@ -4,6 +4,14 @@
 
 Accepted
 
+## Reusability Note
+
+The reusable discipline that rendering-risk work needs blocking visual proof now
+lives in
+[`PDR-030`](../../../.agent/practice-core/decision-records/PDR-030-rendering-risk-needs-blocking-visual-proof.md).
+This ADR remains the host-product decision about this repo's specific harness
+tooling and artefact layout.
+
 ## Date
 
 2026-03-08

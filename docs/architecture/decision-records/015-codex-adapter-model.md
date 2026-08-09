@@ -2,7 +2,14 @@
 
 ## Status
 
-Accepted
+Superseded by PDR-009
+
+## Supersession Note
+
+The reusable cross-platform architecture decision now lives in
+[`PDR-009`](../../../.agent/practice-core/decision-records/PDR-009-canonical-first-cross-platform-architecture.md).
+This ADR remains as the local provenance trail for the repo's first Codex
+integration pass.
 
 ## Date
 

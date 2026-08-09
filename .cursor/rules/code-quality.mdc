@@ -1,6 +1,0 @@
----
-description: Fail fast, never disable checks, all gate issues blocking
-alwaysApply: true
----
-
-Read and follow @.agent/rules/code-quality.md

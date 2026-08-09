@@ -12,9 +12,13 @@ Each EDR follows the same lightweight format as ADRs:
 - **Decision** — What was decided and why
 - **Consequences** — How this affects current and future content
 
-## Relationship to editorial guidance
+## Relationship to editorial directives
 
-[editorial-guidance.md](../../../.agent/directives/editorial-guidance.md) holds **general principles** — voice, register, audience, editorial hierarchy. EDRs record **specific decisions** about how content is framed, with the context and alternatives that led to the decision. The editorial guidance governs; EDRs explain.
+[editorial-strategy.md](../../../.agent/directives/editorial-strategy.md) governs audience,
+attention, structure, readability, evidence, and surface-specific composition.
+[editorial-guidance.md](../../../.agent/directives/editorial-guidance.md) governs Jim's identity,
+voice, and register. EDRs record **specific decisions** about how content is framed, with the
+context and alternatives that led to the decision. The directives govern; EDRs explain.
 
 ## Index
 
