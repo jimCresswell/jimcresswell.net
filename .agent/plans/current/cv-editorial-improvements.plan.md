@@ -6,7 +6,10 @@ Refine the positioning, capabilities, and structured data in the editorial CV.
 
 ## Prerequisite: PII security mitigation
 
-The PII security mitigation has been completed. `identity.md` was split into a public `editorial-guidance.md` and a private `.agent/private/identity.md`. Privacy and secops directives were created. Git history was rewritten.
+The privacy mitigation is complete. Public-safe editorial governance lives in the directives;
+private source material, analysis and drafts live in the ignored nested editorial repository. The
+public feature-branch history was rewritten from a verified recovery set, and the replacement PR is
+the current review surface.
 
 ## Current state
 
@@ -50,10 +53,12 @@ See `docs/architecture/README.md` for project architecture, including how conten
 
 The site is technically complete — infrastructure, PDF generation, E2E tests, and deployment all work. The front page has been reworked as a personal narrative (see [completed plan](../archive/front-page-content.plan.md)). The positioning paragraphs have been editorially settled (two paragraphs — see Decided section below). Content architecture has been consolidated so all metadata derives from content JSON files (see [ADR-007](../../../docs/architecture/decision-records/007-dry-content-metadata.md)).
 
-Additional reference material (gitignored — may not be present in all environments):
+Additional private reference material is routed through
+`.agent/reference-local/editorial-private/README.md`. Do not name or quote individual private files
+from this public plan.
 
-- **`.agent/temp/linkedin.pdf`** — export of Jim's current LinkedIn profile. Use alongside the archive and old CV for fact-checking.
-- **`.agent/temp/old-cv-website/`** — full copy of Jim's previous CV website with role descriptions and education details.
+Public reference:
+
 - **Old CV website** — also available at `https://jimcresswell.github.io/cv/`.
 
 ---
@@ -82,7 +87,8 @@ Oak National Academy remains the only entry in Experience. FT Labs, HMPO, Britis
 
 ## Resolved: Factual error in content
 
-Cross-referencing `cv.content.json` against the career archive, old CV website (`jimcresswell.github.io/cv`), and current LinkedIn profile (`.agent/temp/linkedin.pdf`):
+Cross-referencing `cv.content.json` against the career archive, old CV website
+(`jimcresswell.github.io/cv`), and the private LinkedIn profile export:
 
 **Oak `start_year` was 2019 — fixed to 2020.** The earliest Oak role (Senior Developer, Consulting) started August 2020, per the archive, old CV, and Jim's confirmation. Fixed in `content/cv.content.json` and `plans/archive/front-page-content.plan.md`.
 

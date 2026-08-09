@@ -14,9 +14,9 @@ page revisions, LinkedIn preparation, or any other writing that represents Jim. 
 [editorial-strategy.md](./editorial-strategy.md), which governs audience, surface-specific
 composition, attention, readability, section weight and platform fit.
 
-A private companion file exists at `.agent/private/identity.md` for agents with local access. It
-provides deeper psychological and biographical context that informs the voice but is not safe for
-version control.
+Private source packs and analysis may exist in the ignored nested repository at
+`.agent/reference-local/editorial-private/`. Read its local README only when the editorial task
+requires that context. Never quote, summarise or identify private material on a public surface.
 
 ## Voice and register
 

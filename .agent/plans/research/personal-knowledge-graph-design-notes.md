@@ -104,16 +104,15 @@ This means:
 
 ## Sources of information
 
-| Source                              | What it provides                                                         | Status                          |
-| ----------------------------------- | ------------------------------------------------------------------------ | ------------------------------- |
-| `content/cv.content.json`           | Current editorial content — organisations, roles, education, links       | Available                       |
-| `content/frontpage.content.json`    | Front page content — hero narrative, links                               | Available                       |
-| `lib/jsonld.ts`                     | Current JSON-LD constants — publications, knows_about, occupation        | Available                       |
-| `archive/prior_cv_content.json.bak` | Full career history with dates, role titles, descriptions                | Available                       |
-| `.agent/temp/linkedin.pdf`          | LinkedIn profile export — additional role detail, dates                  | Gitignored — may not be present |
-| `.agent/temp/old-cv-website/`       | Previous CV website with full role descriptions                          | Gitignored — may not be present |
-| Old CV website                      | `https://jimcresswell.github.io/cv/`                                     | Public                          |
-| Jim                                 | Corrections, missing context, editorial decisions, examples to integrate | Collaborative                   |
+| Source                                               | What it provides                                                                 | Status                    |
+| ---------------------------------------------------- | -------------------------------------------------------------------------------- | ------------------------- |
+| `content/cv.content.json`                            | Current editorial content — organisations, roles, education, links               | Available                 |
+| `content/frontpage.content.json`                     | Front page content — hero narrative, links                                       | Available                 |
+| `lib/jsonld.ts`                                      | Current JSON-LD constants — publications, knows_about, occupation                | Available                 |
+| `archive/prior_cv_content.json.bak`                  | Full career history with dates, role titles, descriptions                        | Available                 |
+| `.agent/reference-local/editorial-private/README.md` | Private source routing for profile exports, career evidence and working analysis | Ignored nested repository |
+| Old CV website                                       | `https://jimcresswell.github.io/cv/`                                             | Public                    |
+| Jim                                                  | Corrections, missing context, editorial decisions, examples to integrate         | Collaborative             |
 
 ---
 
@@ -158,9 +157,13 @@ Audit all entities and relationships across all sources. Present a complete inve
 
 - **Person** — already exists in JSON-LD (`schema:Person`); review for completeness. Add `sameAs` links (GitHub, LinkedIn, Google Scholar). Include `honorificPrefix`: "Dr", `pronouns`: "he/him" (a first-class Schema.org property — expects `DefinedTerm`, `StructuredValue`, or `Text`).
 - **WebSite** — the website itself (`schema:WebSite`), with `publisher` pointing to Person. Not currently in the JSON-LD.
-- **Organisations** — all employers, universities, volunteer organisations. `schema:Organization` or `schema:CollegeOrUniversity`. Includes all organisations named in the CV and archive, plus additional career breadth organisations listed in `.agent/private/identity.md`.
+- **Organisations** — all employers, universities and volunteer organisations.
+  `schema:Organization` or `schema:CollegeOrUniversity`. Additional private evidence is routed
+  through the ignored editorial repository and must not be copied into this public design note.
   - **Oak National Academy** — the CV narrative uses "a live national public service" for a general audience. The entity node description should carry the precise institutional language: "An operationally independent arms-length body of the Department for Education in the UK" (an executive non-departmental public body). Reference sources: [GOV.UK listing](https://www.gov.uk/government/organisations/oak-national-academy), [Oak About Us](https://www.thenational.academy/about-us/who-we-are) ("an independent public body"), [Oak Curriculum API](https://open-api.thenational.academy/) (OGL, API offering). The entity description serves machine consumers and public-sector-literate readers; the CV narrative serves everyone else.
-- **Roles** — every professional role with title, start date, end date, organisation. `schema:EmployeeRole` or `schema:OrganizationRole`. Full decomposition from the CV, career archive, and `.agent/private/identity.md` (for additional career breadth roles). Includes all roles from the archive plus volunteer and short-engagement roles from the private file.
+- **Roles** — every approved professional role with title, dates and organisation.
+  `schema:EmployeeRole` or `schema:OrganizationRole`. Private career evidence may inform later
+  owner-approved population work but is not a public source surface.
   - **Note:** Historical role titles are facts and stay as `roleName`. Role `description` fields express what Jim was actually doing — leading change, shaping delivery culture, building capability — not the job-title framing of the era. See "Framing is identity, not history" principle.
 - **Credentials** — degrees plus certifications. `schema:EducationalOccupationalCredential`.
   - PhD Astrophysics & Cosmology (Portsmouth), MSc Cosmology (Sussex), MPhys Physics (Bath).
@@ -176,7 +179,8 @@ Audit all entities and relationships across all sources. Present a complete inve
 - **Software** — software Jim conceived and built. `schema:SoftwareSourceCode`.
   - **Oak SDK/MCP server** — Jim conceived and built this. `schema:SoftwareSourceCode` with `creator`: Jim, `sourceOrganization`: Oak. The [oak-mcp-ecosystem](https://github.com/oaknational/oak-mcp-ecosystem) repo is currently private — add `codeRepository` when it goes public. Relates to the Curriculum API: the SDK/MCP makes the API's data accessible to AI-powered services.
   - **jimcresswell.net** — this website. `schema:SoftwareSourceCode` with `codeRepository`: `https://github.com/jimCresswell/jimcresswell.net`.
-- **Volunteer roles** — Growing Communities and other volunteer work. `schema:OrganizationRole`. See `.agent/private/identity.md` for the full list.
+- **Volunteer roles** — owner-approved public entries only. `schema:OrganizationRole`. Private
+  source material remains behind the ignored editorial boundary.
 
 ### Abstract entities
 

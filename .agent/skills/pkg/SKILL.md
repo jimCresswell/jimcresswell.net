@@ -34,11 +34,11 @@ Before PKG work, read and internalise:
 
 Before editorial-intensive phases (entity population, role descriptions), additionally read:
 
-| Document                                  | Purpose                                               |
-| ----------------------------------------- | ----------------------------------------------------- |
-| `.agent/skills/editorial-voice/SKILL.md`  | Jim's voice — two registers, common pitfalls          |
-| `.agent/directives/editorial-guidance.md` | Authoritative editorial constraints                   |
-| `.agent/private/identity.md`              | Deeper biographical context (gitignored — local only) |
+| Document                                             | Purpose                                                             |
+| ---------------------------------------------------- | ------------------------------------------------------------------- |
+| `.agent/skills/editorial-voice/SKILL.md`             | Jim's voice — two registers, common pitfalls                        |
+| `.agent/directives/editorial-guidance.md`            | Authoritative editorial constraints                                 |
+| `.agent/reference-local/editorial-private/README.md` | Routing for private biographical context; never surface it publicly |
 
 ## Schema.org type mappings
 

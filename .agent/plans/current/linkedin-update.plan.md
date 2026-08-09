@@ -4,7 +4,7 @@ overview: Compose LinkedIn-native profile content from private local sources whi
 todos:
   - id: continue-private-editorial-pass
     content: Continue the owner-led editorial pass in the ignored private working repository.
-    status: pending
+    status: in_progress
 isProject: true
 ---
 
@@ -53,6 +53,7 @@ CV.
 1. Confirm the ignored private repository is present and remains private.
 2. Read `editorial-strategy.md` and `editorial-guidance.md`.
 3. Work only on drafts and evidence inside the private repository.
-4. Treat Jim's current editorial direction as authoritative.
+4. Treat the owner-set headline as closed and continue with the About section; do not reopen the
+   headline unless Jim does.
 5. Move only final, owner-approved copy to LinkedIn itself; do not stage it in
    the public repository.

@@ -98,6 +98,7 @@ After writing or editing content, ask:
 
 - `.agent/directives/editorial-guidance.md` — authoritative editorial constraints, principles, and hierarchy
 - `docs/editorial/decision-records/` — specific editorial decisions with context and rationale (EDRs)
-- `.agent/private/identity.md` — psychological context (local-only, gitignored)
+- `.agent/reference-local/editorial-private/README.md` — routing for private editorial context;
+  never surface its contents publicly
 - `content/cv.content.json` — CV content (positioning, experience, capabilities)
 - `content/frontpage.content.json` — front page narrative

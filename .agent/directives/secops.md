@@ -35,7 +35,7 @@ Before making this repository public (or changing visibility), audit for:
 - [ ] Physical location specifics beyond what is intentionally public
 - [ ] Political specifics (year, party, ward, outcome)
 - [ ] Third-party names without consent
-- [ ] Career breadth details that belong in `.agent/private/`
+- [ ] Private editorial sources, drafts or analysis outside the ignored private repository
 
 ## Content in plan files
 
@@ -43,15 +43,30 @@ Plan files in `.agent/plans/` are version-controlled and will be visible if the 
 should be written as if they will be read by anyone.
 
 - Store editorial constraints and decisions in plan files.
-- Store private biographical context in `.agent/private/`, not in plan files.
-- When a plan references private details, point to `.agent/private/identity.md` rather than inlining
-  the content.
+- Store private sources, drafts, evidence and analysis in the ignored private editorial repository,
+  not in plan files.
+- Point only to its local routing README. Never publish the private remote, commit identifiers or
+  source-level details in a public plan.
 
 ## Quality gate
 
-`gitleaks` is part of the quality gate (`pnpm check`) and scans the full git history for secrets on
-every commit. It catches accidental credential commits but does not detect PII or psychological
-content — the rules in [privacy.md](privacy.md) cover those categories.
+The `secrets:scan` stage is part of `pnpm check` and scans the full Git history for secrets on every
+commit. It catches accidental credentials but does not detect PII or psychological content — the
+rules in [privacy.md](privacy.md) cover those categories.
+
+## History-rewrite boundary
+
+A public-history rewrite is an exceptional recovery operation, not ordinary cleanup. Before any
+rewrite or force push, preserve and verify the complete live state: Git refs and object database,
+index, tracked and untracked changes, ignored sources, relevant pull-request state, and any
+out-of-repo material needed for recovery. Use a private remote and a fresh-clone check so custody is
+not single-disk.
+
+Build and test the replacement in an isolated clone. Push only with an exact `--force-with-lease`
+against the observed old ref, then verify a fresh public clone, the pull request and all regenerated
+checks. Rewriting a branch reduces ordinary reachability; it does not prove that hosting-provider
+caches or infrastructure no longer retain old objects. See
+[private-editorial-workspace.md](../reference/private-editorial-workspace.md).
 
 ## Review cadence
 

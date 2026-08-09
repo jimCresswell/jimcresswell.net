@@ -1,5 +1,64 @@
 # Napkin
 
+## Session: 2026-08-09 — LinkedIn, private custody and public-history recovery
+
+### What Was Done
+
+- Ran an n=2 LinkedIn editorial pairing, then closed the Claude seat and returned to explicit n=1
+  ownership. The headline lane closed at the owner's decision; the About section is next.
+- Distilled the reusable headline-process learning into `editorial-strategy.md` while the exact
+  decision, rejected language and collaboration record stayed behind the private boundary.
+- Identified that sensitive source packs, drafts and collaboration history had entered a public
+  feature branch. Stopped editorial work and conserved the complete state before any rewrite:
+  refs, object database, index, tracked, staged, unstaged, untracked and ignored content, plus PR
+  records and synthetic refs.
+- Established an ignored nested private repository rather than a submodule. This keeps its remote,
+  selected commit and update cadence out of the public parent while giving private material signed,
+  remote custody and fresh-clone proof.
+- Built the scrubbed replacement in an isolated clone, verified it against the intended public
+  parent, ran disclosure scans and full gates, then moved the feature ref with an exact lease. The
+  draft PR survived the rewrite and regenerated cleanly.
+- Repaired two clean-runner gaps exposed only after the rewrite: CI now installs its required
+  security binary, and E2E installs the browser used by PDF generation.
+- Reconciled the principal checkout and moved six verified residual files into the user-only safety
+  set. Exact recovery identifiers and hashes live only in the private custody manifest.
+
+### Surprises and Corrections
+
+- **Surprise:** Git ignore did not stop Prettier traversing the nested private repository.
+  **Evidence:** the first gate run changed eleven private files before it was interrupted.
+  **Correction:** restored every file byte-for-byte from the signed private HEAD and added
+  `.agent/reference-local/` to `.prettierignore` before restarting the gates.
+- **Surprise:** public and private continuity surfaces still routed editors to the obsolete
+  `.agent/private/identity.md` path after the migration. **Correction:** the private workspace
+  contract, privacy/security directives, editorial skill and live handoffs now name the nested
+  repository as the source boundary.
+- **Correction:** a clean working tree is not sufficient evidence before a destructive Git
+  operation. Ignored sources, unreachable objects and external PR state can all contain the only
+  recoverable copy.
+- **Correction:** LinkedIn publication is evidence of public suitability, not repository approval;
+  moving approved public copy into this public Git history still needs a separate owner gate.
+
+### Patterns to Remember
+
+- Conserve before removal, and verify custody from a second disk or remote plus a fresh clone before
+  invoking force.
+- Build a scrubbed history replacement in isolation; never use the live checkout as the rewrite
+  laboratory.
+- Use exact `--force-with-lease`, then verify the live PR and regenerated checks. A force push
+  reduces normal reachability but does not prove provider-side erasure.
+- Treat ignored private repositories as explicit boundaries for formatters, archives, recursive
+  searches and agent tooling, not only for Git.
+- For identity copy, agent consensus and internal models are scaffolding. Owner judgement closes the
+  wording; public language must work without the model's vocabulary.
+
+### Consolidation
+
+- Session-completion depth. Stable privacy and rewrite guidance graduated to the privacy, security
+  and private-workspace reference surfaces. Exact editorial and custody details remain private.
+- No new ADR, PDR or public EDR is required: the changes refine existing operational and editorial
+  governance rather than establish a separate architecture.
+
 ## Session: 2026-04-18 — Playwright against production build, Next 16.2.4
 
 ### What Was Done

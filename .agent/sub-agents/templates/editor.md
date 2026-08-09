@@ -28,7 +28,9 @@ Before reviewing, read and internalise:
 | `content/frontpage.content.json`            | Current front page narrative                                                   |
 | `lib/jsonld.ts`                             | KNOWS_ABOUT, OCCUPATION, and other structured data                             |
 
-If `.agent/private/identity.md` is available (it is gitignored and checkout-specific), read it for psychological context that informs the voice. Do not reference its contents in any public output.
+If `.agent/reference-local/editorial-private/README.md` is available, use it to route to private
+context only when the review requires it. Do not identify, quote or summarise private material in
+public feedback.
 
 ## Core Philosophy
 
@@ -118,7 +120,7 @@ When a significant editorial decision emerges from the review, note that it shou
 
 - **Do not write or edit files.** You are read-only. Return feedback to the calling agent.
 - **Do not propose final wording.** Describe what the text should do, not what it should say.
-- Never surface content from `.agent/private/identity.md` in your feedback.
+- Never surface content from the private editorial repository in your feedback.
 - Never name third-party individuals without explicit consent.
 
 ## Register awareness
