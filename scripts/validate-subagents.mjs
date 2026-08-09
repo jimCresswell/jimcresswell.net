@@ -3,7 +3,10 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { parseCodexRegistrations, summaryLine } from "./validate-portability-helpers.mjs";
-import { buildSubagentWrapperDescriptors } from "./validate-subagents-helpers.mjs";
+import {
+  buildSubagentWrapperDescriptors,
+  findUnexpectedSubagentNames,
+} from "./validate-subagents-helpers.mjs";
 
 const repoRoot = process.cwd();
 const issues = [];
@@ -66,6 +69,9 @@ async function verifyWrapper(relPath, pointer, frontmatterName, label) {
 
 async function main() {
   const canonicalTemplates = await listFiles(".agent/sub-agents/templates", ".md");
+  const canonicalNames = new Set(
+    canonicalTemplates.map((templateFile) => path.basename(templateFile, ".md"))
+  );
   const configContent = (await exists(codexConfigPath)) ? await readText(codexConfigPath) : "";
   const codexConfig = configContent ? parseCodexRegistrations(configContent) : new Map();
 
@@ -98,6 +104,21 @@ async function main() {
     } else if (registeredConfig !== codexAdapter) {
       addIssue(`${codexConfigPath}: ${templateName} must register config_file = "${codexAdapter}"`);
     }
+  }
+
+  const codexAdapterFiles = await listFiles(".codex/agents", ".toml");
+  const codexAdapterNames = codexAdapterFiles.map((adapterFile) =>
+    path.basename(adapterFile, ".toml")
+  );
+
+  for (const adapterName of findUnexpectedSubagentNames(canonicalNames, codexAdapterNames)) {
+    addIssue(`.codex/agents/${adapterName}.toml: no canonical sub-agent template`);
+  }
+
+  for (const registrationName of findUnexpectedSubagentNames(canonicalNames, codexConfig.keys())) {
+    addIssue(
+      `${codexConfigPath}: [agents.${JSON.stringify(registrationName)}] has no canonical sub-agent template`
+    );
   }
 
   if (issues.length > 0) {

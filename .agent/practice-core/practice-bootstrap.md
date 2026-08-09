@@ -389,14 +389,15 @@ surface matrix.
 
 ### Required Commands
 
-| Command          | File                     | Core logic                                                                                                                                                                                |
-| ---------------- | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| start-right      | `jc-start-right.md`      | Read and follow the start-right-quick skill.                                                                                                                                              |
-| session-handoff  | `jc-session-handoff.md`  | Refresh the continuity contract, sync next-action surfaces, capture surprises, and escalate into `jc-consolidate-docs` only when due.                                                     |
-| gates            | `jc-gates.md`            | Run `type-check -> lint -> build -> test`. All blocking; restart after any fix.                                                                                                           |
-| commit           | `jc-commit.md`           | Check status, review diff, verify gates, stage selectively, and use a conventional commit. Never force push, amend pushed commits, or use `--no-verify`.                                  |
-| consolidate-docs | `jc-consolidate-docs.md` | Verify docs current. Graduate settled content. Extract patterns. Rotate napkin. Manage fitness. Integrate incoming Practice Box. Broadcast outgoing context. See §Consolidation Workflow. |
-| plan             | `jc-plan.md`             | Read directives. Create plan with outcome, impact, value mechanism, acceptance criteria, risks, and non-goals.                                                                            |
+| Command              | File                         | Core logic                                                                                                                                                                                |
+| -------------------- | ---------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| start-right-quick    | `jc-start-right-quick.md`    | Read and follow the start-right-quick skill.                                                                                                                                              |
+| start-right-thorough | `jc-start-right-thorough.md` | Read and follow the start-right-thorough skill.                                                                                                                                           |
+| session-handoff      | `jc-session-handoff.md`      | Refresh the continuity contract, sync next-action surfaces, capture surprises, and escalate into `jc-consolidate-docs` only when due.                                                     |
+| gates                | `jc-gates.md`                | Run `type-check -> lint -> build -> test`. All blocking; restart after any fix.                                                                                                           |
+| commit               | `jc-commit.md`               | Check status, review diff, verify gates, stage selectively, and use a conventional commit. Never force push, amend pushed commits, or use `--no-verify`.                                  |
+| consolidate-docs     | `jc-consolidate-docs.md`     | Verify docs current. Graduate settled content. Extract patterns. Rotate napkin. Manage fitness. Integrate incoming Practice Box. Broadcast outgoing context. See §Consolidation Workflow. |
+| plan                 | `jc-plan.md`                 | Read directives. Create plan with outcome, impact, value mechanism, acceptance criteria, risks, and non-goals.                                                                            |
 
 ## Skills (.agent/skills/)
 

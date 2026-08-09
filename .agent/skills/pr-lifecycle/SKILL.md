@@ -123,7 +123,7 @@ unverified disposition reply — a false claim into the permanent record):
 
 ## Phase 2 — Open with a reviewer-facing description
 
-Read `.github/pull_request_template.md` and fill it as a **communication
+Read `.github/PULL_REQUEST_TEMPLATE.md` and fill it as a **communication
 artefact for reviewers**, never a file list: what changed, why it matters, what
 reviewers should focus on, what was deliberately left out, and what evidence
 supports merge readiness (the template's verification section names

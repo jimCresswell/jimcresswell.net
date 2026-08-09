@@ -278,7 +278,7 @@ async function validateSubagents() {
         label: `Claude reviewer wrapper ${templateName}`,
       },
       {
-        relPath: `.github/agents/${templateName}.md`,
+        relPath: `.github/agents/${templateName}.agent.md`,
         pointer: buildPointer(canonicalPath),
         frontmatterName: templateName,
         label: `GitHub reviewer wrapper ${templateName}`,

@@ -44,6 +44,9 @@ export function parseCodexRegistrations(content) {
 
     if (quotedMatch || bareMatch) {
       currentAgent = quotedMatch?.[1] ?? bareMatch?.[1] ?? null;
+      if (currentAgent != null) {
+        registrations.set(currentAgent, "");
+      }
       continue;
     }
 
