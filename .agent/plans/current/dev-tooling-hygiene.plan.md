@@ -15,7 +15,7 @@ todos:
     content: Install dependency-cruiser, write the initial config encoding the repo's layering rules, and commit advisory output as evidence.
     status: pending
   - id: depcruiser-promote-to-gate
-    content: Add depcruiser as the ninth blocking gate in pnpm check / check:ci, write the ADR, update rules.md and README.
+    content: Add depcruiser as the ninth blocking gate in pnpm check / check:ci, write the ADR, update principles.md and README.
     status: pending
   - id: depcruiser-cleanup-session
     content: Dedicated follow-on session to resolve every depcruiser violation surfaced by the first strict run.
@@ -152,7 +152,7 @@ hard to detect in review. A blocking gate makes the rule actionable.
     product code but product code may not depend on tests
 - a new ADR records the decision to make depcruiser blocking and names the
   layering rules
-- `rules.md` updates to call out the ninth gate in the gate sequence
+- `principles.md` updates to call out the ninth gate in the gate sequence
 - `package.json` `check` and `check:ci` scripts gain `pnpm depcruiser`
 - `README.md` and `CONTRIBUTING.md` (if present) reflect the ninth gate
 - the introduction commit captures the **first strict run output** as a
@@ -194,7 +194,7 @@ pre-push hooks pick this up automatically.
 **Acceptance criteria:**
 
 - both scripts updated
-- gate count in `rules.md`, `README.md`, and any tooling docs updated from
+- gate count in `principles.md`, `README.md`, and any tooling docs updated from
   "eight gates" to "nine gates"
 - restart-on-fix discipline still applies
 
@@ -250,5 +250,5 @@ hide the value of either change.
 
 - visual regression harness required for any rendering-touching dep upgrade
 - E2E full pass after each major and after Phase 2 wiring
-- `pnpm practice:fitness:informational` after the rules.md / README updates in
+- `pnpm practice:fitness:informational` after the principles.md / README updates in
   Phase 2

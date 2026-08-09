@@ -328,7 +328,7 @@ A skill change is complete when:
 - `.agent/practice-core/practice-bootstrap.md`
 - `.agent/practice-core/practice.md`
 - `.agent/directives/AGENT.md`
-- `.agent/directives/rules.md`
+- `.agent/directives/principles.md`
 - `.agent/skills/quality-gates/SKILL.md`
 - `.agent/skills/napkin/SKILL.md`
 - `.agent/skills/editorial-voice/SKILL.md`

@@ -1,6 +1,6 @@
 # Bugbot Rules
 
-For full project context, read `.agent/directives/AGENT.md` and `.agent/directives/rules.md`.
+For full project context, read `.agent/directives/AGENT.md` and `.agent/directives/principles.md`.
 
 ## Project
 

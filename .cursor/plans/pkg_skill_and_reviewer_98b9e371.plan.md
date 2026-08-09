@@ -18,7 +18,7 @@ todos:
     content: Update AGENT.md -- add skill and reviewer to tables
     status: completed
   - id: update-invoke-rule
-    content: Update invoke-reviewers.md -- add PKG reviewer as triage target
+    content: Update reviewer invocation rules -- wire the PKG reviewer into the gateway plus specialist trigger split
     status: completed
   - id: review
     content: Run code-reviewer on the new files
@@ -32,7 +32,7 @@ isProject: false
 
 The PKG work has accumulated substantial domain knowledge across four research domains, four ADRs, two plan documents, and a research findings reference. This knowledge needs to be operationally accessible to agents during PKG implementation (the skill) and during validation of PKG outputs (the reviewer).
 
-The existing system has a clear pattern: skills guide execution, reviewers validate output. The code-reviewer is the gateway and triages to specialists (test-reviewer, type-reviewer, editor). The PKG reviewer would be a new specialist.
+The existing system has a clear pattern: skills guide execution, reviewers validate output. The code-reviewer is the gateway and triages to specialists, while specialist invoke rules route domain-specific changes directly. The PKG reviewer is one of those specialists.
 
 ## Scope and boundaries
 
@@ -50,7 +50,8 @@ The existing system has a clear pattern: skills guide execution, reviewers valid
 
 - [.agent/practice-index.md](.agent/practice-index.md) -- add both to the Skills and Sub-agents tables
 - [.agent/directives/AGENT.md](.agent/directives/AGENT.md) -- add both to the Sub-agents and Skills tables (note: already 2 lines over its 150-line ceiling per napkin; adding rows makes this worse -- flag for future tightening)
-- [.agent/rules/invoke-reviewers.md](.agent/rules/invoke-reviewers.md) -- mention PKG reviewer as a triage target for entity model, JSON-LD, and graph changes
+- [.agent/rules/invoke-code-reviewers.md](.agent/rules/invoke-code-reviewers.md) -- gateway reviewer invocation
+- [.agent/rules/invoke-pkg-reviewer.md](.agent/rules/invoke-pkg-reviewer.md) -- specialist trigger for entity model, JSON-LD, and graph changes
 
 ## Phase 1 -- Create the PKG skill
 
@@ -142,7 +143,7 @@ Read and follow @.agent/sub-agents/templates/pkg-reviewer.md
 
 **Goal:** Both the skill and reviewer are discoverable and integrated into the existing system.
 
-**Impact:** Agents find them through normal discovery paths (AGENT.md, practice-index, invoke-reviewers rule).
+**Impact:** Agents find them through normal discovery paths (AGENT.md, practice-index, and the current reviewer invocation rules).
 
 ### Task 4: Update practice-index.md
 
@@ -174,19 +175,18 @@ Add to the Skills table:
 
 Note: AGENT.md is already at 152/150 lines (napkin). These additions push it further over. Flag for future tightening (the split strategy says "extract sub-agent roster, development commands, or project structure").
 
-### Task 6: Update invoke-reviewers rule
+### Task 6: Update reviewer invocation rules
 
-Extend [.agent/rules/invoke-reviewers.md](.agent/rules/invoke-reviewers.md) to mention the PKG reviewer as a triage target:
+Keep the gateway reviewer rule broad and ensure the specialist trigger exists for PKG work:
 
-Currently: "invoke the code-reviewer sub-agent. The code-reviewer is the gateway -- it assesses overall quality and triages to specialists (test-reviewer, type-reviewer, editor) as needed."
-
-Add: the code-reviewer should triage to `pkg-reviewer` when changes involve entity model files, JSON-LD generation, `@id` conventions, or structured data output.
+- [.agent/rules/invoke-code-reviewers.md](.agent/rules/invoke-code-reviewers.md) should continue to describe the code-reviewer as the gateway that triages to installed specialists as needed.
+- [.agent/rules/invoke-pkg-reviewer.md](.agent/rules/invoke-pkg-reviewer.md) should explicitly route entity model files, JSON-LD generation, `@id` conventions, and structured data output to `pkg-reviewer`.
 
 **Acceptance criteria:**
 
 - Both appear in practice-index.md tables
 - Both appear in AGENT.md tables
-- PKG reviewer mentioned as a triage target in invoke-reviewers rule
+- PKG reviewer is covered by the current gateway-plus-specialist reviewer invocation rules
 - AGENT.md line count increase noted for future tightening
 
 ---

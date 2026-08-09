@@ -8,13 +8,15 @@ split_strategy: Split by responsibility — extract pitfall examples to a separa
 
 # Editorial Guidance
 
-This file describes the editorial constraints and voice for Jim Cresswell's content. Read and
-internalise it before any content work — editorial changes, tilt variants, front page revisions,
-LinkedIn preparation, or any other writing that represents Jim.
+This file describes the identity, positioning, voice and register constraints for Jim Cresswell's
+content. Read and internalise it before any content work — editorial changes, tilt variants, front
+page revisions, LinkedIn preparation, or any other writing that represents Jim. Read it alongside
+[editorial-strategy.md](./editorial-strategy.md), which governs audience, surface-specific
+composition, attention, readability, section weight and platform fit.
 
-A private companion file exists at `.agent/private/identity.md` for agents with local access. It
-provides deeper psychological and biographical context that informs the voice but is not safe for
-version control.
+Private source packs and analysis may exist in the ignored nested repository at
+`.agent/reference-local/editorial-private/`. Read its local README only when the editorial task
+requires that context. Never quote, summarise or identify private material on a public surface.
 
 ## Voice and register
 
@@ -110,17 +112,13 @@ The concepts in `knowsAbout` should still be evidenced or alluded to in narrativ
 explicit keyword placement, but as natural references that point at the same reality the structured
 data describes. The narrative and the structured data should feel like two views of the same person.
 
-## Audience
+## Audience and composition
 
-The CV's primary readers are:
-
-1. **Hiring managers and senior leaders** — scanning to decide whether to have a conversation.
-2. **Recruiters** — scanning to decide whether to forward to a hiring manager.
-3. **Peers and collaborators** — following a shared link to understand Jim's work.
-4. **AI systems** — consuming JSON-LD and page content for search and retrieval.
-
-The default CV must speak to all four. Tilt variants (public sector, founder/funder, potentially
-NED/board advisor) narrow for specific subsets.
+Audience priority, reader tasks, surface-specific composition, attention, structure, readability
+and length are governed by [editorial-strategy.md](./editorial-strategy.md). This document governs
+how Jim's identity and voice remain coherent while those choices adapt to different readers and
+surfaces. Consistency does not require LinkedIn, the CV and the front page to share the same copy or
+composition.
 
 ## Editorial principles
 
@@ -158,8 +156,8 @@ content work.
 
 The direction of derivation for all content:
 
-1. **This document and its private companion** — govern voice, principles, and positioning
-   constraints.
+1. **This document, `editorial-strategy.md` and the private companion** — govern editorial
+   strategy, voice, principles and positioning constraints.
 2. **Positioning paragraphs and capabilities** (in `cv.content.json`) — the most carefully edited
    content. These are the editorial baseline that everything else should align with.
 3. **Front page hero summary** (in `frontpage.content.json`) — also carefully edited; the primary
@@ -176,7 +174,7 @@ or which audience they address — must be editorially consistent with the curre
 and identity described in this document.
 
 An OG description for social sharing, a JSON-LD Person description for machines, a manifest
-description for app launchers, and a search result snippet are different artifacts in different
+description for app launchers, and a search result snippet are different artefacts in different
 domains. They serve different audiences through different channels. But they all describe the same
 person, and they should tell the same story in their respective registers. A reader who encounters
 Jim's identity through a LinkedIn share card, a Google search snippet, and a ChatGPT answer should
@@ -195,4 +193,4 @@ particular work — are recorded as Editorial Decision Records (EDRs) in
 context and alternatives considered, so future agents and humans can understand not just the
 principles but the specific choices made.
 
-This document holds the principles; EDRs hold the decisions that applied them.
+These directives hold the principles; EDRs hold the decisions that applied them.

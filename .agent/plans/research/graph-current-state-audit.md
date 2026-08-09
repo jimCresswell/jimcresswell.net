@@ -170,7 +170,7 @@ onto the graph:
   intended layered architecture and remains a valid target-state design record
 - `.agent/plans/research/personal-knowledge-graph-design-notes.md` remains
   useful as historical design exploration
-- `.agent/plans/complete/personal-knowledge-graph-phase-model.plan.md` remains
+- `.agent/plans/archive/personal-knowledge-graph-phase-model.plan.md` remains
   useful as an archive of the previous phase model
 
 ### Docs that needed reframing during the reset
@@ -197,7 +197,7 @@ graph-derived and to adopt the new two-track structure with Track A first.
 
 ## Related documents
 
-- [graph-metaplan.plan.md](../graph-metaplan.plan.md)
+- [graph-metaplan.plan.md](../archive/graph-metaplan.plan.md)
 - [personal-knowledge-graph-roadmap.plan.md](../current/personal-knowledge-graph-roadmap.plan.md) — adopted roadmap authority
 - [graph-publication-consumer-and-proof-model.md](graph-publication-consumer-and-proof-model.md) — Track A Phase A1 consumer, channel, and proof authority
 - [graph-publication-output-audit.md](graph-publication-output-audit.md) — Track A Phase A2 output, proof-gap, and prioritisation audit

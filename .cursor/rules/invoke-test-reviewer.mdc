@@ -1,0 +1,6 @@
+---
+description: Route test and harness changes through test-reviewer
+globs: "**/*.test.*,e2e/**/*,playwright.config.*"
+---
+
+Read and follow @.agent/rules/invoke-test-reviewer.md

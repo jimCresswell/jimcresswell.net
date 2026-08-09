@@ -1,0 +1,6 @@
+---
+description: Route ADR, README, and permanent doc changes through docs-adr-reviewer
+paths: "docs/**/*,.agent/**/*,README.md,CLAUDE.md,AGENTS.md"
+---
+
+Read and follow @.agent/rules/invoke-docs-adr-reviewer.md

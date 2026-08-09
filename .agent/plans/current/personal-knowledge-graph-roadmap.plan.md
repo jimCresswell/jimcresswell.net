@@ -36,7 +36,7 @@ Track A comes first.
 
 Track A Phase A1, Phase A2, Phase A3, and Phase A4 are now complete in
 [personal-knowledge-graph-execution.plan.md](personal-knowledge-graph-execution.plan.md).
-Track B design is now the active graph task in
+Track B design remains the current graph-design task in
 [personal-knowledge-graph-source-of-truth-design.plan.md](../active/personal-knowledge-graph-source-of-truth-design.plan.md).
 
 Use this roadmap together with
@@ -52,7 +52,7 @@ and
 [personal-knowledge-graph-source-of-truth-design.plan.md](../active/personal-knowledge-graph-source-of-truth-design.plan.md)
 as the live graph-planning stack.
 
-[graph-metaplan.plan.md](../graph-metaplan.plan.md) remains the completed reset
+[graph-metaplan.plan.md](../archive/graph-metaplan.plan.md) remains the completed reset
 record that established this structure.
 
 ## Strategic outcome
@@ -135,11 +135,12 @@ A/B testing are deferred door-open; live tilt routes are being retired in
 [`tilt-retirement.plan.md`](tilt-retirement.plan.md) so Track B can close on
 real boundaries.
 
-LinkedIn is **not** downstream of this roadmap. It derives from the editorial
-CV content (`content/cv.content.json`) and `editorial-guidance.md`, neither of
-which depends on graph adoption. The earlier "subsumed" framing was incorrect:
-LinkedIn is parallel-runnable as collaborative editorial work and is tracked
-in [`linkedin-update.plan.md`](linkedin-update.plan.md).
+LinkedIn is **not** downstream of this roadmap. It draws evidence from the
+editorial CV while applying `editorial-strategy.md` and `editorial-guidance.md`.
+None depends on graph adoption. LinkedIn composition is optimised for its own
+audience and interface rather than copied from the CV. The earlier "subsumed"
+framing was incorrect: LinkedIn is parallel-runnable as collaborative editorial
+work and is tracked in [`linkedin-update.plan.md`](linkedin-update.plan.md).
 
 ## Phases
 
@@ -231,7 +232,7 @@ That note fixes the first Track B design boundary:
 - those concerns still resolve into one cohesive graph across multiple files
 - the current rendering truth remains unchanged until later adoption work
 
-Phase B2 is now the active Track B design slice in
+Phase B2 is now the current Track B design slice in
 [personal-knowledge-graph-source-of-truth-design.plan.md](../active/personal-knowledge-graph-source-of-truth-design.plan.md).
 
 ### Phase 4 — Track B Adoption Planning

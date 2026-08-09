@@ -1,0 +1,6 @@
+---
+description: Route multi-platform agent-surface changes through mcp-reviewer
+globs: ".agent/**/*,.cursor/**/*,.claude/**/*,.codex/**/*,.github/**/*,.agents/**/*"
+---
+
+Read and follow @.agent/rules/invoke-mcp-reviewer.md

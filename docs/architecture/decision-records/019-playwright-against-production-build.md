@@ -101,7 +101,7 @@ and integration tests under Vitest are unaffected.
 
 ## Related
 
-- `.agent/directives/rules.md` — Quality gates section
+- `.agent/directives/principles.md` — Quality gates section
 - `playwright.config.ts` — Single default project, web server runs the
   production build
 - `e2e/README.md` — Updated test map and running instructions

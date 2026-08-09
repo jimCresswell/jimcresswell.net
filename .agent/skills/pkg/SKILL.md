@@ -27,18 +27,18 @@ Before PKG work, read and internalise:
 | `.agent/plans/current/personal-knowledge-graph-execution.plan.md`             | Current Track A execution authority                            |
 | `.agent/plans/research/graph-current-state-audit.md`                          | Observed implementation truth and architecture audit           |
 | `.agent/plans/active/personal-knowledge-graph-source-of-truth-design.plan.md` | Current Track B design authority                               |
-| `.agent/plans/graph-metaplan.plan.md`                                         | Completed reset record — why the current stack exists          |
+| `.agent/plans/archive/graph-metaplan.plan.md`                                 | Completed reset record — why the current stack exists          |
 | `.agent/plans/research/personal-knowledge-graph-design-notes.md`              | Historical design reference — entity inventory and conventions |
-| `.agent/plans/complete/personal-knowledge-graph-phase-model.plan.md`          | Archived phase model and acceptance criteria                   |
+| `.agent/plans/archive/personal-knowledge-graph-phase-model.plan.md`           | Archived phase model and acceptance criteria                   |
 | `.agent/plans/research/pkg-research-findings.md`                              | Research findings — verified facts across four domains         |
 
 Before editorial-intensive phases (entity population, role descriptions), additionally read:
 
-| Document                                  | Purpose                                               |
-| ----------------------------------------- | ----------------------------------------------------- |
-| `.agent/skills/editorial-voice/SKILL.md`  | Jim's voice — two registers, common pitfalls          |
-| `.agent/directives/editorial-guidance.md` | Authoritative editorial constraints                   |
-| `.agent/private/identity.md`              | Deeper biographical context (gitignored — local only) |
+| Document                                             | Purpose                                                             |
+| ---------------------------------------------------- | ------------------------------------------------------------------- |
+| `.agent/skills/editorial-voice/SKILL.md`             | Jim's voice — two registers, common pitfalls                        |
+| `.agent/directives/editorial-guidance.md`            | Authoritative editorial constraints                                 |
+| `.agent/reference-local/editorial-private/README.md` | Routing for private biographical context; never surface it publicly |
 
 ## Schema.org type mappings
 
@@ -142,11 +142,11 @@ Source: research findings (`.agent/plans/research/pkg-research-findings.md`) —
 - `.agent/plans/current/personal-knowledge-graph-execution.plan.md` — current Track A execution plan
 - `.agent/plans/research/graph-current-state-audit.md` — observed implementation baseline
 - `.agent/plans/active/personal-knowledge-graph-source-of-truth-design.plan.md` — current Track B design plan
-- `.agent/plans/graph-metaplan.plan.md` — completed reset record
+- `.agent/plans/archive/graph-metaplan.plan.md` — completed reset record
 - `.agent/plans/research/personal-knowledge-graph-design-notes.md` — historical design reference
-- `.agent/plans/complete/personal-knowledge-graph-phase-model.plan.md` — phase model (archived goals, tasks, acceptance criteria)
+- `.agent/plans/archive/personal-knowledge-graph-phase-model.plan.md` — phase model (archived goals, tasks, acceptance criteria)
 - `.agent/plans/research/pkg-research-findings.md` — research findings (verified facts across four domains)
 - `docs/architecture/decision-records/008-schema-org-compliance.md` — ADR-008: Schema.org compliance
 - `docs/architecture/decision-records/010-canonical-url-graph-identity.md` — ADR-010: canonical URL and graph identity
 - `docs/architecture/decision-records/011-domain-appropriate-descriptions.md` — ADR-011: domain-appropriate descriptions
-- `.agent/plans/icebox/neo4j-knowledge-graph.plan.md` — icebox Neo4j migration plan (shapes current design)
+- `.agent/plans/future/neo4j-knowledge-graph.plan.md` — future Neo4j migration plan (shapes current design)

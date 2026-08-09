@@ -10,7 +10,7 @@ Accepted
 
 ## Context
 
-The project's rules (`.agent/directives/rules.md`) are explicit:
+The project's principles (`.agent/directives/principles.md`) are explicit:
 
 > "No unused code — If a function is not used, delete it. If product
 > code is only used in tests, delete it. Delete dead code."
@@ -54,7 +54,7 @@ of the `pnpm check` script, which is the project's standard quality
 gate:
 
 ```text
-pnpm check = format-fix → markdownlint-fix → lint-fix → typecheck → test → knip → gitleaks → portability-check
+pnpm check = format:fix → markdownlint:fix → lint:fix → typecheck → test → knip → secrets:scan → vital-surfaces:check → portability:check → subagents:check
 ```
 
 This means Knip runs:
@@ -125,6 +125,6 @@ is high.
 
 ## Related
 
-- `.agent/directives/rules.md` — "No unused code" rule
+- `.agent/directives/principles.md` — "No unused code" rule
 - `package.json` — `scripts.check` and `scripts.knip`
 - [Knip documentation](https://knip.dev/)

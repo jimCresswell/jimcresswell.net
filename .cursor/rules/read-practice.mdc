@@ -1,6 +1,0 @@
----
-description: Read practice directives at session start
-alwaysApply: true
----
-
-Read and follow @.agent/rules/read-practice.md

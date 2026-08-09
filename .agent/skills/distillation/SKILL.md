@@ -25,8 +25,8 @@ directly during consolidation:
 ```text
 napkin.md ──────────┐
                     ├──► distilled.md ──► permanent docs
-AGENTS.md ──────────┘    (staging)        (rules.md, AGENT.md,
-(continual-learning                        editorial-guidance.md,
+AGENTS.md ──────────┘    (staging)        (principles.md, AGENT.md,
+(learning-loop                             editorial-guidance.md,
  landing pad)                              ADRs, EDRs, docs/)
                                                ▲
 plans & prompts ───────────────────────────────┘
@@ -38,11 +38,11 @@ and patterns logged during active work. Distilled when the
 napkin exceeds ~500 lines.
 
 **Feed 2 — AGENTS.md**: Insights mined from conversation
-transcripts by the continual-learning skill. `AGENTS.md` is
-a landing pad, not a permanent home. Entries are processed
+transcripts by the Practice learning loop. `AGENTS.md` is a
+landing pad, not a permanent home. Entries are processed
 during distillation and replaced with **anchors** — brief
 pointers to where the content now lives, preventing the
-learning skill from rediscovering the same insights.
+same insights from being rediscovered and re-added.
 
 **Feed 3 — plans and prompts**: Ephemeral work documents
 that accumulate settled knowledge during collaborative
@@ -76,7 +76,7 @@ Collect entries that would change behaviour if read next
 session.
 
 **From AGENTS.md**: Check for new (non-anchored) entries
-added by the continual-learning skill. Move high-signal
+added by the Practice learning loop. Move high-signal
 entries to `distilled.md`. Replace moved entries in
 `AGENTS.md` with anchors. Flag low-signal entries for
 review and possible deletion.
@@ -103,7 +103,7 @@ For each entry:
 
 The distilled file should not exceed about 200 lines. When
 it does, move insights into permanent documentation — see
-the consolidate-docs command (`.agent/commands/jc-consolidate-docs.md`).
+the consolidate-docs command (`.agent/commands/consolidate-docs.md`).
 
 Note: **IMPORTANT!** — Do not delete any information, only
 move and/or edit. Information loss is unacceptable. If you
@@ -112,7 +112,7 @@ are not sure where to put something, ask the user.
 Remove from `distilled.md` anything that is now captured in
 permanent repo documentation:
 
-- Rules codified in `.agent/directives/rules.md`
+- Rules codified in `.agent/directives/principles.md`
 - Patterns documented in ADRs or EDRs
 - Editorial principles in `.agent/directives/editorial-guidance.md`
 - Architecture documented in `docs/architecture/`

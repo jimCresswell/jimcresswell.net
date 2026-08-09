@@ -11,18 +11,21 @@ Run gates sequentially from the repo root. Fix issues as they arise. After any f
 ## The sequence
 
 The definitive gate list with all command names lives in
-`.agent/directives/rules.md` (Code Quality section). The summary:
+`.agent/directives/principles.md` (Code Quality section). The summary:
 
-- `pnpm check` runs all eight gates with auto-fix (format, markdownlint,
-  lint, typecheck, test, knip, gitleaks, portability).
+- `pnpm check` runs the blocking gate sequence with auto-fix where appropriate
+  (format, markdownlint, lint, typecheck, test, knip, gitleaks,
+  validate-vital-surfaces, validate-portability, validate-subagents).
 - `pnpm check:ci` runs them read-only (used by the pre-commit hook).
 - `pnpm test:e2e` and `pnpm test:e2e:ui` are separate Playwright surfaces.
   `pnpm test:e2e` runs the full suite (journeys, behaviour, a11y, PDF)
   against a production build; the build is run by Playwright's web server.
 - When changing Practice Core or directive docs, run
-  `pnpm practice:fitness:informational` as an advisory companion check.
+  `pnpm practice:fitness:informational` and
+  `pnpm fitness-vocabulary:check` as advisory companion checks.
 
-When running gates individually for restart-on-fix, start from `pnpm format:fix`, then `pnpm markdownlint:fix`.
+When running gates individually for restart-on-fix, start from
+`pnpm format:fix`, then `pnpm markdownlint:fix`.
 
 For rendering-risk changes, the visual regression harness is also blocking
 proof even though it is not part of `pnpm check`. Run

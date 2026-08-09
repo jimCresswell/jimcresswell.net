@@ -93,9 +93,11 @@ The downloadable CV PDF must be high quality and accessible.
 The codebase must pass all quality gates before deployment.
 
 The definitive gate list and command names live in
-[rules.md](../../.agent/directives/rules.md#code-quality). `pnpm check` runs
-all eight blocking gates, including portability validation; `pnpm test:e2e`
-runs the Playwright suite against a production build (the web server runs
-`pnpm build && pnpm start`). `pnpm practice:fitness` exists for governed
+[principles.md](../../.agent/directives/principles.md#code-quality).
+`pnpm check` runs the blocking gate sequence, including
+`pnpm vital-surfaces:check`, `pnpm portability:check`, and
+`pnpm subagents:check`; `pnpm test:e2e` runs the Playwright suite against a
+production build (the web server runs `pnpm build && pnpm start`).
+`pnpm practice:fitness:informational` exists for governed
 Practice/doc surfaces and is used intentionally rather than on every code
 change. All exported functions must have TSDoc documentation.

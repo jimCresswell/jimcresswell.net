@@ -6,7 +6,13 @@ description: Apply Jim Cresswell's editorial voice consistently when writing or 
 
 # Editorial Voice
 
-Read and internalise `.agent/directives/editorial-guidance.md` before any content work. That document is the authoritative source — this skill adds practical guidance for applying it.
+Read and internalise `.agent/directives/editorial-guidance.md` before any content work. That
+document is the authority for identity, positioning, voice and register; this skill adds practical
+guidance for applying it.
+
+Also read `.agent/directives/editorial-strategy.md`. It separately governs audience,
+surface-specific composition, attention, readability, section weight and platform fit. Voice is one
+editorial lens, not the whole review.
 
 ## The voice in one line
 
@@ -15,6 +21,9 @@ Confident, a touch joyful and mischievous, with underlying seriousness. Someone 
 ## Two registers, one person
 
 The front page and CV share the same voice but serve different purposes. A reader who encounters both should recognise the same person.
+
+LinkedIn usually draws on the evidential CV register, but its fixed fields, collapsed previews and
+fragmented entry points require a different composition. See `editorial-strategy.md`.
 
 ### CV register
 
@@ -85,8 +94,11 @@ After writing or editing content, ask:
 
 ## Reference
 
+- `.agent/directives/editorial-strategy.md` — audience, surface composition, attention, readability, length and platform fit
+
 - `.agent/directives/editorial-guidance.md` — authoritative editorial constraints, principles, and hierarchy
 - `docs/editorial/decision-records/` — specific editorial decisions with context and rationale (EDRs)
-- `.agent/private/identity.md` — psychological context (local-only, gitignored)
+- `.agent/reference-local/editorial-private/README.md` — routing for private editorial context;
+  never surface its contents publicly
 - `content/cv.content.json` — CV content (positioning, experience, capabilities)
 - `content/frontpage.content.json` — front page narrative

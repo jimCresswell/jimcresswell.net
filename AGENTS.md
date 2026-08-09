@@ -13,9 +13,9 @@ Agent direction lives in [AGENT.md](.agent/directives/AGENT.md), read it.
   [.agent/reference/cross-platform-agent-surface-matrix.md](.agent/reference/cross-platform-agent-surface-matrix.md).
 - After changing adapter surfaces or reviewer wiring, run `pnpm portability:check`.
 
-Entries below are landing pads for the continual-learning skill.
-During distillation, entries are moved to permanent docs and
-replaced with anchors. Do not re-add entries that have anchors.
+Entries below are temporary capture points in the Practice learning loop.
+During distillation and `consolidate-docs`, entries are moved to permanent docs
+and replaced with anchors. Do not re-add entries that already have anchors.
 
 ## Learned User Preferences
 
@@ -24,12 +24,12 @@ Anchored (already in permanent docs — do not re-add):
 - Plans standalone and discoverable → [AGENT.md](.agent/directives/AGENT.md) Agent Behaviour
 - Don't push commits unless asked → [AGENT.md](.agent/directives/AGENT.md) Agent Behaviour
 - Verify claims with evidence → [AGENT.md](.agent/directives/AGENT.md) Agent Behaviour
-- CSS rem/em, not px → [rules.md](.agent/directives/rules.md) CSS and Accessibility
-- Work on branches for risky changes → [rules.md](.agent/directives/rules.md) CSS and Accessibility
-- Content in JSON, not components → [rules.md](.agent/directives/rules.md) Documentation
-- Permanent docs never reference ephemeral → [rules.md](.agent/directives/rules.md) Documentation
-- Gate restart discipline → [rules.md](.agent/directives/rules.md) Code Quality
-- Prefer `as const` runtime values to derive types and guards → [rules.md](.agent/directives/rules.md) Type Safety
+- CSS rem/em, not px → [principles.md](.agent/directives/principles.md) CSS and Accessibility
+- Work on branches for risky changes → [principles.md](.agent/directives/principles.md) CSS and Accessibility
+- Content in JSON, not components → [principles.md](.agent/directives/principles.md) Documentation
+- Permanent docs never reference ephemeral → [principles.md](.agent/directives/principles.md) Documentation
+- Gate restart discipline → [principles.md](.agent/directives/principles.md) Code Quality
+- Prefer `as const` runtime values to derive types and guards → [principles.md](.agent/directives/principles.md) Type Safety
 - Front page is not CV-lite, registers differ → [editorial-guidance.md](.agent/directives/editorial-guidance.md) Voice and register
 - Product safety not data safety → [editorial-guidance.md](.agent/directives/editorial-guidance.md)
 - Don't claim solo credit → [editorial-guidance.md](.agent/directives/editorial-guidance.md) Collaborative credit
