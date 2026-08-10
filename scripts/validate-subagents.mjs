@@ -73,7 +73,11 @@ async function main() {
     canonicalTemplates.map((templateFile) => path.basename(templateFile, ".md"))
   );
   const configContent = (await exists(codexConfigPath)) ? await readText(codexConfigPath) : "";
-  const codexConfig = configContent ? parseCodexRegistrations(configContent) : new Map();
+  const codexConfig = configContent
+    ? parseCodexRegistrations(configContent, (issue) => {
+        addIssue(`${codexConfigPath}: ${issue}`);
+      })
+    : new Map();
 
   if (!configContent) {
     addIssue(`Missing Codex reviewer registry: ${codexConfigPath}`);

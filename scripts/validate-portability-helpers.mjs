@@ -1,3 +1,5 @@
+import { parse } from "smol-toml";
+
 /**
  * Extracts the frontmatter section from a Markdown document.
  *
@@ -31,34 +33,43 @@ export function getFrontmatterValue(frontmatter, key) {
  * Parses the Codex configuration file and returns a map of agent names to config paths.
  *
  * @param {string} content - The text of `.codex/config.toml`.
+ * @param {(issue: string) => void} [onIssue] - Reports invalid registry structure.
  * @returns {Map<string,string>} The mapping from agent name to `config_file` string.
  */
-export function parseCodexRegistrations(content) {
+export function parseCodexRegistrations(content, onIssue = () => {}) {
   const registrations = new Map();
-  let currentAgent = null;
+  let parsed;
 
-  for (const rawLine of content.split("\n")) {
-    const line = rawLine.trim();
-    const quotedMatch = line.match(/^\[agents\.\"([^\"]+)\"\]$/);
-    const bareMatch = line.match(/^\[agents\.([^\]]+)\]$/);
+  try {
+    parsed = parse(content);
+  } catch (error) {
+    const message = error instanceof Error ? error.message.split("\n")[0] : String(error);
+    onIssue(`invalid TOML: ${message}`);
+    return registrations;
+  }
 
-    if (quotedMatch || bareMatch) {
-      currentAgent = quotedMatch?.[1] ?? bareMatch?.[1] ?? null;
-      if (currentAgent != null) {
-        registrations.set(currentAgent, "");
-      }
+  const agents = parsed.agents;
+  if (agents == null) {
+    return registrations;
+  }
+  if (typeof agents !== "object" || Array.isArray(agents)) {
+    onIssue("agents must be a TOML table");
+    return registrations;
+  }
+
+  for (const [agentName, registration] of Object.entries(agents)) {
+    if (registration == null || typeof registration !== "object" || Array.isArray(registration)) {
+      registrations.set(agentName, "");
+      onIssue(`Codex agent registration ${JSON.stringify(agentName)} must be a TOML table`);
       continue;
     }
 
-    if (currentAgent == null) {
-      continue;
+    if (Object.values(registration).some((value) => value != null && typeof value === "object")) {
+      onIssue(`unsupported nested Codex agent registration ${JSON.stringify(agentName)}`);
     }
 
-    const configMatch = line.match(/^config_file\s*=\s*"([^\"]+)"$/);
-    if (configMatch) {
-      registrations.set(currentAgent, configMatch[1]);
-      currentAgent = null;
-    }
+    const configFile = registration.config_file;
+    registrations.set(agentName, typeof configFile === "string" ? configFile : "");
   }
 
   return registrations;

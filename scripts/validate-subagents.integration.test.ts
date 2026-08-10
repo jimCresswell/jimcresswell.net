@@ -7,6 +7,7 @@ import { describe, expect, it } from "vitest";
 
 const validatorPath = fileURLToPath(new URL("./validate-subagents.mjs", import.meta.url));
 const canonicalPath = ".agent/sub-agents/templates/code-reviewer.md";
+const commentedValidRegistration = `[agents.code-reviewer]\nconfig_file = ".codex/agents/code-reviewer.toml" # canonical adapter\n`;
 const validRegistration = `[agents.code-reviewer]\nconfig_file = ".codex/agents/code-reviewer.toml"\n`;
 
 async function createFixture(configContent: string) {
@@ -65,6 +66,16 @@ describe("validate-subagents", () => {
     });
   });
 
+  it("accepts a canonical Codex registration with a commented config_file", async () => {
+    await withFixture(commentedValidRegistration, (fixtureRoot) => {
+      const result = runValidator(fixtureRoot);
+
+      expect(result.status).toBe(0);
+      expect(result.stdout).toContain("Sub-agent validation passed (templates: 1).");
+      expect(result.stderr).toBe("");
+    });
+  });
+
   it("rejects a Codex adapter without a canonical template", async () => {
     await withFixture(validRegistration, async (fixtureRoot) => {
       await writeFile(path.join(fixtureRoot, ".codex/agents/orphaned-reviewer.toml"), "");
@@ -93,5 +104,53 @@ describe("validate-subagents", () => {
         );
       }
     );
+  });
+
+  it.each([
+    ["bare", "[agents.orphaned-reviewer] # temporary reviewer"],
+    ["quoted", '[agents."orphaned-reviewer"] # temporary reviewer'],
+  ])("rejects an orphaned Codex registration with a commented %s header", async (_case, header) => {
+    await withFixture(`${validRegistration}\n${header}\n`, (fixtureRoot) => {
+      const result = runValidator(fixtureRoot);
+
+      expect(result.status).toBe(1);
+      expect(result.stderr).toContain(
+        '.codex/config.toml: [agents."orphaned-reviewer"] has no canonical sub-agent template'
+      );
+    });
+  });
+
+  it.each([
+    ["bare", "[agents.orphaned-reviewer.metadata]"],
+    ["quoted", '[agents."orphaned-reviewer".metadata]'],
+  ])("rejects an unsupported nested Codex agent table with a %s name", async (_case, header) => {
+    await withFixture(
+      `${validRegistration}\n${header}\nconfig_file = "ignored.toml"\n`,
+      (fixtureRoot) => {
+        const result = runValidator(fixtureRoot);
+
+        expect(result.status).toBe(1);
+        expect(result.stderr).toContain(
+          '.codex/config.toml: unsupported nested Codex agent registration "orphaned-reviewer"'
+        );
+      }
+    );
+  });
+
+  it.each([
+    [
+      "spaced table header",
+      `[ agents.orphaned-reviewer ]\nconfig_file = ".codex/agents/code-reviewer.toml"\n`,
+    ],
+    ["dotted key", `agents.orphaned-reviewer.config_file = ".codex/agents/code-reviewer.toml"\n`],
+  ])("rejects an orphan registration expressed with a %s", async (_case, registration) => {
+    await withFixture(`${registration}\n${validRegistration}`, (fixtureRoot) => {
+      const result = runValidator(fixtureRoot);
+
+      expect(result.status).toBe(1);
+      expect(result.stderr).toContain(
+        '.codex/config.toml: [agents."orphaned-reviewer"] has no canonical sub-agent template'
+      );
+    });
   });
 });

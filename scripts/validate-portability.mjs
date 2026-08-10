@@ -254,7 +254,9 @@ async function validateRules() {
 async function validateSubagents() {
   const canonicalTemplates = await listFiles(".agent/sub-agents/templates", ".md");
   const codexConfig = (await exists(codexConfigPath))
-    ? parseCodexRegistrations(await readText(codexConfigPath))
+    ? parseCodexRegistrations(await readText(codexConfigPath), (issue) => {
+        addIssue(`${codexConfigPath}: ${issue}`);
+      })
     : new Map();
 
   if (!(await exists(codexConfigPath))) {
