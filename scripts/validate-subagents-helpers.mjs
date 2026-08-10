@@ -21,10 +21,21 @@ export function buildSubagentWrapperDescriptors(templateName) {
       label: `Claude reviewer wrapper ${templateName}`,
     },
     {
-      relPath: `.github/agents/${templateName}.md`,
+      relPath: `.github/agents/${templateName}.agent.md`,
       pointer: `@${canonicalPath}`,
       frontmatterName: templateName,
       label: `GitHub reviewer wrapper ${templateName}`,
     },
   ];
+}
+
+/**
+ * Finds sub-agent names that have no matching canonical template.
+ *
+ * @param {Set<string>} canonicalNames - Canonical reviewer names.
+ * @param {Iterable<string>} candidateNames - Adapter or registration names to compare.
+ * @returns {string[]} Unexpected names in stable lexical order.
+ */
+export function findUnexpectedSubagentNames(canonicalNames, candidateNames) {
+  return [...candidateNames].filter((name) => !canonicalNames.has(name)).sort();
 }

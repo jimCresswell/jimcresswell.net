@@ -9,7 +9,7 @@ describe("validate-subagents helpers", () => {
     expect(descriptors.map((descriptor) => descriptor.relPath)).toEqual([
       ".cursor/agents/code-reviewer.md",
       ".claude/agents/code-reviewer.md",
-      ".github/agents/code-reviewer.md",
+      ".github/agents/code-reviewer.agent.md",
     ]);
     expect(
       descriptors.every((descriptor) =>

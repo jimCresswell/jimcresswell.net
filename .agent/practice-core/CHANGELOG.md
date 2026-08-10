@@ -4,6 +4,13 @@ Changes to the Practice Core files, newest first. Each entry records the repo
 that made the change and what was changed. This file travels with the
 Practice Core package.
 
+## [jimcresswell.net] 2026-08-10 — Start-Right Command Inventory Correction
+
+- Replaced the retired singular start-right command in `practice-bootstrap.md`
+  with the quick and thorough variants used by the canonical command contract.
+- Recorded the evolution in the travelling provenance chain so receiving
+  repositories can distinguish the correction from the April upstream pack.
+
 ## [jimcresswell.net] 2026-04-19 — Fresh-Read Integration of 2026-04-19 Upstream Pack
 
 Fresh first-contact re-read of the upstream OOCE 2026-04-19 Practice pack,

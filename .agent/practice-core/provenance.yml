@@ -311,6 +311,12 @@ practice-bootstrap.md:
       Fresh-read integration of 2026-04-19 upstream pack: raised
       fitness frontmatter ceilings to 680/830/40500 to match upstream;
       bootstrap content unchanged
+  - id: 827b1042-0423-42fc-aef1-1a8fd5212295
+    repo: jimcresswell.net
+    date: 2026-08-10
+    purpose: >-
+      Practice Core command inventory correction: replaced the retired
+      singular start-right command with the quick and thorough variants
 
 practice-verification.md:
   - id: 3147edc7-8b7d-4b44-8f61-1f51e063d751
