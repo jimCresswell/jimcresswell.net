@@ -1,6 +1,31 @@
 import { parse } from "smol-toml";
 
 /**
+ * Reports whether a parsed TOML value is a table rather than a scalar value.
+ *
+ * @param {unknown} value - A value returned by the TOML parser.
+ * @returns {boolean} Whether the value is a TOML table.
+ */
+function isTomlTable(value) {
+  return (
+    value != null &&
+    typeof value === "object" &&
+    !Array.isArray(value) &&
+    Object.getPrototypeOf(value) === Object.prototype
+  );
+}
+
+/**
+ * Reports whether a parsed TOML value contains a table at any array depth.
+ *
+ * @param {unknown} value - A value returned by the TOML parser.
+ * @returns {boolean} Whether the value contains a TOML table.
+ */
+function containsTomlTable(value) {
+  return isTomlTable(value) || (Array.isArray(value) && value.some(containsTomlTable));
+}
+
+/**
  * Extracts the frontmatter section from a Markdown document.
  *
  * @param {string} content - The full Markdown content.
@@ -30,7 +55,8 @@ export function getFrontmatterValue(frontmatter, key) {
 }
 
 /**
- * Parses the Codex configuration file and returns a map of agent names to config paths.
+ * Parses the Codex configuration file and returns a map of reviewer names to config paths.
+ * Non-table values under `agents` are not reviewer registrations and are omitted.
  *
  * @param {string} content - The text of `.codex/config.toml`.
  * @param {(issue: string) => void} [onIssue] - Reports invalid registry structure.
@@ -58,13 +84,11 @@ export function parseCodexRegistrations(content, onIssue = () => {}) {
   }
 
   for (const [agentName, registration] of Object.entries(agents)) {
-    if (registration == null || typeof registration !== "object" || Array.isArray(registration)) {
-      registrations.set(agentName, "");
-      onIssue(`Codex agent registration ${JSON.stringify(agentName)} must be a TOML table`);
+    if (!isTomlTable(registration)) {
       continue;
     }
 
-    if (Object.values(registration).some((value) => value != null && typeof value === "object")) {
+    if (Object.values(registration).some(containsTomlTable)) {
       onIssue(`unsupported nested Codex agent registration ${JSON.stringify(agentName)}`);
     }
 

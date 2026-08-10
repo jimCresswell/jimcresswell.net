@@ -56,6 +56,36 @@ config_file = ".codex/agents/editor.toml" # canonical adapter
     expect(registrations.get("editor")).toBe(".codex/agents/editor.toml");
   });
 
+  it("returns only reviewer tables when agents also contains scalar settings", () => {
+    const issues: string[] = [];
+    const config = `
+[agents]
+max_threads = 4
+
+[agents.editor]
+config_file = ".codex/agents/editor.toml"
+`;
+
+    const registrations = parseCodexRegistrations(config, (issue) => issues.push(issue));
+
+    expect([...registrations]).toEqual([["editor", ".codex/agents/editor.toml"]]);
+    expect(issues).toEqual([]);
+  });
+
+  it("accepts scalar arrays inside reviewer registrations", () => {
+    const issues: string[] = [];
+    const config = `
+[agents.editor]
+nickname_candidates = ["gateway"]
+config_file = ".codex/agents/editor.toml"
+`;
+
+    const registrations = parseCodexRegistrations(config, (issue) => issues.push(issue));
+
+    expect(registrations.get("editor")).toBe(".codex/agents/editor.toml");
+    expect(issues).toEqual([]);
+  });
+
   it("does not attribute nested config_file values to a parent registration", () => {
     const issues: string[] = [];
     const config = `
@@ -67,6 +97,22 @@ config_file = ".codex/agents/editor.toml"
     const registrations = parseCodexRegistrations(config, (issue) => issues.push(issue));
 
     expect(registrations.get("editor")).toBe("");
+    expect(issues).toEqual(['unsupported nested Codex agent registration "editor"']);
+  });
+
+  it("rejects nested reviewer tables inside arrays", () => {
+    const issues: string[] = [];
+    const config = `
+[agents.editor]
+config_file = ".codex/agents/editor.toml"
+
+[[agents.editor.metadata]]
+label = "gateway"
+`;
+
+    const registrations = parseCodexRegistrations(config, (issue) => issues.push(issue));
+
+    expect(registrations.get("editor")).toBe(".codex/agents/editor.toml");
     expect(issues).toEqual(['unsupported nested Codex agent registration "editor"']);
   });
 
