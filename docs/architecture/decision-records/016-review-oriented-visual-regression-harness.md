@@ -105,6 +105,18 @@ For the current PKG work, this means:
 Unexpected ids, missing expected ids, mixed HTML diffs, metadata changes, and
 JSON-LD changes remain review items.
 
+### 6. Repository comparison policy is injected into the generic engine
+
+The reusable engine accepts a validated, serialisable configuration containing
+route keys and paths, named capture regions, expected section IDs, and bounded
+allowances. It does not import application or product modules.
+
+This repository owns the concrete policy in `visual-regression.config.ts`. That
+root adapter derives route paths and expected section IDs from the
+page/document contract, and `scripts/run-visual-regression-harness.ts` supplies
+the complete configuration to the generic CLI. The public root command remains
+unchanged.
+
 ## Consequences
 
 - The harness is now a durable approval workflow rather than a brittle binary
@@ -118,6 +130,9 @@ JSON-LD changes remain review items.
 - Next.js build noise no longer drowns `document.html` review
 - Narrow, contract-backed anchor additions can be kept out of the review set
   without hiding structural regressions
+- The comparison engine can be tested and moved independently of this site's
+  product source, while repository policy remains derived from the product
+  contract at the root boundary
 - The harness is intentionally unsuitable as a simple pass/fail CI check for UI
   changes; it is a review tool whose outputs need human judgement
 - The harness should be run during implementation on meaningful slices, not

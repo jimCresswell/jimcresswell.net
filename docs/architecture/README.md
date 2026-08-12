@@ -89,7 +89,8 @@ The repo includes a non-destructive visual regression harness at `visual-regress
 - Safety model: reads refs with `git rev-parse`, exports git refs with `git archive`, exports `WORKTREE` by overlaying live changes onto an archive of `HEAD`, builds only in temporary directories, and does not touch the caller's worktree, index, refs, or history
 - Output: durable artefacts under `regression-artifacts/visual-regression-harness/`, including full-page screenshots, selected region screenshots, always-written PNG diff images, `*.review.png` strips, HTML artefacts, metadata JSON, `diff/summary.json`, and top-level `summary.txt`
 - Review model: the harness records unexpected differences for approval or rejection; it is a review workflow, not a pass/fail quality gate
-- Comparison standard: screenshots remain strict; `document.html` is explicitly normalised to remove build-specific Next.js and Vercel runtime noise; target-only CV section-anchor additions are auto-accepted only when they match the shared page/document contract exactly
+- Configuration boundary: `visual-regression.config.ts` owns this repository's routes, named regions, expected section IDs, and bounded allowances; the generic harness validates and consumes that injected policy without importing product source
+- Comparison standard: screenshots remain strict; `document.html` is explicitly normalised to remove build-specific Next.js and Vercel runtime noise; target-only CV section-anchor additions are auto-accepted only when the injected route policy explicitly permits IDs derived from the shared page/document contract
 - Current limitation: capture reuse and `--force` are not implemented yet; each run rebuilds and recaptures from scratch
 - Process rule: for rendering-risk changes to the current captured site
   surfaces (`/`, `/cv`, `/cv/public_sector`), the harness is blocking proof and
