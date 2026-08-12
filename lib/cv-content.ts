@@ -8,10 +8,21 @@
  */
 import cvContentJson from "@/content/cv.content.json";
 import { person } from "./entities";
+import { resolveSameAsUrlByHostname } from "./same-as";
 import { SITE_URL } from "./site-config";
 
 /** CV content — editorial prose from the page composition file. */
 export const cvContent = cvContentJson;
+
+/**
+ * CV composition data with graph-owned identity atoms injected at the
+ * application boundary.
+ */
+export const cvLayoutContent = {
+  ...cvContent,
+  meta: { ...cvContent.meta, name: person.name },
+  links: { ...cvContent.links, email: person.email },
+};
 
 /** OG image metadata — static, matches the generated OG image asset. */
 const OG_IMAGE = {
@@ -41,29 +52,8 @@ export const cvOpenGraph = {
 
 /** Shared footer links (consistent across all pages). */
 export const footerLinks = {
-  linkedin: cvContent.links.linkedin,
-  github: cvContent.links.github,
-  google_scholar: cvContent.links.google_scholar,
+  linkedin: resolveSameAsUrlByHostname(person.sameAs, "www.linkedin.com"),
+  github: resolveSameAsUrlByHostname(person.sameAs, "github.com"),
+  google_scholar: resolveSameAsUrlByHostname(person.sameAs, "scholar.google.co.uk"),
   shiv: cvContent.links.shiv,
 };
-
-/**
- * Active tilt keys — only these generate routes.
- * Should match `cvContent.tilts._meta.web_routes`.
- */
-export const activeTiltKeys: readonly string[] =
-  cvContent.tilts._meta.web_routes ?? cvContent.tilts._meta.order.slice(0, 1);
-type ActiveTiltKey = (typeof activeTiltKeys)[number];
-
-/** Look up a tilt by key. Returns `null` if the key is not recognised. */
-export function getTilt(key: string) {
-  if (key === "public_sector") return cvContent.tilts.public_sector;
-  if (key === "private_ai") return cvContent.tilts.private_ai;
-  if (key === "founder") return cvContent.tilts.founder;
-  return null;
-}
-
-/** Type guard: is `key` one of the active tilt keys? */
-export function isActiveTiltKey(key: string): key is ActiveTiltKey {
-  return activeTiltKeys.includes(key);
-}

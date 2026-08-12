@@ -6,9 +6,14 @@ Live at [www.jimcresswell.net](https://www.jimcresswell.net).
 
 ## Overview
 
-A minimal, editorial-quality personal site with a front page and CV pages. The design is calm, serious, and intentional — Inter for headings and labels, Literata for prose, whitespace-driven hierarchy, warm colour palette, light and dark themes, comprehensive print styles.
+A minimal, editorial-quality personal site with a front page and one canonical
+CV document. The design is calm, serious, and intentional — Inter for headings
+and labels, Literata for prose, whitespace-driven hierarchy, a warm colour
+palette, light and dark themes, and comprehensive print styles.
 
-All content is driven from JSON files in `content/`. The site does not invent or rewrite any copy — all text is rendered directly from the content files.
+Editorial content and shared identity atoms come from JSON files in `content/`.
+Structural UI labels remain component-owned. The site does not invent or
+rewrite editorial copy.
 
 ## Getting Started
 
@@ -69,7 +74,7 @@ pnpm generate:icons # Regenerate favicon and OG images from logo
 app/                         # Next.js App Router pages and layouts
   api/graph/route.ts         # Knowledge graph API (JSON-LD)
   api/accept-md/route.ts     # Markdown conversion handler (internal)
-  cv/                        # CV pages (base and variant routes)
+  cv/                        # Canonical CV, PDF handler, and PDF-unavailable page
   globals.css                # Theme colours, Tailwind config, print styles
   layout.tsx                 # Root layout (fonts, theme provider, analytics)
   sitemap.ts                 # Dynamic sitemap generation
@@ -91,13 +96,14 @@ components/                  # React components
   theme-provider.tsx         # next-themes wrapper
 
 content/                     # Page-composition JSON plus machine-readable entity graph
-  cv.content.json            # CV content, tilt variants, links, and editorial metadata
+  cv.content.json            # CV editorial prose, canonical headline, and project link
   frontpage.content.json     # Homepage content and editorial metadata
   entities.json              # Entity graph for JSON-LD and graph-facing metadata
 
 lib/                         # Utility functions and types
-  cv-content.ts              # Content accessors and tilt helpers
+  cv-content.ts              # CV composition accessor and graph-derived identity links
   entities.ts                # Entity-graph validation and derived types
+  same-as.ts                 # Exact-hostname resolution for Person profile URLs
   page-jsonld.ts             # Page-specific JSON-LD subgraph builder
   page-document-contract.ts  # Shared page identity and anchor contract
   parse-markdown-links.tsx   # Parses [text](url) in content strings
@@ -139,23 +145,32 @@ logo/                        # Logo generation tooling (excluded from lint/build
 | --------------------- | -------------------------------------------------------------------------- |
 | `/`                   | Front page — personal narrative with inline links                          |
 | `/cv/`                | Primary CV — positioning, experience, prior roles, capabilities, education |
-| `/cv/<variant>/`      | CV variants — alternative positioning for different contexts               |
 | `/cv/pdf`             | PDF download / inline display (Route Handler)                              |
 | `/cv/pdf/unavailable` | Branded 404 when PDF has not been generated                                |
 | `/api/graph`          | Full JSON-LD knowledge graph (Schema.org `@graph`)                         |
-| `/<page>.md`          | Markdown version of any page (e.g. `/cv.md`, `/index.md`)                  |
+| `/<page>.md`          | Markdown alias for a supported editorial document (`/cv.md`, `/index.md`)  |
 
-Current variants are defined in `content/cv.content.json` under `tilts._meta.web_routes`.
-
-Every page also supports content negotiation: `Accept: text/markdown` for markdown, `Accept: application/ld+json` for the knowledge graph. See [ADR-009](docs/architecture/decision-records/009-content-negotiation-proxy.md) and [ADR-010](docs/architecture/decision-records/010-canonical-url-graph-identity.md).
+The home and canonical CV documents support content negotiation:
+`Accept: text/markdown` returns Markdown and
+`Accept: application/ld+json` returns the full knowledge graph. Native
+subroutes and missing routes retain their own responses. See
+[ADR-009](docs/architecture/decision-records/009-content-negotiation-proxy.md)
+and
+[ADR-010](docs/architecture/decision-records/010-canonical-url-graph-identity.md).
 
 ## Key Design Decisions
 
-**Content-driven rendering** — All user-visible text comes from JSON files in `content/`. Components render content verbatim; they do not edit, summarise, or reorder it.
+**Content-driven rendering** — Editorial prose comes from page-composition JSON;
+the entity graph owns shared identity atoms. Server composition injects those
+atoms into the generic header, footer, and CV layout. Components do not edit,
+summarise, or reorder editorial copy.
 
 **Server components by default** — Only three components use `"use client"`: the theme toggle, the theme provider, and the site header. Everything else is server-rendered.
 
-**Tilt variants** — CV variants share the same experience, prior roles, capabilities, and education sections but substitute different positioning text. Variants are defined in the content JSON and generate static routes via `generateStaticParams`.
+**Canonical CV** — `/cv/` is the sole editorial CV document. Former tilt
+content and rationale are preserved as architecture reference material; old
+tilt links return the branded 404. See
+[ADR-021](docs/architecture/decision-records/021-canonical-only-cv-identity.md).
 
 **Build-time PDF** — The CV PDF is generated at build time using Puppeteer with full Chrome, stored in Vercel Blob (production) or the local filesystem (local builds), and served from `/cv/pdf`. Comprehensive `@media print` CSS drives both the PDF layout and manual browser printing. See [docs/architecture/](docs/architecture/) for details and [decision records](docs/architecture/decision-records/).
 

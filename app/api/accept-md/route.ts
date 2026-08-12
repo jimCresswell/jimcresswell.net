@@ -2,9 +2,11 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { getMarkdownForPath, loadConfig } from "accept-md-runtime";
+import { resolveNegotiablePagePath } from "@/lib/content-negotiation-path";
 
 const cache = new Map();
 const HANDLER_PATH = "/api/accept-md";
+const UPSTREAM_HTTP_ERROR_PATTERN = /^Failed to fetch page: ([45]\d{2})$/;
 
 export async function GET(request: NextRequest) {
   const pathFromHeader = request.headers.get("x-accept-md-path");
@@ -44,10 +46,11 @@ export async function GET(request: NextRequest) {
   if (!path.startsWith("/")) {
     path = "/" + path;
   }
-  // Exclude /api and /_next paths - return 404 for these
-  if (path.startsWith("/api/") || path.startsWith("/_next/")) {
+  const negotiablePagePath = resolveNegotiablePagePath(path);
+  if (!negotiablePagePath) {
     return NextResponse.json({ error: "Not found" }, { status: 404 });
   }
+  path = negotiablePagePath;
   const config = loadConfig(process.cwd());
   // Construct baseUrl reliably: prefer config, then use request origin, fall back to localhost
   let baseUrl = config.baseUrl;
@@ -73,13 +76,18 @@ export async function GET(request: NextRequest) {
     return new NextResponse(markdown, {
       headers: {
         "Content-Type": "text/markdown; charset=utf-8",
+        Vary: "Accept",
         "Cache-Control": config.cache ? "public, s-maxage=60, stale-while-revalidate" : "no-store",
       },
     });
   } catch (err) {
+    const upstreamStatusMatch =
+      err instanceof Error ? UPSTREAM_HTTP_ERROR_PATTERN.exec(err.message) : null;
+    const status = upstreamStatusMatch ? Number(upstreamStatusMatch[1]) : 500;
+
     return NextResponse.json(
       { error: err instanceof Error ? err.message : "Markdown generation failed" },
-      { status: 500 }
+      { status }
     );
   }
 }

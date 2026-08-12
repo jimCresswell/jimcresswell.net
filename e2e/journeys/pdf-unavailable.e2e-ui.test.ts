@@ -10,6 +10,7 @@ test.describe("US-05: Visitor encounters missing PDF", () => {
     await expect(
       page.getByText("The CV PDF has not been generated for this deployment")
     ).toBeVisible();
+    await expect(page.getByRole("link", { name: "PDF" })).toHaveCount(0);
 
     // Visitor can still access the CV online
     const cvLink = page.getByRole("link", { name: "View the CV online" });

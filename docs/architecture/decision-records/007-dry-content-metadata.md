@@ -61,7 +61,11 @@ A `meta.summary` field was added to `cv.content.json` to serve as the single sho
 
 - The JSON-LD is no longer a single readable JSON file — the graph is assembled in TypeScript. This is mitigated by clear TSDoc and a modular `buildGraph()` function where each category of nodes is constructed independently.
 - Adding new JSON-LD nodes requires editing TypeScript rather than JSON. In practice this is straightforward and provides type safety.
-- The `meta.summary` field must be written to work in all three contexts (OG previews, JSON-LD descriptions, manifest description). This is a light editorial constraint — the summary should be a confident one-sentence positioning statement rather than a narrative opener. **Note:** [ADR-011](011-domain-appropriate-descriptions.md) evolves this understanding — these contexts are fundamentally different domains, and the single-string approach is an interim simplification. The target state is domain-appropriate descriptions, implemented through the knowledge graph plan.
+- At the time of this decision, `meta.summary` had to work in three contexts
+  (OG previews, JSON-LD descriptions, and the manifest). [ADR-011](011-domain-appropriate-descriptions.md)
+  identified that as an interim simplification; [ADR-020](020-entity-model-source-of-truth-for-shared-atoms.md)
+  later removed `meta.summary` and made `Person.description` the owner for the
+  bounded shared-description consumers.
 
 ## Related
 

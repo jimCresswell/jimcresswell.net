@@ -24,15 +24,17 @@ test.describe("Markdown content negotiation (accept-md)", () => {
     expect(body).toContain("Positioning");
   });
 
-  test("CV variant returns markdown when Accept: text/markdown is sent", async ({ request }) => {
-    const response = await request.get("/cv/public_sector", {
+  test("Markdown responses vary on Accept without losing framework fields", async ({ request }) => {
+    const response = await request.get("/cv", {
       headers: { Accept: "text/markdown" },
     });
-    expect(response.status()).toBe(200);
-    expect(response.headers()["content-type"]).toContain("text/markdown");
 
-    const body = await response.text();
-    expect(body).toContain("Jim Cresswell");
+    expect(
+      response
+        .headers()
+        ["vary"]?.toLowerCase()
+        .split(/\s*,\s*/)
+    ).toEqual(expect.arrayContaining(["accept", "rsc"]));
   });
 
   test("markdown response includes YAML frontmatter with metadata", async ({ request }) => {
@@ -79,23 +81,44 @@ test.describe("Markdown content negotiation (accept-md)", () => {
     expect(body).toContain("Positioning");
   });
 
-  test(".md suffix serves markdown for a CV variant", async ({ request }) => {
-    const response = await request.get("/cv/public_sector.md");
-    expect(response.status()).toBe(200);
-    expect(response.headers()["content-type"]).toContain("text/markdown");
+  test("retired CV variants remain 404 under Accept negotiation", async ({ request }) => {
+    const response = await request.get("/cv/public_sector", {
+      headers: { Accept: "text/markdown" },
+    });
 
-    const body = await response.text();
-    expect(body).toContain("Jim Cresswell");
+    expect(response.status()).toBe(404);
   });
 
-  test("/cv/variant/index.md serves markdown for a CV variant (directory-style)", async ({
-    request,
-  }) => {
-    const response = await request.get("/cv/public_sector/index.md");
-    expect(response.status()).toBe(200);
-    expect(response.headers()["content-type"]).toContain("text/markdown");
+  test("retired CV variant markdown aliases remain 404", async ({ request }) => {
+    const response = await request.get("/cv/public_sector.md");
 
-    const body = await response.text();
-    expect(body).toContain("Jim Cresswell");
+    expect(response.status()).toBe(404);
+  });
+
+  test("the PDF subroute retains its native representation", async ({ request }) => {
+    const response = await request.get("/cv/pdf", {
+      headers: { Accept: "text/markdown" },
+    });
+
+    expect(response.status()).toBe(200);
+    expect(response.headers()["content-type"]).toContain("application/pdf");
+  });
+
+  test("the public handler rejects non-editorial rewrite headers", async ({ request }) => {
+    for (const path of ["/cv/public_sector", "/cv/pdf"]) {
+      const response = await request.get("/api/accept-md", {
+        headers: { "x-accept-md-path": path },
+      });
+
+      expect(response.status()).toBe(404);
+    }
+  });
+
+  test("the public handler rejects non-editorial query paths", async ({ request }) => {
+    for (const path of ["/cv/public_sector", "/cv/pdf"]) {
+      const response = await request.get(`/api/accept-md?path=${encodeURIComponent(path)}`);
+
+      expect(response.status()).toBe(404);
+    }
   });
 });

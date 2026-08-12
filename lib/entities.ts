@@ -74,7 +74,7 @@ export const PersonEntitySchema = z.object({
   pronouns: z.string().optional(),
   url: z.string(),
   description: z.string(),
-  sameAs: z.array(z.string()),
+  sameAs: z.array(z.url()),
   email: z.string(),
   knowsAbout: z.array(KnowsAboutItemSchema),
   hasOccupation: z.array(IdRefSchema),
@@ -219,8 +219,8 @@ export const IntangibleEntitySchema = z.object({
 /**
  * `schema:Statement` + `additionalType` — expressive entities.
  *
- * Used for PositioningNarrative and TiltVariant. Statement extends
- * CreativeWork, so it inherits `text`, `author`, `inLanguage`.
+ * Used for PositioningNarrative. Statement extends CreativeWork, so it
+ * inherits `text`, `author`, `inLanguage`.
  * `additionalType` is required for domain specificity.
  */
 export const StatementEntitySchema = z.object({
@@ -250,7 +250,7 @@ export const DefinedTermEntitySchema = z.object({
 });
 
 /** Discriminated union of all entity types in the graph. */
-export const EntitySchema = z.discriminatedUnion("@type", [
+const EntitySchema = z.discriminatedUnion("@type", [
   WebSiteEntitySchema,
   ProfilePageEntitySchema,
   PersonEntitySchema,
@@ -293,14 +293,23 @@ export const entityGraph = parseResult.data;
 /** All entities in the graph, typed as the discriminated union. */
 export const entities = entityGraph["@graph"];
 
-/** The Person entity — central node of the graph. */
-export const person: Person = (() => {
-  const found = entities.find((e): e is Person => e["@type"] === "Person");
-  if (!found) {
-    throw new Error("Entity model must contain exactly one Person entity");
+/**
+ * Resolve the sole Person node from a parsed entity graph.
+ *
+ * @param nodes Parsed graph nodes to inspect.
+ * @returns The graph's one Person entity.
+ * @throws If the graph contains zero or multiple Person entities.
+ */
+export function resolveSinglePerson(nodes: readonly Entity[]): Person {
+  const people = nodes.filter((entity): entity is Person => entity["@type"] === "Person");
+  if (people.length !== 1) {
+    throw new Error(`Entity model must contain exactly one Person entity (found ${people.length})`);
   }
-  return found;
-})();
+  return people[0];
+}
+
+/** The Person entity — central node of the graph. */
+export const person: Person = resolveSinglePerson(entities);
 
 // ─── Derived types ─────────────────────────────────────────────────────
 

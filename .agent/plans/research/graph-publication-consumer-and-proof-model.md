@@ -16,9 +16,15 @@ Use this note with:
 - [personal-knowledge-graph-source-of-truth-design.plan.md](../active/personal-knowledge-graph-source-of-truth-design.plan.md)
 - [pkg-research-findings.md](pkg-research-findings.md)
 
-This note is implementation-backed. It defines the current Track A publication
-surface from code and tests that exist today, not from target-state design
-intent.
+This note is implementation-backed. It defines the Track A publication surface
+recorded on 2026-03-09 from code and tests that existed then, not from
+target-state design intent.
+
+Subsequent state (2026-08-12): ADR-020 adopts bounded Person-owned identity
+atoms into visible composition, and ADR-021 retires audience-tilt routes. The
+dated Track A route and tilt evidence below remains historical proof; current
+publication routes are `/` and `/cv`, while editorial prose and full page
+selection/order remain outside graph derivation.
 
 ## Why this exists
 
@@ -32,9 +38,10 @@ Track A Phase A1 needed a grounded answer to five questions:
 
 ## Implementation-verified baseline
 
-### Visible rendering is not Track A scope
+### Visible rendering was not Track A scope
 
-The rendered website still follows the page-content path:
+At the time of this Track A record, the rendered website followed the
+page-content path described below. See the subsequent-state note above.
 
 - `app/page.tsx` renders home-page prose from `content/frontpage.content.json`
 - `app/cv/page.tsx` renders CV prose from `cvContent`
@@ -46,9 +53,9 @@ The rendered website still follows the page-content path:
 Track A therefore does not own visible HTML composition. It owns the graph
 publication layer that sits alongside that rendering path.
 
-### Graph publication is the current Track A surface
+### Graph publication was the recorded Track A surface
 
-The code path for graph publication today is:
+The code path recorded for graph publication was:
 
 - `content/entities.json` defines the entity graph
 - `lib/entities.ts` validates that graph and exports `entityGraph`, `entities`,
@@ -66,7 +73,7 @@ The code path for graph publication today is:
 - `lib/page-document-contract.ts` and `lib/search-structured-data.ts` define
   the canonical page identity and rich-result-facing structured-data contract
 
-## Track A outputs in scope right now
+## Track A outputs in scope at recording
 
 ### In scope
 
@@ -273,7 +280,7 @@ qualify as Track A work.
   future Track B completeness work
 - Do not create compatibility layers, stub-preservation docs, or duplicate
   ownership to make the current architecture sound tidier than it is
-- Do not let tilt routes drift into separate page identities
+- Do not reintroduce tilt routes without the ADR-021 re-entry process
 
 ## Follow-on record
 

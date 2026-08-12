@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { EntityGraphSchema, entities, entityGraph } from "./entities";
+import { EntityGraphSchema, entities, entityGraph, resolveSinglePerson } from "./entities";
 import entitiesJson from "@/content/entities.json";
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -92,5 +92,26 @@ describe("Entity model integration", () => {
       if (thesis["@type"] !== "Thesis") continue;
       expect(typeof thesis.inSupportOf).toBe("string");
     }
+  });
+});
+
+describe("resolveSinglePerson", () => {
+  const graphPerson = entities.find((entity) => entity["@type"] === "Person");
+  const nonPeople = entities.filter((entity) => entity["@type"] !== "Person");
+
+  it("returns the sole Person entity", () => {
+    expect(resolveSinglePerson(entities)["@id"]).toBe("https://www.jimcresswell.net/#person");
+  });
+
+  it("rejects a graph without a Person entity", () => {
+    expect(() => resolveSinglePerson(nonPeople)).toThrow("exactly one Person entity (found 0)");
+  });
+
+  it("rejects a graph with multiple Person entities", () => {
+    if (!graphPerson) throw new Error("Fixture must contain a Person entity");
+
+    expect(() => resolveSinglePerson([...entities, graphPerson])).toThrow(
+      "exactly one Person entity (found 2)"
+    );
   });
 });

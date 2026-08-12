@@ -18,6 +18,7 @@ export function GET(request: Request): NextResponse {
     headers: {
       "Cache-Control": "no-store",
       "Content-Type": `${contentType}; charset=utf-8`,
+      Vary: "Accept",
     },
   });
 }

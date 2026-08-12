@@ -13,8 +13,8 @@ and AI.
 
 ## Git identity
 
-Use `git@jimcresswell.net` as the author email for commits made in a local checkout. All commits must
-carry a GitHub-verifiable cryptographic signature; GPG and SSH signatures are both accepted.
+Use `git@jimcresswell.net` as the author email for commits made in a local checkout. All commits
+must carry a GitHub-verifiable cryptographic signature; GPG and SSH signatures are both accepted.
 GitHub-generated merge or squash commits may use GitHub's platform identity and GPG signature.
 
 ```bash

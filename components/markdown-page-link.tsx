@@ -2,15 +2,22 @@
  * Compact link to the markdown version of the current page, used in the
  * site header alongside the PDF download link.
  *
- * Constructs the `.md` URL from the current pathname:
+ * Constructs the `.md` URL for a supported editorial document:
  * - `/` → `/index.md`
  * - `/cv` → `/cv.md`
- * - `/cv/public_sector` → `/cv/public_sector.md`
+ *
+ * Native subroutes and missing routes do not negotiate Markdown, so the
+ * control is omitted for those paths rather than linking to a 404 response.
  *
  * Hidden in print media via the `print-hidden` class.
  */
 export function MarkdownPageLink({ pathname }: { pathname: string }) {
-  const mdHref = pathname === "/" ? "/index.md" : `${pathname}.md`;
+  const negotiablePagePath = resolveNegotiablePagePath(pathname);
+  if (!negotiablePagePath) {
+    return null;
+  }
+
+  const mdHref = negotiablePagePath === "/" ? "/index.md" : `${negotiablePagePath}.md`;
 
   return (
     <a
@@ -21,3 +28,4 @@ export function MarkdownPageLink({ pathname }: { pathname: string }) {
     </a>
   );
 }
+import { resolveNegotiablePagePath } from "@/lib/content-negotiation-path";

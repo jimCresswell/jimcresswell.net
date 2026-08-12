@@ -647,39 +647,6 @@
       "additionalType": "https://www.jimcresswell.net/schema/Capability",
       "name": "System-level impact through public services",
       "description": "Creating infrastructure at Oak that lowers the cost of innovation for others, enabling lasting change in education quality and teacher wellbeing in the UK and beyond."
-    },
-
-    {
-      "@type": "Statement",
-      "@id": "https://www.jimcresswell.net/#tilt-public-sector",
-      "additionalType": "https://www.jimcresswell.net/schema/TiltVariant",
-      "name": "Public Sector Tilt",
-      "text": "I work on complex, long\u2011term problems where AI, data, and public services intersect, particularly in early or unstructured contexts where new forms of public value and access are possible but not yet well understood. I lead exploratory work that reframes what public services could offer, unlocking novel ways for people to benefit from shared data and digital capability. My focus is on shaping the early conditions for high\u2011impact use of AI in public systems, enabling others to create value responsibly and at scale.",
-      "about": { "@id": "https://www.jimcresswell.net/#professional-identity" },
-      "author": { "@id": "https://www.jimcresswell.net/#person" },
-      "inLanguage": "en-GB"
-    },
-
-    {
-      "@type": "Statement",
-      "@id": "https://www.jimcresswell.net/#tilt-private-ai",
-      "additionalType": "https://www.jimcresswell.net/schema/TiltVariant",
-      "name": "Private AI Tilt",
-      "text": "I work on complex, early\u2011stage problem spaces at the frontier of AI capability, where the right questions are not yet clear and premature solutions can distort long\u2011term value. I lead exploratory work that reframes problems, identifies leverage, and gives initial shape to systems before they become products. My strength is turning ambiguity into coherent direction, enabling others to build with lasting impact.",
-      "about": { "@id": "https://www.jimcresswell.net/#professional-identity" },
-      "author": { "@id": "https://www.jimcresswell.net/#person" },
-      "inLanguage": "en-GB"
-    },
-
-    {
-      "@type": "Statement",
-      "@id": "https://www.jimcresswell.net/#tilt-founder",
-      "additionalType": "https://www.jimcresswell.net/schema/TiltVariant",
-      "name": "Founder Tilt",
-      "text": "I explore complex, high\u2011impact problem spaces where existing models no longer fit and new systems are required. My work centres on discovery and creation: forming new conceptual frameworks, testing what is worth building at all, and shaping the first coherent versions of ideas that can grow beyond me. I\u2019m driven by origination, leverage, and impact that emerges through others rather than incremental optimisation.",
-      "about": { "@id": "https://www.jimcresswell.net/#professional-identity" },
-      "author": { "@id": "https://www.jimcresswell.net/#person" },
-      "inLanguage": "en-GB"
     }
   ]
 }

@@ -36,5 +36,8 @@ playwright-report/
 blob-report/
 regression-artifacts/
 
+# coverage
+coverage/
+
 # Agent watcher runtime cursors (transient, per-identity)
 .agent/state/collaboration/comms-seen/

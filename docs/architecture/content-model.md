@@ -4,14 +4,19 @@ How content JSON becomes rendered pages, derived metadata, the PDF, and machine-
 
 ## Overview
 
-All user-visible text originates from JSON files in `content/`. Components
-render content verbatim — they do not edit, summarise, or reorder it.
+Editorial content and shared identity atoms originate from JSON files in
+`content/`. Components render editorial content verbatim; structural UI labels
+and accessibility text remain component-owned.
 
 The current implementation has **two related content layers**, not one unified
 source of truth:
 
-- page-composition JSON (`content/cv.content.json` and `content/frontpage.content.json`) drives visible rendering and most editorial metadata
-- entity-graph JSON (`content/entities.json`) drives JSON-LD, the manifest, and some graph-facing metadata
+- page-composition JSON (`content/cv.content.json` and
+  `content/frontpage.content.json`) drives visible editorial prose and
+  page-specific metadata
+- entity-graph JSON (`content/entities.json`) drives JSON-LD, the manifest, and
+  shared identity atoms such as the person's name, email, description, and
+  profile URLs
 
 The site therefore has a strong structured-data layer, but it is **not yet** a
 graph-backed page-composition system. [ADR-014](decision-records/014-entity-model-design.md)
@@ -24,30 +29,32 @@ implementation truth.
 
 The primary content file. Top-level keys:
 
-| Key            | Purpose                                                                                                                                                                                                |
-| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `meta`         | Name, headline(s), summary, locale — used for page metadata and structured data. `headline_alt` (optional) enables an interactive toggle between two headlines on screen; print always uses `headline` |
-| `positioning`  | Default positioning paragraphs (the narrative at the top of the CV)                                                                                                                                    |
-| `experience`   | Work history entries (organisation, role, years, summary paragraphs)                                                                                                                                   |
-| `prior_roles`  | Pre-Oak career entries (title, description paragraphs). Renders under the heading "Before Oak"                                                                                                         |
-| `capabilities` | Capability claims — strings with inline markdown links, same format as experience summaries                                                                                                            |
-| `education`    | Degrees (degree, field, institution)                                                                                                                                                                   |
-| `links`        | Contact and profile URLs (email, LinkedIn, GitHub, Google Scholar, shiv)                                                                                                                               |
-| `tilts`        | Variant positioning for different audiences — see [Tilt variants](#tilt-variants) below                                                                                                                |
+| Key            | Purpose                                                                                      |
+| -------------- | -------------------------------------------------------------------------------------------- |
+| `meta`         | Canonical headline and locale                                                                |
+| `positioning`  | Positioning paragraphs at the top of the CV                                                  |
+| `experience`   | Work history entries (organisation, role, years, summary paragraphs)                         |
+| `prior_roles`  | Pre-Oak career entries, rendered under “Before Oak”                                          |
+| `capabilities` | Capability claims with inline markdown links                                                 |
+| `education`    | Degrees (degree, field, institution)                                                         |
+| `links`        | Editorial links that are not identity profiles; currently the personal project link for Shiv |
 
 ### frontpage.content.json
 
 Content for the home page at `/`. Top-level keys:
 
-| Key     | Purpose                                                                                              |
-| ------- | ---------------------------------------------------------------------------------------------------- |
-| `meta`  | Site section, page identifier, title, description (short OG-length summary for social cards), locale |
-| `hero`  | Name and summary paragraphs                                                                          |
-| `links` | Profile URLs (LinkedIn, GitHub, Google Scholar)                                                      |
+| Key    | Purpose                                                                            |
+| ------ | ---------------------------------------------------------------------------------- |
+| `meta` | Site section, page identifier, description (short social-card summary), and locale |
+| `hero` | Home-page summary paragraphs                                                       |
 
 ## Content to page rendering
 
-The CV page (`app/cv/page.tsx`) imports `cvContent` from `lib/cv-content.ts`, which re-exports `content/cv.content.json`. The page builds a positioning element from `cvContent.positioning.paragraphs` and passes both `content` and `positioning` to `CVLayout`.
+The CV page builds positioning from the editorial `cvContent` accessor and
+passes `cvLayoutContent` to `CVLayout`. That composition accessor injects the
+Person-owned name and email into the page JSON before rendering. The root
+server layout resolves the same Person identity and injects the name and
+profile links into generic `SiteHeader` and `SiteFooter` components.
 
 `CVLayout` (`components/cv-layout.tsx`) is the main orchestrator. It delegates to:
 
@@ -60,25 +67,14 @@ Content strings may include inline markdown: `[text](url)` for links and `_text_
 
 For plain-text contexts (e.g. `<meta>` descriptions, accessibility labels), `stripInlineMarkdown()` in `lib/strip-inline-markdown.ts` removes this markup, leaving only the visible text.
 
-## Tilt variants
+## Canonical CV identity
 
-Tilt variants allow the CV to present different positioning text for different audiences while sharing all other sections (experience, prior_roles, capabilities, education).
-
-Variants are defined in `cv.content.json` under `tilts`:
-
-- `tilts._meta.web_routes` — an array of variant keys that should have web routes (currently `["public_sector"]`)
-- `tilts._meta.primary` — the default variant key
-- `tilts._meta.order` — display ordering
-- Each variant key (e.g. `public_sector`) maps to an object with `context` (short label) and `positioning` (the alternative narrative)
-
-`app/cv/[variant]/page.tsx` uses `generateStaticParams()` to create a static route for each entry in `activeTiltKeys` (derived from `tilts._meta.web_routes` in `lib/cv-content.ts`). At render time, invalid variant slugs return a 404 via `notFound()`. Each variant page sets its canonical URL to `/cv/` via `alternates.canonical`.
-
-Tilt routes are alternate presentations of the canonical CV page, not separate
-page identities. Their HTML title may include the tilt context, but their
-canonical link and inline `ProfilePage` JSON-LD both reuse the base `/cv/`
-identity. See [ADR-017](decision-records/017-cv-tilt-routes-are-canonical-aliases.md).
-
-To add a new variant: add the variant key and content to `tilts`, add the slug to `tilts._meta.web_routes`, and `generateStaticParams` picks it up automatically.
+The site exposes one editorial CV document at `/cv/`. Former audience-tilt
+routes and content are retired; old tilt slugs such as `/cv/public_sector`
+return the branded 404, while the deliberate PDF subroutes remain. ADR-021
+records the current decision, and the removed editorial material remains in the
+[CV tilt reference](reference/cv-tilt-content-and-rationale.md) if a future
+product requirement justifies a deliberate re-entry.
 
 ## Derived metadata
 
@@ -89,14 +85,15 @@ constructs each output and which source fields it uses.
 
 Current ownership looks like this:
 
-| Concern              | Current owner                                               | Notes                                         |
-| -------------------- | ----------------------------------------------------------- | --------------------------------------------- |
-| Visible page prose   | `content/cv.content.json`, `content/frontpage.content.json` | Primary source for rendered HTML              |
-| Graph entities       | `content/entities.json`                                     | Canonical machine-readable entity model       |
-| JSON-LD              | Graph-derived                                               | Strong integration                            |
-| Manifest             | Graph-derived                                               | Strong integration                            |
-| OG and some metadata | Mixed                                                       | Some graph-derived, some page-content-derived |
-| Page composition     | Page content JSON                                           | Not graph-derived                             |
+| Concern               | Current owner                                               | Notes                                                   |
+| --------------------- | ----------------------------------------------------------- | ------------------------------------------------------- |
+| Visible page prose    | `content/cv.content.json`, `content/frontpage.content.json` | Primary source for editorial HTML                       |
+| Shared identity atoms | `content/entities.json`                                     | Name, email, description, and profile URLs              |
+| Graph entities        | `content/entities.json`                                     | Canonical machine-readable entity model                 |
+| JSON-LD               | Graph-derived                                               | Strong integration                                      |
+| Manifest              | Graph-derived                                               | Strong integration                                      |
+| OG and some metadata  | Mixed                                                       | Graph identity plus page-specific editorial description |
+| Page composition      | Page content JSON plus injected identity props              | Not fully graph-derived                                 |
 
 The structured-data-specific content that used to live as JSON-LD module constants now lives in `content/entities.json` as part of the personal knowledge graph. `lib/entities.ts` validates that graph, `lib/jsonld.ts` exposes the full graph, `lib/page-jsonld.ts` derives page-specific subgraphs, and `lib/page-document-contract.ts` defines the page-level anchor and canonical-identity contract those subgraphs must honour.
 
@@ -114,29 +111,41 @@ For the full generation pipeline and serving architecture, see the [PDF Generati
 
 ## Machine-readable representations
 
-Every page supports multiple output formats via content negotiation (see [ADR-009](decision-records/009-content-negotiation-proxy.md)). The Next.js proxy (`proxy.ts`) inspects the request and rewrites to the appropriate handler:
+The home and canonical CV documents support multiple output formats via
+content negotiation (see
+[ADR-009](decision-records/009-content-negotiation-proxy.md)). The Next.js
+proxy (`proxy.ts`) inspects eligible requests and rewrites them to the
+appropriate handler; native subroutes and missing routes pass through:
 
 | Format   | Access                                                              | Source                                                                 |
 | -------- | ------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| HTML     | Default browser request                                             | Page components rendering content JSON                                 |
+| HTML     | Default browser request                                             | Page JSON plus injected graph-owned identity atoms                     |
 | Markdown | `Accept: text/markdown`, or `.md` suffix (`/cv.md`, `/cv/index.md`) | HTML converted by `accept-md-runtime`                                  |
-| JSON-LD  | `Accept: application/ld+json` on any page, or `/api/graph`          | Entity graph from `content/entities.json`, exposed via `lib/jsonld.ts` |
+| JSON-LD  | `Accept: application/ld+json` on `/` or `/cv`, or `/api/graph`      | Entity graph from `content/entities.json`, exposed via `lib/jsonld.ts` |
 | PDF      | `/cv/pdf`                                                           | Build-time Puppeteer render of `/cv`                                   |
 
-The knowledge graph (`/api/graph`) returns the full Schema.org `@graph` regardless of which page URL is requested — the graph models the person, not the page. See [ADR-010](decision-records/010-canonical-url-graph-identity.md) for the rationale.
+The knowledge graph (`/api/graph`) returns the full Schema.org `@graph`, as do
+negotiated requests to either supported editorial document — the graph models
+the person, not the page. See
+[ADR-010](decision-records/010-canonical-url-graph-identity.md) for the
+rationale.
 
-The site header includes links to the MD, DATA (JSON-LD), and PDF (CV pages only) representations on every page, making these formats discoverable by visitors.
+On the supported editorial documents, the site header exposes MD and DATA
+(JSON-LD) links; the canonical CV also exposes PDF. Other routes omit the
+unsupported MD control while retaining direct DATA access.
 
 ## Adding or changing content
 
-1. **Edit the JSON** — make changes in `content/cv.content.json` (or `content/frontpage.content.json` for the home page).
-   If you are changing graph facts, structured-data descriptions, or shared
-   machine-readable entities, edit `content/entities.json` as well.
+1. **Edit the owning JSON** — change CV or home prose and the home social
+   description in their page-composition files. Change the Person name, email,
+   short description, or identity-profile URLs in `content/entities.json`.
+   Other graph facts and machine-readable entities also belong there.
 2. **Preview** — run `pnpm dev` and check the result at `http://localhost:3000`.
 3. **Validate** — run `pnpm check`. The content integrity E2E tests verify that rendered content matches the JSON source.
 4. **Editorial voice** — before writing or editing any content, read [editorial-guidance.md](../../.agent/directives/editorial-guidance.md) for Jim's voice, audience, and editorial principles.
 
-For new tilt variants, add the variant key and content to `tilts` in `cv.content.json`, add the slug to `tilts._meta.web_routes`, and `generateStaticParams` picks it up automatically. Run `pnpm test:e2e` to verify the new route works end-to-end.
+Reintroducing CV tilts is an architectural and product decision, not a content
+edit. Start from the preserved tilt reference and write a new plan and ADR.
 
 ## Presentation text
 

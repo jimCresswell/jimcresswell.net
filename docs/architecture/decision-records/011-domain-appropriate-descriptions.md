@@ -48,11 +48,25 @@ Each description serves a specific domain and should be defined where that domai
 
 ### Relationship to ADR-007
 
-This ADR evolves ADR-007, not supersedes it. ADR-007's core contribution — eliminating satellite files and deriving metadata from content — remains correct. What changes is the understanding of `meta.summary`: a single string serving all contexts is an interim simplification, not the target state. As the content model evolves (see the personal knowledge graph plan), each domain acquires its own description naturally.
+This ADR evolves ADR-007, not supersedes it. ADR-007's core contribution —
+eliminating satellite files and deriving metadata from owned content — remains
+correct. What changed was the understanding of the former `meta.summary`: a
+single page field serving every context was an interim simplification, not the
+target state.
 
-### Implementation timing
+### Subsequent implementation state (2026-08-12)
 
-This is a forward-looking decision. The current `meta.summary` continues to serve all contexts until the knowledge graph plan restructures the content model. At that point, the decoupling happens naturally: the Person entity gets its own description, page definitions get their own OG descriptions, and the manifest gets its own description. No intermediate "split the meta object" step is needed.
+[ADR-020](020-entity-model-source-of-truth-for-shared-atoms.md) implements a
+bounded part of this decision. `meta.summary` no longer exists:
+
+- `Person.description` supplies the CV metadata and manifest description
+- the home page retains its distinct editorial description in
+  `frontpage.content.json`
+- page composition and other editorial prose remain page-owned
+
+This is not full graph-backed page composition. It is the smallest structural
+split that removes the duplicated shared field while preserving legitimate
+domain-specific prose.
 
 ## Consequences
 
@@ -61,12 +75,15 @@ This is a forward-looking decision. The current `meta.summary` continues to serv
 - Each description can be optimised for its audience and context without compromise.
 - The data model reflects reality: these are different things, and they live in different places.
 - Editorial consistency is governed by editorial principles — a higher-quality guarantee than textual identity (same string). Two descriptions can tell the same story in different registers.
-- No premature structural change needed. The current interim approach works; the target state emerges naturally from the knowledge graph work.
+- The bounded structural split has landed; broader graph-backed composition
+  remains a separate architectural decision.
 
 **Trade-offs:**
 
 - Multiple descriptions of the same person must be kept editorially aligned. This requires discipline during content changes. Mitigated by the editorial consistency principle in `editorial-guidance.md`.
-- Until the knowledge graph plan executes, `meta.summary` continues to serve all contexts. The decision is accepted now but implemented incrementally.
+- Not every description is structurally independent yet: CV metadata and the
+  manifest deliberately share the Person description, while the home page is
+  independently authored.
 
 ## Related
 

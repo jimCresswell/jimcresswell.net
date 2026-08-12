@@ -1,7 +1,6 @@
 import { test, expect } from "@playwright/test";
 import cvContent from "../../content/cv.content.json" with { type: "json" };
 import { stripInlineMarkdown } from "../../lib/strip-inline-markdown";
-import { gotoAndExpectPublicSectorCv } from "../support/cv-variant";
 
 test.describe("REQ-06: Content integrity — rendered content matches JSON source", () => {
   test("CV page renders all experience entries from content JSON", async ({ page }) => {
@@ -36,8 +35,10 @@ test.describe("REQ-06: Content integrity — rendered content matches JSON sourc
     }
   });
 
-  test("variant page renders variant-specific positioning from content JSON", async ({ page }) => {
-    await gotoAndExpectPublicSectorCv(page);
-    await expect(page.getByText(cvContent.tilts.public_sector.positioning)).toBeVisible();
+  test("CV page renders the positioning paragraphs from content JSON", async ({ page }) => {
+    await page.goto("/cv");
+    for (const paragraph of cvContent.positioning.paragraphs) {
+      await expect(page.getByText(stripInlineMarkdown(paragraph))).toBeVisible();
+    }
   });
 });

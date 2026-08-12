@@ -1,4 +1,5 @@
 import { test, expect } from "@playwright/test";
+import { getExpectedPersonName } from "../support/expected-person";
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return value !== null && typeof value === "object" && !Array.isArray(value);
@@ -40,7 +41,7 @@ test.describe("Knowledge graph API", () => {
     if (!person || !isRecord(person)) {
       throw new Error("Expected Person node in graph");
     }
-    expect(person["name"]).toBe("Jim Cresswell");
+    expect(person["name"]).toBe(getExpectedPersonName());
     expect(person["knowsAbout"]).toBeDefined();
     expect(Array.isArray(person["knowsAbout"])).toBe(true);
   });
@@ -74,11 +75,6 @@ test.describe("Knowledge graph API", () => {
         accept: "application/json",
         expectedContentType: "application/json",
       },
-      {
-        path: "/cv/public_sector",
-        accept: "application/ld+json, application/json;q=0.9",
-        expectedContentType: "application/ld+json",
-      },
     ].forEach(({ path, accept, expectedContentType }) => {
       test(`returns the full graph for ${path} when Accept is ${accept}`, async ({ request }) => {
         const response = await request.get(path, {
@@ -86,6 +82,12 @@ test.describe("Knowledge graph API", () => {
         });
         expect(response.status()).toBe(200);
         expect(response.headers()["content-type"]).toContain(expectedContentType);
+        expect(
+          response
+            .headers()
+            ["vary"]?.toLowerCase()
+            .split(/\s*,\s*/)
+        ).toEqual(expect.arrayContaining(["accept", "rsc"]));
 
         const data = getGraphPayload(await response.json());
         expect(data["@context"]).toBe("https://schema.org");
@@ -93,6 +95,25 @@ test.describe("Knowledge graph API", () => {
           data["@graph"].find((node) => isRecord(node) && node["@type"] === "Person")
         ).toBeDefined();
       });
+    });
+
+    ["application/ld+json", "application/json"].forEach((accept) => {
+      test(`retired CV variants remain 404 when Accept is ${accept}`, async ({ request }) => {
+        const response = await request.get("/cv/public_sector", {
+          headers: { Accept: accept },
+        });
+
+        expect(response.status()).toBe(404);
+      });
+    });
+
+    test("the PDF subroute retains its native representation", async ({ request }) => {
+      const response = await request.get("/cv/pdf", {
+        headers: { Accept: "application/ld+json" },
+      });
+
+      expect(response.status()).toBe(200);
+      expect(response.headers()["content-type"]).toContain("application/pdf");
     });
   });
 });

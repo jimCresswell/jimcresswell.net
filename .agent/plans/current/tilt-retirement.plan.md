@@ -4,22 +4,22 @@ overview: Retire the live `/cv/[variant]` tilt routes, the `HeadlineToggle`, and
 todos:
   - id: capture-current-tilt-surface
     content: Inventory every tilt-related surface in code, content, tests, ADRs, EDRs, and docs.
-    status: pending
+    status: completed
   - id: write-reference-doc
     content: Populate docs/architecture/reference/cv-tilt-content-and-rationale.md with the preserved tilt content and rationale.
-    status: pending
+    status: completed
   - id: retire-routes-and-components
     content: Remove the variant route, the HeadlineToggle component, the variant-related lib code, and the tilt fields in cv.content.json.
-    status: pending
+    status: completed
   - id: retire-tests-and-fixtures
     content: Remove tilt-targeted tests and fixtures; rewrite assertions that incidentally exercised tilt routes.
-    status: pending
+    status: completed
   - id: supersede-adr-017
     content: Mark ADR-017 as superseded and write the new ADR that records canonical-only CV identity.
-    status: pending
+    status: completed
   - id: reconcile-docs
     content: Update content-model.md, README, EDRs that reference tilts, and other docs in the same pass.
-    status: pending
+    status: completed
 isProject: true
 ---
 
@@ -35,6 +35,14 @@ The Track B design now scopes to a single canonical CV view. This plan removes
 the live tilt surface so that scope reflects reality, and preserves the tilt
 content and canonical-alias rationale as a discoverable reference doc so the
 door is genuinely open if tilts return.
+
+Implementation and local proof are complete in the PR #36 replacement as of
+2026-08-12. `pnpm check:ci` passed with 30 test files and 211 tests;
+Playwright passed 49/49; and the visual harness reported zero differing pixels
+on `/` and `/cv`. Its five HTML review items were inspected and accepted as the
+intended static-headline markup, retired graph statements, and Next.js head-tag
+ordering. Publication, preview verification, review, and merge remain. The plan
+stays in `current/` until delivery is merged.
 
 ## Outcome, impact, and value mechanism
 
@@ -59,9 +67,10 @@ keeps optionality without keeping cost.
   positioning paragraphs, headline, and capabilities are unchanged.
 - This plan does not touch the LinkedIn plan, the dev-tooling-hygiene plan, or
   Track B design. They run in parallel.
-- This plan does not introduce graph-backed rendering. Visible HTML for `/cv/`
-  remains file-driven from `content/cv.content.json` until later Track B
-  adoption work.
+- The adjacent ADR-020 consolidation introduces a bounded identity-atom seam:
+  the Person name, email, description, and profile URLs are graph-owned and
+  injected at composition boundaries. Editorial prose and page selection/order
+  remain page-file-driven; full graph-backed composition stays with Track B.
 - The new reference doc lives under `docs/architecture/reference/`. It is a
   permanent doc, not a plan; once written, only update it if rationale changes.
 
@@ -106,12 +115,18 @@ the deletion phase cannot accidentally lose content or rationale.
 - content surfaces named: `meta.headline_alt`, the `tilts` block (and
   `tilts._meta`) in `content/cv.content.json`, the snapshot
   `__snapshots__/cv-content-pre-migration.json`
+- graph surfaces named: the three tilt-specific `Statement` nodes in
+  `content/entities.json`
 - test surfaces named: `e2e/journeys/cv-variant.e2e-ui.test.ts`,
   `e2e/support/cv-variant.ts`, plus assertions inside accessibility,
   content-integrity, and SEO E2E tests that target `/cv/public_sector`
 - doc surfaces named: ADR-017 (to be superseded), any EDR referencing tilts,
   `docs/architecture/content-model.md`, `README.md`, the napkin/distilled
   references that should remain historical
+- policy/docs surfaces named: `visual-regression.config.ts` and its test,
+  `visual-regression-harness/README.md`, user stories, requirements, E2E map,
+  ADR indices, editorial guidance, roadmap/active graph plans, and current
+  graph research authorities
 
 ##### Task 1.2 — Write the tilt reference doc
 
@@ -153,7 +168,8 @@ expect tilts.
   doc captures them
 - tilt-targeted tests and fixtures are deleted, not skipped
 - assertions in shared E2E suites that incidentally exercised
-  `/cv/public_sector` are rewritten to target `/cv/`
+  `/cv/public_sector` are rewritten to target `/cv/`; one explicit negative
+  journey retains the old slug to prove the branded 404
 - `pnpm check` and `pnpm test:e2e` pass cleanly
 - the visual regression harness is run during this phase because rendering
   output changes; differences are reviewed and approved
@@ -170,18 +186,21 @@ expect tilts.
 
 - next build passes
 - typecheck passes
-- 404 behaviour for `/cv/anything` is verified
+- branded-404 behaviour for retired audience slugs such as
+  `/cv/public_sector` is verified; `/cv/pdf` and `/cv/pdf/unavailable` remain
+  deliberate subroutes
 
 ##### Task 2.2 — Remove content fields
 
-**Outcome:** tilt content removed from `cv.content.json` and pre-migration
-snapshot, after preservation in the reference doc.
+**Outcome:** tilt content removed from live `cv.content.json` after preservation
+in the reference doc. The intentionally historical, unreferenced
+`__snapshots__/cv-content-pre-migration.json` remains immutable evidence.
 
 **Acceptance criteria:**
 
 - `meta.headline_alt` and the `tilts` block are removed
-- if the snapshot is regenerated, the regeneration is committed in the same
-  slice
+- the historically named pre-migration snapshot is not regenerated or treated
+  as live content
 - `pnpm test` passes
 
 ##### Task 2.3 — Remove tests and fixtures
@@ -194,7 +213,8 @@ references.
 - `e2e/journeys/cv-variant.e2e-ui.test.ts` deleted
 - `e2e/support/cv-variant.ts` deleted
 - accessibility / content-integrity / SEO E2E suites no longer reference
-  `public_sector` or any other variant key
+  variant keys; the retired-route journey keeps `public_sector` as negative
+  evidence
 - no `.skip` or commented-out tests left behind
 - `pnpm test:e2e` passes
 
@@ -222,7 +242,9 @@ ADR-017 marked Accepted and design against rules that no longer apply.
 - `README.md` (repo root) is checked for tilt references and updated
 - EDRs are scanned; any that asserted facts contingent on tilt behaviour are
   updated or annotated
-- `pnpm check` and `pnpm practice:fitness:informational` pass
+- `pnpm check:ci` passes; `pnpm practice:fitness:informational` is run and any
+  touched-file regressions are fixed, while unrelated pre-existing debt is
+  reported rather than absorbed into this retirement slice
 
 #### Tasks
 
@@ -254,7 +276,8 @@ ADR-017 marked Accepted and design against rules that no longer apply.
 
 **Acceptance criteria:**
 
-- this plan moves from `current/` to `archive/` once Phase 3 closes
+- this plan moves from `current/` to `archive/` after proof and merge close the
+  delivery, not merely when implementation is present on a branch
 - `roadmap.md` Active table row for tilt retirement updates to `Complete` and
   the Deferred table re-entry pointer reads correctly post-retirement
 - `napkin.md` records the slice with mistakes-made and patterns-to-remember
@@ -277,3 +300,21 @@ ADR-017 marked Accepted and design against rules that no longer apply.
   required during Phase 2 on each rendering-affecting slice, not deferred
 - Playwright E2E full pass required after Phase 2 and Phase 3
 - `pnpm practice:fitness:informational` after Phase 3 doc reconciliation
+
+## Local proof record — 2026-08-12
+
+- `pnpm check:ci`: passed; 30 test files and 211 tests passed, with formatting,
+  Markdown, ESLint, TypeScript, Knip, secret, vital-surface, portability, and
+  sub-agent checks green.
+- `pnpm test:e2e`: 49/49 passed against the production build, including the
+  canonical CV, PDF routes, accessibility, metadata, and the explicit branded
+  404 for `/cv/public_sector`.
+- `pnpm visual-regression-harness origin/main WORKTREE`: zero differing pixels
+  on the home page and canonical CV. Five HTML differences require review and
+  were accepted locally: the removed headline-toggle wrapper, the three
+  retired tilt statements in inline JSON-LD, and Next.js 16.3 head-tag
+  ordering. No allowance or normalisation hides those semantic changes.
+- `pnpm practice:fitness:informational`: touched editorial and security docs
+  satisfy their line-width limits. The command remains `WARN` only for four
+  violations and seven warnings in pre-existing Practice corpus debt outside
+  this slice.

@@ -6,6 +6,8 @@ import { SkipLink } from "@/components/skip-link";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { footerLinks } from "@/lib/cv-content";
+import { person } from "@/lib/entities";
+import { PDF_FILENAME } from "@/lib/pdf-config";
 import { SITE_URL } from "@/lib/site-config";
 import { Analytics } from "@vercel/analytics/next";
 import frontpageContent from "@/content/frontpage.content.json";
@@ -23,8 +25,8 @@ const literata = Literata({
   display: "swap",
 });
 
-// Site-wide metadata from frontpage content
-const siteTitle = frontpageContent.meta.title;
+// Site-wide metadata composed from graph identity and front-page description.
+const siteTitle = person.name;
 const siteDescription = frontpageContent.meta.description;
 
 export const metadata: Metadata = {
@@ -86,11 +88,11 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <SkipLink />
-          <SiteHeader />
+          <SiteHeader siteName={person.name} pdfFilename={PDF_FILENAME} />
           <main id="main-content" className="mx-auto max-w-page px-4 py-8 md:px-8 md:py-16">
             {children}
           </main>
-          <SiteFooter links={footerLinks} />
+          <SiteFooter siteOwnerName={person.name} links={footerLinks} />
         </ThemeProvider>
         <Analytics />
       </body>

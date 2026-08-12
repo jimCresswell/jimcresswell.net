@@ -119,6 +119,27 @@ describe("PersonEntitySchema", () => {
     };
     expect(PersonEntitySchema.safeParse(entity).success).toBe(false);
   });
+
+  it("rejects malformed sameAs profile URLs", () => {
+    const entity = {
+      "@type": "Person",
+      "@id": "https://www.jimcresswell.net/#person",
+      name: "Jim Cresswell",
+      url: "https://www.jimcresswell.net/",
+      description: "A description.",
+      sameAs: ["not a URL"],
+      email: "contact@jimcresswell.net",
+      knowsAbout: [],
+      hasOccupation: [],
+      worksFor: [],
+      hasCredential: [],
+      alumniOf: [],
+      subjectOf: [],
+      memberOf: [],
+    };
+
+    expect(PersonEntitySchema.safeParse(entity).success).toBe(false);
+  });
 });
 
 describe("OccupationEntitySchema", () => {

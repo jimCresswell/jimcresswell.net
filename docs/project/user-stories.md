@@ -27,22 +27,23 @@ Key user stories for jimcresswell.net. Each story describes a behaviour the site
 **Acceptance criteria:**
 
 - The CV page shows positioning, experience, prior roles, capabilities, and education.
-- All content is rendered from the content JSON (no hardcoded text in components).
+- Editorial content and shared identity atoms are rendered from their JSON
+  owners; structural component labels remain component-owned.
 - The page is readable on mobile, tablet, and desktop.
 
 ---
 
-## US-03: View a CV variant
+## US-03: Retired — view a CV variant
 
-**As a** visitor following a link to a specific CV variant,
-**I want to** see a version of the CV with positioning tailored to a specific context,
-**so that** I get the most relevant framing of Jim's experience.
+This former story was retired by ADR-021 because there is no current product
+requirement for audience-specific CV variants. Preserved material and re-entry
+conditions live in the CV tilt architecture reference.
 
 **Acceptance criteria:**
 
-- Variant routes (e.g. `/cv/public_sector`) render alternative positioning text.
-- All other CV sections (experience, prior roles, capabilities, education) remain the same.
-- Invalid variant slugs return a 404.
+- The canonical CV remains available at `/cv/`.
+- An obsolete tilt link such as `/cv/public_sector` returns the branded 404.
+- Re-entry requires a new product requirement, plan, and ADR.
 
 ---
 
@@ -144,9 +145,15 @@ Key user stories for jimcresswell.net. Each story describes a behaviour the site
 
 **Acceptance criteria:**
 
-- Requesting any page with `Accept: text/markdown` returns clean markdown with YAML frontmatter.
-- Requesting any page with `Accept: application/ld+json` returns the full Schema.org knowledge graph.
+- Requesting the home or canonical CV document with `Accept: text/markdown`
+  returns clean markdown with YAML frontmatter.
+- Requesting the home or canonical CV document with
+  `Accept: application/ld+json` returns the full Schema.org knowledge graph.
+- Requesting a native subroute or missing route with an alternate `Accept`
+  header preserves that route's status and representation.
 - Browser-friendly `.md` aliases (e.g. `/cv.md`, `/cv/index.md`) serve markdown without custom headers.
 - The knowledge graph is also available at `/api/graph` as a JSON endpoint.
-- The site header displays visible links (MD, DATA, PDF) to alternative representations on every page.
+- The site header exposes MD and DATA links on the supported editorial
+  documents, adds PDF on the canonical CV, and omits unsupported MD links on
+  other routes.
 - API routes are not intercepted by content negotiation.

@@ -1,13 +1,14 @@
 import { test, expect } from "@playwright/test";
 import content from "../../content/frontpage.content.json" with { type: "json" };
 import { stripInlineMarkdown } from "../../lib/strip-inline-markdown";
+import { getExpectedPersonName } from "../support/expected-person";
 
 test.describe("US-01: Visitor discovers who Jim is and navigates to CV", () => {
   test("visitor can identify Jim and read about him", async ({ page }) => {
     await page.goto("/");
 
     // Visitor immediately knows whose site this is
-    await expect(page.getByRole("heading", { level: 1 })).toHaveText(content.hero.name);
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText(getExpectedPersonName());
 
     // Visitor reads the narrative to understand who Jim is
     for (const paragraph of content.hero.summary) {

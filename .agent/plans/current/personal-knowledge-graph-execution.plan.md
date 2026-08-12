@@ -37,6 +37,12 @@ This is the live execution authority for Track A.
 
 Phase A1, Phase A2, Phase A3, and Phase A4 are complete.
 
+Subsequent state (2026-08-12): ADR-020 adopts a bounded Person-owned
+identity-atom seam into visible composition. Editorial prose and full page
+selection/ordering remain Track B work. ADR-021 retires audience-tilt routes;
+historical Track A evidence for `/cv/public_sector` remains valid evidence of
+the surface that existed when those proofs were recorded.
+
 The first A3 slice is recorded in
 [graph-negotiated-media-type-refinement.md](../research/graph-negotiated-media-type-refinement.md):
 the negotiated graph channel now serves the same JSON-LD payload for both
@@ -80,7 +86,7 @@ This plan is not the place for:
 
 - designing the graph-backed source-of-truth architecture
 - migrating visible page composition into the graph
-- claiming that the website is already graph-derived
+- claiming that full page composition is already graph-derived
 - using LinkedIn or another downstream view as an architectural driver
 
 That work belongs to
@@ -95,7 +101,8 @@ Track A starts from the current implementation baseline:
 - `/api/graph` and `Accept: application/ld+json` expose the graph as a real
   output surface
 - the manifest and some metadata derive from graph entities
-- visible page rendering still does not derive from the graph
+- editorial prose and full page composition do not derive from the graph;
+  bounded Person identity atoms now do under ADR-020
 
 The current Track A outputs in scope are recorded in
 [graph-publication-consumer-and-proof-model.md](../research/graph-publication-consumer-and-proof-model.md).

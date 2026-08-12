@@ -2,7 +2,9 @@
 
 ## Overview
 
-`www.jimcresswell.net` is a Next.js 16 application using the App Router, deployed on Vercel. All user-visible text is rendered from JSON files in `content/` — components render content verbatim and do not invent, summarise, or reorder it.
+`www.jimcresswell.net` is a Next.js 16 application using the App Router,
+deployed on Vercel. Editorial prose and shared identity atoms are rendered from
+JSON files in `content/`; structural UI labels remain component-owned.
 
 ## Repo-Specific Operational Constraints
 
@@ -16,7 +18,10 @@
 ## Key Principles
 
 - **Server components by default** — Client components only where browser APIs are needed (theme toggle, theme provider, site header).
-- **Content-driven rendering** — Visible copy lives in page-composition JSON under `content/`, while the machine-readable entity graph lives in `content/entities.json`. Content may include inline markdown (`[text](url)` for links, `_text_` for emphasis), which is parsed into React elements at render time by `parseMarkdownLinks` in `lib/parse-markdown-links.tsx`. Relative URLs render as Next.js `<Link>`, external URLs as `<a target="_blank">`.
+- **Content-driven rendering** — Editorial prose lives in page-composition JSON,
+  while shared identity atoms and the machine-readable graph live in
+  `content/entities.json`. Server composition injects identity props into
+  generic site chrome. Inline markdown is parsed by `parseMarkdownLinks`.
 - **Build-time PDF generation** — CV PDF generated at build time with full Chrome, served from our own URL.
 - **Accessible** — WCAG 2.2 AA target throughout. Semantic HTML, heading hierarchy, visible focus indicators, 44px touch targets.
 - **No decorative elements** — Editorial aesthetic. UI controls are text-only. No icons, charts, or illustrations.
@@ -27,15 +32,18 @@
 | --------------------- | ------------- | -------------------------------------------------------------------------- |
 | `/`                   | Page          | Home — personal narrative with inline links to CV, GitHub, Scholar, etc.   |
 | `/cv`                 | Page          | Primary CV — positioning, experience, prior roles, capabilities, education |
-| `/cv/[variant]`       | Dynamic page  | CV variants with alternative positioning text                              |
 | `/cv/pdf`             | Route Handler | Serves PDF binary (download or inline display)                             |
 | `/cv/pdf/unavailable` | Page          | Branded 404 when PDF is not available                                      |
 | `/api/graph`          | Route Handler | Full JSON-LD knowledge graph as `application/json`                         |
-| `/api/accept-md`      | Route Handler | Markdown conversion handler (internal; invoked via proxy rewrite)          |
+| `/api/accept-md`      | Route Handler | Public, proxy-oriented Markdown handler with its own route allowlist       |
 
 ## Content Negotiation
 
-Every page supports multiple representations via the Next.js proxy (`proxy.ts`). See [ADR-009](decision-records/009-content-negotiation-proxy.md) and [ADR-010](decision-records/010-canonical-url-graph-identity.md).
+The home and canonical CV documents support multiple representations via the
+Next.js proxy (`proxy.ts`). Native subroutes and missing routes retain their
+own responses. See
+[ADR-009](decision-records/009-content-negotiation-proxy.md) and
+[ADR-010](decision-records/010-canonical-url-graph-identity.md).
 
 | Mechanism                     | Returns                         | Example                                   |
 | ----------------------------- | ------------------------------- | ----------------------------------------- |
@@ -45,38 +53,44 @@ Every page supports multiple representations via the Next.js proxy (`proxy.ts`).
 | `/api/graph`                  | Full Schema.org knowledge graph | Direct access, no content negotiation     |
 | Default (browser)             | HTML                            | Normal page rendering                     |
 
-The canonical URL for the knowledge graph is `https://www.jimcresswell.net/`. Requesting any page with `Accept: application/ld+json` returns the full graph — the graph models the person, not the page. Each HTML page renders a subgraph of the full entity model.
+The canonical URL for the knowledge graph is `https://www.jimcresswell.net/`.
+Requesting `/` or `/cv` with `Accept: application/ld+json` returns the full
+graph — the graph models the person, not the page. Each supported editorial
+HTML document embeds a page-specific view of the full entity model.
 
 ## Content & Metadata
 
-All user-visible text originates from JSON files in `content/`, but the repo
-does not yet have one unified graph-backed source of truth for both page
-composition and machine-readable outputs.
+Editorial prose and shared identity atoms originate from JSON files in
+`content/`, but the repo does not yet have one unified graph-backed source of
+truth for full page composition and machine-readable outputs.
 
 The current implementation uses two related layers:
 
-- page-composition JSON for rendered HTML and most editorial metadata
-- the entity graph in `content/entities.json` for JSON-LD, the manifest, and
-  some graph-facing metadata
+- page-composition JSON for editorial prose and page-specific metadata
+- the entity graph in `content/entities.json` for shared identity atoms,
+  JSON-LD, the manifest, and graph-facing metadata
 
 [ADR-014](decision-records/014-entity-model-design.md) records the target
 layered design in which the site becomes a view onto graph-owned structures.
 The table below describes the current implementation truth.
 
-| Output                | Constructed in                                                                                                                                      | Source fields used                                                                               |
-| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
-| Site URL              | `lib/site-config.ts`                                                                                                                                | Vercel env vars (`VERCEL_PROJECT_PRODUCTION_URL`, `VERCEL_URL`, `VERCEL_ENV`)                    |
-| Open Graph (CV pages) | `lib/cv-content.ts`                                                                                                                                 | `meta.name`, `meta.summary`, `meta.locale`, `SITE_URL`                                           |
-| Open Graph (site)     | `app/layout.tsx`                                                                                                                                    | `frontpage.meta.title`, `frontpage.meta.description`, `SITE_URL`                                 |
-| JSON-LD               | `content/entities.json`, `lib/entities.ts`, `lib/page-document-contract.ts`, `lib/page-jsonld.ts`, `lib/jsonld.ts`, `lib/search-structured-data.ts` | Entity graph, canonical page identity, URL rewriting, page subgraphs, and rich-result validation |
-| Web App Manifest      | `app/manifest.ts`                                                                                                                                   | `meta.name`, `meta.summary`                                                                      |
-| Robots                | `app/robots.ts`                                                                                                                                     | `SITE_URL`                                                                                       |
-| Sitemap               | `app/sitemap.ts`                                                                                                                                    | `SITE_URL`, active tilt keys                                                                     |
-| Page `<title>`        | Page metadata export                                                                                                                                | `meta.name` (via `cvOpenGraph.title`)                                                            |
+| Output               | Constructed in                                                                                                                                      | Source fields used                                                                               |
+| -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| Site URL             | `lib/site-config.ts`                                                                                                                                | Vercel env vars (`VERCEL_PROJECT_PRODUCTION_URL`, `VERCEL_URL`, `VERCEL_ENV`)                    |
+| Open Graph (CV page) | `lib/cv-content.ts`                                                                                                                                 | `Person.name`, `Person.description`, CV locale, `SITE_URL`                                       |
+| Open Graph (site)    | `app/layout.tsx`                                                                                                                                    | `Person.name`, `frontpage.meta.description`, `SITE_URL`                                          |
+| JSON-LD              | `content/entities.json`, `lib/entities.ts`, `lib/page-document-contract.ts`, `lib/page-jsonld.ts`, `lib/jsonld.ts`, `lib/search-structured-data.ts` | Entity graph, canonical page identity, URL rewriting, page subgraphs, and rich-result validation |
+| Web App Manifest     | `app/manifest.ts`                                                                                                                                   | `Person.name`, `Person.description`                                                              |
+| Robots               | `app/robots.ts`                                                                                                                                     | `SITE_URL`                                                                                       |
+| Sitemap              | `app/sitemap.ts`                                                                                                                                    | `SITE_URL`, canonical home and CV routes                                                         |
+| Page `<title>`       | Page metadata exports                                                                                                                               | `Person.name` plus page role                                                                     |
 
 The JSON-LD graph now derives from the entity model in `content/entities.json`, validated by `lib/entities.ts`, exposed as the full graph by `lib/jsonld.ts`, and sliced into page-specific subgraphs by `lib/page-jsonld.ts`. Structured-data-specific content such as publications, `knowsAbout`, occupation metadata, and abstract identity entities now lives in the entity graph rather than as module constants.
 
-The shared page/document contract in `lib/page-document-contract.ts` defines CV section anchors, canonical page identity, and which page-level JSON-LD views are rich-result-facing. The home page and canonical CV page validate directly against that contract. Tilt routes remain canonical aliases of `/cv/`: their human-facing HTML title can vary by tilt, but their canonical link and inline `ProfilePage` JSON-LD both point at the base CV page. See [ADR-017](decision-records/017-cv-tilt-routes-are-canonical-aliases.md).
+The shared page/document contract defines section anchors and canonical page
+identity for the home and CV pages. ADR-020 records the bounded graph-owned
+identity atoms; ADR-021 records the retirement of tilt routes and the resulting
+single canonical CV identity.
 
 For a full walkthrough of the content model, see [content-model.md](content-model.md).
 
@@ -93,7 +107,7 @@ The repo includes a non-destructive visual regression harness at `visual-regress
 - Comparison standard: screenshots remain strict; `document.html` is explicitly normalised to remove build-specific Next.js and Vercel runtime noise; target-only CV section-anchor additions are auto-accepted only when the injected route policy explicitly permits IDs derived from the shared page/document contract
 - Current limitation: capture reuse and `--force` are not implemented yet; each run rebuilds and recaptures from scratch
 - Process rule: for rendering-risk changes to the current captured site
-  surfaces (`/`, `/cv`, `/cv/public_sector`), the harness is blocking proof and
+  surfaces (`/` and `/cv`), the harness is blocking proof and
   should be run during implementation, not only at the end
 
 See `visual-regression-harness/README.md` and [ADR-016](decision-records/016-review-oriented-visual-regression-harness.md) for operational details and the settled comparison model.
@@ -161,5 +175,11 @@ All significant architectural decisions are recorded as ADRs in [decision-record
 | [014](decision-records/014-entity-model-design.md)                           | Entity model design for the personal knowledge graph              |
 | [015](decision-records/015-codex-adapter-model.md)                           | Codex adapter model for skills, reviewers, and always-on guidance |
 | [016](decision-records/016-review-oriented-visual-regression-harness.md)     | Review-oriented visual regression harness for exported refs       |
-| [017](decision-records/017-cv-tilt-routes-are-canonical-aliases.md)          | CV tilt routes are canonical aliases of the base CV page          |
+| [017](decision-records/017-cv-tilt-routes-are-canonical-aliases.md)          | CV tilt routes were canonical aliases (superseded by ADR-021)     |
 | [018](decision-records/018-practice-context-adjunct-for-plasmid-exchange.md) | Practice-context adjunct for plasmid exchange                     |
+| [019](decision-records/019-playwright-against-production-build.md)           | Playwright runs against a production build                        |
+| [020](decision-records/020-entity-model-source-of-truth-for-shared-atoms.md) | Entity model is the source of truth for shared identity atoms     |
+| [021](decision-records/021-canonical-only-cv-identity.md)                    | Canonical-only CV identity                                        |
+
+The retired tilt content and its former canonical-alias rationale are preserved
+in the [CV tilt reference](reference/cv-tilt-content-and-rationale.md).

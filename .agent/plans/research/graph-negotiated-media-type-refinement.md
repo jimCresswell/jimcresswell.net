@@ -5,6 +5,10 @@
 Recorded on 2026-03-09 as the first delivered Track A Phase A3 slice for
 [personal-knowledge-graph-execution.plan.md](../current/personal-knowledge-graph-execution.plan.md).
 
+Subsequent state (2026-08-12): ADR-021 retires the audience-tilt route used in
+some recorded proof below. The negotiated-media contract remains current for
+the live `/` and `/cv` routes.
+
 Use this note with:
 
 - [graph-publication-output-audit.md](graph-publication-output-audit.md)

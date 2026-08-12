@@ -4,13 +4,13 @@ overview: Refresh the outdated dependency surface and introduce dependency-cruis
 todos:
   - id: deps-snapshot
     content: Snapshot the current outdated surface with `pnpm outdated` and group upgrades by risk.
-    status: pending
+    status: completed
   - id: deps-patch-and-minor
     content: Apply patch and minor upgrades in one slice, run full gates, commit.
-    status: pending
+    status: completed
   - id: deps-majors-sequenced
     content: Apply major upgrades one package at a time, with full gates and Vercel preview verification each time.
-    status: pending
+    status: in_progress
   - id: depcruiser-install-and-config
     content: Install dependency-cruiser, write the initial config encoding the repo's layering rules, and commit advisory output as evidence.
     status: pending
@@ -29,6 +29,39 @@ isProject: true
 
 Adopted on 2026-04-18. Two-phase plan with a committed follow-on cleanup
 session.
+
+Rebaseline on 2026-08-12: the fresh-main PR #36 replacement absorbs the
+dependency slice that is inseparable from closing that stale infrastructure
+PR. It refreshes all patch/minor lines, takes security-required majors for
+jsdom, markdownlint-cli2, Puppeteer, and Sharp, keeps ESLint 9 because Next's
+plugin stack rejects ESLint 10, and pins patched Vite, esbuild, and
+brace-expansion transitives. Both complete and production `pnpm audit` report
+zero advisories. `pnpm check:ci` passed with 211 tests, Playwright passed 49/49,
+and the visual harness showed zero differing pixels; preview verification and
+merge remain pending.
+
+This does not complete the plan. The final 2026-08-12 census parks six unrelated
+majors for risk-graded follow-up, and the dependency-cruiser phase has not
+started. The exceptional PR-history repair lands the security-coherent
+dependency set in one signed replacement commit; future major migrations
+return to the one-major-per-slice rule below.
+
+### Parked major ledger — 2026-08-12
+
+`pnpm outdated --json` reports no patch/minor updates and these six majors:
+
+- `@testing-library/jest-dom` 6.9.1 → 7.0.1: targeted test-environment migration
+- `@types/node` 25.6.0 → 26.2.0: targeted runtime/type-baseline decision
+- `commander` 14.0.3 → 15.0.0: targeted visual-harness CLI migration
+- `eslint` 9.39.4 → 10.8.1: blocked by the current Next plugin peer ranges in
+  a direct install trial
+- `typescript` 6.0.3 → 7.0.2: targeted compiler migration
+- `vite` 7.3.5 → 8.2.1: targeted Vitest/build-tool migration; 7.3.5 already
+  closes the relevant advisory
+
+They are not required to make the current dependency graph secure or
+supported. Each remains owned by this plan and must receive its own compatibility
+and preview evidence.
 
 ## Outcome, impact, and value mechanism
 

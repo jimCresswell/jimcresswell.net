@@ -5,6 +5,10 @@
 Recorded on 2026-03-09 as the second delivered Track A Phase A3 slice for
 [personal-knowledge-graph-execution.plan.md](../current/personal-knowledge-graph-execution.plan.md).
 
+Subsequent state (2026-08-12): ADR-021 retires `/cv/[variant]`; the variant
+assertions below remain historical proof. The canonical `/cv` description
+derivation remains current under ADR-020.
+
 Use this note with:
 
 - [graph-publication-output-audit.md](graph-publication-output-audit.md)
@@ -34,8 +38,9 @@ The delivered slice adds proof in the existing Track A-owned surfaces:
   `<meta name="description">` and `<meta property="og:description">` values on
   `/cv` and `/cv/public_sector` match the same Person description
 
-`/cv/public_sector` remains the currently active `/cv/[variant]` route, so the
-emitted-route proof stays truthful to the implementation that exists today.
+At the 2026-03-09 proof point, `/cv/public_sector` was the active
+`/cv/[variant]` route, so the emitted-route proof was truthful to the
+implementation then. ADR-021 later retired that route.
 
 ## Proof
 

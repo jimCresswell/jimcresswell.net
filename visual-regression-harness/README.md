@@ -4,7 +4,7 @@ Non-destructive ref-to-ref comparison for the PKG refactor and future rendering 
 
 ## What it captures
 
-For `/`, `/cv`, and `/cv/public_sector`, the harness captures:
+For `/` and `/cv`, the harness captures:
 
 - full-page screenshots
 - section-level screenshots
@@ -181,7 +181,7 @@ The harness is not the only proof mechanism for page-as-data behaviour.
 ## Current PKG rule
 
 For the PKG refactor, rendered-page differences are **not expected** across the
-captured site surfaces (`/`, `/cv`, and `/cv/public_sector`) except for
+captured site surfaces (`/` and `/cv`) except for
 explicitly documented comparison rules such as the contract-backed CV section
 anchor additions.
 
@@ -198,7 +198,9 @@ If the harness surfaces any HTML, metadata, or pixel difference:
 ## Approved historical PKG differences
 
 For the recorded historical comparison `b76824a` versus `WORKTREE`, the
-remaining 5 non-pixel review items are explicitly approved.
+remaining 5 non-pixel review items are explicitly approved. That earlier proof
+also captured the since-retired `/cv/public_sector` surface; current harness
+runs capture only `/` and `/cv`.
 
 Approved category 1:
 

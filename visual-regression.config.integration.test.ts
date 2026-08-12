@@ -29,13 +29,6 @@ describe("visualRegressionConfiguration", () => {
         expectedSectionIds: getExpectedSectionIdsForRouteKey("cv"),
         allowances: { targetOnlyExpectedSectionIds: true },
       },
-      {
-        key: "cv-public-sector",
-        path: getPageDocumentContractByRouteKey("cv-public-sector").routePath,
-        regions: expectedCvRegions,
-        expectedSectionIds: getExpectedSectionIdsForRouteKey("cv-public-sector"),
-        allowances: { targetOnlyExpectedSectionIds: true },
-      },
     ]);
   });
 });

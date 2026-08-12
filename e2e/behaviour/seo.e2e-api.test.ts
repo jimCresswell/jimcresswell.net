@@ -1,8 +1,5 @@
 import { test, expect } from "@playwright/test";
-import frontpageContent from "../../content/frontpage.content.json" with { type: "json" };
-import cvContent from "../../content/cv.content.json" with { type: "json" };
-import entitiesJson from "../../content/entities.json" with { type: "json" };
-import { gotoAndExpectPublicSectorCv } from "../support/cv-variant";
+import { getExpectedPersonDescription, getExpectedPersonName } from "../support/expected-person";
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return value !== null && typeof value === "object" && !Array.isArray(value);
@@ -37,20 +34,6 @@ function findGraphEntityById(
   return entity;
 }
 
-function getExpectedPersonDescription(): string {
-  const graph = entitiesJson["@graph"];
-  if (!Array.isArray(graph)) {
-    throw new Error("Expected entities graph to contain an @graph array");
-  }
-
-  const person = graph.find((entity) => isRecord(entity) && entity["@type"] === "Person");
-  if (!person || typeof person.description !== "string") {
-    throw new Error("Expected Person entity with description in entities graph");
-  }
-
-  return person.description;
-}
-
 test.describe("US-09: SEO and discoverability", () => {
   test.describe("home page", () => {
     test("HTML lang attribute matches content locale", async ({ page }) => {
@@ -60,7 +43,7 @@ test.describe("US-09: SEO and discoverability", () => {
 
     test("has correct title and meta description", async ({ page }) => {
       await page.goto("/");
-      await expect(page).toHaveTitle(frontpageContent.meta.title);
+      await expect(page).toHaveTitle(getExpectedPersonName());
       await expect(page.locator('meta[name="description"]')).toHaveAttribute("content", /.+/);
     });
 
@@ -99,7 +82,7 @@ test.describe("US-09: SEO and discoverability", () => {
 
       expect(pageEntity["@type"]).toBe("ProfilePage");
       expect(pageEntity.url).toBe(canonicalUrl);
-      expect(pageEntity.name).toBe(frontpageContent.meta.title);
+      expect(pageEntity.name).toBe(getExpectedPersonName());
     });
   });
 
@@ -108,7 +91,7 @@ test.describe("US-09: SEO and discoverability", () => {
       const expectedDescription = getExpectedPersonDescription();
 
       await page.goto("/cv");
-      await expect(page).toHaveTitle(`${cvContent.meta.name} — CV`);
+      await expect(page).toHaveTitle(`${getExpectedPersonName()} — CV`);
       await expect(page.locator('meta[name="description"]')).toHaveAttribute(
         "content",
         expectedDescription
@@ -121,7 +104,7 @@ test.describe("US-09: SEO and discoverability", () => {
       await page.goto("/cv");
       await expect(page.locator('meta[property="og:title"]')).toHaveAttribute(
         "content",
-        `${cvContent.meta.name} — CV`
+        `${getExpectedPersonName()} — CV`
       );
       await expect(page.locator('meta[property="og:description"]')).toHaveAttribute(
         "content",
@@ -169,43 +152,7 @@ test.describe("US-09: SEO and discoverability", () => {
 
       expect(pageEntity["@type"]).toBe("ProfilePage");
       expect(pageEntity.url).toBe(canonicalUrl);
-      expect(pageEntity.name).toBe(`${cvContent.meta.name} — CV`);
-    });
-
-    test("treats the public-sector tilt as a canonical alias of the CV page", async ({ page }) => {
-      const expectedDescription = getExpectedPersonDescription();
-
-      await gotoAndExpectPublicSectorCv(page);
-
-      const canonicalUrl = new URL("/cv/", page.url()).toString();
-      await expect(page).toHaveTitle(
-        `${cvContent.meta.name} — CV (${cvContent.tilts.public_sector.context})`
-      );
-      await expect(page.locator('meta[name="description"]')).toHaveAttribute(
-        "content",
-        expectedDescription
-      );
-      await expect(page.locator('meta[property="og:description"]')).toHaveAttribute(
-        "content",
-        expectedDescription
-      );
-      await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", canonicalUrl);
-
-      const jsonLd = page.locator('script[type="application/ld+json"]');
-      const content = await jsonLd.textContent();
-      expect(content).toBeTruthy();
-      if (!content) {
-        throw new Error("Expected JSON-LD script content");
-      }
-
-      const pageEntity = findGraphEntityById(
-        getJsonLdGraph(JSON.parse(content)),
-        `${canonicalUrl}#webpage`
-      );
-
-      expect(pageEntity["@type"]).toBe("ProfilePage");
-      expect(pageEntity.url).toBe(canonicalUrl);
-      expect(pageEntity.name).toBe(`${cvContent.meta.name} — CV`);
+      expect(pageEntity.name).toBe(`${getExpectedPersonName()} — CV`);
     });
   });
 

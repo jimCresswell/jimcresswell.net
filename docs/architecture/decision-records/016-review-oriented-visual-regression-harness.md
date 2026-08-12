@@ -142,8 +142,10 @@ unchanged.
 
 - [ADR-014](014-entity-model-design.md) — the PKG refactor that required
   historical proof
-- [ADR-017](017-cv-tilt-routes-are-canonical-aliases.md) — canonical identity
-  rules for tilt routes and inline page JSON-LD
+- [ADR-017](017-cv-tilt-routes-are-canonical-aliases.md) — historical
+  canonical-alias rules for the retired tilt routes
+- [ADR-021](021-canonical-only-cv-identity.md) — current canonical-only CV
+  identity and reduced route policy
 - [visual-regression-harness/README.md](../../../visual-regression-harness/README.md)
   — operational usage and artefact layout
 - [docs/architecture/README.md](../README.md) — architecture overview including

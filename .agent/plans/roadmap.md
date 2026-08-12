@@ -6,15 +6,15 @@ Where everything stands and what depends on what.
 
 ## Active work
 
-| Plan                                                                                     | Status      | Summary                                                                                                                                                                                        | Next action                                                                              |
-| ---------------------------------------------------------------------------------------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| [Source-of-Truth Design](active/personal-knowledge-graph-source-of-truth-design.plan.md) | In progress | Current Track B plan, scoped to a single canonical CV view. Phase B1 is complete; Phase B2.1 is the next graph-design slice and now the primary repo-wide workstream.                          | Resume Task B2.1.                                                                        |
-| [CV Editorial Improvements](current/cv-editorial-improvements.plan.md)                   | In progress | Parent editorial plan. Positioning, capabilities, metadata, experience, and Before Oak are settled. Remaining work now runs through dedicated plans below.                                     | Use the dedicated plans (graph, LinkedIn, tilt-retirement, dev-tooling) for active work. |
-| [PKG Roadmap](current/personal-knowledge-graph-roadmap.plan.md)                          | In progress | Parent graph roadmap. Track A is complete for the current publication surface; Track B is now the active source-of-truth design track for a single canonical CV view.                          | Advance Track B Phase B2.1.                                                              |
-| [Graph Expression Execution](current/personal-knowledge-graph-execution.plan.md)         | Complete    | Track A plan for improving the existing graph layer as a deliberate publication surface. Completed for the current publication surface.                                                        | Re-open only if the publication surface changes materially.                              |
-| [LinkedIn Update](current/linkedin-update.plan.md)                                       | In progress | Private working-draft iteration guided by editorial strategy and voice. LinkedIn composition is distinct from the CV; no graph dependency.                                                     | Continue the About section; the headline is closed unless Jim reopens it.                |
-| [Tilt Retirement](current/tilt-retirement.plan.md)                                       | In progress | Code-work plan to retire `/cv/[variant]` routes, `HeadlineToggle`, and tilt content. Preserves tilt content and canonical-alias rationale as a discoverable reference doc for future re-entry. | Execute the retirement slices, then supersede ADR-017.                                   |
-| [Dev-Tooling Hygiene](current/dev-tooling-hygiene.plan.md)                               | Ready       | Two-phase plan: refresh outdated dependencies, then introduce `dependency-cruiser` as a 9th blocking quality gate.                                                                             | Pick up via the dev-tooling handoff prompt; deps-refresh phase first.                    |
+| Plan                                                                                     | Status      | Summary                                                                                                                                                                                              | Next action                                                                              |
+| ---------------------------------------------------------------------------------------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| [Source-of-Truth Design](active/personal-knowledge-graph-source-of-truth-design.plan.md) | In progress | Current Track B plan, scoped to a single canonical CV view. Phase B1 is complete; Phase B2.1 is the next graph-design slice and now the primary repo-wide workstream.                                | Resume Task B2.1.                                                                        |
+| [CV Editorial Improvements](current/cv-editorial-improvements.plan.md)                   | In progress | Parent editorial plan. Positioning, capabilities, metadata, experience, and Before Oak are settled. Remaining work now runs through dedicated plans below.                                           | Use the dedicated plans (graph, LinkedIn, tilt-retirement, dev-tooling) for active work. |
+| [PKG Roadmap](current/personal-knowledge-graph-roadmap.plan.md)                          | In progress | Parent graph roadmap. Track A is complete for the current publication surface; Track B is now the active source-of-truth design track for a single canonical CV view.                                | Advance Track B Phase B2.1.                                                              |
+| [Graph Expression Execution](current/personal-knowledge-graph-execution.plan.md)         | Complete    | Track A plan for improving the existing graph layer as a deliberate publication surface. Completed for the current publication surface.                                                              | Re-open only if the publication surface changes materially.                              |
+| [LinkedIn Update](current/linkedin-update.plan.md)                                       | In progress | Private working-draft iteration guided by editorial strategy and voice. LinkedIn composition is distinct from the CV; no graph dependency.                                                           | Continue the About section; the headline is closed unless Jim reopens it.                |
+| [Tilt Retirement](current/tilt-retirement.plan.md)                                       | Verifying   | PR #36 replacement has removed audience-tilt routes, adjacent headline toggle, tilt content and graph statements; local full-gate, 49-test E2E, and zero-pixel-difference visual proof are complete. | Complete preview/review/merge; then archive.                                             |
+| [Dev-Tooling Hygiene](current/dev-tooling-hygiene.plan.md)                               | In progress | PR #36 replacement refreshes all patch/minor lines and security-driven majors to audit zero; local full-gate, E2E, and visual proof are complete. Six parked majors and dependency-cruiser remain.   | Complete preview/review/merge, then sequence the six parked majors and layering gate.    |
 
 **Durable graph design decisions live in** [ADR-014](../../docs/architecture/decision-records/014-entity-model-design.md) **and the related ADRs in** `docs/architecture/decision-records/`.
 **Current graph authorities are** [personal-knowledge-graph-roadmap.plan.md](current/personal-knowledge-graph-roadmap.plan.md), [graph-current-state-audit.md](research/graph-current-state-audit.md), [personal-knowledge-graph-execution.plan.md](current/personal-knowledge-graph-execution.plan.md), [graph-source-of-truth-layer-map.md](research/graph-source-of-truth-layer-map.md), **and** [personal-knowledge-graph-source-of-truth-design.plan.md](active/personal-knowledge-graph-source-of-truth-design.plan.md).
@@ -32,11 +32,11 @@ Where everything stands and what depends on what.
 
 These are tracked in the [parent plan](current/cv-editorial-improvements.plan.md). Each entry names what would let it return.
 
-| Item                        | Reason for deferral                                                                                                                               | Re-entry condition                                                                                                                  |
-| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| Tilt mechanism              | Live tilt routes are being retired in [tilt-retirement.plan.md](current/tilt-retirement.plan.md) so Track B can scope to a single canonical view. | A real product requirement for audience-specific CV variants. Re-entry starts from the preserved tilt reference doc + B1 layer map. |
-| Tilt content                | Depends on tilt mechanism. Content preserved in the tilt reference doc.                                                                           | Tilt mechanism plan is opened.                                                                                                      |
-| A/B testing / user feedback | No infrastructure exists, and Track B does not require it.                                                                                        | An explicit A/B testing plan with stated consumers, infrastructure choices, and proof model.                                        |
+| Item                        | Reason for deferral                                                                               | Re-entry condition                                                                                                                  |
+| --------------------------- | ------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| Tilt mechanism              | Audience-tilt routes are retired by ADR-021 so Track B scopes to a single canonical editorial CV. | A real product requirement for audience-specific CV variants. Re-entry starts from the preserved tilt reference doc + B1 layer map. |
+| Tilt content                | Depends on tilt mechanism. Content preserved in the tilt reference doc.                           | Tilt mechanism plan is opened.                                                                                                      |
+| A/B testing / user feedback | No infrastructure exists, and Track B does not require it.                                        | An explicit A/B testing plan with stated consumers, infrastructure choices, and proof model.                                        |
 
 ## Dependencies
 
@@ -63,18 +63,20 @@ dev-tooling remain parallel-runnable current threads around it.
 
 - **Track B** is now scoped to a single canonical CV view; tilt composition is
   not part of its design.
-- **Tilt retirement** is the code-work counterpart that removes the live tilt
-  surface so Track B's scope reflects reality.
+- **Tilt retirement** is implemented and locally proved in the PR #36
+  replacement; preview/review/merge remain. ADR-021 records the accepted
+  canonical-only state.
 - **LinkedIn** has no architectural dependency on either; the earlier
   "subsumed" framing was incorrect.
 - **Dev-tooling hygiene** is independent maintenance; `dependency-cruiser` is
   pre-committed to land as a 9th blocking gate (with a dedicated cleanup
   session for whatever its first run surfaces).
 
-**Current state:** the graph is an active concern, but the visible website is
-still not graph-derived. Use the adopted roadmap and its linked authorities for
-current graph work. Codex platform alignment is complete; its durable
-architecture lives in ADR-015.
+**Current state:** the graph is an active concern. Editorial prose and full page
+composition are not yet graph-derived, while ADR-020 adopts bounded
+Person-owned identity atoms injected at composition boundaries. Use the adopted
+roadmap and its linked authorities for current graph work. Codex platform
+alignment is complete; its durable architecture lives in ADR-015.
 
 ## Archive
 

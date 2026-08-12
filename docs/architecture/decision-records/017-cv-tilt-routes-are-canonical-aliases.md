@@ -2,7 +2,7 @@
 
 ## Status
 
-Accepted
+Superseded by [ADR-021](021-canonical-only-cv-identity.md)
 
 ## Date
 
@@ -10,7 +10,10 @@ Accepted
 
 ## Context
 
-The site exposes tilt routes such as `/cv/public_sector` that change the
+This record describes the former tilt-route architecture. ADR-021 retired the
+feature and established a single canonical CV route.
+
+The site exposed tilt routes such as `/cv/public_sector` that changed the
 positioning narrative while keeping the rest of the CV shared. Once the page
 document contract and the inline JSON-LD graph became first-class proof
 surfaces, the repo needed a clear answer to a previously implicit question:
@@ -32,7 +35,7 @@ That behaviour needed to become explicit.
 
 ## Decision
 
-Tilt routes are **alternate presentations of the canonical `/cv/` page**, not
+Tilt routes were **alternate presentations of the canonical `/cv/` page**, not
 separate canonical page identities.
 
 Rules:
@@ -62,8 +65,11 @@ Rules:
 
 ## Related
 
-- [ADR-010](010-canonical-url-graph-identity.md) — full graph from any page URL
+- [ADR-021](021-canonical-only-cv-identity.md) — canonical-only CV identity
+- [CV tilt content and canonical-alias rationale](../reference/cv-tilt-content-and-rationale.md)
+
+- [ADR-010](010-canonical-url-graph-identity.md) — full graph from every
+  negotiated editorial document
 - [ADR-016](016-review-oriented-visual-regression-harness.md) — review contract
   for historical proof work
-- [content-model.md](../content-model.md) — route/content relationship and tilt
-  behaviour
+- [content-model.md](../content-model.md) — current canonical-CV behaviour

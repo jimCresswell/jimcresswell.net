@@ -1,7 +1,8 @@
 import Link from "next/link";
-import frontpageContent from "@/content/frontpage.content.json";
 
 interface SiteFooterProps {
+  /** Public site owner name supplied by the application composition boundary. */
+  siteOwnerName: string;
   links?: {
     linkedin?: string;
     github?: string;
@@ -18,7 +19,7 @@ const linkClassName =
  * Site footer with copyright notice and optional external links.
  * Hidden in print media via the `print-hidden` class.
  */
-export function SiteFooter({ links }: SiteFooterProps) {
+export function SiteFooter({ siteOwnerName, links }: SiteFooterProps) {
   const externalLinks = links
     ? [
         links.linkedin ? { label: "LinkedIn", href: links.linkedin } : null,
@@ -37,7 +38,7 @@ export function SiteFooter({ links }: SiteFooterProps) {
           {/* Copyright and external links */}
           <div className="flex flex-col-reverse gap-4 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-sm opacity-65">
-              &copy; {new Date().getFullYear()} {frontpageContent.hero.name}
+              &copy; {new Date().getFullYear()} {siteOwnerName}
             </p>
             {hasLinks && (
               <nav

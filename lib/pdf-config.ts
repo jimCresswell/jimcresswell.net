@@ -22,10 +22,10 @@ export function getBlobPath(deployKey: string): string {
   return `pdf/cv-${deployKey}.pdf`;
 }
 
-import cvContent from "../content/cv.content.json";
+import { person } from "./entities";
 
-/** Human-readable filename derived from the person's name in cv.content.json. */
-export const PDF_FILENAME = `${cvContent.meta.name.replace(/\s+/g, "-")}-CV.pdf`;
+/** Human-readable filename derived from the graph-owned person name. */
+export const PDF_FILENAME = `${person.name.replace(/\s+/g, "-")}-CV.pdf`;
 
 /**
  * Build the absolute path to the locally generated PDF.

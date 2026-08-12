@@ -1,4 +1,7 @@
-import { PDF_FILENAME } from "@/lib/pdf-config";
+interface DownloadPdfLinkProps {
+  /** Download filename supplied by the server composition boundary. */
+  filename: string;
+}
 
 /**
  * Compact link to download the pre-generated CV PDF, used in the site header.
@@ -9,11 +12,11 @@ import { PDF_FILENAME } from "@/lib/pdf-config";
  *
  * Hidden in print media via the `print-hidden` class.
  */
-export function DownloadPdfLink() {
+export function DownloadPdfLink({ filename }: DownloadPdfLinkProps) {
   return (
     <a
       href="/cv/pdf"
-      download={PDF_FILENAME}
+      download={filename}
       className="print-hidden underline text-accent hover:opacity-80 transition-opacity min-h-11 flex items-center"
     >
       PDF

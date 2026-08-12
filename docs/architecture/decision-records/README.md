@@ -14,24 +14,26 @@ Each ADR follows a lightweight format:
 
 ## Index
 
-| ADR                                                         | Title                                                             | Status   | Date       |
-| ----------------------------------------------------------- | ----------------------------------------------------------------- | -------- | ---------- |
-| [001](001-build-time-pdf-generation.md)                     | Build-time PDF generation with Puppeteer                          | Accepted | 2026-02-06 |
-| [002](002-pdf-serving-architecture.md)                      | PDF serving via Route Handler at /cv/pdf                          | Accepted | 2026-02-06 |
-| [003](003-print-button-removed.md)                          | Print button removed in favour of PDF download                    | Accepted | 2026-02-06 |
-| [004](004-storybook-deferred.md)                            | Storybook deferred in favour of RTL + Vitest                      | Accepted | 2026-02-06 |
-| [005](005-knip-unused-code-detection.md)                    | Knip for unused code and dependency detection                     | Accepted | 2026-02-06 |
-| [006](006-header-responsive-layout.md)                      | Header responsive layout                                          | Accepted | 2026-02-08 |
-| [007](007-dry-content-metadata.md)                          | DRY content and metadata consolidation                            | Accepted | 2026-02-08 |
-| [008](008-schema-org-compliance.md)                         | Schema.org compliance for the knowledge graph                     | Accepted | 2026-02-15 |
-| [009](009-content-negotiation-proxy.md)                     | Content negotiation via Next.js proxy                             | Accepted | 2026-02-15 |
-| [010](010-canonical-url-graph-identity.md)                  | Canonical URL and graph identity                                  | Accepted | 2026-02-15 |
-| [011](011-domain-appropriate-descriptions.md)               | Domain-appropriate descriptions                                   | Accepted | 2026-02-16 |
-| [012](012-agent-memory-pipeline.md)                         | Agent memory pipeline — funnel to canonical docs                  | Accepted | 2026-02-20 |
-| [013](013-security-headers.md)                              | Security headers and Content Security Policy                      | Accepted | 2026-02-23 |
-| [014](014-entity-model-design.md)                           | Entity model design for the personal knowledge graph              | Accepted | 2026-03-06 |
-| [015](015-codex-adapter-model.md)                           | Codex adapter model for skills, reviewers, and always-on guidance | Accepted | 2026-03-08 |
-| [016](016-review-oriented-visual-regression-harness.md)     | Review-oriented visual regression harness for exported refs       | Accepted | 2026-03-08 |
-| [017](017-cv-tilt-routes-are-canonical-aliases.md)          | CV tilt routes are canonical aliases of the base CV page          | Accepted | 2026-03-08 |
-| [018](018-practice-context-adjunct-for-plasmid-exchange.md) | Practice-context adjunct for plasmid exchange                     | Accepted | 2026-03-09 |
-| [019](019-playwright-against-production-build.md)           | Playwright runs against a production build                        | Accepted | 2026-04-18 |
+| ADR                                                         | Title                                                             | Status                | Date       |
+| ----------------------------------------------------------- | ----------------------------------------------------------------- | --------------------- | ---------- |
+| [001](001-build-time-pdf-generation.md)                     | Build-time PDF generation with Puppeteer                          | Accepted              | 2026-02-06 |
+| [002](002-pdf-serving-architecture.md)                      | PDF serving via Route Handler at /cv/pdf                          | Accepted              | 2026-02-06 |
+| [003](003-print-button-removed.md)                          | Print button removed in favour of PDF download                    | Accepted              | 2026-02-06 |
+| [004](004-storybook-deferred.md)                            | Storybook deferred in favour of RTL + Vitest                      | Accepted              | 2026-02-06 |
+| [005](005-knip-unused-code-detection.md)                    | Knip for unused code and dependency detection                     | Accepted              | 2026-02-06 |
+| [006](006-header-responsive-layout.md)                      | Header responsive layout                                          | Accepted              | 2026-02-08 |
+| [007](007-dry-content-metadata.md)                          | DRY content and metadata consolidation                            | Accepted              | 2026-02-08 |
+| [008](008-schema-org-compliance.md)                         | Schema.org compliance for the knowledge graph                     | Accepted              | 2026-02-15 |
+| [009](009-content-negotiation-proxy.md)                     | Content negotiation via Next.js proxy                             | Accepted              | 2026-02-15 |
+| [010](010-canonical-url-graph-identity.md)                  | Canonical URL and graph identity                                  | Accepted              | 2026-02-15 |
+| [011](011-domain-appropriate-descriptions.md)               | Domain-appropriate descriptions                                   | Accepted              | 2026-02-16 |
+| [012](012-agent-memory-pipeline.md)                         | Agent memory pipeline — funnel to canonical docs                  | Accepted              | 2026-02-20 |
+| [013](013-security-headers.md)                              | Security headers and Content Security Policy                      | Accepted              | 2026-02-23 |
+| [014](014-entity-model-design.md)                           | Entity model design for the personal knowledge graph              | Accepted              | 2026-03-06 |
+| [015](015-codex-adapter-model.md)                           | Codex adapter model for skills, reviewers, and always-on guidance | Accepted              | 2026-03-08 |
+| [016](016-review-oriented-visual-regression-harness.md)     | Review-oriented visual regression harness for exported refs       | Accepted              | 2026-03-08 |
+| [017](017-cv-tilt-routes-are-canonical-aliases.md)          | CV tilt routes are canonical aliases of the base CV page          | Superseded by ADR-021 | 2026-03-08 |
+| [018](018-practice-context-adjunct-for-plasmid-exchange.md) | Practice-context adjunct for plasmid exchange                     | Accepted              | 2026-03-09 |
+| [019](019-playwright-against-production-build.md)           | Playwright runs against a production build                        | Accepted              | 2026-04-18 |
+| [020](020-entity-model-source-of-truth-for-shared-atoms.md) | Entity model is the source of truth for shared identity atoms     | Accepted              | 2026-08-12 |
+| [021](021-canonical-only-cv-identity.md)                    | Canonical-only CV identity                                        | Accepted              | 2026-08-12 |

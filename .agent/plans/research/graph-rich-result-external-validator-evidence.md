@@ -6,6 +6,10 @@ Recorded on 2026-03-09 as the first Track A Phase A4 external-validation note
 for
 [personal-knowledge-graph-execution.plan.md](../current/personal-knowledge-graph-execution.plan.md).
 
+Subsequent state (2026-08-12): ADR-020 adds a bounded Person identity-atom seam
+to visible composition and ADR-021 retires audience-tilt routes. The external
+validator evidence remains a dated record for the surfaces tested then.
+
 Use this note with:
 
 - [personal-knowledge-graph-roadmap.plan.md](../current/personal-knowledge-graph-roadmap.plan.md)
@@ -16,9 +20,9 @@ Use this note with:
 
 This note records external validator outcomes and validator-side limitations for
 the rich-result-facing inline graphs on `/` and `/cv/`. It does not widen Track
-A into Track B composition work, and it does not change the truth that visible
-HTML still comes from `content/frontpage.content.json` and
-`content/cv.content.json`.
+A into Track B composition work. Editorial prose still comes from
+`content/frontpage.content.json` and `content/cv.content.json`; ADR-020 now
+injects bounded shared Person identity atoms.
 
 ## Method
 
