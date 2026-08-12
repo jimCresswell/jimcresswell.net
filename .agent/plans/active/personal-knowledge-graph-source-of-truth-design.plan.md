@@ -15,7 +15,7 @@ todos:
     content: Define the phased adoption path and publication-completeness model.
     status: pending
   - id: tilt-composition-deferred
-    content: Tilt composition design is deferred door-open. Tilts are being retired in tilt-retirement.plan.md; if reintroduced later, restart from the preserved tilt reference doc and the B1 layer map's tilt-implications section.
+    content: Tilt composition design is deferred door-open. ADR-021 retires tilts; if reintroduced later, restart from the preserved tilt reference doc and the B1 layer map's tilt-implications section.
     status: deferred
   - id: ab-testing-deferred
     content: A/B testing is deferred door-open. Not in scope for the source-of-truth design.
@@ -76,8 +76,11 @@ Track B design remains the current graph-design workstream. With the Practice
 Core adoption archived on 2026-04-19, this plan is once again the primary
 repo-wide active plan. It remains design-only work.
 
-No code should be shipped from this plan until its design work is
-decision-complete and an explicit migration plan exists.
+No full composition implementation should be shipped from this plan until its
+design work is decision-complete and an explicit migration plan exists.
+ADR-020 is an owner-accepted bounded consolidation outside that prohibition: it
+removes duplicate Person identity atoms and injects them through existing
+composition boundaries without choosing B2 selection or ordering rules.
 
 ## Scope decision: single canonical CV view
 
@@ -85,13 +88,12 @@ Track B Phase B2 onward is now scoped to a **single canonical CV editorial
 view**. Tilt composition (formerly Task B2.2) and A/B testing are both deferred
 door-open — see [Deferred / door left open](#deferred--door-left-open) below.
 
-Live tilt routes (`/cv/[variant]`) are being retired as code work in
-[`../current/tilt-retirement.plan.md`](../current/tilt-retirement.plan.md). The
-retirement plan preserves the tilt content and canonical-alias rationale as a
-discoverable reference doc so future re-introduction has a real starting point.
+ADR-021 retires the live audience-tilt routes. The retirement plan preserves
+their content and former canonical-alias rationale as a discoverable reference
+so future re-introduction has a real starting point.
 
 This scope decision shrinks the Track B design surface so it can credibly close
-without fabricating tilt composition rules for a feature that is being removed.
+without fabricating tilt composition rules for a retired feature.
 
 ## Next session start
 
@@ -113,8 +115,9 @@ Use the B1 note as fixed boundary:
 
 - facts, authored prose, and composition are distinct ownership layers
 - those layers must still resolve into one cohesive graph across multiple files
-- visible HTML is still not graph-derived in the current implementation
-- tilts are being retired; do not design tilt composition into B2
+- editorial prose and full selection/ordering are still not graph-derived;
+  ADR-020 is a bounded Person identity-atom seam
+- tilts are retired by ADR-021; do not design tilt composition into B2
 
 ## Problem statement
 
@@ -127,7 +130,7 @@ That split creates real limits:
 
 - page prose and graph descriptions can drift
 - page composition depends on content-file structure rather than graph
-  relationships
+  relationships; the bounded shared identity atoms already derive from Person
 - graph-to-DOM binding is partial
 - the repo cannot honestly claim that the website is yet a view onto the graph
 
@@ -218,7 +221,7 @@ narrative for the canonical CV view.
 
 **Impact:** graph composition can express page structure without relying on
 today's brittle content-file layout, and without coupling to a feature
-(tilts) that is being retired.
+(tilts) that is retired.
 
 **Value mechanism:** explicit composition logic avoids accidental parallel
 ownership. Single-view scope keeps the model auditable.
@@ -245,8 +248,8 @@ rendering testable and discoverable.
 **Acceptance criteria:**
 
 - binding rules are defined for section, entity, and role levels where needed
-- identity rules stay consistent with ADR-010 and ADR-017 unless deliberately
-  superseded later
+- identity rules stay consistent with ADR-010 and the canonical-only decision
+  in ADR-021
 - worked examples show graph node to HTML anchor mapping
 
 #### Tasks
@@ -264,7 +267,7 @@ to the same real things.
 
 - required ID levels are named
 - generation and governance rules are explicit
-- tilt identity behaviour is **not required** here (tilts are being retired);
+- tilt identity behaviour is **not required** here (tilts are retired);
   the model must remain compatible with later tilt re-introduction without
   forcing a redesign
 
@@ -410,14 +413,15 @@ are recorded here so the door is discoverable, not implicit.
 
 ### Tilt composition
 
-**Why deferred:** tilts are being retired in
+**Why deferred:** tilts are retired by ADR-021 and recorded in
 [`../current/tilt-retirement.plan.md`](../current/tilt-retirement.plan.md).
 Designing tilt composition into Track B would either fabricate rules for a
 removed feature or block this design on a feature that is leaving the codebase.
 
 **Where the content goes:** the retirement plan preserves the tilt content and
-the canonical-alias rationale (currently in
-[ADR-017](../../../docs/architecture/decision-records/017-cv-tilt-routes-are-canonical-aliases.md))
+the canonical-alias rationale (historically in
+[ADR-017](../../../docs/architecture/decision-records/017-cv-tilt-routes-are-canonical-aliases.md),
+superseded by ADR-021)
 in a discoverable reference doc under `docs/architecture/reference/`.
 
 **Re-entry condition:** if tilts return as a real product requirement, the
@@ -425,7 +429,8 @@ composition design starts from:
 
 - the preserved tilt reference doc
 - the B1 layer map's [tilt implications section](../research/graph-source-of-truth-layer-map.md#tilt-implications)
-- whatever ADR supersedes ADR-017 at that point
+- [ADR-021](../../../docs/architecture/decision-records/021-canonical-only-cv-identity.md)
+  and a new re-entry ADR
 
 The Track B B2 design must keep the seam clear so that later tilt re-entry
 extends the canonical-view model rather than rewriting it.

@@ -1,23 +1,16 @@
 import { test, expect, type Page } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
-import { gotoAndExpectPublicSectorCv } from "../support/cv-variant";
 import { gotoAndExpectBrandedNotFound } from "../support/not-found";
 import { gotoAndExpectPdfUnavailable } from "../support/pdf-unavailable";
 
 const pages = [
   { name: "Home", url: "/" },
   { name: "CV (base)", url: "/cv" },
-  { name: "CV (variant)", url: "/cv/public_sector" },
   { name: "PDF unavailable", url: "/cv/pdf/unavailable" },
   { name: "404", url: "/non-existent-route" },
 ];
 
 async function gotoStablePage(page: Page, url: string): Promise<void> {
-  if (url === "/cv/public_sector") {
-    await gotoAndExpectPublicSectorCv(page);
-    return;
-  }
-
   if (url === "/cv/pdf/unavailable") {
     await gotoAndExpectPdfUnavailable(page);
     return;

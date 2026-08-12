@@ -18,7 +18,8 @@ This note completes:
 - [graph-publication-output-audit.md](graph-publication-output-audit.md)
 - [content-model.md](../../../docs/architecture/content-model.md)
 - [ADR-014](../../../docs/architecture/decision-records/014-entity-model-design.md)
-- [ADR-017](../../../docs/architecture/decision-records/017-cv-tilt-routes-are-canonical-aliases.md)
+- [ADR-020](../../../docs/architecture/decision-records/020-entity-model-source-of-truth-for-shared-atoms.md)
+- [ADR-021](../../../docs/architecture/decision-records/021-canonical-only-cv-identity.md)
 
 ## Boundary from Track A
 
@@ -27,18 +28,19 @@ re-open Track A proof, refinement, or external validation.
 
 Current implementation truth remains unchanged in this slice:
 
-- `content/entities.json` remains the live entity source for JSON-LD, the
-  manifest, and some metadata
+- `content/entities.json` is the live entity source for JSON-LD, the manifest,
+  some metadata, and ADR-020's bounded Person identity atoms
 - `content/frontpage.content.json` remains the live source for visible `/`
-  rendering
-- `content/cv.content.json` remains the live source for visible `/cv` and
-  `/cv/[variant]` rendering
+  editorial prose
+- `content/cv.content.json` remains the live source for visible `/cv`
+  editorial prose; ADR-021 retires `/cv/[variant]`
 
 Track B remains design-only here:
 
 - no source-of-truth implementation code ships from this note
 - no compatibility layers or stub-preservation docs are introduced
-- no claim is made that visible HTML is already graph-derived
+- no claim is made that full visible composition is graph-derived; ADR-020 is
+  the accepted bounded identity-atom seam
 
 The purpose of this slice is architectural: define how distinct ownership
 layers can still form one cohesive graph when later stored across multiple
@@ -118,7 +120,8 @@ migrates them:
 
 Today:
 
-- visible `/` HTML renders from `content/frontpage.content.json`
+- visible `/` prose renders from `content/frontpage.content.json`, with
+  Person-owned name/profile atoms injected at composition boundaries
 - the inline JSON-LD subgraph for `/` is derived from `content/entities.json`
 - there is no graph-derived visible composition for the home page yet
 
@@ -158,9 +161,9 @@ surface a specific CTA on `/`, remains composition-owned.
 
 Today:
 
-- visible `/cv` HTML renders from `content/cv.content.json`
-- `/cv/[variant]` changes positioning text while reusing the same underlying CV
-  content file
+- visible `/cv` prose renders from `content/cv.content.json`, with Person-owned
+  name/email/description atoms injected at composition boundaries
+- ADR-021 retires `/cv/[variant]`; `/cv/` is the sole editorial CV document
 - the inline JSON-LD subgraph and graph-derived metadata derive from
   `content/entities.json`
 
@@ -172,7 +175,7 @@ Facts own:
 - abstract identity entities such as professional identity and research
   background
 - shared links and durable relationships between those entities
-- canonical positioning and tilt statements when they are durable,
+- canonical positioning and possible future tilt statements when they are durable,
   graph-addressable claims about Jim's professional identity rather than
   page-only connective copy
 
@@ -189,17 +192,16 @@ Composition owns:
 - the `/cv` route/view node and its canonical page identity
 - section order and grouping
 - section-to-entity mapping
-- which positioning or tilt statement is selected for each route
-- route exposure for canonical and variant CV surfaces
+- which positioning statement is selected for the canonical route
+- route exposure for the canonical CV surface
 
 Under this model, a canonical positioning statement can remain a durable
-identity claim in the facts layer, while composition decides that `/cv/`
-surfaces the default statement and `/cv/public_sector/` surfaces a tilt
-statement instead.
+identity claim in the facts layer while composition decides how `/cv/` surfaces
+it. Future tilt selection remains a re-entry seam, not a current requirement.
 
 ## Tilt implications
 
-Tilt behaviour stays explicit:
+Tilt behaviour stays explicit as a future re-entry design:
 
 - tilt statement text is source material, not route logic
 - whether a tilt is exposed on the web, remains PDF-only, or is withheld from a
@@ -209,9 +211,8 @@ Tilt behaviour stays explicit:
 - choosing a tilt changes which statement the route surfaces; it does not
   create a second set of role, organisation, or credential facts
 
-This preserves the existing truth from [ADR-017](../../../docs/architecture/decision-records/017-cv-tilt-routes-are-canonical-aliases.md):
-tilt routes are view variants over the canonical CV identity, not separate page
-facts.
+The historical canonical-alias option is preserved in ADR-017 and the tilt
+reference. ADR-021 is the current truth: no live audience-tilt route exists.
 
 ## What remains for B2+
 
@@ -224,7 +225,8 @@ Phase B2 should define:
 - how ordering and grouping are expressed without recreating today's page JSON
   shape under new names
 - how page-scoped narrative slots work alongside reusable statement entities
-- how tilt selection, reuse, and canonical aliasing are modelled in composition
+- how the canonical positioning is selected; tilt selection is deferred until
+  a real re-entry requirement exists
 
 Later Track B phases still need to define:
 

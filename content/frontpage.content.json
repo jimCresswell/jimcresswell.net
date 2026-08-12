@@ -2,12 +2,10 @@
   "meta": {
     "site_section": "home",
     "page": "front_page",
-    "title": "Jim Cresswell",
     "description": "Understanding systems — from cosmology and large-scale structure to AI for public benefit. The more I learn, the bigger the questions get.",
     "locale": "en-GB"
   },
   "hero": {
-    "name": "Jim Cresswell",
     "summary": [
       "I have always been drawn to understanding systems.",
       "When I was young I wanted to understand space. The more I learned the bigger the questions got. I ended up studying cosmology; and learned and researched and [published](https://scholar.google.co.uk/citations?user=7yf2vEEAAAAJ&hl=en). I pushed the boundaries, learned the power of data and generalisation, and was ready to discover something new. I found myself [in tech](https://github.com/jimCresswell), and from there fell in love with the open web.",
@@ -19,10 +17,5 @@
       "I am currently exploring how to responsibly apply AI for [public benefit](https://www.thenational.academy). The more I learn, the bigger the questions get.",
       "My [CV is available here](/cv/)."
     ]
-  },
-  "links": {
-    "linkedin": "https://www.linkedin.com/in/jimcresswell",
-    "github": "https://github.com/jimCresswell",
-    "google_scholar": "https://scholar.google.co.uk/citations?user=7yf2vEEAAAAJ&hl=en"
   }
 }

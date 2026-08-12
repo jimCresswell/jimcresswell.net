@@ -18,6 +18,11 @@ surfaces that exist today. It does not widen Track A into graph-backed page
 composition, publication completeness across all channels, or other Track B
 concerns.
 
+Subsequent state (2026-08-12): ADR-020 adopts bounded Person-owned identity
+atoms into visible composition, and ADR-021 retires audience-tilt routes. Route
+and `/cv/public_sector` assertions below are dated Track A evidence, not claims
+about the current route surface. Current publication routes are `/` and `/cv`.
+
 ## Scope and verification method
 
 ### Output areas audited

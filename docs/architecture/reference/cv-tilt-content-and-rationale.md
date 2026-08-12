@@ -11,17 +11,17 @@ reintroduced.
 
 ## Why this document exists
 
-The site previously exposed audience-tilted variants of the canonical CV at
-`/cv/[variant]` — `/cv/public_sector`, `/cv/private_ai`, `/cv/founder`. The
-`HeadlineToggle` component swapped the canonical headline with an alternate
-version on click. The variants reused the canonical CV body and only changed
-the positioning paragraph and headline.
+The site previously held three audience tilts. Only `public_sector` was exposed
+as `/cv/public_sector`; `private_ai` and `founder` remained content-only. Each
+tilt reused the canonical CV body and supplied a context label plus a
+positioning paragraph. Separately, the shared `HeadlineToggle` component
+swapped the canonical headline with an alternate version; tilts did not own
+alternate headlines.
 
-Tilts are being retired so that the source-of-truth design surface (see
-ADR-014 and the architecture overview) can credibly scope to a single
-canonical CV editorial view. Removing the live surface without preserving the
-content and rationale would lose real editorial work and force any future
-re-introduction to start from archaeology.
+Tilts were retired by [ADR-021](../decision-records/021-canonical-only-cv-identity.md)
+so the live architecture has one canonical CV editorial view. This document
+preserves the removed content and rationale so any future re-entry begins from
+the actual design, not archaeology.
 
 This document holds:
 
@@ -31,32 +31,63 @@ This document holds:
 
 ## Preserved tilt content
 
-> **Population pending.** The retirement work captures the verbatim content
-> from `content/cv.content.json` (specifically `meta.headline_alt` and the
-> `tilts` block, including `tilts._meta.order` and `tilts._meta.web_routes`,
-> and the per-tilt `positioning` and any tilt-specific fields) into this
-> section before the content is removed from the codebase. Each tilt's
-> positioning paragraph is recorded verbatim, with its key, label, and
-> intended audience.
+Captured verbatim from `content/cv.content.json` before retirement.
 
 ### Alternate headline
 
-> Population pending — current value of `meta.headline_alt`.
+> The questions keep getting bigger
+
+It toggled against the primary headline **“Understanding systems, shaping
+change”**, which remains live.
 
 ### Tilt entries
 
-> Population pending — for each tilt key (`public_sector`, `private_ai`,
-> `founder`):
->
-> - audience and editorial intent (one short paragraph)
-> - positioning paragraph (verbatim)
-> - any other fields present in the JSON (e.g. headline override,
->   per-route metadata)
+#### `public_sector` — UK Civil Service / Public AI Leadership
+
+> I work on complex, long‑term problems where AI, data, and public services
+> intersect, particularly in early or unstructured contexts where new forms of
+> public value and access are possible but not yet well understood. I lead
+> exploratory work that reframes what public services could offer, unlocking
+> novel ways for people to benefit from shared data and digital capability. My
+> focus is on shaping the early conditions for high‑impact use of AI in public
+> systems, enabling others to create value responsibly and at scale.
+
+#### `private_ai` — Private AI Companies / Frontier Exploration
+
+> I work on complex, early‑stage problem spaces at the frontier of AI
+> capability, where the right questions are not yet clear and premature
+> solutions can distort long‑term value. I lead exploratory work that reframes
+> problems, identifies leverage, and gives initial shape to systems before they
+> become products. My strength is turning ambiguity into coherent direction,
+> enabling others to build with lasting impact.
+
+#### `founder` — Founder / Origination
+
+> I explore complex, high‑impact problem spaces where existing models no longer
+> fit and new systems are required. My work centres on discovery and creation:
+> forming new conceptual frameworks, testing what is worth building at all, and
+> shaping the first coherent versions of ideas that can grow beyond me. I'm
+> driven by origination, leverage, and impact that emerges through others rather
+> than incremental optimisation.
 
 ### Tilt metadata
 
-> Population pending — verbatim copy of `tilts._meta` including `order` and
-> `web_routes`.
+- `primary`: `public_sector`
+- `order`: `public_sector`, `private_ai`, `founder`
+- `web_routes`: `public_sector`
+- `note`: “primary is the default variant; others are contextual reframings,
+  not alternatives. Only web_routes variants are exposed on the website; all
+  variants are available for PDF generation.”
+
+The note's PDF clause described an intention, not implemented behaviour. PDF
+generation rendered only `/cv`; any future per-tilt PDF support would need an
+explicit product decision and implementation.
+
+The graph also held three `Statement` nodes with `additionalType`
+`.../TiltVariant`: `#tilt-public-sector`, `#tilt-private-ai`, and
+`#tilt-founder`. They carried the positioning text above and were removed with
+the web/content surface. A future re-entry must decide deliberately whether
+and how those expressive nodes return.
 
 ## Canonical-alias rationale
 
@@ -90,9 +121,8 @@ The rationale for each rule:
 - **Rule 5** preserved a humane reading experience for shared links and
   page titles without contradicting the structured-data position.
 
-These rules were originally recorded in ADR-017 (CV tilt routes are canonical
-aliases of the base CV page). The ADR superseded by tilt retirement records
-the canonical-only state and links back to this document.
+These rules were originally recorded in ADR-017. ADR-021 supersedes that
+record with the canonical-only state and links back to this document.
 
 ## Re-entry conditions
 
@@ -123,6 +153,6 @@ unrelated work. The plan should explicitly answer:
 
 - [ADR-014](../decision-records/014-entity-model-design.md) — entity model
   design
-- ADR superseding ADR-017 — canonical-only CV identity (added when retirement
-  lands)
+- [ADR-021](../decision-records/021-canonical-only-cv-identity.md) —
+  canonical-only CV identity
 - [Architecture README](../README.md)

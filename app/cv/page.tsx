@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { CVLayout } from "@/components/cv-layout";
-import { cvContent, cvOpenGraph } from "@/lib/cv-content";
+import { cvContent, cvLayoutContent, cvOpenGraph } from "@/lib/cv-content";
 import { getPageDocumentContractByRouteKey } from "@/lib/page-document-contract";
 import { cvPageJsonLd } from "@/lib/page-jsonld";
 
@@ -46,7 +46,7 @@ function BasePositioning() {
 export default function CVPage() {
   return (
     <>
-      <CVLayout content={cvContent} positioning={<BasePositioning />} />
+      <CVLayout content={cvLayoutContent} positioning={<BasePositioning />} />
 
       {/* JSON-LD */}
       <script

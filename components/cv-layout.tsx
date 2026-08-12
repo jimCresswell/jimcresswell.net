@@ -3,7 +3,6 @@ import { PageSection } from "@/components/page-section";
 import { ArticleEntry } from "@/components/article-entry";
 import { Prose } from "@/components/prose";
 import { RichText } from "@/components/rich-text";
-import { HeadlineToggle } from "@/components/headline-toggle";
 import { cvSections } from "@/lib/page-document-contract";
 import { PDF_FILENAME } from "@/lib/pdf-config";
 import { SITE_URL } from "@/lib/site-config";
@@ -13,7 +12,6 @@ interface CVContentProps {
   meta: {
     name: string;
     headline: string;
-    headline_alt?: string;
   };
   links: {
     email: string;
@@ -40,7 +38,7 @@ interface CVContentProps {
 interface CVLayoutProps {
   /** CV content data — injected for testability and decoupling. */
   content: CVContentProps;
-  /** Positioning section content (varies by CV variant). */
+  /** Positioning section content. */
   positioning: ReactNode;
 }
 
@@ -55,13 +53,9 @@ export function CVLayout({ content, positioning }: CVLayoutProps) {
       <header className="mb-6">
         <h1 className="text-foreground text-balance mb-1">{content.meta.name}</h1>
         <p className="font-sans text-sm text-foreground/70 mb-9">{content.links.email}</p>
-        {content.meta.headline_alt ? (
-          <HeadlineToggle primary={content.meta.headline} alt={content.meta.headline_alt} />
-        ) : (
-          <p className="font-sans text-sm md:text-base uppercase tracking-[0.08em] text-accent">
-            {content.meta.headline}
-          </p>
-        )}
+        <p className="font-sans text-sm md:text-base uppercase tracking-[0.08em] text-accent">
+          {content.meta.headline}
+        </p>
       </header>
 
       {/* Positioning */}

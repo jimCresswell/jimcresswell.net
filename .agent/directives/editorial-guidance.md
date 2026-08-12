@@ -9,8 +9,9 @@ split_strategy: Split by responsibility — extract pitfall examples to a separa
 # Editorial Guidance
 
 This file describes the identity, positioning, voice and register constraints for Jim Cresswell's
-content. Read and internalise it before any content work — editorial changes, tilt variants, front
-page revisions, LinkedIn preparation, or any other writing that represents Jim. Read it alongside
+content. Read and internalise it before any content work — editorial changes, a future tilt
+re-entry, front page revisions, LinkedIn preparation, or any other writing that represents Jim.
+Read it alongside
 [editorial-strategy.md](./editorial-strategy.md), which governs audience, surface-specific
 composition, attention, readability, section weight and platform fit.
 
@@ -57,8 +58,9 @@ sector.
 Jim has a founder orientation — origination, not optimisation. He has created research projects
 (Obaith, Reforest Now) and this website, but has not taken funding or built a commercial product.
 Obaith was before Oak; Reforest Now was during early Oak. Both were genuine in-depth research
-projects, not ventures — do not overstate them. "Founder" as an explicit personal claim belongs in a
-tilt variant where the framing supports it, not in the default CV. On the default, the signal is
+projects, not ventures — do not overstate them. "Founder" is not an explicit
+claim on the canonical CV. If a future product requirement reopens tilts, the
+preserved tilt reference provides the former framing. On the canonical CV, the signal is
 originator energy without the word. "Zero to one" means seeing a future connection nobody else sees
 and building towards it — not starting from nothing.
 
@@ -84,7 +86,8 @@ infrastructure that lowers the cost of innovation for others. The narrative shou
 instinct and commercial awareness without claiming business credentials. At Oak, this is most
 visible in the SDK/MCP work: creating tools that make trusted curriculum data directly accessible to
 AI-powered services, where the benefit from what others build will far exceed the cost of creating
-them. This sensibility should be visible across all variants, not only the founder tilt.
+them. This sensibility should be visible across all current surfaces. A future
+tilt must preserve it rather than confining it to founder-oriented framing.
 
 ## Physics as silent ballast
 
@@ -105,8 +108,8 @@ positioning. The physicist's insight should be _in_ the thinking, not labelled.
 
 Keywords are legitimately carried by JSON-LD structured data (`knowsAbout`, `hasOccupation`) and
 OpenGraph metadata, freeing narrative content for human readers. "AI" does not need to appear in the
-default headline — it belongs in tilt-specific headlines (public sector at minimum) and in
-structured data for machine consumers.
+canonical headline; it belongs in narrative evidence and structured data for
+machine consumers. Any future tilt-specific headline requires a new editorial decision.
 
 The concepts in `knowsAbout` should still be evidenced or alluded to in narrative content — not as
 explicit keyword placement, but as natural references that point at the same reality the structured
@@ -125,8 +128,9 @@ composition.
 These were discovered during the headline and first paragraph editing sessions. They apply to all
 content work.
 
-- **The headline filters.** Most people will walk away at "Understanding systems, shaping change" /
-  "The questions keep getting bigger", and Jim is good with that. The first paragraph rewards those
+- **The headline filters.** Most people will walk away at “Understanding systems, shaping change”,
+  and Jim is good with that. The retired alternate “The questions keep getting bigger” remains in
+  the tilt reference rather than on the live CV. The first paragraph rewards those
   who stay.
 - **Agency through outcomes, not persistence.** Jim's intellectual force comes through in what the
   work produces, not in metaphors about tenacity or grip. The CV should show this through the
@@ -163,9 +167,10 @@ The direction of derivation for all content:
 3. **Front page hero summary** (in `frontpage.content.json`) — also carefully edited; the primary
    representation of Jim on the home page.
 
-Everything downstream — `meta.summary`, Open Graph descriptions, JSON-LD fields, manifest entries —
-should derive from these sources, not the other way around. When metadata is stale, the fix is to
-update the metadata to match the content that has received the most editorial attention.
+Everything downstream — Open Graph descriptions, JSON-LD fields, and manifest
+entries — must remain editorially aligned with these sources. Shared identity
+atoms have structural ownership in the Person entity; domain-specific
+descriptions may differ and are reconciled by editorial review, not equality.
 
 ## Editorial consistency across outputs
 

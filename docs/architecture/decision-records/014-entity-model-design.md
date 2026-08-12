@@ -27,7 +27,7 @@ Phase 1 resolves five open design decisions and establishes the structural found
 | Entity                                                     | Schema.org type                  | Discriminator                    |
 | ---------------------------------------------------------- | -------------------------------- | -------------------------------- |
 | ProfessionalIdentity, ResearchBackground, GroundedPractice | `Intangible` + `additionalType`  | Non-physical concepts            |
-| PositioningNarrative, TiltVariant                          | `Statement` + `additionalType`   | Authored expressions of identity |
+| PositioningNarrative; dormant/future TiltVariant           | `Statement` + `additionalType`   | Authored expressions of identity |
 | Capability                                                 | `DefinedTerm` + `additionalType` | Real competences                 |
 
 `Statement` extends `CreativeWork`, inheriting `text`, `author`, `inLanguage`, `dateCreated` — nothing is lost. `Intangible` is correct for abstract identity constructs because they are non-physical concepts, not authored text.
@@ -83,7 +83,7 @@ Extends ADR-010's `#person`, `#website`, `cv/#webpage` patterns:
 | `#research-background`    | `#research-background`                |
 | `#positioning-<variant>`  | `#positioning-default`                |
 | `#cap-<slug>`             | `#cap-zero-to-one`                    |
-| `#tilt-<slug>`            | `#tilt-public-sector`                 |
+| `#tilt-<slug>`            | `#tilt-public-sector` (retired)       |
 
 Publications use canonical external URLs (DOI, arXiv).
 
@@ -91,15 +91,26 @@ Publications use canonical external URLs (DOI, arXiv).
 
 Zod schemas in `lib/entities.ts` parse `entities.json` at import time. Invalid data causes a build failure. TypeScript types derive from the schemas — single source of truth, no parallel type definitions.
 
-36 unit tests validate individual schemas (happy path + rejection). 7 integration tests validate the full graph (referential integrity, type census, role reachability, inSupportOf compliance).
+Unit and integration suites validate individual schemas and the full graph,
+including referential integrity, type census, role reachability, the exactly-one
+Person invariant, and `inSupportOf` compliance.
+
+ADR-020 adopts one bounded part of this design: shared Person identity atoms
+now derive into visible composition through explicit server/application
+boundaries. Editorial prose and full page selection/ordering remain in the
+Track B design surface. ADR-021 retires the live tilt statements and routes;
+the type and ID mappings above remain valid if a future requirement revives
+them deliberately.
 
 ## Consequences
 
-- All site outputs derive from a single entity model — content changes propagate everywhere
+- Shared Person identity atoms derive from the entity model into their current
+  consumers; editorial prose and page selection/ordering remain page-owned
 - The entity file is valid JSON-LD consumable by RDF tools and ready for Neo4j import
 - Zod catches structural errors at build time, not at runtime in production
 - Adding a new entity type requires: adding it to entities.json, adding a Zod schema, and adding it to the discriminated union
-- Phase 2 populates the skeleton; Phase 3 rewires existing code to import from the entity model
+- The broader target remains graph-backed composition where its ownership and
+  consumer proofs justify the migration
 
 ## Related
 
@@ -107,3 +118,5 @@ Zod schemas in `lib/entities.ts` parse `entities.json` at import time. Invalid d
 - ADR-008: Schema.org compliance (type constraints)
 - ADR-010: Canonical URL and graph identity (ID conventions)
 - ADR-011: Domain-appropriate descriptions (view derivation)
+- ADR-020: Entity model source of truth for shared identity atoms
+- ADR-021: Canonical-only CV identity

@@ -22,11 +22,12 @@ and relationships as real entities and typed relationships at multiple
 levels of abstraction — from specific entities (Roles,
 Organisations) through abstract entities (ProfessionalIdentity,
 ResearchBackground) to expressive entities (PositioningNarrative,
-Capability, TiltVariant). All are real. All use standard Schema.org
+Capability, and a dormant/future TiltVariant type). All use standard Schema.org
 types ([ADR-008](../../docs/architecture/decision-records/008-schema-org-compliance.md)).
-The current implementation uses JSON files in `content/` with
-TypeScript transforms to derive views (page rendering, JSON-LD, OG,
-manifest, sitemap, PDF).
+The current implementation uses JSON files in `content/`. ADR-020 derives
+bounded Person identity atoms into visible composition; editorial prose and
+full selection/ordering remain page-file-driven. ADR-021 retires live tilt
+entities and routes while preserving their possible future type mapping.
 
 JSON-LD is itself a graph serialisation format (it serialises RDF). The
 entity model being designed in the current plan is structurally a

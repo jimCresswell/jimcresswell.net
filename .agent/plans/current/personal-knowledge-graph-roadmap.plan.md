@@ -18,8 +18,8 @@ todos:
     content: Turn the Track B design into an implementation-ready migration plan.
     status: pending
   - id: tilts-retired-prerequisite
-    content: Tilt routes and components are being retired in tilt-retirement.plan.md so Track B can credibly scope to a single canonical CV view.
-    status: pending
+    content: ADR-021 retires audience-tilt routes and the adjacent headline toggle so Track B can credibly scope to a single canonical CV view.
+    status: completed
 isProject: false
 ---
 
@@ -73,9 +73,10 @@ graph entities.
 The roadmap starts from the observed implementation baseline recorded in
 [graph-current-state-audit.md](../research/graph-current-state-audit.md):
 
-- visible page rendering still comes from `content/cv.content.json` and
-  `content/frontpage.content.json`
-- the graph currently drives JSON-LD, the manifest, and some metadata
+- editorial prose and full page composition still come from
+  `content/cv.content.json` and `content/frontpage.content.json`
+- the graph drives JSON-LD, the manifest, some metadata, and the bounded shared
+  identity atoms adopted in ADR-020
 - page content and graph entities are related but still structurally separate
 - section-level page/document contracts exist, but entity-level graph-to-DOM
   binding is not yet adopted in rendered HTML
@@ -131,9 +132,8 @@ roadmap boundary still stands, but Track B implementation remains out of scope
 until its design work is decision-complete.
 
 Track B is now scoped to a **single canonical CV view**. Tilt composition and
-A/B testing are deferred door-open; live tilt routes are being retired in
-[`tilt-retirement.plan.md`](tilt-retirement.plan.md) so Track B can close on
-real boundaries.
+A/B testing are deferred door-open; ADR-021 retires the live audience-tilt
+surface so Track B can close on real boundaries.
 
 LinkedIn is **not** downstream of this roadmap. It draws evidence from the
 editorial CV while applying `editorial-strategy.md` and `editorial-guidance.md`.
@@ -208,7 +208,7 @@ CV view after Track A has established the boundary of the current architecture.
 
 **Impact:** future migration work is driven by demonstrated structural needs,
 not by a general preference for elegance, and is not blocked on tilt
-composition design for a feature being retired.
+composition design for a retired feature.
 
 **Value mechanism:** a design grounded in current limits and proven value
 reduces the risk of unnecessary architectural churn. Single-canonical-view
@@ -230,7 +230,8 @@ That note fixes the first Track B design boundary:
 
 - facts, authored prose, and composition are distinct ownership concerns
 - those concerns still resolve into one cohesive graph across multiple files
-- the current rendering truth remains unchanged until later adoption work
+- ADR-020 is an accepted bounded identity-atom adoption seam; full composition
+  remains unchanged until later Track B adoption work
 
 Phase B2 is now the current Track B design slice in
 [personal-knowledge-graph-source-of-truth-design.plan.md](../active/personal-knowledge-graph-source-of-truth-design.plan.md).

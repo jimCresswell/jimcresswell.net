@@ -16,12 +16,12 @@ At the time of this ADR, and still in the current implementation, the JSON-LD an
 
 The knowledge graph models real entities at multiple levels of abstraction:
 
-| Level          | Examples                                                    |
-| -------------- | ----------------------------------------------------------- |
-| Specific       | Role, Organisation, Credential, Publication, Project, dates |
-| Abstract       | Person, ProfessionalIdentity, ResearchBackground            |
-| Expressive     | PositioningNarrative, Capability, TiltVariant               |
-| Presentational | CVPage, FrontPage, OGCard, PDFView                          |
+| Level          | Examples                                                     |
+| -------------- | ------------------------------------------------------------ |
+| Specific       | Role, Organisation, Credential, Publication, Project, dates  |
+| Abstract       | Person, ProfessionalIdentity, ResearchBackground             |
+| Expressive     | PositioningNarrative, Capability; dormant/future TiltVariant |
+| Presentational | CVPage, FrontPage, OGCard, PDFView                           |
 
 All of these are real. Jim really is a Person. He really does have a ProfessionalIdentity. That identity really does have Capabilities. Those capabilities really are grounded by Roles and Projects. A PositioningNarrative is a real expression of a real identity. None of these are "editorial constructs" that exist only for content management — they are qualities, attributes, and expressions of real entities.
 
@@ -79,26 +79,30 @@ Rules:
 
 ### Suggested Schema.org type mappings
 
-| Entity               | Schema.org `@type`                     | `additionalType`           |
-| -------------------- | -------------------------------------- | -------------------------- |
-| Person               | `Person`                               | —                          |
-| WebSite              | `WebSite`                              | —                          |
-| Organisation         | `Organization` / `CollegeOrUniversity` | —                          |
-| Role (employed)      | `EmployeeRole`                         | —                          |
-| Role (volunteer)     | `OrganizationRole`                     | —                          |
-| Credential           | `EducationalOccupationalCredential`    | —                          |
-| Thesis               | `Thesis`                               | —                          |
-| Publication          | `ScholarlyArticle`                     | —                          |
-| Project              | `CreativeWork`                         | `.../Project`              |
-| ProfessionalIdentity | `Intangible`                           | `.../ProfessionalIdentity` |
-| ResearchBackground   | `Intangible`                           | `.../ResearchBackground`   |
-| Capability           | `DefinedTerm`                          | `.../Capability`           |
-| PositioningNarrative | `Statement`                            | `.../PositioningNarrative` |
-| TiltVariant          | `Statement`                            | `.../TiltVariant`          |
-| CVPage               | `ProfilePage`                          | —                          |
-| FrontPage            | `ProfilePage`                          | —                          |
+| Entity                | Schema.org `@type`                     | `additionalType`           |
+| --------------------- | -------------------------------------- | -------------------------- |
+| Person                | `Person`                               | —                          |
+| WebSite               | `WebSite`                              | —                          |
+| Organisation          | `Organization` / `CollegeOrUniversity` | —                          |
+| Role (employed)       | `EmployeeRole`                         | —                          |
+| Role (volunteer)      | `OrganizationRole`                     | —                          |
+| Credential            | `EducationalOccupationalCredential`    | —                          |
+| Thesis                | `Thesis`                               | —                          |
+| Publication           | `ScholarlyArticle`                     | —                          |
+| Project               | `CreativeWork`                         | `.../Project`              |
+| ProfessionalIdentity  | `Intangible`                           | `.../ProfessionalIdentity` |
+| ResearchBackground    | `Intangible`                           | `.../ResearchBackground`   |
+| Capability            | `DefinedTerm`                          | `.../Capability`           |
+| PositioningNarrative  | `Statement`                            | `.../PositioningNarrative` |
+| TiltVariant (dormant) | `Statement`                            | `.../TiltVariant`          |
+| CVPage                | `ProfilePage`                          | —                          |
+| FrontPage             | `ProfilePage`                          | —                          |
 
 These mappings are suggestions for Phase 2 of the knowledge graph plan. The base types are all standard Schema.org. The `additionalType` IRIs would be defined under a namespace on `www.jimcresswell.net`.
+
+ADR-021 later retired the live tilt entities and routes. `TiltVariant` remains a
+valid Schema.org mapping for a deliberate future re-entry, not a current graph
+surface.
 
 ### JSON-LD-only entities
 

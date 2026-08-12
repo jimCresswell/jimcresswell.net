@@ -31,7 +31,7 @@ spreading and treating the symptom rather than the cause.
 
 The PDF E2E tests already ran against a separate Playwright project named
 `with-build` on port 3001, because the PDF only exists after `pnpm build`
-(its `postbuild` script generates the file). Running them required a
+(the build command invokes `scripts/generate-pdf.ts`). Running them required a
 manual production server.
 
 ### Options evaluated
@@ -60,7 +60,7 @@ timeout. `reuseExistingServer: true` outside CI keeps local re-runs fast.
 
 The previous `with-build` project is removed; `*.with-build.*` test files
 are renamed to standard names. PDF tests run alongside everything else
-because `pnpm build` generates the PDF as part of its postbuild script.
+because `pnpm build` invokes the PDF generator after `next build`.
 
 The dev-overlay reload-once branches in `e2e/support/cv-variant.ts`,
 `e2e/support/not-found.ts`, and `e2e/support/pdf-unavailable.ts` are
@@ -105,5 +105,5 @@ and integration tests under Vitest are unaffected.
 - `playwright.config.ts` — Single default project, web server runs the
   production build
 - `e2e/README.md` — Updated test map and running instructions
-- ADR-001 — Build-time PDF generation (the postbuild script that makes
+- ADR-001 — Build-time PDF generation (the build-time generator that makes
   PDF tests work in any production build)

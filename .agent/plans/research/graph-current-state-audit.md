@@ -18,16 +18,17 @@ The output-level follow-on for Track A is now recorded in
 
 ## Executive summary
 
-The repo now has a valid and useful personal knowledge graph foundation, but it
-does **not** yet have a graph-derived website.
+The repo has a valid and useful personal knowledge graph foundation, but it does
+**not** yet have fully graph-derived page composition.
 
 What is true today:
 
 - `content/entities.json` contains a validated entity graph
 - JSON-LD outputs derive from that graph
-- the manifest and some metadata derive from graph entities
-- the visible pages still render from `content/cv.content.json` and
-  `content/frontpage.content.json`
+- the manifest, some metadata, and ADR-020's bounded shared identity atoms
+  derive from the Person entity
+- visible editorial prose and page selection/order still render from
+  `content/cv.content.json` and `content/frontpage.content.json`
 - the relationship between page content and graph entities is mostly manual,
   semantic, or coincidental rather than modelled in a composition layer
 
@@ -50,7 +51,7 @@ The main planning correction is therefore:
 
 - `lib/jsonld.ts` publishes the full graph
 - `lib/page-jsonld.ts` publishes page-level subgraphs
-- `/`, `/cv`, and the public-sector tilt inject JSON-LD from the entity model
+- `/` and canonical `/cv` inject JSON-LD from the entity model
 - the web app manifest derives from the graph’s Person entity
 
 ### Proof and validation infrastructure
@@ -92,9 +93,11 @@ plans claimed.
 
 ### Visible page rendering
 
-- the home page renders from `content/frontpage.content.json`
-- the CV and tilt pages render from `content/cv.content.json`
-- the rendering path uses those files directly, not graph-owned composition
+- home and CV editorial prose render from their page-composition JSON
+- the Person-owned name, email, description, and identity-profile URLs are
+  injected through application/server composition boundaries under ADR-020
+- ADR-021 retires audience-tilt routes; full selection and ordering still use
+  page-file structure rather than graph-owned composition
 
 ### Graph-owned outputs
 
@@ -116,16 +119,17 @@ plans claimed.
 
 ## Current architecture classification
 
-| Concern              | Current owner                                               | Notes                                         |
-| -------------------- | ----------------------------------------------------------- | --------------------------------------------- |
-| Visible page prose   | `content/cv.content.json`, `content/frontpage.content.json` | Primary source for rendered HTML              |
-| Graph entities       | `content/entities.json`                                     | Canonical machine-readable entity model       |
-| JSON-LD              | Graph-derived                                               | Strong integration                            |
-| Manifest             | Graph-derived                                               | Strong integration                            |
-| OG and some metadata | Mixed                                                       | Some graph-derived, some page-content-derived |
-| Page composition     | Page content JSON                                           | Not graph-derived                             |
-| Section binding      | Product contract                                            | Exists                                        |
-| Entity/role binding  | Not truly adopted                                           | Still target state                            |
+| Concern               | Current owner                                               | Notes                                         |
+| --------------------- | ----------------------------------------------------------- | --------------------------------------------- |
+| Visible page prose    | `content/cv.content.json`, `content/frontpage.content.json` | Primary source for editorial HTML             |
+| Shared identity atoms | `content/entities.json`                                     | Bounded visible derivation under ADR-020      |
+| Graph entities        | `content/entities.json`                                     | Canonical machine-readable entity model       |
+| JSON-LD               | Graph-derived                                               | Strong integration                            |
+| Manifest              | Graph-derived                                               | Strong integration                            |
+| OG and some metadata  | Mixed                                                       | Some graph-derived, some page-content-derived |
+| Page composition      | Page content JSON plus injected Person atoms                | Not fully graph-derived                       |
+| Section binding       | Product contract                                            | Exists                                        |
+| Entity/role binding   | Not truly adopted                                           | Still target state                            |
 
 ## What the adopted plan stack now requires
 

@@ -1,5 +1,6 @@
 import { test, expect } from "@playwright/test";
 import cvContent from "../../content/cv.content.json" with { type: "json" };
+import { getExpectedPersonName } from "../support/expected-person";
 
 test.describe("US-02: Visitor reads the full CV", () => {
   test("CV page presents all sections so a visitor can assess Jim's experience", async ({
@@ -8,7 +9,7 @@ test.describe("US-02: Visitor reads the full CV", () => {
     await page.goto("/cv");
 
     // Visitor sees whose CV this is
-    await expect(page.getByRole("heading", { level: 1 })).toHaveText(cvContent.meta.name);
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText(getExpectedPersonName());
 
     // Positioning gives the visitor context on Jim's approach
     for (const paragraph of cvContent.positioning.paragraphs) {

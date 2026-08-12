@@ -438,3 +438,43 @@
 - For dev-server-only E2E flakes on non-root routes, use a narrow helper that
   reloads once and proves the intended route content before assertions
   continue.
+
+## Session: 2026-08-12 — Fresh-Main Infrastructure Round-Out
+
+### What Was Done
+
+- Rebuilt the stale infrastructure PR from current `main` as one coherent
+  replacement: generic site chrome receives identity props at composition
+  boundaries; the Person entity owns bounded shared identity atoms; and exact
+  Person/profile invariants are validated.
+- Retired audience-tilt routes, the adjacent headline toggle, tilt content,
+  graph statements, and test/config surfaces while preserving public editorial
+  material and rationale in the architecture reference.
+- Refreshed supported dependency lines and security-required majors, removed a
+  dead build step, and recorded the remaining major migrations in the live
+  dev-tooling plan.
+- Reconciled ADRs, architecture docs, plans, research records, and route/test
+  maps with the bounded identity seam and canonical-only CV.
+- Proved the replacement with the full repository gate, production E2E,
+  dependency audits, and visual comparison before publication.
+
+### Mistakes Made
+
+- The first documentation pass updated the new ADRs but left older accepted
+  ADRs and a current editorial plan speaking as if `meta.summary` and live tilt
+  routes still existed.
+- A broad dependency refresh initially looked separable from the stale PR, but
+  live audit evidence showed that the coherent safe boundary was the patched
+  dependency graph plus an explicit ledger for unrelated majors.
+
+### Patterns to Remember
+
+- When a source-of-truth boundary lands, search historical accepted ADRs and
+  current plans for the superseded field names as well as updating the new
+  decision record.
+- A rendering-preserving refactor can have zero pixel differences and still
+  require HTML review for intentional semantic changes; preserve that evidence
+  instead of normalising it away.
+- For a stale multi-story PR, rebuilding a bounded story on fresh `main` can be
+  safer and more reviewable than resolving the stale branch's accumulated
+  overlap, but only after recovery and exact-lease custody are proved.

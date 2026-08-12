@@ -2,7 +2,8 @@
 import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { SiteFooter } from "./site-footer";
-import frontpageContent from "@/content/frontpage.content.json";
+
+const siteOwnerName = "Test Site Owner";
 
 const allLinks = {
   linkedin: "https://linkedin.com/in/test",
@@ -13,15 +14,14 @@ const allLinks = {
 
 describe("SiteFooter", () => {
   it("renders copyright text with the current year and the site owner name", () => {
-    render(<SiteFooter />);
+    render(<SiteFooter siteOwnerName={siteOwnerName} />);
 
     const currentYear = new Date().getFullYear().toString();
-    const name = frontpageContent.hero.name;
-    expect(screen.getByText(new RegExp(`${currentYear}.*${name}`))).toBeInTheDocument();
+    expect(screen.getByText(new RegExp(`${currentYear}.*${siteOwnerName}`))).toBeInTheDocument();
   });
 
   it("renders all provided link labels", () => {
-    render(<SiteFooter links={allLinks} />);
+    render(<SiteFooter siteOwnerName={siteOwnerName} links={allLinks} />);
 
     expect(screen.getByText("LinkedIn")).toBeInTheDocument();
     expect(screen.getByText("GitHub")).toBeInTheDocument();
@@ -30,7 +30,7 @@ describe("SiteFooter", () => {
   });
 
   it("renders external links with target=_blank and rel=noopener noreferrer", () => {
-    render(<SiteFooter links={allLinks} />);
+    render(<SiteFooter siteOwnerName={siteOwnerName} links={allLinks} />);
 
     const linkedinLink = screen.getByRole("link", { name: "LinkedIn" });
     expect(linkedinLink).toHaveAttribute("target", "_blank");
@@ -42,7 +42,12 @@ describe("SiteFooter", () => {
   });
 
   it("omits links that are not provided", () => {
-    render(<SiteFooter links={{ linkedin: "https://linkedin.com/in/test" }} />);
+    render(
+      <SiteFooter
+        siteOwnerName={siteOwnerName}
+        links={{ linkedin: "https://linkedin.com/in/test" }}
+      />
+    );
 
     expect(screen.getByText("LinkedIn")).toBeInTheDocument();
     expect(screen.queryByText("GitHub")).not.toBeInTheDocument();
@@ -51,7 +56,7 @@ describe("SiteFooter", () => {
   });
 
   it("renders no nav element when links is undefined", () => {
-    render(<SiteFooter />);
+    render(<SiteFooter siteOwnerName={siteOwnerName} />);
 
     expect(screen.queryByRole("navigation")).not.toBeInTheDocument();
   });

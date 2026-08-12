@@ -12,7 +12,7 @@ pnpm test:e2e:ui       # Open Playwright UI mode
 The Playwright web server runs `pnpm build && pnpm start --port 3000` so every
 test exercises the same artefact a visitor would see in production. The build
 is reused between local runs (`reuseExistingServer: true` outside CI). PDF
-generation is part of `pnpm build` (postbuild script), so PDF tests run
+generation is part of the `pnpm build` script, so PDF tests run
 alongside everything else with no separate project.
 
 This avoids dev-server-only flakes — Turbopack `Runtime ChunkLoadError`
@@ -40,15 +40,15 @@ Cross-cutting behavioural tests that prove specific correctness concerns: access
 
 ### Journeys
 
-| File                                      | User Story                          |
-| ----------------------------------------- | ----------------------------------- |
-| `journeys/home-to-cv.e2e-ui.test.ts`      | US-01: Visitor discovers Jim → CV   |
-| `journeys/read-cv.e2e-ui.test.ts`         | US-02: Visitor reads full CV        |
-| `journeys/cv-variant.e2e-ui.test.ts`      | US-03: Visitor follows variant link |
-| `journeys/download-pdf.e2e-ui.test.ts`    | US-04: Visitor downloads PDF        |
-| `journeys/pdf-unavailable.e2e-ui.test.ts` | US-05: Missing PDF → helpful error  |
-| `journeys/not-found.e2e-ui.test.ts`       | US-06: Broken link → branded 404    |
-| `journeys/theme-comfort.e2e-ui.test.ts`   | US-07: Theme toggle for comfort     |
+| File                                         | User Story                              |
+| -------------------------------------------- | --------------------------------------- |
+| `journeys/home-to-cv.e2e-ui.test.ts`         | US-01: Visitor discovers Jim → CV       |
+| `journeys/read-cv.e2e-ui.test.ts`            | US-02: Visitor reads full CV            |
+| `journeys/retired-cv-variant.e2e-ui.test.ts` | US-03: Obsolete tilt link → branded 404 |
+| `journeys/download-pdf.e2e-ui.test.ts`       | US-04: Visitor downloads PDF            |
+| `journeys/pdf-unavailable.e2e-ui.test.ts`    | US-05: Missing PDF → helpful error      |
+| `journeys/not-found.e2e-ui.test.ts`          | US-06: Broken link → branded 404        |
+| `journeys/theme-comfort.e2e-ui.test.ts`      | US-07: Theme toggle for comfort         |
 
 ### Behaviour
 

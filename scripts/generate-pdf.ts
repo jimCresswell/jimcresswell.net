@@ -101,7 +101,7 @@ async function waitForServer(
 }
 
 /** Probe the system for Chrome dependency info (best-effort). */
-function logSystemInfo(): void {
+async function logSystemInfo(): Promise<void> {
   log.debug(
     {
       platform: os.platform(),
@@ -114,15 +114,24 @@ function logSystemInfo(): void {
 
   // Try to list shared-library dependencies of the Chrome binary.
   try {
-    const chromePath = puppeteer.executablePath();
+    const chromePath = await puppeteer.executablePath();
     log.debug({ chromePath }, "Puppeteer executable path");
 
-    // Check the binary exists.
+    // Check the binary exists without relying on platform shell utilities.
     try {
-      const stat = execSync(`ls -la "${chromePath}"`, { encoding: "utf-8" });
-      log.debug({ stat: stat.trim() }, "Chrome binary stat");
+      const stat = await fs.stat(chromePath);
+      log.debug(
+        {
+          chromePath,
+          size: stat.size,
+          mode: stat.mode,
+          modifiedAt: stat.mtime.toISOString(),
+          isFile: stat.isFile(),
+        },
+        "Chrome binary stat"
+      );
     } catch (e) {
-      log.warn({ chromePath, error: String(e) }, "Chrome binary not found");
+      log.warn({ chromePath, error: String(e) }, "Could not stat Chrome binary");
     }
 
     // On Linux, probe ldd for missing shared libraries.
@@ -168,7 +177,7 @@ async function main(): Promise<void> {
     "Vercel environment variables"
   );
 
-  logSystemInfo();
+  await logSystemInfo();
 
   const port = await getFreePort();
   const origin = `http://localhost:${port}`;

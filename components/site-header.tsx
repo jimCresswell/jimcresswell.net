@@ -7,7 +7,13 @@ import { ThemeToggle } from "./theme-toggle";
 import { Logo } from "./logo";
 import { DownloadPdfLink } from "./download-pdf-link";
 import { MarkdownPageLink } from "./markdown-page-link";
-import frontpageContent from "@/content/frontpage.content.json";
+
+interface SiteHeaderProps {
+  /** Public site owner name supplied by the server composition boundary. */
+  siteName: string;
+  /** CV download filename supplied without importing graph-backed config. */
+  pdfFilename: string;
+}
 
 /** Navigation items — adding a link requires only a new entry here. */
 const navItems = [
@@ -19,12 +25,13 @@ const navItems = [
  * Site header with logo, data-driven navigation, conditional download link,
  * and theme toggle. Hidden in print media via the `print-hidden` class.
  *
- * The download PDF link is rendered automatically on CV pages based on the
- * current pathname — no props required from parent pages.
+ * The download PDF link is rendered on the canonical CV document based on the
+ * current pathname. Identity content is injected so this client component does
+ * not bundle repository-specific content or entity-graph validation.
  */
-export function SiteHeader() {
+export function SiteHeader({ siteName, pdfFilename }: SiteHeaderProps) {
   const pathname = usePathname();
-  const isCV = pathname === "/cv" || pathname.startsWith("/cv/");
+  const isCanonicalCV = pathname === "/cv";
 
   return (
     <header className="print-hidden">
@@ -32,7 +39,7 @@ export function SiteHeader() {
         <div className="flex items-center gap-[clamp(0.375rem,1.5vw,1rem)]">
           <Link
             href="/"
-            aria-label={`${frontpageContent.hero.name} — Home`}
+            aria-label={`${siteName} — Home`}
             className="text-foreground hover:text-accent transition-colors min-h-11 flex items-center print:hover:text-foreground"
           >
             <Logo className="h-8 w-8 md:h-9 md:w-9" />
@@ -71,7 +78,7 @@ export function SiteHeader() {
           >
             DATA
           </a>
-          {isCV && <DownloadPdfLink />}
+          {isCanonicalCV && <DownloadPdfLink filename={pdfFilename} />}
           <span className="ml-1 h-5 w-px bg-foreground/20" aria-hidden="true" />
           <ThemeToggle />
         </nav>

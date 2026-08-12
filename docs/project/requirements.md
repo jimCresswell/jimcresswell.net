@@ -35,7 +35,9 @@ All pages must be usable and readable on mobile (320px), tablet (768px), and des
 Core content must be server-rendered and accessible without client-side JavaScript.
 
 - All CV text, positioning, and metadata are rendered on the server.
-- Client components are used only for interactive features (theme toggle).
+- Client components are used only where browser state or interaction is
+  required. `SiteHeader` receives identity props from the server boundary; it
+  does not load repository content or graph validation in the client bundle.
 - The page is meaningful and navigable with JavaScript disabled.
 
 ---
@@ -58,7 +60,9 @@ The site must be discoverable by search engines, present well when shared, and b
 - All pages have appropriate `<title>` and `<meta description>` tags.
 - Open Graph metadata is present for social sharing.
 - Schema.org structured data (JSON-LD) is embedded on CV pages and available as a standalone knowledge graph at `/api/graph`.
-- Content negotiation via `Accept` headers supports `text/markdown` and `application/ld+json` on all pages.
+- Content negotiation via `Accept` headers supports `text/markdown` and
+  `application/ld+json` on the home and canonical CV documents. Native
+  subroutes and missing routes retain their own status and representation.
 - Browser-friendly `.md` aliases (e.g. `/cv.md`, `/cv/index.md`) serve markdown without requiring custom headers.
 - A dynamic sitemap is generated at `/sitemap.xml`.
 - `robots.txt` permits crawling (generated dynamically via `app/robots.ts`).
@@ -68,11 +72,15 @@ The site must be discoverable by search engines, present well when shared, and b
 
 ## REQ-06: Content Integrity
 
-All user-visible text must come from content JSON files (`content/`).
+Editorial content and shared identity atoms must come from explicit JSON owners
+under `content/`.
 
-- Components render content verbatim — they do not invent, summarise, or reorder text.
-- Content changes are made in the JSON files, not in component code.
-- This keeps visible copy in explicit content files rather than scattering it through component code.
+- Components render editorial content verbatim — they do not invent, summarise,
+  or reorder it.
+- Page prose is changed in page-composition JSON. Shared identity atoms such as
+  name, email, description, and profile URLs are changed on the Person entity.
+- Structural UI labels, section headings, and accessibility text may remain in
+  components because they are presentation contracts rather than editorial copy.
 
 ---
 

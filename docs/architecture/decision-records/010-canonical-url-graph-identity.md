@@ -2,11 +2,11 @@
 
 ## Status
 
-Accepted
+Accepted; route scope amended by ADR-009
 
 ## Date
 
-2026-02-15
+2026-02-15 (route scope amended 2026-08-12)
 
 ## Context
 
@@ -14,22 +14,25 @@ The JSON-LD knowledge graph models Jim Cresswell as a Schema.org entity. That en
 
 ### The current state
 
-The Person entity's `@id` is `https://www.jimcresswell.net/#person`. The `#person` fragment means the _document_ URL is `https://www.jimcresswell.net/` — resolving the fragment takes you to the root of the site. The graph document is served at two locations:
+The Person entity's `@id` is `https://www.jimcresswell.net/#person`. The `#person` fragment means the _document_ URL is `https://www.jimcresswell.net/` — resolving the fragment takes you to the root of the site. The graph document is available through two mechanisms:
 
 1. **`/api/graph`** — an explicit API endpoint that returns the full JSON-LD graph as `application/json`.
-2. **Any page URL with `Accept: application/ld+json`** — content negotiation via the proxy (ADR-009) rewrites to `/api/graph`.
+2. **A supported editorial document with `Accept: application/ld+json`** —
+   content negotiation on `/` or `/cv` via the proxy (ADR-009) rewrites to
+   `/api/graph`.
 
 ### The tension: full graph vs subgraph
 
 Each page in the browser renders content relating to a _subgraph_ of the full entity model:
 
-| URL       | Renders                                                              |
-| --------- | -------------------------------------------------------------------- |
-| `/`       | The front page — personal narrative, links, minimal identity context |
-| `/cv`     | The CV — positioning, experience, capabilities, education            |
-| `/cv/...` | Variant CVs — alternative positioning, same body                     |
+| URL   | Renders                                                              |
+| ----- | -------------------------------------------------------------------- |
+| `/`   | The front page — personal narrative, links, minimal identity context |
+| `/cv` | The canonical CV — positioning, experience, capabilities, education  |
 
-But requesting any of these URLs with `Accept: application/ld+json` returns the _full_ graph — every entity, every relationship, regardless of which page was requested.
+But requesting either supported editorial document with
+`Accept: application/ld+json` returns the _full_ graph — every entity, every
+relationship, regardless of which document was requested.
 
 This is an intentional design choice, not a limitation. The rationale:
 
@@ -37,7 +40,10 @@ This is an intentional design choice, not a limitation. The rationale:
 
 2. **Linked Data convention.** In Linked Data, resolving a resource's `@id` should return the document that describes that resource. `https://www.jimcresswell.net/#person` resolves to `https://www.jimcresswell.net/`, and that document should contain the graph that describes `#person`. Returning a partial graph would be technically valid but semantically incomplete — a consumer would have to discover and merge graphs from multiple page URLs to reconstruct the full entity.
 
-3. **Simplicity for consumers.** An AI system, knowledge graph aggregator, or LLM that requests `application/ld+json` on any page URL gets everything in one response. No crawling, no merging, no guessing which pages have which parts of the graph.
+3. **Simplicity for consumers.** An AI system, knowledge graph aggregator, or
+   LLM that requests `application/ld+json` on a supported editorial document
+   gets everything in one response. No crawling, no merging, no guessing which
+   document has which parts of the graph.
 
 4. **Future evolution.** As the knowledge graph grows (Phase 2: full role history, projects, publications, volunteer work), page-specific subgraphs become a real option — the CV page's JSON-LD `<script>` tag could embed just the subgraph rooted at the CVPage entity, while content negotiation still returns the full graph. This ADR does not prevent that evolution; it documents the current position.
 
@@ -45,15 +51,24 @@ This is an intentional design choice, not a limitation. The rationale:
 
 1. **Per-page subgraphs via content negotiation.** `Accept: application/ld+json` on `/cv` returns only the CV-relevant subgraph. On `/` returns only the front-page subgraph. Semantically precise but complex to implement (requires a subgraph-closure algorithm), and forces consumers to crawl multiple URLs.
 
-2. **Full graph from any page URL.** Content negotiation always returns the complete graph. Simple, complete, follows the "the graph models the person" principle. The `<script type="application/ld+json">` in each page's HTML can still embed a page-relevant subgraph for search engines that prefer inline structured data.
+2. **Full graph from every negotiated editorial document.** Content
+   negotiation returns the complete graph from each supported editorial
+   document. Simple, complete, and follows the "the graph models the person"
+   principle. The `<script type="application/ld+json">` in each page's HTML
+   can still embed a page-relevant subgraph for search engines that prefer
+   inline structured data.
 
 3. **Full graph only from the root URL or `/api/graph`.** Restrict content negotiation to `https://www.jimcresswell.net/` only; other pages return `406 Not Acceptable` for `application/ld+json`. Technically correct but unnecessarily restrictive. A consumer shouldn't need to know that the graph lives at the root.
 
 ## Decision
 
-**Option 2 — full graph from any page URL.**
+**Option 2 — full graph from every negotiated editorial document.**
 
-- `Accept: application/ld+json` on any page URL returns the complete Schema.org knowledge graph.
+- `Accept: application/ld+json` on `/` or `/cv` returns the complete
+  Schema.org knowledge graph.
+- Native subroutes and missing routes are not graph-negotiated. ADR-009 owns
+  the explicit route allowlist and amended the original all-page scope of this
+  decision on 2026-08-12 without changing the full-graph decision.
 - The explicit endpoint `/api/graph` returns the same graph as `application/json` (for tools that don't do content negotiation, and for direct browser access).
 - The `<script type="application/ld+json">` embedded in each page's HTML may, in future, contain a page-relevant subgraph. This does not conflict with the content negotiation response — they serve different consumers (inline script for search engine crawlers, content negotiation for Linked Data clients and AI systems).
 
@@ -69,7 +84,9 @@ During active development of the knowledge graph, the graph endpoint returns `Ca
 
 **Benefits:**
 
-- Any consumer that knows the site URL can get the full structured data in one request. No need to crawl the site or guess which page holds which entities.
+- Any consumer that knows the canonical site URL can get the full structured
+  data in one request. No need to crawl the site or guess which document holds
+  which entities.
 - The canonical URL is clean and memorable: `https://www.jimcresswell.net/`.
 - The architecture naturally supports the future "subgraph per page" evolution without breaking backward compatibility — content negotiation continues to return the full graph, while inline `<script>` tags can specialise.
 - Consistent with Linked Data best practices: resolve the `@id`, get the graph.
@@ -85,5 +102,7 @@ During active development of the knowledge graph, the graph endpoint returns `Ca
 - [ADR-009: Content negotiation proxy](009-content-negotiation-proxy.md) — the routing mechanism
 - [ADR-007: DRY content and metadata consolidation](007-dry-content-metadata.md) — the single-source principle this extends
 - [ADR-014: Entity model design](014-entity-model-design.md) — the durable knowledge-graph design this architecture now serves
+- [ADR-021: Canonical-only CV identity](021-canonical-only-cv-identity.md) — the
+  retirement of audience-tilt page aliases
 - `app/api/graph/route.ts` — the graph endpoint
 - `proxy.ts` — the content negotiation proxy

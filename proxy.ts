@@ -1,4 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
+import { resolveNegotiablePagePath } from "@/lib/content-negotiation-path";
 import { getRequestedGraphMediaType } from "@/lib/graph-media-type";
 
 /**
@@ -10,10 +11,12 @@ import { getRequestedGraphMediaType } from "@/lib/graph-media-type";
  *   (e.g. `/cv.md`). Rewrites to the accept-md handler which fetches the
  *   page as HTML and converts it to clean markdown with YAML frontmatter.
  *
- * - **JSON-LD** — `Accept: application/ld+json` on any page URL.
- *   Returns the Schema.org knowledge graph from `/api/graph`.
+ * - **JSON-LD** — `Accept: application/ld+json` on a supported editorial
+ *   page URL. Returns the Schema.org knowledge graph from `/api/graph`.
  *
- * API routes and internal Next.js paths are excluded via the matcher.
+ * Only the home and canonical CV documents are negotiable. Native subroutes,
+ * missing pages, API routes, and internal Next.js paths retain their own
+ * response status and representation.
  */
 export function proxy(request: NextRequest): NextResponse {
   const pathname = request.nextUrl.pathname;
@@ -34,12 +37,22 @@ export function proxy(request: NextRequest): NextResponse {
       pagePath = "/";
     }
 
-    return rewriteToAcceptMd(request, pagePath);
+    const negotiablePagePath = resolveNegotiablePagePath(pagePath);
+    if (!negotiablePagePath) {
+      return NextResponse.next();
+    }
+
+    return rewriteToAcceptMd(request, negotiablePagePath);
+  }
+
+  const negotiablePagePath = resolveNegotiablePagePath(pathname);
+  if (!negotiablePagePath) {
+    return NextResponse.next();
   }
 
   // Accept: text/markdown — content negotiation
   if (accept.includes("text/markdown")) {
-    return rewriteToAcceptMd(request, pathname);
+    return rewriteToAcceptMd(request, negotiablePagePath);
   }
 
   // Accept: application/ld+json or application/json — serve the knowledge graph

@@ -1,5 +1,6 @@
 import { Prose } from "@/components/prose";
 import content from "@/content/frontpage.content.json";
+import { person } from "@/lib/entities";
 import { frontPageJsonLd } from "@/lib/page-jsonld";
 
 export default function HomePage() {
@@ -7,7 +8,7 @@ export default function HomePage() {
     <>
       <section aria-labelledby="hero-heading">
         <h1 id="hero-heading" className="text-foreground text-balance">
-          {content.hero.name}
+          {person.name}
         </h1>
         <div className="mt-6 flex flex-col gap-3.5">
           {content.hero.summary.map((paragraph, index) => (

@@ -37,7 +37,6 @@ export const visualRegressionConfiguration = {
       false
     ),
     createRoute("cv", cvRegions, true),
-    createRoute("cv-public-sector", cvRegions, true),
   ],
 } satisfies VisualRegressionConfiguration;
 
