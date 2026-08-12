@@ -30,15 +30,15 @@ isProject: true
 Adopted on 2026-04-18. Two-phase plan with a committed follow-on cleanup
 session.
 
-Rebaseline on 2026-08-12: the fresh-main PR #36 replacement absorbs the
-dependency slice that is inseparable from closing that stale infrastructure
-PR. It refreshes all patch/minor lines, takes security-required majors for
-jsdom, markdownlint-cli2, Puppeteer, and Sharp, keeps ESLint 9 because Next's
-plugin stack rejects ESLint 10, and pins patched Vite, esbuild, and
-brace-expansion transitives. Both complete and production `pnpm audit` report
-zero advisories. `pnpm check:ci` passed with 211 tests, Playwright passed 49/49,
-and the visual harness showed zero differing pixels; preview verification and
-merge remain pending.
+Rebaseline on 2026-08-12: PR #36 merged the dependency slice that was
+inseparable from closing the stale infrastructure branch. It refreshed all
+patch/minor lines, took security-required majors for jsdom,
+markdownlint-cli2, Puppeteer, and Sharp, kept ESLint 9 because Next's plugin
+stack rejects ESLint 10, and pinned patched Vite, esbuild, and brace-expansion
+transitives. Both complete and production `pnpm audit` reported zero
+advisories. `pnpm check:ci` passed with 221 tests, Playwright passed 58/58, the
+exact-base visual harness showed zero differing pixels, and GitHub CI plus the
+Vercel preview were green before merge.
 
 This does not complete the plan. The final 2026-08-12 census parks six unrelated
 majors for risk-graded follow-up, and the dependency-cruiser phase has not

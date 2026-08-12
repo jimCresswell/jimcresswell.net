@@ -6,10 +6,9 @@ Refine the positioning, capabilities, and structured data in the editorial CV.
 
 ## Prerequisite: PII security mitigation
 
-The privacy mitigation is complete. Public-safe editorial governance lives in the directives;
-private source material, analysis and drafts live in the ignored nested editorial repository. The
-public feature-branch history was rewritten from a verified recovery set, and the replacement PR is
-the current review surface.
+The privacy mitigation is complete. Public-safe editorial governance lives in
+the directives; private source material, analysis, and drafts remain behind the
+ignored private editorial boundary.
 
 ## Current state
 
@@ -31,12 +30,12 @@ strategy and voice are codified in `editorial-strategy.md` and
 | Track B B1 layer map                     | [graph-source-of-truth-layer-map.md](../research/graph-source-of-truth-layer-map.md)                                                                                                   | Complete           |
 | Graph metaplan                           | [graph-metaplan.plan.md](../archive/graph-metaplan.plan.md)                                                                                                                            | Complete           |
 | Visual regression harness                | [visual-regression-harness.plan.md](../archive/visual-regression-harness.plan.md)                                                                                                      | Complete           |
-| LinkedIn update                          | [linkedin-update.plan.md](linkedin-update.plan.md) — collaborative editorial, parallel-runnable                                                                                        | In progress        |
-| Tilt retirement                          | [tilt-retirement.plan.md](tilt-retirement.plan.md) — canonical-only implementation present; final proof/review/merge pending                                                           | Verifying          |
+| LinkedIn update                          | [linkedin-update.plan.md](linkedin-update.plan.md) — paused; reopen only for a concrete owner purpose and reader outcome                                                               | Paused             |
+| Tilt retirement                          | [tilt-retirement.plan.md](tilt-retirement.plan.md) — canonical-only implementation merged; ADR-021 and the reference doc preserve the decision and re-entry route                      | Complete           |
 | Tilt mechanism (future re-introduction)  | No plan — door open via preserved reference doc                                                                                                                                        | Deferred door-open |
 | Tilt content (future re-introduction)    | Depends on tilt mechanism                                                                                                                                                              | Deferred door-open |
 | A/B testing                              | No plan — no current infrastructure                                                                                                                                                    | Deferred door-open |
-| Dev-tooling hygiene                      | [dev-tooling-hygiene.plan.md](dev-tooling-hygiene.plan.md) — security-coherent refresh in PR #36; remaining majors + dependency-cruiser retained                                       | In progress        |
+| Dev-tooling hygiene                      | [dev-tooling-hygiene.plan.md](dev-tooling-hygiene.plan.md) — security-coherent dependency tranche merged; six parked majors + dependency-cruiser remain                                | In progress        |
 | PKG durable design decisions             | [ADR-014](../../../docs/architecture/decision-records/014-entity-model-design.md) and related ADRs                                                                                     | Accepted           |
 
 ## How to use this plan
@@ -60,9 +59,9 @@ and deployment all work. The front page has been reworked as a personal
 narrative. The positioning paragraphs are settled. Editorial prose remains in
 page JSON while ADR-020 assigns shared identity atoms to the Person entity.
 
-Additional private reference material is routed through
-`.agent/reference-local/editorial-private/README.md`. Do not name or quote individual private files
-from this public plan.
+Additional private reference material stays behind the ignored private
+editorial boundary. Do not name or quote individual private files from this
+public plan.
 
 Public reference:
 
@@ -101,12 +100,15 @@ Oak National Academy remains the only entry in Experience. FT Labs, HMPO, Britis
 
 ## Resolved: Factual error in content
 
-Cross-referencing `cv.content.json` against the career archive, old CV website
-(`jimcresswell.github.io/cv`), and the private LinkedIn profile export:
+Cross-referencing `cv.content.json` against the public old CV website
+(`jimcresswell.github.io/cv`) and Jim's confirmation:
 
-**Oak `start_year` was 2019 — fixed to 2020.** The earliest Oak role (Senior Developer, Consulting) started August 2020, per the archive, old CV, and Jim's confirmation. Fixed in `content/cv.content.json` and `plans/archive/front-page-content.plan.md`.
+**Oak `start_year` was 2019 — fixed to 2020.** The earliest Oak role (Senior
+Developer, Consulting) started August 2020, per the old CV and Jim's
+confirmation. Fixed in `content/cv.content.json` and
+[front-page-content.plan.md](../archive/front-page-content.plan.md).
 
-All other facts verified as accurate, including: "bespoke version control" at British Airways (confirmed: the environment used SVN, CVS, and custom systems — "bespoke" is a fair characterisation), all education entries, all Foundations claims, all publications, and all links.
+No other public CV fact was changed as part of this correction.
 
 ---
 

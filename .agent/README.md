@@ -64,14 +64,24 @@ Agent-facing documentation and planning for this project. Start with [directives
 
 The primary plan lives in `plans/active/`; related live work stays in `plans/current/`:
 
-| Plan                                                                                                                            | Status      | Description                                                 |
-| ------------------------------------------------------------------------------------------------------------------------------- | ----------- | ----------------------------------------------------------- |
-| [personal-knowledge-graph-source-of-truth-design.plan.md](plans/active/personal-knowledge-graph-source-of-truth-design.plan.md) | Active      | Current Track B design plan and primary graph workstream    |
-| [cv-editorial-improvements.plan.md](plans/current/cv-editorial-improvements.plan.md)                                            | In Progress | Parent editorial plan and context map                       |
-| [personal-knowledge-graph-roadmap.plan.md](plans/current/personal-knowledge-graph-roadmap.plan.md)                              | In Progress | Adopted graph roadmap — both tracks required, Track A first |
-| [personal-knowledge-graph-execution.plan.md](plans/current/personal-knowledge-graph-execution.plan.md)                          | Complete    | Track A execution plan for graph expression work            |
-| [practice-core-wholesale-adoption.plan.md](plans/archive/practice-core-wholesale-adoption.plan.md)                              | Complete    | Structural Practice adoption ratchet and migration record   |
-| [linkedin-update.plan.md](plans/current/linkedin-update.plan.md)                                                                | In Progress | LinkedIn working-draft iteration and manual transfer        |
+| Plan                                                                                                                            | Status       | Description                                                                     |
+| ------------------------------------------------------------------------------------------------------------------------------- | ------------ | ------------------------------------------------------------------------------- |
+| [personal-knowledge-graph-source-of-truth-design.plan.md](plans/active/personal-knowledge-graph-source-of-truth-design.plan.md) | Active       | Current Track B design plan and primary graph workstream                        |
+| [cv-editorial-improvements.plan.md](plans/current/cv-editorial-improvements.plan.md)                                            | In Progress  | Parent editorial plan and context map                                           |
+| [personal-knowledge-graph-roadmap.plan.md](plans/current/personal-knowledge-graph-roadmap.plan.md)                              | In Progress  | Adopted graph roadmap — both tracks required, Track A first                     |
+| [personal-knowledge-graph-execution.plan.md](plans/current/personal-knowledge-graph-execution.plan.md)                          | Complete     | Track A execution plan for graph expression work                                |
+| [workspace-architecture-roadmap.plan.md](plans/current/workspace-architecture-roadmap.plan.md)                                  | In Progress  | Accepted incremental workspace family; Visual extraction gate is the next slice |
+| [visual-regression-workspace.plan.md](plans/current/visual-regression-workspace.plan.md)                                        | In Progress  | First workspace extraction attempt; landed configuration seam remains green     |
+| [practice-validation-workspace.plan.md](plans/current/practice-validation-workspace.plan.md)                                    | Pending      | Independent Practice validator extraction candidate                             |
+| [professional-profile-graph-workspace.plan.md](plans/current/professional-profile-graph-workspace.plan.md)                      | Pending      | Stable Jim-free professional-profile graph candidate                            |
+| [cv-workspace.plan.md](plans/current/cv-workspace.plan.md)                                                                      | Pending      | Synthetic Jim-free CV model and renderer candidate                              |
+| [jim-profile-workspace.plan.md](plans/current/jim-profile-workspace.plan.md)                                                    | Pending      | Track B-gated configured public-profile adoption                                |
+| [web-page-workspace-and-boundary-enforcement.plan.md](plans/current/web-page-workspace-and-boundary-enforcement.plan.md)        | Pending      | Conditional generic primitives and final boundary audit                         |
+| [optional-app-relocation.plan.md](plans/archive/optional-app-relocation.plan.md)                                                | Not Selected | Archived Sequence R decision; root application retained                         |
+| [dev-tooling-hygiene.plan.md](plans/current/dev-tooling-hygiene.plan.md)                                                        | In Progress  | Parked major upgrades and dependency-cruiser work                               |
+| [linkedin-update.plan.md](plans/current/linkedin-update.plan.md)                                                                | Paused       | Private-boundary routing; reopen only for a concrete owner purpose              |
+| [tilt-retirement.plan.md](plans/current/tilt-retirement.plan.md)                                                                | Complete     | Canonical-only CV retirement record awaiting consolidation                      |
+| [practice-core-wholesale-adoption.plan.md](plans/archive/practice-core-wholesale-adoption.plan.md)                              | Complete     | Structural Practice adoption ratchet and migration record                       |
 
 Completed plans are in [plans/archive/](plans/archive/) for reference.
 
