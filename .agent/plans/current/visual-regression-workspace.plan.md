@@ -60,11 +60,13 @@ source.
 
 ## Entry conditions
 
-- parent adopted and Sequence R recorded
-- Optional App Relocation is Not Selected
+- parent adopted and one selected-sequence condition holds:
+  - under current Sequence R, Optional App Relocation is Not Selected and no
+    workspace manifest or child package exists
+  - if Sequence A is explicitly reopened, Optional App Relocation is complete
+    and its workspace/application-location proof is green
 - current harness tests and one known comparison are recorded green
-- the root application path is stable
-- no workspace manifest or child package exists
+- the application path is stable for the selected sequence
 - live source, manifest, lockfile, and collaboration custody is re-checked at
   activation rather than inherited from this plan
 

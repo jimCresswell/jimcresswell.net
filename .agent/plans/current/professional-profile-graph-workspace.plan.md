@@ -227,7 +227,10 @@ stable implementation.
 - configured app integration for Jim graph parsing and emitted channels
 - API E2E for media negotiation and graph response
 - metadata/manifest/Schema.org proof at app level
-- visual proof only if rendered output or anchors actually change
+- blocking visual-harness proof for every slice that changes graph
+  infrastructure, metadata wiring, page-document inputs, or rendering inputs,
+  even when output is intended to remain unchanged; record a non-trigger only
+  for isolated pure-algorithm work that touches none of those surfaces
 
 ## Documentation obligations
 

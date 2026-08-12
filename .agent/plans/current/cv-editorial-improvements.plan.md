@@ -106,7 +106,7 @@ Cross-referencing `cv.content.json` against the public old CV website
 **Oak `start_year` was 2019 — fixed to 2020.** The earliest Oak role (Senior
 Developer, Consulting) started August 2020, per the old CV and Jim's
 confirmation. Fixed in `content/cv.content.json` and
-`plans/archive/front-page-content.plan.md`.
+[front-page-content.plan.md](../archive/front-page-content.plan.md).
 
 No other public CV fact was changed as part of this correction.
 

@@ -50,8 +50,9 @@ it does not complete Track B or prove a `jim-profile` package.
 
 **Outcome:** `packages/jim-profile` owns Jim's public facts, prose,
 composition, site identity, brand/output configuration, and configured graph;
-the application and CV package consume final view/configuration APIs rather
-than importing content files.
+the application consumes final view/configuration APIs and passes those values
+into the CV package's Jim-free interface. The CV package never imports
+`jim-profile` or configured content.
 
 **Impact:** public changes propagate predictably across HTML and
 machine-readable outputs, while generic graph and CV packages contain no Jim
@@ -91,7 +92,8 @@ manifest, markdown, PDF, E2E, and visual proof pass.
 - configured graph instance and stable public IDs
 - site identity, public contact/profile links, brand/output configuration, and
   configured CV filename
-- final view/configuration APIs supplying app and CV consumers
+- final view/configuration APIs supplying application composition adapters;
+  those adapters pass explicit values into CV APIs
 
 ### Package does not own
 
@@ -99,6 +101,8 @@ manifest, markdown, PDF, E2E, and visual proof pass.
 - Next routes, metadata protocol types, deployment APIs, or Vercel/PDF runtime
   orchestration
 - generic web-page primitives
+- a reverse `cv -> jim-profile` dependency; the application composes the
+  Jim-profile outputs with the CV package
 - private editorial material, access, history, or automated transfer
 
 ### Application retains
@@ -200,6 +204,10 @@ robots/markdown/PDF inputs.
 
 **Outcome:** each consumer imports the final facade and its previous direct
 content/config import is deleted in the same slice.
+
+Here, consumers are application adapters and publication surfaces. The CV
+package never imports `jim-profile`; the application passes facade-derived
+values into the CV package's Jim-free API.
 
 **Impact:** no later source change must coordinate every public channel at once.
 

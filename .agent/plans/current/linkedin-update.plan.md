@@ -53,7 +53,8 @@ CV.
 
 1. Confirm the ignored private editorial boundary is available and remains
    private.
-2. Read `editorial-strategy.md` and `editorial-guidance.md`.
+2. Read [editorial-strategy.md](../../directives/editorial-strategy.md) and
+   [editorial-guidance.md](../../directives/editorial-guidance.md).
 3. Work only on drafts and evidence behind the private editorial boundary.
 4. Treat the owner-set headline as closed. Do not resume About drafting by
    default; reopen it only after Jim names the purpose and desired reader
