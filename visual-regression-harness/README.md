@@ -79,6 +79,20 @@ pnpm visual-regression-harness <base-ref> <target-ref> \
 
 The command prints the artifact directory on success.
 
+## Configuration ownership
+
+The engine accepts one validated, serialisable configuration object containing
+route keys and paths, named capture regions, expected section IDs, and explicit
+comparison allowances. Generic code under `visual-regression-harness/` does not
+import application or product modules.
+
+This repository supplies that policy through `visual-regression.config.ts` and
+the thin root adapter at `scripts/run-visual-regression-harness.ts`. The adapter
+derives route paths and expected section IDs from
+`lib/page-document-contract.ts`, then passes the complete policy into the CLI.
+Changing a route, region, or allowance is therefore a repository decision, not
+an implicit engine behaviour.
+
 ## Current limitations
 
 - There is no capture cache yet. Every run exports, builds, and captures from scratch.
@@ -130,10 +144,13 @@ build noise does not dominate the review. The normalisation removes:
 - the ephemeral route announcer node
 - hashed next/font class tokens on the root `<html>` element
 
-For the CV routes only, the harness also auto-accepts target-only section `id`
-additions when all of the following are true:
+For the configured CV routes, the root policy permits the engine to
+auto-accept target-only section `id` additions when all of the following are
+true:
 
-- the `id` matches the shared document contract in `lib/page-document-contract.ts`
+- the route policy contains the `id` (the current root adapter derives these
+  values from `lib/page-document-contract.ts`)
+- the route policy explicitly enables the target-only section-ID allowance
 - removing the `id` from the target makes the artefact match the baseline exactly
 - the change is only an expected structural anchor addition, not a mixed diff
 
@@ -150,7 +167,8 @@ The harness is not the only proof mechanism for page-as-data behaviour.
   `lib/page-document-contract.integration.test.ts`, and
   `e2e/behaviour/seo.e2e-api.test.ts`.
 - The shared page/document contract in `lib/page-document-contract.ts` is the
-  source of truth for CV section anchors and canonical page identity rules.
+  product source of truth for CV section anchors and canonical page identity
+  rules; the repository adapter projects that policy into the generic harness.
 
 ## When to use it
 

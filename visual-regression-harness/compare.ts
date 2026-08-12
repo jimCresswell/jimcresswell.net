@@ -7,12 +7,8 @@ import {
   normaliseTextArtifactForComparison,
   type ComparisonNote,
 } from "./comparison-config";
-import {
-  ensureDirectory,
-  getRouteArtifactPaths,
-  regressionRoutes,
-  type RegressionRoute,
-} from "./shared";
+import { ensureDirectory, getRouteArtifactPaths } from "./shared";
+import type { RegressionRoute } from "./configuration";
 
 type ComparedArtifactType = "html" | "json" | "png" | "missing";
 
@@ -61,13 +57,14 @@ export async function compareArtifactSets(options: {
   baselineDirectory: string;
   targetDirectory: string;
   outputDirectory: string;
+  routes: readonly RegressionRoute[];
 }): Promise<ComparisonSummary> {
   await ensureDirectory(options.outputDirectory);
 
   const unexpectedDifferences: UnexpectedDifference[] = [];
   const artifactSummaries: ComparisonArtifactSummary[] = [];
 
-  for (const route of regressionRoutes) {
+  for (const route of options.routes) {
     for (const artifactPath of getRouteArtifactPaths(route)) {
       const baselinePath = path.join(options.baselineDirectory, route.key, artifactPath);
       const targetPath = path.join(options.targetDirectory, route.key, artifactPath);
@@ -219,7 +216,7 @@ async function compareTextArtifacts(
     contents: await fs.readFile(targetPath, "utf8"),
   });
   const targetContents = normaliseExpectedSectionIdAdditionsForComparison({
-    routeKey: route.key,
+    route,
     artifactPath,
     baselineContents: baselineContents.contents,
     targetContents: individuallyNormalisedTargetContents.contents,

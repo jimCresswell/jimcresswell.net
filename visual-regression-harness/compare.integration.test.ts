@@ -5,7 +5,33 @@ import { afterEach, describe, expect, it } from "vitest";
 import { PNG } from "pngjs";
 import { z } from "zod";
 import { compareArtifactSets } from "./compare";
-import { getRouteArtifactPaths, regressionRoutes } from "./shared";
+import type { RegressionRoute } from "./configuration";
+import { getRouteArtifactPaths } from "./shared";
+
+const regressionRoutes: readonly RegressionRoute[] = [
+  {
+    key: "home",
+    path: "/",
+    regions: [
+      { key: "site-header", selector: "body > header" },
+      { key: "hero", selector: "main > section" },
+      { key: "site-footer", selector: "body > footer" },
+    ],
+    expectedSectionIds: [],
+    allowances: { targetOnlyExpectedSectionIds: false },
+  },
+  {
+    key: "cv",
+    path: "/cv",
+    regions: [
+      { key: "site-header", selector: "body > header" },
+      { key: "positioning", selector: "main > section:first-child" },
+      { key: "site-footer", selector: "body > footer" },
+    ],
+    expectedSectionIds: ["positioning", "capabilities"],
+    allowances: { targetOnlyExpectedSectionIds: true },
+  },
+];
 
 const temporaryDirectories: string[] = [];
 const SummarySchema = z.object({
@@ -310,6 +336,86 @@ describe("compareArtifactSets", () => {
     );
   });
 
+  it("keeps target-only expected section ids for review when the route allowance is disabled", async () => {
+    const harnessDirectories = await createHarnessDirectories();
+
+    await writeArtifactSet(harnessDirectories.baselineDirectory, {
+      "cv/positioning.html":
+        '<section aria-labelledby="positioning-heading"><h2 id="positioning-heading">Positioning</h2><p>Base</p></section>',
+    });
+    await writeArtifactSet(harnessDirectories.targetDirectory, {
+      "cv/positioning.html":
+        '<section id="positioning" aria-labelledby="positioning-heading"><h2 id="positioning-heading">Positioning</h2><p>Base</p></section>',
+    });
+
+    const comparison = await compareArtifactSets({
+      ...harnessDirectories,
+      routes: regressionRoutes.map((route) =>
+        route.key === "cv"
+          ? {
+              ...route,
+              allowances: { targetOnlyExpectedSectionIds: false },
+            }
+          : route
+      ),
+    });
+
+    expect(comparison.requiresReview).toBe(true);
+    expect(comparison.unexpectedDifferences).toContainEqual(
+      expect.objectContaining({
+        route: "cv",
+        artifact: "positioning.html",
+        type: "html",
+      })
+    );
+  });
+
+  it("keeps removal of an expected section id as a review item", async () => {
+    const harnessDirectories = await createHarnessDirectories();
+
+    await writeArtifactSet(harnessDirectories.baselineDirectory, {
+      "cv/positioning.html":
+        '<section id="positioning"><h2 id="positioning-heading">Positioning</h2><p>Base</p></section>',
+    });
+    await writeArtifactSet(harnessDirectories.targetDirectory, {
+      "cv/positioning.html":
+        '<section aria-labelledby="positioning-heading"><h2 id="positioning-heading">Positioning</h2><p>Base</p></section>',
+    });
+
+    const comparison = await compareArtifactSets(harnessDirectories);
+    expect(comparison.requiresReview).toBe(true);
+    expect(comparison.unexpectedDifferences).toContainEqual(
+      expect.objectContaining({
+        route: "cv",
+        artifact: "positioning.html",
+        type: "html",
+      })
+    );
+  });
+
+  it("keeps an expected section id addition mixed with a content change as a review item", async () => {
+    const harnessDirectories = await createHarnessDirectories();
+
+    await writeArtifactSet(harnessDirectories.baselineDirectory, {
+      "cv/positioning.html":
+        '<section aria-labelledby="positioning-heading"><h2 id="positioning-heading">Positioning</h2><p>Base</p></section>',
+    });
+    await writeArtifactSet(harnessDirectories.targetDirectory, {
+      "cv/positioning.html":
+        '<section id="positioning" aria-labelledby="positioning-heading"><h2 id="positioning-heading">Positioning</h2><p>Changed</p></section>',
+    });
+
+    const comparison = await compareArtifactSets(harnessDirectories);
+    expect(comparison.requiresReview).toBe(true);
+    expect(comparison.unexpectedDifferences).toContainEqual(
+      expect.objectContaining({
+        route: "cv",
+        artifact: "positioning.html",
+        type: "html",
+      })
+    );
+  });
+
   it("keeps unexpected section id changes as review items", async () => {
     const harnessDirectories = await createHarnessDirectories();
 
@@ -401,6 +507,7 @@ async function createHarnessDirectories(): Promise<{
   baselineDirectory: string;
   targetDirectory: string;
   outputDirectory: string;
+  routes: readonly RegressionRoute[];
 }> {
   const rootDirectory = await fs.mkdtemp(path.join(os.tmpdir(), "visual-regression-compare-test-"));
   const baselineDirectory = path.join(rootDirectory, "baseline");
@@ -417,6 +524,7 @@ async function createHarnessDirectories(): Promise<{
     baselineDirectory,
     targetDirectory,
     outputDirectory,
+    routes: regressionRoutes,
   };
 }
 

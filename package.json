@@ -50,7 +50,7 @@
     "check:ci": "pnpm format && pnpm markdownlint:check && pnpm lint && pnpm typecheck && pnpm test && pnpm knip && pnpm secrets:scan && pnpm vital-surfaces:check && pnpm portability:check && pnpm subagents:check",
     "secrets:scan": "gitleaks git --redact --verbose",
     "test:e2e": "playwright test --project=default",
-    "visual-regression-harness": "tsx visual-regression-harness/cli.ts",
+    "visual-regression-harness": "tsx scripts/run-visual-regression-harness.ts",
     "knip": "knip",
     "portability:check": "node scripts/validate-portability.mjs",
     "subagents:check": "node scripts/validate-subagents.mjs",

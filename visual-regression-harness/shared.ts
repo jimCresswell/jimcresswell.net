@@ -1,6 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import type { Locator, Page } from "@playwright/test";
+import type { RegressionRoute } from "./configuration";
 
 /** Root directory for all generated regression artifacts. */
 export const REGRESSION_ARTIFACTS_DIR = "regression-artifacts";
@@ -13,60 +14,6 @@ export const HARNESS_VIEWPORT = {
   width: 1440,
   height: 1200,
 } as const;
-
-/** One named DOM region captured alongside the full page. */
-interface RouteSelector {
-  key: string;
-  selector: string;
-}
-
-/** One route covered by the harness. */
-export interface RegressionRoute {
-  key: string;
-  path: string;
-  selectors: readonly RouteSelector[];
-}
-
-/** Core proof surface for the PKG refactor. */
-export const regressionRoutes: readonly RegressionRoute[] = [
-  {
-    key: "home",
-    path: "/",
-    selectors: [
-      { key: "site-header", selector: "body header.print-hidden" },
-      { key: "hero", selector: 'main section:has(> h1:has-text("Jim Cresswell"))' },
-      { key: "site-footer", selector: "body footer" },
-    ],
-  },
-  {
-    key: "cv",
-    path: "/cv",
-    selectors: [
-      { key: "site-header", selector: "body header.print-hidden" },
-      { key: "cv-header", selector: "main > div > header" },
-      { key: "positioning", selector: 'main section:has(> h2:has-text("Positioning"))' },
-      { key: "capabilities", selector: 'main section:has(> h2:has-text("Capabilities"))' },
-      { key: "experience", selector: 'main section:has(> h2:has-text("Experience"))' },
-      { key: "before-oak", selector: 'main section:has(> h2:has-text("Before Oak"))' },
-      { key: "education", selector: 'main section:has(> h2:has-text("Education"))' },
-      { key: "site-footer", selector: "body footer" },
-    ],
-  },
-  {
-    key: "cv-public-sector",
-    path: "/cv/public_sector",
-    selectors: [
-      { key: "site-header", selector: "body header.print-hidden" },
-      { key: "cv-header", selector: "main > div > header" },
-      { key: "positioning", selector: 'main section:has(> h2:has-text("Positioning"))' },
-      { key: "capabilities", selector: 'main section:has(> h2:has-text("Capabilities"))' },
-      { key: "experience", selector: 'main section:has(> h2:has-text("Experience"))' },
-      { key: "before-oak", selector: 'main section:has(> h2:has-text("Before Oak"))' },
-      { key: "education", selector: 'main section:has(> h2:has-text("Education"))' },
-      { key: "site-footer", selector: "body footer" },
-    ],
-  },
-] as const;
 
 /**
  * Ensure a directory exists.
@@ -99,9 +46,9 @@ async function waitForStablePage(page: Page, url: string): Promise<void> {
 export function getRouteArtifactPaths(route: RegressionRoute): string[] {
   const artifactPaths = ["document.html", "main.html", "metadata.json", "full-page.png"];
 
-  for (const selector of route.selectors) {
-    artifactPaths.push(`${selector.key}.html`);
-    artifactPaths.push(`${selector.key}.png`);
+  for (const region of route.regions) {
+    artifactPaths.push(`${region.key}.html`);
+    artifactPaths.push(`${region.key}.png`);
   }
 
   return artifactPaths;
@@ -154,15 +101,15 @@ export async function captureRouteArtifacts(
     fullPage: true,
   });
 
-  for (const selector of route.selectors) {
-    const locator = page.locator(selector.selector);
+  for (const region of route.regions) {
+    const locator = page.locator(region.selector);
     await locator.waitFor();
     await writeTextArtifact(
-      path.join(routeDirectory, `${selector.key}.html`),
+      path.join(routeDirectory, `${region.key}.html`),
       await captureHtml(locator)
     );
     await locator.screenshot({
-      path: path.join(routeDirectory, `${selector.key}.png`),
+      path: path.join(routeDirectory, `${region.key}.png`),
     });
   }
 }

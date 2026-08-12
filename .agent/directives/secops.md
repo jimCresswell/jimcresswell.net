@@ -13,12 +13,20 @@ and AI.
 
 ## Git identity
 
-Use `git@jimcresswell.net` as the author email for all commits in this repository. All commits must
-be GPG-signed.
+Use `git@jimcresswell.net` as the author email for commits made in a local checkout. All commits must
+carry a GitHub-verifiable cryptographic signature; GPG and SSH signatures are both accepted.
+GitHub-generated merge or squash commits may use GitHub's platform identity and GPG signature.
 
 ```bash
 git config user.email "git@jimcresswell.net"
 git config commit.gpgsign true
+```
+
+For SSH signing, also configure the public key registered with GitHub as a signing key:
+
+```bash
+git config gpg.format ssh
+git config user.signingkey "$HOME/.ssh/id_ed25519.pub"
 ```
 
 ## Guiding principle

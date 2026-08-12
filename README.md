@@ -48,6 +48,7 @@ pnpm test:watch     # Tests in watch mode
 pnpm test:coverage  # Tests with coverage report
 pnpm test:e2e       # E2E tests — full Playwright suite against a production build
 pnpm test:e2e:ui    # Playwright UI mode (interactive)
+pnpm visual-regression-harness <base-ref> <target-ref> # Non-destructive rendered-output comparison
 
 pnpm fix            # Format, markdownlint, and lint auto-fix
 pnpm check          # Blocking gates with auto-fix where appropriate
@@ -110,8 +111,12 @@ accept-md.config.js          # accept-md runtime configuration
 
 scripts/                     # Build-time scripts
   generate-pdf.ts            # Puppeteer PDF generation (runs after next build)
+  run-visual-regression-harness.ts # Root adapter for the visual-regression CLI
   validate-portability.mjs   # Thin-wrapper and surface-matrix validation
   validate-practice-fitness.mjs # Practice/doc fitness validation
+
+visual-regression-harness/   # Generic capture, comparison, and git-snapshot engine
+visual-regression.config.ts  # Repository-owned routes and comparison allowances
 
 e2e/                         # End-to-end tests (Playwright)
   journeys/                  # User story journey tests

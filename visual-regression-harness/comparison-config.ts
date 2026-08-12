@@ -1,4 +1,4 @@
-import { getExpectedSectionIdsForRouteKey } from "../lib/page-document-contract";
+import type { RegressionRoute } from "./configuration";
 
 export interface ComparisonNote {
   code: string;
@@ -46,7 +46,7 @@ const ROOT_FONT_CLASS_NORMALISATION_NOTE: ComparisonNote = {
 const EXPECTED_SECTION_ID_NORMALISATION_NOTE: ComparisonNote = {
   code: "expected-section-id",
   description:
-    "Removed target-only CV section id additions backed by the page document contract before comparison.",
+    "Removed target-only expected section id additions allowed by the route policy before comparison.",
 };
 
 const NEXT_ASSET_TAG_PATTERN =
@@ -93,8 +93,8 @@ export function normaliseTextArtifactForComparison(options: {
 }
 
 /**
- * Auto-accept expected target-only section id additions backed by the page
- * document contract.
+ * Auto-accept expected target-only section id additions when the route policy
+ * explicitly permits them.
  *
  * This is deliberately one-way. Adding an expected section id can be accepted
  * as a non-visual structural improvement; removing one or introducing an
@@ -103,7 +103,7 @@ export function normaliseTextArtifactForComparison(options: {
  * @param options Pairwise HTML comparison input.
  */
 export function normaliseExpectedSectionIdAdditionsForComparison(options: {
-  routeKey: string;
+  route: RegressionRoute;
   artifactPath: string;
   baselineContents: string;
   targetContents: string;
@@ -111,7 +111,10 @@ export function normaliseExpectedSectionIdAdditionsForComparison(options: {
   targetContents: string;
   notes: ComparisonNote[];
 } {
-  if (!options.artifactPath.endsWith(".html")) {
+  if (
+    !options.artifactPath.endsWith(".html") ||
+    !options.route.allowances.targetOnlyExpectedSectionIds
+  ) {
     return {
       targetContents: options.targetContents,
       notes: [],
@@ -120,7 +123,7 @@ export function normaliseExpectedSectionIdAdditionsForComparison(options: {
 
   let nextTargetContents = options.targetContents;
 
-  for (const sectionId of getExpectedSectionIdsForRouteKey(options.routeKey)) {
+  for (const sectionId of options.route.expectedSectionIds) {
     nextTargetContents = removeExpectedSectionId(nextTargetContents, sectionId);
   }
 

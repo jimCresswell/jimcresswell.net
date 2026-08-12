@@ -1,10 +1,6 @@
 import { chromium } from "@playwright/test";
-import {
-  captureRouteArtifacts,
-  ensureDirectory,
-  HARNESS_VIEWPORT,
-  regressionRoutes,
-} from "./shared";
+import type { RegressionRoute } from "./configuration";
+import { captureRouteArtifacts, ensureDirectory, HARNESS_VIEWPORT } from "./shared";
 
 /**
  * Capture full-page screenshots, section screenshots, and HTML artifacts for
@@ -15,6 +11,7 @@ import {
 export async function captureSiteArtifacts(options: {
   baseUrl: string;
   outputDirectory: string;
+  routes: readonly RegressionRoute[];
 }): Promise<void> {
   await ensureDirectory(options.outputDirectory);
 
@@ -30,7 +27,7 @@ export async function captureSiteArtifacts(options: {
 
     const page = await context.newPage();
 
-    for (const route of regressionRoutes) {
+    for (const route of options.routes) {
       await captureRouteArtifacts(page, options.baseUrl, options.outputDirectory, route);
     }
 

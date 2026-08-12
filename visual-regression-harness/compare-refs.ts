@@ -4,6 +4,7 @@ import path from "node:path";
 import { spawn, type ChildProcess } from "node:child_process";
 import { captureSiteArtifacts } from "./capture";
 import { compareArtifactSets, type ComparisonSummary } from "./compare";
+import type { VisualRegressionConfiguration } from "./configuration";
 import {
   exportRefToDirectory,
   resolveSnapshotSource,
@@ -32,6 +33,7 @@ export async function compareRefs(options: {
   repositoryRoot: string;
   baseRef: string;
   targetRef: string;
+  configuration: VisualRegressionConfiguration;
   outputDirectory?: string;
   basePort?: number;
   targetPort?: number;
@@ -117,16 +119,19 @@ export async function compareRefs(options: {
     await captureSiteArtifacts({
       baseUrl: `http://127.0.0.1:${basePort}`,
       outputDirectory: baselineArtifactsDirectory,
+      routes: options.configuration.routes,
     });
     await captureSiteArtifacts({
       baseUrl: `http://127.0.0.1:${targetPort}`,
       outputDirectory: targetArtifactsDirectory,
+      routes: options.configuration.routes,
     });
 
     const comparison: ComparisonSummary = await compareArtifactSets({
       baselineDirectory: baselineArtifactsDirectory,
       targetDirectory: targetArtifactsDirectory,
       outputDirectory: diffArtifactsDirectory,
+      routes: options.configuration.routes,
     });
     await fs.writeFile(
       path.join(outputDirectory, "summary.txt"),
