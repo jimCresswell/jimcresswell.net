@@ -222,5 +222,8 @@ quirks, or package setup outweighs the implementation it owns.
 ## Completion handoff
 
 Record final API, synthetic proof, app adapter owner, PASS/FAIL disposition,
-render/PDF evidence, deferred presentation ownership, and recommendation to
-promote [Jim Profile Workspace](jim-profile-workspace.plan.md).
+render/PDF evidence, and deferred presentation ownership. If Professional
+Profile Graph and CV are two consecutive failed product candidates, stop and
+reassess the modular-monolith alternative under the parent programme condition;
+do not promote another child. Otherwise recommend promotion of
+[Jim Profile Workspace](jim-profile-workspace.plan.md).

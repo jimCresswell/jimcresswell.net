@@ -318,5 +318,8 @@ composition, custody, or proof value.
 
 Record final package exports, public source topology, consumer/source cutover
 ledger, completeness/render/PDF proof, CSS owners, deleted paths, PASS/FAIL
-disposition, and recommendation to promote
+disposition. If CV and Jim Profile are two consecutive failed product
+candidates, stop and reassess the modular-monolith alternative under the parent
+programme condition; record both dispositions in the parent and roadmap, and
+do not promote another child. Otherwise recommend promotion of
 [Web Page Workspace and Boundary Enforcement](web-page-workspace-and-boundary-enforcement.plan.md).
