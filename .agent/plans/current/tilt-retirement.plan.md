@@ -36,13 +36,13 @@ the live tilt surface so that scope reflects reality, and preserves the tilt
 content and canonical-alias rationale as a discoverable reference doc so the
 door is genuinely open if tilts return.
 
-Implementation and local proof are complete in the PR #36 replacement as of
-2026-08-12. `pnpm check:ci` passed with 30 test files and 211 tests;
-Playwright passed 49/49; and the visual harness reported zero differing pixels
-on `/` and `/cv`. Its five HTML review items were inspected and accepted as the
-intended static-headline markup, retired graph statements, and Next.js head-tag
-ordering. Publication, preview verification, review, and merge remain. The plan
-stays in `current/` until delivery is merged.
+Complete and merged through PR #36 on 2026-08-12. `pnpm check:ci` passed with
+31 test files and 221 tests; Playwright passed 58/58; and the exact-base visual
+harness reported zero differing pixels on `/` and `/cv`. Its five HTML review
+items were inspected and accepted as intentional identity, content, and
+retirement changes. ADR-021 and the preserved architecture reference now own
+the durable decision and re-entry route. The plan remains in `current/` only
+until the next documentation-consolidation pass archives it.
 
 ## Outcome, impact, and value mechanism
 
@@ -303,10 +303,10 @@ ADR-017 marked Accepted and design against rules that no longer apply.
 
 ## Local proof record — 2026-08-12
 
-- `pnpm check:ci`: passed; 30 test files and 211 tests passed, with formatting,
+- `pnpm check:ci`: passed; 31 test files and 221 tests passed, with formatting,
   Markdown, ESLint, TypeScript, Knip, secret, vital-surface, portability, and
   sub-agent checks green.
-- `pnpm test:e2e`: 49/49 passed against the production build, including the
+- `pnpm test:e2e`: 58/58 passed against the production build, including the
   canonical CV, PDF routes, accessibility, metadata, and the explicit branded
   404 for `/cv/public_sector`.
 - `pnpm visual-regression-harness origin/main WORKTREE`: zero differing pixels

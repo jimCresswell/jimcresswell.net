@@ -3,8 +3,8 @@ name: LinkedIn Update
 overview: Compose LinkedIn-native profile content from private local sources while keeping drafts, raw evidence, personal analysis, and collaboration records out of the public repository.
 todos:
   - id: continue-private-editorial-pass
-    content: Continue the owner-led editorial pass in the ignored private working repository.
-    status: in_progress
+    content: Reopen only when Jim supplies a concrete purpose and reader outcome; keep all drafting on the ignored private working surface.
+    status: pending
 isProject: true
 ---
 
@@ -12,8 +12,9 @@ isProject: true
 
 ## Status
 
-In progress on a private local working surface. This tracked file is a routing
-stub, not a draft or evidence store.
+Paused. The headline is closed and About drafting is not active. Reopen only
+when Jim supplies a concrete purpose and reader outcome. This tracked file is a
+routing stub, not a draft or evidence store.
 
 ## Outcome, impact, and value mechanism
 
@@ -32,10 +33,10 @@ chooses to publish crosses the private boundary.
 ## Privacy boundary
 
 - Drafts, profile exports, raw source packs, personal analysis, and
-  collaboration records live only in the ignored nested repository under
-  `.agent/reference-local/editorial-private/`.
-- Do not copy that repository's URL, commit identifiers, source material, or
-  working discussion into public Git history.
+  collaboration records live only behind the ignored private editorial
+  boundary.
+- Do not copy private custody details, source material, or working discussion
+  into public Git history.
 - The public repository retains only general editorial governance in
   `editorial-strategy.md`, identity and voice constraints in
   `editorial-guidance.md`, and this routing stub.
@@ -50,10 +51,12 @@ CV.
 
 ## Resume
 
-1. Confirm the ignored private repository is present and remains private.
+1. Confirm the ignored private editorial boundary is available and remains
+   private.
 2. Read `editorial-strategy.md` and `editorial-guidance.md`.
-3. Work only on drafts and evidence inside the private repository.
-4. Treat the owner-set headline as closed and continue with the About section; do not reopen the
-   headline unless Jim does.
+3. Work only on drafts and evidence behind the private editorial boundary.
+4. Treat the owner-set headline as closed. Do not resume About drafting by
+   default; reopen it only after Jim names the purpose and desired reader
+   outcome.
 5. Move only final, owner-approved copy to LinkedIn itself; do not stage it in
    the public repository.
