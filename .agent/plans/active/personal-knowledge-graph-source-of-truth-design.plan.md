@@ -414,7 +414,7 @@ are recorded here so the door is discoverable, not implicit.
 ### Tilt composition
 
 **Why deferred:** tilts are retired by ADR-021 and recorded in
-[`../current/tilt-retirement.plan.md`](../current/tilt-retirement.plan.md).
+[`../archive/tilt-retirement.plan.md`](../archive/tilt-retirement.plan.md).
 Designing tilt composition into Track B would either fabricate rules for a
 removed feature or block this design on a feature that is leaving the codebase.
 

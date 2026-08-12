@@ -3,8 +3,8 @@ name: LinkedIn Update
 overview: Compose LinkedIn-native profile content from private local sources while keeping drafts, raw evidence, personal analysis, and collaboration records out of the public repository.
 todos:
   - id: continue-private-editorial-pass
-    content: Reopen only when Jim supplies a concrete purpose and reader outcome; keep all drafting on the ignored private working surface.
-    status: pending
+    content: Keep the owner-led editorial pass behind the private boundary; this public plan carries routing and safety constraints only.
+    status: in_progress
 isProject: true
 ---
 
@@ -12,9 +12,10 @@ isProject: true
 
 ## Status
 
-Paused. The headline is closed and About drafting is not active. Reopen only
-when Jim supplies a concrete purpose and reader outcome. This tracked file is a
-routing stub, not a draft or evidence store.
+Active behind the private editorial boundary and owner-led. This tracked file
+is a routing and safety stub, not a task queue, status ledger, draft, evidence
+store, or session record. Granular editorial state belongs only in the private
+plan and handoff.
 
 ## Outcome, impact, and value mechanism
 
@@ -56,8 +57,7 @@ CV.
 2. Read [editorial-strategy.md](../../directives/editorial-strategy.md) and
    [editorial-guidance.md](../../directives/editorial-guidance.md).
 3. Work only on drafts and evidence behind the private editorial boundary.
-4. Treat the owner-set headline as closed. Do not resume About drafting by
-   default; reopen it only after Jim names the purpose and desired reader
-   outcome.
+4. Take the current field, method, and owner decisions only from the private
+   plan and handoff; do not reconstruct them from public history or this stub.
 5. Move only final, owner-approved copy to LinkedIn itself; do not stage it in
    the public repository.

@@ -36,13 +36,14 @@ the live tilt surface so that scope reflects reality, and preserves the tilt
 content and canonical-alias rationale as a discoverable reference doc so the
 door is genuinely open if tilts return.
 
-Complete and merged through PR #36 on 2026-08-12. `pnpm check:ci` passed with
+Complete, merged through PR #36, and archived during the 2026-08-12
+documentation-consolidation closeout. `pnpm check:ci` passed with
 31 test files and 221 tests; Playwright passed 58/58; and the exact-base visual
 harness reported zero differing pixels on `/` and `/cv`. Its five HTML review
 items were inspected and accepted as intentional identity, content, and
 retirement changes. ADR-021 and the preserved architecture reference now own
-the durable decision and re-entry route. The plan remains in `current/` only
-until the next documentation-consolidation pass archives it.
+the durable decision and re-entry route. Reopen the work only through a new
+owner-approved plan following that route; this archived plan is historical.
 
 ## Outcome, impact, and value mechanism
 
