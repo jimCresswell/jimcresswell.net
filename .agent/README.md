@@ -79,8 +79,8 @@ The primary plan lives in `plans/active/`; related live work stays in `plans/cur
 | [web-page-workspace-and-boundary-enforcement.plan.md](plans/current/web-page-workspace-and-boundary-enforcement.plan.md)        | Pending      | Conditional generic primitives and final boundary audit                         |
 | [optional-app-relocation.plan.md](plans/archive/optional-app-relocation.plan.md)                                                | Not Selected | Archived Sequence R decision; root application retained                         |
 | [dev-tooling-hygiene.plan.md](plans/current/dev-tooling-hygiene.plan.md)                                                        | In Progress  | Parked major upgrades and dependency-cruiser work                               |
-| [linkedin-update.plan.md](plans/current/linkedin-update.plan.md)                                                                | Paused       | Private-boundary routing; reopen only for a concrete owner purpose              |
-| [tilt-retirement.plan.md](plans/current/tilt-retirement.plan.md)                                                                | Complete     | Canonical-only CV retirement record awaiting consolidation                      |
+| [linkedin-update.plan.md](plans/current/linkedin-update.plan.md)                                                                | Owner-active | Private-boundary routing and safety only; no public repo task                   |
+| [tilt-retirement.plan.md](plans/archive/tilt-retirement.plan.md)                                                                | Complete     | Archived canonical-only CV retirement record; ADR-021 owns current truth        |
 | [practice-core-wholesale-adoption.plan.md](plans/archive/practice-core-wholesale-adoption.plan.md)                              | Complete     | Structural Practice adoption ratchet and migration record                       |
 
 Completed plans are in [plans/archive/](plans/archive/) for reference.

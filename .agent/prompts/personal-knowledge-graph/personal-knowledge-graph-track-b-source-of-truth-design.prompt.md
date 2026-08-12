@@ -39,10 +39,12 @@ Ground first via `start-right-quick` or `start-right-thorough`.
   CV view**.
 - Track B Phase B1 is complete and recorded in
   `graph-source-of-truth-layer-map.md`.
-- **Tilt composition design is deferred door-open.** Live tilt routes are
-  being retired in `../../plans/current/tilt-retirement.plan.md`; do not design
-  tilt composition into B2. Re-entry, if it ever happens, starts from the
-  preserved tilt reference doc + the B1 layer map's tilt-implications section.
+- **Tilt composition design is deferred door-open.** Live tilt routes were
+  retired under ADR-021; the completion record is
+  [`../../plans/archive/tilt-retirement.plan.md`](../../plans/archive/tilt-retirement.plan.md).
+  Do not design tilt composition into B2. Re-entry, if it ever happens, starts
+  from the preserved tilt reference doc + the B1 layer map's
+  tilt-implications section.
 - A/B testing is also deferred door-open and is not part of this design.
 - Track B remains design-only. Do not ship source-of-truth implementation code
   from this slice.

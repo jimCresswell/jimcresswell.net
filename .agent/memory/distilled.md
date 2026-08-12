@@ -26,6 +26,11 @@ Quick-reference entries that are NOT in permanent docs. Read before every sessio
 - Playwright import fails on JSON-backed app modules: keep route-emission
   proof in Playwright, but move app-module contract proof to Vitest or import
   raw JSON directly
+- GitHub's Copilot pull-request reviewer login is
+  `copilot-pull-request-reviewer[bot]`; omitting `[bot]` returns 422.
+- SSH-signed commits can appear as `No signature` in local `git log` when
+  `gpg.ssh.allowedSignersFile` is absent. Verify the commit through GitHub or
+  configure allowed signers before classifying it as unsigned.
 
 ## Playwright runs against a production build
 
