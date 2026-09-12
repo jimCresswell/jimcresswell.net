@@ -756,6 +756,20 @@ Proof: with the env-file variable absent, `agent-identity --format display` and
 `identity preflight` resolve `Cauldron herds Lustre` / `880ff9` with `seed_source:
 CLAUDE_CODE_SESSION_ID`.
 
+Restart assessment (2026-09-12, the same session resumed after compaction): the timeout
+hypothesis is refuted and the timeout returns to 5 s. The hook shim runs in 0.11 s against a
+built `agent-tools/dist`, and the "missed startup write" was not a miss: the session started at
+09:09 BST and the `SessionStart` hook entry was installed by the Phase 8 harness commit at 14:13
+BST, so no hook existed at startup; the env file was born at the first compaction after the
+install (14:28 BST) and has gained one export line per `SessionStart` since (compaction, the
+owner's `/compact`, the resume). Every run of the installed hook wrote. Confirmed at the resume:
+`PRACTICE_AGENT_SESSION_ID_CLAUDE` and `CLAUDE_CODE_SESSION_ID` are both present in the first
+Bash call; `identity preflight` reports `seed_source: PRACTICE_AGENT_SESSION_ID_CLAUDE`, and with
+that variable unset it reports `CLAUDE_CODE_SESSION_ID`; the hook's context line reads "is
+appended to $CLAUDE_ENV_FILE". Residue: the hook appends an identical export line on every
+`SessionStart`; inert, and a guard that skips an already-present line is a one-line cure when
+the hook is next touched.
+
 Peer note: the OCE seat (read-only source, pinned at `a55fd8fdd`) verified the hook-message and
 `ADR-199` findings first-hand and will cure them in its own lane; the claimed PDR-105 portability
 violations from Core into `docs/` were a mis-read by this seat's inventory explorer and are

@@ -93,7 +93,11 @@ OCE-seeded `.agent/practice-core/incoming/resonance-outbound-bundle-2026-07-08.m
 (hand-authored JS; source-is-TypeScript); the retirement candidates among
 agent-tools scripts (plan §Owner rulings on the agent-tools scripts); the two
 session-local generators as `agent-tools` bins; owner review + `.agent-original`
-deletion; 57-lesson synthesis with quorum; Vercel root directory; PR. Falsifiers
-open: duplicate skills in the Claude picker after a restart (next suspect
-`.agents/skills/`); the startup SessionStart env-file write appears at the next
-session start (identity hook timeout raised 5 s → 20 s).
+deletion; 57-lesson synthesis with quorum; Vercel root directory; PR. Restart
+assessment (2026-09-12, resumed session): the seed contract holds (both variables
+in the first Bash call; preflight names the hook path, and the native fallback
+with it unset); the "missed startup write" was a non-event (no hook existed at
+startup; the shim runs in 0.11 s) and the timeout is back at 5 s. Falsifier still
+open: duplicate `jc-*` entries in the Claude picker — the model-facing listing
+shows each once, no second skill source exists (`.agents/skills/` is not a
+Claude Code load location in 2.1.269), so the owner's picker is the only test.

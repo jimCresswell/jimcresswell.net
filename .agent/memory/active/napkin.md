@@ -418,3 +418,29 @@
   works there; PR #136 is still moving.
 - Fixed point: a further pass would only re-find the generators and the record-citation scrub,
   both already on the register and in continuity; the recursion closes here.
+
+### Session 5 (2026-09-12, resumed after compaction) — restart assessment
+
+- The Wrap 3 predictions, tested: (b) confirmed — `PRACTICE_AGENT_SESSION_ID_CLAUDE` and
+  `CLAUDE_CODE_SESSION_ID` both present in the first Bash call; (c) confirmed — preflight
+  `seed_source: PRACTICE_AGENT_SESSION_ID_CLAUDE`, and `CLAUDE_CODE_SESSION_ID` with the hook
+  variable unset (`env -u`); (e) confirmed — the context line reads "is appended to
+  $CLAUDE_ENV_FILE". (a) refuted as stated: the resume was the same session, not a startup, and
+  the direct test settles it anyway — the hook shim runs in 0.11 s, and the hook did not exist
+  at the 09:09 BST startup (installed by the harness commit at 14:13 BST; env file born at the
+  first compaction after that, 14:28 BST). The "missed write" was a diagnosis of a non-event.
+  Timeout returned to 5 s. Lesson: before hypothesising why a mechanism failed at time T, check
+  that the mechanism existed at time T (`git log --diff-filter=A` on the hook is one command).
+- Residue: the hook appends an identical export line per `SessionStart` (three lines after two
+  compactions and a resume). Inert; a skip-if-present guard when the hook is next touched.
+- (d) picker duplicates: not reproducible from this seat. The model-facing skill listing shows
+  each `jc-*` once; the only other `jc-*` source is `.agents/skills/` (66 tracked cross-tool
+  adapters), and Claude Code 2.1.269 does not load it — its `.agents/skills` strings sit in the
+  Cursor/Codex config-import scanner ("not yet auto-imported"), and the docs list only
+  `~/.claude/skills`, `.claude/skills`, nested `.claude/skills` and plugins. No `.claude/commands`,
+  no plugin or user-level `jc-*`. The owner's picker after this restart is the remaining test.
+- Peer landscape: Nettle guards Pistil busy in the OCE checkout; a third local seat, Coal weaves
+  Pumice, is in a different repository (its transcript sits under the castr project dir), not
+  here. This checkout: no other seat, registry empty, queue empty.
+- `pnpm -s` is rejected by pnpm 12.4.1 ("unexpected argument '-s'"); `--silent` still works.
+  That is the pre-existing codex-session-alert smoke failure; cure is the flag, not the smoke.

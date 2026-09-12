@@ -79,7 +79,7 @@
           {
             "type": "command",
             "command": ".claude/hooks/practice-session-identity.mjs",
-            "timeout": 20
+            "timeout": 5
           },
           {
             "type": "command",
