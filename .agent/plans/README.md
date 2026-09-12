@@ -10,6 +10,14 @@ Canonical plan-lifecycle lanes live here.
 - `archive/` — completed or superseded historical plan records.
 - `research/` — supporting investigations and audits; not a lifecycle lane.
 
+## Node-type directories (the ratified plan-node estate)
+
+New plans are nodes typed by directory, per the [plan-node schema](plan-node-schema.md) and the
+[templates](templates/README.md): `strategic/` (the outcome and the bet), `delivery/` (one step
+of a lane, authored at pickup) and `runbooks/` (a repeatable procedure). The lifecycle lanes above
+hold the pre-schema plans until the plan-node migration re-homes them; a node never moves between
+directories while live.
+
 ## Working rules
 
 1. Keep exactly one primary plan in `active/`.

@@ -439,6 +439,23 @@
   Cursor/Codex config-import scanner ("not yet auto-imported"), and the docs list only
   `~/.claude/skills`, `.claude/skills`, nested `.claude/skills` and plugins. No `.claude/commands`,
   no plugin or user-level `jc-*`. The owner's picker after this restart is the remaining test.
+- Owner direction mid-turn: keep detailed transplant-process notes; the next transplant is into
+  castr (Coal weaves Pumice's seat) and must cost a fraction. Passes run: metacognition (the
+  fluent shape "add addenda to the report" hides that the _instruments_ and _verdict data_ were
+  the loss, not the narrative; altitude verdict: runbook + bins now, the installable-thing
+  generator only if castr refutes proposal 5), concept exploration (castr is a delta update of
+  the same lineage with an ancestor commit, so three-way classification replaces whole-corpus
+  novelty scoring; measured upstream delta 434 machinery files), plan (runbook node +
+  delivery node, both sketch). The plan-corpus validator is not wired and crashes on a
+  missing `docs/strategy`, so the nodes are template-conformant by hand — said in the node.
+- Peer note from Nettle guards Pistil: OCE PR #136 merged at `2b1b15ab8`; PR #138 still open.
+  Recorded in continuity as the slice 2 re-import pin. No reply needed, none sent.
+- Owner constraint (16:10 BST, 2026-09-12): after the running readiness review finishes, no
+  subagents for three hours (until about 19:10 BST); everything first-hand, the link-repair
+  pass included.
+- Two mistakes this session: `pnpm -s` is not a pnpm 12 flag (used it twice before reading the
+  error); a `comms append` call without `--comms-dir/--now/--created-at/--active` fails — the
+  help text is the contract, read it before the first call, not after the first failure.
 - Peer landscape: Nettle guards Pistil busy in the OCE checkout; a third local seat, Coal weaves
   Pumice, is in a different repository (its transcript sits under the castr project dir), not
   here. This checkout: no other seat, registry empty, queue empty.

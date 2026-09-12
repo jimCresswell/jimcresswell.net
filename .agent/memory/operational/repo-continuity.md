@@ -72,15 +72,21 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 Owner-set order (2026-09-12): 1. rules triage done; 2. harness integration done
 (plan §Phase 8); 3. re-evaluate slice 1 done (seed contract, session-open
-surfaces, docs layer); 4. **next, owner-ordered at the 2026-09-12 wrap**: (a) at
-the owner's restart, assess the fixes and predictions listed on the napkin's
-Wrap 3 (startup env-file write, seed source, hook context line, picker
-duplicates); (b) the link-repair pass — largely mechanical, and a link whose
+surfaces, docs layer); 4. restart assessment done (below); 5. **next, in
+order**: (a) the link-repair pass — largely mechanical, and a link whose
 target is a lineage record or surface with no local equivalent is removed,
-not re-pointed; (c) then re-evaluate slice 2, candidates in order:
-re-import OCE's pull-request machinery at the SHAs the OCE seat named (PR #136
-after its merge commit lands on `engraph`; PR #138 at `352ad0ee5`; the source is
-read-only, read with `git show` at a pinned commit); the content-grain merge of
+not re-pointed; (b) owner ratification of the two sketch plan nodes authored
+on 2026-09-12 at the owner's word that the castr transplant is next and must
+cost a fraction: the runbook `.agent/plans/runbooks/practice-lineage-transplant.md`
+and the delivery node `.agent/plans/delivery/castr-lineage-update-preparation.md`
+(instruments as bins, instance-1 verdicts as `inputs/` data, one owner gate
+on the adapter-generator design); (c) then re-evaluate slice 2, candidates in
+order: re-import OCE's pull-request machinery — PR #136 merged at `2b1b15ab8`
+(seven surfaces: the PR template, pr-lifecycle §Phase 2/§Phase 4/§Response
+pricing, `review-feedback-defaults-to-triage`, proportionality,
+coordination-fold, the Copilot instructions, `AGENTS.md`); PR #138 still open
+at `352ad0ee5`; the source is read-only, read with `git show` at a pinned
+commit; the content-grain merge of
 the 11 local expert templates; the link-repair backlog (418; record-number
 citations across `.agent/` and in `agent-tools` source comments — ADR-199 alone
 is cited in fourteen modules; check the title at the target, a number surviving

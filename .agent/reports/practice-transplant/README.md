@@ -12,3 +12,10 @@ these are the process outputs kept alongside the work.
 
 Both are born-sketch explorations: they govern nothing until ratified. Running capture for the
 session is in `.agent/memory/active/napkin.md`.
+
+The procedure these records distil is the runbook node
+[`.agent/plans/runbooks/practice-lineage-transplant.md`](../../plans/runbooks/practice-lineage-transplant.md),
+and the work that makes the next instance (castr) run by that runbook is the delivery node
+[`.agent/plans/delivery/castr-lineage-update-preparation.md`](../../plans/delivery/castr-lineage-update-preparation.md).
+That node lands this instance's verdict data under `inputs/` here, one file per runbook step that
+reads it.
