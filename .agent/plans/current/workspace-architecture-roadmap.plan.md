@@ -86,6 +86,26 @@ and the current application tree:
 The configuration seam is a landed partial slice. The Visual Regression child
 and the wider workspace programme remain incomplete.
 
+## Three-PR closeout checkpoint — 2026-08-12
+
+PRs #39, #36, and #40 are merged in that dependency order. The final plan-family
+merge was based on the fresh post-#36 `main`; every actionable GitHub comment was
+answered and resolved, required checks and the final main-branch workflows were
+green, and the post-merge late-review harvest found no new feedback. There were
+no open pull requests at the checkpoint.
+
+This closes the repair/publication arc, not the workspace programme. The live
+tree still has no `pnpm-workspace.yaml`, child manifest, dependency move, or
+source relocation. A successor must not replay the old stacked branches or
+infer extraction approval from their closure.
+
+The next workspace action is exactly one decision-bearing slice: follow the
+[Visual Regression Workspace next-agent start](visual-regression-workspace.plan.md#next-agent-start--after-three-pr-closeout),
+record a dated PASS or FAIL against the current tree, and only then either run
+its atomic Tasks 3–5 or retain the enforced root-internal tool. Track B remains
+the single primary repo plan while this is an explicitly activated parallel
+lane.
+
 ### Family disposition ledger
 
 | Child                             | Live disposition                                                           | Next authority                                                           |
@@ -594,7 +614,9 @@ configuration boundary is merged and used by the root application: repository
 policy is supplied through a validated configuration interface and no harness
 module imports product source. No workspace manifest or child package exists.
 
-The next slice begins with a fresh extraction-gate decision. If the gate still
-passes, introduce workspace discovery and move the visual tool as one separate,
-reversible change. If it fails, retain the landed seam and record an enforced
-root-internal tooling boundary.
+The next slice begins with a fresh, dated extraction-gate decision following
+the child plan's next-agent start. If the gate passes, introduce workspace
+discovery, move the visual tool, preserve the root command, and remove the old
+path as the one atomic Tasks 3–5 slice. If it fails, create no workspace
+manifest or placeholder package: retain the landed seam and record an enforced
+root-internal tooling boundary. Do not re-audit the completed PR repair arc.

@@ -4,6 +4,7 @@ overview: Compose LinkedIn-native profile content from private local sources whi
 todos:
   - id: continue-private-editorial-pass
     content: Continue the owner-led field-by-field rebuild on the private working surface; the Oak Experience entry is in progress with Jim writing directly.
+    content: Keep the owner-led editorial pass behind the private boundary; this public plan carries routing and safety constraints only.
     status: in_progress
 isProject: true
 ---
@@ -26,6 +27,10 @@ store. Current state, kept deliberately terse:
   About is deliberately last.
 - The full plan, method, and per-field state live in the private repository's
   current plan and handoff — read those before any editorial action.
+Active behind the private editorial boundary and owner-led. This tracked file
+is a routing and safety stub, not a task queue, status ledger, draft, evidence
+store, or session record. Granular editorial state belongs only in the private
+plan and handoff.
 
 ## Outcome, impact, and value mechanism
 
@@ -79,4 +84,8 @@ CV.
 7. Owner instructions carry the scope of their moment; do not generalise a
    local correction into a standing rule.
 8. Move only final, owner-approved copy to LinkedIn itself; do not stage it in
+3. Work only on drafts and evidence behind the private editorial boundary.
+4. Take the current field, method, and owner decisions only from the private
+   plan and handoff; do not reconstruct them from public history or this stub.
+5. Move only final, owner-approved copy to LinkedIn itself; do not stage it in
    the public repository.
