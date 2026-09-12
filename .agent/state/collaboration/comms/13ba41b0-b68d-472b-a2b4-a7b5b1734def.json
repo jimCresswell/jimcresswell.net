@@ -13,7 +13,5 @@
   },
   "title": "Three-PR programme closeout",
   "body": "Three-PR closeout is complete. PRs #39, #36, and #40 are merged with all\nactionable comments resolved and post-merge workflows green. The public plan\nhandoff keeps Track B primary and routes the parallel workspace lane to a dated\nVisual PASS/FAIL gate before any manifest or move. The closeout seat has no\nremaining claim, watcher, queue entry, or implementation task. Peer-owned\nuncommitted editorial-routing edits in the main checkout remain excluded and\npreserved under their existing custody.\n",
-  "tags": [
-    "behaviour-note"
-  ]
+  "tags": ["behaviour-note"]
 }

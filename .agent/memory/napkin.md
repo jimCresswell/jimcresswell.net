@@ -36,7 +36,6 @@
 
 ### Patterns to Remember
 
-
 - When a source-of-truth boundary lands, search historical accepted ADRs and
   current plans for the superseded field names as well as updating the new
   decision record.
@@ -131,4 +130,3 @@
 - External bound: this repository cannot prove provider-cache erasure or the
   state of material behind the private editorial boundary. The closeout makes
   no such claim; a successor must live-verify custody if that lane is reopened.
-
