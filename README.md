@@ -199,6 +199,9 @@ tilt links return the branded 404. See
 Two Git hooks enforce quality automatically:
 
 - **Pre-commit** — light: the branch guard, Prettier and markdownlint on staged files, lint on changed workspaces.
+- **Commit message** — commitlint runs in the `commit-msg` hook. Check a message before you
+  commit, without running any hook: `pnpm agent-tools:check-commit-message -m "type(scope): subject"`
+  (or `-F <file>`; exit 0 conforms, 1 violates).
 - **Pre-push** — full: `pnpm check` and the site's end-to-end suite. PDF tests require a prior build and are run explicitly.
 
 ```bash

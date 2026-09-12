@@ -700,6 +700,12 @@ Acceptance: `validate-claim-freshness`, `validate-pretooluse-guard-routing`, `va
   The earlier antigen scrub turned `apps/oak-…` fixture paths into `jcdotnet/…` in one test and
   silently put it out of the rule's scope — replace fixtures by hand, then re-run the suite.
 
+### Owner rulings on the agent-tools scripts (2026-09-12, late)
+
+- Keep the Codex scripts (`codex-exec`, `codex-reviewer-resolve`, the Codex identity hook); multi-agent collaboration is a later exploration.
+- Keep `check-commit-message` and make it discoverable: its point is checking a message's validity without running the hook chain first, and it was hardly used because nobody found it. Root alias `agent-tools:check-commit-message` added; README §Git hooks and AGENT.md §Commands name it; the commit skill already cites it.
+- Retirement candidates stand as listed above (`validate-ratified-lists`, `protocol-conformance`, `pr-throughput`, `merge-bot`, `ci-turbo-report`) for re-evaluate.
+
 ## Falsifiers
 
 - **Finding 1/6 (load-bearing).** Tested and passed: every shared PDR ≤ 14% novel,

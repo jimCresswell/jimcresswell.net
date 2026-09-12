@@ -207,7 +207,9 @@ sub-agents). Site-only commands run through the workspace filter:
 `pnpm --filter @jimcresswell/www dev | build | test:e2e | visual-regression-harness`.
 `pnpm check` and the E2E suite run sequentially, never in parallel. The
 command source of truth is root `package.json` and
-[Build System](../../docs/engineering/build-system.md).
+[Build System](../../docs/engineering/build-system.md). Before every commit,
+check the message in isolation: `pnpm agent-tools:check-commit-message -m "…"`
+(the `commit-msg` hook is the backstop, not the first check).
 
 ## Project Structure
 
