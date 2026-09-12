@@ -87,9 +87,10 @@ ratified by the owner (2026-09-12, evening) and the journey understood
 8. re-evaluate slice 2 item 1 done — the lineage's pull-request machinery
 re-imported at `e477e62f7` (four doctrine patches, a §Scope section in the PR
 template, §Code review in the Copilot instructions and `AGENTS.md`; the
-PR #135 fixture not carried); 9. **next, in order — the rest of slice 2**:
-the content-grain merge of the 11 local expert templates; the record-number
-citations in `agent-tools` source comments (ADR-199 alone is cited in fourteen
+PR #135 fixture not carried); 9. slice 2 item 2 done — the ten expert
+templates merged at content grain (four commits; adapter descriptions still
+the old ones until the generator bin lands); 10. **next, in order — the rest
+of slice 2**: the record-number citations in `agent-tools` source comments (ADR-199 alone is cited in fourteen
 modules; check the title at the target, a number surviving proves nothing);
 plan-node migration (39 legacy plans; the plan-corpus validator needs
 `docs/strategy`; the impact registry still lists the source's product areas;

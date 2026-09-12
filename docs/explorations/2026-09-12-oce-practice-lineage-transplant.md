@@ -934,3 +934,22 @@ sentence that cited the fixture path now names it as the lineage's and points th
 its own first tallied pull request. Antigen scan of the applied hunks: none. Gates: markdown
 links, cited scripts, portability and skills adapters green. No Core file changed, so no
 provenance entry.
+
+## Re-evaluate slice 2, item 2 — the ten expert templates at content grain (executed 2026-09-12)
+
+The transplant kept the local 60-line templates for eleven same-named experts (`mcp` since
+dropped) because their site substance was 94–100% novel; the lineage's versions (180–550 lines)
+carried the review method those short files lacked. Merged first-hand in four commits, one
+method per antigen density: the seven generic templates (`config`, `security`, `docs-adr`,
+`subagent-architect`, `code`, `test`, `type`) took the lineage file as the base with the local
+identity block, reading rows, seams and triage targets grafted in and the upstream product
+sentences removed; the three site-facing templates (`accessibility`, `design-system`,
+`react-component`) were rewritten on the lineage's two-mode structure with the site's surfaces
+(App Router pages and components, the Tailwind `@theme` tokens in `globals.css`, the theme
+provider and toggle, the generated PDF, the Playwright and axe-core suite, the visual-regression
+harness and the rendered-proof records). `type-expert`'s source of truth moved from an API
+schema to the entity graph and its Zod schemas. Every path each template names was checked to
+exist (two corrections found that way: a PDR filename and an `.env.example` that does not
+exist); `subagents:check`, `portability:check`, cited scripts and markdown links green after
+each batch. Identity `Name:` fields now match the roster. Not done: regenerating the adapter
+descriptions from the new identity summaries (the generator is the delivery node's slice 5).

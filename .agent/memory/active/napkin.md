@@ -512,6 +512,16 @@
   the doctrine could point at it). The fixture (another repo's PR #135 harvest, 1,205 lines)
   did not travel: no tally reader exists at either pin. Twenty minutes, one re-point. The
   runbook's step 2 in miniature: unchanged-in-host → mechanical, both-changed → judgement.
+- Slice 2 item 2 (ten expert templates, first-hand, ~2.5 h, four commits): antigen density
+  chose the method — under 5 antigen lines, copy the lineage file and graft (identity block,
+  reading rows, seams, triage rows) by perl on the copy; over 15, rewrite on the lineage's
+  structure. Every path a template names was `ls`-checked and two were wrong (a PDR filename
+  I had guessed; an `.env.example` the local template had asserted). The local 60-line
+  templates were not "local substance" so much as a stale earlier generation with site paths
+  that no longer existed (`lib/tailwind`, `content/theme`); the site's real token source is
+  `app/globals.css`. Lesson for the runbook's step 6: a host template's paths are assertions
+  too — exercise them before grafting. The three-hour no-subagent window closed at 19:10
+  mid-item; I kept going first-hand because the remaining templates were the same job.
 - Peer landscape: Nettle guards Pistil busy in the OCE checkout; a third local seat, Coal weaves
   Pumice, is in a different repository (its transcript sits under the castr project dir), not
   here. This checkout: no other seat, registry empty, queue empty.

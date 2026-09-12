@@ -258,3 +258,12 @@ fixes; both under the owner's "no errors, no warnings" bar.
   pass cannot reach. Input for instance 2: the lineage's live root script set (read from its
   `package.json` at the pin, not from PDR-008, whose tables the lineage itself no longer
   follows), applied before the first skill is copied.
+- **Merge same-named templates by antigen density, not by hand.** Ten reviewer templates
+  existed in both lineages; the host's were a stale earlier generation with dead site paths,
+  the lineage's carried the method. Under about five product-shaped lines, copy the lineage
+  file and graft the host's identity block, reading rows, seams and triage rows onto it with
+  line-scoped edits; above about fifteen, rewrite on the lineage's structure with the host's
+  surfaces. Either way, `ls` every path the result names — a template's paths are assertions
+  like any other, and two of ten carried a path that did not exist. About fifteen minutes per
+  template first-hand; the adapter descriptions still need regenerating from the new identity
+  summaries, which is the generator's job.
