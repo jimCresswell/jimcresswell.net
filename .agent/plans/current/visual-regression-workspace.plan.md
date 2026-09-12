@@ -125,6 +125,45 @@ manifest is created, compare the current explicit
 shape. Retain the root-internal tool if the final package needs app imports, a
 configuration wrapper larger than its engine, or workspace-only path guessing.
 
+## Next-agent start — after three-PR closeout
+
+This is the live resumption point for the workspace lane. PRs #39, #36, and #40
+are merged; their review comments are dispositioned; no extraction work has
+started. Do not reopen their repair history or create workspace substrate as a
+preparatory step.
+
+Before editing source or manifests:
+
+1. run `start-right-thorough` and confirm current Git, collaboration, manifest,
+   lockfile, and private-boundary custody from the live checkout
+2. read the parent plan, the
+   [workspace architecture context](../research/workspace-architecture-context.md),
+   [ADR-016](../../../docs/architecture/decision-records/016-review-oriented-visual-regression-harness.md),
+   this plan, and the harness README
+3. verify that no workspace manifest or child package has appeared and inspect
+   the current harness consumers and dependency graph
+4. run `pnpm check`, then record a known-good visual comparison of the current
+   root tool before changing its location; use the last product-changing main
+   merge as the base only after verifying that intervening commits are
+   documentation-only
+5. compare the current explicit
+   `allowances.targetOnlyExpectedSectionIds` field with the smallest clearer
+   named-policy shape; do not generalise beyond the one real repository
+   consumer
+6. write a dated extraction-gate disposition into this plan, with evidence for
+   every parent criterion, before touching `pnpm-workspace.yaml` or moving code
+
+PASS authorises the single atomic Tasks 3–5 slice and nothing later in the
+family. FAIL is also a complete child disposition: keep the final injected
+configuration seam, enforce the internal boundary, create no placeholder
+workspace, and route the internal-boundary change through the required code,
+architecture, configuration, security, and test review. On FAIL, update Tasks
+3–5 as completed conditional decisions whose recorded outcome is “not
+performed — extraction gate failed”; do not leave them pending. Then reconcile
+the child, parent, and roadmap, consolidate and archive this child, and only
+then hand off to Practice Validation. If the live evidence has changed the
+boundary or prerequisite graph, stop and revise the plan before implementation.
+
 ## Ownership boundary
 
 The workspace owns:
@@ -247,8 +286,10 @@ moved-but-unwired tree is a delivery point.
 
 ## Extraction-gate disposition
 
-Expected PASS because the harness has independent lifecycle, proof, safety
-contract, and dependency weight even with one principal human invocation.
+**Prior expectation only — not a recorded PASS.** Expected PASS because the
+harness has independent lifecycle, proof, safety contract, and dependency
+weight even with one principal human invocation. The next agent must replace
+this expectation with a dated evidence-backed PASS or FAIL before Tasks 3–5.
 
 **Losing condition:** retain an enforced root-internal tool if the extracted
 workspace needs app imports, configuration wrappers larger than the engine, or
@@ -272,7 +313,18 @@ changed build behaviour.
 
 ## Completion handoff
 
-Record final configuration API, package exports/dependencies, root command,
-comparison artefacts, static rules, substrate friction, gate disposition, and
-recommendation to promote
-[Practice Validation Workspace](practice-validation-workspace.plan.md).
+Close exactly one terminal branch:
+
+- **PASS:** complete the atomic Tasks 3–5 slice; record the final configuration
+  API, package exports and dependencies, root command, comparison artefacts,
+  static rules, substrate friction, required review verdicts, and gate evidence.
+- **FAIL:** mark the conditional Tasks 3–5 completed as “not performed —
+  extraction gate failed”; record the absent workspace/package, the retained
+  configuration seam, the enforced internal boundary, its proof, and every
+  required review verdict.
+
+For either branch, reconcile this plan, the parent, and the roadmap; run
+consolidation; graduate this child to `archive/`; and only then recommend
+promotion of
+[Practice Validation Workspace](practice-validation-workspace.plan.md). A child
+left `In progress` or with Tasks 3–5 pending cannot promote its successor.

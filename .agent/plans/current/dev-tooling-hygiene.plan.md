@@ -85,9 +85,9 @@ layering decisions already made implicitly by the repo structure.
 - This plan does not change product behaviour; rendered output should be
   identical except where a major dependency upgrade demands intentional
   changes.
-- This plan does not retire tilts (see `tilt-retirement.plan.md`) or design
-  graph composition (see Track B). It can run before, during, or after either
-  of those.
+- This plan does not retire tilts (see the completed
+  [tilt-retirement plan](../archive/tilt-retirement.plan.md)) or design graph
+  composition (see Track B). It can run independently of Track B.
 - `dependency-cruiser` is committed as a blocking gate in advance. Whatever
   its first run surfaces will be cleaned up in a dedicated follow-on session,
   not in the introduction slice itself.

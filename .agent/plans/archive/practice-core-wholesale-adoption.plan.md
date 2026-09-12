@@ -168,7 +168,7 @@ This plan is a structural ratchet that touches the surfaces every other in-fligh
 - **LinkedIn content prep** ([plan](.agent/plans/current/linkedin-update.plan.md))
   - Affected: Phase 4.
   - `linkedin-content-preparation.prompt.md` loses start-right boilerplate, gains a single skill reference. Substance preserved.
-- **Tilt retirement** ([plan](.agent/plans/current/tilt-retirement.plan.md))
+- **Tilt retirement** ([plan](tilt-retirement.plan.md))
   - Affected: Phase 4, Phase 8.
   - Prompt restructured (boilerplate stripped); any reference to gate names in the plan needs realignment to PDR-008 canonical names.
 - **Dev-tooling hygiene** ([plan](.agent/plans/current/dev-tooling-hygiene.plan.md))
@@ -359,7 +359,7 @@ Tasks:
 - Keep [`session-continuation.prompt.md`](.agent/prompts/session-continuation.prompt.md) as the canonical session-continuation prompt.
 - Move [`personal-knowledge-graph-track-a-cv-metadata-proof.prompt.md`](.agent/prompts/archive/personal-knowledge-graph/personal-knowledge-graph-track-a-cv-metadata-proof.prompt.md) (status: completed) to `archive/`.
 - Audit [`personal-knowledge-graph-track-a-external-validation.prompt.md`](.agent/prompts/archive/personal-knowledge-graph/personal-knowledge-graph-track-a-external-validation.prompt.md); if completed, move to `archive/`.
-- For each remaining active prompt — [`dev-tooling-hygiene.prompt.md`](.agent/prompts/dev-tooling/dev-tooling-hygiene.prompt.md), [`linkedin-content-preparation.prompt.md`](.agent/prompts/editorial/linkedin-content-preparation.prompt.md), [`personal-knowledge-graph-track-b-source-of-truth-design.prompt.md`](.agent/prompts/personal-knowledge-graph/personal-knowledge-graph-track-b-source-of-truth-design.prompt.md), [`tilt-retirement.prompt.md`](.agent/prompts/cv/tilt-retirement.prompt.md) — strip start-right boilerplate (replace with a single skill reference: "Ground first via `start-right-quick` or `start-right-thorough`."); keep "Grounding truths to preserve" and "Active task" sections.
+- For each remaining active prompt — [`dev-tooling-hygiene.prompt.md`](.agent/prompts/dev-tooling/dev-tooling-hygiene.prompt.md), [`linkedin-content-preparation.prompt.md`](.agent/prompts/editorial/linkedin-content-preparation.prompt.md), [`personal-knowledge-graph-track-b-source-of-truth-design.prompt.md`](.agent/prompts/personal-knowledge-graph/personal-knowledge-graph-track-b-source-of-truth-design.prompt.md), and the now-archived [`tilt-retirement.prompt.md`](../../prompts/archive/cv/tilt-retirement.prompt.md) — strip start-right boilerplate (replace with a single skill reference: "Ground first via `start-right-quick` or `start-right-thorough`."); keep "Grounding truths to preserve" and "Active task" sections.
 - Group workstream prompts into subdirectories where two or more prompts share a workstream (e.g. `personal-knowledge-graph/`, `dev-tooling/`).
 - Update plans `current/`/`active/` link references to the new locations.
 
