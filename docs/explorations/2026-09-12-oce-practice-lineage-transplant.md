@@ -679,6 +679,27 @@ Acceptance: `validate-claim-freshness`, `validate-pretooluse-guard-routing`, `va
 
 **Lesson (recorded in the efficiency guidance):** writing `.claude/settings.json` hooks before the policy file exists locks the session out of Bash, Edit and Write at once — the guard fails closed by design. Restore `policy.json` first, wire settings second.
 
+### Oak residue in tooling (scan 2026-09-12, for replacement at re-evaluate)
+
+`git grep -i oak -- agent-tools tooling` after Phase 8. Three classes, none load-bearing today:
+
+- **Product code (2 files, fix first).** `agent-tools/src/pr-throughput/gh-fetch.ts` hard-codes
+  `CANONICAL_REPOSITORY = 'oaknational/jimcresswell.net'` — a scrub artefact that names a repo
+  which does not exist; derive it from the git remote or set `jimCresswell/jimcresswell.net`.
+  `agent-tools/src/pr-throughput/index.ts` links PDR-130/131 by upstream GitHub URLs on an OCE
+  coordination branch; repoint to the local `.agent/practice-core/decision-records/` files.
+- **Package metadata (5 files).** `repository`, `bugs` and `homepage` in
+  `tooling/{eslint,result,safe-path,type-helpers,workspace-config}/package.json` still name
+  `oaknational/jimcresswell.net` and `packages/core/<name>` paths; set the real remote and
+  `tooling/<name>`.
+- **Test fixtures (14 files).** Neutral stand-ins wanted (`example-org/example-repo`,
+  `linear.app/example-org/…`): `src/claude/statusline-owner-jobs.unit.test.ts`,
+  `src/merge-bot/{cli,mint-installation-token,repo-config}.unit.test.ts`,
+  `src/pr-watch/{gh,state-cli,state-fields,state-gh,states}.unit.test.ts`,
+  `src/pr-watch/state-view-fixture.ts`, `src/secret-scan/run-push-secret-scan.unit.test.ts`.
+  The earlier antigen scrub turned `apps/oak-…` fixture paths into `jcdotnet/…` in one test and
+  silently put it out of the rule's scope — replace fixtures by hand, then re-run the suite.
+
 ## Falsifiers
 
 - **Finding 1/6 (load-bearing).** Tested and passed: every shared PDR ≤ 14% novel,
