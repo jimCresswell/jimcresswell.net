@@ -953,3 +953,16 @@ exist (two corrections found that way: a PDR filename and an `.env.example` that
 exist); `subagents:check`, `portability:check`, cited scripts and markdown links green after
 each batch. Identity `Name:` fields now match the roster. Not done: regenerating the adapter
 descriptions from the new identity summaries (the generator is the delivery node's slice 5).
+
+## Re-evaluate slice 2, item 3 — lineage record numbers in the agent-tools sources (executed 2026-09-12)
+
+Measured: fifteen source-lineage ADR numbers across about two hundred sites in the agent-tools
+sources, tests and docs, every one above the local series' last number (022). Each number was
+mapped to the concept its record named (the lineage's title at the pin) and substituted by a
+script; compound and link forms first, bare numbers second, then a pass for the doubled and
+adjectival articles a noun-phrase substitution produces ("the the", "an the", "the heartbeat
+lifecycle substrate heartbeat"). One lineage doc path in the fitness-vocabulary allowlist was
+removed with its test re-pointed, and two fixture tests that quoted the phrase inside a link
+text were re-worded so the validator under test still sees only the preserved filename. Lint,
+type-check, the 3,488 agent-tools tests and `pnpm check` green. PDR numbers were left: the Core
+numbering transplanted whole, and every cited PDR resolves to the record it names.

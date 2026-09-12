@@ -89,10 +89,10 @@ re-imported at `e477e62f7` (four doctrine patches, a §Scope section in the PR
 template, §Code review in the Copilot instructions and `AGENTS.md`; the
 PR #135 fixture not carried); 9. slice 2 item 2 done — the ten expert
 templates merged at content grain (four commits; adapter descriptions still
-the old ones until the generator bin lands); 10. **next, in order — the rest
-of slice 2**: the record-number citations in `agent-tools` source comments (ADR-199 alone is cited in fourteen
-modules; check the title at the target, a number surviving proves nothing);
-plan-node migration (39 legacy plans; the plan-corpus validator needs
+the old ones until the generator bin lands); 10. slice 2 item 3 done — the
+fifteen lineage ADR numbers in the `agent-tools` sources replaced by the
+concepts they named (about two hundred sites; PDR numbers resolve and stay);
+11. **next, in order — the rest of slice 2**: plan-node migration (39 legacy plans; the plan-corpus validator needs
 `docs/strategy`; the impact registry still lists the source's product areas;
 the two ratified nodes conform by hand); the ratified delivery node
 `castr-lineage-update-preparation`'s slices (instruments as `agent-tools`

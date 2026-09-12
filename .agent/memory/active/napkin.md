@@ -522,6 +522,17 @@
   `app/globals.css`. Lesson for the runbook's step 6: a host template's paths are assertions
   too — exercise them before grafting. The three-hour no-subagent window closed at 19:10
   mid-item; I kept going first-hand because the remaining templates were the same job.
+- Slice 2 item 3 (lineage ADR numbers in agent-tools, ~200 sites, 125 files): a number→concept
+  map applied by script. Two mistakes, both caught by the gates: (1) a perl `s{}{}` with an
+  unbalanced brace in the replacement failed to compile, and my `perl < f > f.tmp && mv` loop
+  left 125 empty `.tmp` files behind when perl exited non-zero — write the temp only on
+  success, or edit in place with `-i`; (2) an unanchored path-removal regex also deleted the
+  same path inside a test's argument, and a noun-phrase substitution after "the"/"an" produced
+  "the the"/"an the"/adjectival stacks ("the heartbeat lifecycle substrate heartbeat") — a
+  map from a number to a noun phrase needs an article-aware pass and a grep for doubled
+  articles before the tests are the only check. The fitness-vocabulary tests quoted the
+  retired phrase inside a link text on purpose; the map put the phrase outside the filename
+  and the validator under test (correctly) reported it — fixtures are assertions too.
 - Peer landscape: Nettle guards Pistil busy in the OCE checkout; a third local seat, Coal weaves
   Pumice, is in a different repository (its transcript sits under the castr project dir), not
   here. This checkout: no other seat, registry empty, queue empty.
