@@ -15,7 +15,7 @@ todos:
     content: Install dependency-cruiser, write the initial config encoding the repo's layering rules, and commit advisory output as evidence.
     status: pending
   - id: depcruiser-promote-to-gate
-    content: Add depcruiser as the ninth blocking gate in pnpm check / check:ci, write the ADR, update principles.md and README.
+    content: Add depcruiser as the ninth blocking gate in pnpm check, write the ADR, update principles.md and README.
     status: pending
   - id: depcruiser-cleanup-session
     content: Dedicated follow-on session to resolve every depcruiser violation surfaced by the first strict run.
@@ -36,7 +36,7 @@ patch/minor lines, took security-required majors for jsdom,
 markdownlint-cli2, Puppeteer, and Sharp, kept ESLint 9 because Next's plugin
 stack rejects ESLint 10, and pinned patched Vite, esbuild, and brace-expansion
 transitives. Both complete and production `pnpm audit` reported zero
-advisories. `pnpm check:ci` passed with 221 tests, Playwright passed 58/58, the
+advisories. `pnpm check` passed with 221 tests, Playwright passed 58/58, the
 exact-base visual harness showed zero differing pixels, and GitHub CI plus the
 Vercel preview were green before merge.
 
@@ -162,7 +162,7 @@ documented.
 ### Phase 2 — Introduce `dependency-cruiser` as the ninth blocking gate
 
 **Goal:** install `dependency-cruiser`, write a layering config, and add it as
-a ninth blocking gate to `pnpm check` and `pnpm check:ci`.
+a ninth blocking gate to `pnpm check` and `pnpm check`.
 
 **Impact:** module-layering decisions become enforced rather than implied; the
 gate sequence reflects the architectural surface the repo actually wants.
@@ -186,7 +186,7 @@ hard to detect in review. A blocking gate makes the rule actionable.
 - a new ADR records the decision to make depcruiser blocking and names the
   layering rules
 - `principles.md` updates to call out the ninth gate in the gate sequence
-- `package.json` `check` and `check:ci` scripts gain `pnpm depcruise`
+- `package.json` `check` script gains `pnpm depcruise`
 - `README.md` and `CONTRIBUTING.md` (if present) reflect the ninth gate
 - the introduction commit captures the **first strict run output** as a
   baseline (committed advisory note), but the gate is **already strict** at
@@ -221,7 +221,7 @@ hard to detect in review. A blocking gate makes the rule actionable.
 
 ##### Task 2.3 — Wire depcruiser into the gate sequence
 
-**Outcome:** `pnpm check` and `pnpm check:ci` run depcruiser; pre-commit and
+**Outcome:** `pnpm check` and `pnpm check` run depcruiser; pre-commit and
 pre-push hooks pick this up automatically.
 
 **Acceptance criteria:**
@@ -246,7 +246,7 @@ hide the value of either change.
 - a fresh session opens this phase as its primary task
 - every violation is either fixed or documented as an explicit
   `dependency-cruiser` allowed-exception in the config (with rationale)
-- `pnpm check:ci` passes cleanly
+- `pnpm check` passes cleanly
 - the cleanup commits are scoped per-rule or per-module, not as one giant
   refactor
 

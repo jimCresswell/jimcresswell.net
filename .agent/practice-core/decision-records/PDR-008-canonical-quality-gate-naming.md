@@ -335,16 +335,15 @@ The distilled-memory rule "the quality-gate criterion is always
 `pnpm check` from the repo root, with no filtering, green"
 carries forward in substance. Under PDR-008 the phrasing sharpens:
 
-- Local authors type `pnpm check` (the short, mutating-aggregate
-  alias); its clean exit proves the repo is in a state where
-  CI would also pass.
-- CI invokes `pnpm check:ci` (the non-mutating CI form); its
-  clean exit is the authoritative merge gate.
+- Local authors type `pnpm check` (the read-only aggregate, as
+  amended 2026-09-12); its clean exit proves the repo is in a
+  state where CI would also pass.
+- CI invokes the same legs as `check`, one run step per leg, under
+  a parity validator; there is no separate `:ci` form.
 
-Both forms share verify coverage. The distinction is mutation
-scope: local form may auto-correct; CI form leaves the tree
-unchanged. The merge criterion is `check:ci` green; the local
-proof-of-merge-readiness is `check` (= `check:fix`) green.
+The merge criterion is `check` green, locally and in CI. A repair
+is always an explicit `fix` (or `fix:docs`), followed by `check`
+again; a mutating command is never the proof.
 
 ### Why verify-by-default matters (and why `check` breaks it)
 
@@ -367,3 +366,39 @@ always run by someone who understands they are running the
 local gate, and the CI-safe form (`check:ci`) remains one suffix
 away. The exception is worth its cost; it is not an invitation
 to add further aliases.
+
+## Amendment Log
+
+### 2026-09-12 — jimcresswell.net: the lineage's live convention supersedes the `check`-mutates model
+
+Owner direction (2026-09-12): adopt the source lineage's `package.json`
+script naming as practised, not as this record's tables describe it. The
+lineage's live root scripts, which every skill and rule in the transplanted
+Practice already assume, are:
+
+- `check` is the **read-only** aggregate; `fix` is the mutating aggregate
+  (`format:root`, `markdownlint:root`, `lint:fix`); `check:docs` and
+  `fix:docs` are the documentation subset. The `check`-as-alias-of-`check:fix`
+  exception above is retired: bare `check` verifies, and mutation is always an
+  explicit `fix`.
+- There is no `:ci` form. CI runs the same legs as `check`, one run step per
+  leg, and a parity validator (`validate-check-ci-parity`) refuses drift
+  between the two, which is the guarantee the `:ci` suffix was for.
+- Root-only formatting and markdown gates are named for the ecosystem tool and
+  the scope: `format-check:root` / `format:root`, `markdownlint-check:root` /
+  `markdownlint:root`. Workspace packages carry only their own task gates
+  (`build`, `clean`, `dev`, `start`, `type-check`, `lint`, `lint:fix`, `test`,
+  `test:watch`, `test:e2e`, `test:ui`) plus tool scripts named
+  `<subject>:<verb>`; formatting, markdown, unused-code and secret scans run
+  once, at the root.
+- Validators are grouped as `docs-validators:check` (reference direction,
+  machine-local paths, markdown links, cited scripts, patterns index) and
+  `repo-validators:check` (CI parity, claim freshness, guard routing, policy
+  reappraisal, lifecycle scripts, stale invocations, collaboration state,
+  identity naming, workspace config isolation), both legs of `check`.
+
+The tables and rules above describe the earlier model and are read through
+this amendment; `practice-verification.md` item 9 lists the amended set. The
+source lineage's own copy of this record has not been amended and its
+`package.json` contradicts it — a cohesion finding for that estate, not this
+one.

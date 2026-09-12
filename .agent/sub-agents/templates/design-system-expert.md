@@ -39,7 +39,7 @@ Could it be simpler without compromising quality? Stability in the design system
 - Layout and spacing changes respect the established rhythm (72px/48px/24px steps) and do not introduce conflicting values.
 - Motion and hover states stay within the established easing/duration tokens so the experience feels cohesive.
 - Theme toggles (light/dark) continue to align with accessibility-level contrast requirements.
-- Visual tests, including `pnpm visual-regression-harness`, cover any new layout states.
+- Visual tests, including `pnpm visual-regression:harness`, cover any new layout states.
 
 ## Output Format
 

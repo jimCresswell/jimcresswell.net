@@ -75,6 +75,7 @@ const EXCLUDED_PATH_FRAGMENTS: readonly string[] = [
   '.agent/evaluations/',
   '.agent/research/',
   '.agent/state/',
+  '.agent/collaboration/rapid-comms/',
   'docs/explorations/',
 ];
 

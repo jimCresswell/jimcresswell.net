@@ -5,8 +5,8 @@
 export TURBO_UI=0
 
 echo "🚀 Running pre-push checks..."
-if ! env -u GIT_DIR -u GIT_INDEX_FILE -u GIT_WORK_TREE pnpm check:ci; then
-  echo "❌ check:ci failed!"
+if ! env -u GIT_DIR -u GIT_INDEX_FILE -u GIT_WORK_TREE pnpm check; then
+  echo "❌ check failed!"
   exit 1
 fi
 if ! env -u GIT_DIR -u GIT_INDEX_FILE -u GIT_WORK_TREE pnpm --filter @jimcresswell/www test:e2e; then

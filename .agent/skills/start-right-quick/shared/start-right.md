@@ -294,7 +294,7 @@ session's statusline. So build every new worktree **before** opening the session
 not after.
 
 `pnpm install` also does NOT fetch Playwright browser binaries, so a fresh
-worktree's pre-push `test:e2e` leg (and `test:e2e:ui`) dies with "Executable
+worktree's pre-push `test:e2e` leg (and `test:ui`) dies with "Executable
 doesn't exist at …chrome-headless-shell" until you run
 `pnpm --filter @jimcresswell/www exec playwright install chromium-headless-shell`
 once in the worktree. Read the log before assuming a known flake. Full

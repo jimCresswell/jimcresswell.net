@@ -26,7 +26,7 @@ check once the slice is shaped.
    units and shared helpers over ad hoc numbers.
 2. Treat mobile, desktop, zoom, and theme states as part of the same contract,
    not follow-up polish.
-3. Run `pnpm visual-regression-harness` on any slice that can visibly shift the
+3. Run `pnpm visual-regression:harness` on any slice that can visibly shift the
    layout, spacing, or theming.
 4. Hand off to `design-system-reviewer` once the component or style surface is
    implemented, and pull in `accessibility` when contrast or motion are part of

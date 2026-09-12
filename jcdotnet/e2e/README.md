@@ -6,7 +6,7 @@ End-to-end tests using [Playwright](https://playwright.dev/) and [axe-core](http
 
 ```bash
 pnpm test:e2e          # Run the full suite against a production build
-pnpm test:e2e:ui       # Open Playwright UI mode
+pnpm test:ui       # Open Playwright UI mode
 ```
 
 The Playwright web server runs `pnpm build && pnpm start --port 3000` so every

@@ -31,7 +31,7 @@ Could it be simpler without compromising quality? UI architecture rests on consi
 1. Inspect diffs for layout, navigation, header, footer, tilt alias, or route changes (especially under `app/` and `components/`).
 2. Confirm header components, navigation arrays, and tilt selectors follow the existing alias rules; new alias routes should be declared in `content/cv`.
 3. Ensure layout changes keep the responsive grid and that the navigation order matches the documented user journeys.
-4. Validate that `pnpm visual-regression-harness` is run (or at least `pnpm test:e2e` + manual check) when layout shifts occur.
+4. Validate that `pnpm visual-regression:harness` is run (or at least `pnpm test:e2e` + manual check) when layout shifts occur.
 5. If the change introduces new interactive experiences (PDF downloads, toggles), confirm that the experience is documented and test coverage exists.
 
 ## Specific Checks

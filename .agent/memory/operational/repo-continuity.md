@@ -79,13 +79,10 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 Owner-set order (2026-09-12): 1. rules triage done; 2. harness integration done
 (plan §Phase 8); 3. re-evaluate slice 1 done (seed contract, session-open
 surfaces, docs layer); 4. restart assessment done (below); 5. link repair done
-(418 → 0; lineage-only targets removed, not re-pointed); 6. **next, in
-order**: (a) adopt OCE's `package.json` script naming conventions (owner
-direction 2026-09-12: `format-check:root`/`format:root`,
-`markdownlint-check:root`/`markdownlint:root`, `fix`/`fix:docs`, `test:ui`,
-`repo-validators:check`; retire `check:ci`, `check:fix`, `format`,
-`format:fix`, `markdownlint:check`, `markdownlint:fix`; re-point every
-citation, hooks and CI; parity stays green); (b) owner ratification of the two sketch plan nodes authored
+(418 → 0; lineage-only targets removed, not re-pointed); 6. script naming
+adopted from the lineage as practised (owner direction 2026-09-12; PDR-008
+amended; `pnpm check` green on 16 legs, CI parity 16); 7. **next, in
+order**: (a) owner ratification of the two sketch plan nodes authored
 on 2026-09-12 at the owner's word that the castr transplant is next and must
 cost a fraction: the runbook `.agent/plans/runbooks/practice-lineage-transplant.md`
 and the delivery node `.agent/plans/delivery/castr-lineage-update-preparation.md`
@@ -94,8 +91,9 @@ on the adapter-generator design); (c) then re-evaluate slice 2, candidates in
 order: re-import OCE's pull-request machinery — PR #136 merged at `2b1b15ab8`
 (seven surfaces: the PR template, pr-lifecycle §Phase 2/§Phase 4/§Response
 pricing, `review-feedback-defaults-to-triage`, proportionality,
-coordination-fold, the Copilot instructions, `AGENTS.md`); PR #138 still open
-at `352ad0ee5`; the source is read-only, read with `git show` at a pinned
+coordination-fold, the Copilot instructions, `AGENTS.md`); PR #138 merged at
+`e477e62f7` (the disposition format in pr-lifecycle §Response pricing and the
+pr-tally fixture); the source is read-only, read with `git show` at a pinned
 commit; the content-grain merge of
 the 11 local expert templates; the link-repair backlog (418; record-number
 citations across `.agent/` and in `agent-tools` source comments — ADR-199 alone

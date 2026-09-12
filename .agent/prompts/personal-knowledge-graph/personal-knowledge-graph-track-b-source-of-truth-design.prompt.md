@@ -130,8 +130,8 @@ The output should define:
 
 ## After changes, run in order
 
-- `pnpm format:fix`
-- `pnpm markdownlint:fix`
+- `pnpm format:root`
+- `pnpm markdownlint:root`
 - `pnpm lint:fix`
 - `pnpm type-check`
 - `pnpm test`

@@ -162,7 +162,7 @@ Write red-phase specs that describe not-yet-implemented system behaviour in
 `*.e2e.test.ts` files (the site's suite uses `*.e2e-ui.test.ts` and
 `*.e2e-api.test.ts`), not `*.unit.test.ts` files. The pre-commit hook is light
 (formatting, markdown, and lint on the changed workspaces), so a red in-process
-spec can be committed on a branch; the pre-push hook runs `pnpm check:ci`
+spec can be committed on a branch; the pre-push hook runs `pnpm check`
 (which includes the `test` task) plus the site's `test:e2e`, and CI runs the
 same set, so every spec must be green before push/merge unless the owner
 explicitly authorises staged WIP.

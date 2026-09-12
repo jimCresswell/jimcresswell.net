@@ -471,7 +471,20 @@
   PDRs for the standing ruling — the reviewer found it in one grep.
 - Owner direction: adopt OCE's `package.json` script naming conventions (`format-check:root`,
   `format:root`, `markdownlint-check:root`, `markdownlint:root`, `fix`/`fix:docs`, `test:ui`,
-  `repo-validators:check`; no `check:ci`, no `check:fix`).
+  `repo-validators:check`; no `check:ci`, no `check:fix`). Done: root and site workspace
+  renamed, ~35 citing files re-pointed by one regex pass plus ~20 prose sites by line-scoped
+  edits, PDR-008 amended, `pnpm check` green on 16 legs (parity 16). Findings on the way: OCE's
+  own PDR-008 still describes `check` as mutating and CI as `check:ci` while its `package.json`
+  does the opposite (a cohesion gap in the source, to tell Nettle); the site workspace carried a
+  second copy of every root gate (`check`, `fix`, `format*`, `markdownlint*`, `knip`,
+  `secrets:scan`) plus two devDependencies only those scripts used — knip found the
+  dependencies the moment the scripts went. The pnpm install after the removal printed a
+  peer-dependency warning: pre-existing and unrelated (TypeScript 6.0.3 installed, the
+  `@typescript-eslint/*` 8.56 packages want `<6`); a dependency-currency lane item, not this
+  change's.
+- Lesson (cheap, repeatable): after any script rename, the cited-scripts validator is the first
+  read; it found the six citations the regex pass could not reach (frozen ARC records and the
+  PDR body), and the fix for the frozen records was an excluded root, not an edit.
 - Peer landscape: Nettle guards Pistil busy in the OCE checkout; a third local seat, Coal weaves
   Pumice, is in a different repository (its transcript sits under the castr project dir), not
   here. This checkout: no other seat, registry empty, queue empty.

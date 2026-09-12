@@ -67,7 +67,7 @@ confirmation.
 Blocking harness proof was run on 2026-03-09 with:
 
 ```bash
-pnpm visual-regression-harness HEAD WORKTREE
+pnpm visual-regression:harness HEAD WORKTREE
 ```
 
 Result:

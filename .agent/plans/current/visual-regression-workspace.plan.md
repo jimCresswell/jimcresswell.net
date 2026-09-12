@@ -82,7 +82,7 @@ PR #39 merged the independently useful configuration inversion. The current
 tree now has these verified properties:
 
 - the root command remains
-  `pnpm visual-regression-harness <base-ref> <target-ref>`
+  `pnpm visual-regression:harness <base-ref> <target-ref>`
 - the repository policy captures only `/` and `/cv`, with route-specific
   regions and explicit expected-section allowances
 - `visual-regression.config.ts` owns the site projection; harness code

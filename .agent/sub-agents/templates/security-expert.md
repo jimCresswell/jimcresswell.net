@@ -41,7 +41,7 @@ Could it be simpler without compromising quality? Security is effective when it 
 - API routes and middleware continue to validate tokens, handle reject paths, and emit proper status codes.
 - Headers include `Content-Security-Policy`, `X-Frame-Options`, `Strict-Transport-Security`, and `Referrer-Policy` where expected; updates to `proxy.ts` or `next.config.ts` keep these in sync.
 - Static assets (PDFs, fonts) continue to deliver with caching policies that do not expose private data.
-- `pnpm check`, `pnpm test`, and `pnpm visual-regression-harness` still run after the change; security issues must stop the merge until proven safe.
+- `pnpm check`, `pnpm test`, and `pnpm visual-regression:harness` still run after the change; security issues must stop the merge until proven safe.
 
 ## Output Format
 

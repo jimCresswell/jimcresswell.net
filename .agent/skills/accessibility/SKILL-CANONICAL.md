@@ -27,7 +27,7 @@ independent read-only pass.
 2. Prefer semantic HTML, explicit text, and predictable focus order over
    aria-only patches or post-hoc fixes.
 3. Pair the change with proof at the right layer: component or integration
-   tests for local behaviour, `pnpm visual-regression-harness` for rendering
+   tests for local behaviour, `pnpm visual-regression:harness` for rendering
    risk, and `pnpm test:e2e` for end-to-end behaviour.
 4. Hand off to `accessibility-reviewer` once the slice is implemented, or
    sooner if the trade-offs are unclear.

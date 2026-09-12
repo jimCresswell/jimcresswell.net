@@ -31,7 +31,7 @@ Could it be simpler without compromising quality? Accessibility is the guardrail
 1. Identify the changed files, especially React components under `app/` and `components/`, layout files, PDF generation helpers, markup in `content/`, and runtime assets in `public/`.
 2. Read the diff to understand intended behaviour — who is the user, what steps should they take, and what should change on screen.
 3. Walk through each interactive flow and content update: headings, landmarks, aria labels, form error handling, focus management, contrast ratios, and motion.
-4. Confirm that `pnpm visual-regression-harness` or `pnpm test:e2e` (when available) covers the affected slices and that any axe or manual audit notes pass; if the change introduces new visual states, verify a visual harness run before declaring success.
+4. Confirm that `pnpm visual-regression:harness` or `pnpm test:e2e` (when available) covers the affected slices and that any axe or manual audit notes pass; if the change introduces new visual states, verify a visual harness run before declaring success.
 5. Look for accessibility-specific helpers in `lib/` or `components/` (e.g., high-contrast palettes, pdf-safe escapes) and ensure they stay wired.
 
 ## Specific Checks

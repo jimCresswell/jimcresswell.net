@@ -482,7 +482,7 @@ For the archived phase model and acceptance criteria, see the phase model (`arch
 
 ### Quality gates at each step
 
-- **Visible content unchanged.** After each structural migration step, run `pnpm visual-regression-harness <base-ref> <target-ref>` against a trusted baseline. The default expectation is zero HTML/DOM differences and zero pixel differences. If the harness flags any DOM-only, metadata-only, or visual change, stop and review it with Jim before proceeding. Editorial changes happen separately, never in the same commit as structural migration.
+- **Visible content unchanged.** After each structural migration step, run `pnpm visual-regression:harness <base-ref> <target-ref>` against a trusted baseline. The default expectation is zero HTML/DOM differences and zero pixel differences. If the harness flags any DOM-only, metadata-only, or visual change, stop and review it with Jim before proceeding. Editorial changes happen separately, never in the same commit as structural migration.
 - `pnpm check` passes.
 - `pnpm test:e2e` passes.
 

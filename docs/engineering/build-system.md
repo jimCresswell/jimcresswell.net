@@ -190,14 +190,14 @@ in the development lifecycle:
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **pre-commit** | The branch guard (refuses commits on `main`), Prettier and markdownlint on the staged files, and `turbo run lint` for the workspaces changed since `HEAD`. Light by design (owner ruling 2026-09-12: light commit, full push).                                            |
 | **commit-msg** | `prevent-accidental-major-version`, then commitlint (Conventional Commits).                                                                                                                                                                                               |
-| **pre-push**   | `pnpm check:ci` (an alias of `pnpm check`) plus the site's end-to-end suite (`pnpm --filter @jimcresswell/www test:e2e`).                                                                                                                                                 |
+| **pre-push**   | `pnpm check` plus the site's end-to-end suite (`pnpm --filter @jimcresswell/www test:e2e`).                                                                                                                                                                               |
 | **CI**         | `.github/workflows/ci.yml` — four jobs after `install`: `secret-scan`, `static-checks` (format, markdown, shell, runtime-only, sub-agents, portability, skills, encoding, machine-local paths, knip, depcruise), `build-and-test` (build, lint, type-check, test), `e2e`. |
 
 The merge, cherry-pick and revert paths fire `pre-merge-commit`,
 `prepare-commit-msg` and `applypatch-msg`, which carry the same branch guard.
 
 **Key principle**: pre-push and CI run the same check set.
-`validate-check-ci-parity` refuses a drift between the `check:ci` legs and the
+`validate-check-ci-parity` refuses a drift between the `check` legs and the
 workflow's run steps, so a CI-only failure indicates an environmental or
 configuration issue (a cold cache, a missing browser, a lockfile that does not
 match), not a missing check.
@@ -234,17 +234,17 @@ and runtime-only lints, the Turbo `lint`, `type-check` and `test` tasks, knip,
 depcruise, the secret scan, and the Practice validators (portability,
 sub-agents, skills adapters, encoding, machine-local paths). It mutates
 nothing, so it is the
-surface pre-push, CI and any repo-wide claim of green cite. `pnpm check:ci` is
+surface pre-push, CI and any repo-wide claim of green cite. `pnpm check` is
 an alias kept so the hook and the parity validator have a stable name.
 
 `pnpm check` does not build the site, run the end-to-end suite, or run the
 `smoke:*` scripts; those run on their own surfaces (`pnpm build`,
 `pnpm test:e2e`, and the workspace scripts).
 
-### `pnpm fix` and `pnpm check:fix` — the mutating repairs
+### `pnpm fix` and `pnpm fix:docs` — the mutating repairs
 
-`pnpm fix` runs `format:fix`, `markdownlint:fix` and `lint:fix` — the
-auto-fixers only. `pnpm check:fix` runs `pnpm fix` and then `pnpm check`, so
+`pnpm fix` runs `format:root`, `markdownlint:root` and `lint:fix` — the
+auto-fixers only, and `pnpm fix:docs` the docs subset. Run `pnpm check` after either, so
 the proof that follows the repair is the same read-only gate. Use the repairs
 to cure a failing proof, then re-run the proof from the beginning; a mutating
 command is never final evidence that the tree is clean.
@@ -338,7 +338,7 @@ the task name) and declare them all.
 
 Use turbo for workspace tasks that benefit from caching, tasks with
 cross-workspace dependencies, and parallel execution of independent tasks. Use
-pnpm for root-only operations (`format`, `markdownlint:check`, `lint:shell`,
+pnpm for root-only operations (`format-check:root`, `markdownlint-check:root`, `lint:shell`,
 `lint:runtime-only`, the validators) and for the `agent-tools:*` wrappers. The
 root has no workspace entry, so making root operations turbo tasks would need
 special configuration; the current split is simpler and correct.
@@ -399,9 +399,9 @@ The root `package.json` `scripts` field is the single source of truth for
 command names. When documenting commands in markdown, use the exact names from
 `package.json`; `validate-cited-scripts` (part of `pnpm check:docs`) refuses
 any `pnpm <script>` in a code span or fenced block that no `package.json`
-defines. Note the read-only/mutating pairs: `pnpm format` checks and
-`pnpm format:fix` writes; `pnpm markdownlint:check` checks and
-`pnpm markdownlint:fix` writes; `pnpm lint` checks and `pnpm lint:fix` writes.
+defines. Note the read-only/mutating pairs: `pnpm format-check:root` checks and
+`pnpm format:root` writes; `pnpm markdownlint-check:root` checks and
+`pnpm markdownlint:root` writes; `pnpm lint` checks and `pnpm lint:fix` writes.
 
 ### Drift Prevention Checklist
 
@@ -497,8 +497,8 @@ converging.
 
 ## Linting and Auto-Fix Safety
 
-- **`lint:fix` can silently revert manual edits**: `pnpm fix` and
-  `pnpm check:fix` run `lint:fix`. If an edit introduces code that the linter
+- **`lint:fix` can silently revert manual edits**: `pnpm fix` runs
+  `lint:fix`. If an edit introduces code that the linter
   "fixes" back, the edit is lost mid-pipeline. Verify the edited file AFTER
   the repair aggregate, not just after a single gate.
 - **Reviewer fixes must exist on disk**: a disposition recorded in a napkin,

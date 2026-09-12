@@ -52,7 +52,7 @@ Phase 2: introduce `dependency-cruiser`.
 1. Install + write `.dependency-cruiser.cjs` (or equivalent) encoding the
    layering rules in the plan.
 2. Write the new ADR documenting the decision and the rule set.
-3. Wire `pnpm depcruise` into `pnpm check` and `pnpm check:ci`; update
+3. Wire `pnpm depcruise` into `pnpm check` and `pnpm check`; update
    `principles.md`, `README.md`, and any tooling docs from "eight gates" to "nine
    gates".
 4. The first strict run will surface violations. Either fix them in this
@@ -96,8 +96,8 @@ once Phase 2 lands.
 
 ## After changes, run in order
 
-- `pnpm format:fix`
-- `pnpm markdownlint:fix`
+- `pnpm format:root`
+- `pnpm markdownlint:root`
 - `pnpm lint:fix`
 - `pnpm type-check`
 - `pnpm test`

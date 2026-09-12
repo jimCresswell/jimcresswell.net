@@ -32,7 +32,7 @@ Could it be simpler without compromising quality? A lean configuration surface k
 2. Ensure entries reference existing files (no circular `pnpm check` loops) and that new scripts match the canonical gate names (clean/build/format/lint/typecheck/test/check).
 3. Validate environment variables: they should be read through helpers and not mutated at runtime; secrets must stay in `process.env` with comments explaining their origin.
 4. Evaluate bundler/runtime toggles (headers, `next.config.ts` rewrites, analytics flags) for security/performance trade-offs and ensure they align with the practice directives.
-5. Confirm that config changes trigger the right validators (e.g., `pnpm check` picks up new scripts, `pnpm test:e2e` still runs, `pnpm visual-regression-harness` still ties into the pipeline).
+5. Confirm that config changes trigger the right validators (e.g., `pnpm check` picks up new scripts, `pnpm test:e2e` still runs, `pnpm visual-regression:harness` still ties into the pipeline).
 
 ## Specific Checks
 

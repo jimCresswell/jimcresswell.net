@@ -887,3 +887,30 @@ green; `validate-markdown-links` clear for `docs/**` and every re-homed file, wi
 links remaining repo-wide (lineage record links in memory, skills, plans and three local ADRs
 that cite pre-transplant skill paths) — the link-repair backlog; `pnpm check` green on all 15
 legs.
+
+## Link repair and script naming — executed 2026-09-12 (resumed session)
+
+**Link repair.** The 418-link backlog closed to 0 first-hand in about an hour, by class: 243 by
+regenerating the patterns index from the empty local corpus (the lineage's 243 pattern files did
+not travel; the generator gained a zero-corpus case and a test); 50 links to archived plans and
+prompts became plain text naming the node (the validator treats `archive/` as non-live); about
+25 moved targets were re-pointed (`memory/active`, `jcdotnet/` paths, the local skill
+directories, ADR-022 for the renumbered rendering-proof record, PDR-020 and PDR-021 by path);
+about 90 citations of lineage-only records and surfaces were removed with each sentence reworded
+to stand alone; and two lineage methodology docs were imported from the pin
+(`ephemeral-to-permanent-homing.md`, `collaboration-state-lifecycle.md`) rather than removing
+five citations to them. `docs-validators:check` became a `check` leg and a CI step.
+
+**Owner ruling (2026-09-12): adopt the lineage's `package.json` script naming as practised.**
+Applied at the root and in the site workspace: `format-check:root` / `format:root`,
+`markdownlint-check:root` / `markdownlint:root`, `fix` and `fix:docs` as the mutating aggregates,
+`test:ui`, `visual-regression:harness`, `repo-validators:check` (nine validators that were green
+but unwired) and `docs-validators:check` (with the patterns index) as `check` legs; `check:ci`,
+`check:fix`, `format`, `format:fix`, `markdownlint:check`, `markdownlint:fix` and every
+site-level duplicate of a root gate retired (the site keeps `build`, `clean`, `dev`, `start`,
+`type-check`, `lint`, `lint:fix`, `test*`, and its `<subject>:<verb>` tools). Pre-push runs
+`pnpm check`; CI runs the same legs (parity validator: 16). PDR-008 carries the amendment: the
+lineage's own copy of PDR-008 was never amended and its `package.json` contradicts it, a
+cohesion finding for the source estate. Every citation was re-pointed and the cited-scripts
+validator is green; the ARC channel records under `.agent/collaboration/rapid-comms/` are now an
+excluded root of that validator, as frozen records.

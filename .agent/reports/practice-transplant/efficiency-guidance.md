@@ -248,3 +248,13 @@ fixes; both under the owner's "no errors, no warnings" bar.
   lineage-only citation is removed (the sentence reworded to stand alone), never re-pointed.
   Next time: run the link validator at the end of every phase, and treat a generated index
   with a lineage corpus behind it as a generator run, not a link list.
+- **Take the lineage's script names as practised, on day one.** The transplant kept the host's
+  older gate names (`check:ci`, `check:fix`, `format:fix`, `markdownlint:check`) beside the
+  lineage's (`format-check:root`, `fix`, `test:ui`), and every transplanted skill and rule
+  cited the lineage's. The owner ruled for the lineage's live convention; the rename touched
+  two `package.json` files, the hooks, CI and about fifty citing files, and it exposed a
+  second copy of every root gate inside the site workspace plus the devDependencies only those
+  copies used. Instrument: the cited-scripts validator after the rename finds what the regex
+  pass cannot reach. Input for instance 2: the lineage's live root script set (read from its
+  `package.json` at the pin, not from PDR-008, whose tables the lineage itself no longer
+  follows), applied before the first skill is copied.

@@ -22,7 +22,7 @@ from the beginning.
 This sequence is the current `pnpm check` script — the canonical read-only
 aggregate local proof gate — unrolled one leg per line, followed by the gates
 that live outside it. The pre-commit hook runs the staged subset, the pre-push
-hook runs `pnpm check:ci` (an alias of `check`) plus the site's end-to-end
+hook runs `pnpm check` plus the site's end-to-end
 tests, and CI runs the same legs (`validate-check-ci-parity` refuses a drift
 between `check` and `.github/workflows/ci.yml`). Re-read `package.json` before
 editing this list; the root script is the source of truth when the gate graph
@@ -34,8 +34,8 @@ that `package.json` does not define.
 Run each gate in order. If a gate fails, fix the issues before proceeding.
 
 ```bash
-pnpm format
-pnpm markdownlint:check
+pnpm format-check:root
+pnpm markdownlint-check:root
 pnpm lint:shell
 pnpm lint:runtime-only
 pnpm lint
@@ -48,6 +48,7 @@ pnpm portability:check
 pnpm subagents:check
 pnpm skills:check
 pnpm encoding:check
+pnpm repo-validators:check     # CI parity, claim freshness, guard routing, policy reappraisal, lifecycle scripts, stale invocations, collaboration state, identity naming, workspace config
 pnpm docs-validators:check     # reference direction, machine-local paths, markdown links, cited scripts
 ```
 
@@ -56,16 +57,16 @@ Gates outside `check`, run when the work touches their surface:
 ```bash
 pnpm build                      # the site and every workspace; PDF generation is part of it
 pnpm test:e2e                   # Playwright against a production build (pre-push runs this)
-pnpm test:e2e:ui                # the same suite in Playwright's UI mode
-pnpm visual-regression-harness  # rendered-proof comparison for visual work
+pnpm test:ui                # the same suite in Playwright's UI mode
+pnpm visual-regression:harness  # rendered-proof comparison for visual work
 pnpm check:docs                 # format + markdownlint + the docs validators (a subset of check)
 pnpm plan-gates:check           # plan-node gate drift
 ```
 
 Use mutating repair commands such as `pnpm fix` (the mutating aggregate),
-`pnpm lint:fix`, `pnpm markdownlint:fix` or `pnpm format:fix` only to fix a
-failing proof, then re-run the proof sequence from the beginning; `pnpm
-check:fix` runs the repair aggregate and then the proof. Do not treat mutating
+`pnpm lint:fix`, `pnpm markdownlint:root` or `pnpm format:root` only to fix a
+failing proof, then re-run the proof sequence from the beginning (`pnpm
+fix:docs` repairs and re-proves the docs subset). Do not treat mutating
 repair commands as final evidence that the tree is clean.
 
 ## Rules
@@ -80,7 +81,7 @@ repair commands as final evidence that the tree is clean.
 For each gate in the sequence above:
 
 - If the gate fails, fix the issue
-- After fixing, restart from the beginning (`pnpm format`)
+- After fixing, restart from the beginning (`pnpm format-check:root`)
 - If the gate passes, proceed to the next one
 
 The full sequence mirrors `pnpm check` in `package.json`.

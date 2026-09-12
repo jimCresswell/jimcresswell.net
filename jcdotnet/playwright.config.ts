@@ -15,7 +15,7 @@ import { defineConfig, devices } from "@playwright/test";
  *
  * Scripts:
  * - `pnpm test:e2e` — run the full E2E suite against the production build
- * - `pnpm test:e2e:ui` — open Playwright UI mode
+ * - `pnpm test:ui` — open Playwright UI mode
  *
  * @see https://playwright.dev/docs/test-configuration
  */

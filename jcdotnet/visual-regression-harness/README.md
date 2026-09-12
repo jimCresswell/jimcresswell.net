@@ -42,13 +42,13 @@ documented comparison rule says otherwise.
 ## Usage
 
 ```bash
-pnpm visual-regression-harness <base-ref> <target-ref>
+pnpm visual-regression:harness <base-ref> <target-ref>
 ```
 
 Example:
 
 ```bash
-pnpm visual-regression-harness b76824a HEAD
+pnpm visual-regression:harness b76824a HEAD
 ```
 
 The special value `WORKTREE` snapshots the repository exactly as it exists now:
@@ -64,13 +64,13 @@ known-good git ref versus the current in-flight state.
 Example:
 
 ```bash
-pnpm visual-regression-harness b76824a WORKTREE
+pnpm visual-regression:harness b76824a WORKTREE
 ```
 
 Optional flags:
 
 ```bash
-pnpm visual-regression-harness <base-ref> <target-ref> \
+pnpm visual-regression:harness <base-ref> <target-ref> \
   --repo-root /path/to/repo \
   --output-dir /path/to/output \
   --base-port 3200 \

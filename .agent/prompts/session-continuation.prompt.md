@@ -16,17 +16,18 @@ Ground first via `start-right-quick` or `start-right-thorough`.
 — read its amendment section for the current state and the phase that is next.
 The acceptance test is owner-set: `.agent-original/` gone, every piece of unique
 value in it preserved inside `.agent/`. **Next steps, in order:** first, the
-link-repair pass (mechanical; links to lineage-only targets are removed, not
-re-pointed); second, the owner's ratification of the two sketch plan nodes
-authored 2026-09-12 for the next transplant (castr): the runbook
+owner's ratification of the two sketch plan nodes authored 2026-09-12 for the
+next transplant (castr): the runbook
 `.agent/plans/runbooks/practice-lineage-transplant.md` and the delivery node
-`.agent/plans/delivery/castr-lineage-update-preparation.md`; third, re-evaluate
-slice 2. Rules triage, the Phase 8 harness, re-evaluate slice 1 (the seed
-contract, the session-open surfaces, the docs layer re-homed) and the restart
-assessment are done and committed (plan §Rules triage, §Phase 8, the three
-§Re-evaluate sections; `pnpm check` green on 15 legs). Slice 2 candidates, in
-order: re-import OCE's pull-request machinery (PR #136 merged at `2b1b15ab8`;
-PR #138 still open at `352ad0ee5`), the content-grain merge of the 11 local
+`.agent/plans/delivery/castr-lineage-update-preparation.md`; second,
+re-evaluate slice 2. Rules triage, the Phase 8 harness, re-evaluate slice 1
+(the seed contract, the session-open surfaces, the docs layer re-homed), the
+restart assessment, the link repair (418 → 0) and the lineage script-naming
+adoption are done and committed (plan §Rules triage, §Phase 8, the three
+§Re-evaluate sections, §Link repair and script naming; `pnpm check` green on
+16 legs). Slice 2 candidates, in order: re-import OCE's pull-request machinery
+(PR #136 merged at `2b1b15ab8`; PR #138 merged at `e477e62f7`), the
+content-grain merge of the 11 local
 expert templates, the plan-node migration, the transplant instruments as bins
 (the delivery node), the owner's loss-scan of `.agent-original/`, then its
 deletion. Read `.agent/memory/operational/repo-continuity.md` §Current State

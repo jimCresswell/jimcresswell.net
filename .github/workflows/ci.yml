@@ -1,8 +1,8 @@
 name: CI
 
-# The PR-gating workflow. Parity with the root `check:ci` script is enforced by
+# The PR-gating workflow. Parity with the root `check` script is enforced by
 # `pnpm --filter @engraph/agent-tools validate-check-ci-parity`: every leg of
-# `check:ci` must appear as a run step here, so the local gate and the merge
+# `check` must appear as a run step here, so the local gate and the merge
 # gate can never drift apart.
 
 on:
@@ -61,9 +61,9 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: ./.github/actions/setup
       - name: Check formatting
-        run: pnpm format
+        run: pnpm format-check:root
       - name: Check markdown
-        run: pnpm markdownlint:check
+        run: pnpm markdownlint-check:root
       - name: Lint shell scripts
         run: pnpm lint:shell
       - name: Lint runtime-only scripts
@@ -78,6 +78,8 @@ jobs:
         run: pnpm encoding:check
       - name: Docs validators
         run: pnpm docs-validators:check
+      - name: Repo validators
+        run: pnpm repo-validators:check
       - name: Unused code (knip)
         run: pnpm knip
       - name: Dependency boundaries (depcruise)

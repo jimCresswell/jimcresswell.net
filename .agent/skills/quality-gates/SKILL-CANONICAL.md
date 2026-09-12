@@ -13,11 +13,10 @@ Run gates sequentially from the repo root. Fix issues as they arise. After any f
 The definitive gate list with all command names lives in
 `.agent/directives/principles.md` (Code Quality section). The summary:
 
-- `pnpm check` runs the blocking gate sequence read-only; `pnpm check:fix` auto-fixes first
-  (format, markdownlint, lint, typecheck, test, knip, gitleaks,
-  validate-vital-surfaces, validate-portability, validate-subagents).
+- `pnpm check` runs the blocking gate sequence read-only; `pnpm fix` runs the auto-fixers first
+  (format, markdownlint, shell and runtime-only lint, lint, type-check, test, knip, depcruise, gitleaks, the Practice validators).
 - The pre-push hook runs `pnpm check` and the site's end-to-end suite; pre-commit is light (staged-file format and markdown checks, lint on changed workspaces).
-- `pnpm test:e2e` and `pnpm test:e2e:ui` are separate Playwright surfaces.
+- `pnpm test:e2e` and `pnpm test:ui` are separate Playwright surfaces.
   `pnpm test:e2e` runs the full suite (journeys, behaviour, a11y, PDF)
   against a production build; the build is run by Playwright's web server.
 - When changing Practice Core or directive docs, run
@@ -25,11 +24,11 @@ The definitive gate list with all command names lives in
   `pnpm practice:vocabulary` as advisory companion checks.
 
 When running gates individually for restart-on-fix, start from
-`pnpm format:fix`, then `pnpm markdownlint:fix`.
+`pnpm format:root`, then `pnpm markdownlint:root`.
 
 For rendering-risk changes, the visual regression harness is also blocking
 proof even though it is not part of `pnpm check`. Run
-`pnpm visual-regression-harness <base-ref> <target-ref>` during implementation
+`pnpm visual-regression:harness <base-ref> <target-ref>` during implementation
 once a slice could affect rendered output, and rerun it after later slices as
 needed. Do not leave all harness review until the end.
 
@@ -38,7 +37,7 @@ needed. Do not leave all harness review until the end.
 If any gate fails:
 
 1. Fix the issue in product code (not by disabling the check).
-2. Restart from `pnpm format:fix`.
+2. Restart from `pnpm format:root`.
 3. Repeat until all gates pass without fixes.
 
 This matters because a type-check fix might introduce a lint issue, or a test fix might introduce unused code that Knip catches.

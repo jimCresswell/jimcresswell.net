@@ -178,17 +178,17 @@ platform adapters alongside (for example `.claude/skills/`); these are the every
 
 ## Commands you might run in the terminal yourself
 
-| Command           | What it does                                               |
-| ----------------- | ---------------------------------------------------------- |
-| `pnpm check`      | Run all read-only quality gates in all workspaces          |
-| `pnpm check:fix`  | Run the auto-fixers, then `pnpm check`                     |
-| `pnpm test`       | Run tests                                                  |
-| `pnpm test:e2e`   | Run the site's Playwright suite against a production build |
-| `pnpm type-check` | Run type checks                                            |
-| `pnpm lint`       | Run linting                                                |
-| `pnpm format:fix` | Run formatting                                             |
-| `pnpm fix`        | Run ESLint, Prettier, and markdownlint fixes               |
-| `pnpm dev`        | Start the site's development server                        |
+| Command            | What it does                                               |
+| ------------------ | ---------------------------------------------------------- |
+| `pnpm check`       | Run all read-only quality gates in all workspaces          |
+| `pnpm fix:docs`    | Run the docs auto-fixers, then the docs validators         |
+| `pnpm test`        | Run tests                                                  |
+| `pnpm test:e2e`    | Run the site's Playwright suite against a production build |
+| `pnpm type-check`  | Run type checks                                            |
+| `pnpm lint`        | Run linting                                                |
+| `pnpm format:root` | Run formatting                                             |
+| `pnpm fix`         | Run ESLint, Prettier, and markdownlint fixes               |
+| `pnpm dev`         | Start the site's development server                        |
 
 ## Reading the statusline
 

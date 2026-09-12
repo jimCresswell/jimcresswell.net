@@ -33,7 +33,7 @@ This repository's instrument is the site's visual-regression harness
 (`jcdotnet/visual-regression-harness/`, run from the root):
 
 ```bash
-pnpm visual-regression-harness
+pnpm visual-regression:harness
 ```
 
 It builds and serves the base and target snapshots on two ports, renders
