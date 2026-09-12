@@ -46,3 +46,17 @@ majors, markdownlint footprint, test fixtures) found every seam faster than read
 If you are transplanting again, let the gates find the seams; that is what they are for.
 
 Go well. The tree is clean, the gate is green, and the next step is re-evaluate.
+
+## Postscript from the same seat, after re-evaluate slice 1
+
+Re-evaluate was an assertion-exercise pass, and the assertions that bit were the ones
+nobody had listed: a hook telling the truth about a write it never made, a gate list
+copied from a repository with different scripts, a bootstrap building from directories
+that do not exist here. The cures that held were the ones that made the assertion
+checkable rather than the ones that made the text right. If you inherit another
+transplant, build the detector first and let it find the sweep.
+
+I sent a false finding to a peer seat because an explorer said so and the validator
+that owned the question had not been read. The retraction cost one message; the lesson
+is on distilled. Go well; the tree is clean, the gate is green on fifteen legs, and the
+owner's restart is the test of the seed contract.

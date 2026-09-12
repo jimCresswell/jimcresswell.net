@@ -380,3 +380,41 @@
   merge) plus my own edits landed without a clobber because every edit was an Edit-tool
   string replacement in a distinct region; a Write would have lost one side. Keep whole-file
   Writes out of any file another seat may be editing.
+
+### Wrap 3 (2026-09-12, late) — re-evaluate slice 1, metaloss recursion
+
+- Metacognition at the boundary: the fluent shape of this slice was "true the text"; every time
+  the situational fact was grounded first, a structural cure replaced a prose patch (the native
+  seed instead of a hook repair; a validator instead of a gate-list rewrite; a `check` leg
+  instead of a policy-description edit). The one inherited shape I did not challenge in time
+  was the explorer's violation claim, which reached a peer before the validator was read.
+- Free play (harvest, one discard): kept — the guard, the identity CLI and the cited-scripts
+  validator are one shape, a fail-closed check that surfaces an installation-order gap; kept —
+  a record number is a foreign key without a foreign table, and a transplant is the schema
+  migration that forgets to check referential integrity (that reminded me of the link-repair
+  backlog: it is one referential-integrity pass, not 418 edits); discarded — "the docs layer as
+  organ rejection" again, still says nothing actionable.
+- Concept exploration converged: re-evaluate is an assertion-exercise pass (pending graduation
+  5); the two generators, the record-citation scrub and the link repair are its remaining
+  instances here, and the falsifier for the doctrine is the next transplant's re-evaluate being
+  a checklist run.
+- Pass 1 (context-only): the partition of the 87 changed files into commits lived in the
+  scratchpad; the two-commit shape instead of six is recorded in the plan doc's execution
+  record. The OCE seat's pointers (PR #136 branch and SHA, PR #138 SHA, the surfaces that
+  changed) are in continuity. Nothing else load-bearing was context-only.
+- Pass 2 (predictions a successor tests at the restart the owner announced): (a) the startup
+  SessionStart hook writes `~/.claude/session-env/<id>/sessionstart-hook-0.sh` at session start
+  with the 20 s timeout — if absent, the timeout was not the cause and the shim needs
+  per-invocation logging; (b) `PRACTICE_AGENT_SESSION_ID_CLAUDE` is present in the first Bash
+  call; (c) `pnpm agent-tools:agent-identity --format display` resolves with `seed_source`
+  `PRACTICE_AGENT_SESSION_ID_CLAUDE` (hook) rather than `CLAUDE_CODE_SESSION_ID` (fallback) —
+  either is correct, the source tells which path fired; (d) the Claude skill picker shows each
+  `jc-*` skill once (falsifier from Session 2; next suspect `.agents/skills/`); (e) the hook's
+  additionalContext line reads "is appended to $CLAUDE_ENV_FILE", not the old unconditional claim.
+- Pass 3 (what a successor would misread): `pnpm check` green does not include `check:docs`,
+  which is red on markdown-links only (418); the cited-scripts and reference-direction legs of
+  `check:docs` are green. The workspace file the owner moved out of the repo is not a repo
+  artefact. The OCE checkout is a read-only source pinned at `a55fd8fdd` while another seat
+  works there; PR #136 is still moving.
+- Fixed point: a further pass would only re-find the generators and the record-citation scrub,
+  both already on the register and in continuity; the recursion closes here.

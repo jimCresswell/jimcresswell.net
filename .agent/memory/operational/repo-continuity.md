@@ -72,7 +72,12 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 Owner-set order (2026-09-12): 1. rules triage done; 2. harness integration done
 (plan §Phase 8); 3. re-evaluate slice 1 done (seed contract, session-open
-surfaces, docs layer); 4. **re-evaluate slice 2 — next**, candidates in order:
+surfaces, docs layer); 4. **next, owner-ordered at the 2026-09-12 wrap**: (a) at
+the owner's restart, assess the fixes and predictions listed on the napkin's
+Wrap 3 (startup env-file write, seed source, hook context line, picker
+duplicates); (b) the link-repair pass — largely mechanical, and a link whose
+target is a lineage record or surface with no local equivalent is removed,
+not re-pointed; (c) then re-evaluate slice 2, candidates in order:
 re-import OCE's pull-request machinery at the SHAs the OCE seat named (PR #136
 after its merge commit lands on `engraph`; PR #138 at `352ad0ee5`; the source is
 read-only, read with `git show` at a pinned commit); the content-grain merge of

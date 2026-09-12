@@ -15,10 +15,13 @@ Ground first via `start-right-quick` or `start-right-thorough`.
 [`../../docs/explorations/2026-09-12-oce-practice-lineage-transplant.md`](../../docs/explorations/2026-09-12-oce-practice-lineage-transplant.md)
 — read its amendment section for the current state and the phase that is next.
 The acceptance test is owner-set: `.agent-original/` gone, every piece of unique
-value in it preserved inside `.agent/`. **Next step (owner-set order):** re-evaluate,
-slice 2 — rules triage, the Phase 8 harness and re-evaluate slice 1 (the seed
-contract, the session-open surfaces, the docs layer re-homed) are done and
-committed (plan §Rules triage, §Phase 8, the three §Re-evaluate sections;
+value in it preserved inside `.agent/`. **Next steps (owner-set order at the
+2026-09-12 wrap):** first, at the owner's restart, assess the seed-contract fixes
+and the predictions on the napkin's Wrap 3 entry; second, the link-repair pass
+(mechanical; links to lineage-only targets are removed, not re-pointed); third,
+re-evaluate slice 2. Rules triage, the Phase 8 harness and re-evaluate slice 1
+(the seed contract, the session-open surfaces, the docs layer re-homed) are done
+and committed (plan §Rules triage, §Phase 8, the three §Re-evaluate sections;
 `pnpm check` green on 15 legs). Slice 2 candidates, in order: re-import OCE's
 pull-request machinery once PR #136 merges there (PR #138 is at `352ad0ee5`),
 the content-grain merge of the 11 local expert templates, the link-repair

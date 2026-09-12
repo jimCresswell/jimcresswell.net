@@ -58,3 +58,20 @@ command aborts the rest of its `&&` chain silently. Stage with
 `git diff --name-only | xargs git add --`, write commit-message files in their
 own command, and run `pnpm agent-tools:check-commit-message -F <file>` before
 `git commit -F`. Source: napkin 2026-09-12; routing: pending graduation 2.
+
+## A record number surviving a transplant proves nothing (2026-09-12)
+
+ADR-011 here and ADR-011 in the lineage are different records. When a
+citation crosses a lineage boundary, check the title at the target before
+keeping the number; a number match with a subject mismatch is the worst
+case, because it reads as intact. Source: napkin 2026-09-12 (re-evaluate
+slice 1); routing: pending graduation 5.
+
+## Read the validator before repeating a claimed violation (2026-09-12)
+
+An explorer reported six Core-to-docs portability violations; the
+reference-direction validator had reported zero all along, and the claim
+reached a peer estate before it was checked. Every validator the estate
+owns is the first read for a claim in its domain; a claim that contradicts
+a green validator is wrong until the validator is shown to be. Source:
+napkin 2026-09-12; routing: pending graduation 5.
