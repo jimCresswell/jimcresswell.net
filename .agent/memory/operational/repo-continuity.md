@@ -25,14 +25,19 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
   record: `docs/explorations/2026-09-12-oce-practice-lineage-transplant.md`
   (§Amendment, §Hour 1, §Owner rulings rounds 1–3 carry the live state).
 - Seven pnpm workspaces; root scripts through Turborepo; root devDeps installed.
-- **Directives merged** (`principles`, `testing-strategy`, `AGENT.md`); **rules
-  triaged** (127 canonical; table in the plan doc); `commands/` retired; Practice
-  docs layer brought over (`docs/governance|engineering|foundation`, residue
-  pass owed); skills generated and enabled (`jc-*`, 66); `portability:check`
-  passes; zero broken links in `.agent/rules/`; `subagents:check` 175
-  (adapter/template contract); agent-tools `tsc` clean; validator scripts still
-  failing on missing harness (Phase 8).
-- `.agent-original/` still present pending the owner's loss-scan review.
+- **Committed on `feat/monorepo`** (two commits, all hooks green): the transplant
+  (directives merged, 127 rules triaged, skills + adapters, JC statusline mark,
+  `preserve-caught-error` on) and Phase 8 harness (Claude/Codex/Cursor hooks and
+  statusline, hook policy restored, full Husky set, `ci.yml` with CI parity,
+  root gates: gitleaks, knip, depcruise, markdownlint footprint, sub-agent
+  adapters for 27 templates). **`pnpm check` is green end to end.**
+- Practice docs layer brought over (`docs/governance|engineering|foundation`,
+  residue pass owed). `.agent-original/` still present pending the owner's
+  loss-scan review.
+- Outside `check`, still failing (pre-existing): patterns index, plan corpus and
+  gate drift (plan-node migration), ratified-lists (upstream refounding
+  artefacts), fitness vocabulary (`.agent-original`), collaboration-tui smoke,
+  codex-session-alert smoke (`pnpm -s`).
 
 ## Active Threads
 
@@ -47,8 +52,8 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Next Safe Steps
 
-Owner-set order (2026-09-12): 1. ~~rules triage~~ done; 2. **harness integration
-(plan Phase 8) — next**; 3. re-evaluate.
+Owner-set order (2026-09-12): 1. rules triage done; 2. harness integration done
+(plan §Phase 8); 3. **re-evaluate — next**.
 Re-evaluate includes: the 29 copied `docs/governance|engineering|foundation`
 files may belong in whole, part or concept under `.agent/` (owner note) —
 assign each a role and a home. Then: sub-agent contract conformance, plan-node migration (39 legacy plans),

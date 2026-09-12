@@ -15,10 +15,12 @@ Ground first via `start-right-quick` or `start-right-thorough`.
 [`../../docs/explorations/2026-09-12-oce-practice-lineage-transplant.md`](../../docs/explorations/2026-09-12-oce-practice-lineage-transplant.md)
 — read its amendment section for the current state and the phase that is next.
 The acceptance test is owner-set: `.agent-original/` gone, every piece of unique
-value in it preserved inside `.agent/`. **Next step (owner-set order):** harness
-integration (plan Phase 8 — hooks, statusline, husky set, CI, root config,
-`.agent/hooks/policy.json` restore); rules triage is done (plan §Rules triage);
-then re-evaluate. Read
+value in it preserved inside `.agent/`. **Next step (owner-set order):** re-evaluate —
+rules triage and Phase 8 harness are done and committed (plan §Rules triage,
+§Phase 8; `pnpm check` green). Re-evaluate starts with the 29 copied
+`docs/governance|engineering|foundation` files (role + `.agent/` home each),
+the content-grain merge of the 11 local expert templates, the plan-node
+migration, the owner's loss-scan of `.agent-original/`, then its deletion. Read
 `.agent/memory/operational/repo-continuity.md` §Current State first.
 
 Until that transplant closes, the earlier workstreams below are **parked**, not

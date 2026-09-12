@@ -242,3 +242,39 @@
   agent) settled it.
 - Source plane: executive — `artefact-inventory.md` still describes `commands/` if it does; check at
   re-evaluate.
+
+### 2026-09-12 (night) — Husky, JC mark, preserve-caught-error, Phase 8 harness; two commits
+
+- Landed and committed (hooks green on every run): commit 1 = the whole transplant incl. the JC
+  statusline mark (generated from the CV logo path by a site script), `OAK_API_KEY` out of the
+  copied docs, `preserve-caught-error` on; commit 2 = Phase 8 harness. `pnpm check` green end to
+  end (14 legs). Plan doc §Phase 8 carries the table; both transplant reports carry addenda.
+- **Lockout**: wiring `.claude/settings.json` hooks before `.agent/hooks/policy.json` existed made
+  the guard fail closed for Bash, Edit and Write at once — the settings reload is immediate.
+  Recovered through Monitor (a tool the matchers do not name). Rule of order: policy → built
+  dispatcher → settings. Recorded in both reports; candidate for PDR-005 §Harness.
+- **Convention seams found by gates, not by reading**: prettier (site vs tooling convention),
+  markdownlint footprint, ESLint 9 vs 10 per workspace (`brace-expansion` override scoped per
+  major), `pnpm check` read-only vs mutating (the CI-parity validator forced it). Each cost one
+  failing run; a host profile would have asked first.
+- **Lineage tests carry estate facts**: 8/326 agent-tools test files needed localisation or
+  removal (upstream-only subjects, fixture paths, roster names, a TOML caret column). The
+  observability rule test had been scrubbed into an out-of-scope path by the sed antigen pass —
+  the scrub can break tests silently; grep test fixtures after scrubbing.
+- Sub-agent adapters: 27 templates → 81 adapters + Codex registry from one script; templates
+  needed two component lines. `portability:fix` does not cover this — second time scripted by hand.
+- Observation, not a finding: `agent-tools:test` failed once inside the turbo aggregate with no
+  visible FAIL line and passed on every direct and forced re-run. Concurrency-sensitive test
+  suspected; watch for a recurrence before chasing it.
+- Owner report of duplicate skills in the Claude picker: commands retired earlier today; the
+  restart is the test. Falsifier unchanged (`.agents/skills/` next).
+- Still failing outside `check` (all pre-existing, none Phase 8): `validate-patterns-index`,
+  `validate-plan-corpus`, `check-plan-gate-drift`, `validate-ratified-lists`,
+  `validate-fitness-vocabulary` (`.agent-original` only), `smoke:collaboration-tui`,
+  `smoke:codex-session-alert-bootstrap` (`pnpm -s`). Oak literals remain inside a few agent-tools
+  test fixture strings (e.g. a knip-gate fixture naming `apps/oak-search-cli`) — grep at re-evaluate.
+- Metacognition (owner-invoked at wrap): the fluent shape all day was "copy the set"; every bite
+  came from order or convention, never from content. Concept-exploration result: the harness is a
+  sequence with a bootstrap and a guard, not a file set — that reframing is what the installable
+  thing needs (report addendum). Free-play seed: the guard locking out its own installer is the
+  Practice's immune system working; keep it, sequence around it.
