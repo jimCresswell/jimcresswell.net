@@ -36,6 +36,74 @@
 
 ### Patterns to Remember
 
+
+- When a source-of-truth boundary lands, search historical accepted ADRs and
+  current plans for the superseded field names as well as updating the new
+  decision record.
+- A rendering-preserving refactor can have zero pixel differences and still
+  require HTML review for intentional semantic changes; preserve that evidence
+  instead of normalising it away.
+- For a stale multi-story PR, rebuilding a bounded story on fresh `main` can be
+  safer and more reviewable than resolving the stale branch's accumulated
+  overlap, but only after recovery and exact-lease custody are proved.
+
+## Session: 2026-08-10/12 — LinkedIn editorial lane (Ginger herds Petal, Claude seat)
+
+### What Was Done
+
+- Ran the n=2 team protocol as the Claude seat beside the Codex workspace
+  seat: identity from the OOCE CLI, ARC registration, complementary
+  boundaries, two bounded read-only peer reviews (both APPROVE), custody
+  transfer of two public continuity files, and clean seat closeout.
+- Jim reopened and redirected the LinkedIn work: only the headline is
+  settled; the prior rewrite is not an approved starting point; the method is
+  now extract → owner-select → collaborative write on the private surface,
+  with the Oak entry active and Jim writing directly.
+- Refreshed the two public editorial continuity surfaces after the PR #40
+  rebuild regressed them; refreshed again at wrap against merged `main`.
+- Found local `main` divergent from origin (two April-era local-only
+  commits); preserved the pointer as `main-local-pre-sync-2026-08-12`, then
+  synced `main` to `origin/main`.
+
+### Mistakes Made
+
+- Extended owner statements past their moment three times in one session:
+  read "drafted" as "settled"; invented a voice/facts source-authority split
+  from "the CV repo is newer and better"; promoted a passage-local "don't
+  mention pupils" into a standing copy rule.
+- Over-corrected after a rejected generative draft: assembled owner
+  statements verbatim without editorial craft, producing copy the owner
+  rejected as unengaging. Traceability is necessary, not sufficient.
+- Watched a known ARC channel by file size: my own appends woke me, a peer's
+  new channel did not, and a review request sat unseen for seventeen minutes.
+- Announced a lane review before checking whether the coordination surface
+  had moved; the peer had opened a second channel announced only by a
+  canonical comms event.
+
+### Patterns to Remember
+
+- **Owner instructions carry the scope of their moment.** Before recording a
+  correction as a rule, ask what specific thing it was about; generalising is
+  the agent's convenience, not the owner's intent.
+- Key channel watchers to peer-entry counts, not file size, and watch the
+  rapid-comms _directory_ so a new channel cannot blindside the seat.
+- After any gap (compaction, days idle), recompute from live surfaces before
+  acting; the continuation record owns freeze-time truth only.
+- For divergent inherited branches: preserve the old pointer under a named
+  branch, then sync — never move a ref over unexamined local-only commits.
+- Editorial work: research → a focused selection layer → copy. Jumping from
+  corpus to copy forces a compression theory into the prose; the selection
+  layer is where the owner's judgement enters.
+- candidate: EDR or editorial-strategy amendment — "owner instructions carry
+  the scope of their moment" plus the extract/select/collaborative-write
+  loop. Trigger: Jim approves the Oak entry, proving the loop end-to-end.
+- consolidation: due — napkin approaching the soft target again and a
+  significant editorial-method arc closed; deliberately not run inside this
+  wrap (not well-bounded at seat close alongside a live owner rewrite).
+- Loss-scan residue: the #40 custody question to the workspace seat is
+  unanswered (tracked in the private plan's cross-lane section); the
+  private repo is ahead of its origin pending an owner push decision.
+
 - Stacked PRs with overlapping continuity files may have no safe unchanged
   merge order. Preserve accepted outcomes and rebuild against current truth.
 - Public-plan privacy includes backstory, rejected proposals, participant
@@ -63,3 +131,4 @@
 - External bound: this repository cannot prove provider-cache erasure or the
   state of material behind the private editorial boundary. The closeout makes
   no such claim; a successor must live-verify custody if that lane is reopened.
+
