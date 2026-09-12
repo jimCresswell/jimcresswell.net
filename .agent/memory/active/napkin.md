@@ -485,6 +485,26 @@
 - Lesson (cheap, repeatable): after any script rename, the cited-scripts validator is the first
   read; it found the six citations the regex pass could not reach (frozen ARC records and the
   PDR body), and the fix for the frozen records was an excluded root, not an edit.
+- **Owner ratification (2026-09-12, evening): "Both nodes are ratified"** — the runbook
+  `practice-lineage-transplant` and the delivery node `castr-lineage-update-preparation`;
+  stamps landed, `ratified_where` points here. Same message: "focus on understanding our
+  current journey rather than planning the next", then continue re-evaluate.
+- Journey pass (metacognition, free play, concept exploration, parallax core in emulated mode)
+  → `.agent/reports/practice-transplant/journey-so-far.md`. The frame that converged: every
+  re-evaluate cure had the same before-state, _nominal adoption_ (a surface says X is adopted,
+  no mechanism makes X true); the journey is the conversion of nominal to mechanical, in the
+  owner's order. The serious counterpair: "first instance of a repeatable operation" (castr
+  under two hours) versus "learning-loop repair" (the 57 archived lessons homed, the next
+  rotation losing nothing); the risk they name together is momentum on instruments deferring
+  the origin debt, one level up from August's fitness-pressure loss. Falsifier: the synthesis
+  lands before castr starts. Datum against my own "structural cures" story: the timeout change
+  was structure applied to a misdiagnosis. Play seed (association, not finding): a
+  doctrine-to-mechanism drift check — PDR-008 naming scripts `package.json` no longer defines
+  is the record-number lesson in another coat. Two forced associations discarded in the record.
+- Reading the owner's "no subagents for three hours" as a shape correction: the delegated
+  docs-layer pass needed ledgers and re-checking and one delegated finding went to a peer
+  wrong; the first-hand link repair took an hour and left me holding the map. Delegation has a
+  fixed cost that today's tasks sat below.
 - Peer landscape: Nettle guards Pistil busy in the OCE checkout; a third local seat, Coal weaves
   Pumice, is in a different repository (its transcript sits under the castr project dir), not
   here. This checkout: no other seat, registry empty, queue empty.

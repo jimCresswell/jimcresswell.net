@@ -234,3 +234,10 @@ on PDR-101 quorum or an owner ruling. The 57-lesson napkin synthesis (plan of re
   reference-direction and machine-local-paths validators are the worked instances.
 - **Prediction**: the next transplant's re-evaluate step is a checklist run, not a discovery,
   and finds no dead script citation because the validator runs at the end of the harness phase.
+- **Generalisation (2026-09-12, evening, `journey-so-far.md`)**: the class is wider than
+  transplants — _nominal adoption_, a surface saying X is adopted while no mechanism makes X
+  true (a gate list, a hook's claim, a docs path, a source PDR whose scripts its own
+  `package.json` no longer defines, a plan-node estate whose validator is unwired). The cure
+  shape is the same: wire the mechanism, then true the text. Falsifier added: if the remaining
+  nominal adoptions here (plan-node estate, the two generators, the archived lessons) are cured
+  by text alone, the generalisation was a story.

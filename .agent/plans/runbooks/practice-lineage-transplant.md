@@ -7,10 +7,12 @@ overview: >-
   to a newer generation of the same lineage, preserving the host's own
   divergence, with every mechanical step run by an instrument and every
   judgement step presented to the owner as one numbered list.
-status: sketch
-ratified_by: null
-ratified_date: null
-ratified_where: null
+status: ratified
+ratified_by: Jim Cresswell
+ratified_date: 2026-09-12
+ratified_where: >-
+  Owner's word in session 880ff9 (Cauldron herds Lustre), 2026-09-12: "Both
+  nodes are ratified"; captured on the napkin §Session 5 (2026-09-12).
 impact_areas:
   - practice-and-estate
 tickets: []
@@ -22,9 +24,9 @@ last_updated: 2026-09-12
 # Practice lineage transplant
 
 Written from the first instance (OCE → `jimcresswell.net`, 2026-09-12) and
-born sketch. The second instance (castr) tests every step; the timing table
-gains its second column there, and ratification follows that run, not this
-one. PDR-005 owns the Practice-free destination; this runbook owns the case
+ratified on the same day. The second instance (castr) tests every step and
+fills the timing table's second column; a step that fails there returns this
+runbook to sketch for re-ratification. PDR-005 owns the Practice-free destination; this runbook owns the case
 PDR-005 calls harder and more common: the destination already has a
 Practice, an older generation of the same lineage plus its own local
 divergence. The cross-instance guidance this runbook distils is

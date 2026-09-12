@@ -6,10 +6,12 @@ overview: >-
   Land the instruments and the instance-1 inputs that let the castr
   transplant run as the practice-lineage-transplant runbook, so its owner
   questions are only castr-specific and its mechanical steps are bins.
-status: sketch
-ratified_by: null
-ratified_date: null
-ratified_where: null
+status: ratified
+ratified_by: Jim Cresswell
+ratified_date: 2026-09-12
+ratified_where: >-
+  Owner's word in session 880ff9 (Cauldron herds Lustre), 2026-09-12: "Both
+  nodes are ratified"; captured on the napkin §Session 5 (2026-09-12).
 serves: practice-lineage-transplant
 impact_areas:
   - practice-and-estate

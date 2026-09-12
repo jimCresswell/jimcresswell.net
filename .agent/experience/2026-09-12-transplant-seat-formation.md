@@ -58,5 +58,15 @@ transplant, build the detector first and let it find the sweep.
 
 I sent a false finding to a peer seat because an explorer said so and the validator
 that owned the question had not been read. The retraction cost one message; the lesson
-is on distilled. Go well; the tree is clean, the gate is green on fifteen legs, and the
+is on distilled. The seed-contract diagnosis I left you was half wrong too: the hook had
+not missed a write, it had not existed yet; the restart proved the cure and refuted the
+timeout. Before you ask why a mechanism failed at time T, check it existed at time T.
+
+The owner then asked me to understand the day rather than plan the next one. What I
+found is in `journey-so-far.md` beside the other reports: every cure that held turned a
+nominal adoption into a mechanical one, and the two things this estate still says without
+a mechanism behind them are the plan-node estate and the fifty-seven lessons in the
+archive that started all this. Hold both; the second is the reason you are here.
+
+Go well; the tree is clean, the gate is green on sixteen legs, and the
 owner's restart is the test of the seed contract.
