@@ -9,7 +9,7 @@ import { resolveTrustedGh } from '../core/trusted-gh.js';
  * The real gh runner: runs the trusted absolute `gh` binary (resolved via
  * {@link resolveTrustedGh}, so a writable PATH entry cannot shadow it) from `cwd`
  * and returns its stdout (e.g. the draft PR's URL), translating a non-zero exit
- * into an `err` Result at this single library boundary (ADR-088 / use-result-pattern)
+ * into an `err` Result at this single library boundary (the Result pattern / use-result-pattern)
  * rather than letting `execFileSync`'s throw escape.
  *
  * @remarks

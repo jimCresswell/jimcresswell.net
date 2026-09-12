@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * WS7 class-tiered archive-move runner — the curator-pass entrypoint of
- * ADR-199 §Decision / PDR-094.
+ * the comms-event rotation phenotype §Decision / PDR-094.
  *
  * @remarks
  * Thin composition root over the tested `planArchiveMove` / `executeArchiveMove`

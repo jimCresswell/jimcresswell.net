@@ -50,7 +50,7 @@ import { dirname } from 'node:path';
 
 /**
  * The narrow descriptor-level filesystem surface {@link appendDebugLogEntry}
- * needs, injectable for tests (ADR-078). `fstatSync` is typed to the one
+ * needs, injectable for tests (the injected-seams rule). `fstatSync` is typed to the one
  * question asked of it so fakes need no `Stats` construction.
  */
 export interface DebugLogFs {

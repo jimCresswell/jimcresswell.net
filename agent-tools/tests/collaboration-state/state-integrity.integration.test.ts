@@ -284,7 +284,7 @@ describe('collaboration state integrity validator', () => {
   it('treats absent untracked-by-design surfaces as clean (fresh checkout / CI)', async () => {
     const repoRoot = await makeTempCollaborationRepo();
     try {
-      // ADR-199 Phase-3 untracked the instance tier, so a fresh checkout (e.g.
+      // the comms-event rotation phenotype Phase-3 untracked the instance tier, so a fresh checkout (e.g.
       // CI) has NONE of these on disk: the comms/ directory, active-claims.json,
       // or closed-claims.archive.json. That absence is the clean state, not an
       // integrity fault — the validator must not crash on any of them.

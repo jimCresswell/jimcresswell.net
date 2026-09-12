@@ -1,6 +1,6 @@
 /**
  * Pure core of the WS7 pre-archive-move provenance check
- * (ADR-199 §"Provenance survivor" / PDR-094 Invariant 3).
+ * (the comms-event rotation phenotype §"Provenance survivor" / PDR-094 Invariant 3).
  *
  * @remarks
  * Comms events cited by 8-hex id in permanent docs (ADRs / PDRs / patterns) must

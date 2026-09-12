@@ -1,6 +1,6 @@
 /**
  * Public type contract for the WS7 class-tiered archive-move
- * (ADR-199 §Decision; PDR-094) — the injectable IO seam, the plan request, the
+ * (the comms-event rotation phenotype §Decision; PDR-094) — the injectable IO seam, the plan request, the
  * manifest row, and the plan / error results consumed by `archive-move.ts` and
  * its node boundary. Kept separate from the orchestration logic so each module
  * stays cohesive and within the workspace size budget.
@@ -45,7 +45,7 @@ export interface ArchiveMovePlanRequest {
   readonly ledger: ReadonlyMap<string, LedgerEntry>;
 }
 
-/** One row of `comms-archive/manifest.jsonl` (ADR-199 §Decision item 3, verbatim fields). */
+/** One row of `comms-archive/manifest.jsonl` (the comms-event rotation phenotype §Decision item 3, verbatim fields). */
 export interface ManifestRow {
   readonly event_id: string;
   readonly created_at: string;

@@ -16,7 +16,7 @@ import {
 } from './types.js';
 
 /**
- * The ONE collaboration-state-owned surface-contract gate (ADR-088).
+ * The ONE collaboration-state-owned surface-contract gate (the Result pattern).
  *
  * This module replaces the compiler-silent `(text: string) => unknown`
  * validator seams (state-integrity, practice-substrate live-json) and the

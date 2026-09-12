@@ -93,7 +93,7 @@ describe('parseHeartbeatBody (inverse of composeHeartbeatBody — SSOT for the b
   });
 });
 
-describe('isHeartbeatEvent (ADR-186 §Migration discipline dual filter — deliberate strict superset)', () => {
+describe('isHeartbeatEvent (the heartbeat lifecycle substrate §Migration discipline dual filter — deliberate strict superset)', () => {
   const author = {
     agent_name: 'Anvil spins Bronze',
     platform: 'claude',
@@ -145,7 +145,7 @@ describe('isHeartbeatEvent (ADR-186 §Migration discipline dual filter — delib
     expect(isHeartbeatEvent(lifecycleEvent('heartbeat', ['heartbeat']))).toBe(true);
   });
 
-  it("does not recognise a lifecycle event whose event_type is the near-miss typo 'heatbeat' with no tag — the ADR-186 §What-this-costs typo exposure", () => {
+  it("does not recognise a lifecycle event whose event_type is the near-miss typo 'heatbeat' with no tag — the heartbeat lifecycle substrate §What-this-costs typo exposure", () => {
     expect(isHeartbeatEvent(lifecycleEvent('heatbeat'))).toBe(false);
   });
 

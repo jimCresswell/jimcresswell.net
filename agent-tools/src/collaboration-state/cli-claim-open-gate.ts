@@ -65,7 +65,7 @@ export async function runLockedClaimOpen(input: {
   readonly nowIso: string;
   readonly identity: CollaborationAgentId;
   readonly watcherVerdict: WatcherPresenceVerdict;
-  /** Injectable store-read seam (ADR-078); defaults to the live store. */
+  /** Injectable store-read seam (the injected-seams rule); defaults to the live store. */
   readonly readQueueEntries?: typeof readCommitQueueEntries;
 }): Promise<void> {
   const readEntries = input.readQueueEntries ?? readCommitQueueEntries;

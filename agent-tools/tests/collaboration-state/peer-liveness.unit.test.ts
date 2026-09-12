@@ -250,7 +250,7 @@ describe('peerHeartbeatLiveness — peer heartbeat-silence classification over t
   });
 });
 
-describe('peerHeartbeatLiveness — ADR-186 lifecycle-shaped heartbeats (dual-filter consumer contract)', () => {
+describe('peerHeartbeatLiveness — the lifecycle-shaped heartbeats (dual-filter consumer contract)', () => {
   function lifecycleHeartbeatAt(
     author: CollaborationAgentId,
     ageMs: number,

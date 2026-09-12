@@ -22,7 +22,7 @@ import {
 } from './types.js';
 
 /**
- * Parse the active claims registry from JSON text, as a `Result` (ADR-088,
+ * Parse the active claims registry from JSON text, as a `Result` (the Result pattern,
  * story 2b). Mapping is dense (`Array.from`, never `.map`) so a sparse
  * array handed to an interior parser yields an `Err`, never a throw.
  */
@@ -72,7 +72,7 @@ function parseRegistryValue(parsed: unknown): Result<CollaborationRegistry, Erro
   }));
 }
 
-/** Parse the closed-claims archive from JSON text, as a `Result` (ADR-088). */
+/** Parse the closed-claims archive from JSON text, as a `Result` (the Result pattern). */
 export function parseClosedClaimsArchive(text: string): Result<ClosedClaimsArchive, Error> {
   return flatMap(
     parseJsonTextResult(
@@ -105,7 +105,7 @@ function parseArchiveValue(parsed: unknown): Result<ClosedClaimsArchive, Error> 
 
 /**
  * Parse a canonical communication event from JSON text, as a `Result`
- * (ADR-088). On malformed JSON the `Err` carries the RAW `SyntaxError`: the
+ * (the Result pattern). On malformed JSON the `Err` carries the RAW `SyntaxError`: the
  * substrate finding classifier (live-types `parseFailureFinding`) narrows on
  * `instanceof SyntaxError` to tell invalid JSON from schema failures.
  */

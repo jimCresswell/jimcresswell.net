@@ -8,7 +8,7 @@ import { writeLine, writeErrorLine } from '../../core/terminal-output.js';
 import { assessFreshnessRows, decideFreshnessOutcome } from './validate-claim-freshness-helpers.js';
 
 /**
- * Standalone validator for the perishable-claim freshness contract (ADR-223)
+ * Standalone validator for the perishable-claim freshness contract (risk-based claim freshness)
  * over registered surfaces. Deterministic and clock-free: it enforces only
  * completeness and integrity of the freshness metadata (`grounded_at`, the
  * closed `pin` declaration, and `review_by`) — defects in the record being
@@ -24,7 +24,7 @@ import { assessFreshnessRows, decideFreshnessOutcome } from './validate-claim-fr
 
 /**
  * The registered perishable surfaces and their risk-classified review-interval
- * ceilings (referent hazard × reliance impact — ADR-223). Adding a surface is
+ * ceilings (referent hazard × reliance impact — risk-based claim freshness). Adding a surface is
  * a reviewed change to this list.
  */
 const REGISTERED_SURFACES = [
@@ -58,7 +58,7 @@ async function main(): Promise<void> {
           `Every claim on a registered perishable surface carries grounded_at (the date it was last ` +
           `verified first-hand), a strict pin declaration (pinned with a version, or not-tracked ` +
           `with a reason), and review_by (at most ${String(surface.maxIntervalDays)} days after ` +
-          `grounded_at for this surface). See ADR-223 and .agent/hooks/README.md.`,
+          `grounded_at for this surface). See risk-based claim freshness and .agent/hooks/README.md.`,
       );
     } else {
       for (const line of outcome.reportLines) {

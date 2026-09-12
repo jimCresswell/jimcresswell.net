@@ -9,7 +9,7 @@
  * excluded). Current occupancy is the LATEST such turn's sum, so this scans from
  * the end and returns the first valid usage it finds. Each line is parsed as
  * JSON and validated with a closed schema; malformed lines are skipped, never
- * thrown (ADR-088).
+ * thrown (the Result pattern).
  *
  * @packageDocumentation
  */

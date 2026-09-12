@@ -3,7 +3,7 @@
  *
  * @remarks
  * The one boundary where throwing `node:fs` calls are translated into the
- * repository {@link Result} pattern (ADR-088): each fallible fs operation
+ * repository {@link Result} pattern (the Result pattern): each fallible fs operation
  * catches and re-expresses the failure as `err(message)`, keeping the
  * orchestrators IO-free and unit-testable against an in-memory seam. Reads
  * reuse the Err-channel `parseCommsEvent`, folded into this module's string

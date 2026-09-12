@@ -4,7 +4,7 @@ import { describe, expect, it } from 'vitest';
 import { parseStringArray } from './json.js';
 
 /**
- * Err-channel description of the core JSON Result primitives (ADR-088):
+ * Err-channel description of the core JSON Result primitives (the Result pattern):
  * each error literal has ONE home, pinned by exact-message assertions.
  */
 

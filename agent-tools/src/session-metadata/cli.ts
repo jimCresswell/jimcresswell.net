@@ -5,7 +5,7 @@
  * Vendor + model + session-id in, session metadata out. Parses argv, resolves
  * the model window, locates and reads the session transcript, computes
  * occupancy, and emits text or JSON. Pure pieces do the work; this layer wires
- * them and translates failures into exit codes (no throw escapes; ADR-088).
+ * them and translates failures into exit codes (no throw escapes; the Result pattern).
  *
  * @packageDocumentation
  */

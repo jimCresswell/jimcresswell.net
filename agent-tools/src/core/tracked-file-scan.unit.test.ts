@@ -4,7 +4,7 @@
  * @remarks
  * The skip policy is the security-critical half of two whole-tree gates: a
  * path or content wrongly skipped is a hole in both. The policy is pure, so it
- * is proved here over literal inputs (no real IO in unit tests — ADR-078).
+ * is proved here over literal inputs (no real IO in unit tests — the injected-seams rule).
  * The thin fs wrappers around it (`readScanFiles`'s unreadable-file refusal,
  * `readLinkTextOrFile`'s readlink-first symlink handling) are exercised by the
  * two validators' end-to-end runs in `repo-validators:check` over the real

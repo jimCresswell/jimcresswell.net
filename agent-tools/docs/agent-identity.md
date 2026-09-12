@@ -143,7 +143,7 @@ rendered:          22e835-dda
 rendered (no id):  22e835
 ```
 
-## Naming Schema Registry (ADR-198)
+## Naming Schema Registry (digest-pinned)
 
 The seed-to-name projection is versioned. Each era is registered in
 `src/core/agent-identity/schema-registry.ts` with its wordlist material,

@@ -64,7 +64,7 @@ function draftPrArgs(slug: string, branch: string, base: string): readonly strin
  * (1) one empty marker commit to give the branch a head — squash-merge collapses
  * it, so no history cruft; (2) push the branch (gh needs a head on origin);
  * (3) `gh pr create --draft`, returning the PR URL. No `--admin`: the code-owner
- * gate is respected. Each step fails loud as a Result `err` (ADR-088), never a
+ * gate is respected. Each step fails loud as a Result `err` (the Result pattern), never a
  * throw, naming the failing step and branch with the cause preserved.
  */
 export function openDraftPr(options: OpenDraftPrOptions): Result<string, Error> {

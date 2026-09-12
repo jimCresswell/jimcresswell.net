@@ -1,6 +1,6 @@
 /**
  * Tier-policy disposition ledger builder for the WS7 archive-move curator pass
- * (ADR-199 §Decision item 5; PDR-094 absorption gate).
+ * (the comms-event rotation phenotype §Decision item 5; PDR-094 absorption gate).
  *
  * @remarks
  * The plan orchestrator (`archive-move.ts`) takes an explicit ledger so every

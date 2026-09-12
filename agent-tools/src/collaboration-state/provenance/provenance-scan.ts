@@ -1,6 +1,6 @@
 /**
  * IO/scan layer of the WS7 pre-archive-move provenance check
- * (ADR-199 §"Provenance survivor" / PDR-094 Invariant 3).
+ * (the comms-event rotation phenotype §"Provenance survivor" / PDR-094 Invariant 3).
  *
  * @remarks
  * The pure core in `cited-event-provenance.ts` holds the deterministic set
@@ -9,7 +9,7 @@
  * - **known events** — 8-hex id prefixes of the files in `comms/` plus
  *   `comms-archive/` (so a re-run after a partial move still recognises events);
  * - **cited events** — 8-hex tokens in permanent records (ADRs / PDRs / patterns,
- *   the ADR-199 default scope) intersected with the known set, dropping
+ *   the rotation phenotype default scope) intersected with the known set, dropping
  *   coincidental tokens and full-length git SHAs;
  * - **covered events** — events whose provenance survives a clean checkout, read
  *   from the git-tracked digest `.agent/reference/comms-cited-events.md`.
@@ -17,7 +17,7 @@
  * The check is **fail-closed**: an unreadable surface returns a typed
  * {@link ProvenanceScanError} rather than a report, so a pass can never silently
  * claim "no violations" over docs it could not read. Error handling follows the
- * repository {@link Result} pattern (ADR-088): nothing here throws. This module
+ * repository {@link Result} pattern (the Result pattern): nothing here throws. This module
  * is IO-free — the `node:fs`-backed {@link ProvenanceScanIo} lives in
  * `provenance-scan-node.ts`, the one place where a throwing library is
  * translated into the `Result` pattern.

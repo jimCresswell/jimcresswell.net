@@ -35,7 +35,7 @@ import {
  * pair) extract to `agent-tools/src/core/` as a NAMED R1-runway work item —
  * before any third consuming module appears and no later than the
  * refounded-corpus milestone — merging the two JSON-parse-at-boundary owners
- * (ADR-088 Result form wins) and dropping the `refound-` naming.
+ * (the Result pattern Result form wins) and dropping the `refound-` naming.
  *
  * @packageDocumentation
  */

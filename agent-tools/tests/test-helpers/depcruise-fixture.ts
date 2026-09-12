@@ -5,7 +5,7 @@
  * §"No process spawning in in-process tests"; real-binary composition
  * belongs at smoke tier, so the proof runs the library, not the
  * binary). Kept out of the test file per the no-real-io-in-tests
- * convention (ADR-078) — the test imports this helper; the helper owns
+ * convention (the injected-seams rule) — the test imports this helper; the helper owns
  * the filesystem work and the cruise invocation.
  */
 

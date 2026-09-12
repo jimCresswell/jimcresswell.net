@@ -84,7 +84,7 @@ describe('collaboration-state comms append --in-response-to (F-77)', () => {
     ]);
   });
 
-  it('composes --in-response-to with an ADR-183 --tag on the same append', async () => {
+  it('composes --in-response-to with a comms-tag-namespace --tag on the same append', async () => {
     const commsDir = 'state/comms';
     const fake = createFakeCollaborationRuntime();
 

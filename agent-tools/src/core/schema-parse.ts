@@ -7,7 +7,7 @@ import { z } from 'zod';
  * @remarks
  * Parse a value through a schema at a read boundary, returning a `Result`
  * with a prettified error on failure — a parse failure is a typed value the
- * call site inspects, never an invisible throw (ADR-088 / the Result
+ * call site inspects, never an invisible throw (the Result pattern / the Result
  * discipline). Hoisted from `corpus-analysis/judgment-schemas.ts` when the
  * refounding modules became the second consumer
  * (`consolidate-at-second-consumer`); every consumer imports it directly from

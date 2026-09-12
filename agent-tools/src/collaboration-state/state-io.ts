@@ -106,7 +106,7 @@ export async function readDirectedCommsMessages(
  * The pre-transaction read surfaces the fresh-checkout seeding error (see
  * {@link readActiveClaimsFile}) before the retry transaction's generic read
  * meets a bare ENOENT; the transaction still re-reads under its lock. The
- * optional `readTextFile` seam (ADR-078) exists so that surfacing is
+ * optional `readTextFile` seam (the injected-seams rule) exists so that surfacing is
  * provable without real IO.
  */
 export async function updateActiveClaimsFile(input: {
@@ -129,7 +129,7 @@ export async function updateActiveClaimsFile(input: {
  *
  * As with {@link updateActiveClaimsFile}, the pre-transaction reads surface
  * the fresh-checkout seeding errors before any lock is taken, and the
- * optional `readTextFile` seam (ADR-078) makes that surfacing provable
+ * optional `readTextFile` seam (the injected-seams rule) makes that surfacing provable
  * without real IO; the transaction still re-reads under its lock.
  */
 export async function updateClaimStateFiles(input: {

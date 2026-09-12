@@ -84,7 +84,7 @@ const commsEventSchema = z.discriminatedUnion('kind', [
 
 /**
  * Parse one canonical comms event after JSON parsing has crossed the
- * boundary, as a `Result` (ADR-088): the canonical `parseWithSchema`
+ * boundary, as a `Result` (the Result pattern): the canonical `parseWithSchema`
  * failure plus the kind-dispatch projection. The text-level
  * `parseCommsEvent` consumes this directly.
  */

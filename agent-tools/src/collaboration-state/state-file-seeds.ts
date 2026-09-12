@@ -40,7 +40,7 @@ export function missingStateFileError(input: {
 }): Error {
   return new Error(
     `${input.label} not found at ${input.path}. On a fresh checkout or new worktree this ` +
-      `file is untracked-by-design (ADR-199 / PDR-094) and does not exist until seeded. ` +
+      `file is untracked-by-design (the comms-event rotation phenotype / PDR-094) and does not exist until seeded. ` +
       `FIRST verify the path: the canonical home is the PRIMARY checkout (the first entry ` +
       `in \`git worktree list --porcelain\`) under .agent/state/collaboration/. If the path ` +
       `above is not that, correct the path — do NOT seed at the wrong location (it would ` +

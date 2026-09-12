@@ -16,7 +16,7 @@ export interface ResolveCoordinationHomeOptions {
   readonly runGit?: GitRunner;
   /**
    * The declared coordination home: the value of `PRACTICE_COORDINATION_HOME`,
-   * injected at the composition edge (ADR-078 — neither this module nor its
+   * injected at the composition edge (the injected-seams rule — neither this module nor its
    * tests read `process.env`). When present it wins over git-native resolution
    * and is validated loudly (existence + a recognisable collaboration
    * substrate); `undefined` preserves git-native behaviour byte-for-byte. An
@@ -76,7 +76,7 @@ export const defaultRunGit: GitRunner = (args, cwd) =>
  * worktree `cwd` is in. A standalone clone is the degenerate case (it is its own
  * primary). This is the cure named in the F-41 register entry ("resolve the
  * coordination home across worktrees, e.g. via the git common dir") and aligns
- * with ADR-197 (one checkout owns shared registry state); callers keep the
+ * with the coordination-home registry contract (one checkout owns shared registry state); callers keep the
  * explicit `--repo-root` override as the escape hatch.
  *
  * Resolution is per machine: across machines the collaboration filesystem is not

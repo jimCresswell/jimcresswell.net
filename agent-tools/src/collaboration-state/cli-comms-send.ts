@@ -12,7 +12,7 @@ const DEFAULT_SHARED_LOG = '.agent/state/collaboration/shared-comms-log.md';
 
 /**
  * One-shot convenience wrapper: append a comms event — narrative, or the
- * ADR-186 lifecycle heartbeat shape when `--tag heartbeat` selects
+ * the lifecycle-substrate lifecycle heartbeat shape when `--tag heartbeat` selects
  * heartbeat mode — and re-render the shared log, resolving canonical
  * collaboration paths from the repo root when the caller does not pass
  * them explicitly.

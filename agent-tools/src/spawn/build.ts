@@ -8,7 +8,7 @@ import { realPnpmRunner } from './build-runner.js';
  * The pnpm runner seam — a {@link CommandRunner}<void>. pnpm inherits stdio so the
  * caller sees install/build progress directly and there is no stdout to capture;
  * the seam only signals success (`ok`) or the underlying error on a non-zero exit
- * (ADR-088), never a throw.
+ * (the Result pattern), never a throw.
  *
  * @remarks
  * Aliased to the shared `core/` seam shape, which was hoisted once the gh runner

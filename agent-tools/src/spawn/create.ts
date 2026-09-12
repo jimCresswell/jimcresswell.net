@@ -43,7 +43,7 @@ const defaultRunGit: SpawnGitRunner = (args, cwd) => realGitRunner(args, cwd);
 
 /**
  * Run `git worktree add` for a freshly-derived worktree, wrapping a git failure in
- * a Result (ADR-088) that names the branch, base, and path. Extracted from
+ * a Result (the Result pattern) that names the branch, base, and path. Extracted from
  * {@link createSpawnWorktree} so the latter stays within the per-function line
  * budget while reading as validate → derive → detect → add.
  */

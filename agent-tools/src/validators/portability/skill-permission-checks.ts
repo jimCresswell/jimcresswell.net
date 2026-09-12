@@ -10,7 +10,7 @@
  * own generation writes, recognised by the class marker in their stub
  * ({@link selectPracticeSkillDirs}). Vendor-class skills installed by the
  * external skills machinery are that machinery's business — never censused,
- * whatever their name or on-disk kind (skill-class taxonomy: ADR-125).
+ * whatever their name or on-disk kind (skill-class taxonomy: PDR-009).
  *
  * This module provides the pure functions that select the censused set and
  * detect missing permission entries given the adapter lists and the current

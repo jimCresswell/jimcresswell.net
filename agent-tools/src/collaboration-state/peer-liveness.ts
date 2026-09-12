@@ -10,7 +10,7 @@ import { type CollaborationAgentId, type CommsEvent } from './types.js';
 
 /**
  * Peer-liveness classification over the PDR-078 heartbeat *comms-event*
- * stream (F-75). This reads peers' heartbeat events in BOTH ADR-186
+ * stream (F-75). This reads peers' heartbeat events in BOTH the heartbeat lifecycle substrate
  * migration-window shapes via the shared {@link isHeartbeatEvent} dual
  * filter — the legacy `narrative + tags:["heartbeat"]` shape and the
  * canonical `lifecycle + event_type='heartbeat'` shape — the

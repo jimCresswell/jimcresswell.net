@@ -85,7 +85,7 @@ function formatClassifiedNarrative(event: NarrativeCommsEvent, view: EventView):
 }
 
 function formatClassifiedLifecycle(event: LifecycleCommsEvent): string {
-  // Duplicate-value lines are omitted (lossless): ADR-186 heartbeats set
+  // Duplicate-value lines are omitted (lossless): the lifecycle-substrate heartbeats set
   // subject=title and occurred_at=created_at, and at heartbeat cadence the
   // extra lines are real volume on the wedge-prone watcher drain surface.
   return [

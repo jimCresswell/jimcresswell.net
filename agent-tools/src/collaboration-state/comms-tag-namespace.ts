@@ -1,6 +1,6 @@
 /**
- * Canonical comms-event tag namespace per
- * [ADR-183](../../../docs/architecture/architectural-decisions/183-comms-event-tag-namespace-substrate.md).
+ * Canonical comms-event tag namespace (the source lineage's tag-namespace decision,
+ * carried here as this module).
  *
  * Tags compose with the structural channel discriminator at render time
  * (`[BROADCAST]` / `[GROUP]` / `[DIRECTED]` / `[LIFECYCLE]`) — they do NOT
@@ -13,7 +13,7 @@
  * `.agent/state/collaboration/comms-event.schema.json` enumerates the
  * same namespace in prose; both must move together if the namespace
  * grows. The `heartbeat` tag was added operationally by the SKILL §0.5
- * heartbeat contract; the formal ADR-183 amendment to add it to the
+ * heartbeat contract; the formal the comms-tag namespace amendment to add it to the
  * recorded namespace is a structural-cure lane pending separate from
  * this module.
  */
@@ -26,7 +26,7 @@ export const COMMS_EVENT_TAG_NAMESPACE = Object.freeze([
 export type CommsEventTag = (typeof COMMS_EVENT_TAG_NAMESPACE)[number];
 
 /**
- * Validate that every tag in `tags` is a canonical ADR-183 tag and that
+ * Validate that every tag in `tags` is a canonical the comms-tag namespace tag and that
  * no tag is repeated. Returns the tags at the precise namespace type on
  * success — the boundary narrowing; nothing widens past it
  * (validation-strategy §Runtime validation at the boundary). Throws with a precise message on
@@ -40,7 +40,7 @@ export function validateCommsEventTags(tags: readonly string[]): readonly CommsE
   for (const tag of tags) {
     if (!isCanonicalTag(tag)) {
       throw new Error(
-        `unknown comms event tag: '${tag}'. Canonical namespace (ADR-183): ${COMMS_EVENT_TAG_NAMESPACE.join(', ')}`,
+        `unknown comms event tag: '${tag}'. Canonical namespace (the comms-tag namespace): ${COMMS_EVENT_TAG_NAMESPACE.join(', ')}`,
       );
     }
     if (seen.has(tag)) {
@@ -53,7 +53,7 @@ export function validateCommsEventTags(tags: readonly string[]): readonly CommsE
   return canonical;
 }
 
-/** Type guard onto the closed ADR-183 namespace (the zero-widening membership check). */
+/** Type guard onto the closed the comms-tag namespace (the zero-widening membership check). */
 export function isCanonicalTag(tag: string): tag is CommsEventTag {
   for (const known of COMMS_EVENT_TAG_NAMESPACE) {
     if (known === tag) {

@@ -1,7 +1,7 @@
 /**
  * Directory walks for skill carriage: enumerate a canonical skill's carried
  * files and a projection directory's actual contents, accumulating typed
- * read failures instead of throwing (ADR-088; the seam unions carry the
+ * read failures instead of throwing (the Result pattern; the seam unions carry the
  * error channel). A failing branch stops descending — a walk that cannot
  * see a directory must say so rather than report the subset it could see.
  */

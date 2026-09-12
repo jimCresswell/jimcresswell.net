@@ -24,7 +24,7 @@ import {
 } from './types.js';
 
 /**
- * Canonical repo-root-relative prefix for handoff records (ADR-182). The
+ * Canonical repo-root-relative prefix for handoff records (the mid-cycle handoff record). The
  * pointer is content-addressed by claim id under this directory; the file
  * extension is left open because live records are authored as `.md` while the
  * schema description names `.json` — over-constraining the extension would

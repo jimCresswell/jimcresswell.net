@@ -7,9 +7,12 @@ describe('shouldReportMatch', () => {
     expect(shouldReportMatch('two-threshold', 'The two-threshold model is retired.')).toBe(true);
   });
 
-  it('does not report two-threshold when it only appears inside the preserved ADR-144 filename', () => {
+  it('does not report two-threshold when it only appears inside the preserved filename', () => {
     expect(
-      shouldReportMatch('two-threshold', '[ADR-144](144-two-threshold-fitness-model.md)'),
+      shouldReportMatch(
+        'two-threshold',
+        '[the fitness model decision](144-two-threshold-fitness-model.md)',
+      ),
     ).toBe(false);
     expect(
       shouldReportMatch('two-threshold', 'See docs/.../144-two-threshold-fitness-model.md line 3'),
@@ -59,7 +62,8 @@ describe('findForbiddenPhrases', () => {
   });
 
   it('does not report two-threshold matches that are only inside the preserved filename', () => {
-    const content = 'See [ADR-144](144-two-threshold-fitness-model.md) for the three-zone model.';
+    const content =
+      'See [the fitness model decision](144-two-threshold-fitness-model.md) for the three-zone model.';
 
     expect(findForbiddenPhrases(content)).toStrictEqual([]);
   });

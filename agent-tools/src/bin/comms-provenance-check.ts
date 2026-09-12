@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * WS7 pre-archive-move provenance check runner — the "script in the curator
- * pass" of ADR-199 §"Provenance survivor" / PDR-094 Invariant 3.
+ * pass" of the comms-event rotation phenotype §"Provenance survivor" / PDR-094 Invariant 3.
  *
  * @remarks
  * Thin entry over the tested {@link runProvenanceCheck} module. It runs the
@@ -38,8 +38,8 @@ const docRoots = [
   // Governance docs — PDR-094 Invariant 3 names "a decision record, a pattern, a
   // governance doc". Rules and directives govern agent behaviour and cite events
   // as worked-instance evidence, so they are in scope (an adversarial sweep found
-  // three such citations that the ADR-199 §4 "ADRs/PDRs/patterns" wording missed;
-  // ADR-199's scan-scope wording is amended to match in WS7 Phase 3).
+  // three such citations that the comms-event rotation phenotype §4 "ADRs/PDRs/patterns" wording missed;
+  // the comms-event rotation phenotype's scan-scope wording is amended to match in WS7 Phase 3).
   join(repoRoot, '.agent/rules'),
   join(repoRoot, '.agent/directives'),
 ];

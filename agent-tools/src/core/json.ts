@@ -17,7 +17,7 @@ export function getJsonValue(record: JsonObject, key: string): unknown {
 
 /**
  * Require a non-empty string field on a JSON object, as an `Err` instead
- * of a throw (ADR-088). The single home of the error literal.
+ * of a throw (the Result pattern). The single home of the error literal.
  */
 export function requireString(record: JsonObject, key: string): Result<string, Error> {
   const value = getJsonValue(record, key);
@@ -29,7 +29,7 @@ export function requireString(record: JsonObject, key: string): Result<string, E
 }
 
 /**
- * Require an array of strings, as an `Err` instead of a throw (ADR-088).
+ * Require an array of strings, as an `Err` instead of a throw (the Result pattern).
  * The single home of the error literal.
  */
 export function parseStringArray(value: unknown, label: string): Result<readonly string[], Error> {
@@ -44,7 +44,7 @@ export function parseStringArray(value: unknown, label: string): Result<readonly
 
 /**
  * Parse JSON text at a trust boundary, as an `Err` instead of a throw
- * (ADR-088), converting the native `JSON.parse` `SyntaxError` into an
+ * (the Result pattern), converting the native `JSON.parse` `SyntaxError` into an
  * actionable error that names what the text was expected to be. A raw
  * parse failure ("No number after minus sign in JSON at position 1" when a
  * markdown file beginning with `---` is read as JSON) is position-only and

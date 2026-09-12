@@ -69,7 +69,7 @@ describe('comms use cases', () => {
     expect(store.events()).toStrictEqual([event]);
   });
 
-  it('includes tags on a directed event when supplied (ADR-183 tag namespace)', () => {
+  it('includes tags on a directed event when supplied (the comms-tag namespace tag namespace)', () => {
     const event = createDirectedCommsMessage({
       eventId: 'message-tagged',
       createdAt: '2026-05-24T10:18:00Z',

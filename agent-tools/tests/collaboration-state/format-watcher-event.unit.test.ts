@@ -132,7 +132,7 @@ describe('formatClassifiedEvent identity lines', () => {
   });
 });
 
-describe('formatClassifiedEvent — ADR-186 lifecycle-shaped heartbeat render', () => {
+describe('formatClassifiedEvent — the lifecycle-shaped heartbeat render', () => {
   const author = collaborationAgentIdSchema.parse({
     agent_name: 'Uplifted Wheeling Sky',
     platform: 'claude',
@@ -162,7 +162,7 @@ describe('formatClassifiedEvent — ADR-186 lifecycle-shaped heartbeat render', 
     };
   }
 
-  it('renders the [LIFECYCLE] view with exactly ONE [HEARTBEAT] token (the ADR-186 at-most-once render guarantee)', () => {
+  it('renders the [LIFECYCLE] view with exactly ONE [HEARTBEAT] token (the lifecycle substrate at-most-once render guarantee)', () => {
     const text = formatClassifiedEvent({ event: lifecycleHeartbeat(), view: 'lifecycle' });
 
     expect(text).toContain('--- NEW [LIFECYCLE] [HEARTBEAT] EVENT ---');

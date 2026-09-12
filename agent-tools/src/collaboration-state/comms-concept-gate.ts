@@ -93,7 +93,7 @@ export async function loadCommsConceptGateBlocks(
 /**
  * A concept-gate refusal: the scoped-block match that fired, carried as
  * typed data so the CLI boundary owns the translation to its own error
- * contract (ADR-088: the gate itself never throws).
+ * contract (the Result pattern: the gate itself never throws).
  */
 export type CommsConceptGateRefusal = ScopedBlockMatch;
 

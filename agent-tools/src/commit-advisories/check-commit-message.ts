@@ -21,7 +21,7 @@
  *   2  invalid usage / unreadable input
  *
  * The TypeScript port of the former `scripts/check-commit-message.sh`,
- * promoted to `src/` under ADR-168 §3 (workspace scripts are TypeScript) and
+ * promoted to `src/` under the TypeScript-only workspace-script rule (workspace scripts are TypeScript) and
  * §5 (logic warranting tests belongs in `src/`); the pure argument-parsing and
  * message-assembly helpers are unit-tested in the adjacent test file.
  */

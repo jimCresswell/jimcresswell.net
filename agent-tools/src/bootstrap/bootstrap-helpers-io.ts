@@ -3,7 +3,7 @@
  * `workspaceDepDistIsStale`. Kept as its own module — mirroring
  * `watcher-staleness-io.ts` — so the staleness decision and its recursive `src`
  * walk stay pure, unit-tested functions while the real `node:fs` reads live at a
- * single thin boundary (ADR-078). Every member here is a direct `node:fs` wire
+ * single thin boundary (the injected-seams rule). Every member here is a direct `node:fs` wire
  * with no branching logic of its own, so there is nothing to describe with a
  * real-IO test that the pure decision's fake-seam tests do not already cover.
  *

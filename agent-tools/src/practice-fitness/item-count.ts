@@ -16,7 +16,7 @@
  * field: **live** statuses are undecided decision-debt; **terminal** statuses
  * record a disposition and are removed from the register on the same pass. There
  * is no `owner-gated` status — every live item is debt to decide now (the
- * abolition recorded in the consolidation-doctrine PDR and ADR-144's count
+ * abolition recorded in the consolidation-doctrine PDR and the two-threshold fitness model's count
  * metric-kind amendment). See
  * `.agent/plans/agent-tooling/current/pending-graduations-schema-and-count-fitness.plan.md`.
  */

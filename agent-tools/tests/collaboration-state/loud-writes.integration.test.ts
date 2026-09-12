@@ -85,7 +85,7 @@ describe('comms write commands report their writes', () => {
   });
 
   it('comms append in heartbeat mode reports the written event id and path', async () => {
-    // Seed the registry row the ADR-186 lifecycle shape derives its thread
+    // Seed the registry row the lifecycle-substrate lifecycle shape derives its thread
     // from (no --thread passed here — this pins the derive path staying
     // loud-write green for armed heartbeat loops).
     const fake = createFakeCollaborationRuntime({

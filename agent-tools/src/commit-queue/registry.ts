@@ -48,10 +48,10 @@ interface ReadRegistryOptions {
  * Read the composed commit-queue registry: the claims FILE (claims only
  * since schema 1.4.0) plus the live entries of the per-intent store beside
  * it. The claims file's IO, JSON-syntax, and contract failures arrive on the
- * `Err` arm (ADR-088). IO failures mirror the owner-ruled state-file readers
+ * `Err` arm (the Result pattern). IO failures mirror the owner-ruled state-file readers
  * (rulings 2026-07-20): ENOENT enriches into verify-then-seed instructions,
  * any other `Error` flows out as ITSELF, a non-Error throwable crashes at
- * detection. Injectable read seam per ADR-078.
+ * detection. Injectable read seam per the injected-seams rule.
  *
  * The per-intent store beside it is a throwing IO layer, deliberately: a
  * corrupt intent file, a filename that disagrees with its `intent_id`, and

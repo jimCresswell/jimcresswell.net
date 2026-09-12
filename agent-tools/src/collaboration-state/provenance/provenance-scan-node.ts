@@ -3,7 +3,7 @@
  *
  * @remarks
  * This is the one boundary where a throwing library (`node:fs`) is translated
- * into the repository {@link Result} pattern (ADR-088): each fallible read
+ * into the repository {@link Result} pattern (the Result pattern): each fallible read
  * catches and re-expresses the filesystem error as `err(message)`. Keeping it in
  * its own file leaves `provenance-scan.ts` IO-free and unit-testable against an
  * in-memory seam.

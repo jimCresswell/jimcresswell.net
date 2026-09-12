@@ -14,7 +14,7 @@
  * Advisory polarity preserved: the orchestrator's stdout/stderr stream
  * through to the caller; its non-zero exit code does NOT abort or alter
  * the commit attempt. Blocking authority stays in `.husky/pre-commit` +
- * `.husky/commit-msg`. See PDR-053 and ADR-176.
+ * `.husky/commit-msg`. See PDR-053 and the advisory-orchestrator naming.
  */
 
 import type { Result } from '@engraph/result';

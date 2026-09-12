@@ -1,7 +1,7 @@
 /**
  * The decision-debt metric — a *flow-rate* reading of a drainable buffer (is the
  * consumer keeping pace with the producer?), distinct from the content-size
- * metrics. It reuses the shared three-zone classification primitive (ADR-144
+ * metrics. It reuses the shared three-zone classification primitive (the two-threshold fitness model
  * "one scale, one vocabulary everywhere") but is reported as its own signal: its
  * cure is to *decide* items (graduate/reject) and to diagnose the pipeline
  * (PDR-067/PDR-068), never to trim or raise a limit.
@@ -39,7 +39,7 @@ export interface DiscreteZoneThresholds {
 /**
  * The full decision-debt reading for a buffer: the live count, its per-status
  * breakdown, its count zone, the dwell-time signals, and the schema-conformance
- * findings. Every zone here is a **report-only prioritisation signal** (ADR-144) —
+ * findings. Every zone here is a **report-only prioritisation signal** (the two-threshold fitness model) —
  * it ranks how urgently to drain, acted on with full weight, and never gates a
  * build.
  */

@@ -6,7 +6,7 @@ import { type CommandRunner } from '../core/command-runner.js';
 
 /**
  * The spawn lane's git runner seam — a {@link CommandRunner}<string> (it captures
- * git's stdout). Returns the underlying error on a non-zero exit (ADR-088), never
+ * git's stdout). Returns the underlying error on a non-zero exit (the Result pattern), never
  * a throw, so the failure is visible to the type system at every call site.
  *
  * @remarks

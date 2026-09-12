@@ -10,7 +10,7 @@ import { CLOSED_CLAIMS_SCHEMA_VERSION } from '../../collaboration-state/types.js
 
 /**
  * Real-IO temp-repo builder for practice-substrate integration tests
- * (ADR-078: tests import this helper surface, never `node:fs/promises`
+ * (the injected-seams rule: tests import this helper surface, never `node:fs/promises`
  * directly). Mirrors the live layout the substrate evaluators read: the
  * collaboration state root plus the package-relative schema directory.
  */

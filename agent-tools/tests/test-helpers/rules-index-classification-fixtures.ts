@@ -9,7 +9,7 @@ import path from 'node:path';
  * Lives under `test-helpers/` per the structural path-shape allowlist
  * named in `packages/core/oak-eslint/src/rules/no-real-io-in-tests.ts`.
  * Tests consume these loaders rather than importing `node:fs/promises`
- * directly per ADR-078.
+ * directly per the injected-seams rule.
  */
 
 const repoRoot = path.resolve(__dirname, '..', '..', '..');

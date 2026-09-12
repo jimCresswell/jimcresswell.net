@@ -8,7 +8,7 @@ import { resolveTrustedGit } from '../core/trusted-git.js';
  * The real git runner: runs the trusted absolute `git` binary (resolved via
  * {@link resolveTrustedGit}, so a writable PATH entry cannot shadow it) from
  * `cwd` and returns its stdout, translating a non-zero exit into an `err`
- * Result at this single library boundary (ADR-088 / use-result-pattern) rather
+ * Result at this single library boundary (the Result pattern / use-result-pattern) rather
  * than letting `execFileSync`'s throw escape.
  *
  * @remarks

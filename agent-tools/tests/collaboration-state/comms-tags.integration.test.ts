@@ -55,8 +55,8 @@ const recipientAddress = {
   id: recipientWithId.id,
 };
 
-describe('collaboration-state comms --tag flag (ADR-183)', () => {
-  it('attaches ADR-183 tags to a directed event via repeated --tag flags', async () => {
+describe('collaboration-state comms --tag flag (the comms-tag namespace)', () => {
+  it('attaches the comms-tag namespace tags to a directed event via repeated --tag flags', async () => {
     const commsDir = 'state/comms';
     const fake = createFakeCollaborationRuntime();
 
@@ -117,7 +117,7 @@ describe('collaboration-state comms --tag flag (ADR-183)', () => {
     ]);
   });
 
-  it('rejects --tag values outside the ADR-183 namespace with a precise error', async () => {
+  it('rejects --tag values outside the comms-tag namespace with a precise error', async () => {
     const fake = createFakeCollaborationRuntime();
 
     const result = await runCollaborationStateCli({
@@ -167,7 +167,7 @@ describe('collaboration-state comms --tag flag (ADR-183)', () => {
     expect(result.stderr).toMatch(/unknown comms event tag.*mystery-tag/);
   });
 
-  it('attaches ADR-183 tags to a narrative event via comms send --tag', async () => {
+  it('attaches the comms-tag namespace tags to a narrative event via comms send --tag', async () => {
     const commsDir = 'state/comms';
     const sharedLogPath = 'state/shared-log.md';
     const fake = createFakeCollaborationRuntime();

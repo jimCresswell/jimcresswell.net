@@ -6,7 +6,7 @@ import {
 } from '../../collaboration-state/state-integrity.js';
 
 // The machine-local surfaces (claims, comms, commit-queue) live at the
-// ADR-197 coordination home — from a linked worktree, process.cwd() alone
+// the coordination home (the registry contract) — from a linked worktree, process.cwd() alone
 // would validate absent-or-stale local decoys while the canonical store
 // stays uninspected (review finding 5).
 const report = await validateCollaborationStateIntegrity({

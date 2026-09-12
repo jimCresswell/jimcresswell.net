@@ -52,7 +52,6 @@ const EXCLUDED_PATH_ROOTS = ['tmp', '.agent/reference-local'];
  * three-zone one).
  */
 const ALLOWED_FILES = new Set([
-  'docs/architecture/architectural-decisions/144-two-threshold-fitness-model.md',
   'agent-tools/src/validators/fitness-vocabulary/validate-fitness-vocabulary.ts',
   'agent-tools/src/validators/fitness-vocabulary/validate-fitness-vocabulary.unit.test.ts',
 ]);

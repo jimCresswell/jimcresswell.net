@@ -9,7 +9,7 @@ import type {
 } from './claim-freshness-types.js';
 
 /**
- * Pure rules for the perishable-claim freshness contract (ADR-223) over the
+ * Pure rules for the perishable-claim freshness contract (risk-based claim freshness) over the
  * hook policy's `platform_support` rows.
  *
  * Deliberately clock-free: every rule is a deterministic function of the row

@@ -51,7 +51,7 @@ const SCHEMAS_DIR = resolveSchemasDir();
 let cachedValidator: Promise<CollaborationJsonSchemaValidator> | undefined;
 
 export interface CollaborationJsonSchemaValidator {
-  // Result-typed by design (ADR-088): the old bare-void slot accepted a
+  // Result-typed by design (the Result pattern): the old bare-void slot accepted a
   // Result-returning implementation silently — the compiler-silent seam
   // class the surface-contract story exists to kill.
   readonly validateText: (schemaId: string, text: string) => Result<void, Error>;

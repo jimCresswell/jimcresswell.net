@@ -13,7 +13,7 @@
  * every listed location is non-writable — some POSIX entries (Homebrew's
  * `/opt/homebrew/bin`, `/usr/local/bin`) are commonly user-owned. This is the
  * `gh` counterpart of the `git` resolver in `trusted-git.ts`; it returns a
- * `Result` (ADR-088) rather than throwing — the shape `trusted-git.ts` is
+ * `Result` (the Result pattern) rather than throwing — the shape `trusted-git.ts` is
  * slated to adopt as it comes off the no-throw backlog.
  *
  * The allowlist is partitioned by platform (see `trusted-git.ts` for the full
@@ -68,7 +68,7 @@ function remedyFor(platform: NodeJS.Platform): string {
  * @remarks
  * Executing gh by absolute path — not by name via `PATH` — defeats
  * PATH-hijacking (SonarCloud S4036, the compliant fix). When no trusted gh is
- * found this returns an `err` (ADR-088, never a throw) naming the searched
+ * found this returns an `err` (the Result pattern, never a throw) naming the searched
  * paths and the platform's remedy, rather than returning an unverified path (a
  * silent failure that would surface downstream as an opaque `ENOENT` from the
  * caller's `execFileSync`). `platform` is injected (defaulting to

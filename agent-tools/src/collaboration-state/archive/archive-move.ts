@@ -1,5 +1,5 @@
 /**
- * Plan orchestrator for the WS7 class-tiered archive-move (ADR-199 §Decision;
+ * Plan orchestrator for the WS7 class-tiered archive-move (the comms-event rotation phenotype §Decision;
  * PDR-094): composes the pure {@link decideDisposition} core with the filesystem
  * and the fail-closed provenance gate to produce a **plan** — the events that
  * leave `comms/`, their `manifest.jsonl` rows, the events awaiting a disposition,
@@ -7,7 +7,7 @@
  *
  * @remarks
  * Mirrors `provenance-scan.ts`: IO-free over the injectable {@link ArchiveMoveIo}
- * seam, returns the repository {@link Result} type (ADR-088), never throws, and
+ * seam, returns the repository {@link Result} type (the Result pattern), never throws, and
  * fails closed (a typed {@link ArchiveMoveError}, never a partial plan). The
  * provenance gate is composed **inside** the plan path as the single fail-closed
  * precondition for any move. Planning only — execution lives in the bin. The

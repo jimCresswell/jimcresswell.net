@@ -5,7 +5,7 @@ import {
   validateCommsEventTags,
 } from '../../src/collaboration-state/comms-tag-namespace';
 
-describe('comms event tag namespace (ADR-183)', () => {
+describe('comms event tag namespace (the comms-tag namespace)', () => {
   it('exposes the canonical namespace as a frozen tuple', () => {
     expect(COMMS_EVENT_TAG_NAMESPACE).toStrictEqual([
       'failure-mode',

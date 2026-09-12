@@ -1,6 +1,6 @@
 /**
  * Readers for the untracked-by-design collaboration state files
- * (ADR-199 / PDR-094). On a fresh checkout or new worktree these files do
+ * (the comms-event rotation phenotype / PDR-094). On a fresh checkout or new worktree these files do
  * not exist, so first contact meets ENOENT; the readers convert exactly
  * that case into an `Err` carrying the complete seed content from
  * `state-file-seeds.ts` — instructions sufficient on their own to cure the
@@ -13,7 +13,7 @@
  * system reporting a problem and it crashes at detection rather than
  * entering the Result channel (owner rulings, 2026-07-20).
  *
- * The text-read seam is injectable per ADR-078 so tests prove the
+ * The text-read seam is injectable per the injected-seams rule so tests prove the
  * behaviour with simple fakes and no real IO; production uses the
  * default disk binding.
  */
@@ -36,7 +36,7 @@ import { parseClosedClaimsArchive, parseCollaborationRegistry } from './state-pa
 import { type ClosedClaimsArchive, type CollaborationRegistry } from './types.js';
 
 /**
- * The injectable text-read seam (ADR-078). Production binds the disk;
+ * The injectable text-read seam (the injected-seams rule). Production binds the disk;
  * tests inject fakes that resolve text or reject with errno-shaped
  * failures.
  */

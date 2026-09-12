@@ -12,7 +12,7 @@ import {
 import { commsEventSchema } from './comms-event-schema-fixture';
 import { createFakeCollaborationRuntime } from './fake-collaboration-runtime';
 
-// Split from comms-tags.integration.test.ts (max-lines) at the ADR-186
+// Split from comms-tags.integration.test.ts (max-lines) at the heartbeat lifecycle substrate
 // emitter migration: everything heartbeat-mode lives here — the Lane A
 // PDR-078 §5 typed-origin guards and the lifecycle-shape emission,
 // thread resolution, and rejection contracts.
@@ -59,7 +59,7 @@ function registryWithClaim(
   };
 }
 
-describe('comms heartbeat mode — ADR-186 lifecycle shape (append/send emitter)', () => {
+describe('comms heartbeat mode — the lifecycle-substrate lifecycle shape (append/send emitter)', () => {
   it('rejects --body argv on a heartbeat-tagged append (Lane A — PDR-078 §5 typed-origin)', async () => {
     const fake = createFakeCollaborationRuntime();
 
@@ -183,7 +183,7 @@ describe('comms heartbeat mode — ADR-186 lifecycle shape (append/send emitter)
     expect(result.stderr).toMatch(/--current-cycle-label/);
   });
 
-  it('emits the ADR-186 lifecycle shape with thread derived from the real claim row via comms append --tag heartbeat', async () => {
+  it('emits the lifecycle-substrate lifecycle shape with thread derived from the real claim row via comms append --tag heartbeat', async () => {
     const commsDir = 'state/comms';
     const fake = createFakeCollaborationRuntime({
       activeClaims: registryWithClaim('claim-7c3f', 'estate-registry-thread'),

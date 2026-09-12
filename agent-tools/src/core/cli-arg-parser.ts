@@ -7,7 +7,7 @@
  * check. This module owns the mechanics that were otherwise copied per topic: the
  * `--` terminator, flag dispatch, value-option dispatch with the "missing value"
  * guard, and the unknown-option / unexpected-positional error composition. It
- * returns a discriminated union — never throws, never exits, no IO (ADR-088).
+ * returns a discriminated union — never throws, never exits, no IO (the Result pattern).
  *
  * @packageDocumentation
  */

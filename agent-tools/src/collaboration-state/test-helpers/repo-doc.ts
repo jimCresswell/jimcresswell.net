@@ -4,7 +4,7 @@ import { join } from 'node:path';
 import { resolveRepoRoot } from '../../core/repo-root.js';
 
 /**
- * Real-IO reader for repo-root-relative documents (ADR-078: integration
+ * Real-IO reader for repo-root-relative documents (the injected-seams rule: integration
  * tests import this helper surface, never `node:fs` directly). Root
  * discovery goes through the canonical resolver — no second sentinel walk.
  */

@@ -12,7 +12,7 @@
  * `runFileBackedChild` — never live Node pipes, which poison the
  * spawned git's hook chain; F-112), and the workflow does not change
  * its path on non-zero advisory exit. The blocking authority remains
- * `.husky/pre-commit` + `.husky/commit-msg`. See PDR-053 and ADR-176.
+ * `.husky/pre-commit` + `.husky/commit-msg`. See PDR-053 and the advisory-orchestrator naming.
  */
 
 import { execFileSync } from 'node:child_process';

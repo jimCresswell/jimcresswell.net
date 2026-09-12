@@ -116,7 +116,7 @@ describe('comms peer-liveness', () => {
     expect(result.stdout).not.toContain('Ancient Drifting Relic');
   });
 
-  it('classifies a peer from an UNTAGGED ADR-186 lifecycle-shaped heartbeat (dual-filter consumer at the CLI seam)', async () => {
+  it('classifies a peer from an UNTAGGED lifecycle-shaped heartbeat (dual-filter consumer at the CLI seam)', async () => {
     const events: readonly CommsEvent[] = [
       // A migrated seat whose lifecycle heartbeat carries no tag at all —
       // the lifecycle clause alone must keep it out of false retirement.

@@ -172,7 +172,7 @@ function mergeTarget(input: MergeExecutionInput): Result<PrTarget, Error> {
 }
 
 /**
- * The real reading with its throw translated at this one boundary (ADR-088):
+ * The real reading with its throw translated at this one boundary (the Result pattern):
  * pr-watch's reader throws on transients by design, and the poll loop needs
  * that failure as a typed value it can retry within the budget.
  */

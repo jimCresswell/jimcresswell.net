@@ -19,7 +19,7 @@ import { readExecutor } from '../src/merge-bot/merge';
  */
 describe('readExecutor child environment (F-156)', () => {
   it('the child observes the pinned token-free env, whatever the base carried', () => {
-    // A fully literal base (ADR-078: no ambient process.env in tests) — the
+    // A fully literal base (the injected-seams rule: no ambient process.env in tests) — the
     // child is exec'd by absolute path and reads nothing else from it.
     const run = readExecutor({
       PATH: '/usr/bin',

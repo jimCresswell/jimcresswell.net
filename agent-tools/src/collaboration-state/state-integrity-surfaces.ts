@@ -15,8 +15,8 @@ const COLLABORATION_ROOT = '.agent/state/collaboration';
 
 export interface JsonSurface {
   // The absolute root this surface's path resolves against. Machine-local
-  // surfaces (claims, comms, commit-queue — ADR-199/QUEUE-LOCAL) root at
-  // the ADR-197 coordination home: in a linked worktree the repo-local
+  // surfaces (claims, comms, commit-queue — the comms-event rotation phenotype/QUEUE-LOCAL) root at
+  // the coordination home (the registry contract): in a linked worktree the repo-local
   // copies are decoys (absent, or stale pre-split residue), and validating
   // them lets `check` pass while the canonical store is corrupt.
   readonly root: string;
@@ -25,7 +25,7 @@ export interface JsonSurface {
   // surfaces carry a runtime contract — no second field for drift to split.
   readonly path: string;
   readonly schemaId: CollaborationSchemaId;
-  // Untracked-by-design surfaces (ADR-199 Phase-3 untrack) are absent in a fresh
+  // Untracked-by-design surfaces (the comms-event rotation phenotype Phase-3 untrack) are absent in a fresh
   // checkout (e.g. CI) and present-on-disk on a working instance. An absent such
   // surface is the expected clean state, not an integrity fault.
   readonly optionalWhenAbsent?: boolean;
@@ -52,7 +52,7 @@ export async function jsonSurfaces(
       root: coordinationHome,
       directory: `${COLLABORATION_ROOT}/comms`,
       schemaId: 'comms-event.schema.json',
-      // comms/ is untracked-by-design (ADR-199 Phase-3 untrack): absent in a
+      // comms/ is untracked-by-design (the comms-event rotation phenotype Phase-3 untrack): absent in a
       // fresh checkout (e.g. CI), present-on-disk on a working instance. An
       // absent comms/ is the expected clean state, not an integrity fault.
       optionalWhenAbsent: true,

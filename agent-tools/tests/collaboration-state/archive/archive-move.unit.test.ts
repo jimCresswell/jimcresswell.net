@@ -185,7 +185,7 @@ describe('planArchiveMove — provenance gate (fail-closed, re-blocks violators)
   });
 });
 
-describe('planArchiveMove — manifest rows (ADR-199 §3 verbatim fields)', () => {
+describe('planArchiveMove — manifest rows (the comms-event rotation phenotype §3 verbatim fields)', () => {
   it('builds a manifest row carrying event_id, created_at, kind, tags, archived_at, disposition', () => {
     const events = [
       ev({

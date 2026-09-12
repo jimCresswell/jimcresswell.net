@@ -12,7 +12,7 @@
  * lets generation prune valid copies; and symlinks are never followed on
  * the write path — a projected symlink is unlinked before its path is
  * written, so canonical bytes can never land outside the projection tree.
- * The union shape follows ADR-088 / `clear.ts`: failures live in the type,
+ * The union shape follows the Result pattern / `clear.ts`: failures live in the type,
  * never in a thrown exception.
  */
 import {

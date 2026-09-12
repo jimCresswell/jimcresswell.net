@@ -11,7 +11,7 @@ import { resolvePnpm } from './pnpm-path.js';
  * {@link resolvePnpm}, so command resolution never consults `PATH` — no
  * S4036 binary-shadowing surface), runs it with `args` from `cwd` inheriting
  * stdio so the user sees install/build progress, and translates a non-zero
- * exit into an `err` Result at this single library boundary (ADR-088)
+ * exit into an `err` Result at this single library boundary (the Result pattern)
  * rather than letting `execFileSync`'s throw escape.
  *
  * @remarks

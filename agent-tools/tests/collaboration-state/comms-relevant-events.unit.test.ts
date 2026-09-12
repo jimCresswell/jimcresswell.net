@@ -496,7 +496,7 @@ describe('drainRelevantEvents — sanctioned excludeTags mechanism (F-146)', () 
     expect(drained.excludedEventIds).toStrictEqual(['hb-1']);
   });
 
-  it('drops an ADR-186 lifecycle-shaped heartbeat carrying the migration-window tag (F-146 parity across shapes — reserve seats stay unflooded post-migration)', async () => {
+  it('drops a lifecycle-shaped heartbeat carrying the migration-window tag (F-146 parity across shapes — reserve seats stay unflooded post-migration)', async () => {
     const lifecycleHeartbeat: LifecycleCommsEvent = {
       schema_version: '2.0.0',
       event_id: 'lifecycle-hb-1',

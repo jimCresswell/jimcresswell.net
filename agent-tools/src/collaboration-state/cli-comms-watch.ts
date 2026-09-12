@@ -168,7 +168,7 @@ function resolveWatchTunables(options: Options): {
 }
 
 /**
- * F-146: boundary-validate the exclusion set (canonical ADR-183 tags, no
+ * F-146: boundary-validate the exclusion set (canonical the comms-tag namespace tags, no
  * duplicates) BEFORE the watcher arms — a typo must fail loud here, never
  * silently exclude nothing.
  */

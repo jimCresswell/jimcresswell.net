@@ -9,13 +9,13 @@ import { readActiveClaimsFile, readClosedClaimsFile } from './state-file-readers
 import { updateActiveClaimsFile, updateClaimStateFiles } from './state-io.js';
 
 // On a fresh checkout or new worktree the collaboration-state files are
-// untracked-by-design (ADR-199 / PDR-094), so first contact meets ENOENT.
+// untracked-by-design (the comms-event rotation phenotype / PDR-094), so first contact meets ENOENT.
 // The system states these tests describe: that first contact yields an
 // error whose message embeds the COMPLETE seed content (instructions
 // sufficient on their own to cure the failure); absence is never a silent
 // empty registry; and every non-ENOENT failure surfaces as its ORIGINAL
 // self — never wrapped, summarised, or softened (owner ruling 2026-07-20).
-// The readers' text-read seam is injected (ADR-078); no test touches
+// The readers' text-read seam is injected (the injected-seams rule); no test touches
 // real IO.
 
 function missingFile(path: string): Promise<string> {

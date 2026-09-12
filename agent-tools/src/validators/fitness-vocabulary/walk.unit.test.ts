@@ -51,10 +51,10 @@ describe('shouldInspectFile', () => {
     expect(shouldInspectFile('package.json')).toBe(false);
   });
 
-  it('excludes the ADR-144 file itself (permitted to discuss retired vocabulary)', () => {
+  it('excludes the validator test file itself (permitted to discuss retired vocabulary)', () => {
     expect(
       shouldInspectFile(
-        'docs/architecture/architectural-decisions/144-two-threshold-fitness-model.md',
+        'agent-tools/src/validators/fitness-vocabulary/validate-fitness-vocabulary.unit.test.ts',
       ),
     ).toBe(false);
   });

@@ -20,7 +20,7 @@ export interface WorkspaceDepDirEntry {
 /**
  * Minimal filesystem seam for the staleness decision, injected so both the
  * decision AND its recursive `src` walk stay pure functions testable with a
- * fake (ADR-078). The primitives are deliberately thin — a single mtime, a
+ * fake (the injected-seams rule). The primitives are deliberately thin — a single mtime, a
  * directory existence check, and one non-recursive directory listing — so the
  * production binding in `bootstrap-helpers-io.ts` is only `node:fs` wiring with
  * no branching logic worth a real-IO test. Mirrors the `WatcherStalenessIo`

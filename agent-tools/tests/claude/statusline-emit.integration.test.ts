@@ -2,7 +2,7 @@ import { emitStatusline, type EmitDeps } from '../../src/claude/statusline-emit'
 
 /**
  * Constant success deps, branch-free; failure tests override the single
- * member they break (testing-strategy branch-free fake rule; ADR-078).
+ * member they break (testing-strategy branch-free fake rule; the injected-seams rule).
  * These tests pin the COMPOSITION contracts the pure helpers cannot:
  * append-before-planning, and the invalid-config warning preceding every
  * outcome — noop, render, and render-throw alike.

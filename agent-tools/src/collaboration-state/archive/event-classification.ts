@@ -1,6 +1,6 @@
 /**
  * Pure classification core of the WS7 class-tiered archive-move
- * (ADR-199 §Decision item 5 "Class tiers and windows", §"Absorption gate";
+ * (the comms-event rotation phenotype §Decision item 5 "Class tiers and windows", §"Absorption gate";
  * PDR-094 Invariants 4 + 5).
  *
  * @remarks
@@ -12,12 +12,12 @@
  *
  * Two invariants shape the design:
  *
- * - **The absorption gate is the single operative gate** (ADR-199 §"Absorption
+ * - **The absorption gate is the single operative gate** (the comms-event rotation phenotype §"Absorption
  *   gate"): rotation never archive-moves an event whose disposition is not
  *   recorded — `absorbed`, `routine`, or `quarantined`. An event past its
  *   retention window with no recorded disposition stays live; it is a candidate
  *   awaiting a disposition, not a thing to move.
- * - **Title genre is never sufficient** (ADR-199 standing falsifier, event
+ * - **Title genre is never sufficient** (the comms-event rotation phenotype standing falsifier, event
  *   `3cc1fb93`): a `routine` disposition on an event whose body exceeds the
  *   routine-length threshold is refused unless the body was actually read. The
  *   `diagnostic-test-noise` tier is therefore never assigned automatically — it
@@ -37,7 +37,7 @@
  */
 export type AutoTier = 'heartbeat' | 'research-precious' | 'coordination';
 
-/** A recorded disposition satisfying the absorption gate (ADR-199 §"Absorption gate"). */
+/** A recorded disposition satisfying the absorption gate (the comms-event rotation phenotype §"Absorption gate"). */
 export type RecordedDisposition = 'absorbed' | 'routine' | 'quarantined';
 
 /** The action the pass takes for an event (surfaced structurally via {@link DispositionDecision}). */
@@ -62,14 +62,14 @@ export interface ClassifiableEvent {
   readonly kind: 'narrative' | 'lifecycle' | 'directed';
   /** ISO-8601 UTC authoring timestamp (the canonical `created_at` field). */
   readonly createdAt: string;
-  /** ADR-183 tag namespace (`failure-mode`, `behaviour-note`, `heartbeat`). */
+  /** the comms-tag namespace tag namespace (`failure-mode`, `behaviour-note`, `heartbeat`). */
   readonly tags: readonly string[];
   /** `title` for narrative/lifecycle, `subject` for directed — the heartbeat-title signal. */
   readonly titleOrSubject: string;
   /** Length of the event body in characters; drives the body-read requirement. */
   readonly bodyLength: number;
   /**
-   * ADR-186 §Migration-discipline dual-filter verdict, computed at the
+   * the heartbeat lifecycle substrate §Migration-discipline dual-filter verdict, computed at the
    * projection seam (`event-projection.ts`) where the comms wire shape is
    * known: `lifecycle + event_type='heartbeat'` OR a `heartbeat` tag on any
    * kind. The classifier consumes the verdict; it never re-reads the wire.
@@ -79,9 +79,9 @@ export interface ClassifiableEvent {
 
 /** Per-tier retention windows (milliseconds) before an event becomes age-eligible. */
 export interface RetentionWindows {
-  /** Heartbeat tier window (ADR-199 default 48 h). */
+  /** Heartbeat tier window (the rotation phenotype default 48 h). */
   readonly heartbeatMs: number;
-  /** Coordination-narrative + directed tier window (ADR-199 default 7 d). */
+  /** Coordination-narrative + directed tier window (the rotation phenotype default 7 d). */
   readonly coordinationMs: number;
 }
 
@@ -114,7 +114,7 @@ export interface DispositionDecision {
 }
 
 /**
- * ADR-199 + ADR-186: heartbeat events carry the projection's dual-filter
+ * the comms-event rotation phenotype + the heartbeat lifecycle substrate: heartbeat events carry the projection's dual-filter
  * verdict ({@link ClassifiableEvent.isHeartbeatShaped}) OR are titled
  * `Heartbeat:` / `Heartbeat-end:` (the title heuristic stays as the
  * belt-and-braces signal for hand-rolled emitters).

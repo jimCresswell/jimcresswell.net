@@ -4,7 +4,7 @@
  *
  * @remarks
  * Extracted from the bin so the composition contracts are testable through
- * injected deps (ADR-078): the raw payload is logged BEFORE planning
+ * injected deps (the injected-seams rule): the raw payload is logged BEFORE planning
  * (malformed and noop payloads are exactly the invocations a diagnosis
  * needs), and the invalid-config warning precedes EVERY outcome — noop,
  * render, and render-throw alike. The bin composes the real deps and

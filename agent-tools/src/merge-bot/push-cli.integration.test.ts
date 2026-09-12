@@ -55,7 +55,7 @@ interface GitCall {
   readonly env: Readonly<Record<string, string | undefined>>;
 }
 
-/** Value-returning git seam (ADR-088): a non-zero exit is a RESULT, never a throw. */
+/** Value-returning git seam (the Result pattern): a non-zero exit is a RESULT, never a throw. */
 function gitFake(overrides: { revParse?: GitCommandResult; push?: GitCommandResult } = {}): {
   gitExecutor: GitExecutor;
   calls: GitCall[];
@@ -194,7 +194,7 @@ function pushCall(calls: readonly GitCall[]): GitCall | undefined {
 
 /**
  * A library-shaped fixture that THROWS: the boundary translations under test
- * exist precisely to catch this shape (ADR-088's translate-at-the-boundary
+ * exist precisely to catch this shape (the Result pattern's translate-at-the-boundary
  * arm), so describing those states needs exactly one throwing fake — this
  * one, shared by every breach test below.
  */

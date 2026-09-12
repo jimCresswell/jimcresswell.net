@@ -22,7 +22,7 @@ export interface CollaborationStateIntegrityReport {
 
 export async function validateCollaborationStateIntegrity(input: {
   readonly repoRoot: string;
-  /** The ADR-197 coordination home the machine-local surfaces live at. */
+  /** The coordination home (the registry contract) the machine-local surfaces live at. */
   readonly coordinationHome: string;
 }): Promise<CollaborationStateIntegrityReport> {
   const surfaces = await jsonSurfaces(input.repoRoot, input.coordinationHome);

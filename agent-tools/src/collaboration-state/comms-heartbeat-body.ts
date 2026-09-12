@@ -34,7 +34,7 @@ export type HeartbeatBodyState = z.infer<typeof heartbeatBodyStateSchema>;
  * Compose the heartbeat event body from typed state. The output is a
  * single deterministic line: parsing the input through the strict Zod
  * schema is the source of validation, and the format is the recorded
- * canonical shape for `[HEARTBEAT]` event bodies under ADR-186's
+ * canonical shape for `[HEARTBEAT]` event bodies under the heartbeat lifecycle substrate's
  * migration window.
  *
  * The compile-time `HeartbeatBodyState` contract guarantees field
@@ -91,9 +91,9 @@ export function parseHeartbeatBody(body: string): HeartbeatBodyState | undefined
 }
 
 /**
- * The ADR-186 lifecycle-substrate discriminator for heartbeat liveness
+ * The lifecycle-substrate discriminator for heartbeat liveness
  * events: `kind='lifecycle'` + `event_type=HEARTBEAT_EVENT_TYPE`. This is
- * the single typed-constant source ADR-186 §"What this costs" mandates —
+ * the single typed-constant source the heartbeat lifecycle substrate §"What this costs" mandates —
  * emitters and consumers cite this constant by name; string-literal
  * duplication of the token across emitter sites violates the ADR, because
  * the renderer tolerates unknown sub-kinds and a typo'd `event_type` would
@@ -102,7 +102,7 @@ export function parseHeartbeatBody(body: string): HeartbeatBodyState | undefined
 export const HEARTBEAT_EVENT_TYPE = 'heartbeat';
 
 /**
- * ADR-186 §"Migration discipline" heartbeat discriminator, shared by every
+ * the heartbeat lifecycle substrate §"Migration discipline" heartbeat discriminator, shared by every
  * consumer that counts heartbeats (peer-liveness retirement detection, the
  * archive tier projection). Deliberately a STRICT SUPERSET of the ADR's
  * canonical two-clause predicate: the tag clause stays kind-agnostic

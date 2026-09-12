@@ -10,7 +10,7 @@ import {
  * In-memory fake of the narrow descriptor-level fs surface, recording
  * calls and options. No IO anywhere in this suite: the OS filesystem
  * bridge is not ours to prove — these tests prove our code's behaviour at
- * the injected seam (testing-strategy §Test Types; ADR-078). The fake is
+ * the injected seam (testing-strategy §Test Types; the injected-seams rule). The fake is
  * branch-free: failure tests override the single method they break,
  * following `statusline-frame-store.unit.test.ts`.
  */

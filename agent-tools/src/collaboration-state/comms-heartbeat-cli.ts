@@ -77,7 +77,7 @@ export function isHeartbeatMode(tags: readonly string[]): boolean {
 }
 
 /**
- * Build the ADR-186 lifecycle-shaped heartbeat event for heartbeat-mode
+ * Build the lifecycle-shaped heartbeat event for heartbeat-mode
  * `comms append` / `comms send`, running the caller-supplied comms
  * concept gate (injected to keep this module free of the CLI command
  * layer — gating stays uniform across emission kinds). The lifecycle
@@ -111,7 +111,7 @@ export async function buildGatedHeartbeatLifecycleEvent(input: {
   await input.enforceGates({ title, body, tags });
   if (optional(options, 'in-response-to') !== undefined) {
     throw new Error(
-      'heartbeat-tagged events: --in-response-to rejected. The ADR-186 lifecycle heartbeat shape carries no threading edge; acknowledge the antecedent with a separate narrative event.',
+      'heartbeat-tagged events: --in-response-to rejected. The lifecycle heartbeat shape carries no threading edge; acknowledge the antecedent with a separate narrative event.',
     );
   }
   const claimId = required(options, 'claim-id');

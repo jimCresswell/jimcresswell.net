@@ -6,7 +6,7 @@ import { parseRegistry, parseRegistryText, readRegistry } from './registry.js';
 
 /**
  * Pure-value description of the commit-queue claims-file parse layer's
- * Result contract (ADR-088). Every error literal below is the layer's
+ * Result contract (the Result pattern). Every error literal below is the layer's
  * public failure surface: consumers (the commit workflow's `load-intent`
  * stage, the CLI boundary, the transaction adapter) relay these messages
  * verbatim, so a reword is a behaviour change and must redden here. The
@@ -131,7 +131,7 @@ describe('parseRegistry', () => {
 
   it('rejects a sparse claims hole as a non-object claim row instead of throwing', () => {
     // A hole is not JSON-reachable, but parseRegistry takes `unknown` and its
-    // Result contract is exception-freedom for ANY input (ADR-088): the dense
+    // Result contract is exception-freedom for ANY input (the Result pattern): the dense
     // mapping must feed the hole to the total parser as undefined.
     const result = parseRegistry({ ...registryValue(), claims: new Array(1) }, REGISTRY_PATH);
 

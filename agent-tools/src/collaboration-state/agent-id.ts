@@ -125,7 +125,7 @@ export interface DerivedCollaborationIdentity {
 /**
  * Boundary validation for a commit_queue INTENT row's identity: the
  * canonical PDR-076a write schema (UUID v5 `id` required), returned as a
- * `Result` (ADR-088). Every live writer emits `id` (intent factories parse
+ * `Result` (the Result pattern). Every live writer emits `id` (intent factories parse
  * through this same schema), so an `Err` here means registry corruption —
  * the error names the offending intent so a blocked agent can surface it
  * precisely. Recovery is an owner-run removal of the named row; do not

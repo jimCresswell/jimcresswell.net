@@ -46,7 +46,7 @@ export const LOGO_FRAME_STATE_DIR = resolveFrameStateDir(process.env, homedir())
 
 /**
  * The narrow filesystem surface {@link createFsFrameStore} needs, injected so the
- * adapter is testable with fakes (no real IO) per ADR-078 — the test asserts the
+ * adapter is testable with fakes (no real IO) per the injected-seams rule — the test asserts the
  * restrictive modes are requested without touching a real filesystem.
  */
 export interface FrameStoreFs {

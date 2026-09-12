@@ -40,7 +40,7 @@ export function nearestExistingAncestor(absPath: string): string {
   return dir;
 }
 
-/** Canonicaliser seam for {@link resolveReadPathWithinRepo} (ADR-078). */
+/** Canonicaliser seam for {@link resolveReadPathWithinRepo} (the injected-seams rule). */
 export interface ReadPathOptions {
   /**
    * Canonicalises a path to its real, symlink-resolved form. Defaults to the

@@ -344,7 +344,7 @@ describe('findAddedScopedBlock — regex with context-aware exclusions (WS4)', (
     concept: 'sha-in-permanent-doc',
     patterns: [String.raw`\b[a-f0-9]{7,40}\b`],
     kind: 'regex' as const,
-    include_paths: ['docs/architecture/architectural-decisions/', '.agent/practice-core/'],
+    include_paths: ['docs/architecture/decision-records/', '.agent/practice-core/'],
     exclude_paths: [],
     excludes_inline_code: true,
     excludes_lines_with: ['(historical reference)'],
@@ -356,7 +356,7 @@ describe('findAddedScopedBlock — regex with context-aware exclusions (WS4)', (
       findAddedScopedBlock(
         'See commit abc1234 for the change.',
         'See some commit for the change.',
-        '/repo/docs/architecture/architectural-decisions/ADR-x.md',
+        '/repo/docs/architecture/decision-records/ADR-x.md',
         [shaGroup],
       ),
     ).toStrictEqual({ group: shaGroup, matchedText: 'abc1234' });
@@ -383,7 +383,7 @@ describe('findAddedScopedBlock — regex with context-aware exclusions (WS4)', (
       findAddedScopedBlock(
         'See commit `abc1234` for the change.',
         'See some commit for the change.',
-        '/repo/docs/architecture/architectural-decisions/ADR-x.md',
+        '/repo/docs/architecture/decision-records/ADR-x.md',
         [shaGroup],
       ),
     ).toStrictEqual({ group: shaGroup, matchedText: 'abc1234' });
@@ -394,7 +394,7 @@ describe('findAddedScopedBlock — regex with context-aware exclusions (WS4)', (
       findAddedScopedBlock(
         '  commit_sha: `abc1234`',
         '  commit_sha: `older000`',
-        '/repo/docs/architecture/architectural-decisions/ADR-x.md',
+        '/repo/docs/architecture/decision-records/ADR-x.md',
         [shaGroup],
       ),
     ).toBeNull();
@@ -405,7 +405,7 @@ describe('findAddedScopedBlock — regex with context-aware exclusions (WS4)', (
       findAddedScopedBlock(
         'See commit abc1234 for the change. (historical reference)',
         'See some commit for the change.',
-        '/repo/docs/architecture/architectural-decisions/ADR-x.md',
+        '/repo/docs/architecture/decision-records/ADR-x.md',
         [shaGroup],
       ),
     ).toBeNull();
@@ -417,7 +417,7 @@ describe('findAddedScopedBlock — regex with context-aware exclusions (WS4)', (
       findAddedScopedBlock(
         newContent,
         'Some prose introducing context.',
-        '/repo/docs/architecture/architectural-decisions/ADR-x.md',
+        '/repo/docs/architecture/decision-records/ADR-x.md',
         [shaGroup],
       ),
     ).toBeNull();
@@ -428,7 +428,7 @@ describe('findAddedScopedBlock — regex with context-aware exclusions (WS4)', (
       findAddedScopedBlock(
         'See commit abc1234 — and another mention of abc1234.',
         'See commit abc1234 was the original.',
-        '/repo/docs/architecture/architectural-decisions/ADR-x.md',
+        '/repo/docs/architecture/decision-records/ADR-x.md',
         [shaGroup],
       ),
     ).toBeNull();
@@ -547,7 +547,7 @@ describe('parseScopedContentBlocks', () => {
       concept: 'sha-in-permanent-doc',
       patterns: [String.raw`\b[a-f0-9]{7,40}\b`],
       kind: 'regex',
-      include_paths: ['docs/architecture/architectural-decisions/'],
+      include_paths: ['docs/architecture/decision-records/'],
       excludes_inline_code: true,
       excludes_lines_with: ['(historical reference)'],
       citation: 'distilled.md §Moving targets do not belong in permanent docs',

@@ -31,7 +31,7 @@ interface CorpusDirEntry {
 
 /**
  * The filesystem the corpus walk reads through — injectable so tests
- * exercise the walk without real IO (ADR-078).
+ * exercise the walk without real IO (the injected-seams rule).
  */
 export interface CorpusFileSystem {
   readonly readdir: (dir: string) => Promise<readonly CorpusDirEntry[]>;

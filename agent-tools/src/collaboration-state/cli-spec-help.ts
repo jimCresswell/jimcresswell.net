@@ -25,14 +25,14 @@ export const commsAppendHelp =
   '--active <path> [--event-id <id>] [--tag <tag>...] [--in-response-to <id>] ' +
   '(--body and --body-file are mutually exclusive; --body-file is the cure ' +
   'for shell-quoting hazards on bodies that contain backticks or dollar signs; ' +
-  '--tag is repeatable, accepts ADR-183 namespace ' +
+  '--tag is repeatable, accepts the comms-tag namespace ' +
   '[failure-mode, behaviour-note, heartbeat]; ' +
   '--in-response-to threads this event to an antecedent event_id of any kind ' +
   '(e.g. a PDR-064 Moment-2 ack referencing a broadcast pre-position); ' +
   'HEARTBEAT MODE: with --tag heartbeat the body is composed from typed state ' +
   'args instead — --body and --body-file are rejected, and --claim-id <id> ' +
   '--intent-id <id> --branch <branch> --current-cycle-label <label> are required; ' +
-  'the event lands as kind=lifecycle event_type=heartbeat (ADR-186), tag retained; ' +
+  'the event lands as kind=lifecycle event_type=heartbeat (the heartbeat lifecycle substrate), tag retained; ' +
   "the caller's own active claim row named by --claim-id is REQUIRED and supplies the thread " +
   '(PDR-078 §4 / F-73); --in-response-to is rejected)';
 
@@ -43,13 +43,13 @@ export const commsSendHelp =
   '[--event-id <id>] [--tag <tag>...] [--in-response-to <id>] ' +
   '(--body and --body-file are mutually exclusive; ' +
   '--body-file reads the file literally and bypasses shell interpretation; ' +
-  '--tag is repeatable, accepts ADR-183 namespace ' +
+  '--tag is repeatable, accepts the comms-tag namespace ' +
   '[failure-mode, behaviour-note, heartbeat]; ' +
   '--in-response-to threads this event to an antecedent event_id of any kind; ' +
   'HEARTBEAT MODE: with --tag heartbeat the body is composed from typed state ' +
   'args instead — --body and --body-file are rejected, and --claim-id <id> ' +
   '--intent-id <id> --branch <branch> --current-cycle-label <label> are required; ' +
-  'the event lands as kind=lifecycle event_type=heartbeat (ADR-186), tag retained; ' +
+  'the event lands as kind=lifecycle event_type=heartbeat (the heartbeat lifecycle substrate), tag retained; ' +
   "the caller's own active claim row named by --claim-id is REQUIRED and supplies the thread " +
   '(PDR-078 §4 / F-73); --in-response-to is rejected) ' +
   '(identity seed: PRACTICE_AGENT_SESSION_ID_CLAUDE, ' +
@@ -113,7 +113,7 @@ export const commsWatchHelp =
   'coordination home (--repo-root is the explicit home override); the watcher ' +
   'creates the comms directory and seen-file parent before arming; ' +
   'with self-exclusion plus the sanctioned repeatable --exclude-tag mechanism ' +
-  '(F-146; ADR-183 namespace tags only; an excluded event still marks seen; ' +
+  '(F-146; the comms-tag namespace tags only; an excluded event still marks seen; ' +
   'directed and group events always surface; a multi-tag event with any ' +
   'non-excluded tag leaks through; excluding heartbeat REQUIRES pairing with the ' +
   'comms peer-liveness poll per the watcher rule) — hand-rolled filtering remains ' +
@@ -173,7 +173,7 @@ export const commsDirectHelp =
   '--body and --body-file are mutually exclusive; --body-file reads the file ' +
   'literally and bypasses shell interpretation; --in-response-to threads this ' +
   'message to an antecedent event_id of any kind; --tag is repeatable, accepts ' +
-  'ADR-183 namespace [failure-mode, behaviour-note, heartbeat])';
+  'the comms-tag namespace [failure-mode, behaviour-note, heartbeat])';
 
 export const commsReplyHelp =
   'comms reply --comms-dir <dir> --to-event-id <id> --kind <kind> ' +
@@ -183,7 +183,7 @@ export const commsReplyHelp =
   'from the resolved source and there is no --in-response-to on this verb; ' +
   '--body and --body-file are mutually exclusive; --body-file reads the file ' +
   'literally and bypasses shell interpretation; --tag is repeatable, accepts the ' +
-  'ADR-183 namespace — a reply quoting a pathogen to correct it needs a capture ' +
+  'the comms-tag namespace — a reply quoting a pathogen to correct it needs a capture ' +
   'tag to pass the comms concept gate, incl. when the inherited "re:" subject ' +
   'quotes one)';
 

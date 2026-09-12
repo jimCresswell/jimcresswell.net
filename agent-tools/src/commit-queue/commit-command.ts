@@ -7,7 +7,7 @@
  * injected via `CommitQueueCliInput.commitWorkflow` so unit tests
  * exercise the dispatch shape without spawning real sub-processes.
  *
- * Advisory polarity (PDR-053 / ADR-176) is preserved by surfacing the
+ * Advisory polarity (PDR-053 / the advisory-orchestrator naming) is preserved by surfacing the
  * advisory orchestrator's exit code as INFORMATION on stderr after a
  * successful commit — never as a blocking verdict. The blocking
  * authority remains `.husky/pre-commit` + `.husky/commit-msg`.

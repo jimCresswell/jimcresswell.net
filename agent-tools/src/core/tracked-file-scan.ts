@@ -16,7 +16,7 @@
  * catch, so silently skipping it would be a green-gate bypass — but whether
  * that surfaces as an exit-2 refusal or as a thrown error is each validator's
  * contract with its operator. This module reports the failure as a `Result`
- * and every caller translates it (ADR-088 / the Result discipline).
+ * and every caller translates it (the Result pattern / the Result discipline).
  *
  * @packageDocumentation
  */

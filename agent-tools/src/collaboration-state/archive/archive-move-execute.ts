@@ -1,5 +1,5 @@
 /**
- * Execute phase of the WS7 class-tiered archive-move (ADR-199 §Decision;
+ * Execute phase of the WS7 class-tiered archive-move (the comms-event rotation phenotype §Decision;
  * PDR-094) — the one place a planned move actually mutates the filesystem.
  *
  * @remarks
@@ -12,7 +12,7 @@
  * ids already in the manifest — a re-run after a crash between append and move
  * neither loses a ledger row nor writes a duplicate. After the moves it asserts
  * byte-preservation first-hand (`count(comms) + count(comms-archive) == pre-move`)
- * and fails closed on divergence. Result-native (ADR-088); nothing throws.
+ * and fails closed on divergence. Result-native (the Result pattern); nothing throws.
  *
  * @packageDocumentation
  */

@@ -5,8 +5,8 @@ export const FITNESS_MODE_INFORMATIONAL = 'informational';
 /**
  * Ratio above `fitness_*_limit` that triggers the `critical` zone.
  *
- * See `docs/architecture/architectural-decisions/144-two-threshold-fitness-model.md`
- * §Decision. The ratio is deliberately global: per-file critical overrides
+ * See the two-threshold fitness model (a source-lineage decision this validator
+ * carries). The ratio is deliberately global: per-file critical overrides
  * would invent optionality that the current evidence does not justify.
  */
 export const CRITICAL_RATIO = 1.5;

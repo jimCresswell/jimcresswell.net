@@ -56,7 +56,7 @@ describe('toClassifiableEvent', () => {
     expect(projected.isHeartbeatShaped).toBe(false);
   });
 
-  it("projects an UNTAGGED lifecycle event with event_type 'heartbeat' as heartbeat-shaped (ADR-186 dual filter at the projection seam)", () => {
+  it("projects an UNTAGGED lifecycle event with event_type 'heartbeat' as heartbeat-shaped (the lifecycle-substrate dual filter at the projection seam)", () => {
     const event: LifecycleCommsEvent = {
       schema_version: '2.0.0',
       event_id: 'cccccccc-3333-4333-8333-333333333333',

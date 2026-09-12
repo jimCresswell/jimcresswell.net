@@ -15,7 +15,7 @@ import {
  * expected finding can ONLY come from the contract gate — deleting the
  * gate turns this test green-to-empty, not same-finding-via-Ajv. Real
  * temp-directory IO makes this an integration test; the IO lives behind
- * the test-helpers surface (ADR-078).
+ * the test-helpers surface (the injected-seams rule).
  */
 
 describe('evaluateCollaborationJsonSurfaces contract-parser leg', () => {

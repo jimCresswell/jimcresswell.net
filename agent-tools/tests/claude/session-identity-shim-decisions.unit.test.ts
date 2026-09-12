@@ -9,10 +9,10 @@ import {
 } from '../../src/claude/session-identity-shim-decisions';
 
 /**
- * The identity shim's fail-open decision states (ADR-167 §Limitations 6):
+ * The identity shim's fail-open decision states (the observable-hook-failure decision, limitation 6):
  * what gets persisted to the hook-scoped env file, and what the diagnostic
  * says in each persistence outcome. Pure parameters-in/result-out per
- * ADR-078 — the shim performs the IO these plans describe.
+ * the injected-seams rule — the shim performs the IO these plans describe.
  */
 
 const VALID_SEED = '0f3c2a1b-4d5e-4f60-8172-93a4b5c6d7e8';

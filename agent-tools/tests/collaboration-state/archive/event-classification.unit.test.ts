@@ -44,7 +44,7 @@ function dispositionInput(overrides: Partial<DispositionInput> = {}): Dispositio
 }
 
 describe('classifyTier', () => {
-  it('classifies a projection-flagged heartbeat as heartbeat (ADR-186 dual-filter verdict computed at the projection seam — covers legacy tag AND lifecycle shapes)', () => {
+  it('classifies a projection-flagged heartbeat as heartbeat (the lifecycle-substrate dual-filter verdict computed at the projection seam — covers legacy tag AND lifecycle shapes)', () => {
     expect(classifyTier(event({ isHeartbeatShaped: true }))).toBe('heartbeat');
   });
 
@@ -282,7 +282,7 @@ describe('decideDisposition — coordination tier (7d, absorption + body-read ga
   });
 
   it('archive-moves a past-window coordination event with a quarantined disposition', () => {
-    // `quarantined` is an ADR-199 §"Absorption gate" recorded disposition that
+    // `quarantined` is a rotation-phenotype §"Absorption gate" recorded disposition that
     // satisfies the gate (the curator examined the event and set it aside as
     // suspect); like `absorbed` it permits the move and needs no body-read gate.
     const decision = decideDisposition(

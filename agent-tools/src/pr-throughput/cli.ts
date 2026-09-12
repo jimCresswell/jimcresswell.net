@@ -3,7 +3,7 @@
  * `pr-throughput` — the PDR-131 throughput register CLI.
  *
  * @remarks
- * Fitness-informational (ADR-144 three-zone model): runtime and measurement
+ * Fitness-informational (the two-threshold fitness model three-zone model): runtime and measurement
  * failures print loudly with the contract named and exit 0 — the command
  * reports trend, it never gates, and a red transport never masquerades as a
  * quiet pass or blocks a chain. Only `--help` and argument errors sit outside

@@ -1,6 +1,6 @@
 /**
  * Pure helpers for the WS7 archive-move manifest ledger
- * (`comms-archive/manifest.jsonl`, ADR-199 §Decision item 3).
+ * (`comms-archive/manifest.jsonl`, the comms-event rotation phenotype §Decision item 3).
  *
  * @remarks
  * Kept IO-free so the crash-resilience contract is unit-testable: a manifest

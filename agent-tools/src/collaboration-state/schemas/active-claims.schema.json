@@ -161,8 +161,8 @@
         },
         "handoff_record_path": {
           "type": "string",
-          "$comment_provenance": "First-principles. Additive optional pointer per ADR-182 + PDR-063; existing readers ignore the field without breakage.",
-          "description": "Optional. Presence signals this claim is mid-cycle and carries a handoff record per PDR-063 + ADR-182; absence signals normal active-claim semantics. Value is a repo-root-relative path to a file under .agent/state/collaboration/handoffs/ (content-addressed by claim_id, with versioned successors <claim_id>.<n>.json). Readers that do not understand this field MUST ignore it (additive-extension discipline per PDR-049 + PDR-050)."
+          "$comment_provenance": "First-principles. Additive optional pointer per the mid-cycle handoff record + PDR-063; existing readers ignore the field without breakage.",
+          "description": "Optional. Presence signals this claim is mid-cycle and carries a handoff record per PDR-063 + the mid-cycle handoff record; absence signals normal active-claim semantics. Value is a repo-root-relative path to a file under .agent/state/collaboration/handoffs/ (content-addressed by claim_id, with versioned successors <claim_id>.<n>.json). Readers that do not understand this field MUST ignore it (additive-extension discipline per PDR-049 + PDR-050)."
         },
         "role": {
           "type": "string",
@@ -309,7 +309,7 @@
             "type": "string",
             "minLength": 1
           },
-          "description": "Patterns identifying the area. Globs for files; workspace names for workspace; plan file paths for plan; ADR numbers (e.g. 'ADR-163') for adr; git transaction labels (e.g. 'index/head') for git."
+          "description": "Patterns identifying the area. Globs for files; workspace names for workspace; plan file paths for plan; ADR numbers (e.g. 'release attribution') for adr; git transaction labels (e.g. 'index/head') for git."
         }
       }
     },

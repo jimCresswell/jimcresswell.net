@@ -27,7 +27,7 @@
  * foreign directory cannot borrow a genuine stub's content). Our
  * validation governs our own system only (testing-strategy.md: never test
  * external functionality that is not under our control; the skill-class
- * taxonomy lives in ADR-125).
+ * taxonomy lives in PDR-009).
  *
  * An absent surface root is fine (nothing to reconcile); any other listing
  * or classification read failure lands in `failures`, because reading a

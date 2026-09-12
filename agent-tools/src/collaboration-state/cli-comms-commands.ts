@@ -160,7 +160,7 @@ export async function migrateComms(
 
 /**
  * Enforce the comms concept gate (owner-ratified 2026-07-02) at the CLI
- * write boundary: the gate itself is Result-typed (ADR-088), and this is
+ * write boundary: the gate itself is Result-typed (the Result pattern), and this is
  * the single point where its refusal is translated to this layer's error
  * contract — a thrown error the CLI runtime catches into exit 2 + stderr,
  * matching every neighbouring guard in the comms write paths. The blocks

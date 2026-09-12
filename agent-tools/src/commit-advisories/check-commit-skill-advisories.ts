@@ -21,7 +21,7 @@
  * `no-verify-requires-fresh-authorisation` rule), construct a doctrinal-
  * collision framing, or otherwise reshape the commit. See
  * [PDR-053](.agent/practice-core/decision-records/PDR-053-orchestrator-vs-gate-structural-cure.md)
- * and [ADR-176](docs/architecture/architectural-decisions/176-commit-skill-advisory-orchestrator-naming.md)
+ * and the source lineage's advisory-orchestrator naming decision
  * for the structural-cure doctrine.
  *
  * Doctrinal anchors:
@@ -32,8 +32,8 @@
  *   deterministic write-time detection at the commit boundary.
  * - PDR-053 — orchestrator-vs-gate structural cure (advisory polarity at
  *   filename + banner + skill-doctrine).
- * - ADR-144 — three-zone fitness vocabulary consistency.
- * - ADR-176 — commit-skill advisory orchestrator naming and surface polarity.
+ * - the two-threshold fitness model — three-zone fitness vocabulary consistency.
+ * - the advisory-orchestrator naming — commit-skill advisory orchestrator naming and surface polarity.
  *
  * The orchestrator is dependency-injected so the wiring shape can be unit
  * tested without spawning real sub-processes.
@@ -124,7 +124,7 @@ function describeFailure(
 ): string {
   const headers: Record<typeof failure.failedCheck, string> = {
     fitness: 'practice:fitness:strict-hard (PDR-038 §2026-05-04 amendment)',
-    vocabulary: 'practice:vocabulary (ADR-144)',
+    vocabulary: 'practice:vocabulary (the two-threshold fitness model)',
     message: 'pnpm agent-tools:check-commit-message',
   };
 
@@ -139,7 +139,7 @@ async function main(forwardedArgs: readonly string[]): Promise<number> {
     'commit-skill advisory orchestrator — runs fitness, vocabulary, and message checks as advisory pre-screen.\n',
   );
   process.stderr.write(
-    'A non-zero exit is information for the agent to read and route. It is NEVER a commit verdict, NEVER licence to propose --no-verify, and NEVER licence to construct a doctrinal-collision framing. See PDR-053 and ADR-176.\n\n',
+    'A non-zero exit is information for the agent to read and route. It is NEVER a commit verdict, NEVER licence to propose --no-verify, and NEVER licence to construct a doctrinal-collision framing. See PDR-053 and the advisory-orchestrator naming.\n\n',
   );
 
   // Bare 'pnpm' never reaches spawn (the agent-tools invariant, and on

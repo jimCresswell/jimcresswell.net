@@ -19,7 +19,7 @@ import {
  *
  * The filesystem seam is faked with an in-memory directory tree so the decision
  * and its recursive `src` walk are described as pure functions over mtimes
- * (ADR-078) rather than raced against real write timing.
+ * (the injected-seams rule) rather than raced against real write timing.
  */
 
 const DEP_DIR = '/repo/packages/core/result';

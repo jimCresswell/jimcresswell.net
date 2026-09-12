@@ -147,7 +147,7 @@ function writeCriticalPostMortemPrompt(
   }
 
   io.log(
-    '\n\x1b[35mCritical zone detected. Per ADR-144 §Loop Health, a short post-mortem is required:\x1b[0m',
+    '\n\x1b[35mCritical zone detected. Per the two-threshold fitness model §Loop Health, a short post-mortem is required:\x1b[0m',
   );
   io.log('  1. Why did the earlier zones not fire?');
   io.log("  2. Was the limit set incorrectly for this file's role?");
@@ -159,7 +159,7 @@ export function writePracticeFitnessReport(
   mode: FitnessMode,
   results: readonly FitnessResult[],
 ): void {
-  io.log('\nPractice Fitness Check (ADR-144 three-zone model)');
+  io.log('\nPractice Fitness Check (the two-threshold fitness model three-zone model)');
   io.log('══════════════════════════════════════════════════\n');
   writeFileResults(io, results);
   writeSummary(io, mode, results);
@@ -184,7 +184,7 @@ export async function runPracticeFitnessCheck(
   writePracticeFitnessReport(io, mode, results);
   writeDecisionDebtSection(io, debtReadings);
 
-  // Fitness is a report-only prioritisation signal (ADR-144): every zone — size,
+  // Fitness is a report-only prioritisation signal (the two-threshold fitness model): every zone — size,
   // count, dwell — and every configuration finding is surfaced to be acted on with
   // full weight, but fitness never fails a build. The exit code is always 0; the
   // mode governs report framing only.
