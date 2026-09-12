@@ -23,6 +23,7 @@
     "agent-tools:codex-reviewer-resolve": "pnpm --filter @engraph/agent-tools codex-reviewer-resolve",
     "agent-tools:collaboration-state": "pnpm --filter @engraph/agent-tools collaboration-state",
     "agent-tools:commit-queue": "pnpm --filter @engraph/agent-tools commit-queue",
+    "agent-tools:context-cost": "pnpm --filter @engraph/agent-tools context-cost",
     "agent-tools:cursor-session-from-claude-session": "pnpm --filter @engraph/agent-tools cursor-session-from-claude-session",
     "agent-tools:install-cursor-statusline": "node .cursor/scripts/install-statusline-cli-config.mjs",
     "agent-tools:lint": "pnpm --filter @engraph/agent-tools lint",
@@ -76,7 +77,9 @@
     "subagents:check": "pnpm --filter @engraph/agent-tools validate-subagents",
     "test": "turbo run test",
     "test:e2e": "turbo run test:e2e",
-    "type-check": "turbo run type-check"
+    "test:e2e:ui": "pnpm --filter @jimcresswell/www test:e2e:ui",
+    "type-check": "turbo run type-check",
+    "visual-regression-harness": "pnpm --filter @jimcresswell/www visual-regression-harness"
   },
   "devDependencies": {
     "@commitlint/cli": "^21.2.2",

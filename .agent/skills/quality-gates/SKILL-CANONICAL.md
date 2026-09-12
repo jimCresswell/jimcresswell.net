@@ -22,7 +22,7 @@ The definitive gate list with all command names lives in
   against a production build; the build is run by Playwright's web server.
 - When changing Practice Core or directive docs, run
   `pnpm practice:fitness:informational` and
-  `pnpm fitness-vocabulary:check` as advisory companion checks.
+  `pnpm practice:vocabulary` as advisory companion checks.
 
 When running gates individually for restart-on-fix, start from
 `pnpm format:fix`, then `pnpm markdownlint:fix`.
