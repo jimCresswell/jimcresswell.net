@@ -1,0 +1,176 @@
+{
+  "$schema": "https://turborepo.com/schema.json",
+  "ui": "tui",
+  "remoteCache": {
+    "enabled": true
+  },
+  "globalPassThroughEnv": [
+    "LOG_LEVEL",
+    "PLAYWRIGHT_BROWSERS_PATH",
+    "VERCEL_GIT_REPO_OWNER",
+    "VERCEL_GIT_REPO_SLUG"
+  ],
+  "globalDependencies": ["**/.env.*local", "tsconfig.base.json"],
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "cache": true,
+      "outputs": ["dist/**", ".tsup/**"],
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "$TURBO_ROOT$/tsconfig.base.json",
+        "tsconfig.json",
+        "tsconfig.build.json",
+        "tsup.config.ts",
+        "src/**/*.ts",
+        "!src/**/*.test.ts",
+        "!src/**/*.spec.ts"
+      ]
+    },
+    "clean": {
+      "cache": false
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "lint": {
+      "dependsOn": ["^build"],
+      "cache": true,
+      "outputs": [],
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "$TURBO_ROOT$/eslint.config.ts",
+        "$TURBO_ROOT$/tsconfig.base.json",
+        "eslint.config.ts",
+        "tsconfig.lint.json",
+        "**/*.ts"
+      ]
+    },
+    "lint:fix": {
+      "dependsOn": ["^build"],
+      "cache": false,
+      "outputs": [],
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "$TURBO_ROOT$/eslint.config.ts",
+        "$TURBO_ROOT$/tsconfig.base.json",
+        "eslint.config.ts",
+        "tsconfig.lint.json",
+        "**/*.ts"
+      ]
+    },
+    "test": {
+      "dependsOn": ["^build"],
+      "cache": true,
+      "outputs": [],
+      "inputs": ["$TURBO_DEFAULT$", "**/*.ts", "vitest.config.ts"]
+    },
+    "@engraph/agent-tools#lint": {
+      "dependsOn": ["build", "^build"],
+      "cache": true,
+      "outputs": [],
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "$TURBO_ROOT$/eslint.config.ts",
+        "$TURBO_ROOT$/tsconfig.base.json",
+        "eslint.config.ts",
+        "tsconfig.lint.json",
+        "**/*.ts"
+      ]
+    },
+    "@engraph/agent-tools#lint:fix": {
+      "dependsOn": ["build", "^build"],
+      "cache": false,
+      "outputs": [],
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "$TURBO_ROOT$/eslint.config.ts",
+        "$TURBO_ROOT$/tsconfig.base.json",
+        "eslint.config.ts",
+        "tsconfig.lint.json",
+        "**/*.ts"
+      ]
+    },
+    "@engraph/agent-tools#type-check": {
+      "dependsOn": ["build", "^build"],
+      "cache": true,
+      "outputs": [],
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "$TURBO_ROOT$/tsconfig.base.json",
+        "tsconfig.json",
+        "tsconfig.build.json",
+        "tsconfig.lint.json",
+        "**/*.ts"
+      ]
+    },
+    "@engraph/agent-tools#test": {
+      "dependsOn": ["^build"],
+      "cache": true,
+      "outputs": [],
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "**/*.ts",
+        "vitest.config.ts",
+        "$TURBO_ROOT$/runtime-only-scripts/**"
+      ]
+    },
+    "mutate": {
+      "dependsOn": ["^build"],
+      "cache": false,
+      "outputs": [],
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "**/*.ts",
+        "vitest.config.ts",
+        "stryker.config.mjs",
+        "$TURBO_ROOT$/stryker.config.base.ts"
+      ]
+    },
+    "test:e2e": {
+      "dependsOn": ["build"],
+      "outputs": [],
+      "cache": true,
+      "inputs": ["$TURBO_DEFAULT$", "e2e-tests/**/*.ts", "vitest.e2e.config.ts"]
+    },
+    "@engraph/agent-tools#test:e2e": {
+      "dependsOn": ["build"],
+      "outputs": [],
+      "cache": true,
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "e2e-tests/**/*.ts",
+        "vitest.e2e.config.ts",
+        "$TURBO_ROOT$/.codex/hooks/practice-session-identity.mjs",
+        "$TURBO_ROOT$/package.json",
+        "$TURBO_ROOT$/runtime-only-scripts/**"
+      ]
+    },
+    "test:ui": {
+      "dependsOn": ["build"],
+      "outputs": [],
+      "cache": true,
+      "inputs": ["$TURBO_DEFAULT$", "**/*.ts", "playwright.config.ts"]
+    },
+    "test:a11y": {
+      "dependsOn": ["build", "test:ui"],
+      "outputs": [],
+      "cache": true,
+      "inputs": ["$TURBO_DEFAULT$", "**/*.ts", "playwright.config.ts"]
+    },
+    "type-check": {
+      "dependsOn": ["^build"],
+      "cache": true,
+      "outputs": [],
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "$TURBO_ROOT$/tsconfig.base.json",
+        "tsconfig.json",
+        "tsconfig.build.json",
+        "tsconfig.lint.json",
+        "**/*.ts"
+      ]
+    }
+  }
+}
