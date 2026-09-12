@@ -31,13 +31,22 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
   statusline, hook policy restored, full Husky set, `ci.yml` with CI parity,
   root gates: gitleaks, knip, depcruise, markdownlint footprint, sub-agent
   adapters for 27 templates). **`pnpm check` is green end to end.**
-- Practice docs layer brought over (`docs/governance|engineering|foundation`,
-  residue pass owed). `.agent-original/` still present pending the owner's
-  loss-scan review.
+- **Re-evaluate slice 1 committed** (plan §Re-evaluate ×3): the identity CLIs read
+  the harness-native `CLAUDE_CODE_SESSION_ID` (PDR-027 amendment) and the hook
+  reports truthfully; the shared start-right workflows cite the gates skill
+  instead of a lineage gate list; `validate-cited-scripts` (green, 1198 files)
+  and `machine-local-paths:check` are new `check`/`check:docs` legs (15 legs,
+  CI parity); the copied docs layer is re-homed by role — `docs/governance` and
+  `docs/foundation` dissolved, six developer docs stay in `docs/engineering`,
+  eight host guides in `.agent/reference`, six doctrine merges into directives
+  and rules. `.agent-original/` still present pending the owner's loss-scan.
 - Outside `check`, still failing (pre-existing): patterns index, plan corpus and
   gate drift (plan-node migration), ratified-lists (upstream refounding
   artefacts), fitness vocabulary (`.agent-original`), collaboration-tui smoke,
-  codex-session-alert smoke (`pnpm -s`).
+  codex-session-alert smoke (`pnpm -s`); `check:docs` is red only on
+  `validate-markdown-links` (418 broken links repo-wide, mostly lineage record
+  links in memory, skills, plans and three local ADRs — the link-repair
+  backlog; `docs/**` and every re-homed file are clear).
 
 - Deep consolidation status: **due — deferred by owner ruling**. The napkin
   carries three 2026-09-12 sessions of unsynthesised lessons and the 57-lesson
@@ -62,16 +71,24 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 ## Next Safe Steps
 
 Owner-set order (2026-09-12): 1. rules triage done; 2. harness integration done
-(plan §Phase 8); 3. **re-evaluate — next**.
-Re-evaluate includes: the 29 copied `docs/governance|engineering|foundation`
-files may belong in whole, part or concept under `.agent/` (owner note) —
-assign each a role and a home. Then: sub-agent contract conformance, plan-node migration (39 legacy plans),
-duplicate-skill merges, Oak-residue pass on the copied governance docs and the
-tooling residue listed in the plan (§Oak residue in tooling), the OCE-seeded
-`.agent/practice-core/incoming/resonance-outbound-bundle-2026-07-08.md` (drop
-with the other emptied registers), `jcdotnet/accept-md.config.js` (hand-authored
-JS; source-is-TypeScript), the retirement candidates among agent-tools scripts
-(plan §Owner rulings on the agent-tools scripts), owner review +
-`.agent-original` deletion, 57-lesson synthesis with quorum, Vercel root
-directory, PR. Falsifier still open: duplicate skills in the Claude picker after
-a restart (next suspect `.agents/skills/`).
+(plan §Phase 8); 3. re-evaluate slice 1 done (seed contract, session-open
+surfaces, docs layer); 4. **re-evaluate slice 2 — next**, candidates in order:
+re-import OCE's pull-request machinery at the SHAs the OCE seat named (PR #136
+after its merge commit lands on `engraph`; PR #138 at `352ad0ee5`; the source is
+read-only, read with `git show` at a pinned commit); the content-grain merge of
+the 11 local expert templates; the link-repair backlog (418; record-number
+citations across `.agent/` and in `agent-tools` source comments — ADR-199 alone
+is cited in fourteen modules; check the title at the target, a number surviving
+proves nothing); plan-node migration (39 legacy plans); duplicate-skill merges;
+the tooling residue listed in the plan (§Oak residue in tooling: `packages/core`
+metadata URLs in `tooling/*/package.json`, fixture strings) and `turbo.json`'s
+site `build` outputs (`.next/` unnamed, so the cache restores nothing); the
+OCE-seeded `.agent/practice-core/incoming/resonance-outbound-bundle-2026-07-08.md`
+(drop with the other emptied registers); `jcdotnet/accept-md.config.js`
+(hand-authored JS; source-is-TypeScript); the retirement candidates among
+agent-tools scripts (plan §Owner rulings on the agent-tools scripts); the two
+session-local generators as `agent-tools` bins; owner review + `.agent-original`
+deletion; 57-lesson synthesis with quorum; Vercel root directory; PR. Falsifiers
+open: duplicate skills in the Claude picker after a restart (next suspect
+`.agents/skills/`); the startup SessionStart env-file write appears at the next
+session start (identity hook timeout raised 5 s → 20 s).

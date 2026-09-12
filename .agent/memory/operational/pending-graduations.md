@@ -221,3 +221,16 @@ on PDR-101 quorum or an owner ruling. The 57-lesson napkin synthesis (plan of re
   Practice-estate form of the same doctrine — a clause in `practice-core-portability` or a new
   short rule.
 - **Prediction**: both generators exist as `agent-tools` bins before the next adapter regeneration.
+
+### 5. A transplanted surface's assertions are exercised, never trusted
+
+- **Status**: pending (captured 2026-09-12, re-evaluate slice 1)
+- **Source**: the hook's env-file claim, the gate list with twelve dead scripts, the docs layer
+  placed by arrival path, a record number whose subject differed at the target, the bootstrap
+  building from the lineage's workspace paths — one class, five instances in one slice.
+- **Candidate home**: PDR-005 (wholesale transplantation) §Re-evaluate as the step's definition:
+  enumerate the assertions each surface makes about the host and exercise each; prefer making
+  the assertion checkable (a validator leg) over truing the text. The cited-scripts, CI-parity,
+  reference-direction and machine-local-paths validators are the worked instances.
+- **Prediction**: the next transplant's re-evaluate step is a checklist run, not a discovery,
+  and finds no dead script citation because the validator runs at the end of the harness phase.
