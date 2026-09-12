@@ -157,3 +157,33 @@ of the second half:
 
 Time: rules triage about 90 minutes of agent time; harness about two hours including the gate
 fixes; both under the owner's "no errors, no warnings" bar.
+
+## Wrap findings (added at the 2026-09-12 close)
+
+- **The biggest loss class was session-local generators.** Two scripts that produced tracked
+  artefacts lived only in the transplanting session's context: the sub-agent adapter generator
+  (27 templates → 27 Claude wrappers, 27 Cursor wrappers, 27 Codex TOML adapters, plus the
+  `.codex/config.toml` registry, plus two component-reference lines per template) and the
+  classified rules-index generator (three-column `RULES_INDEX.md` from the lineage's rows plus
+  local classifications). Recipes: an adapter is frontmatter `name`/`description` plus a "Your
+  first action MUST be to read and internalise `<template>`" body (Claude adds `tools`,
+  `disallowedTools`, `permissionMode: plan`; Cursor adds `readonly: true`; Codex is `name`,
+  `description`, `model_reasoning_effort = "high"`, `sandbox_mode = "read-only"`,
+  `approval_policy = "never"`, `developer_instructions` naming the template); descriptions come
+  from the template's Identity `Purpose`/`Summary` lines. Next transplant: land both as
+  `agent-tools` bins FIRST, then run them — a generator that exists only in a transcript is a
+  loss the moment the context ends.
+- **Cited scripts must exist.** A cheap check — every `pnpm <script>` mentioned in skills,
+  rules and entry points resolves to a root script — found eight gaps after the harness landed,
+  including the commit-message check the owner had stopped using because nobody could find it.
+  Run the check at the end of every transplant phase; it is a validator candidate.
+- **Guard refusals abort shell chains.** A blocked `git add` inside an `&&` chain silently
+  skipped the commit-message file write that followed; the next commit ran with a missing file
+  and the continuity commit swallowed the bundle. Stage by listing paths, write message files
+  in their own command, and check the message with the commit-message check before `-F`.
+- **Scripts keep/retire criterion that held:** keep a script when a consumer exists on this
+  estate (a hook, a gate, a skill that cites it, a platform in use); retire when its subject is
+  an upstream artefact, a vendor account the estate does not hold, or a product surface.
+- **Residue scan classes** (for the scrub checklist): product code with a hard-coded upstream
+  repo, package metadata URLs, and test-fixture strings — the sed scrub reaches the first two
+  and mangles the third.

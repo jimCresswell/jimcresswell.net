@@ -241,3 +241,24 @@ rejections, the fixture failures — maps onto one installer step; the guard loc
 installer is a feature to keep, not a bug to soften; the CI-parity validator is the first gate that
 _found the seam for us_, which suggests self-checking gates are how an installed Practice
 verifies its own installation.
+
+## Addendum (2026-09-12 close): three more properties of the installed thing
+
+1. **Generators ship before artefacts.** Every tracked artefact the install produces must come
+   from a generator that is itself installed (the adapter generator, the rules-index generator,
+   the logo glyphs). Today two of the three generators lived only in the installer's context;
+   the installable thing carries them as bins so the host can regenerate without the installer.
+2. **Entry points are discoverable or they do not exist.** A tool cited by a skill but absent
+   from the host's scripts is dead; the commit-message check went unused for exactly this
+   reason. A cited-script-existence validator is a self-verification gate the install runs at
+   its end — the same shape as the CI-parity validator that found the `check`/`fix` seam.
+3. **Retirement is per consumer.** The keep/retire question for each shipped script is "does a
+   consumer exist on this host?"; the installable thing can answer it mechanically from the
+   host profile (platforms in use, accounts held, product surfaces) and prune on install
+   rather than leaving dormant scripts for the host to discover.
+
+Association from free play, not a finding: the estate behaved like a body receiving an organ —
+the guard rejected its own installer, the conventions rejected foreign formatting, the tests
+rejected foreign fixtures — and each rejection was correct. An installer that expects the
+rejections and sequences around them is the immunosuppression that makes the transplant take
+without switching the immune system off.

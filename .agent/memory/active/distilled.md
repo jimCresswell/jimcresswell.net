@@ -41,3 +41,20 @@ failures and forced narrow per-route stabilising helpers. PDF generation is
 part of the build, so PDF tests run alongside everything else (no separate
 `with-build` project). When in doubt, prefer producing more proof at the
 production layer over working around dev-server transients in test code.
+
+## Harness activation order (2026-09-12 transplant)
+
+The PreToolUse guard fails closed and reloads the moment `.claude/settings.json`
+changes. Land `.agent/hooks/policy.json` first, make sure `agent-tools/dist`
+is built (the `postinstall` bootstrap does it), and only then wire `hooks` in
+settings. Done in the other order, every Bash, Edit and Write call is refused
+until the policy file exists. Source: napkin 2026-09-12; routing: pending
+graduation 1.
+
+## Staging a large set without the wildcard guard
+
+`git add -u -- . ':!path'` trips the wildcard-staging guard and a refused
+command aborts the rest of its `&&` chain silently. Stage with
+`git diff --name-only | xargs git add --`, write commit-message files in their
+own command, and run `pnpm agent-tools:check-commit-message -F <file>` before
+`git commit -F`. Source: napkin 2026-09-12; routing: pending graduation 2.

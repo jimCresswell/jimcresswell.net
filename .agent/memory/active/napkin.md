@@ -285,3 +285,25 @@
   in order (no work touched). Lessons: never put a message-file write after a guarded command in
   one chain; stage by listing paths (`git diff --name-only | xargs git add --`), not by pathspec
   exclusion; the `.` in `-- .` trips the wildcard guard by design.
+
+### Wrap 2 (2026-09-12, close) — metaloss recursion
+
+- Pass 1 (context-only items): the sub-agent adapter generator and the classified rules-index
+  generator existed only in this session → recipes conserved in the efficiency-guidance report,
+  register item 4, continuity next-step. The OCE checkout path is now "the sibling OCE checkout"
+  everywhere tracked. The Monitor-recovery route and the lockout order are on distilled.
+- Pass 2 (cited-but-missing): a scan of every `pnpm <script>` cited by skills, rules and entry
+  points found eight gaps; five cured (three aliases, two citations), three are false positives
+  or directive residue (`pnpm sdk-codegen` in `schema-first-execution.md` — local directive
+  still carries lineage wording; re-evaluate). Candidate validator: cited-script existence.
+- Pass 3 (what a successor would misread): "`pnpm check` green" does not mean every validator is
+  green — the seven outside `check` are listed with causes in continuity. The project
+  `statusLine` now overrides the owner's user-level statusline in this repo — say so.
+- Attribution inferences flagged: "OCE tolerated the seven real-IO warnings" is inference from
+  its config, not observed. "The turbo aggregate test failure was flaky" is inference from one
+  non-reproduction.
+- Blind-spot bounds: the picker duplication cannot be observed from inside the session; the
+  hook contract for Cursor/Codex/Gemini was not exercised here (policy notes say so).
+- Fence sweep: no owner-fenced wording this session; the private editorial boundary untouched.
+- Fixed point: a further pass would only re-find the two generators and the directive residue;
+  the recursion closes here.

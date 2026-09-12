@@ -175,4 +175,49 @@ PR #75 carried them (pr-lifecycle's reviewer-set clause names the Codex connecto
 and the plan-templates README carry the decision-log sentence). The commits and the homes are
 the record. -->
 
-_No entries yet in this repo. First seeding: the 57-lesson napkin synthesis (see docs/explorations/2026-09-12-oce-practice-lineage-transplant.md)._
+## Entries
+
+Captured at the 2026-09-12 transplant close. Each is single-instance today; graduation waits
+on PDR-101 quorum or an owner ruling. The 57-lesson napkin synthesis (plan of record
+§Ordering note) is the first drain pass and will add to this list.
+
+### 1. Harness install order: policy, then built dispatcher, then settings
+
+- **Status**: pending (captured 2026-09-12)
+- **Source**: napkin 2026-09-12 (night) — writing `.claude/settings.json` hooks before
+  `.agent/hooks/policy.json` existed locked the session out of Bash, Edit and Write; the guard
+  fails closed by design and reloads on the settings write.
+- **Candidate home**: `.agent/hooks/README.md` §Activation (and PDR-005 if a second transplant
+  repeats it).
+- **Prediction (PDR-130)**: no session repeats the lockout once the order is in the README.
+
+### 2. Stage by listing paths; never a message-file write after a guarded command
+
+- **Status**: pending (captured 2026-09-12)
+- **Source**: napkin 2026-09-12 (night) — a refused `git add` inside an `&&` chain skipped the
+  heredoc that followed; the next `commit -F` ran on a missing file and the continuity commit
+  swallowed the bundle.
+- **Candidate home**: `stage-by-explicit-pathspec` rule (a "how to stage a large set" clause) and
+  the commit skill's message-file step.
+- **Prediction**: zero mis-bundled commits in the next ten sessions.
+
+### 3. The antigen scrub is two-tier and can silently mangle test fixtures
+
+- **Status**: pending (captured 2026-09-12)
+- **Source**: napkin 2026-09-12 (evening, night) — org-shaped replacement is a sed; product-shaped
+  residue is excise-or-case-by-case; a sed over test fixtures put one rule test out of the rule's
+  own scope without a failure until the suite ran.
+- **Candidate home**: PDR-005 (wholesale transplantation) as a scrub checklist: product code,
+  package metadata, test fixtures.
+- **Prediction**: the second transplant's residue scan finds no fixture class.
+
+### 4. Generators land before the artefacts they produce
+
+- **Status**: pending (captured 2026-09-12)
+- **Source**: wrap 2026-09-12 — the sub-agent adapter generator and the classified rules-index
+  generator existed only in the transplanting session; recipes conserved in
+  `.agent/reports/practice-transplant/efficiency-guidance.md`.
+- **Candidate home**: `generator-first-mindset` was dropped at triage as SDK-specific; this is the
+  Practice-estate form of the same doctrine — a clause in `practice-core-portability` or a new
+  short rule.
+- **Prediction**: both generators exist as `agent-tools` bins before the next adapter regeneration.

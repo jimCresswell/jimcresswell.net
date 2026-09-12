@@ -39,6 +39,15 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
   artefacts), fitness vocabulary (`.agent-original`), collaboration-tui smoke,
   codex-session-alert smoke (`pnpm -s`).
 
+- Deep consolidation status: **due — deferred by owner ruling**. The napkin
+  carries three 2026-09-12 sessions of unsynthesised lessons and the 57-lesson
+  archive; the owner ruled the synthesis runs right after `.agent-original/`
+  is deleted (plan §Ordering note). Four candidates are on the
+  pending-graduations register meanwhile.
+- Session-local generators (sub-agent adapters, classified rules index) are
+  not in the repo; recipes are in the efficiency-guidance report. Land them
+  as `agent-tools` bins before the next regeneration.
+
 ## Active Threads
 
 - OCE Practice lineage transplant (owner-led rulings, agent execution).
@@ -57,6 +66,12 @@ Owner-set order (2026-09-12): 1. rules triage done; 2. harness integration done
 Re-evaluate includes: the 29 copied `docs/governance|engineering|foundation`
 files may belong in whole, part or concept under `.agent/` (owner note) —
 assign each a role and a home. Then: sub-agent contract conformance, plan-node migration (39 legacy plans),
-duplicate-skill merges, Oak-residue pass on the copied governance docs, owner
-review + `.agent-original` deletion, 57-lesson synthesis with quorum, Vercel
-root directory, PR.
+duplicate-skill merges, Oak-residue pass on the copied governance docs and the
+tooling residue listed in the plan (§Oak residue in tooling), the OCE-seeded
+`.agent/practice-core/incoming/resonance-outbound-bundle-2026-07-08.md` (drop
+with the other emptied registers), `jcdotnet/accept-md.config.js` (hand-authored
+JS; source-is-TypeScript), the retirement candidates among agent-tools scripts
+(plan §Owner rulings on the agent-tools scripts), owner review +
+`.agent-original` deletion, 57-lesson synthesis with quorum, Vercel root
+directory, PR. Falsifier still open: duplicate skills in the Claude picker after
+a restart (next suspect `.agents/skills/`).
