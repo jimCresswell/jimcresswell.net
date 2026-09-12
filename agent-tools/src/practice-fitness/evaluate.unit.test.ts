@@ -95,7 +95,7 @@ describe('evaluateFitnessFile', () => {
       'beta',
     ].join('\n');
 
-    const result = evaluateFitnessFile('docs/governance/development-practice.md', content);
+    const result = evaluateFitnessFile('docs/engineering/workflow.md', content);
 
     expect(result.targetLines).toBe(5);
     expect(result.limitLines).toBe(10);

@@ -612,7 +612,7 @@ Rule; the standalone crosswalk plan was archived in the same pass.)
 
    - It names an **architectural constraint, trade-off, or boundary** (not just an operational convention);
    - It is **stable across sessions** (has survived at least one subsequent session without correction);
-   - It has **no existing governance home** (no ADR, no `docs/governance/` doc, no README section that already covers it);
+   - It has **no existing governance home** (no ADR, no `.agent/reference/` doc, no README section that already covers it);
    - It shapes **this repo's product architecture** (the next contributor in this repo would re-derive this decision without an ADR).
 
    **Is this PDR-shaped?** An entry is PDR-shaped when:

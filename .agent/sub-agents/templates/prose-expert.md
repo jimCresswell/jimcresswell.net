@@ -135,7 +135,7 @@ Before reviewing prose, you MUST also read and internalise these documents:
 
 | Document | Load when |
 |----------|-----------|
-| `docs/governance/accessibility-practice.md` | The plain-language edge with `accessibility-expert` is in question (clarity as craft vs WCAG 3.1 conformance) |
+| `.agent/reference/accessibility-practice.md` | The plain-language edge with `accessibility-expert` is in question (clarity as craft vs WCAG 3.1 conformance) |
 
 ## Core Philosophy
 

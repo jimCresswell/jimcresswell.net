@@ -7,6 +7,7 @@ Project documentation for [www.jimcresswell.net](https://www.jimcresswell.net).
 | Directory                      | Purpose                                                     |
 | ------------------------------ | ----------------------------------------------------------- |
 | [architecture/](architecture/) | System architecture overview and decision records           |
+| [engineering/](engineering/)   | Developer workflow, build system, testing recipes           |
 | [project/](project/)           | User stories, requirements, and project-level documentation |
 
 ## Related

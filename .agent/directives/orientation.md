@@ -21,7 +21,7 @@ for the operational-memory surfaces and authority order within them.
 
 | Layer | Purpose | Surfaces | Read trigger |
 | --- | --- | --- | --- |
-| **Doctrine** | Read-and-internalise; sets stance for every session | `.agent/directives/` (AGENT.md, principles, testing-strategy, schema-first-execution, metacognition, orientation) | Session open — Ground First step 1 |
+| **Doctrine** | Read-and-internalise; sets stance for every session | `.agent/directives/` (AGENT.md, principles, testing-strategy, tdd-as-design, validation-strategy, metacognition, orientation) | Session open — Ground First step 1 |
 | **Portable Doctrine** | Cross-repo Practice doctrine; travels with Practice Core | `.agent/practice-core/` (trinity, PDRs, patterns) | Orientation + when Practice questions arise |
 | **Active Memory** | Learning loop — capture, distil, graduate, enforce | `.agent/memory/active/` (napkin, distilled, patterns, archive) | Session open — Ground First step 3 |
 | **Operational Memory** | Continuity / session-resume state | `.agent/memory/operational/` (repo-continuity, threads) | Session open — Ground First step 4 |

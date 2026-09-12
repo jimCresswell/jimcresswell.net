@@ -342,7 +342,7 @@ cures, else a fresh leg on the new head; a leg the MERGING SEAT verifies
 and records on the landing premises, because the tool checks only the
 vendors declared to it) and runs the front door
 again (pr-lifecycle §merge boundary;
-`docs/engineering/merge-bot.md`): it recomputes
+`.agent/reference/merge-bot.md`): it recomputes
 the settlement verdict itself, merges only on SETTLE-READY, and pins the
 verdicted tip's sha in its own call, so the landing merge's second parent IS
 the head the verdict was read on and a head moved between verdict and merge
@@ -436,7 +436,7 @@ seat's worktree, branch or claim (2026-09-09, the #88 follow-up).
 ## Related surfaces
 
 - `.agent/rules/pre-merge-divergence-analysis.md` and
-  `docs/engineering/pre-merge-analysis.md` — the cascade classes; §4i is the
+  `.agent/reference/pre-merge-analysis.md` — the cascade classes; §4i is the
   premise cascade this skill runs.
 - `.agent/skills/change-custody/semantic-merge/SKILL-CANONICAL.md` — layer 3.
 - `.agent/skills/change-custody/complex-merge/SKILL-CANONICAL.md` — two

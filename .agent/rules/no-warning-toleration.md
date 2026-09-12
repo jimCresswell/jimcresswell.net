@@ -23,8 +23,8 @@ response, interrogate what produced it (a bug, a half-finished change, a
 misplaced abstraction, a leaky boundary), and cross-check where else the
 same shape appears un-flagged. For an analyser finding (Sonar, CodeQL)
 there is no dismissal route, since the owner's 2026-09-08 ruling ("We don't
-dismiss issues, we fix them"): the finding is cured at source under the
-one-outcome rule in `docs/governance/sonar-disposition-policy.md`, and any
+dismiss issues, we fix them"): the finding is cured at source — one
+outcome, no disposition classes — and any
 dismissal is the OWNER's act — an agent never dismisses an alert on its own
 pull request. Where a warning from another
 system can only be suppressed, suppress per site with rationale, never by
@@ -62,6 +62,43 @@ If a system we control emits a warning, the rule is:
 - Treating warnings as "less serious than errors" for triage
   ordering. They are equally blocking; the only legitimate
   hierarchy is *root-cause depth*, not severity label.
+
+## Problem-hiding patterns
+
+Fix the problem named by a gate; do not silence the signal that names it.
+An unused symbol is a useful entropy signal; suppressing it preserves the
+entropy while removing the alarm. Two recurring unused-code patterns are
+forbidden because they hide dead state:
+
+- **`void <expr>` to silence unused-variable lint.** `void` discards a
+  value in expression position, but the unused binding remains. If a
+  destructure produces a value you do not need, restructure the code so
+  the value is not produced; if a parameter is unused, remove it from the
+  signature; if a returned value is unused, do not bind it.
+- **Underscore-prefixing unused identifiers.** Renaming `foo` to `_foo` is
+  not a TypeScript language feature; it is an ESLint convention that
+  suppresses `@typescript-eslint/no-unused-vars`. The variable is still
+  bound and the dead state is still present.
+
+Both are instances of the broader rule: fix it or delete it. Adapters,
+compatibility layers and half measures are problem-hiding patterns when
+their purpose is to make old or dead shapes appear acceptable. Investigate
+the root cause before choosing a cure: often the missing wiring is the bug
+(use it), or the dead branch is the bug (remove it); where retention is
+genuinely justified, document the explicit architectural tension (for
+example conformance to a generated signature) rather than renaming. When
+a reviewer, sub-agent or auto-fix suggests the underscore rename, push
+back — the auto-fix is the wrong shape for this codebase.
+
+Concrete cures: when a destructure-rest produces an unused capture, build
+the fixture positively (set the omitted field to `undefined` if the type
+permits, or construct a minimal valid fixture by hand) rather than adding
+an `omitProperty` helper; when a framework signature forces an unused
+position, first ask whether the function is at the wrong abstraction
+layer — use the parameter, remove the position, or fix the layer, never
+add a shim; when a value-bind exists only to satisfy a type checker, use
+`satisfies` directly on the value. Existing `void <unused>` or `_foo`
+usages are remediation candidates, not licence to add new ones.
 
 ## Required
 

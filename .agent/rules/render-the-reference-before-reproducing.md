@@ -53,7 +53,7 @@ localise; only the rendered pair decides.
 
 - [ADR-022 — rendering risk needs blocking visual proof](../../docs/architecture/decision-records/022-rendering-risk-needs-blocking-visual-proof.md)
   and the visual-regression harness: the WHERE of every capture.
-- [The Claude Design conversion playbook](../../docs/engineering/claude-design-conversion-playbook.md)
+- [The Claude Design conversion playbook](../reference/claude-design-conversion-playbook.md)
   §"Reference first" — this rule's application inside that pipeline.
 - [`claude-design-pipeline` SKILL](../skills/domain-craft/ui-design/claude-design-pipeline/SKILL-CANONICAL.md)
   — the comparison-and-disposition workflow this rule front-loads.

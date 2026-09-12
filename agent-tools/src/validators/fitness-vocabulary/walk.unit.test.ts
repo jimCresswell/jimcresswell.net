@@ -24,7 +24,7 @@ function fakeReaddir(dirs: Readonly<Record<string, readonly FakeEntry[]>>): Read
 describe('shouldInspectFile', () => {
   it('inspects live markdown files', () => {
     expect(shouldInspectFile('.agent/skills/consolidate-docs/SKILL-CANONICAL.md')).toBe(true);
-    expect(shouldInspectFile('docs/governance/development-practice.md')).toBe(true);
+    expect(shouldInspectFile('docs/engineering/workflow.md')).toBe(true);
   });
 
   it('excludes archived files', () => {

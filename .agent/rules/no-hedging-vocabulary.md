@@ -119,7 +119,7 @@ This group's in-scope surfaces are wider than the literal trip-list's
 (the `## In-Scope Surfaces` section below applies to the literal
 group): `.agent/practice-core/`, `.agent/plans/`, `.agent/reports/`,
 `.agent/memory/operational/`, `docs/architecture/`,
-`docs/governance/`, and any `**/*.plan.md` — continuity and thread
+and any `**/*.plan.md` — continuity and thread
 records are where holding-state language hides. Inline code is NOT
 excluded for this group (a backticked family member in a table row
 would otherwise dodge the block); fenced code blocks remain skipped.
@@ -144,7 +144,6 @@ trade a known false-positive flood for no real coverage gain.
 - `.agent/practice-core/`
 - `.agent/plans/`
 - `docs/architecture/`
-- `docs/governance/`
 - any `**/*.plan.md` anywhere in the tree
 
 ## Excluded Surfaces (Why)

@@ -50,6 +50,43 @@ enforce code quality — though some gates do police `.agent/` content itself
 (markdown lint, portability and sub-agent validators), so a `.agent/` change
 can turn `pnpm check` red.
 
+## How the system holds together (for the curious)
+
+Every line of code, configuration and documentation here is written by AI
+agents; the owner provides direction, design guardrails and corrective
+feedback. The Practice is the interconnected system that keeps that safe and
+self-improving, and it works through a few loops:
+
+- **Control loops keep quality up.** The gate aggregate (`pnpm check`, and
+  the gates outside it listed in the gates skill) is always blocking: there
+  is no "non-blocking warning" category. Specialist reviewer agents (a
+  gateway `code-expert` that triages to architecture, test, type, security,
+  config and documentation experts) review non-trivial changes inside the
+  session. Strict rules under `rules/` and `directives/principles.md` encode
+  the non-negotiables (test-first, no type shortcuts, fail fast, never
+  disable a check, no compatibility layers) and are enforced by lint,
+  compiler and reviewer rather than by vigilance.
+- **Learning loops make knowledge compound.** Capture → refine → graduate →
+  enforce: the session napkin captures mistakes and discoveries, `distilled.md`
+  carries the refined cross-session lessons, and the consolidation skill
+  (`/jc-consolidate-docs`) graduates settled lessons into rules, skills,
+  validators or decision records. Fitness frontmatter on the permanent
+  documents (line and character ceilings with a split strategy) stops the
+  loop from simply moving accumulation downstream. The loop is
+  self-referential: lessons about consolidation flow through it too.
+- **Continuity survives sessions.** The napkin serves the current session,
+  `distilled.md` the next one, `memory/operational/repo-continuity.md` the
+  hand-over, plans the weeks-long work, and ADRs and PDRs the permanent
+  decisions.
+- **The Practice travels.** The portable part (the Practice Core under
+  `practice-core/`) moves between repositories by copying it into a
+  receiving repository's inbox (`practice-core/incoming/`); what clears the
+  bar (validated by real work, prevents recurring mistakes, stable) is
+  integrated. This repository's Practice arrived that way.
+- **It degrades visibly.** Bypassed gates, a silent napkin, skipped
+  consolidation, ignored fitness ceilings or reviewers never invoked are the
+  diagnostic signals; each has a rule or a validator pointed at it.
+
 ## What if I'm curious?
 
 The most readable parts of `.agent/` for humans:

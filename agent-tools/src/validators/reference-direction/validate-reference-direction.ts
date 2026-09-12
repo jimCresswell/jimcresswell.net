@@ -36,7 +36,6 @@ const POLICED_ROOTS = [
   '.agent/directives',
   'docs/architecture/decision-records',
   'docs/design',
-  'docs/governance',
 ] as const;
 
 async function collectMarkdown(relRoot: string): Promise<ScanFile[]> {

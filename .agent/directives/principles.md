@@ -141,9 +141,8 @@ defences:
 
 - **The three structural cues at output time** — vocabulary
   trip-list, conditional-discipline check before proposing
-  structure, and first-principles framing question. See
-  [ADR-172][adr-172] for the host adoption and the portable form
-  at PDR-043. The hedging-vocabulary trip-list itself lives in the
+  structure, and first-principles framing question. The portable form
+  is PDR-043; the lineage's host adoption record is not transplanted. The hedging-vocabulary trip-list itself lives in the
   innate-immunity hook (`.agent/hooks/policy.json`); cataloguing
   it in this file would duplicate it. Cue 2 is intent-based: a
   proposed structure that means "the rule does not apply here"
@@ -166,16 +165,19 @@ defences:
   to justify skipping the doctrine substrate; the urge is the
   diagnostic, not friction to refactor around.
 
-The failure-mode shape (cheap fixes silently kill the diagnostic;
+The failure-mode shape: cheap fixes silently kill the diagnostic;
 local optimisation under rush is global pessimisation; fences
-accumulate while the generator stays unchanged) plus a worked
-failure-mode example (shortcut-via-duplication) live at
-[development-practice.md § Architecture Level][dev-arch].
+accumulate while the generator stays unchanged. Worked failure-mode
+example (shortcut-via-duplication): a shortcut that creates
+duplication across architectural layers is not a shortcut — it is a
+debt that compounds silently. Copying a function "because it's
+faster" creates two implementations that drift apart, and the cost of
+the drift is invisible until it manifests as a real bug (a stale
+derived surface, inconsistent behaviour, stale configuration). The
+correct response is always to fix the boundary, not to duplicate
+across it.
 
-[dev-arch]: ../../docs/governance/development-practice.md#architecture-level
-[adr-172]: ../../docs/architecture/architectural-decisions/172-rush-impulse-three-structural-cues-adoption.md
-[ts-practice]: ../../docs/governance/typescript-practice.md
-[dev-doc]: ../../docs/governance/development-practice.md#documentation-practice
+[ts-practice]: validation-strategy.md
 
 ## Owner Direction Beats Plan
 
@@ -197,30 +199,41 @@ types. If a surface cannot be derived, the model is missing a field: fix the
 model, not the consumer. Validation of that model at the boundary is strict
 (`lib/entities.ts`); a page never invents identity the graph does not carry.
 
+The same rule governs every generated artefact: runtime behaviour flows from
+the generated output of the one authority, and authored files are thin
+façades over it — they never duplicate its logic, infer its types or widen
+its unions. When analysing a generated file, analyse the generator that
+produced it; the generator is the source of truth, and a change belongs in
+the model or the generator, never in the emitted artefact. Static data that
+must conform to the model is projected through its type boundary with
+`satisfies`, so the projection cannot drift from the source it claims.
+
 ### Separate Framework from Consumer
 
 Whenever we build something, clearly separate (a) a
 purpose-specific, consumer-general framework from (b) the
-Oak-specific consumer instance. The framework is the reusable
-mechanism that solves a category of problem — usable by any
-consumer. The consumer instance applies that framework to Oak's
-domain and data. Distinct architectural layers MUST live in
-distinct workspaces. Modules/directories may organise code inside a
-layer, but they do not satisfy layer separation. If general mechanism
-and Oak-specific configuration share a workspace, split the
-workspace. The framework defines the contract; the consumer provides
-the specifics. The test: "Could a non-Oak consumer use this component
-unchanged?" If not, extract the Oak-specific parts.
+product-specific consumer instance (here: this site, its content and
+its identity). The framework is the reusable mechanism that solves a
+category of problem — usable by any consumer. The consumer instance
+applies that framework to this product's domain and data. Distinct
+architectural layers MUST live in distinct workspaces (the `@engraph/*`
+packages under `tooling/` and `agent-tools/` are the framework side;
+`jcdotnet/` is the consumer). Modules/directories may organise code
+inside a layer, but they do not satisfy layer separation. If general
+mechanism and product-specific configuration share a workspace, split
+the workspace. The framework defines the contract; the consumer
+provides the specifics. The test: "Could another consumer use this
+component unchanged?" If not, extract the product-specific parts.
 
 The licence map is this same split made legible (owner doctrine
-2026-08-02): keeping the Oak-specific instance thin — ideally
+2026-08-02): keeping the product-specific instance thin — ideally
 configuration passed to a general framework — is what keeps the
 externally-constrained surface absolutely minimal, because the
 permissively-licensed framework is the surface others may take and
-the reserved remainder (the Oak brand) stays small only while the
-architecture keeps it extractable. A component whose licence cannot
-be named in one word is one where general mechanism and Oak identity
-cohabit.
+the reserved remainder (the personal identity and content) stays small
+only while the architecture keeps it extractable. A component whose
+licence cannot be named in one word is one where general mechanism and
+product identity cohabit.
 
 A mechanism built to prove a capability is a consumer of the
 framework, never the framework: check its warrant when it outlives its
@@ -255,13 +268,12 @@ dependency. Both directions stay falsifiable by measured cost. Which
 canonical form is adopted is a different question from where an owned
 implementation originates, and for algorithm and data-structure
 foundations the owner decided the second for the whole class
-(owner-directed 2026-09-08,
-[ADR-230](../../docs/architecture/architectural-decisions/230-own-built-algorithm-and-data-structure-foundations.md);
-scope confirmed 2026-09-09 as that class, not the estate): "select the
+(owner-directed 2026-09-08, recorded in the lineage's own-built-foundations
+decision; scope confirmed 2026-09-09 as that class, not the estate): "select the
 best, permissively licenced libraries, and use their code as inspiration
 to create Reliable Atoms and composition layers tailored to our needs and
 created to our deliberately very high quality standards" — the estate
-authors them. The governing policy ADR-230 cites bounds the class
+authors them. That decision bounds the class
 (language/runtime, protocol, storage, transport and platform capabilities
 and standards conformance stay under the sentence above), owns the
 provenance discipline that keeps learning distinct from adapting, and
@@ -269,7 +281,7 @@ keeps the class's whole-life effort saving an empirical hypothesis
 measured through delivered capabilities and their later changes; what
 that measurement reopens is the owner's decision, never a seat's.
 A thin highest-specificity layer is also a detachable one (owner-directed
-2026-08-19): an Oak product surface built as configuration, styling, and
+2026-08-19): a product surface built as configuration, styling, and
 experience tuning on general machinery can be handed off to a product
 squad — extracted to its own home — without dragging the lever machinery
 its tuning turns.
@@ -279,10 +291,10 @@ direction, lifecycle, identity, claims, handoff, review routing, and adjacent
 concerns) are Practice-owned by default; host-local tooling implements them.
 For product/tooling code, the scale is: ecosystem-canonical form -> many-repo
 capability -> repo-generic layer -> purpose-specific reusable tool -> thin
-Oak-wide wrapper -> narrow Oak-domain wrapper.
+product-wide wrapper -> narrow domain wrapper.
 
-Oak-specific state is a pressure signal. Keep it minimal; generated state
-beats authored state. Hand-rolled types beside generated SDK outputs mean
+Product-specific state is a pressure signal. Keep it minimal; generated
+state beats authored state. Hand-rolled types beside generated outputs mean
 the generator or a lower layer may need to own more of the behaviour.
 
 ### Decompose at the Tension
@@ -383,15 +395,36 @@ this way produces cleaner boundaries and simpler classification.
   lose the ability to debug the problem.
 - **No empty catch blocks** - Never use empty catch blocks, always
   handle errors explicitly and using the `Result<T, E>` pattern.
+- **Never `void` a promise** - `void promise` swallows its rejection.
+  A cleanup promise in an event handler carries an explicit `.catch`
+  that routes to the error path.
+- **Distinct HTTP semantics** - Never collapse distinct HTTP status
+  codes into a single error kind (404 and 451 mean different things).
+  Per-surface error types are cleaner than one unified error type —
+  each surface has its own failure modes.
+- **Libraries do not own logging** - A shared package (`tooling/*`)
+  returns classified results; the consuming app is responsible for
+  observability. Libraries never instantiate loggers or log
+  internally — pass results up, and the app inspects and logs through
+  its own logger.
+- **Survey the workspaces before proposing new infrastructure** -
+  Before proposing a new schema, validation pipeline, parsing helper,
+  env-loading mechanism, or path primitive, survey `tooling/*`,
+  `agent-tools/src` and `jcdotnet/lib`: read each README whose name
+  plausibly matches the capability and grep for existing usage sites.
+  The right proposal is usually an extension of an existing package
+  (`@engraph/result`, `@engraph/safe-path`, `@engraph/type-helpers`,
+  `@engraph/workspace-config`), not a parallel implementation.
 - **Document Everywhere** - ALL code, all decisions, all use
   cases MUST be documented: TSDoc on every file/module/function/
   data structure/class/constant/type; ADRs for major engineering
   or architectural decisions; markdown for use cases, public
   APIs, CLIs, troubleshooting. Observe progressive disclosure;
   do NOT create summary documents of each piece of work. TSDoc
-  syntax detail and the documentation-structure discipline live
-  at [docs/governance/typescript-practice.md][ts-practice] and
-  [development-practice.md § Documentation Practice][dev-doc].
+  syntax detail lives in the
+  [tsdoc skill](../skills/tsdoc/SKILL-CANONICAL.md); the
+  documentation-structure discipline is §Documentation Is
+  Infrastructure below.
 - **Onboarding** - Clear onboarding path from root README to
   workspace docs to TSDoc and ADRs, observing progressive
   disclosure throughout.
@@ -402,7 +435,7 @@ this way produces cleaner boundaries and simpler classification.
   machine-local; an absolute-shaped path rooted at a
   platform-provided variable is still portable. Whole-repo,
   retroactive, no exceptions (owner ruling 2026-06-12). See
-  [safety-and-security.md §Machine-local paths](../../docs/governance/safety-and-security.md#machine-local-paths)
+  [privacy.md §Machine-local paths](./privacy.md#machine-local-paths)
   for the forbidden / permitted shapes, worked examples, and
   detection.
 - **No symlinks** — Symlinks are forbidden. Structure workspaces
@@ -463,6 +496,12 @@ this way produces cleaner boundaries and simpler classification.
 - **Removing unused code** - If a function is not used, delete it.
   If product code is only used in tests, delete it. If a file is
   not used, delete it. Delete dead code.
+- **Moving files between workspaces** - Check whether removed tests
+  should be recreated in the destination, and verify ESLint
+  overrides, README relative links, and `tsconfig` include patterns
+  transfer correctly. When moving any artefact, grep for the old
+  path in `*.ts`, `*.mjs` and `*.json` as well as `*.md` — test
+  fixtures and CLI defaults hardcode paths.
 - **Version with git, not with names** - Fix files in place, or
   replace old approaches with new approaches, NEVER create parallel
   versions using naming. Incorrect: `execute-tool-call.ts` and
@@ -531,6 +570,40 @@ paths, setup files) don't apply.
   Sentry runtime/uptime surfaces).
 - **Fix things** - All quality gates are blocking at all times,
   regardless of location, cause, or context.
+- **An enforcement-scope gap is not a requirement gap** - Repo-wide
+  standards (Result over throw, strict types, the rule corpus) govern
+  every workspace regardless of where a lint rule happens to be
+  wired; "not enforced here" never implies "not required here". A
+  missing or narrowly-scoped binding is itself a defect — flag it,
+  prefer the structural cure (extend the enforcement), and never read
+  an inherited non-conforming local convention as ratified exemption.
+- **Progressive re-enablement** - When a pre-existing lint override
+  exists in a file you touch, fix the root cause; narrow
+  directory-wide overrides to file-specific first.
+- **Analysability is part of correctness** - For findings from static
+  instruments (CodeQL, lint), "false positive" is usually the wrong
+  frame: an alert on code whose safety the instrument cannot see is a
+  true positive about analysability, and only source-shape cures are
+  durable. Dismissal is doubly non-durable — the safety stays
+  invisible to every future scan, and positional alert identity makes
+  suppression a recurring tax. Worked instance (2026-07-29): five
+  alerts headed for dismissal were fixed at source instead, and a
+  differential test then proved one "false positive" regex was a real
+  super-linear backtracking vector the dismissal path would have
+  preserved. Fix-first is the only disposition (owner ruling
+  2026-09-08: "We don't dismiss issues, we fix them").
+- **Session-local tool reports are evidence only inside the session
+  that produced them** - Do not make a shell invocation of an
+  interactive-session command (such as Claude Code `/doctor`) a
+  validation gate for plans or commits. Validate durable changes
+  through repo-local gates, settings diffs, generated artefacts, and
+  owner-supplied session evidence when the session surface itself is
+  the subject.
+- **Code that generates code is product code** - A generator's output
+  is product code, so the generator is product code: full logger
+  discipline, lint, and type strictness apply. Adapter generation
+  (`pnpm portability:fix`) and every other generator are never
+  "build scripts" exempt from the gates.
 - **Every issue earns a check** - An issue, however discovered —
   exploration, exercise, review, external comment — is not resolved
   until a check of the appropriate kind exists that would catch the
@@ -578,7 +651,7 @@ paths, setup files) don't apply.
   removing it. No adapters, no compatibility layers, no half
   measures: use the value, restructure the code, or delete the
   binding. See
-  [Problem-Hiding Patterns](../../docs/governance/problem-hiding-patterns.md).
+  [`no-warning-toleration` §Problem-hiding patterns](../rules/no-warning-toleration.md#problem-hiding-patterns).
 - **Quality gates** - Run ALL gates after changes. From the repo root,
   `pnpm check` runs every gate read-only (`pnpm fix` auto-fixes first; `pnpm
   check:fix` chains the two): format, markdownlint, shell and runtime-only
@@ -656,7 +729,7 @@ mapping.
 ### Compiler Time Types and Runtime Validation
 
 Type precision is one expression of strict, complete, schema-driven practice.
-Operational detail lives in [TypeScript Practice][ts-practice].
+Operational detail lives in [Validation Strategy][ts-practice].
 
 - **No type shortcuts** — Never use `as`, `any`, or `!`; they disable the type
   system ([`no-type-shortcuts.md`](../rules/no-type-shortcuts.md)).
@@ -719,7 +792,7 @@ Universal testing principles:
   Layouts MUST scale with text size at 200%+ zoom.
 - **Accessibility is a gate, not a review note** — axe runs in the E2E suite;
   a pre-hydration fallback state must pass contrast like any other state.
-  Practice detail: [Accessibility Practice](../../docs/governance/accessibility-practice.md).
+  Practice detail: [Accessibility Practice](../reference/accessibility-practice.md).
 
 ### Any User, Any Machine
 
@@ -731,13 +804,19 @@ current user on a new machine, and a cold clone with no local state.
 Concretely: no named person where a role or derivation belongs
 (resolve the collaborating human per the start-right skill's
 §Collaborating Human ladder), no machine-local paths
-([safety-and-security.md §Machine-local paths](../../docs/governance/safety-and-security.md#machine-local-paths)), no
+([privacy.md §Machine-local paths](./privacy.md#machine-local-paths)), no
 state that only exists because an earlier session happened to leave it
 ([important-state-not-in-temp-files](../rules/important-state-not-in-temp-files.md)),
 and per-user surfaces derive their user at run time rather than at
 authoring time. A surface that silently assumes its author's identity
 or host is a portability defect even while it works perfectly for
-them.
+them. The same lens covers checkouts: for any coordination-state,
+path-resolution, or identity feature, many checkouts on many machines
+is the case to satisfy first; a single checkout is the degenerate
+case that satisfies it trivially. Resolving a path by walking up from
+the current directory lands in the LOCAL checkout — in a
+many-checkout world, the wrong registry. "Currently we run one
+checkout" is the tripwire to re-ground, not a licence.
 
 ### Developer Experience
 
@@ -809,3 +888,21 @@ cross-reference is a real defect, not a style nit. Canonical decision:
 - **Tooling docs are contract surfaces** — When scripts, hooks, gate
   sequences, or adapter surfaces change, update README, CONTRIBUTING, ADRs
   and Practice docs in the same pass.
+- **Narrative sections drift first** — When syncing a plan or record,
+  inspect body status lines, decision tables, and current-state prose, not
+  just frontmatter and todo checkboxes; prose is where stale truth hides. A
+  child plan that changes runtime truth reconciles its parent plan and any
+  closure proof in the same session.
+- **Write the plain meaning, not coined status-jargon** — "safe to delete",
+  not "reclaimable". Before using a coined adjective or status term, ask
+  what it means for the reader and write that instead (or alongside, if the
+  term is load-bearing jargon the reader already knows). Agent-authored
+  artefacts accrete invented vocabulary that reads as ceremony.
+- **Prose artefacts are accepted on decision and audience outcome** — For
+  READMEs, decision records and runbooks, acceptance criteria name the
+  decision and the reader outcome (discoverability, accuracy), never an
+  exact sentence shape. Reserve executable tests and grep guards for code
+  contracts, generated surfaces, or forbidden runtime exposure; validation
+  of prose is read-through plus formatting and link hygiene.
+- **Read the index before guessing URLs** — When researching external
+  documentation, fetch `sitemap.xml`, `llms.txt`, or the docs index first.

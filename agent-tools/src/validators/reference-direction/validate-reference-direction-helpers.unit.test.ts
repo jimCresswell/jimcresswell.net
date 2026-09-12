@@ -15,13 +15,11 @@ describe('classifyLayer', () => {
     );
   });
 
-  it('classifies ADRs, rules, directives, governance as repo-doctrine', () => {
-    expect(classifyLayer('docs/architecture/architectural-decisions/150-x.md')).toBe(
-      'repo-doctrine',
-    );
+  it('classifies ADRs, rules and directives as repo-doctrine', () => {
+    expect(classifyLayer('docs/architecture/decision-records/150-x.md')).toBe('repo-doctrine');
     expect(classifyLayer('.agent/rules/no-moving-targets.md')).toBe('repo-doctrine');
     expect(classifyLayer('.agent/directives/orientation.md')).toBe('repo-doctrine');
-    expect(classifyLayer('docs/governance/development-practice.md')).toBe('repo-doctrine');
+    expect(classifyLayer('docs/architecture/decision-records/README.md')).toBe('repo-doctrine');
   });
 
   it('classifies plans, threads, active memory, and state as ephemeral', () => {
@@ -61,10 +59,10 @@ describe('extractReferences', () => {
   it('extracts inline links resolved relative to the source dir', () => {
     const refs = extractReferences(
       source,
-      'see [ADR](../../../docs/architecture/architectural-decisions/9.md).',
+      'see [ADR](../../../docs/architecture/decision-records/9.md).',
     );
     expect(refs).toHaveLength(1);
-    expect(refs[0].resolvedRepoPath).toBe('docs/architecture/architectural-decisions/9.md');
+    expect(refs[0].resolvedRepoPath).toBe('docs/architecture/decision-records/9.md');
   });
 
   it('extracts reference definitions', () => {
@@ -110,7 +108,7 @@ describe('findReferenceDirectionViolations', () => {
     const files: ScanFile[] = [
       {
         path: '.agent/practice-core/decision-records/PDR-1.md',
-        content: 'see [ADR](../../../docs/architecture/architectural-decisions/9.md)',
+        content: 'see [ADR](../../../docs/architecture/decision-records/9.md)',
       },
     ];
     const violations = findReferenceDirectionViolations(files);
@@ -131,7 +129,7 @@ describe('findReferenceDirectionViolations', () => {
   it('flags an ADR citing a thread (durability)', () => {
     const files: ScanFile[] = [
       {
-        path: 'docs/architecture/architectural-decisions/9.md',
+        path: 'docs/architecture/decision-records/9.md',
         content: 'see [thread](../../../.agent/memory/operational/threads/eef.next-session.md)',
       },
     ];
@@ -143,7 +141,7 @@ describe('findReferenceDirectionViolations', () => {
   it('flags an ADR citing an analysis doc (durability) — analysis is ephemeral research', () => {
     const files: ScanFile[] = [
       {
-        path: 'docs/architecture/architectural-decisions/93.md',
+        path: 'docs/architecture/decision-records/93.md',
         content: 'see [analysis](../../../.agent/analysis/curriculum-structure-analysis.md)',
       },
     ];
@@ -179,7 +177,7 @@ describe('findReferenceDirectionViolations', () => {
       {
         path: '.agent/practice-core/decision-records/PDR-1.md',
         content:
-          'see [ADR](../../../docs/architecture/architectural-decisions/9.md) (historical reference)',
+          'see [ADR](../../../docs/architecture/decision-records/9.md) (historical reference)',
       },
     ];
     expect(findReferenceDirectionViolations(files)).toHaveLength(1);

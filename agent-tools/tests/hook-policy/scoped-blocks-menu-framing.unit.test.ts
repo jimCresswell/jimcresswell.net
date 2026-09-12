@@ -25,7 +25,6 @@ const sharedIncludePaths = [
   '.agent/practice-core/',
   '.agent/plans/',
   'docs/architecture/',
-  'docs/governance/',
   '**/*.plan.md',
 ] as const;
 

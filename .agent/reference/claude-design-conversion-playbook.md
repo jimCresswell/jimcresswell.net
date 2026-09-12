@@ -4,9 +4,9 @@ How to convert a Claude Design project into a first-class Next.js workspace in
 this repository. Distilled from the first conversion (the Oak Curriculum Hub,
 `demos/oak-curriculum-hub/`, 2026-06-30 → 2026-07-02), including every mistake
 made so the next conversion does not repeat them. The reusable-pipeline
-programme that owns the forward automation of this playbook is
-[`productionisation-and-reuse.plan.md`](../../.agent/plans-backlog-2026-07/curriculum-hub-demo/current/productionisation-and-reuse.plan.md)
-(WS2).
+programme that owned the forward automation of this playbook in the lineage
+(its "productionisation and reuse" plan, WS2) was not transplanted; the
+playbook stands alone here as the recipe.
 
 ## The two governing rules
 
@@ -58,9 +58,8 @@ this pipeline's work; this section is its application here):
    substitutes for seeing it.
 2. Capture the reference set with Playwright — full-page and fold, per
    identity — at the canonical measurement widths
-   ([DDR-009](../design/design-decisions/009-measurement-happens-at-canonical-widths.md);
-   the values live beside the fidelity tooling in
-   `tools/measurement-widths.ts`). The capture tooling refuses free-hand
+   (the lineage's design decision "measurement happens at canonical widths";
+   here the widths are the visual-regression harness's configured viewports). The capture tooling refuses free-hand
    widths, so a comparison outside the canonical set cannot be produced.
 3. Every fidelity claim thereafter cites the captured reference, and the
    reference-vs-rebuild comparison runs from the first buildable slice —
@@ -218,7 +217,7 @@ Three rules make it honest:
   pipeline's diff stage reads so ratified divergences are not re-flagged on
   a refresh (productionisation plan WS2 stage 2).
 - **The workflow is skill-carried**: the
-  [`claude-design-pipeline` skill](../../.agent/skills/domain-craft/ui-design/claude-design-pipeline/SKILL-CANONICAL.md)
+  [`claude-design-pipeline` skill](../skills/domain-craft/ui-design/claude-design-pipeline/SKILL-CANONICAL.md)
   owns the review loop (run → read report highest-ratio-first → judge →
   record → re-run `--report-only`); this playbook owns the porting method:
   compose `@engraph/fidelity-review` (`packages/libs/fidelity-review`,
@@ -243,7 +242,7 @@ repeated blocks), live regions as native `<output>` where content is phrasing.
 
 Every PR review comment gets fixed in code or explicitly rejected with
 written rationale, and every thread resolved. Scanner findings resolve to
-FIXED or FALSE_POSITIVE per the
-[Sonar disposition policy](../governance/sonar-disposition-policy.md) — never
-bulk-accepted, never excluded to make a red check green. Check-scope changes
+a cure at source under the one-outcome rule in
+`.agent/rules/no-warning-toleration.md` — never bulk-accepted, never
+excluded to make a red check green. Check-scope changes
 of any kind are the owner's to authorise, ahead of time, every time.

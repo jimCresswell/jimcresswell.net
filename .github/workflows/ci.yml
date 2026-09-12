@@ -76,6 +76,8 @@ jobs:
         run: pnpm skills:check
       - name: Validate encoding
         run: pnpm encoding:check
+      - name: No machine-local paths
+        run: pnpm machine-local-paths:check
       - name: Unused code (knip)
         run: pnpm knip
       - name: Dependency boundaries (depcruise)

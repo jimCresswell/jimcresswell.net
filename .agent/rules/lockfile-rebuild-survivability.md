@@ -81,7 +81,7 @@ Keep override and manifest specifiers aligned whenever a sweep moves either.
 
 - Overrides are temporary controls that must name the vulnerable dependency,
   why the override is safe, and the condition for removal
-  ([`docs/governance/safety-and-security.md`](../../docs/governance/safety-and-security.md)).
+  ([`secops.md` §Dependencies and lockfile](../directives/secops.md#dependencies-and-lockfile)).
   This rule adds: and they must survive a rebuild.
 - [`docs/engineering/build-system.md`](../../docs/engineering/build-system.md)
   — security `overrides` and `peerDependencyRules` belong in

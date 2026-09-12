@@ -3,44 +3,29 @@ boundary: B4-Engineering-Operations
 doc_role: index
 authority: engineering-navigation
 status: active
-last_reviewed: 2026-07-28
+last_reviewed: 2026-09-12
 ---
 
 # Engineering Documentation
 
-This directory contains engineering workflow and implementation documentation for developers working on the Engraph ecosystem (SDK, MCP servers, and semantic search app).
+Developer-facing documentation for this repository: how the monorepo builds,
+how work flows from branch to merge, and the testing recipes the directives
+point at. Agent-facing doctrine lives under `.agent/directives/`; agent
+reference material under `.agent/reference/`.
 
 ## Contents
 
-- [Root README Quick Start](../../README.md#quick-start) - Architecture, setup, and key commands for new developers
-- [Working with this Repo for Devs](./working-with-this-repo-for-devs.md) - The practical guide for developers: how you direct the work, what the agents do around you, and what keeps the quality honest
-- [Developer Experience](./developer-experience.md) - The surfaces and feedback loops a developer works through, including the statusline deep-dive
-- [Sibling Repositories](./sibling-repos.md) - Related Oak repos a teammate may need to clone
-- [MCP Servers for Contributors](./mcp-servers-for-contributors.md) - Sanctioned MCP server set for AI coding agents
-- [Tooling](./tooling.md) - Development tools, versions, and setup instructions
-- [Build System](./build-system.md) - Turborepo tasks, caching, and quality gate commands
-- [Troubleshooting](../operations/troubleshooting.md) - Operational issues and resolutions
-- [CI Policy](./ci-policy.md) - What runs in CI (sdk-codegen policy, build behavior)
-- [Testing Patterns](./testing-patterns.md) - Reusable test recipes (E2E DI pattern, subprocess tests)
-- [Testing TDD Recipes](./testing-tdd-recipes.md) - Worked Red/Green/Refactor examples and common TDD violations
-- [Release and Publishing](./release-and-publishing.md) - npm publishing, versioning, and release automation
-- [Milestone Release Runbook](./milestone-release-runbook.md) - Gate model, snagging protocol, and go/no-go controls for milestone releases
-- [Runbook Index](../operations/README.md#runbook-index) - All operational runbooks across the repo (the cross-cutting index; PDR-120)
-- [Pre-Merge Divergence Analysis](./pre-merge-analysis.md) - Systematic process for merging significantly diverged branches safely
-- [Environment Variables](../operations/environment-variables.md) - Runtime configuration and environment variable management
-- [Production Debugging Runbook](../operations/production-debugging-runbook.md) - Production diagnostics and incident workflows
+- [Root README Quick Start](../../README.md#quick-start) — setup, key commands and the workspace layout
+- [Working with this Repo for Devs](./working-with-this-repo-for-devs.md) — the practical guide: how you direct the work, what the agents do around you, and what keeps the quality honest
+- [Developer Experience](./developer-experience.md) — the session surfaces and feedback loops a developer works through, including the statusline
+- [Build System](./build-system.md) — Turborepo tasks, caching, the gate aggregate and what pre-commit, pre-push and CI each run
+- [Workflow](./workflow.md) — the development lifecycle from branch creation to merge, and the skills that enact each phase
+- [Testing Patterns](./testing-patterns.md) — reusable test recipes referenced by the testing strategy
+- [Testing TDD Recipes](./testing-tdd-recipes.md) — worked Red/Green/Refactor examples and common TDD violations
 
-## Purpose
+## Related
 
-These documents help developers:
-
-- Get up to speed quickly with the codebase
-- Understand the development environment and tools
-- Resolve common issues independently
-- Follow consistent development practices
-
-## Getting Started
-
-New developers should start with the [root README Quick Start](../../README.md#quick-start), which covers prerequisites, install/verify, and key commands. Continue with [CONTRIBUTING.md](../../CONTRIBUTING.md) for the development process.
-
-For quick solutions to common problems, check the [Troubleshooting](../operations/troubleshooting.md) guide.
+- [Testing Strategy](../../.agent/directives/testing-strategy.md) and [TDD as Design](../../.agent/directives/tdd-as-design.md) — the doctrine the recipes serve
+- [Gates skill](../../.agent/skills/change-custody/gates/SKILL-CANONICAL.md) — the canonical gate list
+- [Tooling](../../.agent/reference/tooling.md), [Pre-Merge Divergence Analysis](../../.agent/reference/pre-merge-analysis.md) and [Shell and tooling gotchas](../../.agent/reference/shell-and-tooling-gotchas.md) — agent reference material developers also use
+- [CONTRIBUTING.md](../../CONTRIBUTING.md) — the development process

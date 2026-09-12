@@ -1,6 +1,6 @@
 # Strict Validation at External Boundaries
 
-Operationalises [`principles.md` §Compiler Time Types and Runtime Validation](../directives/principles.md) and [`docs/governance/typescript-practice.md`](../../docs/governance/typescript-practice.md).
+Operationalises [`principles.md` §Compiler Time Types and Runtime Validation](../directives/principles.md) and [`validation-strategy.md`](../directives/validation-strategy.md).
 
 When data arrives from an external boundary (JSON.parse, API responses, file reads, SSE parsing, WebSocket messages), it is `unknown`. Validate immediately to the **exact known expected shape** using strict, complete validation (Zod schema, exhaustive type guard, or official SDK types). From that point on, use the validated type only. Never widen.
 
@@ -29,5 +29,5 @@ environment values, fetched data, hook and CLI inputs) carries a schema and
 is validated to it at entry; the entity model's validation in `jcdotnet/lib`
 is the founding instance.
 
-See `docs/governance/typescript-practice.md` §Compiler-time Types and
-Runtime Validation.
+See [`validation-strategy.md`](../directives/validation-strategy.md)
+§Compile-time types and §Runtime validation at the boundary.

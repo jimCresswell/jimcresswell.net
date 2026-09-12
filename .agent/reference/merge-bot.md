@@ -83,7 +83,7 @@ prefix substitution cannot fail fast: if the mint fails for any reason — a bad
 string, and `gh` treats an empty `GH_TOKEN` as _unset_ and falls back to the
 keyring. The command then runs as the signed-in human, who may be
 bypass-capable, which is the owner-credential fallback
-[`bot-identity-on-third-party-systems`](../../.agent/rules/bot-identity-on-third-party-systems.md)
+`bot-identity-on-third-party-systems` (a lineage rule not adopted here; the ban stands on `identify-as-agent-under-shared-credentials`)
 bans outright. A separate assignment with `|| exit 1` stops there instead.
 
 Each minted token is scoped at mint time to this repository and to exactly
@@ -303,4 +303,4 @@ on POSIX), and hands the transfer to the git binary with a
 static credential helper reading that file — the child environment names
 only the file's path. Never argv, no force flags, no `--no-verify`, and
 pushes to the default branch refuse by name (see
-[`bot-identity-on-third-party-systems`](../../.agent/rules/bot-identity-on-third-party-systems.md)).
+`bot-identity-on-third-party-systems` (a lineage rule not adopted here; the ban stands on `identify-as-agent-under-shared-credentials`)).

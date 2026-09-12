@@ -7,7 +7,7 @@ the foundation documents. They are the authority.
 
 1. `.agent/directives/principles.md` — Core principles
 2. `.agent/directives/testing-strategy.md` — TDD at ALL levels
-3. `.agent/directives/schema-first-execution.md` — Generator is source of truth
+3. `.agent/directives/principles.md` §Cardinal Rule — the entity graph is the source of truth and the build derives every surface
 
 ## Per-Phase Check-in
 

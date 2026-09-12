@@ -38,8 +38,8 @@ You MUST also read and internalise these domain-specific documents:
 | Document | Purpose |
 |----------|---------|
 | `docs/architecture/README.md` | Architecture overview and ADR index |
-| `docs/governance/typescript-practice.md` | Type safety guidance |
-| `docs/governance/development-practice.md` | Code standards |
+| `.agent/directives/validation-strategy.md` | Type safety and runtime validation guidance |
+| `.agent/directives/principles.md` | Code standards and design principles |
 | `.agent/sub-agents/components/principles/subagent-principles.md` | Sub-agent principles: assess what should exist, use off-the-shelf |
 | `.agent/sub-agents/components/architecture/reviewer-team.md` | Architecture reviewer personas and perspectives |
 

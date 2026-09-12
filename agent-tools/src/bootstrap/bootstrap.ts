@@ -75,12 +75,12 @@ const LEAF_DIST_ARTIFACTS = ['index.js', 'index.d.ts'] as const;
  */
 const WORKSPACE_DEPS: readonly WorkspaceDep[] = [
   {
-    dir: 'packages/core/workspace-config',
+    dir: 'tooling/workspace-config',
     distArtifacts: ['tsup.config.base.js', 'tsup.config.base.d.ts'],
   },
-  { dir: 'packages/core/result', distArtifacts: LEAF_DIST_ARTIFACTS },
-  { dir: 'packages/core/safe-path', distArtifacts: LEAF_DIST_ARTIFACTS },
-  { dir: 'packages/core/type-helpers', distArtifacts: LEAF_DIST_ARTIFACTS },
+  { dir: 'tooling/result', distArtifacts: LEAF_DIST_ARTIFACTS },
+  { dir: 'tooling/safe-path', distArtifacts: LEAF_DIST_ARTIFACTS },
+  { dir: 'tooling/type-helpers', distArtifacts: LEAF_DIST_ARTIFACTS },
 ];
 
 /** Set the executable bit on every compiled CLI entry, mirroring the build script. */

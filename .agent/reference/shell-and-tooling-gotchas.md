@@ -63,7 +63,7 @@ tool retires them.
   seats): BOTH direct node entries (tsx on source and node on the built
   cli.js) exit 0 with empty streams on the MINT path — a silent exit-0 on a
   token-minting path. The working entry is `pnpm --silent agent-tools
-  merge-bot mint-token --scope <name>` (docs/engineering/merge-bot.md).
+  merge-bot mint-token --scope <name>` (`.agent/reference/merge-bot.md`).
   Scoped to the mint path deliberately: since MCP-385 the direct node entry
   DOES exit 2 with a proper stderr message on a `--scope` usage failure
   (verified 2026-07-29), so the blanket "always exit 0" reading is no longer

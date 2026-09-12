@@ -78,7 +78,7 @@ interface ExecutorScript {
   readonly agentTaskViews?: Readonly<Record<string, string>>;
 }
 
-/** Build the view script from (id, view) pairs without `Object.*` (typescript-practice). */
+/** Build the view script from (id, view) pairs without `Object.*` (validation-strategy). */
 function viewsOf(entries: readonly (readonly [string, string])[]): Record<string, string> {
   const views: Record<string, string> = {};
   for (const [id, view] of entries) {

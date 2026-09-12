@@ -3,7 +3,7 @@
 Specialises the no-machine-local-paths principle
 ([principles.md §Code Design and Architectural Principles](../directives/principles.md);
 shapes in
-[safety-and-security.md §Machine-local paths](../../docs/governance/safety-and-security.md#machine-local-paths))
+[privacy.md §Machine-local paths](../directives/privacy.md#machine-local-paths))
 for the durable-reference failure mode at the `/tmp/` class, and
 operationalises PDR-014's knowledge-flow pipeline (capture,
 distillation, graduation, enforcement) at the buffer-vs-reference
@@ -122,7 +122,7 @@ resolve it silently toward the weaker protection.
 ## Composition With Other Rules
 
 - **The no-machine-local-paths principle** (principles.md; shapes in
-  safety-and-security.md §Machine-local paths): forbids machine-local
+  privacy.md §Machine-local paths): forbids machine-local
   *paths* (the syntactic class). This rule forbids *durable
   references* to a particular machine-local class (`/tmp/`). A path
   under `/tmp/breezy-survey.md` is both — machine-local *and* not
@@ -256,7 +256,7 @@ July 2026).
 ## Related
 
 - `.agent/directives/principles.md` §"No machine-local paths".
-- `docs/governance/safety-and-security.md` §Machine-local paths (the
+- `.agent/directives/privacy.md` §Machine-local paths (the
   forbidden / permitted shapes; the companion syntactic-class
   surface).
 - PDR-014 (capture → distil → graduate → enforce; the layered model

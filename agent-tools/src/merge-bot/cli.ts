@@ -45,7 +45,7 @@ import { permissionNamesFor, TOKEN_SCOPE_NAMES } from './token-scopes.js';
  *
  * The bot is absent from the protections ruleset's bypass list — its one
  * bypass is the separate code-owner review gate (owner ruling 2026-07-21,
- * verified against the rulesets API 2026-07-31; `docs/engineering/merge-bot.md`
+ * verified against the rulesets API 2026-07-31; `.agent/reference/merge-bot.md`
  * carries the split) — so its merges bind to required checks and threads.
  * The sanctioned direct-merge path under the 2026-07-21 owner rulings
  * (`--admin` always banned; direct `--merge` banned on bypass-capable

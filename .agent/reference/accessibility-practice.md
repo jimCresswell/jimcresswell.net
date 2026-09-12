@@ -10,9 +10,9 @@ split_strategy: 'Extract axe-core rule reference to a companion file if rule-spe
 
 This document defines the accessibility testing practice for
 UI-shipping workspaces in this repository. It is the durable reference
-that workspace READMEs and reviewer reading requirements link to.
-
-**Architectural decision**: ADR-147
+that workspace READMEs and reviewer reading requirements link to. The
+site's own accessibility decisions are in the ADR index
+(`docs/architecture/decision-records/`).
 
 ## Target Standard
 
@@ -51,7 +51,7 @@ test('passes WCAG 2.2 AA', async ({ page }) => {
 - **Tags**: `wcag2a`, `wcag2aa`, `wcag21a`, `wcag21aa`, `wcag22aa` —
   the automatable subset of WCAG 2.2 AA. Manual review remains necessary
   for criteria that cannot be machine-verified
-- **No `skipRules`** — zero-tolerance per ADR-147
+- **No `skipRules`** — zero tolerance, no exceptions
 - **No `disableRules`** in any mode a rule's criterion applies to —
   violations there must be resolved, not suppressed; the ONLY sanctioned
   `disableRules` call is the forced-colours criterion scoping below
@@ -85,10 +85,9 @@ Two structural requirements keep the scoping honest:
    upstream artefact disappears, so the measurement-bug half of the
    rationale cannot silently outlive its cause.
 
-The worked form lives in the widget suite
-(`tests/widget/oak-banner.spec.ts`). Any forced-colours project added
-elsewhere in the estate meets the identical facts and uses this same
-pattern.
+The worked form came from the lineage's embeddable-widget suite. Any
+forced-colours project added to this estate meets the identical facts and
+uses this same pattern.
 
 ### CI Requirements
 
@@ -114,35 +113,13 @@ for (const theme of ['light', 'dark']) {
 }
 ```
 
-## MCP App Testing — Two Required Levels
-
-### Level 1: Resource-Level Accessibility Tests
-
-Serve the HTML resource content directly to a Playwright page. Inject
-design token CSS as a test fixture. Run axe-core.
-
-This proves DOM accessibility in isolation. The injected CSS is a test
-fixture — it does not prove correct token delivery through the MCP App
-resource pipeline.
-
-### Level 2: MCP App Integration Verification
-
-Use upstream `basic-host` or a supported MCP Apps host to verify the
-resource loads correctly with sandbox, CSP, `ui/initialize`, and
-postMessage bridge.
-
-This proves correct packaging and host integration. It does not
-replace Level 1 — both levels are required.
-
 ## Gate Position
 
-`test:a11y` runs in the canonical gate sequence after `test:ui`. The widget has
-its own Playwright tests:
-`test:widget:ui` and `test:widget:a11y` (using
-`playwright.widget.config.ts`), which run against the Vite dev server
-in both light and dark theme projects. See
-[ADR-121](../architecture/architectural-decisions/121-quality-gate-surfaces.md)
-for the coverage matrix.
+The axe assertions run inside the site's Playwright suite (`pnpm test:e2e`,
+against a production build, in the light and dark theme projects), which
+the pre-push hook and CI both run; the visual-regression harness
+(`pnpm visual-regression-harness`) carries the rendered-proof side. The
+gate list is the gates skill (`.agent/skills/change-custody/gates/`).
 
 ## References
 

@@ -18,7 +18,7 @@ description: >-
 ## The pipeline at a glance
 
 **Convert** (the
-[conversion playbook](../../../../../docs/engineering/claude-design-conversion-playbook.md))
+[conversion playbook](../../../../reference/claude-design-conversion-playbook.md))
 → **refresh** the byte-sacred export via the claude-design MCP →
 **fidelity review** (this skill's core, below) → the tracked **divergence
 register** that ingestion tooling reads. The
@@ -52,7 +52,7 @@ agent or human decides what each one means.
    author (never a personal name), and a date.
 4. **The export is byte-sacred.** Never format, fix, or edit the canonical
    export; refresh it via the claude-design MCP
-   (see the [conversion playbook](../../../../../docs/engineering/claude-design-conversion-playbook.md)).
+   (see the [conversion playbook](../../../../reference/claude-design-conversion-playbook.md)).
 
 ## Worked instance — the lineage's first conversion
 
@@ -109,6 +109,6 @@ app-local capture arms and export server at matched geometry with the
 app's own default base and `SERVER_HINT`, and compose the package's
 `/orchestrator` in a `tools/fidelity-review.ts` that keeps only paths,
 capture arms, and `main`. The
-[conversion playbook](../../../../../docs/engineering/claude-design-conversion-playbook.md)
+[conversion playbook](../../../../reference/claude-design-conversion-playbook.md)
 §"Fidelity review and the divergence register" carries the method; this
 skill carries the workflow.

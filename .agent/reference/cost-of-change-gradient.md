@@ -131,8 +131,10 @@ capability. Applications and services concentrate on composition, policy,
 operations, and experience. Vendor-specific adapters remain at the edge, and
 generated repetition is cured at its authority or generator.
 
-The detailed projection and core-admission test are in
-[Foundations first](../architecture/foundations-first.md).
+The detailed projection and core-admission test lived in the lineage's
+"Foundations first" architecture page, which was not transplanted; the
+projection here is the Cardinal Rule (`principles.md`), with the entity
+graph as the one authority every rendered surface derives from.
 
 ### Parallax
 
@@ -177,8 +179,8 @@ strata; seconds-to-session-to-cross-session feedback; scope and maturity; and
 human and agent experience. These remain distinct rather than being renamed as
 one generality axis.
 
-Read [the Practice](../../.agent/practice-core/practice.md) and
-[how the agentic engineering system works](./agentic-engineering-system.md) for
+Read [the Practice](../practice-core/practice.md) and
+[how the agentic engineering system works here](../HUMANS.md) for
 those two views.
 
 ## The human-agent experience
@@ -231,10 +233,9 @@ to real people.
 
 ## Related material
 
-- [PDR-135: The Cost-of-Change Gradient](../../.agent/practice-core/decision-records/PDR-135-cost-of-change-gradient.md)
+- [PDR-135: The Cost-of-Change Gradient](../practice-core/decision-records/PDR-135-cost-of-change-gradient.md)
   — portable identity, decision, and falsifiers.
-- [Foundations first](../architecture/foundations-first.md) — software
-  architecture projection and core-building-block quality contract.
-- [TypeScript estate review promotion frame](../../.agent/reports/typescript-estate-consolidation-review/foundational-building-blocks-frame.md)
-  — one evidence programme applying the pattern without owning it.
-- [Vision](../../VISION.md) — why the repository invests in these foundations.
+- [Principles §Cardinal Rule](../directives/principles.md#cardinal-rule-of-this-repository)
+  — this repository's projection: one authority, every surface derived.
+- The lineage's "Foundations first" page and its TypeScript estate review
+  applied the pattern there; neither was transplanted.

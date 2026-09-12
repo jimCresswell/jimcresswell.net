@@ -48,6 +48,7 @@ pnpm portability:check
 pnpm subagents:check
 pnpm skills:check
 pnpm encoding:check
+pnpm machine-local-paths:check
 ```
 
 Gates outside `check`, run when the work touches their surface:

@@ -112,9 +112,8 @@ agent wrappers require a separate platform-specific design and verification.
 A **runbook** (repeatable operational procedure + verification) is a content kind, NOT
 a new surface — [PDR-120](../../practice-core/decision-records/PDR-120-runbooks-are-a-content-kind-not-a-surface.md).
 Route by the skill-load-budget triage: a **skill** (invocable + frequent), a **reference
-doc** under `docs/operations/` (read on demand), or **embedded** in the rule/directive it
-enacts; then add a pointer to the [Runbook Index](../../../docs/operations/README.md#runbook-index).
-Full routing: [`extending.md` §Adding a Runbook](../../../docs/engineering/extending.md#adding-a-runbook).
+doc** under `.agent/reference/` (read on demand; list it in that directory's README), or
+**embedded** in the rule/directive it enacts.
 
 The budget is empirical, not theoretical: every active skill's frontmatter
 costs discovery tokens, and past roughly a hundred active skills Claude

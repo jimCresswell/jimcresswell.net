@@ -22,12 +22,13 @@ split_strategy: "Move recipes to docs/engineering/testing-patterns.md and docs/e
   against a production build — ADR-019)
 - The visual regression harness (rendering proof — ADR-022)
 
-Mutation testing (Stryker) is **meta-quality** — it audits the test surface,
-not the product, and is the constraint that makes coverage meaningful (a test
-that executes code without checking behaviour scores the same as one that
-describes it). Rollout sequencing: mutation-testing plan.
-Formal home: [`validation-strategy.md`](validation-strategy.md) (seeded
-2026-06-23) per doctrine restructure plan.
+Mutation testing is **meta-quality** — it audits the test surface, not the
+product, and is the constraint that makes coverage meaningful (a test that
+executes code without checking behaviour scores the same as one that
+describes it). No mutation runner is adopted in this repository; the
+claim-directed practice (write the mutant that would falsify the guard,
+prove the test bites) is in
+[`validation-strategy.md` §Prove the guard bites](validation-strategy.md).
 
 ## Philosophy
 
@@ -64,7 +65,7 @@ Formal home: [`validation-strategy.md`](validation-strategy.md) (seeded
 - NEVER manipulate global state in tests - no `process.env` reads
   or mutations, no `vi.stubGlobal`, no `vi.mock`, no `vi.doMock`.
   Product code must accept configuration as parameters. See
-  [ADR-078][di]. For React components that fetch or derive async
+  [`no-global-state-in-tests`][di]. For React components that fetch or derive async
   state, the DI seam that makes this holdable is the view-binder
   split — views take state as props, a two-line binder owns the
   hook, tests render the view with literal states, zero mocks
@@ -170,9 +171,7 @@ Formal home: [`validation-strategy.md`](validation-strategy.md) (seeded
   `xdescribe`) are forbidden outright. External-resource tests must
   fail fast with a helpful error, never silently skip. Validation
   scripts requiring external resources are standalone scripts, not
-  tests. Operationalises [ADR-011 (Use Vitest for
-  Testing)][adr-011-noskip] and [ADR-121 (Quality Gate
-  Surfaces)][adr-121-noskip].
+  tests. Operationalised by the [`no-skipped-tests` rule][no-skip-rule].
 - **No conditional tests** - Conditional execution of any kind is a
   symptom of architectural failure: `skipIf`, `runIf`, conditional
   registration, runtime branching in test bodies, conditional
@@ -199,20 +198,19 @@ Formal home: [`validation-strategy.md`](validation-strategy.md) (seeded
   suites deleted; the real-corpus import design itself ruled conformant
   and retained).
 
-[adr-011-noskip]: ../../docs/architecture/architectural-decisions/011-vitest-for-testing.md
-[adr-121-noskip]: ../../docs/architecture/architectural-decisions/121-quality-gate-surfaces.md
+[no-skip-rule]: ../rules/no-skipped-tests.md
 [no-cond]: ../rules/no-conditional-tests.md
 
 - **No ambient global state access** - Tests MUST NOT read or mutate
   `process.env`, use `vi.stubGlobal`, use `vi.mock`, or use
   `vi.doMock`. If a function needs configuration, refactor it to
-  accept config as a parameter. See [ADR-078][di].
+  accept config as a parameter. See [`no-global-state-in-tests`][di].
   Smoke composition roots — the Vitest runner config or spawn
   invocation — may read ambient env, validate it, and inject the
   result. Test files and setup files must not read or mutate
   `process.env`.
 
-[di]: ../../docs/architecture/architectural-decisions/078-dependency-injection-for-testability.md
+[di]: ../rules/no-global-state-in-tests.md
 [testing-patterns-value-proxies]: ../../docs/engineering/testing-patterns.md#acceptance-value-proxies
 
 - **No process spawning in in-process tests** - Test code MUST NOT
@@ -484,9 +482,10 @@ integration → E2E). There is a second, orthogonal axis: EXECUTION
 SURFACE. Scope-axis tests typically execute source through a
 loader-assisted harness (vitest, tsx) while production executes built
 artefacts under plain `node` — and nothing at any scope level REQUIRES
-surface fidelity. An E2E test MAY boot the built artefact (the Oak
-Search CLI contract E2E boots `dist/bin/oaksearch.js` and is the worked
-example), but that coverage is incidental to its scope classification.
+surface fidelity. An E2E test MAY boot the built artefact (the site's
+Playwright suite runs against `pnpm build && pnpm start`, and the
+lineage's CLI contract E2E booted its built binary), but that coverage is
+incidental to its scope classification.
 Smoke tests own the surface axis and make artefact fidelity MANDATORY:
 minimum behaviour scope, maximum surface fidelity. Defects that exist
 only in the built form — extensionless ESM import specifiers in
@@ -761,4 +760,4 @@ Four browser-specific proof categories for UI-shipping workspaces:
 
 For MCP App HTML resources: serve content directly to Playwright
 (resource-level a11y), then verify via basic-host (integration-level).
-See ADR-147, `docs/governance/accessibility-practice.md`.
+See `.agent/reference/accessibility-practice.md`.

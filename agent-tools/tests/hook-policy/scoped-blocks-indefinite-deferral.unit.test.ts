@@ -47,7 +47,6 @@ const group: ScopedContentBlockGroup = {
     '.agent/reports/',
     '.agent/memory/operational/',
     'docs/architecture/',
-    'docs/governance/',
     '**/*.plan.md',
   ],
   exclude_paths: [

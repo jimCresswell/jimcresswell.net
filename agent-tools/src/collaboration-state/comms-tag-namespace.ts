@@ -29,7 +29,7 @@ export type CommsEventTag = (typeof COMMS_EVENT_TAG_NAMESPACE)[number];
  * Validate that every tag in `tags` is a canonical ADR-183 tag and that
  * no tag is repeated. Returns the tags at the precise namespace type on
  * success — the boundary narrowing; nothing widens past it
- * (typescript-practice §schema-first). Throws with a precise message on
+ * (validation-strategy §Runtime validation at the boundary). Throws with a precise message on
  * failure. The shape mirrors the schema's `uniqueItems: true` constraint
  * at the CLI boundary so the rejection happens before any event reaches
  * disk.

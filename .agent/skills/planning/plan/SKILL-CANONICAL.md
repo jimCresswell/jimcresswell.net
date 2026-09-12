@@ -58,7 +58,7 @@ runs in CI and at pre-commit.
 2. Read the directives:
    - `../../../directives/principles.md`
    - `../../../directives/testing-strategy.md`
-   - `../../../directives/schema-first-execution.md`
+   - `../../../directives/validation-strategy.md`
 
 3. Read the estate contract and templates:
    - `../../../plans/plan-node-schema.md` (the contract)

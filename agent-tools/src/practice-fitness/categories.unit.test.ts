@@ -63,7 +63,7 @@ describe('categorizeFitnessFile', () => {
   });
 
   it('classifies non-.agent reference files as project documentation', () => {
-    expect(categorizeFitnessFile('docs/governance/development-practice.md', 'reference')).toBe(
+    expect(categorizeFitnessFile('docs/engineering/workflow.md', 'reference')).toBe(
       'project-documentation',
     );
     expect(categorizeFitnessFile('CONTRIBUTING.md', 'reference')).toBe('project-documentation');
@@ -74,7 +74,7 @@ describe('groupFitnessResultsByCategory', () => {
   it('returns non-empty groups in the owner-specified order (buffers → other → doctrine → core)', () => {
     const results = [
       makeResult('.agent/practice-core/practice.md', 'reference'),
-      makeResult('docs/governance/development-practice.md', 'reference'),
+      makeResult('docs/engineering/workflow.md', 'reference'),
       makeResult('.agent/memory/active/napkin.md', 'drainable-buffer'),
       makeResult('.agent/directives/principles.md', 'reference'),
       makeResult('.agent/memory/operational/repo-continuity.md', 'reference'),

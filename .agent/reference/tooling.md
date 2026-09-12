@@ -15,7 +15,7 @@ the update-dependencies skill's age-floor census.
 ## Build System
 
 - [pnpm](https://pnpm.io) - Package manager and workspace orchestration
-- [Turborepo](https://turbo.build/repo) - Task runner with caching and dependency management (see [Build System docs](./build-system.md))
+- [Turborepo](https://turbo.build/repo) - Task runner with caching and dependency management (see [Build System docs](../../docs/engineering/build-system.md))
 
 ## Development
 
@@ -43,46 +43,35 @@ the update-dependencies skill's age-floor census.
 These tools are not managed by pnpm but are required by specific workflows:
 
 - [gitleaks](https://github.com/gitleaks/gitleaks) — required for secrets scanning
-  in push workflows
-- [bun](https://bun.sh/docs/installation) — optional, required for
-  `pnpm dev:widget-in-host`
-- [jq](https://jqlang.github.io/jq/download/) — optional, required for
-  `pnpm --filter @engraph/oak-curriculum-mcp-streamable-http smoke:oauth-curl`
-- [lsof](https://github.com/lsof-org/lsof) — optional, used by
-  `apps/oak-curriculum-mcp-streamable-http/scripts/restart-dev-server.sh`
+  (`pnpm secrets:scan`, a `pnpm check` leg, so also at pre-push and in CI)
+- [Playwright browsers](https://playwright.dev/docs/browsers) — `pnpm --filter @jimcresswell/www exec playwright install chromium-headless-shell`
+  once per checkout, before `pnpm test:e2e`
 
 Scripts that require these tools should emit explicit installation guidance when
 the command is missing.
 
 ## Publishing
 
-- [npm](https://www.npmjs.com) - The target registry for public packages. Nothing is published today (`npmPublish: false` in `.releaserc.mjs`); the first publish lands as one multi-package publish at the repository's release version, never a manual toggle.
-- [semantic-release](https://github.com/semantic-release/semantic-release) - Versions, tags and GitHub releases are minted automatically on merge to `main`; npm publishing is disabled until that first publish.
+- [Vercel](https://vercel.com) — the site deploys from `main`; nothing is
+  published to a package registry (the `@engraph/*` packages are private
+  workspace packages).
 
 ## TSDoc Compliance
 
-TSDoc compliance is enforced at three layers:
+TSDoc compliance is enforced at two layers:
 
-1. **Generation-time post-processing**: The `postProcessTypesSource`
-   function in `codegen-core.ts` strips non-standard tags
-   (`@description`, `@constant`, `@enum`) from `openapi-typescript`
-   output at generation time, preventing them from entering the
-   codebase.
+1. **Lint-time enforcement**: `eslint-plugin-tsdoc` is installed in
+   `@engraph/eslint-plugin-standards`; non-standard tags in hand-written
+   code fail lint (no warnings are tolerated).
 
-2. **Lint-time enforcement**: `eslint-plugin-tsdoc` is installed in
-   `@engraph/eslint-plugin-standards` with `tsdoc/syntax: warn`.
-   This catches any non-standard tags introduced in hand-written
-   code.
-
-3. **Custom tag declaration**: `tsdoc.json` configs (root and
+2. **Custom tag declaration**: `tsdoc.json` configs (root and
    per-workspace) declare `@generated` as a custom modifier tag,
    allowing it to pass the TSDoc parser without triggering warnings.
 
-This three-layer approach was established in February 2026 after a
-codebase-wide fix of non-standard TSDoc tags across 462 files.
-`sanitize-docs.ts` and `docs/_typedoc_src/` were deleted; TypeDoc
-configs point directly at `src/`.
+The lineage's third layer — stripping non-standard tags from generated
+code at generation time — has no subject here, since no code is generated
+from an external schema.
 
 ## Validation
 
-- [Claude](https://www.npmjs.com/package/@anthropic-ai/claude-code) (initial MCP client, already installed globally)
+- [Claude Code](https://www.npmjs.com/package/@anthropic-ai/claude-code) (installed globally)

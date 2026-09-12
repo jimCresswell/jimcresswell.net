@@ -24,7 +24,7 @@ A change is significant under this rule when any of the following hold:
 
 - Adds, removes, renames, or substantially rewrites any file under
   `.agent/directives/`, `.agent/practice-core/`, `.agent/rules/`,
-  `docs/architecture/architectural-decisions/`, `docs/governance/`,
+  `docs/architecture/decision-records/`, `.agent/reference/`,
   `docs/operations/`, or any host-equivalent permanent doctrine
   surface.
 - Modifies any onboarding entry point: top-level `README.md`,

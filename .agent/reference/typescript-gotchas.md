@@ -3,13 +3,13 @@ fitness_line_target: 80
 fitness_line_limit: 120
 fitness_char_limit: 6000
 fitness_line_length: 100
-split_strategy: 'Companion to typescript-practice.md; detailed gotcha entries live here'
+split_strategy: 'Companion to validation-strategy.md; detailed gotcha entries live here'
 ---
 
 # Common Type Gotchas
 
 Extracted from
-[TypeScript Practice](./typescript-practice.md) — detailed
+[TypeScript Practice](../directives/validation-strategy.md) — detailed
 observations on TypeScript and tooling quirks that affect
 type safety.
 
@@ -114,11 +114,11 @@ type safety.
 
 A `**/` glob in a tsconfig `include` reaches into sibling projects:
 `**/*.test.tsx` in an app's `tsconfig.lint.json` pulls a co-located
-`widget/` project's tests into the app project, which may lack the
+sibling project's tests into the app project, which may lack the
 required `lib` (no DOM lib → type errors that look environmental).
 Scope test globs to `src/`. A pre-existing `**/*.test.ts` can mask this
 for years if the sibling's tests all use a different extension
-(2026-07-25: the widget's tests were all `.tsx`).
+(2026-07-25, in the lineage: the sibling's tests were all `.tsx`).
 
 ## Package Export Contracts
 

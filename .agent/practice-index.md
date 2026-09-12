@@ -19,7 +19,6 @@ brought the OCE lineage here, and the owner rulings that shaped it, see
 | [testing-strategy.md](directives/testing-strategy.md)                       | TDD at all levels; test types and naming                     |
 | [tdd-as-design.md](directives/tdd-as-design.md)                             | Tests as the design instrument                               |
 | [validation-strategy.md](directives/validation-strategy.md)                 | Runtime validation and boundary discipline                   |
-| [schema-first-execution.md](directives/schema-first-execution.md)           | Types flow from schemas                                      |
 | [definition-of-delivery.md](directives/definition-of-delivery.md)           | What "delivered" means                                       |
 | [operationalisation-contract.md](directives/operationalisation-contract.md) | How doctrine becomes an operational surface                  |
 | [continuity-practice.md](directives/continuity-practice.md)                 | Continuity surfaces and session resume                       |
@@ -38,7 +37,7 @@ brought the OCE lineage here, and the owner rulings that shaped it, see
 | Reference                                                                                                          | Purpose                                                      |
 | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------ |
 | [memory/executive/cross-platform-agent-surface-matrix.md](memory/executive/cross-platform-agent-surface-matrix.md) | Supported platform-adapter surfaces (OCE lineage)            |
-| [reference/cross-platform-agent-surface-matrix.md](reference/cross-platform-agent-surface-matrix.md)               | Pre-transplant local matrix — retire once portability passes |
+| [memory/executive/cross-platform-agent-surface-matrix.md](memory/executive/cross-platform-agent-surface-matrix.md) | Supported and unsupported platform surfaces (executive memory) |
 | [reference/private-editorial-workspace.md](reference/private-editorial-workspace.md)                               | Public-safe contract for the private editorial repository    |
 | [memory/executive/artefact-inventory.md](memory/executive/artefact-inventory.md)                                   | Canonical-vs-adapter taxonomy                                |
 | [memory/executive/invoke-code-experts.md](memory/executive/invoke-code-experts.md)                                 | Expert catalogue and triage ladder                           |

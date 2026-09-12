@@ -25,8 +25,8 @@ has to climb upward to grasp the load-bearing claim.
 | Level | Surface | What lives here |
 | --- | --- | --- |
 | **1. Principles** | `.agent/directives/principles.md` | The generative WHY — short, load-bearing claims that generate everything below. |
-| **2. Operationalisation Mechanisms** | `.agent/rules/`, `.agent/hooks/`, `.agent/sub-agents/`, `.agent/skills/`, ESLint plugins, ADRs, PDRs, governance docs, patterns library | The HOW — focused per-mechanism files that enforce, encode, or elaborate one principle. |
-| **3. Worked Examples + Recipes** | Per-instance files indexed at the parent mechanism (e.g. patterns library entries, recipe pages in governance docs) | The *what-it-looks-like* — small focused per-instance files. |
+| **2. Operationalisation Mechanisms** | `.agent/rules/`, `.agent/hooks/`, `.agent/sub-agents/`, `.agent/skills/`, ESLint plugins, ADRs, PDRs, reference docs, patterns library | The HOW — focused per-mechanism files that enforce, encode, or elaborate one principle. |
+| **3. Worked Examples + Recipes** | Per-instance files indexed at the parent mechanism (e.g. patterns library entries, recipe pages under `.agent/reference/`) | The *what-it-looks-like* — small focused per-instance files. |
 
 A principle may have **zero or more** Level 2 mechanisms. Layered
 defences — a principle enforced by both a hook AND a rule AND a
@@ -48,9 +48,9 @@ Mechanisms by firing moment:
 | ESLint custom plugins | `packages/core/oak-eslint/` | Lint-time |
 | Quality gates | `pnpm check`, `pnpm test`, etc. | Pre-commit + CI |
 | Skills | `.agent/skills/*` | Workflow-time |
-| ADRs | `docs/architecture/architectural-decisions/` | Architectural-decision record |
+| ADRs | `docs/architecture/decision-records/` | Architectural-decision record |
 | PDRs | `.agent/practice-core/decision-records/` | Practice-decision record |
-| Governance docs | `docs/governance/*.md` | Detailed elaboration |
+| Reference docs | `.agent/reference/*.md` | Detailed elaboration |
 | Patterns library | `.agent/memory/active/patterns/*.md` | Recurring solutions / failures |
 | Distilled / pending-graduations | `.agent/memory/active/`, `operational/` | Learning-loop staging |
 

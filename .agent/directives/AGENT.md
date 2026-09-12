@@ -138,8 +138,8 @@ from the repo root via `pnpm --filter @engraph/agent-tools <script>`.
 
 Agent artefacts follow the three-layer model: canonical content in `.agent/`,
 generated thin platform adapters, and platform entry points. See
-[artefact-inventory.md](../memory/executive/artefact-inventory.md) and
-[docs/engineering/extending.md](../../docs/engineering/extending.md) before
+[artefact-inventory.md](../memory/executive/artefact-inventory.md) and the
+[architecture overview](../../docs/architecture/README.md) before
 adding rules, skills, sub-agents, adapters, or ADRs; regenerate adapters with
 `pnpm portability:fix`.
 
@@ -180,17 +180,14 @@ never quote, summarise or identify it on a public surface.
 
 ## Essential Links
 
-- Core practice: [Development Practice](../../docs/governance/development-practice.md),
+- Core practice: [Principles](./principles.md),
   [Testing Strategy](./testing-strategy.md), [TDD as Design](./tdd-as-design.md),
-  [Validation Strategy](./validation-strategy.md),
-  [Definition of Delivery](./definition-of-delivery.md),
-  [TypeScript Practice](../../docs/governance/typescript-practice.md),
-  [Safety and Security](../../docs/governance/safety-and-security.md),
+  [Validation Strategy](./validation-strategy.md) (types and runtime
+  validation), [Definition of Delivery](./definition-of-delivery.md),
   [Privacy](./privacy.md), [Security Operations](./secops.md)
 - Architecture: [Architecture](../../docs/architecture/README.md),
-  [ADR index](../../docs/architecture/decision-records/README.md),
-  [Schema-First Execution](./schema-first-execution.md)
-- UI: [Accessibility Practice](../../docs/governance/accessibility-practice.md)
+  [ADR index](../../docs/architecture/decision-records/README.md)
+- UI: [Accessibility Practice](../reference/accessibility-practice.md)
 - Build and operations: [Build System](../../docs/engineering/build-system.md),
   [Workflow](../../docs/engineering/workflow.md)
 - Product: [Editorial Decision Records](../../docs/editorial/decision-records/),
