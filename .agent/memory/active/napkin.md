@@ -278,3 +278,10 @@
   sequence with a bootstrap and a guard, not a file set — that reframing is what the installable
   thing needs (report addendum). Free-play seed: the guard locking out its own installer is the
   Practice's immune system working; keep it, sequence around it.
+- Mistake at commit time: a `git add -u -- . ':!…'` chain was refused by the guard (`git add .`
+  substring) and the refusal aborted the `&&` chain before the heredoc wrote the commit-message
+  file; the next commit then ran with an absent `-F` file and the continuity commit swallowed the
+  Phase 8 bundle. Cure: `git reset --soft HEAD~1`, unstage the three continuity paths, re-commit
+  in order (no work touched). Lessons: never put a message-file write after a guarded command in
+  one chain; stage by listing paths (`git diff --name-only | xargs git add --`), not by pathspec
+  exclusion; the `.` in `-- .` trips the wildcard guard by design.
