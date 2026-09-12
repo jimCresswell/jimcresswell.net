@@ -3,13 +3,12 @@ prompt_id: session-continuation
 title: "Session Continuation"
 type: handoff
 status: active
-last_updated: 2026-08-09
+last_updated: 2026-08-12
 ---
 
-Pick up the owner-led LinkedIn editorial session in n=1 mode.
+Pick up the owner-led LinkedIn editorial session.
 
-Ground first via `start-right-quick` or `start-right-thorough`, then read the dedicated
-[LinkedIn handoff prompt](editorial/linkedin-content-preparation.prompt.md).
+Ground first via `start-right-quick` or `start-right-thorough`.
 
 ## Current focus
 
@@ -17,9 +16,13 @@ Jim has chosen LinkedIn as the current working thread. The formal primary plan i
 remains Track B source-of-truth design, but it is dormant while this owner-led editorial pass is in
 flight. Do not resume Track B by default.
 
-The LinkedIn headline is owner-set and closed unless Jim reopens it. The next editorial task is the
-About section: make the headline's relationship between inquiry, strategy and technical
-intervention intelligible and credible without importing the private identity model's vocabulary.
+The LinkedIn headline is owner-set and closed unless Jim reopens it. **It is the only settled
+field.** Do not infer that any other field is settled because drafted text exists for it, and do
+not treat the About section as the next task — field order is Jim's call, About is deliberately
+last, and the 2026-08-08/09 rewrite is not an approved starting point. Current status and method
+live in [`../plans/current/linkedin-update.plan.md`](../plans/current/linkedin-update.plan.md);
+read it and the private continuity surfaces it routes to before touching editorial work, and do
+not restate editorial status here.
 
 ## Private boundary
 
@@ -46,9 +49,11 @@ refs, hashes, recovery artefacts and cache caveats live only in the private cust
 Do not repeat or extend the rewrite unless a new disclosure is identified. Ordinary editorial work
 does not need another history operation.
 
-No LinkedIn ARC, comms watcher or Claude seat is part of the current n=1 session. Do not infer a
-pairing from archived collaboration records or start monitoring machinery unless Jim explicitly
-opens another team session.
+Team shape is owner-set per session and is not asserted here. Do not infer a pairing from archived
+collaboration records, and do not start monitoring machinery unless Jim explicitly opens a team
+session. Where a session is live, the newest channel under `.agent/collaboration/rapid-comms/` is
+authoritative for who holds which lane — and check that directory for new channels rather than
+watching only a known one.
 
 ## Editorial grounding
 
@@ -70,4 +75,4 @@ multiple entry points. Jim decides the wording and publication timing.
 - Dev-tooling hygiene remains ready.
 
 These threads are preserved in [`../plans/roadmap.md`](../plans/roadmap.md), but none should displace
-the current LinkedIn About pass without owner direction.
+the current LinkedIn editorial pass without owner direction.

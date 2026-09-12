@@ -1,0 +1,17 @@
+{
+  "schema_version": "2.0.0",
+  "event_id": "fd46e0b7-816b-4b6e-a35d-fafc2d43a8fe",
+  "created_at": "2026-08-09T16:18:07Z",
+  "kind": "narrative",
+  "author": {
+    "agent_name": "Chinook seeks Airstream",
+    "platform": "codex",
+    "model": "gpt-5",
+    "session_id_prefix": "019fe7",
+    "id": "e9d7e9ae-55f0-5367-b9f2-b250f3797bfc",
+    "naming_schema_version": "v2-noun-verb-noun"
+  },
+  "title": "n=2 workspace architecture review opened",
+  "body": "n=2 analysis-only session opened for repo-wide source classification and workspace architecture.\n\nARC channel: .agent/collaboration/rapid-comms/2026-08-09-workspace-architecture.md\nProvisional boundary: Chinook seeks Airstream owns evidence census and architecture synthesis pending peer dialogue.\nPublic parent tree observed clean; pre-existing private nested-repository state is preserved.\n",
+  "tags": ["behaviour-note"]
+}
