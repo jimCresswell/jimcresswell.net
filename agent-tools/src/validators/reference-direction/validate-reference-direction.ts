@@ -34,7 +34,7 @@ const POLICED_ROOTS = [
   '.agent/practice-core',
   '.agent/rules',
   '.agent/directives',
-  'docs/architecture/architectural-decisions',
+  'docs/architecture/decision-records',
   'docs/design',
   'docs/governance',
 ] as const;

@@ -52,6 +52,12 @@ const STABLE_ADDRESSED_STATE: ReadonlySet<string> = new Set([
   '.agent/memory/active/patterns/README.md',
   '.agent/memory/operational/threads/README.md',
   '.agent/state/README.md',
+  '.agent/plans/README.md',
+  // Singleton, fixed-address logs: the address outlives every referrer while
+  // the content churns — the corollary's own definition (PDR-105). AGENT.md
+  // tells every session to read both; a doctrine link to them cannot rot.
+  '.agent/memory/active/napkin.md',
+  '.agent/memory/active/distilled.md',
   // Permanent collaboration/library directories (the surface, not the items within).
   '.agent/state/collaboration/conversations/',
   '.agent/state/collaboration/escalations/',

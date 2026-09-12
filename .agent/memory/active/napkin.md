@@ -343,3 +343,23 @@
   `engraph`. PR #138 (disposition format in pr-lifecycle §Response pricing, pr-tally fixture) is
   stable at 352ad0ee5. No sub-agent templates, hook policy or validators changed today. Re-import
   candidates for after this slice, at those SHAs.
+- Part B landed (session-open surfaces). The gates skill now unrolls `pnpm check` and lists the
+  gates outside it; both shared start-right files cite it instead of carrying their own list.
+  Deleted: the Matt clause, the Linear cross-check, the OpenAPI nuance, the observability link,
+  every ADR-144/065/199 citation. Lineage skill names scrubbed across `.agent/` (nine files);
+  `schema-first-execution.md` is the one residue left, for Part C item 29.
+- New validator `validate-cited-scripts` (in `docs-validators:check`): fenced blocks and code
+  spans only, tokenizer skips pnpm built-ins, comments, placeholders, `-C`/`-r`, path and glob
+  filters; root-installed bins count as root scripts (`pnpm turbo run …` is real). First run:
+  70 findings — 30 real dead citations in `.agent/`, root docs and `.github` (all cured: old
+  `typecheck`/`depcruiser` names in legacy plans, `vital-surfaces:check` and
+  `fitness-vocabulary:check` in README/CONTRIBUTING/copilot-instructions, the lineage probe in
+  `visual-verification`), 5 tokenizer false positives (cured in the tokenizer, each with a unit
+  test), the rest in the Part C docs. Added a root `start` alias so `pnpm build && pnpm start`
+  cited by the e2e docs resolves from the root.
+- `validate-reference-direction` is green after the allowlist (napkin, distilled, plans README)
+  and the ADR-path prefix fix. `validate-markdown-links` now ignores `.agent-original/**` and
+  `**/reference-local/**` as sources (the private boundary).
+- Lesson (validator authoring): scope the extractor to code, not prose, before tuning names —
+  the first run's false positives were all prose-shaped ("pnpm workspaces", a quoted string, a
+  shell comment), and each cure was a syntax rule, not an allowlist entry.

@@ -1,6 +1,8 @@
 /**
  * Fresh-checkout seeding support for the untracked-by-design collaboration
- * state files (ADR-199 / PDR-094). These files exist on no fresh checkout or
+ * state files (instance-tier state, per `.agent/state/README.md`; the
+ * seeding block in the shared start-right workflow mirrors the literals
+ * below). These files exist on no fresh checkout or
  * new worktree, so the first CLI read meets ENOENT; the readers convert that
  * into an actionable error carrying the exact seed content below. Absence is
  * never silently treated as empty — a wrong path would masquerade as "no

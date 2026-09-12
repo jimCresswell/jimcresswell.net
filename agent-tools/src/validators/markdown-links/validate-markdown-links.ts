@@ -62,6 +62,11 @@ const INVENTORY_IGNORE_GLOBS = [
 const SOURCE_IGNORE_GLOBS = [
   ...INVENTORY_IGNORE_GLOBS,
   '**/archive/**',
+  // The pre-transplant snapshot (deleted after the owner's loss-scan) and
+  // every reference-local tree: the latter can hold a private nested
+  // checkout whose paths must never be walked or printed by a repo tool.
+  '.agent-original/**',
+  '**/reference-local/**',
   '.agents/**',
   '.claude/**',
   '.cursor/**',

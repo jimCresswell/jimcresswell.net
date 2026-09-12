@@ -761,3 +761,31 @@ Peer note: the OCE seat (read-only source, pinned at `a55fd8fdd`) verified the h
 violations from Core into `docs/` were a mis-read by this seat's inventory explorer and are
 retracted (the validator reports 0). OCE's pull-request machinery moved after the transplant scan
 (PR #136 still moving, PR #138 at `352ad0ee5`); re-import is scheduled after this slice.
+
+## Re-evaluate — session-open surfaces (executed 2026-09-12)
+
+Finding: the shared start-right workflow (`start-right-quick/shared/start-right.md`, read by
+the quick and team skills) and its thorough sibling were lineage-shaped: a gate block in which
+only 7 of 19 `pnpm` citations existed while 13 real gates were missing, five dangling record
+citations, five dead paths, and five clauses about people, services and products this repository
+does not have. Cure: the gates skill (`change-custody/gates`) became the one gate list, unrolling
+`pnpm check` and naming the gates outside it; both workflows cite it. The named-person clause,
+the foreign-service cross-check, the codegen nuance and the dead links were removed or re-pointed
+to local homes; the identity paragraph now names the native seed fallback. The same lineage skill
+names were scrubbed from nine other `.agent/` files.
+
+Structural cure: `validate-cited-scripts` (agent-tools, wired into `docs-validators:check`)
+reads every `pnpm` command in fenced blocks and code spans across `.agent/`, `docs/`, the
+platform directories and the root documents, and refuses a script name that neither the root
+nor the filtered workspace defines (root-installed bins count). Its first run found 70
+citations: 30 real dead names outside the copied docs (all cured), 5 tokenizer false positives
+(cured with unit tests), and the remainder inside the docs layer, which the next section
+re-homes. `validate-reference-direction` is green (three fixed-address singletons allowlisted;
+the ADR prefix trued to `decision-records/`). `validate-markdown-links` no longer walks the
+pre-transplant snapshot or any reference-local tree.
+
+Backlog recorded here, not cured in this slice: `validate-markdown-links` reports broken links in
+99 files outside the snapshot (19 `.agent/memory`, 17 `.agent/skills`, 15 `.agent/plans`, 10
+`docs/engineering`, 8 `.agent/directives`, 7 `docs/governance`, the rest scattered); wiring
+`check:docs` into `check` waits on that repair. The team skill still cites lineage ADR numbers in
+prose (ADR-182, ADR-183) — a record-citation scrub across `.agent/` is a re-evaluate item.

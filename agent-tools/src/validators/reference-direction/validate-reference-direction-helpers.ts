@@ -65,7 +65,7 @@ export interface ScanFile {
 const PORTABLE_CORE_PREFIX = '.agent/practice-core/';
 
 const REPO_DOCTRINE_PREFIXES = [
-  'docs/architecture/architectural-decisions/',
+  'docs/architecture/decision-records/',
   'docs/design/',
   'docs/governance/',
   '.agent/rules/',
