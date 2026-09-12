@@ -10,13 +10,13 @@ import { createSpawnWorktree, type SpawnGitRunner } from './create.js';
  * porcelain path are FORWARD-SLASH, because git emits forward slashes on
  * every platform and `resolveCoordinationHome` passes them through — while
  * the expected worktree path is HOST-JOINED, because that is the product's
- * documented output (a sibling of the home named `oak-<slug>`). The product
+ * documented output (a sibling of the home named `jc-<slug>`). The product
  * compares the two through normalised forms; a fixture that host-joined the
  * porcelain would prove a git that does not exist (2026-08-12 review).
  */
-const HOME = '/workspace/jimcresswell.net';
-const GIT_SIBLING_WORKTREE = '/workspace/oak-spawn-flow';
-const SIBLING_WORKTREE = join(dirname(HOME), 'oak-spawn-flow');
+const HOME = '/workspace/jc-personal-sites';
+const GIT_SIBLING_WORKTREE = '/workspace/jc-spawn-flow';
+const SIBLING_WORKTREE = join(dirname(HOME), 'jc-spawn-flow');
 
 interface GitCall {
   readonly args: readonly string[];
@@ -50,7 +50,7 @@ function porcelainBlock(path: string, branch: string): string {
 }
 
 describe('createSpawnWorktree', () => {
-  it('creates a sibling oak-<slug> worktree on a <type>/<slug> branch off the base, run from the coordination home', () => {
+  it('creates a sibling jc-<slug> worktree on a <type>/<slug> branch off the base, run from the coordination home', () => {
     const { runGit, calls } = recordingGit();
 
     const result = createSpawnWorktree({
@@ -127,8 +127,8 @@ describe('createSpawnWorktree', () => {
     expect(calls).toEqual([{ args: ['worktree', 'list', '--porcelain'], cwd: HOME }]);
   });
 
-  it('returns err when the computed oak-<slug> path equals the coordination home (never resume or build on the primary checkout)', () => {
-    // Cursor Bugbot f4bf53df: if `oak-<slug>` resolves to the coordination home
+  it('returns err when the computed jc-<slug> path equals the coordination home (never resume or build on the primary checkout)', () => {
+    // Cursor Bugbot f4bf53df: if `jc-<slug>` resolves to the coordination home
     // itself, detectExistingWorktree would match the primary checkout's own
     // worktree-list entry and treat it as resumable — spawn would then run
     // install/build on the main checkout and exit "successfully" without ever
@@ -137,11 +137,11 @@ describe('createSpawnWorktree', () => {
     // `jimcresswell.net`, so slug `open-curriculum-ecosystem` collides.
     const { runGit, calls } = recordingGit(
       // Even with the primary checkout listed on the matching branch, no resume.
-      porcelainBlock(HOME, 'feat/open-curriculum-ecosystem'),
+      porcelainBlock(HOME, 'feat/personal-sites'),
     );
 
     const result = createSpawnWorktree({
-      slug: 'open-curriculum-ecosystem',
+      slug: 'personal-sites',
       type: 'feat',
       base: 'origin/main',
       coordinationHome: HOME,
@@ -273,7 +273,7 @@ describe('createSpawnWorktree', () => {
       calls.push({ args, cwd });
       if (args[0] === 'worktree' && args[1] === 'list') {
         // A different worktree exists; the target path is absent from the list.
-        return ok(porcelainBlock('/workspace/oak-other', 'feat/other'));
+        return ok(porcelainBlock('/workspace/jc-other', 'feat/other'));
       }
       return err(new Error("fatal: a branch named 'feat/spawn-flow' already exists"));
     };
@@ -288,7 +288,7 @@ describe('createSpawnWorktree', () => {
 
     expect(isErr(result)).toBe(true);
     if (isErr(result)) {
-      expect(result.error.message).toMatch(/feat\/spawn-flow|oak-spawn-flow/u);
+      expect(result.error.message).toMatch(/feat\/spawn-flow|jc-spawn-flow/u);
     }
     // It probed for an existing worktree, found none at the target path, then attempted add.
     expect(calls.map((call) => call.args.slice(0, 2))).toEqual([
@@ -311,7 +311,7 @@ describe('createSpawnWorktree', () => {
 
     expect(isErr(result)).toBe(true);
     if (isErr(result)) {
-      expect(result.error.message).toMatch(/feat\/spawn-flow.*origin\/main|oak-spawn-flow/u);
+      expect(result.error.message).toMatch(/feat\/spawn-flow.*origin\/main|jc-spawn-flow/u);
       // The underlying git error is preserved in the cause chain.
       expect(result.error.cause).toBeInstanceOf(Error);
     }

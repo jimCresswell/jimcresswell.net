@@ -116,7 +116,7 @@ describe('Codex subagent helper coverage', () => {
         `.codex/agents/broken-expert.toml: invalid TOML: Invalid TOML document: unfinished string
 
 1:  name = "unterminated
-            ^`,
+           ^`,
       ],
       templatePaths: [],
       canonicalPaths: [],

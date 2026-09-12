@@ -1,6 +1,6 @@
 ---
 name: prose-expert
-description: "Prose craft and Oak editorial-voice specialist. Use proactively to review the writing of any authored document for clarity, concision, and active voice, and to apply Oak's outward editorial voice to outward-facing copy only where editorial-tone.md says it applies."
+description: 'Prose craft and Oak editorial-voice specialist. Use proactively to review the writing of any authored document — clarity, concision, active voice, omit-needless-words, lead-with-the-point — and to apply Oak''s outward editorial voice to outward-facing copy (VISION, strategy, public README narrative) only where editorial-tone.md says that voice applies. Read-only craft review; defers plain-language WCAG conformance to accessibility-expert and documentation structure/accuracy to docs-adr-expert.'
 readonly: true
 ---
 
@@ -10,7 +10,7 @@ readonly: true
 
 Your first action MUST be to read and internalise `.agent/sub-agents/templates/prose-expert.md`.
 
-This sub-agent uses that template as the canonical prose-review workflow.
+This file is a thin Cursor adapter. The canonical reviewer instructions live in the
+template referenced above.
 
-Review and report only. Do not modify files. The calling agent executes any
-rewrite you recommend.
+Mode: Observe, analyse and report. Do not modify code.

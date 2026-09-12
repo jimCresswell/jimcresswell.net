@@ -58,29 +58,29 @@ function violationsMatching(input: {
 }
 
 beforeAll(async () => {
-  fixture = makeDepcruiseFixture('oak-depcruise-rules-');
+  fixture = makeDepcruiseFixture('jc-depcruise-rules-');
   const write = fixture.writeFile;
 
   // Violating fixtures — one per rule.
   write(
-    'packages/core/fixture-a/tsup.config.ts',
+    'tooling/fixture-a/tsup.config.ts',
     [
       "import { thing } from '../fixture-b/src/thing.js';",
-      "import 'not-a-real-package-oak-fixture';",
+      "import 'not-a-real-package-jc-fixture';",
       'export const config = thing;',
       '',
     ].join('\n'),
   );
   write(
-    'packages/core/fixture-a/src/dynamic-site.ts',
+    'tooling/fixture-a/src/dynamic-site.ts',
     ["export const loaded = import('./target.js');", ''].join('\n'),
   );
-  write('packages/core/fixture-a/src/target.js', 'export const target = 1;\n');
+  write('tooling/fixture-a/src/target.js', 'export const target = 1;\n');
   write(
-    'packages/core/fixture-a/src/legacy.cjs',
+    'tooling/fixture-a/src/legacy.cjs',
     ["const target = require('./target2.cjs');", 'module.exports = target;', ''].join('\n'),
   );
-  write('packages/core/fixture-a/src/target2.cjs', 'module.exports = 2;\n');
+  write('tooling/fixture-a/src/target2.cjs', 'module.exports = 2;\n');
 
   // A resolvable-but-undeclared npm package: the copied-config class the
   // phantom rule exists for. Lives in the fixture's node_modules so the
@@ -91,15 +91,15 @@ beforeAll(async () => {
   );
   write('node_modules/phantom-pkg/index.js', 'export const phantom = 1;\n');
   write(
-    'packages/core/fixture-a/vitest.config.ts',
+    'tooling/fixture-a/vitest.config.ts',
     ["import 'phantom-pkg';", "import '../fixture-b/dist/built.js';", ''].join('\n'),
   );
-  write('packages/core/fixture-b/dist/built.js', 'export const built = 1;\n');
+  write('tooling/fixture-b/dist/built.js', 'export const built = 1;\n');
 
   // Compliant fixture — a config whose imports stay inside its workspace.
-  write('packages/core/fixture-b/src/thing.js', 'export const thing = 1;\n');
+  write('tooling/fixture-b/src/thing.js', 'export const thing = 1;\n');
   write(
-    'packages/core/fixture-b/tsup.config.ts',
+    'tooling/fixture-b/tsup.config.ts',
     ["import { thing } from './src/thing.js';", 'export const config = thing;', ''].join('\n'),
   );
 
@@ -107,7 +107,7 @@ beforeAll(async () => {
     repoRoot,
     fixtureDir: fixture.dir,
     ruleNames: RULE_NAMES,
-    scanDir: 'packages',
+    scanDir: 'tooling',
   });
 });
 
@@ -120,8 +120,8 @@ describe('dependency-cruiser boundary rules (red-proofs against the real config)
     expect(
       violationsMatching({
         ruleName: 'workspace-config-containment',
-        from: 'packages/core/fixture-a/tsup.config.ts',
-        to: 'packages/core/fixture-b/src/thing.js',
+        from: 'tooling/fixture-a/tsup.config.ts',
+        to: 'tooling/fixture-b/src/thing.js',
       }),
     ).toHaveLength(1);
   });
@@ -130,8 +130,8 @@ describe('dependency-cruiser boundary rules (red-proofs against the real config)
     expect(
       violationsMatching({
         ruleName: 'workspace-config-no-phantom-deps',
-        from: 'packages/core/fixture-a/tsup.config.ts',
-        to: 'not-a-real-package-oak-fixture',
+        from: 'tooling/fixture-a/tsup.config.ts',
+        to: 'not-a-real-package-jc-fixture',
       }),
     ).toHaveLength(1);
   });
@@ -140,7 +140,7 @@ describe('dependency-cruiser boundary rules (red-proofs against the real config)
     expect(
       violationsMatching({
         ruleName: 'no-commonjs-require',
-        from: 'packages/core/fixture-a/src/legacy.cjs',
+        from: 'tooling/fixture-a/src/legacy.cjs',
       }),
     ).toHaveLength(1);
   });
@@ -149,7 +149,7 @@ describe('dependency-cruiser boundary rules (red-proofs against the real config)
     expect(
       violationsMatching({
         ruleName: 'no-dynamic-import',
-        from: 'packages/core/fixture-a/src/dynamic-site.ts',
+        from: 'tooling/fixture-a/src/dynamic-site.ts',
       }),
     ).toHaveLength(1);
   });
@@ -158,7 +158,7 @@ describe('dependency-cruiser boundary rules (red-proofs against the real config)
     expect(
       violationsMatching({
         ruleName: 'workspace-config-no-phantom-deps',
-        from: 'packages/core/fixture-a/vitest.config.ts',
+        from: 'tooling/fixture-a/vitest.config.ts',
         to: 'node_modules/phantom-pkg/index.js',
       }),
     ).toHaveLength(1);
@@ -168,15 +168,15 @@ describe('dependency-cruiser boundary rules (red-proofs against the real config)
     expect(
       violationsMatching({
         ruleName: 'workspace-config-containment',
-        from: 'packages/core/fixture-a/vitest.config.ts',
-        to: 'packages/core/fixture-b/dist/built.js',
+        from: 'tooling/fixture-a/vitest.config.ts',
+        to: 'tooling/fixture-b/dist/built.js',
       }),
     ).toHaveLength(1);
   });
 
   it('stays silent on a config whose imports remain inside its workspace', () => {
     const compliant = violations.filter(
-      (violation) => violation.from === 'packages/core/fixture-b/tsup.config.ts',
+      (violation) => violation.from === 'tooling/fixture-b/tsup.config.ts',
     );
     expect(compliant).toEqual([]);
   });

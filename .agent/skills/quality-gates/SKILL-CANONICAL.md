@@ -13,10 +13,10 @@ Run gates sequentially from the repo root. Fix issues as they arise. After any f
 The definitive gate list with all command names lives in
 `.agent/directives/principles.md` (Code Quality section). The summary:
 
-- `pnpm check` runs the blocking gate sequence with auto-fix where appropriate
+- `pnpm check` runs the blocking gate sequence read-only; `pnpm check:fix` auto-fixes first
   (format, markdownlint, lint, typecheck, test, knip, gitleaks,
   validate-vital-surfaces, validate-portability, validate-subagents).
-- `pnpm check:ci` runs them read-only (used by the pre-commit hook).
+- The pre-push hook runs `pnpm check` and the site's end-to-end suite; pre-commit is light (staged-file format and markdown checks, lint on changed workspaces).
 - `pnpm test:e2e` and `pnpm test:e2e:ui` are separate Playwright surfaces.
   `pnpm test:e2e` runs the full suite (journeys, behaviour, a11y, PDF)
   against a production build; the build is run by Playwright's web server.

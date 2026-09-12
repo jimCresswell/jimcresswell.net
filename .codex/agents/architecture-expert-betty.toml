@@ -1,4 +1,5 @@
-# Inherit the session model so reviewer calls stay aligned with the parent run.
+name = "architecture-expert-betty"
+description = "Architecture reviewer Betty ensuring navigation and tilt architecture."
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 approval_policy = "never"
@@ -7,7 +8,7 @@ developer_instructions = """
 Read and follow `.agent/sub-agents/templates/architecture-expert-betty.md`.
 
 This file is a thin Codex adapter. The canonical reviewer instructions live in
-`.agent/sub-agents/templates/architecture-expert-betty.md`.
+the template referenced above.
 
 Mode: Observe, analyse and report. Do not modify code.
 """

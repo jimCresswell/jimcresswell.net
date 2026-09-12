@@ -210,3 +210,34 @@ four layers with those files folded into the doctrine layer (directives, referen
 contracts), and the installable thing ships no separate docs manifest. Test at the re-evaluate
 step: for each copied doc, name its role and its `.agent/` home; a doc with no `.agent/` home is
 either product documentation (stays in `docs/`) or dead.
+
+## Addendum (2026-09-12, harness landed): what the installer must own
+
+Running the harness layer end to end sharpened the synthesis in four places.
+
+1. **The harness is a sequence, not a file set.** It contains a bootstrap (`postinstall` builds
+   the tooling the hooks depend on), a guard with fail-closed semantics, and platform settings
+   that activate the guard the moment they are written. Copying the set in the wrong order bricks
+   the session (worked instance: policy absent, settings present — every guarded tool refused).
+   The installable thing therefore needs an ordered install plan: policy → build → activation,
+   with a verification step between each.
+2. **The host profile is now enumerable.** Inputs the harness had to be told: package-manager
+   pin, Node version, the formatting convention per workspace, the ESLint major per workspace,
+   the markdownlint footprint, the CI runner shape, the secret-scanner binary, the tracker (none),
+   the bot identity (none). Every one of these was discovered by a failing gate; a profile schema
+   would have asked for them first.
+3. **Adapters are one generator short.** Skills and rules generate; sub-agent adapters, Cursor
+   triggers and the Codex registry were scripted by hand for the second time in one day. The
+   installable thing ships one `adapters generate` that covers all five surfaces from the
+   canonical templates and the classified rules index.
+4. **Tests must read the host, not remember the source.** The contract tests that passed
+   unchanged read the live estate (the rules index, the sub-agent registry); the ones that failed
+   hard-coded the source's paths, roster and tickets. The installable thing's own suite follows
+   the first shape only.
+
+Free-play seeds (associations, not findings): a Practice install is a transplant with the surgeon
+replaced by a script, and every immune reaction seen today — the guard lockout, the convention
+rejections, the fixture failures — maps onto one installer step; the guard locking out its own
+installer is a feature to keep, not a bug to soften; the CI-parity validator is the first gate that
+_found the seam for us_, which suggests self-checking gates are how an installed Practice
+verifies its own installation.

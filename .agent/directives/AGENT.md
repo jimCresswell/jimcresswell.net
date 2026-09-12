@@ -201,8 +201,8 @@ never quote, summarise or identify it on a public surface.
 ## Commands
 
 From the repo root, through Turborepo. Run gates one at a time while iterating;
-`pnpm check` is the canonical mutating aggregate and `pnpm check:ci` the
-read-only one (format, markdownlint, lint, type-check, test, portability,
+`pnpm check` is the canonical read-only aggregate (`pnpm check:ci` is its
+alias) and `pnpm fix` the mutating pass that precedes it (format, markdownlint, lint, type-check, test, portability,
 sub-agents). Site-only commands run through the workspace filter:
 `pnpm --filter @jimcresswell/www dev | build | test:e2e | visual-regression-harness`.
 `pnpm check` and the E2E suite run sequentially, never in parallel. The

@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest';
 
 import { buildWorktree, type PnpmRunner } from './build.js';
 
-const WT = '/workspace/oak-spawn-flow';
+const WT = '/workspace/jc-spawn-flow';
 
 interface Call {
   readonly args: readonly string[];

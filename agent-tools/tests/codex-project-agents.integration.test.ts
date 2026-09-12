@@ -248,10 +248,10 @@ Read and follow \`.agent/sub-agents/templates/code-expert.md\`.
     );
   });
 
-  it('lists the live repo roster, including clerk-expert parity for Codex', () => {
+  it('lists the live repo roster, including security-expert parity for Codex', () => {
     const repoRoot = fileURLToPath(new URL('../..', import.meta.url));
 
-    expect(listCodexProjectAgentNames(repoRoot)).toContain('clerk-expert');
+    expect(listCodexProjectAgentNames(repoRoot)).toContain('security-expert');
     expect(resolveCodexProjectAgent(repoRoot, 'code-expert').referencedCanonicalFiles).toContain(
       '.agent/sub-agents/templates/code-expert.md',
     );

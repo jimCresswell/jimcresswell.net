@@ -1,9 +1,16 @@
 ---
-tools: Read, Glob, Grep, LS, Shell, ReadLints
 name: design-system-expert
-model: default
-description: Design-system reviewer verifying tokens, spacing, and responsive rhythm.
+description: 'Design-system reviewer verifying tokens, spacing, and responsive rhythm.'
 readonly: true
 ---
 
-Read and follow @.agent/sub-agents/templates/design-system-expert.md
+# Design System Expert
+
+**All file paths in this document are relative to the repository root.**
+
+Your first action MUST be to read and internalise `.agent/sub-agents/templates/design-system-expert.md`.
+
+This file is a thin Cursor adapter. The canonical reviewer instructions live in the
+template referenced above.
+
+Mode: Observe, analyse and report. Do not modify code.

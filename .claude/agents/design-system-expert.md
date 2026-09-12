@@ -1,9 +1,18 @@
 ---
-tools: Read, Glob, Grep, LS, Shell, ReadLints
 name: design-system-expert
-model: claude-3.5
-description: Design-system reviewer verifying tokens, spacing, and responsive rhythm.
-readonly: true
+description: 'Design-system reviewer verifying tokens, spacing, and responsive rhythm.'
+tools: Read, Grep, Glob, Bash
+disallowedTools: Write, Edit
+permissionMode: plan
 ---
 
-Read and follow @.agent/sub-agents/templates/design-system-expert.md
+# Design System Expert
+
+All file paths are relative to the repository root.
+
+Your first action MUST be to read and internalise `.agent/sub-agents/templates/design-system-expert.md`.
+
+This file is a thin Claude Code adapter. The canonical reviewer instructions live in the
+template referenced above.
+
+Mode: Observe, analyse and report. Do not modify code.

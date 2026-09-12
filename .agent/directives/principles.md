@@ -580,10 +580,11 @@ paths, setup files) don't apply.
   binding. See
   [Problem-Hiding Patterns](../../docs/governance/problem-hiding-patterns.md).
 - **Quality gates** - Run ALL gates after changes. From the repo root,
-  `pnpm check` runs the mutating sequence and `pnpm check:ci` the read-only
-  one: format, markdownlint, lint, type-check, test, `portability:check`,
-  `subagents:check`. The site workspace adds `knip`, `secrets:scan` and the
-  Playwright suite (`pnpm --filter @jimcresswell/www test:e2e`, against a
+  `pnpm check` runs every gate read-only (`pnpm fix` auto-fixes first; `pnpm
+  check:fix` chains the two): format, markdownlint, shell and runtime-only
+  lint, lint, type-check, test, `knip`, `depcruise`, `secrets:scan`,
+  `portability:check`, `subagents:check`, `skills:check`, `encoding:check`.
+  The site workspace adds the Playwright suite (`pnpm --filter @jimcresswell/www test:e2e`, against a
   production build — ADR-019). Run `check` and the E2E suite sequentially,
   never in parallel: `check` runs formatters that mutate source while the
   Playwright web server is up. Git hooks enforce this — pre-commit runs

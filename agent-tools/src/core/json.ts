@@ -1,4 +1,4 @@
-import { err, ok, unwrapOrThrow, type Result } from '@engraph/result';
+import { err, ok, type Result } from '@engraph/result';
 
 type JsonPrimitive = string | number | boolean | null;
 type JsonValue = JsonPrimitive | JsonObject | readonly JsonValue[];
@@ -51,7 +51,7 @@ export function parseStringArray(value: unknown, label: string): Result<readonly
  * gives the caller no clue which surface — or which mis-passed `--active`
  * file — was malformed. The label restores that context; the original
  * error rides the `cause` chain. The single home of the message shape —
- * the throwing {@link parseJsonText} delegates here.
+ * callers unwrap at their own boundary.
  */
 export function parseJsonTextResult(text: string, label: string): Result<unknown, Error> {
   try {
@@ -61,8 +61,4 @@ export function parseJsonTextResult(text: string, label: string): Result<unknown
     const reason = error instanceof Error ? error.message : String(error);
     return err(new Error(`${label} is not valid JSON: ${reason}`, { cause: error }));
   }
-}
-
-export function parseJsonText(text: string, label: string): unknown {
-  return unwrapOrThrow(parseJsonTextResult(text, label));
 }

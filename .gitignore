@@ -128,3 +128,6 @@ vite.config.ts.timestamp-*
 .agent/state/collaboration/comms-seen/
 .agent/state/*credentials*.json
 .agent/state/*.credentials.json
+
+# Cursor composer identity mirror (machine-local)
+.cursor/practice-composer-session.local.json

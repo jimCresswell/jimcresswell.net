@@ -40,7 +40,6 @@
       "outputs": [],
       "inputs": [
         "$TURBO_DEFAULT$",
-        "$TURBO_ROOT$/eslint.config.ts",
         "$TURBO_ROOT$/tsconfig.base.json",
         "eslint.config.ts",
         "tsconfig.lint.json",
@@ -53,7 +52,6 @@
       "outputs": [],
       "inputs": [
         "$TURBO_DEFAULT$",
-        "$TURBO_ROOT$/eslint.config.ts",
         "$TURBO_ROOT$/tsconfig.base.json",
         "eslint.config.ts",
         "tsconfig.lint.json",
@@ -72,7 +70,6 @@
       "outputs": [],
       "inputs": [
         "$TURBO_DEFAULT$",
-        "$TURBO_ROOT$/eslint.config.ts",
         "$TURBO_ROOT$/tsconfig.base.json",
         "eslint.config.ts",
         "tsconfig.lint.json",
@@ -85,7 +82,6 @@
       "outputs": [],
       "inputs": [
         "$TURBO_DEFAULT$",
-        "$TURBO_ROOT$/eslint.config.ts",
         "$TURBO_ROOT$/tsconfig.base.json",
         "eslint.config.ts",
         "tsconfig.lint.json",
@@ -114,18 +110,6 @@
         "**/*.ts",
         "vitest.config.ts",
         "$TURBO_ROOT$/runtime-only-scripts/**"
-      ]
-    },
-    "mutate": {
-      "dependsOn": ["^build"],
-      "cache": false,
-      "outputs": [],
-      "inputs": [
-        "$TURBO_DEFAULT$",
-        "**/*.ts",
-        "vitest.config.ts",
-        "stryker.config.mjs",
-        "$TURBO_ROOT$/stryker.config.base.ts"
       ]
     },
     "test:e2e": {

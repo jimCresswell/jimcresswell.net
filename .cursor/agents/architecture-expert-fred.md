@@ -1,9 +1,16 @@
 ---
-tools: Read, Glob, Grep, LS, Shell, ReadLints
 name: architecture-expert-fred
-model: default
-description: Architecture reviewer Fred covering builds, caching, and resilience.
+description: 'Architecture reviewer Fred covering builds, caching, and resilience.'
 readonly: true
 ---
 
-Read and follow @.agent/sub-agents/templates/architecture-expert-fred.md
+# Architecture Expert Fred
+
+**All file paths in this document are relative to the repository root.**
+
+Your first action MUST be to read and internalise `.agent/sub-agents/templates/architecture-expert-fred.md`.
+
+This file is a thin Cursor adapter. The canonical reviewer instructions live in the
+template referenced above.
+
+Mode: Observe, analyse and report. Do not modify code.

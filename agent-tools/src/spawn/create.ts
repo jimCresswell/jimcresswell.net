@@ -23,7 +23,7 @@ export interface CreateSpawnWorktreeOptions {
 
 /** The worktree created by {@link createSpawnWorktree}. */
 export interface SpawnedWorktree {
-  /** Absolute path of the new sibling worktree (`oak-<slug>`). */
+  /** Absolute path of the new sibling worktree (`jc-<slug>`). */
   readonly worktreePath: string;
   /** The branch the worktree checks out (`<type>/<slug>`). */
   readonly branch: string;
@@ -121,11 +121,11 @@ interface SpawnTarget {
 }
 
 /**
- * Derive the `<type>/<slug>` branch and the sibling `oak-<slug>` worktree path,
+ * Derive the `<type>/<slug>` branch and the sibling `jc-<slug>` worktree path,
  * refusing to target the coordination home itself.
  *
  * @remarks
- * `oak-<slug>` is a sibling of the coordination home, but a slug whose basename
+ * `jc-<slug>` is a sibling of the coordination home, but a slug whose basename
  * coincides with the coordination home's own (e.g. `open-curriculum-ecosystem`
  * beside `jimcresswell.net`) makes the two paths equal. Were that to
  * reach {@link detectExistingWorktree}, the primary checkout's own
@@ -139,7 +139,7 @@ function deriveSpawnTarget(
   coordinationHome: string,
 ): Result<SpawnTarget, Error> {
   const branch = `${validated.type}/${validated.slug}`;
-  const worktreePath = join(dirname(coordinationHome), `oak-${validated.slug}`);
+  const worktreePath = join(dirname(coordinationHome), `jc-${validated.slug}`);
   // Normalised comparison: `coordinationHome` originates from git porcelain
   // (forward slashes on every platform) while `worktreePath` is host-joined —
   // a raw equality never fires on Windows and this guard exists precisely so
@@ -160,7 +160,7 @@ function deriveSpawnTarget(
  * Create a fresh sibling worktree on a new lane branch for the session that will
  * occupy it (spawn-flow Phase 1A).
  *
- * The worktree is a sibling `oak-<slug>` directory next to the coordination
+ * The worktree is a sibling `jc-<slug>` directory next to the coordination
  * home, on a `<type>/<slug>` branch cut from `base`. The spawned session's
  * identity is NOT minted here: it is derived by the platform `SessionStart` hook
  * from the harness `session_id` at launch (see `./launch-command.ts`), so spawn

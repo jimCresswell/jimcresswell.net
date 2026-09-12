@@ -5,7 +5,7 @@ import { runSpawnCli, type SpawnCliInput } from './cli.js';
 import type { CreateSpawnWorktreeOptions, SpawnedWorktree } from './create.js';
 
 const HOME = '/workspace/jimcresswell.net';
-const PR_URL = 'https://github.com/oaknational/jimcresswell.net/pull/999';
+const PR_URL = 'https://github.com/jimCresswell/jimcresswell.net/pull/999';
 
 function capture(): {
   readonly out: { write: (s: string) => boolean };
@@ -34,7 +34,7 @@ function capture(): {
 }
 
 const STUB_WORKTREE: SpawnedWorktree = {
-  worktreePath: '/workspace/oak-spawn-flow',
+  worktreePath: '/workspace/jc-spawn-flow',
   branch: 'feat/spawn-flow',
   base: 'origin/main',
   resumed: false,
@@ -43,7 +43,7 @@ const STUB_WORKTREE: SpawnedWorktree = {
 function baseInput(overrides: Partial<SpawnCliInput> = {}): SpawnCliInput {
   return {
     args: ['--slug', 'spawn-flow'],
-    cwd: '/workspace/oak-spawn-flow',
+    cwd: '/workspace/jc-spawn-flow',
     resolveHome: () => ok(HOME),
     createWorktree: () => ok(STUB_WORKTREE),
     build: () => ok(undefined),
@@ -97,7 +97,7 @@ describe('runSpawnCli', () => {
 
     expect(exitCode).toBe(0);
     const text = cap.text();
-    expect(text).toContain('/workspace/oak-spawn-flow');
+    expect(text).toContain('/workspace/jc-spawn-flow');
     expect(text).toContain('feat/spawn-flow');
     expect(text).toContain('origin/main');
     expect(text).toContain('draft PR');
@@ -123,7 +123,7 @@ describe('runSpawnCli', () => {
 
     expect(exitCode).toBe(0);
     expect(received).toEqual({
-      worktreePath: '/workspace/oak-spawn-flow',
+      worktreePath: '/workspace/jc-spawn-flow',
       branch: 'feat/spawn-flow',
       base: 'origin/main',
       slug: 'spawn-flow',
@@ -193,7 +193,7 @@ describe('runSpawnCli', () => {
     expect(openPrCalled).toBe(false);
     expect(text).not.toContain('draft PR');
     // A resumed seat is still launchable — the launch command is emitted on resume too (1E).
-    expect(text).toContain("cd '/workspace/oak-spawn-flow' && claude");
+    expect(text).toContain("cd '/workspace/jc-spawn-flow' && claude");
   });
 
   it('exits non-zero with the error on stderr when --slug is missing', () => {
@@ -242,7 +242,7 @@ describe('runSpawnCli', () => {
     });
 
     expect(exitCode).toBe(0);
-    expect(builtPath).toBe('/workspace/oak-spawn-flow');
+    expect(builtPath).toBe('/workspace/jc-spawn-flow');
   });
 
   it('exits non-zero with the error on stderr when the build fails', () => {
@@ -250,7 +250,7 @@ describe('runSpawnCli', () => {
     const exitCode = runSpawnCli({
       ...baseInput(),
       build: () =>
-        err(new Error("spawn: 'pnpm install' failed in '/workspace/oak-spawn-flow'. boom")),
+        err(new Error("spawn: 'pnpm install' failed in '/workspace/jc-spawn-flow'. boom")),
       stdout: cap.out,
       stderr: cap.err,
     });
@@ -278,7 +278,7 @@ describe('runSpawnCli', () => {
     const cap = capture();
     const exitCode = runSpawnCli({
       args: ['--help'],
-      cwd: '/workspace/oak-spawn-flow',
+      cwd: '/workspace/jc-spawn-flow',
       resolveHome: () => {
         resolvedHome = true;
         return ok(HOME);
@@ -297,14 +297,14 @@ describe('runSpawnCli', () => {
     expect(cap.text()).toMatch(/spawn/u);
   });
 
-  it('emits a seat brief that invokes /oak-start-right-team after the spawn result (1D)', () => {
+  it('emits a seat brief that invokes /jc-start-right-team after the spawn result (1D)', () => {
     const cap = capture();
     const exitCode = runSpawnCli({ ...baseInput(), stdout: cap.out, stderr: cap.err });
 
     expect(exitCode).toBe(0);
     const text = cap.text();
     expect(text).toContain('Seat brief');
-    expect(text).toContain('/oak-start-right-team');
+    expect(text).toContain('/jc-start-right-team');
     // The seat coordinates are derived from the spawn result, not a separate store.
     expect(text).toContain('feat/spawn-flow');
     // Identity is not predicted — the brief defers it to launch.
@@ -319,9 +319,9 @@ describe('runSpawnCli', () => {
 
     expect(exitCode).toBe(0);
     const text = cap.text();
-    expect(text).toContain("cd '/workspace/oak-spawn-flow' && claude");
+    expect(text).toContain("cd '/workspace/jc-spawn-flow' && claude");
     // The launch command is the final actionable line — it follows the seat brief.
-    expect(text.indexOf("cd '/workspace/oak-spawn-flow' && claude")).toBeGreaterThan(
+    expect(text.indexOf("cd '/workspace/jc-spawn-flow' && claude")).toBeGreaterThan(
       text.indexOf('Seat brief'),
     );
     // No identity seed is injected — the SessionStart hook owns identity (verified 2026-06-28).

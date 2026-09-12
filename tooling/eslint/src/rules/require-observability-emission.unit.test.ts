@@ -1,16 +1,16 @@
 import { requireObservabilityEmissionRule } from './require-observability-emission.js';
 import { ruleTester } from '../test-support/rule-tester.js';
 
-const APP_FILE = 'jcdotnet/src/handlers/example.ts';
-const SDK_FILE = 'packages/sdks/oak-curriculum-sdk/src/handlers/example.ts';
+const APP_FILE = 'apps/example-app/src/handlers/example.ts';
+const SDK_FILE = 'packages/sdks/example-sdk/src/handlers/example.ts';
 const OUT_OF_SCOPE_CORE_FILE = 'packages/core/foo/src/bar.ts';
-const OUT_OF_SCOPE_LIB_FILE = 'packages/libs/sentry-node/src/bar.ts';
-const APP_TEST_FILE = 'jcdotnet/src/handlers/example.test.ts';
-const APP_UNIT_TEST_FILE = 'jcdotnet/src/handlers/example.unit.test.ts';
+const OUT_OF_SCOPE_LIB_FILE = 'packages/libs/example-lib/src/bar.ts';
+const APP_TEST_FILE = 'apps/example-app/src/handlers/example.test.ts';
+const APP_UNIT_TEST_FILE = 'apps/example-app/src/handlers/example.unit.test.ts';
 // Absolute-path filename — exercises the `(?:^|/)` branch of the scope regex,
 // which is the code path that fires in real ESLint runs (physicalFilename is
 // always absolute outside of RuleTester).
-const APP_FILE_ABSOLUTE = '/repo/jcdotnet/src/handlers/absolute.ts';
+const APP_FILE_ABSOLUTE = '/repo/apps/example-app/src/handlers/absolute.ts';
 
 ruleTester.run('require-observability-emission', requireObservabilityEmissionRule, {
   valid: [
@@ -99,8 +99,8 @@ ruleTester.run('require-observability-emission', requireObservabilityEmissionRul
         `,
     },
     // 8c. Delegate-call pattern: span-based trace emission via withSpan.
-    //     Represents jcdotnet/src/app/upstream-metadata-fetch.ts
-    //     `fetchUpstreamMetadata` and jcdotnet/src/asset-download/asset-proxy.ts
+    //     Represents an app module such as src/app/upstream-metadata-fetch.ts
+    //     `fetchUpstreamMetadata` and src/asset-download/asset-proxy.ts
     //     `proxyUpstreamAsset`, which emit solely through withSpan.
     {
       filename: APP_FILE,

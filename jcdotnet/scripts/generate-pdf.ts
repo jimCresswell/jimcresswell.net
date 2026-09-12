@@ -6,6 +6,7 @@ import path from "node:path";
 import pino from "pino";
 import puppeteer from "puppeteer";
 import { getBlobPath, getDeployKey, PDF_FILENAME } from "../lib/pdf-config";
+import { put } from "@vercel/blob";
 
 // ---------------------------------------------------------------------------
 // Logger — level controlled by LOG_LEVEL env var (default: "info")
@@ -34,7 +35,6 @@ const hasBlobToken = Boolean(process.env.BLOB_READ_WRITE_TOKEN);
 async function storePdf(pdf: Buffer, blobPath: string): Promise<string> {
   if (hasBlobToken) {
     log.debug({ blobPath }, "Uploading PDF to Vercel Blob");
-    const { put } = await import("@vercel/blob");
     const blob = await put(blobPath, pdf, {
       access: "public",
       contentType: "application/pdf",

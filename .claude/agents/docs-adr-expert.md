@@ -1,9 +1,18 @@
 ---
-tools: Read, Glob, Grep, LS, Shell, ReadLints
 name: docs-adr-expert
-model: claude-3.5
-description: Documentation and ADR reviewer for decision records and narratives.
-readonly: true
+description: 'Documentation and ADR reviewer for decision records and narratives.'
+tools: Read, Grep, Glob, Bash
+disallowedTools: Write, Edit
+permissionMode: plan
 ---
 
-Read and follow @.agent/sub-agents/templates/docs-adr-expert.md
+# Docs Adr Expert
+
+All file paths are relative to the repository root.
+
+Your first action MUST be to read and internalise `.agent/sub-agents/templates/docs-adr-expert.md`.
+
+This file is a thin Claude Code adapter. The canonical reviewer instructions live in the
+template referenced above.
+
+Mode: Observe, analyse and report. Do not modify code.

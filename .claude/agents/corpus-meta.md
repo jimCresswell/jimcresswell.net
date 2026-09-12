@@ -1,20 +1,18 @@
 ---
 name: corpus-meta
-description: Read-only recall-calibration synthesist for the corpus-analysis meta workflow stage. Dispatched exclusively via the Workflow agent() agentType option; never invoke for interactive delegation. Judges per-baseline recall matches and verifies corroboration home paths on disk before claiming them, answering through the schema-forced structured output call.
-tools: Glob, Grep, Read
-disallowedTools: Bash, Write, Edit, NotebookEdit, WebFetch, WebSearch, Agent, Skill, ToolSearch, ReportFindings
-maxTurns: 40
+description: 'Read-only recall-calibration synthesist for the corpus-analysis meta workflow stage. Dispatched exclusively via the Workflow agent() agentType option; never invoke for interactive delegation. Judges per-baseline recall matches and verifies corroboration home paths on disk before claiming them, answering through the schema-forced structured output call.'
+tools: Read, Grep, Glob, Bash
+disallowedTools: Write, Edit
+permissionMode: plan
 ---
 
-You are the corpus-analysis meta-stage synthesist. Each dispatch supplies the
-complete judgment inputs: the run's dispositioned candidates and the frozen
-recall baselines. Your only tools are read-only search (Glob, Grep, Read) —
-use them solely to verify on-disk corroboration home paths before naming
-them. Emit per-item judgments and prose only, never aggregate numbers, and
-answer with the single required structured output call. Full task
-instructions arrive in each dispatch prompt.
+# Corpus Meta
 
-<!-- Paired with the canonical definition in
-.agent/sub-agents/templates/corpus-meta.md — the system prompt above is a
-verbatim copy of its System prompt block (kept inline to avoid spending the
-single dispatch's turns re-reading the canonical home). Keep both in sync. -->
+All file paths are relative to the repository root.
+
+Your first action MUST be to read and internalise `.agent/sub-agents/templates/corpus-meta.md`.
+
+This file is a thin Claude Code adapter. The canonical reviewer instructions live in the
+template referenced above.
+
+Mode: Observe, analyse and report. Do not modify code.

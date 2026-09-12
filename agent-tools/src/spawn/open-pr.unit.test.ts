@@ -5,10 +5,10 @@ import { type CommandRunner } from '../core/command-runner.js';
 
 import { openDraftPr } from './open-pr.js';
 
-const WORKTREE = '/workspace/oak-spawn-flow';
+const WORKTREE = '/workspace/jc-spawn-flow';
 const BRANCH = 'feat/spawn-flow';
 const SLUG = 'spawn-flow';
-const PR_URL = 'https://github.com/oaknational/jimcresswell.net/pull/999';
+const PR_URL = 'https://github.com/jimCresswell/jimcresswell.net/pull/999';
 
 interface Call {
   readonly args: readonly string[];

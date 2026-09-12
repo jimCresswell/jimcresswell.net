@@ -119,3 +119,41 @@ Two surfaces were found only by tripping over their validators:
 Next time: inventory the source's _tracked files by top-level surface_ before adopting its own
 structural model, and run the source's link validator against the destination before declaring
 the machinery copied.
+
+## Second half: rules, harness, gates (added 2026-09-12, evening)
+
+The owner's order — directives, then rules, then harness, then re-evaluate — held. Measured shape
+of the second half:
+
+- **Rules triage at content grain is a digest job, not a reading job.** 115 lineage rules were
+  triaged from a 22-line digest per rule plus a grep of every product-shaped line; four dropped,
+  46 adapted. The adaptation was dominated by one shape: an upstream ADR citation whose local home
+  is a PDR, a directive section, or the tooling itself. A map of ~12 ADR numbers to local homes
+  cleared 40 of the 41 files with broken links. **Ship the ADR→home map as a transplant input.**
+- **The harness is where "every script must work" bites.** The root gained ~60 scripts; each was
+  run once. Three config decisions had to be made before any of them passed and are worth taking
+  up front next time: the Prettier convention split (root = tooling convention, site keeps its
+  own), the markdownlint footprint (adopt the lineage's rule set and ignores; the canonical corpus
+  was authored under it), and the ESLint major per workspace (the site's Next config needs
+  ESLint 9; the lineage runs 10; a security override on `brace-expansion` had to be scoped per
+  major or it broke the older resolver).
+- **Install order is a correctness property.** Writing `.claude/settings.json` hooks before
+  `.agent/hooks/policy.json` existed locked the session out of Bash, Edit and Write at once — the
+  guard fails closed by design and it reloads the instant settings change. Recovery needed a tool
+  the matchers do not name. The order is: policy file → built dispatcher (`postinstall`
+  bootstrap) → settings wiring. An installer must sequence these, never copy them as a set.
+- **Sub-agent adapters are generatable in one pass.** 27 templates → 81 adapters (Claude, Cursor,
+  Codex) plus the Codex registry, from one script; the templates needed two component-reference
+  lines. `portability:fix` does not do this; the second transplant should not script it by hand
+  again.
+- **A lineage test suite encodes the source's estate facts.** Eight of 326 agent-tools test files
+  failed for host reasons, in four classes: upstream-only subjects (delete the test with its
+  subject), fixture paths shaped like the source's workspaces, roster names, and vendor message
+  drift (a TOML parser's caret column). Budget ~3% of test files for localisation.
+- **Gate aggregate semantics travel with the rules.** The lineage's skills and rules assume
+  `pnpm check` is read-only and `pnpm fix` mutates; the local convention was the reverse. The
+  CI-parity validator forced the decision within an hour of landing — a good example of a gate
+  that finds the seam for you.
+
+Time: rules triage about 90 minutes of agent time; harness about two hours including the gate
+fixes; both under the owner's "no errors, no warnings" bar.

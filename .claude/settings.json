@@ -69,5 +69,84 @@
       "Skill(jc-working-with-graphs)",
       "Skill(jc-wrap)"
     ]
+  },
+  "skillListingBudgetFraction": 0.03,
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/practice-session-identity.mjs",
+            "timeout": 5
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/plan-gate-drift-alert.mjs",
+            "timeout": 15
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/run-pretooluse-guard.mjs\" agent-tools/dist/src/hook-policy/pre-tool-use-dispatch.js",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/run-pretooluse-guard.mjs\" agent-tools/dist/src/hook-policy/pre-tool-use-dispatch.js",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/run-pretooluse-guard.mjs\" agent-tools/dist/src/hook-policy/pre-tool-use-dispatch.js",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "Read",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/_lib/log-hook-errors.sh ${CLAUDE_PROJECT_DIR}/.claude/hooks/secrets/pretool-secrets.sh",
+            "timeout": 60
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/_lib/log-hook-errors.sh ${CLAUDE_PROJECT_DIR}/.claude/hooks/secrets/prompt-secrets.sh",
+            "timeout": 60
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "node \"${CLAUDE_PROJECT_DIR}/.claude/scripts/statusline-identity.mjs\"",
+    "refreshInterval": 10
   }
 }

@@ -30,7 +30,7 @@ export interface SeatSpecifics {
  * otherwise (see `./launch-command.ts`) — so the brief states that rather
  * than printing an authored prediction the session would not honour.
  *
- * The brief INVOKES `/oak-start-right-team` rather than restating it: the spawned
+ * The brief INVOKES `/jc-start-right-team` rather than restating it: the spawned
  * session grounds itself through that skill, and this brief carries only the
  * per-seat context the skill cannot derive. Re-authoring the skill here would be a
  * cowpath (the originating session's Pitfall 5).
@@ -56,7 +56,7 @@ export function formatSeatBrief(result: SpawnedWorktree, seat: SeatSpecifics): s
   }
   lines.push(
     '',
-    '  Ground this seat with /oak-start-right-team — the brief above is your per-seat',
+    '  Ground this seat with /jc-start-right-team — the brief above is your per-seat',
     '  context (worktree, branch, role, task, Director). It invokes the skill; it does',
     '  not replace it.',
     '',

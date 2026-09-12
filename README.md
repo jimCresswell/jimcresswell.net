@@ -72,8 +72,8 @@ pnpm test:e2e:ui    # Playwright UI mode (interactive)
 pnpm visual-regression-harness <base-ref> <target-ref> # Non-destructive rendered-output comparison
 
 pnpm fix            # Format, markdownlint, and lint auto-fix
-pnpm check          # Blocking gates with auto-fix where appropriate
-pnpm check:ci       # The same blocking gates read-only (used by pre-commit hook)
+pnpm check          # Every blocking gate, read-only (pre-push and CI run the same legs)
+pnpm check:fix      # fix, then check
 pnpm knip           # Find unused exports and dependencies
 pnpm secrets:scan   # Scan git history for secrets
 pnpm vital-surfaces:check # Validate the vital Practice surface contract
@@ -198,12 +198,12 @@ tilt links return the branded 404. See
 
 Two Git hooks enforce quality automatically:
 
-- **Pre-commit** — runs `pnpm check:ci` (read-only checks, ~10–15 seconds).
-- **Pre-push** — runs `pnpm check && pnpm test:e2e` (full gates + E2E). PDF tests require a prior build and are run explicitly.
+- **Pre-commit** — light: the branch guard, Prettier and markdownlint on staged files, lint on changed workspaces.
+- **Pre-push** — full: `pnpm check` and the site's end-to-end suite. PDF tests require a prior build and are run explicitly.
 
 ```bash
-pnpm check          # Blocking gates with auto-fix (format, markdownlint, lint, typecheck, test, knip, gitleaks, vital surfaces, portability, subagents)
-pnpm check:ci       # Same gates, read-only (no auto-fix)
+pnpm check          # Blocking gates, read-only: format, markdownlint, shell and runtime-only lint, lint, type-check, test, knip, depcruise, gitleaks, portability, sub-agents, skill adapters, encoding
+pnpm check:fix      # Auto-fix (format, markdownlint, lint) then the same gates
 pnpm test:e2e       # E2E tests against production build (separate — requires Chromium)
 ```
 
