@@ -2,8 +2,8 @@
 
 Git-tracked **provenance survivor** for comms events cited by 8-hex id in
 permanent records, per [PDR-094](../practice-core/decision-records/PDR-094-coordination-event-rotation-is-class-tiered-archive-not-delete.md)
-Invariant 3 and [ADR-199](../../docs/architecture/architectural-decisions/199-comms-event-rotation-phenotype.md)
-§"Provenance survivor". When the WS7 rotation moves a comms event out of the
+Invariant 3 and the comms-event rotation phenotype's
+provenance-survivor clause. When the WS7 rotation moves a comms event out of the
 git-tracked live stream (`.agent/state/collaboration/comms/`) into the untracked
 archive — or once `.agent/state/` is untracked-by-design — the raw event no
 longer resolves from a clean checkout. This digest preserves, in a tracked file

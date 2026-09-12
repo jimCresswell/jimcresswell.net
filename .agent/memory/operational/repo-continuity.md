@@ -34,19 +34,25 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 - **Re-evaluate slice 1 committed** (plan §Re-evaluate ×3): the identity CLIs read
   the harness-native `CLAUDE_CODE_SESSION_ID` (PDR-027 amendment) and the hook
   reports truthfully; the shared start-right workflows cite the gates skill
-  instead of a lineage gate list; `validate-cited-scripts` (green, 1198 files)
-  and `machine-local-paths:check` are new `check`/`check:docs` legs (15 legs,
-  CI parity); the copied docs layer is re-homed by role — `docs/governance` and
-  `docs/foundation` dissolved, six developer docs stay in `docs/engineering`,
-  eight host guides in `.agent/reference`, six doctrine merges into directives
-  and rules. `.agent-original/` still present pending the owner's loss-scan.
-- Outside `check`, still failing (pre-existing): patterns index, plan corpus and
-  gate drift (plan-node migration), ratified-lists (upstream refounding
-  artefacts), fitness vocabulary (`.agent-original`), collaboration-tui smoke,
-  codex-session-alert smoke (`pnpm -s`); `check:docs` is red only on
-  `validate-markdown-links` (418 broken links repo-wide, mostly lineage record
-  links in memory, skills, plans and three local ADRs — the link-repair
-  backlog; `docs/**` and every re-homed file are clear).
+  instead of a lineage gate list; the copied docs layer is re-homed by role —
+  `docs/governance` and `docs/foundation` dissolved, six developer docs stay in
+  `docs/engineering`, eight host guides in `.agent/reference`, six doctrine
+  merges into directives and rules. `.agent-original/` still present pending
+  the owner's loss-scan.
+- **Link repair done (2026-09-12, resumed session):** `validate-markdown-links`
+  reports 0; `docs-validators:check` (reference direction, machine-local paths,
+  markdown links, cited scripts) is a `check` leg and a CI step, so `check:docs`
+  is now a subset of `check`. The patterns index is generated from the (empty)
+  local corpus and its validator is green. Two lineage methodology docs were
+  imported: `memory/operational/{ephemeral-to-permanent-homing,collaboration-state-lifecycle}.md`.
+- Outside `check`, still failing (pre-existing): plan corpus and gate drift
+  (plan-node migration; the validator needs `docs/strategy`), ratified-lists
+  (upstream refounding artefacts), fitness vocabulary (`.agent-original`),
+  collaboration-tui smoke, codex-session-alert smoke (`pnpm -s` is not a pnpm 12
+  flag). Green but not yet wired as legs: check-ci-parity, claim-freshness,
+  pretooluse-guard-routing, lifecycle-scripts, no-stale-script-invocations,
+  collaboration-state, identity-naming, workspace-config-isolation,
+  policy-reappraisal (OCE runs these as `repo-validators:check`).
 
 - Deep consolidation status: **due — deferred by owner ruling**. The napkin
   carries three 2026-09-12 sessions of unsynthesised lessons and the 57-lesson
@@ -72,10 +78,14 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 Owner-set order (2026-09-12): 1. rules triage done; 2. harness integration done
 (plan §Phase 8); 3. re-evaluate slice 1 done (seed contract, session-open
-surfaces, docs layer); 4. restart assessment done (below); 5. **next, in
-order**: (a) the link-repair pass — largely mechanical, and a link whose
-target is a lineage record or surface with no local equivalent is removed,
-not re-pointed; (b) owner ratification of the two sketch plan nodes authored
+surfaces, docs layer); 4. restart assessment done (below); 5. link repair done
+(418 → 0; lineage-only targets removed, not re-pointed); 6. **next, in
+order**: (a) adopt OCE's `package.json` script naming conventions (owner
+direction 2026-09-12: `format-check:root`/`format:root`,
+`markdownlint-check:root`/`markdownlint:root`, `fix`/`fix:docs`, `test:ui`,
+`repo-validators:check`; retire `check:ci`, `check:fix`, `format`,
+`format:fix`, `markdownlint:check`, `markdownlint:fix`; re-point every
+citation, hooks and CI; parity stays green); (b) owner ratification of the two sketch plan nodes authored
 on 2026-09-12 at the owner's word that the castr transplant is next and must
 cost a fraction: the runbook `.agent/plans/runbooks/practice-lineage-transplant.md`
 and the delivery node `.agent/plans/delivery/castr-lineage-update-preparation.md`

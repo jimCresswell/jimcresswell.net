@@ -1,0 +1,260 @@
+---
+fitness_line_target: 180
+fitness_line_limit: 260
+fitness_char_limit: 16000
+fitness_line_length: 100
+split_strategy: "Split by state surface if lifecycle recipes grow beyond a single operational reference"
+---
+
+# Collaboration State Lifecycle
+
+Operational recipes for `.agent/state/collaboration/`. The compact state
+index is [`collaboration-state-conventions.md`](collaboration-state-conventions.md);
+the doctrinal authority is
+[`agent-collaboration.md`](../../directives/agent-collaboration.md) and
+[PDR-029 Family A Class A.3][pdr-029]. Vocabulary (stale, fresh-but-quiet,
+orphaned, expired) is defined in
+[`collaboration-state-conventions.md`](collaboration-state-conventions.md)
+§Vocabulary.
+
+## Claims
+
+All timestamp fields in collaboration state use UTC ISO 8601 with a trailing
+`Z`. Use owner-local time only as explanatory prose; freshness windows,
+expiry reports, and stale-claim audits are computed from UTC values.
+
+Identity preflight before write and the shared-state-not-read-only posture
+are governed by [`agent-collaboration.md`](../../directives/agent-collaboration.md)
+§Identity vs Liveness and §Knowledge and Communication. The portable
+preflight command is:
+
+```bash
+pnpm agent-tools:collaboration-state -- identity preflight --platform codex --model GPT-5
+```
+
+### Open a Claim
+
+1. Apply the
+   [`register-active-areas-at-session-open`][register-rule] rule: list
+   intended areas, scan `active-claims.json` for overlap, decide how to
+   coordinate.
+2. Use the collaboration-state helper to append a new claim under
+   `claims[]` with a fresh `claim_id` (UUID v4 recommended), the agent's
+   PDR-027 identity block, the thread slug, the area list, `claimed_at`
+   (now), and a brief `intent` line.
+3. Use the default `freshness_seconds` (14400 = 4 hours) for most
+   slices. Long sessions either set a larger value at open time or
+   refresh `heartbeat_at`.
+4. Before staging or committing, open a short-lived `git:index/head`
+   claim with `freshness_seconds: 900`, append a shared-log note when
+   useful, post a commit-queue intent for the intended bundle
+   (`pnpm agent-tools commit-queue enqueue`), and close it
+   immediately after success, failure, or abort.
+
+## Commit Queue
+
+Since registry schema 1.4.0 the queue is a per-intent, machine-local store
+beside `active-claims.json` (`commit-queue/`, one file per intent with a
+one-hour TTL from its last write; `commit-queue list` is the view; owner
+ruling QUEUE-LOCAL, 2026-08-17 — the queue is never in version control). The
+queue is FIFO by `queued_seq` and advisory: agents use it to decide whose
+commit turn is next, but it does not mechanically refuse work. PDR-029 defines the queue as the
+observable artefact for the shared git transaction / authorial-bundle
+tripwire; this file records the operational recipe.
+
+Use `pnpm agent-tools:commit-queue --` through the commit skill:
+
+1. `enqueue` before staging with the active claim id, exact repo-relative
+   files, and draft commit subject.
+2. `phase --phase staging`, then stage explicit files only.
+3. `record-staged` after staging. This records `git diff --cached
+   --name-status` and a SHA-256 fingerprint over name-status plus
+   `git diff --cached --full-index --binary`.
+4. `verify-staged` immediately before commit. It requires: no fresh FIFO entry
+   ahead, staged file set equals queued files exactly, subject equals queued
+   subject, and fingerprint has not changed.
+5. `complete` after a successful commit. This removes the queue entry and
+   clears the claim pointer. A successful git commit is the durable record.
+6. `phase --phase abandoned` if the attempt stops before success.
+
+`expires_at` is the derived wall-clock expiry, `updated_at` plus the
+one-hour TTL (the **expired** term of the four-term vocabulary in
+conventions.md). Since 1.4.0 an expired intent is read as absent and swept
+by the next queue write — ephemera by the QUEUE-LOCAL owner ruling, not
+inspectable after expiry — and expiry never blocks another agent by itself.
+`session_counter` is intentionally absent from the intent schema.
+
+Commit-queue mutations reuse the same JSON transaction helper as active
+claims so parallel enqueue/phase/complete operations re-read current state
+inside the transaction window.
+
+### Refresh During Work
+
+Set `heartbeat_at` to `now()` to extend a claim's freshness. Use this
+for long sessions where the original 4-hour budget would go stale
+mid-work. The refreshed window is `heartbeat_at + freshness_seconds`,
+not `claimed_at + freshness_seconds`.
+
+### Close at Session End
+
+Copy the active claim into `closed-claims.archive.json`, add
+`archived_at` plus `closure.kind: "explicit"`, `closure.closed_at`,
+`closure.closed_by`, `closure.summary`, and one or more
+`closure.evidence[]` references, then remove the active entry. Removal
+without a closed-claim record silently erases lifecycle history.
+
+Terminal-session resume does not currently reclaim old live claims. If a
+session closes, its claims close. A later resumed or reopened session opens a
+fresh claim and cites the previous closure if useful. A future SDK-style
+one-turn invocation model may add an explicit reclaim transition, but that is
+not part of the current protocol.
+
+Where a platform exposes a real session-end hook, use it as a best-effort
+pre-close cleanup prompt or closure script. Codex CLI `0.145.0` exposes a
+stable `SessionEnd` event, so a Codex adapter can perform that best-effort
+cleanup once the repository wires one. Its turn-scoped `Stop` hook remains
+useful for reminders before individual turns end. Freshness, stale-claim, and
+orphaned-claim cleanup remain mandatory fallbacks because hooks can be missed,
+disabled, or unable to complete.
+
+Post-session janitors must not mark work as successful. If a known-ended
+session leaves a claim open past the session-close grace TTL, archive it as
+orphaned (with `closure.kind: "stale"`) and attach evidence of the missed
+close. Keep the per-type freshness
+window separate from this grace TTL: `git:index/head` and attention pings can
+expire in minutes, while normal active-work claims use the longer heartbeat
+window unless a session-end signal proves the owner session is gone.
+
+### Archive Stale Claims
+
+`consolidate-docs § 7e` walks `active-claims.json`, computes
+`claimed_at + freshness_seconds` (or `heartbeat_at + freshness_seconds`
+if newer), and archives any **stale** entry to `closed-claims.archive.json`
+with `archived_at` and `closure.kind: "stale"`. Stale claims are
+*noise*, not *blockers*. The system does not strand agents waiting on a
+peer's forgotten claim.
+
+**Fresh-but-quiet** claims are informational only: possible crashed
+session, not a block. The next staleness threshold archives the entry
+automatically.
+
+### Apparently Orphaned Claims
+
+An "apparently orphaned" claim is a fresh-but-quiet entry whose
+owning session you suspect has ended without closing the claim.
+Cleanup ethics — when manual orphan archival is legitimate, the
+race-avoidance discipline, and the visibility-before-deletion rule —
+are governed by
+[`agent-collaboration.md`](../../directives/agent-collaboration.md)
+§d Cleanup Ethics. Recipe steps:
+
+- Archive only through a deliberate governance pass
+  (`consolidate-docs § 7e`) or an owner-forced close.
+- If another session is already performing the cleanup, do not race;
+  let the natural claim lifecycle finish. Two agents racing to archive
+  the same orphan produces duplicate closure records and obscures
+  lifecycle history.
+- Before writing the close, post a shared-log note naming the claim
+  and the closure kind (`stale` or `owner-forced`).
+
+The portable cleanup command is:
+
+```bash
+pnpm agent-tools:collaboration-state -- claims archive-stale \
+  --active .agent/state/collaboration/active-claims.json \
+  --closed .agent/state/collaboration/closed-claims.archive.json \
+  --now <UTC> --platform <platform> --model <model>
+```
+
+Default TTLs are type-specific: normal claims `14400s`, commit/index claims
+`900s`, sidebars `1800s`, and known missed session-close grace `600s`.
+
+## Decision Threads
+
+Open `.agent/state/collaboration/conversations/<id>.json` when an overlap
+or protocol question needs more structure than the shared communication log.
+Good reasons include a concrete `decision_request`, a claim scope change
+that needs peer acknowledgement, or evidence that should stay attached to
+a resolution.
+
+Close a decision thread by appending a `decision` entry when the route is
+chosen, then a `resolution` entry with `outcome` and `body`, setting
+`status: "closed"`, and adding `closed_at`. Cite the thread from related
+claim closures or log entries when it explains the route taken. Do not
+copy the body into the thread record.
+
+Append conversation entries through the transaction helper:
+
+```bash
+pnpm agent-tools:collaboration-state -- conversation append \
+  --file .agent/state/collaboration/conversations/<id>.json \
+  --entry-json '<entry-json>'
+```
+
+## Sidebars
+
+Append `sidebar_request` when a short focused exchange is needed inside an
+existing conversation. It requires `sidebar_id`, `author`,
+`target_participants`, `body`, `response_due_at`, and `expires_at`.
+Default workflow timing is wall-clock: `expires_at = created_at + 30
+minutes`. The 10 turn-pair limit is advisory; a turn-pair is one
+requester sidebar message followed by at least one target reply before
+the next requester message.
+
+Timeout never auto-resolves. Append `sidebar_resolution` deliberately with
+`outcome: "expired"` if the expired sidebar should be closed as expired.
+
+## Joint Decisions
+
+Append `joint_decision` when agents need a shared commitment rather than a
+one-way signal. Roles are `discusser`, `decider`, `recorder`, and
+`actor`; at least one decider is required, and the owner may be the
+decider. Proposed joint decisions use explicit `ack_due_at` timestamps
+(workflow default: `created_at + 24 hours`). Unacknowledged proposals are
+not settled commitments.
+
+Completion requires evidence. Role handoff uses
+`joint_decision_state: "role_handoff"`, `handoff_to`, and either
+`evidence` or `next_action`.
+
+## Escalations
+
+Open `.agent/state/collaboration/escalations/<id>.json` only after a
+conversation exists. The escalation must cite `conversation_id` and
+`originating_entry_id`; it is a live owner-facing unresolved case record,
+not the durable decision.
+
+When the owner resolves the case, write the durable result back into the
+conversation as a `decision`, `joint_decision`, or `resolution` entry,
+then close the escalation with `resolution_conversation_entry_id`.
+
+Open or close escalation files through the same transaction helper using
+`pnpm agent-tools:collaboration-state -- escalation open|close`.
+
+## Protocol Observability
+
+`consolidate-docs § 7e` reports active/stale claims, commit queue entries,
+recent closures, open/stale decision threads, unresolved decision requests,
+open/stale sidebars, unacknowledged or evidence-missing joint decisions,
+active escalations, and malformed state.
+
+Non-trivial protocol claims should carry a small evidence bundle:
+
+- claim statement;
+- claim class (`lifecycle`, `coordination`, `policy`, or `validation`);
+- evidence refs using the shared enum;
+- verification status (`verified`, `partial`, or `needs-owner`);
+- next action or owner.
+
+## Schema-Field Provenance
+
+Field provenance is co-located with each field in
+[`active-claims.schema.json`](../../../agent-tools/src/collaboration-state/schemas/active-claims.schema.json)
+and the sibling [`closed-claims.schema.json`](../../../agent-tools/src/collaboration-state/schemas/closed-claims.schema.json),
+[`conversation.schema.json`](../../../agent-tools/src/collaboration-state/schemas/conversation.schema.json),
+and [`escalation.schema.json`](../../../agent-tools/src/collaboration-state/schemas/escalation.schema.json)
+via `$comment_provenance` annotations. Schema files are the canonical home for
+field-level metadata; this lifecycle file holds operational recipes only.
+
+[register-rule]: ../../rules/register-active-areas-at-session-open.md
+[pdr-029]: ../../practice-core/decision-records/PDR-029-perturbation-mechanism-bundle.md

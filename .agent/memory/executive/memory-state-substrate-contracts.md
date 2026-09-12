@@ -57,7 +57,7 @@ This Markdown file remains the human-facing contract; the JSON manifest is the
 strict data surface the future doctor consumes before authoring RED fixtures.
 
 The retired YAML seed was promoted into strict JSON on 2026-05-07 and is
-preserved as dated evidence at [retired seed evidence][retired-seed].
+preserved as dated evidence at retired seed evidence.
 Future machine consumption must read the JSON manifest, not the retired seed.
 
 ## Surface Contract Template
@@ -153,4 +153,3 @@ explicitly decides they are live instructions.
 
 [pdr-049]: ../../practice-core/decision-records/PDR-049-memory-and-state-file-merge-semantics.md
 [pdr-050]: ../../practice-core/decision-records/PDR-050-state-memory-substrate-contracts.md
-[retired-seed]: ../../plans-backlog-2026-07/agentic-engineering-enhancements/evidence/2026-05-07-memory-state-substrate-retired-yaml-seed.md

@@ -241,7 +241,7 @@ you need to check for frontmatter-key drift.
 - [docs/architecture/](docs/architecture/) — System architecture, PDF generation, operational notes
 - [docs/architecture/decision-records/](docs/architecture/decision-records/) — Architecture Decision Records (ADRs)
 - [docs/project/](docs/project/) — User stories and requirements
-- [e2e/](e2e/) — E2E test organisation, naming conventions, and test map
+- [e2e/](jcdotnet/e2e/) — E2E test organisation, naming conventions, and test map
 
 ## Agent Memory
 

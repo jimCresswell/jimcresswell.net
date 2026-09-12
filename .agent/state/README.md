@@ -38,7 +38,7 @@ window are archive-moved (never deleted) into the gitignored, off-drain-path
 `collaboration/comms-archive/` by the curator-pass harness (`comms-archive-move`),
 one `manifest.jsonl` disposition row per event, gated by a recorded disposition +
 a 0-violation provenance check. The full contract is
-[ADR-199](../../docs/architecture/architectural-decisions/199-comms-event-rotation-phenotype.md)
+this repository's rotation validator
 (repo phenotype) and
 [PDR-094](../practice-core/decision-records/PDR-094-coordination-event-rotation-is-class-tiered-archive-not-delete.md)
 (portable invariants).
@@ -76,7 +76,7 @@ surfaces; use PDR-050 for the transferable specification.
 ### `.agent/state/collaboration/`
 
 Installed by WS0 onward of the
-[`multi-agent-collaboration-protocol`](../plans-backlog-2026-07/agent-tooling/current/multi-agent-collaboration-protocol.plan.md)
+`multi-agent-collaboration-protocol`
 plan.
 
 Instance tier (untracked-by-design; preserved on disk, see Tracking model above):

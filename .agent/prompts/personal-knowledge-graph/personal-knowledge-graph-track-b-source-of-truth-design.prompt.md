@@ -15,8 +15,8 @@ Ground first via `start-right-quick` or `start-right-thorough`.
 1. [`../../directives/AGENT.md`](../../directives/AGENT.md)
 2. [`../../directives/principles.md`](../../directives/principles.md)
 3. [`../../directives/testing-strategy.md`](../../directives/testing-strategy.md)
-4. [`../../memory/distilled.md`](../../memory/distilled.md)
-5. [`../../memory/napkin.md`](../../memory/napkin.md)
+4. [`../../memory/active/distilled.md`](../../memory/active/distilled.md)
+5. [`../../memory/active/napkin.md`](../../memory/active/napkin.md)
 6. [`../../plans/roadmap.md`](../../plans/roadmap.md)
 7. [`../../plans/active/README.md`](../../plans/active/README.md)
 8. [`../../plans/current/personal-knowledge-graph-roadmap.plan.md`](../../plans/current/personal-knowledge-graph-roadmap.plan.md)
@@ -41,7 +41,7 @@ Ground first via `start-right-quick` or `start-right-thorough`.
   `graph-source-of-truth-layer-map.md`.
 - **Tilt composition design is deferred door-open.** Live tilt routes were
   retired under ADR-021; the completion record is
-  [`../../plans/archive/tilt-retirement.plan.md`](../../plans/archive/tilt-retirement.plan.md).
+  `archive/tilt-retirement.plan.md`.
   Do not design tilt composition into B2. Re-entry, if it ever happens, starts
   from the preserved tilt reference doc + the B1 layer map's
   tilt-implications section.
@@ -103,12 +103,12 @@ The output should define:
 - [`../../plans/research/graph-source-of-truth-layer-map.md`](../../plans/research/graph-source-of-truth-layer-map.md)
 - [`../../plans/research/graph-current-state-audit.md`](../../plans/research/graph-current-state-audit.md)
 - [`../../plans/research/graph-publication-output-audit.md`](../../plans/research/graph-publication-output-audit.md)
-- [`../../../lib/page-document-contract.ts`](../../../lib/page-document-contract.ts)
+- [`../../../jcdotnet/lib/page-document-contract.ts`](../../../jcdotnet/lib/page-document-contract.ts)
 - [`../../../docs/architecture/content-model.md`](../../../docs/architecture/content-model.md)
 - [`../../../docs/architecture/decision-records/014-entity-model-design.md`](../../../docs/architecture/decision-records/014-entity-model-design.md)
-- [`../../../content/frontpage.content.json`](../../../content/frontpage.content.json)
-- [`../../../content/cv.content.json`](../../../content/cv.content.json)
-- [`../../../content/entities.json`](../../../content/entities.json)
+- [`../../../jcdotnet/content/frontpage.content.json`](../../../jcdotnet/content/frontpage.content.json)
+- [`../../../jcdotnet/content/cv.content.json`](../../../jcdotnet/content/cv.content.json)
+- [`../../../jcdotnet/content/entities.json`](../../../jcdotnet/content/entities.json)
 
 ## Do the work
 
@@ -118,7 +118,7 @@ The output should define:
   keep the design standalone
 - update other live plans or prompts only if status, next steps, or cross-links
   change
-- update [`../../memory/napkin.md`](../../memory/napkin.md) with mistakes,
+- update [`../../memory/active/napkin.md`](../../memory/active/napkin.md) with mistakes,
   corrections, and what was learned
 
 ## Proof requirements

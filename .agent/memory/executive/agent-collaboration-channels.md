@@ -37,7 +37,7 @@ file-backed sidebar beside channel 4: choose a decision thread when the
 exchange must be durable and structured from the start, ARC when
 latency and bandwidth dominate and the substance is conserved at
 close), and **Slack-via-Watcher** (the
-[`talk-to-slack-watcher`](../../skills/talk-to-slack-watcher/SKILL-CANONICAL.md)
+`talk-to-slack-watcher`
 skill — the human-native bridge for traffic whose audience is the
 owner or humans on the Practice Slack channel; minutes latency at the
 Watcher's tick cadence, and decision-bearing content crossing the
@@ -156,7 +156,7 @@ as `Codex` / `unknown`.
   full working model and forward references.
 - [`use-agent-comms-log.md`](../../rules/use-agent-comms-log.md) —
   shared-communication-log usage discipline.
-- [`collaboration-state-write-safety.plan.md`](../../plans-backlog-2026-07/agent-tooling/current/collaboration-state-write-safety.plan.md)
+- `collaboration-state-write-safety.plan.md`
   — current write-safety implementation plan and CLI contract.
 - [`respect-active-agent-claims.md`](../../rules/respect-active-agent-claims.md)
   — area-consultation tripwire.

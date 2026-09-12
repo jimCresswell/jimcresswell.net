@@ -536,7 +536,7 @@ does not create a competing architecture-gate programme.
 ## Plan family
 
 - [Workspace Architecture Roadmap](../current/workspace-architecture-roadmap.plan.md)
-- [Optional App Relocation](../archive/optional-app-relocation.plan.md)
+- Optional App Relocation (`archive/optional-app-relocation.plan.md`, archived)
 - [Visual Regression Workspace](../current/visual-regression-workspace.plan.md)
 - [Practice Validation Workspace](../current/practice-validation-workspace.plan.md)
 - [Professional Profile Graph Workspace](../current/professional-profile-graph-workspace.plan.md)

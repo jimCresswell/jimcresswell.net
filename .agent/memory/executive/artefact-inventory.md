@@ -8,7 +8,7 @@ split_strategy: "Keep concise; this is a reference extracted from AGENT.md"
 
 # Agent Artefact Inventory
 
-See [ADR-125](../../../docs/architecture/architectural-decisions/125-agent-artefact-portability.md),
+See PDR-009,
 and the [cross-platform matrix](./cross-platform-agent-surface-matrix.md).
 
 ## Canonical Content (Layer 1)

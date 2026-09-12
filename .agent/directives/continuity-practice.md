@@ -89,8 +89,7 @@ canonical statement for that surface type.
 
 The repeatable operational procedure for disposition #2 (a runbook per
 [PDR-120](../practice-core/decision-records/PDR-120-runbooks-are-a-content-kind-not-a-surface.md),
-embedded here in the doctrine it enacts; indexed in
-[`docs/operations/README.md`](../../docs/operations/README.md) §Runbook Index):
+embedded here in the doctrine it enacts):
 
 1. **Per entry, ask "live or finished?"** — never infer from age or fitness status.
 2. **Route by disposition.** Finished and insight-homed → delete the residue, but

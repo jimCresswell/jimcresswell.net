@@ -131,6 +131,12 @@ describe('renderPatternIndex', () => {
     const out = renderPatternIndex(entries);
     expect(out.indexOf('### Code')).toBeLessThan(out.indexOf('### Novel'));
   });
+
+  it('renders an empty corpus as one sentence with no blank-line run', () => {
+    expect(renderPatternIndex([])).toBe(
+      '## Pattern Index\n\n*No repo-local pattern instances yet; the index fills as pattern files are authored here.*\n',
+    );
+  });
 });
 
 describe('spliceIndexSection', () => {

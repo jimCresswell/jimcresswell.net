@@ -135,6 +135,5 @@ classification system has implicit edge cases.
   appear in the five-axis coverage table. That invented
   justification was load-bearing but unrecorded — the signal that
   the categorisation was incomplete. See
-  [`.agent/plans/observability/high-level-observability-plan.md`
-  §Substrate](../../../plans-backlog-2026-07/observability/high-level-observability-plan.md)
+  the lineage's high-level observability plan (§Substrate)
   for the first applied instance.

@@ -20,11 +20,10 @@ A plan may keep a decision log; its rows are captures, never a ruling's
 durable home — the plan skill's Readiness section ("Ledger and
 decision-log rows are captures") carries the clause.
 
-The pre-D23 authoring templates are dispositioned and conserved in
-[`.agent/plans-v0-sketch-2026-07-21/templates/`](../../plans-v0-sketch-2026-07-21/DISPOSITIONS.md);
+The pre-schema authoring templates were dispositioned in the source lineage and did not travel;
 do not author new plans from them. The `components/` library remains
 here as referenced substrate only (PDR phenotypes, thread-continuity
 surfaces) — it is retired as authoring doctrine and no D23 template
 references it; its disposition completes with the thread-doc migration.
-The doctrine home for this structure is
-[ADR-216](../../../docs/architecture/architectural-decisions/216-plan-node-estate.md).
+The doctrine home for this structure is the plan-node schema itself
+([`plan-node-schema.md`](../plan-node-schema.md)).

@@ -20,8 +20,8 @@ napkin rotation, fitness management) belongs to
 thread-scoped.
 
 **Governance**: This workflow operationalises
-[ADR-150 (Continuity Surfaces, Session Handoff, and Surprise Pipeline)](../../../docs/architecture/architectural-decisions/150-continuity-surfaces-session-handoff-and-surprise-pipeline.md)
-(host architecture) and
+the continuity-surfaces and surprise-pipeline decision (PDR-011)
+and
 [PDR-011 (Continuity Surfaces and the Surprise Pipeline)](../../practice-core/decision-records/PDR-011-continuity-surfaces-and-surprise-pipeline.md)
 (portable Practice governance). These name the learning path for
 surprise and correction as `capture → distil → graduate → enforce`,
@@ -653,7 +653,7 @@ no retrospective memos; those are close-out work, this skill's §Steps.
       threads from it, not from memory. Self-reporting is not
       sufficient (the very failure mode this gate exists to
       counter per the
-      [`passive-guidance-loses-to-artefact-gravity`](../../memory/active/patterns/passive-guidance-loses-to-artefact-gravity.md)
+      `passive-guidance-loses-to-artefact-gravity`
       pattern).
    2. For each thread the session touched (by edit, read-and-
       reference, or commit), open its next-session record at the

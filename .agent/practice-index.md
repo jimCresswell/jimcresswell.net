@@ -168,7 +168,7 @@ retired once these pass.
 
 ### PKG cluster
 
-- [pkg skill](skills/pkg/SKILL.md), [pkg-expert](sub-agents/templates/pkg-expert.md),
+- [pkg skill](skills/pkg/SKILL-CANONICAL.md), [pkg-expert](sub-agents/templates/pkg-expert.md),
   [working-with-graphs](skills/working-with-graphs/SKILL-CANONICAL.md)
 - [ADR-010](../docs/architecture/decision-records/010-canonical-url-graph-identity.md),
   [ADR-014](../docs/architecture/decision-records/014-entity-model-design.md),
@@ -179,7 +179,7 @@ retired once these pass.
 
 - [editorial-strategy.md](directives/editorial-strategy.md),
   [editorial-guidance.md](directives/editorial-guidance.md)
-- [editorial-voice skill](skills/editorial-voice/SKILL.md),
+- [editorial-voice skill](skills/editorial-voice/SKILL-CANONICAL.md),
   [editor](sub-agents/templates/editor.md)
 - [Editorial decision records](../docs/editorial/decision-records/)
 - [Private editorial workspace contract](reference/private-editorial-workspace.md)

@@ -163,7 +163,7 @@ The skill does not authorise unilateral execution. It always halts.
   — the doctrinal frame that supersedes the quarantined
   `apply-don't-ask` candidate; this skill remains the destructive-
   action compensator for the same family of agent failure modes.
-- [Quarantined apply-don't-ask doctrine](../../../memory/operational/quarantine/apply-dont-ask-doctrine.md)
+- The quarantined apply-don't-ask doctrine (a lineage record not carried here)
   — the predecessor doctrine; quarantine cleared 2026-05-10 by
   PDR-057 + PDR-058. Preserved as historical evidence.
 

@@ -16,8 +16,8 @@ Ground first via `start-right-quick` or `start-right-thorough`.
 1. [`../../directives/AGENT.md`](../../directives/AGENT.md)
 2. [`../../directives/principles.md`](../../directives/principles.md)
 3. [`../../directives/testing-strategy.md`](../../directives/testing-strategy.md)
-4. [`../../memory/distilled.md`](../../memory/distilled.md)
-5. [`../../memory/napkin.md`](../../memory/napkin.md)
+4. [`../../memory/active/distilled.md`](../../memory/active/distilled.md)
+5. [`../../memory/active/napkin.md`](../../memory/active/napkin.md)
 6. [`../../plans/roadmap.md`](../../plans/roadmap.md)
 7. [`../../plans/current/dev-tooling-hygiene.plan.md`](../../plans/current/dev-tooling-hygiene.plan.md)
 8. [`../../../package.json`](../../../package.json) — current scripts, deps, knip config
@@ -77,13 +77,13 @@ once Phase 2 lands.
 - [`../../../docs/architecture/decision-records/`](../../../docs/architecture/decision-records/) — for the new ADR
 - [`../../directives/principles.md`](../../directives/principles.md) — gate count + sequence
 - [`../../../README.md`](../../../README.md) — gate count surfaces
-- [`../../../scripts/`](../../../scripts/) — depcruiser layering rules apply here
-- [`../../../lib/`](../../../lib/), [`../../../app/`](../../../app/), [`../../../components/`](../../../components/), [`../../../e2e/`](../../../e2e/), [`../../../visual-regression-harness/`](../../../visual-regression-harness/) — the layered surface
+- the former root `scripts/` directory is retired; its tooling lives in `agent-tools/`, where the depcruiser layering rules apply
+- [`../../../jcdotnet/lib/`](../../../jcdotnet/lib/), [`../../../jcdotnet/app/`](../../../jcdotnet/app/), [`../../../jcdotnet/components/`](../../../jcdotnet/components/), [`../../../jcdotnet/e2e/`](../../../jcdotnet/e2e/), [`../../../jcdotnet/visual-regression-harness/`](../../../jcdotnet/visual-regression-harness/) — the layered surface
 
 ## Do the work
 
 - one slice per upgrade or rule change; no mixed slices
-- update [`../../memory/napkin.md`](../../memory/napkin.md) with mistakes,
+- update [`../../memory/active/napkin.md`](../../memory/active/napkin.md) with mistakes,
   corrections, and what was learned
 - write the ADR in the same slice as the gate-wiring change
 

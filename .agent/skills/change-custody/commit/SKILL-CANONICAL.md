@@ -21,7 +21,7 @@ committing.
 **Always-on** — every commit, every session, no trigger required.
 
 **Motivating pattern**:
-[`passive-guidance-loses-to-artefact-gravity`](../../../memory/active/patterns/passive-guidance-loses-to-artefact-gravity.md)
+`passive-guidance-loses-to-artefact-gravity`
 applied to commit authoring. Prior prose guidance said "lines under 99 chars"
 without surfacing the preset's actual rules; every session hit rework
 (subject-case violations, header-length overruns, missing footers). This skill
@@ -813,7 +813,7 @@ not a hook-timing one), and it wastes ~30s per commit.
 Commit-attempt logging is currently paused. The helper script is still
 present in `scripts/` for quick reactivation, but the standard commit
 workflow should not append to
-[`commit-attempts.log`](../../../memory/operational/diagnostics/commit-attempts.log)
+`commit-attempts.log`
 unless the owner explicitly asks for that diagnostic trace again.
 
 ## Safety Rules
@@ -940,11 +940,11 @@ what authority*. The questions to ask:
 The orchestrator's signals are *important*. They surface the consolidation
 work that needs doing. They are not gates. The deeper disposition driving
 the conflation is captured at
-[`.agent/memory/active/patterns/eager-rounding-off-on-partial-structures.md`](../../../memory/active/patterns/eager-rounding-off-on-partial-structures.md).
+`.agent/memory/active/patterns/eager-rounding-off-on-partial-structures.md`.
 
 ## Related Surfaces
 
-- Pattern: [`.agent/memory/active/patterns/passive-guidance-loses-to-artefact-gravity.md`](../../../memory/active/patterns/passive-guidance-loses-to-artefact-gravity.md)
+- Pattern: `.agent/memory/active/patterns/passive-guidance-loses-to-artefact-gravity.md`
   — the failure mode this skill counters.
 - PDR: [`.agent/practice-core/decision-records/PDR-029-perturbation-mechanism-bundle.md`](../../../practice-core/decision-records/PDR-029-perturbation-mechanism-bundle.md)
   — design principles (firing cadence first; two complementary layers target:
@@ -955,7 +955,7 @@ the conflation is captured at
   amendment to name diagnostic substrates as a distinct surface class
   (see `repo-continuity.md § Pending-graduations register additions
   (2026-04-23 handoff)`).
-- Diagnostics: [`.agent/memory/operational/diagnostics/README.md`](../../../memory/operational/diagnostics/README.md)
+- Diagnostics: `.agent/memory/operational/diagnostics/README.md`
   — convention for diagnostic logs when the owner explicitly enables them.
 - Principles: [`.agent/directives/principles.md`](../../../directives/principles.md)
   — the `--no-verify` fresh-authorisation invariant.

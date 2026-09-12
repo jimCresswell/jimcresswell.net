@@ -1,13 +1,9 @@
 # Experiment Log
 
-Chronological log of search-quality experiments and operational evaluation
-outcomes.
-
-This file is the lightweight narrative companion to benchmark artefacts and
-ground-truth protocol updates in:
-
-- [apps/oak-search-cli/docs/ground-truths/ground-truth-protocol.md](/apps/oak-search-cli/docs/ground-truths/ground-truth-protocol.md)
-- [apps/oak-search-cli/docs/ground-truths/queries-redesigned.md](/apps/oak-search-cli/docs/ground-truths/queries-redesigned.md)
+Chronological log of operational evaluation outcomes for this repository:
+skill evaluations, gate experiments, and any measured change to how the
+estate works. The narrative companion to the evaluation artefacts kept
+alongside it in this directory.
 
 ## Entries
 

@@ -54,7 +54,7 @@ preamble, this capability claim expires: re-check the current official
 documentation before relying on it.
 
 The repository
-[`agent-platform-citizenship`](../../plans/strategic/agent-platform-citizenship.plan.md)
+`agent-platform-citizenship`
 node (formerly `first-class-copilot-cli-practice-citizenship`) and its
 serving delivery plans are authoritative for target and mechanism.
 MCP-150, MCP-154, MCP-155, and MCP-156 are supplementary Linear projections
@@ -121,7 +121,7 @@ Status by platform:
 
 The Codex product claims and event list above inherit their version pin,
 source-authority boundary, and evidence grades from the
-[Codex CLI capability catalogue](../../reports/agentic-engineering/codex-cli-agentic-capability-catalogue-2026-07-25.md).
+lineage's Codex CLI capability catalogue (not carried here).
 
 ## Platform Liveness Declaration (PDR-133 §8)
 
@@ -147,7 +147,7 @@ declaration set yet. Dated observations already on record:
 - **Slack Watcher organ (Slack channel + cloud-harness reminder
   substrate) — full 14-class declaration, 2026-08-24**: recorded
   skill-locally for operational reading in
-  [`slack-watcher` §6](../../skills/slack-watcher/SKILL-CANONICAL.md#6-liveness-classes--the-pdr-133-declaration-for-this-substrate)
+  `slack-watcher` §6 (a lineage skill not carried here)
   (this ledger points, never restates). Headline rows: `NOTIFY`
   cannot-certify (no dated externally observed wake on record; a
   self-bind reminder records no run history), proxy = the tenure
@@ -304,6 +304,6 @@ Failure semantics:
 - Portable does not mean symmetrical: each platform has different native
   capabilities and the matrix records what is actually wired.
 - Copilot CLI target surfaces are governed by
-  [ADR-125](../../../docs/architecture/architectural-decisions/125-agent-artefact-portability.md)
+  PDR-009
   and the linked plan estate; the target table above must not be collapsed into
   an unsupported/supported binary before live acceptance.

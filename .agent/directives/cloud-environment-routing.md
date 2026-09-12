@@ -86,8 +86,6 @@ canonical gates, this routing decision reopens.
   profile's commit path and manual message check.
 - [`no-verify-requires-fresh-authorisation`](../rules/no-verify-requires-fresh-authorisation.md)
   — records the exact standing `HUSKY=0` scope.
-- [`bot-identity-on-third-party-systems`](../rules/bot-identity-on-third-party-systems.md)
-  — records the configured-default-credential route.
 - [`local-broken-code-never-leaves`](../rules/local-broken-code-never-leaves.md)
   — defines the bounded downstream-proof path.
 - The quick and thorough start-right shared workflows — apply this route before

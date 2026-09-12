@@ -15,13 +15,13 @@
 - The completed tilt plan and prompt were archived. ADR-021 and the public
   reference own the durable canonical-only CV truth.
 - The previous napkin, including the complete closeout account, was archived as
-  [`archive/napkin-2026-08-12.md`](archive/napkin-2026-08-12.md).
+  `archive/napkin-2026-08-12.md`.
 
 ### Current handoff
 
 - Track B Source-of-Truth Design Phase B2.1 remains the primary workstream.
 - Visual Regression is an accepted parallel lane. Start at
-  [`../plans/current/visual-regression-workspace.plan.md#next-agent-start--after-three-pr-closeout`](../plans/current/visual-regression-workspace.plan.md#next-agent-start--after-three-pr-closeout).
+  [`../plans/current/visual-regression-workspace.plan.md`](../../plans/current/visual-regression-workspace.plan.md).
 - Before any manifest or source move, verify the live tree, establish a known
   visual baseline, compare the explicit allowance flag with the smallest clear
   named-policy alternative, and record a dated PASS or FAIL.
@@ -456,6 +456,22 @@
 - Two mistakes this session: `pnpm -s` is not a pnpm 12 flag (used it twice before reading the
   error); a `comms append` call without `--comms-dir/--now/--created-at/--active` fails — the
   help text is the contract, read it before the first call, not after the first failure.
+- Link repair, first-hand, measured: 418 → 0 in about an hour. 243 by one generator run (the
+  patterns index; the generator needed a zero-corpus case and got a test); 50 archive links by
+  one regex (archive is non-live to the validator: plain text naming the node); ~25 re-points
+  by sed (memory/active, jcdotnet paths, renumbered records); ~90 lineage-only citations by a
+  line-scoped script, each line read first; two methodology docs imported from the pin rather
+  than five citations removed. Line-number edits must be ordered bottom-up within a file, and
+  one of mine was not (the vocabulary doc lost the wrong three lines — caught by reading the
+  tail). `check:docs` went green and the docs validators became a `check` leg + CI step.
+- Assumptions-expert readiness review of the two nodes: six findings, all applied (ancestor by
+  SHA and byte-equality, not date; the generator "owner gate" was already settled by PDR-009
+  and ADR-015; proofs cited unwired validators; two ACs belonged to the castr run; frontmatter
+  key `plan` not `id`; unevidenced counts). Lesson: before writing an owner gate, search the
+  PDRs for the standing ruling — the reviewer found it in one grep.
+- Owner direction: adopt OCE's `package.json` script naming conventions (`format-check:root`,
+  `format:root`, `markdownlint-check:root`, `markdownlint:root`, `fix`/`fix:docs`, `test:ui`,
+  `repo-validators:check`; no `check:ci`, no `check:fix`).
 - Peer landscape: Nettle guards Pistil busy in the OCE checkout; a third local seat, Coal weaves
   Pumice, is in a different repository (its transcript sits under the castr project dir), not
   here. This checkout: no other seat, registry empty, queue empty.

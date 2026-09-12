@@ -420,7 +420,7 @@ Before marking the work complete, record:
 - whether any delegated review result still needs reintegration
 - whether each new capability has an observability loop across each
   applicable axis (engineering, product, usability, accessibility,
-  security) per [ADR-162](../../../docs/architecture/architectural-decisions/162-observability-first.md).
+  security) per the observability-first principle.
   Omission is explicit and justified, not incidental.
 
 ## Invocation

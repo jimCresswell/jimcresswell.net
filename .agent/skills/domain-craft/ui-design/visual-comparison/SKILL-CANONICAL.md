@@ -12,8 +12,7 @@ description: >-
 
 # Visual comparison
 
-The method is DDR-010's
-([docs/design/design-decisions/010-comparison-is-visual-first.md](../../../../../docs/design/design-decisions/010-comparison-is-visual-first.md)):
+The method (the source lineage's design decision DDR-010, not carried here):
 comparison is VISUAL FIRST — rendered images, looked at — with windowed
 statistics directing the looking and computed styles corroborating causes.
 Never conclude "matches" from markup, styling, or computed styles alone.

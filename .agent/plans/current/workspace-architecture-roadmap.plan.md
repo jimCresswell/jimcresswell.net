@@ -355,7 +355,7 @@ landed. The workspace family:
 
 | Child plan                                                                                         | Role                                                               | Promotion gate                                                      |
 | -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------- |
-| [Optional App Relocation](../archive/optional-app-relocation.plan.md)                              | one selected clean-root bootstrap, otherwise explicit Not Selected | Sequence A selected; overlapping app/config work settled            |
+| Optional App Relocation (`archive/optional-app-relocation.plan.md`, archived)                              | one selected clean-root bootstrap, otherwise explicit Not Selected | Sequence A selected; overlapping app/config work settled            |
 | [Visual Regression Workspace](visual-regression-workspace.plan.md)                                 | landed config inversion; first extraction-gate attempt             | app-location decision recorded; current visual proof green          |
 | [Practice Validation Workspace](practice-validation-workspace.plan.md)                             | independent Practice validator package                             | live validator and Dev-Tooling lockfile ownership reconciled        |
 | [Professional Profile Graph Workspace](professional-profile-graph-workspace.plan.md)               | stable schemas, parsing, algorithms, and configured adapter        | stable-core gate passes; no unsettled composition API enters        |
@@ -387,7 +387,7 @@ first active child; Track B remains the single primary repo plan.
 
 ### Phase 1 — Run the optional relocation or record Not Selected
 
-Owned by [Optional App Relocation](../archive/optional-app-relocation.plan.md).
+Owned by Optional App Relocation (`archive/optional-app-relocation.plan.md`, archived).
 
 **Outcome:** Sequence A has one proven `apps/www` deployable, or Sequence R has
 an explicit Not Selected disposition and unchanged root application.

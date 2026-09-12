@@ -23,7 +23,7 @@ levels of abstraction — from specific entities (Roles,
 Organisations) through abstract entities (ProfessionalIdentity,
 ResearchBackground) to expressive entities (PositioningNarrative,
 Capability, and a dormant/future TiltVariant type). All use standard Schema.org
-types ([ADR-008](../../docs/architecture/decision-records/008-schema-org-compliance.md)).
+types ([ADR-008](../../../docs/architecture/decision-records/008-schema-org-compliance.md)).
 The current implementation uses JSON files in `content/`. ADR-020 derives
 bounded Person identity atoms into visible composition; editorial prose and
 full selection/ordering remain page-file-driven. ADR-021 retires live tilt
@@ -75,7 +75,7 @@ higher abstraction level that hasn't been named yet.
 | Presentational | WebSite, CVPage, FrontPage, OGCard                  | `WebSite`, `ProfilePage`                       | Nodes defining traversals    |
 
 All entities are real and all have standard Schema.org types
-([ADR-008](../../docs/architecture/decision-records/008-schema-org-compliance.md)).
+([ADR-008](../../../docs/architecture/decision-records/008-schema-org-compliance.md)).
 All migrate to Neo4j as labelled nodes. All can appear in JSON-LD. The
 difference between levels is abstraction, not validity.
 
@@ -99,7 +99,7 @@ Different views, same reality, same database.
 ## Related
 
 - [personal-knowledge-graph-design-notes.md](../research/personal-knowledge-graph-design-notes.md) — the design reference this icebox plan shapes
-- [ADR-008](../../docs/architecture/decision-records/008-schema-org-compliance.md) — Schema.org compliance throughout the graph; all entities have standard types
+- [ADR-008](../../../docs/architecture/decision-records/008-schema-org-compliance.md) — Schema.org compliance throughout the graph; all entities have standard types
 - [Neo4j](https://neo4j.com/) — graph database
 - [Cypher Query Language](https://neo4j.com/docs/cypher-manual/current/) — Neo4j's query language
 - [JSON-LD](https://json-ld.org/) — the graph serialisation format already in use

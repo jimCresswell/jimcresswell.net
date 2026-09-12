@@ -14,7 +14,7 @@ Three kinds of fact were previously homeless, and each was lost at least once:
 1. **Which identity performs which action class** on third-party systems. The
    portable *rule* — which action classes use a bot credential and which use the
    operator's own — is tracked doctrine in
-   [`bot-identity-on-third-party-systems`](../rules/bot-identity-on-third-party-systems.md).
+      the `identify-as-agent-under-shared-credentials` rule.
    But *which* bot and *which* human account is a property of this machine and
    this person, and belongs here.
 2. **Tone of voice and communication preferences** — how this operator wants

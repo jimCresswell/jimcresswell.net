@@ -19,8 +19,7 @@ In particular, agent collaboration, coordination, work management,
 direction, lifecycle, identity, claims, handoff, review routing, and
 adjacent mechanisms are Practice substance by default per
 [PDR-035](../.agent/practice-core/decision-records/PDR-035-agent-work-capabilities-belong-to-the-practice.md).
-This repository's local implementation boundary is recorded in
-[ADR-165](../docs/architecture/architectural-decisions/165-agent-work-practice-phenotype-boundary.md).
+This repository's local implementation boundary is the module layout described below.
 
 It provides a unified `agent-tools` entrypoint with topic dispatch for the
 hot collaboration tools, plus specialised operator tools that still own their
@@ -481,8 +480,7 @@ context/usage percentages, and git location. Environment controls:
   paths: delete it after the diagnosis.
   Set it per-machine in `.claude/settings.local.json` under `env` (e.g.
   `".logs/statusline.log"` — the repo's gitignored log directory) and
-  restart the session; usage-segment diagnosis walkthrough:
-  [troubleshooting §Statusline segments missing](../docs/operations/troubleshooting.md#statusline-segments-missing-or-payload-diagnosis).
+  restart the session.
 
 ## `claude-agent-ops` quick reference
 

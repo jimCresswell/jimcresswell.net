@@ -24,9 +24,9 @@ the convention document, not the inventory.
 Records are filed by lifecycle state (owner-directed 2026-06-19):
 
 - **Active** threads → this directory root (`threads/<slug>.next-session.md`).
-- **Paused** threads → [`paused/`](paused/) (`threads/paused/<slug>.next-session.md`);
+- **Paused** threads → `paused/` (`threads/paused/<slug>.next-session.md`);
   reactivation is owner-directed. On reactivation, `git mv` the record back to the root.
-- **Retired / completed** threads → [`retired/`](retired/)
+- **Retired / completed** threads → `retired/`
   (`threads/retired/<slug>.next-session.md`); retained as continuity history, never deleted.
 
 The repo-continuity `§ Active Threads` / `§ Paused Threads` tables and link

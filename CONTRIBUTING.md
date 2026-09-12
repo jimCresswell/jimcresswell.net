@@ -36,7 +36,7 @@ Assumes TDD familiarity. For the full philosophy and rules, see [testing-strateg
 
 - **Unit tests** (`*.unit.test.ts`) — pure functions, no mocks, no IO. Co-located with source.
 - **Integration tests** (`*.integration.test.ts`) — React components via RTL + Vitest jsdom. Co-located with source.
-- **E2E tests** (`*.e2e-ui.test.ts`, `*.e2e-api.test.ts`) — in `e2e/`. Journeys map to user stories; behaviour tests cover cross-cutting concerns (accessibility, SEO, content integrity). See [e2e/README.md](e2e/README.md) for the full test map.
+- **E2E tests** (`*.e2e-ui.test.ts`, `*.e2e-api.test.ts`) — in `e2e/`. Journeys map to user stories; behaviour tests cover cross-cutting concerns (accessibility, SEO, content integrity). See [e2e/README.md](jcdotnet/e2e/README.md) for the full test map.
 - **No global state mocking** — product code accepts configuration as parameters. If you need a mock, inject a simple fake as an argument.
 
 ## Content and editorial voice

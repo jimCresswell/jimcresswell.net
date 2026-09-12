@@ -167,9 +167,9 @@ record) rather than minting per-platform behaviours.
 - [`references/comms-landscape.md`](references/comms-landscape.md) —
   the full lane-by-lane comparison, what the channels learn from each
   other, and the analysis provenance.
-- [`../slack-watcher/SKILL-CANONICAL.md`](../slack-watcher/SKILL-CANONICAL.md)
+- `../slack-watcher/SKILL-CANONICAL.md`
   and
-  [`../talk-to-slack-watcher/SKILL-CANONICAL.md`](../talk-to-slack-watcher/SKILL-CANONICAL.md)
+  `../talk-to-slack-watcher/SKILL-CANONICAL.md`
   — the Slack-via-Watcher lane's own protocols (mantle, tenure status
   message, correspondent discipline). The comparative analysis behind
   the lane row is the 2026-08-24 Watcher estate review (leg 3),

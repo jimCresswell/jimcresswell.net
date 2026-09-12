@@ -17,8 +17,8 @@ Accepted
 
 ## Related
 
-- [PDR-020](PDR-020-check-driven-development.md)
-- [PDR-021](PDR-021-test-validity-discipline.md)
+- [PDR-020](../../../.agent/practice-core/decision-records/PDR-020-check-driven-development.md)
+- [PDR-021](../../../.agent/practice-core/decision-records/PDR-021-test-validity-discipline.md)
 - [ADR-016](../../../docs/architecture/decision-records/016-review-oriented-visual-regression-harness.md)
 
 ## Context

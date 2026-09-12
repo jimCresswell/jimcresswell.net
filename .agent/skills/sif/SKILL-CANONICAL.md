@@ -18,7 +18,7 @@ framework layer for agent-invokes-agent capability: one general doctrine,
 plus per-binding annexes that carry each concrete transport's facts at
 their stated evidence grade (probe-verified, or an explicitly labelled
 observation-grade candidate). Instruments ride Sif; Sif is not itself an instrument. The
-first instrument is [`the-codex-dialogues`](../the-codex-dialogues/SKILL-CANONICAL.md).
+first instrument is `the-codex-dialogues`.
 
 ## The two axes
 
@@ -39,7 +39,7 @@ The cell map, with the estate's instruments placed on it:
 | | One-shot | Multi-turn |
 | --- | --- | --- |
 | **Same-vendor** | expert-reviewer fleet, [`cricket`](../cognition/cricket/SKILL-CANONICAL.md), Workflow-fleet legs | named background agents via Agent + SendMessage; session forks |
-| **Cross-vendor** | Cricket Codex legs, [`codex-helper`](../codex-helper/SKILL-CANONICAL.md) | [`the-codex-dialogues`](../the-codex-dialogues/SKILL-CANONICAL.md) |
+| **Cross-vendor** | Cricket Codex legs, `codex-helper` | `the-codex-dialogues` |
 
 ## Instrument, not citizen
 
@@ -58,10 +58,10 @@ name — the record belongs to the invoking seat.
 Every Sif instrument states these six planks in its own skill; the
 framework defines what each plank must contain. The contract binds at
 adoption:
-[`the-codex-dialogues`](../the-codex-dialogues/SKILL-CANONICAL.md) is
+`the-codex-dialogues` is
 the first conforming instrument.
 [`cricket`](../cognition/cricket/SKILL-CANONICAL.md) and
-[`codex-helper`](../codex-helper/SKILL-CANONICAL.md) PRE-DATE the
+`codex-helper` PRE-DATE the
 framework and do not yet state all six planks — the cell map above
 routes to them as invocation instruments, but they are not claimed as
 six-plank-conforming; migrating them is a routed follow-on of this
@@ -124,10 +124,10 @@ authority to be obeyed.
 - A fast conscience check on priority or framing, one bounded exchange,
   same session: [`cricket`](../cognition/cricket/SKILL-CANONICAL.md).
 - Delegating a self-contained task for a result:
-  [`codex-helper`](../codex-helper/SKILL-CANONICAL.md) (`codex exec`).
+  `codex-helper` (`codex exec`).
 - A bounded multi-turn reflective dialogue that perturbs the seat's own
   stated uncertainty against a different vendor's prior:
-  [`the-codex-dialogues`](../the-codex-dialogues/SKILL-CANONICAL.md).
+  `the-codex-dialogues`.
 - Sustained collaboration with its own clock and claims: that is
   membership, not invocation — a live peer seat and, for pairwise
   dialogue, an ArcAngel channel.
@@ -136,10 +136,10 @@ authority to be obeyed.
 
 **Probe-verified.** Evidence recorded first-hand 2026-08-02 against
 the pinned `codex_cli_version` in
-[`the-codex-dialogues/probe-record.md`](../the-codex-dialogues/references/probe-record.md)
+`the-codex-dialogues/probe-record.md`
 (the record is the sole holder of the version literal; the runnable
 probe lives beside it at
-[`the-codex-dialogues/scripts/probe-codex-mcp-server.mjs`](../the-codex-dialogues/scripts/probe-codex-mcp-server.mjs)):
+`the-codex-dialogues/scripts/probe-codex-mcp-server.mjs`):
 
 - Transport: stdio MCP server via
   `codex mcp-server -c sandbox_mode=read-only -c approval_policy=never`;

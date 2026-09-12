@@ -48,7 +48,7 @@ pnpm portability:check
 pnpm subagents:check
 pnpm skills:check
 pnpm encoding:check
-pnpm machine-local-paths:check
+pnpm docs-validators:check     # reference direction, machine-local paths, markdown links, cited scripts
 ```
 
 Gates outside `check`, run when the work touches their surface:
@@ -58,7 +58,7 @@ pnpm build                      # the site and every workspace; PDF generation i
 pnpm test:e2e                   # Playwright against a production build (pre-push runs this)
 pnpm test:e2e:ui                # the same suite in Playwright's UI mode
 pnpm visual-regression-harness  # rendered-proof comparison for visual work
-pnpm check:docs                 # format + markdownlint + the docs validators
+pnpm check:docs                 # format + markdownlint + the docs validators (a subset of check)
 pnpm plan-gates:check           # plan-node gate drift
 ```
 

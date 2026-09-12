@@ -86,7 +86,7 @@ layering decisions already made implicitly by the repo structure.
   identical except where a major dependency upgrade demands intentional
   changes.
 - This plan does not retire tilts (see the completed
-  [tilt-retirement plan](../archive/tilt-retirement.plan.md)) or design graph
+  tilt-retirement plan (`archive/tilt-retirement.plan.md`, archived)) or design graph
   composition (see Track B). It can run independently of Track B.
 - `dependency-cruiser` is committed as a blocking gate in advance. Whatever
   its first run surfaces will be cleaned up in a dedicated follow-on session,

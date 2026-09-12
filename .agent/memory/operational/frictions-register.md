@@ -6,9 +6,9 @@ behaviour, candidate cure, target surface, and current status.
 
 **This is a capture surface, not an execution plan.** Items mature into:
 
-1. A line on a [`current/`](../../plans-backlog-2026-07/agent-tooling/current/) or [`future/`](../../plans-backlog-2026-07/agent-tooling/future/) plan when they
+1. A line on a `current/` or `future/` plan when they
    fit existing scope, OR
-2. A new [`current/`](../../plans-backlog-2026-07/agent-tooling/current/) or [`future/`](../../plans-backlog-2026-07/agent-tooling/future/) plan when they
+2. A new `current/` or `future/` plan when they
    justify their own work item, OR
 3. A direct fix when the cure is small and obvious enough to land in a peer
    plan's commit cycle.

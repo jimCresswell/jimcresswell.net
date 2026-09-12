@@ -91,7 +91,7 @@ surface, write the needed lifecycle or handoff update, and use transaction
 helpers plus the commit queue to make overlap visible and serializable.
 
 New shared-state writes use the
-[`collaboration-state-write-safety`][csw-plan] contract:
+`collaboration-state-write-safety` contract:
 
 - derive identity before mutation;
 - append discovery notes as immutable comms events and render the shared log;
@@ -197,7 +197,7 @@ that trust assumption breaks. The doctrinal framing lives in
 
 ## Refinement Discipline
 
-WS5 of the [multi-agent-collaboration-protocol][p] plan
+WS5 of the multi-agent-collaboration-protocol plan
 harvests evidence across at least three real parallel sessions and
 drives refinement amendments. Refinements may add, remove, or reshape
 fields:
@@ -259,6 +259,4 @@ fields:
 [respect-rule]: ../../rules/respect-active-agent-claims.md
 [consolidate-7e]: ../../skills/knowledge/consolidate-docs/SKILL-CANONICAL.md#stale-claim-audit
 [founding-pattern]: ../collaboration/parallel-track-pre-commit-gate-coupling.md
-[p]: ../../plans-backlog-2026-07/agent-tooling/current/multi-agent-collaboration-protocol.plan.md
-[csw-plan]: ../../plans-backlog-2026-07/agent-tooling/current/collaboration-state-write-safety.plan.md
 [placement-contract]: ../executive/collaboration-state-placement-contract.md

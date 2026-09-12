@@ -19,7 +19,7 @@ and its standing maintenance clauses. The closed evaluation evidence that
 earned the graduation — six observed arcs, measured benefits, and the
 worked-instance histories behind the constraints below — is conserved in
 the dated record
-[`arc-rapid-communication-evaluation-record-2026-08-03.md`](../reports/arc-rapid-communication-evaluation-record-2026-08-03.md).
+of 2026-08-03 in the source lineage, which did not travel with the transplant.
 
 ## Protocol
 

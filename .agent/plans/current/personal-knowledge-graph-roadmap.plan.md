@@ -52,7 +52,7 @@ and
 [personal-knowledge-graph-source-of-truth-design.plan.md](../active/personal-knowledge-graph-source-of-truth-design.plan.md)
 as the live graph-planning stack.
 
-[graph-metaplan.plan.md](../archive/graph-metaplan.plan.md) remains the completed reset
+`archive/graph-metaplan.plan.md` remains the completed reset
 record that established this structure.
 
 ## Strategic outcome

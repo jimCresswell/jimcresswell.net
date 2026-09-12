@@ -8,7 +8,7 @@ Accepted
 
 The reusable discipline that rendering-risk work needs blocking visual proof now
 lives in
-[`PDR-030`](../../../.agent/practice-core/decision-records/PDR-030-rendering-risk-needs-blocking-visual-proof.md).
+[ADR-022](022-rendering-risk-needs-blocking-visual-proof.md).
 This ADR remains the host-product decision about this repo's specific harness
 tooling and artefact layout.
 
@@ -146,7 +146,7 @@ unchanged.
   canonical-alias rules for the retired tilt routes
 - [ADR-021](021-canonical-only-cv-identity.md) — current canonical-only CV
   identity and reduced route policy
-- [visual-regression-harness/README.md](../../../visual-regression-harness/README.md)
+- [visual-regression-harness/README.md](../../../jcdotnet/visual-regression-harness/README.md)
   — operational usage and artefact layout
 - [docs/architecture/README.md](../README.md) — architecture overview including
   regression proofing

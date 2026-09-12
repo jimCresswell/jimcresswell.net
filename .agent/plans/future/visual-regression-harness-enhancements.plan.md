@@ -74,5 +74,5 @@ Do not pull this work back into an active plan unless:
 
 ## Related
 
-- [Completed harness plan](../archive/visual-regression-harness.plan.md)
-- [visual-regression-harness/README.md](../../visual-regression-harness/README.md)
+- Completed harness plan (`archive/visual-regression-harness.plan.md`, archived)
+- [visual-regression-harness/README.md](../../../jcdotnet/visual-regression-harness/README.md)

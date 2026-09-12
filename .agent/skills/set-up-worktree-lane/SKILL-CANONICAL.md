@@ -21,7 +21,7 @@ description: >-
 apply — [`worktree-residency`](../../rules/worktree-residency.md) (where you work and
 how residency is established), [`worktree-hygiene`](../../rules/worktree-hygiene.md)
 (lane lifecycle, the first-push draft PR, dispositions), and
-[`bot-identity-on-third-party-systems`](../../rules/bot-identity-on-third-party-systems.md)
+`bot-identity-on-third-party-systems`
 (who commits, and under whose authority). Those rules own the doctrine and the
 reasoning; this skill owns the ordered steps and the verification, because every
 defect below was found in a worktree that satisfied each rule read separately.
@@ -64,7 +64,7 @@ git worktree add <path> -b <branch> origin/<base>
 read with `git symbolic-ref --short refs/remotes/origin/HEAD` and the `origin/` prefix
 stripped, or `gh repo view <owner>/<name> --json defaultBranchRef --jq .defaultBranchRef.name`
 with the repository named — derived at the moment of use, never a literal;
-[`downstream-checkout-never-writes-upstream-surfaces`](../../rules/downstream-checkout-never-writes-upstream-surfaces.md)
+`downstream-checkout-never-writes-upstream-surfaces`
 verifies both reads), because the default branch is identity held below the tree.
 For a build-ahead lane it is the parent branch the worktree is cut from
 ([`worktree-hygiene`](../../rules/worktree-hygiene.md) §1), so the worktree carries the
@@ -87,7 +87,7 @@ detected ChatGPT Work cloud session, step 0 replaces it completely.
 
 The identity lives once in the clone's shared local config and every worktree
 inherits it (owner ruling 2026-08-04; doctrine in
-[`bot-identity-on-third-party-systems`](../../rules/bot-identity-on-third-party-systems.md)).
+`bot-identity-on-third-party-systems`).
 A new worktree therefore needs no identity step at all — only a check that what it
 inherited is right:
 
@@ -259,7 +259,7 @@ never as a local-gate result.
   platform-pinned; clause 8's pre-PR contamination check.
 - [`worktree-hygiene`](../../rules/worktree-hygiene.md) — lane lifecycle, the
   first-push draft PR clause, and §6 dispositions when the lane ends.
-- [`bot-identity-on-third-party-systems`](../../rules/bot-identity-on-third-party-systems.md)
+- `bot-identity-on-third-party-systems`
   — the identity contract this configures, and the author/committer ruling.
 - [`never-commit-to-main`](../../rules/never-commit-to-main.md) — why lane work
   starts on its own branch in its own worktree at all.

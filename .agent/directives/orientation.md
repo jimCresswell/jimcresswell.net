@@ -67,9 +67,8 @@ by correcting or graduating it, never by acting on it.
 The tier is authoritative on exactly one thing: the machine-local **binding**
 that a tracked surface deliberately declines to name, because naming it would
 be false on another machine (`principles.md` §Any User, Any Machine). Where a
-tracked rule owns the portable mapping and points here for the binding — as
-[`bot-identity-on-third-party-systems`](../rules/bot-identity-on-third-party-systems.md)
-does for which credential performs which action class — the profile supplies
+tracked rule owns the portable mapping and points here for the binding
+— the profile supplies
 the binding and nothing else.
 
 A missing profile is the expected condition, not a defect: readers proceed on

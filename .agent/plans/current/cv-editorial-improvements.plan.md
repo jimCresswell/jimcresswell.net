@@ -22,16 +22,16 @@ strategy and voice are codified in `editorial-strategy.md` and
 
 | Item                                     | Plan                                                                                                                                                                                   | Status             |
 | ---------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------ |
-| Experience & Before Oak editorial review | [experience-editorial.plan.md](../archive/experience-editorial.plan.md)                                                                                                                | Complete           |
+| Experience & Before Oak editorial review | `archive/experience-editorial.plan.md`                                                                                                                | Complete           |
 | Graph current-state audit                | [graph-current-state-audit.md](../research/graph-current-state-audit.md)                                                                                                               | Baseline           |
 | Graph roadmap                            | [personal-knowledge-graph-roadmap.plan.md](personal-knowledge-graph-roadmap.plan.md)                                                                                                   | In progress        |
 | Track A execution                        | [personal-knowledge-graph-execution.plan.md](personal-knowledge-graph-execution.plan.md)                                                                                               | Complete           |
 | Track B source-of-truth design           | [personal-knowledge-graph-source-of-truth-design.plan.md](../active/personal-knowledge-graph-source-of-truth-design.plan.md) — single canonical CV view; tilt + A/B deferred door-open | In progress        |
 | Track B B1 layer map                     | [graph-source-of-truth-layer-map.md](../research/graph-source-of-truth-layer-map.md)                                                                                                   | Complete           |
-| Graph metaplan                           | [graph-metaplan.plan.md](../archive/graph-metaplan.plan.md)                                                                                                                            | Complete           |
-| Visual regression harness                | [visual-regression-harness.plan.md](../archive/visual-regression-harness.plan.md)                                                                                                      | Complete           |
+| Graph metaplan                           | `archive/graph-metaplan.plan.md`                                                                                                                            | Complete           |
+| Visual regression harness                | `archive/visual-regression-harness.plan.md`                                                                                                      | Complete           |
 | LinkedIn update                          | [linkedin-update.plan.md](linkedin-update.plan.md) — owner-active behind the private boundary; public routing and safety only                                                          | Owner-active       |
-| Tilt retirement                          | [tilt-retirement.plan.md](../archive/tilt-retirement.plan.md) — canonical-only implementation merged; ADR-021 and the reference doc preserve the decision and re-entry route           | Complete           |
+| Tilt retirement                          | `archive/tilt-retirement.plan.md` — canonical-only implementation merged; ADR-021 and the reference doc preserve the decision and re-entry route           | Complete           |
 | Tilt mechanism (future re-introduction)  | No plan — door open via preserved reference doc                                                                                                                                        | Deferred door-open |
 | Tilt content (future re-introduction)    | Depends on tilt mechanism                                                                                                                                                              | Deferred door-open |
 | A/B testing                              | No plan — no current infrastructure                                                                                                                                                    | Deferred door-open |
@@ -106,7 +106,7 @@ Cross-referencing `cv.content.json` against the public old CV website
 **Oak `start_year` was 2019 — fixed to 2020.** The earliest Oak role (Senior
 Developer, Consulting) started August 2020, per the old CV and Jim's
 confirmation. Fixed in `content/cv.content.json` and
-[front-page-content.plan.md](../archive/front-page-content.plan.md).
+`archive/front-page-content.plan.md`.
 
 No other public CV fact was changed as part of this correction.
 
@@ -114,7 +114,7 @@ No other public CV fact was changed as part of this correction.
 
 ## Resolved: Capabilities rewritten with concrete anchors
 
-**Breakout plan:** [capabilities-editorial.plan.md](../archive/capabilities-editorial.plan.md) — full analysis, decision log, and final text.
+**Breakout plan:** `archive/capabilities-editorial.plan.md` — full analysis, decision log, and final text.
 
 **Decision:** Four strategic-only capabilities replaced with five blended capabilities. Each combines a strategic thread with a concrete, verifiable anchor. Capabilities section moved from after Foundations to after Positioning (most prominent position). Links to public repo, Oak's open API, published research, and the `.agent` directory are inline in capability text. See the breakout plan for the full editorial rationale and decision history.
 
@@ -122,7 +122,7 @@ No other public CV fact was changed as part of this correction.
 
 ## Resolved: Meta & SEO content audit
 
-Completed in a dedicated plan: [meta-seo-content-audit.plan.md](../archive/meta-seo-content-audit.plan.md).
+Completed in a dedicated plan: `archive/meta-seo-content-audit.plan.md`.
 That historical slice fixed the then-current `meta.summary`, expanded
 `knowsAbout` (20 → 34 items), refined the `Occupation`, and added a dedicated
 front page description. ADR-020 subsequently removed `meta.summary` and made
@@ -137,7 +137,7 @@ governed by `editorial-guidance.md`.
 
 ## Resolved: Experience and Before Oak editorial review
 
-**Breakout plan:** [experience-editorial.plan.md](../archive/experience-editorial.plan.md) — all 21 items complete. Research rewritten (model fitting, Galaxy Zoo, CMB observational test, colour-age disproof), Applied Exploration connected to the open web with collaborative credit, voice/framing fixes (passive → agentic, justificatory → confident), and capabilities consistency (Cap 2 OGL framing, Cap 4 vision not standards). Quality gates pass.
+**Breakout plan:** `archive/experience-editorial.plan.md` — all 21 items complete. Research rewritten (model fitting, Galaxy Zoo, CMB observational test, colour-age disproof), Applied Exploration connected to the open web with collaborative credit, voice/framing fixes (passive → agentic, justificatory → confident), and capabilities consistency (Cap 2 OGL framing, Cap 4 vision not standards). Quality gates pass.
 
 ---
 
@@ -153,13 +153,13 @@ governed by `editorial-guidance.md`.
 
 **Track B B1 completion:** [graph-source-of-truth-layer-map.md](../research/graph-source-of-truth-layer-map.md) — completed ownership and topology note. Track B now continues from B2 composition work.
 
-**Graph metaplan:** [graph-metaplan.plan.md](../archive/graph-metaplan.plan.md) — completed reset record for how the graph stack was reframed and adopted.
+**Graph metaplan:** `archive/graph-metaplan.plan.md` — completed reset record for how the graph stack was reframed and adopted.
 
-**Harness plan:** [visual-regression-harness.plan.md](../archive/visual-regression-harness.plan.md) — completed proof record for the historical PKG regression work.
+**Harness plan:** `archive/visual-regression-harness.plan.md` — completed proof record for the historical PKG regression work.
 
 **Durable design decisions:** [ADR-014](../../../docs/architecture/decision-records/014-entity-model-design.md) and the related ADRs in `docs/architecture/decision-records/`.
 
-**Historical references:** [personal-knowledge-graph-phase-model.plan.md](../archive/personal-knowledge-graph-phase-model.plan.md) and [personal-knowledge-graph-design-notes.md](../research/personal-knowledge-graph-design-notes.md) remain useful as archive records, but they are no longer the live planning model.
+**Historical references:** `archive/personal-knowledge-graph-phase-model.plan.md` and [personal-knowledge-graph-design-notes.md](../research/personal-knowledge-graph-design-notes.md) remain useful as archive records, but they are no longer the live planning model.
 
 Use the audit plus the adopted roadmap and track plans for current graph
 framing. This parent plan keeps only the editorial context and plan map.
@@ -171,7 +171,7 @@ framing. This parent plan keeps only the editorial context and plan map.
 - **Grounded Practice section** — keep as-is (distinctive and human).
 - **Tilts underused** — the live tilt mechanism is retired by ADR-021; any
   future re-entry starts from the preserved reference and a new requirement.
-- **Front page** — complete (see [completed plan](../archive/front-page-content.plan.md)).
+- **Front page** — complete (see completed plan (`archive/front-page-content.plan.md`, archived)).
 
 ---
 
@@ -190,9 +190,9 @@ framing. This parent plan keeps only the editorial context and plan map.
 | Item                                         | When                                                                                                                                                                                                                                                                                                                                                                                                              |
 | -------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | ~~Factual fix (Oak start_year 2019 → 2020)~~ | Done                                                                                                                                                                                                                                                                                                                                                                                                              |
-| ~~Capabilities (concrete additions)~~        | Done — see [capabilities-editorial.plan.md](../archive/capabilities-editorial.plan.md)                                                                                                                                                                                                                                                                                                                            |
-| ~~Meta & SEO content audit~~                 | Done — see [meta-seo-content-audit.plan.md](../archive/meta-seo-content-audit.plan.md)                                                                                                                                                                                                                                                                                                                            |
-| ~~Experience & Before Oak editorial review~~ | Done — see [experience-editorial.plan.md](../archive/experience-editorial.plan.md)                                                                                                                                                                                                                                                                                                                                |
+| ~~Capabilities (concrete additions)~~        | Done — see `archive/capabilities-editorial.plan.md`                                                                                                                                                                                                                                                                                                                            |
+| ~~Meta & SEO content audit~~                 | Done — see `archive/meta-seo-content-audit.plan.md`                                                                                                                                                                                                                                                                                                                            |
+| ~~Experience & Before Oak editorial review~~ | Done — see `archive/experience-editorial.plan.md`                                                                                                                                                                                                                                                                                                                                |
 | Graph work                                   | Continue from [personal-knowledge-graph-roadmap.plan.md](personal-knowledge-graph-roadmap.plan.md), [graph-source-of-truth-layer-map.md](../research/graph-source-of-truth-layer-map.md), and [personal-knowledge-graph-source-of-truth-design.plan.md](../active/personal-knowledge-graph-source-of-truth-design.plan.md). Track A is complete for the current publication surface; Track B Phase B2 is current. |
 
 ---

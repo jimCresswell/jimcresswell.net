@@ -18,9 +18,9 @@ workflow.
 
 | Workstream                       | Status    | Prompt                                                                                                                                                                                             | Why retained                                                  |
 | -------------------------------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
-| Personal knowledge graph Track A | Completed | [archive/personal-knowledge-graph/personal-knowledge-graph-track-a-cv-metadata-proof.prompt.md](archive/personal-knowledge-graph/personal-knowledge-graph-track-a-cv-metadata-proof.prompt.md)     | Completion record for the `/cv` metadata proof slice          |
-| Personal knowledge graph Track A | Completed | [archive/personal-knowledge-graph/personal-knowledge-graph-track-a-external-validation.prompt.md](archive/personal-knowledge-graph/personal-knowledge-graph-track-a-external-validation.prompt.md) | Completion record for the external-validator boundary closure |
-| Tilt retirement                  | Completed | [archive/cv/tilt-retirement.prompt.md](archive/cv/tilt-retirement.prompt.md)                                                                                                                       | Completion record; ADR-021 owns current route truth           |
+| Personal knowledge graph Track A | Completed | `archive/personal-knowledge-graph/personal-knowledge-graph-track-a-cv-metadata-proof.prompt.md`     | Completion record for the `/cv` metadata proof slice          |
+| Personal knowledge graph Track A | Completed | `archive/personal-knowledge-graph/personal-knowledge-graph-track-a-external-validation.prompt.md` | Completion record for the external-validator boundary closure |
+| Tilt retirement                  | Completed | `archive/cv/tilt-retirement.prompt.md`                                                                                                                       | Completion record; ADR-021 owns current route truth           |
 
 ## Archive
 

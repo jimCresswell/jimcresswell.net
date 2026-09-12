@@ -238,3 +238,13 @@ fixes; both under the owner's "no errors, no warnings" bar.
 - **Measure the delta before planning it.** `git diff --stat <ancestor> <pin>` on the machinery
   paths took seconds and sized the castr job; instance 1 planned from file counts and guessed
   hours, and the owner rejected the guess.
+- **The link repair is one referential-integrity pass, and it is cheap once classified.** 418
+  broken links closed in about an hour, first-hand: 243 by regenerating one generated index
+  from the (empty) local corpus; 50 archive links by one regex (the validator treats archive as
+  non-live, so the cure is plain text naming the node); about 25 moved targets by `sed`; about
+  90 lineage-only citations by a line-scoped script after reading each line; and two lineage
+  methodology docs imported from the pin instead of removing five citations to them. Rule that
+  held: a record number that survives a transplant is checked by title at the target, and a
+  lineage-only citation is removed (the sentence reworded to stand alone), never re-pointed.
+  Next time: run the link validator at the end of every phase, and treat a generated index
+  with a lineage corpus behind it as a generator run, not a link list.

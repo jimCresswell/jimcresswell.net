@@ -92,7 +92,7 @@ editing which file right now" / live coordination → **local state
 
 **Invariant: only local state (`.agent/state/`) is git-ignored; memory and
 repo state are tracked.** This is the existing boundary, not a new decision:
-[ADR-203](../../docs/architecture/architectural-decisions/203-state-tier-process-and-archive-move.md)
+the state tier's own contract (`.agent/state/README.md`)
 establishes `.agent/state/collaboration/` as untracked-by-design, and
 [PDR-094](../practice-core/decision-records/PDR-094-coordination-event-rotation-is-class-tiered-archive-not-delete.md)
 governs its archive-not-delete disposition. The continuity surfaces under

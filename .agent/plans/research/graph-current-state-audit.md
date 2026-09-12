@@ -201,7 +201,7 @@ graph-derived and to adopt the new two-track structure with Track A first.
 
 ## Related documents
 
-- [graph-metaplan.plan.md](../archive/graph-metaplan.plan.md)
+- `archive/graph-metaplan.plan.md`
 - [personal-knowledge-graph-roadmap.plan.md](../current/personal-knowledge-graph-roadmap.plan.md) — adopted roadmap authority
 - [graph-publication-consumer-and-proof-model.md](graph-publication-consumer-and-proof-model.md) — Track A Phase A1 consumer, channel, and proof authority
 - [graph-publication-output-audit.md](graph-publication-output-audit.md) — Track A Phase A2 output, proof-gap, and prioritisation audit

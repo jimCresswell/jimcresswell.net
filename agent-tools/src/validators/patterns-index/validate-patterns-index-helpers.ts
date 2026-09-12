@@ -147,7 +147,11 @@ export function renderPatternIndex(entries: readonly PatternEntry[]): string {
     const lines = group.map(renderEntryLine).join('\n');
     return `### ${categoryLabel(category)} (${String(group.length)})\n\n${lines}`;
   });
-  return `${PATTERN_INDEX_HEADING}\n\n${sections.join('\n\n')}\n`;
+  const body =
+    sections.length === 0
+      ? '*No repo-local pattern instances yet; the index fills as pattern files are authored here.*'
+      : sections.join('\n\n');
+  return `${PATTERN_INDEX_HEADING}\n\n${body}\n`;
 }
 
 /**

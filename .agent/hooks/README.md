@@ -243,8 +243,7 @@ in `policy.json`.
 
 The Codex CLI observation pinned in `policy.json` documents stable session,
 subagent, tool/approval, compaction, prompt, and stop lifecycle families. The
-version-pinned event list and evidence boundary live in the
-[Codex CLI capability catalogue](../reports/agentic-engineering/codex-cli-agentic-capability-catalogue-2026-07-25.md).
+version-pinned event list and evidence boundary live in the Codex CLI documentation.
 Availability upstream is not activation here. In particular, hosted tools such
 as Web Search are outside the general local-function hook path.
 

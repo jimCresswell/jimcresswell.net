@@ -96,17 +96,11 @@ If answers 1 and 3 differ, name by answer 1 and document answer 3 as packaging.
 
 ## Related Doctrine
 
-- [ADR-189][adr-189-vocab] ratifies this taxonomy as the repo's
-  decision-of-record.
+- The audience-led capability taxonomy was ratified in the source lineage; this
+  repository carries it by adoption.
 - [PDR-051](../../practice-core/decision-records/PDR-051-vendor-agnostic-skills-standardisation.md)
   owns platform skill standardisation and adapter mechanics.
 - [PDR-010](../../practice-core/decision-records/PDR-010-domain-specialist-capability-pattern.md)
   owns specialist capability triplets and agent classification.
-- [ADR-125](../../../docs/architecture/architectural-decisions/125-agent-artefact-portability.md)
+- PDR-009 (canonical-first cross-platform architecture)
   owns the canonical content / platform adapter model.
-- [Curriculum Tools, Guidance and Playbooks][curriculum-tools] owns the current
-  deterministic guidance, playbook, and command-registry vocabulary for
-  curriculum-facing MCP surfaces.
-
-[adr-189-vocab]: ../../../docs/architecture/architectural-decisions/189-audience-led-agent-capability-taxonomy.md
-[curriculum-tools]: ../../../docs/governance/curriculum-tools-guidance-and-playbooks.md

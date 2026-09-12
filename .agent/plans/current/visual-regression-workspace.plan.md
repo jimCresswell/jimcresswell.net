@@ -37,7 +37,7 @@ stays in `current/` until the repo-wide primary focus changes.
 Under Sequence R this child creates `pnpm-workspace.yaml` only if its extraction
 gate passes and no earlier workspace exists. Under Sequence A it consumes the
 workspace established by
-[Optional App Relocation](../archive/optional-app-relocation.plan.md). It never moves the
+Optional App Relocation (`archive/optional-app-relocation.plan.md`, archived). It never moves the
 application.
 
 ## Outcome, impact, value mechanism, and proof

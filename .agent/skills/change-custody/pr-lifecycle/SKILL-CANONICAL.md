@@ -18,7 +18,7 @@ plan (owner-requested). Operationalises
 composes with the [`commit` skill](../commit/SKILL-CANONICAL.md) (which owns
 landing commits), [`worktree-hygiene`](../../../rules/worktree-hygiene.md) (which
 owns the branch/worktree lifecycle around the PR), and the
-[`sonarqube-mcp-instructions`](../../../rules/sonarqube-mcp-instructions.md)
+[`review-feedback-defaults-to-triage`](../../../rules/review-feedback-defaults-to-triage.md)
 per-finding discipline. Every gate constraint here inherits
 `never-disable-checks` and `all quality gates blocking, always`.
 
@@ -414,7 +414,7 @@ select(.conclusion=="failure")'`), never from the `--log-failed` tail — an
   Phase 3 harvest is the authoritative read on every wake, and extending
   pr-watch to the full compound floor is tracked as the
   `ws6-pr-watch-compound-floor` item in
-  [`pr-merge-readiness-discipline.plan.md`](../../../plans-backlog-2026-07/agent-tooling/current/pr-merge-readiness-discipline.plan.md).
+  `pr-merge-readiness-discipline.plan.md`.
   Passing checks alone are not green — an
   unresolved thread blocks merge-readiness just as hard. The Phase 3 GraphQL
   harvest remains the authoritative read for which threads and what they say.
