@@ -1,9 +1,9 @@
 ---
 name: Bug report
 about: Report a defect with reproduction steps and expected behaviour
-title: "[Bug] "
+title: '[Bug] '
 labels: bug
-assignees: ""
+assignees: ''
 ---
 
 ## Summary

@@ -46,6 +46,95 @@ Recorded as inputs, not yet a ratification of this plan.
 Those three each expand scope. See [Execution](#execution) for the restated phasing; the
 mechanical transplant is still about an hour, but it is now one phase of four.
 
+## Amendment 2026-09-12 — transplant started (owner) — state and corrected frame
+
+**Owner corrections to the first evaluation.** Three things I reported as problems are not:
+
+- **Workspace count.** Ruling 5 said two; seven were required because `agent-tools` depends on
+  five `@engraph/*` tooling packages via `workspace:*`. That is the outcome, not a tension.
+  `agent-tools` transplants at **full scope**.
+- **Dangling adapters.** `.claude/`, `.agents/`, `.cursor/`, `.codex/` are **built artefacts**.
+  They point at `.agent/` paths that moved because they have not been rebuilt yet, and they will
+  not be rebuilt until the semantic merge below has run. Expected state, not error.
+- **`.agent/` needing work.** A next step, not a defect.
+
+**End state (owner-set).** `.agent-original/` is **gone**, and every piece of unique value in it
+is preserved inside the updated `.agent/`. That is the acceptance test for the merge phase.
+
+**Oak references (owner-set).** Where "Oak" names the **organisation** in migrated files, replace
+with **Engraph**. Where it is more specific, decide case by case. There must be no Oak as package
+name or code origin anywhere in this repo; the CV content is the only legitimate mention.
+
+### State at evaluation
+
+Branch `feat/monorepo`. Site moved to `jcdotnet/` (untracked). OCE `.agent/` copied in wholesale
+(staged). Old Practice preserved as `.agent-original/` — all 14 preserve rows verified present.
+`agent-tools/` and `tooling/*` copied and re-scoped to `@engraph/*`. Index: 747 tracked at HEAD →
+11,732 staged, ~1.98M insertions.
+
+**Semantic conflict residue from #47 (one file).**
+`.agent-original/prompts/session-continuation.prompt.md` is two versions concatenated —
+duplicate `## Current focus` and `## Other live threads`, contradicting on the primary workstream
+(LinkedIn-current vs Track-B-primary), on tilt retirement (in progress vs complete), and on
+workspace state. The napkin merged correctly (rotated + Ginger entry, 132 lines).
+`linkedin-update.plan.md` is clean. This file is the first semantic-merge target.
+
+**Index hygiene (before any commit).** No root `.gitignore` — it moved into `jcdotnet/`. Staged
+as a result: `agent-tools/node_modules/` (6,154), `agent-tools/dist/` (4,676),
+`.agent/.logs/statusline.log` ×5, `.agent/state/`, `.agent/operator-local/`. Root `.gitignore`
+from OCE's as base → `git reset` → restage.
+
+**OCE corpus copied in** (~4,400 of ~4,500 staged `.agent/` files; owner confirms deletable):
+`plans-refounding` 705 · `plans-backlog-2026-07` 649 · `plans-old-archive` 593 · `reports` 527 ·
+`memory` 521 (OCE content — structure only is wanted) · `experience` 434 · `research` 411 ·
+`plans` 148 (templates + schema only) · `analysis` 38 · `archive` 26 · `proposals` 15 ·
+`milestones` 5 · `state` 14.
+
+**Root/workspace placement to correct.** Into `jcdotnet/` but belong at root (OCE keeps them at
+root): `.gitignore`, `README.md`, `LICENSE`, `LICENSE-CONTENT`, `prettier.config.ts`,
+`eslint.config.ts`, and this `docs/` directory. Left at root but belong with the site:
+`__snapshots__/` (2 pre-migration JSON files, referenced nowhere — move or delete),
+`accept-md.config.js`.
+
+### Finding 9 — Oak reference load in `agent-tools` + `tooling`, by shape
+
+Measured across `agent-tools/{src,tests,config}`, `tooling/`, `pnpm-workspace.yaml`,
+`turbo.json`, excluding `node_modules` and `dist`:
+
+| Shape                              | Files | Hits  | Treatment                          |
+| ---------------------------------- | ----- | ----- | ---------------------------------- |
+| `<upstream-scope>/` scope          | 465   | 1,102 | **Split by target** — see below    |
+| `oak-open-curriculum-ecosystem`    | 37    | 110   | Org → mechanical rename            |
+| `Oak National` / `oaknational.`    | 12    | 41    | Org → mechanical rename            |
+| `oak-curriculum-mcp`               | 34    | 200   | Product-specific → case by case    |
+| `thenational.academy`              | 10    | 42    | Product-specific → case by case    |
+| `\boak\b` (lowercase, prose/paths) | 183   | 1,440 | Clusters in the seam modules below |
+
+**The `<upstream-scope>/` split is decidable mechanically.** `agent-tools/package.json` already
+declares only `@engraph/result`, `@engraph/safe-path`, `@engraph/type-helpers`. Source still
+imports `<upstream-scope>/result` (409), `<upstream-scope>/type-helpers` (29), `<upstream-scope>/agent-tools`
+(44), `<upstream-scope>/workspace-config` (27), `<upstream-scope>/eslint-plugin-standards` (17) — targets
+that **exist here** as `@engraph/*` → rename. It also references `<upstream-scope>/sdk-codegen` (78),
+`curriculum-sdk` (38), `oak-design-{assets,ink,tokens,system,react}` (~175), `design-tokens-core`
+(28), `posthog-node` (27), `oak-search-sdk` (21) — targets that **do not exist here** → the code
+importing them is excised, not renamed. The build is broken until this pass runs.
+
+### Finding 10 — OCE domain-seam defect (report upstream)
+
+Owner rule: there should be no curriculum content in `agent-tools`; if there is, OCE has a seam
+problem. There is. 71 of 1,177 `agent-tools/src` files match curriculum vocabulary, and four
+modules are OCE product code living inside the Practice tooling package:
+
+| Module                            | Files   | Lines       |
+| --------------------------------- | ------- | ----------- |
+| `mcp-content-current-source`      | 71      | 8,330       |
+| `mcp-conformance`                 | 23      | 2,691       |
+| `mcp-content-workspace`           | 18      | 2,602       |
+| `under-the-hood-content-generate` | 8       | 917         |
+| **Total**                         | **120** | **~14,540** |
+
+Treatment: excised here. Nothing is reported back to OCE (owner ruling, 2026-09-12).
+
 ---
 
 ## Problem frame
@@ -113,7 +202,7 @@ and where it must not" boundary separating narrative voice from builder-precisio
 
 ### Finding 5 — OCE's validators cannot travel; ours are load-bearing
 
-OCE's live in `@oaknational/agent-tools`, a pnpm **workspace package**. This is a single-package
+OCE's live in `<upstream-scope>/agent-tools`, a pnpm **workspace package**. This is a single-package
 repo, so they cannot be copied. Local standalone equivalents in `scripts/` do the same jobs under
 the same names, each with unit tests:
 
@@ -293,22 +382,22 @@ substrate), `prompts/` (66 vs 8), `roles/`, `setup/`, `claude-harness-integratio
 Adapters are **generated**, not hand-written — OCE exposes `portability:fix`. That collapses
 ~800 adapter files across six platforms into a command, and is the single largest saving available.
 
-### Phases and estimate
+### Phases and estimate (revised after transplant start)
 
-| Phase                           | Work                                                                                                                                                                                                             | Estimate    |
-| ------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| **1 — Monorepo**                | Turbo + pnpm; `jcdotnet` + `@engraph/agent-tools`; move validators; Vercel root-directory change proved on preview                                                                                               | 2–3 h       |
-| **2 — Mechanical transplant**   | PDR-030 → ADR; tag pre-state; copy 268 clean files; install memory model; restore preserve set; `-reviewer` → `-expert`; run `portability:fix`                                                                   | 1–2 h       |
-| **3 — Antigen adaptation**      | 257 files. Tier A scriptable (PDR host-local sections, path/name renames) ~140; Tier B real judgement (skills bound to OCE substrate — comms CLI, plan-node estate, Linear) ~85; Tier C reject as OCE-domain ~30 | 6–10 h      |
-| **4 — Rules triage** (ruling 4) | 126 rules at content grain, adopt/adapt/reject with written rationale. The 8 name-shared rules are 97–100% novel — different rules, no free duplicates                                                           | 5–7 h       |
-| **5 — Directives merge**        | Per-section merge of `principles`, `testing-strategy`, `AGENT.md` (Finding 7)                                                                                                                                    | 2–3 h       |
-| **6 — Validators + fitness**    | Re-point the five validators at the new structure; resolve fitness metrics across ~600 newly-governed files                                                                                                      | 4–6 h       |
-| **7 — Index + audits**          | Rebuild `practice-index.md` and local READMEs; four-audit close including cohesion                                                                                                                               | 3–5 h       |
-|                                 | **Total**                                                                                                                                                                                                        | **23–36 h** |
+| Phase                                               | Work                                                                                                                                                                                                                                                                                                                                                           | Estimate    |
+| --------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| **1 — Monorepo scaffold**                           | Done in outline: 7 workspaces, `@engraph/*` scope, site in `jcdotnet/`. Remaining: root `package.json` scripts, turbo wiring, husky, Vercel root directory                                                                                                                                                                                                     | 2–3 h       |
+| **2 — Index hygiene + corpus removal**              | Root `.gitignore`; reset/restage; delete the ~4,400 OCE corpus files from `.agent/`; correct root/workspace file placement                                                                                                                                                                                                                                     | 1–2 h       |
+| **3 — Oak → Engraph scrub** (Finding 9)             | Mechanical: org-shaped renames + `<upstream-scope>/*` → `@engraph/*` where the target exists. Case by case: `oak-curriculum-mcp`, `thenational.academy`. Excise: the four seam modules (Finding 10) and every import of a package that does not exist here. Rebuild `agent-tools` green                                                                        | 5–8 h       |
+| **4 — Semantic merge** `.agent-original` → `.agent` | Per OCE `semantic-merge`: concept-level, not line-level. 255 files (excl. `reference-local`). Fix the doubled continuation prompt first. Numbering collision PDR-030 → local ADR per PDR-049. Reference cascade for every moved path. Emit as a reviewable diff; verdict "no _known_ invariant violated", never "complete". **Then delete `.agent-original/`** | 6–9 h       |
+| **5 — Rebuild**                                     | `portability:fix` regenerates adapters against the merged `.agent/`; validators re-pointed; `-expert` rename lands here as part of the rebuild                                                                                                                                                                                                                 | 2–3 h       |
+| **6 — Rules triage** (ruling 4)                     | All 126 OCE rules at content grain                                                                                                                                                                                                                                                                                                                             | 5–7 h       |
+| **7 — Directives merge + index + audits**           | Per-section merge of `principles`, `testing-strategy`, `AGENT.md`; rebuild `practice-index.md`; four-audit close incl. cohesion                                                                                                                                                                                                                                | 5–8 h       |
+|                                                     | **Total**                                                                                                                                                                                                                                                                                                                                                      | **26–40 h** |
 
-Roughly **6–10 sessions**. The estimate's variance lives almost entirely in Phase 3 Tier B and
-Phase 6: skills that depend on OCE substrate (comms CLI, worktree lanes, the plan-node estate,
-Linear) either get adapted, get stubbed, or arrive inert.
+Phase 3 grew from the first estimate because `agent-tools` is full scope (owner ruling) and
+carries the seam modules. The semantic merge is a new named phase — it was implicit before and
+is now the phase whose acceptance test is owner-set.
 
 **The shadow-layer risk.** Taking OCE-substrate-dependent skills as-is and letting them sit inert
 would cut ~4 h from Phase 3 — and is precisely what PDR-005 warns against: _"a permanent shadow
@@ -318,8 +407,69 @@ exists to prevent it. Every such skill therefore gets an explicit state, never s
 **Framing.** Per
 [PDR-072](../../.agent/practice-core/decision-records/PDR-072-knowledge-curation-as-autonomic-learning.md),
 this is Practice-substrate output, not overhead — it changes the conditions under which all
-subsequent work in this repo is done. It is still 23–36 hours, and that is the owner's call to
-size.
+subsequent work in this repo is done. The owner rejected the hour-count estimate as inflated; the
+first hour's actual throughput is recorded in §Hour 1 below.
+
+### Phase 8 — Harness integration (added 2026-09-12; not yet brought over)
+
+A fourth layer the three-layer model missed: the wiring that binds Practice doctrine to the
+platform runtimes and CI. Practice machinery, outside `.agent/`, not generated. Five agent-tools
+validators fail today for exactly this absence. Bring over from OCE, adapted:
+
+| Surface                    | Items                                                                                                                                                                                                                                                                                                   | Verdict                                                                                |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| Claude hooks + statusline  | `.claude/hooks/{run-pretooluse-guard,practice-session-identity,plan-gate-drift-alert}.mjs`, `_lib/log-hook-errors.sh`, `sonar-secrets/*`, `.claude/scripts/statusline-identity.mjs`; `settings.json` `hooks` (SessionStart / PreToolUse / UserPromptSubmit), `statusLine`, `skillListingBudgetFraction` | Bring over                                                                             |
+| Codex / Cursor hooks       | `.codex/hooks/practice-session-identity.mjs`; `.cursor/hooks.json`, `.cursor/hooks/*session-identity.mjs`                                                                                                                                                                                               | Bring over                                                                             |
+| `.agent/hooks/policy.json` | Overwritten by the local pre-transplant copy during the merge; lacks `blocked_patterns`, `platform_support`, `machine-local-path`                                                                                                                                                                       | Restore OCE's, merge local additions                                                   |
+| Husky                      | `commit-msg`, `prepare-commit-msg`, `pre-merge-commit`, `pre-rebase`, `applypatch-msg`, `refuse-commit-on-main.sh`                                                                                                                                                                                      | Bring over                                                                             |
+| CI                         | `ci.yml`, `codeql.yml`, `dependency-review.yml`, `release.yml`, `preview-serves.yml`, `actions/setup`, `codeql-config.yml`, `merge-bot.json.example`                                                                                                                                                    | Bring over, adapted (`check-ci-parity` checks `check:ci` against `ci.yml`)             |
+| CI (reject / case by case) | `mcp-conformance-unattended.yml` — drop; `upstream-carrier.yml`, `upstream-mirror.yml` — only if this repo pulls OCE upstream                                                                                                                                                                           | —                                                                                      |
+| Root config                | `.gitleaks.toml`, `.dependency-cruiser.mjs`, `knip.config.ts`, `commitlint.config.mjs`, `.releaserc.mjs`, `.nvmrc`, `.gitattributes`, `.prettierrc.json`, `.markdownlint.json`, `tsdoc.json`, `.cursorignore`, `.mcp.json.example`, `.sonarcloud.properties`                                            | Bring over; reconcile with `jcdotnet`'s own gitleaks/knip/prettier; Sonar key is local |
+| Root docs                  | `SECURITY.md`, `CODE_OF_CONDUCT.md`, `skills.md`                                                                                                                                                                                                                                                        | Bring over. `VISION`, `BRANDING`, `ATTRIBUTION` are Oak — no                           |
+| Gemini                     | 20 `.gemini/commands/review-*.toml` + settings, `GEMINI.md`                                                                                                                                                                                                                                             | **Owner decision**: adopt the platform or reject the surface                           |
+| Small                      | `.claude-plugin/marketplace.json`, `.vscode/extensions.json`, `runtime-only-scripts/README.md`                                                                                                                                                                                                          | Bring over                                                                             |
+| Statusline mark            | `agent-tools/src/claude/logo.ts` glyph art is the upstream acorn (a brand mark); replace with a mark for this estate or default the style to `none`                                                                                                                                                     | Decide with the statusline                                                             |
+| Drop                       | `.design-sync/` (Oak design system), `.cursor/plans/*` (OCE plan records)                                                                                                                                                                                                                               | —                                                                                      |
+
+Acceptance: `validate-claim-freshness`, `validate-pretooluse-guard-routing`, `validate-check-ci-parity`,
+`validate-no-machine-local-paths` and `smoke:pre-tool-use-dispatch` pass.
+
+### Owner re-sequencing (2026-09-12, round 3)
+
+1. **Directives merge** first — it helps everything.
+2. **Rules triage** — bring over only relevant rules.
+3. **Harness integration** (Phase 8).
+4. **Re-evaluate** before anything further.
+
+Standing rule for this work: any document whose frontmatter no longer matches a valid schema
+(plan-node, skill, directive, fitness) is updated to a valid schema when touched; the 39 legacy
+plan files are the known batch.
+
+### Directives merged; fifth surface found (2026-09-12, evening)
+
+- `principles.md`: OCE structure; local sections inserted at role positions (value traceability,
+  type safety, testing bullets, CSS and accessibility, documentation bullets, site gate sequence);
+  Cardinal Rule, Architectural Model and Layer Role Topology rewritten for this repo.
+- `testing-strategy.md`: tooling corrected; §Site Workspace Conventions added.
+- `AGENT.md`: rewritten on OCE's structure with this repo's context, roster lanes, content-work
+  section, commands and structure.
+- **Fifth surface — the Practice documentation layer.** Directives and rules cite
+  `docs/governance/*`, `docs/engineering/*`, `docs/foundation/*` and ~20 OCE Practice-governance
+  ADRs. 29 Practice docs brought over with the org scrub (Oak-product docs rejected); product
+  residue remains in ~16 (`extending` 24, `working-with-this-repo-for-devs` 21,
+  `safety-and-security` 17 …) — a case-by-case pass. OCE ADR references were replaced with the
+  PDR carrying the same doctrine where one exists; six directive links still dangle.
+- Fitness: inherited hard/critical warnings on copied governance docs; substance not trimmed.
+
+### Owner note (2026-09-12): `docs/governance` may be a pre-Practice artefact
+
+`docs/governance/`, `docs/engineering/` and `docs/foundation/` in OCE may be artefacts of that
+repo's pre-Practice origins. Those files — and other `docs/` files — may belong, in whole, in
+part, or in concept, under `.agent/` (directives, reference, or the memory executive contracts).
+The 29 docs brought over today are therefore **provisionally placed**; the re-evaluate step
+decides each one's true home by role (PDR-014 §Knowledge artefact roles), not by the path it
+arrived on. Directive links that point into `docs/` are to be treated as pointers to be re-homed,
+not as evidence that `docs/` is the right home.
 
 ### Audits (PDR-005 four-audit close)
 
@@ -331,6 +481,182 @@ size.
 | **Cohesion**     | Transplanted directives do not contradict retained ADRs                                                          | 4 — cannot be done earlier |
 
 ---
+
+## Hour 1 — executed 2026-09-12
+
+Done, mechanically, in about an hour of agent time:
+
+- Root `.gitignore` written (OCE base, product lines dropped); index reset and restaged.
+- OCE corpus removed from `.agent/`: 4,500 → 603 files before the merge copy. Memory, plans,
+  prompts and collaboration reduced to structure + registers.
+- Root/workspace placement corrected: `README`, `LICENSE*`, `eslint.config.ts`,
+  `prettier.config.ts`, `docs/` back to root; `__snapshots__/`, `accept-md.config.js` into
+  `jcdotnet/`.
+- Oak → Engraph: org-shaped renames applied across `agent-tools`, `tooling`, workspace config;
+  the four seam modules (~14.5k lines) and their scripts excised; `<upstream-scope>/*` renamed
+  wherever the target exists as `@engraph/*`.
+- Semantic-merge copy from `.agent-original` → `.agent`: 4 local directives, 21 local skills,
+  21 local rules, 17 sub-agent templates renamed to `-expert` (frontmatter + references),
+  commands, plans, prompts, memory content into `active/`, experience, reference, hooks,
+  practice-context, state, collaboration. PDR-030 re-homed as **ADR-022**. The doubled
+  `session-continuation.prompt.md` reconciled into one authoritative version.
+- Vendor experts (`clerk`, `sentry`, `elasticsearch`) and their invoke rules dropped.
+- Root `package.json` scripts wired through turbo and `@engraph/agent-tools`; `jcdotnet`
+  gained a `type-check` alias so turbo reaches it.
+
+Judgement calls made during the copy, flagged for review rather than hidden:
+
+- **Local won on 11 same-named expert templates** (`accessibility`, `code`, `config`,
+  `design-system`, `docs-adr`, `mcp`, `react-component`, `security`, `subagent-architect`,
+  `test`, `type`). Local versions are 94–100% novel site-domain content; OCE's carried monorepo
+  and Turbo knowledge now absent from `.agent/`. A per-template merge is still owed.
+- `provenance.yml` and `practice-lineage.md` left as OCE's; the local versions remain only in
+  `.agent-original/practice-core/` pending a lineage decision (P13).
+- Historical records (napkin, experience, archived plans) were **not** rewritten for the
+  `-reviewer` → `-expert` rename; they are records.
+
+Still open after hour 1 (in priority order): `tooling/eslint` boundary rules encode OCE's
+package topology (≈470 `<upstream-scope>/` hits) — rewrite for this repo's topology or drop the
+boundary rule family; case-by-case Oak mentions in `agent-tools` tests/fixtures; `tsc` green on
+`agent-tools`; `portability:fix` adapter rebuild; P13 lineage decision; the 11 template merges;
+directives merge (Finding 7); 126-rule triage; `.agent-original/` deletion once the loss-scan
+diff has been reviewed by the owner (semantic-merge skill: the author's own scan is not a
+completeness certificate).
+
+## Owner rulings — round 2 (2026-09-12) and what was executed
+
+| Ruling                                                                                             | Executed                                                                                                                                                                                                                       |
+| -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Drop the eslint boundary family                                                                    | Rules, `configs/base.ts`, vendor-import rules, `validate-boundaries`, consumers in `result`/`safe-path`/`type-helpers`, README section — removed; plugin type-checks clean                                                     |
+| Drop Oak's MCP work; third-party MCP tools stay                                                    | Conformance smoke, plugin-binding test, `the-codex-dialogues`, Oak MCP tools spec — removed                                                                                                                                    |
+| Local `mcp` skill / `mcp-expert` is an upstream backronym defect                                   | Skill, template and invoke rule removed; cross-platform coherence stays with `subagent-architecture` + validators                                                                                                              |
+| P13: OCE's history plus an entry recording the JC merge                                            | Entry added under `practice-lineage.md` in `provenance.yml`; OCE's Fitness Functions section already carries the three-zone model, so no local section merged                                                                  |
+| Validators: agent-tools wins                                                                       | Root scripts already route there; `vital-surfaces` port and retirement of `jcdotnet/scripts/validate-*.mjs` still to do                                                                                                        |
+| Per-template merge of the 11 experts                                                               | Pending                                                                                                                                                                                                                        |
+| Owner reviews the loss-scan before `.agent-original` deletion                                      | Pending owner                                                                                                                                                                                                                  |
+| Keep `@jimcresswell/www`                                                                           | No change                                                                                                                                                                                                                      |
+| Retire `commands/` once `portability:fix` proves regeneration                                      | Done 2026-09-12 — `.agent/commands`, `.claude/commands`, `.cursor/commands` removed; `editor` usage folded into `invoke-editor`, `go` gained the continuation-prompt step                                                      |
+| Drop both third-party MCP rules (Sonar, Linear)                                                    | Removed                                                                                                                                                                                                                        |
+| Adopt the plan-node estate; rewrite `impact-areas.md`; migrate local plans later                   | Pending                                                                                                                                                                                                                        |
+| Empty the OCE-seeded registers                                                                     | `pending-graduations`, `frictions-register`, `repo-continuity` emptied to doctrine + skeleton; `open-questions` carried no entries                                                                                             |
+| Rewrite `.agent/README.md`, `HUMANS.md`, `practice-index.md` now                                   | Pending — next                                                                                                                                                                                                                 |
+| Directives merge: OCE structure, local sections at role positions                                  | Pending                                                                                                                                                                                                                        |
+| Trim `refounding`, `restatement-audit`, `corpus-analysis`, `typescript-estate`, `workspace-census` | Trimmed; five `refounding` leaf modules restored because `plan-state` (adopted) imports them                                                                                                                                   |
+| Residual Oak pass: agent does it                                                                   | Done — 0 `<upstream-scope>`, 0 "Oak", 0 Oak domains in `agent-tools`/`tooling`; rule namespace is `@engraph/`; `oak-session-identity-hook` → `session-identity-hook`, `oak-logo` → `logo` (glyph art still an acorn — replace) |
+| Leave historical records                                                                           | No rewrite of napkin/experience/archived plans                                                                                                                                                                                 |
+| Rules triage: one pass, table in this plan                                                         | Done 2026-09-12 — see §Rules triage below                                                                                                                                                                                      |
+| Vercel root directory: owner, before the PR                                                        | Pending owner                                                                                                                                                                                                                  |
+| Hooks: light commit, full push                                                                     | `.husky/pre-commit` = prettier on staged + turbo lint on changed workspaces; `.husky/pre-push` = `check:ci` + site e2e                                                                                                         |
+| Review `tsconfig.base.json` now                                                                    | Reviewed: generic compiler options only, nothing OCE-specific; kept                                                                                                                                                            |
+| 57-lesson synthesis right after `.agent-original` deletion, with quorum                            | Pending                                                                                                                                                                                                                        |
+
+### Round 2 — further drops and resolutions
+
+- Dropped as Oak product/ops domain: skills `chatgpt-report-normalisation`, `codex-helper`,
+  `slack-watcher`, `talk-to-slack-watcher`, `update-bulk-download-schema`, `update-dependencies`,
+  `update-upstream-api-spec`, `ground-truth-design`, `ground-truth-evaluation`,
+  `orientation/under-the-hood`; rules `oak-chrome-session-is-metered`,
+  `source-curriculum-content-via-api-not-cdn`, `eef-corpus-grounding`, both `notion-*`;
+  directive `editorial-tone.md`; expert `ground-truth-designer`.
+- Kept after inspection: `working-with-graphs` (generic graph doctrine — serves PKG; closes that
+  open row), `domain-craft/ui-design/*`, `orientation/working-with-agentic-ai`.
+- `validate-vital-surfaces` has no OCE equivalent; it checks the local
+  `reference/cross-platform-agent-surface-matrix.md`, which OCE supersedes with
+  `memory/executive/cross-platform-agent-surface-matrix.md` + `validate-portability`. Verdict:
+  retire the local validator and matrix once `portability:check` passes against OCE's matrix.
+- `.agent/README.md` and `HUMANS.md` rewritten for this repo; `practice-index.md` rewritten from
+  the live inventory.
+
+### Validators and adapters after round 2
+
+- `pnpm portability:check` **passes**: 51 canonical skills, 131 canonical rules, 131 Cursor
+  triggers, 131 Claude rules, 131 `.agents` rules. `portability:fix` regenerated rules/skills
+  adapters; 117 Cursor triggers and 80 expert wrappers were scripted (copied from OCE or from
+  HEAD with the `-expert` rename); `RULES_INDEX.md` generated from `.agent/rules/`.
+- `pnpm subagents:check`: 175 issues in four classes, all the adapter/template **contract**
+  (unrecognised `tools`/`readonly` frontmatter, missing template loading line, Cursor wrapper
+  reference form, missing identity/reading-discipline components). This is the pending
+  per-template merge, not new breakage.
+- `agent-tools` `build` restored (it had been dropped with the trimmed workflow scripts);
+  `tsc` clean.
+
+### Process records (owner request, 2026-09-12)
+
+- Napkin: `.agent/memory/active/napkin.md` §Session 2026-09-12 — running capture of the
+  transplant, mistakes and patterns.
+- [`.agent/reports/practice-transplant/efficiency-guidance.md`](../../.agent/reports/practice-transplant/efficiency-guidance.md)
+  — how to do the next transplant efficiently; graduation target: PDR-005 amendment or runbook.
+- [`.agent/reports/practice-transplant/practice-as-installable-thing.md`](../../.agent/reports/practice-transplant/practice-as-installable-thing.md)
+  — concept-exploration of packaging the Practice; status provisional; five proposals with
+  falsifiers.
+
+State after round 2: 2,504 files tracked; `agent-tools` and the eslint plugin type-check clean.
+
+## Rules triage — executed 2026-09-12 (ruling 4, one pass)
+
+Criterion: a rule stays when the surface it governs exists here (a skill, a CLI, a platform, a
+workflow this repo runs) or it is universal engineering or behavioural doctrine; it goes when its
+subject is an upstream product, vendor or organisational arrangement this repo does not have.
+Dated worked instances and upstream ticket keys (`MCP-393`, `PR #315`) stay as provenance; upstream
+ADR citations, paths and product names do not. Inputs: 126 OCE rules, 29 pre-transplant local rules.
+Output: **127 canonical rules** — 111 from the lineage (46 adapted, 65 unchanged beyond the org
+scrub) and 16 local (the twelve `invoke-*-expert` lanes, `napkin-always-active`, `no-skipped-tests`,
+`no-type-shortcuts`, `tsdoc-and-documentation-hygiene`). Adapters and `RULES_INDEX.md` regenerated;
+`portability:check` passes; zero broken links in `.agent/rules/`.
+
+| Rule                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | Verdict | Change                                                                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `bot-identity-on-third-party-systems`                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | Drop    | No bot identity exists here; the body is the upstream bot, its App id and Linear                                                                                                                                          |
+| `foreign-board-write-discipline`                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | Drop    | Linear/Notion boards; links to the two dropped `notion-*` rules                                                                                                                                                           |
+| `downstream-checkout-never-writes-upstream-surfaces`                                                                                                                                                                                                                                                                                                                                                                                                                                                   | Drop    | This repo is not a downstream checkout of anything                                                                                                                                                                        |
+| `generator-first-mindset`                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | Drop    | SDK codegen / OpenAPI; the derivation doctrine here is the Cardinal Rule and `schema-first-execution.md`                                                                                                                  |
+| 11 dropped in round 2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | Drop    | `invoke-{clerk,elasticsearch,mcp,sentry}-expert`, `linear-mcp-*`, `notion-*` ×2, `oak-chrome-*`, `sonarqube-mcp-*`, `source-curriculum-*`, `eef-*`                                                                        |
+| `apply-architectural-principles`                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | Merge   | Local text (value tracing, EDRs) + OCE pointer; ADR index path localised                                                                                                                                                  |
+| `follow-the-practice`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | Merge   | Local canonical chain + OCE "not a single file"                                                                                                                                                                           |
+| `tdd-for-refactoring`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | Merge   | Local "not an exception to TDD" + OCE signature-first RED                                                                                                                                                                 |
+| `lint-after-edit`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Merge   | OCE thresholds (match `@engraph/eslint`) + local gate-restart sentence                                                                                                                                                    |
+| `read-agent-md`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | Merge   | OCE worked instance + local re-read trigger                                                                                                                                                                               |
+| `subagent-practice-core-protection`                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | Merge   | OCE body + local root entry points bullet; upstream ADR block removed                                                                                                                                                     |
+| `invoke-editor`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | Merge   | Retired `/jc-editor` command usage folded in                                                                                                                                                                              |
+| `strict-validation-at-boundary`                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | Adapt   | MCP tool-surface paragraph → this repo's boundaries (content JSON, env, fetches); header → principles + typescript-practice                                                                                               |
+| `no-global-state-in-tests`, `no-conditional-tests`, `test-immediate-fails`                                                                                                                                                                                                                                                                                                                                                                                                                             | Adapt   | ADR-011/078/161 → `testing-strategy.md` §Stubs vs Fakes; `initialiseSentry` example generalised                                                                                                                           |
+| `verify-data-supports-shape-before-building`                                                                                                                                                                                                                                                                                                                                                                                                                                                           | Adapt   | Oak bulk-export instance → entity model (ADR-020); EEF/MCP failure modes generalised as lineage instances                                                                                                                 |
+| `read-nextjs-docs-before-coding`                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | Adapt   | Path → `jcdotnet/node_modules/next/dist/docs/`; Clerk instance generalised; ADR-009 proxy named                                                                                                                           |
+| `design-values-come-from-the-system`                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | Adapt   | `@engraph/oak-design-system` → `jcdotnet/app/globals.css` (`:root` + `@theme`); archive path and MCP tickets removed                                                                                                      |
+| `render-the-reference-before-reproducing`                                                                                                                                                                                                                                                                                                                                                                                                                                                              | Adapt   | DDR-009 / showcase widths → visual-regression harness (ADR-022)                                                                                                                                                           |
+| `no-warning-toleration`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | Adapt   | ADR-163 / Sentry / `sentry-expert` / CodeQL exception removed; owner ruling "no errors and no warnings of any kind" cited                                                                                                 |
+| `never-disable-checks`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | Adapt   | Rule URL → `tooling/eslint/src/rules/no-eslint-disable.ts`; widget/a11y/Sentry gates generalised                                                                                                                          |
+| `use-result-pattern`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | Adapt   | `apps/**` paths removed; `@engraph/result` named; `no-throw-statement` off by owner ruling recorded; `preserve-caught-error` named as the mechanical check (not yet enabled)                                              |
+| `identify-as-agent-under-shared-credentials`                                                                                                                                                                                                                                                                                                                                                                                                                                                           | Adapt   | Bot frame → "no bot identity here yet, owner credentials"; Notion ledger clauses removed                                                                                                                                  |
+| `capability-landing-decision-procedure`                                                                                                                                                                                                                                                                                                                                                                                                                                                                | Adapt   | "Oak skills/content", curriculum audience, WS0 report link → repo-authored, sites' content                                                                                                                                |
+| `skill-naming-and-description-quality`, `plan-body-first-principles-check`                                                                                                                                                                                                                                                                                                                                                                                                                             | Adapt   | "Oak-authored" → "repo-authored"; ADR-217 → "an ADR (upstream lineage)"                                                                                                                                                   |
+| `third-party-skills-require-security-review`                                                                                                                                                                                                                                                                                                                                                                                                                                                           | Adapt   | ADR-125 → PDR-009 / skills README; clerk/mcp-inspector adoptions → "none here"                                                                                                                                            |
+| `source-is-typescript-esm-only`                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | Adapt   | ADR-001/168 → principles §Tooling; `oak-theme.js` generalised                                                                                                                                                             |
+| `no-parallel-long-lived-branches`                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Adapt   | "Linear-ticketed" → "ticketed"; AIP gates → "as they land here"                                                                                                                                                           |
+| `no-hedging-vocabulary`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | Adapt   | Curriculum/lesson examples → content prose; ADR-078 → testing strategy                                                                                                                                                    |
+| `pr-comments-resolve-and-recheck`                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Adapt   | F-130 register pointer (register emptied) → "not yet built here"                                                                                                                                                          |
+| `coordination-branch-24h-lifetime`, `directed-routing-requires-absorption-ack`                                                                                                                                                                                                                                                                                                                                                                                                                         | Adapt   | "moved for teachers" → "for the sites"; dangling delivery-plan path removed                                                                                                                                               |
+| `register-identity-on-thread-join`                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | Adapt   | Hook/mirror/env names → `practice-session-identity.mjs`, `practice-composer-session.local.json`, `PRACTICE_AGENT_IDENTITY_OVERRIDE`; threads README copied                                                                |
+| `per-user-memory-is-a-buffer`, `present-verdicts-not-menus`, `use-monitor-for-event-driven-wake`, `executive-memory-drift-capture`                                                                                                                                                                                                                                                                                                                                                                     | Adapt   | `oak-*` skill invocations → `jc-*`                                                                                                                                                                                        |
+| `agent-state-observable`, `continuity-surface-commits-as-orphans`, `handoff-messages-self-contained`, `capture-practice-tool-feedback`, `documentation-hygiene`, `markdown-code-blocks-must-have-language`, `pre-merge-divergence-analysis`, `invoke-assumptions-expert`, `invoke-code-experts`, `invoke-doc-and-onboarding-experts-on-significant-changes`, `unattended-seats-never-prompt`, `practice-core-portability`, `verify-dont-trust`, `lockfile-rebuild-survivability`, `read-before-asking` | Adapt   | Upstream ADR citations → the local home (PDR-011/014/023/009/057, principles §Code Quality, `sub-agents/README.md`, plan-node README, `safety-and-security.md`); dangling quarantine/troubleshooting/report links removed |
+| `comms-all-channels-watcher`, `liveness-heartbeat-cron`, `ping-before-escalate`, `follow-agent-collaboration-practice`, `check-singleton-per-window`, `worktree-hygiene`, `worktree-residency`                                                                                                                                                                                                                                                                                                         | Adapt   | ADR-182/183/186/197/204 → "the `agent-tools` comms substrate" / `.agent/state/README.md`; state README, conventions and scaffolding copied                                                                                |
+| `never-commit-to-main`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | Adapt   | `.husky/refuse-commit-on-main.sh` copied and wired into `pre-commit` (rest of the hook set is Phase 8)                                                                                                                    |
+| `design-from-impact-not-the-cowpath`                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | Adapt   | One word ("curriculum/orientation" → "domain/orientation")                                                                                                                                                                |
+| 65 remaining lineage rules                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | Keep    | Unchanged beyond the org scrub — universal doctrine or substrate that exists here                                                                                                                                         |
+
+Also landed in the pass: `ATTRIBUTION.md` (documentation-hygiene §2 requires it; records the lineage);
+`OAK_*` environment variables, `OakLogoStyle`, `OAK_LOGO_ROWS` and `oak-composer-session` renamed to
+`PRACTICE_*` / `LogoStyle` / `LOGO_ROWS` / `practice-composer-session` across `agent-tools` and docs
+(tsc clean, 308 targeted tests green); `oak-logo.test.ts` → `logo.test.ts`. Left for Phase 8: the
+statusline glyph art is still the upstream acorn mark; `OAK_API_KEY` survives only in two copied
+governance docs (re-home pass); `preserve-caught-error` is not yet enabled in `@engraph/eslint`.
+
+**Duplicate skills in the Claude Code picker (owner report 2026-09-12).** The documented collision is
+`.claude/commands/jc-<name>.md` beside `.claude/skills/jc-<name>/SKILL.md` (ten names). Retiring
+`commands/` removes it. Falsifier: if the picker still lists doubles after a restart, the remaining
+suspect is `.agents/skills/` (identical `jc-*` names; discovery undocumented) and the cure is to stop
+emitting the `.claude/skills/` wrappers, since the open-standard directory would then serve both
+Claude Code and Codex.
 
 ## Falsifiers
 
@@ -346,7 +672,6 @@ size.
 
 ## Residual risk and open rows
 
-- 126 OCE rules undiffed at content grain against local TS/test discipline — Phase 3 resolves.
 - `skills/working-with-graphs` may serve PKG — unassessed.
 - `.claude/` · `.cursor/` · `.codex/` · `.agents/` adapter regeneration is coupled to P5 via
   `validate-portability`; adapter counts differ sharply (local 96/98/19/60 vs OCE 301/195/33/313).
@@ -356,6 +681,7 @@ size.
 ## Ordering note
 
 Run the transplant **before** the outstanding 57-lesson synthesis pass over
-`archive/napkin-2026-08-12.md`. The old lineage has nowhere to route those lessons — no
-`pending-graduations` register, no three-mode memory. That absence is _why_ PR #41 rotated
-unearned. The transplant creates the destination; the synthesis then has somewhere to land.
+`archive/napkin-2026-08-12.md`. The old lineage has nowhere to route those lessons —
+no `pending-graduations` register, no three-mode memory. That absence is _why_ PR #41
+rotated unearned. The transplant creates the destination; the synthesis then has
+somewhere to land.

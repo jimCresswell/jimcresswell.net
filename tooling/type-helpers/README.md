@@ -1,0 +1,57 @@
+# @engraph/type-helpers
+
+Typed helpers for own-key iteration and property access.
+
+## Why This Package Exists
+
+TypeScript deliberately widens `Object.keys()`, `Object.values()`, and
+`Object.entries()` to broad string/any-based shapes. These helpers preserve
+the caller's actual key and value types by iterating own enumerable string
+keys with runtime guards instead of assertions.
+
+The package intentionally stays small:
+
+- It supports string-key iteration and typed get/set/membership helpers.
+- It does not provide a generic `fromEntries` helper.
+- It does not abstract symbol-key enumeration.
+
+Call sites that need to rebuild objects should do so explicitly with a local
+typed builder. Call sites that genuinely need symbol handling should model
+that case directly.
+
+## Helpers
+
+| Helper                         | Replaces                       | Returns                      |
+| ------------------------------ | ------------------------------ | ---------------------------- |
+| `typeSafeKeys(obj)`            | `Object.keys(obj)`             | `Extract<keyof T, string>[]` |
+| `typeSafeValues(obj)`          | `Object.values(obj)`           | `T[keyof T][]`               |
+| `typeSafeEntries(obj)`         | `Object.entries(obj)`          | `[K, T[K]][]`                |
+| `typeSafeGet(obj, key)`        | `Reflect.get(obj, key)`        | `T[K]`                       |
+| `typeSafeSet(obj, key, value)` | `Reflect.set(obj, key, value)` | `void`                       |
+| `typeSafeHas(obj, key)`        | `Reflect.has(obj, key)`        | `key is keyof T`             |
+| `typeSafeHasOwn(obj, key)`     | `Object.hasOwn(obj, key)`      | `key is keyof T`             |
+
+**`keyof` over a union is the INTERSECTION of keys, not the union.** For a
+union type `U`, `keyof U` yields only the keys present on _every_ member, so
+key-typed operations over union-typed values silently drop members' own
+methods/properties (a proven silent failure in this repo — no compile error,
+the keys just vanish). When you need the union of keys, distribute via a
+generic helper — `type KeysOfUnion<T> = T extends unknown ? keyof T : never;`
+then `KeysOfUnion<U>`. Distribution only occurs over a bare type parameter:
+writing the conditional inline against a concrete union alias
+(`U extends unknown ? keyof U : never`) does NOT distribute and silently
+yields the intersection again.
+
+## Usage
+
+```typescript
+import { typeSafeEntries, typeSafeKeys } from '@engraph/type-helpers';
+
+const config: Readonly<{ host: string; port: number }> = {
+  host: 'localhost',
+  port: 3000,
+};
+
+const keys = typeSafeKeys(config);
+const entries = typeSafeEntries(config);
+```

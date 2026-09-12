@@ -1,9 +1,9 @@
 ---
 name: Improvement
 about: Propose an improvement with outcome, impact, and proof expectations
-title: "[Improvement] "
+title: '[Improvement] '
 labels: enhancement
-assignees: ""
+assignees: ''
 ---
 
 ## Outcome

@@ -1,6 +1,0 @@
----
-description: Route build and resilience changes through Fred
-paths: "scripts/**/*,e2e/**/*,next.config.ts,proxy.ts,package.json,pnpm-lock.yaml"
----
-
-Read and follow @.agent/rules/invoke-architecture-reviewer-fred.md

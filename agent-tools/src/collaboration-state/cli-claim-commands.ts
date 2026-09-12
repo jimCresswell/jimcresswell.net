@@ -1,0 +1,226 @@
+import { randomUUID } from 'node:crypto';
+
+import { unwrapOrThrow } from '@engraph/result';
+
+import { archiveStaleClaims } from './claims.js';
+import { areaFromOptions } from './cli-claim-areas.js';
+import { resolveOpenClaimWatcherGate, runLockedClaimOpen } from './cli-claim-open-gate.js';
+import { fail } from './cli-fail.js';
+import { resolveIdentity } from './cli-identity.js';
+import { optional, required, valueOrDefault, type Options } from './cli-options.js';
+import { type CliRuntime } from './cli-runtime.js';
+import { readActiveClaimsFile } from './state-file-readers.js';
+import { updateActiveClaimsFile, updateClaimStateFiles } from './state-io.js';
+import {
+  type CollaborationAgentId,
+  type CollaborationClaim,
+  type CollaborationStateEnvironment,
+} from './types.js';
+
+export async function openClaim(
+  options: Options,
+  env: CollaborationStateEnvironment,
+  runtime: CliRuntime,
+): Promise<string> {
+  const identity = resolveIdentity(options, env).agent_id;
+  const openedClaim = createClaimFromOptions(options, identity);
+  const activePath = required(options, 'active');
+  const nowIso = required(options, 'now');
+  // Validate the claim's `--now` at entry: a malformed value parses to NaN and
+  // would mark every peer claim stale (claimReport / liveAgentIdentities), so
+  // `hasOtherLiveAgents` returns false and the solo fast-path skips the watcher
+  // check even when other agents are live. Fail loud instead.
+  if (Number.isNaN(Date.parse(nowIso))) {
+    return fail(`claims open: --now must be a valid ISO-8601 timestamp: ${nowIso}`);
+  }
+
+  // Pre-transaction read: fresh-checkout seeding errors surface here, and a
+  // legacy flat-queue file migrates once, so the locked read is plain.
+  unwrapOrThrow(await readActiveClaimsFile(activePath));
+
+  // F-95: classify the watcher OUTSIDE the lock (3x-interval-grained, not a
+  // race, and it keeps the lock window short); claims AND queue are read
+  // INSIDE the locked operation so neither a claims-side nor a queue-only
+  // peer appearing mid-open can slip past the populated-vs-solo decision.
+  const watcherVerdict = await resolveOpenClaimWatcherGate({ options, identity, runtime });
+
+  await runLockedClaimOpen({ activePath, openedClaim, nowIso, identity, watcherVerdict });
+
+  return formatOpenClaimResult(openedClaim);
+}
+
+export function createClaimFromOptions(
+  options: Options,
+  identity: CollaborationAgentId,
+): CollaborationClaim {
+  return {
+    claim_id: valueOrDefault(options, 'claim-id', randomUUID()),
+    agent_id: identity,
+    thread: required(options, 'thread'),
+    areas: [areaFromOptions(options)],
+    claimed_at: required(options, 'now'),
+    freshness_seconds: Number(valueOrDefault(options, 'ttl-seconds', '14400')),
+    sidebar_open: false,
+    ...(optional(options, 'role') === undefined ? {} : { role: required(options, 'role') }),
+    intent: required(options, 'intent'),
+    ...(optional(options, 'notes') === undefined ? {} : { notes: required(options, 'notes') }),
+  };
+}
+
+export function formatOpenClaimResult(claim: CollaborationClaim): string {
+  return `${JSON.stringify({ claim_id: claim.claim_id, claim }, null, 2)}\n`;
+}
+
+export async function heartbeatClaim(options: Options): Promise<string> {
+  const claimId = required(options, 'claim-id');
+  const now = required(options, 'now');
+  await updateActiveClaimsFile({
+    activePath: required(options, 'active'),
+    transform: (registry) => {
+      assertClaimMatches(registry.claims, claimId);
+
+      return {
+        ...registry,
+        claims: registry.claims.map((claim) =>
+          claim.claim_id === claimId ? { ...claim, heartbeat_at: now } : claim,
+        ),
+      };
+    },
+  });
+
+  return `recorded heartbeat on claim ${claimId}\n`;
+}
+
+export async function closeClaim(
+  options: Options,
+  env: CollaborationStateEnvironment,
+): Promise<string> {
+  const activePath = required(options, 'active');
+  const closedPath = required(options, 'closed');
+  const claimId = required(options, 'claim-id');
+  const closedBy = resolveIdentity(options, env).agent_id;
+  await updateClaimStateFiles({
+    activePath,
+    closedPath,
+    transform: ({ active, closed }) => {
+      assertClaimMatches(active.claims, claimId);
+      const [remaining, closing] = splitClosingClaims(active.claims, claimId, {
+        closedAt: required(options, 'now'),
+        closedBy,
+        summary: closeSummaryFromOptions(options),
+      });
+
+      return {
+        active: { ...active, claims: remaining },
+        closed: { ...closed, claims: [...closed.claims, ...closing] },
+      };
+    },
+  });
+
+  return `closed claim ${claimId} (archived to ${closedPath})\n`;
+}
+
+export async function archiveClaims(
+  options: Options,
+  env: CollaborationStateEnvironment,
+): Promise<string> {
+  const activePath = required(options, 'active');
+  const closedPath = required(options, 'closed');
+  let archivedCount = 0;
+  await updateClaimStateFiles({
+    activePath,
+    closedPath,
+    transform: ({ active, closed }) => {
+      const next = archiveStaleClaims({
+        active,
+        closed,
+        nowIso: required(options, 'now'),
+        closedBy: resolveIdentity(options, env).agent_id,
+      });
+      archivedCount = next.closed.claims.length - closed.claims.length;
+
+      return next;
+    },
+  });
+
+  return `archived ${archivedCount} stale ${archivedCount === 1 ? 'claim' : 'claims'} to ${closedPath}\n`;
+}
+
+export function closeSummaryFromOptions(options: Options): string {
+  const summary = optional(options, 'summary');
+  const closureSummary = optional(options, 'closure-summary');
+  if (summary !== undefined && closureSummary !== undefined) {
+    return fail('claims close accepts either --summary or --closure-summary, not both');
+  }
+  if (summary === undefined && closureSummary === undefined) {
+    return fail('claims close requires either --summary or --closure-summary');
+  }
+
+  return summary ?? required(options, 'closure-summary');
+}
+
+/**
+ * Fail loudly when a write targets a claim id that matches nothing. A silent
+ * no-op on an unmatched id (e.g. a short prefix passed instead of the full
+ * UUID) leaves the registry diverged from the caller's belief; the loud
+ * failure is the cure.
+ *
+ * Runs inside the transactional transform, so no write happens on a miss.
+ * On the optimistic-retry path (`claims heartbeat`) the check re-runs per
+ * attempt: a claim closed concurrently between attempts surfaces as this
+ * no-match failure, which is the honest report of the registry's state at
+ * write time.
+ */
+export function assertClaimMatches(claims: readonly CollaborationClaim[], claimId: string): void {
+  if (!claims.some((claim) => claim.claim_id === claimId)) {
+    fail(`no active claim matches ${claimId}`);
+  }
+}
+
+function splitClosingClaims(
+  claims: readonly CollaborationClaim[],
+  claimId: string,
+  input: {
+    readonly closedAt: string;
+    readonly closedBy: CollaborationClaim['agent_id'];
+    readonly summary: string;
+  },
+): readonly [readonly CollaborationClaim[], readonly CollaborationClaim[]] {
+  const remaining: CollaborationClaim[] = [];
+  const closing: CollaborationClaim[] = [];
+
+  for (const claim of claims) {
+    if (claim.claim_id === claimId) {
+      closing.push(closeExplicitly(claim, input));
+    } else {
+      remaining.push(claim);
+    }
+  }
+  return [remaining, closing];
+}
+function closeExplicitly(
+  claim: CollaborationClaim,
+  input: {
+    readonly closedAt: string;
+    readonly closedBy: CollaborationClaim['agent_id'];
+    readonly summary: string;
+  },
+): CollaborationClaim {
+  return {
+    ...claim,
+    archived_at: input.closedAt.slice(0, 10),
+    closure: {
+      kind: 'explicit',
+      closed_at: input.closedAt,
+      closed_by: input.closedBy,
+      summary: input.summary,
+      evidence: [
+        {
+          kind: 'claim',
+          ref: claim.claim_id,
+          summary: 'Claim explicitly closed by owning session.',
+        },
+      ],
+    },
+  };
+}

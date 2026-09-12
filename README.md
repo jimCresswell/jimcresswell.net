@@ -1,10 +1,26 @@
-# jimcresswell.net
+# Jim Cresswell — personal sites
 
-Personal website and CV for Jim Cresswell. Built with Next.js 16, React 19, and Tailwind CSS 4. Deployed on Vercel.
+A monorepo for Jim Cresswell's personal sites and the agentic engineering
+Practice that builds them. The first site is
+[www.jimcresswell.net](https://www.jimcresswell.net) — personal website and CV,
+built with Next.js 16, React 19, and Tailwind CSS 4, deployed on Vercel.
 
-Live at [www.jimcresswell.net](https://www.jimcresswell.net).
+## Workspaces
 
-## Overview
+| Workspace                      | Package                | Purpose                                                                             |
+| ------------------------------ | ---------------------- | ----------------------------------------------------------------------------------- |
+| [`jcdotnet/`](jcdotnet/)       | `@jimcresswell/www`    | jimcresswell.net — site, CV, personal knowledge graph, PDF, E2E and visual proof    |
+| [`agent-tools/`](agent-tools/) | `@engraph/agent-tools` | Practice tooling: validators, adapter generation, collaboration state, commit queue |
+| [`tooling/`](tooling/)         | `@engraph/*`           | Shared packages: eslint plugin, result, safe-path, type-helpers, workspace-config   |
+
+Root commands run through Turborepo (`pnpm check`, `pnpm build`, `pnpm test`);
+site-only commands use the workspace filter, e.g.
+`pnpm --filter @jimcresswell/www dev`. The Practice itself lives in
+[`.agent/`](.agent/README.md).
+
+## jimcresswell.net
+
+### Overview
 
 A minimal, editorial-quality personal site with a front page and one canonical
 CV document. The design is calm, serious, and intentional — Inter for headings

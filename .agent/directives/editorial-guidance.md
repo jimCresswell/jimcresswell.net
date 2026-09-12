@@ -1,0 +1,201 @@
+---
+fitness_line_target: 195
+fitness_line_limit: 225
+fitness_char_limit: 15000
+fitness_line_length: 100
+split_strategy: Split by responsibility — extract pitfall examples to a separate reference, or voice register details to register-specific files
+---
+
+# Editorial Guidance
+
+This file describes the identity, positioning, voice and register constraints for Jim Cresswell's
+content. Read and internalise it before any content work — editorial changes, a future tilt
+re-entry, front page revisions, LinkedIn preparation, or any other writing that represents Jim.
+Read it alongside
+[editorial-strategy.md](./editorial-strategy.md), which governs audience, surface-specific
+composition, attention, readability, section weight and platform fit.
+
+Private source packs and analysis may exist in the ignored nested repository at
+`.agent/reference-local/editorial-private/`. Read its local README only when the editorial task
+requires that context. Never quote, summarise or identify private material on a public surface.
+
+## Voice and register
+
+**Confident, a touch joyful and mischievous, with underlying seriousness.** Content should sound
+like Jim at his most himself: someone who knows exactly who they are, not someone carefully
+calibrating a message.
+
+The front page and CV share the same voice but serve different purposes. A reader who encounters
+both should recognise the same person.
+
+**CV register** — evidential, precise, agentic, scannable. Every sentence carries weight. "I
+conceived and built" not "my work has focused on." Claims-oriented: the positioning makes abstract
+claims, the experience sections show them happening.
+
+**Front page register** — narrative, reflective, expansive, invitational. Storytelling register.
+Room for personal interests, values, openly emotional language ("fell in love with the open web"),
+ending with openness.
+
+The front page is NOT a lighter version of the CV — it is a different thing entirely. It
+communicates a flavour of who Jim is through interests and passions, not evidence-based professional
+capabilities.
+
+**Overlap** — both registers share: cosmology, published research, the open web, ecology, systems
+thinking, AI for public benefit. Where a concept appears in both, framing must be consistent.
+
+**Process note** — editorial discussions require open conversation for nuanced content decisions.
+Don't use structured question tools (checkboxes/multiple-choice) for editorial work.
+
+## Impact framing
+
+Impact means climate, ecological, and societal good — as in "impact funding", not "business impact"
+or "digital transformation impact". This is a specific community and a specific set of values. The
+default CV should speak to anyone who cares about creating lasting systemic impact, regardless of
+sector.
+
+## Founder identity
+
+Jim has a founder orientation — origination, not optimisation. He has created research projects
+(Obaith, Reforest Now) and this website, but has not taken funding or built a commercial product.
+Obaith was before Oak; Reforest Now was during early Oak. Both were genuine in-depth research
+projects, not ventures — do not overstate them. "Founder" is not an explicit
+claim on the canonical CV. If a future product requirement reopens tilts, the
+preserved tilt reference provides the former framing. On the canonical CV, the signal is
+originator energy without the word. "Zero to one" means seeing a future connection nobody else sees
+and building towards it — not starting from nothing.
+
+## Product safety, not data safety
+
+At Oak, the data is open by design — access is not constrained. The responsibility concern is
+specifically about AI products consuming the data: how to make those services reliable, safe, and
+accurate. This is product safety through technical means, not data safety. The `KNOWS_ABOUT` term
+"Responsible AI" should be understood in this light.
+
+## Collaborative credit
+
+Don't claim solo credit for collaborative work. "I designed the team structure" should be "as part
+of a group." Jim holds people to standards within guardrails, intervenes minimally, and delegates to
+lead engineers across engineering groups. Describe creating conditions, not dictating. Jim's
+self-conception is as the vision-setter and creator, not the standards administrator — frame
+leadership through vision, direction, and coaching, not through process and governance.
+
+## Commercial sensibility
+
+Jim understands leverage and what is worth building — not just as a system, but as enabling
+infrastructure that lowers the cost of innovation for others. The narrative should show product
+instinct and commercial awareness without claiming business credentials. At Oak, this is most
+visible in the SDK/MCP work: creating tools that make trusted curriculum data directly accessible to
+AI-powered services, where the benefit from what others build will far exceed the cost of creating
+them. This sensibility should be visible across all current surfaces. A future
+tilt must preserve it rather than confining it to founder-oriented framing.
+
+## Physics as silent ballast
+
+Jim's PhD in Astrophysics & Cosmology (including published research on model fitting and large-scale
+structure) provides proven intellectual prowess and rigour without having to claim them. The
+education section retroactively grounds the playful headline. The MSc (Sussex) was observational
+cosmology — CMB topology; the PhD (Portsmouth) was fitting parametric and non-parametric models to
+large galaxy surveys, combining traditional survey statistics with Galaxy Zoo citizen science data.
+These are distinct research lines — never conflate them.
+
+The research domain appears naturally in paragraph 1's list of problem spaces ("the structure of the
+early Universe") — this reads as breadth, not as an academic identity claim. Paragraph 2 uses the
+general term "research" rather than "physics" in the background list, keeping the emphasis on the
+type of work (research) rather than the discipline. The word "physics" does not appear in the
+positioning. The physicist's insight should be _in_ the thinking, not labelled.
+
+## Keyword strategy
+
+Keywords are legitimately carried by JSON-LD structured data (`knowsAbout`, `hasOccupation`) and
+OpenGraph metadata, freeing narrative content for human readers. "AI" does not need to appear in the
+canonical headline; it belongs in narrative evidence and structured data for
+machine consumers. Any future tilt-specific headline requires a new editorial decision.
+
+The concepts in `knowsAbout` should still be evidenced or alluded to in narrative content — not as
+explicit keyword placement, but as natural references that point at the same reality the structured
+data describes. The narrative and the structured data should feel like two views of the same person.
+
+## Audience and composition
+
+Audience priority, reader tasks, surface-specific composition, attention, structure, readability
+and length are governed by [editorial-strategy.md](./editorial-strategy.md). This document governs
+how Jim's identity and voice remain coherent while those choices adapt to different readers and
+surfaces. Consistency does not require LinkedIn, the CV and the front page to share the same copy or
+composition.
+
+## Editorial principles
+
+These were discovered during the headline and first paragraph editing sessions. They apply to all
+content work.
+
+- **The headline filters.** Most people will walk away at “Understanding systems, shaping change”,
+  and Jim is good with that. The retired alternate “The questions keep getting bigger” remains in
+  the tilt reference rather than on the live CV. The first paragraph rewards those
+  who stay.
+- **Agency through outcomes, not persistence.** Jim's intellectual force comes through in what the
+  work produces, not in metaphors about tenacity or grip. The CV should show this through the
+  confidence of the claims, not through persistence language.
+- **Delivery is honoured, not opposed.** Delivery matters and Jim values it. It's just not where he
+  flourishes. The positioning honours delivery inside the frame claim ("something that can be
+  confidently delivered against") rather than positioning problem-shaping against it.
+- **"My" not "the".** "Shaping the problem is my creative act" — personal claim, not universal.
+  Leaves room for others to create differently. More confident, paradoxically, because it's less
+  sweeping.
+- **Play as creation.** Jim sees creation as inherently playful. The CV's job is to show that the
+  playfulness is earned, not frivolous.
+- **Show, don't justify.** Describe what Jim did and what it makes possible. Do not explain why —
+  justification is calibration, and calibration undermines confidence. A reader who understands the
+  positioning will recognise the pattern; a reader who doesn't will not be convinced by explanation.
+- **The implicit reading test.** A reader should finish the CV thinking: "This person could found
+  something serious if they chose to." This is not stated — it is the cumulative effect of agency,
+  origination, commercial awareness, and system-level thinking. If the narrative doesn't leave this
+  impression, the fix is in the evidence (experience sections), not the positioning.
+- **Breadth as range, not restlessness.** Jim's career spans research, public services, labs,
+  startups, market gardening, and more. This breadth should read as range and curiosity, not as
+  inability to commit. The experience sections must provide enough staying-power evidence —
+  sustained impact, long-term consequences of decisions, systems that endured — to anchor the
+  forward-leaning positioning.
+
+## Editorial hierarchy
+
+The direction of derivation for all content:
+
+1. **This document, `editorial-strategy.md` and the private companion** — govern editorial
+   strategy, voice, principles and positioning constraints.
+2. **Positioning paragraphs and capabilities** (in `cv.content.json`) — the most carefully edited
+   content. These are the editorial baseline that everything else should align with.
+3. **Front page hero summary** (in `frontpage.content.json`) — also carefully edited; the primary
+   representation of Jim on the home page.
+
+Everything downstream — Open Graph descriptions, JSON-LD fields, and manifest
+entries — must remain editorially aligned with these sources. Shared identity
+atoms have structural ownership in the Person entity; domain-specific
+descriptions may differ and are reconciled by editorial review, not equality.
+
+## Editorial consistency across outputs
+
+All descriptions of Jim — regardless of where they live in the data model, which channel they serve,
+or which audience they address — must be editorially consistent with the current positioning, voice,
+and identity described in this document.
+
+An OG description for social sharing, a JSON-LD Person description for machines, a manifest
+description for app launchers, and a search result snippet are different artefacts in different
+domains. They serve different audiences through different channels. But they all describe the same
+person, and they should tell the same story in their respective registers. A reader who encounters
+Jim's identity through a LinkedIn share card, a Google search snippet, and a ChatGPT answer should
+recognise the same person.
+
+This is an editorial principle, not a structural constraint. The descriptions live where their
+domains dictate (see
+[ADR-011](../../docs/architecture/decision-records/011-domain-appropriate-descriptions.md)), and
+editorial consistency is maintained through review, not through data proximity.
+
+## Editorial decision records
+
+Specific editorial decisions — how content is framed, what language to use or avoid, how to describe
+particular work — are recorded as Editorial Decision Records (EDRs) in
+[docs/editorial/decision-records/](../../docs/editorial/decision-records/). EDRs preserve the
+context and alternatives considered, so future agents and humans can understand not just the
+principles but the specific choices made.
+
+These directives hold the principles; EDRs hold the decisions that applied them.

@@ -1,0 +1,409 @@
+import { describe, expect, it } from 'vitest';
+
+import { buildPreToolUseDenyResponse } from '../../src/hook-policy/content-deny-response.js';
+import { loadScopedContentBlocks } from '../../src/hook-policy/policy-loader.js';
+import { runPreToolUseDispatch } from '../../src/hook-policy/pre-tool-use-dispatch.js';
+import {
+  PreToolUseDenyResponseSchema,
+  type PreToolUseDenyResponse,
+} from '../../src/hook-policy/types.js';
+
+/** The explicit allow decision every clean evaluation now writes. */
+const ALLOW_DECISION_LINE = `${JSON.stringify({
+  hookSpecificOutput: {
+    hookEventName: 'PreToolUse',
+    permissionDecision: 'allow',
+    permissionDecisionReason: 'no policy match',
+  },
+})}\n`;
+
+async function* stdinFromJson(payload: unknown): AsyncGenerator<Buffer> {
+  yield Buffer.from(JSON.stringify(payload));
+}
+
+function parseDenyPayloadFromStdout(stdoutChunks: readonly string[]): PreToolUseDenyResponse {
+  return PreToolUseDenyResponseSchema.parse(JSON.parse(stdoutChunks.join('')));
+}
+
+async function* stdinFromText(text: string): AsyncGenerator<Buffer> {
+  yield Buffer.from(text);
+}
+
+describe('runPreToolUseDispatch', () => {
+  it('writes a deny payload when new content introduces a blocked pattern', async () => {
+    const stdoutChunks: string[] = [];
+    const stderrChunks: string[] = [];
+
+    const result = await runPreToolUseDispatch({
+      stdin: stdinFromJson({
+        tool_input: {
+          new_string: 'code with secret-marker added',
+          old_string: 'original code without marker',
+        },
+      }),
+      stdout: {
+        write: (text: string) => {
+          stdoutChunks.push(text);
+        },
+      },
+      stderr: {
+        write: (text: string) => {
+          stderrChunks.push(text);
+        },
+      },
+      contentPatterns: ['secret-marker'],
+    });
+
+    expect(result).toStrictEqual({ exitCode: 0 });
+    expect(stderrChunks).toStrictEqual([]);
+    expect(JSON.parse(stdoutChunks.join(''))).toStrictEqual(
+      buildPreToolUseDenyResponse({ kind: 'owner-marker', pattern: 'secret-marker' }),
+    );
+  });
+
+  it('produces no output when the pattern already existed in prior content', async () => {
+    const stdoutChunks: string[] = [];
+    const stderrChunks: string[] = [];
+
+    const result = await runPreToolUseDispatch({
+      stdin: stdinFromJson({
+        tool_input: {
+          new_string: 'code with existing-marker still',
+          old_string: 'code with existing-marker here',
+        },
+      }),
+      stdout: {
+        write: (text: string) => {
+          stdoutChunks.push(text);
+        },
+      },
+      stderr: {
+        write: (text: string) => {
+          stderrChunks.push(text);
+        },
+      },
+      contentPatterns: ['existing-marker'],
+    });
+
+    expect(result).toStrictEqual({ exitCode: 0 });
+    expect(stdoutChunks).toStrictEqual([ALLOW_DECISION_LINE]);
+    expect(stderrChunks).toStrictEqual([]);
+  });
+
+  it('uses an injected prior-content reader for Write payloads', async () => {
+    const stdoutChunks: string[] = [];
+    const stderrChunks: string[] = [];
+
+    const result = await runPreToolUseDispatch({
+      stdin: stdinFromJson({
+        tool_input: {
+          content: 'code with existing-marker still',
+          file_path: '/repo/src/example.ts',
+        },
+      }),
+      stdout: {
+        write: (text: string) => {
+          stdoutChunks.push(text);
+        },
+      },
+      stderr: {
+        write: (text: string) => {
+          stderrChunks.push(text);
+        },
+      },
+      contentPatterns: ['existing-marker'],
+      readPriorContent: () => 'code with existing-marker already',
+    });
+
+    expect(result).toStrictEqual({ exitCode: 0 });
+    expect(stdoutChunks).toStrictEqual([ALLOW_DECISION_LINE]);
+    expect(stderrChunks).toStrictEqual([]);
+  });
+
+  it('returns exitCode 2 and writes to stderr on error', async () => {
+    const stderrChunks: string[] = [];
+
+    const result = await runPreToolUseDispatch({
+      stdin: stdinFromText('not valid json {{{'),
+      stdout: { write: () => undefined },
+      stderr: {
+        write: (text: string) => {
+          stderrChunks.push(text);
+        },
+      },
+      contentPatterns: ['irrelevant'],
+    });
+
+    expect(result).toStrictEqual({ exitCode: 2 });
+    expect(stderrChunks).toHaveLength(1);
+    expect(stderrChunks[0]).toContain('Claude PreToolUse hook input was not valid JSON:');
+  });
+
+  it('writes a scoped-block deny payload when hedging vocabulary is added on a doctrine path', async () => {
+    const stdoutChunks: string[] = [];
+    const stderrChunks: string[] = [];
+
+    const result = await runPreToolUseDispatch({
+      stdin: stdinFromJson({
+        tool_input: {
+          new_string: 'we will carve out an allowance for this case',
+          old_string: 'we will not yet decide',
+          file_path: '/repo/.agent/plans/example.plan.md',
+        },
+      }),
+      stdout: {
+        write: (text: string) => {
+          stdoutChunks.push(text);
+        },
+      },
+      stderr: {
+        write: (text: string) => {
+          stderrChunks.push(text);
+        },
+      },
+      contentPatterns: [],
+      scopedBlocks: [
+        {
+          concept: 'expediency-hedging',
+          patterns: ['carve out'],
+          include_paths: ['**/*.plan.md'],
+          citation: 'PDR-044; principles.md §Architectural Excellence Over Expediency',
+          reappraisal: 'Re-assess the concept.',
+        },
+      ],
+    });
+
+    expect(result).toStrictEqual({ exitCode: 0 });
+    expect(stderrChunks).toStrictEqual([]);
+    expect(JSON.parse(stdoutChunks.join(''))).toStrictEqual(
+      buildPreToolUseDenyResponse({
+        kind: 'concept',
+        pattern: 'carve out',
+        concept: 'expediency-hedging',
+        citation: 'PDR-044; principles.md §Architectural Excellence Over Expediency',
+        reappraisal: 'Re-assess the concept.',
+      }),
+    );
+  });
+
+  it('does not deny scoped-block hedging vocabulary on out-of-scope paths', async () => {
+    const stdoutChunks: string[] = [];
+
+    const result = await runPreToolUseDispatch({
+      stdin: stdinFromJson({
+        tool_input: {
+          new_string: 'we will carve out an allowance for this case',
+          old_string: 'we will not yet decide',
+          file_path: '/repo/src/index.ts',
+        },
+      }),
+      stdout: {
+        write: (text: string) => {
+          stdoutChunks.push(text);
+        },
+      },
+      stderr: { write: () => undefined },
+      contentPatterns: [],
+      scopedBlocks: [
+        {
+          concept: 'expediency-hedging',
+          patterns: ['carve out'],
+          include_paths: ['**/*.plan.md', '.agent/practice-core/'],
+          citation: 'PDR-044',
+        },
+      ],
+    });
+
+    expect(result).toStrictEqual({ exitCode: 0 });
+    expect(stdoutChunks).toStrictEqual([ALLOW_DECISION_LINE]);
+  });
+});
+
+describe('canonical policy: hedging-vocabulary trip-list (WS3)', () => {
+  const expectedCitation = 'PDR-044; principles.md §Architectural Excellence Over Expediency';
+
+  it('the canonical policy registers a hedging-vocabulary trip-list scoped to doctrine surfaces', async () => {
+    const groups = await loadScopedContentBlocks();
+    const hedgingPhrases = [
+      'carve out',
+      'carve-out',
+      'carve around',
+      'an exception to',
+      'with the exception of',
+      'for these arcs',
+      'honest framing for',
+      'permitted variant',
+      'land it then iterate',
+      'cheap cure',
+      'good enough',
+      'quick fix',
+    ];
+    const hedging = groups.find((group) => group.concept === 'expediency-hedging');
+
+    expect(hedging).toBeDefined();
+    expect(hedging?.kind ?? 'literal').toBe('literal');
+    expect(hedging?.patterns).toEqual(expect.arrayContaining(hedgingPhrases));
+    expect(hedging?.citation).toBe(expectedCitation);
+    expect((hedging?.include_paths ?? []).length).toBeGreaterThan(0);
+    expect(hedging?.reappraisal).toBeTruthy();
+  });
+});
+
+describe('canonical policy: acceptance-euphemism group (graduated 2026-08-12)', () => {
+  const acceptancePhrases = [
+    'standing cure',
+    'standing workaround',
+    'honest bypass',
+    'live with it for now',
+  ];
+
+  it('registers the acceptance-euphemism sub-family as its own group scoped to operational records in addition to doctrine surfaces', async () => {
+    const groups = await loadScopedContentBlocks();
+    const acceptance = groups.find((group) => group.concept === 'acceptance-euphemism');
+
+    expect(acceptance).toBeDefined();
+    expect(acceptance?.kind ?? 'literal').toBe('literal');
+    expect(acceptance?.patterns).toEqual(expect.arrayContaining(acceptancePhrases));
+    // The pathogen's observed habitat is operational records, not only doctrine:
+    // the graduating instances lived in the Director handoff and thread records.
+    expect(acceptance?.include_paths).toEqual(
+      expect.arrayContaining(['.agent/memory/operational/', '.agent/reports/']),
+    );
+    // The cataloguing home may name the phrases it forbids.
+    expect(acceptance?.exclude_paths).toEqual(expect.arrayContaining(['no-hedging-vocabulary.md']));
+    expect(acceptance?.citation).toBeTruthy();
+    expect(acceptance?.reappraisal).toBeTruthy();
+  });
+
+  it('denies an acceptance euphemism written to an operational-memory path via the wired path', async () => {
+    const groups = await loadScopedContentBlocks();
+    const acceptanceGroups = groups.filter((group) => group.concept === 'acceptance-euphemism');
+    expect(acceptanceGroups).toHaveLength(1);
+
+    const stdoutChunks: string[] = [];
+    const result = await runPreToolUseDispatch({
+      stdin: stdinFromJson({
+        tool_input: {
+          new_string: 'the standing cure for this failure is the foreground path',
+          old_string: 'the failure is undiagnosed',
+          file_path: '/repo/.agent/memory/operational/director-handoff.md',
+        },
+      }),
+      stdout: {
+        write: (text: string) => {
+          stdoutChunks.push(text);
+        },
+      },
+      stderr: { write: () => undefined },
+      contentPatterns: [],
+      scopedBlocks: acceptanceGroups,
+    });
+
+    expect(result).toStrictEqual({ exitCode: 0 });
+    const deny = parseDenyPayloadFromStdout(stdoutChunks);
+    expect(deny.hookSpecificOutput.permissionDecision).toBe('deny');
+    expect(deny.hookSpecificOutput.permissionDecisionReason).toContain('standing cure');
+  });
+});
+
+describe('canonical policy: SHA-in-permanent-doc regex (WS4)', () => {
+  it('registers a regex scoped block group detecting 7- to 40-char hex with code-block and historical-reference exclusions', async () => {
+    const groups = await loadScopedContentBlocks();
+    const regexGroups = groups.filter((group) => group.kind === 'regex');
+
+    expect(regexGroups.length).toBeGreaterThanOrEqual(1);
+    const shaGroup = regexGroups.find((group) =>
+      group.patterns.some((pattern) => /\[0-9a-f\]/u.test(pattern)),
+    );
+    expect(shaGroup).toBeDefined();
+    expect(shaGroup?.excludes_inline_code).toBe(true);
+    expect(shaGroup?.excludes_lines_with).toEqual(
+      expect.arrayContaining(['(historical reference)']),
+    );
+    expect(shaGroup?.include_paths).toEqual(
+      expect.arrayContaining(['.agent/practice-core/', '.agent/rules/']),
+    );
+    expect(shaGroup?.citation).toContain('Moving targets');
+  });
+
+  it('the wired-up guard denies a SHA added on a permanent-doc path and surfaces the citation', async () => {
+    const stdoutChunks: string[] = [];
+    const stderrChunks: string[] = [];
+
+    const result = await runPreToolUseDispatch({
+      stdin: stdinFromJson({
+        tool_input: {
+          new_string: 'See commit abc1234 for context.',
+          old_string: 'See an unspecified commit for context.',
+          file_path: '/repo/.agent/practice-core/decision-records/PDR-XXX-example.md',
+        },
+      }),
+      stdout: {
+        write: (text: string) => {
+          stdoutChunks.push(text);
+        },
+      },
+      stderr: {
+        write: (text: string) => {
+          stderrChunks.push(text);
+        },
+      },
+      contentPatterns: [],
+    });
+
+    expect(result).toStrictEqual({ exitCode: 0 });
+    expect(stderrChunks).toStrictEqual([]);
+    const denyPayload = parseDenyPayloadFromStdout(stdoutChunks);
+    expect(denyPayload.hookSpecificOutput.permissionDecision).toBe('deny');
+    expect(denyPayload.hookSpecificOutput.permissionDecisionReason).toContain('Citation:');
+    expect(denyPayload.hookSpecificOutput.permissionDecisionReason).toContain('Moving targets');
+  });
+
+  it('the wired-up guard does NOT deny an all-decimal token on a permanent-doc path (no a-f hex char)', async () => {
+    const stdoutChunks: string[] = [];
+
+    const result = await runPreToolUseDispatch({
+      stdin: stdinFromJson({
+        tool_input: {
+          new_string: 'The metric reading was 1765098000000 last quarter.',
+          old_string: 'The metric reading was unspecified last quarter.',
+          file_path: '/repo/.agent/practice-core/decision-records/PDR-XXX-example.md',
+        },
+      }),
+      stdout: {
+        write: (text: string) => {
+          stdoutChunks.push(text);
+        },
+      },
+      stderr: { write: () => undefined },
+      contentPatterns: [],
+    });
+
+    expect(result).toStrictEqual({ exitCode: 0 });
+    expect(stdoutChunks).toStrictEqual([ALLOW_DECISION_LINE]);
+  });
+
+  it('the wired-up guard does NOT deny a SHA in inline code on a data-shaped line (excludes_inline_code applies to data-shaped context)', async () => {
+    const stdoutChunks: string[] = [];
+
+    const result = await runPreToolUseDispatch({
+      stdin: stdinFromJson({
+        tool_input: {
+          new_string: '  commit_sha: `abc1234`',
+          old_string: '  commit_sha: `older000`',
+          file_path: '/repo/.agent/practice-core/decision-records/PDR-XXX-example.md',
+        },
+      }),
+      stdout: {
+        write: (text: string) => {
+          stdoutChunks.push(text);
+        },
+      },
+      stderr: { write: () => undefined },
+      contentPatterns: [],
+    });
+
+    expect(result).toStrictEqual({ exitCode: 0 });
+    expect(stdoutChunks).toStrictEqual([ALLOW_DECISION_LINE]);
+  });
+});

@@ -1,43 +1,130 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# Root ignore rules for the jimcresswell.net monorepo. Workspace-local rules
+# live beside each workspace (jcdotnet/.gitignore); root-level tools read this
+# file, so anything they must skip is mirrored here.
 
-# OS
+# Turbo cache
+.turbo
+tc-profile.json
+lint-profile.json
+
+# Built files
+dist
+**/dist
+
+# Local MCP server config
+.mcp.json
+
+# Platform settings: project config is tracked, local overrides are not.
+.claude/settings.local.json
+.cursor/settings.local.json
+.gemini/settings.local.json
+.claude/worktrees/
+.claude/logs/
+.claude/scheduled_tasks.lock
+
+# Generated docs and type declarations
+**/docs/api
+**/.typedoc
+**/*.d.ts
+**/*.d.ts.map
+!jcdotnet/next-env.d.ts
+
+# File system artefacts
 .DS_Store
+.AppleDouble
+.LSOverride
+._*
+[Dd]esktop.ini
+Thumbs.db
 
-# dependencies
-/node_modules
+# Local reference files, not for source control
+.agent/reference-local/**/*
+!.agent/reference-local/.gitignore
 
-# next.js
-/.next/
-/out/
+# Operator profile: machine-local; the two stubs are tracked and declare the contract.
+.agent/operator-local/**/*
+!.agent/operator-local/.gitignore
+!.agent/operator-local/README.md
 
-# production
-/build
-
-# debug
+# Logs
+*.log
+.logs/*
+!.logs/.gitignore
+logs/
+*.har
+!.agent/memory/operational/diagnostics/*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
+tmp/
+.tmp/
+logs_result.json
 
-# env files
-.env*
+# Diagnostic reports
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
-# vercel
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Test result files
+**/test-results/
+**/test-artifacts/
+**/test-cache/
+**/playwright-report/
+**/blob-report/
+**/regression-artifacts/
+**/reports/
+!.agent/reports/
+**/temp-secrets/
+**/coverage/
+**/*.lcov
+.nyc_output
+
+# Dependency directories
+node_modules/
+**/node_modules/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Caches
+.npm
+.pnpm-store/
+.eslintcache
+.stylelintcache
+.cache
+.cache/
+
+# Output of 'npm pack'
+*.tgz
+
+# dotenv environment variable files
+.env
+.env.*
+env.vercel.local
+!.env.example
+
+# Next.js build output
+.next
+out
+build
+
+# Vercel
 .vercel
 
-# typescript
-*.tsbuildinfo
-next-env.d.ts
-.env*.local
+# Vite timestamp files
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
 
-# Playwright
-test-results/
-playwright-report/
-blob-report/
-regression-artifacts/
-
-# coverage
-coverage/
-
-# Agent watcher runtime cursors (transient, per-identity)
+# Agent state: machine-local coordination surfaces are untracked; scaffolding
+# and durable decision provenance (conversations/, escalations/, sidebars/) are
+# tracked. Per-directory .gitignore under .agent/state/ draws the fine line.
+.agent/state/onboarding/
+.agent/state/collaboration/owner-jobs.md
 .agent/state/collaboration/comms-seen/
+.agent/state/*credentials*.json
+.agent/state/*.credentials.json

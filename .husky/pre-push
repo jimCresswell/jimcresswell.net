@@ -1,1 +1,16 @@
-pnpm check && pnpm test:e2e
+#!/usr/bin/env sh
+
+# Full pre-push (owner ruling 2026-09-12: light commit, full push): the
+# read-only aggregate gate plus the site's end-to-end suite.
+export TURBO_UI=0
+
+echo "🚀 Running pre-push checks..."
+if ! env -u GIT_DIR -u GIT_INDEX_FILE -u GIT_WORK_TREE pnpm check:ci; then
+  echo "❌ check:ci failed!"
+  exit 1
+fi
+if ! env -u GIT_DIR -u GIT_INDEX_FILE -u GIT_WORK_TREE pnpm --filter @jimcresswell/www test:e2e; then
+  echo "❌ Site end-to-end suite failed!"
+  exit 1
+fi
+echo "✅ Pre-push checks completed!"

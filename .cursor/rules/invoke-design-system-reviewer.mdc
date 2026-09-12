@@ -1,6 +1,0 @@
----
-description: Route shared visual-system changes through design-system-reviewer
-globs: "app/**/*,components/**/*,public/**/*"
----
-
-Read and follow @.agent/rules/invoke-design-system-reviewer.md

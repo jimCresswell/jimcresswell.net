@@ -1,1 +1,35 @@
-pnpm check:ci
+#!/usr/bin/env sh
+
+# Light pre-commit (owner ruling 2026-09-12: light commit, full push). The
+# branch guard refuses plain and --amend commits on main; merge and sequencer
+# paths are guarded by pre-merge-commit and prepare-commit-msg. Mechanics live
+# in the shared guard (never-commit-to-main rule).
+GUARD_BRANCH=""
+GUARD_HINT="Move to a branch first: git switch -c <branch> (staged changes travel with you)."
+. .husky/refuse-commit-on-main.sh
+
+export TURBO_UI=0
+
+echo "📝 Checking formatting on staged files..."
+if ! pnpm --filter @engraph/agent-tools repo-check prettier-staged; then
+  echo "❌ Formatting issues found! Run 'pnpm format:fix', then stage the changes."
+  exit 1
+fi
+
+echo "🔍 Running markdownlint on staged Markdown files..."
+if ! pnpm --filter @engraph/agent-tools repo-check markdownlint-staged; then
+  echo "❌ Markdownlint issues found! Run 'pnpm markdownlint:fix', then stage the changes."
+  exit 1
+fi
+
+echo "🔍 Linting workspaces changed since HEAD..."
+# git exports GIT_DIR / GIT_INDEX_FILE (a transient lock file during a real
+# commit) to hooks; turbo's children must not inherit them. Unset for the
+# turbo child only — the staged-file gates above need GIT_INDEX_FILE.
+if ! env -u GIT_DIR -u GIT_INDEX_FILE -u GIT_WORK_TREE \
+  pnpm exec turbo run lint --filter="...[HEAD]" --output-logs=errors-only; then
+  echo "❌ Lint failed!"
+  exit 1
+fi
+
+echo "✅ Pre-commit checks completed!"

@@ -1,6 +1,8 @@
 ---
 name: jc-commit
-description: Create a well-formed commit for the current work with selective staging and safety checks.
+description: "Create a well-formed conventional commit. Always active. Classify the host first: standard profiles use repo tooling and hook coordination; detected ChatGPT Work cloud uses manual static/message checks, HUSKY=0, the configured default credential and draft-PR CI without local execution."
 ---
 
-Read and follow `.agent/commands/commit.md`
+# Commit (Cross-tool)
+
+Read and follow `.agent/skills/change-custody/commit/SKILL-CANONICAL.md`.

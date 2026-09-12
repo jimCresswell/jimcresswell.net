@@ -1,6 +1,7 @@
 packages:
   - agent-tools
   - jcdotnet
+  - tooling/*
 # Supply-chain hardening: exclude any package version younger than 24h
 # (1440 min) from resolution, so a freshly-published compromised release ages —
 # giving the ecosystem time to detect and yank it — before it can enter the
@@ -28,6 +29,7 @@ allowBuilds:
   unrs-resolver: true
   core-js: true
   sharp: true
+  puppeteer: true
 peerDependencyRules:
   allowedVersions:
     eslint-plugin-import>eslint: '10'
@@ -78,7 +80,14 @@ overrides:
   # open floor admits the next major the day it ships, so the bound is
   # structural rather than conditional on watching the registry.
   # Remove when every dependent's declared floor reaches >=5.0.9.
-  brace-expansion: '>=5.0.9 <6'
+  # Scoped per major (2026-09-12): the site's ESLint 9 line reaches
+  # brace-expansion ^1 through @eslint/config-array's minimatch@3, and an
+  # unscoped 5.x floor broke that resolver at lint time. Every line keeps
+  # its own patched floor for the quadratic-expansion advisory.
+  'brace-expansion@1': '>=1.1.12 <2'
+  'brace-expansion@2': '>=2.0.2 <3'
+  'brace-expansion@4': '>=4.0.1 <5'
+  'brace-expansion@5': '>=5.0.9 <6'
   csstype: '>=3.2.3'
   # Floor kept aligned with the manifests' esbuild ranges (^0.28.2 as of
   # 2026-08-11, per lockfile-rebuild-survivability §override-alignment).

@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "status": "declarative-only",
+  "active_platform_hooks": [],
+  "notes": [
+    "The repo documents hook policy without restoring the dead Cursor-plugin hook implementation.",
+    "Tracked git hooks live in .husky/ and are part of the normal quality-gate workflow."
+  ]
+}

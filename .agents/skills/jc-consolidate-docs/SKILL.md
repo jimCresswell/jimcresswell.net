@@ -1,6 +1,8 @@
 ---
 name: jc-consolidate-docs
-description: Consolidate plans, prompts, AGENTS.md, and memory into coherent permanent documentation and updated practice artefacts.
+description: Declare and run session-completion or dedicated-knowledge-curation consolidation, including buffer disposition and closeout proof.
 ---
 
-Read and follow `.agent/commands/consolidate-docs.md`
+# Consolidate Docs (Cross-tool)
+
+Read and follow `.agent/skills/knowledge/consolidate-docs/SKILL-CANONICAL.md`.
