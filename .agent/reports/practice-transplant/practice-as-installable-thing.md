@@ -262,3 +262,24 @@ the guard rejected its own installer, the conventions rejected foreign formattin
 rejected foreign fixtures — and each rejection was correct. An installer that expects the
 rejections and sequences around them is the immunosuppression that makes the transplant take
 without switching the immune system off.
+
+## Addendum (2026-09-12, re-evaluate slice 1): the installed thing exercises its own assertions
+
+The re-evaluate step turned out to be a single operation applied to every transplanted surface:
+take each assertion the surface makes about the host (a script exists, a hook sets a variable, a
+document belongs at this path, a record number means this subject, a workspace lives here) and
+exercise it. Three shapes of cure fell out, in order of preference: make the assertion checkable
+(a validator: cited scripts, reference direction, CI parity, machine-local paths — each now a
+`check` leg or a `check:docs` leg), make the code not depend on the assertion (the identity CLIs
+read the harness-native session id, so the hook's env-file write is no longer load-bearing), or
+true the text. The installable thing should therefore ship its assertions as checks and run them
+at the end of the install, and its host profile should name the things that differ per host
+(script names, record numbering, workspace layout, the docs layer's role) so the installer can
+exercise them rather than a later seat discovering them by refusal.
+
+The docs layer settled the role question the owner raised: a host's pre-Practice governance and
+engineering documentation belongs to the host by role — doctrine into directives, recipes and
+host guides into reference, contracts into executive memory, developer narrative into `docs/` —
+and never travels as a directory. The lineage's `docs/governance` was a pre-Practice artefact;
+here it dissolved into nine homes and a dropped remainder, with every drop reversible from the
+pinned source commit.

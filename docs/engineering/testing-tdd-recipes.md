@@ -33,6 +33,7 @@ unit, integration, and E2E levels.
   - [Writing Code Before Tests](#writing-code-before-tests)
   - [Updating E2E Tests After Implementation](#updating-e2e-tests-after-implementation)
   - [Tests That Only Pass With The Current Implementation](#tests-that-only-pass-with-the-current-implementation)
+  - [Adding To Existing IO Debt In A Unit Test File](#adding-to-existing-io-debt-in-a-unit-test-file)
   - [Validator Script vs Integration Test](#validator-script-vs-integration-test)
 
 ## TDD At All Levels
@@ -83,24 +84,24 @@ Example:
 
 ```typescript
 // 1. Red: write the integration test first.
-describe('createSearchWorkflow', () => {
-  it('returns normalised lesson slugs from the retriever', async () => {
-    const retrieveLessons = async () => [{ lesson_slug: 'solving-linear-equations' }];
-    const workflow = createSearchWorkflow({ retrieveLessons });
+describe('createProfileLinks', () => {
+  it('returns the sameAs URLs of the person the loader supplies', async () => {
+    const loadPerson = async () => ({ sameAs: ['https://github.com/jimCresswell'] });
+    const links = createProfileLinks({ loadPerson });
 
-    const slugs = await workflow.searchLessons('linear equations');
+    const urls = await links.profileUrls();
 
-    expect(slugs).toEqual(['solving-linear-equations']);
+    expect(urls).toEqual(['https://github.com/jimCresswell']);
   });
 });
-// Run test -> fails because createSearchWorkflow does not exist.
+// Run test -> fails because createProfileLinks does not exist.
 
 // 2. Green: implement the integration point.
-export function createSearchWorkflow(options: SearchWorkflowOptions) {
+export function createProfileLinks(options: ProfileLinksOptions) {
   return {
-    async searchLessons(query: string): Promise<readonly string[]> {
-      const lessons = await options.retrieveLessons(query);
-      return lessons.map((lesson) => lesson.lesson_slug);
+    async profileUrls(): Promise<readonly string[]> {
+      const person = await options.loadPerson();
+      return person.sameAs;
     },
   };
 }
@@ -115,27 +116,24 @@ E2E test first and run it against the old system to prove the red phase.
 Example:
 
 ```typescript
-// Scenario: all MCP methods should require auth.
-describe('MCP Server E2E', () => {
-  it('returns 401 for tools/list without authentication', async () => {
-    const response = await request(server).post('/mcp').send({ method: 'tools/list' });
+// Scenario: the CV PDF route must serve a real PDF with immutable caching.
+test.describe('REQ-07: PDF response correctness', () => {
+  test('GET /cv/pdf returns application/pdf with the download filename', async ({ request }) => {
+    const response = await request.get('/cv/pdf');
 
-    expect(response.status).toBe(401);
+    expect(response.status()).toBe(200);
+    expect(response.headers()['content-type']).toBe('application/pdf');
+    expect(response.headers()['content-disposition']).toContain('Jim-Cresswell-CV.pdf');
   });
 
-  it('returns 401 for tools/call without authentication', async () => {
-    const response = await request(server)
-      .post('/mcp')
-      .send({
-        method: 'tools/call',
-        params: { name: 'get-key-stages' },
-      });
+  test('PDF response has immutable cache headers', async ({ request }) => {
+    const response = await request.get('/cv/pdf');
 
-    expect(response.status).toBe(401);
+    expect(response.headers()['cache-control']).toContain('immutable');
   });
 });
-// Run E2E test -> fails while the old system allows unauthenticated discovery.
-// Implement the router and middleware changes, then rerun -> passes.
+// Run E2E test -> fails while the old route handler serves the file without the cache header.
+// Implement the route handler change, then rerun -> passes.
 ```
 
 Wrong sequence:
@@ -161,11 +159,13 @@ If tests lag behind code at any level, TDD was not followed at that level.
 ## Red Specs And File Naming
 
 Write red-phase specs that describe not-yet-implemented system behaviour in
-`*.e2e.test.ts` files, not `*.unit.test.ts` files. The pre-commit hook runs
-type-check, lint, and the `test` task, so red in-process specs block commits
-until they go green. E2E specs are outside pre-commit, but pre-push and CI run
-`test:e2e`; they must be green before push/merge unless the owner explicitly
-authorises staged WIP.
+`*.e2e.test.ts` files (the site's suite uses `*.e2e-ui.test.ts` and
+`*.e2e-api.test.ts`), not `*.unit.test.ts` files. The pre-commit hook is light
+(formatting, markdown, and lint on the changed workspaces), so a red in-process
+spec can be committed on a branch; the pre-push hook runs `pnpm check:ci`
+(which includes the `test` task) plus the site's `test:e2e`, and CI runs the
+same set, so every spec must be green before push/merge unless the owner
+explicitly authorises staged WIP.
 
 ### Validate Test Discovery
 
@@ -175,9 +175,12 @@ well as the exit code. If a workspace can exit 0 with no discovered tests, add
 `--passWithNoTests=false` to the focused Vitest command or use the workspace's
 checked test script.
 
-For agent-tools tests, prefer the discovered suffixes in the workspace config:
-`*.test.ts` and `*.spec.ts`. A file named only `*.unit.test.ts` is not evidence
-unless the include pattern names that suffix explicitly.
+For agent-tools and `tooling/*` tests, the shared Vitest base config
+(`@engraph/workspace-config`) discovers `src/**/*.test.ts`, `src/**/*.spec.ts`,
+`tests/**/*.test.ts` and `tests/**/*.spec.ts`; the site discovers
+`**/*.test.{ts,tsx}`. A `*.unit.test.ts` file matches because `*.test.ts`
+matches it — a file elsewhere in the tree, or with another suffix, is not
+evidence unless the include pattern names it.
 
 ## Common Violations And Fixes
 
@@ -301,7 +304,7 @@ that do not match what the file is actually doing.
 Wrong shape (validator wearing a vitest harness):
 
 ```typescript
-// agent-tools/scripts/validate-portability.integration.test.ts
+// agent-tools/src/validators/portability/validate-portability.integration.test.ts
 it('every canonical skill has a Claude adapter', () => {
   const skills = readdirSync('.agent/skills');
   for (const skill of skills) {
@@ -313,17 +316,17 @@ it('every canonical skill has a Claude adapter', () => {
 Correct shape — pure helper unit-tested + standalone runtime script:
 
 ```typescript
-// agent-tools/src/lib/portability-checks.ts (helper, pure)
+// agent-tools/src/validators/portability/portability-checks.ts (helper, pure)
 export function adapterMissingFor(canonical: readonly string[], adapters: readonly string[]) {
   return canonical.filter((slug) => !adapters.includes(slug));
 }
 
-// agent-tools/src/lib/portability-checks.test.ts (unit test, no FS)
+// agent-tools/src/validators/portability/portability-checks.test.ts (unit test, no FS)
 it('reports canonical skills with no adapter', () => {
   expect(adapterMissingFor(['a', 'b'], ['a'])).toEqual(['b']);
 });
 
-// agent-tools/scripts/validate-portability.ts (runtime script wired into a workspace command)
+// agent-tools/src/validators/portability/validate-portability.ts (runtime script wired into a workspace command)
 const missing = adapterMissingFor(await listCanonicalSkills(), await listClaudeAdapters());
 if (missing.length > 0) {
   console.error(`Missing: ${missing.join(', ')}`);
@@ -339,5 +342,6 @@ peers can be drift — the canonical-pattern test is _named guidance in
 the directives_, not the count of similar sibling files.
 
 Root `scripts/` is intentionally retired. Runtime validators belong in a
-workspace-owned command surface such as `agent-tools/scripts/` or the package
+workspace-owned command surface such as `agent-tools/src/validators/` (each
+wired to a `validate-*` script in `agent-tools/package.json`) or the package
 that owns the contract being validated.

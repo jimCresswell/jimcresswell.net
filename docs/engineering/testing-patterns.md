@@ -1,16 +1,19 @@
 ---
-fitness_line_target: 140
-fitness_line_limit: 200
-fitness_char_limit: 12000
+fitness_line_target: 300
+fitness_line_limit: 400
+fitness_char_limit: 20000
 fitness_line_length: 100
+fitness_line_length_rationale: >-
+  Sized to the file's real footprint at the 2026-09-12 transplant (owner-ratified): this is a
+  recipe companion whose value scales with worked instances, and the repo rule is knowledge
+  preservation over fitness warnings, so the budget reflects the content rather than trimming it.
 split_strategy: 'Split specialised domains into focused pattern files if this grows.'
 ---
 
 # Testing Patterns
 
 Reusable testing recipes referenced by the
-[testing strategy](../../.agent/directives/testing-strategy.md) and
-[ADR-078](../architecture/architectural-decisions/078-dependency-injection-for-testability.md).
+[testing strategy](../../.agent/directives/testing-strategy.md).
 
 `.agent/directives/testing-strategy.md` is the authoritative doctrine.
 This file is a governed recipe companion; patterns here must conform to the
@@ -21,58 +24,56 @@ For worked Red/Green/Refactor examples, see
 
 ---
 
-## In-Process App Tests with Dependency Injection
+## In-Process Tests with Dependency Injection
 
-Tests that create the application in-process (via `createApp()`)
-must configure it through dependency injection with explicit runtime-config
-objects or hermetic test helpers, never by reading or mutating `process.env`.
-Do not import production config loaders unless the test is directly proving
-the loader; they may read `.env` files as part of the production pipeline.
-Supertest classification follows the boundary, not the tool — see
-[Test File Classification](#test-file-classification).
+Tests that exercise a unit in-process must configure it through dependency
+injection — explicit config objects and injected IO seams — never by reading or
+mutating `process.env`. Do not import production config loaders unless the test
+is directly proving the loader; they may read `.env` files as part of the
+production pipeline.
 
 ### The Pattern
 
+The bootstrap's rebuild decision (`agent-tools/src/bootstrap/bootstrap-helpers.ts`)
+takes its filesystem as a `WorkspaceDepFsIo` seam, so the test describes the
+decision as a pure function over mtimes with an in-memory tree:
+
 ```typescript
-import { createApp } from '../src/application.js';
-import request from 'supertest';
-import { createMockObservability, createMockRuntimeConfig } from './helpers/test-config.js';
+import { workspaceDepDistIsStale, type WorkspaceDepFsIo } from './bootstrap-helpers.js';
 
-// 1. Build an explicit runtime config — never read or mutate process.env
-const runtimeConfig = createMockRuntimeConfig({
-  dangerouslyDisableAuth: true,
-  env: { EXAMPLE_API_KEY: 'test-api-key' },
+// 1. Build the seam explicitly — never touch the real filesystem or process.env
+const io: WorkspaceDepFsIo = fakeIo({
+  fileMtimes: {
+    '/repo/tooling/result/dist/index.js': 100,
+    '/repo/tooling/result/src/index.ts': 200,
+  },
+  dirEntries: { '/repo/tooling/result/src': [file('index.ts')] },
 });
 
-// 2. Create the app with DI — zero global side effects
-const app = await createApp({
-  runtimeConfig,
-  observability: createMockObservability(runtimeConfig),
-});
+// 2. Drive the unit through its interface with the seam injected
+const stale = workspaceDepDistIsStale('/repo/tooling/result', ['index.js', 'index.d.ts'], io);
 
-// 3. Test with supertest — no external network IO
-const response = await request(app).get('/healthz');
-expect(response.status).toBe(200);
+// 3. Assert the observable decision
+expect(stale).toBe(true);
 ```
 
 ### Key Rules
 
-- Do not read or write `process.env` in tests. Build literal runtime
-  config objects or use hermetic test helpers that do not read disk.
-- Do not import `loadRuntimeConfig` into these tests unless the runtime
-  config loader is the direct unit under test.
-- For tests needing multiple configurations (e.g. auth enabled
-  vs disabled), create **separate config objects** for each case.
-- Functions like `enableAuthBypass()` that mutate `process.env`
-  must not exist. Use the isolated env pattern instead.
+- Do not read or write `process.env` in tests. Build literal config objects or
+  use hermetic test helpers that do not read disk.
+- Do not import a runtime config loader into these tests unless the loader is
+  the direct unit under test.
+- For tests needing multiple configurations (e.g. a token present vs absent),
+  create **separate config objects** for each case.
+- Helpers that mutate `process.env` to flip a mode must not exist. Use the
+  isolated config pattern instead.
 
 ### Subprocess-Spawned Tests
 
-Tests that spawn the application as a **separate process** (e.g.
-smoke tests using `spawn('node', [entryPoint], { env })`) may pass
-environment variables via the spawn `env` option. This is safe
-because the variables are scoped to the child process and cannot
-leak into the test runner.
+Tests that spawn a built command as a **separate process** (e.g. the
+`smoke:*` scripts using `spawn('node', [entryPoint], { env })`) may pass
+environment variables via the spawn `env` option. This is safe because the
+variables are scoped to the child process and cannot leak into the test runner.
 
 Vitest smoke suites may load ambient environment in the runner config
 composition root, validate it, and pass the resulting object through
@@ -83,9 +84,12 @@ injected object; they must not read or write `process.env`.
 
 Compliant tests to use as templates:
 
-- `apps/oak-curriculum-mcp-streamable-http/e2e-tests/auth-bypass.e2e.test.ts`
-- `apps/oak-curriculum-mcp-streamable-http/e2e-tests/web-security-selective.e2e.test.ts`
-- `apps/oak-curriculum-mcp-streamable-http/e2e-tests/helpers/create-stubbed-http-app.ts`
+- `agent-tools/src/bootstrap/bootstrap-staleness.unit.test.ts` — an injected
+  filesystem seam over an in-memory tree.
+- `agent-tools/src/codex/team-alert-bootstrap.integration.test.ts` — an
+  integration test that wires real units through injected IO.
+- `jcdotnet/lib/pdf-config.unit.test.ts` — deploy-key and path derivation
+  proved by passing values, never by setting Vercel's environment variables.
 
 ---
 
@@ -96,18 +100,18 @@ whether the untestability is itself the defect: a test that is merely
 audit-shaped is deleted or rewritten (`tdd-as-design` §Describe vs. Audit),
 while a seam testable only through prohibited mechanisms, or a test that seems
 to need real IO, IS the defect. In both of those shapes the product code lacks
-a dependency-injection seam (ADR-078):
+a dependency-injection seam:
 
 - **A seam testable only through prohibited mechanisms** (ambient env import,
   a module-level singleton reachable only via `vi.mock`, a non-injectable
   route). The conformant cure is a **fresh TDD cycle** against a
   not-yet-existing injectable seam — genuine RED first — NOT a retrofit and
-  NOT abstention (test-expert ruling, 2026-07-01, curriculum-hub search seam:
-  extract the core with the service injected + a `createHandler(fn)` factory).
-  "Tests would be audit-shaped" is a signal to inspect the product code's
-  injectability, never merely a reason to skip.
+  NOT abstention (test-expert ruling, 2026-07-01, a search seam in the lineage
+  repository: extract the core with the service injected + a
+  `createHandler(fn)` factory). "Tests would be audit-shaped" is a signal to
+  inspect the product code's injectability, never merely a reason to skip.
 - **A unit or integration test that seems to need real IO** beyond the
-  loopback harness exchange with an imported app (see [Test File
+  in-process exchange with an imported module (see [Test File
   Classification](#test-file-classification)). The fix is to refactor the
   product to be testable (route the read/write through an injectable
   dependency, as sibling modules already do) and inject an in-memory fake —
@@ -126,7 +130,10 @@ test — and inspect the real output before calling the transform done
 (worked instances 2026-06-30: fixtures passed twice while the real
 generated body carried a routing coupling and a structure leak that only
 grepping the real content caught). For a separation or firewall that
-encodes a principle, the real-content check IS the proof.
+encodes a principle, the real-content check IS the proof. The site's
+`e2e/behaviour/content-integrity.e2e-ui.test.ts` is the local instance: it
+proves the rendered pages against the JSON sources in `content/`, not
+against fixtures.
 
 ## Test File Classification
 
@@ -137,38 +144,30 @@ not what the author intends:
   module-level singletons with IO must be
   `*.integration.test.ts`, even if it injects DI fakes for
   the new behaviour.
-- **Supertest classifies by boundary, not tool** (owner-ratified
-  2026-07-29): `request(app)` against an imported, in-process app
-  is an integration test — the harness's loopback socket is tool
-  mechanics, not a system boundary. Supertest driven at a
-  separately running black-box system over a network interface
-  is E2E.
+- **In-process HTTP harnesses classify by boundary, not tool** (owner-ratified
+  2026-07-29): a request driven at an imported, in-process app is an
+  integration test — the harness's loopback socket is tool mechanics, not a
+  system boundary. A request driven at a separately running black-box system
+  over a network interface is E2E. The site's Playwright suite is the E2E
+  case: it runs against a production build served by `pnpm start`
+  (`jcdotnet/e2e/`, `*.e2e-ui.test.ts` for browser journeys and
+  `*.e2e-api.test.ts` for HTTP-level checks).
 - **Middleware proofs mount the middleware alone**: mount the
-  middleware on a bare `express()` app with one probe route and
-  drive it with `request(app)`; never boot the full application to
-  prove one middleware decision (review lens Q3/Q4). Worked
-  example:
-  `apps/oak-curriculum-mcp-streamable-http/src/correlation/middleware.integration.test.ts`.
+  middleware on a bare app with one probe route and drive it directly; never
+  boot the full application to prove one middleware decision (review lens
+  Q3/Q4).
 
 ## Composition Testing
 
-Unit + E2E tests can all pass while the integrated product
-fails. For features spanning multiple modules (MCP tool →
-SDK → host), add a **composition test** that exercises the
-integration seam.
-
-Example: `mcp-app-composition.e2e.test.ts` caught
-knip/depcruise cleanup that broke the UI — the composition
-test IS the enforcement for multi-module integration.
-
-## MCP Transport Layer Testing
-
-Supertest tests JSON-RPC but not SSE transport
-serialisation. For MCP servers, the transport layer IS part
-of the product contract — `_meta` fields, session lifecycle,
-and event streaming all happen there. Use MCP client SDK
-(`Client` + `StreamableHTTPClientTransport`) for
-full-fidelity E2E tests alongside supertest.
+Unit + E2E tests can all pass while the integrated product fails. For features
+spanning multiple modules, add a **composition test** that exercises the
+integration seam. The site's content negotiation is the local example: the
+proxy, the route handler and the rendered document each have their own tests,
+and `e2e/behaviour/markdown-content-negotiation.e2e-api.test.ts` proves the
+composed path (an `Accept` header in, the right representation out). A
+composition test IS the enforcement for multi-module integration — it is what
+catches a knip or depcruise cleanup that removed a module every unit test had
+already stopped exercising.
 
 ## Rendered-Output Assertions
 
@@ -194,13 +193,13 @@ constants". (Owner-corrected twice in one session, 2026-06-29.)
 The same discipline covers **owner-tunable values** (a separator glyph, a
 colour, a cosmetic label, a display string): a test that hard-codes one
 asserts configuration, not behaviour, and breaks on every free owner
-change. The cure is DI-for-testability (ADR-078): make the value a
-parameter with a default, have the test **inject a probe value and assert
-the probe renders** — default-independent — and keep the default as
-editable config no test references. Verify by grepping the tests for the
-default value: zero matches (worked instance 2026-06-15: a statusline
-separator pinned literally across a suite broke on every glyph change;
-the probe-injection cure ended the churn).
+change. The cure is DI-for-testability: make the value a parameter with a
+default, have the test **inject a probe value and assert the probe
+renders** — default-independent — and keep the default as editable config no
+test references. Verify by grepping the tests for the default value: zero
+matches (worked instance 2026-06-15: a statusline separator pinned literally
+across a suite broke on every glyph change; the probe-injection cure ended
+the churn).
 
 ## Flaky-Test Disposition
 
@@ -264,16 +263,16 @@ ambient overrides — see `no-global-state-in-tests`.
   `tsconfig.lint.json`. Files must be included in both for linting to work.
 - Stale vitest include globs are silent because of `passWithNoTests: true` — remove
   dead globs promptly after file moves.
-- `resolveEnv` integration tests that need `.env` file isolation: use `'/tmp'` as
-  `startDir` to prevent ambient `.env` files from satisfying schema requirements.
-- After refactoring entry points (removing `dotenv`, changing `loadRuntimeConfig`
-  signature), check E2E tests that launch the process directly — they break when the
-  entry-point contract changes.
+- Integration tests that need `.env` file isolation: use `'/tmp'` as the start
+  directory to prevent ambient `.env` files from satisfying schema requirements.
+- After refactoring entry points (removing `dotenv`, changing a config loader's
+  signature), check E2E and smoke tests that launch the process directly — they
+  break when the entry-point contract changes.
 - Removing a test (e.g. deleting an audit-shaped constant assertion) can orphan the
   export it referenced — knip then blocks the commit. Un-export or delete the orphan
   in the same change.
-- A spread-derived object is a new object (the codegen helper `ensurePathsOnSchema`
-  is one): assert structural equality with `toStrictEqual`, never identity with `toBe`.
+- A spread-derived object is a new object: assert structural equality with
+  `toStrictEqual`, never identity with `toBe`.
 
 ## Discriminating Fixtures
 
@@ -290,14 +289,14 @@ tripwire.
 
 ## Test Isolation
 
-- Replace Express `_router` access with supertest HTTP assertions.
+- Drive HTTP behaviour through the public request surface, never through a
+  framework's private router internals.
 - Extract repeated setup into scoped helpers inside `describe`.
 - Bulk factories accept `startIndex`; do not mutate readonly `_id`.
 
 ### Related
 
-- [ADR-078 dependency injection decision][adr-078]
 - [Testing strategy directive][testing-strategy]
+- [Testing TDD Recipes](./testing-tdd-recipes.md)
 
-[adr-078]: ../architecture/architectural-decisions/078-dependency-injection-for-testability.md
 [testing-strategy]: ../../.agent/directives/testing-strategy.md

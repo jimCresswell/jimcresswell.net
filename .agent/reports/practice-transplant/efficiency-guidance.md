@@ -187,3 +187,28 @@ fixes; both under the owner's "no errors, no warnings" bar.
 - **Residue scan classes** (for the scrub checklist): product code with a hard-coded upstream
   repo, package metadata URLs, and test-fixture strings — the sed scrub reaches the first two
   and mangles the third.
+
+## Addendum (2026-09-12, re-evaluate slice 1): what the assertion-exercise pass cost and taught
+
+- **Re-evaluate is an assertion-exercise pass, and it parallelises by file set.** The two
+  transplanted assertions that bit first (the hook's env-file claim; the gate list) were cheap
+  to true once named; the docs layer (31 files) was the expensive part and went to three
+  subagents on disjoint file sets with disposition ledgers as the contract. Concurrent Edit-tool
+  edits on one shared file (`principles.md`, three seats) landed cleanly because none used a
+  whole-file Write; make that a stated constraint in every delegation.
+- **Verify a claimed violation against the validator that polices it before repeating it.** An
+  explorer's "six practice-core files link into docs/" was a mis-read; the reference-direction
+  validator had reported 0 all along, and the claim had already reached a peer estate before it
+  was checked. Cost: one retraction. Cure: the validator's own count is the first read.
+- **Record numbers survive transplants; their subjects do not.** ADR-011 here is a different
+  record from ADR-011 in the lineage. Every kept citation needs its title checked at the target.
+- **Structural cures found more than the prose pass.** The cited-scripts validator's first run
+  found 70 dead citations, 30 of them outside the files anyone had listed for review (legacy
+  plans, the root README, the Copilot instructions). Build the detector before the sweep.
+- **Extractor scope before allowlists.** Every false positive on the first validator run was
+  prose-shaped ("pnpm workspaces", a quoted string, a shell comment); each cure was a syntax
+  rule in the tokenizer, never an allowlist entry, and the allowlist stayed empty.
+- **Timing on the postinstall bootstrap.** The lineage's workspace paths in `bootstrap.ts`
+  survived because the primary checkout's `dist` already existed; a cold checkout would have
+  failed at install. Exercise the install path from an empty `dist` as part of the harness
+  phase, not at re-evaluate.

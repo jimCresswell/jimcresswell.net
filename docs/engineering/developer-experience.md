@@ -26,16 +26,16 @@ how-do-I-direct-the-work guide is
 
 - **Quality gates** — `pnpm check` and the per-workspace gates;
   reference: [Build System](build-system.md) and
-  [Tooling](tooling.md).
+  [Tooling](../../.agent/reference/tooling.md).
 - **Hooks** — pre-commit and pre-push run the gate estate; policy hooks
   block known-hazardous operations with an explanation and a citation
   rather than failing silently.
 - **Validators** — repo validators (plan corpus, collaboration state,
   design-system consistency, and friends) run in CI and pre-commit;
   reference: [Build System](build-system.md).
-- **When something looks wrong** —
-  [Troubleshooting](../operations/troubleshooting.md), including the
-  statusline payload-diagnosis walkthrough referenced below.
+- **When something looks wrong** — the known-issues ledger is
+  [Shell and tooling gotchas](../../.agent/reference/shell-and-tooling-gotchas.md);
+  the statusline payload-diagnosis controls are described below.
 
 ## Statuslines
 
@@ -136,8 +136,11 @@ Set per-machine in `.claude/settings.local.json` under `env`:
   statusline warning even on payloads that otherwise render nothing, and
   write failures are swallowed (the statusline never breaks for its own
   diagnostics). The log grows unbounded and carries session ids and
-  paths — delete it after the diagnosis. Walkthrough:
-  [Troubleshooting §Statusline Segments Missing](../operations/troubleshooting.md#statusline-segments-missing-or-payload-diagnosis).
+  paths — delete it after the diagnosis. Walkthrough: set the variable,
+  reproduce the missing segment, then read the logged payload for the
+  field the segment depends on (`rate_limits` for the usage gauges, for
+  example) — an absent field is the adapter dropping honestly, a present
+  one is a rendering defect to report.
 
 Quick reference (same controls, terser):
 [agent-tools README §Claude statusline quick reference](../../agent-tools/README.md#claude-statusline-quick-reference).
@@ -159,7 +162,7 @@ including the Codex statusline item allowlist note, is tracked in
 
 - [Working with this Repo for Devs](working-with-this-repo-for-devs.md)
   — directing the work day to day.
-- [Tooling](tooling.md) and [Build System](build-system.md) — the
+- [Tooling](../../.agent/reference/tooling.md) and [Build System](build-system.md) — the
   command and gate estate.
-- [Troubleshooting](../operations/troubleshooting.md) — when a surface
-  disagrees with you.
+- [Shell and tooling gotchas](../../.agent/reference/shell-and-tooling-gotchas.md)
+  — when a surface disagrees with you.

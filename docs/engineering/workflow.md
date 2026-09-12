@@ -1,14 +1,14 @@
 # Development Workflow
 
-**Last Updated**: 2026-04-11  
+**Last Updated**: 2026-09-12  
 **Status**: Active workflow guide
 
-The complete development lifecycle for this repository, from branch creation to release.
+The complete development lifecycle for this repository, from branch creation to deploy.
 
 ## Overview
 
 ```text
-Branch → TDD → Local Gates → Commit → Push → PR → CI → AI Review → Human Review → Merge → Release
+Branch → TDD → Local Gates → Commit → Push → PR → CI → AI Review → Human Review → Merge → Deploy
 ```
 
 ## 1. Create a Feature Branch
@@ -22,6 +22,9 @@ git switch -c docs/documentation-update
 git switch -c refactor/area-being-refactored
 ```
 
+Commits never land on `main` directly: the `pre-commit`, `pre-merge-commit` and
+`prepare-commit-msg` hooks refuse them there.
+
 ## 2. Develop With TDD
 
 Write tests **before** code, at every level. The cycle is:
@@ -32,34 +35,29 @@ Write tests **before** code, at every level. The cycle is:
 
 When changing system behaviour, update tests at the same level first:
 
-| Change level            | Update first                                |
-| ----------------------- | ------------------------------------------- |
-| Pure function behaviour | Unit tests (`*.unit.test.ts`)               |
-| Integration behaviour   | Integration tests (`*.integration.test.ts`) |
-| System behaviour        | E2E tests (`*.e2e.test.ts`)                 |
+| Change level            | Update first                                                   |
+| ----------------------- | -------------------------------------------------------------- |
+| Pure function behaviour | Unit tests (`*.unit.test.ts`)                                  |
+| Integration behaviour   | Integration tests (`*.integration.test.ts`)                    |
+| System behaviour        | E2E tests (`*.e2e.test.ts`; the site's `*.e2e-ui/api.test.ts`) |
 
 See [Testing Strategy](../../.agent/directives/testing-strategy.md) for full details.
 
 ## 3. Run Local Quality Gates
 
-Two levels of local verification:
+Three levels of local verification:
 
-**Quick fixes** (during development):
-
-```bash
-pnpm fix   # format:root → markdownlint:root → lint:fix
-```
-
-**Full pipeline** (before committing):
+**Quick repair** (during development):
 
 ```bash
-pnpm make  # install → build → type-check → lint:fix → subagents:check → portability:check → practice:fitness:informational → markdownlint:root → format:root
+pnpm fix   # format:fix → markdownlint:fix → lint:fix (mutating)
 ```
 
 **Full verification** (before pushing):
 
 ```bash
-pnpm check # canonical aggregate gate: clean rebuild + verification
+pnpm check     # the read-only aggregate gate: format, markdown, lint, type-check, test, knip, depcruise, secrets, Practice validators
+pnpm check:fix # pnpm fix, then pnpm check
 ```
 
 **Documentation verification** (for documentation-only work):
@@ -68,28 +66,35 @@ pnpm check # canonical aggregate gate: clean rebuild + verification
 pnpm check:docs # Prettier + Markdownlint + documentation validators
 ```
 
-See [Build System](./build-system.md) for the single source of truth on all command definitions.
-For AI agent execution order, directives are normative and require one gate at
-a time. `pnpm make` and `pnpm check` remain the build/fix and full-verification
-aggregates; `pnpm check:docs` is the focused verify-only aggregate for
-documentation work.
+See [Build System](./build-system.md) for the shape of each aggregate and the
+[gates skill](../../.agent/skills/change-custody/gates/SKILL-CANONICAL.md) for
+the canonical one-leg-per-line sequence. For AI agent execution order,
+directives are normative and require one gate at a time; the `gates` skill
+(`/jc-gates`) enacts this phase.
 
 ## 4. Commit
 
 Use [Conventional Commits](https://www.conventionalcommits.org/):
 
 ```bash
-git commit -m "feat: add new MCP tool for lesson retrieval"
-git commit -m "fix: correct Zod schema for search response"
+git commit -m "feat: add the publications section to the CV page"
+git commit -m "fix: serve the PDF with immutable cache headers"
 git commit -m "docs: update onboarding prerequisites"
-git commit -m "refactor: extract validation helper from tool executor"
+git commit -m "refactor: extract the content-negotiation path helper"
 ```
 
 Common prefixes: `feat`, `fix`, `docs`, `refactor`, `test`, `chore`, `ci`.
+The `commit-msg` hook runs commitlint and the accidental-major-version guard;
+the `pre-commit` hook runs the staged formatting and markdown checks and lints
+the changed workspaces. The `commit` skill (`/jc-commit`) enacts this phase.
 
 ## 5. Push
 
-The pre-push hook runs `gitleaks detect` to scan for secrets. If gitleaks is not installed, the push will fail — install from [gitleaks releases](https://github.com/gitleaks/gitleaks/releases).
+The pre-push hook runs the full read-only gate (`pnpm check:ci`, an alias of
+`pnpm check`, which includes the `secrets:scan` leg) and then the site's
+Playwright suite. If gitleaks is not installed the secret-scan leg fails — install
+from [gitleaks releases](https://github.com/gitleaks/gitleaks/releases). If the
+Playwright browser is not installed, run `pnpm exec playwright install` once.
 
 ```bash
 git push -u origin HEAD
@@ -105,24 +110,26 @@ Use the PR template. Include:
 - **Testing**: How the changes were verified
 
 See [CONTRIBUTING.md](../../CONTRIBUTING.md) for PR title format and checklist.
+The `pr-lifecycle` skill (`/jc-pr-lifecycle`) enacts this phase and the merge
+that follows: it opens the PR, harvests every review surface, and drives the
+branch to a truly green merge.
 
 ## 7. Quality Gate Surfaces
 
-Quality is enforced through the hook surfaces, GitHub CI workflow, and the
+Quality is enforced through the hook surfaces, the GitHub CI workflow, and the
 canonical local aggregate gate `pnpm check`. Each runs a specific set of
 checks; see
-[ADR-121](../architecture/architectural-decisions/121-quality-gate-surfaces.md)
-for the full coverage matrix and rationale, or
-[build-system.md](build-system.md#quality-gate-surfaces) for a quick
-reference table.
+[build-system.md](build-system.md#quality-gate-surfaces) for the surface table
+and rationale.
 
-**Key principle**: pre-push and CI run the same check set. A CI-only failure
-indicates an environmental or configuration issue, not a missing check. Both
-surfaces cover secrets, build, formatting, markdown, sub-agents, portability,
-knip (unused code detection), depcruise (circular deps, orphans, layer
-violations), workspace-owned repo validators, lint, type-check, unit tests,
-E2E, UI, and smoke tests. `pnpm check` adds widget tests, a11y tests,
-clean rebuild, and fix-mode commands.
+**Key principle**: pre-push and CI run the same check set (a validator refuses
+a drift between them). A CI-only failure indicates an environmental or
+configuration issue, not a missing check. Both surfaces cover secrets,
+formatting, markdown, shell and runtime-only scripts, sub-agents, portability,
+skills adapters, encoding, knip (unused code detection), depcruise (circular
+deps, orphans, layer violations), lint, type-check, unit and integration tests,
+and the site's end-to-end suite (accessibility included, via axe-core). CI
+additionally runs `pnpm build`, which generates the PDF.
 
 ## 8. AI Sub-Agent Review
 
@@ -137,9 +144,11 @@ During development, the AI agent working on the code invokes specialist sub-agen
 | `test-expert`           | TDD compliance, test quality, mock simplicity             |
 | `type-expert`           | Type safety, generics, schema-to-type flow                |
 | `config-expert`         | Tooling config consistency, quality gate alignment        |
-| `security-expert`       | Auth, secrets, PII, injection risks                       |
+| `security-expert`       | Headers, secrets, env, proxies, trust surfaces            |
 | `docs-adr-expert`       | Documentation completeness, ADR accuracy                  |
-| `sentry-expert`         | Sentry SDK usage, OTel observability, MCP Insights        |
+| `accessibility-expert`  | WCAG 2.2 AA semantics, focus, motion, PDF surfaces        |
+| `pkg-expert`            | Schema.org, JSON-LD, and knowledge-graph correctness      |
+| `editor`                | Editorial voice and audience fit of public-facing content |
 
 ### When they run
 
@@ -154,8 +163,9 @@ Sub-agent findings are **advisory** — they inform the AI agent's work and are 
 Human review focuses on areas where AI reviewers may miss context:
 
 - **Product intent** — Does the change solve the right problem?
-- **User impact** — How does this affect teachers, developers, or AI agents?
-- **Domain correctness** — Is the curriculum domain model used correctly?
+- **User impact** — How does this affect visitors, recruiters, developers, or AI agents reading the site?
+- **Domain correctness** — Is the entity model used correctly? Every entity in the knowledge graph is real and every claim must be valid.
+- **Editorial correctness** — Does the change hold the editorial voice and the decisions recorded in the EDRs?
 - **Strategic alignment** — Does this fit the architectural direction?
 - **Risk assessment** — Are there edge cases or failure modes not covered?
 
@@ -169,27 +179,17 @@ PRs are merged to `main` after:
 
 When a feature branch has diverged significantly from `main` (100+ files
 changed on either side, 10+ conflicts in a dry-run merge), follow the
-[Pre-Merge Divergence Analysis](./pre-merge-analysis.md) guide before
+[Pre-Merge Divergence Analysis](../../.agent/reference/pre-merge-analysis.md) guide before
 attempting the merge. Standard conflict resolution misses type-system breaks,
-deleted-file cascades, and signature mismatches in auto-merged files.
+deleted-file cascades, and signature mismatches in auto-merged files. The
+`complex-merge` skill (`/jc-complex-merge`) enacts that workflow.
 
-## 11. Release
+## 11. Deploy
 
-Releases are automated via [semantic-release](https://semantic-release.gitbook.io/):
-
-1. PRs merged to `main` trigger the release workflow
-2. Version is bumped based on Conventional Commit types (`feat` → minor;
-   `BREAKING CHANGE:` footer → major; every other work type → patch)
-3. The bump is committed back to `main` as
-   `release(<version>): <version> [skip ci]` — a dedicated type that triggers
-   no further bump or CI run
-4. A GitHub release is created automatically
-5. npm publication is currently disabled (`npmPublish: false` in
-   `.releaserc.mjs`); when enabled, public packages are published to npm
-
-See [Release and Publishing](./release-and-publishing.md) for npm package
-publishing, and [Milestone Release Runbook](./milestone-release-runbook.md)
-for milestone/service release gates, snagging, and go/no-go controls.
+There is no release workflow. Merging to `main` deploys the site to Vercel,
+whose `buildCommand` (`jcdotnet/vercel.json`) installs Chrome and runs the
+site's `build` script — the PDF is regenerated on every production build. The
+`@engraph/*` packages are private to this repository and are not published.
 
 ## 12. Workflow Gotchas
 
@@ -200,31 +200,28 @@ help implies, not what historical local precedent permits.
 
 ### Generators Require Populated Source Data
 
-A code-only generator run over sparse or absent local source data can
-produce structurally valid but semantically empty output. The generator
-exits clean; the file shape is correct; the content is wrong. For any
-generator that derives output from input data (ground-truth generators,
-fixture builders, schema-from-data tools), run the full
-download-then-codegen path when local bulk data is absent, then verify
-the expected dataset-size signal (e.g. `Total lessons: 12391`) before
-trusting the output. Structural validity is not semantic validity. This
-is a CI-shaped failure that often appears local-only because the local
-checkout is partial; the proof of generator correctness is in the
-verified output, not in the green exit code.
+A generator run over sparse or absent local source data can produce
+structurally valid but semantically empty output. The generator exits clean;
+the file shape is correct; the content is wrong. For any generator that
+derives output from input data (the JSON-LD graph from `content/entities.json`,
+the PDF from the rendered CV, fixture builders, schema-from-data tools), verify
+the expected size signal (a record count, a page count, a byte count) before
+trusting the output. Structural validity is not semantic validity; the proof of
+generator correctness is in the verified output, not in the green exit code.
 
 ### Use The Test Runner Directly When Script Forwarding Drifts
 
 Package scripts that wrap a test runner sometimes pick up extra suite
 selection, parallelism flags, or filter rewrites that broaden the run
-beyond what a focused proof needs. When a `pnpm test:unit <file>`
-invocation starts running the broader suite or hangs on unrelated
+beyond what a focused proof needs. When a workspace `test` script pointed
+at one file starts running the broader suite or hangs on unrelated
 work, drop to the runner directly:
-`pnpm --dir <package> exec vitest run <file>`. The literal vitest
-invocation is what the proof actually needs; the package script is
+`pnpm --filter @engraph/agent-tools exec vitest run <file>`. The literal
+vitest invocation is what the proof actually needs; the package script is
 optional sugar that has its own drift. Apply the same principle to
-typecheck (`pnpm --dir <package> exec tsc --noEmit -p <project>`) and
-lint (`pnpm --dir <package> exec eslint <file>`) when their wrapping
-scripts misbehave under focused inspection.
+typecheck (`pnpm --filter @engraph/agent-tools exec tsc --noEmit -p <project>`)
+and lint (`pnpm --filter @engraph/agent-tools exec eslint <file>`) when their
+wrapping scripts misbehave under focused inspection.
 
 ### Lettered-Section Edits Must Re-Read The Parent Count
 

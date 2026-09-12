@@ -363,3 +363,20 @@
 - Lesson (validator authoring): scope the extractor to code, not prose, before tuning names —
   the first run's false positives were all prose-shaped ("pnpm workspaces", a quoted string, a
   shell comment), and each cure was a syntax rule, not an allowlist entry.
+- Part C in flight (docs layer). Thirty-one files, not 29: `governance/understanding-agent-references.md`
+  was missed by the inventory (dropped, zero inbound). Eight drops, eight moves, six merges, six
+  survivor rewrites, the two directories dissolved. Delegated the three heaviest content-grain
+  jobs to subagents on disjoint file sets; the merges came back with disposition ledgers
+  (most of `development-practice` was `already-covered` — the honest count). Findings the
+  subagents surfaced outside their scope, all cured here: `principles.md` still said "Oak" in
+  §Separate Framework from Consumer and §Context Specificity Gradient (rewritten to the
+  product/framework split this repo actually has: `@engraph/*` framework, `jcdotnet` consumer);
+  `testing-strategy.md` cited Stryker and three lineage ADRs (ADR-011 here is a different
+  record — the number matched, the subject did not); the machine-local-paths validator was not
+  in `check` although the hook policy said "at commit/CI" — now a `check` leg and a CI step
+  (parity 15 legs). Lesson: a record NUMBER surviving a transplant proves nothing; check the
+  title at the target before keeping the citation.
+- Two subagents editing `principles.md` concurrently (safety anchors, development-practice
+  merge) plus my own edits landed without a clobber because every edit was an Edit-tool
+  string replacement in a distinct region; a Write would have lost one side. Keep whole-file
+  Writes out of any file another seat may be editing.

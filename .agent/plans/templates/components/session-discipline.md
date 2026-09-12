@@ -76,7 +76,7 @@ fire should name numbers, not just the concept.
 
 Each session opens with a named first-principles check in
 addition to the foundation-document commitment (principles,
-testing-strategy, schema-first-execution):
+testing-strategy, orientation):
 
 > *"What did I inherit here, and has anyone ratified it from
 > first principles? Does its shape still fit?"*

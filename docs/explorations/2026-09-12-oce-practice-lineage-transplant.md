@@ -789,3 +789,87 @@ Backlog recorded here, not cured in this slice: `validate-markdown-links` report
 `docs/engineering`, 8 `.agent/directives`, 7 `docs/governance`, the rest scattered); wiring
 `check:docs` into `check` waits on that repair. The team skill still cites lineage ADR numbers in
 prose (ADR-182, ADR-183) — a record-citation scrub across `.agent/` is a re-evaluate item.
+
+## Re-evaluate — docs layer (executed 2026-09-12)
+
+The 29 files copied into `docs/governance|engineering|foundation` were provisionally placed
+(§Owner note). Each was assigned a role and a home by PDR-014 §Knowledge artefact roles and
+`orientation.md`'s "most durable layer that fits its read-trigger": doctrine agents internalise
+→ `.agent/directives/` or an existing rule; recipes and host guides agents consult →
+`.agent/reference/`; a stable contract looked up when acting → `.agent/memory/executive/`;
+human-facing developer narrative → `docs/engineering/`; an Oak-product subject with nothing local
+to say → drop. Every drop is reversible: the read-only sibling OCE checkout is pinned at
+`a55fd8fdd` and re-import reads `git show` at that commit, never its working tree (another seat
+operates there). Inputs before the pass: none of the three directories was linked from any index;
+AGENT.md linked 7 of the 29; the files carried about 100 dangling links, mostly the lineage ADR
+path. The owner ratified the list as one on 2026-09-12 (plan approval); no item was declined.
+
+| #   | File                                                  | Verdict                                                                                  |
+| --- | ----------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| 1   | `governance/README.md`                                | drop — the directory dissolves (30)                                                      |
+| 2   | `governance/accessibility-practice.md`                | → `.agent/reference/`; de-widget                                                         |
+| 3   | `governance/development-practice.md`                  | merge unique substance → `principles.md` and the gates skill; drop the rest              |
+| 4   | `governance/logging-guidance.md`                      | drop — 925 lines of lineage observability, zero inbound                                  |
+| 5   | `governance/problem-hiding-patterns.md`               | merge → `.agent/rules/no-warning-toleration.md`                                          |
+| 6   | `governance/safety-and-security.md`                   | split — generic → `secops.md` + `privacy.md`; the lineage product sections dropped       |
+| 7   | `governance/sonar-disposition-policy.md`              | drop; the rule citation cut — Sonar adoption is a separate owner decision                |
+| 8   | `governance/typescript-gotchas.md`                    | → `.agent/reference/`; de-widget                                                         |
+| 9   | `governance/typescript-practice.md`                   | merge → `.agent/directives/validation-strategy.md`                                       |
+| 10  | `engineering/README.md`                               | rewrite as the index of the survivors; `docs/README.md` indexes `engineering/`           |
+| 11  | `engineering/agent-tools-operational-requirements.md` | → `.agent/memory/executive/`                                                             |
+| 12  | `engineering/build-system.md`                         | stays; rewritten against the real graph                                                  |
+| 13  | `engineering/ci-policy.md`                            | drop — its subject is the codegen contract                                               |
+| 14  | `engineering/claude-design-conversion-playbook.md`    | → `.agent/reference/`; provenance to one attribution line                                |
+| 15  | `engineering/developer-experience.md`                 | stays; dead `operations/` links removed                                                  |
+| 16  | `engineering/extending.md`                            | drop; AGENT.md and the artefact inventory re-pointed at `docs/architecture/README.md`    |
+| 17  | `engineering/merge-bot.md`                            | → `.agent/reference/`                                                                    |
+| 18  | `engineering/pr-label-ledger.md`                      | drop — rows enumerate the lineage's labels                                               |
+| 19  | `engineering/pre-merge-analysis.md`                   | → `.agent/reference/`                                                                    |
+| 20  | `engineering/testing-patterns.md`                     | stays; scrubbed; fitness frontmatter trued                                               |
+| 21  | `engineering/testing-tdd-recipes.md`                  | stays; scrubbed                                                                          |
+| 22  | `engineering/tooling.md`                              | → `.agent/reference/`                                                                    |
+| 23  | `engineering/vendor-cli-adoption.md`                  | drop — every example is a lineage vendor                                                 |
+| 24  | `engineering/workflow.md`                             | stays; scrubbed                                                                          |
+| 25  | `engineering/working-with-this-repo-for-devs.md`      | stays; `/oak-*` → `/jc-*`; lineage worked example replaced                               |
+| 26  | `foundation/README.md`                                | drop — its organising claim rests on a vision document the transplant rejected           |
+| 27  | `foundation/agentic-engineering-system.md`            | merge unique substance → `.agent/HUMANS.md`; drop                                        |
+| 28  | `foundation/cost-of-change-gradient.md`               | → `.agent/reference/` (the host guide to PDR-135)                                        |
+| 29  | `.agent/directives/schema-first-execution.md`         | reduce to a derivation clause in `principles.md`; drop the directive                     |
+| 30  | `docs/governance/`, `docs/foundation/`                | dissolved; validator roots, the hedging rule's scope and the mechanism catalogue amended |
+
+Correction to the plan's rationale for 22 and 28: no practice-core file linked to either docs file
+(the reference-direction validator reported 0 portability findings); the moves stand on role alone.
+
+A thirtieth copied file surfaced during execution: `governance/understanding-agent-references.md`
+(102 lines, zero inbound) described the lineage's `.agent/reference/` inventory (MCP and Clerk
+vendor digests). Dropped; the local `.agent/reference/README.md` is the index and now lists every
+file in the directory.
+
+### Execution record (2026-09-12, same day)
+
+All 31 verdicts executed. The merges carry disposition ledgers in the commit messages and the
+subagent reports; the honest count for `development-practice` was mostly `already-covered`
+(principles, the rules and the gates skill already held it) with ten applied paragraphs, and for
+`safety-and-security` roughly half generic (into `secops.md` and `privacy.md`, which now carry the
+credential, secret-scan, PII and machine-local-paths doctrine) and half product (dropped). The
+`validation-strategy.md` stub became the real home for compile-time and boundary validation (341
+lines). `HUMANS.md` gained the one section a curious human needs on how the loops hold together.
+
+Found and cured while executing, outside the 31: `principles.md` still described the framework /
+consumer split in the lineage's product terms (rewritten to this repo's `@engraph/*` framework
+and `jcdotnet` consumer); `testing-strategy.md` cited a mutation runner this repo does not have
+and three lineage records — one of which (ADR-011) shares a number with a local record on a
+different subject; the machine-local-paths validator ran only under `check:docs` while the hook
+policy claimed commit/CI enforcement (now a `check` leg and a CI step, parity 15 legs); and
+`agent-tools/src/bootstrap/bootstrap.ts` still built its workspace closure from the lineage's
+`packages/core/*` paths, so a cold `pnpm install` would have failed postinstall (paths trued to
+`tooling/*`, proven by running the bootstrap). Two surviving-doc findings recorded for later:
+`turbo.json`'s site `build` outputs do not name `.next/`, so a Turbo cache hit restores nothing
+for the site; and the lineage path residue in `tooling/*/package.json` metadata remains (already
+in §Oak residue in tooling).
+
+Validators at close: `validate-cited-scripts` green over 1198 files; `validate-reference-direction`
+green; `validate-markdown-links` clear for `docs/**` and every re-homed file, with 418 broken
+links remaining repo-wide (lineage record links in memory, skills, plans and three local ADRs
+that cite pre-transplant skill paths) — the link-repair backlog; `pnpm check` green on all 15
+legs.
