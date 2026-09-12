@@ -179,7 +179,7 @@ describe('agent identity CLI planning', () => {
       exitCode: 2,
       stdout: '',
       stderr:
-        'Error: missing seed; pass --seed or set PRACTICE_AGENT_SESSION_ID_CLAUDE, PRACTICE_AGENT_SESSION_ID_CURSOR, PRACTICE_AGENT_SESSION_ID_GEMINI, PRACTICE_AGENT_SESSION_ID_CODEX, CODEX_THREAD_ID, or Antigravity conversationId\n',
+        'Error: missing seed; pass --seed or set PRACTICE_AGENT_SESSION_ID_CLAUDE, PRACTICE_AGENT_SESSION_ID_CURSOR, PRACTICE_AGENT_SESSION_ID_GEMINI, PRACTICE_AGENT_SESSION_ID_CODEX, CLAUDE_CODE_SESSION_ID, CODEX_THREAD_ID, or Antigravity conversationId\n',
     });
   });
 
@@ -218,7 +218,7 @@ describe('agent identity CLI planning', () => {
       exitCode: 2,
       stdout: '',
       stderr:
-        'Error: missing seed; pass --seed or set PRACTICE_AGENT_SESSION_ID_CLAUDE, PRACTICE_AGENT_SESSION_ID_CURSOR, PRACTICE_AGENT_SESSION_ID_GEMINI, PRACTICE_AGENT_SESSION_ID_CODEX, CODEX_THREAD_ID, or Antigravity conversationId\n',
+        'Error: missing seed; pass --seed or set PRACTICE_AGENT_SESSION_ID_CLAUDE, PRACTICE_AGENT_SESSION_ID_CURSOR, PRACTICE_AGENT_SESSION_ID_GEMINI, PRACTICE_AGENT_SESSION_ID_CODEX, CLAUDE_CODE_SESSION_ID, CODEX_THREAD_ID, or Antigravity conversationId\n',
     });
   });
 
@@ -280,5 +280,45 @@ describe('agent identity CLI planning', () => {
       PRACTICE_AGENT_SESSION_ID_GEMINI: 'gemini-session-seed',
       PRACTICE_AGENT_IDENTITY_OVERRIDE: 'Cached Session Name',
     });
+  });
+});
+
+describe('Claude Code CLI session id seed (PDR-027, 2026-09-12 amendment)', () => {
+  // The harness exports CLAUDE_CODE_SESSION_ID into every Bash tool shell, so
+  // identity resolves even when the SessionStart env-file write never reached
+  // the shell the CLI runs in.
+  const harnessSessionId = '880ff900-e850-4186-96cc-15f95d4cf7db';
+
+  it('resolves the CLI session id when no Practice seed or cloud id is set', () => {
+    const result = runAgentIdentityCli({
+      argv: ['--format', 'json'],
+      env: { CLAUDE_CODE_SESSION_ID: harnessSessionId, CODEX_THREAD_ID: 'codex-thread-seed' },
+    });
+
+    expect(result.exitCode).toBe(0);
+    expect(JSON.parse(result.stdout)).toMatchObject({
+      seedDigest: createHash('sha256').update(harnessSessionId).digest('hex'),
+    });
+  });
+
+  it('lets the ambient cloud platform session id outrank the CLI session id', () => {
+    const result = runAgentIdentityCli({
+      argv: ['--format', 'json'],
+      env: {
+        CLAUDE_CODE_REMOTE_SESSION_ID: 'cse_01FV6rZz5BjSkApAUL6FAj72',
+        CLAUDE_CODE_SESSION_ID: harnessSessionId,
+      },
+    });
+
+    expect(result.exitCode).toBe(0);
+    expect(JSON.parse(result.stdout)).toMatchObject({
+      seedDigest: createHash('sha256').update('01FV6rZz5BjSkApAUL6FAj72').digest('hex'),
+    });
+  });
+
+  it('projects CLAUDE_CODE_SESSION_ID from the process environment', () => {
+    expect(
+      agentIdentityCliEnvironmentFromProcessEnv({ CLAUDE_CODE_SESSION_ID: harnessSessionId }),
+    ).toStrictEqual({ CLAUDE_CODE_SESSION_ID: harnessSessionId });
   });
 });

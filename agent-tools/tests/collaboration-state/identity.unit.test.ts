@@ -22,7 +22,7 @@ describe('deriveCollaborationIdentity', () => {
         env: {},
       }),
     ).toThrow(
-      'missing collaboration identity seed; set one of PRACTICE_AGENT_SESSION_ID_CLAUDE, PRACTICE_AGENT_SESSION_ID_CURSOR, PRACTICE_AGENT_SESSION_ID_GEMINI, PRACTICE_AGENT_SESSION_ID_CODEX, CODEX_THREAD_ID, or Antigravity conversationId. For codex, the primary Practice seed is PRACTICE_AGENT_SESSION_ID_CODEX or CODEX_THREAD_ID.',
+      'missing collaboration identity seed; set one of PRACTICE_AGENT_SESSION_ID_CLAUDE, PRACTICE_AGENT_SESSION_ID_CURSOR, PRACTICE_AGENT_SESSION_ID_GEMINI, PRACTICE_AGENT_SESSION_ID_CODEX, CLAUDE_CODE_SESSION_ID, CODEX_THREAD_ID, or Antigravity conversationId. For codex, the primary Practice seed is PRACTICE_AGENT_SESSION_ID_CODEX or CODEX_THREAD_ID.',
     );
   });
 
@@ -34,7 +34,7 @@ describe('deriveCollaborationIdentity', () => {
         env: {},
       }),
     ).toThrow(
-      'missing collaboration identity seed; set one of PRACTICE_AGENT_SESSION_ID_CLAUDE, PRACTICE_AGENT_SESSION_ID_CURSOR, PRACTICE_AGENT_SESSION_ID_GEMINI, PRACTICE_AGENT_SESSION_ID_CODEX, CODEX_THREAD_ID, or Antigravity conversationId. For antigravity, the primary Practice seed is PRACTICE_AGENT_SESSION_ID_GEMINI or Antigravity conversationId.',
+      'missing collaboration identity seed; set one of PRACTICE_AGENT_SESSION_ID_CLAUDE, PRACTICE_AGENT_SESSION_ID_CURSOR, PRACTICE_AGENT_SESSION_ID_GEMINI, PRACTICE_AGENT_SESSION_ID_CODEX, CLAUDE_CODE_SESSION_ID, CODEX_THREAD_ID, or Antigravity conversationId. For antigravity, the primary Practice seed is PRACTICE_AGENT_SESSION_ID_GEMINI or Antigravity conversationId.',
     );
   });
 
@@ -288,10 +288,66 @@ describe('every explicit Practice seed outranks the ambient platform session id'
       model: 'claude',
       env: {
         CODEX_THREAD_ID: '019dd34d-cb6a-74e0-a29d-6cb8a65ea14b',
+        CLAUDE_CODE_SESSION_ID: '880ff900-e850-4186-96cc-15f95d4cf7db',
         CLAUDE_CODE_REMOTE_SESSION_ID: 'cse_01FV6rZz5BjSkApAUL6FAj72',
       },
     });
 
     expect(identity.seed_source).toBe('CLAUDE_CODE_REMOTE_SESSION_ID');
+  });
+});
+
+describe('Claude Code CLI session id seed (PDR-027, 2026-09-12 amendment)', () => {
+  // The harness exports CLAUDE_CODE_SESSION_ID into every Bash tool shell.
+  // On 2026-09-12 a seat lost every collaboration write for a whole session
+  // because the SessionStart hook's env-file write landed after the shell
+  // existed; the native id was present in that shell throughout.
+  const harnessSessionId = '880ff900-e850-4186-96cc-15f95d4cf7db';
+
+  it('resolves the harness session id when no Practice seed or cloud id is set', () => {
+    const identity = deriveCollaborationIdentity({
+      platform: 'claude',
+      model: 'claude',
+      env: { CLAUDE_CODE_SESSION_ID: harnessSessionId },
+    });
+
+    expect(identity.seed_source).toBe('CLAUDE_CODE_SESSION_ID');
+    expect(identity.agentId.session_id_prefix).toBe('880ff9');
+  });
+
+  it('derives the same tuple the SessionStart hook would have written', () => {
+    const fromNative = deriveCollaborationIdentity({
+      platform: 'claude',
+      model: 'claude',
+      env: { CLAUDE_CODE_SESSION_ID: harnessSessionId },
+    });
+    const fromHookWrite = deriveCollaborationIdentity({
+      platform: 'claude',
+      model: 'claude',
+      env: { PRACTICE_AGENT_SESSION_ID_CLAUDE: harnessSessionId },
+    });
+
+    expect(fromNative.agentId.agent_name).toBe(fromHookWrite.agentId.agent_name);
+    expect(fromNative.agentId.id).toBe(fromHookWrite.agentId.id);
+  });
+
+  it('outranks the Codex and Antigravity harness fallbacks', () => {
+    const identity = deriveCollaborationIdentity({
+      platform: 'claude',
+      model: 'claude',
+      env: {
+        CLAUDE_CODE_SESSION_ID: harnessSessionId,
+        CODEX_THREAD_ID: '019dd34d-cb6a-74e0-a29d-6cb8a65ea14b',
+        conversationId: 'antigravity-conversation',
+      },
+    });
+
+    expect(identity.seed_source).toBe('CLAUDE_CODE_SESSION_ID');
+  });
+
+  it('is named in the missing-seed error', () => {
+    expect(() =>
+      deriveCollaborationIdentity({ platform: 'claude', model: 'claude', env: {} }),
+    ).toThrow(/CLAUDE_CODE_SESSION_ID/);
   });
 });

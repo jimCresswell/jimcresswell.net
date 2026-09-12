@@ -10,12 +10,12 @@
  * module. Splitting here keeps each half fully documented within the
  * repository's file-size limit without trimming either.
  *
- * Seed precedence (PDR-027 §Seed precedence, 2026-08-24 amendment): the
- * explicit Practice seeds in platform order, then the cloud seat's ambient
- * platform session id with its type tag stripped, then the harness-native
- * fallbacks (`CODEX_THREAD_ID`, Antigravity `conversationId`). Every explicit
- * Practice seed outranks the ambient cloud id — they are the operator's
- * stated contract.
+ * Seed precedence (PDR-027 §Seed precedence, 2026-08-24 and 2026-09-12
+ * amendments): the explicit Practice seeds in platform order, then the cloud
+ * seat's ambient platform session id with its type tag stripped, then the
+ * harness-native fallbacks (`CLAUDE_CODE_SESSION_ID`, `CODEX_THREAD_ID`,
+ * Antigravity `conversationId`). Every explicit Practice seed outranks the
+ * ambient ids — they are the operator's stated contract.
  *
  * @packageDocumentation
  */
@@ -60,6 +60,12 @@ export function resolveCollaborationSeed(
       source: 'CLAUDE_CODE_REMOTE_SESSION_ID',
       value: stripSessionIdTagIfPresent(env.CLAUDE_CODE_REMOTE_SESSION_ID),
     },
+    // CLI-seat harness-native id (PDR-027, 2026-09-12 amendment): Claude Code
+    // exports it into every Bash tool shell, so it is present whether or not
+    // the SessionStart hook's env-file write reached this shell. It is the
+    // same value the hook writes as PRACTICE_AGENT_SESSION_ID_CLAUDE on a CLI
+    // seat, so the derived identity is byte-identical either way.
+    { source: 'CLAUDE_CODE_SESSION_ID', value: env.CLAUDE_CODE_SESSION_ID },
     { source: 'CODEX_THREAD_ID', value: env.CODEX_THREAD_ID },
     { source: 'conversationId', value: env.conversationId },
     {
@@ -91,7 +97,7 @@ export function missingCollaborationIdentitySeedMessage(platform: string): strin
     'missing collaboration identity seed; set one of ' +
     'PRACTICE_AGENT_SESSION_ID_CLAUDE, PRACTICE_AGENT_SESSION_ID_CURSOR, ' +
     'PRACTICE_AGENT_SESSION_ID_GEMINI, PRACTICE_AGENT_SESSION_ID_CODEX, ' +
-    'CODEX_THREAD_ID, or Antigravity conversationId.' +
+    'CLAUDE_CODE_SESSION_ID, CODEX_THREAD_ID, or Antigravity conversationId.' +
     platformHint
   );
 }

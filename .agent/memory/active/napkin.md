@@ -307,3 +307,39 @@
 - Fence sweep: no owner-fenced wording this session; the private editorial boundary untouched.
 - Fixed point: a further pass would only re-find the two generators and the directive residue;
   the recursion closes here.
+
+### Session 4 (2026-09-12, post-compaction re-ground)
+
+- The Bash shell after compaction carries neither `PRACTICE_AGENT_SESSION_ID_CLAUDE` nor
+  `CLAUDE_ENV_FILE`, although the SessionStart hook reported writing the seed to the env file.
+  The collaboration-state CLI then refuses every comms write. Cure used: pass the seed inline
+  from the session id (`PRACTICE_AGENT_SESSION_ID_CLAUDE=<session-uuid> pnpm …`); the derived
+  prefix matched the hook's (`880ff9`). Open question for re-evaluate: does the env file reach
+  the Bash tool at all in this harness, or only after a fresh session start?
+- `.agent/skills/start-right-quick/shared/start-right.md` is lineage-shaped: the Matt clear-run
+  clause, `oak-consolidate-docs`, the `.cursor/hooks/oak-session-identity.mjs` path, the
+  `sdk-codegen` / `test:widget*` / `practice:vocabulary` gate list, the Linear MCP cross-check.
+  None of it applies here. Re-evaluate target: rewrite the shared workflow against this repo's
+  actual scripts and hooks (the cited-script existence check from Wrap 2 would catch the gates).
+- Part A landed (seed contract). Diagnosis from the transcript and the session-env directory: the
+  startup SessionStart hook wrote nothing (env file born at the second compaction, one line, 79
+  bytes); the persistent Bash shell was created twelve minutes before that write; a late env-file
+  write does not reach a shell that already exists. The hook's context line claimed the write on
+  every run, and its unit test pinned the claim. Cure: `CLAUDE_CODE_SESSION_ID` (harness-native,
+  present in every Bash tool shell, equal to the seed) added to both seed cascades after the cloud
+  id; hook context now says whether a write was planned; identity hook timeout 5 s → 20 s.
+  Prediction, not fix: the startup env-file write appears at the next session start; if it does
+  not, the timeout was not the cause and the shim needs per-invocation logging.
+- Peer exchange with Nettle guards Pistil (OCE, read-only source for us; owner authorised
+  questions and suggestions): seven findings sent; 1, 2, 3, 7 verified there; 5 is
+  transplant-side drift (all nineteen scripts exist in OCE); **6 retracted** — my inventory
+  explorer conflated `PDR-135-cost-of-change-gradient.md` (Core) with the docs file and code-text
+  mentions of `docs/dev-tooling.md` with links; the reference-direction validator's own count (0
+  portability) was the check I should have read first. Lesson: an explorer's "violation" claim
+  is verified against the validator that polices it before it is repeated to anyone.
+- OCE moved since the transplant scan: PR #136 (§Scope as the review contract across the PR
+  template, pr-lifecycle, review-feedback-defaults-to-triage, proportionality, coordination-fold,
+  copilot-instructions, AGENTS.md) is still moving; read it after its merge commit lands on
+  `engraph`. PR #138 (disposition format in pr-lifecycle §Response pricing, pr-tally fixture) is
+  stable at 352ad0ee5. No sub-agent templates, hook policy or validators changed today. Re-import
+  candidates for after this slice, at those SHAs.

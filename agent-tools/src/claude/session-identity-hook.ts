@@ -9,8 +9,12 @@ import { shellSingleQuote } from '../core/shell-single-quote.js';
  * @remarks
  * Claude Code provides `CLAUDE_ENV_FILE` to `SessionStart`, `CwdChanged`, and
  * `FileChanged` hooks as a path that may be appended with `export FOO=bar`
- * lines. Variables written there persist for the rest of the session's Bash
- * tool calls. See https://code.claude.com/docs/en/hooks.
+ * lines. Variables written there reach Bash tool shells created after the
+ * write; a shell that already exists (observed 2026-09-12: a compaction-time
+ * write landed twelve minutes after the persistent shell was created) does
+ * not pick them up. The seed CLIs therefore also read the harness-native
+ * `CLAUDE_CODE_SESSION_ID`, which every Bash tool shell carries.
+ * See https://code.claude.com/docs/en/hooks.
  */
 export interface ClaudeSessionIdentityHookEnvironment {
   readonly CLAUDE_ENV_FILE?: string;
@@ -84,16 +88,23 @@ export function planClaudeSessionIdentityHook(
     override === undefined ? {} : { override },
   ).displayName;
   const prefix = sessionIdPrefix(sessionId);
-  const additionalContext = identityContext({ displayName, prefix });
+  const envFile = nonEmpty(input.environment.CLAUDE_ENV_FILE);
 
+  // The context line about shell tools is decided AFTER the env-file
+  // decision so it reports what this run actually planned: a no-write run
+  // once claimed the variable was set, and the false claim hid a missed
+  // startup write for a whole session (2026-09-12).
   const hookOutput: ClaudeSessionIdentityHookOutput = {
     hookSpecificOutput: {
       hookEventName: 'SessionStart',
-      additionalContext,
+      additionalContext: identityContext({
+        displayName,
+        prefix,
+        envFileWritePlanned: envFile !== undefined,
+      }),
     },
   };
 
-  const envFile = nonEmpty(input.environment.CLAUDE_ENV_FILE);
   if (envFile === undefined) {
     return { hookOutput };
   }
@@ -183,12 +194,19 @@ function readSessionId(stdinText: string): string | undefined {
   return trimmed.length === 0 ? undefined : trimmed;
 }
 
-function identityContext(input: { readonly displayName: string; readonly prefix: string }): string {
+function identityContext(input: {
+  readonly displayName: string;
+  readonly prefix: string;
+  readonly envFileWritePlanned: boolean;
+}): string {
+  const shellToolsLine = input.envFileWritePlanned
+    ? 'PRACTICE_AGENT_SESSION_ID_CLAUDE is appended to $CLAUDE_ENV_FILE; shells created after this write see it, and every Bash tool shell also carries CLAUDE_CODE_SESSION_ID, so shell tools (e.g. `pnpm agent-tools:agent-identity --format display`) resolve the same identity without --seed either way.'
+    : 'No $CLAUDE_ENV_FILE was provided, so nothing was written; shell tools (e.g. `pnpm agent-tools:agent-identity --format display`) resolve the same identity from CLAUDE_CODE_SESSION_ID, which the harness exports into every Bash tool shell.';
   return [
     '[Practice agent identity]',
     `Session identity (PDR-027): ${input.displayName}.`,
     `PDR-027 session_id_prefix (first 6 of the PDR-027 seed): ${input.prefix}.`,
-    'PRACTICE_AGENT_SESSION_ID_CLAUDE is set in $CLAUDE_ENV_FILE so shell tools (e.g. `pnpm agent-tools:agent-identity --format display`) resolve the same identity without --seed.',
+    shellToolsLine,
     `Once the session intent is clear, suggest the user run: /rename ${input.displayName} - <intent>`,
     'so the agent name is the first part of the session title. Do not auto-rename — the user owns the title.',
   ].join('\n');

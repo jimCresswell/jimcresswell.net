@@ -146,16 +146,34 @@ describe('planClaudeSessionIdentityHook', () => {
     });
   });
 
-  it('omits the env-file write when CLAUDE_ENV_FILE is missing', () => {
+  it('omits the env-file write when CLAUDE_ENV_FILE is missing and says so in the context', () => {
+    // 2026-09-12 regression: the context line once claimed the variable was
+    // set in $CLAUDE_ENV_FILE on every run, including runs that wrote nothing,
+    // which hid a missed startup write for a whole session.
     const plan = planClaudeSessionIdentityHook({
       stdinText: JSON.stringify({ session_id: 'session-id-without-env-file' }),
       environment: {},
     });
 
     expect(plan.envFileWrite).toBeUndefined();
-    expect(plan.hookOutput.hookSpecificOutput?.additionalContext).toContain(
-      '[Practice agent identity]',
-    );
+    const additionalContext = plan.hookOutput.hookSpecificOutput?.additionalContext ?? '';
+    expect(additionalContext).toContain('[Practice agent identity]');
+    expect(additionalContext).toContain('nothing was written');
+    expect(additionalContext).toContain('CLAUDE_CODE_SESSION_ID');
+    expect(additionalContext).not.toContain('is appended to $CLAUDE_ENV_FILE');
+  });
+
+  it('reports the planned env-file write in the context, with the native fallback named', () => {
+    const plan = planClaudeSessionIdentityHook({
+      stdinText: JSON.stringify({ session_id: 'session-id-with-env-file' }),
+      environment: { CLAUDE_ENV_FILE: 'mem://env-file' },
+    });
+
+    expect(plan.envFileWrite).toBeDefined();
+    const additionalContext = plan.hookOutput.hookSpecificOutput?.additionalContext ?? '';
+    expect(additionalContext).toContain('is appended to $CLAUDE_ENV_FILE');
+    expect(additionalContext).toContain('CLAUDE_CODE_SESSION_ID');
+    expect(additionalContext).not.toContain('nothing was written');
   });
 
   it('omits the env-file write when CLAUDE_ENV_FILE is whitespace', () => {

@@ -31,6 +31,19 @@ discipline binds to this PDR's tuple format).
 
 ## Amendment Log
 
+- **2026-09-12 — the Claude Code CLI session id accepted as a seed source.**
+  Claude Code exports the harness session id into every Bash tool shell as
+  `CLAUDE_CODE_SESSION_ID`. The seed CLIs read it after the explicit
+  `PRACTICE_AGENT_SESSION_ID_*` values and the cloud seat's
+  `CLAUDE_CODE_REMOTE_SESSION_ID`, and before `CODEX_THREAD_ID` — the same
+  shape as the 2026-04-27 Codex entry. It is the value the `SessionStart`
+  hook writes as the Claude seed on a CLI seat, so the derived tuple is
+  identical whichever source resolves. The measured failure: a seat whose
+  startup hook wrote nothing and whose compaction-time write landed after
+  the persistent shell existed lost every collaboration write for a session
+  while the native id sat in that shell throughout. The hook's context line
+  now states whether an env-file write was planned rather than asserting it.
+
 - **2026-08-24 — cloud seats seed from the platform session id; hooks never
   pin a display name.** On a cloud seat two ids coexist: the harness-internal
   session id and the platform session id. The platform id is the durable,

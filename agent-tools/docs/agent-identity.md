@@ -26,9 +26,10 @@ If `--seed` is omitted, the CLI reads (in order)
 `PRACTICE_AGENT_SESSION_ID_CLAUDE`,
 `PRACTICE_AGENT_SESSION_ID_CURSOR`,
 `PRACTICE_AGENT_SESSION_ID_GEMINI`,
-`PRACTICE_AGENT_SESSION_ID_CODEX`,
-then the harness-native `CODEX_THREAD_ID`, then Antigravity's stable
-`conversationId` surfaces (`conversationId` or
+`PRACTICE_AGENT_SESSION_ID_CODEX`, the cloud seat's
+`CLAUDE_CODE_REMOTE_SESSION_ID` (type tag stripped), then the harness-native
+`CLAUDE_CODE_SESSION_ID` (Claude Code CLI seats) and `CODEX_THREAD_ID`, then
+Antigravity's stable `conversationId` surfaces (`conversationId` or
 `ANTIGRAVITY_SOURCE_METADATA.conversationId`). If none is set, it exits with
 code `2`. There is no personal-email fallback; hashing `git config user.email`
 would silently use a personal identifier and could collapse concurrent
@@ -173,7 +174,10 @@ seats the seed is the untagged payload of `CLAUDE_CODE_REMOTE_SESSION_ID`
 (`cse_`-tagged in env; session URLs and Claude-Session commit trailers carry
 the same payload `session_`-tagged), so registry rows, trailers, and the
 owner-visible session URL join on one key. CLI seats keep the harness
-`session_id`. Explicit `PRACTICE_AGENT_SESSION_ID_*` values outrank the
+`session_id`, which Claude Code also exports into every Bash tool shell as
+`CLAUDE_CODE_SESSION_ID`; the seed CLIs read it after the cloud id, so a CLI
+seat resolves its identity even when the `SessionStart` env-file write never
+reached the shell (PDR-027, 2026-09-12). Explicit `PRACTICE_AGENT_SESSION_ID_*` values outrank the
 ambient platform id — they are the operator's stated contract.
 
 The earlier session-level name cache (hooks storing the derived name in
@@ -328,11 +332,17 @@ session or resumes one. The harness pipes a JSON object on stdin containing
    [Claude Code hooks docs](https://code.claude.com/docs/en/hooks)), and
    prints a `hookSpecificOutput` JSON object whose `additionalContext`
    carries the agent identity row and a non-binding `/rename` suggestion.
-4. Subsequent Bash tool calls in the session see
-   `$PRACTICE_AGENT_SESSION_ID_CLAUDE`, so any tool using CLI identity
-   resolution (e.g. `pnpm agent-tools:agent-identity --format display`)
-   re-derives the same session identity from the seed without `--seed` —
-   no cached name is involved.
+4. Bash tool shells created after that write see
+   `$PRACTICE_AGENT_SESSION_ID_CLAUDE`. A shell that already exists does
+   not (observed 2026-09-12: the startup hook wrote nothing, the
+   compaction-time hook wrote twelve minutes after the persistent shell
+   was created, and no Bash call in the session saw the variable). Every
+   Bash tool shell carries the harness-native `$CLAUDE_CODE_SESSION_ID`,
+   which the seed CLIs read after the cloud id, so any tool using CLI
+   identity resolution (e.g. `pnpm agent-tools:agent-identity --format
+display`) re-derives the same session identity without `--seed` either
+   way — no cached name is involved. The hook's `additionalContext` states
+   whether a write was planned; a run without `$CLAUDE_ENV_FILE` says so.
 
 The hook remains a soft surface for the session — every failure path exits
 0 — but shim failures are loud, not silent: the diagnostic payload above

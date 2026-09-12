@@ -733,3 +733,31 @@ Run the transplant **before** the outstanding 57-lesson synthesis pass over
 no `pending-graduations` register, no three-mode memory. That absence is _why_ PR #41
 rotated unearned. The transplant creates the destination; the synthesis then has
 somewhere to land.
+
+## Re-evaluate — seed contract (executed 2026-09-12)
+
+The first re-evaluate slice trues two transplanted assertions and re-homes the copied docs;
+this section records the first. Finding: the Claude `SessionStart` identity hook reported that
+`PRACTICE_AGENT_SESSION_ID_CLAUDE` was set in `$CLAUDE_ENV_FILE`, yet no Bash tool call in this
+session saw it, so every collaboration-state write was refused. Evidence: the session's env file
+was born at the second compaction with one export line; the startup hook wrote nothing and
+logged nothing; the persistent Bash shell predated the compaction-time write by twelve minutes.
+The hook's context line was emitted before the env-file decision, and its unit test pinned the
+no-write case still making the claim.
+
+Cure, structural: `CLAUDE_CODE_SESSION_ID` — exported by the harness into every Bash tool shell
+and equal to the seed — joins both seed cascades (`collaboration-seed.ts`, `agent-identity-cli.ts`)
+after the cloud seat's remote id and before the Codex fallback; PDR-027 carries the amendment
+(2026-09-12). The hook's context now states whether a write was planned. The identity hook
+timeout in `.claude/settings.json` rises from 5 s to 20 s as the leading hypothesis for the
+missed startup write; the falsifier is the env file appearing at the next session start. Docs
+trued: `agent-tools/docs/agent-identity.md`, `launch-command.ts`, `use-built-agent-tools-cli.md`.
+Proof: with the env-file variable absent, `agent-identity --format display` and
+`identity preflight` resolve `Cauldron herds Lustre` / `880ff9` with `seed_source:
+CLAUDE_CODE_SESSION_ID`.
+
+Peer note: the OCE seat (read-only source, pinned at `a55fd8fdd`) verified the hook-message and
+`ADR-199` findings first-hand and will cure them in its own lane; the claimed PDR-105 portability
+violations from Core into `docs/` were a mis-read by this seat's inventory explorer and are
+retracted (the validator reports 0). OCE's pull-request machinery moved after the transplant scan
+(PR #136 still moving, PR #138 at `352ad0ee5`); re-import is scheduled after this slice.
