@@ -19,45 +19,53 @@ a continue-mode turbo run (`pnpm exec turbo run lint type-check test --continue`
 stack, but final acceptance still requires the sequence below to pass cleanly
 from the beginning.
 
-This sequence corresponds to the current `pnpm check` script — the canonical
-aggregate local proof gate. See
-[ADR-121](../../../../docs/architecture/architectural-decisions/121-quality-gate-surfaces.md)
-for how this relates to pre-commit, pre-push, and CI. Re-read `package.json`
-before editing this list; the root script is the source of truth when the gate
-graph changes.
+This sequence is the current `pnpm check` script — the canonical read-only
+aggregate local proof gate — unrolled one leg per line, followed by the gates
+that live outside it. The pre-commit hook runs the staged subset, the pre-push
+hook runs `pnpm check:ci` (an alias of `check`) plus the site's end-to-end
+tests, and CI runs the same legs (`validate-check-ci-parity` refuses a drift
+between `check` and `.github/workflows/ci.yml`). Re-read `package.json` before
+editing this list; the root script is the source of truth when the gate graph
+changes, and the cited-scripts validator refuses a `pnpm <script>` citation
+that `package.json` does not define.
 
 ## The Sequence
 
 Run each gate in order. If a gate fails, fix the issues before proceeding.
 
 ```bash
-pnpm secrets:scan
-pnpm clean
-pnpm repo-validators:check
-pnpm sdk-codegen
-pnpm build
-pnpm type-check
+pnpm format
+pnpm markdownlint:check
+pnpm lint:shell
+pnpm lint:runtime-only
 pnpm lint
+pnpm type-check
 pnpm test
-pnpm test:widget
-pnpm test:e2e
-pnpm test:ui
-pnpm test:a11y
-pnpm test:widget:ui
-pnpm test:widget:a11y
-pnpm subagents:check
-pnpm portability:check
-pnpm skills:check
 pnpm knip
 pnpm depcruise
-pnpm markdownlint-check:root
-pnpm format-check:root
+pnpm secrets:scan
+pnpm portability:check
+pnpm subagents:check
+pnpm skills:check
+pnpm encoding:check
 ```
 
-Use mutating repair commands such as `pnpm lint:fix`, `pnpm markdownlint:root`,
-or `pnpm format:root` only to fix a failing proof, then re-run the proof
-sequence from the beginning. Do not treat mutating repair commands as final
-evidence that the tree is clean.
+Gates outside `check`, run when the work touches their surface:
+
+```bash
+pnpm build                      # the site and every workspace; PDF generation is part of it
+pnpm test:e2e                   # Playwright against a production build (pre-push runs this)
+pnpm test:e2e:ui                # the same suite in Playwright's UI mode
+pnpm visual-regression-harness  # rendered-proof comparison for visual work
+pnpm check:docs                 # format + markdownlint + the docs validators
+pnpm plan-gates:check           # plan-node gate drift
+```
+
+Use mutating repair commands such as `pnpm fix` (the mutating aggregate),
+`pnpm lint:fix`, `pnpm markdownlint:fix` or `pnpm format:fix` only to fix a
+failing proof, then re-run the proof sequence from the beginning; `pnpm
+check:fix` runs the repair aggregate and then the proof. Do not treat mutating
+repair commands as final evidence that the tree is clean.
 
 ## Rules
 
@@ -71,7 +79,7 @@ evidence that the tree is clean.
 For each gate in the sequence above:
 
 - If the gate fails, fix the issue
-- After fixing, restart from the beginning (`pnpm secrets:scan`)
+- After fixing, restart from the beginning (`pnpm format`)
 - If the gate passes, proceed to the next one
 
 The full sequence mirrors `pnpm check` in `package.json`.

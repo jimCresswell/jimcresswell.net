@@ -63,10 +63,10 @@ pnpm markdownlint:fix   # Markdown lint (auto-fix)
 pnpm markdownlint:check # Markdown lint (read-only)
 pnpm lint:fix       # ESLint (auto-fix)
 pnpm lint           # ESLint (read-only)
-pnpm typecheck      # TypeScript type checking
+pnpm type-check     # TypeScript type checking
 pnpm test           # Unit and integration tests (Vitest)
-pnpm test:watch     # Tests in watch mode
-pnpm test:coverage  # Tests with coverage report
+pnpm --filter @jimcresswell/www test:watch     # Site tests in watch mode
+pnpm --filter @jimcresswell/www test:coverage  # Site tests with coverage report
 pnpm test:e2e       # E2E tests — full Playwright suite against a production build
 pnpm test:e2e:ui    # Playwright UI mode (interactive)
 pnpm visual-regression-harness <base-ref> <target-ref> # Non-destructive rendered-output comparison
@@ -76,12 +76,12 @@ pnpm check          # Every blocking gate, read-only (pre-push and CI run the sa
 pnpm check:fix      # fix, then check
 pnpm knip           # Find unused exports and dependencies
 pnpm secrets:scan   # Scan git history for secrets
-pnpm vital-surfaces:check # Validate the vital Practice surface contract
 pnpm portability:check    # Validate agent-surface parity and local surface contract
 pnpm subagents:check      # Validate reviewer wrappers and Codex registrations
+pnpm check:docs           # Format, markdownlint and the docs validators (links, reference direction, cited scripts)
 pnpm practice:fitness:informational # Advisory Practice/doc fitness report
-pnpm fitness-vocabulary:check # Advisory check for canonical fitness frontmatter keys
-pnpm generate:icons # Regenerate favicon and OG images from logo
+pnpm practice:vocabulary  # Advisory check for canonical fitness frontmatter keys
+pnpm --filter @jimcresswell/www generate:icons # Regenerate favicon and OG images from the logo
 ```
 
 ## Project Structure
@@ -214,7 +214,7 @@ Both hooks are managed by [Husky](https://typicode.github.io/husky/), installed 
 
 Practice/doc fitness is a companion surface rather than part of `pnpm check`:
 run `pnpm practice:fitness:informational` when changing Practice or
-directive docs, and use `pnpm fitness-vocabulary:check` alongside it when
+directive docs, and use `pnpm practice:vocabulary` alongside it when
 you need to check for frontmatter-key drift.
 
 **Local development** works without any environment variables. `.env.local` is only needed to test the full Vercel Blob PDF path (see [architecture docs](docs/architecture/README.md) for details).

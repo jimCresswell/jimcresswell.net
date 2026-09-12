@@ -549,7 +549,7 @@ in sync and one fetch would have shown it).
   report) before any whole-file claim.
 - Running a generator / codegen / build script to *diagnose* without reading it
   first — a `clean` / `rm -rf` prelude on a command that may crash deletes
-  tracked artefacts (a diagnostic `sdk-codegen` once deleted ~100 tracked files
+  tracked artefacts (a diagnostic codegen run in the lineage once deleted ~100 tracked files
   this way).
 - A proof loop whose probe consumes its own input as options — `grep -Fq "$line"`
   ate every `-`-prefixed needle as a flag, so 13 of 132 lines were never tested

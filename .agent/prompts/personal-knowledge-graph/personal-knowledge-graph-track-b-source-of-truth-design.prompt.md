@@ -133,7 +133,7 @@ The output should define:
 - `pnpm format:fix`
 - `pnpm markdownlint:fix`
 - `pnpm lint:fix`
-- `pnpm typecheck`
+- `pnpm type-check`
 - `pnpm test`
 - `pnpm knip`
 - `pnpm secrets:scan`

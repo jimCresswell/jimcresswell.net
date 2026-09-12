@@ -190,7 +190,7 @@ graph-derived today. Track A should not claim them.
 
 - `app/manifest.integration.test.ts`
 - `e2e/behaviour/manifest.e2e-api.test.ts`
-- `pnpm typecheck`
+- `pnpm type-check`
 
 #### Manual checks
 

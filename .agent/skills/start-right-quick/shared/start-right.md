@@ -54,31 +54,31 @@ is the plan-body first-principles-check rule).**
    describes a system state, product code is the path that guides the system
    into it
 5. @.agent/directives/testing-strategy.md — test-type taxonomy and shape rules
-6. @.agent/directives/schema-first-execution.md — types flow from schema
-7. @.agent/directives/orientation.md — layering contract and authority order
+6. @.agent/directives/orientation.md — layering contract and authority order
 
 For Codex, Gemini, or any other platform that does not auto-load canonical
 rules, read every canonical `.agent/rules/*.md` file listed in
 `RULES_INDEX.md` before substantive work. Treat `RULES_INDEX.md` as the live
 inventory rather than copying the rule list here.
 
-### 2. Start-here ADRs
+### 2. ADRs for the workstream
 
-Scan the [Start Here: 5 ADRs in 15 Minutes](../../../../docs/architecture/architectural-decisions/README.md#start-here-5-adrs-in-15-minutes)
-block in the ADR index. Open any ADR whose slug matches your current
-workstream from the [full ADR index](../../../../docs/architecture/architectural-decisions/README.md).
+Open any ADR whose slug matches your current workstream from the
+[ADR index](../../../../docs/architecture/decision-records/README.md); the
+Cardinal Rule's records (ADR-020, ADR-021) apply to any work that touches a
+rendered surface.
 
 ### 3. Learning-loop surfaces (active memory)
 
 - @.agent/memory/active/distilled.md — refined cross-session lessons
 - @.agent/memory/active/napkin.md — current session observations
-- @.agent/memory/active/patterns/passive-guidance-loses-to-artefact-gravity.md —
-  constraint at tripwire-design time (passive guidance needs an active
-  layer to fire under context pressure)
+- @.agent/memory/active/patterns/README.md — the pattern index (passive
+  guidance needs an active layer to fire under context pressure; check it
+  at tripwire-design time)
 - Your own platform's per-user memory and session logs. Scan the
   surface for the platform you are running on:
   - Claude Code: `~/.claude/projects/<project>/memory/`
-  - Cursor: `~/.cursor/chats/`, `~/.cursor/prompt_history.json`; Composer may inject deterministic identity from `.cursor/hooks/oak-session-identity.mjs` (`sessionStart`; see `agent-tools/docs/agent-identity.md` and [Cursor Hooks](https://cursor.com/docs/hooks))
+  - Cursor: `~/.cursor/chats/`, `~/.cursor/prompt_history.json`; Composer may inject deterministic identity from `.cursor/hooks/practice-session-identity.mjs` (`sessionStart`; see `agent-tools/docs/agent-identity.md` and [Cursor Hooks](https://cursor.com/docs/hooks))
   - Codex: `~/.codex/memories/`, `~/.codex/history.jsonl`
 
   Read only the surface that matches your current platform at
@@ -166,22 +166,26 @@ When registering your PDR-027 identity row, use an existing owner-assigned
 `agent_name` if one matches. Otherwise derive a session display name with
 `pnpm agent-tools:agent-identity --format display`. The CLI reads (in order)
 `PRACTICE_AGENT_SESSION_ID_CLAUDE`, `PRACTICE_AGENT_SESSION_ID_CURSOR`,
-`PRACTICE_AGENT_SESSION_ID_CODEX`, then the harness-native `CODEX_THREAD_ID`.
-Platform hooks set the platform-suffixed Practice variable: the Claude Code
-`SessionStart` hook (`.claude/hooks/practice-session-identity.mjs`) appends
-`PRACTICE_AGENT_SESSION_ID_CLAUDE` to `$CLAUDE_ENV_FILE`, and the Cursor
-`sessionStart` hook (`.cursor/hooks/oak-session-identity.mjs`) injects
+`PRACTICE_AGENT_SESSION_ID_GEMINI`, `PRACTICE_AGENT_SESSION_ID_CODEX`, the
+cloud seat's `CLAUDE_CODE_REMOTE_SESSION_ID`, then the harness-native
+`CLAUDE_CODE_SESSION_ID` (present in every Claude Code Bash tool shell) and
+`CODEX_THREAD_ID`. Platform hooks set the platform-suffixed Practice
+variable: the Claude Code `SessionStart` hook
+(`.claude/hooks/practice-session-identity.mjs`) appends
+`PRACTICE_AGENT_SESSION_ID_CLAUDE` to `$CLAUDE_ENV_FILE` for shells created
+after the write, and the Cursor `sessionStart` hook
+(`.cursor/hooks/practice-session-identity.mjs`) injects
 `PRACTICE_AGENT_SESSION_ID_CURSOR`. If none of these is set in your shell
 (e.g. the hook artefact has not been built yet), pass
 `--seed "<stable-session-seed>"` explicitly. Do not use personal-email
 fallback.
 
-Before any Codex thread registration or shared collaboration-state write,
-run the PDR-027 identity preflight with the current platform and model values.
-For this repo's Codex GPT-5 sessions the command is:
+Before any thread registration or shared collaboration-state write, run the
+PDR-027 identity preflight with the current platform and model values, for
+example:
 
 ```bash
-pnpm agent-tools:collaboration-state -- identity preflight --platform codex --model GPT-5
+pnpm agent-tools:collaboration-state -- identity preflight --platform claude --model <model-id>
 ```
 
 Codex sessions with `CODEX_THREAD_ID` available must not write new thread rows
@@ -229,9 +233,9 @@ git config user.name && git config user.email
    and it is config, not authentication, so treat it as a default,
    never proof.
 2. **A per-user-authenticated service is the authoritative
-   cross-check** where one is connected — e.g. the Linear MCP viewer
-   (`get_user("me")`): it is real auth, resolved on this machine, for
-   this user.
+   cross-check** where one is connected — e.g. the GitHub CLI
+   (`gh api user --jq .login`): it is real auth, resolved on this
+   machine, for this user.
 3. **Ask the human only as the residue**: both sources absent,
    bot-shaped, or disagreeing with each other.
 
@@ -240,31 +244,6 @@ renders (owner-attention cards, per-user register renders, handoff
 records) instead of a remembered name. Memory and collaboration state
 name people historically — they are records of who acted, never
 resolution sources for who is here now.
-
-**Temporary — a clear run for Matt (owner-directed, 2026-08-03; remove
-when the owner declares the first-submission window closed — that
-declaration is the removal trigger, no other signal).** The easiest
-reliable signal that the collaborating human is Matt is his GitHub
-handle: `gh api user --jq .login` returning `mantagen` (owner-named
-detection route); the resolution order above applies where that signal
-is absent or bot-shaped. When — and only when — Matt is the identified
-user:
-
-- Open with a warm welcome that reflects the fleet's CURRENT quiet
-  state, derived from the live surfaces this workflow already loads
-  (open pull requests and their draft flags, active claims) — the
-  standing owner intent is that agent lanes stay parked in draft pull
-  requests so nothing churns under his work, with only the upstream
-  spec-update lane allowed near his surfaces and always tagged to him.
-  Say what is true at session open, never a remembered snapshot.
-- Treat his work as the repository's first priority for the session:
-  support what he is doing ahead of any agent-side backlog, keep
-  answers plain and practical, and route around his lane, never
-  through it.
-- Pass on the team's encouragement, plainly and warmly: Jim and the
-  whole fleet cleared this run for him on purpose, everyone is glad he
-  is making it, and he should ask any session for whatever he needs —
-  that is exactly what the agents are here for.
 
 ### 7. Host health
 
@@ -315,15 +294,15 @@ session's statusline. So build every new worktree **before** opening the session
 not after.
 
 `pnpm install` also does NOT fetch Playwright browser binaries, so a fresh
-worktree's pre-push `test:ui`/`test:e2e` legs die with "Executable doesn't
-exist at …chrome-headless-shell" until you run
-`pnpm --filter <app> exec playwright install chromium-headless-shell` once in
-the worktree. Read the log before assuming a known flake — this failure is
-not the oauth-proxy concurrency flake. Full fresh-worktree setup is install,
-build, AND the Playwright browser install before the browser-test gates run.
+worktree's pre-push `test:e2e` leg (and `test:e2e:ui`) dies with "Executable
+doesn't exist at …chrome-headless-shell" until you run
+`pnpm --filter @jimcresswell/www exec playwright install chromium-headless-shell`
+once in the worktree. Read the log before assuming a known flake. Full
+fresh-worktree setup is install, build, AND the Playwright browser install
+before the browser-test gates run.
 
 The collaboration substrate is also unseeded on a fresh checkout: the
-instance-tier state files are untracked-by-design (ADR-199 / PDR-094). The
+instance-tier state files are untracked by design (`.agent/state/README.md`). The
 pieces differ in who creates them: `active-claims.json`,
 `closed-claims.archive.json` require EXPLICIT seeding — the first claims read
 fails loud with seeding instructions rather than creating them. The
@@ -380,7 +359,7 @@ fi
 
 Check `.agent/practice-core/incoming/` for practice-core files. If
 present, alert the user — incoming material may carry learnings from
-another repo. Full integration happens during `/oak-consolidate-docs`.
+another repo. Full integration happens during `/jc-consolidate-docs`.
 
 ## Per-Session Landing Commitment
 
@@ -450,11 +429,6 @@ artefact whose size matches the work:
 This is a work-shape declaration, not a repo plan file for every edit.
 It operationalises PDR-026 without turning small fixes into plan theatre.
 
-For observability work specifically: if the landing moves a matrix
-cell in
-[`what-the-system-emits-today.md`](../../../plans-backlog-2026-07/observability/what-the-system-emits-today.md)
-from empty to populated, update the artefact in the same commit.
-
 ## Session Priority
 
 Apply session priority ordering:
@@ -505,14 +479,12 @@ and developer experience. Choose architectural correctness over
 short-term expediency. This requires critical and _long-term_
 thinking.
 
-## Schema-First Nuance
-
-Schema-first is absolute for SDK code calling the upstream API or
-extracting from the OpenAPI spec. It is acceptable to add additional
-metadata (e.g., MCP tool descriptions) at sdk-codegen time.
+## Generated Files
 
 When analysing generated files, always analyse the generator code that
-produced them — the generator is the source of truth.
+produced them — the generator is the source of truth. Here that means the
+entity graph (`content/entities.json`) and the build that derives every
+rendered surface from it (the Cardinal Rule in `principles.md`).
 
 ## Sub-agent Reviews
 
@@ -529,33 +501,18 @@ first.
 
 ## Quality Gates
 
-Run after making changes. Note: some gates trigger earlier ones;
-caching prevents duplicate work. See @docs/engineering/build-system.md
-and ADR-065 for caching details.
+Run after making changes, one gate at a time from the repo root. The
+sequence is the [gates skill](../../change-custody/gates/SKILL-CANONICAL.md):
+`pnpm check` unrolled one leg per line, then the gates outside it (build,
+end-to-end, visual regression, docs validators, plan gates). Caching
+details are in @docs/engineering/build-system.md.
+
+Practice health, informational and never a gate:
 
 ```bash
-# From repo root, one at a time
-pnpm sdk-codegen        # Makes changes
-pnpm build              # Makes changes
-pnpm type-check
-pnpm lint:fix           # Makes changes
-pnpm format:root        # Makes changes
-pnpm markdownlint:root  # Makes changes
-pnpm subagents:check    # After sub-agent definition changes
-pnpm portability:check  # After platform surface or hook changes
-pnpm repo-validators:check  # Workspace-owned repo validators
-pnpm test
-pnpm test:widget
-pnpm test:e2e
-pnpm test:ui
-pnpm test:a11y
-pnpm test:widget:ui
-pnpm test:widget:a11y
-
-# Practice health — three-zone model, ADR-144
-pnpm practice:fitness:informational  # Four-zone report (always exit 0)
-# Consolidation-closure signal (run via oak-consolidate-docs):
+pnpm practice:fitness:informational  # four-zone report (always exit 0)
+# Consolidation-closure signal (run via /jc-consolidate-docs):
 #   pnpm practice:fitness:strict-hard
-# Vocabulary consistency (ADR-144 §Key Principles #1):
+# Vocabulary consistency:
 #   pnpm practice:vocabulary
 ```

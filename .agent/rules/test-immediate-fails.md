@@ -40,10 +40,9 @@ seam, extract a pure function, inject a dependency).
    carve-out's own rationale is tier-agnostic): an in-process test
    (`.unit.test.ts` or `.integration.test.ts`) MAY read COMMITTED
    repo artefacts through an owned `test-helpers/` fixture surface
-   anchored at `import.meta.dirname` (the
-   `mcp-conformance/test-helpers/fixture-loader.ts` precedent; the
-   sdk-codegen `mcp-tools/test-helpers/schema-cache-reader.ts` worked
-   instance) — committed bytes are fixtures by provenance, not
+   anchored at `import.meta.dirname` (two lineage worked instances: a
+   conformance-suite fixture loader and a codegen schema-cache reader,
+   each an owned `test-helpers/` module) — committed bytes are fixtures by provenance, not
    runtime IO; the helper must exist to pin real committed fixtures
    at their canonical paths (never to make the test runnable — item
    2's complex-helper prohibition still binds), and the

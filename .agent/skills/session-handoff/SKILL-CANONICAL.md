@@ -624,7 +624,7 @@ no retrospective memos; those are close-out work, this skill's §Steps.
       Practice-bearing repos may choose a clearer `Active identities` heading.
       Update the existing identity summary column rather than renaming the
       table during routine handoff. The summary must reflect the thread record
-      or the audit in `oak-consolidate-docs` step 7c will flag a mismatch.
+      or the audit in `consolidate-docs` step 7c will flag a mismatch.
 
    This is the session-close counterpart to the session-open
    registration step in
@@ -739,11 +739,11 @@ no retrospective memos; those are close-out work, this skill's §Steps.
 10. **Escalate only when the deeper loop is clearly warranted.**
 
     - If the triggered work is already well-bounded and belongs to this
-      closeout, continue immediately into `oak-consolidate-docs`.
+      closeout, continue immediately into `consolidate-docs`.
     - If deep consolidation is due but not well-bounded for this closeout,
       stop after marking `due — <reason>` so the next session can pick it up
       deliberately.
-    - If `oak-consolidate-docs` runs now, refresh `Deep consolidation status`
+    - If `consolidate-docs` runs now, refresh `Deep consolidation status`
       to `completed this handoff — <reason>`.
 
 11. **Verify the `pnpm check` cleanliness gate.** A sole-contributor session
@@ -808,6 +808,6 @@ no retrospective memos; those are close-out work, this skill's §Steps.
     discover the dispatch obligation only at session-open.
 
 12. **Keep the boundary clean.** `session-handoff` includes the consolidation
-    gate and can escalate into `oak-consolidate-docs` when appropriate, but
+    gate and can escalate into `consolidate-docs` when appropriate, but
     ordinary sessions remain lightweight. It does not smuggle in review or git
     actions.

@@ -144,7 +144,7 @@ tool retires them.
   leaf bin, and an arg scanner reading leading `--` as its terminator sees
   nothing. Drop the `--`; smoke the full script chain shell-level.
 - **turbo parses bare `--force` as value-taking** and eats the task name
-  (`turbo run --force sdk-codegen` runs nothing); use `--force=true`.
+  (`turbo run --force build` runs nothing); use `--force=true`.
 - **`spawnSync` timeout sets BOTH `error` (ETIMEDOUT) and `signal`** — an
   error-first branch swallows the captured streams the signal branch's
   diagnostics were added for; compose stream excerpts into both.

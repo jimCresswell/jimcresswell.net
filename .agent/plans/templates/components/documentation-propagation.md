@@ -24,7 +24,7 @@ For each phase or major workstream:
 No phase is complete until one of those outcomes is documented.
 
 Also apply the
-[`oak-consolidate-docs` workflow](../../../skills/knowledge/consolidate-docs/SKILL-CANONICAL.md)
+[`consolidate-docs` workflow](../../../skills/knowledge/consolidate-docs/SKILL-CANONICAL.md)
 before closure to ensure settled documentation is extracted from plans.
 
 ## Recommended Tracking Pattern

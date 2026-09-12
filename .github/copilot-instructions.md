@@ -13,5 +13,5 @@ If you are touching agent tooling or platform adapters, also read
 and `.agent/practice-core/practice-verification.md`.
 
 Canonical gate names for this repo are `pnpm check`, `pnpm check:ci`,
-`pnpm portability:check`, `pnpm subagents:check`,
-`pnpm vital-surfaces:check`, and `pnpm test:e2e`.
+`pnpm portability:check`, `pnpm subagents:check`, `pnpm skills:check`,
+`pnpm check:docs`, and `pnpm test:e2e`.

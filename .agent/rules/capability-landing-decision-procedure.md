@@ -34,7 +34,7 @@ edits within an already-landed home.
 ## Source channels (owner ruling 2026-08-03)
 
 Verbatim: "no skills should be vendored, we have our own skills, we have
-skills installed with `npx skills add` or `pnpm skills add` that is
+skills installed with `npx skills add` or `pnpm dlx skills add` that is
 it." Exactly two legitimate skill channels exist: **repo-authored
 skills in-repo**, and **installer-managed Vendor skills** via
 `pnpx skills add`, whose lifecycle (provenance, updates, drift)

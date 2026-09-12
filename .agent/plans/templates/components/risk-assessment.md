@@ -22,7 +22,7 @@ Answer these three questions:
 - **Cross-workspace regression**: SDK changes break consuming apps.
   Mitigation: full quality gate chain after each change.
 - **Type safety erosion**: Ad-hoc types bypass the schema pipeline.
-  Mitigation: lint rules, sdk-codegen enforcement.
+  Mitigation: lint rules, generator enforcement (the build derives every surface from the entity graph).
 - **Documentation drift**: Code changes without doc updates.
   Mitigation: consolidation flow after each milestone.
 - **Scope creep**: Work expands beyond the plan boundary.

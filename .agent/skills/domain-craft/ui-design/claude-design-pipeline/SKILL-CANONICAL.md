@@ -54,18 +54,22 @@ agent or human decides what each one means.
    export; refresh it via the claude-design MCP
    (see the [conversion playbook](../../../../../docs/engineering/claude-design-conversion-playbook.md)).
 
-## Worked instance — the Curriculum Hub demo
+## Worked instance — the lineage's first conversion
+
+The fidelity tool below is the lineage's instrument and is not ported to
+this repository; the shape is recorded so a port has a reference. In the
+lineage the converted workspace owned a `tool:fidelity` script:
 
 ```bash
 # Full run: serves the export, attaches to (or spawns) the dev server,
 # captures both sides at 1440 CSS px / 2x, diffs, writes the report:
-pnpm --filter @engraph/oak-curriculum-hub tool:fidelity
+pnpm --filter <converted-workspace> tool:fidelity
 
 # Re-diff and re-render the report from existing evidence (no browsers):
-pnpm --filter @engraph/oak-curriculum-hub tool:fidelity -- --report-only
+pnpm --filter <converted-workspace> tool:fidelity -- --report-only
 ```
 
-Then open `demos/oak-curriculum-hub/demo-evidence/fidelity-report/index.html`:
+Then open `<converted-workspace>/demo-evidence/fidelity-report/index.html`:
 each pair renders export | live | diff with its ratio, caveats
 (height-mismatch etc.), and its recorded dispositions. Unjudged pairs show a
 copy-ready JSON snippet — judge the pair, paste the entry into

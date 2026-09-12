@@ -868,8 +868,8 @@ canonical continuity surfaces.
 Mid-cycle retirement is a distinct closeout mode alongside the
 natural-boundary closeout above, governed by
 [PDR-063](../../practice-core/decision-records/PDR-063-mid-cycle-retirement-protocol.md)
-with substrate phenotype in
-[ADR-182](../../../docs/architecture/architectural-decisions/182-mid-cycle-handoff-record-substrate.md).
+with its substrate under `.agent/state/collaboration/handoffs/` (the
+handoff-record convention in [`.agent/state/README.md`](../../state/README.md)).
 It fires when an agent must retire before the natural boundary they
 were working toward — almost always under context-budget pressure
 during rotating-cast operation. Natural-boundary closeouts continue to

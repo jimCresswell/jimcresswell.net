@@ -186,7 +186,7 @@ hard to detect in review. A blocking gate makes the rule actionable.
 - a new ADR records the decision to make depcruiser blocking and names the
   layering rules
 - `principles.md` updates to call out the ninth gate in the gate sequence
-- `package.json` `check` and `check:ci` scripts gain `pnpm depcruiser`
+- `package.json` `check` and `check:ci` scripts gain `pnpm depcruise`
 - `README.md` and `CONTRIBUTING.md` (if present) reflect the ninth gate
 - the introduction commit captures the **first strict run output** as a
   baseline (committed advisory note), but the gate is **already strict** at
@@ -204,7 +204,7 @@ hard to detect in review. A blocking gate makes the rule actionable.
 **Acceptance criteria:**
 
 - config exists and is readable
-- `pnpm depcruiser` script defined
+- `pnpm depcruise` script defined
 - config covers every directory listed in the acceptance criteria above
 
 ##### Task 2.2 — Write the ADR

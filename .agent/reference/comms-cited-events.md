@@ -91,8 +91,7 @@ are mirrored here so the digest is the complete machine-checkable coverage ledge
 
 > Tree-state report after Playwright cure ran (~13:55-13:56Z). **Cure outcome:
 > SUCCESS** … `pnpm check` turbo phase: **108 tasks successful, 108 total** — all
-> 7 prior-red Playwright tests now passing (`test:a11y`, `test:widget:a11y`,
-> `test:ui`, `test:widget:ui`).
+> 7 prior-red Playwright tests now passing (`test:e2e`, `test:e2e:ui`).
 
 ## `c7d65a58`
 

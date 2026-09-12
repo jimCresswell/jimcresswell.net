@@ -29,31 +29,27 @@ rule demand. The design register's decision is DDR-011.
 
 ## The instrument
 
-The showcase hosts the probe (first host; the pattern ports per
-workspace):
+This repository's instrument is the site's visual-regression harness
+(`jcdotnet/visual-regression-harness/`, run from the root):
 
 ```bash
-cd demos/oak-design-showcase
-pnpm build                    # build the artefact under proof
-pnpm exec next start -p 4600  # serve it — separate terminal, stays up
+pnpm visual-regression-harness
 ```
 
-```bash
-# then, against that same origin:
-pnpm tool:visual-probe --origin http://localhost:4600 \
-  --route /identity-switchboard --tabs 1
-```
+It builds and serves the base and target snapshots on two ports, renders
+the configured routes at the configured viewports, and prints the output
+directory holding the renders and diffs. Options (`--repo-root`,
+`--output-dir`, `--base-port`, `--target-port`) are listed in
+`jcdotnet/visual-regression-harness/cli.ts`; the routes and viewports
+come from the harness configuration, never from ad-hoc flags.
 
-- The default origin is the workspace's deterministic per-worktree port
-  (`tools/showcase-origin.ts`); pass `--origin` to probe a preview
-  deployment instead. The probe never starts or stops servers.
-- `--route` repeats; `--viewport 320x900` for narrow proofs (DDR-009
-  canonical widths make renders comparable); `--full-page` for layout
-  and composition claims; `--tabs <n>` presses Tab n times, captures the
-  focus-state render, and echoes `document.activeElement` in-band.
-- Artefacts default to a session temp directory. The render line on
-  stdout names the route and artefact path; with `--tabs`, a second line
-  adds the DOM-fact echo and the focus-state artefact path.
+The lineage's per-route probe (an `--origin`/`--route`/`--tabs`
+instrument that captures a focus-state render and echoes
+`document.activeElement` in-band) is not ported here. When a proof needs
+a focus-state or single-route render the harness does not produce, the
+rendered proof comes from a Playwright run against the production build
+(`pnpm test:e2e`), and porting the probe is a capability decision, not a
+default.
 
 ## Reading the proof
 
