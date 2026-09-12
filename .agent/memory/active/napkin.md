@@ -505,6 +505,13 @@
   docs-layer pass needed ledgers and re-checking and one delegated finding went to a peer
   wrong; the first-hand link repair took an hour and left me holding the map. Delegation has a
   fixed cost that today's tasks sat below.
+- Slice 2 item 1 (PR machinery at `e477e62f7`): measured first — nine upstream files, seven
+  doctrine, two fixture; local drift zero on three of them, so `git apply` took the four
+  doctrine patches clean; the three locally rewritten entry points took the new sections by
+  hand (our PR template had no `## Scope` at all — the review contract needed a home before
+  the doctrine could point at it). The fixture (another repo's PR #135 harvest, 1,205 lines)
+  did not travel: no tally reader exists at either pin. Twenty minutes, one re-point. The
+  runbook's step 2 in miniature: unchanged-in-host → mechanical, both-changed → judgement.
 - Peer landscape: Nettle guards Pistil busy in the OCE checkout; a third local seat, Coal weaves
   Pumice, is in a different repository (its transcript sits under the castr project dir), not
   here. This checkout: no other seat, registry empty, queue empty.

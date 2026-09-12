@@ -81,24 +81,21 @@ Owner-set order (2026-09-12): 1. rules triage done; 2. harness integration done
 surfaces, docs layer); 4. restart assessment done (below); 5. link repair done
 (418 → 0; lineage-only targets removed, not re-pointed); 6. script naming
 adopted from the lineage as practised (owner direction 2026-09-12; PDR-008
-amended; `pnpm check` green on 16 legs, CI parity 16); 7. **next, in
-order**: (a) owner ratification of the two sketch plan nodes authored
-on 2026-09-12 at the owner's word that the castr transplant is next and must
-cost a fraction: the runbook `.agent/plans/runbooks/practice-lineage-transplant.md`
-and the delivery node `.agent/plans/delivery/castr-lineage-update-preparation.md`
-(instruments as bins, instance-1 verdicts as `inputs/` data, one owner gate
-on the adapter-generator design); (c) then re-evaluate slice 2, candidates in
-order: re-import OCE's pull-request machinery — PR #136 merged at `2b1b15ab8`
-(seven surfaces: the PR template, pr-lifecycle §Phase 2/§Phase 4/§Response
-pricing, `review-feedback-defaults-to-triage`, proportionality,
-coordination-fold, the Copilot instructions, `AGENTS.md`); PR #138 merged at
-`e477e62f7` (the disposition format in pr-lifecycle §Response pricing and the
-pr-tally fixture); the source is read-only, read with `git show` at a pinned
-commit; the content-grain merge of
-the 11 local expert templates; the link-repair backlog (418; record-number
-citations across `.agent/` and in `agent-tools` source comments — ADR-199 alone
-is cited in fourteen modules; check the title at the target, a number surviving
-proves nothing); plan-node migration (39 legacy plans); duplicate-skill merges;
+amended; `pnpm check` green on 16 legs, CI parity 16); 7. both plan nodes
+ratified by the owner (2026-09-12, evening) and the journey understood
+(`.agent/reports/practice-transplant/journey-so-far.md`, status provisional);
+8. re-evaluate slice 2 item 1 done — the lineage's pull-request machinery
+re-imported at `e477e62f7` (four doctrine patches, a §Scope section in the PR
+template, §Code review in the Copilot instructions and `AGENTS.md`; the
+PR #135 fixture not carried); 9. **next, in order — the rest of slice 2**:
+the content-grain merge of the 11 local expert templates; the record-number
+citations in `agent-tools` source comments (ADR-199 alone is cited in fourteen
+modules; check the title at the target, a number surviving proves nothing);
+plan-node migration (39 legacy plans; the plan-corpus validator needs
+`docs/strategy`; the impact registry still lists the source's product areas;
+the two ratified nodes conform by hand); the ratified delivery node
+`castr-lineage-update-preparation`'s slices (instruments as `agent-tools`
+bins, instance-1 verdicts as `inputs/` data); duplicate-skill merges;
 the tooling residue listed in the plan (§Oak residue in tooling: `packages/core`
 metadata URLs in `tooling/*/package.json`, fixture strings) and `turbo.json`'s
 site `build` outputs (`.next/` unnamed, so the cache restores nothing); the

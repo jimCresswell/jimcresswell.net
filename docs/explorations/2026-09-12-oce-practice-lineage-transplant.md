@@ -914,3 +914,23 @@ lineage's own copy of PDR-008 was never amended and its `package.json` contradic
 cohesion finding for the source estate. Every citation was re-pointed and the cited-scripts
 validator is green; the ARC channel records under `.agent/collaboration/rapid-comms/` are now an
 excluded root of that validator, as frozen records.
+
+## Re-evaluate slice 2, item 1 — the lineage's pull-request machinery (executed 2026-09-12)
+
+Source pins named by the OCE seat: PR #136 at `2b1b15ab8`, PR #138 at `e477e62f7`. Measured
+first: the upstream delta between this transplant's pin (`a55fd8fdd`) and `e477e62f7` on the
+named surfaces is nine files, of which seven are doctrine and two are a recorded fixture
+(1,205 lines of that repository's PR #135 harvest plus its README). Local drift against
+`a55fd8fdd` was zero on the rule, the proportionality skill and the coordination-fold skill,
+four lines on pr-lifecycle, and whole-file on the PR template, the Copilot instructions and
+`AGENTS.md` (all three rewritten for this repository at the transplant).
+
+Applied: the four doctrine patches by `git apply` (clean); the `## Scope` section, its review
+contract and intake bullets added to this repository's PR template (which had no scope section);
+the `## Code review` section added to the Copilot instructions and `AGENTS.md`. Not carried: the
+PR #135 harvest fixture and its README — another repository's review data with no consumer here
+(no tally reader exists in `agent-tools` upstream or here at these pins); the pr-lifecycle
+sentence that cited the fixture path now names it as the lineage's and points this repository at
+its own first tallied pull request. Antigen scan of the applied hunks: none. Gates: markdown
+links, cited scripts, portability and skills adapters green. No Core file changed, so no
+provenance entry.
