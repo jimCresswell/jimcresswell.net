@@ -364,6 +364,15 @@ ones the Director would put to the owner had the owner been present.
     threads with Copilot bound; origin branch deleted. Lane A opens the 5a-ii pull request from
     `fix/merge-bot-measured-state` (`SHA: 3555cbf`, stacked on the merged tip, so the diff is
     5a-ii alone). Standing ruling; no REVIEW.
+34. Item 5a-ii is PR #65 (about 23:50Z on 2026-09-13), open as the bot at `SHA: 3555cbf`
+    against main: settlement reads measured state (every leg landed, no expected reviewer
+    requested, no run live); SETTLING-QUIET-WINDOW retired; the checks-green timeout the one
+    clock; the code-expert's critical finding (the in-flight read stripped the suffix on one
+    side) cured in the second commit; five mutants killed. Copilot requested under the owner's
+    credential; the bot merges at zero threads. Lane A starts 5a-iii stacked on the tip; the e2e
+    follow-on (four cures plus a latent hang the new cells exposed: port and ready in one chunk
+    missed by a listener attached late, now buffered) waits behind it. REVIEW: the quiet window
+    replaced by measured state is the owner's own design note, applied without a card.
 
 ## Routing log
 
