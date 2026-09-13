@@ -26,7 +26,7 @@ committed: rules triage, the Phase 8 harness, re-evaluate slice 1, the link
 repair, the lineage script naming, slice 2 items 1 to 3, the plan-node
 migration (strategy corpus, four ratified strategic nodes, the legacy corpus
 conserved at `.agent/plans-legacy-2026-09/`), and the Practice definition.
-The branch is pushed and tracks origin (2026-09-13); no PR yet. `pnpm check` green. Read `.agent/memory/operational/repo-continuity.md`
+The branch is pushed and tracks origin; draft PR #53 is open (2026-09-13). `pnpm check` green. Read `.agent/memory/operational/repo-continuity.md`
 §Current State and §Next Safe Steps first.
 
 Until that transplant closes, the earlier workstreams below are **parked**, not

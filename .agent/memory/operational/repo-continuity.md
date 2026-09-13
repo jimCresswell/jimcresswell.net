@@ -21,7 +21,7 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
-- Branch `feat/monorepo` (pushed 2026-09-13, tracks `origin/feat/monorepo`; no PR yet): OCE
+- Branch `feat/monorepo` (pushed 2026-09-13, tracks `origin/feat/monorepo`; draft PR #53 open): OCE
   Practice lineage transplant in progress. Plan of
   record: `docs/explorations/2026-09-12-oce-practice-lineage-transplant.md`
   (§Amendment, §Hour 1, §Owner rulings rounds 1–3 carry the live state).

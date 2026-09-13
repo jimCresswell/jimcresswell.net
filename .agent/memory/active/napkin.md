@@ -728,3 +728,6 @@
   the same nominal-to-mechanical shape as the whole transplant. Node authored sketch.
 - Push: `git push -u origin feat/monorepo` ran the full pre-push gate (check + 58 e2e) in about
   six minutes in the background; the branch now tracks origin. No PR opened (not asked).
+- PR #53 opened as a draft on the owner's word; the description derived from the diff (the licence
+  field change and the root rename were in the diff, not in any intent). Copilot review requested at
+  open per policy; a size refusal, if it comes, is a capability ceiling to record, not a gate.
