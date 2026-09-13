@@ -451,12 +451,12 @@ The site workspace applies the taxonomy above with these fixed conventions:
   (cross-cutting: a11y, SEO, content); Playwright browser automation.
 - **E2E-API**: `*.e2e-api.test.ts` under `e2e/behaviour/`; Playwright's `APIRequestContext`
   against the running site — the black-box boundary, never an imported app.
-- **Runner**: `pnpm --filter @jimcresswell/www test:e2e` boots the site's `e2e:server` script
-  as Playwright's web server (ADR-019; §Harnesses Adapt to Shared Hosts): the config holds a
-  free port from load, the script identifies any holder it finds, builds while the port is held,
-  releases it with the runner's own stamp and starts Next on it, so the build's PDF generator
-  can never be handed the test port. PDF generation is part of the build, so PDF proofs run
-  with everything else. Never run the root `check` in parallel with the E2E suite.
+- **Runner**: `pnpm --filter @jimcresswell/www test:e2e` starts the site's `e2e:server` script
+  from Playwright's global setup (ADR-019; §Harnesses Adapt to Shared Hosts): one process that
+  binds a free port and keeps the socket for its whole life, builds the site with that port and
+  serves the build from the socket in-process, so no other process, the build's PDF generator
+  among them, can ever be handed the test port. PDF generation is part of the build, so PDF
+  proofs run with everything else. Never run the root `check` in parallel with the E2E suite.
 - **Rendering risk**: any change that can alter rendered output runs the visual regression harness
   as blocking proof during implementation (ADR-022), separate from and complementary to the suites
   above. Zero pixel difference can still carry an intentional semantic HTML change — review the
@@ -739,14 +739,13 @@ live owner-facing surface never pauses for a push gate. The first suspect in
 any gate-vs-environment collision is the harness's missing adaptation, never
 the schedule. Worked instances: a fixed-port Playwright `webServer` turned
 one seat's render server into a fleet-wide push outage (cure: an ephemeral
-port probed at config load — no port or origin read from the environment,
-`reuseExistingServer` stays `false`; this estate's site config, 2026-09-13,
-holds in the runner and hands the port to the processes it forks through a
-pid-stamped value in the runner's own environment, read there only as the
-runner's internal handshake channel: a forked child is known by Node's own
-IPC-channel state, which never travels by inheritance, a stamp set from
-outside the harness is inert, and the environment never sets the harness's
-port or origin); a UI-test webServer
+port the harness's own server process binds and keeps for its whole life,
+serving the build from that socket, so no server this run did not start is
+ever proved; this estate's site config, 2026-09-13, starts that process from
+global setup and hands its origin to the workers through the runner's own
+environment, read there only as the runner's internal handshake channel, so
+the environment never sets the harness's port or origin from outside); a
+UI-test webServer
 inheriting `.env.local` refused a valid sink configuration (cure: the
 webServer pins its own observability env).
 Corollary for guard design: when a guard bites the innocent, fix the shared

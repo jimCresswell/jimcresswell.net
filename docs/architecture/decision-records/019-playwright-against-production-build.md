@@ -44,33 +44,32 @@ manual production server.
    16.1.6 → 16.2.4 staleness. Upgrading alone did not stop the
    chunk-load flake and surfaced the dev-tools badge problem. Useful as a
    first step but not sufficient.
-3. **Run E2E against a production build.** Use `pnpm build && pnpm start`
-   as the Playwright web server. Removes both dev-only failure modes at
+3. **Run E2E against a production build.** Build and serve the site from
+   the harness's own server process. Removes both dev-only failure modes at
    the source. Build adds ~15 s on cold start, paid on every run: each run
-   starts and proves its own server (`reuseExistingServer: false`). The PDF
-   is part of the build, so the `with-build` project collapses into the
-   default project.
+   starts and proves its own server. The PDF is part of the build, so the
+   `with-build` project collapses into the default project.
 
 ## Decision
 
 **Run the Playwright suite against a production build.**
 
-`playwright.config.ts` now defines a single `default` project whose web
-server is the site's `e2e:server` script (`scripts/e2e-web-server.ts`), with
-a 120-second timeout. The config holds a free port from the moment it chooses it: the
-prober is the holder, one listener that stays open answering 503 (which
-Playwright reads as not yet available) until the server script, having built
-the site while the port was held, releases it with the runner's own stamp and
-starts Next on it directly. That hold is the resilience mechanism: no other
-prober, the build's PDF generator among them, can be handed the port while it
-is held. The one unowned moment is Next's boot after the release, about a
-second; a bind that fails there exits the server process non-zero, and
-Playwright fails the start when that exit precedes a successful readiness
-poll. Owning the port through Next's boot as well would mean serving Next
-from the holder's own process, a follow-on. `reuseExistingServer` is
-`false`: every run proves the build it started, never a server another
-checkout or a human left up (the mechanism is documented in the config and the
-two scripts).
+`playwright.config.ts` now defines a single `default` project and a global
+setup (`scripts/e2e-global-setup.ts`) that starts the site's `e2e:server`
+script (`scripts/e2e-web-server.ts`) as one process for the run, with a
+120-second readiness bound. That process binds a free port and keeps the
+socket for its whole life: it prints the port, builds the site with it (so
+the build's canonical URLs and JSON-LD carry the origin), attaches Next's
+production server to the socket in-process through Next's custom-server API,
+and prints `ready`; the global setup hands the origin to the workers as
+`baseURL` and stops the process at teardown. That is the resilience
+mechanism: one holder from bind to exit, so no other process, the build's
+PDF generator among them, can be handed the port, and no server on it can be
+anything but this run's, by construction; readiness is the process's own
+signal, never a poll that a stranger could answer. Every run proves the build
+it started, never a server another checkout or a human left up (the
+mechanism is documented in the config and the two scripts). The PDF
+generator serves its build the same way, in its own process.
 
 The previous `with-build` project is removed; `*.with-build.*` test files
 are renamed to standard names. PDF tests run alongside everything else
@@ -108,8 +107,8 @@ and integration tests under Vitest are unaffected.
 **Trade-offs:**
 
 - Every run pays for the build (Next's build cache keeps an unchanged
-  worktree's rebuild short) and starts its own server on a port probed free
-  at config load; no run reuses a server it did not start, so a run can only
+  worktree's rebuild short) and serves it from a port its own server process
+  bound and kept; no run reuses a server it did not start, so a run can only
   ever prove its own build.
 - A bug that only manifests in dev mode would not be caught by this
   suite. That is acceptable — dev-mode-only bugs do not affect users.

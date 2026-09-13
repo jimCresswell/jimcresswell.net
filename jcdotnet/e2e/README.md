@@ -9,28 +9,26 @@ pnpm test:e2e          # Run the full suite against a production build
 pnpm test:ui       # Open Playwright UI mode
 ```
 
-The Playwright config holds a free port from the moment it chooses it
-(`scripts/port-hold.ts`: the prober is the holder, one listener that stays
-open answering 503 until released), so two checkouts can run the suite at once
-on one host and each proves its own build; the port is assigned in
-`playwright.config.ts` and nowhere else (tests take Playwright's `baseURL`).
-The web server (`scripts/e2e-web-server.ts`) builds while the port is held,
-because the build's PDF generator probes a port of its own and must never be
-handed this one, then releases the holder with the runner's own stamp and
-starts Next on the port directly; Next's boot after the release is the one
-moment the port is unowned. No existing server is ever reused
-(`reuseExistingServer: false`), so every run proves the build it started. PDF
-generation is part of the `pnpm build` script, so PDF tests run alongside
-everything else with no separate project.
+The suite's server is one process the harness starts from Playwright's
+global setup (`scripts/e2e-global-setup.ts` starts `scripts/e2e-web-server.ts`).
+It binds a free port and keeps the socket for its whole life: it prints the
+port, builds the site with it (so the build's canonical URLs and JSON-LD carry
+that origin; the two Vercel URL variables are cleared for the build and the
+server), attaches Next's production server to the socket in-process
+(`scripts/built-site-server.ts`), and prints `ready`. So two checkouts can run
+the suite at once on one host and each proves its own build: no other process
+can be handed the port, and no server on it can be anything but this run's.
+The origin reaches the workers as Playwright's `baseURL` through the runner's
+environment, written by global setup before any worker is forked; the port is
+chosen in the server process and nowhere else (tests take `baseURL`). PDF
+generation is part of the `pnpm build` script and serves its build the same
+way, so PDF tests run alongside everything else with no separate project.
 
-The runner hands its probed port to the processes it forks through a
-pid-stamped value in its own environment (`scripts/port-handshake.ts`). Two
-falsifiers prove that a value set from outside is inert; run them from this
-directory and expect the full suite green on a probed port both times:
+One falsifier proves the origin cannot be set from outside; run it from this
+directory and expect the full suite green on the bound port:
 
 ```bash
-PLAYWRIGHT_SITE_PORT_HANDSHAKE=1:999999 node_modules/.bin/playwright test        # stale stamp
-TEST_WORKER_INDEX=0 PLAYWRIGHT_SITE_PORT_HANDSHAKE=1:$$ node_modules/.bin/playwright test  # forged worker
+VERCEL_URL=stranger.vercel.app VERCEL_ENV=production node_modules/.bin/playwright test  # inherited Vercel URL: cleared
 ```
 
 This avoids dev-server-only flakes — Turbopack `Runtime ChunkLoadError`

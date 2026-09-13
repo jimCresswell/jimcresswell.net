@@ -1,66 +1,33 @@
 import { defineConfig, devices } from "@playwright/test";
 
-import { acceptStamp, stampFor } from "./scripts/port-handshake";
-import { holdFreePort } from "./scripts/port-hold";
+import { BASE_URL_VARIABLE } from "./scripts/e2e-global-setup";
 
 /**
  * Playwright configuration for E2E tests.
  *
- * The default project runs against a production build that the site's
- * `e2e:server` script (`scripts/e2e-web-server.ts`) builds while this config
- * holds the port and then serves on it, so two checkouts running the suite at
- * once on one host each prove their own build; nothing shares a fixed port
- * and no existing server is ever reused (testing-strategy §Harnesses Adapt to
- * Shared Hosts). The port is assigned here, in the harness's composition
- * root, and nowhere else: tests and helpers take Playwright's `baseURL` and
- * request fixtures. The build is run by Playwright's web server so every test
- * exercises the same artefact a visitor would see in production. This
- * eliminates dev-only flakes — the Turbopack `Runtime ChunkLoadError` overlay
- * and the Next.js dev-tools issue badge — at the source.
+ * The default project runs against a production build that the harness's own server process
+ * builds and serves (`scripts/e2e-web-server.ts`, started by `scripts/e2e-global-setup.ts`),
+ * so two checkouts running the suite at once on one host each prove their own build; nothing
+ * shares a fixed port and no server this run did not start is ever proved (testing-strategy
+ * §Harnesses Adapt to Shared Hosts). That process binds a free port and keeps the socket for
+ * its whole life: it builds with the port, so the build's canonical URLs and JSON-LD carry the
+ * origin, then attaches Next's production server to the socket in-process. One holder from
+ * bind to exit, so no other process can be handed the port and no server on it can be anything
+ * but this run's, by construction; the readiness signal is the process's own `ready` line, not
+ * a poll of the port. The port is chosen there and nowhere else: tests and helpers take
+ * Playwright's `baseURL` and request fixtures.
  *
- * Playwright evaluates this file in the runner and again in every process it
- * forks from the runner (its workers, and the loader that UI mode and the
- * test server use), so the runner's probed port has to reach them or each
- * would probe its own and connect to nothing. The runner stamps the port into
- * its own environment as `<port>:<runner pid>`; the runner accepts only its
- * own stamp and a forked child only its parent's (`scripts/port-handshake.ts`).
- * A forked child is known by Node's own IPC-channel state, which Node sets at
- * startup from a variable it consumes and removes from the environment, so
- * the distinction never travels by inheritance: a stamp inherited from the
- * environment, even one carrying the runner's parent pid, is inert and the
- * process probes as if it were absent, and a process that accepts its
- * parent's stamp leaves it untouched, so nothing forked further down accepts
- * a stamp from anywhere but the runner. The guarantee is against accidental
- * inheritance, not an adversary: a parent that forks this runner itself, or
- * sets Node's channel variable deliberately, can seed a stamp and could as
- * easily edit this file. The environment carries the runner's handshake to
- * its children and never the port or origin; `CI` is read below for the
- * runner's own settings.
+ * Playwright evaluates this file in the runner and again in every worker it forks, after
+ * global setup has run in the runner. Global setup writes the origin into the runner's
+ * environment; the workers inherit it and read it here as `baseURL`. When the runner itself
+ * evaluates this file the variable carries whatever the environment had, and that copy of
+ * `baseURL` is used by nothing: global setup overwrites the variable before any worker is
+ * forked, so a value set from outside never reaches a test. The environment carries the
+ * runner's handshake to its workers and never sets the port or origin from outside; `CI` is
+ * read below for the runner's own settings.
  *
- * Playwright treats the first server that answers the web server URL as the
- * one it started, so the harness owns its port from the moment it is chosen
- * until Next binds it. The prober is the holder (`scripts/port-hold.ts`): the
- * runner's one `listen(0)` stays open and answers 503, which Playwright reads
- * as not yet available (only 200 to 403 count), so it launches the server
- * command and keeps polling while the build runs and its PDF generator probes
- * a port of its own (on a Linux runner that probe was handed this port when
- * it was merely probed and released). `scripts/e2e-web-server.ts` decides
- * ownership by one bind before it builds (refused means something holds the
- * port, and the script identifies it by the holder's own stamp in its 503
- * before it builds, stopping on anything else; succeeding means it is the
- * holder itself, as on a re-setup inside one long-lived runner), builds with
- * the port held either way, releases the holder with the runner's own stamp,
- * waits until the port refuses connections, and starts Next directly. The one
- * unowned moment is Next's boot after that release, about a second in which
- * the port is free on the host; a bind that fails there exits the server
- * process non-zero, and Playwright fails the start when that exit precedes
- * a successful readiness poll (its wait races the two). Owning the port
- * through Next's boot as well would mean serving Next from the holder's own
- * process, a follow-on, not this change. `reuseExistingServer: false` keeps
- * a server this run did not start from ever counting as its own.
- *
- * The PDF is generated by the `pnpm build` script, so PDF
- * tests no longer need a separate project; they run alongside everything else.
+ * The PDF is generated by the `pnpm build` script, so PDF tests need no separate project; they
+ * run alongside everything else, and the generator serves the build the same way.
  *
  * Scripts:
  * - `pnpm test:e2e` — run the full E2E suite against the production build
@@ -69,32 +36,16 @@ import { holdFreePort } from "./scripts/port-hold";
  * @see https://playwright.dev/docs/test-configuration
  */
 
-const HANDSHAKE = "PLAYWRIGHT_SITE_PORT_HANDSHAKE";
-
-const accepted = acceptStamp(process.env[HANDSHAKE], {
-  pid: process.pid,
-  ppid: process.ppid,
-  // Node's IPC-channel state: set in the workers and loader Playwright forks, absent in a
-  // runner spawned by pnpm or turbo.
-  isWorker: process.send !== undefined,
-});
-const port = accepted ?? (await holdFreePort(process.pid));
-if (accepted === undefined) {
-  // Only the process that holds the port stamps; one that accepted its parent's stamp keeps
-  // it. The stamp is also the release token the server script hands back to the holder.
-  process.env[HANDSHAKE] = stampFor(port, process.pid);
-}
-const baseURL = `http://localhost:${port}`;
-
 export default defineConfig({
   testDir: "e2e",
+  globalSetup: "./scripts/e2e-global-setup.ts",
   fullyParallel: true,
   forbidOnly: Boolean(process.env.CI),
   retries: 0,
   workers: process.env.CI ? 1 : undefined,
   reporter: process.env.CI ? "list" : "html",
   use: {
-    baseURL,
+    baseURL: process.env[BASE_URL_VARIABLE],
     trace: "on-first-retry",
   },
 
@@ -104,18 +55,4 @@ export default defineConfig({
       use: { ...devices["Desktop Chrome"] },
     },
   ],
-
-  webServer: {
-    // The server script builds, releases the held port with the runner's stamp, then
-    // serves on it.
-    command: "pnpm e2e:server",
-    url: baseURL,
-    // PORT carries the held port to the server script, and the site derives its own
-    // public URL from it locally (lib/site-config.ts), so the build and the server it
-    // produces carry the held origin in their canonical URLs and JSON-LD, as the PDF
-    // generator already arranges for the server it starts.
-    env: { PORT: String(port) },
-    reuseExistingServer: false,
-    timeout: 120_000,
-  },
 });
