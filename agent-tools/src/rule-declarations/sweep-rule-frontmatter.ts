@@ -2,13 +2,15 @@
  * The sweep: derive every canonical rule's declaration from the hand-kept sources and write
  * it as the rule's frontmatter.
  *
- * Derivation is all-or-nothing: a rule whose sources cannot be read or are missing, or that
- * has no index row, refuses the whole sweep and nothing is written. Writing then proceeds
- * file by file, each write atomic (`sweep-fs.ts`), so an error part-way leaves whole rules
- * written and the rest untouched; git shows which, and a re-run finishes the rest because a
- * rule that already carries a frontmatter block is left as it is and reported. The same
- * property lets the sweep run again for rules that arrive after the first pass. The file
- * system is an injected port so the sweep is proven over an in-memory tree.
+ * Derivation is all-or-nothing: a rule name that is not a basename, an index row naming no
+ * swept rule, a rule whose sources cannot be read or are missing, or a rule that has no index
+ * row, refuses the whole sweep and nothing is written. Writing then proceeds file by file,
+ * each write atomic (`sweep-fs.ts`), so an error part-way leaves whole rules written and the
+ * rest untouched; git shows which, and a re-run finishes the rest because a rule that already
+ * carries a frontmatter block is left as it is and reported, once its index row and both
+ * projections have been read. The same property lets the sweep run again for rules that
+ * arrive after the first pass. The file system is an injected port so the sweep is proven
+ * over an in-memory tree.
  *
  * Every source is admitted by entry kind before it is read (`lstat` on the source path, so its
  * leaf entry is never followed; anything but a regular file refuses the sweep), and every write
@@ -27,14 +29,13 @@ import path from 'node:path';
 import { err, ok, type Result } from '@engraph/result';
 
 import { FRONTMATTER_FENCE_LINE } from './frontmatter-lines.js';
-import { parseClaudeRuleAdapterPaths } from './parse-claude-rule-adapter.js';
-import { parseCursorTrigger } from './parse-cursor-trigger.js';
 import { parseRulesIndex, type RulesIndexRow } from './parse-rules-index.js';
 import { readRuleDeclaration } from './read-rule-declaration.js';
 import { reconcileRuleDeclaration, type Reconciliation } from './reconcile-rule-declaration.js';
 import { prependRuleFrontmatter, renderRuleFrontmatter } from './render-rule-frontmatter.js';
 import type { RuleDeclaration } from './rule-declaration.js';
-import { refuseNonBasenames } from './rule-name.js';
+import { refuseNonBasenames, refuseOrphanRows } from './rule-name.js';
+import { readRuleProjections } from './rule-projections.js';
 import { defaultSweepFs, readSource, type SweepFs } from './sweep-fs.js';
 
 /** What to sweep. */
@@ -42,8 +43,10 @@ export interface SweepInput {
   /** Absolute path of the repository root. */
   readonly repoRoot: string;
   /**
-   * Rule basenames without `.md`, normally every tracked file under `.agent/rules/`; any
-   * other shape refuses the whole sweep before a path is built (`rule-name.ts`).
+   * Rule basenames without `.md`: every tracked file under `.agent/rules/`, which must be
+   * exactly the set the rules index enumerates. Any other name shape, and any index row
+   * naming no rule in this set, refuses the whole sweep before a rule path is built
+   * (`rule-name.ts`).
    */
   readonly ruleNames: readonly string[];
   /** Write the blocks; `false` is a dry run that only reports. */
@@ -76,16 +79,11 @@ export async function sweepRuleFrontmatter(
   input: SweepInput,
   sweepFs: SweepFs = defaultSweepFs,
 ): Promise<SweepOutcome> {
-  const badNames = refuseNonBasenames(input.ruleNames);
-  if (badNames.length > 0) {
-    return refusal(badNames);
+  const admitted = await admitSweep(input, sweepFs);
+  if (!admitted.ok) {
+    return refusal(admitted.error);
   }
-  const indexText = await readSource(input.repoRoot, RULES_INDEX, sweepFs);
-  const index = indexText.ok ? parseRulesIndex(indexText.value) : indexText;
-  if (!index.ok) {
-    return refusal([index.error]);
-  }
-  const derived = await deriveAll(input, index.value, sweepFs);
+  const derived = await deriveAll(input, admitted.value, sweepFs);
   if (derived.refused.length > 0 || !input.write) {
     return { ...derived, written: [] };
   }
@@ -100,6 +98,28 @@ export async function sweepRuleFrontmatter(
 /** An outcome that refused before deriving anything; nothing was derived or written. */
 function refusal(refused: readonly string[]): SweepOutcome {
   return { declarations: [], reconciliations: [], written: [], alreadyDeclared: [], refused };
+}
+
+/**
+ * The refusals that come before any rule is read, in order: a name that is not a basename,
+ * an index that cannot be read, an index row that names no swept rule. Admission yields the
+ * parsed index.
+ */
+async function admitSweep(
+  input: SweepInput,
+  sweepFs: SweepFs,
+): Promise<Result<ReadonlyMap<string, RulesIndexRow>, readonly string[]>> {
+  const badNames = refuseNonBasenames(input.ruleNames);
+  if (badNames.length > 0) {
+    return err(badNames);
+  }
+  const indexText = await readSource(input.repoRoot, RULES_INDEX, sweepFs);
+  const index = indexText.ok ? parseRulesIndex(indexText.value) : indexText;
+  if (!index.ok) {
+    return err([index.error]);
+  }
+  const orphanRows = refuseOrphanRows(index.value, input.ruleNames, RULES_INDEX);
+  return orphanRows.length > 0 ? err(orphanRows) : ok(index.value);
 }
 
 interface SweptFile {
@@ -148,7 +168,9 @@ type SweepStep =
 /**
  * Read one rule and classify it: already declared, refused, or derived. A leading frontmatter
  * block counts as a declaration only when it reads as one; any other block is refused, never
- * skipped, so a host whose rules carry unrelated frontmatter cannot pass as already swept.
+ * skipped, so a host whose rules carry unrelated frontmatter cannot pass as already swept. An
+ * already-declared rule still needs its index row and both projections to read, so a deleted
+ * or malformed source refuses the sweep rather than passing as a clean one.
  */
 async function sweepOne(
   repoRoot: string,
@@ -161,15 +183,19 @@ async function sweepOne(
   if (!ruleText.ok) {
     return { kind: 'refused', reason: ruleText.error };
   }
-  if (ruleText.value.startsWith(FRONTMATTER_OPENING)) {
-    const existing = readRuleDeclaration(name, ruleText.value);
-    return existing.ok
-      ? { kind: 'already-declared', rulePath }
-      : { kind: 'refused', reason: `${existing.error} (a block that is not a declaration)` };
-  }
   const row = index.get(name);
   if (row === undefined) {
     return { kind: 'refused', reason: `${rulePath}: no row in ${RULES_INDEX}` };
+  }
+  if (ruleText.value.startsWith(FRONTMATTER_OPENING)) {
+    const existing = readRuleDeclaration(name, ruleText.value);
+    if (!existing.ok) {
+      return { kind: 'refused', reason: `${existing.error} (a block that is not a declaration)` };
+    }
+    const sources = await readRuleProjections(repoRoot, name, sweepFs);
+    return sources.ok
+      ? { kind: 'already-declared', rulePath }
+      : { kind: 'refused', reason: sources.error };
   }
   const one = await deriveOne(repoRoot, name, row, ruleText.value, sweepFs);
   return one.ok ? { kind: 'derived', rule: one.value } : { kind: 'refused', reason: one.error };
@@ -188,29 +214,15 @@ async function deriveOne(
   ruleText: string,
   sweepFs: SweepFs,
 ): Promise<Result<DerivedRule, string>> {
-  const triggerPath = `.cursor/rules/${name}.mdc`;
-  const triggerText = await readSource(repoRoot, triggerPath, sweepFs);
-  if (!triggerText.ok) {
-    return triggerText;
-  }
-  const cursor = parseCursorTrigger(triggerText.value);
-  if (!cursor.ok) {
-    return err(`${triggerPath}: ${cursor.error}`);
-  }
-  const adapterPath = `.claude/rules/${name}.md`;
-  const adapterText = await readSource(repoRoot, adapterPath, sweepFs);
-  if (!adapterText.ok) {
-    return adapterText;
-  }
-  const claude = parseClaudeRuleAdapterPaths(adapterText.value);
-  if (!claude.ok) {
-    return err(`${adapterPath}: ${claude.error}`);
+  const sources = await readRuleProjections(repoRoot, name, sweepFs);
+  if (!sources.ok) {
+    return sources;
   }
   const reconciled = reconcileRuleDeclaration({
     name,
     index: row,
-    cursor: cursor.value,
-    claudePaths: claude.value,
+    cursor: sources.value.cursor,
+    claudePaths: sources.value.claudePaths,
   });
   const rulePath = `.agent/rules/${name}.md`;
   const swept = prependRuleFrontmatter(ruleText, renderRuleFrontmatter(reconciled.declaration));

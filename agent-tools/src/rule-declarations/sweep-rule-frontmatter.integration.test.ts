@@ -118,12 +118,66 @@ describe('sweepRuleFrontmatter', () => {
     expect(outcome.declarations.map((declaration) => declaration.name)).toEqual(['beta']);
   });
 
+  it('refuses the whole sweep, writing nothing, when an index row names no tracked rule', async () => {
+    const fs = fakeFs(agreeingTree);
+    const outcome = await sweepRuleFrontmatter(
+      { repoRoot: REPO, ruleNames: ['alpha'], write: true },
+      fs,
+    );
+    expect(outcome.refused).toEqual(['RULES_INDEX.md: the row for beta names no tracked rule']);
+    expect(outcome.written).toEqual([]);
+    expect(fs.writes.size).toBe(0);
+  });
+
+  it('refuses an already-declared rule whose Cursor trigger is missing, never counting it as swept', async () => {
+    const tree = new Map(agreeingTree);
+    tree.set(
+      `${REPO}/.agent/rules/alpha.md`,
+      '---\nclassification: core\ndescription: a\n---\n\n# Alpha\n',
+    );
+    tree.delete(`${REPO}/.cursor/rules/alpha.mdc`);
+    const fs = fakeFs(tree);
+    const outcome = await sweepRuleFrontmatter(
+      { repoRoot: REPO, ruleNames: ['alpha', 'beta'], write: true },
+      fs,
+    );
+    expect(outcome.refused).toEqual(['.cursor/rules/alpha.mdc: missing']);
+    expect(outcome.alreadyDeclared).toEqual([]);
+    expect(outcome.written).toEqual([]);
+    expect(fs.writes.size).toBe(0);
+  });
+
+  it('refuses an already-declared rule that has no index row, never counting it as swept', async () => {
+    const tree = new Map(agreeingTree);
+    tree.set(
+      `${REPO}/RULES_INDEX.md`,
+      [
+        '| Rule | Classification | Trigger / Loading Signal |',
+        '| ---- | -------------- | ------------------------ |',
+        '| `.agent/rules/beta.md` | situational | surface:test-authoring |',
+        '',
+      ].join('\n'),
+    );
+    tree.set(
+      `${REPO}/.agent/rules/alpha.md`,
+      '---\nclassification: core\ndescription: a\n---\n\n# Alpha\n',
+    );
+    const fs = fakeFs(tree);
+    const outcome = await sweepRuleFrontmatter(
+      { repoRoot: REPO, ruleNames: ['alpha', 'beta'], write: true },
+      fs,
+    );
+    expect(outcome.refused).toEqual(['.agent/rules/alpha.md: no row in RULES_INDEX.md']);
+    expect(outcome.alreadyDeclared).toEqual([]);
+    expect(fs.writes.size).toBe(0);
+  });
+
   it('refuses the whole sweep, writing nothing, when one rule has no index row', async () => {
     const tree = new Map(agreeingTree);
     tree.set(`${REPO}/.agent/rules/gamma.md`, '# Gamma\n');
     const fs = fakeFs(tree);
     const outcome = await sweepRuleFrontmatter(
-      { repoRoot: REPO, ruleNames: ['alpha', 'gamma'], write: true },
+      { repoRoot: REPO, ruleNames: ['alpha', 'beta', 'gamma'], write: true },
       fs,
     );
     expect(outcome.refused).toEqual(['.agent/rules/gamma.md: no row in RULES_INDEX.md']);
@@ -157,7 +211,7 @@ describe('sweepRuleFrontmatter', () => {
     const tree = new Map(agreeingTree);
     tree.delete(`${REPO}/.agent/rules/alpha.md`);
     const missing = await sweepRuleFrontmatter(
-      { repoRoot: REPO, ruleNames: ['alpha'], write: true },
+      { repoRoot: REPO, ruleNames: ['alpha', 'beta'], write: true },
       fakeFs(tree),
     );
     expect(missing.refused).toEqual(['.agent/rules/alpha.md: missing']);
@@ -171,7 +225,7 @@ describe('sweepRuleFrontmatter', () => {
       return readFile(absolutePath);
     };
     const unreadable = await sweepRuleFrontmatter(
-      { repoRoot: REPO, ruleNames: ['alpha'], write: true },
+      { repoRoot: REPO, ruleNames: ['alpha', 'beta'], write: true },
       denied,
     );
     expect(unreadable.refused).toEqual([
@@ -225,7 +279,7 @@ describe('sweepRuleFrontmatter', () => {
     tree.set(`${REPO}/.cursor/rules/alpha.mdc`, trigger(['alwaysApply: true']));
     const fs = fakeFs(tree);
     const outcome = await sweepRuleFrontmatter(
-      { repoRoot: REPO, ruleNames: ['alpha'], write: true },
+      { repoRoot: REPO, ruleNames: ['alpha', 'beta'], write: true },
       fs,
     );
     expect(outcome.refused).toEqual(['.cursor/rules/alpha.mdc: no description']);
@@ -240,7 +294,7 @@ describe('sweepRuleFrontmatter', () => {
     );
     const fs = fakeFs(tree);
     const outcome = await sweepRuleFrontmatter(
-      { repoRoot: REPO, ruleNames: ['beta'], write: false },
+      { repoRoot: REPO, ruleNames: ['alpha', 'beta'], write: false },
       fs,
     );
     expect(outcome.reconciliations.map((entry) => [entry.rule, entry.kind])).toEqual([

@@ -100,13 +100,31 @@ describe('parseCursorTrigger', () => {
     });
   });
 
-  it('accepts a folded block written as >- and a blank line inside the block, as YAML does', () => {
+  it('accepts a folded block written as >- and hands a trailing blank line back to the block', () => {
     const result = parseCursorTrigger(
       trigger(['description: >-', '  Folded', '  text.', '', 'alwaysApply: true']),
     );
     expect(result).toEqual({
       ok: true,
       value: { description: 'Folded text.', alwaysApply: true, globs: [] },
+    });
+  });
+
+  it('refuses a folded block with a paragraph break (a blank line, then indented text), naming the shape', () => {
+    const result = parseCursorTrigger(
+      trigger([
+        'description: >-',
+        '  First paragraph.',
+        '',
+        '  Second paragraph.',
+        '',
+        'alwaysApply: true',
+      ]),
+    );
+    expect(result).toEqual({
+      ok: false,
+      error:
+        'description has a paragraph break inside a folded block; only a single-paragraph fold is read',
     });
   });
 

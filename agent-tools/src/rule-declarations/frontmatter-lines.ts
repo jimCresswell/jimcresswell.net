@@ -117,24 +117,44 @@ function readScalar(
     return err('uses a literal block; only plain and folded (>) scalars are read');
   }
   if (FOLDED_BLOCK.test(rawValue)) {
-    return ok(readFoldedBlock(blockLines, next));
+    return readFoldedBlock(blockLines, next);
   }
   return ok({ value: rawValue.trim(), next });
 }
 
-/** Join the indented continuation lines of a folded block with single spaces, as YAML does. */
-function readFoldedBlock(blockLines: readonly string[], start: number): Scalar {
+/**
+ * Join the indented continuation lines of a folded block with single spaces, as YAML does. A
+ * blank line followed by more indented text is a paragraph break, which YAML keeps as a
+ * newline; the reader keeps exactly the value the platform reads and has no one-line value to
+ * give it, so that shape is refused by name (as the literal block is). Blank lines after the
+ * last continuation are not part of the block and are left for the caller to skip.
+ */
+function readFoldedBlock(blockLines: readonly string[], start: number): Result<Scalar, string> {
   const parts: string[] = [];
+  let next = start;
   let index = start;
+  let blankSeen = false;
   while (index < blockLines.length) {
-    const continuation = BLOCK_CONTINUATION.exec(blockLines[index] ?? '');
+    const line = blockLines[index] ?? '';
+    if (line.trim() === '') {
+      blankSeen = true;
+      index += 1;
+      continue;
+    }
+    const continuation = BLOCK_CONTINUATION.exec(line);
     if (continuation === null) {
       break;
     }
+    if (blankSeen) {
+      return err(
+        'has a paragraph break inside a folded block; only a single-paragraph fold is read',
+      );
+    }
     parts.push((continuation[1] ?? '').trim());
     index += 1;
+    next = index;
   }
-  return { value: parts.join(' '), next: index };
+  return ok({ value: parts.join(' '), next });
 }
 
 /**
