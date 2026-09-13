@@ -385,8 +385,11 @@ five earlier entries migrated, five constitutional-class entries in PDR-130's sl
 review dates, the readout at 28 pending. Nothing here refiles or reclassifies the register.
 
 1. The owner's morning cards (the ratified item 8): the Director presents the filed entries in
-   the four classes of the PR body, plus proposal E; each answer is the disposition
-   (`graduated`, `rejected`, `duplicate`), recorded on the register entry.
+   the four classes of the PR body, plus proposal E. For the twenty-three fast-lane entries each
+   answer is the fast disposition (`graduated`, `rejected`, `duplicate`), recorded on the entry.
+   For the five slow-lane entries (A, B, C, 1a, 1b) the card is PDR-130's review-date decision,
+   `promote` or `kill-with-reasoning`, recorded on the slow-lane row; a card left unanswered
+   leaves the row for its review date (2026-12-13).
 2. Graduations land as their own small pull requests into the named homes, one home per PR
    where the homes differ, by the seat the Director routes; the register entry is removed in
    the same PR (drain by deciding).
