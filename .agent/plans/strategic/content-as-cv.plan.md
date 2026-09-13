@@ -6,10 +6,12 @@ overview: >-
   One canonical, editorially governed CV whose every claim is factual and
   sourced, published from this repository and drawn on by every other
   channel the owner uses.
-status: sketch
-ratified_by: null
-ratified_date: null
-ratified_where: null
+status: ratified
+ratified_by: Jim Cresswell
+ratified_date: 2026-09-13
+ratified_where: >-
+  Cards in session 880ff9 (Cauldron herds Lustre), 2026-09-13: "Ratify all
+  three now"; plan of record §Owner rulings, round 6.
 serves: CONTENT-1
 impact_areas:
   - editorial-content

@@ -1116,3 +1116,19 @@ sitting to author, so by the brief's own falsifier the three-stream shape was th
 Owner-held next: ratify or amend the streams, the ten choices, the three strategic nodes and
 the dispositions table on cards; the Track B delivery node is authored at pickup from the
 conserved design record.
+
+## Owner rulings, round 6 (2026-09-13, after the migration landed)
+
+1. **Four streams, not three:** the platform stream is split into **the site** (`SITE-*`:
+   stable and provable; workspace boundaries by the extraction gate; dependency hygiene one
+   major per slice) and **the Practice** (`PRACTICE-*`: a lineage taken deliberately; the
+   learning loop closed, not nominal; assertions exercised, never trusted). The two transplant
+   nodes serve `practice`.
+2. **The strategic layer is ratified** ("Ratify all three now", given in the same round as the
+   split): `content-as-cv`, `personal-knowledge-graph`, `site`, `practice` carry the stamp
+   (Jim Cresswell, 2026-09-13, these cards). The fourth node exists only because of the
+   split ruling; its stamp says so, and one word from the owner returns it to sketch.
+3. **The dispositions table is ratified as proposed**, including the six workspace-family plans
+   superseded by events.
+4. **The Track B delivery node is authored at pickup** by the seat that resumes it, as the
+   schema says; GRAPH-1 and the conserved design record carry the intent until then.

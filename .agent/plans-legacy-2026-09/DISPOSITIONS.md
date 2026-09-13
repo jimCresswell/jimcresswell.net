@@ -4,8 +4,9 @@ The lifecycle lanes (`active/`, `current/`, `future/`, `research/`, `archive/`) 
 `roadmap.md` as they stood on 2026-09-13, moved here untouched at the plan-node migration
 because the estate validator scans every `*.plan.md` under `.agent/plans/` and a pre-schema
 plan cannot conform. Nothing here governs work; every file is evidence. Each row says where
-its live intent now lives. **Status: proposed** by the migrating seat after reading every
-file's status, deferred and next-step sections; the owner ratifies or amends on cards.
+its live intent now lives. **Status: ratified** (owner, cards of 2026-09-13, plan of record §Owner rulings, round 6)
+as proposed by the migrating seat after reading every file's status, deferred and next-step
+sections.
 
 Dispositions: **converted** (a delivery node exists or is authored at pickup from this
 record), **conserved** (the intent lives in a strategy stream choice), **superseded** (events
@@ -18,16 +19,16 @@ since the file was written closed it), **record** (complete; the file is the his
 | `current/personal-knowledge-graph-execution`                | record                    | Track A complete for the current surface; GRAPH-2 names the re-open condition                                                                              |
 | `current/cv-editorial-improvements`                         | conserved                 | CONTENT-1 (settled work listed in the content stream), CONTENT-3 (the deferred doors: tilts, A/B testing)                                                   |
 | `current/linkedin-update`                                   | conserved                 | CONTENT-2; the private plan behind the editorial boundary is the instrument; the public stub's routing rules are in the stream                             |
-| `current/dev-tooling-hygiene`                               | conserved                 | PLATFORM-4 (six parked majors, one per slice); dependency-cruiser is already a blocking `check` leg since the transplant                                    |
-| `current/workspace-architecture-roadmap`                    | superseded                | Its premise ("no workspace manifest exists") closed by the transplant's monorepo; its extraction-gate rule survives as PLATFORM-2                          |
-| `current/visual-regression-workspace`                       | conserved                 | PLATFORM-2; the harness stays in `jcdotnet/scripts/`; extraction only through the gate, authored at pickup                                                 |
+| `current/dev-tooling-hygiene`                               | conserved                 | SITE-3 (six parked majors, one per slice); dependency-cruiser is already a blocking `check` leg since the transplant                                    |
+| `current/workspace-architecture-roadmap`                    | superseded                | Its premise ("no workspace manifest exists") closed by the transplant's monorepo; its extraction-gate rule survives as SITE-2                          |
+| `current/visual-regression-workspace`                       | conserved                 | SITE-2; the harness stays in `jcdotnet/scripts/`; extraction only through the gate, authored at pickup                                                 |
 | `current/practice-validation-workspace`                     | superseded                | The validators live in the `agent-tools` workspace since the transplant                                                                                    |
-| `current/cv-workspace`                                      | superseded                | No `packages/` tier exists; the gate rule (PLATFORM-2) governs any future CV package; the Jim-free CV contract idea is conserved there                      |
+| `current/cv-workspace`                                      | superseded                | No `packages/` tier exists; the gate rule (SITE-2) governs any future CV package; the Jim-free CV contract idea is conserved there                      |
 | `current/jim-profile-workspace`                             | superseded                | As above; the single-source facade idea is GRAPH-1's composition layer                                                                                     |
 | `current/professional-profile-graph-workspace`              | superseded                | As above; stable schemas and pure graph algorithms are GRAPH-3's shape                                                                                     |
-| `current/web-page-workspace-and-boundary-enforcement`       | superseded                | As above; the losing condition is PLATFORM-2's text                                                                                                        |
+| `current/web-page-workspace-and-boundary-enforcement`       | superseded                | As above; the losing condition is SITE-2's text                                                                                                        |
 | `future/neo4j-knowledge-graph`                              | conserved                 | GRAPH-3 (stable IDs, typed relationships, entities over nesting, every abstraction level a node); the migration sketch stays here                          |
-| `future/visual-regression-harness-enhancements`             | conserved                 | PLATFORM-1's proof posture and this file's promotion rule; candidates stay here                                                                            |
+| `future/visual-regression-harness-enhancements`             | conserved                 | SITE-1's proof posture and this file's promotion rule; candidates stay here                                                                            |
 | `research/*` (10 files)                                     | record                    | The knowledge-graph design record GRAPH-1 cites; the `pkg` skill and reviewer read them here                                                               |
 | `archive/*` (26 files)                                      | record                    | Complete; ideas harvested below                                                                                                                            |
 | `roadmap.md`, `active/README.md`, `archive/cloud-sub-plans.README.md` | record          | Indexes of the corpus as it stood                                                                                                                           |

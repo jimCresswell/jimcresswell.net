@@ -12,7 +12,7 @@ ratified_date: 2026-09-12
 ratified_where: >-
   Owner's word in session 880ff9 (Cauldron herds Lustre), 2026-09-12: "Both
   nodes are ratified"; captured on the napkin §Session 5 (2026-09-12).
-serves: platform-site-and-practice
+serves: practice
 impact_areas:
   - practice-and-estate
 tickets: []
@@ -25,7 +25,7 @@ last_updated: 2026-09-13
 
 # Castr lineage-update preparation
 
-`serves` names the platform strategic node (re-parented at the plan-node
+`serves` names the Practice strategic node (re-parented at the plan-node
 migration, 2026-09-13; it named the runbook before a strategic layer
 existed). The beneficial dependency's minimum shippable shape without the
 runbook ratified: the bins and the inputs land and are usable from the

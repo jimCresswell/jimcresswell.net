@@ -97,9 +97,10 @@ strategy corpus at `.agent/plans/strategy/` (three streams, ten choices), three
 strategic nodes born sketch, the two ratified nodes renamed and re-parented,
 the impact registry local, the legacy lanes conserved at
 `.agent/plans-legacy-2026-09/` with `DISPOSITIONS.md`, `validate-plan-corpus`
-a `repo-validators:check` leg and green on five nodes; 12. **next: owner cards
-on the streams, the choices, the strategic nodes and the dispositions table**
-(all proposed, none ratified); then the ratified delivery node
+a `repo-validators:check` leg and green; 12. round 6 (2026-09-13): the platform
+stream split into site and Practice, the four strategic nodes ratified, the
+dispositions table ratified, the Track B delivery node authored at pickup;
+13. **next**: the ratified delivery node
 `castr-lineage-update-preparation`'s slices (instruments as `agent-tools`
 bins, instance-1 verdicts as `inputs/` data); duplicate-skill merges;
 the tooling residue listed in the plan (§Oak residue in tooling: `packages/core`
@@ -118,9 +119,9 @@ startup; the shim runs in 0.11 s) and the timeout is back at 5 s. The picker
 falsifier is closed (owner, 2026-09-13: each `jc-*` skill shows once after the
 restart). **Owner rulings round 5 (2026-09-13, plan §Owner rulings, round 5)
 govern the migration:** corpus under `.agent/plans/` with the strategy registry
-at `.agent/plans/strategy/` (validator `STRATEGY_DIR` re-pointed); three streams
-(content, knowledge graph, platform — a reading to confirm with the legacy
-dispositions); every legacy plan reviewed before convert / conserve / history;
+at `.agent/plans/strategy/` (validator `STRATEGY_DIR` re-pointed); four streams
+after round 6 (content, knowledge graph, site, Practice — the platform split at
+ratification); every legacy plan reviewed before convert / conserve / history;
 the legacy lanes conserved as a sibling corpus outside the scan root because the
 loader walks `archive/`. OCE channel open: findings go to the OCE seat as they
 arise, batched (batch 1 sent 2026-09-13). `.agent-original/` deletion follows a

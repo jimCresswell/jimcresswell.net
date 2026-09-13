@@ -1,7 +1,7 @@
 # Impact areas — the closed registry
 
-**Status: sketch** (rewritten for this repository at the plan-node
-migration, 2026-09-13; ratified with the strategic nodes). The registry
+**Status: ratified** (rewritten for this repository at the plan-node
+migration, 2026-09-13; ratified with the strategic nodes on the cards of that day). The registry
 behind every plan's `impact_areas` field: which parts of the product a
 plan changes. **Closed and additive** — a new area is added here, in a
 reviewed change, before any plan may cite it; the estate validator

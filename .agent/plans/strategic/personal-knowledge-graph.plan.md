@@ -6,10 +6,12 @@ overview: >-
   A graph of real entities and valid claims that is both the source of truth
   for the CV's facts and the way the CV is known to search engines,
   assistants and people.
-status: sketch
-ratified_by: null
-ratified_date: null
-ratified_where: null
+status: ratified
+ratified_by: Jim Cresswell
+ratified_date: 2026-09-13
+ratified_where: >-
+  Cards in session 880ff9 (Cauldron herds Lustre), 2026-09-13: "Ratify all
+  three now"; plan of record §Owner rulings, round 6.
 serves: GRAPH-1
 impact_areas:
   - knowledge-graph

@@ -620,3 +620,7 @@
   renamed and re-parented, legacy lanes conserved with a dispositions table, ten repo-validator
   legs green. Six workspace-family plans read as superseded by events (the monorepo exists, the
   validators live in `agent-tools`, no `packages/` tier) — a reading the owner confirms on cards.
+- Round 6 cards: platform split into site and Practice (four streams, four strategic nodes, all
+  ratified on the cards), dispositions ratified, Track B node at pickup. Ratifying the fourth
+  node on a "ratify all three" answer given alongside the split is a reading; flagged in the
+  plan of record with the one-word undo.

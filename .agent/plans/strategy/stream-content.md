@@ -1,7 +1,7 @@
 ---
 title: 'Strategy — Stream: the content'
 type: strategy
-status: sketch
+status: ratified
 last_updated: 2026-09-13
 governed_by:
   - .agent/plans/strategy/README.md
