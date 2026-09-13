@@ -56,12 +56,12 @@ Where this block and the routing log disagree, the log's last entry is current; 
 rewritten at each Director push.
 
 - Director: Cauldron herds Lustre (880ff9), claim `1db07581`, thread `transplant-closure`,
-  branch `chore/director-records-3` from `main` at `6528ecb` (records only; the Director makes
+  branch `chore/director-records-3` from `main` at `SHA: 6528ecb` (records only; the Director makes
   no source edits).
 - Controlling node: `.agent/plans/delivery/practice-completion.plan.md` §Transplant closure.
-  Landed on `main`: item 1 (archive deleted), item 2 (PR #53, `55649a2`), item 3 (PR #56,
-  `1829cd4`), item 4 as bounded (PR #57, `4a61112`), the Director records and the channel rule
-  (PR #54, `c426c6c`).
+  Landed on `main`: item 1 (archive deleted), item 2 (PR #53, `SHA: 55649a2`), item 3 (PR #56,
+  `SHA: 1829cd4`), item 4 as bounded (PR #57, `SHA: 4a61112`), the Director records and the channel rule
+  (PR #54, `SHA: c426c6c`).
 - Open pull requests: #60 (lane A, the per-checkout Playwright port; round three: the prober
   becomes the holder, ADR-019 trued); #55 (lane B's sweep, handed back to lane A; round five:
   three reconciliation defects); #62 (this records branch). Merged today: #54, #56, #57, #58,
@@ -111,7 +111,7 @@ dependency order; the Director merges by the bot at zero threads and writes item
    `threads/session-2-synthesis.next-session.md`; owner word 2026-09-13 about 20:40Z: session 2
    before item 5): the candidates filed in the counter's canonical shape, the five existing
    entries migrated; the owner's cards in the morning are the dispositions.
-3. **Item 5** (lane A; branches from `main`; `64aa005` rides the first), as three pull requests
+3. **Item 5** (lane A; branches from `main`; `SHA: 64aa005` rides the first), as three pull requests
    by changeset class (lane A's proposal, accepted 2026-09-13 about 19:45Z): (a) the merge-bot
    cures first, because they pay on every later merge: the GraphQL login form; the bot's own
    Copilot request registers nothing; a review run in progress read as SILENT-WAIT; the quiet
@@ -122,7 +122,7 @@ dependency order; the Director merges by the bot at zero threads and writes item
    of record names, `accept-md.config.js` to TypeScript, `turbo.json`'s `.next/` outputs, the
    consumed incoming bundle.
 4. **Item 6, PR 2a** (the rules-index and trigger generator) from `closure/lane-b-generator` at
-   `d76bb86` with the conserved fold applied; then **2b** (the sub-agent adapter generator, Gemini
+   `SHA: d76bb86` with the conserved fold applied; then **2b** (the sub-agent adapter generator, Gemini
    as a fourth row); then the **Gemini per-role projection** (item 4 residue, row 8).
 5. **Item 4 residue, one pull request each:** the corpus-analysis and workflow-build restore with
    the five absent patterns and the cited-paths leg extension (rows 3 and 6); `sif`'s routing
@@ -135,7 +135,6 @@ dependency order; the Director merges by the bot at zero threads and writes item
    from the pin, scrubbed; the deferred-controls register's creating mechanism; the projection
    census against the pin as an item 7 audit step.
 7. **Item 7** (the Director): the reports index, runbook step 13, the `provenance.yml` entry.
-8. **Session 2** (owner-decision): the 57-lesson synthesis from `unconsolidated/` on cards.
 
 Records cadence from here (Cricket verdict, both methods): commit locally at each state change;
 push once per landed merge or shape change, never contending with lane A's slot.
@@ -184,7 +183,7 @@ ones the Director would put to the owner had the owner been present.
    taker, 200 after; the holder-removed mutant) plus the CI run as the proof of the runner class;
    the body argues only from the invariant, never from a small window. REVIEW: a design defect
    in the port PR found by CI, cured by owning the port through the build.
-9. PR #61 merged by the bot at `ea3142b` (20:45Z) after its one thread was cured; the quartet
+9. PR #61 merged by the bot at `SHA: ea3142b` (20:45Z) after its one thread was cured; the quartet
    worktree and branch removed. Open: #60 (the holder cure, push imminent) and #55 (cure at
    3d86acb, push after #60). The records branch pushes at the next idle slot behind lane A's two
    pushes (the waypoint cadence).
@@ -266,7 +265,7 @@ ones the Director would put to the owner had the owner been present.
   primary coordination home (that reads another checkout's disk); it derives the instance tier from
   the ignore rules instead. Accepted. Lane C bumps the substrate surface-count guard in its PR by
   that constant's contract; lane A told. Identity rows added to the three lane records.
-- 2026-09-13 about 14:35Z: PR #54 (Director records, channel rule) merged at `c426c6c`. Push order set:
+- 2026-09-13 about 14:35Z: PR #54 (Director records, channel rule) merged at `SHA: c426c6c`. Push order set:
   lane B sweep, lane A PR 1, lane C item 4. Board follow-ons from lane B: ten `invoke-*` rule
   descriptions are name-only (authored content, later small PR).
 - 2026-09-13 about 14:50Z: owner: "I expressly said to keep the merge bot tools, this makes me
@@ -333,7 +332,7 @@ ones the Director would put to the owner had the owner been present.
   ruled: the sequential-rule rationale rides the port PR, its subject). Bot verdict
   SETTLING-QUIET-WINDOW; owner: "nothing is happening on the PR ... the 'quiet window' could be
   replaced with measured state. As for this specific instance, merge." Merged by the owner at
-  `1829cd4`; item 3 done. Practice signal for the record: the settlement quiet window is a proxy
+  `SHA: 1829cd4`; item 3 done. Practice signal for the record: the settlement quiet window is a proxy
   the owner wants replaced by measured state (no review run live, no reviewer requested).
   Owner: "if e2e tests are clashing on a port, fix it!" Routed to lane A ahead of item 5: a
   per-worktree e2e port (validated override, 3000 under CI, else a stable hash of the checkout
@@ -393,7 +392,7 @@ ones the Director would put to the owner had the owner been present.
   writer re-homed to core at its second consumer; a shared no-follow write helper; the
   CLAUDE_PROJECT_DIR opt-out as an estate rule; PR #59 closes as carried when #58 merges; lane C's
   restore worktree and branch removed then.
-- 2026-09-13 18:47Z: PR #58 merged by the bot at `6528ecb` after five Copilot rounds on the records
+- 2026-09-13 18:47Z: PR #58 merged by the bot at `SHA: 6528ecb` after five Copilot rounds on the records
   (each round found the next stale line in the resume surfaces; the cure that ended it made every
   live-state block defer to the routing log's last entry and swept the three lane records). PR #59
   closed as carried; the `closure-lane-c-restore` worktree and branch removed; the records branch

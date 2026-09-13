@@ -382,8 +382,10 @@ the register's shape; their status is `draft` until lane A verifies the home is 
 ## Next safe step (lane A, after #60 and #55)
 
 1. Read this record and the register's §What belongs here; for each candidate A to X, read the
-   candidate home and mark it `pending` (unwritten) or `duplicate` (already carried, name the
-   line); for each "verify before filing" item, the same.
+   candidate home and mark it `pending` (unwritten), `duplicate` (already carried, name the
+   line) or `proposal` (not settled doctrine; E is one: it awaits the owner's confirmation and
+   stays out of the register, listed in the PR body for the morning cards); for each "verify
+   before filing" item, the same.
 2. File the `pending` ones as register entries in the register's shape, numbered after the
    existing five, status `pending (captured 2026-09-13)`, source and prediction as drafted or
    tightened; leave `duplicate` and routed items out of the register (they are recorded here).
