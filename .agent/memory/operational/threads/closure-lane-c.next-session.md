@@ -50,7 +50,7 @@ directed comms event, never to the owner.
 ## Participating agent identities
 
 - Director: Cauldron herds Lustre (880ff9), 2026-09-13.
-- Implementer: (added on pickup).
+- Implementer: Djinn hunts Solder (36720b), claude / claude-fable-5-1, 2026-09-13.
 
 ## Landing target for the next session
 

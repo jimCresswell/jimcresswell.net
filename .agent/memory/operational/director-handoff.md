@@ -123,3 +123,7 @@ the commit queue (one host, one e2e port). Item 7 is written last because it rec
   generator as a fourth platform, extension authored by lane C after B's PR 2 (B releases the
   emitter path then). Rows 3 and 5 residue: removed, separate PR after item 4. Substrate-leg
   finding (reads instance-tier files relative to cwd) routed to lane A with credit.
+- 2026-09-13 about 14:25Z: lane A corrected the routed substrate-leg shape: a gate must not resolve the
+  primary coordination home (that reads another checkout's disk); it derives the instance tier from
+  the ignore rules instead. Accepted. Lane C bumps the substrate surface-count guard in its PR by
+  that constant's contract; lane A told. Identity rows added to the three lane records.

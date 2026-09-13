@@ -46,7 +46,7 @@ Director by directed comms event, never to the owner (`route-blocks-and-question
 ## Participating agent identities
 
 - Director: Cauldron herds Lustre (880ff9), 2026-09-13.
-- Implementer: (added on pickup).
+- Implementer: Saffron turns Verdure (c39ad7), claude / claude-fable-5-1, 2026-09-13.
 
 ## Landing target for the next session
 
