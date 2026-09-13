@@ -256,6 +256,17 @@ ones the Director would put to the owner had the owner been present.
     holder should serve Next itself; that is an assumptions-expert pass after #60 lands, not a
     fifth round. #60 round four pushed on the slot (about 21:55Z); #55 round four at
     `SHA: e69d388` under Copilot.
+18. REVIEW (#60 round five, about 21:55Z): Copilot on `SHA: b06dcb9` named the last unowned
+    moment (after the port reads free, until Next binds; a stranger's 200 passes readiness), the
+    same gap in the PDF generator's probe-then-bind, and the Vercel URL variables' precedence
+    over PORT in the site config. Ruled by lens 4, a system change rather than a sixth
+    mechanism: the process that binds the socket keeps it for its whole life and serves Next from
+    it through the custom-server API (the runner in globalSetup, the PDF generator likewise), so
+    release, identification, wait and stranger cease to exist by construction; the round-three
+    and round-four machinery is removed. A bounded assumptions-expert pass over the two board
+    shapes (in-process server versus a fixed canonical origin for the test build) precedes the
+    write, the SEO origin tests as the falsifier. The design turned on the fifth round; the
+    owner reviews the turn in the morning.
 
 ## Routing log
 
