@@ -339,3 +339,12 @@ push once per landed merge or shape change, never contending with lane A's slot.
   class, merge-bot cures first; the follow-ons parked after item 7). Tool traps for the napkin:
   the hook reads a commit message's word "restore" as the git command; nested heredoc quoting
   inside `bash -c` breaks before anything runs.
+- 2026-09-13 about 19:55Z: trap met and recorded: the ARC channel file is committed on the records
+  branch and absent from `main`, so a branch switch in the primary working copy deletes it from
+  disk and the switch back re-creates it (the tail replays the whole file; an append by the
+  partner in that window would have blocked the switch back). No loss this time (the tree is
+  clean against the committed blob; the partner appended nothing in the window). Rule for this
+  seat: the primary working copy stays on the records branch while a channel is open; any other
+  branch's work runs in a worktree. Second trap the same minute: the hook's substring policy reads
+  the prose of a heredoc inside a shell command, so records prose that names git operations is
+  written through the file tool and appended, never typed into a shell command.
