@@ -38,7 +38,8 @@ owner_gates:
       The owner names the Rust reference (a recorded PDR-006 gap; the pack may
       be authored from its own first host) and confirms the Python pack's
       first host. The owner has already ruled (2026-09-13) that the existing
-      Python Practice repository is a very rough sketch, not a template: the
+      Python Practice repository (https://github.com/EngraphCode/python-starter)
+      is a very rough sketch, not a template: the
       Python pack is authored from the universal layer with a structure
       matching the lineage, and that repository provides hints, never intent.
     expires: 2026-10-04

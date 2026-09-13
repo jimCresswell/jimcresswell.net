@@ -168,7 +168,8 @@ richer schema language but the conformance corpus: a specification written as ru
 ## Unresolved evidence
 
 - Whether the lineage has a host profile in embryo beyond `bootstrap.ts`. (The Python
-  Practice repository is settled by the owner, 2026-09-13: a very rough sketch, not a template;
+  Practice repository, <https://github.com/EngraphCode/python-starter>, is settled by the owner,
+  2026-09-13: a very rough sketch, not a template;
   the Python pack takes the lineage's structure and reads that repository for hints, never
   intent.)
 - Whether Claude, Cursor and Codex hook wire shapes are stable enough to schema without
