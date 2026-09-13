@@ -966,3 +966,49 @@ removed with its test re-pointed, and two fixture tests that quoted the phrase i
 text were re-worded so the validator under test still sees only the preserved filename. Lint,
 type-check, the 3,488 agent-tools tests and `pnpm check` green. PDR numbers were left: the Core
 numbering transplanted whole, and every cited PDR resolves to the record it names.
+
+## Plan-node migration — design brief (measured 2026-09-13, before compaction)
+
+The next slice 2 item is design-laden; these are the measured facts a fresh session starts
+from, and the one fork the owner decides. Facts:
+
+- The plan-corpus validator (`validate-plan-corpus`) scans only `*.plan.md` files under
+  `.agent/plans/`; an empty corpus is a failure by design. It resolves a strategic node's
+  `serves` against a **strategic-choice registry** recomputed from `docs/strategy/README.md`
+  plus `docs/strategy/stream-*.md`, a delivery or runbook node's `serves` against a strategic
+  node in the corpus, `impact_areas` against `.agent/plans/impact-areas.md`, and `depends_on`
+  against real plans. This repository has no `docs/strategy/`; the validator crashes there
+  before reading a single plan. `check-plan-gate-drift` fails for the same reason.
+- The lineage names nodes `<id>.plan.md`. The two nodes ratified on 2026-09-12 are named
+  `practice-lineage-transplant.md` and `castr-lineage-update-preparation.md`, so the validator
+  would not see them even when it runs; the delivery node's `serves` names the runbook, not a
+  strategic node, and the runbook has no `serves`. Both are defects to cure in the migration,
+  with every citing path (reports index, continuity, the continuation prompt, the letter)
+  re-pointed.
+- The impact registry still lists the source's product areas; only `practice-and-estate`
+  applies here. Local areas are the site, the personal knowledge graph and its JSON-LD, the
+  editorial content, the visual system, and the Practice.
+- The legacy corpus: active 2, current 12, future 2, research 10, archive 26 `*.md` files under
+  `.agent/plans/`, most `*.plan.md`. Whether the validator scans `archive/` is not yet measured;
+  the lineage keeps `delivery/archive/` inside the scan root, which suggests it does not, but
+  the helper decides and the first run tells.
+
+The fork (owner's): does this estate want a **strategy layer** — a `docs/strategy/` README with
+one stream file per stream (the site, the knowledge graph, the Practice) and a strategic node per
+stream that delivery and runbook nodes serve — or a flat node estate under one implicit goal,
+with the validator amended to accept an absent strategy directory as zero streams (the same
+zero-case cure the patterns index needed)? The first is the lineage's shape and gives
+`serves` a real target; the second is smaller and honest about a three-surface repository.
+
+Proposal (a sketch, not a decision): a minimal strategy layer of three streams, because the
+estate already has three durable goals the plans keep naming and continuity keeps parking
+(the site's editorial and graph work, the knowledge graph, the Practice); one strategic node per
+stream; the two ratified nodes renamed and re-parented under the Practice stream; the active
+and current legacy plans re-authored as delivery nodes only where their intent is live
+(continuity's parked threads name which) and archived otherwise with the intent conserved in
+the stream file; `future/` and `research/` left outside the node estate as records; the
+registry rewritten to the local areas; `validate-plan-corpus` and `check-plan-gate-drift`
+joined to `repo-validators:check`. Falsifier: if the strategy layer takes more than one sitting
+to author, the flat shape was the right size. Free-play seed, not a finding: a validator that
+crashes on an absent corpus and an index that pointed at 243 absent files are one shape; both
+cures are a zero-case.

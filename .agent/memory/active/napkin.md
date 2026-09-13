@@ -533,6 +533,68 @@
   articles before the tests are the only check. The fitness-vocabulary tests quoted the
   retired phrase inside a link text on purpose; the map put the phrase outside the filename
   and the validator under test (correctly) reported it — fixtures are assertions too.
+
+### Wrap 4 (2026-09-13, before compaction) — slice 2 items 1–3 landed; the design brief seeded
+
+- Metacognition (retrospective, on the day's three corrections): "no subagents", "understand
+  rather than plan", "adopt OCE naming" share one shape — I _add_ (aliases, nodes, passes,
+  seats) where the owner wants _convergence_ (one convention, one understanding, one hand).
+  The transplant-time miss behind the naming ruling: I kept both gate conventions side by side
+  and aliased, instead of converging on the lineage's live practice and asking. Stance for the
+  successor: when two conventions coexist after a transplant, converge on the lineage's practice
+  and surface it; never alias both. Bridge to impact: the compaction hands the migration to a
+  seat that starts from measured facts and one owner fork, not from a re-derivation.
+- Free play (harvest, two discards): kept — a validator that crashes on an absent corpus and an
+  index that pointed at 243 absent files are one shape, and both cures are a zero-case (routed to
+  the design brief); kept — the migration is a schema migration with a backfill question:
+  convert the 39 rows, or start the new table with the archive as history (the brief's fork);
+  kept as a flagged inference — "design and transformation" is the owner's phrase and I read it
+  as the migration plus the estate's continuing nominal→mechanical conversion; the successor
+  confirms in one question. Discarded, visibly: "the ARC exclusion is the estate learning to
+  forget" (nothing); "thirteen commits are thirteen conversions" (false — five are records).
+- Concept exploration (compressed; the journey record carried the long form): the planning
+  layer is the largest remaining nominal adoption — nodes by directory, no gate, a validator
+  built for another repository's strategy layer, two ratified nodes the validator cannot even
+  see (mis-named `.md`, mis-parented). Converged into the plan of record's §Plan-node migration
+  design brief. Parallax at screening depth: question type design; main uncertainty the owner's
+  intent for a strategy layer; recommended next capability the plan skill's design gate with
+  one owner question. The journey record's status stays provisional; nothing reopens it yet.
+- Work safety: `## feat/monorepo`, clean before this wrap's commit, no upstream, unpushed by
+  standing rule; 13 commits since the restart (c41b162 … c3a8656) plus this wrap's; claims 0;
+  no monitors, crons or subagents live; the readiness reviewer's context is gone and its six
+  findings are on the delivery node's dispositions table.
+- Predictions a successor tests: (a) `validate-plan-corpus` with a stub `docs/strategy/README.md`
+  fails next on the two nodes' names or `serves`, not on anything else — if it fails elsewhere
+  the brief under-measured; (b) the validator scans `.agent/plans/archive/` (the lineage keeps
+  `delivery/archive/` inside the root, so probably not — measure, don't assume); (c) the
+  picker still lists each `jc-` skill once after this compaction; (d) castr's ancestor is the
+  2026-06-28 commit, or the byte-equality check names a later one.
+- Metaloss passes. Compressed reasoning: the template merges kept the lineage's method and the
+  host's substance by antigen density — recorded in the plan of record with the two path
+  corrections; the ADR scrub's phrase map is in the commit and the plan doc; adapter
+  descriptions deliberately left to the generator (delivery node slice 5). Promises: none to
+  Nettle (both notes said no reply needed; the PDR-008 suggestion was sent, no answer expected);
+  to the owner, every "next" is on continuity and the continuation prompt. Attribution
+  inferences flagged: the owner's no-subagent instruction read as a shape correction (mine);
+  castr's ancestor date (from castr's transplant records, not its provenance entry); Coal weaves
+  Pumice's location is owner-stated (fact). Blind-spot bounds: the picker; castr's uncommitted
+  tree beyond one read; the OCE working tree (read only at pins); the reviewer subagent's
+  reasoning beyond its report. Index of homes: continuity §Current State and §Next Safe Steps
+  → the plan of record's dated sections → the reports index (efficiency guidance, installable
+  thing, journey) → the two nodes → distilled and pending-graduations #5 → the formation letter;
+  start-right loads the first, third and the memory surfaces. External bound: this scan is the
+  same self-model; outside eyes caught six node findings (the reviewer), three shape errors (the
+  owner) and every dead citation (the validators) — point external scrutiny at "model over
+  inventory" and "add instead of converge". Fence sweep: no owner-fenced wording this session;
+  no machine-local path in tracked files. Fixed point: a further pass would only re-find the
+  adapter descriptions, the mis-named nodes and this napkin section's out-of-order bullets — all
+  named; the recursion closes here.
+- Tension recorded, not resolved: the transplanted session-handoff skill says continuity
+  refreshes ride the next substantive commit and never a dedicated handover commit (owner
+  ruling 2026-07-15, upstream); this estate has committed each wrap as `chore(continuity)`
+  because the owner asks for a clean tree at every compaction. The owner's compaction word is
+  the instrument here; the successor raises the tension at the consolidation, not by leaving
+  the tree dirty.
 - Peer landscape: Nettle guards Pistil busy in the OCE checkout; a third local seat, Coal weaves
   Pumice, is in a different repository (its transcript sits under the castr project dir), not
   here. This checkout: no other seat, registry empty, queue empty.

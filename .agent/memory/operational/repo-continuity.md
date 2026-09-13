@@ -92,9 +92,13 @@ templates merged at content grain (four commits; adapter descriptions still
 the old ones until the generator bin lands); 10. slice 2 item 3 done — the
 fifteen lineage ADR numbers in the `agent-tools` sources replaced by the
 concepts they named (about two hundred sites; PDR numbers resolve and stay);
-11. **next, in order — the rest of slice 2**: plan-node migration (39 legacy plans; the plan-corpus validator needs
-`docs/strategy`; the impact registry still lists the source's product areas;
-the two ratified nodes conform by hand); the ratified delivery node
+11. **next, in order — the rest of slice 2, "the design and transformation"
+(owner's words at the 2026-09-13 compaction)**: the plan-node migration —
+start from the plan of record's §Plan-node migration design brief (measured
+facts; the one owner fork: a three-stream strategy layer, or a flat node
+estate with the validator's absent-strategy zero-case; the two ratified
+nodes are mis-named `.md` not `.plan.md` and mis-parented, cured in the
+migration with every citing path re-pointed); then the ratified delivery node
 `castr-lineage-update-preparation`'s slices (instruments as `agent-tools`
 bins, instance-1 verdicts as `inputs/` data); duplicate-skill merges;
 the tooling residue listed in the plan (§Oak residue in tooling: `packages/core`

@@ -122,7 +122,13 @@ taking one word, declines by item number.
    major per workspace, package-manager pin, secret scanner, CI runner,
    tracker, bot identity), the directive merge order, the adapter surfaces,
    the statusline mark. One list, one word.
-5. **Apply the mechanical set** (`agent`). Overwrite unchanged-in-host from
+5. **Apply the mechanical set** (`agent`). First converge the host's script
+   names on the lineage's as practised, read from the lineage's root
+   `package.json` at the pin rather than from its naming record (instance 1
+   found the record and the scripts disagreed), and surface the choice as one
+   ruling; never keep both conventions side by side, because every
+   transplanted skill cites the lineage's names and an alias doubles the
+   citations. Then overwrite unchanged-in-host from
    the pin; add theirs-only after the drop verdicts; run the org scrub
    (scope and org name are a `sed`; product-shaped references are excised
    or judged one by one — rename when the import target exists on the host,

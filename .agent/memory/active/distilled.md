@@ -75,3 +75,26 @@ reached a peer estate before it was checked. Every validator the estate
 owns is the first read for a claim in its domain; a claim that contradicts
 a green validator is wrong until the validator is shown to be. Source:
 napkin 2026-09-12; routing: pending graduation 5.
+
+## Check the mechanism existed at time T before asking why it failed at T (2026-09-12)
+
+A diagnosis blamed a hook timeout for a session-start write that never
+happened; the hook had been installed five hours after session start and
+runs in 0.11 s. One `git log --diff-filter=A` on the hook file answers the
+question before any config changes. Transplants breed this trap: surfaces
+arrive mid-session, so "it did not fire at session start" usually means "it
+did not exist at session start". Source: napkin 2026-09-12 (Session 5);
+routing: pending graduation 5 (assertions exercised, not trusted).
+
+## After a transplant, converge conventions on the lineage's practice; never alias both (2026-09-12)
+
+The transplant kept the host's gate names beside the lineage's (`check:ci`
+and `check:fix` next to `fix` and `format-check:root`) and every transplanted
+skill cited the lineage's. The owner ruled for the lineage's names as
+practised; the rename touched two `package.json` files, the hooks, CI and
+about fifty citing files. Read the convention from the lineage's live
+`package.json` at the pin, not from its doctrine (the lineage's own PDR-008
+no longer matched its scripts), converge on it before the first skill is
+copied, and surface the choice; aliasing both defers the ruling and doubles
+the citations. Source: napkin 2026-09-12 (Session 5); routing: the
+efficiency-guidance report and the transplant runbook step 5.

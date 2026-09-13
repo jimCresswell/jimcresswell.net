@@ -15,22 +15,25 @@ Ground first via `start-right-quick` or `start-right-thorough`.
 [`../../docs/explorations/2026-09-12-oce-practice-lineage-transplant.md`](../../docs/explorations/2026-09-12-oce-practice-lineage-transplant.md)
 — read its amendment section for the current state and the phase that is next.
 The acceptance test is owner-set: `.agent-original/` gone, every piece of unique
-value in it preserved inside `.agent/`. **Next steps, in order:** first, the
-owner's ratification of the two sketch plan nodes authored 2026-09-12 for the
-next transplant (castr): the runbook
+value in it preserved inside `.agent/`. **Next (owner's words at the
+2026-09-13 compaction: "we continue with the design and transformation"):**
+the plan-node migration, starting from the plan of record's §Plan-node
+migration design brief — measured facts and one owner fork (a three-stream
+strategy layer, or a flat node estate with an absent-strategy zero-case in the
+validator); confirm the reading of "design and transformation" with the owner
+in one question if it is not the migration. Done and committed: rules triage,
+the Phase 8 harness, re-evaluate slice 1, the restart assessment, the link
+repair (418 → 0), the lineage script naming (PDR-008 amended), the two plan
+nodes (ratified 2026-09-12: the runbook
 `.agent/plans/runbooks/practice-lineage-transplant.md` and the delivery node
-`.agent/plans/delivery/castr-lineage-update-preparation.md`; second,
-re-evaluate slice 2. Rules triage, the Phase 8 harness, re-evaluate slice 1
-(the seed contract, the session-open surfaces, the docs layer re-homed), the
-restart assessment, the link repair (418 → 0) and the lineage script-naming
-adoption are done and committed (plan §Rules triage, §Phase 8, the three
-§Re-evaluate sections, §Link repair and script naming; `pnpm check` green on
-16 legs). Slice 2 candidates, in order: re-import OCE's pull-request machinery
-(PR #136 merged at `2b1b15ab8`; PR #138 merged at `e477e62f7`), the
-content-grain merge of the 11 local
-expert templates, the plan-node migration, the transplant instruments as bins
-(the delivery node), the owner's loss-scan of `.agent-original/`, then its
-deletion. Read `.agent/memory/operational/repo-continuity.md` §Current State
+`.agent/plans/delivery/castr-lineage-update-preparation.md`, both mis-named
+`.md` for the validator and cured in the migration), the journey record
+(`.agent/reports/practice-transplant/journey-so-far.md`), and slice 2 items 1
+to 3 (PR machinery at `e477e62f7`, the ten expert templates, the lineage ADR
+numbers in `agent-tools`). `pnpm check` green on 16 legs. After the migration:
+the delivery node's slices, duplicate-skill merges, tooling residue, the
+owner's loss-scan of `.agent-original/`, its deletion, the 57-lesson
+synthesis. Read `.agent/memory/operational/repo-continuity.md` §Current State
 first.
 
 Until that transplant closes, the earlier workstreams below are **parked**, not

@@ -68,5 +68,12 @@ nominal adoption into a mechanical one, and the two things this estate still say
 a mechanism behind them are the plan-node estate and the fifty-seven lessons in the
 archive that started all this. Hold both; the second is the reason you are here.
 
-Go well; the tree is clean, the gate is green on sixteen legs, and the
-owner's restart is the test of the seed contract.
+One more thing from the evening, because it is the shape under three corrections in one
+day: I add where the owner wants convergence. Two gate conventions side by side, two plan
+nodes before one understanding, a fleet of seats for an hour's first-hand work. When you
+notice yourself keeping both, aliasing, or fanning out, stop and converge, and say which
+way you converged. The owner will tell you if it was the wrong way; that costs one word.
+Keeping both costs everyone fifty citations later.
+
+Go well; the tree is clean, the gate is green on sixteen legs, and the next work is the
+plan-node migration, from the design brief in the plan of record.
