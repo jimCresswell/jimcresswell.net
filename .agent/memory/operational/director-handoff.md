@@ -53,7 +53,7 @@ Every line answered first-hand, none inferred:
 ## Current handoff state (2026-09-13, evening)
 
 - Director: Cauldron herds Lustre (880ff9), claim `1db07581`, thread `transplant-closure`,
-  branch `chore/transplant-closure-session-1` (records only; the Director makes no source
+  branch `chore/director-records-2` (records only, after PR #54 merged at `c426c6c`; the Director makes no source
   edits).
 - Controlling node: `.agent/plans/delivery/practice-completion.plan.md` §Transplant closure.
   Items 1 and 2 done (archive deleted after the computed loss-scan; PR #53 merged at
@@ -127,3 +127,6 @@ the commit queue (one host, one e2e port). Item 7 is written last because it rec
   primary coordination home (that reads another checkout's disk); it derives the instance tier from
   the ignore rules instead. Accepted. Lane C bumps the substrate surface-count guard in its PR by
   that constant's contract; lane A told. Identity rows added to the three lane records.
+- 2026-09-13 about 14:35Z: PR #54 (Director records, channel rule) merged at `c426c6c`. Push order set:
+  lane B sweep, lane A PR 1, lane C item 4. Board follow-ons from lane B: ten `invoke-*` rule
+  descriptions are name-only (authored content, later small PR).
