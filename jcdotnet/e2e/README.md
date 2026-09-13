@@ -9,13 +9,16 @@ pnpm test:e2e          # Run the full suite against a production build
 pnpm test:ui       # Open Playwright UI mode
 ```
 
-The Playwright web server runs `pnpm build && pnpm start` on a port the config
-probes free at load, so two checkouts can run the suite at once on one host and
-each proves its own build; the port is assigned in `playwright.config.ts` and
-nowhere else (tests take Playwright's `baseURL`). No existing server is ever
-reused (`reuseExistingServer: false`), so every run proves the build it started. PDF
-generation is part of the `pnpm build` script, so PDF tests run
-alongside everything else with no separate project.
+The Playwright web server (`scripts/e2e-web-server.ts`) builds, then serves, on
+a port the config probes free at load, so two checkouts can run the suite at
+once on one host and each proves its own build; the port is assigned in
+`playwright.config.ts` and nowhere else (tests take Playwright's `baseURL`).
+The script holds the port for the whole build, because the build's PDF
+generator probes a port of its own and must never be handed this one, and
+starts Next on it only after. No existing server is ever reused
+(`reuseExistingServer: false`), so every run proves the build it started. PDF
+generation is part of the `pnpm build` script, so PDF tests run alongside
+everything else with no separate project.
 
 The runner hands its probed port to the processes it forks through a
 pid-stamped value in its own environment (`scripts/port-handshake.ts`). Two
