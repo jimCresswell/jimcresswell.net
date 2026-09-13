@@ -104,14 +104,19 @@ describe("bindFreePort and attachBuiltSite", () => {
       () => "dropped"
     );
     await arrived;
+    // The losing timer is cleared whichever way the race goes, so a green cell leaves no
+    // two-second timer alive in the worker.
+    let timer: NodeJS.Timeout | undefined;
     const outcome = await Promise.race([
       close().then(() => "closed"),
       new Promise<string>((resolve) => {
-        setTimeout(() => {
+        timer = setTimeout(() => {
           resolve("still waiting");
         }, 2_000);
       }),
-    ]);
+    ]).finally(() => {
+      clearTimeout(timer);
+    });
     expect(outcome).toBe("closed");
     expect(await pending).toBe("dropped");
     expect(bound.server.listening).toBe(false);
