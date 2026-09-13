@@ -84,8 +84,9 @@ rewritten at each Director push.
   heartbeat loop at n=2. Checked 15:39Z: background tasks outlive a compaction.
 - Next safe step: lane A's two cures land (#60, then or before #55), Copilot bound to each tip,
   the bot merges at zero threads; then the owner's word on the next shape for the holdings on
-  the board. Lane A has been silent since 17:31Z with its session reading "waiting" (a prompt in
-  its window is the likely cause; surfaced to the owner 18:20Z and 18:35Z).
+  the board. Lane A was silent 17:31Z to 18:52Z (a long turn with nothing sent, by its own
+  account, not a block); surfaced to the owner meanwhile; the 120-second state line of
+  start-right-team §5 is the liveness signal at n=2 with heartbeats dropped.
 
 ## Live board
 
@@ -265,3 +266,9 @@ because it records 3 to 6.
   commit in either worktree); pinged 18:20Z; surfaced to the owner; its two cures (#55 path escape,
   #60 three threads) not started. Lesson for the record: a records PR that keeps pushing while the
   session moves is a moving target for review; land records at waypoints, not per event.
+- 2026-09-13 18:52Z: lane A reported alive: the gap was a long turn with nothing sent, not a
+  prompt; order #60 cure then #55; the #55 cure on a local branch from `origin/closure/lane-b` in
+  lane A's own worktree, pushed fast-forward to `closure/lane-b` (EnterWorktree refuses a path it
+  did not create), claim 383cde5e. Ruling: the shape stands; a state line every 120 seconds of a
+  long turn is the liveness signal at n=2 (start-right-team §5); silence read as a block cost an
+  owner escalation.
