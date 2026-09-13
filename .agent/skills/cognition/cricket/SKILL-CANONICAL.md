@@ -18,7 +18,7 @@ lens on METHOD or EVIDENCE PROVENANCE: three ON-TRACK verdicts spanned a window 
 every owner correction concerned which tool was used and where the evidence had come from
 (2026-09-02) — point that scrutiny at reviewers and first-hand reads, never at the panel.
 
-Typing `$oak-cricket` asks the current seat to run the whole panel for its platform. The invoker
+Typing `$jc-cricket` asks the current seat to run the whole panel for its platform. The invoker
 builds the frame from live context and starts immediately; missing information is labelled
 `MISSING`, not silently invented.
 
