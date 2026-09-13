@@ -378,23 +378,18 @@ the register's shape; their status is `draft` until lane A verifies the home is 
   carries nothing from them beyond the candidates' doctrine. (Candidate U was withdrawn into
   this line: a review requirement is a process step, not a graduation.)
 
-## Next safe step (lane A; PR #63 open, its review rounds to zero threads)
+## Next safe step (after PR #63 merged at `SHA: dc23dff`, 2026-09-13 22:39Z)
 
-1. Read this record and the register's §What belongs here; for each lettered candidate (A to X
-   less P and U, which left the list: P to the verify list, U to the privacy line), read the
-   candidate home and mark it `pending` (unwritten), `duplicate` (already carried, name the
-   line) or `proposal` (not settled doctrine; E is one: it awaits the owner's confirmation and
-   stays out of the register, listed in the PR body for the morning cards); for each "verify
-   before filing" item, the same.
-2. File the `pending` ones as register entries in the register's shape, numbered after the
-   existing five, status `pending (captured 2026-09-13)`, source and prediction as drafted or
-   tightened; leave `duplicate` and routed items out of the register (they are recorded here).
-3. PR #63 is that pull request (opened about 22:10Z, twenty-eight entries filed, the five
-   existing migrated to the counter's shape, the readout quoted from 0 to 33). Round one, one
-   thread, cured at `SHA: 414fb6c`: the section note cites the ratified item 8 as this batch's
-   owner word, and A, B, C, 1a and 1b moved to PDR-130's slow lane with review dates (the
-   readout now 28). Zero threads with Copilot bound to the tip is the merge condition; the bot
-   merges then.
-4. The Director presents the filed entries to the owner as one batch of cards; the answers are
-   the dispositions; graduations follow as their own small PRs; the three napkins under
-   `unconsolidated/` are archived only then.
+The batch is filed and on `main`: twenty-eight session 2 entries in the counter's shape, the
+five earlier entries migrated, five constitutional-class entries in PDR-130's slow lane with
+review dates, the readout at 28 pending. Nothing here refiles or reclassifies the register.
+
+1. The owner's morning cards (the ratified item 8): the Director presents the filed entries in
+   the four classes of the PR body, plus proposal E; each answer is the disposition
+   (`graduated`, `rejected`, `duplicate`), recorded on the register entry.
+2. Graduations land as their own small pull requests into the named homes, one home per PR
+   where the homes differ, by the seat the Director routes; the register entry is removed in
+   the same PR (drain by deciding).
+3. The three napkins under `.agent/memory/active/unconsolidated/` are archived only after every
+   card is answered; the archive holds processed material only.
+4. The slow-lane five are decided at their review date (the owner's card, else 2026-12-13).
