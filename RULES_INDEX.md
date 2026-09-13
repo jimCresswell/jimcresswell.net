@@ -20,6 +20,7 @@ matches the Cursor adapter realises as `globs`). Regenerate this file whenever
 | `.agent/rules/apply-architectural-principles.md`                           | core           | —                                                                                                 |
 | `.agent/rules/capability-landing-decision-procedure.md`                    | situational    | surface:lever-authoring — Landing, converting, or re-homing a capability; not landed-home edits   |
 | `.agent/rules/capture-practice-tool-feedback.md`                           | core           | —                                                                                                 |
+| `.agent/rules/channel-by-audience-lifetime-and-consumer.md` | situational | session:team — every cross-seat send |
 | `.agent/rules/check-singleton-per-window.md`                               | situational    | tool:gate-sweep                                                                                   |
 | `.agent/rules/closed-shape-design-optionality.md`                          | core           | —                                                                                                 |
 | `.agent/rules/collaboration-is-value-contingent.md`                        | core           | —                                                                                                 |
