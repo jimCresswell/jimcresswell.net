@@ -360,11 +360,11 @@ ones the Director would put to the owner had the owner been present.
     e2e follow-on and 5b. Lane A confirmed 5a-ii carries none of the six as cures (the code already strips the
     suffix on both sides; the inverse cells are the missing proof). REVIEW: a second merge on a
     closer-look body in one night; the body tally moves up the 5a order if a third appears.
-33. #64 (item 5a-i) merged by the bot at `SHA: 38e9693` (about 23:45Z on 2026-09-13) at zero
+33. #64 (item 5a-i) merged by the bot at `SHA: 38e9693` (23:22Z on 2026-09-13) at zero
     threads with Copilot bound; origin branch deleted. Lane A opens the 5a-ii pull request from
     `fix/merge-bot-measured-state` (`SHA: 3555cbf`, stacked on the merged tip, so the diff is
     5a-ii alone). Standing ruling; no REVIEW.
-34. Item 5a-ii is PR #65 (about 23:50Z on 2026-09-13), open as the bot at `SHA: 3555cbf`
+34. Item 5a-ii is PR #65 (23:23Z on 2026-09-13), open as the bot at `SHA: 3555cbf`
     against main: settlement reads measured state (every leg landed, no expected reviewer
     requested, no run live); SETTLING-QUIET-WINDOW retired; the checks-green timeout the one
     clock; the code-expert's critical finding (the in-flight read stripped the suffix on one
