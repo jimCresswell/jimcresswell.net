@@ -1273,8 +1273,35 @@ Three items in one message, with the cognition suite invoked.
 Addendum (same day, early afternoon): 4. **Open the PR** — done: draft PR #53 (`feat/monorepo` → `main`), described from the diff (the
 site moves to `jcdotnet/`, the root package renamed with its licence field changed, 302
 renames, `.agent-original/` tracked pending the loss-scan) with the records-class intake
-declared in §Scope; the Vercel root directory (`jcdotnet/`) is owner-held. 5. **The Python
+declared in §Scope; the Vercel root directory was then configured by the owner and the first monorepo build
+completed (owner-observed 2026-09-13, early afternoon; the PR carries the passing Vercel
+check and a preview deployment for the branch). 5. **The Python
 Practice repository is a very rough sketch, not a template**: the Python pack's structure must
 be much closer to the lineage's, and that repository "provides hints rather than intent".
 Applied to the language-separation node's third gate and todo 6 and to the exploration's
 unresolved-evidence list.
+
+### PR #53 — first CI triage (2026-09-13, early afternoon)
+
+Three checks red at open; each read in full and cured at source:
+
+1. **static-checks: `validate-cited-paths` red in CI, green locally** — 34 citations of six
+   targets that exist on this checkout and not in CI: the untracked-by-design instance tier
+   (`comms/`, the claims files, the rendered log) and the private boundary. The leg had proved
+   its own path (validation-strategy §Gate integrity). Cure: the validator no longer consults
+   the disk; a target resolves when the repository itself says it belongs — tracked (via
+   `git ls-files`, directories implied) or ignored by the repository's rules (`git
+check-ignore`, with a directory probe so `comms/*` resolves the directory). The hand
+   allowlist is empty by design. Found on the way: `privacy.md` claims `.agent/private/` is an
+   ignored boundary and no ignore rule existed; the rule is added, so the claim is now true.
+   The tracked-paths helper the markdown-links validator carried moved to
+   `core/repository-paths` (second consumer).
+2. **CodeQL: three high alerts**, all pre-existing site code the rename made visible: the
+   JSON-LD URL rewriter matched the canonical origin by string prefix (a host that merely
+   begins with it would be rewritten); cured by parsing and comparing the origin, with a unit
+   test for the look-alike host; two test assertions used a substring and an unanchored regex
+   on hosts, replaced by hostname equality.
+3. **dependency-review: `next@16.3.0`** carries two critical advisories (unauthenticated RCE
+   on Windows hosts; RCE in the image optimisation API with AVIF), patched at 16.3.3; bumped
+   to 16.3.5, the latest, exact-pinned as before. An urgent advisory patch takes the ordinary
+   commit path (dependency-currency skill scope).

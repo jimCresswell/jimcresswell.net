@@ -130,7 +130,8 @@ OCE-seeded `.agent/practice-core/incoming/resonance-outbound-bundle-2026-07-08.m
 (hand-authored JS; source-is-TypeScript); the retirement candidates among
 agent-tools scripts (plan §Owner rulings on the agent-tools scripts); the two
 session-local generators as `agent-tools` bins; owner review + `.agent-original`
-deletion; 57-lesson synthesis with quorum; Vercel root directory; PR. Restart
+deletion; 57-lesson synthesis with quorum. Vercel root directory configured and the first
+monorepo build green (owner-observed 2026-09-13); draft PR #53 open. Restart
 assessment (2026-09-12, resumed session): the seed contract holds (both variables
 in the first Bash call; preflight names the hook path, and the native fallback
 with it unset); the "missed startup write" was a non-event (no hook existed at

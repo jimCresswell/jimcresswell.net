@@ -44,11 +44,11 @@ describe("jsonLd export", () => {
   it("does not rewrite external URLs", () => {
     const jsonLd = buildJsonLd("https://www.jimcresswell.net");
     const article = jsonLd["@graph"].find(
-      (e) => e["@type"] === "ScholarlyArticle" && e["@id"].includes("doi.org")
+      (e) => e["@type"] === "ScholarlyArticle" && new URL(e["@id"]).hostname === "doi.org"
     );
     expect(article).toBeDefined();
     if (article) {
-      expect(article["@id"]).toContain("doi.org");
+      expect(new URL(article["@id"]).hostname).toBe("doi.org");
     }
   });
 
@@ -57,7 +57,7 @@ describe("jsonLd export", () => {
     const person = jsonLd["@graph"].find((e) => e["@type"] === "Person");
     if (!person || person["@type"] !== "Person") throw new Error("Person not found");
     const systemsThinking = person.knowsAbout.find((item) => item.name === "Systems thinking");
-    expect(systemsThinking?.sameAs).toMatch(/wikidata\.org/);
+    expect(new URL(systemsThinking?.sameAs ?? "").hostname).toBe("www.wikidata.org");
   });
 
   it("publishes Knowledge graphs in the exported JSON-LD graph", () => {

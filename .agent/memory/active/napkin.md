@@ -731,3 +731,10 @@
 - PR #53 opened as a draft on the owner's word; the description derived from the diff (the licence
   field change and the root rename were in the diff, not in any intent). Copilot review requested at
   open per policy; a size refusal, if it comes, is a capability ceiling to record, not a gate.
+- PR #53 CI: cited-paths was green locally and red in CI because the disk carried instance state
+  the checkout in CI lacks — the exact validation-strategy §Gate integrity trap, on the validator I
+  wrote this morning. Cure: resolve against git (tracked or ignored), never the disk. Bonus finding:
+  privacy.md claimed `.agent/private/` was ignored and no rule existed — a doctrine claim without a
+  mechanism, found by the validator once it asked the repository instead of the disk.
+- CodeQL flagged pre-existing site code the rename surfaced (prefix-matched origin; substring host
+  tests); dependency-review caught next@16.3.0 with two critical advisories — bumped to 16.3.5.

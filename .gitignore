@@ -41,6 +41,9 @@ Thumbs.db
 .agent/reference-local/**/*
 !.agent/reference-local/.gitignore
 
+# Isolated local notes: an ignored compatibility boundary (privacy.md), never source-controlled.
+.agent/private/
+
 # Operator profile: machine-local; the two stubs are tracked and declare the contract.
 .agent/operator-local/**/*
 !.agent/operator-local/.gitignore

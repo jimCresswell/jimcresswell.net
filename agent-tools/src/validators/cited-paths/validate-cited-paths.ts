@@ -1,11 +1,10 @@
-import fs from 'node:fs';
-import path from 'node:path';
-
 import { discoverAuthoredFiles } from '../../core/authored-surfaces.js';
 import { resolveRepoRoot } from '../../core/repo-root.js';
+import { collectIgnoredPaths, collectTrackedPaths } from '../../core/repository-paths.js';
 import { writeErrorLine, writeLine } from '../../core/terminal-output.js';
 
 import {
+  extractPathCitations,
   findMissingPathCitations,
   type MissingPathFinding,
 } from './validate-cited-paths-helpers.js';
@@ -28,6 +27,13 @@ import {
  * memory quote paths as history, and `.agent/practice-core/` cites the
  * lineage's layout by design (PDR-105). Widening the roots is a deliberate
  * step taken once the current findings are cured.
+ *
+ * A target resolves when the repository itself says it belongs: it is
+ * tracked (a file, or a directory a tracked file implies), or git ignores it
+ * by the repository's own rules — the untracked-by-design instance tier
+ * (comms events, claims, the rendered log) and the private boundary. The
+ * local disk is never consulted: on 2026-09-13 the leg was green on a
+ * checkout that carried that state and red in CI, which does not.
  *
  * Wired into `pnpm docs-validators:check`.
  *
@@ -62,20 +68,22 @@ const EXCLUDED_PATH_FRAGMENTS: readonly string[] = [
 ];
 
 /**
- * Targets whose absence is by design: directories a tool creates at its
- * first write, and ignored boundaries that exist only on some machines.
+ * Targets exempted by hand. Empty by design: a target that is neither
+ * tracked nor ignored by the repository's rules is a finding, and the cure
+ * is a tracked file or an ignore rule, never an entry here.
  */
-const ALLOWLISTED_TARGETS: readonly string[] = [
-  // Created by the first `commit-queue enqueue`; machine-local per-intent state.
-  '.agent/state/collaboration/commit-queue',
-  // An ignored compatibility boundary for isolated local notes (privacy.md).
-  '.agent/private',
-];
+const ALLOWLISTED_TARGETS: readonly string[] = [];
 
 const ALLOWLISTED_PATHS: readonly string[] = [];
 
-function targetExists(target: string): boolean {
-  return fs.existsSync(path.join(repoRoot, target));
+/** Whether the repository itself says the target belongs: tracked, or ignored by its rules. */
+function repositoryResolver(candidates: readonly string[]): (target: string) => boolean {
+  const tracked = collectTrackedPaths(repoRoot);
+  const ignored = collectIgnoredPaths(
+    repoRoot,
+    candidates.filter((candidate) => !tracked.has(candidate)),
+  );
+  return (target) => tracked.has(target) || ignored.has(target);
 }
 
 function formatFindings(findings: readonly MissingPathFinding[]): string {
@@ -91,7 +99,10 @@ async function main(): Promise<void> {
     extensions: SCANNED_EXTENSIONS,
     excludedPathFragments: EXCLUDED_PATH_FRAGMENTS,
   });
-  const findings = findMissingPathCitations(files, targetExists, {
+  const candidates = [
+    ...new Set(files.flatMap((file) => extractPathCitations(file.content).map((c) => c.target))),
+  ];
+  const findings = findMissingPathCitations(files, repositoryResolver(candidates), {
     allowlistedTargets: ALLOWLISTED_TARGETS,
     allowlistedPaths: ALLOWLISTED_PATHS,
   });
@@ -107,9 +118,10 @@ async function main(): Promise<void> {
   writeErrorLine(
     `validate-cited-paths: ${String(findings.length)} citation(s) of ${String(distinctTargets)} absent path(s).\n\n` +
       `${formatFindings(findings)}\n\n` +
-      'Every code-formatted `.agent/` or `docs/` path in live doctrine must name a file or ' +
-      'directory that exists. Restore the target, re-point the citation, or — for a directory a ' +
-      'tool creates at runtime — add the target to ALLOWLISTED_TARGETS here.',
+      'Every code-formatted `.agent/` or `docs/` path in live doctrine must name a path the ' +
+      'repository owns: a tracked file or directory, or one its ignore rules declare ' +
+      'untracked-by-design. Restore the target, re-point the citation, or add the ignore rule ' +
+      'the doctrine already claims.',
   );
   process.exitCode = 1;
 }
