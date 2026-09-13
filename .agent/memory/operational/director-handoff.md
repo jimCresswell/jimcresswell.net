@@ -183,6 +183,10 @@ ones the Director would put to the owner had the owner been present.
    taker, 200 after; the holder-removed mutant) plus the CI run as the proof of the runner class;
    the body argues only from the invariant, never from a small window. REVIEW: a design defect
    in the port PR found by CI, cured by owning the port through the build.
+9. PR #61 merged by the bot at `ea3142b` (20:45Z) after its one thread was cured; the quartet
+   worktree and branch removed. Open: #60 (the holder cure, push imminent) and #55 (cure at
+   3d86acb, push after #60). The records branch pushes at the next idle slot behind lane A's two
+   pushes (the waypoint cadence).
 
 ## Routing log
 
