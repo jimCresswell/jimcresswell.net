@@ -28,7 +28,7 @@ One falsifier proves the origin cannot be set from outside; run it from this
 directory and expect the full suite green on the bound port:
 
 ```bash
-VERCEL_URL=stranger.vercel.app VERCEL_ENV=production node_modules/.bin/playwright test  # inherited Vercel URL: cleared
+VERCEL_URL=stranger.vercel.app VERCEL_PROJECT_PRODUCTION_URL=www.example.net VERCEL_ENV=production node_modules/.bin/playwright test  # inherited Vercel URLs: cleared
 ```
 
 This avoids dev-server-only flakes — Turbopack `Runtime ChunkLoadError`

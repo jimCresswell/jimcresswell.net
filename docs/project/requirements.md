@@ -105,7 +105,7 @@ The definitive gate list and command names live in
 `pnpm check` runs the blocking gate sequence, including
 `pnpm portability:check`, `pnpm subagents:check` and
 `pnpm skills:check`; `pnpm test:e2e` runs the Playwright suite against a
-production build (the web server runs `pnpm build && pnpm start`).
+production build (the harness's server process builds the site and serves it from a port it binds and keeps).
 `pnpm practice:fitness:informational` exists for governed
 Practice/doc surfaces and is used intentionally rather than on every code
 change. All exported functions must have TSDoc documentation.
