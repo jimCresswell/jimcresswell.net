@@ -169,7 +169,9 @@ remove .agent-original before we merge 53"; "it should be processed then deleted
    commit `55649a2`, every check green, no admin override.**
 3. **Activate the installed instruments** (todo 2): `practice-substrate` with `pnpm -s` cured
    to `--silent`, `validate-protocol-wire-contract`, the agent-tools smoke suite; each a leg of
-   `check` or a named gate. Proof: the legs, CI parity, green.
+   `check` or a named gate. Proof: the legs, CI parity, green. **Done 2026-09-13: PR #56, merge
+   commit `1829cd4`; with it the root gates read the tracked universe (`git ls-files`), the
+   hand-kept ignore lists gone.**
 4. **Completeness by function** (todo 3, bounded): the four generic rules re-triaged under
    "bring unless product"; the operational registers declared per the substrate manifest;
    mutation testing's absence stated; the Gemini projection imported from the pin; the

@@ -180,7 +180,7 @@ the commit queue (one host, one e2e port). Item 7 is written last because it rec
   not talk to the cold pause seats unless I say so." Director WARM-PAUSED: watcher and heartbeat
   kept; lane A (Saffron turns Verdure) is the only seat routed; no message to lanes B or C until
   the owner's word; PR #58 (records, Copilot requested on 28a7676) waits for that word too.
-- 2026-09-13 about 16:05Z: owner: "four open PRs, that is too many, aim for zero, only via proper
+- 2026-09-13 about 15:59Z: owner: "four open PRs, that is too many, aim for zero, only via proper
   means, green and clean and sensible." #56 cures: 1c00b5c (three causes), 341e069 (the guard's
   testimony read from its own log, the Linux executor drops lifecycle stderr), ad006e8 (tracked
   legs subtract `ls-files --deleted`; three doc contracts trued). Rulings: pushes confirmed ahead
@@ -188,3 +188,16 @@ the commit queue (one host, one e2e port). Item 7 is written last because it rec
   to lane A for this PR (not in lane C's exclusive set; a contract change cures every doc that
   publishes it, same commit). Lesson from lane A, for the record: a new CI leg's first green must
   be a CI run, not the host.
+- 2026-09-13 16:20Z to 16:50Z: #56 rounds on ee3c396 (three threads, all real: the retired `-s` flag
+  still in the commit skill, the resolver's leading `--`) and f2b2048 (zero threads, three doc nits;
+  ruled: the sequential-rule rationale rides the port PR, its subject). Bot verdict
+  SETTLING-QUIET-WINDOW; owner: "nothing is happening on the PR ... the 'quiet window' could be
+  replaced with measured state. As for this specific instance, merge." Merged by the owner at
+  `1829cd4`; item 3 done. Practice signal for the record: the settlement quiet window is a proxy
+  the owner wants replaced by measured state (no review run live, no reviewer requested).
+  Owner: "if e2e tests are clashing on a port, fix it!" Routed to lane A ahead of item 5: a
+  per-worktree e2e port (validated override, 3000 under CI, else a stable hash of the checkout
+  path in 3100 to 3999); go given on the design. Owner lifted lane B's pause for the #55 cure
+  only ("ask the Director how to cure PR 55, carry that out, then hand back all responsibilities
+  ... this session is over"); cure confirmed as ruled before the pause; slot given for afe58c8,
+  then the generator save push; lane B hands back 2a remainder, 2b and PR 3 at closeout.
