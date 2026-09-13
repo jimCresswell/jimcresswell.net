@@ -4,4 +4,4 @@ Invoke `type-reviewer` when changes alter complex type flow, exported types, sch
 assertions, generics, or compile-time guarantees. Use it whenever type design is part of the
 change, not just its syntax.
 
-See `.agent/sub-agents/templates/type-reviewer.md` for the full reviewer brief.
+See `.agent/sub-agents/templates/type-expert.md` for the full reviewer brief.

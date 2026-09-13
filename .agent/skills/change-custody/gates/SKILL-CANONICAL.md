@@ -27,7 +27,8 @@ tests, and CI runs the same legs (`validate-check-ci-parity` refuses a drift
 between `check` and `.github/workflows/ci.yml`). Re-read `package.json` before
 editing this list; the root script is the source of truth when the gate graph
 changes, and the cited-scripts validator refuses a `pnpm <script>` citation
-that `package.json` does not define.
+that `package.json` does not define (its sibling, the cited-paths validator,
+refuses a code-formatted `.agent/` or `docs/` path that does not exist).
 
 ## The Sequence
 

@@ -13,7 +13,7 @@ independent read-only pass.
 
 ## Read in order
 
-1. `.agent/sub-agents/templates/accessibility-reviewer.md`
+1. `.agent/sub-agents/templates/accessibility-expert.md`
 2. `.agent/rules/invoke-accessibility-expert.md`
 3. Relevant changed files in `app/`, `components/`, `content/`, `lib/`, and
    `public/`

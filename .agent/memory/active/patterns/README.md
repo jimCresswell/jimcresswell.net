@@ -186,4 +186,13 @@ drift. After adding or changing a pattern file, regenerate with
 
 ## Pattern Index
 
-*No repo-local pattern instances yet; the index fills as pattern files are authored here.*
+### Process (1)
+
+- **Inherited Framing Without First-Principles Check** *(anti-pattern)* -- Use this when: About to execute a plan body, rewrite an existing artefact, or translate an "old X to new X" — before writing code, tests, or doctrine, check whether the inherited shape is the right shape for the behaviour being proven. → [inherited-framing-without-first-principles-check.md](inherited-framing-without-first-principles-check.md)
+
+### Agent (4)
+
+- **Eager Rounding-Off on Partial Structures Under Failure Pressure** *(anti-pattern)* -- Use this when: An enforcer fires (gate, hook, scanner, validator, lint, type-check) and the proposed response involves bypass, "doctrinal collision", or any framing that lets work proceed past the signal — check whether the agent has rounded a partial structure into a whole structure and constructed a problem that does not exist. → [eager-rounding-off-on-partial-structures.md](eager-rounding-off-on-partial-structures.md)
+- **Parallel `isolation:\"worktree\"` Dispatch Is Unreliable; Prefer Sequential** *(anti-pattern)* -- Use this when: Considering a parallel `Agent` batch with `isolation:\"worktree\"` for non-trivial work that depends on a specific branch HEAD or specific repo state. → [parallel-worktree-dispatch-unreliable.md](parallel-worktree-dispatch-unreliable.md)
+- **Passive Guidance Loses to Artefact Gravity** *(anti-pattern)* -- Use this when: Designing a guardrail against an agent failure mode — choose between documented-but-not-enforced guidance (passive) and an environmentally-triggered rule, hook, or read-on-entry surface (active); passive guidance alone is a watchlist item, not a guardrail. → [passive-guidance-loses-to-artefact-gravity.md](passive-guidance-loses-to-artefact-gravity.md)
+- **Structural Enforcer Recursive Exclusion** *(anti-pattern)* -- Use this when: Designing a structural enforcer (hook, scanner, lint rule, regex matcher) that scans for a pathogen — vocabulary, file shape, prohibited construct, code smell — across a path scope; the cataloguing documents and tests inside that scope will trip the enforcer on themselves unless explicitly excluded. → [structural-enforcer-recursive-exclusion.md](structural-enforcer-recursive-exclusion.md)

@@ -232,7 +232,7 @@ Update the Skills tables in both:
 
 - `.agent/practice-index.md`
 - `.agent/directives/AGENT.md`
-- `.agent/reference/cross-platform-agent-surface-matrix.md` when the supported
+- `.agent/memory/executive/cross-platform-agent-surface-matrix.md` when the supported
   adapter surfaces change
 
 Keep the listing text short and aligned across both files.
@@ -279,7 +279,7 @@ environment, the bundled validator also depends on `PyYAML`,
 so it may fail before reaching any frontmatter checks.
 
 After changing tracked files, follow
-`.agent/skills/quality-gates/SKILL.md` and run the repo's
+`.agent/skills/quality-gates/SKILL-CANONICAL.md` and run the repo's
 quality gates.
 
 ### 9. Iterate after use
@@ -329,7 +329,7 @@ A skill change is complete when:
 - `.agent/practice-core/practice.md`
 - `.agent/directives/AGENT.md`
 - `.agent/directives/principles.md`
-- `.agent/skills/quality-gates/SKILL.md`
-- `.agent/skills/napkin/SKILL.md`
-- `.agent/skills/editorial-voice/SKILL.md`
+- `.agent/skills/quality-gates/SKILL-CANONICAL.md`
+- `.agent/skills/knowledge/napkin/SKILL-CANONICAL.md`
+- `.agent/skills/editorial-voice/SKILL-CANONICAL.md`
 - `.cursor/skills/quality-gates/SKILL.md`

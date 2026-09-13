@@ -200,7 +200,7 @@ curator-pass's own surface survey.
 
 ### Example 1 — the bug that prompted this rule
 
-`.agent/memory/active/archive/napkin-2026-05-24-shaded-silencing-dusk.md`
+the lineage's archived napkin of 2026-05-24 (at the lineage pin, not carried here)
 § "2026-05-24 — Ferny Fruiting Root / claude / claude-opus-4-7 /
 `ee16a4` — Window 2 session-end captures" → "Capture D — Owner rule
 (2026-05-24): no important state long-term in temp files":

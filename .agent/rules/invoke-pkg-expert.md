@@ -4,4 +4,4 @@ Invoke `pkg-reviewer` when changes touch entity models, `content/`, `lib/pkg`, J
 Schema.org types, `@id` conventions, or graph-backed metadata. Use it for truthfulness and
 structured-data integrity checks before completion.
 
-See `.agent/sub-agents/templates/pkg-reviewer.md` for the full reviewer brief.
+See `.agent/sub-agents/templates/pkg-expert.md` for the full reviewer brief.

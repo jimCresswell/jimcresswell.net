@@ -135,7 +135,8 @@ Scan for:
   `lint:fix`, `test`, `test:watch`, `test:e2e`, `test:ui`) and tools named
   `<subject>:<verb>`. No hidden `test:ci` duplicates, no workspace copies of root gates.
 - Every cited script exists (`validate-cited-scripts` polices the docs; `package.json` entries
-  must reference files that exist and must not create circular `pnpm check` loops).
+  must reference files that exist and must not create circular `pnpm check` loops), and every
+  code-formatted `.agent/` or `docs/` path in live doctrine exists (`validate-cited-paths`).
 - Environment variables are read through helpers, never mutated at runtime; secrets stay in
   `process.env` with a comment naming their origin.
 - Bundler and runtime toggles in `jcdotnet/next.config.ts` (headers, rewrites, analytics

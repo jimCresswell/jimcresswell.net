@@ -88,8 +88,9 @@ Before reviewing documentation changes or documentation obligations, read and in
    workspace `package.json` scripts and the skill inventories (`.agent/skills/`,
    `.claude/skills/`, `.agents/skills/`). Prose enumerations drift; the script is
    authoritative. The estate's own validators are the first read for their domain:
-   `validate-markdown-links`, `validate-cited-scripts` and `validate-reference-direction`
-   (all under `pnpm check:docs`); a claim that contradicts a green validator is wrong until
+   `validate-markdown-links`, `validate-cited-scripts`, `validate-cited-paths` and
+   `validate-reference-direction` (all under `pnpm check:docs`); a claim that contradicts a
+   green validator is wrong until
    the validator is shown to be.
 3. **Check record numbers by title at the target.** This estate carries records from a source
    lineage; a number can survive a transplant while its subject changes. A citation is

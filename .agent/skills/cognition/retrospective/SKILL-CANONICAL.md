@@ -17,7 +17,7 @@ description: >-
 [skill-composition hierarchy](../../../reference/skill-composition.md).
 Imported and adapted 2026-07-20 from the Resonance estate (a private
 sibling Practice repo — no public upstream URL exists; source
-repo-relative path `.agent/skills/retrospective/SKILL-CANONICAL.md`;
+repo-relative path `.agent/skills/cognition/retrospective/SKILL-CANONICAL.md`;
 AIP-142; PDR-125 exchange); this estate's founding worked instance is the
 2026-07-20 merge-drive retrospective ("why every review arc hit the same
 generator"), run per the Resonance skill at owner word and landed under

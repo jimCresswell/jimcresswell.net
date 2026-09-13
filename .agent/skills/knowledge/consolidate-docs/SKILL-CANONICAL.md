@@ -646,7 +646,7 @@ Rule; the standalone crosswalk plan was archived in the same pass.)
    Always graduate useful understanding — fitness pressure on the target doc is handled in step 9 via the three-zone scale, never by deferring graduation. The barrier is "stable and useful enough to place," not "no longer agent-operational." Common destinations:
 
    - **Rules / principles** codified in `.agent/directives/principles.md`.
-   - **Host-repo architectural decisions** → ADRs in `docs/architecture/architectural-decisions/` (or host equivalent).
+   - **Host-repo architectural decisions** → ADRs in `docs/architecture/decision-records/` (or host equivalent).
    - **Practice-governance decisions** → PDRs in `.agent/practice-core/decision-records/` (portable; travels with Core). Pattern-shaped governance uses `pdr_kind: pattern` frontmatter.
    - **General abstract engineering patterns** (ecosystem-agnostic, synthesised from ≥2 instances) → PDRs in `.agent/practice-core/decision-records/` with `pdr_kind: pattern` (portable; travels with Core; authored fresh via synthesis — instances stay in `memory/active/patterns/`).
    - **Specific engineering pattern instances** → `.agent/memory/active/patterns/` (repo-local, ecosystem-grounded).

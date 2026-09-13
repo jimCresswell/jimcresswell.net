@@ -42,7 +42,7 @@ export interface AuthoredSurfaceSpec {
 }
 
 /** A directory entry as `readdir` with `withFileTypes` reports it. */
-export interface AuthoredSurfaceDirectoryEntry {
+interface AuthoredSurfaceDirectoryEntry {
   readonly name: string;
   isDirectory: () => boolean;
   isFile: () => boolean;

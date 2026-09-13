@@ -4,4 +4,4 @@ Invoke `react-component-reviewer` when changes touch `app/`, `components/`, hook
 boundaries, hydration, or component performance. Use it for React composition and lifecycle
 questions before completion.
 
-See `.agent/sub-agents/templates/react-component-reviewer.md` for the full reviewer brief.
+See `.agent/sub-agents/templates/react-component-expert.md` for the full reviewer brief.

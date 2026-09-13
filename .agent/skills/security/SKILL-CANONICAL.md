@@ -13,7 +13,7 @@ reviewer for the independent defensive review.
 
 ## Read in order
 
-1. `.agent/sub-agents/templates/security-reviewer.md`
+1. `.agent/sub-agents/templates/security-expert.md`
 2. `.agent/rules/invoke-security-expert.md`
 3. `.agent/directives/secops.md`
 4. Relevant changed files such as `next.config.ts`, `proxy.ts`, `app/api/**`,

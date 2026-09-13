@@ -36,7 +36,7 @@ Before editorial-intensive phases (entity population, role descriptions), additi
 
 | Document                                             | Purpose                                                             |
 | ---------------------------------------------------- | ------------------------------------------------------------------- |
-| `.agent/skills/editorial-voice/SKILL.md`             | Jim's voice — two registers, common pitfalls                        |
+| `.agent/skills/editorial-voice/SKILL-CANONICAL.md`             | Jim's voice — two registers, common pitfalls                        |
 | `.agent/directives/editorial-guidance.md`            | Authoritative editorial constraints                                 |
 | `.agent/reference-local/editorial-private/README.md` | Routing for private biographical context; never surface it publicly |
 

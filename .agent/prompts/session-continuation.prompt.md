@@ -13,15 +13,15 @@ Ground first via `start-right-quick` or `start-right-thorough`.
 **The OCE Practice lineage transplant is the live repo-wide workstream.** Branch
 `feat/monorepo`. The plan of record is
 [`../../docs/explorations/2026-09-12-oce-practice-lineage-transplant.md`](../../docs/explorations/2026-09-12-oce-practice-lineage-transplant.md)
-— its dated §Owner rulings (rounds 1 to 7) carry the live state. **Next (owner's
+— its dated §Owner rulings (rounds 1 to 8) carry the live state. **Next (owner's
 direction of 2026-09-13, late morning): the entire Practice comes over, as
 appropriate for this repository, with a record of what, how and why, and the
 installable-entity exploration.** Start from the delivery node
 [`../plans/delivery/practice-completion.plan.md`](../plans/delivery/practice-completion.plan.md)
-(ratified on cards 2026-09-13, its three gates cleared the same round): run its
-todo 1 — the cited-paths validator first, then the class A cures listed in
-[`../reports/practice-transplant/what-the-practice-is.md`](../reports/practice-transplant/what-the-practice-is.md)
-— then its todos 2 to 6 in order. Done and
+(ratified on cards 2026-09-13, its three gates cleared the same round): todo 1 is
+done (the cited-paths validator is a `docs-validators:check` leg and green); run
+its todos 2 to 6 in order, starting with todo 2 (activate the installed
+instruments). Done and
 committed: rules triage, the Phase 8 harness, re-evaluate slice 1, the link
 repair, the lineage script naming, slice 2 items 1 to 3, the plan-node
 migration (strategy corpus, four ratified strategic nodes, the legacy corpus

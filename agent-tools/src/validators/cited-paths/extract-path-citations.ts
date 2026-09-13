@@ -24,7 +24,7 @@ export interface PathCitation {
 }
 
 /** Path prefixes that make a code token a repository-path citation. */
-export const CITED_PATH_PREFIXES = ['.agent/', 'docs/'] as const;
+const CITED_PATH_PREFIXES = ['.agent/', 'docs/'] as const;
 
 const FENCE_PATTERN = /^\s*(```|~~~)/;
 const INLINE_CODE_PATTERN = /`([^`\n]+)`/g;

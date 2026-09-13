@@ -24,7 +24,7 @@ Files under `.agent/practice-core/` MUST NOT contain:
   `../../commands/`, `../../memory/`, `../../plans/`,
   `../../experience/`, `../../rules/`, etc.
 - ADR references: no `ADR-NNN`, no links into
-  `docs/architecture/architectural-decisions/`.
+  `docs/architecture/decision-records/`.
 - Commit references: no SHAs, no commit subjects, no
   `commit abcdef0` citations.
 - Host-local context sections, "host context note" sections, or

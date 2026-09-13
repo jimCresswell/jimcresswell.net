@@ -255,7 +255,8 @@ Runs the focused verify-only baseline for general documentation changes without
 builds, product tests, or browser suites: root Prettier and markdownlint, then
 the documentation validators (`validate-reference-direction`,
 `validate-no-machine-local-paths`, `validate-markdown-links`,
-`validate-cited-scripts`). It is deliberately narrower than `pnpm check` and
+`validate-cited-scripts`, `validate-cited-paths`, `validate-patterns-index`).
+It is deliberately narrower than `pnpm check` and
 makes no full-repository verification claim. Fitness reports
 (`pnpm practice:fitness` and siblings) are not part of this gate: they remain
 signals and never justify deleting or compressing knowledge.

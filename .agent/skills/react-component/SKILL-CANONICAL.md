@@ -13,7 +13,7 @@ independent runtime and composition pass.
 
 ## Read in order
 
-1. `.agent/sub-agents/templates/react-component-reviewer.md`
+1. `.agent/sub-agents/templates/react-component-expert.md`
 2. `.agent/rules/invoke-react-component-expert.md`
 3. Relevant changed files in `app/`, `components/`, and supporting helpers in
    `lib/`

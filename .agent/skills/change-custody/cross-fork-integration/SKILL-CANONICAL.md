@@ -448,5 +448,5 @@ seat's worktree, branch or claim (2026-09-09, the #88 follow-up).
   here — the reference direction runs plan → doctrine).
 - `.agent/skills/set-up-worktree-lane/SKILL-CANONICAL.md` — the identity
   check and the build; step 3 above says why its branch cut does not apply.
-- `docs/architecture/architectural-decisions/228-organisational-identity-below-the-tree.md`
+- The lineage's ADR "organisational identity below the tree" (at the lineage pin, not carried here)
   — why the fork diff is enumerated and identity-free.

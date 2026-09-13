@@ -13,7 +13,7 @@ check once the slice is shaped.
 
 ## Read in order
 
-1. `.agent/sub-agents/templates/design-system-reviewer.md`
+1. `.agent/sub-agents/templates/design-system-expert.md`
 2. `.agent/rules/invoke-design-system-expert.md`
 3. Relevant changed files in `app/`, `components/`, `app/globals.css`, `lib/`,
    and `public/`

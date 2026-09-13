@@ -702,3 +702,20 @@
   a report sentence written before its verification stays wrong after the verification unless
   the verification pass re-reads the report.
 - zsh bit again: `$P:agent-tools` parsed as a modifier; `"${P}:path"` every time.
+- Round 8 cards: practice-completion ratified as written; Gemini carried, Windsurf rejected; the
+  knowledge base as the cited subset, scrubbed; the instruments re-homed here; the second-host
+  node withdrawn and every mention removed from the steering surfaces (lineage records that
+  name it as a sibling left as history, listed in the plan of record).
+- Todo 1: the validator measured 52 citations of 35 absent paths (Wrap 5 prediction (a) said
+  about forty: confirmed) and 0 after the cures. Metacognition, owner-invoked mid-build with
+  principles, testing and validation strategy: the fluent copy of the cited-scripts walker was
+  the THIRD copy (stale-script-invocations has one too); `consolidate-at-second-consumer` names
+  validators as the floor. Cure: `core/authored-surfaces` with an injected fs port and a unit
+  test; both refactored validators byte-identical before and after. Four mutants killed.
+- Tooling surprises: `erasableSyntaxOnly` forbids constructor parameter properties (a class
+  with `private readonly` args fails tsc); `Array.isArray` narrows `readonly string[]` to
+  `any[]` (lint refuses the assignment) — test with `typeof`; a blockquote provenance line
+  directly before a pattern's own blockquote trips MD028; a multi-line needle passed to
+  `grep -cF` counts per line, so the mutation driver's needle check must be single-line.
+- Under the cited-subset ruling, an imported index that links a corpus left at the pin is a
+  broken-links generator; a local README naming the home and the pin is the honest import.

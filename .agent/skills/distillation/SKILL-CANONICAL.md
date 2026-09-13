@@ -13,7 +13,7 @@ Extract actionable rules, patterns, and troubleshooting from
 two feeds into a compact, curated reference (`distilled.md`),
 then promote settled entries to permanent documentation.
 
-**Trigger**: When `.agent/memory/napkin.md` exceeds ~500
+**Trigger**: When `.agent/memory/active/napkin.md` exceeds ~500
 lines, or when the user requests distillation.
 
 ## The pipeline
@@ -125,7 +125,7 @@ in permanent documentation.
 Move the outgoing napkin to the archive:
 
 ```bash
-cp .agent/memory/napkin.md \
+cp .agent/memory/active/napkin.md \
    .agent/memory/archive/napkin-YYYY-MM-DD.md
 ```
 
@@ -133,7 +133,7 @@ Use the current date for the filename.
 
 ### 5. Start Fresh
 
-Create a new `.agent/memory/napkin.md` with a session heading
+Create a new `.agent/memory/active/napkin.md` with a session heading
 documenting the distillation itself.
 
 ## distilled.md Structure

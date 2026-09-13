@@ -1206,3 +1206,44 @@ One card round of four; every answer applied the same session.
    `agent-tools` test comments and its identity doc, one skill and one rule). Those are
    history of the lineage, not this estate's understanding of its future; rewriting them would
    falsify a record. Undo is one word.
+
+## Practice completion — todo 1 executed (2026-09-13, after the second compaction)
+
+**Measure first.** `validate-cited-paths` (agent-tools, `docs-validators:check` leg): every
+code-formatted `.agent/` or `docs/` path in live doctrine — directives, rules, skills and the
+entry points — must exist. Pre-cure run: 52 citations of 35 absent paths across 20 files
+(prediction (a) from Wrap 5 said about forty; the two runtime-created targets are allowlisted
+with a reason). At the wider cited-scripts scan scope the count was 81, the extra 46 in plans,
+reports, memory and Core; the leg starts at the doctrine scope the node's acceptance criterion
+names and widening is a todo-3 item. The walker the cited-scripts and stale-script-invocations
+validators each carried became one module (`core/authored-surfaces`, injected file-system port,
+unit-tested) under `consolidate-at-second-consumer`; the new validator would have been the third
+copy. Four claim-directed mutants, all killed (commit 5d44218 body).
+
+**Cures, by kind.**
+
+- Re-points (mechanical): nine `*-reviewer.md` template citations in nine rules and six skills
+  → `*-expert.md`; `skills/free-play/`, `skills/retrospective/`, `skills/knowledge-safety-sweep/`
+  → their `cognition/` and `knowledge/` homes; `quality-gates/SKILL.md`, `napkin/SKILL.md`,
+  `editorial-voice/SKILL.md` → the local canonical files; `reference/cross-platform-agent-
+surface-matrix.md` → `memory/executive/`; `memory/{distilled,napkin}.md` → `memory/active/`;
+  `docs/architecture/architectural-decisions/` → `decision-records/`; `docs/operations/` →
+  `docs/engineering/`; the orientation table's plans row → the plan-node estate.
+- Imports from the pin under the cited-subset ruling, each with a provenance line and the
+  lineage-name scrub: five pattern records (the four doctrine cites plus the one they link),
+  the diagnostics convention, the WS-8 reviewer synthesis, the workspace-basis research
+  record, the Watcher estate review (adapter prefixes and account names scrubbed; the
+  lineage's sibling-estate mention generalised), and a local README for the continuity
+  research home (the lineage's seven syntheses stay at the pin, named there). The pattern
+  index regenerated to five.
+- Rewordings where the record is lineage-only and not knowledge-base class: the archived
+  napkin of 2026-05-24, the consumed resonance import record, a product plan, and the
+  lineage's identity ADR are named in prose without a path.
+
+**After:** `validate-cited-paths: OK (274 files scanned)`; markdown links 0; cited scripts
+green; the leg is a `docs-validators:check` leg and CI parity holds through that aggregate.
+
+**Carried forward to todo 3 (under the new default):** the lineage's doctrine cites about
+forty pattern records; the 2026-09-12 link repair removed the local link-form citations
+instead of importing the targets, so re-triage which of those citations return with their
+patterns; the 46 unresolved paths outside the doctrine scope; Gemini per the ruling.
