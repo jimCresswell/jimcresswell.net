@@ -1,3 +1,9 @@
+---
+classification: situational
+description: Invoke assumptions-expert when plans are marked decision-complete, propose 3+ agents, assert blocking relationships, or commit to technology choices before research.
+trigger: ceremony:plan-authoring — Plan authoring, decision-complete marks, blocking claims, 3+ agents
+---
+
 # Invoke Assumptions Expert
 
 Operationalises the [`assumptions-expert` brief](../sub-agents/templates/assumptions-expert.md) within the [sub-agent architecture](../sub-agents/README.md).

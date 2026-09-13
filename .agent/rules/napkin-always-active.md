@@ -1,3 +1,8 @@
+---
+classification: core
+description: Read distilled and napkin notes every session and keep them current
+---
+
 # Napkin Always Active
 
 Read `.agent/memory/active/distilled.md` and `.agent/memory/active/napkin.md` before doing anything. Keep the

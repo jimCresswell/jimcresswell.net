@@ -1,3 +1,8 @@
+---
+classification: core
+description: After non-trivial changes, invoke specialist experts.
+---
+
 # Invoke Specialist Experts
 
 Operationalises the [sub-agent architecture](../sub-agents/README.md) — layered prompt composition and domain-specialist experts.

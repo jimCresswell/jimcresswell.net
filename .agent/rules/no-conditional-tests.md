@@ -1,3 +1,11 @@
+---
+classification: situational
+description: No conditional tests. They are a symptom of architectural failure.
+trigger: surface:test-authoring
+globs:
+  - "**/*.test.ts"
+---
+
 # No Conditional Tests
 
 Operationalises [`testing-strategy.md`](../directives/testing-strategy.md) §Rules, which also governs the sibling skip and pending mechanisms, and §Stubs vs Fakes.

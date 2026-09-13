@@ -48,6 +48,7 @@ const config: KnipConfig = {
         'src/version-guard/prevent-accidental-major-version.ts',
         'src/validators/**/validate-*.ts',
         'src/validators/plan-schema/check-plan-gate-drift.ts',
+        'src/rule-declarations/rule-frontmatter-sweep.ts',
         'src/practice-fitness/validate-practice-fitness.ts',
         'src/ci/ci-turbo-report.ts',
         'src/pr-throughput/cli.ts',

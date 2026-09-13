@@ -1,3 +1,9 @@
+---
+classification: situational
+description: invoke security expert
+trigger: surface:headers, secrets, middleware, proxy, CSP
+---
+
 # Invoke Security Reviewer
 
 Invoke `security-reviewer` when changes touch headers, secrets, env loading, proxies, middleware,

@@ -1,3 +1,9 @@
+---
+classification: situational
+description: invoke docs adr expert
+trigger: surface:docs/, ADRs, EDRs, READMEs
+---
+
 # Invoke Docs ADR Reviewer
 
 Invoke `docs-adr-reviewer` when changes add or alter ADRs, EDRs, README contract docs, `.agent/`

@@ -1,3 +1,14 @@
+---
+classification: situational
+description: "On any dependency landing — a security-floor bump, version hold, a new or raised pnpm-workspace.yaml override, batch sweep, or single bump — run the delete-and-rebuild test: back up and delete pnpm-lock.yaml, pnpm install from declarations alone, then assert floors, holds, unchanged audit, and a green frozen install. No size threshold; run it, never reason about it. Not for changes touching no dependency declaration. Failure shapes — a floor held only by the lockfile's recorded version, evaporating silently on rebuild; an override lagging its manifests until CI's ERR_PNPM_OUTDATED_LOCKFILE."
+trigger: surface:dependency-management
+globs:
+  - "**/package.json"
+  - pnpm-lock.yaml
+  - pnpm-workspace.yaml
+  - .npmrc
+---
+
 # Lockfile-Rebuild Survivability
 
 Owner rule, verbatim (2026-07-25): **"all updates and overrides must be able

@@ -1,3 +1,15 @@
+---
+classification: situational
+description: Keep foundational Practice surfaces owner-edited
+trigger: surface:AGENTS.md,CLAUDE.md,.agent/practice-core/**/*,.agent/directives/**/*,.agent/rules/**/*
+globs:
+  - AGENTS.md
+  - CLAUDE.md
+  - .agent/practice-core/**/*
+  - .agent/directives/**/*
+  - .agent/rules/**/*
+---
+
 # Subagents Must Not Modify the Practice Core
 
 **Substantive authority**: [PDR-003 — Sub-Agent Protection of Foundational Practice Docs](../practice-core/decision-records/PDR-003-sub-agent-protection-of-foundational-practice-docs.md).

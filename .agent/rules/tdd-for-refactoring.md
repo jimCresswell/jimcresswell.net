@@ -1,3 +1,8 @@
+---
+classification: core
+description: Refactoring stays under red-green-refactor
+---
+
 # TDD for Refactoring
 
 Refactoring is not an exception to TDD. Prove the current or intended behaviour
