@@ -57,6 +57,23 @@ export async function writeText(
 }
 
 /**
+ * Removes the file at `<repoRoot>/<relPath>`.
+ *
+ * @param repoRoot - Absolute path to the repository root.
+ * @param relPath  - Repo-relative path of the file to remove.
+ * @param removed  - Mutable array that collects every path removed during a
+ *   `--fix` run; the path is appended on success.
+ */
+export async function removeFile(
+  repoRoot: string,
+  relPath: string,
+  removed: string[],
+): Promise<void> {
+  await fs.rm(path.join(repoRoot, relPath));
+  removed.push(relPath);
+}
+
+/**
  * Parses the JSON file at `<repoRoot>/<relPath>`.
  *
  * @param repoRoot - Absolute path to the repository root.
@@ -189,14 +206,4 @@ export function getFrontmatterValue(frontmatter: string, key: string): string {
   const escapedKey = key.replaceAll(/[.*+?^${}()|[\]\\]/g, String.raw`\$&`);
   const match = new RegExp(String.raw`^${escapedKey}:\s*(.+)$`, 'm').exec(frontmatter);
   return match?.[1]?.trim().replaceAll(/^['"]|['"]$/g, '') ?? '';
-}
-
-/**
- * Strips a YAML frontmatter block from the start of a Markdown document.
- *
- * @param content - Full text of the Markdown document.
- * @returns The document text with the frontmatter block removed.
- */
-export function stripFrontmatter(content: string): string {
-  return content.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n?/u, '');
 }

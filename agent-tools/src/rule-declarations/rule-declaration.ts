@@ -3,10 +3,10 @@
  *
  * A rule under `.agent/rules/` declares how it is loaded — always (`core`), or on a named
  * trigger (`situational`), optionally scoped to file globs — and one sentence of what it is
- * for. The declaration is intended as the one source for every projection of the rule (the
- * row in `RULES_INDEX.md`, the Cursor trigger under `.cursor/rules/`, the Claude and
- * `.agents` pointer adapters); the generator that derives those projections from it is the
- * next change, and until it lands they remain hand-kept (`compute-dont-hope`).
+ * for. The declaration is the one source for every projection of the rule: the row in
+ * `RULES_INDEX.md`, the Cursor trigger under `.cursor/rules/`, the Claude and `.agents`
+ * adapters. `render-rule-projections.ts` derives them, `pnpm portability:fix` writes them and
+ * `pnpm portability:check` recomputes them; none is ever edited by hand (`compute-dont-hope`).
  *
  * The shape is closed: a core rule has no trigger and no globs (it is always loaded, so a
  * scope would be meaningless), and a situational rule always names its trigger.

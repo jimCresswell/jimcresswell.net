@@ -1,6 +1,6 @@
 ---
 description: When a change makes an element of the Practice more general or more portable, land a row in the generalisation register (date, element, move, commit, lineage status) in the same commit; it feeds contributions back to the lineage, updates from it, the next transplant, and the later extraction of the Practice.
-globs: 'agent-tools/**,.agent/practice-core/**,.agent/rules/**,.agent/skills/**,.agent/directives/**'
+globs: agent-tools/**,.agent/practice-core/**,.agent/rules/**,.agent/skills/**,.agent/directives/**
 alwaysApply: false
 ---
 

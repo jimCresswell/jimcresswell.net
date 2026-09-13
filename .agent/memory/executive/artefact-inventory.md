@@ -84,16 +84,15 @@ command surfaces are retired (see ADR-125 §2026-05-10).
 
 ### New Rule
 
-1. **Canonical**: `.agent/rules/<name>.md`
-2. **Cursor**: `.cursor/rules/<name>.mdc`
-3. **Claude Code**: `.claude/rules/<name>.md`
-4. **`.agents/`**: `.agents/rules/<name>.md`
-
-- **Cursor `.mdc`**: YAML front-matter (`description`,
-  `alwaysApply: true`), body = `Read and follow
-  .agent/rules/<name>.md`.
-- **Claude**: plain text — `Read and follow .agent/rules/<name>.md`.
-- **`.agents/`**: same plain-text pointer as Claude.
+1. **Canonical**: `.agent/rules/<name>.md`, with the declaration in its frontmatter:
+   `classification` (`core` or `situational`), `description`, and for a situational rule
+   `trigger` and optionally `globs` (a YAML list).
+2. **Projections**: run `pnpm portability:fix`. It renders the rule's row in `RULES_INDEX.md`,
+   `.cursor/rules/<name>.mdc`, `.claude/rules/<name>.md` and `.agents/rules/<name>.md` from the
+   declaration; `pnpm portability:check` recomputes them byte for byte and fails on any hand
+   edit or stale file. The shapes (Cursor `globs` as a comma-joined string, Claude `paths` as a
+   list with an `@` import for scoped rules, plain pointers otherwise) live in
+   `agent-tools/src/rule-declarations/render-rule-projections.ts`.
 
 ### New Sub-agent
 

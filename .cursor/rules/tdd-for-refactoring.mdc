@@ -3,4 +3,4 @@ description: Refactoring stays under red-green-refactor
 alwaysApply: true
 ---
 
-Read and follow @.agent/rules/tdd-for-refactoring.md
+Read and follow `.agent/rules/tdd-for-refactoring.md`.
