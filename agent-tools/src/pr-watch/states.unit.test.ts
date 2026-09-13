@@ -337,10 +337,11 @@ describe('computePrVerdict — the outstanding request is the round in flight', 
     expect(verdict.evidence.join('\n')).toContain('review-run surface unavailable');
   });
 
-  // The run surface is evidence beside the request, never the deciding clause
-  // (it lists coding-agent sessions and never carried a review round), so an
-  // unobservable surface settles with the gap named rather than blocking on
-  // an optional gh extension (the Director's verdict on #65, 2026-09-14).
+  // The run leg's contract: an OBSERVED live run blocks (the cell below and
+  // the settlement block); an UNOBSERVABLE surface (the extension lists
+  // coding-agent sessions and never carried a review round) settles with the
+  // gap named rather than blocking on an optional gh extension (the
+  // Director's verdict on #65, 2026-09-14).
   it('an unavailable run surface settles a landed round with the gap named, never blocks', () => {
     const verdict = computePrVerdict(
       settledReading({ reviewRuns: { kind: 'unavailable', reason: 'gh agent-task missing' } }),
@@ -369,6 +370,29 @@ describe('computePrVerdict — the outstanding request is the round in flight', 
     expect(verdict.evidence.join('\n')).toContain(
       'review-run surface incomplete: no live run observed in the part read',
     );
+  });
+
+  // The contract's other half: an OBSERVED live run is a measured guard and
+  // blocks, truncated surface or not, and the verdict says so through the
+  // run's own line, never beside a "no live run observed" line.
+  it('a truncated run surface that still observed a live run blocks on that run, without the gap line', () => {
+    const verdict = computePrVerdict(
+      settledReading({
+        reviewRuns: {
+          kind: 'read',
+          runs: [
+            { id: 'run-7', name: 'Task from @jimCresswell', createdAt: 't0', completedAt: null },
+          ],
+          truncated: true,
+          note: 'agent-task list truncated at 100 — older runs unobserved',
+        },
+      }),
+      LATE_NOW,
+    );
+    expect(verdict.state).toBe('WAITING-REVIEW-RUN-LIVE');
+    expect(verdict.evidence.join('\n')).toContain('review run live: run-7');
+    expect(verdict.evidence.join('\n')).toContain('older runs unobserved');
+    expect(verdict.evidence.join('\n')).not.toContain('no live run observed');
   });
 });
 
@@ -483,25 +507,32 @@ describe('computePrVerdict — measured state and settlement (SKILL item 4)', ()
     expect(verdict.evidence.join('\n')).toContain('claude: SKIPPED');
   });
 
-  it('a signed self-authored reply never enters the body tally (SKILL exclusion)', () => {
-    const verdict = computePrVerdict(
-      settledReading({
-        reviews: [
-          ...settledReading().reviews,
-          {
-            author: 'jimCresswell',
-            state: 'COMMENTED',
-            body: 'Fixed at source in abc1234.\n\n— Moth mends Dreamscape (92e9d6)',
-            commitOid: TIP,
-            submittedAt: '2026-07-21T12:58:00Z',
-          },
-        ],
-      }),
-      '2026-07-21T12:58:04Z',
-    );
-    expect(verdict.state).toBe('SETTLE-READY');
-    expect(verdict.evidence.join('\n')).not.toContain('jimCresswell (COMMENTED)');
-  });
+  // Both signature forms: the bare prefix and the MCP-145 display token
+  // (prefix-idTail) a seat pastes from its rendered identity. The token form
+  // once had its own cell against the quiet window; the exclusion it proves
+  // outlives the window (the #65 round-three finding, 2026-09-14).
+  it.each(['(92e9d6)', '(92e9d6-9c1)'])(
+    'a self-authored reply signed %s never enters the body tally (SKILL exclusion)',
+    (signature) => {
+      const verdict = computePrVerdict(
+        settledReading({
+          reviews: [
+            ...settledReading().reviews,
+            {
+              author: 'jimCresswell',
+              state: 'COMMENTED',
+              body: `Fixed at source in abc1234.\n\n— Moth mends Dreamscape ${signature}`,
+              commitOid: TIP,
+              submittedAt: '2026-07-21T12:58:00Z',
+            },
+          ],
+        }),
+        '2026-07-21T12:58:04Z',
+      );
+      expect(verdict.state).toBe('SETTLE-READY');
+      expect(verdict.evidence.join('\n')).not.toContain('jimCresswell (COMMENTED)');
+    },
+  );
 
   it('an undeclared expected set is named in evidence, never silent', () => {
     const verdict = computePrVerdict(settledReading({ expectedDeclared: false }), LATE_NOW);
