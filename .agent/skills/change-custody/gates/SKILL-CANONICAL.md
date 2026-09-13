@@ -42,6 +42,7 @@ pnpm lint:runtime-only
 pnpm lint
 pnpm type-check
 pnpm test
+pnpm agent-tools:test:e2e      # in-process e2e, then every agent-tools smoke-tests/*.smoke.ts
 pnpm knip
 pnpm depcruise
 pnpm secrets:scan
@@ -49,7 +50,7 @@ pnpm portability:check
 pnpm subagents:check
 pnpm skills:check
 pnpm encoding:check
-pnpm repo-validators:check     # CI parity, claim freshness, guard routing, policy reappraisal, lifecycle scripts, stale invocations, collaboration state, identity naming, workspace config
+pnpm repo-validators:check     # CI parity, claim freshness, guard routing, policy reappraisal, lifecycle scripts, stale invocations, collaboration state, identity naming, workspace config, plan corpus, protocol wire contract, practice substrate
 pnpm docs-validators:check     # reference direction, machine-local paths, markdown links, cited scripts
 ```
 

@@ -34,7 +34,7 @@ domain-specific flows:
 - `cursor-session-from-claude-session`: find/inspect Claude sessions and generate Cursor takeover bundles with an explicit reintegration contract.
 - `codex-reviewer-resolve`: resolve a repo-local Codex reviewer adapter to the exact `.codex` and canonical `.agent` files that should ground a review.
 - `protocol-conformance`: recompute the estate's collaboration-protocol tier from artefacts and gates and compare it against the declared floor.
-- `mcp-conformance`: run MCPJam conformance suites (lockfile-installed `@mcpjam/cli`) against a deployed MCP surface — verdicts BY NAME against committed baselines (default), capture observation seeds for authoring baselines via `--seed`, or drive every advertised tool once with its advertised example inputs and render the reviewer walkthrough pack via `--drive` (root alias `pnpm -s mcp:conformance` — the `-s` keeps stdout pure JSON on failing runs).
+- `mcp-conformance`: run MCPJam conformance suites (lockfile-installed `@mcpjam/cli`) against a deployed MCP surface — verdicts BY NAME against committed baselines (default), capture observation seeds for authoring baselines via `--seed`, or drive every advertised tool once with its advertised example inputs and render the reviewer walkthrough pack via `--drive` (root alias `pnpm --silent mcp:conformance` — the `--silent` keeps stdout pure JSON on failing runs).
 
 ## Structure
 
@@ -47,7 +47,7 @@ agent-tools/
 │                  # package scripts, no root aliases)
 ├─ tests/          # Shared test fakes and existing co-located coverage
 ├─ e2e-tests/      # E2E suites
-└─ smoke-tests/    # Local running-command smoke checks
+└─ smoke-tests/    # Running-command smoke checks; every *.smoke.ts is gated by test:e2e
 ```
 
 ## Commands
@@ -59,7 +59,7 @@ pnpm agent-tools:build
 pnpm agent-tools:lint
 pnpm agent-tools:test
 pnpm agent-tools:test:e2e
-pnpm agent-tools:smoke:collaboration-tui
+pnpm --filter @engraph/agent-tools smoke:collaboration-tui
 pnpm agent-tools agent-identity --seed example-session-id-001 --format display
 pnpm agent-tools collaboration-state identity preflight --platform codex --model GPT-5
 pnpm agent-tools context-cost --glob '.agent/rules/*.md'
@@ -76,7 +76,7 @@ collaboration tooling. The package scripts for `agent-identity`,
 `collaboration-state`, `commit-queue`, `branch-touched-files`, and
 `context-cost` are thin
 shortcuts to the same built `dist/src/bin/agent-tools.js` file; they no longer
-run `pnpm -s build` before every invocation. After editing `agent-tools`
+run `pnpm --silent build` before every invocation. After editing `agent-tools`
 source, run `pnpm agent-tools:build` once before using those built CLI scripts.
 
 Examples:
@@ -233,11 +233,12 @@ pnpm agent-tools collaboration-state comms render \
   --output .agent/state/collaboration/shared-comms-log.md
 ```
 
-The automated startup smoke is intentionally separate from E2E:
+The startup smoke runs with the rest of the suite under `test:e2e` (a `check`
+leg and a CI step); to run it alone:
 
 ```bash
 pnpm agent-tools:build
-pnpm agent-tools:smoke:collaboration-tui
+pnpm --filter @engraph/agent-tools smoke:collaboration-tui
 ```
 
 ## `agent-identity` quick reference
@@ -546,4 +547,4 @@ pnpm agent-tools:codex-reviewer-resolve architecture-expert-fred --json
 - `pnpm agent-tools:lint`
 - `pnpm agent-tools:test`
 - `pnpm agent-tools:test:e2e`
-- `pnpm agent-tools:smoke:collaboration-tui`
+- `pnpm --filter @engraph/agent-tools smoke:collaboration-tui`

@@ -653,10 +653,14 @@ paths, setup files) don't apply.
   binding. See
   [`no-warning-toleration` §Problem-hiding patterns](../rules/no-warning-toleration.md#problem-hiding-patterns).
 - **Quality gates** - Run ALL gates after changes. From the repo root,
-  `pnpm check` runs every gate read-only (`pnpm fix` runs the auto-fixers
-  first): format, markdownlint, shell and runtime-only
-  lint, lint, type-check, test, `knip`, `depcruise`, `secrets:scan`,
-  `portability:check`, `subagents:check`, `skills:check`, `encoding:check`, `repo-validators:check`, `docs-validators:check`.
+  `pnpm check` runs every gate, writing no tracked file (`pnpm fix` runs the
+  auto-fixers first): format, markdownlint, shell and runtime-only
+  lint, lint, type-check, test, `agent-tools:test:e2e` (the agent-tools
+  end-to-end and smoke suite, which builds `agent-tools/dist`), `knip`,
+  `depcruise`, `secrets:scan`, `portability:check`, `subagents:check`,
+  `skills:check`, `encoding:check`, `repo-validators:check` (whose legs
+  include the wire-contract check and the substrate audit),
+  `docs-validators:check`.
   The site workspace adds the Playwright suite (`pnpm --filter @jimcresswell/www test:e2e`, against a
   production build — ADR-019). Run `check` and the E2E suite sequentially,
   never in parallel: `check` runs formatters that mutate source while the

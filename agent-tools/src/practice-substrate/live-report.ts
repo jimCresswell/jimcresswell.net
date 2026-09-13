@@ -4,9 +4,9 @@ import { evaluateRetiredPathScan } from './live-retired-paths.js';
 import {
   evaluateCollaborationJsonSurfaces,
   evaluateMigrationLedgers,
-  evaluateSharedCommsLog,
   readManifest,
 } from './live-json.js';
+import { evaluateSharedCommsLog } from './live-shared-comms-log.js';
 import {
   createPracticeSubstrateReport,
   type PracticeSubstrateCliOptions,

@@ -7,7 +7,7 @@ there (verified 2026-08-11, pnpm 11.20). The exhaustive currency check is
 registry reads — `pnpm view <pkg> version` / `pnpm view <pkg> time` — per
 the update-dependencies skill's age-floor census.
 
-> `pnpm outdated` / `pnpm -r outdated` (the repo's `outdated` script) exits with a
+> `pnpm outdated` / `pnpm run outdated` (the repo's `outdated` script, recursive over the workspace) exits with a
 > non-zero code when it finds outdated packages. That is the command's normal
 > "updates available" signal, not a failure — scripts and CI must not treat the
 > exit code as an error.

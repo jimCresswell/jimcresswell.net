@@ -388,7 +388,7 @@ direct CLI commands for inspection and recovery.
    # Resolve the session's UUID v5 id once (PDR-076a). Suppress stderr
    # rather than tail-skipping lines: the pnpm banner goes to stderr on
    # some harnesses, so `tail -n +2` can eat the JSON's first line.
-   AGENT_ID=$(pnpm -s agent-tools:collaboration-state -- identity preflight \
+   AGENT_ID=$(pnpm --silent agent-tools:collaboration-state -- identity preflight \
      --platform "<platform>" --model "<model>" \
      2>/dev/null | jq -r '.agent_id.id')
 

@@ -925,3 +925,52 @@
   (GEMINI.md, the matrix twice) in one afternoon. no-moving-targets: a permanent page names the
   ruling and its date, never the vehicle. The reflex is strongest when the plan is what you are
   executing.
+
+### Lane A (Saffron turns Verdure, c39ad7) — closure item 3 and the tracked-universe lint cure (2026-09-13)
+
+- Which ignore entries are dead is computed against `git ls-files`, never read off the name:
+  `**/CHANGELOG.md` looked like disk state and matched two tracked changelogs; dropping it let
+  `markdownlint --fix` corrupt one (a `+` in prose became a list marker, `_actually_` became
+  `*actually*`), restored by forward write. Every removed entry was then proven dead with one
+  `git ls-files <pattern>` call each; only that one was live. Worked instance of
+  `compute-dont-hope` at the ignore-file grain.
+- Prettier folded `'\u0000'` escapes into raw NUL bytes in a test file and git read it as
+  binary; a `\0` directly before a digit is an octal escape the parser refuses. Cure: one
+  `String.fromCharCode(0)` separator and array joins; never an escape before a digit.
+- The Bash tool's shell is zsh: `${PIPESTATUS[0]}` is empty there (`$pipestatus[1]` is the zsh
+  spelling), so every `exit=` I echoed after a pipeline was blank. Verdicts came from each leg's
+  own output line and the hooks; read exit state from the tool's verdict or run without a pipe.
+- The worktree isolation guard refuses a Bash line that pipes `git` output and a Write whose
+  content carries a user-home absolute path; both cure the same way, a scratchpad script run by
+  one plain call with paths derived (`git rev-parse --show-toplevel`, `git worktree list`).
+- The lane record's premise "the lineage root scripts that have consumers here" recomputed:
+  only `outdated` is cited in live doctrine (`.agent/reference/tooling.md`); `lint:shell:syntax`
+  (this repo's `lint:shell`), `check:profile` and `depcruise:report` are cited nowhere but the
+  plan of record and the definition report, so they were not added. Director accepted.
+- knip cannot see a spawn: moving `markdownlint-cli2` from a root script into a `pnpm exec`
+  inside repo-check made the root devDependency read unused; the declared `ignoreDependencies`
+  exception with its reason is the honest cure (moving the dependency would break `pnpm exec` at
+  the root cwd where the config lives). knip also reads an exported-but-unimported constant as
+  dead: module constants stay private until a second consumer exists.
+- The Director's routing to resolve the primary coordination home for the substrate leg was
+  declined with the reason (a gate that reads another checkout's disk proves that disk; CI has
+  no primary): the tier is derived from the repository's ignore rules through an injected probe.
+  Verdict, not menu; the Director accepted.
+- What worked: three scratchpad trials (markdownlint with and without `--no-globs`, prettier on
+  explicit ignored paths) settled the semantics before any source changed; the whole lint cure
+  changed nothing in what is linted (620 files before and after).
+- Director correction (2026-09-13, after my second push): the push slot is the Director's to
+  hand out; a seat announces and WAITS for the one-word confirmation before pushing, because
+  two pre-push e2e runs on one host prove the wrong build silently (Playwright reuses an
+  existing :3000 server). I had pushed on my own announcement; corrected.
+- The review rounds (code-expert, then config-expert and test-expert in parallel) found what a
+  green gate cannot: a new built binary with no artefact-viability smoke, `--help` exiting 1 on
+  stderr, a signal death folded into exit 1, an errno escaping an evaluator, six assertions that
+  no mutation could fail. Two rounds, twenty-two findings, nineteen taken; the recorded-not-
+  taken ones carry their reason in the commit message. The test-expert's atomic-landing
+  reading was right: the drift branch and the argv guard each landed a commit before their
+  description; author test and code in the same edit, not the same PR.
+- A test that spawns a child must not import `node:fs` (the estate's no-real-IO-in-tests
+  rule): let the child resolve its own real path. And the truth-set's "executable bit" applies
+  only to `bin/` entries the build chmods; a package-script entry run from source proves cold
+  start under node, not a mode bit.
