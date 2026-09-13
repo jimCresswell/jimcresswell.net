@@ -858,3 +858,10 @@
   third seat); a rejected idea whose reason lived only in a transcript (napkin capture cures).
   Native `ListAgents` idle/busy is a same-machine liveness probe the Practice does not yet use
   (platform pack, not core).
+- Owner: "add the rules now." Landed `channel-by-audience-lifetime-and-consumer` with its
+  adapters, a PDR-082 n=2 clause, the ARC reference bullet, the start-right-team opener and a
+  comms-log cross-link; plan of record round 14. Director seat facts: claim `1db07581`,
+  team-start `ca1ba4d8`, handoff file and three lane records pushed. Two records-only pushes
+  went red on disk-walking gates (untracked comms render, untracked editor workspace file):
+  stepping stones applied, cure routed to lane A. The `#` delimiter in `perl -pi -e 's#…#…#'`
+  is unusable when the pattern contains a markdown heading; use `|`.
