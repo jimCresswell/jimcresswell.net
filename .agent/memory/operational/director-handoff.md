@@ -228,6 +228,15 @@ ones the Director would put to the owner had the owner been present.
     (the amended tree carries the original whole); the push proceeded rather than rewriting
     again; the rule is absorbed. Lesson for the seat and the record: the forward-only rule
     applies to unpushed commits too.
+15. #55 round four, thread one ruled "refuse" over the routed "continue" on lane A's reasoning
+    (lens 2): a paragraph break inside a folded scalar has no single-paragraph value the reader
+    could mint without differing from what the platform reads; the sweep refuses with a named
+    reason and the cell pins it; no tracked trigger has the shape. #60 round four granted
+    (Copilot on 92da668, four real threads): the held port must answer with the holder's own
+    stamp before the script builds, so a stranger on the port after a re-setup can never pass
+    as the holder; the release answers only after the listener's close completes; the runner
+    bullet, the smoke section and the config comment name the e2e:server mechanism. Order: the
+    #55 push first, then #60 round four.
 
 ## Routing log
 
