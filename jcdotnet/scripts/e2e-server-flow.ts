@@ -4,7 +4,8 @@
  * the port; build (a signal stops the build child, and the flow exits 1 once it has gone,
  * returning rather than exiting a second time); attach the site to the socket (a signal closes
  * the socket and exits 1, since the build child is gone and the site is not yet served); serve
- * (a signal closes the site and exits 0). A build that exits non-zero exits the process with
+ * (a signal closes the site and exits 0, or reports a close that rejects and exits 1). A build
+ * that exits non-zero exits the process with
  * the build's code, the socket left to die with it. The stop action is swapped BEFORE each
  * await, so no phase's signal can act on the previous phase's process: a signal during attach
  * used to call kill on the exited build child and wait for an exit that could not come, leaving
@@ -19,7 +20,7 @@ export interface BuildRun {
   readonly stop: () => void;
 }
 
-/** The flow's five seams; the entry script supplies the real ones. */
+/** The flow's six seams; the entry script supplies the real ones. */
 export interface ServerFlowSeams {
   /** Bind the socket the site will be served from. */
   readonly bind: () => Promise<BoundSocket>;

@@ -25,15 +25,15 @@ const READY_TIMEOUT_MS = 120_000;
 
 const SITE_DIRECTORY = fileURLToPath(new URL("..", import.meta.url));
 
-/** The child's one terminal event: it exited, or it never started. */
+/** The child's one terminal event: it exited (by code or signal), or it never started. */
 type Terminal =
-  | { readonly kind: "exit"; readonly code: number | null }
+  | { readonly kind: "exit"; readonly code: number | null; readonly signal: NodeJS.Signals | null }
   | { readonly kind: "error"; readonly message: string };
 
 function terminalOf(child: ChildProcess): Promise<Terminal> {
   return new Promise((resolve) => {
-    child.once("exit", (code) => {
-      resolve({ kind: "exit", code });
+    child.once("exit", (code, signal) => {
+      resolve({ kind: "exit", code, signal });
     });
     child.once("error", (error) => {
       resolve({ kind: "error", message: error.message });
@@ -41,35 +41,43 @@ function terminalOf(child: ChildProcess): Promise<Terminal> {
   });
 }
 
-function describe(terminal: Terminal): string {
+function describeTerminal(terminal: Terminal): string {
   return terminal.kind === "exit"
-    ? `e2e server exited ${String(terminal.code)}`
+    ? `e2e server exited (code ${String(terminal.code)}, signal ${String(terminal.signal)})`
     : `e2e server could not be started: ${terminal.message}`;
 }
 
 /**
  * The child's stdout lines, buffered from the start: `port` and `ready` can arrive in one chunk,
  * and a listener attached after the first match would miss the second line and wait forever.
+ * `done` stops the buffering once the protocol is complete, so the server's request-time
+ * output is not retained for the run (the interface stays open: pausing it would fill the pipe
+ * and block the child).
  */
 interface LineStream {
   /** Resolve with the first unconsumed line matching `pattern`; reject on the terminal event or the deadline. */
   readonly next: (pattern: RegExp, deadline: Promise<never>) => Promise<RegExpExecArray>;
+  /** Stop buffering and release the lines held so far. */
+  readonly done: () => void;
 }
 
 function lineStream(lines: readline.Interface, terminal: Promise<Terminal>): LineStream {
-  const buffer: string[] = [];
+  let buffer: string[] = [];
   let cursor = 0;
   let wake: () => void = () => {};
-  lines.on("line", (text) => {
+  const onLine = (text: string): void => {
     buffer.push(text);
     wake();
-  });
+  };
+  lines.on("line", onLine);
   const arrived = (): Promise<void> =>
     new Promise((resolve) => {
       wake = resolve;
     });
+  // Only ever awaited inside `next`'s race, which is what handles its rejection; the first
+  // `next` runs before any line can arrive, so a terminal event never rejects unobserved.
   const ended = terminal.then((event) => {
-    throw new Error(`${describe(event)} before it was ready`);
+    throw new Error(`${describeTerminal(event)} before it was ready`);
   });
   const next = async (pattern: RegExp, deadline: Promise<never>): Promise<RegExpExecArray> => {
     for (;;) {
@@ -83,7 +91,12 @@ function lineStream(lines: readline.Interface, terminal: Promise<Terminal>): Lin
       await Promise.race([arrived(), ended, deadline]);
     }
   };
-  return { next };
+  const done = (): void => {
+    lines.off("line", onLine);
+    buffer = [];
+    cursor = 0;
+  };
+  return { next, done };
 }
 
 /** Stop the child and wait for its terminal event; a child that never started has already had it. */
@@ -112,7 +125,7 @@ export async function startServer(
   const child = spawn(command, args, { cwd: SITE_DIRECTORY, stdio: ["ignore", "pipe", "inherit"] });
   const terminal = terminalOf(child);
   void terminal.then((event) => {
-    process.stderr.write(`${describe(event)}\n`);
+    process.stderr.write(`${describeTerminal(event)}\n`);
   });
   let timer: NodeJS.Timeout | undefined;
   const deadline = new Promise<never>((_resolve, reject) => {
@@ -127,6 +140,7 @@ export async function startServer(
     const lines = lineStream(readline.createInterface({ input: child.stdout }), terminal);
     const [, port] = await lines.next(/^port (\d{1,5})$/u, deadline);
     await lines.next(/^ready$/u, deadline);
+    lines.done();
     return { origin: `http://localhost:${port}`, stop: () => stopped(child, terminal) };
   } catch (error: unknown) {
     await stopped(child, terminal);
