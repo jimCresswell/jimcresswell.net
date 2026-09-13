@@ -50,9 +50,11 @@ export function parseSymlinkPaths(lsFilesStageOutput: string): ReadonlySet<strin
     if (!record.startsWith(SYMLINK_MODE_PREFIX)) {
       continue;
     }
-    const path = record.split('\t')[1];
-    if (path !== undefined) {
-      symlinks.add(path);
+    // The first tab ends the metadata; the path may itself carry tabs, which
+    // the -z form preserves, so split there and nowhere else.
+    const delimiter = record.indexOf('\t');
+    if (delimiter !== -1) {
+      symlinks.add(record.slice(delimiter + 1));
     }
   }
   return symlinks;

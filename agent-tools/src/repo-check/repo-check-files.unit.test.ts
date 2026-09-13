@@ -39,6 +39,12 @@ describe('parseSymlinkPaths', () => {
       '100755 89ab012 0\tbin/run.sh\0';
     expect([...parseSymlinkPaths(output)]).toStrictEqual(['.claude/skills/linked']);
   });
+
+  it('keeps a symlink path whole when the path itself carries a tab', () => {
+    // -z preserves tabs in paths; only the first tab ends the metadata.
+    const output = '120000 4567def 0\tdocs/tab\there.md\0';
+    expect([...parseSymlinkPaths(output)]).toStrictEqual(['docs/tab\there.md']);
+  });
 });
 
 describe('withoutSymlinks', () => {

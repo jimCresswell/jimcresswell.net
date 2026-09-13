@@ -1,6 +1,6 @@
 import { existsSync } from 'node:fs';
 
-import { collectIgnoredPaths } from '../core/repository-paths.js';
+import { collectIgnoredPaths, collectTrackedPaths } from '../core/repository-paths.js';
 import { finding } from './finding.js';
 import { absolutePath } from './live-types.js';
 import { type SubstrateFinding } from './types.js';
@@ -29,24 +29,27 @@ import { type SubstrateFinding } from './types.js';
 export interface InstanceTierProbes {
   /** Whether the absolute path exists on disk. */
   readonly exists: (path: string) => boolean;
-  /** Whether the repository's ignore rules ignore the repo-relative path. */
+  /**
+   * Whether the repo-relative path is instance tier by the repository's own
+   * declaration: ignored by its rules and not tracked.
+   */
   readonly isIgnored: (repoRoot: string, repoRelativePath: string) => boolean;
 }
 
 /**
- * The live probes: the disk and `git check-ignore` by the repository's rules.
+ * The live probes: the disk, and the repository's own tier declaration.
  *
- * The ignore probe runs without the index (`--no-index`), so it answers "would
- * the rules ignore this path", not "is this path untracked". A surface that
- * were tracked, matched an ignore pattern, and had been deleted locally would
- * therefore read absent-by-design. No such surface exists (the three
- * instance-tier surfaces are untracked by declaration, and
- * `git ls-files -i -c --exclude-standard` is empty); the assumption is named
- * here so a future tracked-and-ignored surface reopens it.
+ * A surface is instance tier when the repository's rules ignore it AND git
+ * does not track it. The ignore probe alone runs without the index
+ * (`--no-index`) and answers "would the rules ignore this path", so a tracked
+ * file that matched a pattern and was deleted locally would otherwise read
+ * absent-by-design; the tracked-tree check closes that hole structurally
+ * rather than by assumption.
  */
 export const liveInstanceTierProbes: InstanceTierProbes = {
   exists: existsSync,
   isIgnored: (repoRoot, repoRelativePath) =>
+    !collectTrackedPaths(repoRoot).has(repoRelativePath) &&
     collectIgnoredPaths(repoRoot, [repoRelativePath]).has(repoRelativePath),
 };
 
