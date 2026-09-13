@@ -245,6 +245,14 @@ ones the Director would put to the owner had the owner been present.
     (validation-strategy §Gate integrity, the push form): the pre-push gate proves the working
     tree, so a push comes from the branch whose tree ships, never by refspec from another.
     REVIEW: as lane A phrased it, "this one, caught by me before landing."
+17. REVIEW (the port PR's shape, from lane A and its reviewer, accepted onto the board): four
+    Copilot rounds on #60 each added a mechanism (probe, hold, handshake, identification and
+    wait) because the test build bakes the held origin into the site's canonical URLs, so the
+    port must be chosen before the build. The question that dissolves the machinery is whether
+    the test build needs the port at all (a fixed canonical origin for the test build) or the
+    holder should serve Next itself; that is an assumptions-expert pass after #60 lands, not a
+    fifth round. #60 round four pushed on the slot (about 21:55Z); #55 round four at
+    `SHA: e69d388` under Copilot.
 
 ## Routing log
 
