@@ -294,6 +294,13 @@ ones the Director would put to the owner had the owner been present.
     under PDR-130 and moved to the slow lane with review dates (the owner's session 2 card, else
     2026-12-13); D stays in the fast queue (team coordination); the section note cites item 8
     verbatim; the readout reads 28 pending. REVIEW: the slow-lane five.
+24. #60 redesign pushed on the slot (about 22:35Z, `SHA: c60e28c`, "serve the build from the socket
+    the harness binds; one holder for the port's life"): built-site-server binds, holds and attaches
+    Next in-process; the global setup owns the child and hands the origin to the workers; the PDF
+    generator reuses the module; port-hold, the handshake stamp, free-port and the webServer block
+    are gone. Proof: four cells, two mutants killed, the Vercel-clearing mutant red on the two SEO
+    origin cells and green restored, the full suite 58 of 58, code-expert no critical finding.
+    Copilot requested on the tip; CI's e2e job is the runner-class proof.
 
 ## Routing log
 
