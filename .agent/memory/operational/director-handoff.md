@@ -283,6 +283,13 @@ ones the Director would put to the owner had the owner been present.
     with PORT set and the Vercel variables cleared, attaches Next in-process and prints ready; the
     runner never imports next; the PDF generator reuses the bind-and-attach module. Rounds three
     and four's machinery is removed. Go given; slot on ask.
+22. #63 round one (about 22:25Z): Copilot read the batch's "disposition by owner cards" against
+    PDR-100 (no owner pre-approval) and PDR-101 (the owner is not the graduation gate) and asked
+    for PDR-130's slow lane for constitutional-class entries. Ruled: this batch's cards are the
+    ratified node's item 8 verbatim (an owner word for this batch), PDR-101 stands for every other
+    graduation; the section note cites the item; the constitutional-class entries move to the
+    slow lane with review dates per PDR-130's class test (lane A judges each against the text).
+    REVIEW: which entries are slow-lane.
 
 ## Routing log
 
