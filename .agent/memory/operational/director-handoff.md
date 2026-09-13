@@ -290,6 +290,10 @@ ones the Director would put to the owner had the owner been present.
     graduation; the section note cites the item; the constitutional-class entries move to the
     slow lane with review dates per PDR-130's class test (lane A judges each against the text).
     REVIEW: which entries are slow-lane.
+23. #63 cure on the slot (about 22:35Z, `SHA: 414fb6c`): A, B, C, 1a and 1b judged constitutional
+    under PDR-130 and moved to the slow lane with review dates (the owner's session 2 card, else
+    2026-12-13); D stays in the fast queue (team coordination); the section note cites item 8
+    verbatim; the readout reads 28 pending. REVIEW: the slow-lane five.
 
 ## Routing log
 
