@@ -624,3 +624,11 @@
   ratified on the cards), dispositions ratified, Track B node at pickup. Ratifying the fourth
   node on a "ratify all three" answer given alongside the split is a reading; flagged in the
   plan of record with the one-word undo.
+- Owner, mid-morning: stop preparing for castr; define what the Practice is instead, and "looking
+  at your surveys of the Practice in OCE cannot tell you if something was missed from those
+  surveys". Metacognition: the inherited shape was "diff the trees"; the cure is function-first
+  plus exercising the estate's own claims (cited paths that do not resolve: 40 targets, 20
+  citing files, found in one command). Report: `what-the-practice-is.md`. Free play kept one
+  seed: the estate keeps four `corpus-*` reviewer templates for an instrument it trimmed — the
+  same shape as an index of 243 absent files; discarded: "the Practice is its validators" (a
+  slogan, not a finding).

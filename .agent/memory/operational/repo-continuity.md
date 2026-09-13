@@ -100,7 +100,12 @@ the impact registry local, the legacy lanes conserved at
 a `repo-validators:check` leg and green; 12. round 6 (2026-09-13): the platform
 stream split into site and Practice, the four strategic nodes ratified, the
 dispositions table ratified, the Track B delivery node authored at pickup;
-13. **next**: the ratified delivery node
+13. owner word 2026-09-13 (mid-morning): **stop preparing for castr; the
+owner says when**. The delivery node's slices are parked. **Now: define what
+belongs to the Practice** — the definition by function, the transplant set,
+and the gaps by evidence class are in
+`.agent/reports/practice-transplant/what-the-practice-is.md` (provisional);
+its five proposals await the owner. Then (when the owner says) the delivery node
 `castr-lineage-update-preparation`'s slices (instruments as `agent-tools`
 bins, instance-1 verdicts as `inputs/` data); duplicate-skill merges;
 the tooling residue listed in the plan (§Oak residue in tooling: `packages/core`

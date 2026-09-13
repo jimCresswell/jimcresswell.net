@@ -10,6 +10,7 @@ these are the process outputs kept alongside the work.
 | [efficiency-guidance.md](efficiency-guidance.md)                     | How to run the next transplant efficiently — measured sequence, rules that held, mistakes to design out         | PDR-005 amendment or a Practice-Core runbook |
 | [practice-as-installable-thing.md](practice-as-installable-thing.md) | Concept-exploration of packaging the Practice as a standalone installable thing; five proposals with falsifiers | PDR candidate after a second transplant      |
 | [journey-so-far.md](journey-so-far.md)                               | An understanding of the journey to date: the spine, three frames and a counterframe, bridge claims, status | Reopened after the 57-lesson synthesis or the castr run |
+| [what-the-practice-is.md](what-the-practice-is.md) | The Practice defined by nine functions, the transplant set that follows, and what this transplant failed to migrate by evidence class (owner-asked 2026-09-13; provisional). |
 
 Both are born-sketch explorations: they govern nothing until ratified. Running capture for the
 session is in `.agent/memory/active/napkin.md`.
