@@ -350,6 +350,15 @@ ones the Director would put to the owner had the owner been present.
     the SKILL's item 2 tally is a reader's step the bot does not compute, so measured state
     should count suppressed body findings as open work or the verdict should name them. REVIEW:
     the merge on a closer-look body, and whether 5a-ii or 5a-iii carries the body tally.
+32. #64 (item 5a-i): Copilot bound to `SHA: b94e00b` at 23:11Z, zero threads, the bot's merge
+    poll running; the body a closer-look with six suppressed findings (the merge-bot reference
+    and the pr-lifecycle SKILL contradict each other on whether the bot token can request
+    Copilot; the refusal message omits Mannequin; the suffix tests cover one side; the
+    agent-task evidence still reads as a live review run; the request-harvest fake does not
+    gate on the query; the compound read parses the review pages twice). Same lens as item 31:
+    the merge stands; the six plus the body tally are item 5a-iii, after 5a-ii and before the
+    e2e follow-on and 5b. REVIEW: a second merge on a closer-look body in one night; the body
+    tally moves up the 5a order if a third appears.
 
 ## Routing log
 
