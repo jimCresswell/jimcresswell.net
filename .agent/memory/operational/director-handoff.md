@@ -50,7 +50,7 @@ Every line answered first-hand, none inferred:
   archive holds only processed material.
 - The transplant is bounded: closure items 3 to 8 finish it, then editorial work.
 
-## Current handoff state (2026-09-13, about 22:55Z, n=2 with lane A; owner away)
+## Current handoff state (2026-09-13, 23:35Z, n=2 with lane A; owner away)
 
 Where this block and the routing log disagree, the log's last entry is current; this block is
 rewritten at each Director push.
@@ -62,10 +62,12 @@ rewritten at each Director push.
   Landed on `main`: item 1 (archive deleted), item 2 (PR #53, `SHA: 55649a2`), item 3 (PR #56,
   `SHA: 1829cd4`), item 4 as bounded (PR #57, `SHA: 4a61112`), the Director records and the channel rule
   (PR #54, `SHA: c426c6c`).
-- Open pull requests: #62 (this records branch) and #64 (lane A, item 5a-i, merge-bot request
-  visibility, `SHA: b94e00b`, Copilot bound). Merged: #54, #56, #57, #58, #61, #55
-  (`SHA: 7127bc4`), #63 (`SHA: dc23dff`, session 2's register), #60 (`SHA: 4370e04`, the
-  per-checkout Playwright port as the in-process server, after six rounds); #59 closed as carried.
+- Open pull requests: #62 (this records branch, round thirteen; frozen after this cure, later
+  items go to a stacked records-4 branch) and #65 (lane A, item 5a-ii, measured state,
+  `SHA: 3555cbf`, Copilot bound). Merged: #54, #56, #57, #58, #61, #55 (`SHA: 7127bc4`), #63
+  (`SHA: dc23dff`, session 2's register), #60 (`SHA: 4370e04`, the per-checkout Playwright port
+  as the in-process server, after six rounds), #64 (`SHA: 38e9693`, item 5a-i); #59 closed as
+  carried.
 - Team state: owner word 17:16Z, "this is now an n=2 session, you and Saffron" (PDR-082; the
   Director's heartbeat stopped, watcher kept); 17:18Z the ARC channel opened beside native
   messaging. Lanes B and C handed every responsibility back and stood down (closeouts on the
@@ -81,9 +83,10 @@ rewritten at each Director push.
   `comms watch --exclude-tag heartbeat`), then `assert-watcher-live`; the ARC channel tail; no
   heartbeat loop at n=2. Checked 15:39Z: background tasks outlive a compaction.
 - Next safe step (owner away; decisions by the lenses, logged under §Decisions overnight):
-  #64 (item 5a-i) merges by the bot at zero threads with Copilot bound; lane A then opens 5a-ii
-  (measured state, built and stacked on `SHA: b94e00b`), then the #60 follow-on cure (overnight
-  item 31), then 5b; the morning report presents §Decisions overnight with its
+  #62 (this records branch) merges by the bot at zero threads with Copilot bound, then #65
+  (item 5a-ii) the same way; lane A then opens 5a-iii (the #64 body findings and the body tally,
+  item 32), then the #60 follow-on (item 31), then 5b; the morning report presents §Decisions
+  overnight with its
   REVIEW marks and the session 2 cards (the register's twenty-eight pending entries in four
   classes, plus proposal E).
 
@@ -91,7 +94,7 @@ rewritten at each Director push.
 
 | Lane | Items | Owns exclusively | Seat | Claim | Branch / PR | State |
 | ---- | ----- | ---------------- | ---- | ----- | ----------- | ----- |
-| A | 3 done; the port PR (#60, round six); item 5a-i (#64) and 5a-ii; then 5b, 5c, 2a, 2b | root scripts, CI workflow, `agent-tools/` legs and retirements, the leak validator, `tooling/*/package.json`, `turbo.json`, `jcdotnet/accept-md.config.js`, the incoming bundle, the Playwright harness config, the merge-bot sources | Saffron turns Verdure (c39ad7) | f024e1f1, 5828b0ee, the 5a claim | `fix/e2e-port-per-worktree` PR #60 at `SHA: 90a269e`; `fix/merge-bot-request-visibility` PR #64 at `SHA: b94e00b`; `records/lane-a-checkpoint-2` local | ACTIVE at n=2 |
+| A | 3 done; #60 merged (`SHA: 4370e04`; its follow-on after 5a-iii); 5a-i merged (#64, `SHA: 38e9693`); 5a-ii open (#65); then 5a-iii, the e2e follow-on, 5b, 5c, 2a, 2b | root scripts, CI workflow, `agent-tools/` legs and retirements, the leak validator, `tooling/*/package.json`, `turbo.json`, `jcdotnet/accept-md.config.js`, the incoming bundle, the Playwright harness config, the merge-bot sources | Saffron turns Verdure (c39ad7) | f024e1f1, 5828b0ee, the 5a claim | `fix/merge-bot-measured-state` PR #65 at `SHA: 3555cbf`; 5a-iii stacked on it, local; `fix/e2e-server-follow-on` local | ACTIVE at n=2 |
 | B | 6 | (handed back) `.agent/rules/**`, `RULES_INDEX.md`, the three rule-adapter trees, the rules-index and trigger generator, sub-agent adapter descriptions | Sirocco wakes Wingspan (45fe02) | closed | `closure/lane-b` merged as PR #55 at `SHA: 7127bc4` and deleted; `closure/lane-b-generator` at `SHA: d76bb86` on origin (2a fold conserved in the record) | STOOD DOWN 17:14Z; handed back: 2a, 2b, PR 3 (now routed to lane A after item 5) |
 | C | 4 then 7 | the definition report, `testing-strategy.md`, the substrate manifest's register declarations, the Gemini projection | Djinn hunts Solder (36720b) | closed | `closure/lane-c` and `closure/lane-c-restore` deleted (merged in #57; carried in #58); PR #59 closed as carried | STOOD DOWN 16:57Z; handed back: the restore, `sif`, five patterns, the Gemini projection after 2b, item 7 |
 | Director | 7 | reports index, runbook step 13, `provenance.yml` completion entry; merges | Cauldron herds Lustre | 1db07581 | after the holdings land | routing lane A; merging |
@@ -155,21 +158,25 @@ ones the Director would put to the owner had the owner been present.
    lens 3 (one seat, dependency order, no menu). REVIEW: the order of 2a before the restore.
 2. Merges: every green, clean pull request merges by the bot at zero threads with Copilot bound
    to the tip, the standing ruling; the quartet PR #61 yields every push slot to the closure path.
+   Lens 2 (the owner's standing ruling applied as given; no new decision).
 3. Owner-only items held for the morning: the session 2 synthesis cards; any change to ratified
-   text; the two `sif` instruments and `under-the-hood` under "bring unless product".
+   text; the two `sif` instruments and `under-the-hood` under "bring unless product". Lens 3
+   (the ratified node item 8 and the owner's word make these the owner's alone; no seat decides).
 4. Session 2 draft written (`threads/session-2-synthesis.next-session.md`, commit SHA: 3783b6e on
    the records branch): 24 candidates with source, candidate home and prediction; a
    verify-before-filing list; the already-homed set with homes; the routed classes. Lane A
    completes it as the register PR after #55 (the owner's amended order; #60 was not a
    prerequisite, and the register PR #63 merged before it). Lens 3 (the Director reads and drafts;
-   the seat verifies homes and files; the owner decides on cards). REVIEW: the candidate homes,
-   in the morning batch of cards.
+   the seat verifies homes and files; the owner decides on cards). REVIEW: the morning cards are
+   the filed entries' dispositions (fast lane) and the slow-lane five's review-date decisions
+   (items 10 and 30); the earlier candidate-homes review is folded into those cards.
 5. REVIEW (privacy): an owner-gated privacy review of the three unconsolidated napkins under
    `privacy.md` before they are archived; the synthesis PR carries nothing from them beyond the
-   candidates' doctrine.
+   candidates' doctrine. Lens 3 (the privacy directive names the owner as the only reader).
 6. REVIEW (doc truing): ADR-015 says Codex has no `.agents/rules/` layer; the estate projects
    130 `.agents` rules since the transplant; the ADR and the surface matrix need truing as a
-   small follow-on (not a graduation).
+   small follow-on (not a graduation). Lens 1 (a record that contradicts the estate costs every
+   reader; the truing is small and owner-visible).
 7. PR #61 (the quartet): Copilot's one thread (the tally said no leg spent a Read; every leg
    makes the mandatory template read; only the optional verification reads were unspent) cured
    at SHA: 06507cd in a worktree, held for an idle push slot after lane A's #60 push; the bot merges
@@ -332,12 +339,12 @@ ones the Director would put to the owner had the owner been present.
     merge-bot.md carries the credential fact; three mutants killed; the falsifier quoted before
     (#60 read SILENT-WAIT with a request outstanding) and after (#62 read WAITING-REVIEW-RUN-LIVE).
     Copilot requested; the bot merges at zero threads. 5a-ii cuts from main once #64 lands.
-30. #62 round eleven (about 23:20Z on 2026-09-13): two threads; board rows A and B refreshed to
+30. #62 round eleven (23:03Z on 2026-09-13): two threads; board rows A and B refreshed to
     the logged state; the morning-card instruction split so the slow-lane five take PDR-130's
     review-date decision (`promote` or `kill-with-reasoning`), never the fast dispositions. Cure at
     `SHA: 8d79172`; replied, resolved, Copilot re-requested, bot armed. Lens: correctness of a
     record the successor reads; no REVIEW.
-31. #60 merged by the bot at `SHA: 4370e04` (about 23:15Z on 2026-09-13) at zero threads with
+31. #60 merged by the bot at `SHA: 4370e04` (23:14Z on 2026-09-13) at zero threads with
     Copilot bound; the binding review's body read "Needs a closer look" with five suppressed
     findings and zero new comments: the spawn `error` event unhandled in the global setup; the
     server flow's `close()` rejection discarded with exit 0; two contract surfaces still saying
@@ -373,6 +380,14 @@ ones the Director would put to the owner had the owner been present.
     follow-on (four cures plus a latent hang the new cells exposed: port and ready in one chunk
     missed by a listener attached late, now buffered) waits behind it. REVIEW: the quiet window
     replaced by measured state is the owner's own design note, applied without a card.
+35. #62 round thirteen (23:24Z on 2026-09-13): one thread (the continuity index's
+    deep-consolidation line still said four candidates on the register) and eight suppressed
+    findings, every one a staleness the branch itself created by carrying live state through
+    thirteen rounds. All nine cured in one commit. Decision (PDR-132, rounds beyond two are the
+    Director's): this records branch is frozen at that cure; items after 35 accumulate on a
+    records-4 branch stacked on it and open as a new pull request only after #62 merges, so the
+    reviewed tip stops moving. Lens 1 (each round re-reviews the whole file and finds the drift
+    the previous round's wait produced). REVIEW: thirteen rounds on one records pull request.
 
 ## Routing log
 

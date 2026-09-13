@@ -58,10 +58,11 @@ names a live branch):
   retire under item 5: `validate-ratified-lists`. Not re-checked today: the fitness vocabulary
   in the `practice-fitness` sources.
 
-- Deep consolidation status: **due — closure session 2** (node item 8): the three
-  unprocessed napkins under `.agent/memory/active/unconsolidated/` plus this session's
-  captures; one seat, one batch of cards. Four candidates are on the pending-graduations
-  register meanwhile.
+- Deep consolidation status: **filed, cards pending — closure session 2** (node item 8): the
+  three unprocessed napkins under `.agent/memory/active/unconsolidated/` plus this session's
+  captures are on the pending-graduations register since PR #63 (`SHA: dc23dff`): twenty-eight
+  live pending rows, five of them constitutional rows in PDR-130's slow lane. The live
+  continuation is the owner's one batch of cards; the napkins are archived only after it.
 - The generators: the rules-index and trigger generator is lane B's PR #55 (item 6, PR 1);
   the sub-agent adapter generator (2b) and the 2a remainder are handed back to the Director
   (lane B's handoff record v3).

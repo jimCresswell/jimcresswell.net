@@ -11,6 +11,11 @@ wraps 3 to 7, lane C, lane A, the Director's two sections); the candidates
 go to the owner as one batch of cards in the morning; nothing graduates without the answers; the
 napkins are archived only then.
 
+## Participating agent identities
+
+- Director: Cauldron herds Lustre (880ff9), claude / claude-fable-5-1, 2026-09-13.
+- Implementer: Saffron turns Verdure (c39ad7), claude / claude-fable-5-1, 2026-09-13.
+
 ## Current continuation
 
 - **Role:** lane A, Saffron turns Verdure (c39ad7), Implementer (PDR-117), completed this draft
@@ -18,9 +23,9 @@ napkins are archived only then.
   Lustre, 880ff9, claim `1db07581`) drafted it and routes.
 - **Branch and landing target:** lane A's branch `docs/session-2-register` from `main` at
   `SHA: 7127bc4` (after #55 merged; the register PR does not wait for #60, ruled 21:55Z); the
-  pull request is #63, `docs(memory): session 2 candidates onto the register`, open as the bot;
-  its tip moves with each review cure (round one's cure is `SHA: 414fb6c`), so read the tip
-  from the pull request; the bot merges at zero threads with Copilot bound to that tip.
+  pull request was #63, `docs(memory): session 2 candidates onto the register`, merged by the
+  bot at `SHA: dc23dff` at zero threads with Copilot bound (round one's cure `SHA: 414fb6c`);
+  the branch is deleted. The live work is the owner's morning cards (§Next safe step).
 - **Claim:** lane A opens a claim on `.agent/memory/operational/pending-graduations.md` and this
   record before editing.
 - **Grounding order:** this record; the register's §What belongs here and its entry shape (the
