@@ -87,8 +87,10 @@ rewritten at each Director push.
   (item 5a-ii) the same way; lane A then opens 5a-iii (the #64 body findings and the body tally,
   item 32), then the #60 follow-on (item 31), then 5b; the morning report presents §Decisions
   overnight with its
-  REVIEW marks and the session 2 cards (the register's twenty-eight pending entries in four
-  classes, plus proposal E).
+  REVIEW marks and the session 2 cards: the twenty-three session 2 fast-lane entries in four
+  classes, the five slow-lane rows (PDR-130: `promote` or `kill-with-reasoning`), and proposal
+  E. Measured on `main` after #63: twenty-eight decision-debt blocks (five 2026-09-12 captures
+  under their own quorum gate plus the twenty-three) and five slow-lane rows, thirty-three live.
 
 ## Live board
 
@@ -162,9 +164,12 @@ ones the Director would put to the owner had the owner been present.
 3. Owner-only items held for the morning: the session 2 synthesis cards; any change to ratified
    text; the two `sif` instruments and `under-the-hood` under "bring unless product". Lens 3
    (the ratified node item 8 and the owner's word make these the owner's alone; no seat decides).
-4. Session 2 draft written (`threads/session-2-synthesis.next-session.md`, commit SHA: 3783b6e on
-   the records branch): 24 candidates with source, candidate home and prediction; a
-   verify-before-filing list; the already-homed set with homes; the routed classes. Lane A
+4. Session 2 draft written (`threads/session-2-synthesis.next-session.md`; the initial
+   pre-verification draft at commit SHA: 3783b6e, the draft the register work consumed at
+   SHA: 150b2a7, both on the records branch): 24 candidates in the initial draft, 22 retained
+   with source, candidate home and prediction after P moved to the verify list and U to the
+   privacy route; a verify-before-filing list; the already-homed set with homes; the routed
+   classes. Lane A
    completes it as the register PR after #55 (the owner's amended order; #60 was not a
    prerequisite, and the register PR #63 merged before it). Lens 3 (the Director reads and drafts;
    the seat verifies homes and files; the owner decides on cards). REVIEW: the morning cards are
@@ -172,7 +177,9 @@ ones the Director would put to the owner had the owner been present.
    (items 10 and 30); the earlier candidate-homes review is folded into those cards.
 5. REVIEW (privacy): an owner-gated privacy review of the three unconsolidated napkins under
    `privacy.md` before they are archived; the synthesis PR carries nothing from them beyond the
-   candidates' doctrine. Lens 3 (the privacy directive names the owner as the only reader).
+   candidates' doctrine. Lens 3: `privacy.md` forbids quoting, summarising or identifying
+   private editorial material in version control and lets it inform writing only; the
+   owner-gated review is the Director's routing under that prohibition, not a clause of it.
 6. REVIEW (doc truing): ADR-015 says Codex has no `.agents/rules/` layer; the estate projects
    130 `.agents` rules since the transplant; the ADR and the surface matrix need truing as a
    small follow-on (not a graduation). Lens 1 (a record that contradicts the estate costs every
@@ -401,6 +408,17 @@ ones the Director would put to the owner had the owner been present.
     two is the last within PDR-132's budget. Lens 1 then lens 4 (a settlement that depends on
     an optional surface fails closed everywhere the surface is absent). REVIEW: the third
     clause of the measured-state ruling narrowed to "observed".
+37. #62 round fourteen (23:35Z on 2026-09-13): one thread and nine suppressed findings, all
+    accuracy defects in the records themselves (the register split unmeasured, the continuity
+    index's resume block still naming PR #53 open, a privacy lens misattributed to the
+    directive, the draft pointer unlabelled, the Cricket prediction platform-blind, the archive
+    gate contradicting the slow-lane deferral, the channel's opening entry calling the comms
+    stream a state surface). All ten cured at `SHA: cd7f90e`, the register split measured on
+    `main` (28 decision-debt blocks: 5 from 2026-09-12 plus 23 session 2; 5 slow-lane rows; 33
+    live). The item 35 freeze holds for new items (this branch, records-4); thread cures still
+    land on the reviewed branch, since the bot merges at zero threads only. Lens 1 (a record
+    that misstates the estate costs every reader; a cure costs one gate). REVIEW: the archive
+    gate ruled as the morning cards alone, slow-lane rows conserved on the register.
 
 ## Routing log
 
