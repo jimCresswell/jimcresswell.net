@@ -334,16 +334,41 @@ describe('computePrVerdict — the outstanding request is the round in flight', 
       '2026-07-21T13:00:00Z',
     );
     expect(verdict.state).toBe('WAITING-REVIEW-RUN-LIVE');
-    expect(verdict.evidence.join('\n')).toContain('review-run liveness unavailable');
+    expect(verdict.evidence.join('\n')).toContain('review-run surface unavailable');
   });
 
-  it('an unavailable runs leg degrades typed, named in evidence', () => {
+  // The run surface is evidence beside the request, never the deciding clause
+  // (it lists coding-agent sessions and never carried a review round), so an
+  // unobservable surface settles with the gap named rather than blocking on
+  // an optional gh extension (the Director's verdict on #65, 2026-09-14).
+  it('an unavailable run surface settles a landed round with the gap named, never blocks', () => {
     const verdict = computePrVerdict(
       settledReading({ reviewRuns: { kind: 'unavailable', reason: 'gh agent-task missing' } }),
       LATE_NOW,
     );
     expect(verdict.state).toBe('SETTLE-READY');
-    expect(verdict.evidence.join('\n')).toContain('review-run liveness unavailable');
+    expect(verdict.evidence.join('\n')).toContain(
+      'review-run surface unavailable (gh agent-task missing): no live run observed',
+    );
+  });
+
+  it('a truncated run surface settles a landed round with the gap named, never blocks', () => {
+    const verdict = computePrVerdict(
+      settledReading({
+        reviewRuns: {
+          kind: 'read',
+          runs: [],
+          truncated: true,
+          note: 'agent-task list truncated at 100 — older runs unobserved',
+        },
+      }),
+      LATE_NOW,
+    );
+    expect(verdict.state).toBe('SETTLE-READY');
+    expect(verdict.evidence.join('\n')).toContain('older runs unobserved');
+    expect(verdict.evidence.join('\n')).toContain(
+      'review-run surface incomplete: no live run observed in the part read',
+    );
   });
 });
 
@@ -386,8 +411,8 @@ describe('computePrVerdict — measured state and settlement (SKILL item 4)', ()
   // The owner's design note (2026-09-13, on #56: "nothing is happening on the
   // PR ... the 'quiet window' could be replaced with measured state"): a round
   // is settled when every expected leg has landed on the tip, no expected
-  // reviewer is requested, and no review run is live. No clock.
-  it('reports SETTLE-READY the moment every leg has landed with nothing requested and no run live', () => {
+  // reviewer is requested, and no live run is observed. No clock.
+  it('reports SETTLE-READY the moment every leg has landed with nothing requested and no live run observed', () => {
     const verdict = computePrVerdict(
       settledReading(),
       // 4 seconds after the fixture's 12:05 review: the old window would have held this open.

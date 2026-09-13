@@ -12,7 +12,9 @@ import { decideMergeAction, verdictAwaitsSettlement } from './merge-decision.js'
 
 const SETTLE_READY: PrVerdict = {
   state: 'SETTLE-READY',
-  evidence: ['every expected reviewer leg settled; no expected reviewer requested; no run live'],
+  evidence: [
+    'every expected reviewer leg settled; no expected reviewer requested; no live run observed',
+  ],
 };
 
 const baseInput = {
