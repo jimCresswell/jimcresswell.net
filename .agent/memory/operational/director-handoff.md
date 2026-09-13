@@ -275,6 +275,14 @@ ones the Director would put to the owner had the owner been present.
     entries plus the five migrated, the readout quoted from 0 to 33 (pending 33), grouped in four
     classes for the morning cards, E the one proposal, U withdrawn, nine duplicates with their
     carrying lines. Copilot requested; the bot merges at zero threads. Open: #60, #62, #63.
+21. #60 fifth-round shape settled (about 22:20Z). The assumptions-expert verdict, quoted: "Shape 1
+    wins at lens 1 and needs no later lens: the socket has exactly one holder for its whole life, it
+    uses Next's first-party API, and the falsifier stays untouched. Shape 2 is not the same class of
+    cure." Its strongest fair objection (the runner becoming the production server) taken by the
+    variant lane A implements: a globalSetup-owned child binds listen(0), keeps the socket, builds
+    with PORT set and the Vercel variables cleared, attaches Next in-process and prints ready; the
+    runner never imports next; the PDF generator reuses the bind-and-attach module. Rounds three
+    and four's machinery is removed. Go given; slot on ask.
 
 ## Routing log
 
