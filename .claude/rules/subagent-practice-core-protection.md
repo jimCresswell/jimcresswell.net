@@ -7,4 +7,4 @@ paths:
   - .agent/rules/**/*
 ---
 
-Read and follow @.agent/rules/subagent-practice-core-protection.md
+Read and follow @../../.agent/rules/subagent-practice-core-protection.md

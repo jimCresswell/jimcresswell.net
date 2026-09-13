@@ -5,4 +5,4 @@ paths:
   - content/**/*
 ---
 
-Read and follow @.agent/rules/strict-validation-at-boundary.md
+Read and follow @../../.agent/rules/strict-validation-at-boundary.md

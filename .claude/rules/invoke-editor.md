@@ -6,4 +6,4 @@ paths:
   - lib/jsonld.ts
 ---
 
-Read and follow @.agent/rules/invoke-editor.md
+Read and follow @../../.agent/rules/invoke-editor.md

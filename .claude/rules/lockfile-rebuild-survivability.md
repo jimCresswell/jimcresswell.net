@@ -6,4 +6,4 @@ paths:
   - .npmrc
 ---
 
-Read and follow @.agent/rules/lockfile-rebuild-survivability.md
+Read and follow @../../.agent/rules/lockfile-rebuild-survivability.md

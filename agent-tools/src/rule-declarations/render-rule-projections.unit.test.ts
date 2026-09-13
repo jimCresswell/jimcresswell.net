@@ -36,6 +36,18 @@ const colon: RuleDeclaration = {
   trigger: 'surface:agent-substrate',
   globs: ['agent-tools/**', '.agent/hooks/**'],
 };
+const apostropheAndColon: RuleDeclaration = {
+  name: 'stage-by-explicit-pathspec',
+  classification: 'core',
+  description: "Stage by pathspec: never `git add .`, it's a sweep",
+};
+const braced: RuleDeclaration = {
+  name: 'use-result-pattern',
+  classification: 'situational',
+  description: 'Return Result, never throw for expected failures.',
+  trigger: 'surface:**/*.{ts,tsx,mts}',
+  globs: ['**/*.{ts,tsx,mts}', 'e2e/**/*'],
+};
 
 describe('renderCursorTrigger', () => {
   it('renders a core rule as always applied with the pointer body', () => {
@@ -77,6 +89,16 @@ describe('renderCursorTrigger', () => {
       "description: 'Apply the lens: usable first time.'",
     );
   });
+
+  it('falls back to double quotes when the description holds an apostrophe and a colon', () => {
+    expect(renderCursorTrigger(apostropheAndColon)).toContain(
+      'description: "Stage by pathspec: never `git add .`, it\'s a sweep"',
+    );
+  });
+
+  it('keeps a brace group inside one comma-joined globs string', () => {
+    expect(renderCursorTrigger(braced)).toContain("globs: '**/*.{ts,tsx,mts},e2e/**/*'");
+  });
 });
 
 describe('renderClaudeRuleAdapter', () => {
@@ -95,7 +117,22 @@ describe('renderClaudeRuleAdapter', () => {
         '  - "**/*.tsx"',
         '---',
         '',
-        'Read and follow @.agent/rules/no-type-shortcuts.md',
+        'Read and follow @../../.agent/rules/no-type-shortcuts.md',
+        '',
+      ].join('\n'),
+    );
+  });
+
+  it('imports the canonical rule relative to the adapter, as Claude Code resolves @ paths', () => {
+    expect(renderClaudeRuleAdapter(braced)).toBe(
+      [
+        '---',
+        'paths:',
+        '  - "**/*.{ts,tsx,mts}"',
+        '  - e2e/**/*',
+        '---',
+        '',
+        'Read and follow @../../.agent/rules/use-result-pattern.md',
         '',
       ].join('\n'),
     );

@@ -4,4 +4,4 @@ paths:
   - .agent/hooks/**
 ---
 
-Read and follow @.agent/rules/agent-experience-review-lens.md
+Read and follow @../../.agent/rules/agent-experience-review-lens.md

@@ -5,4 +5,4 @@ paths:
   - "**/*.css"
 ---
 
-Read and follow @.agent/rules/invoke-accessibility-expert.md
+Read and follow @../../.agent/rules/invoke-accessibility-expert.md

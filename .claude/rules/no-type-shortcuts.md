@@ -4,4 +4,4 @@ paths:
   - "**/*.tsx"
 ---
 
-Read and follow @.agent/rules/no-type-shortcuts.md
+Read and follow @../../.agent/rules/no-type-shortcuts.md

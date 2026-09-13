@@ -5,4 +5,4 @@ paths:
   - packages/design/**
 ---
 
-Read and follow @.agent/rules/visual-verdicts-require-rendered-proof.md
+Read and follow @../../.agent/rules/visual-verdicts-require-rendered-proof.md
