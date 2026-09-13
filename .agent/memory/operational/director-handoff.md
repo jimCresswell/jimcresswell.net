@@ -140,6 +140,23 @@ dependency order; the Director merges by the bot at zero threads and writes item
 Records cadence from here (Cricket verdict, both methods): commit locally at each state change;
 push once per landed merge or shape change, never contending with lane A's slot.
 
+## Decisions overnight (2026-09-13 from about 20:30Z; for the owner's morning review)
+
+Owner word, verbatim: "I am going to bed. Please keep the work moving, make decisions with the
+decision matrix, do not block work on me, present the decisions made to me in the morning and if
+any need a review that is fine." Each decision below names its lens; those marked REVIEW are the
+ones the Director would put to the owner had the owner been present.
+
+1. The routed verdict for the handed-back holdings (above) applies without the owner's word at
+   the #55 merge: item 5 as three pull requests by changeset class, merge-bot cures first; then
+   2a, 2b, the Gemini projection, the restore with the five patterns, `sif`; item 7 last. Lens 1
+   (the generators remove hand-kept copies; the merge-bot cures pay on every later merge) and
+   lens 3 (one seat, dependency order, no menu). REVIEW: the order of 2a before the restore.
+2. Merges: every green, clean pull request merges by the bot at zero threads with Copilot bound
+   to the tip, the standing ruling; the quartet PR #61 yields every push slot to the closure path.
+3. Owner-only items held for the morning: the session 2 synthesis cards; any change to ratified
+   text; the two `sif` instruments and `under-the-hood` under "bring unless product".
+
 ## Routing log
 
 - 2026-09-13 evening: seat opened; team-start `ca1ba4d8`; lanes A, B, C authored, unfilled.
