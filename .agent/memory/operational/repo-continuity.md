@@ -112,7 +112,9 @@ carried and Windsurf rejected; the knowledge base as the cited subset,
 scrubbed; the transplant instruments as that node's todo 6. The earlier
 second-host preparation node was withdrawn as premature and removed from the
 estate on the owner's word (the same round); the Practice's understanding of
-its future is host-agnostic. **Todo 1 done (2026-09-13, plan §Practice completion — todo 1 executed):
+its future is host-agnostic. **Transplant closure proposed (plan §Transplant closure — proposed): eight exit conditions, each with
+its check; the owner ratifies or declines by number; then item 1.** Todo 1 done (2026-09-13, plan
+§Practice completion — todo 1 executed):
 `validate-cited-paths` is a `docs-validators:check` leg, 35 absent targets cured to
 0, five patterns and four cited records imported with provenance. Now: todo 2
 (activate class B3: `practice-substrate`, `validate-protocol-wire-contract`, the
