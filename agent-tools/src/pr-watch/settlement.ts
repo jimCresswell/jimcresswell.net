@@ -12,21 +12,39 @@ import type { PrStateReading, PrVerdict, ReviewRun } from './state-types.js';
  * The reviewer-leg and settlement half of the `pr state` verdict (SKILL items
  * 3–4): per-expected-reviewer legs over the full harvest, the most-blocking
  * OWED leg, and the settled path read from MEASURED state: every expected leg
- * landed on the tip, no expected reviewer requested, no review run live. The
- * ten-minute quiet window that stood in for that state (a clock, because
+ * landed on the tip, no expected reviewer requested, no live run observed.
+ * The ten-minute quiet window that stood in for that state (a clock, because
  * agents could not see a review round's boundary) went on 2026-09-13 on the
  * owner's word ("nothing is happening on the PR ... the 'quiet window' could
  * be replaced with measured state", on #56); the boundary is measured now:
  * the platform clears the request when the review lands, and the compound
  * read takes its threads after the harvest, so a review seen landed has its
  * threads on the read and a review not yet landed shows as its request.
+ *
+ * The run leg is evidence beside the request, never the deciding clause: the
+ * `gh agent-task` surface lists coding-agent sessions and never carried a
+ * review round (5a-i, 2026-09-13), so the review round's measured signal is
+ * the request, read on every compound read. An unavailable or truncated run
+ * surface is therefore named on every settled verdict and holds nothing:
+ * blocking on it would make settlement depend on an optional gh extension
+ * being installed and readable (a CI host has none), the SETTLED-NO-REVIEW
+ * deadlock in another coat (the Director's verdict on #65, 2026-09-14).
  */
 
+/** The run surface's gaps, named on every verdict that carries the runs leg. */
 function runsEvidence(reading: PrStateReading): string[] {
   if (reading.reviewRuns.kind === 'unavailable') {
-    return [`review-run liveness unavailable: ${reading.reviewRuns.reason}`];
+    return [
+      `review-run surface unavailable (${reading.reviewRuns.reason}): no live run observed; the review round is measured by the request surface, which this read carries`,
+    ];
   }
-  return reading.reviewRuns.note === undefined ? [] : [reading.reviewRuns.note];
+  const note = reading.reviewRuns.note === undefined ? [] : [reading.reviewRuns.note];
+  return reading.reviewRuns.truncated === true
+    ? [
+        ...note,
+        'review-run surface incomplete: no live run observed in the part read; the review round is measured by the request surface, which this read carries',
+      ]
+    : note;
 }
 
 function expectedSetEvidence(reading: PrStateReading): string[] {
@@ -50,15 +68,16 @@ function liveRuns(reading: PrStateReading): readonly ReviewRun[] {
 
 // SKILL item 4, measured: on a tip whose legs have all landed, an outstanding
 // request for an expected reviewer (a re-request after a disposition pass,
-// say) or a live agent-task run mapped to the PR holds the round (the ruling:
-// no expected reviewer requested, no run live). Both are bounded by the
-// caller's poll budget, not by a clock: a re-request on a satisfied tip has
-// no timeout leg, since the leg is SATISFIED by the review that landed. A
-// request for a reviewer outside the expected set never holds: the owner's
-// credential registers a request for the owner on every re-request (the
-// merge-bot reference), and holding on it would deadlock every landing.
-// An unavailable run surface holds nothing and is named in evidence. Names
-// what is in flight so the wait reads as a round, never as silence.
+// say) or a live agent-task run OBSERVED mapped to the PR holds the round (the
+// ruling: no expected reviewer requested, no live run observed). Both are
+// bounded by the caller's poll budget, not by a clock: a re-request on a
+// satisfied tip has no timeout leg, since the leg is SATISFIED by the review
+// that landed. A request for a reviewer outside the expected set never
+// holds: the owner's credential registers a request for the owner on every
+// re-request (the merge-bot reference), and holding on it would deadlock
+// every landing. An unavailable or truncated run surface holds nothing (the
+// header says why) and is named by runsEvidence. Names what is in flight so
+// the wait reads as a round, never as silence.
 function roundInFlight(reading: PrStateReading): string[] {
   const expected = new Set(reading.expectedReviewers.map(normaliseLogin));
   const requested = reading.reviewRequests.filter((login) => expected.has(normaliseLogin(login)));
@@ -120,7 +139,7 @@ function settledVerdict(input: {
   return {
     state: 'SETTLE-READY',
     evidence: [
-      'every expected reviewer leg settled; no expected reviewer requested; no run live',
+      'every expected reviewer leg settled; no expected reviewer requested; no live run observed',
       ...shared,
     ],
   };
