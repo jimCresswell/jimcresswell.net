@@ -738,3 +738,9 @@
   mechanism, found by the validator once it asked the repository instead of the disk.
 - CodeQL flagged pre-existing site code the rename surfaced (prefix-matched origin; substring host
   tests); dependency-review caught next@16.3.0 with two critical advisories — bumped to 16.3.5.
+- Second CI red on #53: depcruise phantom-dep errors that local never showed — the ESLint plugin
+  dist existed here from an old manual build; CI had none. Reproduce-by-hiding-dist took ten
+  seconds and settled it; the bootstrap closure was the home. Two "green here, red in CI" cases in
+  one hour, both the same class: local state the checkout in CI lacks (instance-tier files, a
+  warm dist). Candidate lesson: before pushing a new validator or config import, run it once
+  against a cold state (hide the ignored artefact) — the cheapest CI simulation there is.

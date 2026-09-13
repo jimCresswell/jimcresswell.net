@@ -1305,3 +1305,12 @@ check-ignore`, with a directory probe so `comms/*` resolves the directory). The 
    on Windows hosts; RCE in the image optimisation API with AVIF), patched at 16.3.3; bumped
    to 16.3.5, the latest, exact-pinned as before. An urgent advisory patch takes the ordinary
    commit path (dependency-currency skill scope).
+4. **static-checks, second run: `depcruise` red in CI, green locally** — four
+   `workspace-config-no-phantom-deps` errors, every workspace's `eslint.config.ts` importing
+   `@engraph/eslint-plugin-standards`. The dependency is declared; it could not be _resolved_
+   because the plugin's exports point at `dist/` and the postinstall bootstrap builds the
+   workspace packages agent-tools imports at runtime, not the plugin the config files import
+   (the bootstrap's own comment names this exact class: a new install-time config dependency
+   must be added or every cold install fails while warm checkouts mask it). Reproduced locally
+   by hiding the plugin's `dist`; cured by adding `tooling/eslint` to the bootstrap's closure,
+   proved on the cold path (dist hidden, the bootstrap rebuilt it, `depcruise` green).

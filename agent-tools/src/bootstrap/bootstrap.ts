@@ -26,9 +26,10 @@ import {
  * validator.
  *
  * agent-tools imports the workspace packages listed in `WORKSPACE_DEPS`
- * (`@engraph/result`, `@engraph/safe-path`, `@engraph/type-helpers`)
- * whose exports resolve to built `dist` only — there is no source-pointing
- * export condition. Their `tsup.config.ts` files in turn import
+ * (`@engraph/result`, `@engraph/safe-path`, `@engraph/type-helpers`), and
+ * every workspace's `eslint.config.ts` imports `@engraph/eslint-plugin-standards`;
+ * all resolve to built `dist` only — there is no source-pointing export
+ * condition. Their `tsup.config.ts` files in turn import
  * `@engraph/workspace-config/tsup`, also dist-resolved, so the config-base
  * package is part of the same install-time closure. On a fresh checkout
  * (Vercel, CI, a new worktree) `postinstall` runs before any orchestrated
@@ -78,6 +79,11 @@ const WORKSPACE_DEPS: readonly WorkspaceDep[] = [
     dir: 'tooling/workspace-config',
     distArtifacts: ['tsup.config.base.js', 'tsup.config.base.d.ts'],
   },
+  // The ESLint plugin is an install-time CONFIG dependency: every workspace's
+  // eslint.config.ts imports it and it resolves to dist only, so a cold checkout's
+  // lint and dependency-cruise runs die without it (PR #53 static-checks, 2026-09-13,
+  // masked locally by a warm dist). It has no workspace runtime deps of its own.
+  { dir: 'tooling/eslint', distArtifacts: LEAF_DIST_ARTIFACTS },
   { dir: 'tooling/result', distArtifacts: LEAF_DIST_ARTIFACTS },
   { dir: 'tooling/safe-path', distArtifacts: LEAF_DIST_ARTIFACTS },
   { dir: 'tooling/type-helpers', distArtifacts: LEAF_DIST_ARTIFACTS },
