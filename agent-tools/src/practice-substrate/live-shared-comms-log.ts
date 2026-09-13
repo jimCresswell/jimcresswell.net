@@ -5,6 +5,7 @@ import {
   classifySurfacePresence,
   instanceTierAbsentFinding,
   liveInstanceTierProbes,
+  missingSurfaceFinding,
   type InstanceTierProbes,
 } from './instance-tier.js';
 import { readCommsEventFiles } from './live-comms-events.js';
@@ -18,7 +19,8 @@ import { type SubstrateFinding } from './types.js';
  * The render is instance tier (`instance-tier.ts`): absent by design on a
  * checkout with no comms events. Absent while events are present, it is drift
  * — the read model has not been regenerated — and is reported exactly as a
- * stale render would be, so a deleted render can never read as clean.
+ * stale render would be, so a deleted render can never read as clean. Absent
+ * where the repository would track it, it is a blocking missing surface.
  *
  * @packageDocumentation
  */
@@ -42,6 +44,9 @@ export async function evaluateSharedCommsLog(
   const allEvents = [...events.narrative, ...events.lifecycle, ...events.directed];
 
   const presence = classifySurfacePresence(repoRoot, SHARED_COMMS_LOG, probes);
+  if (presence === 'absent') {
+    return [missingSurfaceFinding('collaboration-shared-comms-log', SHARED_COMMS_LOG)];
+  }
   if (presence === 'absent-by-design' && allEvents.length === 0) {
     return [instanceTierAbsentFinding('collaboration-shared-comms-log', SHARED_COMMS_LOG)];
   }

@@ -17,10 +17,12 @@ import {
  */
 
 describe('parseNulSeparatedPaths', () => {
-  it('splits -z output into paths and drops the trailing empty record', () => {
-    expect(parseNulSeparatedPaths('README.md\0docs/a b.md\0')).toStrictEqual([
+  it('splits -z output into paths, keeping a path with a newline whole', () => {
+    // The reason -z exists: a newline inside a path is content, not a separator.
+    expect(parseNulSeparatedPaths('README.md\0docs/a b.md\0docs/line\nbreak.md\0')).toStrictEqual([
       'README.md',
       'docs/a b.md',
+      'docs/line\nbreak.md',
     ]);
   });
 

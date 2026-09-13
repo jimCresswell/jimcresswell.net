@@ -16,14 +16,17 @@ import { smokeTestFiles, summariseSmokeRun, type SmokeRunResult } from '../smoke
  * invoked. Every smoke runs even after a failure, so one run reports the
  * whole suite; a signal death is reported by its signal.
  *
- * The bin takes no arguments: any argv is rejected with usage, so a typo can
- * never run the suite as if it had been understood.
+ * The bin takes no arguments: `--help` prints usage and exits 0; anything
+ * else is refused with usage on stderr, so a typo can never run the suite as
+ * if it had been understood.
  *
  * @packageDocumentation
  */
 
 const SMOKE_DIR = 'smoke-tests';
-const USAGE = 'Usage: node dist/src/bin/run-smoke-tests.js (no arguments)';
+const USAGE =
+  'Usage: node dist/src/bin/run-smoke-tests.js\n' +
+  'Runs every agent-tools/smoke-tests/*.smoke.ts; takes no arguments (--help prints this).';
 
 async function runSuite(): Promise<number> {
   const packageRoot = path.join(resolveRepoRoot(import.meta.url), 'agent-tools');
@@ -52,6 +55,10 @@ async function runSuite(): Promise<number> {
 }
 
 async function main(argv: readonly string[]): Promise<number> {
+  if (argv.length === 1 && (argv[0] === '--help' || argv[0] === '-h')) {
+    writeLine(USAGE);
+    return 0;
+  }
   if (argv.length > 0) {
     writeErrorLine(`run-smoke-tests: unrecognised arguments: ${argv.join(' ')}\n${USAGE}`);
     return 1;

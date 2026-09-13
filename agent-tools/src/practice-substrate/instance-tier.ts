@@ -75,6 +75,27 @@ export function classifySurfacePresence(
 }
 
 /**
+ * The blocking finding for a surface the repository would track and which is
+ * nonetheless absent: a real gap, named with its path, never an errno
+ * escaping the evaluator. Repair carries provenance because the surface is
+ * shared state, not a generated artefact.
+ *
+ * @param surface - The substrate surface id.
+ * @param repoRelativePath - The absent surface's repo-relative path.
+ * @returns The finding.
+ */
+export function missingSurfaceFinding(surface: string, repoRelativePath: string): SubstrateFinding {
+  return finding({
+    id: 'missing-surface',
+    surface,
+    severity: 'blocking',
+    repair: 'manual-with-provenance',
+    message: `Surface ${repoRelativePath} is absent and the repository's rules would track it; restore it from history or the writer that owns it.`,
+    evidence: [repoRelativePath],
+  });
+}
+
+/**
  * The informational finding for an instance-tier surface this checkout does
  * not carry. Repair is deterministic: seeding (the registries) or the first
  * write (the render) creates it.

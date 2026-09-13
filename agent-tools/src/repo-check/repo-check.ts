@@ -2,7 +2,7 @@
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 
-import { writeErrorLine } from '../core/terminal-output.js';
+import { writeErrorLine, writeLine } from '../core/terminal-output.js';
 
 export type {
   RepoCheckCommandResult,
@@ -107,8 +107,16 @@ function resolveCommand(
   return { run: command.run, args };
 }
 
+const HELP_FLAGS: ReadonlySet<string> = new Set(['--help', '-h']);
+
 async function main(): Promise<void> {
-  const resolved = resolveCommand(process.argv.slice(2));
+  const argv = process.argv.slice(2);
+  if (argv.length === 1 && HELP_FLAGS.has(argv[0] ?? '')) {
+    writeLine(usage());
+    process.exitCode = 0;
+    return;
+  }
+  const resolved = resolveCommand(argv);
   if (resolved === undefined) {
     writeErrorLine(usage());
     process.exitCode = 1;
@@ -116,8 +124,14 @@ async function main(): Promise<void> {
   }
   // process.exitCode, never process.exit(): exit() can terminate before
   // piped stdout/stderr flush, truncating the captured output a gate
-  // promises to re-emit.
-  process.exitCode = await resolved.run(resolved.args);
+  // promises to re-emit. A gate that throws (git itself failed) reports the
+  // message and exits 1: a gate's failure is guidance, never a stack trace.
+  try {
+    process.exitCode = await resolved.run(resolved.args);
+  } catch (error: unknown) {
+    writeErrorLine(`repo-check: ${error instanceof Error ? error.message : String(error)}`);
+    process.exitCode = 1;
+  }
 }
 
 function isCliEntryPoint(): boolean {

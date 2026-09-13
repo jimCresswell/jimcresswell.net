@@ -875,3 +875,18 @@
 - What worked: three scratchpad trials (markdownlint with and without `--no-globs`, prettier on
   explicit ignored paths) settled the semantics before any source changed; the whole lint cure
   changed nothing in what is linted (620 files before and after).
+- Director correction (2026-09-13, after my second push): the push slot is the Director's to
+  hand out; a seat announces and WAITS for the one-word confirmation before pushing, because
+  two pre-push e2e runs on one host prove the wrong build silently (Playwright reuses an
+  existing :3000 server). I had pushed on my own announcement; corrected.
+- The review rounds (code-expert, then config-expert and test-expert in parallel) found what a
+  green gate cannot: a new built binary with no artefact-viability smoke, `--help` exiting 1 on
+  stderr, a signal death folded into exit 1, an errno escaping an evaluator, six assertions that
+  no mutation could fail. Two rounds, twenty-two findings, nineteen taken; the recorded-not-
+  taken ones carry their reason in the commit message. The test-expert's atomic-landing
+  reading was right: the drift branch and the argv guard each landed a commit before their
+  description; author test and code in the same edit, not the same PR.
+- A test that spawns a child must not import `node:fs` (the estate's no-real-IO-in-tests
+  rule): let the child resolve its own real path. And the truth-set's "executable bit" applies
+  only to `bin/` entries the build chmods; a package-script entry run from source proves cold
+  start under node, not a mode bit.

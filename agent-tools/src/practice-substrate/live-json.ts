@@ -11,6 +11,7 @@ import {
   classifySurfacePresence,
   instanceTierAbsentFinding,
   liveInstanceTierProbes,
+  missingSurfaceFinding,
   type InstanceTierProbes,
 } from './instance-tier.js';
 import { readCommsEventFiles } from './live-comms-events.js';
@@ -136,9 +137,9 @@ async function evaluateClaimSurfaces(
 
 /**
  * An instance-tier JSON surface: reported informational when absent by
- * design, validated against its schema and contract when present. An absent
- * surface the repository would track falls through to the reader, which
- * fails loudly.
+ * design, validated against its schema and contract when present, and a
+ * blocking `missing-surface` finding when absent although the repository
+ * would track it.
  */
 async function evaluateInstanceTierJsonFile(input: {
   readonly repoRoot: string;
@@ -148,8 +149,12 @@ async function evaluateInstanceTierJsonFile(input: {
   readonly path: string;
   readonly schemaId: CollaborationSchemaId;
 }): Promise<readonly SubstrateFinding[]> {
-  if (classifySurfacePresence(input.repoRoot, input.path, input.probes) === 'absent-by-design') {
+  const presence = classifySurfacePresence(input.repoRoot, input.path, input.probes);
+  if (presence === 'absent-by-design') {
     return [instanceTierAbsentFinding(input.surface, input.path)];
+  }
+  if (presence === 'absent') {
+    return [missingSurfaceFinding(input.surface, input.path)];
   }
   return evaluateJsonFileWithSchema(input);
 }
