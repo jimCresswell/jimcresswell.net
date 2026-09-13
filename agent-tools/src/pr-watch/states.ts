@@ -11,15 +11,18 @@ import type { PrStateReading, PrVerdict } from './state-types.js';
  * canonical); per-check verdicts travel BY NAME, never positionally (the
  * #437 cure — fixtures in `states.unit.test.ts`).
  *
- * Four states extend the plan's 11-state enumeration, each typed honesty
+ * Three states extend the plan's 11-state enumeration, each typed honesty
  * over a lie: `CLOSED` (a closed-unmerged PR gets a refusal, never a
  * mis-mapped healthy verdict), `SETTLING-QUIET-WINDOW` (all legs settled but
  * the more-than-10-minute async-lag window since the latest tip-bound review
  * has not elapsed — SKILL item 4; declaring SETTLE-READY inside the window
- * recreates the bot-round-still-composing hole),
- * `SILENT-WAIT-RUNS-UNREADABLE` (an unreadable or truncated run surface
- * never asserts deadness), and `BEHIND-BASE` (a stale base never reads
- * settled — the founding BEHIND-stall class).
+ * recreates the bot-round-still-composing hole), and `BEHIND-BASE` (a stale
+ * base never reads settled — the founding BEHIND-stall class). The two
+ * run-deadness states (`SILENT-WAIT-RUN-DEAD`, `SILENT-WAIT-RUNS-UNREADABLE`)
+ * were retired on 2026-09-13: the `gh agent-task` surface never carried a
+ * review run, so an outstanding request with no mapped run is the round in
+ * flight (`WAITING-REVIEW-RUN-LIVE`), and a request never served is ended by
+ * the timeout arm.
  */
 
 function failedCheckNames(reading: PrStateReading): string[] {

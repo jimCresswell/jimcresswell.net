@@ -31,17 +31,6 @@ function expectedSetEvidence(reading: PrStateReading): string[] {
       ];
 }
 
-// Bounded vendor mapping: `gh agent-task` runs carry no reviewer identity, so
-// a live PR-scoped run backs the legs of reviewers with an OUTSTANDING
-// request (the run IS the requested round in flight); it cannot distinguish
-// which of several requested reviewers it serves.
-function liveRunReviewers(reading: PrStateReading): readonly string[] {
-  const hasLiveRun =
-    reading.reviewRuns.kind === 'read' &&
-    reading.reviewRuns.runs.some((run) => run.completedAt === null);
-  return hasLiveRun ? reading.reviewRequests : [];
-}
-
 function legLine(leg: ReviewerLeg): string {
   return `${leg.reviewer}: ${leg.state} — ${leg.detail}`;
 }
@@ -168,12 +157,12 @@ function emptyExpectedSetVerdict(reading: PrStateReading): PrVerdict {
   };
 }
 
-// A live run that maps to no outstanding request (app-style reviews) cannot
-// back a leg; name it so SILENT-WAIT never reads as "nothing is happening".
+// A live `gh agent-task` run maps to this PR but to no outstanding request
+// (a coding-agent session, not a review round); name it so SILENT-WAIT never
+// reads as "nothing is happening". The request surface decides the round.
 function unmappedLiveRunEvidence(reading: PrStateReading, blockingKind: string): string[] {
   const hasUnmappedLiveRun =
     blockingKind === 'SILENT-WAIT-NO-REVIEWER' &&
-    liveRunReviewers(reading).length === 0 &&
     reading.reviewRuns.kind === 'read' &&
     reading.reviewRuns.runs.some((run) => run.completedAt === null);
   return hasUnmappedLiveRun
@@ -194,15 +183,7 @@ export function reviewerLegVerdict(reading: PrStateReading, now: string): PrVerd
     checksGreenAt: reading.checksGreenAt,
     now,
   });
-  const blocking = mostBlockingLeg({
-    legs,
-    reviewRequests: reading.reviewRequests,
-    liveRunReviewers: liveRunReviewers(reading),
-    // A truncated list cannot support deadness: the missing run may be the
-    // very one that fell off the window (presence stays evidence via
-    // liveRunReviewers above).
-    runsReadable: reading.reviewRuns.kind === 'read' && reading.reviewRuns.truncated !== true,
-  });
+  const blocking = mostBlockingLeg({ legs, reviewRequests: reading.reviewRequests });
   if (blocking.kind === 'settled') {
     return settledVerdict({ reading, legs, now });
   }

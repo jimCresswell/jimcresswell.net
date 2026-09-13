@@ -88,8 +88,6 @@ describe('verdictAwaitsSettlement', () => {
     DRAFT: false,
     'WAITING-REVIEW-RUN-LIVE': true,
     'SILENT-WAIT-NO-REVIEWER': false,
-    'SILENT-WAIT-RUN-DEAD': false,
-    'SILENT-WAIT-RUNS-UNREADABLE': false,
     'CHECKS-RUNNING': true,
     'CHECKS-RED': false,
     'THREADS-OPEN': false,

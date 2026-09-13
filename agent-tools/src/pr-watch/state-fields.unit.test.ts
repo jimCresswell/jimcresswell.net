@@ -1,7 +1,8 @@
 import { describe, expect, it } from 'vitest';
 
 import { parseAgentTaskList, parseAgentTaskView } from './agent-task-fields.js';
-import { parseReviewsHarvest, parseStateView, PR_STATE_VIEW_JSON_FIELDS } from './state-fields.js';
+import { parseRequestedReviewers, parseReviewsHarvest } from './harvest-fields.js';
+import { parseStateView, PR_STATE_VIEW_JSON_FIELDS } from './state-fields.js';
 import { stateViewFixture } from './state-view-fixture.js';
 
 /**
@@ -88,25 +89,12 @@ describe('parseStateView', () => {
     ).toBe(true);
   });
 
-  it('maps review requests to logins (User) and slugs (Team)', () => {
-    const parsed = parseStateView({
-      ...stateViewFixture(),
-      reviewRequests: [
-        { __typename: 'User', login: 'jimCresswell' },
-        { __typename: 'Team', name: 'platform', slug: 'platform-team' },
-      ],
-    });
-    expect(parsed.reviewRequests).toEqual(['jimCresswell', 'platform-team']);
-  });
-
-  it('normalises null rollup and null requests to empty (no-checks PRs parse)', () => {
+  it('normalises a null rollup to empty (no-checks PRs parse)', () => {
     const parsed = parseStateView({
       ...stateViewFixture(),
       statusCheckRollup: null,
-      reviewRequests: null,
     });
     expect(parsed.namedChecks).toEqual([]);
-    expect(parsed.reviewRequests).toEqual([]);
     expect(parsed.checksGreenAt).toBeNull();
   });
 
@@ -117,12 +105,6 @@ describe('parseStateView', () => {
   it('parses isDraft through (drafts are refused typed downstream) — r6 regression', () => {
     expect(parseStateView({ ...stateViewFixture(), isDraft: true }).isDraft).toBe(true);
     expect(parseStateView(stateViewFixture()).isDraft).toBe(false);
-  });
-
-  it('a review request with NO identity field fails loud at the boundary, never becomes reviewer "unknown" (r6 regression)', () => {
-    expect(() => parseStateView({ ...stateViewFixture(), reviewRequests: [{}] })).toThrow(
-      /identity field/,
-    );
   });
 
   it('requests exactly the fields it parses', () => {
@@ -136,16 +118,60 @@ describe('parseStateView', () => {
       'headRefOid',
       'statusCheckRollup',
       'autoMergeRequest',
-      'reviewRequests',
     ]);
   });
 });
 
-describe('parseReviewsHarvest', () => {
-  function page(nodes: readonly unknown[]): unknown {
-    return { data: { repository: { pullRequest: { reviews: { nodes } } } } };
-  }
+function page(
+  nodes: readonly unknown[],
+  requests: readonly unknown[] = [],
+  hasNextPage = false,
+): unknown {
+  const reviewRequests = { pageInfo: { hasNextPage }, nodes: requests };
+  return { data: { repository: { pullRequest: { reviews: { nodes }, reviewRequests } } } };
+}
 
+describe('parseRequestedReviewers', () => {
+  // The review-request surface is GraphQL: gh's `pr view --json reviewRequests`
+  // and the REST requested_reviewers endpoint omit Bot requests entirely
+  // (verified live 2026-09-13 on PR #60: Copilot's outstanding request was
+  // absent from both and present on GraphQL as Bot login
+  // `copilot-pull-request-reviewer`).
+  it('reads Bot and User logins and Team slugs from the harvest page', () => {
+    const requests = parseRequestedReviewers([
+      page(
+        [],
+        [
+          { requestedReviewer: { __typename: 'Bot', login: 'copilot-pull-request-reviewer' } },
+          { requestedReviewer: { __typename: 'User', login: 'jimCresswell' } },
+          { requestedReviewer: { __typename: 'Team', name: 'platform', slug: 'platform-team' } },
+        ],
+      ),
+    ]);
+    expect(requests).toEqual(['copilot-pull-request-reviewer', 'jimCresswell', 'platform-team']);
+  });
+
+  it('a request with NO identity field fails loud at the boundary, never becomes reviewer "unknown"', () => {
+    expect(() => parseRequestedReviewers([page([], [{ requestedReviewer: {} }])])).toThrow(
+      /identity field/,
+    );
+    expect(() => parseRequestedReviewers([page([], [{ requestedReviewer: null }])])).toThrow();
+  });
+
+  it('a request connection with a further page fails loud (an unread page would hide a request)', () => {
+    expect(() => parseRequestedReviewers([page([], [], true)])).toThrow();
+  });
+
+  it('a page without the reviewRequests connection fails loud (a silent empty would read nobody requested)', () => {
+    expect(() =>
+      parseRequestedReviewers([
+        { data: { repository: { pullRequest: { reviews: { nodes: [] } } } } },
+      ]),
+    ).toThrow();
+  });
+});
+
+describe('parseReviewsHarvest', () => {
   it('flattens all pages and normalises null author/commit/submittedAt', () => {
     const reviews = parseReviewsHarvest([
       page([

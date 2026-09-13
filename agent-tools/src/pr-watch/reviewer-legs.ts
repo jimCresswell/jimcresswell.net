@@ -83,11 +83,16 @@ function bindsTip(review: HarvestedReview, headRefOid: string): boolean {
   return review.commitOid === headRefOid;
 }
 
-// GitHub logins are case-insensitive; compare through one casing so a declared
+// Logins are case-insensitive; compare through one casing so a declared
 // `--expect jimcresswell` matches the API's `jimCresswell` (display keeps the
-// declared form).
+// declared form). An app login's `[bot]` suffix is the REST spelling; GraphQL
+// carries Bot logins without it on both the reviews harvest and the
+// review-request surface, and the `--expect` grammar admits either form, so
+// the suffix is stripped on both sides of every comparison.
+const BOT_SUFFIX = /\[bot\]$/u;
+
 function normaliseLogin(login: string): string {
-  return login.toLowerCase();
+  return login.toLowerCase().replace(BOT_SUFFIX, '');
 }
 
 // A PENDING (draft, unsubmitted) review has not landed: it must neither
@@ -178,43 +183,31 @@ export function computeReviewerLegs(input: ComputeReviewerLegsInput): ReviewerLe
 export type BlockingLegVerdict =
   | { readonly kind: 'settled' }
   | {
-      readonly kind:
-        | 'SILENT-WAIT-RUN-DEAD'
-        | 'SILENT-WAIT-RUNS-UNREADABLE'
-        | 'SILENT-WAIT-NO-REVIEWER'
-        | 'WAITING-REVIEW-RUN-LIVE';
+      readonly kind: 'SILENT-WAIT-NO-REVIEWER' | 'WAITING-REVIEW-RUN-LIVE';
       readonly reviewer: string;
     };
 
 export interface MostBlockingLegInput {
   readonly legs: readonly ReviewerLeg[];
+  /** Logins with an outstanding review request, from the GraphQL surface. */
   readonly reviewRequests: readonly string[];
-  /** Reviewers with a live review run associated (bounded vendor mapping). */
-  readonly liveRunReviewers: readonly string[];
-  /** False when the run surface could not be read — deadness is then never asserted. */
-  readonly runsReadable: boolean;
 }
 
 /**
- * Resolve OWED legs to the most blocking per-reviewer verdict: a requested
- * reviewer with NO live run (run dead / never started) outranks an
- * unrequested reviewer, which outranks a benign live-run wait — so one
- * reviewer's live run can never mask another reviewer's stalled leg.
+ * Resolve OWED legs to the most blocking per-reviewer verdict. An outstanding
+ * request IS the round in flight: the platform clears it when the review
+ * lands, and no other surface carries a Copilot review run (the agent-task
+ * list never did, so reading "requested with no mapped run" as dead read
+ * every Copilot review in progress as silent — PR #60, 2026-09-13). An
+ * unrequested owed reviewer outranks a requested one, so one
+ * reviewer's round in flight never masks another reviewer's stalled leg; a
+ * request never served is ended by the checks-green timeout arm (SKILL item
+ * 3), never by a deadness inference.
  */
 export function mostBlockingLeg(input: MostBlockingLegInput): BlockingLegVerdict {
   const owed = input.legs.filter((leg) => leg.state === 'OWED');
   const requested = new Set(input.reviewRequests.map((login) => normaliseLogin(login)));
-  const live = new Set(input.liveRunReviewers.map((login) => normaliseLogin(login)));
 
-  const runDead = owed.find(
-    (leg) => requested.has(normaliseLogin(leg.reviewer)) && !live.has(normaliseLogin(leg.reviewer)),
-  );
-  if (runDead !== undefined) {
-    // An unreadable run surface never asserts deadness (typed uncertainty).
-    return input.runsReadable
-      ? { kind: 'SILENT-WAIT-RUN-DEAD', reviewer: runDead.reviewer }
-      : { kind: 'SILENT-WAIT-RUNS-UNREADABLE', reviewer: runDead.reviewer };
-  }
   const unrequested = owed.find((leg) => !requested.has(normaliseLogin(leg.reviewer)));
   if (unrequested !== undefined) {
     return { kind: 'SILENT-WAIT-NO-REVIEWER', reviewer: unrequested.reviewer };
