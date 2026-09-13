@@ -90,9 +90,9 @@ Every line answered first-hand, none inferred:
 
 | Lane | Items | Owns exclusively | Seat | Claim | Branch / PR | State |
 | ---- | ----- | ---------------- | ---- | ----- | ----------- | ----- |
-| A | 3 then 5 | root scripts, CI workflow, `agent-tools/` legs and retirements, the leak validator, `tooling/*/package.json`, `turbo.json`, `jcdotnet/accept-md.config.js`, the incoming bundle | Saffron turns Verdure (c39ad7) | opens on the go | `closure/lane-a` | GO given about 14:00Z; cutting worktree |
-| B | 6 | `.agent/rules/**`, `RULES_INDEX.md`, `.cursor/rules/**`, `.claude/rules/**`, `.agents/rules/**`, the rules-index and trigger generator, sub-agent adapter descriptions | Sirocco wakes Wingspan (45fe02) | opens on the go | `closure/lane-b` | GO given about 14:00Z; cutting worktree |
-| C | 4 then 7 | the definition report, `testing-strategy.md`, the substrate manifest's register declarations, the Gemini projection; hands its four rule re-triages to B as a list | Djinn hunts Solder (36720b) | c7f8c3b7, d5232d8a | `closure/lane-c`; PR #57 merged 4a61112 | item 4 merged; follow-ons (restore, sif, patterns) next |
+| A | 3 then 5 | root scripts, CI workflow, `agent-tools/` legs and retirements, the leak validator, `tooling/*/package.json`, `turbo.json`, `jcdotnet/accept-md.config.js`, the incoming bundle | Saffron turns Verdure (c39ad7) | opens on the go | `closure/lane-a` | ACTIVE: #56 ready (two Copilot threads to triage), then item 5 |
+| B | 6 | `.agent/rules/**`, `RULES_INDEX.md`, `.cursor/rules/**`, `.claude/rules/**`, `.agents/rules/**`, the rules-index and trigger generator, sub-agent adapter descriptions | Sirocco wakes Wingspan (45fe02) | 707ed764 | `closure/lane-b` PR #55 (third round); `closure/lane-b-generator` (2a) | PAUSED by owner word about 15:35Z; state saved |
+| C | 4 then 7 | the definition report, `testing-strategy.md`, the substrate manifest's register declarations, the Gemini projection; hands its four rule re-triages to B as a list | Djinn hunts Solder (36720b) | c7f8c3b7, d5232d8a | `closure/lane-c`; PR #57 merged 4a61112 | PAUSED by owner word about 15:35Z; restore not started; claim extended |
 | Director | 7 | reports index, runbook step 13, `provenance.yml` completion entry; merges | Cauldron herds Lustre | 1db07581 | after A, B, C land | waiting on lanes |
 
 Sequencing constraints: B owns `.agent/rules/` alone, so C's rule edits travel to B as a
@@ -157,3 +157,12 @@ the commit queue (one host, one e2e port). Item 7 is written last because it rec
   tool finding: reviews are read via GraphQL where bot logins carry no [bot] suffix, so --expect
   copilot-pull-request-reviewer[bot] never binds; the suffix-less form merges. Routed to lane A item 5
   with the second finding (the bot cannot request Copilot here; the owner CLI credential can).
+- 2026-09-13 about 15:15Z: PR #55 third round granted (PDR-132 budget exceeded). Generator answer: the
+  round-one cure grew the changeset (nine files, a reader module the second PR needed), giving the
+  second Copilot pass new surface. Rule from here: cure commits minimal; later-PR material goes to
+  that PR. Board: CLAUDE_PROJECT_DIR precedence lets validator entry points rebind to the primary
+  checkout from a worktree (protocol-conformance opts out); estate-wide cure is post-transplant.
+- 2026-09-13 about 15:35Z: owner: "we need to slow down, just you and one implementer, the rest
+  paused." Lane A active (closest to landing: #56 green, two threads); lanes B and C paused with
+  state saved (WIP commits pushed, PAUSED events, claims kept, heartbeats stopped). Resume is owner
+  word through the Director. Open: #55 third round (lane B), #56 (lane A), restore not started (C).
