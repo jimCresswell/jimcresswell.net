@@ -138,7 +138,7 @@ the commit queue (one host, one e2e port). Item 7 is written last because it rec
   mint proved). From now every agent PR write runs as the bot; PR #54 was merged as the owner
   before the bot existed. Lesson: a ratified todo is owner text; the Director's lenses resolve
   questions the text leaves open, never the text itself.
-- 2026-09-13 about 15:00Z: lane C round two NOT READY; verdicts: the Director rulings ledger entry
+- 2026-09-13 about 14:52Z: lane C round two NOT READY; verdicts: the Director rulings ledger entry
   removed (the rule permanent-doc-is-the-consolidation-record rejects the form; homing proof lives in
   the plan of record and this log); five unrooted pattern citations to a follow-on PR with the leg
   extended to that shape; a focused docs-adr pass instead of a third round. Lane B PR 2 split into
@@ -147,27 +147,24 @@ the commit queue (one host, one e2e port). Item 7 is written last because it rec
   green; the bot refused to merge until the requested Copilot review binds the tip; review
   requested as the bot. Board follow-on: the deferred-controls register needs a creating mechanism
   (secops binding), post-transplant.
-- 2026-09-13 about 14:45Z: lane C READY after a focused docs-adr pass; slot confirmed after lane A's
+- 2026-09-13 about 14:55Z (Copilot request on #55 registered 14:53:56Z): lane C READY after a focused docs-adr pass; slot confirmed after lane A's
   review-cure push landed. Node item 4 amended (method only): the Gemini projection is generated,
   not hand-imported, under compute-dont-hope; carried-ness unchanged. Copilot review on #55 requested
   under the owner's CLI credential because the bot's own request registers nothing (finding for
   lane A's merge-bot documentation); CODEOWNERS requests the owner on every PR.
-- 2026-09-13 about 15:25Z: PR #57 merged by the bot at 4a61112, ahead of #56 and #55 by readiness. Merge
-  tool finding: reviews are read via GraphQL where bot logins carry no [bot] suffix, so --expect
-  copilot-pull-request-reviewer[bot] never binds; the suffix-less form merges. Routed to lane A item 5
-  with the second finding (the bot cannot request Copilot here; the owner CLI credential can).
 - 2026-09-13 about 15:15Z: PR #55 third round granted (PDR-132 budget exceeded). Generator answer: the
   round-one cure grew the changeset (nine files, a reader module the second PR needed), giving the
   second Copilot pass new surface. Rule from here: cure commits minimal; later-PR material goes to
   that PR. Board: CLAUDE_PROJECT_DIR precedence lets validator entry points rebind to the primary
   checkout from a worktree (protocol-conformance opts out); estate-wide cure is post-transplant.
+- 2026-09-13 about 15:25Z: PR #57 merged by the bot at 4a61112, ahead of #56 and #55 by readiness. Merge
+  tool finding: reviews are read via GraphQL where bot logins carry no [bot] suffix, so --expect
+  copilot-pull-request-reviewer[bot] never binds; the suffix-less form merges. Routed to lane A item 5
+  with the second finding (the bot cannot request Copilot here; the owner CLI credential can).
 - 2026-09-13 about 15:35Z: owner: "we need to slow down, just you and one implementer, the rest
   paused." Lane A active (closest to landing: #56 green, two threads); lanes B and C paused with
   state saved (WIP commits pushed, PAUSED events, claims kept, heartbeats stopped). Resume is owner
   word through the Director. Open: #55 third round (lane B), #56 (lane A), restore not started (C).
-- 2026-09-13 about 15:45Z: pre-compaction wrap. Records committed on `chore/director-records-2`
-  (push queued behind lane A and lane B's pushes in the slot order; the post-compaction Director
-  pushes first thing if it has not landed).
 - 2026-09-13 15:39Z to 15:50Z: post-compaction pickup. Monitors survived (prediction falsified;
   recorded). Records branch pushed (gate green, 58 e2e) and PR #58 opened as the bot, Copilot
   requested under the owner's credential. #56 red at 9a90d1b: lane A owns three causes (smoke
@@ -176,6 +173,9 @@ the commit queue (one host, one e2e port). Item 7 is written last because it rec
   by owner word in its session; that word binds over the Director's routing. Lane C asked a slot
   for its napkin commit; granted (unpushed capture before compaction is a work-safety exposure;
   worktree hygiene opens the draft PR at first push). Slot order: C, then A on ask.
+- 2026-09-13 about 15:45Z: pre-compaction wrap. Records committed on `chore/director-records-2`
+  (push queued behind lane A and lane B's pushes in the slot order; the post-compaction Director
+  pushes first thing if it has not landed).
 - 2026-09-13 about 15:58Z: owner: "please go into warm pause, your only job is to support Saffron, do
   not talk to the cold pause seats unless I say so." Director WARM-PAUSED: watcher and heartbeat
   kept; lane A (Saffron turns Verdure) is the only seat routed; no message to lanes B or C until
@@ -219,3 +219,16 @@ the commit queue (one host, one e2e port). Item 7 is written last because it rec
   Relayed to lane A as binding on the port PR: the ephemeral port is probed and assigned in
   `jcdotnet/playwright.config.ts` alone; tests and e2e helpers never mention, compute or read a
   port; any probe helper shared with `generate-pdf.ts` lives under `jcdotnet/scripts`.
+- 2026-09-13 about 17:05Z: Copilot's review of PR #58 opened six threads on the records, all real,
+  all cured on the branch: the routing log re-sorted by time (two labels corrected from the #55
+  timeline); the stale first bullet of `repo-continuity.md` and the stale focus paragraph of the
+  continuation prompt replaced with current truth; PR #54's merge attributed to the owner; and the
+  item 4 Gemini method carded to the owner because a Director verdict had changed ratified text.
+  Owner, verbatim: "this is not a matter of competing authorities, what does sensible look like?
+  The Gemini adapters are generated, just like everything else." Ruling 1 on the node now carries
+  that word; the lane C record follows. Lesson: a method question is asked as "what is sensible
+  under the estate's own rules", never framed as one authority against another; the card's two
+  options were the false either/or the principles name. Port PR: lane A's worker falsifier fired
+  (workers re-evaluate the config and re-probe); option A (the runner probes once and hands the
+  port to its workers through its own pid-stamped handshake; external values inert) ruled sensible,
+  with the directive sentence amended in the same PR to state the mechanism.

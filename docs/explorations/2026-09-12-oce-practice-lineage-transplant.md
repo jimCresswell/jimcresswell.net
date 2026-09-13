@@ -1524,7 +1524,8 @@ Owner, verbatim: "we need to slow down, just you and one implementer, the rest p
 to merge, then item 5. Lanes B (Sirocco wakes Wingspan; PR #55 in a third round, the 2a generator
 as WIP) and C (Djinn hunts Solder; the corpus restore not started) are paused with their state
 saved and their claims kept; resume is the owner's word relayed by the Director. Landed this
-session: PR #54 (`c426c6c`, the Director records and the channel rule) and PR #57 (`4a61112`,
-closure item 4), both merged by the merge bot the owner created. The Director's corrections of
+session: PR #54 (`c426c6c`, the Director records and the channel rule, merged by the owner
+before the bot existed) and PR #57 (`4a61112`, closure item 4, merged by the merge bot the
+owner created that afternoon). The Director's corrections of
 the session are on `director-handoff.md` and distilled: ratified text is the owner's, the lenses
 resolve only what it leaves open.

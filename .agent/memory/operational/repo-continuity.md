@@ -21,10 +21,10 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
-- Branch `feat/monorepo` (pushed 2026-09-13, tracks `origin/feat/monorepo`; draft PR #53 open): OCE
-  Practice lineage transplant in progress. Plan of
-  record: `docs/explorations/2026-09-12-oce-practice-lineage-transplant.md`
-  (§Amendment, §Hour 1, §Owner rulings rounds 1–3 carry the live state).
+- `main` carries the monorepo and the Practice since PR #53 merged (`55649a2`, 2026-09-13); the
+  transplant closure runs as small PRs against `main` (node §Transplant closure; items 1 to 4
+  done). Plan of record: `docs/explorations/2026-09-12-oce-practice-lineage-transplant.md`
+  (§Owner rulings, rounds 1 to 16, carry the state; the latest round is current).
 - Seven pnpm workspaces; root scripts through Turborepo; root devDeps installed.
 - **Committed on `feat/monorepo`** (two commits, all hooks green): the transplant
   (directives merged, 127 rules triaged, skills + adapters, JC statusline mark,
