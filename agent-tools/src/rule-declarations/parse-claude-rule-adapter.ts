@@ -33,5 +33,5 @@ export function parseClaudeRuleAdapterPaths(text: string): Result<readonly strin
     return block;
   }
   const paths = block.value?.get('paths');
-  return ok(paths === undefined ? [] : splitCommaList(paths));
+  return paths === undefined ? ok([]) : splitCommaList(paths);
 }

@@ -55,8 +55,11 @@ export function parseCursorTrigger(text: string): Result<CursorTrigger, string> 
     return alwaysApply;
   }
   const globsValue = block.value.get('globs');
-  const globs = globsValue === undefined ? [] : splitCommaList(globsValue);
-  return ok({ description, alwaysApply: alwaysApply.value, globs });
+  const globs = globsValue === undefined ? ok([]) : splitCommaList(globsValue);
+  if (!globs.ok) {
+    return globs;
+  }
+  return ok({ description, alwaysApply: alwaysApply.value, globs: globs.value });
 }
 
 function parseAlwaysApply(value: string | undefined): Result<boolean | undefined, string> {

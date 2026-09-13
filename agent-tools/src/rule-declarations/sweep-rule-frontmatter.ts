@@ -4,11 +4,11 @@
  *
  * Derivation is all-or-nothing: a rule whose sources cannot be read or are missing, or that
  * has no index row, refuses the whole sweep and nothing is written. Writing then proceeds
- * file by file, so a write error part-way leaves some rules written and the rest not; git
- * shows exactly which, and a re-run finishes the rest because a rule that already carries a
- * frontmatter block is left as it is and reported. The same property lets the sweep run again
- * for rules that arrive after the first pass. The file system is an injected port so the
- * sweep is proven over an in-memory tree.
+ * file by file, each write atomic (`sweep-fs.ts`), so an error part-way leaves whole rules
+ * written and the rest untouched; git shows which, and a re-run finishes the rest because a
+ * rule that already carries a frontmatter block is left as it is and reported. The same
+ * property lets the sweep run again for rules that arrive after the first pass. The file
+ * system is an injected port so the sweep is proven over an in-memory tree.
  *
  * Every source is admitted by entry kind before it is read (`lstat` on the source path, so its
  * leaf entry is never followed; anything but a regular file refuses the sweep), and every write

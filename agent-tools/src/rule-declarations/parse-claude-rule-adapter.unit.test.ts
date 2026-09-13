@@ -38,6 +38,39 @@ describe('parseClaudeRuleAdapterPaths', () => {
     expect(parseClaudeRuleAdapterPaths(text)).toEqual({ ok: true, value: [] });
   });
 
+  it.each([
+    ['**/*.{ts,tsx', 'a "{" is never closed'],
+    ['**/*.ts}', 'a "}" has no "{"'],
+  ])('refuses the paths value %s whose braces do not balance', (value, reason) => {
+    const text = [
+      '---',
+      `paths: "${value}"`,
+      '---',
+      '',
+      'Read and follow @.agent/rules/x.md',
+      '',
+    ].join('\n');
+    expect(parseClaudeRuleAdapterPaths(text)).toEqual({
+      ok: false,
+      error: `unbalanced braces in "${value}": ${reason}`,
+    });
+  });
+
+  it('keeps a balanced brace group whole as one path', () => {
+    const text = [
+      '---',
+      'paths: "**/*.{ts,tsx},docs/**"',
+      '---',
+      '',
+      'Read and follow @.agent/rules/x.md',
+      '',
+    ].join('\n');
+    expect(parseClaudeRuleAdapterPaths(text)).toEqual({
+      ok: true,
+      value: ['**/*.{ts,tsx}', 'docs/**'],
+    });
+  });
+
   it('refuses a key outside description and paths', () => {
     const text = ['---', 'globs: "a/**"', '---', '', 'Read and follow @.agent/rules/x.md', ''].join(
       '\n',

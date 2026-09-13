@@ -76,6 +76,30 @@ describe('parseCursorTrigger', () => {
     expect(mixed.ok && mixed.value.globs).toEqual(['apps/**/*.{ts,tsx}', 'packages/design/**']);
   });
 
+  it.each([
+    ['**/*.{ts,tsx', 'a "{" is never closed'],
+    ['**/*.ts}', 'a "}" has no "{"'],
+    ['**/*.{a,{b,c}', 'a "{" is never closed'],
+  ])(
+    'refuses the globs value %s whose braces do not balance, never splitting on a guess',
+    (value, reason) => {
+      expect(parseCursorTrigger(trigger(['description: d', `globs: '${value}'`]))).toEqual({
+        ok: false,
+        error: `unbalanced braces in "${value}": ${reason}`,
+      });
+    },
+  );
+
+  it('keeps a nested brace group whole, since balanced braces of any depth are one glob', () => {
+    const result = parseCursorTrigger(
+      trigger(['description: d', "globs: '**/*.{a,{b,c}},docs/**'"]),
+    );
+    expect(result).toEqual({
+      ok: true,
+      value: { description: 'd', alwaysApply: undefined, globs: ['**/*.{a,{b,c}}', 'docs/**'] },
+    });
+  });
+
   it('accepts a folded block written as >- and a blank line inside the block, as YAML does', () => {
     const result = parseCursorTrigger(
       trigger(['description: >-', '  Folded', '  text.', '', 'alwaysApply: true']),
