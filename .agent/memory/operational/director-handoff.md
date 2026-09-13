@@ -214,6 +214,13 @@ ones the Director would put to the owner had the owner been present.
     the start-right-team n=2 overlay drops the sweep without sparing the progress report (E fills
     it). The register PR files in the counter's canonical shape with the five existing entries
     migrated (item 10).
+13. #60 round three pushed on the slot (about 21:35Z): the prober is the holder (one listen(0)
+    in the runner at config load, kept open as a 503 responder, released only on a request that
+    carries the runner's own stamp); a second claimer gets EADDRINUSE by construction; ADR-019
+    names the mechanism. Honest residual, stated in the docs: Next's boot after the release
+    (about a second) is the one unowned moment, and Playwright fails the start only when the
+    server exits before a successful poll. Board follow-on under the port work, not claimed:
+    owning the port through Next's boot by serving Next from the holder's process.
 
 ## Routing log
 
