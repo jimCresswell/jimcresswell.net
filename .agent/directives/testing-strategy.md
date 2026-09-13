@@ -451,10 +451,12 @@ The site workspace applies the taxonomy above with these fixed conventions:
   (cross-cutting: a11y, SEO, content); Playwright browser automation.
 - **E2E-API**: `*.e2e-api.test.ts` under `e2e/behaviour/`; Playwright's `APIRequestContext`
   against the running site — the black-box boundary, never an imported app.
-- **Runner**: `pnpm --filter @jimcresswell/www test:e2e` boots `pnpm build && pnpm start` on
-  a port probed free at config load (ADR-019; §Harnesses Adapt to Shared Hosts). PDF
-  generation is part of the build, so PDF proofs run with everything else. Never run the root
-  `check` in parallel with the E2E suite.
+- **Runner**: `pnpm --filter @jimcresswell/www test:e2e` boots the site's `e2e:server` script
+  as Playwright's web server (ADR-019; §Harnesses Adapt to Shared Hosts): the config holds a
+  free port from load, the script identifies any holder it finds, builds while the port is held,
+  releases it with the runner's own stamp and starts Next on it, so the build's PDF generator
+  can never be handed the test port. PDF generation is part of the build, so PDF proofs run
+  with everything else. Never run the root `check` in parallel with the E2E suite.
 - **Rendering risk**: any change that can alter rendered output runs the visual regression harness
   as blocking proof during implementation (ADR-022), separate from and complementary to the suites
   above. Zero pixel difference can still carry an intentional semantic HTML change — review the
@@ -484,8 +486,9 @@ SURFACE. Scope-axis tests typically execute source through a
 loader-assisted harness (vitest, tsx) while production executes built
 artefacts under plain `node` — and nothing at any scope level REQUIRES
 surface fidelity. An E2E test MAY boot the built artefact (the site's
-Playwright suite runs against `pnpm build && pnpm start`, and the
-lineage's CLI contract E2E booted its built binary), but that coverage is
+Playwright suite runs against the production build its `e2e:server` script
+builds and serves on the port the config held, and the lineage's CLI contract E2E
+booted its built binary), but that coverage is
 incidental to its scope classification.
 Smoke tests own the surface axis and make artefact fidelity MANDATORY:
 minimum behaviour scope, maximum surface fidelity. Defects that exist

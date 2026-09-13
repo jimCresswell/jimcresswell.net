@@ -4,27 +4,31 @@
  * Playwright treats the first server that answers `webServer.url` as the one it started, so
  * the harness owns its port from the moment it is chosen until Next binds it. The config
  * holds it (`port-hold.ts`: the prober is the holder, one listener that stays open answering
- * 503, so no other prober, the build's PDF generator among them, can be handed it; PR #60
- * round two found that generator on the harness's port on a Linux runner). This script
- * decides ownership by one bind before it builds: binding `PORT` refused with EADDRINUSE
- * means the runner's holder is up, and the script builds, then releases the holder with the
- * runner's own stamp (`PLAYWRIGHT_SITE_PORT_HANDSHAKE`, inherited from the runner) and
- * expects the holder's 204; binding succeeding means no holder is up (a re-setup inside one
- * long-lived runner, whose holder released on the first run), and the script is the holder
- * for its own build. Either way the port is held through the build. Then Next is started
- * directly on the port. The one unowned moment is Next's boot after the release, about a
- * second in which the port is free on the host; a bind that fails there exits this process
- * non-zero, and Playwright fails the start when that exit precedes a successful readiness
- * poll (its wait races the exit against the poll). Anything other than the holder's 204 to
- * the release (a stranger on the port) and any release failure other than a refused
- * connection exit non-zero before Next starts. Fail-fast at this entry point with the reason
- * (the site workspace has no Result type yet; that follow-on is on the board).
+ * 503 with its own stamp, so no other prober, the build's PDF generator among them, can be
+ * handed it; PR #60 round two found that generator on the harness's port on a Linux runner).
+ * This script decides ownership by one bind before it builds. Binding `PORT` refused with
+ * EADDRINUSE means something holds the port, and the script identifies it before anything
+ * else: the held port must answer 503 carrying the runner's own stamp
+ * (`PLAYWRIGHT_SITE_PORT_HANDSHAKE`, inherited from the runner); any other answer is a
+ * stranger, and the script exits non-zero before the build, so the failure reaches
+ * Playwright's start race at once rather than after a full build (the stamp is a public token,
+ * the non-adversarial scope the config header states). The script then builds, releases the holder with that
+ * stamp expecting its 204, and confirms the port refuses connections before it starts Next.
+ * Binding succeeding means no holder is up (a re-setup inside one long-lived runner, whose
+ * holder released on the first run), and the script is the holder for its own build. Either
+ * way the port is held through the build. Then Next is started directly on the port. The one
+ * unowned moment is Next's boot after the release, about a second in which the port is free
+ * on the host; a bind that fails there exits this process non-zero, and Playwright fails the
+ * start when that exit precedes a successful readiness poll (its wait races the two).
+ * Fail-fast at this entry point with the reason (the site workspace has no Result type yet;
+ * that follow-on is on the board).
  */
 import { spawn } from "node:child_process";
 import http from "node:http";
+import net from "node:net";
 import path from "node:path";
 
-import { RELEASE_HEADER } from "./port-hold";
+import { HOLDER_HEADER, RELEASE_HEADER } from "./port-hold";
 
 /** The port the config holds, or undefined when the variable is absent or not a port. */
 function portFromEnvironment(text: string | undefined): number | undefined {
@@ -64,10 +68,11 @@ function run(command: string, args: readonly string[]): Promise<number> {
 
 /**
  * Bind the port as this script's own holder (a 503 responder), or learn that it is taken:
- * `runner-holds` on EADDRINUSE (the runner's holder, or a stranger, which the release step
- * then tells apart), the listening server otherwise.
+ * `taken` on EADDRINUSE (the runner's holder, or a stranger, which identification then tells
+ * apart), the listening server otherwise. This holder carries no identity header: nothing is
+ * designed to identify it, since it exists only inside this process's own build.
  */
-function tryHold(port: number): Promise<http.Server | "runner-holds"> {
+function tryHold(port: number): Promise<http.Server | "taken"> {
   return new Promise((resolve, reject) => {
     const holder = http.createServer((_request, response) => {
       response.statusCode = 503;
@@ -76,7 +81,7 @@ function tryHold(port: number): Promise<http.Server | "runner-holds"> {
     });
     holder.on("error", (error: NodeJS.ErrnoException) => {
       if (error.code === "EADDRINUSE") {
-        resolve("runner-holds");
+        resolve("taken");
         return;
       }
       reject(error);
@@ -104,13 +109,30 @@ function causeCode(error: unknown): string | undefined {
   return errnoCode(cause);
 }
 
+/** Why a request to the port failed, for the exit message. */
+function failureReason(error: unknown): string {
+  return causeCode(error) ?? (error instanceof Error ? error.message : String(error));
+}
+
 /**
- * Ask the runner's holder to release the port. `released` on the holder's 204; otherwise the
- * reason the script must stop: a status a stranger answered, or a connection failure that is
- * not a plain refusal (a refusal after the bind was refused means the holder went away in the
- * build, which is also a stop).
+ * Whether the taken port is this run's holder: a 503 carrying the runner's own stamp. Any
+ * other answer, or no answer, names a stranger and stops the script before the build.
  */
-async function releaseHeldPort(port: number, stamp: string): Promise<"released" | string> {
+async function identifyHolder(port: number, stamp: string): Promise<string | undefined> {
+  try {
+    const response = await fetch(`http://localhost:${String(port)}/`);
+    await response.arrayBuffer();
+    if (response.status === 503 && response.headers.get(HOLDER_HEADER) === stamp) {
+      return undefined;
+    }
+    return `port ${String(port)} is held by something that is not this run's holder (status ${String(response.status)})`;
+  } catch (error: unknown) {
+    return `port ${String(port)} is taken but answered no request (${failureReason(error)})`;
+  }
+}
+
+/** Ask the runner's holder to release the port; anything but its 204 stops the script. */
+async function releaseHeldPort(port: number, stamp: string): Promise<string | undefined> {
   try {
     const response = await fetch(`http://localhost:${String(port)}/`, {
       method: "DELETE",
@@ -118,34 +140,76 @@ async function releaseHeldPort(port: number, stamp: string): Promise<"released" 
     });
     await response.arrayBuffer();
     return response.status === 204
-      ? "released"
+      ? undefined
       : `port ${String(port)} answered ${String(response.status)} to the release and is not held by this run's holder`;
   } catch (error: unknown) {
-    const code = causeCode(error) ?? (error instanceof Error ? error.message : String(error));
-    return `the release request to port ${String(port)} failed (${code})`;
+    return `the release request to port ${String(port)} failed (${failureReason(error)})`;
   }
+}
+
+/** Whether a connection to the port is refused right now (any other failure counts as not). */
+function connectionRefused(port: number): Promise<boolean> {
+  return new Promise((resolve) => {
+    const socket = net.connect(port, "localhost");
+    socket.once("connect", () => {
+      socket.destroy();
+      resolve(false);
+    });
+    socket.once("error", (error) => {
+      resolve(errnoCode(error) === "ECONNREFUSED");
+    });
+  });
+}
+
+const PORT_FREE_ATTEMPTS = 50;
+const PORT_FREE_INTERVAL_MS = 20;
+
+/**
+ * Wait, briefly and boundedly, until nothing accepts connections on the port; the holder has
+ * stopped listening before its 204, so this normally succeeds at once. A port still answering
+ * after the bound is a stranger, and the script stops rather than start Next beside it.
+ */
+async function awaitPortFree(port: number): Promise<string | undefined> {
+  for (let attempt = 0; attempt < PORT_FREE_ATTEMPTS; attempt += 1) {
+    if (await connectionRefused(port)) {
+      return undefined;
+    }
+    await new Promise((resolve) => {
+      setTimeout(resolve, PORT_FREE_INTERVAL_MS);
+    });
+  }
+  return `port ${String(port)} still accepts connections after the release`;
+}
+
+function stop(reason: string, code = 1): never {
+  process.stderr.write(`e2e-web-server: ${reason}\n`);
+  process.exit(code);
 }
 
 const port = portFromEnvironment(process.env.PORT);
 const stamp = process.env.PLAYWRIGHT_SITE_PORT_HANDSHAKE;
 if (port === undefined || stamp === undefined) {
-  process.stderr.write(
-    "e2e-web-server: PORT and PLAYWRIGHT_SITE_PORT_HANDSHAKE must carry the port the Playwright config holds\n"
+  stop(
+    "PORT and PLAYWRIGHT_SITE_PORT_HANDSHAKE must carry the port the Playwright config holds",
+    2
   );
-  process.exit(2);
 }
 
 const ownHold = await tryHold(port);
+if (ownHold === "taken") {
+  const stranger = await identifyHolder(port, stamp);
+  if (stranger !== undefined) {
+    stop(stranger);
+  }
+}
 const built = await run("pnpm", ["build"]);
 if (built !== 0) {
-  process.stderr.write(`e2e-web-server: the build exited ${String(built)}\n`);
-  process.exit(built);
+  stop(`the build exited ${String(built)}`, built);
 }
-if (ownHold === "runner-holds") {
-  const release = await releaseHeldPort(port, stamp);
-  if (release !== "released") {
-    process.stderr.write(`e2e-web-server: ${release}\n`);
-    process.exit(1);
+if (ownHold === "taken") {
+  const refused = await releaseHeldPort(port, stamp);
+  if (refused !== undefined) {
+    stop(refused);
   }
 } else {
   await new Promise<void>((resolve) => {
@@ -153,6 +217,10 @@ if (ownHold === "runner-holds") {
       resolve();
     });
   });
+}
+const stillHeld = await awaitPortFree(port);
+if (stillHeld !== undefined) {
+  stop(stillHeld);
 }
 const nextBin = path.resolve(process.cwd(), "node_modules", ".bin", "next");
 process.exit(await run(nextBin, ["start", "--port", String(port)]));

@@ -6,8 +6,9 @@ import { holdFreePort } from "./scripts/port-hold";
 /**
  * Playwright configuration for E2E tests.
  *
- * The default project runs against a production build served by `pnpm start`
- * on a port held free from config load, so two checkouts running the suite at
+ * The default project runs against a production build that the site's
+ * `e2e:server` script (`scripts/e2e-web-server.ts`) builds while this config
+ * holds the port and then serves on it, so two checkouts running the suite at
  * once on one host each prove their own build; nothing shares a fixed port
  * and no existing server is ever reused (testing-strategy §Harnesses Adapt to
  * Shared Hosts). The port is assigned here, in the harness's composition
@@ -44,10 +45,12 @@ import { holdFreePort } from "./scripts/port-hold";
  * command and keeps polling while the build runs and its PDF generator probes
  * a port of its own (on a Linux runner that probe was handed this port when
  * it was merely probed and released). `scripts/e2e-web-server.ts` decides
- * ownership by one bind before it builds (refused means this holder is up;
- * succeeding means it is the holder itself, as on a re-setup inside one
- * long-lived runner), builds with the port held either way, releases the
- * holder with the runner's own stamp and starts Next directly. The one
+ * ownership by one bind before it builds (refused means something holds the
+ * port, and the script identifies it by the holder's own stamp in its 503
+ * before it builds, stopping on anything else; succeeding means it is the
+ * holder itself, as on a re-setup inside one long-lived runner), builds with
+ * the port held either way, releases the holder with the runner's own stamp,
+ * waits until the port refuses connections, and starts Next directly. The one
  * unowned moment is Next's boot after that release, about a second in which
  * the port is free on the host; a bind that fails there exits the server
  * process non-zero, and Playwright fails the start when that exit precedes
