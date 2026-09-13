@@ -419,6 +419,14 @@ ones the Director would put to the owner had the owner been present.
     land on the reviewed branch, since the bot merges at zero threads only. Lens 1 (a record
     that misstates the estate costs every reader; a cure costs one gate). REVIEW: the archive
     gate ruled as the morning cards alone, slow-lane rows conserved on the register.
+38. #65 round two (23:42Z on 2026-09-13): two threads (the SKILL passage and the settlement
+    header say the run leg is "never the deciding clause" while an observed live run blocks)
+    and two suppressed findings (a truncated read with a live run names "no live run observed"
+    beside its own live-run evidence; the consumer-level proof that the token-form self-reply
+    is excluded from the body tally was removed with a test). Round three granted (PDR-132:
+    beyond two is the Director's): a doc that contradicts the code it describes is not clean,
+    and the four cures are one small commit. Routed to lane A after its two pushes. Lens 1.
+    REVIEW: the third round.
 
 ## Routing log
 
