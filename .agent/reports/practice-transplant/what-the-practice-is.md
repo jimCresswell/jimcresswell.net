@@ -146,9 +146,6 @@ proposals below.
 
 ## Unresolved evidence
 
-- Whether the private editorial boundary (`.agent/reference-local/editorial-private/`) is
-  cloned in this checkout: the path does not exist on disk today; the rule that names it is
-  right, the checkout may be incomplete.
 - Whether the lineage regards the operational registers as runtime-created (B2); its
   substrate manifest is the source, and this estate carries the same manifest.
 

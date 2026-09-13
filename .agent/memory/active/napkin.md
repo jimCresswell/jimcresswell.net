@@ -742,5 +742,15 @@
   dist existed here from an old manual build; CI had none. Reproduce-by-hiding-dist took ten
   seconds and settled it; the bootstrap closure was the home. Two "green here, red in CI" cases in
   one hour, both the same class: local state the checkout in CI lacks (instance-tier files, a
-  warm dist). Candidate lesson: before pushing a new validator or config import, run it once
-  against a cold state (hide the ignored artefact) — the cheapest CI simulation there is.
+  warm dist). The owner rejected "run it once against a cold state" as the lesson: the cure is
+  never a manual rehearsal but computing the list from its source (compute-dont-hope).
+- Owner round 10: compute-dont-hope recorded and applied. Three traps met while applying it: the
+  bootstrap cannot import any workspace package (it builds them), so its verdict is a local shape;
+  `Object.entries` is lint-restricted and type-helpers is in the closure, so a local for-in helper;
+  a recursive `type` alias through `Record` is TS2456 — the index-signature form is the one that
+  compiles. Perl replacements interpolate `${…}` inside template literals: two were silently
+  emptied and caught by reading the diff, not by tests. Cold-path proof with all five tooling dists
+  hidden is the real proof; the earlier one-package proof was partial.
+- Privacy boundary: eight inbound links to the removed working contract; the remaining mentions
+  are exactly two. The cited-paths validator already resolved the boundary via ignore rules, so
+  nothing depended on the clone; the deterministic interaction was in doctrine text, not code.

@@ -153,7 +153,7 @@ Build and test the replacement in an isolated clone. Push only with an exact `--
 against the observed old ref, then verify a fresh public clone, the pull request and all regenerated
 checks. Rewriting a branch reduces ordinary reachability; it does not prove that hosting-provider
 caches or infrastructure no longer retain old objects. See
-[private-editorial-workspace.md](../reference/private-editorial-workspace.md).
+[privacy.md](./privacy.md) §Public-history recovery.
 
 ## Incident response
 

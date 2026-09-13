@@ -31,9 +31,9 @@ Before reviewing, read and internalise:
 | `content/frontpage.content.json`            | Current front page narrative                                                   |
 | `lib/jsonld.ts`                             | KNOWS_ABOUT, OCCUPATION, and other structured data                             |
 
-If `.agent/reference-local/editorial-private/README.md` is available, use it to route to private
-context only when the review requires it. Do not identify, quote or summarise private material in
-public feedback.
+Private editorial material, if present, may inform the review (`.agent/directives/privacy.md`
+§Private editorial material). Do not identify, quote or summarise private material in public
+feedback.
 
 ## Core Philosophy
 

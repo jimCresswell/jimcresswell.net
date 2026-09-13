@@ -25,7 +25,7 @@ to keep it provable.
   real editorial craft, no invention.
 - **CONTENT-2 — LinkedIn is parallel, private, owner-led.** LinkedIn draws evidence from the
   editorial CV but is composed for its own audience and interface, behind the private
-  editorial boundary (`.agent/reference-local/editorial-private/`, never quoted or published).
+  editorial boundary (private material, never quoted or published; `privacy.md`).
   The public estate carries routing and safety only; the headline is closed; field order is
   the owner's; the About section is deliberately last. Two rejected methods stay rejected:
   deriving copy from an identity model, and verbatim owner-transcription without craft.

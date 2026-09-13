@@ -112,8 +112,8 @@ processing; it is never a goal in itself.
 
 | Directory           | Purpose                                                                           |
 | ------------------- | --------------------------------------------------------------------------------- |
-| `reference/`        | Supporting reference material, including the private-editorial-workspace contract |
-| `reference-local/`  | Git-ignored private material (the editorial private repository)                   |
+| `reference/`        | Supporting reference material                                                     |
+| `reference-local/`  | Git-ignored local material, never source-controlled                              |
 | `operator-local/`   | Git-ignored operator profile; the two stubs declare the contract                  |
 | `practice-context/` | Local exchange context (incoming / outgoing)                                      |
 

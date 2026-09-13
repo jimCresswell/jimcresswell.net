@@ -45,7 +45,6 @@ When a file is added, moved or dropped, this index changes in the same commit.
 
 | File                              | Purpose                                                                                            |
 | --------------------------------- | -------------------------------------------------------------------------------------------------- |
-| `private-editorial-workspace.md`  | Public-safe boundary and recovery contract for the ignored private editorial repository            |
 
 The cross-platform surface matrix lives in
 `.agent/memory/executive/cross-platform-agent-surface-matrix.md` (executive

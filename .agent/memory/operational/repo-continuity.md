@@ -116,9 +116,7 @@ its future is host-agnostic. **Todo 1 done (2026-09-13, plan §Practice completi
 `validate-cited-paths` is a `docs-validators:check` leg, 35 absent targets cured to
 0, five patterns and four cited records imported with provenance. Now: todo 2
 (activate class B3: `practice-substrate`, `validate-protocol-wire-contract`, the
-smoke suite, the lineage root scripts with consumers here).** The private editorial
-boundary is cloned and clean at its ignored location (2026-09-13);
-start-right confirms it per the working contract. Then the node's todos 2 to
+smoke suite, the lineage root scripts with consumers here).** Then the node's todos 2 to
 6 in order; the `practice-language-separation` node (sketch, 2026-09-13, plan §Owner
 direction round 9: the universal core, thin language packs, JSON Schema contracts plus a
 conformance corpus; not urgent) awaits ratification on cards; duplicate-skill merges;

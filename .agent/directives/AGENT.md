@@ -174,9 +174,9 @@ Before any writing that represents Jim — CV, front page, LinkedIn, positioning
 attention, readability, surface fit) and
 [editorial-guidance.md](./editorial-guidance.md) (identity, voice, register),
 then apply the `editorial-voice` skill and the `editor` expert. Private
-editorial material lives behind the boundary described in
-[private-editorial-workspace.md](../reference/private-editorial-workspace.md);
-never quote, summarise or identify it on a public surface.
+editorial material, if present, is confidential and informs writing only
+([privacy.md](./privacy.md) §Private editorial material); never quote, summarise
+or identify it on a public surface.
 
 ## Essential Links
 

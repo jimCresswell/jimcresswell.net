@@ -66,17 +66,13 @@ session. Where a session is live, the newest channel under
 `.agent/collaboration/rapid-comms/` is authoritative for who holds which lane —
 check that directory for new channels rather than watching only a known one.
 
-## Private editorial boundary
+## Private editorial material
 
-The working draft, source packs, analysis, collaboration history and exact
-editorial decisions live in the ignored nested repository at
-`.agent/reference-local/editorial-private/`. Before opening private material:
-confirm the nested repository exists, is clean, is aligned with its upstream and
-remains private; read its README and current handoff; work only inside it for
-source, evidence and draft changes; never publish its remote, commit
-identifiers, source text or custody records in the parent repo. The public-safe
-operating contract is
-[`../reference/private-editorial-workspace.md`](../reference/private-editorial-workspace.md).
+Private editorial material may exist under the ignored `.agent/reference-local/`
+boundary. It is optional and confidential: it informs writing choices only, it is
+never quoted, summarised or identified on a public surface, and nothing changes
+when it is absent. The rule is
+[`../directives/privacy.md`](../directives/privacy.md) §Private editorial material.
 
 ## Safety state
 

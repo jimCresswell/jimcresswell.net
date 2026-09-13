@@ -1180,7 +1180,7 @@ conserved design record.
    `.agent/plans/delivery/practice-completion.plan.md` (sketch; two owner gates; six todos).
 4. **The private editorial boundary is cloned** into its ignored location and read for
    understanding. The public tree carries no URL, commit id or content from it; the working
-   contract in `.agent/reference/private-editorial-workspace.md` governs.
+   rule in `.agent/directives/privacy.md` governs.
 
 ## Owner rulings, round 8 (2026-09-13, after the second compaction) — ratification
 
@@ -1314,3 +1314,27 @@ check-ignore`, with a directory probe so `comms/*` resolves the directory). The 
    must be added or every cold install fails while warm checkouts mask it). Reproduced locally
    by hiding the plugin's `dist`; cured by adding `tooling/eslint` to the bootstrap's closure,
    proved on the cold path (dist hidden, the bootstrap rebuilt it, `depcruise` green).
+
+## Owner rulings, round 10 (2026-09-13, afternoon) — compute, don't hope; the private boundary
+
+1. **"Nothing should be hand kept, ever … compute don't hope."** Recorded as the rule
+   `.agent/rules/compute-dont-hope.md` (the general form; `validators-must-recompute-not-just-record`
+   points at it as its gate-shaped half). Applied the same afternoon: the postinstall bootstrap's
+   workspace closure is derived from the workspace manifests (every package whose exports resolve
+   only to built output, in workspace-dependency order; `install-time-closure.ts`, pure and
+   tested), proved from a fully cold tooling tree (five built outputs hidden, all rebuilt in
+   order, dependency-cruise green); the three authored-surface validators take the tracked tree
+   as their universe, so the ignore-class exclusions (`node_modules`, the local boundary) left
+   every list. Still hand-kept, named as the closure's first item: the rules index and the Cursor
+   rule triggers, whose facts (classification, description, globs) live nowhere canonical yet.
+2. **The private editorial material is optional, confidential, and never a dependency.** Every
+   deterministic interaction removed: the start-right precondition that checked the clone, the
+   continuity sentence that recorded it, the working-contract file folded into `privacy.md`
+   (one mention of the boundary directory, the never-publish rule, the recovery principles) and
+   removed, its eight inbound links re-pointed, the path dropped from the editor template, two
+   skills, the LinkedIn prompt and the content stream, the directory-map row made generic, the
+   definition report's line removed. The cited-paths validator resolves the remaining mention
+   through the ignore rules, so it passes with or without the material present. Remaining
+   mentions: `privacy.md` (the rule) and the continuation prompt (one sentence), by design.
+3. The napkin's "rehearse against a cold state before each push" candidate is withdrawn; the
+   owner's correction is item 1.

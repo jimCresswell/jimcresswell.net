@@ -56,17 +56,32 @@ AI.
    utilities may traverse ignored nested repositories. Exclude the private boundary explicitly
    whenever a tool's scope is broader than tracked files.
 
-## Where private content lives
+## Private editorial material
 
-The active editorial source packs, drafts, evidence and collaboration records live in the ignored
-nested repository at `.agent/reference-local/editorial-private/`. Its local README is the routing
-surface. The parent repository must never track the nested repository as a submodule or publish its
-remote, commit identifiers or update cadence.
+Private editorial material — source packs, evidence, drafts and their history — may exist on a
+machine as an ignored nested repository under `.agent/reference-local/`. It is optional and
+confidential. It informs writing choices only; nothing in this repository depends on its presence,
+checks for it, or changes behaviour when it is absent. Never quote, summarise or identify it, and
+never publish its remote, commit identifiers, history or custody records. The parent repository
+never tracks it as a submodule. `.agent/private/` is an ignored boundary for isolated local notes.
 
-`.agent/private/` remains an ignored compatibility boundary for isolated local notes, but it is not
-the current editorial source of truth. See
-[private-editorial-workspace.md](../reference/private-editorial-workspace.md) for the public-safe
-operational contract.
+Git ignore is not a complete tooling boundary: whole-repository tools take the tracked tree as
+their universe, so ignored material is never entered or read.
+
+## Public-history recovery
+
+If private material reaches public history, stop publication work and conserve before removing
+anything. The recovery set covers every local ref, the object database, reflogs and index;
+tracked, staged, unstaged, untracked and ignored content; all worktrees and any external local
+sources needed to reconstruct the state; pull-request records, synthetic merge refs and checks not
+present in the local clone; and checksums, read-back, bundle verification and a fresh private
+clone. Quiesce any multi-agent session before the final capture. Build the scrubbed replacement in
+an isolated clone against the exact intended parent, scan it for the disclosed path and content
+classes, run the complete gates, and sign the replacement commit. Move the public ref only with an
+exact `--force-with-lease` naming the observed old head, then verify a fresh public clone, the
+live pull request, regenerated CI and the absence of sensitive path families. A history rewrite
+reduces ordinary reachability; it is not proof of server-side erasure. The exact recovery
+inventory belongs only in a private custody record.
 
 ## PII in the repository estate
 

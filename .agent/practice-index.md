@@ -38,7 +38,6 @@ brought the OCE lineage here, and the owner rulings that shaped it, see
 | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------ |
 | [memory/executive/cross-platform-agent-surface-matrix.md](memory/executive/cross-platform-agent-surface-matrix.md) | Supported platform-adapter surfaces (OCE lineage)            |
 | [memory/executive/cross-platform-agent-surface-matrix.md](memory/executive/cross-platform-agent-surface-matrix.md) | Supported and unsupported platform surfaces (executive memory) |
-| [reference/private-editorial-workspace.md](reference/private-editorial-workspace.md)                               | Public-safe contract for the private editorial repository    |
 | [memory/executive/artefact-inventory.md](memory/executive/artefact-inventory.md)                                   | Canonical-vs-adapter taxonomy                                |
 | [memory/executive/invoke-code-experts.md](memory/executive/invoke-code-experts.md)                                 | Expert catalogue and triage ladder                           |
 
@@ -182,7 +181,6 @@ retired once these pass.
 - [editorial-voice skill](skills/editorial-voice/SKILL-CANONICAL.md),
   [editor](sub-agents/templates/editor.md)
 - [Editorial decision records](../docs/editorial/decision-records/)
-- [Private editorial workspace contract](reference/private-editorial-workspace.md)
 
 ### Personal-identity defensives
 

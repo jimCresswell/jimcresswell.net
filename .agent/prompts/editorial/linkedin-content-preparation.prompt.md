@@ -14,9 +14,8 @@ Ground first via `start-right-quick` or `start-right-thorough`, then read
 
 ## Private working boundary
 
-The source material, analysis, collaboration history, and drafts are held in the
-ignored nested repository at `.agent/reference-local/editorial-private/`.
-Confirm that repository is present, clean, private, and current before using it.
+Private editorial material, if present, informs this work and is never quoted or
+identified publicly (`.agent/directives/privacy.md` §Private editorial material).
 
 Do not copy its repository URL, commit identifiers, raw source material,
 personal analysis, or draft history into public Git surfaces. Keep all editorial
