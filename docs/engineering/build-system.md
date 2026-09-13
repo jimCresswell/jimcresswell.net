@@ -186,12 +186,12 @@ missing ones fall through to the generic inputs and produce stale cache hits.
 Quality is enforced through four surfaces, each triggered at a different point
 in the development lifecycle:
 
-| Surface        | Runs                                                                                                                                                                                                                                                                      |
-| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **pre-commit** | The branch guard (refuses commits on `main`), Prettier and markdownlint on the staged files, and `turbo run lint` for the workspaces changed since `HEAD`. Light by design (owner ruling 2026-09-12: light commit, full push).                                            |
-| **commit-msg** | `prevent-accidental-major-version`, then commitlint (Conventional Commits).                                                                                                                                                                                               |
-| **pre-push**   | `pnpm check` plus the site's end-to-end suite (`pnpm --filter @jimcresswell/www test:e2e`).                                                                                                                                                                               |
-| **CI**         | `.github/workflows/ci.yml` — four jobs after `install`: `secret-scan`, `static-checks` (format, markdown, shell, runtime-only, sub-agents, portability, skills, encoding, machine-local paths, knip, depcruise), `build-and-test` (build, lint, type-check, test), `e2e`. |
+| Surface        | Runs                                                                                                                                                                                                                                                                                                                  |
+| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **pre-commit** | The branch guard (refuses commits on `main`), Prettier and markdownlint on the staged files, and `turbo run lint` for the workspaces changed since `HEAD`. Light by design (owner ruling 2026-09-12: light commit, full push).                                                                                        |
+| **commit-msg** | `prevent-accidental-major-version`, then commitlint (Conventional Commits).                                                                                                                                                                                                                                           |
+| **pre-push**   | `pnpm check` plus the site's end-to-end suite (`pnpm --filter @jimcresswell/www test:e2e`).                                                                                                                                                                                                                           |
+| **CI**         | `.github/workflows/ci.yml` — four jobs after `install`: `secret-scan`, `static-checks` (format, markdown, shell, runtime-only, sub-agents, portability, skills, encoding, machine-local paths, knip, depcruise), `build-and-test` (build, lint, type-check, test, the agent-tools end-to-end and smoke suite), `e2e`. |
 
 The merge, cherry-pick and revert paths fire `pre-merge-commit`,
 `prepare-commit-msg` and `applypatch-msg`, which carry the same branch guard.
@@ -250,9 +250,12 @@ model, an editor's workspace file — and prove that machine, not the repository
 `.prettierignore` and `.markdownlint-cli2.jsonc` therefore declare **ownership**
 only (which tracked surfaces each tool governs), never existence.
 
-`pnpm check` does not build the site, run the end-to-end suite, or run the
-`smoke:*` scripts; those run on their own surfaces (`pnpm build`,
-`pnpm test:e2e`, and the workspace scripts).
+`pnpm check` does not build the site or run its browser suites; those run on
+their own surfaces (`pnpm build`, `pnpm test:e2e`). It does run the
+agent-tools end-to-end and smoke suite (`pnpm agent-tools:test:e2e`): the
+in-process end-to-end tests, then every `smoke-tests/*.smoke.ts`, discovered
+from the directory rather than listed, so a new smoke is gated the moment it
+exists.
 
 ### `pnpm fix` and `pnpm fix:docs` — the mutating repairs
 
