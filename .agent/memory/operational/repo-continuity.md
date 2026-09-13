@@ -126,7 +126,8 @@ re-sequenced round 13 (2026-09-13, evening): session 1 deleted `.agent-original/
 2026-09-13 evening: the loss-scan computed,
 `.agent/reports/practice-transplant/inputs/loss-scan-dispositions.tsv`, 255 rows, 24 residue, all
 ruled; nothing moved to `reference/`; the private directories beneath it consolidated into the
-live ignored boundary on the owner's word), then merges PR #53 (merge commit, no card), then
+live ignored boundary on the owner's word), then merged PR #53 (merge commit `55649a2`,
+2026-09-13, every check green; `main` now carries the monorepo and the Practice), then
 closure items 3 to 7 as small PRs against `main`; session 2 is the 57-lesson synthesis
 (cards, one batch) from the three unprocessed napkins now under `.agent/memory/active/unconsolidated/`
 (an archive holds only processed material, owner ruling round 13).** Todo 1 done (2026-09-13, plan

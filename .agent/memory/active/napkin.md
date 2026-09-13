@@ -841,3 +841,7 @@
   ancestry before removing anything, consolidated without loss, then the archive copies removed
   and `git rm -r .agent-original` with the seven exclusion entries and the provenance note in one
   commit. "If it already exists" is a claim to test, not a premise.
+- PR #53 merged: merge commit `55649a2` (parents `d0159a4`, `df884e1`), every check green, no
+  admin override — Wrap 6 prediction (a) held. `main` now carries the monorepo and the Practice;
+  the archive is gone from tree and disk. Next: closure items 3 to 7 as small PRs from
+  `chore/transplant-closure-session-1`, then session 2's synthesis, then editorial work.
