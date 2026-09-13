@@ -365,3 +365,11 @@ ones the Director would put to the owner had the owner been present.
   branch's work runs in a worktree. Second trap the same minute: the hook's substring policy reads
   the prose of a heredoc inside a shell command, so records prose that names git operations is
   written through the file tool and appended, never typed into a shell command.
+- 2026-09-13 about 20:40Z: owner: "I would prefer session two continue. You have two minutes to
+  ask me questions." Three cards answered: the Director drafts the candidate list tonight and
+  Saffron completes it (the register pull request) after #60 and #55 land; session 2 precedes
+  item 5; scope is the three unconsolidated napkins plus today's captures (lane A, lane C and
+  the Director's sections). The routed verdict's order is amended accordingly: #60, #55, the
+  session 2 register PR, then item 5 (three PRs, merge-bot cures first), 2a, 2b, the Gemini
+  projection, the restore with the five patterns, `sif`, item 7. The candidates go to the owner
+  as one batch of cards in the morning; nothing graduates without the answers.
