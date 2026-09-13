@@ -50,22 +50,24 @@ Every line answered first-hand, none inferred:
   archive holds only processed material.
 - The transplant is bounded: closure items 3 to 8 finish it, then editorial work.
 
-## Current handoff state (2026-09-13, about 17:40Z, n=2 with lane A)
+## Current handoff state (2026-09-13, about 18:50Z, n=2 with lane A)
 
 Where this block and the routing log disagree, the log's last entry is current; this block is
 rewritten at each Director push.
 
 - Director: Cauldron herds Lustre (880ff9), claim `1db07581`, thread `transplant-closure`,
-  branch `chore/director-records-2` (records only; the Director makes no source edits).
+  branch `chore/director-records-3` from `main` at `6528ecb` (records only; the Director makes
+  no source edits).
 - Controlling node: `.agent/plans/delivery/practice-completion.plan.md` §Transplant closure.
   Landed on `main`: item 1 (archive deleted), item 2 (PR #53, `55649a2`), item 3 (PR #56,
   `1829cd4`), item 4 as bounded (PR #57, `4a61112`), the Director records and the channel rule
   (PR #54, `c426c6c`).
-- Open pull requests: #58 (this records branch; bot merge at zero threads once Copilot binds the
-  tip); #60 (lane A, the per-checkout Playwright port, option A, under Copilot); #55 (lane B's
-  sweep, handed back; one Copilot thread, a path escape in the sweep's rule names, cure by lane A
-  in lane B's worktree); #59 (lane C's napkin capture, carried on #58 as `a3bb608`; closes as
-  carried when #58 merges).
+- Open pull requests: #60 (lane A, the per-checkout Playwright port, option A; three Copilot
+  threads routed to lane A: the runner/worker distinction must rest on a property the launcher
+  cannot set through the environment, plus two doc truths); #55 (lane B's sweep, handed back;
+  one Copilot thread, a path escape in the sweep's rule names, cure routed to lane A in lane B's
+  worktree). Merged: #58 (the Director records, `6528ecb`, five Copilot rounds, every thread
+  cured on the branch); #59 closed as carried (lane C's capture rides #58 as `a3bb608`).
 - Team state: owner word 17:16Z, "this is now an n=2 session, you and Saffron" (PDR-082; the
   Director's heartbeat stopped, watcher kept); 17:18Z the ARC channel opened beside native
   messaging. Lanes B and C handed every responsibility back and stood down (closeouts on the
@@ -80,9 +82,10 @@ rewritten at each Director push.
 - Re-arm after compaction, checking first (PDR-133): the all-channels comms watcher (Monitor,
   `comms watch --exclude-tag heartbeat`), then `assert-watcher-live`; the ARC channel tail; no
   heartbeat loop at n=2. Checked 15:39Z: background tasks outlive a compaction.
-- Next safe step: merge #58, #60 and #55 by the bot at zero threads (Copilot bound to each tip);
-  close #59 as carried; remove the `closure-lane-c-restore` worktree and branch; then the owner's
-  word on the next shape for the holdings on the board.
+- Next safe step: lane A's two cures land (#60, then or before #55), Copilot bound to each tip,
+  the bot merges at zero threads; then the owner's word on the next shape for the holdings on
+  the board. Lane A has been silent since 17:31Z with its session reading "waiting" (a prompt in
+  its window is the likely cause; surfaced to the owner 18:20Z and 18:35Z).
 
 ## Live board
 
@@ -90,7 +93,7 @@ rewritten at each Director push.
 | ---- | ----- | ---------------- | ---- | ----- | ----------- | ----- |
 | A | 3 done; the port PR; the #55 cure; then 5 | root scripts, CI workflow, `agent-tools/` legs and retirements, the leak validator, `tooling/*/package.json`, `turbo.json`, `jcdotnet/accept-md.config.js`, the incoming bundle, the Playwright harness config | Saffron turns Verdure (c39ad7) | f024e1f1, 5828b0ee | `fix/e2e-port-per-worktree` PR #60 at 4fad844; `closure/lane-b` for the #55 cure; 64aa005 held on `closure/lane-a-checkpoint` for item 5 | ACTIVE at n=2 |
 | B | 6 | `.agent/rules/**`, `RULES_INDEX.md`, `.cursor/rules/**`, `.claude/rules/**`, `.agents/rules/**`, the rules-index and trigger generator, sub-agent adapter descriptions | Sirocco wakes Wingspan (45fe02) | closed | `closure/lane-b` PR #55 at 6b1b4c3; `closure/lane-b-generator` at d76bb86 (2a fold conserved in the record) | STOOD DOWN 17:14Z; handed back: #55 to merge, 2a, 2b, PR 3 |
-| C | 4 then 7 | the definition report, `testing-strategy.md`, the substrate manifest's register declarations, the Gemini projection | Djinn hunts Solder (36720b) | closed | `closure/lane-c` deleted (merged, #57); `closure/lane-c-restore` at 8cbebb6 (PR #59, carried on #58) | STOOD DOWN 16:57Z; handed back: the restore, `sif`, five patterns, the Gemini projection after 2b, item 7 |
+| C | 4 then 7 | the definition report, `testing-strategy.md`, the substrate manifest's register declarations, the Gemini projection | Djinn hunts Solder (36720b) | closed | `closure/lane-c` and `closure/lane-c-restore` deleted (merged in #57; carried in #58); PR #59 closed as carried | STOOD DOWN 16:57Z; handed back: the restore, `sif`, five patterns, the Gemini projection after 2b, item 7 |
 | Director | 7 | reports index, runbook step 13, `provenance.yml` completion entry; merges | Cauldron herds Lustre | 1db07581 | after the holdings land | routing lane A; merging |
 
 Sequencing constraints: B owns `.agent/rules/` alone, so C's rule edits travel to B as a
@@ -254,3 +257,11 @@ because it records 3 to 6.
   writer re-homed to core at its second consumer; a shared no-follow write helper; the
   CLAUDE_PROJECT_DIR opt-out as an estate rule; PR #59 closes as carried when #58 merges; lane C's
   restore worktree and branch removed then.
+- 2026-09-13 18:47Z: PR #58 merged by the bot at `6528ecb` after five Copilot rounds on the records
+  (each round found the next stale line in the resume surfaces; the cure that ended it made every
+  live-state block defer to the routing log's last entry and swept the three lane records). PR #59
+  closed as carried; the `closure-lane-c-restore` worktree and branch removed; the records branch
+  `chore/director-records-3` cut from `main`. Lane A silent since 17:31Z (session "waiting"; no
+  commit in either worktree); pinged 18:20Z; surfaced to the owner; its two cures (#55 path escape,
+  #60 three threads) not started. Lesson for the record: a records PR that keeps pushing while the
+  session moves is a moving target for review; land records at waypoints, not per event.
