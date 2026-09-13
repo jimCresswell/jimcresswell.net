@@ -63,6 +63,14 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 - Session-local generators (sub-agent adapters, classified rules index) are
   not in the repo; recipes are in the efficiency-guidance report. Land them
   as `agent-tools` bins before the next regeneration.
+- **2026-09-13, late afternoon (wrap 6):** `practice-completion` ratified with its three gates
+  cleared and the transplant closure as eight checked exit conditions in two sessions (node
+  §Transplant closure); the private editorial material made optional and minimally mentioned;
+  `compute-dont-hope` and `record-generalisation-moves` are rules; the generalisation register
+  holds fifteen rows, six owed to the lineage; the bootstrap closure and the validators' universe
+  are derived; draft PR #53 open and green through 653f274, CI running on 7d6f292. No watcher,
+  cron, claim or monitor was live at the wrap; nothing survives compaction and nothing needs
+  re-arming.
 
 ## Active Threads
 

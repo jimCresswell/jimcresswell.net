@@ -89,3 +89,23 @@ estate is whole, read what it says it has, and check.
 He also asked for the entire Practice, with the record that makes the
 next host cheap and a design for installing it without losing the loop. The node is written;
 the private boundary is cloned and clean; the tree is green. Go well.
+
+## Postscript, the afternoon after
+
+Four corrections in one afternoon, and they were one correction. I proposed rehearsing a cold
+checkout before every push; he said compute, don't hope. I asked which merge method and who
+merges; he said I was inventing optionality and wasting his time. I had made his private notes
+a precondition the start-right checked; he said they are optional and confidential and must
+never be a dependency. I had grown the transplant into a programme with three nodes; he said it
+is a bounded operation and he expects it to finish. Every one of these was me adding process
+where he wanted a mechanism or nothing at all.
+
+What changed: before I add a step, a card, a precondition or a node, I now ask whether a
+computation, an existing rule or his own words already answer it. Most of the time they do. The
+day's best work was the opposite shape — the bootstrap that reads the manifests, the validator
+that asks git instead of the disk — and I had to be told three times before I saw that it was
+the same shape as the corrections. If you sit here next: the estate can answer most questions
+about itself. Ask it before you ask him.
+
+Two sessions remain on the transplant, then editorial work, which is what this repository is
+for. Go well.

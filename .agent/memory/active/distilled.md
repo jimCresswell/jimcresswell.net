@@ -125,3 +125,20 @@ always merge" and "if it is green and clean, it gets merged, you are inventing o
 and it is wasting my time and yours." A card is for a decision only the owner can make; the
 merge of a green, clean PR is not one. Source: napkin 2026-09-13 (round 11); routing:
 pr-lifecycle §Phase 7 already says it.
+
+## A check that reads the local disk proves the local disk (2026-09-13)
+
+Twice in one afternoon a leg was green here and red in CI: the cited-paths validator found
+instance-tier state and a private boundary on this disk; dependency-cruise found a built
+output a warm checkout carried. Neither exists on a fresh checkout. A check resolves against
+what the repository declares — the tracked tree, the ignore rules, the manifests — never
+against what happens to be on the machine; and a closure is derived from the manifests, never
+listed. Source: napkin 2026-09-13 (PR #53 triage); routing: `compute-dont-hope`,
+`core/repository-paths`, `install-time-closure`.
+
+## Perl in-place replacements interpolate template literals (2026-09-13)
+
+`perl -pi -e 's/…/…${name}…/'` treats `${name}` in the replacement as a Perl variable and
+writes nothing; two TypeScript template literals were silently emptied and caught by reading
+the diff. Escape as `\$\{name\}`, or edit source files with the native per-file tool. Source:
+napkin 2026-09-13; routing: this list.

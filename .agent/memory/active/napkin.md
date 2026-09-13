@@ -762,3 +762,54 @@
   its commits are what a check can verify. Backfilling fifteen rows from the commit log took the
   reasons from the plan of record; from now on the row lands with the change. Six rows are owed to
   the lineage — the next batch is already enumerated.
+
+### Wrap 6 (2026-09-13, late afternoon, before compaction) — the closure is decided
+
+- Metacognition (retrospective, four corrections in one afternoon, one shape): I added process
+  where the owner wanted mechanism or nothing — a rehearsal ("cold state before each push")
+  where the cure was derivation; two cards where doctrine had the answer (merge method, who
+  merges); a checked precondition on optional private material; a programme that grew three
+  nodes out of a bounded transplant. The stance for the successor: before adding a step, a
+  card, a precondition or a node, ask whether a computation, an existing rule, or the owner's
+  own words already answer it. "Compute, don't hope" is the general form; the four instances
+  are its worked evidence.
+- Free play (harvest, discards): kept — the afternoon's cures share one shape, the estate asks
+  itself instead of remembering (the session id from the harness, the closure from the
+  manifests, the universe from git, existence from the ignore rules); kept — both estates
+  innovated in the universal layer, which the language-separation record holds with a falsifier;
+  discarded — "the transplant is a story about trust" (says nothing testable).
+- Concept exploration: no pass. The closure is a formed decision with ratified exit conditions;
+  the skill's own routing boundary says continue through the formed-decision workflow.
+- Parallax (screening depth, cost-bounded): main uncertainty — merging now moves production to
+  the monorepo build from `main`; the owner configured Vercel and observed the first build, so
+  the residual is the production branch mapping, owner-held. The fresh-checkout proof of the
+  derived closure is not only the local cold-tree run: CI's install job at 653f274 ran the
+  postinstall on a cold checkout and static-checks passed. Defeaters to watch: `.agent-original`
+  reaching `main` before its loss-scan (accepted by "merge now"); the rules index and Cursor
+  triggers still hand-kept (closure item 5); a lineage-name leak validator not yet existing
+  (item 3's proof). No frame changes the answer; core depth would not pay.
+- Work safety: `## feat/monorepo...origin/feat/monorepo`, clean; 54 commits ahead of `main`, all
+  pushed, the last 7d6f292; draft PR #53 mergeable; CI green through 653f274, running on 7d6f292;
+  claims 0; commit queue empty; no monitor, cron, watcher or subagent live; nothing to re-arm.
+- Predictions a successor tests: (a) the merge of PR #53 succeeds as a normal non-admin merge
+  commit with every check green (if branch protection refuses, the seat stops and says so);
+  (b) the lineage-name leak validator's first run finds the fourteen fixture files, five
+  manifests and two product files the plan names and nothing else outside CV content; (c) the
+  loss-scan by content match dispositions more than 200 of the 255 snapshot files mechanically.
+- Metaloss passes. Compressed reasoning: the closure list compresses the definition report, the
+  node's todos and the continuity backlog into eight items; the mapping is in the plan of record
+  §Transplant closure and the node. Promises: the cited-paths validator's shape and the six
+  "owed" register rows are the next lineage batch (named, not dropped); the retrospective is
+  offered after session 2, not now. Attribution inferences: "merge now implies production from
+  main" is mine; the owner's "always merge" I read as merge commit (the estate's doctrine agrees;
+  flagged). Blind-spot bounds: the OCE seat's receipt of batch 2 (no notice requested); whether
+  the lineage's rules carry frontmatter the generator could reuse (unchecked); the private
+  material beyond its README (never read further, by rule). Index of homes: continuity §Current
+  State → the continuation prompt → the node §Transplant closure → the plan of record rounds 8
+  to 12 → the generalisation register → distilled → this napkin → the formation letter. External
+  bound: every correction today came from the owner, none from the scan; point the next external
+  scrutiny at "did the seat add process where a mechanism was wanted". Fence sweep: no private
+  URL, commit id or content in any tracked line (grep run: the two remaining mentions are the
+  boundary directory, by ruling); no machine-local path (validator green). Fixed point: a further
+  pass would only re-find the two flagged readings and the three blind-spot bounds; the recursion
+  closes here.
