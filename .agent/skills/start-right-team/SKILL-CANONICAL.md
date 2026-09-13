@@ -53,7 +53,9 @@ remains background.
 
 ### n=2 mode (overlay on team-member modes)
 
-1. **Open an ArcAngel channel** with your partner — or any agent you will
+1. **Open a dialogue channel** with your partner — native session messaging where both
+   seats can use it, otherwise an ArcAngel channel
+   ([`channel-by-audience-lifetime-and-consumer`](../../rules/channel-by-audience-lifetime-and-consumer.md)) — or any agent you will
    substantively collaborate with. ArcAngel is predominantly a _pairwise_
    channel, but it can be used for n=3 as well.
 2. **When the team has exactly two active participants, activate n=2 collaboration

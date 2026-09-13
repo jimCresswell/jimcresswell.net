@@ -165,7 +165,8 @@ remove .agent-original before we merge 53"; "it should be processed then deleted
    the table under `inputs/`; plan of record §Owner rulings round 13. **Done 2026-09-13,
    evening.**
 2. **Merge PR #53** by merge commit (owner: "always merge"; green and clean gets merged, no
-   question asked). Proof: merged; the site building from `main`.
+   question asked). Proof: merged; the site building from `main`. **Done 2026-09-13: merge
+   commit `55649a2`, every check green, no admin override.**
 3. **Activate the installed instruments** (todo 2): `practice-substrate` with `pnpm -s` cured
    to `--silent`, `validate-protocol-wire-contract`, the agent-tools smoke suite; each a leg of
    `check` or a named gate. Proof: the legs, CI parity, green.

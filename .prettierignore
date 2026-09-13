@@ -28,3 +28,6 @@ playwright-report/
 
 # Generated surfaces
 RULES_INDEX.md
+
+# Editor workspace files are machine-local state, never formatted or tracked here.
+*.code-workspace

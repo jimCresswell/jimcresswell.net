@@ -21,8 +21,9 @@ installable-entity exploration.** Start from the delivery node
 (ratified on cards 2026-09-13, its three gates cleared the same round): the transplant
 closes in two sessions per the node's §Transplant closure (ratified 2026-09-13): session 1
 deleted `.agent-original/` first (done 2026-09-13: the loss-scan computed under the transplant
-reports' `inputs/`, every residue row ruled), then merges PR #53 by merge commit without asking, then
-closure items 3 to 7 as small PRs against `main`; session 2 runs the 57-lesson synthesis from
+reports' `inputs/`, every residue row ruled), then merged PR #53 (merge commit `55649a2`,
+2026-09-13); closure items 3 to 7 follow as small PRs against `main`, the first on branch
+`chore/transplant-closure-session-1`; session 2 runs the 57-lesson synthesis from
 `.agent/memory/active/unconsolidated/`. Editorial work follows. Every
 move that makes a Practice element more general lands a row in
 [`../reports/practice-transplant/generalisations.md`](../reports/practice-transplant/generalisations.md)

@@ -1,0 +1,67 @@
+# Thread: closure-lane-c — completeness by function against the pin
+
+**Thread identity.** Lane C of the transplant closure (node
+`.agent/plans/delivery/practice-completion.plan.md` §Transplant closure, item 4). Director:
+Cauldron herds Lustre (880ff9), claim `1db07581`; route questions and blocks to the Director by
+directed comms event, never to the owner.
+
+## Current continuation
+
+- **Role:** Implementer (PDR-117). Enter your own worktree before any edit; branch
+  `closure/lane-c` from `main` (at or after `55649a2`).
+- **Owns exclusively:** `.agent/reports/practice-transplant/what-the-practice-is.md` (the
+  definition report), `.agent/directives/testing-strategy.md`, the operational registers and
+  their declarations in the substrate manifest under `.agent/memory/executive/`, the Gemini
+  projection (`.gemini/`, imported from the pin). You do **not** edit `.agent/rules/`: send
+  the four generic-rule re-triages to lane B as one directed event (rule name, verdict under
+  "bring unless product", one-line reason each).
+- **Item 4 — completeness by function** (node todo 3, bounded): the four generic rules
+  re-triaged under the new default (plan of record §Owner rulings round 8 names them); the
+  operational registers created or declared runtime-created per the substrate manifest;
+  mutation testing's absence stated in `testing-strategy.md` (check whether it already is);
+  the Gemini projection imported from the pin `e477e62f7` (read-only:
+  `git -C <oce-checkout> show e477e62f7:<path>`), scrubbed of lineage names; the cited
+  knowledge-base subset per round 8. Acceptance: the definition report's nine rows each read
+  "present" with a cited proof (a validator, a run, a file), dated; `pnpm check` and CI green.
+- **Item 7, second PR (Director decision 2026-09-13, PDR-117):** the compiled record: the
+  reports index as the entry (what, how, why, how-faster), the runbook's step 13 citing the
+  nine functions as its completeness audit, the completion entry in `provenance.yml`. Proof: the
+  index and the provenance diff.
+- **Director verdicts (2026-09-13, about 14:15Z):** (1) the Gemini projection is a fourth output
+  of the sub-agent adapter generator lane B lands in its PR 2, emitted from the templates as
+  `.gemini/commands/<template-basename>.toml` with gemini added to the reviewer-adapter platform
+  contract; lane C authors that extension after B's PR 2 merges, when B releases the emitter
+  path and `validators/portability`; thirty hand-written adapters would be the hand-kept copies
+  item 6 removes. `GEMINI.md`, the surface matrix and the operational README are lane C's in
+  item 4. (2) Definition rows 3 and 5: the corpus-analysis workflow and `sif`'s two instruments
+  are removed, not restored (the round 11 one-seat synthesis ruling leaves them no consumer):
+  a separate small PR after item 4, each removal a disposition row in the plan of record.
+  (3) Registers: `deferred-controls-register` and `director-rulings-ledger` not brought;
+  quarantine and curator-passes contracts imported from the pin; documentation-sync-logs
+  declared runtime-created. Lane C's PR follows lane A's PR 1.
+- **Next safe step:** `start-right-team` as `team-member-non-closeout-owner`; team-start
+  report; claim `--role implementer --thread closure-lane-c` on the paths above after the
+  Director acknowledges; commit intent before each push.
+- **Team expectation:** one PR against `main`, small; the Director merges green PRs. Report
+  downtime to the Director.
+- **Acceptance bar:** the node's item 4 proof verbatim; the lineage pin cited on every
+  imported file's provenance line; no machine-local path in any tracked file.
+
+## Participating agent identities
+
+- Director: Cauldron herds Lustre (880ff9), 2026-09-13.
+- Implementer: Djinn hunts Solder (36720b), claude / claude-fable-5-1, 2026-09-13.
+
+## Landing target for the next session
+
+The nine-row table dated with proofs; the re-triage list sent to lane B; the PR open.
+
+## Grounding order
+
+`start-right-team` → `director-handoff.md` → the node §Transplant closure item 4 and todo 3 →
+the definition report → plan of record round 8 → the substrate manifest.
+
+## Standing decisions
+
+Compute, don't hope; the private editorial material is never read or referenced; imported
+records carry a provenance line naming the pin; a green, clean PR is merged without asking.
