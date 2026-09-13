@@ -176,3 +176,7 @@ the commit queue (one host, one e2e port). Item 7 is written last because it rec
   by owner word in its session; that word binds over the Director's routing. Lane C asked a slot
   for its napkin commit; granted (unpushed capture before compaction is a work-safety exposure;
   worktree hygiene opens the draft PR at first push). Slot order: C, then A on ask.
+- 2026-09-13 about 15:58Z: owner: "please go into warm pause, your only job is to support Saffron, do
+  not talk to the cold pause seats unless I say so." Director WARM-PAUSED: watcher and heartbeat
+  kept; lane A (Saffron turns Verdure) is the only seat routed; no message to lanes B or C until
+  the owner's word; PR #58 (records, Copilot requested on 28a7676) waits for that word too.
