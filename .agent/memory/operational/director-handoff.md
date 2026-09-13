@@ -215,3 +215,7 @@ the commit queue (one host, one e2e port). Item 7 is written last because it rec
   per claim in the commit body. Lesson, same class as the ratified-text overturn: a verdict
   quotes the governing text; a verdict from memory of the problem is the failure shape.
   Lane C stood down by intent (heartbeat-end 16:56Z) after verifying the carry byte-identical.
+- 2026-09-13 about 17:00Z: owner: "port assignments belong in a test harness config, not in tests."
+  Relayed to lane A as binding on the port PR: the ephemeral port is probed and assigned in
+  `jcdotnet/playwright.config.ts` alone; tests and e2e helpers never mention, compute or read a
+  port; any probe helper shared with `generate-pdf.ts` lives under `jcdotnet/scripts`.
