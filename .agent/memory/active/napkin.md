@@ -1133,3 +1133,6 @@
 - The hook reads the prose of a heredoc and of a commit message: the words for git operations
   (a branch switch, a file restore, a force push, wildcard staging) belong in files written by
   the file tool, never typed into a shell command.
+- The ARC channel file is appended to, never rewritten: a script that read it and wrote it back
+  whole truncated it for an instant and every tail replayed the file from the start. Use `>>`
+  for every entry, including corrections.
