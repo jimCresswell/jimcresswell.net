@@ -86,6 +86,6 @@ the definition that held was nine functions and one command that tested the esta
 citations. Forty of them pointed at nothing. If you inherit this seat: before you believe the
 estate is whole, read what it says it has, and check.
 
-He also parked castr and asked for the entire Practice instead, with the record that makes the
+He also asked for the entire Practice, with the record that makes the
 next host cheap and a design for installing it without losing the loop. The node is written;
 the private boundary is cloned and clean; the tree is green. Go well.

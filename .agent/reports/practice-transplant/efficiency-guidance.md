@@ -213,7 +213,7 @@ fixes; both under the owner's "no errors, no warnings" bar.
   failed at install. Exercise the install path from an empty `dist` as part of the harness
   phase, not at re-evaluate.
 
-## Addendum (2026-09-12, resumed session): the restart assessment and the castr pre-read
+## Addendum (2026-09-12, resumed session): the restart assessment and the next instance
 
 - **Check that the mechanism existed at the time it "failed".** The seed-contract diagnosis
   blamed a hook timeout for a startup write that never happened; the hook had not been installed
@@ -221,22 +221,18 @@ fixes; both under the owner's "no errors, no warnings" bar.
   on the hook file would have closed the question before a config changed. Transplants create
   exactly this trap: surfaces arrive mid-session, so "it did not fire at session start" is
   usually "it did not exist at session start".
-- **The second instance is a delta update, not a first transplant.** castr already carries the
-  June 2026 generation of the same lineage in an `@engraph` monorepo with its own `agent-tools`,
-  harness and 88 root scripts; its divergence is 12 local rules, three PDR-number collisions and
-  its own sub-agent adapter generator (Codex adapters as the source, the reverse of the
-  instance-1 recipe). The upstream delta since its base is 434 machinery files (rules 33 added,
-  64 modified, 4 deleted; 39 skill directories; 21 PDRs). The shape that fits is three-way
-  classification against the ancestor commit (host unchanged since base means mechanical
-  overwrite), which castr's own June merge already used at trinity scale. The procedure is now
-  the runbook node `practice-lineage-transplant`; the instruments and the instance-1 verdict
-  data it needs are the delivery node `castr-lineage-update-preparation`.
+- **A host that already carries the lineage gets a delta update, not a first transplant.** Such
+  a host diverges from the pin by a few local rules, colliding record numbers and its own
+  generators; the shape that fits is three-way classification against the ancestor commit
+  (host unchanged since base means mechanical overwrite). The procedure is now the runbook node
+  `practice-lineage-transplant`; the instruments and the instance-1 verdict data it needs are
+  the delivery node `practice-completion`.
 - **Verdicts are inputs, not narrative.** The rules triage table, the drop list, the script
   keep/retire list and the record-number-to-home map exist here only inside prose and commit
   diffs; the map in particular lives nowhere as data (derivable from the rules-triage commit).
-  Instance 2 reads them as files under `inputs/`, one per runbook step.
+  The next instance reads them as files under `inputs/`, one per runbook step.
 - **Measure the delta before planning it.** `git diff --stat <ancestor> <pin>` on the machinery
-  paths took seconds and sized the castr job; instance 1 planned from file counts and guessed
+  paths takes seconds and sizes the job; instance 1 planned from file counts and guessed
   hours, and the owner rejected the guess.
 - **The link repair is one referential-integrity pass, and it is cheap once classified.** 418
   broken links closed in about an hour, first-hand: 243 by regenerating one generated index

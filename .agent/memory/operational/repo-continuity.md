@@ -100,23 +100,22 @@ the impact registry local, the legacy lanes conserved at
 a `repo-validators:check` leg and green; 12. round 6 (2026-09-13): the platform
 stream split into site and Practice, the four strategic nodes ratified, the
 dispositions table ratified, the Track B delivery node authored at pickup;
-13. owner word 2026-09-13 (mid-morning): **stop preparing for castr; the
-owner says when**. The delivery node's slices are parked. **Now: define what
-belongs to the Practice** — the definition by function, the transplant set,
-and the gaps by evidence class are in
+13. owner word 2026-09-13 (mid-morning): **define what belongs to the
+Practice** — the definition by function, the transplant set, and the gaps by
+evidence class are in
 `.agent/reports/practice-transplant/what-the-practice-is.md` (provisional);
-its proposals are now the delivery node
-`.agent/plans/delivery/practice-completion.plan.md` (sketch, 2026-09-13,
-owner direction "the entire Practice brought over, as appropriate for the
-context of this repo", with two owner gates expiring 2026-10-04: Gemini/
-Windsurf and the knowledge base per directory; the castr node's instrument
-todos re-homing here). **Next after compaction: the owner ratifies or amends
-that node on cards; then its todo 1 (the cited-paths validator first, then
-the class A cures).** The private editorial boundary is cloned and clean at
-its ignored location (2026-09-13); start-right confirms it per the working
-contract. Then (when the owner says) the castr delivery node
-`castr-lineage-update-preparation`'s slices (instruments as `agent-tools`
-bins, instance-1 verdicts as `inputs/` data); duplicate-skill merges;
+its proposals are the delivery node
+`.agent/plans/delivery/practice-completion.plan.md`, **ratified on cards
+2026-09-13 (round 8)** with its three gates cleared in the same round: Gemini
+carried and Windsurf rejected; the knowledge base as the cited subset,
+scrubbed; the transplant instruments as that node's todo 6. The earlier
+second-host preparation node was withdrawn as premature and removed from the
+estate on the owner's word (the same round); the Practice's understanding of
+its future is host-agnostic. **Now: the node's todo 1 — the cited-paths
+validator first, then the class A cures it measures.** The private editorial
+boundary is cloned and clean at its ignored location (2026-09-13);
+start-right confirms it per the working contract. Then the node's todos 2 to
+6 in order; duplicate-skill merges;
 the tooling residue listed in the plan (§Oak residue in tooling: `packages/core`
 metadata URLs in `tooling/*/package.json`, fixture strings) and `turbo.json`'s
 site `build` outputs (`.next/` unnamed, so the cache restores nothing); the

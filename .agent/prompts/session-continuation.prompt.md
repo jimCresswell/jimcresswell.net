@@ -18,10 +18,10 @@ direction of 2026-09-13, late morning): the entire Practice comes over, as
 appropriate for this repository, with a record of what, how and why, and the
 installable-entity exploration.** Start from the delivery node
 [`../plans/delivery/practice-completion.plan.md`](../plans/delivery/practice-completion.plan.md)
-(sketch): present it for ratification on cards, then run its todo 1 — the
-cited-paths validator first, then the class A cures listed in
-[`../reports/practice-transplant/what-the-practice-is.md`](../reports/practice-transplant/what-the-practice-is.md).
-Castr preparation is **parked at the owner's word**; do not resume it. Done and
+(ratified on cards 2026-09-13, its three gates cleared the same round): run its
+todo 1 — the cited-paths validator first, then the class A cures listed in
+[`../reports/practice-transplant/what-the-practice-is.md`](../reports/practice-transplant/what-the-practice-is.md)
+— then its todos 2 to 6 in order. Done and
 committed: rules triage, the Phase 8 harness, re-evaluate slice 1, the link
 repair, the lineage script naming, slice 2 items 1 to 3, the plan-node
 migration (strategy corpus, four ratified strategic nodes, the legacy corpus

@@ -25,7 +25,7 @@ last_updated: 2026-09-13
 # Practice lineage transplant
 
 Written from the first instance (OCE → `jimcresswell.net`, 2026-09-12) and
-ratified on the same day. The second instance (castr) tests every step and
+ratified on the same day. The next instance tests every step and
 fills the timing table's second column; a step that fails there returns this
 runbook to sketch for re-ratification. PDR-005 owns the Practice-free destination; this runbook owns the case
 PDR-005 calls harder and more common: the destination already has a
@@ -215,7 +215,7 @@ step 12 are never rolled back.
 ## Measured from instance 1
 
 Agent time with instruments, one transplant, one host. The second column is
-the castr instance and is empty until it runs.
+the next instance's and is empty until it runs.
 
 | Step                              | Instance 1                       | Instance 2 |
 | --------------------------------- | -------------------------------- | ---------- |

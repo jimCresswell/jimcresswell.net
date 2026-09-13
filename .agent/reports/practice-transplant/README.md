@@ -9,15 +9,16 @@ these are the process outputs kept alongside the work.
 | -------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
 | [efficiency-guidance.md](efficiency-guidance.md)                     | How to run the next transplant efficiently — measured sequence, rules that held, mistakes to design out         | PDR-005 amendment or a Practice-Core runbook |
 | [practice-as-installable-thing.md](practice-as-installable-thing.md) | Concept-exploration of packaging the Practice as a standalone installable thing; five proposals with falsifiers | PDR candidate after a second transplant      |
-| [journey-so-far.md](journey-so-far.md)                               | An understanding of the journey to date: the spine, three frames and a counterframe, bridge claims, status | Reopened after the 57-lesson synthesis or the castr run |
-| [what-the-practice-is.md](what-the-practice-is.md) | The Practice defined by nine functions, the transplant set that follows, and what this transplant failed to migrate by evidence class (owner-asked 2026-09-13; provisional). |
+| [journey-so-far.md](journey-so-far.md)                               | An understanding of the journey to date: the spine, three frames and a counterframe, bridge claims, status | Reopened after the 57-lesson synthesis or the next transplant |
+| [what-the-practice-is.md](what-the-practice-is.md)                   | The Practice defined by nine functions, the transplant set that follows, and what this transplant failed to migrate by evidence class (owner-asked 2026-09-13; provisional) | The `practice-completion` node's completeness audit |
 
-Both are born-sketch explorations: they govern nothing until ratified. Running capture for the
-session is in `.agent/memory/active/napkin.md`.
+All four are born-sketch explorations: they govern nothing until ratified. Running capture for
+the session is in `.agent/memory/active/napkin.md`.
 
 The procedure these records distil is the runbook node
 [`.agent/plans/runbooks/practice-lineage-transplant.plan.md`](../../plans/runbooks/practice-lineage-transplant.plan.md),
-and the work that makes the next instance (castr) run by that runbook is the delivery node
-[`.agent/plans/delivery/castr-lineage-update-preparation.plan.md`](../../plans/delivery/castr-lineage-update-preparation.plan.md).
-That node lands this instance's verdict data under `inputs/` here, one file per runbook step that
-reads it.
+and the work that completes the Practice here and lands the instruments for the next instance
+is the delivery node
+[`.agent/plans/delivery/practice-completion.plan.md`](../../plans/delivery/practice-completion.plan.md)
+(ratified 2026-09-13). That node lands this instance's verdict data under `inputs/` here, one
+file per runbook step that reads it.

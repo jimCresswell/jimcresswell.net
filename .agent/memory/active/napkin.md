@@ -440,10 +440,10 @@
   `~/.claude/skills`, `.claude/skills`, nested `.claude/skills` and plugins. No `.claude/commands`,
   no plugin or user-level `jc-*`. The owner's picker after this restart is the remaining test.
 - Owner direction mid-turn: keep detailed transplant-process notes; the next transplant is into
-  castr (Coal weaves Pumice's seat) and must cost a fraction. Passes run: metacognition (the
+  a second host and must cost a fraction. Passes run: metacognition (the
   fluent shape "add addenda to the report" hides that the _instruments_ and _verdict data_ were
   the loss, not the narrative; altitude verdict: runbook + bins now, the installable-thing
-  generator only if castr refutes proposal 5), concept exploration (castr is a delta update of
+  generator only if the second instance refutes proposal 5), concept exploration (a host already on the lineage is a delta update of
   the same lineage with an ancestor commit, so three-way classification replaces whole-corpus
   novelty scoring; measured upstream delta 434 machinery files), plan (runbook node +
   delivery node, both sketch). The plan-corpus validator is not wired and crashes on a
@@ -466,7 +466,7 @@
   tail). `check:docs` went green and the docs validators became a `check` leg + CI step.
 - Assumptions-expert readiness review of the two nodes: six findings, all applied (ancestor by
   SHA and byte-equality, not date; the generator "owner gate" was already settled by PDR-009
-  and ADR-015; proofs cited unwired validators; two ACs belonged to the castr run; frontmatter
+  and ADR-015; proofs cited unwired validators; two ACs belonged to the second-host run; frontmatter
   key `plan` not `id`; unevidenced counts). Lesson: before writing an owner gate, search the
   PDRs for the standing ruling — the reviewer found it in one grep.
 - Owner direction: adopt OCE's `package.json` script naming conventions (`format-check:root`,
@@ -486,18 +486,18 @@
   read; it found the six citations the regex pass could not reach (frozen ARC records and the
   PDR body), and the fix for the frozen records was an excluded root, not an edit.
 - **Owner ratification (2026-09-12, evening): "Both nodes are ratified"** — the runbook
-  `practice-lineage-transplant` and the delivery node `castr-lineage-update-preparation`;
+  `practice-lineage-transplant` and the second-host preparation delivery node;
   stamps landed, `ratified_where` points here. Same message: "focus on understanding our
   current journey rather than planning the next", then continue re-evaluate.
 - Journey pass (metacognition, free play, concept exploration, parallax core in emulated mode)
   → `.agent/reports/practice-transplant/journey-so-far.md`. The frame that converged: every
   re-evaluate cure had the same before-state, _nominal adoption_ (a surface says X is adopted,
   no mechanism makes X true); the journey is the conversion of nominal to mechanical, in the
-  owner's order. The serious counterpair: "first instance of a repeatable operation" (castr
+  owner's order. The serious counterpair: "first instance of a repeatable operation" (the second instance
   under two hours) versus "learning-loop repair" (the 57 archived lessons homed, the next
   rotation losing nothing); the risk they name together is momentum on instruments deferring
   the origin debt, one level up from August's fitness-pressure loss. Falsifier: the synthesis
-  lands before castr starts. Datum against my own "structural cures" story: the timeout change
+  lands before the second instance starts. Datum against my own "structural cures" story: the timeout change
   was structure applied to a misdiagnosis. Play seed (association, not finding): a
   doctrine-to-mechanism drift check — PDR-008 naming scripts `package.json` no longer defines
   is the record-number lesson in another coat. Two forced associations discarded in the record.
@@ -567,7 +567,7 @@
   fails next on the two nodes' names or `serves`, not on anything else — if it fails elsewhere
   the brief under-measured; (b) the validator scans `.agent/plans-legacy-2026-09/archive/` (the lineage keeps
   `delivery/archive/` inside the root, so probably not — measure, don't assume); (c) the
-  picker still lists each `jc-` skill once after this compaction; (d) castr's ancestor is the
+  picker still lists each `jc-` skill once after this compaction; (d) the second host's ancestor is the
   2026-06-28 commit, or the byte-equality check names a later one.
 - Metaloss passes. Compressed reasoning: the template merges kept the lineage's method and the
   host's substance by antigen density — recorded in the plan of record with the two path
@@ -576,8 +576,8 @@
   Nettle (both notes said no reply needed; the PDR-008 suggestion was sent, no answer expected);
   to the owner, every "next" is on continuity and the continuation prompt. Attribution
   inferences flagged: the owner's no-subagent instruction read as a shape correction (mine);
-  castr's ancestor date (from castr's transplant records, not its provenance entry); Coal weaves
-  Pumice's location is owner-stated (fact). Blind-spot bounds: the picker; castr's uncommitted
+  the second host's ancestor date (from its transplant records, not its provenance entry); Coal weaves
+  Pumice's location is owner-stated (fact). Blind-spot bounds: the picker; the second host's uncommitted
   tree beyond one read; the OCE working tree (read only at pins); the reviewer subagent's
   reasoning beyond its report. Index of homes: continuity §Current State and §Next Safe Steps
   → the plan of record's dated sections → the reports index (efficiency guidance, installable
@@ -596,7 +596,7 @@
   the instrument here; the successor raises the tension at the consolidation, not by leaving
   the tree dirty.
 - Peer landscape: Nettle guards Pistil busy in the OCE checkout; a third local seat, Coal weaves
-  Pumice, is in a different repository (its transcript sits under the castr project dir), not
+  Pumice, is in a different repository (its transcript sits under another project directory), not
   here. This checkout: no other seat, registry empty, queue empty.
 - `pnpm -s` is rejected by pnpm 12.4.1 ("unexpected argument '-s'"); `--silent` still works.
   That is the pre-existing codex-session-alert smoke failure; cure is the flag, not the smoke.
@@ -624,7 +624,7 @@
   ratified on the cards), dispositions ratified, Track B node at pickup. Ratifying the fourth
   node on a "ratify all three" answer given alongside the split is a reading; flagged in the
   plan of record with the one-word undo.
-- Owner, mid-morning: stop preparing for castr; define what the Practice is instead, and "looking
+- Owner, mid-morning: stop preparing for the second host; define what the Practice is instead, and "looking
   at your surveys of the Practice in OCE cannot tell you if something was missed from those
   surveys". Metacognition: the inherited shape was "diff the trees"; the cure is function-first
   plus exercising the estate's own claims (cited paths that do not resolve: 40 targets, 20
@@ -692,7 +692,7 @@
 - Re-grounded under start-right-team: foundation read, clean tree at 2d1dacf, claims and queue
   empty, comms event 7dbf1c82 posted (no peer in this home; consumer-absent, no heartbeat).
   Practice box still holds `resonance-outbound-bundle-2026-07-08.md`; deferred to consolidation.
-  Four prunable `/private/tmp` worktrees on the list (`git worktree list`); reported, not pruned.
+  Four prunable system-temp worktrees on the list (`git worktree list`); reported, not pruned.
 - The OCE seat relayed the owner's completeness ask on findings. Method that worked: extract
   every `SendMessage` from the transcript with one python pass (seven sends recovered, none
   from memory), then check each remaining candidate at the pin before sending. Result: two

@@ -7,29 +7,20 @@ overview: >-
   this repository, cure every claim the estate makes without a mechanism,
   and leave a compiled record (what, how, why) plus the instruments that make
   the next transplant a fraction of this one.
-status: sketch
-ratified_by: null
-ratified_date: null
-ratified_where: null
+status: ratified
+ratified_by: Jim Cresswell
+ratified_date: 2026-09-13
+ratified_where: >-
+  Owner cards, 2026-09-13 after the second compaction ("Ratify as written");
+  the same round cleared the three gates recorded under §Owner rulings.
+  Plan of record: docs/explorations/2026-09-12-oce-practice-lineage-transplant.md
+  §Owner rulings, round 8.
 serves: practice
 impact_areas:
   - practice-and-estate
 tickets: []
 depends_on: []
-owner_gates:
-  - awaiting: owner-decision
-    clears_when: >-
-      The owner rules on the Gemini and Windsurf projections (adopt the
-      platforms or reject the surfaces) and on the lineage's Practice
-      knowledge base per directory (research, reports, experience letters,
-      curator passes: carry, carry scrubbed, or leave at the pin).
-    expires: 2026-10-04
-  - awaiting: owner-decision
-    clears_when: >-
-      The owner rules whether the castr node's instrument todos (classify,
-      antigen-scan, digest, the adapter generator, the rules-index generator)
-      re-home under this node, leaving castr's node with the inputs only.
-    expires: 2026-10-04
+owner_gates: []
 last_updated: 2026-09-13
 ---
 
@@ -41,8 +32,7 @@ want a record of what, how, why, so that the next time we do this it is MUCH
 much quicker, and of course we want to explore how the Practice could be
 extracted into a separate, installable entity that could be simply added to
 other repos without sacrificing the learning, self improvement, contributions
-back to the Practice and wider Practice ecosystem." Castr preparation is
-parked until the owner says otherwise (same day).
+back to the Practice and wider Practice ecosystem."
 
 The direction flips the transplant's default. On 2026-09-12 a surface stayed
 only when the host ran what it governs; from today a surface comes over
@@ -51,6 +41,19 @@ not have), and the Practice's knowledge about itself is Practice. Rulings
 made under the old default (the trimmed instruments, the dropped patterns
 corpus, the four generic rules dropped as vendor-shaped) reopen under this
 node; product drops stand.
+
+## Owner rulings (2026-09-13, on cards, the ratification round)
+
+1. **Gemini is carried; Windsurf is rejected.** The Gemini projection is
+   imported from the pin, scrubbed, and becomes a `portability:check` leg;
+   Windsurf is recorded as unsupported in the surface matrix.
+2. **The Practice's knowledge base comes over as the cited subset, scrubbed.**
+   Records that live doctrine here cites (five today) and the research the
+   definition names are imported; the rest stays at the pin, re-importable.
+3. **The instruments belong to this node.** Classify, antigen-scan, digest,
+   the adapter generator and the rules-index generator serve every future
+   transplant, so they are todo 6 here. The earlier second-host preparation
+   node was withdrawn as premature and removed from the estate.
 
 ## Goal
 
@@ -122,8 +125,8 @@ the runbook is the how, the definition is the what, the journey is the why.
    operational registers (create or declare runtime-created, per the
    substrate manifest), mutation testing (`stryker`, `mutate`) or its
    explicit absence in `testing-strategy.md`, the four generic rules
-   re-triaged under the new default, Gemini and Windsurf per the gate, the
-   knowledge base per the gate.
+   re-triaged under the new default, the Gemini projection and the cited
+   knowledge-base subset per §Owner rulings.
 4. **Compile the record**: the reports index as the entry (what, how, why,
    how-faster); the runbook's step 13 cites the nine functions as its
    completeness audit; `provenance.yml` gains the completion entry; the
@@ -135,16 +138,16 @@ the runbook is the how, the definition is the what, the journey is the why.
    with local divergence preserved); send proposals 1 to 4 of the
    exploration to the lineage under ruling 6; draft the PDR amendment
    candidate for `provenance.yml` as the lockfile.
-6. **Instruments** (after the second gate clears): `transplant classify`,
+6. **Instruments**: `transplant classify`,
    `transplant antigen-scan`, `transplant digest`, the adapter generator,
    the rules-index generator, as `agent-tools` bins with fixture tests.
 
 ## Out of scope
 
-Castr itself (parked at the owner's word); product surfaces of the lineage
-(the MCP app, its vendors, the curriculum domain, the design system's
-product tier); the 57-lesson synthesis (its own item, owner-reviewed);
-`.agent-original/` deletion (the loss-scan list first).
+Any particular next host (the instruments are host-agnostic); product
+surfaces of the lineage (the MCP app, its vendors, the curriculum domain, the
+design system's product tier); the 57-lesson synthesis (its own item,
+owner-reviewed); `.agent-original/` deletion (the loss-scan list first).
 
 ## Plan-body first-principles check
 

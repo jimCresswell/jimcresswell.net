@@ -38,7 +38,7 @@ leaves the next host a runbook, instruments and inputs instead of a re-derivatio
   lessons before they graduate.
 - **Seats on the repository** meet entry points that describe this host and assertions
   exercised before they were trusted.
-- **The lineage and the next host (castr)** get the transplant runbook run as instruments.
+- **The lineage and the next host** get the transplant runbook run as instruments.
 
 ## The bet
 
@@ -48,7 +48,7 @@ a fraction of the first.
 
 ## Success looks like
 
-The castr instance fills the runbook's timing table; the 57 archived lessons are synthesised
+The next instance fills the runbook's timing table; the 57 archived lessons are synthesised
 and reviewed; no assertion in a session-open surface is left unexercised; the transplant
 reports stay current.
 

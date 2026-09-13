@@ -30,8 +30,8 @@ the repository takes deliberately, and a learning loop it must actually close._
 
 ## Serving nodes today
 
-The transplant runbook (`practice-lineage-transplant`) and the castr preparation delivery
-node (`castr-lineage-update-preparation`) serve the Practice strategic node.
+The transplant runbook (`practice-lineage-transplant`) and the completion delivery node
+(`practice-completion`) serve the Practice strategic node.
 
 ## Won't do
 

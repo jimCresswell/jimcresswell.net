@@ -26,16 +26,16 @@ the two sibling reports, the formation letter, the napkin's five 2026-09-12 sect
 
 - **Purpose**: one shared model of where this estate is and how it got here, so the owner and
   the next seat read the same map. **Decision owner**: Jim. **Affected**: every later session
-  here; castr as the next host; OCE as the source that receives suggestions.
+  here; the next host; OCE as the source that receives suggestions.
 - **Question type**: interpretive, with empirical sub-questions (the counts and the commit spine
   are checkable; the frames are not).
-- **Non-goals**: planning castr; re-deciding any ruling; grading the seat.
+- **Non-goals**: planning the next transplant; re-deciding any ruling; grading the seat.
 - **Scales that matter**: a citation; a validator leg; this repository; the lineage network
-  (OCE, this estate, castr, and their drift); one day of about fourteen sessions and
-  compactions; and the owner's attention, which was the scarce input throughout.
-- **Defeaters**: if the owner's purpose is only the castr capability, the origin-debt emphasis
-  below is misweighted. **Reopen** after the 57-lesson synthesis or the castr run, whichever
-  comes first.
+  (OCE, this estate, its other descendants, and their drift); one day of about fourteen
+  sessions and compactions; and the owner's attention, which was the scarce input throughout.
+- **Defeaters**: if the owner's purpose is only the next-transplant capability, the origin-debt
+  emphasis below is misweighted. **Reopen** after the 57-lesson synthesis or the next
+  transplant, whichever comes first.
 
 ## The spine (observations)
 
@@ -45,7 +45,7 @@ the two sibling reports, the formation letter, the napkin's five 2026-09-12 sect
   the transplant happened at all.
 - **Scope was set by rulings, in rounds.** Twenty questions by card in four rounds; then the
   order directives, rules, harness, re-evaluate; then "a path is not a layer"; then re-evaluate
-  by slices; then the restart test; then notes for castr; then the lineage's script names as
+  by slices; then the restart test; then notes for the next instance; then the lineage's script names as
   practised; then three hours first-hand. Every widening of scope came from the owner
   (`agent-tools` at full scope, all 126 rules, the monorepo); every narrowing of the seat's
   reading came from the owner too (digests not files, script first then estimate).
@@ -71,8 +71,8 @@ the two sibling reports, the formation letter, the napkin's five 2026-09-12 sect
    foreign conventions, fixtures rejecting foreign paths. It explains less well why the work
    kept going after the organ "took": most of the last six commits are not transplant work.
 2. **A first instance of a repeatable operation** (the installable-thing frame; the runbook and
-   the castr node). It explains the instruments and the inputs as the real product, and it
-   predicts castr. It is the frame the owner's recent directions lean on.
+   the completion node). It explains the instruments and the inputs as the real product, and it
+   predicts the next instance. It is the frame the owner's recent directions lean on.
 3. **A learning-loop repair** (the origin). The estate lost its lessons because nothing drained
    the napkin; the transplant installs the drain (three-mode memory, the graduation register,
    the cognition suite); the test is whether the loop now runs. On this frame the journey is
@@ -80,12 +80,12 @@ the two sibling reports, the formation letter, the napkin's five 2026-09-12 sect
    debt, the 57 archived lessons, is still owner-scheduled for after `.agent-original` is
    deleted.
 
-Frames 2 and 3 are the serious counterpair. Frame 2 measures success as "castr under two
-hours"; frame 3 measures it as "the next napkin rotation loses nothing and the 57 are homed".
+Frames 2 and 3 are the serious counterpair. Frame 2 measures success as "the next instance
+under two hours"; frame 3 measures it as "the next napkin rotation loses nothing and the 57 are homed".
 They are not in conflict, but they pull attention differently, and the risk they name together
 is precise: momentum on instruments is satisfying, and it can defer the origin debt in exactly
 the way fitness pressure deferred graduation in August, one level up. **Falsifier**: the
-57-lesson synthesis lands before the castr run starts. If it does not, frame 3 was the one
+57-lesson synthesis lands before the next transplant starts. If it does not, frame 3 was the one
 being neglected.
 
 Crosswalk between the frames: the immune response in frame 1 is the install-order and
@@ -114,12 +114,12 @@ mechanism, the frame was a story about the past, not the shape of the work.
 
 ## Bridge claims (cross-scale inferences, held as claims)
 
-- **B1, this instance to castr.** "castr costs a fraction" bridges from one host's day to
-  another's. Assumptions: same lineage; castr's June generation and existing `agent-tools`
-  make its delta smaller than this estate's; instruments and inputs transfer. Failure
-  conditions: castr's own divergence (an inverted adapter generator, three colliding PDR
-  numbers, its own transplant doctrine) dominating the delta. Evidence: measured counts only;
-  no second instance yet.
+- **B1, this instance to the next.** "The next instance costs a fraction" bridges from one
+  host's day to another's. Assumptions: same lineage; a host that already carries an earlier
+  generation and its own `agent-tools` has a smaller delta than this estate's; instruments and
+  inputs transfer. Failure conditions: the host's own divergence (its own generators, colliding
+  record numbers, its own transplant doctrine) dominating the delta. Evidence: measured counts
+  only; no second instance yet.
 - **B2, validators green to the Practice working.** Bridges from mechanism (checks pass) to
   consequence (sessions behave, lessons graduate). Assumption: an assertion that is checkable is
   an assertion that is followed. Failure: doctrine true on paper and unfollowed in sessions.
@@ -156,8 +156,8 @@ mechanism, the frame was a story about the past, not the shape of the work.
   subject behind it. A doctrine-to-mechanism drift check is a seed, routed to the napkin, not a
   proposal here.
 - _Discarded, visibly_: "the session id survived compaction the way the estate survived the
-  transplant" says nothing. _Discarded_: "castr is the next patient" medicalises and adds
-  nothing.
+  transplant" says nothing. _Discarded_: "the next host is the next patient" medicalises and
+  adds nothing.
 
 ## Status and world return
 
@@ -167,7 +167,8 @@ stated by the owner. This status permits using the map to orient a session and f
 any frame as a decided fact.
 
 World-return contract: the indicators are (1) the 57-lesson synthesis landing, owner-scheduled
-after the `.agent-original` deletion; (2) castr's column in the runbook's timing table; (3) the
+after the `.agent-original` deletion; (2) the next instance's column in the runbook's timing
+table; (3) the
 next consolidation's rotation losing zero lessons. Any one of them reopens this record with a
 new revision; none of them is scheduled by this record.
 

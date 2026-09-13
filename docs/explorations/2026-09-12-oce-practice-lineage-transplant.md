@@ -980,7 +980,7 @@ from, and the one fork the owner decides. Facts:
   against real plans. This repository has no `docs/strategy/`; the validator crashes there
   before reading a single plan. `check-plan-gate-drift` fails for the same reason.
 - The lineage names nodes `<id>.plan.md`. The two nodes ratified on 2026-09-12 are named
-  `practice-lineage-transplant.md` and `castr-lineage-update-preparation.md`, so the validator
+  `practice-lineage-transplant.md` and `<second-host>-lineage-update-preparation.md`, so the validator
   would not see them even when it runs; the delivery node's `serves` names the runbook, not a
   strategic node, and the runbook has no `serves`. Both are defects to cure in the migration,
   with every citing path (reports index, continuity, the continuation prompt, the letter)
@@ -1163,8 +1163,9 @@ conserved design record.
 
 ## Owner rulings, round 7 (2026-09-13, late morning) — direction: the entire Practice
 
-1. **Castr preparation stops until the owner says.** The ratified delivery node stays; its
-   slices are parked on continuity, not in the node (execution state is never a node field).
+1. **Second-host preparation stops until the owner says.** The ratified delivery node stays
+   for now; its slices are parked on continuity, not in the node (execution state is never a
+   node field). Withdrawn outright in round 8.
 2. **Define what belongs to the Practice.** Done as
    `.agent/reports/practice-transplant/what-the-practice-is.md` (nine functions; the transplant
    set by function; gaps by evidence class). Owner's constraint on method: a survey of the
@@ -1180,3 +1181,28 @@ conserved design record.
 4. **The private editorial boundary is cloned** into its ignored location and read for
    understanding. The public tree carries no URL, commit id or content from it; the working
    contract in `.agent/reference/private-editorial-workspace.md` governs.
+
+## Owner rulings, round 8 (2026-09-13, after the second compaction) — ratification
+
+One card round of four; every answer applied the same session.
+
+1. **`practice-completion` is ratified as written.** Stamp: Jim Cresswell, 2026-09-13, this
+   round. Its todo 1 starts now: the cited-paths validator first, then the class A cures.
+2. **Gemini is carried; Windsurf is rejected.** Gate 1a cleared; the ruling is in the node's
+   §Owner rulings and lands through todo 3.
+3. **The Practice's knowledge base comes over as the cited subset, scrubbed.** Gate 1b cleared:
+   the records live doctrine cites and the research the definition names; the rest stays at the
+   pin, re-importable.
+4. **The transplant instruments re-home under `practice-completion`, and the second-host
+   preparation node is withdrawn as premature** — the owner's words, the repository name
+   elided at the owner's own instruction: "delete all mention of [it], that was premature and
+   I don't want it steering the general understanding of the Practice and its future". Applied: the node file removed; every steering surface this
+   transplant authored (the strategic and runbook nodes, the strategy stream, continuity, the
+   continuation prompt, the four reports and their index, the formation letter, the napkin,
+   this record) now speaks of "the next host" or "the next instance" and names no repository.
+   Left as they are, with the reason stated: the lineage's own records and Core files that name
+   that estate as a sibling in a worked instance or a provenance entry (`practice-core/`
+   CHANGELOG, `provenance.yml`, the incoming bundle, the cloud-environment scripts, two
+   `agent-tools` test comments and its identity doc, one skill and one rule). Those are
+   history of the lineage, not this estate's understanding of its future; rewriting them would
+   falsify a record. Undo is one word.
