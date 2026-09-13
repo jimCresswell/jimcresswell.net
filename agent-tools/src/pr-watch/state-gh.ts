@@ -11,8 +11,13 @@ import {
 } from './gh.js';
 import { parseReviewThreadPages } from './review-threads.js';
 import { readReviewRunsLeg } from './review-runs.js';
-import { hasLanded, isSignedSelfReply } from './reviewer-legs.js';
-import { parseReviewsHarvest, parseStateView, PR_STATE_VIEW_JSON_FIELDS } from './state-fields.js';
+import { hasLanded, isSignedSelfReply, type HarvestedReview } from './reviewer-legs.js';
+import {
+  parseRequestedReviewers,
+  parseReviewsHarvest,
+  parseStateView,
+  PR_STATE_VIEW_JSON_FIELDS,
+} from './state-fields.js';
 import type { PrStateReading } from './state-types.js';
 
 /**
@@ -41,12 +46,18 @@ export interface ReadPrStateOptions {
 }
 
 // Paginated full-history reviews harvest; `--slurp` wraps pages into one array.
+// The outstanding review requests ride the same query: this is the one surface
+// that lists a Bot request (gh's `pr view --json reviewRequests` and REST omit
+// it — verified live 2026-09-13 on PR #60, Copilot's request absent from both).
 const REVIEWS_QUERY = `query($owner: String!, $name: String!, $number: Int!, $endCursor: String) {
   repository(owner: $owner, name: $name) {
     pullRequest(number: $number) {
       reviews(first: 100, after: $endCursor) {
         pageInfo { hasNextPage endCursor }
         nodes { author { login } state body submittedAt commit { oid } }
+      }
+      reviewRequests(first: 100) {
+        nodes { requestedReviewer { __typename ... on Bot { login } ... on User { login } ... on Team { slug name } } }
       }
     }
   }
@@ -101,14 +112,13 @@ function readReviewsHarvest(input: {
   readonly gh: string;
   readonly prNumber: string;
   readonly repo: string | undefined;
-}) {
+}): { readonly reviews: HarvestedReview[]; readonly reviewRequests: string[] } {
   try {
-    return parseReviewsHarvest(
-      parseGhJson(
-        input.run(input.gh, reviewsHarvestArgs(input.prNumber, input.repo), GH_EXEC_OPTIONS),
-        'api graphql reviews',
-      ),
+    const raw = parseGhJson(
+      input.run(input.gh, reviewsHarvestArgs(input.prNumber, input.repo), GH_EXEC_OPTIONS),
+      'api graphql reviews',
     );
+    return { reviews: parseReviewsHarvest(raw), reviewRequests: parseRequestedReviewers(raw) };
   } catch (cause) {
     throw new Error(
       `PR #${input.prNumber}: reviews harvest failed — does the PR exist and is it accessible?`,
@@ -150,7 +160,7 @@ export function readPrStateReading(options: ReadPrStateOptions): PrStateReading 
         'api graphql reviewThreads',
       ),
     );
-    const reviews = readReviewsHarvest({ run, gh, prNumber, repo });
+    const { reviews, reviewRequests } = readReviewsHarvest({ run, gh, prNumber, repo });
     const reviewRuns = readReviewRunsLeg({ run, gh, prNumber: number, prUrl: view.url });
     // The confirm read closes the race window; on a match it is also the
     // freshest same-tip snapshot, so the reading composes from it.
@@ -164,10 +174,11 @@ export function readPrStateReading(options: ReadPrStateOptions): PrStateReading 
         .filter((review) => hasLanded(review) && !isSignedSelfReply(review.body))
         .map((review) => review.author)
         .filter((author) => author !== 'unknown');
-      const observed = [...new Set([...confirm.reviewRequests, ...observedAuthors])];
+      const observed = [...new Set([...reviewRequests, ...observedAuthors])];
       return {
         ...confirm,
         reviewThreads,
+        reviewRequests,
         reviews,
         reviewRuns,
         expectedReviewers: declared.length > 0 ? declared : observed,

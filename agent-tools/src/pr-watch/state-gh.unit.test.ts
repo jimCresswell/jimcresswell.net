@@ -31,7 +31,6 @@ function viewPayload(oid: string = HEAD): string {
       },
     ],
     autoMergeRequest: null,
-    reviewRequests: [{ __typename: 'User', login: 'jimCresswell' }],
   });
 }
 
@@ -64,6 +63,15 @@ function reviewsPayload(): string {
                   submittedAt: '2026-07-21T12:00:00Z',
                   commit: { oid: HEAD },
                 },
+              ],
+            },
+            // A Bot request is visible only here (pr view and REST omit it; 2026-09-13, PR #60).
+            reviewRequests: {
+              nodes: [
+                {
+                  requestedReviewer: { __typename: 'Bot', login: 'copilot-pull-request-reviewer' },
+                },
+                { requestedReviewer: { __typename: 'User', login: 'jimCresswell' } },
               ],
             },
           },

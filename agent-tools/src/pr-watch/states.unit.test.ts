@@ -63,8 +63,6 @@ describe('PR_VERDICT_STATES', () => {
         'DRAFT',
         'WAITING-REVIEW-RUN-LIVE',
         'SILENT-WAIT-NO-REVIEWER',
-        'SILENT-WAIT-RUN-DEAD',
-        'SILENT-WAIT-RUNS-UNREADABLE',
         'CHECKS-RUNNING',
         'CHECKS-RED',
         'THREADS-OPEN',
@@ -295,7 +293,14 @@ describe('computePrVerdict — per-reviewer legs (the collapsed-legs r2 class)',
   });
 });
 
-describe('computePrVerdict — run liveness per reviewer', () => {
+describe('computePrVerdict — the outstanding request is the round in flight', () => {
+  // The review-request surface is the measured signal for a review round:
+  // the platform clears the request when the review lands. The `gh agent-task`
+  // leg never carried a Copilot review run (verified live 2026-09-13 on PR
+  // #60, which read SILENT-WAIT-NO-REVIEWER with Copilot's review in
+  // progress, its request invisible to `pr view`), so a request with no
+  // mapped run is never read as dead; a request never served is ended by the
+  // checks-green timeout arm.
   it('WAITING-REVIEW-RUN-LIVE when the owed requested reviewer has a live run', () => {
     const verdict = computePrVerdict(
       settledReading({
@@ -314,7 +319,7 @@ describe('computePrVerdict — run liveness per reviewer', () => {
     expect(verdict.state).toBe('WAITING-REVIEW-RUN-LIVE');
   });
 
-  it('SILENT-WAIT-RUN-DEAD when requested with no live run', () => {
+  it('WAITING-REVIEW-RUN-LIVE when requested with no mapped run: the request itself is the round', () => {
     const verdict = computePrVerdict(
       settledReading({
         reviews: [],
@@ -334,10 +339,10 @@ describe('computePrVerdict — run liveness per reviewer', () => {
       }),
       '2026-07-21T13:00:00Z',
     );
-    expect(verdict.state).toBe('SILENT-WAIT-RUN-DEAD');
+    expect(verdict.state).toBe('WAITING-REVIEW-RUN-LIVE');
   });
 
-  it('an unavailable runs leg with a requested owed reviewer never asserts dead', () => {
+  it('an unavailable runs leg with a requested owed reviewer still reads the round in flight, named in evidence', () => {
     const verdict = computePrVerdict(
       settledReading({
         reviews: [],
@@ -347,7 +352,8 @@ describe('computePrVerdict — run liveness per reviewer', () => {
       }),
       '2026-07-21T13:00:00Z',
     );
-    expect(verdict.state).toBe('SILENT-WAIT-RUNS-UNREADABLE');
+    expect(verdict.state).toBe('WAITING-REVIEW-RUN-LIVE');
+    expect(verdict.evidence.join('\n')).toContain('review-run liveness unavailable');
   });
 
   it('an unavailable runs leg degrades typed, named in evidence', () => {
@@ -513,11 +519,10 @@ describe('computePrVerdict — round-4 residual classes (2026-07-21)', () => {
     expect(verdict.state).toBe('SETTLING-QUIET-WINDOW');
   });
 
-  it('a TRUNCATED run list never asserts deadness — the requested owed leg reads RUNS-UNREADABLE (r5 regression)', () => {
-    // A full-window agent-task list (100 rows) leaves older runs unobserved:
-    // absence of a scoped run in truncated data is not evidence of a dead
-    // run, so the typed-uncertainty state applies, exactly as when the
-    // surface cannot be read at all.
+  it('a TRUNCATED run list still reads the requested owed leg as the round in flight, the gap in evidence', () => {
+    // A full-window agent-task list (100 rows) leaves older runs unobserved;
+    // the request surface, not the run list, says the round is in flight, so
+    // truncation changes only the evidence.
     const verdict = computePrVerdict(
       settledReading({
         reviews: [],
@@ -532,7 +537,8 @@ describe('computePrVerdict — round-4 residual classes (2026-07-21)', () => {
       }),
       LATE_NOW,
     );
-    expect(verdict.state).toBe('SILENT-WAIT-RUNS-UNREADABLE');
+    expect(verdict.state).toBe('WAITING-REVIEW-RUN-LIVE');
+    expect(verdict.evidence.join('\n')).toContain('older runs unobserved');
   });
 
   it('SETTLE-READY evidence hands over the body-tally inputs (SKILL item 2: bodies count into the round tally)', () => {

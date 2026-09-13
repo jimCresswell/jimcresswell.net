@@ -32,12 +32,12 @@ const namedRollupItemSchema = z
   })
   .loose();
 
-// A review request names a User (`login`) or a Team (`slug`, with `name` as a
-// fallback). An entry with NO identity field is misshapen external input and
-// fails loud at the boundary (strict-validation-at-boundary): transforming it
-// to 'unknown' would mint a real reviewer identifier that drives leg
-// verdicts.
-const reviewRequestSchema = z
+// A requested reviewer names a Bot or a User (`login`) or a Team (`slug`,
+// with `name` as a fallback). An entry with NO identity field is misshapen
+// external input and fails loud at the boundary
+// (strict-validation-at-boundary): transforming it to 'unknown' would mint a
+// real reviewer identifier that drives leg verdicts.
+const requestedReviewerSchema = z
   .object({
     login: z.string().optional(),
     slug: z.string().optional(),
@@ -69,13 +69,15 @@ const stateViewSchema = z.object({
     .loose()
     .nullish()
     .transform((value) => value !== null && value !== undefined),
-  reviewRequests: z
-    .array(reviewRequestSchema)
-    .nullish()
-    .transform((value) => value ?? []),
 });
 
-/** The exact `--json` field set the `pr state` gh call requests. */
+/**
+ * The exact `--json` field set the `pr state` gh call requests. Review
+ * requests are deliberately NOT read here: gh's `reviewRequests` field (and
+ * the REST endpoint beneath it) omits Bot requests, so a Copilot review in
+ * flight read as "nobody requested" (verified live 2026-09-13, PR #60); the
+ * GraphQL harvest carries them (`parseRequestedReviewers`).
+ */
 export const PR_STATE_VIEW_JSON_FIELDS = [
   'number',
   'url',
@@ -86,7 +88,6 @@ export const PR_STATE_VIEW_JSON_FIELDS = [
   'headRefOid',
   'statusCheckRollup',
   'autoMergeRequest',
-  'reviewRequests',
 ] as const;
 
 /** The parsed `gh pr view` legs specific to `pr state`. */
@@ -102,7 +103,6 @@ export interface ParsedStateView {
   readonly namedChecks: readonly NamedCheck[];
   readonly checksGreenAt: string | null;
   readonly autoMergeArmed: boolean;
-  readonly reviewRequests: readonly string[];
 }
 
 type NamedRollupItem = z.infer<typeof namedRollupItemSchema>;
@@ -169,7 +169,6 @@ export function parseStateView(raw: unknown): ParsedStateView {
     namedChecks,
     checksGreenAt: checksGreenAt(liveChecks, checks),
     autoMergeArmed: parsed.autoMergeRequest,
-    reviewRequests: parsed.reviewRequests,
   };
 }
 
@@ -180,7 +179,11 @@ const authorLogin = z
 
 // One page of the paginated `reviews` connection as `gh api graphql --paginate
 // --slurp` returns it. The FULL harvest is the reviewer-leg source (SKILL item
-// 3); a bounded `reviews(last:N)` read is the recorded wrong shape.
+// 3); a bounded `reviews(last:N)` read is the recorded wrong shape. The same
+// query carries the outstanding review requests (every page repeats them; the
+// first page is read), so the request surface is GraphQL, where Bot requests
+// are visible. A page without the connection fails loud: a silent empty
+// would read "nobody requested" over a review in flight.
 const reviewsPageSchema = z.object({
   data: z.object({
     repository: z.object({
@@ -202,12 +205,29 @@ const reviewsPageSchema = z.object({
             }),
           ),
         }),
+        reviewRequests: z.object({
+          nodes: z.array(z.object({ requestedReviewer: requestedReviewerSchema })),
+        }),
       }),
     }),
   }),
 });
 
 const reviewsPagesSchema = z.array(reviewsPageSchema).min(1);
+
+/**
+ * Parse the outstanding review requests from the harvest's first page: Bot and
+ * User logins, Team slugs.
+ *
+ * @throws a ZodError when the pages lack the connection or a request carries no
+ *   identity (strict validation at the external-input boundary).
+ */
+export function parseRequestedReviewers(raw: unknown): string[] {
+  const [first] = reviewsPagesSchema.parse(raw);
+  return first === undefined
+    ? []
+    : first.data.repository.pullRequest.reviewRequests.nodes.map((node) => node.requestedReviewer);
+}
 
 /**
  * Parse the slurped multi-page `reviews` harvest into {@link HarvestedReview}s.

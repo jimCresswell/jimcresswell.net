@@ -14,7 +14,6 @@ export interface StateViewSeed {
   readonly headRefOid: string;
   readonly statusCheckRollup: readonly unknown[];
   readonly autoMergeRequest: unknown;
-  readonly reviewRequests: readonly unknown[];
 }
 
 export function stateViewFixture(): StateViewSeed {
@@ -46,6 +45,5 @@ export function stateViewFixture(): StateViewSeed {
       { __typename: 'StatusContext', context: 'legacy/status', state: 'SUCCESS' },
     ],
     autoMergeRequest: null,
-    reviewRequests: [{ __typename: 'User', login: 'jimCresswell' }],
   };
 }
