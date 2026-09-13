@@ -32,8 +32,8 @@ export interface ChoiceRegistry {
 /**
  * Recompute the strategic-choice registry from the strategy corpus.
  *
- * @param readmeContent - `docs/strategy/README.md` verbatim.
- * @param streamContents - Each `docs/strategy/stream-*.md` verbatim.
+ * @param readmeContent - `.agent/plans/strategy/README.md` verbatim.
+ * @param streamContents - Each `.agent/plans/strategy/stream-*.md` verbatim.
  * @returns The registry, or an error when the README names no families
  *   (a vacuous registry would green every plan — fail closed instead).
  */
@@ -45,7 +45,7 @@ export function recomputeChoiceRegistry(
   if (families.size === 0) {
     return err(
       new Error(
-        'strategic-choice registry recompute found no `PREFIX-*` families in docs/strategy/README.md — refusing a vacuous registry',
+        'strategic-choice registry recompute found no `PREFIX-*` families in .agent/plans/strategy/README.md — refusing a vacuous registry',
       ),
     );
   }

@@ -185,7 +185,7 @@ function servesMessages(
     return choices.ids.has(serves)
       ? []
       : [
-          `serves: '${serves}' does not resolve against the published strategic-choice registry (docs/strategy; known: ${sorted(choices.ids).join(', ')})`,
+          `serves: '${serves}' does not resolve against the published strategic-choice registry (.agent/plans/strategy; known: ${sorted(choices.ids).join(', ')})`,
         ];
   }
   return strategicIds.has(serves)

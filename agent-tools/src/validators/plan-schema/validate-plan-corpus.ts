@@ -3,7 +3,7 @@
 import { readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
 
-import { isErr, type Result } from '@engraph/result';
+import { err, isErr, type Result } from '@engraph/result';
 
 import { resolveRepoRoot } from '../../core/repo-root.js';
 import { writeErrorLine, writeLine } from '../../core/terminal-output.js';
@@ -33,9 +33,8 @@ import { validateCorpus } from './validate-plan-corpus-helpers.js';
  * `check-plan-gate-drift.ts` (owner ruling 2026-07-31).
  *
  * **Scan root is the admission rule drawn as a directory boundary**:
- * only `.agent/plans/` is scanned. The conserved backlog
- * (`.agent/plans-backlog-2026-07/`) and the archived V0 sketch corpus
- * are outside by construction. Node dispatch is file-suffix-shaped:
+ * only `.agent/plans/` is scanned. The conserved pre-schema corpus
+ * (`.agent/plans-legacy-2026-09/`) is outside by construction. Node dispatch is file-suffix-shaped:
  * only `*.plan.md` files are plan nodes; the schema doc, registries,
  * templates, and READMEs are not scanned.
  *
@@ -45,17 +44,34 @@ import { validateCorpus } from './validate-plan-corpus-helpers.js';
  * @packageDocumentation
  */
 
-const STRATEGY_DIR = 'docs/strategy';
+/**
+ * The strategy corpus lives beside the plan corpus (owner ruling
+ * 2026-09-13: the planning estate, registry included, stays under
+ * `.agent/plans/`); the lineage kept it at `docs/strategy`.
+ */
+const STRATEGY_DIR = '.agent/plans/strategy';
 const IMPACT_AREAS_FILE = '.agent/plans/impact-areas.md';
 const repoRoot = resolveRepoRoot(import.meta.url);
 
 /** Read both strategy surfaces and recompute the choice registry. */
 async function loadChoiceRegistry(): Promise<Result<ChoiceRegistry, Error>> {
   const strategyDir = path.join(repoRoot, STRATEGY_DIR);
-  const readmeContent = await readFile(path.join(strategyDir, 'README.md'), 'utf8');
-  const streamNames = (await readdir(strategyDir)).filter(
-    (name) => name.startsWith('stream-') && name.endsWith('.md'),
-  );
+  let readmeContent: string;
+  let streamNames: readonly string[];
+  try {
+    readmeContent = await readFile(path.join(strategyDir, 'README.md'), 'utf8');
+    streamNames = (await readdir(strategyDir)).filter(
+      (name) => name.startsWith('stream-') && name.endsWith('.md'),
+    );
+  } catch (cause: unknown) {
+    // Fail closed with the reason, never an unhandled ENOENT: an absent
+    // strategy corpus means no plan can resolve its `serves` edge.
+    return err(
+      new Error(
+        `strategy corpus unreadable at ${STRATEGY_DIR} (README.md plus stream-*.md are required): ${cause instanceof Error ? cause.message : String(cause)}`,
+      ),
+    );
+  }
   const streamContents = await Promise.all(
     streamNames.map(async (name) => readFile(path.join(strategyDir, name), 'utf8')),
   );
