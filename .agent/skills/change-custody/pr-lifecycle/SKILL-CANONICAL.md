@@ -1143,13 +1143,20 @@ deliberately gone — triage binds from wave one. **The step-back trigger is
   head that a held cure or a sync will supersede is spent for nothing
   (first-hand 2026-09-10 on #108, #114 and #116). The same sweep names a
   shepherd for every open PR: threads with no owner are the same disease.
-  The sweep's third leg is **review-RUN liveness**: `gh agent-task list`
-  enumerates review runs (`--json id,name,createdAt,completedAt`;
+  The sweep's third leg is **review-round liveness**: the outstanding
+  review request is the measured signal that a round is in flight. It is
+  read from the GraphQL `reviewRequests` connection, the one surface that
+  lists a Bot request (gh's `pr view --json reviewRequests` and the REST
+  endpoint beneath it omit Bot requests, so a Copilot review in progress
+  read as "nobody requested" until 2026-09-13, PR #60), and the platform
+  clears it when the review lands. `gh agent-task list` enumerates
+  coding-agent sessions (`--json id,name,createdAt,completedAt`;
   `completedAt` null = in flight) and `gh agent-task view <session-id>
-  --json` maps a run to its PR (the list JSON carries no PR number; the
+  --json` maps one to its PR (the list JSON carries no PR number; the
   PR-number positional is interactive-only — vendor shapes verified
-  2026-07-21). Run-in-flight, run-never-started, and run-dead are now
-  distinguishable states; a wait on a review whose run never started is
+  2026-07-21); it never carried a review run, so it is evidence beside the
+  request, never the deciding leg. A request never served is ended by the
+  checks-green timeout arm (item 3): a wait on a review nobody requested is
   the silent-wait class, not patience.
 - **Own the convergence loop — never hand it to the owner** (owner
   corrections, 2026-07-07 #317 and 2026-07-08 #324 — two seats re-derived

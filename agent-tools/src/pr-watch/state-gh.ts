@@ -11,13 +11,9 @@ import {
 } from './gh.js';
 import { parseReviewThreadPages } from './review-threads.js';
 import { readReviewRunsLeg } from './review-runs.js';
+import { parseRequestedReviewers, parseReviewsHarvest } from './harvest-fields.js';
 import { hasLanded, isSignedSelfReply, type HarvestedReview } from './reviewer-legs.js';
-import {
-  parseRequestedReviewers,
-  parseReviewsHarvest,
-  parseStateView,
-  PR_STATE_VIEW_JSON_FIELDS,
-} from './state-fields.js';
+import { parseStateView, PR_STATE_VIEW_JSON_FIELDS } from './state-fields.js';
 import type { PrStateReading } from './state-types.js';
 
 /**
@@ -57,7 +53,8 @@ const REVIEWS_QUERY = `query($owner: String!, $name: String!, $number: Int!, $en
         nodes { author { login } state body submittedAt commit { oid } }
       }
       reviewRequests(first: 100) {
-        nodes { requestedReviewer { __typename ... on Bot { login } ... on User { login } ... on Team { slug name } } }
+        pageInfo { hasNextPage }
+        nodes { requestedReviewer { __typename ... on Bot { login } ... on User { login } ... on Mannequin { login } ... on Team { slug name } } }
       }
     }
   }

@@ -67,6 +67,7 @@ function reviewsPayload(): string {
             },
             // A Bot request is visible only here (pr view and REST omit it; 2026-09-13, PR #60).
             reviewRequests: {
+              pageInfo: { hasNextPage: false },
               nodes: [
                 {
                   requestedReviewer: { __typename: 'Bot', login: 'copilot-pull-request-reviewer' },

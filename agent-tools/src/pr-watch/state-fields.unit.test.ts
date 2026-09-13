@@ -1,12 +1,8 @@
 import { describe, expect, it } from 'vitest';
 
 import { parseAgentTaskList, parseAgentTaskView } from './agent-task-fields.js';
-import {
-  parseRequestedReviewers,
-  parseReviewsHarvest,
-  parseStateView,
-  PR_STATE_VIEW_JSON_FIELDS,
-} from './state-fields.js';
+import { parseRequestedReviewers, parseReviewsHarvest } from './harvest-fields.js';
+import { parseStateView, PR_STATE_VIEW_JSON_FIELDS } from './state-fields.js';
 import { stateViewFixture } from './state-view-fixture.js';
 
 /**
@@ -126,14 +122,13 @@ describe('parseStateView', () => {
   });
 });
 
-function page(nodes: readonly unknown[], requests: readonly unknown[] = []): unknown {
-  return {
-    data: {
-      repository: {
-        pullRequest: { reviews: { nodes }, reviewRequests: { nodes: requests } },
-      },
-    },
-  };
+function page(
+  nodes: readonly unknown[],
+  requests: readonly unknown[] = [],
+  hasNextPage = false,
+): unknown {
+  const reviewRequests = { pageInfo: { hasNextPage }, nodes: requests };
+  return { data: { repository: { pullRequest: { reviews: { nodes }, reviewRequests } } } };
 }
 
 describe('parseRequestedReviewers', () => {
@@ -161,6 +156,10 @@ describe('parseRequestedReviewers', () => {
       /identity field/,
     );
     expect(() => parseRequestedReviewers([page([], [{ requestedReviewer: null }])])).toThrow();
+  });
+
+  it('a request connection with a further page fails loud (an unread page would hide a request)', () => {
+    expect(() => parseRequestedReviewers([page([], [], true)])).toThrow();
   });
 
   it('a page without the reviewRequests connection fails loud (a silent empty would read nobody requested)', () => {

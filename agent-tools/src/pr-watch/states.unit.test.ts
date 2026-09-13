@@ -301,25 +301,7 @@ describe('computePrVerdict — the outstanding request is the round in flight', 
   // progress, its request invisible to `pr view`), so a request with no
   // mapped run is never read as dead; a request never served is ended by the
   // checks-green timeout arm.
-  it('WAITING-REVIEW-RUN-LIVE when the owed requested reviewer has a live run', () => {
-    const verdict = computePrVerdict(
-      settledReading({
-        reviews: [],
-        reviewRequests: [COPILOT],
-        checksGreenAt: '2026-07-21T12:56:00Z',
-        reviewRuns: {
-          kind: 'read',
-          runs: [
-            { id: 'run-1', name: 'Review from @jimCresswell', createdAt: 't0', completedAt: null },
-          ],
-        },
-      }),
-      '2026-07-21T13:00:00Z',
-    );
-    expect(verdict.state).toBe('WAITING-REVIEW-RUN-LIVE');
-  });
-
-  it('WAITING-REVIEW-RUN-LIVE when requested with no mapped run: the request itself is the round', () => {
+  it('WAITING-REVIEW-RUN-LIVE when the owed reviewer is requested, whatever the run surface shows', () => {
     const verdict = computePrVerdict(
       settledReading({
         reviews: [],

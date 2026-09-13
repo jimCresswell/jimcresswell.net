@@ -37,6 +37,7 @@ function threadsPayload(): string {
 /** The harvest page: no review landed yet, one Bot request and one User request outstanding. */
 function harvestPayload(): string {
   const reviewRequests = {
+    pageInfo: { hasNextPage: false },
     nodes: [
       { requestedReviewer: { __typename: 'Bot', login: COPILOT } },
       { requestedReviewer: { __typename: 'User', login: 'jimCresswell' } },
@@ -64,15 +65,13 @@ const ghSeam = { ghPath: '/usr/bin/gh', exists: () => true };
 
 describe('readPrStateReading — review requests', () => {
   it('reads review requests from the GraphQL harvest, where a Bot request is visible, never from pr view', () => {
-    const calls: string[][] = [];
     const reading = readPrStateReading({
       target: { number: 461 },
       ...ghSeam,
-      execFileSync: executor(calls),
+      execFileSync: executor([]),
     });
+    // The view payload carries no requests, so this set can only have come from the harvest.
     expect(reading.reviewRequests).toEqual([COPILOT, 'jimCresswell']);
-    expect(calls.find((args) => args[0] === 'pr')?.join(' ')).not.toContain('reviewRequests');
-    expect(calls.some((args) => args.some((arg) => arg.includes('reviewRequests(')))).toBe(true);
   });
 
   it('an outstanding Bot request enters the defaulted expected set', () => {

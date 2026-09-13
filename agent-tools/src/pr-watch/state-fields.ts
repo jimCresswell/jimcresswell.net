@@ -2,17 +2,15 @@ import { z } from 'zod';
 
 import { blockingRank, latestRunPerCheck } from './check-rollup.js';
 import { classifyCheck, type ChecksSummary } from './index.js';
-import type { HarvestedReview } from './reviewer-legs.js';
 import type { NamedCheck } from './state-types.js';
 
 /**
- * Boundary parsers for the `pr state` legs that the existing snapshot does not
- * carry: named per-check verdicts with the checks-green timestamp, auto-merge
- * intent, review requests, the FULL paginated review harvest (the
- * `latestReviews` per-author pointer is deliberately NOT a source here — it
- * moves backwards when an older-tip review job completes late), and
- * `gh agent-task` review-run shapes. Zod at the external boundary; misshapen
- * input fails loud, while fields GitHub genuinely nulls normalise explicitly.
+ * Boundary parser for the `pr state` view leg that the existing snapshot does
+ * not carry: named per-check verdicts with the checks-green timestamp and
+ * auto-merge intent. The review harvest and the review requests are parsed in
+ * `harvest-fields.ts`, the `gh agent-task` shapes in `agent-task-fields.ts`.
+ * Zod at the external boundary; misshapen input fails loud, while fields the
+ * platform genuinely nulls normalise explicitly.
  */
 
 // Superset of the pr-watch rollup schema: D1 additionally carries the check's
@@ -31,23 +29,6 @@ const namedRollupItemSchema = z
     startedAt: z.string().nullish(),
   })
   .loose();
-
-// A requested reviewer names a Bot or a User (`login`) or a Team (`slug`,
-// with `name` as a fallback). An entry with NO identity field is misshapen
-// external input and fails loud at the boundary
-// (strict-validation-at-boundary): transforming it to 'unknown' would mint a
-// real reviewer identifier that drives leg verdicts.
-const requestedReviewerSchema = z
-  .object({
-    login: z.string().optional(),
-    slug: z.string().optional(),
-    name: z.string().optional(),
-  })
-  .loose()
-  .refine((value) => (value.login ?? value.slug ?? value.name) !== undefined, {
-    message: 'review request carries no User/Team identity field (login/slug/name)',
-  })
-  .transform((value) => value.login ?? value.slug ?? value.name ?? 'unknown');
 
 const stateViewSchema = z.object({
   number: z.number(),
@@ -170,80 +151,4 @@ export function parseStateView(raw: unknown): ParsedStateView {
     checksGreenAt: checksGreenAt(liveChecks, checks),
     autoMergeArmed: parsed.autoMergeRequest,
   };
-}
-
-const authorLogin = z
-  .object({ login: z.string() })
-  .nullish()
-  .transform((value) => value?.login ?? 'unknown');
-
-// One page of the paginated `reviews` connection as `gh api graphql --paginate
-// --slurp` returns it. The FULL harvest is the reviewer-leg source (SKILL item
-// 3); a bounded `reviews(last:N)` read is the recorded wrong shape. The same
-// query carries the outstanding review requests (every page repeats them; the
-// first page is read), so the request surface is GraphQL, where Bot requests
-// are visible. A page without the connection fails loud: a silent empty
-// would read "nobody requested" over a review in flight.
-const reviewsPageSchema = z.object({
-  data: z.object({
-    repository: z.object({
-      pullRequest: z.object({
-        reviews: z.object({
-          nodes: z.array(
-            z.object({
-              author: authorLogin,
-              state: z.string(),
-              body: z.string(),
-              submittedAt: z
-                .string()
-                .nullish()
-                .transform((value) => value ?? ''),
-              commit: z
-                .object({ oid: z.string() })
-                .nullish()
-                .transform((value) => value?.oid ?? ''),
-            }),
-          ),
-        }),
-        reviewRequests: z.object({
-          nodes: z.array(z.object({ requestedReviewer: requestedReviewerSchema })),
-        }),
-      }),
-    }),
-  }),
-});
-
-const reviewsPagesSchema = z.array(reviewsPageSchema).min(1);
-
-/**
- * Parse the outstanding review requests from the harvest's first page: Bot and
- * User logins, Team slugs.
- *
- * @throws a ZodError when the pages lack the connection or a request carries no
- *   identity (strict validation at the external-input boundary).
- */
-export function parseRequestedReviewers(raw: unknown): string[] {
-  const [first] = reviewsPagesSchema.parse(raw);
-  return first === undefined
-    ? []
-    : first.data.repository.pullRequest.reviewRequests.nodes.map((node) => node.requestedReviewer);
-}
-
-/**
- * Parse the slurped multi-page `reviews` harvest into {@link HarvestedReview}s.
- *
- * @throws a ZodError when the input is not the expected slurped page-array
- *   shape (never a silent empty — an empty harvest must be a real empty page).
- */
-export function parseReviewsHarvest(raw: unknown): HarvestedReview[] {
-  return reviewsPagesSchema
-    .parse(raw)
-    .flatMap((page) => page.data.repository.pullRequest.reviews.nodes)
-    .map((node) => ({
-      author: node.author,
-      state: node.state,
-      body: node.body,
-      commitOid: node.commit,
-      submittedAt: node.submittedAt,
-    }));
 }
