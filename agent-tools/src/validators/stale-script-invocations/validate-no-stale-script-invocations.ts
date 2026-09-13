@@ -1,6 +1,4 @@
-import fs from 'node:fs/promises';
-import path from 'node:path';
-
+import { discoverAuthoredFiles } from '../../core/authored-surfaces.js';
 import { resolveRepoRoot } from '../../core/repo-root.js';
 import { writeLine, writeErrorLine } from '../../core/terminal-output.js';
 
@@ -78,58 +76,17 @@ const ALLOWLISTED_PATHS: readonly string[] = [
   '.agent/plans/architecture-and-infrastructure/current/pr-90-landing-closure.plan.md',
 ];
 
-interface ScannableFile {
-  readonly path: string;
-  readonly content: string;
-}
-
-function isEnoent(error: unknown): boolean {
-  return typeof error === 'object' && error !== null && 'code' in error && error.code === 'ENOENT';
-}
-
-async function discoverScannableFiles(): Promise<readonly ScannableFile[]> {
-  const files: ScannableFile[] = [];
-
-  for (const rootRelative of SCANNED_ROOTS) {
-    const rootAbsolute = path.join(repoRoot, rootRelative);
-    await collectFiles(rootAbsolute, files);
-  }
-
-  return files;
-}
-
-async function collectFiles(absoluteDir: string, accumulator: ScannableFile[]): Promise<void> {
-  let entries: readonly { name: string; isDirectory: () => boolean; isFile: () => boolean }[];
-  try {
-    entries = await fs.readdir(absoluteDir, { withFileTypes: true });
-  } catch (error) {
-    // Surfaces may be optional (e.g. `.agent/research` exists in some
-    // checkouts and not others). A missing directory is not a failure.
-    if (isEnoent(error)) {
-      return;
-    }
-    throw error;
-  }
-
-  for (const entry of entries) {
-    const entryAbsolute = path.join(absoluteDir, entry.name);
-    const entryRelative = path.relative(repoRoot, entryAbsolute);
-    const normalizedRelative = entryRelative.split(path.sep).join('/');
-
-    if (EXCLUDED_PATH_FRAGMENTS.some((fragment) => normalizedRelative.includes(fragment))) {
-      continue;
-    }
-
-    if (entry.isDirectory()) {
-      await collectFiles(entryAbsolute, accumulator);
-      continue;
-    }
-
-    if (entry.isFile() && SCANNED_EXTENSIONS.has(path.extname(entry.name))) {
-      const content = await fs.readFile(entryAbsolute, 'utf8');
-      accumulator.push({ path: normalizedRelative, content });
-    }
-  }
+/**
+ * Surfaces may be optional (e.g. `.agent/research` exists in some checkouts
+ * and not others); the shared walker treats a missing root as empty.
+ */
+function discoverScannableFiles(): Promise<readonly { path: string; content: string }[]> {
+  return discoverAuthoredFiles(repoRoot, {
+    roots: SCANNED_ROOTS,
+    rootFiles: [],
+    extensions: SCANNED_EXTENSIONS,
+    excludedPathFragments: EXCLUDED_PATH_FRAGMENTS,
+  });
 }
 
 function formatFindings(findings: readonly StaleScriptInvocationFinding[]): string {

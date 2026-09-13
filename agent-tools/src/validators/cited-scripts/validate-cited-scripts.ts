@@ -1,6 +1,4 @@
-import fs from 'node:fs/promises';
-import path from 'node:path';
-
+import { discoverAuthoredFiles } from '../../core/authored-surfaces.js';
 import { resolveRepoRoot } from '../../core/repo-root.js';
 import { writeErrorLine, writeLine } from '../../core/terminal-output.js';
 
@@ -8,7 +6,7 @@ import {
   findMissingScriptCitations,
   type MissingScriptFinding,
 } from './validate-cited-scripts-helpers.js';
-import { loadWorkspaceScripts, readOptionalFile } from './workspace-scripts.js';
+import { loadWorkspaceScripts } from './workspace-scripts.js';
 
 /**
  * Standalone validator that walks the authored agent and documentation
@@ -81,69 +79,6 @@ const EXCLUDED_PATH_FRAGMENTS: readonly string[] = [
 
 const ALLOWLISTED_PATHS: readonly string[] = [];
 
-interface ScannableFile {
-  readonly path: string;
-  readonly content: string;
-}
-
-interface DirectoryEntry {
-  readonly name: string;
-  isDirectory: () => boolean;
-  isFile: () => boolean;
-}
-
-function toRepoRelative(absolute: string): string {
-  return path.relative(repoRoot, absolute).split(path.sep).join('/');
-}
-
-function isExcluded(repoRelative: string): boolean {
-  return EXCLUDED_PATH_FRAGMENTS.some((fragment) => repoRelative.includes(fragment));
-}
-
-async function readDirectoryEntries(absoluteDir: string): Promise<readonly DirectoryEntry[]> {
-  try {
-    return await fs.readdir(absoluteDir, { withFileTypes: true });
-  } catch (error) {
-    if (typeof error === 'object' && error !== null && 'code' in error && error.code === 'ENOENT') {
-      return [];
-    }
-    throw error;
-  }
-}
-
-function isScannableFile(entry: DirectoryEntry): boolean {
-  return entry.isFile() && SCANNED_EXTENSIONS.has(path.extname(entry.name));
-}
-
-async function collectFiles(absoluteDir: string, accumulator: ScannableFile[]): Promise<void> {
-  for (const entry of await readDirectoryEntries(absoluteDir)) {
-    const entryAbsolute = path.join(absoluteDir, entry.name);
-    const repoRelative = toRepoRelative(entryAbsolute);
-    if (isExcluded(entry.isDirectory() ? `${repoRelative}/` : repoRelative)) {
-      continue;
-    }
-    if (entry.isDirectory()) {
-      await collectFiles(entryAbsolute, accumulator);
-    } else if (isScannableFile(entry)) {
-      accumulator.push({ path: repoRelative, content: await fs.readFile(entryAbsolute, 'utf8') });
-    }
-  }
-}
-
-async function discoverScannableFiles(): Promise<readonly ScannableFile[]> {
-  const files: ScannableFile[] = [];
-  for (const rootRelative of SCANNED_ROOTS) {
-    await collectFiles(path.join(repoRoot, rootRelative), files);
-  }
-  for (const fileName of SCANNED_ROOT_FILES) {
-    const content = await readOptionalFile(path.join(repoRoot, fileName));
-    if (content !== undefined) {
-      files.push({ path: fileName, content });
-    }
-  }
-  return files;
-}
-
 function formatFindings(findings: readonly MissingScriptFinding[]): string {
   return findings
     .map((finding) => {
@@ -158,7 +93,12 @@ function formatFindings(findings: readonly MissingScriptFinding[]): string {
 
 async function main(): Promise<void> {
   const [files, scripts] = await Promise.all([
-    discoverScannableFiles(),
+    discoverAuthoredFiles(repoRoot, {
+      roots: SCANNED_ROOTS,
+      rootFiles: SCANNED_ROOT_FILES,
+      extensions: SCANNED_EXTENSIONS,
+      excludedPathFragments: EXCLUDED_PATH_FRAGMENTS,
+    }),
     loadWorkspaceScripts(repoRoot),
   ]);
   const findings = findMissingScriptCitations(files, scripts, {

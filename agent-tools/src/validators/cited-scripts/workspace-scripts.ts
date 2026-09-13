@@ -4,6 +4,7 @@ import path from 'node:path';
 import { typeSafeKeys } from '@engraph/type-helpers';
 import { parse as parseYaml } from 'yaml';
 
+import { isEnoent, readOptionalFile } from '../../core/authored-surfaces.js';
 import { isPlainObject, nonBlankString } from '../../core/json-narrowing.js';
 
 import { type WorkspaceScripts } from './validate-cited-scripts-helpers.js';
@@ -33,22 +34,6 @@ function isPackageManifest(value: unknown): value is PackageManifest {
 
 function isWorkspaceManifest(value: unknown): value is WorkspaceManifest {
   return isPlainObject(value);
-}
-
-function isEnoent(error: unknown): boolean {
-  return typeof error === 'object' && error !== null && 'code' in error && error.code === 'ENOENT';
-}
-
-/** Read a file's text, or `undefined` when it does not exist. */
-export async function readOptionalFile(absolutePath: string): Promise<string | undefined> {
-  try {
-    return await fs.readFile(absolutePath, 'utf8');
-  } catch (error) {
-    if (isEnoent(error)) {
-      return undefined;
-    }
-    throw error;
-  }
 }
 
 /** The script names a decoded manifest declares; empty when it declares none. */
