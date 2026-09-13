@@ -50,7 +50,7 @@ Every line answered first-hand, none inferred:
   archive holds only processed material.
 - The transplant is bounded: closure items 3 to 8 finish it, then editorial work.
 
-## Current handoff state (2026-09-13, about 15:45Z, at the Director's pre-compaction wrap)
+## Current handoff state (2026-09-13, about 15:50Z, after the Director's compaction)
 
 - Director: Cauldron herds Lustre (880ff9), claim `1db07581`, thread `transplant-closure`,
   branch `chore/director-records-2` (records only; the Director makes no source edits).
@@ -63,8 +63,11 @@ Every line answered first-hand, none inferred:
   follow-ons (restore, sif, five patterns), item 5 (lane A, after #56), item 7 (lane C, after
   its follow-ons).
 - Team state: owner word about 15:35Z, "we need to slow down, just you and one implementer,
-  the rest paused." Lane A active; lanes B and C PAUSED with state saved and claims kept;
-  resume is owner word relayed by the Director.
+  the rest paused." Lane A active. Lanes B and C COLD-PAUSED by the owner's word in their own
+  sessions (monitors stopped, claims kept and reading stale by design); each carries one local
+  unpushed save commit (B: `80d3809` on `closure/lane-b-generator`; C: `8cbebb6` napkin on
+  `closure/lane-c-restore`, push granted in the slot order). Resume is owner word in the seat's
+  session or relayed by the Director.
 - Merge mechanics learned today: every agent PR write runs as the bot; the bot cannot request
   Copilot here (the owner's CLI credential can, and the request registers on the timeline
   about 20 s later; the review takes 8 to 12 minutes); a push re-opens the round and needs a
@@ -74,18 +77,20 @@ Every line answered first-hand, none inferred:
 - Re-arm after compaction, in this order, checking first (PDR-133; nothing is assumed live):
   the all-channels comms watcher (Monitor, `comms watch --exclude-tag heartbeat`), then
   `assert-watcher-live`; the heartbeat loop (both legs, claim `1db07581`); then read the stream
-  since the wrap event for the seats' pings and PAUSED events.
-- Next safe step: confirm #56's Copilot request on its landed tip (request under the owner's CLI
-  credential if absent), merge #56 by the bot at zero threads, give lane A the go for item 5 on
-  a branch from `main`, push this records branch and open its PR. Everything else waits for the
-  owner's word.
+  since the wrap event. Checked 15:39Z: both survived compaction (Claude Code background tasks
+  outlive a compaction); asserted live; the claim heartbeat advanced; nothing re-armed.
+- Next safe step: lane A's cure push on #56 (three causes, all lane A's: two smoke tests fail
+  on a clean runner, two CodeQL check-then-use alerts, no Copilot request on the tip), then a
+  Copilot request under the owner's CLI credential, then merge by the bot at zero threads, then
+  lane A's go for item 5 on a branch from `main`. PR #58 (this records branch) merges at zero
+  threads once Copilot binds its tip. Everything else waits for the owner's word.
 
 ## Live board
 
 | Lane | Items | Owns exclusively | Seat | Claim | Branch / PR | State |
 | ---- | ----- | ---------------- | ---- | ----- | ----------- | ----- |
 | A | 3 then 5 | root scripts, CI workflow, `agent-tools/` legs and retirements, the leak validator, `tooling/*/package.json`, `turbo.json`, `jcdotnet/accept-md.config.js`, the incoming bundle | Saffron turns Verdure (c39ad7) | opens on the go | `closure/lane-a` | ACTIVE: #56 at 9a90d1b, Copilot re-requested 15:32Z, merge at zero threads; records commit 64aa005 held for item 5's branch |
-| B | 6 | `.agent/rules/**`, `RULES_INDEX.md`, `.cursor/rules/**`, `.claude/rules/**`, `.agents/rules/**`, the rules-index and trigger generator, sub-agent adapter descriptions | Sirocco wakes Wingspan (45fe02) | 707ed764 | `closure/lane-b` PR #55 (third round); `closure/lane-b-generator` (2a) | PAUSED by owner word about 15:35Z; state saved |
+| B | 6 | `.agent/rules/**`, `RULES_INDEX.md`, `.cursor/rules/**`, `.claude/rules/**`, `.agents/rules/**`, the rules-index and trigger generator, sub-agent adapter descriptions | Sirocco wakes Wingspan (45fe02) | 707ed764 | `closure/lane-b` PR #55 (third round); `closure/lane-b-generator` (2a) | COLD-PAUSED by owner word in its session after 15:40Z; monitors stopped; claim reads stale by design; `80d3809` local only |
 | C | 4 then 7 | the definition report, `testing-strategy.md`, the substrate manifest's register declarations, the Gemini projection; hands its four rule re-triages to B as a list | Djinn hunts Solder (36720b) | c7f8c3b7, d5232d8a | `closure/lane-c`; PR #57 merged 4a61112 | COLD-PAUSED by owner word in its session about 15:40Z (events f76f87a3, cold-pause); unreachable by comms or native messaging; route nothing; restore not started; claim db336346 kept (reads stale) |
 | Director | 7 | reports index, runbook step 13, `provenance.yml` completion entry; merges | Cauldron herds Lustre | 1db07581 | after A, B, C land | waiting on lanes |
 
@@ -163,3 +168,11 @@ the commit queue (one host, one e2e port). Item 7 is written last because it rec
 - 2026-09-13 about 15:45Z: pre-compaction wrap. Records committed on `chore/director-records-2`
   (push queued behind lane A and lane B's pushes in the slot order; the post-compaction Director
   pushes first thing if it has not landed).
+- 2026-09-13 15:39Z to 15:50Z: post-compaction pickup. Monitors survived (prediction falsified;
+  recorded). Records branch pushed (gate green, 58 e2e) and PR #58 opened as the bot, Copilot
+  requested under the owner's credential. #56 red at 9a90d1b: lane A owns three causes (smoke
+  tests reading the host's registry and a CI lockfile refusal; CodeQL check-then-use; no Copilot
+  request on the tip); cure in progress, slot on ask. Lane B declined the save push: cold-paused
+  by owner word in its session; that word binds over the Director's routing. Lane C asked a slot
+  for its napkin commit; granted (unpushed capture before compaction is a work-safety exposure;
+  worktree hygiene opens the draft PR at first push). Slot order: C, then A on ask.
