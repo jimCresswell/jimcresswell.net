@@ -22,17 +22,22 @@ import type { PrStateReading, PrVerdict, ReviewRun } from './state-types.js';
  * read takes its threads after the harvest, so a review seen landed has its
  * threads on the read and a review not yet landed shows as its request.
  *
- * The run leg is evidence beside the request, never the deciding clause: the
- * `gh agent-task` surface lists coding-agent sessions and never carried a
- * review round (5a-i, 2026-09-13), so the review round's measured signal is
- * the request, read on every compound read. An unavailable or truncated run
- * surface is therefore named on every settled verdict and holds nothing:
- * blocking on it would make settlement depend on an optional gh extension
- * being installed and readable (a CI host has none), the SETTLED-NO-REVIEW
- * deadlock in another coat (the Director's verdict on #65, 2026-09-14).
+ * The run leg's contract, exactly: an OBSERVED live run mapped to the PR is a
+ * measured guard and blocks settlement (roundInFlight); an unavailable or
+ * truncated run surface is named on the settled verdict and does not block.
+ * The asymmetry is measured: the `gh agent-task` surface lists coding-agent
+ * sessions and never carried a review round (5a-i, 2026-09-13), so the review
+ * round's own signal is the request, read on every compound read, and
+ * blocking on an unobservable optional gh extension (a CI host has none)
+ * would be the SETTLED-NO-REVIEW deadlock in another coat (the Director's
+ * verdict on #65, 2026-09-14).
  */
 
-/** The run surface's gaps, named on every verdict that carries the runs leg. */
+/**
+ * The run surface's gaps, named on every verdict that carries the runs leg.
+ * A truncated read that still observed a live run says so through the run's
+ * own line (roundInFlight), not through a "none observed" line beside it.
+ */
 function runsEvidence(reading: PrStateReading): string[] {
   if (reading.reviewRuns.kind === 'unavailable') {
     return [
@@ -40,7 +45,7 @@ function runsEvidence(reading: PrStateReading): string[] {
     ];
   }
   const note = reading.reviewRuns.note === undefined ? [] : [reading.reviewRuns.note];
-  return reading.reviewRuns.truncated === true
+  return reading.reviewRuns.truncated === true && liveRuns(reading).length === 0
     ? [
         ...note,
         'review-run surface incomplete: no live run observed in the part read; the review round is measured by the request surface, which this read carries',

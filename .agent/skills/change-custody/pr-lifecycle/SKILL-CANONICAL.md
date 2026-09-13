@@ -926,14 +926,15 @@ deliberately gone — triage binds from wave one. **The step-back trigger is
    reviewer leg reads SATISFIED or SKIPPED for the current tip AND the
    round's boundary reads closed from MEASURED state: no expected reviewer
    has an outstanding review request, and no live review run mapped to the
-   PR is observed. The run leg is evidence beside the request, never the
-   deciding clause: `gh agent-task` lists coding-agent sessions and never
-   carried a review round, so the round's measured signal is the request,
-   read on every compound read; an unavailable or truncated run surface is
-   named on the settled verdict and does not block, since blocking on an
-   optional gh extension being installed and readable (a CI host has none)
-   would be the SETTLED-NO-REVIEW deadlock in another coat (Director's
-   verdict on #65, 2026-09-14) (round-3 correction, 2026-07-16: without the skip clause a
+   PR is observed. The run leg's contract, exactly: an OBSERVED live run
+   mapped to the PR is a measured guard and blocks settlement; an
+   unavailable or truncated run surface is named on the settled verdict and
+   does not block. The asymmetry is measured: `gh agent-task` lists
+   coding-agent sessions and never carried a review round, so the review
+   round's own signal is the request, read on every compound read, and
+   blocking on an optional gh extension being installed and readable (a CI
+   host has none) would be the SETTLED-NO-REVIEW deadlock in another coat
+   (Director's verdict on #65, 2026-09-14) (round-3 correction, 2026-07-16: without the skip clause a
    timed-out reviewer stays bound to an older commit and the settled state
    is unreachable). Until 2026-09-13 the boundary was a PROXY, a quiet
    window of more than ten minutes since the latest tip-bound review,
