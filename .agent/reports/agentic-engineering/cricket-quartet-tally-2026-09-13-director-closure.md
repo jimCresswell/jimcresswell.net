@@ -34,8 +34,9 @@ their comms event ids where they had one and approximate chat times where they d
 
 Panel shape: two waves of four, identical frame, only STANCE changed. All eight returns
 delivered. Behaviour note: the procedure seat stayed inside the read-only lens in both stances
-(no messaging, no drafting); no leg spent a Read (all judged the frame as supplied and said so
-under UNGROUNDED).
+(no messaging, no drafting). Every leg made its mandatory first Read of the canonical template
+and its identity component; no leg spent either of the template's optional verification Reads
+(each judged the frame as supplied and said so under UNGROUNDED).
 
 ## Adjudication (the seat's decision; verdicts were evidence)
 
@@ -61,7 +62,7 @@ under UNGROUNDED).
   path after #55; records pushed per event): both redirections were absorbed before this panel
   ran (the routed verdict drafted; the cadence set), and the canonical panel reads the absorbed
   state as ON-TRACK. The runs agree; the second confirms the first's cure landed.
-- Ungrounded, stated by every leg: the frame was judged as supplied, no Reads spent; the
+- Ungrounded, stated by every leg: the frame was judged as supplied, no optional Reads spent; the
   quartet branch's state changed between INTENT ("pushing now") and NEXT ("open the PR") because
   the push was in flight when the frame was built. Nothing in the adjudication rests on a fact a
   leg could not have verified from the frame's cited sources.
