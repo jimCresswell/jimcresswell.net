@@ -21,12 +21,16 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
-- Branch `feat/monorepo` (pushed 2026-09-13, tracks `origin/feat/monorepo`; draft PR #53 open): OCE
-  Practice lineage transplant in progress. Plan of
-  record: `docs/explorations/2026-09-12-oce-practice-lineage-transplant.md`
-  (§Amendment, §Hour 1, §Owner rulings rounds 1–3 carry the live state).
+- `main` carries the monorepo and the Practice since PR #53 merged (`55649a2`, 2026-09-13); the
+  transplant closure runs as small PRs against `main` (node §Transplant closure; items 1 to 4
+  landed, item 4 as bounded with its residue rows named in the report). Plan of record: `docs/explorations/2026-09-12-oce-practice-lineage-transplant.md`
+  (§Owner rulings, rounds 1 to 16, carry the state; the latest round is current).
 - Seven pnpm workspaces; root scripts through Turborepo; root devDeps installed.
-- **Committed on `feat/monorepo`** (two commits, all hooks green): the transplant
+
+Landed before the closure, all on `main` since PR #53 (kept as the record of how; nothing below
+names a live branch):
+
+- **Landed through `feat/monorepo`** (merged in #53): the transplant
   (directives merged, 127 rules triaged, skills + adapters, JC statusline mark,
   `preserve-caught-error` on) and Phase 8 harness (Claude/Codex/Cursor hooks and
   statusline, hook policy restored, full Husky set, `ci.yml` with CI parity,
@@ -46,25 +50,22 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
   is now a subset of `check`. The patterns index is generated from the (empty)
   local corpus and its validator is green. Two lineage methodology docs were
   imported: `memory/operational/{ephemeral-to-permanent-homing,collaboration-state-lifecycle}.md`.
-- Outside `check`, still failing (pre-existing): plan corpus and gate drift
-  (plan-node migration; the validator needs `docs/strategy`), ratified-lists
-  (upstream refounding artefacts), fitness vocabulary (its own `practice-fitness`
-  sources still say "two-threshold"; rechecked 2026-09-13 after the archive deletion),
-  collaboration-tui smoke, codex-session-alert smoke (`pnpm -s` is not a pnpm 12
-  flag). Green but not yet wired as legs: check-ci-parity, claim-freshness,
-  pretooluse-guard-routing, lifecycle-scripts, no-stale-script-invocations,
-  collaboration-state, identity-naming, workspace-config-isolation,
-  policy-reappraisal (OCE runs these as `repo-validators:check`).
+- Gates since closure item 3 (PR #56, `1829cd4`): `repo-validators:check` runs check-ci-parity,
+  claim-freshness, pretooluse-guard-routing, policy-reappraisal, lifecycle-scripts,
+  no-stale-script-invocations, collaboration-state, identity-naming,
+  workspace-config-isolation and plan-corpus as `check` legs; the agent-tools smoke suite
+  (collaboration-tui, codex-session-alert with `--silent`) runs as the e2e leg. Still to
+  retire under item 5: `validate-ratified-lists`. Not re-checked today: the fitness vocabulary
+  in the `practice-fitness` sources.
 
-- Deep consolidation status: **due — deferred by owner ruling**. The napkin
-  carries three 2026-09-12 sessions of unsynthesised lessons and the 57-lesson
-  archive; the owner ruled the synthesis runs right after `.agent-original/`
-  is deleted (plan §Ordering note). Four candidates are on the
-  pending-graduations register meanwhile.
-- Session-local generators (sub-agent adapters, classified rules index) are
-  not in the repo; recipes are in the efficiency-guidance report. Land them
-  as `agent-tools` bins before the next regeneration.
-- **2026-09-13, late afternoon (wrap 6):** `practice-completion` ratified with its three gates
+- Deep consolidation status: **due — closure session 2** (node item 8): the three
+  unprocessed napkins under `.agent/memory/active/unconsolidated/` plus this session's
+  captures; one seat, one batch of cards. Four candidates are on the pending-graduations
+  register meanwhile.
+- The generators: the rules-index and trigger generator is lane B's PR #55 (item 6, PR 1);
+  the sub-agent adapter generator (2b) and the 2a remainder are handed back to the Director
+  (lane B's handoff record v3).
+- **2026-09-13, late afternoon (wrap 6, historical):** `practice-completion` ratified with its three gates
   cleared and the transplant closure as eight checked exit conditions in two sessions (node
   §Transplant closure); the private editorial material made optional and minimally mentioned;
   `compute-dont-hope` and `record-generalisation-moves` are rules; the generalisation register
@@ -72,6 +73,17 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
   are derived; draft PR #53 open and green through 653f274, CI running on 7d6f292. No watcher,
   cron, claim or monitor was live at the wrap; nothing survives compaction and nothing needs
   re-arming.
+
+- **2026-09-13, evening (wrap 7, the Director session):** the owner named this seat Director (PDR-117)
+  and started three Implementer seats. Landed on `main`: the Director records and the channel rule
+  (PR #54, `c426c6c`), closure item 4 (PR #57, `4a61112`, merged by the merge bot the owner created:
+  App `jimbot-of-the-devonshire-jimbots`, config per-checkout and untracked, key outside the repo).
+  Then, the same evening: item 3 merged (PR #56, `1829cd4`, by the owner); lanes B and C handed
+  back and stood down; the owner set n=2 (Director and lane A, 17:16Z) with an ARC channel beside
+  native messaging; open at 17:40Z: #58 (records), #60 (the per-checkout Playwright port), #55
+  (one thread, cure by lane A), #59 (carried on #58). The live map is `director-handoff.md`
+  (§Current handoff state, the board, the routing log whose last entry is current); it is the
+  successor Director's first read.
 
 ## Active Threads
 

@@ -5,7 +5,18 @@
 Director: Cauldron herds Lustre (880ff9), claim `1db07581`; route questions and blocks to the
 Director by directed comms event, never to the owner (`route-blocks-and-questions-to-director`).
 
-## Current continuation
+## State at 17:45Z, 2026-09-13 (n=2 with the Director since 17:16Z)
+
+Item 3 landed (PR #56, `1829cd4`; `closure/lane-a` merged). Live: PR #60
+(`fix/e2e-port-per-worktree`, the per-checkout Playwright port; three Copilot threads routed for
+cure) and the #55 path-escape cure in the `closure-lane-b` worktree on `closure/lane-b`. Next:
+item 5 on a fresh branch from `main` (64aa005 held on `closure/lane-a-checkpoint` rides it), and
+the follow-on that brings `@engraph/result` into the site workspace for the port helper.
+Dialogue on the ARC channel
+`.agent/collaboration/rapid-comms/2026-09-13-transplant-closure-n2-cauldron-herds-lustre-saffron-turns-verdure.md`;
+quick coordination native; state on the comms stream.
+
+## Continuation at the go (2026-09-13 about 14:00Z; historical since the hand-back above)
 
 - **Role:** Implementer (PDR-117). Enter your own worktree before any edit
   (`worktree-residency`); branch `closure/lane-a` from `main` (at or after `55649a2`).

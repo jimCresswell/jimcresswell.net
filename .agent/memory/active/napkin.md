@@ -925,6 +925,90 @@
   (GEMINI.md, the matrix twice) in one afternoon. no-moving-targets: a permanent page names the
   ruling and its date, never the vehicle. The reflex is strongest when the plan is what you are
   executing.
+- commitlint's footer-leading-blank warning came from a BODY line that began with the token
+  `disposition:` and a space; any `word:` plus a space at line start is parsed as a footer
+  token, and a wrapped sentence can land one
+  there by accident. `pnpm agent-tools:check-commit-message` passed it (exit 0) while
+  `commitlint --verbose` on the same text showed the warning; the hook's read is the stricter.
+  Bisect with `grep -nE '^[A-Za-z][A-Za-z-]*: '` before re-wrapping prose.
+- The write-time hook fingerprints a user-home absolute path and the scratchpad directory's
+  own name segment inside a scratch script; a script that needs a scratch path takes it as
+  `"$1"` and the path travels in argv, which the hook does not read. Same cure for a loop's
+  home directory (tilde form).
+- PR-as-the-bot on this estate: `.github/merge-bot.json` lives once at the primary and every
+  worktree's CLI reads it there (a worktree copy is a second copy; deleted); `merge-bot push`
+  runs the whole pre-push gate and opens nothing; the PR, comments, replies and thread
+  resolutions go through a minted `pull-request-work` token assigned first,
+  `GH_TOKEN="$token" gh …`, never the prefix form; scripts under `bash <file> <args>`.
+- The comms watcher's hourly backstop (`timeout 3600`) fired mid-lane; the exit-124 notification
+  was the re-arm trigger, and the post-restart sweep found only heartbeats. The resident re-arm
+  from the worktree with the literal pid passed the guard first time.
+- Director correction: "tell me natively before you push" is ASK, wait for the one-word
+  confirmation, then push; I read it as notify-and-go and pushed a cure commit while lane B may
+  have been in its own pre-push gate. The hazard is concrete: Playwright reuses a server on
+  :3000, so a local e2e leg that starts while a peer's server is up proves the peer's build.
+  CI's e2e on the tip re-proves it, but the slot exists so the local gate means what it says.
+  A message naming a sequencing point is a request for a turn, not a courtesy.
+- Two review rounds plus a focused docs pass cost more than the edit; each round found real
+  over-claims in prose (a proof that did not cover the file, a plan id on a permanent page, a
+  writer with no mechanism, a README row missing). The reviewer that reads a validator's source
+  finds what the green leg cannot say: the leg proves its scope, never the sentence citing it.
+  Copilot's summary-only findings (no thread) count as findings too: harvest every surface.
+- Platform fact for `worktree-residency` clause 4: a resident session cannot `EnterWorktree`
+  a second sibling worktree directly (the tool only switches between paths under
+  `.claude/worktrees/`); the route is `ExitWorktree` with `keep`, then `EnterWorktree` the new
+  path from the primary, which the owner's standing permission covers. Verified 2026-09-13.
+- `comms send --body "<long inline body>"` exited quietly with no event written, while the
+  same body through `--body-file` landed; check `comms list --since` after any send that prints
+  no event id. Route: frictions register (capture-practice-tool-feedback).
+- For the follow-on PR 3 (five absent patterns, leg extension): the cited-paths leg walks
+  directives, rules and skills only, so `fabricated-gate-as-avoidance`, cited from PDR-054 in
+  `practice-core`, is outside the extended leg's reach unless the walk widens; the report's
+  claim for PR 3 must be scoped to what the leg reaches (docs-adr-expert, 2026-09-13).
+
+### Wrap for compaction (2026-09-13, evening; lane C cold-paused on the owner's word)
+
+- Metacognition (retrospective): the afternoon's four corrections share one shape: I asserted
+  from the diff (a directory the lineage had, a register the report listed, a "tell me before"
+  read as notify) where the estate's own text (PDR-081, the ratified todo, the slot rule)
+  already answered. Successor stance: before building a surface, read its writer; before ruling
+  on ratified work, quote the ratified line; before a sequencing act, ask for the turn.
+- Free play (harvest): the day's cures converge on "the estate asks itself": the manifest says
+  what exists, the validator's scope says what a proof proves, the pin says what a restore is.
+  Discarded: "the reviewers were the real authors of item 4" (says nothing testable).
+- Concept exploration: none. Item 4 was a formed decision with ratified exit conditions; the
+  only unformed question (how the Gemini projection lands) was formed by the Director's verdict
+  and the node's coming ruling round.
+- Parallax (screening depth): main uncertainty for the restore is whether the pin's module is
+  green here after only a scrub (esbuild present, helpers present, 30 import renames); the
+  defeater is a hidden dependency on a lineage-only surface, which the first `pnpm check` on the
+  restored tree exposes before any push. No frame changes the answer; core depth would not pay.
+- Work safety (evidence): `closure/lane-c` clean, merged into `main` at `4a61112` (PR #57),
+  its worktree and branch pending removal; `closure/lane-c-restore` clean at `4a61112`
+  (= `origin/main` at the cut), no edits before this napkin commit; claim `db336346` open by
+  the Director's instruction; heartbeat, watcher and peer-liveness poll all stopped (cold
+  pause, owner word); scratchpad holds only recomputable artefacts (the pin's two modules
+  extracted, the scripts whose recipes are in `reference/merge-bot.md`).
+- Promises: report zero unresolved (done); PR number to the Director (done); remove the item 4
+  worktree and branch (forwarded: named in the PAUSED event, done at resume); PRs 1 to 3
+  (owner-held pause); the bot-literal leak in `set-up-worktree-lane` (forwarded to lane A's
+  item 5 through the Director and the re-triage event); the napkin draft (superseded: landed
+  here).
+- Attribution inferences flagged: "lane A's PR #56 touches the agent-tools scripts block" is the
+  Director's statement, not observed; "the lineage's manifest declares 22 surfaces" is Wilma's
+  reading, consistent with the guard but not re-run by me. Everything else above is observed.
+- Blind-spot bounds: the watcher was down for the backstop window (swept: heartbeats only) and
+  since the cold pause (unswept by design); the four reviewer transcripts hold detail beyond
+  their reports; nothing this seat did not attend to is in this scan.
+- Index of homes: comms `f76f87a3` (PAUSED pickup state), `2c5dfb5a` (cold pause),
+  `c39d5891` (PR #57 open), `7657f4e0` (gate state), `f9f5dd67` (re-triage to lane B),
+  `fc1622ab` (team-start); PR #57's description and bot comment (scope, intake, reviewer leg);
+  the definition report §Closure item 4; `director-handoff.md` (the Director's board); this
+  section. External bound: every correction came from outside the seat (two reviewers, the
+  Director, Copilot); point the next scrutiny at prose that cites a validator as proof.
+- Fence sweep: no owner wording was held off the repository this session; nothing to cut.
+- Fixed point: a further pass would only re-find the two flagged inferences and the unswept
+  cold-pause window; the recursion closes here.
 
 ### Lane A (Saffron turns Verdure, c39ad7) — closure item 3 and the tracked-universe lint cure (2026-09-13)
 
@@ -974,3 +1058,58 @@
   rule): let the child resolve its own real path. And the truth-set's "executable bit" applies
   only to `bin/` entries the build chmods; a package-script entry run from source proves cold
   start under node, not a mode bit.
+- Correction (owner, about 14:50Z): the Director overturned a ratified todo (restore the corpus
+  workflow and `sif` instruments) with a "removal" verdict, and accepted a seat's "not brought" on
+  two registers the ratified text says to create or declare. Both reversed. The lenses resolve what
+  the ratified text leaves open; the text itself is the owner's and changes only by card. Candidate
+  for distilled. The merge bot exists now (kept, as ratified); agent PR writes run as the bot.
+
+### Wrap 7 (2026-09-13, about 15:45Z, before compaction) — the Director session
+
+- Landed: PR #54 (Director records, channel rule) at `c426c6c`; PR #57 (closure item 4) at
+  `4a61112`, merged by the bot. Open: #56 (item 3 + lint cure, tip 9a90d1b, Copilot re-requested
+  15:32Z), #55 (item 6 sweep, third round granted, cure unwritten). Owner word about 15:35Z:
+  slow down; lane A active, B and C paused with state saved.
+- Metacognition: the day's Director corrections were one shape again, and a new one. The old
+  shape (process where a mechanism exists) showed as executing instead of routing: two lint
+  ignore lines, a mis-encoded reviewer request that touched the owner, an ambiguous slot rule
+  ("tell me before pushing") that seats read as notify-and-go. The new shape: a verdict that
+  overturned ratified text (removal instead of restore; "not brought" instead of declare). The
+  lenses resolve what the ratified text leaves open, never the text; a case for changing it is a
+  card. Both recorded on the handoff file and distilled.
+- Free play, kept: the push slot is a lock the estate could compute; the real cure is a
+  per-worktree e2e port or `reuseExistingServer` off locally (lane A generalisation, on the
+  board). Kept: the merge tool reads GraphQL logins, the docs speak REST logins; identity
+  normalisation is a class, not a case. Discarded: a "review requester" bot scope (the platform
+  refuses it for the app; the owner credential is the only requester here).
+- Concept exploration: not run; the day's exploration was the channel rule, landed.
+- Parallax (screening): the live uncertainty is whether compaction keeps the Monitor tasks
+  (watcher, heartbeat, the #56 wait). The rule says check, then re-arm what is absent; the
+  handoff file carries the order. Defeaters watched: a seat pinging a quiet Director (one ping
+  per cadence, then keep working: by rule); Copilot's second pass on #56 opening a third round
+  (the budget is the Director's call, on the record).
+- Predictions a successor tests: (a) the watcher and heartbeat monitors are absent after
+  compaction and are re-armed in the first turn; (b) #56 merges on its next Copilot pass with at
+  most one new thread; (c) lane B's third-round cure lands in one commit when resumed; (d) no
+  seat pushes without asking for the slot for the rest of the session.
+- Blind-spot bounds: the lineage's own handling of bot-authored Copilot review (its note says the
+  bot's request works there; here it does not); whether Copilot reviews a bot PR without a
+  request at all (never observed either way here); the four PAUSED/checkpoint events' full
+  bodies (read truncated).
+- Work safety: records committed on `chore/director-records-2` (ahead of origin by the wrap
+  commits); push queued behind lane B's one save-state push in the slot order; the successor
+  pushes first. Claims: four open (Director, A, B, C). Monitors: watcher bd5bq7qs1, heartbeat
+  byv81g2eq (check, then re-arm). Fixed point: a further pass would only re-find the two shapes
+  above and the three bounds; the recursion closes here.
+
+### Director, after compaction (2026-09-13, evening): tool traps met while shepherding merges
+
+- A zsh loop variable named `path` is the shell's `PATH` array: every command after the `read`
+  vanished ("command not found: gh"). Name loop variables anything else.
+- The hook's substring policy reads a whole command: `git push` in one clause and a later `-f`
+  flag on an unrelated `gh api` call matched "git push -f". Push in its own command.
+- commitlint's 100-character header limit refuses silently behind a `grep` on the hook output;
+  read the tip after every commit, never the grep.
+- `pnpm -s` is not a pnpm 12 flag; `--silent` is.
+- A Copilot review request posted while the previous request's run is still in flight registers
+  nothing; request again once that review lands.

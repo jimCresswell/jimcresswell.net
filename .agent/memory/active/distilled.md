@@ -142,3 +142,13 @@ listed. Source: napkin 2026-09-13 (PR #53 triage); routing: `compute-dont-hope`,
 writes nothing; two TypeScript template literals were silently emptied and caught by reading
 the diff. Escape as `\$\{name\}`, or edit source files with the native per-file tool. Source:
 napkin 2026-09-13; routing: this list.
+
+## Ratified text is the owner's; the lenses resolve only what it leaves open (2026-09-13)
+
+A Director verdict removed instruments a ratified todo said to restore, and accepted "not
+brought" for registers the todo said to create or declare. The owner: "I expressly said to keep
+the merge bot tools, this makes me concerned for what other instructions are being overturned."
+Both reversed. The Decision Lenses answer questions the ratified text leaves open (a method, a
+sequencing, a form the doctrine forbids); they never answer against the text. A case for changing
+ratified text is a card to the owner, after the item lands, never a PR. Source: napkin
+2026-09-13 (Session 8); routing: `director-handoff.md` §Standing owner rulings, PDR-117 candidate.

@@ -10,30 +10,25 @@ Ground first via `start-right-quick` or `start-right-thorough`.
 
 ## Current focus
 
-**The OCE Practice lineage transplant is the live repo-wide workstream.** Branch
-`feat/monorepo`. The plan of record is
-[`../../docs/explorations/2026-09-12-oce-practice-lineage-transplant.md`](../../docs/explorations/2026-09-12-oce-practice-lineage-transplant.md)
-— its dated §Owner rulings (rounds 1 to 9) carry the live state. **Next (owner's
-direction of 2026-09-13, late morning): the entire Practice comes over, as
-appropriate for this repository, with a record of what, how and why, and the
-installable-entity exploration.** Start from the delivery node
+**The OCE Practice lineage transplant is the live repo-wide workstream, in its closure.** PR #53
+merged into `main` on 2026-09-13 (`55649a2`); `main` carries the monorepo and the Practice. The
+plan of record is
+[`../../docs/explorations/2026-09-12-oce-practice-lineage-transplant.md`](../../docs/explorations/2026-09-12-oce-practice-lineage-transplant.md),
+whose dated §Owner rulings (rounds 1 to 16) carry the state; the latest round is current. The
+controlling node is
 [`../plans/delivery/practice-completion.plan.md`](../plans/delivery/practice-completion.plan.md)
-(ratified on cards 2026-09-13, its three gates cleared the same round): the transplant
-closes in two sessions per the node's §Transplant closure (ratified 2026-09-13): session 1
-deleted `.agent-original/` first (done 2026-09-13: the loss-scan computed under the transplant
-reports' `inputs/`, every residue row ruled), then merged PR #53 (merge commit `55649a2`,
-2026-09-13); closure items 3 to 7 follow as small PRs against `main`, the first on branch
-`chore/transplant-closure-session-1`; session 2 runs the 57-lesson synthesis from
-`.agent/memory/active/unconsolidated/`. Editorial work follows. Every
-move that makes a Practice element more general lands a row in
+§Transplant closure: items 1 to 4 landed (the archive deleted after a computed loss-scan, PR #53,
+item 3 at `1829cd4`, item 4 at `4a61112` as bounded, its residue rows named in the report); items 5 to 7 and the handed-back holdings are routed from the board in `.agent/memory/operational/director-handoff.md`, never from this paragraph;
+session 2 runs the 57-lesson synthesis from `.agent/memory/active/unconsolidated/`. Editorial work
+follows. Every move that makes a Practice element more general lands a row in
 [`../reports/practice-transplant/generalisations.md`](../reports/practice-transplant/generalisations.md)
-(rule `record-generalisation-moves`). Done and
-committed: rules triage, the Phase 8 harness, re-evaluate slice 1, the link
-repair, the lineage script naming, slice 2 items 1 to 3, the plan-node
-migration (strategy corpus, four ratified strategic nodes, the legacy corpus
-conserved at `.agent/plans-legacy-2026-09/`), and the Practice definition.
-The branch is pushed and tracks origin; draft PR #53 is open (2026-09-13). `pnpm check` green. Read `.agent/memory/operational/repo-continuity.md`
+(rule `record-generalisation-moves`). Read `.agent/memory/operational/repo-continuity.md`
 §Current State and §Next Safe Steps first.
+
+**Director session (2026-09-13, evening):** this seat is the Director (PDR-117), at n=2 with lane
+A (Saffron turns Verdure) since 17:16Z. Read `.agent/memory/operational/director-handoff.md`
+first: §Current handoff state, the board, and the routing log, whose last entry is current where
+the two disagree. Lanes B and C stood down with their hand-backs on the comms stream.
 
 Until that transplant closes, the earlier workstreams below are **parked**, not
 abandoned. Do not resume any of them by default.
@@ -65,10 +60,10 @@ PRs #36, #39, #40 and #41 are merged; #47 (chore/residual) is merged. Do not
 replay the old stacked branches or repeat the history repair. Their closure is
 not workspace-extraction approval.
 
-There is no live team seat, watcher, claim, or open pull request. Historical
-collaboration files do not imply an active pairing. Team shape is owner-set per
-session; do not start monitoring machinery unless Jim explicitly opens a team
-session. Where a session is live, the newest channel under
+Team shape is owner-set per session. The live shape, the open pull requests and the claims are
+read from `director-handoff.md` (§Current handoff state and the board) and the claims registry,
+never from this prompt; do not start monitoring machinery in a session the owner did not open
+as a team seat. Where a session is live, the newest channel under
 `.agent/collaboration/rapid-comms/` is authoritative for who holds which lane —
 check that directory for new channels rather than watching only a known one.
 
