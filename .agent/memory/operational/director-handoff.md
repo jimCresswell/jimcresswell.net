@@ -66,7 +66,9 @@ rewritten at each Director push.
   threads routed to lane A: the runner/worker distinction must rest on a property the launcher
   cannot set through the environment, plus two doc truths); #55 (lane B's sweep, handed back;
   one Copilot thread, a path escape in the sweep's rule names, cure routed to lane A in lane B's
-  worktree). Merged: #58 (the Director records, `6528ecb`, five Copilot rounds, every thread
+  worktree); #61 (the Director, the Cricket quartet roles reinstated from the pin, the skill's
+  label convention and the first panel tally; subordinate to #60 and #55 for the push slot, bot
+  merge at SETTLE-READY). Merged: #58 (the Director records, `6528ecb`, five Copilot rounds, every thread
   cured on the branch); #59 closed as carried (lane C's capture rides #58 as `a3bb608`).
 - Team state: owner word 17:16Z, "this is now an n=2 session, you and Saffron" (PDR-082; the
   Director's heartbeat stopped, watcher kept); 17:18Z the ARC channel opened beside native
@@ -109,23 +111,29 @@ One shape, serialised onto lane A at n=2, each a small pull request against `mai
 dependency order; the Director merges by the bot at zero threads and writes item 7 last.
 
 1. **#60** (the per-checkout Playwright port) then **#55** (item 6, PR 1, the sweep): in flight.
-2. **Item 5** (lane A; branch from `main`; `64aa005` rides it): retire `validate-ratified-lists`,
-   `protocol-conformance`, `pr-throughput`, `ci-turbo-report`; the leak validator with derived
-   needles; the merge-bot scrub carrying today's findings (the GraphQL login form; the bot's own
+2. **Item 5** (lane A; branches from `main`; `64aa005` rides the first), as three pull requests
+   by changeset class (lane A's proposal, accepted 2026-09-13 about 19:45Z): (a) the merge-bot
+   cures first, because they pay on every later merge: the GraphQL login form; the bot's own
    Copilot request registers nothing; a review run in progress read as SILENT-WAIT; the quiet
-   window replaced by measured state per the owner's design note); the two product files, the
-   manifests and fixtures the plan of record names; `accept-md.config.js` to TypeScript;
-   `turbo.json`'s `.next/` outputs; the consumed incoming bundle.
+   window replaced by measured state (no review run live on the tip, no reviewer requested,
+   checks settled, threads zero); (b) the retirements: `validate-ratified-lists`,
+   `protocol-conformance`, `pr-throughput`, `ci-turbo-report`; (c) the residue scrub with the
+   leak validator (derived needles): the two product files, the manifests and fixtures the plan
+   of record names, `accept-md.config.js` to TypeScript, `turbo.json`'s `.next/` outputs, the
+   consumed incoming bundle.
 3. **Item 6, PR 2a** (the rules-index and trigger generator) from `closure/lane-b-generator` at
    `d76bb86` with the conserved fold applied; then **2b** (the sub-agent adapter generator, Gemini
    as a fourth row); then the **Gemini per-role projection** (item 4 residue, row 8).
 4. **Item 4 residue, one pull request each:** the corpus-analysis and workflow-build restore with
    the five absent patterns and the cited-paths leg extension (rows 3 and 6); `sif`'s routing
    rewrite (row 5). Then the definition report's nine rows read present.
-5. **Follow-ons named today, each its own small pull request:** `@engraph/result` into the site
-   workspace for the port helper; the atomic writer re-homed to core; a shared no-follow write
-   helper; the `CLAUDE_PROJECT_DIR` opt-out as an estate rule; the ten name-only `invoke-*`
-   descriptions; the deferred-controls register's creating mechanism.
+5. **Follow-ons named today, parked after item 7 as post-transplant (lane A's proposal,
+   accepted), each its own small pull request:** `@engraph/result` into the site workspace for
+   the port helper; the atomic writer re-homed to core; a shared no-follow write helper; the
+   `CLAUDE_PROJECT_DIR` opt-out as an estate rule; the ten name-only `invoke-*` descriptions and
+   the three stubbed invoke rules (accessibility, design-system, react-component) brought back
+   from the pin, scrubbed; the deferred-controls register's creating mechanism; the projection
+   census against the pin as an item 7 audit step.
 6. **Item 7** (the Director): the reports index, runbook step 13, the `provenance.yml` entry.
 7. **Session 2** (owner-decision): the 57-lesson synthesis from `unconsolidated/` on cards.
 
@@ -310,3 +318,24 @@ push once per landed merge or shape change, never contending with lane A's slot.
   tool defect to route (item 5), not a gate. No dissolution proposal owed at n=2 (the owner set
   the shape). One premise flagged as ungrounded and put to the owner: that the warm-pause word
   ("your only job is to support Saffron") lapsed with the n=2 word. Verdict drafted above.
+- 2026-09-13 about 19:10Z to 19:50Z: owner: "I am not sure where you got your Cricket definitions
+  from, but they are not right ... I want a proper Cricket run built on the canonical patterns."
+  Survey against the pin: this repo carries the canonical skill and both base templates, but the
+  transplant's one-wrapper-per-template projection flattened the four pinned Claude roles (and the
+  Cursor four, the Codex three) into two unpinned generic wrappers; the two-leg run had dispatched
+  those with a bespoke prompt, one stance, no tally. Owner: "were other skills mangled by unwanted
+  and unnecessary compression?" Computed census of every Practice surface against the pin: the
+  quartet and three invoke rules (accessibility, design-system, react-component: forty lines to
+  seven, naming absent `*-reviewer` agents) were; no skill, component or directive is shorter; the
+  design-system template is shorter by the ratified content-grain merge; twelve skills and five
+  templates are product or vendor drops (the two `sif` instruments and `under-the-hood` worth a
+  second look under "bring unless product"). Quartet reinstated from the pin, validators green,
+  PR #61 as the bot. Owner: labels carry the dual scale ("highest power, low effort, normal
+  frame"), vendor-specific (Codex has three seats); written into the skill's three dispatch
+  sections. The canonical panel ran: eight of eight, seven ON-TRACK, one DRIFTING (opus
+  adversarial); accepted: the quartet PR yields every push slot to the closure path; tally at
+  `.agent/reports/agentic-engineering/cricket-quartet-tally-2026-09-13-director-closure.md`.
+  Lane A's two plan proposals accepted into the routed verdict (item 5 in three PRs by changeset
+  class, merge-bot cures first; the follow-ons parked after item 7). Tool traps for the napkin:
+  the hook reads a commit message's word "restore" as the git command; nested heredoc quoting
+  inside `bash -c` breaks before anything runs.
