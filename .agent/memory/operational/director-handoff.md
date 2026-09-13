@@ -320,6 +320,11 @@ ones the Director would put to the owner had the owner been present.
     real defects, none on the shape (a race timer never cleared in a cell; a signal-handler gap
     between the build child's exit and Next's attach). Routed to lane A as one minimal commit;
     every check on the tip green.
+28. #60 round-six cure pushed on the slot (about 23:00Z, `SHA: 90a269e`): the race timer cleared
+    in a finally; the server flow's phases in one module with the stop action swapped before each
+    await; four flow cells over a real bound socket, the handler-gap mutant killed; code-expert
+    no critical finding. Copilot requested on the tip. 5a-i's second commit (its code-expert
+    items) written meanwhile; its PR follows on ask.
 
 ## Routing log
 
