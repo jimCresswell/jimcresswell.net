@@ -156,6 +156,22 @@ ones the Director would put to the owner had the owner been present.
    to the tip, the standing ruling; the quartet PR #61 yields every push slot to the closure path.
 3. Owner-only items held for the morning: the session 2 synthesis cards; any change to ratified
    text; the two `sif` instruments and `under-the-hood` under "bring unless product".
+4. Session 2 draft written (`threads/session-2-synthesis.next-session.md`, commit 3783b6e on
+   the records branch): 24 candidates with source, candidate home and prediction; a
+   verify-before-filing list; the already-homed set with homes; the routed classes. Lane A
+   completes it as the register PR after #60 and #55. Lens 3 (the Director reads and drafts;
+   the seat verifies homes and files; the owner decides on cards). REVIEW: the candidate homes,
+   in the morning batch of cards.
+5. REVIEW (privacy): the March napkin under `unconsolidated/` records a personal phrase as
+   "privileged, never in version control" while being a tracked file since March; the synthesis
+   PR does not repeat it; whether the archived line is cut is the owner's.
+6. REVIEW (doc truing): ADR-015 says Codex has no `.agents/rules/` layer; the estate projects
+   130 `.agents` rules since the transplant; the ADR and the surface matrix need truing as a
+   small follow-on (not a graduation).
+7. PR #61 (the quartet): Copilot's one thread (the tally said no leg spent a Read; every leg
+   makes the mandatory template read; only the optional verification reads were unspent) cured
+   at 06507cd in a worktree, held for an idle push slot after lane A's #60 push; the bot merges
+   at zero threads. Lens 3 (the quartet yields every slot to the closure path).
 
 ## Routing log
 
