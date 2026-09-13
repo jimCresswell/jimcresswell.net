@@ -33,7 +33,17 @@ export interface InstanceTierProbes {
   readonly isIgnored: (repoRoot: string, repoRelativePath: string) => boolean;
 }
 
-/** The live probes: the disk and `git check-ignore` by the repository's rules. */
+/**
+ * The live probes: the disk and `git check-ignore` by the repository's rules.
+ *
+ * The ignore probe runs without the index (`--no-index`), so it answers "would
+ * the rules ignore this path", not "is this path untracked". A surface that
+ * were tracked, matched an ignore pattern, and had been deleted locally would
+ * therefore read absent-by-design. No such surface exists (the three
+ * instance-tier surfaces are untracked by declaration, and
+ * `git ls-files -i -c --exclude-standard` is empty); the assumption is named
+ * here so a future tracked-and-ignored surface reopens it.
+ */
 export const liveInstanceTierProbes: InstanceTierProbes = {
   exists: existsSync,
   isIgnored: (repoRoot, repoRelativePath) =>

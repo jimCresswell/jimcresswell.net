@@ -234,9 +234,15 @@ and runtime-only lints, the Turbo `lint`, `type-check` and `test` tasks, knip,
 depcruise, the secret scan, and the Practice validators (portability,
 sub-agents, skills adapters, encoding, machine-local paths, and the
 `repo-validators:check` aggregate, whose legs include the substrate audit
-`practice:substrate:check` — the instance-tier state a fresh checkout lacks
-reads as informational, never as failure — and the inter-Practice wire-contract
-check). It mutates nothing, so it is the
+`practice:substrate:check` and the inter-Practice wire-contract check). The
+audit's instance-tier leg validates the live collaboration state of the
+checkout it runs on: an absent, untracked-by-design surface (the claim
+registries, the shared-comms-log render) reads as informational, so a fresh
+checkout and CI always pass it, while a present-but-invalid registry or a
+stale render — or a render deleted while events exist — is blocking. That is
+the one leg whose verdict can differ between a live checkout and CI, by
+design: CI can only ever see the informational verdict. It mutates nothing,
+so it is the
 surface pre-push, CI and any repo-wide claim of green cite. `pnpm check` is
 an alias kept so the hook and the parity validator have a stable name.
 

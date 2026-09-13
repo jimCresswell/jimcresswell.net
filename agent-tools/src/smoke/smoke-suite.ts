@@ -34,16 +34,32 @@ function byCodePoint(left: string, right: string): number {
   return left > right ? 1 : 0;
 }
 
-/** One smoke test's outcome. */
+/**
+ * One smoke test's outcome: an exit status, or the signal that killed it
+ * (`status` null). A signal death is never folded into an exit code, so the
+ * report distinguishes a crash from a finding.
+ */
 export interface SmokeRunResult {
   readonly file: string;
-  readonly exitCode: number;
+  readonly status: number | null;
+  readonly signal: NodeJS.Signals | null;
 }
 
 /** The suite's verdict and the lines that report it. */
 export interface SmokeSuiteSummary {
   readonly ok: boolean;
   readonly lines: readonly string[];
+}
+
+function passed(result: SmokeRunResult): boolean {
+  return result.status === 0;
+}
+
+function describeEnd(result: SmokeRunResult): string {
+  if (result.signal !== null) {
+    return `killed by ${result.signal}`;
+  }
+  return `exit ${String(result.status ?? 1)}`;
 }
 
 /**
@@ -61,10 +77,9 @@ export function summariseSmokeRun(results: readonly SmokeRunResult[]): SmokeSuit
       lines: ['smoke suite: no smoke tests found — an empty suite is not a pass'],
     };
   }
-  const failed = results.filter((result) => result.exitCode !== 0);
+  const failed = results.filter((result) => !passed(result));
   const lines = results.map(
-    (result) =>
-      `smoke ${result.exitCode === 0 ? 'ok  ' : 'FAIL'} ${result.file} (exit ${String(result.exitCode)})`,
+    (result) => `smoke ${passed(result) ? 'ok  ' : 'FAIL'} ${result.file} (${describeEnd(result)})`,
   );
   const verdict =
     failed.length === 0

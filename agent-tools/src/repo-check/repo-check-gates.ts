@@ -49,7 +49,7 @@ function gitPaths(
 function indexSymlinkPaths(runtime: RepoCheckRuntime): ReadonlySet<string> {
   const result = runtime.runCaptured('git', ['ls-files', '--cached', '-s', '-z']);
   if ((result.status ?? 1) !== 0) {
-    return new Set();
+    throw new Error(result.stderr.trim() || 'git ls-files failed while discovering symlinks');
   }
   return parseSymlinkPaths(result.stdout);
 }

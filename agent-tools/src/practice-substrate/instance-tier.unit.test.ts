@@ -12,42 +12,33 @@ import {
  * verdicts and the finding an absent-by-design surface produces.
  */
 
-function probes(input: { readonly exists: boolean; readonly ignored: boolean }): {
-  readonly probes: InstanceTierProbes;
-  readonly asked: string[];
-} {
-  const asked: string[] = [];
+function probes(input: {
+  readonly exists: boolean;
+  readonly ignored: boolean;
+}): InstanceTierProbes {
   return {
-    asked,
-    probes: {
-      exists: (path) => {
-        asked.push(`exists:${path}`);
-        return input.exists;
-      },
-      isIgnored: (repoRoot, repoRelativePath) => {
-        asked.push(`ignored:${repoRoot}:${repoRelativePath}`);
-        return input.ignored;
-      },
-    },
+    exists: () => input.exists,
+    isIgnored: () => input.ignored,
   };
 }
 
 describe('classifySurfacePresence', () => {
-  it('reads a file on disk as present without consulting the ignore rules', () => {
-    const { probes: seams, asked } = probes({ exists: true, ignored: true });
-    expect(classifySurfacePresence('/repo', 'a/b.json', seams)).toBe('present');
-    expect(asked).toStrictEqual(['exists:/repo/a/b.json']);
+  it('reads a file on disk as present, whatever the ignore rules say', () => {
+    expect(
+      classifySurfacePresence('/repo', 'a/b.json', probes({ exists: true, ignored: true })),
+    ).toBe('present');
   });
 
   it('reads an absent file the repository ignores as absent by design', () => {
-    const { probes: seams, asked } = probes({ exists: false, ignored: true });
-    expect(classifySurfacePresence('/repo', 'a/b.json', seams)).toBe('absent-by-design');
-    expect(asked).toStrictEqual(['exists:/repo/a/b.json', 'ignored:/repo:a/b.json']);
+    expect(
+      classifySurfacePresence('/repo', 'a/b.json', probes({ exists: false, ignored: true })),
+    ).toBe('absent-by-design');
   });
 
   it('reads an absent file the repository would track as absent', () => {
-    const { probes: seams } = probes({ exists: false, ignored: false });
-    expect(classifySurfacePresence('/repo', 'a/b.json', seams)).toBe('absent');
+    expect(
+      classifySurfacePresence('/repo', 'a/b.json', probes({ exists: false, ignored: false })),
+    ).toBe('absent');
   });
 });
 

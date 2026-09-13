@@ -23,8 +23,8 @@ describe('smokeTestFiles', () => {
 describe('summariseSmokeRun', () => {
   it('is green only when every smoke exited 0, with one line per smoke and a verdict', () => {
     const summary = summariseSmokeRun([
-      { file: 'a.smoke.ts', exitCode: 0 },
-      { file: 'b.smoke.ts', exitCode: 0 },
+      { file: 'a.smoke.ts', status: 0, signal: null },
+      { file: 'b.smoke.ts', status: 0, signal: null },
     ]);
     expect(summary.ok).toBe(true);
     expect(summary.lines).toStrictEqual([
@@ -36,12 +36,18 @@ describe('summariseSmokeRun', () => {
 
   it('names every failure and counts them in the verdict', () => {
     const summary = summariseSmokeRun([
-      { file: 'a.smoke.ts', exitCode: 0 },
-      { file: 'b.smoke.ts', exitCode: 2 },
+      { file: 'a.smoke.ts', status: 0, signal: null },
+      { file: 'b.smoke.ts', status: 2, signal: null },
     ]);
     expect(summary.ok).toBe(false);
     expect(summary.lines[1]).toBe('smoke FAIL b.smoke.ts (exit 2)');
     expect(summary.lines[2]).toBe('smoke suite: 1 of 2 failed');
+  });
+
+  it('reports a signal death by its signal, never as an exit code', () => {
+    const summary = summariseSmokeRun([{ file: 'a.smoke.ts', status: null, signal: 'SIGTERM' }]);
+    expect(summary.ok).toBe(false);
+    expect(summary.lines[0]).toBe('smoke FAIL a.smoke.ts (killed by SIGTERM)');
   });
 
   it('reads an empty suite as a failure, never a pass', () => {

@@ -57,25 +57,59 @@ function usage(): string {
   ].join('\n');
 }
 
-type RepoCheckCommand = (args: readonly string[]) => Promise<number>;
+interface RepoCheckCommand {
+  /** The flags the command understands; anything else is rejected with usage. */
+  readonly flags: ReadonlySet<string>;
+  readonly run: (args: readonly string[]) => Promise<number>;
+}
+
+const NO_FLAGS: ReadonlySet<string> = new Set();
 
 /** The command table: a Map, so a prototype key can never resolve to a non-command. */
 const COMMANDS: ReadonlyMap<string, RepoCheckCommand> = new Map<string, RepoCheckCommand>([
-  ['knip-gate', () => runKnipGate()],
-  ['markdownlint-staged', () => runMarkdownlintStaged()],
+  ['knip-gate', { flags: NO_FLAGS, run: () => runKnipGate() }],
+  ['markdownlint-staged', { flags: NO_FLAGS, run: () => runMarkdownlintStaged() }],
   [
     'markdownlint-tracked',
-    (args) => runMarkdownlintTracked(args.includes('--fix') ? 'fix' : 'check'),
+    {
+      flags: new Set(['--fix']),
+      run: (args) => runMarkdownlintTracked(args.includes('--fix') ? 'fix' : 'check'),
+    },
   ],
-  ['prettier-staged', () => runPrettierStaged()],
-  ['prettier-tracked', (args) => runPrettierTracked(args.includes('--write') ? 'write' : 'check')],
-  ['profile', (args) => runProfile(args)],
+  ['prettier-staged', { flags: NO_FLAGS, run: () => runPrettierStaged() }],
+  [
+    'prettier-tracked',
+    {
+      flags: new Set(['--write']),
+      run: (args) => runPrettierTracked(args.includes('--write') ? 'write' : 'check'),
+    },
+  ],
+  // profile owns its own argv parsing (--dry-run, --capture-output).
+  [
+    'profile',
+    { flags: new Set(['--dry-run', '--capture-output']), run: (args) => runProfile(args) },
+  ],
 ]);
 
+/**
+ * Resolve argv to a command and its checked arguments, or a usage failure.
+ * An unrecognised flag is refused rather than ignored: a mistyped repair
+ * flag (`--fxi`) must not run the read-only check and report green.
+ */
+function resolveCommand(
+  argv: readonly string[],
+): { readonly run: RepoCheckCommand['run']; readonly args: readonly string[] } | undefined {
+  const [name, ...args] = argv;
+  const command = name === undefined ? undefined : COMMANDS.get(name);
+  if (command === undefined || args.some((arg) => !command.flags.has(arg))) {
+    return undefined;
+  }
+  return { run: command.run, args };
+}
+
 async function main(): Promise<void> {
-  const [command, ...args] = process.argv.slice(2);
-  const run = command === undefined ? undefined : COMMANDS.get(command);
-  if (run === undefined) {
+  const resolved = resolveCommand(process.argv.slice(2));
+  if (resolved === undefined) {
     writeErrorLine(usage());
     process.exitCode = 1;
     return;
@@ -83,7 +117,7 @@ async function main(): Promise<void> {
   // process.exitCode, never process.exit(): exit() can terminate before
   // piped stdout/stderr flush, truncating the captured output a gate
   // promises to re-emit.
-  process.exitCode = await run(args);
+  process.exitCode = await resolved.run(resolved.args);
 }
 
 function isCliEntryPoint(): boolean {

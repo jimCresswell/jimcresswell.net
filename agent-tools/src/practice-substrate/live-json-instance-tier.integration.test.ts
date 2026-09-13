@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
+import { createCommsEvent } from '../collaboration-state/index.js';
 import { evaluateCollaborationJsonSurfaces } from './live-json.js';
 import { evaluateSharedCommsLog } from './live-shared-comms-log.js';
 import {
@@ -72,6 +73,40 @@ describe('evaluateSharedCommsLog on a fresh checkout', () => {
     const root = await makeTempSubstrateRepo(undefined, { withoutClaimRegistries: true });
     try {
       await expect(evaluateSharedCommsLog(root, trackedTierProbes)).rejects.toThrow(/ENOENT/u);
+    } finally {
+      await removeTempSubstrateRepo(root);
+    }
+  });
+
+  it('reports the absent, ignored render as drift when events exist to render', async () => {
+    // A deleted render is never clean: the read model has a source, and a
+    // source with no rendered output is exactly the drift a stale render is.
+    const event = createCommsEvent(
+      {
+        schema_version: '2.0.0',
+        event_id: 'narrative-one',
+        created_at: '2026-09-13T14:00:00Z',
+        kind: 'narrative',
+        author: {
+          agent_name: 'Saffron turns Verdure',
+          platform: 'claude',
+          model: 'claude-fable-5-1',
+          session_id_prefix: 'c39ad7',
+        },
+        title: 'first event',
+        body: 'Rendered first.',
+      },
+      { nowIso: '2026-09-13T14:00:00Z' },
+    );
+    const root = await makeTempSubstrateRepo(undefined, {
+      withoutClaimRegistries: true,
+      commsEventFiles: { 'narrative-one.json': JSON.stringify(event, null, 2) },
+    });
+    try {
+      const findings = await evaluateSharedCommsLog(root, ignoredTierProbes);
+      expect(findings.map((finding) => [finding.id, finding.severity])).toStrictEqual([
+        ['generated-read-model-drift', 'blocking'],
+      ]);
     } finally {
       await removeTempSubstrateRepo(root);
     }

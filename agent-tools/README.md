@@ -47,7 +47,7 @@ agent-tools/
 │                  # package scripts, no root aliases)
 ├─ tests/          # Shared test fakes and existing co-located coverage
 ├─ e2e-tests/      # E2E suites
-└─ smoke-tests/    # Local running-command smoke checks
+└─ smoke-tests/    # Running-command smoke checks; every *.smoke.ts is gated by test:e2e
 ```
 
 ## Commands
@@ -233,7 +233,8 @@ pnpm agent-tools collaboration-state comms render \
   --output .agent/state/collaboration/shared-comms-log.md
 ```
 
-The automated startup smoke is intentionally separate from E2E:
+The startup smoke runs with the rest of the suite under `test:e2e` (a `check`
+leg and a CI step); to run it alone:
 
 ```bash
 pnpm agent-tools:build

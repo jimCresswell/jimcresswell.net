@@ -56,25 +56,57 @@ function trustedGitTarget(command: string): { readonly command: string; readonly
   }
 }
 
-export function runInheritedProcess(command: string, args: readonly string[]): Promise<number> {
+/** How an inherited-stdio child ended: an exit status, or the signal that killed it. */
+export interface InheritedProcessEnd {
+  readonly status: number | null;
+  readonly signal: NodeJS.Signals | null;
+}
+
+/**
+ * Spawn a trusted command with inherited stdio and report how it ended.
+ *
+ * A signal death is reported as such (`status` null, `signal` named), never
+ * folded into an exit code: a gate that says "exit 1" for a child the OOM
+ * killer took misclassifies a crash as a finding (F-112). A launch failure is
+ * written to stderr and reported as status 1.
+ *
+ * @param command - The command; `pnpm` and `git` resolve to their trusted binaries.
+ * @param args - Arguments.
+ * @param options - `cwd` for the child; defaults to this process's.
+ */
+export function spawnInheritedProcess(
+  command: string,
+  args: readonly string[],
+  options: { readonly cwd?: string } = {},
+): Promise<InheritedProcessEnd> {
   const trusted = trustedSpawnTarget(command);
 
   if (trusted.error !== undefined) {
     writeErrorLine(`${command}: ${trusted.error}`);
-    return Promise.resolve(1);
+    return Promise.resolve({ status: 1, signal: null });
   }
 
   return new Promise((resolve) => {
     const child = spawn(trusted.command, [...(trusted.leadingArgs ?? []), ...args], {
       stdio: 'inherit',
       env: trusted.environment,
+      cwd: options.cwd,
     });
-    child.on('close', (code) => resolve(code ?? 1));
+    child.on('close', (status, signal) => resolve({ status, signal }));
     child.on('error', (error) => {
       writeErrorLine(`${command}: ${error.message}`);
-      resolve(1);
+      resolve({ status: 1, signal: null });
     });
   });
+}
+
+/** Spawn with inherited stdio and reduce the end to an exit code (a signal death reads as 1). */
+export async function runInheritedProcess(
+  command: string,
+  args: readonly string[],
+): Promise<number> {
+  const end = await spawnInheritedProcess(command, args);
+  return end.status ?? 1;
 }
 
 export function runCapturedProcess(
