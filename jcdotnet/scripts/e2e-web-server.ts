@@ -58,6 +58,9 @@ const flow = createServerFlow({
   writeLine: (line) => {
     process.stdout.write(`${line}\n`);
   },
+  writeError: (line) => {
+    process.stderr.write(`${line}\n`);
+  },
   exit: (code) => {
     process.exit(code);
   },

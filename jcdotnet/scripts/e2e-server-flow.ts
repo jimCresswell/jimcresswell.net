@@ -29,6 +29,8 @@ export interface ServerFlowSeams {
   readonly attach: (bound: BoundSocket) => Promise<() => Promise<void>>;
   /** One protocol line to stdout, without the newline. */
   readonly writeLine: (line: string) => void;
+  /** One diagnostic line to stderr, without the newline. */
+  readonly writeError: (line: string) => void;
   /** End the process with the code. */
   readonly exit: (code: number) => void;
 }
@@ -87,9 +89,18 @@ export function createServerFlow(seams: ServerFlowSeams): ServerFlow {
 
     const close = await seams.attach(bound);
     onStop = () => {
-      void close().finally(() => {
-        seams.exit(0);
-      });
+      // A close that rejects leaves the socket's state unknown: say so and exit non-zero.
+      close().then(
+        () => {
+          seams.exit(0);
+        },
+        (error: unknown) => {
+          seams.writeError(
+            `e2e-web-server: close failed: ${error instanceof Error ? error.message : String(error)}`
+          );
+          seams.exit(1);
+        }
+      );
     };
     seams.writeLine("ready");
   };

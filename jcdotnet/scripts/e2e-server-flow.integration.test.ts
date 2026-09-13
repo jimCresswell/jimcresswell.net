@@ -28,6 +28,7 @@ interface Harness {
   readonly attachStarted: Promise<BoundSocket>;
   readonly attachClose: Deferred<() => Promise<void>>;
   readonly lines: string[];
+  readonly errors: string[];
   readonly exits: number[];
   readonly buildStops: number[];
   readonly bound: Promise<BoundSocket>;
@@ -46,6 +47,7 @@ function harness(): Harness {
   const buildStarted = deferred<void>();
   const exited = deferred<number>();
   const lines: string[] = [];
+  const errors: string[] = [];
   const exits: number[] = [];
   const buildStops: number[] = [];
   const seams: ServerFlowSeams = {
@@ -73,6 +75,9 @@ function harness(): Harness {
         portPrinted.resolve();
       }
     },
+    writeError: (line) => {
+      errors.push(line);
+    },
     exit: (code) => {
       exits.push(code);
       exited.resolve(code);
@@ -84,6 +89,7 @@ function harness(): Harness {
     attachStarted: attachStart.promise,
     attachClose,
     lines,
+    errors,
     exits,
     buildStops,
     bound: boundOnce.promise,
@@ -117,6 +123,20 @@ describe("createServerFlow", () => {
     expect(await h.exited).toBe(0);
     expect(closes).toEqual([1]);
     expect(h.exits).toEqual([0]);
+  });
+
+  it("a close that rejects once served is reported and exits 1, never 0", async () => {
+    const h = harness();
+    const running = h.flow.run();
+    const bound = await h.bound;
+    h.buildExit.resolve(0);
+    await h.attachStarted;
+    h.attachClose.resolve(() => Promise.reject(new Error("socket state unknown")));
+    await running;
+    h.flow.stop();
+    expect(await h.exited).toBe(1);
+    expect(h.errors).toEqual(["e2e-web-server: close failed: socket state unknown"]);
+    bound.server.close();
   });
 
   it("a signal during the build stops the build child, and the flow exits 1 once, after the child has gone", async () => {
