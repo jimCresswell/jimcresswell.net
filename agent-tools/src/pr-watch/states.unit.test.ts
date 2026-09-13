@@ -400,26 +400,36 @@ describe('computePrVerdict — measured state and settlement (SKILL item 4)', ()
   it('withholds settlement while an expected reviewer is requested again on a satisfied tip', () => {
     const verdict = computePrVerdict(settledReading({ reviewRequests: [COPILOT] }), LATE_NOW);
     expect(verdict.state).toBe('WAITING-REVIEW-RUN-LIVE');
-    expect(verdict.evidence.join('\n')).toContain('requested');
+    expect(verdict.evidence.join('\n')).toContain(`expected reviewer requested: ${COPILOT}`);
   });
 
-  it('withholds settlement while a review run mapped to the PR is live', () => {
+  it('a re-request matches a declared [bot] spelling too (the strip applies to both sides)', () => {
+    const verdict = computePrVerdict(
+      settledReading({ expectedReviewers: [`${COPILOT}[bot]`], reviewRequests: [COPILOT] }),
+      LATE_NOW,
+    );
+    expect(verdict.state).toBe('WAITING-REVIEW-RUN-LIVE');
+  });
+
+  it('withholds settlement while an agent-task run mapped to the PR is live', () => {
     const verdict = computePrVerdict(
       settledReading({
         reviewRuns: {
           kind: 'read',
           runs: [
-            { id: 'run-1', name: 'Review from @jimCresswell', createdAt: 't0', completedAt: null },
+            { id: 'run-1', name: 'Task from @jimCresswell', createdAt: 't0', completedAt: null },
           ],
         },
       }),
       LATE_NOW,
     );
     expect(verdict.state).toBe('WAITING-REVIEW-RUN-LIVE');
-    expect(verdict.evidence.join('\n')).toContain('run');
+    expect(verdict.evidence.join('\n')).toContain('review run live: run-1');
   });
 
-  it('a request for an unexpected reviewer does not hold a settled round', () => {
+  it('a request for a reviewer outside the expected set does not hold a settled round', () => {
+    // The owner's credential registers a request for the owner on every
+    // re-request (merge-bot.md); holding on it would deadlock every landing.
     const verdict = computePrVerdict(
       settledReading({ reviewRequests: ['jimCresswell'] }),
       LATE_NOW,
@@ -448,7 +458,7 @@ describe('computePrVerdict — measured state and settlement (SKILL item 4)', ()
     expect(verdict.evidence.join('\n')).toContain('claude: SKIPPED');
   });
 
-  it('a signed self-authored reply neither holds a settled round nor enters the body tally', () => {
+  it('a signed self-authored reply never enters the body tally (SKILL exclusion)', () => {
     const verdict = computePrVerdict(
       settledReading({
         reviews: [

@@ -95,7 +95,8 @@ function bindsTip(review: HarvestedReview, headRefOid: string): boolean {
 // the suffix is stripped on both sides of every comparison.
 const BOT_SUFFIX = /\[bot\]$/u;
 
-function normaliseLogin(login: string): string {
+/** The one login comparison key: lower-cased, the app suffix stripped. */
+export function normaliseLogin(login: string): string {
   return login.toLowerCase().replace(BOT_SUFFIX, '');
 }
 

@@ -124,8 +124,28 @@ function readReviewsHarvest(input: {
   }
 }
 
+function readReviewThreads(input: {
+  readonly run: GhCommandExecutor;
+  readonly gh: string;
+  readonly prNumber: string;
+  readonly repo: string | undefined;
+}) {
+  return parseReviewThreadPages(
+    parseGhJson(
+      input.run(input.gh, reviewThreadsArgs(input.prNumber, input.repo), GH_EXEC_OPTIONS),
+      'api graphql reviewThreads',
+    ),
+  );
+}
+
 /**
  * Fetch the `pr state` gh surfaces and compose the compound reading.
+ *
+ * The harvest (reviews and requests) is read BEFORE the threads: a review
+ * landing between the two calls then shows either as an outstanding request
+ * (the round holds) or as a landed review whose threads the later read
+ * carries. The other order let a review's findings arrive after a zero-thread
+ * snapshot and settle over them.
  *
  * @throws when the primary `pr view`, review-threads, or reviews-harvest legs
  *   fail (a verdict without them would be a guess); only the agent-task leg
@@ -151,13 +171,8 @@ export function readPrStateReading(options: ReadPrStateOptions): PrStateReading 
 
   let view = readMergeabilityComputedView({ run, gh, viewArgs, prNumber });
   for (let attempt = 0; attempt < TIP_CONSISTENT_ATTEMPTS; attempt += 1) {
-    const reviewThreads = parseReviewThreadPages(
-      parseGhJson(
-        run(gh, reviewThreadsArgs(prNumber, repo), GH_EXEC_OPTIONS),
-        'api graphql reviewThreads',
-      ),
-    );
     const { reviews, reviewRequests } = readReviewsHarvest({ run, gh, prNumber, repo });
+    const reviewThreads = readReviewThreads({ run, gh, prNumber, repo });
     const reviewRuns = readReviewRunsLeg({ run, gh, prNumber: number, prUrl: view.url });
     // The confirm read closes the race window; on a match it is also the
     // freshest same-tip snapshot, so the reading composes from it.

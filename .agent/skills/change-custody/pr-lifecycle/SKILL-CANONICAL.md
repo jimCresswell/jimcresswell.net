@@ -936,9 +936,11 @@ deliberately gone — triage binds from wave one. **The step-back trigger is
    correctly). The proxy went on the owner's word ("nothing is happening on
    the PR ... the 'quiet window' could be replaced with measured state",
    2026-09-13, on #56): the platform clears the request when the review
-   lands, the review's threads arrive in the same compound read, and a
-   request nobody serves is ended by item 3's timeout, the one clock that
-   remains. MERGE-READY is a settled round with zero
+   lands, the compound read takes its threads after the review harvest (so
+   a review seen landed has its threads on the read, and one not yet landed
+   shows as its request), an OWED leg nobody serves is ended by item 3's
+   timeout, the one clock that remains, and a re-request on a satisfied tip
+   is bounded by the watcher's poll budget. MERGE-READY is a settled round with zero
    UNDISPOSITIONED findings and a cure-worthy count of zero (item 2's
    semantics under PDR-140: a round whose raised findings are all
    validly dispositioned-with-resolution is merge-ready without another

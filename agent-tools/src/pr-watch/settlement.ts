@@ -3,9 +3,10 @@ import {
   hasLanded,
   isSignedSelfReply,
   mostBlockingLeg,
+  normaliseLogin,
 } from './reviewer-legs.js';
 import type { ReviewerLeg } from './reviewer-legs.js';
-import type { PrStateReading, PrVerdict } from './state-types.js';
+import type { PrStateReading, PrVerdict, ReviewRun } from './state-types.js';
 
 /**
  * The reviewer-leg and settlement half of the `pr state` verdict (SKILL items
@@ -16,8 +17,9 @@ import type { PrStateReading, PrVerdict } from './state-types.js';
  * agents could not see a review round's boundary) went on 2026-09-13 on the
  * owner's word ("nothing is happening on the PR ... the 'quiet window' could
  * be replaced with measured state", on #56); the boundary is measured now:
- * the platform clears the request when the review lands, and the review's
- * threads arrive in the same compound read.
+ * the platform clears the request when the review lands, and the compound
+ * read takes its threads after the harvest, so a review seen landed has its
+ * threads on the read and a review not yet landed shows as its request.
  */
 
 function runsEvidence(reading: PrStateReading): string[] {
@@ -39,22 +41,30 @@ function legLine(leg: ReviewerLeg): string {
   return `${leg.reviewer}: ${leg.state} — ${leg.detail}`;
 }
 
-// SKILL item 4, measured: an outstanding request for an expected reviewer, or
-// a live run mapped to the PR, is a round in flight on a tip whose legs have
-// all landed (a re-request after a disposition pass, say). Names what is in
-// flight so the wait reads as a round, never as silence.
+/** The runs mapped to the PR and still in flight; none when the leg is unavailable. */
+function liveRuns(reading: PrStateReading): readonly ReviewRun[] {
+  return reading.reviewRuns.kind === 'read'
+    ? reading.reviewRuns.runs.filter((run) => run.completedAt === null)
+    : [];
+}
+
+// SKILL item 4, measured: on a tip whose legs have all landed, an outstanding
+// request for an expected reviewer (a re-request after a disposition pass,
+// say) or a live agent-task run mapped to the PR holds the round (the ruling:
+// no expected reviewer requested, no run live). Both are bounded by the
+// caller's poll budget, not by a clock: a re-request on a satisfied tip has
+// no timeout leg, since the leg is SATISFIED by the review that landed. A
+// request for a reviewer outside the expected set never holds: the owner's
+// credential registers a request for the owner on every re-request (the
+// merge-bot reference), and holding on it would deadlock every landing.
+// An unavailable run surface holds nothing and is named in evidence. Names
+// what is in flight so the wait reads as a round, never as silence.
 function roundInFlight(reading: PrStateReading): string[] {
-  const expected = new Set(reading.expectedReviewers.map((login) => login.toLowerCase()));
-  const requested = reading.reviewRequests.filter((login) =>
-    expected.has(login.toLowerCase().replace(/\[bot\]$/u, '')),
-  );
-  const liveRuns =
-    reading.reviewRuns.kind === 'read'
-      ? reading.reviewRuns.runs.filter((run) => run.completedAt === null)
-      : [];
+  const expected = new Set(reading.expectedReviewers.map(normaliseLogin));
+  const requested = reading.reviewRequests.filter((login) => expected.has(normaliseLogin(login)));
   return [
     ...requested.map((login) => `expected reviewer requested: ${login}`),
-    ...liveRuns.map((run) => `review run live: ${run.id} (${run.name})`),
+    ...liveRuns(reading).map((run) => `review run live: ${run.id} (${run.name})`),
   ];
 }
 
@@ -90,7 +100,8 @@ function settledVerdict(input: {
   // A SKIPPED leg is classified first: a request still outstanding after the
   // checks-green timeout is the leg nobody served, and the timeout arm (SKILL
   // item 3, the one clock) ends the watch rather than reading it as a round
-  // in flight forever.
+  // in flight forever. A skip on one leg thereby masks a re-request on
+  // another; both readings are operator-act states, never merge-eligible.
   const skipped = skippedRoundVerdict(legs, shared);
   if (skipped !== undefined) {
     return skipped;
@@ -160,14 +171,13 @@ function emptyExpectedSetVerdict(reading: PrStateReading): PrVerdict {
   };
 }
 
-// A live `gh agent-task` run maps to this PR but to no outstanding request
-// (a coding-agent session, not a review round); name it so SILENT-WAIT never
-// reads as "nothing is happening". The request surface decides the round.
+// On an OWED leg the request surface decides the reading; a live agent-task
+// run mapped to the PR is evidence beside it (and holds a settled round, see
+// roundInFlight). Name it so SILENT-WAIT never reads as "nothing is
+// happening".
 function unmappedLiveRunEvidence(reading: PrStateReading, blockingKind: string): string[] {
   const hasUnmappedLiveRun =
-    blockingKind === 'SILENT-WAIT-NO-REVIEWER' &&
-    reading.reviewRuns.kind === 'read' &&
-    reading.reviewRuns.runs.some((run) => run.completedAt === null);
+    blockingKind === 'SILENT-WAIT-NO-REVIEWER' && liveRuns(reading).length > 0;
   return hasUnmappedLiveRun
     ? ['note: a review run IS live for this PR, unmapped to any request']
     : [];
