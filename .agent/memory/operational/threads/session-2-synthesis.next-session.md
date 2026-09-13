@@ -14,9 +14,10 @@ napkins are archived only then.
 
 - **Role:** lane A, Saffron turns Verdure (c39ad7), Implementer (PDR-117), completes this
   draft; the Director (Cauldron herds Lustre, 880ff9, claim `1db07581`) drafted it and routes.
-- **Branch and landing target:** a branch from `origin/main` after #60 and #55 merge; one pull
-  request as the bot, `docs(memory): session 2 candidates onto the register`; the bot merges at
-  zero threads.
+- **Branch and landing target:** lane A's branch `docs/session-2-register` from `main` at
+  `SHA: 7127bc4` (after #55 merged; the register PR does not wait for #60, ruled 21:55Z); the
+  pull request is #63, open as the bot at `SHA: b692f02`, `docs(memory): session 2 candidates
+  onto the register`; the bot merges at zero threads.
 - **Claim:** lane A opens a claim on `.agent/memory/operational/pending-graduations.md` and this
   record before editing.
 - **Grounding order:** this record; the register's §What belongs here and its entry shape (the
@@ -375,7 +376,7 @@ the register's shape; their status is `draft` until lane A verifies the home is 
   carries nothing from them beyond the candidates' doctrine. (Candidate U was withdrawn into
   this line: a review requirement is a process step, not a graduation.)
 
-## Next safe step (lane A, after #60 and #55)
+## Next safe step (lane A; PR #63 open, its review rounds to zero threads)
 
 1. Read this record and the register's §What belongs here; for each lettered candidate (A to X
    less P and U, which left the list: P to the verify list, U to the privacy line), read the
@@ -386,9 +387,10 @@ the register's shape; their status is `draft` until lane A verifies the home is 
 2. File the `pending` ones as register entries in the register's shape, numbered after the
    existing five, status `pending (captured 2026-09-13)`, source and prediction as drafted or
    tightened; leave `duplicate` and routed items out of the register (they are recorded here).
-3. Open the register PR as the bot, `docs(memory): session 2 candidates onto the register`, one
-   commit; the PR body lists the count filed, the count set aside as duplicate with homes, and
-   the routed classes; request Copilot; the bot merges at zero threads.
+3. PR #63 is that pull request (opened about 22:10Z, twenty-eight entries filed, the five
+   existing migrated to the counter's shape, the readout quoted from 0 to 33); its review rounds
+   run to zero threads and the bot merges; the constitutional-class entries move to PDR-130's
+   slow lane with review dates in its first cure.
 4. The Director presents the filed entries to the owner as one batch of cards; the answers are
    the dispositions; graduations follow as their own small PRs; the three napkins under
    `unconsolidated/` are archived only then.
