@@ -813,3 +813,26 @@
   boundary directory, by ruling); no machine-local path (validator green). Fixed point: a further
   pass would only re-find the two flagged readings and the three blind-spot bounds; the recursion
   closes here.
+
+### Session 8 (2026-09-13, evening, after the third compaction) — the archive before the merge
+
+- Owner asked two questions: what removing `.agent-original/` safely requires, and why PR #53
+  lists 3000+ files. Both measured from git: the PR carries no node_modules, build output, nested
+  repo or gitlink; the count is the transplant (agent-tools 928, `.agent` 700, four adapters 932,
+  the archive 255, the monorepo move 344). The archive is the host's own tree at `main` (251 of
+  255 blobs identical), so deletion loses nothing from history.
+- Loss-scan computed, not read: `inputs/loss-scan-dispositions.sh` (blob, path, line-share, name
+  passes) → 68 / 68 / 49 / 46 mechanical, 24 residue, every residue row ruled (two owner cards:
+  v0 spec history only; editor/review commands dropped). Wrap 6 prediction (c) held (231 > 200).
+  First run of the script mis-filtered the archive's own blobs because `git ls-tree` separates
+  the path with a tab, not a space; every file came back "identical". Read the output shape
+  before trusting a count that is too clean.
+- Two corrections, one shape: a move is a stepping stone, never an end state (the archive is
+  processed then deleted; nothing goes to `reference/`); an archive holds only processed
+  material (the three napkins with the 57 lessons moved to `active/unconsolidated/`, README and
+  consolidate-docs step d amended). Both are "don't file to tick a box".
+- Closure re-sequenced: archive deletion is session 1 item 1, ahead of the merge. Owner
+  precondition for the deletion commit: the two private directories on disk beneath the archive
+  (ignored only by the archive's own nested ignore file) are processed and removed by the owner.
+- Hook note: a grep whose text contained the wildcard-staging needle was refused (the policy is
+  substring-based); rephrase, never route around.

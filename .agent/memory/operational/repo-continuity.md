@@ -120,10 +120,14 @@ carried and Windsurf rejected; the knowledge base as the cited subset,
 scrubbed; the transplant instruments as that node's todo 6. The earlier
 second-host preparation node was withdrawn as premature and removed from the
 estate on the owner's word (the same round); the Practice's understanding of
-its future is host-agnostic. **Transplant closure ratified (node §Transplant closure; plan §Owner rulings round 11): two sessions.
-Session 1 opens by merging PR #53 (merge commit, no card), then items 2 to 6 as small PRs against
-`main`; session 2 is the loss-scan (computed, residue on cards) and the 57-lesson synthesis (cards,
-one batch).** Todo 1 done (2026-09-13, plan
+its future is host-agnostic. **Transplant closure ratified (node §Transplant closure; plan §Owner rulings round 11), re-sequenced
+round 13 (2026-09-13, evening): session 1 deletes `.agent-original/` first — the loss-scan is computed
+(`.agent/reports/practice-transplant/inputs/loss-scan-dispositions.tsv`, 255 rows, 24 residue, all
+ruled; nothing moves to `reference/`), and the deletion commit waits only on the owner processing and
+removing the two private directories on disk beneath the archive — then merges PR #53 (merge commit,
+no card), then closure items 3 to 7 as small PRs against `main`; session 2 is the 57-lesson synthesis
+(cards, one batch) from the three unprocessed napkins now under `.agent/memory/active/unconsolidated/`
+(an archive holds only processed material, owner ruling round 13).** Todo 1 done (2026-09-13, plan
 §Practice completion — todo 1 executed):
 `validate-cited-paths` is a `docs-validators:check` leg, 35 absent targets cured to
 0, five patterns and four cited records imported with provenance. Now: todo 2
@@ -154,6 +158,6 @@ after round 6 (content, knowledge graph, site, Practice — the platform split a
 ratification); every legacy plan reviewed before convert / conserve / history;
 the legacy lanes conserved as a sibling corpus outside the scan root because the
 loader walks `archive/`. OCE channel open: findings go to the OCE seat as they
-arise, batched (batch 1 sent 2026-09-13). `.agent-original/` deletion follows a
-presented loss-scan list; the 57-lesson synthesis is one seat's list reviewed by
+arise, batched (batch 1 sent 2026-09-13). `.agent-original/` deletion follows the
+computed loss-scan (done, round 13); the 57-lesson synthesis is one seat's list reviewed by
 the owner before graduation.

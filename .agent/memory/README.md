@@ -23,7 +23,10 @@ rotation.
 - [`active/distilled.md`](active/distilled.md) — refined cross-session
   lessons; fitness targets live in the file frontmatter.
 - [`active/patterns/`](active/patterns/) — ecosystem-grounded pattern instances.
-- [`active/archive/`](active/archive/) — napkin rotations and historical capture material.
+- `active/unconsolidated/` — rotated napkins whose lessons have not yet been
+  consolidated; empty when the learning loop is current.
+- `active/archive/` — processed napkin rotations only. An archive is where material
+  goes after full processing, never before (owner ruling 2026-09-13).
 
 **Read trigger**: session start (Ground First step 3 of start-right).
 

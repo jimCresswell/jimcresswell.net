@@ -1414,3 +1414,60 @@ Recorded as the rule `record-generalisation-moves` and the append-only register
 `.agent/reports/practice-transplant/generalisations.md`, backfilled with the fifteen moves this
 branch has made, each with its commit and its lineage status (sent, owed, local, from-lineage).
 The "owed" rows are the next batch to the lineage under ruling 6.
+
+## Owner rulings, round 13 (2026-09-13, evening) — the archive before the merge
+
+Owner, verbatim: "we need to remove .agent-original before we merge 53, what is required to do
+that safely?" and "PR 53 lists 3000+ files changed, that seems too many, what have we included
+that we should not have?"
+
+**The pull request's size, measured.** The diff carries no `node_modules`, no build output, no
+nested `.git` directory and no submodule gitlink. By top-level segment: `agent-tools` 928,
+`.agent` 700, the four platform adapters 932 (653 of them generated one-line pointer files),
+`.agent-original` 255 (303 of the PR's entries are that rename), the monorepo move and gate
+wiring 344. The one segment that does not belong is the archive; inside it are eight files of
+instance-tier collaboration state that main tracked and the transplanted estate declares
+untracked-by-design. They leave with the archive.
+
+**The archive is the host's own tree at `main`.** 251 of its 255 blobs are byte-identical to
+`main`'s `.agent/` (the four that differ: the napkin, the LinkedIn plan, one comms event and one
+comms-seen file). Git keeps every one of them on `main` and on the merge commit's first parent,
+so the deletion loses nothing from history.
+
+**The loss-scan, computed.** `.agent/reports/practice-transplant/inputs/loss-scan-dispositions.sh`
+gives every archived file one disposition against the live tree; its output is the `.tsv` beside
+it.
+
+| Disposition                                      | Files |
+| ------------------------------------------------ | ----- |
+| identical (the same blob tracked live)           | 68    |
+| superseded-path (same path, lineage content)     | 68    |
+| absorbed (≥70% of distinct lines verbatim live)  | 49    |
+| superseded-name (skill, command, template, rule) | 46    |
+| residue                                          | 24    |
+
+The 24 residue and their dispositions: nine files of the site's original v0 spec under
+`v0/original-spec/` (cited nowhere live) — **history only** (owner card); `commands/editor.md`
+and `commands/review.md` (their sub-agents live, the slash commands do not) — **dropped** (owner
+card); eight instance-tier state files — untracked-by-design; three MCP reviewer artefacts —
+product absent here; `reference/private-editorial-workspace.md` — deleted by the round 10 privacy
+ruling; `private/README.md` — the boundary is ignored whole by the same ruling. Wrap 6's
+prediction (c), that more than 200 of the 255 disposition mechanically, held: 231 did.
+
+**Owner rulings.** (1) "Moving the old .agent folder to reference is a compromise, which I don't
+like, it should be processed then deleted, I am allowing the move only as a stepping stone, not
+an acceptable end state." Nothing from the archive moves into `reference/`; the archive is
+processed (the table above) and deleted. (2) "Why is a document containing live and unprocessed
+lessons in an archive folder? Archives are not somewhere to put things so you can tick a box,
+they are where things go AFTER full processing." The three rotated napkins that hold the 57
+unprocessed lessons moved from `.agent/memory/active/archive/` to
+`.agent/memory/active/unconsolidated/`; the memory README and the consolidate-docs archive step
+now say an archive holds only processed material. (3) Closure re-sequenced: the archive deletion
+is session 1 item 1, ahead of the merge (node §Transplant closure).
+
+**What "safely" requires, and where each part stands.** The dispositions computed and recorded
+(done). The two private directories on disk beneath the archive, ignored today only by the
+archive's own nested ignore file: the owner processes and removes them before the deletion
+commit (a seat never reads them). The deletion commit: `git rm -r`, the seven exclusion entries
+(four config files, three validators) and the provenance note cut together, then `pnpm check`,
+push, CI, merge.

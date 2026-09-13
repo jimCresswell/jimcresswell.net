@@ -148,50 +148,61 @@ The transplant is bounded and finishes in two sessions; editorial work follows. 
 condition names its check. Todos 5 and 6 above stay on this node as post-transplant work and
 are not exit conditions.
 
-**Session 1 — merge first, then the mechanical items as small PRs against `main`.**
+**Session 1 — the archive processed and deleted, then the merge, then the mechanical items as
+small PRs against `main`.** (Re-sequenced on the owner's word, 2026-09-13 evening: "we need to
+remove .agent-original before we merge 53"; "it should be processed then deleted".)
 
-1. **Merge PR #53** by merge commit (owner: "always merge"; green and clean gets merged, no
+1. **`.agent-original/` deleted**: every file dispositioned by computation against the live
+   tree, recomputable with `.agent/reports/practice-transplant/inputs/loss-scan-dispositions.sh`
+   (2026-09-13: 68 identical blobs live, 68 superseded at the same path, 49 absorbed, 46
+   superseded by name, 24 residue). The 24 residue are ruled: the site's v0 spec stays in
+   history only (main at `d0159a4`); the old editor and review commands are dropped (their
+   sub-agents live); instance-tier state, the MCP artefacts and the privacy-ruled files leave by
+   existing rules. Nothing from the archive moves into `reference/`; a move is never an end
+   state. Owner precondition: the two private directories on disk beneath the archive are
+   processed and removed by the owner (a seat never reads them). Then `git rm -r`, the seven
+   exclusion entries and the provenance note cut in the same commit. Proof: the directory gone;
+   the table under `inputs/`; plan of record §Owner rulings round 13.
+2. **Merge PR #53** by merge commit (owner: "always merge"; green and clean gets merged, no
    question asked). Proof: merged; the site building from `main`.
-2. **Activate the installed instruments** (todo 2): `practice-substrate` with `pnpm -s` cured
+3. **Activate the installed instruments** (todo 2): `practice-substrate` with `pnpm -s` cured
    to `--silent`, `validate-protocol-wire-contract`, the agent-tools smoke suite; each a leg of
    `check` or a named gate. Proof: the legs, CI parity, green.
-3. **Completeness by function** (todo 3, bounded): the four generic rules re-triaged under
+4. **Completeness by function** (todo 3, bounded): the four generic rules re-triaged under
    "bring unless product"; the operational registers declared per the substrate manifest;
    mutation testing's absence stated; the Gemini projection imported from the pin; the
    definition report's nine rows read "present" with a cited proof each. Proof: the report.
-4. **Lineage residue off the live surfaces**: retire `validate-ratified-lists`,
+5. **Lineage residue off the live surfaces**: retire `validate-ratified-lists`,
    `protocol-conformance`, `pr-throughput` and `ci-turbo-report` (scripts, sources, tests, doc
    mentions; re-importable from the pin); keep `merge-bot` and scrub its lineage residue; the
    two product files, five package manifests and fourteen fixtures the plan of record names;
    `accept-md.config.js` to TypeScript; `turbo.json`'s `.next/` outputs; the consumed incoming
    bundle. Proof: a lineage-name leak validator over live surfaces (CV content excluded by
    scope) as a `docs-validators:check` leg, green.
-5. **The last hand-kept copies derived**: canonical rules carry `classification`,
+6. **The last hand-kept copies derived**: canonical rules carry `classification`,
    `description` and `globs` frontmatter; `portability:fix` generates the rules index and the
    Cursor triggers from it and `portability:check` recomputes them; sub-agent adapter
    descriptions derive from the templates. Proof: the generator's tests and a byte-equal
    regeneration of today's files.
-6. **The record compiled** (todo 4): the reports index as the entry (what, how, why,
+7. **The record compiled** (todo 4): the reports index as the entry (what, how, why,
    how-faster), the runbook's step 13 citing the nine functions, the completion entry in
    `provenance.yml`. Proof: the index and the provenance diff.
 
-**Session 2 — the two owner-decision items.**
+**Session 2 — the owner-decision item.**
 
-7. **`.agent-original/` deleted**: every file dispositioned by content match against the live
-   estate (kept-elsewhere, superseded); only the no-match residue goes to the owner on cards;
-   then the directory is removed. Proof: the directory gone; the dispositions in the plan of
-   record.
-8. **The 57-lesson synthesis**: one seat synthesises the archived napkin onto the
-   pending-graduations register; the candidates go to the owner as one batch of cards; the
-   answers are the dispositions; nothing graduates without them. Proof: the register and the
-   plan of record's ruling round.
+8. **The 57-lesson synthesis**: one seat synthesises the three unprocessed napkins under
+   `.agent/memory/active/unconsolidated/` (moved out of `archive/` on the owner's word,
+   2026-09-13: an archive holds only processed material) onto the pending-graduations
+   register; the candidates go to the owner as one batch of cards; the answers are the
+   dispositions; nothing graduates without them; the napkins are archived only then. Proof:
+   the register, the plan of record's ruling round, and `unconsolidated/` empty.
 
 ## Out of scope
 
 Any particular next host (the instruments are host-agnostic); product
 surfaces of the lineage (the MCP app, its vendors, the curriculum domain, the
 design system's product tier); the 57-lesson synthesis (its own item,
-owner-reviewed); `.agent-original/` deletion (the loss-scan list first).
+owner-reviewed).
 
 ## Plan-body first-principles check
 

@@ -24,4 +24,7 @@ and the work that completes the Practice here and lands the instruments for the 
 is the delivery node
 [`.agent/plans/delivery/practice-completion.plan.md`](../../plans/delivery/practice-completion.plan.md)
 (ratified 2026-09-13). That node lands this instance's verdict data under `inputs/` here, one
-file per runbook step that reads it.
+file per runbook step that reads it. The first is the loss-scan (runbook step 13, the fourth
+audit): `inputs/loss-scan-dispositions.sh` computes a disposition for every file of the
+pre-transplant archive against the live tree, and `inputs/loss-scan-dispositions.tsv` is its
+2026-09-13 output.
