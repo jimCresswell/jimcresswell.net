@@ -1257,3 +1257,58 @@ parallax, wrap):
   handshake with more than one worker and never will by design, so the multi-worker proof lives
   only in the PR body's matrix. Index of homes: PR #60 body and bot comment (dispositions), the
   ARC channel (triage transcript), this napkin, the lane record's 19:58Z waypoint.
+
+### Session 2026-09-13, lane A, segment three (20:00Z to 23:00Z) — Saffron turns Verdure (c39ad7)
+
+- The port PR's fifth review round ended the shape instead of adding a sixth mechanism. Rounds
+  one to four each cured one finding by adding a mechanism (a handshake, a hold, holder
+  identity, a wait), and each round's finding was the same class: the port was owned by one
+  process and served by another. The Director's lens 4 ruling and a bounded assumptions pass
+  (two shapes, the SEO origin tests as the falsifier) chose the shape where the process that
+  binds the socket serves from it through Next's custom-server API; three modules and their
+  cells went away. Candidate lesson: when successive rounds on one change each add a mechanism
+  to the same shape, the shape is the finding; ask lens 4 at the second such round, not the
+  fifth. Home: `review-feedback-defaults-to-triage` or PDR-132 (a round-count clause); a
+  register entry after the PR lands.
+- The assumptions pass's one objection (the runner becoming the production server, with Next's
+  require hook and `NODE_ENV=production` in the test process) was answered by moving which
+  process binds, not by weakening the invariant: a global-setup child binds, builds, serves and
+  prints two protocol lines; Playwright's `webServer` plugin cannot receive a port a child chose,
+  so global setup plus one environment variable written before the worker fork is the channel.
+  The runner-side pid-stamped handshake became unnecessary the moment the origin was written
+  after the runner's own config evaluation.
+- A surviving mutant is a cell-truth finding. The cell "close does not wait on a lingering
+  connection" held only an unfinished request, which Node's `server.close` treats as idle, so
+  removing `closeAllConnections` stayed green; the cell now holds a request whose response is
+  pending and the mutant dies. The first version claimed what it did not exercise.
+- A refused command left an announced state untrue for about a minute: the "released" message
+  to the Director said the three threads were resolved while the resolve command had been
+  refused by the worktree guard (a `for` loop over thread ids). Cure applied: one plain command
+  per mutation and the announcement after the instrument's output, never in the same turn as
+  the command. Same generator as the owner's finish-line correction of segment two
+  (interpretation reported as observation).
+- The worktree guard's refusals this segment, for the frictions register: a `for` loop over
+  ids, a variable inside a script path, `bash` fed a python heredoc, `cat -A` (not a guard, a
+  macOS `cat` without `-A`), `pnpm -s` (unknown flag; `--silent` is the spelling). Plain
+  commands with literal paths pass every time; scripts written by the file tool must carry no
+  user-home path (the hook refuses the write), so they take the scratch directory as `$1`.
+- The session 2 verify-list verdicts lived only in an explorer's transcript; after compaction
+  they had to be recovered from the task output file. The A-to-H ledger in the scratchpad was
+  the right instrument and stopped too early. Cure: write every verdict to the ledger as it
+  arrives, before the next step.
+- The pending-graduations parser counts only the inline-bracket shape; the five entries
+  captured at the transplant close carried a heading shape it neither counted nor flagged, so
+  the register read as empty while holding five items. Filed with the session 2 batch in the
+  parser's shape; the readout is the proof (0 to 33, then 28 after five constitutional-class
+  entries moved to PDR-130's slow lane on Copilot's reading). The class test applied to all 28:
+  A, B, C (how the estate decides and frames) and 1a, 1b (how it consolidates) are slow-lane;
+  D (the push slot) is coordination, not constitutional. Candidate lesson: a batch filed onto a
+  register is classed by PDR-130 before filing, not after a reviewer asks. Home: the register's
+  §What belongs here (one sentence) or PDR-130.
+- Copilot's reading of the owner-card trigger as PDR-100's abolished pre-approval was cured by
+  citing the ratified text (item 8) in the section note rather than by argument: the text was
+  the answer, the same shape as candidate A.
+- Reporting shape that held this segment: the reviewer's verdict quoted first, the instrument
+  named per claim, the declined item stated with its reason, a state line to the Director
+  between long steps. Two lapses, both recorded above (the premature "released"; the reply that
+  said three cells after the commit said four, corrected on the thread).
