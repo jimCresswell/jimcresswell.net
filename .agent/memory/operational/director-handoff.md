@@ -331,6 +331,11 @@ ones the Director would put to the owner had the owner been present.
     merge-bot.md carries the credential fact; three mutants killed; the falsifier quoted before
     (#60 read SILENT-WAIT with a request outstanding) and after (#62 read WAITING-REVIEW-RUN-LIVE).
     Copilot requested; the bot merges at zero threads. 5a-ii cuts from main once #64 lands.
+30. #62 round eleven (about 23:20Z on 2026-09-13): two threads; board rows A and B refreshed to
+    the logged state; the morning-card instruction split so the slow-lane five take PDR-130's
+    review-date decision (`promote` or `kill-with-reasoning`), never the fast dispositions. Cure at
+    `SHA: 8d79172`; replied, resolved, Copilot re-requested, bot armed. Lens: correctness of a
+    record the successor reads; no REVIEW.
 
 ## Routing log
 
