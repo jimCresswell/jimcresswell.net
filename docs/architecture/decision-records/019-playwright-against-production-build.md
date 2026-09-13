@@ -46,9 +46,10 @@ manual production server.
    first step but not sufficient.
 3. **Run E2E against a production build.** Use `pnpm build && pnpm start`
    as the Playwright web server. Removes both dev-only failure modes at
-   the source. Build adds ~15 s on cold start; subsequent runs reuse the
-   server locally. The PDF is part of the build, so the `with-build`
-   project collapses into the default project.
+   the source. Build adds ~15 s on cold start, paid on every run: each run
+   starts and proves its own server (`reuseExistingServer: false`). The PDF
+   is part of the build, so the `with-build` project collapses into the
+   default project.
 
 ## Decision
 

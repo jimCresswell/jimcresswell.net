@@ -736,11 +736,14 @@ live owner-facing surface never pauses for a push gate. The first suspect in
 any gate-vs-environment collision is the harness's missing adaptation, never
 the schedule. Worked instances: a fixed-port Playwright `webServer` turned
 one seat's render server into a fleet-wide push outage (cure: an ephemeral
-port probed at config load — no `process.env` in config, `reuseExistingServer`
-stays `false`; this estate's site config, 2026-09-13, probes in the runner
-and hands the port to its worker processes through a pid-stamped stamp in
-the runner's own environment, which a value set from outside cannot forge,
-so no configuration comes from the environment); a UI-test webServer
+port probed at config load — no port or origin read from the environment,
+`reuseExistingServer` stays `false`; this estate's site config, 2026-09-13,
+probes in the runner and hands the port to the processes it forks through a
+pid-stamped value in the runner's own environment, read there only as the
+runner's internal handshake channel: a forked child is known by Node's own
+IPC-channel state, which never travels by inheritance, a stamp set from
+outside the harness is inert, and the environment never sets the harness's
+port or origin); a UI-test webServer
 inheriting `.env.local` refused a valid sink configuration (cure: the
 webServer pins its own observability env).
 Corollary for guard design: when a guard bites the innocent, fix the shared

@@ -17,6 +17,16 @@ reused (`reuseExistingServer: false`), so every run proves the build it started.
 generation is part of the `pnpm build` script, so PDF tests run
 alongside everything else with no separate project.
 
+The runner hands its probed port to the processes it forks through a
+pid-stamped value in its own environment (`scripts/port-handshake.ts`). Two
+falsifiers prove that a value set from outside is inert; run them from this
+directory and expect the full suite green on a probed port both times:
+
+```bash
+PLAYWRIGHT_SITE_PORT_HANDSHAKE=1:999999 node_modules/.bin/playwright test        # stale stamp
+TEST_WORKER_INDEX=0 PLAYWRIGHT_SITE_PORT_HANDSHAKE=1:$$ node_modules/.bin/playwright test  # forged worker
+```
+
 This avoids dev-server-only flakes — Turbopack `Runtime ChunkLoadError`
 overlays and Next.js dev-tools issue badges — by removing the `pnpm dev`
 process from the E2E loop entirely.

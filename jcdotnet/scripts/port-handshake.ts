@@ -9,12 +9,25 @@
  * port), and a worker trusts its parent, the runner. Any other stamp,
  * including one set by a shell or task runner that happens to be the
  * runner's parent, is ignored and the process probes as if it were absent.
+ *
+ * Which process is a worker (any child Playwright forks from the runner: a
+ * test worker or the test server's loader) is decided by Node's own
+ * IPC-channel state, never by a variable Playwright manages; the variable
+ * Node reads for it at startup is consumed and removed from the environment,
+ * so the distinction never travels by inheritance. The guarantee is against
+ * accidental inheritance, not an adversary: a parent that forks the runner
+ * itself, or sets that variable deliberately, can seed a stamp and could as
+ * easily edit the config.
  */
 
 export interface HandshakeProcess {
   readonly pid: number;
   readonly ppid: number;
-  /** True inside a Playwright worker (Playwright sets `TEST_WORKER_INDEX` before evaluating the config there). */
+  /**
+   * True in a process Node started with an IPC channel (`process.send !==
+   * undefined`): Playwright forks its workers and its out-of-process loader
+   * that way; a runner spawned by pnpm or turbo has none.
+   */
   readonly isWorker: boolean;
 }
 
