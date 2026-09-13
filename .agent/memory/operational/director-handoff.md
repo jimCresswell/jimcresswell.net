@@ -187,6 +187,16 @@ ones the Director would put to the owner had the owner been present.
    worktree and branch removed. Open: #60 (the holder cure, push imminent) and #55 (cure at
    3d86acb, push after #60). The records branch pushes at the next idle slot behind lane A's two
    pushes (the waypoint cadence).
+10. Lane A found a vacuous green on the pending-graduations register: the fitness item counter
+    reads only the canonical inline-bracket entry shape, the five existing entries use a
+    heading-and-bullets shape with no `captured:` field, so the readout says zero decision debt
+    (the F-84 class the register's own preamble warns of). Ruling (lens 2, lens 3): file the
+    session 2 entries in the canonical shape and migrate the five existing entries to it in the
+    same commit, substance unchanged; the proof is the readout moving from 0 to the filed total;
+    no ratified text changes. Condition: lane A first reads whether the strict fitness check is a
+    gate leg and what it says at the filed count; advisory proceeds; a blocking leg stops for a
+    ruling, because the register's contract says the count is reported and drains by decisions,
+    never chased. REVIEW: the finding and the migration.
 
 ## Routing log
 
