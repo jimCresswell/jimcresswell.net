@@ -453,6 +453,13 @@ ones the Director would put to the owner had the owner been present.
     observed live run is named nowhere in evidence); the Director's chain replies, resolves,
     re-requests Copilot and arms the bot. Lens 4 (host load is the constraint the slot
     protects; the overlap spent it). REVIEW: none; recorded for the pattern.
+42. #65 round three (23:58Z on 2026-09-13): one thread (an inter-call window between the
+    harvest read and the thread read lets a re-request plus a summary-only review land unseen,
+    so the read can return SETTLE-READY with a finding missed) and three suppressed doc-truing
+    findings (the timeout clause, the post-merge condition, a rationale comment). Round four
+    granted as the last: a measured-state pull request that ships a known false SETTLE-READY
+    path is not clean; after round four, body findings go to a follow-on and only a
+    correctness thread reopens. Lens 1. REVIEW: the fourth round on #65.
 
 ## Routing log
 
