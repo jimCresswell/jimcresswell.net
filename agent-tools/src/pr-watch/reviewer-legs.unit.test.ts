@@ -216,6 +216,28 @@ describe('mostBlockingLeg', () => {
     ).toMatchObject({ kind: 'WAITING-REVIEW-RUN-LIVE' });
   });
 
+  // The inverse: GraphQL does not carry the suffix on a harvested value, but
+  // the comparison is symmetric, so a value that did would bind the same leg.
+  it('a harvested author carrying [bot] binds a declared bare login (SATISFIED)', () => {
+    const legs = computeReviewerLegs({
+      ...base,
+      expectedReviewers: ['copilot-pull-request-reviewer'],
+      reviews: [review({ author: 'copilot-pull-request-reviewer[bot]' })],
+      reviewRequests: [],
+      now: '2026-07-21T12:06:00Z',
+    });
+    expect(legs[0]?.state).toBe('SATISFIED');
+  });
+
+  it('a request carrying [bot] matches a declared bare login (the round in flight)', () => {
+    expect(
+      mostBlockingLeg({
+        legs: [{ reviewer: 'copilot-pull-request-reviewer', state: 'OWED', detail: '' }],
+        reviewRequests: ['copilot-pull-request-reviewer[bot]'],
+      }),
+    ).toMatchObject({ kind: 'WAITING-REVIEW-RUN-LIVE' });
+  });
+
   it('a PENDING (unsubmitted) review neither satisfies nor skips a leg', () => {
     const legs = computeReviewerLegs({
       ...base,

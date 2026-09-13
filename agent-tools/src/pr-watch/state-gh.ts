@@ -11,8 +11,8 @@ import {
 } from './gh.js';
 import { parseReviewThreadPages } from './review-threads.js';
 import { readReviewRunsLeg } from './review-runs.js';
-import { parseRequestedReviewers, parseReviewsHarvest } from './harvest-fields.js';
-import { hasLanded, isSignedSelfReply, type HarvestedReview } from './reviewer-legs.js';
+import { parseHarvest, type ReviewHarvest } from './harvest-fields.js';
+import { hasLanded, isSignedSelfReply } from './reviewer-legs.js';
 import { parseStateView, PR_STATE_VIEW_JSON_FIELDS } from './state-fields.js';
 import type { PrStateReading } from './state-types.js';
 
@@ -109,13 +109,14 @@ function readReviewsHarvest(input: {
   readonly gh: string;
   readonly prNumber: string;
   readonly repo: string | undefined;
-}): { readonly reviews: HarvestedReview[]; readonly reviewRequests: string[] } {
+}): ReviewHarvest {
   try {
-    const raw = parseGhJson(
-      input.run(input.gh, reviewsHarvestArgs(input.prNumber, input.repo), GH_EXEC_OPTIONS),
-      'api graphql reviews',
+    return parseHarvest(
+      parseGhJson(
+        input.run(input.gh, reviewsHarvestArgs(input.prNumber, input.repo), GH_EXEC_OPTIONS),
+        'api graphql reviews',
+      ),
     );
-    return { reviews: parseReviewsHarvest(raw), reviewRequests: parseRequestedReviewers(raw) };
   } catch (cause) {
     throw new Error(
       `PR #${input.prNumber}: reviews harvest failed — does the PR exist and is it accessible?`,

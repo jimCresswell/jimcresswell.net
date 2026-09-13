@@ -2,51 +2,13 @@ import { describe, expect, it } from 'vitest';
 
 import { readPrStateReading } from './state-gh.js';
 import type { GhCommandExecutor } from './gh.js';
+import { HEAD, PR_URL, threadsPayload, viewPayload } from './test-helpers/state-gh-payloads.js';
 
 /**
  * IO-composition tests for `readPrStateReading` with an injected executor —
  * no real gh. The executor dispatches on argv shape, mirroring the surfaces
  * verified live 2026-07-21.
  */
-
-const HEAD = 'f'.repeat(40);
-const PR_URL = 'https://github.com/oaknational/jimcresswell.net/pull/461';
-
-function viewPayload(oid: string = HEAD): string {
-  return JSON.stringify({
-    number: 461,
-    url: PR_URL,
-    state: 'OPEN',
-    isDraft: false,
-    mergeable: 'MERGEABLE',
-    mergeStateStatus: 'BLOCKED',
-    headRefOid: oid,
-    statusCheckRollup: [
-      {
-        __typename: 'CheckRun',
-        name: 'secret-scan',
-        status: 'COMPLETED',
-        conclusion: 'SUCCESS',
-        completedAt: '2026-07-21T10:33:35Z',
-      },
-    ],
-    autoMergeRequest: null,
-  });
-}
-
-function threadsPayload(): string {
-  return JSON.stringify([
-    {
-      data: {
-        repository: {
-          pullRequest: {
-            reviewThreads: { totalCount: 2, nodes: [{ isResolved: true }, { isResolved: true }] },
-          },
-        },
-      },
-    },
-  ]);
-}
 
 function reviewsPayload(): string {
   return JSON.stringify([
@@ -112,6 +74,19 @@ function agentTaskResponse(script: ExecutorScript, args: readonly string[]): str
   return view;
 }
 
+// Both GraphQL legs arrive as `api graphql`; the harvest fixture answers only a
+// query selecting the request connection (a query that dropped it gets no fit).
+function graphqlResponse(args: readonly string[]): string {
+  const query = args.find((arg) => arg.startsWith('query=')) ?? '';
+  if (query.includes('reviewThreads')) {
+    return threadsPayload();
+  }
+  if (!query.includes('reviewRequests(')) {
+    throw new Error('the harvest query no longer selects reviewRequests');
+  }
+  return reviewsPayload();
+}
+
 function makeExecutor(script: ExecutorScript, calls: string[][]): GhCommandExecutor {
   return (_file, args) => {
     calls.push([...args]);
@@ -119,9 +94,7 @@ function makeExecutor(script: ExecutorScript, calls: string[][]): GhCommandExecu
       return viewPayload();
     }
     if (args[0] === 'api') {
-      // Both GraphQL legs arrive as `api graphql`; dispatch on the query text.
-      const query = args.find((arg) => arg.startsWith('query='));
-      return query?.includes('reviewThreads') === true ? threadsPayload() : reviewsPayload();
+      return graphqlResponse(args);
     }
     if (args[0] === 'agent-task') {
       return agentTaskResponse(script, args);
@@ -621,8 +594,7 @@ describe('readPrStateReading', () => {
           return mergedView;
         }
         if (args[0] === 'api') {
-          const query = args.find((arg) => arg.startsWith('query='));
-          return query?.includes('reviewThreads') === true ? threadsPayload() : reviewsPayload();
+          return graphqlResponse(args);
         }
         if (args[0] === 'agent-task') {
           return agentTaskResponse({}, args);
@@ -661,8 +633,7 @@ describe('readPrStateReading — tip consistency (r4 regression)', () => {
         return viewPayload(oid);
       }
       if (args[0] === 'api') {
-        const query = args.find((arg) => arg.startsWith('query='));
-        return query?.includes('reviewThreads') === true ? threadsPayload() : reviewsPayload();
+        return graphqlResponse(args);
       }
       if (args[0] === 'agent-task') {
         return agentTaskResponse({}, args);

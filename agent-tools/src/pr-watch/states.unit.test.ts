@@ -530,4 +530,28 @@ describe('computePrVerdict — round-4 residual classes (2026-07-21)', () => {
       `tip-bound review body present: ${COPILOT} (COMMENTED)`,
     );
   });
+
+  it('a closer-look body names its verdict and suppressed count in the evidence (the bot merged on one, #60 and #64)', () => {
+    // The vendor's summary review says what it suppressed; the evidence carries
+    // the count so the round is never read as zero-finding by omission. Whether
+    // suppressed findings block merge-eligibility is the owner's ruling.
+    const verdict = computePrVerdict(
+      settledReading({
+        reviews: [
+          {
+            author: COPILOT,
+            state: 'COMMENTED',
+            body: '### 🔵 Needs a closer look\n\n<details>\n### Suppressed comments (6)\n</details>',
+            commitOid: TIP,
+            submittedAt: '2026-07-21T12:05:00Z',
+          },
+        ],
+      }),
+      LATE_NOW,
+    );
+    expect(verdict.state).toBe('SETTLE-READY');
+    expect(verdict.evidence.join('\n')).toContain(
+      `tip-bound review body present: ${COPILOT} (COMMENTED), verdict "Needs a closer look", 6 suppressed finding(s)`,
+    );
+  });
 });

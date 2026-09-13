@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 
 import type { GhCommandExecutor } from './gh.js';
 import { readPrStateReading } from './state-gh.js';
+import { HEAD, threadsPayload, viewPayload } from './test-helpers/state-gh-payloads.js';
 
 /**
  * The review-request surface of `readPrStateReading`. Requests are read from
@@ -12,27 +13,7 @@ import { readPrStateReading } from './state-gh.js';
  * SILENT-WAIT-NO-REVIEWER with Copilot's request outstanding on GraphQL).
  */
 
-const HEAD = 'f'.repeat(40);
 const COPILOT = 'copilot-pull-request-reviewer';
-
-function viewPayload(): string {
-  return JSON.stringify({
-    number: 461,
-    url: 'https://github.com/oaknational/jimcresswell.net/pull/461',
-    state: 'OPEN',
-    isDraft: false,
-    mergeable: 'MERGEABLE',
-    mergeStateStatus: 'BLOCKED',
-    headRefOid: HEAD,
-    statusCheckRollup: [],
-    autoMergeRequest: null,
-  });
-}
-
-function threadsPayload(): string {
-  const reviewThreads = { totalCount: 0, nodes: [] };
-  return JSON.stringify([{ data: { repository: { pullRequest: { reviewThreads } } } }]);
-}
 
 /** The harvest page: no review landed yet, one Bot request and one User request outstanding. */
 function harvestPayload(): string {
@@ -76,7 +57,7 @@ function executor(
   calls: string[][],
   payloads: { harvest: () => string; threads: () => string } = {
     harvest: harvestPayload,
-    threads: threadsPayload,
+    threads: () => threadsPayload(0),
   },
 ): GhCommandExecutor {
   return (_file, args) => {
@@ -88,7 +69,15 @@ function executor(
       return JSON.stringify([]);
     }
     const query = args.find((arg) => arg.startsWith('query='));
-    return query?.includes('reviewThreads') === true ? payloads.threads() : payloads.harvest();
+    if (query?.includes('reviewThreads') === true) {
+      return payloads.threads();
+    }
+    // The harvest fixture answers only a query that selects the request connection: a
+    // query that dropped it would get nothing here, never a fixture that happens to fit.
+    if (query?.includes('reviewRequests(') !== true) {
+      throw new Error('the harvest query no longer selects reviewRequests');
+    }
+    return payloads.harvest();
   };
 }
 
