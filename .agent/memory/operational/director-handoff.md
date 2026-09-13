@@ -357,7 +357,8 @@ ones the Director would put to the owner had the owner been present.
     agent-task evidence still reads as a live review run; the request-harvest fake does not
     gate on the query; the compound read parses the review pages twice). Same lens as item 31:
     the merge stands; the six plus the body tally are item 5a-iii, after 5a-ii and before the
-    e2e follow-on and 5b. REVIEW: a second merge on a closer-look body in one night; the body
+    e2e follow-on and 5b. Lane A confirmed 5a-ii carries none of the six as cures (the code already strips the
+    suffix on both sides; the inverse cells are the missing proof). REVIEW: a second merge on a closer-look body in one night; the body
     tally moves up the 5a order if a third appears.
 
 ## Routing log
