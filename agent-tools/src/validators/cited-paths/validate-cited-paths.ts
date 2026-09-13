@@ -31,7 +31,7 @@ import {
  * A target resolves when the repository itself says it belongs: it is
  * tracked (a file, or a directory a tracked file implies), or git ignores it
  * by the repository's own rules — the untracked-by-design instance tier
- * (comms events, claims, the rendered log) and the private boundary. The
+ * (comms events, claims, the rendered log) and ignored local material. The
  * local disk is never consulted: on 2026-09-13 the leg was green on a
  * checkout that carried that state and red in CI, which does not.
  *
@@ -59,13 +59,8 @@ const SCANNED_ROOT_FILES: readonly string[] = [
 
 const SCANNED_EXTENSIONS: ReadonlySet<string> = new Set(['.md']);
 
-/** Path-fragment exclusions: archives and the private boundary are never walked by a repo tool. */
-const EXCLUDED_PATH_FRAGMENTS: readonly string[] = [
-  '/archive/',
-  '/node_modules/',
-  '.agent-original/',
-  '/reference-local/',
-];
+/** Scope exclusions: archives and the pre-transplant snapshot are history, not live doctrine. */
+const EXCLUDED_PATH_FRAGMENTS: readonly string[] = ['/archive/', '.agent-original/'];
 
 /**
  * Targets exempted by hand. Empty by design: a target that is neither
@@ -77,8 +72,10 @@ const ALLOWLISTED_TARGETS: readonly string[] = [];
 const ALLOWLISTED_PATHS: readonly string[] = [];
 
 /** Whether the repository itself says the target belongs: tracked, or ignored by its rules. */
-function repositoryResolver(candidates: readonly string[]): (target: string) => boolean {
-  const tracked = collectTrackedPaths(repoRoot);
+function repositoryResolver(
+  tracked: ReadonlySet<string>,
+  candidates: readonly string[],
+): (target: string) => boolean {
   const ignored = collectIgnoredPaths(
     repoRoot,
     candidates.filter((candidate) => !tracked.has(candidate)),
@@ -93,16 +90,18 @@ function formatFindings(findings: readonly MissingPathFinding[]): string {
 }
 
 async function main(): Promise<void> {
+  const tracked = collectTrackedPaths(repoRoot);
   const files = await discoverAuthoredFiles(repoRoot, {
     roots: SCANNED_ROOTS,
     rootFiles: SCANNED_ROOT_FILES,
     extensions: SCANNED_EXTENSIONS,
     excludedPathFragments: EXCLUDED_PATH_FRAGMENTS,
+    universe: tracked,
   });
   const candidates = [
     ...new Set(files.flatMap((file) => extractPathCitations(file.content).map((c) => c.target))),
   ];
-  const findings = findMissingPathCitations(files, repositoryResolver(candidates), {
+  const findings = findMissingPathCitations(files, repositoryResolver(tracked, candidates), {
     allowlistedTargets: ALLOWLISTED_TARGETS,
     allowlistedPaths: ALLOWLISTED_PATHS,
   });

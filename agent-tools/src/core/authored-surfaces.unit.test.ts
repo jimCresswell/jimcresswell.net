@@ -56,11 +56,25 @@ const tree: Tree = new Map<string, string | readonly string[]>([
   [`${REPO}/AGENTS.md`, 'entry point'],
 ]);
 
+const universe = new Set([
+  '.agent',
+  '.agent/rules',
+  '.agent/rules/a.md',
+  '.agent/rules/notes.txt',
+  '.agent/rules/archive',
+  '.agent/rules/archive/old.md',
+  '.agent/rules/nested',
+  '.agent/rules/nested/b.md',
+  '.agent/rules/nested/CHANGELOG.md',
+  'AGENTS.md',
+]);
+
 const spec = {
   roots: ['.agent/rules', '.agent/missing'],
   rootFiles: ['AGENTS.md', 'MISSING.md'],
   extensions: new Set(['.md']),
   excludedPathFragments: ['/archive/', 'nested/CHANGELOG.md'],
+  universe,
 };
 
 describe('discoverAuthoredFiles', () => {
@@ -115,5 +129,34 @@ describe('readOptionalFile', () => {
   it('returns the text of a present file and undefined for a missing one', async () => {
     await expect(readOptionalFile(`${REPO}/AGENTS.md`, fakeFs(tree))).resolves.toBe('entry point');
     await expect(readOptionalFile(`${REPO}/MISSING.md`, fakeFs(tree))).resolves.toBeUndefined();
+  });
+});
+
+describe('discoverAuthoredFiles universe', () => {
+  it('never enters a directory or reads a file outside the universe, however the tree looks', async () => {
+    const treeWithIgnored: Tree = new Map<string, string | readonly string[]>([
+      ...tree,
+      [`${REPO}/.agent/rules`, ['a.md', 'notes.txt', 'archive', 'nested', 'local', 'stray.md']],
+      [`${REPO}/.agent/rules/local`, ['secret.md']],
+      [`${REPO}/.agent/rules/local/secret.md`, 'never read'],
+      [`${REPO}/.agent/rules/stray.md`, 'untracked'],
+    ]);
+    const reads: string[] = [];
+    const recording: AuthoredSurfaceFs = {
+      readdir: fakeFs(treeWithIgnored).readdir,
+      readFile: async (absolutePath) => {
+        reads.push(absolutePath);
+        return fakeFs(treeWithIgnored).readFile(absolutePath);
+      },
+    };
+
+    const files = await discoverAuthoredFiles(REPO, { ...spec, rootFiles: [] }, recording);
+
+    expect(files.map((file) => file.path)).toStrictEqual([
+      '.agent/rules/a.md',
+      '.agent/rules/nested/b.md',
+    ]);
+    expect(reads).not.toContain(`${REPO}/.agent/rules/local/secret.md`);
+    expect(reads).not.toContain(`${REPO}/.agent/rules/stray.md`);
   });
 });

@@ -5,10 +5,13 @@
  *
  * Three validators (`validate-cited-scripts`, `validate-cited-paths`,
  * `validate-no-stale-script-invocations`) walk authored surfaces with the
- * same semantics: a missing root is not a failure, an excluded fragment
- * prunes a directory or a file, and only files with a scanned extension are
- * read. One walker owns those semantics (`consolidate-at-second-consumer`);
- * each validator supplies its own roots, extensions and exclusions.
+ * same semantics: a missing root is not a failure, a path outside the
+ * universe (normally the tracked tree) is never entered or read, an excluded
+ * fragment prunes a directory or a file, and only files with a scanned
+ * extension are read. One walker owns those semantics
+ * (`consolidate-at-second-consumer`); each validator supplies its own roots,
+ * extensions and scope exclusions, and the universe comes from git rather
+ * than from a list (`compute-dont-hope`).
  *
  * The file system is an injected port so the walk's semantics are proven by
  * a unit test over an in-memory tree, never by touching a real checkout.
@@ -36,9 +39,19 @@ export interface AuthoredSurfaceSpec {
   /**
    * Path fragments that prune the walk: a directory whose repo-relative
    * path plus a trailing slash contains a fragment is not entered, and a
-   * file whose repo-relative path contains a fragment is not read.
+   * file whose repo-relative path contains a fragment is not read. These
+   * declare the validator's SCOPE (archives, history, memory); what the
+   * repository ignores is never listed here — it is outside the universe.
    */
   readonly excludedPathFragments: readonly string[];
+  /**
+   * The paths the walk may see: repo-relative files and the directories they
+   * imply, normally the tracked tree (`collectTrackedPaths`). A directory or
+   * file outside the universe is never entered or read, so ignored material
+   * (build output, local boundaries, vendored trees) is invisible without
+   * anyone listing it.
+   */
+  readonly universe: ReadonlySet<string>;
 }
 
 /** A directory entry as `readdir` with `withFileTypes` reports it. */
@@ -94,6 +107,9 @@ export async function discoverAuthoredFiles(
     await collectFiles(path.join(repoRoot, rootRelative), files, { repoRoot, spec, surfaceFs });
   }
   for (const fileName of spec.rootFiles) {
+    if (!spec.universe.has(fileName)) {
+      continue;
+    }
     const content = await readOptionalFile(path.join(repoRoot, fileName), surfaceFs);
     if (content !== undefined) {
       files.push({ path: fileName, content });
@@ -131,6 +147,9 @@ async function collectFiles(
   for (const entry of await readDirectoryEntries(absoluteDir, context.surfaceFs)) {
     const entryAbsolute = path.join(absoluteDir, entry.name);
     const repoRelative = toRepoRelative(context.repoRoot, entryAbsolute);
+    if (!context.spec.universe.has(repoRelative)) {
+      continue;
+    }
     if (isExcluded(context.spec, entry.isDirectory() ? `${repoRelative}/` : repoRelative)) {
       continue;
     }

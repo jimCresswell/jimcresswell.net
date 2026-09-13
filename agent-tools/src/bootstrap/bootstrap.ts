@@ -7,6 +7,12 @@ import { resolveRepoRoot } from '../core/repo-root.js';
 import { writeLine, writeErrorLine } from '../core/terminal-output.js';
 
 import { productionWorkspaceDepFsIo } from './bootstrap-helpers-io.js';
+import { installTimeClosure } from './install-time-closure.js';
+import {
+  packageName,
+  workspaceManifestInputs,
+  workspacePatterns,
+} from './install-time-closure-io.js';
 import {
   binPathFromManifest,
   interpretSpawnOutcome,
@@ -25,11 +31,11 @@ import {
  * out of the install lifecycle — enforced by the `validate-lifecycle-scripts`
  * validator.
  *
- * agent-tools imports the workspace packages listed in `WORKSPACE_DEPS`
- * (`@engraph/result`, `@engraph/safe-path`, `@engraph/type-helpers`), and
- * every workspace's `eslint.config.ts` imports `@engraph/eslint-plugin-standards`;
- * all resolve to built `dist` only — there is no source-pointing export
- * condition. Their `tsup.config.ts` files in turn import
+ * agent-tools imports workspace packages (`@engraph/result`, `@engraph/safe-path`,
+ * `@engraph/type-helpers`), and every workspace's `eslint.config.ts` imports
+ * `@engraph/eslint-plugin-standards`; all resolve to built `dist` only — there
+ * is no source-pointing export condition. Which packages those are is derived
+ * from the workspace manifests at run time (`readInstallTimeClosure`). Their `tsup.config.ts` files in turn import
  * `@engraph/workspace-config/tsup`, also dist-resolved, so the config-base
  * package is part of the same install-time closure. On a fresh checkout
  * (Vercel, CI, a new worktree) `postinstall` runs before any orchestrated
@@ -56,38 +62,27 @@ interface WorkspaceDep {
   readonly distArtifacts: readonly string[];
 }
 
-/** The witness pair for a leaf package whose build emits a `dist/index.*` barrel. */
-const LEAF_DIST_ARTIFACTS = ['index.js', 'index.d.ts'] as const;
-
 /**
- * The workspace packages agent-tools' own build depends on, in build order.
- * `@engraph/workspace-config` builds first: every other dep's
- * `tsup.config.ts` imports `@engraph/workspace-config/tsup`, which
- * resolves to built `dist` only, so on a cold checkout its `dist` must exist
- * before any dep's tsup run bundles its config — and it can hold position 0
- * because it has zero internal workspace dependencies by design. The rest are
- * the leaf packages agent-tools imports; none has runtime workspace deps of
- * its own. A new agent-tools workspace dependency — or a new install-time
- * config dependency — MUST be added here or every cold `pnpm install` (CI,
- * fresh clones, Vercel) fails its postinstall on the missing `dist`; warm
- * local workspaces mask the gap (the PR #393 install/secret-scan/
- * run-quality-gates failure, 2026-07-16; the identical PR #836 failure via
- * the config-import path, 2026-08-09).
+ * The workspace packages built before agent-tools, derived from the workspace
+ * manifests: every package whose exports resolve only to built `dist`, in
+ * workspace-dependency order (`install-time-closure.ts`). Computed, never
+ * kept: a hand-kept list here missed the ESLint plugin every config file
+ * imports, and a cold CI checkout failed while warm local builds masked it
+ * (PR #53, 2026-09-13; the lineage met the same class in two earlier pull
+ * requests). The package running this bootstrap is excluded — its own tsc
+ * build follows the closure.
  */
-const WORKSPACE_DEPS: readonly WorkspaceDep[] = [
-  {
-    dir: 'tooling/workspace-config',
-    distArtifacts: ['tsup.config.base.js', 'tsup.config.base.d.ts'],
-  },
-  // The ESLint plugin is an install-time CONFIG dependency: every workspace's
-  // eslint.config.ts imports it and it resolves to dist only, so a cold checkout's
-  // lint and dependency-cruise runs die without it (PR #53 static-checks, 2026-09-13,
-  // masked locally by a warm dist). It has no workspace runtime deps of its own.
-  { dir: 'tooling/eslint', distArtifacts: LEAF_DIST_ARTIFACTS },
-  { dir: 'tooling/result', distArtifacts: LEAF_DIST_ARTIFACTS },
-  { dir: 'tooling/safe-path', distArtifacts: LEAF_DIST_ARTIFACTS },
-  { dir: 'tooling/type-helpers', distArtifacts: LEAF_DIST_ARTIFACTS },
-];
+function readInstallTimeClosure(): readonly WorkspaceDep[] {
+  const inputs = workspaceManifestInputs(repoRoot, workspacePatterns(repoRoot));
+  const closure = installTimeClosure(inputs, { exclude: [packageName(agentToolsDir)] });
+  if (!closure.ok) {
+    writeErrorLine(
+      `[bootstrap-agent-tools] cannot derive the install-time closure: ${closure.error}`,
+    );
+    process.exit(1);
+  }
+  return closure.deps.map((dep) => ({ dir: dep.dir, distArtifacts: dep.distArtifacts }));
+}
 
 /** Set the executable bit on every compiled CLI entry, mirroring the build script. */
 function markExecutableArtifacts(): void {
@@ -189,7 +184,7 @@ function main(): void {
     process.exit(1);
   }
 
-  for (const dep of WORKSPACE_DEPS) {
+  for (const dep of readInstallTimeClosure()) {
     buildWorkspaceDep(dep, tscBin);
   }
 

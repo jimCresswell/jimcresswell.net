@@ -1,5 +1,6 @@
 import { discoverAuthoredFiles } from '../../core/authored-surfaces.js';
 import { resolveRepoRoot } from '../../core/repo-root.js';
+import { collectTrackedPaths } from '../../core/repository-paths.js';
 import { writeErrorLine, writeLine } from '../../core/terminal-output.js';
 
 import {
@@ -55,15 +56,13 @@ const SCANNED_ROOT_FILES: readonly string[] = [
 const SCANNED_EXTENSIONS: ReadonlySet<string> = new Set(['.md', '.yml', '.yaml', '.toml']);
 
 /**
- * Path-fragment exclusions: history, captures and frozen records quote dead
- * script names legitimately; the pre-transplant snapshot and reference-local
- * trees are never walked by a repo tool.
+ * Scope exclusions: history, captures and frozen records quote dead script
+ * names legitimately; the pre-transplant snapshot is history. Ignored
+ * material is outside the walker's universe and needs no entry.
  */
 const EXCLUDED_PATH_FRAGMENTS: readonly string[] = [
   '/archive/',
-  '/node_modules/',
   '.agent-original/',
-  '/reference-local/',
   '.agent/practice-core/CHANGELOG.md',
   '.agent/practice-core/provenance.yml',
   '.agent/practice-core/incoming/',
@@ -98,6 +97,7 @@ async function main(): Promise<void> {
       rootFiles: SCANNED_ROOT_FILES,
       extensions: SCANNED_EXTENSIONS,
       excludedPathFragments: EXCLUDED_PATH_FRAGMENTS,
+      universe: collectTrackedPaths(repoRoot),
     }),
     loadWorkspaceScripts(repoRoot),
   ]);

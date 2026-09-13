@@ -1,5 +1,6 @@
 import { discoverAuthoredFiles } from '../../core/authored-surfaces.js';
 import { resolveRepoRoot } from '../../core/repo-root.js';
+import { collectTrackedPaths } from '../../core/repository-paths.js';
 import { writeLine, writeErrorLine } from '../../core/terminal-output.js';
 
 import {
@@ -56,16 +57,11 @@ const SCANNED_EXTENSIONS: ReadonlySet<string> = new Set(['.md', '.yml', '.yaml']
  * Path-fragment exclusions. Files matching any fragment are skipped.
  *
  * - `/archive/` — historical record, never edited as live guidance.
- * - `/node_modules/` — vendored dependency tree.
  * - `clerk-backend-api/SKILL.md` — vendored third-party skill that
  *   references its upstream `node scripts/extract-tags.js` invocation
  *   (Clerk-internal, not repo-internal).
  */
-const EXCLUDED_PATH_FRAGMENTS: readonly string[] = [
-  '/archive/',
-  '/node_modules/',
-  'clerk-backend-api/SKILL.md',
-];
+const EXCLUDED_PATH_FRAGMENTS: readonly string[] = ['/archive/', 'clerk-backend-api/SKILL.md'];
 
 /**
  * Files allowlisted in the helper because they legitimately discuss the
@@ -86,6 +82,7 @@ function discoverScannableFiles(): Promise<readonly { path: string; content: str
     rootFiles: [],
     extensions: SCANNED_EXTENSIONS,
     excludedPathFragments: EXCLUDED_PATH_FRAGMENTS,
+    universe: collectTrackedPaths(repoRoot),
   });
 }
 
