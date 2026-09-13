@@ -46,6 +46,11 @@ of 2026-08-03 in the source lineage, which did not travel with the transplant.
   team-coordination events that bootstrap the session all live on the
   canonical stream, and an agent watching only ARC is blind to them. The
   two watchers are paired, always.
+- **Where both seats can use native session messaging, that is the dialogue
+  channel** (owner-directed 2026-09-13; rule
+  `.agent/rules/channel-by-audience-lifetime-and-consumer.md`). ARC keeps its
+  place for cross-platform pairs and for a dialogue whose transcript is itself
+  the record; the conservation clause applies on both.
 - **Each participant tails the file** with a persistent watcher:
 
   ```bash

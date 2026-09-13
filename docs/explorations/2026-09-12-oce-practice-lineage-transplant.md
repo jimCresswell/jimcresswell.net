@@ -1477,3 +1477,42 @@ note in one commit, after the private directories beneath it were consolidated i
 ignored boundary on the owner's word ("move them both under the new .agent folder, they must remain
 git ignored, if they already exist it is a noop and they can be deleted"). `.agent-original/` is
 gone from the tree and from disk; `main` at `d0159a4` keeps every byte of it.
+
+## Owner direction, round 14 (2026-09-13, evening) — the Director seat, and which channel a message takes
+
+The owner named this session Director ("Please take on the Director role, then stop"). The seat
+opened per PDR-117: watcher and heartbeat armed and verified, claim `1db07581` (role director),
+team-start `ca1ba4d8`, the repo's Director handoff entry point
+(`.agent/memory/operational/director-handoff.md`) and three Implementer lane records under
+`threads/` for closure items 3+5, 6 and 4, each with exclusive file ownership and the node's
+acceptance bar verbatim. Two gate failures on records-only pushes (markdownlint and prettier
+walking the disk into untracked generated and editor files) got one-line stepping-stone ignores
+and a routed cure to lane A: the root gates read the tracked universe.
+
+Owner question, verbatim: "native s2s comms are much, much faster and cheaper and efficient
+that Practice comms for communication, Practice comms on the other hand preserve history and
+knowledge and institutional understanding which is bought with expensive ceremony, Arc channel
+comms are in-between but really only have the advantage in n=2 sessions. So, when do we use
+native comms and when Practice comms? Optimise for efficiency where appropriate but make sure
+that we do not lose the history of _why_ we do things". Answer given and ruled "add the rules
+now": the rule `channel-by-audience-lifetime-and-consumer` (native messaging for dialogue
+between two live seats on one machine; Practice comms for state and record; ARC only where
+native cannot reach; the conservation clause — a decision reached over a fast channel lands in
+its durable home when it is acted on, and the first act on a lane assignment is the claim), a
+PDR-082 §What changes at n=2 clause, the ARC reference §Protocol bullet, the `start-right-team`
+n=2 opener, and a cross-link from `use-agent-comms-log`. Falsifier over the closure lanes:
+decisions that reached neither a comms event nor a durable home must count zero.
+
+## Owner rulings, round 15 (2026-09-13, about 14:00Z) — the team session plan approved; go
+
+Three Implementer seats registered (Saffron turns Verdure c39ad7, Sirocco wakes Wingspan 45fe02,
+Djinn hunts Solder 36720b) and were routed to lanes A, B, C by team-start arrival order. The owner
+asked for a decision-complete plan before the session; it was written with metacognition,
+concept exploration and the plan skill, one card survived (who says go: "Owner to Director,
+once"), and the owner approved it and then said, verbatim: "Go. I release you to do work.
+Questions from the seats go back to you, run them through the decision matrix ... You and the team
+have standing permission to enter and leave all worktrees." The nine decisions of the plan are
+recorded in `.agent/memory/operational/director-handoff.md` §Decisions of the approved plan
+(item 7 to lane C per PDR-117; the lint cure first on lane A; derived leak-validator needles;
+derived rule frontmatter with a `trigger` key and the index winning disagreements; serialised
+pushes; the PDR-132 budget). Go relayed as directed events `0349479b`, `8cca63df`, `7b0ab8aa`.
