@@ -204,7 +204,7 @@ Two Git hooks enforce quality automatically:
 - **Pre-push** — full: `pnpm check` and the site's end-to-end suite. PDF tests require a prior build and are run explicitly.
 
 ```bash
-pnpm check          # Blocking gates, read-only: format, markdownlint, shell and runtime-only lint, lint, type-check, test, the agent-tools e2e and smoke suite, knip, depcruise, gitleaks, portability, sub-agents, skill adapters, encoding, repo and docs validators
+pnpm check          # Blocking gates, writing no tracked file (the agent-tools e2e leg builds agent-tools/dist): format, markdownlint, shell and runtime-only lint, lint, type-check, test, the agent-tools e2e and smoke suite, knip, depcruise, gitleaks, portability, sub-agents, skill adapters, encoding, repo and docs validators
 pnpm fix            # Auto-fix (format, markdownlint, lint), then re-run pnpm check
 pnpm test:e2e       # E2E tests against production build (separate — requires Chromium)
 ```

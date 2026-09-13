@@ -44,6 +44,7 @@ interface GitAnswer {
 function gateRuntime(input: {
   readonly staged?: GitAnswer;
   readonly tracked?: GitAnswer;
+  readonly deleted?: GitAnswer;
   readonly lsFiles?: GitAnswer;
   readonly inheritedExitCode?: number;
 }): {
@@ -56,6 +57,7 @@ function gateRuntime(input: {
   const answers: ReadonlyMap<string, GitAnswer> = new Map([
     ['diff --cached --name-only --diff-filter=ACMR -z', input.staged ?? {}],
     ['ls-files -z', input.tracked ?? {}],
+    ['ls-files --deleted -z', input.deleted ?? {}],
     ['ls-files --cached -s -z', input.lsFiles ?? {}],
   ]);
 
@@ -232,6 +234,7 @@ describe('repo-check tracked gates', () => {
 
     expect(capturedCalls).toStrictEqual([
       { command: 'git', args: ['ls-files', '-z'] },
+      { command: 'git', args: ['ls-files', '--deleted', '-z'] },
       { command: 'git', args: ['ls-files', '--cached', '-s', '-z'] },
     ]);
     expect(inheritedCalls).toStrictEqual([
@@ -247,6 +250,28 @@ describe('repo-check tracked gates', () => {
           'agent-tools/src/x.ts',
         ],
       },
+    ]);
+  });
+
+  it('excludes tracked files deleted from the working tree, asking git rather than the disk', async () => {
+    // A local deletion not yet staged is still an index entry, so `ls-files`
+    // names it; handing that name to Prettier fails on a missing file. Git's
+    // own `--deleted` answer is the exclusion, never a filesystem probe.
+    const { inheritedCalls, runtime } = gateRuntime({
+      tracked,
+      deleted: { stdout: 'docs/a.md\0' },
+      lsFiles,
+    });
+
+    await expect(runPrettierTracked('check', runtime)).resolves.toBe(0);
+
+    expect(inheritedCalls[0]?.args).toStrictEqual([
+      'exec',
+      'prettier',
+      '--check',
+      '--ignore-unknown',
+      'README.md',
+      'agent-tools/src/x.ts',
     ]);
   });
 

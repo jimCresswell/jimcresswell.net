@@ -69,10 +69,21 @@ function stagedFiles(runtime: RepoCheckRuntime): readonly string[] {
  * same on every checkout and in CI. A disk walk would instead lint whatever
  * this machine happens to carry (a generated read model, an editor's workspace
  * file) and prove the machine, not the repository.
+ *
+ * A tracked file deleted from the working tree but not yet staged is still an
+ * index entry, so `ls-files` names it and the tool would fail on a missing
+ * file. Git's own `--deleted` answer removes those, so the gate still never
+ * probes the disk itself.
  */
 function trackedFiles(runtime: RepoCheckRuntime): readonly string[] {
   const names = gitPaths(runtime, ['ls-files'], 'tracked files');
-  return withoutSymlinks(names, indexSymlinkPaths(runtime));
+  const deleted = new Set(
+    gitPaths(runtime, ['ls-files', '--deleted'], 'working-tree-deleted tracked files'),
+  );
+  return withoutSymlinks(
+    names.filter((name) => !deleted.has(name)),
+    indexSymlinkPaths(runtime),
+  );
 }
 
 async function runMarkdownlintOver(
