@@ -5,7 +5,21 @@
 Cauldron herds Lustre (880ff9), claim `1db07581`; route questions and blocks to the Director by
 directed comms event, never to the owner.
 
-## Current continuation
+## Hand-back (2026-09-13, 17:14Z): lane B stood down; nothing below is live
+
+Sirocco wakes Wingspan handed every lane B responsibility back to the Director on the owner's
+word (closeout on the comms stream; claim `707ed764` closed; record
+`.agent/state/collaboration/handoffs/707ed764-320b-443e-99d5-ee3239893782.3.json`). State:
+PR #55 (item 6, PR 1, the sweep) at `6b1b4c3` after the Director merged `main` into it; one
+Copilot thread open (a path escape in the sweep's rule names), cure routed to lane A in the
+`closure-lane-b` worktree; bot merge at zero threads. `closure/lane-b-generator` on origin at
+`d76bb86` holds the 2a generator with its review fold paused mid-fold (the remaining fold
+script and PR body conserved in the record). Handed back for routing: 2a, 2b (the sub-agent
+adapter generator, Gemini as a fourth row), PR 3 (lane C's three rule imports), the board
+items (the atomic writer re-homed to core at its second consumer; a shared no-follow write
+helper; the `CLAUDE_PROJECT_DIR` opt-out as an estate rule).
+
+## Continuation at the go (2026-09-13 about 14:00Z; historical since the hand-back above)
 
 - **Role:** Implementer (PDR-117). Enter your own worktree before any edit; branch
   `closure/lane-b` from `main` (at or after `55649a2`).

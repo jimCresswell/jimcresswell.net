@@ -5,7 +5,19 @@
 Cauldron herds Lustre (880ff9), claim `1db07581`; route questions and blocks to the Director by
 directed comms event, never to the owner.
 
-## Current continuation
+## Hand-back (2026-09-13, 16:57Z): lane C stood down; nothing below is live
+
+Djinn hunts Solder handed every lane C responsibility back to the Director on the owner's
+word (closeout on the comms stream; claim `db336346` closed). Landed: item 4 as bounded (pull
+request 57, `4a61112`); `closure/lane-c` deleted locally and on origin. The napkin capture `8cbebb6`
+rides PR #58 (cherry-picked with authorship); PR #59 closes as carried; the
+`closure-lane-c-restore` worktree and branch are removed by the Director after #58 merges.
+Handed back for routing when the owner sets the next shape: the corpus-analysis and
+workflow-build restore from the pin (todo 1, on a fresh branch from `main`), `sif`'s routing
+rewrite, the five absent doctrine-cited patterns with the cited-paths leg extension, the Gemini
+per-role projection after the adapter generator (2b), item 7 (the compiled record).
+
+## Continuation at the go (2026-09-13 about 14:00Z; historical since the hand-back above)
 
 - **Role:** Implementer (PDR-117). Enter your own worktree before any edit; branch
   `closure/lane-c` from `main` (at or after `55649a2`).
