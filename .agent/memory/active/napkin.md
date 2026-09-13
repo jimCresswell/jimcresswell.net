@@ -841,3 +841,37 @@
   ancestry before removing anything, consolidated without loss, then the archive copies removed
   and `git rm -r .agent-original` with the seven exclusion entries and the provenance note in one
   commit. "If it already exists" is a claim to test, not a premise.
+
+### Lane A (Saffron turns Verdure, c39ad7) — closure item 3 and the tracked-universe lint cure (2026-09-13)
+
+- Which ignore entries are dead is computed against `git ls-files`, never read off the name:
+  `**/CHANGELOG.md` looked like disk state and matched two tracked changelogs; dropping it let
+  `markdownlint --fix` corrupt one (a `+` in prose became a list marker, `_actually_` became
+  `*actually*`), restored by forward write. Every removed entry was then proven dead with one
+  `git ls-files <pattern>` call each; only that one was live. Worked instance of
+  `compute-dont-hope` at the ignore-file grain.
+- Prettier folded `' '` escapes into raw NUL bytes in a test file and git read it as
+  binary; a `\0` directly before a digit is an octal escape the parser refuses. Cure: one
+  `String.fromCharCode(0)` separator and array joins; never an escape before a digit.
+- The Bash tool's shell is zsh: `${PIPESTATUS[0]}` is empty there (`$pipestatus[1]` is the zsh
+  spelling), so every `exit=` I echoed after a pipeline was blank. Verdicts came from each leg's
+  own output line and the hooks; read exit state from the tool's verdict or run without a pipe.
+- The worktree isolation guard refuses a Bash line that pipes `git` output and a Write whose
+  content carries a user-home absolute path; both cure the same way, a scratchpad script run by
+  one plain call with paths derived (`git rev-parse --show-toplevel`, `git worktree list`).
+- The lane record's premise "the lineage root scripts that have consumers here" recomputed:
+  only `outdated` is cited in live doctrine (`.agent/reference/tooling.md`); `lint:shell:syntax`
+  (this repo's `lint:shell`), `check:profile` and `depcruise:report` are cited nowhere but the
+  plan of record and the definition report, so they were not added. Director accepted.
+- knip cannot see a spawn: moving `markdownlint-cli2` from a root script into a `pnpm exec`
+  inside repo-check made the root devDependency read unused; the declared `ignoreDependencies`
+  exception with its reason is the honest cure (moving the dependency would break `pnpm exec` at
+  the root cwd where the config lives). knip also reads an exported-but-unimported constant as
+  dead: module constants stay private until a second consumer exists.
+- The Director's routing to resolve the primary coordination home for the substrate leg was
+  declined with the reason (a gate that reads another checkout's disk proves that disk; CI has
+  no primary): the tier is derived from the repository's ignore rules through an injected probe.
+  Verdict, not menu; the Director accepted.
+- What worked: three scratchpad trials (markdownlint with and without `--no-globs`, prettier on
+  explicit ignored paths) settled the semantics before any source changed; the whole lint cure
+  changed nothing in what is linted (620 files before and after).
