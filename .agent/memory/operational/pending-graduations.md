@@ -159,13 +159,17 @@ drain. The commits and the homes are the record. -->
 Rows here are live deliverables under a named review gate, NOT decision-debt:
 each carries a prediction, a falsifier, and a review date, and is decided
 (promote / kill-with-reasoning) AT that date. A dedicated consolidation passes
-these by unless a review date has arrived. **Bootstrap exception (the row
-below): a row tracking an ALREADY-ACCEPTED record is decided retain vs
-retire-by-its-own-falsifier at review — promote/kill applies only to
-not-yet-minted concepts.**
+these by unless a review date has arrived. **Bootstrap exception: a row tracking an
+ALREADY-ACCEPTED record is decided retain vs retire-by-its-own-falsifier at
+review — promote/kill applies only to not-yet-minted concepts.**
 
 | Concept | Prediction (by review) | Falsifier | Review |
 | ------- | ---------------------- | --------- | ------ |
+| Ratified text is the owner's: a verdict quotes the governing text before it rules and never rules against it; a change to ratified text is a card after the item lands (source: napkin 2026-09-13, Wrap 7, lane A, lane C wrap: a verdict overturned a ratified todo and the owner asked what else was being overturned; home: a new rule `ratified-text-changes-only-by-card` or a clause in `precedence-is-not-approval`, whose lines 42 to 45 at SHA: ea3142b route a precedent challenge to a card and bind no verdict to quote the text it rules under) | No Director or seat verdict contradicts a ratified line; every method change to ratified work arrives as a card | A verdict contradicts a ratified line with the clause loaded, or a method change to ratified work lands without a card | Owner's session 2 card (owner word decides earlier), else 2026-12-13 |
+| A method question to the owner is asked as the sensible shape under the estate's rules, never as one authority against another (source: owner, 2026-09-13 evening, on the Gemini card: "this is not a matter of competing authorities, what does sensible look like?"; home: principles §Decision Lenses, one sentence after the either/or clause, whose lines 41 to 47 bind questions and options, not cards) | The next card that pairs ratified text against an estate rule is refused by its author before it is sent | A card framed as two texts in competition is sent to the owner | Owner's session 2 card (owner word decides earlier), else 2026-12-13 |
+| Process is the last resort: before adding a step, a card, a precondition, a node or a pass, ask whether a computation, an existing rule or the owner's recorded words already answer it (source: napkin 2026-09-13, Wraps 6 and 7, four owner corrections of one shape in one afternoon; home: `compute-dont-hope`, whose lines 14 to 17 cover hand-kept lists only; the card half is already carried by `present-verdicts-not-menus` lines 97 to 99 and 189 to 192) | Cards per session fall to owner-only decisions; the owner names no invented optionality in the next five card rounds | The owner names invented optionality (a step, card, precondition, node or pass that doctrine or a computation already answered) in a card round | Owner's session 2 card (owner word decides earlier), else 2026-12-13 |
+| Consolidation runs one truth-maintenance pass over every surface that advertises plan state: frontmatter status, narrative status, next-step sections, current-state notes, roadmap and parent tables, READMEs (source: napkin 2026-03-09 and 2026-04-03, promoted there; the transplanted consolidate-docs skill did not keep it: its sweep at line 348 is scoped to a renamed surface and line 362 asks only for plans and prompts up to date) | The next consolidation's record lists the status surfaces it swept and no frontmatter-versus-narrative status divergence survives it | A consolidation closes leaving a status divergence between two of the named surfaces | Owner's session 2 card (owner word decides earlier), else 2026-12-13 |
+| Consolidation checks each domain skill the period's findings touch, diffing its pitfalls table against those findings (source: napkin 2026-03-07; home: the consolidate-docs skill, where the word pitfall does not occur and skills appear only as a graduation destination, line 595) | The next consolidation names at least one skill pitfalls table it checked | A consolidation closes with a stale pitfalls table in a skill its findings touched | Owner's session 2 card (owner word decides earlier), else 2026-12-13 |
 
 <!-- Drained at the 2026-09-06 dedicated consolidation: ten entries decided, every one already
 carried by its target home — pr-lifecycle, the plan skill, start-right-team, the wrap skill, the
@@ -245,51 +249,14 @@ Each is single-instance today; graduation waits on PDR-101 quorum or an owner ru
 
 ### Session 2 candidates (captured 2026-09-13; the owner's card answers are the dispositions)
 
-- **Ratified text is the owner's; a verdict quotes it and never rules against it**
-  `[captured: 2026-09-13 | source: napkin 2026-09-13 (Wrap 7; lane A; lane C wrap), a Director
-  verdict overturned a ratified todo (removal for restore) and accepted "not brought" for
-  "create or declare"; owner: "this makes me concerned for what other instructions are being
-  overturned"; a go on a port design contradicted testing-strategy text the seat had not
-  re-read | target: a new rule ratified-text-changes-only-by-card, or a clause in
-  precedence-is-not-approval, cited from PDR-117 §Director and the Decision Lenses preamble |
-  trigger: the owner's card answer (session 2 batch) | size: S | status: pending]`
-  Doctrine: a verdict quotes the governing text (ratified plan text, a directive) before it
-  rules and never rules against it; a case for changing ratified text is a card to the owner
-  after the item lands, never a verdict or a pull request; a verdict from memory of the problem
-  is the failure shape. Prediction: no Director or seat verdict contradicts a ratified line in
-  the next ten sessions; every method change to ratified work arrives as a card. Home read:
-  precedence-is-not-approval lines 42 to 45 route a precedent challenge to a card and nothing
-  binds a verdict to quote the text it rules under; PDR-117 lines 96 to 101 and principles
-  lines 22 to 26 carry the escalation threshold only.
-
-- **A method question is asked as "what is sensible under the estate's rules"**
-  `[captured: 2026-09-13 | source: owner, 2026-09-13 evening (about 19:10Z to 19:50Z), on the
-  Gemini card: "this is not a matter of competing authorities, what does sensible look like?
-  The Gemini adapters are generated, just like everything else." | target: principles
-  §Decision Lenses, one
-  sentence after the either/or clause | trigger: the owner's card answer (session 2 batch) |
-  size: S | status: pending]`
-  Doctrine: when ratified text and a later estate rule seem to disagree on method, the question
-  to the owner is the sensible shape under the estate's rules, never a binary between two
-  texts; the lenses' false-either/or clause applies to cards too. Prediction: the next card
-  that pairs ratified text against an estate rule is refused by its author before it is sent.
-  Home read: principles lines 41 to 47 bind questions and options, not cards; the word card
-  does not occur in the file.
-
-- **Before adding a step, card, precondition, node or pass, ask what already answers it**
-  `[captured: 2026-09-13 | source: napkin 2026-09-13 (Wrap 6, Wrap 7), four owner corrections
-  in one afternoon with one shape (a rehearsal where derivation was the cure; two cards
-  doctrine had settled; a precondition on optional material; a programme grown from a bounded
-  item); the Director's evening repeated it | target: compute-dont-hope (a clause naming the
-  four instances beside the hand-kept-list test) | trigger: the owner's card answer (session
-  2 batch) | size: S | status: pending]`
-  Doctrine: before adding a step, a card, a precondition, a node or a pass, ask whether a
-  computation, an existing rule or the owner's recorded words already answer it. The card
-  half of the draft candidate ("could the answer be ranked from evidence already in hand? then
-  no card") is already written: present-verdicts-not-menus lines 97 to 99 and 189 to 192.
-  Prediction: cards per session fall to owner-only decisions; the owner names no invented
-  optionality in the next five card rounds. Home read: compute-dont-hope lines 14 to 17 cover
-  hand-kept lists only.
+The disposition of this batch by owner cards is the ratified node's item 8 verbatim
+(`.agent/plans/delivery/practice-completion.plan.md` §Transplant closure, item 8: "the
+candidates go to the owner as one batch of cards; the answers are the dispositions; nothing
+graduates without them"): an owner word for this batch, not the general pre-approval PDR-100
+abolishes; PDR-101's quorum stands for every other graduation. The constitutional-class
+candidates of the batch (A, B, C, 1a and 1b under PDR-130's class test: how the estate decides
+under ratified text, frames a question to the owner, adds process, and consolidates) sit in
+§Slow lane above with review dates and are not decision-debt; the operational lessons file here.
 
 - **A push slot is a turn: ask, wait for the word, then push**
   `[captured: 2026-09-13 | source: napkin 2026-09-13 (lane C wrap; lane A; Director), two
@@ -496,27 +463,6 @@ Each is single-instance today; graduation waits on PDR-101 quorum or an owner ru
   Home read: the rule gates a new surface on a cited assignment (lines 33 to 36) and scopes its
   source-versus-projection clause to the entity model (line 31); its worked failures (lines
   57 to 67) carry no writer-versus-register instance.
-
-- **Consolidation runs one truth-maintenance pass over every surface that advertises plan state**
-  `[captured: 2026-09-13 | source: napkin 2026-03-09 and 2026-04-03 (promoted there; the
-  transplanted skill did not keep it), frontmatter status, narrative status, next-step sections,
-  current-state notes, roadmap and parent tables, and READMEs that advertise plan state drift
-  apart unless one pass reads them together | target: consolidate-docs skill (a
-  truth-maintenance step beside the renamed-surface sweep) | trigger: the owner's card answer
-  (session 2 batch) | size: S | status: pending]`
-  Prediction: the next consolidation's record lists the status surfaces it swept and no
-  frontmatter-versus-narrative status divergence survives it. Home read: the skill's sweep at
-  line 348 is scoped to a renamed surface; line 362 asks for plans and prompts up to date; no
-  pass reads the named surfaces together.
-
-- **Consolidation checks a domain skill's pitfalls table against findings since it was written**
-  `[captured: 2026-09-13 | source: napkin 2026-03-07, a domain skill's pitfalls table went
-  stale as later sessions found new traps in its domain | target: consolidate-docs skill (a
-  step: for each domain skill the period's findings touch, diff its pitfalls table against
-  them) | trigger: the owner's card answer (session 2 batch) | size: S | status: pending]`
-  Prediction: the next consolidation names at least one skill pitfalls table it checked. Home
-  read: the word pitfall does not occur in the skill; skills appear only as a graduation
-  destination (line 595).
 
 - **A platform-integration plan settling reusable architecture is mined into an ADR before close**
   `[captured: 2026-09-13 | source: napkin 2026-03-08, a platform-integration plan settled
