@@ -1,74 +1,124 @@
-
-
 file_opener = "cursor" # or vscode, windsurf, vscode-insiders, none
 
+project_doc_fallback_filenames = ["RULES_INDEX.md"]
+
 [features]
+hooks = true
 multi_agent = true
 
-[agents."code-reviewer"]
-description = "Gateway reviewer for non-trivial changes."
-config_file = ".codex/agents/code-reviewer.toml"
+[[hooks.SessionStart]]
+matcher = "startup|resume"
 
-[agents.editor]
-description = "Editorial reviewer for CV and public-facing content."
-config_file = ".codex/agents/editor.toml"
+[[hooks.SessionStart.hooks]]
+type = "command"
+command = 'node "$(git rev-parse --show-toplevel)/.codex/hooks/practice-session-identity.mjs"'
+timeout = 10
+statusMessage = "Loading Practice agent identity"
 
-[agents."test-reviewer"]
-description = "Test quality and TDD compliance reviewer."
-config_file = ".codex/agents/test-reviewer.toml"
+[agents."accessibility-expert"]
+description = "Accessibility reviewer focusing on WCAG compliance, semantics, and assistive flows."
+config_file = "agents/accessibility-expert.toml"
 
-[agents."type-reviewer"]
-description = "TypeScript type-safety reviewer."
-config_file = ".codex/agents/type-reviewer.toml"
+[agents."architecture-expert"]
+description = "Base architecture reviewer shared by the four named personas (Barney, Betty, Fred, Wilma): module structure, import direction, workspace boundaries, dependency-injection patterns and any decision with long-term architectural consequence. Invoke a named persona for its lens; use this base directly only when no persona fits."
+config_file = "agents/architecture-expert.toml"
 
-[agents."pkg-reviewer"]
-description = "Structured-data and PKG specialist reviewer."
-config_file = ".codex/agents/pkg-reviewer.toml"
+[agents."architecture-expert-barney"]
+description = "Architecture reviewer Barney focused on PKG and graph integrity."
+config_file = "agents/architecture-expert-barney.toml"
 
-[agents."accessibility-reviewer"]
-description = "Accessibility reviewer ensuring WCAG compliance and assistive flow coverage."
-config_file = ".codex/agents/accessibility-reviewer.toml"
+[agents."architecture-expert-betty"]
+description = "Architecture reviewer Betty ensuring navigation and tilt architecture."
+config_file = "agents/architecture-expert-betty.toml"
 
-[agents."config-reviewer"]
-description = "Configuration reviewer for Next.js, PostCSS, and pnpm script guardrails."
-config_file = ".codex/agents/config-reviewer.toml"
+[agents."architecture-expert-fred"]
+description = "Architecture reviewer Fred covering builds, caching, and resilience."
+config_file = "agents/architecture-expert-fred.toml"
 
-[agents."design-system-reviewer"]
-description = "Design-system reviewer focused on tokens, spacing, and responsive rhythm."
-config_file = ".codex/agents/design-system-reviewer.toml"
+[agents."architecture-expert-wilma"]
+description = "Architecture reviewer Wilma focused on practice governance and docs."
+config_file = "agents/architecture-expert-wilma.toml"
 
-[agents."docs-adr-reviewer"]
+[agents."assumptions-expert"]
+description = "Meta-level plan specialist for both read-only review and active-workflow planning support, focused on proportionality, assumption validity, and blocking legitimacy. Invoke when plans are being drafted, marked decision-complete, propose 3+ agents, or assert blocking relationships."
+config_file = "agents/assumptions-expert.toml"
+
+[agents."code-expert"]
+description = "Gateway code reviewer — quality, correctness, and triage. Assesses code changes for correctness, edge cases, security, performance, readability, maintainability, and test coverage. Triages to specialists."
+config_file = "agents/code-expert.toml"
+
+[agents."config-expert"]
+description = "Configuration reviewer for Next.js, PostCSS, and pnpm scripts."
+config_file = "agents/config-expert.toml"
+
+[agents."corpus-mapper"]
+description = "Read-only leaf-signal extractor for the corpus-analysis map workflow stage. Dispatched exclusively via the Workflow agent() agentType option; never invoke for interactive delegation. Reads one time-contiguous window's corpus files in full and answers only through the schema-forced structured output call."
+config_file = "agents/corpus-mapper.toml"
+
+[agents."corpus-meta"]
+description = "Read-only recall-calibration synthesist for the corpus-analysis meta workflow stage. Dispatched exclusively via the Workflow agent() agentType option; never invoke for interactive delegation. Judges per-baseline recall matches and verifies corroboration home paths on disk before claiming them, answering through the schema-forced structured output call."
+config_file = "agents/corpus-meta.toml"
+
+[agents."corpus-reducer"]
+description = "No-tools clustering synthesist for the corpus-analysis reduce workflow stage. Dispatched exclusively via the Workflow agent() agentType option; never invoke for interactive delegation. Clusters the inlined leaf signals into mechanism-grained candidates and answers only through the schema-forced structured output call."
+config_file = "agents/corpus-reducer.toml"
+
+[agents."corpus-voter"]
+description = "Single-turn no-tools adversary voter for the corpus-analysis validate workflow. Dispatched exclusively via the Workflow agent() agentType option; never invoke for interactive delegation. Judges one candidate against the four conjunctive apophenia tests from supplied grounding and answers only through the schema-forced structured output call."
+config_file = "agents/corpus-voter.toml"
+
+[agents."cricket-judgement"]
+description = "Use this role for a fast contextual-judgement second opinion when the primary needs to check whether its current work is still the right work. Direct calls are encouraged for rubber ducking, design partnership, uncertain priority or proportion, work that feels unusually fluent or obvious, and any wait or gate that may be invented."
+config_file = "agents/cricket-judgement.toml"
+
+[agents."cricket-procedure"]
+description = "Use this role for a fast, reproducible second opinion when the primary needs its current priority, proportion, or wait/gate audited by a compiled decision procedure rather than contextual judgement. Direct calls are encouraged when the decision needs quote-anchored evidence and a mechanically derived verdict."
+config_file = "agents/cricket-procedure.toml"
+
+[agents."design-system-expert"]
+description = "Design-system reviewer verifying tokens, spacing, and responsive rhythm."
+config_file = "agents/design-system-expert.toml"
+
+[agents."docs-adr-expert"]
 description = "Documentation and ADR reviewer for decision records and narratives."
-config_file = ".codex/agents/docs-adr-reviewer.toml"
+config_file = "agents/docs-adr-expert.toml"
 
-[agents."mcp-reviewer"]
-description = "MCP reviewer ensuring the multi-agent roster and adapters stay coherent."
-config_file = ".codex/agents/mcp-reviewer.toml"
+[agents."editor"]
+description = "Editorial reviewer for Jim Cresswell's public-facing content. Reviews audience fit, attention, structure, readability, voice and consistency — returns actionable feedback without editing files."
+config_file = "agents/editor.toml"
 
-[agents."react-component-reviewer"]
+[agents."onboarding-expert"]
+description = "Onboarding documentation quality specialist. Use proactively when onboarding paths change, new contributors join, or documentation drift is suspected across the human or AI-agent onboarding flows. Invoke immediately after changes to README (especially the Quick Start section), CONTRIBUTING.md, AGENT.md, or any document that sits on an onboarding path."
+config_file = "agents/onboarding-expert.toml"
+
+[agents."pkg-expert"]
+description = "PKG specialist reviewer — Schema.org, JSON-LD, and graph correctness. Validates entity model and structured data against Schema.org specs, JSON-LD constraints, @id resolution rules, consumer value tiers, and Neo4j forward-compatibility. The graph models reality — every entity is real, every claim must be valid."
+config_file = "agents/pkg-expert.toml"
+
+[agents."prose-expert"]
+description = "Prose craft and Oak editorial-voice specialist. Use proactively to review the writing of any authored document — clarity, concision, active voice, omit-needless-words, lead-with-the-point — and to apply Oak's outward editorial voice to outward-facing copy (VISION, strategy, public README narrative) only where editorial-tone.md says that voice applies. Read-only craft review; defers plain-language WCAG conformance to accessibility-expert and documentation structure/accuracy to docs-adr-expert."
+config_file = "agents/prose-expert.toml"
+
+[agents."react-component-expert"]
 description = "React component reviewer checking hooks, hydration, and memoisation."
-config_file = ".codex/agents/react-component-reviewer.toml"
+config_file = "agents/react-component-expert.toml"
 
-[agents."security-reviewer"]
+[agents."release-readiness-expert"]
+description = "Release go/no-go specialist. Synthesises quality-gate evidence, breaking-change risk, migration impact, and operational readiness into an explicit GO / GO WITH CONDITIONS / NO-GO recommendation. Use at release boundaries: before merging to a release branch, before a version bump, when a change set includes contract or schema changes, or when a prior NO-GO is being re-evaluated after fixes."
+config_file = "agents/release-readiness-expert.toml"
+
+[agents."security-expert"]
 description = "Security reviewer for headers, secrets, and middleware defences."
-config_file = ".codex/agents/security-reviewer.toml"
+config_file = "agents/security-expert.toml"
 
 [agents."subagent-architect"]
-description = "Subagent architect ensuring the canonical reviewer architecture remains sane."
-config_file = ".codex/agents/subagent-architect.toml"
+description = "Subagent architect ensuring the canonical reviewer architecture stays sane."
+config_file = "agents/subagent-architect.toml"
 
-[agents."architecture-reviewer-barney"]
-description = "Architecture reviewer Barney focused on PKG and graph integrity."
-config_file = ".codex/agents/architecture-reviewer-barney.toml"
+[agents."test-expert"]
+description = "Test quality and TDD compliance reviewer. Classifies tests, verifies naming conventions, checks mock simplicity, assesses test value, and recommends deletion for tests that test mocks or types."
+config_file = "agents/test-expert.toml"
 
-[agents."architecture-reviewer-betty"]
-description = "Architecture reviewer Betty guarding navigation and tilt architecture."
-config_file = ".codex/agents/architecture-reviewer-betty.toml"
-
-[agents."architecture-reviewer-fred"]
-description = "Architecture reviewer Fred covering builds, caching, and resilience."
-config_file = ".codex/agents/architecture-reviewer-fred.toml"
-
-[agents."architecture-reviewer-wilma"]
-description = "Architecture reviewer Wilma focused on practice governance and documentation."
-config_file = ".codex/agents/architecture-reviewer-wilma.toml"
+[agents."type-expert"]
+description = "TypeScript type safety reviewer. Traces type flow from origin through the system. Detects widening, assertions, and missed compile-time guarantees. Core principle: why solve at runtime what you can embed at compile time?."
+config_file = "agents/type-expert.toml"

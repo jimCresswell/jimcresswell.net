@@ -91,12 +91,12 @@ A complete domain capability consists of up to four layers. The first
 three are required for a capability-complete specialist; the fourth is
 optional and situation-dependent.
 
-| Layer                   | Purpose                                                                               | Required? |
-| ----------------------- | ------------------------------------------------------------------------------------- | --------- |
-| **Reviewer**            | Read-only specialist assessment against authoritative sources                         | Yes       |
-| **Skill**               | Active workflow for planning, research, implementation support                        | Yes       |
-| **Situational rule**    | Trigger conditions that invoke the reviewer at the right moments                      | Yes       |
-| **Operational tooling** | Agent-accessible CLI or MCP tools for inspecting/interacting with live domain systems | Optional  |
+| Layer | Purpose | Required? |
+|---|---|---|
+| **Reviewer** | Read-only specialist assessment against authoritative sources | Yes |
+| **Skill** | Active workflow for planning, research, implementation support | Yes |
+| **Situational rule** | Trigger conditions that invoke the reviewer at the right moments | Yes |
+| **Operational tooling** | Agent-accessible CLI or MCP tools for inspecting/interacting with live domain systems | Optional |
 
 The reviewer observes, analyses, and reports — it does not modify
 code. The skill supports the working agent during active tasks — it
@@ -193,11 +193,11 @@ Orthogonal to the capability layers, every agent in the roster has a
 **classification** in its frontmatter, declaring its knowledge shape,
 model policy, and invocation pattern:
 
-| Classification     | Knowledge shape                | Model policy                                          | Primary invoker                       | Frequency |
-| ------------------ | ------------------------------ | ----------------------------------------------------- | ------------------------------------- | --------- |
-| `domain_expert`    | Broad or deep domain knowledge | Powerful models recommended                           | Humans or agents                      | Moderate  |
-| `process_executor` | Workflow and process knowledge | Powerful models recommended (infrequent, high-impact) | Practice expert or humans             | Low       |
-| `specialist`       | Narrow, well-defined task      | Fast models recommended                               | Agents only (agent-to-agent contract) | High      |
+| Classification | Knowledge shape | Model policy | Primary invoker | Frequency |
+|---|---|---|---|---|
+| `domain_expert` | Broad or deep domain knowledge | Powerful models recommended | Humans or agents | Moderate |
+| `process_executor` | Workflow and process knowledge | Powerful models recommended (infrequent, high-impact) | Practice expert or humans | Low |
+| `specialist` | Narrow, well-defined task | Fast models recommended | Agents only (agent-to-agent contract) | High |
 
 **`domain_expert`** holds knowledge about a specific area and can
 operate in any mode (explore, advise, review). Exists at two depths:
@@ -221,11 +221,11 @@ task clearly enough for a specialist, the human could do it directly.
 Orthogonal to classification, domain experts and process executors
 support three operational modes:
 
-| Mode      | Stance                     | When to use                                          | Output                                           |
-| --------- | -------------------------- | ---------------------------------------------------- | ------------------------------------------------ |
-| `explore` | Investigate, map, discover | Understanding a problem space, surveying options     | Open-ended findings, maps, questions             |
-| `advise`  | Recommend before action    | Deciding between approaches, planning implementation | Options with trade-offs, recommendations         |
-| `review`  | Assess completed work      | Evaluating a diff, plan, or decision                 | Structured verdict with severity-graded findings |
+| Mode | Stance | When to use | Output |
+|---|---|---|---|
+| `explore` | Investigate, map, discover | Understanding a problem space, surveying options | Open-ended findings, maps, questions |
+| `advise` | Recommend before action | Deciding between approaches, planning implementation | Options with trade-offs, recommendations |
+| `review` | Assess completed work | Evaluating a diff, plan, or decision | Structured verdict with severity-graded findings |
 
 Mode is explicit (preferred) or inferred from context (fallback).
 Specialists do not use modes — they have fixed input/output contracts
@@ -426,27 +426,3 @@ graduation into `practice-bootstrap.md` as a "How to add new domain
 expertise" section, or into `practice-lineage.md` as a Learned
 Principle about capability growth. Graduation marks the PDR
 `Superseded by <Core section>` and retains it as provenance.
-
-### Host-local context (this repo only, not part of the decision)
-
-At the time of authoring, the repo where this PDR was written
-carries:
-
-- Reviewers following the standard hierarchy: code-reviewer,
-  architecture reviewers (multiple), test-reviewer, type-reviewer,
-  config-reviewer, security-reviewer, docs-adr-reviewer,
-  mcp-reviewer, elasticsearch-reviewer, clerk-reviewer,
-  sentry-reviewer, design-system-reviewer,
-  react-component-reviewer, accessibility-reviewer.
-- Reviewer following the inverted hierarchy:
-  assumptions-reviewer.
-- Process executors: subagent-architect; Practice executors (run
-  infrequently).
-- Specialists: narrow agents for specific automation tasks.
-- Operational tooling present: the search CLI's admin commands
-  for Elasticsearch; upstream Clerk CLI under evaluation for the
-  Clerk specialist.
-
-Specific reviewer counts, agent names, and operational-tooling
-command lists live in the host ADR record this PDR's substance
-extracts from.

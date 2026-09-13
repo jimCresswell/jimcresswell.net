@@ -14,7 +14,188 @@ pdr_kind: governance
 PDR-012);
 [PDR-014](PDR-014-consolidation-and-knowledge-flow-discipline.md)
 (plans that promote to `current/` follow both-readiness-criteria
-discipline from PDR-014).
+discipline from PDR-014);
+[PDR-029](PDR-029-perturbation-mechanism-bundle.md)
+(tripwire doctrine for making phase-boundary checks fire as artefacts, not
+aspirations).
+
+## Amendment Log
+
+- **2026-07-23 amendment — lifecycle-lane realisation superseded in the source
+  host (Heron lifts Summit / claude / claude-fable-5; records the owner-ratified
+  estate decision of 2026-07-22 — this host's decisions register D23 — whose
+  doctrine home is host ADR-216, the plan-node estate; MCP-120 propagation
+  sweep).** In this repository the lifecycle-lane
+  realisation this PDR's placement sections describe — `future/` →
+  `current/` → `active/` directories, the promotion workflow, and
+  lane-placement-by-actionability — is retired. Plans are typed nodes
+  (`strategic | delivery | runbook`) that never move while live; a plan
+  **governs no work until it carries a complete owner ratification stamp**
+  (born-sketch — executed is not ratified); delivery state is a Linear
+  projection, never a filesystem fact. The portable discipline this PDR
+  owns — end goals before means, workflow contracts, plans as load-bearing
+  artefacts, readiness gates before execution — is unchanged and continues
+  to bind. The lane-placement and promotion sections below remain as the
+  portable pattern for hosts whose estates are lane-shaped; in this host,
+  read placement questions against ADR-216's node-type table and
+  ratification gate instead.
+  - **Falsifiability**: shown wrong if the node-typed estate proves unable
+    to express an actionability distinction the lanes carried (queued vs in
+    progress vs later) without reintroducing filesystem state — i.e. if
+    delivery-state-in-Linear fails as the projection and file moves return.
+
+- **2026-07-06 amendment — sequence-first over smallest-first shipping (Zenith
+  wakes Perigee / claude-code / claude-fable-5; owner-ratified live as standing
+  doctrine during the 2026-07-06 dedicated consolidation; provenance: the
+  tier-E corpus drain E-b8 item C230, where the owner reframed
+  "smallest impactful thing first" in a worked planning exchange).** When
+  scoping how a multi-part capability ships, the default is **sequence-first**:
+  the full interface, architectural home, and envelope exist from day one, and
+  only *implementation timing* varies across the sequence. This accepts
+  roughly 10–15% more total work in exchange for earlier first delivery
+  **without future drift** — later increments land inside a shape that was
+  right from the start, instead of forcing interface churn on consumers of the
+  smallest-first slice. New §"Sequence-first over smallest-first shipping"
+  in the Decision area names the discipline.
+  - **Falsifiability**: shown wrong if sequence-first plans routinely
+    over-invest in envelopes that later increments abandon, i.e. if the
+    up-front interface work is discarded rather than filled in.
+
+- **2026-06-16 amendment — a plan pending its readiness review must not grow
+  (Skunk hunts Crescent; decision-debt drain).** A plan whose whole pending job
+  is review → DECISION-COMPLETE → execution-ready MUST NOT accrue new scope while
+  it awaits that review: added scope makes the readiness review certify a *moving
+  target*, and the review can no longer be sound. When new scope lands on a
+  not-yet-ready plan — even owner-directed — immediately fence it as a separate
+  strand AND recommend splitting it to its own plan so the review stays on the
+  original scope. This pairs with small-PR delivery: "is it ready?" decomposes
+  into "is each small unit ready?", never a mega-block judgement. Sibling of the
+  DECISION-COMPLETE readiness-gate amendment (2026-05-14, below) — that one fixes
+  *when* a plan is ready; this one protects the readiness judgement from being
+  invalidated by in-flight growth.
+  - **Falsifiability**: shown wrong if plans routinely completed their readiness
+    review soundly despite accruing scope mid-review, i.e. if the moving-target
+    risk never materialised.
+
+- **2026-05-09 amendment — five planning-discipline rules graduated
+  from distilled.md (Woodland Sheltering Glade / claude-code /
+  claude-opus-4-7-1m; owner-directed graduation during the focused
+  consolidation pass on `distilled.md`).** The rules had been "held
+  pending Planning expert triplet execution"; that triplet has not
+  arrived and held-on-future-plan is the exact failure-mode
+  Sequenced-Deferral discipline names. Graduating now without
+  vaporware-citation gating. Substance:
+  - **Lead with narrative, not infrastructure.** On a multi-workstream
+    initiative, write the ADR and README first. WS-0 (narrative) →
+    WS-1 (factory) → WS-2+ (consumers). Infrastructure that arrives
+    before its narrative justification produces shape-without-purpose.
+  - **CLI-first enumeration before owner questions.** Research the
+    generic REST or CLI surface (`sentry api`, `clerk api`,
+    vendor-equivalent) before raising any owner question about
+    observability or infrastructure state. "The specialist tool
+    doesn't surface X" ≠ "X is unknowable from automation." Extends
+    to workspace sizing: when owner direction names a repo-level
+    mechanism (build cancellation, env-var policy, release
+    resolution), search the repo for prior implementation before
+    sizing a workstream. "Stated many times" or "should already be
+    true" signals the substance may exist and the gap is
+    documentation/linkage, not implementation.
+  - **Validation closures: produce locally-producible evidence
+    first.** For deployment-validation lanes, generate every
+    locally-producible proof under a session-specific release tag
+    before asking the owner. Only ask for owner action when tooling
+    cannot reach the artefact.
+  - **Split client-compatibility out of deployment-validation
+    lanes.** A client-specific compat issue emerging in an active
+    deployment-validation lane spins into its own follow-up plan.
+    Shared preview infrastructure ≠ shared plan ownership.
+  - **Dry-run multi-step workflows against accumulated state**
+    before committing to the recipe. The dry-run produces a *proceed*
+    or *stage differently* signal; treating multi-step workflows as
+    fire-and-confirm risks landing the wrong serialisation.
+
+- **2026-05-04 amendment — beneficial prerequisites must not block
+  the work they were meant to enable (Verdant Sprouting Leaf /
+  claude-code / claude-opus-4-7-1m; owner-named pattern surfaced
+  during the post-`/insights` reflection round, three host
+  instances in evidence).** Planning discipline now distinguishes
+  *blocking* prerequisites (the dependent work cannot exist or
+  function without them) from *beneficial* prerequisites (the
+  dependent work ships better with them but ships without them).
+  Beneficial prerequisites must not be expressed as blocking
+  dependencies; if they are, the dependent work — usually the
+  higher-value capability — stalls behind a lower-leverage
+  refinement. New §"Beneficial prerequisites must not block"
+  names the discipline, the at-plan-time classification, the
+  audit cadence, and the additive-shape-as-default cure.
+
+- **2026-04-29 amendment — tool error as question; reviewer-scope
+  equals prompted-scope (Nebulous Illuminating Satellite / claude-code
+  / claude-opus-4-7-1m; owner-directed graduation during the
+  2026-04-29 deep consolidation pass after the TS6-migration session
+  surfaced five distinct manifestations of the same anti-pattern).**
+  Two related disciplines graduate to portable Practice doctrine:
+  - **Tool error as question.** When a tool, signal, hook, or reviewer
+    returns a non-pass result, the first response is to understand
+    what is being asked, not to find a way past it. The instinct of
+    "tool returns error → find bypass" recurs across reviewer findings,
+    diff reading, pre-commit hooks, fitness signals, the Edit-tool
+    safety contract, CI gates, type checkers, and validators. The fix
+    is one of three valid responses (understand-and-address,
+    understand-and-dismiss-with-rationale, understand-and-stop) — never
+    skip-understanding. Instance patterns: `tool-error-as-question`,
+    `hook-as-question-not-obstacle`, `ground-before-framing`
+    (host-local pattern files; bridged via the practice-index Pattern
+    instances section).
+  - **Reviewer scope equals prompted scope.** A reviewer's verdict is
+    scoped to the prompt that briefed them; "GO WITH CONDITIONS" reads
+    as a green merge signal only when the reviewer's brief matches the
+    merge-gate scope. When asking a reviewer to gate merge, brief them
+    with the full merge-gate criteria (zero failing gates, no warning
+    toleration, all merge conditions named), not just the arc you are
+    working on. Failure mode: instrumental work treated as terminal
+    because the work-list was full. Instance pattern: `scope-as-goal`
+    (host-local pattern file; bridged via the practice-index Pattern
+    instances section). Cross-reference under PDR-015 amendment of
+    the same date.
+
+- **2026-04-28 amendment — disposition drift under context pressure
+  (Coastal Mooring Atoll / codex / GPT-5; owner-directed deep
+  consolidation after PR-87 planning drift recurred across Vining,
+  Pelagic, Tidal, and Luminous sessions).** Planning discipline now
+  forbids presenting check-side dispositions as fallback options once
+  the plan's governing principle says the work item is the architecture.
+  The amendment graduates the distilled "investigation-mode drifts into
+  disposition-mode" entry into portable Practice doctrine. New
+  §Disposition drift at phase boundaries names the trigger vocabulary,
+  the required phase-boundary re-read, and the artefact requirement that
+  makes the check observable under PDR-029.
+
+- **2026-05-14 amendment — DECISION-COMPLETE is the readiness gate
+  (Riverine Swimming Hull / claude-code / claude-opus-4-7-1m;
+  agentic-engineering-enhancements thread; owner-ratified during the
+  graduation-triage D1–D5 per-diff review pass).** DECISION-COMPLETE
+  is the readiness gate for plan promotion, not a status label
+  applied after execution. Every execution-time decision that *can*
+  be settled at plan-author time *must* be settled there. The
+  diagnostic phrase "verify at execution time" inside a plan body is
+  the failure mode this gate forbids. New §DECISION-COMPLETE is the
+  readiness gate section in the Decision area names the principle.
+
+- **2026-04-25 amendment — plan placement follows ownership and
+  actionability, not numerical density caps (Fresh Prince /
+  claude-code / claude-opus-4-7-1m; agentic-engineering-enhancements
+  thread; owner-ratified during pending-graduations promotion pass).**
+  Plan placement (which lifecycle directory under which collection
+  a plan file lives in) is determined by **ownership** (which lane
+  the plan serves) and **actionability** (active / current / future
+  per the lifecycle), not by arbitrary numerical caps on plan count
+  per directory. The corrective instance (2026-04-24, observability
+  lane) was an owner correction when a plan was misrouted to a
+  lower-density directory rather than its natural home; the
+  numerical-cap heuristic was a false economy. New §Plan placement
+  follows ownership section in the Decision area names the
+  principle.
 
 ## Context
 
@@ -82,19 +263,207 @@ removed export reduces the surface of latent breakage
 - Follow-up plans cite "we did X but then had to do Y" — X was
   means without end; Y is the real work surfacing after.
 
+### Plan placement follows ownership and actionability (2026-04-25 amendment)
+
+**Plan files live in the lifecycle directory of their natural
+ownership lane**, not the directory whose plan-count is currently
+lowest. Numerical density caps on a directory ("only N plans per
+collection") are a false economy: a plan placed against its
+ownership produces friction at every cross-reference and at every
+re-reading; a plan placed with ownership reads cleanly and the
+directory size grows or shrinks honestly with the work the lane
+carries.
+
+The placement decision is:
+
+1. **Which lane owns this work?** Identify the collection
+   (`agentic-engineering-enhancements`, `observability`, etc.)
+   that the plan serves.
+2. **What is its actionability?** Active (executing now) →
+   `active/`; queued and ready → `current/`; strategic backlog
+   → `future/`.
+3. **Place at lane × actionability**, regardless of how many
+   other plans currently sit there. If the resulting directory
+   feels crowded, the response is *split the collection* or
+   *archive completed plans*, not *redirect the new plan to a
+   thinner directory*.
+
+A plan misrouted by density-cap heuristic produces silent
+friction: cross-references confuse readers about ownership,
+roadmap entries miss the new plan, and the next agent picks up
+the misrouting as evidence the lane has shifted. The corrective
+direction is owner-led re-placement; the prevention is to choose
+ownership first and density-not-at-all.
+
+### Disposition drift at phase boundaries (2026-04-28 amendment)
+
+When a plan is under quality-gate, security-review, or static-analysis
+pressure, it must not offer issue-side disposition as a fallback for
+architecture work. If the governing principle says the finding is a
+diagnostic signal, the plan asks: **what does long-term architectural
+excellence look like at this site, and what is stopping us achieving it?**
+
+Forbidden fallback shapes include:
+
+- "if the cure is not recognised, dismiss with rationale";
+- "accept the issue if refactoring is hard";
+- "add an exclusion if the generated output is awkward";
+- "resolve in the vendor UI" where the evidence says code, docs, or
+  architecture must change.
+
+The legitimate outcomes are narrower:
+
+1. implement the architectural cure;
+2. prove the finding is a true non-issue with reproducible evidence;
+3. escalate a named blocker to the owner with file:line evidence while
+   leaving the finding open.
+
+At every phase boundary in a plan that touches gate dispositions, the
+runner re-reads the governing principle and records the re-derivation in
+the plan, commit body, or review disposition. The artefact is load-bearing:
+"I remembered the principle" is not evidence.
+
+Trigger vocabulary that forces re-derivation includes: "stylistic",
+"false-positive", "out of scope", "convention", "language idiom",
+"well-known name", "canonical TS idiom", "all done", "all pushed",
+"all clean", "fall back to", "if recognition does not propagate", and
+"the TSDoc already explains it".
+
+### Beneficial prerequisites must not block (2026-05-04 amendment)
+
+Plans declare prerequisites in two distinct kinds:
+
+| Kind | Definition | Default treatment |
+|---|---|---|
+| `blocking` | The dependent work cannot exist or function in the prerequisite's absence. | Sequence the prerequisite first; the dependent work is gated. |
+| `beneficial` | The dependent work ships better with the prerequisite but ships without it. | Run the prerequisite in parallel or defer it; the dependent work is **not** gated. |
+
+A prerequisite labelled `blocking` when the substance is `beneficial`
+silently turns a refinement into a gate. The dependent work — which is
+typically the higher-leverage capability — stalls behind the
+lower-leverage prerequisite. The shape recurs across planning surfaces:
+infrastructure work framed as prerequisite for feature work; redesign
+work framed as prerequisite for direct fix work; coordinated migration
+work framed as prerequisite for additive new capability. Each instance
+is internally coherent ("doing the prerequisite first is tidier"); the
+cumulative effect is that the higher-value work never lands.
+
+**At plan-time discipline:**
+
+1. Every named prerequisite carries a one-word classification:
+   `blocking` or `beneficial`.
+2. For each `beneficial` prerequisite, the plan states the dependent
+   work's *minimum shippable shape without it*. If the plan cannot
+   describe this shape, the prerequisite is not actually `beneficial`
+   — either it is `blocking` (state the constraint) or the
+   classification is itself confused (re-derive).
+3. The default cure for a beneficial-but-coupled-as-blocking shape
+   is *additive*: ship the new capability alongside the existing
+   surface; defer the migration of the existing surface to a later
+   plan. The integrated rename / migration / consolidation is the
+   *optimisation*, not the *prerequisite*.
+
+**At plan-estate audit cadence (consolidation pass):**
+
+A consolidation step asks: *what plan is currently gated behind
+which prerequisite, and is the gate real?* Each gated plan answers
+in one of three shapes:
+
+1. **Real gate** — the prerequisite is genuinely `blocking`; the gate
+   stays.
+2. **False gate** — the prerequisite is `beneficial`; the gate
+   dissolves; the dependent plan promotes per its own readiness.
+3. **Confused classification** — the prerequisite is unclear;
+   re-derive at the next planning round.
+
+**Compliance triggers:**
+
+- A plan declares a prerequisite without one-word classification.
+- A plan with a `beneficial` prerequisite does not state the
+  minimum shippable shape without it.
+- A plan-estate audit finds a `beneficial` prerequisite that has
+  gated higher-leverage work for more than one consolidation pass
+  without an explicit promotion decision.
+
+**Why this is planning discipline.** The pattern is not a property
+of any single plan; it emerges from how plans declare relationships
+to other plans. Planning discipline is the only surface where the
+shape can be caught at authoring time. At execution time, the
+gating has already cost the dependent work the time it lost.
+
+### Sequence-first over smallest-first shipping (2026-07-06 amendment)
+
+When planning a multi-part capability, do not scope delivery as "the
+smallest impactful thing, then grow the shape as we learn". The default
+is **sequence-first**:
+
+1. **The full interface, architectural home, and envelope exist from day
+   one.** The first increment already lives at the capability's final
+   address, exposes the final interface (with unimplemented parts honestly
+   typed/marked, never stubbed as fake success), and sits inside the
+   envelope the finished capability needs. The envelope is a designed
+   type/interface surface, not dead code: an increment exports only what
+   it (or a consumer landing with it) actually consumes — the
+   no-unused-code discipline stays absolute, so unconsumed envelope
+   members stay in the design (the plan's pinned interface) until the
+   increment that consumes them lands.
+2. **Only implementation timing varies.** The sequence orders which parts
+   of the envelope get filled in first — earliest-value first — but no
+   increment forces a later interface or placement change on its consumers.
+3. **The accepted cost is ~10–15% more total work** (the envelope is
+   designed before every part is needed) in exchange for earlier first
+   delivery without future drift.
+
+Smallest-first remains valid for genuine probes, decidable by **artefact
+intent**: an increment whose artefact is *evidence for a decision* —
+viability of the capability, or choice between approaches — and is
+expected to be discarded or reshaped once the decision lands, is a probe
+(the `reason` skill's decide-proportionately move governs sizing it).
+Sequence-first governs from the moment an increment's artefact is
+*contractually consumed* by other work. This composes with
+§Beneficial prerequisites must not block: the envelope is not a blocking
+prerequisite pile — it is the first increment's own shape.
+
+### DECISION-COMPLETE is the readiness gate (2026-05-14 amendment)
+
+`DECISION-COMPLETE` is the **readiness gate** for plan promotion, not a
+status label applied after execution. When the owner asks for an
+implementation plan, every execution-time decision that *can* be
+settled at plan-author time *must* be settled there: vendor literals,
+output schemas, interface signatures, exit codes, sort order, encoding
+decisions, help-text shape, error-message wording, and any other
+artefact a downstream WS would otherwise have to invent. The
+plan-body first-principles check's vendor-literal clause permits
+deferral only when the dependency is added inside the same WS that
+consumes it, and even then the plan must pin the expected call shape so
+the WS becomes drift-detection rather than decision-making.
+
+The diagnostic phrase "verify at execution time" inside a plan body is
+the failure mode this gate forbids. If a plan body contains
+target-selection wording like "verify which home is the cleaner fit at
+execution time" or "create new minimal rule if poor fit," that wording
+*is* the unresolved decision: resolve it before promoting the plan,
+not by adding "verify" prose.
+
+Worked example (2026-05-14 triage batch): a Batch B row originally
+read "verify which is the cleaner home at execution time"; an
+assumptions-expert review flagged this as an unresolved plan-author
+decision leaking into execution. The plan author resolved each target
+home before execution began.
+
 ### Workflow contract clarity
 
 A workflow that repairs, transforms, or propagates content across
 multiple artefacts uses **unambiguous verbs**. Ambiguous verbs
 create drift:
 
-| Ambiguous   | Disambiguated                                                               |
-| ----------- | --------------------------------------------------------------------------- |
-| "update"    | "rewrite from scratch" / "edit in place" / "append"                         |
-| "sync"      | "copy verbatim" / "reconcile differences" / "overwrite destination"         |
-| "propagate" | "broadcast unchanged" / "adapt per receiver" / "promote to authoritative"   |
-| "migrate"   | "move files" / "rewrite content" / "adapt and relocate"                     |
-| "refactor"  | "rename" / "extract module" / "change structure without changing behaviour" |
+| Ambiguous | Disambiguated |
+|---|---|
+| "update" | "rewrite from scratch" / "edit in place" / "append" |
+| "sync" | "copy verbatim" / "reconcile differences" / "overwrite destination" |
+| "propagate" | "broadcast unchanged" / "adapt per receiver" / "promote to authoritative" |
+| "migrate" | "move files" / "rewrite content" / "adapt and relocate" |
+| "refactor" | "rename" / "extract module" / "change structure without changing behaviour" |
 
 When a workflow uses an ambiguous verb, one of two responses is
 required before the workflow runs:
@@ -146,6 +515,9 @@ Alternatives rejected:
   disambiguate.
 - Findings about missing end goals or ambiguous verbs route per
   PDR-012.
+- Plans under gate-disposition pressure record a phase-boundary
+  principle re-read and must not present check-side disposition as a
+  fallback for architectural work.
 
 ### Forbidden
 
@@ -153,6 +525,9 @@ Alternatives rejected:
   without any outcome measure.
 - Workflows that use ambiguous verbs against multiple artefacts
   without explicit disambiguation.
+- Fallback dispositions that make a finding disappear when the plan has
+  not either implemented the architectural cure or proved the finding is
+  a true non-issue.
 
 ### Accepted cost
 
@@ -161,17 +536,9 @@ Alternatives rejected:
   cancelled when the mechanism doesn't hold up.
 - Replacing ambiguous verbs in workflows takes more drafting
   effort. Justified by consistent outcomes across N applications.
+- Re-reading principles and recording the re-derivation at phase
+  boundaries adds ceremony. Justified because the repeated PR-87
+  evidence showed passive memory did not stop drift once context
+  pressure rose.
 
 ## Notes
-
-### Host-local context (this repo only)
-
-Proven instances retained with `related_pdr: PDR-018`:
-
-- `.agent/memory/patterns/end-goals-over-means-goals.md` —
-  originated from knip-triage planning where "close 96 unused
-  exports" was the means-framed plan; the end-goal-framed
-  rewrite was materially smaller and more targeted.
-- `.agent/memory/patterns/repair-workflow-contract-clarity.md` —
-  originated from repair workflows using ambiguous verbs that
-  produced divergent outcomes across artefacts.

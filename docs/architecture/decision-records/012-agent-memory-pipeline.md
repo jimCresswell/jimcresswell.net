@@ -40,7 +40,7 @@ plans & prompts ─────────────────────�
 (ephemeral work docs — mined during consolidation)
 ```
 
-**Feed 1 — napkin** (`.agent/memory/napkin.md`): Session-level mistakes, corrections, and patterns logged during active work. The [napkin skill](../../../.agent/skills/napkin/SKILL.md) governs this feed.
+**Feed 1 — napkin** (`.agent/memory/napkin.md`): Session-level mistakes, corrections, and patterns logged during active work. The [napkin skill](../../../.agent/skills/knowledge/napkin/SKILL-CANONICAL.md) governs this feed.
 
 **Feed 2 — AGENTS.md**: Insights mined from conversation transcripts by the
 Practice learning loop. AGENTS.md is a landing pad, not a permanent home.
@@ -51,13 +51,13 @@ rationale during collaborative sessions. Plans are the right place for this
 content while work is in progress, but as decisions settle, the knowledge must
 move to permanent documentation (ADRs, EDRs, `docs/`, directives) so it is not
 lost when plans are completed and archived. The
-[consolidate-docs command](../../../.agent/commands/consolidate-docs.md)
+[consolidate-docs command](../../../.agent/skills/knowledge/consolidate-docs/SKILL-CANONICAL.md)
 governs this feed.
 
-**Staging — distilled.md** (`.agent/memory/distilled.md`): A compact, curated quick-reference for feeds 1 and 2. Entries live here temporarily until they are settled enough to graduate. The [distillation skill](../../../.agent/skills/distillation/SKILL.md) governs extraction, merging, and pruning.
+**Staging — distilled.md** (`.agent/memory/distilled.md`): A compact, curated quick-reference for feeds 1 and 2. Entries live here temporarily until they are settled enough to graduate. The [distillation skill](../../../.agent/skills/distillation/SKILL-CANONICAL.md) governs extraction, merging, and pruning.
 
 **Graduation — permanent docs**: The
-[consolidate-docs command](../../../.agent/commands/consolidate-docs.md) moves
+[consolidate-docs command](../../../.agent/skills/knowledge/consolidate-docs/SKILL-CANONICAL.md) moves
 settled entries to their canonical homes: `principles.md` for engineering
 rules, `AGENT.md` for agent behaviour, `editorial-guidance.md` for editorial
 principles, ADRs for architectural decisions, EDRs for editorial decisions, and

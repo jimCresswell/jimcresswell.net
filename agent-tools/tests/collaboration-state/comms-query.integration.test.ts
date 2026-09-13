@@ -1,0 +1,386 @@
+import { describe, expect, it } from 'vitest';
+
+import { runCollaborationStateCli } from '../../src/collaboration-state';
+import { uuidV5Schema } from '../../src/collaboration-state/agent-id';
+import { type CommsEvent } from '../../src/collaboration-state/types';
+import { createFakeCollaborationRuntime } from './fake-collaboration-runtime';
+
+// Read-side fixtures: `id` is optional on the read CollaborationAgentId.
+// alice is deliberately id-less (a pre-PDR-076a legacy row — her summary lines
+// fall back to the bare prefix); bob carries an id, so his lines render the
+// MCP-145 display token (prefix-idTail).
+const alice = {
+  agent_name: 'Wooded Spreading Thicket',
+  platform: 'claude',
+  model: 'claude-opus-4-8',
+  session_id_prefix: '5c8f3c',
+} as const;
+
+const bob = {
+  agent_name: 'Galactic Transiting Orbit',
+  platform: 'codex',
+  model: 'GPT-5',
+  session_id_prefix: '019e18',
+  id: uuidV5Schema.parse('33333333-3333-5333-9333-333333333333'),
+} as const;
+
+const commsDir = 'state/comms';
+
+// created_at deliberately out of event_id order so the test proves the command
+// sorts by created_at (newest first), not by the directory read order.
+const events: readonly CommsEvent[] = [
+  {
+    schema_version: '2.0.0',
+    event_id: 'event-oldest',
+    created_at: '2026-06-04T10:00:00Z',
+    kind: 'narrative',
+    author: alice,
+    title: 'Oldest broadcast',
+    body: 'first body',
+  },
+  {
+    schema_version: '2.0.0',
+    event_id: 'event-middle',
+    created_at: '2026-06-04T11:00:00Z',
+    kind: 'narrative',
+    author: alice,
+    title: 'Heartbeat-tagged middle',
+    body: 'middle body',
+    tags: ['heartbeat'],
+  },
+  {
+    schema_version: '2.0.0',
+    event_id: 'event-newest',
+    created_at: '2026-06-04T12:00:00Z',
+    kind: 'directed',
+    message_kind: 'mid-cycle-handoff',
+    from: bob,
+    to: alice,
+    subject: 'Newest directed message',
+    body: 'directed body with detail',
+  },
+];
+
+describe('comms list', () => {
+  it('projects newest-first summary lines with event ids, kinds, tags, and titles', async () => {
+    const fake = createFakeCollaborationRuntime({ comms: { [commsDir]: events } });
+    const result = await runCollaborationStateCli({
+      argv: ['--', 'comms', 'list', '--comms-dir', commsDir],
+      env: {},
+      io: fake.runtime.io,
+    });
+
+    expect(result.exitCode).toBe(0);
+    const lines = result.stdout.trimEnd().split('\n');
+    expect(lines[0]).toBe('comms list — newest 3 of 3 event(s), most recent first');
+    expect(lines[1]).toContain('event-newest');
+    expect(lines[1]).toContain('[directed]');
+    // bob is id-bearing: the label carries the MCP-145 display token.
+    expect(lines[1]).toContain('Galactic Transiting Orbit/019e18-333');
+    expect(lines[1]).toContain('Newest directed message');
+    expect(lines[2]).toContain('event-middle');
+    expect(lines[2]).toContain('[narrative] [heartbeat]');
+    expect(lines[3]).toContain('event-oldest');
+    // alice is id-less: bare prefix, no token tail (the two-space delimiter
+    // before the channel pins that nothing follows the prefix).
+    expect(lines[3]).toContain('Wooded Spreading Thicket/5c8f3c  [narrative]');
+    expect(lines[3]).not.toContain('5c8f3c-');
+  });
+
+  // The MCP-145 distinct-labels case: two authors sharing agent_name AND
+  // session_id_prefix (a name+prefix collision across sessions) stay visually
+  // distinct through the id-tail token — the defect class the disambiguator
+  // exists to cure.
+  it('renders distinct summary labels for two authors sharing a name and a prefix', async () => {
+    const firstTwin = {
+      agent_name: 'Twin echoes Prefix',
+      platform: 'claude',
+      model: 'claude-opus-4-8',
+      session_id_prefix: 'abc123',
+      id: uuidV5Schema.parse('66666666-6666-5666-9666-666666666aaa'),
+    } as const;
+    const secondTwin = {
+      ...firstTwin,
+      id: uuidV5Schema.parse('77777777-7777-5777-9777-777777777bbb'),
+    } as const;
+    const twinEvents: readonly CommsEvent[] = [
+      {
+        schema_version: '2.0.0',
+        event_id: 'twin-first',
+        created_at: '2026-06-04T10:00:00Z',
+        kind: 'narrative',
+        author: firstTwin,
+        title: 'From the first seat',
+        body: 'first twin body',
+      },
+      {
+        schema_version: '2.0.0',
+        event_id: 'twin-second',
+        created_at: '2026-06-04T11:00:00Z',
+        kind: 'narrative',
+        author: secondTwin,
+        title: 'From the second seat',
+        body: 'second twin body',
+      },
+    ];
+    const fake = createFakeCollaborationRuntime({ comms: { [commsDir]: twinEvents } });
+    const result = await runCollaborationStateCli({
+      argv: ['--', 'comms', 'list', '--comms-dir', commsDir],
+      env: {},
+      io: fake.runtime.io,
+    });
+
+    expect(result.exitCode).toBe(0);
+    expect(result.stdout).toContain('Twin echoes Prefix/abc123-aaa');
+    expect(result.stdout).toContain('Twin echoes Prefix/abc123-bbb');
+  });
+
+  it('limits output to the requested --tail count, newest first', async () => {
+    const fake = createFakeCollaborationRuntime({ comms: { [commsDir]: events } });
+    const result = await runCollaborationStateCli({
+      argv: ['--', 'comms', 'list', '--comms-dir', commsDir, '--tail', '1'],
+      env: {},
+      io: fake.runtime.io,
+    });
+
+    expect(result.exitCode).toBe(0);
+    const lines = result.stdout.trimEnd().split('\n');
+    expect(lines[0]).toBe('comms list — newest 1 of 3 event(s), most recent first');
+    expect(lines).toHaveLength(2);
+    expect(lines[1]).toContain('event-newest');
+    expect(result.stdout).not.toContain('event-oldest');
+  });
+
+  it('reports no events when the directory is empty', async () => {
+    const fake = createFakeCollaborationRuntime({ comms: { [commsDir]: [] } });
+    const result = await runCollaborationStateCli({
+      argv: ['--', 'comms', 'list', '--comms-dir', commsDir],
+      env: {},
+      io: fake.runtime.io,
+    });
+
+    expect(result.exitCode).toBe(0);
+    expect(result.stdout).toBe('no comms events\n');
+  });
+
+  it('rejects a non-positive --tail with a clear error', async () => {
+    const fake = createFakeCollaborationRuntime({ comms: { [commsDir]: events } });
+    const result = await runCollaborationStateCli({
+      argv: ['--', 'comms', 'list', '--comms-dir', commsDir, '--tail', '0'],
+      env: {},
+      io: fake.runtime.io,
+    });
+
+    expect(result.exitCode).toBe(2);
+    expect(result.stderr).toContain('--tail must be a positive integer (got: 0)');
+  });
+
+  // F-79: `comms list` accepts `--now` and ignores it, so a caller passing
+  // `--now` for cross-command symmetry (e.g. scripting alongside the many
+  // commands that DO take `--now`) is not rejected by the dispatch-time option
+  // allowlist. `comms list` is a read-only projection with no time-dependent
+  // behaviour, so the flag is a deliberate no-op — accepted, never read.
+  it('accepts and ignores --now, behaving identically to a call without it', async () => {
+    const fake = createFakeCollaborationRuntime({ comms: { [commsDir]: events } });
+    // Discriminating witness: 11:30 sits BETWEEN the middle (11:00) and newest
+    // (12:00) fixture events, so if `now` were ever wrongly wired to an as-of
+    // filter the newest event would drop and the equality below would fail loud.
+    const withNow = await runCollaborationStateCli({
+      argv: ['--', 'comms', 'list', '--comms-dir', commsDir, '--now', '2026-06-04T11:30:00Z'],
+      env: {},
+      io: fake.runtime.io,
+    });
+
+    const baseline = createFakeCollaborationRuntime({ comms: { [commsDir]: events } });
+    const withoutNow = await runCollaborationStateCli({
+      argv: ['--', 'comms', 'list', '--comms-dir', commsDir],
+      env: {},
+      io: baseline.runtime.io,
+    });
+
+    expect(withNow.exitCode).toBe(0);
+    expect(withNow.stdout).toBe(withoutNow.stdout);
+  });
+
+  it('filters to events at or after --since, dropping older ones', async () => {
+    const fake = createFakeCollaborationRuntime({ comms: { [commsDir]: events } });
+    const result = await runCollaborationStateCli({
+      // 11:00:00Z is event-middle's exact created_at — proves the boundary is inclusive.
+      argv: ['--', 'comms', 'list', '--comms-dir', commsDir, '--since', '2026-06-04T11:00:00Z'],
+      env: {},
+      io: fake.runtime.io,
+    });
+
+    expect(result.exitCode).toBe(0);
+    const lines = result.stdout.trimEnd().split('\n');
+    expect(lines[0]).toBe('comms list — newest 2 of 2 event(s), most recent first');
+    expect(result.stdout).toContain('event-newest');
+    expect(result.stdout).toContain('event-middle');
+    expect(result.stdout).not.toContain('event-oldest');
+  });
+
+  it('applies --tail after the --since filter, counting the filtered candidates', async () => {
+    const fake = createFakeCollaborationRuntime({ comms: { [commsDir]: events } });
+    const result = await runCollaborationStateCli({
+      argv: [
+        '--',
+        'comms',
+        'list',
+        '--comms-dir',
+        commsDir,
+        '--since',
+        '2026-06-04T11:00:00Z',
+        '--tail',
+        '1',
+      ],
+      env: {},
+      io: fake.runtime.io,
+    });
+
+    expect(result.exitCode).toBe(0);
+    const lines = result.stdout.trimEnd().split('\n');
+    expect(lines[0]).toBe('comms list — newest 1 of 2 event(s), most recent first');
+    expect(lines).toHaveLength(2);
+    expect(lines[1]).toContain('event-newest');
+  });
+
+  it('reports no events since the boundary when the filter excludes everything', async () => {
+    const fake = createFakeCollaborationRuntime({ comms: { [commsDir]: events } });
+    const result = await runCollaborationStateCli({
+      argv: ['--', 'comms', 'list', '--comms-dir', commsDir, '--since', '2026-06-05T00:00:00Z'],
+      env: {},
+      io: fake.runtime.io,
+    });
+
+    expect(result.exitCode).toBe(0);
+    expect(result.stdout).toBe('no comms events since 2026-06-05T00:00:00Z\n');
+  });
+
+  // An EMPTY directory has no events at all, so the since-framed message would
+  // be misleading (it implies events exist but none are recent). The generic
+  // message is correct regardless of --since. The sibling empty-dir test above
+  // passes no --since and the empty-since test above filters a NON-empty dir, so
+  // this is the case that distinguishes "no events exist" from "none since X".
+  it('reports the generic no-events message for an empty directory even with --since', async () => {
+    const fake = createFakeCollaborationRuntime({ comms: { [commsDir]: [] } });
+    const result = await runCollaborationStateCli({
+      argv: ['--', 'comms', 'list', '--comms-dir', commsDir, '--since', '2026-06-04T11:00:00Z'],
+      env: {},
+      io: fake.runtime.io,
+    });
+
+    expect(result.exitCode).toBe(0);
+    expect(result.stdout).toBe('no comms events\n');
+  });
+
+  it('rejects a non-ISO --since with a clear error', async () => {
+    const fake = createFakeCollaborationRuntime({ comms: { [commsDir]: events } });
+    const result = await runCollaborationStateCli({
+      argv: ['--', 'comms', 'list', '--comms-dir', commsDir, '--since', 'not-a-date'],
+      env: {},
+      io: fake.runtime.io,
+    });
+
+    expect(result.exitCode).toBe(2);
+    expect(result.stderr).toContain('--since must be an ISO-8601 timestamp (got: not-a-date)');
+  });
+});
+
+describe('comms show', () => {
+  it('prints the full canonical JSON event including its body', async () => {
+    const fake = createFakeCollaborationRuntime({ comms: { [commsDir]: events } });
+    const result = await runCollaborationStateCli({
+      argv: ['--', 'comms', 'show', '--comms-dir', commsDir, '--event-id', 'event-newest'],
+      env: {},
+      io: fake.runtime.io,
+    });
+
+    expect(result.exitCode).toBe(0);
+    expect(result.stdout).toContain('"event_id": "event-newest"');
+    expect(result.stdout).toContain('"body": "directed body with detail"');
+    expect(result.stdout).toContain('"subject": "Newest directed message"');
+  });
+
+  it('fails non-zero with a clear error for an unknown event id', async () => {
+    const fake = createFakeCollaborationRuntime({ comms: { [commsDir]: events } });
+    const result = await runCollaborationStateCli({
+      argv: ['--', 'comms', 'show', '--comms-dir', commsDir, '--event-id', 'nope'],
+      env: {},
+      io: fake.runtime.io,
+    });
+
+    expect(result.exitCode).toBe(2);
+    expect(result.stderr).toContain('comms event not found: nope');
+  });
+
+  // F-80: `comms show` accepts the event id as a positional argument, not only
+  // as `--event-id`, so the common `comms show <id>` reads as one would type it.
+  it('accepts the event id as a positional argument, identically to --event-id', async () => {
+    const fake = createFakeCollaborationRuntime({ comms: { [commsDir]: events } });
+    const positional = await runCollaborationStateCli({
+      argv: ['--', 'comms', 'show', '--comms-dir', commsDir, 'event-newest'],
+      env: {},
+      io: fake.runtime.io,
+    });
+
+    const flagged = createFakeCollaborationRuntime({ comms: { [commsDir]: events } });
+    const withFlag = await runCollaborationStateCli({
+      argv: ['--', 'comms', 'show', '--comms-dir', commsDir, '--event-id', 'event-newest'],
+      env: {},
+      io: flagged.runtime.io,
+    });
+
+    expect(positional.exitCode).toBe(0);
+    expect(positional.stdout).toBe(withFlag.stdout);
+  });
+
+  it('rejects supplying the event id as both a positional and --event-id', async () => {
+    const fake = createFakeCollaborationRuntime({ comms: { [commsDir]: events } });
+    const result = await runCollaborationStateCli({
+      argv: [
+        '--',
+        'comms',
+        'show',
+        '--comms-dir',
+        commsDir,
+        'event-newest',
+        '--event-id',
+        'event-oldest',
+      ],
+      env: {},
+      io: fake.runtime.io,
+    });
+
+    expect(result.exitCode).toBe(2);
+    expect(result.stderr).toContain('event-id');
+  });
+
+  it('rejects more than one positional argument', async () => {
+    const fake = createFakeCollaborationRuntime({ comms: { [commsDir]: events } });
+    const result = await runCollaborationStateCli({
+      argv: ['--', 'comms', 'show', '--comms-dir', commsDir, 'event-newest', 'event-oldest'],
+      env: {},
+      io: fake.runtime.io,
+    });
+
+    expect(result.exitCode).toBe(2);
+  });
+});
+
+describe('positional-argument safety (non-positional commands)', () => {
+  // F-80 moves bare-token rejection from parse time to dispatch time so a
+  // command may opt into a positional. Commands that do NOT opt in must still
+  // reject a stray bare token — this guards the whole estate against the
+  // parser change silently swallowing typos.
+  it('rejects a bare token on a command that declares no positional', async () => {
+    const fake = createFakeCollaborationRuntime({ comms: { [commsDir]: events } });
+    const result = await runCollaborationStateCli({
+      argv: ['--', 'comms', 'list', '--comms-dir', commsDir, 'stray-token'],
+      env: {},
+      io: fake.runtime.io,
+    });
+
+    expect(result.exitCode).toBe(2);
+    expect(result.stderr).toContain('stray-token');
+  });
+});

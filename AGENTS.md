@@ -4,14 +4,23 @@ Agent direction lives in [AGENT.md](.agent/directives/AGENT.md), read it.
 
 ## Codex Adapter Model
 
-- `.agent/` contains the canonical skills, rules, commands, and reviewer templates.
-- `.agents/skills/` contains the Codex adapters for repo-local skills and `jc-*` commands. Sub-agents are not skills and live in `.codex/`.
+- `.agent/` contains the canonical skills, rules, and reviewer templates.
+- `.agents/skills/` contains the cross-tool `jc-*` skill adapters (the open Agent Skills layout) and `.agents/rules/` mirrors the canonical rules for loaders that read it. Sub-agents are not skills and live in `.codex/`.
 - `.codex/config.toml` registers the real Codex reviewer sub-agents, with thin per-agent adapters under `.codex/agents/`.
-- Always-on behaviour comes from this entry point plus [AGENT.md](.agent/directives/AGENT.md) and the canonical rules in `.agent/rules/`; there is no separate `.agents/rules/` layer.
-- If a canonical rule tells you to invoke a command or skill, use the corresponding `.agents/skills/` adapter. Reviewer roles remain canonical in `.agent/sub-agents/templates/` and are wired through platform-specific configuration, in this case of Codex in `.codex/`, see [.codex/README.md](.codex/README.md).
+- Always-on behaviour comes from this entry point plus [AGENT.md](.agent/directives/AGENT.md) and the canonical rules in `.agent/rules/`, enumerated in `RULES_INDEX.md`; Codex reads every canonical rule at session open.
+- If a canonical rule tells you to invoke a skill, use the corresponding `.agents/skills/` adapter. Reviewer roles remain canonical in `.agent/sub-agents/templates/` and are wired through platform-specific configuration, in this case of Codex in `.codex/`, see [.codex/README.md](.codex/README.md).
 - Supported and unsupported platform mappings are documented in
-  [.agent/reference/cross-platform-agent-surface-matrix.md](.agent/reference/cross-platform-agent-surface-matrix.md).
+  [.agent/memory/executive/cross-platform-agent-surface-matrix.md](.agent/memory/executive/cross-platform-agent-surface-matrix.md).
 - After changing adapter surfaces or reviewer wiring, run `pnpm portability:check`.
+
+## Code review
+
+Review against the pull request description's `## Scope` section. A finding whose remedy
+falls outside the declared scope is reported as an out-of-scope observation with no
+proposed change; do not propose additions the scope does not ask for. On a prose- or
+records-class changeset, and on the prose findings of a mixed one, grade against the
+declared intake (artefact class, verification point, bar) rather than against
+completeness; code findings keep the code review's own standard.
 
 Entries below are temporary capture points in the Practice learning loop.
 During distillation and `consolidate-docs`, entries are moved to permanent docs

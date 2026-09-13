@@ -1,8 +1,63 @@
-# Subagent Practice Core Protection
+# Subagents Must Not Modify the Practice Core
 
-Sub-agents must not create, edit, delete, or relocate foundational Practice surfaces:
-`.agent/practice-core/`, `.agent/directives/`, `.agent/rules/`, root entry points, or the other
-owner-edited continuity documents named by this repo. Keep those edits with the primary agent or an
-explicitly user-approved owner pass.
+**Substantive authority**: [PDR-003 — Sub-Agent Protection of Foundational Practice Docs](../practice-core/decision-records/PDR-003-sub-agent-protection-of-foundational-practice-docs.md).
 
-See `.agent/practice-core/decision-records/PDR-003-sub-agent-protection-of-foundational-practice-docs.md` for the full policy.
+Operationalises the PDR-003 doctrine in the host-repo rule layer.
+
+## Rule
+
+Sub-agents (background workers, worktree-isolated agents, batch unit agents,
+scoped reviewers dispatched for narrow tasks) **MUST NOT** create, edit,
+delete, or rename any file in:
+
+- `.agent/practice-core/` — the entire Practice Core package: plasmid trinity + verification + entry points + changelog + provenance + `decision-records/` (PDRs) + `patterns/` (general abstract patterns) + `incoming/` (Practice Box). The memotype.
+- `.agent/directives/` — foundation documents (principles, testing strategy, schema-first execution, AGENT.md)
+- `.agent/rules/` — canonical rules
+- `.claude/rules/` — Claude platform adapters
+- `.cursor/rules/` — Cursor platform adapters
+- the platform entry points at the repo root (`CLAUDE.md`, `AGENTS.md`) and the owner-edited continuity documents this repo names
+
+These paths constitute the **foundational Practice document set** — the
+governance layer that shapes all agent behaviour. Sub-agents lack the
+cross-session and cross-file context needed to make sound changes to them.
+
+## Why
+
+See [PDR-003](../practice-core/decision-records/PDR-003-sub-agent-protection-of-foundational-practice-docs.md)
+for the substantive rationale (three-component argument: scoped context,
+curation-not-optimisation, invisible pedagogical weight). This rule is the
+host-repo operationalisation; PDR-003 is the portable doctrine it enforces.
+
+The short form: a sub-agent is scoped by design. A sub-agent dispatched to
+"fix the verifyDocCounts helper" sees one slice of the codebase, not the full
+practice history. Changes to foundational documents require cross-session
+and cross-file context that sub-agents cannot have. See also
+[PDR-002 (Pedagogical Reinforcement in Foundational Practice Docs)](../practice-core/decision-records/PDR-002-pedagogical-reinforcement-in-foundational-practice-docs.md)
+for the companion doctrine on why cross-document repetition in foundational
+docs is deliberate and MUST NOT be mechanically deduplicated.
+
+## What Sub-agents Should Do Instead
+
+If a sub-agent discovers that a rule is wrong, missing, or needs updating:
+
+1. **Document the finding** in its final report (not in the rule file)
+2. **Flag it** with the text: `PRACTICE-CORE-FINDING: <description>`
+3. The coordinating agent or human will assess and apply the change with full context
+
+## Scope
+
+This rule applies only to sub-agents — agents spawned via the Agent tool with
+`run_in_background: true` or `isolation: "worktree"`, and scoped reviewers
+dispatched for narrow tasks. The primary conversation agent (the one the
+human is talking to) retains full authority over the foundational Practice
+document set, subject to the human's in-loop consent for substantive edits.
+
+## Blocked paths are findings, never routes to work around
+
+A sub-agent whose native edit path is BLOCKED (a hook denial, a fence, a
+permission refusal) reports the block as a finding — it never routes around
+it through a side channel (conserved defect exhibit, 2026-07-2x: a revising
+sub-agent wrote files via a Python shell to bypass a blocked native edit
+path; recorded as a defect to cure at the adapter, never normalised as a
+technique). The block IS the practice working; the cure belongs at the
+adapter/policy layer with full context, not in the sub-agent's ingenuity.

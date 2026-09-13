@@ -1,0 +1,118 @@
+name: CI
+
+# The PR-gating workflow. Parity with the root `check` script is enforced by
+# `pnpm --filter @engraph/agent-tools validate-check-ci-parity`: every leg of
+# `check` must appear as a run step here, so the local gate and the merge
+# gate can never drift apart.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+permissions:
+  contents: read
+
+jobs:
+  secret-scan:
+    name: secret-scan
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+      - name: Install pinned gitleaks
+        env:
+          GITLEAKS_VERSION: 8.30.1
+          GITLEAKS_SHA256: 551f6fc83ea457d62a0d98237cbad105af8d557003051f41f3e7ca7b3f2470eb
+        run: |
+          archive="${RUNNER_TEMP}/gitleaks.tar.gz"
+          bin_dir="${RUNNER_TEMP}/bin"
+          curl --fail --location --silent --show-error \
+            "https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}/gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz" \
+            --output "${archive}"
+          echo "${GITLEAKS_SHA256}  ${archive}" | sha256sum --check -
+          mkdir -p "${bin_dir}"
+          tar --extract --gzip --file "${archive}" --directory "${bin_dir}" gitleaks
+          echo "${bin_dir}" >> "${GITHUB_PATH}"
+      - uses: ./.github/actions/setup
+      - name: Scan for secrets
+        run: pnpm secrets:scan
+
+  install:
+    name: install
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: ./.github/actions/setup
+
+  static-checks:
+    name: static-checks
+    needs: install
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: ./.github/actions/setup
+      - name: Check formatting
+        run: pnpm format-check:root
+      - name: Check markdown
+        run: pnpm markdownlint-check:root
+      - name: Lint shell scripts
+        run: pnpm lint:shell
+      - name: Lint runtime-only scripts
+        run: pnpm lint:runtime-only
+      - name: Validate sub-agents
+        run: pnpm subagents:check
+      - name: Validate portability
+        run: pnpm portability:check
+      - name: Validate skills adapters
+        run: pnpm skills:check
+      - name: Validate encoding
+        run: pnpm encoding:check
+      - name: Docs validators
+        run: pnpm docs-validators:check
+      - name: Repo validators
+        run: pnpm repo-validators:check
+      - name: Unused code (knip)
+        run: pnpm knip
+      - name: Dependency boundaries (depcruise)
+        run: pnpm depcruise
+
+  build-and-test:
+    name: build-and-test
+    needs: install
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: ./.github/actions/setup
+      - name: Build
+        run: pnpm build
+      - name: Lint
+        run: pnpm lint
+      - name: Type-check
+        run: pnpm type-check
+      - name: Unit and integration tests
+        run: pnpm test
+
+  e2e:
+    name: e2e
+    needs: install
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: ./.github/actions/setup
+      - name: Install Puppeteer browser
+        run: pnpm --filter @jimcresswell/www exec puppeteer browsers install chrome
+      - name: Install Playwright browser
+        run: pnpm --filter @jimcresswell/www exec playwright install --with-deps chromium
+      - name: Site end-to-end suite
+        run: pnpm --filter @jimcresswell/www test:e2e

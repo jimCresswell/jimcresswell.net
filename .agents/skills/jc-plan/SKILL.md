@@ -1,6 +1,8 @@
 ---
 name: jc-plan
-description: Create a structured plan aligned with the repo's rules, testing strategy, and documentation standards.
+description: Author a plan node in the ratified plan-node estate.
 ---
 
-Read and follow `.agent/commands/plan.md`
+# Plan (Cross-tool)
+
+Read and follow `.agent/skills/planning/plan/SKILL-CANONICAL.md`.

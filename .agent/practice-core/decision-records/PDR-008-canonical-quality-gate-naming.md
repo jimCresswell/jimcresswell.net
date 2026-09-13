@@ -76,21 +76,21 @@ ecosystem.**
 
 Every repo provides these named scripts:
 
-| Name         | Mutating | Role                                                                                                                                                                                                                                         |
-| ------------ | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `clean`      | yes      | Remove build artefacts, caches, and generated output. Leaves source and manifests. Inherently an action command; has no verify form.                                                                                                         |
-| `build`      | yes      | Produce the repo's build artefacts. Inherently an action command; its implicit verify form is `typecheck`.                                                                                                                                   |
-| `dev`        | yes      | Run the repo's development loop (server, watcher, or equivalent). Inherently an action command.                                                                                                                                              |
-| `format`     | no       | Verify formatting. Fails if `format:fix` would produce changes.                                                                                                                                                                              |
-| `format:fix` | yes      | Apply formatting across the repo.                                                                                                                                                                                                            |
-| `lint`       | no       | Verify lints. Fails if `lint:fix` would produce changes or report errors.                                                                                                                                                                    |
-| `lint:fix`   | yes      | Apply lints with auto-fix.                                                                                                                                                                                                                   |
-| `typecheck`  | no       | Verify types across the repo. No `:fix` variant — type errors are source changes, not tool-fixable.                                                                                                                                          |
-| `test`       | no       | Run the repo's tests. No `:fix` variant — test failures are source changes, not tool-fixable.                                                                                                                                                |
-| `check`      | yes      | **Ergonomic alias for `check:fix`.** The short name carries the most-typed aggregate gate. This is the one deliberate exception to Rule 1 (see Convention Rules below).                                                                      |
-| `check:fix`  | yes      | Aggregate local gate: runs every verify-type gate plus every `:fix` sub-gate. Mutating; brings the tree into a state where `check:ci` would pass.                                                                                            |
-| `check:ci`   | no       | CI-safe aggregate gate. Non-mutating; runs every verify-type gate only. Its exit code is the authoritative CI gate answer.                                                                                                                   |
-| `fix`        | yes      | Aggregate apply: runs every `:fix` sub-gate so a developer can bring the repo into a state that `check:ci` passes. At minimum runs `format:fix` + `lint:fix`; ecosystem-appropriate additions welcome (e.g. `markdownlint:fix`, `knip:fix`). |
+| Name | Mutating | Role |
+|---|---|---|
+| `clean` | yes | Remove build artefacts, caches, and generated output. Leaves source and manifests. Inherently an action command; has no verify form. |
+| `build` | yes | Produce the repo's build artefacts. Inherently an action command; its implicit verify form is `typecheck`. |
+| `dev` | yes | Run the repo's development loop (server, watcher, or equivalent). Inherently an action command. |
+| `format` | no | Verify formatting. Fails if `format:fix` would produce changes. |
+| `format:fix` | yes | Apply formatting across the repo. |
+| `lint` | no | Verify lints. Fails if `lint:fix` would produce changes or report errors. |
+| `lint:fix` | yes | Apply lints with auto-fix. |
+| `typecheck` | no | Verify types across the repo. No `:fix` variant — type errors are source changes, not tool-fixable. |
+| `test` | no | Run the repo's tests. No `:fix` variant — test failures are source changes, not tool-fixable. |
+| `check` | yes | **Ergonomic alias for `check:fix`.** The short name carries the most-typed aggregate gate. This is the one deliberate exception to Rule 1 (see Convention Rules below). |
+| `check:fix` | yes | Aggregate local gate: runs every verify-type gate plus every `:fix` sub-gate. Mutating; brings the tree into a state where `check:ci` would pass. |
+| `check:ci` | no | CI-safe aggregate gate. Non-mutating; runs every verify-type gate only. Its exit code is the authoritative CI gate answer. |
+| `fix` | yes | Aggregate apply: runs every `:fix` sub-gate so a developer can bring the repo into a state that `check:ci` passes. At minimum runs `format:fix` + `lint:fix`; ecosystem-appropriate additions welcome (e.g. `markdownlint:fix`, `knip:fix`). |
 
 ### Convention rules
 
@@ -125,15 +125,13 @@ Five rules govern the naming:
    alias for `check:fix`. No other bare gate aliases a mutating
    form. `format` does not alias `format:fix`; `lint` does not
    alias `lint:fix`.
-
 5. **Additional gates are permitted.** The canonical set is the
    minimum. Ecosystem-specific gates (`knip`, `depcruise`,
    `secrets:scan`, `practice:fitness`, `portability:check`,
-   `subagents:check`, `vital-surfaces:check`) may be added freely;
-   they follow Rule 1. `knip` verifies unused exports; `knip:fix`
-   applies knip's fixes. `depcruise` verifies dependency
-   constraints; it has no `:fix` variant because violations are
-   source changes.
+   `subagents:check`) may be added freely; they follow Rule 1.
+   `knip` verifies unused exports; `knip:fix` applies knip's
+   fixes. `depcruise` verifies dependency constraints; it has no
+   `:fix` variant because violations are source changes.
 
 ### Per-ecosystem adaptation
 
@@ -141,12 +139,12 @@ The canonical set names the **script API** at the repo's package-
 manager entry layer. The commands invoked underneath adapt per
 ecosystem:
 
-| Ecosystem                | `format` invokes         | `format:fix` invokes | `typecheck` invokes              |
-| ------------------------ | ------------------------ | -------------------- | -------------------------------- |
-| TypeScript / Node (pnpm) | `prettier --check .`     | `prettier --write .` | `tsc --noEmit` (often via turbo) |
-| Python (uv / poetry)     | `ruff format --check .`  | `ruff format .`      | `mypy .` or `pyright`            |
-| Rust (cargo)             | `cargo fmt --check`      | `cargo fmt`          | `cargo check`                    |
-| Go                       | `gofmt -l . && exit <n>` | `gofmt -w .`         | `go vet ./...`                   |
+| Ecosystem | `format` invokes | `format:fix` invokes | `typecheck` invokes |
+|---|---|---|---|
+| TypeScript / Node (pnpm) | `prettier --check .` | `prettier --write .` | `tsc --noEmit` (often via turbo) |
+| Python (uv / poetry) | `ruff format --check .` | `ruff format .` | `mypy .` or `pyright` |
+| Rust (cargo) | `cargo fmt --check` | `cargo fmt` | `cargo check` |
+| Go | `gofmt -l . && exit <n>` | `gofmt -w .` | `go vet ./...` |
 
 The adaptation obligation is:
 
@@ -180,10 +178,9 @@ coverage requirements:
   fail for the same reasons) — plus every `:fix` sub-gate so the
   tree is brought into a state where `check:ci` passes.
   Repositories with additional verify-type gates (`knip`,
-  `depcruise`, `secrets:scan`, `practice:fitness`,
-  `portability:check`) MUST include those too. A repo where
-  `check` passes but a bespoke gate fails has a broken `check`
-  contract.
+  `depcruise`, `secrets:scan`, `practice:fitness`) MUST include
+  those too. A repo where `check` passes but a bespoke gate
+  fails has a broken `check` contract.
 - **`check:ci`** MUST have equivalent verify coverage to
   `check:fix` minus the `:fix` sub-gates. Its exit code is the
   authoritative CI gate answer. It MUST be non-mutating: a CI
@@ -338,16 +335,15 @@ The distilled-memory rule "the quality-gate criterion is always
 `pnpm check` from the repo root, with no filtering, green"
 carries forward in substance. Under PDR-008 the phrasing sharpens:
 
-- Local authors type `pnpm check` (the short, mutating-aggregate
-  alias); its clean exit proves the repo is in a state where
-  CI would also pass.
-- CI invokes `pnpm check:ci` (the non-mutating CI form); its
-  clean exit is the authoritative merge gate.
+- Local authors type `pnpm check` (the read-only aggregate, as
+  amended 2026-09-12); its clean exit proves the repo is in a
+  state where CI would also pass.
+- CI invokes the same legs as `check`, one run step per leg, under
+  a parity validator; there is no separate `:ci` form.
 
-Both forms share verify coverage. The distinction is mutation
-scope: local form may auto-correct; CI form leaves the tree
-unchanged. The merge criterion is `check:ci` green; the local
-proof-of-merge-readiness is `check` (= `check:fix`) green.
+The merge criterion is `check` green, locally and in CI. A repair
+is always an explicit `fix` (or `fix:docs`), followed by `check`
+again; a mutating command is never the proof.
 
 ### Why verify-by-default matters (and why `check` breaks it)
 
@@ -371,26 +367,38 @@ local gate, and the CI-safe form (`check:ci`) remains one suffix
 away. The exception is worth its cost; it is not an invitation
 to add further aliases.
 
-### Host-local context (this repo only, not part of the decision)
+## Amendment Log
 
-At the time of authoring, the repo where this PDR was written
-partially matches the canonical set. Specific divergences:
+### 2026-09-12 — jimcresswell.net: the lineage's live convention supersedes the `check`-mutates model
 
-| Canonical                       | Current in this repo                  | Disposition                                                        |
-| ------------------------------- | ------------------------------------- | ------------------------------------------------------------------ |
-| `format` (verify)               | `format-check:root`                   | Rename                                                             |
-| `format:fix`                    | `format:root`                         | Rename                                                             |
-| `lint` (verify)                 | `lint`                                | Already canonical                                                  |
-| `lint:fix`                      | `lint:fix`                            | Already canonical                                                  |
-| `typecheck`                     | `type-check`                          | Rename                                                             |
-| `check` (alias for `check:fix`) | `check` (mutating)                    | Keep; document as alias for the new canonical `check:fix`          |
-| `check:fix`                     | (absent — substance lives in `check`) | Add as the explicit mutating-aggregate name; `check` aliases to it |
-| `check:ci`                      | (absent)                              | Add as non-mutating CI form                                        |
-| `fix`                           | `fix`                                 | Already canonical in name and role (subset of `check:fix`)         |
+Owner direction (2026-09-12): adopt the source lineage's `package.json`
+script naming as practised, not as this record's tables describe it. The
+lineage's live root scripts, which every skill and rule in the transplanted
+Practice already assume, are:
 
-A migration within this repo renames the divergent scripts,
-splits the current `check`, updates CI invocations, updates
-pre-commit hooks, and sweeps internal documentation. That
-migration is **not** part of accepting PDR-008 — it is a
-follow-on execution task. Accepting PDR-008 fixes the names;
-realising them locally is a scheduled change.
+- `check` is the **read-only** aggregate; `fix` is the mutating aggregate
+  (`format:root`, `markdownlint:root`, `lint:fix`); `check:docs` and
+  `fix:docs` are the documentation subset. The `check`-as-alias-of-`check:fix`
+  exception above is retired: bare `check` verifies, and mutation is always an
+  explicit `fix`.
+- There is no `:ci` form. CI runs the same legs as `check`, one run step per
+  leg, and a parity validator (`validate-check-ci-parity`) refuses drift
+  between the two, which is the guarantee the `:ci` suffix was for.
+- Root-only formatting and markdown gates are named for the ecosystem tool and
+  the scope: `format-check:root` / `format:root`, `markdownlint-check:root` /
+  `markdownlint:root`. Workspace packages carry only their own task gates
+  (`build`, `clean`, `dev`, `start`, `type-check`, `lint`, `lint:fix`, `test`,
+  `test:watch`, `test:e2e`, `test:ui`) plus tool scripts named
+  `<subject>:<verb>`; formatting, markdown, unused-code and secret scans run
+  once, at the root.
+- Validators are grouped as `docs-validators:check` (reference direction,
+  machine-local paths, markdown links, cited scripts, patterns index) and
+  `repo-validators:check` (CI parity, claim freshness, guard routing, policy
+  reappraisal, lifecycle scripts, stale invocations, collaboration state,
+  identity naming, workspace config isolation), both legs of `check`.
+
+The tables and rules above describe the earlier model and are read through
+this amendment; `practice-verification.md` item 9 lists the amended set. The
+source lineage's own copy of this record has not been amended and its
+`package.json` contradicts it — a cohesion finding for that estate, not this
+one.

@@ -1,6 +1,8 @@
 ---
 name: jc-go
-description: Resume work from the live continuity surfaces and identify the next concrete step.
+description: Re-ground and structure execution with ACTION/REVIEW/GROUNDING cadence. Use when the user asks to go, re-ground work mid-session, or explicitly apply the GO workflow to structure task execution with periodic self-assessment.
 ---
 
-Read and follow `.agent/commands/go.md`
+# Go (Cross-tool)
+
+Read and follow `.agent/skills/go/SKILL-CANONICAL.md`.

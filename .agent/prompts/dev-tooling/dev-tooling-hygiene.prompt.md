@@ -16,10 +16,10 @@ Ground first via `start-right-quick` or `start-right-thorough`.
 1. [`../../directives/AGENT.md`](../../directives/AGENT.md)
 2. [`../../directives/principles.md`](../../directives/principles.md)
 3. [`../../directives/testing-strategy.md`](../../directives/testing-strategy.md)
-4. [`../../memory/distilled.md`](../../memory/distilled.md)
-5. [`../../memory/napkin.md`](../../memory/napkin.md)
-6. [`../../plans/roadmap.md`](../../plans/roadmap.md)
-7. [`../../plans/current/dev-tooling-hygiene.plan.md`](../../plans/current/dev-tooling-hygiene.plan.md)
+4. [`../../memory/active/distilled.md`](../../memory/active/distilled.md)
+5. [`../../memory/active/napkin.md`](../../memory/active/napkin.md)
+6. [`../../plans-legacy-2026-09/roadmap.md`](../../plans-legacy-2026-09/roadmap.md)
+7. [`../../plans-legacy-2026-09/current/dev-tooling-hygiene.plan.md`](../../plans-legacy-2026-09/current/dev-tooling-hygiene.plan.md)
 8. [`../../../package.json`](../../../package.json) — current scripts, deps, knip config
 9. [`../../../docs/architecture/decision-records/005-knip-unused-code-detection.md`](../../../docs/architecture/decision-records/005-knip-unused-code-detection.md) — ADR template reference for the new dep-cruiser ADR
 10. [`../../../README.md`](../../../README.md) and `CONTRIBUTING.md` — gate-count surfaces to update in Phase 2
@@ -52,7 +52,7 @@ Phase 2: introduce `dependency-cruiser`.
 1. Install + write `.dependency-cruiser.cjs` (or equivalent) encoding the
    layering rules in the plan.
 2. Write the new ADR documenting the decision and the rule set.
-3. Wire `pnpm depcruiser` into `pnpm check` and `pnpm check:ci`; update
+3. Wire `pnpm depcruise` into `pnpm check` and `pnpm check`; update
    `principles.md`, `README.md`, and any tooling docs from "eight gates" to "nine
    gates".
 4. The first strict run will surface violations. Either fix them in this
@@ -71,19 +71,19 @@ once Phase 2 lands.
 
 ## Likely relevant files
 
-- [`../../plans/current/dev-tooling-hygiene.plan.md`](../../plans/current/dev-tooling-hygiene.plan.md)
+- [`../../plans-legacy-2026-09/current/dev-tooling-hygiene.plan.md`](../../plans-legacy-2026-09/current/dev-tooling-hygiene.plan.md)
 - [`../../../package.json`](../../../package.json)
 - [`../../../pnpm-lock.yaml`](../../../pnpm-lock.yaml)
 - [`../../../docs/architecture/decision-records/`](../../../docs/architecture/decision-records/) — for the new ADR
 - [`../../directives/principles.md`](../../directives/principles.md) — gate count + sequence
 - [`../../../README.md`](../../../README.md) — gate count surfaces
-- [`../../../scripts/`](../../../scripts/) — depcruiser layering rules apply here
-- [`../../../lib/`](../../../lib/), [`../../../app/`](../../../app/), [`../../../components/`](../../../components/), [`../../../e2e/`](../../../e2e/), [`../../../visual-regression-harness/`](../../../visual-regression-harness/) — the layered surface
+- the former root `scripts/` directory is retired; its tooling lives in `agent-tools/`, where the depcruiser layering rules apply
+- [`../../../jcdotnet/lib/`](../../../jcdotnet/lib/), [`../../../jcdotnet/app/`](../../../jcdotnet/app/), [`../../../jcdotnet/components/`](../../../jcdotnet/components/), [`../../../jcdotnet/e2e/`](../../../jcdotnet/e2e/), [`../../../jcdotnet/visual-regression-harness/`](../../../jcdotnet/visual-regression-harness/) — the layered surface
 
 ## Do the work
 
 - one slice per upgrade or rule change; no mixed slices
-- update [`../../memory/napkin.md`](../../memory/napkin.md) with mistakes,
+- update [`../../memory/active/napkin.md`](../../memory/active/napkin.md) with mistakes,
   corrections, and what was learned
 - write the ADR in the same slice as the gate-wiring change
 
@@ -96,15 +96,15 @@ once Phase 2 lands.
 
 ## After changes, run in order
 
-- `pnpm format:fix`
-- `pnpm markdownlint:fix`
+- `pnpm format:root`
+- `pnpm markdownlint:root`
 - `pnpm lint:fix`
-- `pnpm typecheck`
+- `pnpm type-check`
 - `pnpm test`
 - `pnpm knip`
 - `pnpm secrets:scan`
 - `pnpm portability:check`
-- `pnpm depcruiser` (once Phase 2 wires it in — this is the ninth gate)
+- `pnpm depcruise` (once Phase 2 wires it in — this is the ninth gate)
 - `pnpm test:e2e`
 
 ## End by summarising

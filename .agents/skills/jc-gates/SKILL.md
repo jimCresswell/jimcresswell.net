@@ -1,6 +1,8 @@
 ---
 name: jc-gates
-description: Run the quality gates with restart-on-fix discipline until the repo is clean.
+description: Run all quality gates and fix issues.
 ---
 
-Read and follow `.agent/commands/gates.md`
+# Gates (Cross-tool)
+
+Read and follow `.agent/skills/change-custody/gates/SKILL-CANONICAL.md`.

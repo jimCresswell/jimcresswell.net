@@ -1,10 +1,39 @@
+// markdownlint-cli2 configuration — the lint footprint (`globs` + `ignores`).
+// Rules live in `.markdownlint.json` (auto-read by cli2 as the `config` object).
+// Canon surfaces lint by default; reference, archive, live-channel and
+// generated material is excluded. Moving a folder in or out of `ignores` is a
+// deliberate governance act (`.agent/rules/no-warning-toleration.md`).
+//
+// cli2's `**/*.md` traverses dot-directories, so non-canon dot-dirs are
+// excluded explicitly. Never add an `ignores` entry beginning with `!` or `#`:
+// in cli2 v0.22.x such an entry silently zeroes the run to a false green.
 {
-  "globs": ["README.md", ".github/**/*.md", "docs/**/*.md"],
-  "config": {
-    "default": true,
-    "MD013": false,
-    "MD024": {
-      "siblings_only": true,
-    },
-  },
+  "globs": ["**/*.md", ".agent/**/*.md"],
+  "ignores": [
+    ".agent/collaboration/rapid-comms/2026-*.md",
+    ".agent/evaluations/**",
+    ".agent/experience/**",
+    ".agent/hooks/**",
+    ".agent/memory/active/archive/**",
+    ".agent/plans/archive/**",
+    ".agent/plans-legacy-2026-09/**",
+    ".agent/prompts/**",
+    ".agent/reference/**",
+    ".agent/reference-local/**",
+    ".agent/reports/**",
+    ".agent/state/pr-lifecycle/**",
+    ".agent/temp/**",
+    ".claude/**",
+    ".codex/**",
+    ".cursor/**",
+    ".agents/**",
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/.next/**",
+    "**/test-results/**",
+    "**/playwright-report/**",
+    "**/coverage/**",
+    "CHANGELOG.md",
+    "**/CHANGELOG.md",
+  ],
 }

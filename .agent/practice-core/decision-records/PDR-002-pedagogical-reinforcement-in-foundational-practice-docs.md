@@ -16,11 +16,11 @@ directives.
 
 Across these files, certain rules deliberately appear more than
 once. A testing rule may appear in the principles document
-(framed as _why this constraint exists_) and again in the
-testing-strategy document (framed as _how tests are structured to
-honour the constraint_). A quality-gate rule may appear in the
-agent entry point (framed as _what to do at session start_) and
-again in the principles document (framed as _what is forbidden_).
+(framed as *why this constraint exists*) and again in the
+testing-strategy document (framed as *how tests are structured to
+honour the constraint*). A quality-gate rule may appear in the
+agent entry point (framed as *what to do at session start*) and
+again in the principles document (framed as *what is forbidden*).
 
 This repetition reads, to a scoped documentation-optimisation pass,
 as duplication. Sub-agent consolidation passes have on multiple
@@ -124,13 +124,15 @@ PDR-003 operates on the permissions dimension (who may edit);
 PDR-002 operates on the substance dimension (what the content
 should look like). Together they close the loop.
 
-### Host-local context (this repo only, not part of the decision)
-
-In the repo where this PDR was authored, the foundational documents
-referenced are `.agent/directives/AGENT.md` (the agent entry
-point), `.agent/directives/principles.md`, and
-`.agent/directives/testing-strategy.md`. The specific fitness
-thresholds on those files, and any repo-local decision to raise
-them in support of this doctrine, are host-local concerns and
-belong in a host-repo ADR or the host repo's fitness-function
-notes. They are not part of this PDR's substance.
+**The boundary — reinforcement is not multi-framing.** This PDR
+protects the *same* concept appearing across *different* documents,
+each time in that document's local frame (one authoritative frame
+per document). It does NOT licence one document carrying two or more
+*authoritative* frames for one concept — a historical heading plus a
+new table plus per-item inline notes, or a "transitional dual-frame
+with sunset note". Multiple authoritative frames inside a single
+document are drift, not reinforcement: each frame acquires edits
+independently and they diverge. Once the decision is settled, collapse
+to a single authoritative frame within the document. Reinforcement is
+cross-document and single-framed; multi-framing is within-document and
+divergent.

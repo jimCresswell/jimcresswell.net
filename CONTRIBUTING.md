@@ -14,10 +14,10 @@ Guidelines for contributing to [www.jimcresswell.net](https://www.jimcresswell.n
 ## Workflow
 
 - Work on a **feature branch** and open a pull request. The repository owner commits to `main` directly; other contributors use branches.
-- A **pre-commit hook** runs `pnpm check:ci` (read-only quality gates) on every commit — expect ~10–15 seconds. Do not skip it (`--no-verify` is not permitted).
+- A **pre-commit hook** runs the staged subset of the gates on every commit — the PreToolUse guard, Prettier and markdownlint on the staged files, and `lint` in every workspace the commit touches — expect ~10–20 seconds. Do not skip it (`--no-verify` is not permitted).
 - A **pre-push hook** runs `pnpm check && pnpm test:e2e` — the full gate sequence plus the full E2E suite. The Playwright web server runs `pnpm build && pnpm start`, so every test (including PDF) exercises the production build.
 - If you touch agent tooling or platform adapters, ensure `pnpm portability:check` passes. It is already part of `pnpm check`, but call it out explicitly in your own verification notes.
-- If you touch Practice Core or directive docs that carry the four-field fitness frontmatter, run `pnpm practice:fitness:informational` and `pnpm fitness-vocabulary:check`.
+- If you touch Practice Core or directive docs that carry the four-field fitness frontmatter, run `pnpm practice:fitness:informational` and `pnpm practice:vocabulary`.
 - If adding an architectural decision, create an ADR in `docs/architecture/decision-records/` following the existing format. See the [ADR index](docs/architecture/decision-records/README.md) for examples.
 
 ## Code conventions
@@ -36,7 +36,7 @@ Assumes TDD familiarity. For the full philosophy and rules, see [testing-strateg
 
 - **Unit tests** (`*.unit.test.ts`) — pure functions, no mocks, no IO. Co-located with source.
 - **Integration tests** (`*.integration.test.ts`) — React components via RTL + Vitest jsdom. Co-located with source.
-- **E2E tests** (`*.e2e-ui.test.ts`, `*.e2e-api.test.ts`) — in `e2e/`. Journeys map to user stories; behaviour tests cover cross-cutting concerns (accessibility, SEO, content integrity). See [e2e/README.md](e2e/README.md) for the full test map.
+- **E2E tests** (`*.e2e-ui.test.ts`, `*.e2e-api.test.ts`) — in `e2e/`. Journeys map to user stories; behaviour tests cover cross-cutting concerns (accessibility, SEO, content integrity). See [e2e/README.md](jcdotnet/e2e/README.md) for the full test map.
 - **No global state mocking** — product code accepts configuration as parameters. If you need a mock, inject a simple fake as an argument.
 
 ## Content and editorial voice

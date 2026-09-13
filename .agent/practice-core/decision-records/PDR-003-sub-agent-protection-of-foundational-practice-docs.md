@@ -72,8 +72,13 @@ rules can cite this PDR as their justification:
 Therefore: **sub-agents MUST NOT create, edit, delete, or
 rename files in the foundational Practice document set**. The
 primary conversation agent — the one the human is actively
-working with — retains full authority over these documents, with
-the human's consent in the loop for changes of substance.
+working with — retains full authority over these documents. In dedicated
+consolidation sessions the primary agent authors and amends on **best effort
+without per-change owner pre-ratification**
+([PDR-104](PDR-104-best-effort-doctrine-authoring-in-consolidation.md)); the
+owner's review runs through the knowledge flow (PDR-014) and the kept
+action-authority / safety gates, not a pre-approval of each substantive edit. The
+sub-agent prohibition above is unchanged by that policy.
 
 The foundational document set for this PDR's purpose includes:
 the Practice Core plasmid trinity and its verification companion,
@@ -93,9 +98,8 @@ pressure (fitness violations, deduplication passes, compression
 requests), the rule reads as arbitrary. Recording the rationale
 in a portable PDR ensures that:
 
-1. Future Practice stewards, in this repo or any repo the
-   Practice hydrates into, inherit the reasoning along with the
-   rule.
+1. Future Practice stewards, in any repo the Practice hydrates
+   into, inherit the reasoning along with the rule.
 2. A host-repo permission rule can cite the PDR as its
    justification, anchoring the local rule in portable Practice
    doctrine rather than in repo-local convention.
@@ -137,13 +141,3 @@ subject to the consent protocol that attends every substantive
 edit. The sub-agent is background, autonomous, and scoped. The
 authority asymmetry is intentional and should be preserved in
 any evolution of the Practice's delegation model.
-
-### Host-local context (this repo only, not part of the decision)
-
-In the repo where this PDR was authored, the host-repo
-permission rule operationalising this doctrine is
-`.agent/rules/subagent-practice-core-protection.md`. That rule
-currently cites host-repo ADRs for its authority chain. When
-this PDR stabilises in practice, the rule's "Why" section
-SHOULD be shortened to a reference to PDR-003 rather than
-restating the rationale.

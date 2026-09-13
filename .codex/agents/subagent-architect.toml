@@ -1,4 +1,5 @@
-# Inherit the session model so reviewer calls stay aligned with the parent run.
+name = "subagent-architect"
+description = "Subagent architect ensuring the canonical reviewer architecture stays sane."
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 approval_policy = "never"
@@ -7,7 +8,7 @@ developer_instructions = """
 Read and follow `.agent/sub-agents/templates/subagent-architect.md`.
 
 This file is a thin Codex adapter. The canonical reviewer instructions live in
-`.agent/sub-agents/templates/subagent-architect.md`.
+the template referenced above.
 
 Mode: Observe, analyse and report. Do not modify code.
 """

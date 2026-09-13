@@ -1,76 +1,198 @@
-# Start Right Thorough
+---
+prompt_id: start-right-thorough
+title: "Start Right (Thorough)"
+type: workflow
+status: active
+last_updated: 2026-09-08
+---
 
-Use this workflow for structural migrations, cross-platform Practice work,
-review-heavy changes, or any session that will span multiple phases.
+# Start Right (Thorough)
 
-## Foundation pass
+Ground yourself rigorously before beginning significant work.
 
-Read:
+## Environment Classification
 
-1. `.agent/directives/AGENT.md`
-2. `.agent/directives/principles.md`
-3. `.agent/directives/testing-strategy.md`
-4. `.agent/directives/metacognition.md`
-5. `.agent/directives/privacy.md`
-6. `.agent/directives/secops.md`
-7. `.agent/memory/distilled.md`
-8. `.agent/memory/napkin.md`
-9. `.agent/practice-index.md`
-10. `.agent/reference/cross-platform-agent-surface-matrix.md`
-11. `.agent/practice-core/index.md`
-12. `.agent/practice-core/practice-verification.md`
-13. `.agent/plans/active/README.md`
-14. The active plan markdown file
-15. Any prompt or current-plan surfaces the active plan names as continuity
-    inputs
+Before any command in this workflow, use the tri-state classification in
+`.agent/directives/cloud-environment-routing.md`. When it selects ChatGPT Work,
+that non-execution profile governs every command-bearing step below: retain all
+reading and static inspection, but skip package, build, test, hook, identity and
+repo-owned collaboration-CLI execution. Platform-native coordination remains
+available. Detector error is a stop, not a fall-through.
 
-## Inbound and continuity pass
+## Foundation Documents
 
-1. Inspect `.agent/practice-core/incoming/`.
-2. Inspect `.agent/practice-context/README.md` plus inbound support notes if
-   present.
-3. Reconcile the active plan, roadmap, and prompt surfaces before coding if
-   they disagree.
-4. Challenge every assumption from prior sessions before treating it as settled.
+Read and internalise these documents:
 
-## Structured reasoning
+1. @.agent/directives/AGENT.md — Entry point and documentation index
+2. @RULES_INDEX.md — canonical list of always-applied `.agent/rules/*.md`
+   files
+3. @.agent/directives/principles.md — authoritative engineering principles
+4. @.agent/directives/tdd-as-design.md — foundational TDD definition: a test
+   describes a system state, product code is the path that guides the system
+   into it
+5. @.agent/directives/testing-strategy.md — test-type taxonomy and shape rules
+6. @.agent/directives/orientation.md — layering contract and authority order
+7. @.agent/memory/operational/threads/README.md — thread convention + identity discipline (PDR-027)
+8. Open any ADR whose slug matches your current work area from the
+   [ADR index](../../../../docs/architecture/decision-records/README.md).
 
-Thorough grounding is for high-risk, architectural, cross-platform, or
-planning-heavy work — precisely where structured reasoning earns its place.
-Read `.agent/reference/grammar-of-thinking.md` as the yardstick for this
-work, and use `.agent/skills/reason/SKILL.md` to structure the analysis or
-plan before committing to an approach. Before the first non-planning edit,
-leave an observable work-shape artefact: bounded work records goal, scope,
-and validation in chat; multi-session, architectural, Practice, or
-high-risk work uses a repo plan via `.agent/skills/plan/SKILL.md`.
+**Plans must include regularly re-reading and re-committing to these foundation documents.**
 
-If the session is part of a multi-seat collaboration (a live ARC channel, a
-directing seat), also apply `.agent/skills/start-right-team/SKILL.md`.
+For Codex, Gemini, or any other platform that does not auto-load canonical
+rules, read every canonical `.agent/rules/*.md` file listed in
+`RULES_INDEX.md` before substantive work. Treat `RULES_INDEX.md` as the live
+inventory rather than copying the rule list here.
 
-## Execution discipline
+Thorough grounding extends quick grounding. Also apply
+`.agent/skills/start-right-quick/shared/start-right.md` §Live state
+(operational memory), §Live branch state, and §Collaborating human
+(resolve, don't assume) so repo-continuity, the touched thread record,
+active claims, shared comms, decision/escalation state, active plans,
+git status/log, and the resolved human collaborator are part of the same
+grounding pass.
 
-- Run one slice at a time and keep the plan truthful as the work moves.
-- Re-ground after every substantial fix, phase boundary, or reviewer finding.
-- Invoke specialist reviewers whenever a change crosses their domain rather
-  than relying on a single generic pass.
-- For rendering-risk slices, run `pnpm visual-regression-harness` during the
-  implementation loop, not only at the end.
+## Active-Claims Registry
 
-## Verification discipline
+Before any edit, read `.agent/state/collaboration/active-claims.json` and
+apply the [`register-active-areas-at-session-open`](../../../rules/register-active-areas-at-session-open.md)
+rule. Also scan `.agent/state/collaboration/shared-comms-log.md`, any open
+`.agent/state/collaboration/conversations/*.json` files, and any active
+`.agent/state/collaboration/escalations/*.json` files for the thread
+or areas you will touch. Bootstrap fast-path: if no entries other than
+your own exist, append a "no other agents present" comms event and proceed.
+On overlap, consult the generated log and decision
+threads before deciding how to coordinate (proceed with caution, ping,
+append/open a decision thread, request a sidebar, record a joint
+decision, open or close an escalation, or ask the owner). Then register
+your own claim covering the areas you intend to touch, using the
+collaboration-state helper when available.
 
-1. Run blocking validators when agent/platform surfaces change:
-   `pnpm vital-surfaces:check`,
-   `pnpm portability:check`,
-   `pnpm subagents:check`
-2. Run informational Practice validators when governed docs change:
-   `pnpm practice:fitness:informational`,
-   `pnpm fitness-vocabulary:check`
-3. Run `pnpm check` with restart-on-fix discipline.
-4. Run `pnpm test:e2e` after the blocking gates are green when user-visible
-   behaviour or tooling integration could be affected.
+Alongside the claims read, surface any fresh advisory commit-queue intents
+(`pnpm agent-tools:commit-queue -- list`) as commit-ordering signals:
+`intent_id`, `agent_id`, files, subject, phase, and expiry. Queue entries
+are discovery and ordering signals, not mechanical refusals.
 
-## Closeout
+When writing the thread identity row, prefer an existing owner-assigned
+`agent_name` if it matches this identity. Derive the full PDR-027 identity
+block before both thread registration and shared-state writes, with the
+platform and model the harness reports:
 
-Before pausing, update the active plan, roadmap, prompt surface, and napkin so
-the next session can resume from the next concrete task rather than re-deriving
-state.
+```bash
+pnpm agent-tools:collaboration-state -- identity preflight --platform <platform> --model <model-id>
+```
+
+For non-Codex platforms or name-only display, use
+`pnpm agent-tools:agent-identity --format display` when a
+`PRACTICE_AGENT_SESSION_ID_*` variable, the Claude Code shell's
+`CLAUDE_CODE_SESSION_ID`, or `CODEX_THREAD_ID` is available; pass
+`--seed "<stable-session-seed>"` explicitly when no platform seed is exposed.
+Do not use personal-email fallback.
+
+Codex sessions with `CODEX_THREAD_ID` available must use the derived
+`agent_name` and `session_id_prefix`, not `Codex` / `unknown`. Codex
+`SessionStart` hooks may inject the same block as developer context, but the
+preflight command remains the correctness check.
+
+Before staging or committing, use the always-active commit skill. It
+checks for fresh commit-queue intents and `git:index/head` commit-window
+claims, enqueues your intended bundle before staging, verifies the staged
+bundle exactly before `git commit`, and clears the queue entry after success.
+
+## Learning-Loop Surfaces
+
+Before engaging with the work, scan the active-memory capture surfaces:
+
+- `.agent/memory/active/distilled.md` — refined cross-session lessons
+- `.agent/memory/active/napkin.md` — current session observations
+- `.agent/memory/active/patterns/` — reusable patterns (the index README lists them)
+- Your own platform's per-user memory and session logs. Scan the
+  surface for the platform you are running on:
+  - Claude Code: `~/.claude/projects/<project>/memory/`
+  - Cursor: `~/.cursor/chats/`, `~/.cursor/prompt_history.json`
+  - Codex: `~/.codex/memories/`, `~/.codex/history.jsonl`
+
+  Read only the surface that matches your current platform at
+  session open. Cross-platform ingestion (reading another
+  platform's surface for insight) is a consolidation-time
+  activity, not a session-open one — see `consolidate-docs`
+  step 3.
+
+## Guiding Questions
+
+Before diving in, pause and ask:
+
+1. **Are we solving the right problem, at the right layer?**
+2. **What value are we delivering, through what impact, for which users?**
+3. **Could it be simpler without compromising quality?**
+4. **What assumptions am I making? Are they valid?**
+
+Step back and consider if work is delivering value through impact at the system level, not just fixing the problem right in front of you.
+
+Thorough grounding is for high-risk, architectural, cross-workspace, or planning-heavy work — precisely where structured reasoning earns its place. Read the [grammar of thinking](../../../reference/grammar-of-thinking.md) as the yardstick for this work, and use [`reason`](../../cognition/reason/SKILL-CANONICAL.md) to structure the analysis or plan before committing to an approach.
+
+## Work Shape and Simple Plan
+
+Before the first non-planning edit, leave an observable work-shape
+artefact:
+
+- trivial work uses the landing target or explicit no-landing reason;
+- bounded non-trivial work records a simple plan in chat or the touched
+  thread record, naming goal, scope, validation, and lifecycle touch
+  points;
+- multi-session, architectural, Practice, cross-workspace, or high-risk
+  work uses an executable repo plan in `current/` or `active/`.
+
+Do not force a repo plan file for every small edit. The requirement is
+that the work shape and validation path are visible before mutation.
+
+## Practice Box
+
+Check `.agent/practice-core/incoming/` for practice-core files. If present, alert the user — incoming material may carry learnings from another repo. Full integration happens during `/jc-consolidate-docs`.
+
+## Commit
+
+**Commit** to excellence in systems architecture, software engineering, and developer experience. Choose architectural correctness over short-term expediency. This requires critical and _long-term_ thinking.
+
+## Generated Files
+
+When analysing generated files, always analyse the generator code that produced them — the generator is the source of truth. Here that means the entity graph (`content/entities.json`) and the build that derives every rendered surface from it (the Cardinal Rule in `principles.md`).
+
+## After Each Piece of Work
+
+1. **Run the full quality gate suite** one gate at a time
+2. **Wait for all gates to complete** before analysing issues
+3. **Analysis must include**: Are there fundamental architectural issues or opportunities for improvement?
+
+## Documentation Requirements
+
+All plans must include instructions to create:
+
+- **TSDoc**: General on all logic and state, extensive examples on public interfaces
+- **Markdown**: READMEs for each workspace
+- **ADRs**: For significant architectural decisions
+
+## Sub-agent Reviews
+
+Invoke sub-agent reviewers per the `invoke-code-experts` rule after making changes. The rule contains the full invocation matrix, timing tiers, quick-triage checklist, worked examples, and copy/paste-ready platform-specific invocation examples.
+
+## Process
+
+**Do not assume you know the initial step.** Discuss with the user first.
+
+## Quality Gates
+
+Run after making changes, one gate at a time from the repo root. The
+sequence is the [gates skill](../../change-custody/gates/SKILL-CANONICAL.md):
+`pnpm check` unrolled one leg per line, then the gates outside it (build,
+end-to-end, visual regression, docs validators, plan gates). Caching details
+are in @docs/engineering/build-system.md.
+
+Practice health, informational and never a gate:
+
+```bash
+pnpm practice:fitness:informational  # four-zone report (always exit 0)
+# Consolidation-closure signal (used by /jc-consolidate-docs):
+#   pnpm practice:fitness:strict-hard
+# Vocabulary consistency:
+#   pnpm practice:vocabulary
+```

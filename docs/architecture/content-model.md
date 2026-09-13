@@ -97,7 +97,7 @@ Current ownership looks like this:
 
 The structured-data-specific content that used to live as JSON-LD module constants now lives in `content/entities.json` as part of the personal knowledge graph. `lib/entities.ts` validates that graph, `lib/jsonld.ts` exposes the full graph, `lib/page-jsonld.ts` derives page-specific subgraphs, and `lib/page-document-contract.ts` defines the page-level anchor and canonical-identity contract those subgraphs must honour.
 
-When structural refactors need before/after proof rather than correctness against the current source, use `pnpm visual-regression-harness <base-ref> <target-ref>`. That harness captures HTML and pixel artifacts from exported git refs without touching the live worktree.
+When structural refactors need before/after proof rather than correctness against the current source, use `pnpm visual-regression:harness <base-ref> <target-ref>`. That harness captures HTML and pixel artifacts from exported git refs without touching the live worktree.
 
 For the rationale behind the page-content layer, see
 [ADR-007](decision-records/007-dry-content-metadata.md). For the target layered

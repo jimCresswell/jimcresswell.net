@@ -53,16 +53,16 @@ the RED signal and corrodes the discipline.**
 A RED assertion proves that a specific gap exists. Different kinds
 of gap are proven most directly by different tools:
 
-| Gap to prove                                  | Best assertion tool          |
-| --------------------------------------------- | ---------------------------- |
-| Missing module, export, or symbol             | Type checker                 |
-| Missing runtime behaviour / failing invariant | Test runner                  |
-| Unused code after a refactor                  | Dead-code detector           |
-| Circular or forbidden dependency              | Dependency graph validator   |
-| Code pattern presence or absence              | Search (grep / rg)           |
-| Lint rule violation                           | Linter                       |
-| Schema / format violation                     | Schema validator / formatter |
-| Coverage gap                                  | Coverage tool                |
+| Gap to prove | Best assertion tool |
+|---|---|
+| Missing module, export, or symbol | Type checker |
+| Missing runtime behaviour / failing invariant | Test runner |
+| Unused code after a refactor | Dead-code detector |
+| Circular or forbidden dependency | Dependency graph validator |
+| Code pattern presence or absence | Search (grep / rg) |
+| Lint rule violation | Linter |
+| Schema / format violation | Schema validator / formatter |
+| Coverage gap | Coverage tool |
 
 The RED phase uses the tool that proves the specific gap. The
 GREEN phase makes that specific tool exit clean.
@@ -160,14 +160,3 @@ Alternatives rejected:
   assertion quality.
 
 ## Notes
-
-### Host-local context (this repo only)
-
-Proven instance retained with `related_pdr: PDR-020`:
-
-- `.agent/memory/patterns/check-driven-development.md` —
-  originated from SDK canonical-descriptor unit tests
-  (2026-03-26) where runtime property-existence checks were
-  initially written to avoid breaking type-check; refactored to
-  use the type checker as the direct assertion after owner
-  correction.

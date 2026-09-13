@@ -1,101 +1,135 @@
-# .agent
+# .agent/ — The Practice Infrastructure
 
-Agent-facing documentation and planning for this project. Start with [directives/AGENT.md](directives/AGENT.md) — it is the entry point for all AI agents.
+> **Human developers**: this directory is AI agent infrastructure. See
+> [HUMANS.md](HUMANS.md) for where to go instead.
 
-## Directory Structure
+This directory holds the canonical infrastructure for the agentic engineering
+practice that governs this personal-sites monorepo (first site: `jimcresswell.net`). The Practice lineage was transplanted
+from the Oak Open Curriculum Ecosystem on 2026-09-12; the transplant manifest
+and its owner rulings live at
+[`docs/explorations/2026-09-12-oce-practice-lineage-transplant.md`](../docs/explorations/2026-09-12-oce-practice-lineage-transplant.md).
+
+**Practice, not product.** Everything under `.agent/` is how this repository is
+built and governed. The product — the site, the CV, the personal knowledge graph
+— lives in [`jcdotnet/`](../jcdotnet/). The Practice tooling lives in
+[`agent-tools/`](../agent-tools/README.md) and the `@engraph/*` packages under
+[`tooling/`](../tooling/).
+
+## Structural model
+
+`.agent/` is the **canonical layer** in a three-layer architecture:
 
 ```text
-.agent/
-├── directives/       ← START HERE
-│   ├── AGENT.md              # Entry point — project context, commands, structure
-│   ├── principles.md         # Core development rules (TDD, type safety, code quality)
-│   ├── testing-strategy.md   # Testing philosophy, test types, naming conventions
-│   ├── editorial-strategy.md  # Audience, attention, structure, and evidence
-│   └── editorial-guidance.md  # Jim's editorial voice and identity
-│
-├── plans/            ← Work planning
-│   ├── active/               # Single primary execution plan
-│   ├── current/              # Live but non-primary executable plans
-│   ├── future/               # Strategic later-intent plans with promotion triggers
-│   ├── archive/              # Completed or superseded historical plans
-│   ├── research/             # Investigations and current-state audits
-│   ├── roadmap.md            # Repo-level roadmap
-│   └── README.md             # Lane semantics and move rules
-│
-├── practice-core/    ← Portable Practice Core, provenance, and incoming practice box
-├── practice-context/ ← Optional repo-local exchange context
-│   ├── incoming/            # Transient received support material
-│   └── outgoing/            # Sender-maintained support material
-│
-├── reference/        ← Stable local reference material
-│   └── cross-platform-agent-surface-matrix.md  # Supported / unsupported platform mappings
-│
-├── skills/           ← Canonical skills (see practice-index.md)
-│   ├── start-right/          # Session grounding (core)
-│   ├── project-spec-creation/  # Generative UI handoff specs (core)
-│   └── …
-│
-├── prompts/          ← Handover and track prompts (not session entry — use skills/start-right)
-│   └── personal-knowledge-graph-*.prompt.md
-│
-├── temp/             ← Gitignored working files (LinkedIn export, old CV website, etc.)
-│
-├── research/         ← Technical research and investigation notes
-│   └── cloudflare-pdf-render-service.md
-│
-└── v0/               ← Original project specification (historical)
-    └── original-spec/        # Design brief, component specs, theme, v0 prompt
+                    .agent/
+                    (canonical content — rules, skills, sub-agents)
+                      ↑                        ↑
+        referenced by |                        | pointed to, via
+                      |                        | directives/AGENT.md
+.claude/ .cursor/                   CLAUDE.md, AGENTS.md
+.codex/ .agents/ .github/
+(thin platform adapters —           (entry points platforms
+ generated, one-line pointers)       read or can use)
 ```
 
-## Navigation Guide
+Adapters and entry points are independent platform-facing surfaces: each
+references `.agent/` directly, and no entry point consumes an adapter
+directory. A rule in `.claude/rules/` or `.cursor/rules/` is a one-line pointer
+back to the canonical version in `.agent/rules/`. Edit the canonical version;
+adapters are regenerated with `pnpm portability:fix` and checked with
+`pnpm portability:check` and `pnpm subagents:check`.
 
-### Starting a session
+## How information flows
 
-1. Read [directives/AGENT.md](directives/AGENT.md) — project context, stack, commands, structure
-2. Read [directives/principles.md](directives/principles.md) — the authoritative rules; these must be followed at all times
-3. Read [directives/testing-strategy.md](directives/testing-strategy.md) — TDD approach and test type conventions
-4. If touching agent tooling or platform adapters, read
-   [reference/cross-platform-agent-surface-matrix.md](reference/cross-platform-agent-surface-matrix.md)
-5. If writing or reviewing content, read
-   [directives/editorial-strategy.md](directives/editorial-strategy.md) and
-   [directives/editorial-guidance.md](directives/editorial-guidance.md)
+### Rules: directives → rules → platform adapters
 
-### Understanding what needs doing
+`directives/` holds the authoritative source documents — principles, testing
+strategy, editorial strategy and guidance, privacy, secops. `rules/` atomises
+those directives into individual canonical rules. Platform adapters point back
+to `rules/`.
 
-The primary plan lives in `plans/active/`; related live work stays in `plans/current/`:
+### Plans: sketch → ratified → superseded / archived
 
-| Plan                                                                                                                            | Status       | Description                                                                     |
-| ------------------------------------------------------------------------------------------------------------------------------- | ------------ | ------------------------------------------------------------------------------- |
-| [personal-knowledge-graph-source-of-truth-design.plan.md](plans/active/personal-knowledge-graph-source-of-truth-design.plan.md) | Active       | Current Track B design plan and primary graph workstream                        |
-| [cv-editorial-improvements.plan.md](plans/current/cv-editorial-improvements.plan.md)                                            | In Progress  | Parent editorial plan and context map                                           |
-| [personal-knowledge-graph-roadmap.plan.md](plans/current/personal-knowledge-graph-roadmap.plan.md)                              | In Progress  | Adopted graph roadmap — both tracks required, Track A first                     |
-| [personal-knowledge-graph-execution.plan.md](plans/current/personal-knowledge-graph-execution.plan.md)                          | Complete     | Track A execution plan for graph expression work                                |
-| [workspace-architecture-roadmap.plan.md](plans/current/workspace-architecture-roadmap.plan.md)                                  | In Progress  | Accepted incremental workspace family; Visual extraction gate is the next slice |
-| [visual-regression-workspace.plan.md](plans/current/visual-regression-workspace.plan.md)                                        | In Progress  | First workspace extraction attempt; landed configuration seam remains green     |
-| [practice-validation-workspace.plan.md](plans/current/practice-validation-workspace.plan.md)                                    | Pending      | Independent Practice validator extraction candidate                             |
-| [professional-profile-graph-workspace.plan.md](plans/current/professional-profile-graph-workspace.plan.md)                      | Pending      | Stable Jim-free professional-profile graph candidate                            |
-| [cv-workspace.plan.md](plans/current/cv-workspace.plan.md)                                                                      | Pending      | Synthetic Jim-free CV model and renderer candidate                              |
-| [jim-profile-workspace.plan.md](plans/current/jim-profile-workspace.plan.md)                                                    | Pending      | Track B-gated configured public-profile adoption                                |
-| [web-page-workspace-and-boundary-enforcement.plan.md](plans/current/web-page-workspace-and-boundary-enforcement.plan.md)        | Pending      | Conditional generic primitives and final boundary audit                         |
-| [optional-app-relocation.plan.md](plans/archive/optional-app-relocation.plan.md)                                                | Not Selected | Archived Sequence R decision; root application retained                         |
-| [dev-tooling-hygiene.plan.md](plans/current/dev-tooling-hygiene.plan.md)                                                        | In Progress  | Parked major upgrades and dependency-cruiser work                               |
-| [linkedin-update.plan.md](plans/current/linkedin-update.plan.md)                                                                | Owner-active | Private-boundary routing and safety only; no public repo task                   |
-| [tilt-retirement.plan.md](plans/archive/tilt-retirement.plan.md)                                                                | Complete     | Archived canonical-only CV retirement record; ADR-021 owns current truth        |
-| [practice-core-wholesale-adoption.plan.md](plans/archive/practice-core-wholesale-adoption.plan.md)                              | Complete     | Structural Practice adoption ratchet and migration record                       |
+Plans are plan nodes under `plans/` — `strategic/`, `delivery/`, `runbooks/` —
+governed by [`plans/plan-node-schema.md`](plans/plan-node-schema.md). Every
+plan is born `status: sketch` and governs no work until it carries an owner
+ratification stamp. The pre-schema plans (the lifecycle lanes and the roadmap) are conserved as
+records in [`plans-legacy-2026-09/`](plans-legacy-2026-09/DISPOSITIONS.md), each
+with its disposition; live intent was re-authored into the strategy layer and
+nodes at the plan-node migration (2026-09-13).
 
-Completed plans are in [plans/archive/](plans/archive/) for reference.
+### Knowledge: napkin → distilled → pending-graduations → permanent homes
 
-### Project documentation (outside .agent)
+Session observations are captured in
+[`memory/active/napkin.md`](memory/active/napkin.md). Distillation extracts
+high-signal learnings into
+[`memory/active/distilled.md`](memory/active/distilled.md). Learned doctrine
+awaiting a home queues in
+[`memory/operational/pending-graduations.md`](memory/operational/pending-graduations.md)
+and graduates into rules, PDRs, ADRs, directives or documentation through the
+consolidation workflow. Rotation of the napkin is an archive step that follows
+processing; it is never a goal in itself.
 
-For architecture decisions, user stories, and requirements, see [docs/](../docs/):
+## Directory map
 
-- [docs/architecture/](../docs/architecture/) — System architecture and ADRs
-- [docs/project/user-stories.md](../docs/project/user-stories.md) — User stories
-- [docs/project/requirements.md](../docs/project/requirements.md) — Non-functional requirements
+### Core
 
-## Agent tooling checks
+| Directory                                | Purpose                                                                                                                                                                    |
+| ---------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `directives/`                            | Authoritative rules and the operational entry point ([AGENT.md](directives/AGENT.md)); editorial strategy and guidance for content that represents Jim; privacy and secops |
+| `rules/`                                 | Individual canonical rules referenced by platform adapters                                                                                                                 |
+| `practice-core/`                         | Portable Practice Core: the trinity files, `provenance.yml`, `protocol.json`, and `decision-records/` (PDRs)                                                               |
+| [`practice-index.md`](practice-index.md) | Bridge from the portable Practice Core to this repo's local artefacts                                                                                                      |
 
-- `pnpm portability:check` — validate thin-wrapper parity and the local
-  cross-platform surface contract
-- `pnpm practice:fitness:informational` — advisory fitness report for Practice
-  and directive docs using the four-field fitness frontmatter
+### Planning and execution
+
+| Directory  | Purpose                                                                                                                                                                                                   |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `plans/`   | Plan nodes (`strategic/`, `delivery/`, `runbooks/`, `templates/`, `plan-node-schema.md`, `impact-areas.md`) plus the pre-transplant plan record                                                           |
+| `prompts/` | Session continuation and track handoff prompts                                                                                                                                                            |
+| `skills/`  | Canonical skills — the user-and-model-invokable workflow surface. Each skill lives at `skills/<name>/SKILL-CANONICAL.md` (OCE lineage) or `skills/<name>/SKILL.md` (local lineage, pending normalisation) |
+
+### Knowledge and learning
+
+| Directory      | Purpose                                                                                                                                                                    |
+| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `memory/`      | Three-mode persistent content — see [`memory/README.md`](memory/README.md): `active/` (learning loop), `operational/` (continuity and registers), `executive/` (contracts) |
+| `experience/`  | Qualitative records of what work was like across sessions                                                                                                                  |
+| `research/`    | Technical research notes                                                                                                                                                   |
+| `evaluations/` | Skill and experiment evaluation logs                                                                                                                                       |
+
+### Agent infrastructure
+
+| Directory                                | Purpose                                                                                              |
+| ---------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `sub-agents/`                            | Expert sub-agent templates and standards                                                             |
+| `roles/`                                 | Named role definitions                                                                               |
+| `collaboration/`                         | Rapid-comms channels for multi-seat sessions                                                         |
+| `state/`                                 | Machine-local coordination state (git-ignored) and tracked decision provenance; see its `.gitignore` |
+| `hooks/`                                 | Hook policy for platform harnesses                                                                   |
+| `setup/`, `claude-harness-integrations/` | Cloud-session preflight and setup scripts                                                            |
+
+### Reference
+
+| Directory           | Purpose                                                                           |
+| ------------------- | --------------------------------------------------------------------------------- |
+| `reference/`        | Supporting reference material                                                     |
+| `reference-local/`  | Git-ignored local material, never source-controlled                              |
+| `operator-local/`   | Git-ignored operator profile; the two stubs declare the contract                  |
+| `practice-context/` | Local exchange context (incoming / outgoing)                                      |
+
+## Entry point and reading order
+
+Start with [directives/AGENT.md](directives/AGENT.md). The grounding sequence is:
+
+1. [AGENT.md](directives/AGENT.md) — operational entry point
+2. [principles.md](directives/principles.md) — authoritative rules
+3. [testing-strategy.md](directives/testing-strategy.md) — TDD at all levels
+4. [`memory/active/distilled.md`](memory/active/distilled.md) and
+   [`memory/active/napkin.md`](memory/active/napkin.md) — learned context
+5. [`memory/operational/repo-continuity.md`](memory/operational/repo-continuity.md)
+   and [`prompts/session-continuation.prompt.md`](prompts/session-continuation.prompt.md)
+   — where we are and what is next
+6. For content work: [editorial-strategy.md](directives/editorial-strategy.md)
+   and [editorial-guidance.md](directives/editorial-guidance.md)
+
+For the full artefact index, see [practice-index.md](practice-index.md).

@@ -1,22 +1,23 @@
 # PDR-001: Location of Practice Decision Records
 
-**Status**: Superseded in part by
-[PDR-007](PDR-007-promoting-pdrs-and-patterns-to-first-class-core.md)
+**Status**: Superseded in part by [PDR-007](PDR-007-promoting-pdrs-and-patterns-to-first-class-core.md)
 **Date**: 2026-04-17
 **Related**: Practice Core (`practice.md`, `practice-lineage.md`),
 Practice Context layer.
 
-> **Supersession note (2026-04-18).** PDR-007 retired the peer-directory
-> location framing recorded in this PDR. PDRs now live inside the Practice Core
-> package at `.agent/practice-core/decision-records/` — a first-class Core
-> directory — rather than as a peer directory at
-> `.agent/practice-decision-records/`. What carries forward unchanged: the
-> decision-shape framing (Title / Status / Date / Related / Context / Decision
-> / Rationale / Consequences / Notes), the portability constraint (concept-level
-> references only), the non-deletion / non-renumbering retention rule, and the
-> "PDR-000 as sentinel" numbering convention. What is superseded: every
-> reference below to the peer directory `.agent/practice-decision-records/`
-> and the framing of PDRs as living outside the Core package.
+> **Supersession note (2026-04-18)**: PDR-007 retired the
+> peer-directory location framing recorded in this PDR. PDRs now live
+> inside the Practice Core package at
+> `.agent/practice-core/decision-records/` (a first-class Core
+> directory) rather than as a peer directory at
+> `.agent/practice-decision-records/`. What carries forward unchanged
+> from this PDR: the decision-shape framing (Title / Status / Date /
+> Related / Context / Decision / Rationale / Consequences / Notes), the
+> portability constraint (concept-level references only), the
+> non-deletion / non-renumbering retention rule, and the "PDR-000 as
+> sentinel" numbering convention. What is superseded: every reference
+> to the peer directory `.agent/practice-decision-records/` and the
+> framing of PDRs as living outside the Core package.
 
 ## Context
 
@@ -63,11 +64,20 @@ recorded in that home must be this one.
 
 ## Decision
 
+> **Superseded in part by [PDR-007]**: the peer-directory location
+> below is no longer current. PDRs now live inside the Core package
+> at `.agent/practice-core/decision-records/`. The decision-shape,
+> portability constraint, retention rule, and PDR-000 sentinel
+> convention recorded here remain in force. See the Status block at
+> the top of this file for the full supersession note.
+
 Create `.agent/practice-decision-records/` as a peer directory to
 `.agent/practice-core/` and `.agent/practice-context/`. Practice
 Decision Records (PDRs) record authoritative decisions that govern
 the Practice itself. PDRs are portable; they travel alongside the
 Practice Core when the Practice is hydrated into a new repo.
+
+[PDR-007]: PDR-007-promoting-pdrs-and-patterns-to-first-class-core.md
 
 The directory is provisional. The long-term intent is that stable
 PDRs integrate into the Core's plasmid trinity as refinements
@@ -123,12 +133,14 @@ practical experience accumulates.
 **Deferred**:
 
 - Retroactive migration of existing Practice-governance ADRs in
-  host-repo ADR folders (in this repo: at least six such ADRs,
-  including the ADRs that define Agentic Engineering Practice,
-  Practice Propagation, Documentation as Foundational
-  Infrastructure, Self-Referential Property of the Practice, the
-  Two-Threshold Fitness Model, and Continuity Surfaces). Migration
-  touches rule-file cross-references and is a separate decision.
+  any host-repo ADR folder (the originating repo at the time of
+  authoring carried at least six such ADRs across the
+  Agentic-Engineering-Practice / Practice-Propagation /
+  Documentation-as-Foundational-Infrastructure /
+  Self-Referential-Property / Three-Zone-Fitness-Model /
+  Continuity-Surfaces concept space; host-local identifiers
+  omitted from this portable record). Migration touches rule-file
+  cross-references and is a separate decision.
 - Concrete integration of stable PDRs into Core refinements. The
   graduation path will be defined by a subsequent PDR when the
   first graduation becomes pressing.
@@ -143,16 +155,3 @@ Recording this as PDR-001 rather than PDR-000 is deliberate. PDR-000
 is reserved as a sentinel should a future Practice adopt a
 "meta-PDR about how PDRs themselves are structured" convention. The
 current directory begins at 1 and counts up.
-
-### Host-local context (this repo only, not part of the decision)
-
-In the repo where this PDR was authored, the existing
-Practice-governance ADRs referenced above are
-[ADR-119](../../docs/architecture/architectural-decisions/119-agentic-engineering-practice.md),
-[ADR-124](../../docs/architecture/architectural-decisions/124-practice-propagation-model.md),
-[ADR-127](../../docs/architecture/architectural-decisions/127-documentation-as-foundational-infrastructure.md),
-[ADR-131](../../docs/architecture/architectural-decisions/131-self-referential-property-of-the-practice.md),
-[ADR-144](../../docs/architecture/architectural-decisions/144-two-threshold-fitness-model.md),
-and
-[ADR-150](../../docs/architecture/architectural-decisions/150-continuity-surfaces-session-handoff-and-surprise-pipeline.md).
-These paths do not travel with this PDR.

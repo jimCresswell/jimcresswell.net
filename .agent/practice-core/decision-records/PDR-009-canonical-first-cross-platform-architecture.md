@@ -85,7 +85,7 @@ are a distinct artefact type from policies, not a thin wrapper.**
 
 ### The three-layer model
 
-```
+```text
 Layer 1: Canonical Content     (.agent/ — platform-agnostic substance)
 Layer 2: Platform Adapters     (.<platform>/ — thin wrappers)
 Layer 3: Entry Points          (root-level files per platform)
@@ -96,15 +96,15 @@ Layer 3: Entry Points          (root-level files per platform)
 All substantive artefact content lives platform-agnostically. Typical
 locations:
 
-| Artefact                                    | Canonical location              |
-| ------------------------------------------- | ------------------------------- |
-| Rules / directives (authoritative policies) | `.agent/directives/`            |
-| Rules (enforceable extractions)             | `.agent/rules/`                 |
-| Skills                                      | `.agent/skills/<skill-id>/`     |
-| Commands                                    | `.agent/commands/`              |
-| Sub-agent templates                         | `.agent/sub-agents/templates/`  |
-| Sub-agent components                        | `.agent/sub-agents/components/` |
-| Plan templates                              | `.agent/plans/templates/`       |
+| Artefact | Canonical location (typical Practice-bearing repo) |
+|---|---|
+| Rules / directives (authoritative policies) | The Practice's directives surface |
+| Rules (enforceable extractions) | The Practice's canonical rule surface |
+| Skills | The Practice's canonical skills surface (one subdirectory per skill id) |
+| Commands | The Practice's canonical commands surface |
+| Sub-agent templates | The Practice's sub-agents surface (`templates/` subdirectory) |
+| Sub-agent components | The Practice's sub-agents surface (`components/` subdirectory) |
+| Plan templates | The Practice's plan surface (`templates/` subdirectory) |
 
 Location names adapt per repo convention; the invariant is that the
 substance lives in one platform-agnostic place. An edit to an artefact
@@ -123,7 +123,8 @@ containing thin wrappers. A thin wrapper contains ONLY:
 - **A short description** — sufficient for platform-native discovery
   surfaces.
 - **A pointer to the canonical content path** — the wrapper's one
-  substantive statement is "read and follow `.agent/<path>`".
+  substantive statement is "read and follow the canonical
+  Practice-surface artefact".
 - **Platform-specific invocation syntax** — where the canonical form
   cannot express a platform's native mechanism (e.g. `@file` mentions,
   argument-substitution placeholders, skill-invocation syntax).
@@ -136,19 +137,29 @@ canonical content describes **what** to do; the wrapper describes
 Concretely: a wrapper file longer than ~10 content lines (excluding
 frontmatter) is a red flag that substance has leaked into the wrapper.
 
+Cross-platform standard directories (e.g. a portable per-agent
+adapter directory shared across multiple platforms) are adapter
+targets under this model, not canonical locations. A vendor tool may
+install full content there, but the Practice-bearing repo must
+canonicalise that content back into Layer 1 and replace the platform
+copy with a thin wrapper.
+
+Validation must be bidirectional: every canonical artefact has the
+required adapters, and every platform adapter points back to an
+existing canonical artefact. It must also validate wrapper form, not
+only presence. Existence-only checks allow full-content drift to hide
+inside platform directories.
+
 ### Layer 3: Entry Points
 
 Root-level files direct each platform's agent to the canonical
 Practice. Each platform reads its own entry point; each entry point
-redirects to the single canonical directive (typically
-`.agent/directives/AGENT.md` or equivalent). Examples at time of
-authoring:
-
-- `CLAUDE.md` → canonical directives
-- `AGENTS.md` → canonical directives
-- `GEMINI.md` → canonical directives
-- (Cursor uses always-on rules via its own mechanism; the entry
-  point is implicit)
+redirects to the single canonical agent directive on the Practice
+surface. Examples at time of authoring (per agent platform): a
+single file at the repo root for each agent platform that
+nominates the canonical agent directive as the canonical entry,
+plus implicit equivalents for platforms that load always-on rules
+via a different mechanism.
 
 An entry point file is itself a thin wrapper: platform-native frontmatter
 or content requirements plus a pointer to the canonical directive.
@@ -157,9 +168,10 @@ or content requirements plus a pointer to the canonical directive.
 
 Rules have two conceptually separate layers:
 
-1. **Authoritative policy** — the canonical substance defining what must
-   be done. Lives at Layer 1 (e.g. `.agent/directives/principles.md`,
-   `.agent/rules/<specific-rule>.md`). This is substantive content.
+1. **Authoritative policy** — the canonical substance defining what
+   must be done. Lives at Layer 1 (e.g. the principles directive
+   or a specific rule on the canonical rule surface). This is
+   substantive content.
 2. **Activation trigger** — the platform-specific mechanism deciding
    _when_ and _how_ a policy surfaces (always-on, glob-scoped, agent-
    selected, path-scoped, entry-point-inherited). Lives at Layer 2.
@@ -206,7 +218,7 @@ another on another — are not permitted: the portability value of a
 consistent name across platforms outweighs any platform-native
 convention.
 
-Practical convention (adopt or adapt): a project prefix like `jc-` or
+Practical convention (adopt or adapt): a project prefix like `oak-` or
 similar makes it visible at a glance which commands are
 Practice-owned vs. platform-native or plugin-installed.
 
@@ -296,8 +308,13 @@ Layer-2 artefact types.
 - Portability validation (automated) checks: (a) every canonical
   artefact has the required adapters; (b) every adapter is thin
   (content-line count under the threshold; no substantive prose);
-  (c) every platform's tracked configuration grants the permissions
-  wrappers need to activate.
+  (c) every platform adapter points back to an existing canonical
+  artefact; (d) every platform's tracked configuration grants the
+  permissions wrappers need to activate.
+- Cross-platform probes use platform-neutral inputs by default, or
+  explicitly provide parity across the platforms they claim to verify.
+- Tripwire installs should include at least one self-applying
+  acceptance check against the installing session.
 - Canonical artefact IDs are stable across platforms. Aliases are
   forbidden; platform-native renaming is not.
 
@@ -353,8 +370,10 @@ pointers with optional fallback.
 
 ### Relationship to PDR-007
 
-PDR-007 established first-class `practice-core/patterns/` and
-`practice-core/decision-records/` directories. This PDR extends the
+PDR-007 established the first-class `practice-core/decision-records/`
+Core directory (the previous `practice-core/patterns/` Core directory
+was retired by PDR-007 amendment 2026-04-29; universal patterns now
+graduate as PDRs with `pdr_kind: pattern`). This PDR extends the
 canonical-first discipline outward: the same principle that lives
 inside the Core (portable substance travels; non-portable content
 stays local) governs the whole agent-artefact surface. Practice
@@ -378,18 +397,14 @@ When the architecture has stabilised across multiple cross-platform
 hydrations, the graduation would mark this PDR as `Superseded by
 <Core section>` and retain it as provenance.
 
-### Host-local context (this repo only, not part of the decision)
+## Amendment Log
 
-At the time of authoring, the repo where this PDR was written carries:
+### 2026-04-24 — Cross-platform standard directories are adapters
 
-- Platforms: Cursor, Claude Code, Codex, Gemini CLI.
-- Canonical location: `.agent/` for all substantive content.
-- Adapter directories: `.cursor/`, `.claude/`, `.agents/` (Codex
-  convention — plural), `.gemini/`, plus `.codex/` for Codex config.
-- Entry points: `CLAUDE.md`, `AGENTS.md`, `GEMINI.md`, plus
-  `.cursor/rules/*` for Cursor's always-on mechanism.
-- Validation: `scripts/validate-portability.mjs` (wrapper presence
-  per canonical artefact), `scripts/validate-subagents.mjs`
-  (sub-agent adapter coverage).
-- Specific counts (artefacts, wrappers, ADR references) live in the
-  host ADR record that this PDR's substance extracts from.
+Practice-first portability remediation exposed that `.agents/skills/`
+can receive full vendor skill content from external tools. This does
+not make `.agents/` canonical in a Practice-bearing repo. The portable
+decision remains canonical-first: vendor content is moved to `.agent/`,
+platform copies become thin wrappers, and validators check forward
+coverage, reverse adapter links, wrapper form, and tracked permission
+activation.

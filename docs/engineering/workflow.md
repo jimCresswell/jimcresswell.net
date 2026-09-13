@@ -1,0 +1,266 @@
+# Development Workflow
+
+**Last Updated**: 2026-09-12  
+**Status**: Active workflow guide
+
+The complete development lifecycle for this repository, from branch creation to deploy.
+
+## Overview
+
+```text
+Branch → TDD → Local Gates → Commit → Push → PR → CI → AI Review → Human Review → Merge → Deploy
+```
+
+## 1. Create a Feature Branch
+
+Use conventional branch naming:
+
+```bash
+git switch -c feat/your-feature-name
+git switch -c fix/bug-description
+git switch -c docs/documentation-update
+git switch -c refactor/area-being-refactored
+```
+
+Commits never land on `main` directly: the `pre-commit`, `pre-merge-commit` and
+`prepare-commit-msg` hooks refuse them there.
+
+## 2. Develop With TDD
+
+Write tests **before** code, at every level. The cycle is:
+
+1. **Red** — Write a test specifying the desired behaviour. Run it. It must fail.
+2. **Green** — Write the minimal code to make the test pass. Run it. It must pass.
+3. **Refactor** — Improve the implementation without changing behaviour. Tests must remain green.
+
+When changing system behaviour, update tests at the same level first:
+
+| Change level            | Update first                                                   |
+| ----------------------- | -------------------------------------------------------------- |
+| Pure function behaviour | Unit tests (`*.unit.test.ts`)                                  |
+| Integration behaviour   | Integration tests (`*.integration.test.ts`)                    |
+| System behaviour        | E2E tests (`*.e2e.test.ts`; the site's `*.e2e-ui/api.test.ts`) |
+
+See [Testing Strategy](../../.agent/directives/testing-strategy.md) for full details.
+
+## 3. Run Local Quality Gates
+
+Three levels of local verification:
+
+**Quick repair** (during development):
+
+```bash
+pnpm fix   # format:root → markdownlint:root → lint:fix (mutating)
+```
+
+**Full verification** (before pushing):
+
+```bash
+pnpm check     # the read-only aggregate gate: format, markdown, lint, type-check, test, knip, depcruise, secrets, Practice validators
+```
+
+**Documentation verification** (for documentation-only work):
+
+```bash
+pnpm check:docs # Prettier + Markdownlint + documentation validators
+```
+
+See [Build System](./build-system.md) for the shape of each aggregate and the
+[gates skill](../../.agent/skills/change-custody/gates/SKILL-CANONICAL.md) for
+the canonical one-leg-per-line sequence. For AI agent execution order,
+directives are normative and require one gate at a time; the `gates` skill
+(`/jc-gates`) enacts this phase.
+
+## 4. Commit
+
+Use [Conventional Commits](https://www.conventionalcommits.org/):
+
+```bash
+git commit -m "feat: add the publications section to the CV page"
+git commit -m "fix: serve the PDF with immutable cache headers"
+git commit -m "docs: update onboarding prerequisites"
+git commit -m "refactor: extract the content-negotiation path helper"
+```
+
+Common prefixes: `feat`, `fix`, `docs`, `refactor`, `test`, `chore`, `ci`.
+The `commit-msg` hook runs commitlint and the accidental-major-version guard;
+the `pre-commit` hook runs the staged formatting and markdown checks and lints
+the changed workspaces. The `commit` skill (`/jc-commit`) enacts this phase.
+
+## 5. Push
+
+The pre-push hook runs the full read-only gate (`pnpm check`, which includes
+the `secrets:scan` leg) and then the site's
+Playwright suite. If gitleaks is not installed the secret-scan leg fails — install
+from [gitleaks releases](https://github.com/gitleaks/gitleaks/releases). If the
+Playwright browser is not installed, run `pnpm exec playwright install` once.
+
+```bash
+git push -u origin HEAD
+```
+
+## 6. Create a Pull Request
+
+Use the PR template. Include:
+
+- **What**: Summary of changes
+- **Why**: Motivation and context
+- **How**: Implementation approach
+- **Testing**: How the changes were verified
+
+See [CONTRIBUTING.md](../../CONTRIBUTING.md) for PR title format and checklist.
+The `pr-lifecycle` skill (`/jc-pr-lifecycle`) enacts this phase and the merge
+that follows: it opens the PR, harvests every review surface, and drives the
+branch to a truly green merge.
+
+## 7. Quality Gate Surfaces
+
+Quality is enforced through the hook surfaces, the GitHub CI workflow, and the
+canonical local aggregate gate `pnpm check`. Each runs a specific set of
+checks; see
+[build-system.md](build-system.md#quality-gate-surfaces) for the surface table
+and rationale.
+
+**Key principle**: pre-push and CI run the same check set (a validator refuses
+a drift between them). A CI-only failure indicates an environmental or
+configuration issue, not a missing check. Both surfaces cover secrets,
+formatting, markdown, shell and runtime-only scripts, sub-agents, portability,
+skills adapters, encoding, knip (unused code detection), depcruise (circular
+deps, orphans, layer violations), lint, type-check, unit and integration tests,
+and the site's end-to-end suite (accessibility included, via axe-core). CI
+additionally runs `pnpm build`, which generates the PDF.
+
+## 8. AI Sub-Agent Review
+
+During development, the AI agent working on the code invokes specialist sub-agent reviewers. These are automated quality checks that run within the AI development workflow.
+
+### What the sub-agents do
+
+| Sub-agent               | Focus                                                     |
+| ----------------------- | --------------------------------------------------------- |
+| `code-expert`           | Gateway reviewer: code quality, security, maintainability |
+| `architecture-expert-*` | Structural boundaries, dependency direction, coupling     |
+| `test-expert`           | TDD compliance, test quality, mock simplicity             |
+| `type-expert`           | Type safety, generics, schema-to-type flow                |
+| `config-expert`         | Tooling config consistency, quality gate alignment        |
+| `security-expert`       | Headers, secrets, env, proxies, trust surfaces            |
+| `docs-adr-expert`       | Documentation completeness, ADR accuracy                  |
+| `accessibility-expert`  | WCAG 2.2 AA semantics, focus, motion, PDF surfaces        |
+| `pkg-expert`            | Schema.org, JSON-LD, and knowledge-graph correctness      |
+| `editor`                | Editorial voice and audience fit of public-facing content |
+
+### When they run
+
+Sub-agents are invoked by the AI agent **during development**, not in CI. They run after non-trivial changes are made (feature completion, bug fixes, refactoring, API changes). Their findings are captured in the development conversation.
+
+### Are findings blocking?
+
+Sub-agent findings are **advisory** — they inform the AI agent's work and are addressed during development. They do not block CI or merge directly. However, the issues they surface (type safety violations, boundary breaches, test gaps) will typically be caught by the mandatory quality gates if not addressed.
+
+## 9. Human Review
+
+Human review focuses on areas where AI reviewers may miss context:
+
+- **Product intent** — Does the change solve the right problem?
+- **User impact** — How does this affect visitors, recruiters, developers, or AI agents reading the site?
+- **Domain correctness** — Is the entity model used correctly? Every entity in the knowledge graph is real and every claim must be valid.
+- **Editorial correctness** — Does the change hold the editorial voice and the decisions recorded in the EDRs?
+- **Strategic alignment** — Does this fit the architectural direction?
+- **Risk assessment** — Are there edge cases or failure modes not covered?
+
+## 10. Merge Strategy
+
+PRs are merged to `main` after:
+
+1. CI passes
+2. At least one human approval
+3. No unresolved review comments
+
+When a feature branch has diverged significantly from `main` (100+ files
+changed on either side, 10+ conflicts in a dry-run merge), follow the
+[Pre-Merge Divergence Analysis](../../.agent/reference/pre-merge-analysis.md) guide before
+attempting the merge. Standard conflict resolution misses type-system breaks,
+deleted-file cascades, and signature mismatches in auto-merged files. The
+`complex-merge` skill (`/jc-complex-merge`) enacts that workflow.
+
+## 11. Deploy
+
+There is no release workflow. Merging to `main` deploys the site to Vercel,
+whose `buildCommand` (`jcdotnet/vercel.json`) installs Chrome and runs the
+site's `build` script — the PDF is regenerated on every production build. The
+`@engraph/*` packages are private to this repository and are not published.
+
+## 12. Workflow Gotchas
+
+Recurring friction patterns that cost cycles when re-discovered. The
+common frame: **the literal command that runs is what matters** — not
+what a wrapping script appears to forward, not what a generator's CLI
+help implies, not what historical local precedent permits.
+
+### Generators Require Populated Source Data
+
+A generator run over sparse or absent local source data can produce
+structurally valid but semantically empty output. The generator exits clean;
+the file shape is correct; the content is wrong. For any generator that
+derives output from input data (the JSON-LD graph from `content/entities.json`,
+the PDF from the rendered CV, fixture builders, schema-from-data tools), verify
+the expected size signal (a record count, a page count, a byte count) before
+trusting the output. Structural validity is not semantic validity; the proof of
+generator correctness is in the verified output, not in the green exit code.
+
+### Use The Test Runner Directly When Script Forwarding Drifts
+
+Package scripts that wrap a test runner sometimes pick up extra suite
+selection, parallelism flags, or filter rewrites that broaden the run
+beyond what a focused proof needs. When a workspace `test` script pointed
+at one file starts running the broader suite or hangs on unrelated
+work, drop to the runner directly:
+`pnpm --filter @engraph/agent-tools exec vitest run <file>`. The literal
+vitest invocation is what the proof actually needs; the package script is
+optional sugar that has its own drift. Apply the same principle to
+typecheck (`pnpm --filter @engraph/agent-tools exec tsc --noEmit -p <project>`)
+and lint (`pnpm --filter @engraph/agent-tools exec eslint <file>`) when their
+wrapping scripts misbehave under focused inspection.
+
+### Lettered-Section Edits Must Re-Read The Parent Count
+
+When adding a new `(a)/(b)/(c)/(d)` child to an enumerated section,
+re-read the parent sentence — the count is part of the section's
+contract. Adding a fourth child without updating "three rules" in the
+intro silently turns the intro into a lie. The same applies to
+section-count summaries in directive overviews, README tables of
+contents, and ADR/PDR-internal enumerations: the count and the children
+are co-edited, never independent.
+
+### Growth-Axis Metadata Is Live Doctrine
+
+When a graduation lands a new entry in a long reference or documentation
+surface, audit the file's `split_strategy` frontmatter (or equivalent
+growth-axis metadata) against the axis the graduation just introduced. The
+growth axis is the basis for any future reference-surface restructure; if the
+new entry establishes a new axis (a new concern, a new lifecycle stage, a new
+failure mode), the split-strategy line must record that before the file grows
+further on the wrong axis. Drainable buffers use `drain_strategy` and item
+dispositions instead; do not split them to change fitness.
+
+### Shell Loops Over Multi-line Command Output Are Unsafe In Deletion Paths
+
+In deletion or mutation paths, prefer
+`while IFS= read -r line; do ... done < <(cmd)` over
+`for x in $(cmd)`. Word-splitting in the `for` form silently treats
+spaces in filenames or paths as separators, which loses entire lines or
+splits one path across two iterations. After any bulk delete or move,
+verify the result with a second command (a count, a re-grep, a `git
+status` scan) — the shell exit code on its own does not prove the loop
+operated on the intended set.
+
+## What Does Good Look Like?
+
+For individual contributors:
+
+- Tests written before code at all levels
+- All quality gates pass locally (`pnpm check`) before pushing
+- Conventional commit messages that explain _why_, not just _what_
+- Documentation updated alongside code changes
+- ADRs created for significant architectural decisions
+- No disabled checks, no type shortcuts, no skipped tests

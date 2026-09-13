@@ -10,7 +10,7 @@ pdr_kind: governance
 [PDR-007](PDR-007-promoting-pdrs-and-patterns-to-first-class-core.md)
 (new Core contract);
 [PDR-014](PDR-014-consolidation-and-knowledge-flow-discipline.md)
-(plan documents follow the substance-before-fitness discipline;
+(plan documents follow the learning-before-fitness discipline;
 this PDR defines the role separation between plans and their
 index READMEs);
 [PDR-016](PDR-016-claim-propagation-and-reference-quality.md)
@@ -95,14 +95,14 @@ narrative was in the wrong place to begin with.
 
 ### Applying beyond plan directories
 
-The principle generalises beyond `.agent/plans/`. Any
+The principle generalises beyond plan directories. Any
 directory-level `README.md` serving as a navigation surface
 follows the same discipline:
 
-- `.agent/memory/patterns/README.md` indexes patterns; substance
-  lives in pattern files.
-- `.agent/practice-core/decision-records/README.md` indexes PDRs;
-  substance lives in PDRs.
+- A patterns directory README indexes patterns; substance lives in
+  the individual pattern files.
+- The Practice Core decision-records README indexes PDRs; substance
+  lives in the PDRs themselves.
 - A package-level `README.md` indexes the package; substance lives
   in code, TSDoc, and any package-specific architecture docs.
 
@@ -171,13 +171,3 @@ Alternatives rejected:
   cost.
 
 ## Notes
-
-### Host-local context (this repo only)
-
-Proven instance retained with `related_pdr: PDR-023`:
-
-- `.agent/memory/patterns/readme-as-index.md` — Plan architecture
-  refactor (2026-03-23, algo-experiments); READMEs had
-  accumulated session instructions and outcome narratives that
-  drifted across tranche boundaries; the index-only discipline
-  prevented the drift after refactor.

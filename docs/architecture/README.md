@@ -98,7 +98,7 @@ For a full walkthrough of the content model, see [content-model.md](content-mode
 
 The repo includes a non-destructive visual regression harness at `visual-regression-harness/` for ref-to-ref comparison during structural refactors.
 
-- CLI entrypoint: `pnpm visual-regression-harness <base-ref> <target-ref>`
+- CLI entrypoint: `pnpm visual-regression:harness <base-ref> <target-ref>`
 - Special source value: `WORKTREE` snapshots the current live repo state (tracked, staged, unstaged, and untracked non-ignored files) against a known-good git ref
 - Safety model: reads refs with `git rev-parse`, exports git refs with `git archive`, exports `WORKTREE` by overlaying live changes onto an archive of `HEAD`, builds only in temporary directories, and does not touch the caller's worktree, index, refs, or history
 - Output: durable artefacts under `regression-artifacts/visual-regression-harness/`, including full-page screenshots, selected region screenshots, always-written PNG diff images, `*.review.png` strips, HTML artefacts, metadata JSON, `diff/summary.json`, and top-level `summary.txt`

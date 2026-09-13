@@ -4,84 +4,1785 @@ Changes to the Practice Core files, newest first. Each entry records the repo
 that made the change and what was changed. This file travels with the
 Practice Core package.
 
-## [jimcresswell.net] 2026-08-10 — Start-Right Command Inventory Correction
+## [EngraphCode/open-curriculum-ecosystem] 2026-09-09 — PDR-027 open question: which model name wins when four disagree
 
-- Replaced the retired singular start-right command in `practice-bootstrap.md`
-  with the quick and thorough variants used by the canonical command contract.
-- Recorded the evolution in the travelling provenance chain so receiving
-  repositories can distinguish the correction from the April upstream pack.
+- PDR-027 §Notes gains a dated open question, re-homed from the host's
+  open-questions register at the 2026-09-09 dedicated consolidation: the
+  identity tuple's `model` field can be declared, reported, observed and
+  configured to four different values (a July 2026 Codex config named a
+  model the CLI silently overrode), and no clause names which wins. The
+  question carries its resolution path (the field's consumers — the naming
+  registry, the Cricket tally, the identity preflight — are read first) and
+  a candidate precedence for that lane to test, not a decision.
 
-## [jimcresswell.net] 2026-04-19 — Fresh-Read Integration of 2026-04-19 Upstream Pack
+## [EngraphCode/open-curriculum-ecosystem] 2026-09-09 — PDR-131 amendment: the landing slot under a strict-currency ruleset
 
-Fresh first-contact re-read of the upstream OOCE 2026-04-19 Practice pack,
-integrated under the local Practice ratcheted earlier the same day. Substance
-absorbed without adopting upstream's compressed pipe-table format; the repo's
-pretty-padded tables are preserved.
+- PDR-131 gains an Amendment Log entry: where the owner keeps the
+  strict-currency ruleset policy (decision 5), the `pr-lifecycle` skill's
+  Phase 7 landing slot — one PR syncs at the slot word, the rest gather
+  reviews and wait — is that policy's cost made orderly, not a return of
+  the one-at-a-time grants decision 3 retired; the Director still grants
+  eligibility, never position, and the slot lapses the day the policy is
+  dropped. Measured 2026-09-08/09 on the fork's default branch (eleven,
+  then seven serial landings under `strict_required_status_checks_policy`).
+  Written when a reviewer read the skill's slot clause and decision 3 as a
+  contradiction.
 
-- **PDR-025 slot reconciled by renumbering this repo's local PDR.** The
-  2026-04-19 upstream carries a new `PDR-025: Quality-Gate Dismissal
-Discipline` and reserves PDR-026–PDR-029 for four future drafting slots.
-  This repo's same-day `PDR-025: Rendering-Risk Changes Need Blocking Visual
-Proof` moved to **PDR-030** — the next free number past the upstream's
-  reservation block — with a renumbering note on the file. The
-  rendering-risk substance is unchanged. Inbound references updated in
-  [ADR-016](../../docs/architecture/decision-records/016-review-oriented-visual-regression-harness.md),
-  [practice-index](../practice-index.md),
-  [decision-records/README](decision-records/README.md),
-  and [next-outbound-pass](../practice-context/outgoing/next-outbound-pass.md).
-- **PDR-025 (quality-gate dismissal) adopted locally.** The upstream PDR text
-  is carried verbatim in substance, stripped of OOCE-specific host-local
-  notes (pattern file paths, ADR-162, numbered ADR references), and rendered
-  in the repo's house markdown style. Names three failure modes —
-  "pre-existing" dismissal, "no new issues" rationalisation, and undocumented
-  CI exception-lists — and routes each to either in-scope fix or a named lane
-  with acceptance + owner + trigger. Composes with this repo's existing
-  PDR-008, PDR-012, PDR-017, and PDR-020 without replacing them.
-- **PDR-001 supersession annotation.** Status changed to "Superseded in part
-  by PDR-007" with the same supersession note the upstream carries: PDR-007's
-  promotion of PDRs to first-class Core directory retires this PDR's
-  peer-directory framing while preserving its decision-shape conventions and
-  retention rules.
-- **Compressed-labels principle extended.** The
-  `Compressed neutral labels smuggle scope and uncertainty` active Learned
-  Principle in `practice-lineage.md` now names a document-structure sibling:
-  multiple authoritative frames for one concept (historical headings plus a
-  new table plus per-item inline notes) invite the same drift the label form
-  invites. Corrective: collapse to a single authoritative frame once the
-  decision is settled.
-- **Trinity fitness ceilings raised.** `practice.md` `fitness_char_limit`
-  23000 → 29000; `practice-bootstrap.md` 590/750/31000 → 680/830/40500;
-  `practice-lineage.md` 590/725/36000 → 680/830/48500. Matches the upstream
-  raise; local content remains well inside the new soft zone.
-- **PDR-008 script-name canonicalisation landed in the same pass.** The PDR
-  body now names `secrets:scan`, `practice:fitness`, `portability:check`,
-  `subagents:check`, and `vital-surfaces:check` as canonical instead of the
-  earlier `gitleaks` / `validate-*` names, and the repo's `package.json`
-  scripts, CI workflow, principles, AGENT, README, CONTRIBUTING, ADR-005,
-  requirements, the quality-gates / start-right / author-skills skills, the
-  consolidate-docs command, the two active plans and four active prompts, the
-  practice-index, practice-bootstrap, the `.claude/` / `.agent/` READMEs, and
-  the next-outbound-pass note were renamed to match. The underlying
-  `scripts/validate-*.mjs` file names were kept as implementation per
-  PDR-008's "names travel verbatim; underlying commands adapt" rule. Archive
-  plans and the napkin were deliberately left alone as historical surfaces.
-  The local `validate-vital-surfaces` validator stays in the PDR-008 example
-  list under its new canonical name `vital-surfaces:check`; upstream's
-  deletion of that entry would otherwise misrepresent the local surface.
-  `secrets:scan` was kept with `scan` rather than changed to `secrets:check` —
-  secret scanning searches git history for patterns, which is an action
-  command in the spirit of PDR-008 Convention Rule 2 (`knip`, `clean`,
-  `build`, `dev`) rather than a verify-state assertion. The non-mutating
-  semantics are already unambiguous: there is no `secrets:fix` or
-  `secrets:scan:fix` variant. `scan` is also the verb upstream's PDR-008
-  canonicalised.
-- **What was NOT adopted.** The upstream's compressed pipe-table format
-  across ~14 PDRs is cosmetic only; the repo keeps its pretty-padded tables
-  because they read better in diffs and in the rendered PDR files. The
-  upstream's provenance-yml single-quote normalisation is equivalent YAML
-  and was left alone. The repo-targeted `agent-collaboration/` subdirectory
-  in the incoming practice-context is addressed to OOCE's previous integration
-  round, not to this repo; it is read-and-discarded, not integrated.
+## [EngraphCode/open-curriculum-ecosystem] 2026-09-07 — PDR-140 records-class reading; one rebudget per PR; residue homes
+
+- PDR-140 amended — new Decision clause 9, with the Amendment Log entry
+  of 2026-09-07 as the revision record: on a records-class
+  artefact whose verification point is merge, clause 2's
+  merge-verification sentence reads through prong one as written — a
+  falsehood clears the bar when a reader acting on the artefact would be
+  misled by it; a statement wrong under a rule today is not over-bar per
+  se. Clause 4's rebudget is granted once per PR and its push carries
+  over-bar cures and queued ledger writes only; a later over-bar finding
+  still cures, in a push carrying nothing beyond that cure and any queued
+  ledger writes; a routed finding's durable write rides the next push that
+  lands or lands alone as the final settlement push; post-final-head
+  route writes land together in at most one ledger push, a later route's
+  write on the seat's napkin or a records PR already open, never by
+  reopening the reviewed PR; each control carries its own falsifier. A
+  routed residue's
+  named home is an existing
+  register row or a PR already open for its own story, never a PR opened
+  to carry residue; a residue PR that exists anyway has a settlement
+  budget of one push. Measured on five records-class PRs (seventeen
+  rounds, fifty-three cures) ended by the owner's wordless out-of-band
+  skill invocation — clause 8's anti-pattern recurring. Falsifier: one
+  below-bar disposition that misleads a reader before the next records
+  pass reverts the reading by dated amendment.
+
+## [oak-open-curriculum-ecosystem] 2026-08-13 — provider-independent capability composition
+
+- New PDR-139, status Proposed: separates provider-independent semantic
+  capability contracts from explicit host composition; makes omission
+  capability-specific; separates provider extensions; and requires behaviour
+  portability wherever another binding serves a capability — with state
+  portability for authoritative state and an exercised rebuild from
+  authority for derived state — plus, for each named external provider, a
+  documented and exercised
+  independent composition: another conforming binding, a local or
+  self-hosted binding, or omission of a non-constitutive capability. The
+  pattern is tested across storage, telemetry, and agent tooling.
+
+## [oak-open-curriculum-ecosystem] 2026-08-02 — cost-of-change gradient (Lichen guards Phloem)
+
+- New PDR-135, status Proposed: gives the cost-of-change gradient a portable
+  identity outside the software-architecture, inquiry, and Practice contexts
+  that revealed it. The pattern places recurring responsibilities and shared
+  assurance at the most general coherent owner, adds context through thinner
+  specific compositions, preserves orthogonal dimensions and recursive scales,
+  and requires world-return before claiming human value. It explicitly limits
+  “near-zero” to the marginal reuse cost of already-understood mechanics and
+  carries admission tests and losing conditions.
+
+## [oak-open-curriculum-ecosystem] 2026-08-01 — derivation-source provenance clause (Moss calls Loam)
+
+- PDR-027 amended: a new derivation-source provenance clause — where a tool
+  DERIVES an identity value from the collaboration registry on an
+  operator's behalf, the source is FRESH CLAIM rows only (seed-derived at
+  claim open); commit-queue identity fields are operator-typed relays and
+  are never a derivation source; the claim∪queue union remains legitimate
+  as evidence (disagreement tests, plausibility nets, liveness and
+  collision checks), never as a source. The tool-side complement of the
+  same-day authored-surface obligation: that clause governs what a hand
+  writes, this one what a tool reads in order to write. Ruled in-session
+  2026-08-01 (Director lens-resolution); the PDR is the field-role home.
+
+## [oak-open-curriculum-ecosystem] 2026-08-01 — identity visual-disambiguator doctrine (Moss calls Loam)
+
+- PDR-027 amended: the render-time visual-disambiguator display token (the
+  join key, a hyphen, and the last three characters of the canonical `id`;
+  bare join key when a block carries no `id`) with its field-role doctrine —
+  display-only, never persisted, never a join/lookup/parse key — and the
+  GENERAL authored-surface obligation: any hand-authored cell, field, or
+  flag value whose value is the join key carries the bare wire prefix (the
+  failure prevented is a silent parser mis-bind, not a loud error).
+  §Identity schema restates the obligation at the point of use. Twin
+  disposition: `their-lane-owns-coordinate`.
+- PDR-125 clause 5 amended (display true-up): the authored-surface
+  bare-join-key rule made primary; the renderer shape rule stated — the
+  token where identities can be confused (two or more blocks in one
+  rendered view, or a diagnostic naming one identity in contrast to
+  another), the sanctioned join-key copy-source view bare independently
+  of both, keying sites never adopting,
+  the statusline the worked hold-out, heartbeat subject lines disposed
+  under both rules with PDR-078's "chat-readable short form" glossed to
+  the bare prefix; the Tier-1 conformance floor line re-worded to match
+  without raising the floor; the field's wire meaning, derivation,
+  join-key role, schema, and version family explicitly unchanged. Single-estate
+  origination (no live peer seat); re-twin queued for the next exchange
+  window. Twin disposition: `their-lane-owns-coordinate`.
+- PDR-029 amended: Layer-3 identity-audit source vocabulary trued to the
+  shipped instrument — the comms EVENT stream, never a rendered shared log
+  (a generated read model has no historical snapshot). The historical v4
+  entry stays byte-frozen; the new entry is the correction, per the
+  append-honest correction shape. Twin disposition:
+  `their-lane-owns-coordinate`.
+
+## [oak-open-curriculum-ecosystem] 2026-07-31 — knowledge-estate RATIFIED (Falcon hunts Flight)
+
+- PDR-134 ratified Proposed → Accepted at the in-session sitting (owner card
+  answers, 2026-07-31), together with its host phenotype ADR-221 and the
+  `planning-and-intent-estate` strategic node. Obligation-5 cascade executed:
+  dated cross-references added to PDR-014 and PDR-130; PDR-081 gains the
+  curator concept-scheme stewardship note (owner-ratified same sitting);
+  consolidation skills gain concept nodes as a graduation target class.
+
+## [oak-open-curriculum-ecosystem] 2026-07-31 — knowledge strata and the concept layer (Falcon hunts Flight)
+
+- New PDR-134 (knowledge strata, carriers, and the concept layer), status
+  Proposed pending owner ratification. Names four generality strata with
+  homing questions, extends PDR-105's direction law to graph edges and
+  concept relations, fixes the three knowledge carriers (prose claims,
+  front-matter assertions, concept-scheme referents), and binds the concept
+  lifecycle (candidate → working → ratified; computed confidence vs
+  authored status, never conflated). Host phenotype: ADR-221 (the estate
+  knowledge graph) plus the `planning-and-intent-estate` strategic node,
+  presented for ratification together.
+
+## [oak-open-curriculum-ecosystem] 2026-07-25 — liveness taxonomy (Torch mends Residue)
+
+- New PDR-133 (liveness classes and the Platform Liveness Declaration), status
+  Proposed pending owner ratification. Names fourteen liveness classes with
+  mnemonic (never ordinal) identifiers and explicit per-class dependencies —
+  eleven incoming (`DISPATCH`, `SUBSTRATE`, `PROCESS`, `BINDING`, `CURSOR`,
+  `INTEGRITY`, `DELIVERY`, `NOTIFY`, `LOOP`, `ABSORB`, `CAPABILITY`) and three
+  outgoing (`EMIT`, `REGISTRY`, `PROGRESS`) — each with a characteristic failure
+  attested by a worked instance. The classes form a PARTIAL order: `LOOP` is
+  incomparable to the delivery path (the founding instance is a live reasoning
+  loop behind a dead notification path), and the three outgoing classes are
+  mutually independent. States the reading rule (an observation is
+  evidence only about the classes on the path it traversed, and about nothing
+  else), the self-observation corollary with its never-self-certifiable set
+  (`NOTIFY`, `LOOP`, `ABSORB`, `CAPABILITY`, `PROGRESS` require an external
+  observer, owner as fallback), the two external instruments (observed
+  deliverable movement; a content-bearing challenge reply), the
+  class-to-decision matching rule, the absence conjunction (retirement requires
+  BOTH instruments negative, which preserves the remote work-evidence
+  cross-check), and the per-platform declaration obligation with three answer
+  states (certified, cannot-certify, and certified-but-contract-suspended for a
+  class a portable contract suspends) plus a named transition landing for
+  platforms already in operation. Authored on owner instruction as
+  agent-platform variety grows; PDR-078 reads as the `EMIT` specialisation on
+  ratification. The incoming-watcher, outgoing-heartbeat, and
+  event-driven-wake rules each gain a thin class pointer and keep their
+  operational detail.
+
+## [oak-open-curriculum-ecosystem] 2026-07-23 — fork-identity amendment (Magma mends Sulphur, dedicated consolidation)
+
+- PDR-027 amendment + new §Decision subsection "Forks, duplicates, and
+  inherited context": a fork or restart-duplicate derives identity from
+  its OWN session id as its first act; memory of a seat is not tenure of
+  a seat (tenure = registry row + continuity + owner witness; registry
+  `agent_id` rows are ground truth for singleton-seat occupancy); fork
+  from certified fixed points only (compact → reground → fork, the
+  baseline carrying the fork rules inside itself); rename before move.
+  Three worked instances 2026-07-23 (seat-collision, restart-duplicate
+  solipsism, the first fork fleet's owner-observed zero-prep siblings).
+
+## [oak-open-curriculum-ecosystem] 2026-07-23 — PDR-018 host-realisation amendment (Heron lifts Summit)
+
+- PDR-018 amendment: the source host's lifecycle-lane realisation
+  (`future/`/`current/`/`active/` directories, promotion workflow) is
+  superseded by the plan-node estate (host ADR-216; owner-ratified
+  decisions register D23, 2026-07-22). The portable planning discipline —
+  end goals, workflow contracts, readiness gates — is unchanged; the
+  lane-placement sections remain the pattern for lane-shaped hosts.
+  PDR-121's portable glossary needed no change (its host mirror, ADR-209,
+  carries the dated realisation amendment per the PDR-079 pairing).
+
+## [oak-open-curriculum-ecosystem] 2026-07-20 — dedicated consolidation graduations (Siren lifts Trench)
+
+- New PDR-129 (diagnosis reads whole surfaces first; failure catalogues are
+  open sets) — the reasoning-time face of the closure-over-open-sets
+  generator named by the 2026-07-20 merge-drive retrospective.
+- PDR-117 amendment: "nothing is 'mine'" owner ruling (blockers are
+  constraints with unblocking options, never possession or owner-queues).
+- New PDR-130 (two-speed learning) imported/adapted from the Resonance
+  estate with the AIP-142 wrap-family skills (wrap, retrospective,
+  knowledge-safety-sweep, free-play) and the skill-composition reference;
+  the slow-lane register section seeded in pending-graduations.
+- New PDR-131 (merge concurrency is free; quality binds at settled-READY) —
+  the 2026-07-20 net-to-zero merge drive's owner-ratified doctrine: merge
+  eligibility binds at settled review round + green checks, concurrency
+  between eligible PRs is free, auto-merge arms only at settled-READY under
+  a Director grant.
+
+## [oak-open-curriculum-ecosystem] 2026-07-13 — post-review truings to PDR-125, PDR-063, PDR-064 and the ceremony surfaces (Monsoon herds Airstream, PR review rounds)
+
+- Review-round truings amending clauses twinned in the 2026-07-08 window
+  (each item below EXTENDS or mirrors a twinned original; the originals'
+  twinning stands): PDR-125 clauses 3 and 5 (quiet-write scoping; clause 3's
+  registration list extended to the full identity block, building on
+  clause 5's already-twinned platform/model fields; override precedence
+  with the derived-only anomaly qualification and `(agent_name, id)`
+  collision disambiguation; the already-twinned
+  successor-details-are-hypotheses rule mirrored into the runnable
+  ceremony); PDR-063 (two-axis + post-commit signal
+  model with the observable next-cycle floor; §Retirement authority with the
+  executable wait bound and the no-recipient Step 4 transport exception;
+  §Deliberate succession initiator discriminator); PDR-064 (transport-
+  exception mirror in the coordinator-retirement intersection); the
+  join-ceremony skill, cross-repo rule, and start-right-team mirrors; the
+  ADR-211 host-phenotype amendment.
+- Successor-wave truings (Aspen stirs Blossom, same review arc): PDR-064
+  intersection step 1 gains the coordinator-seat deadline-default
+  reconciliation (the owner-absent default action is this sequence's
+  steps 2–6 — the part the retiring seat itself can execute, realising
+  PDR-063's "remaining Steps 2–5" with Moment 1 interleaved; step 7 is
+  the receiver's Moment 2); the join-ceremony skill's QUIET comms-tail read gains
+  heartbeat-tagged events (a comms heartbeat counts exactly like a
+  watcher-file heartbeat), the retirement-window time bound applied to
+  all three comms-tail categories, and the exemption-window veto
+  bounded per PDR-078's own shapes (a named-closing-boundary window
+  runs from its opening event to its boundary regardless of age —
+  including PDR-064's forced-retirement Step 5 broadcast as a grace
+  window's closing boundary; exemption openings are resolved as
+  opening/closing pairs from canonical event history, never a bounded
+  tail; PDR-078's consumer-absent exemption is NOT a scannable window
+  — it is derived from the home's current registry/conductor state
+  with self-healing exits, and because its seats can be unclaimed and
+  heartbeat-silent the QUIET read also consults ground-truth work
+  surfaces — in-window git activity vetoes QUIET; a truly empty
+  estate reads QUIET); the cross-repo rule's QUIET
+  description now mirrors the skill's four-part liveness check (the
+  three coordination surfaces plus the ground-truth git-activity
+  veto) instead of an informal gloss; the start-right-team retirement mirror
+  restores PDR-063's authority qualifier (owner or coordinator word
+  redirects the seat — not any word) and states the role-determined
+  default action (a coordinator seat declares the PDR-064
+  intersection's steps 2–6, never the bare Steps 2–5 block); PDR-064's
+  Date header carries the 2026-07-13 amendment; PDR-125 clause 6's
+  schema enumeration trued to the landed v1 scope and aligned to the
+  five landed wire shapes — identity tuple, exchange delivery comms
+  event, claim repo_ref, watcher heartbeat file, watcher seen file
+  (the schema covers the delivery comms event, never box-file
+  frontmatter — box files stay pin-free prose per clause 7), with the
+  clause-6 amendment recorded in PDR-125's own Status header; the
+  wire schema's title and scope annotations de-pinned from the donor
+  estate's PDR number to estate-local numbering (annotation-only, no
+  wire change, same version — a re-twin item like the rest); PDR-064's
+  §Forbidden and §Accepted Cost absolutes qualified with the PDR's own
+  authorised-forced-retirement exception; the QUIET liveness read
+  stated as time-windowed (every event newer than the retirement
+  threshold), never a fixed newest-N tail.
+- Twin disposition for every item above: `impossible-with-named-reason` (no
+  live peer seat in this window) — the affected portable texts are AHEAD of
+  the peer copies; re-twin queued for the next exchange window's outbound
+  bundle. The 2026-07-08 entry below describes only that window's twinned
+  landing.
+
+## [oak-open-curriculum-ecosystem] 2026-07-08 — PDR-125 + PDR-063 amended in the cross-estate window (resonance guest seat, owner-authorised)
+
+- PDR-125 carries the v1 clause-conservation amendment batch, twinned with
+  the peer estate's copy in one window (cross-estate diff re-proven:
+  divergence confined to number / Related / phenotype): clause 3 gains the
+  asymmetric-naming and cwd-is-a-coordinate sentences; clause 5 gains
+  seed-only name derivation, all-successor-details-are-hypotheses, and
+  platform+model as explicit never-inferred registration fields; clause 6
+  gains the both-estates innovation posture (per-item twin dispositions);
+  clause 7 gains format-normalise-on-receipt and corrections-are-new-events.
+  The join-ceremony skill and the cross-repo rule carry the matching step
+  amendments plus the owner's read-scoping ruling (read-only estate looks
+  are unceremonied; the ceremony binds collaboration boundaries).
+- PDR-063 gains §Retirement authority (owner rulings 2026-07-08: no
+  self-declared exhaustion ever — measured metrics only; owner-present the
+  owner calls handoffs; owner-absent surface-then-autonomous at a measured
+  signal — the ~50 % effectiveness-window start primary under rotating cast,
+  the ≥ 80 % ceiling, or a measured post-commit shortfall, whichever fires
+  first) and
+  §Deliberate succession (the in-flight discriminator), composing with this
+  estate's effectiveness-window refinement, which the peer estate is
+  backporting in the same window.
+- Per-item twin dispositions (clause 6): the PDR-125 clause batch (clause 3
+  ×2, clause 5 ×3, clause 6 posture, clause 7 ×2) — `twinned-in-window`
+  (cross-estate diff re-proven) **as of the 2026-07-08 window**; the PDR-063
+  §Retirement authority + §Deliberate succession amendments —
+  `twinned-in-window` (peer backport, same window) **as of that window**;
+  the join-ceremony skill + cross-repo rule step amendments — local
+  `twinned-in-window` as part of the same landing (the rule and the
+  runnable skill travel in the propagating Core set — shared machinery,
+  never local code). These dispositions describe this window's landed
+  text; the post-review truings that later amended these clauses are the
+  2026-07-13 entry above, with their own disposition.
+
+## [oak-open-curriculum-ecosystem] 2026-07-08 — PDR-126: gates land strict in one landing (Corsair guards Channel, dedicated consolidation)
+
+- PDR-126 authored (`pdr_kind: governance`): a gate lands at ERROR with full
+  estate conformance in one landing — existing violations are fixed or
+  category-moved as part of the landing; a violation-allowlist is an escape
+  hatch with paperwork; category-relocation, never exemption; existing
+  warn-tier surfaces are transition debt, never precedent. Graduates the
+  2026-07-07 owner correction chain (the zero-IO ruling and its deepening).
+- Decision-records README index: PDR-125 row restored (index drift — the
+  record existed on disk but was absent from the index) and PDR-126 added.
+- PDR-027 amendment: a mid-session model switch is a continuous seat (the
+  session-seed-derived identity is stable; the switch updates the existing
+  row's `model`, never adds a row).
+- Incoming box cleared (owner-approved, integration verified in landed
+  artefacts): the resonance plan-estate refounding synthesis (2026-07-06 —
+  absorbed by the plan-corpus refounding protocol plan and executed through
+  R0) and the resonance teaching bundle (2026-07-05 — teachings 1/4/5 live
+  here as the R0b plan-state engine, the Box flow, and PDR-125 +
+  protocol.json + the wire schema; teaching 3's challenge-clean-bills clause
+  absorbed into the reviewer-adjudication surface). Residuals routed with
+  destinations to the `agentic-engineering-enhancements` thread record:
+  recomputable team state (teaching 2) → the WS0 protocol-authoring agenda;
+  the worker agent-class generator (teaching 3) → the agent-tooling lane.
+
+## [oak-open-curriculum-ecosystem] 2026-07-07 — WS0c + WS0e: conformance recomputed, the wire contract lands core-carried (visiting resonance seat, join ceremony)
+
+- NEW core-carried declaration artefact `.agent/practice-core/protocol.json`
+  (`{ schema_version, protocol_version, tier_floor, extensions }`): this
+  estate declares protocol 1.0.0 at a tier-1 floor advertising the
+  `comms-threading` extension. `pnpm protocol:conformance`
+  (`agent-tools/src/protocol-conformance/`) RECOMPUTES the tier from
+  artefacts per PDR-125 §Conformance — live self-run reports tier-1; every
+  detector carries a break fixture. Phenotype note: the usage-spec anchor is
+  quote-agnostic (this estate's single-quoted CLI help was a live divergence
+  the twin's first run caught; cured in both estates' copies).
+- NEW core-carried artefact
+  `.agent/practice-core/schemas/inter-practice-wire.schema.json` (contract
+  1.0.0, BYTE-IDENTICAL to the resonance copy, proven by diff at this
+  landing): the machine-readable contract for the cross-estate wire shapes
+  (PDR-125 clause 6). `agent-tools/src/protocol-wire/` carries the
+  version-family validators (cross-family contact is a typed refusal) and
+  the reconciliation binding test tying this estate's strict comms-event
+  schema to the contract in both directions.
+- Twin provenance: resonance's halves merged there as PRs #50 and #52; the
+  portable spec is identical by construction, phenotype confined to the
+  Result-package import, quote style, and this file.
+
+## [oak-open-curriculum-ecosystem] 2026-07-06 — Inter-Practice collaboration protocol: PDR-125 + join-ceremony skill; exchange model gains its second mode (Lapwing herds Eyrie, cross-estate session)
+
+- PDR-125 authored (`pdr_kind: governance`): the inter-Practice
+  collaboration protocol — the verification-scarce-testimony-economy
+  preamble (recombination as the anti-ratchet), the seven clauses
+  (repo-reference vocabulary; coordination-home declaration; join
+  ceremony; foreign-substrate discipline incl. a-watcher-is-a-writer;
+  join-key identity display; shared-spec + shared-schema versioning
+  with the version-family compat contract; concepts-vs-pointers
+  exchange layering), the owner-ratified v1 conformance floor
+  (Tier-0 box / Tier-1 hosting, proof-typed), the third-estate
+  falsifier, and the second-consumer non-goal boundary. Authored in
+  BOTH estates in one coordinated cross-estate session per the owner's
+  birthplace ruling; the peer copy differs only in number and
+  phenotype note.
+- New portable skill `inter-practice-collaboration` — the runnable
+  join ceremony (the PDR's enactment); new portable rule
+  `cross-repo-sessions-run-the-join-ceremony` — its discoverability
+  trigger. Host phenotype ADR-211 records the WHAT of the local
+  mechanics (declared-home override, statusline join key).
+- `practice.md` and `practice-lineage.md` §Plasmid Exchange amended:
+  exchange named as two modes of one class on shared substrate —
+  transformation (dead material at a pin) and conjugation (live,
+  negotiated, bidirectional) — completing the Core exchange model.
+
+## [oak-open-curriculum-ecosystem] 2026-07-06 — PDR-117 Director-craft amendment (Nettle tracks Acorn)
+
+Best-effort authored (PDR-104) at the dedicated consolidation, graduating the
+pending-graduations register's Director-operating-model item (owner-corrected three times,
+validated across the ten-Director curriculum-hub rotation). Six clauses appended to PDR-117:
+owner-launched peers implement / Director dispatches read-only reviewers only (with the
+narrowed degenerate-team exception); don't park lanes mid-session; decide-and-drive; the
+Director proposes landing points; rulings-as-artefacts as a first-class dispatch output; and
+minimum-action's inward face (anchor in the impact).
+
+## [oak-open-curriculum-ecosystem] 2026-07-06 — PDR-049 gains the sequential-identifier collision clause (PR #295 merge run-in, Hyena spins Lamplight)
+
+Amended PDR-049 (Memory and State File Merge Semantics) with §Sequential-identifier
+collisions: when two branches independently mint the same next number for different
+artefacts (frictions, ADRs, PDRs, numbered patterns), the trunk-landed copy keeps the
+number, the other side renumbers to the next free number re-derived at merge-execution
+time, every index and in-content reference updates in the same change, and both sides'
+substance survives in full. Owner-ratified Practice-wide standard; founding instance the
+PR #295 F-111 collision (main's sandbox/zsh friction vs the branch's comms
+threading-edge friction).
+
+## [oak-open-curriculum-ecosystem] 2026-07-03 — PDR-060 gains corollary 4: independent convergence is the strongest signal (ws1b rescue disposition, Vega mends Oblivion)
+
+Amended PDR-060 (Tooling Friction Is First-Class User Feedback) with a fourth operational
+corollary, graduated from a proven-real rescued discovery candidate: when multiple agents
+independently converge on the same emergent workaround for a tooling gap, the convergence
+itself is evidence the capability belongs natively in the tool — route it as a
+native-support candidate on the owning tooling backlog, not as another friction anecdote.
+
+## [oak-open-curriculum-ecosystem] 2026-07-03 — PDR-122 invariant 5 gains the measurement-corpus clause (ws1b rescue disposition, Vega mends Oblivion)
+
+Committed checkpoints are also a measurement corpus: before scoping new instrumentation for
+an "unmeasured" quantity, check whether deterministic code over the already-banked judgments
+yields it — "unmeasured" often means "unanalysed" (worked instance: inter-lens vote
+correlation measured in minutes from committed checkpoints, 2026-07-03).
+
+## [oak-open-curriculum-ecosystem] 2026-07-02 — PDR-118 gains open question 6: the external staleness-reaper (dedicated consolidation, Rosemary stirs Bracken)
+
+The ungraceful-death liveness question (self-emitted signals cannot be stopped by a dead
+session; a dead-man's-switch primitive that reaps from outside is likely needed; owner
+architectural decision) re-homed from the host open-questions register into PDR-118's
+model-level open questions, beside the composed-liveness question it extends.
+
+## [oak-open-curriculum-ecosystem] 2026-07-02 — PDR-123 authored: agentic design panels (dedicated consolidation, Rosemary stirs Bracken)
+
+New `pdr_kind: pattern` PDR graduating the design-panel protocol from its founding worked
+instance (the corpus-analysis v2 design panel, report 2026-06-29): independent
+restraint-by-default generators, a MECE facet cut, a diverse-lens critic **ensemble** (the
+marginal critic beats the marginal designer), orchestrator-held synthesis, proportionality,
+and the self-improvement loop (each application refines the PDR). Promoted on first instance
+per owner direction; PDR-122 cross-referenced as the adjudicative sibling. The
+decision-records index also gained the missing PDR-122 row.
+
+## [oak-open-curriculum-ecosystem] 2026-07-02 — PDR-122 extended with checkpointing, calibration-first, and fleet economics (dedicated consolidation, Rosemary stirs Bracken)
+
+Amended PDR-122 (Agentic Judgment Pipelines) from the 2026-07-01/02 discovery-run worked
+instances, authored best-effort per PDR-104:
+
+- **Invariant 5 (new)**: independently-failing stages are split and checkpointed; recovery is
+  seeded continuation from committed checkpoints with a stage discriminant, never blind resume.
+- **Invariant 6 (new)**: calibrate judgment before scaling spend — known-answer canaries first
+  behind a deterministic abort breaker, ~1/10th pilot before a full run; a judgment-regime change
+  is a design change requiring recalibration (measured 47% vs 10.6% keep across regimes).
+- **Invariant 4 (extended)**: turns × context dominates fleet cost (least-privilege single-turn
+  voters are 7–17× cheaper); budgets declared pre-run in every billing denomination; a cost
+  backstop firing is a fork, not a failure; ceiling re-authorisation is owner-scope.
+
+The companion always-on firing rule `agentic-judgment-conserve-by-default` (named by PDR-122
+§Consequences) was authored in the host rule tier in the same pass.
+
+## [oak-open-curriculum-ecosystem] 2026-06-21 — practice-lineage restored to the evolution record; principles evacuated by intent (owner-directed, Ferret seeks Tunnel)
+
+Owner-directed clarity-of-purpose restoration: "the Practice lineage is supposed to be a
+git-like record of the branching and merging and transplanting and evolution of the Practice
+in different contexts … it is not supposed to encode principles." Authored best-effort
+(PDR-104); docs-adr-expert assessed.
+
+- **Restructured**: `practice-lineage.md` restored to a single purpose — the evolution record,
+  the narrative companion to `provenance.yml`: provenance mechanism, plasmid exchange & merge,
+  genesis/branching scenarios, two-way merge, maturity & adaptation. Removed from it: §Learned
+  Principles (evacuated, below) and the what-it-is / how-to-apply sections (§Principles,
+  §Metacognition, §Testing Philosophy, §Agent Pattern, §Workflow Commands, §Always-Applied Rules,
+  §Knowledge Flow, §Session-Entry Skills, §Validation) — verbatim duplicates of
+  `practice.md` / `practice-bootstrap.md` / `practice-verification.md`, conserved there.
+  855 → 288 lines.
+- **Evacuated by intent** (no tombstones; home-before-remove): the 19 axioms + 28 active
+  principles routed to their homes — ~37 already duplicated in `practice.md`, `principles.md`,
+  bootstrap, or PDR-004/005/015/018/024 (deleted, conservation verified first-hand); the
+  genuinely unhomed authored fresh.
+- **Added**: PDR-108 (generalise where generalisation does not cost utility), PDR-109 (culture is
+  what propagates across instances — the transmission of disposition), PDR-110 (repo-state
+  enforcement is its own proof layer + RED-first). All portable.
+- **Amended**: PDR-002 (the reinforcement-vs-multi-framing boundary); `practice.md` §Structure
+  (agent files are first-class infrastructure) and §Meta-Principles (homes-by-intent; rule-vs-skill;
+  intent-over-mechanics); `practice-bootstrap.md` (engineering-imperative enumeration as the
+  repo-case template; source-pointers repointed off the retired lineage sections). Per the tier
+  model — PDRs are portable, `principles.md` holds repo-specific cases that may be based on PDRs.
+- **Repointed**: trinity + PDR-005 + Core `index.md` role descriptions to the evolution-record
+  framing; 0 broken references.
+
+## [oak-open-curriculum-ecosystem] 2026-06-18 — best-effort doctrine authoring + recurrence-capture at the drain (dedicated consolidation, Wisteria spins Bark)
+
+Authored under the best-effort policy this entry records (no owner pre-ratification;
+reviewers run: assumptions-expert SOUND-WITH-FIXES, docs-adr-expert FIX-NEEDED — both
+absorbed before commit).
+
+- **Added**: PDR-104 (best-effort Practice-doctrine authoring in dedicated
+  consolidation sessions) — the primary agent authors/amends doctrine on best effort
+  without owner pre-ratification of each change; mistakes accepted, the knowledge flow
+  corrects them. Preserves PDR-003 sub-agent protection, the kept action-authority /
+  safety gates, and the PDR-101 quorum (as review, not pre-ratification). Disambiguates
+  the 2026-06-16 "Core-edit" gate (sub-agent-protection sense kept; per-amendment
+  owner-approval sense relaxed). Graduates the `PG-best-effort-consolidation-policy`
+  register item (register drained to decision-debt 0).
+- **Amended**: PDR-003 §Decision — reconciled the stale "with the human's consent in the
+  loop for changes of substance" wording to best-effort-no-pre-ratification (cites
+  PDR-104); sub-agent prohibition unchanged.
+- **Amended**: `consolidate-docs` skill — step 7 `duplicate` disposition gains a
+  recurrence check (a recurring-despite-home concept routes to the doctrine-traction
+  mechanism lane per PDR-098, not silent deletion); step 8 §3-§4 reconciled to
+  best-effort authoring (cites PDR-104).
+
+## [oak-open-curriculum-ecosystem] 2026-06-16 — universal CLI API-surface-design consistency (owner-directed)
+
+- **Amended**: PDR-055 — generalised from the coordination-CLI affordance set to
+  universal CLI API-surface-design consistency. Added clauses 7–10
+  (ask-only-caller-knowledge and default/derive tool-knowable values; teaching-help
+  content; actionable boundary errors; universal consistency with a conformance
+  guard); broadened the Scope split (clauses 1–6 coordination CLIs; 7–10 every CLI in
+  every Practice repo); retitled; Falsifiability axis added. Owner direction:
+  API-surface-design consistency is a universal requirement for all CLIs in all
+  Practice repos.
+
+## [oak-open-curriculum-ecosystem] 2026-06-14 — comms-research closeout consolidation (Marlin weaves Marsh)
+
+The dedicated consolidation closing the comms-corpus research thread graduated its flagship
+findings into Core doctrine (owner-approved at the closeout walk; the measure of impact is
+use and observation triggering refinement through the knowledge flow, not pre-review):
+
+- **Amended**: PDR-089 — the two-reader mutual-first-hand loop named as the external-check
+  *phenotype* for sustained research/verification work (a standing reciprocal reader, not an
+  ad-hoc pass; corpus-scale evidence from the thread). Sharpens Decision 3.
+- **Amended**: PDR-011 — Amendment Log: a thread is a multi-lane container (concurrent,
+  independently-pickup-able lanes, each its own state/branch/trigger; no single "Next safe
+  step"). Operative format-definer: `threads/README.md` §"Concurrent lanes"; the
+  `session-handoff` step-3 field and `continuity-practice.md` align on next touch.
+- **Amended**: PDR-081 (Proposed) — the per-pass log's disposition-pointer surface superseded
+  by `permanent-doc-is-the-consolidation-record` (the commit plus homed substance are the
+  curator's record); the `curator-pass` SKILL §Per-Pass Log aligned.
+- **Related host directive**: `directives/metacognition.md` gained §"Fluency Is a Warning,
+  Not a Confirmation" (dual of the friction section — smoothness is the trigger to ground the
+  situational fact first; passive lessons need a firing gate).
+
+## [oak-open-curriculum-ecosystem] 2026-06-12 — owner-approved amendment queue authored (Thyme wakes Canopy dedicated consolidation)
+
+The amendment queue the owner approved at the 2026-06-11 register walk
+("next dedicated session authors without re-asking") landed in one pass:
+
+- **Authored**: `PDR-092-mechanical-firing-moments-over-vigilance-clauses.md`
+  (knowledge-flow discipline: mechanical firing moments as the durable
+  graduation default, vigilance clauses as interim capture; corollary —
+  an untested mechanism is prose in costume).
+- **Authored**: `PDR-093-self-correcting-measurable-deliverables.md`
+  (`pdr_kind: pattern`; deliverables sequenced by consumption so a
+  successor's gate breaks on predecessor drift; host plan skill amended
+  to carry the drafting discipline).
+- **Amended**: PDR-064 — pre-positioning matured into a shadow-period
+  process; standing-successor authorisation + the citable-gate test
+  (resolves deferred open question 4); Director-session closeout
+  obligations; Status Proposed → Accepted per its own fired trigger.
+- **Amended**: PDR-011 — two clauses: subjective register reconciled to
+  "valued when genuine; voluntary always" (no volume/thinning monitor),
+  and the completeness backstop split into externalisable claim
+  verification vs holder-exclusive context-loss detection. ADR-150
+  host mirror updated.
+- **Amended**: PDR-078 — new §7 emit-side loop hygiene (posture derived
+  at emit time, one timestamp per tick, stop-loop-then-emit-end,
+  stderr-captured failures).
+- **Amended**: PDR-085 — instrument/discovery deliverables (beneficiary
+  = the team enabled to explore; receipt = first real reading produced
+  and consumed; PDR-093 as the honesty mechanism).
+- **Verified already-homed**: the continuity-surface disposition PDR
+  candidate — its full substance landed as PDR-011's 2026-06-08
+  amendment; no duplicate PDR authored.
+- **Three approved folds landed**: PDR-051 gains the
+  skill-listing-budgets-rise-with-adoption note (F1); the commit skill's
+  bounded lock-wait section replaced with the stricter
+  no-autonomous-lock-contact direction (F2); the host continuity
+  directive's §Continuation Records gains the
+  supersession-refreshes-the-auto-surfaced-chain clause (F5).
+
+## [oak-open-curriculum-ecosystem] 2026-05-11 — PDR-059 regenerator-output-classification graduated (Fronded Flowering Seed session)
+
+Graduated the 2026-05-10 Quiet Lurking Mask pending-graduations entry
+"Hook-chain re-staging absorbs files post-verify-staged" to a new PDR
+on owner-direction trigger. Cure-shape selected by owner at session
+open: option iii (classification by intent), authored as a
+structurally distinct PDR rather than an amendment to PDR-054 because
+the taxonomy over hook-staged files is a new concept not present in
+the PDR-054 asymmetric-cure framing.
+
+Practice Core changes:
+
+- **Authored**: `PDR-059-regenerator-output-classification.md`. Three-
+  class taxonomy (Class A intentional regenerator output; Class B
+  intentional auto-fix of already-queued files; Class C arbitrary
+  peer-work absorption — forbidden). Enumeratively-bounded Class A
+  producer manifest as the structural gate. Post-hook-pre-commit
+  classification gate as the trailing complement to PDR-054's
+  pre-hook `verify-staged` fingerprint check.
+- **Amended**: `decision-records/README.md` index — PDR-059 row added.
+- **Cross-reference**: PDR-054 §Related extended with PDR-059
+  pointer (the post-hook absorption case is governed by PDR-059's
+  classification doctrine).
+- **Host-repo operational application**: amendment to ADR-177
+  authored separately (host phenotype; PDR substance is portable).
+
+## [oak-open-curriculum-ecosystem] 2026-05-10 — `.agent/commands/` retirement (Tempestuous Darting Zephyr session)
+
+Closed the PDR-051 / ADR-125 §2026-05-09 commands-retirement loop on
+`feat/mcp-graph-support-foundation`. Five commits landed; five
+reviewers dispatched in parallel; all actionable findings applied.
+
+Practice Core changes:
+
+- **Amended**: `practice.md` Three-Layers Mermaid diagram — `CANON`
+  node label drops `.agent/commands` (was wrongly teaching the retired
+  surface to hydrating repos).
+- **Amended**: `practice-bootstrap.md` §Skills section retitled to
+  describe the two-surface adapter contract
+  (`.agents/skills/jc-<name>/SKILL.md` + `.claude/skills/jc-<name>/SKILL.md`)
+  with manual-edit prohibition surfaced explicitly. Removed §Required
+  Commands subsection and replaced with §Required Skills using
+  canonical `SKILL-CANONICAL.md` paths. Renamed §SKILL.md Format to
+  §SKILL-CANONICAL.md Format and removed the retired multi-surface
+  model reference (`.cursor/skills/`, `.gemini/skills/`,
+  `.github/skills/`).
+- **Confirmed portable**: practice-core-portability rule fired
+  in-session and caught an attempted repo-specific ADR reference
+  during authoring; reworded before commit. Worked instance of the
+  rule operating during authoring, not just at review.
+
+## [oak-open-curriculum-ecosystem] 2026-05-10 — QUAR-1 reformulation (Quiet Lurking Mask session)
+
+Owner-directed graduation of the quarantined `apply-don't-ask` /
+`stop-inventing-optionality` doctrine candidates per the 2026-05-01
+reframings. The carry-over briefing surfaced the owner-decision; the
+owner chose (a) reformulate-and-land. Pair-reviewed by docs-adr-expert,
+onboarding-expert, and assumptions-expert before staging. Practice
+Core changes:
+
+- **Added**: `PDR-057 empirical-answerability`. Pre-question gate:
+  before posing a fork to the owner, the agent first determines
+  whether the question is empirically answerable from code, data,
+  vendor docs, generator output, schema, or log files; if so, the
+  agent reads those surfaces. The discharge action is reading, not
+  acting — the destructive-operation guard problem that quarantined
+  the predecessor doctrine is structurally absent. Supersedes the
+  quarantined `apply-don't-ask` candidate.
+- **Added**: `PDR-058 three-tier-optionality-decomposition`.
+  Decomposes `stop-inventing-optionality` into three impact-named
+  surfaces — decision optionality (subsumed by PDR-057), design
+  optionality (closed-shape cure), outcome optionality
+  (falsifiability cure) — each with its own diagnostic and home in
+  the Practice graph. The single-rule shape is rejected as
+  wrong-layer. Decomposition is open to further surfaces as evidence
+  emerges (interface, sequencing, scope optionality). Supersedes the
+  quarantined `stop-inventing-optionality` candidate.
+- **Updated**: `quarantine/apply-dont-ask-doctrine.md` frontmatter
+  flipped to `status: quarantine-cleared` with PDR-057/058 cleared-by
+  reference; original substance preserved as historical evidence of
+  the 2026-05-01 destructive incident.
+- **Updated**: `pending-graduations.md` quarantined-status section
+  drained to empty; QUAR-1 entry body updated to graduated; new
+  routing-label entries opened for design-optionality and
+  outcome-optionality per PDR-058 §Surfaces 2 and 3.
+- **Updated**: PDR README index now lists PDR-057 and PDR-058.
+
+## [oak-open-curriculum-ecosystem] 2026-05-10 — pending-graduations full drain (knowledge graduation session)
+
+Owner-invoked deep consolidation pass (Sylvan Fruiting Glade / claude-code /
+claude-opus-4-7-1m). Owner reframed the pending-graduations register's
+self-deferral vocabulary as fabricated avoidance and directed full drain in
+session. Practice Core changes:
+
+- **Added**: `PDR-052 directive-file-context-budget`. Standing rule:
+  directive-file work (editing `.agent/directives/*` and host equivalents)
+  runs only when context usage is below 30% of the active session's budget.
+  Sequencing corollary fixes directive-file work as the FINAL step of any
+  consolidation pass. Self-applying clause: this PDR is itself directive-
+  shape doctrine and the rule applies to its own edits.
+- **Added**: `PDR-053 orchestrator-vs-gate-structural-cure (advisory
+  polarity)`. Polarity-at-three-surfaces structural cure for the recurring
+  conflation of advisory enforcement orchestrators with blocking hook
+  chains: filename + banner + skill-doctrine. Five evidence instances
+  across four agents in 24 hours; reading-only cures lose to artefact
+  gravity.
+- **Added**: `PDR-054 asymmetric-cure-discipline`. A behavioural cure for
+  a shared-state failure mode that fires only when *every* operator
+  follows it is asymmetric: it protects the applier but not peer-
+  triggered manifestations. Third-instance trigger graduates the cure to
+  symmetric structural enforcement; cure documentation must record its
+  symmetry classification.
+- **Amended PDR-014** (Consolidation and Knowledge-Flow Discipline) —
+  polarity required at pattern graduation. Every pattern instance MUST
+  declare polarity (`pattern` | `anti-pattern`) in frontmatter and as a
+  blockquote header. Categories remain orthogonal to polarity.
+- **Added**: `PDR-055 cli-affordance-set-discipline-for-coordination-tooling`. Coordination CLIs on a Practice-bearing repo's collaboration
+  surfaces (`claims`, `commit-queue`, `comms`, identity) implement the
+  affordance triple (`list`, `show`, `watch`) with consistent filter
+  flags. Full help on every flag-validation failure. Robust render
+  boundaries (one bad entry does not block the surface). CLIs invoked
+  via built dist, not source-on-each-invocation. Owner-stated cures
+  graduated.
+- **Added**: `PDR-056 inter-agent-collaboration-protocol`. Ten named
+  cures for multi-agent coordination on shared state: out-of-band
+  brief acknowledgement; read/write claim mode; heartbeat-or-die;
+  overflow protocol; comms CLI ergonomics; wall-clock authority;
+  threaded render; worker initiates on empirical surface; deferred
+  commit until task-close + ack; wait-for-ack on deadlined defaults.
+  Each cure carries inline validation status (Hypothesis →
+  Validated as N≥3 evidence accumulates).
+
+## [oak-open-curriculum-ecosystem] 2026-05-09 — focused distilled.md graduation pass
+
+Owner-directed focused consolidation pass on `distilled.md` (Woodland
+Sheltering Glade / claude-code / claude-opus-4-7-1m). Three PDR amendments
+land Practice-governance substance previously held in distilled:
+
+- **PDR-018 (AMENDED)** — five planning-discipline rules graduated:
+  lead-with-narrative, CLI-first enumeration before owner questions,
+  locally-producible-evidence-first for validation closures, split
+  client-compatibility from deployment-validation lanes, dry-run
+  multi-step workflows against accumulated state. Held-on-future-plan
+  unblocked per the Sequenced-Deferral graduation in the same pass.
+- **PDR-026 (AMENDED, two amendments)** —
+  *Sequenced-Deferral Discipline (three modes)* graduated: sequenced
+  deferral (preferred), sequencing-sequenced deferral (rare), hidden
+  declaration of non-action (forbidden). Three corpus-window instances
+  confirmed in `historical-napkin-synthesis-2026-05-09.md` §F4 + §F11.
+  *Per-Session Closure Owns the Loop* graduated: loop-cost reframed
+  from inherent to artefactual; closure discipline is the steady-state,
+  reactive graduation passes are recovery work.
+
+## [oak-open-curriculum-ecosystem] 2026-05-07 — state/memory substrate contract split clarified
+
+Owner-directed consolidation after the first host-local substrate inventory
+seed. Practice Core changes:
+
+- **Practice framing clarified** — the Practice is recorded as a philosophy
+  and commitment, not merely a specification repository. Specification is named
+  as a powerful portability tool for implementation-agnostic processes,
+  contracts, approaches, and support systems.
+- **Fitness interaction clarified** — non-healthy fitness output must remind
+  agents to preserve substance first and route pressure structurally, not
+  reactively trim memory or Practice Core content.
+- **PDR-050 (AMENDED)** — State and Memory Substrate Contracts now separates
+  the transferable substrate contract specification from each host's filled
+  substrate instance. Portable vocabulary and templates travel with Practice
+  Core; concrete roots, commands, schemas, exclusions, current gaps, and
+  migration ledgers stay in the host bridge or host memory surfaces.
+- **Clarified**: `merge_class` carries exact PDR-049 vocabulary only; missing
+  or partial declaration status belongs in adjacent metadata.
+- **Added**: portable severity and repair vocabulary plus transition-surface
+  guidance for retired or legacy state homes.
+
+## [oak-open-curriculum-ecosystem] 2026-05-04 — insight-capture-at-moment-of-occurrence graduated to PDR-048
+
+Layer-2 second pass continuation. The active-memory discipline
+that governs *when* an insight is written down is now codified as
+its own Practice-governance decision record. Practice Core
+changes:
+
+- **Added**: `PDR-048 insight-capture-at-moment-of-occurrence`.
+  Three moves applied at the moment an insight surfaces:
+  capture before closure (resist closure-pressure deferral);
+  capture between primary actions, not after them (resist
+  flow-state deferral); capture the partial form and let the
+  whole emerge through writing (resist substance-not-yet-fully-
+  formed deferral). Adopter scope: every Practice-bearing repo
+  where insights surface in conversation. Composes with
+  PDR-011 (continuity surfaces — this PDR governs the entry
+  point), PDR-014 (consolidation — captures here are the
+  substrate the flow operates on), PDR-046 (layered-processing —
+  captures preserved here are what graduates upward layer-by-
+  layer), and PDR-047 (rule-applies-always — companion
+  deliverable: this PDR governs *when* a rule is written;
+  PDR-047 governs *how* it is written).
+- **Index updated**: `decision-records/README.md` index gains
+  PDR-048 row.
+
+## [oak-open-curriculum-ecosystem] 2026-05-04 — rule-applies-always doctrine-authoring discipline graduated to PDR-047
+
+Layer-2 second pass continuation. The doctrine-authoring half of
+the rule-applies-always pair (the structural-enforcement half
+lives at PDR-038) is now codified as its own Practice-governance
+decision record. Practice Core changes:
+
+- **Added**: `PDR-047 rule-applies-always-doctrine-authoring`.
+  Three tests applied at the moment a rule is authored or
+  amended: substance test (read clause-by-clause for "the rule
+  does not apply here" intent); vocabulary test (cross-check
+  against the host's hedging trip-list as cheap detection); and
+  re-frame test (when either fires, re-frame the rule to ban the
+  bad shape rather than grant exceptions; if a re-frame is
+  impossible, split the rule). Adopter scope: every
+  Practice-bearing repo where rules, principles, ADRs, PDRs, or
+  governance documents are authored or amended. Composes with
+  PDR-038 (structural-enforcement scanner downstream of authoring),
+  PDR-043 (rush-impulse cue 1 vocabulary trip-list at general
+  output time), and PDR-044 (innate-immunity layer at write-time
+  is the runtime form of Test 1's substance check).
+- **Index updated**: `decision-records/README.md` index gains
+  PDR-047 row.
+
+## [oak-open-curriculum-ecosystem] 2026-05-04 — layered knowledge processing graduated to PDR-046
+
+Layer-2 second pass under the owner-stated layered-processing
+methodology (preserve first, restructure second). The methodology
+itself is now codified as a Practice-governance decision record.
+Practice Core changes:
+
+- **Added**: `PDR-046 layered-knowledge-processing`. Generalises
+  the per-write learning-preservation rule into a layer-orchestration
+  discipline. Three moves: process layers bottom-up without
+  interrupting a lower layer to remediate an upper layer; suspend
+  in-process form-keeping on any layer currently being processed;
+  address a layer's residual fitness pressure by graduating
+  substance upward, not by compression. Adopter scope: every
+  Practice-bearing repo with multi-layer knowledge surfaces and a
+  fitness-style diagnostic. The PDR self-applies — the methodology
+  is what produced it; PDR-045 was the first deliverable of the
+  pass that surfaced the rule, this PDR-046 is the second.
+- **Index updated**: `decision-records/README.md` index gains
+  PDR-046 row.
+
+## [oak-open-curriculum-ecosystem] 2026-05-04 — workspace-first investigation discipline graduated to PDR-045
+
+Layer-2 graduation pass under the owner-stated layered-processing
+methodology (preserve first, restructure second). Practice Core
+changes:
+
+- **Added**: `PDR-045 workspace-first-investigation-discipline`.
+  Three structurally similar failure modes (diagnostic retry of
+  remote tooling when local artefacts exist; parallel infrastructure
+  proposals when shared packages already cover the contract;
+  acting on stale brief enumerations instead of querying live state)
+  share one shape and one fix: exhaust the workspace's existing
+  inventory before reaching for external tooling, before authoring
+  new shared infrastructure, and before treating any brief's
+  enumeration as authoritative. The discipline composes with
+  PDR-033 (vendor-doc review is the vendor-platform-specific case
+  of the same shape).
+- **Index drift fix**: `decision-records/README.md` index updated
+  to include PDR-043, PDR-044, and PDR-045 (PDR-043 and PDR-044
+  were authored but not indexed; this entry catches up the index).
+
+## [oak-open-curriculum-ecosystem] 2026-05-03 — rush-impulse three structural cues graduated to PDR-043
+
+Owner-directed corrective consolidation. Practice Core changes:
+
+- **Added**: `PDR-043 rush-impulse-three-structural-cues`. Three
+  output-time cues (vocabulary trip-list; conditional-discipline
+  check before proposing structure; first-principles framing
+  question) that compose into a cohesive defence against the
+  rush impulse. The cues operate upstream of fences: at output
+  drafting, before substance is committed.
+- **Removed**: an earlier draft pair on producer-output structure
+  that prescribed "carve out the operation; record the carve-out
+  as a domain constraint" with "honest framing for external
+  producers" hedging. Same shape as a withdrawn skip-register
+  pattern, different vocabulary. Deleted outright; no audit
+  trail of incorrect concepts.
+
+## [oak-open-curriculum-ecosystem] 2026-04-28 — disposition drift graduated into PDR-018
+
+Owner-directed deep consolidation after repeated PR-87 planning drift. Practice
+Core changes:
+
+- **PDR-018 (AMENDED)** — Planning Discipline now forbids presenting check-side
+  disposition as a fallback when the governing principle says the finding is an
+  architectural signal. Phase-boundary principle re-reads must leave an
+  artefact, with PDR-029 as the tripwire authority.
+
+## [oak-open-curriculum-ecosystem] 2026-04-28 — agent-work capabilities assigned to the Practice
+
+Owner-directed consolidation after the repo/tooling/Practice boundary was
+clarified. Practice-Core changes:
+
+- **PDR-035 (NEW)** — Agent Work Capabilities Belong to the Practice. Agent
+  collaboration, coordination, work management, direction, lifecycle, identity,
+  claims, handoff, review routing, learning flow, command/rule activation, and
+  adjacent agent-operational mechanisms are Practice substance by default.
+- **Phenotype boundary named locally** — host repos own only local files, state
+  instances, tools, hooks, platform wrappers, schemas, scripts, and execution
+  plans. This repo's implementation boundary is recorded in the host-side
+  agent-work-Practice phenotype-boundary ADR (see practice-index Concept ↔ ADR map).
+
+## [oak-open-curriculum-ecosystem] 2026-04-28 — Practice/tool feedback and live collaboration surfaces refreshed
+
+Owner-directed documentation pass after active multi-agent friction around
+shared communication writes, platform-specific `agent-tools`, and
+collaboration-channel discoverability. Practice-Core changes:
+
+- **Practice/tool feedback capture** — the napkin and bootstrap guidance now
+  require agents to capture frustrations, friction, insights, ideas, wishlist
+  items, and general impressions from the Practice and host-local tools that
+  implement Practice capabilities. The originating host repo named its own
+  TypeScript-specific implementation surface in its bridge index; the portable
+  behaviour remains Practice-level.
+- **Collaboration state refresh** — `practice.md`, `practice-verification.md`,
+  PDR-011, and PDR-024 now reflect the current live state: shared communication
+  log, active claims, advisory commit queue, closed claim history, decision
+  threads, sidebars, joint decisions, and escalations. UTC ISO 8601 timestamps
+  with trailing `Z` are named as the collaboration-state convention.
+
+## [oak-open-curriculum-ecosystem] 2026-04-27 — queue governance graduated into PDR-029
+
+Owner-directed queue graduation pass after a session-close commit
+successfully self-applied the advisory commit queue and exact
+staged-bundle verification.
+Practice-Core changes:
+
+- **PDR-029 (AMENDED)** — Perturbation-Mechanism Bundle gains Family A Class
+  A.3: shared git transaction / authorial-bundle discipline. The class
+  requires commit-window discovery, an observable advisory FIFO queue artefact,
+  and exact staged-bundle verification before durable history is written.
+- **No session-counter primitive** — the amendment explicitly keeps
+  session-count TTL out of the queue doctrine unless a real session-counter
+  primitive lands in the same pass. Wall-clock expiry remains a stale-reporting
+  signal only.
+
+Adjacent host-repo work archives the completed execution plan and leaves
+operational command details in the collaboration-state lifecycle docs.
+
+## [oak-open-curriculum-ecosystem] 2026-04-26 — graduation pass landing four PDR additions plus two amendments
+
+Owner-directed `/jc-consolidate-docs` graduation pass routed seven
+distilled-md doctrine entries to permanent homes per the genotype/
+phenotype routing rule (PDRs and patterns are genotypes broadly
+applicable across repos; ADRs are phenotypes specific to this
+repo). Practice-Core changes:
+
+- **PDR-033 (NEW)** — Vendor-Doc Review for Unknown Unknowns in
+  Third-Party Platform Plans. Plans targeting third-party platforms
+  must schedule a vendor-doc review pass at plan time AND dispatch
+  the matching vendor-specialist reviewer at substantive
+  implementation time. Two empirical instances on Sentry on
+  2026-04-26 (capability gap + contract violation), both invisible
+  to in-house reviewers.
+- **PDR-034 (NEW)** — Test Fixtures Encode Production Shape, Not
+  the Code's Expectation. Fixtures crossing trust boundaries must
+  anchor to documented or captured production reality with a
+  date-stamped citation. Operationalises principles.md
+  §Test Data Anchoring at the fixture-authorship level.
+- **PDR-015 (AMENDED)** — Reviewer Authority and Dispatch
+  Discipline gains a 2026-04-26 amendment for parallel reviewer
+  dispatch and structural-then-pre-landing review phasing.
+  Different reviewer roles see different things; sentry-reviewer
+  catching the fingerprint MAJOR while code+test-reviewer passed
+  with NIT/MINOR is the canonical instance.
+- **PDR-026 (AMENDED)** — Per-Session Landing Commitment gains a
+  2026-04-26 amendment establishing owner-directed pause as a
+  load-bearing planning move. The pause IS the session's landing
+  target, not a deferral. Touches five-to-six surfaces; ritual
+  extraction queued if the pattern fires three times.
+
+Practice-instance pattern (memory/active/patterns/) added:
+`vendor-doc-review-for-unknown-unknowns.md` carrying the in-repo
+proof and operational mechanics, citing PDR-033 as the cross-repo
+doctrine.
+
+Adjacent host-repo work (recorded for cross-reference, not
+travelling with Core): two host-side ADRs landed on the originating
+host's ADR surface alongside the Core graduation pass — a new
+config-load-side-effects ADR plus a call-site-uptake amendment to
+the existing host-side observability decision. Identifiers tracked
+in the host repo's ADR index.
+
+## [oak-open-curriculum-ecosystem] 2026-04-26 — learning before fitness correction
+
+Owner corrected a consolidation inversion: fitness limits, including hard and
+critical thresholds, are health signals and must never outrank preserving
+understanding. `consolidate-docs`, `practice.md`, `practice-lineage.md`,
+`practice-bootstrap.md`, PDR-014, and the host's three-zone-fitness-model
+ADR (see practice-index Concept ↔ ADR map) now say capture,
+distillation, graduation, and useful writing happen first; fitness pressure
+created by preserving knowledge is routed to later structural response
+(refine, split, graduate, or owner-approved limit change), not used to
+suppress learning.
+
+## [oak-open-curriculum-ecosystem] 2026-04-26 — collaboration lifecycle made portable Practice
+
+WS4-style lifecycle integration promoted WS0-WS3A collaboration state from
+local operational docs into the Practice-facing surfaces. `practice.md`
+now names `.agent/state/` collaboration state as a structural and workflow
+surface; `practice-lineage.md` teaches start-right / session-handoff
+coordination responsibilities; PDR-024 names collaboration-state
+consultation as a vital integration surface. The host-side
+agentic-engineering-practice ADR and practice-propagation ADR (see
+practice-index Concept ↔ ADR map) were refreshed so the ADR narrative
+matches the live Practice Core package and
+host-local coordination state instance. Closeout review also clarified the Practice
+Core quality taxonomy: hard gates are always blocking, while specialist
+review is preferred evidence whose findings require disposition and block
+only when classified as blocking or when they surface hard gate / rule
+failures.
+
+## [oak-open-curriculum-ecosystem] 2026-04-25 — PDR-011 amendment: live coordination state recognised as a sibling artefact class to memory
+
+Owner-approved amendment surfaced from the consolidate-docs run after
+WS0 of the multi-agent collaboration protocol landed. PDR-011's
+continuity-surface map now acknowledges `.agent/state/` as a live,
+ephemeral, signal-like surface class distinct from `.agent/memory/`'s
+durable, lessons-learned character. New §"Live coordination state
+(2026-04-25 amendment)" added with the state-vs-memory comparison table;
+Amendment Log updated; Host-local context extended to name the state
+surface. Substance: state surfaces feed memory via the existing
+capture → distil → graduate → enforce pipeline. State is not a fourth
+continuity type — operational / epistemic / institutional remain the
+three types — it is a sibling artefact class contributing signal to
+capture. Boundary cited to the host's `agent-collaboration` directive
+and the host's `.agent/state/README.md` (host-local files; bridged
+from the practice-index).
+
+## [oak-open-curriculum-ecosystem] 2026-04-22 — Session 8 (ARC CLOSE): doctrine-consolidation arc closed across eight sessions
+
+Owner instruction at session close: *"there is no next session,
+this simple expansion of the memory system has been going on for
+two days, there cannot be endless 'nexts'. How do we close this
+out right now?"* — the eight-session staged doctrine-consolidation
+arc on the `memory-feedback` thread closes here. Originally six
+sessions; reshaped 6→7 at Session 6 close per
+[PDR-026 §Deferral-honesty discipline](decision-records/PDR-026-per-session-landing-commitment.md)
+when reference-tier reformation became load-bearing; reshaped 7→8
+at Session 7 close to separate the rehoming first-drain pass from
+arc-close mechanics. The plan archives at this entry.
+
+### Session 8 landings
+
+- **Pattern graduation**: `feel-state-of-completion-preceding-evidence-of-completion`
+  promoted to `.agent/memory/active/patterns/` at owner-confirmed
+  3/3 (cross-session independent instances Sessions 4 + 5 + 7;
+  Session 7 instance was the unilateral `principles.md` 24000→27000
+  char-limit raise, owner intervention, file resets). Pattern
+  recognition: agent feels the *state* of completion (todos
+  checkmarked, plan structurally walked) and acts on that feeling
+  before producing the *evidence* of completion (per-file owner
+  conversation actually held, owner explicitly approves each
+  disposition). Removed from pending-graduations register.
+- **Reference-tier rehoming first-drain pass executed**: full
+  sweep (NOT brief — owner expanded scope at session open,
+  delegating decision authority and inviting reviewer second
+  opinions). 22 MOVED + 4 DELETED + 1 KEPT in
+  `.agent/research/notes/`; lane README absorbed the agentic-
+  engineering hub README; 13 active surfaces relink-updated; bay
+  reduced to single residual (`personal-item/`). Reviewer second-
+  opinion gate fired pre-execution (`assumptions-reviewer` +
+  `architecture-reviewer-barney`); both produced BLOCKING findings
+  (live-reference list incomplete; `practice-core/` accretion
+  would violate PDR-007; one-file `reference/` subdirectories
+  would violate PDR-032 clustering discipline); all blockers
+  accepted; v2 dispositions table re-routed accordingly.
+- **Plan archives**: this arc plan
+  (`staged-doctrine-consolidation-and-graduation.plan.md`) and
+  the rehoming plan
+  (`reference-research-notes-rehoming.plan.md`) both moved to
+  `agentic-engineering-enhancements/archive/completed/`.
+- **`memory-feedback` thread archived**: `next-session.md` record
+  deleted per PDR-026 §Lifecycle; row removed from
+  `repo-continuity.md` §Active threads;
+  `observability-sentry-otel` resumes as next-active thread.
+- **Pending-graduations register sweep**: arc-resolved entries
+  removed (pattern graduation entry; rehoming-execution entry;
+  observability-substance-restate entry; CHANGELOG-drift entry;
+  practice-bootstrap.md drift entry; pattern-promotion-bar entry).
+  Four directive files (`principles.md`, `AGENT.md`,
+  `testing-strategy.md`, `continuity-practice.md`) carry forward
+  as the existing Due-but-not-blocking entry per Session 7 owner
+  amendment (current excesses owner-accepted; owner-appetite-
+  triggered, no SLA).
+- **Three rehoming open items** recorded as honest PDR-026
+  deferrals on durable surfaces (NOT carried as new pending-
+  graduations register entries that would block arc-close): (a)
+  `personal-item/agentic-engineering-practice.md` disposition
+  decision — owner conversation required; recorded in
+  `.agent/research/notes/README.md`; (b) `platform-adapter-formats.md`
+  PROMOTE-TO-REFERENCE proposal — owner-vet required per PDR-032;
+  recorded in archived rehoming plan + `.agent/reference/README.md`;
+  (c) `boundary-enforcement-with-eslint.md` PROMOTE-TO-REFERENCE
+  proposal — same.
+
+### Eight-session arc summary (Sessions 1-8)
+
+The arc graduated overdue Practice doctrine surfaced by the
+2026-04-21 consolidation dry-run, installed Family-A and Family-B
+perturbation tripwires per PDR-029, and reformed the `reference/`
+artefact tier under PDR-032. Major landings across the arc:
+
+- **6 new portable PDRs**: PDR-027 (Threads / Sessions / Identity);
+  PDR-028 (Executive-Memory Feedback Loop); PDR-029 (Perturbation-
+  Mechanism Bundle with Family A Classes A.1 + A.2 + Family B);
+  PDR-030 (Plane-Tag Vocabulary); PDR-031 (Build-vs-Buy Attestation
+  Pre-ExitPlanMode); PDR-032 (Reference Tier as Curated Library)
+- **PDR amendments**: PDR-005 (source-side preservation and
+  seeding); PDR-011 ×2 (continuity surfaces); PDR-012 (reviewer-
+  findings disposition discipline — closed Session 7's most-
+  overdue Due item carried 5 sessions); PDR-014 (graduation-target
+  routing); PDR-015 ×2 (friction-ratchet trigger + reviewer phases
+  aligned to lifecycle); PDR-019 (ADRs state WHAT, not HOW);
+  PDR-026 ×2 (per-session-per-thread landing commitment +
+  Notes/Graduation-intent structural refactor + landing-target
+  definition + deferral-honesty discipline); PDR-027 (workstream-
+  collapse / Active threads as the identity register); PDR-029
+  Amendment Log ×2 (active-tripwire markdown definition; Class-A.1
+  Layer 2 retraction)
+- **ADR amendments** (host-side, identifiers tracked in the host repo's
+  ADR index): the Clerk public-alpha-temporal-scope ADR; the
+  continuity-surfaces ADR (host-side companion to PDR-011)
+- **Rules**: `no-verify-requires-fresh-authorisation` (Session 5);
+  `register-identity-on-thread-join` + Cursor adapter (Session 4);
+  `executive-memory-drift-capture` (Session 4);
+  `plan-body-first-principles-check` (Session 1, front-loaded for
+  Sessions 2-3 coverage); `documentation-hygiene`
+  (enforces "Misleading docs are blocking")
+- **Principles**: "Owner Direction Beats Plan"; "Misleading docs
+  are blocking"; "Cardinal rule"
+- **Pattern graduations**: `inherited-framing-bias`;
+  `passive-guidance`; `feel-state-of-completion-preceding-
+  evidence-of-completion`
+- **Reference tier reformation (PDR-032)**: 35 files relocated en
+  bloc to `research/notes/` Session 6; rehoming first-drain pass
+  executed Session 8 (22 MOVED + 4 DELETED + 1 KEPT)
+- **Outgoing triage closed**: `practice-context/outgoing/` reduced
+  to `README.md` only; substance absorbed into PDR-005, PDR-009,
+  PDR-010, PDR-012, `practice-lineage.md`
+- **Continuity surfaces formalised**: `repo-continuity.md` §Active
+  threads as the identity register; per-thread next-session
+  records under `threads/`; workstream layer retired (collapsed
+  into thread next-session records); track filename convention
+  updated; lane state substructure named
+- **Tripwire installations**: Class A.1 (plan-body first-principles
+  check); Class A.2 (session-open identity registration; session-
+  close identity audit at `/jc-session-handoff` step 7c; stale-
+  identity audit at `/jc-consolidate-docs` step 7c); Family B
+  (taxonomy-seam meta-check; cross-plane path scan; orphan-item
+  signal); cross-plane path rules + workstream tags + Source plane
+  napkin tag
+- **Platform-agnostic commit skill** at canonical
+  `.agent/commands/commit.md` with Claude + Cursor + Codex
+  adapters and AGENT.md citation; platform parity load-bearing
+  for every Family A rule
+
+### Owner amendments at Session 7 close (load-bearing)
+
+- Fitness function limit excesses declared **acceptable for now**;
+  current state per `pnpm practice:fitness`: HARD result, 4 hard
+  violations, 10 soft. None of these are blocking arc-close.
+- The `pnpm practice:fitness --strict-hard` exits-0 DoD requirement
+  was **DROPPED** for both Session 7 close and Session 8 arc-close.
+- `consolidate-docs` step 9 (fitness) runs **informationally only**
+  going forward in this arc.
+
+### Surface relink updates
+
+13 active surfaces (PDRs, READMEs, plan bodies, skills,
+practice-index) relink-updated for the rehoming pass. PDR-027 +
+PDR-032 + practice-index + roadmap + multiple READMEs updated to
+point at the archived plan locations.
+
+### Falsifiability
+
+- `.agent/plans/agentic-engineering-enhancements/current/staged-doctrine-consolidation-and-graduation.plan.md` does NOT exist
+- `.agent/plans/agentic-engineering-enhancements/future/reference-research-notes-rehoming.plan.md` does NOT exist
+- `.agent/memory/operational/threads/memory-feedback.next-session.md` does NOT exist
+- `.agent/memory/operational/repo-continuity.md` §Active threads does NOT contain a `memory-feedback` row
+- `.agent/memory/active/patterns/feel-state-of-completion-preceding-evidence-of-completion.md` exists
+- This CHANGELOG entry exists at the top of the file
+
+## [oak-open-curriculum-ecosystem] 2026-04-22 — Session 6 (reshaped close): PDR-005 source-side amendment + PDR-032 reference tier as curated library
+
+The Session 6 closing arc absorbed an owner-stipulated scope
+expansion mid-execution that reshaped the session's terminal target
+from "close the doctrine-consolidation arc" to "land the
+reference-tier reformation honestly". The doctrine-consolidation
+arc itself does NOT close at Session 6 — Phases D (holistic
+fitness exploration), E (PDR-012 most-overdue Due item), and F
+(arc close + thread archive + observability-sentry-otel
+re-activation) defer to Session 7 with named triggers. The
+deferral was applied per the
+[PDR-026 §Deferral-honesty discipline](decision-records/PDR-026-per-session-landing-commitment.md)
+landed earlier in the same session: the load-bearing target of
+Session 6 became the reformation; remaining doctrine-consolidation
+work that does not fit honestly within the budget is named-trigger
+deferred, not partially completed.
+
+- **PDR-032 (Reference Tier as Curated Library)** — new PDR
+  defining `.agent/reference/` as a curated library tier with
+  three criteria (deliberately promoted, evergreen, owner-vetted)
+  and a three-step lightweight process (substantiate / justify /
+  owner-vet). Adds subdirectory discipline (3+ documents per
+  thematic subdirectory), an aging gate at each holistic-fitness
+  pass, and a holding-bay model (`.agent/research/notes/`)
+  for material in transit between tiers. Routing per PDR-014
+  §Graduation-target routing: governance decision (defines an
+  artefact tier and its gate); load-bearing across multiple
+  surfaces; portable across the Practice network. Composes with
+  PDR-007 (outgoing material may graduate into reference under
+  PDR-032's gate) and PDR-014 (the routing pattern produces
+  reference-promotion candidates; the routing decision is not
+  itself the promotion event).
+- **PDR-005 amendment (source-side preservation and seeding)** —
+  new §Source-side preservation and seeding subsection in PDR-005
+  §Decision absorbing source-side discipline that was previously
+  carried in two outgoing-context files
+  (`cross-repo-transfer-operations.md` and
+  `seeding-protocol-guidance.md`). Substance covers material-value
+  calibration, seeding bundle priority order, bundle hygiene at
+  source, activation parity at source-expectation level,
+  three-state promotion at receiver, and the bidirectional source
+  model. The two outgoing files were defects under PDR-007 (no
+  durable home for their substance); the proper home is PDR-005
+  since source-side preservation is the counterpart of
+  destination-side transplantation already named by the PDR.
+  Source files deleted post-amendment. Class A.1 verdict: the
+  amendment body is positive-form, names genuine doctrine, and
+  composes with PDR-007 / PDR-006 / PDR-009 without restatement.
+- **Reference-tier reformation executed** — all 35 files across
+  13 subdirectories under `.agent/reference/` were relocated en
+  bloc to `.agent/research/notes/` (preserving subdirectory
+  structure) using `git mv` to preserve history. The relocation
+  was structural, not editorial — no per-file judgement was made
+  about whether each item belonged in research/ long-term. Per-file
+  disposition is tracked by the new
+  `agentic-engineering-enhancements/future/reference-research-notes-rehoming.plan.md`
+  (in `future/`, not `current/`, because no SLA is imposed on the
+  holding bay). The new `.agent/reference/README.md` explains the
+  tier's three criteria, the lightweight process, the subdirectory
+  discipline, and the aging gate; the new
+  `.agent/research/notes/README.md` explains the holding-bay
+  status, the disposition-pass options, and the bay-retirement
+  condition.
+- **First three promotions under PDR-032** — three previously-outgoing
+  files passed the substantiate / justify / owner-vet gate in
+  Session 6 Phase-C Batch 2 disposition and were promoted into
+  `.agent/reference/`:
+  `design-token-governance-for-self-contained-ui.md`,
+  `starter-templates.md`, `health-probe-and-policy-spine.md`.
+  Promotion justifications are recorded in the new reference
+  README's §Current contents table. These are the inaugural
+  applications of PDR-032's gate; their next aging review is at
+  the next holistic-fitness exploration pass (Session 7).
+- **Integration into other surfaces** — the new tier definition
+  was integrated into:
+  - `practice.md` Artefact Map row for `.agent/reference/`
+    (refined from "Supporting reference material" to "Curated
+    library tier — owner-vetted, evergreen, deliberately-promoted
+    read-to-learn material; promotion-gated per PDR-032")
+  - `practice-bootstrap.md` Reference / Research definitions
+    (reference is now curated, default landing is research; the
+    holding bay is named explicitly)
+  - `directives/orientation.md` Layers table + Routing Rule
+    (Reference now distinguishes curated-library from default
+    exploratory; the routing rule names the gate)
+  - `research/README.md` (Reference row updated; Holding Bay
+    section added)
+- **Active references updated** — host-local surfaces with broken
+  links to the relocated material were updated to point to the new
+  research-notes paths with transitional status notes (rerouting
+  applied across the host repo's foundation README, practice-index,
+  expert skills, operational repo-continuity entries, several plan
+  files, the host-side biological-architecture ADR, and the docs
+  README; full per-surface list captured in the host repo's commit
+  history for this session).
+- **Outgoing triage closed honestly** — Phase C completed all
+  immediately-actionable batches (Batch 1 deletes; Batch 2
+  reformation + promotion; Batch 4 PDR-005 amendment + delete);
+  Batch 3 (5 pattern-promotion candidates) deferred to Session 7
+  dedicated pattern-graduation pass per the explicit owner
+  decision. The `outgoing/README.md` was refreshed to reflect the
+  current state, the new five-substantive-homes contract (PDR-007
+  + PDR-032 composition), and the routing rule via PDR-014.
+- **Deferred to Session 7 with named triggers**:
+  - Phase D: Holistic fitness exploration (5 hard-zone items
+    per-file disposition; 9 soft-zone reviewed; coupling with
+    napkin rotation + distilled compression)
+  - Phase E: `reviewer-findings-applied-in-close-not-deferred`
+    PDR-012 amendment
+  - Phase F: doctrine-consolidation arc close, thread archive,
+    `observability-sentry-otel` re-activation, plan archival
+  - Outgoing Batch 3: 5 pattern-promotion candidates
+- **Honest deferral evidence** (per PDR-026 §Deferral-honesty
+  discipline): named priority trade-off was the reference-tier
+  reformation's load-bearing-ness given owner stipulation;
+  evidence was the scope (35 files relocated, new PDR drafted,
+  3 promotions executed, 14+ active surfaces updated);
+  falsifiability is testable — the doctrine-consolidation arc
+  did not close in Session 6, but the reformation did.
+
+## [oak-open-curriculum-ecosystem] 2026-04-22 — Session 6 (closing the doctrine-consolidation arc): PDR-014 graduation-target routing + PDR-026 deferral-honesty discipline
+
+Session 6 of the staged doctrine-consolidation arc opened with a
+meta-routing problem the prior sessions did not solve: pending
+candidates were being routed ad-hoc into rules / PDRs / commands /
+patterns by case-by-case judgement rather than by a principled
+home-selection pattern. Owner explicitly named the gap: *"we
+shouldn't be making ad-hoc decisions about rules, pdrs, commands
+etc... there should be a right place for this, and there can be
+more than one place if appropriate, but we need to establish a
+pattern for how we handle this sort of thing"*. This session
+landed the missing routing pattern, applied it to the open
+candidates, and then closed the arc.
+
+- **PDR-014 amendment (graduation-target routing pattern)** —
+  authored a new top-level §Graduation-target routing section
+  defining the surface taxonomy (pattern, PDR, rule, principle
+  line, ADR amendment, command rubric, plan-body meta-decision)
+  with what each holds and how each fires; a routing-decision tree
+  (failure-mode → pattern; novel governance → PDR; cross-cutting
+  always-on enforcement → rule; one-line invariant → principle;
+  workflow-step enforcement → command rubric; plan-local meta →
+  plan body); composition discipline for cases where a candidate
+  legitimately lands in multiple homes (pattern + PDR; PDR +
+  rule; PDR + command rubric); anti-patterns (convenience
+  routing, double-booking governance, naming a register surface
+  as a category). Class A.1 first-principles check fired on the
+  body before owner ratification; owner approved as drafted +
+  selected new-top-level placement. Composes with the
+  workstream→thread terminology refresh in this PDR (5
+  references at lines 63/71/73/76/157) — single Amendment Log
+  entry covers both.
+- **PDR-026 amendment (deferral-honesty discipline)** — first
+  application of the new routing pattern: the
+  `deferral-honesty-rule` (3/3 cross-session independent
+  instances) routed to "PDR + command rubric" composition. New
+  §Deferral-honesty discipline subsection in PDR-026 §Decision
+  defines positive requirements for an honest deferral (named
+  constraint or trade-off + evidence + falsifiability), with
+  common convenience phrases as diagnostic examples not
+  forbidden-words list. Operationalised through `/session-handoff`
+  step rubric ("Record the landed outcome" deferral justification
+  field) and `/consolidate-docs` ("Deferral-honesty discipline
+  applies throughout" prefix to all deferrals surfaced by the
+  workflow). Symmetric with PDR-026's existing docs-as-DoD
+  discipline.
+- **`/session-handoff` rubric extended** — Step 1 ("Record the
+  landed outcome") now requires `<what prevented>` for unlanded
+  cases to satisfy PDR-026's deferral-honesty discipline: name a
+  concrete blocker, named priority trade-off (with explicit
+  evidence), or external dependency. Convenience phrases ("budget
+  consumed", "out of scope", "next session") are not acceptable
+  unless tied to a named external constraint with evidence.
+- **`/consolidate-docs` rubric extended** — new top-level
+  "Deferral-honesty discipline applies throughout" section
+  before §Steps establishing that all deferrals surfaced or
+  recorded by consolidation must satisfy PDR-026's discipline
+  (with concrete examples of where this applies in steps 5, 7a,
+  7b, 9d, 9e).
+- **Lost substance re-homed** — `observability-sentry-otel`
+  thread next-session record's broken citation to `repo-continuity
+  § Standing decisions` (substance lost when the standing-decisions
+  surface was retracted Session 4) re-homed by inline restate per
+  the routing pattern's plan-local-meta-decision branch:
+  attribution-gap-acceptance is thread-local (specific to a
+  retroactive observability-thread landing), not portable
+  governance — does not warrant PDR-027 amendment.
+- **Pending-graduations register refreshed** — `deferral-honesty-rule`
+  graduated (removed); `feel-state-of-completion-preceding-evidence-of-completion`
+  (parent pattern, 2/3) gained a falsifiability check on its
+  trigger condition + a graduation-pull note linking to the
+  landed PDR-026 discipline; `anticipated-surface-installed-then-empirically-unexercised`
+  (2/3) gained falsifiability + an in-flight-test-bed note for the
+  retired-but-not-deleted `workstreams/` folder experiment;
+  `owner-mediated-evidence-loop-for-agent-installed-protections`
+  (1/3) gained falsifiability + clarified routing-target as
+  pattern + composition candidate with PDR-015 amendment;
+  `default-retire-on-empty` clarified as command-rubric routing
+  in `/consolidate-docs` (composition with parent pattern when
+  bar fires) per the routing pattern's `pattern + rule` discipline.
+
+Owner-paced, owner-gated per-file disposition was the explicit
+session shape. Not a velocity session: the closing criterion was
+honest closure of every open item — land, defer with named
+trigger, or delete — no "partial complete".
+
+(Subsequent entries in this same Amendment Log block appended at
+the arc-close phase below.)
+
+## [oak-open-curriculum-ecosystem] 2026-04-21 — Session 5 evaluate-and-simplify (Stage 1) + standing-decisions decomposition (Stage 2(b))
+
+Session 5 of the staged doctrine-consolidation plan ran as a
+mandatory two-stage sequence after the Session-4-close honest
+question (*"are we building a valuable system or throwing energy
+into theatre?"*) and the owner clarification that there was no
+optionality (*"there is no alternative thread, we need this work
+to be FINISHED, properly, carefully, fully, choosing long-term
+architectural excellence at every point"*). Stage 1 was mandatory
+evaluate-and-simplify; Stage 2 split into 2(a) outgoing triage
+(deferred) and 2(b) standing-decisions decomposition (executed
+under owner-corrected manufactured-budget intervention).
+
+- **Stage 1 — evaluate-and-simplify (TIER-1 + TIER-2,
+  owner-ratified)**:
+  - **E1: workstream-layer collapsed** — workstream briefs
+    archived to `workstreams/archive/`; PDR-027 + PDR-011
+    amendments refactor the lane-state concept; lane state folded
+    into thread next-session records. The `workstreams/` folder
+    physically retained per owner-explicit experiment (see
+    `repo-continuity.md § Pending` register entry for
+    `anticipated-surface-installed-then-empirically-unexercised`
+    in-flight test bed).
+  - **E2: pending-graduations register pruned** to open items only
+    (deleted 6 single-instance / absorbed entries; demoted 2
+    same-session-cascade entries from Due to Pending under the
+    tightened cross-session-independent-instance bar).
+  - **E3: PDR-029 Class A.1 Layer 2 reclassified** as background
+    grounding (not a dedicated register surface).
+  - **E4: PDR-029 host-local section removed** — portable PDR is
+    portable.
+- **Stage 2(b) — standing-decisions decomposition** (10 items
+  routed to proper homes via per-item Class A.1 firing; 3
+  owner-ratified rewrites for items 5, 8, 9):
+  - **PDR-031 (new)** — *Build-vs-Buy Attestation
+    Pre-ExitPlanMode*. Codifies that any plan involving a
+    significant new dependency, framework adoption, or build-vs-
+    buy decision must record an explicit attestation in the plan
+    body before exiting plan mode.
+  - **PDR-011 amendment** — runtime tactical track cards
+    git-tracked (operational convention captured as portable
+    governance).
+  - **PDR-015 amendment** — friction-ratchet discipline added;
+    reviewer phases (intent vs close) explicitly aligned with
+    different boundary-scope concerns.
+  - **PDR-019 amendment** — *ADRs state WHAT, not HOW* (scope
+    boundary tightened; HOW belongs in plan bodies and code).
+  - **PDR-026 amendment** — *docs-as-definition-of-done*: a
+    change is not landed until documentation invalidated by the
+    change is also updated. Symmetric with the
+    misleading-docs-are-blocking principle (next entry).
+  - **New rule: `no-verify-requires-fresh-authorisation`** —
+    `--no-verify` (or any equivalent hook-skip flag) MUST NOT be
+    used without a freshly-given owner authorisation for the
+    specific commit; prior authorisation does not carry forward.
+    Canonical at `.agent/rules/no-verify-requires-fresh-
+    authorisation.md` with Claude + Cursor adapter parity.
+  - **principles.md additions** — *Owner Direction Beats Plan*
+    (when owner direction conflicts with plan body, owner
+    direction wins and the plan is updated same-session); *Misleading docs are blocking* (stale prescriptive text is
+    how inherited framing propagates; update in same landing or
+    block).
+  - **Host-side amendment (Clerk temporal scope)** — Clerk through
+    public-alpha temporal scope clarified on the host's relevant ADR
+    (identifier tracked in the host repo's ADR index).
+  - **Host-side amendment (continuity surfaces)** — parallel
+    host-architecture log entry added for PDR-011 on the host-side
+    continuity-surfaces ADR (the predecessor to PDR-011; PDR-011 is
+    the portable form, the host ADR is the host-local record). See
+    practice-index Concept ↔ ADR map.
+- **Mid-close manufactured-budget intervention** — agent declared
+  Stage 2 cancelled citing "budget consumed"; owner corrected:
+  *"the budget is made up, so, step back and judge, what is
+  _actually_ the best course of action here? Then step back
+  again."* The intervention surfaced the pattern candidate
+  `feel-state-of-completion-preceding-evidence-of-completion`
+  (now at 2/3 cross-session independent instances after
+  Session-4 theatre observation) and a falsifiable
+  `deferral-honesty-rule` protection candidate (graduated in
+  Session 6 — see entry above).
+- **Identity registration** — `Pippin` (cursor / claude-opus-4-7)
+  added to `memory-feedback` thread per additive-identity rule.
+- **Stage 2(a) honestly deferred** to Session 6 for orthogonal-
+  scope and dedicated-lens reasons (per the freshly-drafted
+  deferral-honesty discipline). Reference-tier sweep plus
+  principles.md char-count fitness debt also tracked as Due
+  register items for Session 6 closing-session work.
+- **Loop-closure observation** captured in napkin: this arc is the
+  first where every link of the `capture → distil → graduate →
+  enforce` pipeline (per the continuity-surfaces concept in PDR-011
+  and its host-side ADR companion) fired in sequence
+  within a single session — but every link except the final two
+  required owner intervention to surface. The loop is
+  **owner-mediated**, not autonomous; that is consistent with
+  PDR-029's two-phase self-application framing.
+
+Owner-approved per PDR-003 at Session 5 close.
+
+## [oak-open-curriculum-ecosystem] 2026-04-21 — Session 4 tripwire install + PDR-029 "active means markdown-ritual" amendment
+
+Session 4 of the Staged Doctrine Consolidation and Graduation plan landed
+the Family-A + Family-B tripwire installs across two classes, plus a
+load-bearing mid-session amendment to PDR-029 after owner metacognition
+surfaced a platform-coupling bias in the original script-based shape.
+
+- **PDR-029 Amendment Log (new 2026-04-21 entry)** — codifies that
+  "active" tripwire layers are satisfied by **a ritual-moment markdown
+  step that names the authoritative source to read**, not by code
+  execution. Code is reserved for work an agent cannot reasonably
+  perform by reading markdown. Structural enumeration is satisfied by
+  the ritual instructing the agent to read the authoritative file — the
+  file IS the structural source, the instruction prevents
+  self-reporting. Platform parity is stronger under markdown-first.
+  Class A.2 Layers 2 and 3 (gate, probe) continue to name "gate",
+  "scanner", "probe" — these terms now refer to the **pattern of
+  firing**, not to an implementation technology. Pattern candidates
+  surfaced: `active-means-ritual-moment-not-code-execution` and
+  `plan-body-framing-outlives-five-reviewers`.
+- **Family A Class A.1 installs**:
+  - Plan-body rule forward reference resolved — `.agent/rules/plan-body-first-principles-check.md`
+    `PDR-NNN, pending` updated to cite PDR-029 as the governing PDR.
+  - Standing-decision register surface authored at
+    `.agent/memory/operational/standing-decisions.md` (the second
+    complementary layer for Class A.1); `repo-continuity.md § Standing
+    decisions` rewritten as a pointer to the register (no duplication).
+  - `start-right-quick` + `start-right-thorough` extended to read the
+    standing-decision register and `threads/README.md` in the grounding
+    order.
+  - AGENT.md `Memory and Patterns` section cites both new surfaces.
+- **Family A Class A.2 installs** (documentation-first per the amendment):
+  - Session-open identity-registration rule at
+    `.agent/rules/register-identity-on-thread-join.md` with Claude +
+    Cursor adapters.
+  - Session-close identity-update gate installed as a documentation
+    walkthrough in `/session-handoff` step 7c: four-step ritual walking
+    the agent through thread enumeration from `repo-continuity.md §
+    Active threads`, identity-row verification, and a "do not
+    proceed" hard-gate clause. Step 7b extended to refresh both the
+    per-thread next-session record AND the `Active identities`
+    column at handoff.
+  - Stale-identity audit installed as a documentation walkthrough in
+    `/jc-consolidate-docs` step 7c: six-check audit (stale
+    `last_session`, orphan threads, missing fields, expired track
+    cards, duplicate rows, Active-threads ↔ next-session-file
+    correspondence).
+- **Family A platform-agnostic commit skill** (owner fold-in, Session 3
+  close option b): canonical at `.agent/commands/commit.md` (repo
+  portability-validator convention treats `jc-*` as command adapters,
+  not skills). Enumerates `@commitlint/config-conventional`
+  constraints inline at draft time (header-max-length, subject-case,
+  type-enum) and specifies a pre-`git commit` format-check pass.
+  AGENT.md Development Commands gains a "Commit Discipline" citation.
+- **Family B meta-tripwires**:
+  - `/jc-consolidate-docs` step 5 extended with a taxonomy-seam
+    meta-check and a cross-plane path scan.
+  - Pending-graduations register schema extended with an orphan-item
+    signal (items with `graduation-target: other` that persist across
+    two consecutive consolidations).
+- **Cross-plane paths installed**:
+  - `.agent/rules/executive-memory-drift-capture.md` authored with
+    Claude + Cursor adapters — the `active → executive` path rule.
+  - Pattern-library README extended with optional `cross_plane: true`
+    frontmatter field.
+  - Workstream-brief README extended with optional `executive-impact:`
+    tag.
+  - Napkin skill extended with optional `Source plane:` origin tag.
+- **Observability-thread migration**: next-session record moved from
+  the legacy singular operational-memory path to a thread-named
+  next-session record. Thread identity block and Participating agent
+  identities table added (with a retroactive row covering the prior
+  observability-thread landing whose attribution predated the
+  identity registry; concrete attribution forward from 2026-04-22).
+  All inbound references updated. Closes the
+  `observability-thread-legacy-singular-path` register item.
+- **Distilled citation** added for
+  `passive-guidance-loses-to-artefact-gravity` pattern in
+  `distilled.md` and in `start-right-quick` Learning-loop surfaces.
+- **Standing decision added**: *"Misleading docs are blocking."* When
+  a decision, design, or doctrine amendment invalidates a passage in
+  a plan, ADR, PDR, rule, or other durable document, update it in the
+  same landing — do not defer. Stale prescriptive text is how
+  inherited framing propagates. **Provenance**: surfaced mid-session
+  by owner after the PDR-029 amendment left the plan body describing
+  the pre-amendment script shape. The new standing decision was
+  immediately self-applied — the plan body's Tasks 4.2.b/c/3 and
+  Session 4 close block were rewritten the same landing. A
+  `docs-adr-reviewer` close pass surfaced further stale prescriptions
+  (in the newly-authored identity rule and three downstream plan
+  surfaces) which were also fixed in the same landing.
+
+Session 4 journey-as-learning note: the **two** PDR-029 amendments
+arose from three owner-metacognition interventions in a single
+session. Pass 1 (mid-session): five reviewers (Barney, code-reviewer,
+test-reviewer, type-reviewer, config-reviewer) approved a TypeScript
+script shape for the Class A.2 Layer 2 gate without questioning the
+inherited "active = code" frame; all already-written code was undone
+and reshaped documentation-first. Pass 2 (docs-adr-reviewer close):
+downstream surfaces still prescribed the killed script shape;
+*"Misleading docs are blocking"* standing-decision-candidate was
+raised and self-applied against the same session's plan body. Pass 3
+(late close): `standing-decisions.md` itself was surfaced as a misc
+bucket — *"standing decision" is not a category distinct from ADR /
+PDR / rule / principle / plan-local meta-decision_*. The file was
+deleted; its contents decompose into proper artefact homes (tracked
+as Due register items for Session 5). PDR-029 Class-A.1 Layer-2
+prescription retracted in a second Amendment Log entry — A.1 Layer 2
+is the existing foundation-directive grounding (ritual-moment
+markdown-reading active layer per the first amendment), not a
+dedicated register surface. Pattern candidate
+`plan-body-framing-outlives-reviewers` now at three instances this
+session → moved from pending to due in the register.
+
+Owner framed this explicitly as valuable discovery, not wasted effort
+— the three-pass cascade is how structural misframes surface. Owner
+repeated the principle *"always choose long-term architectural
+excellence over short-term expediency"* verbally during the session;
+the repetition is signal that inline prose doctrine is insufficiently
+active (`principles.md § Architectural Excellence Over Expediency`
+was not firing) — captured as a pattern candidate.
+
+**Fourth metacognition pass at close** (2026-04-21, after the
+three that drove the PDR-029 amendments + standing-decisions
+retraction): owner asked *"are we building a valuable system or
+throwing energy into theatre?"* The question surfaced that (a)
+Session 4 produced substantial doctrine but zero empirical
+firing evidence, (b) the Session 4 agent missed the linked
+authoritative `operational-awareness-continuity.md` workstream
+brief despite the thread record citing it, and (c) the six
+pattern candidates generated this session plus the two PDR-029
+amendments together represent a doctrine-velocity signal, not
+a progress signal.
+
+**Fifth metacognition pass at close** (2026-04-21, immediately
+following pass 4): agent initially reframed Session 5 as a
+"choice point" between two postures — treating the owner's
+honest-question concern as informational optionality rather than
+as directional redirect. Owner clarified: *"there is no
+alternative thread, we need this work to be FINISHED, properly,
+carefully, fully, choosing long-term architectural excellence at
+every point."* Session 5 reframed (again, same close) as a
+**mandatory sequence**: stage 1 evaluate-and-simplify first (close
+OAC Phase 4, delete-bias simplification pass, first-principles
+check), stage 2 original Session 5 extension runs only if stage
+1 closes with budget remaining. Thread does not switch. Pattern
+candidate captured: **`treating-owner-concern-as-information-
+rather-than-direction`** — when owner surfaces concern about
+direction, they are redirecting, not offering options; framing
+the concern as a "choice point" is agent hedging rather than
+acting.
+
+Owner-approved per PDR-003 at Session 4 close.
+
+## [oak-open-curriculum-ecosystem] 2026-04-21 — Session 3 doctrine bundle: threads/identity, executive-memory feedback loop, perturbation-mechanism bundle, plane-tag vocabulary, and PDR-011/PDR-026 amendments
+
+Session 3 of the Staged Doctrine Consolidation and Graduation plan
+landed a coherent six-artefact doctrine bundle under bundle rhythm
+(owner-chosen at session open: author all → review all → apply in
+order → sign-off). Owner-approved per PDR-003.
+
+- **PDR-027 (new)** — *Threads, Sessions, and Agent Identity*. Names
+  the **thread** as the continuity unit (named stream of work
+  persisting across sessions, potentially touched by multiple
+  agents); names the **session** as a time-bounded agent occurrence
+  that participates in one or more threads. Specifies the identity
+  schema (`platform`, `model`, `session_id_prefix`, `agent_name`,
+  `role`, `first_session`, `last_session`) with `platform + model
+  + agent_name` as the identity key. Codifies the **additive-identity
+  rule**: joining a thread adds an identity row; never overwrites.
+  Clarifies that PDR-026's landing commitment is per-thread-per-
+  session.
+- **PDR-028 (new)** — *Executive-Memory Feedback Loop*. Closes the
+  loop gap on write-once catalogue surfaces by requiring a
+  **drift-detection** section (`Last verified accurate` +
+  `Known drift / pending update`) on each executive-memory
+  surface, with lookup-time verification and drift capture.
+  Introduces the **plane-origin tag** `Source plane: <plane>` as
+  the napkin-entry graduation channel into the pending-graduations
+  register. Extends consolidation with a **cross-plane scan**
+  step that aggregates tagged observations. Portably defines
+  the pending-graduations register as the host's graduation-
+  candidate aggregation surface. Composes with the capture →
+  distil → graduate → enforce pipeline (PDR-011) without
+  weakening graduation bars.
+- **PDR-029 (new)** — *Perturbation-Mechanism Bundle*. Promotes
+  three perturbation mechanisms (first-principles prompt,
+  standing-decision register, non-goal re-ratification) from
+  passive register entries to **active tripwires** with named
+  firing cadences per the Heath-brothers tripwire framing
+  (*Decisive* ch. 9, *Switch* ch. 8). Defines **Family A** for
+  the `passive-guidance-loses-to-artefact-gravity` failure mode
+  in two classes — Class A.1 (plan-body inherited framing; two
+  layers) and Class A.2 (agent-registration/identity discipline;
+  three layers: session-open rule + session-close gate with
+  structural thread enumeration + stale-identity health probe).
+  Defines **Family B** meta-tripwires for memory-taxonomy seams
+  (per-consolidation meta-check, accumulation-triggered seam
+  review, orphan-item signal). Makes **platform parity
+  load-bearing**: every Family A rule requires canonical +
+  Claude adapter + Cursor adapter + AGENT.md citation; every
+  Family A probe requires platform-neutral inputs or explicit
+  cross-platform parity. Self-application is explicit
+  (two-phase: ratify then install; install session closes the
+  exposure window).
+- **PDR-030 (new)** — *Plane-Tag Vocabulary*. Unifies the two
+  plane-aware tags introduced by the bundle into a small fixed
+  vocabulary with two facets: **origin** (`Source plane:
+  <plane>` inline on capture-stage entries) and **span**
+  (`cross_plane: true` frontmatter on graduation-stage
+  artefacts). Conditional on multi-plane memory organisation.
+  New plane-prefixed tags require PDR amendment — the friction
+  is the point. Authored in-bundle after the Session 3
+  docs-adr-reviewer pass surfaced the vocabulary-fragmentation
+  risk; owner directed the codification rather than deferring.
+- **PDR-011 amendment (2026-04-21)** — continuity unit named
+  explicitly as the **thread** (per PDR-027), not the session.
+  Pipeline reframed as *thread-scoped at the upper lifecycle,
+  session-scoped at the lower lifecycle*: capture within a
+  session on a thread; distil → graduate → enforce across
+  sessions within and across threads. Continuity contract
+  extended to permit per-thread next-session records. Pipeline
+  stages and split-loop model unchanged.
+- **PDR-026 amendment (2026-04-21)** — landing commitment
+  clarified as **per-thread-per-session**: a session commits to
+  landing ONE thread's target; cross-thread spread is
+  anti-pattern. Session-open structure updated to name the
+  thread alongside the landing target; non-participating
+  threads declared explicitly. Opportunistic structural fix:
+  `Host-local context` moved from top-level H2 into a `## Notes`
+  section and a `### Graduation intent` subsection added,
+  matching the convention used by sibling PDRs.
+- **README index** updated for PDR-026..PDR-030.
+- Mid-cycle review discipline: `docs-adr-reviewer` dispatched
+  on the bundle before owner review; supplementary pass
+  dispatched on PDR-030 and the PDR-026 refactor. Findings
+  applied to tighten cross-references, concept definitions
+  (pending-graduations register, standing-decision register),
+  and portability posture. Two OWNER-DECISION items surfaced
+  by the supplementary pass (OD-3: span-tag frontmatter hedge;
+  OD-4: migration-boundary mechanism) were accepted as-drafted
+  (frontmatter canonical; migration boundary soft); addressable
+  via amendment if tightening becomes load-bearing.
+
+**Host-local downstream work scheduled**: Family A Class A.1
+read-trigger surface (`standing-decisions.md`) and Class A.2
+three tripwire layers install in Session 4 of the Staged
+Doctrine Consolidation and Graduation plan. Family B layers
+install same session. PDR-028 executive-memory drift-detection
+surfaces install in Session 4 as well.
+
+## [oak-open-curriculum-ecosystem] 2026-04-21 — Artefact Map row for `.agent/memory/` refreshed to three-mode taxonomy
+
+- **practice.md Artefact Map** row for `.agent/memory/` rewritten
+  from a single-thing description to explicitly enumerate the
+  three modes (`active/` learning-loop; `operational/` continuity;
+  `executive/` organisational contract) with their read triggers
+  and refresh cadences. Cites `.agent/memory/README.md` for the
+  full specification. Landed as Task 1.5 of the Staged Doctrine
+  Consolidation and Graduation plan, Session 1; standing decision
+  from 2026-04-21 (three-plane memory taxonomy RATIFIED;
+  three-plane memory taxonomy PORTABLE) governs the frame.
+- Owner-approved per PDR-003.
+
+## [oak-open-curriculum-ecosystem] 2026-04-19 — PDR-025 Quality-Gate Dismissal + Compressed-Labels Principle Extended to Document-Structure Layer
+
+- **PDR-025** graduates the distilled rule "all gates blocking, no
+  'pre-existing' exceptions" into a full PDR covering quality-gate
+  dismissal discipline. Three failure modes named: pre-existing
+  dismissal; "no new issues" rationalisation; undocumented CI
+  exception-lists. Decision: every gate failure routes to in-scope
+  fix or a named lane with acceptance + owner + trigger; "pre-
+  existing" is metadata, not a dismissal; CI exception-lists are
+  tracked lanes, not shadow gates. Related to PDR-008 (gate
+  naming), PDR-012 (findings routing), PDR-017 (workaround
+  hygiene), PDR-020 (check-driven development) — composes without
+  replacing.
+- **practice-lineage.md** Active Learned Principle
+  `Compressed neutral labels smuggle scope and uncertainty`
+  extended to cover the document-structure layer as a third
+  sibling (alongside review and planning). Trigger: 2026-04-19
+  observability plan reshape surfaced a dual-frame drift trap
+  (historical §Phase N headers + new §Execution Waves table + per-
+  lane inline notes forming three authoritative frames for the
+  same ordering). Document-structure layer instances go to the
+  new `.agent/memory/active/patterns/collapse-authoritative-frames-when-settled.md`.
+- Distilled graduation (2026-04-19 pass): 1 entry pruned
+  (`All gates blocking, no "pre-existing" exceptions` → PDR-025);
+  1 entry refined (`@ts-expect-error` narrowed to emphasise test-
+  design scope distinct from PDR-020's RED-phase framing); 1
+  watchlist entry added (forward-pointing planning references need
+  "planned, not yet code" markers — single-instance hold pending
+  cross-session validation).
+- Host-local memory: three new patterns in `.agent/memory/active/patterns/`:
+  `stage-what-you-commit.md` (2 cross-session instances — git
+  index as durable state); `foundations-before-consumers.md`
+  (owner-approved — multi-emitter plan wave ordering);
+  `collapse-authoritative-frames-when-settled.md` (owner-approved
+  — companion to the extended compressed-labels principle).
+- **Fitness — Core trinity limits raised, deferred refinement
+  acknowledged.** Step-9 fitness check surfaced three hard-zone
+  Core trinity files (practice-bootstrap, practice-lineage,
+  practice.md) alongside the three known-deferred directives.
+  Per owner direction ("raise somewhat, not totally; defer full
+  refinement and reflection of the Core to another session"),
+  limits raised modestly with ~10% headroom over current content:
+  practice-bootstrap `fitness_line_target` 590 → 680 /
+  `fitness_line_limit` 750 → 830 / `fitness_char_limit` 31000 →
+  40500; practice-lineage 590 → 680 / 725 → 830 / 36000 → 48500;
+  practice.md `fitness_char_limit` 23000 → 29000 (lines unchanged).
+  Practice.md prose-line-width violation at line 201 fixed by
+  wrapping. Trinity files now soft-zone, not hard. Full refinement
+  (compression, graduation, split decisions) deferred to a future
+  dedicated session. Post-raise strict-hard state: three hard items
+  matching the known-deferred AGENT.md / principles.md /
+  testing-strategy.md — no new hard violations introduced.
 
 ## [oak-open-curriculum-ecosystem] 2026-04-18 — PDR-024 Vital Integration Surfaces + Consolidate-Docs Upstream-Review Wiring
 
@@ -111,7 +1812,8 @@ Proof` moved to **PDR-030** — the next free number past the upstream's
   extension, refinement, supersession, and drift candidates against
   existing Core for owner approval; step 10 (practice exchange)
   updated per PDR-007 outgoing-narrowing.
-- `session-handoff` command now cites PDR-011 alongside ADR-150.
+- `session-handoff` command now cites PDR-011 alongside the host-side
+  continuity-surfaces ADR (see practice-index Concept ↔ ADR map).
 - `skills/patterns/SKILL.md` updated to point at both
   practice-core/patterns (general abstractions, first) and
   memory/patterns (instances, second); notes Practice-governance
@@ -162,13 +1864,13 @@ Proof` moved to **PDR-030** — the next free number past the upstream's
   enforce).
 - **PDR-012 through PDR-023** batch-authored as Practice-governance
   decisions, absorbing ~29 Practice-governance patterns from
-  `memory/patterns/` into coherent grouped PDRs: review-findings
+  `memory/active/patterns/` into coherent grouped PDRs: review-findings
   routing, grounding and framing, consolidation/knowledge-flow,
   reviewer authority and dispatch, claim propagation and reference
   quality, workaround hygiene and fix-at-source, planning
   discipline, ADR scope by reusability, check-driven development,
   test validity, governance enforcement scanners, documentation
-  structure. Instance files remain in `memory/patterns/` with
+  structure. Instance files remain in `memory/active/patterns/` with
   `related_pdr: PDR-NNN` frontmatter pointing at the general form.
 - `.agent/practice-context/outgoing/` sharpened per PDR-007 to
   ephemeral exchange only: 12 PDR-shaped topic notes deleted
@@ -310,9 +2012,10 @@ Proof` moved to **PDR-030** — the next free number past the upstream's
   teaches, compares, and evolves at the concept level — not the file or
   name level. The knowledge flow extracts concepts from instances;
   Practice exchange compares concepts across repos.
-- Promoted "substance before fitness" as a foundational principle.
-  Concepts must be written at the weight they deserve first; fitness
-  limits are a post-writing editorial concern.
+- Promoted "substance before fitness" as a foundational principle
+  (amended 2026-04-26 to "learning before fitness"). Concepts must be
+  written at the weight they deserve first; fitness limits are
+  post-writing health signals, not learning constraints.
 - Added Architectural Decision Records section to practice-bootstrap.md:
   portable ADR template, lifecycle states, learning loop connection.
   ADRs are the graduation target of the knowledge flow.
@@ -321,8 +2024,8 @@ Proof` moved to **PDR-030** — the next free number past the upstream's
   documents it. A descriptive name is better than an opaque number, but
   a name alone is still a pointer — the substance must travel.
 - Removed all host-repo-specific ADR references from Practice Core
-  files (6 occurrences of "ADR-144" across 3 files, replaced with
-  concept descriptions).
+  files (6 occurrences of the host's three-zone-fitness-model ADR
+  identifier across 3 files, replaced with concept descriptions).
 - Reframed Integration Flow step 3 to operate at the concept level:
   "compare at the concept level, not file-by-file."
 - Compressed redundant content across practice.md, practice-bootstrap.md,

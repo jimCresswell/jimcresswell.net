@@ -15,17 +15,17 @@ Ground first via `start-right-quick` or `start-right-thorough`.
 1. [`../../directives/AGENT.md`](../../directives/AGENT.md)
 2. [`../../directives/principles.md`](../../directives/principles.md)
 3. [`../../directives/testing-strategy.md`](../../directives/testing-strategy.md)
-4. [`../../memory/distilled.md`](../../memory/distilled.md)
-5. [`../../memory/napkin.md`](../../memory/napkin.md)
-6. [`../../plans/roadmap.md`](../../plans/roadmap.md)
-7. [`../../plans/active/README.md`](../../plans/active/README.md)
-8. [`../../plans/current/personal-knowledge-graph-roadmap.plan.md`](../../plans/current/personal-knowledge-graph-roadmap.plan.md)
-9. [`../../plans/active/personal-knowledge-graph-source-of-truth-design.plan.md`](../../plans/active/personal-knowledge-graph-source-of-truth-design.plan.md)
-10. [`../../plans/research/graph-source-of-truth-layer-map.md`](../../plans/research/graph-source-of-truth-layer-map.md)
-11. [`../../plans/research/graph-current-state-audit.md`](../../plans/research/graph-current-state-audit.md)
-12. [`../../plans/research/graph-publication-consumer-and-proof-model.md`](../../plans/research/graph-publication-consumer-and-proof-model.md)
-13. [`../../plans/research/graph-publication-output-audit.md`](../../plans/research/graph-publication-output-audit.md)
-14. [`../../plans/research/graph-rich-result-external-validator-evidence.md`](../../plans/research/graph-rich-result-external-validator-evidence.md)
+4. [`../../memory/active/distilled.md`](../../memory/active/distilled.md)
+5. [`../../memory/active/napkin.md`](../../memory/active/napkin.md)
+6. [`../../plans-legacy-2026-09/roadmap.md`](../../plans-legacy-2026-09/roadmap.md)
+7. [`../../plans-legacy-2026-09/active/README.md`](../../plans-legacy-2026-09/active/README.md)
+8. [`../../plans-legacy-2026-09/current/personal-knowledge-graph-roadmap.plan.md`](../../plans-legacy-2026-09/current/personal-knowledge-graph-roadmap.plan.md)
+9. [`../../plans-legacy-2026-09/active/personal-knowledge-graph-source-of-truth-design.plan.md`](../../plans-legacy-2026-09/active/personal-knowledge-graph-source-of-truth-design.plan.md)
+10. [`../../plans-legacy-2026-09/research/graph-source-of-truth-layer-map.md`](../../plans-legacy-2026-09/research/graph-source-of-truth-layer-map.md)
+11. [`../../plans-legacy-2026-09/research/graph-current-state-audit.md`](../../plans-legacy-2026-09/research/graph-current-state-audit.md)
+12. [`../../plans-legacy-2026-09/research/graph-publication-consumer-and-proof-model.md`](../../plans-legacy-2026-09/research/graph-publication-consumer-and-proof-model.md)
+13. [`../../plans-legacy-2026-09/research/graph-publication-output-audit.md`](../../plans-legacy-2026-09/research/graph-publication-output-audit.md)
+14. [`../../plans-legacy-2026-09/research/graph-rich-result-external-validator-evidence.md`](../../plans-legacy-2026-09/research/graph-rich-result-external-validator-evidence.md)
 15. [`../../../docs/architecture/README.md`](../../../docs/architecture/README.md)
 16. [`../../../docs/architecture/content-model.md`](../../../docs/architecture/content-model.md)
 17. [`../../../docs/architecture/decision-records/014-entity-model-design.md`](../../../docs/architecture/decision-records/014-entity-model-design.md)
@@ -41,7 +41,7 @@ Ground first via `start-right-quick` or `start-right-thorough`.
   `graph-source-of-truth-layer-map.md`.
 - **Tilt composition design is deferred door-open.** Live tilt routes were
   retired under ADR-021; the completion record is
-  [`../../plans/archive/tilt-retirement.plan.md`](../../plans/archive/tilt-retirement.plan.md).
+  `archive/tilt-retirement.plan.md`.
   Do not design tilt composition into B2. Re-entry, if it ever happens, starts
   from the preserved tilt reference doc + the B1 layer map's
   tilt-implications section.
@@ -55,7 +55,7 @@ Ground first via `start-right-quick` or `start-right-thorough`.
   JSON and the entity graph, while the target Track B model is now defined as
   one cohesive graph across multiple source layers.
 - No compatibility layers, no stub-preservation docs, no edits under
-  `.agent/plans/archive/`.
+  `.agent/plans-legacy-2026-09/archive/`.
 - Proof is still required, but for this slice the proof is architectural and
   documentary rather than external-validator capture.
 
@@ -98,17 +98,17 @@ The output should define:
 
 ## Likely relevant files
 
-- [`../../plans/active/personal-knowledge-graph-source-of-truth-design.plan.md`](../../plans/active/personal-knowledge-graph-source-of-truth-design.plan.md)
-- [`../../plans/current/personal-knowledge-graph-roadmap.plan.md`](../../plans/current/personal-knowledge-graph-roadmap.plan.md)
-- [`../../plans/research/graph-source-of-truth-layer-map.md`](../../plans/research/graph-source-of-truth-layer-map.md)
-- [`../../plans/research/graph-current-state-audit.md`](../../plans/research/graph-current-state-audit.md)
-- [`../../plans/research/graph-publication-output-audit.md`](../../plans/research/graph-publication-output-audit.md)
-- [`../../../lib/page-document-contract.ts`](../../../lib/page-document-contract.ts)
+- [`../../plans-legacy-2026-09/active/personal-knowledge-graph-source-of-truth-design.plan.md`](../../plans-legacy-2026-09/active/personal-knowledge-graph-source-of-truth-design.plan.md)
+- [`../../plans-legacy-2026-09/current/personal-knowledge-graph-roadmap.plan.md`](../../plans-legacy-2026-09/current/personal-knowledge-graph-roadmap.plan.md)
+- [`../../plans-legacy-2026-09/research/graph-source-of-truth-layer-map.md`](../../plans-legacy-2026-09/research/graph-source-of-truth-layer-map.md)
+- [`../../plans-legacy-2026-09/research/graph-current-state-audit.md`](../../plans-legacy-2026-09/research/graph-current-state-audit.md)
+- [`../../plans-legacy-2026-09/research/graph-publication-output-audit.md`](../../plans-legacy-2026-09/research/graph-publication-output-audit.md)
+- [`../../../jcdotnet/lib/page-document-contract.ts`](../../../jcdotnet/lib/page-document-contract.ts)
 - [`../../../docs/architecture/content-model.md`](../../../docs/architecture/content-model.md)
 - [`../../../docs/architecture/decision-records/014-entity-model-design.md`](../../../docs/architecture/decision-records/014-entity-model-design.md)
-- [`../../../content/frontpage.content.json`](../../../content/frontpage.content.json)
-- [`../../../content/cv.content.json`](../../../content/cv.content.json)
-- [`../../../content/entities.json`](../../../content/entities.json)
+- [`../../../jcdotnet/content/frontpage.content.json`](../../../jcdotnet/content/frontpage.content.json)
+- [`../../../jcdotnet/content/cv.content.json`](../../../jcdotnet/content/cv.content.json)
+- [`../../../jcdotnet/content/entities.json`](../../../jcdotnet/content/entities.json)
 
 ## Do the work
 
@@ -118,7 +118,7 @@ The output should define:
   keep the design standalone
 - update other live plans or prompts only if status, next steps, or cross-links
   change
-- update [`../../memory/napkin.md`](../../memory/napkin.md) with mistakes,
+- update [`../../memory/active/napkin.md`](../../memory/active/napkin.md) with mistakes,
   corrections, and what was learned
 
 ## Proof requirements
@@ -130,10 +130,10 @@ The output should define:
 
 ## After changes, run in order
 
-- `pnpm format:fix`
-- `pnpm markdownlint:fix`
+- `pnpm format:root`
+- `pnpm markdownlint:root`
 - `pnpm lint:fix`
-- `pnpm typecheck`
+- `pnpm type-check`
 - `pnpm test`
 - `pnpm knip`
 - `pnpm secrets:scan`

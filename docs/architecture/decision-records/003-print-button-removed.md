@@ -29,7 +29,7 @@ The `<PrintButton>` component was previously rendered alongside `<DownloadPdfLin
 
 ```tsx
 // components/print-button.tsx (removed)
-"use client";
+'use client';
 
 export function PrintButton() {
   return (

@@ -1,0 +1,12 @@
+name: 'CodeQL config'
+
+# CodeQL analysis configuration for the advanced-setup workflow
+# (.github/workflows/codeql.yml). Advanced setup exists so `paths-ignore` is
+# honoured; the query suite mirrors the default-setup "extended" suite.
+
+queries:
+  - uses: security-extended
+
+# The pre-transplant Practice is retained only until the owner's loss-scan
+# review; it is never run as code on this estate.
+paths-ignore:

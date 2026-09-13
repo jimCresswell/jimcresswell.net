@@ -1,242 +1,245 @@
 ---
-fitness_line_target: 180
-fitness_line_limit: 220
-fitness_char_limit: 12500
+fitness_line_target: 200
+fitness_line_limit: 275
+fitness_char_limit: 16500
 fitness_line_length: 100
-split_strategy: Extract detail to referenced docs; this file is an index/entry point
+split_strategy: "Extract detail to referenced docs; this file is an index/entry point"
 ---
 
 # AGENT.md
 
-This file provides core directives for AI agents working with this codebase. Read ALL of it first,
-then follow all instructions.
+This is the operational entry point for AI agents working with this codebase.
+Read all of it first, then follow the links that match the work in front of
+you. This file is an index and stance-setter; durable detail lives in the
+referenced homes.
 
 ## Grounding
 
-Commit to always using British spelling, British English grammar, and British date and time formats.
+Before any setup or command, classify the host with
+[cloud-environment-routing.md](./cloud-environment-routing.md); a detected
+non-executing host governs every execution-bearing step that follows.
 
-## First Question
+Commit to British spelling, grammar, and date formats. Reflect on your current
+task; update your task list if needed. Apply the
+[user-collaboration directive](./user-collaboration.md): dialogue, scope
+discipline, human risk acceptance, direct verification, and archive
+discipline. For agent-to-agent work also apply the
+[agent-collaboration directive](./agent-collaboration.md). In a coordinated
+multi-agent session the two first-class seats — **Director** and
+**Implementer** — are defined by
+[PDR-117](../practice-core/decision-records/PDR-117-director-and-implementer-roles.md).
+Team shape is owner-set per session; never infer a pairing from archived
+collaboration records.
 
-Always apply the first question: **Ask: could it be simpler without compromising quality?**
-
-## Project Context
-
-**What**: Personal website and CV for Jim Cresswell
-**Stack**: Next.js 16, React 19, Tailwind CSS 4, deployed on Vercel
-**Package Manager**: pnpm (REQUIRED — never npm/yarn)
+For planning work, read [metacognition.md](./metacognition.md) and follow its
+reflection discipline before finalising a plan.
 
 ## The Practice
 
-This repo follows the Agentic Engineering Practice. For the full system — principles, structure,
-tooling, and knowledge flow — see [practice-core/index.md](../practice-core/index.md). For navigable
-links to this repo's artefacts, validators, and reference surfaces, see
-[practice-index.md](../practice-index.md). For explicit supported and unsupported platform mappings,
-see [cross-platform-agent-surface-matrix.md](../reference/cross-platform-agent-surface-matrix.md).
+This file is the front door to the **agentic engineering practice**: the
+self-reinforcing system of principles, structures, reviewers, and tooling that
+governs how work happens in this repository. The lineage was transplanted from
+the Oak Open Curriculum Ecosystem on 2026-09-12; the manifest and the owner's
+rulings live at
+[`docs/explorations/2026-09-12-oce-practice-lineage-transplant.md`](../../docs/explorations/2026-09-12-oce-practice-lineage-transplant.md).
+
+Start with:
+
+- [practice-core/index.md](../practice-core/index.md) — portable Practice
+  orientation
+- [practice-index.md](../practice-index.md) — local bridge into this repo's
+  live surfaces
+- [practice.md](../practice-core/practice.md) — full Practice map
+- [practice-lineage.md](../practice-core/practice-lineage.md) — cross-repo
+  propagation and plasmid exchange
+
+All work MUST start with the `start-right-quick`, `start-right-thorough`, or
+`start-right-team` skill. If none has been specified, read
+[`start-right-quick/SKILL-CANONICAL.md`](../skills/start-right-quick/SKILL-CANONICAL.md)
+immediately after this file and apply it. For the layering contract, authority
+order, and routing rule, see [orientation.md](./orientation.md).
+
+ADRs define how the site should work and are the architectural source of
+truth: [ADR index](../../docs/architecture/decision-records/README.md). PDRs
+govern the Practice itself:
+[PDR index](../practice-core/decision-records/README.md).
+
+## First Question
+
+**Could it be simpler without compromising quality?**
+
+## First Principle
+
+**Strict, everywhere, all the time.**
+
+## Second Question
+
+**Would this be simpler if the system changed?**
+
+## Decision Lenses
+
+The First Principle and the two questions above are lenses #2–#4 of the
+canonical
+[Decision Lenses — Order of Resolution](./principles.md#decision-lenses--order-of-resolution).
+Lens #1 — **choose long-term architectural excellence at every decision
+point** — governs them all, and lens #5 is **optimise for user value**. Apply
+them in that order; the first that decisively resolves the question wins.
+
+## Cardinal Rule
+
+The entity model in `content/entities.json` is the single source of truth for
+identity, shared atoms, and structured data. Every rendered surface — page
+metadata, JSON-LD, CV, PDF — DERIVES from it and never restates it. If the
+graph changes, `pnpm build` MUST be sufficient to realign every surface
+(ADR-020, ADR-021; full statement in
+[principles.md §Cardinal Rule](./principles.md#cardinal-rule-of-this-repository)).
+
+## Project Context
+
+**What**: personal website and CV for Jim Cresswell, built on a personal
+knowledge graph. **Stack**: Next.js, React, Tailwind CSS, deployed on Vercel.
+**Package manager**: pnpm only. **Layout**: a Turborepo monorepo — `jcdotnet`
+(the site), `agent-tools` (`@engraph/agent-tools`, the Practice tooling) and
+five `@engraph/*` packages under `tooling/`. For setup and topology see the
+[root README](../../README.md) and the
+[architecture overview](../../docs/architecture/README.md).
 
 ## Rules
 
-Read [the principles](./principles.md); reflect on them, _apply_ them — they MUST be followed at ALL times.
-Read [metacognition](./metacognition.md) and apply it before planning.
+Read [principles.md](./principles.md); reflect on it, apply it, and follow it
+at all times.
+
+The always-applied rule tier lives in [`.agent/rules/`](../rules/). Rules
+operationalise principles, ADRs, and PDRs. The canonical, platform-independent
+enumeration is [`RULES_INDEX.md`](../../RULES_INDEX.md) at the repo root.
+Claude and Cursor load their adapter tiers automatically; Codex and any other
+non-loader platform MUST read every canonical `.agent/rules/*.md` listed there
+at session open.
+
+## Reviewers And Tools
+
+Apply your own critical thinking, then use reviewers when the platform and
+owner direction allow it. Reviewer routing, timing, roster, depth, and
+reporting requirements live in
+[invoke-code-experts.md](../memory/executive/invoke-code-experts.md). The
+roster with each expert's purpose is in
+[practice-index.md §Experts](../practice-index.md#experts-sub-agents); the
+site-specific lanes are the four named architecture experts (Barney — data and
+graph; Betty — navigation and layout; Fred — build, caching, PDF; Wilma —
+Practice and docs), `pkg-expert`, and `editor`.
+
+For a fast second opinion on whether the current work is the right work,
+invoke [`$jc-cricket`](../skills/cognition/cricket/SKILL-CANONICAL.md).
+Cricket is a priority-and-framing conscience check, never a substitute for an
+artefact reviewer.
+
+Agent workflow CLIs live in [agent-tools](../../agent-tools/README.md) and run
+from the repo root via `pnpm --filter @engraph/agent-tools <script>`.
+
+Agent artefacts follow the three-layer model: canonical content in `.agent/`,
+generated thin platform adapters, and platform entry points. See
+[artefact-inventory.md](../memory/executive/artefact-inventory.md) and the
+[architecture overview](../../docs/architecture/README.md) before
+adding rules, skills, sub-agents, adapters, or ADRs; regenerate adapters with
+`pnpm portability:fix`.
+
+Use the [commit skill](../skills/change-custody/commit/SKILL-CANONICAL.md) for
+commits. **Do not push** unless explicitly asked.
+
+## Memory And Continuity
+
+Institutional memory lives in `.agent/memory/` in three modes
+([memory/README.md](../memory/README.md)):
+
+- [`active/distilled.md`](../memory/active/distilled.md) — refined
+  cross-session lessons; [`active/napkin.md`](../memory/active/napkin.md) —
+  current session observations. Read both every session; write the napkin
+  continuously.
+- [`operational/repo-continuity.md`](../memory/operational/repo-continuity.md)
+  — where we are and what is next;
+  [`operational/pending-graduations.md`](../memory/operational/pending-graduations.md)
+  — learned doctrine awaiting a home.
+- `executive/` — contracts: artefact inventory, expert catalogue, platform
+  matrix.
+
+Before inventing a new approach, check the
+[pattern instances](../memory/active/patterns/README.md) and PDRs with
+`pdr_kind: pattern`. The napkin rotates only after its contents have been
+processed into permanent homes; rotation is never a goal.
+
+## Content Work
+
+Before any writing that represents Jim — CV, front page, LinkedIn, positioning
+— read [editorial-strategy.md](./editorial-strategy.md) (audience, composition,
+attention, readability, surface fit) and
+[editorial-guidance.md](./editorial-guidance.md) (identity, voice, register),
+then apply the `editorial-voice` skill and the `editor` expert. Private
+editorial material, if present, is confidential and informs writing only
+([privacy.md](./privacy.md) §Private editorial material); never quote, summarise
+or identify it on a public surface.
 
 ## Essential Links
 
-- [Principles](./principles.md) — Core development principles
-- [Testing Strategy](./testing-strategy.md) — TDD approach and test types
-- [Metacognition](./metacognition.md) — Pause and reflect before planning
-- [Editorial guidance](./editorial-guidance.md) and [strategy](./editorial-strategy.md) —
-  Read both before content work: identity and voice; audience, composition and readability.
-- [Privacy](./privacy.md) — Psychological safety and PII handling
-- [Security Operations](./secops.md) — Git email, PII audits, operational security
-- [Cross-Platform Surface Matrix](../reference/cross-platform-agent-surface-matrix.md) — Supported
-  and unsupported agent surfaces
-- [Architecture](../../docs/architecture/) — System architecture and ADRs
-- [Editorial Decision Records](../../docs/editorial/decision-records/) — Specific editorial
-  decisions with context and rationale (EDRs)
-- [User Stories](../../docs/project/user-stories.md) — Key user stories
-- [Requirements](../../docs/project/requirements.md) — Non-functional requirements
+- Core practice: [Principles](./principles.md),
+  [Testing Strategy](./testing-strategy.md), [TDD as Design](./tdd-as-design.md),
+  [Validation Strategy](./validation-strategy.md) (types and runtime
+  validation), [Definition of Delivery](./definition-of-delivery.md),
+  [Privacy](./privacy.md), [Security Operations](./secops.md)
+- Architecture: [Architecture](../../docs/architecture/README.md),
+  [ADR index](../../docs/architecture/decision-records/README.md)
+- UI: [Accessibility Practice](../reference/accessibility-practice.md)
+- Build and operations: [Build System](../../docs/engineering/build-system.md),
+  [Workflow](../../docs/engineering/workflow.md)
+- Product: [Editorial Decision Records](../../docs/editorial/decision-records/),
+  [User Stories](../../docs/project/user-stories.md),
+  [Requirements](../../docs/project/requirements.md),
+  [Experience Recording](../experience/README.md)
 
-## Session Start
+## Commands
 
-Every session, read `.agent/memory/distilled.md` and scan `.agent/memory/napkin.md` before doing
-anything. These contain hard-won patterns and recent context. Update the napkin continuously as you
-work — log mistakes, corrections, and what works. See the [napkin skill](../skills/napkin/SKILL.md).
-
-Then follow **[start-right-quick](../skills/start-right-quick/SKILL.md)** for normal work or
-**[start-right-thorough](../skills/start-right-thorough/SKILL.md)** for structural, risky, or
-multi-phase work. The matching command adapters are `/jc-start-right-quick` and
-`/jc-start-right-thorough`.
-
-Also read **`.agent/plans/active/README.md`** and the **active plan markdown** in
-`.agent/plans/active/` — the current execution focus lives in that folder as the real plan file, not
-only in `plans/current/`. When the primary focus changes, move plans, update that README, and
-reconcile `roadmap.md` together.
-
-## Agent Tools
-
-### Sub-agents
-
-Canonical reviewer prompts live in `.agent/sub-agents/templates/`. In Codex, the project reviewer
-roster is registered in `.codex/config.toml` and each role uses a thin `.codex/agents/*.toml`
-adapter that points back to the canonical template.
-
-| Agent                                                                                   | Purpose                                                                      |
-| --------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| [editor](../sub-agents/templates/editor.md)                                             | Editorial reviewer — audience, structure, readability, voice and consistency |
-| [code-reviewer](../sub-agents/templates/code-reviewer.md)                               | Gateway reviewer — quality, correctness, and triage                          |
-| [test-reviewer](../sub-agents/templates/test-reviewer.md)                               | TDD compliance and test quality                                              |
-| [type-reviewer](../sub-agents/templates/type-reviewer.md)                               | TypeScript type safety                                                       |
-| [pkg-reviewer](../sub-agents/templates/pkg-reviewer.md)                                 | PKG specialist — Schema.org, JSON-LD, graph                                  |
-| [architecture-reviewer-barney](../sub-agents/templates/architecture-reviewer-barney.md) | Data, graph, and PKG architecture                                            |
-| [architecture-reviewer-betty](../sub-agents/templates/architecture-reviewer-betty.md)   | Navigation, layout, and experience architecture                              |
-| [architecture-reviewer-fred](../sub-agents/templates/architecture-reviewer-fred.md)     | Build, caching, PDF, and runtime resilience                                  |
-| [architecture-reviewer-wilma](../sub-agents/templates/architecture-reviewer-wilma.md)   | Practice, plan, and documentation architecture                               |
-| [accessibility-reviewer](../sub-agents/templates/accessibility-reviewer.md)             | Accessibility, semantics, and assistive flows                                |
-| [design-system-reviewer](../sub-agents/templates/design-system-reviewer.md)             | Design tokens, spacing, and responsive rhythm                                |
-| [react-component-reviewer](../sub-agents/templates/react-component-reviewer.md)         | React hooks, hydration, and component boundaries                             |
-| [config-reviewer](../sub-agents/templates/config-reviewer.md)                           | Next.js, pnpm, and repo configuration surfaces                               |
-| [docs-adr-reviewer](../sub-agents/templates/docs-adr-reviewer.md)                       | ADRs, docs, and governance narratives                                        |
-| [security-reviewer](../sub-agents/templates/security-reviewer.md)                       | Headers, secrets, and defensive surfaces                                     |
-| [mcp-reviewer](../sub-agents/templates/mcp-reviewer.md)                                 | Cross-platform agent and MCP coherence                                       |
-| [subagent-architect](../sub-agents/templates/subagent-architect.md)                     | Reviewer architecture and dispatch sanity                                    |
-
-### Skills
-
-| Skill                                                                 | Purpose                                                                         |
-| --------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| [start-right-quick](../skills/start-right-quick/SKILL.md)             | Fast session grounding — foundation docs, memory, active plan, inbound Practice |
-| [start-right-thorough](../skills/start-right-thorough/SKILL.md)       | Deeper grounding for structural, risky, or multi-phase work                     |
-| [patterns](../skills/patterns/SKILL.md)                               | Find portable Practice patterns and local pattern instances                     |
-| [accessibility](../skills/accessibility/SKILL.md)                     | Support active accessibility work before review                                 |
-| [architecture](../skills/architecture/SKILL.md)                       | Support active architecture work across the reviewer personae                   |
-| [config](../skills/config/SKILL.md)                                   | Support active configuration and tooling work                                   |
-| [design-system](../skills/design-system/SKILL.md)                     | Support active design-system and visual-language work                           |
-| [docs-adr](../skills/docs-adr/SKILL.md)                               | Support active ADR and durable-doc updates                                      |
-| [mcp](../skills/mcp/SKILL.md)                                         | Support active multi-platform agent-surface work                                |
-| [react-component](../skills/react-component/SKILL.md)                 | Support active App Router and component-boundary work                           |
-| [security](../skills/security/SKILL.md)                               | Support active defensive and secrets-sensitive changes                          |
-| [subagent-architecture](../skills/subagent-architecture/SKILL.md)     | Support active reviewer-estate design and wiring                                |
-| [project-spec-creation](../skills/project-spec-creation/SKILL.md)     | Core workflow — project definition docs for generative UI handoff (v0, Bolt, …) |
-| [editorial-voice](../skills/editorial-voice/SKILL.md)                 | Apply Jim's voice within the wider editorial strategy                           |
-| [quality-gates](../skills/quality-gates/SKILL.md)                     | Run quality gates with restart-on-fix discipline                                |
-| [napkin](../skills/napkin/SKILL.md)                                   | Session learning log — always active, read and update every session             |
-| [distillation](../skills/distillation/SKILL.md)                       | Rotate napkin into curated distilled.md when it grows large                     |
-| [start-right-team](../skills/start-right-team/SKILL.md)               | Team grounding for multi-seat ARC collaboration in this shared checkout         |
-| [metacognition](../skills/metacognition/SKILL.md)                     | Inward mode — reflective depth behind the metacognition directive               |
-| [reason](../skills/reason/SKILL.md)                                   | Outward mode — direct-trial gate, stop gate, five structured-reasoning moves    |
-| [concept-exploration](../skills/concept-exploration/SKILL.md)         | Explore unshaped concepts through alternating movements before options form     |
-| [proportionality](../skills/proportionality/SKILL.md)                 | Pre-decision sizing gate — scope, instrument, level; never an expediency door   |
-| [plan](../skills/plan/SKILL.md)                                       | Author plans with the four value questions and authoring disciplines            |
-| [session-handoff](../skills/session-handoff/SKILL.md)                 | Continuity surfaces and the deep context-loss scan when work pauses             |
-| [consolidate-docs](../skills/consolidate-docs/SKILL.md)               | Consolidate the estate; graduate durable knowledge to permanent homes           |
-| [consolidate-until-done](../skills/consolidate-until-done/SKILL.md)   | Persistent curation programme — drain buffers or name the owner decisions       |
-| [knowledge-safety-sweep](../skills/knowledge-safety-sweep/SKILL.md)   | Mid-session capture of would-be-lost context without closing the seat           |
-| [wrap](../skills/wrap/SKILL.md)                                       | Deep closeout programme — handoff, consolidation, metaloss recursion            |
-| [retrospective](../skills/retrospective/SKILL.md)                     | Post-mortem on a completed arc; record lands in `.agent/reports/`               |
-| [pr-lifecycle](../skills/pr-lifecycle/SKILL.md)                       | PR from branch to merge — review-round state machine and honest closeout        |
-| [semantic-merge](../skills/semantic-merge/SKILL.md)                   | Concept-preserving merge of diverged memory and state files                     |
-| [undo-change](../skills/undo-change/SKILL.md)                         | Safety decision tree for undo/revert/reset — halts for owner authorisation      |
-| [author-skills](../skills/author-skills/SKILL.md)                     | Create or update repo-local skills and adapters                                 |
-| [deslop](../skills/deslop/SKILL.md)                                   | Remove AI-generated code slop from diffs                                        |
-| [pkg](../skills/pkg/SKILL.md)                                         | PKG entity model and structured data guide                                      |
-| [package-deps-up-to-date](../skills/package-deps-up-to-date/SKILL.md) | Audit and update `package.json` dependencies safely                             |
-
-### Commands
-
-| Command                    | Purpose                                          |
-| -------------------------- | ------------------------------------------------ |
-| `/jc-start-right-quick`    | Ground yourself before beginning normal work     |
-| `/jc-start-right-thorough` | Ground yourself before structural or risky work  |
-| `/jc-gates`                | Run quality gates with restart-on-fix discipline |
-| `/jc-commit`               | Create a well-formed commit with safety checks   |
-| `/jc-consolidate-docs`     | Ensure plans, prompts, and memory are up to date |
-| `/jc-plan`                 | Structured planning workflow                     |
-| `/jc-editor`               | Invoke editorial review                          |
-| `/jc-go`                   | Resume from the current continuity surfaces      |
-| `/jc-metacognition`        | Apply the metacognition directive explicitly     |
-| `/jc-review`               | Run the reviewer flow after a non-trivial change |
-| `/jc-session-handoff`      | Prepare the repo for the next session            |
-
-## Development Commands
-
-All commands use `pnpm`. Key commands:
-
-- `pnpm dev` — local development server
-- `pnpm build` — production build
-- `pnpm check` — blocking gates with auto-fix where appropriate
-- `pnpm test:e2e` — Playwright E2E suite against a production build
-- `pnpm test:e2e:ui` — interactive Playwright UI mode
-- `pnpm vital-surfaces:check` — vital Practice surface validation
-- `pnpm portability:check` — agent-surface parity validation
-- `pnpm subagents:check` — reviewer wrapper and registry validation
-- `pnpm practice:fitness:informational` — advisory Practice/doc fitness report
-- `pnpm fitness-vocabulary:check` — advisory fitness-frontmatter vocabulary check
-
-Full gate sequence, restart-on-fix discipline, and individual checks are documented in
-[principles.md](./principles.md#code-quality). All available scripts are in `package.json`.
+From the repo root, through Turborepo. Run gates one at a time while iterating;
+`pnpm check` is the canonical read-only aggregate and `pnpm fix` the
+mutating pass that precedes it (format, markdownlint, lint, type-check, test, portability,
+sub-agents). Site-only commands run through the workspace filter:
+`pnpm --filter @jimcresswell/www dev | build | test:e2e | visual-regression-harness`.
+`pnpm check` and the E2E suite run sequentially, never in parallel. The
+command source of truth is root `package.json` and
+[Build System](../../docs/engineering/build-system.md). Before every commit,
+check the message in isolation: `pnpm agent-tools:check-commit-message -m "…"`
+(the `commit-msg` hook is the backstop, not the first check).
 
 ## Project Structure
 
 ```text
-app/                    # Next.js App Router pages and layouts
-components/             # React components
-content/                # CV content JSON files
-lib/                    # Utility functions and types
-scripts/                # Build-time scripts (PDF generation)
-docs/                   # Project documentation
-  architecture/         # System architecture and ADRs
-  editorial/            # Editorial decision records (EDRs)
-  project/              # User stories and requirements
-public/                 # Static assets
-e2e/                    # End-to-end tests (Playwright)
-  journeys/             # User story journey tests
-  behaviour/            # Cross-cutting behavioural tests (a11y, SEO, content)
-.agent/                 # Canonical Practice artefacts (platform-agnostic)
-  directives/           # Principles, rules, and operational directives
-  practice-core/        # Portable practice-core files and practice box
-  hooks/                # Hook policy and deliberate hook-surface documentation
-  reference/            # Stable local reference docs such as the surface matrix
-  commands/             # Canonical commands
-  skills/               # Canonical skills
-  rules/                # Canonical always-applied rules
-  sub-agents/templates/ # Canonical sub-agent templates
-  plans/                # Work planning — active/ holds the primary plan file; see active/README.md
-  prompts/              # Session-entry prompt estate and archived handoff prompts
-  memory/               # Napkin, distilled, and local pattern instances
-  experience/           # Experiential records
-.agents/                # Codex platform adapters
-  skills/               # Thin skill and command wrappers plus adapter-local metadata
-.claude/                # Claude platform adapters
-  agents/               # Reviewer adapters
-  commands/             # Command adapters
-  skills/               # Skill adapters
-  rules/                # Rule adapters
-.codex/                 # Codex project configuration
-  config.toml           # Project-local reviewer sub-agent registry
-  agents/               # Thin reviewer adapter files
-.github/                # GitHub Copilot and GitHub-facing agent surfaces
-  agents/               # Reviewer adapters
-  workflows/            # CI workflows for check, validators, and E2E
-.cursor/                # Cursor platform adapters (thin wrappers)
-  agents/               # Sub-agent adapters
-  commands/             # Command adapters
-  skills/               # Skill adapters
-  rules/                # Rule triggers (alwaysApply)
+jcdotnet/               # The site (@jimcresswell/www)
+  app/                  # Next.js App Router pages, layouts, metadata
+  components/           # React components
+  content/              # The knowledge graph and authored content (JSON)
+  lib/                  # Validation, derivation, contracts, PDF config
+  e2e/                  # Playwright: journeys/ and behaviour/
+  scripts/              # Build-time scripts (PDF, visual-regression harness)
+agent-tools/            # @engraph/agent-tools — validators, collaboration, comms
+tooling/                # @engraph/* shared packages
+docs/                   # Architecture, ADRs, editorial records, project docs,
+                        # governance, engineering, foundation, explorations
+.agent/                 # Canonical Practice — see .agent/README.md
+.claude/ .cursor/       # Generated platform adapters (pnpm portability:fix)
+.codex/ .agents/ .github/
 ```
 
 ## Agent Behaviour
 
-- **Don't push git commits** unless explicitly asked.
-- **Verify claims with evidence** — check build logs, rendered output, terminal state. Never assume
-  or report success without checking.
-- **Plans must be standalone** — a fresh agent with no prior context must be able to pick up and
-  execute a plan without ambiguity.
-- **Plans must be discoverable** — linked from parent plan, README, and related docs.
+- **Verify claims with evidence** — build logs, rendered output, terminal
+  state. Never report success without checking.
+- **Plans are born sketch** and govern no work until owner-ratified; they must
+  be standalone and discoverable.
 - **Archive docs are historical records** — never update them.
-- **Listen to user priorities** — not document structure. When the user says focus on X, don't get
-  sidetracked by Y.
+- **Listen to owner priorities** — not document structure. Owner instructions
+  carry the scope of their moment; do not generalise a local correction into a
+  standing rule.
 
 ## Remember
 
 1. When in doubt, **make it simpler**
 2. Test behaviour, not implementation
-3. TSDoc on all exported functions
+3. The graph is the source of truth; surfaces derive

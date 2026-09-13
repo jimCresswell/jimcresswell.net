@@ -4,7 +4,7 @@ The skill estate is infrastructure for agents: markdown files are load-bearing
 architecture, so DRY and single-source-of-truth apply to them exactly as they
 apply to code. This reference names the composition hierarchy and the two
 rules that make it an architecture rather than a taxonomy. Imported and
-adapted 2026-08-09 from the Oak Open Curriculum Ecosystem Practice (itself
+adapted 2026-08-09 from the Engraph Practice (itself
 adapted from the Resonance estate, 2026-07-20), mapped onto this repo's skill
 roster.
 

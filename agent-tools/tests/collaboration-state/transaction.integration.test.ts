@@ -1,0 +1,253 @@
+import { err, ok, unwrapOrThrow, type Result } from '@engraph/result';
+import { describe, expect, it } from 'vitest';
+
+import { atomicTextWriter } from '../../src/collaboration-state/atomic-file';
+import {
+  createJsonFileAtomically,
+  updateJsonFileWithRetry,
+  updateJsonStateWithRetry,
+  writeJsonFileAtomically,
+} from '../../src/collaboration-state/transaction';
+import {
+  listEntries,
+  makeTempDirectory,
+  readText,
+  removeDirectory,
+  tempPath,
+  writeText,
+} from '../test-helpers/temp-collaboration-state';
+
+describe('collaboration JSON atomic writes', () => {
+  it('writes parseable JSON after validating the serialized text', async () => {
+    const directory = await makeTempDirectory('oak-collaboration-transaction-');
+    const filePath = tempPath(directory, 'state.json');
+    try {
+      await writeJsonFileAtomically({
+        filePath,
+        value: { schema_version: 'test', body: 'line one\nline two with `ticks` and $HOME' },
+        validateText: async (text) => {
+          expect(JSON.parse(text)).toHaveProperty('schema_version', 'test');
+          return ok(undefined);
+        },
+      });
+
+      expect(JSON.parse(await readText(filePath))).toStrictEqual({
+        schema_version: 'test',
+        body: 'line one\nline two with `ticks` and $HOME',
+      });
+    } finally {
+      await removeDirectory(directory);
+    }
+  });
+
+  it('creates no target or temp file when serialized JSON validation fails', async () => {
+    const directory = await makeTempDirectory('oak-collaboration-transaction-');
+    const filePath = tempPath(directory, 'state.json');
+    try {
+      await expect(
+        writeJsonFileAtomically({
+          filePath,
+          value: { schema_version: 'test' },
+          validateText: async () => err(new Error('schema says no')),
+        }),
+      ).rejects.toThrow('schema says no');
+
+      expect(await listEntries(directory)).toStrictEqual([]);
+    } finally {
+      await removeDirectory(directory);
+    }
+  });
+
+  it('rejects with the validator Err error BY IDENTITY — the serialization fold never re-wraps', async () => {
+    // The transaction-layer half of the byte-identity guarantee: the write
+    // gate's Err carries the parser's original error, and this fold must
+    // rethrow exactly that object. A fold that wraps or re-labels breaks
+    // the smoke-pinned loud-message contract downstream.
+    const directory = await makeTempDirectory('oak-collaboration-transaction-');
+    const filePath = tempPath(directory, 'state.json');
+    const original = new Error('the original loud message');
+    try {
+      let caught: unknown;
+      try {
+        await writeJsonFileAtomically({
+          filePath,
+          value: { schema_version: 'test' },
+          validateText: async () => err(original),
+        });
+      } catch (error) {
+        caught = error;
+      }
+      expect(caught).toBe(original);
+    } finally {
+      await removeDirectory(directory);
+    }
+  });
+
+  it('exclusively creates immutable JSON files without overwriting an existing target', async () => {
+    const directory = await makeTempDirectory('oak-collaboration-transaction-');
+    const filePath = tempPath(directory, 'event.json');
+    try {
+      await createJsonFileAtomically({
+        filePath,
+        value: { event_id: 'one' },
+        validateText: parseOnly,
+      });
+
+      await expect(
+        createJsonFileAtomically({
+          filePath,
+          value: { event_id: 'two' },
+          validateText: parseOnly,
+        }),
+      ).rejects.toThrow(/EEXIST|file already exists/u);
+
+      expect(JSON.parse(await readText(filePath))).toStrictEqual({ event_id: 'one' });
+    } finally {
+      await removeDirectory(directory);
+    }
+  });
+
+  it('leaves no partial target when publish fails after the temp file is written', async () => {
+    const writes = new Map<string, string>();
+    const removed: string[] = [];
+    const writeAtomically = atomicTextWriter({
+      writeSyncedFile: async (path, text) => {
+        writes.set(path, text);
+      },
+      link: async () => {
+        throw new Error('publish failed');
+      },
+      rename: async () => {
+        throw new Error('publish failed');
+      },
+      remove: async (path) => {
+        removed.push(path);
+        writes.delete(path);
+      },
+      syncDirectory: async () => undefined,
+    });
+
+    await expect(
+      writeAtomically('state.json', 'new text', { exclusiveCreate: true }),
+    ).rejects.toThrow('publish failed');
+
+    expect(Array.from(writes)).toStrictEqual([]);
+    expect(removed).toHaveLength(1);
+  });
+
+  it('retries when the state text changes between read and write', async () => {
+    const writes: string[] = [];
+    const reads = ['{"value":1}\n', '{"value":2}\n', '{"value":2}\n'];
+
+    const result = await updateJsonStateWithRetry({
+      maxAttempts: 3,
+      parseText: parseCounterState,
+      validateText: validateCounterState,
+      readText: () => reads.shift() ?? '{"value":2}\n',
+      writeText: (value) => {
+        writes.push(value);
+      },
+      transform: (value: { readonly value: number }) => ({
+        value: value.value + 1,
+      }),
+    });
+
+    expect(result).toStrictEqual({ attempts: 2 });
+    expect(writes).toStrictEqual(['{\n  "value": 3\n}\n']);
+  });
+
+  it('refuses to write serialized output its own parser rejects, even when validateText passes', async () => {
+    const writes: string[] = [];
+
+    await expect(
+      updateJsonStateWithRetry({
+        maxAttempts: 1,
+        parseText: parseCounterState,
+        // Schema-blind, exactly the commit-queue/CLI shape: validateText
+        // carries no parser, so the write-back re-parse is the only check.
+        validateText: async () => ok(undefined),
+        readText: () => '{"value":1}\n',
+        writeText: (text) => {
+          writes.push(text);
+        },
+        transform: () => ({ value: Number.NaN }),
+      }),
+    ).rejects.toThrow('invalid counter state');
+    expect(writes).toStrictEqual([]);
+  });
+
+  it('refuses to transform a state its own parser rejects — the read fold never substitutes a default', async () => {
+    const writes: string[] = [];
+
+    await expect(
+      updateJsonStateWithRetry({
+        maxAttempts: 1,
+        parseText: parseCounterState,
+        validateText: validateCounterState,
+        readText: () => '{"rows":["survivor"]}\n',
+        writeText: (text) => {
+          writes.push(text);
+        },
+        // A constant valid value: under a default-substituting read fold the
+        // transform never sees the Err, the write-back re-parse passes, and
+        // the unparseable-but-recoverable original is overwritten.
+        transform: () => ({ value: 7 }),
+      }),
+    ).rejects.toThrow('invalid counter state');
+    expect(writes).toStrictEqual([]);
+  });
+
+  it('serializes concurrent JSON file updates without lost writes', async () => {
+    const directory = await makeTempDirectory('oak-collaboration-transaction-');
+    const filePath = tempPath(directory, 'counter.json');
+    try {
+      await writeText(filePath, '{"value":0}\n');
+
+      await Promise.all(
+        Array.from({ length: 5 }, () =>
+          updateJsonFileWithRetry({
+            filePath,
+            maxAttempts: 3,
+            parseText: parseCounterState,
+            validateText: validateCounterState,
+            transform: (value) => ({ value: value.value + 1 }),
+          }),
+        ),
+      );
+
+      expect(unwrapOrThrow(parseCounterState(await readText(filePath)))).toStrictEqual({
+        value: 5,
+      });
+    } finally {
+      await removeDirectory(directory);
+    }
+  });
+});
+
+interface CounterState {
+  readonly value: number;
+}
+
+async function parseOnly(text: string): Promise<Result<void, Error>> {
+  JSON.parse(text);
+  return ok(undefined);
+}
+
+async function validateCounterState(text: string): Promise<Result<void, Error>> {
+  const parsed = parseCounterState(text);
+  return parsed.ok ? ok(undefined) : parsed;
+}
+
+function parseCounterState(text: string): Result<CounterState, Error> {
+  const parsed: unknown = JSON.parse(text);
+  if (
+    typeof parsed === 'object' &&
+    parsed !== null &&
+    'value' in parsed &&
+    typeof parsed.value === 'number'
+  ) {
+    return ok({ value: parsed.value });
+  }
+
+  return err(new Error('invalid counter state'));
+}

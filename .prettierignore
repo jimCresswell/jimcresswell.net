@@ -1,24 +1,30 @@
-# Dependencies
+# Dependencies and build outputs
 node_modules/
-
-# Build outputs
 .next/
 out/
 build/
-
-# Generated
-pnpm-lock.yaml
-
-# Coverage
+dist/
 coverage/
+pnpm-lock.yaml
+.turbo/
 
-# Playwright
+# Test output
 test-results/
 playwright-report/
 
-# Agent temp files (gitignored reference material)
-.agent/temp/
-.agent/reference-local/
+# Canonical Practice corpus and its generated platform adapters: markdownlint
+# owns these surfaces; prettier never reflows them (adapters are regenerated
+# by `pnpm portability:fix` and the skills adapter generator).
+.agent/
+.claude/skills/
+.claude/rules/
+.agents/
+.cursor/
 
-# Live append-only ARC channels
+# Pre-transplant Practice, retained only until the owner's loss-scan review
+
+# Live append-only rapid-comms channels
 .agent/collaboration/rapid-comms/2026-*.md
+
+# Generated surfaces
+RULES_INDEX.md

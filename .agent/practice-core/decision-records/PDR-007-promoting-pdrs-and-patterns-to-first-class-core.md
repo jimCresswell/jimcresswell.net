@@ -1,6 +1,6 @@
 # PDR-007: Promoting PDRs and Universal Patterns to First-Class Core Infrastructure
 
-**Status**: Accepted
+**Status**: Accepted (amended 2026-04-29)
 **Date**: 2026-04-18
 **Related**:
 [PDR-001](PDR-001-location-of-practice-decision-records.md)
@@ -45,16 +45,17 @@ that has the same travel requirement as the Core: it must accompany
 the Practice into a hydrating repo. Neither is Core. Both exist because
 the eight-file contract could not absorb them at the time they emerged.
 
-**Observation 2 — Pattern duplication across homes.** The
-`.agent/memory/patterns/` directory holds ~70 patterns proven by real
-implementation. A subset — roughly a third — is universally applicable
-across ecosystems (`findings-route-to-lane-or-rejection`,
+**Observation 2 — Pattern duplication across homes.** The host's
+pattern memory surface holds ~70 patterns proven by real
+implementation. A subset — roughly a third — is universally
+applicable across ecosystems (`findings-route-to-lane-or-rejection`,
 `substance-before-fitness`, `ground-before-framing`,
-`adr-by-reusability-not-diff-size`, and others). The Pattern Exchange
-mechanism in `practice-lineage.md` moves Practice-relevant patterns
-into `.agent/practice-context/outgoing/patterns/` to travel alongside
-the Core. This creates a second copy of each portable pattern in a
-separate directory, with no mechanical link between the two. Pattern
+`adr-by-reusability-not-diff-size`, and others). The Pattern
+Exchange mechanism in `practice-lineage.md` moves Practice-relevant
+patterns into a separate Practice-Context outgoing surface to
+travel alongside the Core. This creates a second copy of each
+portable pattern in a separate directory, with no mechanical link
+between the two. Pattern
 updates diverge. The duplication is not a consequence of natural drift;
 it is a consequence of the eight-file contract having no place for
 graduated pattern content.
@@ -85,26 +86,71 @@ opposite of what the Core was designed to guarantee.
 **Redefine the Practice Core contract from "eight files" to "a bounded
 package of required files and required directories." Add two
 first-class Core directories: `decision-records/` and `patterns/`.
-Sharpen `.agent/memory/patterns/` and `.agent/practice-context/outgoing/`
-to their remaining roles. Fold Pattern Exchange into Core travel.**
+Sharpen the host's pattern memory surface and the Practice-Context
+outgoing surface to their remaining roles. Fold Pattern Exchange
+into Core travel.**
+
+### Amendment 2026-04-29 — `patterns/` and `practice-context/` retired
+
+The 2026-04-18 decision introduced a `patterns/` directory inside
+the Core as a first-class Core directory for general abstract
+patterns synthesised from ≥2 instances. By 2026-04-29 no general
+patterns had been authored there: every Practice-governance
+abstraction matured as a PDR (or as PDR amendments) instead, and
+every engineering instance remained on the host's pattern memory
+surface per PDR-007's own synthesis-not-move rule. The empty
+Core-pattern directory was carrying contract weight (it was a
+"required Core directory" per the decision) without carrying
+substance.
+
+The Practice-Context exchange surface was likewise emptied: every
+substantive routing has resolved to a PDR, an ADR, the host's
+reference surface, or the host's research surface; the outgoing
+README is a routing-log of completed retirements with no live
+forward-looking content.
+
+This amendment retires both surfaces from the Core contract:
+
+- **The Core-pattern directory is no longer a required Core
+  directory.** Practice-governance patterns take the **PDR** shape
+  with `pdr_kind: pattern` frontmatter; engineering instances live
+  on the host's pattern memory surface. There are no Core-pattern
+  destinations.
+- **The Practice-Context surface is retired entirely.** Both its
+  `incoming/` and `outgoing/` companions are removed. Inbound
+  Practice exchange uses the Core's `incoming/` directory
+  (preserved). Outbound exchange routes by substance to PDRs, the
+  host's reference surface, or the host's research surface per
+  PDR-024 §Vital Integration Surfaces.
+
+**Affected sections below**: `### patterns/` (lines 134–175) describes
+the retired surface as a Core directory; treat that section as
+historical context for the original decision and refer to this
+amendment for the current contract. The `### practice-context/outgoing/`
+section (line 199) is similarly historical. Other PDR-007 substance
+(decision-records as Core, sharpening of memory/active/patterns,
+Pattern Exchange folds into Core travel) is unchanged and remains
+canonical. PDR-024 (vital integration surfaces) and PDR-014
+(consolidation and knowledge flow discipline) carry the corresponding
+amendments of the same date.
 
 ### The new Core contract
 
 The Practice Core is a directory (`.agent/practice-core/`) containing:
 
-| Surface                    | Role                                                                        |
-| -------------------------- | --------------------------------------------------------------------------- |
-| `practice.md`              | Trinity: the **what** — blueprint, artefact map, workflow                   |
-| `practice-lineage.md`      | Trinity: the **why** — evolution rules, exchange mechanism                  |
-| `practice-bootstrap.md`    | Trinity: the **how-to-bootstrap** — annotated templates                     |
-| `practice-verification.md` | Health check, operational estate, acceptance criteria                       |
-| `README.md`                | Entry point (humans)                                                        |
-| `index.md`                 | Entry point (agents)                                                        |
-| `CHANGELOG.md`             | Evolution log — repo-tagged summaries                                       |
-| `provenance.yml`           | Per-file evolution chains for the trinity                                   |
-| `decision-records/`        | **New** — portable Practice governance (all current PDRs)                   |
-| `patterns/`                | **New** — universal graduated patterns (cross-ecosystem, Practice-relevant) |
-| `incoming/`                | Practice Box — transient receiver for inbound Core packages                 |
+| Surface | Role |
+|---|---|
+| `practice.md` | Trinity: the **what** — blueprint, artefact map, workflow |
+| `practice-lineage.md` | Trinity: the **why** — evolution rules, exchange mechanism |
+| `practice-bootstrap.md` | Trinity: the **how-to-bootstrap** — annotated templates |
+| `practice-verification.md` | Health check, operational estate, acceptance criteria |
+| `README.md` | Entry point (humans) |
+| `index.md` | Entry point (agents) |
+| `CHANGELOG.md` | Evolution log — repo-tagged summaries |
+| `provenance.yml` | Per-file evolution chains for the trinity |
+| `decision-records/` | **New** — portable Practice governance (all current PDRs) |
+| `patterns/` | **New** — universal graduated patterns (cross-ecosystem, Practice-relevant) |
+| `incoming/` | Practice Box — transient receiver for inbound Core packages |
 
 The contract is **the set of surfaces and their roles**, not a file
 count. Each surface travels as part of the Core. Receiving repos
@@ -144,9 +190,9 @@ JSON-Schema instances that instantiate it.
 **Authorship model: synthesis, not migration.** General patterns are
 **authored fresh** in `practice-core/patterns/` by synthesising
 substance from multiple specific instances. The specific instances
-**remain in `.agent/memory/patterns/`**; they are not moved or
-copied. A general pattern and its specific instances co-exist: the
-Core surface holds the abstraction; the repo surface holds the
+**remain on the host's pattern memory surface**; they are not moved
+or copied. A general pattern and its specific instances co-exist:
+the Core surface holds the abstraction; the repo surface holds the
 proofs. This respects the bottom-up flow of pattern knowledge —
 instances accumulate first, the general case is synthesised when
 the pattern becomes legible.
@@ -174,25 +220,26 @@ Patterns use the existing pattern template (`name`, `use_this_when`,
 carries forward unchanged. `proven_in` for a Core pattern cites the
 specific instances it synthesises from.
 
-### `memory/patterns/` — specific instances
+### Host pattern memory surface — specific instances
 
-`.agent/memory/patterns/` holds **specific, ecosystem-grounded
+The host's pattern memory surface holds **specific, ecosystem-grounded
 instances** of engineering patterns. Each entry is proven in a
 concrete context (TypeScript, Zod, Vitest, MCP, etc.) and remains
 valuable as instance-level proof — even after a general form is
-authored in `practice-core/patterns/`. Instance files gain an
+authored in the Core's pattern surface. Instance files gain an
 optional `related_pdr` or `related_pattern` frontmatter pointer
 linking them to the general abstraction they instantiate.
 
 Specific instances depend on their ecosystem context (toolchain,
 language, framework). They do not travel as Core content. Receiving
-repos grow their own `memory/patterns/` against their own ecosystems.
+repos grow their own host pattern memory surface against their own
+ecosystems.
 
 Patterns that describe **Practice-governance** (review discipline,
 planning discipline, knowledge-flow discipline, reviewer authority,
 etc.) are **not** pattern-shaped under this contract — they are
 decision-shaped and migrate to `decision-records/` as PDRs. The
-memory/patterns/ entries for those become pointers with
+host-side pattern entries for those become pointers with
 `related_pdr: PDR-NNN` frontmatter while remaining in place as
 instance-level proof.
 
@@ -224,7 +271,7 @@ describes a separate transport path for portable patterns via
 patterns travel because they are **Core content**, not because a
 separate transport mechanism carries them. The Pattern Exchange
 section is rewritten to describe graduation into `practice-core/patterns/`
-as the canonical flow, with `memory/patterns/` as the local candidate
+as the canonical flow, with `memory/active/patterns/` as the local candidate
 pool and the graduation criterion as the barrier.
 
 ## Rationale
@@ -232,7 +279,7 @@ pool and the graduation criterion as the barrier.
 Five options were considered for resolving the three-home drift.
 
 **Option A — Keep three homes unchanged.** Accept the duplication
-between `outgoing/patterns/` and `memory/patterns/`, and the peer-
+between `outgoing/patterns/` and `memory/active/patterns/`, and the peer-
 directory status of `practice-decision-records/`. Rejected: the drift
 is already material (multiple pattern duplicates diverging silently),
 and PDR-001 named the peer-directory arrangement as provisional
@@ -282,20 +329,20 @@ serve, the invariant is the part that yields.
 
 ### Required
 
-- `.agent/practice-decision-records/` contents move verbatim to
-  `.agent/practice-core/decision-records/`. Filenames, numbering,
-  and cross-references preserve. The README moves with them.
-- `.agent/memory/patterns/` is audited against the four-part
-  universal-pattern criterion. Matching entries move to
-  `.agent/practice-core/patterns/`. Non-matching entries remain in
-  `.agent/memory/patterns/`.
-- `.agent/practice-context/outgoing/` is swept: files whose substance
-  exists nowhere else either promote to `decision-records/` or
-  `patterns/` (if they meet the graduation criteria) or are deleted
-  (if they were staging artefacts that never graduated). The
-  `outgoing/patterns/` subdirectory is eliminated; its contents
-  either graduated to `practice-core/patterns/` or are removed as
-  duplicates of `memory/patterns/`.
+- The host's prior decision-records surface contents move verbatim
+  to the Core's `decision-records/`. Filenames, numbering, and
+  cross-references preserve. The README moves with them.
+- The host's pattern memory surface is audited against the
+  four-part universal-pattern criterion. Matching entries move to
+  the Core's `patterns/`. Non-matching entries remain on the
+  host's pattern memory surface.
+- The Practice-Context outgoing surface is swept: files whose
+  substance exists nowhere else either promote to `decision-records/`
+  or `patterns/` (if they meet the graduation criteria) or are
+  deleted (if they were staging artefacts that never graduated).
+  The outgoing `patterns/` subdirectory is eliminated; its contents
+  either graduated to the Core's `patterns/` or are removed as
+  duplicates of `memory/active/patterns/`.
 - The trinity (`practice.md`, `practice-lineage.md`,
   `practice-bootstrap.md`) is edited to describe the new Core
   contract, the two new surfaces, and the folded Pattern Exchange
@@ -328,8 +375,8 @@ serve, the invariant is the part that yields.
   `pdr_kind: pattern` inside `decision-records/`, not a duplicate in
   `patterns/`.
 - Duplicating substance across `practice-core/patterns/` and
-  `memory/patterns/`. Graduation is a move, not a copy. A graduated
-  pattern leaves `memory/patterns/` when it enters
+  `memory/active/patterns/`. Graduation is a move, not a copy. A graduated
+  pattern leaves `memory/active/patterns/` when it enters
   `practice-core/patterns/`.
 - Expanding the Core contract indefinitely by accretion. A new
   first-class Core surface requires a PDR that names its role and
@@ -406,7 +453,7 @@ command — is identical to the pre-PDR-007 flow.
 The knowledge-flow ladder (napkin → distilled → patterns / ADRs /
 principles) gains one clarified step at the top:
 
-```
+```text
 napkin (ephemeral)
   → distilled (settled, local)
     → memory/patterns (repo-specific patterns)    [local pool]
@@ -419,23 +466,3 @@ The move into `practice-core/patterns/` is the last step for patterns
 before they travel with the Core. The move into
 `practice-core/decision-records/` is the first step for decisions
 that govern the Practice itself rather than a host repo's product.
-
-### Host-local context (this repo only, not part of the decision)
-
-In the repo where this PDR was authored:
-
-- Existing PDRs to move: PDR-001 through PDR-006 (plus PDR-007
-  itself on acceptance).
-- Candidate universal patterns (to be classified in the migration
-  plan): approximately 20-25 entries from the current ~73-file
-  `memory/patterns/`, concentrated in the `process` and `agent`
-  categories.
-- Outgoing files for explicit resolution during migration:
-  `explorations-documentation-tier.md`,
-  `practice-decision-records-peer-directory.md`,
-  `practice-core-structural-evolution.md`,
-  `three-dimension-fitness-functions.md`, and the
-  `outgoing/patterns/` subdirectory.
-- Affected trinity files and entry points are enumerated in the
-  migration plan; they are not listed here to preserve this PDR's
-  portability.

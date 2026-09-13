@@ -1,0 +1,255 @@
+absorbed	memory/distilled.md	100% of 32 lines live
+absorbed	memory/napkin.md	98% of 113 lines live
+absorbed	plans/active/personal-knowledge-graph-source-of-truth-design.plan.md	99% of 285 lines live
+absorbed	plans/current/cv-editorial-improvements.plan.md	88% of 129 lines live
+absorbed	plans/current/dev-tooling-hygiene.plan.md	95% of 198 lines live
+absorbed	plans/current/personal-knowledge-graph-roadmap.plan.md	99% of 192 lines live
+absorbed	plans/current/visual-regression-workspace.plan.md	99% of 251 lines live
+absorbed	plans/current/workspace-architecture-roadmap.plan.md	99% of 465 lines live
+absorbed	plans/future/neo4j-knowledge-graph.plan.md	96% of 76 lines live
+absorbed	plans/future/visual-regression-harness-enhancements.plan.md	97% of 41 lines live
+absorbed	plans/research/graph-current-state-audit.md	99% of 155 lines live
+absorbed	plans/research/graph-negotiated-media-type-refinement.md	98% of 76 lines live
+absorbed	plans/research/graph-publication-consumer-and-proof-model.md	99% of 207 lines live
+absorbed	plans/research/graph-publication-output-audit.md	99% of 182 lines live
+absorbed	plans/research/personal-knowledge-graph-design-notes.md	97% of 370 lines live
+absorbed	plans/research/pkg-research-findings.md	99% of 151 lines live
+absorbed	plans/research/workspace-architecture-context.md	99% of 437 lines live
+absorbed	plans/roadmap.md	87% of 93 lines live
+absorbed	practice-core/decision-records/PDR-030-rendering-risk-needs-blocking-visual-proof.md	96% of 85 lines live
+absorbed	private/.gitignore	100% of 3 lines live
+absorbed	rules/invoke-accessibility-reviewer.md	80% of 5 lines live
+absorbed	rules/invoke-config-reviewer.md	80% of 5 lines live
+absorbed	rules/invoke-design-system-reviewer.md	80% of 5 lines live
+absorbed	rules/invoke-docs-adr-reviewer.md	80% of 5 lines live
+absorbed	rules/invoke-pkg-reviewer.md	80% of 5 lines live
+absorbed	rules/invoke-react-component-reviewer.md	80% of 5 lines live
+absorbed	rules/invoke-security-reviewer.md	80% of 5 lines live
+absorbed	rules/invoke-test-reviewer.md	75% of 4 lines live
+absorbed	rules/invoke-type-reviewer.md	80% of 5 lines live
+absorbed	skills/accessibility/SKILL.md	88% of 26 lines live
+absorbed	skills/architecture/SKILL.md	73% of 30 lines live
+absorbed	skills/author-skills/SKILL.md	97% of 230 lines live
+absorbed	skills/config/SKILL.md	92% of 25 lines live
+absorbed	skills/design-system/SKILL.md	88% of 26 lines live
+absorbed	skills/distillation/SKILL.md	97% of 135 lines live
+absorbed	skills/docs-adr/SKILL.md	91% of 23 lines live
+absorbed	skills/editorial-voice/SKILL.md	97% of 69 lines live
+absorbed	skills/napkin/SKILL.md	80% of 78 lines live
+absorbed	skills/pkg/SKILL.md	79% of 119 lines live
+absorbed	skills/quality-gates/SKILL.md	80% of 45 lines live
+absorbed	skills/react-component/SKILL.md	93% of 29 lines live
+absorbed	skills/security/SKILL.md	91% of 24 lines live
+absorbed	skills/subagent-architecture/SKILL.md	96% of 25 lines live
+absorbed	sub-agents/templates/architecture-reviewer-barney.md	97% of 39 lines live
+absorbed	sub-agents/templates/architecture-reviewer-betty.md	94% of 39 lines live
+absorbed	sub-agents/templates/architecture-reviewer-fred.md	97% of 39 lines live
+absorbed	sub-agents/templates/architecture-reviewer-wilma.md	94% of 39 lines live
+absorbed	sub-agents/templates/pkg-reviewer.md	87% of 55 lines live
+absorbed	temp/.gitignore	100% of 2 lines live
+identical	collaboration/rapid-comms/2026-08-09-workspace-architecture.md	blob 8619cf1
+identical	collaboration/rapid-comms/2026-08-12-three-pr-closeout.md	blob 0dd733f
+identical	directives/editorial-strategy.md	blob 4b7a3f9
+identical	experience/.gitkeep	blob e69de29
+identical	experience/2026-08-12-chinook-seeks-airstream.md	blob cc3f92d
+identical	experience/2026-08-12-ginger-herds-petal-formation.md	blob 6f65f34
+identical	experience/README.md	blob bc8b928
+identical	memory/archive/napkin-2026-03-08.md	blob 850a869
+identical	memory/archive/napkin-2026-03-09.md	blob ace1f40
+identical	memory/archive/napkin-2026-08-12.md	blob 38b0588
+identical	plans/active/README.md	blob ee7e358
+identical	plans/archive/01-rtl-setup.plan.md	blob fbd6083
+identical	plans/archive/02-tailwind-hygiene.plan.md	blob dcfa975
+identical	plans/archive/03-section-primitives.plan.md	blob 0632ed6
+identical	plans/archive/04-site-footer-refactor.plan.md	blob 3943aef
+identical	plans/archive/05-site-header-refactor.plan.md	blob 0e567c7
+identical	plans/archive/06-cv-layout-refactor.plan.md	blob c17ce14
+identical	plans/archive/07-root-layout-shell.plan.md	blob 0502833
+identical	plans/archive/capabilities-editorial.plan.md	blob 8c543ce
+identical	plans/archive/cloud-sub-plans.README.md	blob dde892c
+identical	plans/archive/codex-platform-alignment.plan.md	blob fec3d46
+identical	plans/archive/component-audit.plan.md	blob 2789ed0
+identical	plans/archive/e2e-testing-and-quality.plan.md	blob ab171ae
+identical	plans/archive/experience-editorial.plan.md	blob 632b786
+identical	plans/archive/front-page-content.plan.md	blob 4b81001
+identical	plans/archive/graph-metaplan.plan.md	blob 0992419
+identical	plans/archive/landing-content-draft.md	blob 5280485
+identical	plans/archive/meta-seo-content-audit.plan.md	blob 88a28f4
+identical	plans/archive/onboarding-documentation-review.plan.md	blob fae90ce
+identical	plans/archive/onboarding-human-contributor-docs.plan.md	blob 0fc24a4
+identical	plans/archive/optional-app-relocation.plan.md	blob a62d158
+identical	plans/archive/pdf-generation.plan.md	blob 5e6067b
+identical	plans/archive/personal-knowledge-graph-phase-model.plan.md	blob 44a1656
+identical	plans/archive/pkg-next-closure_c4586ceb.plan.md	blob 2d090c1
+identical	plans/archive/practice-core-wholesale-adoption.plan.md	blob 7a82264
+identical	plans/archive/tilt-retirement.plan.md	blob 93197fa
+identical	plans/archive/visual-regression-harness.plan.md	blob ffa15cf
+identical	plans/current/cv-workspace.plan.md	blob 9d8bc19
+identical	plans/current/jim-profile-workspace.plan.md	blob e6a04f8
+identical	plans/current/linkedin-update.plan.md	blob c471019
+identical	plans/current/personal-knowledge-graph-execution.plan.md	blob c91e707
+identical	plans/current/practice-validation-workspace.plan.md	blob 6571724
+identical	plans/current/professional-profile-graph-workspace.plan.md	blob d50d62c
+identical	plans/current/web-page-workspace-and-boundary-enforcement.plan.md	blob 067b4c1
+identical	plans/research/graph-cv-metadata-description-proof.md	blob 2db280a
+identical	plans/research/graph-rich-result-external-validator-evidence.md	blob fd6cf73
+identical	plans/research/graph-source-of-truth-layer-map.md	blob f9ed43b
+identical	practice-context/README.md	blob 65375dd
+identical	practice-context/incoming/.gitkeep	blob 8b13789
+identical	practice-context/incoming/README.md	blob 33b134f
+identical	practice-context/outgoing/README.md	blob 82d3219
+identical	practice-context/outgoing/next-outbound-pass.md	blob 5d860e6
+identical	practice-core/incoming/.gitkeep	blob e69de29
+identical	prompts/archive/cv/tilt-retirement.prompt.md	blob 87b8f15
+identical	prompts/archive/personal-knowledge-graph/personal-knowledge-graph-track-a-cv-metadata-proof.prompt.md	blob dcbd2fd
+identical	prompts/archive/personal-knowledge-graph/personal-knowledge-graph-track-a-external-validation.prompt.md	blob df752de
+identical	reference/grammar-of-thinking.md	blob 3a13faf
+identical	research/cloudflare-pdf-render-service.md	blob dfe8073
+identical	rules/invoke-subagent-architect.md	blob 1559bca
+identical	rules/no-skipped-tests.md	blob 25f04d7
+identical	rules/no-type-shortcuts.md	blob 13d6ff1
+identical	rules/tsdoc-and-documentation-hygiene.md	blob c993a80
+identical	skills/deslop/SKILL.md	blob 6028f85
+identical	skills/package-deps-up-to-date/SKILL.md	blob 32f135a
+identical	skills/package-deps-up-to-date/references/manager-commands.md	blob 409ea55
+identical	skills/package-deps-up-to-date/scripts/check-package-deps.py	blob b2b6e17
+identical	skills/project-spec-creation/SKILL.md	blob 82251a9
+identical	state/pr-lifecycle/2026-08-12-three-pr-closeout.md	blob 2689f2b
+residue	commands/editor.md	25% of 28 lines live
+residue	commands/review.md	26% of 15 lines live
+residue	reference/private-editorial-workspace.md	14% of 55 lines live
+residue	rules/invoke-mcp-reviewer.md	0% of 5 lines live
+residue	skills/mcp/SKILL.md	19% of 26 lines live
+residue	skills/patterns/SKILL.md	20% of 20 lines live
+residue	state/collaboration/active-claims.json	0% of 1 lines live
+residue	state/collaboration/comms-seen/Pangolin hunts Cavern.json	0% of 5 lines live
+residue	state/collaboration/comms/13ba41b0-b68d-472b-a2b4-a7b5b1734def.json	23% of 17 lines live
+residue	state/collaboration/comms/4d2fb7a5-84d1-4ae2-baad-831283cf89dd.json	23% of 17 lines live
+residue	state/collaboration/comms/790f0d3d-216a-42aa-8faf-e97793eb6a5f.json	23% of 17 lines live
+residue	state/collaboration/comms/b4d2f5e4-af39-4d49-b361-1f0e88a09ed6.json	23% of 17 lines live
+residue	state/collaboration/comms/fd46e0b7-816b-4b6e-a35d-fafc2d43a8fe.json	23% of 17 lines live
+residue	state/collaboration/shared-comms-log.md	12% of 16 lines live
+residue	sub-agents/templates/mcp-reviewer.md	33% of 39 lines live
+residue	v0/original-spec/cv.presentation.json	18% of 72 lines live
+residue	v0/original-spec/jimcresswell.cv-variants.md	1% of 182 lines live
+residue	v0/original-spec/jimcresswell.deps.md	3% of 104 lines live
+residue	v0/original-spec/jimcresswell.design-brief.md	2% of 172 lines live
+residue	v0/original-spec/responsive-layout.md	6% of 121 lines live
+residue	v0/original-spec/theme.json	14% of 49 lines live
+residue	v0/original-spec/ui-content-components.md	1% of 120 lines live
+residue	v0/original-spec/ui-structural-components.md	1% of 71 lines live
+residue	v0/original-spec/v0-prompt.md	7% of 139 lines live
+superseded-name	commands/commit.md	.agent/skills/change-custody/commit/SKILL-CANONICAL.md
+superseded-name	commands/consolidate-docs.md	.agent/skills/knowledge/consolidate-docs/SKILL-CANONICAL.md
+superseded-name	commands/gates.md	.agent/skills/change-custody/gates/SKILL-CANONICAL.md
+superseded-name	commands/go.md	.agent/skills/go/SKILL-CANONICAL.md
+superseded-name	commands/metacognition.md	.agent/skills/cognition/metacognition/SKILL-CANONICAL.md
+superseded-name	commands/plan.md	.agent/skills/planning/plan/SKILL-CANONICAL.md
+superseded-name	commands/session-handoff.md	.agent/skills/session-handoff/SKILL-CANONICAL.md
+superseded-name	commands/start-right-quick.md	.agent/skills/start-right-quick/SKILL-CANONICAL.md
+superseded-name	commands/start-right-thorough.md	.agent/skills/start-right-thorough/SKILL-CANONICAL.md
+superseded-name	commands/wrap.md	.agent/skills/wrap/SKILL-CANONICAL.md
+superseded-name	memory/patterns/README.md	.agent/README.md
+superseded-name	practice-core/patterns/README.md	.agent/README.md
+superseded-name	private/README.md	.agent/README.md
+superseded-name	reference/cross-platform-agent-surface-matrix.md	.agent/memory/executive/cross-platform-agent-surface-matrix.md
+superseded-name	reports/README.md	.agent/README.md
+superseded-name	rules/invoke-architecture-reviewer-barney.md	.agent/rules/invoke-architecture-expert-barney.md
+superseded-name	rules/invoke-architecture-reviewer-betty.md	.agent/rules/invoke-architecture-expert-betty.md
+superseded-name	rules/invoke-architecture-reviewer-fred.md	.agent/rules/invoke-architecture-expert-fred.md
+superseded-name	rules/invoke-architecture-reviewer-wilma.md	.agent/rules/invoke-architecture-expert-wilma.md
+superseded-name	rules/invoke-code-reviewers.md	.agent/memory/executive/invoke-code-experts.md
+superseded-name	skills/concept-exploration/SKILL.md	.agent/skills/cognition/concept-exploration/SKILL-CANONICAL.md
+superseded-name	skills/consolidate-docs/SKILL.md	.agent/skills/knowledge/consolidate-docs/SKILL-CANONICAL.md
+superseded-name	skills/consolidate-until-done/SKILL.md	.agent/skills/knowledge/consolidate-until-done/SKILL-CANONICAL.md
+superseded-name	skills/knowledge-safety-sweep/SKILL.md	.agent/skills/knowledge/knowledge-safety-sweep/SKILL-CANONICAL.md
+superseded-name	skills/metacognition/SKILL.md	.agent/skills/cognition/metacognition/SKILL-CANONICAL.md
+superseded-name	skills/plan/SKILL.md	.agent/skills/planning/plan/SKILL-CANONICAL.md
+superseded-name	skills/pr-lifecycle/SKILL.md	.agent/skills/change-custody/pr-lifecycle/SKILL-CANONICAL.md
+superseded-name	skills/proportionality/SKILL.md	.agent/skills/cognition/proportionality/SKILL-CANONICAL.md
+superseded-name	skills/reason/SKILL.md	.agent/skills/cognition/reason/SKILL-CANONICAL.md
+superseded-name	skills/retrospective/SKILL.md	.agent/skills/cognition/retrospective/SKILL-CANONICAL.md
+superseded-name	skills/semantic-merge/SKILL.md	.agent/skills/change-custody/semantic-merge/SKILL-CANONICAL.md
+superseded-name	skills/session-handoff/SKILL.md	.agent/skills/session-handoff/SKILL-CANONICAL.md
+superseded-name	skills/start-right-quick/SKILL.md	.agent/skills/start-right-quick/SKILL-CANONICAL.md
+superseded-name	skills/start-right-team/SKILL.md	.agent/skills/start-right-team/SKILL-CANONICAL.md
+superseded-name	skills/start-right-thorough/SKILL.md	.agent/skills/start-right-thorough/SKILL-CANONICAL.md
+superseded-name	skills/undo-change/SKILL.md	.agent/skills/change-custody/undo-change/SKILL-CANONICAL.md
+superseded-name	skills/wrap/SKILL.md	.agent/skills/wrap/SKILL-CANONICAL.md
+superseded-name	sub-agents/templates/accessibility-reviewer.md	.agent/sub-agents/templates/accessibility-expert.md
+superseded-name	sub-agents/templates/code-reviewer.md	.agent/sub-agents/templates/code-expert.md
+superseded-name	sub-agents/templates/config-reviewer.md	.agent/sub-agents/templates/config-expert.md
+superseded-name	sub-agents/templates/design-system-reviewer.md	.agent/sub-agents/templates/design-system-expert.md
+superseded-name	sub-agents/templates/docs-adr-reviewer.md	.agent/sub-agents/templates/docs-adr-expert.md
+superseded-name	sub-agents/templates/react-component-reviewer.md	.agent/sub-agents/templates/react-component-expert.md
+superseded-name	sub-agents/templates/security-reviewer.md	.agent/sub-agents/templates/security-expert.md
+superseded-name	sub-agents/templates/test-reviewer.md	.agent/sub-agents/templates/test-expert.md
+superseded-name	sub-agents/templates/type-reviewer.md	.agent/sub-agents/templates/type-expert.md
+superseded-path	README.md	.agent/README.md
+superseded-path	directives/AGENT.md	.agent/directives/AGENT.md
+superseded-path	directives/editorial-guidance.md	.agent/directives/editorial-guidance.md
+superseded-path	directives/metacognition.md	.agent/directives/metacognition.md
+superseded-path	directives/principles.md	.agent/directives/principles.md
+superseded-path	directives/privacy.md	.agent/directives/privacy.md
+superseded-path	directives/secops.md	.agent/directives/secops.md
+superseded-path	directives/testing-strategy.md	.agent/directives/testing-strategy.md
+superseded-path	hooks/README.md	.agent/hooks/README.md
+superseded-path	hooks/policy.json	.agent/hooks/policy.json
+superseded-path	plans/README.md	.agent/plans/README.md
+superseded-path	practice-core/CHANGELOG.md	.agent/practice-core/CHANGELOG.md
+superseded-path	practice-core/README.md	.agent/practice-core/README.md
+superseded-path	practice-core/decision-records/PDR-001-location-of-practice-decision-records.md	.agent/practice-core/decision-records/PDR-001-location-of-practice-decision-records.md
+superseded-path	practice-core/decision-records/PDR-002-pedagogical-reinforcement-in-foundational-practice-docs.md	.agent/practice-core/decision-records/PDR-002-pedagogical-reinforcement-in-foundational-practice-docs.md
+superseded-path	practice-core/decision-records/PDR-003-sub-agent-protection-of-foundational-practice-docs.md	.agent/practice-core/decision-records/PDR-003-sub-agent-protection-of-foundational-practice-docs.md
+superseded-path	practice-core/decision-records/PDR-004-explorations-as-durable-design-space-tier.md	.agent/practice-core/decision-records/PDR-004-explorations-as-durable-design-space-tier.md
+superseded-path	practice-core/decision-records/PDR-005-wholesale-practice-transplantation.md	.agent/practice-core/decision-records/PDR-005-wholesale-practice-transplantation.md
+superseded-path	practice-core/decision-records/PDR-006-dev-tooling-per-ecosystem.md	.agent/practice-core/decision-records/PDR-006-dev-tooling-per-ecosystem.md
+superseded-path	practice-core/decision-records/PDR-007-promoting-pdrs-and-patterns-to-first-class-core.md	.agent/practice-core/decision-records/PDR-007-promoting-pdrs-and-patterns-to-first-class-core.md
+superseded-path	practice-core/decision-records/PDR-008-canonical-quality-gate-naming.md	.agent/practice-core/decision-records/PDR-008-canonical-quality-gate-naming.md
+superseded-path	practice-core/decision-records/PDR-009-canonical-first-cross-platform-architecture.md	.agent/practice-core/decision-records/PDR-009-canonical-first-cross-platform-architecture.md
+superseded-path	practice-core/decision-records/PDR-010-domain-specialist-capability-pattern.md	.agent/practice-core/decision-records/PDR-010-domain-specialist-capability-pattern.md
+superseded-path	practice-core/decision-records/PDR-011-continuity-surfaces-and-surprise-pipeline.md	.agent/practice-core/decision-records/PDR-011-continuity-surfaces-and-surprise-pipeline.md
+superseded-path	practice-core/decision-records/PDR-012-review-findings-routing-discipline.md	.agent/practice-core/decision-records/PDR-012-review-findings-routing-discipline.md
+superseded-path	practice-core/decision-records/PDR-013-grounding-and-framing-discipline.md	.agent/practice-core/decision-records/PDR-013-grounding-and-framing-discipline.md
+superseded-path	practice-core/decision-records/PDR-014-consolidation-and-knowledge-flow-discipline.md	.agent/practice-core/decision-records/PDR-014-consolidation-and-knowledge-flow-discipline.md
+superseded-path	practice-core/decision-records/PDR-015-reviewer-authority-and-dispatch.md	.agent/practice-core/decision-records/PDR-015-reviewer-authority-and-dispatch.md
+superseded-path	practice-core/decision-records/PDR-016-claim-propagation-and-reference-quality.md	.agent/practice-core/decision-records/PDR-016-claim-propagation-and-reference-quality.md
+superseded-path	practice-core/decision-records/PDR-017-workaround-hygiene-and-fix-discipline.md	.agent/practice-core/decision-records/PDR-017-workaround-hygiene-and-fix-discipline.md
+superseded-path	practice-core/decision-records/PDR-018-planning-discipline.md	.agent/practice-core/decision-records/PDR-018-planning-discipline.md
+superseded-path	practice-core/decision-records/PDR-019-adr-scope-by-reusability.md	.agent/practice-core/decision-records/PDR-019-adr-scope-by-reusability.md
+superseded-path	practice-core/decision-records/PDR-020-check-driven-development.md	.agent/practice-core/decision-records/PDR-020-check-driven-development.md
+superseded-path	practice-core/decision-records/PDR-021-test-validity-discipline.md	.agent/practice-core/decision-records/PDR-021-test-validity-discipline.md
+superseded-path	practice-core/decision-records/PDR-022-governance-enforcement-scanners.md	.agent/practice-core/decision-records/PDR-022-governance-enforcement-scanners.md
+superseded-path	practice-core/decision-records/PDR-023-documentation-structure-discipline.md	.agent/practice-core/decision-records/PDR-023-documentation-structure-discipline.md
+superseded-path	practice-core/decision-records/PDR-024-vital-integration-surfaces.md	.agent/practice-core/decision-records/PDR-024-vital-integration-surfaces.md
+superseded-path	practice-core/decision-records/PDR-025-quality-gate-dismissal-discipline.md	.agent/practice-core/decision-records/PDR-025-quality-gate-dismissal-discipline.md
+superseded-path	practice-core/decision-records/README.md	.agent/practice-core/decision-records/README.md
+superseded-path	practice-core/index.md	.agent/practice-core/index.md
+superseded-path	practice-core/practice-bootstrap.md	.agent/practice-core/practice-bootstrap.md
+superseded-path	practice-core/practice-lineage.md	.agent/practice-core/practice-lineage.md
+superseded-path	practice-core/practice-verification.md	.agent/practice-core/practice-verification.md
+superseded-path	practice-core/practice.md	.agent/practice-core/practice.md
+superseded-path	practice-core/provenance.yml	.agent/practice-core/provenance.yml
+superseded-path	practice-index.md	.agent/practice-index.md
+superseded-path	prompts/README.md	.agent/prompts/README.md
+superseded-path	prompts/dev-tooling/dev-tooling-hygiene.prompt.md	.agent/prompts/dev-tooling/dev-tooling-hygiene.prompt.md
+superseded-path	prompts/editorial/linkedin-content-preparation.prompt.md	.agent/prompts/editorial/linkedin-content-preparation.prompt.md
+superseded-path	prompts/personal-knowledge-graph/personal-knowledge-graph-track-b-source-of-truth-design.prompt.md	.agent/prompts/personal-knowledge-graph/personal-knowledge-graph-track-b-source-of-truth-design.prompt.md
+superseded-path	prompts/session-continuation.prompt.md	.agent/prompts/session-continuation.prompt.md
+superseded-path	reference-local/.gitignore	.agent/reference-local/.gitignore
+superseded-path	reference/README.md	.agent/reference/README.md
+superseded-path	reference/skill-composition.md	.agent/reference/skill-composition.md
+superseded-path	rules/apply-architectural-principles.md	.agent/rules/apply-architectural-principles.md
+superseded-path	rules/follow-the-practice.md	.agent/rules/follow-the-practice.md
+superseded-path	rules/invoke-editor.md	.agent/rules/invoke-editor.md
+superseded-path	rules/lint-after-edit.md	.agent/rules/lint-after-edit.md
+superseded-path	rules/napkin-always-active.md	.agent/rules/napkin-always-active.md
+superseded-path	rules/no-global-state-in-tests.md	.agent/rules/no-global-state-in-tests.md
+superseded-path	rules/read-agent-md.md	.agent/rules/read-agent-md.md
+superseded-path	rules/strict-validation-at-boundary.md	.agent/rules/strict-validation-at-boundary.md
+superseded-path	rules/subagent-practice-core-protection.md	.agent/rules/subagent-practice-core-protection.md
+superseded-path	rules/tdd-for-refactoring.md	.agent/rules/tdd-for-refactoring.md
+superseded-path	skills/start-right-quick/shared/start-right.md	.agent/skills/start-right-quick/shared/start-right.md
+superseded-path	skills/start-right-thorough/shared/start-right-thorough.md	.agent/skills/start-right-thorough/shared/start-right-thorough.md
+superseded-path	sub-agents/templates/editor.md	.agent/sub-agents/templates/editor.md
+superseded-path	sub-agents/templates/subagent-architect.md	.agent/sub-agents/templates/subagent-architect.md

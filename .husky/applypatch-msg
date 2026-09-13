@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+
+# Refuse mailbox applies (git am) on main BEFORE the patch is applied — the
+# first git-am hook fires while the tree is still untouched, so the guard that
+# runs is always the committed one. Mechanics live in the shared guard
+# (never-commit-to-main rule).
+GUARD_BRANCH=""
+GUARD_HINT="Abort this apply (git am --abort), then re-run it on a branch (git switch -c <branch>)."
+. .husky/refuse-commit-on-main.sh

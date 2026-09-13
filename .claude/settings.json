@@ -1,5 +1,152 @@
 {
   "permissions": {
-    "allow": ["Bash(git mv *)"]
+    "allow": [
+      "Bash(git mv *)",
+      "Skill(jc-accessibility)",
+      "Skill(jc-architecture)",
+      "Skill(jc-author-skills)",
+      "Skill(jc-claude-design-pipeline)",
+      "Skill(jc-commit)",
+      "Skill(jc-comms-channels)",
+      "Skill(jc-complex-merge)",
+      "Skill(jc-concept-exploration)",
+      "Skill(jc-config)",
+      "Skill(jc-consolidate-docs)",
+      "Skill(jc-consolidate-until-done)",
+      "Skill(jc-coordination-fold)",
+      "Skill(jc-cricket)",
+      "Skill(jc-cross-fork-integration)",
+      "Skill(jc-curator-pass)",
+      "Skill(jc-cut-coordination-branch)",
+      "Skill(jc-dependency-currency)",
+      "Skill(jc-design-system)",
+      "Skill(jc-deslop)",
+      "Skill(jc-distillation)",
+      "Skill(jc-docs-adr)",
+      "Skill(jc-editorial-voice)",
+      "Skill(jc-free-play)",
+      "Skill(jc-gates)",
+      "Skill(jc-go)",
+      "Skill(jc-inter-practice-collaboration)",
+      "Skill(jc-knowledge-safety-sweep)",
+      "Skill(jc-metacognition)",
+      "Skill(jc-napkin)",
+      "Skill(jc-package-deps-up-to-date)",
+      "Skill(jc-parallax)",
+      "Skill(jc-parallax-audit)",
+      "Skill(jc-parallax-decide)",
+      "Skill(jc-parallax-design-experiment)",
+      "Skill(jc-parallax-design-inquiry)",
+      "Skill(jc-parallax-frame)",
+      "Skill(jc-parallax-learn)",
+      "Skill(jc-parallax-product-experiment)",
+      "Skill(jc-parallax-synthesise)",
+      "Skill(jc-pkg)",
+      "Skill(jc-plan)",
+      "Skill(jc-pr-lifecycle)",
+      "Skill(jc-project-spec-creation)",
+      "Skill(jc-proportionality)",
+      "Skill(jc-quality-gates)",
+      "Skill(jc-react-component)",
+      "Skill(jc-reason)",
+      "Skill(jc-retrospective)",
+      "Skill(jc-security)",
+      "Skill(jc-semantic-merge)",
+      "Skill(jc-session-handoff)",
+      "Skill(jc-set-up-worktree-lane)",
+      "Skill(jc-sif)",
+      "Skill(jc-start-right-quick)",
+      "Skill(jc-start-right-team)",
+      "Skill(jc-start-right-thorough)",
+      "Skill(jc-subagent-architecture)",
+      "Skill(jc-ticket-management)",
+      "Skill(jc-tsdoc)",
+      "Skill(jc-ui-visual-design)",
+      "Skill(jc-undo-change)",
+      "Skill(jc-visual-comparison)",
+      "Skill(jc-visual-verification)",
+      "Skill(jc-working-with-agentic-ai)",
+      "Skill(jc-working-with-graphs)",
+      "Skill(jc-wrap)"
+    ]
+  },
+  "skillListingBudgetFraction": 0.03,
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/practice-session-identity.mjs",
+            "timeout": 5
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/plan-gate-drift-alert.mjs",
+            "timeout": 15
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/run-pretooluse-guard.mjs\" agent-tools/dist/src/hook-policy/pre-tool-use-dispatch.js",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/run-pretooluse-guard.mjs\" agent-tools/dist/src/hook-policy/pre-tool-use-dispatch.js",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/run-pretooluse-guard.mjs\" agent-tools/dist/src/hook-policy/pre-tool-use-dispatch.js",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "Read",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/_lib/log-hook-errors.sh ${CLAUDE_PROJECT_DIR}/.claude/hooks/secrets/pretool-secrets.sh",
+            "timeout": 60
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/_lib/log-hook-errors.sh ${CLAUDE_PROJECT_DIR}/.claude/hooks/secrets/prompt-secrets.sh",
+            "timeout": 60
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "node \"${CLAUDE_PROJECT_DIR}/.claude/scripts/statusline-identity.mjs\"",
+    "refreshInterval": 10
   }
 }

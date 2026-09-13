@@ -1,10 +1,26 @@
-# jimcresswell.net
+# Jim Cresswell — personal sites
 
-Personal website and CV for Jim Cresswell. Built with Next.js 16, React 19, and Tailwind CSS 4. Deployed on Vercel.
+A monorepo for Jim Cresswell's personal sites and the agentic engineering
+Practice that builds them. The first site is
+[www.jimcresswell.net](https://www.jimcresswell.net) — personal website and CV,
+built with Next.js 16, React 19, and Tailwind CSS 4, deployed on Vercel.
 
-Live at [www.jimcresswell.net](https://www.jimcresswell.net).
+## Workspaces
 
-## Overview
+| Workspace                      | Package                | Purpose                                                                             |
+| ------------------------------ | ---------------------- | ----------------------------------------------------------------------------------- |
+| [`jcdotnet/`](jcdotnet/)       | `@jimcresswell/www`    | jimcresswell.net — site, CV, personal knowledge graph, PDF, E2E and visual proof    |
+| [`agent-tools/`](agent-tools/) | `@engraph/agent-tools` | Practice tooling: validators, adapter generation, collaboration state, commit queue |
+| [`tooling/`](tooling/)         | `@engraph/*`           | Shared packages: eslint plugin, result, safe-path, type-helpers, workspace-config   |
+
+Root commands run through Turborepo (`pnpm check`, `pnpm build`, `pnpm test`);
+site-only commands use the workspace filter, e.g.
+`pnpm --filter @jimcresswell/www dev`. The Practice itself lives in
+[`.agent/`](.agent/README.md).
+
+## jimcresswell.net
+
+### Overview
 
 A minimal, editorial-quality personal site with a front page and one canonical
 CV document. The design is calm, serious, and intentional — Inter for headings
@@ -41,31 +57,30 @@ pnpm dev            # Development server
 pnpm build          # Production build
 pnpm start          # Start production server
 
-pnpm format:fix     # Prettier format (auto-fix)
-pnpm format         # Prettier check (read-only)
-pnpm markdownlint:fix   # Markdown lint (auto-fix)
-pnpm markdownlint:check # Markdown lint (read-only)
+pnpm format:root             # Prettier format (auto-fix)
+pnpm format-check:root       # Prettier check (read-only)
+pnpm markdownlint:root       # Markdown lint (auto-fix)
+pnpm markdownlint-check:root # Markdown lint (read-only)
 pnpm lint:fix       # ESLint (auto-fix)
 pnpm lint           # ESLint (read-only)
-pnpm typecheck      # TypeScript type checking
+pnpm type-check     # TypeScript type checking
 pnpm test           # Unit and integration tests (Vitest)
-pnpm test:watch     # Tests in watch mode
-pnpm test:coverage  # Tests with coverage report
+pnpm --filter @jimcresswell/www test:watch     # Site tests in watch mode
+pnpm --filter @jimcresswell/www test:coverage  # Site tests with coverage report
 pnpm test:e2e       # E2E tests — full Playwright suite against a production build
-pnpm test:e2e:ui    # Playwright UI mode (interactive)
-pnpm visual-regression-harness <base-ref> <target-ref> # Non-destructive rendered-output comparison
+pnpm test:ui        # Playwright UI mode (interactive)
+pnpm visual-regression:harness <base-ref> <target-ref> # Non-destructive rendered-output comparison
 
 pnpm fix            # Format, markdownlint, and lint auto-fix
-pnpm check          # Blocking gates with auto-fix where appropriate
-pnpm check:ci       # The same blocking gates read-only (used by pre-commit hook)
+pnpm check          # Every blocking gate, read-only (pre-push and CI run the same legs)
 pnpm knip           # Find unused exports and dependencies
 pnpm secrets:scan   # Scan git history for secrets
-pnpm vital-surfaces:check # Validate the vital Practice surface contract
 pnpm portability:check    # Validate agent-surface parity and local surface contract
 pnpm subagents:check      # Validate reviewer wrappers and Codex registrations
+pnpm check:docs           # Format, markdownlint and the docs validators (links, reference direction, cited scripts)
 pnpm practice:fitness:informational # Advisory Practice/doc fitness report
-pnpm fitness-vocabulary:check # Advisory check for canonical fitness frontmatter keys
-pnpm generate:icons # Regenerate favicon and OG images from logo
+pnpm practice:vocabulary  # Advisory check for canonical fitness frontmatter keys
+pnpm --filter @jimcresswell/www generate:icons # Regenerate favicon and OG images from the logo
 ```
 
 ## Project Structure
@@ -182,12 +197,15 @@ tilt links return the branded 404. See
 
 Two Git hooks enforce quality automatically:
 
-- **Pre-commit** — runs `pnpm check:ci` (read-only checks, ~10–15 seconds).
-- **Pre-push** — runs `pnpm check && pnpm test:e2e` (full gates + E2E). PDF tests require a prior build and are run explicitly.
+- **Pre-commit** — light: the branch guard, Prettier and markdownlint on staged files, lint on changed workspaces.
+- **Commit message** — commitlint runs in the `commit-msg` hook. Check a message before you
+  commit, without running any hook: `pnpm agent-tools:check-commit-message -m "type(scope): subject"`
+  (or `-F <file>`; exit 0 conforms, 1 violates).
+- **Pre-push** — full: `pnpm check` and the site's end-to-end suite. PDF tests require a prior build and are run explicitly.
 
 ```bash
-pnpm check          # Blocking gates with auto-fix (format, markdownlint, lint, typecheck, test, knip, gitleaks, vital surfaces, portability, subagents)
-pnpm check:ci       # Same gates, read-only (no auto-fix)
+pnpm check          # Blocking gates, read-only: format, markdownlint, shell and runtime-only lint, lint, type-check, test, knip, depcruise, gitleaks, portability, sub-agents, skill adapters, encoding
+pnpm fix            # Auto-fix (format, markdownlint, lint), then re-run pnpm check
 pnpm test:e2e       # E2E tests against production build (separate — requires Chromium)
 ```
 
@@ -195,7 +213,7 @@ Both hooks are managed by [Husky](https://typicode.github.io/husky/), installed 
 
 Practice/doc fitness is a companion surface rather than part of `pnpm check`:
 run `pnpm practice:fitness:informational` when changing Practice or
-directive docs, and use `pnpm fitness-vocabulary:check` alongside it when
+directive docs, and use `pnpm practice:vocabulary` alongside it when
 you need to check for frontmatter-key drift.
 
 **Local development** works without any environment variables. `.env.local` is only needed to test the full Vercel Blob PDF path (see [architecture docs](docs/architecture/README.md) for details).
@@ -222,7 +240,7 @@ you need to check for frontmatter-key drift.
 - [docs/architecture/](docs/architecture/) — System architecture, PDF generation, operational notes
 - [docs/architecture/decision-records/](docs/architecture/decision-records/) — Architecture Decision Records (ADRs)
 - [docs/project/](docs/project/) — User stories and requirements
-- [e2e/](e2e/) — E2E test organisation, naming conventions, and test map
+- [e2e/](jcdotnet/e2e/) — E2E test organisation, naming conventions, and test map
 
 ## Agent Memory
 

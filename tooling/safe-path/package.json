@@ -1,0 +1,62 @@
+{
+  "name": "@engraph/safe-path",
+  "version": "0.0.0-development",
+  "private": true,
+  "description": "Path-containment guard: assert a candidate path resolves within a base directory (symlink- and traversal-safe)",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist/**/*",
+    "src/**/*",
+    "!**/*.test.ts",
+    "!**/*.integration.test.ts"
+  ],
+  "scripts": {
+    "build": "tsup && tsc --emitDeclarationOnly --project tsconfig.build.json",
+    "clean": "rm -rf dist .turbo",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "type-check": "tsc -p tsconfig.lint.json --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "@engraph/eslint-plugin-standards": "workspace:*",
+    "@engraph/workspace-config": "workspace:*",
+    "@types/node": "^24.13.3",
+    "eslint": "^10.10.0",
+    "globals": "^17.9.0",
+    "tsup": "^8.5.1",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.10"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oaknational/jimcresswell.net.git",
+    "directory": "packages/core/safe-path"
+  },
+  "bugs": {
+    "url": "https://github.com/oaknational/jimcresswell.net/issues"
+  },
+  "homepage": "https://github.com/oaknational/jimcresswell.net/tree/main/packages/core/safe-path#readme",
+  "keywords": [
+    "path",
+    "security",
+    "path-traversal",
+    "filesystem"
+  ],
+  "author": {
+    "name": "Jim Cresswell",
+    "email": "contact@jimcresswell.net",
+    "url": "https://jimcresswell.net"
+  },
+  "license": "MIT"
+}

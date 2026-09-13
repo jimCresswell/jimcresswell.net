@@ -1,235 +1,220 @@
 # Practice Index
 
-This file bridges the portable practice-core files and this repo's local
-artefacts. It is **not** part of the travelling practice-core package — it is
-created during hydration and stays in the repo. The format is specified by
+This file bridges the portable Practice Core and this repo's local artefacts.
+It is **not** part of the travelling Practice Core package — it is host-local
+and stays in the repo. The format is specified by
 `practice-core/practice-bootstrap.md`.
 
-For the practice-core files and their roles, see
-[practice-core/index.md](practice-core/index.md).
-
-For the explicit local agent-surface contract, see
-[cross-platform-agent-surface-matrix.md](reference/cross-platform-agent-surface-matrix.md).
+For the Practice Core files and their roles, see
+[practice-core/index.md](practice-core/index.md). For the transplant that
+brought the OCE lineage here, and the owner rulings that shaped it, see
+[`docs/explorations/2026-09-12-oce-practice-lineage-transplant.md`](../docs/explorations/2026-09-12-oce-practice-lineage-transplant.md).
 
 ## Directives
 
-| Directive                                                 | Purpose                                      |
-| --------------------------------------------------------- | -------------------------------------------- |
-| [AGENT.md](directives/AGENT.md)                           | Operational entry point for agents           |
-| [principles.md](directives/principles.md)                 | Authoritative rules                          |
-| [testing-strategy.md](directives/testing-strategy.md)     | TDD approach and test types                  |
-| [editorial-strategy.md](directives/editorial-strategy.md) | Audience, attention, structure, and evidence |
-| [editorial-guidance.md](directives/editorial-guidance.md) | Jim's editorial voice and identity           |
-| [metacognition.md](directives/metacognition.md)           | Pause and reflect before planning            |
-| [privacy.md](directives/privacy.md)                       | Psychological safety and PII handling        |
-| [secops.md](directives/secops.md)                         | Git email, PII audits, operational security  |
+| Directive                                                                   | Purpose                                                      |
+| --------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| [AGENT.md](directives/AGENT.md)                                             | Operational entry point for agents                           |
+| [principles.md](directives/principles.md)                                   | Authoritative rules and decision lenses                      |
+| [testing-strategy.md](directives/testing-strategy.md)                       | TDD at all levels; test types and naming                     |
+| [tdd-as-design.md](directives/tdd-as-design.md)                             | Tests as the design instrument                               |
+| [validation-strategy.md](directives/validation-strategy.md)                 | Runtime validation and boundary discipline                   |
+| [definition-of-delivery.md](directives/definition-of-delivery.md)           | What "delivered" means                                       |
+| [operationalisation-contract.md](directives/operationalisation-contract.md) | How doctrine becomes an operational surface                  |
+| [continuity-practice.md](directives/continuity-practice.md)                 | Continuity surfaces and session resume                       |
+| [metacognition.md](directives/metacognition.md)                             | Reflect before planning; friction and fluency                |
+| [orientation.md](directives/orientation.md)                                 | Grounding before acting                                      |
+| [agent-collaboration.md](directives/agent-collaboration.md)                 | Multi-seat collaboration doctrine                            |
+| [user-collaboration.md](directives/user-collaboration.md)                   | Working with the owner                                       |
+| [cloud-environment-routing.md](directives/cloud-environment-routing.md)     | Cloud-session routing                                        |
+| [editorial-strategy.md](directives/editorial-strategy.md)                   | Audience, attention, structure, evidence — content about Jim |
+| [editorial-guidance.md](directives/editorial-guidance.md)                   | Jim's editorial voice, identity and register                 |
+| [privacy.md](directives/privacy.md)                                         | Psychological safety and PII handling                        |
+| [secops.md](directives/secops.md)                                           | Git identity, PII audits, operational security               |
 
 ## Reference
 
-| Reference                                                                                  | Purpose                                                                                  |
-| ------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------- |
-| [cross-platform-agent-surface-matrix.md](reference/cross-platform-agent-surface-matrix.md) | Supported and unsupported Cursor, Claude, GitHub Copilot, Codex, and `.agents/` surfaces |
+| Reference                                                                                                          | Purpose                                                      |
+| ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------ |
+| [memory/executive/cross-platform-agent-surface-matrix.md](memory/executive/cross-platform-agent-surface-matrix.md) | Supported platform-adapter surfaces (OCE lineage)            |
+| [memory/executive/cross-platform-agent-surface-matrix.md](memory/executive/cross-platform-agent-surface-matrix.md) | Supported and unsupported platform surfaces (executive memory) |
+| [memory/executive/artefact-inventory.md](memory/executive/artefact-inventory.md)                                   | Canonical-vs-adapter taxonomy                                |
+| [memory/executive/invoke-code-experts.md](memory/executive/invoke-code-experts.md)                                 | Expert catalogue and triage ladder                           |
 
 ## Architectural Decisions
 
-| ADR                                                                                                   | Subject                          |
-| ----------------------------------------------------------------------------------------------------- | -------------------------------- |
-| [ADR-001](../docs/architecture/decision-records/001-build-time-pdf-generation.md)                     | Build-time PDF generation        |
-| [ADR-002](../docs/architecture/decision-records/002-pdf-serving-architecture.md)                      | PDF serving architecture         |
-| [ADR-003](../docs/architecture/decision-records/003-print-button-removed.md)                          | Print button removed             |
-| [ADR-004](../docs/architecture/decision-records/004-storybook-deferred.md)                            | Storybook deferred               |
-| [ADR-005](../docs/architecture/decision-records/005-knip-unused-code-detection.md)                    | Knip unused code detection       |
-| [ADR-006](../docs/architecture/decision-records/006-header-responsive-layout.md)                      | Header responsive layout         |
-| [ADR-007](../docs/architecture/decision-records/007-dry-content-metadata.md)                          | DRY content metadata             |
-| [ADR-008](../docs/architecture/decision-records/008-schema-org-compliance.md)                         | Schema.org compliance            |
-| [ADR-009](../docs/architecture/decision-records/009-content-negotiation-proxy.md)                     | Content negotiation proxy        |
-| [ADR-010](../docs/architecture/decision-records/010-canonical-url-graph-identity.md)                  | Canonical URL and graph identity |
-| [ADR-011](../docs/architecture/decision-records/011-domain-appropriate-descriptions.md)               | Domain-appropriate descriptions  |
-| [ADR-012](../docs/architecture/decision-records/012-agent-memory-pipeline.md)                         | Agent memory pipeline            |
-| [ADR-013](../docs/architecture/decision-records/013-security-headers.md)                              | Security headers                 |
-| [ADR-014](../docs/architecture/decision-records/014-entity-model-design.md)                           | Entity model design              |
-| [ADR-015](../docs/architecture/decision-records/015-codex-adapter-model.md)                           | Codex adapter model              |
-| [ADR-016](../docs/architecture/decision-records/016-review-oriented-visual-regression-harness.md)     | Visual regression harness        |
-| [ADR-017](../docs/architecture/decision-records/017-cv-tilt-routes-are-canonical-aliases.md)          | CV tilt route aliases            |
-| [ADR-018](../docs/architecture/decision-records/018-practice-context-adjunct-for-plasmid-exchange.md) | Practice exchange context        |
+Site architecture decisions are ADRs under
+[`docs/architecture/decision-records/`](../docs/architecture/decision-records/).
+
+| ADR                                                                                                   | Subject                                           |
+| ----------------------------------------------------------------------------------------------------- | ------------------------------------------------- |
+| [ADR-001](../docs/architecture/decision-records/001-build-time-pdf-generation.md)                     | Build-time PDF generation                         |
+| [ADR-002](../docs/architecture/decision-records/002-pdf-serving-architecture.md)                      | PDF serving architecture                          |
+| [ADR-003](../docs/architecture/decision-records/003-print-button-removed.md)                          | Print button removed                              |
+| [ADR-004](../docs/architecture/decision-records/004-storybook-deferred.md)                            | Storybook deferred                                |
+| [ADR-005](../docs/architecture/decision-records/005-knip-unused-code-detection.md)                    | Knip unused code detection                        |
+| [ADR-006](../docs/architecture/decision-records/006-header-responsive-layout.md)                      | Header responsive layout                          |
+| [ADR-007](../docs/architecture/decision-records/007-dry-content-metadata.md)                          | DRY content metadata                              |
+| [ADR-008](../docs/architecture/decision-records/008-schema-org-compliance.md)                         | Schema.org compliance                             |
+| [ADR-009](../docs/architecture/decision-records/009-content-negotiation-proxy.md)                     | Content negotiation proxy                         |
+| [ADR-010](../docs/architecture/decision-records/010-canonical-url-graph-identity.md)                  | Canonical URL and graph identity                  |
+| [ADR-011](../docs/architecture/decision-records/011-domain-appropriate-descriptions.md)               | Domain-appropriate descriptions                   |
+| [ADR-012](../docs/architecture/decision-records/012-agent-memory-pipeline.md)                         | Agent memory pipeline                             |
+| [ADR-013](../docs/architecture/decision-records/013-security-headers.md)                              | Security headers                                  |
+| [ADR-014](../docs/architecture/decision-records/014-entity-model-design.md)                           | Entity model design                               |
+| [ADR-015](../docs/architecture/decision-records/015-codex-adapter-model.md)                           | Codex adapter model                               |
+| [ADR-016](../docs/architecture/decision-records/016-review-oriented-visual-regression-harness.md)     | Visual regression harness                         |
+| [ADR-017](../docs/architecture/decision-records/017-cv-tilt-routes-are-canonical-aliases.md)          | CV tilt route aliases (superseded by ADR-021)     |
+| [ADR-018](../docs/architecture/decision-records/018-practice-context-adjunct-for-plasmid-exchange.md) | Practice exchange context                         |
+| [ADR-019](../docs/architecture/decision-records/019-playwright-against-production-build.md)           | Playwright against the production build           |
+| [ADR-020](../docs/architecture/decision-records/020-entity-model-source-of-truth-for-shared-atoms.md) | Entity model as source of truth for shared atoms  |
+| [ADR-021](../docs/architecture/decision-records/021-canonical-only-cv-identity.md)                    | Canonical-only CV identity                        |
+| [ADR-022](../docs/architecture/decision-records/022-rendering-risk-needs-blocking-visual-proof.md)    | Rendering-risk changes need blocking visual proof |
 
 ## Practice Decision Records
 
-| PDR                                                                                              | Subject                                           |
-| ------------------------------------------------------------------------------------------------ | ------------------------------------------------- |
-| [PDR-008](practice-core/decision-records/PDR-008-canonical-quality-gate-naming.md)               | Canonical quality gate naming                     |
-| [PDR-009](practice-core/decision-records/PDR-009-canonical-first-cross-platform-architecture.md) | Canonical-first cross-platform architecture       |
-| [PDR-010](practice-core/decision-records/PDR-010-domain-specialist-capability-pattern.md)        | Domain-specialist capability pattern              |
-| [PDR-011](practice-core/decision-records/PDR-011-continuity-surfaces-and-surprise-pipeline.md)   | Continuity surfaces and surprise pipeline         |
-| [PDR-022](practice-core/decision-records/PDR-022-governance-enforcement-scanners.md)             | Governance enforcement scanners                   |
-| [PDR-024](practice-core/decision-records/PDR-024-vital-integration-surfaces.md)                  | Vital integration surfaces                        |
-| [PDR-025](practice-core/decision-records/PDR-025-quality-gate-dismissal-discipline.md)           | Quality-gate dismissal discipline                 |
-| [PDR-030](practice-core/decision-records/PDR-030-rendering-risk-needs-blocking-visual-proof.md)  | Rendering-risk changes need blocking visual proof |
+The portable Practice governance decisions are PDRs under
+[`practice-core/decision-records/`](practice-core/decision-records/) — 140
+records, PDR-001 through PDR-140, from the OCE lineage. Those most load-bearing
+for this repo's day-to-day:
+
+| PDR                                                                                              | Subject                                                  |
+| ------------------------------------------------------------------------------------------------ | -------------------------------------------------------- |
+| [PDR-005](practice-core/decision-records/PDR-005-wholesale-practice-transplantation.md)          | Wholesale Practice transplantation (this repo's genesis) |
+| [PDR-009](practice-core/decision-records/PDR-009-canonical-first-cross-platform-architecture.md) | Canonical-first cross-platform architecture              |
+| [PDR-014](practice-core/decision-records/PDR-014-consolidation-and-knowledge-flow-discipline.md) | Consolidation and knowledge-flow discipline              |
+| [PDR-018](practice-core/decision-records/PDR-018-planning-discipline.md)                         | Planning discipline                                      |
+| [PDR-049](practice-core/decision-records/PDR-049-memory-and-state-file-merge-semantics.md)       | Memory and state file merge semantics                    |
+| [PDR-072](practice-core/decision-records/PDR-072-knowledge-curation-as-autonomic-learning.md)    | Knowledge curation as autonomic learning                 |
+| [PDR-101](practice-core/decision-records/PDR-101-graduation-requires-quorum.md)                  | Graduation requires a review quorum                      |
+| [PDR-130](practice-core/decision-records/PDR-130-two-speed-learning.md)                          | Two-speed learning                                       |
 
 ## Tools and Workflows
 
-### Commands
-
-| Command                                                  | Purpose                                                        |
-| -------------------------------------------------------- | -------------------------------------------------------------- |
-| [commit](commands/commit.md)                             | Create a well-formed commit with safety checks                 |
-| [consolidate-docs](commands/consolidate-docs.md)         | Ensure plans, prompts, memory, and Practice docs stay truthful |
-| [editor](commands/editor.md)                             | Invoke editorial review                                        |
-| [gates](commands/gates.md)                               | Run quality gates with restart-on-fix                          |
-| [go](commands/go.md)                                     | Resume from the current continuity surfaces                    |
-| [metacognition](commands/metacognition.md)               | Apply the metacognition directive explicitly                   |
-| [plan](commands/plan.md)                                 | Create a structured plan with value traceability               |
-| [review](commands/review.md)                             | Run the reviewer flow after a non-trivial change               |
-| [session-handoff](commands/session-handoff.md)           | Prepare the repo for the next session                          |
-| [start-right-quick](commands/start-right-quick.md)       | Fast session grounding                                         |
-| [start-right-thorough](commands/start-right-thorough.md) | Deep session grounding                                         |
-| [wrap](commands/wrap.md)                                 | Deep session closeout via the wrap skill                       |
-
 ### Skills
 
-| Skill                                                              | Purpose                                                         |
-| ------------------------------------------------------------------ | --------------------------------------------------------------- |
-| [start-right-quick](skills/start-right-quick/SKILL.md)             | Core session grounding for routine work                         |
-| [start-right-thorough](skills/start-right-thorough/SKILL.md)       | Deeper grounding for structural or risky work                   |
-| [patterns](skills/patterns/SKILL.md)                               | Pattern discovery across Practice Core and repo-local instances |
-| [accessibility](skills/accessibility/SKILL.md)                     | Active accessibility workflow                                   |
-| [architecture](skills/architecture/SKILL.md)                       | Active architecture workflow across the reviewer personae       |
-| [config](skills/config/SKILL.md)                                   | Active configuration and tooling workflow                       |
-| [design-system](skills/design-system/SKILL.md)                     | Active design-system workflow                                   |
-| [docs-adr](skills/docs-adr/SKILL.md)                               | Active ADR and durable-doc workflow                             |
-| [mcp](skills/mcp/SKILL.md)                                         | Active multi-platform agent-surface workflow                    |
-| [react-component](skills/react-component/SKILL.md)                 | Active App Router and component-boundary workflow               |
-| [security](skills/security/SKILL.md)                               | Active defensive and secrets-sensitive workflow                 |
-| [subagent-architecture](skills/subagent-architecture/SKILL.md)     | Active reviewer-estate architecture workflow                    |
-| [project-spec-creation](skills/project-spec-creation/SKILL.md)     | Core — project specs for generative UI handoff                  |
-| [napkin](skills/napkin/SKILL.md)                                   | Session learning log — always active                            |
-| [distillation](skills/distillation/SKILL.md)                       | Rotate napkin into curated distilled.md                         |
-| [author-skills](skills/author-skills/SKILL.md)                     | Create or update repo-local skills                              |
-| [editorial-voice](skills/editorial-voice/SKILL.md)                 | Apply Jim's editorial voice                                     |
-| [quality-gates](skills/quality-gates/SKILL.md)                     | Run quality gates with restart-on-fix                           |
-| [deslop](skills/deslop/SKILL.md)                                   | Remove AI-generated code slop                                   |
-| [pkg](skills/pkg/SKILL.md)                                         | PKG entity model and structured data guide                      |
-| [package-deps-up-to-date](skills/package-deps-up-to-date/SKILL.md) | Audit and update `package.json` dependencies                    |
-| [start-right-team](skills/start-right-team/SKILL.md)               | Team grounding for multi-seat ARC collaboration                 |
-| [metacognition](skills/metacognition/SKILL.md)                     | Inward mode — reflective depth behind the directive             |
-| [reason](skills/reason/SKILL.md)                                   | Outward mode — structured reasoning gates and moves             |
-| [concept-exploration](skills/concept-exploration/SKILL.md)         | Explore unshaped concepts before options form                   |
-| [proportionality](skills/proportionality/SKILL.md)                 | Pre-decision sizing gate for scope, instrument, level           |
-| [plan](skills/plan/SKILL.md)                                       | Author plans with the four value questions                      |
-| [session-handoff](skills/session-handoff/SKILL.md)                 | Continuity surfaces and the deep context-loss scan              |
-| [consolidate-docs](skills/consolidate-docs/SKILL.md)               | Consolidate the estate; graduate durable knowledge              |
-| [consolidate-until-done](skills/consolidate-until-done/SKILL.md)   | Persistent curation programme until buffers drain               |
-| [knowledge-safety-sweep](skills/knowledge-safety-sweep/SKILL.md)   | Mid-session loss capture without closing the seat               |
-| [wrap](skills/wrap/SKILL.md)                                       | Deep closeout programme with metaloss recursion                 |
-| [retrospective](skills/retrospective/SKILL.md)                     | Post-mortem on a completed arc with routed proposals            |
-| [pr-lifecycle](skills/pr-lifecycle/SKILL.md)                       | PR from branch to merge with review-round convergence           |
-| [semantic-merge](skills/semantic-merge/SKILL.md)                   | Concept-preserving merge of memory and state files              |
-| [undo-change](skills/undo-change/SKILL.md)                         | Safety decision tree for undo, revert, and reset                |
+Canonical skills live under [`skills/`](skills/). OCE-lineage skills use
+`SKILL-CANONICAL.md`; local-lineage skills still use `SKILL.md` pending
+normalisation. Platform adapters are generated by `pnpm portability:fix`.
+
+| Skill family              | Skills                                                                                                                                                                                                               |
+| ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Session entry and exit    | `start-right-quick`, `start-right-thorough`, `start-right-team`, `go`, `session-handoff`, `wrap`                                                                                                                     |
+| Cognition                 | `cognition/metacognition`, `reason`, `concept-exploration`, `free-play`, `proportionality`, `retrospective`, `cricket`, `parallax` and its siblings                                                                  |
+| Knowledge                 | `knowledge/napkin`, `consolidate-docs`, `consolidate-until-done`, `curator-pass`, `knowledge-safety-sweep`; local `distillation`, `patterns` (pending merge into knowledge/)                                         |
+| Change custody            | `change-custody/commit`, `gates`, `pr-lifecycle`, `semantic-merge`, `undo-change`, `complex-merge`, `cross-fork-integration`; local `pr-lifecycle`, `semantic-merge`, `undo-change`, `quality-gates` (pending merge) |
+| Planning                  | `planning/plan`, `planning/ticket-management`; local `plan` (pending merge)                                                                                                                                          |
+| Collaboration             | `comms-channels`, `coordination-fold`, `cut-coordination-branch`, `set-up-worktree-lane`, `inter-practice-collaboration`, `sif`                                                                                      |
+| Craft                     | `domain-craft/ui-design/*`, `tsdoc`, `dependency-currency`, `working-with-graphs`, `orientation/working-with-agentic-ai`                                                                                             |
+| Site domain (local)       | `accessibility`, `architecture`, `config`, `design-system`, `docs-adr`, `react-component`, `security`, `subagent-architecture`, `author-skills`, `deslop`, `package-deps-up-to-date`, `project-spec-creation`        |
+| PKG and editorial (local) | `pkg`, `editorial-voice`                                                                                                                                                                                             |
 
 ### Rules
 
-| Rule                                                                            | Purpose                                                |
-| ------------------------------------------------------------------------------- | ------------------------------------------------------ |
-| [follow-the-practice](rules/follow-the-practice.md)                             | Read the canonical Practice chain at session start     |
-| [napkin-always-active](rules/napkin-always-active.md)                           | Read and write the napkin continuously                 |
-| [apply-architectural-principles](rules/apply-architectural-principles.md)       | Work from the repo's architectural principles          |
-| [lint-after-edit](rules/lint-after-edit.md)                                     | Re-run the gate sequence after edits                   |
-| [no-type-shortcuts](rules/no-type-shortcuts.md)                                 | Ban `as`, `any`, and `!` shortcuts                     |
-| [strict-validation-at-boundary](rules/strict-validation-at-boundary.md)         | Validate external data at boundaries                   |
-| [subagent-practice-core-protection](rules/subagent-practice-core-protection.md) | Prevent sub-agents editing protected Practice surfaces |
-| [invoke-code-reviewers](rules/invoke-code-reviewers.md)                         | Invoke the gateway reviewer after non-trivial changes  |
+Canonical always-applied rules live under [`rules/`](rules/) — 127 after the
+transplant, of which 16 are `invoke-*-expert` dispatch rules for the roster
+below. The OCE-lineage rules went through a single content-grain triage
+(keep / adapt / drop) recorded in the transplant plan §Rules triage. Local-lineage rules:
+`follow-the-practice`, `napkin-always-active`, `apply-architectural-principles`,
+`lint-after-edit`, `no-type-shortcuts`, `no-skipped-tests`,
+`strict-validation-at-boundary`, `subagent-practice-core-protection`,
+`tdd-for-refactoring`, `tsdoc-and-documentation-hygiene`.
 
-### Sub-agents
+### Experts (sub-agents)
 
-| Agent                                                                                | Purpose                                         |
-| ------------------------------------------------------------------------------------ | ----------------------------------------------- |
-| [editor](sub-agents/templates/editor.md)                                             | Editorial reviewer — strategy, voice, and fit   |
-| [code-reviewer](sub-agents/templates/code-reviewer.md)                               | Gateway reviewer — quality, correctness, triage |
-| [test-reviewer](sub-agents/templates/test-reviewer.md)                               | TDD compliance and test quality                 |
-| [type-reviewer](sub-agents/templates/type-reviewer.md)                               | TypeScript type safety                          |
-| [pkg-reviewer](sub-agents/templates/pkg-reviewer.md)                                 | PKG specialist — Schema.org, JSON-LD, graph     |
-| [architecture-reviewer-barney](sub-agents/templates/architecture-reviewer-barney.md) | Data, graph, and PKG architecture               |
-| [architecture-reviewer-betty](sub-agents/templates/architecture-reviewer-betty.md)   | Navigation, layout, and experience architecture |
-| [architecture-reviewer-fred](sub-agents/templates/architecture-reviewer-fred.md)     | Build, caching, PDF, and runtime resilience     |
-| [architecture-reviewer-wilma](sub-agents/templates/architecture-reviewer-wilma.md)   | Practice, plan, and documentation architecture  |
-| [accessibility-reviewer](sub-agents/templates/accessibility-reviewer.md)             | Accessibility and assistive flows               |
-| [design-system-reviewer](sub-agents/templates/design-system-reviewer.md)             | Tokens, spacing, and responsive rhythm          |
-| [react-component-reviewer](sub-agents/templates/react-component-reviewer.md)         | React hooks and component boundaries            |
-| [config-reviewer](sub-agents/templates/config-reviewer.md)                           | Build and configuration surfaces                |
-| [docs-adr-reviewer](sub-agents/templates/docs-adr-reviewer.md)                       | Docs and decision records                       |
-| [security-reviewer](sub-agents/templates/security-reviewer.md)                       | Security and defensive surfaces                 |
-| [mcp-reviewer](sub-agents/templates/mcp-reviewer.md)                                 | MCP and cross-platform coherence                |
-| [subagent-architect](sub-agents/templates/subagent-architect.md)                     | Reviewer architecture and dispatch              |
-
-Codex reviewer sub-agents are registered in [`.codex/config.toml`](../.codex/config.toml)
-and use thin adapters under [`.codex/agents/`](../.codex/agents/).
+| Expert                                                                           | Purpose                                                  |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------- |
+| [editor](sub-agents/templates/editor.md)                                         | Editorial reviewer — strategy, voice, and fit            |
+| [code-expert](sub-agents/templates/code-expert.md)                               | Gateway reviewer — quality, correctness, triage          |
+| [test-expert](sub-agents/templates/test-expert.md)                               | TDD compliance and test quality                          |
+| [type-expert](sub-agents/templates/type-expert.md)                               | TypeScript type safety                                   |
+| [pkg-expert](sub-agents/templates/pkg-expert.md)                                 | PKG specialist — Schema.org, JSON-LD, graph              |
+| [architecture-expert-barney](sub-agents/templates/architecture-expert-barney.md) | Data, graph, and PKG architecture                        |
+| [architecture-expert-betty](sub-agents/templates/architecture-expert-betty.md)   | Navigation, layout, and experience architecture          |
+| [architecture-expert-fred](sub-agents/templates/architecture-expert-fred.md)     | Build, caching, PDF, and runtime resilience              |
+| [architecture-expert-wilma](sub-agents/templates/architecture-expert-wilma.md)   | Practice, plan, and documentation architecture           |
+| [architecture-expert](sub-agents/templates/architecture-expert.md)               | General architecture reviewer (OCE lineage)              |
+| [accessibility-expert](sub-agents/templates/accessibility-expert.md)             | Accessibility and assistive flows                        |
+| [design-system-expert](sub-agents/templates/design-system-expert.md)             | Tokens, spacing, and responsive rhythm                   |
+| [react-component-expert](sub-agents/templates/react-component-expert.md)         | React hooks and component boundaries                     |
+| [config-expert](sub-agents/templates/config-expert.md)                           | Build and configuration surfaces                         |
+| [docs-adr-expert](sub-agents/templates/docs-adr-expert.md)                       | Docs and decision records                                |
+| [security-expert](sub-agents/templates/security-expert.md)                       | Security and defensive surfaces                          |
+| [subagent-architect](sub-agents/templates/subagent-architect.md)                 | Reviewer architecture and dispatch                       |
+| [assumptions-expert](sub-agents/templates/assumptions-expert.md)                 | Adversarial assumptions check; PDR-101 graduation quorum |
+| [prose-expert](sub-agents/templates/prose-expert.md)                             | Prose quality                                            |
+| [onboarding-expert](sub-agents/templates/onboarding-expert.md)                   | Cold-start readability of docs and handoffs              |
+| [release-readiness-expert](sub-agents/templates/release-readiness-expert.md)     | Release gates                                            |
+| `corpus-mapper`, `corpus-meta`, `corpus-reducer`, `corpus-voter`                 | Parallax corpus roles                                    |
+| `cricket-judgement`, `cricket-procedure`                                         | Cricket adjudication roles                               |
 
 ### Validation
 
-| Validation                                                                      | Purpose                                                                         |
-| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| [`validate-portability.mjs`](../scripts/validate-portability.mjs)               | Validate thin wrappers, reviewer registration, and the local surface matrix     |
-| [`validate-subagents.mjs`](../scripts/validate-subagents.mjs)                   | Validate reviewer adapters across Cursor, Claude, Copilot, and Codex            |
-| [`validate-vital-surfaces.mjs`](../scripts/validate-vital-surfaces.mjs)         | Validate vital Practice surfaces against the local matrix                       |
-| [`validate-practice-fitness.mjs`](../scripts/validate-practice-fitness.mjs)     | Validate the four-field fitness frontmatter used by Practice and directive docs |
-| [`validate-fitness-vocabulary.mjs`](../scripts/validate-fitness-vocabulary.mjs) | Validate canonical fitness frontmatter keys                                     |
+Practice validators live in [`agent-tools`](../agent-tools/README.md) and run
+from the root:
+
+| Command                           | Purpose                                                 |
+| --------------------------------- | ------------------------------------------------------- |
+| `pnpm portability:check` / `:fix` | Canonical ↔ adapter parity; `:fix` regenerates adapters |
+| `pnpm subagents:check`            | Expert adapter coverage across platforms                |
+| `pnpm practice:fitness`           | Four-field fitness frontmatter on governed files        |
+| `pnpm practice:vocabulary`        | Canonical fitness frontmatter keys                      |
+
+The pre-transplant validators under `jcdotnet/scripts/validate-*.mjs` are
+retired once these pass.
 
 ## Repo-Specific Clusters
 
-### PKG Cluster
+### PKG cluster
 
-- [pkg skill](skills/pkg/SKILL.md)
-- [pkg-reviewer](sub-agents/templates/pkg-reviewer.md)
-- [ADR-014](../docs/architecture/decision-records/014-entity-model-design.md)
-- [ADR-010](../docs/architecture/decision-records/010-canonical-url-graph-identity.md)
+- [pkg skill](skills/pkg/SKILL-CANONICAL.md), [pkg-expert](sub-agents/templates/pkg-expert.md),
+  [working-with-graphs](skills/working-with-graphs/SKILL-CANONICAL.md)
+- [ADR-010](../docs/architecture/decision-records/010-canonical-url-graph-identity.md),
+  [ADR-014](../docs/architecture/decision-records/014-entity-model-design.md),
+  [ADR-020](../docs/architecture/decision-records/020-entity-model-source-of-truth-for-shared-atoms.md),
+  [ADR-021](../docs/architecture/decision-records/021-canonical-only-cv-identity.md)
 
-### Editorial Governance
+### Editorial governance
 
-- [editorial-strategy.md](directives/editorial-strategy.md)
-- [editorial-guidance.md](directives/editorial-guidance.md)
-- [editorial-voice skill](skills/editorial-voice/SKILL.md)
-- [editor reviewer](sub-agents/templates/editor.md)
+- [editorial-strategy.md](directives/editorial-strategy.md),
+  [editorial-guidance.md](directives/editorial-guidance.md)
+- [editorial-voice skill](skills/editorial-voice/SKILL-CANONICAL.md),
+  [editor](sub-agents/templates/editor.md)
 - [Editorial decision records](../docs/editorial/decision-records/)
 
-### Personal-Identity Defensives
+### Personal-identity defensives
 
-- [privacy.md](directives/privacy.md)
-- [secops.md](directives/secops.md)
-- [ADR-013](../docs/architecture/decision-records/013-security-headers.md)
+- [privacy.md](directives/privacy.md), [secops.md](directives/secops.md),
+  [ADR-013](../docs/architecture/decision-records/013-security-headers.md)
 
-### CV-as-Product ADRs
+### CV-as-product
 
-- [ADR-001](../docs/architecture/decision-records/001-build-time-pdf-generation.md)
-- [ADR-002](../docs/architecture/decision-records/002-pdf-serving-architecture.md)
-- [ADR-017](../docs/architecture/decision-records/017-cv-tilt-routes-are-canonical-aliases.md)
-
-### Contributed Network Artefacts
-
-- [cross-platform-agent-surface-matrix.md](reference/cross-platform-agent-surface-matrix.md)
-- [practice-verification.md](practice-core/practice-verification.md)
-- [`validate-portability.mjs`](../scripts/validate-portability.mjs)
-- [`validate-subagents.mjs`](../scripts/validate-subagents.mjs)
-- [`validate-vital-surfaces.mjs`](../scripts/validate-vital-surfaces.mjs)
+- [ADR-001](../docs/architecture/decision-records/001-build-time-pdf-generation.md),
+  [ADR-002](../docs/architecture/decision-records/002-pdf-serving-architecture.md),
+  [ADR-016](../docs/architecture/decision-records/016-review-oriented-visual-regression-harness.md),
+  [ADR-019](../docs/architecture/decision-records/019-playwright-against-production-build.md),
+  [ADR-022](../docs/architecture/decision-records/022-rendering-risk-needs-blocking-visual-proof.md)
 
 ## Artefact Directories
 
-| Location                                        | What lives there                                                                                         |
-| ----------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| [`.agent/directives/`](directives/)             | Principles, rules, and operational directives                                                            |
-| [`.agent/practice-core/`](practice-core/)       | Portable Practice Core files (trinity, entry points, changelog, provenance) and Practice Box             |
-| [`.agent/commands/`](commands/)                 | Canonical commands (platform-agnostic)                                                                   |
-| [`.agent/skills/`](skills/)                     | Canonical skills (platform-agnostic)                                                                     |
-| [`.agent/rules/`](rules/)                       | Canonical always-applied rules (platform-agnostic)                                                       |
-| [`.agent/sub-agents/`](sub-agents/)             | Canonical sub-agent templates                                                                            |
-| [`.agent/plans/`](plans/)                       | Work planning — active, current, future, archive, research, and roadmap surfaces                         |
-| [`.agent/prompts/`](prompts/)                   | Session-entry prompt estate plus archived handoff prompts                                                |
-| [`.agent/memory/`](memory/)                     | Institutional memory — napkin, distilled, and local pattern instances                                    |
-| [`.agent/hooks/`](hooks/)                       | Hook policy and deliberate hook-surface documentation                                                    |
-| [`.agent/experience/`](experience/)             | Experiential records across sessions                                                                     |
-| [`.agent/reference/`](reference/)               | Stable local reference material, including the cross-platform surface matrix                             |
-| [`.agent/practice-context/`](practice-context/) | Optional repo-local exchange context — transient incoming workspace and sender-maintained outgoing notes |
-| [`.agents/`](../.agents/)                       | Codex skill and command adapters, plus adapter-local metadata                                            |
-| [`.claude/`](../.claude/)                       | Claude platform adapters for commands, skills, rules, and reviewers                                      |
-| [`.codex/`](../.codex/)                         | Codex project config and thin sub-agent adapters                                                         |
-| [`.cursor/`](../.cursor/)                       | Cursor platform adapters — thin wrappers and rule triggers                                               |
-| [`.github/`](../.github/)                       | GitHub Copilot entry instructions, reviewer wrappers, templates, and CI workflows                        |
+| Location                                  | What lives there                                                                               |
+| ----------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| [`.agent/directives/`](directives/)       | Directives and the operational entry point                                                     |
+| [`.agent/practice-core/`](practice-core/) | Portable Practice Core: trinity, provenance, protocol, PDRs                                    |
+| [`.agent/skills/`](skills/)               | Canonical skills                                                                               |
+| [`.agent/rules/`](rules/)                 | Canonical always-applied rules                                                                 |
+| [`.agent/sub-agents/`](sub-agents/)       | Expert templates                                                                               |
+| [`.agent/plans/`](plans/)                 | Plan nodes, schema, templates; pre-transplant plan record                                      |
+| [`.agent/prompts/`](prompts/)             | Session continuation and handoff prompts                                                       |
+| [`.agent/memory/`](memory/)               | Three-mode memory: active, operational, executive                                              |
+| [`.agent/experience/`](experience/)       | Experiential records                                                                           |
+| [`.agent/reference/`](reference/)         | Local reference material                                                                       |
+| [`.agent/collaboration/`](collaboration/) | Rapid-comms channels                                                                           |
+| [`.agent/state/`](state/)                 | Coordination state (machine-local parts git-ignored)                                           |
+| [`.agents/`](../.agents/)                 | Codex skill adapters (generated)                                                               |
+| [`.claude/`](../.claude/)                 | Claude adapters for skills, rules, and experts (generated)                                     |
+| [`.codex/`](../.codex/)                   | Codex config and thin expert adapters (generated)                                              |
+| [`.cursor/`](../.cursor/)                 | Cursor adapters (generated)                                                                    |
+| [`.github/`](../.github/)                 | Copilot instructions, expert wrappers, templates, CI workflows                                 |
+| [`agent-tools/`](../agent-tools/)         | `@engraph/agent-tools` — validators, collaboration state, comms, commit queue                  |
+| [`tooling/`](../tooling/)                 | `@engraph/*` shared packages: eslint plugin, result, safe-path, type-helpers, workspace-config |
