@@ -1,3 +1,9 @@
+---
+classification: situational
+description: invoke architecture expert fred
+trigger: surface:build, caching, PDF generation, Vercel config
+---
+
 # Invoke Architecture Reviewer Fred
 
 Invoke `architecture-expert-fred` when changes touch builds, caching, PDF generation, scripts,

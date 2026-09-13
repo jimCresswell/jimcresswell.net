@@ -1,3 +1,9 @@
+---
+classification: situational
+description: Every skill needs a semantically useful name and a description optimised for discovery, applicability determination (use-when and do-not-use-when), and best/bad-practice examples — apply when creating, renaming, or editing any skill or its description.
+trigger: ceremony:skill-authoring — Creating/renaming/editing any skill or its description; vendoring gate
+---
+
 # Skill Naming and Description Quality
 
 Every skill carries a semantically useful name and a high-quality

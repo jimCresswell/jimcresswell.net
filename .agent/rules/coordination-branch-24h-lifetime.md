@@ -1,3 +1,9 @@
+---
+classification: situational
+description: Coordination branches live at most 24 hours — day-stamped name at the cut, convergence due at session-open on an overdue branch, converge-and-rotate shape, work products stay in worktrees.
+trigger: ceremony:branch-cut — Cutting a coordination branch, or session-open on one
+---
+
 # Coordination Branch 24-Hour Lifetime
 
 Owner-ruled (2026-07-28, in-chat, verbatim intent): coordination branches

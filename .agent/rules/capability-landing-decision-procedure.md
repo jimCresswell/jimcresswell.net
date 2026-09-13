@@ -1,3 +1,15 @@
+---
+classification: situational
+description: Where does a new capability land? Ordered decision procedure — audience set first, then payload shape × disclosure need, trigger recognisability, companion pairs, the family test, and the vendoring gate. Apply when landing, converting, or re-homing any skill, rule, subagent, hook, or validator; not for content edits within an already-landed home. Worked pair — complex-merge (skill) and pre-merge-divergence-analysis (rule) share one trigger; payload shape decides (invariant → rule, procedure → skill). Failure shapes it exists to prevent — two landing conventions authored concurrently; an improvised cross-lever binding outside the companion-pair pattern.
+trigger: surface:lever-authoring — Landing, converting, or re-homing a capability; not landed-home edits
+globs:
+  - .agent/rules/**
+  - .agent/skills/**
+  - .agent/sub-agents/**
+  - .claude/agents/**
+  - .agent/hooks/**
+---
+
 # Capability Landing Decision Procedure
 
 Where does a new capability land? This procedure answers at authoring

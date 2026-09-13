@@ -1,3 +1,12 @@
+---
+classification: situational
+description: Do not leave skipped tests in the tree
+trigger: surface:**/*.test.*,e2e/**/*
+globs:
+  - "**/*.test.*"
+  - e2e/**/*
+---
+
 # No Skipped Tests
 
 Do not leave `it.skip`, `describe.skip`, or any other skipped-test mechanism in the tree. If a test

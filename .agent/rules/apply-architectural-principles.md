@@ -1,3 +1,8 @@
+---
+classification: core
+description: Apply the first question and existing architecture before non-trivial work
+---
+
 # Apply Architectural Principles
 
 Read and follow `.agent/directives/principles.md`. It is the authoritative

@@ -1,3 +1,9 @@
+---
+classification: situational
+description: invoke type expert
+trigger: surface:types, schemas, contracts, tsconfig
+---
+
 # Invoke Type Reviewer
 
 Invoke `type-reviewer` when changes alter complex type flow, exported types, schema inference,

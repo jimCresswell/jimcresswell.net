@@ -1,3 +1,9 @@
+---
+classification: situational
+description: invoke architecture expert barney
+trigger: surface:content/entities.json, lib/ graph derivation, JSON-LD
+---
+
 # Invoke Architecture Reviewer Barney
 
 Invoke `architecture-expert-barney` when changes touch `content/`, `lib/pkg`, JSON-LD, metadata

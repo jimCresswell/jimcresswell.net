@@ -1,3 +1,11 @@
+---
+classification: situational
+description: Canonical documentation hygiene (misleading-doc detection, attribution on adoption, TSDoc presence).
+trigger: surface:**/*.{ts,tsx,mts}
+globs:
+  - "**/*.{ts,tsx,mts}"
+---
+
 # Documentation Hygiene
 
 Operationalises [PDR-023 (Documentation Structure Discipline)](../practice-core/decision-records/PDR-023-documentation-structure-discipline.md)
