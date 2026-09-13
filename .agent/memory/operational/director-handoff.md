@@ -83,8 +83,8 @@ rewritten at each Director push.
 - Next safe step (owner away; decisions by the lenses, logged under §Decisions overnight): the
   bot merges #55 at zero threads; lane A's #60 round-four push on ask, Copilot bound, the bot
   merges at zero threads; then the session 2 register PR from the draft in
-  `threads/session-2-synthesis.next-session.md` (home reads done: eighteen file as pending,
-  three duplicates, one proposal, two on the verify list); then item 5 as three PRs. The morning
+  `threads/session-2-synthesis.next-session.md` (home reads done: twenty-eight file as pending,
+  nine duplicates, one proposal); then item 5 as three PRs. The morning
   report presents §Decisions overnight with its REVIEW marks.
 
 ## Live board
@@ -209,7 +209,10 @@ ones the Director would put to the owner had the owner been present.
 12. Lane A's home reads for the session 2 draft: of the twenty-four candidates A to X, G, H and
     W are duplicates with their homes quoted, E is a proposal kept out of the register, P and U
     left the candidate list (P to the verify list; U reduced to the owner-gated privacy review),
-    so eighteen file as pending (pr-lifecycle CLASS P; the docs-adr-expert template's
+    so eighteen lettered candidates file as pending; lane A's reads of the verify list found ten
+    more unwritten (P, the plan-skill items, the tooling traps as one entry, the harness lessons
+    as one, the stacked-PR merge order, the allowed-signers note) and six duplicates, so
+    twenty-eight file and the readout moves from 0 to 33 (ruled about 22:05Z) (pr-lifecycle CLASS P; the docs-adr-expert template's
     title-not-number line with PDR-005's four-audit close; hook-policy-substring-discipline).
     Board follow-ons from the reads: the memory-state substrate contracts doc carries two "must
     not remain on disk" clauses, the memorial shape O forbids (truing at that file's next touch);
