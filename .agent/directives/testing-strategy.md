@@ -452,8 +452,9 @@ The site workspace applies the taxonomy above with these fixed conventions:
 - **E2E-API**: `*.e2e-api.test.ts` under `e2e/behaviour/`; Playwright's `APIRequestContext`
   against the running site — the black-box boundary, never an imported app.
 - **Runner**: `pnpm --filter @jimcresswell/www test:e2e` boots `pnpm build && pnpm start` on
-  port 3000 (ADR-019). PDF generation is part of the build, so PDF proofs run with everything
-  else. Never run the root `check` in parallel with the E2E suite.
+  a port probed free at config load (ADR-019; §Harnesses Adapt to Shared Hosts). PDF
+  generation is part of the build, so PDF proofs run with everything else. Never run the root
+  `check` in parallel with the E2E suite.
 - **Rendering risk**: any change that can alter rendered output runs the visual regression harness
   as blocking proof during implementation (ADR-022), separate from and complementary to the suites
   above. Zero pixel difference can still carry an intentional semantic HTML change — review the
@@ -736,8 +737,12 @@ any gate-vs-environment collision is the harness's missing adaptation, never
 the schedule. Worked instances: a fixed-port Playwright `webServer` turned
 one seat's render server into a fleet-wide push outage (cure: an ephemeral
 port probed at config load — no `process.env` in config, `reuseExistingServer`
-stays `false`); a UI-test webServer inheriting `.env.local` refused a valid
-sink configuration (cure: the webServer pins its own observability env).
+stays `false`; this estate's site config, 2026-09-13, probes in the runner
+and hands the port to its worker processes through a pid-stamped stamp in
+the runner's own environment, which a value set from outside cannot forge,
+so no configuration comes from the environment); a UI-test webServer
+inheriting `.env.local` refused a valid sink configuration (cure: the
+webServer pins its own observability env).
 Corollary for guard design: when a guard bites the innocent, fix the shared
 context so the guard's premise holds per-worktree — never weaken the guard.
 

@@ -55,8 +55,10 @@ manual production server.
 **Run the Playwright suite against a production build.**
 
 `playwright.config.ts` now defines a single `default` project whose web
-server runs `pnpm build && pnpm start --port 3000` with a 120-second
-timeout. `reuseExistingServer: true` outside CI keeps local re-runs fast.
+server runs `pnpm build && pnpm start` on a port the config probes free at
+load, with a 120-second timeout. `reuseExistingServer` is `false`: every run
+proves the build it started, never a server another checkout or a human left
+up (the port mechanism is documented in the config itself).
 
 The previous `with-build` project is removed; `*.with-build.*` test files
 are renamed to standard names. PDF tests run alongside everything else
@@ -93,9 +95,10 @@ and integration tests under Vitest are unaffected.
 
 **Trade-offs:**
 
-- Initial cold start adds ~15 s for the build. Local re-runs reuse the
-  built artefact and start the existing server, so the cost is paid once
-  per worktree change.
+- Every run pays for the build (Next's build cache keeps an unchanged
+  worktree's rebuild short) and starts its own server on a port probed free
+  at config load; no run reuses a server it did not start, so a run can only
+  ever prove its own build.
 - A bug that only manifests in dev mode would not be caught by this
   suite. That is acceptable — dev-mode-only bugs do not affect users.
 

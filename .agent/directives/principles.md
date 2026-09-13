@@ -664,7 +664,11 @@ paths, setup files) don't apply.
   The site workspace adds the Playwright suite (`pnpm --filter @jimcresswell/www test:e2e`, against a
   production build — ADR-019). Run `check` and the E2E suite sequentially,
   never in parallel: each is a full-host run (builds, test workers, the
-  Playwright web server), and two at once exceed the host. Git hooks enforce this — pre-commit runs
+  Playwright web server), and two at once exceed the host. That rule is about
+  load, not correctness: each Playwright run serves on a port its config
+  probes free at load, so checkouts no longer share a fixed port, and it
+  reuses no existing server, so a port taken by anything else fails the run
+  loudly and a gate can only ever prove its own build. Git hooks enforce this — pre-commit runs
   prettier on staged files and lint on changed workspaces; pre-push runs
   `check` and the site E2E suite.
 - **Restart on fix** — After any quality-gate fix, restart the full sequence

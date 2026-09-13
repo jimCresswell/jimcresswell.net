@@ -1,11 +1,11 @@
 import { execSync, spawn, type ChildProcess } from "node:child_process";
 import fs from "node:fs/promises";
-import net from "node:net";
 import os from "node:os";
 import path from "node:path";
 import pino from "pino";
 import puppeteer from "puppeteer";
 import { getBlobPath, getDeployKey, PDF_FILENAME } from "../lib/pdf-config";
+import { getFreePort } from "./free-port";
 import { put } from "@vercel/blob";
 
 // ---------------------------------------------------------------------------
@@ -55,23 +55,6 @@ async function storePdf(pdf: Buffer, blobPath: string): Promise<string> {
 // ---------------------------------------------------------------------------
 // Helpers
 // ---------------------------------------------------------------------------
-
-/** Find a free TCP port. */
-function getFreePort(): Promise<number> {
-  return new Promise((resolve, reject) => {
-    const srv = net.createServer();
-    srv.listen(0, () => {
-      const addr = srv.address();
-      if (!addr || typeof addr === "string") {
-        reject(new Error("Could not determine port"));
-        return;
-      }
-      const port = addr.port;
-      srv.close(() => resolve(port));
-    });
-    srv.on("error", reject);
-  });
-}
 
 /** Poll until the server responds with 200. */
 async function waitForServer(
