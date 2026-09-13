@@ -25,10 +25,10 @@ follows. Every move that makes a Practice element more general lands a row in
 (rule `record-generalisation-moves`). Read `.agent/memory/operational/repo-continuity.md`
 §Current State and §Next Safe Steps first.
 
-**Director session (2026-09-13, evening; wrap 7):** this seat is the Director (PDR-117). Read
-`.agent/memory/operational/director-handoff.md` first: the board, the approved decisions, the
-routing log and the re-arm list. Lane A is active on PR #56, then closure item 5; lanes B and C
-are paused by owner word with state saved; resume is the owner's word relayed by the Director.
+**Director session (2026-09-13, evening):** this seat is the Director (PDR-117), at n=2 with lane
+A (Saffron turns Verdure) since 17:16Z. Read `.agent/memory/operational/director-handoff.md`
+first: §Current handoff state, the board, and the routing log, whose last entry is current where
+the two disagree. Lanes B and C stood down with their hand-backs on the comms stream.
 
 Until that transplant closes, the earlier workstreams below are **parked**, not
 abandoned. Do not resume any of them by default.

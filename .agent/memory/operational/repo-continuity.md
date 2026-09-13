@@ -77,10 +77,12 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
   and started three Implementer seats. Landed on `main`: the Director records and the channel rule
   (PR #54, `c426c6c`), closure item 4 (PR #57, `4a61112`, merged by the merge bot the owner created:
   App `jimbot-of-the-devonshire-jimbots`, config per-checkout and untracked, key outside the repo).
-  Open: PR #56 (lane A, item 3 + the tracked-universe lint cure), PR #55 (lane B, item 6 sweep, third
-  round). Owner word about 15:35Z: slow down, Director plus one Implementer; lane A active, lanes B
-  and C PAUSED with state saved. The live map is `director-handoff.md` (board, decisions, routing
-  log, re-arm list); it is the successor Director's first read.
+  Then, the same evening: item 3 merged (PR #56, `1829cd4`, by the owner); lanes B and C handed
+  back and stood down; the owner set n=2 (Director and lane A, 17:16Z) with an ARC channel beside
+  native messaging; open at 17:40Z: #58 (records), #60 (the per-checkout Playwright port), #55
+  (one thread, cure by lane A), #59 (carried on #58). The live map is `director-handoff.md`
+  (§Current handoff state, the board, the routing log whose last entry is current); it is the
+  successor Director's first read.
 
 ## Active Threads
 
