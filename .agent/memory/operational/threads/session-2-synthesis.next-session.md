@@ -12,12 +12,14 @@ napkins are archived only then.
 
 ## Current continuation
 
-- **Role:** lane A, Saffron turns Verdure (c39ad7), Implementer (PDR-117), completes this
-  draft; the Director (Cauldron herds Lustre, 880ff9, claim `1db07581`) drafted it and routes.
+- **Role:** lane A, Saffron turns Verdure (c39ad7), Implementer (PDR-117), completed this draft
+  as the register pull request and carries its review rounds; the Director (Cauldron herds
+  Lustre, 880ff9, claim `1db07581`) drafted it and routes.
 - **Branch and landing target:** lane A's branch `docs/session-2-register` from `main` at
   `SHA: 7127bc4` (after #55 merged; the register PR does not wait for #60, ruled 21:55Z); the
-  pull request is #63, open as the bot at `SHA: b692f02`, `docs(memory): session 2 candidates
-  onto the register`; the bot merges at zero threads.
+  pull request is #63, `docs(memory): session 2 candidates onto the register`, open as the bot;
+  its tip moves with each review cure (round one's cure is `SHA: 414fb6c`), so read the tip
+  from the pull request; the bot merges at zero threads with Copilot bound to that tip.
 - **Claim:** lane A opens a claim on `.agent/memory/operational/pending-graduations.md` and this
   record before editing.
 - **Grounding order:** this record; the register's §What belongs here and its entry shape (the
