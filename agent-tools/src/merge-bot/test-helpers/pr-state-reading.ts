@@ -1,8 +1,9 @@
 import type { PrStateReading } from '../../pr-watch/state-types.js';
 
 /**
- * The canonical settled-PR reading for merge-bot tests: quiet window
- * comfortably elapsed at a nowIso of 2026-08-06T09:00:00Z. One owner
+ * The canonical settled-PR reading for merge-bot tests: every leg landed on
+ * the tip, nothing requested, no run live (the checks-green timeout leg is
+ * clocked at a nowIso of 2026-08-06T09:00:00Z). One owner
  * (consolidate-at-second-consumer): the CLI tests' whole premise is that
  * this reading yields SETTLE-READY, so a silent value drift between twin
  * fixtures would change what those tests prove without breaking anything.

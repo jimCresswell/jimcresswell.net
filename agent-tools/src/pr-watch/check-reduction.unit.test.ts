@@ -492,7 +492,7 @@ describe('parseStateView: latest run per check name', () => {
 describe('full-tie survivor: the later completion anchors checksGreenAt', () => {
   // GitHub timestamps are second-granular: two green twins can tie on
   // startedAt AND rank. The survivor's completion feeds checksGreenAt,
-  // which waives owed-review quiet windows — an array-order-dependent
+  // which starts the owed-review timeout — an array-order-dependent
   // survivor could report the green moment early and waive prematurely.
   it('two green runs tying on start resolve to the later completion in either order', () => {
     const earlyDone = {

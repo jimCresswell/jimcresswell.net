@@ -12,7 +12,7 @@ import { decideMergeAction, verdictAwaitsSettlement } from './merge-decision.js'
 
 const SETTLE_READY: PrVerdict = {
   state: 'SETTLE-READY',
-  evidence: ['every expected reviewer leg settled; quiet window elapsed'],
+  evidence: ['every expected reviewer leg settled; no expected reviewer requested; no run live'],
 };
 
 const baseInput = {
@@ -75,16 +75,16 @@ describe('decideMergeAction', () => {
 });
 
 describe('verdictAwaitsSettlement', () => {
-  // The CLOSED partition of the verdict set: exactly three verdicts resolve
-  // by waiting (checks finishing, a live review run completing, the quiet
-  // window elapsing). Everything else needs an operator act or is terminal,
-  // so polling on it would burn the budget silently. The `satisfies` record
-  // is the compile-time anchor: a verdict state added later fails TYPE-CHECK
-  // here until it is deliberately classified (test-review D-1 cure — the
-  // earlier includes() form defaulted BOTH sides to false for a new state).
+  // The CLOSED partition of the verdict set: exactly two verdicts resolve
+  // by waiting (checks finishing; a review round in flight, which is an
+  // outstanding request or a live run, completing). Everything else needs an
+  // operator act or is terminal, so polling on it would burn the budget
+  // silently. The `satisfies` record is the compile-time anchor: a verdict
+  // state added later fails TYPE-CHECK here until it is deliberately
+  // classified (test-review D-1 cure — the earlier includes() form defaulted
+  // BOTH sides to false for a new state).
   const CLASSIFICATION = {
     'SETTLE-READY': false,
-    'SETTLING-QUIET-WINDOW': true,
     DRAFT: false,
     'WAITING-REVIEW-RUN-LIVE': true,
     'SILENT-WAIT-NO-REVIEWER': false,

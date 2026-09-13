@@ -19,14 +19,13 @@ export type MergeDecision =
 
 /**
  * The verdicts a bounded poll may legitimately outwait: each resolves by
- * time alone — checks finishing, a live review run completing, the quiet
- * window elapsing. Every other verdict needs an operator act or is
- * terminal, so polling on it would burn the budget silently; the CLI
- * refuses those immediately instead. Exported as the ONE authority the
+ * waiting alone — checks finishing, a review round in flight (an outstanding
+ * request or a live run) completing. Every other verdict needs an operator
+ * act or is terminal, so polling on it would burn the budget silently; the
+ * CLI refuses those immediately instead. Exported as the ONE authority the
  * usage text derives from — the list must never be transcribed by hand.
  */
 export const SETTLEMENT_WAIT_STATES = [
-  'SETTLING-QUIET-WINDOW',
   'CHECKS-RUNNING',
   'WAITING-REVIEW-RUN-LIVE',
 ] as const satisfies readonly PrVerdict['state'][];

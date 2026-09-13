@@ -3,7 +3,6 @@ import {
   hasLanded,
   isSignedSelfReply,
   mostBlockingLeg,
-  QUIET_WINDOW_MS,
 } from './reviewer-legs.js';
 import type { ReviewerLeg } from './reviewer-legs.js';
 import type { PrStateReading, PrVerdict } from './state-types.js';
@@ -11,9 +10,14 @@ import type { PrStateReading, PrVerdict } from './state-types.js';
 /**
  * The reviewer-leg and settlement half of the `pr state` verdict (SKILL items
  * 3–4): per-expected-reviewer legs over the full harvest, the most-blocking
- * OWED leg, and the settled path with its quiet window (more than 10 minutes
- * since the latest tip-bound review — declaring SETTLE-READY inside the
- * window recreates the bot-round-still-composing hole).
+ * OWED leg, and the settled path read from MEASURED state: every expected leg
+ * landed on the tip, no expected reviewer requested, no review run live. The
+ * ten-minute quiet window that stood in for that state (a clock, because
+ * agents could not see a review round's boundary) went on 2026-09-13 on the
+ * owner's word ("nothing is happening on the PR ... the 'quiet window' could
+ * be replaced with measured state", on #56); the boundary is measured now:
+ * the platform clears the request when the review lands, and the review's
+ * threads arrive in the same compound read.
  */
 
 function runsEvidence(reading: PrStateReading): string[] {
@@ -35,24 +39,23 @@ function legLine(leg: ReviewerLeg): string {
   return `${leg.reviewer}: ${leg.state} — ${leg.detail}`;
 }
 
-// SKILL item 4: the quiet window anchors on the latest LANDED review binding
-// the tip — excluding PENDING drafts and signed self-authored replies; on a
-// tip where every leg settled via SKIPPED (no tip-bound review), it anchors
-// on checks-green.
-function quietWindowAnchor(reading: PrStateReading): string | null {
-  const tipBound = reading.reviews
-    .filter((review) => review.commitOid === reading.headRefOid)
-    .filter((review) => review.state !== 'PENDING' && !isSignedSelfReply(review.body));
-  // An eligible review whose submittedAt gh omitted could be NEWER than
-  // every timestamped one — anchoring past it would settle inside its
-  // window, so the anchor is unknowable (null routes to the held-open path).
-  if (tipBound.some((review) => review.submittedAt === '')) {
-    return null;
-  }
-  const tipBoundTimes = tipBound
-    .map((review) => review.submittedAt)
-    .sort((left, right) => left.localeCompare(right));
-  return tipBoundTimes.at(-1) ?? reading.checksGreenAt;
+// SKILL item 4, measured: an outstanding request for an expected reviewer, or
+// a live run mapped to the PR, is a round in flight on a tip whose legs have
+// all landed (a re-request after a disposition pass, say). Names what is in
+// flight so the wait reads as a round, never as silence.
+function roundInFlight(reading: PrStateReading): string[] {
+  const expected = new Set(reading.expectedReviewers.map((login) => login.toLowerCase()));
+  const requested = reading.reviewRequests.filter((login) =>
+    expected.has(login.toLowerCase().replace(/\[bot\]$/u, '')),
+  );
+  const liveRuns =
+    reading.reviewRuns.kind === 'read'
+      ? reading.reviewRuns.runs.filter((run) => run.completedAt === null)
+      : [];
+  return [
+    ...requested.map((login) => `expected reviewer requested: ${login}`),
+    ...liveRuns.map((run) => `review run live: ${run.id} (${run.name})`),
+  ];
 }
 
 // SKILL item 2: findings count from BOTH harvest surfaces — review threads
@@ -76,39 +79,39 @@ function bodyTallyEvidence(reading: PrStateReading): string[] {
 function settledVerdict(input: {
   readonly reading: PrStateReading;
   readonly legs: readonly ReviewerLeg[];
-  readonly now: string;
 }): PrVerdict {
-  const { reading, legs, now } = input;
+  const { reading, legs } = input;
   const shared = [
     ...legs.map((leg) => legLine(leg)),
     ...bodyTallyEvidence(reading),
     ...expectedSetEvidence(reading),
     ...runsEvidence(reading),
   ];
-  const anchor = quietWindowAnchor(reading);
-  const anchorMs = anchor === null ? Number.NaN : Date.parse(anchor);
-  // A missing or unparseable anchor holds the window OPEN (conservative
-  // direction): settlement without a provable quiet window is the
-  // bot-round-still-composing hole again.
-  if (Number.isNaN(anchorMs)) {
-    return {
-      state: 'SETTLING-QUIET-WINDOW',
-      evidence: ['no parseable quiet-window anchor — window held open conservatively', ...shared],
-    };
-  }
-  if (Date.parse(now) - anchorMs <= QUIET_WINDOW_MS) {
-    return {
-      state: 'SETTLING-QUIET-WINDOW',
-      evidence: [`quiet window open until more than 10 min after ${anchor}`, ...shared],
-    };
-  }
+  // A SKIPPED leg is classified first: a request still outstanding after the
+  // checks-green timeout is the leg nobody served, and the timeout arm (SKILL
+  // item 3, the one clock) ends the watch rather than reading it as a round
+  // in flight forever.
   const skipped = skippedRoundVerdict(legs, shared);
   if (skipped !== undefined) {
     return skipped;
   }
+  const inFlight = roundInFlight(reading);
+  if (inFlight.length > 0) {
+    return {
+      state: 'WAITING-REVIEW-RUN-LIVE',
+      evidence: [
+        'every expected reviewer leg landed, but a round is in flight',
+        ...inFlight,
+        ...shared,
+      ],
+    };
+  }
   return {
     state: 'SETTLE-READY',
-    evidence: ['every expected reviewer leg settled; quiet window elapsed', ...shared],
+    evidence: [
+      'every expected reviewer leg settled; no expected reviewer requested; no run live',
+      ...shared,
+    ],
   };
 }
 
@@ -185,7 +188,7 @@ export function reviewerLegVerdict(reading: PrStateReading, now: string): PrVerd
   });
   const blocking = mostBlockingLeg({ legs, reviewRequests: reading.reviewRequests });
   if (blocking.kind === 'settled') {
-    return settledVerdict({ reading, legs, now });
+    return settledVerdict({ reading, legs });
   }
   const legDetail = legs.filter((leg) => leg.state === 'OWED').map((leg) => legLine(leg));
   return {

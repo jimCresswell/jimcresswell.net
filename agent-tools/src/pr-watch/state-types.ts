@@ -84,7 +84,6 @@ export interface PrStateReading {
 /** The closed verdict set. Adding a state is a reviewed contract change. */
 export const PR_VERDICT_STATES = [
   'SETTLE-READY',
-  'SETTLING-QUIET-WINDOW',
   'DRAFT',
   'WAITING-REVIEW-RUN-LIVE',
   'SILENT-WAIT-NO-REVIEWER',

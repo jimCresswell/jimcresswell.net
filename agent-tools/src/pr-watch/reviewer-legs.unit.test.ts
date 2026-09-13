@@ -290,8 +290,8 @@ describe('computeReviewerLegs — explicit non-quota skip markers (r5 regression
 // (the join key, pr-lifecycle SKILL); the detector additionally tolerates the
 // MCP-145 visual-disambiguator token because a seat may paste its rendered
 // identity. The asymmetry drives every row below: a false POSITIVE silently
-// excludes a real reviewer at all three consumers (quiet-window anchoring,
-// body-tally evidence, and the defaulted expected-reviewer set — the
+// excludes a real reviewer at both consumers (body-tally evidence and the
+// defaulted expected-reviewer set — the
 // load-bearing one), so the prefix arm stays exactly six lowercase hex —
 // the ratified rows with
 // non-hex, uppercase, or hyphen-bearing prefixes are DELIBERATE non-matches
