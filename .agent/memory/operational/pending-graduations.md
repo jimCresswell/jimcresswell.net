@@ -177,67 +177,421 @@ the record. -->
 
 ## Entries
 
-Captured at the 2026-09-12 transplant close. Each is single-instance today; graduation waits
-on PDR-101 quorum or an owner ruling. The 57-lesson napkin synthesis (plan of record
-§Ordering note) is the first drain pass and will add to this list.
+Every entry is an inline-bracket block the item-count parser counts (schema:
+`agent-tools/src/practice-fitness/item-count.ts`); the prose under a block carries its
+doctrine, prediction and the home read. The five entries captured at the 2026-09-12 transplant
+close were folded into this shape on 2026-09-13 (they had carried a heading-and-bullets shape
+the parser neither counted nor flagged, so the register read as empty while holding them);
+substance unchanged. Session 2 (closure item 8) added its candidates on 2026-09-13 from the
+Director's draft (`threads/session-2-synthesis.next-session.md`), each home read first-hand
+on `main` at SHA: ea3142b before filing; candidates found already written are recorded there
+as duplicates with the home, never here.
 
-### 1. Harness install order: policy, then built dispatcher, then settings
+### Captured at the 2026-09-12 transplant close
 
-- **Status**: pending (captured 2026-09-12)
-- **Source**: napkin 2026-09-12 (night) — writing `.claude/settings.json` hooks before
-  `.agent/hooks/policy.json` existed locked the session out of Bash, Edit and Write; the guard
-  fails closed by design and reloads on the settings write.
-- **Candidate home**: `.agent/hooks/README.md` §Activation (and PDR-005 if a second transplant
-  repeats it).
-- **Prediction (PDR-130)**: no session repeats the lockout once the order is in the README.
+Each is single-instance today; graduation waits on PDR-101 quorum or an owner ruling.
 
-### 2. Stage by listing paths; never a message-file write after a guarded command
+- **Harness install order: policy, then built dispatcher, then settings**
+  `[captured: 2026-09-12 | source: napkin 2026-09-12 (night), writing .claude/settings.json
+  hooks before .agent/hooks/policy.json existed locked the session out of Bash, Edit and
+  Write; the guard fails closed by design and reloads on the settings write | target:
+  .agent/hooks/README.md §Activation (and PDR-005 if a second transplant repeats it) |
+  trigger: a second instance or an owner ruling | size: S | status: pending]`
+  Prediction (PDR-130): no session repeats the lockout once the order is in the README.
 
-- **Status**: pending (captured 2026-09-12)
-- **Source**: napkin 2026-09-12 (night) — a refused `git add` inside an `&&` chain skipped the
-  heredoc that followed; the next `commit -F` ran on a missing file and the continuity commit
-  swallowed the bundle.
-- **Candidate home**: `stage-by-explicit-pathspec` rule (a "how to stage a large set" clause) and
-  the commit skill's message-file step.
-- **Prediction**: zero mis-bundled commits in the next ten sessions.
+- **Stage by listing paths; never a message-file write after a guarded command**
+  `[captured: 2026-09-12 | source: napkin 2026-09-12 (night), a refused git add inside an
+  && chain skipped the heredoc that followed; the next commit -F ran on a missing file and the
+  continuity commit swallowed the bundle | target: stage-by-explicit-pathspec (a how-to-stage-
+  a-large-set clause) and the commit skill's message-file step | trigger: a second instance
+  or an owner ruling | size: S | status: pending]`
+  Prediction: zero mis-bundled commits in the next ten sessions.
 
-### 3. The antigen scrub is two-tier and can silently mangle test fixtures
+- **The antigen scrub is two-tier and can silently mangle test fixtures**
+  `[captured: 2026-09-12 | source: napkin 2026-09-12 (evening, night), org-shaped replacement
+  is a sed; product-shaped residue is excise-or-case-by-case; a sed over test fixtures put one
+  rule test out of the rule's own scope without a failure until the suite ran | target: PDR-005
+  as a scrub checklist (product code, package metadata, test fixtures) | trigger: a second
+  instance or an owner ruling | size: S | status: pending]`
+  Prediction: the second transplant's residue scan finds no fixture class.
 
-- **Status**: pending (captured 2026-09-12)
-- **Source**: napkin 2026-09-12 (evening, night) — org-shaped replacement is a sed; product-shaped
-  residue is excise-or-case-by-case; a sed over test fixtures put one rule test out of the rule's
-  own scope without a failure until the suite ran.
-- **Candidate home**: PDR-005 (wholesale transplantation) as a scrub checklist: product code,
-  package metadata, test fixtures.
-- **Prediction**: the second transplant's residue scan finds no fixture class.
+- **Generators land before the artefacts they produce**
+  `[captured: 2026-09-12 | source: wrap 2026-09-12, the sub-agent adapter generator and the
+  classified rules-index generator existed only in the transplanting session; recipes conserved
+  in .agent/reports/practice-transplant/efficiency-guidance.md | target: a clause in
+  practice-core-portability or a new short rule (the Practice-estate form of the dropped
+  generator-first-mindset) | trigger: a second instance or an owner ruling | size: S |
+  status: pending]`
+  Prediction: both generators exist as agent-tools bins before the next adapter regeneration.
 
-### 4. Generators land before the artefacts they produce
+- **A transplanted surface's assertions are exercised, never trusted**
+  `[captured: 2026-09-12 | source: re-evaluate slice 1, the hook's env-file claim, the gate
+  list with twelve dead scripts, the docs layer placed by arrival path, a record number whose
+  subject differed at the target, the bootstrap building from the lineage's workspace paths
+  (one class, five instances) | target: PDR-005 §Re-evaluate as the step's definition
+  (enumerate each surface's assertions about the host and exercise each; prefer a validator
+  leg over truing the text; the cited-scripts, CI-parity, reference-direction and
+  machine-local-paths validators are the worked instances) | trigger: a second instance or an
+  owner ruling | size: M | status: pending]`
+  Prediction: the next transplant's re-evaluate step is a checklist run, not a discovery, and
+  finds no dead script citation because the validator runs at the end of the harness phase.
+  Generalisation (2026-09-12, evening, `journey-so-far.md`): the class is wider than
+  transplants, nominal adoption: a surface saying X is adopted while no mechanism makes X true
+  (a gate list, a hook's claim, a docs path, a source PDR whose scripts its own package.json no
+  longer defines, a plan-node estate whose validator is unwired); the cure shape is the same:
+  wire the mechanism, then true the text. Falsifier: if the remaining nominal adoptions here
+  (plan-node estate, the two generators, the archived lessons) are cured by text alone, the
+  generalisation was a story.
 
-- **Status**: pending (captured 2026-09-12)
-- **Source**: wrap 2026-09-12 — the sub-agent adapter generator and the classified rules-index
-  generator existed only in the transplanting session; recipes conserved in
-  `.agent/reports/practice-transplant/efficiency-guidance.md`.
-- **Candidate home**: `generator-first-mindset` was dropped at triage as SDK-specific; this is the
-  Practice-estate form of the same doctrine — a clause in `practice-core-portability` or a new
-  short rule.
-- **Prediction**: both generators exist as `agent-tools` bins before the next adapter regeneration.
+### Session 2 candidates (captured 2026-09-13; the owner's card answers are the dispositions)
 
-### 5. A transplanted surface's assertions are exercised, never trusted
+- **Ratified text is the owner's; a verdict quotes it and never rules against it**
+  `[captured: 2026-09-13 | source: napkin 2026-09-13 (Wrap 7; lane A; lane C wrap), a Director
+  verdict overturned a ratified todo (removal for restore) and accepted "not brought" for
+  "create or declare"; owner: "this makes me concerned for what other instructions are being
+  overturned"; a go on a port design contradicted testing-strategy text the seat had not
+  re-read | target: a new rule ratified-text-changes-only-by-card, or a clause in
+  precedence-is-not-approval, cited from PDR-117 §Director and the Decision Lenses preamble |
+  trigger: the owner's card answer (session 2 batch) | size: S | status: pending]`
+  Doctrine: a verdict quotes the governing text (ratified plan text, a directive) before it
+  rules and never rules against it; a case for changing ratified text is a card to the owner
+  after the item lands, never a verdict or a pull request; a verdict from memory of the problem
+  is the failure shape. Prediction: no Director or seat verdict contradicts a ratified line in
+  the next ten sessions; every method change to ratified work arrives as a card. Home read:
+  precedence-is-not-approval lines 42 to 45 route a precedent challenge to a card and nothing
+  binds a verdict to quote the text it rules under; PDR-117 lines 96 to 101 and principles
+  lines 22 to 26 carry the escalation threshold only.
 
-- **Status**: pending (captured 2026-09-12, re-evaluate slice 1)
-- **Source**: the hook's env-file claim, the gate list with twelve dead scripts, the docs layer
-  placed by arrival path, a record number whose subject differed at the target, the bootstrap
-  building from the lineage's workspace paths — one class, five instances in one slice.
-- **Candidate home**: PDR-005 (wholesale transplantation) §Re-evaluate as the step's definition:
-  enumerate the assertions each surface makes about the host and exercise each; prefer making
-  the assertion checkable (a validator leg) over truing the text. The cited-scripts, CI-parity,
-  reference-direction and machine-local-paths validators are the worked instances.
-- **Prediction**: the next transplant's re-evaluate step is a checklist run, not a discovery,
-  and finds no dead script citation because the validator runs at the end of the harness phase.
-- **Generalisation (2026-09-12, evening, `journey-so-far.md`)**: the class is wider than
-  transplants — _nominal adoption_, a surface saying X is adopted while no mechanism makes X
-  true (a gate list, a hook's claim, a docs path, a source PDR whose scripts its own
-  `package.json` no longer defines, a plan-node estate whose validator is unwired). The cure
-  shape is the same: wire the mechanism, then true the text. Falsifier added: if the remaining
-  nominal adoptions here (plan-node estate, the two generators, the archived lessons) are cured
-  by text alone, the generalisation was a story.
+- **A method question is asked as "what is sensible under the estate's rules"**
+  `[captured: 2026-09-13 | source: owner, 2026-09-13 evening (about 19:10Z to 19:50Z), on the
+  Gemini card: "this is not a matter of competing authorities, what does sensible look like?
+  The Gemini adapters are generated, just like everything else." | target: principles
+  §Decision Lenses, one
+  sentence after the either/or clause | trigger: the owner's card answer (session 2 batch) |
+  size: S | status: pending]`
+  Doctrine: when ratified text and a later estate rule seem to disagree on method, the question
+  to the owner is the sensible shape under the estate's rules, never a binary between two
+  texts; the lenses' false-either/or clause applies to cards too. Prediction: the next card
+  that pairs ratified text against an estate rule is refused by its author before it is sent.
+  Home read: principles lines 41 to 47 bind questions and options, not cards; the word card
+  does not occur in the file.
+
+- **Before adding a step, card, precondition, node or pass, ask what already answers it**
+  `[captured: 2026-09-13 | source: napkin 2026-09-13 (Wrap 6, Wrap 7), four owner corrections
+  in one afternoon with one shape (a rehearsal where derivation was the cure; two cards
+  doctrine had settled; a precondition on optional material; a programme grown from a bounded
+  item); the Director's evening repeated it | target: compute-dont-hope (a clause naming the
+  four instances beside the hand-kept-list test) | trigger: the owner's card answer (session
+  2 batch) | size: S | status: pending]`
+  Doctrine: before adding a step, a card, a precondition, a node or a pass, ask whether a
+  computation, an existing rule or the owner's recorded words already answer it. The card
+  half of the draft candidate ("could the answer be ranked from evidence already in hand? then
+  no card") is already written: present-verdicts-not-menus lines 97 to 99 and 189 to 192.
+  Prediction: cards per session fall to owner-only decisions; the owner names no invented
+  optionality in the next five card rounds. Home read: compute-dont-hope lines 14 to 17 cover
+  hand-kept lists only.
+
+- **A push slot is a turn: ask, wait for the word, then push**
+  `[captured: 2026-09-13 | source: napkin 2026-09-13 (lane C wrap; lane A; Director), two
+  seats read "tell me before you push" as notify-and-go; the hazard was a shared e2e port and
+  stays as host load after the port cure | target: start-right-team §5 (a slot clause: the
+  request, the one-word confirmation, the release by word, the forcing fact named); lane C's
+  per-user memory push-slot-is-ask-then-wait graduates into it | trigger: the owner's card
+  answer (session 2 batch) | size: S | status: pending]`
+  Doctrine: a message naming a sequencing point is a request for a turn; the seat waits for the
+  one-word confirmation; the holder releases by word; the forcing fact is named each time.
+  Prediction: no seat pushes on its own announcement in the next ten team sessions. Home read:
+  start-right-team §5 line 747 names the commit queue only as a swept surface; no commit-queue
+  reference exists under .agent/reference/; the doctrine lives only in director-handoff.md
+  lines 79 and 97 to 99, a routing record.
+
+- **Records land at waypoints, never per event**
+  `[captured: 2026-09-13 | source: napkin 2026-09-13 (Director), a records pull request pushed
+  per event drew five review rounds, each finding the next stale line; the cure made every
+  live-state block defer to the routing log's last entry; Wrap 4 recorded the tension with the
+  transplanted session-handoff clause | target: session-handoff (resolving the tension with
+  its refreshes-ride-the-next-substantive-commit clause, owner ruling 2026-07-15) and
+  pr-lifecycle Phase 2 (a records-changeset clause) | trigger: the owner's card answer
+  (session 2 batch) | size: M | status: pending]`
+  Doctrine: commit records at each state change; push once per landed merge or shape change; a
+  live-state block says which line is current where it and the log disagree. Prediction: the
+  next Director records PR settles in at most two review rounds. Home read: session-handoff
+  lines 216 to 230 say refreshes ride the next substantive commit with one compaction
+  carve-out, so the commit-cadence half needs reconciling with that ruling, not appending;
+  pr-lifecycle has no skill §Scope (the description's §Scope is Phase 2, lines 149 to 152) and
+  neither home carries push-per-landed-merge or the live-state precedence line.
+
+- **A claimed violation is checked against the validator that polices it before it is repeated**
+  `[captured: 2026-09-13 | source: napkin 2026-09-12 (Session 4), a sub-agent's "violation"
+  claim reached a peer seat before the reference-direction validator's own count (zero) was
+  read; retracted; distilled.md line 70 holds it as buffer | target: verify-dont-trust (a
+  clause) and read-diagnostic-artefacts-in-full | trigger: the owner's card answer (session 2
+  batch) | size: S | status: pending]`
+  Doctrine: a claimed violation of a policed rule is checked against the policing validator's
+  output first; the validator's verdict outranks any reader's. Prediction: no finding is sent
+  to a peer or the owner that its validator contradicts. Home read: verify-dont-trust polices
+  the green direction only (lines 38, 120); read-diagnostic-artefacts-in-full is about a
+  returned artefact read in full (lines 8, 20), not a validator never run.
+
+- **A failure hypothesis names the mechanism's existence at time T as its first premise**
+  `[captured: 2026-09-13 | source: napkin 2026-09-12 (Session 5), a "missed startup write"
+  diagnosis and a timeout change cured a non-event; the hook did not exist at the startup in
+  question (one git log --diff-filter=A settles it) | target: verify-dont-trust (a clause) or a
+  patterns file mechanism-existed-at-time-t | trigger: the owner's card answer (session 2
+  batch) | size: S | status: pending]`
+  Prediction: no structural change lands on a misdiagnosis of this shape in the next ten
+  sessions. Home read: verify-dont-trust lines 376 to 377 treat unprobed state generally with
+  no existence-at-time premise; no patterns file on the subject exists.
+
+- **Converge on the lineage's practised convention; never alias two after a transplant**
+  `[captured: 2026-09-13 | source: napkin 2026-09-12 and 13 (Session 5, Wrap 4), two
+  gate-naming conventions kept side by side and aliased until the owner ruled "adopt OCE
+  naming"; the runbook plan lines 126 to 133 already state it for script names, a plan is not
+  a doctrine home | target: replace-dont-bridge (a transplant clause) and PDR-005 | trigger:
+  the owner's card answer (session 2 batch) | size: S | status: pending]`
+  Doctrine: when a transplant leaves two conventions live, converge on the lineage's practised
+  one and surface the choice; an alias layer is a compatibility layer. Prediction: the next
+  transplant leaves no aliased convention at its first gate-green. Home read:
+  replace-dont-bridge lines 35 and 49 to 50 carry the one-name invariant and the adapter ban,
+  nothing on a lineage's practised convention; PDR-005 lines 197 to 198 warn of same-named
+  directories only.
+
+- **Antigen density chooses the merge method; a merged surface's paths are exercised**
+  `[captured: 2026-09-13 | source: napkin 2026-09-12 (Session 5, slice 2 item 2), under five
+  antigen lines copy and graft, over fifteen rewrite on the lineage's structure; two host
+  paths were wrong and found only by ls | target: PDR-005 §The process (the execution step's
+  method choice and a path-exercise clause); the runbook cites it | trigger: the owner's card
+  answer (session 2 batch) | size: S | status: pending]`
+  Prediction: the runbook's step 6 names the thresholds and the next transplant records its
+  densities. Home read: PDR-005 lines 91 to 93 key the method to gradient position with no
+  thresholds; lines 99 to 101 grep antigens with no count and no path exercising.
+
+- **Completeness is judged by function and exercised claims; a trim ruling names its default**
+  `[captured: 2026-09-13 | source: napkin 2026-09-13 (Wrap 5; Session 6), the estate called
+  itself complete when check was green while doctrine cited forty absent paths; the owner
+  flipped the default ("bring unless product") and earlier trims reopened | target: PDR-005
+  §Completeness audit and practice-core/practice-verification.md | trigger: the owner's card
+  answer (session 2 batch) | size: M | status: pending]`
+  Doctrine: a transplant's completeness proof is the function-by-function audit with exercised
+  claims (the cited-paths check as the cheapest instrument); every trim ruling records the
+  default it was made under and reopens when the default changes. Prediction: the next
+  transplant's completion report cites nine function rows with proofs before any "complete"
+  word, and its trim rulings name their default. Home read: PDR-005 lines 103 to 104 audit
+  concept representation, lines 312 to 313 record a rationale with no default;
+  practice-verification audits at surface granularity (lines 178, 262); no cited-paths check in
+  either.
+
+- **A projection generator preserves role multiplicity; a census against the pin proves it**
+  `[captured: 2026-09-13 | source: napkin 2026-09-13 (Director), the one-wrapper-per-template
+  projection flattened the four pinned Cricket roles into two generic wrappers; a computed
+  census against the pin found it and three stubbed rules | target: PDR-009 (a
+  many-to-one-per-template clause beside the existing trigger-consolidation section) and the
+  transplant runbook's completeness step | trigger: the owner's card answer (session 2 batch)
+  | size: S | status: pending]`
+  Prediction: the sub-agent adapter generator (item 6, 2b) emits the quartet from a role
+  declaration, and the census is a leg or an audit script under inputs/. Home read: PDR-009
+  lines 197 to 199 consolidate many rules onto one trigger, the opposite direction; lines 147
+  to 148 validate coverage and form with no counts; the runbook lines 159 and 185 to 186 have
+  the direction and row disposition, no census.
+
+- **Manifest declarations: runtime-created is declared; superseded is not declared at all**
+  `[captured: 2026-09-13 | source: napkin 2026-09-13 (lane C), a surface absent until its first
+  writer acts is declared runtime-created (the commit-queue shape); a surface doctrine has
+  superseded gets no entry; the manifest already practises the first (lifecycle
+  "runtime-created" at manifest lines 1086 and 1129) while the contract text still carries a
+  memorial ("must not remain on disk", lines 124 and 150) | target: memory/executive/README.md
+  and memory-state-substrate-contracts.md (the lifecycle row) and no-tombstones-for-removed-
+  ideas (a manifest clause) | trigger: the owner's card answer (session 2 batch) | size: S |
+  status: pending]`
+  Doctrine: the substrate manifest declares presence and lifecycle; absence-by-supersession
+  lives in the superseding record, never in the manifest. Prediction: no manifest entry of the
+  form "never exists" is authored in the next ten sessions. Home read: the README (line 22)
+  scopes the manifest by inventory; the contract (line 74) lists lifecycle values with no
+  runtime-created class and no supersession rule; no-tombstones (lines 28, 65) scopes itself to
+  prose.
+
+- **Split proofs by layer; graph-backed E2E expectations from JSON fixtures by import attribute**
+  `[captured: 2026-09-13 | source: napkin 2026-03-09 (Track A A3 slices, three instances),
+  importing a product module into a Playwright spec failed on bundler-resolved JSON imports;
+  the contract assertion stayed in Vitest and the emitted-channel assertion in Playwright, with
+  content/entities.json imported with a JSON import attribute on the E2E side | target:
+  testing-strategy §Site Workspace Conventions (one bullet) and
+  docs/engineering/testing-patterns.md | trigger: the owner's card answer (session 2 batch) |
+  size: S | status: pending]`
+  The never-import-an-app-module cell is already written: testing-strategy lines 452 to 453
+  and testing-patterns lines 147 to 151. Prediction: no site E2E spec imports an app module in
+  the next ten sessions. Home read: the contract-versus-channel split and the JSON import
+  attribute appear in neither home (testing-strategy lines 463 to 464 name the proof layer
+  only; testing-patterns lines 133 to 136 point at real sources over fixtures).
+
+- **Prove a checker with a negative control**
+  `[captured: 2026-09-13 | source: napkin 2026-03-08 (an isolated temp repository from git
+  archive plus a deliberate visual change; the red phase of the schema-dts guard proved by
+  adding the historical failure); the register's own admission example names this pattern as
+  unhomed | target: patterns/prove-the-checker-with-a-negative-control.md, cited from
+  validation-strategy §Prove the guard bites as the checker-level form | trigger: the owner's
+  card answer (session 2 batch) | size: S | status: pending]`
+  Prediction: the pattern file exists and is cited from validation-strategy; the next new
+  validator's PR names its negative control. Home read: no such patterns file exists (six
+  files listed); validation-strategy lines 282 to 286 apply a mutant in place in the live
+  repository and never name an isolated repository or a re-added historical failure.
+
+- **Stable current-state architecture truth moves into permanent architecture docs**
+  `[captured: 2026-09-13 | source: napkin 2026-03-09 (Permanent Graph Truth), the
+  split-ownership truth lived only in an audit until moved to docs/architecture/; historical
+  ADRs stay accepted with a clarification note when the architecture moves on | target:
+  documentation-hygiene (a clause) and the docs-adr-expert template (a check row) | trigger:
+  the owner's card answer (session 2 batch) | size: S | status: pending]`
+  Prediction: no current-state architecture fact lives only in a plan or audit at the next
+  consolidation. Home read: documentation-hygiene lines 11 to 15 bind fix-in-the-same-landing;
+  the template's archive discipline (lines 107 to 110) and reference direction (111 to 113)
+  are adjacent, neither carries relocation of truth or the clarification-note shape.
+  The two rules the Director asked to be read carry neither half: no-moving-targets lines 186
+  to 192 and 212 govern citation direction and the ADR as a decision's home;
+  permanent-doc-is-the-consolidation-record lines 32 to 36 name the durable tier.
+
+- **When a source-of-truth boundary lands, search accepted ADRs and plans for superseded names**
+  `[captured: 2026-09-13 | source: napkin 2026-08-12, older accepted ADRs and a current plan
+  still spoke of meta.summary and live tilt routes after the boundary landed | target:
+  documentation-hygiene (the same clause as the entry above, second instance) and the
+  docs-adr-expert template | trigger: the owner's card answer (session 2 batch) | size: S |
+  status: pending]`
+  Prediction: the next boundary change's PR lists the grep of superseded names it ran. Home
+  read: the template's stale-reference sweep (line 160) has no field-name trigger and no
+  plans-and-accepted-ADRs corpus; documentation-hygiene has no clause.
+
+- **CLI file writers write atomically and never follow links**
+  `[captured: 2026-09-13 | source: PR #55's fourth and fifth rounds (2026-09-13), a truncating
+  write that broke resumability and a symlink write-through, each cured with an atomic writer
+  and an lstat seam; the third cell, names validated at the boundary, is already written
+  (security-expert lines 119 to 122; code-expert lines 131 to 134) | target: a patterns file
+  cli-writer-boundary-discipline cited by the security-expert and code-expert templates |
+  trigger: the owner's card answer (session 2 batch) | size: S | status: pending]`
+  Prediction: the next CLI that writes files under a caller-supplied name ships with the three
+  cells in its first PR. Home read: no patterns file; neither template mentions atomic write
+  or symlink refusal.
+
+- **An open ARC channel pins the primary working copy to the branch carrying its file**
+  `[captured: 2026-09-13 | source: napkin 2026-09-13 (Director), the channel file, committed on
+  the records branch, vanished from disk on a switch to a branch cut from main and reappeared
+  on the switch back; the tail replayed the file; a partner append in the window would have
+  blocked the switch | target: reference/arc-rapid-communication.md §Operating constraints
+  (standing) | trigger: the owner's card answer (session 2 batch) | size: S | status:
+  pending]`
+  Doctrine: while a channel is open, the primary working copy stays on the branch that carries
+  the channel file; other branches' work runs in worktrees. Prediction: no channel tail replays
+  a file in the next ten team sessions. Home read: §Operating constraints (lines 148 to 184)
+  names five constraints, none about branches; the worktree mention (lines 63 to 69) is about
+  path resolution.
+
+### Session 2, verified before filing (the Director's list; each home read, the lesson unwritten)
+
+- **Read the writer before creating the surface it supposedly writes to**
+  `[captured: 2026-09-13 | source: napkin 2026-09-13 (lane C), a curator-passes README was
+  imported because a report listed it as a register the loop writes to; PDR-081 and the
+  curator-pass skill say the opposite | target: verify-data-supports-shape-before-building (a
+  worked-failure row: a directory the lineage kept for history is not a register the doctrine
+  writes to) | trigger: the owner's card answer (session 2 batch) | size: S | status:
+  pending]`
+  Home read: the rule gates a new surface on a cited assignment (lines 33 to 36) and scopes its
+  source-versus-projection clause to the entity model (line 31); its worked failures (lines
+  57 to 67) carry no writer-versus-register instance.
+
+- **Consolidation runs one truth-maintenance pass over every surface that advertises plan state**
+  `[captured: 2026-09-13 | source: napkin 2026-03-09 and 2026-04-03 (promoted there; the
+  transplanted skill did not keep it), frontmatter status, narrative status, next-step sections,
+  current-state notes, roadmap and parent tables, and READMEs that advertise plan state drift
+  apart unless one pass reads them together | target: consolidate-docs skill (a
+  truth-maintenance step beside the renamed-surface sweep) | trigger: the owner's card answer
+  (session 2 batch) | size: S | status: pending]`
+  Prediction: the next consolidation's record lists the status surfaces it swept and no
+  frontmatter-versus-narrative status divergence survives it. Home read: the skill's sweep at
+  line 348 is scoped to a renamed surface; line 362 asks for plans and prompts up to date; no
+  pass reads the named surfaces together.
+
+- **Consolidation checks a domain skill's pitfalls table against findings since it was written**
+  `[captured: 2026-09-13 | source: napkin 2026-03-07, a domain skill's pitfalls table went
+  stale as later sessions found new traps in its domain | target: consolidate-docs skill (a
+  step: for each domain skill the period's findings touch, diff its pitfalls table against
+  them) | trigger: the owner's card answer (session 2 batch) | size: S | status: pending]`
+  Prediction: the next consolidation names at least one skill pitfalls table it checked. Home
+  read: the word pitfall does not occur in the skill; skills appear only as a graduation
+  destination (line 595).
+
+- **A platform-integration plan settling reusable architecture is mined into an ADR before close**
+  `[captured: 2026-09-13 | source: napkin 2026-03-08, a platform-integration plan settled
+  reusable architecture that reached no ADR until a later pass | target: the plan skill (a
+  completion clause beside the acceptance-criteria proof contract) | trigger: the owner's card
+  answer (session 2 batch) | size: S | status: pending]`
+  Prediction: no closed platform-integration plan carries an architecture decision absent from
+  the ADR index. Home read: the skill's lines 201 to 203 fire only when a permanent page is
+  amended; line 332 delegates to consolidation; no before-close obligation.
+
+- **Losing paths of a design family are executable and a dated FAIL is a disposition**
+  `[captured: 2026-09-13 | source: napkin 2026-08-12, plan-family acceptance is permission to
+  test the boundary, not approval to extract; an evidenced FAIL is a complete and useful child
+  outcome | target: the plan skill (the decision ledger, a FAIL disposition beside applied,
+  already-covered, superseded and out-of-scope) | trigger: the owner's card answer (session 2
+  batch) | size: S | status: pending]`
+  Prediction: the next design family's plan carries a dated FAIL child without reopening the
+  family. Home read: no fail, losing or dead-end text in the skill; the ledger at lines 290 to
+  292 lists no FAIL disposition; the lesson lives in the napkin at lines 110 to 111.
+
+- **A large fixture, an allowlist or a helper definition inside a test is a design smell**
+  `[captured: 2026-09-13 | source: napkin 2026-03-08 (owner preference), logic that a test
+  carries as a fixture, an allowlist or a helper belongs in product code as the source of
+  truth | target: testing-strategy §KISS (the three smell classes and the relocation cure) |
+  trigger: the owner's card answer (session 2 batch) | size: S | status: pending]`
+  Prediction: the next test PR carrying one of the three classes is asked for the product-code
+  home at review. Home read: lines 62 and 162 to 164 forbid complex logic and say simplify the
+  code and the test; line 55 sizes fixtures; the three classes and the cure are unnamed.
+
+- **The tooling references carry the upgrade and lint-configuration traps that bit**
+  `[captured: 2026-09-13 | source: the three unconsolidated napkins and today's captures (the
+  knip instance at napkin-2026-03-08 line 360), five instances: pnpm up --latest moved eslint
+  past Next's supported range; Playwright browsers are reinstalled after an @playwright/test
+  update; a flat ESLint config encodes no local policy without explicit rules; markdownlint
+  needs explicit globs; knip flags a plugin loaded by a CLI option, cured by an
+  ignoreDependencies entry with its reason | target: reference/tooling.md (four) and
+  reference/typescript-gotchas.md §ESLint (the flat-config one) | trigger: the owner's card
+  answer (session 2 batch) | size: S | status: pending]`
+  Prediction: none of the five recurs as a napkin capture in the next ten sessions. Home read:
+  tooling.md lines 3 to 8 and 47 to 48 carry the currency floor and a once-per-checkout
+  browser install; typescript-gotchas lines 53 to 65 cover plugin typing only; neither file
+  names markdownlint or knip.
+
+- **The visual harness README carries its three unwritten operating lessons**
+  `[captured: 2026-09-13 | source: napkin 2026-03-08 (six harness lessons, three unhomed),
+  capture regions use structural selectors, never ids a refactor introduced; the artefact
+  directory of the first failing run is recorded before any re-run, because re-runs write into
+  the same directory; a page-output fix landing after a run invalidates that run | target:
+  jcdotnet/visual-regression-harness/README.md (an operating section) and ADR-022 for the
+  re-run clause | trigger: the owner's card answer (session 2 batch) | size: S | status:
+  pending]`
+  Prediction: the next harness-driven PR names the first failing run's directory and its
+  re-run. Home read: README lines 84 to 86 and 155 permit id anchors under contract with no
+  selector rule; lines 80 and 100 print the directory on success and overwrite it on re-run;
+  ADR-022 lines 76 to 78 and README lines 188 to 190 push the first run earlier and oblige no
+  re-run.
+
+- **Stacked PRs over the same continuity files have no safe unchanged merge order**
+  `[captured: 2026-09-13 | source: napkin 2026-08-12 (three-PR closeout), the accepted
+  outcomes were preserved and the bounded story rebuilt on fresh main once custody was proved
+  | target: pre-merge-divergence-analysis (a stacked-PR clause beside the memory-and-state
+  paragraph) and the complex-merge skill's resolution order | trigger: the owner's card answer
+  (session 2 batch) | size: S | status: pending]`
+  Prediction: the next stacked set of records PRs is rebuilt on main rather than merged in
+  sequence. Home read: pre-merge-divergence-analysis lines 63 to 69 and complex-merge lines
+  148 to 152 govern one diverged pair; no stacked-PR text; the lesson lives in the napkin at
+  lines 106 to 107.
+
+- **Local signature verification needs an allowed-signers file to show what GitHub verifies**
+  `[captured: 2026-09-13 | source: napkin 2026-08-12, git log --show-signature reported no
+  signature because no SSH allowed-signers file was configured while GitHub verified the
+  commits; distilled.md line 32 holds it as buffer | target: reference/merge-bot.md (a
+  verification clause: configure gpg.ssh.allowedSignersFile or verify through GitHub before
+  classing a commit unsigned) | trigger: the owner's card answer (session 2 batch) | size: S |
+  status: pending]`
+  Prediction: no seat classes a bot commit unsigned from a local readout in the next ten
+  sessions. Home read: no allowed-signers text under .agent/reference/; merge-bot.md lines 273
+  to 274 use signature in another sense.
