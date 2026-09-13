@@ -14,7 +14,7 @@
  */
 
 import path from 'node:path';
-import { argv, exit, stderr, stdout } from 'node:process';
+import { argv, stderr, stdout } from 'node:process';
 
 import { listTrackedFiles } from '../core/tracked-file-scan.js';
 import { resolveRepoRoot } from '../core/repo-root.js';
@@ -77,7 +77,11 @@ async function main(): Promise<number> {
     }
     return 1;
   }
-  stdout.write(renderReconciliationReport(outcome.reconciliations));
+  if (outcome.declarations.length > 0) {
+    stdout.write(renderReconciliationReport(outcome.reconciliations));
+  } else {
+    stdout.write('Nothing derived: every rule already carries its declaration.\n');
+  }
   stdout.write(
     `\n${String(outcome.declarations.length)} rule declarations derived, ` +
       `${String(outcome.reconciliations.length)} reconciliations, ` +
@@ -87,9 +91,11 @@ async function main(): Promise<number> {
   return 0;
 }
 
+// Set the exit code and let the event loop drain stdout: `process.exit` can truncate piped
+// output, and the reconciliation report is meant to be piped into a pull request body.
 try {
-  exit(await main());
+  process.exitCode = await main();
 } catch (error: unknown) {
   stderr.write(`rule-frontmatter-sweep failed: ${String(error)}\n`);
-  exit(1);
+  process.exitCode = 1;
 }

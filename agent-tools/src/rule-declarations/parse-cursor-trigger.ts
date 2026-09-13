@@ -47,6 +47,9 @@ export function parseCursorTrigger(text: string): Result<CursorTrigger, string> 
   if (description === undefined) {
     return err('no description');
   }
+  if (description.length === 0) {
+    return err('description is empty');
+  }
   const alwaysApply = parseAlwaysApply(block.value.get('alwaysApply'));
   if (!alwaysApply.ok) {
     return alwaysApply;

@@ -130,6 +130,56 @@ describe('sweepRuleFrontmatter', () => {
     expect(fs.writes.size).toBe(0);
   });
 
+  it('refuses the sweep when the index is missing, as a refusal rather than a crash', async () => {
+    const tree = new Map(agreeingTree);
+    tree.delete(`${REPO}/RULES_INDEX.md`);
+    const outcome = await sweepRuleFrontmatter(
+      { repoRoot: REPO, ruleNames: ['alpha'], write: true },
+      fakeFs(tree),
+    );
+    expect(outcome.refused).toEqual(['RULES_INDEX.md: missing']);
+  });
+
+  it('refuses a rule file that is missing or unreadable, naming the path and the cause', async () => {
+    const tree = new Map(agreeingTree);
+    tree.delete(`${REPO}/.agent/rules/alpha.md`);
+    const missing = await sweepRuleFrontmatter(
+      { repoRoot: REPO, ruleNames: ['alpha'], write: true },
+      fakeFs(tree),
+    );
+    expect(missing.refused).toEqual(['.agent/rules/alpha.md: missing']);
+
+    const denied = fakeFs(agreeingTree);
+    const readFile = denied.readFile;
+    denied.readFile = async (absolutePath) => {
+      if (absolutePath.endsWith('.cursor/rules/alpha.mdc')) {
+        throw Object.assign(new Error('EACCES: permission denied'), { code: 'EACCES' });
+      }
+      return readFile(absolutePath);
+    };
+    const unreadable = await sweepRuleFrontmatter(
+      { repoRoot: REPO, ruleNames: ['alpha'], write: true },
+      denied,
+    );
+    expect(unreadable.refused).toEqual([
+      '.cursor/rules/alpha.mdc: unreadable (EACCES: permission denied)',
+    ]);
+    expect(denied.writes.size).toBe(0);
+  });
+
+  it('refuses a rule whose leading frontmatter block is not a declaration, never skipping it', async () => {
+    const tree = new Map(agreeingTree);
+    tree.set(`${REPO}/.agent/rules/alpha.md`, '---\ntitle: Alpha\n---\n\n# Alpha\n');
+    const outcome = await sweepRuleFrontmatter(
+      { repoRoot: REPO, ruleNames: ['alpha', 'beta'], write: true },
+      fakeFs(tree),
+    );
+    expect(outcome.refused).toEqual([
+      '.agent/rules/alpha.md: unknown frontmatter key "title" (a block that is not a declaration)',
+    ]);
+    expect(outcome.alreadyDeclared).toEqual([]);
+  });
+
   it('refuses the sweep when the index cannot be read', async () => {
     const tree = new Map(agreeingTree);
     tree.set(`${REPO}/RULES_INDEX.md`, '| `.agent/rules/alpha.md` | optional | — |\n');

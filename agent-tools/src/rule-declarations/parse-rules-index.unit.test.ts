@@ -42,6 +42,18 @@ describe('parseRulesIndex', () => {
     });
   });
 
+  it('reads a generated row whose trigger is a code span as the bare token', () => {
+    const result = parseRulesIndex(
+      indexWith('| `.agent/rules/a.md` | situational | `surface:**/*.ts,**/*.tsx` |'),
+    );
+    expect(result).toStrictEqual({
+      ok: true,
+      value: new Map([
+        ['a', { classification: 'situational', trigger: 'surface:**/*.ts,**/*.tsx' }],
+      ]),
+    });
+  });
+
   it('ignores every line that is not a rule row', () => {
     const result = parseRulesIndex(
       indexWith('Prose about `.agent/rules/` in general.', '| `.agent/rules/a.md` | core | — |'),
@@ -65,6 +77,14 @@ describe('parseRulesIndex', () => {
     expect(result).toEqual({
       ok: false,
       error: '.agent/rules/a.md: a situational rule needs a trigger; the row carries "—"',
+    });
+  });
+
+  it('refuses a situational row whose trigger cell is empty, as it refuses the em dash', () => {
+    const result = parseRulesIndex(indexWith('| `.agent/rules/a.md` | situational |  |'));
+    expect(result).toEqual({
+      ok: false,
+      error: '.agent/rules/a.md: a situational rule needs a trigger; the row carries ""',
     });
   });
 

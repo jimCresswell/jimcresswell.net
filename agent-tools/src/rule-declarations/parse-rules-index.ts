@@ -65,9 +65,14 @@ function parseRuleRow(line: string): Result<ParsedRuleRow, string> {
   if (match === null) {
     return err(`unparseable rules-index row: ${line}`);
   }
-  const [, name = '', classification = '', triggerText = ''] = match;
-  const row = readRow(`.agent/rules/${name}.md`, classification, triggerText);
+  const [, name = '', classification = '', rawTrigger = ''] = match;
+  const row = readRow(`.agent/rules/${name}.md`, classification, stripCodeSpan(rawTrigger));
   return row.ok ? ok({ name, row: row.value }) : row;
+}
+
+/** A generated index wraps the trigger token in a code span; a hand-kept one did not. */
+function stripCodeSpan(cell: string): string {
+  return cell.length >= 2 && cell.startsWith('`') && cell.endsWith('`') ? cell.slice(1, -1) : cell;
 }
 
 /** Check the classification against the closed set and the trigger against it. */
@@ -80,7 +85,7 @@ function readRow(
     const allowed = RULE_CLASSIFICATIONS.join(' or ');
     return err(`${rulePath}: classification must be ${allowed}, got "${classification}"`);
   }
-  const hasTrigger = triggerText !== NO_TRIGGER;
+  const hasTrigger = triggerText !== NO_TRIGGER && triggerText.length > 0;
   if (classification === 'core') {
     return hasTrigger
       ? err(`${rulePath}: a core rule carries no trigger; the row carries "${triggerText}"`)

@@ -119,6 +119,13 @@ describe('parseCursorTrigger', () => {
     });
   });
 
+  it('refuses an empty description, which would declare nothing', () => {
+    expect(parseCursorTrigger(trigger(['description:', 'alwaysApply: true']))).toEqual({
+      ok: false,
+      error: 'description is empty',
+    });
+  });
+
   it('refuses a key outside the three Cursor keys', () => {
     expect(parseCursorTrigger(trigger(['description: d', 'paths: "a/**"']))).toEqual({
       ok: false,

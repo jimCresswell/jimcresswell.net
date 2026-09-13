@@ -27,6 +27,7 @@ import { FRONTMATTER_FENCE_LINE } from './frontmatter-lines.js';
 import { parseClaudeRuleAdapterPaths } from './parse-claude-rule-adapter.js';
 import { parseCursorTrigger } from './parse-cursor-trigger.js';
 import { parseRulesIndex, type RulesIndexRow } from './parse-rules-index.js';
+import { readRuleDeclaration } from './read-rule-declaration.js';
 import { reconcileRuleDeclaration, type Reconciliation } from './reconcile-rule-declaration.js';
 import { prependRuleFrontmatter, renderRuleFrontmatter } from './render-rule-frontmatter.js';
 import type { RuleDeclaration } from './rule-declaration.js';
@@ -78,7 +79,8 @@ export async function sweepRuleFrontmatter(
   input: SweepInput,
   sweepFs: SweepFs = defaultSweepFs,
 ): Promise<SweepOutcome> {
-  const index = parseRulesIndex(await sweepFs.readFile(path.join(input.repoRoot, RULES_INDEX)));
+  const indexText = await readSource(input.repoRoot, RULES_INDEX, sweepFs);
+  const index = indexText.ok ? parseRulesIndex(indexText.value) : indexText;
   if (!index.ok) {
     return {
       declarations: [],
@@ -143,7 +145,11 @@ type SweepStep =
   | { readonly kind: 'refused'; readonly reason: string }
   | { readonly kind: 'derived'; readonly rule: DerivedRule };
 
-/** Read one rule and classify it: already declared, refused, or derived. */
+/**
+ * Read one rule and classify it: already declared, refused, or derived. A leading frontmatter
+ * block counts as a declaration only when it reads as one; any other block is refused, never
+ * skipped, so a host whose rules carry unrelated frontmatter cannot pass as already swept.
+ */
 async function sweepOne(
   repoRoot: string,
   name: string,
@@ -151,15 +157,21 @@ async function sweepOne(
   sweepFs: SweepFs,
 ): Promise<SweepStep> {
   const rulePath = `.agent/rules/${name}.md`;
-  const ruleText = await sweepFs.readFile(path.join(repoRoot, rulePath));
-  if (ruleText.startsWith(FRONTMATTER_OPENING)) {
-    return { kind: 'already-declared', rulePath };
+  const ruleText = await readSource(repoRoot, rulePath, sweepFs);
+  if (!ruleText.ok) {
+    return { kind: 'refused', reason: ruleText.error };
+  }
+  if (ruleText.value.startsWith(FRONTMATTER_OPENING)) {
+    const existing = readRuleDeclaration(name, ruleText.value);
+    return existing.ok
+      ? { kind: 'already-declared', rulePath }
+      : { kind: 'refused', reason: `${existing.error} (a block that is not a declaration)` };
   }
   const row = index.get(name);
   if (row === undefined) {
     return { kind: 'refused', reason: `${rulePath}: no row in ${RULES_INDEX}` };
   }
-  const one = await deriveOne(repoRoot, name, row, ruleText, sweepFs);
+  const one = await deriveOne(repoRoot, name, row, ruleText.value, sweepFs);
   return one.ok ? { kind: 'derived', rule: one.value } : { kind: 'refused', reason: one.error };
 }
 
@@ -208,7 +220,10 @@ async function deriveOne(
   return ok({ ...reconciled, file: { relativePath: rulePath, text: swept.value } });
 }
 
-/** Read a source file; a missing file is a refusal naming the path, never a crash. */
+/**
+ * Read a source file; a missing file is a refusal naming the path, and any other read failure
+ * is a refusal naming the path and the cause, never a crash past the all-or-nothing contract.
+ */
 async function readSource(
   repoRoot: string,
   relativePath: string,
@@ -220,6 +235,7 @@ async function readSource(
     if (isEnoent(error)) {
       return err(`${relativePath}: missing`);
     }
-    throw error;
+    const cause = error instanceof Error ? error.message : String(error);
+    return err(`${relativePath}: unreadable (${cause})`);
   }
 }
