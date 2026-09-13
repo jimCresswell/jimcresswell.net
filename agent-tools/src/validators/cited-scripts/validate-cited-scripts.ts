@@ -62,7 +62,6 @@ const SCANNED_EXTENSIONS: ReadonlySet<string> = new Set(['.md', '.yml', '.yaml',
  */
 const EXCLUDED_PATH_FRAGMENTS: readonly string[] = [
   '/archive/',
-  '.agent-original/',
   '.agent/practice-core/CHANGELOG.md',
   '.agent/practice-core/provenance.yml',
   '.agent/practice-core/incoming/',

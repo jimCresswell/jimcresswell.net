@@ -63,7 +63,6 @@ const SOURCE_IGNORE_GLOBS = [
   // The pre-transplant snapshot (deleted after the owner's loss-scan) and
   // every reference-local tree: the latter holds ignored local material
   // checkout whose paths must never be walked or printed by a repo tool.
-  '.agent-original/**',
   '**/reference-local/**',
   '.agents/**',
   '.claude/**',

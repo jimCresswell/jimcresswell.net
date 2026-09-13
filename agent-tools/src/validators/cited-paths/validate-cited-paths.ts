@@ -60,7 +60,7 @@ const SCANNED_ROOT_FILES: readonly string[] = [
 const SCANNED_EXTENSIONS: ReadonlySet<string> = new Set(['.md']);
 
 /** Scope exclusions: archives and the pre-transplant snapshot are history, not live doctrine. */
-const EXCLUDED_PATH_FRAGMENTS: readonly string[] = ['/archive/', '.agent-original/'];
+const EXCLUDED_PATH_FRAGMENTS: readonly string[] = ['/archive/'];
 
 /**
  * Targets exempted by hand. Empty by design: a target that is neither

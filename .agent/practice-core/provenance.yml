@@ -123,7 +123,8 @@ practice-lineage.md:
       Lineage transplant: the OCE Practice lineage (this provenance chain)
       replaced the jimcresswell.net chain that grew cold-start on 2026-04-03
       and ran to PDR-030. The previous chain and trinity are retained in git
-      history under .agent-original/ until the owner's loss-scan review; the
+      history at main (d0159a4); the 2026-09-13 loss-scan dispositioned every
+      archived file and the archive was deleted. The
       three-zone fitness model the local validators depend on is already
       carried by this file's Fitness Functions section, so no local section
       was merged. Owner ruling 2026-09-12.

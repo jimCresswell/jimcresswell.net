@@ -77,8 +77,8 @@ the two sibling reports, the formation letter, the napkin's five 2026-09-12 sect
    the napkin; the transplant installs the drain (three-mode memory, the graduation register,
    the cognition suite); the test is whether the loop now runs. On this frame the journey is
    in its middle, not near its end: the loop exists, five candidates sit in it, and the founding
-   debt, the 57 archived lessons, is still owner-scheduled for after `.agent-original` is
-   deleted.
+   debt, the 57 archived lessons, is the closure's last item (the archive itself was deleted on
+   2026-09-13 after a computed loss-scan).
 
 Frames 2 and 3 are the serious counterpair. Frame 2 measures success as "the next instance
 under two hours"; frame 3 measures it as "the next napkin rotation loses nothing and the 57 are homed".
@@ -107,7 +107,7 @@ one layer at a time, in the order the owner set.
 That reading sorts what remains without planning it: the plan-node estate (validator unwired;
 registry foreign; 39 legacy plans; two ratified nodes conformant by hand), the two generators
 (recipes on paper, not bins), the origin debt (lessons archived, not homed), and
-`.agent-original/` (the acceptance test of the whole transplant, owner-held). Each is a place
+the pre-transplant archive (its loss-scan, computed and closed 2026-09-13). Each is a place
 where the estate currently says something is true that no mechanism yet makes true.
 **Falsifier for the frame**: if those items get cured by editing text rather than by wiring a
 mechanism, the frame was a story about the past, not the shape of the work.
@@ -167,8 +167,8 @@ stated by the owner. This status permits using the map to orient a session and f
 any frame as a decided fact.
 
 World-return contract: the indicators are (1) the 57-lesson synthesis landing, owner-scheduled
-after the `.agent-original` deletion; (2) the next instance's column in the runbook's timing
-table; (3) the
+after the archive deletion (landed 2026-09-13); (2) the next instance's column in the runbook's
+timing table; (3) the
 next consolidation's rotation losing zero lessons. Any one of them reopens this record with a
 new revision; none of them is scheduled by this record.
 

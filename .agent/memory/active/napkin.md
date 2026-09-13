@@ -836,3 +836,8 @@
   (ignored only by the archive's own nested ignore file) are processed and removed by the owner.
 - Hook note: a grep whose text contained the wildcard-staging needle was refused (the policy is
   substring-based); rephrase, never route around.
+- Owner: "move them both under the new .agent folder, they must remain git ignored, if they
+  already exist it is a noop and they can be deleted." Not a noop for one of them: checked by
+  ancestry before removing anything, consolidated without loss, then the archive copies removed
+  and `git rm -r .agent-original` with the seven exclusion entries and the provenance note in one
+  commit. "If it already exists" is a claim to test, not a premise.

@@ -163,7 +163,7 @@ export default {
       path: ['node_modules', 'dist', '.turbo', '\\.agent/'],
     },
     exclude: {
-      path: ['\\.next/', '\\.turbo', '\\.cursor/', '\\.claude/', '\\.agent-original/'],
+      path: ['\\.next/', '\\.turbo', '\\.cursor/', '\\.claude/'],
     },
     tsPreCompilationDeps: true,
     tsConfig: {

@@ -10,4 +10,3 @@ queries:
 # The pre-transplant Practice is retained only until the owner's loss-scan
 # review; it is never run as code on this estate.
 paths-ignore:
-  - .agent-original

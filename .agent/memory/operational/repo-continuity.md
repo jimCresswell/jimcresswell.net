@@ -38,8 +38,8 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
   instead of a lineage gate list; the copied docs layer is re-homed by role —
   `docs/governance` and `docs/foundation` dissolved, six developer docs stay in
   `docs/engineering`, eight host guides in `.agent/reference`, six doctrine
-  merges into directives and rules. `.agent-original/` still present pending
-  the owner's loss-scan.
+  merges into directives and rules. `.agent-original/` deleted 2026-09-13 after
+  the computed loss-scan (round 13).
 - **Link repair done (2026-09-12, resumed session):** `validate-markdown-links`
   reports 0; `docs-validators:check` (reference direction, machine-local paths,
   markdown links, cited scripts) is a `check` leg and a CI step, so `check:docs`
@@ -48,7 +48,8 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
   imported: `memory/operational/{ephemeral-to-permanent-homing,collaboration-state-lifecycle}.md`.
 - Outside `check`, still failing (pre-existing): plan corpus and gate drift
   (plan-node migration; the validator needs `docs/strategy`), ratified-lists
-  (upstream refounding artefacts), fitness vocabulary (`.agent-original`),
+  (upstream refounding artefacts), fitness vocabulary (its own `practice-fitness`
+  sources still say "two-threshold"; rechecked 2026-09-13 after the archive deletion),
   collaboration-tui smoke, codex-session-alert smoke (`pnpm -s` is not a pnpm 12
   flag). Green but not yet wired as legs: check-ci-parity, claim-freshness,
   pretooluse-guard-routing, lifecycle-scripts, no-stale-script-invocations,
@@ -120,12 +121,13 @@ carried and Windsurf rejected; the knowledge base as the cited subset,
 scrubbed; the transplant instruments as that node's todo 6. The earlier
 second-host preparation node was withdrawn as premature and removed from the
 estate on the owner's word (the same round); the Practice's understanding of
-its future is host-agnostic. **Transplant closure ratified (node §Transplant closure; plan §Owner rulings round 11), re-sequenced
-round 13 (2026-09-13, evening): session 1 deletes `.agent-original/` first — the loss-scan is computed
-(`.agent/reports/practice-transplant/inputs/loss-scan-dispositions.tsv`, 255 rows, 24 residue, all
-ruled; nothing moves to `reference/`), and the deletion commit waits only on the owner processing and
-removing the two private directories on disk beneath the archive — then merges PR #53 (merge commit,
-no card), then closure items 3 to 7 as small PRs against `main`; session 2 is the 57-lesson synthesis
+its future is host-agnostic. **Transplant closure ratified (node §Transplant closure; plan §Owner rulings round 11),
+re-sequenced round 13 (2026-09-13, evening): session 1 deleted `.agent-original/` first (done
+2026-09-13 evening: the loss-scan computed,
+`.agent/reports/practice-transplant/inputs/loss-scan-dispositions.tsv`, 255 rows, 24 residue, all
+ruled; nothing moved to `reference/`; the private directories beneath it consolidated into the
+live ignored boundary on the owner's word), then merges PR #53 (merge commit, no card), then
+closure items 3 to 7 as small PRs against `main`; session 2 is the 57-lesson synthesis
 (cards, one batch) from the three unprocessed napkins now under `.agent/memory/active/unconsolidated/`
 (an archive holds only processed material, owner ruling round 13).** Todo 1 done (2026-09-13, plan
 §Practice completion — todo 1 executed):
@@ -143,8 +145,7 @@ OCE-seeded `.agent/practice-core/incoming/resonance-outbound-bundle-2026-07-08.m
 (drop with the other emptied registers); `jcdotnet/accept-md.config.js`
 (hand-authored JS; source-is-TypeScript); the retirement candidates among
 agent-tools scripts (plan §Owner rulings on the agent-tools scripts); the two
-session-local generators as `agent-tools` bins; owner review + `.agent-original`
-deletion; 57-lesson synthesis with quorum. Vercel root directory configured and the first
+session-local generators as `agent-tools` bins; 57-lesson synthesis with quorum. Vercel root directory configured and the first
 monorepo build green (owner-observed 2026-09-13); draft PR #53 open. Restart
 assessment (2026-09-12, resumed session): the seed contract holds (both variables
 in the first Bash call; preflight names the hook path, and the native fallback
@@ -158,6 +159,6 @@ after round 6 (content, knowledge graph, site, Practice — the platform split a
 ratification); every legacy plan reviewed before convert / conserve / history;
 the legacy lanes conserved as a sibling corpus outside the scan root because the
 loader walks `archive/`. OCE channel open: findings go to the OCE seat as they
-arise, batched (batch 1 sent 2026-09-13). `.agent-original/` deletion follows the
-computed loss-scan (done, round 13); the 57-lesson synthesis is one seat's list reviewed by
+arise, batched (batch 1 sent 2026-09-13). `.agent-original/` is deleted (round 13,
+after the computed loss-scan); the 57-lesson synthesis is one seat's list reviewed by
 the owner before graduation.

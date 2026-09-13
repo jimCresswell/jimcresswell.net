@@ -1471,3 +1471,9 @@ archive's own nested ignore file: the owner processes and removes them before th
 commit (a seat never reads them). The deletion commit: `git rm -r`, the seven exclusion entries
 (four config files, three validators) and the provenance note cut together, then `pnpm check`,
 push, CI, merge.
+
+The deletion landed the same evening: the archive, the seven exclusion entries and the provenance
+note in one commit, after the private directories beneath it were consolidated into the live
+ignored boundary on the owner's word ("move them both under the new .agent folder, they must remain
+git ignored, if they already exist it is a noop and they can be deleted"). `.agent-original/` is
+gone from the tree and from disk; `main` at `d0159a4` keeps every byte of it.

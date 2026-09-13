@@ -22,7 +22,6 @@ playwright-report/
 .cursor/
 
 # Pre-transplant Practice, retained only until the owner's loss-scan review
-.agent-original/
 
 # Live append-only rapid-comms channels
 .agent/collaboration/rapid-comms/2026-*.md

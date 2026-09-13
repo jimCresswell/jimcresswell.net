@@ -20,9 +20,8 @@ installable-entity exploration.** Start from the delivery node
 [`../plans/delivery/practice-completion.plan.md`](../plans/delivery/practice-completion.plan.md)
 (ratified on cards 2026-09-13, its three gates cleared the same round): the transplant
 closes in two sessions per the node's §Transplant closure (ratified 2026-09-13): session 1
-deletes `.agent-original/` first (the loss-scan is computed under the transplant reports'
-`inputs/`, every residue row ruled; the owner first processes and removes the two private
-directories on disk beneath the archive), merges PR #53 by merge commit without asking, then
+deleted `.agent-original/` first (done 2026-09-13: the loss-scan computed under the transplant
+reports' `inputs/`, every residue row ruled), then merges PR #53 by merge commit without asking, then
 closure items 3 to 7 as small PRs against `main`; session 2 runs the 57-lesson synthesis from
 `.agent/memory/active/unconsolidated/`. Editorial work follows. Every
 move that makes a Practice element more general lands a row in

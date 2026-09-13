@@ -162,7 +162,8 @@ remove .agent-original before we merge 53"; "it should be processed then deleted
    state. Owner precondition: the two private directories on disk beneath the archive are
    processed and removed by the owner (a seat never reads them). Then `git rm -r`, the seven
    exclusion entries and the provenance note cut in the same commit. Proof: the directory gone;
-   the table under `inputs/`; plan of record §Owner rulings round 13.
+   the table under `inputs/`; plan of record §Owner rulings round 13. **Done 2026-09-13,
+   evening.**
 2. **Merge PR #53** by merge commit (owner: "always merge"; green and clean gets merged, no
    question asked). Proof: merged; the site building from `main`.
 3. **Activate the installed instruments** (todo 2): `practice-substrate` with `pnpm -s` cured

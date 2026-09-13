@@ -10,7 +10,6 @@
 {
   "globs": ["**/*.md", ".agent/**/*.md"],
   "ignores": [
-    ".agent-original/**",
     ".agent/collaboration/rapid-comms/2026-*.md",
     ".agent/evaluations/**",
     ".agent/experience/**",
