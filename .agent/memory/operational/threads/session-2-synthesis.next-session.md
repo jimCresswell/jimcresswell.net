@@ -36,8 +36,9 @@ napkins are archived only then.
   substance unchanged, the readout quoted as proof.
 - **Acceptance:** every filed entry has a source, a candidate home read first-hand and a
   falsifiable prediction; duplicates are recorded in the PR body with the line that carries
-  them; the readout moves from 0 to the filed total; the napkins are archived only after the
-  owner's cards.
+  them; the readout moves in two proofs, 0 to 33 on filing and 33 to 28 after the five
+  constitutional rows move to the slow lane (the accepted readout is 28 decision-debt blocks
+  beside five slow-lane rows); the napkins are archived only after the owner's cards.
 - **Next safe step:** §Next safe step at the end of this record.
 
 ## How this draft was made
@@ -217,8 +218,10 @@ the register's shape; their status is `draft` until lane A verifies the home is 
   their pins); a transplant runs a projection census (counts and pinned sets per surface class)
   against the pin as an audit step.
 - **Candidate home**: PDR-009 (generator direction) and the runbook's completeness step.
-- **Prediction**: the sub-agent adapter generator (item 6, 2b) emits the quartet from a role
-  declaration, and the census is a leg or an audit script under `inputs/`.
+- **Prediction**: the sub-agent adapter generator (item 6, 2b) emits each platform's pinned
+  Cricket role set from a role declaration (Claude and Cursor four roles, Codex three; a
+  three-role Codex projection is correct, not a failure), and the census is a leg or an audit
+  script under `inputs/`.
 
 ### O. Manifest declarations: runtime-created is declared; superseded is not declared at all
 
@@ -399,6 +402,8 @@ review dates, the readout at 28 pending. Nothing here refiles or reclassifies th
 2. Graduations land as their own small pull requests into the named homes, one home per PR
    where the homes differ, by the seat the Director routes; the register entry is removed in
    the same PR (drain by deciding).
-3. The three napkins under `.agent/memory/active/unconsolidated/` are archived only after every
-   card is answered; the archive holds processed material only.
+3. The three napkins under `.agent/memory/active/unconsolidated/` are archived once the
+   morning cards are answered; a slow-lane row left for its review date does not hold the
+   archive, because its source text is conserved on the register row (the archive holds
+   processed material only, and filing is the processing).
 4. The slow-lane five are decided at their review date (the owner's card, else 2026-12-13).
