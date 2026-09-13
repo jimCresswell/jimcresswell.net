@@ -201,3 +201,17 @@ the commit queue (one host, one e2e port). Item 7 is written last because it rec
   only ("ask the Director how to cure PR 55, carry that out, then hand back all responsibilities
   ... this session is over"); cure confirmed as ruled before the pause; slot given for afe58c8,
   then the generator save push; lane B hands back 2a remainder, 2b and PR 3 at closeout.
+- 2026-09-13 about 16:55Z: owner: "please make sure that all work respects the definitions and
+  constraints of our testing and validation approaches" (principles, testing-strategy,
+  validation-strategy). Check of the work in flight: the port design I had approved (hashed
+  per-checkout port, `E2E_PORT` override, `reuseExistingServer` kept) contradicts
+  testing-strategy §Harnesses Adapt to Shared Hosts, which rules this collision's cure
+  verbatim (an ephemeral port probed at config load, no `process.env` in config,
+  `reuseExistingServer` false), and principles §No timing dependence (collision odds are a
+  window, not an elimination). Go reversed; lane A amends to the ruled shape, proof by
+  exercising the boundary once (two concurrent gates) and construction, no invented pure
+  function for a unit test. Lane B asked to confirm the #55 cure's test shape (directive
+  definitions, injected fakes, class-shaped rows, relation to the seam) and one killed mutant
+  per claim in the commit body. Lesson, same class as the ratified-text overturn: a verdict
+  quotes the governing text; a verdict from memory of the problem is the failure shape.
+  Lane C stood down by intent (heartbeat-end 16:56Z) after verifying the carry byte-identical.
