@@ -632,3 +632,57 @@
   seed: the estate keeps four `corpus-*` reviewer templates for an instrument it trimmed — the
   same shape as an index of 243 absent files; discarded: "the Practice is its validators" (a
   slogan, not a finding).
+
+### Wrap 5 (2026-09-13, late morning, before compaction) — the definition, the direction, the node
+
+- Metacognition (retrospective): the inherited default of the whole transplant was "trim to
+  context" — keep a surface only when the host runs what it governs. The owner's direction flips
+  it: bring the entire Practice, adapt, and treat the Practice's knowledge about itself as
+  Practice. Under the old default I trimmed five instruments, 243 patterns, 434 letters and 195
+  reports in one ruling round and called the estate complete when `check` was green; the
+  definition report is where the flip became visible (doctrine citing forty absent paths). Stance
+  for the successor: completeness is judged by function and by exercised claims, never by a green
+  gate, and a ruling to trim is scoped to the default it was made under.
+- Reason: the live decision after compaction is one — ratify or amend the `practice-completion`
+  node — and everything else in the node is sequenced behind it; the direct trial that answers
+  "what is missing" is the cited-paths check, cheaper than any survey (one command, forty
+  targets). Investigation stop: no further survey of the lineage until the node's todo 1 has
+  cured what the check already found.
+- Concept exploration (the installable entity, revisited under the ecosystem frame): install /
+  learn / contribute / update as four instruments; three exist (runbook steps, the local loop),
+  one is doctrine only (contribute); the addendum on the installable-thing report carries the
+  synthesis with two new proposals and their falsifiers.
+- Free play (harvest with discards): kept — the private editorial repo and the installable
+  Practice look shaped alike (nested, self-governed, referenced by contract); kept — update and
+  contribute look like one operation read two ways; discarded — the species metaphor; discarded
+  — "the 57 lessons are the first contribution back".
+- Work safety: `## feat/monorepo`, clean before this wrap's commit, no upstream, unpushed by
+  standing rule; commits since the last wrap: 001d09c, 56c8356, 64681a0, 9070def, ce7f09a and
+  this one; claims 0; no monitors, crons, subagents or watchers live; nothing to re-arm.
+- The private editorial boundary: cloned at its ignored location, `main...origin/main`, clean;
+  read its README for understanding only; nothing from it (content, URL, commit ids) is in any
+  tracked file; every whole-repo tool checked for exclusion (prettier ignores `.agent/`,
+  markdownlint, markdown-links, cited-scripts, the fitness walkers exclude `reference-local`;
+  gitleaks scans git history, which never holds it). `pnpm check` after the clone is the proof.
+- Predictions a successor tests: (a) the cited-paths validator reports about forty true targets
+  on the pre-cure tree and under five after todo 1; (b) restoring `corpus-analysis` and
+  `workflow-build` from the pin compiles without product imports (the trim ruling said they were
+  Practice-only; if they pull `mcp-*` modules the seam is elsewhere); (c) the OCE seat has read
+  batch 1 by the next session (its idle notice would say so; none was requested).
+- Metaloss passes. Compressed reasoning: the nine-function definition compresses PDR-005,
+  practice-verification and the owner's kernel; the compression is in the report with its method
+  ranked. Promises: batch 2 to the lineage was considered and not sent (the path drift is local,
+  not the lineage's: verified at the pin); proposals 1 to 4 and 6 of the installable-thing
+  report are to be sent under ruling 6 — forwarded to the node's todo 5, not silently dropped.
+  Attribution inferences: "the owner's direction flips the default" is my reading of "entire
+  Practice … as appropriate"; the ratification of four nodes on a "ratify all three" answer is a
+  reading (round 6, flagged there). Blind-spot bounds: the private repo beyond its README and
+  layout; the OCE seat's receipt of batch 1; whether the lineage's own doctrine cites more
+  patterns than the seven a grep of backticked paths finds. Index of homes: continuity §Current
+  State / §Next Safe Steps → the continuation prompt → the plan of record's rounds 5 to 7 →
+  the node → the two reports (definition, installable thing) → distilled → the formation
+  letter. External bound: the owner caught the survey's blind spot in one sentence; point the
+  next external scrutiny at "complete because green". Fence sweep: the private repository's URL
+  appears in no tracked file (grep run); no machine-local path. Fixed point: a further pass would
+  only re-find the private-repo blind spot and the two flagged readings; the recursion closes
+  here.

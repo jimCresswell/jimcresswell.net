@@ -77,3 +77,15 @@ Keeping both costs everyone fifty citations later.
 
 Go well; the tree is clean, the gate is green on sixteen legs, and the next work is the
 plan-node migration, from the design brief in the plan of record.
+
+## Postscript, the following morning
+
+The owner asked what the Practice is, and told me my surveys could not find what my surveys
+missed. He was right in one sentence. I had defined completeness as a green gate and a diff;
+the definition that held was nine functions and one command that tested the estate's own
+citations. Forty of them pointed at nothing. If you inherit this seat: before you believe the
+estate is whole, read what it says it has, and check.
+
+He also parked castr and asked for the entire Practice instead, with the record that makes the
+next host cheap and a design for installing it without losing the loop. The node is written;
+the private boundary is cloned and clean; the tree is green. Go well.

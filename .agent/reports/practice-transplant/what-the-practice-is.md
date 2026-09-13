@@ -150,3 +150,12 @@ proposals below.
   right, the checkout may be incomplete.
 - Whether the lineage regards the operational registers as runtime-created (B2); its
   substrate manifest is the source, and this estate carries the same manifest.
+
+## Owner direction (2026-09-13, late morning)
+
+The owner ruled that the entire Practice comes over, as appropriate for this repository's
+context, with the record of what, how and why, and the installable-entity exploration. The
+proposals above are carried as the delivery node
+[`practice-completion`](../../plans/delivery/practice-completion.plan.md) (sketch, two owner
+gates); the ecosystem frame is the installable-thing report's 2026-09-13 addendum. The nine-row
+table is re-dated when each row's proof lands.

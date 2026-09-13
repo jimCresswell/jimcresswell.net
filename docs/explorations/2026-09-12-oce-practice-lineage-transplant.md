@@ -1132,3 +1132,23 @@ conserved design record.
    superseded by events.
 4. **The Track B delivery node is authored at pickup** by the seat that resumes it, as the
    schema says; GRAPH-1 and the conserved design record carry the intent until then.
+
+## Owner rulings, round 7 (2026-09-13, late morning) — direction: the entire Practice
+
+1. **Castr preparation stops until the owner says.** The ratified delivery node stays; its
+   slices are parked on continuity, not in the node (execution state is never a node field).
+2. **Define what belongs to the Practice.** Done as
+   `.agent/reports/practice-transplant/what-the-practice-is.md` (nine functions; the transplant
+   set by function; gaps by evidence class). Owner's constraint on method: a survey of the
+   lineage cannot tell you what the survey missed; the definition is function-first and the
+   estate's own claims are exercised as the second source.
+3. **The entire Practice comes over, as appropriate for this repository's context,** with a
+   record of what, how and why so the next transplant is much quicker, and an exploration of
+   the Practice as a separate installable entity that keeps the learning loop, self-improvement
+   and contributions back to the Practice and its ecosystem. This flips the 2026-09-12 default
+   (a surface stayed only when the host ran what it governs); rulings made under the old default
+   for Practice surfaces reopen; product drops stand. Recorded as the delivery node
+   `.agent/plans/delivery/practice-completion.plan.md` (sketch; two owner gates; six todos).
+4. **The private editorial boundary is cloned** into its ignored location and read for
+   understanding. The public tree carries no URL, commit id or content from it; the working
+   contract in `.agent/reference/private-editorial-workspace.md` governs.

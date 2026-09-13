@@ -105,7 +105,16 @@ owner says when**. The delivery node's slices are parked. **Now: define what
 belongs to the Practice** — the definition by function, the transplant set,
 and the gaps by evidence class are in
 `.agent/reports/practice-transplant/what-the-practice-is.md` (provisional);
-its five proposals await the owner. Then (when the owner says) the delivery node
+its proposals are now the delivery node
+`.agent/plans/delivery/practice-completion.plan.md` (sketch, 2026-09-13,
+owner direction "the entire Practice brought over, as appropriate for the
+context of this repo", with two owner gates expiring 2026-10-04: Gemini/
+Windsurf and the knowledge base per directory; the castr node's instrument
+todos re-homing here). **Next after compaction: the owner ratifies or amends
+that node on cards; then its todo 1 (the cited-paths validator first, then
+the class A cures).** The private editorial boundary is cloned and clean at
+its ignored location (2026-09-13); start-right confirms it per the working
+contract. Then (when the owner says) the castr delivery node
 `castr-lineage-update-preparation`'s slices (instruments as `agent-tools`
 bins, instance-1 verdicts as `inputs/` data); duplicate-skill merges;
 the tooling residue listed in the plan (§Oak residue in tooling: `packages/core`

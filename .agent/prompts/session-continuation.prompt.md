@@ -3,7 +3,7 @@ prompt_id: session-continuation
 title: "Session Continuation"
 type: handoff
 status: active
-last_updated: 2026-09-12
+last_updated: 2026-09-13
 ---
 
 Ground first via `start-right-quick` or `start-right-thorough`.
@@ -13,28 +13,21 @@ Ground first via `start-right-quick` or `start-right-thorough`.
 **The OCE Practice lineage transplant is the live repo-wide workstream.** Branch
 `feat/monorepo`. The plan of record is
 [`../../docs/explorations/2026-09-12-oce-practice-lineage-transplant.md`](../../docs/explorations/2026-09-12-oce-practice-lineage-transplant.md)
-— read its amendment section for the current state and the phase that is next.
-The acceptance test is owner-set: `.agent-original/` gone, every piece of unique
-value in it preserved inside `.agent/`. **Next (owner's words at the
-2026-09-13 compaction: "we continue with the design and transformation"):**
-the plan-node migration, starting from the plan of record's §Plan-node
-migration design brief — measured facts and one owner fork (a three-stream
-strategy layer, or a flat node estate with an absent-strategy zero-case in the
-validator); confirm the reading of "design and transformation" with the owner
-in one question if it is not the migration. Done and committed: rules triage,
-the Phase 8 harness, re-evaluate slice 1, the restart assessment, the link
-repair (418 → 0), the lineage script naming (PDR-008 amended), the two plan
-nodes (ratified 2026-09-12: the runbook
-`.agent/plans/runbooks/practice-lineage-transplant.plan.md` and the delivery node
-`.agent/plans/delivery/castr-lineage-update-preparation.plan.md`, both mis-named
-`.md` for the validator and cured in the migration), the journey record
-(`.agent/reports/practice-transplant/journey-so-far.md`), and slice 2 items 1
-to 3 (PR machinery at `e477e62f7`, the ten expert templates, the lineage ADR
-numbers in `agent-tools`). `pnpm check` green on 16 legs. After the migration:
-the delivery node's slices, duplicate-skill merges, tooling residue, the
-owner's loss-scan of `.agent-original/`, its deletion, the 57-lesson
-synthesis. Read `.agent/memory/operational/repo-continuity.md` §Current State
-first.
+— its dated §Owner rulings (rounds 1 to 7) carry the live state. **Next (owner's
+direction of 2026-09-13, late morning): the entire Practice comes over, as
+appropriate for this repository, with a record of what, how and why, and the
+installable-entity exploration.** Start from the delivery node
+[`../plans/delivery/practice-completion.plan.md`](../plans/delivery/practice-completion.plan.md)
+(sketch): present it for ratification on cards, then run its todo 1 — the
+cited-paths validator first, then the class A cures listed in
+[`../reports/practice-transplant/what-the-practice-is.md`](../reports/practice-transplant/what-the-practice-is.md).
+Castr preparation is **parked at the owner's word**; do not resume it. Done and
+committed: rules triage, the Phase 8 harness, re-evaluate slice 1, the link
+repair, the lineage script naming, slice 2 items 1 to 3, the plan-node
+migration (strategy corpus, four ratified strategic nodes, the legacy corpus
+conserved at `.agent/plans-legacy-2026-09/`), and the Practice definition.
+`pnpm check` green. Read `.agent/memory/operational/repo-continuity.md`
+§Current State and §Next Safe Steps first.
 
 Until that transplant closes, the earlier workstreams below are **parked**, not
 abandoned. Do not resume any of them by default.

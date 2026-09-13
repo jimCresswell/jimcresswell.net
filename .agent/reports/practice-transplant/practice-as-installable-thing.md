@@ -283,3 +283,57 @@ host guides into reference, contracts into executive memory, developer narrative
 and never travels as a directory. The lineage's `docs/governance` was a pre-Practice artefact;
 here it dissolved into nine homes and a dropped remainder, with every drop reversible from the
 pinned source commit.
+
+## Addendum (2026-09-13): the ecosystem frame — install, learn, contribute back, update
+
+The owner's direction of 2026-09-13 adds three properties the installable entity must keep:
+the learning loop runs in the host, the host's Practice improves from its own use, and the host
+contributes back to the Practice and the wider ecosystem of Practices. Read against the nine
+functions in the definition report, the "generator with a lineage lockfile" of Movement 4 is
+necessary but not sufficient: it moves doctrine, generates the surface and adds the tooling, and
+says nothing about the return path.
+
+The estate already carries the return path as doctrine: the Core's `practice-lineage.md`
+§Plasmid Exchange and §How the Practice Arrives in a New Repo, PDR-024's outbound routing by
+shape, PDR-125's inter-practice protocol, and the lineage's `practice-core/incoming/` box. What
+is missing is the mechanism: an outbound pass that bundles a host's graduated lessons, amended
+records and new instruments by shape, and a lineage-side intake that dispositions them. The
+transplant runbook's steps 1 and 2 (measure against the ancestor pin; classify every path as
+unchanged, theirs-only, ours-only, both-changed, upstream-deleted) are already the three-way
+merge an update needs; as a bin they make update mechanical and divergence-preserving.
+
+**Synthesis, revised.** The installable entity is a lineage protocol with four operations,
+each an instrument:
+
+| Operation      | Mechanism                                                                                                        | Exists as             |
+| -------------- | ---------------------------------------------------------------------------------------------------------------- | --------------------- |
+| Install        | Pin a lineage commit; copy the doctrine layer; add the tooling package; generate the surface from a host profile | Runbook steps 5 to 8  |
+| Learn          | The host's own loop: napkin → distilled → pending graduations → doctrine, with the validators keeping it honest   | Present here          |
+| Contribute     | An outbound pass by shape into the lineage's incoming box; the lineage dispositions and re-pins                   | Doctrine only         |
+| Update         | Three-way classify against the ancestor pin; overwrite unchanged, judge both-changed, keep ours-only              | Runbook steps 1 and 2 |
+
+Two proposals join Movement 4's five, with warrants and falsifiers:
+
+6. **Make contribute an instrument, symmetric with update.** The same bundle-by-shape format
+   carries a host's outbound pass to the lineage and a lineage generation to a host. _Warrant_:
+   both directions are "a set of paths with dispositions", and one format halves the machinery.
+   _Falsifier_: if a host's outbound needs fields a lineage generation never has (a host
+   profile, local-only markers), the formats diverge and the symmetry was cosmetic.
+7. **Re-examine subtree and submodule for a public lineage.** Movement 3 rejected them for
+   exclusion and tracking; the exclusion objection was inherited from the private editorial
+   boundary's reasons (a submodule publishes its remote and pin), which do not apply to a public
+   Practice. _Warrant_: a nested checkout with its own continuity is a shape this estate already
+   runs. _Falsifier_: if the doctrine layer must be host-editable in place (`extends` with local
+   overrides on the same paths), a submodule's read-only pin fails and the generator stands.
+
+Free-play seeds kept from the day, marked as associations: the private editorial repository
+(nested, ignored, independently governed, own README and handoffs) looks shaped like the
+installable Practice; "the lineage contributes to the host" and "the host contributes to the
+lineage" look like one operation read in two directions. Discarded, visibly: "the Practice is a
+species and hosts are organisms" (the estate's biological vocabulary already says this and adds
+nothing); "the 57 archived lessons are this host's first contribution back" (a claim without the
+synthesis that would make it one).
+
+Routing: the delivery node `practice-completion` carries this as todo 5; proposals 1 to 4 and 6
+go to the lineage as suggestions under the owner's ruling 6 of 2026-09-13; proposal 7 is a
+question for the lineage, not a change.

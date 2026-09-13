@@ -98,3 +98,22 @@ no longer matched its scripts), converge on it before the first skill is
 copied, and surface the choice; aliasing both defers the ruling and doubles
 the citations. Source: napkin 2026-09-12 (Session 5); routing: the
 efficiency-guidance report and the transplant runbook step 5.
+
+## Completeness is judged by function and exercised claims, never by a green gate (2026-09-13)
+
+A transplant can pass every gate and still claim forty surfaces it lacks:
+green means the checks that exist pass, not that the estate is whole. Define
+the Practice by what it must do (nine functions), then exercise the estate's
+own claims — every backticked path and cited script in live doctrine must
+resolve — before any survey of the source. The owner's sentence: "looking at
+your surveys of the Practice in OCE cannot tell you if something was missed
+from those surveys." Source: napkin 2026-09-13 (Wrap 5); routing: the
+definition report and the `practice-completion` node (a cited-paths validator).
+
+## A ruling to trim is scoped to the default it was made under (2026-09-13)
+
+"Keep only what the host runs" and "bring the entire Practice, adapt" produce
+different verdicts on the same surface. Record every drop with the default in
+force, so a later direction reopens exactly the drops made under the old one
+and no other. Source: napkin 2026-09-13; routing: the plan of record's rounds
+and the node's preamble.
