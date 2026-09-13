@@ -117,3 +117,5 @@ the commit queue (one host, one e2e port). Item 7 is written last because it rec
   where the two hand-kept sources disagree, reconciled rules listed in the PR. OCE checkout location
   sent to lane C natively (machine-local; never a tracked line). Lanes A and C entered their
   worktrees; lane A follows the practised commit identity (no merge-bot identity here).
+- 2026-09-13 about 14:10Z: lane B sub-class (eight index-core rules with hand-kept globs and paths)
+  ruled situational: the more specific declaration wins; recorded in the lane B record.

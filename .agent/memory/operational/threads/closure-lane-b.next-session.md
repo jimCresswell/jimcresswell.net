@@ -28,6 +28,11 @@ directed comms event, never to the owner.
   alwaysApply); a `trigger` key is added beside classification, description and globs; where the
   two sources disagree the index wins, and every reconciled rule is listed in the PR with both
   prior values; byte-equal proof for the index and for every adapter that already agreed.
+  Second verdict (same day): the MORE SPECIFIC declaration wins, and the index's bare column is
+  the least specific. So a `.mdc` with `alwaysApply: true` and no globs loses to the index's named
+  trigger, but a rule the index calls core whose Cursor globs and Claude `paths` adapter both scope
+  it becomes situational with a `surface:*` trigger derived from the globs (eight rules, listed).
+  Where a Cursor glob and a Claude paths list disagree, take the union and list it.
 - **Shape:** two PRs if the frontmatter sweep and the generator are separable
   (`design-work-for-small-prs`); the sweep touches 129 files, so land it first and fast.
 - **Next safe step:** `start-right-team` as `team-member-non-closeout-owner`; team-start
