@@ -142,6 +142,50 @@ the runbook is the how, the definition is the what, the journey is the why.
    `transplant antigen-scan`, `transplant digest`, the adapter generator,
    the rules-index generator, as `agent-tools` bins with fixture tests.
 
+## Transplant closure (ratified 2026-09-13, plan of record §Owner rulings round 11)
+
+The transplant is bounded and finishes in two sessions; editorial work follows. Every exit
+condition names its check. Todos 5 and 6 above stay on this node as post-transplant work and
+are not exit conditions.
+
+**Session 1 — merge first, then the mechanical items as small PRs against `main`.**
+
+1. **Merge PR #53** by merge commit (owner: "always merge"; green and clean gets merged, no
+   question asked). Proof: merged; the site building from `main`.
+2. **Activate the installed instruments** (todo 2): `practice-substrate` with `pnpm -s` cured
+   to `--silent`, `validate-protocol-wire-contract`, the agent-tools smoke suite; each a leg of
+   `check` or a named gate. Proof: the legs, CI parity, green.
+3. **Completeness by function** (todo 3, bounded): the four generic rules re-triaged under
+   "bring unless product"; the operational registers declared per the substrate manifest;
+   mutation testing's absence stated; the Gemini projection imported from the pin; the
+   definition report's nine rows read "present" with a cited proof each. Proof: the report.
+4. **Lineage residue off the live surfaces**: retire `validate-ratified-lists`,
+   `protocol-conformance`, `pr-throughput` and `ci-turbo-report` (scripts, sources, tests, doc
+   mentions; re-importable from the pin); keep `merge-bot` and scrub its lineage residue; the
+   two product files, five package manifests and fourteen fixtures the plan of record names;
+   `accept-md.config.js` to TypeScript; `turbo.json`'s `.next/` outputs; the consumed incoming
+   bundle. Proof: a lineage-name leak validator over live surfaces (CV content excluded by
+   scope) as a `docs-validators:check` leg, green.
+5. **The last hand-kept copies derived**: canonical rules carry `classification`,
+   `description` and `globs` frontmatter; `portability:fix` generates the rules index and the
+   Cursor triggers from it and `portability:check` recomputes them; sub-agent adapter
+   descriptions derive from the templates. Proof: the generator's tests and a byte-equal
+   regeneration of today's files.
+6. **The record compiled** (todo 4): the reports index as the entry (what, how, why,
+   how-faster), the runbook's step 13 citing the nine functions, the completion entry in
+   `provenance.yml`. Proof: the index and the provenance diff.
+
+**Session 2 — the two owner-decision items.**
+
+7. **`.agent-original/` deleted**: every file dispositioned by content match against the live
+   estate (kept-elsewhere, superseded); only the no-match residue goes to the owner on cards;
+   then the directory is removed. Proof: the directory gone; the dispositions in the plan of
+   record.
+8. **The 57-lesson synthesis**: one seat synthesises the archived napkin onto the
+   pending-graduations register; the candidates go to the owner as one batch of cards; the
+   answers are the dispositions; nothing graduates without them. Proof: the register and the
+   plan of record's ruling round.
+
 ## Out of scope
 
 Any particular next host (the instruments are host-agnostic); product

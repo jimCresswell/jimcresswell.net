@@ -1388,3 +1388,19 @@ Estimate, for the owner's planning only: items 1, 2, 5 and 6 are one working ses
 3 is one to two; items 4 and 7 each need an owner decision before their session; item 8 is a
 review. Two owner decision points: the loss-scan list (item 4) and the retirement candidates
 (item 3).
+
+## Owner rulings, round 11 (2026-09-13, late afternoon) — the closure is decision-complete
+
+Two card rounds. The eight exit conditions are ratified as the node's §Transplant closure, two
+sessions.
+
+1. **Retirements:** retire all but `merge-bot` (`validate-ratified-lists`, `protocol-conformance`,
+   `pr-throughput`, `ci-turbo-report` go; `merge-bot` stays and is scrubbed).
+2. **Loss-scan:** compute dispositions by content match; only the no-match residue goes on cards.
+3. **Merge timing:** merge now; items land as small PRs against `main`.
+4. **Synthesis review:** on cards, one batch.
+5. **Merge method and who merges:** "Why is this a question? Yes merge, always merge" and "if it
+   is green and clean, it gets merged, you are inventing optionality and it is wasting my time
+   and yours." Standing: a green, clean pull request is merged by merge commit, by the seat,
+   without a card. Recorded as feedback on the napkin and in distilled.
+6. **Re-homing:** todos 5 and 6 stay on `practice-completion`; the closure list sits beside them.

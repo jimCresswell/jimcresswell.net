@@ -117,3 +117,11 @@ different verdicts on the same surface. Record every drop with the default in
 force, so a later direction reopens exactly the drops made under the old one
 and no other. Source: napkin 2026-09-13; routing: the plan of record's rounds
 and the node's preamble.
+
+## A green, clean pull request is merged, by merge commit, without asking (2026-09-13)
+
+The owner, asked which merge method and who merges: "Why is this a question? Yes merge,
+always merge" and "if it is green and clean, it gets merged, you are inventing optionality
+and it is wasting my time and yours." A card is for a decision only the owner can make; the
+merge of a green, clean PR is not one. Source: napkin 2026-09-13 (round 11); routing:
+pr-lifecycle §Phase 7 already says it.

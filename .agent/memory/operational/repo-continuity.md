@@ -112,8 +112,10 @@ carried and Windsurf rejected; the knowledge base as the cited subset,
 scrubbed; the transplant instruments as that node's todo 6. The earlier
 second-host preparation node was withdrawn as premature and removed from the
 estate on the owner's word (the same round); the Practice's understanding of
-its future is host-agnostic. **Transplant closure proposed (plan §Transplant closure — proposed): eight exit conditions, each with
-its check; the owner ratifies or declines by number; then item 1.** Todo 1 done (2026-09-13, plan
+its future is host-agnostic. **Transplant closure ratified (node §Transplant closure; plan §Owner rulings round 11): two sessions.
+Session 1 opens by merging PR #53 (merge commit, no card), then items 2 to 6 as small PRs against
+`main`; session 2 is the loss-scan (computed, residue on cards) and the 57-lesson synthesis (cards,
+one batch).** Todo 1 done (2026-09-13, plan
 §Practice completion — todo 1 executed):
 `validate-cited-paths` is a `docs-validators:check` leg, 35 absent targets cured to
 0, five patterns and four cited records imported with provenance. Now: todo 2

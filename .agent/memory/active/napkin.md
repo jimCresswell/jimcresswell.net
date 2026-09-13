@@ -754,3 +754,6 @@
 - Privacy boundary: eight inbound links to the removed working contract; the remaining mentions
   are exactly two. The cited-paths validator already resolved the boundary via ignore rules, so
   nothing depended on the clone; the deterministic interaction was in doctrine text, not code.
+- Round 11 correction: two of my cards were invented optionality (merge method, who merges). The
+  standing answer is in pr-lifecycle §Phase 7 already; I carded what doctrine had settled. Test for
+  a card: could the answer be ranked from evidence or doctrine already in hand? Then no card.
