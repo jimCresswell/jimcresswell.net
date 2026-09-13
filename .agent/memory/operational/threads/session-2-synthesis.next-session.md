@@ -26,8 +26,8 @@ napkins are archived only then.
   pull request was #63, `docs(memory): session 2 candidates onto the register`, merged by the
   bot at `SHA: dc23dff` at zero threads with Copilot bound (round one's cure `SHA: 414fb6c`);
   the branch is deleted. The live work is the owner's morning cards (§Next safe step).
-- **Claim:** lane A opens a claim on `.agent/memory/operational/pending-graduations.md` and this
-  record before editing.
+- **Claim:** the register claim for the filing is closed with PR #63; each later graduation
+  pull request opens its own claim on the home it edits.
 - **Grounding order:** this record; the register's §What belongs here and its entry shape (the
   fitness counter reads the inline-bracket shape only); each candidate home, read first-hand.
 - **Standing decisions:** the owner's 20:40Z cards (Director drafts, lane A completes; session 2
@@ -402,8 +402,9 @@ review dates, the readout at 28 pending. Nothing here refiles or reclassifies th
 2. Graduations land as their own small pull requests into the named homes, one home per PR
    where the homes differ, by the seat the Director routes; the register entry is removed in
    the same PR (drain by deciding).
-3. The three napkins under `.agent/memory/active/unconsolidated/` are archived once the
-   morning cards are answered; a slow-lane row left for its review date does not hold the
-   archive, because its source text is conserved on the register row (the archive holds
-   processed material only, and filing is the processing).
+3. The three napkins under `.agent/memory/active/unconsolidated/` are archived once both
+   prerequisites hold: the morning cards are answered, and the owner's privacy review of the
+   three napkins under `privacy.md` (overnight item 5) is done. A slow-lane row left for its
+   review date does not hold the archive, because its source text is conserved on the register
+   row (the archive holds processed material only, and filing is the processing).
 4. The slow-lane five are decided at their review date (the owner's card, else 2026-12-13).

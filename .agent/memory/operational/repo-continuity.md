@@ -110,9 +110,11 @@ The owner-set order of 2026-09-12 (rules triage, harness integration, the two re
 slices, the restart assessment, link repair, script naming, the plan-node migration, the
 Practice definition and its delivery node) is done and recorded in the plan node
 `.agent/plans/delivery/practice-completion.plan.md` and the journey report
-`.agent/reports/practice-transplant/journey-so-far.md`; the transplant closure's items 1 to 6
-landed on `main` (PR #53 at `SHA: 55649a2`, then the closure PRs listed in the Director's
-handoff). Live now, in order:
+`.agent/reports/practice-transplant/journey-so-far.md`. Of the transplant closure's eight
+items: 1 to 3 landed on `main` (PR #53 at `SHA: 55649a2`, then #56), item 4 landed as bounded
+(#57, residue routed), item 6 landed as PR #55 with 2a and 2b remaining, item 8 filed as
+PR #63 with the cards pending; items 5 (in parts) and 7 are the ordered closure work in the
+Director's handoff. Live now, in order:
 
 1. The Director's handoff `.agent/memory/operational/director-handoff.md` §Current handoff state
    is the resume contract: the open pull requests, the lane A order (item 5's remaining parts,
