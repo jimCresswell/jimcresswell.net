@@ -9,6 +9,27 @@ register pull request after #60 and #55 land, before item 5; scope is the three 
 go to the owner as one batch of cards in the morning; nothing graduates without the answers; the
 napkins are archived only then.
 
+## Current continuation
+
+- **Role:** lane A, Saffron turns Verdure (c39ad7), Implementer (PDR-117), completes this
+  draft; the Director (Cauldron herds Lustre, 880ff9, claim `1db07581`) drafted it and routes.
+- **Branch and landing target:** a branch from `origin/main` after #60 and #55 merge; one pull
+  request as the bot, `docs(memory): session 2 candidates onto the register`; the bot merges at
+  zero threads.
+- **Claim:** lane A opens a claim on `.agent/memory/operational/pending-graduations.md` and this
+  record before editing.
+- **Grounding order:** this record; the register's §What belongs here and its entry shape (the
+  fitness counter reads the inline-bracket shape only); each candidate home, read first-hand.
+- **Standing decisions:** the owner's 20:40Z cards (Director drafts, lane A completes; session 2
+  before item 5; scope is the three napkins plus today's captures); the Director's ruling that
+  the entries file in the counter's canonical shape with the five existing entries migrated,
+  substance unchanged, the readout quoted as proof.
+- **Acceptance:** every filed entry has a source, a candidate home read first-hand and a
+  falsifiable prediction; duplicates are recorded in the PR body with the line that carries
+  them; the readout moves from 0 to the filed total; the napkins are archived only after the
+  owner's cards.
+- **Next safe step:** §Next safe step at the end of this record.
+
 ## How this draft was made
 
 The Director (Cauldron herds Lustre, 880ff9) read every line of the four sources first-hand on
@@ -38,7 +59,7 @@ the register's shape; their status is `draft` until lane A verifies the home is 
 
 ### B. A method question is asked as "what is sensible under the estate's rules", never as one authority against another
 
-- **Source**: owner, 2026-09-13 about 19:0xZ, on the Gemini card: "this is not a matter of
+- **Source**: owner, 2026-09-13 evening (about 19:10Z to 19:50Z), on the Gemini card: "this is not a matter of
   competing authorities, what does sensible look like? The Gemini adapters are generated, just
   like everything else."
 - **Doctrine**: when ratified text and a later estate rule seem to disagree on method, the
@@ -74,15 +95,20 @@ the register's shape; their status is `draft` until lane A verifies the home is 
   lane C's per-user memory `push-slot-is-ask-then-wait` graduates into it.
 - **Prediction**: no seat pushes on its own announcement in the next ten team sessions.
 
-### E. Silence is never liveness at n=2 either: a state line every 120 seconds of a long turn
+### E. Proposal, owner to confirm: a state line every 120 seconds of a long turn at n=2
 
 - **Source**: napkin 2026-09-13 (Director): lane A silent 80 minutes in a long turn; read as a
   block; escalated to the owner; the seat was fine.
-- **Doctrine**: PDR-082 drops the heartbeat, not the progress report; a seat in a long turn
-  sends a one-line state at the team cadence, and the lead reads silence as unknown, never as
-  work.
-- **Candidate home**: PDR-082 §What changes at n=2 (one sentence) and `start-right-team` §5.
-- **Prediction**: no owner escalation for a silent-but-working seat in the next ten sessions.
+- **What PDR-082 says today**: at n=2 the heartbeat cron and the 120-second message sweep are
+  dropped and liveness is owner-chat responsiveness; the start-right-team overlay drops the sweep
+  without sparing the progress report. So this is not existing doctrine; it is a proposal.
+- **Proposal**: a seat in a long turn sends a one-line state at the team cadence, and the lead
+  reads silence as unknown, never as work. If the owner declines, the lead's remedy is the
+  native liveness probe (ListAgents) and a ping, never an escalation.
+- **Candidate home (if confirmed)**: PDR-082 §What changes at n=2 (one sentence) and
+  `start-right-team` §5.
+- **Prediction (if confirmed)**: no owner escalation for a silent-but-working seat in the next
+  ten sessions.
 
 ### F. Records land at waypoints, never per event
 
@@ -195,15 +221,6 @@ the register's shape; their status is `draft` until lane A verifies the home is 
 - **Prediction**: no manifest entry of the form "never exists" is authored in the next ten
   sessions.
 
-### P. Read the writer before creating the surface it supposedly writes
-
-- **Source**: napkin 2026-09-13 (lane C): a `curator-passes/` README was imported because a
-  report listed it as a register the loop writes to; PDR-081 and the curator-pass skill say the
-  opposite. Recorded here only to check the home carries the transplant instance.
-- **Candidate home**: `verify-data-supports-shape-before-building` already exists; lane A
-  verifies whether its text covers "a directory the lineage kept for history is not a register
-  the doctrine writes to" and files this as `duplicate` if it does.
-
 ### Q. Split proofs by layer: contracts in Vitest, emitted channels in Playwright; E2E sources graph-backed expectations from raw JSON fixtures
 
 - **Source**: napkin 2026-03-09 (Track A A3 slices, three instances): importing a product module
@@ -279,6 +296,11 @@ the register's shape; their status is `draft` until lane A verifies the home is 
 
 ## Verify before filing (lane A reads the home; files as `duplicate` where it already carries the lesson)
 
+- `verify-data-supports-shape-before-building`: whether its text covers the lane C instance (a
+  `curator-passes/` README imported because a report listed it as a register the loop writes to,
+  while PDR-081 and the curator-pass skill say the opposite: a directory the lineage kept for
+  history is not a register the doctrine writes to). If not, a worked-instance clause.
+
 - The consolidate-docs skill: one truth-maintenance pass over frontmatter status, narrative
   status, next-step sections, current-state notes, roadmap and parent tables, and READMEs that
   advertise plan state (napkin 2026-03-09 and 2026-04-03 say promoted; confirm the transplanted
@@ -353,10 +375,9 @@ the register's shape; their status is `draft` until lane A verifies the home is 
   now projects 130 `.agents` rules (surface matrix and ADR-015 to true up; a small follow-on).
 - Plan-shaped: the transplant runbook steps that L, M and N cite (the doctrine goes to PDR-005
   and PDR-009; the runbook cites them).
-- Owner review in the morning (privacy): the 2026-03-08 napkin records a personal phrase as
-  "privileged information, never in version control" while itself being a tracked file since
-  March; the phrase is innocuous in isolation but the owner's own rule names it. The synthesis
-  PR must not repeat it; the owner decides whether the archived napkin line is cut.
+- Owner review in the morning (privacy): an owner-gated privacy review of the three napkins
+  under `privacy.md` before they are archived; the synthesis PR carries nothing from them beyond
+  the candidates' doctrine.
 
 ## Next safe step (lane A, after #60 and #55)
 

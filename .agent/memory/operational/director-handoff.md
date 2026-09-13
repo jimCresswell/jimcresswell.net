@@ -50,7 +50,7 @@ Every line answered first-hand, none inferred:
   archive holds only processed material.
 - The transplant is bounded: closure items 3 to 8 finish it, then editorial work.
 
-## Current handoff state (2026-09-13, about 18:50Z, n=2 with lane A)
+## Current handoff state (2026-09-13, about 21:15Z, n=2 with lane A; owner away)
 
 Where this block and the routing log disagree, the log's last entry is current; this block is
 rewritten at each Director push.
@@ -62,14 +62,10 @@ rewritten at each Director push.
   Landed on `main`: item 1 (archive deleted), item 2 (PR #53, `55649a2`), item 3 (PR #56,
   `1829cd4`), item 4 as bounded (PR #57, `4a61112`), the Director records and the channel rule
   (PR #54, `c426c6c`).
-- Open pull requests: #60 (lane A, the per-checkout Playwright port, option A; three Copilot
-  threads routed to lane A: the runner/worker distinction must rest on a property the launcher
-  cannot set through the environment, plus two doc truths); #55 (lane B's sweep, handed back;
-  one Copilot thread, a path escape in the sweep's rule names, cure routed to lane A in lane B's
-  worktree); #61 (the Director, the Cricket quartet roles reinstated from the pin, the skill's
-  label convention and the first panel tally; subordinate to #60 and #55 for the push slot, bot
-  merge at SETTLE-READY). Merged: #58 (the Director records, `6528ecb`, five Copilot rounds, every thread
-  cured on the branch); #59 closed as carried (lane C's capture rides #58 as `a3bb608`).
+- Open pull requests: #60 (lane A, the per-checkout Playwright port; round three: the prober
+  becomes the holder, ADR-019 trued); #55 (lane B's sweep, handed back to lane A; round five:
+  three reconciliation defects); #62 (this records branch). Merged today: #54, #56, #57, #58,
+  #61; #59 closed as carried.
 - Team state: owner word 17:16Z, "this is now an n=2 session, you and Saffron" (PDR-082; the
   Director's heartbeat stopped, watcher kept); 17:18Z the ARC channel opened beside native
   messaging. Lanes B and C handed every responsibility back and stood down (closeouts on the
@@ -84,11 +80,11 @@ rewritten at each Director push.
 - Re-arm after compaction, checking first (PDR-133): the all-channels comms watcher (Monitor,
   `comms watch --exclude-tag heartbeat`), then `assert-watcher-live`; the ARC channel tail; no
   heartbeat loop at n=2. Checked 15:39Z: background tasks outlive a compaction.
-- Next safe step: lane A's two cures land (#60, then or before #55), Copilot bound to each tip,
-  the bot merges at zero threads; then the owner's word on the next shape for the holdings on
-  the board. Lane A was silent 17:31Z to 18:52Z (a long turn with nothing sent, by its own
-  account, not a block); surfaced to the owner meanwhile; the 120-second state line of
-  start-right-team §5 is the liveness signal at n=2 with heartbeats dropped.
+- Next safe step (owner away; decisions by the lenses, logged under §Decisions overnight):
+  lane A's #60 round-three cure, then its #55 cure, each Copilot-bound and bot-merged at zero
+  threads; then the session 2 register PR from the draft in
+  `threads/session-2-synthesis.next-session.md`; then item 5 as three PRs. The morning report
+  presents §Decisions overnight with its REVIEW marks.
 
 ## Live board
 
@@ -111,7 +107,11 @@ One shape, serialised onto lane A at n=2, each a small pull request against `mai
 dependency order; the Director merges by the bot at zero threads and writes item 7 last.
 
 1. **#60** (the per-checkout Playwright port) then **#55** (item 6, PR 1, the sweep): in flight.
-2. **Item 5** (lane A; branches from `main`; `64aa005` rides the first), as three pull requests
+2. **Session 2, the register PR** (lane A, from the Director's draft in
+   `threads/session-2-synthesis.next-session.md`; owner word 2026-09-13 about 20:40Z: session 2
+   before item 5): the candidates filed in the counter's canonical shape, the five existing
+   entries migrated; the owner's cards in the morning are the dispositions.
+3. **Item 5** (lane A; branches from `main`; `64aa005` rides the first), as three pull requests
    by changeset class (lane A's proposal, accepted 2026-09-13 about 19:45Z): (a) the merge-bot
    cures first, because they pay on every later merge: the GraphQL login form; the bot's own
    Copilot request registers nothing; a review run in progress read as SILENT-WAIT; the quiet
@@ -121,21 +121,21 @@ dependency order; the Director merges by the bot at zero threads and writes item
    leak validator (derived needles): the two product files, the manifests and fixtures the plan
    of record names, `accept-md.config.js` to TypeScript, `turbo.json`'s `.next/` outputs, the
    consumed incoming bundle.
-3. **Item 6, PR 2a** (the rules-index and trigger generator) from `closure/lane-b-generator` at
+4. **Item 6, PR 2a** (the rules-index and trigger generator) from `closure/lane-b-generator` at
    `d76bb86` with the conserved fold applied; then **2b** (the sub-agent adapter generator, Gemini
    as a fourth row); then the **Gemini per-role projection** (item 4 residue, row 8).
-4. **Item 4 residue, one pull request each:** the corpus-analysis and workflow-build restore with
+5. **Item 4 residue, one pull request each:** the corpus-analysis and workflow-build restore with
    the five absent patterns and the cited-paths leg extension (rows 3 and 6); `sif`'s routing
    rewrite (row 5). Then the definition report's nine rows read present.
-5. **Follow-ons named today, parked after item 7 as post-transplant (lane A's proposal,
+6. **Follow-ons named today, parked after item 7 as post-transplant (lane A's proposal,
    accepted), each its own small pull request:** `@engraph/result` into the site workspace for
    the port helper; the atomic writer re-homed to core; a shared no-follow write helper; the
    `CLAUDE_PROJECT_DIR` opt-out as an estate rule; the ten name-only `invoke-*` descriptions and
    the three stubbed invoke rules (accessibility, design-system, react-component) brought back
    from the pin, scrubbed; the deferred-controls register's creating mechanism; the projection
    census against the pin as an item 7 audit step.
-6. **Item 7** (the Director): the reports index, runbook step 13, the `provenance.yml` entry.
-7. **Session 2** (owner-decision): the 57-lesson synthesis from `unconsolidated/` on cards.
+7. **Item 7** (the Director): the reports index, runbook step 13, the `provenance.yml` entry.
+8. **Session 2** (owner-decision): the 57-lesson synthesis from `unconsolidated/` on cards.
 
 Records cadence from here (Cricket verdict, both methods): commit locally at each state change;
 push once per landed merge or shape change, never contending with lane A's slot.
@@ -148,8 +148,9 @@ any need a review that is fine." Each decision below names its lens; those marke
 ones the Director would put to the owner had the owner been present.
 
 1. The routed verdict for the handed-back holdings (above) applies without the owner's word at
-   the #55 merge: item 5 as three pull requests by changeset class, merge-bot cures first; then
-   2a, 2b, the Gemini projection, the restore with the five patterns, `sif`; item 7 last. Lens 1
+   the #55 merge, in the order the owner amended at 20:40Z: the session 2 register PR first,
+   then item 5 as three pull requests by changeset class, merge-bot cures first; then 2a, 2b,
+   the Gemini projection, the corpus-analysis work with the five patterns, `sif`; item 7 last. Lens 1
    (the generators remove hand-kept copies; the merge-bot cures pay on every later merge) and
    lens 3 (one seat, dependency order, no menu). REVIEW: the order of 2a before the restore.
 2. Merges: every green, clean pull request merges by the bot at zero threads with Copilot bound
@@ -162,9 +163,9 @@ ones the Director would put to the owner had the owner been present.
    completes it as the register PR after #60 and #55. Lens 3 (the Director reads and drafts;
    the seat verifies homes and files; the owner decides on cards). REVIEW: the candidate homes,
    in the morning batch of cards.
-5. REVIEW (privacy): the March napkin under `unconsolidated/` records a personal phrase as
-   "privileged, never in version control" while being a tracked file since March; the synthesis
-   PR does not repeat it; whether the archived line is cut is the owner's.
+5. REVIEW (privacy): an owner-gated privacy review of the three unconsolidated napkins under
+   `privacy.md` before they are archived; the synthesis PR carries nothing from them beyond the
+   candidates' doctrine.
 6. REVIEW (doc truing): ADR-015 says Codex has no `.agents/rules/` layer; the estate projects
    130 `.agents` rules since the transplant; the ADR and the surface matrix need truing as a
    small follow-on (not a graduation).
