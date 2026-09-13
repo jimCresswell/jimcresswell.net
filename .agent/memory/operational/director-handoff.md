@@ -390,10 +390,17 @@ ones the Director would put to the owner had the owner been present.
     the previous round's wait produced). REVIEW: thirteen rounds on one records pull request.
 36. #65 round one (23:30Z on 2026-09-13): one thread, taken in full: the measured predicate
     mapped an unavailable run leg and a truncated read to "no run", so an unobservable run
-    surface could read SETTLE-READY; the cure routes those gap cases to a refusal verdict named
-    for the incomplete read and adds the two regression cells. Routed to lane A; round two is
-    the last within PDR-132's budget. Lens 1 (a false merge-eligible reading costs a merge on
-    an unproven state). No REVIEW.
+    surface could read SETTLE-READY. Verdict on lane A's recommendation: name, do not block.
+    Grounds: 5a-i measured that the run leg never carries a review run (it lists coding-agent
+    sessions), so the round's measured signal is the outstanding request, read every time;
+    blocking on an unobservable optional extension (`gh agent-task`, absent on CI hosts and
+    fresh checkouts) would make every settlement depend on it, the SETTLED-NO-REVIEW deadlock
+    in another coat. Cure: the third clause reads "no live run observed"; every SETTLE-READY
+    names an unavailable or truncated run surface in its evidence; the SKILL and the settlement
+    header say why the run leg does not block; two regression cells pin the gap cases. Round
+    two is the last within PDR-132's budget. Lens 1 then lens 4 (a settlement that depends on
+    an optional surface fails closed everywhere the surface is absent). REVIEW: the third
+    clause of the measured-state ruling narrowed to "observed".
 
 ## Routing log
 
