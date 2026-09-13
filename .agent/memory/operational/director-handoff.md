@@ -316,6 +316,10 @@ ones the Director would put to the owner had the owner been present.
     pending. The morning cards are the dispositions (the ratified item 8); the napkins under
     `unconsolidated/` archive only after them. Ruling: item 5a-i opens its PR from `main` at
     `SHA: dc23dff` without waiting for #60 (no shared files). Open: #60, #62.
+27. #60 round six (Copilot on `SHA: c60e28c`, the redesign's first pass, about 22:45Z): two small
+    real defects, none on the shape (a race timer never cleared in a cell; a signal-handler gap
+    between the build child's exit and Next's attach). Routed to lane A as one minimal commit;
+    every check on the tip green.
 
 ## Routing log
 
