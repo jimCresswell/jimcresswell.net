@@ -1072,6 +1072,34 @@ migration and the rest of slice 2 run under.
 7. The cited-scripts validator shared earlier now also excludes `.agent/collaboration/rapid-comms/`
    from its scan (comms events quote scripts as history).
 
+### OCE findings batch 2 (2026-09-13, after compaction; the completeness check the OCE seat relayed)
+
+The OCE seat reported batch 1 dispositioned and relayed the owner's ask that every OCE-affecting
+finding held here be reported. Every earlier send was reconstructed from the session transcript
+(seven messages) and every remaining candidate was checked at the pin `e477e62f7` before
+sending, per the distilled lesson that a claim reaching a peer estate is checked first.
+
+Sent:
+
+1. **Correction** to the first batch's item 1: the "leading candidate" for the missed startup
+   env-file write, a 5 s hook timeout, was wrong. The hook shim runs in 0.11 s and the hook did
+   not exist at that session's startup (installed mid-session). The unconditional context line
+   stands; the lineage's `timeout: 5` needs no change.
+2. **New:** `session-identity-hook.ts` plans an `appendLine` on every `SessionStart` with no
+   presence check, and the shim appends it; Claude Code fires `SessionStart` on startup, resume
+   and compaction, so the env file accumulates identical export lines (observed here: six lines,
+   one distinct, after a day). Inert but unbounded; a skip-if-present read or a single-line write
+   is the cure.
+
+Verified at the pin and therefore **not** sent: the ADR-065/144/182/199/203 citations in the
+start-right workflows resolve there (the lineage names ADRs `NNN-slug.md`; the dangling links
+were this transplant's); the observability backlog artefact resolves; the `*-reviewer.md`,
+`skills/free-play/` and `reference/cross-platform-agent-surface-matrix.md` drift occurs only in
+the lineage's old plans archive, so it is local; `.claude/commands/` is empty at the pin, so the
+picker duplication seen here does not apply. Held, not withheld: the installable-Practice
+proposals (sent as a proposals batch once the `practice-completion` node is ratified) and the
+cited-paths validator's shape (sent when it lands), both under ruling 6.
+
 ## Plan-node migration — executed (2026-09-13)
 
 Under §Owner rulings, round 5. What landed, in the order it was built:

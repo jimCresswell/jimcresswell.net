@@ -686,3 +686,19 @@
   appears in no tracked file (grep run); no machine-local path. Fixed point: a further pass would
   only re-find the private-repo blind spot and the two flagged readings; the recursion closes
   here.
+
+### Session 7 (2026-09-13, after the second compaction) — team start, OCE completeness check
+
+- Re-grounded under start-right-team: foundation read, clean tree at 2d1dacf, claims and queue
+  empty, comms event 7dbf1c82 posted (no peer in this home; consumer-absent, no heartbeat).
+  Practice box still holds `resonance-outbound-bundle-2026-07-08.md`; deferred to consolidation.
+  Four prunable `/private/tmp` worktrees on the list (`git worktree list`); reported, not pruned.
+- The OCE seat relayed the owner's completeness ask on findings. Method that worked: extract
+  every `SendMessage` from the transcript with one python pass (seven sends recovered, none
+  from memory), then check each remaining candidate at the pin before sending. Result: two
+  items (a correction and one new hook finding), four candidates refuted at the pin. Surprise:
+  the definition report called the `*-reviewer` path drift "a lineage drift" while Wrap 5 said
+  "verified local"; the pin agrees with Wrap 5 and the report sentence is corrected. Lesson:
+  a report sentence written before its verification stays wrong after the verification unless
+  the verification pass re-reads the report.
+- zsh bit again: `$P:agent-tools` parsed as a modifier; `"${P}:path"` every time.

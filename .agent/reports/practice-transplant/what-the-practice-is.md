@@ -72,8 +72,9 @@ directives do not resolve; 20 files cite them. After removing placeholders (`...
 2. **Path drift inside the estate**: `skills/free-play/` (lives under `cognition/`),
    `reference/cross-platform-agent-surface-matrix.md` (lives under `memory/executive/`),
    nine `sub-agents/templates/*-reviewer.md` (the templates are `*-expert.md`; cited by the
-   nine `invoke-*` skills and `author-skills`). Not a transplant miss; a lineage drift this
-   estate inherited, and a validator would have caught it.
+   nine `invoke-*` skills and `author-skills`). Verified at the pin on 2026-09-13: the
+   lineage's live surfaces carry none of these citations (they occur only in its old plans
+   archive), so the drift is this estate's own, and a validator would have caught it.
 3. **The Practice's knowledge base**: three `reports/agentic-engineering/` records and two
    `research/agentic-engineering/` directories are cited by rules and skills here and do not
    exist; `memory/operational/diagnostics/README.md` likewise.
