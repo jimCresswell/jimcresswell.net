@@ -221,6 +221,13 @@ ones the Director would put to the owner had the owner been present.
     (about a second) is the one unowned moment, and Playwright fails the start only when the
     server exits before a successful poll. Board follow-on under the port work, not claimed:
     owning the port through Next's boot by serving Next from the holder's process.
+14. REVIEW (lane A, its own words): "my amend against the estate's never-rewrite rule, caught by
+    you." The #60 push was refused by the cited-scripts validator (ADR-019 cited a site
+    workspace script as a root one); lane A amended the unpushed commit before the Director's
+    ruling (a second commit on top, never an amend, pushed or not) arrived; nothing was lost
+    (the amended tree carries the original whole); the push proceeded rather than rewriting
+    again; the rule is absorbed. Lesson for the seat and the record: the forward-only rule
+    applies to unpushed commits too.
 
 ## Routing log
 
