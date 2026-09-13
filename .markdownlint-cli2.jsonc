@@ -22,6 +22,7 @@
     ".agent/reference-local/**",
     ".agent/reports/**",
     ".agent/state/pr-lifecycle/**",
+    ".agent/state/collaboration/shared-comms-log.md",
     ".agent/temp/**",
     ".claude/**",
     ".codex/**",

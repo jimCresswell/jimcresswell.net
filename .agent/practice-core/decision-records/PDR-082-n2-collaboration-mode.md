@@ -140,6 +140,14 @@ below the overhead cost:
   **retains** substantive cross-agent broadcasts (tree-green, push-landed,
   gate-state, merge-ready, blocker) because they carry information the
   owner-chat does not — the refined retain-set supersedes that raw point.
+- **Dialogue channel ≡ native session messaging where both seats can use it**
+  (amended 2026-09-13, owner-directed). The pairwise dialogue this mode
+  routed through an ARC channel travels by the harness's session-to-session
+  send when both seats are on one machine and platform; ARC keeps its place
+  for cross-platform pairs and for a dialogue whose transcript is itself the
+  record. What must still land on comms — the retain-set above — is unchanged;
+  the channel rule and its conservation clause live in
+  `.agent/rules/channel-by-audience-lifetime-and-consumer.md`.
 
 ### Trigger / exit
 

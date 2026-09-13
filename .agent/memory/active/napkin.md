@@ -841,3 +841,27 @@
   ancestry before removing anything, consolidated without loss, then the archive copies removed
   and `git rm -r .agent-original` with the seven exclusion entries and the provenance note in one
   commit. "If it already exists" is a claim to test, not a premise.
+- PR #53 merged: merge commit `55649a2` (parents `d0159a4`, `df884e1`), every check green, no
+  admin override — Wrap 6 prediction (a) held. `main` now carries the monorepo and the Practice;
+  the archive is gone from tree and disk. Next: closure items 3 to 7 as small PRs from
+  `chore/transplant-closure-session-1`, then session 2's synthesis, then editorial work.
+- Owner question (evening): when native session-to-session messaging, when Practice comms,
+  when Arc. Answer given (graduation candidate, a rule or a PDR-082 clause): the channel is
+  chosen by the message's audience, lifetime and mechanical consumer, never by habit. Native
+  s2s carries dialogue between two live seats on one machine (the Arc role, cheaper); Practice
+  comms carries state and record: liveness, claims and intents, team-start and retirement,
+  Director verdicts, blockers and their cure, anything with a third-party or owner audience or
+  a life beyond the moment. The "why" is conserved not by the channel but by the durable homes
+  that are already mandatory for decisions (claim intent, commit message, thread record, plan of
+  record, napkin): a decision reached over a fast channel lands in its home when it is acted on.
+  Defeaters named: a fast-channel lane assignment that never becomes a claim (invisible to the
+  third seat); a rejected idea whose reason lived only in a transcript (napkin capture cures).
+  Native `ListAgents` idle/busy is a same-machine liveness probe the Practice does not yet use
+  (platform pack, not core).
+- Owner: "add the rules now." Landed `channel-by-audience-lifetime-and-consumer` with its
+  adapters, a PDR-082 n=2 clause, the ARC reference bullet, the start-right-team opener and a
+  comms-log cross-link; plan of record round 14. Director seat facts: claim `1db07581`,
+  team-start `ca1ba4d8`, handoff file and three lane records pushed. Two records-only pushes
+  went red on disk-walking gates (untracked comms render, untracked editor workspace file):
+  stepping stones applied, cure routed to lane A. The `#` delimiter in `perl -pi -e 's#…#…#'`
+  is unusable when the pattern contains a markdown heading; use `|`.
