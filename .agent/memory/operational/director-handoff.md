@@ -90,8 +90,8 @@ rewritten at each Director push.
 
 | Lane | Items | Owns exclusively | Seat | Claim | Branch / PR | State |
 | ---- | ----- | ---------------- | ---- | ----- | ----------- | ----- |
-| A | 3 done; the port PR; the #55 cure; then 5 | root scripts, CI workflow, `agent-tools/` legs and retirements, the leak validator, `tooling/*/package.json`, `turbo.json`, `jcdotnet/accept-md.config.js`, the incoming bundle, the Playwright harness config | Saffron turns Verdure (c39ad7) | f024e1f1, 5828b0ee | `fix/e2e-port-per-worktree` PR #60 at 4fad844; `closure/lane-b` for the #55 cure; 64aa005 held on `closure/lane-a-checkpoint` for item 5 | ACTIVE at n=2 |
-| B | 6 | `.agent/rules/**`, `RULES_INDEX.md`, `.cursor/rules/**`, `.claude/rules/**`, `.agents/rules/**`, the rules-index and trigger generator, sub-agent adapter descriptions | Sirocco wakes Wingspan (45fe02) | closed | `closure/lane-b` PR #55 at 6b1b4c3; `closure/lane-b-generator` at d76bb86 (2a fold conserved in the record) | STOOD DOWN 17:14Z; handed back: #55 to merge, 2a, 2b, PR 3 |
+| A | 3 done; the port PR; the #55 cure; then 5 | root scripts, CI workflow, `agent-tools/` legs and retirements, the leak validator, `tooling/*/package.json`, `turbo.json`, `jcdotnet/accept-md.config.js`, the incoming bundle, the Playwright harness config | Saffron turns Verdure (c39ad7) | f024e1f1, 5828b0ee | `fix/e2e-port-per-worktree` PR #60 at SHA: 4fad844; `closure/lane-b` for the #55 cure; SHA: 64aa005 held on `closure/lane-a-checkpoint` for item 5 | ACTIVE at n=2 |
+| B | 6 | `.agent/rules/**`, `RULES_INDEX.md`, `.cursor/rules/**`, `.claude/rules/**`, `.agents/rules/**`, the rules-index and trigger generator, sub-agent adapter descriptions | Sirocco wakes Wingspan (45fe02) | closed | `closure/lane-b` PR #55 at SHA: 6b1b4c3; `closure/lane-b-generator` at SHA: d76bb86 (2a fold conserved in the record) | STOOD DOWN 17:14Z; handed back: #55 to merge, 2a, 2b, PR 3 |
 | C | 4 then 7 | the definition report, `testing-strategy.md`, the substrate manifest's register declarations, the Gemini projection | Djinn hunts Solder (36720b) | closed | `closure/lane-c` and `closure/lane-c-restore` deleted (merged in #57; carried in #58); PR #59 closed as carried | STOOD DOWN 16:57Z; handed back: the restore, `sif`, five patterns, the Gemini projection after 2b, item 7 |
 | Director | 7 | reports index, runbook step 13, `provenance.yml` completion entry; merges | Cauldron herds Lustre | 1db07581 | after the holdings land | routing lane A; merging |
 
@@ -156,7 +156,7 @@ ones the Director would put to the owner had the owner been present.
    to the tip, the standing ruling; the quartet PR #61 yields every push slot to the closure path.
 3. Owner-only items held for the morning: the session 2 synthesis cards; any change to ratified
    text; the two `sif` instruments and `under-the-hood` under "bring unless product".
-4. Session 2 draft written (`threads/session-2-synthesis.next-session.md`, commit 3783b6e on
+4. Session 2 draft written (`threads/session-2-synthesis.next-session.md`, commit SHA: 3783b6e on
    the records branch): 24 candidates with source, candidate home and prediction; a
    verify-before-filing list; the already-homed set with homes; the routed classes. Lane A
    completes it as the register PR after #60 and #55. Lens 3 (the Director reads and drafts;
@@ -170,9 +170,9 @@ ones the Director would put to the owner had the owner been present.
    small follow-on (not a graduation).
 7. PR #61 (the quartet): Copilot's one thread (the tally said no leg spent a Read; every leg
    makes the mandatory template read; only the optional verification reads were unspent) cured
-   at 06507cd in a worktree, held for an idle push slot after lane A's #60 push; the bot merges
+   at SHA: 06507cd in a worktree, held for an idle push slot after lane A's #60 push; the bot merges
    at zero threads. Lens 3 (the quartet yields every slot to the closure path).
-8. PR #60 at 292bf49: CI's e2e job red (2 of 58) with zero threads. Cause from the log (lane
+8. PR #60 at SHA: 292bf49: CI's e2e job red (2 of 58) with zero threads. Cause from the log (lane
    A): the build's PDF generator probes its own free port and the Linux runner handed it the port
    the harness had just probed and released; Playwright's readiness poll accepted that throwaway
    server, test 1 ran against it, it exited, the real server bound afterwards. The PR body's
@@ -185,7 +185,7 @@ ones the Director would put to the owner had the owner been present.
    in the port PR found by CI, cured by owning the port through the build.
 9. PR #61 merged by the bot at `SHA: ea3142b` (20:45Z) after its one thread was cured; the quartet
    worktree and branch removed. Open: #60 (the holder cure, push imminent) and #55 (cure at
-   3d86acb, push after #60). The records branch pushes at the next idle slot behind lane A's two
+   SHA: 3d86acb, push after #60). The records branch pushes at the next idle slot behind lane A's two
    pushes (the waypoint cadence).
 10. Lane A found a vacuous green on the pending-graduations register: the fitness item counter
     reads only the canonical inline-bracket entry shape, the five existing entries use a
@@ -198,11 +198,11 @@ ones the Director would put to the owner had the owner been present.
     ruling, because the register's contract says the count is reported and drains by decisions,
     never chased. REVIEW: the finding and the migration.
 11. Review rounds granted past PDR-132's two, each a Director decision on real defects in a new
-    mechanism: #60 round three (Copilot on ebfe210: the probe socket closes before the holder
+    mechanism: #60 round three (Copilot on SHA: ebfe210: the probe socket closes before the holder
     binds, so a taker can slip between choose and hold, and a failed bind could leave Playwright
     polling a stranger's server; ADR-019 names the old command). Class ruled: no moment between
     the port being chosen and held, the prober is the holder, a bind failure exits non-zero before
-    any poll can pass. #55 round five (Copilot on 3d86acb: a folded scalar stops at a blank line;
+    any poll can pass. #55 round five (Copilot on SHA: 3d86acb: a folded scalar stops at a blank line;
     index rows absent from the tracked rule set are never visited; an existing declaration skips
     validation of its sources). Both routed to lane A, one minimal commit each, #60 first.
 12. Lane A's home reads for the session 2 draft: twenty-one candidates file as pending; G, H and
@@ -231,7 +231,7 @@ ones the Director would put to the owner had the owner been present.
     (lens 2): a paragraph break inside a folded scalar has no single-paragraph value the reader
     could mint without differing from what the platform reads; the sweep refuses with a named
     reason and the cell pins it; no tracked trigger has the shape. #60 round four granted
-    (Copilot on 92da668, four real threads): the held port must answer with the holder's own
+    (Copilot on SHA: 92da668, four real threads): the held port must answer with the holder's own
     stamp before the script builds, so a stranger on the port after a re-setup can never pass
     as the holder; the release answers only after the listener's close completes; the runner
     bullet, the smoke section and the config comment name the e2e:server mechanism. Order: the
@@ -296,7 +296,7 @@ ones the Director would put to the owner had the owner been present.
   second Copilot pass new surface. Rule from here: cure commits minimal; later-PR material goes to
   that PR. Board: CLAUDE_PROJECT_DIR precedence lets validator entry points rebind to the primary
   checkout from a worktree (protocol-conformance opts out); estate-wide cure is post-transplant.
-- 2026-09-13 about 15:25Z: PR #57 merged by the bot at 4a61112, ahead of #56 and #55 by readiness. Merge
+- 2026-09-13 about 15:25Z: PR #57 merged by the bot at SHA: 4a61112, ahead of #56 and #55 by readiness. Merge
   tool finding: reviews are read via GraphQL where bot logins carry no [bot] suffix, so --expect
   copilot-pull-request-reviewer[bot] never binds; the suffix-less form merges. Routed to lane A item 5
   with the second finding (the bot cannot request Copilot here; the owner CLI credential can).
@@ -306,7 +306,7 @@ ones the Director would put to the owner had the owner been present.
   word through the Director. Open: #55 third round (lane B), #56 (lane A), restore not started (C).
 - 2026-09-13 15:39Z to 15:50Z: post-compaction pickup. Monitors survived (prediction falsified;
   recorded). Records branch pushed (gate green, 58 e2e) and PR #58 opened as the bot, Copilot
-  requested under the owner's credential. #56 red at 9a90d1b: lane A owns three causes (smoke
+  requested under the owner's credential. #56 red at SHA: 9a90d1b: lane A owns three causes (smoke
   tests reading the host's registry and a CI lockfile refusal; CodeQL check-then-use; no Copilot
   request on the tip); cure in progress, slot on ask. Lane B declined the save push: cold-paused
   by owner word in its session; that word binds over the Director's routing. Lane C asked a slot
@@ -318,17 +318,17 @@ ones the Director would put to the owner had the owner been present.
 - 2026-09-13 about 15:58Z: owner: "please go into warm pause, your only job is to support Saffron, do
   not talk to the cold pause seats unless I say so." Director WARM-PAUSED: watcher and heartbeat
   kept; lane A (Saffron turns Verdure) is the only seat routed; no message to lanes B or C until
-  the owner's word; PR #58 (records, Copilot requested on 28a7676) waits for that word too.
+  the owner's word; PR #58 (records, Copilot requested on SHA: 28a7676) waits for that word too.
 - 2026-09-13 about 15:59Z: owner: "four open PRs, that is too many, aim for zero, only via proper
-  means, green and clean and sensible." #56 cures: 1c00b5c (three causes), 341e069 (the guard's
-  testimony read from its own log, the Linux executor drops lifecycle stderr), ad006e8 (tracked
+  means, green and clean and sensible." #56 cures: SHA: 1c00b5c (three causes), SHA: 341e069 (the guard's
+  testimony read from its own log, the Linux executor drops lifecycle stderr), SHA: ad006e8 (tracked
   legs subtract `ls-files --deleted`; three doc contracts trued). Rulings: pushes confirmed ahead
   of Copilot binding so one round covers each pair; `principles.md`'s `pnpm check` block granted
   to lane A for this PR (not in lane C's exclusive set; a contract change cures every doc that
   publishes it, same commit). Lesson from lane A, for the record: a new CI leg's first green must
   be a CI run, not the host.
-- 2026-09-13 16:20Z to 16:50Z: #56 rounds on ee3c396 (three threads, all real: the retired `-s` flag
-  still in the commit skill, the resolver's leading `--`) and f2b2048 (zero threads, three doc nits;
+- 2026-09-13 16:20Z to 16:50Z: #56 rounds on SHA: ee3c396 (three threads, all real: the retired `-s` flag
+  still in the commit skill, the resolver's leading `--`) and SHA: f2b2048 (zero threads, three doc nits;
   ruled: the sequential-rule rationale rides the port PR, its subject). Bot verdict
   SETTLING-QUIET-WINDOW; owner: "nothing is happening on the PR ... the 'quiet window' could be
   replaced with measured state. As for this specific instance, merge." Merged by the owner at
@@ -338,7 +338,7 @@ ones the Director would put to the owner had the owner been present.
   per-worktree e2e port (validated override, 3000 under CI, else a stable hash of the checkout
   path in 3100 to 3999); go given on the design. Owner lifted lane B's pause for the #55 cure
   only ("ask the Director how to cure PR 55, carry that out, then hand back all responsibilities
-  ... this session is over"); cure confirmed as ruled before the pause; slot given for afe58c8,
+  ... this session is over"); cure confirmed as ruled before the pause; slot given for SHA: afe58c8,
   then the generator save push; lane B hands back 2a remainder, 2b and PR 3 at closeout.
 - 2026-09-13 about 16:55Z: owner: "please make sure that all work respects the definitions and
   constraints of our testing and validation approaches" (principles, testing-strategy,
