@@ -18,7 +18,7 @@ lens on METHOD or EVIDENCE PROVENANCE: three ON-TRACK verdicts spanned a window 
 every owner correction concerned which tool was used and where the evidence had come from
 (2026-09-02) — point that scrutiny at reviewers and first-hand reads, never at the panel.
 
-Typing `$oak-cricket` asks the current seat to run the whole panel for its platform. The invoker
+Typing `$jc-cricket` asks the current seat to run the whole panel for its platform. The invoker
 builds the frame from live context and starts immediately; missing information is labelled
 `MISSING`, not silently invented.
 
@@ -118,6 +118,12 @@ On Claude, run the four registered Cricket roles as a panel:
 4. Collect all eight returns. A missing return is `UNDELIVERED`; do not replace it with a
    generic agent or a differently pinned role.
 
+Label every dispatch and every tally row by the dual scale, so a reader sees that effort climbs
+as model power descends (owner ruling 2026-09-13): `Cricket judgement: highest power, low
+effort, <stance> frame` (fable), `high power, medium effort` (opus), `mid power, high effort`
+(sonnet), and `Cricket procedure: lowest power, xhigh effort, compiled procedure, <stance>
+frame` (haiku).
+
 ## Codex dispatch
 
 Oak adapts [OpenAI's Codex subagent workflow](https://learn.chatgpt.com/docs/agent-configuration/subagents)
@@ -135,6 +141,11 @@ On Codex, root plus the three Cricket roles fills the four-seat concurrency limi
    `STANCE: adversarial` changed.
 4. Collect all six returns. A missing return is `UNDELIVERED`; do not re-adjudicate the same
    frame through a generic fallback.
+
+Labels follow the same dual scale with Codex's three seats: `Cricket judgement: highest
+power, low effort, <stance> frame` (Sol), `mid power, medium effort` (Terra), and `Cricket
+procedure: lowest power, xhigh effort, compiled procedure, <stance> frame` (Luna); there is no
+high-effort seat to label.
 
 After role definitions change, a fresh trusted-project Codex session is the reload boundary.
 If Luna/xhigh is rejected despite the refreshed role appearing in the spawn schema, record a
@@ -155,7 +166,7 @@ On Cursor, run the four stable template adapters as a panel:
 
 Cursor adapters preserve the methods and stable role names, but Cursor does not pin their model
 or effort. Record Cursor results as template-adapter evidence, not model-plus-effort experiment
-data.
+data, and label them by stable role with power and effort marked `unpinned`.
 
 ## Adjudicate the panel
 

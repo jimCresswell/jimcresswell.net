@@ -12,6 +12,7 @@ the lineage's.
 | Record                                                                                       | Subject                                                                           |
 | -------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
 | [slack-watcher-estate-review-2026-08-24.md](slack-watcher-estate-review-2026-08-24.md)       | The lineage's review of its Slack Watcher estate; cited by the comms-channels skill |
+| [cricket-quartet-tally-2026-09-13-director-closure.md](cricket-quartet-tally-2026-09-13-director-closure.md) | The first canonical Cricket panel here: eight legs, both stances, the Director seat at the transplant closure |
 
 The transplant's own process records live in
 [`../practice-transplant/`](../practice-transplant/README.md).
