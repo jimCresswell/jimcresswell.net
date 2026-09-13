@@ -505,8 +505,10 @@ artefacts it actually resolved:
   built** — the flat config imports `@engraph/eslint-plugin-standards` from
   `dist/`. The postinstall bootstrap covers the agent-tools closure; run
   `pnpm build` for the rest.
-- **`pnpm check` does not run every suite** (`test:e2e`, `build` and the
-  `smoke:*` scripts are outside it) — verify the aggregate actually exercises
+- **`pnpm check` does not run every suite** (the site's `test:e2e` and `build`
+  are outside it; the agent-tools smoke suite is inside it through
+  `agent-tools:test:e2e`, while the per-file `smoke:*` scripts stay manual
+  shortcuts) — verify the aggregate actually exercises
   the suites your change touches before citing it as proof. When reporting,
   distinguish **run-verified** (the gate exercised the change) from
   **construction-verified** (a behaviour-preserving no-op the gate never
