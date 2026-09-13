@@ -117,3 +117,72 @@ explicit pathspec; a green, clean PR is merged without asking.
   one-hour backstop), heartbeat loop live on claim f024e1f1; both stay armed through
   compaction; the seat resumes by re-checking `assert-watcher-live` and the claim's
   `heartbeat_at` before its first act.
+
+## Waypoint 2026-09-13 19:58Z — second compaction checkpoint (Saffron turns Verdure, c39ad7)
+
+- **Landed since the 15:35Z waypoint.** Closure item 3 plus the tracked-universe lint cure are on
+  `main`: PR #56 merged at 1829cd4 by the owner's own button at 16:48Z after four cure rounds
+  (1c00b5c, 341e069, ad006e8 + ee3c396, f2b2048; every round's causes, dispositions and mutants in
+  the commit bodies and the two bot comments). Three of Copilot's findings on the final tip were
+  doc nits; two were cured in a63a07f, one (the tooling.md pnpm 11.20 verification stamp) declined
+  with reason; the headline's "smoke-runner issue remains unresolved" is disputed on the PR.
+- **Open, mine: PR #60** (fix/e2e-port-per-worktree at 4fad844 on a63a07f on main 1829cd4): the
+  site's Playwright suite serves on a port probed free at config load (`jcdotnet/scripts/free-port.ts`,
+  extracted from generate-pdf.ts), the runner's pid-stamped handshake carries the port to the workers
+  Playwright forks (`jcdotnet/scripts/port-handshake.ts` with unit cells), `reuseExistingServer`
+  false, `PORT` handed to the web server so the built site's canonical URLs match, tsconfig target
+  ES2017. Proof matrix in the PR body (plain probe 58 of 58 refused; handshake, stale stamp,
+  parent-forged stamp all 58 of 58 green; pid mutant and three parser mutants killed; two
+  worktrees concurrently green on 58078 and 58096). **Three Copilot threads open on 4fad844, cure
+  designed, no file edited yet:** (1) `TEST_WORKER_INDEX` is inherited from the caller, so it
+  cannot be the worker distinction; use the IPC channel Playwright forks workers with
+  (`process.send !== undefined`, confirmed by the code-expert against playwright 1.62.1's
+  `child_process.fork` of workers) plus the ppid match, and state the honest guarantee (accidental
+  inheritance from the environment is ignored; a parent that forks the CLI itself can seed a stamp
+  and could equally edit the config; not an adversary claim); a cell for the forged-worker case and a
+  killed mutant; (2) testing-strategy §Harnesses Adapt to Shared Hosts line ~741: describe the env
+  read as the runner's internal handshake channel, never deny an env read; (3) ADR-019 §Options
+  evaluated item 3 still says subsequent runs reuse the server; true to reuse off. One minimal
+  commit, triage on the ARC channel, slot ask, reply and resolve the threads as the bot on the tip
+  (thread ids PRRT_kwDORH1Wfc6h6llh, …6llo, …6llt; comment ids 4000332532, 4000332541, 4000332547).
+  Follow-on on the Director's board under lane A: `@engraph/result` into the site workspace so
+  `getFreePort` and the handshake parse return `Result`.
+- **Open, routed to me: PR #55** (lane B's sweep, closure/lane-b at 6b1b4c3, lane B closed out):
+  one Copilot thread PRRT_kwDORH1Wfc6h6iq- (comment 4000314563) on
+  `agent-tools/src/rule-declarations/sweep-rule-frontmatter.ts:157`: `ruleNames` documented as
+  basenames but interpolated into `.agent/rules/<name>.md`, `.cursor/rules/<name>.mdc` and
+  `.claude/rules/<name>.md` unvalidated, so `../../outside` escapes and `--write` overwrites an
+  arbitrary file. Cure at the public boundary (`sweepRuleFrontmatter`'s `SweepInput.ruleNames`): a
+  Result refusal for any name with a separator, a parent segment, an absolute form or empty, before
+  any path is built; class rows through the public boundary with a plain name as control; TDD red
+  first; one minimal commit; the dropped-check mutant killed and recorded; code-expert pass; slot
+  ask; reply and resolve as the bot. Mechanics ruled: EnterWorktree refuses lane B's worktree, so
+  cut a local branch from origin/closure/lane-b in this worktree and push HEAD to closure/lane-b as
+  a fast-forward; claim 383cde5e is open on that boundary. Read lane B's handoff record
+  `.agent/state/collaboration/handoffs/707ed764-320b-443e-99d5-ee3239893782.3.json` first (done once).
+- **Branches on this host.** `fix/e2e-port-per-worktree` 4fad844 (pushed, PR #60);
+  `records/lane-a-checkpoint-2` (this commit; local only by the Director's ruling under the
+  owner's zero-open-PRs word; rides item 5); `closure/lane-a-checkpoint` 64aa005 (superseded by
+  this branch, removable); `closure/lane-a` (merged; local 2356b2b superseded by a63a07f on the port
+  branch). This worktree returns to `fix/e2e-port-per-worktree` after this commit.
+- **Team state.** n=2 mode by owner word (Director and lane A only; heartbeat loops dropped;
+  all-channels watcher kept; claims kept; substantive broadcasts on the stream; dialogue whose
+  transcript is the record on the ARC channel
+  `.agent/collaboration/rapid-comms/2026-09-13-transplant-closure-n2-cauldron-herds-lustre-saffron-turns-verdure.md`,
+  tailed with `tail -n 0 -F` from the primary checkout root). Lanes B and C closed out; PR #58
+  merged at 6528ecb; PR #59 closed as carried. Owner words on record: "port assignments belong in a
+  test harness config, not in tests"; the merge bot's ten-minute quiet window should be replaced by
+  measured state (Director holds it as a Practice signal); zero open pull requests as the target.
+- **Rules carried.** Announce and wait for the Director's slot word before every push (they
+  pre-confirm when the slot is theirs to give). At n=2 a state line to the Director every 120
+  seconds of a long turn is the liveness signal; a two-hour silence on 2026-09-13 was read as a
+  block and surfaced to the owner. Report a reviewer's verdict in its own words before mine; a
+  mechanical "zero threads" is never "no issues"; never emit a merge-trigger phrase for a review
+  that has not landed. Comms event tags are only failure-mode, behaviour-note, heartbeat.
+- **Monitors at this checkpoint.** All-channels watcher (re-armed 19:55Z after the hourly
+  backstop; the backstop kills it every hour, re-arm and assert live); ARC tail; PR #60 state poll
+  (`pr-60-state.sh`). Heartbeat loop stopped by design. Claims retained: f024e1f1 (lane A),
+  5828b0ee (port PR), 383cde5e (#55 boundary).
+- **Item 5 inputs** unchanged from the 15:35Z waypoint; the pr-watch instrument observation
+  (thirty minutes, three tip moves, two CI transitions, no output) is capture-practice-tool-feedback
+  for the napkin below.

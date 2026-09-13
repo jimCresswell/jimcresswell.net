@@ -1187,3 +1187,73 @@
   wording reached this lane; no private path or content in any line I wrote (the private
   material was never read). Fixed point: a third pass would only re-find the lane B pause
   inference and the rename omission; the recursion closes here.
+
+### Session 2026-09-13, lane A, segment two (15:35Z to 19:58Z) — Saffron turns Verdure (c39ad7)
+
+Lessons, one line of mechanism each:
+
+- A new CI leg's first green must be a CI run: the host proved the host's path three times (a
+  claims registry only the primary checkout has; a macOS pnpm that forwards lifecycle output where
+  the Linux pnpm 12 executor drops it; a CI default of frozen-lockfile that reads the lockfile
+  before the devPreinstall hook). Each cure moved the assertion onto our own artefact's testimony
+  (a seeded temp root; the guard's own stderr log; an explicit `--no-frozen-lockfile`).
+- "Zero threads" is a count, not a verdict; I emitted the Director's merge-trigger phrase once
+  before the review had landed and once over a "needs a closer look" verdict. Owner correction.
+  Report the reviewer's words first, then agreement or disagreement with reasons.
+- A fluent "verified" is the tripwire: I re-stamped a tooling note "verified under pnpm 12.4.1"
+  after a run that tested a different claim (exit code, not the age-floor masking); caught and
+  restored before commit.
+- Playwright evaluates its config in every worker; a per-load probe hands each worker its own
+  port (58 of 58 refused). The runner's environment is the only runner-to-worker channel for
+  config evaluation; a pid-stamped handshake makes it internal, and every guarantee claimed
+  about it must be one the vendor code path bears (the `TEST_WORKER_INDEX` distinction did not;
+  the IPC channel does, for accidental inheritance, not adversaries).
+- The site derives its own local URL from `PORT`; a harness that changes the port must hand it to
+  the server it starts, or the built site's canonical URLs lie (two SEO tests said so).
+- TypeScript 6.0.3's incremental cache keeps a stale grammar diagnostic (TS1378) after a target
+  change until the ignored tsbuildinfo is rebuilt; `--incremental false` is the honest check.
+- Practice tool feedback: the built `pr-watch --watch` printed nothing across thirty minutes,
+  three tip moves and two CI red-to-green transitions; a five-line gh poll emitting on state
+  change did the job. The merge bot has no owner-word path through its quiet window; the owner
+  merged by hand and asked for measured state instead (Director holds the signal).
+- Guard frictions: the isolation guard refuses heredocs and `$(...)` around git; scripts in the
+  scratchpad with derived paths pass; the Write hook refuses user-home paths even as test fixture
+  strings (use `checkouts/site`-style placeholders).
+- At n=2 with heartbeats dropped, silence in a long turn reads as a block: a state line every
+  120 seconds is the liveness signal (Director rule after a two-hour gap of mine).
+
+Reflective passes for this segment (owner word: metacognition, free play, concept exploration,
+parallax, wrap):
+
+- **Metacognition (retrospective).** Three corrections share one shape: I stood on the
+  interpretation rung and reported it as observation (host green as leg green; count as verdict;
+  a run as a verification of a different claim). The structural cure I now apply: name the
+  instrument that produced each claim in the report itself, so a claim without an instrument
+  cannot be written. Fluency tripwires fired at the finish line each time (completion drive):
+  the last moves slow down. Generative mode: the port PR arrived as a narrow pointer ("fix the
+  clash") and the doctrine widened it correctly (the config adapts; eliminate the resource);
+  reading the directive first-hand before amending was the move that paid.
+- **Free play.** Two seeds kept. (1) "Config declares ownership, never existence" now has a
+  sibling: "a harness assigns its own resources at its composition root, and hands them to the
+  system under test" (the PORT hand-off). (2) A pid-stamped environment handshake is a general
+  pattern for any tool that re-evaluates its config in forked children; its honest guarantee is
+  always accidental-inheritance, never adversary. Not pursued: a Result-typed probe (Director's
+  board), a shared free-port helper across workspaces (no second workspace consumer yet).
+- **Concept exploration.** No pass: every question this segment arrived formed (a review finding,
+  a directive clause, an owner word), and the lenses resolved each; the one option list I built
+  (the worker handoff) was screened by the Director with directive text beside each option.
+- **Parallax (screening).** The counterframe worth holding: the bot's quiet window is a proxy for
+  visibility agents lack, and the owner has that visibility directly; measured state (no review run
+  in flight, no reviewer job started) would retire the proxy. Bridge claims retired this segment:
+  host green to runner green; "no process.env in config" to "no env read", which the code path
+  refutes (the handshake reads env; the claim that survives is "no configuration from the env").
+  Predictions on record: #60's IPC-based cure lands in one round; #55's boundary refusal lands in
+  one round; item 5's leak validator first run exceeds the plan's twenty-one files (unchanged).
+- **Wrap.** Promises sweep: the `/rename` suggestion was surfaced once (done); the napkin lessons
+  promised at 15:35Z are above; the Director holds the director-handoff sentence, the quiet-window
+  signal and the Result follow-on. Attribution: the Playwright and Next code-path facts are the
+  code-expert's reading, confirmed by my runs; the ES2017 reason is Next's own defaults file.
+  Blind spots: the plain-probe falsifier ran on this host only; CI (workers: 1) never exercised the
+  handshake with more than one worker and never will by design, so the multi-worker proof lives
+  only in the PR body's matrix. Index of homes: PR #60 body and bot comment (dispositions), the
+  ARC channel (triage transcript), this napkin, the lane record's 19:58Z waypoint.
