@@ -174,6 +174,13 @@ remove .agent-original before we merge 53"; "it should be processed then deleted
    "bring unless product"; the operational registers declared per the substrate manifest;
    mutation testing's absence stated; the Gemini projection imported from the pin; the
    definition report's nine rows read "present" with a cited proof each. Proof: the report.
+   Amendment (2026-09-13, Director, under `compute-dont-hope`): the Gemini projection is not
+   imported by hand from the pin; it is a fourth output of the sub-agent adapter generator lane B
+   lands (closure item 6), emitted from the same templates, with gemini added to the reviewer
+   adapter platform contract, authored by lane C after that generator merges. The ruling that
+   Gemini is carried (round 8) is unchanged; the method changed because thirty hand-written
+   adapter files would be the hand-kept copies item 6 removes. Flagged to the owner in the
+   session report.
 5. **Lineage residue off the live surfaces**: retire `validate-ratified-lists`,
    `protocol-conformance`, `pr-throughput` and `ci-turbo-report` (scripts, sources, tests, doc
    mentions; re-importable from the pin); keep `merge-bot` and scrub its lineage residue; the

@@ -148,3 +148,8 @@ the commit queue (one host, one e2e port). Item 7 is written last because it rec
   green; the bot refused to merge until the requested Copilot review binds the tip; review
   requested as the bot. Board follow-on: the deferred-controls register needs a creating mechanism
   (secops binding), post-transplant.
+- 2026-09-13 about 14:45Z: lane C READY after a focused docs-adr pass; slot confirmed after lane A's
+  review-cure push landed. Node item 4 amended (method only): the Gemini projection is generated,
+  not hand-imported, under compute-dont-hope; carried-ness unchanged. Copilot review on #55 requested
+  under the owner's CLI credential because the bot's own request registers nothing (finding for
+  lane A's merge-bot documentation); CODEOWNERS requests the owner on every PR.
