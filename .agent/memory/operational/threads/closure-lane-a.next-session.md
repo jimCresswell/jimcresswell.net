@@ -32,7 +32,8 @@ Director by directed comms event, never to the owner (`route-blocks-and-question
   else (Wrap 6 prediction b); green after; `pnpm check` and CI green.
 - **Routed by the Director (2026-09-13):** markdownlint runs over disk globs with a hand-kept
   ignore list and linted the untracked comms-log render; make its universe the tracked tree
-  (`git ls-files`), drop the ignore list, remove the stepping-stone ignore for
+  (`git ls-files`), drop the ignore list, remove the stepping-stone ignores for
+  `*.code-workspace` (prettier, same failure on an untracked editor file) and
   `shared-comms-log.md`. Lands with item 3 (it is a `check` leg).
 - **Next safe step:** `start-right-team` as `team-member-non-closeout-owner`; post the
   team-start report; open the claim `--role implementer --thread closure-lane-a` on the paths

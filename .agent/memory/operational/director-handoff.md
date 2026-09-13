@@ -83,4 +83,6 @@ the commit queue (one host, one e2e port). Item 7 is written last because it rec
   disk and linted the untracked, generated `shared-comms-log.md` (green in CI, red locally: a
   check that reads the local disk proves the local disk). Stepping stone applied by the Director
   (one ignore line, `.markdownlint-cli2.jsonc`); the cure is routed to lane A: lint the tracked
-  universe, not disk globs, and drop the hand-kept ignore list (`compute-dont-hope`).
+  universe, not disk globs, and drop the hand-kept ignore list (`compute-dont-hope`). Prettier
+  failed the same way minutes later on an untracked editor workspace file; second stepping stone
+  (`*.code-workspace` in `.prettierignore`), same routed cure.
