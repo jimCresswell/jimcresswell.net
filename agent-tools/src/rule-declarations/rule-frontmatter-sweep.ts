@@ -67,7 +67,10 @@ async function main(): Promise<number> {
     stderr.write(`ERROR — ${flags.message}\n${USAGE}\n`);
     return 2;
   }
-  const repoRoot = resolveRepoRoot(import.meta.url);
+  // projectDir is explicitly disabled: this tool derives from and writes into the tree it
+  // runs inside. The CLAUDE_PROJECT_DIR leg would rebind a worktree invocation to the
+  // primary checkout and silently sweep the wrong estate.
+  const repoRoot = resolveRepoRoot(import.meta.url, { projectDir: undefined });
   const ruleNames = trackedRuleNames(repoRoot);
   const outcome = await sweepRuleFrontmatter({ repoRoot, ruleNames, write: flags.write });
   if (outcome.refused.length > 0) {

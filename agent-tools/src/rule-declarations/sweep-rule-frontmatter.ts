@@ -10,13 +10,18 @@
  * for rules that arrive after the first pass. The file system is an injected port so the
  * sweep is proven over an in-memory tree.
  *
+ * Every source is admitted by entry kind before it is read (`lstat` on the source path, so its
+ * leaf entry is never followed; anything but a regular file refuses the sweep), and every write
+ * targets a path the read admitted (the rule file itself, in place), so the read guard covers
+ * the write path. The check-to-use window between them is accepted for a one-shot instrument
+ * run by hand on a tracked tree; the fd-anchored reader in `skills-adapter-generate/` closes it.
+ *
  * This is a transplant instrument as much as a one-off: any host that arrives with a
  * hand-kept rules index and hand-kept triggers runs the same sweep to mint its declarations.
  *
  * @packageDocumentation
  */
 
-import fs from 'node:fs/promises';
 import path from 'node:path';
 
 import { err, ok, type Result } from '@engraph/result';
@@ -31,12 +36,7 @@ import { readRuleDeclaration } from './read-rule-declaration.js';
 import { reconcileRuleDeclaration, type Reconciliation } from './reconcile-rule-declaration.js';
 import { prependRuleFrontmatter, renderRuleFrontmatter } from './render-rule-frontmatter.js';
 import type { RuleDeclaration } from './rule-declaration.js';
-
-/** The file-system operations the sweep needs; the real `node:fs` by default. */
-export interface SweepFs {
-  readFile: (absolutePath: string) => Promise<string>;
-  writeFile: (absolutePath: string, text: string) => Promise<void>;
-}
+import { defaultSweepFs, type SweepFs } from './sweep-fs.js';
 
 /** What to sweep. */
 export interface SweepInput {
@@ -63,16 +63,14 @@ export interface SweepOutcome {
 const RULES_INDEX = 'RULES_INDEX.md';
 const FRONTMATTER_OPENING = `${FRONTMATTER_FENCE_LINE}\n`;
 
-const defaultSweepFs: SweepFs = {
-  readFile: (absolutePath) => fs.readFile(absolutePath, 'utf8'),
-  writeFile: (absolutePath, text) => fs.writeFile(absolutePath, text, 'utf8'),
-};
+const NOT_A_REGULAR_FILE =
+  'not a regular file (a symlink or special entry); the sweep reads and writes regular files only';
 
 /**
  * Run the sweep.
  *
  * @param input - The repository root, the rules to sweep, and whether to write.
- * @param sweepFs - File-system port; defaults to `node:fs/promises`.
+ * @param sweepFs - File-system port; defaults to the real file system (`sweep-fs.ts`).
  * @returns The declarations, the reconciliations, what was written, and any refusals.
  */
 export async function sweepRuleFrontmatter(
@@ -221,16 +219,26 @@ async function deriveOne(
 }
 
 /**
- * Read a source file; a missing file is a refusal naming the path, and any other read failure
- * is a refusal naming the path and the cause, never a crash past the all-or-nothing contract.
+ * Read a source file after admitting its entry kind: a missing file is a refusal naming the
+ * path, anything that is not a regular file is a refusal naming the path and the kind, and
+ * any other failure is a refusal naming the path and the cause, never a crash past the
+ * all-or-nothing contract.
  */
 async function readSource(
   repoRoot: string,
   relativePath: string,
   sweepFs: SweepFs,
 ): Promise<Result<string, string>> {
+  const absolutePath = path.join(repoRoot, relativePath);
   try {
-    return ok(await sweepFs.readFile(path.join(repoRoot, relativePath)));
+    const kind = await sweepFs.entryKind(absolutePath);
+    if (kind === 'absent') {
+      return err(`${relativePath}: missing`);
+    }
+    if (kind === 'other') {
+      return err(`${relativePath}: ${NOT_A_REGULAR_FILE}`);
+    }
+    return ok(await sweepFs.readFile(absolutePath));
   } catch (error: unknown) {
     if (isEnoent(error)) {
       return err(`${relativePath}: missing`);

@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
-import { sweepRuleFrontmatter, type SweepFs } from './sweep-rule-frontmatter.js';
+import type { SweepFs } from './sweep-fs.js';
+import { sweepRuleFrontmatter } from './sweep-rule-frontmatter.js';
 
 const REPO = '/repo';
 
@@ -16,11 +17,23 @@ function trigger(lines: readonly string[]): string {
   return ['---', ...lines, '---', '', 'Read and follow `.agent/rules/x.md`.', ''].join('\n');
 }
 
-/** An in-memory tree keyed by absolute POSIX path; writes are recorded, never applied. */
-function fakeFs(files: ReadonlyMap<string, string>): SweepFs & { writes: Map<string, string> } {
+/**
+ * An in-memory tree keyed by absolute POSIX path; `other` names the entries that are not
+ * regular files (a link, a directory); writes are recorded, never applied.
+ */
+function fakeFs(
+  files: ReadonlyMap<string, string>,
+  other: ReadonlySet<string> = new Set(),
+): SweepFs & { writes: Map<string, string> } {
   const writes = new Map<string, string>();
   return {
     writes,
+    entryKind: async (absolutePath) => {
+      if (other.has(absolutePath)) {
+        return 'other';
+      }
+      return files.has(absolutePath) ? 'file' : 'absent';
+    },
     readFile: async (absolutePath) => {
       const content = files.get(absolutePath);
       if (content === undefined) {
@@ -165,6 +178,19 @@ describe('sweepRuleFrontmatter', () => {
       '.cursor/rules/alpha.mdc: unreadable (EACCES: permission denied)',
     ]);
     expect(denied.writes.size).toBe(0);
+  });
+
+  it('refuses a rule that is a symlink or other special entry and writes nothing, so a link is never written through', async () => {
+    const fs = fakeFs(agreeingTree, new Set([`${REPO}/.agent/rules/alpha.md`]));
+    const outcome = await sweepRuleFrontmatter(
+      { repoRoot: REPO, ruleNames: ['alpha', 'beta'], write: true },
+      fs,
+    );
+    expect(outcome.refused).toEqual([
+      '.agent/rules/alpha.md: not a regular file (a symlink or special entry); the sweep reads and writes regular files only',
+    ]);
+    expect(outcome.written).toEqual([]);
+    expect(fs.writes.size).toBe(0);
   });
 
   it('refuses a rule whose leading frontmatter block is not a declaration, never skipping it', async () => {
