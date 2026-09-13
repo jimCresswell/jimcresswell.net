@@ -90,7 +90,9 @@ names a live branch):
 - OCE Practice lineage transplant — closure (Director: Cauldron herds Lustre, `director-handoff.md`;
   lanes A, B, C under `threads/closure-lane-*.next-session.md`).
 - Closure session 2, the synthesis onto the register (`threads/session-2-synthesis.next-session.md`;
-  the Director's draft, lane A completes; opened 2026-09-13 about 20:40Z on the owner's word).
+  opened 2026-09-13 about 20:40Z on the owner's word; the register PR #63 merged at
+  `SHA: dc23dff` 22:39Z; the live continuation is the owner's cards and the fast-lane and
+  slow-lane dispositions that follow them).
 
 ## Paused Threads
 
