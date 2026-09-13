@@ -63,13 +63,36 @@ Every line answered first-hand, none inferred:
 - Team shape: three Implementer seats, owner-started, one worktree each, picked up with
   `start-right-team continue closure-lane-<a|b|c>`. Full protocol at n≥3.
 
+## Decisions of the approved plan (owner-approved 2026-09-13 ~13:58Z; go given ~14:00Z)
+
+1. The go: owner to Director once; the Director relays one directed event per lane (events
+   `0349479b` A, `8cca63df` B, `7b0ab8aa` C). Owner's go, verbatim: "Go. I release you to do
+   work. Questions from the seats go back to you, run them through the decision matrix ... You
+   and the team have standing permission to enter and leave all worktrees."
+2. Worktrees: each seat cuts `closure/lane-<x>` from `origin/main` into the sibling `-worktrees/`
+   directory, names the `EnterWorktree` invocation to the Director natively, then issues it.
+3. Item 7 (the compiled record) is lane C's second PR, per PDR-117; the Director does not
+   execute doc work.
+4. Lane A's first PR is the tracked-universe lint cure plus item 3; item 5 is its second.
+5. The leak validator's needles derive from `provenance.yml`'s lineage entry; pre-fix run
+   recorded against the named-files prediction.
+6. Lane B derives the frontmatter from today's `RULES_INDEX.md` (classification, trigger) and
+   `.cursor/rules/*.mdc` (description, alwaysApply) by script; a `trigger` key is added; where
+   the two sources disagree the index wins and every reconciled rule is listed in the PR; sweep
+   PR first, generator PR second with the byte-equal proof.
+7. Pushes serialise through the commit queue, one in flight (Playwright reuses a running :3000
+   server locally and would prove the wrong worktree); the Director holds the order.
+8. PDR-132 two-round budget; code-expert review before each PR; green and clean merged by the
+   Director by merge commit without asking; one rebase on lane B's sweep.
+9. Closeout: team-member closeouts per seat; the Director rewrites this file in place.
+
 ## Live board
 
 | Lane | Items | Owns exclusively | Seat | Claim | Branch / PR | State |
 | ---- | ----- | ---------------- | ---- | ----- | ----------- | ----- |
-| A | 3 then 5 | root scripts, CI workflow, `agent-tools/` legs and retirements, the leak validator, `tooling/*/package.json`, `turbo.json`, `jcdotnet/accept-md.config.js`, the incoming bundle | Saffron turns Verdure (c39ad7) | opens on the go | `closure/lane-a` | routed, holding on the owner's word |
-| B | 6 | `.agent/rules/**`, `RULES_INDEX.md`, `.cursor/rules/**`, `.claude/rules/**`, `.agents/rules/**`, the rules-index and trigger generator, sub-agent adapter descriptions | Sirocco wakes Wingspan (45fe02) | opens on the go | `closure/lane-b` | routed, holding on the owner's word |
-| C | 4 | the definition report, `testing-strategy.md`, the substrate manifest's register declarations, the Gemini projection; hands its four rule re-triages to B as a list | Djinn hunts Solder (36720b) | opens on the go | `closure/lane-c` | routed, holding on the owner's word |
+| A | 3 then 5 | root scripts, CI workflow, `agent-tools/` legs and retirements, the leak validator, `tooling/*/package.json`, `turbo.json`, `jcdotnet/accept-md.config.js`, the incoming bundle | Saffron turns Verdure (c39ad7) | opens on the go | `closure/lane-a` | GO given about 14:00Z; cutting worktree |
+| B | 6 | `.agent/rules/**`, `RULES_INDEX.md`, `.cursor/rules/**`, `.claude/rules/**`, `.agents/rules/**`, the rules-index and trigger generator, sub-agent adapter descriptions | Sirocco wakes Wingspan (45fe02) | opens on the go | `closure/lane-b` | GO given about 14:00Z; cutting worktree |
+| C | 4 then 7 | the definition report, `testing-strategy.md`, the substrate manifest's register declarations, the Gemini projection; hands its four rule re-triages to B as a list | Djinn hunts Solder (36720b) | opens on the go | `closure/lane-c` | GO given about 14:00Z; cutting worktree |
 | Director | 7 | reports index, runbook step 13, `provenance.yml` completion entry; merges | Cauldron herds Lustre | 1db07581 | after A, B, C land | waiting on lanes |
 
 Sequencing constraints: B owns `.agent/rules/` alone, so C's rule edits travel to B as a
@@ -89,3 +112,8 @@ the commit queue (one host, one e2e port). Item 7 is written last because it rec
 - 2026-09-13 13:49Z: three Implementer team-starts landed (Saffron c39ad7, Sirocco 45fe02, Djinn 36720b);
   routed A, B, C by arrival order (events `cc2786a4`, then the roster event); all hold on the
   owner's word. Lane A also carries the tracked-universe lint cure.
+- 2026-09-13 about 14:00Z: owner go received; relayed natively and as directed events `0349479b`,
+  `8cca63df`, `7b0ab8aa`; all three absorbed. Verdict to lane B: `trigger` key added; the index wins
+  where the two hand-kept sources disagree, reconciled rules listed in the PR. OCE checkout location
+  sent to lane C natively (machine-local; never a tracked line). Lanes A and C entered their
+  worktrees; lane A follows the practised commit identity (no merge-bot identity here).

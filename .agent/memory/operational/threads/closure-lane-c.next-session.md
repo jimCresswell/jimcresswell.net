@@ -23,6 +23,10 @@ directed comms event, never to the owner.
   `git -C <oce-checkout> show e477e62f7:<path>`), scrubbed of lineage names; the cited
   knowledge-base subset per round 8. Acceptance: the definition report's nine rows each read
   "present" with a cited proof (a validator, a run, a file), dated; `pnpm check` and CI green.
+- **Item 7, second PR (Director decision 2026-09-13, PDR-117):** the compiled record: the
+  reports index as the entry (what, how, why, how-faster), the runbook's step 13 citing the
+  nine functions as its completeness audit, the completion entry in `provenance.yml`. Proof: the
+  index and the provenance diff.
 - **Next safe step:** `start-right-team` as `team-member-non-closeout-owner`; team-start
   report; claim `--role implementer --thread closure-lane-c` on the paths above after the
   Director acknowledges; commit intent before each push.

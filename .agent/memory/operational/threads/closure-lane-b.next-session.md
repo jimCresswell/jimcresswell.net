@@ -23,6 +23,11 @@ directed comms event, never to the owner.
   index and triggers before any content change (prove the generator reproduces the hand-kept
   files first, then let it own them); `pnpm portability:check` and `pnpm check` green; CI
   green.
+- **Director verdict (2026-09-13, on the read-only survey):** the frontmatter is derived by script
+  from today's `RULES_INDEX.md` (classification, trigger) and `.cursor/rules/*.mdc` (description,
+  alwaysApply); a `trigger` key is added beside classification, description and globs; where the
+  two sources disagree the index wins, and every reconciled rule is listed in the PR with both
+  prior values; byte-equal proof for the index and for every adapter that already agreed.
 - **Shape:** two PRs if the frontmatter sweep and the generator are separable
   (`design-work-for-small-prs`); the sweep touches 129 files, so land it first and fast.
 - **Next safe step:** `start-right-team` as `team-member-non-closeout-owner`; team-start

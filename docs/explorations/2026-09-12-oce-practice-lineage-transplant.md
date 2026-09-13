@@ -1502,3 +1502,17 @@ its durable home when it is acted on, and the first act on a lane assignment is 
 PDR-082 §What changes at n=2 clause, the ARC reference §Protocol bullet, the `start-right-team`
 n=2 opener, and a cross-link from `use-agent-comms-log`. Falsifier over the closure lanes:
 decisions that reached neither a comms event nor a durable home must count zero.
+
+## Owner rulings, round 15 (2026-09-13, about 14:00Z) — the team session plan approved; go
+
+Three Implementer seats registered (Saffron turns Verdure c39ad7, Sirocco wakes Wingspan 45fe02,
+Djinn hunts Solder 36720b) and were routed to lanes A, B, C by team-start arrival order. The owner
+asked for a decision-complete plan before the session; it was written with metacognition,
+concept exploration and the plan skill, one card survived (who says go: "Owner to Director,
+once"), and the owner approved it and then said, verbatim: "Go. I release you to do work.
+Questions from the seats go back to you, run them through the decision matrix ... You and the team
+have standing permission to enter and leave all worktrees." The nine decisions of the plan are
+recorded in `.agent/memory/operational/director-handoff.md` §Decisions of the approved plan
+(item 7 to lane C per PDR-117; the lint cure first on lane A; derived leak-validator needles;
+derived rule frontmatter with a `trigger` key and the index winning disagreements; serialised
+pushes; the PDR-132 budget). Go relayed as directed events `0349479b`, `8cca63df`, `7b0ab8aa`.
