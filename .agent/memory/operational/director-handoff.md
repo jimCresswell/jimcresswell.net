@@ -388,6 +388,12 @@ ones the Director would put to the owner had the owner been present.
     records-4 branch stacked on it and open as a new pull request only after #62 merges, so the
     reviewed tip stops moving. Lens 1 (each round re-reviews the whole file and finds the drift
     the previous round's wait produced). REVIEW: thirteen rounds on one records pull request.
+36. #65 round one (23:30Z on 2026-09-13): one thread, taken in full: the measured predicate
+    mapped an unavailable run leg and a truncated read to "no run", so an unobservable run
+    surface could read SETTLE-READY; the cure routes those gap cases to a refusal verdict named
+    for the incomplete read and adds the two regression cells. Routed to lane A; round two is
+    the last within PDR-132's budget. Lens 1 (a false merge-eligible reading costs a merge on
+    an unproven state). No REVIEW.
 
 ## Routing log
 
