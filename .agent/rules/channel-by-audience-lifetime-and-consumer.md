@@ -1,3 +1,9 @@
+---
+classification: situational
+description: In team sessions, choose the channel for every cross-seat message by its audience, lifetime and mechanical consumer — native session messaging for dialogue between two live seats on one machine, Practice comms for state and record (liveness, claims, intents, verdicts, blockers, anything a third seat, the owner or a successor must see), ARC only where native messaging cannot reach. A decision reached over a fast channel lands in its durable home (claim intent, commit message, thread record, plan of record, napkin) when it is acted on. Owner-directed 2026-09-13.
+trigger: session:team — every cross-seat send
+---
+
 # Channel by Audience, Lifetime and Consumer
 
 Owner direction (2026-09-13, verbatim): "native s2s comms are much, much faster and cheaper
