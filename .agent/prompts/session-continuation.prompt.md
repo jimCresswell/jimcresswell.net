@@ -18,7 +18,7 @@ whose dated §Owner rulings (rounds 1 to 16) carry the state; the latest round i
 controlling node is
 [`../plans/delivery/practice-completion.plan.md`](../plans/delivery/practice-completion.plan.md)
 §Transplant closure: items 1 to 4 landed (the archive deleted after a computed loss-scan, PR #53,
-item 3 at `1829cd4`, item 4 at `4a61112` as bounded, its residue rows named in the report); items 5 to 7 in flight as small PRs against `main`;
+item 3 at `1829cd4`, item 4 at `4a61112` as bounded, its residue rows named in the report); items 5 to 7 and the handed-back holdings are routed from the board in `.agent/memory/operational/director-handoff.md`, never from this paragraph;
 session 2 runs the 57-lesson synthesis from `.agent/memory/active/unconsolidated/`. Editorial work
 follows. Every move that makes a Practice element more general lands a row in
 [`../reports/practice-transplant/generalisations.md`](../reports/practice-transplant/generalisations.md)
@@ -60,10 +60,10 @@ PRs #36, #39, #40 and #41 are merged; #47 (chore/residual) is merged. Do not
 replay the old stacked branches or repeat the history repair. Their closure is
 not workspace-extraction approval.
 
-Team shape is owner-set per session. As of 2026-09-13 evening a team IS live (a Director and
-three Implementer seats, two of them paused; open pull requests #55 and #56; four claims in the
-registry); read `director-handoff.md` before assuming otherwise, and do not start monitoring
-machinery in a session the owner did not open as a team seat. Where a session is live, the newest channel under
+Team shape is owner-set per session. The live shape, the open pull requests and the claims are
+read from `director-handoff.md` (§Current handoff state and the board) and the claims registry,
+never from this prompt; do not start monitoring machinery in a session the owner did not open
+as a team seat. Where a session is live, the newest channel under
 `.agent/collaboration/rapid-comms/` is authoritative for who holds which lane —
 check that directory for new channels rather than watching only a known one.
 
