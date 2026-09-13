@@ -1113,3 +1113,23 @@
 - `pnpm -s` is not a pnpm 12 flag; `--silent` is.
 - A Copilot review request posted while the previous request's run is still in flight registers
   nothing; request again once that review lands.
+
+### Director, overnight (2026-09-13, 20:30Z on): traps met while landing records at n=2
+
+- A shell chain joined with `;` after a failed script still commits and pushes: the gate ran
+  three times for one commit. Chain every step with `&&` and read the tip after the commit,
+  never the hook's grep.
+- `git add` of the ARC channel file stages the partner's appends too; a commit message that
+  names only my change mislabels theirs (f4e5558). Stage the channel file only in a commit whose
+  message says the channel is at its waypoint, and read `git diff --cached --stat` first.
+- Re-running an editing script after prettier reflowed the file breaks every wrapped anchor;
+  read the current text of each passage before writing an anchor, or anchor on a single line.
+- commitlint's 100-character limit applies to body lines, not only the header; `-m` paragraphs
+  wrap by hand.
+- The write-time hook fingerprints a user-home absolute path inside a scratch script; scripts
+  run from the repository directory need no `cd`.
+- A `bash -c '…'` chain dies on the first apostrophe inside a reply body; long reply chains go in
+  a script file run with `bash <file> <args>`.
+- The hook reads the prose of a heredoc and of a commit message: the words for git operations
+  (a branch switch, a file restore, a force push, wildcard staging) belong in files written by
+  the file tool, never typed into a shell command.
