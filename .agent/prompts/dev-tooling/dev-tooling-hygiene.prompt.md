@@ -18,8 +18,8 @@ Ground first via `start-right-quick` or `start-right-thorough`.
 3. [`../../directives/testing-strategy.md`](../../directives/testing-strategy.md)
 4. [`../../memory/active/distilled.md`](../../memory/active/distilled.md)
 5. [`../../memory/active/napkin.md`](../../memory/active/napkin.md)
-6. [`../../plans/roadmap.md`](../../plans/roadmap.md)
-7. [`../../plans/current/dev-tooling-hygiene.plan.md`](../../plans/current/dev-tooling-hygiene.plan.md)
+6. [`../../plans-legacy-2026-09/roadmap.md`](../../plans-legacy-2026-09/roadmap.md)
+7. [`../../plans-legacy-2026-09/current/dev-tooling-hygiene.plan.md`](../../plans-legacy-2026-09/current/dev-tooling-hygiene.plan.md)
 8. [`../../../package.json`](../../../package.json) — current scripts, deps, knip config
 9. [`../../../docs/architecture/decision-records/005-knip-unused-code-detection.md`](../../../docs/architecture/decision-records/005-knip-unused-code-detection.md) — ADR template reference for the new dep-cruiser ADR
 10. [`../../../README.md`](../../../README.md) and `CONTRIBUTING.md` — gate-count surfaces to update in Phase 2
@@ -71,7 +71,7 @@ once Phase 2 lands.
 
 ## Likely relevant files
 
-- [`../../plans/current/dev-tooling-hygiene.plan.md`](../../plans/current/dev-tooling-hygiene.plan.md)
+- [`../../plans-legacy-2026-09/current/dev-tooling-hygiene.plan.md`](../../plans-legacy-2026-09/current/dev-tooling-hygiene.plan.md)
 - [`../../../package.json`](../../../package.json)
 - [`../../../pnpm-lock.yaml`](../../../pnpm-lock.yaml)
 - [`../../../docs/architecture/decision-records/`](../../../docs/architecture/decision-records/) — for the new ADR

@@ -12,7 +12,7 @@ ratified_date: 2026-09-12
 ratified_where: >-
   Owner's word in session 880ff9 (Cauldron herds Lustre), 2026-09-12: "Both
   nodes are ratified"; captured on the napkin §Session 5 (2026-09-12).
-serves: practice-lineage-transplant
+serves: platform-site-and-practice
 impact_areas:
   - practice-and-estate
 tickets: []
@@ -20,16 +20,16 @@ depends_on:
   - plan: practice-lineage-transplant
     kind: beneficial
 owner_gates: []
-last_updated: 2026-09-12
+last_updated: 2026-09-13
 ---
 
 # Castr lineage-update preparation
 
-`serves` names the runbook because this repository has no strategic node
-yet; the plan-node migration re-parents it. The beneficial dependency's
-minimum shippable shape without the runbook ratified: the bins and the
-inputs land and are usable from the sketch runbook's step numbers, which
-are stable across ratification edits.
+`serves` names the platform strategic node (re-parented at the plan-node
+migration, 2026-09-13; it named the runbook before a strategic layer
+existed). The beneficial dependency's minimum shippable shape without the
+runbook ratified: the bins and the inputs land and are usable from the
+sketch runbook's step numbers, which are stable across ratification edits.
 
 ## Goal
 
@@ -162,7 +162,7 @@ runbook's verification, recorded there by the seat that runs it.
   seam work (proposals 1 to 4 of the packaging exploration): deferred to
   the castr result by proposal 5's own falsifier.
 - The plan-node estate migration (39 legacy plans, the validator's
-  `docs/strategy` dependency): a slice 2 item on repo-continuity; until it
+  `.agent/plans/strategy` registry): a slice 2 item on repo-continuity; until it
   lands, this node and the runbook conform to the templates by hand and no
   gate scans them.
 
@@ -173,7 +173,7 @@ runbook's verification, recorded there by the seat that runs it.
 - **Landing path.** `.agent/plans/runbooks/` and `.agent/plans/delivery/`
   are the ratified node-type directories, but no wired gate scans them yet
   (the plan-corpus validator is not a `check` leg and fails on a missing
-  `docs/strategy`); the two validators the proofs cite run only under
+  `.agent/plans/strategy`); the two validators the proofs cite run only under
   `check:docs`, which no hook or CI job runs today. Both stated so nobody
   reads the absence of a red as a green.
 - **Vendor literals.** `git diff --name-status`, `git merge-tree`,

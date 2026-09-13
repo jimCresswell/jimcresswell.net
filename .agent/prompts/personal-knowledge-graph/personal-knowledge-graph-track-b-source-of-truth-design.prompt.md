@@ -17,15 +17,15 @@ Ground first via `start-right-quick` or `start-right-thorough`.
 3. [`../../directives/testing-strategy.md`](../../directives/testing-strategy.md)
 4. [`../../memory/active/distilled.md`](../../memory/active/distilled.md)
 5. [`../../memory/active/napkin.md`](../../memory/active/napkin.md)
-6. [`../../plans/roadmap.md`](../../plans/roadmap.md)
-7. [`../../plans/active/README.md`](../../plans/active/README.md)
-8. [`../../plans/current/personal-knowledge-graph-roadmap.plan.md`](../../plans/current/personal-knowledge-graph-roadmap.plan.md)
-9. [`../../plans/active/personal-knowledge-graph-source-of-truth-design.plan.md`](../../plans/active/personal-knowledge-graph-source-of-truth-design.plan.md)
-10. [`../../plans/research/graph-source-of-truth-layer-map.md`](../../plans/research/graph-source-of-truth-layer-map.md)
-11. [`../../plans/research/graph-current-state-audit.md`](../../plans/research/graph-current-state-audit.md)
-12. [`../../plans/research/graph-publication-consumer-and-proof-model.md`](../../plans/research/graph-publication-consumer-and-proof-model.md)
-13. [`../../plans/research/graph-publication-output-audit.md`](../../plans/research/graph-publication-output-audit.md)
-14. [`../../plans/research/graph-rich-result-external-validator-evidence.md`](../../plans/research/graph-rich-result-external-validator-evidence.md)
+6. [`../../plans-legacy-2026-09/roadmap.md`](../../plans-legacy-2026-09/roadmap.md)
+7. [`../../plans-legacy-2026-09/active/README.md`](../../plans-legacy-2026-09/active/README.md)
+8. [`../../plans-legacy-2026-09/current/personal-knowledge-graph-roadmap.plan.md`](../../plans-legacy-2026-09/current/personal-knowledge-graph-roadmap.plan.md)
+9. [`../../plans-legacy-2026-09/active/personal-knowledge-graph-source-of-truth-design.plan.md`](../../plans-legacy-2026-09/active/personal-knowledge-graph-source-of-truth-design.plan.md)
+10. [`../../plans-legacy-2026-09/research/graph-source-of-truth-layer-map.md`](../../plans-legacy-2026-09/research/graph-source-of-truth-layer-map.md)
+11. [`../../plans-legacy-2026-09/research/graph-current-state-audit.md`](../../plans-legacy-2026-09/research/graph-current-state-audit.md)
+12. [`../../plans-legacy-2026-09/research/graph-publication-consumer-and-proof-model.md`](../../plans-legacy-2026-09/research/graph-publication-consumer-and-proof-model.md)
+13. [`../../plans-legacy-2026-09/research/graph-publication-output-audit.md`](../../plans-legacy-2026-09/research/graph-publication-output-audit.md)
+14. [`../../plans-legacy-2026-09/research/graph-rich-result-external-validator-evidence.md`](../../plans-legacy-2026-09/research/graph-rich-result-external-validator-evidence.md)
 15. [`../../../docs/architecture/README.md`](../../../docs/architecture/README.md)
 16. [`../../../docs/architecture/content-model.md`](../../../docs/architecture/content-model.md)
 17. [`../../../docs/architecture/decision-records/014-entity-model-design.md`](../../../docs/architecture/decision-records/014-entity-model-design.md)
@@ -55,7 +55,7 @@ Ground first via `start-right-quick` or `start-right-thorough`.
   JSON and the entity graph, while the target Track B model is now defined as
   one cohesive graph across multiple source layers.
 - No compatibility layers, no stub-preservation docs, no edits under
-  `.agent/plans/archive/`.
+  `.agent/plans-legacy-2026-09/archive/`.
 - Proof is still required, but for this slice the proof is architectural and
   documentary rather than external-validator capture.
 
@@ -98,11 +98,11 @@ The output should define:
 
 ## Likely relevant files
 
-- [`../../plans/active/personal-knowledge-graph-source-of-truth-design.plan.md`](../../plans/active/personal-knowledge-graph-source-of-truth-design.plan.md)
-- [`../../plans/current/personal-knowledge-graph-roadmap.plan.md`](../../plans/current/personal-knowledge-graph-roadmap.plan.md)
-- [`../../plans/research/graph-source-of-truth-layer-map.md`](../../plans/research/graph-source-of-truth-layer-map.md)
-- [`../../plans/research/graph-current-state-audit.md`](../../plans/research/graph-current-state-audit.md)
-- [`../../plans/research/graph-publication-output-audit.md`](../../plans/research/graph-publication-output-audit.md)
+- [`../../plans-legacy-2026-09/active/personal-knowledge-graph-source-of-truth-design.plan.md`](../../plans-legacy-2026-09/active/personal-knowledge-graph-source-of-truth-design.plan.md)
+- [`../../plans-legacy-2026-09/current/personal-knowledge-graph-roadmap.plan.md`](../../plans-legacy-2026-09/current/personal-knowledge-graph-roadmap.plan.md)
+- [`../../plans-legacy-2026-09/research/graph-source-of-truth-layer-map.md`](../../plans-legacy-2026-09/research/graph-source-of-truth-layer-map.md)
+- [`../../plans-legacy-2026-09/research/graph-current-state-audit.md`](../../plans-legacy-2026-09/research/graph-current-state-audit.md)
+- [`../../plans-legacy-2026-09/research/graph-publication-output-audit.md`](../../plans-legacy-2026-09/research/graph-publication-output-audit.md)
 - [`../../../jcdotnet/lib/page-document-contract.ts`](../../../jcdotnet/lib/page-document-contract.ts)
 - [`../../../docs/architecture/content-model.md`](../../../docs/architecture/content-model.md)
 - [`../../../docs/architecture/decision-records/014-entity-model-design.md`](../../../docs/architecture/decision-records/014-entity-model-design.md)

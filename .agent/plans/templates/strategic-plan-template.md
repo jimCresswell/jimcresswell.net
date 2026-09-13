@@ -16,7 +16,7 @@ status: sketch
 ratified_by: null
 ratified_date: null
 ratified_where: null
-serves: <published strategic-choice ID from docs/strategy>
+serves: <published strategic-choice ID from .agent/plans/strategy>
 impact_areas:
   - <area from impact-areas.md>
 gate_expiry_default: <ISO-8601 duration, e.g. P21D — the tempo this node sets for its subtree>

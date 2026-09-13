@@ -23,14 +23,14 @@ Before PKG work, read and internalise:
 
 | Document                                                                      | Purpose                                                        |
 | ----------------------------------------------------------------------------- | -------------------------------------------------------------- |
-| `.agent/plans/current/personal-knowledge-graph-roadmap.plan.md`               | Current graph roadmap — two required tracks, Track A first     |
-| `.agent/plans/current/personal-knowledge-graph-execution.plan.md`             | Current Track A execution authority                            |
-| `.agent/plans/research/graph-current-state-audit.md`                          | Observed implementation truth and architecture audit           |
-| `.agent/plans/active/personal-knowledge-graph-source-of-truth-design.plan.md` | Current Track B design authority                               |
-| `.agent/plans/archive/graph-metaplan.plan.md`                                 | Completed reset record — why the current stack exists          |
-| `.agent/plans/research/personal-knowledge-graph-design-notes.md`              | Historical design reference — entity inventory and conventions |
-| `.agent/plans/archive/personal-knowledge-graph-phase-model.plan.md`           | Archived phase model and acceptance criteria                   |
-| `.agent/plans/research/pkg-research-findings.md`                              | Research findings — verified facts across four domains         |
+| `.agent/plans-legacy-2026-09/current/personal-knowledge-graph-roadmap.plan.md`               | Current graph roadmap — two required tracks, Track A first     |
+| `.agent/plans-legacy-2026-09/current/personal-knowledge-graph-execution.plan.md`             | Current Track A execution authority                            |
+| `.agent/plans-legacy-2026-09/research/graph-current-state-audit.md`                          | Observed implementation truth and architecture audit           |
+| `.agent/plans-legacy-2026-09/active/personal-knowledge-graph-source-of-truth-design.plan.md` | Current Track B design authority                               |
+| `.agent/plans-legacy-2026-09/archive/graph-metaplan.plan.md`                                 | Completed reset record — why the current stack exists          |
+| `.agent/plans-legacy-2026-09/research/personal-knowledge-graph-design-notes.md`              | Historical design reference — entity inventory and conventions |
+| `.agent/plans-legacy-2026-09/archive/personal-knowledge-graph-phase-model.plan.md`           | Archived phase model and acceptance criteria                   |
+| `.agent/plans-legacy-2026-09/research/pkg-research-findings.md`                              | Research findings — verified facts across four domains         |
 
 Before editorial-intensive phases (entity population, role descriptions), additionally read:
 
@@ -42,7 +42,7 @@ Before editorial-intensive phases (entity population, role descriptions), additi
 
 ## Schema.org type mappings
 
-Source: ADR-008 (`docs/architecture/decision-records/008-schema-org-compliance.md`) + research findings (`.agent/plans/research/pkg-research-findings.md`).
+Source: ADR-008 (`docs/architecture/decision-records/008-schema-org-compliance.md`) + research findings (`.agent/plans-legacy-2026-09/research/pkg-research-findings.md`).
 
 | Entity               | `@type`                                | `additionalType`           |
 | -------------------- | -------------------------------------- | -------------------------- |
@@ -82,7 +82,7 @@ Source: ADR-010 (`docs/architecture/decision-records/010-canonical-url-graph-ide
 
 ## JSON-LD constraints
 
-Source: research findings (`.agent/plans/research/pkg-research-findings.md`) — JSON-LD Best Practices.
+Source: research findings (`.agent/plans-legacy-2026-09/research/pkg-research-findings.md`) — JSON-LD Best Practices.
 
 1. **Single block per page.** One `<script type="application/ld+json">` containing one `@graph`.
 2. **JSON-LD 1.0 subset only.** No 1.1 features (`@nest`, `@propagate`, `@included`).
@@ -91,7 +91,7 @@ Source: research findings (`.agent/plans/research/pkg-research-findings.md`) —
 
 ## Consumer value tiers
 
-Source: research findings (`.agent/plans/research/pkg-research-findings.md`) — Consumer Value Tiers.
+Source: research findings (`.agent/plans-legacy-2026-09/research/pkg-research-findings.md`) — Consumer Value Tiers.
 
 | Tier                | What happens                        | Key types                                                                |
 | ------------------- | ----------------------------------- | ------------------------------------------------------------------------ |
@@ -103,7 +103,7 @@ Effort should be proportional to tier.
 
 ## Neo4j forward-compatibility
 
-Source: research findings (`.agent/plans/research/pkg-research-findings.md`) — Neo4j Compatibility.
+Source: research findings (`.agent/plans-legacy-2026-09/research/pkg-research-findings.md`) — Neo4j Compatibility.
 
 - [ ] Every entity has `@id` and `@type`
 - [ ] Relationships are `{"@id": "..."}` references — no embedded entities
@@ -114,7 +114,7 @@ Source: research findings (`.agent/plans/research/pkg-research-findings.md`) —
 
 ## Validation workflow
 
-Source: research findings (`.agent/plans/research/pkg-research-findings.md`) — Validation Strategy.
+Source: research findings (`.agent/plans-legacy-2026-09/research/pkg-research-findings.md`) — Validation Strategy.
 
 | Tool                     | When            | Purpose                                            |
 | ------------------------ | --------------- | -------------------------------------------------- |
@@ -138,15 +138,15 @@ Source: research findings (`.agent/plans/research/pkg-research-findings.md`) —
 
 ## Reference
 
-- `.agent/plans/current/personal-knowledge-graph-roadmap.plan.md` — current graph roadmap
-- `.agent/plans/current/personal-knowledge-graph-execution.plan.md` — current Track A execution plan
-- `.agent/plans/research/graph-current-state-audit.md` — observed implementation baseline
-- `.agent/plans/active/personal-knowledge-graph-source-of-truth-design.plan.md` — current Track B design plan
-- `.agent/plans/archive/graph-metaplan.plan.md` — completed reset record
-- `.agent/plans/research/personal-knowledge-graph-design-notes.md` — historical design reference
-- `.agent/plans/archive/personal-knowledge-graph-phase-model.plan.md` — phase model (archived goals, tasks, acceptance criteria)
-- `.agent/plans/research/pkg-research-findings.md` — research findings (verified facts across four domains)
+- `.agent/plans-legacy-2026-09/current/personal-knowledge-graph-roadmap.plan.md` — current graph roadmap
+- `.agent/plans-legacy-2026-09/current/personal-knowledge-graph-execution.plan.md` — current Track A execution plan
+- `.agent/plans-legacy-2026-09/research/graph-current-state-audit.md` — observed implementation baseline
+- `.agent/plans-legacy-2026-09/active/personal-knowledge-graph-source-of-truth-design.plan.md` — current Track B design plan
+- `.agent/plans-legacy-2026-09/archive/graph-metaplan.plan.md` — completed reset record
+- `.agent/plans-legacy-2026-09/research/personal-knowledge-graph-design-notes.md` — historical design reference
+- `.agent/plans-legacy-2026-09/archive/personal-knowledge-graph-phase-model.plan.md` — phase model (archived goals, tasks, acceptance criteria)
+- `.agent/plans-legacy-2026-09/research/pkg-research-findings.md` — research findings (verified facts across four domains)
 - `docs/architecture/decision-records/008-schema-org-compliance.md` — ADR-008: Schema.org compliance
 - `docs/architecture/decision-records/010-canonical-url-graph-identity.md` — ADR-010: canonical URL and graph identity
 - `docs/architecture/decision-records/011-domain-appropriate-descriptions.md` — ADR-011: domain-appropriate descriptions
-- `.agent/plans/future/neo4j-knowledge-graph.plan.md` — future Neo4j migration plan (shapes current design)
+- `.agent/plans-legacy-2026-09/future/neo4j-knowledge-graph.plan.md` — future Neo4j migration plan (shapes current design)

@@ -37,7 +37,7 @@ Could it be simpler without compromising quality? Practice architecture should b
 ## Specific Checks
 
 - Practice-core paths mention the new reviewers or adapters, keeping the canonical adoption story intact.
-- No docs refer to stale surfaces (the plan lives in `.agent/plans/active/`).
+- No docs refer to stale surfaces (plans are nodes under `.agent/plans/`; the pre-schema lanes are conserved in `.agent/plans-legacy-2026-09/`).
 - Any script or doc that expects the canonical gating sequence is updated if the change introduces a new validator or reviewer.
 - The change doesn't reintroduce the legacy directives filename or outdated plan references.
 - If the change speculates about new platforms/agents, it notes the plan reference or adds a practice-core entry so the speculation can be reviewed.

@@ -99,7 +99,7 @@ Follow the pattern established by [.agent/sub-agents/templates/type-reviewer.md]
 - Identity block (name: `pkg-reviewer`, purpose, summary)
 - Reading requirements (MANDATORY) -- the reviewer must read:
   - `.agent/skills/pkg/SKILL.md` -- compact operational reference
-  - `.agent/plans/research/pkg-research-findings.md` -- full research context
+  - `.agent/plans-legacy-2026-09/research/pkg-research-findings.md` -- full research context
   - `.agent/plans/personal-knowledge-graph.plan.md` -- design reference (entity inventory, conventions)
   - ADR-008, ADR-010 -- settled architectural decisions
 - Core philosophy: "The graph models reality. Every entity is real. Every claim in the structured data must be Schema.org-valid and self-consistent."

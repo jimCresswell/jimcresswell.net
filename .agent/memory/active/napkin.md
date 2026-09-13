@@ -21,7 +21,7 @@
 
 - Track B Source-of-Truth Design Phase B2.1 remains the primary workstream.
 - Visual Regression is an accepted parallel lane. Start at
-  [`../plans/current/visual-regression-workspace.plan.md`](../../plans/current/visual-regression-workspace.plan.md).
+  [`../plans-legacy-2026-09/current/visual-regression-workspace.plan.md`](../../plans-legacy-2026-09/current/visual-regression-workspace.plan.md).
 - Before any manifest or source move, verify the live tree, establish a known
   visual baseline, compare the explicit allowance flag with the smallest clear
   named-policy alternative, and record a dated PASS or FAIL.
@@ -565,7 +565,7 @@
   findings are on the delivery node's dispositions table.
 - Predictions a successor tests: (a) `validate-plan-corpus` with a stub `docs/strategy/README.md`
   fails next on the two nodes' names or `serves`, not on anything else — if it fails elsewhere
-  the brief under-measured; (b) the validator scans `.agent/plans/archive/` (the lineage keeps
+  the brief under-measured; (b) the validator scans `.agent/plans-legacy-2026-09/archive/` (the lineage keeps
   `delivery/archive/` inside the root, so probably not — measure, don't assume); (c) the
   picker still lists each `jc-` skill once after this compaction; (d) castr's ancestor is the
   2026-06-28 commit, or the byte-equality check names a later one.
@@ -615,3 +615,8 @@
 - OCE channel now open in both directions under ruling 6: batch 1 (seven items) sent to Nettle
   guards Pistil; earlier sends recovered from the transcript (seven findings, the cited-scripts
   shape, PDR-008) so nothing was repeated.
+- Migration landed in one sitting (the brief's falsifier for the three-stream shape): validator
+  re-pointed and fail-closed, strategy corpus + three strategic nodes + registry, two nodes
+  renamed and re-parented, legacy lanes conserved with a dispositions table, ten repo-validator
+  legs green. Six workspace-family plans read as superseded by events (the monorepo exists, the
+  validators live in `agent-tools`, no `packages/` tier) — a reading the owner confirms on cards.

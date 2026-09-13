@@ -17,6 +17,7 @@
     ".agent/hooks/**",
     ".agent/memory/active/archive/**",
     ".agent/plans/archive/**",
+    ".agent/plans-legacy-2026-09/**",
     ".agent/prompts/**",
     ".agent/reference/**",
     ".agent/reference-local/**",

@@ -52,9 +52,10 @@ to `rules/`.
 Plans are plan nodes under `plans/` — `strategic/`, `delivery/`, `runbooks/` —
 governed by [`plans/plan-node-schema.md`](plans/plan-node-schema.md). Every
 plan is born `status: sketch` and governs no work until it carries an owner
-ratification stamp. The pre-transplant plans (`plans/active/`, `plans/current/`,
-`plans/archive/`, `plans/future/`, `plans/research/`, `plans/roadmap.md`) are
-retained as records until they are migrated into plan nodes.
+ratification stamp. The pre-schema plans (the lifecycle lanes and the roadmap) are conserved as
+records in [`plans-legacy-2026-09/`](plans-legacy-2026-09/DISPOSITIONS.md), each
+with its disposition; live intent was re-authored into the strategy layer and
+nodes at the plan-node migration (2026-09-13).
 
 ### Knowledge: napkin → distilled → pending-graduations → permanent homes
 

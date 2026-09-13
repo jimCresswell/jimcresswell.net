@@ -15,8 +15,8 @@ Both are born-sketch explorations: they govern nothing until ratified. Running c
 session is in `.agent/memory/active/napkin.md`.
 
 The procedure these records distil is the runbook node
-[`.agent/plans/runbooks/practice-lineage-transplant.md`](../../plans/runbooks/practice-lineage-transplant.md),
+[`.agent/plans/runbooks/practice-lineage-transplant.plan.md`](../../plans/runbooks/practice-lineage-transplant.plan.md),
 and the work that makes the next instance (castr) run by that runbook is the delivery node
-[`.agent/plans/delivery/castr-lineage-update-preparation.md`](../../plans/delivery/castr-lineage-update-preparation.md).
+[`.agent/plans/delivery/castr-lineage-update-preparation.plan.md`](../../plans/delivery/castr-lineage-update-preparation.plan.md).
 That node lands this instance's verdict data under `inputs/` here, one file per runbook step that
 reads it.

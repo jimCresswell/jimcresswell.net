@@ -1071,3 +1071,48 @@ migration and the rest of slice 2 run under.
    rulings coexist by estate. A note for the lineage's next consolidation, not a defect.
 7. The cited-scripts validator shared earlier now also excludes `.agent/collaboration/rapid-comms/`
    from its scan (comms events quote scripts as history).
+
+## Plan-node migration — executed (2026-09-13)
+
+Under §Owner rulings, round 5. What landed, in the order it was built:
+
+1. **The validator moved with the corpus.** `validate-plan-corpus` reads the strategy
+   registry from `.agent/plans/strategy/` (`STRATEGY_DIR`), and an absent or unreadable
+   registry is a fail-closed message naming the path, not an unhandled ENOENT. Its header
+   names this repository's conserved corpus. The schema unit tests (66) pass unchanged; the
+   `serves` message and the registry doc comments name the new path.
+2. **The strategy corpus:** `strategy/README.md` (three families: `CONTENT-*`, `GRAPH-*`,
+   `PLATFORM-*`; the open decisions the owner ratifies on cards) and three stream files
+   carrying ten concrete choices, each written from the legacy corpus's live intent and the
+   owner's sentence on priority.
+3. **Three strategic nodes**, born sketch: `content-as-cv` (CONTENT-1),
+   `personal-knowledge-graph` (GRAPH-1), `platform-site-and-practice` (PLATFORM-1).
+4. **The two ratified nodes** renamed to `*.plan.md` and re-parented under
+   `platform-site-and-practice` (the runbook gains `serves`; the delivery node's `serves`
+   moves off the runbook); every citing path re-pointed (reports index, continuation prompt).
+5. **The impact registry** rewritten to five local areas: `editorial-content`,
+   `knowledge-graph`, `site`, `visual-system`, `practice-and-estate`.
+6. **The legacy corpus conserved** at `.agent/plans-legacy-2026-09/` (the five lanes and the
+   roadmap, moved with `git mv`, untouched), with `DISPOSITIONS.md`: one row per file
+   (converted at pickup / conserved in a stream choice / superseded by events / record) and
+   the ideas harvested from the archive. Proposed, for the owner's cards. Six workspace-family
+   plans are superseded by events: the transplant's monorepo closed their premise, the
+   validators live in `agent-tools`, and no `packages/` tier exists; their extraction-gate
+   rule survives as PLATFORM-2.
+7. **Citations re-pointed** in the live surfaces (the pkg skill and reviewer template, the
+   dev-tooling and Track B prompts, the continuation prompt, the Wilma template, the napkin's
+   handoff line, `.agent/README.md`); archives and comms records untouched. markdownlint
+   ignores the conserved corpus as it ignored `plans/archive/`.
+8. **Wired:** `validate-plan-corpus` is the tenth `repo-validators:check` leg (CI parity
+   holds through the aggregate). `check-plan-gate-drift` stays the non-blocking session-open
+   alert it was designed as (owner ruling 2026-07-31, upstream) and is not a gate.
+
+Measured: `validate-plan-corpus` green on five nodes at the first run after the estate was
+written, so Wrap 4's prediction (a) — a stub registry would fail next on the nodes' names or
+`serves` — was never exercised (the defects were cured before the run). Prediction (b) was
+refuted by reading: the corpus walk enters `archive/`. Timing: the strategy layer took one
+sitting to author, so by the brief's own falsifier the three-stream shape was the right size.
+
+Owner-held next: ratify or amend the streams, the ten choices, the three strategic nodes and
+the dispositions table on cards; the Track B delivery node is authored at pickup from the
+conserved design record.

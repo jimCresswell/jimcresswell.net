@@ -25,8 +25,8 @@ in one question if it is not the migration. Done and committed: rules triage,
 the Phase 8 harness, re-evaluate slice 1, the restart assessment, the link
 repair (418 → 0), the lineage script naming (PDR-008 amended), the two plan
 nodes (ratified 2026-09-12: the runbook
-`.agent/plans/runbooks/practice-lineage-transplant.md` and the delivery node
-`.agent/plans/delivery/castr-lineage-update-preparation.md`, both mis-named
+`.agent/plans/runbooks/practice-lineage-transplant.plan.md` and the delivery node
+`.agent/plans/delivery/castr-lineage-update-preparation.plan.md`, both mis-named
 `.md` for the validator and cured in the migration), the journey record
 (`.agent/reports/practice-transplant/journey-so-far.md`), and slice 2 items 1
 to 3 (PR machinery at `e477e62f7`, the ten expert templates, the lineage ADR
@@ -46,11 +46,11 @@ abandoned. Do not resume any of them by default.
   text for any other field is not approval. About is deliberately last. The
   2026-08-08/09 rewrite is not an approved starting point. Method: extract →
   owner-select → collaborative write. Status and method live in
-  [`../plans/current/linkedin-update.plan.md`](../plans/current/linkedin-update.plan.md)
+  [`../plans-legacy-2026-09/current/linkedin-update.plan.md`](../plans-legacy-2026-09/current/linkedin-update.plan.md)
   and the private surfaces it routes to. When Jim reopens it, this thread
   displaces Track B — LinkedIn was the chosen working thread at last close.
 - **Track B Source-of-Truth Design, Phase B2.1** — the formal primary plan in
-  `plans/active/`, dormant while LinkedIn was in flight. Resume only on owner
+  `plans-legacy-2026-09/active/`, dormant while LinkedIn was in flight. Resume only on owner
   direction.
 - **Workspace Architecture family** — its Visual Regression extraction gate was
   the next decision-bearing action. Superseded in practice by the monorepo
