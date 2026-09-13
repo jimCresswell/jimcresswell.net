@@ -79,3 +79,8 @@ the commit queue (one host, one e2e port). Item 7 is written last because it rec
 ## Routing log
 
 - 2026-09-13 evening: seat opened; team-start `ca1ba4d8`; lanes A, B, C authored, unfilled.
+- 2026-09-13 evening: pre-push gate red on the Director records because markdownlint walks the
+  disk and linted the untracked, generated `shared-comms-log.md` (green in CI, red locally: a
+  check that reads the local disk proves the local disk). Stepping stone applied by the Director
+  (one ignore line, `.markdownlint-cli2.jsonc`); the cure is routed to lane A: lint the tracked
+  universe, not disk globs, and drop the hand-kept ignore list (`compute-dont-hope`).

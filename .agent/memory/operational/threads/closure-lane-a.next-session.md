@@ -30,6 +30,10 @@ Director by directed comms event, never to the owner (`route-blocks-and-question
   `docs-validators:check` leg over live surfaces, CV content excluded by scope. Acceptance:
   the validator's first run on the pre-fix tree names exactly the files above and nothing
   else (Wrap 6 prediction b); green after; `pnpm check` and CI green.
+- **Routed by the Director (2026-09-13):** markdownlint runs over disk globs with a hand-kept
+  ignore list and linted the untracked comms-log render; make its universe the tracked tree
+  (`git ls-files`), drop the ignore list, remove the stepping-stone ignore for
+  `shared-comms-log.md`. Lands with item 3 (it is a `check` leg).
 - **Next safe step:** `start-right-team` as `team-member-non-closeout-owner`; post the
   team-start report; open the claim `--role implementer --thread closure-lane-a` on the paths
   above after the Director acknowledges; queue a commit intent before each push.
