@@ -74,3 +74,46 @@ row 9 (Records).
 Compute, don't hope (no hand-kept list; the leak validator derives its needle set from the
 lineage names, not a typed list); no warning toleration; source is TypeScript; stage by
 explicit pathspec; a green, clean PR is merged without asking.
+
+## Waypoint 2026-09-13 15:35Z — compaction checkpoint (Saffron turns Verdure, c39ad7)
+
+- **Item 3 is done on the branch; PR #56 is ready and near merge.** `closure/lane-a` head
+  9a90d1b (the merge of `main` at 4a61112), pushed under the Director's slot at 15:34Z; the
+  push's pre-push gate was in flight at this checkpoint. Eight commits of substance: d1a75c7
+  (tracked-universe gates), 1cb74e9 (substrate audit + wire contract as legs), 9cc25a2 (smoke
+  suite as a check leg and CI step), be3cb46 (register rows), da3065c (napkin), d713bb8 and
+  80e3189 (two review rounds, twenty-two findings, nineteen taken), 2380337 (two Copilot
+  findings cured), then the merge. CI green on every pushed head so far; both Copilot threads
+  replied to and resolved as the bot; reviewer dispositions posted as bot comment
+  issuecomment-5654014124.
+- **Next safe step, in order:** (1) when the 15:34Z push clears, release the slot to the
+  Director natively and re-arm the PR watch; (2) the Director re-requests Copilot on the tip
+  and merges #56 at zero threads (no card); (3) item 5 starts on a NEW branch cut from `main`
+  after #56 merges, never stacked; ask the Director for the slot before every push and wait
+  for the one-word confirmation.
+- **Team state:** owner word 15:30Z, "slow down, just you and one implementer, the rest
+  paused" — lane A is the one active Implementer; lanes B (#55, third round) and C (#57
+  merged; restore lane cut, PAUSED at 15:31Z) hold their claims with heartbeats stopped.
+- **Item 5 inputs gathered (not started):** the leak validator's needles derive from
+  `provenance.yml`'s lineage entry (Director decision 2; if the entry lacks the bot identity,
+  declare then derive); the pre-fix run is a test of the derived set and is recorded either
+  way. Preview by `git grep` (scratchpad `leak-preview.sh`): 17 agent-tools files (the plan's
+  16 plus `merge-bot/{merge-args.unit,merge-cli.integration,push-cli.integration}.test.ts` and
+  `tests/claude/statusline-git-location.unit.test.ts`), 6 under `tooling/` (five manifests plus
+  `eslint/README.md`), the set-up-worktree-lane skill's step-2 bot literal (Director routing
+  from lane C), and 13 doctrine files that name the lineage legitimately — the validator's
+  scope must exclude records (provenance, the register, the plan of record, reports) by rule,
+  never by list. Two Director findings for the merge-bot scrub: the settlement's `--expect`
+  matcher compares the REST login (`…[bot]`) against GraphQL's suffix-less login and never
+  matches, so a tip-bound Copilot review settles by timeout — normalise both sides in the
+  matcher with a unit case each, do not widen `--expect` validation; and the bot's own
+  requested_reviewers POST for Copilot registers nothing here, only the owner's CLI credential
+  does — document both in `.agent/reference/merge-bot.md`. Tell lane C natively if item 5
+  touches `validate-cited-paths` or adds a validator entry point or knip/depcruise rule that
+  would fire on the restored `corpus-analysis`/`workflow-build` modules.
+- **Corrections carried:** the push slot is the Director's; announce, wait for the word, then
+  push (2026-09-13). Napkin notes live on the branch, never in a scratch file.
+- **Monitors at the checkpoint:** all-channels comms watcher live (re-armed 14:47Z after the
+  one-hour backstop), heartbeat loop live on claim f024e1f1; both stay armed through
+  compaction; the seat resumes by re-checking `assert-watcher-live` and the claim's
+  `heartbeat_at` before its first act.

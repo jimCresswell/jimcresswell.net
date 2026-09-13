@@ -1113,3 +1113,77 @@
 - `pnpm -s` is not a pnpm 12 flag; `--silent` is.
 - A Copilot review request posted while the previous request's run is still in flight registers
   nothing; request again once that review lands.
+- Copilot found two real defects after three reviewers and I had passed the diff: the
+  `--no-index` hole I had NAMED as an assumption (naming is not curing; the tracked-tree check
+  was one line) and a `split('\t')[1]` that truncates a path with a tab (the reason `-z`
+  exists, and I had just written a test for newlines but not tabs). External scrutiny lands
+  on parsers of git output and on assumptions a comment names instead of a check.
+- Merge of `main` into a lane: git left the napkin and the register as end-of-file append
+  conflicts and silently auto-merged `.prettierignore` WITH main's stepping stone inside it —
+  the auto-merge was the dangerous one, exactly as `worktree-hygiene` §4 warns. Read every
+  auto-merged file the branch had rewritten, not only the conflicts. The napkin union goes in
+  session order (main's Session 8 continuation under its own heading, the lane block after).
+- My marker search on the napkin returned nothing though the markers were there; `awk` found
+  them at once. A blank result from an instrument is a broken instrument until proven a clean
+  result (the zsh `pipestatus` blank was the same class twice in one session).
+
+### Compaction checkpoint, lane A (2026-09-13, 15:35Z) — wrap's reflective passes
+
+- Metacognition (retrospective): three corrections in one lane, one shape — I acted on an
+  announcement instead of a confirmation (the push slot), on an assumption instead of a
+  computation (the CHANGELOG ignore, the `--no-index` note), and on a green line instead of a
+  read exit (`pipestatus`). The general form: a claim I make about the world (slot free,
+  entry dead, command green) is checked by the world's own instrument before I act on it,
+  never by my reading of it. What went right came from the same rule applied early: three
+  trials before the lint design, a declined routing with a stated reason, a lane-record
+  premise recomputed false and reported. The test-expert's atomic-landing reading also held:
+  at review absorption I wrote the cure and then its test in the next round; write the test
+  in the same edit even for a one-line cure.
+- Free play (harvest, discards): kept — this lane's two cures and lane C's cited-paths
+  validator share one move, "ask git, not the disk" (universe from `ls-files`, tier from
+  `check-ignore`, existence from the ignore rules); the estate is converging on "the config
+  file declares ownership, never existence". Kept — the smoke suite discovered from its
+  directory and lane B's rules index generated from frontmatter are the same move, "the
+  artefacts are the registry". Discarded — "reviews are a second immune system" (says nothing
+  a test could fail).
+- Concept exploration: no pass. Item 3 arrived decision-complete; the one unformed question
+  (what a fresh checkout's absent instance tier means to a gate) resolved through lens 4
+  (would it be simpler if the system changed — derive the tier from the repository's own
+  ignore rules) without an option list.
+- Parallax (screening, cost-bounded): main uncertainty for item 5 — whether the needle set
+  derived from `provenance.yml` names exactly the plan's twenty-one files. The preview grep
+  says no: at least four more agent-tools files, the eslint README, the worktree-lane skill's
+  bot literal, and thirteen doctrine files that name the lineage legitimately. So the
+  prediction is refined, not defended: the first run will EXCEED the named set, and the
+  validator's scope must exclude records by rule (provenance, register, plan of record,
+  reports), never by a typed list, or it cannot be a gate. Defeater to watch:
+  `jcdotnet/__snapshots__/cv-content-pre-migration.json` carries lineage names outside
+  `content/`; "CV content excluded by scope" needs its scope written as a path rule.
+- Predictions a successor tests: (a) #56 merges by the bot at zero threads on tip 9a90d1b
+  with no further Copilot finding; (b) the leak validator's pre-fix run names at least 26
+  files outside doctrine records, the plan's 21 among them; (c) `pnpm check` is green on a
+  fresh clone of `main` after #56 (CI on the branch already proved the ubuntu leg).
+- Metaloss passes. Compressed reasoning: twenty-two review findings compress to a
+  dispositions table on the PR and the reasons in three commit messages; the instance-tier
+  design's declined alternatives (primary coordination home, a manifest field) live in the
+  1cb74e9 message and the napkin bullet above — decision-sufficient. Promises: push on the
+  slot (in flight at 15:34Z); release the slot when it clears (mine, next act); Copilot
+  threads replied and resolved (done); napkin on the branch (done); tell lane C if item 5
+  touches cited-paths or fires on the restored modules (mine, at PR 2); the merge-bot
+  `--expect` and requested_reviewers findings (mine, at PR 2, in the lane record); the
+  `/rename` suggestion the team-shaped moment owed after routing was never surfaced (owed to
+  the owner in the checkpoint message). Attribution inferences: "Copilot does not auto-review
+  bot-authored PRs here" and "#55 is in a third round" are the Director's reports, not my
+  observations; lane B's pause is inferred from the Director's broadcast, no PAUSED event
+  from lane B was seen by 15:31Z. Blind-spot bounds: the watcher was dark for about two
+  minutes at 14:47Z before the re-arm (the seen-cursor drained the gap; nothing observed
+  lost); the three reviewer transcripts are dead contexts, conserved only as their verdicts;
+  CI was read as check summaries, never line by line. Index of homes: the lane record's
+  waypoint (next step, item 5 inputs, corrections) → this napkin block → PR #56 body and the
+  bot's review-dispositions comment → the eight commit messages → the register's three rows →
+  comms events 787a70c2 (team start), 3cd1a01a (PR open), bba0f1c2 (ready) and the checkpoint
+  event. External bound: everything the scan missed today was found by Copilot on a parser
+  and a named assumption; point the next outside eyes there. Fence sweep: no owner-fenced
+  wording reached this lane; no private path or content in any line I wrote (the private
+  material was never read). Fixed point: a third pass would only re-find the lane B pause
+  inference and the rename omission; the recursion closes here.
