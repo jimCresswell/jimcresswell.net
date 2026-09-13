@@ -67,9 +67,9 @@ Every line answered first-hand, none inferred:
 
 | Lane | Items | Owns exclusively | Seat | Claim | Branch / PR | State |
 | ---- | ----- | ---------------- | ---- | ----- | ----------- | ----- |
-| A | 3 then 5 | root scripts, CI workflow, `agent-tools/` legs and retirements, the leak validator, `tooling/*/package.json`, `turbo.json`, `jcdotnet/accept-md.config.js`, the incoming bundle | unfilled | — | `closure/lane-a` | ready to route |
-| B | 6 | `.agent/rules/**`, `RULES_INDEX.md`, `.cursor/rules/**`, `.claude/rules/**`, `.agents/rules/**`, the rules-index and trigger generator, sub-agent adapter descriptions | unfilled | — | `closure/lane-b` | ready to route |
-| C | 4 | the definition report, `testing-strategy.md`, the substrate manifest's register declarations, the Gemini projection; hands its four rule re-triages to B as a list | unfilled | — | `closure/lane-c` | ready to route |
+| A | 3 then 5 | root scripts, CI workflow, `agent-tools/` legs and retirements, the leak validator, `tooling/*/package.json`, `turbo.json`, `jcdotnet/accept-md.config.js`, the incoming bundle | Saffron turns Verdure (c39ad7) | opens on the go | `closure/lane-a` | routed, holding on the owner's word |
+| B | 6 | `.agent/rules/**`, `RULES_INDEX.md`, `.cursor/rules/**`, `.claude/rules/**`, `.agents/rules/**`, the rules-index and trigger generator, sub-agent adapter descriptions | Sirocco wakes Wingspan (45fe02) | opens on the go | `closure/lane-b` | routed, holding on the owner's word |
+| C | 4 | the definition report, `testing-strategy.md`, the substrate manifest's register declarations, the Gemini projection; hands its four rule re-triages to B as a list | Djinn hunts Solder (36720b) | opens on the go | `closure/lane-c` | routed, holding on the owner's word |
 | Director | 7 | reports index, runbook step 13, `provenance.yml` completion entry; merges | Cauldron herds Lustre | 1db07581 | after A, B, C land | waiting on lanes |
 
 Sequencing constraints: B owns `.agent/rules/` alone, so C's rule edits travel to B as a
@@ -86,3 +86,6 @@ the commit queue (one host, one e2e port). Item 7 is written last because it rec
   universe, not disk globs, and drop the hand-kept ignore list (`compute-dont-hope`). Prettier
   failed the same way minutes later on an untracked editor workspace file; second stepping stone
   (`*.code-workspace` in `.prettierignore`), same routed cure.
+- 2026-09-13 13:49Z: three Implementer team-starts landed (Saffron c39ad7, Sirocco 45fe02, Djinn 36720b);
+  routed A, B, C by arrival order (events `cc2786a4`, then the roster event); all hold on the
+  owner's word. Lane A also carries the tracked-universe lint cure.
