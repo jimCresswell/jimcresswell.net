@@ -666,7 +666,7 @@ paths, setup files) don't apply.
   never in parallel: each is a full-host run (builds, test workers, the
   Playwright web server), and two at once exceed the host. That rule is about
   load, not correctness: each Playwright run serves on a port its config
-  probes free at load, so checkouts no longer share a fixed port, and it
+  holds free from load, so checkouts no longer share a fixed port, and it
   reuses no existing server, so a port taken by anything else fails the run
   loudly and a gate can only ever prove its own build. Git hooks enforce this — pre-commit runs
   prettier on staged files and lint on changed workspaces; pre-push runs

@@ -56,10 +56,21 @@ manual production server.
 **Run the Playwright suite against a production build.**
 
 `playwright.config.ts` now defines a single `default` project whose web
-server runs `pnpm build && pnpm start` on a port the config probes free at
-load, with a 120-second timeout. `reuseExistingServer` is `false`: every run
-proves the build it started, never a server another checkout or a human left
-up (the port mechanism is documented in the config itself).
+server is the site's `e2e:server` script (`scripts/e2e-web-server.ts`), with
+a 120-second timeout. The config holds a free port from the moment it chooses it: the
+prober is the holder, one listener that stays open answering 503 (which
+Playwright reads as not yet available) until the server script, having built
+the site while the port was held, releases it with the runner's own stamp and
+starts Next on it directly. That hold is the resilience mechanism: no other
+prober, the build's PDF generator among them, can be handed the port while it
+is held. The one unowned moment is Next's boot after the release, about a
+second; a bind that fails there exits the server process non-zero, and
+Playwright fails the start when that exit precedes a successful readiness
+poll. Owning the port through Next's boot as well would mean serving Next
+from the holder's own process, a follow-on. `reuseExistingServer` is
+`false`: every run proves the build it started, never a server another
+checkout or a human left up (the mechanism is documented in the config and the
+two scripts).
 
 The previous `with-build` project is removed; `*.with-build.*` test files
 are renamed to standard names. PDF tests run alongside everything else

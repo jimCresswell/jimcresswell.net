@@ -738,7 +738,7 @@ the schedule. Worked instances: a fixed-port Playwright `webServer` turned
 one seat's render server into a fleet-wide push outage (cure: an ephemeral
 port probed at config load — no port or origin read from the environment,
 `reuseExistingServer` stays `false`; this estate's site config, 2026-09-13,
-probes in the runner and hands the port to the processes it forks through a
+holds in the runner and hands the port to the processes it forks through a
 pid-stamped value in the runner's own environment, read there only as the
 runner's internal handshake channel: a forked child is known by Node's own
 IPC-channel state, which never travels by inheritance, a stamp set from

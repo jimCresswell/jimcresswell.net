@@ -1,24 +1,32 @@
 /**
- * The Playwright web server: build, then serve, on one port the harness owns throughout.
+ * The Playwright web server: build with the port held, then serve on it.
  *
  * Playwright treats the first server that answers `webServer.url` as the one it started, so
- * the harness must own its port for as long as any other prober could be handed it. The build
- * is such a stretch: `pnpm build` runs the PDF generator, which probes a free port for its own
- * throwaway Next server, and on a Linux runner that probe was handed the port this harness had
- * probed and released (PR #60, CI run 34780744411: the readiness poll accepted the generator's
- * server, the first tests ran against it, then it went away). This script owns the port
- * instead: it takes the port the config probed (`PORT`), binds it with a listener that answers
- * 503 for the whole build (Playwright keeps polling on a 5xx; a bound port cannot be handed to
- * any prober), then closes the listener and starts Next on it. The two hand-offs, the config's
- * probe to this bind and this listener to Next, run with no build in flight, so no prober
- * exists to take the port; a port taken anyway fails the bind loudly. Fail-fast at this entry
- * point: an unusable `PORT`, a taken port or a failed build exits non-zero with the reason (the
- * site workspace has no Result type yet; that follow-on is on the board).
+ * the harness owns its port from the moment it is chosen until Next binds it. The config
+ * holds it (`port-hold.ts`: the prober is the holder, one listener that stays open answering
+ * 503, so no other prober, the build's PDF generator among them, can be handed it; PR #60
+ * round two found that generator on the harness's port on a Linux runner). This script
+ * decides ownership by one bind before it builds: binding `PORT` refused with EADDRINUSE
+ * means the runner's holder is up, and the script builds, then releases the holder with the
+ * runner's own stamp (`PLAYWRIGHT_SITE_PORT_HANDSHAKE`, inherited from the runner) and
+ * expects the holder's 204; binding succeeding means no holder is up (a re-setup inside one
+ * long-lived runner, whose holder released on the first run), and the script is the holder
+ * for its own build. Either way the port is held through the build. Then Next is started
+ * directly on the port. The one unowned moment is Next's boot after the release, about a
+ * second in which the port is free on the host; a bind that fails there exits this process
+ * non-zero, and Playwright fails the start when that exit precedes a successful readiness
+ * poll (its wait races the exit against the poll). Anything other than the holder's 204 to
+ * the release (a stranger on the port) and any release failure other than a refused
+ * connection exit non-zero before Next starts. Fail-fast at this entry point with the reason
+ * (the site workspace has no Result type yet; that follow-on is on the board).
  */
 import { spawn } from "node:child_process";
 import http from "node:http";
+import path from "node:path";
 
-/** The port the config probed, or undefined when the variable is absent or not a port. */
+import { RELEASE_HEADER } from "./port-hold";
+
+/** The port the config holds, or undefined when the variable is absent or not a port. */
 function portFromEnvironment(text: string | undefined): number | undefined {
   if (text === undefined || !/^\d{1,5}$/u.test(text)) {
     return undefined;
@@ -30,9 +38,9 @@ function portFromEnvironment(text: string | undefined): number | undefined {
 /**
  * Run a command to completion with inherited stdio, in this script's own process group:
  * Playwright stops its web server by killing that group, which takes the whole tree this
- * starts (pnpm, `next start` and the `next-server` child Next forks) and releases the port;
- * a child in a group of its own would outlive that kill and hold the inherited pipes open.
- * A termination signal sent to this script alone is forwarded to the child as well.
+ * starts (`next start` and the `next-server` child Next forks) and releases the port; a
+ * child in a group of its own would outlive that kill and hold the inherited pipes open. A
+ * termination signal sent to this script alone is forwarded to the child as well.
  */
 function run(command: string, args: readonly string[]): Promise<number> {
   return new Promise((resolve) => {
@@ -54,31 +62,97 @@ function run(command: string, args: readonly string[]): Promise<number> {
   });
 }
 
+/**
+ * Bind the port as this script's own holder (a 503 responder), or learn that it is taken:
+ * `runner-holds` on EADDRINUSE (the runner's holder, or a stranger, which the release step
+ * then tells apart), the listening server otherwise.
+ */
+function tryHold(port: number): Promise<http.Server | "runner-holds"> {
+  return new Promise((resolve, reject) => {
+    const holder = http.createServer((_request, response) => {
+      response.statusCode = 503;
+      response.setHeader("Retry-After", "1");
+      response.end("held for the build");
+    });
+    holder.on("error", (error: NodeJS.ErrnoException) => {
+      if (error.code === "EADDRINUSE") {
+        resolve("runner-holds");
+        return;
+      }
+      reject(error);
+    });
+    holder.listen(port, () => {
+      resolve(holder);
+    });
+  });
+}
+
+/** The `code` a system error carries, or undefined for any other value. */
+function errnoCode(value: unknown): string | undefined {
+  return value instanceof Error && "code" in value && typeof value.code === "string"
+    ? value.code
+    : undefined;
+}
+
+/** The error code beneath a failed fetch, from its cause or the first aggregated cause. */
+function causeCode(error: unknown): string | undefined {
+  const cause = error instanceof Error ? error.cause : undefined;
+  if (cause instanceof AggregateError) {
+    const first: unknown = cause.errors[0];
+    return errnoCode(first);
+  }
+  return errnoCode(cause);
+}
+
+/**
+ * Ask the runner's holder to release the port. `released` on the holder's 204; otherwise the
+ * reason the script must stop: a status a stranger answered, or a connection failure that is
+ * not a plain refusal (a refusal after the bind was refused means the holder went away in the
+ * build, which is also a stop).
+ */
+async function releaseHeldPort(port: number, stamp: string): Promise<"released" | string> {
+  try {
+    const response = await fetch(`http://localhost:${String(port)}/`, {
+      method: "DELETE",
+      headers: { [RELEASE_HEADER]: stamp },
+    });
+    await response.arrayBuffer();
+    return response.status === 204
+      ? "released"
+      : `port ${String(port)} answered ${String(response.status)} to the release and is not held by this run's holder`;
+  } catch (error: unknown) {
+    const code = causeCode(error) ?? (error instanceof Error ? error.message : String(error));
+    return `the release request to port ${String(port)} failed (${code})`;
+  }
+}
+
 const port = portFromEnvironment(process.env.PORT);
-if (port === undefined) {
-  process.stderr.write("e2e-web-server: PORT must carry the port the Playwright config probed\n");
+const stamp = process.env.PLAYWRIGHT_SITE_PORT_HANDSHAKE;
+if (port === undefined || stamp === undefined) {
+  process.stderr.write(
+    "e2e-web-server: PORT and PLAYWRIGHT_SITE_PORT_HANDSHAKE must carry the port the Playwright config holds\n"
+  );
   process.exit(2);
 }
 
-const holder = http.createServer((_request, response) => {
-  response.statusCode = 503;
-  response.setHeader("Retry-After", "1");
-  response.end("building");
-});
-holder.on("error", (error) => {
-  process.stderr.write(`e2e-web-server: cannot hold port ${String(port)}: ${error.message}\n`);
-  process.exit(1);
-});
-holder.listen(port, () => {
-  void run("pnpm", ["build"]).then((built) => {
-    if (built !== 0) {
-      process.stderr.write(`e2e-web-server: the build exited ${String(built)}\n`);
-      process.exit(built);
-    }
-    holder.close(() => {
-      void run("pnpm", ["start", "--port", String(port)]).then((served) => {
-        process.exit(served);
-      });
+const ownHold = await tryHold(port);
+const built = await run("pnpm", ["build"]);
+if (built !== 0) {
+  process.stderr.write(`e2e-web-server: the build exited ${String(built)}\n`);
+  process.exit(built);
+}
+if (ownHold === "runner-holds") {
+  const release = await releaseHeldPort(port, stamp);
+  if (release !== "released") {
+    process.stderr.write(`e2e-web-server: ${release}\n`);
+    process.exit(1);
+  }
+} else {
+  await new Promise<void>((resolve) => {
+    ownHold.close(() => {
+      resolve();
     });
   });
-});
+}
+const nextBin = path.resolve(process.cwd(), "node_modules", ".bin", "next");
+process.exit(await run(nextBin, ["start", "--port", String(port)]));
