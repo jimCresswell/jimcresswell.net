@@ -1,7 +1,10 @@
 import { spawnSync } from 'node:child_process';
-import { accessSync, constants, readFileSync } from 'node:fs';
+import { closeSync, fstatSync, openSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+
+/** Owner, group and other execute bits of a POSIX file mode. */
+const EXECUTE_BITS = 0o111;
 
 /**
  * CLI truth-set smoke for the built `run-smoke-tests` binary
@@ -21,8 +24,25 @@ function fail(message: string): never {
   process.exit(1);
 }
 
-accessSync(artefactPath, constants.X_OK);
-if (!readFileSync(artefactPath, 'utf8').startsWith('#!/usr/bin/env node')) {
+// One open serves the mode check and the content read, so there is no
+// check-then-use window (CodeQL js/file-system-race).
+let artefact: string;
+try {
+  const fd = openSync(artefactPath, 'r');
+  try {
+    if ((fstatSync(fd).mode & EXECUTE_BITS) === 0) {
+      fail('the built artefact carries no executable bit');
+    }
+    artefact = readFileSync(fd, 'utf8');
+  } finally {
+    closeSync(fd);
+  }
+} catch (error) {
+  fail(
+    `the built artefact is not readable: ${error instanceof Error ? error.message : String(error)}`,
+  );
+}
+if (!artefact.startsWith('#!/usr/bin/env node')) {
   fail('the built artefact does not start with its shebang');
 }
 

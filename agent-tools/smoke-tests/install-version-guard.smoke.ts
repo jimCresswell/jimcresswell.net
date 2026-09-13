@@ -116,7 +116,20 @@ try {
 
   const install = spawnSync(
     pnpm.value.file,
-    [...pnpm.value.leadingArgs, 'install', '--offline', '--ignore-workspace', '--reporter=silent'],
+    [
+      ...pnpm.value.leadingArgs,
+      'install',
+      '--offline',
+      '--ignore-workspace',
+      '--reporter=silent',
+      // pnpm defaults `frozen-lockfile` to on when it detects a CI runner, and
+      // that mode validates the lockfile BEFORE any lifecycle script runs: the
+      // deliberately old-format fixture lockfile is then refused as broken
+      // (ERR_PNPM_BROKEN_LOCKFILE) and the guard never fires, so the smoke
+      // would prove pnpm's lockfile reader, not the guard. Off, explicitly, on
+      // every runner, so the guard is the process that refuses the install.
+      '--no-frozen-lockfile',
+    ],
     {
       cwd: fixtureRoot,
       encoding: 'utf8',

@@ -1,5 +1,5 @@
 import { spawnSync, type SpawnSyncReturns } from 'node:child_process';
-import { accessSync, constants, readFileSync } from 'node:fs';
+import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -29,8 +29,17 @@ function run(args: readonly string[]): SpawnSyncReturns<string> {
   return spawnSync(process.execPath, [artefactPath, ...args], { cwd: repoRoot, encoding: 'utf8' });
 }
 
-accessSync(artefactPath, constants.R_OK);
-if (!readFileSync(artefactPath, 'utf8').startsWith('#!/usr/bin/env node')) {
+// One read proves both existence and content; a separate access check first
+// would be a check-then-use race (CodeQL js/file-system-race).
+let artefact: string;
+try {
+  artefact = readFileSync(artefactPath, 'utf8');
+} catch (error) {
+  fail(
+    `the built artefact is not readable: ${error instanceof Error ? error.message : String(error)}`,
+  );
+}
+if (!artefact.startsWith('#!/usr/bin/env node')) {
   fail('the built artefact does not start with its shebang');
 }
 
