@@ -301,6 +301,16 @@ ones the Director would put to the owner had the owner been present.
     are gone. Proof: four cells, two mutants killed, the Vercel-clearing mutant red on the two SEO
     origin cells and green restored, the full suite 58 of 58, code-expert no critical finding.
     Copilot requested on the tip; CI's e2e job is the runner-class proof.
+25. Item 5a routed (about 22:50Z) on lane A's measured design: the merge bot's compound read (gh pr
+    view and REST requested_reviewers) omits Copilot's outstanding request while GraphQL lists it
+    as the suffix-less Bot login, which is why the bot read #60 as SILENT-WAIT with a review in
+    flight. Two slices, each inside the round budget, each its own PR after #63 and #60 land:
+    5a-i request visibility (GraphQL requests for Bot, User and Team; the suffix stripped in
+    comparison; an outstanding expected request is the round in flight; RUN-DEAD and
+    RUNS-UNREADABLE retired; the credential fact in the reference; falsifier: #60's verdict before
+    and after); 5a-ii measured state (settled means every expected leg landed on the tip, no
+    expected reviewer requested, no live run mapped; the quiet window gone; docs and fixtures
+    trued). REVIEW: 5a-ii implements the owner's own design note.
 
 ## Routing log
 
