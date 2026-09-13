@@ -388,9 +388,11 @@ the register's shape; their status is `draft` until lane A verifies the home is 
    existing five, status `pending (captured 2026-09-13)`, source and prediction as drafted or
    tightened; leave `duplicate` and routed items out of the register (they are recorded here).
 3. PR #63 is that pull request (opened about 22:10Z, twenty-eight entries filed, the five
-   existing migrated to the counter's shape, the readout quoted from 0 to 33); its review rounds
-   run to zero threads and the bot merges; the constitutional-class entries move to PDR-130's
-   slow lane with review dates in its first cure.
+   existing migrated to the counter's shape, the readout quoted from 0 to 33). Round one, one
+   thread, cured at `SHA: 414fb6c`: the section note cites the ratified item 8 as this batch's
+   owner word, and A, B, C, 1a and 1b moved to PDR-130's slow lane with review dates (the
+   readout now 28). Zero threads with Copilot bound to the tip is the merge condition; the bot
+   merges then.
 4. The Director presents the filed entries to the owner as one batch of cards; the answers are
    the dispositions; graduations follow as their own small PRs; the three napkins under
    `unconsolidated/` are archived only then.
