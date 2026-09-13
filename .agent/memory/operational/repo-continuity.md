@@ -113,7 +113,15 @@ deletion; 57-lesson synthesis with quorum; Vercel root directory; PR. Restart
 assessment (2026-09-12, resumed session): the seed contract holds (both variables
 in the first Bash call; preflight names the hook path, and the native fallback
 with it unset); the "missed startup write" was a non-event (no hook existed at
-startup; the shim runs in 0.11 s) and the timeout is back at 5 s. Falsifier still
-open: duplicate `jc-*` entries in the Claude picker — the model-facing listing
-shows each once, no second skill source exists (`.agents/skills/` is not a
-Claude Code load location in 2.1.269), so the owner's picker is the only test.
+startup; the shim runs in 0.11 s) and the timeout is back at 5 s. The picker
+falsifier is closed (owner, 2026-09-13: each `jc-*` skill shows once after the
+restart). **Owner rulings round 5 (2026-09-13, plan §Owner rulings, round 5)
+govern the migration:** corpus under `.agent/plans/` with the strategy registry
+at `.agent/plans/strategy/` (validator `STRATEGY_DIR` re-pointed); three streams
+(content, knowledge graph, platform — a reading to confirm with the legacy
+dispositions); every legacy plan reviewed before convert / conserve / history;
+the legacy lanes conserved as a sibling corpus outside the scan root because the
+loader walks `archive/`. OCE channel open: findings go to the OCE seat as they
+arise, batched (batch 1 sent 2026-09-13). `.agent-original/` deletion follows a
+presented loss-scan list; the 57-lesson synthesis is one seat's list reviewed by
+the owner before graduation.

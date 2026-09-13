@@ -1012,3 +1012,62 @@ joined to `repo-validators:check`. Falsifier: if the strategy layer takes more t
 to author, the flat shape was the right size. Free-play seed, not a finding: a validator that
 crashes on an absent corpus and an index that pointed at 243 absent files are one shape; both
 cures are a zero-case.
+
+## Owner rulings, round 5 (2026-09-13, two card rounds after compaction)
+
+Eight cards, every open question and unknown the wrap left; the answers are the rulings the
+migration and the rest of slice 2 run under.
+
+1. **"The design and transformation" is the plan-node migration**, from the design brief above.
+2. **The plan corpus lives in the standard Practice location, under `.agent/plans/`.** Three
+   high-level nodes are fine for now. Owner verbatim on the streams: "eventually I expect that the
+   site and Practice will be relatively stable and the content and graphs will be the priority.
+   Ultimately this is my CV, the content is what matters." Consequences: the strategic-choice
+   registry the validator recomputes moves with the corpus (`.agent/plans/strategy/README.md` plus
+   `stream-*.md`, the validator's `STRATEGY_DIR` re-pointed from `docs/strategy`; this estate has
+   no `docs/strategy/`); the three streams are read from the owner's sentence as **the content**
+   (the CV and its editorial), **the knowledge graph**, and **the platform** (the site and the
+   Practice, the two surfaces expected to stay stable) — a reading, confirmed at the next card
+   round with the legacy dispositions.
+3. **Legacy plans: convert live intent, archive the rest — and review every legacy plan first;
+   the owner does not want to lose good ideas.** The 52 files are digested and dispositioned one
+   by one (convert / conserve the idea in a stream file / history), the table presented as cards.
+   The corpus loader walks every subdirectory and directory names carry no archive semantics
+   (`plan-corpus-loading.ts`), so a pre-schema `*.plan.md` anywhere under `.agent/plans/` fails
+   the validator; the legacy lanes are conserved as a sibling corpus outside the scan root, the
+   lineage's own shape (`plans-backlog-2026-07`, `plans-v0-sketch-2026-07-21`).
+4. **Wrap commits stay.** A wrap before compaction lands as its own `chore(continuity)` commit; the
+   session-handoff skill's clause is amended so the skill and the practice agree.
+5. **The picker falsifier is closed:** after the compaction restart each `jc-*` skill shows once.
+6. **OCE channel:** send all historical, current and future issues as they arise, batched
+   sensibly so the OCE seat can record them without being overwhelmed. Sent before this ruling:
+   seven findings (2026-09-12; 1, 2, 3, 7 verified there, 5 transplant-side, 6 retracted), the
+   cited-scripts validator's shape, the PDR-008 cohesion gap. Unsent at the ruling: the batch in
+   §OCE findings batch 1 below.
+7. **`.agent-original/`:** a loss-scan list is presented first; deletion follows the owner's
+   per-item rulings.
+8. **57-lesson synthesis quorum** means: one seat synthesises the candidates onto the
+   pending-graduations register; the owner reviews the list before anything graduates.
+
+### OCE findings batch 1 (2026-09-13, sent under ruling 6)
+
+1. `agent-tools/src/validators/plan-schema/validate-plan-corpus.ts` hard-codes
+   `STRATEGY_DIR = 'docs/strategy'` and reads it with a bare `readFile`; on a host without that
+   directory the validator crashes with an unhandled ENOENT before reading a plan, instead of the
+   fail-closed message every other refusal in the family carries.
+2. `plan-corpus-loading.ts` walks every subdirectory of `.agent/plans/` and states that directory
+   names carry no archive semantics; the lineage keeps `delivery/archive/` inside the scan root, so
+   archived nodes are validated live for ever. Intentional (archived nodes stay conformant) or a
+   latent cost as the archive grows — a question, not a defect.
+3. The patterns-index generator rendered 243 links to absent files on an empty corpus; the
+   zero-case (`renderPatternIndex([])` → one italic line) is a one-function cure, landed here.
+4. `pnpm -s` is rejected by pnpm 12 ("unexpected argument '-s'"); OCE pins pnpm 11.20 and uses
+   `pnpm -s` fifteen times in `agent-tools/package.json` `test:e2e` and in the commit skill. A
+   forward warning for the next pnpm major: `--silent` works on both.
+5. The transplanted `pr-lifecycle` skill fixture cites OCE's PR #135 by number; a shared skill
+   carrying one repository's PR as its worked example transplants as a dead pointer.
+6. `session-handoff` forbids dedicated handover commits (owner ruling 2026-07-15) while this
+   owner asks for a clean tree at every compaction and ruled today that wraps commit; the two
+   rulings coexist by estate. A note for the lineage's next consolidation, not a defect.
+7. The cited-scripts validator shared earlier now also excludes `.agent/collaboration/rapid-comms/`
+   from its scan (comms events quote scripts as history).

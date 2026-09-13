@@ -600,3 +600,18 @@
   here. This checkout: no other seat, registry empty, queue empty.
 - `pnpm -s` is rejected by pnpm 12.4.1 ("unexpected argument '-s'"); `--silent` still works.
   That is the pre-existing codex-session-alert smoke failure; cure is the flag, not the smoke.
+
+### Session 6 (2026-09-13, after compaction) — the rulings round, then the migration
+
+- Owner asked for cards with every open question and unknown; two rounds of four, all answered
+  (plan of record §Owner rulings, round 5). Load-bearing for the migration: the corpus stays
+  under `.agent/plans/` (no `docs/strategy/`; the validator's `STRATEGY_DIR` re-points to
+  `.agent/plans/strategy/`), three streams for now with the content ranked first ("this is my
+  CV, the content is what matters"), every legacy plan reviewed before disposition. Picker
+  falsifier closed by the owner (each `jc-*` once). Wrap commits stay; skill clause amended.
+- Prediction (b) from Wrap 4 refuted by reading `plan-corpus-loading.ts`: the walk enters every
+  subdirectory and says so ("directory names carry no archive semantics"), so `archive/` IS
+  scanned. Prediction (a) stands to be tested once a strategy README exists.
+- OCE channel now open in both directions under ruling 6: batch 1 (seven items) sent to Nettle
+  guards Pistil; earlier sends recovered from the transcript (seven findings, the cited-scripts
+  shape, PDR-008) so nothing was repeated.

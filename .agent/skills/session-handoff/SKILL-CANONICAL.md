@@ -222,7 +222,12 @@ no retrospective memos; those are close-out work, this skill's §Steps.
    the owner rules a shared handoff BRANCH for a day's uncommitted records
    (2026-09-02, `handoff/jim-september`), that branch is the owner's
    instrument, not a licence for per-seat handover PRs — a seat's own draft
-   continuity PR was withdrawn the same day under this ruling.
+   continuity PR was withdrawn the same day under this ruling. Local
+   amendment (owner ruling 2026-09-13, `jimcresswell.net`): a wrap run
+   because the owner has asked for a clean tree before compaction lands
+   as its own `chore(continuity)` commit; the owner's compaction word is
+   the instrument, and the no-handover-PR half of the 2026-07-15 ruling
+   stands unchanged.
    Active plans remain authoritative for scope, sequencing, acceptance criteria,
    and validation.
 
