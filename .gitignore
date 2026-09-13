@@ -14,6 +14,10 @@ dist
 # Local MCP server config
 .mcp.json
 
+# Merge bot: per-checkout and never tracked (the tracked surface is the
+# .example template beside it; see .agent/reference/merge-bot.md).
+.github/merge-bot.json
+
 # Platform settings: project config is tracked, local overrides are not.
 .claude/settings.local.json
 .cursor/settings.local.json

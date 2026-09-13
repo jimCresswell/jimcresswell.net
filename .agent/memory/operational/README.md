@@ -8,8 +8,6 @@ interruption, handoff, or restart.
 See [`.agent/memory/README.md`](../README.md) for the three-mode
 memory taxonomy (active / operational / executive). Doctrine for the
 continuity-surface split lives in
-`operational-awareness-and-continuity-surface-separation.plan.md` (`../../plans-old-archive/agentic-engineering-enhancements/archive/completed/operational-awareness-and-continuity-surface-separation.plan.md`)
-(the OAC lane) and
 [PDR-011](../../practice-core/decision-records/PDR-011-continuity-surfaces-and-surprise-pipeline.md)
 (portable Practice doctrine).
 
@@ -23,6 +21,12 @@ continuity-surface split lives in
 | [`open-questions.md`](open-questions.md) | Register of non-urgent unresolved planning, design, or process questions | Until answered in place, surfaced to owner, withdrawn, or left open with deferral-honesty | Any agent appends; `consolidate-docs` drains | Sibling to pending-graduations; subordinate to active plans, ADRs, and PDRs |
 | [`collaboration-state-conventions.md`](collaboration-state-conventions.md) | Operational guide to live state in `.agent/state/collaboration/` (lifecycle, schema-field provenance, trusted-agents threat model) | Indefinite; evolves alongside `.agent/state/` surfaces | `consolidate-docs` and amendments to `agent-collaboration.md` | Subordinate to `agent-collaboration.md` directive for doctrine |
 | [`collaboration-state-lifecycle.md`](collaboration-state-lifecycle.md) | Detailed recipes for opening, refreshing, closing, archiving, and reporting collaboration state | Indefinite; evolves alongside `.agent/state/collaboration/` lifecycle rules | Collaboration protocol implementation and remediation passes | Subordinate to `collaboration-state-conventions.md` for state indexing |
+| [`ephemeral-to-permanent-homing.md`](ephemeral-to-permanent-homing.md) | Shared methodology for moving content out of ephemeral surfaces into permanent homes; `session-handoff` and `consolidate-docs` defer to it | Indefinite | Consolidation passes that refine the method | Methodology, not state; subordinate to the skills that invoke it |
+| [`frictions-register.md`](frictions-register.md) | Capture surface for frictions, gaps, and observed failures in the agent tooling substrate; items mature into a plan line, a plan, or a direct fix | Until each entry matures or is withdrawn | Any agent that meets a tooling friction | Capture only, never an execution plan; subordinate to plans |
+| [`diagnostics/`](diagnostics/README.md) | Append-only operational diagnostic traces and evidence bundles that support later decisions and consolidation | Indefinite; historical traces are retained, never rewritten | Diagnostic sessions and consolidation | Evidence, not conclusions; the substrate manifest's `memory-operational-diagnostics` entry is its substrate contract and this directory's README its content contract |
+| [`quarantine/`](quarantine/README.md) | Doctrine or guidance removed from circulation pending owner review; read-only for agents, never applied | Until the owner re-authors or archives each item | Consolidation and owner-directed quarantine or disposition edits | Not guidance; the manifest's `memory-operational-quarantine` entry is its substrate contract and this directory's README its content contract |
+| `documentation-sync-logs/` | Per-collection documentation-sync logs, one section per phase, kept by the plan templates' documentation-propagation component | Runtime-created at a collection's first propagation step; absent until then | The documentation-propagation plan component | The manifest's `memory-operational-documentation-sync-logs` entry is the contract |
+| `deferred-controls-register.md` | Register of lower-priority security or operational controls a plan has excluded from its executable sequence, each with its research anchor, state and trigger to promote | Runtime-created at the first control a plan here defers; absent until then | The plan that defers a control appends its row | The manifest's `memory-operational-deferred-controls-register` entry is the contract |
 
 ## Authority Order
 

@@ -49,6 +49,8 @@ const SCANNED_ROOTS: readonly string[] = ['.agent/directives', '.agent/rules', '
 const SCANNED_ROOT_FILES: readonly string[] = [
   'AGENTS.md',
   'CLAUDE.md',
+  'GEMINI.md',
+  '.github/copilot-instructions.md',
   'CONTRIBUTING.md',
   'README.md',
   'RULES_INDEX.md',

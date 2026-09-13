@@ -101,6 +101,8 @@ jobs:
         run: pnpm type-check
       - name: Unit and integration tests
         run: pnpm test
+      - name: Agent-tools end-to-end and smoke suite
+        run: pnpm agent-tools:test:e2e
 
   e2e:
     name: e2e

@@ -186,12 +186,12 @@ missing ones fall through to the generic inputs and produce stale cache hits.
 Quality is enforced through four surfaces, each triggered at a different point
 in the development lifecycle:
 
-| Surface        | Runs                                                                                                                                                                                                                                                                      |
-| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **pre-commit** | The branch guard (refuses commits on `main`), Prettier and markdownlint on the staged files, and `turbo run lint` for the workspaces changed since `HEAD`. Light by design (owner ruling 2026-09-12: light commit, full push).                                            |
-| **commit-msg** | `prevent-accidental-major-version`, then commitlint (Conventional Commits).                                                                                                                                                                                               |
-| **pre-push**   | `pnpm check` plus the site's end-to-end suite (`pnpm --filter @jimcresswell/www test:e2e`).                                                                                                                                                                               |
-| **CI**         | `.github/workflows/ci.yml` — four jobs after `install`: `secret-scan`, `static-checks` (format, markdown, shell, runtime-only, sub-agents, portability, skills, encoding, machine-local paths, knip, depcruise), `build-and-test` (build, lint, type-check, test), `e2e`. |
+| Surface        | Runs                                                                                                                                                                                                                                                                                                                                     |
+| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **pre-commit** | The branch guard (refuses commits on `main`), Prettier and markdownlint on the staged files, and `turbo run lint` for the workspaces changed since `HEAD`. Light by design (owner ruling 2026-09-12: light commit, full push).                                                                                                           |
+| **commit-msg** | `prevent-accidental-major-version`, then commitlint (Conventional Commits).                                                                                                                                                                                                                                                              |
+| **pre-push**   | `pnpm check` plus the site's end-to-end suite (`pnpm --filter @jimcresswell/www test:e2e`).                                                                                                                                                                                                                                              |
+| **CI**         | `.github/workflows/ci.yml` — four jobs after `install`: `secret-scan`, `static-checks` (format, markdown, shell, runtime-only, sub-agents, portability, skills, encoding, the docs and repo validator aggregates, knip, depcruise), `build-and-test` (build, lint, type-check, test, the agent-tools end-to-end and smoke suite), `e2e`. |
 
 The merge, cherry-pick and revert paths fire `pre-merge-commit`,
 `prepare-commit-msg` and `applypatch-msg`, which carry the same branch guard.
@@ -226,26 +226,51 @@ worktree copies pulled in) that are artefacts of the wrong command, not the
 code — and a red result from the wrong command is still yours to trace to that
 root cause, never to dismiss as a harness quirk.
 
-### `pnpm check` — the read-only aggregate
+### `pnpm check` — the full aggregate
 
 `pnpm check` is the only canonical **full** aggregate verification command and
-it is **read-only**: it composes the root format and markdown checks, the shell
+it writes **no tracked file**: it composes the root format and markdown checks, the shell
 and runtime-only lints, the Turbo `lint`, `type-check` and `test` tasks, knip,
 depcruise, the secret scan, and the Practice validators (portability,
-sub-agents, skills adapters, encoding, machine-local paths). It mutates
-nothing, so it is the
-surface pre-push, CI and any repo-wide claim of green cite. `pnpm check` is
-an alias kept so the hook and the parity validator have a stable name.
+sub-agents, skills adapters, encoding, the `docs-validators:check` aggregate
+with machine-local paths among its legs, and the `repo-validators:check`
+aggregate, whose legs include the substrate audit `practice:substrate:check`
+and the inter-Practice wire-contract check). The
+audit's instance-tier leg validates the live collaboration state of the
+checkout it runs on: an absent, untracked-by-design surface (the claim
+registries, the shared-comms-log render) reads as informational, so a fresh
+checkout and CI always pass it, while a present-but-invalid registry or a
+stale render — or a render deleted while events exist — is blocking. That is
+the one leg whose verdict can differ between a live checkout and CI, by
+design: CI can only ever see the informational verdict. The aggregate's only
+write is the agent-tools build output under `agent-tools/dist` (ignored, and
+rebuilt by the end-to-end leg so the smoke suite proves the built binaries),
+so it is the surface pre-push, CI and any repo-wide claim of green cite.
+`pnpm check` is an alias kept so the hook and the parity validator have a
+stable name.
 
-`pnpm check` does not build the site, run the end-to-end suite, or run the
-`smoke:*` scripts; those run on their own surfaces (`pnpm build`,
-`pnpm test:e2e`, and the workspace scripts).
+The root format and markdown legs take the **tracked tree** as their universe:
+`repo-check prettier-tracked` and `repo-check markdownlint-tracked` ask
+`git ls-files` for the file list (the pre-commit hook's `prettier-staged` and
+`markdownlint-staged` ask for the staged set the same way) and pass it to the
+tool, so the gate reads the same on every checkout and in CI. A disk walk would
+lint whatever one machine happens to carry — a build output, a generated read
+model, an editor's workspace file — and prove that machine, not the repository.
+`.prettierignore` and `.markdownlint-cli2.jsonc` therefore declare **ownership**
+only (which tracked surfaces each tool governs), never existence.
+
+`pnpm check` does not build the site or run its browser suites; those run on
+their own surfaces (`pnpm build`, `pnpm test:e2e`). It does run the
+agent-tools end-to-end and smoke suite (`pnpm agent-tools:test:e2e`): the
+in-process end-to-end tests, then every `smoke-tests/*.smoke.ts`, discovered
+from the directory rather than listed, so a new smoke is gated the moment it
+exists.
 
 ### `pnpm fix` and `pnpm fix:docs` — the mutating repairs
 
 `pnpm fix` runs `format:root`, `markdownlint:root` and `lint:fix` — the
 auto-fixers only, and `pnpm fix:docs` the docs subset. Run `pnpm check` after either, so
-the proof that follows the repair is the same read-only gate. Use the repairs
+the proof that follows the repair is the same gate. Use the repairs
 to cure a failing proof, then re-run the proof from the beginning; a mutating
 command is never final evidence that the tree is clean.
 
@@ -311,16 +336,17 @@ defect is a missing dependency edge — declare it (in the workspace
 Remote caching is enabled in `turbo.json`; the hooks export `TURBO_UI=0` so the
 TUI does not swallow output.
 
-| Task         | Cached | Notes                                       |
-| ------------ | ------ | ------------------------------------------- |
-| `build`      | ✅     | Outputs `dist/**` and `.tsup/**`            |
-| `type-check` | ✅     | Re-checks only when source changes          |
-| `lint`       | ✅     | Re-lints only when source or config changes |
-| `test`       | ✅     | Re-runs only when source or tests change    |
-| `test:e2e`   | ✅     | Re-runs only when the e2e inputs change     |
-| `lint:fix`   | ❌     | Modifies source files                       |
-| `clean`      | ❌     | Destructive operation                       |
-| `dev`        | ❌     | Persistent process                          |
+| Task                            | Cached | Notes                                                           |
+| ------------------------------- | ------ | --------------------------------------------------------------- |
+| `build`                         | ✅     | Outputs `dist/**` and `.tsup/**`                                |
+| `type-check`                    | ✅     | Re-checks only when source changes                              |
+| `lint`                          | ✅     | Re-lints only when source or config changes                     |
+| `test`                          | ✅     | Re-runs only when source or tests change                        |
+| `test:e2e`                      | ✅     | Re-runs only when the e2e inputs change                         |
+| `@engraph/agent-tools#test:e2e` | ❌     | The smoke suite proves the built binaries every run; no outputs |
+| `lint:fix`                      | ❌     | Modifies source files                                           |
+| `clean`                         | ❌     | Destructive operation                                           |
+| `dev`                           | ❌     | Persistent process                                              |
 
 ### A task's declared outputs must cover its full write-set
 

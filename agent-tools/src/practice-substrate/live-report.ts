@@ -4,9 +4,9 @@ import { evaluateRetiredPathScan } from './live-retired-paths.js';
 import {
   evaluateCollaborationJsonSurfaces,
   evaluateMigrationLedgers,
-  evaluateSharedCommsLog,
   readManifest,
 } from './live-json.js';
+import { evaluateSharedCommsLog } from './live-shared-comms-log.js';
 import {
   createPracticeSubstrateReport,
   type PracticeSubstrateCliOptions,
@@ -18,11 +18,11 @@ import { readOptionalString, readString, type ManifestDocument } from './live-ty
 import { type SubstrateFinding } from './types.js';
 
 // Subtraction guard, not a moving mirror: this pin forces a provenance-carrying
-// edit here whenever a manifest surface is added or retired. 21 since the
-// owner-authored estate restructure (#213, 2026-06-23) retired
-// memory-operational-tracks wholesale; update this constant in the same PR as
-// any future surface addition or retirement.
-const EXPECTED_MANIFEST_SURFACES = 22;
+// edit here whenever a manifest surface is added or retired. 24 since 2026-09-13,
+// when the documentation-sync-logs and deferred-controls-register surfaces were
+// declared; update this constant in the same PR as any future surface addition
+// or retirement.
+const EXPECTED_MANIFEST_SURFACES = 24;
 
 /**
  * Build the read-only report from live repo state.

@@ -121,7 +121,7 @@
     "@engraph/agent-tools#test:e2e": {
       "dependsOn": ["build"],
       "outputs": [],
-      "cache": true,
+      "cache": false,
       "inputs": [
         "$TURBO_DEFAULT$",
         "e2e-tests/**/*.ts",
