@@ -311,6 +311,11 @@ ones the Director would put to the owner had the owner been present.
     and after); 5a-ii measured state (settled means every expected leg landed on the tip, no
     expected reviewer requested, no live run mapped; the quiet window gone; docs and fixtures
     trued). REVIEW: 5a-ii implements the owner's own design note.
+26. PR #63 merged by the bot at `SHA: dc23dff` (22:39Z): session 2's twenty-eight entries on the
+    register in the counter's shape, the five existing migrated, five in the slow lane, readout 28
+    pending. The morning cards are the dispositions (the ratified item 8); the napkins under
+    `unconsolidated/` archive only after them. Ruling: item 5a-i opens its PR from `main` at
+    `SHA: dc23dff` without waiting for #60 (no shared files). Open: #60, #62.
 
 ## Routing log
 
