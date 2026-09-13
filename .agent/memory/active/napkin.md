@@ -870,3 +870,41 @@
   two registers the ratified text says to create or declare. Both reversed. The lenses resolve what
   the ratified text leaves open; the text itself is the owner's and changes only by card. Candidate
   for distilled. The merge bot exists now (kept, as ratified); agent PR writes run as the bot.
+
+### Wrap 7 (2026-09-13, about 15:45Z, before compaction) — the Director session
+
+- Landed: PR #54 (Director records, channel rule) at `c426c6c`; PR #57 (closure item 4) at
+  `4a61112`, merged by the bot. Open: #56 (item 3 + lint cure, tip 9a90d1b, Copilot re-requested
+  15:32Z), #55 (item 6 sweep, third round granted, cure unwritten). Owner word about 15:35Z:
+  slow down; lane A active, B and C paused with state saved.
+- Metacognition: the day's Director corrections were one shape again, and a new one. The old
+  shape (process where a mechanism exists) showed as executing instead of routing: two lint
+  ignore lines, a mis-encoded reviewer request that touched the owner, an ambiguous slot rule
+  ("tell me before pushing") that seats read as notify-and-go. The new shape: a verdict that
+  overturned ratified text (removal instead of restore; "not brought" instead of declare). The
+  lenses resolve what the ratified text leaves open, never the text; a case for changing it is a
+  card. Both recorded on the handoff file and distilled.
+- Free play, kept: the push slot is a lock the estate could compute; the real cure is a
+  per-worktree e2e port or `reuseExistingServer` off locally (lane A generalisation, on the
+  board). Kept: the merge tool reads GraphQL logins, the docs speak REST logins; identity
+  normalisation is a class, not a case. Discarded: a "review requester" bot scope (the platform
+  refuses it for the app; the owner credential is the only requester here).
+- Concept exploration: not run; the day's exploration was the channel rule, landed.
+- Parallax (screening): the live uncertainty is whether compaction keeps the Monitor tasks
+  (watcher, heartbeat, the #56 wait). The rule says check, then re-arm what is absent; the
+  handoff file carries the order. Defeaters watched: a seat pinging a quiet Director (one ping
+  per cadence, then keep working: by rule); Copilot's second pass on #56 opening a third round
+  (the budget is the Director's call, on the record).
+- Predictions a successor tests: (a) the watcher and heartbeat monitors are absent after
+  compaction and are re-armed in the first turn; (b) #56 merges on its next Copilot pass with at
+  most one new thread; (c) lane B's third-round cure lands in one commit when resumed; (d) no
+  seat pushes without asking for the slot for the rest of the session.
+- Blind-spot bounds: the lineage's own handling of bot-authored Copilot review (its note says the
+  bot's request works there; here it does not); whether Copilot reviews a bot PR without a
+  request at all (never observed either way here); the four PAUSED/checkpoint events' full
+  bodies (read truncated).
+- Work safety: records committed on `chore/director-records-2` (ahead of origin by the wrap
+  commits); push queued behind lane B's one save-state push in the slot order; the successor
+  pushes first. Claims: four open (Director, A, B, C). Monitors: watcher bd5bq7qs1, heartbeat
+  byv81g2eq (check, then re-arm). Fixed point: a further pass would only re-find the two shapes
+  above and the three bounds; the recursion closes here.

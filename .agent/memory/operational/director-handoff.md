@@ -50,49 +50,43 @@ Every line answered first-hand, none inferred:
   archive holds only processed material.
 - The transplant is bounded: closure items 3 to 8 finish it, then editorial work.
 
-## Current handoff state (2026-09-13, evening)
+## Current handoff state (2026-09-13, about 15:45Z, at the Director's pre-compaction wrap)
 
 - Director: Cauldron herds Lustre (880ff9), claim `1db07581`, thread `transplant-closure`,
-  branch `chore/director-records-2` (records only, after PR #54 merged at `c426c6c`; the Director makes no source
-  edits).
+  branch `chore/director-records-2` (records only; the Director makes no source edits).
 - Controlling node: `.agent/plans/delivery/practice-completion.plan.md` §Transplant closure.
-  Items 1 and 2 done (archive deleted after the computed loss-scan; PR #53 merged at
-  `55649a2`). Items 3 to 7 are session 1's remaining work; item 8 is session 2.
-- Plan of record: `docs/explorations/2026-09-12-oce-practice-lineage-transplant.md`, rounds 11
-  and 13.
-- Team shape: three Implementer seats, owner-started, one worktree each, picked up with
-  `start-right-team continue closure-lane-<a|b|c>`. Full protocol at n≥3.
-
-## Decisions of the approved plan (owner-approved 2026-09-13 ~13:58Z; go given ~14:00Z)
-
-1. The go: owner to Director once; the Director relays one directed event per lane (events
-   `0349479b` A, `8cca63df` B, `7b0ab8aa` C). Owner's go, verbatim: "Go. I release you to do
-   work. Questions from the seats go back to you, run them through the decision matrix ... You
-   and the team have standing permission to enter and leave all worktrees."
-2. Worktrees: each seat cuts `closure/lane-<x>` from `origin/main` into the sibling `-worktrees/`
-   directory, names the `EnterWorktree` invocation to the Director natively, then issues it.
-3. Item 7 (the compiled record) is lane C's second PR, per PDR-117; the Director does not
-   execute doc work.
-4. Lane A's first PR is the tracked-universe lint cure plus item 3; item 5 is its second.
-5. The leak validator's needles derive from `provenance.yml`'s lineage entry; pre-fix run
-   recorded against the named-files prediction.
-6. Lane B derives the frontmatter from today's `RULES_INDEX.md` (classification, trigger) and
-   `.cursor/rules/*.mdc` (description, alwaysApply) by script; a `trigger` key is added; where
-   the two sources disagree the index wins and every reconciled rule is listed in the PR; sweep
-   PR first, generator PR second with the byte-equal proof.
-7. Pushes serialise through the commit queue, one in flight (Playwright reuses a running :3000
-   server locally and would prove the wrong worktree); the Director holds the order.
-8. PDR-132 two-round budget; code-expert review before each PR; green and clean merged by the
-   Director by merge commit without asking; one rebase on lane B's sweep.
-9. Closeout: team-member closeouts per seat; the Director rewrites this file in place.
+  Landed on `main`: item 1 (archive deleted), item 2 (PR #53), item 4 (PR #57, `4a61112`), the
+  Director records and the channel rule (PR #54, `c426c6c`). Open: PR #56 (lane A, item 3 + the
+  tracked-universe lint cure; Copilot re-request due on its next tip; merge at zero threads), PR
+  #55 (lane B, item 6 sweep; third round granted, cure not yet written; two Copilot threads open).
+  Not started: lane B 2a/2b generator PRs (WIP on `closure/lane-b-generator`), lane C's
+  follow-ons (restore, sif, five patterns), item 5 (lane A, after #56), item 7 (lane C, after
+  its follow-ons).
+- Team state: owner word about 15:35Z, "we need to slow down, just you and one implementer,
+  the rest paused." Lane A active; lanes B and C PAUSED with state saved and claims kept;
+  resume is owner word relayed by the Director.
+- Merge mechanics learned today: every agent PR write runs as the bot; the bot cannot request
+  Copilot here (the owner's CLI credential can, and the request registers on the timeline
+  about 20 s later; the review takes 8 to 12 minutes); a push re-opens the round and needs a
+  fresh request; `merge-bot merge --expect copilot-pull-request-reviewer` (GraphQL login form, no
+  `[bot]` suffix) is what binds the leg; pushes serialise (one host, one e2e port): the seat
+  asks, the Director confirms, the seat pushes and releases.
+- Re-arm after compaction, in this order, checking first (PDR-133; nothing is assumed live):
+  the all-channels comms watcher (Monitor, `comms watch --exclude-tag heartbeat`), then
+  `assert-watcher-live`; the heartbeat loop (both legs, claim `1db07581`); then read the stream
+  since the wrap event for the seats' pings and PAUSED events.
+- Next safe step: confirm #56's Copilot request on its landed tip (request under the owner's CLI
+  credential if absent), merge #56 by the bot at zero threads, give lane A the go for item 5 on
+  a branch from `main`, push this records branch and open its PR. Everything else waits for the
+  owner's word.
 
 ## Live board
 
 | Lane | Items | Owns exclusively | Seat | Claim | Branch / PR | State |
 | ---- | ----- | ---------------- | ---- | ----- | ----------- | ----- |
-| A | 3 then 5 | root scripts, CI workflow, `agent-tools/` legs and retirements, the leak validator, `tooling/*/package.json`, `turbo.json`, `jcdotnet/accept-md.config.js`, the incoming bundle | Saffron turns Verdure (c39ad7) | opens on the go | `closure/lane-a` | ACTIVE: #56 ready (two Copilot threads to triage), then item 5 |
+| A | 3 then 5 | root scripts, CI workflow, `agent-tools/` legs and retirements, the leak validator, `tooling/*/package.json`, `turbo.json`, `jcdotnet/accept-md.config.js`, the incoming bundle | Saffron turns Verdure (c39ad7) | opens on the go | `closure/lane-a` | ACTIVE: #56 at 9a90d1b, Copilot re-requested 15:32Z, merge at zero threads; records commit 64aa005 held for item 5's branch |
 | B | 6 | `.agent/rules/**`, `RULES_INDEX.md`, `.cursor/rules/**`, `.claude/rules/**`, `.agents/rules/**`, the rules-index and trigger generator, sub-agent adapter descriptions | Sirocco wakes Wingspan (45fe02) | 707ed764 | `closure/lane-b` PR #55 (third round); `closure/lane-b-generator` (2a) | PAUSED by owner word about 15:35Z; state saved |
-| C | 4 then 7 | the definition report, `testing-strategy.md`, the substrate manifest's register declarations, the Gemini projection; hands its four rule re-triages to B as a list | Djinn hunts Solder (36720b) | c7f8c3b7, d5232d8a | `closure/lane-c`; PR #57 merged 4a61112 | PAUSED by owner word about 15:35Z; restore not started; claim extended |
+| C | 4 then 7 | the definition report, `testing-strategy.md`, the substrate manifest's register declarations, the Gemini projection; hands its four rule re-triages to B as a list | Djinn hunts Solder (36720b) | c7f8c3b7, d5232d8a | `closure/lane-c`; PR #57 merged 4a61112 | COLD-PAUSED by owner word in its session about 15:40Z (events f76f87a3, cold-pause); unreachable by comms or native messaging; route nothing; restore not started; claim db336346 kept (reads stale) |
 | Director | 7 | reports index, runbook step 13, `provenance.yml` completion entry; merges | Cauldron herds Lustre | 1db07581 | after A, B, C land | waiting on lanes |
 
 Sequencing constraints: B owns `.agent/rules/` alone, so C's rule edits travel to B as a
@@ -166,3 +160,6 @@ the commit queue (one host, one e2e port). Item 7 is written last because it rec
   paused." Lane A active (closest to landing: #56 green, two threads); lanes B and C paused with
   state saved (WIP commits pushed, PAUSED events, claims kept, heartbeats stopped). Resume is owner
   word through the Director. Open: #55 third round (lane B), #56 (lane A), restore not started (C).
+- 2026-09-13 about 15:45Z: pre-compaction wrap. Records committed on `chore/director-records-2`
+  (push queued behind lane A and lane B's pushes in the slot order; the post-compaction Director
+  pushes first thing if it has not landed).

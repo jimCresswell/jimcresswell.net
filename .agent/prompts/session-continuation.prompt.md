@@ -35,6 +35,11 @@ conserved at `.agent/plans-legacy-2026-09/`), and the Practice definition.
 The branch is pushed and tracks origin; draft PR #53 is open (2026-09-13). `pnpm check` green. Read `.agent/memory/operational/repo-continuity.md`
 §Current State and §Next Safe Steps first.
 
+**Director session (2026-09-13, evening; wrap 7):** this seat is the Director (PDR-117). Read
+`.agent/memory/operational/director-handoff.md` first: the board, the approved decisions, the
+routing log and the re-arm list. Lane A is active on PR #56, then closure item 5; lanes B and C
+are paused by owner word with state saved; resume is the owner's word relayed by the Director.
+
 Until that transplant closes, the earlier workstreams below are **parked**, not
 abandoned. Do not resume any of them by default.
 
@@ -65,10 +70,10 @@ PRs #36, #39, #40 and #41 are merged; #47 (chore/residual) is merged. Do not
 replay the old stacked branches or repeat the history repair. Their closure is
 not workspace-extraction approval.
 
-There is no live team seat, watcher, claim, or open pull request. Historical
-collaboration files do not imply an active pairing. Team shape is owner-set per
-session; do not start monitoring machinery unless Jim explicitly opens a team
-session. Where a session is live, the newest channel under
+Team shape is owner-set per session. As of 2026-09-13 evening a team IS live (a Director and
+three Implementer seats, two of them paused; open pull requests #55 and #56; four claims in the
+registry); read `director-handoff.md` before assuming otherwise, and do not start monitoring
+machinery in a session the owner did not open as a team seat. Where a session is live, the newest channel under
 `.agent/collaboration/rapid-comms/` is authoritative for who holds which lane —
 check that directory for new channels rather than watching only a known one.
 

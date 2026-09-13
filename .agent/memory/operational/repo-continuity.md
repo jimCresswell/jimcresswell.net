@@ -73,6 +73,15 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
   cron, claim or monitor was live at the wrap; nothing survives compaction and nothing needs
   re-arming.
 
+- **2026-09-13, evening (wrap 7, the Director session):** the owner named this seat Director (PDR-117)
+  and started three Implementer seats. Landed on `main`: the Director records and the channel rule
+  (PR #54, `c426c6c`), closure item 4 (PR #57, `4a61112`, merged by the merge bot the owner created:
+  App `jimbot-of-the-devonshire-jimbots`, config per-checkout and untracked, key outside the repo).
+  Open: PR #56 (lane A, item 3 + the tracked-universe lint cure), PR #55 (lane B, item 6 sweep, third
+  round). Owner word about 15:35Z: slow down, Director plus one Implementer; lane A active, lanes B
+  and C PAUSED with state saved. The live map is `director-handoff.md` (board, decisions, routing
+  log, re-arm list); it is the successor Director's first read.
+
 ## Active Threads
 
 - OCE Practice lineage transplant — closure (Director: Cauldron herds Lustre, `director-handoff.md`;

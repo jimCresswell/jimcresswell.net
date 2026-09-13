@@ -1516,3 +1516,15 @@ recorded in `.agent/memory/operational/director-handoff.md` §Decisions of the a
 (item 7 to lane C per PDR-117; the lint cure first on lane A; derived leak-validator needles;
 derived rule frontmatter with a `trigger` key and the index winning disagreements; serialised
 pushes; the PDR-132 budget). Go relayed as directed events `0349479b`, `8cca63df`, `7b0ab8aa`.
+
+## Owner rulings, round 16 (2026-09-13, about 15:35Z) — slow down
+
+Owner, verbatim: "we need to slow down, just you and one implementer, the rest paused." Lane A
+(Saffron turns Verdure) stays active: PR #56 (closure item 3 with the tracked-universe lint cure)
+to merge, then item 5. Lanes B (Sirocco wakes Wingspan; PR #55 in a third round, the 2a generator
+as WIP) and C (Djinn hunts Solder; the corpus restore not started) are paused with their state
+saved and their claims kept; resume is the owner's word relayed by the Director. Landed this
+session: PR #54 (`c426c6c`, the Director records and the channel rule) and PR #57 (`4a61112`,
+closure item 4), both merged by the merge bot the owner created. The Director's corrections of
+the session are on `director-handoff.md` and distilled: ratified text is the owner's, the lenses
+resolve only what it leaves open.
