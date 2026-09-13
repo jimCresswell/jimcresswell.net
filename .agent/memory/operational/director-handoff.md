@@ -325,6 +325,12 @@ ones the Director would put to the owner had the owner been present.
     await; four flow cells over a real bound socket, the handler-gap mutant killed; code-expert
     no critical finding. Copilot requested on the tip. 5a-i's second commit (its code-expert
     items) written meanwhile; its PR follows on ask.
+29. Item 5a-i is PR #64, open as the bot at `SHA: b94e00b` (about 23:15Z on 2026-09-13): review
+    requests read from GraphQL for Bot, User and Team; the suffix stripped in comparison; an
+    outstanding expected request is the round in flight; RUN-DEAD and RUNS-UNREADABLE retired;
+    merge-bot.md carries the credential fact; three mutants killed; the falsifier quoted before
+    (#60 read SILENT-WAIT with a request outstanding) and after (#62 read WAITING-REVIEW-RUN-LIVE).
+    Copilot requested; the bot merges at zero threads. 5a-ii cuts from main once #64 lands.
 
 ## Routing log
 
