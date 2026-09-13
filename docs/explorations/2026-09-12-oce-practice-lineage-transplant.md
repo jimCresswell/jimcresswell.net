@@ -1247,3 +1247,25 @@ green; the leg is a `docs-validators:check` leg and CI parity holds through that
 forty pattern records; the 2026-09-12 link repair removed the local link-form citations
 instead of importing the targets, so re-triage which of those citations return with their
 patterns; the 46 unresolved paths outside the doctrine scope; Gemini per the ruling.
+
+## Owner direction, round 9 (2026-09-13, midday) — the universal Practice and its languages
+
+Three items in one message, with the cognition suite invoked.
+
+1. **The two estates' divergence.** The owner finds it fascinating that this seat and the
+   lineage's seat have made significant and different improvements since the transplant began.
+   Recorded as an observation in the language-separation exploration: the divergence sits in
+   the universal layer (validators, the plan estate, PR machinery), none of it language-bound.
+2. **Separate the universal Practice from its language-specific parts** — documents, rules and
+   skills, and the agent tools; support at least TypeScript, Python and Rust; define the agent
+   tools' contracts and interactions language-agnostically and enforce them ("JSON schema?
+   Something else?"). Not urgent; important. Answered in
+   `.agent/reports/practice-transplant/practice-language-separation.md` (six proposals with
+   warrants and falsifiers; JSON Schema 2020-12 for shapes on the wire schema's own precedent,
+   a conformance corpus for behaviour, a host profile for host facts, thin language packs, the
+   reference implementation as a built binary first) and sequenced as the delivery node
+   `.agent/plans/delivery/practice-language-separation.plan.md` (sketch; three gates expiring
+   2026-10-04; eight todos; beneficial dependency on `practice-completion`).
+3. **Commit and push.** The branch was clean; pushed with upstream tracking at 12cf86f, the
+   pre-push gate green (the full check plus 58 end-to-end tests). The node and this record are
+   pushed after it. No pull request has been opened; that word has not been given.

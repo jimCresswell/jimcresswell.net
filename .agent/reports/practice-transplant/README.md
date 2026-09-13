@@ -11,8 +11,9 @@ these are the process outputs kept alongside the work.
 | [practice-as-installable-thing.md](practice-as-installable-thing.md) | Concept-exploration of packaging the Practice as a standalone installable thing; five proposals with falsifiers | PDR candidate after a second transplant      |
 | [journey-so-far.md](journey-so-far.md)                               | An understanding of the journey to date: the spine, three frames and a counterframe, bridge claims, status | Reopened after the 57-lesson synthesis or the next transplant |
 | [what-the-practice-is.md](what-the-practice-is.md)                   | The Practice defined by nine functions, the transplant set that follows, and what this transplant failed to migrate by evidence class (owner-asked 2026-09-13; provisional) | The `practice-completion` node's completeness audit |
+| [practice-language-separation.md](practice-language-separation.md)   | The universal Practice and its language packs: the measured leakage, the three kinds of instrument contract, six proposals with falsifiers (owner-directed 2026-09-13; provisional) | The `practice-language-separation` node; a PDR amendment candidate |
 
-All four are born-sketch explorations: they govern nothing until ratified. Running capture for
+All five are born-sketch explorations: they govern nothing until ratified. Running capture for
 the session is in `.agent/memory/active/napkin.md`.
 
 The procedure these records distil is the runbook node

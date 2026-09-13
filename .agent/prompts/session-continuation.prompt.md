@@ -13,7 +13,7 @@ Ground first via `start-right-quick` or `start-right-thorough`.
 **The OCE Practice lineage transplant is the live repo-wide workstream.** Branch
 `feat/monorepo`. The plan of record is
 [`../../docs/explorations/2026-09-12-oce-practice-lineage-transplant.md`](../../docs/explorations/2026-09-12-oce-practice-lineage-transplant.md)
-— its dated §Owner rulings (rounds 1 to 8) carry the live state. **Next (owner's
+— its dated §Owner rulings (rounds 1 to 9) carry the live state. **Next (owner's
 direction of 2026-09-13, late morning): the entire Practice comes over, as
 appropriate for this repository, with a record of what, how and why, and the
 installable-entity exploration.** Start from the delivery node
@@ -26,7 +26,7 @@ committed: rules triage, the Phase 8 harness, re-evaluate slice 1, the link
 repair, the lineage script naming, slice 2 items 1 to 3, the plan-node
 migration (strategy corpus, four ratified strategic nodes, the legacy corpus
 conserved at `.agent/plans-legacy-2026-09/`), and the Practice definition.
-`pnpm check` green. Read `.agent/memory/operational/repo-continuity.md`
+The branch is pushed and tracks origin (2026-09-13); no PR yet. `pnpm check` green. Read `.agent/memory/operational/repo-continuity.md`
 §Current State and §Next Safe Steps first.
 
 Until that transplant closes, the earlier workstreams below are **parked**, not

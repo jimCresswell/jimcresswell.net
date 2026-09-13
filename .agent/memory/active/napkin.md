@@ -719,3 +719,12 @@
   `grep -cF` counts per line, so the mutation driver's needle check must be single-line.
 - Under the cited-subset ruling, an imported index that links a corpus left at the pin is a
   broken-links generator; a local README naming the home and the pin is the honest import.
+- Owner round 9: the universal/language separation direction. Metacognition caught two fluent
+  shapes: "split into folders" (filing, not enforcement) and "JSON Schema" (fits shapes, not
+  behaviour); the estate's own wire schema already writes the discipline (schema = contract,
+  strict local schema = enforcement, conformance test binds them). Free play kept the LSP shape
+  and the gradient's "thin layer = configuration"; discarded the species metaphor again.
+  Surprise: PDR-035, PDR-008 and PDR-006 already claim stack-agnosticism; the gap is mechanism,
+  the same nominal-to-mechanical shape as the whole transplant. Node authored sketch.
+- Push: `git push -u origin feat/monorepo` ran the full pre-push gate (check + 58 e2e) in about
+  six minutes in the background; the branch now tracks origin. No PR opened (not asked).

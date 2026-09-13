@@ -21,7 +21,8 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
-- Branch `feat/monorepo`: OCE Practice lineage transplant in progress. Plan of
+- Branch `feat/monorepo` (pushed 2026-09-13, tracks `origin/feat/monorepo`; no PR yet): OCE
+  Practice lineage transplant in progress. Plan of
   record: `docs/explorations/2026-09-12-oce-practice-lineage-transplant.md`
   (§Amendment, §Hour 1, §Owner rulings rounds 1–3 carry the live state).
 - Seven pnpm workspaces; root scripts through Turborepo; root devDeps installed.
@@ -118,7 +119,9 @@ its future is host-agnostic. **Todo 1 done (2026-09-13, plan §Practice completi
 smoke suite, the lineage root scripts with consumers here).** The private editorial
 boundary is cloned and clean at its ignored location (2026-09-13);
 start-right confirms it per the working contract. Then the node's todos 2 to
-6 in order; duplicate-skill merges;
+6 in order; the `practice-language-separation` node (sketch, 2026-09-13, plan §Owner
+direction round 9: the universal core, thin language packs, JSON Schema contracts plus a
+conformance corpus; not urgent) awaits ratification on cards; duplicate-skill merges;
 the tooling residue listed in the plan (§Oak residue in tooling: `packages/core`
 metadata URLs in `tooling/*/package.json`, fixture strings) and `turbo.json`'s
 site `build` outputs (`.next/` unnamed, so the cache restores nothing); the
