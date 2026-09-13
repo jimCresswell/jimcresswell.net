@@ -232,8 +232,11 @@ root cause, never to dismiss as a harness quirk.
 it is **read-only**: it composes the root format and markdown checks, the shell
 and runtime-only lints, the Turbo `lint`, `type-check` and `test` tasks, knip,
 depcruise, the secret scan, and the Practice validators (portability,
-sub-agents, skills adapters, encoding, machine-local paths). It mutates
-nothing, so it is the
+sub-agents, skills adapters, encoding, machine-local paths, and the
+`repo-validators:check` aggregate, whose legs include the substrate audit
+`practice:substrate:check` — the instance-tier state a fresh checkout lacks
+reads as informational, never as failure — and the inter-Practice wire-contract
+check). It mutates nothing, so it is the
 surface pre-push, CI and any repo-wide claim of green cite. `pnpm check` is
 an alias kept so the hook and the parity validator have a stable name.
 

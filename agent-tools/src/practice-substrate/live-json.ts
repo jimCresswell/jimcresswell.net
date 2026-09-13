@@ -2,12 +2,17 @@ import { readFile } from 'node:fs/promises';
 
 import type Ajv from 'ajv/dist/2020.js';
 
-import { renderSharedCommsLog } from '../collaboration-state/comms.js';
 import {
   checkCollaborationSurfaceContract,
   isContractSchemaId,
 } from '../collaboration-state/surface-contract.js';
 import { type CollaborationSchemaId } from '../collaboration-state/collaboration-json-validation.js';
+import {
+  classifySurfacePresence,
+  instanceTierAbsentFinding,
+  liveInstanceTierProbes,
+  type InstanceTierProbes,
+} from './instance-tier.js';
 import { readCommsEventFiles } from './live-comms-events.js';
 import {
   ACTIVE_CLAIMS_PATH,
@@ -16,7 +21,6 @@ import {
   ESCALATIONS_ROOT,
   MANIFEST_PATH,
   MANIFEST_SCHEMA_PATH,
-  SHARED_COMMS_LOG,
   absolutePath,
   parseFailureFinding,
   parseManifestDocument,
@@ -33,7 +37,6 @@ import {
   toMigrationLedgerEntry,
   validateWithAjv,
 } from './live-json-support.js';
-import { evaluateGeneratedReadModelDrift } from './structural-evaluators.js';
 import { evaluateMigrationLedgerSnapshot, type JsonFieldMap } from './report-evaluators.js';
 import { type SubstrateFinding } from './types.js';
 
@@ -86,58 +89,69 @@ export async function evaluateMigrationLedgers(
   return findings;
 }
 
+/**
+ * Evaluate the collaboration JSON surfaces. The claim registries are
+ * instance tier: absent by design on a fresh checkout, validated when
+ * present (`instance-tier.ts`); `probes` is injectable for tests over a temp
+ * tree that is not a git repository.
+ */
 export async function evaluateCollaborationJsonSurfaces(
   repoRoot: string,
+  probes: InstanceTierProbes = liveInstanceTierProbes,
 ): Promise<readonly SubstrateFinding[]> {
   const ajv = await collaborationAjv(repoRoot);
 
   return [
-    ...(await evaluateClaimSurfaces(repoRoot, ajv)),
+    ...(await evaluateClaimSurfaces(repoRoot, ajv, probes)),
     ...(await evaluateThreadDirectory(repoRoot, ajv, CONVERSATIONS_ROOT)),
     ...(await evaluateThreadDirectory(repoRoot, ajv, ESCALATIONS_ROOT)),
     ...(await evaluateCommsEvents(repoRoot)),
   ];
 }
 
-export async function evaluateSharedCommsLog(
-  repoRoot: string,
-): Promise<readonly SubstrateFinding[]> {
-  const events = await readCommsEventFiles(repoRoot);
-  if (events.findings.length > 0) {
-    return events.findings;
-  }
-
-  const committedText = await readFile(absolutePath(repoRoot, SHARED_COMMS_LOG), 'utf8');
-  return evaluateGeneratedReadModelDrift({
-    surface: 'collaboration-shared-comms-log',
-    outputPath: SHARED_COMMS_LOG,
-    committedText,
-    regeneratedText: renderSharedCommsLog({
-      events: [...events.narrative, ...events.lifecycle, ...events.directed],
-    }),
-  });
-}
-
 async function evaluateClaimSurfaces(
   repoRoot: string,
   ajv: Ajv,
+  probes: InstanceTierProbes,
 ): Promise<readonly SubstrateFinding[]> {
   return [
-    ...(await evaluateJsonFileWithSchema({
+    ...(await evaluateInstanceTierJsonFile({
       repoRoot,
       ajv,
+      probes,
       surface: 'collaboration-active-claims',
       path: ACTIVE_CLAIMS_PATH,
       schemaId: 'active-claims.schema.json',
     })),
-    ...(await evaluateJsonFileWithSchema({
+    ...(await evaluateInstanceTierJsonFile({
       repoRoot,
       ajv,
+      probes,
       surface: 'collaboration-closed-claims',
       path: CLOSED_CLAIMS_PATH,
       schemaId: 'closed-claims.schema.json',
     })),
   ];
+}
+
+/**
+ * An instance-tier JSON surface: reported informational when absent by
+ * design, validated against its schema and contract when present. An absent
+ * surface the repository would track falls through to the reader, which
+ * fails loudly.
+ */
+async function evaluateInstanceTierJsonFile(input: {
+  readonly repoRoot: string;
+  readonly ajv: Ajv;
+  readonly probes: InstanceTierProbes;
+  readonly surface: string;
+  readonly path: string;
+  readonly schemaId: CollaborationSchemaId;
+}): Promise<readonly SubstrateFinding[]> {
+  if (classifySurfacePresence(input.repoRoot, input.path, input.probes) === 'absent-by-design') {
+    return [instanceTierAbsentFinding(input.surface, input.path)];
+  }
+  return evaluateJsonFileWithSchema(input);
 }
 
 async function evaluateThreadDirectory(
