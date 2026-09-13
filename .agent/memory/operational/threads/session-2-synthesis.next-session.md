@@ -345,8 +345,8 @@ the register's shape; their status is `draft` until lane A verifies the home is 
   `compute-dont-hope`, validation-strategy §Gate integrity.
 - The generalisation register is a declaration of intent: `record-generalisation-moves`.
 - A permanent page names the ruling and date, never the vehicle: `no-moving-targets-in-permanent-docs`.
-- Read the writer before building the surface: `verify-data-supports-shape-before-building` (P
-  above checks the instance).
+- Read the writer before building the surface: `verify-data-supports-shape-before-building` (the
+  verify list carries the lane C instance check).
 - The channel by audience, lifetime and consumer: `channel-by-audience-lifetime-and-consumer`.
 - The dual-scale Cricket labels: the cricket skill.
 - Re-evaluate is an assertion-exercise pass: register entry 5.
@@ -377,7 +377,8 @@ the register's shape; their status is `draft` until lane A verifies the home is 
 
 ## Next safe step (lane A, after #60 and #55)
 
-1. Read this record and the register's §What belongs here; for each candidate A to X, read the
+1. Read this record and the register's §What belongs here; for each lettered candidate (A to X
+   less P and U, which left the list: P to the verify list, U to the privacy line), read the
    candidate home and mark it `pending` (unwritten), `duplicate` (already carried, name the
    line) or `proposal` (not settled doctrine; E is one: it awaits the owner's confirmation and
    stays out of the register, listed in the PR body for the morning cards); for each "verify
