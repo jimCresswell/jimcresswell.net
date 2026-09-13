@@ -23,7 +23,7 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 - `main` carries the monorepo and the Practice since PR #53 merged (`55649a2`, 2026-09-13); the
   transplant closure runs as small PRs against `main` (node §Transplant closure; items 1 to 4
-  done). Plan of record: `docs/explorations/2026-09-12-oce-practice-lineage-transplant.md`
+  landed, item 4 as bounded with its residue rows named in the report). Plan of record: `docs/explorations/2026-09-12-oce-practice-lineage-transplant.md`
   (§Owner rulings, rounds 1 to 16, carry the state; the latest round is current).
 - Seven pnpm workspaces; root scripts through Turborepo; root devDeps installed.
 - **Committed on `feat/monorepo`** (two commits, all hooks green): the transplant

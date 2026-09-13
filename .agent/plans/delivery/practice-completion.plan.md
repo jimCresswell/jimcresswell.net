@@ -180,7 +180,12 @@ remove .agent-original before we merge 53"; "it should be processed then deleted
 4. **Completeness by function** (todo 3, bounded): the four generic rules re-triaged under
    "bring unless product"; the operational registers declared per the substrate manifest;
    mutation testing's absence stated; the Gemini projection generated (§Owner rulings 1); the
-   definition report's nine rows read "present" with a cited proof each. Proof: the report.
+   definition report's nine rows each carry a status and a cited proof. Proof: the report.
+   **Landed 2026-09-13 as bounded (PR #57, `4a61112`):** rows 1, 2, 4, 7 and 9 read present;
+   rows 3, 5, 6 and 8 read present in part, each naming its residue and the pull request it
+   closes on (the corpus-analysis restore and the five absent patterns in lane C's first
+   follow-on, `sif`'s routing in its second, the Gemini per-role commands with the generator's
+   fourth platform); the item is complete when those rows read present.
    Method (owner word 2026-09-13, §Owner rulings 1): the Gemini projection is a fourth output
    of the sub-agent adapter generator lane B lands (closure item 6), emitted from the same
    templates, with gemini added to the reviewer adapter platform contract, authored by lane C

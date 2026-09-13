@@ -1101,3 +1101,15 @@
   pushes first. Claims: four open (Director, A, B, C). Monitors: watcher bd5bq7qs1, heartbeat
   byv81g2eq (check, then re-arm). Fixed point: a further pass would only re-find the two shapes
   above and the three bounds; the recursion closes here.
+
+### Director, after compaction (2026-09-13, evening): tool traps met while shepherding merges
+
+- A zsh loop variable named `path` is the shell's `PATH` array: every command after the `read`
+  vanished ("command not found: gh"). Name loop variables anything else.
+- The hook's substring policy reads a whole command: `git push` in one clause and a later `-f`
+  flag on an unrelated `gh api` call matched "git push -f". Push in its own command.
+- commitlint's 100-character header limit refuses silently behind a `grep` on the hook output;
+  read the tip after every commit, never the grep.
+- `pnpm -s` is not a pnpm 12 flag; `--silent` is.
+- A Copilot review request posted while the previous request's run is still in flight registers
+  nothing; request again once that review lands.

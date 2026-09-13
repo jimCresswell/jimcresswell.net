@@ -17,8 +17,8 @@ plan of record is
 whose dated §Owner rulings (rounds 1 to 16) carry the state; the latest round is current. The
 controlling node is
 [`../plans/delivery/practice-completion.plan.md`](../plans/delivery/practice-completion.plan.md)
-§Transplant closure: items 1 to 4 done (the archive deleted after a computed loss-scan, PR #53,
-item 3 at `1829cd4`, item 4 at `4a61112`); items 5 to 7 in flight as small PRs against `main`;
+§Transplant closure: items 1 to 4 landed (the archive deleted after a computed loss-scan, PR #53,
+item 3 at `1829cd4`, item 4 at `4a61112` as bounded, its residue rows named in the report); items 5 to 7 in flight as small PRs against `main`;
 session 2 runs the 57-lesson synthesis from `.agent/memory/active/unconsolidated/`. Editorial work
 follows. Every move that makes a Practice element more general lands a row in
 [`../reports/practice-transplant/generalisations.md`](../reports/practice-transplant/generalisations.md)

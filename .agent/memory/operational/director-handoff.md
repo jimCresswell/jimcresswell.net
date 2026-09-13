@@ -95,8 +95,10 @@ Every line answered first-hand, none inferred:
 | Director | 7 | reports index, runbook step 13, `provenance.yml` completion entry; merges | Cauldron herds Lustre | 1db07581 | after A, B, C land | waiting on lanes |
 
 Sequencing constraints: B owns `.agent/rules/` alone, so C's rule edits travel to B as a
-directed event, not a commit. A's two items are two PRs, item 3 first. Pushes serialise through
-the commit queue (one host, one e2e port). Item 7 is written last because it records 3 to 6.
+directed event, not a commit. A's two items are two PRs, item 3 first. Pushes serialise, one
+gate at a time, for host load: two full-host gates exceed the host (the earlier reason, Playwright
+reusing a running :3000 server, is retired by the per-worktree port PR). Item 7 is written last
+because it records 3 to 6.
 
 ## Routing log
 
@@ -232,3 +234,24 @@ the commit queue (one host, one e2e port). Item 7 is written last because it rec
   (workers re-evaluate the config and re-probe); option A (the runner probes once and hands the
   port to its workers through its own pid-stamped handshake; external values inert) ruled sensible,
   with the directive sentence amended in the same PR to state the mechanism.
+- 2026-09-13 17:16Z: owner: "this is now an n=2 session, you and Saffron." PDR-082 n=2 owner-visible
+  mode: the Director's heartbeat loop stopped (confirmed gone), the watcher kept, mode declared on
+  the stream. Lanes B and C had handed back and stood down (closeouts on the stream; lane B's
+  handoff record v3 keyed by claim 707ed764; lane C's claim closed). 17:18Z: owner: "Open an Arc
+  channel with Saffron, but continue to use native comms where appropriate"; channel
+  `.agent/collaboration/rapid-comms/2026-09-13-transplant-closure-n2-cauldron-herds-lustre-saffron-turns-verdure.md`
+  opened, tailed by both seats, announced; native for quick coordination, the channel for
+  dialogue whose transcript is the record, the stream for state.
+- 2026-09-13 about 17:20Z: PR #55 was CONFLICTING on the generalisation register (append-only,
+  both sides added rows); the Director merged `main` into `closure/lane-b` in lane B's worktree
+  with the rows spliced and pushed it through the full gate (lane B's own push had skipped the
+  gate on the owner's one-off word). Copilot re-requested on the merge tip; bot polling.
+  Merge-bot finding for the scrub (item 5): with a Copilot review run in progress on the tip the
+  bot read the leg as SILENT-WAIT-NO-REVIEWER, so its live-run detection misses this run shape.
+- 2026-09-13 about 17:30Z: port PR triage on the channel; two items routed here: the handoff
+  file's retired reason for serialised pushes (cured above) and `getFreePort` rejecting with a bare
+  Error (ruled: a named follow-on PR under lane A that brings `@engraph/result` into the site
+  workspace, not this PR and not unnamed debt). Board follow-ons from the hand-backs: the atomic
+  writer re-homed to core at its second consumer; a shared no-follow write helper; the
+  CLAUDE_PROJECT_DIR opt-out as an estate rule; PR #59 closes as carried when #58 merges; lane C's
+  restore worktree and branch removed then.
