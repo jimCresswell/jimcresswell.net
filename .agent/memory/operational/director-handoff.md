@@ -139,3 +139,12 @@ the commit queue (one host, one e2e port). Item 7 is written last because it rec
   mint proved). From now every agent PR write runs as the bot; PR #54 was merged as the owner
   before the bot existed. Lesson: a ratified todo is owner text; the Director's lenses resolve
   questions the text leaves open, never the text itself.
+- 2026-09-13 about 15:00Z: lane C round two NOT READY; verdicts: the Director rulings ledger entry
+  removed (the rule permanent-doc-is-the-consolidation-record rejects the form; homing proof lives in
+  the plan of record and this log); five unrooted pattern citations to a follow-on PR with the leg
+  extended to that shape; a focused docs-adr pass instead of a third round. Lane B PR 2 split into
+  2a (rules generator) and 2b (sub-agent adapter generator, Gemini as a fourth row); Claude
+  adapters gain `paths` as a YAML list (the hand-kept string form matched nothing). PR #55 checks
+  green; the bot refused to merge until the requested Copilot review binds the tip; review
+  requested as the bot. Board follow-on: the deferred-controls register needs a creating mechanism
+  (secops binding), post-transplant.
