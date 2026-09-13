@@ -180,3 +180,11 @@ the commit queue (one host, one e2e port). Item 7 is written last because it rec
   not talk to the cold pause seats unless I say so." Director WARM-PAUSED: watcher and heartbeat
   kept; lane A (Saffron turns Verdure) is the only seat routed; no message to lanes B or C until
   the owner's word; PR #58 (records, Copilot requested on 28a7676) waits for that word too.
+- 2026-09-13 about 16:05Z: owner: "four open PRs, that is too many, aim for zero, only via proper
+  means, green and clean and sensible." #56 cures: 1c00b5c (three causes), 341e069 (the guard's
+  testimony read from its own log, the Linux executor drops lifecycle stderr), ad006e8 (tracked
+  legs subtract `ls-files --deleted`; three doc contracts trued). Rulings: pushes confirmed ahead
+  of Copilot binding so one round covers each pair; `principles.md`'s `pnpm check` block granted
+  to lane A for this PR (not in lane C's exclusive set; a contract change cures every doc that
+  publishes it, same commit). Lesson from lane A, for the record: a new CI leg's first green must
+  be a CI run, not the host.
