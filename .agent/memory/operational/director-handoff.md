@@ -103,6 +103,35 @@ gate at a time, for host load: two full-host gates exceed the host (the earlier 
 reusing a running :3000 server, is retired by the per-worktree port PR). Item 7 is written last
 because it records 3 to 6.
 
+## Routed verdict for the handed-back holdings (2026-09-13, about 19:05Z; for the owner's word at the #55 merge)
+
+One shape, serialised onto lane A at n=2, each a small pull request against `main`, in
+dependency order; the Director merges by the bot at zero threads and writes item 7 last.
+
+1. **#60** (the per-checkout Playwright port) then **#55** (item 6, PR 1, the sweep): in flight.
+2. **Item 5** (lane A; branch from `main`; `64aa005` rides it): retire `validate-ratified-lists`,
+   `protocol-conformance`, `pr-throughput`, `ci-turbo-report`; the leak validator with derived
+   needles; the merge-bot scrub carrying today's findings (the GraphQL login form; the bot's own
+   Copilot request registers nothing; a review run in progress read as SILENT-WAIT; the quiet
+   window replaced by measured state per the owner's design note); the two product files, the
+   manifests and fixtures the plan of record names; `accept-md.config.js` to TypeScript;
+   `turbo.json`'s `.next/` outputs; the consumed incoming bundle.
+3. **Item 6, PR 2a** (the rules-index and trigger generator) from `closure/lane-b-generator` at
+   `d76bb86` with the conserved fold applied; then **2b** (the sub-agent adapter generator, Gemini
+   as a fourth row); then the **Gemini per-role projection** (item 4 residue, row 8).
+4. **Item 4 residue, one pull request each:** the corpus-analysis and workflow-build restore with
+   the five absent patterns and the cited-paths leg extension (rows 3 and 6); `sif`'s routing
+   rewrite (row 5). Then the definition report's nine rows read present.
+5. **Follow-ons named today, each its own small pull request:** `@engraph/result` into the site
+   workspace for the port helper; the atomic writer re-homed to core; a shared no-follow write
+   helper; the `CLAUDE_PROJECT_DIR` opt-out as an estate rule; the ten name-only `invoke-*`
+   descriptions; the deferred-controls register's creating mechanism.
+6. **Item 7** (the Director): the reports index, runbook step 13, the `provenance.yml` entry.
+7. **Session 2** (owner-decision): the 57-lesson synthesis from `unconsolidated/` on cards.
+
+Records cadence from here (Cricket verdict, both methods): commit locally at each state change;
+push once per landed merge or shape change, never contending with lane A's slot.
+
 ## Routing log
 
 - 2026-09-13 evening: seat opened; team-start `ca1ba4d8`; lanes A, B, C authored, unfilled.
@@ -272,3 +301,12 @@ because it records 3 to 6.
   did not create), claim 383cde5e. Ruling: the shape stands; a state line every 120 seconds of a
   long turn is the liveness signal at n=2 (start-right-team §5); silence read as a block cost an
   owner escalation.
+- 2026-09-13 about 19:05Z: owner: "run a full Cricket suite". Both Crickets: DRIFTING, mild.
+  Shepherding #60 and #55 is right and event-driven; the gaps between events were empty where the
+  routed plan for the handed-back holdings belonged (the invented gate: "then the owner's word on
+  the next shape"; the shape is owner-set, its drafting is the Director's). Records pushed per
+  event were disproportionate (#58: five rounds); cadence set above. Real waits: lane A's pushes,
+  slot serialisation for host load, the credential-bound Copilot request. The quiet window is a
+  tool defect to route (item 5), not a gate. No dissolution proposal owed at n=2 (the owner set
+  the shape). One premise flagged as ungrounded and put to the owner: that the warm-pause word
+  ("your only job is to support Saffron") lapsed with the n=2 word. Verdict drafted above.
