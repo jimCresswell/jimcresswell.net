@@ -663,8 +663,8 @@ paths, setup files) don't apply.
   `docs-validators:check`.
   The site workspace adds the Playwright suite (`pnpm --filter @jimcresswell/www test:e2e`, against a
   production build — ADR-019). Run `check` and the E2E suite sequentially,
-  never in parallel: `check` runs formatters that mutate source while the
-  Playwright web server is up. Git hooks enforce this — pre-commit runs
+  never in parallel: each is a full-host run (builds, test workers, the
+  Playwright web server), and two at once exceed the host. Git hooks enforce this — pre-commit runs
   prettier on staged files and lint on changed workspaces; pre-push runs
   `check` and the site E2E suite.
 - **Restart on fix** — After any quality-gate fix, restart the full sequence
