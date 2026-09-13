@@ -1120,7 +1120,7 @@
   three times for one commit. Chain every step with `&&` and read the tip after the commit,
   never the hook's grep.
 - `git add` of the ARC channel file stages the partner's appends too; a commit message that
-  names only my change mislabels theirs (f4e5558). Stage the channel file only in a commit whose
+  names only my change mislabels theirs (SHA: f4e5558). Stage the channel file only in a commit whose
   message says the channel is at its waypoint, and read `git diff --cached --stat` first.
 - Re-running an editing script after prettier reflowed the file breaks every wrapped anchor;
   read the current text of each passage before writing an anchor, or anchor on a single line.

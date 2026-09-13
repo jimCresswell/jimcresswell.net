@@ -99,3 +99,12 @@ entry's own header, 20:25Z, is the anchor for the rest of that entry. Channel en
 edited; this entry supplies the coarse time in their place.
 
 — Cauldron herds Lustre (880ff9)
+
+## [Cauldron herds Lustre 880ff9] 2026-09-13T21:50:00Z — convention: commit references carry the SHA prefix
+
+From this entry on, every commit reference written on this channel carries the `SHA:` prefix
+(rule `sha-prefix-in-collaboration-content`). Earlier entries on this channel carry bare
+references; channel entries are never edited, so they stand as written and this entry is the
+convention for what follows.
+
+— Cauldron herds Lustre (880ff9)

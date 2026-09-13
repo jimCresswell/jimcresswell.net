@@ -50,7 +50,7 @@ Every line answered first-hand, none inferred:
   archive holds only processed material.
 - The transplant is bounded: closure items 3 to 8 finish it, then editorial work.
 
-## Current handoff state (2026-09-13, about 21:15Z, n=2 with lane A; owner away)
+## Current handoff state (2026-09-13, about 21:50Z, n=2 with lane A; owner away)
 
 Where this block and the routing log disagree, the log's last entry is current; this block is
 rewritten at each Director push.
@@ -62,10 +62,10 @@ rewritten at each Director push.
   Landed on `main`: item 1 (archive deleted), item 2 (PR #53, `SHA: 55649a2`), item 3 (PR #56,
   `SHA: 1829cd4`), item 4 as bounded (PR #57, `SHA: 4a61112`), the Director records and the channel rule
   (PR #54, `SHA: c426c6c`).
-- Open pull requests: #60 (lane A, the per-checkout Playwright port; round three: the prober
-  becomes the holder, ADR-019 trued); #55 (lane B's sweep, handed back to lane A; round five:
-  three reconciliation defects); #62 (this records branch). Merged today: #54, #56, #57, #58,
-  #61; #59 closed as carried.
+- Open pull requests: #60 (lane A, the per-checkout Playwright port; round four written and
+  proven locally, push on ask); #55 (lane B's sweep, handed back to lane A; round four pushed at
+  `SHA: e69d388`, Copilot bound, the bot armed); #62 (this records branch, round four). Merged
+  today: #54, #56, #57, #58, #61; #59 closed as carried.
 - Team state: owner word 17:16Z, "this is now an n=2 session, you and Saffron" (PDR-082; the
   Director's heartbeat stopped, watcher kept); 17:18Z the ARC channel opened beside native
   messaging. Lanes B and C handed every responsibility back and stood down (closeouts on the
@@ -80,11 +80,12 @@ rewritten at each Director push.
 - Re-arm after compaction, checking first (PDR-133): the all-channels comms watcher (Monitor,
   `comms watch --exclude-tag heartbeat`), then `assert-watcher-live`; the ARC channel tail; no
   heartbeat loop at n=2. Checked 15:39Z: background tasks outlive a compaction.
-- Next safe step (owner away; decisions by the lenses, logged under §Decisions overnight):
-  lane A's #60 round-three cure, then its #55 cure, each Copilot-bound and bot-merged at zero
-  threads; then the session 2 register PR from the draft in
-  `threads/session-2-synthesis.next-session.md`; then item 5 as three PRs. The morning report
-  presents §Decisions overnight with its REVIEW marks.
+- Next safe step (owner away; decisions by the lenses, logged under §Decisions overnight): the
+  bot merges #55 at zero threads; lane A's #60 round-four push on ask, Copilot bound, the bot
+  merges at zero threads; then the session 2 register PR from the draft in
+  `threads/session-2-synthesis.next-session.md` (home reads done: eighteen file as pending,
+  three duplicates, one proposal, two on the verify list); then item 5 as three PRs. The morning
+  report presents §Decisions overnight with its REVIEW marks.
 
 ## Live board
 
@@ -205,8 +206,10 @@ ones the Director would put to the owner had the owner been present.
     any poll can pass. #55 round five (Copilot on SHA: 3d86acb: a folded scalar stops at a blank line;
     index rows absent from the tracked rule set are never visited; an existing declaration skips
     validation of its sources). Both routed to lane A, one minimal commit each, #60 first.
-12. Lane A's home reads for the session 2 draft: twenty-one candidates file as pending; G, H and
-    W are duplicates with their homes quoted (pr-lifecycle CLASS P; the docs-adr-expert template's
+12. Lane A's home reads for the session 2 draft: of the twenty-four candidates A to X, G, H and
+    W are duplicates with their homes quoted, E is a proposal kept out of the register, P and U
+    left the candidate list (P to the verify list; U reduced to the owner-gated privacy review),
+    so eighteen file as pending (pr-lifecycle CLASS P; the docs-adr-expert template's
     title-not-number line with PDR-005's four-audit close; hook-policy-substring-discipline).
     Board follow-ons from the reads: the memory-state substrate contracts doc carries two "must
     not remain on disk" clauses, the memorial shape O forbids (truing at that file's next touch);

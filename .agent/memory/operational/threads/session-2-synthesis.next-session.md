@@ -5,7 +5,8 @@
 candidate list; lane A (Saffron turns Verdure, c39ad7) completes it as the pending-graduations
 register pull request after #60 and #55 land, before item 5; scope is the three napkins under
 `.agent/memory/active/unconsolidated/` plus today's captures in `.agent/memory/active/napkin.md`
-(lines 311 to 1115: sessions 4 to 8, wraps 3 to 7, lane C, lane A, the Director); the candidates
+(from line 311 to the end of the file at the commit that lands this record: sessions 4 to 8,
+wraps 3 to 7, lane C, lane A, the Director's two sections); the candidates
 go to the owner as one batch of cards in the morning; nothing graduates without the answers; the
 napkins are archived only then.
 
@@ -261,12 +262,6 @@ the register's shape; their status is `draft` until lane A verifies the home is 
   docs-adr-expert template.
 - **Prediction**: the next boundary change's PR lists the grep of superseded names it ran.
 
-### U. Public-plan privacy review covers editorial backstory, rejected methods, participant diagnosis and custody narrative
-
-- **Source**: napkin 2026-08-12 (three-PR closeout).
-- **Candidate home**: `privacy.md` (a review-checklist clause) and the security-expert template.
-- **Prediction**: the privacy review of the next public plan names these four classes.
-
 ### V. CLI file writers validate names at the boundary, write atomically and never follow links
 
 - **Source**: PR #55's fourth and fifth rounds (2026-09-13): a rule-name path escape, a
@@ -375,9 +370,10 @@ the register's shape; their status is `draft` until lane A verifies the home is 
   now projects 130 `.agents` rules (surface matrix and ADR-015 to true up; a small follow-on).
 - Plan-shaped: the transplant runbook steps that L, M and N cite (the doctrine goes to PDR-005
   and PDR-009; the runbook cites them).
-- Owner review in the morning (privacy): an owner-gated privacy review of the three napkins
-  under `privacy.md` before they are archived; the synthesis PR carries nothing from them beyond
-  the candidates' doctrine.
+- Owner review in the morning (privacy): an owner-gated privacy review of the three napkins and
+  of any public plan under `privacy.md`, before the napkins are archived; the synthesis PR
+  carries nothing from them beyond the candidates' doctrine. (Candidate U was withdrawn into
+  this line: a review requirement is a process step, not a graduation.)
 
 ## Next safe step (lane A, after #60 and #55)
 
