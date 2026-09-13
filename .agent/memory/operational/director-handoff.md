@@ -172,6 +172,17 @@ ones the Director would put to the owner had the owner been present.
    makes the mandatory template read; only the optional verification reads were unspent) cured
    at 06507cd in a worktree, held for an idle push slot after lane A's #60 push; the bot merges
    at zero threads. Lens 3 (the quartet yields every slot to the closure path).
+8. PR #60 at 292bf49: CI's e2e job red (2 of 58) with zero threads. Cause from the log (lane
+   A): the build's PDF generator probes its own free port and the Linux runner handed it the port
+   the harness had just probed and released; Playwright's readiness poll accepted that throwaway
+   server, test 1 ran against it, it exited, the real server bound afterwards. The PR body's
+   claim that a taker fails loudly was wrong. Cure accepted (lens 1 and the no-timing-dependence
+   rule: the shared resource is owned, not its window shrunk): a holder script binds the probed
+   port with a 503 responder for the whole build and hands it to `next start`, so no prober can
+   be handed the port while any prober exists; falsifiers (503 during the build, EADDRINUSE for a
+   taker, 200 after; the holder-removed mutant) plus the CI run as the proof of the runner class;
+   the body argues only from the invariant, never from a small window. REVIEW: a design defect
+   in the port PR found by CI, cured by owning the port through the build.
 
 ## Routing log
 
