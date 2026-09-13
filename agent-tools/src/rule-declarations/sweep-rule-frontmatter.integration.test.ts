@@ -247,4 +247,21 @@ describe('sweepRuleFrontmatter', () => {
       ['beta', 'always-apply-true-on-situational'],
     ]);
   });
+
+  it.each(['../../outside', 'a/b', String.raw`a\b`, '/abs', '', '.', '..', 'alpha.md'])(
+    'refuses the rule name %j at the boundary before reading anything, so no name escapes .agent/rules',
+    async (name) => {
+      // An empty tree: had anything been read, the index would refuse as missing too.
+      const fs = fakeFs(new Map());
+      const outcome = await sweepRuleFrontmatter(
+        { repoRoot: REPO, ruleNames: ['alpha', name], write: true },
+        fs,
+      );
+      expect(outcome.refused).toEqual([
+        `${JSON.stringify(name)}: not a rule basename (one path segment: no separator, no dot segment, no .md suffix)`,
+      ]);
+      expect(outcome.written).toEqual([]);
+      expect(fs.writes.size).toBe(0);
+    },
+  );
 });

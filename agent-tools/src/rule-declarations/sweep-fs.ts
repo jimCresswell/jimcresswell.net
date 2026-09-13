@@ -6,12 +6,16 @@
  * written through (a link in an ancestor directory is outside this guard). Writes go through
  * the estate's atomic text writer (temp file, sync, rename), so a failed write never leaves a
  * half-written rule behind; `realSweepFs` takes the writer as a parameter so that property is
- * proven over an injected file system rather than asserted by name.
+ * proven over an injected file system rather than asserted by name. `readSource` is the one
+ * admitted read the sweep performs: every refusal it returns names the repo-relative path.
  *
  * @packageDocumentation
  */
 
 import fs from 'node:fs/promises';
+import path from 'node:path';
+
+import { err, ok, type Result } from '@engraph/result';
 
 import { writeTextAtomically } from '../collaboration-state/atomic-file.js';
 import { isEnoent } from '../core/authored-surfaces.js';
@@ -50,3 +54,36 @@ export function realSweepFs(writeFile: SweepFs['writeFile'] = writeTextAtomicall
 
 /** The port the sweep uses when none is injected. */
 export const defaultSweepFs: SweepFs = realSweepFs();
+
+const NOT_A_REGULAR_FILE =
+  'not a regular file (a symlink or special entry); the sweep reads and writes regular files only';
+
+/**
+ * Read a source file after admitting its entry kind: a missing file is a refusal naming the
+ * path, anything that is not a regular file is a refusal naming the path and the kind, and
+ * any other failure is a refusal naming the path and the cause, never a crash past the
+ * sweep's all-or-nothing contract.
+ */
+export async function readSource(
+  repoRoot: string,
+  relativePath: string,
+  sweepFs: SweepFs,
+): Promise<Result<string, string>> {
+  const absolutePath = path.join(repoRoot, relativePath);
+  try {
+    const kind = await sweepFs.entryKind(absolutePath);
+    if (kind === 'absent') {
+      return err(`${relativePath}: missing`);
+    }
+    if (kind === 'other') {
+      return err(`${relativePath}: ${NOT_A_REGULAR_FILE}`);
+    }
+    return ok(await sweepFs.readFile(absolutePath));
+  } catch (error: unknown) {
+    if (isEnoent(error)) {
+      return err(`${relativePath}: missing`);
+    }
+    const cause = error instanceof Error ? error.message : String(error);
+    return err(`${relativePath}: unreadable (${cause})`);
+  }
+}

@@ -17,9 +17,11 @@ that minted the declarations from the surfaces that carried them by hand before.
 - [`render-rule-frontmatter.ts`](render-rule-frontmatter.ts),
   [`render-reconciliation-report.ts`](render-reconciliation-report.ts) — the block a rule
   carries and the table a pull request lists.
-- [`sweep-rule-frontmatter.ts`](sweep-rule-frontmatter.ts), its file-system port
-  [`sweep-fs.ts`](sweep-fs.ts) (regular files only; a link is never read or written through)
-  and its entry [`rule-frontmatter-sweep.ts`](rule-frontmatter-sweep.ts) — the all-or-nothing
+- [`sweep-rule-frontmatter.ts`](sweep-rule-frontmatter.ts), its name boundary
+  [`rule-name.ts`](rule-name.ts) (a rule is addressed by its basename alone; any other shape
+  refuses the sweep before a path is built), its file-system port [`sweep-fs.ts`](sweep-fs.ts)
+  (regular files only; a link is never read or written through; the one admitted read) and
+  its entry [`rule-frontmatter-sweep.ts`](rule-frontmatter-sweep.ts) — the all-or-nothing
   sweep over the tracked rules; `pnpm --filter @engraph/agent-tools rule-frontmatter-sweep [--write]`.
 
 The sweep is a transplant instrument: a host that arrives with a hand-kept index and triggers

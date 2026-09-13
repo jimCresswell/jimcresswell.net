@@ -26,8 +26,6 @@ import path from 'node:path';
 
 import { err, ok, type Result } from '@engraph/result';
 
-import { isEnoent } from '../core/authored-surfaces.js';
-
 import { FRONTMATTER_FENCE_LINE } from './frontmatter-lines.js';
 import { parseClaudeRuleAdapterPaths } from './parse-claude-rule-adapter.js';
 import { parseCursorTrigger } from './parse-cursor-trigger.js';
@@ -36,13 +34,17 @@ import { readRuleDeclaration } from './read-rule-declaration.js';
 import { reconcileRuleDeclaration, type Reconciliation } from './reconcile-rule-declaration.js';
 import { prependRuleFrontmatter, renderRuleFrontmatter } from './render-rule-frontmatter.js';
 import type { RuleDeclaration } from './rule-declaration.js';
-import { defaultSweepFs, type SweepFs } from './sweep-fs.js';
+import { refuseNonBasenames } from './rule-name.js';
+import { defaultSweepFs, readSource, type SweepFs } from './sweep-fs.js';
 
 /** What to sweep. */
 export interface SweepInput {
   /** Absolute path of the repository root. */
   readonly repoRoot: string;
-  /** Rule basenames without `.md`, normally every tracked file under `.agent/rules/`. */
+  /**
+   * Rule basenames without `.md`, normally every tracked file under `.agent/rules/`; any
+   * other shape refuses the whole sweep before a path is built (`rule-name.ts`).
+   */
   readonly ruleNames: readonly string[];
   /** Write the blocks; `false` is a dry run that only reports. */
   readonly write: boolean;
@@ -63,9 +65,6 @@ export interface SweepOutcome {
 const RULES_INDEX = 'RULES_INDEX.md';
 const FRONTMATTER_OPENING = `${FRONTMATTER_FENCE_LINE}\n`;
 
-const NOT_A_REGULAR_FILE =
-  'not a regular file (a symlink or special entry); the sweep reads and writes regular files only';
-
 /**
  * Run the sweep.
  *
@@ -77,16 +76,14 @@ export async function sweepRuleFrontmatter(
   input: SweepInput,
   sweepFs: SweepFs = defaultSweepFs,
 ): Promise<SweepOutcome> {
+  const badNames = refuseNonBasenames(input.ruleNames);
+  if (badNames.length > 0) {
+    return refusal(badNames);
+  }
   const indexText = await readSource(input.repoRoot, RULES_INDEX, sweepFs);
   const index = indexText.ok ? parseRulesIndex(indexText.value) : indexText;
   if (!index.ok) {
-    return {
-      declarations: [],
-      reconciliations: [],
-      written: [],
-      alreadyDeclared: [],
-      refused: [index.error],
-    };
+    return refusal([index.error]);
   }
   const derived = await deriveAll(input, index.value, sweepFs);
   if (derived.refused.length > 0 || !input.write) {
@@ -98,6 +95,11 @@ export async function sweepRuleFrontmatter(
     written.push(file.relativePath);
   }
   return { ...derived, written };
+}
+
+/** An outcome that refused before deriving anything; nothing was derived or written. */
+function refusal(refused: readonly string[]): SweepOutcome {
+  return { declarations: [], reconciliations: [], written: [], alreadyDeclared: [], refused };
 }
 
 interface SweptFile {
@@ -216,34 +218,4 @@ async function deriveOne(
     return err(`${rulePath}: ${swept.error}`);
   }
   return ok({ ...reconciled, file: { relativePath: rulePath, text: swept.value } });
-}
-
-/**
- * Read a source file after admitting its entry kind: a missing file is a refusal naming the
- * path, anything that is not a regular file is a refusal naming the path and the kind, and
- * any other failure is a refusal naming the path and the cause, never a crash past the
- * all-or-nothing contract.
- */
-async function readSource(
-  repoRoot: string,
-  relativePath: string,
-  sweepFs: SweepFs,
-): Promise<Result<string, string>> {
-  const absolutePath = path.join(repoRoot, relativePath);
-  try {
-    const kind = await sweepFs.entryKind(absolutePath);
-    if (kind === 'absent') {
-      return err(`${relativePath}: missing`);
-    }
-    if (kind === 'other') {
-      return err(`${relativePath}: ${NOT_A_REGULAR_FILE}`);
-    }
-    return ok(await sweepFs.readFile(absolutePath));
-  } catch (error: unknown) {
-    if (isEnoent(error)) {
-      return err(`${relativePath}: missing`);
-    }
-    const cause = error instanceof Error ? error.message : String(error);
-    return err(`${relativePath}: unreadable (${cause})`);
-  }
 }
