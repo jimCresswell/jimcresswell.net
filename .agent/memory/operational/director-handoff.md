@@ -436,6 +436,13 @@ ones the Director would put to the owner had the owner been present.
     is on origin at `SHA: 38e346a` (`fix/merge-bot-body-tally`, stacked on the #65 tip) and
     opens after #65 merges. Copilot requested on #66; the bot merges at zero threads. Lane A's
     next is the #65 round-three cure, then 5b. Standing ruling; no REVIEW.
+40. #62 round fifteen (23:48Z on 2026-09-13): one thread (the continuity index said closure
+    items 1 to 6 landed; the plan says 1 to 3 landed, 4 bounded, 6 with 2a and 2b remaining, 8
+    filed, 5 and 7 the remaining work) and six suppressed findings (the freeze statement against
+    the entries after it; the routing log's last entry in the pre-amendment order; the A row
+    without the handed-back residue; an obsolete sequencing paragraph; the archive step without
+    the privacy prerequisite; a stale register claim line). All seven cured at `SHA: 3c272eb`,
+    named as the final waypoint of #62. Lens 1. No REVIEW beyond item 37's.
 
 ## Routing log
 
