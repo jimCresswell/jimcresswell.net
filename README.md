@@ -72,7 +72,7 @@ pnpm test:ui        # Playwright UI mode (interactive)
 pnpm visual-regression:harness <base-ref> <target-ref> # Non-destructive rendered-output comparison
 
 pnpm fix            # Format, markdownlint, and lint auto-fix
-pnpm check          # Every blocking gate, read-only (pre-push and CI run the same legs)
+pnpm check          # Every blocking gate, writing no tracked file (pre-push and CI run the same legs)
 pnpm knip           # Find unused exports and dependencies
 pnpm secrets:scan   # Scan git history for secrets
 pnpm portability:check    # Validate agent-surface parity and local surface contract

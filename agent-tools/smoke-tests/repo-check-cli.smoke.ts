@@ -65,6 +65,15 @@ if (happy.status !== 0) {
   fail(`markdownlint-staged expected exit 0, got ${String(happy.status)}\n${happy.stderr}`);
 }
 
+// The documented `pnpm agent-tools:repo-check -- <command>` form: pnpm forwards
+// the separator to the entry, which must drop it rather than read it as a command.
+const forwarded = run(['--', 'markdownlint-staged']);
+if (forwarded.status !== 0) {
+  fail(
+    `-- markdownlint-staged expected exit 0 with the separator dropped, got ${String(forwarded.status)}\n${forwarded.stderr}`,
+  );
+}
+
 process.stdout.write(
-  'repo-check CLI smoke OK: shebang, --help exit 0, mistyped flag refused, staged leg exit 0\n',
+  'repo-check CLI smoke OK: shebang, --help exit 0, mistyped flag refused, staged leg exit 0 with and without the -- separator\n',
 );

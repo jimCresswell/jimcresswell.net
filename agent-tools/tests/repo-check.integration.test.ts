@@ -44,7 +44,7 @@ interface GitAnswer {
 function gateRuntime(input: {
   readonly staged?: GitAnswer;
   readonly tracked?: GitAnswer;
-  readonly deleted?: GitAnswer;
+  readonly goneFromWorkingTree?: GitAnswer;
   readonly lsFiles?: GitAnswer;
   readonly inheritedExitCode?: number;
 }): {
@@ -57,7 +57,7 @@ function gateRuntime(input: {
   const answers: ReadonlyMap<string, GitAnswer> = new Map([
     ['diff --cached --name-only --diff-filter=ACMR -z', input.staged ?? {}],
     ['ls-files -z', input.tracked ?? {}],
-    ['ls-files --deleted -z', input.deleted ?? {}],
+    ['diff --name-only --diff-filter=DT -z', input.goneFromWorkingTree ?? {}],
     ['ls-files --cached -s -z', input.lsFiles ?? {}],
   ]);
 
@@ -234,7 +234,7 @@ describe('repo-check tracked gates', () => {
 
     expect(capturedCalls).toStrictEqual([
       { command: 'git', args: ['ls-files', '-z'] },
-      { command: 'git', args: ['ls-files', '--deleted', '-z'] },
+      { command: 'git', args: ['diff', '--name-only', '--diff-filter=DT', '-z'] },
       { command: 'git', args: ['ls-files', '--cached', '-s', '-z'] },
     ]);
     expect(inheritedCalls).toStrictEqual([
@@ -253,13 +253,15 @@ describe('repo-check tracked gates', () => {
     ]);
   });
 
-  it('excludes tracked files deleted from the working tree, asking git rather than the disk', async () => {
-    // A local deletion not yet staged is still an index entry, so `ls-files`
-    // names it; handing that name to Prettier fails on a missing file. Git's
-    // own `--deleted` answer is the exclusion, never a filesystem probe.
+  it('excludes tracked files deleted or retyped in the working tree, asking git rather than the disk', async () => {
+    // A local deletion, or a regular file replaced by a symlink, not yet
+    // staged is still a regular index entry, so `ls-files` names it; handing
+    // that name to Prettier fails on a missing file or a refused link. Git's
+    // own unstaged diff (deleted and type-changed) is the exclusion, never a
+    // filesystem probe.
     const { inheritedCalls, runtime } = gateRuntime({
       tracked,
-      deleted: { stdout: 'docs/a.md\0' },
+      goneFromWorkingTree: { stdout: 'docs/a.md\0README.md\0' },
       lsFiles,
     });
 
@@ -270,7 +272,6 @@ describe('repo-check tracked gates', () => {
       'prettier',
       '--check',
       '--ignore-unknown',
-      'README.md',
       'agent-tools/src/x.ts',
     ]);
   });

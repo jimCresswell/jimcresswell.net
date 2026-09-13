@@ -109,8 +109,18 @@ function resolveCommand(
 
 const HELP_FLAGS: ReadonlySet<string> = new Set(['--help', '-h']);
 
+/**
+ * pnpm forwards a `--` separator through `pnpm agent-tools:repo-check -- <command>`
+ * to this entry unchanged, so the documented form would otherwise read `--`
+ * as the command name and refuse it. One leading separator is dropped; a
+ * second one is an argument like any other and is refused with usage.
+ */
+function withoutForwardingSeparator(argv: readonly string[]): readonly string[] {
+  return argv[0] === '--' ? argv.slice(1) : argv;
+}
+
 async function main(): Promise<void> {
-  const argv = process.argv.slice(2);
+  const argv = withoutForwardingSeparator(process.argv.slice(2));
   if (argv.length === 1 && HELP_FLAGS.has(argv[0] ?? '')) {
     writeLine(usage());
     process.exitCode = 0;

@@ -70,18 +70,23 @@ function stagedFiles(runtime: RepoCheckRuntime): readonly string[] {
  * this machine happens to carry (a generated read model, an editor's workspace
  * file) and prove the machine, not the repository.
  *
- * A tracked file deleted from the working tree but not yet staged is still an
- * index entry, so `ls-files` names it and the tool would fail on a missing
- * file. Git's own `--deleted` answer removes those, so the gate still never
- * probes the disk itself.
+ * A tracked file deleted from the working tree, or replaced there by a
+ * symlink, but not yet staged is still a regular index entry, so `ls-files`
+ * names it and the tool would fail on a missing file or refuse the link.
+ * Git's own unstaged-diff answer (deleted and type-changed paths) removes
+ * those, so the gate still never probes the disk itself.
  */
 function trackedFiles(runtime: RepoCheckRuntime): readonly string[] {
   const names = gitPaths(runtime, ['ls-files'], 'tracked files');
-  const deleted = new Set(
-    gitPaths(runtime, ['ls-files', '--deleted'], 'working-tree-deleted tracked files'),
+  const goneFromWorkingTree = new Set(
+    gitPaths(
+      runtime,
+      ['diff', '--name-only', '--diff-filter=DT'],
+      'tracked files deleted or retyped in the working tree',
+    ),
   );
   return withoutSymlinks(
-    names.filter((name) => !deleted.has(name)),
+    names.filter((name) => !goneFromWorkingTree.has(name)),
     indexSymlinkPaths(runtime),
   );
 }

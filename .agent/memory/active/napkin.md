@@ -934,7 +934,7 @@
   `*actually*`), restored by forward write. Every removed entry was then proven dead with one
   `git ls-files <pattern>` call each; only that one was live. Worked instance of
   `compute-dont-hope` at the ignore-file grain.
-- Prettier folded `' '` escapes into raw NUL bytes in a test file and git read it as
+- Prettier folded `'\u0000'` escapes into raw NUL bytes in a test file and git read it as
   binary; a `\0` directly before a digit is an octal escape the parser refuses. Cure: one
   `String.fromCharCode(0)` separator and array joins; never an escape before a digit.
 - The Bash tool's shell is zsh: `${PIPESTATUS[0]}` is empty there (`$pipestatus[1]` is the zsh

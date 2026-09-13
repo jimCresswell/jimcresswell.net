@@ -76,7 +76,7 @@
     "start": "pnpm --filter @jimcresswell/www start",
     "subagents:check": "pnpm --filter @engraph/agent-tools validate-subagents",
     "test": "turbo run test",
-    "test:e2e": "turbo run test:e2e",
+    "test:e2e": "turbo run test:e2e --filter=@jimcresswell/www",
     "test:ui": "turbo run test:ui",
     "type-check": "turbo run type-check",
     "visual-regression:harness": "pnpm --filter @jimcresswell/www visual-regression:harness"

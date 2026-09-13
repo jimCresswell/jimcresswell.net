@@ -232,9 +232,10 @@ root cause, never to dismiss as a harness quirk.
 it writes **no tracked file**: it composes the root format and markdown checks, the shell
 and runtime-only lints, the Turbo `lint`, `type-check` and `test` tasks, knip,
 depcruise, the secret scan, and the Practice validators (portability,
-sub-agents, skills adapters, encoding, machine-local paths, and the
-`repo-validators:check` aggregate, whose legs include the substrate audit
-`practice:substrate:check` and the inter-Practice wire-contract check). The
+sub-agents, skills adapters, encoding, the `docs-validators:check` aggregate
+with machine-local paths among its legs, and the `repo-validators:check`
+aggregate, whose legs include the substrate audit `practice:substrate:check`
+and the inter-Practice wire-contract check). The
 audit's instance-tier leg validates the live collaboration state of the
 checkout it runs on: an absent, untracked-by-design surface (the claim
 registries, the shared-comms-log render) reads as informational, so a fresh
@@ -269,7 +270,7 @@ exists.
 
 `pnpm fix` runs `format:root`, `markdownlint:root` and `lint:fix` — the
 auto-fixers only, and `pnpm fix:docs` the docs subset. Run `pnpm check` after either, so
-the proof that follows the repair is the same read-only gate. Use the repairs
+the proof that follows the repair is the same gate. Use the repairs
 to cure a failing proof, then re-run the proof from the beginning; a mutating
 command is never final evidence that the tree is clean.
 
@@ -335,16 +336,17 @@ defect is a missing dependency edge — declare it (in the workspace
 Remote caching is enabled in `turbo.json`; the hooks export `TURBO_UI=0` so the
 TUI does not swallow output.
 
-| Task         | Cached | Notes                                       |
-| ------------ | ------ | ------------------------------------------- |
-| `build`      | ✅     | Outputs `dist/**` and `.tsup/**`            |
-| `type-check` | ✅     | Re-checks only when source changes          |
-| `lint`       | ✅     | Re-lints only when source or config changes |
-| `test`       | ✅     | Re-runs only when source or tests change    |
-| `test:e2e`   | ✅     | Re-runs only when the e2e inputs change     |
-| `lint:fix`   | ❌     | Modifies source files                       |
-| `clean`      | ❌     | Destructive operation                       |
-| `dev`        | ❌     | Persistent process                          |
+| Task                            | Cached | Notes                                                           |
+| ------------------------------- | ------ | --------------------------------------------------------------- |
+| `build`                         | ✅     | Outputs `dist/**` and `.tsup/**`                                |
+| `type-check`                    | ✅     | Re-checks only when source changes                              |
+| `lint`                          | ✅     | Re-lints only when source or config changes                     |
+| `test`                          | ✅     | Re-runs only when source or tests change                        |
+| `test:e2e`                      | ✅     | Re-runs only when the e2e inputs change                         |
+| `@engraph/agent-tools#test:e2e` | ❌     | The smoke suite proves the built binaries every run; no outputs |
+| `lint:fix`                      | ❌     | Modifies source files                                           |
+| `clean`                         | ❌     | Destructive operation                                           |
+| `dev`                           | ❌     | Persistent process                                              |
 
 ### A task's declared outputs must cover its full write-set
 
