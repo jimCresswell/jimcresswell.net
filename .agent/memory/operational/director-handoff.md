@@ -236,6 +236,12 @@ ones the Director would put to the owner had the owner been present.
     as the holder; the release answers only after the listener's close completes; the runner
     bullet, the smoke section and the config comment name the e2e:server mechanism. Order: the
     #55 push first, then #60 round four.
+16. Lane A, self-caught before landing: a push of the #55 cure by refspec from a worktree
+    switched to the port branch would have run the pre-push gate over the port branch's tree,
+    not the tree being shipped; stopped, switched back, pushed from the shipping branch. Lesson
+    (validation-strategy §Gate integrity, the push form): the pre-push gate proves the working
+    tree, so a push comes from the branch whose tree ships, never by refspec from another.
+    REVIEW: as lane A phrased it, "this one, caught by me before landing."
 
 ## Routing log
 
