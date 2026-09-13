@@ -865,3 +865,8 @@
   went red on disk-walking gates (untracked comms render, untracked editor workspace file):
   stepping stones applied, cure routed to lane A. The `#` delimiter in `perl -pi -e 's#…#…#'`
   is unusable when the pattern contains a markdown heading; use `|`.
+- Correction (owner, about 14:50Z): the Director overturned a ratified todo (restore the corpus
+  workflow and `sif` instruments) with a "removal" verdict, and accepted a seat's "not brought" on
+  two registers the ratified text says to create or declare. Both reversed. The lenses resolve what
+  the ratified text leaves open; the text itself is the owner's and changes only by card. Candidate
+  for distilled. The merge bot exists now (kept, as ratified); agent PR writes run as the bot.

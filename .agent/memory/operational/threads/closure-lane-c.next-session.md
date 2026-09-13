@@ -27,6 +27,11 @@ directed comms event, never to the owner.
   reports index as the entry (what, how, why, how-faster), the runbook's step 13 citing the
   nine functions as its completeness audit, the completion entry in `provenance.yml`. Proof: the
   index and the provenance diff.
+- **Withdrawn (2026-09-13, about 14:50Z, owner-prompted):** the removal verdict on rows 3 and 5
+  and the "not brought" registers. Ratified text wins: todo 1 says restore `corpus-analysis`,
+  `workflow-build`, the workflow file and `sif`'s instruments (or rewrite `sif`'s routing);
+  todo 3 says create or declare every register. A Director verdict cannot overturn a ratified
+  todo; a case for removal goes to the owner as a card, after item 4, never as a PR.
 - **Director verdicts (2026-09-13, about 14:15Z):** (1) the Gemini projection is a fourth output
   of the sub-agent adapter generator lane B lands in its PR 2, emitted from the templates as
   `.gemini/commands/<template-basename>.toml` with gemini added to the reviewer-adapter platform

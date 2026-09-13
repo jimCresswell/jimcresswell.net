@@ -130,3 +130,12 @@ the commit queue (one host, one e2e port). Item 7 is written last because it rec
 - 2026-09-13 about 14:35Z: PR #54 (Director records, channel rule) merged at `c426c6c`. Push order set:
   lane B sweep, lane A PR 1, lane C item 4. Board follow-ons from lane B: ten `invoke-*` rule
   descriptions are name-only (authored content, later small PR).
+- 2026-09-13 about 14:50Z: owner: "I expressly said to keep the merge bot tools, this makes me
+  concerned for what other instructions are being overturned." Audit of in-flight verdicts against
+  ratified text found two overturns, both reversed: the Director's removal verdict on the corpus
+  workflow and `sif` instruments (todo 1 says restore) and lane C's "not brought" on two registers
+  (todo 3 says create or declare). Merge-bot: kept and scrubbed as ratified; the owner created the
+  app (slug in `.github/merge-bot.json`, per-checkout, untracked; key at the documented location;
+  mint proved). From now every agent PR write runs as the bot; PR #54 was merged as the owner
+  before the bot existed. Lesson: a ratified todo is owner text; the Director's lenses resolve
+  questions the text leaves open, never the text itself.
