@@ -1142,3 +1142,6 @@
   merge, complete it first with a conventional message, then commit the edit.
 - A records pull request that carries live state through many rounds finds fresh drift each
   round (fourteen on #62); freeze it at a cure and stack later items on a new branch.
+- A granted push slot is held until the grantee says "released"; the Director does not take it
+  back for its own gate, however idle it looks, because the grantee's pre-push checks run
+  silently before the push shows on origin (two full gates overlapped on one host, 23:49Z).
