@@ -1404,3 +1404,13 @@ sessions.
    and yours." Standing: a green, clean pull request is merged by merge commit, by the seat,
    without a card. Recorded as feedback on the napkin and in distilled.
 6. **Re-homing:** todos 5 and 6 stay on `practice-completion`; the closure list sits beside them.
+
+## Owner direction, round 12 (2026-09-13, late afternoon) — record every generalisation move
+
+"Where we take action to make an element of the Practice more general, more portable, make a
+note" — for sending improvements back to the lineage, updating from it, transplanting to more
+repositories, and the later, separate extraction of the Practice as a standalone system.
+Recorded as the rule `record-generalisation-moves` and the append-only register
+`.agent/reports/practice-transplant/generalisations.md`, backfilled with the fifteen moves this
+branch has made, each with its commit and its lineage status (sent, owed, local, from-lineage).
+The "owed" rows are the next batch to the lineage under ruling 6.

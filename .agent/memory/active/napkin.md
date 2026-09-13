@@ -757,3 +757,8 @@
 - Round 11 correction: two of my cards were invented optionality (merge method, who merges). The
   standing answer is in pr-lifecycle §Phase 7 already; I carded what doctrine had settled. Test for
   a card: could the answer be ranked from evidence or doctrine already in hand? Then no card.
+- Round 12: the generalisation register. Reflection: the register is a record of intent (why an
+  element is more general), which cannot be derived, so it is a declaration, not a hand-kept list;
+  its commits are what a check can verify. Backfilling fifteen rows from the commit log took the
+  reasons from the plan of record; from now on the row lands with the change. Six rows are owed to
+  the lineage — the next batch is already enumerated.

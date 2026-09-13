@@ -21,7 +21,10 @@ installable-entity exploration.** Start from the delivery node
 (ratified on cards 2026-09-13, its three gates cleared the same round): the transplant
 closes in two sessions per the node's §Transplant closure (ratified 2026-09-13): session 1
 merges PR #53 by merge commit without asking, then items 2 to 6 as small PRs against `main`;
-session 2 runs the loss-scan and the 57-lesson synthesis. Editorial work follows. Done and
+session 2 runs the loss-scan and the 57-lesson synthesis. Editorial work follows. Every
+move that makes a Practice element more general lands a row in
+[`../reports/practice-transplant/generalisations.md`](../reports/practice-transplant/generalisations.md)
+(rule `record-generalisation-moves`). Done and
 committed: rules triage, the Phase 8 harness, re-evaluate slice 1, the link
 repair, the lineage script naming, slice 2 items 1 to 3, the plan-node
 migration (strategy corpus, four ratified strategic nodes, the legacy corpus

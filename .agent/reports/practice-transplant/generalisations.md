@@ -1,0 +1,46 @@
+---
+type: register
+status: active
+date: 2026-09-13
+fitness_line_target: 160
+fitness_line_limit: 220
+fitness_line_length: 100
+---
+
+# Generalisation register
+
+Every move that makes an element of the Practice more general or more portable, recorded when
+it lands (owner direction 2026-09-13, verbatim: "where we take action to make an element of the
+Practice more general, more portable, make a note"). The register feeds four later pieces of
+work: sending improvements back to the lineage (OCE, under ruling 6), taking the lineage's
+enhancements here (the update path of the transplant runbook), transplanting the Practice to
+more repositories, and the separate, later thread that extracts the Practice as a standalone
+system with installable elements.
+
+A row is a record of intent — why the element is more general than before — and cites the
+commit that carries the change, so the register can be checked against history rather than
+remembered. The rule that adds rows is
+[`record-generalisation-moves`](../../rules/record-generalisation-moves.md). Rows are appended,
+never edited; a later move that supersedes one adds its own row and names the earlier commit.
+
+Lineage status: **sent** (reported to the lineage seat under ruling 6, with the batch),
+**owed** (landed here, not yet sent), **local** (host-specific by nature, not a lineage
+candidate), **from-lineage** (an enhancement taken from the lineage, the update direction).
+
+| Date       | Element                                  | The move: what became more general                                                                                                                                      | Commit  | Lineage status                         |
+| ---------- | ---------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- | -------------------------------------- |
+| 2026-09-12 | Identity seed (`collaboration-seed`)     | The seed CLIs read the harness-native session id, so identity no longer depends on a hook having written an env file                                                    | d7fed22 | sent (first batch, item 2)             |
+| 2026-09-12 | Cited-scripts validator                  | Every `pnpm <script>` citation resolves against the workspace manifests, so gate lists can never drift from `package.json` in any host                                   | 614f2b2 | sent (shape, 2026-09-12)               |
+| 2026-09-12 | Markdown-links validator                 | Ignored local material under `reference-local` is never walked, so a private nested checkout cannot leak paths into a report                                             | f97d2a9 | sent (first batch, item 7)             |
+| 2026-09-12 | Gate naming                              | Script names converge on the lineage's live convention and PDR-008 is amended to match its `package.json`; a host takes names as practised, never aliased                | e98cb5c | sent (PDR-008 suggestion)              |
+| 2026-09-12 | `agent-tools` sources                    | Lineage record numbers replaced by the concepts they named, so the sources read the same in any estate whose record numbering differs                                    | fb69d85 | local                                  |
+| 2026-09-12 | Pull-request machinery                   | The lineage's PR template §Scope, review dispositions and pr-lifecycle patches taken at the pin — the first update-direction instance                                    | b57e735 | from-lineage (e477e62f7)               |
+| 2026-09-13 | Plan-corpus validator                    | The strategy registry is read beside the plan corpus and the validator fails closed with a message when it is absent, instead of crashing on a lineage-only directory   | 56c8356 | sent (batch 1, item 1)                 |
+| 2026-09-13 | Patterns index generator                 | The zero-corpus case renders one line instead of links to absent files                                                                                                  | 64681a0 | sent (batch 1, item 3)                 |
+| 2026-09-13 | Authored-surfaces walker                 | One walker owns the "walk authored surfaces" semantics for three validators, with an injected file-system port and a unit test over an in-memory tree                    | 5d44218 | owed                                   |
+| 2026-09-13 | Cited-paths validator                    | Every code-formatted `.agent/` or `docs/` path in live doctrine must exist; resolution asks git (tracked or ignored by rule), never the local disk, so CI and local agree | 5d44218, 3ee2082 | owed (shape promised to the lineage) |
+| 2026-09-13 | Imported records                         | A provenance line under the title of every record imported from the lineage, naming the pin; the convention travels with the runbook                                     | 12cf86f | local                                  |
+| 2026-09-13 | Postinstall bootstrap                    | The install-time build closure is derived from the workspace manifests (dist-only exports, dependency order) instead of a hand-kept list of packages                     | cd08674 | owed (cure for the bootstrap finding sent 2026-09-12) |
+| 2026-09-13 | Authored-surfaces walker                 | The walker takes the tracked tree as its universe, so ignore-class exclusions leave every validator's list                                                              | cd08674 | owed                                   |
+| 2026-09-13 | Doctrine: `compute-dont-hope`            | No list is hand-kept; it is computed from its source or gated by a recomputing validator — the general form of `validators-must-recompute-not-just-record`               | f1eaa58 | owed (PDR candidate for the lineage)   |
+| 2026-09-13 | Privacy boundary                         | Optional local material is never a dependency: no check for its presence, minimal mentions, tools take the tracked tree as their universe                                 | 538405d | owed (doctrine candidate)              |

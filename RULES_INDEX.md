@@ -107,6 +107,7 @@ matches the Cursor adapter realises as `globs`). Regenerate this file whenever
 | `.agent/rules/read-diagnostic-artefacts-in-full.md`                        | core           | —                                                                                                 |
 | `.agent/rules/read-nextjs-docs-before-coding.md`                           | situational    | surface:nextjs — Next.js work (routes, layouts, proxy, config, rendering/caching)                 |
 | `.agent/rules/records-are-technical-not-emotional.md`                      | core           | —                                                                                                 |
+| `.agent/rules/record-generalisation-moves.md` | situational | surface:agent-tools/**, .agent/practice-core/**, .agent/rules/**, .agent/skills/**, .agent/directives/** — a change that makes a Practice element more general or portable |
 | `.agent/rules/register-active-areas-at-session-open.md`                    | core           | —                                                                                                 |
 | `.agent/rules/register-identity-on-thread-join.md`                         | core           | —                                                                                                 |
 | `.agent/rules/render-the-reference-before-reproducing.md`                  | situational    | surface:design — Beginning or reviewing work whose acceptance is likeness to a reference artefact |
