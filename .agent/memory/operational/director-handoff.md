@@ -197,6 +197,22 @@ ones the Director would put to the owner had the owner been present.
     gate leg and what it says at the filed count; advisory proceeds; a blocking leg stops for a
     ruling, because the register's contract says the count is reported and drains by decisions,
     never chased. REVIEW: the finding and the migration.
+11. Review rounds granted past PDR-132's two, each a Director decision on real defects in a new
+    mechanism: #60 round three (Copilot on ebfe210: the probe socket closes before the holder
+    binds, so a taker can slip between choose and hold, and a failed bind could leave Playwright
+    polling a stranger's server; ADR-019 names the old command). Class ruled: no moment between
+    the port being chosen and held, the prober is the holder, a bind failure exits non-zero before
+    any poll can pass. #55 round five (Copilot on 3d86acb: a folded scalar stops at a blank line;
+    index rows absent from the tracked rule set are never visited; an existing declaration skips
+    validation of its sources). Both routed to lane A, one minimal commit each, #60 first.
+12. Lane A's home reads for the session 2 draft: twenty-one candidates file as pending; G, H and
+    W are duplicates with their homes quoted (pr-lifecycle CLASS P; the docs-adr-expert template's
+    title-not-number line with PDR-005's four-audit close; hook-policy-substring-discipline).
+    Board follow-ons from the reads: the memory-state substrate contracts doc carries two "must
+    not remain on disk" clauses, the memorial shape O forbids (truing at that file's next touch);
+    the start-right-team n=2 overlay drops the sweep without sparing the progress report (E fills
+    it). The register PR files in the counter's canonical shape with the five existing entries
+    migrated (item 10).
 
 ## Routing log
 
