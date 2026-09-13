@@ -75,7 +75,8 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Active Threads
 
-- OCE Practice lineage transplant (owner-led rulings, agent execution).
+- OCE Practice lineage transplant — closure (Director: Cauldron herds Lustre, `director-handoff.md`;
+  lanes A, B, C under `threads/closure-lane-*.next-session.md`).
 
 ## Paused Threads
 
