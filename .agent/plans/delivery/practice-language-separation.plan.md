@@ -35,10 +35,12 @@ owner_gates:
     expires: 2026-10-04
   - awaiting: owner-decision
     clears_when: >-
-      The owner names the PDR-006 leading-edge reference repositories the
-      Python and Rust packs are authored against (Python has one in the
-      network; Rust is a recorded gap and may be authored from the language
-      pack's own first host).
+      The owner names the Rust reference (a recorded PDR-006 gap; the pack may
+      be authored from its own first host) and confirms the Python pack's
+      first host. The owner has already ruled (2026-09-13) that the existing
+      Python Practice repository is a very rough sketch, not a template: the
+      Python pack is authored from the universal layer with a structure
+      matching the lineage, and that repository provides hints, never intent.
     expires: 2026-10-04
 last_updated: 2026-09-13
 ---
@@ -142,8 +144,10 @@ antigen-scan instrument that node's todo 6 lands is its sibling, not its prerequ
    the contract language and the conformance corpus as the behaviour specification.
 5. **The conformance corpus.** Author fixture cases per CLI topic and the black-box runner;
    adopt it as the agent-tools smoke suite; name the reference-implementation-only behaviours.
-6. **Python and Rust packs** against the named references (after the third gate clears); the
-   Python host fixture in CI.
+6. **Python and Rust packs.** The Python pack is authored from the universal layer with the
+   lineage's structure, reading the existing Python Practice repository for hints only (owner
+   ruling 2026-09-13); the Rust pack after the third gate names its host; the Python host
+   fixture in CI.
 7. **Instruments for non-TypeScript hosts** per the second gate: the built-binary release
    shape, or the port order.
 8. **Send the design to the lineage** under ruling 6 as a proposals batch, with the

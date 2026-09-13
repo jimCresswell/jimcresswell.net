@@ -1269,3 +1269,9 @@ Three items in one message, with the cognition suite invoked.
 3. **Commit and push.** The branch was clean; pushed with upstream tracking at 12cf86f, the
    pre-push gate green (the full check plus 58 end-to-end tests). The node and this record are
    pushed after it. No pull request has been opened; that word has not been given.
+
+Addendum (same day, early afternoon): 4. **Open the PR** — done, see below. 5. **The Python
+Practice repository is a very rough sketch, not a template**: the Python pack's structure must
+be much closer to the lineage's, and that repository "provides hints rather than intent".
+Applied to the language-separation node's third gate and todo 6 and to the exploration's
+unresolved-evidence list.

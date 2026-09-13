@@ -167,8 +167,10 @@ richer schema language but the conformance corpus: a specification written as ru
 
 ## Unresolved evidence
 
-- What the Python reference repo (PDR-006) carries today, and whether the lineage has a host
-  profile in embryo beyond `bootstrap.ts`.
+- Whether the lineage has a host profile in embryo beyond `bootstrap.ts`. (The Python
+  Practice repository is settled by the owner, 2026-09-13: a very rough sketch, not a template;
+  the Python pack takes the lineage's structure and reads that repository for hints, never
+  intent.)
 - Whether Claude, Cursor and Codex hook wire shapes are stable enough to schema without
   chasing vendors (the estate already validates one wire contract).
 - The divergence-by-scope count that would confirm or refute the free-play observation.
