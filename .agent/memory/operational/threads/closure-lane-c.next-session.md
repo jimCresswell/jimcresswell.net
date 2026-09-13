@@ -27,6 +27,18 @@ directed comms event, never to the owner.
   reports index as the entry (what, how, why, how-faster), the runbook's step 13 citing the
   nine functions as its completeness audit, the completion entry in `provenance.yml`. Proof: the
   index and the provenance diff.
+- **Director verdicts (2026-09-13, about 14:15Z):** (1) the Gemini projection is a fourth output
+  of the sub-agent adapter generator lane B lands in its PR 2, emitted from the templates as
+  `.gemini/commands/<template-basename>.toml` with gemini added to the reviewer-adapter platform
+  contract; lane C authors that extension after B's PR 2 merges, when B releases the emitter
+  path and `validators/portability`; thirty hand-written adapters would be the hand-kept copies
+  item 6 removes. `GEMINI.md`, the surface matrix and the operational README are lane C's in
+  item 4. (2) Definition rows 3 and 5: the corpus-analysis workflow and `sif`'s two instruments
+  are removed, not restored (the round 11 one-seat synthesis ruling leaves them no consumer):
+  a separate small PR after item 4, each removal a disposition row in the plan of record.
+  (3) Registers: `deferred-controls-register` and `director-rulings-ledger` not brought;
+  quarantine and curator-passes contracts imported from the pin; documentation-sync-logs
+  declared runtime-created. Lane C's PR follows lane A's PR 1.
 - **Next safe step:** `start-right-team` as `team-member-non-closeout-owner`; team-start
   report; claim `--role implementer --thread closure-lane-c` on the paths above after the
   Director acknowledges; commit intent before each push.
