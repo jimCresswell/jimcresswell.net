@@ -427,6 +427,13 @@ ones the Director would put to the owner had the owner been present.
     beyond two is the Director's): a doc that contradicts the code it describes is not clean,
     and the four cures are one small commit. Routed to lane A after its two pushes. Lens 1.
     REVIEW: the third round.
+39. The e2e follow-on (item 31's routing) is PR #66 (23:45Z on 2026-09-13), open as the bot at
+    `SHA: 8e72969` from main: the four routed cures plus a latent hang the new cells exposed
+    (port and ready arriving in one chunk were missed by a listener attached after the first;
+    now buffered); twelve script cells, three mutants killed, the full suite green. Item 5a-iii
+    is on origin at `SHA: 38e346a` (`fix/merge-bot-body-tally`, stacked on the #65 tip) and
+    opens after #65 merges. Copilot requested on #66; the bot merges at zero threads. Lane A's
+    next is the #65 round-three cure, then 5b. Standing ruling; no REVIEW.
 
 ## Routing log
 
