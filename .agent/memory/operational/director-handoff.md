@@ -62,10 +62,10 @@ rewritten at each Director push.
   Landed on `main`: item 1 (archive deleted), item 2 (PR #53, `SHA: 55649a2`), item 3 (PR #56,
   `SHA: 1829cd4`), item 4 as bounded (PR #57, `SHA: 4a61112`), the Director records and the channel rule
   (PR #54, `SHA: c426c6c`).
-- Open pull requests: #60 (lane A, the per-checkout Playwright port, redesigned on round five
-  as the in-process server; round six, two small cures, on ask) and #62 (this records branch).
-  Merged today: #54, #56, #57, #58, #61, #55 (`SHA: 7127bc4`), #63 (`SHA: dc23dff`, session 2's
-  register); #59 closed as carried.
+- Open pull requests: #62 (this records branch) and #64 (lane A, item 5a-i, merge-bot request
+  visibility, `SHA: b94e00b`, Copilot bound). Merged: #54, #56, #57, #58, #61, #55
+  (`SHA: 7127bc4`), #63 (`SHA: dc23dff`, session 2's register), #60 (`SHA: 4370e04`, the
+  per-checkout Playwright port as the in-process server, after six rounds); #59 closed as carried.
 - Team state: owner word 17:16Z, "this is now an n=2 session, you and Saffron" (PDR-082; the
   Director's heartbeat stopped, watcher kept); 17:18Z the ARC channel opened beside native
   messaging. Lanes B and C handed every responsibility back and stood down (closeouts on the
@@ -81,9 +81,9 @@ rewritten at each Director push.
   `comms watch --exclude-tag heartbeat`), then `assert-watcher-live`; the ARC channel tail; no
   heartbeat loop at n=2. Checked 15:39Z: background tasks outlive a compaction.
 - Next safe step (owner away; decisions by the lenses, logged under §Decisions overnight):
-  lane A's #60 round-six cure on ask, Copilot bound, the bot merges at zero threads; lane A's
-  item 5a-i pull request (merge-bot request visibility, committed locally at `SHA: 4e5083f`) on
-  ask, then 5a-ii (measured state); the morning report presents §Decisions overnight with its
+  #64 (item 5a-i) merges by the bot at zero threads with Copilot bound; lane A then opens 5a-ii
+  (measured state, built and stacked on `SHA: b94e00b`), then the #60 follow-on cure (overnight
+  item 31), then 5b; the morning report presents §Decisions overnight with its
   REVIEW marks and the session 2 cards (the register's twenty-eight pending entries in four
   classes, plus proposal E).
 
@@ -160,7 +160,8 @@ ones the Director would put to the owner had the owner been present.
 4. Session 2 draft written (`threads/session-2-synthesis.next-session.md`, commit SHA: 3783b6e on
    the records branch): 24 candidates with source, candidate home and prediction; a
    verify-before-filing list; the already-homed set with homes; the routed classes. Lane A
-   completes it as the register PR after #60 and #55. Lens 3 (the Director reads and drafts;
+   completes it as the register PR after #55 (the owner's amended order; #60 was not a
+   prerequisite, and the register PR #63 merged before it). Lens 3 (the Director reads and drafts;
    the seat verifies homes and files; the owner decides on cards). REVIEW: the candidate homes,
    in the morning batch of cards.
 5. REVIEW (privacy): an owner-gated privacy review of the three unconsolidated napkins under
@@ -336,6 +337,19 @@ ones the Director would put to the owner had the owner been present.
     review-date decision (`promote` or `kill-with-reasoning`), never the fast dispositions. Cure at
     `SHA: 8d79172`; replied, resolved, Copilot re-requested, bot armed. Lens: correctness of a
     record the successor reads; no REVIEW.
+31. #60 merged by the bot at `SHA: 4370e04` (about 23:15Z on 2026-09-13) at zero threads with
+    Copilot bound; the binding review's body read "Needs a closer look" with five suppressed
+    findings and zero new comments: the spawn `error` event unhandled in the global setup; the
+    server flow's `close()` rejection discarded with exit 0; two contract surfaces still saying
+    the web server runs build-and-start (`CONTRIBUTING.md`, `docs/project/requirements.md`; the
+    review also named `docs/engineering/testing-patterns.md` and the quality-gates skill, which
+    a grep of main does not bear out); the README falsifier setting one of the two Vercel URL
+    variables. Routed to lane A as one small follow-on pull request after 5a-ii. Lens 2 (the
+    merge stands: green, clean, zero threads is the standing ruling; body findings are follow-on
+    work, not a reopen). Finding for 5a: the bot merged on a body that says "Needs a closer look";
+    the SKILL's item 2 tally is a reader's step the bot does not compute, so measured state
+    should count suppressed body findings as open work or the verdict should name them. REVIEW:
+    the merge on a closer-look body, and whether 5a-ii or 5a-iii carries the body tally.
 
 ## Routing log
 

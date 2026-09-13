@@ -3,7 +3,8 @@
 **Thread identity.** Closure session 2 (node `.agent/plans/delivery/practice-completion.plan.md`
 §Transplant closure, item 8). Owner word 2026-09-13 about 20:40Z: the Director drafts the
 candidate list; lane A (Saffron turns Verdure, c39ad7) completes it as the pending-graduations
-register pull request after #60 and #55 land, before item 5; scope is the three napkins under
+register pull request after #55 landed (the owner's amended order; #60 was not a prerequisite
+and the register PR #63 merged before it), before item 5; scope is the three napkins under
 `.agent/memory/active/unconsolidated/` plus today's captures in `.agent/memory/active/napkin.md`
 (from line 311 to the end of the file at the commit that lands this record: sessions 4 to 8,
 wraps 3 to 7, lane C, lane A, the Director's two sections); the candidates
