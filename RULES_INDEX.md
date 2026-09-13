@@ -24,6 +24,7 @@ matches the Cursor adapter realises as `globs`). Regenerate this file whenever
 | `.agent/rules/closed-shape-design-optionality.md`                          | core           | —                                                                                                 |
 | `.agent/rules/collaboration-is-value-contingent.md`                        | core           | —                                                                                                 |
 | `.agent/rules/comms-all-channels-watcher.md`                               | situational    | session:team — Team session bootstrap                                                             |
+| `.agent/rules/compute-dont-hope.md` | core | — |
 | `.agent/rules/confident-seats-proceed-and-report.md`                       | core           | —                                                                                                 |
 | `.agent/rules/consolidate-at-second-consumer.md`                           | core           | —                                                                                                 |
 | `.agent/rules/continuity-surface-commits-as-orphans.md`                    | situational    | ceremony:commit                                                                                   |
