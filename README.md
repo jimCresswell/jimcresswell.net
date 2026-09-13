@@ -72,7 +72,7 @@ pnpm test:ui        # Playwright UI mode (interactive)
 pnpm visual-regression:harness <base-ref> <target-ref> # Non-destructive rendered-output comparison
 
 pnpm fix            # Format, markdownlint, and lint auto-fix
-pnpm check          # Every blocking gate, read-only (pre-push and CI run the same legs)
+pnpm check          # Every blocking gate, writing no tracked file (pre-push and CI run the same legs)
 pnpm knip           # Find unused exports and dependencies
 pnpm secrets:scan   # Scan git history for secrets
 pnpm portability:check    # Validate agent-surface parity and local surface contract
@@ -204,7 +204,7 @@ Two Git hooks enforce quality automatically:
 - **Pre-push** — full: `pnpm check` and the site's end-to-end suite. PDF tests require a prior build and are run explicitly.
 
 ```bash
-pnpm check          # Blocking gates, read-only: format, markdownlint, shell and runtime-only lint, lint, type-check, test, knip, depcruise, gitleaks, portability, sub-agents, skill adapters, encoding
+pnpm check          # Blocking gates, writing no tracked file (the agent-tools e2e leg builds agent-tools/dist): format, markdownlint, shell and runtime-only lint, lint, type-check, test, the agent-tools e2e and smoke suite, knip, depcruise, gitleaks, portability, sub-agents, skill adapters, encoding, repo and docs validators
 pnpm fix            # Auto-fix (format, markdownlint, lint), then re-run pnpm check
 pnpm test:e2e       # E2E tests against production build (separate — requires Chromium)
 ```

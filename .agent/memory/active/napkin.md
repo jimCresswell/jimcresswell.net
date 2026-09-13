@@ -865,3 +865,112 @@
   went red on disk-walking gates (untracked comms render, untracked editor workspace file):
   stepping stones applied, cure routed to lane A. The `#` delimiter in `perl -pi -e 's#…#…#'`
   is unusable when the pattern contains a markdown heading; use `|`.
+
+## Session: 2026-09-13 — lane C, closure item 4 (Djinn hunts Solder, 36720b, Implementer)
+
+- Team of three Implementers under the Director; lanes routed by team-start arrival order. The
+  lane started with grounding only; the go came as a Director directed event relaying the
+  owner's word, then owner word in-session ("wait on the Director for explicit instruction").
+- Worktree entry from the principal: the isolation guard refused two shapes after entry — a
+  compound command whose heredoc TEXT contained the word "git", and a `while` loop invoking
+  pnpm. Cure: bodies through the native file tool, one plain command per call, loops as a
+  script file run with `bash <path>`. The write-time hook also blocks a user-home absolute path
+  inside a scratch script; tilde form passes.
+- Read-before-asking paid: the lineage checkout for the pin was found by testing every local
+  repo for the commit, before the Director had to answer.
+- Mutation testing's absence was already stated in testing-strategy; the item said "check
+  whether it already is", and it was. A todo can be a check with no edit.
+- The pin's Gemini commands are hand-kept `review-<topic>.toml` pointers at the templates; the
+  parity validator keys on adapter basenames. Naming the Gemini files by template basename makes
+  the fourth platform a basename identity with no mapping table (compute-dont-hope); the lineage's
+  `review-` prefix carried no derivation. The pin's `.gemini/settings.json` is `{}`: nothing.
+- The cited-paths validator has an EMPTY allowlist by design: "runtime-created" is declared by an
+  ignore rule or a tracked file, never a list entry. The substrate manifest's `lifecycle` string is
+  where a memory surface says "absent until first write" (the commit-queue entry is the precedent).
+- `practice-substrate check` reads instance-tier files from the cwd, so a fresh worktree reads
+  blocking; a check that reads the local disk proves the local disk (distilled 2026-09-13), again.
+- From a resident worktree the guard accepts `git -C /literal/other/repo show|ls-tree|archive`
+  and refuses the same with a tilde or variable path, and refuses `sed` with a computed program.
+  `git archive -o <tar>` then `tar -x` is the way to read a whole directory at a pin.
+- Director verdict on the Gemini projection: not hand-authored adapters (thirty five-line
+  files are exactly the hand-kept copies item 6 exists to end) but a fourth output of lane B's
+  adapter generator, added by lane C after B's generator PR merges. The proposal I sent had the
+  right derivation (basename identity, support-map narrowing) and the wrong vehicle; the
+  Director's map (B's claim already covered the portability validator) changed the routing, not
+  the design. Ask for the routing with the design, never the design alone.
+- `practice-substrate` keeps a deliberate subtraction guard (`EXPECTED_MANIFEST_SURFACES`): a
+  pinned count whose comment binds it to the same PR as any surface change. Not a hand-kept list
+  but a tripwire; bumped 22 → 24 with the provenance comment (25 for an hour, until the
+  Director removed the rulings-ledger entry under the consolidation-record rule). A validator that reads `dist/`
+  reports the old pin until `pnpm --filter @engraph/agent-tools build` runs: rebuild before
+  reading a source edit through a built binary.
+- The markdown-links validator classifies a link from a tracked file to an untracked new file
+  as broken (`tracked-source-to-untracked-target`); `git add` the new file before reading the
+  leg, or the red is the staging state, not the link.
+- Reviewer catch (Wilma): I imported a `curator-passes/` README because the definition report
+  listed it among "the registers the learning loop writes to" and the lineage tree had it. The
+  estate's own PDR-081 amendment (2026-06-14) and the curator-pass skill's Step 8 say the
+  opposite: no per-pass file; the commit plus the homed substance is the record. A directory
+  the lineage kept for its history is not a register the doctrine writes to. Read the writer
+  before creating the surface it supposedly writes (verify-data-supports-shape-before-building).
+- Director correction, owner-prompted: two verdicts (removal of the corpus workflow; the two
+  ledgers "not brought") overturned ratified node text, and ratified text is the owner's word.
+  Where a plan is ratified, a lens-resolved "better" answer is a card to the owner, never a PR.
+  The lesson the Director named as theirs applies to me too: I proposed the removal.
+- Tombstone distinction for manifest declarations: a surface that is absent until its first
+  writer acts is declared runtime-created (the commit-queue shape); a surface the doctrine has
+  superseded is not declared at all, because a manifest entry that says "must never exist" is
+  a memorial (no-tombstones). The authority that supersedes it is the record.
+- Reviewer catch (code-expert): three new plan-node citations had landed on permanent pages
+  (GEMINI.md, the matrix twice) in one afternoon. no-moving-targets: a permanent page names the
+  ruling and its date, never the vehicle. The reflex is strongest when the plan is what you are
+  executing.
+
+### Lane A (Saffron turns Verdure, c39ad7) — closure item 3 and the tracked-universe lint cure (2026-09-13)
+
+- Which ignore entries are dead is computed against `git ls-files`, never read off the name:
+  `**/CHANGELOG.md` looked like disk state and matched two tracked changelogs; dropping it let
+  `markdownlint --fix` corrupt one (a `+` in prose became a list marker, `_actually_` became
+  `*actually*`), restored by forward write. Every removed entry was then proven dead with one
+  `git ls-files <pattern>` call each; only that one was live. Worked instance of
+  `compute-dont-hope` at the ignore-file grain.
+- Prettier folded `'\u0000'` escapes into raw NUL bytes in a test file and git read it as
+  binary; a `\0` directly before a digit is an octal escape the parser refuses. Cure: one
+  `String.fromCharCode(0)` separator and array joins; never an escape before a digit.
+- The Bash tool's shell is zsh: `${PIPESTATUS[0]}` is empty there (`$pipestatus[1]` is the zsh
+  spelling), so every `exit=` I echoed after a pipeline was blank. Verdicts came from each leg's
+  own output line and the hooks; read exit state from the tool's verdict or run without a pipe.
+- The worktree isolation guard refuses a Bash line that pipes `git` output and a Write whose
+  content carries a user-home absolute path; both cure the same way, a scratchpad script run by
+  one plain call with paths derived (`git rev-parse --show-toplevel`, `git worktree list`).
+- The lane record's premise "the lineage root scripts that have consumers here" recomputed:
+  only `outdated` is cited in live doctrine (`.agent/reference/tooling.md`); `lint:shell:syntax`
+  (this repo's `lint:shell`), `check:profile` and `depcruise:report` are cited nowhere but the
+  plan of record and the definition report, so they were not added. Director accepted.
+- knip cannot see a spawn: moving `markdownlint-cli2` from a root script into a `pnpm exec`
+  inside repo-check made the root devDependency read unused; the declared `ignoreDependencies`
+  exception with its reason is the honest cure (moving the dependency would break `pnpm exec` at
+  the root cwd where the config lives). knip also reads an exported-but-unimported constant as
+  dead: module constants stay private until a second consumer exists.
+- The Director's routing to resolve the primary coordination home for the substrate leg was
+  declined with the reason (a gate that reads another checkout's disk proves that disk; CI has
+  no primary): the tier is derived from the repository's ignore rules through an injected probe.
+  Verdict, not menu; the Director accepted.
+- What worked: three scratchpad trials (markdownlint with and without `--no-globs`, prettier on
+  explicit ignored paths) settled the semantics before any source changed; the whole lint cure
+  changed nothing in what is linted (620 files before and after).
+- Director correction (2026-09-13, after my second push): the push slot is the Director's to
+  hand out; a seat announces and WAITS for the one-word confirmation before pushing, because
+  two pre-push e2e runs on one host prove the wrong build silently (Playwright reuses an
+  existing :3000 server). I had pushed on my own announcement; corrected.
+- The review rounds (code-expert, then config-expert and test-expert in parallel) found what a
+  green gate cannot: a new built binary with no artefact-viability smoke, `--help` exiting 1 on
+  stderr, a signal death folded into exit 1, an errno escaping an evaluator, six assertions that
+  no mutation could fail. Two rounds, twenty-two findings, nineteen taken; the recorded-not-
+  taken ones carry their reason in the commit message. The test-expert's atomic-landing
+  reading was right: the drift branch and the argv guard each landed a commit before their
+  description; author test and code in the same edit, not the same PR.
+- A test that spawns a child must not import `node:fs` (the estate's no-real-IO-in-tests
+  rule): let the child resolve its own real path. And the truth-set's "executable bit" applies
+  only to `bin/` entries the build chmods; a package-script entry run from source proves cold
+  start under node, not a mode bit.

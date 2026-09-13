@@ -1,3 +1,4 @@
+import { existsSync } from 'node:fs';
 import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -7,6 +8,7 @@ import { typeSafeEntries } from '@engraph/type-helpers';
 
 import { SCHEMA_FILENAMES } from '../../collaboration-state/collaboration-json-validation.js';
 import { CLOSED_CLAIMS_SCHEMA_VERSION } from '../../collaboration-state/types.js';
+import { type InstanceTierProbes } from '../instance-tier.js';
 
 /**
  * Real-IO temp-repo builder for practice-substrate integration tests
@@ -17,9 +19,34 @@ import { CLOSED_CLAIMS_SCHEMA_VERSION } from '../../collaboration-state/types.js
 
 const SCHEMAS_DIR = fileURLToPath(new URL('../../collaboration-state/schemas/', import.meta.url));
 
+/**
+ * Presence probes for a temp tree that is not a git repository: the disk is
+ * real, the ignore verdict is fixed. `ignoredTierProbes` models the instance
+ * tier (the repository's rules ignore the path); `trackedTierProbes` models a
+ * surface git would track.
+ */
+export const ignoredTierProbes: InstanceTierProbes = {
+  exists: existsSync,
+  isIgnored: () => true,
+};
+
+export const trackedTierProbes: InstanceTierProbes = {
+  exists: existsSync,
+  isIgnored: () => false,
+};
+
+/** What the temp repository holds. Every surface is absent unless named. */
+export interface TempSubstrateRepoContents {
+  /** The active-claims registry; when given, the closed-claims archive is written beside it. */
+  readonly activeClaims?: unknown;
+  /** Comms event files by name, written verbatim under `comms/`. */
+  readonly commsEventFiles?: Readonly<Record<string, string>>;
+  /** The shared-comms-log render, written verbatim. */
+  readonly sharedCommsLog?: string;
+}
+
 export async function makeTempSubstrateRepo(
-  activeClaims: unknown,
-  options?: { readonly commsEventFiles?: Readonly<Record<string, string>> },
+  contents: TempSubstrateRepoContents = {},
 ): Promise<string> {
   const root = await mkdtemp(join(tmpdir(), 'live-json-characterisation-'));
   const collaborationRoot = join(root, '.agent/state/collaboration');
@@ -31,19 +58,28 @@ export async function makeTempSubstrateRepo(
   for (const schema of SCHEMA_FILENAMES) {
     await writeFile(join(schemaRoot, schema), await readFile(join(SCHEMAS_DIR, schema), 'utf8'));
   }
-  for (const [filename, text] of typeSafeEntries(options?.commsEventFiles ?? {})) {
+  for (const [filename, text] of typeSafeEntries(contents.commsEventFiles ?? {})) {
     await writeFile(join(collaborationRoot, 'comms', filename), text, 'utf8');
   }
-  await writeFile(
-    join(collaborationRoot, 'active-claims.json'),
-    JSON.stringify(activeClaims, null, 2),
-    'utf8',
-  );
-  await writeFile(
-    join(collaborationRoot, 'closed-claims.archive.json'),
-    JSON.stringify({ schema_version: CLOSED_CLAIMS_SCHEMA_VERSION, claims: [] }, null, 2),
-    'utf8',
-  );
+  if (contents.sharedCommsLog !== undefined) {
+    await writeFile(
+      join(collaborationRoot, 'shared-comms-log.md'),
+      contents.sharedCommsLog,
+      'utf8',
+    );
+  }
+  if (contents.activeClaims !== undefined) {
+    await writeFile(
+      join(collaborationRoot, 'active-claims.json'),
+      JSON.stringify(contents.activeClaims, null, 2),
+      'utf8',
+    );
+    await writeFile(
+      join(collaborationRoot, 'closed-claims.archive.json'),
+      JSON.stringify({ schema_version: CLOSED_CLAIMS_SCHEMA_VERSION, claims: [] }, null, 2),
+      'utf8',
+    );
+  }
 
   return root;
 }
