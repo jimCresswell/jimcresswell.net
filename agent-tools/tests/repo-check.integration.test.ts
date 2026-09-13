@@ -9,7 +9,9 @@ import {
   profilePostTurboGateStatus,
   runKnipGate,
   runMarkdownlintStaged,
+  runMarkdownlintTracked,
   runPrettierStaged,
+  runPrettierTracked,
   type RepoCheckRuntime,
 } from '../src/repo-check/repo-check';
 import { normaliseSpawnResult } from '../src/repo-check/repo-check-runtime';
@@ -19,8 +21,21 @@ interface CommandCall {
   readonly args: readonly string[];
 }
 
-function stagedRuntime(input: {
-  readonly stagedStdout: string;
+/**
+ * git's `-z` record separator, built without a string escape: a `\\0` directly
+ * before a digit would read as an octal escape, which the language forbids.
+ */
+const NUL = String.fromCharCode(0);
+
+/**
+ * A fake runtime whose git answers are routed by subcommand: `diff` returns
+ * the staged set, `ls-files -s` the index entries with modes, and a bare
+ * `ls-files` the tracked tree. All three speak git's `-z` (NUL-separated)
+ * form, which is what the gates ask for.
+ */
+function gateRuntime(input: {
+  readonly stagedStdout?: string;
+  readonly trackedStdout?: string;
   readonly lsFilesStdout?: string;
   readonly inheritedExitCode?: number;
 }): {
@@ -37,7 +52,12 @@ function stagedRuntime(input: {
     runtime: {
       runCaptured(command, args) {
         capturedCalls.push({ command, args });
-        const stdout = args[0] === 'ls-files' ? (input.lsFilesStdout ?? '') : input.stagedStdout;
+        const stdout =
+          args[0] === 'diff'
+            ? (input.stagedStdout ?? '')
+            : args.includes('-s')
+              ? (input.lsFilesStdout ?? '')
+              : (input.trackedStdout ?? '');
         return { status: 0, signal: null, stdout, stderr: '' };
       },
       runInherited(command, args) {
@@ -51,8 +71,8 @@ function stagedRuntime(input: {
 describe('repo-check staged scanners', () => {
   it('runs Prettier only on cached staged paths so unrelated ambient files are ignored', async () => {
     const ambientDirtyFile = 'docs/ambient-dirty.md';
-    const { capturedCalls, inheritedCalls, runtime } = stagedRuntime({
-      stagedStdout: 'docs/staged-clean.md\nagent-tools/src/repo-check/repo-check.ts\n',
+    const { capturedCalls, inheritedCalls, runtime } = gateRuntime({
+      stagedStdout: 'docs/staged-clean.md\0agent-tools/src/repo-check/repo-check.ts\0',
     });
 
     await expect(runPrettierStaged(runtime)).resolves.toBe(0);
@@ -60,11 +80,11 @@ describe('repo-check staged scanners', () => {
     expect(capturedCalls).toStrictEqual([
       {
         command: 'git',
-        args: ['diff', '--cached', '--name-only', '--diff-filter=ACMR'],
+        args: ['diff', '--cached', '--name-only', '--diff-filter=ACMR', '-z'],
       },
       {
         command: 'git',
-        args: ['ls-files', '--cached', '-s'],
+        args: ['ls-files', '--cached', '-s', '-z'],
       },
     ]);
     expect(inheritedCalls).toStrictEqual([
@@ -84,9 +104,13 @@ describe('repo-check staged scanners', () => {
   });
 
   it('excludes staged symlink index entries from the Prettier run', async () => {
-    const { inheritedCalls, runtime } = stagedRuntime({
-      stagedStdout: 'docs/staged-clean.md\n.claude/skills/clerk\n',
-      lsFilesStdout: '100644 aaaa 0\tdocs/staged-clean.md\n120000 bbbb 0\t.claude/skills/clerk\n',
+    const { inheritedCalls, runtime } = gateRuntime({
+      stagedStdout: 'docs/staged-clean.md\0.claude/skills/clerk\0',
+      lsFilesStdout: [
+        '100644 aaaa 0\tdocs/staged-clean.md',
+        '120000 bbbb 0\t.claude/skills/clerk',
+        '',
+      ].join(NUL),
     });
 
     await expect(runPrettierStaged(runtime)).resolves.toBe(0);
@@ -96,7 +120,7 @@ describe('repo-check staged scanners', () => {
   });
 
   it('does not run Prettier when no files are staged', async () => {
-    const { inheritedCalls, runtime } = stagedRuntime({ stagedStdout: '' });
+    const { inheritedCalls, runtime } = gateRuntime({ stagedStdout: '' });
 
     await expect(runPrettierStaged(runtime)).resolves.toBe(0);
 
@@ -105,8 +129,8 @@ describe('repo-check staged scanners', () => {
 
   it('propagates Prettier failures only for staged formatting violations', async () => {
     const ambientDirtyFile = 'docs/ambient-dirty.md';
-    const { inheritedCalls, runtime } = stagedRuntime({
-      stagedStdout: 'docs/staged-bad.md\n',
+    const { inheritedCalls, runtime } = gateRuntime({
+      stagedStdout: 'docs/staged-bad.md\0',
       inheritedExitCode: 1,
     });
 
@@ -123,8 +147,8 @@ describe('repo-check staged scanners', () => {
 
   it('runs Markdownlint only on cached staged Markdown paths', async () => {
     const ambientDirtyFile = 'docs/ambient-dirty.md';
-    const { capturedCalls, inheritedCalls, runtime } = stagedRuntime({
-      stagedStdout: 'docs/staged-clean.md\nagent-tools/src/repo-check/repo-check.ts\n',
+    const { capturedCalls, inheritedCalls, runtime } = gateRuntime({
+      stagedStdout: 'docs/staged-clean.md\0agent-tools/src/repo-check/repo-check.ts\0',
     });
 
     await expect(runMarkdownlintStaged(runtime)).resolves.toBe(0);
@@ -132,11 +156,11 @@ describe('repo-check staged scanners', () => {
     expect(capturedCalls).toStrictEqual([
       {
         command: 'git',
-        args: ['diff', '--cached', '--name-only', '--diff-filter=ACMR'],
+        args: ['diff', '--cached', '--name-only', '--diff-filter=ACMR', '-z'],
       },
       {
         command: 'git',
-        args: ['ls-files', '--cached', '-s'],
+        args: ['ls-files', '--cached', '-s', '-z'],
       },
     ]);
     expect(inheritedCalls).toStrictEqual([
@@ -149,8 +173,8 @@ describe('repo-check staged scanners', () => {
   });
 
   it('does not run Markdownlint when only non-Markdown files are staged', async () => {
-    const { inheritedCalls, runtime } = stagedRuntime({
-      stagedStdout: 'agent-tools/src/repo-check/repo-check.ts\n',
+    const { inheritedCalls, runtime } = gateRuntime({
+      stagedStdout: 'agent-tools/src/repo-check/repo-check.ts\0',
     });
 
     await expect(runMarkdownlintStaged(runtime)).resolves.toBe(0);
@@ -160,8 +184,8 @@ describe('repo-check staged scanners', () => {
 
   it('propagates Markdownlint failures only for staged Markdown violations', async () => {
     const ambientDirtyFile = 'docs/ambient-dirty.md';
-    const { inheritedCalls, runtime } = stagedRuntime({
-      stagedStdout: 'docs/staged-bad.md\n',
+    const { inheritedCalls, runtime } = gateRuntime({
+      stagedStdout: 'docs/staged-bad.md\0',
       inheritedExitCode: 1,
     });
 
@@ -174,6 +198,100 @@ describe('repo-check staged scanners', () => {
       },
     ]);
     expect(inheritedCalls[0]?.args).not.toContain(ambientDirtyFile);
+  });
+});
+
+describe('repo-check tracked gates', () => {
+  // The universe is the tracked tree: an ambient file on the disk (a
+  // generated read model, an editor's workspace file) is never linted
+  // because git never names it. The gate proves the repository, not the
+  // machine.
+  const ambientDirtyFile = '.agent/state/collaboration/shared-comms-log.md';
+  const trackedStdout = 'README.md\0docs/a.md\0agent-tools/src/x.ts\0.claude/skills/clerk\0';
+  const lsFilesStdout = [
+    '100644 aaaa 0\tREADME.md',
+    '100644 bbbb 0\tdocs/a.md',
+    '100644 cccc 0\tagent-tools/src/x.ts',
+    '120000 dddd 0\t.claude/skills/clerk',
+    '',
+  ].join(NUL);
+
+  it('checks Prettier over every tracked non-symlink file, asking git rather than the disk', async () => {
+    const { capturedCalls, inheritedCalls, runtime } = gateRuntime({
+      trackedStdout,
+      lsFilesStdout,
+    });
+
+    await expect(runPrettierTracked('check', runtime)).resolves.toBe(0);
+
+    expect(capturedCalls).toStrictEqual([
+      { command: 'git', args: ['ls-files', '-z'] },
+      { command: 'git', args: ['ls-files', '--cached', '-s', '-z'] },
+    ]);
+    expect(inheritedCalls).toStrictEqual([
+      {
+        command: 'pnpm',
+        args: [
+          'exec',
+          'prettier',
+          '--check',
+          '--ignore-unknown',
+          'README.md',
+          'docs/a.md',
+          'agent-tools/src/x.ts',
+        ],
+      },
+    ]);
+    expect(inheritedCalls[0]?.args).not.toContain(ambientDirtyFile);
+  });
+
+  it('writes with the cache in repair mode', async () => {
+    const { inheritedCalls, runtime } = gateRuntime({ trackedStdout, lsFilesStdout });
+
+    await expect(runPrettierTracked('write', runtime)).resolves.toBe(0);
+
+    expect(inheritedCalls[0]?.args.slice(0, 5)).toStrictEqual([
+      'exec',
+      'prettier',
+      '--write',
+      '--cache',
+      '--ignore-unknown',
+    ]);
+  });
+
+  it('lints Markdownlint over only the tracked Markdown files, with the config globs off', async () => {
+    const { inheritedCalls, runtime } = gateRuntime({ trackedStdout, lsFilesStdout });
+
+    await expect(runMarkdownlintTracked('check', runtime)).resolves.toBe(0);
+
+    expect(inheritedCalls).toStrictEqual([
+      {
+        command: 'pnpm',
+        args: ['exec', 'markdownlint-cli2', '--no-globs', 'README.md', 'docs/a.md'],
+      },
+    ]);
+    expect(inheritedCalls[0]?.args).not.toContain(ambientDirtyFile);
+  });
+
+  it('adds --fix in repair mode', async () => {
+    const { inheritedCalls, runtime } = gateRuntime({ trackedStdout, lsFilesStdout });
+
+    await expect(runMarkdownlintTracked('fix', runtime)).resolves.toBe(0);
+
+    expect(inheritedCalls[0]?.args).toStrictEqual([
+      'exec',
+      'markdownlint-cli2',
+      '--no-globs',
+      '--fix',
+      'README.md',
+      'docs/a.md',
+    ]);
+  });
+
+  it('propagates the tool exit code', async () => {
+    const { runtime } = gateRuntime({ trackedStdout, lsFilesStdout, inheritedExitCode: 1 });
+
+    await expect(runPrettierTracked('check', runtime)).resolves.toBe(1);
   });
 });
 

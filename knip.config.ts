@@ -7,6 +7,14 @@ const config: KnipConfig = {
     // System binary probed by the site's PDF generator on Linux hosts
     'ldd',
   ],
+  ignoreDependencies: [
+    // Spawned as `pnpm exec markdownlint-cli2` from the repo root by
+    // agent-tools' repo-check (the markdown gates over the staged set and the
+    // tracked tree), never referenced from a root script knip can parse. It
+    // stays a root devDependency because its config (`.markdownlint-cli2.jsonc`)
+    // and its exec cwd are the root.
+    'markdownlint-cli2',
+  ],
 
   eslint: true,
   vitest: true,

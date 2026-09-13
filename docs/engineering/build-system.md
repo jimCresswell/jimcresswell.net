@@ -237,6 +237,16 @@ nothing, so it is the
 surface pre-push, CI and any repo-wide claim of green cite. `pnpm check` is
 an alias kept so the hook and the parity validator have a stable name.
 
+The root format and markdown legs take the **tracked tree** as their universe:
+`repo-check prettier-tracked` and `repo-check markdownlint-tracked` ask
+`git ls-files` for the file list (the pre-commit hook's `prettier-staged` and
+`markdownlint-staged` ask for the staged set the same way) and pass it to the
+tool, so the gate reads the same on every checkout and in CI. A disk walk would
+lint whatever one machine happens to carry — a build output, a generated read
+model, an editor's workspace file — and prove that machine, not the repository.
+`.prettierignore` and `.markdownlint-cli2.jsonc` therefore declare **ownership**
+only (which tracked surfaces each tool governs), never existence.
+
 `pnpm check` does not build the site, run the end-to-end suite, or run the
 `smoke:*` scripts; those run on their own surfaces (`pnpm build`,
 `pnpm test:e2e`, and the workspace scripts).
