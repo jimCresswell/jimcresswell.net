@@ -2,7 +2,13 @@ import { describe, expect, it } from 'vitest';
 
 import type { GhCommandExecutor } from './gh.js';
 import { readPrStateReading } from './state-gh.js';
-import { HEAD, threadsPayload, viewPayload } from './test-helpers/state-gh-payloads.js';
+import {
+  graphqlResponse,
+  HEAD,
+  threadsPayload,
+  viewPayload,
+  type GraphqlPayloads,
+} from './test-helpers/state-gh-payloads.js';
 
 /**
  * The review-request surface of `readPrStateReading`. Requests are read from
@@ -33,7 +39,7 @@ function harvestPayload(): string {
  * the threads read carries its one unresolved thread only once the harvest
  * has been read, as the platform would after the review's submission.
  */
-function landingPayloads(): { harvest: () => string; threads: () => string } {
+function landingPayloads(): GraphqlPayloads {
   let landed = false;
   return {
     harvest: () => {
@@ -55,10 +61,7 @@ function landingPayloads(): { harvest: () => string; threads: () => string } {
 
 function executor(
   calls: string[][],
-  payloads: { harvest: () => string; threads: () => string } = {
-    harvest: harvestPayload,
-    threads: () => threadsPayload(0),
-  },
+  payloads: GraphqlPayloads = { harvest: harvestPayload, threads: () => threadsPayload(0) },
 ): GhCommandExecutor {
   return (_file, args) => {
     calls.push([...args]);
@@ -68,16 +71,7 @@ function executor(
     if (args[0] === 'agent-task') {
       return JSON.stringify([]);
     }
-    const query = args.find((arg) => arg.startsWith('query='));
-    if (query?.includes('reviewThreads') === true) {
-      return payloads.threads();
-    }
-    // The harvest fixture answers only a query that selects the request connection: a
-    // query that dropped it would get nothing here, never a fixture that happens to fit.
-    if (query?.includes('reviewRequests(') !== true) {
-      throw new Error('the harvest query no longer selects reviewRequests');
-    }
-    return payloads.harvest();
+    return graphqlResponse(args, payloads);
   };
 }
 

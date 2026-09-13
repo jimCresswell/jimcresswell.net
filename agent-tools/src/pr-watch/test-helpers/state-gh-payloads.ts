@@ -37,3 +37,29 @@ export function threadsPayload(resolved = 2): string {
   const reviewThreads = { totalCount: resolved, nodes };
   return JSON.stringify([{ data: { repository: { pullRequest: { reviewThreads } } } }]);
 }
+
+/** The two GraphQL legs a suite answers: the threads page and the review harvest. */
+export interface GraphqlPayloads {
+  readonly threads: () => string;
+  readonly harvest: () => string;
+}
+
+// The harvest connection the product's query must select; whitespace-tolerant
+// so the fixture binds to the selection, not to the query's formatting.
+const SELECTS_REQUESTS = /reviewRequests\s*\(/u;
+
+/**
+ * Dispatch one `api graphql` call on its query text. The harvest fixture
+ * answers only a query that selects the request connection: a query that
+ * dropped it gets an error, never a fixture that happens to fit.
+ */
+export function graphqlResponse(args: readonly string[], payloads: GraphqlPayloads): string {
+  const query = args.find((arg) => arg.startsWith('query=')) ?? '';
+  if (query.includes('reviewThreads')) {
+    return payloads.threads();
+  }
+  if (!SELECTS_REQUESTS.test(query)) {
+    throw new Error('the harvest query no longer selects reviewRequests');
+  }
+  return payloads.harvest();
+}

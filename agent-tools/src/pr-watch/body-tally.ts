@@ -19,21 +19,17 @@ export interface BodyTally {
   readonly suppressed: number;
 }
 
-const HEADLINE = /^###\s+(?:\S+\s+)?(.+?)\s*$/mu;
+// The first `###` heading, with a leading pictographic token (an emoji, with
+// or without its variation selector) removed; a heading led by a word keeps
+// every word, so a non-vendor body's verdict is quoted whole.
+const HEADLINE = /^###\s+(?:\p{Extended_Pictographic}\u{FE0F}?\s+)?(.+?)\s*$/mu;
 const SUPPRESSED = /^###\s+Suppressed comments \((\d+)\)\s*$/mu;
 
-/** The first `###` heading's text with any leading emoji token removed. */
-function headline(body: string): string | null {
-  const match = HEADLINE.exec(body);
-  if (match === null) {
-    return null;
-  }
-  const text = match[1] ?? '';
-  return text === '' ? null : text;
-}
-
 export function tallyReviewBody(body: string): BodyTally {
+  const headline = HEADLINE.exec(body);
   const suppressed = SUPPRESSED.exec(body);
-  const count = suppressed === null ? 0 : Number(suppressed[1]);
-  return { verdict: headline(body), suppressed: Number.isFinite(count) ? count : 0 };
+  return {
+    verdict: headline?.[1] ?? null,
+    suppressed: suppressed === null ? 0 : Number(suppressed[1]),
+  };
 }

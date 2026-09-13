@@ -2,7 +2,13 @@ import { describe, expect, it } from 'vitest';
 
 import { readPrStateReading } from './state-gh.js';
 import type { GhCommandExecutor } from './gh.js';
-import { HEAD, PR_URL, threadsPayload, viewPayload } from './test-helpers/state-gh-payloads.js';
+import {
+  graphqlResponse,
+  HEAD,
+  PR_URL,
+  threadsPayload,
+  viewPayload,
+} from './test-helpers/state-gh-payloads.js';
 
 /**
  * IO-composition tests for `readPrStateReading` with an injected executor —
@@ -74,18 +80,7 @@ function agentTaskResponse(script: ExecutorScript, args: readonly string[]): str
   return view;
 }
 
-// Both GraphQL legs arrive as `api graphql`; the harvest fixture answers only a
-// query selecting the request connection (a query that dropped it gets no fit).
-function graphqlResponse(args: readonly string[]): string {
-  const query = args.find((arg) => arg.startsWith('query=')) ?? '';
-  if (query.includes('reviewThreads')) {
-    return threadsPayload();
-  }
-  if (!query.includes('reviewRequests(')) {
-    throw new Error('the harvest query no longer selects reviewRequests');
-  }
-  return reviewsPayload();
-}
+const graphqlPayloads = { threads: () => threadsPayload(), harvest: reviewsPayload };
 
 function makeExecutor(script: ExecutorScript, calls: string[][]): GhCommandExecutor {
   return (_file, args) => {
@@ -94,7 +89,7 @@ function makeExecutor(script: ExecutorScript, calls: string[][]): GhCommandExecu
       return viewPayload();
     }
     if (args[0] === 'api') {
-      return graphqlResponse(args);
+      return graphqlResponse(args, graphqlPayloads);
     }
     if (args[0] === 'agent-task') {
       return agentTaskResponse(script, args);
@@ -594,7 +589,7 @@ describe('readPrStateReading', () => {
           return mergedView;
         }
         if (args[0] === 'api') {
-          return graphqlResponse(args);
+          return graphqlResponse(args, graphqlPayloads);
         }
         if (args[0] === 'agent-task') {
           return agentTaskResponse({}, args);
@@ -633,7 +628,7 @@ describe('readPrStateReading — tip consistency (r4 regression)', () => {
         return viewPayload(oid);
       }
       if (args[0] === 'api') {
-        return graphqlResponse(args);
+        return graphqlResponse(args, graphqlPayloads);
       }
       if (args[0] === 'agent-task') {
         return agentTaskResponse({}, args);

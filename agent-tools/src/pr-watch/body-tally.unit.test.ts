@@ -46,7 +46,15 @@ describe('tallyReviewBody', () => {
     expect(tallyReviewBody('Reviewed 2 of 2 files.')).toEqual({ verdict: null, suppressed: 0 });
   });
 
-  it('a suppressed heading with no count or a non-numeric count tallies zero, never NaN', () => {
+  it('a heading led by a word keeps every word: only a leading emoji is dropped', () => {
+    // A non-vendor body (a human's, another reviewer's) is quoted whole; a
+    // first-token drop would have read "a closer look" and "request overview".
+    expect(tallyReviewBody('### Needs a closer look').verdict).toBe('Needs a closer look');
+    expect(tallyReviewBody('### Pull request overview').verdict).toBe('Pull request overview');
+    expect(tallyReviewBody('### 🔵 Needs a closer look').verdict).toBe('Needs a closer look');
+  });
+
+  it('a suppressed heading whose count is not a number is not a count (zero)', () => {
     expect(tallyReviewBody('### Suppressed comments (many)').suppressed).toBe(0);
   });
 });
