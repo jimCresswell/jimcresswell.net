@@ -45,9 +45,9 @@ boundary is ADR-165.
 
 | Surface | Cursor | Claude Code | Codex CLI | Gemini / Antigravity CLI |
 | --- | --- | --- | --- | --- |
-| Skills | reads `.agents/skills/` | `.claude/skills/oak-*/SKILL.md` | `.agents/skills/oak-*/SKILL.md` | reads `.agents/skills/` |
+| Skills | reads `.agents/skills/` | `.claude/skills/jc-*/SKILL.md` | `.agents/skills/jc-*/SKILL.md` | reads `.agents/skills/` |
 | Rules | `.cursor/rules/*.mdc` | `.claude/rules/*.md` | entry-point chain; native `.rules` unwired | entry-point chain only |
-| Sub-agents | `.cursor/agents/*.md` | `.claude/agents/*.md` | `.codex/agents/*.toml` | transitional review commands; native agents unwired |
+| Sub-agents | `.cursor/agents/*.md` | `.claude/agents/*.md` | `.codex/agents/*.toml` | none wired; native agents unwired |
 | Hooks | no policy activation | `.claude/settings.json` `PreToolUse` | `.codex/config.toml` identity-only `SessionStart` | upstream support; no project hook wired |
 | MCP | user-local | user-local | `.codex/config.toml` `[mcp_servers]` | upstream support; no project MCP wired |
 
@@ -57,7 +57,7 @@ Claude Code keeps tracked system policy in `.claude/settings.json`;
 `.claude/settings.local.json` is gitignored user-local override state.
 Gemini / Antigravity CLI has native plugin surfaces for skills, agents, rules,
 MCP definitions, and hooks, but the repo currently wires only the entrypoint
-chain, portable skills, and transitional review commands.
+chain (`GEMINI.md`) and the portable skills.
 
 ## How to Create New Artefacts
 
@@ -71,11 +71,11 @@ budget mechanics under §New Runbook before adding one.
 
 1. **Canonical**: `.agent/skills/<name>/SKILL-CANONICAL.md` (with
    `classification: active | passive` frontmatter)
-2. **Adapters (generated)**: `.agents/skills/oak-<name>/SKILL.md` and
-   `.claude/skills/oak-<name>/SKILL.md` — emitted by
+2. **Adapters (generated)**: `.agents/skills/jc-<name>/SKILL.md` and
+   `.claude/skills/jc-<name>/SKILL.md` — emitted by
    `pnpm agent-tools:skills-adapter-generate`; **manual edits forbidden**
-3. **Claude settings**: add `Skill(oak-<name>)` and
-   `Skill(oak-<name>:*)` to `.claude/settings.json` `permissions.allow`
+3. **Claude settings**: add `Skill(jc-<name>)` and
+   `Skill(jc-<name>:*)` to `.claude/settings.json` `permissions.allow`
 4. **Verification**: `pnpm skills:check` (adapter drift) and
    `pnpm portability:check` (permission + canonical frontmatter)
 

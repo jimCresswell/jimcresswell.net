@@ -34,19 +34,21 @@ you if something was missed from those surveys."
 
 A repository has a working Practice when every function below has a mechanism, and a full
 one when each mechanism is the lineage's current generation with local divergence recorded.
-"Surfaces" are the lineage's realisation; "here" is this estate's state on 2026-09-13.
+"Surfaces" are the lineage's realisation; "here" is this estate's state, re-dated at closure
+item 4 (2026-09-13, evening) with the proof each row cites. A row reads "present" only when
+its proof exists on `main` or in the pull request the row describes.
 
 | #   | Function                                                                                                       | Surfaces (lineage)                                                                                                                                                                                                  | Here                                                                                                           |
 | --- | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| 1   | **Orientation** — a seat or a human lands and knows what this is, where to start, and what governs             | `AGENT.md`, `HUMANS.md`, `practice-index.md`, `README.md`, `orientation.md`, the start-right skills, `RULES_INDEX.md`, `skills.md`                                                                                  | Present; entry points describe this host                                                                       |
-| 2   | **Doctrine** — the constitution and its amendment record                                                       | `practice-core/` (PDRs, verification, bootstrap, lineage, provenance, CHANGELOG, schemas), `principles.md`, the directives, the rules with adapters                                                                 | Present; 9 Core files amended locally, recorded in provenance                                                  |
-| 3   | **Capability** — how work is done                                                                              | Skills (planning, change custody, cognition, knowledge, session lifecycle, collaboration), sub-agent templates and their adapters, commands, workflows (`.agent/state/*.workflow.js`, `agent-tools/workflow-build`) | Skills and templates present; workflows absent, their templates present (see gap A5)                          |
-| 4   | **Enforcement** — the immune system: nothing claimed without a check                                           | `agent-tools` validators, the PreToolUse guard and policy, husky, CI parity, `check` and its legs, fitness budgets                                                                                                  | Present; two instruments installed but not activated (gap B3)                                                  |
-| 5   | **Identity and collaboration** — seats know who they are and coordinate                                        | PDR-027 identity, collaboration-state (claims, registry, comms, heartbeat), rapid-comms, join ceremony, coordination branches, handoff records, sif                                                                 | Present; `sif` routes to instruments this estate dropped (gap A4)                                              |
-| 6   | **Memory and the learning loop** — the reason the Practice exists                                              | napkin → distilled → pending-graduations → doctrine; consolidate-docs, curator-pass, knowledge-safety-sweep; the patterns corpus; experience letters; executive contracts; the operational registers                | Skeleton present; the patterns corpus is empty and four doctrine-cited patterns are absent (gap A1); registers absent (B2) |
-| 7   | **Planning and intent** — why work exists and who ratified it                                                  | The plan-node estate, strategy corpus, impact registry, plan validators; the knowledge-artefact homes (reports, research, analysis, proposals, explorations)                                                       | Present since 2026-09-13; homes exist when needed                                                              |
-| 8   | **Cross-platform projection** — one canonical source, thin adapters per platform                               | `.claude`, `.codex`, `.cursor`, `.agents`, `.gemini` + `GEMINI.md`, `.windsurf`, the surface matrix, portability and sub-agent validators, the adapter generators                                                   | Four platforms present; Gemini and Windsurf are an open owner decision (B1); one generator not yet a bin        |
-| 9   | **Records and provenance** — what happened, why, and where it came from                                        | `provenance.yml`, the Core CHANGELOG, explorations, transplant manifests, ATTRIBUTION, the Practice's own research and reports about itself                                                                        | Present for this host; the lineage's Practice knowledge base not carried (B4)                                  |
+| 1   | **Orientation** — a seat or a human lands and knows what this is, where to start, and what governs             | `AGENT.md`, `HUMANS.md`, `practice-index.md`, `README.md`, `orientation.md`, the start-right skills, `RULES_INDEX.md`, `skills.md`                                                                                  | Present. The entry points describe this host: `.agent/directives/AGENT.md`, `CLAUDE.md`, `AGENTS.md`, `GEMINI.md`, the Copilot instructions, `RULES_INDEX.md`, the start-right skills. Proof: `validate-cited-paths` green over them (2026-09-13). |
+| 2   | **Doctrine** — the constitution and its amendment record                                                       | `practice-core/` (PDRs, verification, bootstrap, lineage, provenance, CHANGELOG, schemas), `principles.md`, the directives, the rules with adapters                                                                 | Present. The locally amended Core files are recorded in `practice-core/provenance.yml`. Proof: `validate-cited-paths` and `validate-markdown-links` green (2026-09-13). |
+| 3   | **Capability** — how work is done                                                                              | Skills (planning, change custody, cognition, knowledge, session lifecycle, collaboration), sub-agent templates and their adapters, commands, workflows (`.agent/state/*.workflow.js`, `agent-tools/workflow-build`) | Skills and templates present. The corpus-analysis workflow (`agent-tools/src/corpus-analysis/`, its workflow file under `.agent/state/`) lands in the lane C pull request that follows item 4 (the node's todo 1, ratified), restored from the pin, scrubbed, with provenance lines; the row reads present when that pull request merges. Proof: the four `corpus-*` templates and the consolidate-docs synthesis-engine pointer naming a runnable instrument in that pull request. |
+| 4   | **Enforcement** — the immune system: nothing claimed without a check                                           | `agent-tools` validators, the PreToolUse guard and policy, husky, CI parity, `check` and its legs, fitness budgets                                                                                                  | Validators, the PreToolUse guard and policy, husky, CI parity and the `check` legs present. The two installed-but-inactive instruments (`practice-substrate`, `validate-protocol-wire-contract`, with the smoke suite) are wired as legs in lane A's item 3 pull request; the row reads present when that pull request merges. Proof: those legs and `validate-check-ci-parity` green in that pull request. |
+| 5   | **Identity and collaboration** — seats know who they are and coordinate                                        | PDR-027 identity, collaboration-state (claims, registry, comms, heartbeat), rapid-comms, join ceremony, coordination branches, handoff records, sif                                                                 | Present. Identity preflight, claims, comms and heartbeats were in live use by a Director and three Implementer seats on 2026-09-13. `sif`'s routing lands rewritten to the instruments this estate carries (the smaller of the node's two ratified options) in the lane C pull request that follows item 4; the row reads fully present when that pull request merges. Proof: `validate-collaboration-state` and `validate-identity-naming` green as `repo-validators:check` legs (2026-09-13). |
+| 6   | **Memory and the learning loop** — the reason the Practice exists                                              | napkin → distilled → pending-graduations → doctrine; consolidate-docs, curator-pass, knowledge-safety-sweep; the patterns corpus; experience letters; executive contracts; the operational registers                | Registers present; patterns partly. Five doctrine-cited patterns were imported at todo 1; five more that live doctrine cites are absent (`referent-narrowing`, `baseline-transmits-its-stance`, `legitimate-principle-as-avoidance-cover`, `cross-session-pattern-emergence`, `fabricated-gate-as-avoidance`), escaping the cited-paths leg because they are cited as `patterns/<name>.md` rather than by a rooted path; they land in the lane C pull request that follows item 4, imported from the pin, with the leg extended to resolve that citation shape; the row reads present when that pull request merges. Every register named at B2 has its disposition (item 4): `diagnostics/` and `threads/` existing; `quarantine/` with its README contract; `documentation-sync-logs/` and the deferred-controls register declared runtime-created, each with the moment that creates it; a curator pass's record is the commit plus the homed substance (PDR-081 §Amendment Log, 2026-06-14), and an owner ruling's homing proof is the plan of record's ruling rounds and the Director handoff file's routing log (the `permanent-doc-is-the-consolidation-record` rule). Proof: the manifest's 24 surfaces validating against its schema; the substrate audit in check mode reporting no manifest finding (its clean exit on a fresh checkout is lane A's item 3); the operational README table (2026-09-13). |
+| 7   | **Planning and intent** — why work exists and who ratified it                                                  | The plan-node estate, strategy corpus, impact registry, plan validators; the knowledge-artefact homes (reports, research, analysis, proposals, explorations)                                                       | Present since 2026-09-13: the plan-node estate, with `validate-plan-corpus` a `repo-validators:check` leg. Proof: that leg green. |
+| 8   | **Cross-platform projection** — one canonical source, thin adapters per platform                               | `.claude`, `.codex`, `.cursor`, `.agents`, `.gemini` + `GEMINI.md`, `.windsurf`, the surface matrix, portability and sub-agent validators, the adapter generators                                                   | Present for Cursor, Claude Code, Codex and `.agents/`. Gemini is carried: the `GEMINI.md` entry point lands with item 4; its per-role commands become a fourth output of the adapter generator (pending lane B's generator pull request and lane C's extension of it, which is where the `portability:check` leg the ruling names lands). Windsurf is unsupported by ruling, recorded in the surface matrix. Proof: `validate-cited-paths` green over `GEMINI.md`; the matrix §Notes (2026-09-13). |
+| 9   | **Records and provenance** — what happened, why, and where it came from                                        | `provenance.yml`, the Core CHANGELOG, explorations, transplant manifests, ATTRIBUTION, the Practice's own research and reports about itself                                                                        | Present. The cited knowledge-base subset was imported at todo 1 with provenance lines naming the pin; the rest stays at the pin, re-importable (owner ruling, round 8). Proof: `validate-cited-paths` green (2026-09-13). |
 
 **What a new repository needs, therefore:** functions 1, 2, 4, 6 and 7 with their mandatory
 surfaces are the working minimum (the verification doc's §Mandatory Surfaces says the same
@@ -157,3 +159,67 @@ proposals above are carried as the delivery node
 [`practice-completion`](../../plans/delivery/practice-completion.plan.md) (sketch, two owner
 gates); the ecosystem frame is the installable-thing report's 2026-09-13 addendum. The nine-row
 table is re-dated when each row's proof lands.
+
+## Closure item 4 — completeness by function (2026-09-13, evening)
+
+Lane C of the transplant closure (node §Transplant closure item 4). Each gap above that the
+item names, with its disposition:
+
+- **A1 residue (patterns).** Measured at item 4's review: live doctrine cites nine pattern
+  files; four of the five imported at todo 1 are among them and five are absent
+  (`referent-narrowing`, `baseline-transmits-its-stance`,
+  `legitimate-principle-as-avoidance-cover`, `cross-session-pattern-emergence`,
+  `fabricated-gate-as-avoidance`). The cited-paths leg reads only rooted `.agent/` and `docs/`
+  citations, and these are cited relative to the patterns directory, so the class had no check.
+  Both land in the lane C pull request that follows item 4: the five files from the pin,
+  scrubbed, with provenance lines, and the leg extended to resolve `patterns/<name>.md`
+  against the patterns directory.
+- **A4, A5 (`sif` instruments; the corpus workflow).** The node's ratified todo 1 governs:
+  the corpus-analysis workflow (62 source files under `agent-tools/src/corpus-analysis/` at
+  the pin, plus its workflow file under `.agent/state/`) is restored from the pin, scrubbed,
+  with provenance lines, so the four `corpus-*` templates and the consolidate-docs
+  synthesis-engine pointer name a runnable instrument; for `sif`, the ratified text offers
+  "give it its concrete instruments or rewrite its routing", and the smaller is the rewrite
+  (seven files at the pin against a routing paragraph), so `sif` routes to the instruments
+  this estate carries. Both land in the lane C pull request that follows item 4.
+- **B1 (Gemini and Windsurf).** Gemini carried, Windsurf rejected (owner ruling, round 8).
+  `GEMINI.md` is the entry point; the per-role command projection will be generated from the
+  sub-agent templates by the adapter generator (basename identity; the four `corpus-*` seats
+  narrowed in the platform-support contract): adapters are thin projections of canonical
+  substance (PDR-009), and here they are generated (Director ruling 2026-09-13 under
+  `compute-dont-hope`), so it lands with the generator pull request. The pin's empty Gemini settings file and its
+  two product commands are not carried. Windsurf is recorded as unsupported in the surface
+  matrix.
+- **B2 (the operational registers).** Read at the pin: `curator-passes/` (a README contract
+  and the lineage's pass records), `documentation-sync-logs/` (three collection logs),
+  `quarantine/` (a README contract and one quarantined record), `deferred-controls-register.md`
+  and `director-rulings-ledger.md`. Here, per the node's todo 3 (create or declare
+  runtime-created, per the substrate manifest): `diagnostics/` and `threads/` already exist;
+  `quarantine/` gains its README contract (imported, provenance line, scrubbed) and the
+  manifest names it; `documentation-sync-logs/` and the deferred-controls register are
+  declared runtime-created in the manifest, each entry naming the moment that creates it (a
+  plan collection's first propagation step; the first control a plan here defers), the same
+  shape as the commit queue's entry. A curator pass's record is the commit plus the homed
+  substance, and an owner ruling's homing proof is the plan of record's ruling rounds and the
+  Director handoff file's routing log (PDR-081 §Amendment Log, 2026-06-14, and the
+  `permanent-doc-is-the-consolidation-record` rule, which rejects the disposition-ledger
+  form); the lineage's pass records, rulings ledger, collection logs and quarantined record
+  stay at the pin as its own records. The manifest's discovery roots that named lineage plans
+  and absent archive directories are corrected in the same edit, and the audit's
+  surface-count pin moves from 22 to 24 by its own contract.
+- **B5 (mutation testing).** Already stated: `testing-strategy.md` records that no mutation
+  runner is adopted and that the mutation check is a manual discipline on every gap-closing
+  test. No edit.
+- **B6 (the four generic rules).** Re-triaged under "bring unless product" and sent to lane B,
+  the only writer of `.agent/rules/`, as one directed comms event (`f9f5dd67`, absorbed
+  14:01Z): `generator-first-mindset` not brought (product; its generic core already lives in
+  `principles.md` §Cardinal Rule); `downstream-checkout-never-writes-upstream-surfaces`,
+  `foreign-board-write-discipline` and `bot-identity-on-third-party-systems` brought, adapted
+  (lineage links replaced by the sentences they stand for, lineage systems and identities
+  scrubbed, the host's own bot configuration the derivation source). They land as lane B's
+  third pull request, born with frontmatter and generated adapters.
+
+Unresolved evidence from above, closed: the lineage's own manifest declares `quarantine/` and
+`diagnostics/` and none of the other registers, so "runtime-created" was never a manifest fact
+there; here it is one, per surface, and the substrate audit validates the manifest against its
+schema and its surface count on every run.
