@@ -1377,3 +1377,7 @@ parallax, wrap):
 - A granted push slot is held until the grantee says "released"; the Director does not take it
   back for its own gate, however idle it looks, because the grantee's pre-push checks run
   silently before the push shows on origin (two full gates overlapped on one host, 23:49Z).
+- Two worktrees share one `.git`; a commit in one can hit the other's `index.lock` and fail
+  while its edits stay staged, and the next `git commit` in that working copy sweeps them
+  under its own message. After any commit in a chained script, read the tip and compare it to
+  the expected commit before pushing; a "nothing to push" gate is the symptom.
