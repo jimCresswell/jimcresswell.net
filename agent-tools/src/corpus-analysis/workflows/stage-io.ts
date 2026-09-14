@@ -28,10 +28,27 @@ import { metaOutputSchema } from '../recall-schemas.js';
 const nonEmptyString = z.string().min(1);
 const countInt = z.number().int().nonnegative();
 
+/**
+ * A file a map agent reads, as a repository-relative path: no leading slash, no drive
+ * letter, no backslash, no parent segment, so an operator-supplied partition can never point
+ * the read-only mapper outside this repository (#86 round two).
+ */
+const repoRelativeFile = nonEmptyString.refine(
+  (file) =>
+    !file.startsWith('/') &&
+    !/^[A-Za-z]:/u.test(file) &&
+    !file.includes('\\') &&
+    !file.split('/').includes('..'),
+  {
+    error:
+      'a partition file must be a repository-relative path: no leading slash, no drive letter, no backslash, no parent segment',
+  },
+);
+
 /** One time-contiguous corpus window: its id and the files a map agent must read. */
 const partitionWindowSchema = z.strictObject({
   window: nonEmptyString,
-  files: z.array(nonEmptyString).min(1),
+  files: z.array(repoRelativeFile).min(1),
 });
 export type PartitionWindow = z.infer<typeof partitionWindowSchema>;
 

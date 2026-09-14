@@ -26,9 +26,68 @@ const canonical = (entries: Record<string, string>) => {
 };
 
 describe('existingClaimedHomePaths', () => {
+  it('excludes a claimed home outside the two corroboration roots (patterns and rules) even when it exists on disk', () => {
+    const realpath = canonical({
+      '/repo': '/repo',
+      '/repo/.agent/rules': '/repo/.agent/rules',
+      '/repo/.agent/memory/active/patterns': '/repo/.agent/memory/active/patterns',
+      '/repo/.git/HEAD': '/repo/.git/HEAD',
+      '/repo/.agent/memory/active/patterns/x.md': '/repo/.agent/memory/active/patterns/x.md',
+    });
+    const existing = existingClaimedHomePaths(
+      {
+        claims: [
+          {
+            candidateId: 'C01',
+            claimedHomePaths: ['.git/HEAD', '.agent/memory/active/patterns/x.md'],
+          },
+        ],
+        repoRoot: '/repo',
+      },
+      { realpath, isRegularFile: () => true },
+    );
+    expect([...existing]).toEqual(['.agent/memory/active/patterns/x.md']);
+  });
+
+  it('excludes a claimed home that escapes its root through a parent segment after the root prefix, containment being asserted against the matched root', () => {
+    const realpath = canonical({
+      '/repo': '/repo',
+      '/repo/.agent/rules': '/repo/.agent/rules',
+      '/repo/.agent/memory/active/patterns': '/repo/.agent/memory/active/patterns',
+      '/repo/.git/HEAD': '/repo/.git/HEAD',
+    });
+    const existing = existingClaimedHomePaths(
+      {
+        claims: [{ candidateId: 'C01', claimedHomePaths: ['.agent/rules/../../.git/HEAD'] }],
+        repoRoot: '/repo',
+      },
+      { realpath, isRegularFile: () => true },
+    );
+    expect([...existing]).toEqual([]);
+  });
+
+  it('excludes a claimed home that is a directory, not a regular file', () => {
+    const realpath = canonical({
+      '/repo': '/repo',
+      '/repo/.agent/rules': '/repo/.agent/rules',
+      '/repo/.agent/memory/active/patterns': '/repo/.agent/memory/active/patterns',
+      '/repo/.agent/rules/a.md': '/repo/.agent/rules/a.md',
+    });
+    const existing = existingClaimedHomePaths(
+      {
+        claims: [{ candidateId: 'C01', claimedHomePaths: ['.agent/rules', '.agent/rules/a.md'] }],
+        repoRoot: '/repo',
+      },
+      { realpath, isRegularFile: (path) => path.endsWith('.md') },
+    );
+    expect([...existing]).toEqual(['.agent/rules/a.md']);
+  });
+
   it('resolves a repo-relative claimed home against the provided repo root, not the process cwd', () => {
     const realpath = canonical({
       '/repo': '/repo',
+      '/repo/.agent/rules': '/repo/.agent/rules',
+      '/repo/.agent/memory/active/patterns': '/repo/.agent/memory/active/patterns',
       '/repo/.agent/rules/stage-by-explicit-pathspec.md':
         '/repo/.agent/rules/stage-by-explicit-pathspec.md',
     });
@@ -42,7 +101,7 @@ describe('existingClaimedHomePaths', () => {
         ],
         repoRoot: '/repo',
       },
-      { realpath },
+      { realpath, isRegularFile: () => true },
     );
     expect(existing.has('.agent/rules/stage-by-explicit-pathspec.md')).toBe(true);
   });
@@ -54,7 +113,7 @@ describe('existingClaimedHomePaths', () => {
         claims: [{ candidateId: 'C02', claimedHomePaths: ['.agent/rules/ghost.md'] }],
         repoRoot: '/repo',
       },
-      { realpath },
+      { realpath, isRegularFile: () => true },
     );
     expect(existing.size).toBe(0);
   });
@@ -62,6 +121,8 @@ describe('existingClaimedHomePaths', () => {
   it('excludes a claimed home that resolves outside the repo root', () => {
     const realpath = canonical({
       '/repo': '/repo',
+      '/repo/.agent/rules': '/repo/.agent/rules',
+      '/repo/.agent/memory/active/patterns': '/repo/.agent/memory/active/patterns',
       '/secrets/creds.md': '/secrets/creds.md',
     });
     const existing = existingClaimedHomePaths(
@@ -69,7 +130,7 @@ describe('existingClaimedHomePaths', () => {
         claims: [{ candidateId: 'C03', claimedHomePaths: ['../secrets/creds.md'] }],
         repoRoot: '/repo',
       },
-      { realpath },
+      { realpath, isRegularFile: () => true },
     );
     expect(existing.size).toBe(0);
   });
@@ -77,6 +138,8 @@ describe('existingClaimedHomePaths', () => {
   it('returns the original claimed strings, deduplicated across claims, mixing existing and missing homes', () => {
     const realpath = canonical({
       '/repo': '/repo',
+      '/repo/.agent/rules': '/repo/.agent/rules',
+      '/repo/.agent/memory/active/patterns': '/repo/.agent/memory/active/patterns',
       '/repo/.agent/memory/active/patterns/fluency-is-a-failure-vector.md':
         '/repo/.agent/memory/active/patterns/fluency-is-a-failure-vector.md',
     });
@@ -97,7 +160,7 @@ describe('existingClaimedHomePaths', () => {
         ],
         repoRoot: '/repo',
       },
-      { realpath },
+      { realpath, isRegularFile: () => true },
     );
     expect([...existing]).toEqual(['.agent/memory/active/patterns/fluency-is-a-failure-vector.md']);
   });

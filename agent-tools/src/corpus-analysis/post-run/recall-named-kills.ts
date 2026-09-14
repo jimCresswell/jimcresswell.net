@@ -19,13 +19,20 @@ import type { MetaOutput } from '../recall-schemas.js';
  */
 
 /**
- * Whole-id candidate mentions in recall notes (word-boundaried, so C18 never bleeds into
- * C185). The `C<digits>` shape is this run's candidate-id convention, which the candidate
- * schema's plain non-empty-string id does not constrain — a future id-format change must
- * revisit this heuristic (a mismatch is a miss, never a corruption: mentions are
- * intersected with the real candidate-id set).
+ * Whole-id candidate mentions in a recall note, matched against the run's own candidate ids
+ * rather than a `C<digits>` shape the candidate schema never constrained: each id is
+ * matched as a whole token (no id character on either side), so C18 never bleeds into C185
+ * and an id such as `candidate-1` is found (#86 round two).
  */
-const CANDIDATE_MENTION = /\bC\d+\b/gu;
+function mentionedCandidateIds(note: string, candidateIds: ReadonlySet<string>): string[] {
+  return [...candidateIds].filter((candidateId) =>
+    new RegExp(`(?<![A-Za-z0-9_-])${escapeRegExp(candidateId)}(?![A-Za-z0-9_-])`, 'u').test(note),
+  );
+}
+
+function escapeRegExp(text: string): string {
+  return text.replaceAll(/[.*+?^${}()|[\]\\]/g, String.raw`\$&`);
+}
 
 /** How the recall judgments name one killed candidate, and which baselines name it. */
 export interface RecallNamedKill {
@@ -64,13 +71,13 @@ export function recallNamedKills(
     if (match.matchedCandidateId !== undefined && killIds.has(match.matchedCandidateId)) {
       add(match.matchedCandidateId, 'recall-matched', match.baselineId);
     }
-    for (const mention of match.note.matchAll(CANDIDATE_MENTION)) {
-      const mentionedId = mention[0];
-      if (
-        mentionedId !== match.matchedCandidateId &&
-        candidateIds.has(mentionedId) &&
-        killIds.has(mentionedId)
-      ) {
+    // The note-named route applies to a MISSED baseline only: its note says where the
+    // substance lives; a re-found baseline's note names its match, not a salvage.
+    if (match.verdict !== 'missed') {
+      continue;
+    }
+    for (const mentionedId of mentionedCandidateIds(match.note, candidateIds)) {
+      if (killIds.has(mentionedId)) {
         add(mentionedId, 'note-named', match.baselineId);
       }
     }

@@ -105,6 +105,13 @@ export function validateRunDataFrom(input: {
   if (!priors.ok) {
     return priors;
   }
+  if (reduce.value.candidates.length === 0) {
+    return err(
+      new Error(
+        'the reduce stage found no candidates, so there is nothing for validate or meta to judge and nothing to seed: the run ends at reduce with a no-findings result (the reduce stage did not fail; the builder stops here).',
+      ),
+    );
+  }
   return ok({
     candidates: reduce.value.candidates,
     groundingLeaves: map.value.leaves.map((leaf) => ({

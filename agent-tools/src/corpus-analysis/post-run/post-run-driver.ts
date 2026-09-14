@@ -53,7 +53,11 @@ import {
 import type { MapResult, MetaResult, ReduceResult, ValidateResult } from '../workflows/stage-io.js';
 import { makeCheckpointReader } from './checkpoint-io.js';
 import { existingClaimedHomePaths } from './claimed-home-existence.js';
-import { recomputeDispositions, temporalCoverageReport } from './post-run-analysis.js';
+import {
+  postRunVerdict,
+  recomputeDispositions,
+  temporalCoverageReport,
+} from './post-run-analysis.js';
 import { triageDispositions } from './triage.js';
 
 /** The Choice-B graduate gate (owner-confirmed). */
@@ -198,9 +202,14 @@ if (checkpoints.ok) {
       )}\n`,
     );
 
-    if (integrity.length > 0 || recomputeMismatches.length > 0) {
+    const verdict = postRunVerdict({
+      integrityViolations: integrity.length,
+      recomputeMismatches: recomputeMismatches.length,
+      mapComplete: mapResult.mapComplete,
+    });
+    if (!verdict.ok) {
       process.stderr.write(
-        `POST-RUN FAILURE: ${integrity.length} integrity violations, ${recomputeMismatches.length} recompute mismatches — do not trust this run's aggregates.\n`,
+        `POST-RUN FAILURE: ${verdict.reasons.join('; ')} — do not trust this run's aggregates.\n`,
       );
       process.exitCode = 1;
     } else {

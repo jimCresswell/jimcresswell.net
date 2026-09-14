@@ -7,7 +7,11 @@ import { describe, expect, it } from 'vitest';
 
 import type { Candidate, VoterOutcome } from '../judgment-schemas.js';
 import type { ValidateResult } from '../workflows/stage-io.js';
-import { recomputeDispositions, temporalCoverageReport } from './post-run-analysis.js';
+import {
+  recomputeDispositions,
+  temporalCoverageReport,
+  postRunVerdict,
+} from './post-run-analysis.js';
 
 /**
  * The recompute leg proves recorded dispositions against the deterministic state
@@ -134,5 +138,28 @@ describe('temporalCoverageReport', () => {
 
   it('ignores non-longitudinal kinds', () => {
     expect(temporalCoverageReport([{ ...base, kind: 'recurrence' }])).toEqual([]);
+  });
+});
+
+describe('postRunVerdict', () => {
+  it('passes a complete map with no integrity violation and no recompute mismatch, and fails each of the three by name', () => {
+    expect(
+      postRunVerdict({ integrityViolations: 0, recomputeMismatches: 0, mapComplete: true }),
+    ).toEqual({
+      ok: true,
+      reasons: [],
+    });
+    expect(
+      postRunVerdict({ integrityViolations: 0, recomputeMismatches: 0, mapComplete: false })
+        .reasons,
+    ).toEqual([
+      'the map is incomplete (mapComplete false), so the aggregates cover a partial corpus',
+    ]);
+    expect(
+      postRunVerdict({ integrityViolations: 2, recomputeMismatches: 1, mapComplete: true }),
+    ).toEqual({
+      ok: false,
+      reasons: ['2 recall integrity violation(s)', '1 disposition recompute mismatch(es)'],
+    });
   });
 });

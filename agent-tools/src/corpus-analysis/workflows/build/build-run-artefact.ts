@@ -28,7 +28,7 @@
  * and `@engraph/safe-path`.
  */
 
-import { readFile, mkdir, writeFile } from 'node:fs/promises';
+import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { parseArgs } from 'node:util';
 
@@ -52,6 +52,8 @@ import {
 } from '../stage-io.js';
 import { metaRunDataFrom, reduceRunDataFrom, validateRunDataFrom } from '../run-inputs.js';
 import { buildStageArtefact } from '../../../workflow-build/workflow-builder.js';
+import { resolveRepoRoot } from '../../../core/repo-root.js';
+import { makeCheckpointReader } from '../../post-run/checkpoint-io.js';
 import { BUILD_CONFIG, STAGE_DEFINITIONS, WORKFLOW_OUT_DIR } from './build-config.js';
 
 interface CliFlags {
@@ -63,33 +65,11 @@ interface CliFlags {
   readonly ceiling?: number;
 }
 
-async function readJson(filePath: string): Promise<Result<unknown, Error>> {
-  try {
-    const raw = await readFile(filePath, 'utf8');
-    return ok(JSON.parse(raw));
-  } catch (cause) {
-    return err(
-      new Error(
-        `Cannot read checkpoint ${filePath}: ${cause instanceof Error ? cause.message : String(cause)}`,
-        {
-          cause,
-        },
-      ),
-    );
-  }
-}
-
-async function readAnd<T>(
-  filePath: string | undefined,
-  label: string,
-  parse: (value: unknown) => Result<T, Error>,
-): Promise<Result<T, Error>> {
-  if (filePath === undefined) {
-    return err(new Error(`Missing required checkpoint flag for ${label}.`));
-  }
-  const json = await readJson(filePath);
-  return json.ok ? parse(json.value) : json;
-}
+// Every flag-supplied checkpoint goes through the repo-anchored reader the two post-run
+// drivers share, so a parent-relative or symlinked path is refused before anything is read
+// or embedded in a launchable artefact (#86 round two).
+const repoRoot = resolveRepoRoot(import.meta.url);
+const readAnd = makeCheckpointReader(repoRoot);
 
 /** Every stage's run data, as the concrete union — never widened back to unknown. */
 type StageRunData = MapRunData | ReduceRunData | ValidateRunData | MetaRunData;
@@ -236,7 +216,7 @@ if (resolved.ok) {
     await mkdir(WORKFLOW_OUT_DIR, { recursive: true });
     await writeFile(outPath, artefact.value, 'utf8');
     process.stdout.write(
-      `seeded ${outPath} (${artefact.value.length} chars, contract green) — launch with Workflow({scriptPath}) from the repo root.\n`,
+      `seeded ${outPath} (${artefact.value.length} chars, contract green) — launch with Workflow({scriptPath}) from this package's directory (agent-tools; the path is relative to it).\n`,
     );
   } else {
     process.stderr.write(`${artefact.error.message}\n`);

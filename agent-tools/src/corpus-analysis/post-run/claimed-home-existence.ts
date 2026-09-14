@@ -3,6 +3,7 @@
  * item 4, row 3); the lineage's result and safe-path packages read here as `@engraph/result`
  * and `@engraph/safe-path`.
  */
+import { statSync } from 'node:fs';
 import { resolve } from 'node:path';
 
 import { assertPathWithinBase, type AssertPathWithinBaseOptions } from '@engraph/safe-path';
@@ -39,7 +40,7 @@ export function existingClaimedHomePaths(
     readonly claims: readonly CorroborationClaim[];
     readonly repoRoot: string;
   },
-  options: AssertPathWithinBaseOptions = {},
+  options: ClaimedHomeOptions = {},
 ): ReadonlySet<string> {
   const existing = new Set<string>();
   for (const claim of input.claims) {
@@ -52,13 +53,42 @@ export function existingClaimedHomePaths(
   return existing;
 }
 
+/** The homes a corroboration claim may name: the prompt's two roots, and nothing else. */
+const CORROBORATION_ROOTS = ['.agent/memory/active/patterns/', '.agent/rules/'] as const;
+
+/** The existence seams: the safe-path realpath, and a regular-file check (default `statSync`). */
+export interface ClaimedHomeOptions extends AssertPathWithinBaseOptions {
+  readonly isRegularFile?: (path: string) => boolean;
+}
+
+function isRegularFileOnDisk(path: string): boolean {
+  try {
+    return statSync(path).isFile();
+  } catch {
+    return false;
+  }
+}
+
 function claimedHomeExists(
   input: { readonly home: string; readonly repoRoot: string },
-  options: AssertPathWithinBaseOptions,
+  options: ClaimedHomeOptions,
 ): boolean {
+  // A claim outside the two roots the prompt names (`.git/HEAD`, a directory, an unrelated
+  // file) is never corroboration, existing or not, and containment is asserted against the
+  // matched root, so a parent segment or a symlink after the prefix cannot leave it either
+  // (#86 round two).
+  const matchedRoot = CORROBORATION_ROOTS.find((candidate) => input.home.startsWith(candidate));
+  if (matchedRoot === undefined) {
+    return false;
+  }
+  const isRegularFile = options.isRegularFile ?? isRegularFileOnDisk;
   try {
-    assertPathWithinBase(resolve(input.repoRoot, input.home), input.repoRoot, options);
-    return true;
+    const safePath = assertPathWithinBase(
+      resolve(input.repoRoot, input.home),
+      resolve(input.repoRoot, matchedRoot),
+      options,
+    );
+    return isRegularFile(safePath);
   } catch {
     // Absent on disk or escaping the repo root — either way the claim is not
     // corroborating; the caller reports it as a missing claim.
