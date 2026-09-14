@@ -50,7 +50,7 @@ Every line answered first-hand, none inferred:
   archive holds only processed material.
 - The transplant is bounded: closure items 3 to 8 finish it, then editorial work.
 
-## Current handoff state (2026-09-14, the 06:37Z boundary; n=2 with lane A; owner present)
+## Current handoff state (2026-09-14, 07:15Z; n=2 with lane A; owner present)
 
 Where this block and the routing log disagree, the log's last entry is current; this block is
 rewritten at each Director push.
@@ -58,22 +58,30 @@ rewritten at each Director push.
 **Boundary block (compaction, 2026-09-14 06:37Z; the seat stays live).** Assume nothing
 session-scoped survives; verify by id first, re-arm only what is absent:
 
-- The all-channels comms watcher. First the liveness assertion; it exits non-zero when no
-  watcher is live for this identity, and only then is one armed, as a persistent Monitor in
-  the canonical shape of `comms-all-channels-watcher.md` (the supervisor pid bound, the step
-  deadline, the drain bound, the timeout backstop). A surviving watcher is left running: two
-  watchers share one seen-file and consume events without delivering them. A survivor that
-  reads live but was armed without the supervisor pid is stopped by pid first, then the
-  assertion fails and the arm follows. After either branch, one foreground sweep of the
-  pre-arm gap. No heartbeat exclusion at n=2: no seat emits heartbeats under PDR-082, so the
-  exclusion buys nothing and would demand the F-75 poll it pairs with.
+- The all-channels comms watcher. First find any survivor for this identity by process, and
+  read its command line: the liveness assertion cannot tell a canonical watcher from one
+  armed without the supervisor pid (it reads the heartbeat file and the comms home only).
+
+  ```bash
+  pgrep -fl "comms watch --platform claude --model claude-fable-5-1" || echo "no watcher process"
+  ```
+
+  A survivor whose command line carries `--supervisor-pid` is left running: two watchers
+  share one seen-file and consume events without delivering them. A survivor whose command
+  line lacks it is stopped by its pid (`kill <pid>`) and replaced by arming directly below
+  (its heartbeat file stays fresh for a while after the stop, so the assertion is not the gate
+  on this branch). No process at all: run the assertion; a non-zero exit confirms the absence
+  and the arm follows.
 
   ```bash
   pnpm agent-tools:collaboration-state -- comms assert-watcher-live \
     --platform claude --model claude-fable-5-1
   ```
 
-  Only on a non-zero exit above, as a persistent Monitor:
+  The arm, as a persistent Monitor in the canonical shape of `comms-all-channels-watcher.md`
+  (the supervisor pid bound, the step deadline, the drain bound, the timeout backstop). No
+  heartbeat exclusion at n=2: no seat emits heartbeats under PDR-082, so the exclusion buys
+  nothing and would demand the F-75 poll it pairs with.
 
   ```bash
   cd <repo-root> || exit 1
@@ -85,14 +93,17 @@ session-scoped survives; verify by id first, re-arm only what is absent:
   exec "$@"
   ```
 
-  Then, whichever branch ran, the assertion again and the sweep:
+  Then, whichever branch ran, the assertion and one foreground sweep of the pre-arm gap. The
+  sweep's paths are absolute, derived from the primary worktree, so a resume from a linked
+  worktree reads the canonical cursor and never a worktree-local decoy:
 
   ```bash
   pnpm agent-tools:collaboration-state -- comms assert-watcher-live \
     --platform claude --model claude-fable-5-1
+  COORD_HOME="$(git worktree list --porcelain | head -1 | sed 's/^worktree //')"
   pnpm agent-tools:collaboration-state -- comms inbox \
-    --comms-dir .agent/state/collaboration/comms \
-    --seen-file ".agent/state/collaboration/comms-seen/Cauldron herds Lustre.json" \
+    --comms-dir "$COORD_HOME/.agent/state/collaboration/comms" \
+    --seen-file "$COORD_HOME/.agent/state/collaboration/comms-seen/Cauldron herds Lustre.json" \
     --platform claude --model claude-fable-5-1
   ```
 
@@ -103,14 +114,14 @@ session-scoped survives; verify by id first, re-arm only what is absent:
   carry the tip, mint the bot token, reply to and resolve each unresolved thread by path, POST
   the Copilot reviewer under the owner's credential, wait for the review on the tip, run
   `merge-bot merge --pr N --expect copilot-pull-request-reviewer --interval 30 --max-polls 60 --json`):
-  re-arm on resume for every open pull request at its current tip (the pull request list is
-  authoritative; at this cure: #74 at round four with lane A after `SHA: eafe7a6`, its threads
-  replied to with lane A's grounds from the release line; #76, this branch; #77, 2b-i, at
-  `SHA: a5efd78`). Copilot requests are made only under the owner's CLI credential with a JSON
-  body; every other write runs as the bot.
-- The push slot: a standing grant to lane A from the Director's "slot free" until "Director
-  back" (the #74 round-three push, then 2b-i's push and pull request, one release line each).
-  On resume: say "Director back", read lane A's release lines, re-arm the chains above.
+  re-arm on resume for every open pull request at its current tip; the pull request list is
+  authoritative for which are open and the review on each tip for which round it is at, and
+  §Open pull requests below is the snapshot at this push. A lane A pull request's threads are
+  replied to with the grounds from lane A's release line. Copilot requests are made only under
+  the owner's CLI credential with a JSON body; every other write runs as the bot.
+- The push slot: lane A asks, the Director confirms, lane A pushes and releases with one
+  line; a standing grant given for a Director absence holds until "Director back". On
+  resume: say "Director back", read lane A's release lines, re-arm the chains above.
 - Lane A's order after 2b-i's pull request: 5a-vi (suppressed findings block the merge, the
   fourth measured-state clause), the PDR-008, PDR-132 and PDR-082 card amendments in one pull
   request, 5c-ii, 5a-v, the graduations one home per pull request (every session 2 entry but
@@ -136,10 +147,11 @@ session-scoped survives; verify by id first, re-arm only what is absent:
   `SHA: e67559a`), item 5a-iv (PR #72, `SHA: 37eebe9`), the Director records to item 58 (PR
   #70, `SHA: 1643be8`), item 5c (PR #71, `SHA: f377412`), the Director records to item 67
   (PR #73, `SHA: 50546ee`). Not landed: 2a (PR #74), 2b, the handed-back residue, item 7.
-- Open pull requests: 2a (PR #74, `chore/rules-generator` at `SHA: eafe7a6`, round three
-  with lane A's code-expert follow-up, the plain-pointer ruling of item 79 applied); this
-  records branch (PR #76, `chore/director-records-7`, overnight items 75 to 80, frozen at
-  open; its round-one cure rides the branch). Merged: #54, #56, #57, #58, #61, #55 (`SHA: 7127bc4`),
+- Open pull requests (the snapshot at this push): 2a (PR #74, `chore/rules-generator`, the
+  plain-pointer ruling of item 79 applied; its next round with lane A); 2b-i (PR #77,
+  `chore/subagent-declarations` at `SHA: a5efd78`, opened by lane A); this records branch
+  (PR #76, `chore/director-records-7`, overnight items 75 to 80, frozen at open; its round
+  cures ride the branch). Merged: #54, #56, #57, #58, #61, #55 (`SHA: 7127bc4`),
   #63 (`SHA: dc23dff`, session 2's register), #60 (`SHA: 4370e04`, the per-checkout
   Playwright port as the in-process server), #64 (`SHA: 38e9693`, item 5a-i), #66
   (`SHA: 0ec4583`, the e2e follow-on), #65 (`SHA: 53d9495`, item 5a-ii, measured state), #67
@@ -169,11 +181,10 @@ session-scoped survives; verify by id first, re-arm only what is absent:
   the evening) was found alive after the compaction that followed the 06:37Z non-terminal
   wrap; it was then stopped and re-armed in the canonical shape because it lacked the
   supervisor pid.
-- Next safe step (owner present; the morning cards answered, item 78): #74 (2a) at round
-  three, the bot merging at zero threads on measured state; #76 (this branch) at round one;
-  lane A holds 2b-i (the declaration sweep) locally and pushes it first after its compaction;
-  then lane A's order in the boundary block; item 7 last. The overnight next step, kept as the
-  superseded snapshot: the morning
+- Next safe step (owner present; the morning cards answered, item 78): #74 (2a), #77 (2b-i)
+  and #76 (this branch) open, the bot merging each at zero threads on measured state, lane A
+  curing #74's rounds; then lane A's order in the boundary block; item 7 last. The overnight
+  next step, kept as the superseded snapshot: the morning
   report presents §Decisions overnight with its REVIEW marks and the session 2 cards: the
   twenty-three session 2 fast-lane entries in four classes, the five slow-lane rows (PDR-130:
   `promote` or `kill-with-reasoning`), and proposal E. Measured on `main` after #63:
@@ -184,7 +195,7 @@ session-scoped survives; verify by id first, re-arm only what is absent:
 
 | Lane | Items | Owns exclusively | Seat | Claim | Branch / PR | State |
 | ---- | ----- | ---------------- | ---- | ----- | ----------- | ----- |
-| A | 3 done; #60 merged (`SHA: 4370e04`) and its follow-on #66 merged (`SHA: 0ec4583`); 5a-i merged (#64, `SHA: 38e9693`); 5a-ii merged (#65, `SHA: 53d9495`); 5a-iii merged (#67, `SHA: fca804e`); 5b merged (#68, `SHA: f362cce`, the four retirements, the accept-md config as a typed module, the incoming bundle gone); the e2e follow-on 2 merged (#69, `SHA: e67559a`); 5a-iv merged (#72, `SHA: 37eebe9`); 5c merged (#71, `SHA: f377412`); 2a open (#74, round three); then 2b-i (in hand, `chore/subagent-declarations`), 5c-ii (the leak gate's four body findings, item 71), 5a-v (the whitespace-only heading, item 64), 2b-ii, then the handed-back residue: the Gemini projection, the corpus-analysis restore with the five patterns, `sif` | root scripts, CI workflow, `agent-tools/` legs and retirements, the leak validator, `tooling/*/package.json`, `turbo.json`, the Playwright harness config, the merge-bot sources; after 2b the rules generator, the adapter trees and the Gemini projection | Saffron turns Verdure (c39ad7) | f024e1f1, 5828b0ee, the 5a claim | `chore/rules-generator` PR #74 at `SHA: eafe7a6`; `chore/subagent-declarations` local (2b-i) | ACTIVE at n=2 |
+| A | 3 done; #60 merged (`SHA: 4370e04`) and its follow-on #66 merged (`SHA: 0ec4583`); 5a-i merged (#64, `SHA: 38e9693`); 5a-ii merged (#65, `SHA: 53d9495`); 5a-iii merged (#67, `SHA: fca804e`); 5b merged (#68, `SHA: f362cce`, the four retirements, the accept-md config as a typed module, the incoming bundle gone); the e2e follow-on 2 merged (#69, `SHA: e67559a`); 5a-iv merged (#72, `SHA: 37eebe9`); 5c merged (#71, `SHA: f377412`); 2a open (#74, lane A curing its rounds); 2b-i open (#77); then, in the boundary block's order: 5a-vi (suppressed findings block the merge), the PDR-008, PDR-132 and PDR-082 card amendments in one pull request, 5c-ii (the leak gate's four body findings, item 71), 5a-v (the whitespace-only heading, item 64), the graduations one home per pull request (item 78), 2b-ii, then the handed-back residue: the Gemini projection, the corpus-analysis restore with the five patterns, `sif` | root scripts, CI workflow, `agent-tools/` legs and retirements, the leak validator, `tooling/*/package.json`, `turbo.json`, the Playwright harness config, the merge-bot sources; after 2b the rules generator, the adapter trees and the Gemini projection | Saffron turns Verdure (c39ad7) | f024e1f1 | `chore/rules-generator` PR #74; `chore/subagent-declarations` PR #77 at `SHA: a5efd78` | ACTIVE at n=2 |
 | B | 6 | (handed back) `.agent/rules/**`, `RULES_INDEX.md`, the three rule-adapter trees, the rules-index and trigger generator, sub-agent adapter descriptions | Sirocco wakes Wingspan (45fe02) | closed | `closure/lane-b` merged as PR #55 at `SHA: 7127bc4` and deleted; `closure/lane-b-generator` at `SHA: d76bb86` on origin (2a fold conserved in the record) | STOOD DOWN 17:14Z; handed back: 2a, 2b, PR 3 (now routed to lane A after item 5) |
 | C | 4 then 7 | the definition report, `testing-strategy.md`, the substrate manifest's register declarations, the Gemini projection | Djinn hunts Solder (36720b) | closed | `closure/lane-c` and `closure/lane-c-restore` deleted (merged in #57; carried in #58); PR #59 closed as carried | STOOD DOWN 16:57Z; handed back: the restore, `sif`, five patterns, the Gemini projection after 2b, item 7 |
 | Director | 7 | reports index, runbook step 13, `provenance.yml` completion entry; merges | Cauldron herds Lustre | 1db07581 | `chore/director-records-7` PR #76 (round one); `chore/director-records-8` local, stacked | routing lane A; merging |
