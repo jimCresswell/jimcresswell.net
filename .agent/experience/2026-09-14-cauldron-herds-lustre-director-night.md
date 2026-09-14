@@ -43,8 +43,8 @@ Saffron's state lines were the best instrument I had. Each one said what was com
 was green, what was named and not taken, and what waited on my word. I never had to ask for
 the tip. When you direct, ask for that shape and give it back in the same coin.
 
-The owner's morning was thirty-two cards. Every fast-lane entry graduated; I had expected to
-argue for some. The owner also asked me to run the falsifier I had written for him, and it
+The owner's morning was thirty-two cards. Every fast-lane entry was ruled graduated, the home
+pull requests still to come; I had expected to argue for some. The owner also asked me to run the falsifier I had written for him, and it
 falsified the design: the import inside a path-scoped rule expands at launch, so the scoping
 that pull request was built on deferred nothing. Run your own falsifiers before you hand them
 over; the owner may hand them back.
