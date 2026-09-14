@@ -68,11 +68,13 @@ rewritten at each Director push.
   `SHA: ea3142b`), the Director records and the channel rule (PR #54, `SHA: c426c6c`; PR #58,
   `SHA: 6528ecb`; PR #62, `SHA: a70521e`), item 5a-ii (PR #65, `SHA: 53d9495`), item 5a-iii
   (PR #67, `SHA: fca804e`), item 5b (PR #68, `SHA: f362cce`), the e2e follow-on 2 (PR #69,
-  `SHA: e67559a`). Not landed: items 5a-iv and 5c (open or opening), 2a, 2b, the handed-back
-  residue, item 7.
-- Open pull requests: this records branch (`chore/director-records-4`, overnight items from
-  59, opened from a branch frozen at open) and 5c (PR #71, `chore/lineage-leak-validator`,
-  round two's cure pushing). Merged: #54, #56, #57, #58, #61, #55 (`SHA: 7127bc4`),
+  `SHA: e67559a`), item 5a-iv (PR #72, `SHA: 37eebe9`), the Director records to item 58 (PR
+  #70, `SHA: 1643be8`). Not landed: 5c (PR #71), 2a (PR #74), 2b, the handed-back residue,
+  item 7.
+- Open pull requests: this records branch (`chore/director-records-5`, PR #73, overnight
+  items 59 to 67, opened from a branch frozen at open; later items on records-6), 5c (PR #71,
+  `chore/lineage-leak-validator`, round two under review) and 2a (PR #74,
+  `chore/rules-generator` at `SHA: 77972dd`). Merged: #54, #56, #57, #58, #61, #55 (`SHA: 7127bc4`),
   #63 (`SHA: dc23dff`, session 2's register), #60 (`SHA: 4370e04`, the per-checkout
   Playwright port as the in-process server), #64 (`SHA: 38e9693`, item 5a-i), #66
   (`SHA: 0ec4583`, the e2e follow-on), #65 (`SHA: 53d9495`, item 5a-ii, measured state), #67
