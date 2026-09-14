@@ -14,7 +14,7 @@
 
 import { describe, expect, it } from 'vitest';
 
-import { isScannableContent, isScannablePath } from './tracked-file-scan.js';
+import { describeUnreadable, isScannableContent, isScannablePath } from './tracked-file-scan.js';
 
 describe('isScannablePath', () => {
   it('admits ordinary text paths', () => {
@@ -44,5 +44,30 @@ describe('isScannableContent', () => {
 
   it('rejects NUL-bearing content — binary that slipped past the extension policy', () => {
     expect(isScannableContent('binary\u0000payload')).toBe(false);
+  });
+});
+
+describe('describeUnreadable', () => {
+  // The refusal reaches CI logs, so it names the tracked path relative to the
+  // repository and the error's code, never the cause's own message (which
+  // carries the working copy's absolute path).
+  it('names the relative path and the errno code, never the cause message', () => {
+    const cause = Object.assign(
+      new Error("EACCES: permission denied, open '/checkout/repo/x.md'"),
+      {
+        code: 'EACCES',
+      },
+    );
+    const text = describeUnreadable({ relativePath: 'x.md', cause });
+    expect(text).toContain("cannot read tracked file 'x.md'");
+    expect(text).toContain('(EACCES)');
+    expect(text).not.toContain('/checkout/repo');
+  });
+
+  it('a cause without a code is named by its kind', () => {
+    expect(describeUnreadable({ relativePath: 'x.md', cause: new RangeError('why') })).toContain(
+      '(RangeError)',
+    );
+    expect(describeUnreadable({ relativePath: 'x.md', cause: 'boom' })).toContain('(unknown)');
   });
 });

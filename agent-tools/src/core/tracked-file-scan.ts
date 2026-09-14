@@ -91,6 +91,24 @@ export interface UnreadableTrackedFile {
 }
 
 /**
+ * The refusal line for an unreadable tracked file, fit for a CI log: the
+ * repo-relative path and the error's code (or kind), never the cause's own
+ * message, which carries the working copy's absolute path (5c-ii).
+ */
+export function describeUnreadable(file: UnreadableTrackedFile): string {
+  const { cause } = file;
+  let kind = 'unknown';
+  if (cause instanceof Error) {
+    const code = 'code' in cause ? cause.code : undefined;
+    kind = typeof code === 'string' && code.length > 0 ? code : cause.name;
+  }
+  return (
+    `cannot read tracked file '${file.relativePath}' — fix the file or its permissions; ` +
+    `the scan must not skip a tracked file (${kind})`
+  );
+}
+
+/**
  * List every tracked file, NUL-delimited so paths with spaces survive.
  *
  * @param repoRoot - Absolute path to the repository root.

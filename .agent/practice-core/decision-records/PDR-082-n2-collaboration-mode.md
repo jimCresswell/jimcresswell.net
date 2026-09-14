@@ -363,3 +363,31 @@ pending-graduations — is the substrate-preservation surface. The
 falsifiability section above recorded the second-instance trigger; the
 consumer-presence generalisation reached two instances and graduated as
 described under Adoption.
+
+## Amendment Log
+
+### 2026-09-14 — jimcresswell.net: the 120-second state line is the n=2 liveness convention
+
+Owner card (2026-09-14, the morning cards; proposal E of the session 2
+synthesis, presented with the register pull request #63 and recorded in the
+closure record's item 78 as "adopted as a PDR-082 amendment by card"). The
+proposal, as the synthesis record states it under the heading "a state line
+every 120 seconds of a long turn at n=2": "a seat in a long turn sends a
+one-line state at the team cadence, and the lead reads silence as unknown,
+never as work."
+
+What changes. §What drops at n=2 still drops the team-cadence message-sweep
+and the heartbeat substrate; the seat's own outgoing progress report
+(`start-right-team` §5) is not dropped with them. During a long turn each seat
+sends its partner one state line at least every 120 seconds, on the dialogue
+channel §What changes at n=2 names (native session messaging where both seats
+can use it, otherwise the ARC channel); the line names the current state, any
+blocker and the next action. The lead reads silence past that interval as
+unknown state, never as work in progress. This entry's ruling on the remedy
+(the proposal offered it only for the declined case): the lead's response to
+such a silence is the native liveness probe and a ping
+(`ping-before-escalate`), never an escalation to the owner. Worked instance,
+the proposal's source: on 2026-09-13 the Implementer seat was silent for 80
+minutes in a long turn, the silence was read as a block and escalated to the
+owner, and the seat was fine. The `start-right-team` n=2 overlay points here
+for the state line.
