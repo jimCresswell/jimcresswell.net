@@ -1047,7 +1047,7 @@ ones the Director would put to the owner had the owner been present.
     stays local until the next natural boundary (the owner's question at 08:15Z on whether
     the close is still bounded, answered with the item table: the Director's records loop is
     the drag; fewer, later records pull requests are the cure). Lens 1.
-92. The owner's question on optimum pull request size (08:2xZ on 2026-09-14), answered from
+92. The owner's question on optimum pull request size (about 08:20Z on 2026-09-14), answered from
     the day's sixteen pull requests measured (files, Copilot rounds, open-to-merge time,
     findings per pass). Measured: one-round pull requests close in 6 to 21 minutes from open
     (about 25 with the gate); files and lines predict nothing (46 files in one round, 3 files
@@ -1066,7 +1066,7 @@ ones the Director would put to the owner had the owner been present.
     mutable surface, the deleted-account sentinel authorised, an empty item counted, a
     wall-clock assertion in the gated suite) routed to lane A; #77 round two green on lane
     A's seat, its proofs running. Lens 1.
-93. #77 round two pushed at `SHA: 5affe55` (08:4xZ on 2026-09-14; the code-expert pass caught
+93. #77 round two pushed at `SHA: 5affe55` (committed 08:34Z on 2026-09-14; the code-expert pass caught
     a module cycle, depcruise now on lane A's gate list, and a preamble gap above the title).
     Round three granted (Copilot at 08:45Z: one open, four suppressed; all five block).
     Grounds: the open finding is a path-injection gap in the exported sweep (caller names
@@ -1078,7 +1078,7 @@ ones the Director would put to the owner had the owner been present.
     two reader refusals kept where semantics change (the inline sequence, the empty TOML
     value). Order for lane A: #79's round first (it changes the merge mechanism the rest
     waits on), then this. PDR-132 Director decision; lens 1.
-94. The owner's "are we still on track" (08:5xZ on 2026-09-14), assessed under
+94. The owner's "are we still on track" (about 08:50Z on 2026-09-14), assessed under
     `metacognition` and `proportionality` against the node's item text. Exit conditions still
     open: item 6 (2b-i in #77, 2b-ii), item 4's residue rows (the corpus-analysis restore
     with the five patterns, `sif`'s routing, the Gemini projection after the generator), item
@@ -1124,8 +1124,8 @@ ones the Director would put to the owner had the owner been present.
     pull requests read first-hand; nothing armed, nothing pushed). The owner asked which
     lineage commit the transplant is pinned to; answered from the node's §Mechanism: the pin
     `SHA: e477e62f7`, which the read-only lineage checkout resolves to a merge commit of
-    2026-09-12 (the node's short form is the ratified pin; no tracked file carries the full
-    hash). On the lift: watcher and ARC tail re-armed by the boundary block and asserted, the
+    2026-09-12 (the node's short form is the ratified pin; the full hash was read in the
+    lineage checkout and is not repeated here). On the lift: watcher and ARC tail re-armed by the boundary block and asserted, the
     gap swept (no events), the Director claim heartbeat refreshed; lane A reported its own
     lift with its tree clean at #79's tip and was given the word for #79 round three, then
     #77; this seat took the slot for records-9 and releases it before lane A is green.

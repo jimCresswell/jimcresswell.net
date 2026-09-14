@@ -115,9 +115,9 @@ PR #63 with the cards pending; items 5 (in parts) and 7 are the ordered closure 
 Director's handoff. Live now, in order:
 
 1. The Director's handoff `.agent/memory/operational/director-handoff.md` §Current handoff state
-   is the resume contract: the open pull requests (2b-i and 5a-vi at the last push), the lane A
-   order (2b-ii with the Gemini row, item 4's residue, one pull request for 5a-v, 5c-ii and the
-   card amendments), and item 7 last.
+   is the resume contract: the open pull requests (its snapshot at the Director's last push),
+   the lane A order (2b-ii with the Gemini row, item 4's residue, one pull request for 5a-v,
+   5c-ii and the card amendments), and item 7 last.
 2. Session 2's cards: the owner answers the register's session 2 entries in one batch
    (`threads/session-2-synthesis.next-session.md` §Next safe step); the graduations are curator
    work outside the closure, in batches of six to eight entries (owner word 2026-09-14, the
