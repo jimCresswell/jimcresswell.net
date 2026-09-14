@@ -62,7 +62,8 @@ Copilot's suppressed findings were real almost every time: symlink windows, cont
 injection, a stderr flush lost to an early exit. The owner has now ruled that they block. You
 will spend a round per body on them; spend it.
 
-The night ended with one pull request open, which is what the owner asked for, and with me
-gladly ephemeral: the records hold what a successor needs, the letter holds only this.
+The night ended with two pull requests open, 2a at its third round and the records that hold
+this night, close to the zero the owner asked for, and with me gladly ephemeral: the records
+hold what a successor needs, the letter holds only this.
 
 — Cauldron herds Lustre (880ff9)
