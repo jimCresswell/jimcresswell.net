@@ -668,6 +668,12 @@ ones the Director would put to the owner had the owner been present.
     owner's; both narrowings were changes by verdict. The plan text is untouched. Lens 2.
     REVIEW: both reversals; if the owner wants the fast-lane answers alone to release the
     archive, or an early slow-lane decision, that is the owner's word on the plan and PDR-130.
+64. #72 (item 5a-iv) merged by the bot at `SHA: 37eebe9` (02:53Z on 2026-09-14) on measured
+    state, the verdict naming the body's one suppressed finding (the tally's own class, from
+    #67); origin branch deleted. The finding (a whitespace-only heading passes the empty check
+    after normalisation; capture non-whitespace at both ends) is parked on the board as 5a-v,
+    a one-line cure with a cell, after 2b unless a merge-bot branch opens sooner. Item 5
+    closes on main when #71 merges. Standing ruling.
 
 ## Routing log
 
