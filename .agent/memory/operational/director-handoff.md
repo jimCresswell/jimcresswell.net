@@ -1161,6 +1161,21 @@ ones the Director would put to the owner had the owner been present.
     hold); round four granted, after #77's push. The merged local records branches 3 to 9
     deleted; this branch is records-10, cut from `main` at `SHA: 6699f51`.
 
+99. #77 (2b-i) merged by the bot at 13:48Z at
+    `SHA: 0e70a2b`, zero threads after round three (the basename preflight, the strict-schema
+    read-back, the reader refusals). Its last review left two suppressed findings, routed not
+    cured: the pointer tail dropping a trailing full stop before a continuation goes to the 2b
+    follow-on behind the assumptions-expert solution-class review of the line-by-line YAML
+    reader (lane A's code-expert measured none of the fifty-eight live descriptions carrying
+    the shape the reader was built for; the friction ratchet is at threshold; ruling: no further
+    reader cure before that review); the declaration schema's non-empty `tools` constraint,
+    which rejects Gemini's explicit empty array, goes into 2b-ii itself. The watcher's hourly
+    backstop expired at about 14:45Z (exit 124) and was re-armed by the recipe, asserted, the gap
+    swept (no events). Owner word at 14:50Z, session-scoped: take your time; no sub-agents
+    without planning; one or two at a time, never fleets. Relayed to lane A (a single
+    code-expert launch, a second reviewer after it, no fleet on #79 or 2b-ii). Open: #79
+    (round four in cure). Records-10 is local, two commits ahead of `main`.
+
 ## Routing log
 
 - 2026-09-13 evening: seat opened; team-start `ca1ba4d8`; lanes A, B, C authored, unfilled.
