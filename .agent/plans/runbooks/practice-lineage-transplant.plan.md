@@ -185,6 +185,10 @@ taking one word, declines by item number.
     zero; completeness is every classified row dispositioned;
     cohesion is reference-direction green plus the directives read against
     the retained ADRs; manifest-closure is no row in an unknown state.
+    The completeness audit's frame is the definition report's nine functions
+    (`.agent/reports/practice-transplant/what-the-practice-is.md`): the audit
+    closes when every function's row reads present with a cited proof, and the
+    closure record names the pull request that closed each residue row.
 
 ## Verification
 
