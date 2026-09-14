@@ -39,9 +39,37 @@ describe('extractPathCitations', () => {
     ['a template expression', '`.agent/state/${name}.json`'],
     ['a parent-directory segment', '`.agent/../secrets`'],
     ['a path with another prefix', '`agent-tools/src/index.ts`'],
+    ['a patterns segment after another directory', '`active/patterns/x.md`'],
+    ['a parent-relative patterns path', '`../patterns/x.md`'],
     ['a bare prefix word', '`docs`'],
   ])('omits %s rather than guessing', (_label, content) => {
     expect(extractPathCitations(content)).toStrictEqual([]);
+  });
+
+  it('resolves a citation written relative to the patterns directory, as doctrine cites a pattern, against that directory, keeping the token as written', () => {
+    const content =
+      'The dual of `patterns/referent-narrowing.md`; see `patterns/README.md#polarity`.';
+
+    expect(extractPathCitations(content)).toStrictEqual([
+      {
+        line: 1,
+        match: 'patterns/referent-narrowing.md',
+        target: '.agent/memory/active/patterns/referent-narrowing.md',
+      },
+      {
+        line: 1,
+        match: 'patterns/README.md#polarity',
+        target: '.agent/memory/active/patterns/README.md',
+      },
+    ]);
+  });
+
+  it('reads a rooted patterns path once, never again as a relative citation, and omits the bare directory word', () => {
+    const content = '`.agent/memory/active/patterns/x.md` and `patterns/` and `patterns`';
+
+    expect(extractPathCitations(content).map((c) => c.target)).toStrictEqual([
+      '.agent/memory/active/patterns/x.md',
+    ]);
   });
 
   it('reports the token as written and the line of each citation', () => {

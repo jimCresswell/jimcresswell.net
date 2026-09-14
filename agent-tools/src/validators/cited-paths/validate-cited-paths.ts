@@ -11,8 +11,9 @@ import {
 
 /**
  * Standalone validator that walks the live doctrine surfaces and fails when
- * a code-formatted `.agent/` or `docs/` path names a file or directory that
- * does not exist.
+ * a code-formatted `.agent/` or `docs/` path, or a `patterns/<name>.md`
+ * citation written relative to the patterns directory, names a file or
+ * directory that does not exist.
  *
  * The gate exists because doctrine depends on surfaces by path, and a
  * transplant, a move or a trim leaves the citation behind: on 2026-09-13
@@ -119,8 +120,9 @@ async function main(): Promise<void> {
   writeErrorLine(
     `validate-cited-paths: ${String(findings.length)} citation(s) of ${String(distinctTargets)} absent path(s).\n\n` +
       `${formatFindings(findings)}\n\n` +
-      'Every code-formatted `.agent/` or `docs/` path in live doctrine must name a path the ' +
-      'repository owns: a tracked file or directory, or one its ignore rules declare ' +
+      'Every code-formatted `.agent/` or `docs/` path, or `patterns/<name>.md` citation, in live ' +
+      'doctrine must name a path the repository owns: a tracked file or directory, or one its ' +
+      'ignore rules declare ' +
       'untracked-by-design. Restore the target, re-point the citation, or add the ignore rule ' +
       'the doctrine already claims.',
   );
