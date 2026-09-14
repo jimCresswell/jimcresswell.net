@@ -1,0 +1,80 @@
+#!/usr/bin/env node
+
+/**
+ * `pnpm --filter @engraph/agent-tools subagent-frontmatter-sweep [--write]`: mint every
+ * sub-agent template's declaration from its hand-kept adapters (dry run by default) and
+ * print the reconciliation report. A transplant instrument: a host arriving with hand-kept
+ * adapter trees runs it once; the generator then owns the adapters.
+ *
+ * @packageDocumentation
+ */
+
+import { argv, stderr, stdout } from 'node:process';
+
+import { resolveRepoRoot } from '../core/repo-root.js';
+import { listTrackedFiles } from '../core/tracked-file-scan.js';
+
+import { renderSubagentReconciliationReport } from './render-subagent-frontmatter.js';
+import {
+  ADAPTER_SURFACES,
+  sweepSubagentFrontmatter,
+  TEMPLATES_DIR,
+} from './sweep-subagent-frontmatter.js';
+
+const USAGE = 'usage: subagent-frontmatter-sweep [--write]';
+
+function basenames(tracked: readonly string[], dir: string, extension: string): string[] {
+  return tracked
+    .filter((file) => file.startsWith(`${dir}/`) && file.endsWith(extension))
+    .filter((file) => !file.slice(dir.length + 1).includes('/'))
+    .map((file) => file.slice(dir.length + 1, -extension.length));
+}
+
+async function main(): Promise<number> {
+  const args = argv.slice(2);
+  if (args.some((arg) => arg !== '--write')) {
+    stderr.write(`${USAGE}\n`);
+    return 2;
+  }
+  // projectDir is explicitly disabled: this tool derives from and writes into the tree it
+  // runs inside; the CLAUDE_PROJECT_DIR leg would rebind a worktree invocation to the
+  // primary checkout (the rules sweep's precedent).
+  const repoRoot = resolveRepoRoot(import.meta.url, { projectDir: undefined });
+  const tracked = listTrackedFiles(repoRoot);
+  const outcome = await sweepSubagentFrontmatter({
+    repoRoot,
+    templateNames: basenames(tracked, TEMPLATES_DIR, '.md'),
+    adapterNames: {
+      cursor: basenames(tracked, ADAPTER_SURFACES[0].dir, ADAPTER_SURFACES[0].extension),
+      claude: basenames(tracked, ADAPTER_SURFACES[1].dir, ADAPTER_SURFACES[1].extension),
+      codex: basenames(tracked, ADAPTER_SURFACES[2].dir, ADAPTER_SURFACES[2].extension),
+    },
+    write: args.includes('--write'),
+  });
+  if (outcome.refused.length > 0) {
+    stderr.write(`Sweep refused; nothing written (${String(outcome.refused.length)} reasons):\n`);
+    for (const reason of outcome.refused) {
+      stderr.write(`- ${reason}\n`);
+    }
+    return 1;
+  }
+  stdout.write(
+    outcome.declarations.length > 0
+      ? renderSubagentReconciliationReport(outcome.reconciliations)
+      : 'Nothing derived: every template already carries its declaration.\n',
+  );
+  stdout.write(
+    `\n${String(outcome.declarations.length)} declarations derived, ` +
+      `${String(outcome.reconciliations.length)} reconciliations, ` +
+      `${String(outcome.alreadyDeclared.length)} templates already declared, ` +
+      `${String(outcome.written.length)} files written${args.includes('--write') ? '' : ' (dry run)'}.\n`,
+  );
+  return 0;
+}
+
+try {
+  process.exitCode = await main();
+} catch (error: unknown) {
+  stderr.write(`subagent-frontmatter-sweep failed: ${String(error)}\n`);
+  process.exitCode = 1;
+}
