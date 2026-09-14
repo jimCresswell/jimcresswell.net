@@ -498,6 +498,15 @@ ones the Director would put to the owner had the owner been present.
     outcome drains its row, `rejected` and `duplicate` in a register commit whose drain note
     carries the reason or the carrying home (the register's own contract); one snapshot of
     #66 as merged. Lens 1.
+47. #65 round four (Copilot on `SHA: 3802031` at 00:21Z on 2026-09-14): zero threads; the bot
+    merges on its poll. The body carries three suppressed consistency findings (the SKILL's
+    liveness passage against item 4; the bracket's disagreement message naming reviews only;
+    the states header on the retired run-deadness states); per item 42 they fold into 5a-iii
+    as one commit before its pull request opens, no new pull request. 5b is on origin at
+    `SHA: f8e53a3` (`chore/retire-lineage-instruments`, four commits from main, code-expert's
+    three items taken; the pull request opens after 5a-iii's). REVIEW (5b): PDR-132 names the
+    retired pr-throughput register as a future instrument; ratified text untouched, the
+    retirement recorded against it for the owner's card. Lens 1.
 
 ## Routing log
 
