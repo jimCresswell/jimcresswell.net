@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 
 import { readPrStateReading } from './state-gh.js';
 import { stateViewFixture } from './state-view-fixture.js';
-import { graphqlResponse } from './test-helpers/state-gh-payloads.js';
+import { commentsPayload, graphqlResponse } from './test-helpers/state-gh-payloads.js';
 import type { GhCommandExecutor } from './gh.js';
 
 /**
@@ -30,6 +30,7 @@ function threadsPayload(unresolved: number): string {
 
 function review(body: string, submittedAt: string) {
   return {
+    id: 'PRR_1',
     author: { login: COPILOT },
     state: 'COMMENTED',
     body,
@@ -88,6 +89,7 @@ function landingExecutor(
       harvestCall += 1;
       return served(script.harvests, harvestCall - 1);
     },
+    comments: (): string => commentsPayload(),
   };
   return (_file, args) => {
     calls.push([...args]);
@@ -106,7 +108,10 @@ function landingExecutor(
 
 const isHarvestCall = (args: readonly string[]): boolean =>
   args[0] === 'api' &&
-  args.some((arg) => arg.startsWith('query=') && !arg.includes('reviewThreads'));
+  args.some(
+    (arg) =>
+      arg.startsWith('query=') && !arg.includes('reviewThreads') && !arg.includes('comments('),
+  );
 const isThreadsCall = (args: readonly string[]): boolean =>
   args[0] === 'api' && args.some((arg) => arg.includes('reviewThreads'));
 

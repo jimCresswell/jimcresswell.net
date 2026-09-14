@@ -17,6 +17,7 @@ const T0 = '2026-07-21T12:00:00Z';
 
 function review(overrides: Partial<HarvestedReview>): HarvestedReview {
   return {
+    id: 'PRR_1',
     author: 'copilot-pull-request-reviewer',
     state: 'COMMENTED',
     body: 'Reviewed.',
@@ -60,6 +61,7 @@ describe('computeReviewerLegs', () => {
       expectedReviewers: ['claude'],
       reviews: [
         review({
+          id: 'PRR_2',
           author: 'claude',
           body: '⚠️ **Code review skipped** — overage spend limit reached.',
         }),
@@ -78,6 +80,7 @@ describe('computeReviewerLegs', () => {
       expectedReviewers: ['claude'],
       reviews: [
         review({
+          id: 'PRR_3',
           author: 'claude',
           commitOid: OLD,
           body: 'Code review skipped — quota.',

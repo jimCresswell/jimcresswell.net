@@ -99,11 +99,12 @@ function roundInFlight(reading: PrStateReading): string[] {
 // in its body otherwise never enters the round count. The instrument cannot
 // classify prose as findings (a CLEAN Copilot round also posts a non-empty
 // summary body — refusing settlement on body PRESENCE would deadlock every
-// landing), so settlement stays leg-driven and the evidence hands the reader
-// the body-tally inputs: the body's own headline verdict and the count it
-// declares suppressed (body-tally.ts), so a closer-look round with suppressed
-// findings and zero threads (the bot merged two, #60 and #64) is named as
-// such rather than read as zero-finding by omission.
+// landing), so the evidence hands the reader the body-tally inputs: the
+// body's own headline verdict and the count it declares suppressed
+// (body-tally.ts). Since 2026-09-14 the suppressed count is also a hold
+// (suppressed-hold.ts, the verdict ladder in states.ts): a settled verdict
+// reaches here only when every suppressed finding on the tip has been lifted
+// by a disposition line, and the evidence says so.
 function bodyTallyEvidence(reading: PrStateReading): string[] {
   return reading.reviews
     .filter((review) => review.commitOid === reading.headRefOid)
@@ -112,7 +113,11 @@ function bodyTallyEvidence(reading: PrStateReading): string[] {
     .map((review) => {
       const tally = tallyReviewBody(review.body);
       const verdict = tally.verdict === null ? 'no headline verdict' : `verdict "${tally.verdict}"`;
-      return `tip-bound review body present: ${review.author} (${review.state}), ${verdict}, ${String(tally.suppressed)} suppressed finding(s) — tally body findings (SKILL item 2) before reading this round as zero-finding`;
+      const lifted =
+        tally.suppressed === 0
+          ? ''
+          : ', each lifted by a signed disposition line (else this round would read SUPPRESSED-FINDINGS-OPEN)';
+      return `tip-bound review body present: ${review.author} (${review.state}), ${verdict}, ${String(tally.suppressed)} suppressed finding(s)${lifted} — tally body findings (SKILL item 2) before reading this round as zero-finding`;
     });
 }
 

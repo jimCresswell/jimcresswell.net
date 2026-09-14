@@ -14,6 +14,7 @@ function reading(overrides: Partial<PrStateReading> = {}): PrStateReading {
     number: 461,
     isDraft: false,
     url: 'https://github.com/jimCresswell/jimcresswell.net/pull/461',
+    author: 'app/jimbot-of-the-devonshire-jimbots',
     state: 'OPEN',
     mergeable: 'MERGEABLE',
     mergeStateStatus: 'BLOCKED',
@@ -28,6 +29,7 @@ function reading(overrides: Partial<PrStateReading> = {}): PrStateReading {
     expectedDeclared: true,
     reviews: [],
     reviewRuns: { kind: 'read', runs: [] },
+    issueComments: [],
     ...overrides,
   };
 }

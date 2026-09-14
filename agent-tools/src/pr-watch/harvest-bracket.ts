@@ -36,7 +36,7 @@ const REVIEWS_QUERY = `query($owner: String!, $name: String!, $number: Int!, $en
     pullRequest(number: $number) {
       reviews(first: 100, after: $endCursor) {
         pageInfo { hasNextPage endCursor }
-        nodes { author { login } state body submittedAt commit { oid } }
+        nodes { id author { login } state body submittedAt commit { oid } }
       }
       reviewRequests(first: 100) {
         pageInfo { hasNextPage }

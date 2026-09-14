@@ -44,6 +44,20 @@ describe('decideMergeAction', () => {
     }
   });
 
+  it('refuses SUPPRESSED-FINDINGS-OPEN by name — suppressed body findings hold the merge (5a-vi, owner card item 78)', () => {
+    const decision = decideMergeAction({
+      ...baseInput,
+      verdict: {
+        state: 'SUPPRESSED-FINDINGS-OPEN',
+        evidence: ['suppressed findings hold the merge'],
+      },
+    });
+    expect(decision).toStrictEqual({
+      kind: 'refuse',
+      reason: 'verdict SUPPRESSED-FINDINGS-OPEN — only SETTLE-READY merges',
+    });
+  });
+
   it('refuses an already-merged PR — another actor merging is never this invocation merging', () => {
     const merged: PrVerdict = { state: 'MERGED', evidence: ['PR is merged'] };
 
@@ -93,6 +107,7 @@ describe('verdictAwaitsSettlement', () => {
     'CHECKS-RUNNING': true,
     'CHECKS-RED': false,
     'THREADS-OPEN': false,
+    'SUPPRESSED-FINDINGS-OPEN': false,
     'BEHIND-BASE': false,
     'ARMED-BEHIND-RED': false,
     'QUOTA-SKIPPED': false,

@@ -22,6 +22,7 @@ function settledReading(overrides: Partial<PrStateReading> = {}): PrStateReading
   return {
     number: 999,
     url: 'https://github.com/jimCresswell/jimcresswell.net/pull/999',
+    author: 'app/jimbot-of-the-devonshire-jimbots',
     state: 'OPEN',
     isDraft: false,
     mergeable: 'MERGEABLE',
@@ -41,6 +42,7 @@ function settledReading(overrides: Partial<PrStateReading> = {}): PrStateReading
     expectedDeclared: true,
     reviews: [
       {
+        id: 'PRR_1',
         author: COPILOT,
         state: 'COMMENTED',
         body: 'Reviewed 2 of 2 files.',
@@ -49,6 +51,7 @@ function settledReading(overrides: Partial<PrStateReading> = {}): PrStateReading
       },
     ],
     reviewRuns: { kind: 'read', runs: [] },
+    issueComments: [],
     ...overrides,
   };
 }
@@ -65,6 +68,7 @@ describe('PR_VERDICT_STATES', () => {
         'CHECKS-RUNNING',
         'CHECKS-RED',
         'THREADS-OPEN',
+        'SUPPRESSED-FINDINGS-OPEN',
         'BEHIND-BASE',
         'ARMED-BEHIND-RED',
         'QUOTA-SKIPPED',
@@ -231,6 +235,7 @@ describe('computePrVerdict — per-reviewer legs (the collapsed-legs r2 class)',
       settledReading({
         reviews: [
           {
+            id: 'PRR_2',
             author: COPILOT,
             state: 'COMMENTED',
             body: 'Reviewed current tip.',
@@ -238,6 +243,7 @@ describe('computePrVerdict — per-reviewer legs (the collapsed-legs r2 class)',
             submittedAt: '2026-07-21T12:01:00Z',
           },
           {
+            id: 'PRR_3',
             author: COPILOT,
             state: 'COMMENTED',
             body: 'Older-tip job finishing late.',
@@ -257,6 +263,7 @@ describe('computePrVerdict — per-reviewer legs (the collapsed-legs r2 class)',
         checksGreenAt: '2026-07-21T12:56:00Z',
         reviews: [
           {
+            id: 'PRR_4',
             author: COPILOT,
             state: 'COMMENTED',
             body: 'Reviewed an older push.',
@@ -277,6 +284,7 @@ describe('computePrVerdict — per-reviewer legs (the collapsed-legs r2 class)',
       settledReading({
         reviews: [
           {
+            id: 'PRR_5',
             author: COPILOT,
             state: 'COMMENTED',
             body: 'Reviewed.',
@@ -417,6 +425,7 @@ describe('computePrVerdict — base currency and vacuous sets', () => {
         checksGreenAt: null,
         reviews: [
           {
+            id: 'PRR_6',
             author: COPILOT,
             state: 'COMMENTED',
             body: 'Reviewed.',
@@ -493,6 +502,7 @@ describe('computePrVerdict — measured state and settlement (SKILL item 4)', ()
         reviews: [
           ...settledReading().reviews,
           {
+            id: 'PRR_7',
             author: 'claude',
             state: 'COMMENTED',
             body: '⚠️ **Code review skipped** — overage spend limit reached.',
@@ -519,6 +529,7 @@ describe('computePrVerdict — measured state and settlement (SKILL item 4)', ()
           reviews: [
             ...settledReading().reviews,
             {
+              id: 'PRR_8',
               author: 'jimCresswell',
               state: 'COMMENTED',
               body: `Fixed at source in abc1234.\n\n— Moth mends Dreamscape ${signature}`,
@@ -587,14 +598,12 @@ describe('computePrVerdict — round-4 residual classes (2026-07-21)', () => {
     );
   });
 
-  it('a closer-look body names its verdict and suppressed count in the evidence (the bot merged on one, #60 and #64)', () => {
-    // The vendor's summary review says what it suppressed; the evidence carries
-    // the count so the round is never read as zero-finding by omission. Whether
-    // suppressed findings block merge-eligibility is the owner's ruling.
+  it('a closer-look body with suppressed findings holds the round as SUPPRESSED-FINDINGS-OPEN (the bot merged on one, #60 and #64; the owner ruled block on any finding, item 78, 2026-09-14)', () => {
     const verdict = computePrVerdict(
       settledReading({
         reviews: [
           {
+            id: 'PRR_9',
             author: COPILOT,
             state: 'COMMENTED',
             body: '### 🔵 Needs a closer look\n\n<details>\n### Suppressed comments (6)\n</details>',
@@ -605,9 +614,86 @@ describe('computePrVerdict — round-4 residual classes (2026-07-21)', () => {
       }),
       LATE_NOW,
     );
-    expect(verdict.state).toBe('SETTLE-READY');
+    expect(verdict.state).toBe('SUPPRESSED-FINDINGS-OPEN');
     expect(verdict.evidence.join('\n')).toContain(
-      `tip-bound review body present: ${COPILOT} (COMMENTED), verdict "Needs a closer look", 6 suppressed finding(s)`,
+      `suppressed findings hold the merge: ${COPILOT} (COMMENTED), review PRR_9 on head SHA:aaaaaaa, verdict "Needs a closer look", 6 suppressed finding(s), 0 lifted`,
     );
+  });
+});
+
+describe('computePrVerdict — the suppressed-findings hold (5a-vi, 2026-09-14)', () => {
+  const SIGNATURE = '— Saffron turns Verdure (c39ad7)';
+  const closerLook = (suppressed: number, commitOid: string = TIP) => ({
+    id: 'PRR_hold',
+    author: COPILOT,
+    state: 'COMMENTED',
+    body: `### 🔵 Needs a closer look\n\n<details>\n### Suppressed comments (${String(suppressed)})\n</details>`,
+    commitOid,
+    submittedAt: '2026-07-21T12:05:00Z',
+  });
+  const line = (item: string, sentence: string): string =>
+    `**Over-bar** head SHA:${TIP.slice(0, 7)} · review PRR_hold · a.ts:1 · ${item} — ${sentence}`;
+
+  it('lifts when every finding is cured or rejected by a signed disposition line, and settles', () => {
+    const verdict = computePrVerdict(
+      settledReading({
+        reviews: [closerLook(2)],
+        issueComments: [
+          {
+            author: 'jimCresswell',
+            body: [
+              line('item 1 of 2', 'Cured in SHA:9f8e7d6'),
+              line(
+                'item 2 of 2',
+                'Rejected: does not reproduce; the falsifier is the cell at a.ts:9',
+              ),
+              '',
+              SIGNATURE,
+            ].join('\n'),
+          },
+        ],
+      }),
+      LATE_NOW,
+    );
+    expect(verdict.state).toBe('SETTLE-READY');
+  });
+
+  it('a routed finding still holds: the owner asked to block on any finding', () => {
+    const verdict = computePrVerdict(
+      settledReading({
+        reviews: [closerLook(1)],
+        issueComments: [
+          {
+            author: 'jimCresswell',
+            body: [line('item 1 of 1', 'Routed to the 2a follow-on list'), '', SIGNATURE].join(
+              '\n',
+            ),
+          },
+        ],
+      }),
+      LATE_NOW,
+    );
+    expect(verdict.state).toBe('SUPPRESSED-FINDINGS-OPEN');
+    expect(verdict.evidence.join('\n')).toContain('1 suppressed finding(s), 0 lifted');
+  });
+
+  it('open threads and suppressed findings hold together: THREADS-OPEN, with the count in its evidence', () => {
+    const verdict = computePrVerdict(
+      settledReading({ reviewThreads: { total: 4, unresolved: 1 }, reviews: [closerLook(3)] }),
+      LATE_NOW,
+    );
+    expect(verdict.state).toBe('THREADS-OPEN');
+    expect(verdict.evidence).toStrictEqual([
+      '1/4 review threads unresolved',
+      expect.stringContaining('3 suppressed finding(s), 0 lifted'),
+    ]);
+  });
+
+  it('a body on an older tip holds nothing: a later review on a later tip carrying none lifts the hold', () => {
+    const verdict = computePrVerdict(
+      settledReading({ reviews: [closerLook(5, OLD_TIP), { ...closerLook(0), id: 'PRR_clean' }] }),
+      LATE_NOW,
+    );
+    expect(verdict.state).toBe('SETTLE-READY');
   });
 });

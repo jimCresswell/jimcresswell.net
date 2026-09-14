@@ -10,6 +10,7 @@ import {
 } from './gh.js';
 import { readReviewRunsLeg } from './review-runs.js';
 import { readHarvestAndThreads } from './harvest-bracket.js';
+import { readIssueComments } from './issue-comments.js';
 import { hasLanded, isSignedSelfReply } from './reviewer-legs.js';
 import { parseStateView, PR_STATE_VIEW_JSON_FIELDS } from './state-fields.js';
 import type { PrStateReading } from './state-types.js';
@@ -18,7 +19,8 @@ import type { PrStateReading } from './state-types.js';
  * The gh IO composition for `pr state`: one extended `pr view` call, the
  * review-threads GraphQL slurp (shared with `pr-watch`), the FULL paginated
  * `reviews` harvest (the reviewer-leg source — never the `latestReviews`
- * pointer), and the `gh agent-task` review-run legs, composed into one
+ * pointer), the `gh agent-task` review-run legs, and the paginated issue
+ * comments (the dispositions of body-only findings), composed into one
  * {@link PrStateReading}.
  *
  * The expected reviewer set is a DECLARED input (`expectedReviewers`); when
@@ -70,6 +72,26 @@ function readMergeabilityComputedView(input: {
 // consecutive move fails loud rather than composing across tips.
 const TIP_CONSISTENT_ATTEMPTS = 2;
 
+// The declared expected set, or the observed one when none was declared. A
+// defaulted expected set must not be polluted by the agent's own signed
+// disposition replies (shared-credential reviews), unsubmitted drafts, or
+// deleted-account 'unknown' authors — each would mint a phantom OWED leg.
+function expectedSet(
+  declared: readonly string[],
+  reviews: PrStateReading['reviews'],
+  reviewRequests: readonly string[],
+): Pick<PrStateReading, 'expectedReviewers' | 'expectedDeclared'> {
+  const observedAuthors = reviews
+    .filter((review) => hasLanded(review) && !isSignedSelfReply(review.body))
+    .map((review) => review.author)
+    .filter((author) => author !== 'unknown');
+  const observed = [...new Set([...reviewRequests, ...observedAuthors])];
+  return {
+    expectedReviewers: declared.length > 0 ? declared : observed,
+    expectedDeclared: declared.length > 0,
+  };
+}
+
 /**
  * Fetch the `pr state` gh surfaces and compose the compound reading.
  *
@@ -103,27 +125,22 @@ export function readPrStateReading(options: ReadPrStateOptions): PrStateReading 
       repo,
     });
     const reviewRuns = readReviewRunsLeg({ run, gh, prNumber: number, prUrl: view.url });
+    // The dispositions of body-only findings, read after the bracket: a
+    // disposition landing later is the next poll's, and a stale read can only
+    // hold a merge longer, never lift one early (suppressed-hold.ts).
+    const issueComments = readIssueComments({ run, gh, prNumber, repo });
     // The confirm read closes the race window; on a match it is also the
     // freshest same-tip snapshot, so the reading composes from it.
     const confirm = readMergeabilityComputedView({ run, gh, viewArgs, prNumber });
     if (confirm.headRefOid === view.headRefOid) {
-      const declared = options.expectedReviewers ?? [];
-      // A defaulted expected set must not be polluted by the agent's own signed
-      // disposition replies (shared-credential reviews), unsubmitted drafts, or
-      // deleted-account 'unknown' authors — each would mint a phantom OWED leg.
-      const observedAuthors = reviews
-        .filter((review) => hasLanded(review) && !isSignedSelfReply(review.body))
-        .map((review) => review.author)
-        .filter((author) => author !== 'unknown');
-      const observed = [...new Set([...reviewRequests, ...observedAuthors])];
       return {
         ...confirm,
         reviewThreads,
         reviewRequests,
         reviews,
         reviewRuns,
-        expectedReviewers: declared.length > 0 ? declared : observed,
-        expectedDeclared: declared.length > 0,
+        issueComments,
+        ...expectedSet(options.expectedReviewers ?? [], reviews, reviewRequests),
       };
     }
     view = confirm;

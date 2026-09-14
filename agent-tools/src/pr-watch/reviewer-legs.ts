@@ -14,6 +14,8 @@
 
 /** One review from the full paginated harvest (`reviews` connection). */
 export interface HarvestedReview {
+  /** The review's own node id: the key a body-only finding's disposition line names. */
+  readonly id: string;
   readonly author: string;
   /** `APPROVED` | `CHANGES_REQUESTED` | `COMMENTED` | `DISMISSED` | … */
   readonly state: string;

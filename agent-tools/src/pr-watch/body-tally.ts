@@ -8,8 +8,9 @@
  * review details (Copilot's shape, verified live on PRs #60, #63 and #64,
  * 2026-09-13 and 2026-09-14). The tally names both in the verdict's evidence
  * so a round whose only findings are suppressed in a closer-look body is
- * never read as zero-finding by omission; whether such findings block
- * merge-eligibility is the owner's ruling, not the instrument's.
+ * never read as zero-finding by omission, and since the owner's ruling of
+ * 2026-09-14 ("block on any finding", item 78) the count holds the round
+ * until each finding is dispositioned (`suppressed-hold.ts`).
  */
 
 import { printableBlock } from './printable.js';

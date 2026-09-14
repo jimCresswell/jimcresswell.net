@@ -111,6 +111,7 @@ describe('parseStateView', () => {
     expect([...PR_STATE_VIEW_JSON_FIELDS]).toEqual([
       'number',
       'url',
+      'author',
       'state',
       'isDraft',
       'mergeable',
@@ -180,6 +181,7 @@ describe('parseHarvest — reviews', () => {
     const { reviews } = parseHarvest([
       page([
         {
+          id: 'PRR_1',
           author: { login: 'copilot-pull-request-reviewer' },
           state: 'COMMENTED',
           body: 'Reviewed.',
@@ -189,6 +191,7 @@ describe('parseHarvest — reviews', () => {
       ]),
       page([
         {
+          id: 'PRR_2',
           author: null,
           state: 'COMMENTED',
           body: 'Deleted account review.',
@@ -199,6 +202,7 @@ describe('parseHarvest — reviews', () => {
     ]);
     expect(reviews).toEqual([
       {
+        id: 'PRR_1',
         author: 'copilot-pull-request-reviewer',
         state: 'COMMENTED',
         body: 'Reviewed.',
@@ -206,6 +210,7 @@ describe('parseHarvest — reviews', () => {
         commitOid: 'f'.repeat(40),
       },
       {
+        id: 'PRR_2',
         author: 'unknown',
         state: 'COMMENTED',
         body: 'Deleted account review.',
