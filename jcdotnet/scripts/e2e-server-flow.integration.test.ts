@@ -129,29 +129,36 @@ describe("createServerFlow", () => {
     const h = harness();
     const running = h.flow.run();
     const bound = await h.bound;
-    h.buildExit.resolve(0);
-    await h.attachStarted;
-    h.attachClose.resolve(() => Promise.reject(new Error("socket state unknown")));
-    await running;
-    h.flow.stop();
-    expect(await h.exited).toBe(1);
-    expect(h.errors).toEqual(["e2e-web-server: close failed: socket state unknown"]);
-    bound.server.close();
+    try {
+      h.buildExit.resolve(0);
+      await h.attachStarted;
+      h.attachClose.resolve(() => Promise.reject(new Error("socket state unknown")));
+      await running;
+      h.flow.stop();
+      expect(await h.exited).toBe(1);
+      expect(h.errors).toEqual(["e2e-web-server: close failed: socket state unknown"]);
+    } finally {
+      // The fake close never closes the real socket; the cell does, whatever its assertions say.
+      bound.server.close();
+    }
   });
 
   it("a signal during the build stops the build child, and the flow exits 1 once, after the child has gone", async () => {
     const h = harness();
     const running = h.flow.run();
-    await h.buildStarted;
-    h.flow.stop();
-    expect(h.buildStops).toEqual([1]);
-    expect(h.exits).toEqual([]);
-    h.buildExit.resolve(1);
-    expect(await h.exited).toBe(1);
-    await running;
-    expect(h.exits).toEqual([1]);
     const bound = await h.bound;
-    bound.server.close();
+    try {
+      await h.buildStarted;
+      h.flow.stop();
+      expect(h.buildStops).toEqual([1]);
+      expect(h.exits).toEqual([]);
+      h.buildExit.resolve(1);
+      expect(await h.exited).toBe(1);
+      await running;
+      expect(h.exits).toEqual([1]);
+    } finally {
+      bound.server.close();
+    }
   });
 
   it("a signal after the build has exited and before the site is attached closes the socket and exits 1, never touching the exited build", async () => {
