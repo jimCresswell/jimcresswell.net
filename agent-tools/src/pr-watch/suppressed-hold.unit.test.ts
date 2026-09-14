@@ -182,7 +182,8 @@ describe('suppressedHolds', () => {
     expect(evidence).toContain(
       'an unbounded count of suppressed finding(s), a count the instrument cannot bound',
     );
-    expect(evidence).toContain('no disposition line lifts it');
+    expect(evidence).toContain('2 lifting line(s) counted');
+    expect(evidence).toContain('none lifts an unbounded count');
   });
 
   it('names the review and its id, the tip, the count and the shortfall in its evidence, one line per holding review', () => {

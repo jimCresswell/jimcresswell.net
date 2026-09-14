@@ -1,4 +1,4 @@
-import { suppressedCountLabel, tallyReviewBody } from './body-tally.js';
+import { suppressedFindingsPhrase, tallyReviewBody } from './body-tally.js';
 import { dispositionLifts, parseDispositionLines } from './disposition-lines.js';
 import type { IssueComment } from './issue-comments.js';
 import { hasLanded, isSignedSelfReply, type HarvestedReview } from './reviewer-legs.js';
@@ -10,7 +10,9 @@ import { hasLanded, isSignedSelfReply, type HarvestedReview } from './reviewer-l
  * says it suppressed; this module turns the measurement into a hold. A
  * tip-bound, landed, non-self-reply review body declaring N suppressed
  * findings holds the merge while fewer than N distinct findings of that review
- * carry a lifting disposition line: a line in a signed comment
+ * carry a lifting disposition line, and a body declaring a count the tally
+ * cannot bound (`body-tally.ts`, `null`) holds whatever the lines say, until a
+ * later review on a later tip: a line in a signed comment
  * (`disposition-lines.ts`) whose author is the repository owner or the pull
  * request's author (the seat's dispositions are posted as the bot that
  * authored the pull request; any other login's line is ignored, because the
@@ -116,11 +118,11 @@ export function suppressedHolds(reading: SuppressedHoldReading): SuppressedHold[
 
 /** The count and the lift as the evidence states them; an unbounded count no line lifts. */
 function countClause(hold: SuppressedHold): string {
-  const lifted = `${String(hold.lifted)} lifted by a signed disposition line from the repository owner or the pull request's author (a cure with its SHA or a rejection lifts; a routing does not: owner card item 78, 2026-09-14)`;
+  const permitted = `by a signed disposition line from the repository owner or the pull request's author (a cure with its SHA or a rejection lifts; a routing does not: owner card item 78, 2026-09-14)`;
   if (hold.suppressed === null) {
-    return `${suppressedCountLabel(null)} suppressed finding(s), a count the instrument cannot bound (the marker's digit run is past the safe-integer range), ${lifted}, no disposition line lifts it — a later review on a later tip carrying none lifts`;
+    return `${suppressedFindingsPhrase(null)}, a count the instrument cannot bound (the marker's digit run is past the safe-integer range), ${String(hold.lifted)} lifting line(s) counted ${permitted}, none lifts an unbounded count — a later review on a later tip carrying none lifts`;
   }
-  return `${suppressedCountLabel(hold.suppressed)} suppressed finding(s), ${lifted}, ${String(hold.suppressed - hold.lifted)} remaining — cure and push, disposition the rest, or a later review on a later tip carrying none`;
+  return `${suppressedFindingsPhrase(hold.suppressed)}, ${String(hold.lifted)} lifted ${permitted}, ${String(hold.suppressed - hold.lifted)} remaining — cure and push, disposition the rest, or a later review on a later tip carrying none`;
 }
 
 /** One evidence line per holding review: the review and its id, the tip, the count, the lift and the shortfall. */

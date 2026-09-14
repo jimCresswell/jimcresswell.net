@@ -6,10 +6,11 @@ import { commentsPayload, graphqlResponse } from './test-helpers/state-gh-payloa
 import type { GhCommandExecutor } from './gh.js';
 
 /**
- * The compound read's harvest bracket (#65 round four; #79 round three,
- * 2026-09-14): the reviews-and-requests harvest is read on both sides of every
- * other leg, the confirm view last, and must agree, so a review landing during
- * any leg is on the reading with its threads, never settled over. Injected
+ * The compound read's harvest bracket (#65 round four; #79 rounds three and
+ * four, 2026-09-14): the reviews-and-requests harvest is read on both sides of
+ * every other leg, the confirm view then the comments, and must agree, so a
+ * review landing during any leg is on the reading with its threads, never
+ * settled over. Injected
  * executor, no real gh; the harvest served per call, or timed by a view call,
  * scripts the landing.
  */

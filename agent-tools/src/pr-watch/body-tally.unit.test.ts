@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { suppressedCountLabel, tallyReviewBody } from './body-tally.js';
+import { suppressedFindingsPhrase, tallyReviewBody } from './body-tally.js';
 
 /**
  * The body tally reads what a vendor's summary review says about itself: its
@@ -64,8 +64,11 @@ describe('tallyReviewBody', () => {
     expect(tallyReviewBody('### Suppressed comments (9007199254740991)').suppressed).toBe(
       9007199254740991,
     );
-    expect(suppressedCountLabel(null)).toBe('an unbounded count of');
-    expect(suppressedCountLabel(6)).toBe('6');
+  });
+
+  it('prints the count as one phrase, the unbounded case named', () => {
+    expect(suppressedFindingsPhrase(null)).toBe('an unbounded count of suppressed finding(s)');
+    expect(suppressedFindingsPhrase(6)).toBe('6 suppressed finding(s)');
   });
 
   it('a body holding only the suppressed marker tallies no verdict, never the marker as one', () => {

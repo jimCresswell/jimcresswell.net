@@ -96,10 +96,11 @@ function expectedSet(
  * Fetch the `pr state` gh surfaces and compose the compound reading.
  *
  * The harvest (reviews and requests) brackets every other leg, the confirm
- * view last, and must agree on both sides (readHarvestBracket), so a review
- * seen landed has its threads on the reading, a review not yet landed shows
- * as its request, and a review landing during any leg, the confirm included,
- * re-reads the legs behind it (#65 round four; #79 round three).
+ * view then the comments, and must agree on both sides (readHarvestBracket),
+ * so a review seen landed has its threads on the reading, a review not yet
+ * landed shows as its request, a review landing during any leg, the confirm
+ * included, re-reads the legs behind it, and the dispositions are read on the
+ * confirmed tip (#65 round four; #79 rounds three and four).
  *
  * @throws when the primary `pr view`, review-threads, reviews-harvest or
  *   issue-comments legs fail (a verdict without them would be a guess), when
@@ -131,8 +132,9 @@ export function readPrStateReading(options: ReadPrStateOptions): PrStateReading 
     // matching-tip snapshot (a line edited or deleted between an earlier read
     // and the confirm would lift a stale count, #79 round four): a line binds
     // itself to the tip and the review by its own SHA and review id
-    // (suppressed-hold.ts), and a comment landing after the bracket closes is
-    // the next poll's.
+    // (suppressed-hold.ts), and a comment landing or changing after the
+    // comments read is the next poll's (the closing harvest covers reviews and
+    // requests, not comments).
     const { confirm, ...legs } = readHarvestBracket(legInput, () => {
       const reviewThreads = readReviewThreads(legInput);
       const reviewRuns = readReviewRunsLeg({ run, gh, prNumber: number, prUrl });

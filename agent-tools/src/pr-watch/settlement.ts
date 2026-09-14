@@ -6,7 +6,7 @@ import {
   normaliseLogin,
 } from './reviewer-legs.js';
 import type { ReviewerLeg } from './reviewer-legs.js';
-import { suppressedCountLabel, tallyReviewBody } from './body-tally.js';
+import { suppressedFindingsPhrase, tallyReviewBody } from './body-tally.js';
 import type { PrStateReading, PrVerdict, ReviewRun } from './state-types.js';
 
 /**
@@ -117,7 +117,7 @@ function bodyTallyEvidence(reading: PrStateReading): string[] {
         tally.suppressed === 0
           ? ''
           : ', each lifted by a signed disposition line (else this round would read SUPPRESSED-FINDINGS-OPEN)';
-      return `tip-bound review body present: ${review.author} (${review.state}), ${verdict}, ${suppressedCountLabel(tally.suppressed)} suppressed finding(s)${lifted} — tally body findings (SKILL item 2) before reading this round as zero-finding`;
+      return `tip-bound review body present: ${review.author} (${review.state}), ${verdict}, ${suppressedFindingsPhrase(tally.suppressed)}${lifted} — tally body findings (SKILL item 2) before reading this round as zero-finding`;
     });
 }
 

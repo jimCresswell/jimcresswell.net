@@ -60,9 +60,9 @@ export function tallyReviewBody(body: string): BodyTally {
   return { verdict: headlineVerdict(shown), suppressed: suppressedCount(shown) };
 }
 
-/** The count as the evidence prints it: the number, or the unbounded case named. */
-export function suppressedCountLabel(count: number | null): string {
-  return count === null ? 'an unbounded count of' : String(count);
+/** The count as the evidence prints it, the whole phrase: the number, or the unbounded case named. */
+export function suppressedFindingsPhrase(count: number | null): string {
+  return `${count === null ? 'an unbounded count of' : String(count)} suppressed finding(s)`;
 }
 
 /** The declared count as a safe integer, zero when none is declared, `null` when it cannot be bound. */
