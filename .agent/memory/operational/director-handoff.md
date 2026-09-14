@@ -1196,6 +1196,20 @@ ones the Director would put to the owner had the owner been present.
      item 8's closure exit as the register filed and the cards answered, the archive following
      the drain, and asks the owner to amend the proof or move the drain back inside.
 
+101. The lineage's curator delivered a delta note into this estate's Practice Box at the
+     owner's word (comms event at 15:13Z; the note tracked here in the Box, lineage-literal
+     free): what moved on the lineage between the pin and its post-fold head. Routed as the
+     Practice's update pass after the closure, not into it; the overlap between this estate's
+     5a-vi hold and the lineage's pull-request tally family named for that pass. The owner
+     (about 15:45Z): plan the exploration of that delta and whatever else lands by then as a
+     thoughtful two-way exchange raising both Practices to the highest level either defines.
+     Authored `.agent/plans/delivery/practice-two-way-exchange.plan.md` (delivery node under
+     `practice`, blocking on `practice-completion`; deltas computed at the window from the
+     ancestor `SHA: e477e62f7`, concept rows with a register and validator, inbound at eight
+     claims and two rounds, outbound through the lineage's Box under its gates). Ratified by
+     the owner's word (about 15:55Z: "yes, you both have Practice boxes, and yes the node is
+     ratified"); the remaining gate is the owner naming the exchange window.
+
 ## Routing log
 
 - 2026-09-13 evening: seat opened; team-start `ca1ba4d8`; lanes A, B, C authored, unfilled.

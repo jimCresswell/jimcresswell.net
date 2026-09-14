@@ -6,10 +6,13 @@ overview: >-
   After the transplant closes, compute what each Practice instance has learned
   since their common ancestor, compare at the concept level, and land the higher
   form of every concept in both estates, each under its own owner's word.
-status: sketch
-ratified_by: null
-ratified_date: null
-ratified_where: null
+status: ratified
+ratified_by: Jim Cresswell
+ratified_date: 2026-09-14
+ratified_where: >-
+  The owner's word to the Director in the Director session of 2026-09-14 ("yes, you
+  both have Practice boxes, and yes the node is ratified"), recorded in
+  .agent/memory/operational/director-handoff.md §Decisions overnight, item 101.
 serves: practice
 impact_areas:
   - practice-and-estate
@@ -20,10 +23,10 @@ depends_on:
 owner_gates:
   - awaiting: owner-decision
     clears_when: >-
-      The owner ratifies this node and names the exchange window: the session
-      in which the deltas are computed and the concept comparison is authored,
-      after the transplant closure's items 3 to 8 land. The owner owns both
-      estates, so one word opens the window on both sides.
+      The owner names the exchange window: the session in which the deltas are
+      computed and the concept comparison is authored, after the transplant
+      closure's items 3 to 8 land. The owner owns both estates, so one word
+      opens the window on both sides.
     expires: 2026-10-05
 last_updated: 2026-09-14
 ---
