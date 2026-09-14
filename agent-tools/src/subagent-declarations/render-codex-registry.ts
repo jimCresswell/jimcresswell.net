@@ -19,25 +19,26 @@ import { carriesTomlLineUnsafe } from './render-codex-adapter.js';
 import type { SubagentDeclaration } from './subagent-declaration.js';
 
 const BLOCK_HEADER = /^\[agents\."([^"]+)"\]$/u;
-const BLOCK_FIELD = /^(?:description|config_file) = "[^"]*"$/u;
-
-/** The hand-kept head of the registry, verbatim, ending in the blank line the blocks follow. */
-export interface CodexRegistryHead {
-  readonly head: string;
-}
+// A block field as TOML writes it, escapes admitted here so the render, not the split, is
+// what judges a description the basic string cannot carry verbatim.
+const BLOCK_FIELD = /^(?:description|config_file) = "(?:[^"\\]|\\.)*"$/u;
 
 /**
  * Split the registry text into its hand-kept head and check that its tail holds blocks only.
+ * The text is LF (the port LF-normalises every read); the head is every line before the
+ * first block header, each with its newline, so a registry that starts with a block has an
+ * empty head and one with no block is closed by the blank line the blocks follow; either
+ * way the rendered registry splits to the same head again, so `--fix` is a fixpoint.
  *
  * @param path - The registry's repo-relative path, for the refusal.
- * @param text - The registry's full text.
+ * @param text - The registry's full LF text.
  * @returns The head, or the refusal naming the first foreign line in the tail.
  */
-export function splitCodexRegistry(path: string, text: string): Result<CodexRegistryHead, string> {
+export function splitCodexRegistry(path: string, text: string): Result<string, string> {
   const lines = text.split('\n');
   const first = lines.findIndex((line) => BLOCK_HEADER.test(line));
   if (first === -1) {
-    return ok({ head: closedHead(text) });
+    return ok(closedHead(text));
   }
   const foreign = lines
     .slice(first)
@@ -47,7 +48,12 @@ export function splitCodexRegistry(path: string, text: string): Result<CodexRegi
       `${path}: line "${foreign}" sits in the registry tail, which the declarations render whole; move it above the first agents block; refusing to regenerate the sub-agent adapters`,
     );
   }
-  return ok({ head: `${lines.slice(0, first).join('\n')}\n` });
+  return ok(
+    lines
+      .slice(0, first)
+      .map((line) => `${line}\n`)
+      .join(''),
+  );
 }
 
 /** A head with no registry after it, closed by the blank line the first block needs. */
@@ -61,6 +67,9 @@ function closedHead(text: string): string {
 
 /**
  * Render the registry: the head verbatim, then one block per Codex adapter in name order.
+ * The declarations are the set `renderSubagentAdapters` accepted, so no two specs share a
+ * name (it refuses those first); called alone on such a set, two blocks would carry one
+ * name.
  *
  * @param head - The hand-kept head as `splitCodexRegistry` returns it.
  * @param declarations - The templates' declarations, in any order.

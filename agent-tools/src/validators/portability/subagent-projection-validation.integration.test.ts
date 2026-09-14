@@ -4,11 +4,12 @@ import { validateSubagentProjections } from './subagent-projection-validation.js
 import { fakeProjectionRepo } from './test-helpers/fake-projection-repo.js';
 
 /**
- * The sub-agent adapter leg of the portability validator (closure item 6, 2b-ii, slice A1):
- * every template's declaration renders its adapters on the three hand-kept surfaces, the
- * surfaces are compared byte for byte, `--fix` writes what is missing or drifted and removes
- * what no declaration renders, and the leg refuses, touching nothing, whenever it cannot
- * vouch for its input. Injected in-memory port, no real file system.
+ * The sub-agent adapter leg of the portability validator (closure item 6, 2b-ii, slices A1
+ * and A2): every template's declaration renders its adapters on the three adapter surfaces
+ * and the Codex registry's blocks after its hand-kept head, the four surfaces are compared
+ * byte for byte, `--fix` writes what is missing or drifted and removes what no declaration
+ * renders, and the leg refuses, touching nothing, whenever it cannot vouch for its input.
+ * Injected in-memory port, no real file system.
  */
 
 const TEMPLATES = '.agent/sub-agents/templates';
@@ -215,6 +216,15 @@ describe('validateSubagentProjections', () => {
       `${REGISTRY}: no Codex registry to keep the head of; ${REFUSING}`,
     ]);
     expect(absent.written).toEqual([]);
+
+    const unreadable = fakeProjectionRepo(
+      bareRepo().files,
+      new Map(),
+      new Map([[REGISTRY, { kind: 'unreadable', cause: 'EIO' }]]),
+    );
+    expect((await validateSubagentProjections(true, unreadable)).issues).toEqual([
+      `${REGISTRY}: unreadable (EIO); ${REFUSING}`,
+    ]);
 
     const foreign = bareRepo();
     foreign.files.set(

@@ -2,8 +2,8 @@
  * What one adapter renders from, and where it goes: the three source surfaces, the spec a
  * role or a variant reduces to (a role with its defaults to fill, a variant exactly as
  * declared), and the pointer sentence every adapter carries. The leaf the Markdown renderer
- * (`render-subagent-adapters.ts`) and the Codex renderer (`render-codex-adapter.ts`) both
- * read.
+ * (`render-subagent-adapters.ts`), the Codex renderer (`render-codex-adapter.ts`) and the
+ * registry renderer (`render-codex-registry.ts`) read.
  *
  * @packageDocumentation
  */

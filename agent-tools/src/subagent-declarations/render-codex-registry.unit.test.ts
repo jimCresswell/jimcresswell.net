@@ -63,18 +63,43 @@ describe('splitCodexRegistry', () => {
   it('keeps the head verbatim up to the first agents block', () => {
     expect(splitCodexRegistry('.codex/config.toml', REGISTRY)).toStrictEqual({
       ok: true,
-      value: { head: HEAD },
+      value: HEAD,
     });
+  });
+
+  it('is a fixpoint of the render: a registry that starts with a block has an empty head, and a rendered registry splits to the head it was rendered from', () => {
+    const blocksFirst = REGISTRY.slice(HEAD.length);
+    expect(splitCodexRegistry('.codex/config.toml', blocksFirst)).toStrictEqual({
+      ok: true,
+      value: '',
+    });
+    const rendered = renderCodexRegistry('', [ALPHA]);
+    expect(rendered.ok).toBe(true);
+    const again = splitCodexRegistry('.codex/config.toml', rendered.ok ? rendered.value : '');
+    expect(again).toStrictEqual({ ok: true, value: '' });
+    const fromHead = renderCodexRegistry(HEAD, [ALPHA]);
+    expect(
+      splitCodexRegistry('.codex/config.toml', fromHead.ok ? fromHead.value : ''),
+    ).toStrictEqual({ ok: true, value: HEAD });
+  });
+
+  it('admits an escaped block field in the tail, leaving the render to judge it; a comment line there refuses', () => {
+    const escaped = `${HEAD}[agents."alpha"]\ndescription = "Says \\"hi\\"."\nconfig_file = "agents/alpha.toml"\n`;
+    expect(splitCodexRegistry('.codex/config.toml', escaped)).toStrictEqual({
+      ok: true,
+      value: HEAD,
+    });
+    expect(splitCodexRegistry('.codex/config.toml', `${REGISTRY}# a note\n`).ok).toBe(false);
   });
 
   it('reads a config with no registry as all head, closed by a blank line for the blocks to follow', () => {
     expect(splitCodexRegistry('.codex/config.toml', 'file_opener = "cursor"\n')).toStrictEqual({
       ok: true,
-      value: { head: 'file_opener = "cursor"\n\n' },
+      value: 'file_opener = "cursor"\n\n',
     });
     expect(splitCodexRegistry('.codex/config.toml', '')).toStrictEqual({
       ok: true,
-      value: { head: '' },
+      value: '',
     });
   });
 

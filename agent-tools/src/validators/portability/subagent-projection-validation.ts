@@ -1,9 +1,11 @@
 /**
  * The sub-agent adapter leg of the portability validator (closure item 6, 2b-ii): every
  * template's declaration is read from its frontmatter, the Cursor, Claude and Codex adapters
- * are rendered from those declarations (`render-subagent-adapters.ts`), and the surfaces are
- * compared byte for byte. `--fix` writes what is missing or drifted and removes what no
- * declaration renders; without it, every difference is an issue naming the cure.
+ * are rendered from those declarations (`render-subagent-adapters.ts`) and the Codex
+ * registry's agent blocks after its hand-kept head (`render-codex-registry.ts`), and the
+ * four surfaces are compared byte for byte. `--fix` writes what is missing or drifted and
+ * removes what no declaration renders; without it, every difference is an issue naming the
+ * cure.
  *
  * The leg refuses, with one issue and no write, whenever it cannot vouch for its input, on
  * the rule leg's terms (`rule-projection-validation.ts`): a template with no declaration
@@ -11,11 +13,12 @@
  * stale), a declaration that does not parse, a template whose name a path cannot carry, an
  * unreadable template or surface entry, a templates directory that is absent, unreadable or
  * empty, a regular file there that is not a template, a symlink or special entry on any
- * surface, a name two declarations render, and a declared value the Codex form cannot
- * carry verbatim. The three adapter
- * directories are wholly generated outputs, so a regular file on them that no declaration
- * renders is stale and `--fix` removes it. Every read is LF-normalised by the port and the
- * rendered adapters are LF.
+ * surface, a name two declarations render, a declared value the Codex form cannot carry
+ * verbatim, a registry with no file (there is no head to keep) and a foreign line in the
+ * registry's tail. The three adapter directories and the registry's tail are wholly
+ * generated outputs, so a regular file on the directories that no declaration renders is
+ * stale and `--fix` removes it, and the tail is rewritten whole. Every read is LF-normalised
+ * by the port and the rendered adapters are LF.
  *
  * @packageDocumentation
  */
@@ -30,10 +33,7 @@ import {
   SUBAGENT_SURFACES,
   TEMPLATES_DIR,
 } from '../../subagent-declarations/adapter-spec.js';
-import {
-  renderCodexRegistry,
-  splitCodexRegistry,
-} from '../../subagent-declarations/render-codex-registry.js';
+import { renderCodexRegistry } from '../../subagent-declarations/render-codex-registry.js';
 import { renderSubagentAdapters } from '../../subagent-declarations/render-subagent-adapters.js';
 import type { SubagentDeclaration } from '../../subagent-declarations/subagent-declaration.js';
 import { templateNameRefusal } from '../../subagent-declarations/sweep-names.js';
@@ -41,6 +41,7 @@ import { templateNameRefusal } from '../../subagent-declarations/sweep-names.js'
 import { applyProjectionDrift, diffProjections, type Projection } from './projection-drift.js';
 import { driftIssues, filesOf, refusing, SUBAGENT_SUBJECT, textOf } from './projection-issues.js';
 import type { RuleProjectionFs } from './rule-projection-fs.js';
+import { readRegistry } from './subagent-registry-surface.js';
 
 /** What the leg found and, in fix mode, did. */
 export interface SubagentProjectionValidation {
@@ -164,22 +165,6 @@ async function readOneDeclaration(
 interface Surfaces {
   readonly actual: ReadonlyMap<string, string>;
   readonly registryHead: string;
-}
-
-/** The registry's text and its kept head; a registry with no file refuses (there is no head to keep). */
-async function readRegistry(
-  projectionFs: RuleProjectionFs,
-): Promise<Result<{ readonly text: string; readonly head: string }, string>> {
-  const read = await projectionFs.readEntry(CODEX_REGISTRY_PATH);
-  if (read.kind === 'absent') {
-    return err(`${CODEX_REGISTRY_PATH}: no Codex registry to keep the head of; ${REFUSING}`);
-  }
-  const text = textOf(CODEX_REGISTRY_PATH, read, SUBAGENT_SUBJECT);
-  if (!text.ok) {
-    return text;
-  }
-  const split = splitCodexRegistry(CODEX_REGISTRY_PATH, text.value);
-  return split.ok ? ok({ text: text.value, head: split.value.head }) : split;
 }
 
 /** Every file currently on the three adapter surfaces and the registry, keyed by repo-relative path. */
