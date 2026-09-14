@@ -157,7 +157,11 @@ policy decision taken entry by entry.
   path led by `./` (`./.agent/memory/`), which matches from the repository root
   only, so a nested copy of an exempt path cannot claim its exemption; the
   whole-tree gates that reuse the scoping (lineage names, machine-local paths)
-  read the same forms.
+  read the same forms. For the write-hook the root is the session's project
+  directory (`CLAUDE_PROJECT_DIR` when set, else the policy's own checkout), so
+  a write into another checkout, or an `apply_patch` path relative to a
+  subdirectory, matches no root-anchored exemption and the block fires: the
+  anchor fails closed, never open.
 
 **The deny message carries the reappraisal.** When a group fires, the message
 names the concept the matched text is a fingerprint of, states the `reappraisal`

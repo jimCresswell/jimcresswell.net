@@ -127,9 +127,12 @@ register is promised in this estate.
 
 ### 2026-09-14 — jimcresswell.net: the number of review rounds per pull request does not go up
 
-Owner word (2026-09-14, 15:15Z), verbatim: "I don't want the number of rounds
-of PRs to go up." Applied from the next pull request on (the closure record's
-item 100): the two-round budget of Decision 1 binds as written; after round
+Owner word (2026-09-14, 15:15Z, spoken to the Director in chat; the closure
+record's item 100 records it as "the number of review rounds per pull request
+does not go up"), as the Director carried it to the Implementer seat: "I don't
+want the number of rounds of PRs to go up." Applied from the next pull request
+on (2b-ii slice A1, pull request #81; the closure record's item 100): the
+two-round budget of Decision 1 binds as written; after round
 two every remaining finding is dispositioned in the same slot turn as the last
 push — a trivial cure rides that push; everything else is a signed Rejected
 line carrying its rationale or its routed home; a round three is a Director

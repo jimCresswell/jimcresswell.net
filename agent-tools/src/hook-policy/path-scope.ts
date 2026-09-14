@@ -2,6 +2,9 @@
  * Path scoping for a `ScopedContentBlockGroup`, shared by the write-hook
  * (absolute file paths) and the two whole-tree gates that reuse the policy's
  * blocks (repository-relative paths): lineage names, machine-local paths.
+ * The root a root-anchored scope reads against is the caller's: for the hook,
+ * the session's project directory; a path outside it matches no anchored
+ * scope, so the anchor fails closed, never open.
  */
 
 /**
