@@ -176,5 +176,5 @@ When the next consolidation pass meets a pending-graduation entry:
 - Owner correction 2026-05-10 in the `knowledge graduation` session
   (Sylvan Fruiting Glade `a53e45`).
 - Plan
-  `~/.claude/plans/jc-session-handoff-jc-consolidate-docs-serialized-fiddle.md`
+  `~/.claude/plans/<plan>.md` (the lineage seat's own plan file, machine-local)
   — the in-session reframe that triggered this capture.
