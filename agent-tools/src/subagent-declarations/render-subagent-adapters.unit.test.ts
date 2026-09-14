@@ -272,6 +272,35 @@ describe('renderSubagentAdapters', () => {
     expect(renderSubagentAdapters([slashed]).ok).toBe(false);
   });
 
+  it('serialises every Claude field value as a YAML scalar: plain where YAML reads it plain, else quoted by the measured rule (a comment marker, a mapping separator, a leading indicator)', () => {
+    const fields = (claude: RoleDeclaration['claude']): string | undefined =>
+      textsOf([{ ...ALPHA, platforms: ['claude'], claude }])
+        .get('.claude/agents/alpha.md')
+        ?.split('\n---\n')[0];
+    expect(fields({ tools: 'foo # bar', color: 'a: b', model: '- x', effort: 'high' })).toBe(
+      [
+        '---',
+        'name: alpha',
+        'description: "Alpha reviews a: it\'s thorough."',
+        "tools: 'foo # bar'",
+        'disallowedTools: Write, Edit',
+        "color: 'a: b'",
+        'permissionMode: plan',
+        "model: '- x'",
+        'effort: high',
+      ].join('\n'),
+    );
+  });
+
+  it('refuses a name two declarations render (a role and a fan-out variant), so --fix never writes one path twice', () => {
+    const clash: RoleDeclaration = { ...ALPHA, name: 'cricket-high' };
+    expect(renderSubagentAdapters([CRICKET, clash])).toStrictEqual({
+      ok: false,
+      error:
+        'cricket-high: rendered by more than one declaration (a role and a fan-out variant, or two fan-outs); refusing to render the sub-agent adapters',
+    });
+  });
+
   it('renders declarations in name order whatever order they arrive in', () => {
     const texts = textsOf([PROSE, ALPHA]);
     expect([...texts.keys()][0]).toBe('.cursor/agents/alpha.md');

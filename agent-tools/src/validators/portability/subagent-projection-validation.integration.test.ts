@@ -184,6 +184,29 @@ describe('validateSubagentProjections', () => {
     expect(fix.written).toEqual([]);
   });
 
+  it('refuses a surface holding a subdirectory, naming it, and writes nothing: the fake port reports a nested descendant as production does (#81 round two)', async () => {
+    const repo = bareRepo();
+    await validateSubagentProjections(true, repo);
+    repo.files.set('.claude/agents/nested/gone.md', 'hand-kept\n');
+    const check = await validateSubagentProjections(true, repo);
+    expect(check.issues).toEqual([
+      '.claude/agents/nested: not a regular file; the sub-agent surfaces admit regular files only',
+    ]);
+    expect(check.written).toEqual([]);
+  });
+
+  it('reads a role declared on a subset of the platforms as quiet once its adapters exist: no surface owes the others (#81 round two)', async () => {
+    const repo = bareRepo();
+    repo.files.set(
+      `${TEMPLATES}/beta.md`,
+      '---\ndescription: Beta reviews b.\nplatforms:\n  - claude\n---\n\n## Delegation Triggers\n',
+    );
+    const fix = await validateSubagentProjections(true, repo);
+    expect(fix.written).toContain('.claude/agents/beta.md');
+    expect(fix.written).not.toContain('.cursor/agents/beta.md');
+    expect((await validateSubagentProjections(false, repo)).issues).toEqual([]);
+  });
+
   it('ends a fix run at a refused mutation, reporting it with what was written before it', async () => {
     const repo = fakeProjectionRepo(
       bareRepo().files,

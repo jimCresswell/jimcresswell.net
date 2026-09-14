@@ -26,7 +26,6 @@ import {
   type CanonicalSkill,
   collectCanonicalSkillPaths,
   getClaudeHookPortabilityIssues,
-  getReviewerAdapterParityIssues,
   rulesIndexBudgetIssues,
   CLAUDE_SETTINGS_PATH,
   HOOK_POLICY_PATH,
@@ -37,7 +36,6 @@ import {
   exists,
   extractFrontmatter,
   getFrontmatterValue,
-  listFiles,
   listSubdirs,
   readJson,
   readOptionalText,
@@ -114,24 +112,6 @@ issues.push(...subagentProjections.issues);
 writtenPaths.push(...subagentProjections.written);
 const removedProjections = [...ruleProjections.removed, ...subagentProjections.removed];
 
-const cursorAgentFiles = await listFiles(repoRoot, '.cursor/agents', '.md');
-const claudeAgentFiles = await listFiles(repoRoot, '.claude/agents', '.md');
-const codexAgentFiles = await listFiles(repoRoot, '.codex/agents', '.toml');
-const canonicalAgentNames = [
-  ...new Set([
-    ...cursorAgentFiles.map((file) => path.basename(file, '.md')),
-    ...claudeAgentFiles.map((file) => path.basename(file, '.md')),
-    ...codexAgentFiles.map((file) => path.basename(file, '.toml')),
-  ]),
-].sort((a, b) => a.localeCompare(b));
-for (const issue of getReviewerAdapterParityIssues({
-  cursorAgentFiles,
-  claudeAgentFiles,
-  codexAgentFiles,
-})) {
-  issues.push(issue);
-}
-
 // The index's presence and rows are the projection leg's; the Codex byte budget is the
 // one check the rendered bytes cannot answer for themselves, read through the same
 // no-follow reader the leg uses, so a link the leg refused is never read here.
@@ -185,7 +165,7 @@ const removedStats =
   removedProjections.length > 0
     ? `, ${removedProjections.length} stale files removed from the generated surfaces`
     : '';
-const stats = `${validatedCanonicalPaths.length} canonical skills, ${ruleStats}, ${subagentStats}, ${canonicalAgentNames.length} reviewer adapters${removedStats}`;
+const stats = `${validatedCanonicalPaths.length} canonical skills, ${ruleStats}, ${subagentStats}${removedStats}`;
 
 export { reportPortabilityValidation } from './portability-report.js';
 

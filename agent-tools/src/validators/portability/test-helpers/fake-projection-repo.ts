@@ -1,29 +1,42 @@
 import { err, ok, type Result } from '@engraph/result';
 
-import type { DirectoryListing, EntryRead } from '../directory-listing.js';
+import {
+  classifyDirectoryEntries,
+  type DirectoryEntry,
+  type DirectoryListing,
+  type EntryRead,
+} from '../directory-listing.js';
 import type { RuleProjectionFs } from '../rule-projection-fs.js';
 
 /** The in-memory repository the projection legs' cells run over. */
 export type FakeProjectionRepo = RuleProjectionFs & { readonly files: Map<string, string> };
 
-/** The direct children of `relDir` among the files, split by the surface's extension. */
+/**
+ * The listing of `relDir` among the files, through the production classifier
+ * (`classifyDirectoryEntries`): each first path segment under the directory is one entry, a
+ * file when nothing lies below it and a directory otherwise, so a nested descendant makes
+ * its directory the first foreign entry exactly as the real port reports it.
+ */
 function listingOf(
   files: ReadonlyMap<string, string>,
   relDir: string,
   extension: string,
 ): DirectoryListing {
-  const under = [...files.keys()]
-    .filter((file) => file.startsWith(`${relDir}/`))
-    .filter((file) => !file.slice(relDir.length + 1).includes('/'))
-    .sort((left, right) => left.localeCompare(right));
-  if (under.length === 0) {
+  const children = new Map<string, boolean>();
+  for (const file of files.keys()) {
+    if (file.startsWith(`${relDir}/`)) {
+      const [name = '', ...rest] = file.slice(relDir.length + 1).split('/');
+      children.set(name, (children.get(name) ?? true) && rest.length === 0);
+    }
+  }
+  if (children.size === 0) {
     return { kind: 'absent' };
   }
-  return {
-    kind: 'files',
-    files: under.filter((file) => file.endsWith(extension)),
-    stray: under.filter((file) => !file.endsWith(extension)),
-  };
+  const entries: DirectoryEntry[] = [...children].map(([name, isFile]) => ({
+    name,
+    isFile: () => isFile,
+  }));
+  return classifyDirectoryEntries(relDir, entries, extension);
 }
 
 /** A mutation the port applies, or refuses when the entry changed under it. */
