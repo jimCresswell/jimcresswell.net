@@ -224,7 +224,7 @@ docs/                   # Architecture, ADRs, editorial records, project docs,
                         # governance, engineering, foundation, explorations
 .agent/                 # Canonical Practice — see .agent/README.md
 .claude/ .cursor/       # Generated platform adapters (pnpm portability:fix)
-.codex/ .agents/ .github/
+.codex/ .gemini/ .agents/ .github/
 ```
 
 ## Agent Behaviour

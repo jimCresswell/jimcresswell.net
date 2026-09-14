@@ -111,6 +111,29 @@ describe('parseSubagentDeclaration', () => {
     );
   });
 
+  it('refuses a remote Gemini kind: the estate renders local agents only', () => {
+    expect(
+      parseSubagentDeclaration('alpha', {
+        description: 'Alpha reviews a.',
+        gemini: { kind: 'remote' },
+      }),
+    ).toStrictEqual({ ok: false, error: 'alpha: gemini.kind: Invalid input: expected "local"' });
+  });
+
+  it('accepts an explicit empty Gemini tools list, the no-tool configuration (the Gemini CLI inherits every tool when the key is absent)', () => {
+    expect(
+      parseSubagentDeclaration('alpha', { description: 'Alpha reviews a.', gemini: { tools: [] } }),
+    ).toStrictEqual({
+      ok: true,
+      value: {
+        kind: 'role',
+        name: 'alpha',
+        description: 'Alpha reviews a.',
+        gemini: { tools: [] },
+      },
+    });
+  });
+
   it('refuses a control character in a line field (a NUL in the description), which YAML forbids and the quote rule would write raw, and a carriage return as a line break', () => {
     expect(parseSubagentDeclaration('alpha', { description: 'Alpha\u0000reviews' })).toStrictEqual({
       ok: false,

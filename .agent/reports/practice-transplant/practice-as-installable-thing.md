@@ -337,3 +337,37 @@ synthesis that would make it one).
 Routing: the delivery node `practice-completion` carries this as todo 5; proposals 1 to 4 and 6
 go to the lineage as suggestions under the owner's ruling 6 of 2026-09-13; proposal 7 is a
 question for the lineage, not a change.
+
+## Addendum (2026-09-14, the closure): the proposals scored against what landed
+
+Read at the transplant's close, each proposal against the estate as it stands; every proof cited
+below is on `main`, and the definition report's rows are re-dated to their closing pull requests
+in the closure's rulings pull request:
+
+1. **Installability as a CI gate in the source**: not built there; built here as the
+   lineage-name leak validator over the live surfaces, a green `docs-validators:check` leg with
+   a write-time hook beside it. Its first run found real leaks (product files, manifests,
+   fixtures); the falsifier's quarter runs from 2026-09-14 and is untested until it ends.
+2. **Nothing hand-copied in the surface layer**: the sub-agent adapter generator renders the
+   Cursor, Claude, Codex and Gemini adapters from the canonical templates and
+   `portability:check` recomputes them; rules carry declared frontmatter from which the index
+   and the Cursor triggers derive. The hand-kept adapter readers are still live; their
+   retirement is the closure's last pull request, and the proposal reads delivered when it
+   merges. The entry points remain hand-written.
+3. **The tooling split at the seam**: made here by deletion (four retired families, the product
+   files excised), not made in the source. Open.
+4. **Provenance as the lockfile**: the two-way exchange node rules the other way, pin-free
+   entries (id, repo, date, purpose) with the heads read recorded in delivery events and the
+   exchange register; per-file pins were never used, so the falsifier is untested: the design
+   chose the lineage read as the unit before any per-file pin could diverge.
+5. **Form deferred to the second transplant**: still open; the runbook exists and instance 2
+   measures it.
+6. **Contribute symmetric with update**: the lineage's delta note in this estate's Box is the first
+   live instance of the inbound direction, and the ratified exchange node designs both; the
+   execution, and with it the symmetry test, waits for the owner-named window.
+7. **Subtree or submodule for a public lineage**: unexamined.
+
+Two properties the closure adds. The merge bot's measured-state hold, a merge refused until every
+suppressed finding is dispositioned by a signed line, is enforcement the installed thing should
+ship. And the closure's own cost, thirty-three pull requests over two sessions for eight items,
+is the number a generator must beat, not the transplant day's.

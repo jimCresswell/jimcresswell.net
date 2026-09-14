@@ -26,7 +26,7 @@ built and governed. The product — the site, the CV, the personal knowledge gra
         referenced by |                        | pointed to, via
                       |                        | directives/AGENT.md
 .claude/ .cursor/                   CLAUDE.md, AGENTS.md
-.codex/ .agents/ .github/
+.codex/ .gemini/ .agents/ .github/
 (thin platform adapters —           (entry points platforms
  generated, one-line pointers)       read or can use)
 ```

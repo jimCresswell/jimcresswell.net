@@ -32,7 +32,7 @@
 import { err, ok, type Result } from '@engraph/result';
 
 import { type ScanFile } from '../../core/tracked-file-scan.js';
-import { isPathInScope } from '../../hook-policy/matchers.js';
+import { isPathInScope } from '../../hook-policy/path-scope.js';
 import { type ScopedContentBlockGroup } from '../../hook-policy/types.js';
 
 export type { ScanFile };

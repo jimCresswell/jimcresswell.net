@@ -22,6 +22,11 @@ import type { CodexFields } from './subagent-declaration.js';
 const TOML_LINE_UNSAFE = /["\\\p{Cc}]/u;
 const TOML_BLOCK_UNSAFE = /"""|\\|[^\P{Cc}\n]/u;
 
+/** Whether a value needs an escape in a TOML basic string (a double quote, a backslash, a control character). */
+export function carriesTomlLineUnsafe(value: string): boolean {
+  return TOML_LINE_UNSAFE.test(value);
+}
+
 /** The first Codex value the TOML form cannot carry verbatim, as the refusal; none when clean. */
 function tomlRefusal(path: string, spec: AdapterSpec, codex: CodexFields): string | undefined {
   const lines: readonly (readonly [string, string | undefined])[] = [
@@ -29,7 +34,7 @@ function tomlRefusal(path: string, spec: AdapterSpec, codex: CodexFields): strin
     ['model', codex.model],
     ['effort', codex.effort],
   ];
-  const line = lines.find(([, value]) => value !== undefined && TOML_LINE_UNSAFE.test(value));
+  const line = lines.find(([, value]) => value !== undefined && carriesTomlLineUnsafe(value));
   if (line !== undefined) {
     return `${path}: the ${line[0]} carries a character a TOML basic string cannot carry verbatim (a double quote, a backslash or a control character); refusing to render it`;
   }

@@ -21,7 +21,7 @@ impact_areas:
 tickets: []
 depends_on: []
 owner_gates: []
-last_updated: 2026-09-13
+last_updated: 2026-09-14
 ---
 
 # Practice completion
@@ -184,13 +184,14 @@ remove .agent-original before we merge 53"; "it should be processed then deleted
    **Landed 2026-09-13 as bounded (PR #57, `4a61112`):** rows 1, 2, 4, 7 and 9 read present;
    rows 3, 5, 6 and 8 read present in part, each naming its residue and the pull request it
    closes on (the corpus-analysis restore and the five absent patterns in lane C's first
-   follow-on, `sif`'s routing in its second, the Gemini per-role commands with the generator's
-   fourth platform); the item is complete when those rows read present.
-   Method (owner word 2026-09-13, §Owner rulings 1): the Gemini projection is a fourth output
-   of the sub-agent adapter generator lane B lands (closure item 6), emitted from the same
-   templates, with gemini added to the reviewer adapter platform contract, authored by lane C
-   after that generator merges; thirty hand-written adapter files would be the hand-kept copies
-   item 6 removes.
+   follow-on, `sif`'s routing in its second; the Gemini per-role adapters under
+   `.gemini/agents/` landed as the generator's fourth surface, 2b-ii slice B); the item is
+   complete when those rows read present.
+   Method (owner word 2026-09-13, §Owner rulings 1; amended on the owner's word 2026-09-14):
+   the Gemini projection is the fourth output of the sub-agent adapter generator (closure
+   item 6, 2b-ii slice B), rendered from the same templates' declarations into
+   `.gemini/agents/<name>.md` and recomputed by `portability:check`; no hand-authored
+   extension follows the generator, and no hand-kept Gemini adapter ever existed.
 5. **Lineage residue off the live surfaces**: retire `validate-ratified-lists`,
    `protocol-conformance`, `pr-throughput` and `ci-turbo-report` (scripts, sources, tests, doc
    mentions; re-importable from the pin); keep `merge-bot` and scrub its lineage residue; the
@@ -198,22 +199,31 @@ remove .agent-original before we merge 53"; "it should be processed then deleted
    `accept-md.config.js` to TypeScript; `turbo.json`'s `.next/` outputs; the consumed incoming
    bundle. Proof: a lineage-name leak validator over live surfaces (CV content excluded by
    scope) as a `docs-validators:check` leg, green.
+   **Done 2026-09-14:** the four retirements, the typed config and the scrub in PRs #64 to
+   #68; the leak validator (`validate-no-lineage-names`) a green `docs-validators:check`
+   leg since PR #79 (`SHA: 014fc6e`); the two standing rulings on the board (the
+   whitespace-only heading capture; the four validator cures) close in the closure's
+   rulings pull request.
 6. **The last hand-kept copies derived**: canonical rules carry `classification`,
    `description` and `globs` frontmatter; `portability:fix` generates the rules index and the
    Cursor triggers from it and `portability:check` recomputes them; sub-agent adapter
    descriptions derive from the templates. Proof: the generator's tests and a byte-equal
    regeneration of today's files.
-   **Landed 2026-09-14 in part (2b-ii slice A1):** the sub-agent adapter generator renders
-   the Cursor, Claude and Codex adapters from each template's declaration and
-   `portability:check` recomputes them (75 of 86 files byte-equal; eleven normalised on
-   record: four folded and three apostrophe-quoted Cursor descriptions, two wrapped
-   pointers, two titles). Open: the Codex
-   registry (A2), the Gemini row (B). Retirement condition: once the generator owns every
-   adapter surface, the hand-kept adapter readers and the declaration sweep have no consumer
-   and are deleted in their own pull request.
+   **Landed 2026-09-14 in part (2b-ii slices A1, A2 and B):** the sub-agent adapter
+   generator renders the Cursor, Claude, Codex and Gemini adapters and the Codex registry's
+   agent blocks (after the registry's hand-kept head) from each template's declaration, and
+   `portability:check` recomputes them (75 of 86 hand-kept adapters byte-equal; eleven
+   normalised on record: four folded and three apostrophe-quoted Cursor descriptions, two
+   wrapped pointers, two titles; the registry's blocks sorted by name, one block moved; the
+   Gemini row generated from nothing, one file per role). Retirement condition: once the
+   generator owns every adapter surface, the hand-kept adapter readers and the declaration
+   sweep have no consumer and are deleted in their own pull request.
 7. **The record compiled** (todo 4): the reports index as the entry (what, how, why,
    how-faster), the runbook's step 13 citing the nine functions, the completion entry in
    `provenance.yml`. Proof: the index and the provenance diff.
+   **Done 2026-09-14:** the index entry, the runbook's step 13 frame and its recorded
+   outcomes, the efficiency guidance's closure addendum, the installable-thing report's
+   scoring addendum, the completion entry on the `practice-lineage.md` chain.
 
 **Session 2 — the owner-decision item.**
 
@@ -222,7 +232,10 @@ remove .agent-original before we merge 53"; "it should be processed then deleted
    2026-09-13: an archive holds only processed material) onto the pending-graduations
    register; the candidates go to the owner as one batch of cards; the answers are the
    dispositions; nothing graduates without them; the napkins are archived only then. Proof:
-   the register, the plan of record's ruling round, and `unconsolidated/` empty.
+   the register and the plan of record's ruling round; the napkins are archived after the
+   drain processes them, outside the closure (owner's card, 2026-09-14: an archive holds
+   only processed material). **Done 2026-09-14:** the register filed and the cards
+   answered (closure record, item 100).
 
 ## Out of scope
 

@@ -2,13 +2,18 @@
  * Extract repository-path citations from authored text.
  *
  * A path citation is a code-span or fenced-block token that starts with one
- * of the cited prefixes (`.agent/`, `docs/`). Prose is never scanned, so a
- * sentence that mentions "the docs/ folder" without code formatting is not a
- * citation. Each token is normalised to the repo-relative target it names: a
- * trailing slash, trailing punctuation, a `#anchor` and a `:line[:column]`
- * suffix are stripped. Tokens that cannot name one file or directory (a
- * glob, a placeholder such as `<name>` or `YYYY-MM-DD`, an ellipsis, a
- * template expression) are omitted rather than guessed at.
+ * of the cited prefixes (`.agent/`, `docs/`), or with `patterns/`, the form
+ * doctrine uses to cite a pattern record relative to the patterns directory
+ * (`.agent/memory/active/patterns/`); that relative form resolves against the
+ * directory, so a rule citing an absent pattern is a finding like any other
+ * (closure item 4, row 6: five such citations had no check on 2026-09-14).
+ * Prose is never scanned, so a sentence that mentions "the docs/ folder"
+ * without code formatting is not a citation. Each token is normalised to the
+ * repo-relative target it names: a trailing slash, trailing punctuation, a
+ * `#anchor` and a `:line[:column]` suffix are stripped. Tokens that cannot
+ * name one file or directory (a glob, a placeholder such as `<name>` or
+ * `YYYY-MM-DD`, an ellipsis, a template expression) are omitted rather than
+ * guessed at.
  *
  * @packageDocumentation
  */
@@ -24,7 +29,12 @@ export interface PathCitation {
 }
 
 /** Path prefixes that make a code token a repository-path citation. */
-const CITED_PATH_PREFIXES = ['.agent/', 'docs/'] as const;
+const CITED_PATH_PREFIXES = ['.agent/', 'docs/', 'patterns/'] as const;
+type CitedPrefix = (typeof CITED_PATH_PREFIXES)[number];
+/** The prefixes written relative to a directory, each with the rooted directory it resolves against. */
+const RELATIVE_PREFIXES: Readonly<Partial<Record<CitedPrefix, string>>> = {
+  'patterns/': '.agent/memory/active/patterns/',
+};
 
 const FENCE_PATTERN = /^\s*(```|~~~)/;
 const INLINE_CODE_PATTERN = /`([^`\n]+)`/g;
@@ -104,5 +114,10 @@ function normaliseTarget(token: string): string | undefined {
     .replace(TRAILING_PUNCTUATION, '')
     .replace(LINE_SUFFIX, '')
     .replace(/\/+$/, '');
-  return CITED_PATH_PREFIXES.some((prefix) => trimmed.startsWith(prefix)) ? trimmed : undefined;
+  const prefix = CITED_PATH_PREFIXES.find((candidate) => trimmed.startsWith(candidate));
+  if (prefix === undefined) {
+    return undefined;
+  }
+  const rooted = RELATIVE_PREFIXES[prefix];
+  return rooted === undefined ? trimmed : `${rooted}${trimmed.slice(prefix.length)}`;
 }
