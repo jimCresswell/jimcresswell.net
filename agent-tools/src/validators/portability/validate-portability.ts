@@ -21,7 +21,9 @@ import { fileURLToPath } from 'node:url';
 
 import { isJsonObject } from '../../core/json.js';
 import { resolveRepoRoot } from '../../core/repo-root.js';
+import { readRegularFileTextNoFollow } from '../../skills-adapter-generate/read-regular-file.js';
 import {
+  type CanonicalSkill,
   collectCanonicalSkillPaths,
   getClaudeHookPortabilityIssues,
   getReviewerAdapterParityIssues,
@@ -57,17 +59,18 @@ const issues: string[] = [];
 
 const skillWalk = await collectCanonicalSkillPaths({
   listSubdirs: (relPath) => listSubdirs(repoRoot, relPath),
-  exists: (relPath) => exists(repoRoot, relPath),
+  readRegularFileTextNoFollow: (relPath) =>
+    readRegularFileTextNoFollow(path.join(repoRoot, relPath)),
 });
 if (!skillWalk.ok) {
   issues.push(skillWalk.error);
 }
-const discoveredCanonicalPaths = skillWalk.ok ? skillWalk.value.canonicalPaths : [];
+const discoveredCanonicals = skillWalk.ok ? skillWalk.value.canonicals : [];
 const validatedCanonicalPaths: string[] = [];
 
-async function validateCanonicalFrontmatter(skillPath: string): Promise<void> {
-  const content = await readText(repoRoot, skillPath);
-  const frontmatter = extractFrontmatter(content);
+/** The frontmatter check on the text the walk read: no second open of the canonical. */
+function validateCanonicalFrontmatter({ path: skillPath, text }: CanonicalSkill): void {
+  const frontmatter = extractFrontmatter(text);
   if (!frontmatter) {
     issues.push(`${skillPath}: missing YAML frontmatter block`);
     return;
@@ -89,8 +92,8 @@ async function validateCanonicalFrontmatter(skillPath: string): Promise<void> {
 // owns the traversal so this validator and the lock cross-reference see
 // the same corpus; entries with no canonical at any tier are the adapter
 // checker's loud-skip territory, not this validator's.
-for (const skillPath of discoveredCanonicalPaths) {
-  await validateCanonicalFrontmatter(skillPath);
+for (const skill of discoveredCanonicals) {
+  validateCanonicalFrontmatter(skill);
 }
 
 // The rule projections — RULES_INDEX.md and the Cursor, Claude and `.agents` rule

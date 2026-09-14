@@ -31,8 +31,9 @@ function coded(message: string, code: string): Error {
 /**
  * A tree keyed by absolute path. `acted` records every path `readdir`, `readUnfollowed`,
  * `mkdir`, `writeAtomically` or `remove` was asked for, so a cell can assert that a refused
- * entry was never followed or touched. The no-follow read models the real open: a link
- * fails with ELOOP, a directory with ENOTREGULAR, a file yields its text.
+ * entry was never followed or touched. The no-follow read models the estate's fd-anchored
+ * reader: a regular file yields its text, anything else (a link, a directory, nothing)
+ * yields `undefined`.
  */
 function tree(
   entries: Readonly<Record<string, Entry>>,
@@ -61,18 +62,8 @@ function tree(
     },
     readUnfollowed: async (absolutePath) => {
       acted.push(`read ${absolutePath}`);
-      const entry = kindOf(absolutePath);
-      if (entry === 'link') {
-        throw coded(`ELOOP: too many symbolic links encountered, open '${absolutePath}'`, 'ELOOP');
-      }
-      if (entry === 'dir') {
-        throw coded(`${absolutePath}: not a regular file`, 'ENOTREGULAR');
-      }
-      const text = texts[absolutePath];
-      if (text === undefined) {
-        throw coded(`ENOENT: no such file or directory, open '${absolutePath}'`, 'ENOENT');
-      }
-      return text;
+      const value = kindOf(absolutePath) === 'file' ? texts[absolutePath] : undefined;
+      return { kind: 'ok', value };
     },
     mkdir: async (absolutePath) => {
       acted.push(`mkdir ${absolutePath}`);
@@ -155,37 +146,57 @@ describe('readEntry', () => {
     expect(surfaceFs.acted).toStrictEqual(['read /repo/.claude/rules/a.md']);
   });
 
-  it('reads a link swapped in after the classification as foreign: the no-follow open refuses it', async () => {
+  it('reads an entry swapped for a link, a directory or nothing after the classification as foreign: the no-follow open finds no regular file', async () => {
     const swapped: SurfaceFs = {
       ...tree(SURFACES),
-      readUnfollowed: async (absolutePath) => {
-        throw coded(`ELOOP: too many symbolic links encountered, open '${absolutePath}'`, 'ELOOP');
-      },
+      readUnfollowed: async () => ({ kind: 'ok', value: undefined }),
     };
     expect(await readEntry(ROOT, '.claude/rules/a.md', swapped)).toStrictEqual({
       kind: 'foreign',
     });
-    const replaced: SurfaceFs = {
-      ...tree(SURFACES),
-      readUnfollowed: async (absolutePath) => {
-        throw coded(`${absolutePath}: not a regular file`, 'ENOTREGULAR');
-      },
-    };
-    expect(await readEntry(ROOT, '.claude/rules/a.md', replaced)).toStrictEqual({
-      kind: 'foreign',
-    });
   });
 
-  it('reads a failure of the classification or the read other than ENOENT as unreadable', async () => {
-    const surfaceFs: SurfaceFs = {
+  it('refuses an entry under a linked ancestor as foreign without opening it, re-classifying the chain at the read', async () => {
+    const linkedSurface = tree(
+      { ...SURFACES, '/repo/.claude/rules': 'link' },
+      { '/repo/.claude/rules/a.md': 'a\n' },
+    );
+    expect(await readEntry(ROOT, '.claude/rules/a.md', linkedSurface)).toStrictEqual({
+      kind: 'foreign',
+    });
+    const linkedAncestor = tree(
+      { ...SURFACES, '/repo/.claude': 'link' },
+      { '/repo/.claude/rules/a.md': 'a\n' },
+    );
+    expect(await readEntry(ROOT, '.claude/rules/a.md', linkedAncestor)).toStrictEqual({
+      kind: 'foreign',
+    });
+    expect(linkedSurface.acted).toStrictEqual([]);
+    expect(linkedAncestor.acted).toStrictEqual([]);
+  });
+
+  it('reads a failure of the ancestor classification, the leaf classification or the read as unreadable with its cause', async () => {
+    const deniedStat: SurfaceFs = {
       ...tree(SURFACES),
       lstat: async () => {
         throw new Error('EACCES: permission denied');
       },
     };
-    expect(await readEntry(ROOT, 'RULES_INDEX.md', surfaceFs)).toStrictEqual({
+    expect(await readEntry(ROOT, 'RULES_INDEX.md', deniedStat)).toStrictEqual({
       kind: 'unreadable',
       cause: 'EACCES: permission denied',
+    });
+    expect(await readEntry(ROOT, '.claude/rules/a.md', deniedStat)).toStrictEqual({
+      kind: 'unreadable',
+      cause: 'EACCES: permission denied',
+    });
+    const deniedRead: SurfaceFs = {
+      ...tree(SURFACES),
+      readUnfollowed: async () => ({ kind: 'failure', message: 'cannot open a.md: EIO' }),
+    };
+    expect(await readEntry(ROOT, '.claude/rules/a.md', deniedRead)).toStrictEqual({
+      kind: 'unreadable',
+      cause: 'cannot open a.md: EIO',
     });
   });
 });

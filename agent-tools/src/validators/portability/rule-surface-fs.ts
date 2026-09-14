@@ -5,32 +5,35 @@
  *
  * Nothing here follows a link. The listing walks every path segment of the surface with
  * `lstat`, so a surface root or ancestor that is a symlink is `foreign` before `readdir`
- * could follow it into another tree (the #74 round-one finding, 2026-09-14). The entry
- * read classifies its leaf unfollowed and then reads through a descriptor opened with
- * `O_NOFOLLOW`, checked by `fstat` to be a regular file, so the classification and the
- * read are one open: a link swapped in between them fails the open (`ELOOP`) and reads as
- * `foreign`, never as its target (round three). Each mutation re-classifies its ancestors
- * and its leaf unfollowed immediately before acting and refuses when the entry is not what
- * a projection surface admits (a real directory above, an absent or regular-file leaf);
- * the write is the estate's atomic writer (a synced temp file renamed over the leaf, so a
- * link at the leaf is replaced, never written through) and the removal unlinks the leaf
- * itself. What remains is the window between an ancestor's classification and the mkdir,
- * rename or unlink into it (`rule-projection-fs.ts` says what that admits), closed by nothing
- * short of directory descriptors; on a platform without `O_NOFOLLOW` the unfollowed
- * classification is the read's only guard. ENOENT is the
- * only failure read as absence. The `node:fs` calls are an injected port (`SurfaceFs`), so
- * every order-of-operations claim is proven over an in-memory tree.
+ * could follow it into another tree (the #74 round-one finding, 2026-09-14). The entry read
+ * re-classifies the ancestor chain and the leaf unfollowed immediately before the open, then
+ * reads through the estate's fd-anchored reader (`read-regular-file.ts`: one open with
+ * `O_NOFOLLOW` and `O_NONBLOCK` where the host has them, so a link at the leaf fails the open
+ * and a fifo cannot block it; the post-open device-and-inode identity check where it has
+ * not), so a link swapped in at the leaf between the classification and the open is read as
+ * `foreign`, never as its target (rounds three and four). Each mutation re-classifies its
+ * ancestors and its leaf the same way and refuses when the entry is not what a projection
+ * surface admits (a real directory above, an absent or regular-file leaf): a link at the leaf
+ * is refused, never written through, replaced or unlinked. What remains, for the read as for
+ * the mutations, is the window between an ancestor's classification and the open, mkdir,
+ * rename or unlink under it: `O_NOFOLLOW` guards the leaf only, so a link swapped into an
+ * ancestor there is followed and the act lands wherever it points
+ * (`rule-projection-fs.ts` says what that admits); closed by nothing short of directory
+ * descriptors, which Node does not expose. ENOENT is the only failure read as absence. The
+ * `node:fs` calls are an injected port (`SurfaceFs`), so every order-of-operations claim is
+ * proven over an in-memory tree.
  *
  * @packageDocumentation
  */
 
-import { constants } from 'node:fs';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
 import { writeTextAtomically } from '../../collaboration-state/atomic-file.js';
 import { isEnoent } from '../../core/authored-surfaces.js';
 import { toLfText } from '../../core/lf-text.js';
+import type { FsRead } from '../../skills-adapter-generate/carriage-fs.js';
+import { readRegularFileTextNoFollow } from '../../skills-adapter-generate/read-regular-file.js';
 
 import {
   classifyDirectoryEntries,
@@ -47,50 +50,25 @@ export interface UnfollowedStat {
 
 /**
  * The calls the surface helpers make, all on absolute paths; the real `node:fs` by default.
- * `readUnfollowed` reads a regular file through a no-follow open and throws with code
- * `ELOOP` for a link at the leaf and `ENOTREGULAR` (a code of this module's own, not an
- * errno) for any other non-file; `writeAtomically` renames a synced temp file over the leaf;
- * `remove` unlinks the leaf itself.
+ * `readUnfollowed` is the fd-anchored no-follow read: the text of a regular file, `undefined`
+ * when nothing regular of ours stands at the name (a link, a directory, a special file,
+ * nothing), a typed failure otherwise; `writeAtomically` renames a synced temp file over the
+ * leaf; `remove` unlinks the leaf itself.
  */
 export interface SurfaceFs {
   lstat: (absolutePath: string) => Promise<UnfollowedStat>;
   readdir: (absolutePath: string) => Promise<readonly DirectoryEntry[]>;
-  readUnfollowed: (absolutePath: string) => Promise<string>;
+  readUnfollowed: (absolutePath: string) => Promise<FsRead<string | undefined>>;
   mkdir: (absolutePath: string) => Promise<void>;
   writeAtomically: (absolutePath: string, text: string) => Promise<void>;
   remove: (absolutePath: string) => Promise<void>;
-}
-
-/** The no-follow flag where the platform has one; zero elsewhere (the header says what holds then). */
-const NO_FOLLOW = Object.hasOwn(constants, 'O_NOFOLLOW') ? constants.O_NOFOLLOW : 0;
-
-function withCode(message: string, code: string): Error {
-  return Object.assign(new Error(message), { code });
-}
-
-function codeOf(error: unknown): string | undefined {
-  return typeof error === 'object' && error !== null && 'code' in error
-    ? String(error.code)
-    : undefined;
-}
-
-async function readRegularFileUnfollowed(absolutePath: string): Promise<string> {
-  const handle = await fs.open(absolutePath, constants.O_RDONLY | NO_FOLLOW);
-  try {
-    if (!(await handle.stat()).isFile()) {
-      throw withCode(`${absolutePath}: not a regular file`, 'ENOTREGULAR');
-    }
-    return await handle.readFile('utf8');
-  } finally {
-    await handle.close();
-  }
 }
 
 /** The real file system. */
 export const realSurfaceFs: SurfaceFs = {
   lstat: (absolutePath) => fs.lstat(absolutePath),
   readdir: (absolutePath) => fs.readdir(absolutePath, { withFileTypes: true }),
-  readUnfollowed: readRegularFileUnfollowed,
+  readUnfollowed: readRegularFileTextNoFollow,
   mkdir: async (absolutePath) => {
     await fs.mkdir(absolutePath, { recursive: true });
   },
@@ -163,11 +141,55 @@ export async function listDirectory(
 }
 
 /**
- * Read the regular file at `<repoRoot>/<relPath>` as a typed outcome: its leaf is classified
- * unfollowed first (a directory or link is `foreign` before any open), then read through a
- * no-follow open checked to be a regular file, so a link swapped in after the classification
- * is `foreign` too; ENOENT alone is `absent`; any other failure is `unreadable` with its
- * cause. Text is LF-normalised as `readText` normalises it.
+ * Why the ancestor chain cannot be read, classified unfollowed at the moment of the read;
+ * `undefined` when every segment is a real directory (or the path has none).
+ */
+async function ancestorRefusal(
+  repoRoot: string,
+  relPath: string,
+  surfaceFs: SurfaceFs,
+): Promise<EntryRead | undefined> {
+  const relDir = path.posix.dirname(relPath);
+  const ancestor =
+    relDir === '.' ? undefined : await classifyAncestors(repoRoot, relDir, surfaceFs);
+  if (ancestor === undefined) {
+    return undefined;
+  }
+  return ancestor.kind === 'absent' || ancestor.kind === 'unreadable'
+    ? ancestor
+    : { kind: 'foreign' };
+}
+
+/** Why the leaf cannot be read, as `lstat` finds it at the moment of the read; `undefined` for a regular file. */
+async function leafRefusal(
+  absolutePath: string,
+  surfaceFs: SurfaceFs,
+): Promise<EntryRead | undefined> {
+  try {
+    return (await surfaceFs.lstat(absolutePath)).isFile() ? undefined : { kind: 'foreign' };
+  } catch (error: unknown) {
+    return failed(error);
+  }
+}
+
+/** The fd-anchored read of a leaf just classified as a regular file. */
+async function readLeaf(absolutePath: string, surfaceFs: SurfaceFs): Promise<EntryRead> {
+  const read = await surfaceFs.readUnfollowed(absolutePath);
+  if (read.kind === 'failure') {
+    return { kind: 'unreadable', cause: read.message };
+  }
+  return read.value === undefined
+    ? { kind: 'foreign' }
+    : { kind: 'text', text: toLfText(read.value) };
+}
+
+/**
+ * Read the regular file at `<repoRoot>/<relPath>` as a typed outcome: its ancestor chain and
+ * its leaf are classified unfollowed first (a link or directory anywhere on the way is
+ * `foreign` before any open), then the leaf is read through the fd-anchored no-follow
+ * reader, so an entry swapped for a link, a directory or nothing after the classification is
+ * `foreign` too; ENOENT alone is `absent`; any other failure is `unreadable` with its cause.
+ * Text is LF-normalised as `readText` normalises it.
  *
  * @param repoRoot  - Absolute path to the repository root.
  * @param relPath   - Repo-relative path to the file.
@@ -180,13 +202,9 @@ export async function readEntry(
   surfaceFs: SurfaceFs = realSurfaceFs,
 ): Promise<EntryRead> {
   const absolutePath = path.join(repoRoot, relPath);
-  try {
-    if (!(await surfaceFs.lstat(absolutePath)).isFile()) {
-      return { kind: 'foreign' };
-    }
-    return { kind: 'text', text: toLfText(await surfaceFs.readUnfollowed(absolutePath)) };
-  } catch (error: unknown) {
-    const code = codeOf(error);
-    return code === 'ELOOP' || code === 'ENOTREGULAR' ? { kind: 'foreign' } : failed(error);
-  }
+  return (
+    (await ancestorRefusal(repoRoot, relPath, surfaceFs)) ??
+    (await leafRefusal(absolutePath, surfaceFs)) ??
+    readLeaf(absolutePath, surfaceFs)
+  );
 }

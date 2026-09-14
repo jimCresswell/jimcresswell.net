@@ -1,8 +1,9 @@
 /**
  * A rule's two hand-kept projections, read and parsed together: the Cursor trigger
  * (`.cursor/rules/<name>.mdc`) and the Claude adapter (`.claude/rules/<name>.md`). The sweep
- * derives a declaration from them, and an already-declared rule still needs both to read, so a
- * deleted or malformed projection refuses the sweep in either case.
+ * derives a declaration from them for a rule not yet declared; a deleted or malformed
+ * projection refuses the sweep. A declared rule's projections are generated and are not read
+ * here.
  *
  * @packageDocumentation
  */

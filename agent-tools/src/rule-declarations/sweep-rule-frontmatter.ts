@@ -7,10 +7,12 @@
  * row, refuses the whole sweep and nothing is written. Writing then proceeds file by file,
  * each write atomic (`sweep-fs.ts`), so an error part-way leaves whole rules written and the
  * rest untouched; git shows which, and a re-run finishes the rest because a rule that already
- * carries a frontmatter block is left as it is and reported, once its index row and both
- * projections have been read. The same property lets the sweep run again for rules that
- * arrive after the first pass. The file system is an injected port so the sweep is proven
- * over an in-memory tree.
+ * carries a frontmatter block is left as it is and reported, once its index row has been
+ * read. A declared rule's projections are not read: they are generated outputs of
+ * `portability:fix`, not sources, and the generated Claude adapter carries `paths` as a YAML
+ * sequence this hand-kept reader does not parse (the #74 round-four finding, 2026-09-14).
+ * The same property lets the sweep run again for rules that arrive after the first pass. The
+ * file system is an injected port so the sweep is proven over an in-memory tree.
  *
  * Every source is admitted by entry kind before it is read (`lstat` on the source path, so its
  * leaf entry is never followed; anything but a regular file refuses the sweep), and every write
@@ -169,8 +171,8 @@ type SweepStep =
  * Read one rule and classify it: already declared, refused, or derived. A leading frontmatter
  * block counts as a declaration only when it reads as one; any other block is refused, never
  * skipped, so a host whose rules carry unrelated frontmatter cannot pass as already swept. An
- * already-declared rule still needs its index row and both projections to read, so a deleted
- * or malformed source refuses the sweep rather than passing as a clean one.
+ * already-declared rule still needs its index row, so a rule the index has lost refuses the
+ * sweep rather than passing as a clean one; its projections are the validator's to check.
  */
 async function sweepOne(
   repoRoot: string,
@@ -192,10 +194,7 @@ async function sweepOne(
     if (!existing.ok) {
       return { kind: 'refused', reason: `${existing.error} (a block that is not a declaration)` };
     }
-    const sources = await readRuleProjections(repoRoot, name, sweepFs);
-    return sources.ok
-      ? { kind: 'already-declared', rulePath }
-      : { kind: 'refused', reason: sources.error };
+    return { kind: 'already-declared', rulePath };
   }
   const one = await deriveOne(repoRoot, name, row, ruleText.value, sweepFs);
   return one.ok ? { kind: 'derived', rule: one.value } : { kind: 'refused', reason: one.error };

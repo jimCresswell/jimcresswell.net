@@ -380,19 +380,24 @@ describe('getSkillPermissionIssues', () => {
 });
 
 describe('collectCanonicalSkillPaths', () => {
+  /**
+   * A skills tree: `dirs` lists each directory's children, `canonicals` the regular
+   * canonical files with their text; any other name reads as nothing regular of ours
+   * (`undefined`, the fd-anchored reader's absence class: a link, a directory, nothing).
+   */
   const makeWalkFs = (
     dirs: ReadonlyMap<string, readonly string[]>,
-    canonicals: ReadonlySet<string>,
+    canonicals: ReadonlyMap<string, string>,
   ) => ({
-    async listSubdirs(relPath: string) {
-      return dirs.get(relPath) ?? [];
+    async listSubdirs(relPath: string): Promise<FsRead<readonly string[]>> {
+      return { kind: 'ok', value: dirs.get(relPath) ?? [] };
     },
-    async exists(relPath: string) {
-      return canonicals.has(relPath);
+    async readRegularFileTextNoFollow(relPath: string): Promise<FsRead<string | undefined>> {
+      return { kind: 'ok', value: canonicals.get(relPath) };
     },
   });
 
-  it('collects flat, concern-tier, and domain-tier canonicals', async () => {
+  it('collects flat, concern-tier, and domain-tier canonicals with their LF text', async () => {
     const fs = makeWalkFs(
       new Map([
         ['.agent/skills', ['flat-one', 'cognition', 'domain-craft']],
@@ -400,37 +405,84 @@ describe('collectCanonicalSkillPaths', () => {
         ['.agent/skills/domain-craft', ['ui-design']],
         ['.agent/skills/domain-craft/ui-design', ['claude-design-pipeline']],
       ]),
-      new Set([
-        '.agent/skills/flat-one/SKILL-CANONICAL.md',
-        '.agent/skills/cognition/reason/SKILL-CANONICAL.md',
-        '.agent/skills/domain-craft/ui-design/claude-design-pipeline/SKILL-CANONICAL.md',
+      new Map([
+        ['.agent/skills/flat-one/SKILL-CANONICAL.md', '---\r\nclassification: active\r\n---\r\n'],
+        ['.agent/skills/cognition/reason/SKILL-CANONICAL.md', 'reason\n'],
+        ['.agent/skills/domain-craft/ui-design/claude-design-pipeline/SKILL-CANONICAL.md', 'p\n'],
       ]),
     );
 
     expect(await collectCanonicalSkillPaths(fs)).toStrictEqual({
       ok: true,
       value: {
-        canonicalPaths: [
-          '.agent/skills/flat-one/SKILL-CANONICAL.md',
-          '.agent/skills/cognition/reason/SKILL-CANONICAL.md',
-          '.agent/skills/domain-craft/ui-design/claude-design-pipeline/SKILL-CANONICAL.md',
+        canonicals: [
+          {
+            path: '.agent/skills/flat-one/SKILL-CANONICAL.md',
+            text: '---\nclassification: active\n---\n',
+          },
+          { path: '.agent/skills/cognition/reason/SKILL-CANONICAL.md', text: 'reason\n' },
+          {
+            path: '.agent/skills/domain-craft/ui-design/claude-design-pipeline/SKILL-CANONICAL.md',
+            text: 'p\n',
+          },
         ],
       },
     });
   });
 
-  it('refuses, naming the cause, when a canonical probe fails for a reason other than absence', async () => {
+  it('does not collect a name where nothing regular stands (a linked or directory canonical): the walk goes on below it', async () => {
+    // `flat-one` has a SKILL-CANONICAL.md the no-follow read refuses (a link or a directory);
+    // `fam/dom` has a regular one below a first tier whose canonical name is the same.
+    const fs = makeWalkFs(
+      new Map([
+        ['.agent/skills', ['flat-one', 'fam']],
+        ['.agent/skills/flat-one', []],
+        ['.agent/skills/fam', ['dom']],
+      ]),
+      new Map([['.agent/skills/fam/dom/SKILL-CANONICAL.md', 'dom\n']]),
+    );
+
+    expect(await collectCanonicalSkillPaths(fs)).toStrictEqual({
+      ok: true,
+      value: { canonicals: [{ path: '.agent/skills/fam/dom/SKILL-CANONICAL.md', text: 'dom\n' }] },
+    });
+  });
+
+  it('refuses, naming the cause, when a canonical read fails', async () => {
     const fs = {
-      ...makeWalkFs(new Map([['.agent/skills', ['flat-one']]]), new Set()),
-      async exists(relPath: string) {
-        throw new Error(`EACCES: permission denied, access '${relPath}'`);
+      ...makeWalkFs(new Map([['.agent/skills', ['flat-one']]]), new Map()),
+      async readRegularFileTextNoFollow(relPath: string): Promise<FsRead<string | undefined>> {
+        return { kind: 'failure', message: `cannot open ${relPath}: EACCES: permission denied` };
       },
     };
 
     expect(await collectCanonicalSkillPaths(fs)).toStrictEqual({
       ok: false,
       error:
-        ".agent/skills: the canonical walk failed (EACCES: permission denied, access '.agent/skills/flat-one/SKILL-CANONICAL.md'); skill validation skipped",
+        '.agent/skills: the canonical walk failed (cannot open .agent/skills/flat-one/SKILL-CANONICAL.md: EACCES: permission denied); skill validation skipped',
+    });
+  });
+
+  it('refuses, naming the cause, when a directory listing fails: an unlisted tier is never an empty one', async () => {
+    const fs = {
+      ...makeWalkFs(
+        new Map([
+          ['.agent/skills', ['cognition']],
+          ['.agent/skills/cognition', ['reason']],
+        ]),
+        new Map([['.agent/skills/cognition/reason/SKILL-CANONICAL.md', 'reason\n']]),
+      ),
+      async listSubdirs(relPath: string): Promise<FsRead<readonly string[]>> {
+        return relPath === '.agent/skills/cognition'
+          ? { kind: 'failure', message: `cannot list ${relPath}: EIO: i/o error` }
+          : { kind: 'ok', value: ['cognition'] };
+      },
+    };
+
+    expect(await collectCanonicalSkillPaths(fs)).toStrictEqual({
+      ok: false,
+      error:
+        '.agent/skills: the canonical walk failed (cannot list .agent/skills/cognition: EIO: i/o error); skill validation skipped',
     });
   });
 
@@ -442,12 +494,12 @@ describe('collectCanonicalSkillPaths', () => {
         ['.agent/skills/fam/dom', ['too-deep']],
         ['.agent/skills/fam/dom/too-deep', ['deeper']],
       ]),
-      new Set(['.agent/skills/fam/dom/too-deep/deeper/SKILL-CANONICAL.md']),
+      new Map([['.agent/skills/fam/dom/too-deep/deeper/SKILL-CANONICAL.md', 'deep\n']]),
     );
 
     expect(await collectCanonicalSkillPaths(fs)).toStrictEqual({
       ok: true,
-      value: { canonicalPaths: [] },
+      value: { canonicals: [] },
     });
   });
 });

@@ -22,7 +22,9 @@
  *   never reads as markdown emphasis.
  *
  * The three adapter directories and the index are wholly generated outputs: nothing else lives
- * on them, so a file there that no declaration renders is stale and `--fix` removes it.
+ * on them, so a regular file there that no declaration renders is stale and `--fix` removes
+ * it; a link, directory or special entry there is refused, never removed
+ * (`validators/portability/rule-projection-fs.ts`).
  *
  * @packageDocumentation
  */

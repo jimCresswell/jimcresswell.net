@@ -90,9 +90,10 @@ command surfaces are retired (see ADR-125 §2026-05-10).
 2. **Projections (generated)**: run `pnpm portability:fix`. It renders the rule's row in
    `RULES_INDEX.md`, `.cursor/rules/<name>.mdc`, `.claude/rules/<name>.md` and
    `.agents/rules/<name>.md` from the declaration; `pnpm portability:check` recomputes them
-   byte for byte. Those four surfaces are wholly generated: a hand edit fails the check and a
-   file there that no rule renders is removed by `--fix`. The shapes live in
-   `agent-tools/src/rule-declarations/render-rule-projections.ts`.
+   byte for byte. Those four surfaces are wholly generated: a hand edit fails the check, a
+   regular file there that no rule renders is removed by `--fix`, and a link, directory or
+   special entry there makes the check refuse before it writes or removes anything. The
+   shapes live in `agent-tools/src/rule-declarations/render-rule-projections.ts`.
 
 ### New Sub-agent
 

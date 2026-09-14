@@ -13,9 +13,10 @@
  * empty (acting on "no rules" would delete every projection), a regular file on the canonical
  * surface that is not a rule, and a symlink or special entry on any surface, as the surface,
  * or as one of its ancestors (a mutation under a linked ancestor would land outside the
- * projection tree; a link at the leaf is replaced, never written through). The
+ * projection tree; a link at the leaf is refused, never written through or replaced). The
  * three adapter directories and the index are wholly generated outputs, so a regular file on
- * them that no declaration renders, whatever its extension, is stale and `--fix` removes it.
+ * them that no declaration renders, whatever its extension, is stale and `--fix` removes it;
+ * any other entry there is a refusal, never a removal.
  * A canonical rule whose name a code span, a table cell or a path cannot carry is refused at
  * this boundary (`rule-name.ts`), before any projection is rendered from it.
  *

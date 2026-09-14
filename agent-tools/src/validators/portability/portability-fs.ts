@@ -15,6 +15,7 @@ import path from 'node:path';
 
 import { isEnoent } from '../../core/authored-surfaces.js';
 import { toLfText } from '../../core/lf-text.js';
+import type { FsRead } from '../../skills-adapter-generate/carriage-fs.js';
 
 /**
  * Reads the UTF-8 text content of a file at `<repoRoot>/<relPath>`.
@@ -152,24 +153,41 @@ export async function listFiles(
   }
 }
 
+/** What `listSubdirs` needs of a directory entry (`fs.Dirent` satisfies it). */
+interface NamedEntry {
+  readonly name: string;
+  isDirectory(): boolean;
+}
+
 /**
- * Lists all immediate subdirectory names in `<repoRoot>/<relDir>`, sorted
- * lexicographically.
+ * Lists all immediate subdirectory names in `<repoRoot>/<relDir>`, sorted lexicographically,
+ * as a typed read: any listing failure, absence included, is a `failure` naming the directory
+ * and the cause, never an empty listing (an unlisted `.agent/skills` would validate zero
+ * skills and pass; the #74 round-four finding, 2026-09-14).
  *
  * @param repoRoot - Absolute path to the repository root.
  * @param relDir   - Repo-relative path to the directory to list.
- * @returns Sorted array of subdirectory names (not full paths), or an empty
- *   array when the directory does not exist or cannot be read.
+ * @param readdir  - The listing call; `fs.readdir` with file types by default.
+ * @returns The sorted subdirectory names (not full paths), or the failure.
  */
-export async function listSubdirs(repoRoot: string, relDir: string): Promise<string[]> {
+export async function listSubdirs(
+  repoRoot: string,
+  relDir: string,
+  readdir: (absolutePath: string) => Promise<readonly NamedEntry[]> = (absolutePath) =>
+    fs.readdir(absolutePath, { withFileTypes: true }),
+): Promise<FsRead<readonly string[]>> {
   try {
-    const entries = await fs.readdir(path.join(repoRoot, relDir), { withFileTypes: true });
-    return entries
-      .filter((e) => e.isDirectory())
-      .map((e) => e.name)
-      .sort((a, b) => a.localeCompare(b));
-  } catch {
-    return [];
+    const entries = await readdir(path.join(repoRoot, relDir));
+    return {
+      kind: 'ok',
+      value: entries
+        .filter((entry) => entry.isDirectory())
+        .map((entry) => entry.name)
+        .sort((left, right) => left.localeCompare(right)),
+    };
+  } catch (error: unknown) {
+    const cause = error instanceof Error ? error.message : String(error);
+    return { kind: 'failure', message: `cannot list ${relDir}: ${cause}` };
   }
 }
 

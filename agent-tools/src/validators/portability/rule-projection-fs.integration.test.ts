@@ -36,9 +36,7 @@ function tree(entries: Readonly<Record<string, Entry>>): SurfaceFs & { acted: st
       return stat(entry);
     },
     readdir: async () => [],
-    readUnfollowed: async (absolutePath) => {
-      throw coded(`ENOENT: no such file or directory, open '${absolutePath}'`, 'ENOENT');
-    },
+    readUnfollowed: async () => ({ kind: 'ok', value: undefined }),
     mkdir: async (absolutePath) => {
       acted.push(`mkdir ${absolutePath}`);
     },
