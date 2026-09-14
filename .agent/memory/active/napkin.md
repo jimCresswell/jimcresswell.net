@@ -1381,6 +1381,16 @@ parallax, wrap):
   while its edits stay staged, and the next `git commit` in that working copy sweeps them
   under its own message. After any commit in a chained script, read the tip and compare it to
   the expected commit before pushing; a "nothing to push" gate is the symptom.
+- A comms append without a re-render of the generated shared comms log fails the push gate's
+  practice-substrate leg (generated read-model drift, blocking), even though the log is
+  untracked; `comms render` before the push is the cure. A watcher armed without
+  `--supervisor-pid` survives compaction and reads live, and is still out of contract; a
+  survivor is verified against the canonical shape, not only against the process table.
+- The harness kills background jobs when the host runs low on memory (two chain jobs at
+  07:22Z, while lane A's full gate ran beside other sessions' agents and browsers). A killed
+  chain keeps no place: read its output for the last step that printed (replies posted, the
+  reviewer requested) and re-arm from the next step, as a poll-only script when the request
+  already registered; run chains one at a time on a pressed host.
 
 ### Director, morning (2026-09-14): play seeds from the night, marked as associations
 

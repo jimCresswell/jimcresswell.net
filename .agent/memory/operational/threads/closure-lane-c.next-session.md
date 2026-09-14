@@ -49,7 +49,9 @@ per-role projection after the adapter generator (2b), item 7 (the compiled recor
 - **Director verdicts (2026-09-13, about 14:15Z):** (1) the Gemini projection is a fourth output
   of the sub-agent adapter generator lane B lands in its PR 2, emitted from the templates as
   `.gemini/commands/<template-basename>.toml` with gemini added to the reviewer-adapter platform
-  contract; lane C authors that extension after B's PR 2 merges, when B releases the emitter
+  contract (the path is superseded: the Director's item 70 of 2026-09-14, measured against the
+  Gemini CLI's documentation, rules the surface `.gemini/agents/<name>.md`, name and description
+  required, optional fields only from declarations; 2b-ii renders that row); lane C authors that extension after B's PR 2 merges, when B releases the emitter
   path and `validators/portability`; thirty hand-written adapters would be the hand-kept copies
   item 6 removes. `GEMINI.md`, the surface matrix and the operational README are lane C's in
   item 4. (2) Definition rows 3 and 5: the corpus-analysis workflow and `sif`'s two instruments
