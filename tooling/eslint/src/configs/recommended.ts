@@ -253,6 +253,11 @@ const oakRecommendedConfig: TSESLint.FlatConfig.Config = {
           // theatre. Retire each entry when its subject gains a fake-fs seam.
           '**/agent-tools/src/collaboration-state/coordination-home-consolidation.integration.test.ts',
           '**/agent-tools/src/core/flag-path-resolve.integration.test.ts',
+          // Recorded reason: the health probe's platform truth is read at this
+          // file-system boundary (an absent or empty templates directory, a
+          // symlinked template, an undeclared one); a fake fs would make the
+          // refusal proofs theatre. Retire when the probe gains a fake-fs seam.
+          '**/agent-tools/src/subagent-declarations/declared-adapters.integration.test.ts',
           '**/agent-tools/tests/claude/statusline-debug-log.integration.test.ts',
           '**/agent-tools/tests/collaboration-state/state-integrity.integration.test.ts',
           '**/agent-tools/tests/collaboration-state/watcher-staleness-io.integration.test.ts',

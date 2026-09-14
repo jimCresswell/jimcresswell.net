@@ -4,14 +4,17 @@
  * this, so the declarations are the one platform truth.
  *
  * The reduction is pure (`declaredAdaptersFrom`, over the templates' names and texts) and
- * the read is a thin synchronous wrapper over it, as the probe reads its other surfaces; a
- * template that cannot be read or whose declaration refuses is the whole read's refusal,
- * so the probe never compares the surfaces against a partial truth.
+ * the read is a thin synchronous wrapper over it, as the probe reads its other surfaces.
+ * Both refuse whole rather than return a partial truth: an empty template set (the adapter
+ * leg refuses it too, so an inert estate never reads healthy), a template that cannot be
+ * read or is not a regular file (a symlink is not followed, a special entry is not opened),
+ * a declaration that refuses, a template with none, and an adapter name two templates
+ * render (the generator refuses that set as unrenderable).
  *
  * @packageDocumentation
  */
 
-import { readdirSync, readFileSync } from 'node:fs';
+import { lstatSync, readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 import { err, ok, type Result } from '@engraph/result';
@@ -36,13 +39,17 @@ export interface TemplateText {
  * The declared adapters of the given templates, in the order given.
  *
  * @param templates - Each template's name and text.
- * @returns The declared adapters, or the first template's refusal (a declaration that does
- *   not read, or a template with none).
+ * @returns The declared adapters, or the first refusal: no templates, a declaration that
+ *   does not read, a template with none, or an adapter name two templates render.
  */
 export function declaredAdaptersFrom(
   templates: readonly TemplateText[],
 ): Result<readonly DeclaredAdapter[], string> {
+  if (templates.length === 0) {
+    return err(`${TEMPLATES_DIR}: no templates, so no adapter is declared`);
+  }
   const declared: DeclaredAdapter[] = [];
+  const renderedBy = new Map<string, string>();
   for (const template of templates) {
     const head = readSubagentDeclaration(template.name, template.text);
     if (!head.ok) {
@@ -52,6 +59,13 @@ export function declaredAdaptersFrom(
       return err(`${TEMPLATES_DIR}/${template.name}.md: no declaration in its frontmatter`);
     }
     for (const spec of specsOf(head.value.declaration)) {
+      const other = renderedBy.get(spec.name);
+      if (other !== undefined) {
+        return err(
+          `${TEMPLATES_DIR}/${template.name}.md: renders ${spec.name}, which ${TEMPLATES_DIR}/${other}.md also renders; the generator refuses that set`,
+        );
+      }
+      renderedBy.set(spec.name, template.name);
       declared.push({ name: spec.name, platforms: spec.platforms });
     }
   }
@@ -59,11 +73,12 @@ export function declaredAdaptersFrom(
 }
 
 /**
- * Every declared adapter under the repository's templates directory, in template order.
+ * Every declared adapter under the repository's templates directory, in name order.
  *
  * @param repoRoot - Absolute path to the repository root.
- * @returns The declared adapters, or the first refusal (the directory unlistable, a template
- *   unreadable, or a refusal of `declaredAdaptersFrom`).
+ * @returns The declared adapters, or the first refusal: the directory unlistable, a
+ *   template that is not a regular file or cannot be read, or a refusal of
+ *   `declaredAdaptersFrom`.
  */
 export function readDeclaredAdapters(repoRoot: string): Result<readonly DeclaredAdapter[], string> {
   const dir = join(repoRoot, TEMPLATES_DIR);
@@ -78,8 +93,14 @@ export function readDeclaredAdapters(repoRoot: string): Result<readonly Declared
   }
   const templates: TemplateText[] = [];
   for (const name of names) {
+    const file = join(dir, `${name}.md`);
     try {
-      templates.push({ name, text: readFileSync(join(dir, `${name}.md`), 'utf8') });
+      // `lstat`, never `stat`: a symlinked template is not followed into another tree and
+      // a special entry is not opened; only a regular file is read.
+      if (!lstatSync(file).isFile()) {
+        return err(`${TEMPLATES_DIR}/${name}.md: not a regular file`);
+      }
+      templates.push({ name, text: readFileSync(file, 'utf8') });
     } catch (cause) {
       return err(`${TEMPLATES_DIR}/${name}.md: cannot read the template (${describe(cause)})`);
     }

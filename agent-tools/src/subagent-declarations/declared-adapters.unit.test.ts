@@ -47,6 +47,36 @@ describe('declaredAdaptersFrom', () => {
     });
   });
 
+  it('refuses an empty template set: no adapter is declared, so no parity can be read', () => {
+    expect(declaredAdaptersFrom([])).toStrictEqual({
+      ok: false,
+      error: '.agent/sub-agents/templates: no templates, so no adapter is declared',
+    });
+  });
+
+  it('refuses an adapter name two templates render, naming both', () => {
+    const fanOut = [
+      '---',
+      'variants:',
+      '  - name: alpha-high',
+      '    platforms:',
+      '      - cursor',
+      '    description: High.',
+      '---',
+      '',
+    ].join('\n');
+    expect(
+      declaredAdaptersFrom([
+        { name: 'alpha-high', text: role('alpha-high') },
+        { name: 'alpha', text: fanOut },
+      ]),
+    ).toStrictEqual({
+      ok: false,
+      error:
+        '.agent/sub-agents/templates/alpha.md: renders alpha-high, which .agent/sub-agents/templates/alpha-high.md also renders; the generator refuses that set',
+    });
+  });
+
   it('refuses on the first template with no declaration, naming it repo-relative', () => {
     const refused = declaredAdaptersFrom([
       { name: 'alpha', text: role('alpha') },
