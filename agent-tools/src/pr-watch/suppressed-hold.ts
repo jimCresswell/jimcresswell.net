@@ -59,10 +59,18 @@ function loginKey(login: string): string {
   return normaliseLogin(login.replace(/^app\//u, ''));
 }
 
-/** The logins whose disposition lines lift: the repository owner and the pull request's author. */
+/**
+ * The logins whose disposition lines lift: the repository owner and the pull request's
+ * author. The deleted-account sentinel ('unknown', the reading's spelling of a null author
+ * on both `pr view` and the harvest) is never an identity, as the expected set never admits
+ * it.
+ */
 function liftingLogins(reading: SuppressedHoldReading): ReadonlySet<string> {
   const owner = /^https:\/\/github\.com\/([^/]+)\//u.exec(reading.url)?.[1];
-  return new Set([reading.author, ...(owner === undefined ? [] : [owner])].map(loginKey));
+  const logins = [reading.author, ...(owner === undefined ? [] : [owner])]
+    .filter((login) => login !== 'unknown')
+    .map(loginKey);
+  return new Set(logins);
 }
 
 /**

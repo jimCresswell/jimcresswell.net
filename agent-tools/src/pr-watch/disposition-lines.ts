@@ -43,8 +43,9 @@ const REFERENCE = /^head SHA:([0-9a-f]{7,40}) · review (\S+) · (.+?) · (.+)$/
 // no pattern runs over comment text an outsider can shape (the code-expert's measured
 // super-linear pattern, 2026-09-14; the estate's S8786 posture in reviewer-legs.ts).
 const SEPARATOR = ' — ';
-// The verbs, anchored, the SHA closed by a non-alphanumeric so `SHA:abc1234xyz` is no cure.
-const CURE = /^Cured in\s+`?SHA:[0-9a-f]{7,40}`?(?![0-9A-Za-z])/u;
+// The verbs, anchored; the SHA bare or inside a code span, never one backtick alone, and
+// closed by a non-alphanumeric so `SHA:abc1234xyz` is no cure.
+const CURE = /^Cured in\s+(?:SHA:[0-9a-f]{7,40}(?!`)|`SHA:[0-9a-f]{7,40}`)(?![0-9A-Za-z])/u;
 const REJECTION = /^Rejected\b/u;
 
 /**
@@ -66,17 +67,25 @@ function splitItemAndSentence(text: string): Pick<DispositionLine, 'item' | 'sen
   return { item: text.slice(0, at).trim(), sentence: text.slice(at + SEPARATOR.length).trim() };
 }
 
-function parseLine(line: string): DispositionLine | undefined {
-  const marker = MARKER.exec(line);
-  if (marker === null) {
-    return undefined;
-  }
-  const reference = REFERENCE.exec(line.slice(marker[0].length).trim());
+/** The reference after the marker, as a line; nothing when it is malformed or names no finding. */
+function parseReference(text: string): DispositionLine | undefined {
+  const reference = REFERENCE.exec(text);
   if (reference === null) {
     return undefined;
   }
   const [, headSha = '', reviewId = '', anchor = '', itemAndSentence = ''] = reference;
-  return { headSha, reviewId, anchor, ...splitItemAndSentence(itemAndSentence) };
+  const rest = splitItemAndSentence(itemAndSentence);
+  // A reference with an empty anchor or item names no finding; reading it as one
+  // would let an empty item count as a distinct lifted finding.
+  if (anchor.trim() === '' || rest.item === '') {
+    return undefined;
+  }
+  return { headSha, reviewId, anchor: anchor.trim(), ...rest };
+}
+
+function parseLine(line: string): DispositionLine | undefined {
+  const marker = MARKER.exec(line);
+  return marker === null ? undefined : parseReference(line.slice(marker[0].length).trim());
 }
 
 /**

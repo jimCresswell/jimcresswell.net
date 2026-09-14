@@ -35,6 +35,8 @@ describe('dispositionLifts', () => {
     'Routed to the 2a follow-on list',
     'Cured in the next push',
     'Cured in SHA:abc1234xyz',
+    'Cured in `SHA:abc1234',
+    'Cured in SHA:abc1234`',
     'Rejection pending',
     '',
     'see above',
@@ -115,17 +117,26 @@ describe('parseDispositionLines', () => {
     expect(lines.map((entry) => dispositionLifts(entry.sentence))).toStrictEqual([false, false]);
   });
 
-  it('runs in linear time over a comment an outsider can shape: a long run of spaces inside the item', () => {
+  it('reads a comment an outsider can shape, a long run of spaces inside the item, as one line with no sentence', () => {
     // The measured super-linear shape (the code-expert's probe, 2026-09-14): an
-    // item of spaces with no separator and no verb; the split walks it once.
+    // item of spaces with no separator and no verb; the split walks it once. The
+    // time bound is structural (no pattern over comment text), never a clock in
+    // the gated suite.
     const body = signed(
       `**Over-bar** head SHA:${HEAD} · review ${REVIEW} · a.ts:1 · item${' '.repeat(60_000)}x`,
     );
-    const started = performance.now();
     const lines = parseDispositionLines(body);
-    expect(performance.now() - started).toBeLessThan(1_000);
     expect(lines.map((entry) => [entry.item.length > 60_000, entry.sentence])).toStrictEqual([
       [true, ''],
     ]);
+  });
+
+  it('reads no line from a reference whose anchor or item is empty, so an empty item never counts as a distinct lifted finding', () => {
+    const body = signed(
+      `**Over-bar** head SHA:${HEAD} · review ${REVIEW} · a.ts:1 ·  — Cured in SHA:9f8e7d6`,
+      `**Over-bar** head SHA:${HEAD} · review ${REVIEW} ·   · item 1 of 1 — Cured in SHA:9f8e7d6`,
+      `**Over-bar** head SHA:${HEAD} · review ${REVIEW} · a.ts:2 · item 2 of 2 — Cured in SHA:9f8e7d6`,
+    );
+    expect(parseDispositionLines(body).map((entry) => entry.item)).toStrictEqual(['item 2 of 2']);
   });
 });

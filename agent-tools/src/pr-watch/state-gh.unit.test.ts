@@ -144,9 +144,16 @@ describe('readPrStateReading', () => {
     expect(reading.issueComments).toEqual([
       { author: 'jimCresswell', body: 'a disposition comment\n\n— Seat (abc123)' },
     ]);
-    expect(calls.some((call) => call.some((arg) => arg.includes('comments(first: 100')))).toBe(
-      true,
-    );
+    // Issue comments are mutable, so the leg is read after the confirm, the
+    // freshest leg of the reading; a line binds itself to the tip by its own
+    // SHA and review id, and a comment landing after the read is the next
+    // poll's (#79 round one, 2026-09-14).
+    const isCommentsCall = (call: readonly string[]): boolean =>
+      call.some((arg) => arg.includes('comments(first: 100'));
+    const isViewCall = (call: readonly string[]): boolean => call[0] === 'pr';
+    const commentsAt = calls.findIndex(isCommentsCall);
+    const lastViewAt = calls.map(isViewCall).lastIndexOf(true);
+    expect(commentsAt).toBeGreaterThan(lastViewAt);
     expect(reading.reviewThreads).toEqual({ total: 2, unresolved: 0 });
     expect(reading.reviews).toHaveLength(1);
     // Only the run mapped to THIS PR survives; the other PR's run is filtered.

@@ -112,6 +112,20 @@ describe('suppressedHolds', () => {
     expect(byBot).toStrictEqual([]);
   });
 
+  it('never treats the deleted-account sentinel as an identity: with the pull request author unknown, a sentinel-authored line lifts nothing and the owner still lifts', () => {
+    const cure = line('item 1 of 1', 'Cured in SHA:9f8e7d6');
+    const bySentinel = {
+      ...reading([closerLook(1)], [comment('unknown', cure)]),
+      author: 'unknown',
+    };
+    expect(suppressedHolds(bySentinel).map((hold) => hold.lifted)).toStrictEqual([0]);
+    const byOwner = {
+      ...reading([closerLook(1)], [comment('jimCresswell', cure)]),
+      author: 'unknown',
+    };
+    expect(suppressedHolds(byOwner)).toStrictEqual([]);
+  });
+
   it('counts distinct items, so a finding dispositioned twice lifts once', () => {
     const twice = comment(
       'jimCresswell',

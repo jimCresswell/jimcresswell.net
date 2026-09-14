@@ -125,14 +125,16 @@ export function readPrStateReading(options: ReadPrStateOptions): PrStateReading 
       repo,
     });
     const reviewRuns = readReviewRunsLeg({ run, gh, prNumber: number, prUrl: view.url });
-    // The dispositions of body-only findings, read after the bracket: a
-    // disposition landing later is the next poll's, and a stale read can only
-    // hold a merge longer, never lift one early (suppressed-hold.ts).
-    const issueComments = readIssueComments({ run, gh, prNumber, repo });
     // The confirm read closes the race window; on a match it is also the
     // freshest same-tip snapshot, so the reading composes from it.
     const confirm = readMergeabilityComputedView({ run, gh, viewArgs, prNumber });
     if (confirm.headRefOid === view.headRefOid) {
+      // The dispositions of body-only findings are mutable comments, read after
+      // the confirm so they are the freshest leg of the reading; a line binds
+      // itself to the tip and the review by its own SHA and review id
+      // (suppressed-hold.ts), and a comment landing after this read is the
+      // next poll's.
+      const issueComments = readIssueComments({ run, gh, prNumber, repo });
       return {
         ...confirm,
         reviewThreads,
