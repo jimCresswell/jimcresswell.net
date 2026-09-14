@@ -47,7 +47,38 @@ function harvestPayload(): string {
   return JSON.stringify([{ data: { repository: { pullRequest } } }]);
 }
 
-function executor(calls: string[][]): GhCommandExecutor {
+/**
+ * A review landing mid-read: the harvest returns it landed (request cleared);
+ * the threads read carries its one unresolved thread only once the harvest
+ * has been read, as the platform would after the review's submission.
+ */
+function landingPayloads(): { harvest: () => string; threads: () => string } {
+  let landed = false;
+  return {
+    harvest: () => {
+      landed = true;
+      const review = { author: { login: COPILOT }, state: 'COMMENTED', body: 'One finding.' };
+      const pullRequest = {
+        reviews: { nodes: [{ ...review, submittedAt: 't1', commit: { oid: HEAD } }] },
+        reviewRequests: { pageInfo: { hasNextPage: false }, nodes: [] },
+      };
+      return JSON.stringify([{ data: { repository: { pullRequest } } }]);
+    },
+    threads: () => {
+      const nodes = landed ? [{ isResolved: false }] : [];
+      const reviewThreads = { totalCount: nodes.length, nodes };
+      return JSON.stringify([{ data: { repository: { pullRequest: { reviewThreads } } } }]);
+    },
+  };
+}
+
+function executor(
+  calls: string[][],
+  payloads: { harvest: () => string; threads: () => string } = {
+    harvest: harvestPayload,
+    threads: threadsPayload,
+  },
+): GhCommandExecutor {
   return (_file, args) => {
     calls.push([...args]);
     if (args[0] === 'pr') {
@@ -57,7 +88,7 @@ function executor(calls: string[][]): GhCommandExecutor {
       return JSON.stringify([]);
     }
     const query = args.find((arg) => arg.startsWith('query='));
-    return query?.includes('reviewThreads') === true ? threadsPayload() : harvestPayload();
+    return query?.includes('reviewThreads') === true ? payloads.threads() : payloads.harvest();
   };
 }
 
@@ -72,6 +103,17 @@ describe('readPrStateReading — review requests', () => {
     });
     // The view payload carries no requests, so this set can only have come from the harvest.
     expect(reading.reviewRequests).toEqual([COPILOT, 'jimCresswell']);
+  });
+
+  it('a review landing mid-read is read with its threads: the harvest is read before the threads', () => {
+    const reading = readPrStateReading({
+      target: { number: 461 },
+      ...ghSeam,
+      execFileSync: executor([], landingPayloads()),
+    });
+    expect(reading.reviewRequests).toEqual([]);
+    expect(reading.reviews).toHaveLength(1);
+    expect(reading.reviewThreads).toEqual({ total: 1, unresolved: 1 });
   });
 
   it('an outstanding Bot request enters the defaulted expected set', () => {

@@ -8,14 +8,14 @@ import { computePrVerdict } from './states.js';
  * The D1 verdict function: one closed, typed verdict per compound reading,
  * executing the pr-lifecycle SKILL review-round state machine. Every
  * silent-wait class from the 2026-07-20/21 net-to-zero drive has a regression
- * fixture, plus the r2 classes: per-reviewer legs (never collapsed), the more-than-10
- * min quiet window, and the latestReviews backwards-pointer.
+ * fixture, plus the r2 classes: per-reviewer legs (never collapsed), measured
+ * settlement (no clock), and the latestReviews backwards-pointer.
  */
 
 const TIP = 'a'.repeat(40);
 const OLD_TIP = 'b'.repeat(40);
 const COPILOT = 'copilot-pull-request-reviewer';
-/** A now safely past every fixture timestamp's quiet window. */
+/** A now safely past every fixture timestamp's checks-green timeout. */
 const LATE_NOW = '2026-07-21T13:00:00Z';
 
 function settledReading(overrides: Partial<PrStateReading> = {}): PrStateReading {
@@ -59,7 +59,6 @@ describe('PR_VERDICT_STATES', () => {
     expect([...PR_VERDICT_STATES].sort(byLocale)).toEqual(
       [
         'SETTLE-READY',
-        'SETTLING-QUIET-WINDOW',
         'DRAFT',
         'WAITING-REVIEW-RUN-LIVE',
         'SILENT-WAIT-NO-REVIEWER',
@@ -335,16 +334,65 @@ describe('computePrVerdict — the outstanding request is the round in flight', 
       '2026-07-21T13:00:00Z',
     );
     expect(verdict.state).toBe('WAITING-REVIEW-RUN-LIVE');
-    expect(verdict.evidence.join('\n')).toContain('review-run liveness unavailable');
+    expect(verdict.evidence.join('\n')).toContain('review-run surface unavailable');
   });
 
-  it('an unavailable runs leg degrades typed, named in evidence', () => {
+  // The run leg's contract: an OBSERVED live run blocks (the cell below and
+  // the settlement block); an UNOBSERVABLE surface (the extension lists
+  // coding-agent sessions and never carried a review round) settles with the
+  // gap named rather than blocking on an optional gh extension (the
+  // Director's verdict on #65, 2026-09-14).
+  it('an unavailable run surface settles a landed round with the gap named, never blocks', () => {
     const verdict = computePrVerdict(
       settledReading({ reviewRuns: { kind: 'unavailable', reason: 'gh agent-task missing' } }),
       LATE_NOW,
     );
     expect(verdict.state).toBe('SETTLE-READY');
-    expect(verdict.evidence.join('\n')).toContain('review-run liveness unavailable');
+    expect(verdict.evidence.join('\n')).toContain(
+      'review-run surface unavailable (gh agent-task missing): no live run observed',
+    );
+  });
+
+  it('a truncated run surface settles a landed round with the gap named, never blocks', () => {
+    const verdict = computePrVerdict(
+      settledReading({
+        reviewRuns: {
+          kind: 'read',
+          runs: [],
+          truncated: true,
+          note: 'agent-task list truncated at 100 — older runs unobserved',
+        },
+      }),
+      LATE_NOW,
+    );
+    expect(verdict.state).toBe('SETTLE-READY');
+    expect(verdict.evidence.join('\n')).toContain('older runs unobserved');
+    expect(verdict.evidence.join('\n')).toContain(
+      'review-run surface incomplete: no live run observed in the part read',
+    );
+  });
+
+  // The contract's other half: an OBSERVED live run is a measured guard and
+  // blocks, truncated surface or not, and the verdict says so through the
+  // run's own line, never beside a "no live run observed" line.
+  it('a truncated run surface that still observed a live run blocks on that run, without the gap line', () => {
+    const verdict = computePrVerdict(
+      settledReading({
+        reviewRuns: {
+          kind: 'read',
+          runs: [
+            { id: 'run-7', name: 'Task from @jimCresswell', createdAt: 't0', completedAt: null },
+          ],
+          truncated: true,
+          note: 'agent-task list truncated at 100 — older runs unobserved',
+        },
+      }),
+      LATE_NOW,
+    );
+    expect(verdict.state).toBe('WAITING-REVIEW-RUN-LIVE');
+    expect(verdict.evidence.join('\n')).toContain('review run live: run-7');
+    expect(verdict.evidence.join('\n')).toContain('older runs unobserved');
+    expect(verdict.evidence.join('\n')).not.toContain('no live run observed');
   });
 });
 
@@ -363,7 +411,7 @@ describe('computePrVerdict — base currency and vacuous sets', () => {
     expect(verdict.evidence.join('\n')).toContain('EMPTY');
   });
 
-  it('a missing quiet-window anchor holds the window open, never silently settles', () => {
+  it('a tip-bound review with no submittedAt still settles: settlement reads measured state, not a clock', () => {
     const verdict = computePrVerdict(
       settledReading({
         checksGreenAt: null,
@@ -379,23 +427,63 @@ describe('computePrVerdict — base currency and vacuous sets', () => {
       }),
       LATE_NOW,
     );
-    expect(verdict.state).toBe('SETTLING-QUIET-WINDOW');
-    expect(verdict.evidence.join('\n')).toContain('no parseable quiet-window anchor');
+    expect(verdict.state).toBe('SETTLE-READY');
   });
 });
 
-describe('computePrVerdict — quiet window and settlement (SKILL item 4)', () => {
-  it('withholds SETTLE-READY inside the >10 min window since the latest tip-bound review', () => {
+describe('computePrVerdict — measured state and settlement (SKILL item 4)', () => {
+  // The owner's design note (2026-09-13, on #56: "nothing is happening on the
+  // PR ... the 'quiet window' could be replaced with measured state"): a round
+  // is settled when every expected leg has landed on the tip, no expected
+  // reviewer is requested, and no live run is observed. No clock.
+  it('reports SETTLE-READY the moment every leg has landed with nothing requested and no live run observed', () => {
     const verdict = computePrVerdict(
       settledReading(),
-      // 4 minutes after the fixture's 12:05 review — window still open.
-      '2026-07-21T12:09:00Z',
+      // 4 seconds after the fixture's 12:05 review: the old window would have held this open.
+      '2026-07-21T12:05:04Z',
     );
-    expect(verdict.state).toBe('SETTLING-QUIET-WINDOW');
+    expect(verdict.state).toBe('SETTLE-READY');
+    expect(verdict.evidence.join('\n')).toContain('no expected reviewer requested');
   });
 
-  it('reports SETTLE-READY once the window elapses', () => {
-    expect(computePrVerdict(settledReading(), '2026-07-21T12:16:00Z').state).toBe('SETTLE-READY');
+  it('withholds settlement while an expected reviewer is requested again on a satisfied tip', () => {
+    const verdict = computePrVerdict(settledReading({ reviewRequests: [COPILOT] }), LATE_NOW);
+    expect(verdict.state).toBe('WAITING-REVIEW-RUN-LIVE');
+    expect(verdict.evidence.join('\n')).toContain(`expected reviewer requested: ${COPILOT}`);
+  });
+
+  it('a re-request matches a declared [bot] spelling too (the strip applies to both sides)', () => {
+    const verdict = computePrVerdict(
+      settledReading({ expectedReviewers: [`${COPILOT}[bot]`], reviewRequests: [COPILOT] }),
+      LATE_NOW,
+    );
+    expect(verdict.state).toBe('WAITING-REVIEW-RUN-LIVE');
+  });
+
+  it('withholds settlement while an agent-task run mapped to the PR is live', () => {
+    const verdict = computePrVerdict(
+      settledReading({
+        reviewRuns: {
+          kind: 'read',
+          runs: [
+            { id: 'run-1', name: 'Task from @jimCresswell', createdAt: 't0', completedAt: null },
+          ],
+        },
+      }),
+      LATE_NOW,
+    );
+    expect(verdict.state).toBe('WAITING-REVIEW-RUN-LIVE');
+    expect(verdict.evidence.join('\n')).toContain('review run live: run-1');
+  });
+
+  it('a request for a reviewer outside the expected set does not hold a settled round', () => {
+    // The owner's credential registers a request for the owner on every
+    // re-request (merge-bot.md); holding on it would deadlock every landing.
+    const verdict = computePrVerdict(
+      settledReading({ reviewRequests: ['jimCresswell'] }),
+      LATE_NOW,
+    );
+    expect(verdict.state).toBe('SETTLE-READY');
   });
 
   it('a settled round with a quota-skipped leg reads QUOTA-SKIPPED (owner ruling: skipped, not satisfied)', () => {
@@ -419,47 +507,32 @@ describe('computePrVerdict — quiet window and settlement (SKILL item 4)', () =
     expect(verdict.evidence.join('\n')).toContain('claude: SKIPPED');
   });
 
-  it('a signed self-authored reply never re-opens the quiet window (SKILL anchoring exclusion)', () => {
-    const verdict = computePrVerdict(
-      settledReading({
-        reviews: [
-          ...settledReading().reviews,
-          {
-            author: 'jimCresswell',
-            state: 'COMMENTED',
-            body: 'Fixed at source in abc1234.\n\n— Moth mends Dreamscape (92e9d6)',
-            commitOid: TIP,
-            submittedAt: '2026-07-21T12:58:00Z',
-          },
-        ],
-      }),
-      // 4 minutes after the self-reply but >10 after the real 12:05 review.
-      '2026-07-21T13:02:00Z',
-    );
-    expect(verdict.state).toBe('SETTLE-READY');
-  });
-
-  it('a token-signed self-reply never re-opens the quiet window either', () => {
-    // Same anchoring exclusion, signature carrying the MCP-145 display token
-    // (prefix-idTail) instead of the bare prefix — a seat pasting its rendered
-    // identity must not turn its own disposition reply into a round anchor.
-    const verdict = computePrVerdict(
-      settledReading({
-        reviews: [
-          ...settledReading().reviews,
-          {
-            author: 'jimCresswell',
-            state: 'COMMENTED',
-            body: 'Fixed at source in abc1234.\n\n— Moth mends Dreamscape (92e9d6-9c1)',
-            commitOid: TIP,
-            submittedAt: '2026-07-21T12:58:00Z',
-          },
-        ],
-      }),
-      '2026-07-21T13:02:00Z',
-    );
-    expect(verdict.state).toBe('SETTLE-READY');
-  });
+  // Both signature forms: the bare prefix and the MCP-145 display token
+  // (prefix-idTail) a seat pastes from its rendered identity. The token form
+  // once had its own cell against the quiet window; the exclusion it proves
+  // outlives the window (the #65 round-three finding, 2026-09-14).
+  it.each(['(92e9d6)', '(92e9d6-9c1)'])(
+    'a self-authored reply signed %s never enters the body tally (SKILL exclusion)',
+    (signature) => {
+      const verdict = computePrVerdict(
+        settledReading({
+          reviews: [
+            ...settledReading().reviews,
+            {
+              author: 'jimCresswell',
+              state: 'COMMENTED',
+              body: `Fixed at source in abc1234.\n\n— Moth mends Dreamscape ${signature}`,
+              commitOid: TIP,
+              submittedAt: '2026-07-21T12:58:00Z',
+            },
+          ],
+        }),
+        '2026-07-21T12:58:04Z',
+      );
+      expect(verdict.state).toBe('SETTLE-READY');
+      expect(verdict.evidence.join('\n')).not.toContain('jimCresswell (COMMENTED)');
+    },
+  );
 
   it('an undeclared expected set is named in evidence, never silent', () => {
     const verdict = computePrVerdict(settledReading({ expectedDeclared: false }), LATE_NOW);
@@ -479,28 +552,6 @@ describe('computePrVerdict — round-6 classes (2026-07-21)', () => {
 });
 
 describe('computePrVerdict — round-4 residual classes (2026-07-21)', () => {
-  it('an empty-submittedAt tip-bound review holds the quiet window open, never inherits the checks anchor', () => {
-    // A landed review whose submittedAt gh omits could be NEWER than every
-    // timestamped one; falling through to the (older) checks-green anchor
-    // would read SETTLE-READY inside the un-provable window.
-    const verdict = computePrVerdict(
-      settledReading({
-        reviews: [
-          ...settledReading().reviews,
-          {
-            author: COPILOT,
-            state: 'COMMENTED',
-            body: 'Round n summary.',
-            commitOid: TIP,
-            submittedAt: '',
-          },
-        ],
-      }),
-      LATE_NOW,
-    );
-    expect(verdict.state).toBe('SETTLING-QUIET-WINDOW');
-  });
-
   it('a TRUNCATED run list still reads the requested owed leg as the round in flight, the gap in evidence', () => {
     // A full-window agent-task list (100 rows) leaves older runs unobserved;
     // the request surface, not the run list, says the round is in flight, so

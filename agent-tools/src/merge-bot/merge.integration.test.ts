@@ -66,7 +66,7 @@ function makeInput(
 
 describe('runMergeExecution', () => {
   it('merges a settled tip with the merge-commit method and the verdicted sha in the body', async () => {
-    // Quiet window: reading time 08:05, now 09:00 — comfortably elapsed.
+    // Measured state: the leg landed at 08:05, nothing requested, no run live; now 09:00.
     const { fetchImpl, calls } = makeFetchPort({});
 
     const outcome = await runMergeExecution(makeInput(makeReading(), fetchImpl));

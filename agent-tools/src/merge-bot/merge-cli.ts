@@ -58,7 +58,7 @@ export interface MergeActionInput {
   /** Reading seam (defaults to pr-watch's gh-backed reading, throw-translated, inside merge.ts). */
   readonly readReadingImpl?: (options: ReadPrStateOptions) => Result<PrStateReading, Error>;
   readonly sleepImpl?: (ms: number) => Promise<void>;
-  /** Clock seam for the settlement verdict's quiet window. */
+  /** Clock seam for the settlement verdict's checks-green timeout leg. */
   readonly nowIsoImpl?: () => string;
 }
 

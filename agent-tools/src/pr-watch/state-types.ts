@@ -39,7 +39,11 @@ export type ReviewRunsLeg =
       readonly truncated?: boolean;
       /**
        * Human-readable gap note for evidence lines: the list truncation, the
-       * unreadable run views (with the first cause), or both.
+       * unreadable run views (with the first cause), or both. The producer
+       * pairs every `truncated` reading with a note, and the settled verdict
+       * relies on that pairing: with a live run observed the note is the only
+       * gap line it carries (runsEvidence). A new truncation cause must add
+       * its note.
        */
       readonly note?: string;
     }
@@ -84,7 +88,6 @@ export interface PrStateReading {
 /** The closed verdict set. Adding a state is a reviewed contract change. */
 export const PR_VERDICT_STATES = [
   'SETTLE-READY',
-  'SETTLING-QUIET-WINDOW',
   'DRAFT',
   'WAITING-REVIEW-RUN-LIVE',
   'SILENT-WAIT-NO-REVIEWER',
