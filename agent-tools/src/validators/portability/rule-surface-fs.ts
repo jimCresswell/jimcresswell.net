@@ -14,9 +14,10 @@
  * a projection surface admits (a real directory above, an absent or regular-file leaf);
  * the write is the estate's atomic writer (a synced temp file renamed over the leaf, so a
  * link at the leaf is replaced, never written through) and the removal unlinks the leaf
- * itself. What remains is the window between an ancestor's classification and the rename
- * into it, named here and closed by nothing short of directory descriptors; on a platform
- * without `O_NOFOLLOW` the unfollowed classification is the read's only guard. ENOENT is the
+ * itself. What remains is the window between an ancestor's classification and the mkdir,
+ * rename or unlink into it (`rule-projection-fs.ts` says what that admits), closed by nothing
+ * short of directory descriptors; on a platform without `O_NOFOLLOW` the unfollowed
+ * classification is the read's only guard. ENOENT is the
  * only failure read as absence. The `node:fs` calls are an injected port (`SurfaceFs`), so
  * every order-of-operations claim is proven over an in-memory tree.
  *
@@ -47,8 +48,9 @@ export interface UnfollowedStat {
 /**
  * The calls the surface helpers make, all on absolute paths; the real `node:fs` by default.
  * `readUnfollowed` reads a regular file through a no-follow open and throws with code
- * `ELOOP` for a link at the leaf and `ENOTREGULAR` for any other non-file; `writeAtomically`
- * renames a synced temp file over the leaf; `remove` unlinks the leaf itself.
+ * `ELOOP` for a link at the leaf and `ENOTREGULAR` (a code of this module's own, not an
+ * errno) for any other non-file; `writeAtomically` renames a synced temp file over the leaf;
+ * `remove` unlinks the leaf itself.
  */
 export interface SurfaceFs {
   lstat: (absolutePath: string) => Promise<UnfollowedStat>;

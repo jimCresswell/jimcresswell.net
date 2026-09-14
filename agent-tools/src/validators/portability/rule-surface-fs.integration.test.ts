@@ -1,6 +1,5 @@
 import { describe, expect, it } from 'vitest';
 
-import { removeProjection, writeProjection } from './rule-projection-fs.js';
 import {
   listDirectory,
   readEntry,
@@ -9,11 +8,12 @@ import {
 } from './rule-surface-fs.js';
 
 /**
- * The classify-before-act order of the surface port, proven over a tree that says what each
+ * The classify-before-act order of the surface reads, proven over a tree that says what each
  * absolute path is when its leaf is left unfollowed: a link as the surface, as one of its
- * ancestors, or as the entry is refused before `readdir`, the no-follow read, the write or
- * the removal could act on it; a link swapped in between the classification and the open
- * is refused by the open itself; and only ENOENT reads as absence.
+ * ancestors, or as the entry is refused before `readdir` or the no-follow read could act on
+ * it; a link swapped in between the classification and the open is refused by the open
+ * itself; and only ENOENT reads as absence. The mutations are proven beside their module
+ * (`rule-projection-fs.integration.test.ts`).
  */
 
 const ROOT = '/repo';
@@ -187,92 +187,5 @@ describe('readEntry', () => {
       kind: 'unreadable',
       cause: 'EACCES: permission denied',
     });
-  });
-});
-
-describe('writeProjection', () => {
-  it('writes atomically when every ancestor is a real directory and the leaf is absent or a regular file', async () => {
-    const surfaceFs = tree(SURFACES);
-    expect(await writeProjection(ROOT, '.claude/rules/a.md', 'new\n', surfaceFs)).toStrictEqual({
-      ok: true,
-      value: undefined,
-    });
-    expect(await writeProjection(ROOT, '.claude/rules/b.md', 'b\n', surfaceFs)).toStrictEqual({
-      ok: true,
-      value: undefined,
-    });
-    expect(surfaceFs.acted).toStrictEqual([
-      'write /repo/.claude/rules/a.md new\n',
-      'write /repo/.claude/rules/b.md b\n',
-    ]);
-  });
-
-  it('creates an absent surface directory and writes into it', async () => {
-    const surfaceFs = tree(SURFACES);
-    expect(await writeProjection(ROOT, '.cursor/rules/a.mdc', 'a\n', surfaceFs)).toStrictEqual({
-      ok: true,
-      value: undefined,
-    });
-    expect(surfaceFs.acted).toStrictEqual([
-      'mkdir /repo/.cursor/rules',
-      'write /repo/.cursor/rules/a.mdc a\n',
-    ]);
-  });
-
-  it('refuses, touching nothing, when an ancestor is a link or the leaf is not a regular file at the moment of the write', async () => {
-    const linkedAncestor = tree({
-      ...SURFACES,
-      '/repo/.agents': 'link',
-      '/repo/.agents/rules': 'dir',
-    });
-    expect(await writeProjection(ROOT, '.agents/rules/a.md', 'a\n', linkedAncestor)).toStrictEqual({
-      ok: false,
-      error: '.agents: not a directory at the moment of the write; refusing the projection write',
-    });
-    expect(linkedAncestor.acted).toStrictEqual([]);
-
-    const linkedLeaf = tree({ ...SURFACES, '/repo/RULES_INDEX.md': 'link' });
-    expect(await writeProjection(ROOT, 'RULES_INDEX.md', 'index\n', linkedLeaf)).toStrictEqual({
-      ok: false,
-      error:
-        'RULES_INDEX.md: not a regular file at the moment of the write; refusing the projection write',
-    });
-    expect(linkedLeaf.acted).toStrictEqual([]);
-  });
-});
-
-describe('removeProjection', () => {
-  it('unlinks a regular-file leaf under real directories, and refuses a link or an absent leaf', async () => {
-    const surfaceFs = tree({ ...SURFACES, '/repo/.claude/rules/gone.md': 'link' });
-    expect(await removeProjection(ROOT, '.claude/rules/notes.txt', surfaceFs)).toStrictEqual({
-      ok: true,
-      value: undefined,
-    });
-    expect(await removeProjection(ROOT, '.claude/rules/gone.md', surfaceFs)).toStrictEqual({
-      ok: false,
-      error:
-        '.claude/rules/gone.md: not a regular file at the moment of the removal; refusing to remove it',
-    });
-    expect(await removeProjection(ROOT, '.claude/rules/vanished.md', surfaceFs)).toStrictEqual({
-      ok: false,
-      error:
-        '.claude/rules/vanished.md: not a regular file at the moment of the removal; refusing to remove it',
-    });
-    expect(surfaceFs.acted).toStrictEqual(['remove /repo/.claude/rules/notes.txt']);
-  });
-
-  it('refuses when the surface directory is a link or has vanished, never creating it', async () => {
-    const linked = tree({ ...SURFACES, '/repo/.agents': 'dir', '/repo/.agents/rules': 'link' });
-    expect(await removeProjection(ROOT, '.agents/rules/a.md', linked)).toStrictEqual({
-      ok: false,
-      error:
-        '.agents/rules: not a directory at the moment of the write; refusing the projection write',
-    });
-    const vanished = tree(SURFACES);
-    expect(await removeProjection(ROOT, '.cursor/rules/a.mdc', vanished)).toStrictEqual({
-      ok: false,
-      error: '.cursor/rules: vanished; refusing the projection write',
-    });
-    expect(vanished.acted).toStrictEqual([]);
   });
 });

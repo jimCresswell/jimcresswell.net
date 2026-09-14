@@ -55,6 +55,7 @@ export function textOf(relPath: string, read: EntryRead): Result<string, string>
   return err(`${relPath}: not a regular file; the rule surfaces admit regular files only`);
 }
 
+/** One issue per missing, drifted or stale projection, each naming the cure. */
 export function driftIssues(drift: RuleProjectionDrift): string[] {
   return [
     ...drift.missing.map((file) => `${file}: missing rule projection (${FIX_HINT})`),

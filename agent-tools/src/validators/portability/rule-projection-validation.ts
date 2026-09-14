@@ -12,7 +12,8 @@
  * as absent would be written over), a canonical rules directory that is absent, unreadable or
  * empty (acting on "no rules" would delete every projection), a regular file on the canonical
  * surface that is not a rule, and a symlink or special entry on any surface, as the surface,
- * or as one of its ancestors (a write would follow the link out of the projection tree). The
+ * or as one of its ancestors (a mutation under a linked ancestor would land outside the
+ * projection tree; a link at the leaf is replaced, never written through). The
  * three adapter directories and the index are wholly generated outputs, so a regular file on
  * them that no declaration renders, whatever its extension, is stale and `--fix` removes it.
  * A canonical rule whose name a code span, a table cell or a path cannot carry is refused at
@@ -21,7 +22,7 @@
  * The comparison is byte for byte after one normalisation: every read is LF-normalised
  * (`toLfText`), so a CRLF checkout compares its content, never its line endings, and the
  * rendered projections are LF. The file system is an injected port (`rule-projection-fs.ts`),
- * every mutation a typed outcome, so the leg is proven over an in-memory tree.
+ * every read and every mutation a typed outcome, so the leg is proven over an in-memory tree.
  *
  * @packageDocumentation
  */
