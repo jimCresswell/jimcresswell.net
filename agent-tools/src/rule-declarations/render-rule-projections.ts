@@ -11,10 +11,11 @@
  *   applied, a situational rule is auto-attached by its globs or agent-requested by its
  *   description.
  * - Claude Code (`.claude/rules/<rule>.md`): a rule with globs is path-scoped by a `paths`
- *   LIST and imports the canonical rule with `@`; the import path is relative to the adapter
- *   file, not the working directory, so it climbs out of `.claude/rules/`. Every other rule is
- *   a plain pointer in a code span (import parsing skips code spans), loaded at launch like the
- *   project's own instructions.
+ *   LIST above the same plain pointer every other rule carries, in a code span. Never an `@`
+ *   import: measured on 2026-09-14 (two headless runs from a detached worktree, one a control
+ *   that read no file), an `@` import inside a path-scoped rule expands at launch, so every
+ *   scoped rule's canonical body would load at start, the opposite of what scoping is for;
+ *   the plain pointer is read on demand when the scope matches, as the platform documents.
  * - `.agents/rules/<rule>.md`: a plain pointer for every rule.
  * - `RULES_INDEX.md`: the discoverability index for platforms that load nothing else, one
  *   compact row per rule in name order, the trigger token in a code span so a glob inside it
@@ -102,15 +103,15 @@ export function renderCursorTrigger(declaration: RuleDeclaration): string {
  * Render the Claude Code rule adapter for a declaration.
  *
  * @param declaration - The rule declaration.
- * @returns The adapter file text: a `paths`-scoped import for a rule with globs, otherwise a
- * plain pointer.
+ * @returns The adapter file text: the plain pointer, under a `paths` block for a rule with
+ * globs.
  */
 export function renderClaudeRuleAdapter(declaration: RuleDeclaration): string {
   if (declaration.classification === 'core' || declaration.globs.length === 0) {
     return pointer(declaration);
   }
   const block = `${FENCE}${stringify({ paths: [...declaration.globs] }, { lineWidth: 0 })}${FENCE}`;
-  return `${block}\nRead and follow @../../.agent/rules/${declaration.name}.md\n`;
+  return `${block}\n${pointer(declaration)}`;
 }
 
 /**

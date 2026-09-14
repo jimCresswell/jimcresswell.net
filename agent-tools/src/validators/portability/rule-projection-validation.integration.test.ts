@@ -1,7 +1,9 @@
+import { err, ok } from '@engraph/result';
 import { describe, expect, it } from 'vitest';
 
 import type { DirectoryListing, EntryRead } from './directory-listing.js';
-import { validateRuleProjections, type RuleProjectionFs } from './rule-projection-validation.js';
+import { validateRuleProjections } from './rule-projection-validation.js';
+import type { RuleProjectionFs } from './rule-projection-fs.js';
 
 const CORE_RULE = '---\nclassification: core\ndescription: Alpha does a.\n---\n\n# Alpha\n';
 const SCOPED_RULE = [
@@ -19,13 +21,15 @@ const SCOPED_RULE = [
 
 /**
  * An in-memory repository keyed by repo-relative path; every write and removal is applied. A
- * directory exists when any path lies under it; `listings` overrides what listing it yields
- * and `reads` what reading a path yields (a foreign or unreadable entry).
+ * directory exists when any path lies under it; `listings` overrides what listing it yields,
+ * `reads` what reading a path yields (a foreign or unreadable entry), and `refusals` the
+ * mutations the port refuses (the entry changed under it).
  */
 function fakeRepo(
   initial: ReadonlyMap<string, string>,
   listings: ReadonlyMap<string, DirectoryListing> = new Map(),
   reads: ReadonlyMap<string, EntryRead> = new Map(),
+  refusals: ReadonlySet<string> = new Set(),
 ): RuleProjectionFs & { files: Map<string, string> } {
   const files = new Map(initial);
   return {
@@ -57,10 +61,22 @@ function fakeRepo(
       return text === undefined ? { kind: 'absent' } : { kind: 'text', text };
     },
     writeText: async (relPath, text) => {
+      if (refusals.has(relPath)) {
+        return err(
+          `${relPath}: not a regular file at the moment of the write; refusing the projection write`,
+        );
+      }
       files.set(relPath, text);
+      return ok(undefined);
     },
     removeFile: async (relPath) => {
+      if (refusals.has(relPath)) {
+        return err(
+          `${relPath}: not a regular file at the moment of the removal; refusing to remove it`,
+        );
+      }
       files.delete(relPath);
+      return ok(undefined);
     },
   };
 }
@@ -94,7 +110,7 @@ describe('validateRuleProjections', () => {
     expect(fix.issues).toEqual([]);
     expect(fix.written).toHaveLength(7);
     expect(repo.files.get('.claude/rules/beta.md')).toBe(
-      '---\npaths:\n  - "**/*.test.*"\n---\n\nRead and follow @../../.agent/rules/beta.md\n',
+      '---\npaths:\n  - "**/*.test.*"\n---\n\nRead and follow `.agent/rules/beta.md`.\n',
     );
     expect(repo.files.get('RULES_INDEX.md')).toContain('| `.agent/rules/alpha.md` | core | — |');
 
@@ -278,6 +294,32 @@ describe('validateRuleProjections', () => {
       '.claude/rules/local: not a regular file; the rule surfaces admit regular files only',
     ]);
     expect(fix.written).toStrictEqual([]);
+  });
+
+  it('refuses a canonical rule whose name a code span, a table cell or a path cannot carry', async () => {
+    const repo = bareRepo();
+    repo.files.set('.agent/rules/al`pha.md', CORE_RULE);
+    const fix = await validateRuleProjections(true, repo);
+    expect(fix.issues).toStrictEqual([
+      '.agent/rules/al`pha.md: "al`pha": not a rule basename (lowercase letters and digits in single-hyphen groups: one path segment, no dot segment, no .md suffix)',
+    ]);
+    expect(fix.written).toStrictEqual([]);
+    expect(repo.files.has('RULES_INDEX.md')).toBe(false);
+  });
+
+  it('ends a fix run at a refused mutation, reporting it with what was written before it', async () => {
+    const repo = fakeRepo(
+      bareRepo().files,
+      new Map(),
+      new Map(),
+      new Set(['.claude/rules/alpha.md']),
+    );
+    const fix = await validateRuleProjections(true, repo);
+    expect(fix.issues).toStrictEqual([
+      '.claude/rules/alpha.md: not a regular file at the moment of the write; refusing the projection write',
+    ]);
+    expect(fix.written).toStrictEqual(['RULES_INDEX.md', '.cursor/rules/alpha.mdc']);
+    expect(repo.files.has('.agents/rules/alpha.md')).toBe(false);
   });
 
   it('refuses to render anything while one rule has no declaration, naming the rule', async () => {

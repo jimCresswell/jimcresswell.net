@@ -312,7 +312,7 @@ describe('sweepRuleFrontmatter', () => {
         fs,
       );
       expect(outcome.refused).toEqual([
-        `${JSON.stringify(name)}: not a rule basename (one path segment: no separator, no dot segment, no .md suffix)`,
+        `${JSON.stringify(name)}: not a rule basename (lowercase letters and digits in single-hyphen groups: one path segment, no dot segment, no .md suffix)`,
       ]);
       expect(outcome.written).toEqual([]);
       expect(fs.writes.size).toBe(0);

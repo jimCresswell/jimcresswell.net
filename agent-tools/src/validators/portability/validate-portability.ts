@@ -43,7 +43,8 @@ import {
 } from './portability-fs.js';
 import { practiceSkillPermissionIssues } from './skill-census.js';
 import { reportPortabilityValidation } from './portability-report.js';
-import { realRuleProjectionFs, validateRuleProjections } from './rule-projection-validation.js';
+import { validateRuleProjections } from './rule-projection-validation.js';
+import { realRuleProjectionFs } from './rule-projection-fs.js';
 import { readEntry } from './rule-surface-fs.js';
 
 // projectDir is explicitly disabled: this validator reads and, under `--fix`,

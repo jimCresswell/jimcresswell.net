@@ -7,4 +7,4 @@ paths:
   - README.md
 ---
 
-Read and follow @../../.agent/rules/tsdoc-and-documentation-hygiene.md
+Read and follow `.agent/rules/tsdoc-and-documentation-hygiene.md`.

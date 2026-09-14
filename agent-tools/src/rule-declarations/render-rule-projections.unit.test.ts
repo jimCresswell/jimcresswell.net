@@ -108,7 +108,7 @@ describe('renderClaudeRuleAdapter', () => {
     );
   });
 
-  it('renders a scoped rule with a paths list and an import body', () => {
+  it('renders a scoped rule with a paths list above the plain pointer', () => {
     expect(renderClaudeRuleAdapter(scoped)).toBe(
       [
         '---',
@@ -117,13 +117,13 @@ describe('renderClaudeRuleAdapter', () => {
         '  - "**/*.tsx"',
         '---',
         '',
-        'Read and follow @../../.agent/rules/no-type-shortcuts.md',
+        'Read and follow `.agent/rules/no-type-shortcuts.md`.',
         '',
       ].join('\n'),
     );
   });
 
-  it('imports the canonical rule relative to the adapter, as Claude Code resolves @ paths', () => {
+  it('never renders an @ import: a scoped rule points in a code span like every other rule', () => {
     expect(renderClaudeRuleAdapter(braced)).toBe(
       [
         '---',
@@ -132,7 +132,7 @@ describe('renderClaudeRuleAdapter', () => {
         '  - e2e/**/*',
         '---',
         '',
-        'Read and follow @../../.agent/rules/use-result-pattern.md',
+        'Read and follow `.agent/rules/use-result-pattern.md`.',
         '',
       ].join('\n'),
     );
@@ -177,5 +177,10 @@ describe('renderRuleProjections', () => {
       '.agents/rules/compute-dont-hope.md',
     ]);
     expect(projections.every((projection) => projection.text.endsWith('\n'))).toBe(true);
+  });
+
+  it('renders no @ import on any surface, scoped or not: the platform expands one at launch', () => {
+    const projections = renderRuleProjections([core, scoped, braced, unscoped]);
+    expect(projections.filter((projection) => projection.text.includes('@'))).toStrictEqual([]);
   });
 });

@@ -3,4 +3,4 @@ paths:
   - "**/*.test.ts"
 ---
 
-Read and follow @../../.agent/rules/no-conditional-tests.md
+Read and follow `.agent/rules/no-conditional-tests.md`.

@@ -15,7 +15,13 @@
  * or as one of its ancestors (a write would follow the link out of the projection tree). The
  * three adapter directories and the index are wholly generated outputs, so a regular file on
  * them that no declaration renders, whatever its extension, is stale and `--fix` removes it.
- * The file system is an injected port so the leg is proven over an in-memory tree.
+ * A canonical rule whose name a code span, a table cell or a path cannot carry is refused at
+ * this boundary (`rule-name.ts`), before any projection is rendered from it.
+ *
+ * The comparison is byte for byte after one normalisation: every read is LF-normalised
+ * (`toLfText`), so a CRLF checkout compares its content, never its line endings, and the
+ * rendered projections are LF. The file system is an injected port (`rule-projection-fs.ts`),
+ * every mutation a typed outcome, so the leg is proven over an in-memory tree.
  *
  * @packageDocumentation
  */
@@ -25,6 +31,7 @@ import path from 'node:path';
 import { err, ok, type Result } from '@engraph/result';
 
 import { readRuleDeclaration } from '../../rule-declarations/read-rule-declaration.js';
+import { ruleNameRefusal } from '../../rule-declarations/rule-name.js';
 import {
   renderRuleProjections,
   RULES_INDEX_PATH,
@@ -36,9 +43,8 @@ import {
 } from '../../rule-declarations/rule-projection-drift.js';
 import type { RuleDeclaration } from '../../rule-declarations/rule-declaration.js';
 
-import type { DirectoryListing, EntryRead } from './directory-listing.js';
-import { removeFile, writeText } from './portability-fs.js';
-import { listDirectory, readEntry } from './rule-surface-fs.js';
+import { driftIssues, filesOf, REFUSING, textOf } from './projection-issues.js';
+import type { RuleProjectionFs } from './rule-projection-fs.js';
 
 /** The projection surfaces and the extension each carries. */
 const PROJECTION_SURFACES = [
@@ -48,30 +54,6 @@ const PROJECTION_SURFACES = [
 ] as const;
 
 const CANONICAL_RULES_DIR = '.agent/rules';
-const FIX_HINT = 'run `pnpm portability:fix`';
-const REFUSING = 'refusing to regenerate the rule projections';
-
-/**
- * The file-system operations the leg needs, all repo-relative; the real `node:fs` by default.
- * Every read is a typed outcome (`directory-listing.ts`), so the leg refuses on what it
- * measures and never catches its way past a failure.
- */
-export interface RuleProjectionFs {
-  listDirectory: (relDir: string, extension: string) => Promise<DirectoryListing>;
-  readEntry: (relPath: string) => Promise<EntryRead>;
-  writeText: (relPath: string, text: string) => Promise<void>;
-  removeFile: (relPath: string) => Promise<void>;
-}
-
-/** The real port over `<repoRoot>`. */
-export function realRuleProjectionFs(repoRoot: string): RuleProjectionFs {
-  return {
-    listDirectory: (relDir, extension) => listDirectory(repoRoot, relDir, extension),
-    readEntry: (relPath) => readEntry(repoRoot, relPath),
-    writeText: (relPath, text) => writeText(repoRoot, relPath, text, []),
-    removeFile: (relPath) => removeFile(repoRoot, relPath),
-  };
-}
 
 /** What the leg found and, in fix mode, did. */
 export interface RuleProjectionValidation {
@@ -108,67 +90,33 @@ export async function validateRuleProjections(
   if (!fixMode) {
     return { issues: driftIssues(drift), canonicalRuleCount, written: [], removed: [] };
   }
-  const applied = await applyDrift(expected, drift, projectionFs);
-  return { issues: [], canonicalRuleCount, ...applied };
+  return { canonicalRuleCount, ...(await applyDrift(expected, drift, projectionFs)) };
 }
 
+/** Apply the drift mutation by mutation; a refused mutation ends the run as the one issue. */
 async function applyDrift(
   expected: readonly RuleProjection[],
   drift: RuleProjectionDrift,
   projectionFs: RuleProjectionFs,
-): Promise<Pick<RuleProjectionValidation, 'written' | 'removed'>> {
+): Promise<Pick<RuleProjectionValidation, 'issues' | 'written' | 'removed'>> {
   const written: string[] = [];
+  const removed: string[] = [];
   const toWrite = new Set([...drift.missing, ...drift.drifted]);
   for (const projection of expected.filter((candidate) => toWrite.has(candidate.path))) {
-    await projectionFs.writeText(projection.path, projection.text);
+    const outcome = await projectionFs.writeText(projection.path, projection.text);
+    if (!outcome.ok) {
+      return { issues: [outcome.error], written, removed };
+    }
     written.push(projection.path);
   }
-  const removed: string[] = [];
   for (const stalePath of drift.stale) {
-    await projectionFs.removeFile(stalePath);
+    const outcome = await projectionFs.removeFile(stalePath);
+    if (!outcome.ok) {
+      return { issues: [outcome.error], written, removed };
+    }
     removed.push(stalePath);
   }
-  return { written, removed };
-}
-
-/**
- * The files a listing yields, or the one issue that refuses the leg. An absent projection
- * surface is empty (a fresh host has none yet) and a stray regular file on it is listed so
- * the drift reads it as stale; the absent canonical directory and a stray on it are refusals.
- */
-function filesOf(
-  relDir: string,
-  listing: DirectoryListing,
-  surface: 'projection' | 'canonical',
-): Result<readonly string[], string> {
-  if (listing.kind === 'files') {
-    if (surface === 'projection' || listing.stray.length === 0) {
-      return ok([...listing.files, ...listing.stray].sort((a, b) => a.localeCompare(b)));
-    }
-    const strays = listing.stray.join(', ');
-    return err(`${strays}: not a rule; the canonical rules directory admits .md rules only`);
-  }
-  if (listing.kind === 'absent') {
-    return surface === 'projection' ? ok([]) : err(`${relDir}: no such directory; ${REFUSING}`);
-  }
-  if (listing.kind === 'unreadable') {
-    return err(`${relDir}: unreadable (${listing.cause}); ${REFUSING}`);
-  }
-  return err(`${listing.entry}: not a regular file; the rule surfaces admit regular files only`);
-}
-
-/** The text an entry read yields, or the one issue that refuses the leg, naming the path. */
-function textOf(relPath: string, read: EntryRead): Result<string, string> {
-  if (read.kind === 'text') {
-    return ok(read.text);
-  }
-  if (read.kind === 'absent') {
-    return err(`${relPath}: vanished between listing and read; ${REFUSING}`);
-  }
-  if (read.kind === 'unreadable') {
-    return err(`${relPath}: unreadable (${read.cause}); ${REFUSING}`);
-  }
-  return err(`${relPath}: not a regular file; the rule surfaces admit regular files only`);
+  return { issues: [], written, removed };
 }
 
 interface CanonicalRules {
@@ -190,19 +138,34 @@ async function readDeclarations(projectionFs: RuleProjectionFs): Promise<Canonic
   const declarations: RuleDeclaration[] = [];
   const issues: string[] = [];
   for (const ruleFile of files.value) {
-    const text = textOf(ruleFile, await projectionFs.readEntry(ruleFile));
-    if (!text.ok) {
-      issues.push(text.error);
-      continue;
-    }
-    const declaration = readRuleDeclaration(path.basename(ruleFile, '.md'), text.value);
+    const declaration = await readOneDeclaration(ruleFile, projectionFs);
     if (declaration.ok) {
       declarations.push(declaration.value);
     } else {
-      issues.push(`${declaration.error} (declare it in the rule's frontmatter)`);
+      issues.push(declaration.error);
     }
   }
   return { declarations, issues, canonicalRuleCount: files.value.length };
+}
+
+/** One canonical rule's declaration: its name admitted, its text read, its block parsed. */
+async function readOneDeclaration(
+  ruleFile: string,
+  projectionFs: RuleProjectionFs,
+): Promise<Result<RuleDeclaration, string>> {
+  const name = path.basename(ruleFile, '.md');
+  const refusal = ruleNameRefusal(name);
+  if (refusal !== undefined) {
+    return err(`${ruleFile}: ${refusal}`);
+  }
+  const text = textOf(ruleFile, await projectionFs.readEntry(ruleFile));
+  if (!text.ok) {
+    return text;
+  }
+  const declaration = readRuleDeclaration(name, text.value);
+  return declaration.ok
+    ? declaration
+    : err(`${declaration.error} (declare it in the rule's frontmatter)`);
 }
 
 /** Every file currently on the projection surfaces, plus the index when present. */
@@ -233,17 +196,4 @@ async function readSurfaces(
     }
   }
   return ok(actual);
-}
-
-function driftIssues(drift: RuleProjectionDrift): string[] {
-  return [
-    ...drift.missing.map((file) => `${file}: missing rule projection (${FIX_HINT})`),
-    ...drift.drifted.map(
-      (file) =>
-        `${file}: drifted from the rule's declaration; projections are never hand-edited (${FIX_HINT})`,
-    ),
-    ...drift.stale.map(
-      (file) => `${file}: no canonical rule renders it (${FIX_HINT} to remove it)`,
-    ),
-  ];
 }

@@ -4,4 +4,4 @@ paths:
   - .agent/collaboration/**
 ---
 
-Read and follow @../../.agent/rules/sha-prefix-in-collaboration-content.md
+Read and follow `.agent/rules/sha-prefix-in-collaboration-content.md`.

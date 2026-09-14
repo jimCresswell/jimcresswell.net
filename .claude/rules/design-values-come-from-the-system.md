@@ -5,4 +5,4 @@ paths:
   - packages/design/**
 ---
 
-Read and follow @../../.agent/rules/design-values-come-from-the-system.md
+Read and follow `.agent/rules/design-values-come-from-the-system.md`.

@@ -58,16 +58,6 @@ export async function writeText(
 }
 
 /**
- * Removes the file at `<repoRoot>/<relPath>`.
- *
- * @param repoRoot - Absolute path to the repository root.
- * @param relPath  - Repo-relative path of the file to remove.
- */
-export async function removeFile(repoRoot: string, relPath: string): Promise<void> {
-  await fs.rm(path.join(repoRoot, relPath));
-}
-
-/**
  * Parses the JSON file at `<repoRoot>/<relPath>`.
  *
  * @param repoRoot - Absolute path to the repository root.

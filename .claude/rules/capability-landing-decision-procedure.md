@@ -7,4 +7,4 @@ paths:
   - .agent/hooks/**
 ---
 
-Read and follow @../../.agent/rules/capability-landing-decision-procedure.md
+Read and follow `.agent/rules/capability-landing-decision-procedure.md`.

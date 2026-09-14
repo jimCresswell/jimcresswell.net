@@ -7,4 +7,4 @@ paths:
   - .agent/directives/**
 ---
 
-Read and follow @../../.agent/rules/record-generalisation-moves.md
+Read and follow `.agent/rules/record-generalisation-moves.md`.
