@@ -330,3 +330,16 @@ explicit pathspec; a green, clean PR is merged without asking.
 - **Processes at this checkpoint:** the #74 poll stopped by the owner's word; no watcher,
   cron or heartbeat loop owned by this seat. This checkpoint branch (records/lane-a-checkpoint-4)
   stays local until the queue ahead of it has pushed (the Director's word).
+
+### Correction ~08:05Z: the watcher was live
+
+- The addendum above said no watcher was this seat's. Wrong: the all-channels comms watcher
+  (monitor task, re-armed the previous evening) was still armed and delivered the Director's
+  post-compaction broadcast at 06:51Z. Stopped now under the owner's word. The blind-spot
+  bound in the fourth waypoint ("the watcher's state is unknown") was the honest statement;
+  the addendum's "no watcher" was an inference reported as a fact, and this line corrects it.
+  Re-arm after compaction, verifying the task list first, from the worktree root in the
+  background: `node agent-tools/dist/src/bin/agent-tools.js collaboration-state -- comms watch
+  --platform claude --model claude-fable-5-1 --supervisor-pid <this session's pid>
+  --step-timeout-ms 120000 --max-events-per-drain 100` (the canonical shape, supervisor pid
+  bound, per the Director's #76 cure).
