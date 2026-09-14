@@ -178,10 +178,22 @@ export async function startServer(
   }
 }
 
+/**
+ * The server command: this node executable with tsx registered in-process, so the server script
+ * IS the child. The tsx CLI would sit between as a relay that forwards the stop signal and
+ * waits 30 ms for the script's acknowledgement before killing it and exiting 143, so a stall in
+ * the server at that instant would read as a failed stop through no fault of the server.
+ */
+export function serverCommand(): { readonly command: string; readonly args: readonly string[] } {
+  return {
+    command: process.execPath,
+    args: ["--import", "tsx", path.join(SITE_DIRECTORY, "scripts", "e2e-web-server.ts")],
+  };
+}
+
 export default async function globalSetup(): Promise<() => Promise<void>> {
-  const server = await startServer(path.join(SITE_DIRECTORY, "node_modules", ".bin", "tsx"), [
-    path.join(SITE_DIRECTORY, "scripts", "e2e-web-server.ts"),
-  ]);
+  const { command, args } = serverCommand();
+  const server = await startServer(command, args);
   process.env[BASE_URL_VARIABLE] = server.origin;
   return server.stop;
 }

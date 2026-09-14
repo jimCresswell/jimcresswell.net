@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { startServer } from "./e2e-global-setup";
+import { serverCommand, startServer } from "./e2e-global-setup";
 
 /**
  * Spawn-topology cells (testing-strategy §No process spawning names this shape as the
@@ -8,6 +8,15 @@ import { startServer } from "./e2e-global-setup";
  * so real children run, as `node -e` one-liners and one unstartable path, with no shell. The
  * 5-second deadline is a harness bound, not a wall-clock claim.
  */
+describe("serverCommand", () => {
+  it("runs the server script as this node executable's own child, no CLI relay between", () => {
+    const { command, args } = serverCommand();
+    expect(command).toBe(process.execPath);
+    expect(args.slice(0, 2)).toEqual(["--import", "tsx"]);
+    expect(args.at(-1)).toMatch(/e2e-web-server\.ts$/u);
+  });
+});
+
 describe("startServer", () => {
   it("a command that cannot start rejects with the spawn error and its stop resolves, never hanging on an exit that cannot come", async () => {
     const started = startServer("/nonexistent/e2e-server-binary", [], 5_000);
