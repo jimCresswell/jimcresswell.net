@@ -28,6 +28,7 @@ import { loadScopedContentBlocks } from '../../hook-policy/policy-loader.js';
 
 import {
   lineageNeedles,
+  needleDefects,
   scanForLineageNames,
   selectLineageNameBlock,
 } from './validate-no-lineage-names-helpers.js';
@@ -37,6 +38,16 @@ const block = selectLineageNameBlock(await loadScopedContentBlocks());
 
 if (block === undefined) {
   writeErrorLine('validate-no-lineage-names: no `lineage-name` block in .agent/hooks/policy.json');
+  process.exit(2);
+}
+
+const defects = needleDefects(block);
+if (defects.length > 0) {
+  // The hook reads the names raw; a name the gate would have to normalise
+  // is a name the two would read differently. Refuse rather than diverge.
+  writeErrorLine(
+    `validate-no-lineage-names: the \`lineage-name\` block is malformed — ${defects.join('; ')}`,
+  );
   process.exit(2);
 }
 

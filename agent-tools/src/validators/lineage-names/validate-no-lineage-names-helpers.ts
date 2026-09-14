@@ -53,16 +53,30 @@ export function selectLineageNameBlock(
   return blocks.find((block) => block.concept === LINEAGE_NAME_CONCEPT);
 }
 
-/** The needle set: the block's declared names, trimmed, deduplicated case-insensitively. */
-export function lineageNeedles(block: ScopedContentBlockGroup): string[] {
-  const needles: string[] = [];
-  for (const candidate of block.patterns.map((pattern) => pattern.trim())) {
-    const lower = candidate.toLowerCase();
-    if (lower !== '' && !needles.some((needle) => needle.toLowerCase() === lower)) {
-      needles.push(candidate);
+/**
+ * The block's declared names that the hook and the gate would read differently:
+ * a padded name (the hook matches it raw, the gate would trim it) or a
+ * duplicate. A block carrying one is refused so the two never diverge.
+ */
+export function needleDefects(block: ScopedContentBlockGroup): string[] {
+  const defects: string[] = [];
+  const seen = new Set<string>();
+  for (const pattern of block.patterns) {
+    if (pattern !== pattern.trim() || pattern === '') {
+      defects.push(`padded or empty name ${JSON.stringify(pattern)}`);
     }
+    const lower = pattern.trim().toLowerCase();
+    if (seen.has(lower)) {
+      defects.push(`duplicate name ${JSON.stringify(pattern)}`);
+    }
+    seen.add(lower);
   }
-  return needles;
+  return defects;
+}
+
+/** The needle set: the block's declared names as written (a block with defects is refused first). */
+export function lineageNeedles(block: ScopedContentBlockGroup): string[] {
+  return [...block.patterns];
 }
 
 /**

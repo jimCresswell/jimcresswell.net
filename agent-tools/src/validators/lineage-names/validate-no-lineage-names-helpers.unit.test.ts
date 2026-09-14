@@ -6,6 +6,7 @@ import { type ScopedContentBlockGroup } from '../../hook-policy/types.js';
 import {
   findLineageNameHits,
   lineageNeedles,
+  needleDefects,
   scanForLineageNames,
   selectLineageNameBlock,
   type ScanFile,
@@ -20,14 +21,24 @@ const BLOCK: ScopedContentBlockGroup = {
   citation: 'a cell fixture',
 };
 
-describe('lineageNeedles', () => {
-  it('takes the declared names, trimmed and deduplicated case-insensitively', () => {
+describe('needleDefects and lineageNeedles', () => {
+  it('a padded, empty or duplicate name is a defect: the hook and the gate would read it apart', () => {
     expect(
-      lineageNeedles({
-        ...BLOCK,
-        patterns: ['exampleorg', ' ExampleOrg ', 'upstream-lineage', ''],
-      }),
-    ).toEqual(['exampleorg', 'upstream-lineage']);
+      needleDefects({ ...BLOCK, patterns: ['exampleorg', ' ExampleOrg ', '', 'ExampleOrg'] }),
+    ).toEqual([
+      'padded or empty name " ExampleOrg "',
+      'duplicate name " ExampleOrg "',
+      'padded or empty name ""',
+      'duplicate name "ExampleOrg"',
+    ]);
+    expect(needleDefects(BLOCK)).toEqual([]);
+  });
+
+  it('the needles are the declared names as written', () => {
+    expect(lineageNeedles({ ...BLOCK, patterns: ['exampleorg', 'upstream-lineage'] })).toEqual([
+      'exampleorg',
+      'upstream-lineage',
+    ]);
   });
 });
 
@@ -68,19 +79,53 @@ describe('scanForLineageNames', () => {
   });
 });
 
+/**
+ * An inert stand-in used ONLY when the live block is absent: it exempts
+ * nothing and names nothing, so every live-block cell below fails visibly
+ * beside the existence guard; absence is loud.
+ */
+const INERT_BLOCK: ScopedContentBlockGroup = {
+  concept: 'lineage-name-missing',
+  kind: 'literal',
+  patterns: [],
+  include_paths: [''],
+  citation: 'placeholder — the existence guard cell reds when this is in use',
+};
+
+async function loadLiveBlockOrInert(): Promise<ScopedContentBlockGroup> {
+  return selectLineageNameBlock(await loadScopedContentBlocks()) ?? INERT_BLOCK;
+}
+
 describe('the live lineage-name block', () => {
-  it('exists in the policy, is literal, and exempts the records and the CV content', async () => {
+  it('exists in the policy, is literal, and declares well-formed names', async () => {
     const block = selectLineageNameBlock(await loadScopedContentBlocks());
     expect(block).toBeDefined();
     expect(block?.kind).toBe('literal');
-    expect(block?.exclude_paths).toEqual(
-      expect.arrayContaining([
-        '.agent/practice-core/provenance.yml',
-        '.agent/practice-core/CHANGELOG.md',
-        '.agent/memory/',
-        '.agent/reports/',
-        'jcdotnet/content/',
-      ]),
+    expect(needleDefects(block ?? INERT_BLOCK)).toEqual([]);
+    expect(lineageNeedles(block ?? INERT_BLOCK).length).toBeGreaterThan(0);
+  });
+
+  it('through the live block a manifest is in scope and the records and the CV content are exempt', async () => {
+    const block = await loadLiveBlockOrInert();
+    const needles = lineageNeedles(block);
+    const carrying = (path: string): ScanFile => ({
+      path,
+      content: `see ${needles[0] ?? 'nothing'} here`,
+    });
+    const hits = scanForLineageNames(
+      [
+        carrying('tooling/x/package.json'),
+        carrying('.agent/practice-core/provenance.yml'),
+        carrying('.agent/practice-core/CHANGELOG.md'),
+        carrying('.agent/memory/active/napkin.md'),
+        carrying('.agent/reports/2026/x.md'),
+        carrying('.agent/plans-legacy-2026-09/archive/x.plan.md'),
+        carrying('docs/explorations/2026-09-12-x.md'),
+        carrying('jcdotnet/content/cv.content.json'),
+      ],
+      block,
+      needles,
     );
+    expect(hits.map((hit) => hit.file)).toEqual(['tooling/x/package.json']);
   });
 });

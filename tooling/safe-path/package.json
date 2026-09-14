@@ -41,7 +41,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jimCresswell/jimcresswell.net.git",
-    "directory": "packages/core/safe-path"
+    "directory": "tooling/safe-path"
   },
   "bugs": {
     "url": "https://github.com/jimCresswell/jimcresswell.net/issues"

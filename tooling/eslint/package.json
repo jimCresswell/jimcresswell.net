@@ -59,7 +59,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jimCresswell/jimcresswell.net.git",
-    "directory": "packages/core/oak-eslint"
+    "directory": "tooling/eslint"
   },
   "bugs": {
     "url": "https://github.com/jimCresswell/jimcresswell.net/issues"
