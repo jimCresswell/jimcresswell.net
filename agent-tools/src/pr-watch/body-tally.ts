@@ -27,8 +27,8 @@ export interface BodyTally {
   readonly suppressed: number | null;
 }
 
-// Every `###` heading, with a leading pictographic token (an emoji, with or
-// without its variation selector) removed; a heading led by a word keeps every
+// Every `###` heading, with a leading emoji run (pictographs with their skin
+// modifiers, flags, keycaps and variation selectors) removed; a heading led by a word keeps every
 // word, so a non-vendor body's verdict is quoted whole. The suppressed-count
 // marker is a `###` heading too and is never the verdict: a body holding only
 // the marker tallies no verdict (the #67 body finding, 2026-09-14).
@@ -37,12 +37,15 @@ export interface BodyTally {
 // The capture begins and ends on a non-whitespace character, so a heading that
 // is only whitespace after the marker is no verdict (the #72 body finding: a
 // lazy `.+?` handed a lone space or tab over as the verdict); the leading
-// pictographic run is stripped from the capture afterwards, so a heading that
-// is only an emoji is no verdict either; the run, not one pictograph, because
-// the printable pass drops the joiner from a composed emoji and leaves its
-// pictographs adjacent (the #90 round-one finding).
+// emoji run is stripped from the capture afterwards, so a heading that is only
+// an emoji is no verdict either; a run of the emoji class, not one pictograph,
+// because the printable pass drops the joiner from a composed emoji and leaves
+// its pictographs adjacent, and a skin modifier, a regional indicator (a flag)
+// or a keycap enclosure is no pictograph itself (the #90 round-one finding and
+// its code-expert pass).
 const HEADINGS = /^###[ \t]+(\S(?:.*?\S)?)[ \t]*$/gmu;
-const LEADING_PICTOGRAPH = /^(?:\p{Extended_Pictographic}\u{FE0F}?)+(?:[ \t]+|$)/u;
+const LEADING_PICTOGRAPH =
+  /^(?:\p{Extended_Pictographic}|\p{Emoji_Modifier}|\p{Regional_Indicator}|[0-9#*]\u{FE0F}?\u{20E3}|\u{FE0F})+(?:[ \t]+|$)/u;
 const SUPPRESSED = /^###[ \t]+Suppressed comments \((\d+)\)[ \t]*$/mu;
 const SUPPRESSED_MARKER = /^Suppressed comments \(/u;
 

@@ -201,7 +201,7 @@ export function findAddedScopedBlock(
   repoRoot?: string,
 ): ScopedBlockMatch | null {
   for (const group of groups) {
-    if (!isPathInScope(filePath, group.include_paths, group.exclude_paths, repoRoot)) {
+    if (!isPathInScope(filePath, group.include_paths, group.exclude_paths, { repoRoot })) {
       continue;
     }
     for (const pattern of group.patterns) {

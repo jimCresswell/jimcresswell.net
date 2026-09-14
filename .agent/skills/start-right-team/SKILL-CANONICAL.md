@@ -734,8 +734,8 @@ Once a team session is active, every participating agent must check for new
 messages of any type at least once every 120 seconds until they close out or
 are explicitly released from the team route. Use a tighter cadence when the
 owner or controller sets one. At n=2 this sweep is dropped (PDR-082 §What drops
-at n=2): the all-channels watcher and the partner's native messages carry the
-incoming side, and the progress report below takes the state-line form.
+at n=2: owner-chat is the cadence), and the progress report below takes the
+state-line form during a long turn.
 
 Where an event-driven monitor covers a surface (per
 [`use-monitor-for-event-driven-wake`](../../rules/use-monitor-for-event-driven-wake.md)),
@@ -764,7 +764,8 @@ ArcAngel tail. The two watchers are paired, always (First Moves move 1).
 Each participating agent must also report progress at least once every 120
 seconds. A progress report can be a brief owner-facing update, a shared-comms
 entry, or a directed reply, depending on the team route; at n=2 it is the state
-line to the partner seat (PDR-082 §Amendment Log, 2026-09-14). It should name
+line to the partner seat during a long turn (PDR-082 §Amendment Log,
+2026-09-14). It should name
 the current state, any blocker, and the next action. Silence is only acceptable
 after the agent has been explicitly released, closed out, or told to stop
 reporting.

@@ -4,39 +4,58 @@
  * blocks (repository-relative paths): lineage names, machine-local paths.
  * The root a root-anchored scope reads against is the caller's: for the hook,
  * the session's project directory; a path outside it matches no anchored
- * scope, so the anchor fails closed, never open.
+ * scope, so the anchor fails closed, never open. Separators are the host's:
+ * on a Windows host (`sep` is the backslash) a backslash reads as `/` in the
+ * path and the root before any scope is tested; on a POSIX host a backslash
+ * is a character of a name and reads as nothing else. The prefix comparison
+ * is case-sensitive, so a drive letter spelt two ways for one tree fails
+ * closed (the exemption does not apply), never open.
  */
+
+import { sep } from 'node:path';
 
 /** A Windows absolute path: a drive letter with a separator, or a UNC root. */
 const WINDOWS_ABSOLUTE = /^(?:[A-Za-z]:[\\/]|\\\\)/u;
 
-/** The path with the host's separators read as `/`, so every scope form compares one way. */
-function withSlashes(filePath: string): string {
-  return filePath.replaceAll('\\', '/');
+/** The seams a caller may set: the repository root and the host's path separator. */
+export interface PathScopeOptions {
+  /** The repository root an absolute path is made relative to; none means no anchored match. */
+  readonly repoRoot?: string;
+  /** The host's separator; a backslash host reads backslashes as `/`. Defaults to `node:path`'s. */
+  readonly separator?: '/' | '\\';
 }
 
-function isAbsolutePath(filePath: string): boolean {
-  return filePath.startsWith('/') || WINDOWS_ABSOLUTE.test(filePath);
+/** The path with the host's separators read as `/`, so every scope form compares one way. */
+function withSlashes(filePath: string, separator: '/' | '\\'): string {
+  return separator === '\\' ? filePath.replaceAll('\\', '/') : filePath;
+}
+
+function isAbsolutePath(filePath: string, separator: '/' | '\\'): boolean {
+  return filePath.startsWith('/') || (separator === '\\' && WINDOWS_ABSOLUTE.test(filePath));
 }
 
 /**
  * The file path relative to the repository root, when it can be: a relative
  * path as given; an absolute path inside a known root made relative; an
  * absolute path outside the root, or with no root known, `undefined` (it is
- * no repository surface, so no root-anchored scope can name it). Separators
- * are read as `/` on both sides, so a Windows path and root compare too.
+ * no repository surface, so no root-anchored scope can name it).
  */
-function repoRelativePath(filePath: string, repoRoot: string | undefined): string | undefined {
-  const file = withSlashes(filePath);
-  if (!isAbsolutePath(filePath)) {
+function repoRelativePath(filePath: string, options: PathScopeOptions): string | undefined {
+  const separator = options.separator ?? hostSeparator();
+  const file = withSlashes(filePath, separator);
+  if (!isAbsolutePath(filePath, separator)) {
     return file;
   }
-  if (repoRoot === undefined) {
+  if (options.repoRoot === undefined) {
     return undefined;
   }
-  const root = withSlashes(repoRoot);
+  const root = withSlashes(options.repoRoot, separator);
   const prefix = root.endsWith('/') ? root : `${root}/`;
   return file.startsWith(prefix) ? file.slice(prefix.length) : undefined;
+}
+
+function hostSeparator(): '/' | '\\' {
+  return sep === '\\' ? '\\' : '/';
 }
 
 /**
@@ -64,20 +83,21 @@ function underAnchor(relative: string, anchor: string): boolean {
  * works equivalently for absolute and relative forms because the path
  * always contains its own directory prefix.
  */
-function matchesPathScope(filePath: string, scope: string, repoRoot: string | undefined): boolean {
+function matchesPathScope(filePath: string, scope: string, options: PathScopeOptions): boolean {
+  const slashed = withSlashes(filePath, options.separator ?? hostSeparator());
   if (scope.startsWith('**/*')) {
-    return withSlashes(filePath).endsWith(scope.slice(4));
+    return slashed.endsWith(scope.slice(4));
   }
   if (scope.startsWith('./')) {
-    const relative = repoRelativePath(filePath, repoRoot);
+    const relative = repoRelativePath(filePath, options);
     return relative !== undefined && underAnchor(relative, scope.slice(2));
   }
-  return withSlashes(filePath).includes(scope);
+  return slashed.includes(scope);
 }
 
 /**
  * Determine whether a file path is in scope for a `ScopedContentBlockGroup` —
- * matches at least one include and no excludes. `repoRoot` lets a
+ * matches at least one include and no excludes. `options.repoRoot` lets a
  * root-anchored scope read an absolute path (the write-hook's form); the
  * whole-tree gates pass repository-relative paths and need no root.
  */
@@ -85,14 +105,14 @@ export function isPathInScope(
   filePath: string | undefined,
   includePaths: readonly string[],
   excludePaths: readonly string[] = [],
-  repoRoot?: string,
+  options: PathScopeOptions = {},
 ): boolean {
   if (filePath === undefined) {
     return false;
   }
-  const matchesInclude = includePaths.some((scope) => matchesPathScope(filePath, scope, repoRoot));
+  const matchesInclude = includePaths.some((scope) => matchesPathScope(filePath, scope, options));
   if (!matchesInclude) {
     return false;
   }
-  return !excludePaths.some((scope) => matchesPathScope(filePath, scope, repoRoot));
+  return !excludePaths.some((scope) => matchesPathScope(filePath, scope, options));
 }

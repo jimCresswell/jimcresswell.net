@@ -29,20 +29,23 @@ describe('isPathInScope', () => {
   });
 
   it('with the repo root known, an absolute path inside it is anchored at that root', () => {
-    const root = '/checkout/repo';
     const excludes = ['./.agent/hooks/policy.json'];
-    expect(isPathInScope('/checkout/repo/.agent/hooks/policy.json', [''], excludes, root)).toBe(
+    const posix = { repoRoot: '/checkout/repo', separator: '/' } as const;
+    expect(isPathInScope('/checkout/repo/.agent/hooks/policy.json', [''], excludes, posix)).toBe(
       false,
     );
     expect(
-      isPathInScope('/checkout/repo/evil/.agent/hooks/policy.json', [''], excludes, root),
+      isPathInScope('/checkout/repo/evil/.agent/hooks/policy.json', [''], excludes, posix),
     ).toBe(true);
   });
 
   it('a root-anchored scope never matches a path outside the repository', () => {
     const excludes = ['./.agent/hooks/policy.json'];
     expect(
-      isPathInScope('/elsewhere/.agent/hooks/policy.json', [''], excludes, '/checkout/repo'),
+      isPathInScope('/elsewhere/.agent/hooks/policy.json', [''], excludes, {
+        repoRoot: '/checkout/repo',
+        separator: '/',
+      }),
     ).toBe(true);
     expect(isPathInScope('/elsewhere/.agent/hooks/policy.json', [''], excludes)).toBe(true);
   });
@@ -54,35 +57,38 @@ describe('isPathInScope', () => {
     expect(isPathInScope('.agent/memory-notes/x.md', [''], excludes)).toBe(true);
   });
 
-  it('reads a Windows path and root with their own separators (drive letter and UNC)', () => {
+  it('on a backslash host, a Windows path and root read through their separators (drive letter and UNC)', () => {
     const excludes = ['./.agent/hooks/policy.json'];
+    const windows = { repoRoot: String.raw`C:\repo`, separator: '\\' } as const;
     expect(
-      isPathInScope(
-        String.raw`C:\repo\.agent\hooks\policy.json`,
-        [''],
-        excludes,
-        String.raw`C:\repo`,
-      ),
+      isPathInScope(String.raw`C:\repo\.agent\hooks\policy.json`, [''], excludes, windows),
     ).toBe(false);
     expect(
-      isPathInScope(
-        String.raw`C:\repo\nested\.agent\hooks\policy.json`,
-        [''],
-        excludes,
-        String.raw`C:\repo`,
-      ),
+      isPathInScope(String.raw`C:\repo\nested\.agent\hooks\policy.json`, [''], excludes, windows),
     ).toBe(true);
     expect(
-      isPathInScope(
-        String.raw`\\server\share\repo\.agent\hooks\policy.json`,
-        [''],
-        excludes,
-        String.raw`\\server\share\repo`,
-      ),
+      isPathInScope(String.raw`\\server\share\repo\.agent\hooks\policy.json`, [''], excludes, {
+        repoRoot: String.raw`\\server\share\repo`,
+        separator: '\\',
+      }),
     ).toBe(false);
-    // The substring and suffix forms read the same separators.
-    expect(isPathInScope(String.raw`a\hooks\policy.json`, [''], ['hooks/policy.json'])).toBe(false);
-    expect(isPathInScope(String.raw`x\y.plan.md`, ['**/*.plan.md'])).toBe(true);
+    // The substring and suffix forms read the same separators on that host.
+    const host = { separator: '\\' } as const;
+    expect(isPathInScope(String.raw`a\hooks\policy.json`, [''], ['hooks/policy.json'], host)).toBe(
+      false,
+    );
+    expect(
+      isPathInScope(String.raw`a\hooks\policy.json`, ['**/*hooks/policy.json'], [], host),
+    ).toBe(true);
+  });
+
+  it('on a POSIX host, a backslash is a character of a name and claims no exemption', () => {
+    const excludes = ['./.agent/hooks/policy.json'];
+    const posix = { separator: '/' } as const;
+    expect(isPathInScope(String.raw`.agent\hooks\policy.json`, [''], excludes, posix)).toBe(true);
+    expect(isPathInScope(String.raw`a\hooks\policy.json`, [''], ['hooks/policy.json'], posix)).toBe(
+      true,
+    );
   });
 
   it('an undefined path is never in scope', () => {

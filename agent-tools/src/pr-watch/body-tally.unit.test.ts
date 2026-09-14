@@ -112,4 +112,13 @@ describe('tallyReviewBody', () => {
       'Changes recommended',
     );
   });
+
+  it('a skin-modified, flag or keycap emoji heading is no verdict; led by one it keeps its words', () => {
+    expect(tallyReviewBody('### 👩🏽\u{200D}💻\n### Looks good').verdict).toBe('Looks good');
+    expect(tallyReviewBody('### 👍🏽 Looks good').verdict).toBe('Looks good');
+    expect(tallyReviewBody('### 🇬🇧\n### Looks good').verdict).toBe('Looks good');
+    expect(tallyReviewBody('### 1\u{FE0F}\u{20E3}\n### Looks good').verdict).toBe('Looks good');
+    // A digit that is not a keycap is a word, kept.
+    expect(tallyReviewBody('### 1 issue remains').verdict).toBe('1 issue remains');
+  });
 });
