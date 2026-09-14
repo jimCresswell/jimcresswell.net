@@ -60,6 +60,14 @@ const config: KnipConfig = {
         'src/subagent-declarations/subagent-frontmatter-sweep.ts',
         'src/practice-fitness/validate-practice-fitness.ts',
         'src/plan-state/plan-state.ts',
+        // Corpus-analysis (closure item 4, row 3): the four workflow stage entries are
+        // consumed by esbuild as string entry points in workflows/build/build-config.ts,
+        // and the build and post-run drivers are tsx-invoked package scripts.
+        'src/corpus-analysis/workflows/*.workflow.ts',
+        'src/corpus-analysis/workflows/build/build-workflows.ts',
+        'src/corpus-analysis/workflows/build/build-run-artefact.ts',
+        'src/corpus-analysis/post-run/post-run-driver.ts',
+        'src/corpus-analysis/post-run/salvage-driver.ts',
         'smoke-tests/**/*.ts',
       ],
       project: ['src/**/*.{ts,tsx,css}', 'tests/**/*.ts', 'smoke-tests/**/*.ts'],

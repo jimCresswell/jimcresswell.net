@@ -119,6 +119,8 @@ env.vercel.local
 .next
 out
 build
+# The corpus-analysis workflow build sources are not build output (closure item 4, row 3).
+!agent-tools/src/corpus-analysis/workflows/build/
 
 # Vercel
 .vercel
