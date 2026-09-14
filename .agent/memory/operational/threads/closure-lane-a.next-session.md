@@ -539,3 +539,21 @@ segments nine and ten landed with this checkpoint (lessons); the formation lette
 
 A further metaloss pass would only re-find the absent stream lines and the dead reviewer
 contexts; the recursion closes here.
+
+### Addendum 08:58Z: the first act after compaction is #79 round three, then #77 round three
+
+The Director (08:57Z) granted #79 round three (PDR-132): Copilot on SHA: 2b08e619 left one
+open thread and two suppressed, all three block, and this round comes BEFORE #77's because
+5a-vi is the mechanism every later merge waits on and the round is small. The findings, as
+absorbed: (1) `suppressed-hold.ts:60`, `loginKey` reuses `normaliseLogin`, which strips the
+`[bot]` suffix, so a comment from `foo[bot]` is treated as the permitted `foo` and can lift;
+compare only the `app/` prefix and case at this boundary, with a regression cell for a
+bot-suffixed login. (2) `state-gh.ts:136`, the final `pr view` confirm checks `headRefOid`
+only and never revalidates the review harvest, so a review landing on the same tip between
+the closing harvest and the confirm leaves the hold reading the old list; close the review
+and thread bracket after the confirm, or run a final harvest consistency check before
+returning (one bracket for all three legs, reviews, threads and comments, is the shape that
+ends the class round one's comments finding belongs to). (3) `state-gh.ts:137`, the
+`readPrStateReading` `@throws` contract omits the issue-comments leg's failures; add it so
+the fail-closed contract is complete. Then #77 round three as designed above. Code-expert
+before each push; slot ask each time.
