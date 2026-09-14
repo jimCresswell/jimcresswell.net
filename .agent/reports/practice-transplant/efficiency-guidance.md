@@ -263,3 +263,47 @@ fixes; both under the owner's "no errors, no warnings" bar.
   like any other, and two of ten carried a path that did not exist. About fifteen minutes per
   template first-hand; the adapter descriptions still need regenerating from the new identity
   summaries, which is the generator's job.
+
+## Addendum (2026-09-13 to 14, the closure): what closing costs, and what closes it
+
+Instance 1 closed over two sessions and thirty-three pull requests (a Director seat with up to
+three Implementer lanes, then one), against eight ratified items each carrying a proof. The
+measured shape:
+
+- **Close on proofs, not on follow-ons.** Every landed item spawned annotations naming further
+  pull requests; read as scope, they made the closure a project. The rule that held: an item is
+  complete when its ratified proof reads green, and every other row goes to a register with a
+  home outside the closure. The owner's question on the last evening was "what is actually
+  necessary", and the answer came from the proofs.
+- **The archive is processed by computation, then deleted.** The pre-transplant archive of 255
+  files was dispositioned by a script against the live tree (identical, superseded at path,
+  absorbed, superseded by name, residue), the residue ruled in one round, then removed. Nothing
+  moved into a reference directory; a move is never an end state.
+- **The review loop needs a terminator.** With a merge bot that refuses while the latest review
+  carries undispositioned suppressed findings, the loop ends only when a signed comment posted
+  after that review dispositions every finding (cured in a named commit, or rejected with a
+  rationale and a home) and the bot then polls with no further push. Dispositions posted before
+  the review request always met "0 lifted". Two rounds per pull request bind; a third is the
+  Director's correctness exception in the pull request's own claim. Measured: every pull request
+  after the ruling settled at two reviews plus one signed step.
+- **Size pull requests by review-facing claims, about eight.** The rounds are a floor per pull
+  request, so the cost is per pull request, not per line. A records pull request that copies live
+  state into a frozen block draws rounds for the copy's staleness: point, never copy.
+- **Hand-written parsers of structured formats draw the extra rounds.** A YAML-emulating reader,
+  a line-oriented index reader and a registry tail reader each drew edge-shape findings across
+  rounds. Parse with the format's library, then validate the value.
+- **Generators before artefacts held.** The sub-agent adapter generator landed as a bin in three
+  slices and owns four platforms, with a byte-equal regeneration as the proof; the eleven files
+  it normalised were recorded, not hidden.
+- **The lineage's own advance is an input.** The lineage's curator delivered a delta note into
+  this estate's Practice Box within two days of the pin. The update operation is now a ratified
+  node (the two-way exchange), computed at its window from both deltas, never pinned early.
+- **Session-local instruments were lost again.** The pull-request chain (request the review,
+  wait for it on the tip, reply to and resolve threads, post the signed dispositions, poll the
+  bot) ran as about seventy scratchpad scripts derived by hand from one another; the
+  content-novelty scorer and the shared-file matcher of 2026-09-12 stayed in the scratchpad
+  too. Three instrument classes, none a bin at close; the runbook records them with their homes.
+- **Time.** Wall spans from the main branch's commit timestamps: about thirteen hours on
+  2026-09-12, fifteen and a half on 2026-09-13, twenty on 2026-09-14, with an eighty-minute
+  usage-limit pause and one cold pause inside them. The runbook's under-two-hours threshold is
+  a test for instance 2, which runs by runbook; instance 1 wrote it.

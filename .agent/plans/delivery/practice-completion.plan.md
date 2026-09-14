@@ -21,7 +21,7 @@ impact_areas:
 tickets: []
 depends_on: []
 owner_gates: []
-last_updated: 2026-09-13
+last_updated: 2026-09-14
 ---
 
 # Practice completion
@@ -199,6 +199,11 @@ remove .agent-original before we merge 53"; "it should be processed then deleted
    `accept-md.config.js` to TypeScript; `turbo.json`'s `.next/` outputs; the consumed incoming
    bundle. Proof: a lineage-name leak validator over live surfaces (CV content excluded by
    scope) as a `docs-validators:check` leg, green.
+   **Done 2026-09-14:** the four retirements, the typed config and the scrub in PRs #64 to
+   #68; the leak validator (`validate-no-lineage-names`) a green `docs-validators:check`
+   leg since PR #79 (`SHA: 014fc6e`); the two standing rulings on the board (the
+   whitespace-only heading capture; the four validator cures) close in the closure's
+   rulings pull request.
 6. **The last hand-kept copies derived**: canonical rules carry `classification`,
    `description` and `globs` frontmatter; `portability:fix` generates the rules index and the
    Cursor triggers from it and `portability:check` recomputes them; sub-agent adapter
@@ -216,6 +221,9 @@ remove .agent-original before we merge 53"; "it should be processed then deleted
 7. **The record compiled** (todo 4): the reports index as the entry (what, how, why,
    how-faster), the runbook's step 13 citing the nine functions, the completion entry in
    `provenance.yml`. Proof: the index and the provenance diff.
+   **Done 2026-09-14:** the index entry, the runbook's step 13 frame and its recorded
+   outcomes, the efficiency guidance's closure addendum, the installable-thing report's
+   scoring addendum, the completion entry on the `practice-lineage.md` chain.
 
 **Session 2 — the owner-decision item.**
 
@@ -224,7 +232,10 @@ remove .agent-original before we merge 53"; "it should be processed then deleted
    2026-09-13: an archive holds only processed material) onto the pending-graduations
    register; the candidates go to the owner as one batch of cards; the answers are the
    dispositions; nothing graduates without them; the napkins are archived only then. Proof:
-   the register, the plan of record's ruling round, and `unconsolidated/` empty.
+   the register and the plan of record's ruling round; the napkins are archived after the
+   drain processes them, outside the closure (owner's card, 2026-09-14: an archive holds
+   only processed material). **Done 2026-09-14:** the register filed and the cards
+   answered (closure record, item 100).
 
 ## Out of scope
 

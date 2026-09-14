@@ -19,7 +19,7 @@ tickets: []
 serves: practice
 depends_on: []
 owner_gates: []
-last_updated: 2026-09-13
+last_updated: 2026-09-14
 ---
 
 # Practice lineage transplant
@@ -232,3 +232,20 @@ the next instance's and is empty until it runs.
 | Docs layer by role (31 files)     | three parallel seats             |            |
 | Assertion exercise                | one slice, three commits         |            |
 | Instruments written in-session    | two generators, lost once        |            |
+| Closure, items 1 to 8             | two sessions, 33 pull requests   |            |
+
+## Recorded outcomes, instance 1 (2026-09-14, by the seat that ran it)
+
+- **Owner questions.** Sixteen ruling rounds on the manifest (2026-09-12 to 13), then the
+  card batches of 2026-09-14 recorded in the Director's handoff, items 97 to 107. The
+  standing question set for instance 2 is the manifest's rounds read as one list.
+- **Elapsed time.** Wall spans from the main branch's commit timestamps: about thirteen
+  hours (2026-09-12), fifteen and a half (2026-09-13) and twenty (2026-09-14); the closure
+  alone was thirty-three pull requests over the last two. Instance 1 wrote this runbook, so
+  the under-two-hours test belongs to instance 2.
+- **Instruments only in the transcript at close: three classes**, against the required zero.
+  The content-novelty scorer and the shared-file matcher (step 2's fallback and its matching)
+  and the pull-request chain (request, wait, reply, signed dispositions, poll). Homes: the
+  two-way exchange node's delta script (its todo 1) and a `pr-watch chain` bin. Precondition
+  5's `transplant classify`, `antigen-scan` and `digest` do not yet exist under those names;
+  instance 2 writes them first, as the precondition says.
