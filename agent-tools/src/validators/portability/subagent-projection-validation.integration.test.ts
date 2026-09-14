@@ -235,7 +235,7 @@ describe('validateSubagentProjections', () => {
     );
     const refused = await validateSubagentProjections(true, foreign);
     expect(refused.issues).toEqual([
-      `${REGISTRY}: line "[mcp_servers.docs]" sits in the registry tail, which the declarations render whole; move it above the first agents block; ${REFUSING}`,
+      `${REGISTRY}: line "[mcp_servers.docs]" sits in the registry tail, which the declarations render whole; write a block line in the rendered shape with its block complete, or move a foreign section above the first agents block; ${REFUSING}`,
     ]);
     expect(refused.written).toEqual([]);
   });

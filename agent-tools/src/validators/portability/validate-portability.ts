@@ -107,8 +107,9 @@ writtenPaths.push(...ruleProjections.written);
 // The sub-agent adapters — the Cursor, Claude and Codex files under each platform's
 // agents directory, and the `[agents."<name>"]` blocks of the Codex registry after its
 // hand-kept head — are rendered from each template's frontmatter declaration and
-// compared byte for byte; `--fix` regenerates them. Nothing on those surfaces is hand-kept
-// (closure item 6, 2b-ii).
+// compared byte for byte; `--fix` regenerates them. The adapter files and the registry tail
+// are generated whole; the registry head above the first block is the host's own settings,
+// kept verbatim (closure item 6, 2b-ii).
 const subagentProjections = await validateSubagentProjections(fixMode, projectionFs);
 issues.push(...subagentProjections.issues);
 writtenPaths.push(...subagentProjections.written);
@@ -161,7 +162,7 @@ const ruleStats =
     : `${ruleProjections.canonicalRuleCount} canonical rules (projection leg refused)`;
 const subagentStats =
   subagentProjections.issues.length === 0
-    ? `${subagentProjections.templateCount} sub-agent templates with their three adapter surfaces and the Codex registry recomputed`
+    ? `${subagentProjections.templateCount} sub-agent templates with their three adapter surfaces and the Codex registry's blocks recomputed`
     : `${subagentProjections.templateCount} sub-agent templates (adapter leg refused)`;
 const removedStats =
   removedProjections.length > 0

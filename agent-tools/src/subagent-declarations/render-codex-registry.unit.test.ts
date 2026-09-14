@@ -108,8 +108,41 @@ describe('splitCodexRegistry', () => {
     expect(splitCodexRegistry('.codex/config.toml', foreign)).toStrictEqual({
       ok: false,
       error:
-        '.codex/config.toml: line "[mcp_servers.docs]" sits in the registry tail, which the declarations render whole; move it above the first agents block; refusing to regenerate the sub-agent adapters',
+        '.codex/config.toml: line "[mcp_servers.docs]" sits in the registry tail, which the declarations render whole; write a block line in the rendered shape with its block complete, or move a foreign section above the first agents block; refusing to regenerate the sub-agent adapters',
     });
+  });
+
+  it('reads an agents header written loosely (leading whitespace, an inline comment) as the tail start and refuses it as foreign, never as head', () => {
+    for (const header of ['  [agents."alpha"]', '[agents."alpha"] # kept by hand']) {
+      const loose = `${HEAD}${header}\ndescription = "Alpha."\nconfig_file = "agents/alpha.toml"\n`;
+      expect(splitCodexRegistry('.codex/config.toml', loose)).toStrictEqual({
+        ok: false,
+        error: `.codex/config.toml: line "${header}" sits in the registry tail, which the declarations render whole; write a block line in the rendered shape with its block complete, or move a foreign section above the first agents block; refusing to regenerate the sub-agent adapters`,
+      });
+    }
+  });
+
+  it('admits a block field only in its place inside a block: a stray field after a block, a field repeated, the fields misordered, a header with no fields, each refuse naming the line out of place', () => {
+    const block = '[agents."alpha"]\ndescription = "Alpha."\nconfig_file = "agents/alpha.toml"\n';
+    const cases: readonly (readonly [string, string])[] = [
+      [`${block}\ndescription = "Stray."\n`, 'description = "Stray."'],
+      [
+        `[agents."alpha"]\ndescription = "Alpha."\ndescription = "Twice."\n`,
+        'description = "Twice."',
+      ],
+      [
+        `[agents."alpha"]\nconfig_file = "agents/alpha.toml"\ndescription = "Alpha."\n`,
+        'config_file = "agents/alpha.toml"',
+      ],
+      [`${block}\n[agents."beta"]\n`, '[agents."beta"]'],
+    ];
+    for (const [tail, line] of cases) {
+      expect(splitCodexRegistry('.codex/config.toml', `${HEAD}${tail}`)).toStrictEqual({
+        ok: false,
+        error: `.codex/config.toml: line "${line}" sits in the registry tail, which the declarations render whole; write a block line in the rendered shape with its block complete, or move a foreign section above the first agents block; refusing to regenerate the sub-agent adapters`,
+      });
+    }
+    expect(splitCodexRegistry('.codex/config.toml', `${HEAD}${block}\n\n${block}`).ok).toBe(true);
   });
 });
 
