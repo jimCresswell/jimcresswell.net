@@ -952,6 +952,22 @@ ones the Director would put to the owner had the owner been present.
     granted after the records push landed; its chain waits for origin. #77 round one
     (Copilot on `SHA: a5efd78`: three open, six suppressed; all nine block) routed to lane A
     after the #74 push, within budget. PDR-132 Director decision on #76; lens 1.
+86. #74 merged by the bot at `SHA: 558be52` (07:33Z on 2026-09-14) at zero threads with
+    Copilot bound to `SHA: 9ca6ffb`: item 2a closed on `main`, the rules index and the three
+    adapter trees generated from each rule's frontmatter with plain pointers. The host's
+    low-memory guard killed the two chain jobs at 07:22Z (lane A's gate beside other
+    sessions' agents and browsers); re-armed as one sequential job, replies confirmed posted
+    before the re-arm (a killed chain keeps no place; the napkin carries the trap). #76 round
+    five granted (Copilot on `SHA: f54cc8a` at 07:33Z: two open, two suppressed, every one in
+    the watcher recipe the earlier cures had grown); cure at `SHA: 882a163` (pushed 07:37Z):
+    the recipe points at the rule's canonical arm and its worktree variant instead of copying
+    one, identifies this seat's survivor by this session's supervisor pid or its identity
+    variable in the process environment, treats no process of ours as absence, asserts after
+    the arm, and refuses the sweep when the coordination home does not derive. #77 reads
+    CONFLICTING against `main` after #74 (two record files); lane A merges `main` into its
+    branch by merge commit before its round-one push, resolving on the 2a side. Lane C's
+    thread record aligned to item 70's Gemini surface (the 14:15Z path marked superseded; the
+    record is under this claim). PDR-132 Director decision on #76; lens 1.
 
 ## Routing log
 
