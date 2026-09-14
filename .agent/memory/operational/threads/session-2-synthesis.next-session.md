@@ -417,7 +417,8 @@ review dates, the readout at 28 pending. Nothing here refiles or reclassifies th
    answer is the fast disposition (`graduated`, `rejected`, `duplicate`), recorded on the entry.
    For the five slow-lane entries (A, B, C, 1a, 1b) the card presents the row; under PDR-130
    the row is decided at its review date (2026-12-13) by `promote` or `kill-with-reasoning`,
-   recorded on the slow-lane row; an earlier decision is the owner's word on PDR-130.
+   recorded on the slow-lane row; an earlier decision, if the owner makes one, is the owner's
+   ruling recorded on that register row, not PDR-130's.
 2. Every fast-lane outcome drains its row (drain by deciding, the register's contract). A
    `graduated` entry lands as its own small pull request into the named home, one home per PR
    where the homes differ, by the seat the Director routes, and the entry is removed in the
