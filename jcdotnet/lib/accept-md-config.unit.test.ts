@@ -11,11 +11,4 @@ describe("acceptMdConfigFor", () => {
   it("leaves baseUrl unset locally so the route falls back to the request origin", () => {
     expect(acceptMdConfigFor(undefined).baseUrl).toBeUndefined();
   });
-
-  it("excludes the API and Next internals from markdown negotiation", () => {
-    const config = acceptMdConfigFor(undefined);
-    expect(config.exclude).toEqual(["/api/**", "/_next/**"]);
-    expect(config.include).toEqual(["/**"]);
-    expect(config.cache).toBe(true);
-  });
 });

@@ -138,7 +138,7 @@ Next.js 16 renamed the `middleware` file convention to `proxy`. The function exp
 
 - The proxy runs on every non-static, non-API request. The logic is fast (string comparisons on the path and `Accept` header), but it is an extra function invocation per request. Next.js proxies are designed for this and can run at the edge.
 - The `x-accept-md-path` header is a coupling between the proxy and the accept-md handler. If the handler's header priority changes, the proxy must be updated. This is documented in the proxy's TSDoc.
-- The `accept-md-runtime` dependency is a third-party library. The handler passes it a typed configuration object from `lib/accept-md-config.ts` (the library's own file loader reads only JavaScript, so the site does not use it). If the library changes its API, the handler and config need updating.
+- The `accept-md-runtime` dependency is a third-party library. The handler passes it a typed configuration object from `lib/accept-md-config.ts` (the library's own file loader reads only JavaScript, so the site does not use it; that loader also swallowed a failed load and fell back to its defaults silently, which the typed import cannot do). If the library changes its API, the handler and config need updating.
 - The self-fetch bypass relies on two Vercel-specific mechanisms (`VERCEL_URL` and `VERCEL_AUTOMATION_BYPASS_SECRET`). If deployment protection settings change, or if the bypass secret is rotated, the self-fetch will break with a 401. The E2E test suite (`markdown-content-negotiation.e2e-api.test.ts`) covers all markdown routes and will catch this locally, but production failures require checking Vercel logs.
 
 ## Related
