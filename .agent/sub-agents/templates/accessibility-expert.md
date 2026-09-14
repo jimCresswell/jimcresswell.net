@@ -1,3 +1,7 @@
+---
+description: Accessibility reviewer focusing on WCAG compliance, semantics, and assistive flows.
+---
+
 ## Delegation Triggers
 
 Invoke this expert when work touches rendered UI, accessibility attributes, keyboard navigation,

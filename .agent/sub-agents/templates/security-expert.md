@@ -1,3 +1,7 @@
+---
+description: Security reviewer for headers, secrets, and middleware defences.
+---
+
 ## Delegation Triggers
 
 Invoke this expert proactively whenever a change touches HTTP headers, the content security

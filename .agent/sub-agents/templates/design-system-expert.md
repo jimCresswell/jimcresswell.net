@@ -1,3 +1,7 @@
+---
+description: Design-system reviewer verifying tokens, spacing, and responsive rhythm.
+---
+
 ## Delegation Triggers
 
 Invoke this expert when work touches design tokens, theme values, spacing, typography,
