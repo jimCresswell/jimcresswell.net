@@ -7,6 +7,8 @@
  * adapter checker's loud-skip territory, not this validator's.
  */
 
+import { err, ok, type Result } from '@engraph/result';
+
 import { walkSkillTree } from '../../skills-adapter-generate/skill-tree-walk.js';
 
 export interface SkillsWalkFs {
@@ -22,21 +24,30 @@ export interface CanonicalSkillWalk {
 /**
  * Collect every canonical `SKILL-CANONICAL.md` at the three ratified tiers,
  * so frontmatter validation sees the same corpus the adapter generator
- * serves.
+ * serves. A probe that fails for any reason other than absence (`exists`
+ * throws past ENOENT) is the one refusal, naming the cause, never a throw
+ * past the validator (the #74 round-two finding, 2026-09-14).
  */
-export async function collectCanonicalSkillPaths(fs: SkillsWalkFs): Promise<CanonicalSkillWalk> {
+export async function collectCanonicalSkillPaths(
+  fs: SkillsWalkFs,
+): Promise<Result<CanonicalSkillWalk, string>> {
   const walk: CanonicalSkillWalk = { canonicalPaths: [] };
-  await walkSkillTree(
-    {
-      listChildDirectories: (relativeDir) =>
-        fs.listSubdirs(relativeDir === '' ? '.agent/skills' : `.agent/skills/${relativeDir}`),
-      hasCanonical: (relativeDir) => fs.exists(`.agent/skills/${relativeDir}/SKILL-CANONICAL.md`),
-    },
-    {
-      onCanonical(relativeDir) {
-        walk.canonicalPaths.push(`.agent/skills/${relativeDir}/SKILL-CANONICAL.md`);
+  try {
+    await walkSkillTree(
+      {
+        listChildDirectories: (relativeDir) =>
+          fs.listSubdirs(relativeDir === '' ? '.agent/skills' : `.agent/skills/${relativeDir}`),
+        hasCanonical: (relativeDir) => fs.exists(`.agent/skills/${relativeDir}/SKILL-CANONICAL.md`),
       },
-    },
-  );
-  return walk;
+      {
+        onCanonical(relativeDir) {
+          walk.canonicalPaths.push(`.agent/skills/${relativeDir}/SKILL-CANONICAL.md`);
+        },
+      },
+    );
+  } catch (error: unknown) {
+    const cause = error instanceof Error ? error.message : String(error);
+    return err(`.agent/skills: the canonical walk failed (${cause}); skill validation skipped`);
+  }
+  return ok(walk);
 }

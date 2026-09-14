@@ -14,6 +14,7 @@ import {
   HOOK_POLICY_PATH,
   isClaudeHookWired,
   isClaudeHookWiredInText,
+  rulesIndexBudgetIssues,
   SURFACE_MATRIX_PATH,
   surfaceMatrixDescribesClaudeHook,
 } from './validate-portability-helpers.js';
@@ -406,13 +407,31 @@ describe('collectCanonicalSkillPaths', () => {
       ]),
     );
 
-    const result = await collectCanonicalSkillPaths(fs);
+    expect(await collectCanonicalSkillPaths(fs)).toStrictEqual({
+      ok: true,
+      value: {
+        canonicalPaths: [
+          '.agent/skills/flat-one/SKILL-CANONICAL.md',
+          '.agent/skills/cognition/reason/SKILL-CANONICAL.md',
+          '.agent/skills/domain-craft/ui-design/claude-design-pipeline/SKILL-CANONICAL.md',
+        ],
+      },
+    });
+  });
 
-    expect(result.canonicalPaths).toStrictEqual([
-      '.agent/skills/flat-one/SKILL-CANONICAL.md',
-      '.agent/skills/cognition/reason/SKILL-CANONICAL.md',
-      '.agent/skills/domain-craft/ui-design/claude-design-pipeline/SKILL-CANONICAL.md',
-    ]);
+  it('refuses, naming the cause, when a canonical probe fails for a reason other than absence', async () => {
+    const fs = {
+      ...makeWalkFs(new Map([['.agent/skills', ['flat-one']]]), new Set()),
+      async exists(relPath: string) {
+        throw new Error(`EACCES: permission denied, access '${relPath}'`);
+      },
+    };
+
+    expect(await collectCanonicalSkillPaths(fs)).toStrictEqual({
+      ok: false,
+      error:
+        ".agent/skills: the canonical walk failed (EACCES: permission denied, access '.agent/skills/flat-one/SKILL-CANONICAL.md'); skill validation skipped",
+    });
   });
 
   it('never walks a fourth level — the tree closes at the domain tier', async () => {
@@ -426,9 +445,25 @@ describe('collectCanonicalSkillPaths', () => {
       new Set(['.agent/skills/fam/dom/too-deep/deeper/SKILL-CANONICAL.md']),
     );
 
-    const result = await collectCanonicalSkillPaths(fs);
+    expect(await collectCanonicalSkillPaths(fs)).toStrictEqual({
+      ok: true,
+      value: { canonicalPaths: [] },
+    });
+  });
+});
 
-    expect(result.canonicalPaths).toStrictEqual([]);
+describe('rulesIndexBudgetIssues', () => {
+  it('measures the index only when it was read as text', () => {
+    expect(rulesIndexBudgetIssues({ kind: 'text', text: 'x'.repeat(30) }, 20)).toStrictEqual([
+      'RULES_INDEX.md: 30 bytes exceeds Codex project-doc budget 20',
+    ]);
+    expect(rulesIndexBudgetIssues({ kind: 'text', text: 'x'.repeat(10) }, 20)).toStrictEqual([]);
+  });
+
+  it("reports nothing for an absent, linked or unreadable index: that refusal is the projection leg's", () => {
+    expect(rulesIndexBudgetIssues({ kind: 'absent' }, 20)).toStrictEqual([]);
+    expect(rulesIndexBudgetIssues({ kind: 'foreign' }, 20)).toStrictEqual([]);
+    expect(rulesIndexBudgetIssues({ kind: 'unreadable', cause: 'EISDIR' }, 20)).toStrictEqual([]);
   });
 });
 

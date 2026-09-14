@@ -25,7 +25,7 @@ import {
   collectCanonicalSkillPaths,
   getClaudeHookPortabilityIssues,
   getReviewerAdapterParityIssues,
-  getRulesIndexPortabilityIssues,
+  rulesIndexBudgetIssues,
   CLAUDE_SETTINGS_PATH,
   HOOK_POLICY_PATH,
   RULES_INDEX_PATH,
@@ -44,6 +44,7 @@ import {
 import { practiceSkillPermissionIssues } from './skill-census.js';
 import { reportPortabilityValidation } from './portability-report.js';
 import { realRuleProjectionFs, validateRuleProjections } from './rule-projection-validation.js';
+import { readEntry } from './rule-surface-fs.js';
 
 // projectDir is explicitly disabled: this validator reads and, under `--fix`,
 // writes the tree it runs inside. The CLAUDE_PROJECT_DIR leg would rebind a
@@ -53,10 +54,14 @@ const fixMode = process.argv.includes('--fix');
 const writtenPaths: string[] = [];
 const issues: string[] = [];
 
-const { canonicalPaths: discoveredCanonicalPaths } = await collectCanonicalSkillPaths({
+const skillWalk = await collectCanonicalSkillPaths({
   listSubdirs: (relPath) => listSubdirs(repoRoot, relPath),
   exists: (relPath) => exists(repoRoot, relPath),
 });
+if (!skillWalk.ok) {
+  issues.push(skillWalk.error);
+}
+const discoveredCanonicalPaths = skillWalk.ok ? skillWalk.value.canonicalPaths : [];
 const validatedCanonicalPaths: string[] = [];
 
 async function validateCanonicalFrontmatter(skillPath: string): Promise<void> {
@@ -114,11 +119,9 @@ for (const issue of getReviewerAdapterParityIssues({
 }
 
 // The index's presence and rows are the projection leg's; the Codex byte budget is the
-// one check the rendered bytes cannot answer for themselves.
-const rulesIndexState = await readOptionalText(repoRoot, RULES_INDEX_PATH);
-if (rulesIndexState.isPresent && rulesIndexState.value !== null) {
-  issues.push(...getRulesIndexPortabilityIssues({ rulesIndexContent: rulesIndexState.value }));
-}
+// one check the rendered bytes cannot answer for themselves, read through the same
+// no-follow reader the leg uses, so a link the leg refused is never read here.
+issues.push(...rulesIndexBudgetIssues(await readEntry(repoRoot, RULES_INDEX_PATH)));
 
 try {
   if (await exists(repoRoot, HOOK_POLICY_PATH)) {
