@@ -37,15 +37,23 @@ function review(body: string, submittedAt: string) {
   };
 }
 
-/** A harvest carrying the given reviews and no outstanding request. */
-function harvestPayload(reviews: readonly ReturnType<typeof review>[]): string {
+/** A harvest carrying the given reviews and the given outstanding Bot requests. */
+function harvestPayload(
+  reviews: readonly ReturnType<typeof review>[],
+  requested: readonly string[] = [],
+): string {
   return JSON.stringify([
     {
       data: {
         repository: {
           pullRequest: {
             reviews: { nodes: reviews },
-            reviewRequests: { pageInfo: { hasNextPage: false }, nodes: [] },
+            reviewRequests: {
+              pageInfo: { hasNextPage: false },
+              nodes: requested.map((login) => ({
+                requestedReviewer: { __typename: 'Bot', login },
+              })),
+            },
           },
         },
       },
@@ -96,6 +104,26 @@ const isThreadsCall = (args: readonly string[]): boolean =>
   args[0] === 'api' && args.some((arg) => arg.includes('reviewThreads'));
 
 describe('readPrStateReading — the harvest brackets the thread read (#65 round four)', () => {
+  it('a request registered between the harvest and the thread read moves the bracket: the request is on the reading, threads re-read', () => {
+    const calls: string[][] = [];
+    const reading = readPrStateReading({
+      target: { number: 461 },
+      ghPath: '/usr/bin/gh',
+      exists: () => true,
+      expectedReviewers: [COPILOT],
+      execFileSync: landingExecutor(
+        {
+          harvests: [harvestPayload([FIRST]), harvestPayload([FIRST], [COPILOT])],
+          threads: [threadsPayload(0)],
+        },
+        calls,
+      ),
+    });
+    expect(reading.reviewRequests).toEqual([COPILOT]);
+    expect(calls.filter(isHarvestCall)).toHaveLength(3);
+    expect(calls.filter(isThreadsCall)).toHaveLength(2);
+  });
+
   it('a summary-only review landing between the harvest and the thread read is on the reading, threads re-read', () => {
     const calls: string[][] = [];
     const reading = readPrStateReading({
@@ -156,6 +184,6 @@ describe('readPrStateReading — the harvest brackets the thread read (#65 round
           calls,
         ),
       }),
-    ).toThrow(/reviews landed during the compound read/);
+    ).toThrow(/the review harvest or the request surface changed during the compound read/);
   });
 });

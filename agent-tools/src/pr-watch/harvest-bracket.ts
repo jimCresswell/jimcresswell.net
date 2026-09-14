@@ -1,7 +1,6 @@
 import { GH_EXEC_OPTIONS, parseGhJson, reviewThreadsArgs, type GhCommandExecutor } from './gh.js';
-import { parseRequestedReviewers, parseReviewsHarvest } from './harvest-fields.js';
+import { parseHarvest, type ReviewHarvest } from './harvest-fields.js';
 import { parseReviewThreadPages, type ReviewThreadsSummary } from './review-threads.js';
-import type { HarvestedReview } from './reviewer-legs.js';
 
 /**
  * The `pr state` review surfaces: the FULL paginated reviews harvest (the
@@ -26,11 +25,6 @@ interface HarvestInput {
   readonly gh: string;
   readonly prNumber: string;
   readonly repo: string | undefined;
-}
-
-interface ReviewsHarvest {
-  readonly reviews: HarvestedReview[];
-  readonly reviewRequests: string[];
 }
 
 // Paginated full-history reviews harvest; `--slurp` wraps pages into one array.
@@ -72,13 +66,14 @@ function reviewsHarvestArgs(prNumber: string, repo: string | undefined): string[
 
 // Wrap the harvest failure with operator-grade evidence: a nonexistent or
 // inaccessible PR surfaces as a null pullRequest deep in the GraphQL payload.
-function readReviewsHarvest(input: HarvestInput): ReviewsHarvest {
+function readReviewHarvest(input: HarvestInput): ReviewHarvest {
   try {
-    const raw = parseGhJson(
-      input.run(input.gh, reviewsHarvestArgs(input.prNumber, input.repo), GH_EXEC_OPTIONS),
-      'api graphql reviews',
+    return parseHarvest(
+      parseGhJson(
+        input.run(input.gh, reviewsHarvestArgs(input.prNumber, input.repo), GH_EXEC_OPTIONS),
+        'api graphql reviews',
+      ),
     );
-    return { reviews: parseReviewsHarvest(raw), reviewRequests: parseRequestedReviewers(raw) };
   } catch (cause) {
     throw new Error(
       `PR #${input.prNumber}: reviews harvest failed — does the PR exist and is it accessible?`,
@@ -100,34 +95,35 @@ const HARVEST_CONSISTENT_ATTEMPTS = 2;
 
 // Order-insensitive: the platform's connection order is not a contract, and
 // a quiet PR whose two requests came back reordered must not read as a move.
-function canonical(harvest: ReviewsHarvest): string {
+function canonical(harvest: ReviewHarvest): string {
   const sorted = (entries: readonly unknown[]): string[] =>
     entries.map((entry) => JSON.stringify(entry)).sort((a, b) => a.localeCompare(b));
   return JSON.stringify([sorted(harvest.reviews), sorted(harvest.reviewRequests)]);
 }
 
-function sameHarvest(before: ReviewsHarvest, after: ReviewsHarvest): boolean {
+function sameHarvest(before: ReviewHarvest, after: ReviewHarvest): boolean {
   return canonical(before) === canonical(after);
 }
 
 /**
  * Read the reviews harvest and the review threads as one consistent bracket.
  *
- * @throws when a harvest fails, or when reviews land on consecutive attempts.
+ * @throws when a harvest fails, or when the review harvest or the request surface moves on
+ *   consecutive attempts.
  */
 export function readHarvestAndThreads(
   input: HarvestInput,
-): ReviewsHarvest & { readonly reviewThreads: ReviewThreadsSummary } {
-  let before = readReviewsHarvest(input);
+): ReviewHarvest & { readonly reviewThreads: ReviewThreadsSummary } {
+  let before = readReviewHarvest(input);
   for (let attempt = 0; attempt < HARVEST_CONSISTENT_ATTEMPTS; attempt += 1) {
     const reviewThreads = readReviewThreads(input);
-    const after = readReviewsHarvest(input);
+    const after = readReviewHarvest(input);
     if (sameHarvest(before, after)) {
       return { ...after, reviewThreads };
     }
     before = after;
   }
   throw new Error(
-    `PR #${input.prNumber}: reviews landed during the compound read on consecutive attempts — the harvest and the threads cannot bind one round; re-run when the PR is quiet`,
+    `PR #${input.prNumber}: the review harvest or the request surface changed during the compound read on consecutive attempts — the harvest and the threads cannot bind one round; re-run when the PR is quiet`,
   );
 }

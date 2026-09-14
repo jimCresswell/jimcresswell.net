@@ -7,8 +7,8 @@ const ISO_DATE_TIME_PATTERN =
  * Require a complete, calendar-valid ISO date-time string, as a `Result` —
  * `Date.parse` alone is permissive (non-ISO forms, normalised invalid
  * dates) and would let a mistyped timestamp read as a different valid
- * instant. Shared by the commit queue and `pr-throughput`
- * (`consolidate-at-second-consumer`); the single home of the error literal.
+ * instant. The single home of the error literal for every instant parse
+ * (`consolidate-at-second-consumer`).
  */
 export function requireIsoDateTimeResult(value: string, fieldName: string): Result<string, Error> {
   if (!hasValidIsoDateTimeShape(value) || !Number.isFinite(Date.parse(value))) {

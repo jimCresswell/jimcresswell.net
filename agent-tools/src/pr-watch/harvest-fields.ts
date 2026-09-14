@@ -29,7 +29,8 @@ const requestedReviewerSchema = z
     if (identity === undefined) {
       context.addIssue({
         code: 'custom',
-        message: 'review request carries no Bot/User/Team identity field (login/slug/name)',
+        message:
+          'review request carries no Bot/User/Mannequin/Team identity field (login/slug/name)',
       });
       return z.NEVER;
     }
@@ -84,36 +85,39 @@ const reviewsPageSchema = z.object({
 // so no branch can turn a missing page into a silent empty.
 const reviewsPagesSchema = z.tuple([reviewsPageSchema]).rest(reviewsPageSchema);
 
-/**
- * Parse the outstanding review requests from the harvest's first page: Bot,
- * User and Mannequin logins, Team slugs.
- *
- * @throws a ZodError when the pages lack the connection, the connection has a
- *   further page, or a request carries no identity (strict validation at the
- *   external-input boundary).
- */
-export function parseRequestedReviewers(raw: unknown): string[] {
-  const [first] = reviewsPagesSchema.parse(raw);
-  return first.data.repository.pullRequest.reviewRequests.nodes.map(
-    (node) => node.requestedReviewer,
-  );
+/** The two projections of one harvest read. */
+export interface ReviewHarvest {
+  /** Every review across the pages, in page order. */
+  readonly reviews: readonly HarvestedReview[];
+  /** The outstanding requests from the first page: Bot, User and Mannequin logins, Team slugs. */
+  readonly reviewRequests: readonly string[];
 }
 
 /**
- * Parse the slurped multi-page `reviews` harvest into {@link HarvestedReview}s.
+ * Parse the slurped multi-page harvest once and project both its surfaces: the
+ * FULL review history and the outstanding review requests. One parse per
+ * compound read (the merge bot polls this path).
  *
- * @throws a ZodError when the input is not the expected slurped page-array
- *   shape (never a silent empty — an empty harvest must be a real empty page).
+ * @throws a ZodError when the input is not the expected non-empty page array,
+ *   a page lacks the request connection, the connection has a further page, or
+ *   a request carries no identity (strict validation at the external-input
+ *   boundary; never a silent empty).
  */
-export function parseReviewsHarvest(raw: unknown): HarvestedReview[] {
-  return reviewsPagesSchema
-    .parse(raw)
-    .flatMap((page) => page.data.repository.pullRequest.reviews.nodes)
-    .map((node) => ({
-      author: node.author,
-      state: node.state,
-      body: node.body,
-      commitOid: node.commit,
-      submittedAt: node.submittedAt,
-    }));
+export function parseHarvest(raw: unknown): ReviewHarvest {
+  const pages = reviewsPagesSchema.parse(raw);
+  const [first] = pages;
+  return {
+    reviews: pages
+      .flatMap((page) => page.data.repository.pullRequest.reviews.nodes)
+      .map((node) => ({
+        author: node.author,
+        state: node.state,
+        body: node.body,
+        commitOid: node.commit,
+        submittedAt: node.submittedAt,
+      })),
+    reviewRequests: first.data.repository.pullRequest.reviewRequests.nodes.map(
+      (node) => node.requestedReviewer,
+    ),
+  };
 }

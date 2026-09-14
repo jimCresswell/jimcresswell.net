@@ -58,8 +58,6 @@ const config: KnipConfig = {
         'src/validators/plan-schema/check-plan-gate-drift.ts',
         'src/rule-declarations/rule-frontmatter-sweep.ts',
         'src/practice-fitness/validate-practice-fitness.ts',
-        'src/ci/ci-turbo-report.ts',
-        'src/pr-throughput/cli.ts',
         'src/plan-state/plan-state.ts',
         'smoke-tests/**/*.ts',
       ],
@@ -78,7 +76,7 @@ const config: KnipConfig = {
     },
     jcdotnet: {
       // Next.js is auto-detected; the build-time scripts are package-script entries.
-      entry: ['scripts/**/*.ts', 'accept-md.config.js'],
+      entry: ['scripts/**/*.ts'],
     },
   },
 };
