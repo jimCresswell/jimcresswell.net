@@ -336,30 +336,36 @@ defect is a missing dependency edge — declare it (in the workspace
 Remote caching is enabled in `turbo.json`; the hooks export `TURBO_UI=0` so the
 TUI does not swallow output.
 
-| Task                            | Cached | Notes                                                           |
-| ------------------------------- | ------ | --------------------------------------------------------------- |
-| `build`                         | ✅     | Outputs `dist/**` and `.tsup/**`                                |
-| `type-check`                    | ✅     | Re-checks only when source changes                              |
-| `lint`                          | ✅     | Re-lints only when source or config changes                     |
-| `test`                          | ✅     | Re-runs only when source or tests change                        |
-| `test:e2e`                      | ✅     | Re-runs only when the e2e inputs change                         |
-| `@engraph/agent-tools#test:e2e` | ❌     | The smoke suite proves the built binaries every run; no outputs |
-| `lint:fix`                      | ❌     | Modifies source files                                           |
-| `clean`                         | ❌     | Destructive operation                                           |
-| `dev`                           | ❌     | Persistent process                                              |
+| Task                            | Cached | Notes                                                            |
+| ------------------------------- | ------ | ---------------------------------------------------------------- |
+| `build`                         | ✅     | Outputs `dist/**` and `.tsup/**`                                 |
+| `@jimcresswell/www#build`       | ✅     | Outputs `.next/**` minus `.next/cache/**`; hashes the Vercel env |
+| `type-check`                    | ✅     | Re-checks only when source changes                               |
+| `lint`                          | ✅     | Re-lints only when source or config changes                      |
+| `test`                          | ✅     | Re-runs only when source or tests change                         |
+| `test:e2e`                      | ✅     | Re-runs only when the e2e inputs change                          |
+| `@engraph/agent-tools#test:e2e` | ❌     | The smoke suite proves the built binaries every run; no outputs  |
+| `lint:fix`                      | ❌     | Modifies source files                                            |
+| `clean`                         | ❌     | Destructive operation                                            |
+| `dev`                           | ❌     | Persistent process                                               |
 
 ### A task's declared outputs must cover its full write-set
 
 Turbo restores exactly the declared `outputs` globs on a cache replay. When a
 task script writes a file outside those globs, a replay restores part of the
-task's effect and silently skips the rest. The site is the live instance: the
+task's effect and silently skips the rest. The site is the worked instance: the
 generic `build` task declares `dist/**` and `.tsup/**`, but `next build` writes
-`.next/`, so a Turbo cache hit on `@jimcresswell/www#build` restores nothing.
-Playwright's web server and Vercel both run the site's own `build` script
-directly, which is why this has not bitten; when you need the site artefact
-from a warm cache, run `pnpm --filter @jimcresswell/www build`. When adding or
-changing a task, enumerate every path its script writes (read the script, not
-the task name) and declare them all.
+`.next/` (and the site's build script writes the CV PDF under `.next/` too), so
+until 2026-09-14 a Turbo cache hit on `@jimcresswell/www#build` restored
+nothing. The package task now declares `.next/**` minus `.next/cache/**`, and
+because a hit now replays the artefact it also declares in `env` every variable
+the build bakes in or branches on (the Vercel environment and URLs that shape
+the canonical URL, and the blob token and deployment identifiers that decide
+whether and where the PDF is uploaded), so a hash never collides across
+deployments. Playwright's web server and Vercel run the site's own `build`
+script directly, outside Turbo. When adding or changing a task, enumerate every
+path its script writes (read the script, not the task name) and declare them
+all, and every environment variable that changes what it writes.
 
 ## Mixing pnpm and turbo
 
@@ -505,8 +511,10 @@ artefacts it actually resolved:
   built** — the flat config imports `@engraph/eslint-plugin-standards` from
   `dist/`. The postinstall bootstrap covers the agent-tools closure; run
   `pnpm build` for the rest.
-- **`pnpm check` does not run every suite** (`test:e2e`, `build` and the
-  `smoke:*` scripts are outside it) — verify the aggregate actually exercises
+- **`pnpm check` does not run every suite** (the site's `test:e2e` and `build`
+  are outside it; the agent-tools smoke suite is inside it through
+  `agent-tools:test:e2e`, while the per-file `smoke:*` scripts stay manual
+  shortcuts) — verify the aggregate actually exercises
   the suites your change touches before citing it as proof. When reporting,
   distinguish **run-verified** (the gate exercised the change) from
   **construction-verified** (a behaviour-preserving no-op the gate never

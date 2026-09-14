@@ -1,3 +1,8 @@
+---
+classification: core
+description: Never keep a list by hand; compute it from its source or gate it with a validator that recomputes it (owner ruling 2026-09-13).
+---
+
 # Compute, Don't Hope
 
 Owner ruling (2026-09-13, verbatim): "nothing should be 'hand kept', ever, manual lists

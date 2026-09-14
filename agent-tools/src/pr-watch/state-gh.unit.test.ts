@@ -2,52 +2,19 @@ import { describe, expect, it } from 'vitest';
 
 import { readPrStateReading } from './state-gh.js';
 import type { GhCommandExecutor } from './gh.js';
+import {
+  graphqlResponse,
+  HEAD,
+  PR_URL,
+  threadsPayload,
+  viewPayload,
+} from './test-helpers/state-gh-payloads.js';
 
 /**
  * IO-composition tests for `readPrStateReading` with an injected executor —
  * no real gh. The executor dispatches on argv shape, mirroring the surfaces
  * verified live 2026-07-21.
  */
-
-const HEAD = 'f'.repeat(40);
-const PR_URL = 'https://github.com/oaknational/jimcresswell.net/pull/461';
-
-function viewPayload(oid: string = HEAD): string {
-  return JSON.stringify({
-    number: 461,
-    url: PR_URL,
-    state: 'OPEN',
-    isDraft: false,
-    mergeable: 'MERGEABLE',
-    mergeStateStatus: 'BLOCKED',
-    headRefOid: oid,
-    statusCheckRollup: [
-      {
-        __typename: 'CheckRun',
-        name: 'secret-scan',
-        status: 'COMPLETED',
-        conclusion: 'SUCCESS',
-        completedAt: '2026-07-21T10:33:35Z',
-      },
-    ],
-    autoMergeRequest: null,
-    reviewRequests: [{ __typename: 'User', login: 'jimCresswell' }],
-  });
-}
-
-function threadsPayload(): string {
-  return JSON.stringify([
-    {
-      data: {
-        repository: {
-          pullRequest: {
-            reviewThreads: { totalCount: 2, nodes: [{ isResolved: true }, { isResolved: true }] },
-          },
-        },
-      },
-    },
-  ]);
-}
 
 function reviewsPayload(): string {
   return JSON.stringify([
@@ -64,6 +31,16 @@ function reviewsPayload(): string {
                   submittedAt: '2026-07-21T12:00:00Z',
                   commit: { oid: HEAD },
                 },
+              ],
+            },
+            // A Bot request is visible only here (pr view and REST omit it; 2026-09-13, PR #60).
+            reviewRequests: {
+              pageInfo: { hasNextPage: false },
+              nodes: [
+                {
+                  requestedReviewer: { __typename: 'Bot', login: 'copilot-pull-request-reviewer' },
+                },
+                { requestedReviewer: { __typename: 'User', login: 'jimCresswell' } },
               ],
             },
           },
@@ -103,6 +80,8 @@ function agentTaskResponse(script: ExecutorScript, args: readonly string[]): str
   return view;
 }
 
+const graphqlPayloads = { threads: () => threadsPayload(), harvest: reviewsPayload };
+
 function makeExecutor(script: ExecutorScript, calls: string[][]): GhCommandExecutor {
   return (_file, args) => {
     calls.push([...args]);
@@ -110,9 +89,7 @@ function makeExecutor(script: ExecutorScript, calls: string[][]): GhCommandExecu
       return viewPayload();
     }
     if (args[0] === 'api') {
-      // Both GraphQL legs arrive as `api graphql`; dispatch on the query text.
-      const query = args.find((arg) => arg.startsWith('query='));
-      return query?.includes('reviewThreads') === true ? threadsPayload() : reviewsPayload();
+      return graphqlResponse(args, graphqlPayloads);
     }
     if (args[0] === 'agent-task') {
       return agentTaskResponse(script, args);
@@ -612,8 +589,7 @@ describe('readPrStateReading', () => {
           return mergedView;
         }
         if (args[0] === 'api') {
-          const query = args.find((arg) => arg.startsWith('query='));
-          return query?.includes('reviewThreads') === true ? threadsPayload() : reviewsPayload();
+          return graphqlResponse(args, graphqlPayloads);
         }
         if (args[0] === 'agent-task') {
           return agentTaskResponse({}, args);
@@ -652,8 +628,7 @@ describe('readPrStateReading — tip consistency (r4 regression)', () => {
         return viewPayload(oid);
       }
       if (args[0] === 'api') {
-        const query = args.find((arg) => arg.startsWith('query='));
-        return query?.includes('reviewThreads') === true ? threadsPayload() : reviewsPayload();
+        return graphqlResponse(args, graphqlPayloads);
       }
       if (args[0] === 'agent-task') {
         return agentTaskResponse({}, args);

@@ -15,7 +15,7 @@ Guidelines for contributing to [www.jimcresswell.net](https://www.jimcresswell.n
 
 - Work on a **feature branch** and open a pull request. The repository owner commits to `main` directly; other contributors use branches.
 - A **pre-commit hook** runs the staged subset of the gates on every commit — the PreToolUse guard, Prettier and markdownlint on the staged files, and `lint` in every workspace the commit touches — expect ~10–20 seconds. Do not skip it (`--no-verify` is not permitted).
-- A **pre-push hook** runs `pnpm check && pnpm test:e2e` — the full gate sequence plus the full E2E suite. The Playwright web server runs `pnpm build && pnpm start`, so every test (including PDF) exercises the production build.
+- A **pre-push hook** runs `pnpm check && pnpm test:e2e` — the full gate sequence plus the full E2E suite. Playwright's global setup starts the site's own server process, which builds the site on a port it binds and keeps and serves that build, so every test (including PDF) exercises the production build.
 - If you touch agent tooling or platform adapters, ensure `pnpm portability:check` passes. It is already part of `pnpm check`, but call it out explicitly in your own verification notes.
 - If you touch Practice Core or directive docs that carry the four-field fitness frontmatter, run `pnpm practice:fitness:informational` and `pnpm practice:vocabulary`.
 - If adding an architectural decision, create an ADR in `docs/architecture/decision-records/` following the existing format. See the [ADR index](docs/architecture/decision-records/README.md) for examples.

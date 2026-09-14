@@ -111,7 +111,7 @@ The handler's `baseUrl` determines which URL it self-fetches from. By default it
 
 The fix uses both Vercel mechanisms to bypass both layers:
 
-- **`accept-md.config.js`** sets `baseUrl` to `https://${VERCEL_URL}` when on Vercel. Self-fetches go directly to Vercel's infrastructure via the `.vercel.app` domain, bypassing Cloudflare entirely. Locally, `VERCEL_URL` is unset so the handler falls back to `localhost`.
+- **`lib/accept-md-config.ts`** sets `baseUrl` to `https://${VERCEL_URL}` when on Vercel. Self-fetches go directly to Vercel's infrastructure via the `.vercel.app` domain, bypassing Cloudflare entirely. Locally, `VERCEL_URL` is unset so the handler falls back to `localhost`.
 - **`app/api/accept-md/route.ts`** adds the `x-vercel-protection-bypass` header using `VERCEL_AUTOMATION_BYPASS_SECRET` (a Vercel system environment variable). This lets self-fetches through Standard Protection on the `.vercel.app` URL.
 
 This means the self-fetch never leaves Vercel's infrastructure — it does not traverse the public internet or the Cloudflare proxy. Cloudflare's bot protection can remain fully enabled.
@@ -138,7 +138,7 @@ Next.js 16 renamed the `middleware` file convention to `proxy`. The function exp
 
 - The proxy runs on every non-static, non-API request. The logic is fast (string comparisons on the path and `Accept` header), but it is an extra function invocation per request. Next.js proxies are designed for this and can run at the edge.
 - The `x-accept-md-path` header is a coupling between the proxy and the accept-md handler. If the handler's header priority changes, the proxy must be updated. This is documented in the proxy's TSDoc.
-- The `accept-md-runtime` dependency is a third-party library. It is dynamically configured via `accept-md.config.js`. If the library changes its API, the handler and config need updating.
+- The `accept-md-runtime` dependency is a third-party library. The handler passes it a typed configuration object from `lib/accept-md-config.ts` (the library's own file loader reads only JavaScript, so the site does not use it; that loader also swallowed a failed load and fell back to its defaults silently, which the typed import cannot do). If the library changes its API, the handler and config need updating.
 - The self-fetch bypass relies on two Vercel-specific mechanisms (`VERCEL_URL` and `VERCEL_AUTOMATION_BYPASS_SECRET`). If deployment protection settings change, or if the bypass secret is rotated, the self-fetch will break with a 401. The E2E test suite (`markdown-content-negotiation.e2e-api.test.ts`) covers all markdown routes and will catch this locally, but production failures require checking Vercel logs.
 
 ## Related
@@ -149,4 +149,4 @@ Next.js 16 renamed the `middleware` file convention to `proxy`. The function exp
 - `proxy.ts` — the proxy implementation
 - `app/api/accept-md/route.ts` — the markdown generation handler
 - `app/api/graph/route.ts` — the knowledge graph endpoint
-- `accept-md.config.js` — accept-md runtime configuration
+- `lib/accept-md-config.ts` — accept-md runtime configuration

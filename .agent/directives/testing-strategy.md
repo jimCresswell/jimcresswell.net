@@ -451,9 +451,12 @@ The site workspace applies the taxonomy above with these fixed conventions:
   (cross-cutting: a11y, SEO, content); Playwright browser automation.
 - **E2E-API**: `*.e2e-api.test.ts` under `e2e/behaviour/`; Playwright's `APIRequestContext`
   against the running site — the black-box boundary, never an imported app.
-- **Runner**: `pnpm --filter @jimcresswell/www test:e2e` boots `pnpm build && pnpm start` on
-  port 3000 (ADR-019). PDF generation is part of the build, so PDF proofs run with everything
-  else. Never run the root `check` in parallel with the E2E suite.
+- **Runner**: `pnpm --filter @jimcresswell/www test:e2e` starts the site's `e2e:server` script
+  from Playwright's global setup (ADR-019; §Harnesses Adapt to Shared Hosts): one process that
+  binds a free port and keeps the socket for its whole life, builds the site with that port and
+  serves the build from the socket in-process, so no other process, the build's PDF generator
+  among them, can ever be handed the test port. PDF generation is part of the build, so PDF
+  proofs run with everything else. Never run the root `check` in parallel with the E2E suite.
 - **Rendering risk**: any change that can alter rendered output runs the visual regression harness
   as blocking proof during implementation (ADR-022), separate from and complementary to the suites
   above. Zero pixel difference can still carry an intentional semantic HTML change — review the
@@ -483,8 +486,9 @@ SURFACE. Scope-axis tests typically execute source through a
 loader-assisted harness (vitest, tsx) while production executes built
 artefacts under plain `node` — and nothing at any scope level REQUIRES
 surface fidelity. An E2E test MAY boot the built artefact (the site's
-Playwright suite runs against `pnpm build && pnpm start`, and the
-lineage's CLI contract E2E booted its built binary), but that coverage is
+Playwright suite runs against the production build its `e2e:server` script
+builds and serves on the port the config held, and the lineage's CLI contract E2E
+booted its built binary), but that coverage is
 incidental to its scope classification.
 Smoke tests own the surface axis and make artefact fidelity MANDATORY:
 minimum behaviour scope, maximum surface fidelity. Defects that exist
@@ -735,9 +739,15 @@ live owner-facing surface never pauses for a push gate. The first suspect in
 any gate-vs-environment collision is the harness's missing adaptation, never
 the schedule. Worked instances: a fixed-port Playwright `webServer` turned
 one seat's render server into a fleet-wide push outage (cure: an ephemeral
-port probed at config load — no `process.env` in config, `reuseExistingServer`
-stays `false`); a UI-test webServer inheriting `.env.local` refused a valid
-sink configuration (cure: the webServer pins its own observability env).
+port the harness's own server process binds and keeps for its whole life,
+serving the build from that socket, so no server this run did not start is
+ever proved; this estate's site config, 2026-09-13, starts that process from
+global setup and hands its origin to the workers through the runner's own
+environment, read there only as the runner's internal handshake channel, so
+the environment never sets the harness's port or origin from outside); a
+UI-test webServer
+inheriting `.env.local` refused a valid sink configuration (cure: the
+webServer pins its own observability env).
 Corollary for guard design: when a guard bites the innocent, fix the shared
 context so the guard's premise holds per-worktree — never weaken the guard.
 

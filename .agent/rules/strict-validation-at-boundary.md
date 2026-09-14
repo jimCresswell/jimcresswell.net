@@ -1,3 +1,13 @@
+---
+classification: situational
+description: Validate external data at entry boundaries
+trigger: surface:**/*.ts,**/*.tsx,content/**/*
+globs:
+  - "**/*.ts"
+  - "**/*.tsx"
+  - content/**/*
+---
+
 # Strict Validation at External Boundaries
 
 Operationalises [`principles.md` §Compiler Time Types and Runtime Validation](../directives/principles.md) and [`validation-strategy.md`](../directives/validation-strategy.md).

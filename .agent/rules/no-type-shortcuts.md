@@ -1,3 +1,12 @@
+---
+classification: situational
+description: Avoid type assertions, any, and non-null shortcuts except as const
+trigger: surface:**/*.ts,**/*.tsx
+globs:
+  - "**/*.ts"
+  - "**/*.tsx"
+---
+
 # No Type Shortcuts
 
 Do not disable the type system with `as` (except `as const`), `any`, or non-null assertions. Prefer

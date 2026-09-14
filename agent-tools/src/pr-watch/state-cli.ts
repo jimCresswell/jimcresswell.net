@@ -189,8 +189,8 @@ function usage(): string {
     'pr state <pr-number|github-pull-url> [--repo <owner/repo>] [--json] [--expect <login>]... [--gh <absolute-path>]',
     '',
     'Resolves the pr-lifecycle compound read (checks BY NAME, review threads, auto-merge',
-    'intent, per-reviewer legs over the FULL review harvest, agent-task review-run',
-    'liveness, the >10 min quiet window) to ONE verdict from a closed state set:',
+    'intent, per-reviewer legs over the FULL review harvest, outstanding review requests,',
+    'agent-task run liveness) to ONE verdict from a closed state set:',
     // Derived, never transcribed: the set changes as a reviewed contract
     // change and this text must not drift behind it.
     `${PR_VERDICT_STATES.join(' | ')}.`,

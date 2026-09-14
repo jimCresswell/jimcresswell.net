@@ -144,14 +144,12 @@ describe('computeReviewerLegs', () => {
 describe('mostBlockingLeg', () => {
   const owedClaude = { reviewer: 'claude', state: 'OWED' as const, detail: '' };
 
-  it('a dead requested leg outranks another reviewer’s live run (per-reviewer, not PR-wide)', () => {
+  it('an owed unrequested leg outranks another reviewer’s outstanding request (per-reviewer, not PR-wide)', () => {
     const verdict = mostBlockingLeg({
       legs: [{ reviewer: 'copilot-pull-request-reviewer', state: 'OWED', detail: '' }, owedClaude],
-      reviewRequests: ['copilot-pull-request-reviewer', 'claude'],
-      liveRunReviewers: ['copilot-pull-request-reviewer'],
-      runsReadable: true,
+      reviewRequests: ['copilot-pull-request-reviewer'],
     });
-    expect(verdict).toMatchObject({ kind: 'SILENT-WAIT-RUN-DEAD', reviewer: 'claude' });
+    expect(verdict).toMatchObject({ kind: 'SILENT-WAIT-NO-REVIEWER', reviewer: 'claude' });
   });
 
   it('an owed unrequested leg reads SILENT-WAIT-NO-REVIEWER', () => {
@@ -159,35 +157,25 @@ describe('mostBlockingLeg', () => {
       mostBlockingLeg({
         legs: [owedClaude],
         reviewRequests: [],
-        liveRunReviewers: [],
-        runsReadable: true,
       }),
     ).toMatchObject({ kind: 'SILENT-WAIT-NO-REVIEWER', reviewer: 'claude' });
   });
 
-  it('a requested leg with a live run reads WAITING-REVIEW-RUN-LIVE', () => {
+  // An outstanding request IS the round in flight: the platform clears it when
+  // the review lands, and no other surface carries a Copilot review run (the
+  // `gh agent-task` list never did — verified live 2026-09-13 on PR #60, which
+  // read SILENT-WAIT with Copilot's review in progress). A request never
+  // served is ended by the checks-green timeout arm (SKILL item 3).
+  it('a requested owed leg reads WAITING-REVIEW-RUN-LIVE: the outstanding request is the round in flight', () => {
     expect(
       mostBlockingLeg({
         legs: [owedClaude],
         reviewRequests: ['claude'],
-        liveRunReviewers: ['claude'],
-        runsReadable: true,
       }),
     ).toMatchObject({ kind: 'WAITING-REVIEW-RUN-LIVE', reviewer: 'claude' });
   });
 
-  it('an unreadable run surface never asserts deadness (typed uncertainty)', () => {
-    expect(
-      mostBlockingLeg({
-        legs: [owedClaude],
-        reviewRequests: ['claude'],
-        liveRunReviewers: [],
-        runsReadable: false,
-      }),
-    ).toMatchObject({ kind: 'SILENT-WAIT-RUNS-UNREADABLE', reviewer: 'claude' });
-  });
-
-  it('matches reviewer logins case-insensitively (GitHub logins are)', () => {
+  it('matches reviewer logins case-insensitively (logins are)', () => {
     const legs = computeReviewerLegs({
       ...base,
       expectedReviewers: ['JIMCRESSWELL'],
@@ -200,10 +188,54 @@ describe('mostBlockingLeg', () => {
       mostBlockingLeg({
         legs: [{ reviewer: 'JIMCRESSWELL', state: 'OWED', detail: '' }],
         reviewRequests: ['jimCresswell'],
-        liveRunReviewers: [],
-        runsReadable: true,
       }),
-    ).toMatchObject({ kind: 'SILENT-WAIT-RUN-DEAD' });
+    ).toMatchObject({ kind: 'WAITING-REVIEW-RUN-LIVE' });
+  });
+
+  // The `--expect` grammar admits the app `[bot]` suffix (the REST spelling of
+  // an app login); GraphQL carries Bot logins without it on both the reviews
+  // harvest and the review-request surface. Comparison strips the suffix on
+  // either side, so a declared `[bot]` form binds the same leg.
+  it('a declared [bot] suffix binds a harvest author without it (SATISFIED)', () => {
+    const legs = computeReviewerLegs({
+      ...base,
+      expectedReviewers: ['copilot-pull-request-reviewer[bot]'],
+      reviews: [review({ author: 'copilot-pull-request-reviewer' })],
+      reviewRequests: [],
+      now: '2026-07-21T12:06:00Z',
+    });
+    expect(legs[0]?.state).toBe('SATISFIED');
+  });
+
+  it('a declared [bot] suffix matches an outstanding request without it (the round in flight)', () => {
+    expect(
+      mostBlockingLeg({
+        legs: [{ reviewer: 'Copilot-Pull-Request-Reviewer[bot]', state: 'OWED', detail: '' }],
+        reviewRequests: ['copilot-pull-request-reviewer'],
+      }),
+    ).toMatchObject({ kind: 'WAITING-REVIEW-RUN-LIVE' });
+  });
+
+  // The inverse: GraphQL does not carry the suffix on a harvested value, but
+  // the comparison is symmetric, so a value that did would bind the same leg.
+  it('a harvested author carrying [bot] binds a declared bare login (SATISFIED)', () => {
+    const legs = computeReviewerLegs({
+      ...base,
+      expectedReviewers: ['copilot-pull-request-reviewer'],
+      reviews: [review({ author: 'copilot-pull-request-reviewer[bot]' })],
+      reviewRequests: [],
+      now: '2026-07-21T12:06:00Z',
+    });
+    expect(legs[0]?.state).toBe('SATISFIED');
+  });
+
+  it('a request carrying [bot] matches a declared bare login (the round in flight)', () => {
+    expect(
+      mostBlockingLeg({
+        legs: [{ reviewer: 'copilot-pull-request-reviewer', state: 'OWED', detail: '' }],
+        reviewRequests: ['copilot-pull-request-reviewer[bot]'],
+      }),
+    ).toMatchObject({ kind: 'WAITING-REVIEW-RUN-LIVE' });
   });
 
   it('a PENDING (unsubmitted) review neither satisfies nor skips a leg', () => {
@@ -223,8 +255,6 @@ describe('mostBlockingLeg', () => {
       mostBlockingLeg({
         legs: [{ reviewer: 'claude', state: 'SKIPPED', skipReason: 'quota', detail: 'quota' }],
         reviewRequests: [],
-        liveRunReviewers: [],
-        runsReadable: true,
       }),
     ).toEqual({ kind: 'settled' });
   });
@@ -282,8 +312,8 @@ describe('computeReviewerLegs — explicit non-quota skip markers (r5 regression
 // (the join key, pr-lifecycle SKILL); the detector additionally tolerates the
 // MCP-145 visual-disambiguator token because a seat may paste its rendered
 // identity. The asymmetry drives every row below: a false POSITIVE silently
-// excludes a real reviewer at all three consumers (quiet-window anchoring,
-// body-tally evidence, and the defaulted expected-reviewer set — the
+// excludes a real reviewer at both consumers (body-tally evidence and the
+// defaulted expected-reviewer set — the
 // load-bearing one), so the prefix arm stays exactly six lowercase hex —
 // the ratified rows with
 // non-hex, uppercase, or hyphen-bearing prefixes are DELIBERATE non-matches

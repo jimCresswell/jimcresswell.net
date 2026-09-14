@@ -1,3 +1,14 @@
+---
+classification: situational
+description: Route editorial and public-copy changes through the editor
+trigger: surface:public-facing copy, CV and front-page content, editorial docs
+globs:
+  - content/**/*
+  - docs/editorial/**/*
+  - app/**/*
+  - lib/jsonld.ts
+---
+
 # Invoke Editor
 
 Invoke `editor` when changes alter public-facing copy, CV or front-page content, tilt variants,

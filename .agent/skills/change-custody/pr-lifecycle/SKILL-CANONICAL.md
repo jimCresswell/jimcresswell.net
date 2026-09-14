@@ -576,8 +576,8 @@ generated: 0 new" footer coexists with suppressed items (two recorded
 reviews say 0 new and carry fifteen and eight). The
 cure-worthy count reads the marker and nothing else (a below-bar finding
 and a build-changing one can both be routed to a home); signed replies and
-comments are excluded from the raised count and from the quiet-window
-anchor (item 2). The recorded corpus that fixed this format is the source
+comments are excluded from the raised count (item 2). The recorded corpus
+that fixed this format is the source
 lineage's harvest of its pull request #135 (a fixture with a README in that
 estate, not carried here: it is that repository's review data); this
 repository's own corpus is recorded at its first tallied pull request.
@@ -643,7 +643,7 @@ repository's own corpus is recorded at its first tallied pull request.
    most a bounded settle delay. A leading `[Agent: …]` marker
    (identify-as-agent-under-shared-credentials) composes with, never
    replaces, the final signature line. EXCLUDE self-authored signed
-   replies from the round tally and from quiet-window anchoring (drive
+   replies from the round tally (drive
    precedent 2026-07-20; an unsigned self-reply reads back as owner round
    activity and falsely re-opens the round). A finding whose review binds to an ALREADY-SETTLED round's
    tip AMENDS that round's row (the tally records truth, not the order of
@@ -816,8 +816,7 @@ deliberately gone — triage binds from wave one. **The step-back trigger is
    can hide this when overlapping review jobs complete out of order — an
    older-tip review landing after a current-tip one makes the author's
    "latest" point backwards, leaving the leg falsely OWED and untouchable
-   by the timeout). The quiet window anchors to the LATEST review matching
-   the current tip, never to the author's globally latest review.
+   by the timeout).
    **SKIPPED** — via a tip-scoped marker, or via the timeout. The MARKER
    leg: an explicit skip marker in a review body satisfies SKIPPED only
    when its review binds to the current tip, OR when its body declares a
@@ -838,20 +837,24 @@ deliberately gone — triage binds from wave one. **The step-back trigger is
    door (round-6 correction + pair fold, 2026-07-16: `latestReviews`
    retains each author's latest body, so an unscoped early marker would
    otherwise satisfy SKIPPED for every later tip forever). The TIMEOUT leg:
-   no review bound to the tip after one full checks-green quiet window
-   (>10 min from the tip's checks reaching green); record the skip with its
-   evidence (reviewer, tip SHA, window bounds) in the shepherd's working
+   no review bound to the tip after the checks-green timeout
+   (>10 min from the tip's checks reaching green, the one clock in the
+   state machine; a request still outstanding past it on an OWED leg is the
+   leg nobody served, and the timeout ends the watch; a re-request on a leg
+   already SATISFIED by a tip-bound review is item 4's round in flight,
+   never a skip); record the skip with its
+   evidence (reviewer, tip SHA, timeout bounds) in the shepherd's working
    notes (round-2 correction, 2026-07-16: without the timeout the gate goes
    permanently unsatisfiable the moment a reviewer stops reviewing — on
    #390, claude[bot] posted a spend-limit skip review on the first commit
    and nothing on any later tip, so every subsequent tip would read owed
    forever with no tip-specific marker obtainable). **OWED** — otherwise.
-   The gate never waits more than one quiet window for any single reviewer.
+   The gate never waits more than one timeout for any single reviewer.
    CRITICAL first-round rule: the EXPECTED reviewer set is not just "bots
    that previously reviewed this PR" — on a repo whose ruleset configures
    bot review on push, the first round is ALWAYS expected, so before any
    bot has reviewed, every configured bot is OWED until it posts or the
-   checks-green quiet-window timeout fires. A leg is standing BY
+   checks-green timeout fires. A leg is standing BY
    CONFIGURATION, never assumed by doctrine (owner, 2026-08-09: "route
    through the rules process, not assumed"): Phase 1 reads the set from
    the repository's live automatic-review configuration at each PR-open,
@@ -922,21 +925,34 @@ deliberately gone — triage binds from wave one. **The step-back trigger is
    config that fires bot reviews on push), and that declaration is the
    state machine's input for every round.
 4. **Round settled; merge-ready.** A round is SETTLED when every expected
-   reviewer leg reads SATISFIED or SKIPPED for the current tip AND a quiet
-   window LONGER than the async lag has elapsed since the latest review
-   binding to the tip — never since the push, and a disposition-only
-   pass anchors the window exactly as a push does (>10 min; 12 used on
-   #330)
-   (round-3 correction, 2026-07-16: without the skip clause a timed-out
-   reviewer stays bound to an older commit and the settled state is
-   unreachable). **The quiet window is a PROXY for review-run-boundary
-   visibility, which agents lack; the owner sees run start/finish directly,
-   so an owner settled-word — or an owner-executed merge — issued from that
-   direct visibility supersedes the proxy and is never read as a process
-   breach** (owner word 2026-07-25; #518 and #534 were owner-merged inside
-   the window, correctly). Agents keep the proxy. On a tip where every leg settled via SKIPPED (no review
-   ever bound to the tip), the quiet window anchors on the checks-green
-   window from item 3. MERGE-READY is a settled round with zero
+   reviewer leg reads SATISFIED or SKIPPED for the current tip AND the
+   round's boundary reads closed from MEASURED state: no expected reviewer
+   has an outstanding review request, and no live review run mapped to the
+   PR is observed. The run leg's contract, exactly: an OBSERVED live run
+   mapped to the PR is a measured guard and blocks settlement; an
+   unavailable or truncated run surface is named on the settled verdict and
+   does not block. The asymmetry is measured: `gh agent-task` lists
+   coding-agent sessions and never carried a review round, so the review
+   round's own signal is the request, read on every compound read, and
+   blocking on an optional gh extension being installed and readable (a CI
+   host has none) would be the SETTLED-NO-REVIEW deadlock in another coat
+   (Director's verdict on #65, 2026-09-14) (round-3 correction, 2026-07-16: without the skip clause a
+   timed-out reviewer stays bound to an older commit and the settled state
+   is unreachable). Until 2026-09-13 the boundary was a PROXY, a quiet
+   window of more than ten minutes since the latest tip-bound review,
+   because agents could not see a review round start or finish; the owner,
+   who could, superseded it from that direct visibility (owner word
+   2026-07-25; #518 and #534 were owner-merged inside the window,
+   correctly). The proxy went on the owner's word ("nothing is happening on
+   the PR ... the 'quiet window' could be replaced with measured state",
+   2026-09-13, on #56): the platform clears the request when the review
+   lands, the compound read brackets its thread read with a review harvest
+   on each side that must agree, re-reading on a landing (so a review seen
+   landed has its threads on the read, and one not yet landed shows as its
+   request; a round opening after the bracket is the next poll's, or the
+   post-merge harvest's), an OWED leg nobody serves is ended by item 3's
+   timeout, the one clock that remains, and a re-request on a satisfied tip
+   is bounded by the watcher's poll budget. MERGE-READY is a settled round with zero
    UNDISPOSITIONED findings and a cure-worthy count of zero (item 2's
    semantics under PDR-140: a round whose raised findings are all
    validly dispositioned-with-resolution is merge-ready without another
@@ -962,15 +978,21 @@ deliberately gone — triage binds from wave one. **The step-back trigger is
    Claude Code Review's standing verdict and NO Copilot leg expected; for
    that class a timeout-settled round IS merge-eligible. Grounds: the
    Claude review posts no review on a clean tip, so the leg never
-   satisfies. The Copilot leg is the bot's own to obtain: `POST
+   satisfies. The Copilot leg is obtained by a review request on the tip:
+   in the source lineage the bot's own `POST
    repos/{owner}/{repo}/pulls/{n}/requested_reviewers` with
    `reviewers[]=copilot-pull-request-reviewer[bot]` under the
-   pull-request-work token returns 201 and the timeline shows
-   `review_requested Copilot` within seconds (first-hand on #108, #109,
-   #110, #114); verify on the timeline, since the requested-reviewers
-   list never shows it, and never through the draft/ready toggle, which
+   pull-request-work token returned 201 and the timeline showed
+   `review_requested Copilot` within seconds (first-hand there on #108,
+   #109, #110, #114); in THIS estate that call under the bot token
+   registers nothing, and the owner's CLI credential registers the request
+   on the timeline within a minute unless the previous request's review is
+   still in flight (verified live 2026-09-13; `.agent/reference/merge-bot.md`
+   §Agent actions run as the bot). Verify on the timeline or the GraphQL
+   `reviewRequests` connection, since gh's requested-reviewers list never
+   shows a Bot request, and never through the draft/ready toggle, which
    fires nothing on a pull request already undrafted once. A synced tip
-   gets its Copilot leg by that one call as the bot, and a CODE pull
+   gets its Copilot leg by that one request, and a CODE pull
    request lands only through the front door with every AVAILABLE
    configured leg bound plus the posted subagent review where a vendor
    is unavailable (item 3's owner ruling of 2026-09-10), never by the
@@ -1036,7 +1058,7 @@ deliberately gone — triage binds from wave one. **The step-back trigger is
    undispositioned body-tally findings on the tip with a cure-worthy
    count of zero (item 2's PDR-140 semantics), every expected reviewer
    leg SATISFIED/SKIPPED,
-   a full quiet window since the latest tip-bound review, checks green —
+   no expected reviewer requested, no review run live, checks green —
    because a grant is read downstream as authorisation-to-act-now, and
    "the executing seat will recompute" is hope, not a gate, under grant
    momentum. The executing seat STILL recomputes at the boundary
@@ -1143,14 +1165,24 @@ deliberately gone — triage binds from wave one. **The step-back trigger is
   head that a held cure or a sync will supersede is spent for nothing
   (first-hand 2026-09-10 on #108, #114 and #116). The same sweep names a
   shepherd for every open PR: threads with no owner are the same disease.
-  The sweep's third leg is **review-RUN liveness**: `gh agent-task list`
-  enumerates review runs (`--json id,name,createdAt,completedAt`;
+  The sweep's third leg is **review-round liveness**: the outstanding
+  review request is the measured signal that a round is in flight. It is
+  read from the GraphQL `reviewRequests` connection, the one surface that
+  lists a Bot request (gh's `pr view --json reviewRequests` and the REST
+  endpoint beneath it omit Bot requests, so a Copilot review in progress
+  read as "nobody requested" until 2026-09-13, PR #60), and the platform
+  clears it when the review lands. `gh agent-task list` enumerates
+  coding-agent sessions (`--json id,name,createdAt,completedAt`;
   `completedAt` null = in flight) and `gh agent-task view <session-id>
-  --json` maps a run to its PR (the list JSON carries no PR number; the
+  --json` maps one to its PR (the list JSON carries no PR number; the
   PR-number positional is interactive-only — vendor shapes verified
-  2026-07-21). Run-in-flight, run-never-started, and run-dead are now
-  distinguishable states; a wait on a review whose run never started is
-  the silent-wait class, not patience.
+  2026-07-21). Its contract is item 4's: an OBSERVED live session mapped
+  to the PR is a measured guard and blocks settlement; a run's ABSENCE is
+  never inferred from it (it never carried a review run), so an
+  unavailable or truncated surface is named on the settled verdict and
+  does not block. A request never served is ended by the checks-green
+  timeout arm (item 3): a wait on a review nobody requested is the
+  silent-wait class, not patience.
 - **Own the convergence loop — never hand it to the owner** (owner
   corrections, 2026-07-07 #317 and 2026-07-08 #324 — two seats re-derived
   the same blind spot in one sitting; scheduled nap-probes FEEL like
@@ -1442,13 +1474,14 @@ does not bind GitHub's delete-on-merge setting.
 
 **One post-merge harvest before stand-down.** MERGED ends the merge-state
 question, not the feedback stream: a bot round composing at merge time still
-posts findings on the merged code up to ~10 minutes later. Apply the settled
-quiet window ONCE after MERGED (one final full harvest after >10 quiet
-minutes); route any real finding to a follow-up branch, never to the merged
-PR's branch. The quiet window is a PROXY predicate — it exists only because
-agents cannot see a bot review start or finish; the owner's settled word
-from his own visibility supersedes it (owner ruling, 2026-07-2x): when he
-says it is settled, it is settled, and the window is not re-imposed on him.
+posts findings on the merged code minutes later. Apply item 4's measured
+predicate ONCE after MERGED (one final full harvest once no expected
+reviewer has an outstanding request and no live run is observed, any
+unavailable run surface named; the owner's credential request registered on
+the owner never holds it); route any real finding to a follow-up
+branch, never to the merged PR's branch. The owner's settled word from his
+own visibility supersedes the read (owner ruling, 2026-07-2x): when he says
+it is settled, it is settled.
 
 `worktree-hygiene` §3/§6 owns the cleanup: remove the worktree and delete the
 branch (content-verified, owner-authorisation-gated for destructive ops);

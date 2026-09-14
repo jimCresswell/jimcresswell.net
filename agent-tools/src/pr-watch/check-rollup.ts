@@ -81,7 +81,7 @@ function moreBlocking<T>(incumbent: T | undefined, candidate: T, rank: (item: T)
 }
 
 // Completion anchor for full-tie survivors. The survivor's completion
-// feeds checksGreenAt, which waives owed-review quiet windows — so on a
+// feeds checksGreenAt, which starts the owed-review timeout — so on a
 // start-and-rank tie the LATER completion is the conservative survivor
 // (a green moment is never reported earlier than the last twin's).
 function completionAnchorOf(item: RollupCheckShape): number {

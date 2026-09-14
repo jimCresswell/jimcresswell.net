@@ -1,11 +1,11 @@
-import { execSync, spawn, type ChildProcess } from "node:child_process";
+import { execSync } from "node:child_process";
 import fs from "node:fs/promises";
-import net from "node:net";
 import os from "node:os";
 import path from "node:path";
 import pino from "pino";
 import puppeteer from "puppeteer";
 import { getBlobPath, getDeployKey, PDF_FILENAME } from "../lib/pdf-config";
+import { attachBuiltSite, bindFreePort } from "./built-site-server";
 import { put } from "@vercel/blob";
 
 // ---------------------------------------------------------------------------
@@ -55,50 +55,6 @@ async function storePdf(pdf: Buffer, blobPath: string): Promise<string> {
 // ---------------------------------------------------------------------------
 // Helpers
 // ---------------------------------------------------------------------------
-
-/** Find a free TCP port. */
-function getFreePort(): Promise<number> {
-  return new Promise((resolve, reject) => {
-    const srv = net.createServer();
-    srv.listen(0, () => {
-      const addr = srv.address();
-      if (!addr || typeof addr === "string") {
-        reject(new Error("Could not determine port"));
-        return;
-      }
-      const port = addr.port;
-      srv.close(() => resolve(port));
-    });
-    srv.on("error", reject);
-  });
-}
-
-/** Poll until the server responds with 200. */
-async function waitForServer(
-  url: string,
-  { timeout = 30_000, interval = 500 } = {}
-): Promise<void> {
-  const start = Date.now();
-  let attempts = 0;
-  while (Date.now() - start < timeout) {
-    attempts++;
-    try {
-      const res = await fetch(url, { method: "HEAD" });
-      if (res.ok) {
-        log.debug({ url, attempts, elapsedMs: Date.now() - start }, "Server ready");
-        return;
-      }
-      log.debug({ url, status: res.status, attempts }, "Server not ready yet");
-    } catch {
-      // Server not ready yet — expected during startup.
-      if (attempts % 10 === 0) {
-        log.debug({ url, attempts }, "Server not responding yet");
-      }
-    }
-    await new Promise((r) => setTimeout(r, interval));
-  }
-  throw new Error(`Server at ${url} did not become ready within ${timeout}ms`);
-}
 
 /** Probe the system for Chrome dependency info (best-effort). */
 async function logSystemInfo(): Promise<void> {
@@ -179,26 +135,16 @@ async function main(): Promise<void> {
 
   await logSystemInfo();
 
-  const port = await getFreePort();
-  const origin = `http://localhost:${port}`;
+  // Bind a free port and keep the socket until the PDF is stored: the build is served from
+  // this process through Next's custom-server API, so no other process can be handed the
+  // port and the page rendered is this build's (built-site-server.ts).
+  const bound = await bindFreePort();
+  const origin = `http://localhost:${bound.port}`;
 
-  log.info({ port, origin }, "Starting Next.js server");
-
-  // Resolve the next binary from node_modules (pnpm requirement — never npx).
-  const nextBin = path.resolve(process.cwd(), "node_modules", ".bin", "next");
-  log.debug({ nextBin }, "Next.js binary path");
-
-  const server: ChildProcess = spawn(nextBin, ["start", "-p", String(port)], {
-    stdio: "pipe",
-    env: { ...process.env, PORT: String(port) },
-  });
-
-  // Forward server output for build log visibility.
-  server.stdout?.on("data", (d: Buffer) => process.stdout.write(d));
-  server.stderr?.on("data", (d: Buffer) => process.stderr.write(d));
+  log.info({ port: bound.port, origin }, "Serving the build from the bound port");
+  const close = await attachBuiltSite(bound);
 
   try {
-    await waitForServer(`${origin}/cv`);
     log.info("Server ready. Launching Puppeteer...");
 
     const launchArgs = ["--no-sandbox", "--disable-setuid-sandbox"];
@@ -241,10 +187,8 @@ async function main(): Promise<void> {
       log.debug("Browser closed");
     }
   } finally {
-    server.kill("SIGTERM");
-    log.debug("Sent SIGTERM to Next.js server");
-    // Give the server a moment to shut down gracefully.
-    await new Promise((r) => setTimeout(r, 1_000));
+    await close();
+    log.debug("Closed the site's socket");
   }
 }
 

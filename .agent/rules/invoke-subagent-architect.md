@@ -1,3 +1,16 @@
+---
+classification: situational
+description: Route reviewer, rule, skill, and adapter-estate changes through subagent-architect
+trigger: surface:.agent/sub-agents/, platform agent adapters
+globs:
+  - .agent/**/*
+  - .cursor/**/*
+  - .claude/**/*
+  - .codex/**/*
+  - .github/**/*
+  - .agents/**/*
+---
+
 # Invoke Subagent Architect
 
 Invoke `subagent-architect` when the reviewer roster, rules, skills, commands, or cross-platform

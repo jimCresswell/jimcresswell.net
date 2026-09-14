@@ -51,12 +51,16 @@ export interface ComputeReviewerLegsInput {
   readonly reviewRequests: readonly string[];
   /** Max completedAt across green checks; null while checks are not yet green. */
   readonly checksGreenAt: string | null;
-  /** Injected clock (ISO) — the quiet-window and timeout legs are time-bound. */
+  /** Injected clock (ISO) — the checks-green timeout leg is time-bound. */
   readonly now: string;
 }
 
-/** SKILL item 3/4: the checks-green timeout and settled quiet window (more than 10 min). */
-export const QUIET_WINDOW_MS = 10 * 60 * 1000;
+/**
+ * SKILL item 3: the checks-green timeout (more than 10 min) that ends a leg
+ * nobody serves. The only clock in settlement: item 4 reads measured state
+ * (every leg landed, no expected reviewer requested, no run live).
+ */
+const REVIEW_TIMEOUT_MS = 10 * 60 * 1000;
 
 // Skip-marker classification (SKILL: substantive reviews vs SKIPPED markers).
 // A skip phrase alone declares NO REVIEW OCCURRED — such a body must never
@@ -83,11 +87,17 @@ function bindsTip(review: HarvestedReview, headRefOid: string): boolean {
   return review.commitOid === headRefOid;
 }
 
-// GitHub logins are case-insensitive; compare through one casing so a declared
+// Logins are case-insensitive; compare through one casing so a declared
 // `--expect jimcresswell` matches the API's `jimCresswell` (display keeps the
-// declared form).
-function normaliseLogin(login: string): string {
-  return login.toLowerCase();
+// declared form). An app login's `[bot]` suffix is the REST spelling; GraphQL
+// carries Bot logins without it on both the reviews harvest and the
+// review-request surface, and the `--expect` grammar admits either form, so
+// the suffix is stripped on both sides of every comparison.
+const BOT_SUFFIX = /\[bot\]$/u;
+
+/** The one login comparison key: lower-cased, the app suffix stripped. */
+export function normaliseLogin(login: string): string {
+  return login.toLowerCase().replace(BOT_SUFFIX, '');
 }
 
 // A PENDING (draft, unsubmitted) review has not landed: it must neither
@@ -98,8 +108,8 @@ export function hasLanded(review: HarvestedReview): boolean {
 
 // Signed self-authored disposition replies posted through the shared owner
 // credential carry the PDR-027 identity-tuple signature ("— <name> (<hex6>)")
-// on their FINAL line; the canonical contract excludes them from quiet-window
-// anchoring and they must not pollute a defaulted expected-reviewer set. The
+// on their FINAL line; the canonical contract excludes them from the body
+// tally and they must not pollute a defaulted expected-reviewer set. The
 // check is two linear probes, not one ambiguous regex (S8786 backtracking).
 // The canonical parenthesised field is the BARE session_id_prefix (the join
 // key — pr-lifecycle SKILL); the optional `-hex3` arm additionally tolerates
@@ -107,21 +117,23 @@ export function hasLanded(review: HarvestedReview): boolean {
 // tail can be uppercase: stored ids are lowercase but externally-parsed
 // blocks are rendered verbatim). The prefix arm deliberately stays exactly
 // six lowercase hex and is NEVER widened toward the schema-unbounded prefix
-// domain: a false POSITIVE here is silently destructive at all three
-// consumers — it removes the reply from quiet-window anchoring and from
-// body-tally evidence (settlement.ts) and, most dangerously, drops its
-// author from the DEFAULTED expected-reviewer set (state-gh.ts), which can
-// settle a round without a real reviewer — while a false NEGATIVE costs a
-// bounded wait at two consumers (timeout arm; re-anchored quiet window)
-// plus one wrong body-tally evidence line at the third — so the ratified
-// non-hex,
+// domain: a false POSITIVE here is silently destructive at both consumers —
+// it removes the reply from body-tally evidence (settlement.ts) and, most
+// dangerously, drops its author from the DEFAULTED expected-reviewer set
+// (state-gh.ts), which can settle a round without a real reviewer — while a
+// false NEGATIVE costs one wrong body-tally evidence line and, in a defaulted
+// set, an unnecessary leg for the reply's author: on the reply's own tip the
+// reply itself satisfies it (state-gh.ts adds the author; computeReviewerLegs
+// reads the tip-bound reply as landed), and on every later tip it reads OWED
+// until the timeout arm ends it as SETTLED-NO-REVIEW, a wrong read that is
+// never a wrong merge — so the ratified non-hex,
 // uppercase-prefix, and hyphen-bearing-prefix rows (the 2a token table in
 // tests/collaboration-state/visual-disambiguator.unit.test.ts) are
 // deliberate non-matches, and this stays a predicate, never an extractor
 // (the token is non-injective; no decode of it can be correct). Reviewer-leg
 // SATISFACTION is deliberately unfiltered: a signed self-reply by a DECLARED
 // expected reviewer still satisfies that leg — the exclusion binds only the
-// anchor, the body tally, and the defaulted set.
+// body tally and the defaulted set.
 const SIGNATURE_SUFFIX = /\([0-9a-f]{6}(?:-[0-9a-fA-F]{3})?\)$/u;
 
 export function isSignedSelfReply(body: string): boolean {
@@ -152,12 +164,15 @@ function legFor(input: ComputeReviewerLegsInput, reviewer: string): ReviewerLeg 
     };
   }
   const unevaluableMarker = tipBound.some((review) => isSkipMarker(review.body));
-  if (input.checksGreenAt !== null && elapsedMs(input.checksGreenAt, input.now) > QUIET_WINDOW_MS) {
+  if (
+    input.checksGreenAt !== null &&
+    elapsedMs(input.checksGreenAt, input.now) > REVIEW_TIMEOUT_MS
+  ) {
     return {
       reviewer,
       state: 'SKIPPED',
       skipReason: 'timeout',
-      detail: `timeout: no ${unevaluableMarker ? 'substantive ' : ''}tip-bound review one quiet window after checks green (${input.checksGreenAt})`,
+      detail: `timeout: no ${unevaluableMarker ? 'substantive ' : ''}tip-bound review more than 10 min after checks green (${input.checksGreenAt})`,
     };
   }
   return {
@@ -178,43 +193,31 @@ export function computeReviewerLegs(input: ComputeReviewerLegsInput): ReviewerLe
 export type BlockingLegVerdict =
   | { readonly kind: 'settled' }
   | {
-      readonly kind:
-        | 'SILENT-WAIT-RUN-DEAD'
-        | 'SILENT-WAIT-RUNS-UNREADABLE'
-        | 'SILENT-WAIT-NO-REVIEWER'
-        | 'WAITING-REVIEW-RUN-LIVE';
+      readonly kind: 'SILENT-WAIT-NO-REVIEWER' | 'WAITING-REVIEW-RUN-LIVE';
       readonly reviewer: string;
     };
 
 export interface MostBlockingLegInput {
   readonly legs: readonly ReviewerLeg[];
+  /** Logins with an outstanding review request, from the GraphQL surface. */
   readonly reviewRequests: readonly string[];
-  /** Reviewers with a live review run associated (bounded vendor mapping). */
-  readonly liveRunReviewers: readonly string[];
-  /** False when the run surface could not be read — deadness is then never asserted. */
-  readonly runsReadable: boolean;
 }
 
 /**
- * Resolve OWED legs to the most blocking per-reviewer verdict: a requested
- * reviewer with NO live run (run dead / never started) outranks an
- * unrequested reviewer, which outranks a benign live-run wait — so one
- * reviewer's live run can never mask another reviewer's stalled leg.
+ * Resolve OWED legs to the most blocking per-reviewer verdict. An outstanding
+ * request IS the round in flight: the platform clears it when the review
+ * lands, and no other surface carries a Copilot review run (the agent-task
+ * list never did, so reading "requested with no mapped run" as dead read
+ * every Copilot review in progress as silent — PR #60, 2026-09-13). An
+ * unrequested owed reviewer outranks a requested one, so one
+ * reviewer's round in flight never masks another reviewer's stalled leg; a
+ * request never served is ended by the checks-green timeout arm (SKILL item
+ * 3), never by a deadness inference.
  */
 export function mostBlockingLeg(input: MostBlockingLegInput): BlockingLegVerdict {
   const owed = input.legs.filter((leg) => leg.state === 'OWED');
   const requested = new Set(input.reviewRequests.map((login) => normaliseLogin(login)));
-  const live = new Set(input.liveRunReviewers.map((login) => normaliseLogin(login)));
 
-  const runDead = owed.find(
-    (leg) => requested.has(normaliseLogin(leg.reviewer)) && !live.has(normaliseLogin(leg.reviewer)),
-  );
-  if (runDead !== undefined) {
-    // An unreadable run surface never asserts deadness (typed uncertainty).
-    return input.runsReadable
-      ? { kind: 'SILENT-WAIT-RUN-DEAD', reviewer: runDead.reviewer }
-      : { kind: 'SILENT-WAIT-RUNS-UNREADABLE', reviewer: runDead.reviewer };
-  }
   const unrequested = owed.find((leg) => !requested.has(normaliseLogin(leg.reviewer)));
   if (unrequested !== undefined) {
     return { kind: 'SILENT-WAIT-NO-REVIEWER', reviewer: unrequested.reviewer };

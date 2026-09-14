@@ -146,7 +146,7 @@ below. The OCE-lineage rules went through a single content-grain triage
 | [onboarding-expert](sub-agents/templates/onboarding-expert.md)                   | Cold-start readability of docs and handoffs              |
 | [release-readiness-expert](sub-agents/templates/release-readiness-expert.md)     | Release gates                                            |
 | `corpus-mapper`, `corpus-meta`, `corpus-reducer`, `corpus-voter`                 | Parallax corpus roles                                    |
-| `cricket-judgement`, `cricket-procedure`                                         | Cricket adjudication roles                               |
+| `cricket-judgement-low`, `cricket-judgement-medium`, `cricket-judgement-high`, `cricket-procedure-xhigh` | Cricket panel roles (the effort-inversion quartet)       |
 
 ### Validation
 
