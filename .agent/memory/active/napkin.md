@@ -1423,3 +1423,7 @@ parallax, wrap):
   by an outside reader; if so the cost is worth paying once per boundary, never per push.
 - Discarded at the harvest: "Copilot's Lite effort level explains the sampling" was forced;
   nothing measured across effort levels.
+- Lane A's observation at its pause (09:02Z, not verified here): `comms assert-watcher-live`
+  run with platform and model but no `--session-prefix` read this seat's watcher as live for
+  lane A's seat. If so, the F-95 gate discriminates by display name only when the prefix is
+  supplied; the recipe should carry it. To test after the pause, one command per seat.
