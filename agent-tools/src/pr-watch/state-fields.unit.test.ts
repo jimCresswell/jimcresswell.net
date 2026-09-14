@@ -243,13 +243,13 @@ describe('parseAgentTaskList / parseAgentTaskView', () => {
         name: 'Review',
         completedAt: null,
         pullRequestNumber: 461,
-        pullRequestUrl: 'https://github.com/oaknational/jimcresswell.net/pull/461',
+        pullRequestUrl: 'https://github.com/jimCresswell/jimcresswell.net/pull/461',
       }),
     ).toEqual({
       id: 'run-1',
       completedAt: null,
       pullRequestNumber: 461,
-      pullRequestUrl: 'https://github.com/oaknational/jimcresswell.net/pull/461',
+      pullRequestUrl: 'https://github.com/jimCresswell/jimcresswell.net/pull/461',
     });
   });
 
@@ -279,7 +279,7 @@ describe('parseAgentTaskList / parseAgentTaskView', () => {
         id: 'run-1',
         completedAt: null,
         pullRequestNumber: null,
-        pullRequestUrl: 'https://github.com/oaknational/jimcresswell.net/pull/461',
+        pullRequestUrl: 'https://github.com/jimCresswell/jimcresswell.net/pull/461',
       }),
     ).toThrow();
   });

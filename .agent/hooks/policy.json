@@ -218,10 +218,7 @@
       "description": "Block shell commands that destroy history, bypass safety gates, overwrite live working-tree edits, discard stashed work, or stage by wildcard. Each entry carries a `concept` (the pattern family it is a fingerprint of), a `citation` (the doctrinal anchor), and a `reappraisal` (the positive direction the firing signals) so the deny message TEACHES: it names a concept to reappraise and steers the agent away from reaching for a sibling destructive command, rather than only refusing (PDR-044 §Innate immunity, as amended; the doctrine that an enforcement surface must carry the advisory-response content, not only a refusal). The concepts: `history-destruction` (`git push --force` / `-f`, `git rebase -i`); `gate-bypass` (`git --no-verify`, `git --no-gpg-sign`); `worktree-destruction` (`git reset --hard`, `git clean -fd`, checkout/restore variants — these silently throw away in-flight edits, including peer-agent edits in parallel sessions, and `git fsck --lost-found` cannot recover them); `stash-discard` (`git stash drop` / `clear`); `wildcard-staging` (`git add -A` / `--all` / `.`, blocked under the explicit-pathspec discipline so a commit cannot accidentally bundle parallel-thread or unrelated work); `host-dos-unbounded-load` / `host-dos-forkbomb` (inline busy-loops, fork bombs, load tools — the host is a shared substrate and unbounded load is a denial of service against the owner and every session; see `.agent/rules/no-unbounded-host-load.md`); `silent-output-mangling` (ripgrep's short replace flag — a clustered flag string starting with r parses as replace-with-remainder and silently rewrites match output; spell flags separately, or use the explicit long form when replacement is genuinely intended); `filesystem-destruction` (`rm -rf` / `rm -fr`, with the forced worktree removal under `worktree-destruction` — nothing in the estate is removed by force, and a forced removal that seems necessary is a routed request to the Director, never a prompt for an absent owner; see `.agent/rules/unattended-seats-never-prompt.md`). We never use git to remove work; forward-going filesystem changes only. Entries may be bare strings (legacy) or objects; `concept` and `reappraisal` are optional at load time so a missing value never fails the guard closed (which would brick the worktree on a stale-dist/new-policy mismatch — a stale Bash guard blocks every command including the rebuild), and the `validate-policy-reappraisal` repo validator enforces their presence on object entries at commit-time. See `.agent/rules/never-use-git-to-remove-work.md`, `.agent/rules/no-verify-requires-fresh-authorisation.md`, and `.agent/rules/stage-by-explicit-pathspec.md`."
     },
     "preToolUseContent": {
-      "blocked_patterns": [
-        "-- jc:",
-        "-- JC:"
-      ],
+      "blocked_patterns": ["-- jc:", "-- JC:"],
       "scoped_blocks": [
         {
           "concept": "expediency-hedging",
@@ -296,9 +293,7 @@
         {
           "concept": "sha-in-permanent-doc",
           "kind": "regex",
-          "patterns": [
-            "\\b(?=[0-9a-f]*[a-f])[0-9a-f]{7,40}\\b"
-          ],
+          "patterns": ["\\b(?=[0-9a-f]*[a-f])[0-9a-f]{7,40}\\b"],
           "include_paths": [
             ".agent/practice-core/",
             ".agent/rules/",
@@ -306,17 +301,9 @@
             "principles.md",
             "testing-strategy.md"
           ],
-          "exclude_paths": [
-            "provenance.yml",
-            "archive/",
-            "fixtures/",
-            "/tests/",
-            ".test.ts"
-          ],
+          "exclude_paths": ["provenance.yml", "archive/", "fixtures/", "/tests/", ".test.ts"],
           "excludes_inline_code": true,
-          "excludes_lines_with": [
-            "(historical reference)"
-          ],
+          "excludes_lines_with": ["(historical reference)"],
           "citation": "Moving targets do not belong in permanent docs (PDR-079 portable surfaces only — ADRs are repo-bound and out of scope)",
           "reappraisal": "State the durable fact rather than this pointer; if a genuine historical reference is needed, mark it explicitly as one. The fix removes the dependence on a moving target."
         },
@@ -361,11 +348,7 @@
         {
           "concept": "menu-framing",
           "kind": "literal",
-          "patterns": [
-            "for owner verdict",
-            "for owner decision",
-            "for owner ratification"
-          ],
+          "patterns": ["for owner verdict", "for owner decision", "for owner ratification"],
           "include_paths": [
             ".agent/practice-core/",
             ".agent/plans/",
@@ -388,6 +371,29 @@
           "reappraisal": "If you have analysed the situation to a verdict, present the verdict with its evidence; reserve owner questions for genuine permission gates and decisions only the owner can make."
         },
         {
+          "concept": "lineage-name",
+          "kind": "literal",
+          "patterns": ["oaknational", "oak-open-curriculum-ecosystem"],
+          "include_paths": [""],
+          "exclude_paths": [
+            ".agent/practice-core/provenance.yml",
+            ".agent/practice-core/CHANGELOG.md",
+            ".agent/memory/",
+            ".agent/reports/",
+            ".agent/plans",
+            ".agent/collaboration/",
+            ".agent/experience/",
+            ".agent/state/",
+            "docs/explorations/",
+            "jcdotnet/content/",
+            "jcdotnet/archive/",
+            "hooks/policy.json",
+            "validate-no-lineage-names"
+          ],
+          "citation": "practice-completion plan §Transplant closure item 5 (lineage residue off the live surfaces); .agent/practice-core/provenance.yml (the chain names the lineage)",
+          "reappraisal": "The lineage the Practice was transplanted from is named only in the records that tell that story (provenance, changelog, memory, reports, plans, the transplant exploration) and in the CV content, where it is a fact about the owner's work. On a live surface (a fixture, a manifest, a reference link, a comment) name this estate instead: the organisation is jimCresswell, the repository jimcresswell.net."
+        },
+        {
           "concept": "machine-local-path",
           "kind": "regex",
           "patterns": [
@@ -399,9 +405,7 @@
             "/private/var/folders",
             "/var/folders"
           ],
-          "include_paths": [
-            ""
-          ],
+          "include_paths": [""],
           "exclude_paths": [
             "important-state-not-in-temp-files.md",
             "hooks/policy.json",

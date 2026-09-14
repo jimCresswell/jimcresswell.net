@@ -13,7 +13,7 @@ function reading(overrides: Partial<PrStateReading> = {}): PrStateReading {
   return {
     number: 461,
     isDraft: false,
-    url: 'https://github.com/oaknational/jimcresswell.net/pull/461',
+    url: 'https://github.com/jimCresswell/jimcresswell.net/pull/461',
     state: 'OPEN',
     mergeable: 'MERGEABLE',
     mergeStateStatus: 'BLOCKED',

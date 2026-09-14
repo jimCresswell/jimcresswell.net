@@ -58,13 +58,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/oaknational/jimcresswell.net.git",
+    "url": "git+https://github.com/jimCresswell/jimcresswell.net.git",
     "directory": "packages/core/oak-eslint"
   },
   "bugs": {
-    "url": "https://github.com/oaknational/jimcresswell.net/issues"
+    "url": "https://github.com/jimCresswell/jimcresswell.net/issues"
   },
-  "homepage": "https://github.com/oaknational/jimcresswell.net/tree/main/packages/core/oak-eslint#readme",
+  "homepage": "https://github.com/jimCresswell/jimcresswell.net/tree/main/tooling/eslint#readme",
   "keywords": [
     "eslint",
     "eslint-plugin",

@@ -51,6 +51,7 @@
     "check-plan-gate-drift": "cd .. && pnpm exec tsx agent-tools/src/validators/plan-schema/check-plan-gate-drift.ts",
     "validate-reference-direction": "cd .. && pnpm exec tsx agent-tools/src/validators/reference-direction/validate-reference-direction.ts",
     "validate-no-machine-local-paths": "cd .. && pnpm exec tsx agent-tools/src/validators/machine-local-paths/validate-no-machine-local-paths.ts",
+    "validate-no-lineage-names": "cd .. && pnpm exec tsx agent-tools/src/validators/lineage-names/validate-no-lineage-names.ts",
     "validate-workspace-config-isolation": "cd .. && pnpm exec tsx agent-tools/src/validators/workspace-config-isolation/validate-workspace-config-isolation.ts",
     "validate-identity-naming": "cd .. && pnpm exec tsx agent-tools/src/validators/identity-naming/validate-identity-naming.ts",
     "validate-markdown-links": "cd .. && pnpm exec tsx agent-tools/src/validators/markdown-links/validate-markdown-links.ts",

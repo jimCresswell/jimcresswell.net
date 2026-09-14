@@ -18,7 +18,7 @@ const COPILOT = 'copilot-pull-request-reviewer';
 function viewPayload(): string {
   return JSON.stringify({
     number: 461,
-    url: 'https://github.com/oaknational/jimcresswell.net/pull/461',
+    url: 'https://github.com/jimCresswell/jimcresswell.net/pull/461',
     state: 'OPEN',
     isDraft: false,
     mergeable: 'MERGEABLE',

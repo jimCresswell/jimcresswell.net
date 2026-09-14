@@ -10,7 +10,7 @@ import type { GhCommandExecutor } from './gh.js';
  */
 
 const HEAD = 'f'.repeat(40);
-const PR_URL = 'https://github.com/oaknational/jimcresswell.net/pull/461';
+const PR_URL = 'https://github.com/jimCresswell/jimcresswell.net/pull/461';
 
 function viewPayload(oid: string = HEAD): string {
   return JSON.stringify({
@@ -189,7 +189,7 @@ describe('readPrStateReading', () => {
               id: 'foreign',
               completedAt: null,
               pullRequestNumber: 461,
-              pullRequestUrl: 'https://github.com/oaknational/some-other-repo/pull/461',
+              pullRequestUrl: 'https://github.com/jimCresswell/some-other-repo/pull/461',
             }),
           },
         },
@@ -636,13 +636,13 @@ describe('readPrStateReading', () => {
   it('passes --repo through to the pr view leg', () => {
     const calls: string[][] = [];
     readPrStateReading({
-      target: { number: 461, repo: 'oaknational/jimcresswell.net' },
+      target: { number: 461, repo: 'jimCresswell/jimcresswell.net' },
       ...ghSeam,
       execFileSync: makeExecutor({}, calls),
     });
     const prView = calls.find((args) => args[0] === 'pr' && args[1] === 'view');
     expect(prView).toContain('--repo');
-    expect(prView).toContain('oaknational/jimcresswell.net');
+    expect(prView).toContain('jimCresswell/jimcresswell.net');
   });
 });
 
