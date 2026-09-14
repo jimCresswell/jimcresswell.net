@@ -59,13 +59,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/oaknational/jimcresswell.net.git",
-    "directory": "packages/core/workspace-config"
+    "url": "git+https://github.com/jimCresswell/jimcresswell.net.git",
+    "directory": "tooling/workspace-config"
   },
   "bugs": {
-    "url": "https://github.com/oaknational/jimcresswell.net/issues"
+    "url": "https://github.com/jimCresswell/jimcresswell.net/issues"
   },
-  "homepage": "https://github.com/oaknational/jimcresswell.net/tree/main/packages/core/workspace-config#readme",
+  "homepage": "https://github.com/jimCresswell/jimcresswell.net/tree/main/tooling/workspace-config#readme",
   "keywords": [
     "config",
     "vitest",

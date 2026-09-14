@@ -1,6 +1,7 @@
 ---
 description: Route editorial and public-copy changes through the editor
-globs: "content/**/*,docs/editorial/**/*,app/**/*,lib/jsonld.ts"
+globs: content/**/*,docs/editorial/**/*,app/**/*,lib/jsonld.ts
+alwaysApply: false
 ---
 
-Read and follow @.agent/rules/invoke-editor.md
+Read and follow `.agent/rules/invoke-editor.md`.

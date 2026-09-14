@@ -14,6 +14,7 @@ import {
   HOOK_POLICY_PATH,
   isClaudeHookWired,
   isClaudeHookWiredInText,
+  rulesIndexBudgetIssues,
   SURFACE_MATRIX_PATH,
   surfaceMatrixDescribesClaudeHook,
 } from './validate-portability-helpers.js';
@@ -316,49 +317,24 @@ describe('getReviewerAdapterParityIssues', () => {
 });
 
 describe('getRulesIndexPortabilityIssues', () => {
-  const canonicalRuleFiles = [
-    '.agent/rules/apply-architectural-principles.md',
-    '.agent/rules/lint-after-edit.md',
-  ];
+  const index = `# Rules Index
 
-  it('returns no issues when the index lists every canonical rule and stays within budget', () => {
+| \`.agent/rules/lint-after-edit.md\` | core | — |
+`;
+
+  it('returns no issues when the index stays within the Codex byte budget', () => {
     expect(
-      getRulesIndexPortabilityIssues({
-        canonicalRuleFiles,
-        rulesIndexContent: `# Rules Index
-
-- \`.agent/rules/apply-architectural-principles.md\`
-- \`.agent/rules/lint-after-edit.md\`
-`,
-        maxBytes: 200,
-      }),
+      getRulesIndexPortabilityIssues({ rulesIndexContent: index, maxBytes: 200 }),
     ).toStrictEqual([]);
   });
 
-  it('reports missing, extra, missing-file, and byte-budget issues', () => {
+  it('reports the byte size against the budget when the index exceeds it', () => {
+    // The size is the fixture's own UTF-8 length (the em dash is three bytes), never a
+    // transcribed number.
+    const bytes = Buffer.byteLength(index, 'utf8');
     expect(
-      getRulesIndexPortabilityIssues({
-        canonicalRuleFiles,
-        rulesIndexContent: `# Rules Index
-
-- \`.agent/rules/lint-after-edit.md\`
-- \`.agent/rules/not-canonical.md\`
-`,
-        maxBytes: 20,
-      }),
-    ).toStrictEqual([
-      'RULES_INDEX.md: missing canonical rule entry .agent/rules/apply-architectural-principles.md',
-      'RULES_INDEX.md: references non-canonical rule .agent/rules/not-canonical.md',
-      'RULES_INDEX.md: 85 bytes exceeds Codex project-doc budget 20',
-    ]);
-
-    expect(
-      getRulesIndexPortabilityIssues({
-        canonicalRuleFiles,
-        rulesIndexContent: '',
-        rulesIndexExists: false,
-      }),
-    ).toStrictEqual(['RULES_INDEX.md: missing Codex fallback rules index']);
+      getRulesIndexPortabilityIssues({ rulesIndexContent: index, maxBytes: 20 }),
+    ).toStrictEqual([`RULES_INDEX.md: ${String(bytes)} bytes exceeds Codex project-doc budget 20`]);
   });
 });
 
@@ -404,19 +380,24 @@ describe('getSkillPermissionIssues', () => {
 });
 
 describe('collectCanonicalSkillPaths', () => {
+  /**
+   * A skills tree: `dirs` lists each directory's children, `canonicals` the regular
+   * canonical files with their text; any other name reads as nothing regular of ours
+   * (`undefined`, the fd-anchored reader's absence class: a link, a directory, nothing).
+   */
   const makeWalkFs = (
     dirs: ReadonlyMap<string, readonly string[]>,
-    canonicals: ReadonlySet<string>,
+    canonicals: ReadonlyMap<string, string>,
   ) => ({
-    async listSubdirs(relPath: string) {
-      return dirs.get(relPath) ?? [];
+    async listSubdirs(relPath: string): Promise<FsRead<readonly string[]>> {
+      return { kind: 'ok', value: dirs.get(relPath) ?? [] };
     },
-    async exists(relPath: string) {
-      return canonicals.has(relPath);
+    async readRegularFileTextNoFollow(relPath: string): Promise<FsRead<string | undefined>> {
+      return { kind: 'ok', value: canonicals.get(relPath) };
     },
   });
 
-  it('collects flat, concern-tier, and domain-tier canonicals', async () => {
+  it('collects flat, concern-tier, and domain-tier canonicals with their LF text', async () => {
     const fs = makeWalkFs(
       new Map([
         ['.agent/skills', ['flat-one', 'cognition', 'domain-craft']],
@@ -424,20 +405,85 @@ describe('collectCanonicalSkillPaths', () => {
         ['.agent/skills/domain-craft', ['ui-design']],
         ['.agent/skills/domain-craft/ui-design', ['claude-design-pipeline']],
       ]),
-      new Set([
-        '.agent/skills/flat-one/SKILL-CANONICAL.md',
-        '.agent/skills/cognition/reason/SKILL-CANONICAL.md',
-        '.agent/skills/domain-craft/ui-design/claude-design-pipeline/SKILL-CANONICAL.md',
+      new Map([
+        ['.agent/skills/flat-one/SKILL-CANONICAL.md', '---\r\nclassification: active\r\n---\r\n'],
+        ['.agent/skills/cognition/reason/SKILL-CANONICAL.md', 'reason\n'],
+        ['.agent/skills/domain-craft/ui-design/claude-design-pipeline/SKILL-CANONICAL.md', 'p\n'],
       ]),
     );
 
-    const result = await collectCanonicalSkillPaths(fs);
+    expect(await collectCanonicalSkillPaths(fs)).toStrictEqual({
+      ok: true,
+      value: {
+        canonicals: [
+          {
+            path: '.agent/skills/flat-one/SKILL-CANONICAL.md',
+            text: '---\nclassification: active\n---\n',
+          },
+          { path: '.agent/skills/cognition/reason/SKILL-CANONICAL.md', text: 'reason\n' },
+          {
+            path: '.agent/skills/domain-craft/ui-design/claude-design-pipeline/SKILL-CANONICAL.md',
+            text: 'p\n',
+          },
+        ],
+      },
+    });
+  });
 
-    expect(result.canonicalPaths).toStrictEqual([
-      '.agent/skills/flat-one/SKILL-CANONICAL.md',
-      '.agent/skills/cognition/reason/SKILL-CANONICAL.md',
-      '.agent/skills/domain-craft/ui-design/claude-design-pipeline/SKILL-CANONICAL.md',
-    ]);
+  it('does not collect a name where nothing regular stands (a linked or directory canonical): the walk goes on below it', async () => {
+    // `flat-one` has a SKILL-CANONICAL.md the no-follow read refuses (a link or a directory);
+    // `fam/dom` has a regular one below a first tier whose canonical name is the same.
+    const fs = makeWalkFs(
+      new Map([
+        ['.agent/skills', ['flat-one', 'fam']],
+        ['.agent/skills/flat-one', []],
+        ['.agent/skills/fam', ['dom']],
+      ]),
+      new Map([['.agent/skills/fam/dom/SKILL-CANONICAL.md', 'dom\n']]),
+    );
+
+    expect(await collectCanonicalSkillPaths(fs)).toStrictEqual({
+      ok: true,
+      value: { canonicals: [{ path: '.agent/skills/fam/dom/SKILL-CANONICAL.md', text: 'dom\n' }] },
+    });
+  });
+
+  it('refuses, naming the cause, when a canonical read fails', async () => {
+    const fs = {
+      ...makeWalkFs(new Map([['.agent/skills', ['flat-one']]]), new Map()),
+      async readRegularFileTextNoFollow(relPath: string): Promise<FsRead<string | undefined>> {
+        return { kind: 'failure', message: `cannot open ${relPath}: EACCES: permission denied` };
+      },
+    };
+
+    expect(await collectCanonicalSkillPaths(fs)).toStrictEqual({
+      ok: false,
+      error:
+        '.agent/skills: the canonical walk failed (cannot open .agent/skills/flat-one/SKILL-CANONICAL.md: EACCES: permission denied); skill validation skipped',
+    });
+  });
+
+  it('refuses, naming the cause, when a directory listing fails: an unlisted tier is never an empty one', async () => {
+    const fs = {
+      ...makeWalkFs(
+        new Map([
+          ['.agent/skills', ['cognition']],
+          ['.agent/skills/cognition', ['reason']],
+        ]),
+        new Map([['.agent/skills/cognition/reason/SKILL-CANONICAL.md', 'reason\n']]),
+      ),
+      async listSubdirs(relPath: string): Promise<FsRead<readonly string[]>> {
+        return relPath === '.agent/skills/cognition'
+          ? { kind: 'failure', message: `cannot list ${relPath}: EIO: i/o error` }
+          : { kind: 'ok', value: ['cognition'] };
+      },
+    };
+
+    expect(await collectCanonicalSkillPaths(fs)).toStrictEqual({
+      ok: false,
+      error:
+        '.agent/skills: the canonical walk failed (cannot list .agent/skills/cognition: EIO: i/o error); skill validation skipped',
+    });
   });
 
   it('never walks a fourth level — the tree closes at the domain tier', async () => {
@@ -448,12 +494,28 @@ describe('collectCanonicalSkillPaths', () => {
         ['.agent/skills/fam/dom', ['too-deep']],
         ['.agent/skills/fam/dom/too-deep', ['deeper']],
       ]),
-      new Set(['.agent/skills/fam/dom/too-deep/deeper/SKILL-CANONICAL.md']),
+      new Map([['.agent/skills/fam/dom/too-deep/deeper/SKILL-CANONICAL.md', 'deep\n']]),
     );
 
-    const result = await collectCanonicalSkillPaths(fs);
+    expect(await collectCanonicalSkillPaths(fs)).toStrictEqual({
+      ok: true,
+      value: { canonicals: [] },
+    });
+  });
+});
 
-    expect(result.canonicalPaths).toStrictEqual([]);
+describe('rulesIndexBudgetIssues', () => {
+  it('measures the index only when it was read as text', () => {
+    expect(rulesIndexBudgetIssues({ kind: 'text', text: 'x'.repeat(30) }, 20)).toStrictEqual([
+      'RULES_INDEX.md: 30 bytes exceeds Codex project-doc budget 20',
+    ]);
+    expect(rulesIndexBudgetIssues({ kind: 'text', text: 'x'.repeat(10) }, 20)).toStrictEqual([]);
+  });
+
+  it("reports nothing for an absent, linked or unreadable index: that refusal is the projection leg's", () => {
+    expect(rulesIndexBudgetIssues({ kind: 'absent' }, 20)).toStrictEqual([]);
+    expect(rulesIndexBudgetIssues({ kind: 'foreign' }, 20)).toStrictEqual([]);
+    expect(rulesIndexBudgetIssues({ kind: 'unreadable', cause: 'EISDIR' }, 20)).toStrictEqual([]);
   });
 });
 

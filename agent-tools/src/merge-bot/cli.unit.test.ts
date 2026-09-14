@@ -285,7 +285,7 @@ describe('runMergeBotCli mint-token', () => {
         JSON.stringify({
           appSlug: 'jimbot-oakington-iii',
           appId: '4352989',
-          repo: 'oaknational/jimcresswell.net',
+          repo: 'jimCresswell/jimcresswell.net',
         }),
       readFileImpl: (path: string) => {
         keyReads.push(path);

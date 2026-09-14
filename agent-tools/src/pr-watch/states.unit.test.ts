@@ -21,7 +21,7 @@ const LATE_NOW = '2026-07-21T13:00:00Z';
 function settledReading(overrides: Partial<PrStateReading> = {}): PrStateReading {
   return {
     number: 999,
-    url: 'https://github.com/oaknational/jimcresswell.net/pull/999',
+    url: 'https://github.com/jimCresswell/jimcresswell.net/pull/999',
     state: 'OPEN',
     isDraft: false,
     mergeable: 'MERGEABLE',

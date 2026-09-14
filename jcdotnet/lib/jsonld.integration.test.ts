@@ -30,7 +30,7 @@ describe("jsonLd export", () => {
     expect(types).toContain("ScholarlyArticle");
   });
 
-  it("contains at least as many entities as the pre-migration snapshot", () => {
+  it("contains at least the fourteen entities the graph carried at the 2026 migration", () => {
     const jsonLd = buildJsonLd("https://www.jimcresswell.net");
     expect(jsonLd["@graph"].length).toBeGreaterThanOrEqual(14);
   });

@@ -11,9 +11,11 @@ wraps 3 to 7, lane C, lane A, the Director's two sections); the candidates
 go to the owner as one batch of cards in the morning; nothing graduates without the answers; the
 napkins are archived only after the owner's answers to the cards (the controlling plan's item 8,
 as written) and the owner's privacy review of the three napkins. The five slow-lane rows are
-presented on the cards and, under PDR-130 as written, decided at their review date
-(2026-12-13) by `promote` or `kill-with-reasoning`; the card's answer for such a row is the
-owner's word on its presentation, and any earlier decision is the owner's word on PDR-130.
+presented on the cards and, under PDR-130 as written (its review date is the gate; promotion
+happens at review), decided at their review date (2026-12-13) by `promote` or
+`kill-with-reasoning`; the card's answer for such a row is the owner's word on its presentation.
+An earlier decision is not PDR-130's: it is recorded, if the owner makes one, on the register's
+slow-lane row as the owner's ruling on that row.
 
 ## Participating agent identities
 
@@ -43,9 +45,9 @@ owner's word on its presentation, and any earlier decision is the owner's word o
   them; the readout moves in two proofs, 0 to 33 on filing and 33 to 28 after the five
   constitutional rows move to the slow lane (the accepted readout is 28 decision-debt blocks
   beside five slow-lane rows); the napkins are archived only after two gates: the owner's
-  answers to the cards (a slow-lane answer being the owner's word on the row's presentation,
-  its decision staying with the review date) and the owner's privacy review of the three
-  napkins.
+  answers to the cards (a slow-lane answer being the owner's word on the row's presentation;
+  the review date is its normal decision gate, and an earlier owner ruling recorded on the
+  register row is the exception) and the owner's privacy review of the three napkins.
 - **Next safe step:** §Next safe step at the end of this record.
 
 ## How this draft was made
@@ -415,7 +417,8 @@ review dates, the readout at 28 pending. Nothing here refiles or reclassifies th
    answer is the fast disposition (`graduated`, `rejected`, `duplicate`), recorded on the entry.
    For the five slow-lane entries (A, B, C, 1a, 1b) the card presents the row; under PDR-130
    the row is decided at its review date (2026-12-13) by `promote` or `kill-with-reasoning`,
-   recorded on the slow-lane row; an earlier decision is the owner's word on PDR-130.
+   recorded on the slow-lane row; an earlier decision, if the owner makes one, is the owner's
+   ruling recorded on that register row, not PDR-130's.
 2. Every fast-lane outcome drains its row (drain by deciding, the register's contract). A
    `graduated` entry lands as its own small pull request into the named home, one home per PR
    where the homes differ, by the seat the Director routes, and the entry is removed in the
@@ -427,6 +430,8 @@ review dates, the readout at 28 pending. Nothing here refiles or reclassifies th
 3. The three napkins under `.agent/memory/active/unconsolidated/` are archived once both
    gates hold: the owner's answers to the cards of step 1 (the controlling plan's item 8: "the
    napkins are archived only then"; a slow-lane row's answer is the owner's word on its
-   presentation, its decision staying with the review date), and the owner's privacy review of
-   the three napkins under `privacy.md` (overnight item 5).
-4. The slow-lane five are decided at their review date (the owner's card, else 2026-12-13).
+   presentation), and the owner's privacy review of the three napkins under `privacy.md`
+   (overnight item 5).
+4. The slow-lane five are decided at their review date (2026-12-13), the normal gate; an
+   earlier owner ruling, recorded on the register row, is the exception the register's own
+   slow-lane contract allows.

@@ -1,6 +1,6 @@
 ---
 description: invoke pkg expert
-alwaysApply: true
+alwaysApply: false
 ---
 
-Read and follow @.agent/rules/invoke-pkg-expert.md
+Read and follow `.agent/rules/invoke-pkg-expert.md`.

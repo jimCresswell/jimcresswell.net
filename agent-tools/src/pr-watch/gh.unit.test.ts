@@ -29,16 +29,16 @@ describe('parsePrTarget', () => {
   });
 
   it('accepts a PR number with an explicit owner/repo', () => {
-    expect(parsePrTarget('221', 'oaknational/jimcresswell.net')).toStrictEqual({
+    expect(parsePrTarget('221', 'jimCresswell/jimcresswell.net')).toStrictEqual({
       number: 221,
-      repo: 'oaknational/jimcresswell.net',
+      repo: 'jimCresswell/jimcresswell.net',
     });
   });
 
   it('parses a strict github pull URL into number + repo', () => {
-    expect(parsePrTarget('https://github.com/oaknational/oak/pull/42')).toStrictEqual({
+    expect(parsePrTarget('https://github.com/jimCresswell/other-repo/pull/42')).toStrictEqual({
       number: 42,
-      repo: 'oaknational/oak',
+      repo: 'jimCresswell/other-repo',
     });
   });
 
