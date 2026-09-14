@@ -542,7 +542,7 @@ describe('computePrVerdict — measured state and settlement (SKILL item 4)', ()
 
 describe('computePrVerdict — round-6 classes (2026-07-21)', () => {
   it('a fully green settled DRAFT reads the typed DRAFT refusal, never SETTLE-READY (r6 regression)', () => {
-    // Drafts cannot merge via the sanctioned landing path (the pr-throughput
+    // Drafts cannot merge via the sanctioned landing path (the landing-path
     // invariant) — unlike review-gate BLOCKED (ratified landable), draftness
     // is a real merge blocker, so no settlement read may proceed over it.
     const verdict = computePrVerdict(settledReading({ isDraft: true }), LATE_NOW);

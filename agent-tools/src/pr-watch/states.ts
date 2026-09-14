@@ -52,7 +52,7 @@ const terminalRules: readonly VerdictRule[] = [
 
 const checksAndThreadsRules: readonly VerdictRule[] = [
   // A draft cannot merge via the sanctioned landing path whatever the legs
-  // say (the pr-throughput invariant) — typed refusal before any settlement
+  // say (the landing-path invariant) — typed refusal before any settlement
   // read; unlike review-gate BLOCKED (ratified landable), draftness is a
   // REAL merge blocker at the REST endpoint.
   (r) =>

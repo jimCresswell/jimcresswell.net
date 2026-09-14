@@ -1113,3 +1113,235 @@
 - `pnpm -s` is not a pnpm 12 flag; `--silent` is.
 - A Copilot review request posted while the previous request's run is still in flight registers
   nothing; request again once that review lands.
+- Copilot found two real defects after three reviewers and I had passed the diff: the
+  `--no-index` hole I had NAMED as an assumption (naming is not curing; the tracked-tree check
+  was one line) and a `split('\t')[1]` that truncates a path with a tab (the reason `-z`
+  exists, and I had just written a test for newlines but not tabs). External scrutiny lands
+  on parsers of git output and on assumptions a comment names instead of a check.
+- Merge of `main` into a lane: git left the napkin and the register as end-of-file append
+  conflicts and silently auto-merged `.prettierignore` WITH main's stepping stone inside it —
+  the auto-merge was the dangerous one, exactly as `worktree-hygiene` §4 warns. Read every
+  auto-merged file the branch had rewritten, not only the conflicts. The napkin union goes in
+  session order (main's Session 8 continuation under its own heading, the lane block after).
+- My marker search on the napkin returned nothing though the markers were there; `awk` found
+  them at once. A blank result from an instrument is a broken instrument until proven a clean
+  result (the zsh `pipestatus` blank was the same class twice in one session).
+
+### Compaction checkpoint, lane A (2026-09-13, 15:35Z) — wrap's reflective passes
+
+- Metacognition (retrospective): three corrections in one lane, one shape — I acted on an
+  announcement instead of a confirmation (the push slot), on an assumption instead of a
+  computation (the CHANGELOG ignore, the `--no-index` note), and on a green line instead of a
+  read exit (`pipestatus`). The general form: a claim I make about the world (slot free,
+  entry dead, command green) is checked by the world's own instrument before I act on it,
+  never by my reading of it. What went right came from the same rule applied early: three
+  trials before the lint design, a declined routing with a stated reason, a lane-record
+  premise recomputed false and reported. The test-expert's atomic-landing reading also held:
+  at review absorption I wrote the cure and then its test in the next round; write the test
+  in the same edit even for a one-line cure.
+- Free play (harvest, discards): kept — this lane's two cures and lane C's cited-paths
+  validator share one move, "ask git, not the disk" (universe from `ls-files`, tier from
+  `check-ignore`, existence from the ignore rules); the estate is converging on "the config
+  file declares ownership, never existence". Kept — the smoke suite discovered from its
+  directory and lane B's rules index generated from frontmatter are the same move, "the
+  artefacts are the registry". Discarded — "reviews are a second immune system" (says nothing
+  a test could fail).
+- Concept exploration: no pass. Item 3 arrived decision-complete; the one unformed question
+  (what a fresh checkout's absent instance tier means to a gate) resolved through lens 4
+  (would it be simpler if the system changed — derive the tier from the repository's own
+  ignore rules) without an option list.
+- Parallax (screening, cost-bounded): main uncertainty for item 5 — whether the needle set
+  derived from `provenance.yml` names exactly the plan's twenty-one files. The preview grep
+  says no: at least four more agent-tools files, the eslint README, the worktree-lane skill's
+  bot literal, and thirteen doctrine files that name the lineage legitimately. So the
+  prediction is refined, not defended: the first run will EXCEED the named set, and the
+  validator's scope must exclude records by rule (provenance, register, plan of record,
+  reports), never by a typed list, or it cannot be a gate. Defeater to watch:
+  `jcdotnet/__snapshots__/cv-content-pre-migration.json` carries lineage names outside
+  `content/`; "CV content excluded by scope" needs its scope written as a path rule.
+- Predictions a successor tests: (a) #56 merges by the bot at zero threads on tip 9a90d1b
+  with no further Copilot finding; (b) the leak validator's pre-fix run names at least 26
+  files outside doctrine records, the plan's 21 among them; (c) `pnpm check` is green on a
+  fresh clone of `main` after #56 (CI on the branch already proved the ubuntu leg).
+- Metaloss passes. Compressed reasoning: twenty-two review findings compress to a
+  dispositions table on the PR and the reasons in three commit messages; the instance-tier
+  design's declined alternatives (primary coordination home, a manifest field) live in the
+  1cb74e9 message and the napkin bullet above — decision-sufficient. Promises: push on the
+  slot (in flight at 15:34Z); release the slot when it clears (mine, next act); Copilot
+  threads replied and resolved (done); napkin on the branch (done); tell lane C if item 5
+  touches cited-paths or fires on the restored modules (mine, at PR 2); the merge-bot
+  `--expect` and requested_reviewers findings (mine, at PR 2, in the lane record); the
+  `/rename` suggestion the team-shaped moment owed after routing was never surfaced (owed to
+  the owner in the checkpoint message). Attribution inferences: "Copilot does not auto-review
+  bot-authored PRs here" and "#55 is in a third round" are the Director's reports, not my
+  observations; lane B's pause is inferred from the Director's broadcast, no PAUSED event
+  from lane B was seen by 15:31Z. Blind-spot bounds: the watcher was dark for about two
+  minutes at 14:47Z before the re-arm (the seen-cursor drained the gap; nothing observed
+  lost); the three reviewer transcripts are dead contexts, conserved only as their verdicts;
+  CI was read as check summaries, never line by line. Index of homes: the lane record's
+  waypoint (next step, item 5 inputs, corrections) → this napkin block → PR #56 body and the
+  bot's review-dispositions comment → the eight commit messages → the register's three rows →
+  comms events 787a70c2 (team start), 3cd1a01a (PR open), bba0f1c2 (ready) and the checkpoint
+  event. External bound: everything the scan missed today was found by Copilot on a parser
+  and a named assumption; point the next outside eyes there. Fence sweep: no owner-fenced
+  wording reached this lane; no private path or content in any line I wrote (the private
+  material was never read). Fixed point: a third pass would only re-find the lane B pause
+  inference and the rename omission; the recursion closes here.
+
+### Session 2026-09-13, lane A, segment two (15:35Z to 19:58Z) — Saffron turns Verdure (c39ad7)
+
+Lessons, one line of mechanism each:
+
+- A new CI leg's first green must be a CI run: the host proved the host's path three times (a
+  claims registry only the primary checkout has; a macOS pnpm that forwards lifecycle output where
+  the Linux pnpm 12 executor drops it; a CI default of frozen-lockfile that reads the lockfile
+  before the devPreinstall hook). Each cure moved the assertion onto our own artefact's testimony
+  (a seeded temp root; the guard's own stderr log; an explicit `--no-frozen-lockfile`).
+- "Zero threads" is a count, not a verdict; I emitted the Director's merge-trigger phrase once
+  before the review had landed and once over a "needs a closer look" verdict. Owner correction.
+  Report the reviewer's words first, then agreement or disagreement with reasons.
+- A fluent "verified" is the tripwire: I re-stamped a tooling note "verified under pnpm 12.4.1"
+  after a run that tested a different claim (exit code, not the age-floor masking); caught and
+  restored before commit.
+- Playwright evaluates its config in every worker; a per-load probe hands each worker its own
+  port (58 of 58 refused). The runner's environment is the only runner-to-worker channel for
+  config evaluation; a pid-stamped handshake makes it internal, and every guarantee claimed
+  about it must be one the vendor code path bears (the `TEST_WORKER_INDEX` distinction did not;
+  the IPC channel does, for accidental inheritance, not adversaries).
+- The site derives its own local URL from `PORT`; a harness that changes the port must hand it to
+  the server it starts, or the built site's canonical URLs lie (two SEO tests said so).
+- TypeScript 6.0.3's incremental cache keeps a stale grammar diagnostic (TS1378) after a target
+  change until the ignored tsbuildinfo is rebuilt; `--incremental false` is the honest check.
+- Practice tool feedback: the built `pr-watch --watch` printed nothing across thirty minutes,
+  three tip moves and two CI red-to-green transitions; a five-line gh poll emitting on state
+  change did the job. The merge bot has no owner-word path through its quiet window; the owner
+  merged by hand and asked for measured state instead (Director holds the signal).
+- Guard frictions: the isolation guard refuses heredocs and `$(...)` around git; scripts in the
+  scratchpad with derived paths pass; the Write hook refuses user-home paths even as test fixture
+  strings (use `checkouts/site`-style placeholders).
+- At n=2 with heartbeats dropped, silence in a long turn reads as a block: a state line every
+  120 seconds is the liveness signal (Director rule after a two-hour gap of mine).
+
+Reflective passes for this segment (owner word: metacognition, free play, concept exploration,
+parallax, wrap):
+
+- **Metacognition (retrospective).** Three corrections share one shape: I stood on the
+  interpretation rung and reported it as observation (host green as leg green; count as verdict;
+  a run as a verification of a different claim). The structural cure I now apply: name the
+  instrument that produced each claim in the report itself, so a claim without an instrument
+  cannot be written. Fluency tripwires fired at the finish line each time (completion drive):
+  the last moves slow down. Generative mode: the port PR arrived as a narrow pointer ("fix the
+  clash") and the doctrine widened it correctly (the config adapts; eliminate the resource);
+  reading the directive first-hand before amending was the move that paid.
+- **Free play.** Two seeds kept. (1) "Config declares ownership, never existence" now has a
+  sibling: "a harness assigns its own resources at its composition root, and hands them to the
+  system under test" (the PORT hand-off). (2) A pid-stamped environment handshake is a general
+  pattern for any tool that re-evaluates its config in forked children; its honest guarantee is
+  always accidental-inheritance, never adversary. Not pursued: a Result-typed probe (Director's
+  board), a shared free-port helper across workspaces (no second workspace consumer yet).
+- **Concept exploration.** No pass: every question this segment arrived formed (a review finding,
+  a directive clause, an owner word), and the lenses resolved each; the one option list I built
+  (the worker handoff) was screened by the Director with directive text beside each option.
+- **Parallax (screening).** The counterframe worth holding: the bot's quiet window is a proxy for
+  visibility agents lack, and the owner has that visibility directly; measured state (no review run
+  in flight, no reviewer job started) would retire the proxy. Bridge claims retired this segment:
+  host green to runner green; "no process.env in config" to "no env read", which the code path
+  refutes (the handshake reads env; the claim that survives is "no configuration from the env").
+  Predictions on record: #60's IPC-based cure lands in one round; #55's boundary refusal lands in
+  one round; item 5's leak validator first run exceeds the plan's twenty-one files (unchanged).
+- **Wrap.** Promises sweep: the `/rename` suggestion was surfaced once (done); the napkin lessons
+  promised at 15:35Z are above; the Director holds the director-handoff sentence, the quiet-window
+  signal and the Result follow-on. Attribution: the Playwright and Next code-path facts are the
+  code-expert's reading, confirmed by my runs; the ES2017 reason is Next's own defaults file.
+  Blind spots: the plain-probe falsifier ran on this host only; CI (workers: 1) never exercised the
+  handshake with more than one worker and never will by design, so the multi-worker proof lives
+  only in the PR body's matrix. Index of homes: PR #60 body and bot comment (dispositions), the
+  ARC channel (triage transcript), this napkin, the lane record's 19:58Z waypoint.
+
+### Session 2026-09-13, lane A, segment three (20:00Z to 23:00Z) — Saffron turns Verdure (c39ad7)
+
+- The port PR's fifth review round ended the shape instead of adding a sixth mechanism. Rounds
+  one to four each cured one finding by adding a mechanism (a handshake, a hold, holder
+  identity, a wait), and each round's finding was the same class: the port was owned by one
+  process and served by another. The Director's lens 4 ruling and a bounded assumptions pass
+  (two shapes, the SEO origin tests as the falsifier) chose the shape where the process that
+  binds the socket serves from it through Next's custom-server API; three modules and their
+  cells went away. Candidate lesson: when successive rounds on one change each add a mechanism
+  to the same shape, the shape is the finding; ask lens 4 at the second such round, not the
+  fifth. Home: `review-feedback-defaults-to-triage` or PDR-132 (a round-count clause); a
+  register entry after the PR lands.
+- The assumptions pass's one objection (the runner becoming the production server, with Next's
+  require hook and `NODE_ENV=production` in the test process) was answered by moving which
+  process binds, not by weakening the invariant: a global-setup child binds, builds, serves and
+  prints two protocol lines; Playwright's `webServer` plugin cannot receive a port a child chose,
+  so global setup plus one environment variable written before the worker fork is the channel.
+  The runner-side pid-stamped handshake became unnecessary the moment the origin was written
+  after the runner's own config evaluation.
+- A surviving mutant is a cell-truth finding. The cell "close does not wait on a lingering
+  connection" held only an unfinished request, which Node's `server.close` treats as idle, so
+  removing `closeAllConnections` stayed green; the cell now holds a request whose response is
+  pending and the mutant dies. The first version claimed what it did not exercise.
+- A refused command left an announced state untrue for about a minute: the "released" message
+  to the Director said the three threads were resolved while the resolve command had been
+  refused by the worktree guard (a `for` loop over thread ids). Cure applied: one plain command
+  per mutation and the announcement after the instrument's output, never in the same turn as
+  the command. Same generator as the owner's finish-line correction of segment two
+  (interpretation reported as observation).
+- The worktree guard's refusals this segment, for the frictions register: a `for` loop over
+  ids, a variable inside a script path, `bash` fed a python heredoc, `cat -A` (not a guard, a
+  macOS `cat` without `-A`), `pnpm -s` (unknown flag; `--silent` is the spelling). Plain
+  commands with literal paths pass every time; scripts written by the file tool must carry no
+  user-home path (the hook refuses the write), so they take the scratch directory as `$1`.
+- The session 2 verify-list verdicts lived only in an explorer's transcript; after compaction
+  they had to be recovered from the task output file. The A-to-H ledger in the scratchpad was
+  the right instrument and stopped too early. Cure: write every verdict to the ledger as it
+  arrives, before the next step.
+- The pending-graduations parser counts only the inline-bracket shape; the five entries
+  captured at the transplant close carried a heading shape it neither counted nor flagged, so
+  the register read as empty while holding five items. Filed with the session 2 batch in the
+  parser's shape; the readout is the proof (0 to 33, then 28 after five constitutional-class
+  entries moved to PDR-130's slow lane on Copilot's reading). The class test applied to all 28:
+  A, B, C (how the estate decides and frames) and 1a, 1b (how it consolidates) are slow-lane;
+  D (the push slot) is coordination, not constitutional. Candidate lesson: a batch filed onto a
+  register is classed by PDR-130 before filing, not after a reviewer asks. Home: the register's
+  §What belongs here (one sentence) or PDR-130.
+- Copilot's reading of the owner-card trigger as PDR-100's abolished pre-approval was cured by
+  citing the ratified text (item 8) in the section note rather than by argument: the text was
+  the answer, the same shape as candidate A.
+- Reporting shape that held this segment: the reviewer's verdict quoted first, the instrument
+  named per claim, the declined item stated with its reason, a state line to the Director
+  between long steps. Two lapses, both recorded above (the premature "released"; the reply that
+  said three cells after the commit said four, corrected on the thread).
+
+### Session 2026-09-14, lane A, segment four (23:00Z to 00:30Z) — Saffron turns Verdure (c39ad7)
+
+- #65 rounds three and four, #66 landed (0ec4583), 5b cut and committed locally (d27790f).
+  Round three: the run leg's contract stated in both prose homes exactly as the code has it
+  (an observed live run blocks; an unobservable surface is named, never blocking); a gap line
+  made conditional; a token-form cell restored as an `it.each`. Round four: the harvest now
+  brackets the thread read and must agree on both sides, one re-read on a landing, fail loud
+  on two, the same bounded shape as the tip loop; the readers moved to `harvest-bracket.ts`
+  because `state-gh.ts` stood at 245 of its 250 lines.
+- A granted slot is held until released. The Director granted the slot, then took it for its
+  own gate; both pushes overlapped on their own branches (no harm; the Director's item 41).
+  The seat's side of the same trap: "released" is announced after the push's own output.
+- Two seats wrote the same thread replies five seconds apart (the Director's chain and this
+  seat, both on the tip). The duplicates were deleted on the Director's word. On a stacked PR
+  the chain owns the thread replies; the seat names its intent in the release message and
+  waits for the word before any thread write.
+- A merge run without its message file lands the default header; the hook accepts it and the
+  no-amend word keeps it. The message file goes on the merge command itself (`--no-ff -F`).
+- The code-expert's "extract now" at 245 of 250 lines was taken inside the round; the cap
+  bites cures, which are the changes least able to carry a refactor.
+- Comparing two reads of a platform connection by array equality claims the vendor's order;
+  sort the per-element serialisations first (the bracket's `canonical`).
+- The landing-in-the-window class generalises: two surfaces composed into one reading need a
+  monotone surface (reviews are append-only) read on both sides of the non-monotone one
+  (threads). The tip loop was the same shape for the head oid.
+- The accept-md vendor's loader reads only a JavaScript file through `require`; the typed
+  module replaces the file by handing the route the object directly, and the loader is never
+  called (the values the file set already overrode every default the loader merged).
+- Tool traps this segment: the file tool refuses any script content carrying a user-home
+  path (a script takes the scratch directory as `$1` and runs from the worktree root); a
+  combined `switch ... && ... HEAD` line reads to the hook as a checkout of HEAD (one plain
+  command); `pnpm knip` once listed four unused types mid-edit that a clean re-run did not.
