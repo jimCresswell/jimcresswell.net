@@ -70,8 +70,8 @@ rewritten at each Director push.
   `SHA: 6528ecb`; PR #62, `SHA: a70521e`), item 5a-ii (PR #65, `SHA: 53d9495`), item 5a-iii
   (PR #67, `SHA: fca804e`), item 5b (PR #68, `SHA: f362cce`), the e2e follow-on 2 (PR #69,
   `SHA: e67559a`), item 5a-iv (PR #72, `SHA: 37eebe9`), the Director records to item 58 (PR
-  #70, `SHA: 1643be8`). Not landed: 5c (PR #71), 2a (PR #74), 2b, the handed-back residue,
-  item 7.
+  #70, `SHA: 1643be8`), item 5c (PR #71, `SHA: f377412`), the Director records to item 67
+  (PR #73, `SHA: 50546ee`). Not landed: 2a (PR #74), 2b, the handed-back residue, item 7.
 - Open pull requests: 2a (PR #74, `chore/rules-generator` at `SHA: 77972dd`, round one's
   cure with lane A); this records branch (`chore/director-records-6`, overnight items from
   68) opens after it as a branch frozen at open. Merged: #54, #56, #57, #58, #61, #55 (`SHA: 7127bc4`),

@@ -45,9 +45,9 @@ slow-lane row as the owner's ruling on that row.
   them; the readout moves in two proofs, 0 to 33 on filing and 33 to 28 after the five
   constitutional rows move to the slow lane (the accepted readout is 28 decision-debt blocks
   beside five slow-lane rows); the napkins are archived only after two gates: the owner's
-  answers to the cards (a slow-lane answer being the owner's word on the row's presentation,
-  the review date its normal decision gate, an earlier owner ruling recorded on the register
-  row the exception) and the owner's privacy review of the three napkins.
+  answers to the cards (a slow-lane answer being the owner's word on the row's presentation;
+  the review date is its normal decision gate, and an earlier owner ruling recorded on the
+  register row is the exception) and the owner's privacy review of the three napkins.
 - **Next safe step:** §Next safe step at the end of this record.
 
 ## How this draft was made
