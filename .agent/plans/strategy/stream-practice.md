@@ -30,8 +30,9 @@ the repository takes deliberately, and a learning loop it must actually close._
 
 ## Serving nodes today
 
-The transplant runbook (`practice-lineage-transplant`) and the completion delivery node
-(`practice-completion`) serve the Practice strategic node.
+The transplant runbook (`practice-lineage-transplant`), the completion delivery node
+(`practice-completion`) and the two-way exchange delivery node (`practice-two-way-exchange`,
+ratified 2026-09-14, opening after the completion node) serve the Practice strategic node.
 
 ## Won't do
 

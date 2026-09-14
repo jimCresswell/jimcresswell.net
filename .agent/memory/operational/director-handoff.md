@@ -55,13 +55,12 @@ Every line answered first-hand, none inferred:
 Where this block and the routing log disagree, the log's last entry is current; this block is
 rewritten at each Director push.
 
-**Cold pause, lifted (paused 09:01Z, lifted 13:03Z on 2026-09-14, both the owner's word).** Every
-process this seat owned was stopped by id for the pause; on the lift the boundary block below
-was run as the re-arm recipe (verified by id, watcher and ARC tail armed, the assertion green,
-the gap swept with no events, the Director claim refreshed). Lane A resumed on its own lift and
-holds #79 round three first, then #77, per items 93 and 95; the slot arrangement resumes (ask,
-confirm, push, release). This branch, records-9, pushes at the lift as the natural boundary and
-freezes at open; later items go to records-10.
+**State at this push (2026-09-14, 16:30Z).** 5a-vi (#79) merged: the suppressed-findings hold
+is on `main` and the chains post signed dispositions before each review request. 2b-ii runs
+as three slices (A1 open, A2 local behind it, B designed). The afternoon's owner rulings:
+the pacing word (item 99), rounds do not go up and the four cards (item 100), the two-way
+exchange node ratified (item 101). The cold pause of 09:01Z to 13:03Z is items 96 and 97.
+This branch, records-10, freezes at open; later items go to records-11.
 
 **Boundary block (compaction, 2026-09-14 06:37Z; the seat stays live).** Assume nothing
 session-scoped survives; verify by id first, re-arm only what is absent:
@@ -155,7 +154,8 @@ session-scoped survives; verify by id first, re-arm only what is absent:
   handed-back residue, item 7.
 - Open pull requests (the snapshot at this push): 2b-ii A1 (PR #81, `chore/subagent-generator`,
   round two, lane A's cures); this records branch (`chore/director-records-10`, items 98 to
-  102, frozen at open; its round cures ride the branch). Merged: #54, #56, #57, #58, #61, #55 (`SHA: 7127bc4`),
+  102, frozen at open; its round cures ride the branch). Merged (the landed list above is
+  authoritative and carries #77, #79 and #80 as well): #54, #56, #57, #58, #61, #55 (`SHA: 7127bc4`),
   #63 (`SHA: dc23dff`, session 2's register), #60 (`SHA: 4370e04`, the per-checkout
   Playwright port as the in-process server), #64 (`SHA: 38e9693`, item 5a-i), #66
   (`SHA: 0ec4583`, the e2e follow-on), #65 (`SHA: 53d9495`, item 5a-ii, measured state), #67
@@ -206,11 +206,11 @@ session-scoped survives; verify by id first, re-arm only what is absent:
 | A | 3 done; #60 merged (`SHA: 4370e04`) and its follow-on #66 merged (`SHA: 0ec4583`); 5a-i merged (#64, `SHA: 38e9693`); 5a-ii merged (#65, `SHA: 53d9495`); 5a-iii merged (#67, `SHA: fca804e`); 5b merged (#68, `SHA: f362cce`, the four retirements, the accept-md config as a typed module, the incoming bundle gone); the e2e follow-on 2 merged (#69, `SHA: e67559a`); 5a-iv merged (#72, `SHA: 37eebe9`); 5c merged (#71, `SHA: f377412`); 2a merged (#74, `SHA: 558be52`); 2b-i merged (#77, `SHA: 0e70a2b`); 5a-vi merged (#79, `SHA: 014fc6e`); 2b-ii A1 open (#81), A2 local, B designed; then, in the boundary block's order: item 4's residue, one pull request for 5a-v (the whitespace-only heading, item 64), 5c-ii (the leak gate's four body findings, item 71) and the three PDR card amendments; the graduation drain outside the closure (item 94). The residue: the Gemini projection, the corpus-analysis restore with the five patterns, `sif` | root scripts, CI workflow, `agent-tools/` legs and retirements, the leak validator, `tooling/*/package.json`, `turbo.json`, the Playwright harness config, the merge-bot sources, the rules generator and the adapter trees (2a, on `main`) | Saffron turns Verdure (c39ad7) | f024e1f1 | `chore/subagent-generator` PR #81 (A1); `chore/subagent-registry` local (A2) | ACTIVE at n=2 |
 | B | 6 | (handed back) `.agent/rules/**`, `RULES_INDEX.md`, the three rule-adapter trees, the rules-index and trigger generator, sub-agent adapter descriptions | Sirocco wakes Wingspan (45fe02) | closed | `closure/lane-b` merged as PR #55 at `SHA: 7127bc4` and deleted; `closure/lane-b-generator` at `SHA: d76bb86` on origin (2a fold conserved in the record) | STOOD DOWN 17:14Z; handed back: 2a, 2b, PR 3 (now routed to lane A after item 5) |
 | C | 4 then 7 | the definition report, `testing-strategy.md`, the substrate manifest's register declarations, the Gemini projection | Djinn hunts Solder (36720b) | closed | `closure/lane-c` and `closure/lane-c-restore` deleted (merged in #57; carried in #58); PR #59 closed as carried | STOOD DOWN 16:57Z; handed back: the restore, `sif`, five patterns, the Gemini projection after 2b, item 7 |
-| Director | 7 | reports index, runbook step 13, `provenance.yml` completion entry; merges | Cauldron herds Lustre | 1db07581 | `chore/director-records-7` merged as PR #76 (`SHA: 1b44f5b`); `chore/director-records-9` merged as PR #80 (`SHA: 6699f51`); `chore/director-records-10` based on `main`, opened at this push (items 98 to 102); records-11 next | routing lane A; merging |
+| Director | 7 | reports index, runbook step 13, `provenance.yml` completion entry; merges | Cauldron herds Lustre | 1db07581 | `chore/director-records-7` merged as PR #76 (`SHA: 1b44f5b`); `chore/director-records-8` merged as PR #78 (`SHA: e7ba800`); `chore/director-records-9` merged as PR #80 (`SHA: 6699f51`); `chore/director-records-10` based on `main`, opened at this push (items 98 to 102); records-11 next | routing lane A; merging |
 
 Sequencing constraints: lanes B and C are closed, so lane A holds every surface, in the
-boundary block's order (item 5 through 5a-vi, 2a and 2b-i are on `main`; 2b-ii in three
-slices, A1 open; then item 4's residue, one pull request for 5a-v, 5c-ii and the card amendments; the
+boundary block's order (item 5's landed parts 5a-i to 5a-iv, 5a-vi, 5b and 5c, with 2a and
+2b-i, are on `main`; 5a-v and 5c-ii are not; 2b-ii in three slices, A1 open; then item 4's residue, one pull request for 5a-v, 5c-ii and the card amendments; the
 graduation drain outside the closure, item 94; item 7 last, the Director's).
 Pushes serialise, one
 gate at a time, for host load: two full-host gates exceed the host (the earlier reason, Playwright
@@ -1168,7 +1168,8 @@ ones the Director would put to the owner had the owner been present.
 
 100. #79 round four returned two threads and one suppressed finding (a read-to-merge window on
      the comments leg; the sentinel filtered before normalisation; trimmed lines letting an
-     indented code block lift); round five granted, the last on #79: two cures, one rejection
+     indented code block lift); round five granted, the last ordinary round on #79 (a sixth came under the correctness
+     exception, item 102): two cures, one rejection
      with a TSDoc sentence naming the accepted window. The owner's on-track question answered
      (15:07Z): direction unchanged, nine or ten pull requests remain, at the measured three to
      four rounds each that is the next lane-day, not this one. Owner word (15:15Z): the number

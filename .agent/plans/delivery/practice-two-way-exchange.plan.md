@@ -99,15 +99,17 @@ never pinned in this node, so whatever lands on either side before then is in sc
    refuses a path in either delta with no row.
 4. **Land inbound here** as pull requests sized to about eight review-facing claims, two review
    rounds binding by default with the Director-only correctness exception (closure record,
-   item 100), every import carrying a provenance line naming the lineage head it was read at;
+   item 100), every import carrying a provenance entry (repo, date, purpose; pin-free) and the
+   lineage head it was read at recorded in the register and the delivery event;
    the fitness functions and the cohesion audit run after each landing (two-way merges push
    files over their ceilings).
 5. **Deliver outbound** into the lineage's Practice Box as a pin-free note plus the material,
    with the paired delivery event on that estate's comms stream, through the join ceremony;
    the lineage's own seats land it under the lineage's gates. This estate never writes into the
    lineage's tree.
-6. **Close**: both provenance chains carry an entry naming the other's head; both Boxes are
-   empty; the exchange register is the record; the lineage doctrine's §Integration Flow and the
+6. **Close**: both provenance chains carry the exchange's entries (repo, date, purpose) and
+   the heads read live in the delivery events and the register; both Boxes are empty; the
+   exchange register is the record; the lineage doctrine's §Integration Flow and the
    collaboration protocol are amended where this exchange found them thin, as candidates on the
    register first.
 
@@ -128,9 +130,10 @@ two-round ruling of 2026-09-14 do too.
 - The owner's cards for the conflicting rows are answered and the answers are the dispositions.
   Proof: the plan of record's ruling round, cited from the register (`owner-held`, the owner
   verifies on the cards).
-- This estate's provenance chain names the lineage head read, the cohesion audit and the fitness
-  functions are green after the last inbound landing, and the Box is empty. Proof:
-  `provenance.yml`, the verification audit's run, the directory (`repo-safe`).
+- This estate's provenance chain carries the exchange's entries, the register names the lineage
+  head read, the cohesion audit and the fitness functions are green after the last inbound
+  landing, and the Box is empty. Proof: `provenance.yml`, the register, the verification
+  audit's run, the directory (`repo-safe`).
 - The outbound material was delivered to the lineage's Box with its comms event, integrated by
   the lineage's seats, and cleared. Proof: the delivery event id, the lineage's landing pull
   requests and its empty Box, recorded in the register; the owner verifies on the lineage
