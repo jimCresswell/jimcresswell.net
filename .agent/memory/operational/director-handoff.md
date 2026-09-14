@@ -571,6 +571,14 @@ ones the Director would put to the owner had the owner been present.
     board row; the index's residue list was already replaced). Two merged since the hold, so
     5a-iv's pull request may open on a green build and 5c's after the next merge. #69 read
     approval-recommended, zero threads. Standing ruling.
+55. #62 round twenty (00:53Z on 2026-09-14): zero threads, five suppressed findings; the bot
+    merges at zero threads (the standing ruling) and the five are cured here, on the follow-on
+    branch: the synthesis identity block names both archive gates; the slow-lane bullets 1a
+    and 1b split; the drain-note requirement of item 46 withdrawn (it contradicted
+    `permanent-doc-is-the-consolidation-record`: the commit and the home are the record, no
+    ledger); the channel carries a correction on the opening entry's times; the #62 body's
+    landed-state sentence left as is (moot at merge). Lens 1. REVIEW: item 46's drain note
+    was an anti-pattern the rule names; withdrawn the same night.
 
 ## Routing log
 

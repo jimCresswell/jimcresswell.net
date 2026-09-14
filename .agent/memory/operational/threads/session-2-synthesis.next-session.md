@@ -9,7 +9,8 @@ and the register PR #63 merged before it), before item 5; scope is the three nap
 (from line 311 to the end of the file at the commit that lands this record: sessions 4 to 8,
 wraps 3 to 7, lane C, lane A, the Director's two sections); the candidates
 go to the owner as one batch of cards in the morning; nothing graduates without the answers; the
-napkins are archived only then.
+napkins are archived only after two gates, the answered fast-lane cards and the owner's privacy
+review of the three napkins.
 
 ## Participating agent identities
 
@@ -317,11 +318,13 @@ filed the entries as PR #63 (`SHA: dc23dff`); the register carries the live stat
   while PDR-081 and the curator-pass skill say the opposite: a directory the lineage kept for
   history is not a register the doctrine writes to). If not, a worked-instance clause.
 
-- The consolidate-docs skill: one truth-maintenance pass over frontmatter status, narrative
-  status, next-step sections, current-state notes, roadmap and parent tables, and READMEs that
-  advertise plan state (napkin 2026-03-09 and 2026-04-03 say promoted; confirm the transplanted
-  skill kept it). Also: consolidation checks a domain skill's pitfalls table against findings
-  since the skill was written (2026-03-07).
+- 1a. The consolidate-docs skill: one truth-maintenance pass over frontmatter status,
+  narrative status, next-step sections, current-state notes, roadmap and parent tables, and
+  READMEs that advertise plan state (napkin 2026-03-09 and 2026-04-03 say promoted; confirm
+  the transplanted skill kept it).
+- 1b. The consolidate-docs skill: consolidation checks each domain skill the period's findings
+  touch, diffing its pitfalls table against those findings since the skill was written (napkin
+  2026-03-07).
 - The plan skill: a plan is complete only with verification evidence recorded ("code complete"
   is not complete; gates are acceptance criteria; 2026-03-06); a platform-integration plan that
   settles reusable architecture is mined into an ADR before closing (2026-03-08); losing paths
@@ -411,10 +414,10 @@ review dates, the readout at 28 pending. Nothing here refiles or reclassifies th
 2. Every fast-lane outcome drains its row (drain by deciding, the register's contract). A
    `graduated` entry lands as its own small pull request into the named home, one home per PR
    where the homes differ, by the seat the Director routes, and the entry is removed in the
-   same PR. A `rejected` entry is removed in a register commit whose drain note (the register's
-   HTML-comment drain record) carries the rejection reason. A `duplicate` entry is removed the
-   same way, the drain note naming the home that carries it. No decision leaves the durable
-   record: the commits, the homes and the drain notes are the record.
+   same PR. A `rejected` entry is removed in a register commit whose message carries the
+   rejection reason. A `duplicate` entry is removed the same way, the message naming the home
+   that carries it. The commit and the home are the record (rule
+   `permanent-doc-is-the-consolidation-record`): no ledger, no drain note, no pointer.
 3. The three napkins under `.agent/memory/active/unconsolidated/` are archived once both
    gates hold: the fast-lane cards of step 1 are answered, and the owner's privacy review of
    the three napkins under `privacy.md` (overnight item 5) is done. The slow-lane cards are

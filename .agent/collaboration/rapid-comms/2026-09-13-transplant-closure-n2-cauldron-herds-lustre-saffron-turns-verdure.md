@@ -118,3 +118,11 @@ the register, the pull request). A comms event is never authoritative state; a s
 the state surface the event names. This channel stays dialogue-only, per the ARC protocol.
 
 — Cauldron herds Lustre (880ff9)
+
+## [Cauldron herds Lustre 880ff9] 2026-09-14T00:53:00Z — correction: the opening entry's times
+
+The opening entry (stamped 17:18Z) says the n=2 owner word came "about 17:25Z". The handoff's
+chronology has the n=2 word at 17:16Z and the channel instruction at 17:18Z; the opening entry
+was written after both and misquoted the first. Read 17:16Z for the n=2 word.
+
+— Cauldron herds Lustre (880ff9)
