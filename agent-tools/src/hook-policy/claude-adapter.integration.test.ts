@@ -6,6 +6,7 @@ import {
   claudeContentRoute,
   claudePolicyRoutes,
   copilotCompatStringRoute,
+  placePath,
 } from './claude-adapter.js';
 import type { PolicyRouteContext } from './dispatcher.js';
 import { REPO_ROOT } from './policy-loader.js';
@@ -259,6 +260,16 @@ describe('copilot-compat string route evaluation', () => {
     await expect(evaluate(REPO_ROOT)).resolves.toStrictEqual({ kind: 'allow' });
     expect((await evaluate(`${REPO_ROOT}/nested`)).kind).toBe('deny-scoped-block');
     expect((await evaluate()).kind).toBe('deny-scoped-block');
+    // A relative cwd has no place of its own and places nothing.
+    expect((await evaluate('.')).kind).toBe('deny-scoped-block');
+  });
+
+  it('places a relative path against an absolute cwd only; a relative cwd leaves it unplaced', () => {
+    expect(placePath('docs/exempt/x.md', '/repo/nested')).toBe('/repo/nested/docs/exempt/x.md');
+    expect(placePath('docs/exempt/x.md', '.')).toBe('docs/exempt/x.md');
+    expect(placePath('docs/exempt/x.md', undefined)).toBe('docs/exempt/x.md');
+    expect(placePath('/elsewhere/x.md', '/repo')).toBe('/elsewhere/x.md');
+    expect(placePath(undefined, '/repo')).toBeUndefined();
   });
 
   it('rejects a malformed apply_patch program so the dispatcher fails closed', async () => {

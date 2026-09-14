@@ -129,8 +129,14 @@ async function resolveContentSections(context: PolicyRouteContext): Promise<{
 async function evaluateContentRoute(context: PolicyRouteContext): Promise<PolicyDecision> {
   const cwd = payloadCwd(context.hookInput);
   const changes = extractContentChanges(context.hookInput).map((change) => {
-    const { newContent, priorContent } = resolveContentPair(change, context.readPriorContent);
-    return { newContent, priorContent, filePath: placePath(change.filePath, cwd) };
+    // The prior-content read and the scoping read one placement of the file.
+    const placed = {
+      ...change,
+      filePath: placePath(change.filePath, cwd),
+      priorFilePath: placePath(change.priorFilePath, cwd),
+    };
+    const { newContent, priorContent } = resolveContentPair(placed, context.readPriorContent);
+    return { newContent, priorContent, filePath: placed.filePath };
   });
   const { patterns, blocks } = await resolveContentSections(context);
   // The repo root anchors the blocks' root-anchored scopes; a path still relative here had
@@ -143,18 +149,21 @@ async function evaluateContentRoute(context: PolicyRouteContext): Promise<Policy
 
 /** The payload's working directory, when the harness supplies one. */
 function payloadCwd(hookInput: unknown): string | undefined {
-  return isJsonObject(hookInput) && typeof hookInput.cwd === 'string' && hookInput.cwd.length > 0
-    ? hookInput.cwd
-    : undefined;
+  return isJsonObject(hookInput) && typeof hookInput.cwd === 'string' ? hookInput.cwd : undefined;
 }
 
 /**
  * A payload path placed in the file system: an absolute path as given; a relative one (the
- * `apply_patch` program's form) resolved against the payload's working directory; a relative
- * one with no working directory left as it is, for the scoping to read as unplaced.
+ * `apply_patch` program's form) resolved against the payload's working directory when that
+ * directory is absolute; otherwise left as it is, for the scoping to read as unplaced. A
+ * relative working directory has no place of its own (it would be completed from the hook
+ * process's directory, a global read), so it places nothing: fail closed.
  */
-function placePath(filePath: string | undefined, cwd: string | undefined): string | undefined {
-  if (filePath === undefined || cwd === undefined || isAbsolute(filePath)) {
+export function placePath(
+  filePath: string | undefined,
+  cwd: string | undefined,
+): string | undefined {
+  if (filePath === undefined || cwd === undefined || !isAbsolute(cwd) || isAbsolute(filePath)) {
     return filePath;
   }
   return resolve(cwd, filePath);
