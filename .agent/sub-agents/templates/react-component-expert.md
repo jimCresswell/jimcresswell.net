@@ -1,3 +1,7 @@
+---
+description: React component reviewer checking hooks, hydration, and memoisation.
+---
+
 ## Delegation Triggers
 
 Invoke this expert when work touches React component architecture, hook

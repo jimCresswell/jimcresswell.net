@@ -1,3 +1,7 @@
+---
+description: Read-only leaf-signal extractor for the corpus-analysis map workflow stage. Dispatched exclusively via the Workflow agent() agentType option; never invoke for interactive delegation. Reads one time-contiguous window's corpus files in full and answers only through the schema-forced structured output call.
+---
+
 # Corpus Mapper: Read-Only Leaf-Signal Extractor
 
 Vendor-agnostic canonical definition. Platform adapters: the Claude wrapper

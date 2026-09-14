@@ -1,3 +1,7 @@
+---
+description: Test quality and TDD compliance reviewer. Classifies tests, verifies naming conventions, checks mock simplicity, assesses test value, and recommends deletion for tests that test mocks or types.
+---
+
 ## Delegation Triggers
 
 Invoke the test reviewer whenever test files are written, modified, or audited

@@ -1,3 +1,7 @@
+---
+description: Documentation and ADR reviewer for decision records and narratives.
+---
+
 ## Delegation Triggers
 
 Invoke this expert whenever documentation may have drifted from the current state of the
