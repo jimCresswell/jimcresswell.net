@@ -507,6 +507,12 @@ ones the Director would put to the owner had the owner been present.
     three items taken; the pull request opens after 5a-iii's). REVIEW (5b): PDR-132 names the
     retired pr-throughput register as a future instrument; ratified text untouched, the
     retirement recorded against it for the owner's card. Lens 1.
+48. #65 (item 5a-ii, measured state) merged by the bot at `SHA: 53d9495` (00:31Z on
+    2026-09-14) at zero threads with Copilot bound to `SHA: 3802031`; origin branch deleted.
+    Four rounds in all (items 36, 38, 42, 47). From here every merge settles on measured state:
+    every leg landed, no expected reviewer request outstanding, no live run observed, any
+    unavailable run surface named. The 5a-iii pull request opens on the folded tip
+    (`SHA: d33eee2`, pushing on lane A's slot). Standing ruling; no REVIEW beyond item 34's.
 
 ## Routing log
 
