@@ -46,8 +46,8 @@ slow-lane row as the owner's ruling on that row.
   constitutional rows move to the slow lane (the accepted readout is 28 decision-debt blocks
   beside five slow-lane rows); the napkins are archived only after two gates: the owner's
   answers to the cards (a slow-lane answer being the owner's word on the row's presentation,
-  its decision staying with the review date) and the owner's privacy review of the three
-  napkins.
+  the review date its normal decision gate, an earlier owner ruling recorded on the register
+  row the exception) and the owner's privacy review of the three napkins.
 - **Next safe step:** §Next safe step at the end of this record.
 
 ## How this draft was made
@@ -430,6 +430,8 @@ review dates, the readout at 28 pending. Nothing here refiles or reclassifies th
 3. The three napkins under `.agent/memory/active/unconsolidated/` are archived once both
    gates hold: the owner's answers to the cards of step 1 (the controlling plan's item 8: "the
    napkins are archived only then"; a slow-lane row's answer is the owner's word on its
-   presentation, its decision staying with the review date), and the owner's privacy review of
-   the three napkins under `privacy.md` (overnight item 5).
-4. The slow-lane five are decided at their review date (the owner's card, else 2026-12-13).
+   presentation), and the owner's privacy review of the three napkins under `privacy.md`
+   (overnight item 5).
+4. The slow-lane five are decided at their review date (2026-12-13), the normal gate; an
+   earlier owner ruling, recorded on the register row, is the exception the register's own
+   slow-lane contract allows.
