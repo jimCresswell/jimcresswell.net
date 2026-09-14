@@ -3,7 +3,10 @@
  *
  * The block is strict YAML in the closed shape `rule-declaration.ts` defines; anything else is
  * refused with the rule path and the reason, so a projection is never generated from a
- * declaration the estate cannot vouch for.
+ * declaration the estate cannot vouch for. The boundary also refuses values the projections
+ * cannot carry (`strict-validation-at-boundary`): a description or trigger that spans lines, a
+ * trigger with a `|` or a backtick (it sits in a table cell inside a code span), and an empty or
+ * repeated glob (the Cursor trigger joins globs with commas).
  *
  * @packageDocumentation
  */
@@ -90,13 +93,20 @@ function readShape(name: string, fields: JsonObject): Result<RuleDeclaration, st
   if (!classification.ok) {
     return classification;
   }
-  const description = fields['description'];
-  if (typeof description !== 'string' || description.length === 0) {
-    return err('description must be a non-empty string');
+  const description = readDescription(fields['description']);
+  if (!description.ok) {
+    return description;
   }
   return classification.value === 'core'
-    ? readCore(name, description, fields)
-    : readSituational(name, description, fields);
+    ? readCore(name, description.value, fields)
+    : readSituational(name, description.value, fields);
+}
+
+function readDescription(value: unknown): Result<string, string> {
+  if (typeof value !== 'string' || value.length === 0) {
+    return err('description must be a non-empty string');
+  }
+  return value.includes('\n') ? err('description must be one line') : ok(value);
 }
 
 function readClassification(value: unknown): Result<RuleClassification, string> {
@@ -122,29 +132,44 @@ function readSituational(
   description: string,
   fields: JsonObject,
 ): Result<RuleDeclaration, string> {
-  const trigger = fields['trigger'];
-  if (typeof trigger !== 'string' || trigger.length === 0) {
-    return err('a situational rule needs a trigger');
+  const trigger = readTrigger(fields['trigger']);
+  if (!trigger.ok) {
+    return trigger;
   }
   const globs = readGlobs(fields['globs']);
   return globs.ok
-    ? ok({ name, classification: 'situational', description, trigger, globs: globs.value })
+    ? ok({
+        name,
+        classification: 'situational',
+        description,
+        trigger: trigger.value,
+        globs: globs.value,
+      })
     : globs;
+}
+
+const TRIGGER_CANNOT_CARRY = /[\n|`]/u;
+
+function readTrigger(value: unknown): Result<string, string> {
+  if (typeof value !== 'string' || value.length === 0) {
+    return err('a situational rule needs a trigger');
+  }
+  return TRIGGER_CANNOT_CARRY.test(value)
+    ? err('trigger must be one line without "|" or a backtick')
+    : ok(value);
 }
 
 function readGlobs(value: unknown): Result<readonly string[], string> {
   if (value === undefined) {
     return ok([]);
   }
-  if (!Array.isArray(value)) {
+  if (!Array.isArray(value) || !value.every((member) => typeof member === 'string')) {
     return err('globs must be a list of strings');
   }
-  const members: string[] = [];
-  for (const member of value) {
-    if (typeof member !== 'string') {
-      return err('globs must be a list of strings');
-    }
-    members.push(member);
+  const members: readonly string[] = value.filter((member) => typeof member === 'string');
+  if (members.some((member) => member.length === 0 || member.includes('\n'))) {
+    return err('globs must be one-line non-empty strings');
   }
-  return ok(members);
+  const repeated = members.find((member, index) => members.indexOf(member) !== index);
+  return repeated === undefined ? ok(members) : err(`globs repeat "${repeated}"`);
 }

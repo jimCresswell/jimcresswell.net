@@ -3,4 +3,4 @@ description: Apply the first question and existing architecture before non-trivi
 alwaysApply: true
 ---
 
-Read and follow @.agent/rules/apply-architectural-principles.md
+Read and follow `.agent/rules/apply-architectural-principles.md`.

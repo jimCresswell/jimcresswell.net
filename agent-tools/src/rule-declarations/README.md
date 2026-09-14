@@ -1,13 +1,20 @@
 # Rule declarations
 
 A canonical rule under `.agent/rules/` declares how it is loaded and what it is for in its
-frontmatter (`classification`, `description`, `trigger`, `globs`). The declaration is intended
-as the one source for the rules index, the Cursor triggers and the pointer adapters
-(`compute-dont-hope`); the generator that derives them from it is the next change, and until
-it lands those projections stay hand-kept. This module owns the declaration type and the sweep
-that minted the declarations from the surfaces that carried them by hand before.
+frontmatter (`classification`, `description`, `trigger`, `globs`). The declaration is the one
+source for the rules index, the Cursor triggers and the Claude and `.agents` adapters
+(`compute-dont-hope`): `pnpm portability:fix` renders them from it and `pnpm portability:check`
+recomputes them byte for byte, so none is ever edited by hand. This module owns the
+declaration shape, its reader, the renderers, the drift check, and the sweep that minted the
+declarations from the surfaces that carried them by hand before.
 
-- [`rule-declaration.ts`](rule-declaration.ts) — the closed declaration shape.
+- [`rule-declaration.ts`](rule-declaration.ts) — the closed declaration shape;
+  [`read-rule-declaration.ts`](read-rule-declaration.ts) reads it from a rule's frontmatter.
+- [`render-rule-projections.ts`](render-rule-projections.ts) — the index and the three
+  adapters as pure functions of the declarations, each platform's documented shape;
+  [`rule-projection-drift.ts`](rule-projection-drift.ts) — missing, drifted and stale
+  projections against the surfaces. The portability validator's
+  `rule-projection-validation.ts` wires them into `portability:check` and `portability:fix`.
 - [`parse-rules-index.ts`](parse-rules-index.ts), [`parse-cursor-trigger.ts`](parse-cursor-trigger.ts),
   [`parse-claude-rule-adapter.ts`](parse-claude-rule-adapter.ts) — readers for the three
   hand-kept sources, over the line-based [`frontmatter-lines.ts`](frontmatter-lines.ts) reader

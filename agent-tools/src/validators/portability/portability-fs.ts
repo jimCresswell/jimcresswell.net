@@ -10,9 +10,11 @@
  * (`validate-portability-helpers.ts`) — they are entry-point internals only.
  */
 
+import type { Dirent } from 'node:fs';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
+import { isEnoent } from '../../core/authored-surfaces.js';
 import { toLfText } from '../../core/lf-text.js';
 
 /**
@@ -54,6 +56,16 @@ export async function writeText(
   await fs.mkdir(path.dirname(absPath), { recursive: true });
   await fs.writeFile(absPath, content, 'utf8');
   writtenWrappers.push(relPath);
+}
+
+/**
+ * Removes the file at `<repoRoot>/<relPath>`.
+ *
+ * @param repoRoot - Absolute path to the repository root.
+ * @param relPath  - Repo-relative path of the file to remove.
+ */
+export async function removeFile(repoRoot: string, relPath: string): Promise<void> {
+  await fs.rm(path.join(repoRoot, relPath));
 }
 
 /**
@@ -138,6 +150,52 @@ export async function listFiles(
   }
 }
 
+/** What listing a directory found: the closed set of outcomes a caller must handle. */
+export type DirectoryListing =
+  | { readonly kind: 'absent' }
+  | { readonly kind: 'unreadable'; readonly cause: string }
+  /** An entry that is neither a regular file nor a directory: a symlink or a special file. */
+  | { readonly kind: 'foreign'; readonly entry: string }
+  | { readonly kind: 'files'; readonly files: readonly string[] };
+
+/**
+ * Lists the regular files with the given extension in `<repoRoot>/<relDir>`, sorted
+ * lexicographically, as a typed outcome: absence is ENOENT and nothing else, any other read
+ * failure is `unreadable`, and a symlink or special entry (wherever it points) is `foreign`
+ * before any file is listed. A caller that acts destructively on the listing can therefore
+ * never read a failure as "nothing here" (the posture `carriage-fs.ts` documents).
+ *
+ * @param repoRoot  - Absolute path to the repository root.
+ * @param relDir    - Repo-relative path to the directory to list.
+ * @param extension - File extension to filter by (including the leading dot).
+ * @returns The listing outcome; file paths are repo-relative.
+ */
+export async function listDirectory(
+  repoRoot: string,
+  relDir: string,
+  extension: string,
+): Promise<DirectoryListing> {
+  let entries: Dirent[];
+  try {
+    entries = await fs.readdir(path.join(repoRoot, relDir), { withFileTypes: true });
+  } catch (error: unknown) {
+    return isEnoent(error)
+      ? { kind: 'absent' }
+      : { kind: 'unreadable', cause: error instanceof Error ? error.message : String(error) };
+  }
+  const sorted = [...entries].sort((a, b) => a.name.localeCompare(b.name));
+  const foreign = sorted.find((e) => !e.isFile() && !e.isDirectory());
+  if (foreign !== undefined) {
+    return { kind: 'foreign', entry: `${relDir}/${foreign.name}` };
+  }
+  return {
+    kind: 'files',
+    files: sorted
+      .filter((e) => e.isFile() && e.name.endsWith(extension))
+      .map((e) => `${relDir}/${e.name}`),
+  };
+}
+
 /**
  * Lists all immediate subdirectory names in `<repoRoot>/<relDir>`, sorted
  * lexicographically.
@@ -189,14 +247,4 @@ export function getFrontmatterValue(frontmatter: string, key: string): string {
   const escapedKey = key.replaceAll(/[.*+?^${}()|[\]\\]/g, String.raw`\$&`);
   const match = new RegExp(String.raw`^${escapedKey}:\s*(.+)$`, 'm').exec(frontmatter);
   return match?.[1]?.trim().replaceAll(/^['"]|['"]$/g, '') ?? '';
-}
-
-/**
- * Strips a YAML frontmatter block from the start of a Markdown document.
- *
- * @param content - Full text of the Markdown document.
- * @returns The document text with the frontmatter block removed.
- */
-export function stripFrontmatter(content: string): string {
-  return content.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n?/u, '');
 }

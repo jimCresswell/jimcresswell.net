@@ -39,11 +39,10 @@ import {
   readJson,
   readOptionalText,
   readText,
-  stripFrontmatter,
-  writeText,
 } from './portability-fs.js';
 import { practiceSkillPermissionIssues } from './skill-census.js';
 import { reportPortabilityValidation } from './portability-report.js';
+import { realRuleProjectionFs, validateRuleProjections } from './rule-projection-validation.js';
 
 const repoRoot = resolveRepoRoot(import.meta.url);
 const fixMode = process.argv.includes('--fix');
@@ -84,17 +83,13 @@ for (const skillPath of discoveredCanonicalPaths) {
   await validateCanonicalFrontmatter(skillPath);
 }
 
-const CANONICAL_RULE_OR_SKILL_PATTERN = /\.agent\/rules\/|\.agent\/skills\//;
-const cursorRules = await listFiles(repoRoot, '.cursor/rules', '.mdc');
-const claudeRules = await listFiles(repoRoot, '.claude/rules', '.md');
-const agentsRules = await listFiles(repoRoot, '.agents/rules', '.md');
-for (const ruleFile of [...cursorRules, ...claudeRules, ...agentsRules]) {
-  if (!CANONICAL_RULE_OR_SKILL_PATTERN.test(await readText(repoRoot, ruleFile))) {
-    issues.push(
-      `${ruleFile}: trigger does not reference a canonical rule (.agent/rules/) or skill (.agent/skills/)`,
-    );
-  }
-}
+// The rule projections — RULES_INDEX.md and the Cursor, Claude and `.agents` rule
+// adapters — are rendered from each rule's frontmatter declaration and compared byte
+// for byte; `--fix` regenerates them. Nothing on those surfaces is hand-kept.
+const ruleProjections = await validateRuleProjections(fixMode, realRuleProjectionFs(repoRoot));
+issues.push(...ruleProjections.issues);
+writtenWrappers.push(...ruleProjections.written);
+const removedProjections = ruleProjections.removed;
 
 const cursorAgentFiles = await listFiles(repoRoot, '.cursor/agents', '.md');
 const claudeAgentFiles = await listFiles(repoRoot, '.claude/agents', '.md');
@@ -115,41 +110,6 @@ for (const issue of getReviewerAdapterParityIssues({
 }
 
 const canonicalRules = await listFiles(repoRoot, '.agent/rules', '.md');
-const wrapperBody = (ruleName: string) => `Read and follow \`.agent/rules/${ruleName}.md\`.\n`;
-for (const ruleFile of canonicalRules) {
-  const ruleName = path.basename(ruleFile, '.md');
-  const claudeWrapperPath = `.claude/rules/${ruleName}.md`;
-  const agentsWrapperPath = `.agents/rules/${ruleName}.md`;
-  if (!(await exists(repoRoot, claudeWrapperPath))) {
-    if (fixMode) {
-      await writeText(repoRoot, claudeWrapperPath, wrapperBody(ruleName), writtenWrappers);
-    } else {
-      issues.push(`.agent/rules/${ruleName}.md: missing .claude/rules/${ruleName}.md wrapper`);
-    }
-  }
-  if (!(await exists(repoRoot, `.cursor/rules/${ruleName}.mdc`))) {
-    issues.push(`.agent/rules/${ruleName}.md: missing .cursor/rules/${ruleName}.mdc trigger`);
-  }
-  if (!(await exists(repoRoot, agentsWrapperPath))) {
-    if (fixMode) {
-      await writeText(repoRoot, agentsWrapperPath, wrapperBody(ruleName), writtenWrappers);
-    } else {
-      issues.push(`.agent/rules/${ruleName}.md: missing .agents/rules/${ruleName}.md wrapper`);
-    }
-  }
-}
-
-for (const ruleFile of [...cursorRules, ...claudeRules, ...agentsRules]) {
-  const contentLines = stripFrontmatter(await readText(repoRoot, ruleFile))
-    .split(/\r?\n/u)
-    .filter((l) => l.trim() !== '').length;
-  if (contentLines > 10) {
-    issues.push(
-      `${ruleFile}: ${contentLines} content lines exceeds Trigger Content Contract maximum of 10`,
-    );
-  }
-}
-
 const rulesIndexState = await readOptionalText(repoRoot, RULES_INDEX_PATH);
 for (const issue of getRulesIndexPortabilityIssues({
   canonicalRuleFiles: canonicalRules,
@@ -195,7 +155,7 @@ if (await exists(repoRoot, CLAUDE_SETTINGS_PATH)) {
   }
 }
 
-const stats = `${validatedCanonicalPaths.length} canonical skills, ${canonicalRules.length} canonical rules, ${canonicalAgentNames.length} reviewer adapters, ${cursorRules.length} Cursor triggers, ${claudeRules.length} Claude rules, ${agentsRules.length} .agents rules`;
+const stats = `${validatedCanonicalPaths.length} canonical skills, ${canonicalRules.length} canonical rules with their index and three adapter projections recomputed, ${canonicalAgentNames.length} reviewer adapters${removedProjections.length > 0 ? `, ${removedProjections.length} stale rule projections removed` : ''}`;
 
 export { reportPortabilityValidation } from './portability-report.js';
 
