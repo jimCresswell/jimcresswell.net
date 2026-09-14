@@ -24,10 +24,12 @@ function trigger(lines: readonly string[]): string {
 function fakeFs(
   files: ReadonlyMap<string, string>,
   other: ReadonlySet<string> = new Set(),
-): SweepFs & { writes: Map<string, string> } {
+): SweepFs & { writes: Map<string, string>; reads: string[] } {
   const writes = new Map<string, string>();
+  const reads: string[] = [];
   return {
     writes,
+    reads,
     entryKind: async (absolutePath) => {
       if (other.has(absolutePath)) {
         return 'other';
@@ -35,6 +37,7 @@ function fakeFs(
       return files.has(absolutePath) ? 'file' : 'absent';
     },
     readFile: async (absolutePath) => {
+      reads.push(absolutePath);
       const content = files.get(absolutePath);
       if (content === undefined) {
         throw Object.assign(new Error(`ENOENT: ${absolutePath}`), { code: 'ENOENT' });
@@ -129,11 +132,17 @@ describe('sweepRuleFrontmatter', () => {
     expect(fs.writes.size).toBe(0);
   });
 
-  it('refuses an already-declared rule whose Cursor trigger is missing, never counting it as swept', async () => {
+  it('reports an already-declared rule without reading its projections: a generated adapter or a missing trigger refuses nothing', async () => {
     const tree = new Map(agreeingTree);
     tree.set(
       `${REPO}/.agent/rules/alpha.md`,
-      '---\nclassification: core\ndescription: a\n---\n\n# Alpha\n',
+      '---\nclassification: situational\ndescription: a\ntrigger: surface:x\nglobs:\n  - "**/*.ts"\n---\n\n# Alpha\n',
+    );
+    // The generated Claude adapter carries `paths` as a YAML sequence, a shape the hand-kept
+    // reader does not parse (#74 round four); the trigger is gone altogether.
+    tree.set(
+      `${REPO}/.claude/rules/alpha.md`,
+      '---\npaths:\n  - "**/*.ts"\n---\n\nRead and follow `.agent/rules/alpha.md`.\n',
     );
     tree.delete(`${REPO}/.cursor/rules/alpha.mdc`);
     const fs = fakeFs(tree);
@@ -141,10 +150,11 @@ describe('sweepRuleFrontmatter', () => {
       { repoRoot: REPO, ruleNames: ['alpha', 'beta'], write: true },
       fs,
     );
-    expect(outcome.refused).toEqual(['.cursor/rules/alpha.mdc: missing']);
-    expect(outcome.alreadyDeclared).toEqual([]);
-    expect(outcome.written).toEqual([]);
-    expect(fs.writes.size).toBe(0);
+    expect(outcome.refused).toEqual([]);
+    expect(outcome.alreadyDeclared).toEqual(['.agent/rules/alpha.md']);
+    expect(outcome.written).toEqual(['.agent/rules/beta.md']);
+    expect(fs.reads).not.toContain(`${REPO}/.claude/rules/alpha.md`);
+    expect(fs.reads).not.toContain(`${REPO}/.cursor/rules/alpha.mdc`);
   });
 
   it('refuses an already-declared rule that has no index row, never counting it as swept', async () => {
@@ -312,7 +322,7 @@ describe('sweepRuleFrontmatter', () => {
         fs,
       );
       expect(outcome.refused).toEqual([
-        `${JSON.stringify(name)}: not a rule basename (one path segment: no separator, no dot segment, no .md suffix)`,
+        `${JSON.stringify(name)}: not a rule basename (lowercase letters and digits in single-hyphen groups: one path segment, no dot segment, no .md suffix)`,
       ]);
       expect(outcome.written).toEqual([]);
       expect(fs.writes.size).toBe(0);

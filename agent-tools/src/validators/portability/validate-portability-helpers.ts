@@ -38,5 +38,5 @@ export { getReviewerAdapterParityIssues } from './reviewer-adapter-parity.js';
 
 export { getSkillPermissionIssues, selectPracticeSkillDirs } from './skill-permission-checks.js';
 
-export { getRulesIndexPortabilityIssues } from './rules-index-checks.js';
-export { collectCanonicalSkillPaths } from './skills-walk.js';
+export { getRulesIndexPortabilityIssues, rulesIndexBudgetIssues } from './rules-index-checks.js';
+export { type CanonicalSkill, collectCanonicalSkillPaths } from './skills-walk.js';

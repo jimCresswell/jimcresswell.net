@@ -3,7 +3,7 @@ fitness_line_target: 80
 fitness_line_limit: 125
 fitness_char_limit: 7500
 fitness_line_length: 100
-split_strategy: "Keep concise; this is a reference extracted from AGENT.md"
+split_strategy: 'Keep concise; this is a reference extracted from AGENT.md'
 ---
 
 # Agent Artefact Inventory
@@ -13,19 +13,19 @@ and the [cross-platform matrix](./cross-platform-agent-surface-matrix.md).
 
 ## Canonical Content (Layer 1)
 
-| Location | Purpose |
-|----------|---------|
+| Location                                  | Purpose                                                           |
+| ----------------------------------------- | ----------------------------------------------------------------- |
 | `.agent/skills/<name>/SKILL-CANONICAL.md` | Canonical skills (sole user-and-model-invokable workflow surface) |
-| `.agent/rules/*.md` | Canonical rules — reinforcements of policy |
-| `.agent/directives/*.md` | Policy documents (AGENT.md, principles.md, etc.) |
-| `.agent/sub-agents/templates/*.md` | Canonical sub-agent prompts (ADR-114) |
-| `.agent/memory/active/patterns/` | Reusable solutions ([README](../active/patterns/README.md)) |
-| `.agent/plans/` | Implementation plans, execution tracking |
+| `.agent/rules/*.md`                       | Canonical rules — reinforcements of policy                        |
+| `.agent/directives/*.md`                  | Policy documents (AGENT.md, principles.md, etc.)                  |
+| `.agent/sub-agents/templates/*.md`        | Canonical sub-agent prompts (ADR-114)                             |
+| `.agent/memory/active/patterns/`          | Reusable solutions ([README](../active/patterns/README.md))       |
+| `.agent/plans/`                           | Implementation plans, execution tracking                          |
 
 ## Host-Local Operational Tooling
 
-| Location | Purpose |
-|----------|---------|
+| Location       | Purpose                                                         |
+| -------------- | --------------------------------------------------------------- |
 | `agent-tools/` | TypeScript implementation of optional Practice-operational CLIs |
 
 `agent-tools/` is not portable Practice Core content and is not a platform
@@ -37,19 +37,19 @@ boundary is ADR-165.
 
 ## Platform Entrypoints
 
-| Location | Purpose |
-|----------|---------|
+| Location                                              | Purpose                                                    |
+| ----------------------------------------------------- | ---------------------------------------------------------- |
 | `AGENTS.md` / `CLAUDE.md` / `GEMINI.md` / `skills.md` | Thin platform entrypoints that point agents into `.agent/` |
 
 ## Platform Adapters (Layer 2)
 
-| Surface | Cursor | Claude Code | Codex CLI | Gemini / Antigravity CLI |
-| --- | --- | --- | --- | --- |
-| Skills | reads `.agents/skills/` | `.claude/skills/jc-*/SKILL.md` | `.agents/skills/jc-*/SKILL.md` | reads `.agents/skills/` |
-| Rules | `.cursor/rules/*.mdc` | `.claude/rules/*.md` | entry-point chain; native `.rules` unwired | entry-point chain only |
-| Sub-agents | `.cursor/agents/*.md` | `.claude/agents/*.md` | `.codex/agents/*.toml` | none wired; native agents unwired |
-| Hooks | no policy activation | `.claude/settings.json` `PreToolUse` | `.codex/config.toml` identity-only `SessionStart` | upstream support; no project hook wired |
-| MCP | user-local | user-local | `.codex/config.toml` `[mcp_servers]` | upstream support; no project MCP wired |
+| Surface    | Cursor                  | Claude Code                          | Codex CLI                                         | Gemini / Antigravity CLI                |
+| ---------- | ----------------------- | ------------------------------------ | ------------------------------------------------- | --------------------------------------- |
+| Skills     | reads `.agents/skills/` | `.claude/skills/jc-*/SKILL.md`       | `.agents/skills/jc-*/SKILL.md`                    | reads `.agents/skills/`                 |
+| Rules      | `.cursor/rules/*.mdc`   | `.claude/rules/*.md`                 | entry-point chain; native `.rules` unwired        | entry-point chain only                  |
+| Sub-agents | `.cursor/agents/*.md`   | `.claude/agents/*.md`                | `.codex/agents/*.toml`                            | none wired; native agents unwired       |
+| Hooks      | no policy activation    | `.claude/settings.json` `PreToolUse` | `.codex/config.toml` identity-only `SessionStart` | upstream support; no project hook wired |
+| MCP        | user-local              | user-local                           | `.codex/config.toml` `[mcp_servers]`              | upstream support; no project MCP wired  |
 
 Platform adapters are thin pointers to canonical content under `.agent/`;
 they preserve platform activation semantics without copying substance.
@@ -84,16 +84,16 @@ command surfaces are retired (see ADR-125 §2026-05-10).
 
 ### New Rule
 
-1. **Canonical**: `.agent/rules/<name>.md`
-2. **Cursor**: `.cursor/rules/<name>.mdc`
-3. **Claude Code**: `.claude/rules/<name>.md`
-4. **`.agents/`**: `.agents/rules/<name>.md`
-
-- **Cursor `.mdc`**: YAML front-matter (`description`,
-  `alwaysApply: true`), body = `Read and follow
-  .agent/rules/<name>.md`.
-- **Claude**: plain text — `Read and follow .agent/rules/<name>.md`.
-- **`.agents/`**: same plain-text pointer as Claude.
+1. **Canonical**: `.agent/rules/<name>.md`, with the declaration in its frontmatter:
+   `classification` (`core` or `situational`), `description`, and for a situational rule
+   `trigger` and optionally `globs` (a YAML list).
+2. **Projections (generated)**: run `pnpm portability:fix`. It renders the rule's row in
+   `RULES_INDEX.md`, `.cursor/rules/<name>.mdc`, `.claude/rules/<name>.md` and
+   `.agents/rules/<name>.md` from the declaration; `pnpm portability:check` recomputes them
+   byte for byte. Those four surfaces are wholly generated: a hand edit fails the check, a
+   regular file there that no rule renders is removed by `--fix`, and a link, directory or
+   special entry there makes the check refuse before it writes or removes anything. The
+   shapes live in `agent-tools/src/rule-declarations/render-rule-projections.ts`.
 
 ### New Sub-agent
 

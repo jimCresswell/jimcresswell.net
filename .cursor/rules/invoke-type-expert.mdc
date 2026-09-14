@@ -1,6 +1,6 @@
 ---
 description: invoke type expert
-alwaysApply: true
+alwaysApply: false
 ---
 
-Read and follow @.agent/rules/invoke-type-expert.md
+Read and follow `.agent/rules/invoke-type-expert.md`.

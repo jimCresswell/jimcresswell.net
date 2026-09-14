@@ -3,7 +3,10 @@
  * without `.md`, and every path the sweep builds (`.agent/rules/<name>.md`,
  * `.cursor/rules/<name>.mdc`, `.claude/rules/<name>.md`) interpolates that name, so any other
  * shape (a separator anywhere, leading or not; a dot segment; an empty name; a `.md` suffix)
- * would address a file outside the rules directories or the wrong file inside them. The check
+ * would address a file outside the rules directories or the wrong file inside them, and the
+ * projection leg interpolates it into code spans, table cells and paths besides, so the shape
+ * is closed: lowercase letters and digits in single-hyphen groups, nothing a code span, a
+ * table cell or a path cannot carry (the #74 round-three finding, 2026-09-14). The check
  * runs before any path is built, so a refused name is never read and never written; the reason
  * quotes the name so an empty or whitespace name stays visible in a report. In the other
  * direction, the rules index is the canonical enumeration, so a row naming no swept rule is a
@@ -16,17 +19,13 @@
 import type { RulesIndexRow } from './parse-rules-index.js';
 
 const NOT_A_RULE_BASENAME =
-  'not a rule basename (one path segment: no separator, no dot segment, no .md suffix)';
+  'not a rule basename (lowercase letters and digits in single-hyphen groups: one path segment, no dot segment, no .md suffix)';
 
-function isRuleBasename(name: string): boolean {
-  return (
-    name.length > 0 &&
-    name !== '.' &&
-    name !== '..' &&
-    !name.includes('/') &&
-    !name.includes('\\') &&
-    !name.endsWith('.md')
-  );
+const RULE_BASENAME = /^[a-z0-9]+(?:-[a-z0-9]+)*$/u;
+
+/** The refusal reason when a name is not a rule basename; `undefined` when it may be interpolated. */
+export function ruleNameRefusal(name: string): string | undefined {
+  return RULE_BASENAME.test(name) ? undefined : `${JSON.stringify(name)}: ${NOT_A_RULE_BASENAME}`;
 }
 
 /**
@@ -34,9 +33,10 @@ function isRuleBasename(name: string): boolean {
  * every name may be interpolated into a rule path.
  */
 export function refuseNonBasenames(ruleNames: readonly string[]): readonly string[] {
-  return ruleNames
-    .filter((name) => !isRuleBasename(name))
-    .map((name) => `${JSON.stringify(name)}: ${NOT_A_RULE_BASENAME}`);
+  return ruleNames.flatMap((name) => {
+    const refusal = ruleNameRefusal(name);
+    return refusal === undefined ? [] : [refusal];
+  });
 }
 
 /**

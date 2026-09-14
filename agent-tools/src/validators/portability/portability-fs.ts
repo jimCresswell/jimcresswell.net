@@ -13,7 +13,9 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
+import { isEnoent } from '../../core/authored-surfaces.js';
 import { toLfText } from '../../core/lf-text.js';
+import type { FsRead } from '../../skills-adapter-generate/carriage-fs.js';
 
 /**
  * Reads the UTF-8 text content of a file at `<repoRoot>/<relPath>`.
@@ -41,19 +43,19 @@ export async function readText(repoRoot: string, relPath: string): Promise<strin
  * @param repoRoot          - Absolute path to the repository root.
  * @param relPath           - Repo-relative destination path.
  * @param content           - Text content to write.
- * @param writtenWrappers   - Mutable array that collects all paths written
+ * @param writtenPaths      - Mutable array that collects all paths written
  *   during a `--fix` run; the path is appended on success.
  */
 export async function writeText(
   repoRoot: string,
   relPath: string,
   content: string,
-  writtenWrappers: string[],
+  writtenPaths: string[],
 ): Promise<void> {
   const absPath = path.join(repoRoot, relPath);
   await fs.mkdir(path.dirname(absPath), { recursive: true });
   await fs.writeFile(absPath, content, 'utf8');
-  writtenWrappers.push(relPath);
+  writtenPaths.push(relPath);
 }
 
 /**
@@ -71,16 +73,29 @@ export async function readJson(repoRoot: string, relPath: string): Promise<unkno
 /**
  * Checks whether a file or directory exists at `<repoRoot>/<relPath>`.
  *
+ * Absence is ENOENT and nothing else: any other failure of `access` (EACCES, ELOOP, an
+ * I/O error) is thrown, so an unreadable path is never reported as merely missing and a
+ * caller never acts on "absent" it did not measure (the #74 round-one finding, 2026-09-14).
+ *
  * @param repoRoot - Absolute path to the repository root.
  * @param relPath  - Repo-relative path to test.
- * @returns `true` when `fs.access` succeeds; `false` otherwise.
+ * @param access   - The probe; `fs.access` by default.
+ * @returns `true` when the probe succeeds; `false` when the path does not exist.
+ * @throws When the path cannot be accessed for any reason other than absence.
  */
-export async function exists(repoRoot: string, relPath: string): Promise<boolean> {
+export async function exists(
+  repoRoot: string,
+  relPath: string,
+  access: (absolutePath: string) => Promise<void> = (absolutePath) => fs.access(absolutePath),
+): Promise<boolean> {
   try {
-    await fs.access(path.join(repoRoot, relPath));
+    await access(path.join(repoRoot, relPath));
     return true;
-  } catch {
-    return false;
+  } catch (error: unknown) {
+    if (isEnoent(error)) {
+      return false;
+    }
+    throw error;
   }
 }
 
@@ -138,24 +153,41 @@ export async function listFiles(
   }
 }
 
+/** What `listSubdirs` needs of a directory entry (`fs.Dirent` satisfies it). */
+interface NamedEntry {
+  readonly name: string;
+  isDirectory(): boolean;
+}
+
 /**
- * Lists all immediate subdirectory names in `<repoRoot>/<relDir>`, sorted
- * lexicographically.
+ * Lists all immediate subdirectory names in `<repoRoot>/<relDir>`, sorted lexicographically,
+ * as a typed read: any listing failure, absence included, is a `failure` naming the directory
+ * and the cause, never an empty listing (an unlisted `.agent/skills` would validate zero
+ * skills and pass; the #74 round-four finding, 2026-09-14).
  *
  * @param repoRoot - Absolute path to the repository root.
  * @param relDir   - Repo-relative path to the directory to list.
- * @returns Sorted array of subdirectory names (not full paths), or an empty
- *   array when the directory does not exist or cannot be read.
+ * @param readdir  - The listing call; `fs.readdir` with file types by default.
+ * @returns The sorted subdirectory names (not full paths), or the failure.
  */
-export async function listSubdirs(repoRoot: string, relDir: string): Promise<string[]> {
+export async function listSubdirs(
+  repoRoot: string,
+  relDir: string,
+  readdir: (absolutePath: string) => Promise<readonly NamedEntry[]> = (absolutePath) =>
+    fs.readdir(absolutePath, { withFileTypes: true }),
+): Promise<FsRead<readonly string[]>> {
   try {
-    const entries = await fs.readdir(path.join(repoRoot, relDir), { withFileTypes: true });
-    return entries
-      .filter((e) => e.isDirectory())
-      .map((e) => e.name)
-      .sort((a, b) => a.localeCompare(b));
-  } catch {
-    return [];
+    const entries = await readdir(path.join(repoRoot, relDir));
+    return {
+      kind: 'ok',
+      value: entries
+        .filter((entry) => entry.isDirectory())
+        .map((entry) => entry.name)
+        .sort((left, right) => left.localeCompare(right)),
+    };
+  } catch (error: unknown) {
+    const cause = error instanceof Error ? error.message : String(error);
+    return { kind: 'failure', message: `cannot list ${relDir}: ${cause}` };
   }
 }
 
@@ -189,14 +221,4 @@ export function getFrontmatterValue(frontmatter: string, key: string): string {
   const escapedKey = key.replaceAll(/[.*+?^${}()|[\]\\]/g, String.raw`\$&`);
   const match = new RegExp(String.raw`^${escapedKey}:\s*(.+)$`, 'm').exec(frontmatter);
   return match?.[1]?.trim().replaceAll(/^['"]|['"]$/g, '') ?? '';
-}
-
-/**
- * Strips a YAML frontmatter block from the start of a Markdown document.
- *
- * @param content - Full text of the Markdown document.
- * @returns The document text with the frontmatter block removed.
- */
-export function stripFrontmatter(content: string): string {
-  return content.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n?/u, '');
 }

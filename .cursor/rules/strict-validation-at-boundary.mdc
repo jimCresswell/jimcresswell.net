@@ -1,6 +1,7 @@
 ---
 description: Validate external data at entry boundaries
-globs: "**/*.ts,**/*.tsx,content/**/*"
+globs: '**/*.ts,**/*.tsx,content/**/*'
+alwaysApply: false
 ---
 
-Read and follow @.agent/rules/strict-validation-at-boundary.md
+Read and follow `.agent/rules/strict-validation-at-boundary.md`.

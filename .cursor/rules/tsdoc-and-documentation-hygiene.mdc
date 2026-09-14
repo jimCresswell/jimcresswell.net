@@ -1,6 +1,7 @@
 ---
 description: Keep TSDoc and contract docs truthful and current
-globs: "**/*.ts,**/*.tsx,docs/**/*,.agent/**/*,README.md"
+globs: '**/*.ts,**/*.tsx,docs/**/*,.agent/**/*,README.md'
+alwaysApply: false
 ---
 
-Read and follow @.agent/rules/tsdoc-and-documentation-hygiene.md
+Read and follow `.agent/rules/tsdoc-and-documentation-hygiene.md`.
