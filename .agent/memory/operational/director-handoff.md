@@ -705,6 +705,13 @@ ones the Director would put to the owner had the owner been present.
     early-decision exception to the register rows and the owner, not to PDR-130. This branch
     opens as the records-5 pull request (items 59 to 67) after lane A's slot release; later
     items on records-6. Standing ruling.
+68. Records-5 is PR #73 (`SHA: 817052e`, 03:10Z on 2026-09-14; Copilot requested, the bot
+    armed); items from 68 on `chore/director-records-6`, stacked on it. #71's round-two cure is
+    on origin at `SHA: 81ae1b6` with the Director's chain on it. 2a's code-expert verdict:
+    approved with suggestions, all seven claims holding; its one important item (a
+    subdirectory on a projection surface neither refused nor listed, so a hand-authored nested
+    rule would load unseen by the gate) is lane A's cure commit before the slot ask. Standing
+    ruling.
 
 ## Routing log
 
