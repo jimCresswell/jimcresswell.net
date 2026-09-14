@@ -1381,3 +1381,16 @@ parallax, wrap):
   while its edits stay staged, and the next `git commit` in that working copy sweeps them
   under its own message. After any commit in a chained script, read the tip and compare it to
   the expected commit before pushing; a "nothing to push" gate is the symptom.
+
+### Director, morning (2026-09-14): play seeds from the night, marked as associations
+
+- Play seed: three of the night's cures had one shape, a clock replaced by a measurement (the
+  e2e port probe became an in-process server that keeps its socket; the merge bot's quiet
+  window became measured state; the run leg's inferred absence became "observed or named").
+  This reminded me of the estate's "compute, don't hope"; whether it is one reflex worth
+  naming is unproven (an association, not a finding).
+- Play seed: twice a failed git step left residue the next step adopted silently (a refused
+  merge type completed under the next commit's message; an index.lock race left a staged cure
+  that the next commit swept). These look shaped alike; two instances, a third would make a
+  register candidate.
+- Discarded at the harvest: "review-round count tracks file count" was forced; no data.
