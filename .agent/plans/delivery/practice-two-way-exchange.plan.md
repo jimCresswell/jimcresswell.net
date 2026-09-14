@@ -41,7 +41,7 @@ two way exchange to bring both Practices up to the highest level that either of 
 ## Problem
 
 Two living Practice instances share an ancestor, the lineage commit this transplant was pinned
-to (`e477e62f7`, 2026-09-12). Since then both moved: the lineage's own curator delivered a
+to (`SHA: e477e62f7`, 2026-09-12). Since then both moved: the lineage's own curator delivered a
 delta note into this estate's Practice Box
 (`.agent/practice-core/incoming/2026-09-14-oak-line-delta-since-e477e62f7.md`) naming a new
 Core decision record and schema, four amended decision records, clauses on thirty-one rules and
@@ -51,9 +51,10 @@ measured-state merge bot and its suppressed-findings hold, the sub-agent adapter
 lineage-name and machine-local-path validators, the tracked-universe gates, the per-checkout
 e2e port, the transplant's own record and runbook). Neither instance is a superset of the
 other. The lineage doctrine's two-way merge ("start from the incoming files, merge local
-additions back") assumes one side barely moved; a file-level merge here would overwrite one
-estate's learning with the other's encoding. The gap: no mechanism yet names, for every
-concept that moved on either side, which encoding is higher and lands it on both sides. The
+additions back") covers a locally evolved Practice at the file level; it has no step that
+decides, for a concept both sides evolved independently, which encoding is higher, so a
+file-level merge would overwrite one estate's learning with the other's encoding. The gap:
+no mechanism yet gives every such concept one disposition and lands it on both sides. The
 harm: each estate keeps repairing what the other has already cured, and the drift compounds
 with every session on either side. Success: every concept that changed on either side since
 the ancestor has one disposition, recorded once, landed in both estates under each owner's
@@ -97,7 +98,8 @@ never pinned in this node, so whatever lands on either side before then is in sc
    its disposition, its direction and its landing pull request on each side; a validator
    refuses a path in either delta with no row.
 4. **Land inbound here** as pull requests sized to about eight review-facing claims, two review
-   rounds each, every import carrying a provenance line naming the lineage head it was read at;
+   rounds binding by default with the Director-only correctness exception (closure record,
+   item 100), every import carrying a provenance line naming the lineage head it was read at;
    the fitness functions and the cohesion audit run after each landing (two-way merges push
    files over their ceilings).
 5. **Deliver outbound** into the lineage's Practice Box as a pin-free note plus the material,
@@ -117,8 +119,9 @@ two-round ruling of 2026-09-14 do too.
 ## Acceptance criteria (each with a proof)
 
 - Both deltas are recomputable from the ancestor and each estate's main by one script, and the
-  register carries a row for every path in either delta. Proof: the register validator as a
-  `docs-validators:check` leg, green (`repo-safe`).
+  register covers every path in either delta by a concept row (a path-to-row mapping, one row
+  covering many paths). Proof: the register validator as a `docs-validators:check` leg, green
+  (`repo-safe`).
 - Every register row has a disposition and, where it lands, a pull request on the receiving
   side, merged. Proof: the register's rows cite merged pull requests; the validator refuses a
   landing row without one (`repo-safe`).
@@ -128,15 +131,16 @@ two-round ruling of 2026-09-14 do too.
 - This estate's provenance chain names the lineage head read, the cohesion audit and the fitness
   functions are green after the last inbound landing, and the Box is empty. Proof:
   `provenance.yml`, the verification audit's run, the directory (`repo-safe`).
-- The outbound delivery is on the lineage's comms stream and in its Box. Proof: the delivery
-  event id and the note's path, recorded in the register; the owner verifies on the lineage
+- The outbound material was delivered to the lineage's Box with its comms event, integrated by
+  the lineage's seats, and cleared. Proof: the delivery event id, the lineage's landing pull
+  requests and its empty Box, recorded in the register; the owner verifies on the lineage
   estate (`owner-held`).
 
 ## Todos
 
 1. At the window: the delta script and the two computed lists (one pull request, code-class).
-2. The concept rows and the register with its validator (one pull request, prose-class, the
-   intake contract declared at open).
+2. The concept rows and the register (one pull request, prose-class, the intake contract
+   declared at open), then the register validator (one pull request, code-class).
 3. The cards for conflicting rows, one batch.
 4. Inbound landings, one pull request per eight claims, in the register's order.
 5. The outbound note and material, delivered through the join ceremony.

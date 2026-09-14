@@ -111,7 +111,8 @@ Practice definition and its delivery node) is done and recorded in the plan node
 `.agent/reports/practice-transplant/journey-so-far.md`. Of the transplant closure's eight
 items: 1 to 3 landed on `main` (PR #53 at `SHA: 55649a2`, then #56), item 4 landed as bounded
 (#57, residue routed), item 6 landed as PR #55 with 2a and 2b remaining, item 8 filed as
-PR #63 with the cards pending; items 5 (in parts) and 7 are the ordered closure work in the
+PR #63 with the cards answered; item 5's parts through 5a-vi are on `main` (the suppressed-findings
+hold live since PR #79); 2b-ii, 5a-v, 5c-ii and item 7 are the ordered closure work in the
 Director's handoff. Live now, in order:
 
 1. The Director's handoff `.agent/memory/operational/director-handoff.md` §Current handoff state
@@ -121,8 +122,10 @@ Director's handoff. Live now, in order:
 2. Session 2's cards: the owner answers the register's session 2 entries in one batch
    (`threads/session-2-synthesis.next-session.md` §Next safe step); the graduations are curator
    work outside the closure, in batches of six to eight entries (owner word 2026-09-14, the
-   Director's handoff item 94); the napkins are archived after two gates, the owner's answers to
-   the cards (the plan's item 8 as written) and the owner's privacy review of the three
-   napkins.
+   Director's handoff item 94); the napkins are archived only after full processing, which
+   follows the drain (owner word 2026-09-14: no privacy review is needed).
 3. The `practice-language-separation` node (sketch; not urgent) awaits ratification on cards; the
    tooling residue named in the plan (§Oak residue in tooling) rides item 5.
+4. The `practice-two-way-exchange` node (ratified 2026-09-14) opens after the closure: both
+   estates' deltas since the ancestor pin are computed at its window, compared at the concept
+   level, and landed on both sides under each owner's word.
