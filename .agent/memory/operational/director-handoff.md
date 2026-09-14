@@ -93,7 +93,10 @@ session-scoped survives; verify by id first, re-arm only what is absent:
      fi
      ```
 
-  The ARC channel tail: a Monitor on
+  The ARC channel tail, verified and re-armed the same way: find it by process
+  (`pgrep -fl "tail -n 0 -F .*transplant-closure-n2"`); when absent, arm as a persistent
+  Monitor the canonical `tail -n 0 -F <path>` of `arc-rapid-communication.md` §Protocol, the
+  path resolved against the primary checkout's root at arm time:
   `.agent/collaboration/rapid-comms/2026-09-13-transplant-closure-n2-cauldron-herds-lustre-saffron-turns-verdure.md`.
   No heartbeat loop at n=2. No cron.
 - The pull-request chains (session scratch scripts; each is thirty lines: wait for origin to
@@ -181,13 +184,14 @@ session-scoped survives; verify by id first, re-arm only what is absent:
 
 | Lane | Items | Owns exclusively | Seat | Claim | Branch / PR | State |
 | ---- | ----- | ---------------- | ---- | ----- | ----------- | ----- |
-| A | 3 done; #60 merged (`SHA: 4370e04`) and its follow-on #66 merged (`SHA: 0ec4583`); 5a-i merged (#64, `SHA: 38e9693`); 5a-ii merged (#65, `SHA: 53d9495`); 5a-iii merged (#67, `SHA: fca804e`); 5b merged (#68, `SHA: f362cce`, the four retirements, the accept-md config as a typed module, the incoming bundle gone); the e2e follow-on 2 merged (#69, `SHA: e67559a`); 5a-iv merged (#72, `SHA: 37eebe9`); 5c merged (#71, `SHA: f377412`); 2a open (#74, lane A curing its rounds); 2b-i open (#77); then, in the boundary block's order: 5a-vi (suppressed findings block the merge), the PDR-008, PDR-132 and PDR-082 card amendments in one pull request, 5c-ii (the leak gate's four body findings, item 71), 5a-v (the whitespace-only heading, item 64), the graduations one home per pull request (item 78), 2b-ii, then the handed-back residue: the Gemini projection, the corpus-analysis restore with the five patterns, `sif` | root scripts, CI workflow, `agent-tools/` legs and retirements, the leak validator, `tooling/*/package.json`, `turbo.json`, the Playwright harness config, the merge-bot sources; after 2b the rules generator, the adapter trees and the Gemini projection | Saffron turns Verdure (c39ad7) | f024e1f1 | `chore/rules-generator` PR #74; `chore/subagent-declarations` PR #77 at `SHA: a5efd78` | ACTIVE at n=2 |
+| A | 3 done; #60 merged (`SHA: 4370e04`) and its follow-on #66 merged (`SHA: 0ec4583`); 5a-i merged (#64, `SHA: 38e9693`); 5a-ii merged (#65, `SHA: 53d9495`); 5a-iii merged (#67, `SHA: fca804e`); 5b merged (#68, `SHA: f362cce`, the four retirements, the accept-md config as a typed module, the incoming bundle gone); the e2e follow-on 2 merged (#69, `SHA: e67559a`); 5a-iv merged (#72, `SHA: 37eebe9`); 5c merged (#71, `SHA: f377412`); 2a merged (#74, `SHA: 558be52`); 2b-i open (#77); then, in the boundary block's order: 5a-vi (suppressed findings block the merge), the PDR-008, PDR-132 and PDR-082 card amendments in one pull request, 5c-ii (the leak gate's four body findings, item 71), 5a-v (the whitespace-only heading, item 64), the graduations one home per pull request (item 78), 2b-ii, then the handed-back residue: the Gemini projection, the corpus-analysis restore with the five patterns, `sif` | root scripts, CI workflow, `agent-tools/` legs and retirements, the leak validator, `tooling/*/package.json`, `turbo.json`, the Playwright harness config, the merge-bot sources, the rules generator and the adapter trees (2a, on `main`); after 2b-ii the Gemini projection | Saffron turns Verdure (c39ad7) | f024e1f1 | `chore/subagent-declarations` PR #77 | ACTIVE at n=2 |
 | B | 6 | (handed back) `.agent/rules/**`, `RULES_INDEX.md`, the three rule-adapter trees, the rules-index and trigger generator, sub-agent adapter descriptions | Sirocco wakes Wingspan (45fe02) | closed | `closure/lane-b` merged as PR #55 at `SHA: 7127bc4` and deleted; `closure/lane-b-generator` at `SHA: d76bb86` on origin (2a fold conserved in the record) | STOOD DOWN 17:14Z; handed back: 2a, 2b, PR 3 (now routed to lane A after item 5) |
 | C | 4 then 7 | the definition report, `testing-strategy.md`, the substrate manifest's register declarations, the Gemini projection | Djinn hunts Solder (36720b) | closed | `closure/lane-c` and `closure/lane-c-restore` deleted (merged in #57; carried in #58); PR #59 closed as carried | STOOD DOWN 16:57Z; handed back: the restore, `sif`, five patterns, the Gemini projection after 2b, item 7 |
-| Director | 7 | reports index, runbook step 13, `provenance.yml` completion entry; merges | Cauldron herds Lustre | 1db07581 | `chore/director-records-7` PR #76 (round one); `chore/director-records-8` local, stacked | routing lane A; merging |
+| Director | 7 | reports index, runbook step 13, `provenance.yml` completion entry; merges | Cauldron herds Lustre | 1db07581 | `chore/director-records-7` merged as PR #76 (`SHA: 1b44f5b`); `chore/director-records-8` stacked on it, items from 81 | routing lane A; merging |
 
 Sequencing constraints: lanes B and C are closed, so lane A holds every surface, in the row's
-order (item 5's parts, then 2a, 2b, then the handed-back residue; item 7 last, the Director's).
+order (item 5 and 2a are on `main`; 2b-i open, then 5a-vi, the card amendments, 5c-ii, 5a-v,
+the graduations, 2b-ii, the handed-back residue; item 7 last, the Director's).
 Pushes serialise, one
 gate at a time, for host load: two full-host gates exceed the host (the earlier reason, Playwright
 reusing a running :3000 server, is retired by the per-worktree port PR). Item 7 is written last
@@ -889,7 +893,8 @@ ones the Director would put to the owner had the owner been present.
     branch); the boundary block above carries the re-arm recipe as if
     nothing survives; a standing push slot granted to lane A for the gap; the fence sweep of
     every tracked line this seat wrote found no held-off wording; the metaloss passes and the
-    play seeds are in the report and on the napkin; a formation letter is under
+    play seeds are in the compaction report to the owner (chat) and on the napkin; a formation
+    letter is under
     `.agent/experience/`. Retrospective offered, not run (a twenty-round records loop and two
     reversed rulings make an arc worth one). Lens 2 (the owner's word) then lens 1.
 
@@ -968,6 +973,14 @@ ones the Director would put to the owner had the owner been present.
     branch by merge commit before its round-one push, resolving on the 2a side. Lane C's
     thread record aligned to item 70's Gemini surface (the 14:15Z path marked superseded; the
     record is under this claim). PDR-132 Director decision on #76; lens 1.
+87. #76 merged by the bot at `SHA: 1b44f5b` (07:44Z on 2026-09-14) at zero threads with
+    Copilot bound to `SHA: 882a163`; records-7 (items 75 to 80 and five rounds of cures) is on
+    `main`. Copilot's fifth pass left four suppressed findings and no thread; the bot merged
+    on zero threads because 5a-vi (suppressed findings block, lane A's next after 2b-i) has
+    not landed. Under item 78's ruling the four are cured here on records-8, now stacked on
+    `main`: the board row's suffix and the sequencing sentence read the post-2a order; the
+    letter scopes its count to the boundary; the ARC tail gets a find-then-arm step; item 80
+    names the compaction report as the seeds' other copy. Lens 1.
 
 ## Routing log
 
