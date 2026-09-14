@@ -725,6 +725,21 @@ ones the Director would put to the owner had the owner been present.
     path-scoped Claude rule expands). Lane A's next: 2b, the sub-agent adapter generator with
     Gemini as the fourth row (generated, per the owner's card; byte-equal regeneration of the
     three existing trees first). Lens 3.
+70. 2b measured before design (03:17Z on 2026-09-14): 27 templates, none with frontmatter; 29
+    adapters per tree on Claude and Cursor, 28 on Codex (the two Cricket templates fan out into
+    effort variants, Codex lacking `cricket-judgement-high` by contract); the field sets,
+    tools groups, colours and model and effort pins listed; 25 of 25 non-Cricket descriptions
+    agree on every platform once read through the parsers (a raw-quoting comparison first
+    read three as disagreeing, lane A's own correction). Rulings: the shape mirrors 2a (2b-i a
+    declaration sweep minting frontmatter from today's adapters with a reconciliation report;
+    2b-ii the generator rendering the three trees byte-equal as the proof, then the Gemini
+    row); the four body variants without a declared reason are reconciled and listed, the
+    Cricket effort bodies stay declared per-variant fields (the owner's dual-scale label);
+    no adapter is minted under a Cricket template's own name; the Gemini agents surface
+    (`.gemini/agents/<name>.md`, read at geminicli.com on 2026-09-14) is the fourth row, the
+    plan's "per-role commands" phrasing superseded, both pages cited; optional Gemini fields
+    emitted only from declarations. #73 round one (03:15Z): three staleness threads cured on
+    records-5 at `SHA: ec289cd`. Lens 1 then lens 3.
 
 ## Routing log
 
