@@ -748,6 +748,12 @@ ones the Director would put to the owner had the owner been present.
     the working copy's absolute path into CI logs) are item 5c-ii, one small pull request
     after 2b-i's opens and before 2b-ii. Standing ruling; REVIEW: the gate bypass shape ships
     on main until 5c-ii lands (no live leak: the scrub is done and the hook covers writes).
+72. #74 round one (03:22Z on 2026-09-14): five threads and three suppressed, all gaps in the
+    whole-surface guarantee (foreign regular entries filtered away; symlinked surface roots
+    and a symlinked index followed into writes; unreadable files crashing the command instead
+    of refusing; the report calling projections wrappers; the Cursor glob wire format not
+    checked at declaration; access errors read as absence). Routed to lane A as round one's
+    cure, ahead of 2b-i's ask (cure rounds first). Lens 1.
 
 ## Routing log
 
