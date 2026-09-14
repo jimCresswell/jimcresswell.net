@@ -111,6 +111,17 @@ describe('parseSubagentDeclaration', () => {
     );
   });
 
+  it('refuses a control character in a line field (a NUL in the description), which YAML forbids and the quote rule would write raw, and a carriage return as a line break', () => {
+    expect(parseSubagentDeclaration('alpha', { description: 'Alpha\u0000reviews' })).toStrictEqual({
+      ok: false,
+      error: 'alpha: description: no control characters',
+    });
+    expect(parseSubagentDeclaration('alpha', { description: 'Alpha\rreviews' })).toStrictEqual({
+      ok: false,
+      error: 'alpha: description: one line',
+    });
+  });
+
   it('refuses a multi-line description, a Gemini temperature out of range and a bad variant name', () => {
     expect(parseSubagentDeclaration('alpha', { description: 'one\ntwo' }).ok).toBe(false);
     expect(

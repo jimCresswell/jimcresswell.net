@@ -11,8 +11,10 @@
  * stale), a declaration that does not parse, a template whose name a path cannot carry, an
  * unreadable template or surface entry, a templates directory that is absent, unreadable or
  * empty, a regular file there that is not a template, a symlink or special entry on any
- * surface, a name two declarations render, and a declared value the Codex form cannot
- * carry verbatim. The three adapter
+ * surface, a name two declarations render, platforms short of the platform contract
+ * (`subagent-platform-contract.ts`), a pointer tail with a backtick, and a declared value
+ * the Codex form cannot carry verbatim.
+ * The three adapter
  * directories are wholly generated outputs, so a regular file on them that no declaration
  * renders is stale and `--fix` removes it. Every read is LF-normalised by the port and the
  * rendered adapters are LF.
@@ -33,6 +35,7 @@ import { templateNameRefusal } from '../../subagent-declarations/sweep-names.js'
 import { applyProjectionDrift, diffProjections } from './projection-drift.js';
 import { driftIssues, filesOf, refusing, SUBAGENT_SUBJECT, textOf } from './projection-issues.js';
 import type { RuleProjectionFs } from './rule-projection-fs.js';
+import { platformContractRefusal } from './subagent-platform-contract.js';
 
 /** What the leg found and, in fix mode, did. */
 export interface SubagentProjectionValidation {
@@ -61,6 +64,10 @@ export async function validateSubagentProjections(
   const templateCount = canonical.templateCount;
   if (canonical.issues.length > 0) {
     return { issues: canonical.issues, templateCount, written: [], removed: [] };
+  }
+  const contract = platformContractRefusal(canonical.declarations);
+  if (contract !== undefined) {
+    return { issues: [contract], templateCount, written: [], removed: [] };
   }
   const surfaces = await readSurfaces(projectionFs);
   if (!surfaces.ok) {

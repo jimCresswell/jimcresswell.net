@@ -128,11 +128,29 @@ function renderClaude(spec: AdapterSpec): string {
 function renderOn(surface: SubagentSurface, spec: AdapterSpec): Result<SubagentProjection, string> {
   const { platform } = surface;
   const path = `${surface.dir}/${spec.name}${surface.extension}`;
+  const tail = pointerTailIssue(path, spec[platform]);
+  if (tail !== undefined) {
+    return err(tail);
+  }
   if (platform === 'codex') {
     const text = renderCodexAdapter(path, spec);
     return text.ok ? ok({ path, text: text.value }) : text;
   }
   return ok({ path, text: platform === 'cursor' ? renderCursor(spec) : renderClaude(spec) });
+}
+
+/**
+ * The refusal for a pointer tail the reader could not read back: its path delimiter is the
+ * backtick, and the transitional reader (`adapter-sources.ts`, which retires with the sweep)
+ * takes the last pair on the pointer line for the path.
+ */
+function pointerTailIssue(
+  path: string,
+  prose: { readonly pointerTail?: string } | undefined,
+): string | undefined {
+  return prose?.pointerTail?.includes('`') === true
+    ? `${path}: the pointer tail carries a backtick, which the reader takes for the path's delimiter; refusing to render it`
+    : undefined;
 }
 
 /** The first adapter name two specs share, in name order; `--fix` would write its path twice. */
@@ -153,8 +171,8 @@ function duplicateName(specs: readonly AdapterSpec[]): string | undefined {
  * in name order, a fan-out's variants in their declared order, then surface order.
  *
  * @param declarations - The templates' declarations, in any order.
- * @returns The adapters, or the first refusal (a name two declarations render, or a value
- * the Codex form cannot carry).
+ * @returns The adapters, or the first refusal (a name two declarations render, a pointer
+ * tail with a backtick, or a value the Codex form cannot carry).
  */
 export function renderSubagentAdapters(
   declarations: readonly SubagentDeclaration[],
