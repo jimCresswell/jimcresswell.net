@@ -2,6 +2,13 @@ import { describe, expect, it } from 'vitest';
 
 import type { GhCommandExecutor } from './gh.js';
 import { readPrStateReading } from './state-gh.js';
+import {
+  graphqlResponse,
+  HEAD,
+  threadsPayload,
+  viewPayload,
+  type GraphqlPayloads,
+} from './test-helpers/state-gh-payloads.js';
 
 /**
  * The review-request surface of `readPrStateReading`. Requests are read from
@@ -12,27 +19,7 @@ import { readPrStateReading } from './state-gh.js';
  * SILENT-WAIT-NO-REVIEWER with Copilot's request outstanding on GraphQL).
  */
 
-const HEAD = 'f'.repeat(40);
 const COPILOT = 'copilot-pull-request-reviewer';
-
-function viewPayload(): string {
-  return JSON.stringify({
-    number: 461,
-    url: 'https://github.com/oaknational/jimcresswell.net/pull/461',
-    state: 'OPEN',
-    isDraft: false,
-    mergeable: 'MERGEABLE',
-    mergeStateStatus: 'BLOCKED',
-    headRefOid: HEAD,
-    statusCheckRollup: [],
-    autoMergeRequest: null,
-  });
-}
-
-function threadsPayload(): string {
-  const reviewThreads = { totalCount: 0, nodes: [] };
-  return JSON.stringify([{ data: { repository: { pullRequest: { reviewThreads } } } }]);
-}
 
 /** The harvest page: no review landed yet, one Bot request and one User request outstanding. */
 function harvestPayload(): string {
@@ -52,7 +39,7 @@ function harvestPayload(): string {
  * the threads read carries its one unresolved thread only once the harvest
  * has been read, as the platform would after the review's submission.
  */
-function landingPayloads(): { harvest: () => string; threads: () => string } {
+function landingPayloads(): GraphqlPayloads {
   let landed = false;
   return {
     harvest: () => {
@@ -74,10 +61,7 @@ function landingPayloads(): { harvest: () => string; threads: () => string } {
 
 function executor(
   calls: string[][],
-  payloads: { harvest: () => string; threads: () => string } = {
-    harvest: harvestPayload,
-    threads: threadsPayload,
-  },
+  payloads: GraphqlPayloads = { harvest: harvestPayload, threads: () => threadsPayload(0) },
 ): GhCommandExecutor {
   return (_file, args) => {
     calls.push([...args]);
@@ -87,8 +71,7 @@ function executor(
     if (args[0] === 'agent-task') {
       return JSON.stringify([]);
     }
-    const query = args.find((arg) => arg.startsWith('query='));
-    return query?.includes('reviewThreads') === true ? payloads.threads() : payloads.harvest();
+    return graphqlResponse(args, payloads);
   };
 }
 

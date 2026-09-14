@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
 import { parseAgentTaskList, parseAgentTaskView } from './agent-task-fields.js';
-import { parseRequestedReviewers, parseReviewsHarvest } from './harvest-fields.js';
+import { parseHarvest } from './harvest-fields.js';
 import { parseStateView, PR_STATE_VIEW_JSON_FIELDS } from './state-fields.js';
 import { stateViewFixture } from './state-view-fixture.js';
 
@@ -131,49 +131,53 @@ function page(
   return { data: { repository: { pullRequest: { reviews: { nodes }, reviewRequests } } } };
 }
 
-describe('parseRequestedReviewers', () => {
+describe('parseHarvest — review requests', () => {
   // The review-request surface is GraphQL: gh's `pr view --json reviewRequests`
   // and the REST requested_reviewers endpoint omit Bot requests entirely
   // (verified live 2026-09-13 on PR #60: Copilot's outstanding request was
   // absent from both and present on GraphQL as Bot login
   // `copilot-pull-request-reviewer`).
-  it('reads Bot and User logins and Team slugs from the harvest page', () => {
-    const requests = parseRequestedReviewers([
+  it('reads Bot, User and Mannequin logins and Team slugs from the harvest page', () => {
+    const { reviewRequests } = parseHarvest([
       page(
         [],
         [
           { requestedReviewer: { __typename: 'Bot', login: 'copilot-pull-request-reviewer' } },
           { requestedReviewer: { __typename: 'User', login: 'jimCresswell' } },
+          { requestedReviewer: { __typename: 'Mannequin', login: 'mona-mannequin' } },
           { requestedReviewer: { __typename: 'Team', name: 'platform', slug: 'platform-team' } },
         ],
       ),
     ]);
-    expect(requests).toEqual(['copilot-pull-request-reviewer', 'jimCresswell', 'platform-team']);
+    expect(reviewRequests).toEqual([
+      'copilot-pull-request-reviewer',
+      'jimCresswell',
+      'mona-mannequin',
+      'platform-team',
+    ]);
   });
 
   it('a request with NO identity field fails loud at the boundary, never becomes reviewer "unknown"', () => {
-    expect(() => parseRequestedReviewers([page([], [{ requestedReviewer: {} }])])).toThrow(
-      /identity field/,
+    expect(() => parseHarvest([page([], [{ requestedReviewer: {} }])])).toThrow(
+      /Bot\/User\/Mannequin\/Team identity field/,
     );
-    expect(() => parseRequestedReviewers([page([], [{ requestedReviewer: null }])])).toThrow();
+    expect(() => parseHarvest([page([], [{ requestedReviewer: null }])])).toThrow();
   });
 
   it('a request connection with a further page fails loud (an unread page would hide a request)', () => {
-    expect(() => parseRequestedReviewers([page([], [], true)])).toThrow();
+    expect(() => parseHarvest([page([], [], true)])).toThrow();
   });
 
   it('a page without the reviewRequests connection fails loud (a silent empty would read nobody requested)', () => {
     expect(() =>
-      parseRequestedReviewers([
-        { data: { repository: { pullRequest: { reviews: { nodes: [] } } } } },
-      ]),
+      parseHarvest([{ data: { repository: { pullRequest: { reviews: { nodes: [] } } } } }]),
     ).toThrow();
   });
 });
 
-describe('parseReviewsHarvest', () => {
+describe('parseHarvest — reviews', () => {
   it('flattens all pages and normalises null author/commit/submittedAt', () => {
-    const reviews = parseReviewsHarvest([
+    const { reviews } = parseHarvest([
       page([
         {
           author: { login: 'copilot-pull-request-reviewer' },
@@ -212,7 +216,7 @@ describe('parseReviewsHarvest', () => {
   });
 
   it('fails loud on an empty page array (a silent zero is the defect)', () => {
-    expect(() => parseReviewsHarvest([])).toThrow();
+    expect(() => parseHarvest([])).toThrow();
   });
 });
 

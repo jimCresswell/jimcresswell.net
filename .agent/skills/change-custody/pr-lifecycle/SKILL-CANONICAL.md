@@ -978,15 +978,21 @@ deliberately gone — triage binds from wave one. **The step-back trigger is
    Claude Code Review's standing verdict and NO Copilot leg expected; for
    that class a timeout-settled round IS merge-eligible. Grounds: the
    Claude review posts no review on a clean tip, so the leg never
-   satisfies. The Copilot leg is the bot's own to obtain: `POST
+   satisfies. The Copilot leg is obtained by a review request on the tip:
+   in the source lineage the bot's own `POST
    repos/{owner}/{repo}/pulls/{n}/requested_reviewers` with
    `reviewers[]=copilot-pull-request-reviewer[bot]` under the
-   pull-request-work token returns 201 and the timeline shows
-   `review_requested Copilot` within seconds (first-hand on #108, #109,
-   #110, #114); verify on the timeline, since the requested-reviewers
-   list never shows it, and never through the draft/ready toggle, which
+   pull-request-work token returned 201 and the timeline showed
+   `review_requested Copilot` within seconds (first-hand there on #108,
+   #109, #110, #114); in THIS estate that call under the bot token
+   registers nothing, and the owner's CLI credential registers the request
+   on the timeline within a minute unless the previous request's review is
+   still in flight (verified live 2026-09-13; `.agent/reference/merge-bot.md`
+   §Agent actions run as the bot). Verify on the timeline or the GraphQL
+   `reviewRequests` connection, since gh's requested-reviewers list never
+   shows a Bot request, and never through the draft/ready toggle, which
    fires nothing on a pull request already undrafted once. A synced tip
-   gets its Copilot leg by that one call as the bot, and a CODE pull
+   gets its Copilot leg by that one request, and a CODE pull
    request lands only through the front door with every AVAILABLE
    configured leg bound plus the posted subagent review where a vendor
    is unavailable (item 3's owner ruling of 2026-09-10), never by the
@@ -1170,10 +1176,13 @@ deliberately gone — triage binds from wave one. **The step-back trigger is
   `completedAt` null = in flight) and `gh agent-task view <session-id>
   --json` maps one to its PR (the list JSON carries no PR number; the
   PR-number positional is interactive-only — vendor shapes verified
-  2026-07-21); it never carried a review run, so it is evidence beside the
-  request, never the deciding leg. A request never served is ended by the
-  checks-green timeout arm (item 3): a wait on a review nobody requested is
-  the silent-wait class, not patience.
+  2026-07-21). Its contract is item 4's: an OBSERVED live session mapped
+  to the PR is a measured guard and blocks settlement; a run's ABSENCE is
+  never inferred from it (it never carried a review run), so an
+  unavailable or truncated surface is named on the settled verdict and
+  does not block. A request never served is ended by the checks-green
+  timeout arm (item 3): a wait on a review nobody requested is the
+  silent-wait class, not patience.
 - **Own the convergence loop — never hand it to the owner** (owner
   corrections, 2026-07-07 #317 and 2026-07-08 #324 — two seats re-derived
   the same blind spot in one sitting; scheduled nap-probes FEEL like

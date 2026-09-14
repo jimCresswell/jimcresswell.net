@@ -6,6 +6,7 @@ import {
   normaliseLogin,
 } from './reviewer-legs.js';
 import type { ReviewerLeg } from './reviewer-legs.js';
+import { tallyReviewBody } from './body-tally.js';
 import type { PrStateReading, PrVerdict, ReviewRun } from './state-types.js';
 
 /**
@@ -99,16 +100,20 @@ function roundInFlight(reading: PrStateReading): string[] {
 // classify prose as findings (a CLEAN Copilot round also posts a non-empty
 // summary body — refusing settlement on body PRESENCE would deadlock every
 // landing), so settlement stays leg-driven and the evidence hands the reader
-// the exact body-tally inputs instead.
+// the body-tally inputs: the body's own headline verdict and the count it
+// declares suppressed (body-tally.ts), so a closer-look round with suppressed
+// findings and zero threads (the bot merged two, #60 and #64) is named as
+// such rather than read as zero-finding by omission.
 function bodyTallyEvidence(reading: PrStateReading): string[] {
   return reading.reviews
     .filter((review) => review.commitOid === reading.headRefOid)
     .filter((review) => hasLanded(review) && !isSignedSelfReply(review.body))
     .filter((review) => review.body.trim() !== '')
-    .map(
-      (review) =>
-        `tip-bound review body present: ${review.author} (${review.state}) — tally body findings (SKILL item 2) before reading this round as zero-finding`,
-    );
+    .map((review) => {
+      const tally = tallyReviewBody(review.body);
+      const verdict = tally.verdict === null ? 'no headline verdict' : `verdict "${tally.verdict}"`;
+      return `tip-bound review body present: ${review.author} (${review.state}), ${verdict}, ${String(tally.suppressed)} suppressed finding(s) — tally body findings (SKILL item 2) before reading this round as zero-finding`;
+    });
 }
 
 function settledVerdict(input: {
@@ -204,7 +209,7 @@ function unmappedLiveRunEvidence(reading: PrStateReading, blockingKind: string):
   const hasUnmappedLiveRun =
     blockingKind === 'SILENT-WAIT-NO-REVIEWER' && liveRuns(reading).length > 0;
   return hasUnmappedLiveRun
-    ? ['note: a review run IS live for this PR, unmapped to any request']
+    ? ['note: a coding-agent session (agent-task run) IS live for this PR, unmapped to any request']
     : [];
 }
 

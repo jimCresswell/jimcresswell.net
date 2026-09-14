@@ -57,7 +57,7 @@ const stateViewSchema = z.object({
  * requests are deliberately NOT read here: gh's `reviewRequests` field (and
  * the REST endpoint beneath it) omits Bot requests, so a Copilot review in
  * flight read as "nobody requested" (verified live 2026-09-13, PR #60); the
- * GraphQL harvest carries them (`parseRequestedReviewers`).
+ * GraphQL harvest carries them (`parseHarvest`).
  */
 export const PR_STATE_VIEW_JSON_FIELDS = [
   'number',
