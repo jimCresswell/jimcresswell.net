@@ -254,7 +254,7 @@ describe('validateSubagentProjections', () => {
     expect(check.written).toEqual([]);
   });
 
-  it('renders a declaration on exactly the surfaces it names: the declarations are the one platform truth (the platform contract retired with the frontmatter sweep)', async () => {
+  it('renders a declaration on exactly the surfaces it names: the declarations are the one platform truth', async () => {
     const declaring = async (platforms: string): Promise<readonly string[]> => {
       const repo = bareRepo();
       repo.files.set(

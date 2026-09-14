@@ -11,7 +11,7 @@
  */
 
 import { canonicalAdapterTitle } from './standard-adapter-body.js';
-import type { SubagentPlatform } from './declaration-scalars.js';
+import { SUBAGENT_PLATFORMS, type SubagentPlatform } from './declaration-scalars.js';
 import type {
   ClaudeFields,
   CodexFields,
@@ -34,17 +34,23 @@ export interface SubagentSurface {
   readonly extension: string;
 }
 
-/** The four generated surfaces, in the order the adapters are rendered. */
-export const SUBAGENT_SURFACES: readonly SubagentSurface[] = [
-  { platform: 'cursor', dir: '.cursor/agents', extension: '.md' },
-  { platform: 'claude', dir: '.claude/agents', extension: '.md' },
-  { platform: 'codex', dir: '.codex/agents', extension: '.toml' },
-  { platform: 'gemini', dir: '.gemini/agents', extension: '.md' },
-];
+/** Where each platform keeps its adapters and the extension its files carry; keyed by platform so the map is complete by construction. */
+export const SURFACE_OF: Readonly<
+  Record<SubagentPlatform, { readonly dir: string; readonly extension: string }>
+> = {
+  cursor: { dir: '.cursor/agents', extension: '.md' },
+  claude: { dir: '.claude/agents', extension: '.md' },
+  codex: { dir: '.codex/agents', extension: '.toml' },
+  gemini: { dir: '.gemini/agents', extension: '.md' },
+};
 
-const EVERY_PLATFORM: readonly SubagentPlatform[] = SUBAGENT_SURFACES.map(
-  (surface) => surface.platform,
-);
+/** The four generated surfaces, in the platform list's order (the order the adapters are rendered). */
+export const SUBAGENT_SURFACES: readonly SubagentSurface[] = SUBAGENT_PLATFORMS.map((platform) => ({
+  platform,
+  ...SURFACE_OF[platform],
+}));
+
+const EVERY_PLATFORM: readonly SubagentPlatform[] = SUBAGENT_PLATFORMS;
 
 /** What one adapter renders from: a role with its defaults filled, or a variant as declared. */
 export interface AdapterSpec {

@@ -1,7 +1,7 @@
 import { existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 
-import { SUBAGENT_SURFACES } from '../subagent-declarations/adapter-spec.js';
+import { SURFACE_OF } from '../subagent-declarations/adapter-spec.js';
 import {
   SUBAGENT_PLATFORMS,
   type SubagentPlatform,
@@ -49,8 +49,8 @@ export function evaluateParityChecks(repoRoot: string): readonly HealthCheckResu
 
 /** The adapter basenames present on one platform's surface. */
 function surfaceBasenames(repoRoot: string, platform: SubagentPlatform): readonly string[] {
-  const surface = SUBAGENT_SURFACES.find((candidate) => candidate.platform === platform);
-  return surface === undefined ? [] : listBasenames(repoRoot, surface.dir, surface.extension);
+  const surface = SURFACE_OF[platform];
+  return listBasenames(repoRoot, surface.dir, surface.extension);
 }
 
 /**

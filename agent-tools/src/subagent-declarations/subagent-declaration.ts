@@ -33,12 +33,8 @@ import {
   type SubagentPlatform,
 } from './declaration-scalars.js';
 
-/**
- * The three source surfaces the generator renders from the declarations (Gemini is the
- * fourth, generated only, slice B), and the two Markdown ones among them.
- */
-type SourcePlatform = Exclude<SubagentPlatform, 'gemini'>;
-export type MarkdownPlatform = Exclude<SourcePlatform, 'codex'>;
+/** The two Markdown adapter surfaces (Codex renders TOML; Gemini has its own renderer). */
+export type MarkdownPlatform = Exclude<SubagentPlatform, 'codex' | 'gemini'>;
 
 /** Claude Code adapter fields; every one optional, absent means the estate's default. */
 const claudeFields = z
