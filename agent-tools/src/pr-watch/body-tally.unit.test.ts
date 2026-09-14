@@ -57,4 +57,29 @@ describe('tallyReviewBody', () => {
   it('a suppressed heading whose count is not a number is not a count (zero)', () => {
     expect(tallyReviewBody('### Suppressed comments (many)').suppressed).toBe(0);
   });
+
+  it('a body holding only the suppressed marker tallies no verdict, never the marker as one', () => {
+    expect(tallyReviewBody('<details>\n### Suppressed comments (6)\n</details>')).toEqual({
+      verdict: null,
+      suppressed: 6,
+    });
+  });
+
+  it('the tally reads the body as shown: control and format characters are dropped before it classifies', () => {
+    // An SGR escape (Cc), a zero-width space (Cf) and a bell (Cc), every one
+    // written as an escape so the fixture is legible and the encoding gate
+    // sees no raw control byte in the source.
+    const body = '### \u{1B}[31mNeeds\u{1B}[0m a closer\u{200B} look\u{07}';
+    expect(tallyReviewBody(body).verdict).toBe('[31mNeeds[0m a closer look');
+  });
+
+  it('a marker split by a zero-width mark is still the marker, never the verdict, and still counts', () => {
+    const body = '### Suppressed\u{200B} comments (6)';
+    expect(tallyReviewBody(body)).toEqual({ verdict: null, suppressed: 6 });
+  });
+
+  it('a heading that is only control characters is no verdict', () => {
+    // A bell, an escape and a zero-width space: nothing a terminal would show.
+    expect(tallyReviewBody('### \u{07}\u{1B}\u{200B}\n### Looks good').verdict).toBe('Looks good');
+  });
 });

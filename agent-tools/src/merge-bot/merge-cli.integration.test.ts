@@ -413,3 +413,21 @@ describe('runMergeBotCli merge', () => {
     ).toContain('merge-base deletion sweep');
   });
 });
+
+describe('runMergeBotCli merge — the grounds print inert', () => {
+  // The grounds quote external text (a check name comes from the PR head's
+  // workflow); the reporter makes each line printable at the boundary.
+  it('a check named with an escape sequence and a bell loses its controls on stderr', async () => {
+    const red = settledReading({
+      checks: { total: 3, passed: 2, failed: 1, pending: 0 },
+      namedChecks: [{ name: '\u{1B}[31mlint\u{1B}[0m\u{07}', bucket: 'failed' }],
+      checksGreenAt: null,
+    });
+    const run = runMerge({ args: [...EXPECT_ARGS], readings: [red] });
+
+    expect(await run.exit).toBe(3);
+    expect(run.errText()).toContain('grounds: failed check: [31mlint[0m');
+    expect(run.errText()).not.toContain('\u{1B}');
+    expect(run.errText()).not.toContain('\u{07}');
+  });
+});

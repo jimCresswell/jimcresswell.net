@@ -1,4 +1,5 @@
 import { parsePrTarget, type PrTarget } from './gh.js';
+import { printable } from './printable.js';
 import { readPrStateReading } from './state-gh.js';
 import { computePrVerdict } from './states.js';
 import { PR_VERDICT_STATES, type PrStateReading } from './state-types.js';
@@ -118,9 +119,12 @@ function parseStateArgs(args: readonly string[]): ParsedStateArgs {
   };
 }
 
+// Evidence quotes external text (check names, run titles, review headlines,
+// logins); the terminal reads what is written, so each line is made printable
+// here, at the boundary, whatever its source (printable.ts).
 function renderVerdictLines(reading: PrStateReading, nowIso: string): string {
   const verdict = computePrVerdict(reading, nowIso);
-  const evidence = verdict.evidence.map((line) => `  - ${line}`);
+  const evidence = verdict.evidence.map((line) => `  - ${printable(line)}`);
   return [`PR #${reading.number} ${verdict.state}`, ...evidence, ''].join('\n');
 }
 
