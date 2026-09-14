@@ -1,5 +1,6 @@
 /**
- * The three hand-kept adapter surfaces the sweep reads: where each platform keeps its
+ * The three adapter surfaces the sweep reads (hand-kept until the generator took them,
+ * 2b-ii slice A1): where each platform keeps its
  * adapters, the extension its files carry, and the reader bound to that platform (the two
  * Markdown platforms share a reader and differ by the skeleton line before the pointer).
  *

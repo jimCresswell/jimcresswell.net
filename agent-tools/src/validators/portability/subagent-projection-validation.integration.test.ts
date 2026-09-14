@@ -118,8 +118,8 @@ describe('validateSubagentProjections', () => {
   });
 
   it('refuses to act when the templates directory is absent, unreadable or empty, or holds a file that is not a template', async () => {
-    const empty = await validateSubagentProjections(true, fakeProjectionRepo(new Map()));
-    expect(empty.issues).toEqual([`${TEMPLATES}: no such directory; ${REFUSING}`]);
+    const absent = await validateSubagentProjections(true, fakeProjectionRepo(new Map()));
+    expect(absent.issues).toEqual([`${TEMPLATES}: no such directory; ${REFUSING}`]);
 
     const unreadable = await validateSubagentProjections(
       true,
@@ -129,6 +129,15 @@ describe('validateSubagentProjections', () => {
       ),
     );
     expect(unreadable.issues).toEqual([`${TEMPLATES}: unreadable (EACCES); ${REFUSING}`]);
+
+    const empty = await validateSubagentProjections(
+      true,
+      fakeProjectionRepo(
+        new Map(),
+        new Map([[TEMPLATES, { kind: 'files', files: [], stray: [] }]]),
+      ),
+    );
+    expect(empty.issues).toEqual([`${TEMPLATES}: no templates; ${REFUSING} from an empty set`]);
 
     const stray = bareRepo();
     stray.files.set(`${TEMPLATES}/notes.txt`, 'stray');

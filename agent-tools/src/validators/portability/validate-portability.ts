@@ -8,8 +8,8 @@
  *
  * ```sh
  * pnpm portability:check
- * pnpm portability:fix   # regenerate the rule projections: write missing and
- *                        # drifted ones, remove stale ones
+ * pnpm portability:fix   # regenerate the rule projections and the sub-agent
+ *                        # adapters: write missing and drifted ones, remove stale ones
  * ```
  *
  * Exit code 0 means all checks pass; exit code 1 means at least one issue was

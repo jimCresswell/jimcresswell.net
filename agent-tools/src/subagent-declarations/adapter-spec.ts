@@ -17,7 +17,9 @@ import type {
   SubagentDeclaration,
   SubagentVariant,
 } from './subagent-declaration.js';
-import { TEMPLATES_DIR } from './sweep-subagent-frontmatter.js';
+
+/** Where the canonical templates live, repo-relative; every pointer sentence names a file here. */
+export const TEMPLATES_DIR = '.agent/sub-agents/templates';
 
 /** One adapter surface: where a platform keeps its adapters and the extension its files carry. */
 export interface SubagentSurface {

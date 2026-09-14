@@ -11,9 +11,9 @@
  *
  * Serialisation is one form per platform, measured on the estate's 86 adapters on
  * 2026-09-14: a Markdown description is a quoted YAML scalar on one line in the quote style
- * the estate's formatter keeps (double quotes only where the text holds more apostrophes
- * than double quotes; four hand-kept files carried a folded form and normalise on the
- * first regeneration); the Claude field order is the one that reproduces
+ * the estate's formatter keeps (`yamlQuoted` states it; four hand-kept Cursor files carried
+ * a folded form and three the other quote style, and normalise on the first regeneration);
+ * the Claude field order is the one that reproduces
  * every file, `tools`, `disallowedTools`, `color`, `permissionMode`, `model`, `effort`; the
  * Codex form and what it refuses are `render-codex-adapter.ts`.
  *
@@ -50,21 +50,19 @@ const CLAUDE_KEY_ORDER = [
   'effort',
 ] as const;
 
-/**
- * A YAML quoted scalar in the style the estate's formatter keeps (prettier, single quotes
- * preferred): double quotes when the text holds more single quotes than double quotes, else
- * single quotes; the escapes are the doubled apostrophe or the backslash pair.
- */
+// A backslash literal without an escaped string, which the lint forbids.
 const BACKSLASH = String.fromCodePoint(92);
 
+/**
+ * A YAML quoted scalar in the style the estate's formatter keeps (prettier, single quotes
+ * preferred; measured on `.claude/agents`, 2026-09-14): a text holding a double quote is
+ * single-quoted with each apostrophe doubled; else a text holding an apostrophe is
+ * double-quoted, the one escape that form then needs being the doubled backslash; else
+ * single-quoted.
+ */
 function yamlQuoted(text: string): string {
-  const singles = text.split("'").length - 1;
-  const doubles = text.split('"').length - 1;
-  if (singles > doubles) {
-    const escaped = text
-      .replaceAll(BACKSLASH, BACKSLASH + BACKSLASH)
-      .replaceAll('"', `${BACKSLASH}"`);
-    return `"${escaped}"`;
+  if (!text.includes('"') && text.includes("'")) {
+    return `"${text.replaceAll(BACKSLASH, BACKSLASH + BACKSLASH)}"`;
   }
   return `'${text.replaceAll("'", "''")}'`;
 }
@@ -125,8 +123,8 @@ function renderOn(surface: SubagentSurface, spec: AdapterSpec): Result<SubagentP
 }
 
 /**
- * Render every adapter the declarations project onto the three source surfaces, in name
- * order and then surface order.
+ * Render every adapter the declarations project onto the three source surfaces: templates
+ * in name order, a fan-out's variants in their declared order, then surface order.
  *
  * @param declarations - The templates' declarations, in any order.
  * @returns The adapters, or the first refusal (a value the Codex form cannot carry).

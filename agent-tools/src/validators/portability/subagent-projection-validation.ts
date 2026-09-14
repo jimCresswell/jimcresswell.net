@@ -24,11 +24,10 @@ import path from 'node:path';
 import { err, ok, type Result } from '@engraph/result';
 
 import { readSubagentDeclaration } from '../../subagent-declarations/read-subagent-declaration.js';
-import { SUBAGENT_SURFACES } from '../../subagent-declarations/adapter-spec.js';
+import { SUBAGENT_SURFACES, TEMPLATES_DIR } from '../../subagent-declarations/adapter-spec.js';
 import { renderSubagentAdapters } from '../../subagent-declarations/render-subagent-adapters.js';
 import type { SubagentDeclaration } from '../../subagent-declarations/subagent-declaration.js';
 import { templateNameRefusal } from '../../subagent-declarations/sweep-names.js';
-import { TEMPLATES_DIR } from '../../subagent-declarations/sweep-subagent-frontmatter.js';
 
 import { applyProjectionDrift, diffProjections } from './projection-drift.js';
 import { driftIssues, filesOf, refusing, SUBAGENT_SUBJECT, textOf } from './projection-issues.js';

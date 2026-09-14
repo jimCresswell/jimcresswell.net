@@ -236,15 +236,40 @@ describe('renderSubagentAdapters', () => {
     expect(texts.get('.claude/agents/cricket-high.md')).toBe(CLAUDE_CRICKET_HIGH);
   });
 
-  it('quotes a description as the formatter keeps it: single quotes unless it holds more apostrophes than double quotes, the escapes doubled', () => {
+  it('quotes a description as the formatter keeps it: single quotes with the apostrophe doubled when a double quote is present, else double quotes for an apostrophe, else single', () => {
     const line = (description: string): string | undefined =>
       textsOf([{ ...ALPHA, platforms: ['cursor'], description }])
         .get('.cursor/agents/alpha.md')
         ?.split('\n')[2];
     expect(line('Plain.')).toBe("description: 'Plain.'");
     expect(line('Says "hi".')).toBe(`description: 'Says "hi".'`);
+    expect(line(`It's`)).toBe(`description: "It's"`);
     expect(line(`It's "so".`)).toBe(`description: 'It''s "so".'`);
-    expect(line(`It's 'so' "x".`)).toBe(String.raw`description: "It's 'so' \"x\"."`);
+    expect(line(`It's 'so' "x".`)).toBe(`description: 'It''s ''so'' "x".'`);
+    expect(line(String.raw`C:\it's`)).toBe(String.raw`description: "C:\\it's"`);
+  });
+
+  it('renders a role only on the source surfaces its platforms name: gemini renders nothing here (slice B); a variant inheriting tools carries no tools line', () => {
+    const texts = textsOf([{ ...ALPHA, platforms: ['claude', 'gemini'] }]);
+    expect([...texts.keys()]).toStrictEqual(['.claude/agents/alpha.md']);
+    const inheriting: FanOutDeclaration = {
+      ...CRICKET,
+      variants: [{ ...CRICKET.variants[0], claude: { tools: 'inherit', color: 'green' } }],
+    };
+    expect(textsOf([inheriting]).get('.claude/agents/cricket-high.md')).toContain(
+      "description: 'Fast high-effort check.'\ncolor: green\n---",
+    );
+  });
+
+  it('refuses a Codex instructions block a TOML multi-line basic string cannot carry verbatim: a triple quote or a backslash in the note', () => {
+    const tripled: RoleDeclaration = { ...ALPHA, codex: { note: 'Ends with """ here.' } };
+    expect(renderSubagentAdapters([tripled])).toStrictEqual({
+      ok: false,
+      error:
+        '.codex/agents/alpha.toml: the instructions prose carries a backslash, a triple quote or a control character the TOML block cannot carry verbatim; refusing to render it',
+    });
+    const slashed: RoleDeclaration = { ...ALPHA, codex: { pointerTail: String.raw` \ then.` } };
+    expect(renderSubagentAdapters([slashed]).ok).toBe(false);
   });
 
   it('renders declarations in name order whatever order they arrive in', () => {

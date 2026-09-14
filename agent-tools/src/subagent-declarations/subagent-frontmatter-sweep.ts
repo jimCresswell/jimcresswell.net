@@ -21,7 +21,8 @@ import {
   renderSubagentReconciliationReport,
 } from './render-subagent-frontmatter.js';
 import { ADAPTER_SURFACES } from './adapter-surfaces.js';
-import { sweepSubagentFrontmatter, TEMPLATES_DIR } from './sweep-subagent-frontmatter.js';
+import { TEMPLATES_DIR } from './adapter-spec.js';
+import { sweepSubagentFrontmatter } from './sweep-subagent-frontmatter.js';
 
 const USAGE = 'usage: subagent-frontmatter-sweep [--write]';
 
