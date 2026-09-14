@@ -1315,7 +1315,7 @@ parallax, wrap):
 
 ### Session 2026-09-14, lane A, segment four (23:00Z to 00:30Z) — Saffron turns Verdure (c39ad7)
 
-- #65 rounds three and four, #66 landed (0ec4583), 5b cut and committed locally (d27790f).
+- #65 rounds three and four, #66 landed (SHA: 0ec4583), 5b cut and committed locally (SHA: d27790f).
   Round three: the run leg's contract stated in both prose homes exactly as the code has it
   (an observed live run blocks; an unobservable surface is named, never blocking); a gap line
   made conditional; a token-form cell restored as an `it.each`. Round four: the harvest now
