@@ -12,7 +12,7 @@
  * @packageDocumentation
  */
 
-import type { SourcePlatform } from './adapter-sources.js';
+import type { MarkdownPlatform, SourcePlatform } from './subagent-declaration.js';
 
 /** The closing prose a standard role adapter carries after its pointer, per platform. */
 export const STANDARD_CLOSINGS: Readonly<Record<SourcePlatform, string>> = {
@@ -34,6 +34,17 @@ export const STANDARD_CLOSINGS: Readonly<Record<SourcePlatform, string>> = {
     '',
     'Mode: Observe, analyse and report. Do not modify code.',
   ].join('\n'),
+};
+
+/**
+ * The one line a Markdown adapter carries between its title and its pointer, per platform,
+ * measured across the 29 Cursor and 29 Claude adapters on 2026-09-14 (one shape each); a
+ * Codex adapter carries nothing before its pointer. The readers refuse any other line there
+ * (the #77 round-two findings), because the sweep has no place to carry it.
+ */
+export const STANDARD_PRE_POINTER: Readonly<Record<MarkdownPlatform, string>> = {
+  cursor: '**All file paths in this document are relative to the repository root.**',
+  claude: 'All file paths are relative to the repository root.',
 };
 
 /** The title a standard adapter carries: the adapter name in title case. */

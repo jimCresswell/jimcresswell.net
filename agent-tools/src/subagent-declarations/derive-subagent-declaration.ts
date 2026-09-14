@@ -29,8 +29,8 @@
 
 import { err, ok, type Result } from '@engraph/result';
 
-import type { AdapterSource, SourcePlatform } from './adapter-sources.js';
-import type { ClaudeFields, SubagentDeclaration } from './subagent-declaration.js';
+import type { AdapterSource } from './adapter-sources.js';
+import type { SourcePlatform, ClaudeFields, SubagentDeclaration } from './subagent-declaration.js';
 
 /** The estate's default adapter fields; a declaration carries only deviations from these. */
 export const CLAUDE_DEFAULTS = {

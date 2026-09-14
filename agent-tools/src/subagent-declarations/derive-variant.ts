@@ -24,11 +24,12 @@ import {
   type Reconciliation,
 } from './derive-subagent-declaration.js';
 import { canonicalAdapterTitle } from './standard-adapter-body.js';
-import type {
-  ClaudeFields,
-  CodexFields,
-  CursorFields,
-  SubagentVariant,
+import {
+  ADAPTER_NAME,
+  type ClaudeFields,
+  type CodexFields,
+  type CursorFields,
+  type SubagentVariant,
 } from './subagent-declaration.js';
 
 /** Every Claude field a variant's adapter carries, written out in full, with its prose. */
@@ -94,8 +95,49 @@ function variantTitle(
   };
 }
 
+/**
+ * The ruling description (Claude's, else Codex's, else Cursor's, so a variant on any one
+ * platform derives) and the Codex disagreement as a reconciliation, as a role lists it. The
+ * fallback order differs from a role's by design: a role falls to the first platform in
+ * surface order, while a variant's Cursor description is its own declared field
+ * (`cursorVariantFields`, the owner's per-platform label), so it is read for the ruling
+ * description only when no other platform carries one and is never reconciled here.
+ */
+function variantDescription(
+  variant: string,
+  set: AdapterSet,
+): Result<{ description: string; reconciliations: Reconciliation[] }, string> {
+  const description =
+    set.claude?.fields.get('description') ??
+    set.codex?.fields.get('description') ??
+    set.cursor?.fields.get('description');
+  if (description === undefined) {
+    return err(`${variant}: no adapter carries a description`);
+  }
+  return ok({ description, reconciliations: codexDisagreement(variant, set, description) });
+}
+
+/** The Codex description as a reconciliation where it differs from the ruling one. */
+function codexDisagreement(variant: string, set: AdapterSet, kept: string): Reconciliation[] {
+  const codex = set.codex?.fields.get('description');
+  if (codex === undefined || codex === kept) {
+    return [];
+  }
+  return [
+    {
+      adapter: variant,
+      field: 'description',
+      kept,
+      dropped: [{ platform: 'codex', value: codex }],
+    },
+  ];
+}
+
 /** Derive one variant of a fan-out from the adapters under the variant's name. */
 export function deriveVariant(variant: string, set: AdapterSet): Result<DerivedVariant, string> {
+  if (!ADAPTER_NAME.test(variant)) {
+    return err(`${variant}: not a lowercase hyphenated adapter name`);
+  }
   const platforms = present(set);
   if (platforms.length === 0) {
     return err(`${variant}: no adapter on any platform`);
@@ -104,20 +146,24 @@ export function deriveVariant(variant: string, set: AdapterSet): Result<DerivedV
   if (refusal !== undefined) {
     return err(refusal);
   }
-  const description = set.claude?.fields.get('description') ?? set.codex?.fields.get('description');
-  if (description === undefined) {
-    return err(`${variant}: neither the Claude nor the Codex adapter carries a description`);
+  const ruling = variantDescription(variant, set);
+  if (!ruling.ok) {
+    return ruling;
   }
   const title = variantTitle(variant, set);
   return ok({
     variant: {
       name: variant,
       platforms,
-      description,
+      description: ruling.value.description,
       ...title.declared,
-      ...variantBlocks(set, description),
+      ...variantBlocks(set, ruling.value.description),
     },
-    reconciliations: [...title.reconciliations, ...pointerReconciliations(variant, set)],
+    reconciliations: [
+      ...ruling.value.reconciliations,
+      ...title.reconciliations,
+      ...pointerReconciliations(variant, set),
+    ],
   });
 }
 

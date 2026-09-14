@@ -28,7 +28,11 @@ import { z } from 'zod';
 const SUBAGENT_PLATFORMS = ['cursor', 'claude', 'codex', 'gemini'] as const;
 
 /** A member of {@link SUBAGENT_PLATFORMS}. */
-export type SubagentPlatform = (typeof SUBAGENT_PLATFORMS)[number];
+type SubagentPlatform = (typeof SUBAGENT_PLATFORMS)[number];
+
+/** The three hand-kept surfaces the sweep reads (Gemini is generated only), and the two Markdown ones. */
+export type SourcePlatform = Exclude<SubagentPlatform, 'gemini'>;
+export type MarkdownPlatform = Exclude<SourcePlatform, 'codex'>;
 
 const platform = z.enum(SUBAGENT_PLATFORMS);
 const line = z
@@ -97,9 +101,12 @@ const geminiFields = z
   })
   .strict();
 
+/** The adapter-name shape a variant declares, shared with the derivation that mints one. */
+export const ADAPTER_NAME = /^[a-z0-9]+(?:-[a-z0-9]+)*$/u;
+
 const variantSchema = z
   .object({
-    name: line.regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/u, 'a lowercase hyphenated adapter name'),
+    name: line.regex(ADAPTER_NAME, 'a lowercase hyphenated adapter name'),
     platforms: z.array(platform).min(1),
     description: line,
     /** The adapter heading where it is not the name in title case. */

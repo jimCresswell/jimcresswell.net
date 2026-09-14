@@ -119,15 +119,64 @@ describe('deriveVariant', () => {
     ]);
   });
 
-  it('refuses a variant with no adapter and one where neither Claude nor Codex carries a description', () => {
+  it('refuses a variant with no adapter, and one whose adapters carry no description', () => {
     expect(deriveVariant('cricket-high', {})).toStrictEqual({
       ok: false,
       error: 'cricket-high: no adapter on any platform',
     });
-    const { cursor } = highSet();
-    expect(deriveVariant('cricket-high', { cursor })).toStrictEqual({
+    expect(
+      deriveVariant('cricket-high', {
+        cursor: source({ name: 'cricket-high', readonly: 'true' }),
+      }),
+    ).toStrictEqual({
       ok: false,
-      error: 'cricket-high: neither the Claude nor the Codex adapter carries a description',
+      error: 'cricket-high: no adapter carries a description',
+    });
+  });
+
+  it('derives a Cursor-only variant, its description the Cursor one, so the schema and the derivation agree on a Cursor-only platform list', () => {
+    const { cursor } = highSet();
+    const derived = deriveVariant('cricket-high', { cursor });
+    expect(derived.ok ? derived.value.variant : derived.error).toStrictEqual({
+      name: 'cricket-high',
+      platforms: ['cursor'],
+      description: 'Cursor adapter; no effort pin.',
+      title: TITLE,
+      cursor: { note: 'Cursor prose.' },
+    });
+  });
+
+  it('refuses a variant name the declaration shape would refuse, before any block is derived', () => {
+    expect(deriveVariant('cricket-High', highSet())).toStrictEqual({
+      ok: false,
+      error: 'cricket-High: not a lowercase hyphenated adapter name',
+    });
+  });
+
+  it('lists a Codex description that differs from the ruling Claude one as a reconciliation, as a role does; the Cursor one stays a declared field', () => {
+    const set = highSet();
+    const derived = deriveVariant('cricket-high', {
+      ...set,
+      codex: source(
+        {
+          name: 'cricket-high',
+          description: 'Codex says otherwise.',
+          model_reasoning_effort: 'high',
+        },
+        { title: undefined, note: 'Codex prose.' },
+      ),
+    });
+    expect(derived.ok ? derived.value.reconciliations : derived.error).toStrictEqual([
+      {
+        adapter: 'cricket-high',
+        field: 'description',
+        kept: DESCRIPTION,
+        dropped: [{ platform: 'codex', value: 'Codex says otherwise.' }],
+      },
+    ]);
+    expect(derived.ok ? derived.value.variant.cursor : derived.error).toStrictEqual({
+      description: 'Cursor adapter; no effort pin.',
+      note: 'Cursor prose.',
     });
   });
 });

@@ -23,10 +23,8 @@
 import { err, ok, type Result } from '@engraph/result';
 
 import { readAdapterFrontmatter } from './adapter-frontmatter.js';
-import type { SubagentPlatform } from './subagent-declaration.js';
-
-/** The three hand-kept surfaces; Gemini is generated only. */
-export type SourcePlatform = Exclude<SubagentPlatform, 'gemini'>;
+import { STANDARD_PRE_POINTER } from './standard-adapter-body.js';
+import type { MarkdownPlatform } from './subagent-declaration.js';
 
 /** One adapter's fields and body facts. */
 export interface AdapterSource {
@@ -65,6 +63,15 @@ function namedTemplate(
     : ok({ template, closingTick });
 }
 
+/** The index of the last non-blank line of the paragraph that starts at `from`. */
+function paragraphEndFrom(body: readonly string[], from: number): number {
+  let end = from;
+  while ((body[end + 1] ?? '').trim() !== '') {
+    end += 1;
+  }
+  return end;
+}
+
 /** The template named, the pointer paragraph's tail and the note after it, given the line that carries the path. */
 function bodyAfterPath(
   relativePath: string,
@@ -76,12 +83,12 @@ function bodyAfterPath(
   if (!named.ok) {
     return named;
   }
-  let paragraphEnd = pathLine;
-  while ((body[paragraphEnd + 1] ?? '').trim() !== '') {
-    paragraphEnd += 1;
-  }
+  const paragraphEnd = paragraphEndFrom(body, pathLine);
   const afterPath = line.slice(named.value.closingTick + 1);
   const continuation = body.slice(pathLine + 1, paragraphEnd + 1);
+  if (afterPath === '' && continuation.length === 0) {
+    return err(`${relativePath}: the pointer sentence ends after its path without a stop`);
+  }
   const pointerTail =
     (afterPath === '.' ? '' : afterPath) +
     (continuation.length === 0 ? '' : `\n${continuation.join('\n')}`);
@@ -95,8 +102,31 @@ function bodyAfterPath(
   });
 }
 
+/**
+ * The whole head before the pointer, read in order: an optional title first, then exactly
+ * the platform's skeleton line and nothing else, above or below. Anything else is a refusal
+ * naming the first deviating line, because the sweep carries no place for it and the
+ * generator would drop it (a preamble above the title was the code-expert's probe).
+ */
+function prePointerRefusal(
+  platform: MarkdownPlatform,
+  relativePath: string,
+  head: readonly string[],
+): string | undefined {
+  const lines = head.filter((entry) => entry.trim() !== '');
+  const rest = lines[0]?.startsWith('# ') === true ? lines.slice(1) : lines;
+  const expected = STANDARD_PRE_POINTER[platform];
+  if (rest.length === 1 && rest[0] === expected) {
+    return undefined;
+  }
+  const deviating = rest.find((entry) => entry !== expected);
+  const what = deviating === undefined ? 'missing' : `"${deviating}"`;
+  return `${relativePath}: the line before the pointer is not the platform's (${what}); the sweep carries no place for it`;
+}
+
 /** Read a Markdown adapter (Cursor or Claude): its fields, title, pointer shape and note. */
 export function readMarkdownAdapter(
+  platform: MarkdownPlatform,
   relativePath: string,
   text: string,
 ): Result<AdapterSource, string> {
@@ -115,10 +145,12 @@ export function readMarkdownAdapter(
   if (!rest.ok) {
     return rest;
   }
-  const title = body
-    .slice(0, pointerAt)
-    .find((entry) => entry.startsWith('# '))
-    ?.slice(2);
+  const head = body.slice(0, pointerAt);
+  const skeleton = prePointerRefusal(platform, relativePath, head);
+  if (skeleton !== undefined) {
+    return err(skeleton);
+  }
+  const title = head.find((entry) => entry.startsWith('# '))?.slice(2);
   return ok({ fields: block.value.fields, title, pointerWrapped, ...rest.value });
 }
 
@@ -137,7 +169,11 @@ function readCodexFields(relativePath: string, head: string): Result<Map<string,
     if (match === null) {
       return err(`${relativePath}: line "${line}" is not a key = "value" field`);
     }
-    fields.set(match[1] ?? '', match[2] ?? '');
+    const [, key = '', value = ''] = match;
+    if (fields.has(key)) {
+      return err(`${relativePath}: key "${key}" appears twice`);
+    }
+    fields.set(key, value);
   }
   return ok(fields);
 }
@@ -178,6 +214,11 @@ export function readCodexAdapter(
   const pointerAt = body.value.findIndex((entry) => entry.startsWith(CODEX_POINTER_START));
   if (pointerAt === -1) {
     return err(`${relativePath}: no template pointer line`);
+  }
+  // A Codex adapter carries nothing before its pointer (measured, standard-adapter-body.ts).
+  const early = body.value.slice(0, pointerAt).find((entry) => entry.trim() !== '');
+  if (early !== undefined) {
+    return err(`${relativePath}: instructions before the pointer are not read: "${early}"`);
   }
   const rest = bodyAfterPath(relativePath, body.value, pointerAt);
   return rest.ok

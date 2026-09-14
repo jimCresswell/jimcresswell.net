@@ -15,16 +15,13 @@ import { argv, stderr, stdout } from 'node:process';
 import { resolveRepoRoot } from '../core/repo-root.js';
 import { listTrackedFiles } from '../core/tracked-file-scan.js';
 
-import type { SourcePlatform } from './adapter-sources.js';
+import type { SourcePlatform } from './subagent-declaration.js';
 import {
   renderSubagentFrontmatter,
   renderSubagentReconciliationReport,
 } from './render-subagent-frontmatter.js';
-import {
-  ADAPTER_SURFACES,
-  sweepSubagentFrontmatter,
-  TEMPLATES_DIR,
-} from './sweep-subagent-frontmatter.js';
+import { ADAPTER_SURFACES } from './adapter-surfaces.js';
+import { sweepSubagentFrontmatter, TEMPLATES_DIR } from './sweep-subagent-frontmatter.js';
 
 const USAGE = 'usage: subagent-frontmatter-sweep [--write]';
 

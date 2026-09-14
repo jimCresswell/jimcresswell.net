@@ -26,12 +26,8 @@ import { err, ok, type Result } from '@engraph/result';
 import { defaultSweepFs, readSource, type SweepFs } from '../rule-declarations/sweep-fs.js';
 
 import { declaredShapeIssue, groupByTemplate, groupShape } from './adapter-groups.js';
-import {
-  readCodexAdapter,
-  readMarkdownAdapter,
-  type AdapterSource,
-  type SourcePlatform,
-} from './adapter-sources.js';
+import type { AdapterSource } from './adapter-sources.js';
+import { ADAPTER_SURFACES } from './adapter-surfaces.js';
 import { deriveRole } from './derive-role.js';
 import type { AdapterSet, Derived, Reconciliation } from './derive-subagent-declaration.js';
 import { deriveFanOut } from './derive-variant.js';
@@ -40,24 +36,9 @@ import {
   prependSubagentFrontmatter,
   renderSubagentFrontmatter,
 } from './render-subagent-frontmatter.js';
-import type { SubagentDeclaration } from './subagent-declaration.js';
+import type { SourcePlatform, SubagentDeclaration } from './subagent-declaration.js';
 
 export const TEMPLATES_DIR = '.agent/sub-agents/templates';
-
-/** One hand-kept platform surface: where its adapters live and how each is read. */
-export interface AdapterSurface {
-  readonly platform: SourcePlatform;
-  readonly dir: string;
-  readonly extension: string;
-  readonly read: (relativePath: string, text: string) => Result<AdapterSource, string>;
-}
-
-/** Where each hand-kept platform keeps its adapters and how each is read. */
-export const ADAPTER_SURFACES: readonly AdapterSurface[] = [
-  { platform: 'cursor', dir: '.cursor/agents', extension: '.md', read: readMarkdownAdapter },
-  { platform: 'claude', dir: '.claude/agents', extension: '.md', read: readMarkdownAdapter },
-  { platform: 'codex', dir: '.codex/agents', extension: '.toml', read: readCodexAdapter },
-];
 
 export interface SweepInput {
   readonly repoRoot: string;
