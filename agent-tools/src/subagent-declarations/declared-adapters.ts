@@ -14,8 +14,8 @@
  *
  * What this read does not do, stated plainly: it classifies the leaf with `lstat` and then
  * reads it in a second call, so a link swapped in between the two is followed; it does not
- * classify the ancestors of the templates directory, so a link above it is followed by the
- * listing. The estate's fd-anchored no-follow reader with ancestor classification
+ * classify the templates directory or its ancestors, so a link at or above it is followed
+ * by the listing. The estate's fd-anchored no-follow reader with ancestor classification
  * (`validators/portability/rule-surface-fs.ts`) is asynchronous where this probe is
  * synchronous; moving the probe's read onto it is the named follow-on, and until then the
  * adapter leg (`portability:check`), which reads through that seam, is the guard against a
@@ -91,7 +91,7 @@ export function declaredAdaptersFrom(
 function templateNameOf(entry: string): Result<string, string> {
   if (!entry.endsWith('.md')) {
     return err(
-      `${TEMPLATES_DIR}/${entry}: not a template (the templates directory admits templates only)`,
+      `${TEMPLATES_DIR}/${entry}: not a template (the templates directory admits .md templates only)`,
     );
   }
   const name = entry.slice(0, -'.md'.length);

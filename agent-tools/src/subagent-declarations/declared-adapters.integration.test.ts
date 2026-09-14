@@ -6,13 +6,15 @@ import { afterEach, describe, expect, it } from 'vitest';
 
 import { evaluateParityChecks } from '../core/health-probe-parity.js';
 import { SURFACE_OF, TEMPLATES_DIR } from './adapter-spec.js';
+import { SUBAGENT_PLATFORMS, type SubagentPlatform } from './declaration-scalars.js';
 import { readDeclaredAdapters } from './declared-adapters.js';
 
 /**
  * The declared-adapters read at its file-system boundary, on mkdtemp repositories: the
  * health probe's platform truth is read from here, so every refusal arm is proved against
  * real entries (an absent directory, an empty set, a symlinked template, an undeclared
- * template) and the happy path reads the declarations in name order.
+ * template, a name a path cannot carry, a stray regular file), the happy path reads the
+ * declarations in name order, and the production composition runs on the same fixtures.
  */
 
 const tempRoots: string[] = [];
@@ -85,6 +87,7 @@ describe('readDeclaredAdapters', () => {
       error: `${TEMPLATES_DIR}/gamma.md: no declaration in its frontmatter`,
     });
   });
+
   it('refuses a name a path cannot carry and a stray regular file, before any open', async () => {
     const root = await makeRepoRoot();
     await writeTemplate(root, 'alpha');
@@ -97,7 +100,7 @@ describe('readDeclaredAdapters', () => {
     await writeFile(path.join(root, TEMPLATES_DIR, 'notes.txt'), 'stray');
     expect(readDeclaredAdapters(root)).toStrictEqual({
       ok: false,
-      error: `${TEMPLATES_DIR}/notes.txt: not a template (the templates directory admits templates only)`,
+      error: `${TEMPLATES_DIR}/notes.txt: not a template (the templates directory admits .md templates only)`,
     });
   });
 });
@@ -107,10 +110,16 @@ describe('evaluateParityChecks (the production composition)', () => {
     const root = await makeRepoRoot();
     await writeTemplate(root, 'alpha');
     await writeTemplate(root, 'beta', '  - gemini\n');
-    for (const [platform, surface] of Object.entries(SURFACE_OF)) {
+    const present: Readonly<Record<SubagentPlatform, readonly string[]>> = {
+      cursor: ['alpha'],
+      claude: ['alpha'],
+      codex: ['alpha'],
+      gemini: ['alpha', 'beta'],
+    };
+    for (const platform of SUBAGENT_PLATFORMS) {
+      const surface = SURFACE_OF[platform];
       await mkdir(path.join(root, surface.dir), { recursive: true });
-      const names = platform === 'gemini' ? ['alpha', 'beta'] : ['alpha'];
-      for (const name of names) {
+      for (const name of present[platform]) {
         await writeFile(path.join(root, surface.dir, `${name}${surface.extension}`), '');
       }
     }
