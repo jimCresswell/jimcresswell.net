@@ -1,6 +1,6 @@
 /**
  * The sub-agent adapter generator (closure item 6, 2b-ii): every template's declaration
- * renders its Cursor, Claude and Codex adapters, byte for byte, in the estate's one adapter
+ * renders its Cursor, Claude, Codex and Gemini adapters, byte for byte, in the estate's one adapter
  * shape (`standard-adapter-body.ts`): the frontmatter or the TOML head, the title, the
  * platform's pre-pointer line, the pointer sentence, and the closing prose. A ROLE renders
  * from the defaults it does not deviate from (`derive-subagent-declaration.ts`); a VARIANT
@@ -11,10 +11,10 @@
  *
  * Serialisation is one form per platform, measured on the estate's 86 adapters on
  * 2026-09-14: a Markdown description is a quoted YAML scalar on one line in the quote style
- * the estate's formatter keeps (`yamlQuoted` states it; four hand-kept Cursor files carried
- * a folded form and three the other quote style, and normalise on the first regeneration);
- * every other Claude field value is plain where YAML reads it plain and quoted by the same
- * rule otherwise (`yamlScalar`); the Claude field order is the one that reproduces
+ * the estate's formatter keeps (`yaml-scalar.ts` states it; four hand-kept Cursor files
+ * carried a folded form and three the other quote style, and normalise on the first
+ * regeneration); every other field value is plain where YAML reads it plain and quoted by
+ * the same rule otherwise; the Claude field order is the one that reproduces
  * every file, `tools`, `disallowedTools`, `color`, `permissionMode`, `model`, `effort`; the
  * Codex form and what it refuses are `render-codex-adapter.ts`.
  *
@@ -22,7 +22,6 @@
  */
 
 import { err, ok, type Result } from '@engraph/result';
-import { stringify } from 'yaml';
 
 import {
   pointerLine,
@@ -33,8 +32,10 @@ import {
 } from './adapter-spec.js';
 import { CLAUDE_DEFAULTS } from './derive-subagent-declaration.js';
 import { renderCodexAdapter } from './render-codex-adapter.js';
+import { renderGeminiAdapter } from './render-gemini-adapter.js';
 import { STANDARD_CLOSINGS, STANDARD_PRE_POINTER } from './standard-adapter-body.js';
 import type { MarkdownPlatform, SubagentDeclaration } from './subagent-declaration.js';
+import { yamlQuoted, yamlScalar } from './yaml-scalar.js';
 
 /** One rendered adapter: its repo-relative path and its full text. */
 export interface SubagentProjection {
@@ -51,23 +52,6 @@ const CLAUDE_KEY_ORDER = [
   'model',
   'effort',
 ] as const;
-
-// A backslash literal without an escaped string, which the lint forbids.
-const BACKSLASH = String.fromCodePoint(92);
-
-/**
- * A YAML quoted scalar in the style the estate's formatter keeps (prettier, single quotes
- * preferred; measured on `.claude/agents`, 2026-09-14): a text holding a double quote is
- * single-quoted with each apostrophe doubled; else a text holding an apostrophe is
- * double-quoted, the one escape that form then needs being the doubled backslash; else
- * single-quoted.
- */
-function yamlQuoted(text: string): string {
-  if (!text.includes('"') && text.includes("'")) {
-    return `"${text.replaceAll(BACKSLASH, BACKSLASH + BACKSLASH)}"`;
-  }
-  return `'${text.replaceAll("'", "''")}'`;
-}
 
 function markdownBody(
   platform: MarkdownPlatform,
@@ -103,17 +87,6 @@ function claudeFieldLines(spec: AdapterSpec): string[] {
   });
 }
 
-/**
- * A field value as the adapter carries it: plain where the yaml library would emit the bare
- * text as that string (its plain-scalar judgement, at no line width so length never folds
- * a value; the estate's live values all read plain), else quoted by the measured rule, so
- * a value carrying a comment marker, a mapping separator, a leading indicator or a YAML
- * keyword is never written as text the platform would read otherwise (#81 round two).
- */
-function yamlScalar(value: string): string {
-  return stringify(value, { lineWidth: 0 }) === `${value}\n` ? value : yamlQuoted(value);
-}
-
 function renderClaude(spec: AdapterSpec): string {
   const lines = [
     '---',
@@ -128,13 +101,18 @@ function renderClaude(spec: AdapterSpec): string {
 function renderOn(surface: SubagentSurface, spec: AdapterSpec): Result<SubagentProjection, string> {
   const { platform } = surface;
   const path = `${surface.dir}/${spec.name}${surface.extension}`;
-  const tail = pointerTailIssue(path, spec[platform]);
+  // A Gemini adapter carries no prose of its own (the schema's Gemini fields are the CLI's).
+  const tail = platform === 'gemini' ? undefined : pointerTailIssue(path, spec[platform]);
   if (tail !== undefined) {
     return err(tail);
   }
   if (platform === 'codex') {
     const text = renderCodexAdapter(path, spec);
     return text.ok ? ok({ path, text: text.value }) : text;
+  }
+  if (platform === 'gemini') {
+    const gemini = renderGeminiAdapter(path, spec);
+    return gemini.ok ? ok({ path, text: gemini.value }) : gemini;
   }
   return ok({ path, text: platform === 'cursor' ? renderCursor(spec) : renderClaude(spec) });
 }
@@ -167,7 +145,7 @@ function duplicateName(specs: readonly AdapterSpec[]): string | undefined {
 }
 
 /**
- * Render every adapter the declarations project onto the three source surfaces: templates
+ * Render every adapter the declarations project onto the four generated surfaces: templates
  * in name order, a fan-out's variants in their declared order, then surface order.
  *
  * @param declarations - The templates' declarations, in any order.

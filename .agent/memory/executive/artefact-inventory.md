@@ -47,7 +47,7 @@ boundary is ADR-165.
 | ---------- | ----------------------- | ------------------------------------ | ------------------------------------------------- | --------------------------------------- |
 | Skills     | reads `.agents/skills/` | `.claude/skills/jc-*/SKILL.md`       | `.agents/skills/jc-*/SKILL.md`                    | reads `.agents/skills/`                 |
 | Rules      | `.cursor/rules/*.mdc`   | `.claude/rules/*.md`                 | entry-point chain; native `.rules` unwired        | entry-point chain only                  |
-| Sub-agents | `.cursor/agents/*.md`   | `.claude/agents/*.md`                | `.codex/agents/*.toml`                            | none wired; native agents unwired       |
+| Sub-agents | `.cursor/agents/*.md`   | `.claude/agents/*.md`                | `.codex/agents/*.toml`                            | `.gemini/agents/*.md`                   |
 | Hooks      | no policy activation    | `.claude/settings.json` `PreToolUse` | `.codex/config.toml` identity-only `SessionStart` | upstream support; no project hook wired |
 | MCP        | user-local              | user-local                           | `.codex/config.toml` `[mcp_servers]`              | upstream support; no project MCP wired  |
 
@@ -56,8 +56,8 @@ they preserve platform activation semantics without copying substance.
 Claude Code keeps tracked system policy in `.claude/settings.json`;
 `.claude/settings.local.json` is gitignored user-local override state.
 Gemini / Antigravity CLI has native plugin surfaces for skills, agents, rules,
-MCP definitions, and hooks, but the repo currently wires only the entrypoint
-chain (`GEMINI.md`) and the portable skills.
+MCP definitions, and hooks; the repo wires the entrypoint chain (`GEMINI.md`),
+the portable skills, and the generated sub-agents under `.gemini/agents/`.
 
 ## How to Create New Artefacts
 
@@ -100,12 +100,12 @@ command surfaces are retired (see ADR-125 §2026-05-10).
 1. **Canonical**: `.agent/sub-agents/templates/<name>.md`, with a frontmatter declaration
    (a description and, per platform, only what deviates from the standard adapter body;
    `.agent/sub-agents/README.md` §Declarations)
-2. **Cursor**: `.cursor/agents/<name>.md`
-3. **Claude Code**: `.claude/agents/<name>.md`
-4. **Codex**: `.codex/agents/<name>.toml`
+2. **The adapters**: `pnpm portability:fix` renders `.cursor/agents/<name>.md`,
+   `.claude/agents/<name>.md`, `.codex/agents/<name>.toml` with its `.codex/config.toml`
+   block, and `.gemini/agents/<name>.md` from the declaration; `pnpm portability:check`
+   recomputes them, so none is written by hand.
 
 Each adapter reads the canonical template as its first action.
-See existing adapters for platform-specific metadata fields.
 Do not add `.agents/agents/` as a shared sub-agent surface; Antigravity-native
 agent wrappers require a separate platform-specific design and verification.
 

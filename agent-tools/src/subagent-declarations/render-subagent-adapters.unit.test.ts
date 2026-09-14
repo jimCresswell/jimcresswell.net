@@ -4,8 +4,8 @@ import { renderSubagentAdapters } from './render-subagent-adapters.js';
 import type { FanOutDeclaration, RoleDeclaration } from './subagent-declaration.js';
 
 /**
- * The adapter generator (closure item 6, 2b-ii, slice A1): every declaration renders its
- * Cursor, Claude and Codex adapters byte for byte in the estate's one shape
+ * The adapter generator (closure item 6, 2b-ii): every declaration renders its Cursor,
+ * Claude, Codex and Gemini adapters byte for byte in the estate's one shape
  * (`standard-adapter-body.ts`), a role from the defaults it does not deviate from, a variant
  * exactly as declared. The shapes here are synthetic; the estate's own files are the live
  * proof (75 of 86 unchanged, the eleven normalised ones on record).
@@ -132,6 +132,30 @@ const CODEX_PROSE = [
   '',
 ].join('\n');
 
+const GEMINI_ALPHA = [
+  '---',
+  'name: alpha',
+  'description: "Alpha reviews a: it\'s thorough."',
+  'tools:',
+  '  - read_file',
+  '  - list_directory',
+  '  - glob',
+  '  - grep_search',
+  '---',
+  '',
+  '# Alpha',
+  '',
+  'All file paths are relative to the repository root.',
+  '',
+  'Your first action MUST be to read and internalise `.agent/sub-agents/templates/alpha.md`.',
+  '',
+  'This file is a thin Gemini CLI adapter. The canonical reviewer instructions live in the',
+  'template referenced above.',
+  '',
+  'Mode: Observe, analyse and report. Do not modify code.',
+  '',
+].join('\n');
+
 const CRICKET: FanOutDeclaration = {
   kind: 'fan-out',
   name: 'cricket',
@@ -203,13 +227,15 @@ function textsOf(declarations: readonly (RoleDeclaration | FanOutDeclaration)[])
 }
 
 describe('renderSubagentAdapters', () => {
-  it('renders a standard role on the three surfaces from the defaults, an apostrophe putting the description in double quotes as the formatter keeps it', () => {
+  it('renders a standard role on the four surfaces from the defaults, an apostrophe putting the description in double quotes as the formatter keeps it', () => {
     const texts = textsOf([ALPHA]);
     expect([...texts.keys()]).toStrictEqual([
       '.cursor/agents/alpha.md',
       '.claude/agents/alpha.md',
       '.codex/agents/alpha.toml',
+      '.gemini/agents/alpha.md',
     ]);
+    expect(texts.get('.gemini/agents/alpha.md')).toBe(GEMINI_ALPHA);
     expect(texts.get('.cursor/agents/alpha.md')).toBe(CURSOR_ALPHA);
     expect(texts.get('.claude/agents/alpha.md')).toBe(CLAUDE_ALPHA);
     expect(texts.get('.codex/agents/alpha.toml')).toBe(CODEX_ALPHA);
@@ -221,6 +247,7 @@ describe('renderSubagentAdapters', () => {
       '.cursor/agents/prose.md',
       '.claude/agents/prose.md',
       '.codex/agents/prose.toml',
+      '.gemini/agents/prose.md',
     ]);
     expect(texts.get('.claude/agents/prose.md')).toBe(CLAUDE_PROSE);
     expect(texts.get('.codex/agents/prose.toml')).toBe(CODEX_PROSE);
@@ -305,6 +332,60 @@ describe('renderSubagentAdapters', () => {
       ok: false,
       error:
         'cricket-high: rendered by more than one declaration (a role and a fan-out variant, or two fan-outs); refusing to render the sub-agent adapters',
+    });
+  });
+
+  it("renders the declared Gemini fields in the reference's order (kind, tools as a block list, model, temperature, max_turns, timeout_mins), a role without a tools list filling the read-only default, and no Gemini adapter for a role whose platforms leave it out", () => {
+    const declared: RoleDeclaration = {
+      ...ALPHA,
+      description: 'Alpha reviews a.',
+      gemini: {
+        kind: 'local',
+        tools: ['read_file', 'grep_search'],
+        model: 'gemini-3-flash-preview',
+        temperature: 0.2,
+        max_turns: 10,
+        timeout_mins: 5,
+      },
+    };
+    expect(textsOf([declared]).get('.gemini/agents/alpha.md')?.split('\n---\n')[0]).toBe(
+      [
+        '---',
+        'name: alpha',
+        "description: 'Alpha reviews a.'",
+        'kind: local',
+        'tools:',
+        '  - read_file',
+        '  - grep_search',
+        'model: gemini-3-flash-preview',
+        'temperature: 0.2',
+        'max_turns: 10',
+        'timeout_mins: 5',
+      ].join('\n'),
+    );
+    // A wildcard or a model YAML would not read plain goes through the scalar rule.
+    const wild: RoleDeclaration = {
+      ...ALPHA,
+      description: 'Alpha.',
+      gemini: { tools: ['*', 'mcp_*'], model: 'a: b' },
+    };
+    expect(textsOf([wild]).get('.gemini/agents/alpha.md')).toContain(
+      "tools:\n  - '*'\n  - mcp_*\nmodel: 'a: b'\n---",
+    );
+    const without: RoleDeclaration = { ...ALPHA, platforms: ['cursor', 'claude', 'codex'] };
+    expect([...textsOf([without]).keys()]).toStrictEqual([
+      '.cursor/agents/alpha.md',
+      '.claude/agents/alpha.md',
+      '.codex/agents/alpha.toml',
+    ]);
+  });
+
+  it("refuses a Gemini adapter whose declared tools are the empty list, naming why: this estate's adapter body is the pointer to the template, which a no-tools agent cannot read", () => {
+    const noTools: RoleDeclaration = { ...ALPHA, gemini: { tools: [] } };
+    expect(renderSubagentAdapters([noTools])).toStrictEqual({
+      ok: false,
+      error:
+        ".gemini/agents/alpha.md: the declaration's Gemini tools are the empty list, and this estate's adapter body is the pointer to the template, which a no-tools agent cannot read; leave gemini out of the role's platforms, or wait for the inlined-body form; refusing to render it",
     });
   });
 

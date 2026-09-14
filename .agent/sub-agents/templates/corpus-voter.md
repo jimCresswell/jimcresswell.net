@@ -1,5 +1,8 @@
 ---
 description: Single-turn no-tools adversary voter for the corpus-analysis validate workflow. Dispatched exclusively via the Workflow agent() agentType option; never invoke for interactive delegation. Judges one candidate against the four conjunctive apophenia tests from supplied grounding and answers only through the schema-forced structured output call.
+# No Gemini adapter: this estate's adapter body is the pointer to this template, which a
+# no-tools agent cannot read (2b-ii slice B, round two).
+platforms: [cursor, claude, codex]
 ---
 
 # Corpus Voter: Single-Turn No-Tools Adversary

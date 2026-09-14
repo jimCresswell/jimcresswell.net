@@ -5,8 +5,8 @@ import { fakeProjectionRepo } from './test-helpers/fake-projection-repo.js';
 
 /**
  * The sub-agent adapter leg of the portability validator (closure item 6, 2b-ii, slices A1
- * and A2): every template's declaration renders its adapters on the three adapter surfaces
- * and the Codex registry's blocks after its hand-kept head, the four surfaces are compared
+ * A2 and B): every template's declaration renders its adapters on the four adapter surfaces
+ * and the Codex registry's blocks after its hand-kept head, the five are compared
  * byte for byte, `--fix` writes what is missing or drifted and removes what no declaration
  * renders, and the leg refuses, touching nothing, whenever it cannot vouch for its input.
  * Injected in-memory port, no real file system.
@@ -36,6 +36,7 @@ const EXPECTED_PATHS = [
   '.cursor/agents/alpha.md',
   '.claude/agents/alpha.md',
   '.codex/agents/alpha.toml',
+  '.gemini/agents/alpha.md',
   '.cursor/agents/cricket-judgement-high.md',
   '.claude/agents/cricket-judgement-high.md',
 ];
@@ -94,17 +95,19 @@ describe('validateSubagentProjections', () => {
     expect(repo.files.get('.codex/agents/alpha.toml')).toContain('name = "alpha"');
   });
 
-  it('reports an adapter with no template behind it as stale and removes it in fix mode', async () => {
+  it('reports an adapter with no template behind it as stale and removes it in fix mode, on the Gemini surface too', async () => {
     const repo = bareRepo();
     await validateSubagentProjections(true, repo);
     repo.files.set('.claude/agents/gone.md', 'hand-kept\n');
+    repo.files.set('.gemini/agents/gone.md', 'hand-kept\n');
     const check = await validateSubagentProjections(false, repo);
     expect(check.issues).toEqual([
       `.claude/agents/gone.md: no template renders it (${FIX} to remove it)`,
+      `.gemini/agents/gone.md: no template renders it (${FIX} to remove it)`,
     ]);
     const fix = await validateSubagentProjections(true, repo);
-    expect(fix.removed).toEqual(['.claude/agents/gone.md']);
-    expect(repo.files.has('.claude/agents/gone.md')).toBe(false);
+    expect(fix.removed).toEqual(['.claude/agents/gone.md', '.gemini/agents/gone.md']);
+    expect(repo.files.has('.gemini/agents/gone.md')).toBe(false);
   });
 
   it('refuses to render anything while one template carries no declaration, naming it, and writes nothing', async () => {
@@ -196,7 +199,7 @@ describe('validateSubagentProjections', () => {
     expect(fix.written).toEqual([]);
   });
 
-  it('reads the registry as the fourth surface: reordered blocks drift and are rewritten after the head verbatim; a registry with no file refuses; a foreign line in its tail refuses', async () => {
+  it('reads the registry as its own surface: reordered blocks drift and are rewritten after the head verbatim; a registry with no file refuses; a foreign line in its tail refuses', async () => {
     const repo = bareRepo();
     await validateSubagentProjections(true, repo);
     repo.files.set(
@@ -263,10 +266,10 @@ describe('validateSubagentProjections', () => {
       return fix.issues;
     };
     expect(await declaring('  - gemini\n')).toEqual([
-      'beta: platforms leave out cursor, claude, codex, which the platform contract expects it on; until the reader-retirement pull request every declaration renders the surfaces the contract names (gemini optional once slice B lands); refusing to render the sub-agent adapters',
+      'beta: platforms leave out cursor, claude, codex, which the platform contract expects it on; until the reader-retirement pull request every declaration renders the surfaces the contract names (gemini optional); refusing to render the sub-agent adapters',
     ]);
     expect(await declaring('  - claude\n')).toEqual([
-      'beta: platforms leave out cursor, codex, which the platform contract expects it on; until the reader-retirement pull request every declaration renders the surfaces the contract names (gemini optional once slice B lands); refusing to render the sub-agent adapters',
+      'beta: platforms leave out cursor, codex, which the platform contract expects it on; until the reader-retirement pull request every declaration renders the surfaces the contract names (gemini optional); refusing to render the sub-agent adapters',
     ]);
     // The bare repository's fan-out variant, cricket-judgement-high on Cursor and Claude,
     // is the contract's own exception and renders throughout this suite; the same variant
@@ -279,7 +282,7 @@ describe('validateSubagentProjections', () => {
     );
     const refused = await validateSubagentProjections(true, narrowed);
     expect(refused.issues).toEqual([
-      'cricket-judgement-high: platforms leave out claude, which the platform contract expects it on; until the reader-retirement pull request every declaration renders the surfaces the contract names (gemini optional once slice B lands); refusing to render the sub-agent adapters',
+      'cricket-judgement-high: platforms leave out claude, which the platform contract expects it on; until the reader-retirement pull request every declaration renders the surfaces the contract names (gemini optional); refusing to render the sub-agent adapters',
     ]);
     expect(refused.written).toEqual([]);
   });

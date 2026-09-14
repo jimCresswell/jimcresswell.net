@@ -8,9 +8,9 @@
  * item 70 of 2026-09-14) are thin pointers back to it that carry the description and each
  * platform's fields. The declaration is the one source for every adapter: the
  * generator (closure item 6, 2b-ii; `render-subagent-adapters.ts`) renders the Cursor,
- * Claude and Codex adapters under `pnpm portability:fix` and `pnpm portability:check`
+ * Claude, Codex and Gemini adapters under `pnpm portability:fix` and `pnpm portability:check`
  * recomputes them, the Codex registry's blocks too (`render-codex-registry.ts`), so none is
- * edited by hand (`compute-dont-hope`); the Gemini row follows in its own slice.
+ * edited by hand (`compute-dont-hope`).
  *
  * Two shapes, never both: a ROLE declares one description and, only where a platform's
  * fields deviate from the estate's defaults, those fields; a FAN-OUT (the cricket templates)
@@ -70,14 +70,21 @@ const cursorFields = z
  * Gemini adapter fields: exactly the optional frontmatter fields the Gemini CLI subagents
  * reference names (https://geminicli.com/docs/core/subagents/, read 2026-09-14), each emitted
  * only when declared and never defaulted here (the CLI's own defaults apply: `kind` local,
- * `model` inherit, `temperature` 1, `max_turns` 30, `timeout_mins` 10). `name` and
+ * `model` inherit, `temperature` 1, `max_turns` 30, `timeout_mins` 10; an absent `tools`
+ * inherits every tool of the parent session, and the reference says nothing of an explicit
+ * empty list, which the schema admits as the declaration's own no-tool configuration; the
+ * Gemini renderer refuses to render it while the adapter body is the pointer to the
+ * template, which a no-tools agent cannot read, so a no-tools role leaves gemini out of
+ * its platforms until an inlined-body form exists).
+ * `kind` is `local` only: the remote kind routes to Agent-to-Agent delegation, which the
+ * estate's body-is-the-pointer shape does not carry. `name` and
  * `description` come from the declaration itself; `mcpServers` (inline MCP servers scoped
  * to one agent) is host configuration, not a role's declaration, and is not carried.
  */
 const geminiFields = z
   .object({
-    kind: z.enum(['local', 'remote']).optional(),
-    tools: z.array(line).min(1).optional(),
+    kind: z.literal('local').optional(),
+    tools: z.array(line).optional(),
     model: line.optional(),
     temperature: z.number().min(0).max(2).optional(),
     max_turns: z.number().int().positive().optional(),
@@ -145,7 +152,7 @@ function variantIssue(name: string, variant: z.infer<typeof variantSchema>): str
 export type ClaudeFields = z.infer<typeof claudeFields>;
 export type CodexFields = z.infer<typeof codexFields>;
 export type CursorFields = z.infer<typeof cursorFields>;
-type GeminiFields = z.infer<typeof geminiFields>;
+export type GeminiFields = z.infer<typeof geminiFields>;
 export type SubagentVariant = z.infer<typeof variantSchema>;
 
 /** A role: one adapter per platform under the template's own name. */
