@@ -7,7 +7,7 @@ color: pink
 permissionMode: plan
 ---
 
-# Onboarding Reviewer
+# Onboarding Expert
 
 All file paths are relative to the repository root.
 

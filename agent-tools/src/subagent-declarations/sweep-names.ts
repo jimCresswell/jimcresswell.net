@@ -19,6 +19,13 @@ import { ADAPTER_NAME, type SourcePlatform } from './subagent-declaration.js';
 const NOT_A_BASENAME =
   'lowercase letters and digits in single-hyphen groups: one path segment, no dot segment, no suffix';
 
+/** The refusal reason when a name is not a template basename; `undefined` when it may be interpolated. */
+export function templateNameRefusal(name: string): string | undefined {
+  return ADAPTER_NAME.test(name)
+    ? undefined
+    : `${JSON.stringify(name)}: not a template basename (${NOT_A_BASENAME})`;
+}
+
 /**
  * The refusal reason for every template or adapter name that is not a basename, templates
  * first and then each surface in order; empty when every name may be interpolated into a path.
@@ -27,9 +34,10 @@ export function refuseNonBasenames(
   templateNames: readonly string[],
   adapterNames: Readonly<Record<SourcePlatform, readonly string[]>>,
 ): readonly string[] {
-  const templates = templateNames
-    .filter((name) => !ADAPTER_NAME.test(name))
-    .map((name) => `${JSON.stringify(name)}: not a template basename (${NOT_A_BASENAME})`);
+  const templates = templateNames.flatMap((name) => {
+    const refusal = templateNameRefusal(name);
+    return refusal === undefined ? [] : [refusal];
+  });
   const adapters = ADAPTER_SURFACES.flatMap((surface) =>
     adapterNames[surface.platform]
       .filter((name) => !ADAPTER_NAME.test(name))
