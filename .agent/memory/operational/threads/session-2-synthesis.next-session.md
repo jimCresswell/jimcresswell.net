@@ -8,10 +8,12 @@ and the register PR #63 merged before it), before item 5; scope is the three nap
 `.agent/memory/active/unconsolidated/` plus today's captures in `.agent/memory/active/napkin.md`
 (from line 311 to the end of the file at the commit that lands this record: sessions 4 to 8,
 wraps 3 to 7, lane C, lane A, the Director's two sections); the candidates
-go to the owner as one batch of cards in the morning; nothing graduates without the answers. The
-napkins are archived after two gates and only those: the fast-lane cards answered and the
-owner's privacy review of the three napkins done. The five slow-lane rows are decided on their
-own cards or at their review date (2026-12-13) and never hold the archive.
+go to the owner as one batch of cards in the morning; nothing graduates without the answers; the
+napkins are archived only after the owner's answers to the cards (the controlling plan's item 8,
+as written) and the owner's privacy review of the three napkins. The five slow-lane rows are
+presented on the cards and, under PDR-130 as written, decided at their review date
+(2026-12-13) by `promote` or `kill-with-reasoning`; the card's answer for such a row is the
+owner's word on its presentation, and any earlier decision is the owner's word on PDR-130.
 
 ## Participating agent identities
 
@@ -409,9 +411,9 @@ review dates, the readout at 28 pending. Nothing here refiles or reclassifies th
 1. The owner's morning cards (the ratified item 8): the Director presents the filed entries in
    the four classes of the PR body, plus proposal E. For the twenty-three fast-lane entries each
    answer is the fast disposition (`graduated`, `rejected`, `duplicate`), recorded on the entry.
-   For the five slow-lane entries (A, B, C, 1a, 1b) the card is PDR-130's review-date decision,
-   `promote` or `kill-with-reasoning`, recorded on the slow-lane row; a card left unanswered
-   leaves the row for its review date (2026-12-13).
+   For the five slow-lane entries (A, B, C, 1a, 1b) the card presents the row; under PDR-130
+   the row is decided at its review date (2026-12-13) by `promote` or `kill-with-reasoning`,
+   recorded on the slow-lane row; an earlier decision is the owner's word on PDR-130.
 2. Every fast-lane outcome drains its row (drain by deciding, the register's contract). A
    `graduated` entry lands as its own small pull request into the named home, one home per PR
    where the homes differ, by the seat the Director routes, and the entry is removed in the
@@ -421,9 +423,8 @@ review dates, the readout at 28 pending. Nothing here refiles or reclassifies th
    whose message carries the rejection reason, and that commit is its record. In every case
    (rule `permanent-doc-is-the-consolidation-record`): no ledger, no drain note, no pointer.
 3. The three napkins under `.agent/memory/active/unconsolidated/` are archived once both
-   gates hold: the fast-lane cards of step 1 are answered, and the owner's privacy review of
-   the three napkins under `privacy.md` (overnight item 5) is done. The slow-lane cards are
-   not an archive gate: an unanswered slow-lane card holds only its own row until the review
-   date, because the row conserves its source text (the archive holds processed material only,
-   and filing is the processing).
+   gates hold: the owner's answers to the cards of step 1 (the controlling plan's item 8: "the
+   napkins are archived only then"; a slow-lane row's answer is the owner's word on its
+   presentation, its decision staying with the review date), and the owner's privacy review of
+   the three napkins under `privacy.md` (overnight item 5).
 4. The slow-lane five are decided at their review date (the owner's card, else 2026-12-13).
