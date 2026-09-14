@@ -1055,6 +1055,18 @@ ones the Director would put to the owner had the owner been present.
     mutable surface, the deleted-account sentinel authorised, an empty item counted, a
     wall-clock assertion in the gated suite) routed to lane A; #77 round two green on lane
     A's seat, its proofs running. Lens 1.
+93. #77 round two pushed at `SHA: 5affe55` (08:4xZ on 2026-09-14; the code-expert pass caught
+    a module cycle, depcruise now on lane A's gate list, and a preamble gap above the title).
+    Round three granted (Copilot at 08:45Z: one open, four suppressed; all five block).
+    Grounds: the open finding is a path-injection gap in the exported sweep (caller names
+    interpolated into paths without basename validation); the four suppressed share one
+    generator, readers admitting values the strict declaration schema rejects on the next
+    read (an inline sequence stringified, a newline inside a line field, an empty title, an
+    empty TOML value). Ruling: cure the class at the boundary, every derived declaration
+    parsed through the strict schema before any write, refusing by adapter, field and issue;
+    two reader refusals kept where semantics change (the inline sequence, the empty TOML
+    value). Order for lane A: #79's round first (it changes the merge mechanism the rest
+    waits on), then this. PDR-132 Director decision; lens 1.
 
 ## Routing log
 
