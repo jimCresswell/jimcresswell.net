@@ -9,7 +9,8 @@ description: >-
   agent-invoking instrument, then route to one this estate carries: a
   conscience check (cricket and its Codex legs), a self-contained
   cross-vendor task (a cricket Codex leg, or the Codex CLI's exec mode
-  with agent-tools codex-exec reading its result), a same-vendor
+  with agent-tools codex-exec last-message --strict reading its result),
+  a same-vendor
   delegation (the reviewer fleet, a named background agent). Do not use
   for sustained collaboration with its own clock and claims: that is
   membership, a peer seat. Right: a bounded packet, a pre-registered
@@ -48,7 +49,7 @@ The cell map, with the estate's instruments placed on it:
 | | One-shot | Multi-turn |
 | --- | --- | --- |
 | **Same-vendor** | expert-reviewer fleet, [`cricket`](../cognition/cricket/SKILL-CANONICAL.md), Workflow-fleet legs | named background agents via Agent + SendMessage; session forks |
-| **Cross-vendor** | Cricket Codex legs; `codex exec --json` (the vendor CLI, no instrument skill here) with `pnpm agent-tools:codex-exec last-message` reading its result | none carried here (`the-codex-dialogues` at the lineage pin) |
+| **Cross-vendor** | Cricket Codex legs; `codex exec --json` (the vendor CLI, no instrument skill here) with `pnpm agent-tools:codex-exec last-message --strict` reading its result | none carried here (`the-codex-dialogues` at the lineage pin) |
 
 ## Instrument, not citizen
 
@@ -132,11 +133,15 @@ authority to be obeyed.
 - A fast conscience check on priority or framing, one bounded exchange,
   same session: [`cricket`](../cognition/cricket/SKILL-CANONICAL.md).
 - Delegating a self-contained task for a result, same vendor: a named
-  background agent (Agent, then SendMessage) or the reviewer fleet;
-  cross-vendor: a cricket Codex leg, or `codex exec --json` called
-  under plank 1's disciplined-call rule (no per-call authority
-  parameters) with `pnpm agent-tools:codex-exec last-message` reading
-  the final message from its output; neither is a six-plank instrument.
+  background agent (Agent, then SendMessage) or the reviewer fleet,
+  neither of which states the six planks (same-vendor wrappers that
+  pre-date the framework, as cricket does); cross-vendor: a cricket
+  Codex leg, or `codex exec --json` called under plank 1's
+  disciplined-call rule (no per-call authority parameters) with
+  `pnpm agent-tools:codex-exec last-message --strict` reading the final
+  message from its output (strict, so a stream carrying no agent message
+  fails loudly instead of exiting clean with nothing); neither is a
+  six-plank instrument.
 - A bounded multi-turn reflective dialogue that perturbs the seat's own
   stated uncertainty against a different vendor's prior: not carried
   here; its instrument, `the-codex-dialogues`, stays at the lineage pin,
