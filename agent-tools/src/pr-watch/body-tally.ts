@@ -12,6 +12,8 @@
  * merge-eligibility is the owner's ruling, not the instrument's.
  */
 
+import { printableBlock } from './printable.js';
+
 export interface BodyTally {
   /** The headline verdict phrase, or null when the body carries no heading. */
   readonly verdict: string | null;
@@ -24,30 +26,34 @@ export interface BodyTally {
 // word, so a non-vendor body's verdict is quoted whole. The suppressed-count
 // marker is a `###` heading too and is never the verdict: a body holding only
 // the marker tallies no verdict (the #67 body finding, 2026-09-14).
-const HEADINGS = /^###\s+(?:\p{Extended_Pictographic}\u{FE0F}?\s+)?(.+?)\s*$/gmu;
-const SUPPRESSED = /^###\s+Suppressed comments \((\d+)\)\s*$/mu;
+// Horizontal whitespace only: under the `m` flag `\s` matches a line feed, so a
+// heading emptied by the strip would hand the NEXT line over as its verdict.
+const HEADINGS = /^###[ \t]+(?:\p{Extended_Pictographic}\u{FE0F}?[ \t]+)?(.+?)[ \t]*$/gmu;
+const SUPPRESSED = /^###[ \t]+Suppressed comments \((\d+)\)[ \t]*$/mu;
 const SUPPRESSED_MARKER = /^Suppressed comments \(/u;
-
-// The verdict is quoted verbatim from an external review body into evidence
-// lines that `pr state` and `merge-bot merge` write to a terminal, so control
-// and format characters (an escape sequence, a zero-width mark) are dropped
-// before it leaves this module; every consumer sees printable text only.
-const NON_PRINTABLE = /[\p{Cc}\p{Cf}]/gu;
 
 function headlineVerdict(body: string): string | null {
   for (const heading of body.matchAll(HEADINGS)) {
     const text = heading[1] ?? '';
-    if (!SUPPRESSED_MARKER.test(text)) {
-      return text.replaceAll(NON_PRINTABLE, '');
+    // A heading that was only control or format characters is no verdict.
+    if (text !== '' && !SUPPRESSED_MARKER.test(text)) {
+      return text;
     }
   }
   return null;
 }
 
+/**
+ * The tally classifies and counts on the body with its control and format
+ * characters dropped (printable.ts), so a marker or a verdict a zero-width
+ * mark would have split is read as what it shows, and the verdict handed on
+ * is already what the writers will print.
+ */
 export function tallyReviewBody(body: string): BodyTally {
-  const suppressed = SUPPRESSED.exec(body);
+  const shown = printableBlock(body);
+  const suppressed = SUPPRESSED.exec(shown);
   return {
-    verdict: headlineVerdict(body),
+    verdict: headlineVerdict(shown),
     suppressed: suppressed === null ? 0 : Number(suppressed[1]),
   };
 }

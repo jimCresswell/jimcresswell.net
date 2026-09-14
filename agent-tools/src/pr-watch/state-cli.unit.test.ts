@@ -67,6 +67,25 @@ describe('runPrStateCli', () => {
     expect(stdout.text).toContain('failed check: SonarCloud Code Analysis');
   });
 
+  it('prints external text inert: a check named with a terminal hyperlink sequence loses its controls', () => {
+    // A fork PR's workflow chooses its job names; an OSC 8 sequence in one
+    // would make the evidence line a clickable link to wherever it says.
+    const { exit, stdout } = run(['state', '461'], {
+      reading: reading({
+        namedChecks: [
+          {
+            name: '\u{1B}]8;;https://evil.example\u{07}pnpm check\u{1B}]8;;\u{07}',
+            bucket: 'failed',
+          },
+        ],
+      }),
+    });
+    expect(exit).toBe(0);
+    expect(stdout.text).toContain('failed check: ]8;;https://evil.example' + 'pnpm check]8;;');
+    expect(stdout.text).not.toContain('\u{1B}');
+    expect(stdout.text).not.toContain('\u{07}');
+  });
+
   it('emits the full reading and verdict as JSON with --json', () => {
     const { exit, stdout } = run(['state', '461', '--json']);
     expect(exit).toBe(0);

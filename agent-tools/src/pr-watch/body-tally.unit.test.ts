@@ -65,9 +65,21 @@ describe('tallyReviewBody', () => {
     });
   });
 
-  it('the verdict reaches its consumers printable: control and format characters are dropped', () => {
-    // The verdict is quoted from an external body into terminal lines.
-    const body = '### \u{1B}[31mNeeds\u{1B}[0m a closer​ look';
+  it('the tally reads the body as shown: control and format characters are dropped before it classifies', () => {
+    // An SGR escape (Cc), a zero-width space (Cf) and a bell (Cc), every one
+    // written as an escape so the fixture is legible and the encoding gate
+    // sees no raw control byte in the source.
+    const body = '### \u{1B}[31mNeeds\u{1B}[0m a closer\u{200B} look\u{07}';
     expect(tallyReviewBody(body).verdict).toBe('[31mNeeds[0m a closer look');
+  });
+
+  it('a marker split by a zero-width mark is still the marker, never the verdict, and still counts', () => {
+    const body = '### Suppressed\u{200B} comments (6)';
+    expect(tallyReviewBody(body)).toEqual({ verdict: null, suppressed: 6 });
+  });
+
+  it('a heading that is only control characters is no verdict', () => {
+    // A bell, an escape and a zero-width space: nothing a terminal would show.
+    expect(tallyReviewBody('### \u{07}\u{1B}\u{200B}\n### Looks good').verdict).toBe('Looks good');
   });
 });
