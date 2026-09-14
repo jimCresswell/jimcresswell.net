@@ -612,6 +612,16 @@ ones the Director would put to the owner had the owner been present.
     own timing. This branch opens as the records-4 pull request from a branch frozen at open
     (candidate F's re-scoped prediction: at most two rounds). REVIEW: the 85-minute silence
     of both seats; the owner sees it here first.
+59. Records-4 is PR #70 (`SHA: 79cdf98`, frozen at open; Copilot requested, the bot armed);
+    items from 59 accumulate on `chore/director-records-5`, stacked on it. Lane A asked a swap
+    (02:39Z on 2026-09-14): 5c ready first, 5a-iv's code-expert verdict still running; accepted,
+    readiness decides order. 5c pushes at `SHA: 7b1a3e0` (six commits from `SHA: f362cce`,
+    two forward-only merges of main to `SHA: a70521e`; code-expert: approved with suggestions,
+    taken). Two items named and not taken go on the morning cards: the write-hook now blocks
+    a new ADR, PDR or README that carries the lineage's names (the block's reappraisal text
+    says that is wanted); the oak- family of names a literal needle cannot see (a worktree
+    fixture, the skills prefix, OakText) sits outside the slice's declared scope. Lens 3.
+    REVIEW: the two named items.
 
 ## Routing log
 
