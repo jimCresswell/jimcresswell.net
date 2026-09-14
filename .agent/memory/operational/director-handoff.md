@@ -1022,6 +1022,20 @@ ones the Director would put to the owner had the owner been present.
     had to be re-run once: `git rev-parse --short` grew the tip to eight characters and the
     seven-character comparison never matched (the napkin carries it; every chain script now
     pins the length). Lens 1.
+91. 5a-vi opened as PR #79 (`fix/merge-bot-suppressed-hold` at `SHA: 0fb988d`, 08:19Z on
+    2026-09-14) by lane A; chain armed. Its code-expert pass found three blocking defects,
+    cured before the push: the sentence is parsed by the " — " separator with the verbs
+    anchored (no pattern over comment text, which was super-linear and unanchored); a line
+    lifts only from a comment whose author is the repository owner or the pull request's
+    author, on top of the ratified signed-line check; the wording swept to "the machine reads
+    the verb, the rationale is the reader's convention". Ten mutants killed; a live read of
+    #77 through the new comments leg names Copilot's six suppressed findings, zero lifted.
+    The pull request body carries the REVIEW line on the sentence rule (item 88). Lane A
+    authored the three new suites in one pass rather than cells first, stated in the commit
+    body; the mutants are the evidence the cells bite. Lane A now on #77 round two. Records-9
+    stays local until the next natural boundary (the owner's question at 08:15Z on whether
+    the close is still bounded, answered with the item table: the Director's records loop is
+    the drag; fewer, later records pull requests are the cure). Lens 1.
 
 ## Routing log
 
