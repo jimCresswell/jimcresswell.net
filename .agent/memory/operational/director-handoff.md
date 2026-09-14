@@ -50,7 +50,7 @@ Every line answered first-hand, none inferred:
   archive holds only processed material.
 - The transplant is bounded: closure items 3 to 8 finish it, then editorial work.
 
-## Current handoff state (2026-09-13, 23:35Z, n=2 with lane A; owner away)
+## Current handoff state (2026-09-14, 00:05Z, n=2 with lane A; owner away)
 
 Where this block and the routing log disagree, the log's last entry is current; this block is
 rewritten at each Director push.

@@ -64,7 +64,8 @@ names a live branch):
   live rows, split as twenty-eight decision-debt blocks (the parser's readout: five 2026-09-12
   captures plus twenty-three session 2 entries) and five constitutional rows in PDR-130's slow
   lane, which are not decision-debt. The live continuation is the owner's one batch of cards;
-  the napkins are archived only after it.
+  the napkins are archived only after two gates: the fast-lane cards answered and the owner's
+  privacy review of the three napkins done.
 - The generators: the rules-index and trigger generator is lane B's PR #55 (item 6, PR 1);
   the sub-agent adapter generator (2b) and the 2a remainder are handed back to the Director
   (lane B's handoff record v3).
@@ -121,6 +122,7 @@ Director's handoff. Live now, in order:
    then 2a, 2b, the Gemini projection, the corpus-analysis work, `sif`), and item 7 last.
 2. Session 2's cards: the owner answers the register's session 2 entries in one batch
    (`threads/session-2-synthesis.next-session.md` §Next safe step); graduations land as their
-   own small pull requests; the napkins are archived after the answers.
+   own small pull requests; the napkins are archived after two gates, the fast-lane answers
+   and the owner's privacy review of the three napkins.
 3. The `practice-language-separation` node (sketch; not urgent) awaits ratification on cards; the
    tooling residue named in the plan (§Oak residue in tooling) rides item 5.
