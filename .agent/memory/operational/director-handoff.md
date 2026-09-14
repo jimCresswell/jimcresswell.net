@@ -793,6 +793,28 @@ ones the Director would put to the owner had the owner been present.
     live smoke that Claude expands the @ import inside a path-scoped rule, which is the
     owner's falsifier on the body's REVIEW line, left as it is). Routed to lane A as one
     commit ahead of 2b-i. Lens 1.
+78. The owner's morning cards (06:05Z to 06:24Z on 2026-09-14), answered as user cards, one
+    entry each. Fast lane: every entry graduated (D, F, I, J, X, K, L, M, N, O, P, Q, R, V,
+    verify-list 3, 4a to 4e, 5b/5c/5f, S, T, 2b, 2c, 6), and 7 (the allowed-signers file)
+    graduated on its own detailed card with the setup recipe beside the merge-bot clause.
+    Slow lane: A, B, C, 1a, 1b all promoted now, the owner's ruling recorded on each register
+    row. Proposal E: adopted as a PDR-082 amendment by card (the 120-second state line as the
+    n=2 liveness convention). Privacy review of the three napkins: later, so they stay under
+    `unconsolidated/` after the graduations. PDR-008 and PDR-132: both amended by card. The
+    leak-gate needles: the declared block stands. The lineage-name hook and the oak- family:
+    as they are. Suppressed body findings: block on any finding (item 5a-vi, a fourth
+    measured-state clause, before 2b-ii). Lane A's order after 2b-i's pull request: 5a-vi,
+    the three PDR amendments in one PR, 5c-ii, 5a-v, the graduations one home per PR, 2b-ii.
+79. The @-import falsifier, run by the Director at the owner's word (06:24Z): two headless
+    sessions from a detached worktree at #74's tip (`SHA: 62bd5ff`). Reading a matching file
+    or reading nothing, the canonical body of a path-scoped rule sat in the starting context
+    with no adapter pointer visible; on `main` today it does not. So the `@` import expands at
+    launch and `paths:` scoping does not defer it: all 28 scoped adapters (all carry the
+    import) load their canonical bodies at start, the opposite of scoping's purpose; the docs
+    are silent on imports in rule files and say scoped rules trigger on a matching read.
+    Ruling for #74 (round three granted, the design's central claim): scoped adapters render
+    the plain pointer the unscoped ones use, no `@`; a generator cell pins it; the body's
+    REVIEW line becomes this measured fact. Lens 1. REVIEW: none; the falsifier decided it.
 
 ## Routing log
 
