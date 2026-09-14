@@ -121,8 +121,12 @@ export function hasLanded(review: HarvestedReview): boolean {
 // it removes the reply from body-tally evidence (settlement.ts) and, most
 // dangerously, drops its author from the DEFAULTED expected-reviewer set
 // (state-gh.ts), which can settle a round without a real reviewer — while a
-// false NEGATIVE costs one wrong body-tally evidence line and a phantom leg
-// in a defaulted set, ended by the timeout arm — so the ratified non-hex,
+// false NEGATIVE costs one wrong body-tally evidence line and, in a defaulted
+// set, an unnecessary leg for the reply's author: on the reply's own tip the
+// reply itself satisfies it (state-gh.ts adds the author; computeReviewerLegs
+// reads the tip-bound reply as landed), and on every later tip it reads OWED
+// until the timeout arm ends it as SETTLED-NO-REVIEW, a wrong read that is
+// never a wrong merge — so the ratified non-hex,
 // uppercase-prefix, and hyphen-bearing-prefix rows (the 2a token table in
 // tests/collaboration-state/visual-disambiguator.unit.test.ts) are
 // deliberate non-matches, and this stays a predicate, never an extractor

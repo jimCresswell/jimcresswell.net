@@ -839,8 +839,10 @@ deliberately gone — triage binds from wave one. **The step-back trigger is
    otherwise satisfy SKIPPED for every later tip forever). The TIMEOUT leg:
    no review bound to the tip after the checks-green timeout
    (>10 min from the tip's checks reaching green, the one clock in the
-   state machine; a request still outstanding past it is the leg nobody
-   served, and the timeout ends the watch); record the skip with its
+   state machine; a request still outstanding past it on an OWED leg is the
+   leg nobody served, and the timeout ends the watch; a re-request on a leg
+   already SATISFIED by a tip-bound review is item 4's round in flight,
+   never a skip); record the skip with its
    evidence (reviewer, tip SHA, timeout bounds) in the shepherd's working
    notes (round-2 correction, 2026-07-16: without the timeout the gate goes
    permanently unsatisfiable the moment a reviewer stops reviewing — on
@@ -944,9 +946,11 @@ deliberately gone — triage binds from wave one. **The step-back trigger is
    correctly). The proxy went on the owner's word ("nothing is happening on
    the PR ... the 'quiet window' could be replaced with measured state",
    2026-09-13, on #56): the platform clears the request when the review
-   lands, the compound read takes its threads after the review harvest (so
-   a review seen landed has its threads on the read, and one not yet landed
-   shows as its request), an OWED leg nobody serves is ended by item 3's
+   lands, the compound read brackets its thread read with a review harvest
+   on each side that must agree, re-reading on a landing (so a review seen
+   landed has its threads on the read, and one not yet landed shows as its
+   request; a round opening after the bracket is the next poll's, or the
+   post-merge harvest's), an OWED leg nobody serves is ended by item 3's
    timeout, the one clock that remains, and a re-request on a satisfied tip
    is bounded by the watcher's poll budget. MERGE-READY is a settled round with zero
    UNDISPOSITIONED findings and a cure-worthy count of zero (item 2's
@@ -1468,8 +1472,10 @@ does not bind GitHub's delete-on-merge setting.
 **One post-merge harvest before stand-down.** MERGED ends the merge-state
 question, not the feedback stream: a bot round composing at merge time still
 posts findings on the merged code minutes later. Apply item 4's measured
-predicate ONCE after MERGED (one final full harvest once no request is
-outstanding and no run is live); route any real finding to a follow-up
+predicate ONCE after MERGED (one final full harvest once no expected
+reviewer has an outstanding request and no live run is observed, any
+unavailable run surface named; the owner's credential request registered on
+the owner never holds it); route any real finding to a follow-up
 branch, never to the merged PR's branch. The owner's settled word from his
 own visibility supersedes the read (owner ruling, 2026-07-2x): when he says
 it is settled, it is settled.
