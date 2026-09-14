@@ -59,11 +59,16 @@ rewritten at each Director push.
   branch `chore/director-records-3` from `main` at `SHA: 6528ecb` (records only; the Director makes
   no source edits).
 - Controlling node: `.agent/plans/delivery/practice-completion.plan.md` §Transplant closure.
-  Landed on `main`: item 1 (archive deleted), item 2 (PR #53, `SHA: 55649a2`), item 3 (PR #56,
-  `SHA: 1829cd4`), item 4 as bounded (PR #57, `SHA: 4a61112`), the Director records and the channel rule
-  (PR #54, `SHA: c426c6c`).
-- Open pull requests: #62 (this records branch; its final waypoint is the round-fifteen cure,
-  overnight items to 35 here, items from 36 on the stacked `chore/director-records-4` branch,
+  Landed on `main`, every component: item 1 (archive deleted), item 2 (PR #53,
+  `SHA: 55649a2`), item 3 (PR #56, `SHA: 1829cd4`), item 4 as bounded (PR #57, `SHA: 4a61112`;
+  the restore carried in #58), item 6's sweep (PR #55, `SHA: 7127bc4`), item 8 filed (PR #63,
+  `SHA: dc23dff`), the per-checkout Playwright port (PR #60, `SHA: 4370e04`) and its follow-on
+  (PR #66, `SHA: 0ec4583`), item 5a-i (PR #64, `SHA: 38e9693`), the Cricket quartet (PR #61,
+  `SHA: ea3142b`), the Director records and the channel rule (PR #54, `SHA: c426c6c`; PR #58,
+  `SHA: 6528ecb`). Not landed: item 5's remaining parts, 2a, 2b, the handed-back residue, item 7.
+- Open pull requests: #62 (this records branch; frozen for new items at overnight item 35,
+  thread cures still landing here, the final waypoint being the round-seventeen cure; items
+  from 36 on the stacked `chore/director-records-4` branch,
   which opens after #62 merges), #65 (lane A, item 5a-ii, measured state, round three) and #66
   (lane A, the e2e follow-on, `SHA: 8e72969`, Copilot bound). Merged: #54, #56, #57, #58, #61, #55 (`SHA: 7127bc4`), #63
   (`SHA: dc23dff`, session 2's register), #60 (`SHA: 4370e04`, the per-checkout Playwright port
@@ -77,9 +82,12 @@ rewritten at each Director push.
   Copilot here (the owner's CLI credential can; the request registers on the timeline within a
   minute unless the previous request's review is still in flight, when it registers nothing; the
   review takes 8 to 15 minutes); a push re-opens the round; `merge-bot merge --expect
-  copilot-pull-request-reviewer` binds the leg and merges only at SETTLE-READY (a ten-minute
-  quiet window after the last review, which the owner wants replaced by measured state); pushes
-  serialise for host load: the seat asks, the Director confirms, the seat pushes and releases.
+  copilot-pull-request-reviewer` binds the leg and merges only at SETTLE-READY (historical
+  until #65 lands: a ten-minute quiet window after the last review; from #65, item 5a-ii,
+  measured state: every leg landed, no expected reviewer request outstanding, no live run
+  observed, any unavailable run surface named); pushes serialise for host load: the seat asks,
+  the Director confirms, the seat pushes and releases, and a granted slot is held until
+  released.
 - Re-arm after compaction, checking first (PDR-133): the all-channels comms watcher (Monitor,
   `comms watch --exclude-tag heartbeat`), then `assert-watcher-live`; the ARC channel tail; no
   heartbeat loop at n=2. Checked 15:39Z: background tasks outlive a compaction.
@@ -331,7 +339,8 @@ ones the Director would put to the owner had the owner been present.
 26. PR #63 merged by the bot at `SHA: dc23dff` (22:39Z): session 2's twenty-eight entries on the
     register in the counter's shape, the five existing migrated, five in the slow lane, readout 28
     pending. The morning cards are the dispositions (the ratified item 8); the napkins under
-    `unconsolidated/` archive only after them. Ruling: item 5a-i opens its PR from `main` at
+    `unconsolidated/` archive only after two gates, the answered fast-lane cards and the
+    owner's privacy review of the three napkins (item 5). Ruling: item 5a-i opens its PR from `main` at
     `SHA: dc23dff` without waiting for #60 (no shared files). Open: #60, #62.
 27. #60 round six (Copilot on `SHA: c60e28c`, the redesign's first pass, about 22:45Z): two small
     real defects, none on the shape (a race timer never cleared in a cell; a signal-handler gap
@@ -397,6 +406,9 @@ ones the Director would put to the owner had the owner been present.
     records-4 branch stacked on it and open as a new pull request only after #62 merges, so the
     reviewed tip stops moving. Lens 1 (each round re-reviews the whole file and finds the drift
     the previous round's wait produced). REVIEW: thirteen rounds on one records pull request.
+    As executed: the freeze covers new items only; thread cures kept landing on this branch
+    (rounds fourteen to seventeen), each the same commit as its round's suppressed findings,
+    because the bot merges at zero threads; the final waypoint is the round-seventeen cure.
 36. #65 round one (23:30Z on 2026-09-13): one thread, taken in full: the measured predicate
     mapped an unavailable run leg and a truncated read to "no run", so an unobservable run
     surface could read SETTLE-READY. Verdict on lane A's recommendation: name, do not block.
@@ -472,6 +484,13 @@ ones the Director would put to the owner had the owner been present.
     archive gate where the thread names two) and four suppressed (the header stamp behind the
     routing log; the same gate in the next-step summary; step 3's slow-lane clause; the draft
     section still labelled `draft`). All five cured at `SHA: 8950536`. Lens 1.
+45. #62 round seventeen (00:12Z on 2026-09-14): two threads (the archive gate again, in a
+    routing entry and the synthesis acceptance line) and three suppressed (the freeze
+    statement against item 35; the landed-on-main line partial; the merge-mechanics block still
+    naming the quiet window). All five cured at `SHA: 7abb8d1`; item 35 carries an as-executed
+    note (the freeze covers new items only; thread cures kept landing). #65 round four is on
+    origin at `SHA: 3802031` (the thread read bracketed by a harvest on each side, agree or
+    re-read once, fail loud on two; the three text items), the Director's chain on it. Lens 1.
 
 ## Routing log
 
