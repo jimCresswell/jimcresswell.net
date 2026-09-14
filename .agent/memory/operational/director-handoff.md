@@ -786,6 +786,13 @@ ones the Director would put to the owner had the owner been present.
     2b-i, 5c-ii, 5a-v, 2b-ii, as item 71 and the next step have it. #74's cure at
     `SHA: 9c95877` (eight items, three code-expert items, seven mutants) pushes on lane A's
     slot; the chain waits on origin for it. Standing ruling.
+77. #74 round two (04:01Z on 2026-09-14), the last free round: two threads (the Codex byte
+    budget check re-reads the index through a following read after the no-follow leg refused
+    a symlink; the new `exists` contract throws on any non-ENOENT failure and the skill walk
+    has no catch, so an unreadable canonical skill aborts the command) and one suppressed (a
+    live smoke that Claude expands the @ import inside a path-scoped rule, which is the
+    owner's falsifier on the body's REVIEW line, left as it is). Routed to lane A as one
+    commit ahead of 2b-i. Lens 1.
 
 ## Routing log
 
