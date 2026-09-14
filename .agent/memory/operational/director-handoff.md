@@ -1250,6 +1250,28 @@ ones the Director would put to the owner had the owner been present.
      round two. Slice B green locally behind it. Records-10's local branch deleted; this
      branch is records-11, cut from `main` at `SHA: 76d2f29`.
 
+104. #83 (2b-ii A2) merged at 17:35Z (`SHA: aba2c0e`) on its second review, zero threads and
+     zero suppressed, the first clean two-round pull request under the ruling. #84 (2b-ii B,
+     the Gemini row) opened 17:37Z; round one's real findings were the capability envelope
+     (the three corpus roles declare no tool set; their Claude, Cursor and Codex adapters have
+     carried read tools since the transplant, the Gemini row inherited the drift): cured by the
+     two no-tools roles declaring their platforms without gemini, the mapper declaring one read
+     tool, and the renderer refusing an empty Gemini tool list (the schema keeps the vendor's
+     form, the card's ruling). Both seats went dark on the model's usage limit from about
+     18:20Z to 19:41Z; nothing moved on GitHub in the gap; on return the watcher was re-armed
+     and lane A's reading that no round-two review existed was corrected from the reviews
+     list. #84 merged at 19:43Z (`SHA: b17fee8`) on six signed rejections after its second
+     review; four are accepted defects with their home on the 2b follow-on list, the
+     reader-retirement pull request: a variant naming gemini without a block would inherit
+     every tool (no instance at the tip); the hand-kept adapter inventories in corpus-mapper,
+     corpus-meta and the architect brief name three surfaces of four; the SourcePlatform
+     comment is stale. Closure item 6 is complete on `main` (the sweep, 2a, 2b-i, 2b-ii A1,
+     A2 and B). Item 4's residue: row 6 open as #85 (round two's four scrub cures staged, its
+     code-expert pass relaunched after the limit); row 3 the restore pull request next
+     (corpus-analysis and workflow-build together, esbuild as a devDependency, nothing under
+     `.agent/state`: the todo's workflow file has no corpus referent at the pin, a
+     non-blocking card to the owner); row 5 after.
+
 ## Routing log
 
 - 2026-09-13 evening: seat opened; team-start `ca1ba4d8`; lanes A, B, C authored, unfilled.
