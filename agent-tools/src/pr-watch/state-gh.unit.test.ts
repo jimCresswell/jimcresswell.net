@@ -144,16 +144,22 @@ describe('readPrStateReading', () => {
     expect(reading.issueComments).toEqual([
       { author: 'jimCresswell', body: 'a disposition comment\n\n— Seat (abc123)' },
     ]);
-    // Issue comments are mutable, so the leg is read after the confirm, the
-    // freshest leg of the reading; a line binds itself to the tip by its own
-    // SHA and review id, and a comment landing after the read is the next
-    // poll's (#79 round one, 2026-09-14).
+    // The comments leg reads inside the harvest bracket, before the confirm
+    // view, and the closing harvest is the last call: a line binds itself to
+    // the tip by its own SHA and review id, and a comment landing after the
+    // bracket closes is the next poll's (#79 rounds one and three, 2026-09-14).
     const isCommentsCall = (call: readonly string[]): boolean =>
       call.some((arg) => arg.includes('comments(first: 100'));
     const isViewCall = (call: readonly string[]): boolean => call[0] === 'pr';
+    const isHarvestCall = (call: readonly string[]): boolean =>
+      call[0] === 'api' &&
+      !isCommentsCall(call) &&
+      !call.some((arg) => arg.includes('reviewThreads'));
     const commentsAt = calls.findIndex(isCommentsCall);
     const lastViewAt = calls.map(isViewCall).lastIndexOf(true);
-    expect(commentsAt).toBeGreaterThan(lastViewAt);
+    const lastHarvestAt = calls.map(isHarvestCall).lastIndexOf(true);
+    expect(lastViewAt).toBeGreaterThan(commentsAt);
+    expect(lastHarvestAt).toBe(calls.length - 1);
     expect(reading.reviewThreads).toEqual({ total: 2, unresolved: 0 });
     expect(reading.reviews).toHaveLength(1);
     // Only the run mapped to THIS PR survives; the other PR's run is filtered.

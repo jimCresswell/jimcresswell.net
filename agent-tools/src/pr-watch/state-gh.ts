@@ -9,7 +9,7 @@ import {
   type PrTarget,
 } from './gh.js';
 import { readReviewRunsLeg } from './review-runs.js';
-import { readHarvestAndThreads } from './harvest-bracket.js';
+import { readHarvestBracket, readReviewThreads } from './harvest-bracket.js';
 import { readIssueComments } from './issue-comments.js';
 import { hasLanded, isSignedSelfReply } from './reviewer-legs.js';
 import { parseStateView, PR_STATE_VIEW_JSON_FIELDS } from './state-fields.js';
@@ -95,14 +95,17 @@ function expectedSet(
 /**
  * Fetch the `pr state` gh surfaces and compose the compound reading.
  *
- * The harvest (reviews and requests) brackets the thread read and must agree
- * on both sides (readHarvestAndThreads), so a review seen landed has its
- * threads on the reading and a review not yet landed shows as its request;
- * a review landing inside the bracket re-reads the threads.
+ * The harvest (reviews and requests) brackets every other leg, the confirm
+ * view last, and must agree on both sides (readHarvestBracket), so a review
+ * seen landed has its threads on the reading, a review not yet landed shows
+ * as its request, and a review landing during any leg, the confirm included,
+ * re-reads the legs behind it (#65 round four; #79 round three).
  *
- * @throws when the primary `pr view`, review-threads, or reviews-harvest legs
- *   fail (a verdict without them would be a guess); only the agent-task leg
- *   degrades typed.
+ * @throws when the primary `pr view`, review-threads, reviews-harvest or
+ *   issue-comments legs fail (a verdict without them would be a guess), when
+ *   an open PR's mergeability is not yet computed on either view read, or
+ *   when the tip or the harvest moves on consecutive attempts; only the
+ *   agent-task leg degrades typed.
  */
 
 export function readPrStateReading(options: ReadPrStateOptions): PrStateReading {
@@ -117,32 +120,27 @@ export function readPrStateReading(options: ReadPrStateOptions): PrStateReading 
   }
 
   let view = readMergeabilityComputedView({ run, gh, viewArgs, prNumber });
+  const legInput = { run, gh, prNumber, repo };
   for (let attempt = 0; attempt < TIP_CONSISTENT_ATTEMPTS; attempt += 1) {
-    const { reviews, reviewRequests, reviewThreads } = readHarvestAndThreads({
-      run,
-      gh,
-      prNumber,
-      repo,
-    });
-    const reviewRuns = readReviewRunsLeg({ run, gh, prNumber: number, prUrl: view.url });
-    // The confirm read closes the race window; on a match it is also the
-    // freshest same-tip snapshot, so the reading composes from it.
-    const confirm = readMergeabilityComputedView({ run, gh, viewArgs, prNumber });
+    const prUrl = view.url;
+    // Every leg reads inside one harvest bracket, the confirm view last: the
+    // confirm closes the tip's race window and, on a match, is the freshest
+    // same-tip snapshot the reading composes from; the closing harvest then
+    // proves no review landed during any leg. The dispositions of body-only
+    // findings are mutable comments: a line binds itself to the tip and the
+    // review by its own SHA and review id (suppressed-hold.ts), and a comment
+    // landing after the bracket closes is the next poll's.
+    const { confirm, ...legs } = readHarvestBracket(legInput, () => ({
+      reviewThreads: readReviewThreads(legInput),
+      reviewRuns: readReviewRunsLeg({ run, gh, prNumber: number, prUrl }),
+      issueComments: readIssueComments(legInput),
+      confirm: readMergeabilityComputedView({ run, gh, viewArgs, prNumber }),
+    }));
     if (confirm.headRefOid === view.headRefOid) {
-      // The dispositions of body-only findings are mutable comments, read after
-      // the confirm so they are the freshest leg of the reading; a line binds
-      // itself to the tip and the review by its own SHA and review id
-      // (suppressed-hold.ts), and a comment landing after this read is the
-      // next poll's.
-      const issueComments = readIssueComments({ run, gh, prNumber, repo });
       return {
         ...confirm,
-        reviewThreads,
-        reviewRequests,
-        reviews,
-        reviewRuns,
-        issueComments,
-        ...expectedSet(options.expectedReviewers ?? [], reviews, reviewRequests),
+        ...legs,
+        ...expectedSet(options.expectedReviewers ?? [], legs.reviews, legs.reviewRequests),
       };
     }
     view = confirm;

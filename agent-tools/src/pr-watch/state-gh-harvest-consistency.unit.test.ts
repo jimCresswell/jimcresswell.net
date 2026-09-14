@@ -6,11 +6,12 @@ import { commentsPayload, graphqlResponse } from './test-helpers/state-gh-payloa
 import type { GhCommandExecutor } from './gh.js';
 
 /**
- * The compound read's harvest bracket (#65 round four, 2026-09-14): the
- * reviews-and-requests harvest is read on both sides of the thread read and
- * must agree, so a review landing between a harvest and the thread read is on
- * the reading with its threads, never settled over. Injected executor, no
- * real gh; the harvest served per call scripts the landing.
+ * The compound read's harvest bracket (#65 round four; #79 round three,
+ * 2026-09-14): the reviews-and-requests harvest is read on both sides of every
+ * other leg, the confirm view last, and must agree, so a review landing during
+ * any leg is on the reading with its threads, never settled over. Injected
+ * executor, no real gh; the harvest served per call, or timed by a view call,
+ * scripts the landing.
  */
 
 const HEAD = stateViewFixture().headRefOid;
@@ -66,18 +67,24 @@ function harvestPayload(
 const FIRST = review('Reviewed 2 of 2 files.', '2026-07-21T12:00:00Z');
 const LANDING = review('Needs a closer look. 3 suppressed findings.', '2026-07-21T12:09:00Z');
 
+interface LandingScript {
+  readonly harvests: readonly string[];
+  readonly threads: readonly string[];
+  /** A landing timed by a `pr view` call: from that call on, every harvest carries it. */
+  readonly landingOnView?: { readonly call: number; readonly harvest: string };
+}
+
 /**
  * Serves one harvest per harvest call and one threads page per thread call
- * (the last of each repeats), so a landing between the calls is scripted. The
+ * (the last of each repeats), so a landing between the calls is scripted; a
+ * landing timed by a view call overrides the harvest from that call on. The
  * dispatch is the shared `graphqlResponse`, so a harvest is served only to a
  * query that selects the request connection (the #67 body finding).
  */
-function landingExecutor(
-  script: { readonly harvests: readonly string[]; readonly threads: readonly string[] },
-  calls: string[][],
-): GhCommandExecutor {
+function landingExecutor(script: LandingScript, calls: string[][]): GhCommandExecutor {
   let harvestCall = 0;
   let threadsCall = 0;
+  let viewCall = 0;
   const served = (pages: readonly string[], call: number): string =>
     pages[Math.min(call, pages.length - 1)] ?? '';
   const payloads = {
@@ -87,6 +94,10 @@ function landingExecutor(
     },
     harvest: (): string => {
       harvestCall += 1;
+      const landing = script.landingOnView;
+      if (landing !== undefined && viewCall >= landing.call) {
+        return landing.harvest;
+      }
       return served(script.harvests, harvestCall - 1);
     },
     comments: (): string => commentsPayload(),
@@ -94,6 +105,7 @@ function landingExecutor(
   return (_file, args) => {
     calls.push([...args]);
     if (args[0] === 'pr') {
+      viewCall += 1;
       return JSON.stringify(stateViewFixture());
     }
     if (args[0] === 'api') {
@@ -114,6 +126,10 @@ const isHarvestCall = (args: readonly string[]): boolean =>
   );
 const isThreadsCall = (args: readonly string[]): boolean =>
   args[0] === 'api' && args.some((arg) => arg.includes('reviewThreads'));
+const isCommentsCall = (args: readonly string[]): boolean =>
+  args[0] === 'api' &&
+  args.some((arg) => arg.includes('comments(') && !arg.includes('reviewThreads'));
+const isViewCall = (args: readonly string[]): boolean => args[0] === 'pr';
 
 describe('readPrStateReading — the harvest brackets the thread read (#65 round four)', () => {
   it('a request registered between the harvest and the thread read moves the bracket: the request is on the reading, threads re-read', () => {
@@ -157,6 +173,34 @@ describe('readPrStateReading — the harvest brackets the thread read (#65 round
     // Harvest before, harvest after (moved), harvest after the re-read (held).
     expect(calls.filter(isHarvestCall)).toHaveLength(3);
     expect(calls.filter(isThreadsCall)).toHaveLength(2);
+  });
+
+  it('a review landing at the confirm view, after the thread read, is on the reading: the bracket closes after the confirm and the comments (#79 round three)', () => {
+    const calls: string[][] = [];
+    const reading = readPrStateReading({
+      target: { number: 461 },
+      ghPath: '/usr/bin/gh',
+      exists: () => true,
+      expectedReviewers: [COPILOT],
+      execFileSync: landingExecutor(
+        {
+          harvests: [harvestPayload([FIRST])],
+          threads: [threadsPayload(0)],
+          // The landing is timed by the confirm view (the second view call):
+          // a bracket closed before the confirm never reads it.
+          landingOnView: { call: 2, harvest: harvestPayload([FIRST, LANDING]) },
+        },
+        calls,
+      ),
+    });
+    expect(reading.reviews.map((entry) => entry.body)).toEqual([FIRST.body, LANDING.body]);
+    // Every leg reads inside one bracket: the closing harvest is the last
+    // call, after the confirm view, which is after the comments.
+    const lastHarvestAt = calls.map(isHarvestCall).lastIndexOf(true);
+    const lastViewAt = calls.map(isViewCall).lastIndexOf(true);
+    const lastCommentsAt = calls.map(isCommentsCall).lastIndexOf(true);
+    expect(lastHarvestAt).toBe(calls.length - 1);
+    expect(lastViewAt).toBeGreaterThan(lastCommentsAt);
   });
 
   it('a quiet PR reads the harvest twice and the threads once', () => {

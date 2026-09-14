@@ -112,6 +112,14 @@ describe('suppressedHolds', () => {
     expect(byBot).toStrictEqual([]);
   });
 
+  it('never reads a bot-suffixed login as the bare login: `jimcresswell[bot]` is not the owner and lifts nothing', () => {
+    const cure = line('item 1 of 1', 'Cured in SHA:9f8e7d6');
+    const bySuffixed = suppressedHolds(
+      reading([closerLook(1)], [comment('jimcresswell[bot]', cure)]),
+    );
+    expect(bySuffixed.map((hold) => hold.lifted)).toStrictEqual([0]);
+  });
+
   it('never treats the deleted-account sentinel as an identity: with the pull request author unknown, a sentinel-authored line lifts nothing and the owner still lifts', () => {
     const cure = line('item 1 of 1', 'Cured in SHA:9f8e7d6');
     const bySentinel = {

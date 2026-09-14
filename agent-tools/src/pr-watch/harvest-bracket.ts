@@ -5,19 +5,23 @@ import { parseReviewThreadPages, type ReviewThreadsSummary } from './review-thre
 /**
  * The `pr state` review surfaces: the FULL paginated reviews harvest (the
  * reviewer-leg source — never the `latestReviews` pointer) with the
- * outstanding requests riding the same query, and the review-threads slurp
- * (shared with `pr-watch`), read as one bracket.
+ * outstanding requests riding the same query, the review-threads slurp
+ * (shared with `pr-watch`), and the bracket that binds every other leg to
+ * the harvest.
  *
- * The harvest (reviews and requests) is read on BOTH sides of the thread read
- * and must agree. Reading it once before the threads left a window: an
- * expected reviewer already satisfied on the tip, re-requested after that
- * harvest returned and reviewing again (summary-only) before the thread
- * read, was absent from the reading with no thread, so nothing held the
- * round and it settled over the findings (Copilot's finding on #65, round
- * three, 2026-09-14). A harvest that moved re-reads the threads behind it;
- * two consecutive moves fail loud rather than compose across rounds. The
- * bracket binds one instant: a round opening after its closing harvest is the
- * next poll's, or the post-merge harvest's (pr-lifecycle SKILL, Phase 8).
+ * The harvest (reviews and requests) is read on BOTH sides of the legs and
+ * must agree. Reading it once before the threads left a window: an expected
+ * reviewer already satisfied on the tip, re-requested after that harvest
+ * returned and reviewing again (summary-only) before the thread read, was
+ * absent from the reading with no thread, so nothing held the round and it
+ * settled over the findings (Copilot's finding on #65, round three,
+ * 2026-09-14). Closing the bracket before the confirm view left the same
+ * window for a review landing during the later legs (#79, round three): the
+ * bracket now closes after every leg, the confirm view included. A harvest
+ * that moved re-reads the legs behind it; two consecutive moves fail loud
+ * rather than compose across rounds. The bracket binds one instant: a round
+ * opening after its closing harvest is the next poll's, or the post-merge
+ * harvest's (pr-lifecycle SKILL, Phase 8).
  */
 
 interface HarvestInput {
@@ -82,7 +86,8 @@ function readReviewHarvest(input: HarvestInput): ReviewHarvest {
   }
 }
 
-function readReviewThreads(input: HarvestInput) {
+/** The review-threads slurp; a leg the caller reads inside the bracket. */
+export function readReviewThreads(input: HarvestInput): ReviewThreadsSummary {
   return parseReviewThreadPages(
     parseGhJson(
       input.run(input.gh, reviewThreadsArgs(input.prNumber, input.repo), GH_EXEC_OPTIONS),
@@ -106,24 +111,30 @@ function sameHarvest(before: ReviewHarvest, after: ReviewHarvest): boolean {
 }
 
 /**
- * Read the reviews harvest and the review threads as one consistent bracket.
+ * Read the legs inside one consistent harvest bracket: the reviews harvest
+ * before `legs`, the legs, the harvest after; the two harvests must agree,
+ * and a moved harvest re-reads the legs behind it.
  *
- * @throws when a harvest fails, or when the review harvest or the request surface moves on
- *   consecutive attempts.
+ * The closing harvest owns `reviews` and `reviewRequests`: it is spread last,
+ * so a leg of either name is overwritten, and the type drops it.
+ *
+ * @throws when a harvest or a leg fails, or when the review harvest or the request surface
+ *   moves on consecutive attempts.
  */
-export function readHarvestAndThreads(
+export function readHarvestBracket<T>(
   input: HarvestInput,
-): ReviewHarvest & { readonly reviewThreads: ReviewThreadsSummary } {
+  legs: () => T,
+): Omit<T, keyof ReviewHarvest> & ReviewHarvest {
   let before = readReviewHarvest(input);
   for (let attempt = 0; attempt < HARVEST_CONSISTENT_ATTEMPTS; attempt += 1) {
-    const reviewThreads = readReviewThreads(input);
+    const inside = legs();
     const after = readReviewHarvest(input);
     if (sameHarvest(before, after)) {
-      return { ...after, reviewThreads };
+      return { ...inside, ...after };
     }
     before = after;
   }
   throw new Error(
-    `PR #${input.prNumber}: the review harvest or the request surface changed during the compound read on consecutive attempts — the harvest and the threads cannot bind one round; re-run when the PR is quiet`,
+    `PR #${input.prNumber}: the review harvest or the request surface changed during the compound read on consecutive attempts — the harvest and the legs inside it cannot bind one round; re-run when the PR is quiet`,
   );
 }

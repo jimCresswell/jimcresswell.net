@@ -1,12 +1,7 @@
 import { tallyReviewBody } from './body-tally.js';
 import { dispositionLifts, parseDispositionLines } from './disposition-lines.js';
 import type { IssueComment } from './issue-comments.js';
-import {
-  hasLanded,
-  isSignedSelfReply,
-  normaliseLogin,
-  type HarvestedReview,
-} from './reviewer-legs.js';
+import { hasLanded, isSignedSelfReply, type HarvestedReview } from './reviewer-legs.js';
 
 /**
  * The suppressed-findings hold: the fourth measured-state clause (closure item
@@ -54,9 +49,11 @@ export interface SuppressedHold {
 // One key for the two spellings of a login: `gh pr view` names an App author
 // `app/<slug>` while GraphQL names the same App's comments and reviews by the
 // bare slug (both verified live on PRs #77 and #74, 2026-09-14); users are the
-// same login on both, compared case-insensitively.
+// same login on both, compared case-insensitively. Only the prefix and the
+// case are normalised: a `[bot]` suffix (REST's spelling, which no leg here
+// reads) is part of the login, so `foo[bot]` is never the permitted `foo`.
 function loginKey(login: string): string {
-  return normaliseLogin(login.replace(/^app\//u, ''));
+  return login.replace(/^app\//u, '').toLowerCase();
 }
 
 /**
