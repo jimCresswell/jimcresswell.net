@@ -557,3 +557,24 @@ ends the class round one's comments finding belongs to). (3) `state-gh.ts:137`, 
 `readPrStateReading` `@throws` contract omits the issue-comments leg's failures; add it so
 the fail-closed contract is complete. Then #77 round three as designed above. Code-expert
 before each push; slot ask each time.
+
+### Addendum 09:02Z: cold pause on the owner's word; frozen until the owner lifts it
+
+The owner, minutes after the compaction landed: "Go into cold pause please, we need to wait
+for the session limit to reset". Applied as the standing cold-pause feedback reads: every
+owned process stopped and verified by process table at 09:00Z (no watcher, Monitor, cron or
+agent under this session; the one claude-platform watcher live on the host, supervisor pid
+55622, belongs to the Director's session, not to this seat), no push, no comms event, one
+line to the Director, no question asked. Claim f024e1f1's heartbeat was refreshed once at
+09:01Z (four-hour freshness, so it reads stale from 13:01Z if the pause outlasts it, which is
+honest state for a frozen seat). The freeze binds over any Director word: a slot "push now"
+arriving during the pause is held, not obeyed. On the owner's lift: re-ground per
+start-right-team, one native message to the Director before acting, then #79 round three as
+the 08:58Z addendum reads.
+
+Harvest from the pause entry: `assert-watcher-live --platform claude --model claude-fable-5-1`
+cannot tell this seat's watcher from the Director's (same platform and model; the re-arm
+recipe passes no session prefix), so it read "live" here while nothing of this seat's ran.
+Liveness of this seat's watcher is verified by the process table against the supervisor pid.
+The watcher accepts `--session-prefix` (the castr seat runs with it); adding
+`--session-prefix c39ad7` to the recipe is a proposal for the Director, not applied.

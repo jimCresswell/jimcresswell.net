@@ -1462,3 +1462,21 @@ checkpoint.
   small PR of amendments, item 7; the main uncertainty is 2b-ii's byte-equal regeneration
   against the seven normalised blocks on record; the cheapest next capability is the
   generator's first dry run diffed against the three trees.
+
+## Segment eleven (2026-09-14, 09:02Z): cold pause after the second compaction
+
+- The owner's word "cold pause" for the session limit. The process table showed a
+  claude-platform watcher; the fluent reading "my leftover, kill it" was wrong: its supervisor
+  is the Director's session. Verified by pid before acting. Nothing of this seat's runs.
+- Metacognition: the inherited claim "all processes stopped" was true for this seat and
+  untrue for the host; the two are different observables and the memory's "verify by process
+  table" means the seat's own processes, keyed by supervisor pid.
+- Free play kept: the liveness assertion is blind to which seat's watcher answers when two
+  seats share platform and model; `--session-prefix` exists and would split them. Discarded:
+  "refresh the heartbeat on a loop through the pause" (a loop is a process; the pause forbids
+  it; a stale claim under a frozen seat is honest).
+- Concept exploration: the pause's gauge (the session limit) is the owner's, not observable
+  from the seat; the only exit is the owner's word, so no Monitor or wake is warranted.
+- Parallax, screening: frames are the owner's (spend nothing), the Director's (the slot
+  arrangement waits), the successor's (the record carries the exit). The one conflict, a
+  Director word during the pause, resolves by the standing feedback: held, not obeyed.
