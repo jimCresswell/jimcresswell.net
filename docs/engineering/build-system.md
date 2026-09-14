@@ -279,8 +279,9 @@ command is never final evidence that the tree is clean.
 Runs the focused verify-only baseline for general documentation changes without
 builds, product tests, or browser suites: root Prettier and markdownlint, then
 the documentation validators (`validate-reference-direction`,
-`validate-no-machine-local-paths`, `validate-markdown-links`,
-`validate-cited-scripts`, `validate-cited-paths`, `validate-patterns-index`).
+`validate-no-machine-local-paths`, `validate-no-lineage-names`,
+`validate-markdown-links`, `validate-cited-scripts`, `validate-cited-paths`,
+`validate-patterns-index`).
 It is deliberately narrower than `pnpm check` and
 makes no full-repository verification claim. Fitness reports
 (`pnpm practice:fitness` and siblings) are not part of this gate: they remain

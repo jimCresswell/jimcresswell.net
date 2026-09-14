@@ -7,10 +7,10 @@ Director by directed comms event, never to the owner (`route-blocks-and-question
 
 ## State at 17:45Z, 2026-09-13 (n=2 with the Director since 17:16Z)
 
-Item 3 landed (PR #56, `1829cd4`; `closure/lane-a` merged). Live: PR #60
+Item 3 landed (PR #56, `SHA: 1829cd4`; `closure/lane-a` merged). Live: PR #60
 (`fix/e2e-port-per-worktree`, the per-checkout Playwright port; three Copilot threads routed for
 cure) and the #55 path-escape cure in the `closure-lane-b` worktree on `closure/lane-b`. Next:
-item 5 on a fresh branch from `main` (64aa005 held on `closure/lane-a-checkpoint` rides it), and
+item 5 on a fresh branch from `main` (SHA: 64aa005 held on `closure/lane-a-checkpoint` rides it), and
 the follow-on that brings `@engraph/result` into the site workspace for the port helper.
 Dialogue on the ARC channel
 `.agent/collaboration/rapid-comms/2026-09-13-transplant-closure-n2-cauldron-herds-lustre-saffron-turns-verdure.md`;
@@ -19,7 +19,7 @@ quick coordination native; state on the comms stream.
 ## Continuation at the go (2026-09-13 about 14:00Z; historical since the hand-back above)
 
 - **Role:** Implementer (PDR-117). Enter your own worktree before any edit
-  (`worktree-residency`); branch `closure/lane-a` from `main` (at or after `55649a2`).
+  (`worktree-residency`); branch `closure/lane-a` from `main` (at or after `SHA: 55649a2`).
 - **Owns exclusively:** root `package.json` scripts, `.github/workflows/**`, `agent-tools/`
   sources and tests except the rules-index generator (lane B), `tooling/*/package.json`,
   `turbo.json`, `jcdotnet/accept-md.config.js`, the consumed incoming bundle under
@@ -33,7 +33,7 @@ quick coordination native; state on the comms stream.
   exist, `validate-check-ci-parity` is green, `pnpm check` and CI green.
 - **Item 5, second PR — lineage residue off the live surfaces**: retire
   `validate-ratified-lists`, `protocol-conformance`, `pr-throughput`, `ci-turbo-report`
-  (scripts, sources, tests, doc mentions; re-importable from the pin `e477e62f7`); keep
+  (scripts, sources, tests, doc mentions; re-importable from the pin `SHA: e477e62f7`); keep
   `merge-bot`, scrub its lineage residue; the two product files, five package manifests and
   fourteen fixtures named in the plan of record (§Owner rulings round 11, item 3, and §Oak
   residue in tooling); `accept-md.config.js` to TypeScript; `turbo.json`'s `.next/` outputs
@@ -78,11 +78,11 @@ explicit pathspec; a green, clean PR is merged without asking.
 ## Waypoint 2026-09-13 15:35Z — compaction checkpoint (Saffron turns Verdure, c39ad7)
 
 - **Item 3 is done on the branch; PR #56 is ready and near merge.** `closure/lane-a` head
-  9a90d1b (the merge of `main` at 4a61112), pushed under the Director's slot at 15:34Z; the
-  push's pre-push gate was in flight at this checkpoint. Eight commits of substance: d1a75c7
-  (tracked-universe gates), 1cb74e9 (substrate audit + wire contract as legs), 9cc25a2 (smoke
-  suite as a check leg and CI step), be3cb46 (register rows), da3065c (napkin), d713bb8 and
-  80e3189 (two review rounds, twenty-two findings, nineteen taken), 2380337 (two Copilot
+  SHA: 9a90d1b (the merge of `main` at SHA: 4a61112), pushed under the Director's slot at 15:34Z; the
+  push's pre-push gate was in flight at this checkpoint. Eight commits of substance: SHA: d1a75c7
+  (tracked-universe gates), SHA: 1cb74e9 (substrate audit + wire contract as legs), SHA: 9cc25a2 (smoke
+  suite as a check leg and CI step), SHA: be3cb46 (register rows), SHA: da3065c (napkin), SHA: d713bb8 and
+  SHA: 80e3189 (two review rounds, twenty-two findings, nineteen taken), SHA: 2380337 (two Copilot
   findings cured), then the merge. CI green on every pushed head so far; both Copilot threads
   replied to and resolved as the bot; reviewer dispositions posted as bot comment
   issuecomment-5654014124.
@@ -121,19 +121,19 @@ explicit pathspec; a green, clean PR is merged without asking.
 ## Waypoint 2026-09-13 19:58Z — second compaction checkpoint (Saffron turns Verdure, c39ad7)
 
 - **Landed since the 15:35Z waypoint.** Closure item 3 plus the tracked-universe lint cure are on
-  `main`: PR #56 merged at 1829cd4 by the owner's own button at 16:48Z after four cure rounds
-  (1c00b5c, 341e069, ad006e8 + ee3c396, f2b2048; every round's causes, dispositions and mutants in
+  `main`: PR #56 merged at SHA: 1829cd4 by the owner's own button at 16:48Z after four cure rounds
+  (SHA: 1c00b5c, SHA: 341e069, SHA: ad006e8 + SHA: ee3c396, SHA: f2b2048; every round's causes, dispositions and mutants in
   the commit bodies and the two bot comments). Three of Copilot's findings on the final tip were
-  doc nits; two were cured in a63a07f, one (the tooling.md pnpm 11.20 verification stamp) declined
+  doc nits; two were cured in SHA: a63a07f, one (the tooling.md pnpm 11.20 verification stamp) declined
   with reason; the headline's "smoke-runner issue remains unresolved" is disputed on the PR.
-- **Open, mine: PR #60** (fix/e2e-port-per-worktree at 4fad844 on a63a07f on main 1829cd4): the
+- **Open, mine: PR #60** (fix/e2e-port-per-worktree at SHA: 4fad844 on SHA: a63a07f on main SHA: 1829cd4): the
   site's Playwright suite serves on a port probed free at config load (`jcdotnet/scripts/free-port.ts`,
   extracted from generate-pdf.ts), the runner's pid-stamped handshake carries the port to the workers
   Playwright forks (`jcdotnet/scripts/port-handshake.ts` with unit cells), `reuseExistingServer`
   false, `PORT` handed to the web server so the built site's canonical URLs match, tsconfig target
   ES2017. Proof matrix in the PR body (plain probe 58 of 58 refused; handshake, stale stamp,
   parent-forged stamp all 58 of 58 green; pid mutant and three parser mutants killed; two
-  worktrees concurrently green on 58078 and 58096). **Three Copilot threads open on 4fad844, cure
+  worktrees concurrently green on 58078 and 58096). **Three Copilot threads open on SHA: 4fad844, cure
   designed, no file edited yet:** (1) `TEST_WORKER_INDEX` is inherited from the caller, so it
   cannot be the worker distinction; use the IPC channel Playwright forks workers with
   (`process.send !== undefined`, confirmed by the code-expert against playwright 1.62.1's
@@ -147,7 +147,7 @@ explicit pathspec; a green, clean PR is merged without asking.
   (thread ids PRRT_kwDORH1Wfc6h6llh, …6llo, …6llt; comment ids 4000332532, 4000332541, 4000332547).
   Follow-on on the Director's board under lane A: `@engraph/result` into the site workspace so
   `getFreePort` and the handshake parse return `Result`.
-- **Open, routed to me: PR #55** (lane B's sweep, closure/lane-b at 6b1b4c3, lane B closed out):
+- **Open, routed to me: PR #55** (lane B's sweep, closure/lane-b at SHA: 6b1b4c3, lane B closed out):
   one Copilot thread PRRT_kwDORH1Wfc6h6iq- (comment 4000314563) on
   `agent-tools/src/rule-declarations/sweep-rule-frontmatter.ts:157`: `ruleNames` documented as
   basenames but interpolated into `.agent/rules/<name>.md`, `.cursor/rules/<name>.mdc` and
@@ -160,17 +160,17 @@ explicit pathspec; a green, clean PR is merged without asking.
   cut a local branch from origin/closure/lane-b in this worktree and push HEAD to closure/lane-b as
   a fast-forward; claim 383cde5e is open on that boundary. Read lane B's handoff record
   `.agent/state/collaboration/handoffs/707ed764-320b-443e-99d5-ee3239893782.3.json` first (done once).
-- **Branches on this host.** `fix/e2e-port-per-worktree` 4fad844 (pushed, PR #60);
+- **Branches on this host.** `fix/e2e-port-per-worktree` SHA: 4fad844 (pushed, PR #60);
   `records/lane-a-checkpoint-2` (this commit; local only by the Director's ruling under the
-  owner's zero-open-PRs word; rides item 5); `closure/lane-a-checkpoint` 64aa005 (superseded by
-  this branch, removable); `closure/lane-a` (merged; local 2356b2b superseded by a63a07f on the port
+  owner's zero-open-PRs word; rides item 5); `closure/lane-a-checkpoint` SHA: 64aa005 (superseded by
+  this branch, removable); `closure/lane-a` (merged; local SHA: 2356b2b superseded by SHA: a63a07f on the port
   branch). This worktree returns to `fix/e2e-port-per-worktree` after this commit.
 - **Team state.** n=2 mode by owner word (Director and lane A only; heartbeat loops dropped;
   all-channels watcher kept; claims kept; substantive broadcasts on the stream; dialogue whose
   transcript is the record on the ARC channel
   `.agent/collaboration/rapid-comms/2026-09-13-transplant-closure-n2-cauldron-herds-lustre-saffron-turns-verdure.md`,
   tailed with `tail -n 0 -F` from the primary checkout root). Lanes B and C closed out; PR #58
-  merged at 6528ecb; PR #59 closed as carried. Owner words on record: "port assignments belong in a
+  merged at SHA: 6528ecb; PR #59 closed as carried. Owner words on record: "port assignments belong in a
   test harness config, not in tests"; the merge bot's ten-minute quiet window should be replaced by
   measured state (Director holds it as a Practice signal); zero open pull requests as the target.
 - **Rules carried.** Announce and wait for the Director's slot word before every push (they
@@ -191,7 +191,7 @@ explicit pathspec; a green, clean PR is merged without asking.
 
 - **Landed since the second waypoint.** #60 (the port PR, six rounds, the in-process server
   redesign), #63 (the pending-graduations register, 28 entries plus the slow lane), #64
-  (5a-i, request visibility), #66 (the e2e follow-on after #60, merged at 0ec4583). Local
+  (5a-i, request visibility), #66 (the e2e follow-on after #60, merged at SHA: 0ec4583). Local
   branches for all four deleted.
 - **Open.** #65 (5a-ii, measured state) at SHA: 3802031 after four rounds; the fourth was the
   Director's last grant, and its cure is the harvest bracket (the reviews harvest read on

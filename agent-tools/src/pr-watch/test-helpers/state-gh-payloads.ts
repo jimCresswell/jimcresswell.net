@@ -6,7 +6,7 @@
  */
 
 export const HEAD = 'f'.repeat(40);
-export const PR_URL = 'https://github.com/oaknational/jimcresswell.net/pull/461';
+export const PR_URL = 'https://github.com/jimCresswell/jimcresswell.net/pull/461';
 
 /** The `pr view` payload: one green check; no review requests (gh omits Bot requests anyway). */
 export function viewPayload(oid: string = HEAD): string {

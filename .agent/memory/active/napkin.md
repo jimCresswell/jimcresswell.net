@@ -505,7 +505,7 @@
   docs-layer pass needed ledgers and re-checking and one delegated finding went to a peer
   wrong; the first-hand link repair took an hour and left me holding the map. Delegation has a
   fixed cost that today's tasks sat below.
-- Slice 2 item 1 (PR machinery at `e477e62f7`): measured first — nine upstream files, seven
+- Slice 2 item 1 (PR machinery at `SHA: e477e62f7`): measured first — nine upstream files, seven
   doctrine, two fixture; local drift zero on three of them, so `git apply` took the four
   doctrine patches clean; the three locally rewritten entry points took the new sections by
   hand (our PR template had no `## Scope` at all — the review contract needed a home before
@@ -560,7 +560,7 @@
   intent for a strategy layer; recommended next capability the plan skill's design gate with
   one owner question. The journey record's status stays provisional; nothing reopens it yet.
 - Work safety: `## feat/monorepo`, clean before this wrap's commit, no upstream, unpushed by
-  standing rule; 13 commits since the restart (c41b162 … c3a8656) plus this wrap's; claims 0;
+  standing rule; 13 commits since the restart (SHA: c41b162 … SHA: c3a8656) plus this wrap's; claims 0;
   no monitors, crons or subagents live; the readiness reviewer's context is gone and its six
   findings are on the delivery node's dispositions table.
 - Predictions a successor tests: (a) `validate-plan-corpus` with a stub `docs/strategy/README.md`
@@ -657,7 +657,7 @@
   contribute look like one operation read two ways; discarded — the species metaphor; discarded
   — "the 57 lessons are the first contribution back".
 - Work safety: `## feat/monorepo`, clean before this wrap's commit, no upstream, unpushed by
-  standing rule; commits since the last wrap: 001d09c, 56c8356, 64681a0, 9070def, ce7f09a and
+  standing rule; commits since the last wrap: SHA: 001d09c, SHA: 56c8356, SHA: 64681a0, SHA: 9070def, SHA: ce7f09a and
   this one; claims 0; no monitors, crons, subagents or watchers live; nothing to re-arm.
 - The private editorial boundary: cloned at its ignored location, `main...origin/main`, clean;
   read its README for understanding only; nothing from it (content, URL, commit ids) is in any
@@ -689,7 +689,7 @@
 
 ### Session 7 (2026-09-13, after the second compaction) — team start, OCE completeness check
 
-- Re-grounded under start-right-team: foundation read, clean tree at 2d1dacf, claims and queue
+- Re-grounded under start-right-team: foundation read, clean tree at SHA: 2d1dacf, claims and queue
   empty, comms event 7dbf1c82 posted (no peer in this home; consumer-absent, no heartbeat).
   Practice box still holds `resonance-outbound-bundle-2026-07-08.md`; deferred to consolidation.
   Four prunable system-temp worktrees on the list (`git worktree list`); reported, not pruned.
@@ -783,13 +783,13 @@
 - Parallax (screening depth, cost-bounded): main uncertainty — merging now moves production to
   the monorepo build from `main`; the owner configured Vercel and observed the first build, so
   the residual is the production branch mapping, owner-held. The fresh-checkout proof of the
-  derived closure is not only the local cold-tree run: CI's install job at 653f274 ran the
+  derived closure is not only the local cold-tree run: CI's install job at SHA: 653f274 ran the
   postinstall on a cold checkout and static-checks passed. Defeaters to watch: `.agent-original`
   reaching `main` before its loss-scan (accepted by "merge now"); the rules index and Cursor
   triggers still hand-kept (closure item 5); a lineage-name leak validator not yet existing
   (item 3's proof). No frame changes the answer; core depth would not pay.
 - Work safety: `## feat/monorepo...origin/feat/monorepo`, clean; 54 commits ahead of `main`, all
-  pushed, the last 7d6f292; draft PR #53 mergeable; CI green through 653f274, running on 7d6f292;
+  pushed, the last SHA: 7d6f292; draft PR #53 mergeable; CI green through SHA: 653f274, running on SHA: 7d6f292;
   claims 0; commit queue empty; no monitor, cron, watcher or subagent live; nothing to re-arm.
 - Predictions a successor tests: (a) the merge of PR #53 succeeds as a normal non-admin merge
   commit with every check green (if branch protection refuses, the seat stops and says so);
@@ -841,7 +841,7 @@
   ancestry before removing anything, consolidated without loss, then the archive copies removed
   and `git rm -r .agent-original` with the seven exclusion entries and the provenance note in one
   commit. "If it already exists" is a claim to test, not a premise.
-- PR #53 merged: merge commit `55649a2` (parents `d0159a4`, `df884e1`), every check green, no
+- PR #53 merged: merge commit `SHA: 55649a2` (parents `SHA: d0159a4`, `SHA: df884e1`), every check green, no
   admin override — Wrap 6 prediction (a) held. `main` now carries the monorepo and the Practice;
   the archive is gone from tree and disk. Next: closure items 3 to 7 as small PRs from
   `chore/transplant-closure-session-1`, then session 2's synthesis, then editorial work.
@@ -983,8 +983,8 @@
   green here after only a scrub (esbuild present, helpers present, 30 import renames); the
   defeater is a hidden dependency on a lineage-only surface, which the first `pnpm check` on the
   restored tree exposes before any push. No frame changes the answer; core depth would not pay.
-- Work safety (evidence): `closure/lane-c` clean, merged into `main` at `4a61112` (PR #57),
-  its worktree and branch pending removal; `closure/lane-c-restore` clean at `4a61112`
+- Work safety (evidence): `closure/lane-c` clean, merged into `main` at `SHA: 4a61112` (PR #57),
+  its worktree and branch pending removal; `closure/lane-c-restore` clean at `SHA: 4a61112`
   (= `origin/main` at the cut), no edits before this napkin commit; claim `db336346` open by
   the Director's instruction; heartbeat, watcher and peer-liveness poll all stopped (cold
   pause, owner word); scratchpad holds only recomputable artefacts (the pin's two modules
@@ -1066,8 +1066,8 @@
 
 ### Wrap 7 (2026-09-13, about 15:45Z, before compaction) — the Director session
 
-- Landed: PR #54 (Director records, channel rule) at `c426c6c`; PR #57 (closure item 4) at
-  `4a61112`, merged by the bot. Open: #56 (item 3 + lint cure, tip 9a90d1b, Copilot re-requested
+- Landed: PR #54 (Director records, channel rule) at `SHA: c426c6c`; PR #57 (closure item 4) at
+  `SHA: 4a61112`, merged by the bot. Open: #56 (item 3 + lint cure, tip SHA: 9a90d1b, Copilot re-requested
   15:32Z), #55 (item 6 sweep, third round granted, cure unwritten). Owner word about 15:35Z:
   slow down; lane A active, B and C paused with state saved.
 - Metacognition: the day's Director corrections were one shape again, and a new one. The old
@@ -1159,14 +1159,14 @@
   reports), never by a typed list, or it cannot be a gate. Defeater to watch:
   `jcdotnet/__snapshots__/cv-content-pre-migration.json` carries lineage names outside
   `content/`; "CV content excluded by scope" needs its scope written as a path rule.
-- Predictions a successor tests: (a) #56 merges by the bot at zero threads on tip 9a90d1b
+- Predictions a successor tests: (a) #56 merges by the bot at zero threads on tip SHA: 9a90d1b
   with no further Copilot finding; (b) the leak validator's pre-fix run names at least 26
   files outside doctrine records, the plan's 21 among them; (c) `pnpm check` is green on a
   fresh clone of `main` after #56 (CI on the branch already proved the ubuntu leg).
 - Metaloss passes. Compressed reasoning: twenty-two review findings compress to a
   dispositions table on the PR and the reasons in three commit messages; the instance-tier
   design's declined alternatives (primary coordination home, a manifest field) live in the
-  1cb74e9 message and the napkin bullet above — decision-sufficient. Promises: push on the
+  SHA: 1cb74e9 message and the napkin bullet above — decision-sufficient. Promises: push on the
   slot (in flight at 15:34Z); release the slot when it clears (mine, next act); Copilot
   threads replied and resolved (done); napkin on the branch (done); tell lane C if item 5
   touches cited-paths or fires on the restored modules (mine, at PR 2); the merge-bot
@@ -1315,7 +1315,7 @@ parallax, wrap):
 
 ### Session 2026-09-14, lane A, segment four (23:00Z to 00:30Z) — Saffron turns Verdure (c39ad7)
 
-- #65 rounds three and four, #66 landed (0ec4583), 5b cut and committed locally (d27790f).
+- #65 rounds three and four, #66 landed (SHA: 0ec4583), 5b cut and committed locally (SHA: d27790f).
   Round three: the run leg's contract stated in both prose homes exactly as the code has it
   (an observed live run blocks; an unobservable surface is named, never blocking); a gap line
   made conditional; a token-form cell restored as an `it.each`. Round four: the harvest now

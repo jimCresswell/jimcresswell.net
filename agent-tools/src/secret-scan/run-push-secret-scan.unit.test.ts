@@ -21,7 +21,7 @@ const ZERO = '0000000000000000000000000000000000000000';
  * as an empty string — and `push-cli.ts` builds exactly this shape for every
  * bot push.
  */
-const BARE_URL = 'https://github.com/oaknational/jimcresswell.net.git';
+const BARE_URL = 'https://github.com/jimCresswell/jimcresswell.net.git';
 
 const CONFIGURED = ['origin', 'upstream'] as const;
 

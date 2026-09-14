@@ -47,13 +47,13 @@ describe('countOpenOwnerJobs', () => {
 describe('parseOwnerJobsLink', () => {
   it('reads the link line from the generated header', () => {
     const content =
-      '<!-- GENERATED PROJECTION\n     link: https://linear.app/oaknational/label/owner-ask\n-->\n';
-    expect(parseOwnerJobsLink(content)).toBe('https://linear.app/oaknational/label/owner-ask');
+      '<!-- GENERATED PROJECTION\n     link: https://linear.app/jimcresswell/label/owner-ask\n-->\n';
+    expect(parseOwnerJobsLink(content)).toBe('https://linear.app/jimcresswell/label/owner-ask');
   });
 
   it('tolerates surrounding whitespace on the link line', () => {
-    const content = 'link:   https://linear.app/oaknational/label/owner-ask   \n';
-    expect(parseOwnerJobsLink(content)).toBe('https://linear.app/oaknational/label/owner-ask');
+    const content = 'link:   https://linear.app/jimcresswell/label/owner-ask   \n';
+    expect(parseOwnerJobsLink(content)).toBe('https://linear.app/jimcresswell/label/owner-ask');
   });
 
   it('is undefined when absent or for a non-https value', () => {
@@ -78,8 +78,8 @@ describe('formatOwnerAttention', () => {
   });
 
   it('wraps the styled bell in an OSC 8 hyperlink when a link is given', () => {
-    expect(formatOwnerAttention(5, 'https://linear.app/oaknational/label/owner-ask')).toBe(
-      '\x1b]8;;https://linear.app/oaknational/label/owner-ask\x1b\\' +
+    expect(formatOwnerAttention(5, 'https://linear.app/jimcresswell/label/owner-ask')).toBe(
+      '\x1b]8;;https://linear.app/jimcresswell/label/owner-ask\x1b\\' +
         '\x1b[0;33m\x1b[1m\u{1F514}5\x1b[0m' +
         '\x1b]8;;\x1b\\',
     );

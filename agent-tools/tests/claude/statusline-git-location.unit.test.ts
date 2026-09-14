@@ -114,9 +114,9 @@ describe('selectCoordinationBranch', () => {
       selectCoordinationBranch({
         hasLinkedWorktrees: true,
         primaryBranch: 'main',
-        primaryName: 'oak-open-curriculum-ecosyste-2',
+        primaryName: 'personal-sites-2',
         workingBranch: 'fix/statusline',
-        workingWorktreeName: 'oak-open-curriculum-ecosyste-2',
+        workingWorktreeName: 'personal-sites-2',
       }),
     ).toEqual({ kind: 'branch', branch: 'main', primaryName: undefined });
   });
