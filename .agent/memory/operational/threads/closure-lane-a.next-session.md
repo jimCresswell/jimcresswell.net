@@ -311,3 +311,22 @@ explicit pathspec; a green, clean PR is merged without asking.
   `.agent/experience/2026-09-14-saffron-turns-verdure.md` (formation).
 - **Fixed point.** A further metaloss pass would only re-find the unverified claim state and
   the absent stream line; the recursion closes here.
+
+### Addendum ~08:00Z, after the owner's stop word
+
+- **#74 round three is on origin at SHA: eafe7a6** (the cure SHA: 87b7793 plus the
+  code-expert changes SHA: eafe7a6: a failed write or removal is a typed outcome, the
+  residual window named as mkdir, rename or unlink into a linked ancestor, the ancestor
+  refusal worded per act, `rule-name.unit.test.ts` pins the closed shape; 196 cells; two
+  more mutants killed, hashes in the commit body). The PR body carries the LF proof row and
+  the measured @-import fact above the original falsifier. Release line sent; the chain owns
+  the three threads and the re-request. Rounds spent: three.
+- **2b-i's push and PR were NOT started**: the owner's word "prepare for compaction and then
+  stop all processes" arrived before them. `chore/subagent-declarations` at SHA: a5efd78 is
+  local only, five commits on SHA: 1643be8, all gates green; the PR body is at scratchpad
+  `pr-2b-i-body.md`. First act after compaction: confirm the standing slot with the Director
+  (it held until "Director back", which arrived; re-ask), then push the branch and open the
+  PR as the bot with that body, one release line.
+- **Processes at this checkpoint:** the #74 poll stopped by the owner's word; no watcher,
+  cron or heartbeat loop owned by this seat. This checkpoint branch (records/lane-a-checkpoint-4)
+  stays local until the queue ahead of it has pushed (the Director's word).
