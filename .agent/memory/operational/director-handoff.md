@@ -50,17 +50,23 @@ Every line answered first-hand, none inferred:
   archive holds only processed material.
 - The transplant is bounded: closure items 3 to 8 finish it, then editorial work.
 
-## Current handoff state (2026-09-14, 16:30Z, 5a-vi on main; n=2 with lane A; owner present)
+## Current handoff state (2026-09-14, 20:55Z, compaction; n=2 with lane A, both frozen; owner present)
 
 Where this block and the routing log disagree, the log's last entry is current; this block is
 rewritten at each Director push.
 
-**State at this push (2026-09-14, 16:30Z).** 5a-vi (#79) merged: the suppressed-findings hold
-is on `main` and the chains post signed dispositions before each review request. 2b-ii runs
-as three slices (A1 open, A2 local behind it, B designed). The afternoon's owner rulings:
-the pacing word (item 99), rounds do not go up and the four cards (item 100), the two-way
-exchange node ratified (item 101). The cold pause of 09:01Z to 13:03Z is items 96 and 97.
-This branch, records-10, freezes at open; later items go to records-11.
+**State at this push (2026-09-14, 20:55Z, the owner's word: prepare for compaction, then stop
+every process).** Both seats frozen on that word; every process this seat owned stopped by id
+after this push. On `main`: closure items 1, 2, 3, 6 complete; item 4's rows 6 and 5 landed
+(#85, #87); item 5's parts through 5a-vi. Open: #86 (item 4 row 3, the restore), its
+round-two review returned five threads and six suppressed, the Director's ruling for it in
+item 106 (one push under the correctness exception, then signed lines). Remaining after #86:
+the pull request for 5a-v, 5c-ii, the card amendments and row 8 (plan given the go, item 106);
+the reader-retirement pull request (item 6's annotation, the home of six accepted defects);
+item 7, drafted on the local branch `chore/closure-record` (the index entry and step 13's
+frame; the provenance entry last). Cards with the owner: item 8's proof wording; whether the
+close runs tonight or in a third session. This branch, records-11, freezes at open; later
+items go to records-12.
 
 **Boundary block (compaction, 2026-09-14 06:37Z; the seat stays live).** Assume nothing
 session-scoped survives; verify by id first, re-arm only what is absent:
@@ -126,8 +132,9 @@ session-scoped survives; verify by id first, re-arm only what is absent:
 - The push slot: lane A asks, the Director confirms, lane A pushes and releases with one
   line; a standing grant given for a Director absence holds until "Director back". On
   resume: say "Director back", read lane A's release lines, re-arm the chains above.
-- Lane A's order after 2b-ii (A1 open, A2 local, B the Gemini row per item 70): item 4's
-  residue rows (the corpus-analysis restore with the five patterns,
+- Lane A's order after #86 lands: the pull request for 5a-v, 5c-ii, the three card amendments
+  (wording from #63's body) and the report's row 8; the reader-retirement pull request (one
+  or two slices); then item 7 from `chore/closure-record`. Superseded: item 4's residue rows (the corpus-analysis restore with the five patterns,
   `sif`'s routing); one pull request carrying 5a-v, 5c-ii and the PDR-008, PDR-132 and
   PDR-082 card amendments; then item 7, the Director's. The graduation drain is outside the
   closure (owner word, item 94): curator work later, in batches of six to eight entries. The
@@ -1289,6 +1296,49 @@ ones the Director would put to the owner had the owner been present.
      provenance notes per module, nothing under `.agent/state`, seventy-three files as one
      restore-class story under PDR-132 §3, round budget two. The lineage plan the
      consolidate-docs skill names by bare filename stays on the item 4 follow-on list.
+
+106. Compaction at the owner's word (20:52Z: prepare for compaction under the five skills, then
+     stop every process), both seats. #87 (item 4 row 5) merged at 20:50Z (`SHA: 6b5676b`) on
+     its second review, zero threads, no suppressed block. #86's round-two review (20:50Z)
+     returned five threads and six suppressed, none of them round one's seven rejected items,
+     so no re-keyed lines are owed; ruling for the lift: one push under the correctness
+     exception, because three threads are one integration defect the restore introduced here
+     (the three drivers call `resolveRepoRoot` without disabling `CLAUDE_PROJECT_DIR`, so a
+     session pointing at another checkout mis-roots them), with the trivial ones riding it
+     (the claimed-home doc line, the two `parseArgs` catches, the test file's provenance
+     block); signed Rejected to the exchange window for the lineage logic (the map leaf's
+     window label, the recall rule for killed candidates, the validate-set completeness at
+     close, the salvage tripwire); after that review, signed lines only. The cards pull
+     request's plan (5a-v, 5c-ii, the amendments quoting the proposals from #63's body, the
+     rounds ruling as a second PDR-132 entry, row 8 re-dated) given the go; the
+     reader-retirement pull request scheduled inside the closure after it (a Cricket's catch:
+     item 6's annotation names it, and it is the home of six accepted defects); item 7 drafted
+     on `chore/closure-record` (`SHA: c5b7b13`, local). The full Cricket suite at the owner's
+     word: low, medium and procedure ON-TRACK; high DRIFTING on item 7's exposure to the
+     session bound, answered by the checkpoint given to the owner (three to four more hours on
+     one lane; a third session unless the owner runs past midnight). Wrap findings.
+     Metacognition: the suppressed hold changed the chain's phase order (the lifting lines
+     must follow the LATEST review; the pre-hold chain posted them before the request) and
+     the scripts carried the old order for two pull requests before the terminating shape was
+     understood; two silent edit failures (a regex that no longer matched; an unquoted path
+     list that is one word in this shell) were caught by the reviewer and by the tip guard,
+     not by me: the cure adopted is exact-string replacement asserting one match, and a chain
+     that refuses an unchanged tip. Measured against item 92's prediction: under the ruling
+     every pull request since settled at two reviews plus a signed-line step (#83, #85, #87
+     at two clean; #81, #84 with lines; #86 the one exception). Concept exploration, shared
+     generator test positive: today's extra rounds came from hand-written parsers of
+     structured formats (the YAML-emulating reader, the line-oriented patterns index, the
+     registry tail reader), each drawing edge-shape findings; the cure class "parse with the
+     format's library, then validate the value" is the assumptions-expert review's charter
+     and a candidate rule for the exchange window, falsifier: a format whose library parse is
+     itself the risk (YAML's implicit typing). Free play, associations: the hold's "N lifted"
+     evidence reads like a mutation score, the review loop as a mutation test on the
+     reviewer's supply (kept); "previously missed" as sampling without replacement
+     (discarded, forced). Parallax at screening depth declines a deeper inquiry; the one
+     uncertainty for the lift is whether #86's third review converges on lineage code, the
+     next capability its finding count (above five, signed lines regardless). Processes: the
+     watcher, the ARC tail and no chain (the #87 chain completed) stopped by id after this
+     push; records-11 pushed and opened at compaction as the boundary, no chain armed on it.
 
 ## Routing log
 
