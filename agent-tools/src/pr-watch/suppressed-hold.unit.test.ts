@@ -165,6 +165,20 @@ describe('suppressedHolds', () => {
     ).toStrictEqual([0]);
   });
 
+  it('excludes a signed self-reply only from a permitted author: a Copilot-authored body ending in a seat signature still holds (#79 round six)', () => {
+    const vendorSigned = closerLook(2, {
+      body: `### 🔵 Needs a closer look\n\n<details>\n### Suppressed comments (2)\n</details>\n\n${SIGNATURE}`,
+    });
+    expect(suppressedHolds(reading([vendorSigned])).map((hold) => hold.suppressed)).toStrictEqual([
+      2,
+    ]);
+    const botSigned = closerLook(2, {
+      author: BOT_COMMENT_LOGIN,
+      body: `### Suppressed comments (2)\n\n${SIGNATURE}`,
+    });
+    expect(suppressedHolds(reading([botSigned]))).toStrictEqual([]);
+  });
+
   it('holds nothing for a body on an older tip, a signed self-reply, an unlanded review, or a body declaring none', () => {
     const olderTip = closerLook(4, { commitOid: OLD_TIP });
     const selfReply = closerLook(4, {

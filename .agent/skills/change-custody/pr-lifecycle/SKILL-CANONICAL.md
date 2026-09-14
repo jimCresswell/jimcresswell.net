@@ -984,13 +984,18 @@ deliberately gone — triage binds from wave one. **The step-back trigger is
    door is `pnpm agent-tools merge-bot merge --pr <n> --expect <reviewer>`
    (MCP-508): it recomputes the LEG-DRIVEN settlement verdict itself,
    merges only on SETTLE-READY with the verdicted tip's sha pinned, and
-   refuses by verdict name — but it does NOT yet consume the tally or
-   disposition state, so the zero-undispositioned and cure-worthy-zero
-   legs above are the MERGING SEAT'S own recomputation at the boundary
-   until the tool learns them (named follow-up on PDR-140: pass
-   machine-readable disposition state into the verdict); a summary-only
-   review carrying an undispositioned body finding is exactly the case
-   the tool cannot see today — including SETTLED-NO-REVIEW, the timeout-settled round
+   refuses by verdict name. Since closure item 5a-vi (2026-09-14) it
+   consumes the body tally and the disposition lines too: a tip-bound
+   summary body declaring suppressed findings holds the round as
+   SUPPRESSED-FINDINGS-OPEN until each is lifted by a signed Cured or
+   Rejected line from a permitted author (`suppressed-hold.ts`), so the
+   tool refuses a marked count that no such line has lifted. That is a
+   floor, not the legs: the zero-undispositioned and cure-worthy-zero
+   legs above stay the MERGING SEAT'S own recomputation at the boundary,
+   because the tool reads the marker, the verb and the head binding and
+   never the rejection's rationale, the cure SHA's presence on the branch,
+   a thread resolved without a disposition, or prose findings a summary
+   carries with no `Suppressed comments (N)` marker — including SETTLED-NO-REVIEW, the timeout-settled round
    this SKILL's item 4 anchor describes, which is watch-endable but NEVER
    merge-eligible — EXCEPT for the class the owner ruled on 2026-09-03
    ("Change the merge policy instead"): a bot-authored pull request that

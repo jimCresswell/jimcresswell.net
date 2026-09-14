@@ -8,7 +8,8 @@ import { hasLanded, isSignedSelfReply, type HarvestedReview } from './reviewer-l
  * 5a-vi, the owner's card "block on any finding", item 78, 2026-09-14). The
  * body tally (`body-tally.ts`) already measures what a vendor's summary review
  * says it suppressed; this module turns the measurement into a hold. A
- * tip-bound, landed, non-self-reply review body declaring N suppressed
+ * tip-bound, landed review body that is not the seat's own signed reply (a
+ * permitted author and the signature, never the shape alone) declaring N suppressed
  * findings holds the merge while fewer than N distinct findings of that review
  * carry a lifting disposition line, and a body declaring a count the tally
  * cannot bound (`body-tally.ts`, `null`) holds whatever the lines say, until a
@@ -100,11 +101,22 @@ function liftedItems(reading: SuppressedHoldReading, reviewId: string): number {
   return items.size;
 }
 
+/**
+ * A review that is the seat's own signed disposition reply, never a vendor's: its author is
+ * a permitted login (the pull request's author or the repository owner, compared as the
+ * lifting logins are) AND its body ends in the signature. The shape alone is not enough: a
+ * vendor or third-party body ending in a matching line would otherwise drop out of the hold
+ * (#79 round six).
+ */
+function isSelfReplyReview(reading: SuppressedHoldReading, review: HarvestedReview): boolean {
+  return liftingLogins(reading).has(loginKey(review.author)) && isSignedSelfReply(review.body);
+}
+
 /** The reviews holding the merge on this tip; none when nothing holds. */
 export function suppressedHolds(reading: SuppressedHoldReading): SuppressedHold[] {
   return reading.reviews
     .filter((review) => review.commitOid === reading.headRefOid)
-    .filter((review) => hasLanded(review) && !isSignedSelfReply(review.body))
+    .filter((review) => hasLanded(review) && !isSelfReplyReview(reading, review))
     .map((review) => ({ review, tally: tallyReviewBody(review.body) }))
     .filter(({ tally }) => tally.suppressed !== 0)
     .map(({ review, tally }) => ({
