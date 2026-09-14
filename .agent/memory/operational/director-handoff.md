@@ -58,11 +58,22 @@ rewritten at each Director push.
 **Boundary block (compaction, 2026-09-14 06:37Z; the seat stays live).** Assume nothing
 session-scoped survives; verify by id first, re-arm only what is absent:
 
-- The all-channels comms watcher, as a persistent Monitor, in the canonical shape of
-  `comms-all-channels-watcher.md` (the supervisor pid bound, the step deadline, the drain bound,
-  the timeout backstop), then the liveness assertion, then one foreground sweep of the pre-arm
-  gap. No heartbeat exclusion at n=2: no seat emits heartbeats under PDR-082, so the exclusion
-  buys nothing and would demand the F-75 poll it pairs with.
+- The all-channels comms watcher. First the liveness assertion; it exits non-zero when no
+  watcher is live for this identity, and only then is one armed, as a persistent Monitor in
+  the canonical shape of `comms-all-channels-watcher.md` (the supervisor pid bound, the step
+  deadline, the drain bound, the timeout backstop). A surviving watcher is left running: two
+  watchers share one seen-file and consume events without delivering them. A survivor that
+  reads live but was armed without the supervisor pid is stopped by pid first, then the
+  assertion fails and the arm follows. After either branch, one foreground sweep of the
+  pre-arm gap. No heartbeat exclusion at n=2: no seat emits heartbeats under PDR-082, so the
+  exclusion buys nothing and would demand the F-75 poll it pairs with.
+
+  ```bash
+  pnpm agent-tools:collaboration-state -- comms assert-watcher-live \
+    --platform claude --model claude-fable-5-1
+  ```
+
+  Only on a non-zero exit above, as a persistent Monitor:
 
   ```bash
   cd <repo-root> || exit 1
@@ -73,6 +84,8 @@ session-scoped survives; verify by id first, re-arm only what is absent:
   [ -n "$TIMEOUT_BIN" ] && set -- "$TIMEOUT_BIN" 3600 "$@"
   exec "$@"
   ```
+
+  Then, whichever branch ran, the assertion again and the sweep:
 
   ```bash
   pnpm agent-tools:collaboration-state -- comms assert-watcher-live \
@@ -90,10 +103,11 @@ session-scoped survives; verify by id first, re-arm only what is absent:
   carry the tip, mint the bot token, reply to and resolve each unresolved thread by path, POST
   the Copilot reviewer under the owner's credential, wait for the review on the tip, run
   `merge-bot merge --pr N --expect copilot-pull-request-reviewer --interval 30 --max-polls 60 --json`):
-  re-arm on resume for the records-7 pull request at its tip; for #74 once lane A releases
-  its round-three push (`SHA: 87b7793`, three threads to reply on with lane A's grounds); for
-  2b-i's pull request once lane A opens it. Copilot requests are made only under the owner's
-  CLI credential with a JSON body; every other write runs as the bot.
+  re-arm on resume for every open pull request at its current tip (the pull request list is
+  authoritative; at this cure: #74 at round four with lane A after `SHA: eafe7a6`, its threads
+  replied to with lane A's grounds from the release line; #76, this branch; #77, 2b-i, at
+  `SHA: a5efd78`). Copilot requests are made only under the owner's CLI credential with a JSON
+  body; every other write runs as the bot.
 - The push slot: a standing grant to lane A from the Director's "slot free" until "Director
   back" (the #74 round-three push, then 2b-i's push and pull request, one release line each).
   On resume: say "Director back", read lane A's release lines, re-arm the chains above.
@@ -151,9 +165,10 @@ session-scoped survives; verify by id first, re-arm only what is absent:
   the Director confirms, the seat pushes and releases, and a granted slot is held until
   released.
 - Re-arm after compaction, checking first (PDR-133): the boundary block above is the recipe.
-  Checked 15:39Z and again at the 06:37Z boundary: background tasks outlive a compaction (the
-  watcher survived; it was then re-armed in the canonical shape because the survivor lacked
-  the supervisor pid).
+  Checked 15:39Z and again at the 06:41Z resume: the watcher process (one pid, running since
+  the evening) was found alive after the compaction that followed the 06:37Z non-terminal
+  wrap; it was then stopped and re-armed in the canonical shape because it lacked the
+  supervisor pid.
 - Next safe step (owner present; the morning cards answered, item 78): #74 (2a) at round
   three, the bot merging at zero threads on measured state; #76 (this branch) at round one;
   lane A holds 2b-i (the declaration sweep) locally and pushes it first after its compaction;
@@ -848,9 +863,11 @@ ones the Director would put to the owner had the owner been present.
     owner's falsifier on the body's REVIEW line, left as it is). Routed to lane A as one
     commit ahead of 2b-i. Lens 1.
 78. The owner's morning cards (06:05Z to 06:24Z on 2026-09-14), answered as user cards, one
-    entry each. Fast lane: every entry graduated (D, F, I, J, X, K, L, M, N, O, P, Q, R, V,
-    verify-list 3, 4a to 4e, 5b/5c/5f, S, T, 2b, 2c, 6), and 7 (the allowed-signers file)
-    graduated on its own detailed card with the setup recipe beside the merge-bot clause.
+    entry each. Fast lane: every entry ruled `graduated` (D, F, I, J, X, K, L, M, N, O, P, Q,
+    R, V, verify-list 3, 4a to 4e, 5b/5c/5f, S, T, 2b, 2c, 6), and 7 (the allowed-signers
+    file) ruled `graduated` on its own detailed card with the setup recipe beside the
+    merge-bot clause; the ruling is the disposition, and each home pull request (lane A, one
+    per home) performs the graduation and drains the row.
     Slow lane: A, B, C, 1a, 1b all promoted now, the owner's ruling recorded on each register
     row. Proposal E: adopted as a PDR-082 amendment by card (the 120-second state line as the
     n=2 liveness convention). Privacy review of the three napkins: later, so they stay under
@@ -870,8 +887,9 @@ ones the Director would put to the owner had the owner been present.
     the plain pointer the unscoped ones use, no `@`; a generator cell pins it; the body's
     REVIEW line becomes this measured fact. Lens 1. REVIEW: none; the falsifier decided it.
 80. Compaction prepared at the owner's word (06:37Z on 2026-09-14) under `wrap` as a non-terminal
-    boundary: work safety proven (records-7 pushed and opened as its pull request; every other
-    branch merged or lane A's); the boundary block above carries the re-arm recipe as if
+    boundary: work safety proven (records-7 pushed and opened as its pull request; every
+    implementation branch merged or lane A's; later records stack on a local records-8
+    branch); the boundary block above carries the re-arm recipe as if
     nothing survives; a standing push slot granted to lane A for the gap; the fence sweep of
     every tracked line this seat wrote found no held-off wording; the metaloss passes and the
     play seeds are in the report and on the napkin; a formation letter is under
