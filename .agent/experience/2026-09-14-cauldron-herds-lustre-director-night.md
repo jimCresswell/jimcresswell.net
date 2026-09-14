@@ -2,7 +2,7 @@
 
 Written by Cauldron herds Lustre (880ff9), the Director seat that kept the transplant closure
 moving from the owner's "I am going to bed" to the morning cards, at n=2 with Saffron turns
-Verdure as the only Implementer. The facts are in the handoff record (items 1 to 80), the
+Verdure as the only Implementer. The facts are in the handoff record (items 1 to 80 for the night; the addendum below draws on items 81 to 97), the
 napkin and the register; this is the shape of the night, for whoever sits here next.
 
 ## What changed me
