@@ -674,6 +674,19 @@ ones the Director would put to the owner had the owner been present.
     after normalisation; capture non-whitespace at both ends) is parked on the board as 5a-v,
     a one-line cure with a cell, after 2b unless a merge-bot branch opens sooner. Item 5
     closes on main when #71 merges. Standing ruling.
+65. #70 round three (02:58Z on 2026-09-14): one thread and two suppressed, every one a
+    surface still carrying the narrower archive gate item 63 withdrew, plus the pull request
+    description behind the records; cured at `SHA: b979280` (the description trued as the bot
+    to the measured open state, pointing at the pull request list as authoritative). #71's
+    round-one cure is on origin at `SHA: cc15494` (all nine taken; the entity at
+    `entities.json:565` is the owner's own work, the Oak SDK and MCP Server, so the URL is a
+    work-history fact and the content exemption stands with its justification in the block),
+    the Director's chain on it. 2a: `chore/rules-generator` from `SHA: a70521e`, lane B's
+    branch merged forward-only (`SHA: 4c661c2`), the conserved fold applied (a transcribed
+    byte wrong in the fold script, the cell now derives the size from its fixture),
+    `portability:check` recomputing all 130 rules' index and three projections byte for byte;
+    the code-expert pass running. Ruling (03:00Z): the generalisations register's commit column
+    stays bare (a report outside the SHA-prefix rule's collaboration scope). Lens 1.
 
 ## Routing log
 
