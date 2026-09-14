@@ -104,4 +104,12 @@ describe('tallyReviewBody', () => {
     expect(tallyReviewBody('### 🟡 \t \n### Looks good').verdict).toBe('Looks good');
     expect(tallyReviewBody('### 🟡\n### Looks good').verdict).toBe('Looks good');
   });
+
+  it('a composed emoji heading (a joiner sequence) is no verdict; led by one it keeps its words', () => {
+    // The printable pass drops the zero-width joiner, leaving the pictographs adjacent.
+    expect(tallyReviewBody('### 👩\u{200D}💻\n### Looks good').verdict).toBe('Looks good');
+    expect(tallyReviewBody('### 👩\u{200D}💻 Changes recommended').verdict).toBe(
+      'Changes recommended',
+    );
+  });
 });

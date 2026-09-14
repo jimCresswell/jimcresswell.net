@@ -47,6 +47,44 @@ describe('isPathInScope', () => {
     expect(isPathInScope('/elsewhere/.agent/hooks/policy.json', [''], excludes)).toBe(true);
   });
 
+  it('a file entry anchors the file itself or a descendant, never a sibling sharing the name', () => {
+    const excludes = ['./.agent/hooks/policy.json', './.agent/memory/'];
+    expect(isPathInScope('.agent/hooks/policy.json.bak', [''], excludes)).toBe(true);
+    expect(isPathInScope('.agent/hooks/policy.json/inner.json', [''], excludes)).toBe(false);
+    expect(isPathInScope('.agent/memory-notes/x.md', [''], excludes)).toBe(true);
+  });
+
+  it('reads a Windows path and root with their own separators (drive letter and UNC)', () => {
+    const excludes = ['./.agent/hooks/policy.json'];
+    expect(
+      isPathInScope(
+        String.raw`C:\repo\.agent\hooks\policy.json`,
+        [''],
+        excludes,
+        String.raw`C:\repo`,
+      ),
+    ).toBe(false);
+    expect(
+      isPathInScope(
+        String.raw`C:\repo\nested\.agent\hooks\policy.json`,
+        [''],
+        excludes,
+        String.raw`C:\repo`,
+      ),
+    ).toBe(true);
+    expect(
+      isPathInScope(
+        String.raw`\\server\share\repo\.agent\hooks\policy.json`,
+        [''],
+        excludes,
+        String.raw`\\server\share\repo`,
+      ),
+    ).toBe(false);
+    // The substring and suffix forms read the same separators.
+    expect(isPathInScope(String.raw`a\hooks\policy.json`, [''], ['hooks/policy.json'])).toBe(false);
+    expect(isPathInScope(String.raw`x\y.plan.md`, ['**/*.plan.md'])).toBe(true);
+  });
+
   it('an undefined path is never in scope', () => {
     expect(isPathInScope(undefined, [''])).toBe(false);
   });

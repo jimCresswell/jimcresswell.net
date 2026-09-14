@@ -37,10 +37,12 @@ export interface BodyTally {
 // The capture begins and ends on a non-whitespace character, so a heading that
 // is only whitespace after the marker is no verdict (the #72 body finding: a
 // lazy `.+?` handed a lone space or tab over as the verdict); the leading
-// pictographic token is stripped from the capture afterwards, so a heading
-// that is only an emoji is no verdict either.
+// pictographic run is stripped from the capture afterwards, so a heading that
+// is only an emoji is no verdict either; the run, not one pictograph, because
+// the printable pass drops the joiner from a composed emoji and leaves its
+// pictographs adjacent (the #90 round-one finding).
 const HEADINGS = /^###[ \t]+(\S(?:.*?\S)?)[ \t]*$/gmu;
-const LEADING_PICTOGRAPH = /^\p{Extended_Pictographic}\u{FE0F}?(?:[ \t]+|$)/u;
+const LEADING_PICTOGRAPH = /^(?:\p{Extended_Pictographic}\u{FE0F}?)+(?:[ \t]+|$)/u;
 const SUPPRESSED = /^###[ \t]+Suppressed comments \((\d+)\)[ \t]*$/mu;
 const SUPPRESSED_MARKER = /^Suppressed comments \(/u;
 

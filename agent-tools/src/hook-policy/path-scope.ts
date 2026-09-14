@@ -7,21 +7,48 @@
  * scope, so the anchor fails closed, never open.
  */
 
+/** A Windows absolute path: a drive letter with a separator, or a UNC root. */
+const WINDOWS_ABSOLUTE = /^(?:[A-Za-z]:[\\/]|\\\\)/u;
+
+/** The path with the host's separators read as `/`, so every scope form compares one way. */
+function withSlashes(filePath: string): string {
+  return filePath.replaceAll('\\', '/');
+}
+
+function isAbsolutePath(filePath: string): boolean {
+  return filePath.startsWith('/') || WINDOWS_ABSOLUTE.test(filePath);
+}
+
 /**
  * The file path relative to the repository root, when it can be: a relative
  * path as given; an absolute path inside a known root made relative; an
  * absolute path outside the root, or with no root known, `undefined` (it is
- * no repository surface, so no root-anchored scope can name it).
+ * no repository surface, so no root-anchored scope can name it). Separators
+ * are read as `/` on both sides, so a Windows path and root compare too.
  */
 function repoRelativePath(filePath: string, repoRoot: string | undefined): string | undefined {
-  if (!filePath.startsWith('/')) {
-    return filePath;
+  const file = withSlashes(filePath);
+  if (!isAbsolutePath(filePath)) {
+    return file;
   }
   if (repoRoot === undefined) {
     return undefined;
   }
-  const prefix = repoRoot.endsWith('/') ? repoRoot : `${repoRoot}/`;
-  return filePath.startsWith(prefix) ? filePath.slice(prefix.length) : undefined;
+  const root = withSlashes(repoRoot);
+  const prefix = root.endsWith('/') ? root : `${root}/`;
+  return file.startsWith(prefix) ? file.slice(prefix.length) : undefined;
+}
+
+/**
+ * Whether a repository-relative path is the anchored entry itself or a descendant of it:
+ * a directory entry (trailing `/`) is a prefix; a file entry matches exactly or as a
+ * directory prefix, never a sibling that merely shares the name (`policy.json.bak`).
+ */
+function underAnchor(relative: string, anchor: string): boolean {
+  if (anchor.endsWith('/')) {
+    return relative.startsWith(anchor);
+  }
+  return relative === anchor || relative.startsWith(`${anchor}/`);
 }
 
 /**
@@ -39,13 +66,13 @@ function repoRelativePath(filePath: string, repoRoot: string | undefined): strin
  */
 function matchesPathScope(filePath: string, scope: string, repoRoot: string | undefined): boolean {
   if (scope.startsWith('**/*')) {
-    return filePath.endsWith(scope.slice(4));
+    return withSlashes(filePath).endsWith(scope.slice(4));
   }
   if (scope.startsWith('./')) {
     const relative = repoRelativePath(filePath, repoRoot);
-    return relative !== undefined && relative.startsWith(scope.slice(2));
+    return relative !== undefined && underAnchor(relative, scope.slice(2));
   }
-  return filePath.includes(scope);
+  return withSlashes(filePath).includes(scope);
 }
 
 /**
