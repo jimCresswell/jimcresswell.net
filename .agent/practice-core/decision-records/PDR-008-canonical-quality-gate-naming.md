@@ -402,3 +402,26 @@ this amendment; `practice-verification.md` item 9 lists the amended set. The
 source lineage's own copy of this record has not been amended and its
 `package.json` contradicts it — a cohesion finding for that estate, not this
 one.
+
+### 2026-09-14 — jimcresswell.net: the validator groups are read from their live homes
+
+Owner card (2026-09-14, the morning cards; the closure record's item 78, "PDR-008
+and PDR-132: both amended by card"), raised at the closure record's item 66 when
+the lineage-name leak gate joined `docs-validators:check` and the gates skill's
+enumeration no longer matched the 2026-09-12 entry above ("PDR-008 is ratified
+text and stays untouched, the mismatch a card").
+
+What changes. The 2026-09-12 entry's two leg lists were the live sets on that
+day and are read as historical; the grouping principle stands: documentation
+validators under `docs-validators:check`, repository validators under
+`repo-validators:check`, both legs of `check`, and a leg joins its group's
+root script and the gates skill's enumeration in the same change that lands
+it. The live sets are enumerated by the root `package.json` and the gates
+skill (`.agent/skills/change-custody/gates/`), never restated here (the
+no-moving-targets rule). At the transplant's closure (2026-09-14) the groups
+carried seven documentation legs (reference direction, machine-local paths,
+lineage names, markdown links, cited scripts, cited paths, patterns index)
+and twelve repository legs (CI parity, claim freshness, guard routing, policy
+reappraisal, lifecycle scripts, stale invocations, collaboration state,
+identity naming, workspace config isolation, plan corpus, protocol wire
+contract, practice substrate), a dated fact of the closure, not a contract.
