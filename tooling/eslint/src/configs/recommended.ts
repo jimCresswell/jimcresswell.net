@@ -253,10 +253,13 @@ const oakRecommendedConfig: TSESLint.FlatConfig.Config = {
           // theatre. Retire each entry when its subject gains a fake-fs seam.
           '**/agent-tools/src/collaboration-state/coordination-home-consolidation.integration.test.ts',
           '**/agent-tools/src/core/flag-path-resolve.integration.test.ts',
-          // Recorded reason: the health probe's platform truth is read at this
-          // file-system boundary (an absent or empty templates directory, a
-          // symlinked template, an undeclared one); a fake fs would make the
-          // refusal proofs theatre. Retire when the probe gains a fake-fs seam.
+          // Recorded reason: the rule permits real IO structurally only under
+          // test-helpers/, test-fakes/ and the vitest configs; it has no class
+          // for a `*.integration.test.ts` on an mkdtemp tree, so every such test
+          // (the five above included) is a per-file entry here until a class
+          // exists (a named follow-up for the rule). This one proves the health
+          // probe's platform truth at its file-system boundary (an absent or
+          // empty templates directory, a symlinked template, an undeclared one).
           '**/agent-tools/src/subagent-declarations/declared-adapters.integration.test.ts',
           '**/agent-tools/tests/claude/statusline-debug-log.integration.test.ts',
           '**/agent-tools/tests/collaboration-state/state-integrity.integration.test.ts',
