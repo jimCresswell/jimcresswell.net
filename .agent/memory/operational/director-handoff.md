@@ -115,7 +115,7 @@ rewritten at each Director push.
 
 | Lane | Items | Owns exclusively | Seat | Claim | Branch / PR | State |
 | ---- | ----- | ---------------- | ---- | ----- | ----------- | ----- |
-| A | 3 done; #60 merged (`SHA: 4370e04`) and its follow-on #66 merged (`SHA: 0ec4583`); 5a-i merged (#64, `SHA: 38e9693`); 5a-ii merged (#65, `SHA: 53d9495`); 5a-iii merged (#67, `SHA: fca804e`); 5b merged (#68, `SHA: f362cce`, the four retirements, the accept-md config as a typed module, the incoming bundle gone); the e2e follow-on 2 merged (#69, `SHA: e67559a`); 5a-iv merged (#72, `SHA: 37eebe9`); 5c merged (#71, `SHA: f377412`); 2a open (#74, round one); then 2b-i (in hand, `chore/subagent-declarations`), 2b-ii, 5a-v (the whitespace-only heading, item 64), then the handed-back residue: the Gemini projection, the corpus-analysis restore with the five patterns, `sif` | root scripts, CI workflow, `agent-tools/` legs and retirements, the leak validator, `tooling/*/package.json`, `turbo.json`, the Playwright harness config, the merge-bot sources; after 2b the rules generator, the adapter trees and the Gemini projection | Saffron turns Verdure (c39ad7) | f024e1f1, 5828b0ee, the 5a claim | `chore/rules-generator` PR #74 at `SHA: 77972dd`; `chore/subagent-declarations` local (2b-i) | ACTIVE at n=2 |
+| A | 3 done; #60 merged (`SHA: 4370e04`) and its follow-on #66 merged (`SHA: 0ec4583`); 5a-i merged (#64, `SHA: 38e9693`); 5a-ii merged (#65, `SHA: 53d9495`); 5a-iii merged (#67, `SHA: fca804e`); 5b merged (#68, `SHA: f362cce`, the four retirements, the accept-md config as a typed module, the incoming bundle gone); the e2e follow-on 2 merged (#69, `SHA: e67559a`); 5a-iv merged (#72, `SHA: 37eebe9`); 5c merged (#71, `SHA: f377412`); 2a open (#74, round one); then 2b-i (in hand, `chore/subagent-declarations`), 5c-ii (the leak gate's four body findings, item 71), 5a-v (the whitespace-only heading, item 64), 2b-ii, then the handed-back residue: the Gemini projection, the corpus-analysis restore with the five patterns, `sif` | root scripts, CI workflow, `agent-tools/` legs and retirements, the leak validator, `tooling/*/package.json`, `turbo.json`, the Playwright harness config, the merge-bot sources; after 2b the rules generator, the adapter trees and the Gemini projection | Saffron turns Verdure (c39ad7) | f024e1f1, 5828b0ee, the 5a claim | `chore/rules-generator` PR #74 at `SHA: 77972dd`; `chore/subagent-declarations` local (2b-i) | ACTIVE at n=2 |
 | B | 6 | (handed back) `.agent/rules/**`, `RULES_INDEX.md`, the three rule-adapter trees, the rules-index and trigger generator, sub-agent adapter descriptions | Sirocco wakes Wingspan (45fe02) | closed | `closure/lane-b` merged as PR #55 at `SHA: 7127bc4` and deleted; `closure/lane-b-generator` at `SHA: d76bb86` on origin (2a fold conserved in the record) | STOOD DOWN 17:14Z; handed back: 2a, 2b, PR 3 (now routed to lane A after item 5) |
 | C | 4 then 7 | the definition report, `testing-strategy.md`, the substrate manifest's register declarations, the Gemini projection | Djinn hunts Solder (36720b) | closed | `closure/lane-c` and `closure/lane-c-restore` deleted (merged in #57; carried in #58); PR #59 closed as carried | STOOD DOWN 16:57Z; handed back: the restore, `sif`, five patterns, the Gemini projection after 2b, item 7 |
 | Director | 7 | reports index, runbook step 13, `provenance.yml` completion entry; merges | Cauldron herds Lustre | 1db07581 | after the holdings land | routing lane A; merging |
@@ -780,6 +780,12 @@ ones the Director would put to the owner had the owner been present.
     all eight items written, seven mutants killed, the full suite green, the live
     recomputation of the 130 rules through the new port byte for byte; committing at the
     code-expert verdict, slot ask after. Standing ruling.
+76. #75 (the Director records, items 68 to 74) merged by the bot at `SHA: f7f4a74` (03:48Z on
+    2026-09-14) on measured state after two rounds (candidate F's re-scoped prediction held);
+    origin branch deleted. One suppressed finding cured here: the board row's order reads
+    2b-i, 5c-ii, 5a-v, 2b-ii, as item 71 and the next step have it. #74's cure at
+    `SHA: 9c95877` (eight items, three code-expert items, seven mutants) pushes on lane A's
+    slot; the chain waits on origin for it. Standing ruling.
 
 ## Routing log
 
