@@ -492,6 +492,12 @@ ones the Director would put to the owner had the owner been present.
     note (the freeze covers new items only; thread cures kept landing). #65 round four is on
     origin at `SHA: 3802031` (the thread read bracketed by a harvest on each side, agree or
     re-read once, fail loud on two; the three text items), the Director's chain on it. Lens 1.
+46. #62 round eighteen (00:20Z on 2026-09-14): two threads (the synthesis step 2 drained only
+    `graduated` rows; the block listed #66 both landed and open) and one suppressed (the next
+    step said "open" the follow-on already merged). Cured at `SHA: 736a343`: every fast-lane
+    outcome drains its row, `rejected` and `duplicate` in a register commit whose drain note
+    carries the reason or the carrying home (the register's own contract); one snapshot of
+    #66 as merged. Lens 1.
 
 ## Routing log
 
