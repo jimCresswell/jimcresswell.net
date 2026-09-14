@@ -6,10 +6,20 @@
  * The reduction is pure (`declaredAdaptersFrom`, over the templates' names and texts) and
  * the read is a thin synchronous wrapper over it, as the probe reads its other surfaces.
  * Both refuse whole rather than return a partial truth: an empty template set (the adapter
- * leg refuses it too, so an inert estate never reads healthy), a template that cannot be
- * read or is not a regular file (a symlink is not followed, a special entry is not opened),
- * a declaration that refuses, a template with none, and an adapter name two templates
- * render (the generator refuses that set as unrenderable).
+ * leg refuses it too, so an inert estate never reads healthy), an entry that is not a
+ * template (a name a path cannot carry, a regular file without the `.md` suffix, a leaf
+ * that `lstat` finds is not a regular file), a template that cannot be read, a declaration
+ * that refuses, a template with none, and an adapter name two templates render (the
+ * generator refuses that set as unrenderable).
+ *
+ * What this read does not do, stated plainly: it classifies the leaf with `lstat` and then
+ * reads it in a second call, so a link swapped in between the two is followed; it does not
+ * classify the ancestors of the templates directory, so a link above it is followed by the
+ * listing. The estate's fd-anchored no-follow reader with ancestor classification
+ * (`validators/portability/rule-surface-fs.ts`) is asynchronous where this probe is
+ * synchronous; moving the probe's read onto it is the named follow-on, and until then the
+ * adapter leg (`portability:check`), which reads through that seam, is the guard against a
+ * linked template, this probe a mirror of what the leg admits.
  *
  * @packageDocumentation
  */
@@ -22,6 +32,7 @@ import { err, ok, type Result } from '@engraph/result';
 import { TEMPLATES_DIR, specsOf } from './adapter-spec.js';
 import type { SubagentPlatform } from './declaration-scalars.js';
 import { readSubagentDeclaration } from './read-subagent-declaration.js';
+import { templateNameRefusal } from './template-name.js';
 
 /** One adapter name and the platforms its declaration renders it on. */
 export interface DeclaredAdapter {
@@ -73,36 +84,51 @@ export function declaredAdaptersFrom(
 }
 
 /**
+ * The template name an entry of the templates directory carries, or the refusal: every
+ * entry is validated before any suffix filter, so a stray regular file is refused as the
+ * adapter leg refuses it, and a name a path cannot carry never reaches an open.
+ */
+function templateNameOf(entry: string): Result<string, string> {
+  if (!entry.endsWith('.md')) {
+    return err(
+      `${TEMPLATES_DIR}/${entry}: not a template (the templates directory admits templates only)`,
+    );
+  }
+  const name = entry.slice(0, -'.md'.length);
+  const refusal = templateNameRefusal(name);
+  return refusal === undefined ? ok(name) : err(`${TEMPLATES_DIR}/${entry}: ${refusal}`);
+}
+
+/**
  * Every declared adapter under the repository's templates directory, in name order.
  *
  * @param repoRoot - Absolute path to the repository root.
- * @returns The declared adapters, or the first refusal: the directory unlistable, a
- *   template that is not a regular file or cannot be read, or a refusal of
- *   `declaredAdaptersFrom`.
+ * @returns The declared adapters, or the first refusal: the directory unlistable, an entry
+ *   that is not a template, a template that is not a regular file or cannot be read, or a
+ *   refusal of `declaredAdaptersFrom`.
  */
 export function readDeclaredAdapters(repoRoot: string): Result<readonly DeclaredAdapter[], string> {
   const dir = join(repoRoot, TEMPLATES_DIR);
-  let names: string[];
+  let entries: string[];
   try {
-    names = readdirSync(dir)
-      .filter((entry) => entry.endsWith('.md'))
-      .map((entry) => entry.slice(0, -'.md'.length))
-      .sort((a, b) => a.localeCompare(b));
+    entries = readdirSync(dir).sort((a, b) => a.localeCompare(b));
   } catch (cause) {
     return err(`${TEMPLATES_DIR}: cannot list the templates (${describe(cause)})`);
   }
   const templates: TemplateText[] = [];
-  for (const name of names) {
-    const file = join(dir, `${name}.md`);
+  for (const entry of entries) {
+    const name = templateNameOf(entry);
+    if (!name.ok) {
+      return name;
+    }
+    const file = join(dir, entry);
     try {
-      // `lstat`, never `stat`: a symlinked template is not followed into another tree and
-      // a special entry is not opened; only a regular file is read.
       if (!lstatSync(file).isFile()) {
-        return err(`${TEMPLATES_DIR}/${name}.md: not a regular file`);
+        return err(`${TEMPLATES_DIR}/${entry}: not a regular file`);
       }
-      templates.push({ name, text: readFileSync(file, 'utf8') });
+      templates.push({ name: name.value, text: readFileSync(file, 'utf8') });
     } catch (cause) {
-      return err(`${TEMPLATES_DIR}/${name}.md: cannot read the template (${describe(cause)})`);
+      return err(`${TEMPLATES_DIR}/${entry}: cannot read the template (${describe(cause)})`);
     }
   }
   return declaredAdaptersFrom(templates);

@@ -4,7 +4,8 @@ import path from 'node:path';
 
 import { afterEach, describe, expect, it } from 'vitest';
 
-import { TEMPLATES_DIR } from './adapter-spec.js';
+import { evaluateParityChecks } from '../core/health-probe-parity.js';
+import { SURFACE_OF, TEMPLATES_DIR } from './adapter-spec.js';
 import { readDeclaredAdapters } from './declared-adapters.js';
 
 /**
@@ -82,6 +83,56 @@ describe('readDeclaredAdapters', () => {
     expect(readDeclaredAdapters(root)).toStrictEqual({
       ok: false,
       error: `${TEMPLATES_DIR}/gamma.md: no declaration in its frontmatter`,
+    });
+  });
+  it('refuses a name a path cannot carry and a stray regular file, before any open', async () => {
+    const root = await makeRepoRoot();
+    await writeTemplate(root, 'alpha');
+    await writeFile(path.join(root, TEMPLATES_DIR, 'Bad Name.md'), '---\ndescription: x\n---\n');
+    expect(readDeclaredAdapters(root)).toStrictEqual({
+      ok: false,
+      error: `${TEMPLATES_DIR}/Bad Name.md: "Bad Name": not a template basename (lowercase letters and digits in single-hyphen groups: one path segment, no dot segment, no suffix)`,
+    });
+    await rm(path.join(root, TEMPLATES_DIR, 'Bad Name.md'));
+    await writeFile(path.join(root, TEMPLATES_DIR, 'notes.txt'), 'stray');
+    expect(readDeclaredAdapters(root)).toStrictEqual({
+      ok: false,
+      error: `${TEMPLATES_DIR}/notes.txt: not a template (the templates directory admits templates only)`,
+    });
+  });
+});
+
+describe('evaluateParityChecks (the production composition)', () => {
+  it('reads the declarations and the four surfaces of a fixture repository, and fails on a refusal', async () => {
+    const root = await makeRepoRoot();
+    await writeTemplate(root, 'alpha');
+    await writeTemplate(root, 'beta', '  - gemini\n');
+    for (const [platform, surface] of Object.entries(SURFACE_OF)) {
+      await mkdir(path.join(root, surface.dir), { recursive: true });
+      const names = platform === 'gemini' ? ['alpha', 'beta'] : ['alpha'];
+      for (const name of names) {
+        await writeFile(path.join(root, surface.dir, `${name}${surface.extension}`), '');
+      }
+    }
+    const [adapterParity] = evaluateParityChecks(root);
+    expect(adapterParity).toMatchObject({
+      key: 'reviewer-adapter-parity',
+      status: 'pass',
+      summary: '2 declared reviewer adapters are aligned across their declared platform surfaces.',
+    });
+
+    await rm(path.join(root, TEMPLATES_DIR, 'beta.md'));
+    const [afterRemoval] = evaluateParityChecks(root);
+    expect(afterRemoval).toMatchObject({
+      status: 'fail',
+      details: ['Gemini has unsupported reviewer adapter beta.'],
+    });
+
+    await rm(path.join(root, TEMPLATES_DIR), { recursive: true });
+    const [refused] = evaluateParityChecks(root);
+    expect(refused).toMatchObject({
+      status: 'fail',
+      details: [`${TEMPLATES_DIR}: cannot list the templates (ENOENT)`],
     });
   });
 });
