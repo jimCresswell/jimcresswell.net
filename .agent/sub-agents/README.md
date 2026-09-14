@@ -15,6 +15,24 @@ This directory uses a three-layer structure to keep prompts simple, DRY, and mai
 - `components/behaviours/` - shared execution and review behaviour guidance.
   - includes `subagent-identity.md`, which templates must include so each sub-agent declares name, purpose, and a short purpose summary.
 
+## Declarations
+
+Every template carries a frontmatter declaration: the one source for its adapters on every
+platform. A role declares its `description` and, per platform (`cursor`, `claude`, `codex`,
+`gemini`), only what deviates from the standard adapter body: a Claude `tools` list off the
+default (`inherit` when the adapter carries none), `disallowedTools`, `permissionMode`,
+`color`, `model`, `effort`; a Codex `model` or `effort`; a `note` where the closing prose is
+not the platform's standard one. A standard role declares one line. A fan-out (the cricket
+templates) declares `variants`, each an adapter in its own name with every field, its `title`,
+its Cursor `description` where it differs, and every `note`, because the variants differ by
+design and are never flattened. The Gemini block carries only the fields the Gemini CLI
+subagents reference names; nothing is defaulted.
+
+The shape is `agent-tools/src/subagent-declarations/subagent-declaration.ts`. A host that
+arrives with hand-kept adapters mints its declarations once with
+`pnpm --filter @engraph/agent-tools subagent-frontmatter-sweep` (a dry run that prints every
+block; `--write` writes them) and reads the reconciliation report it prints.
+
 ## Dependency Rules
 
 - Components are leaf nodes: they MUST NOT depend on other components.
