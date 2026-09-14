@@ -712,6 +712,17 @@ ones the Director would put to the owner had the owner been present.
     subdirectory on a projection surface neither refused nor listed, so a hand-authored nested
     rule would load unseen by the gate) is lane A's cure commit before the slot ask. Standing
     ruling.
+69. 2a is PR #74 (`SHA: 77972dd`, 03:14Z on 2026-09-14; Copilot requested, the bot armed):
+    lane B's three commits through a forward-only merge, the conserved fold, the code-expert
+    cure (a subdirectory on a rule surface refuses the projection leg like a symlink, the
+    classification a pure function with a killed mutant); proof, `portability:check`
+    recomputing all 130 rules byte for byte. Four named-not-taken follow-on lines on the body
+    (the index file's own symlink outside the refusal; the permissive listFiles twin; the fix
+    report not naming removed projections; the hand-kept reader's name) and one REVIEW line
+    worded as a falsifier for the owner's fresh session (whether an @ import inside a
+    path-scoped Claude rule expands). Lane A's next: 2b, the sub-agent adapter generator with
+    Gemini as the fourth row (generated, per the owner's card; byte-equal regeneration of the
+    three existing trees first). Lens 3.
 
 ## Routing log
 
