@@ -1417,3 +1417,48 @@ checkpoint.
   has run; measure the header before committing.
 - Two branches in one worktree: commit (WIP if need be) before every branch change, change
   from a clean tree, and ship only from the branch whose tree is shipped.
+
+## Segment nine (2026-09-14, ~07:35Z): #74 round four, the cricket suite
+
+- Contract prose overstated the code twice on #74 (round three "every mutation is a typed outcome"; round four "a leaf link is replaced"). Generator: the header sentence is written from intent before the cells, never re-derived from the refusal branches. Cure from here: write header contracts after the cells pass, from the refusal path, and read them against the code before the commit.
+- Two fluent moves caught by guards, not by me: pushing on a standing slot word (three crickets), and briefing the crickets in paraphrase without event ids or quotes (the procedure cricket's DRIFTING). Same class as the earlier harvest: an interpretation reported as an observation. A brief to a checker carries the instrument (quote, id, hash), never the paraphrase.
+- The code-expert's ratchet note is the structural reading: four rounds added probes and refusals; the round that moved the other way (adopt the shared instrument, delete the local one) is the right response. The card for the permissive helpers is framed as retirement, not a fifth round.
+
+## Segment ten (2026-09-14, 08:50Z): four rounds, two clauses, the second compaction
+
+- The gate list is the `check` script's list, not memory: depcruise was absent from this
+  seat's list until a code-expert ran it and found a type-only cycle. Read the script once
+  and run every leg the pre-push hook runs, in order, before calling a tree green.
+- A wall-clock ceiling in a gated suite is nondeterministic under contention and the testing
+  strategy forbids it; the bound for "no pattern over outsider-shaped text" is structural, and
+  the cell keeps the deterministic output assertion only.
+- Mutant anchors drift when a comment near them changes; a mutant script is re-run on the
+  final files and the final hashes recorded, never the hashes of an earlier state.
+- Written cells and modules in one pass twice (5a-vi's three suites; #77 round two's reader
+  rewrite) because the fixture churn made red-first expensive. Named in both commit bodies;
+  the Director accepted the note; the mutants were the proof. Next time the cells still go
+  first: the churn is the same either way, and the red run is what catches a cell that cannot
+  bite (the seam's comments cell was added only after its mutant survived).
+- Two Director messages crossed once and the later governed; acknowledging the supersession
+  explicitly, in the next line, kept the map current on both seats.
+- A checker's brief carries the instruments (quotes, ids, hashes); the procedure cricket read
+  a paraphrased authorisation as absent and said DRIFTING. The record had the words; the brief
+  did not.
+- Free play, harvested honestly: (kept) the hold's "a line binds itself to the tip by its own
+  SHA" reads like the bracket's "the harvest must agree on both sides", two instruments that
+  make a snapshot of a mutable surface trustworthy by carrying the binding inside the data;
+  (kept, small) the reviewer rounds on #74 and #77 both turned when a cure DELETED a local
+  copy of a shared instrument rather than adding a probe; (discarded, forced) that the four
+  reviewers' suppressed counts trend down across rounds means the instrument is converging,
+  which the rounds' own contents do not support (round four of #74 had eight, round two of
+  #77 seven).
+- Concept exploration on the round-three class, "the reader admits what the strict reader
+  will reject": the generator is that a reader's output is typed by a looser shape than the
+  reader of its output; the cure is not per-field refusals but one pass through the strict
+  reader before the write, which the byte-identical round trip already performs live. The
+  proposal the Director ruled is that pass at the sweep's boundary; the falsifier is a derived
+  declaration the schema accepts and the next read rejects, which the round trip would show.
+- Parallax, screening depth: the closure's remaining path is 2b-ii, item 4's residue, one
+  small PR of amendments, item 7; the main uncertainty is 2b-ii's byte-equal regeneration
+  against the seven normalised blocks on record; the cheapest next capability is the
+  generator's first dry run diffed against the three trees.

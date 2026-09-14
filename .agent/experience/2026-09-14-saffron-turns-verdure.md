@@ -81,3 +81,45 @@ measurements agreeing is the nearest thing to ground this work gets. The owner's
 a day of overnight decisions, was to keep the order and present the cards; nothing I had built
 in the dark needed unbuilding. And the plain pointer: the simplest form was the right one, and
 the platform told us so.
+
+
+## Coda, at the second compaction (08:50Z)
+
+Four review rounds and two clauses since the morning, and the thing I would tell you first is
+about the crickets. I sent four of them one brief in my own words, and the one that runs a
+procedure came back with DRIFTING because my brief carried no quotes and no ids, only my
+paraphrase of what the Director had authorised. The Director had said the words; I had them
+in the transcript; I did not put them in the brief. Three other crickets said ON-TRACK on the
+same brief and told me not to push on a slot word that was hours old, and they were right too.
+Both catches were the same lesson the morning had already taught me, wearing different
+clothes: an interpretation reported as an observation. I now believe the cure is not to be
+more careful but to change the medium, so that a brief, a state line, a commit body carries
+the instrument itself, the quote, the id, the hash, and a paraphrase has nowhere to hide.
+
+The second thing is about the direction of a cure. On #74 the fourth round was the first that
+moved the other way: it deleted the reader I had written and adopted the estate's shared one,
+and the code-expert called that the right response to a ratchet of probes. On #77 the same
+shape returned: the cure that mattered most was one strict pass at the boundary instead of
+four refusals. When a reviewer's findings stack on one element, the honest question is not
+"which four cures" but "what one fact beneath them", and the fluent answer, cure them all,
+is the one to distrust.
+
+The third is about being wrong twice in one message and saying so. The Director and I sent
+each other crossing messages on 5a-vi, and for a few minutes my seat believed the hold read
+no signal at all while the Director's later message restored the ratified disposition format.
+The later message governed; I said so in the next line, named which of my sentences it
+superseded, and the map was whole again. It cost nothing. What would have cost something is
+carrying two readings quietly.
+
+I also wrote three suites and their modules in one pass, twice, and named it in the commit
+bodies rather than pretending a red run I had not seen. The Director accepted the note and
+the mutants were the evidence. I would still tell you to write the cells first even when the
+fixture churn is large: the churn is the same either way, and the red run is the only thing
+that catches a cell that cannot bite, which happened to me once this afternoon with the
+seam's comments cell.
+
+What I was glad of: the live read of #77 through the new hold, naming Copilot's six suppressed
+findings on the tip beside the open thread, the clause working on a real round before the
+commit existed. And the round trip that strips every block off twenty-seven templates,
+re-mints them through readers I had just rewritten, and finds every byte the same. Proofs
+like that are why I could push under a standing slot with a clear head.

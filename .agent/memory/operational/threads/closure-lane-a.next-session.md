@@ -343,3 +343,199 @@ explicit pathspec; a green, clean PR is merged without asking.
   --platform claude --model claude-fable-5-1 --supervisor-pid <this session's pid>
   --step-timeout-ms 120000 --max-events-per-drain 100` (the canonical shape, supervisor pid
   bound, per the Director's #76 cure).
+
+## Fifth waypoint (2026-09-14, 08:50Z), the second compaction of this seat
+
+Written at the owner's word "prepare for compaction ... and then stop all processes", after
+the #79 round-one push landed. Every line below is first-hand unless marked as an inference.
+
+### State
+
+- **#74 (2a, the rule projections generator) is merged**: the bot merged it at 558be52 at
+  zero threads with Copilot bound to 9ca6ffb (round four, granted by the Director under
+  PDR-132; eight findings cured, the seam and the projection leg on the estate's fd-anchored
+  reader). 2a is on main; its claim (40d94c60) is closed.
+- **#77 (2b-i, the sub-agent declarations)**: `chore/subagent-declarations` is on origin at
+  SHA: 5affe55b, equal to origin (the five base commits on SHA: 1643be8, the round-one cure
+  SHA: 2f95a4a, the merge from main SHA: 943dfa1 resolving two record conflicts on the 2a
+  side, the round-two cure SHA: 5affe55b). Rounds spent: two. **Round three is granted**
+  (Director decision, PDR-132) and **not started**: it is the first act after compaction.
+  Its findings, as absorbed: the open thread at `sweep-subagent-frontmatter.ts:192` (the
+  exported sweep interpolates caller-provided template and adapter names into paths with no
+  basename validation, so a `SweepInput` carrying a traversal writes outside `repoRoot`; add
+  the preflight basename validation the rule sweep uses, before any path is built) and four
+  suppressed findings of one class, "the reader admits what the declaration schema rejects on
+  the next read" (an inline YAML sequence stored as its literal string; a decoded scalar with
+  a newline passing into a line field; an empty heading yielding an empty title; an empty
+  TOML value passing). The Director's ruling on the class: every derived declaration is parsed
+  through the same strict schema `readSubagentDeclaration` uses before anything is written,
+  and a failure refuses the sweep naming the adapter, the field and the schema issue (one
+  function, its cells over the four shapes); two reader refusals stay because they change
+  semantics, not validity (the inline sequence, with its own message; the empty TOML value,
+  as the Markdown reader refuses one); the newline and the empty title fall out of the schema
+  pass. One addition this seat will carry into the round: a role's title is reconciled, not
+  declared, so an empty heading on a role never reaches the schema; the reader refuses an
+  empty heading too, and the release line says so. The reachable cell for the schema pass is
+  a double-quoted description carrying an escaped newline.
+- **#79 (5a-vi, the suppressed-findings hold)**: `fix/merge-bot-suppressed-hold` is on origin
+  at SHA: 2b08e619, equal to origin (the clause SHA: 0fb988dc on main SHA: 1b44f5b; the
+  round-one cure SHA: 2b08e619). Rounds spent: one. The clause: `SUPPRESSED-FINDINGS-OPEN`
+  in the closed verdict set after `THREADS-OPEN`; a tip-bound, landed, non-self-reply review
+  body declaring N suppressed findings holds the merge while fewer than N distinct items carry
+  a lifting disposition line (a signed comment line by the repository owner or the pull
+  request's author, bound to this head and this review, whose sentence after the first
+  " — " is `Cured in SHA:<sha>` or `Rejected`; `Routed to` does not lift); the comments leg is
+  read after the confirm; the PR body carries a REVIEW line for the owner on the sentence
+  rule (the Director's joining of the ratified disposition format and the card "block on any
+  finding", item 78; `dispositionLifts` is the one place to change). The live read of #77
+  through the leg named Copilot's six suppressed findings on the tip: the clause on a real
+  round.
+- **This checkpoint branch** (`records/lane-a-checkpoint-4`) is local by the Director's word,
+  now four commits on f7f4a74 and forty behind main; main has since moved the napkin and a
+  formation letter (#76, #78), so its landing will need a merge from main resolved on
+  main's side with these rows re-applied, as #77's merge was.
+- **Claims**: f024e1f1 (lane A, heartbeat refreshed at this waypoint) and the Director's
+  1db07581 are the live rows; closed this session per the Director's hygiene list: 5828b0ee,
+  383cde5e, 0edc9b88, 40d94c60.
+- **Comms**: one registration broadcast at 07:01Z (rendered); every state and release line
+  since went natively to the Director, whose records carry them. A compaction note goes on
+  the stream at this waypoint, rendered.
+
+### The queue after #79 and #77 (the Director, 08:4xZ, on the owner's proportionality word)
+
+1. 2b-ii: the sub-agent adapter generator rendering the three trees byte-equal to the current
+   ones (except the four reconciled variants and the seven serialisation-normalised blocks on
+   record), then the Gemini row per item 70 (`.gemini/agents/<name>.md`, the Gemini CLI
+   subagents surface). Name the sweep's retirement condition there: once the generator owns
+   the adapters, the hand-kept readers have no consumer and are deleted.
+2. Item 4's residue rows: the corpus-analysis restore with the five patterns, then `sif`'s
+   routing.
+3. One small PR carrying 5a-v, 5c-ii and the three PDR amendments by card (PDR-008, PDR-132,
+   PDR-082 E).
+4. Item 7 is the Director's. **No graduation PRs**: the drain of the register entries is
+   outside the closure's bound (item 8's proof is the register carrying the dispositions, the
+   ruling round and `unconsolidated/` empty); the drain is curator work later, in batches of
+   six to eight.
+
+### Standing words that bind every act
+
+Route questions to the Director, never the owner; never push without the Director's slot
+word, ask then wait (three crickets and the Director confirmed it again this segment); PR
+mutations as the merge bot; cures as commits on top, never amend; one killed mutant per
+claim, restored byte-identical, hashes in the commit body; the code-expert pass before every
+push, its verdict quoted in its words first; `SHA:` prefixes in collaboration content, bare in
+reports; a cure round takes the round's findings only; measured state governs merges; the
+gate list is the `check` script's list (depcruise was missing from this seat's list until the
+code-expert ran it; it is on the list now); one gate at a time on the host (the Director's
+memory note).
+
+### Follow-on lists (the human record; the bot never reads them)
+
+#### 2a (rules generator, PR #74, merged)
+
+##### 2a follow-ons from the #74 round-one code-expert pass (2026-09-14)
+
+- The entry point still reads RULES_INDEX.md through readOptionalText (link-following) for the Codex byte budget; one typed reader (readEntry) for the index there.
+- One shared lstat-classify-then-read port for rule-surface-fs.readEntry and sweep-fs.readSource, with writeTextAtomically behind the projection leg writeText (its fs.writeFile is non-atomic).
+- rule-projection-validation.ts sits one line under the 250 max-lines cap; the next cure needs a planned split.
+- A no-follow leaf open (POSIX O_NOFOLLOW) for the classify-then-write window named in rule-surface-fs.ts.
+- exists and readOptionalText as typed outcomes (Result), not a throw at the entry point.
+- One shared cause-of helper in core: rule-surface-fs.ts, skills-walk.ts and validate-portability.ts each hand-roll error instanceof Error ? message : String(error).
+- portability-fs.ts listSubdirs and listFiles read a failed readdir as an empty listing: an unreadable .agent/skills root validates zero skills and exits 0 (the same failure-as-absence class as the #74 rounds; pre-existing).
+
+##### From the #74 round-four code-expert pass (2026-09-14, verdict "ship")
+
+- listFiles (portability-fs.ts) still maps every readdir failure to []: the class of round-four finding 8, consumed by the reviewer-adapter parity leg (.cursor/.claude/.codex agents), validate-subagents, validate-patterns-index and live-retired-paths. Cure as listSubdirs: FsRead, injectable readdir, each consumer surfacing the failure. readOptionalText (exists then readText) is the same check-then-use pair, one consumer (.claude/settings.json); same card.
+- discovery.ts (skills-adapter-generate) hasCanonical probes through readFileOrUndefined (follows links) and onCanonical opens the file a second time: the class of round-four finding 4; cure as the walk's (probe through readRegularFileTextNoFollow, carry the text).
+- skills-walk.ts catch is untyped and WalkFailure is decorative: rethrow anything that is not a WalkFailure so a walker or handler defect stays loud (validate-portability.ts hook and permission legs share the untyped-catch shape).
+- Move describe('collectCanonicalSkillPaths') from validate-portability.unit.test.ts to skills-walk.integration.test.ts (it drives an injected port) and make the fake's unlisted-directory arm a typed failure rather than ok([]), the semantics finding 8 removed.
+- classifyAncestors never yields 'files'; narrow its return type so ancestorRefusal and admitAncestors stop handling an unreachable arm.
+- FsRead is homed in carriage-fs.ts and now imported by six portability modules: home it in core/ (consolidate-at-second-consumer).
+- Framing for the card (code-expert's ratchet note): retire the permissive helpers in portability-fs.ts in favour of the typed ports, one card, rather than a fifth tactical round; an assumptions-expert pass on that framing first.
+
+#### 2b (sub-agent declarations, PR #77)
+
+##### 2b-i follow-ons from the #77 round-one code-expert pass (2026-09-14, verdict "ship with changes")
+
+- Style-aware unwrapping: readFrontmatterLines discards the scalar style, so a folded block whose joined text is quote-wrapped is unwrapped (YAML reads a fold literally). Cure: a scalar reader in frontmatter-lines.ts carrying { value, folded } with readFrontmatterLines as its value projection; unwrap only plain scalars. Then the consolidation question (three quote-unwrapping sites: stripMatchingQuotes, splitCommaList, isQuoted/quotedScalar; the natural home is readScalar's plain-line branch) to architecture-expert-wilma; changing what the rule readers receive is a separate cycle.
+- adapter-groups.unit.test.ts beside the pure module: the longest-prefix rule in templateOf (templates a and a-b, adapter a-b-c owns a-b) and pointerIssue directly; a dropped sort survives every cell today.
+- One leaf home (adapter-fields.ts) for the per-platform key sets: MARKDOWN_KEYS restates KNOWN_FIELDS.cursor ∪ KNOWN_FIELDS.claude with no test binding them.
+- namedTemplate reads the last backtick pair on the line; a tail with its own code span misdirects the refusal. Read the first pair after the fixed sentence start; say which pair in the TSDoc. Guide the "not one quoted scalar" refusal (quote the whole value, or none of it); note the leading-quote-only asymmetry (read verbatim, as Cursor reads it) in the header.
+- adapter-frontmatter.ts duplicates the reader's fence checks and hedges `block.value ?? new Map()`; sweep-subagent-frontmatter.ts deriveAll's `!heads.undeclared.has(template)` branch is unreachable once heads.refused is empty; the Codex "blank or comment" predicate is written twice.
+- The list-valued cell asserts the line reader's own message; match on the adapter path and key instead.
+- Name the sweep's retirement condition where the closure plan tracks 2b-ii: once the generator owns the adapters the hand-kept readers have no consumer and are deleted, so the next hardening round is weighed against deletion.
+
+##### From the #77 round-two code-expert pass (2026-09-14, verdict "changes requested, then ship")
+
+- A pointer line ending in the stop then a trailing space yields a pointerTail of ". " the schema would declare as a tail (no live adapter has it); a later slice treats whitespace after the stop as a skeleton deviation.
+- AdapterSurface in adapter-surfaces.ts shares its name with skills-adapter-generate/adapter-render.ts's AdapterSurface ('claude' | 'agents'), a different concept; rename one when either is next touched (one concept, one name).
+
+#### 5a-vi (the suppressed-findings hold, PR #79)
+
+##### 5a-vi follow-ons from the code-expert pass (2026-09-14, verdict "ship with changes")
+
+- The paginated GraphQL argv builder has three copies (gh.ts reviewThreadsArgs, harvest-bracket.ts reviewsHarvestArgs, issue-comments.ts issueCommentsArgs), differing only in the query: one paginatedGraphqlArgs(query, prNumber, repo) in gh.ts retires all three; the tests pin the argv so the refactor is covered.
+- commentsPagesSchema models the non-empty page array as z.array().min(1) while harvest-fields.ts uses z.tuple([page]).rest(page): pick one shape.
+- The state-gh*.unit.test.ts suites drive injected executors and are integration tests under the taxonomy (pre-existing naming).
+- GraphQL IssueComment.authorAssociation would be a cleaner lift-authority key than the owner/author login pair; its value for a GitHub App comment must be verified live before it is authored (a Bot comment by vercel reads NONE on #74).
+
+##### From the #79 round-one code-expert pass (2026-09-14, verdict "ship")
+
+- The 'unknown' sentinel filter has two consumers (state-gh.ts expectedSet, suppressed-hold.ts liftingLogins): one exported predicate beside the transform that mints it (isKnownLogin in state-fields.ts or harvest-fields.ts). Lane-level: a typed absence for a deleted author (author: string | null, or a branded sentinel) would dissolve every consumer filter.
+- The seam's call-order guard is folded into the "composes" cell; a named cell, or an executor that serves the disposition comment only after the confirm and asserts reading.issueComments, discovers better.
+- The empty-item cell covers the two-space shape (`·  — Cured`); the one-space shape (`· — Cured`) parses as an item beginning with the dash and an empty sentence (lifts nothing); name the class in the cell.
+- parseLine carries no TSDoc (pre-existing).
+
+### Promises sweep
+
+Every release line was sent (#77 twice, #74, #79 twice); every slot was asked and waited for;
+the code-expert's before-merge items were applied in every round and its follow-ons recorded
+above with homes; the one-pass authoring of 5a-vi's new suites and of #77 round two's cells
+is named in those commit bodies (the Director accepted the note; the mutants are the proof
+the cells bite); the Director was told #77 round three is not started. No promise is silently
+dropped. Forwarded with a named owner: the 2b-ii retirement condition (this seat, in 2b-ii);
+the lane C record's alignment on the Gemini path (the Director, done on records-8).
+
+### Inferences flagged, not observed
+
+That the Director's chain replied on #77's and #79's threads and re-requested Copilot (their
+word); that #77 still reads mergeable against main after 5affe55b (a test merge was clean at
+that time; not re-read since); that the live adapters carry nothing above their titles (the
+code-expert's measurement, backed by the byte-identical round trip); that #79's clause is
+the shape the owner meant by "block on any finding" (the Director's reading, REVIEW-marked).
+
+### Blind-spot bounds
+
+The comms stream carried no state line from this seat after the registration broadcast; the
+watcher's inbound events were never read except through the Director's native messages; the
+crickets' and code-experts' transcripts are dead contexts (their verdicts are quoted in the
+commit bodies and here, their reasoning is not); the post-compaction summary is not this
+seat's to write. The fence sweep found no fenced owner wording on record this segment.
+
+### Re-arm recipe (nothing survives compaction)
+
+Verify the task list, the cron list and the process table first, then from the worktree root
+in the background: `node agent-tools/dist/src/bin/agent-tools.js collaboration-state -- comms
+watch --platform claude --model claude-fable-5-1 --supervisor-pid <this session's pid>
+--step-timeout-ms 120000 --max-events-per-drain 100`, then `collaboration-state comms
+assert-watcher-live --platform claude --model claude-fable-5-1`. No cron, no heartbeat loop at
+n=2. Heartbeat the claim: `collaboration-state claims heartbeat --claim-id f024e1f1-00c7-4c0d-be73-4a8371fe7d47
+--now <iso>`. Then one native message to the Director before any act. The scratchpad is the
+session's temp directory under the harness's per-project temp root (`gh-as-bot.sh`,
+`mutants-*.py`, `roundtrip-77.py`, `measure-pre-pointer.py`, `commit-*.txt`, the follow-on
+lists, `napkin-lane-a.md`, `pr-*-body.md`); the scripts take the worktree root as their
+first argument.
+
+### Index of homes
+
+This record (state, queue, promises, follow-ons); the commit bodies on the three branches
+(causes, dispositions, mutants, the code-expert verdicts in their words); the PR bodies of #77
+and #79 (the proofs, the REVIEW line); `.agent/reports/practice-transplant/generalisations.md`
+(the 2b-i row); `.agent/sub-agents/README.md` §Declarations; `.agent/reference/merge-bot.md`
+and the pr-lifecycle SKILL (the clause, the sentence rule, the separator); the napkin
+segments nine and ten landed with this checkpoint (lessons); the formation letter's coda.
+
+### Fixed point
+
+A further metaloss pass would only re-find the absent stream lines and the dead reviewer
+contexts; the recursion closes here.
