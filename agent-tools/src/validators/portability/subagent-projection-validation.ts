@@ -11,7 +11,8 @@
  * stale), a declaration that does not parse, a template whose name a path cannot carry, an
  * unreadable template or surface entry, a templates directory that is absent, unreadable or
  * empty, a regular file there that is not a template, a symlink or special entry on any
- * surface, and a declared value the Codex form cannot carry verbatim. The three adapter
+ * surface, a name two declarations render, and a declared value the Codex form cannot
+ * carry verbatim. The three adapter
  * directories are wholly generated outputs, so a regular file on them that no declaration
  * renders is stale and `--fix` removes it. Every read is LF-normalised by the port and the
  * rendered adapters are LF.

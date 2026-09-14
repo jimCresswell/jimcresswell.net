@@ -13,14 +13,16 @@
  * 2026-09-14: a Markdown description is a quoted YAML scalar on one line in the quote style
  * the estate's formatter keeps (`yamlQuoted` states it; four hand-kept Cursor files carried
  * a folded form and three the other quote style, and normalise on the first regeneration);
- * the Claude field order is the one that reproduces
+ * every other Claude field value is plain where YAML reads it plain and quoted by the same
+ * rule otherwise (`yamlScalar`); the Claude field order is the one that reproduces
  * every file, `tools`, `disallowedTools`, `color`, `permissionMode`, `model`, `effort`; the
  * Codex form and what it refuses are `render-codex-adapter.ts`.
  *
  * @packageDocumentation
  */
 
-import { ok, type Result } from '@engraph/result';
+import { err, ok, type Result } from '@engraph/result';
+import { stringify } from 'yaml';
 
 import {
   pointerLine,
@@ -97,8 +99,19 @@ function claudeFieldLines(spec: AdapterSpec): string[] {
     const value = values[key];
     return value === undefined || (key === 'tools' && value === 'inherit')
       ? []
-      : [`${key}: ${value}`];
+      : [`${key}: ${yamlScalar(value)}`];
   });
+}
+
+/**
+ * A field value as the adapter carries it: plain where the yaml library would emit the bare
+ * text as that string (its plain-scalar judgement, at no line width so length never folds
+ * a value; the estate's live values all read plain), else quoted by the measured rule, so
+ * a value carrying a comment marker, a mapping separator, a leading indicator or a YAML
+ * keyword is never written as text the platform would read otherwise (#81 round two).
+ */
+function yamlScalar(value: string): string {
+  return stringify(value, { lineWidth: 0 }) === `${value}\n` ? value : yamlQuoted(value);
 }
 
 function renderClaude(spec: AdapterSpec): string {
@@ -122,12 +135,26 @@ function renderOn(surface: SubagentSurface, spec: AdapterSpec): Result<SubagentP
   return ok({ path, text: platform === 'cursor' ? renderCursor(spec) : renderClaude(spec) });
 }
 
+/** The first adapter name two specs share, in name order; `--fix` would write its path twice. */
+function duplicateName(specs: readonly AdapterSpec[]): string | undefined {
+  const seen = new Set<string>();
+  const names = specs.map((spec) => spec.name).sort((left, right) => left.localeCompare(right));
+  for (const name of names) {
+    if (seen.has(name)) {
+      return name;
+    }
+    seen.add(name);
+  }
+  return undefined;
+}
+
 /**
  * Render every adapter the declarations project onto the three source surfaces: templates
  * in name order, a fan-out's variants in their declared order, then surface order.
  *
  * @param declarations - The templates' declarations, in any order.
- * @returns The adapters, or the first refusal (a value the Codex form cannot carry).
+ * @returns The adapters, or the first refusal (a name two declarations render, or a value
+ * the Codex form cannot carry).
  */
 export function renderSubagentAdapters(
   declarations: readonly SubagentDeclaration[],
@@ -135,6 +162,12 @@ export function renderSubagentAdapters(
   const specs = [...declarations]
     .sort((left, right) => left.name.localeCompare(right.name))
     .flatMap(specsOf);
+  const duplicate = duplicateName(specs);
+  if (duplicate !== undefined) {
+    return err(
+      `${duplicate}: rendered by more than one declaration (a role and a fan-out variant, or two fan-outs); refusing to render the sub-agent adapters`,
+    );
+  }
   const projections: SubagentProjection[] = [];
   for (const spec of specs) {
     for (const surface of SUBAGENT_SURFACES.filter((entry) =>
