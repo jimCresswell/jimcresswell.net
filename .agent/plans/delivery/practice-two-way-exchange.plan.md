@@ -40,9 +40,11 @@ two way exchange to bring both Practices up to the highest level that either of 
 
 ## Problem
 
-Two living Practice instances share an ancestor, the lineage commit this transplant was pinned
-to (`SHA: e477e62f7`, 2026-09-12). Since then both moved: the lineage's own curator delivered a
-delta note into this estate's Practice Box
+Two living Practice instances share an ancestor: the lineage commit this transplant was pinned
+to (`SHA: e477e62f7`, 2026-09-12), which on this estate is the transplant merge
+(`SHA: 55649a2`) whose Practice surfaces were imported at that pin (the first import's lineage
+pin, `SHA: a55fd8fdd`, is superseded by it). Since then both moved: the lineage's own curator
+delivered a delta note into this estate's Practice Box
 (`.agent/practice-core/incoming/2026-09-14-oak-line-delta-since-e477e62f7.md`) naming a new
 Core decision record and schema, four amended decision records, clauses on thirty-one rules and
 ten skills, three new tooling families and a changed pre-push hook; this estate, in the same
@@ -83,8 +85,9 @@ negotiated, so the inter-Practice collaboration protocol governs the writes and 
 the lineage doctrine's Integration Flow governs the reading. Deltas are computed at the window,
 never pinned in this node, so whatever lands on either side before then is in scope.
 
-1. **Compute both deltas from the ancestor** at the window's opening: on each estate, the
-   Practice surfaces changed between the ancestor and that estate's main (Core, directives,
+1. **Compute both deltas from the ancestor** at the window's opening: on the lineage the
+   Practice surfaces changed between its pin and its main, on this estate those changed between
+   the transplant merge and its main (Core, directives,
    rules, skills, hooks, agent-tools; continuity and memory surfaces excluded as local by
    doctrine). The delta note is an input to the lineage side's list, superseded by the computed
    list. The instrument is a script kept with the transplant's inputs, so the pair is
@@ -98,8 +101,10 @@ never pinned in this node, so whatever lands on either side before then is in sc
    its disposition, its direction and its landing pull request on each side; a validator
    refuses a path in either delta with no row.
 4. **Land inbound here** as pull requests sized to about eight review-facing claims, two review
-   rounds binding by default with the Director-only correctness exception (closure record,
-   item 100), every import carrying a provenance entry (repo, date, purpose; pin-free) and the
+   rounds binding by default, every finding left after round two dispositioned in that same
+   slot turn, a further round only as the Director's correctness exception (closure record,
+   item 100), every import carrying a provenance entry (`id` as a UUID, `repo`, `date`,
+   `purpose`; pin-free) and the
    lineage head it was read at recorded in the register and the delivery event;
    the fitness functions and the cohesion audit run after each landing (two-way merges push
    files over their ceilings).
@@ -124,9 +129,10 @@ two-round ruling of 2026-09-14 do too.
   register covers every path in either delta by a concept row (a path-to-row mapping, one row
   covering many paths). Proof: the register validator as a `docs-validators:check` leg, green
   (`repo-safe`).
-- Every register row has a disposition and, where it lands, a pull request on the receiving
-  side, merged. Proof: the register's rows cite merged pull requests; the validator refuses a
-  landing row without one (`repo-safe`).
+- Every register row has a disposition and, where it lands here, a merged pull request in this
+  repository. Proof: the register's rows cite merged pull requests; the validator refuses a
+  landing row for this estate without one (`repo-safe`); landings on the lineage are proven by
+  the owner-held criterion below.
 - The owner's cards for the conflicting rows are answered and the answers are the dispositions.
   Proof: the plan of record's ruling round, cited from the register (`owner-held`, the owner
   verifies on the cards).
@@ -135,9 +141,10 @@ two-round ruling of 2026-09-14 do too.
   landing, and the Box is empty. Proof: `provenance.yml`, the register, the verification
   audit's run, the directory (`repo-safe`).
 - The outbound material was delivered to the lineage's Box with its comms event, integrated by
-  the lineage's seats, and cleared. Proof: the delivery event id, the lineage's landing pull
-  requests and its empty Box, recorded in the register; the owner verifies on the lineage
-  estate (`owner-held`).
+  the lineage's seats, and cleared, and the lineage's provenance chain carries the exchange
+  entry. Proof: the delivery event id, the lineage's landing pull requests, its provenance
+  entry and its empty Box, recorded in the register; the owner verifies on the lineage estate
+  (`owner-held`).
 
 ## Todos
 
@@ -148,6 +155,20 @@ two-round ruling of 2026-09-14 do too.
 4. Inbound landings, one pull request per eight claims, in the register's order.
 5. The outbound note and material, delivered through the join ceremony.
 6. The close: provenance, audit, Box, and the doctrine amendments as register candidates.
+
+## Plan-body first-principles check
+
+- **Shape.** Every proof tests repo-authored behaviour: a delta script's run, a register
+  validator's leg, a provenance entry, an empty directory; the lineage-side proofs are
+  owner-held and named as such.
+- **Landing path.** `.agent/plans/delivery/`, scanned by `validate-plan-corpus`; the register
+  under the transplant's reports; the validator as a `docs-validators:check` leg.
+- **Reversibility.** Every inbound landing is a pull request with a register row and a
+  provenance entry; every outbound delivery is a Box note with a paired event; nothing is
+  written into the other estate's tree from here.
+- **Optionality.** The concept-row disposition is the open design; the exchange mode
+  (conjugation under the collaboration protocol) and the pin-free Box contract are closed by
+  existing doctrine and not reopened here.
 
 ## Out of scope
 

@@ -2,7 +2,7 @@
 title: 'Strategy — Stream: the Practice'
 type: strategy
 status: ratified
-last_updated: 2026-09-13
+last_updated: 2026-09-14
 governed_by:
   - .agent/plans/strategy/README.md
 ---

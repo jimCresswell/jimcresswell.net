@@ -1143,7 +1143,7 @@ ones the Director would put to the owner had the owner been present.
     clause is ratified text, the card to amend it is raised to the owner); round two three
     threads and four suppressed (placeholder times replaced by the about-form or the measured
     commit time; pointers over copies); round three zero threads and four nit-level suppressed
-    findings, cured on this branch (the letter's plural, the settled predicate named in the
+    findings, cured on records-10 (the letter's plural, the settled predicate named in the
     next safe step, "distinct findings" and the reader-convention rationale in item 88). Rounds
     beyond two on records are this seat's decision (PDR-132), granted as on #76 and #78. #79
     round three returned one thread (the comments leg read before the confirm view, a stale
@@ -1195,8 +1195,10 @@ ones the Director would put to the owner had the owner been present.
      (about 15:45Z): plan the exploration of that delta and whatever else lands by then as a
      thoughtful two-way exchange raising both Practices to the highest level either defines.
      Authored `.agent/plans/delivery/practice-two-way-exchange.plan.md` (delivery node under
-     `practice`, blocking on `practice-completion`; deltas computed at the window from the
-     ancestor `SHA: e477e62f7`, concept rows with a register and validator, inbound at eight
+     `practice`, blocking on `practice-completion`; deltas computed at the window, on the
+     lineage from its pin `SHA: e477e62f7` and here from the transplant merge `SHA: 55649a2`
+     whose Practice surfaces were imported at that pin (`SHA: a55fd8fdd` was the first
+     import's lineage pin, superseded by the closure's); concept rows with a register and validator, inbound at eight
      claims and two rounds, outbound through the lineage's Box under its gates). Ratified by
      the owner's word (about 15:55Z: "yes, you both have Practice boxes, and yes the node is
      ratified"); the remaining gate is the owner naming the exchange window.
