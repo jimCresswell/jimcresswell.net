@@ -218,3 +218,96 @@ explicit pathspec; a green, clean PR is merged without asking.
   follow-on PR after the round budget, never a fifth round.
 - **Monitors at this checkpoint.** A poll on #65 for its merge (`pr65-merge-wait.sh` in the
   scratchpad, exits on merge or close); the all-channels watcher; claims retained.
+
+## Waypoint 2026-09-14 ~07:50Z — fourth checkpoint, compaction (Saffron turns Verdure, c39ad7)
+
+- **Landed since the third waypoint.** #65 (5a-ii) at SHA: 53d9495; #67 (5a-iii) at
+  SHA: fca804e; #68 (5b) at SHA: f362cce; #69 (e2e follow-on 2) at SHA: e67559a; #70
+  (records-4) at SHA: 1643be8; #71 (5c, the residue scrub and the leak validator); #72 (body
+  tally hardening) at SHA: 37eebe9; #73 (records-5) at SHA: 50546ee; #75 (records-6) at
+  SHA: f7f4a74. Closure item 5 is whole on main. #76 (records-7) open at SHA: e344fc8.
+- **Open, mine: PR #74 (2a, the rules generator)** on `chore/rules-generator`. Origin at
+  SHA: 62bd5ff (round two); local tip SHA: 87b7793, the round-three cure, one commit ahead,
+  unpushed at this checkpoint: the plain-pointer ruling (scoped Claude rule adapters carry
+  the same code-span pointer as every rule, never an `@` import, which the owner's falsifier
+  showed expands at launch; a cell pins no `@` on any projection; 28 projections
+  regenerated), rule names closed to lowercase hyphenated groups at the canonical boundary
+  (`rule-name.ts`, shared with the sweep), every mutation re-classified unfollowed before it
+  acts and written atomically with a typed outcome (`rule-projection-fs.ts`), the entry read
+  through an `O_NOFOLLOW` open with `fstat` (`rule-surface-fs.ts`), the LF normalisation
+  stated in the leg. 173 cells, tsc, eslint, knip, `portability:fix` and `:check` green; five
+  mutants killed and restored (hashes in the commit body). The code-expert pass on 87b7793
+  was running at this checkpoint; its verdict decides the push. Three rounds spent; further
+  rounds are the Director's grant.
+- **Open promise on #74:** the PR body's proof gains the LF-normalisation statement (the
+  commit body says "the PR proof says the same"); edit the body as the bot at push time.
+- **Complete locally, unpushed: 2b-i (the sub-agent declarations)** on
+  `chore/subagent-declarations` at SHA: a5efd78, five commits on the base SHA: 1643be8 (the
+  WIP SHA: fd360a5, the module SHA: c3516c4, the 27 written templates SHA: 0f4a874, the
+  records SHA: e696c31, the code-expert changes SHA: a5efd78). 46 cells; subagents:check,
+  markdownlint and the docs validators green; the dry run reads 27 templates already declared.
+  PR body drafted at scratchpad `pr-2b-i-body.md` (four reconciliations tabled, REVIEW line,
+  the seven serialisation-normalised blocks on record). The register row cites c3516c4 bare.
+- **Standing slot (Director, "slot free" at ~07:55Z).** Until "Director back": push #74's
+  round three when its verdict is in, then push `chore/subagent-declarations` and open 2b-i's
+  PR as the bot, one release line each on native messaging, no ask; the Copilot requests and
+  the bot on those tips wait for the Director, who re-arms on resume from the release lines;
+  anything needing a ruling is held.
+- **Queue after 2b-i's PR opens, the Director's order (~07:20Z):** (1) 5a-vi, the fourth
+  measured-state clause: a tip-bound review body with any suppressed finding holds the merge
+  until the finding is cured or routed by the Director as a recorded follow-on (the settled
+  path in `pr-watch/settlement.ts` beside the in-flight hold; the cell beside the closer-look
+  cell in `states.unit.test.ts`); (2) the PDR-008, PDR-132 and PDR-082 card amendments in one
+  small PR (the gate enumeration; the retired pr-throughput sentence; the 120-second state
+  line as the n=2 liveness convention); (3) 5c-ii, four items (scratchpad `e2e-follow-on-2.md`
+  tail); (4) 5a-v; (5) the graduations one home per PR on the Director's batch list (fast
+  lane all but entry 7, which graduated with the setup recipe: the merge-bot verification
+  clause plus a one-line machine-local allowed-signers recipe in the onboarding doc, nothing
+  tracked carrying a key; slow lane A, B, C, 1a, 1b promoted); (6) 2b-ii, the generator
+  (byte-equal regeneration of the three adapter trees except the four reconciled variants and
+  the seven serialisation blocks, the Codex registry entries, the Gemini row); then the
+  handed-back residue (Gemini projection, the corpus-analysis restore with five patterns,
+  sif, the stub invoke rules); item 7 is the Director's, last.
+- **The 2a follow-on list (from the three code-expert passes; a recorded follow-on, not a
+  round):** one typed reader for the index in the entry point; one shared lstat-classify port
+  for `rule-surface-fs` and `sweep-fs` with the atomic writer; a shared cause-of helper in
+  core; `portability-fs.ts` `listSubdirs` and `listFiles` read a failed readdir as empty
+  (failure-as-absence, pre-existing); `exists` and `readOptionalText` as typed outcomes; the
+  ancestor-classification-to-rename window (directory descriptors); the leg and the sweep
+  file sit near the line cap.
+- **The 2b-i follow-on list:** a role cannot say "no permissionMode" or "no effort" (absent
+  and default collapse in `unlessDefault`); a mid-loop write failure escapes the sweep as an
+  exception with no partial `written` list; `derive-subagent-declaration.ts` is the shared
+  core, not a deriver (naming); `sweep-subagent-frontmatter.ts` at 242 lines needs its readers
+  split out before 2b-ii extends it; the four Claude role notes may converge on the standard
+  closing on the owner's word.
+- **Rules carried, new this segment.** The Director's chain owns thread replies, resolves and
+  Copilot re-requests on every PR; I write nothing to threads. A code-expert verdict is quoted
+  in its words before mine, and a pass that died (an API credit error killed one) is re-run,
+  never inferred. Cure rounds take the round's findings and nothing else; the reviewer's
+  suggestions go to the follow-on list with homes. The report's commit column stays bare in
+  reports; `SHA:` prefixes belong to collaboration state.
+- **Inferences flagged, not observed.** That `chore/subagent-declarations` carries an
+  upstream (the branch-switch hint said so); that the claim under thread closure-lane-a is
+  still open with a fresh heartbeat (not verified this segment; the claims CLI topic is not
+  where I remembered it); that #74's round three will be Copilot's last (three spent; the
+  grant is the Director's).
+- **Blind-spot bounds.** The all-channels watcher's state is unknown to this seat since the
+  third waypoint; the comms stream carried no state line from me this segment (dialogue went
+  native to the Director, whose records carry the state); the fence sweep could not run
+  because no fenced owner wording is on record for this segment. The post-compaction summary
+  is not this seat's to write.
+- **Re-arm recipe (nothing survives compaction).** From the worktree root:
+  `bash <scratchpad>/pr-merge-wait.sh <scratchpad> 74` in the background (exits on #74's
+  merge or close); verify the task list first and re-arm only what is absent. No cron, no
+  heartbeat loop at n=2. The scratchpad is the session's own temp directory under the
+  harness's per-project temp root (`gh-as-bot.sh`, `pr-wait.sh`, `pr-merge-wait.sh`,
+  `mutants-74*.py`, `apply-*.py`, `commit-*.txt`, `pr-2b-i-body.md`, `follow-on-2a.md`,
+  `napkin-lane-a.md`, `dry-run-2b.txt`).
+- **Index of homes.** This record (state, promises, queue); the commit bodies on both
+  branches (causes, dispositions, mutants); `.agent/reports/practice-transplant/generalisations.md`
+  (the 2b-i row); `.agent/sub-agents/README.md` §Declarations (the shape); the PR #74 body and
+  threads (the rounds); the napkin session block landed with this checkpoint (lessons);
+  `.agent/experience/2026-09-14-saffron-turns-verdure.md` (formation).
+- **Fixed point.** A further metaloss pass would only re-find the unverified claim state and
+  the absent stream line; the recursion closes here.

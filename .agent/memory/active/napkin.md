@@ -1381,3 +1381,39 @@ parallax, wrap):
   while its edits stay staged, and the next `git commit` in that working copy sweeps them
   under its own message. After any commit in a chained script, read the tip and compare it to
   the expected commit before pushing; a "nothing to push" gate is the symptom.
+
+## Session: 2026-09-14 — lane A, closure item 6 (Saffron turns Verdure, c39ad7, Implementer)
+
+Segment eight (03:20Z to 07:50Z): the #74 rounds one to three, 2b-i minted, the compaction
+checkpoint.
+
+- A minting instrument is proven by a round trip, not a dry run: strip the minted blocks, run
+  the sweep over an injected tree, diff against the committed files. The dry run proves the
+  derivation ran; the round trip proves it is a function of its inputs (27 of 27 identical).
+- A platform behaviour that is the design's load-bearing claim is measured before the design
+  is called done: the `@` import inside a path-scoped rule expanded at launch in two headless
+  runs (one a control reading no file), and the documentation was silent exactly there.
+- The schema, not the instrument, is what lives: a one-time sweep's binding checks (a variant
+  belongs to its template, a block to a declared platform) are discarded after the mint; put
+  every binding in the parser the estate reads every time.
+- A zod union refuses with no path; discriminate on the shape's marker before parsing so a
+  refusal names the key.
+- The line cap bit twice in one round (249 then 254; a new module at 295): split by
+  responsibility before the cap, never at it.
+- A dead subagent leaves no verdict (an API credit error killed a code-expert pass mid-read);
+  re-run it, never infer what it would have said.
+- Measure a corpus through the estate's own readers: a grep census counted a prose word as a
+  frontmatter key; the parsers gave the standard closing per platform exactly.
+- A test fake that branches on a path suffix is logic; a set of failing paths is
+  constant-shaped and says the same thing.
+- The guard's plain forms: a script file in the scratchpad taking the repository root as its
+  first argument, run from the worktree root; the file tool refuses a user-home path inside a
+  scratch script, so a measurement over repository modules runs as a package script.
+- Prettier reformats a file between two writes of it; re-read before the second, or edit by
+  anchor from a script.
+- knip counts an export used only in its own file as unused; make it private. Its run from
+  the package directory failed to find the workspace; run it from the root.
+- A commitlint header over 100 characters fails the commit after the whole pre-commit gate
+  has run; measure the header before committing.
+- Two branches in one worktree: commit (WIP if need be) before every branch change, change
+  from a clean tree, and ship only from the branch whose tree is shipped.
