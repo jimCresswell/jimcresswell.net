@@ -110,7 +110,7 @@ session-scoped survives; verify by id first, re-arm only what is absent:
   No heartbeat loop at n=2. No cron.
 - The pull-request chains (session scratch scripts; each is thirty lines: wait for origin to
   carry the tip, mint the bot token, reply to and resolve each unresolved thread by path, post
-  the signed dispositions for the review's suppressed findings as the bot (the hold reads them), POST
+  the signed dispositions for the review's suppressed findings as the bot, POST
   the Copilot reviewer under the owner's credential, wait for the review on the tip, run
   `merge-bot merge --pr N --expect copilot-pull-request-reviewer --interval 30 --max-polls 60 --json`):
   re-arm on resume for every open pull request at its current tip; the pull request list is
@@ -118,6 +118,11 @@ session-scoped survives; verify by id first, re-arm only what is absent:
   §Open pull requests below is the snapshot at this push. A lane A pull request's threads are
   replied to with the grounds from lane A's release line. Copilot requests are made only under
   the owner's CLI credential with a JSON body; every other write runs as the bot.
+  The terminating step after round two: no push; one comment by the bot (the pull request's
+  author) after the LATEST review, one line per finding in the ratified format (`**Below-bar**
+  head SHA:<sha> · review <id> · <path>:<line> · item N of M — Rejected: <why>` or `— Cured in
+  SHA:<sha>`), the seat's signature as the last line, then the bot poll alone; a line without
+  the marker, the reference or the signature lifts nothing.
 - The push slot: lane A asks, the Director confirms, lane A pushes and releases with one
   line; a standing grant given for a Director absence holds until "Director back". On
   resume: say "Director back", read lane A's release lines, re-arm the chains above.
@@ -1217,6 +1222,33 @@ ones the Director would put to the owner had the owner been present.
      reference re-read, about five claims, the plan clause amended on the owner's word. This
      branch took a merge commit from `main` so the bot this seat runs carries the hold, and
      opens at this push as records-10.
+
+103. The rounds ruling's terminating shape, proven twice. #81 (2b-ii A1) merged by the bot at
+     17:01Z (`SHA: d660ac7`) after three reviews: round two's five dispositions rode the push,
+     the third review's four suppressed findings were lifted by four signed Rejected lines
+     posted after that review and a bot poll, no push. The first comment lifted nothing: it
+     lacked the bar marker, the `head SHA · review · path:line · item N of M` reference and
+     the signature the ratified format requires; the corrected comment lifted all four
+     ("each lifted by a signed disposition line"). #82 (records-10) merged at 17:11Z
+     (`SHA: 76d2f29`) after four reviews: three cure pushes (the second under the correctness
+     exception for a resume contract that contradicted itself, my state-paragraph replacement
+     having silently failed to match; the third for the plan's baseline, the reviewer having
+     read `SHA: a55fd8fdd` as this checkout's pin where it is the first import's lineage
+     pin) and then seven signed rejections on the fourth review. Those seven are the exchange
+     node's open refinements for its window, recorded here so the rejection loses nothing:
+     the register's and validator's exact paths and gate wiring; the success statement read
+     with step 1's scope; the outbound executor as a home-governed Box write through the join
+     ceremony; PDR-125's twin-disposition field for shared-machinery rows; the landing field
+     conditional on a landing disposition; "about eight" claims, not exactly eight; the
+     strategy stream's serving list derived from `serves:` rather than hand-kept; plus the
+     two rejected threads, the provenance carrier for non-trinity landings with UUID v4 and
+     the delta script's tracked path and outputs. Near miss: a records job whose unquoted
+     path list staged nothing (one word in this shell) would have chained "Cured in" lines
+     against the old tip; stopped in the gate, nothing posted, re-run with explicit
+     pathspecs and a guard refusing to chain on an unchanged tip. #83 (2b-ii A2) opened at
+     17:03Z; round one returned three threads and one suppressed, four cures routed for
+     round two. Slice B green locally behind it. Records-10's local branch deleted; this
+     branch is records-11, cut from `main` at `SHA: 76d2f29`.
 
 ## Routing log
 
