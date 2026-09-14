@@ -8,9 +8,10 @@ and the register PR #63 merged before it), before item 5; scope is the three nap
 `.agent/memory/active/unconsolidated/` plus today's captures in `.agent/memory/active/napkin.md`
 (from line 311 to the end of the file at the commit that lands this record: sessions 4 to 8,
 wraps 3 to 7, lane C, lane A, the Director's two sections); the candidates
-go to the owner as one batch of cards in the morning; nothing graduates without the answers; the
-napkins are archived only after two gates, the answered fast-lane cards and the owner's privacy
-review of the three napkins.
+go to the owner as one batch of cards in the morning; nothing graduates without the answers. The
+napkins are archived after two gates and only those: the fast-lane cards answered and the
+owner's privacy review of the three napkins done. The five slow-lane rows are decided on their
+own cards or at their review date (2026-12-13) and never hold the archive.
 
 ## Participating agent identities
 
