@@ -541,6 +541,16 @@ ones the Director would put to the owner had the owner been present.
     merging by the bot as they clear. Ruling: 5c builds from main and commits locally; its
     pull request opens only once two of the four have merged. Lens 2 (the owner's word on the
     open count) then lens 3 (no seat idles: the build continues, the queue does not grow).
+52. #67 (item 5a-iii, the body tally and the #64 findings) merged by the bot at
+    `SHA: fca804e` (about 00:49Z on 2026-09-14) at zero threads with Copilot bound; origin
+    branch deleted. The body was a closer-look with three suppressed findings: the headline
+    match reads the suppressed-comments marker as a verdict; the verdict is copied verbatim
+    from the review body into terminal evidence lines (control-sequence injection); the
+    landing executor fake supplies request data whatever the query selects. Routed as item
+    5a-iv, one small pull request ahead of 5c (smaller, and one item is a hardening); it
+    opens once one more of the three open pull requests merges. Standing ruling; REVIEW: the
+    fourth merge on a closer-look body, now with the tally in the verdict (from #67 the count
+    is named; the blocking ruling is the owner's card).
 
 ## Routing log
 
