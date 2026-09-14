@@ -1176,6 +1176,26 @@ ones the Director would put to the owner had the owner been present.
     code-expert launch, a second reviewer after it, no fleet on #79 or 2b-ii). Open: #79
     (round four in cure). Records-10 is local, two commits ahead of `main`.
 
+100. #79 round four returned two threads and one suppressed finding (a read-to-merge window on
+     the comments leg; the sentinel filtered before normalisation; trimmed lines letting an
+     indented code block lift); round five granted, the last on #79: two cures, one rejection
+     with a TSDoc sentence naming the accepted window. The owner's on-track question answered
+     (15:07Z): direction unchanged, nine or ten pull requests remain, at the measured three to
+     four rounds each that is the next lane-day, not this one. Owner word (15:15Z): the number
+     of review rounds per pull request does not go up. Applied from 2b-ii A1: PDR-132's two
+     rounds bind as written; after round two every remaining finding is dispositioned in the
+     same slot turn as the last push (a trivial cure rides it; everything else a signed Rejected
+     line with its rationale or routed home); a round three is a Director call on a correctness
+     defect only. Cards answered (about 15:20Z): the plan node's item 4 method reads that the
+     generator renders the Gemini row (2b-ii slice B edits the clause on the owner's word);
+     "Routed to <home>" does not lift, only Cured and Rejected do (item 88's REVIEW closed);
+     the item 92 sizing stands as an operating default with no PDR-132 text change; the three
+     unconsolidated napkins need no privacy review and archive only after full processing.
+     REVIEW: item 8's ratified proof includes `unconsolidated/` empty, and the archive follows
+     the graduation drain the owner placed outside the closure (item 94); the Director reads
+     item 8's closure exit as the register filed and the cards answered, the archive following
+     the drain, and asks the owner to amend the proof or move the drain back inside.
+
 ## Routing log
 
 - 2026-09-13 evening: seat opened; team-start `ca1ba4d8`; lanes A, B, C authored, unfilled.
