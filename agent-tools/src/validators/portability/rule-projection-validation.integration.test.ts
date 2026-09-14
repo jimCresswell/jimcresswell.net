@@ -180,6 +180,18 @@ describe('validateRuleProjections', () => {
     expect(repo.files.has('RULES_INDEX.md')).toBe(false);
   });
 
+  it('refuses to act when a surface holds a subdirectory, which the platform would read and the gate would not', async () => {
+    const repo = fakeRepo(
+      bareRepo().files,
+      new Map([['.claude/rules', { kind: 'foreign', entry: '.claude/rules/local' }]]),
+    );
+    const fix = await validateRuleProjections(true, repo);
+    expect(fix.issues).toStrictEqual([
+      '.claude/rules/local: not a regular file; the rule surfaces admit regular files only',
+    ]);
+    expect(fix.written).toStrictEqual([]);
+  });
+
   it('refuses to render anything while one rule has no declaration, naming the rule', async () => {
     const repo = bareRepo();
     repo.files.set('.agent/rules/gamma.md', '# Gamma\n');

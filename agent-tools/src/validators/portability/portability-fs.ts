@@ -17,6 +17,8 @@ import path from 'node:path';
 import { isEnoent } from '../../core/authored-surfaces.js';
 import { toLfText } from '../../core/lf-text.js';
 
+import { classifyDirectoryEntries, type DirectoryListing } from './directory-listing.js';
+
 /**
  * Reads the UTF-8 text content of a file at `<repoRoot>/<relPath>`.
  *
@@ -150,20 +152,15 @@ export async function listFiles(
   }
 }
 
-/** What listing a directory found: the closed set of outcomes a caller must handle. */
-export type DirectoryListing =
-  | { readonly kind: 'absent' }
-  | { readonly kind: 'unreadable'; readonly cause: string }
-  /** An entry that is neither a regular file nor a directory: a symlink or a special file. */
-  | { readonly kind: 'foreign'; readonly entry: string }
-  | { readonly kind: 'files'; readonly files: readonly string[] };
+export type { DirectoryListing } from './directory-listing.js';
 
 /**
  * Lists the regular files with the given extension in `<repoRoot>/<relDir>`, sorted
  * lexicographically, as a typed outcome: absence is ENOENT and nothing else, any other read
- * failure is `unreadable`, and a symlink or special entry (wherever it points) is `foreign`
- * before any file is listed. A caller that acts destructively on the listing can therefore
- * never read a failure as "nothing here" (the posture `carriage-fs.ts` documents).
+ * failure is `unreadable`, and a directory, symlink or special entry is `foreign` before any
+ * file is listed (`directory-listing.ts` says why a directory is foreign on a rule surface).
+ * A caller that acts destructively on the listing can therefore never read a failure as
+ * "nothing here" (the posture `carriage-fs.ts` documents).
  *
  * @param repoRoot  - Absolute path to the repository root.
  * @param relDir    - Repo-relative path to the directory to list.
@@ -183,17 +180,7 @@ export async function listDirectory(
       ? { kind: 'absent' }
       : { kind: 'unreadable', cause: error instanceof Error ? error.message : String(error) };
   }
-  const sorted = [...entries].sort((a, b) => a.name.localeCompare(b.name));
-  const foreign = sorted.find((e) => !e.isFile() && !e.isDirectory());
-  if (foreign !== undefined) {
-    return { kind: 'foreign', entry: `${relDir}/${foreign.name}` };
-  }
-  return {
-    kind: 'files',
-    files: sorted
-      .filter((e) => e.isFile() && e.name.endsWith(extension))
-      .map((e) => `${relDir}/${e.name}`),
-  };
+  return classifyDirectoryEntries(relDir, entries, extension);
 }
 
 /**
