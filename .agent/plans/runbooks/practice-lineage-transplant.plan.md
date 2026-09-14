@@ -236,13 +236,19 @@ the next instance's and is empty until it runs.
 
 ## Recorded outcomes, instance 1 (2026-09-14, by the seat that ran it)
 
-- **Owner questions.** Sixteen ruling rounds on the manifest (2026-09-12 to 13), then the
-  card batches of 2026-09-14 recorded in the Director's handoff, items 97 to 107. The
-  standing question set for instance 2 is the manifest's rounds read as one list.
-- **Elapsed time.** Wall spans from the main branch's commit timestamps: about thirteen
+- **Owner questions.** Counting rule: one card question (one `AskUserQuestion` question)
+  is one question; a manifest ruling round is one batched list and is counted as a round,
+  its questions countable from the manifest at instance 2. Instance 1: sixteen ruling
+  rounds on the manifest (2026-09-12 to 13) and forty-six card questions on 2026-09-14
+  (thirty-nine single-entry cards in the morning batch, four at 15:15Z, three at 21:12Z),
+  as the Director's handoff records them. The standing question set for instance 2 is the
+  manifest's rounds read as one list.
+- **Elapsed time.** Agent time was not instrumented in instance 1; the figure recorded is
+  the wall span from the main branch's commit timestamps, an upper bound: about thirteen
   hours (2026-09-12), fifteen and a half (2026-09-13) and twenty (2026-09-14); the closure
   alone was thirty-three pull requests over the last two. Instance 1 wrote this runbook, so
-  the under-two-hours test belongs to instance 2.
+  the under-two-hours test belongs to instance 2, which instruments agent time (session
+  start to close, pauses excluded) before it starts.
 - **Instruments only in the transcript at close: three classes**, against the required zero.
   The content-novelty scorer and the shared-file matcher (step 2's fallback and its matching)
   and the pull-request chain (request, wait, reply, signed dispositions, poll). Homes: the

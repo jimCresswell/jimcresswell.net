@@ -8,7 +8,7 @@ these are the process outputs kept alongside the work.
 | Record                                                               | Purpose                                                                                                         | Graduation target                            |
 | -------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
 | [efficiency-guidance.md](efficiency-guidance.md)                     | How to run the next transplant efficiently — measured sequence, rules that held, mistakes to design out         | PDR-005 amendment or a Practice-Core runbook |
-| [practice-as-installable-thing.md](practice-as-installable-thing.md) | Concept-exploration of packaging the Practice as a standalone installable thing; five proposals with falsifiers | PDR candidate after a second transplant      |
+| [practice-as-installable-thing.md](practice-as-installable-thing.md) | Concept-exploration of packaging the Practice as a standalone installable thing; seven proposals with falsifiers, scored at the closure | PDR candidate after a second transplant      |
 | [journey-so-far.md](journey-so-far.md)                               | An understanding of the journey to date: the spine, three frames and a counterframe, bridge claims, status | Reopened after the 57-lesson synthesis or the next transplant |
 | [what-the-practice-is.md](what-the-practice-is.md)                   | The Practice defined by nine functions, the transplant set that follows, and what this transplant failed to migrate by evidence class (owner-asked 2026-09-13; provisional) | The `practice-completion` node's completeness audit |
 | [practice-language-separation.md](practice-language-separation.md)   | The universal Practice and its language packs: the measured leakage, the three kinds of instrument contract, six proposals with falsifiers (owner-directed 2026-09-13; provisional) | The `practice-language-separation` node; a PDR amendment candidate |
@@ -24,7 +24,7 @@ The transplant's record is four documents read in this order: **what** the Pract
 went, [journey-so-far.md](journey-so-far.md); and **how the next one is faster**,
 [efficiency-guidance.md](efficiency-guidance.md). The closure's decisions and their evidence
 are in the Director's handoff `.agent/memory/operational/director-handoff.md` §Decisions
-overnight; the closure's completion entry is on the `practice-lineage.md` chain of
+overnight (the numbered items) and §Routing log; the closure's completion entry is on the `practice-lineage.md` chain of
 `.agent/practice-core/provenance.yml`.
 
 The five explorations are born sketch and govern nothing until ratified; the register is a live
