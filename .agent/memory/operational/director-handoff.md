@@ -56,8 +56,9 @@ Where this block and the routing log disagree, the log's last entry is current; 
 rewritten at each Director push.
 
 - Director: Cauldron herds Lustre (880ff9), claim `1db07581`, thread `transplant-closure`,
-  branch `chore/director-records-3` from `main` at `SHA: 6528ecb` (records only; the Director makes
-  no source edits).
+  branch `chore/director-records-4`, stacked on the merged #62 tip (`main` at `SHA: a70521e`
+  carries it), later items on `chore/director-records-5` stacked on this one (records only;
+  the Director makes no source edits).
 - Controlling node: `.agent/plans/delivery/practice-completion.plan.md` §Transplant closure.
   Landed on `main`, every component: item 1 (archive deleted), item 2 (PR #53,
   `SHA: 55649a2`), item 3 (PR #56, `SHA: 1829cd4`), item 4 as bounded (PR #57, `SHA: 4a61112`;
@@ -65,11 +66,14 @@ rewritten at each Director push.
   `SHA: dc23dff`), the per-checkout Playwright port (PR #60, `SHA: 4370e04`) and its follow-on
   (PR #66, `SHA: 0ec4583`), item 5a-i (PR #64, `SHA: 38e9693`), the Cricket quartet (PR #61,
   `SHA: ea3142b`), the Director records and the channel rule (PR #54, `SHA: c426c6c`; PR #58,
-  `SHA: 6528ecb`). Not landed: item 5's remaining parts, 2a, 2b, the handed-back residue, item 7.
+  `SHA: 6528ecb`; PR #62, `SHA: a70521e`), item 5a-ii (PR #65, `SHA: 53d9495`), item 5a-iii
+  (PR #67, `SHA: fca804e`), item 5b (PR #68, `SHA: f362cce`), the e2e follow-on 2 (PR #69,
+  `SHA: e67559a`). Not landed: items 5a-iv and 5c (open or opening), 2a, 2b, the handed-back
+  residue, item 7.
 - Open pull requests: this records branch (`chore/director-records-4`, overnight items from
   36, opened from a branch frozen at open) and, on lane A's next slot ask, 5a-iv
-  (`fix/body-tally-hardening` at `SHA: 3ddd2e7`) and 5c (`chore/lineage-leak-validator` at
-  `SHA: cf1feda`, main merged next). Merged: #54, #56, #57, #58, #61, #55 (`SHA: 7127bc4`),
+  (`fix/body-tally-hardening` at `SHA: 3ddd2e7`, a cure commit following its code-expert
+  verdict) and 5c (`chore/lineage-leak-validator`, pushed at `SHA: 7b1a3e0` as PR #71). Merged: #54, #56, #57, #58, #61, #55 (`SHA: 7127bc4`),
   #63 (`SHA: dc23dff`, session 2's register), #60 (`SHA: 4370e04`, the per-checkout
   Playwright port as the in-process server), #64 (`SHA: 38e9693`, item 5a-i), #66
   (`SHA: 0ec4583`, the e2e follow-on), #65 (`SHA: 53d9495`, item 5a-ii, measured state), #67
@@ -95,8 +99,8 @@ rewritten at each Director push.
   heartbeat loop at n=2. Checked 15:39Z: background tasks outlive a compaction.
 - Next safe step (owner away; decisions by the lenses, logged under §Decisions overnight):
   lane A pushes and opens 5a-iv then 5c on one slot ask each (code-expert passes running);
-  Copilot bound, the bot merges each at zero threads on measured state; this records pull
-  request merges the same way; then 2a, 2b, the handed-back residue, item 7 last. The morning
+  Copilot bound, the bot merges each at zero threads on measured state; then 2a, 2b, the
+  handed-back residue, item 7 last. The morning
   report presents §Decisions overnight with its REVIEW marks and the session 2 cards: the
   twenty-three session 2 fast-lane entries in four classes, the five slow-lane rows (PDR-130:
   `promote` or `kill-with-reasoning`), and proposal E. Measured on `main` after #63:

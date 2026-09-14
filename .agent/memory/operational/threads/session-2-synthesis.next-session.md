@@ -415,10 +415,11 @@ review dates, the readout at 28 pending. Nothing here refiles or reclassifies th
 2. Every fast-lane outcome drains its row (drain by deciding, the register's contract). A
    `graduated` entry lands as its own small pull request into the named home, one home per PR
    where the homes differ, by the seat the Director routes, and the entry is removed in the
-   same PR. A `rejected` entry is removed in a register commit whose message carries the
-   rejection reason. A `duplicate` entry is removed the same way, the message naming the home
-   that carries it. The commit and the home are the record (rule
-   `permanent-doc-is-the-consolidation-record`): no ledger, no drain note, no pointer.
+   same PR; the commit and the home are its record. A `duplicate` entry is removed in a
+   register commit whose message names the home that already carries it; the commit and that
+   home are its record. A `rejected` entry has no home: it is removed in a register commit
+   whose message carries the rejection reason, and that commit is its record. In every case
+   (rule `permanent-doc-is-the-consolidation-record`): no ledger, no drain note, no pointer.
 3. The three napkins under `.agent/memory/active/unconsolidated/` are archived once both
    gates hold: the fast-lane cards of step 1 are answered, and the owner's privacy review of
    the three napkins under `privacy.md` (overnight item 5) is done. The slow-lane cards are
