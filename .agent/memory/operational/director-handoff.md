@@ -935,6 +935,13 @@ ones the Director would put to the owner had the owner been present.
     mapping already on the 2a follow-on list. Order for lane A: 2b-i's push and pull request
     first (ready; its review runs during the cure), then the round. PDR-132 Director decision;
     lens 1.
+84. #76 round three granted (Copilot on `SHA: a45ccdc` at 07:03Z on 2026-09-14: two open
+    threads, four suppressed; all six block). Grounds: the recipe armed a second watcher
+    unconditionally (two on one seen-file consume without delivering); the #74 instruction
+    named a push that had landed; three sentences claimed graduations landed where only the
+    disposition was ruled; item 80's "every other branch" hid the local records-8. Cured at
+    `SHA: 2363bc9`, pushed 07:06Z. 2b-i opened as #77 (`SHA: a5efd78`) at 07:02Z by lane A;
+    its chain armed. PDR-132 Director decision; lens 1.
 
 ## Routing log
 
