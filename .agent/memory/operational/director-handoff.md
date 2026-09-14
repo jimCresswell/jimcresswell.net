@@ -533,6 +533,14 @@ ones the Director would put to the owner had the owner been present.
     change that makes teardown observable does not ship beside a known false-red path on
     every pre-push gate. Lens 1 (a flake class on the gate costs every push) then lens 4
     (host load is where the stall shows). REVIEW: none.
+51. e2e follow-on 2 is PR #69 (00:48Z on 2026-09-14, `SHA: e1beb30`): the observed teardown
+    and the finally cells, then the relay cure as bounded (a spawn-line change plus its cell:
+    the server runs as this node executable's own child with tsx registered in-process; the
+    58 e2e through the real setup, the stop read clean). Copilot requested, bot armed. Four
+    pull requests open (#62, #67, #68, #69), the owner's "too many" mark, all under review and
+    merging by the bot as they clear. Ruling: 5c builds from main and commits locally; its
+    pull request opens only once two of the four have merged. Lens 2 (the owner's word on the
+    open count) then lens 3 (no seat idles: the build continues, the queue does not grow).
 
 ## Routing log
 
