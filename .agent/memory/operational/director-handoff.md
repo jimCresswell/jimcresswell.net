@@ -106,7 +106,7 @@ rewritten at each Director push.
 
 | Lane | Items | Owns exclusively | Seat | Claim | Branch / PR | State |
 | ---- | ----- | ---------------- | ---- | ----- | ----------- | ----- |
-| A | 3 done; #60 merged (`SHA: 4370e04`) and its follow-on #66 merged (`SHA: 0ec4583`); 5a-i merged (#64, `SHA: 38e9693`); 5a-ii open (#65); then the 5a-iii PR, 5b, the e2e follow-on 2, 5c, 2a, 2b, then the handed-back residue: the Gemini projection, the corpus-analysis restore with the five patterns, `sif` | root scripts, CI workflow, `agent-tools/` legs and retirements, the leak validator, `tooling/*/package.json`, `turbo.json`, `jcdotnet/accept-md.config.js`, the incoming bundle, the Playwright harness config, the merge-bot sources; after 2b the rules generator, the adapter trees and the Gemini projection | Saffron turns Verdure (c39ad7) | f024e1f1, 5828b0ee, the 5a claim | `fix/merge-bot-measured-state` PR #65; `fix/merge-bot-body-tally` at `SHA: beddd8b` on origin, PR after #65; `chore/retire-lineage-instruments` local | ACTIVE at n=2 |
+| A | 3 done; #60 merged (`SHA: 4370e04`) and its follow-on #66 merged (`SHA: 0ec4583`); 5a-i merged (#64, `SHA: 38e9693`); 5a-ii merged (#65, `SHA: 53d9495`); 5a-iii merged (#67, `SHA: fca804e`); 5b merged (#68, `SHA: f362cce`, the four retirements, the accept-md config as a typed module, the incoming bundle gone); the e2e follow-on 2 open (#69); then 5a-iv, 5c, 2a, 2b, then the handed-back residue: the Gemini projection, the corpus-analysis restore with the five patterns, `sif` | root scripts, CI workflow, `agent-tools/` legs and retirements, the leak validator, `tooling/*/package.json`, `turbo.json`, the Playwright harness config, the merge-bot sources; after 2b the rules generator, the adapter trees and the Gemini projection | Saffron turns Verdure (c39ad7) | f024e1f1, 5828b0ee, the 5a claim | `fix/e2e-teardown-observed` PR #69 at `SHA: e1beb30`; `chore/lineage-leak-validator` local (5c); 5a-iv local | ACTIVE at n=2 |
 | B | 6 | (handed back) `.agent/rules/**`, `RULES_INDEX.md`, the three rule-adapter trees, the rules-index and trigger generator, sub-agent adapter descriptions | Sirocco wakes Wingspan (45fe02) | closed | `closure/lane-b` merged as PR #55 at `SHA: 7127bc4` and deleted; `closure/lane-b-generator` at `SHA: d76bb86` on origin (2a fold conserved in the record) | STOOD DOWN 17:14Z; handed back: 2a, 2b, PR 3 (now routed to lane A after item 5) |
 | C | 4 then 7 | the definition report, `testing-strategy.md`, the substrate manifest's register declarations, the Gemini projection | Djinn hunts Solder (36720b) | closed | `closure/lane-c` and `closure/lane-c-restore` deleted (merged in #57; carried in #58); PR #59 closed as carried | STOOD DOWN 16:57Z; handed back: the restore, `sif`, five patterns, the Gemini projection after 2b, item 7 |
 | Director | 7 | reports index, runbook step 13, `provenance.yml` completion entry; merges | Cauldron herds Lustre | 1db07581 | after the holdings land | routing lane A; merging |
@@ -562,6 +562,15 @@ ones the Director would put to the owner had the owner been present.
     in `provenance.yml`, is a practice-core field-spec change. Lens 1 (a wrong derivation costs
     a false red on every gate; a declared pair costs one line). REVIEW: the field-spec
     alternative, for the owner's card; decision 5's wording superseded by the measured fact.
+54. #68 (item 5b, the four retirements) merged by the bot at `SHA: f362cce` (00:52Z on
+    2026-09-14) at zero threads with Copilot bound; origin branch deleted. The body: closer-look,
+    four suppressed: bare commit ids in lane A's napkin and thread-record additions (the
+    `SHA:` prefix rule; routed to lane A's next waypoint commit); the PR body's proof table
+    over-counting a cell (moot); the continuity surfaces still listing the accept-md config
+    and the incoming bundle as holdings (the Director's, trued in this item's commit on the
+    board row; the index's residue list was already replaced). Two merged since the hold, so
+    5a-iv's pull request may open on a green build and 5c's after the next merge. #69 read
+    approval-recommended, zero threads. Standing ruling.
 
 ## Routing log
 
