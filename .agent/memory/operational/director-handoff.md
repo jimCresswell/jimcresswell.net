@@ -740,6 +740,14 @@ ones the Director would put to the owner had the owner been present.
     plan's "per-role commands" phrasing superseded, both pages cited; optional Gemini fields
     emitted only from declarations. #73 round one (03:15Z): three staleness threads cured on
     records-5 at `SHA: ec289cd`. Lens 1 then lens 3.
+71. #71 (item 5c, the lineage-name leak validator and the scrub) merged by the bot at
+    `SHA: f377412` (03:18Z on 2026-09-14) on measured state after two rounds; origin branch
+    deleted. Closure item 5 is closed on `main`: 5a (#64, #65, #67, #72), 5b (#68), 5c (#71).
+    The body's four suppressed findings (raw substring exclusions let a nested path bypass
+    the gate; no cell drives the entry point; two refusals echo the raw cause, which can carry
+    the working copy's absolute path into CI logs) are item 5c-ii, one small pull request
+    after 2b-i's opens and before 2b-ii. Standing ruling; REVIEW: the gate bypass shape ships
+    on main until 5c-ii lands (no live leak: the scrub is done and the hook covers writes).
 
 ## Routing log
 
