@@ -626,6 +626,19 @@ ones the Director would put to the owner had the owner been present.
     says that is wanted); the oak- family of names a literal needle cannot see (a worktree
     fixture, the skills prefix, OakText) sits outside the slice's declared scope. Lens 3.
     REVIEW: the two named items.
+60. 5c is PR #71 (`SHA: 7b1a3e0`, 02:45Z on 2026-09-14; Copilot requested, bot armed; three
+    REVIEW lines in its body). 5a-iv's code-expert read CHANGES REQUIRED: the new cell's
+    zero-width space and bell landed as raw bytes (the file tool decoded two of three escapes),
+    which the encoding gate reads as critical; and the printable guarantee belongs to the two
+    terminal writers, not the tally, since check names, run names and reviewer logins reach
+    them unsanitised. Cure as a commit on top: one `printable` helper in both writers with a
+    cell per writer, the tally normalising before it classifies, the fixture's bytes as
+    escapes, the encoding gate quoted. Shape note for the board: the fourth 5a slice curing a
+    field at its source on the same evidence pipeline; the writers now own the class. #70
+    round one (02:43Z): one thread (the Director line still pointed at records-3) and five
+    suppressed, cured at `SHA: e3f1bea` on records-4 (the 5c pointer, the landed inventory,
+    no self-forecast of this pull request's merge, the rejected case distinguished from the
+    home-bearing ones; the lane A thread's rules-carried line rides 5c). Lens 1.
 
 ## Routing log
 
