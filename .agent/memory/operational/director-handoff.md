@@ -1082,6 +1082,13 @@ ones the Director would put to the owner had the owner been present.
     amendments; item 7 last (the Director's). Instrument finding on this seat: three records
     pull requests took nine rounds this morning; records-9 stays local to a natural boundary
     and items shorten from here. Lens 2 (the owner's word) on the scope; lens 1 on the rest.
+95. #79 round one pushed at `SHA: 2b08e61` (08:49Z); lane A then compacted on the owner's
+    word, every branch pushed, its claim held (its note on the stream, 08:52Z). Round three
+    granted (Copilot at 08:56Z: one open, two suppressed): a bot-suffixed login normalised to
+    a permitted slug (an authorisation bypass), the review harvest not revalidated after the
+    tip confirm (round one's family; one consistency bracket over all three legs is the class
+    cure), the throws contract missing the comments leg. Routed ahead of #77's round: 5a-vi
+    is the mechanism the later merges wait on. PDR-132 Director decision; lens 1.
 
 ## Routing log
 
