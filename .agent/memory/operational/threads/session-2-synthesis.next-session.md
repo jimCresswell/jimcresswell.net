@@ -42,8 +42,10 @@ owner's word on its presentation, and any earlier decision is the owner's word o
   falsifiable prediction; duplicates are recorded in the PR body with the line that carries
   them; the readout moves in two proofs, 0 to 33 on filing and 33 to 28 after the five
   constitutional rows move to the slow lane (the accepted readout is 28 decision-debt blocks
-  beside five slow-lane rows); the napkins are archived only after two gates, the answered
-  fast-lane cards and the owner's privacy review of the three napkins.
+  beside five slow-lane rows); the napkins are archived only after two gates: the owner's
+  answers to the cards (a slow-lane answer being the owner's word on the row's presentation,
+  its decision staying with the review date) and the owner's privacy review of the three
+  napkins.
 - **Next safe step:** §Next safe step at the end of this record.
 
 ## How this draft was made
