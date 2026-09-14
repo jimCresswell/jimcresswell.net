@@ -888,6 +888,24 @@ ones the Director would put to the owner had the owner been present.
     (rule names validated at the canonical boundary; no-follow atomic mutations; reads through
     an open no-follow descriptor) and fires on lane A's release line. Records-8 cut here,
     stacked on records-7 (frozen at open). Lens 1.
+82. Re-grounded under `start-right-team` on the owner's invocation (06:41Z to 06:55Z on
+    2026-09-14). Found and cured: the surviving watcher lacked the supervisor pid the rule
+    mandates, so it was stopped and re-armed in the canonical shape (bound to this seat's
+    process, step deadline, drain bound, timeout backstop), asserted live, then one foreground
+    sweep (no new events); the heartbeat exclusion is dropped at n=2 because no seat emits
+    heartbeats under PDR-082 and the exclusion would demand the F-75 poll for nothing. The
+    Director claim row read stale (its heartbeat from the evening) and was refreshed. The
+    canonical stream's newest event predated eleven overnight merges; one catch-up broadcast
+    names main's tip, the open pull requests and the slot state. Copilot's round one on #76
+    (four findings, three suppressed; under the owner's morning ruling all seven block) cured
+    on records-7 at `SHA: a45ccdc`: the recipe now carries the canonical arm, the full liveness
+    assertion and the sweep; the current-state heading, branch, open pull request, next-step
+    and board lines read the post-item-80 state; the letter names two open pull requests; the
+    pull request body counts two seeds and one recorded discard. The push failed once on the
+    substrate leg (the generated shared comms log stale after the broadcast); re-rendered and
+    pushed. Lane A released #74 at `SHA: eafe7a6`; its chain replied to and resolved the three
+    threads and re-requested Copilot. Lens 1; the heartbeat-exclusion drop is REVIEW (a
+    Director reading of the rule at n=2).
 
 ## Routing log
 
