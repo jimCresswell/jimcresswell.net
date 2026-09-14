@@ -579,6 +579,17 @@ ones the Director would put to the owner had the owner been present.
     ledger); the channel carries a correction on the opening entry's times; the #62 body's
     landed-state sentence left as is (moot at merge). Lens 1. REVIEW: item 46's drain note
     was an anti-pattern the rule names; withdrawn the same night.
+56. #62 CONFLICT-DIRTY after #68 (00:53Z on 2026-09-14): #68 carried lane A's records, so the
+    napkin was appended on both sides. Main merged into the records branch (a merge commit,
+    both napkin sections kept, main's first) at `SHA: 0c121ff`, pushed, Copilot re-requested,
+    the bot armed; records-4 carries the same merge. 5c (lane A, `chore/lineage-leak-validator`)
+    is committed locally with the prediction before the reading: the plan's twenty-one files
+    plus the unlisted and the truncated fixture were predicted; the reading on `SHA: 53d9495`
+    was 71 hits in 23 files, the differences each explained (two fixtures carry the lineage
+    only as the truncated name or the employer; the JSON-LD snapshot names the employer, never
+    the login; the parallax canonical and two adapter copies; the two pr-throughput sources 5b
+    retired meanwhile); after the scrub the validator reads clean on 2787 tracked files. Lane
+    A's `SHA:`-prefix cures ride 5c's records commit. Standing ruling.
 
 ## Routing log
 
