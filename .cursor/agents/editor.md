@@ -1,6 +1,6 @@
 ---
 name: editor
-description: 'Editorial reviewer for Jim Cresswell''s public-facing content. Reviews audience fit, attention, structure, readability, voice and consistency — returns actionable feedback without editing files.'
+description: "Editorial reviewer for Jim Cresswell's public-facing content. Reviews audience fit, attention, structure, readability, voice and consistency — returns actionable feedback without editing files."
 readonly: true
 ---
 

@@ -37,15 +37,11 @@ import { ruleNameRefusal } from '../../rule-declarations/rule-name.js';
 import {
   renderRuleProjections,
   RULES_INDEX_PATH,
-  type RuleProjection,
 } from '../../rule-declarations/render-rule-projections.js';
-import {
-  diffRuleProjections,
-  type RuleProjectionDrift,
-} from '../../rule-declarations/rule-projection-drift.js';
 import type { RuleDeclaration } from '../../rule-declarations/rule-declaration.js';
 
-import { driftIssues, filesOf, REFUSING, textOf } from './projection-issues.js';
+import { applyProjectionDrift, diffProjections } from './projection-drift.js';
+import { driftIssues, filesOf, refusing, RULE_SUBJECT, textOf } from './projection-issues.js';
 import type { RuleProjectionFs } from './rule-projection-fs.js';
 
 /** The projection surfaces and the extension each carries. */
@@ -56,6 +52,8 @@ const PROJECTION_SURFACES = [
 ] as const;
 
 const CANONICAL_RULES_DIR = '.agent/rules';
+
+const REFUSING = refusing(RULE_SUBJECT);
 
 /** What the leg found and, in fix mode, did. */
 export interface RuleProjectionValidation {
@@ -88,37 +86,16 @@ export async function validateRuleProjections(
     return { issues: [surfaces.error], canonicalRuleCount, written: [], removed: [] };
   }
   const expected = renderRuleProjections(canonical.declarations);
-  const drift = diffRuleProjections(expected, surfaces.value);
+  const drift = diffProjections(expected, surfaces.value);
   if (!fixMode) {
-    return { issues: driftIssues(drift), canonicalRuleCount, written: [], removed: [] };
+    return {
+      issues: driftIssues(drift, RULE_SUBJECT),
+      canonicalRuleCount,
+      written: [],
+      removed: [],
+    };
   }
-  return { canonicalRuleCount, ...(await applyDrift(expected, drift, projectionFs)) };
-}
-
-/** Apply the drift mutation by mutation; a refused mutation ends the run as the one issue. */
-async function applyDrift(
-  expected: readonly RuleProjection[],
-  drift: RuleProjectionDrift,
-  projectionFs: RuleProjectionFs,
-): Promise<Pick<RuleProjectionValidation, 'issues' | 'written' | 'removed'>> {
-  const written: string[] = [];
-  const removed: string[] = [];
-  const toWrite = new Set([...drift.missing, ...drift.drifted]);
-  for (const projection of expected.filter((candidate) => toWrite.has(candidate.path))) {
-    const outcome = await projectionFs.writeText(projection.path, projection.text);
-    if (!outcome.ok) {
-      return { issues: [outcome.error], written, removed };
-    }
-    written.push(projection.path);
-  }
-  for (const stalePath of drift.stale) {
-    const outcome = await projectionFs.removeFile(stalePath);
-    if (!outcome.ok) {
-      return { issues: [outcome.error], written, removed };
-    }
-    removed.push(stalePath);
-  }
-  return { issues: [], written, removed };
+  return { canonicalRuleCount, ...(await applyProjectionDrift(expected, drift, projectionFs)) };
 }
 
 interface CanonicalRules {
@@ -129,7 +106,7 @@ interface CanonicalRules {
 
 async function readDeclarations(projectionFs: RuleProjectionFs): Promise<CanonicalRules> {
   const listing = await projectionFs.listDirectory(CANONICAL_RULES_DIR, '.md');
-  const files = filesOf(CANONICAL_RULES_DIR, listing, 'canonical');
+  const files = filesOf(CANONICAL_RULES_DIR, listing, 'canonical', RULE_SUBJECT);
   if (!files.ok) {
     return { declarations: [], issues: [files.error], canonicalRuleCount: 0 };
   }
@@ -160,7 +137,7 @@ async function readOneDeclaration(
   if (refusal !== undefined) {
     return err(`${ruleFile}: ${refusal}`);
   }
-  const text = textOf(ruleFile, await projectionFs.readEntry(ruleFile));
+  const text = textOf(ruleFile, await projectionFs.readEntry(ruleFile), RULE_SUBJECT);
   if (!text.ok) {
     return text;
   }
@@ -177,7 +154,7 @@ async function readSurfaces(
   const actual = new Map<string, string>();
   const index = await projectionFs.readEntry(RULES_INDEX_PATH);
   if (index.kind !== 'absent') {
-    const text = textOf(RULES_INDEX_PATH, index);
+    const text = textOf(RULES_INDEX_PATH, index, RULE_SUBJECT);
     if (!text.ok) {
       return text;
     }
@@ -185,12 +162,12 @@ async function readSurfaces(
   }
   for (const surface of PROJECTION_SURFACES) {
     const listing = await projectionFs.listDirectory(surface.dir, surface.extension);
-    const files = filesOf(surface.dir, listing, 'projection');
+    const files = filesOf(surface.dir, listing, 'projection', RULE_SUBJECT);
     if (!files.ok) {
       return files;
     }
     for (const file of files.value) {
-      const text = textOf(file, await projectionFs.readEntry(file));
+      const text = textOf(file, await projectionFs.readEntry(file), RULE_SUBJECT);
       if (!text.ok) {
         return text;
       }

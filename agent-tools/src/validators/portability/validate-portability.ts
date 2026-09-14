@@ -8,8 +8,8 @@
  *
  * ```sh
  * pnpm portability:check
- * pnpm portability:fix   # regenerate the rule projections: write missing and
- *                        # drifted ones, remove stale ones
+ * pnpm portability:fix   # regenerate the rule projections and the sub-agent
+ *                        # adapters: write missing and drifted ones, remove stale ones
  * ```
  *
  * Exit code 0 means all checks pass; exit code 1 means at least one issue was
@@ -26,7 +26,6 @@ import {
   type CanonicalSkill,
   collectCanonicalSkillPaths,
   getClaudeHookPortabilityIssues,
-  getReviewerAdapterParityIssues,
   rulesIndexBudgetIssues,
   CLAUDE_SETTINGS_PATH,
   HOOK_POLICY_PATH,
@@ -37,7 +36,6 @@ import {
   exists,
   extractFrontmatter,
   getFrontmatterValue,
-  listFiles,
   listSubdirs,
   readJson,
   readOptionalText,
@@ -48,6 +46,7 @@ import { reportPortabilityValidation } from './portability-report.js';
 import { validateRuleProjections } from './rule-projection-validation.js';
 import { realRuleProjectionFs } from './rule-projection-fs.js';
 import { readEntry } from './rule-surface-fs.js';
+import { validateSubagentProjections } from './subagent-projection-validation.js';
 
 // projectDir is explicitly disabled: this validator reads and, under `--fix`,
 // writes the tree it runs inside. The CLAUDE_PROJECT_DIR leg would rebind a
@@ -99,28 +98,19 @@ for (const skill of discoveredCanonicals) {
 // The rule projections — RULES_INDEX.md and the Cursor, Claude and `.agents` rule
 // adapters — are rendered from each rule's frontmatter declaration and compared byte
 // for byte; `--fix` regenerates them. Nothing on those surfaces is hand-kept.
-const ruleProjections = await validateRuleProjections(fixMode, realRuleProjectionFs(repoRoot));
+const projectionFs = realRuleProjectionFs(repoRoot);
+const ruleProjections = await validateRuleProjections(fixMode, projectionFs);
 issues.push(...ruleProjections.issues);
 writtenPaths.push(...ruleProjections.written);
-const removedProjections = ruleProjections.removed;
 
-const cursorAgentFiles = await listFiles(repoRoot, '.cursor/agents', '.md');
-const claudeAgentFiles = await listFiles(repoRoot, '.claude/agents', '.md');
-const codexAgentFiles = await listFiles(repoRoot, '.codex/agents', '.toml');
-const canonicalAgentNames = [
-  ...new Set([
-    ...cursorAgentFiles.map((file) => path.basename(file, '.md')),
-    ...claudeAgentFiles.map((file) => path.basename(file, '.md')),
-    ...codexAgentFiles.map((file) => path.basename(file, '.toml')),
-  ]),
-].sort((a, b) => a.localeCompare(b));
-for (const issue of getReviewerAdapterParityIssues({
-  cursorAgentFiles,
-  claudeAgentFiles,
-  codexAgentFiles,
-})) {
-  issues.push(issue);
-}
+// The sub-agent adapters — the Cursor, Claude and Codex files under each platform's
+// agents directory — are rendered from each template's frontmatter declaration and
+// compared byte for byte; `--fix` regenerates them. Nothing on those surfaces is hand-kept
+// (closure item 6, 2b-ii).
+const subagentProjections = await validateSubagentProjections(fixMode, projectionFs);
+issues.push(...subagentProjections.issues);
+writtenPaths.push(...subagentProjections.written);
+const removedProjections = [...ruleProjections.removed, ...subagentProjections.removed];
 
 // The index's presence and rows are the projection leg's; the Codex byte budget is the
 // one check the rendered bytes cannot answer for themselves, read through the same
@@ -167,11 +157,15 @@ const ruleStats =
   ruleProjections.issues.length === 0
     ? `${ruleProjections.canonicalRuleCount} canonical rules with their index and three adapter projections recomputed`
     : `${ruleProjections.canonicalRuleCount} canonical rules (projection leg refused)`;
+const subagentStats =
+  subagentProjections.issues.length === 0
+    ? `${subagentProjections.templateCount} sub-agent templates with their three adapter surfaces recomputed`
+    : `${subagentProjections.templateCount} sub-agent templates (adapter leg refused)`;
 const removedStats =
   removedProjections.length > 0
-    ? `, ${removedProjections.length} stale files removed from the rule surfaces`
+    ? `, ${removedProjections.length} stale files removed from the generated surfaces`
     : '';
-const stats = `${validatedCanonicalPaths.length} canonical skills, ${ruleStats}, ${canonicalAgentNames.length} reviewer adapters${removedStats}`;
+const stats = `${validatedCanonicalPaths.length} canonical skills, ${ruleStats}, ${subagentStats}${removedStats}`;
 
 export { reportPortabilityValidation } from './portability-report.js';
 

@@ -7,9 +7,10 @@
  * row `.gemini/agents/<name>.md`, the Gemini CLI subagents surface, the Director's ruling
  * item 70 of 2026-09-14) are thin pointers back to it that carry the description and each
  * platform's fields. The declaration is the one source for every adapter: the
- * generator (closure item 6, 2b-ii, the next slice) will render them under
- * `pnpm portability:fix` and recompute them under `pnpm portability:check`, so that none is
- * edited by hand (`compute-dont-hope`); until it lands the adapters stay hand-kept.
+ * generator (closure item 6, 2b-ii; `render-subagent-adapters.ts`) renders the Cursor,
+ * Claude and Codex adapters under `pnpm portability:fix` and `pnpm portability:check`
+ * recomputes them, so none is edited by hand (`compute-dont-hope`); the Codex registry and
+ * the Gemini row follow in their own slices.
  *
  * Two shapes, never both: a ROLE declares one description and, only where a platform's
  * fields deviate from the estate's defaults, those fields; a FAN-OUT (the cricket templates)
@@ -24,32 +25,15 @@
 import { err, ok, type Result } from '@engraph/result';
 import { z } from 'zod';
 
-/** The platforms an adapter can be projected to, in the order the surfaces are listed. */
-const SUBAGENT_PLATFORMS = ['cursor', 'claude', 'codex', 'gemini'] as const;
-
-/** A member of {@link SUBAGENT_PLATFORMS}. */
-type SubagentPlatform = (typeof SUBAGENT_PLATFORMS)[number];
-
-/** The three hand-kept surfaces the sweep reads (Gemini is generated only), and the two Markdown ones. */
-export type SourcePlatform = Exclude<SubagentPlatform, 'gemini'>;
-export type MarkdownPlatform = Exclude<SourcePlatform, 'codex'>;
-
-const platform = z.enum(SUBAGENT_PLATFORMS);
-const line = z
-  .string()
-  .min(1)
-  .refine((value) => !value.includes('\n'), 'one line');
+import { line, platform, prose, type SubagentPlatform } from './declaration-scalars.js';
 
 /**
- * Prose an adapter body carries beyond the standard shape, verbatim: what follows the
- * template path inside the pointer paragraph, and the closing paragraphs after it. A role
- * declares them only where they deviate from the platform's standard closing; a variant
- * declares every note it carries.
+ * The three source surfaces the generator renders and the sweep still reads (the sweep stays
+ * live, minting declarations from hand-kept adapters, until the reader-retirement pull
+ * request; Gemini is generated only, slice B), and the two Markdown ones.
  */
-const prose = {
-  pointerTail: z.string().min(1).optional(),
-  note: z.string().min(1).optional(),
-};
+export type SourcePlatform = Exclude<SubagentPlatform, 'gemini'>;
+export type MarkdownPlatform = Exclude<SourcePlatform, 'codex'>;
 
 /** Claude Code adapter fields; every one optional, absent means the estate's default. */
 const claudeFields = z

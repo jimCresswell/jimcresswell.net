@@ -1,9 +1,7 @@
-import { err, ok } from '@engraph/result';
 import { describe, expect, it } from 'vitest';
 
-import type { DirectoryListing, EntryRead } from './directory-listing.js';
 import { validateRuleProjections } from './rule-projection-validation.js';
-import type { RuleProjectionFs } from './rule-projection-fs.js';
+import { fakeProjectionRepo } from './test-helpers/fake-projection-repo.js';
 
 const CORE_RULE = '---\nclassification: core\ndescription: Alpha does a.\n---\n\n# Alpha\n';
 const SCOPED_RULE = [
@@ -19,70 +17,8 @@ const SCOPED_RULE = [
   '',
 ].join('\n');
 
-/**
- * An in-memory repository keyed by repo-relative path; every write and removal is applied. A
- * directory exists when any path lies under it; `listings` overrides what listing it yields,
- * `reads` what reading a path yields (a foreign or unreadable entry), and `refusals` the
- * mutations the port refuses (the entry changed under it).
- */
-function fakeRepo(
-  initial: ReadonlyMap<string, string>,
-  listings: ReadonlyMap<string, DirectoryListing> = new Map(),
-  reads: ReadonlyMap<string, EntryRead> = new Map(),
-  refusals: ReadonlySet<string> = new Set(),
-): RuleProjectionFs & { files: Map<string, string> } {
-  const files = new Map(initial);
-  return {
-    files,
-    listDirectory: async (relDir, extension) => {
-      const override = listings.get(relDir);
-      if (override !== undefined) {
-        return override;
-      }
-      const under = [...files.keys()]
-        .filter((file) => file.startsWith(`${relDir}/`))
-        .filter((file) => !file.slice(relDir.length + 1).includes('/'))
-        .sort((left, right) => left.localeCompare(right));
-      if (under.length === 0) {
-        return { kind: 'absent' };
-      }
-      return {
-        kind: 'files',
-        files: under.filter((file) => file.endsWith(extension)),
-        stray: under.filter((file) => !file.endsWith(extension)),
-      };
-    },
-    readEntry: async (relPath) => {
-      const override = reads.get(relPath);
-      if (override !== undefined) {
-        return override;
-      }
-      const text = files.get(relPath);
-      return text === undefined ? { kind: 'absent' } : { kind: 'text', text };
-    },
-    writeText: async (relPath, text) => {
-      if (refusals.has(relPath)) {
-        return err(
-          `${relPath}: not a regular file at the moment of the write; refusing the projection write`,
-        );
-      }
-      files.set(relPath, text);
-      return ok(undefined);
-    },
-    removeFile: async (relPath) => {
-      if (refusals.has(relPath)) {
-        return err(
-          `${relPath}: not a regular file at the moment of the removal; refusing to remove it`,
-        );
-      }
-      files.delete(relPath);
-      return ok(undefined);
-    },
-  };
-}
-
-function bareRepo(): ReturnType<typeof fakeRepo> {
-  return fakeRepo(
+function bareRepo(): ReturnType<typeof fakeProjectionRepo> {
+  return fakeProjectionRepo(
     new Map([
       ['.agent/rules/alpha.md', CORE_RULE],
       ['.agent/rules/beta.md', SCOPED_RULE],
@@ -165,7 +101,7 @@ describe('validateRuleProjections', () => {
   });
 
   it('refuses to act when the canonical rules directory is unreadable or holds no rules', async () => {
-    const unreadable = fakeRepo(
+    const unreadable = fakeProjectionRepo(
       bareRepo().files,
       new Map([['.agent/rules', { kind: 'unreadable', cause: 'EACCES: permission denied' }]]),
     );
@@ -175,7 +111,7 @@ describe('validateRuleProjections', () => {
 
     const projected = bareRepo();
     await validateRuleProjections(true, projected);
-    const empty = fakeRepo(
+    const empty = fakeProjectionRepo(
       projected.files,
       new Map([['.agent/rules', { kind: 'files', files: [], stray: [] }]]),
     );
@@ -215,7 +151,7 @@ describe('validateRuleProjections', () => {
   });
 
   it('refuses when a canonical rule is unreadable, naming it, and writes nothing', async () => {
-    const repo = fakeRepo(
+    const repo = fakeProjectionRepo(
       bareRepo().files,
       new Map(),
       new Map([
@@ -231,7 +167,7 @@ describe('validateRuleProjections', () => {
   });
 
   it('refuses when the index is a symlink or unreadable, rather than reading it as absent and writing over it', async () => {
-    const linked = fakeRepo(
+    const linked = fakeProjectionRepo(
       bareRepo().files,
       new Map(),
       new Map([['RULES_INDEX.md', { kind: 'foreign' }]]),
@@ -242,7 +178,7 @@ describe('validateRuleProjections', () => {
     ]);
     expect(fix.written).toStrictEqual([]);
 
-    const unreadable = fakeRepo(
+    const unreadable = fakeProjectionRepo(
       bareRepo().files,
       new Map(),
       new Map([['RULES_INDEX.md', { kind: 'unreadable', cause: 'EIO: i/o error' }]]),
@@ -255,7 +191,7 @@ describe('validateRuleProjections', () => {
   it('refuses when an existing projection cannot be read, rather than aborting or writing', async () => {
     const repo = bareRepo();
     await validateRuleProjections(true, repo);
-    const unreadable = fakeRepo(
+    const unreadable = fakeProjectionRepo(
       repo.files,
       new Map(),
       new Map([
@@ -272,7 +208,7 @@ describe('validateRuleProjections', () => {
   });
 
   it('refuses to act when a surface holds a symlink or special entry, so no write follows a link', async () => {
-    const repo = fakeRepo(
+    const repo = fakeProjectionRepo(
       bareRepo().files,
       new Map([['.claude/rules', { kind: 'foreign', entry: '.claude/rules/alpha.md' }]]),
     );
@@ -285,7 +221,7 @@ describe('validateRuleProjections', () => {
   });
 
   it('refuses to act when a surface holds a subdirectory, which the platform would read and the gate would not', async () => {
-    const repo = fakeRepo(
+    const repo = fakeProjectionRepo(
       bareRepo().files,
       new Map([['.claude/rules', { kind: 'foreign', entry: '.claude/rules/local' }]]),
     );
@@ -308,7 +244,7 @@ describe('validateRuleProjections', () => {
   });
 
   it('ends a fix run at a refused mutation, reporting it with what was written before it', async () => {
-    const repo = fakeRepo(
+    const repo = fakeProjectionRepo(
       bareRepo().files,
       new Map(),
       new Map(),

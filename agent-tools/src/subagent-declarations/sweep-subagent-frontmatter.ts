@@ -29,6 +29,7 @@ import { err, ok, type Result } from '@engraph/result';
 import { defaultSweepFs, readSource, type SweepFs } from '../rule-declarations/sweep-fs.js';
 
 import { declaredShapeIssue, groupByTemplate, groupShape } from './adapter-groups.js';
+import { TEMPLATES_DIR } from './adapter-spec.js';
 import type { AdapterSource } from './adapter-sources.js';
 import { ADAPTER_SURFACES } from './adapter-surfaces.js';
 import { readBackIssue } from './declaration-round-trip.js';
@@ -42,8 +43,6 @@ import {
 } from './render-subagent-frontmatter.js';
 import type { SourcePlatform, SubagentDeclaration } from './subagent-declaration.js';
 import { refuseNonBasenames } from './sweep-names.js';
-
-export const TEMPLATES_DIR = '.agent/sub-agents/templates';
 
 export interface SweepInput {
   readonly repoRoot: string;
