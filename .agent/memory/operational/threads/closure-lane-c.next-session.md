@@ -51,10 +51,11 @@ per-role projection after the adapter generator (2b), item 7 (the compiled recor
   `.gemini/commands/<template-basename>.toml` with gemini added to the reviewer-adapter platform
   contract (the path is superseded: the Director's item 70 of 2026-09-14, measured against the
   Gemini CLI's documentation, rules the surface `.gemini/agents/<name>.md`, name and description
-  required, optional fields only from declarations; 2b-ii renders that row); lane C authors that extension after B's PR 2 merges, when B releases the emitter
-  path and `validators/portability`; thirty hand-written adapters would be the hand-kept copies
-  item 6 removes. `GEMINI.md`, the surface matrix and the operational README are lane C's in
-  item 4. (2) Definition rows 3 and 5: the corpus-analysis workflow and `sif`'s two instruments
+  required, optional fields only from declarations; 2b-ii renders that row, so the generator
+  owns the Gemini surface and lane C authors no extension: the ownership clause of the 14:15Z
+  verdict is superseded with the path); thirty hand-written adapters would be the hand-kept
+  copies item 6 removes. `GEMINI.md`, the surface matrix and the operational README were lane
+  C's in item 4. (2) Definition rows 3 and 5: the corpus-analysis workflow and `sif`'s two instruments
   are removed, not restored (the round 11 one-seat synthesis ruling leaves them no consumer):
   a separate small PR after item 4, each removal a disposition row in the plan of record.
   (3) Registers: `deferred-controls-register` and `director-rulings-ledger` not brought;
