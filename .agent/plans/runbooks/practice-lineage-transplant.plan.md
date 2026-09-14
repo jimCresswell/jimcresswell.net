@@ -19,7 +19,7 @@ tickets: []
 serves: practice
 depends_on: []
 owner_gates: []
-last_updated: 2026-09-13
+last_updated: 2026-09-14
 ---
 
 # Practice lineage transplant
@@ -185,6 +185,10 @@ taking one word, declines by item number.
     zero; completeness is every classified row dispositioned;
     cohesion is reference-direction green plus the directives read against
     the retained ADRs; manifest-closure is no row in an unknown state.
+    The completeness audit's frame is the definition report's nine functions
+    (`.agent/reports/practice-transplant/what-the-practice-is.md`): the audit
+    closes when every function's row reads present with a cited proof, and the
+    closure record names the pull request that closed each residue row.
 
 ## Verification
 
@@ -228,3 +232,26 @@ the next instance's and is empty until it runs.
 | Docs layer by role (31 files)     | three parallel seats             |            |
 | Assertion exercise                | one slice, three commits         |            |
 | Instruments written in-session    | two generators, lost once        |            |
+| Closure, items 1 to 8             | two sessions, 33 pull requests   |            |
+
+## Recorded outcomes, instance 1 (2026-09-14, by the seat that ran it)
+
+- **Owner questions.** Counting rule: one card question (one `AskUserQuestion` question)
+  is one question; a manifest ruling round is one batched list and is counted as a round,
+  its questions countable from the manifest at instance 2. Instance 1: sixteen ruling
+  rounds on the manifest (2026-09-12 to 13) and forty-six card questions on 2026-09-14
+  (thirty-nine single-entry cards in the morning batch, four at 15:15Z, three at 21:12Z),
+  as the Director's handoff records them. The standing question set for instance 2 is the
+  manifest's rounds read as one list.
+- **Elapsed time.** Agent time was not instrumented in instance 1; the figure recorded is
+  the wall span from the main branch's commit timestamps, an upper bound: about thirteen
+  hours (2026-09-12), fifteen and a half (2026-09-13) and twenty (2026-09-14); the closure
+  alone was thirty-three pull requests over the last two. Instance 1 wrote this runbook, so
+  the under-two-hours test belongs to instance 2, which instruments agent time (session
+  start to close, pauses excluded) before it starts.
+- **Instruments only in the transcript at close: three classes**, against the required zero.
+  The content-novelty scorer and the shared-file matcher (step 2's fallback and its matching)
+  and the pull-request chain (request, wait, reply, signed dispositions, poll). Homes: the
+  two-way exchange node's delta script (its todo 1) and a `pr-watch chain` bin. Precondition
+  5's `transplant classify`, `antigen-scan` and `digest` do not yet exist under those names;
+  instance 2 writes them first, as the precondition says.
