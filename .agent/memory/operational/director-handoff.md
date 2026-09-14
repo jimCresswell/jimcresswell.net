@@ -981,6 +981,21 @@ ones the Director would put to the owner had the owner been present.
     `main`: the board row's suffix and the sequencing sentence read the post-2a order; the
     letter scopes its count to the boundary; the ARC tail gets a find-then-arm step; item 80
     names the compaction report as the seeds' other copy. Lens 1.
+88. Records-8 opened as PR #78 (`SHA: 4abe647`, 07:48Z on 2026-09-14), frozen at open; this
+    branch, records-9, stacks on it. 5a-vi designed with lane A as a verdict, not a menu.
+    Ratified text answers the signal question: the pr-lifecycle disposition format (the
+    pr-tally node's todo 3) makes a signed issue comment, one line per body finding with the
+    bar marker and the head, review, anchor and item reference, the disposition of a finding
+    that lives only in a review body; the bot reads nothing else. The hold is a new state in
+    the closed verdict set (BODY-FINDINGS-OPEN, lane A's name, after THREADS-OPEN and before the
+    reviewer legs; a tip-bound, landed, non-self-reply body declaring N suppressed findings
+    with fewer than N signed disposition lines for that head and review id; evidence names
+    the review, the count and the shortfall; refused by name; not a wait state). The owner's
+    card ("Block on any finding", item 78, after four merges with follow-ons) is joined to the
+    ratified format thus: a "Routed to <home>" line does not count toward N; "Cured in
+    SHA:<sha>" and "Rejected" with a rationale do. REVIEW: this joining of two owner texts is
+    a Director reading; lane A builds the sentence rule as one function with its own cells so
+    the owner can remove it by card. Lens 1.
 
 ## Routing log
 
