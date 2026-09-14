@@ -17,12 +17,19 @@ import { sep } from 'node:path';
 /** A Windows absolute path: a drive letter with a separator, or a UNC root. */
 const WINDOWS_ABSOLUTE = /^(?:[A-Za-z]:[\\/]|\\\\)/u;
 
-/** The seams a caller may set: the repository root and the host's path separator. */
+/** The seams a caller may set: the repository root, the host's separator, what a relative path means. */
 export interface PathScopeOptions {
   /** The repository root an absolute path is made relative to; none means no anchored match. */
   readonly repoRoot?: string;
   /** The host's separator; a backslash host reads backslashes as `/`. Defaults to `node:path`'s. */
   readonly separator?: '/' | '\\';
+  /**
+   * Whether a relative path is repository-relative (the whole-tree gates' paths are; the
+   * default). The write-hook passes `false`: its relative paths come from a payload and are
+   * resolved against the payload's working directory before scoping, so one still relative
+   * here has no known place in the repository and claims no anchored exemption.
+   */
+  readonly relativeIsRepoRelative?: boolean;
 }
 
 /** The path with the host's separators read as `/`, so every scope form compares one way. */
@@ -36,15 +43,16 @@ function isAbsolutePath(filePath: string, separator: '/' | '\\'): boolean {
 
 /**
  * The file path relative to the repository root, when it can be: a relative
- * path as given; an absolute path inside a known root made relative; an
- * absolute path outside the root, or with no root known, `undefined` (it is
- * no repository surface, so no root-anchored scope can name it).
+ * path as given (when the caller says its relative paths are repository-relative);
+ * an absolute path inside a known root made relative; an absolute path outside
+ * the root, with no root known, or a relative path the caller cannot place,
+ * `undefined` (no repository surface, so no root-anchored scope can name it).
  */
 function repoRelativePath(filePath: string, options: PathScopeOptions): string | undefined {
   const separator = options.separator ?? hostSeparator();
   const file = withSlashes(filePath, separator);
   if (!isAbsolutePath(filePath, separator)) {
-    return file;
+    return options.relativeIsRepoRelative === false ? undefined : file;
   }
   if (options.repoRoot === undefined) {
     return undefined;

@@ -1,4 +1,4 @@
-import { isPathInScope } from './path-scope.js';
+import { isPathInScope, type PathScopeOptions } from './path-scope.js';
 import type { ScopedContentBlockGroup } from './types.js';
 
 /**
@@ -190,18 +190,19 @@ export function findScopedBlockInText(
  * the group's include/exclude paths. Groups and the patterns within each
  * group are checked in declaration order; the first match wins. `kind` and
  * the `excludes_*` options are applied at group level to every pattern.
- * `repoRoot` anchors the groups' root-anchored path scopes for the hook's
- * absolute file paths.
+ * `scope` carries the path-scoping seams (the repo root that anchors the
+ * groups' root-anchored scopes for the hook's absolute paths, what a relative
+ * path means).
  */
 export function findAddedScopedBlock(
   newContent: string,
   priorContent: string,
   filePath: string | undefined,
   groups: readonly ScopedContentBlockGroup[],
-  repoRoot?: string,
+  scope: PathScopeOptions = {},
 ): ScopedBlockMatch | null {
   for (const group of groups) {
-    if (!isPathInScope(filePath, group.include_paths, group.exclude_paths, { repoRoot })) {
+    if (!isPathInScope(filePath, group.include_paths, group.exclude_paths, scope)) {
       continue;
     }
     for (const pattern of group.patterns) {

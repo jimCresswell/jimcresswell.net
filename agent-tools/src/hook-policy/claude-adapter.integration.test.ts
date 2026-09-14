@@ -238,6 +238,29 @@ describe('copilot-compat string route evaluation', () => {
     });
   });
 
+  it('resolves an apply_patch path against the payload cwd before an anchored exemption is read; without a cwd none applies', async () => {
+    const group: ScopedContentBlockGroup = {
+      concept: 'anchored-exemption',
+      patterns: ['anchored-marker'],
+      include_paths: [''],
+      exclude_paths: ['./docs/exempt/'],
+      citation: 'path-scope root-anchored form',
+    };
+    const patch =
+      '*** Begin Patch\n*** Add File: docs/exempt/x.md\n+adds anchored-marker\n*** End Patch\n';
+    const evaluate = (cwd?: string) =>
+      copilotCompatStringRoute.evaluate(
+        contextFor(
+          { tool_name: 'Edit', tool_input: patch, ...(cwd === undefined ? {} : { cwd }) },
+          { contentPatterns: [], scopedBlocks: [group] },
+        ),
+      );
+
+    await expect(evaluate(REPO_ROOT)).resolves.toStrictEqual({ kind: 'allow' });
+    expect((await evaluate(`${REPO_ROOT}/nested`)).kind).toBe('deny-scoped-block');
+    expect((await evaluate()).kind).toBe('deny-scoped-block');
+  });
+
   it('rejects a malformed apply_patch program so the dispatcher fails closed', async () => {
     const context = contextFor(
       { tool_name: 'Edit', tool_input: 'not a patch' },

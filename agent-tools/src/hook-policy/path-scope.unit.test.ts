@@ -91,6 +91,14 @@ describe('isPathInScope', () => {
     );
   });
 
+  it('a relative path the caller cannot place claims no anchored exemption, though substring scopes still read it', () => {
+    const hook = { repoRoot: '/checkout/repo', relativeIsRepoRelative: false } as const;
+    expect(
+      isPathInScope('.agent/hooks/policy.json', [''], ['./.agent/hooks/policy.json'], hook),
+    ).toBe(true);
+    expect(isPathInScope('a/hooks/policy.json', [''], ['hooks/policy.json'], hook)).toBe(false);
+  });
+
   it('an undefined path is never in scope', () => {
     expect(isPathInScope(undefined, [''])).toBe(false);
   });

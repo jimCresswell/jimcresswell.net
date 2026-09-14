@@ -106,11 +106,21 @@ describe('evaluateContentChanges', () => {
     const change = (filePath: string) => [
       { newContent: 'section removed for brevity here', priorContent: '', filePath },
     ];
+    const scope = { repoRoot: '/repo' };
+    expect(evaluateContentChanges(change('/repo/docs/exempt/x.md'), [], [anchored], scope)).toEqual(
+      {
+        kind: 'allow',
+      },
+    );
     expect(
-      evaluateContentChanges(change('/repo/docs/exempt/x.md'), [], [anchored], '/repo'),
-    ).toEqual({ kind: 'allow' });
+      evaluateContentChanges(change('/repo/nested/docs/exempt/x.md'), [], [anchored], scope).kind,
+    ).toBe('deny-scoped-block');
+    // A relative path the hook could not place against a working directory claims no exemption.
     expect(
-      evaluateContentChanges(change('/repo/nested/docs/exempt/x.md'), [], [anchored], '/repo').kind,
+      evaluateContentChanges(change('docs/exempt/x.md'), [], [anchored], {
+        ...scope,
+        relativeIsRepoRelative: false,
+      }).kind,
     ).toBe('deny-scoped-block');
     // Without the root, an absolute path cannot claim a root-anchored exemption.
     expect(evaluateContentChanges(change('/repo/docs/exempt/x.md'), [], [anchored]).kind).toBe(

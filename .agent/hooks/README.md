@@ -159,9 +159,10 @@ policy decision taken entry by entry.
   whole-tree gates that reuse the scoping (lineage names, machine-local paths)
   read the same forms. For the write-hook the root is the session's project
   directory (`CLAUDE_PROJECT_DIR` when set, else the policy's own checkout), so
-  a write into another checkout, or an `apply_patch` path relative to a
-  subdirectory, matches no root-anchored exemption and the block fires: the
-  anchor fails closed, never open.
+  a write into another checkout matches no root-anchored exemption and the
+  block fires; an `apply_patch` path is relative to the payload's `cwd` and is
+  resolved against it before scoping, and without a `cwd` it claims no
+  root-anchored exemption either: the anchor fails closed, never open.
 
 **The deny message carries the reappraisal.** When a group fires, the message
 names the concept the matched text is a fingerprint of, states the `reappraisal`

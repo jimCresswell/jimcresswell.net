@@ -1,3 +1,5 @@
+import { isAbsolute, resolve } from 'node:path';
+
 import { isJsonObject } from '../core/json.js';
 
 import { extractBashCommand } from './blocked-patterns.js';
@@ -125,13 +127,37 @@ async function resolveContentSections(context: PolicyRouteContext): Promise<{
  * without touching the snapshot — the runner's observable order.
  */
 async function evaluateContentRoute(context: PolicyRouteContext): Promise<PolicyDecision> {
+  const cwd = payloadCwd(context.hookInput);
   const changes = extractContentChanges(context.hookInput).map((change) => {
     const { newContent, priorContent } = resolveContentPair(change, context.readPriorContent);
-    return { newContent, priorContent, filePath: change.filePath };
+    return { newContent, priorContent, filePath: placePath(change.filePath, cwd) };
   });
   const { patterns, blocks } = await resolveContentSections(context);
-  // The hook's file paths are absolute; the repo root anchors the blocks' root-anchored scopes.
-  return evaluateContentChanges(changes, patterns, blocks, REPO_ROOT);
+  // The repo root anchors the blocks' root-anchored scopes; a path still relative here had
+  // no working directory to be placed by and claims no anchored exemption (fail closed).
+  return evaluateContentChanges(changes, patterns, blocks, {
+    repoRoot: REPO_ROOT,
+    relativeIsRepoRelative: false,
+  });
+}
+
+/** The payload's working directory, when the harness supplies one. */
+function payloadCwd(hookInput: unknown): string | undefined {
+  return isJsonObject(hookInput) && typeof hookInput.cwd === 'string' && hookInput.cwd.length > 0
+    ? hookInput.cwd
+    : undefined;
+}
+
+/**
+ * A payload path placed in the file system: an absolute path as given; a relative one (the
+ * `apply_patch` program's form) resolved against the payload's working directory; a relative
+ * one with no working directory left as it is, for the scoping to read as unplaced.
+ */
+function placePath(filePath: string | undefined, cwd: string | undefined): string | undefined {
+  if (filePath === undefined || cwd === undefined || isAbsolute(filePath)) {
+    return filePath;
+  }
+  return resolve(cwd, filePath);
 }
 
 /** The Bash blocked-pattern route, covering all four recorded command containers. */
