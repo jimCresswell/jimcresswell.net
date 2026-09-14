@@ -648,6 +648,16 @@ ones the Director would put to the owner had the owner been present.
     a forward-only merge of `origin/closure/lane-b-generator` (`SHA: d76bb86`), lane B's
     conserved fold applied, the byte-equal regeneration proof first; then 2b. Lens 3 (the
     routed order; no idle seat).
+62. #71 round one (02:49Z on 2026-09-14): four threads and five suppressed, all substantive
+    (the content exemption hides an entity carrying the lineage URL; only the first
+    lineage-name group scanned; malformed policy exits 1 not 2; `process.exit` after stderr
+    writes; the helper's comment carries the real token under a self-exemption; bare ids
+    remaining in lane A's record; regex-kind blocks read as literals; a unit cell reading the
+    live policy; the gates inventory stale). Ruling on the exemption: product content stays
+    out of scope by the plan (CV content excluded), the entity is the owner's own work
+    history, so the URL is a CV fact; keep the exemption, declare its justification in the
+    block, add the scope cell. Routed to lane A as round one's cure. Lens 1. REVIEW: the
+    content exemption's justification (the validator does not read product content).
 
 ## Routing log
 
