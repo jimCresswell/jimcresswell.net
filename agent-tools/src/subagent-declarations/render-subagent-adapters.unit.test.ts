@@ -77,12 +77,11 @@ const CODEX_ALPHA = [
   '',
 ].join('\n');
 
-/** A role deviating on two platforms and absent from the third. */
+/** A role deviating on two of its three platforms. */
 const PROSE: RoleDeclaration = {
   kind: 'role',
   name: 'prose',
   description: 'Prose craft.',
-  platforms: ['claude', 'codex'],
   claude: {
     tools: 'inherit',
     disallowedTools: 'Write, Edit, NotebookEdit',
@@ -216,9 +215,10 @@ describe('renderSubagentAdapters', () => {
     expect(texts.get('.codex/agents/alpha.toml')).toBe(CODEX_ALPHA);
   });
 
-  it('renders a role only on its declared platforms, with its deviations: inherited tools omitted, a colour before the permission mode, a Codex model, a pointer tail and a note in place of the closing', () => {
+  it('renders a role with its deviations: inherited tools omitted, a colour before the permission mode, a Codex model, a pointer tail and a note in place of the closing', () => {
     const texts = textsOf([PROSE]);
     expect([...texts.keys()]).toStrictEqual([
+      '.cursor/agents/prose.md',
       '.claude/agents/prose.md',
       '.codex/agents/prose.toml',
     ]);
@@ -249,9 +249,7 @@ describe('renderSubagentAdapters', () => {
     expect(line(String.raw`C:\it's`)).toBe(String.raw`description: "C:\\it's"`);
   });
 
-  it('renders a role only on the source surfaces its platforms name: gemini renders nothing here (slice B); a variant inheriting tools carries no tools line', () => {
-    const texts = textsOf([{ ...ALPHA, platforms: ['claude', 'gemini'] }]);
-    expect([...texts.keys()]).toStrictEqual(['.claude/agents/alpha.md']);
+  it('a variant inheriting tools carries no tools line', () => {
     const inheriting: FanOutDeclaration = {
       ...CRICKET,
       variants: [{ ...CRICKET.variants[0], claude: { tools: 'inherit', color: 'green' } }],
@@ -259,6 +257,15 @@ describe('renderSubagentAdapters', () => {
     expect(textsOf([inheriting]).get('.claude/agents/cricket-high.md')).toContain(
       "description: 'Fast high-effort check.'\ncolor: green\n---",
     );
+  });
+
+  it("refuses a pointer tail carrying a backtick, which the reader takes for the path's delimiter, before any projection returns", () => {
+    const ticked: RoleDeclaration = { ...ALPHA, claude: { pointerTail: ' see `x`.' } };
+    expect(renderSubagentAdapters([ticked])).toStrictEqual({
+      ok: false,
+      error:
+        ".claude/agents/alpha.md: the pointer tail carries a backtick, which the reader takes for the path's delimiter; refusing to render it",
+    });
   });
 
   it('refuses a Codex instructions block a TOML multi-line basic string cannot carry verbatim: a triple quote or a backslash in the note', () => {
