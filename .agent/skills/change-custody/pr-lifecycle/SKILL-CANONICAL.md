@@ -1176,10 +1176,13 @@ deliberately gone — triage binds from wave one. **The step-back trigger is
   `completedAt` null = in flight) and `gh agent-task view <session-id>
   --json` maps one to its PR (the list JSON carries no PR number; the
   PR-number positional is interactive-only — vendor shapes verified
-  2026-07-21); it never carried a review run, so it is evidence beside the
-  request, never the deciding leg. A request never served is ended by the
-  checks-green timeout arm (item 3): a wait on a review nobody requested is
-  the silent-wait class, not patience.
+  2026-07-21). Its contract is item 4's: an OBSERVED live session mapped
+  to the PR is a measured guard and blocks settlement; a run's ABSENCE is
+  never inferred from it (it never carried a review run), so an
+  unavailable or truncated surface is named on the settled verdict and
+  does not block. A request never served is ended by the checks-green
+  timeout arm (item 3): a wait on a review nobody requested is the
+  silent-wait class, not patience.
 - **Own the convergence loop — never hand it to the owner** (owner
   corrections, 2026-07-07 #317 and 2026-07-08 #324 — two seats re-derived
   the same blind spot in one sitting; scheduled nap-probes FEEL like

@@ -123,6 +123,6 @@ export function readHarvestAndThreads(
     before = after;
   }
   throw new Error(
-    `PR #${input.prNumber}: reviews landed during the compound read on consecutive attempts — the harvest and the threads cannot bind one round; re-run when the PR is quiet`,
+    `PR #${input.prNumber}: the review harvest or the request surface changed during the compound read on consecutive attempts — the harvest and the threads cannot bind one round; re-run when the PR is quiet`,
   );
 }

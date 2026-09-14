@@ -16,12 +16,15 @@ import type { PrStateReading, PrVerdict } from './state-types.js';
  * healthy verdict) and `BEHIND-BASE` (a stale base never reads settled — the
  * founding BEHIND-stall class). Three were retired on 2026-09-13: the two
  * run-deadness states (`SILENT-WAIT-RUN-DEAD`, `SILENT-WAIT-RUNS-UNREADABLE`),
- * because the `gh agent-task` surface never carried a review run, so an
- * outstanding request with no mapped run is the round in flight
+ * because a run's ABSENCE cannot be inferred from the `gh agent-task`
+ * surface (it lists coding-agent sessions and never carried a review run),
+ * so an outstanding request with no mapped run is the round in flight
  * (`WAITING-REVIEW-RUN-LIVE`) and a request never served is ended by the
- * timeout arm; and `SETTLING-QUIET-WINDOW`, the ten-minute clock that stood
- * in for a round boundary agents could not see, replaced by measured state
- * on the owner's word (no expected reviewer requested, no run live).
+ * timeout arm, while an OBSERVED live session mapped to the PR still blocks
+ * settlement (`settlement.ts` roundInFlight); and `SETTLING-QUIET-WINDOW`,
+ * the ten-minute clock that stood in for a round boundary agents could not
+ * see, replaced by measured state on the owner's word (no expected reviewer
+ * requested, no live run observed).
  */
 
 function failedCheckNames(reading: PrStateReading): string[] {

@@ -156,6 +156,6 @@ describe('readPrStateReading — the harvest brackets the thread read (#65 round
           calls,
         ),
       }),
-    ).toThrow(/reviews landed during the compound read/);
+    ).toThrow(/the review harvest or the request surface changed during the compound read/);
   });
 });
