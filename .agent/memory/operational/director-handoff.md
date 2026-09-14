@@ -639,6 +639,15 @@ ones the Director would put to the owner had the owner been present.
     suppressed, cured at `SHA: e3f1bea` on records-4 (the 5c pointer, the landed inventory,
     no self-forecast of this pull request's merge, the rejected case distinguished from the
     home-bearing ones; the lane A thread's rules-carried line rides 5c). Lens 1.
+61. 5a-iv is PR #72 (`SHA: d78a974`, 02:47Z on 2026-09-14; Copilot requested, bot armed): the
+    three #67 body findings, the printable helper in both terminal writers, the tally
+    normalising before it classifies, and a fault the new cell caught (the heading regex's
+    whitespace class matched a line feed and handed the next line over as the verdict; now
+    horizontal whitespace only). With #71 and #72 merged, closure item 5 closes on main: 5a
+    (#64, #65, #67, #72), 5b (#68), 5c (#71). Lane A's next: 2a from a branch off main with
+    a forward-only merge of `origin/closure/lane-b-generator` (`SHA: d76bb86`), lane B's
+    conserved fold applied, the byte-equal regeneration proof first; then 2b. Lens 3 (the
+    routed order; no idle seat).
 
 ## Routing log
 
