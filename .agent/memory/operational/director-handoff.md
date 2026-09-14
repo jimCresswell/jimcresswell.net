@@ -1272,6 +1272,24 @@ ones the Director would put to the owner had the owner been present.
      `.agent/state`: the todo's workflow file has no corpus referent at the pin, a
      non-blocking card to the owner); row 5 after.
 
+105. #85 (item 4 row 6: six patterns imported from the pin with provenance lines, the sixth
+     under todo 1's one-link precedent; the cited-paths leg resolving the relative
+     `patterns/<name>.md` form, red on `main` for four citations and green after) merged by
+     the bot at 19:55Z (`SHA: eed1f2e`) after two reviews: round two's four scrub cures rode
+     the push (two lineage-only sources marked "at the pin, not imported", the singular
+     `related_pattern`, the placeholder plan-file form), and the second review's one suppressed
+     finding, a pre-existing unquoted scalar carrying "size: XL" that a strict YAML parser
+     refuses while the index's line-oriented parser reads it, was lifted by one signed
+     rejection with its home on the item 4 follow-on list (the patterns index's parser). Design
+     fact recorded there too: the machine-local-paths leg does not refuse the tilde form by
+     design, its remedy text naming the tilde as the portable form. Row 3's restore plan
+     (19:50Z) was read first and given the go as written: the two trees at the pin, scrubbed in
+     the scratchpad before any write, esbuild as a direct devDependency with the lockfile
+     regenerated, the pin's build step and its four scripts as package scripts and knip entries,
+     provenance notes per module, nothing under `.agent/state`, seventy-three files as one
+     restore-class story under PDR-132 §3, round budget two. The lineage plan the
+     consolidate-docs skill names by bare filename stays on the item 4 follow-on list.
+
 ## Routing log
 
 - 2026-09-13 evening: seat opened; team-start `ca1ba4d8`; lanes A, B, C authored, unfilled.
