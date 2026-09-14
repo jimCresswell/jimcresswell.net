@@ -58,12 +58,17 @@ names a live branch):
   retire under item 5: `validate-ratified-lists`. Not re-checked today: the fitness vocabulary
   in the `practice-fitness` sources.
 
-- Deep consolidation status: **due — closure session 2** (node item 8): the three
-  unprocessed napkins under `.agent/memory/active/unconsolidated/` plus this session's
-  captures; one seat, one batch of cards. Four candidates are on the pending-graduations
-  register meanwhile.
-- The generators: the rules-index and trigger generator is lane B's PR #55 (item 6, PR 1);
-  the sub-agent adapter generator (2b) and the 2a remainder are handed back to the Director
+- Deep consolidation status: **filed, cards pending — closure session 2** (node item 8): the
+  three unprocessed napkins under `.agent/memory/active/unconsolidated/` plus this session's
+  captures are on the pending-graduations register since PR #63 (`SHA: dc23dff`): thirty-three
+  live rows, split as twenty-eight decision-debt blocks (the parser's readout: five 2026-09-12
+  captures plus twenty-three session 2 entries) and five constitutional rows in PDR-130's slow
+  lane, which are not decision-debt. The live continuation is the owner's one batch of cards;
+  the napkins are archived only after two gates: the fast-lane cards answered and the owner's
+  privacy review of the three napkins done.
+- The generators: lane B's PR #55 (item 6, PR 1) landed the frontmatter sweep; the rules-index
+  and trigger generator remains item 6 part 2a (`closure/lane-b-generator` at `SHA: d76bb86`);
+  the sub-agent adapter generator (2b) and 2a are handed back to the Director
   (lane B's handoff record v3).
 - **2026-09-13, late afternoon (wrap 6, historical):** `practice-completion` ratified with its three gates
   cleared and the transplant closure as eight checked exit conditions in two sessions (node
@@ -89,6 +94,10 @@ names a live branch):
 
 - OCE Practice lineage transplant — closure (Director: Cauldron herds Lustre, `director-handoff.md`;
   lanes A, B, C under `threads/closure-lane-*.next-session.md`).
+- Closure session 2, the synthesis onto the register (`threads/session-2-synthesis.next-session.md`;
+  opened 2026-09-13 about 20:40Z on the owner's word; the register PR #63 merged at
+  `SHA: dc23dff` 22:39Z; the live continuation is the owner's cards and the fast-lane and
+  slow-lane dispositions that follow them).
 
 ## Paused Threads
 
@@ -99,80 +108,22 @@ names a live branch):
 
 ## Next Safe Steps
 
-Owner-set order (2026-09-12): 1. rules triage done; 2. harness integration done
-(plan §Phase 8); 3. re-evaluate slice 1 done (seed contract, session-open
-surfaces, docs layer); 4. restart assessment done (below); 5. link repair done
-(418 → 0; lineage-only targets removed, not re-pointed); 6. script naming
-adopted from the lineage as practised (owner direction 2026-09-12; PDR-008
-amended; `pnpm check` green on 16 legs, CI parity 16); 7. both plan nodes
-ratified by the owner (2026-09-12, evening) and the journey understood
-(`.agent/reports/practice-transplant/journey-so-far.md`, status provisional);
-8. re-evaluate slice 2 item 1 done — the lineage's pull-request machinery
-re-imported at `e477e62f7` (four doctrine patches, a §Scope section in the PR
-template, §Code review in the Copilot instructions and `AGENTS.md`; the
-PR #135 fixture not carried); 9. slice 2 item 2 done — the ten expert
-templates merged at content grain (four commits; adapter descriptions still
-the old ones until the generator bin lands); 10. slice 2 item 3 done — the
-fifteen lineage ADR numbers in the `agent-tools` sources replaced by the
-concepts they named (about two hundred sites; PDR numbers resolve and stay);
-11. plan-node migration done (2026-09-13, plan §Plan-node migration — executed):
-strategy corpus at `.agent/plans/strategy/` (three streams, ten choices), three
-strategic nodes born sketch, the two ratified nodes renamed and re-parented,
-the impact registry local, the legacy lanes conserved at
-`.agent/plans-legacy-2026-09/` with `DISPOSITIONS.md`, `validate-plan-corpus`
-a `repo-validators:check` leg and green; 12. round 6 (2026-09-13): the platform
-stream split into site and Practice, the four strategic nodes ratified, the
-dispositions table ratified, the Track B delivery node authored at pickup;
-13. owner word 2026-09-13 (mid-morning): **define what belongs to the
-Practice** — the definition by function, the transplant set, and the gaps by
-evidence class are in
-`.agent/reports/practice-transplant/what-the-practice-is.md` (provisional);
-its proposals are the delivery node
-`.agent/plans/delivery/practice-completion.plan.md`, **ratified on cards
-2026-09-13 (round 8)** with its three gates cleared in the same round: Gemini
-carried and Windsurf rejected; the knowledge base as the cited subset,
-scrubbed; the transplant instruments as that node's todo 6. The earlier
-second-host preparation node was withdrawn as premature and removed from the
-estate on the owner's word (the same round); the Practice's understanding of
-its future is host-agnostic. **Transplant closure ratified (node §Transplant closure; plan §Owner rulings round 11),
-re-sequenced round 13 (2026-09-13, evening): session 1 deleted `.agent-original/` first (done
-2026-09-13 evening: the loss-scan computed,
-`.agent/reports/practice-transplant/inputs/loss-scan-dispositions.tsv`, 255 rows, 24 residue, all
-ruled; nothing moved to `reference/`; the private directories beneath it consolidated into the
-live ignored boundary on the owner's word), then merged PR #53 (merge commit `55649a2`,
-2026-09-13, every check green; `main` now carries the monorepo and the Practice), then
-closure items 3 to 7 as small PRs against `main`; session 2 is the 57-lesson synthesis
-(cards, one batch) from the three unprocessed napkins now under `.agent/memory/active/unconsolidated/`
-(an archive holds only processed material, owner ruling round 13).** Todo 1 done (2026-09-13, plan
-§Practice completion — todo 1 executed):
-`validate-cited-paths` is a `docs-validators:check` leg, 35 absent targets cured to
-0, five patterns and four cited records imported with provenance. Now: todo 2
-(activate class B3: `practice-substrate`, `validate-protocol-wire-contract`, the
-smoke suite, the lineage root scripts with consumers here).** Then the node's todos 2 to
-6 in order; the `practice-language-separation` node (sketch, 2026-09-13, plan §Owner
-direction round 9: the universal core, thin language packs, JSON Schema contracts plus a
-conformance corpus; not urgent) awaits ratification on cards; duplicate-skill merges;
-the tooling residue listed in the plan (§Oak residue in tooling: `packages/core`
-metadata URLs in `tooling/*/package.json`, fixture strings) and `turbo.json`'s
-site `build` outputs (`.next/` unnamed, so the cache restores nothing); the
-OCE-seeded `.agent/practice-core/incoming/resonance-outbound-bundle-2026-07-08.md`
-(drop with the other emptied registers); `jcdotnet/accept-md.config.js`
-(hand-authored JS; source-is-TypeScript); the retirement candidates among
-agent-tools scripts (plan §Owner rulings on the agent-tools scripts); the two
-session-local generators as `agent-tools` bins; 57-lesson synthesis with quorum. Vercel root directory configured and the first
-monorepo build green (owner-observed 2026-09-13); draft PR #53 open. Restart
-assessment (2026-09-12, resumed session): the seed contract holds (both variables
-in the first Bash call; preflight names the hook path, and the native fallback
-with it unset); the "missed startup write" was a non-event (no hook existed at
-startup; the shim runs in 0.11 s) and the timeout is back at 5 s. The picker
-falsifier is closed (owner, 2026-09-13: each `jc-*` skill shows once after the
-restart). **Owner rulings round 5 (2026-09-13, plan §Owner rulings, round 5)
-govern the migration:** corpus under `.agent/plans/` with the strategy registry
-at `.agent/plans/strategy/` (validator `STRATEGY_DIR` re-pointed); four streams
-after round 6 (content, knowledge graph, site, Practice — the platform split at
-ratification); every legacy plan reviewed before convert / conserve / history;
-the legacy lanes conserved as a sibling corpus outside the scan root because the
-loader walks `archive/`. OCE channel open: findings go to the OCE seat as they
-arise, batched (batch 1 sent 2026-09-13). `.agent-original/` is deleted (round 13,
-after the computed loss-scan); the 57-lesson synthesis is one seat's list reviewed by
-the owner before graduation.
+The owner-set order of 2026-09-12 (rules triage, harness integration, the two re-evaluation
+slices, the restart assessment, link repair, script naming, the plan-node migration, the
+Practice definition and its delivery node) is done and recorded in the plan node
+`.agent/plans/delivery/practice-completion.plan.md` and the journey report
+`.agent/reports/practice-transplant/journey-so-far.md`. Of the transplant closure's eight
+items: 1 to 3 landed on `main` (PR #53 at `SHA: 55649a2`, then #56), item 4 landed as bounded
+(#57, residue routed), item 6 landed as PR #55 with 2a and 2b remaining, item 8 filed as
+PR #63 with the cards pending; items 5 (in parts) and 7 are the ordered closure work in the
+Director's handoff. Live now, in order:
+
+1. The Director's handoff `.agent/memory/operational/director-handoff.md` §Current handoff state
+   is the resume contract: the open pull requests, the lane A order (item 5's remaining parts,
+   then 2a, 2b, the Gemini projection, the corpus-analysis work, `sif`), and item 7 last.
+2. Session 2's cards: the owner answers the register's session 2 entries in one batch
+   (`threads/session-2-synthesis.next-session.md` §Next safe step); graduations land as their
+   own small pull requests; the napkins are archived after two gates, the fast-lane answers
+   and the owner's privacy review of the three napkins.
+3. The `practice-language-separation` node (sketch; not urgent) awaits ratification on cards; the
+   tooling residue named in the plan (§Oak residue in tooling) rides item 5.
