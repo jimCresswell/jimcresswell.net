@@ -56,9 +56,9 @@ Where this block and the routing log disagree, the log's last entry is current; 
 rewritten at each Director push.
 
 - Director: Cauldron herds Lustre (880ff9), claim `1db07581`, thread `transplant-closure`,
-  branch `chore/director-records-4`, stacked on the merged #62 tip (`main` at `SHA: a70521e`
-  carries it), later items on `chore/director-records-5` stacked on this one (records only;
-  the Director makes no source edits).
+  branch `chore/director-records-5` (PR #73), stacked on the merged #70 tip (`main` at
+  `SHA: 1643be8` carries it), later items on `chore/director-records-6` stacked on this one
+  (records only; the Director makes no source edits).
 - Controlling node: `.agent/plans/delivery/practice-completion.plan.md` §Transplant closure.
   Landed on `main`, every component: item 1 (archive deleted), item 2 (PR #53,
   `SHA: 55649a2`), item 3 (PR #56, `SHA: 1829cd4`), item 4 as bounded (PR #57, `SHA: 4a61112`;
@@ -669,8 +669,11 @@ ones the Director would put to the owner had the owner been present.
     slow-lane row is decided at its review date, the cards present it, so item 30's
     "the owner's card, else the review date" wording is withdrawn. Ratified text is the
     owner's; both narrowings were changes by verdict. The plan text is untouched. Lens 2.
-    REVIEW: both reversals; if the owner wants the fast-lane answers alone to release the
-    archive, or an early slow-lane decision, that is the owner's word on the plan and PDR-130.
+    REVIEW: both reversals. If the owner wants the fast-lane answers alone to release the
+    archive, that is the owner's word on the plan. An early slow-lane decision needs no new
+    word: the register's own slow-lane contract (`pending-graduations.md` §Slow lane) makes
+    the review date the normal gate and allows the owner's earlier card decision, recorded on
+    the register row; that row, not PDR-130, is its authority surface.
 64. #72 (item 5a-iv) merged by the bot at `SHA: 37eebe9` (02:53Z on 2026-09-14) on measured
     state, the verdict naming the body's one suppressed finding (the tally's own class, from
     #67); origin branch deleted. The finding (a whitespace-only heading passes the empty check
@@ -705,8 +708,7 @@ ones the Director would put to the owner had the owner been present.
     rulings, not appended state); origin branch deleted. Two suppressed findings cured here:
     item 56's file count named as the pre-merge tree's; the synthesis identity block cites the
     early-decision exception to the register rows and the owner, not to PDR-130. This branch
-    opens as the records-5 pull request (items 59 to 67) after lane A's slot release; later
-    items on records-6. Standing ruling.
+    is open as PR #73 (items 59 to 67); later items go on records-6. Standing ruling.
 
 ## Routing log
 
