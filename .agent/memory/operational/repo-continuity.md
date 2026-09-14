@@ -119,7 +119,8 @@ Director's handoff. Live now, in order:
    then 2a, 2b, the Gemini projection, the corpus-analysis work, `sif`), and item 7 last.
 2. Session 2's cards: the owner answers the register's session 2 entries in one batch
    (`threads/session-2-synthesis.next-session.md` §Next safe step); graduations land as their
-   own small pull requests; the napkins are archived after two gates, the fast-lane answers
-   and the owner's privacy review of the three napkins.
+   own small pull requests; the napkins are archived after two gates, the owner's answers to
+   the cards (the plan's item 8 as written) and the owner's privacy review of the three
+   napkins.
 3. The `practice-language-separation` node (sketch; not urgent) awaits ratification on cards; the
    tooling residue named in the plan (§Oak residue in tooling) rides item 5.
