@@ -134,6 +134,15 @@ describe('suppressedHolds', () => {
     expect(suppressedHolds(byOwner)).toStrictEqual([]);
   });
 
+  it('excludes the sentinel after normalisation: an author spelled app/unknown yields no permitted login, so an unknown commenter lifts nothing (#79 round five)', () => {
+    const cure = line('item 1 of 1', 'Cured in SHA:9f8e7d6');
+    const byAppUnknown = {
+      ...reading([closerLook(1)], [comment('unknown', cure)]),
+      author: 'app/unknown',
+    };
+    expect(suppressedHolds(byAppUnknown).map((hold) => hold.lifted)).toStrictEqual([0]);
+  });
+
   it('counts distinct items, so a finding dispositioned twice lifts once', () => {
     const twice = comment(
       'jimCresswell',

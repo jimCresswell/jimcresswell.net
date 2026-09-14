@@ -19,7 +19,9 @@ import { hasLanded, isSignedSelfReply, type HarvestedReview } from './reviewer-l
  * signature is a text convention any commenter could write), bound to this
  * head and this review, whose sentence is a cure with its SHA or a rejection
  * (the rationale is the convention a reader checks; the machine reads the
- * verb); a routing never lifts. Because the hold binds the tip, a later review
+ * verb); a routing never lifts: only Cured and Rejected do, so a routed finding
+ * is written as a signed Rejected line naming its home (the owner's rule, card
+ * answer 2026-09-14). Because the hold binds the tip, a later review
  * on a later tip carrying none lifts it too, and the cure for a finding is the
  * cure for a thread: change, push, new review.
  *
@@ -63,13 +65,14 @@ function loginKey(login: string): string {
  * The logins whose disposition lines lift: the repository owner and the pull request's
  * author. The deleted-account sentinel ('unknown', the reading's spelling of a null author
  * on both `pr view` and the harvest) is never an identity, as the expected set never admits
- * it.
+ * it; it is excluded after normalisation, so an author spelled `app/unknown` never yields it
+ * either (#79 round five).
  */
 function liftingLogins(reading: SuppressedHoldReading): ReadonlySet<string> {
   const owner = /^https:\/\/github\.com\/([^/]+)\//u.exec(reading.url)?.[1];
   const logins = [reading.author, ...(owner === undefined ? [] : [owner])]
-    .filter((login) => login !== 'unknown')
-    .map(loginKey);
+    .map(loginKey)
+    .filter((login) => login !== 'unknown');
   return new Set(logins);
 }
 

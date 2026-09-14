@@ -82,6 +82,18 @@ describe('parseDispositionLines', () => {
     ]);
   });
 
+  it('reads no line that is indented (a Markdown code block quoting an example), while a CRLF body still reads its lines (#79 round five)', () => {
+    const marked = `**Over-bar** head SHA:${HEAD.slice(0, 7)} · review ${REVIEW} · a.ts:1 · item 1 of 1 — Cured in SHA:9f8e7d6`;
+    expect(parseDispositionLines(signed('An example, quoted:', '', `    ${marked}`))).toStrictEqual(
+      [],
+    );
+    expect(parseDispositionLines(signed(`\t${marked}`))).toStrictEqual([]);
+    const crlf = signed(marked).replaceAll('\n', '\r\n');
+    expect(parseDispositionLines(crlf).map((entry) => entry.sentence)).toStrictEqual([
+      'Cured in SHA:9f8e7d6',
+    ]);
+  });
+
   it('reads no line from an unsigned comment, however well formed', () => {
     const body = `**Over-bar** head SHA:${HEAD} · review ${REVIEW} · a.ts:1 · item 1 of 1 — Cured in SHA:9f8e7d6\n`;
     expect(parseDispositionLines(body)).toStrictEqual([]);

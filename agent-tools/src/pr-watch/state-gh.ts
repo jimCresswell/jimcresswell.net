@@ -100,7 +100,12 @@ function expectedSet(
  * so a review seen landed has its threads on the reading, a review not yet
  * landed shows as its request, a review landing during any leg, the confirm
  * included, re-reads the legs behind it, and the dispositions are read on the
- * confirmed tip (#65 round four; #79 rounds three and four).
+ * confirmed tip (#65 round four; #79 rounds three and four). What remains is the
+ * window between the comments read and the merge call: a disposition edited or
+ * deleted there is the next poll's, accepted because GitHub offers no
+ * compare-and-swap on comment state, the merge stays tip-bound, and a lifting
+ * line is edited or deleted only by its author or a write-access login, here
+ * the owner or the seat (#79 round five, the Director's ruling).
  *
  * @throws when the primary `pr view`, review-threads, reviews-harvest or
  *   issue-comments legs fail (a verdict without them would be a guess), when

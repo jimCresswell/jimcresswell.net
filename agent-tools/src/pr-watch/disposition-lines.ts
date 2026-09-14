@@ -96,8 +96,12 @@ export function parseDispositionLines(body: string): DispositionLine[] {
   if (!isSignedSelfReply(body)) {
     return [];
   }
+  // The marker is anchored at the line start: an indented line (a Markdown
+  // code block quoting an example) is never a disposition line, so only the
+  // line end is trimmed, for the carriage return of a CRLF body and trailing
+  // spaces (#79 round five).
   return body
     .split('\n')
-    .map((line) => parseLine(line.trim()))
+    .map((line) => parseLine(line.trimEnd()))
     .filter((line): line is DispositionLine => line !== undefined);
 }
