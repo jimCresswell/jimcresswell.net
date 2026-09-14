@@ -44,7 +44,9 @@ import { computeSalvageTiers } from './salvage-tiers.js';
 import type { SalvageTierTable } from './salvage-tiers.js';
 import type { ValidateSuccess } from './triage.js';
 
-const repoRoot = resolveRepoRoot(import.meta.url);
+// projectDir is explicitly disabled: this driver reads checkpoints and claimed homes from
+// the checkout it runs in, never from the harness project directory (#86 round two).
+const repoRoot = resolveRepoRoot(import.meta.url, { projectDir: undefined });
 const readCheckpoint = makeCheckpointReader(repoRoot);
 
 interface SalvageInputs {
@@ -74,15 +76,35 @@ async function readValidateSuccesses(
   return ok(successes);
 }
 
-async function readInputs(): Promise<Result<SalvageInputs, Error>> {
-  const { values } = parseArgs({
-    options: {
-      'reduce-result': { type: 'string' },
-      'validate-result': { type: 'string', multiple: true },
-      'meta-result': { type: 'string' },
-      'banked-verdicts': { type: 'string' },
-    },
-  });
+interface CliFlags {
+  readonly 'reduce-result'?: string;
+  readonly 'validate-result'?: readonly string[];
+  readonly 'meta-result'?: string;
+  readonly 'banked-verdicts'?: string;
+}
+
+/** An unknown or malformed flag is an input error on the concise stderr path, never a stack trace. */
+function parseCliFlags(): Result<CliFlags, Error> {
+  try {
+    const { values } = parseArgs({
+      options: {
+        'reduce-result': { type: 'string' },
+        'validate-result': { type: 'string', multiple: true },
+        'meta-result': { type: 'string' },
+        'banked-verdicts': { type: 'string' },
+      },
+    });
+    return ok(values);
+  } catch (cause) {
+    return err(
+      new Error(`Invalid flags: ${cause instanceof Error ? cause.message : String(cause)}`, {
+        cause,
+      }),
+    );
+  }
+}
+
+async function readInputs(values: CliFlags): Promise<Result<SalvageInputs, Error>> {
   const reduceResult = await readCheckpoint(
     values['reduce-result'],
     '--reduce-result',
@@ -141,7 +163,8 @@ function salvage(inputs: SalvageInputs): Result<SalvageTierTable, Error> {
   });
 }
 
-const inputs = await readInputs();
+const flags = parseCliFlags();
+const inputs = flags.ok ? await readInputs(flags.value) : flags;
 if (inputs.ok) {
   const tiers = salvage(inputs.value);
   if (tiers.ok) {

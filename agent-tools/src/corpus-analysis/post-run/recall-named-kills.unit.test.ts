@@ -1,3 +1,8 @@
+/**
+ * Authored here on 2026-09-14 for pull request #86, round two: the cells for the restored
+ * `recall-named-kills.ts` (the lineage at pin `e477e62f7` carries no suite for it), so this
+ * file is not a lineage import.
+ */
 import { describe, expect, it } from 'vitest';
 
 import type { MetaOutput } from '../recall-schemas.js';

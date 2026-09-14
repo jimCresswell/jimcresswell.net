@@ -67,8 +67,9 @@ interface CliFlags {
 
 // Every flag-supplied checkpoint goes through the repo-anchored reader the two post-run
 // drivers share, so a parent-relative or symlinked path is refused before anything is read
-// or embedded in a launchable artefact (#86 round two).
-const repoRoot = resolveRepoRoot(import.meta.url);
+// or embedded in a launchable artefact; projectDir is explicitly disabled, so the root is
+// the checkout this builder runs in, never the harness project directory (#86 round two).
+const repoRoot = resolveRepoRoot(import.meta.url, { projectDir: undefined });
 const readAnd = makeCheckpointReader(repoRoot);
 
 /** Every stage's run data, as the concrete union — never widened back to unknown. */

@@ -27,9 +27,9 @@ import type { CorroborationClaim } from '../real-world-signal.js';
  *
  * The returned set carries each claim's ORIGINAL path string, so downstream
  * set-membership against the claims themselves (`corroborateAgainstHomes`) matches.
- * Existence is canonicalisation-level: any on-disk entry (file or directory) counts,
- * matching the `existsSync` behaviour this replaces; claims are pipeline-internal
- * document paths from a committed, zod-validated checkpoint.
+ * Existence means a regular file: a claim whose path is a directory or any other kind of
+ * entry does not corroborate (`isRegularFile`, `statSync(...).isFile()` by default);
+ * claims are pipeline-internal document paths from a committed, zod-validated checkpoint.
  *
  * @param input - The corroboration claims and the repo root to anchor them at.
  * @param options - The safe-path canonicalisation seam; tests inject a pure map.
