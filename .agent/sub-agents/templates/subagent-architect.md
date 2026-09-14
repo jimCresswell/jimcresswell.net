@@ -129,7 +129,8 @@ templates/           Templates are platform-agnostic assembled workflows.
     v
 wrappers             Thin, platform-specific shells that load a template as
                      their FIRST action: .claude/agents/*.md,
-                     .cursor/agents/*.md, .codex/agents/*.toml
+                     .cursor/agents/*.md, .codex/agents/*.toml,
+                     .gemini/agents/*.md
 ```
 
 ### Dependency Rules
@@ -167,8 +168,8 @@ scope.
 
 In this repository the roster is reached through four entry points that must name the same
 set: `CLAUDE.md` and `.claude/agents/` for Claude Code, `AGENTS.md`, `.codex/config.toml` and
-`.codex/agents/` for Codex, `.cursor/agents/` for Cursor, and `.github/copilot-instructions.md`
-for Copilot; each reviewer has an `invoke-<name>` rule in `.agent/rules/` that names it, and the
+`.codex/agents/` for Codex, `.cursor/agents/` for Cursor, `.gemini/agents/` for the Gemini
+CLI, and `.github/copilot-instructions.md` for Copilot; each reviewer has an `invoke-<name>` rule in `.agent/rules/` that names it, and the
 sub-agent adapters are generated from the templates (a generator this estate is landing as an
 `agent-tools` bin; until then, `pnpm subagents:check` is the proof that a hand-written adapter
 matches). A roster change is complete only when every entry point, the registry, the rule and
@@ -312,8 +313,11 @@ official docs it cites.
 
 Codex adapters live in `.codex/agents/*.toml`. They follow the same
 thin-wrapper rule: load the canonical template as the first action. Validate
-any wrapper or adapter change with `pnpm subagents:check`, which checks all
-three platform surfaces against the templates.
+any wrapper or adapter change with `pnpm subagents:check`, which checks the
+three hand-kept-shaped platform surfaces against the templates, and with
+`pnpm portability:check`, which recomputes every adapter surface, the Gemini
+one (`.gemini/agents/*.md`, generated only, with the read-only tool list as its
+default) included, from the templates' declarations.
 
 ## Common Anti-Patterns
 

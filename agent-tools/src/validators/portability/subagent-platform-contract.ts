@@ -6,16 +6,16 @@
  * failing, and a Gemini-only declaration would render nothing and let `--fix` remove its
  * files. A superset (an exception-map variant also declaring a surface the map excludes)
  * renders as declared: the declaration is the surviving source of truth, the extra adapter
- * is loud, and it is the probe's finding, not this leg's. Gemini is optional once slice B
- * lands (#81 disposition turn, 2026-09-14).
+ * is loud, and it is the probe's finding, not this leg's. Gemini is not bound here: it is
+ * optional, generated only (#81 disposition turn and slice B, 2026-09-14).
  *
  * @packageDocumentation
  */
 
 import { getReviewerAdapterPlatformViolation } from '../../core/reviewer-adapter-platform-contract.js';
 import {
+  SOURCE_PLATFORMS,
   specsOf,
-  SUBAGENT_SURFACES,
   type AdapterSpec,
 } from '../../subagent-declarations/adapter-spec.js';
 import type { SubagentDeclaration } from '../../subagent-declarations/subagent-declaration.js';
@@ -32,7 +32,7 @@ const CONTRACT_PLATFORM = {
  * expects it on; none when it covers them (a surface beyond the contract is not refused here).
  */
 function platformContractIssue(spec: AdapterSpec): string | undefined {
-  const missing = SUBAGENT_SURFACES.map((surface) => surface.platform).filter(
+  const missing = SOURCE_PLATFORMS.filter(
     (platform) =>
       getReviewerAdapterPlatformViolation(
         spec.name,
@@ -43,7 +43,7 @@ function platformContractIssue(spec: AdapterSpec): string | undefined {
   if (missing.length === 0) {
     return undefined;
   }
-  return `${spec.name}: platforms leave out ${missing.join(', ')}, which the platform contract expects it on; until the reader-retirement pull request every declaration renders the surfaces the contract names (gemini optional once slice B lands); refusing to render the sub-agent adapters`;
+  return `${spec.name}: platforms leave out ${missing.join(', ')}, which the platform contract expects it on; until the reader-retirement pull request every declaration renders the surfaces the contract names (gemini optional); refusing to render the sub-agent adapters`;
 }
 
 /** The first declaration whose platforms fall short of the contract, as the refusal; none when all cover it. */

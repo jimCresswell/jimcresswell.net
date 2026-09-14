@@ -1,9 +1,9 @@
 /**
  * The sub-agent adapter leg of the portability validator (closure item 6, 2b-ii): every
- * template's declaration is read from its frontmatter, the Cursor, Claude and Codex adapters
- * are rendered from those declarations (`render-subagent-adapters.ts`) and the Codex
+ * template's declaration is read from its frontmatter, the Cursor, Claude, Codex and Gemini
+ * adapters are rendered from those declarations (`render-subagent-adapters.ts`) and the Codex
  * registry's agent blocks after its hand-kept head (`render-codex-registry.ts`), and the
- * four surfaces are compared byte for byte. `--fix` writes what is missing or drifted and
+ * four adapter surfaces and the registry are compared byte for byte. `--fix` writes what is missing or drifted and
  * removes what no declaration renders; without it, every difference is an issue naming the
  * cure.
  *
@@ -16,7 +16,7 @@
  * surface, a name two declarations render, platforms short of the platform contract
  * (`subagent-platform-contract.ts`), a pointer tail with a backtick, a declared value the
  * Codex form cannot carry verbatim, a registry with no file (there is no head to keep) and
- * a foreign line in the registry's tail. The three adapter directories and the registry's
+ * a foreign line in the registry's tail. The four adapter directories and the registry's
  * tail are wholly generated outputs, so a regular file on the directories that no
  * declaration renders is stale and `--fix` removes it, and the tail is rewritten whole.
  * Every read is LF-normalised by the port and the rendered adapters are LF.
@@ -173,7 +173,7 @@ interface Surfaces {
   readonly registryHead: string;
 }
 
-/** Every file currently on the three adapter surfaces and the registry, keyed by repo-relative path. */
+/** Every file currently on the four adapter surfaces and the registry, keyed by repo-relative path. */
 async function readSurfaces(projectionFs: RuleProjectionFs): Promise<Result<Surfaces, string>> {
   const actual = new Map<string, string>();
   const registry = await readRegistry(projectionFs);

@@ -184,13 +184,14 @@ remove .agent-original before we merge 53"; "it should be processed then deleted
    **Landed 2026-09-13 as bounded (PR #57, `4a61112`):** rows 1, 2, 4, 7 and 9 read present;
    rows 3, 5, 6 and 8 read present in part, each naming its residue and the pull request it
    closes on (the corpus-analysis restore and the five absent patterns in lane C's first
-   follow-on, `sif`'s routing in its second, the Gemini per-role commands with the generator's
-   fourth platform); the item is complete when those rows read present.
-   Method (owner word 2026-09-13, §Owner rulings 1): the Gemini projection is a fourth output
-   of the sub-agent adapter generator lane B lands (closure item 6), emitted from the same
-   templates, with gemini added to the reviewer adapter platform contract, authored by lane C
-   after that generator merges; thirty hand-written adapter files would be the hand-kept copies
-   item 6 removes.
+   follow-on, `sif`'s routing in its second; the Gemini per-role commands landed with the
+   generator's fourth platform, 2b-ii slice B); the item is complete when those rows read
+   present.
+   Method (owner word 2026-09-13, §Owner rulings 1; amended on the owner's word 2026-09-14):
+   the Gemini projection is the fourth output of the sub-agent adapter generator (closure
+   item 6, 2b-ii slice B), rendered from the same templates' declarations into
+   `.gemini/agents/<name>.md` and recomputed by `portability:check`; no hand-authored
+   extension follows the generator, and no hand-kept Gemini adapter ever existed.
 5. **Lineage residue off the live surfaces**: retire `validate-ratified-lists`,
    `protocol-conformance`, `pr-throughput` and `ci-turbo-report` (scripts, sources, tests, doc
    mentions; re-importable from the pin); keep `merge-bot` and scrub its lineage residue; the
@@ -203,15 +204,15 @@ remove .agent-original before we merge 53"; "it should be processed then deleted
    Cursor triggers from it and `portability:check` recomputes them; sub-agent adapter
    descriptions derive from the templates. Proof: the generator's tests and a byte-equal
    regeneration of today's files.
-   **Landed 2026-09-14 in part (2b-ii slices A1 and A2):** the sub-agent adapter generator
-   renders the Cursor, Claude and Codex adapters and the Codex registry's agent blocks
-   (after the registry's hand-kept head) from each template's declaration, and
-   `portability:check` recomputes them (75 of 86 adapters byte-equal; eleven normalised on
-   record: four folded and three apostrophe-quoted Cursor descriptions, two wrapped
-   pointers, two titles; the registry's blocks sorted by name, one block moved). Open: the
-   Gemini row (B). Retirement condition: once the generator owns every adapter surface, the
-   hand-kept adapter readers and the declaration sweep have no consumer and are deleted in
-   their own pull request.
+   **Landed 2026-09-14 in part (2b-ii slices A1, A2 and B):** the sub-agent adapter
+   generator renders the Cursor, Claude, Codex and Gemini adapters and the Codex registry's
+   agent blocks (after the registry's hand-kept head) from each template's declaration, and
+   `portability:check` recomputes them (75 of 86 hand-kept adapters byte-equal; eleven
+   normalised on record: four folded and three apostrophe-quoted Cursor descriptions, two
+   wrapped pointers, two titles; the registry's blocks sorted by name, one block moved; the
+   Gemini row generated from nothing, one file per role). Retirement condition: once the
+   generator owns every adapter surface, the hand-kept adapter readers and the declaration
+   sweep have no consumer and are deleted in their own pull request.
 7. **The record compiled** (todo 4): the reports index as the entry (what, how, why,
    how-faster), the runbook's step 13 citing the nine functions, the completion entry in
    `provenance.yml`. Proof: the index and the provenance diff.
