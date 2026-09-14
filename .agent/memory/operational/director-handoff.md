@@ -67,7 +67,7 @@ rewritten at each Director push.
   `SHA: ea3142b`), the Director records and the channel rule (PR #54, `SHA: c426c6c`; PR #58,
   `SHA: 6528ecb`). Not landed: item 5's remaining parts, 2a, 2b, the handed-back residue, item 7.
 - Open pull requests: #62 (this records branch; frozen for new items at overnight item 35,
-  thread cures still landing here, the final waypoint being the round-eighteen cure; items
+  thread cures landing here until the bot merges it, the merged tip its final waypoint; items
   from 36 on the stacked `chore/director-records-4` branch, which opens after #62 merges) and
   #65 (lane A, item 5a-ii, measured state, round four at `SHA: 3802031`, Copilot bound).
   Merged: #54, #56, #57, #58, #61, #55 (`SHA: 7127bc4`), #63 (`SHA: dc23dff`, session 2's
@@ -409,7 +409,7 @@ ones the Director would put to the owner had the owner been present.
     the previous round's wait produced). REVIEW: thirteen rounds on one records pull request.
     As executed: the freeze covers new items only; thread cures kept landing on this branch
     (rounds fourteen to seventeen), each the same commit as its round's suppressed findings,
-    because the bot merges at zero threads; the final waypoint is the round-seventeen cure.
+    because the bot merges at zero threads; the tip the bot merges is the final waypoint.
 
 ## Routing log
 
@@ -627,7 +627,8 @@ ones the Director would put to the owner had the owner been present.
   session 2 register PR, then item 5 (three PRs, merge-bot cures first), 2a, 2b, the Gemini
   projection, the restore with the five patterns, `sif`, item 7. The candidates go to the owner
   as one batch of cards in the morning; nothing graduates without the answers.
-- 2026-09-13 23:50Z (current): the order after the owner's 20:40Z amendment, as executed: #55
+- 2026-09-13 23:50Z (the snapshot at that time; §Current handoff state is current): the order
+  after the owner's 20:40Z amendment, as executed: #55
   merged, the register PR #63 merged before #60, #60 merged; item 5 runs as parts (5a-i merged
   as #64; 5a-ii #65 in round three; the e2e follow-on #66 open; 5a-iii on origin, PR after
   #65; then 5b, 5c), then 2a, 2b, the Gemini projection, the restore with the five patterns,

@@ -134,6 +134,13 @@ filed the entries as PR #63 (`SHA: dc23dff`); the register carries the live stat
 - **Candidate home**: `session-handoff` skill (resolving the Wrap 4 tension) and `pr-lifecycle`
   §Scope (a records-PR clause).
 - **Prediction**: the next Director records PR settles in at most two review rounds.
+  Falsified by the pull request carrying this record (#62): it carried live state through
+  eighteen and more rounds, each cure's wait producing the next round's drift, because the
+  branch kept receiving the night's decisions while under review (the doctrine's "push once
+  per landed merge" was not practised: the push rode every event). The doctrine stands; the
+  falsifier was the practice. Re-scoped prediction, filed on the register row: a Director
+  records pull request opened from a branch frozen at open (later items on a stacked branch)
+  settles in at most two review rounds.
 
 ### G. A cure commit adds no surface beyond the finding
 
