@@ -460,6 +460,18 @@ ones the Director would put to the owner had the owner been present.
     granted as the last: a measured-state pull request that ships a known false SETTLE-READY
     path is not clean; after round four, body findings go to a follow-on and only a
     correctness thread reopens. Lens 1. REVIEW: the fourth round on #65.
+43. #66 (the e2e follow-on) merged by the bot at `SHA: 0ec4583` (23:59Z on 2026-09-13) at zero
+    threads with Copilot bound; origin branch deleted. The body was the third closer-look
+    merge of the night, four suppressed findings: two integration cells leak a live child or
+    socket when an assertion fails before teardown (try/finally); `stop()` always resolves so
+    a child exiting 1 after a close rejection leaves the e2e command green; and
+    `docs/engineering/testing-patterns.md` still says the suite is served by `pnpm start`
+    (verified on `main`). Routed to lane A as an e2e follow-on 2 after 5b. Standing ruling;
+    REVIEW: three merges on closer-look bodies; 5a-iii (the body tally) is already next.
+44. #62 round sixteen (23:59Z on 2026-09-13): one thread (the continuity index named one
+    archive gate where the thread names two) and four suppressed (the header stamp behind the
+    routing log; the same gate in the next-step summary; step 3's slow-lane clause; the draft
+    section still labelled `draft`). All five cured at `SHA: 8950536`. Lens 1.
 
 ## Routing log
 
