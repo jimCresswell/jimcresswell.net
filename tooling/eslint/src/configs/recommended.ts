@@ -249,14 +249,13 @@ const oakRecommendedConfig: TSESLint.FlatConfig.Config = {
           // Recorded reason: transplanted 2026-09-12 with the Practice lineage.
           // These integration tests prove real filesystem behaviour on mkdtemp
           // temp trees (path resolution, state integrity, watcher staleness,
-          // debug-log writes, node IO); a fake fs would make the proofs
+          // debug-log writes); a fake fs would make the proofs
           // theatre. Retire each entry when its subject gains a fake-fs seam.
           '**/agent-tools/src/collaboration-state/coordination-home-consolidation.integration.test.ts',
           '**/agent-tools/src/core/flag-path-resolve.integration.test.ts',
           '**/agent-tools/tests/claude/statusline-debug-log.integration.test.ts',
           '**/agent-tools/tests/collaboration-state/state-integrity.integration.test.ts',
           '**/agent-tools/tests/collaboration-state/watcher-staleness-io.integration.test.ts',
-          '**/agent-tools/tests/protocol-conformance/node-io.integration.test.ts',
           // Recorded reason: plan `plan-corpus-refounding` — the freeze/verify
           // discrimination proofs (F1 D8) mutate genuine frozen artefacts on
           // mkdtemp temp trees; a fake fs would make the mutation proofs

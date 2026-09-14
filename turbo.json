@@ -27,6 +27,12 @@
         "!src/**/*.spec.ts"
       ]
     },
+    "@jimcresswell/www#build": {
+      "dependsOn": ["^build"],
+      "cache": true,
+      "outputs": [".next/**", "!.next/cache/**"],
+      "inputs": ["$TURBO_DEFAULT$", "$TURBO_ROOT$/tsconfig.base.json"]
+    },
     "clean": {
       "cache": false
     },

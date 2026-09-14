@@ -116,6 +116,7 @@ content/                     # Page-composition JSON plus machine-readable entit
   entities.json              # Entity graph for JSON-LD and graph-facing metadata
 
 lib/                         # Utility functions and types
+  accept-md-config.ts        # accept-md runtime configuration (typed; the route passes it directly)
   cv-content.ts              # CV composition accessor and graph-derived identity links
   entities.ts                # Entity-graph validation and derived types
   same-as.ts                 # Exact-hostname resolution for Person profile URLs
@@ -128,7 +129,6 @@ lib/                         # Utility functions and types
   strip-inline-markdown.ts   # Strips markdown syntax for plain-text contexts
 
 proxy.ts                     # Content negotiation (markdown, JSON-LD, .md aliases)
-accept-md.config.js          # accept-md runtime configuration
 
 scripts/                     # Build-time scripts
   generate-pdf.ts            # Puppeteer PDF generation (runs after next build)

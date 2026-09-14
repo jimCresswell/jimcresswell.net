@@ -17,9 +17,9 @@ import { type PlanStateTable } from '../plan-state-model.js';
  * event — the `freeze-rule.json` ratifiedBy precedent). The census document
  * schema is strict `{version, entries}`, so ratification state lives HERE,
  * never inside the table document; the flip below is the mechanical unlock
- * for r1's audit mode on the default table. The table is not packet-listed,
- * so `validate-ratified-lists` carries no entry for it; if a future packet
- * lists it, extend the validator — never a pin test.
+ * for r1's audit mode on the default table. The table is not packet-listed;
+ * if a future packet lists it, validate the listing there — never a pin
+ * test.
  *
  * Entries are sorted by value and pre-trimmed (the census parse boundary
  * refuses untrimmed values and duplicates; shape compatibility with
