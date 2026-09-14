@@ -67,7 +67,10 @@ In short: **drop** the heartbeat cron and periodic/standby heartbeats (the
 PDR-078 §4 consumer-absent exemption — at n=2 chat-visibility makes the
 async-detection consumer absent), the directed events between the two agents,
 the 120s message-sweep, and the multi-section team-start ceremony (one concise
-registration broadcast suffices); **retain** identity preflight, the
+registration broadcast suffices); **keep the state line**: during a long turn
+each seat sends its partner one state line at least every 120 seconds and the
+lead reads silence past that as unknown, never as work (PDR-082 §Amendment
+Log, 2026-09-14); **retain** identity preflight, the
 all-channels comms watcher, claims on substantive source/doctrine edits,
 commit-queue intents, the substantive cross-agent broadcasts (tree-green,
 push-landed, gate-state, merge-ready, blocker), mid-cycle retirement, and
@@ -730,7 +733,9 @@ Record intent and brief reasoning, not hidden chain-of-thought.
 Once a team session is active, every participating agent must check for new
 messages of any type at least once every 120 seconds until they close out or
 are explicitly released from the team route. Use a tighter cadence when the
-owner or controller sets one.
+owner or controller sets one. At n=2 this sweep is dropped (PDR-082 §What drops
+at n=2: owner-chat is the cadence), and the progress report below takes the
+state-line form during a long turn.
 
 Where an event-driven monitor covers a surface (per
 [`use-monitor-for-event-driven-wake`](../../rules/use-monitor-for-event-driven-wake.md)),
@@ -758,8 +763,10 @@ ArcAngel tail. The two watchers are paired, always (First Moves move 1).
 
 Each participating agent must also report progress at least once every 120
 seconds. A progress report can be a brief owner-facing update, a shared-comms
-entry, or a directed reply, depending on the team route. It should name the
-current state, any blocker, and the next action. Silence is only acceptable
+entry, or a directed reply, depending on the team route; at n=2 it is the state
+line to the partner seat during a long turn (PDR-082 §Amendment Log,
+2026-09-14). It should name
+the current state, any blocker, and the next action. Silence is only acceptable
 after the agent has been explicitly released, closed out, or told to stop
 reporting.
 

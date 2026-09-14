@@ -95,4 +95,30 @@ describe('tallyReviewBody', () => {
     // A bell, an escape and a zero-width space: nothing a terminal would show.
     expect(tallyReviewBody('### \u{07}\u{1B}\u{200B}\n### Looks good').verdict).toBe('Looks good');
   });
+
+  it('a heading that is only whitespace, or only an emoji, is no verdict (the #72 body finding)', () => {
+    // Spaces and a tab after the marker, with and without a leading emoji: the
+    // capture must begin and end on a non-whitespace character, and the emoji
+    // alone is not a verdict.
+    expect(tallyReviewBody('###    \t\n### Looks good').verdict).toBe('Looks good');
+    expect(tallyReviewBody('### 🟡 \t \n### Looks good').verdict).toBe('Looks good');
+    expect(tallyReviewBody('### 🟡\n### Looks good').verdict).toBe('Looks good');
+  });
+
+  it('a composed emoji heading (a joiner sequence) is no verdict; led by one it keeps its words', () => {
+    // The printable pass drops the zero-width joiner, leaving the pictographs adjacent.
+    expect(tallyReviewBody('### 👩\u{200D}💻\n### Looks good').verdict).toBe('Looks good');
+    expect(tallyReviewBody('### 👩\u{200D}💻 Changes recommended').verdict).toBe(
+      'Changes recommended',
+    );
+  });
+
+  it('a skin-modified, flag or keycap emoji heading is no verdict; led by one it keeps its words', () => {
+    expect(tallyReviewBody('### 👩🏽\u{200D}💻\n### Looks good').verdict).toBe('Looks good');
+    expect(tallyReviewBody('### 👍🏽 Looks good').verdict).toBe('Looks good');
+    expect(tallyReviewBody('### 🇬🇧\n### Looks good').verdict).toBe('Looks good');
+    expect(tallyReviewBody('### 1\u{FE0F}\u{20E3}\n### Looks good').verdict).toBe('Looks good');
+    // A digit that is not a keycap is a word, kept.
+    expect(tallyReviewBody('### 1 issue remains').verdict).toBe('1 issue remains');
+  });
 });

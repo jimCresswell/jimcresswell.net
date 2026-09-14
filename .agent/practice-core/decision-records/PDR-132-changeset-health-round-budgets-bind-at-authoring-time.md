@@ -103,3 +103,41 @@ amendment.
 - `start-right-team` SKILL: this record joins the foundation reading.
 - The falsifier's measurement is the corpus-methodology re-run above; the
   register's added dimensions are the standing instrument once landed.
+
+## Amendment Log
+
+### 2026-09-14 — jimcresswell.net: the pr-throughput register is retired from this estate
+
+Owner card (2026-09-14, the morning cards; the closure record's item 78, "PDR-008
+and PDR-132: both amended by card"), raised at the closure record's item 47 on
+the retirement pull request: "PDR-132 names the retired pr-throughput register
+as a future instrument; ratified text untouched, the retirement recorded
+against it for the owner's card."
+
+What changes. §Prediction and falsifier and §Consequences name the
+pr-throughput register as the standing instrument once it gains
+commits-per-PR and changeset-class dimensions. That register was retired from
+this estate on 2026-09-14 (transplant closure item 5b, pull request #68) with
+three other lineage instruments, re-importable from the lineage pin; this
+record no longer promises it here. The falsifier's measurement stands as the
+corpus-methodology re-run, recomputable from the repository host on demand
+(per pull request: opened and merged times, changed files, and each vendor
+review body's generated, suppressed and previously-missed counts); no standing
+register is promised in this estate.
+
+### 2026-09-14 — jimcresswell.net: the number of review rounds per pull request does not go up
+
+Owner word (2026-09-14, 15:15Z, spoken to the Director in chat; the closure
+record's item 100 records it as "the number of review rounds per pull request
+does not go up"), as the Director carried it to the Implementer seat: "I don't
+want the number of rounds of PRs to go up." Applied from the next pull request
+on (2b-ii slice A1, pull request #81; the closure record's item 100): the
+two-round budget of Decision 1 binds as written; after round
+two every remaining finding is dispositioned in the same slot turn as the last
+push — a trivial cure rides that push; everything else is a signed Rejected
+line carrying its rationale or its routed home; a round three is a Director
+call on a correctness defect only. The slice size the closure measured over
+sixteen pull requests (about eight claims per slice, the closure record's
+item 92) stands as an operating default and changes no threshold in
+Decision 2 (owner card, 2026-09-14, about 15:20Z: "the item 92 sizing stands as
+an operating default with no PDR-132 text change").
