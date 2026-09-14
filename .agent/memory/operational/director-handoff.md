@@ -551,6 +551,17 @@ ones the Director would put to the owner had the owner been present.
     opens once one more of the three open pull requests merges. Standing ruling; REVIEW: the
     fourth merge on a closer-look body, now with the tally in the verdict (from #67 the count
     is named; the blocking ruling is the owner's card).
+53. 5c's leak-validator needles (00:51Z on 2026-09-14): the plan's decision 5 said derive them
+    from `provenance.yml`'s lineage entry; lane A measured that provenance carries six foreign
+    repository values (the lineage plus five of the owner's own earlier repositories) and no
+    lineage organisation login, so a derivation either flags the owner's own repositories as
+    leaks (the first red run did) or has no anchor. Ruling: two needles (the organisation
+    login and the lineage repository) declared once in `policy.json`'s lineage-name block, the
+    one source the write-hook and the validator both read (a declared fact read by two
+    consumers, not a hand-kept copy). The alternative, a lineage field on the transplant entry
+    in `provenance.yml`, is a practice-core field-spec change. Lens 1 (a wrong derivation costs
+    a false red on every gate; a declared pair costs one line). REVIEW: the field-spec
+    alternative, for the owner's card; decision 5's wording superseded by the measured fact.
 
 ## Routing log
 
