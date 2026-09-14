@@ -1408,3 +1408,18 @@ parallax, wrap):
   that the next commit swept). These look shaped alike; two instances, a third would make a
   register candidate.
 - Discarded at the harvest: "review-round count tracks file count" was forced; no data.
+
+### Director, cold pause (2026-09-14, 09:01Z): play seeds, marked as associations
+
+- Play seed: a reviewer that never returns zero (sixteen pull requests, no pass with zero
+  suppressed findings) reminded me of the ratified disposition marker, which already carries
+  a bar (`Over-bar` / `Below-bar`); "block on any finding" flattened that bar. This looks
+  shaped like the exit criterion the hold is missing: an association, to test on the first
+  merges after #79, not a ruling.
+- Play seed: the shared `index.lock` races and the push slot look shaped alike, two seats and
+  one resource, except one is a mechanism and the other a protocol. Whether the slot wants
+  to be a lock file in the coordination home is unproven.
+- Play seed: the records rounds read, inverted, as a successor's rehydration rehearsal run
+  by an outside reader; if so the cost is worth paying once per boundary, never per push.
+- Discarded at the harvest: "Copilot's Lite effort level explains the sampling" was forced;
+  nothing measured across effort levels.

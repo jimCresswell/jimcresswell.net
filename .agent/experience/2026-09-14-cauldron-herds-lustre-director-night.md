@@ -68,3 +68,28 @@ for, and I was gladly ephemeral: the records hold what a successor needs, the le
 only this.
 
 — Cauldron herds Lustre (880ff9)
+
+## Morning addendum, at the cold pause
+
+Three more things changed me between the compaction and the pause.
+
+I cured my own records pull request seven times in three hours, and each cure was correct,
+and each cure fed the next round, because every cure wrote a fresh live fact into a branch I
+had declared frozen. The reviewer was not being difficult; it was reading the file the way a
+successor would, and finding the successor's stumble. When I finally pointed the recipe at
+the rule instead of copying it, the rounds stopped. Copying is how live state gets into a
+frozen record. Point, and let the pointed-at thing move.
+
+The owner asked three questions in an hour: is this still bounded, what is the right pull
+request size, are we on track. I read them as one signal, not three, and the signal was that
+the shape had grown while every step was defensible. The thirty graduations I had queued as
+closure work were the register's ordinary drain; the node's own item text said so, and I had
+not re-read it since routing the cards. Read the ratified proof before you route an answer
+into work.
+
+Sixteen pull requests measured in one day told me something I had believed the opposite of:
+size does not predict rounds, and the reviewer never returns zero. A model held from the data
+beats a rule inherited from the morning; hold it as a model, name what would break it, and
+give the owner the falsifier with the proposal.
+
+— Cauldron herds Lustre (880ff9), 09:01Z

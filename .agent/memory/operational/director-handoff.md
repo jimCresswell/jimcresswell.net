@@ -50,10 +50,22 @@ Every line answered first-hand, none inferred:
   archive holds only processed material.
 - The transplant is bounded: closure items 3 to 8 finish it, then editorial work.
 
-## Current handoff state (2026-09-14, 07:55Z; n=2 with lane A; owner present)
+## Current handoff state (2026-09-14, 09:01Z, cold pause; n=2 with lane A; owner present)
 
 Where this block and the routing log disagree, the log's last entry is current; this block is
 rewritten at each Director push.
+
+**Cold pause (2026-09-14 09:01Z, the owner's word: wait for the session limit to reset).**
+Every process this seat owned is stopped by id (the all-channels watcher, the ARC tail; no
+chain, cron or poll was live); nothing pushes; no comms. Lane A is frozen on the owner's own
+word to it (08:50Z), its successor to re-ground and send one state line. The pause binds until
+the owner lifts it, over any peer word. On the lift: the boundary block below is the re-arm
+recipe (verify by id, arm what is absent, assert, sweep); then read lane A's state line; the
+slot arrangement resumes (ask, confirm, push, release). Open at the pause: #79 (5a-vi, round
+three granted, three findings) and #77 (2b-i, round three granted, five findings), both lane
+A's cures; no chain armed for either until lane A's push lands. This branch, records-9, is
+local at its tip and unpushed under the pause; it pushes and opens at the next natural
+boundary after the lift.
 
 **Boundary block (compaction, 2026-09-14 06:37Z; the seat stays live).** Assume nothing
 session-scoped survives; verify by id first, re-arm only what is absent:
@@ -1089,6 +1101,26 @@ ones the Director would put to the owner had the owner been present.
     tip confirm (round one's family; one consistency bracket over all three legs is the class
     cure), the throws contract missing the comments leg. Routed ahead of #77's round: 5a-vi
     is the mechanism the later merges wait on. PDR-132 Director decision; lens 1.
+96. Cold pause at the owner's word (09:01Z on 2026-09-14) under `wrap`, non-terminal: the
+    watcher and the ARC tail stopped by id, no chain live, nothing pushed, no comms; records-9
+    committed locally at its tip. Metaloss passes: the pull request size model (item 92)
+    compresses sixteen measured pull requests into a rule and is recomputable from GitHub
+    (`gh pr view N --json createdAt,mergedAt,changedFiles,reviews` and each Copilot review
+    body's "Comments generated", "Suppressed comments" and "Previously missed" counts);
+    promises open: the chains for #77 and #79 re-arm on lane A's release lines, records-9
+    opens at the next boundary, item 7 is this seat's, the retrospective stays offered, the
+    one-live-state-block records shape stays a candidate. Inferences flagged: "the reviewer
+    samples rather than conserves" rests on four "previously missed" counts; lane A's cures
+    are reported by lane A and its code-expert, not verified here. Bounds: no direct read of
+    CI, of lane A's working tree, or of the ARC file during the pause (the resume sweep
+    covers the stream, not the file). The chain scripts live in the session scratchpad by
+    design and die with it; the boundary block carries their shape in words. Outside eyes
+    today caught what this seat did not: live state carried into frozen records (seven
+    rounds), card answers read as work items (the owner's question); point scrutiny there. A
+    further pass would only re-find these; the recursion closes here. Play harvest on the
+    napkin. Parallax at screening depth: declined for the pause itself; the one live inquiry
+    (the reviewer's non-zero floor under "block on any finding") keeps its charter in items
+    88 and 92 and reopens on the first two merges after #79 lands. Lens 2 (the owner's word).
 
 ## Routing log
 
