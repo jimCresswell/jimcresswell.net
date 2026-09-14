@@ -658,6 +658,16 @@ ones the Director would put to the owner had the owner been present.
     history, so the URL is a CV fact; keep the exemption, declare its justification in the
     block, add the scope cell. Routed to lane A as round one's cure. Lens 1. REVIEW: the
     content exemption's justification (the validator does not read product content).
+63. #70 round two (02:50Z on 2026-09-14): one thread (the board's 5c state) and five
+    suppressed, cured at `SHA: 83738f7`. Two of them reverse Director rulings against ratified
+    text: the archive gate is the controlling plan's item 8 as written (the napkins are
+    archived only after the owner's answers to the cards, plus the privacy review), not the
+    "fast-lane answers only" narrowing of items 37 and 44; and under PDR-130 as written a
+    slow-lane row is decided at its review date, the cards present it, so item 30's
+    "the owner's card, else the review date" wording is withdrawn. Ratified text is the
+    owner's; both narrowings were changes by verdict. The plan text is untouched. Lens 2.
+    REVIEW: both reversals; if the owner wants the fast-lane answers alone to release the
+    archive, or an early slow-lane decision, that is the owner's word on the plan and PDR-130.
 
 ## Routing log
 
