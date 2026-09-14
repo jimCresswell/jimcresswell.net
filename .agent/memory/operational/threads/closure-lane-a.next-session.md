@@ -578,3 +578,98 @@ recipe passes no session prefix), so it read "live" here while nothing of this s
 Liveness of this seat's watcher is verified by the process table against the supervisor pid.
 The watcher accepts `--session-prefix` (the castr seat runs with it); adding
 `--session-prefix c39ad7` to the recipe is a proposal for the Director, not applied.
+
+## Sixth waypoint (2026-09-14, ~17:0xZ): #79 merged, #77 merged, A1 and A2 authored
+
+### State of the branches (verified by `git log` and `git status` at writing)
+
+- `fix/merge-bot-suppressed-hold` (#79, 5a-vi): merged by the bot at SHA: 014fc6e, zero threads
+  and zero suppressed on its sixth review; the branch deleted local and origin. Six rounds
+  landed as commits on top of SHA: 0fb988dc (round three SHA: d271c24b, round four
+  SHA: 8a599092 and its notes SHA: 8d63df7b, round five SHA: 2e4e18b4, round six
+  SHA: 17adbcda). Round six was the Director's exception under the owner's rounds ruling (a
+  correctness defect in the PR's own claim); from here findings are dispositioned by signed
+  line in the same turn, no further cure push unless it is again a bypass of the hold.
+- `chore/subagent-declarations` (#77, 2b-i): merged by the bot at SHA: 0e70a2b, zero threads;
+  two findings of its last review routed (the wrapped-pointer trailing stop to the 2b
+  follow-on; the Gemini empty `tools` array into slice B).
+- `chore/subagent-generator` (#81, 2b-ii A1): origin at SHA: 142bedd5, four commits on
+  main's SHA: 0e70a2bd (the generator and the leg SHA: 67b77565, the code-expert's notes
+  SHA: 670193bc, round two SHA: 64743f0a, the disposition turn SHA: 142bedd5). Round two was
+  the budget's last (four cures, one signed Rejected line); the disposition turn under the
+  owner's ruling carried four cures (the platform-contract refusal in the leg, the backtick
+  tail, the control character in the line schema, the transitional-state sentence) and one
+  signed Rejected line (the duplicated surface table, home the reader-retirement PR). From
+  here signed lines only on #81. Eleven adapters regenerated on record (four folded and three
+  apostrophe-quoted Cursor descriptions, two Claude wrapped pointers, two Claude titles); 75
+  of 86 byte-equal.
+- `chore/subagent-registry` (2b-ii A2): local at the second merge commit SHA: ceeaf9a7 (A2's
+  own commit SHA: ba608a95, its code-expert notes SHA: 3f3ab3dc, the generator's tips
+  SHA: 64743f0a and SHA: 142bedd5 merged by merge commits, conflicts resolved by keeping both
+  sides). Full gate green on the merged tree; four mutants re-killed; the registry
+  regenerated (one block, corpus-voter, moved into name order). Code-expert "PASS WITH
+  NOTES", its notes landed. The PR opens against main after #81 merges, with the body drafted
+  at scratchpad `pr-2b-ii-a2-body.md`.
+- `records/lane-a-checkpoint-4`: local, stays local by the Director's word; lands after the
+  queue with a merge from main.
+
+### The queue after A2 (the Director's order)
+
+1. Slice B: the Gemini row `.gemini/agents/<name>.md` as the fourth surface of the same leg
+   (the Gemini CLI subagents reference re-read at authoring time for the exact frontmatter
+   keys and body semantics), the `tools` schema without `.min(1)` with a cell for `[]`, the
+   surface matrix row and CLAUDE.md, and the plan node's item 4 method clause amended on the
+   owner's word of 2026-09-14 (the Gemini projection is the generator's fourth output, no
+   hand-authored extension), cited the way the 2026-09-13 clause is.
+2. The reader-retirement PR (a fourth 2b-ii PR): the sweep, the hand-kept adapter readers,
+   the second platform map, and the health probe's platform contract deriving from the
+   declarations; the 2b follow-on list's reader items dissolve with them.
+3. Item 4's residue rows (the corpus-analysis restore with the five patterns, `sif`'s
+   routing); one small PR carrying 5a-v, 5c-ii and the PDR-008, PDR-082 and named PDR-132
+   amendments (not the item 92 sizing, which is an operating default); item 7 is the
+   Director's. No graduation PRs.
+
+### Standing words added this session (all recorded as memory too)
+
+- The owner (relayed 14:50Z): take your time; no subagents without planning; one or two at a
+  time, never fleets; a second reviewer runs after the first's verdict, never beside it.
+- The owner (relayed 15:15Z): the number of review rounds per PR does not go up; PDR-132's
+  two rounds bind; after round two every remaining finding is dispositioned in the same slot
+  turn as the last push (a trivial cure rides it, else a signed Rejected line with its
+  rationale or routed home); a round three is the Director's call on a correctness defect in
+  the PR's own claim. Slices are planned to about eight review-facing claims.
+- The owner's card answers (15:2xZ): only Cured and Rejected lift, a routed finding is a
+  signed Rejected line naming its home (the REVIEW mark on that reading is closed); the item 4
+  method clause is amended in slice B's PR; the card-amendments PR carries PDR-008, PDR-082
+  and the named PDR-132 item only; the napkins archive after full processing, outside the
+  closure.
+
+### Lessons of the session (technical)
+
+- A cold pause's "verify by process table" means this seat's processes keyed by supervisor
+  pid; `assert-watcher-live --platform claude --model claude-fable-5-1` cannot tell two seats'
+  watchers apart on one platform and model (the watcher accepts `--session-prefix`).
+- A reviewer's suggested cure can fail to compile (the never-keyed generic constraint
+  collapsed the inferred type to never); verify a suggestion by building it before adopting
+  its shape.
+- Prettier's YAML quote rule, measured: a double quote present means single quotes with the
+  apostrophe doubled; else an apostrophe means double quotes; else single. `.cursor/` is
+  prettier-ignored, `.claude/agents` is formatted, which is why the hand-kept files differed.
+- The estate's Claude frontmatter key order that reproduces every file is `tools`,
+  `disallowedTools`, `color`, `permissionMode`, `model`, `effort`.
+- The encoding check reads the tracked-file list: a deleted module must be staged
+  (`git rm`) before the gate, or the check fails on the missing path.
+- Commitlint reads a line-initial `Word:` in a body as a footer and warns
+  (footer-leading-blank); avoid line-initial "Live:", "Cells:", "Mutants:" in bodies.
+- The yaml library's `stringify(value, { lineWidth: 0 }) === value + '\n'` is a sound
+  plain-scalar test for the `line` schema's domain (measured over sixty values by the
+  code-expert); at the default width a long value folds and would be quoted.
+
+### Re-arm recipe (unchanged) and the seat's processes
+
+Watcher: from the worktree root, background,
+`node agent-tools/dist/src/bin/agent-tools.js collaboration-state -- comms watch --platform claude --model claude-fable-5-1 --supervisor-pid <claude pid> --step-timeout-ms 120000 --max-events-per-drain 100`;
+verify by `ps` against the supervisor pid, not by `assert-watcher-live` alone. Claim
+heartbeat: `collaboration-state claims heartbeat --claim-id f024e1f1-00c7-4c0d-be73-4a8371fe7d47 --now <iso> --active <repo>/.agent/state/collaboration/active-claims.json`.
+PR mutations as the bot: `scratchpad/gh-as-bot.sh <gh args>`. Follow-on lists in the
+scratchpad: `follow-on-2b.md`, `follow-on-5a-vi.md`; the slice plan `plan-2b-ii.md`.

@@ -1480,3 +1480,25 @@ checkpoint.
 - Parallax, screening: frames are the owner's (spend nothing), the Director's (the slot
   arrangement waits), the successor's (the record carries the exit). The one conflict, a
   Director word during the pause, resolves by the standing feedback: held, not obeyed.
+
+## Segment twelve (2026-09-14, 13:03Z to 16:3xZ): the lift, six rounds, two slices
+
+- The pause lifted at 13:03Z; my state lines carried estimated clock times up to twenty
+  minutes fast until I read the clock; corrected to the Director, and from then every time
+  in a message is read from `date`.
+- #79 rounds three to six, each a small correct cure to the same shape: identity and format
+  read from text conventions. The code-expert's friction-ratchet count on that surface is on
+  the 5a-vi follow-on list with an assumptions-expert shape review before the next feature.
+- A1 landed the measured facts first (key order, quote style, the eleven files) and the
+  generator second; the code-expert then measured the quote rule against prettier and found
+  mine was a JS-string majority rule, not YAML's. Measure the formatter, not the files it
+  already formatted.
+- Fluency tripwire caught twice: "eleven" was right by accident the first time (prose-expert
+  double-counted, then the Cursor re-quoting added three); the count is a measurement, run
+  the dry run and read it.
+- The owner's two words this session (one or two subagents at a time; rounds never go up)
+  both landed while a pass was in flight; both absorbed and recorded as memory, and the
+  round-two dispositions rode the last push on #81 exactly as ruled.
+- Free play kept: the fake port re-deriving the classifier was the same class as the reader
+  re-deriving YAML; both cured by calling the production function. Discarded: a registry
+  marker pair in config.toml (the head-then-blocks contract needs none).
