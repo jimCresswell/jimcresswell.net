@@ -687,6 +687,15 @@ ones the Director would put to the owner had the owner been present.
     `portability:check` recomputing all 130 rules' index and three projections byte for byte;
     the code-expert pass running. Ruling (03:00Z): the generalisations register's commit column
     stays bare (a report outside the SHA-prefix rule's collaboration scope). Lens 1.
+66. #71 round two (03:04Z on 2026-09-14), the last free round: one thread (the policy
+    exemption's substring match widens to any nested `hooks/policy.json`) and seven suppressed
+    (bare ids elsewhere in lane A's napkin and thread record; comment ids mislabelled `SHA:`;
+    a refusal message and a count diagnostic misworded; the gates SKILL against PDR-008's
+    enumeration; the pre-migration CV snapshot deleted against a conserved plan that calls it
+    immutable evidence). Rulings: the snapshot is restored byte-identical and exempted by its
+    canonical path with that justification, the owner deciding whether historical evidence
+    carrying the lineage names stays; PDR-008 is ratified text and stays untouched, the
+    mismatch a card. Lens 2 then lens 1. REVIEW: the snapshot; the PDR-008 enumeration.
 
 ## Routing log
 
