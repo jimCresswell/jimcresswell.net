@@ -4,8 +4,9 @@
  * A template under `.agent/sub-agents/templates/` is the canonical role; its adapters on
  * each platform (`.cursor/agents/<name>.md`, `.claude/agents/<name>.md`,
  * `.codex/agents/<name>.toml` with its `.codex/config.toml` registration, and the Gemini
- * row `.gemini/agents/<name>.md`) are thin pointers back to it that carry the description
- * and each platform's fields. The declaration is the one source for every adapter: the
+ * row `.gemini/agents/<name>.md`, the Gemini CLI subagents surface, the Director's ruling
+ * item 70 of 2026-09-14) are thin pointers back to it that carry the description and each
+ * platform's fields. The declaration is the one source for every adapter: the
  * generator (closure item 6, 2b-ii, the next slice) will render them under
  * `pnpm portability:fix` and recompute them under `pnpm portability:check`, so that none is
  * edited by hand (`compute-dont-hope`); until it lands the adapters stay hand-kept.
@@ -214,12 +215,28 @@ function shapeRefusal(error: z.ZodError): string {
   return `${where === '' ? '' : `${where}: `}${issue?.message ?? 'invalid declaration'}`;
 }
 
-/** The first binding the parsed shape breaks: a variant off its template, a block off its platforms. */
+/** A variant name declared twice, naming the second by its index; a generator keyed by name could carry only one. */
+function duplicateVariantIssue(
+  variants: readonly z.infer<typeof variantSchema>[],
+): string | undefined {
+  const seen = new Map<string, number>();
+  for (const [index, variant] of variants.entries()) {
+    const first = seen.get(variant.name);
+    if (first !== undefined) {
+      return `variants.${String(index)}.name: "${variant.name}" duplicates variants.${String(first)}`;
+    }
+    seen.set(variant.name, index);
+  }
+  return undefined;
+}
+
+/** The first binding the parsed shape breaks: a variant off its template or declared twice, a block off its platforms. */
 function bindingIssue(
   name: string,
   data: z.infer<typeof fanOutSchema> | z.infer<typeof roleSchema>,
 ): string | undefined {
   return 'variants' in data
-    ? data.variants.map((variant) => variantIssue(name, variant)).find(Boolean)
+    ? (duplicateVariantIssue(data.variants) ??
+        data.variants.map((variant) => variantIssue(name, variant)).find(Boolean))
     : platformIssue(data.platforms, data);
 }

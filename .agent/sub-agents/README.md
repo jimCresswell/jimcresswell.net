@@ -22,7 +22,9 @@ platform. A role declares its `description` and, per platform (`cursor`, `claude
 `gemini`), only what deviates from the standard adapter body: a Claude `tools` list off the
 default (`inherit` when the adapter carries none), `disallowedTools`, `permissionMode`,
 `color`, `model`, `effort`; a Codex `model` or `effort`; a `note` where the closing prose is
-not the platform's standard one. A standard role declares one line. A fan-out (the cricket
+not the platform's standard one; a `pointerTail` where the pointer paragraph continues past
+the template path (verbatim, as `cricket-procedure-xhigh` carries ", then execute its
+procedure exactly."). A standard role declares one line. A fan-out (the cricket
 templates) declares `variants`, each an adapter in its own name with every field, its `title`,
 its Cursor `description` where it differs, and every `note`, because the variants differ by
 design and are never flattened. The Gemini block carries only the fields the Gemini CLI

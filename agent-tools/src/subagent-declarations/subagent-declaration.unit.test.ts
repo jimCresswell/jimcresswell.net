@@ -52,6 +52,18 @@ describe('parseSubagentDeclaration', () => {
     ).toStrictEqual({ ok: false, error: 'cricket: variants.0: Unrecognized key: "tone"' });
   });
 
+  it('refuses a variant name declared twice, naming the second by its index', () => {
+    const variant = { name: 'cricket-high', platforms: ['claude'], description: 'High.' };
+    expect(
+      parseSubagentDeclaration('cricket', {
+        variants: [variant, { ...variant, name: 'cricket-low' }, variant],
+      }),
+    ).toStrictEqual({
+      ok: false,
+      error: 'cricket: variants.2.name: "cricket-high" duplicates variants.0',
+    });
+  });
+
   it('refuses a variant whose name is not the template name with a suffix', () => {
     expect(
       parseSubagentDeclaration('cricket', {

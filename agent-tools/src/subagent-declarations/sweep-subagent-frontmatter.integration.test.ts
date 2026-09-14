@@ -6,6 +6,11 @@ import { sweepSubagentFrontmatter, type SweepInput } from './sweep-subagent-fron
 
 const REPO = '/repo';
 
+/** The template an adapter points at: itself, or the fan-out parent of a `cricket-` variant. */
+function templateOf(name: string): string {
+  return name.startsWith('cricket-') ? 'cricket' : name;
+}
+
 const CURSOR_CLOSING = [
   'This file is a thin Cursor adapter. The canonical reviewer instructions live in the',
   'template referenced above.',
@@ -35,7 +40,7 @@ function cursorAdapter(name: string, description: string, closing = CURSOR_CLOSI
     '',
     `# ${name === 'alpha' ? 'Alpha' : 'Cricket — High Effort'}`,
     '',
-    `Your first action MUST be to read and internalise \`.agent/sub-agents/templates/${name}.md\`.`,
+    `Your first action MUST be to read and internalise \`.agent/sub-agents/templates/${templateOf(name)}.md\`.`,
     '',
     ...closing,
     '',
@@ -54,7 +59,7 @@ function claudeAdapter(name: string, description: string, closing = CLAUDE_CLOSI
     '',
     `# ${name === 'alpha' ? 'Alpha' : 'Cricket — High Effort'}`,
     '',
-    `Your first action MUST be to read and internalise \`.agent/sub-agents/templates/${name}.md\`.`,
+    `Your first action MUST be to read and internalise \`.agent/sub-agents/templates/${templateOf(name)}.md\`.`,
     '',
     ...closing,
     '',
@@ -68,7 +73,7 @@ function codexAdapter(name: string, description: string): string {
     'model_reasoning_effort = "high"',
     '',
     'developer_instructions = """',
-    `Read and follow \`.agent/sub-agents/templates/${name}.md\`.`,
+    `Read and follow \`.agent/sub-agents/templates/${templateOf(name)}.md\`.`,
     '',
     ...CODEX_CLOSING,
     '"""',
@@ -264,6 +269,82 @@ describe('sweepSubagentFrontmatter', () => {
       }),
     );
     expect(both.refused).toEqual(['cricket: adapters under its own name and under variant names']);
+  });
+
+  it("checks a declared template's adapter group too: none, both shapes, or a shape off its declared kind refuses", async () => {
+    const declaredBeta = new Map(agreeingTree);
+    declaredBeta.set(
+      `${REPO}/.agent/sub-agents/templates/beta.md`,
+      '---\ndescription: b\n---\n\nBeta.\n',
+    );
+    const none = await sweepSubagentFrontmatter(
+      input(fakeFs(declaredBeta), true, { templateNames: ['alpha', 'cricket', 'beta'] }),
+    );
+    expect(none.refused).toEqual(['beta: no adapter on any platform']);
+
+    const declaredCricket = new Map(agreeingTree);
+    declaredCricket.set(
+      `${REPO}/.agent/sub-agents/templates/cricket.md`,
+      '---\nvariants:\n  - name: cricket-high\n    platforms:\n      - cursor\n      - claude\n    description: h\n---\n\nCricket.\n',
+    );
+    declaredCricket.set(`${REPO}/.claude/agents/cricket.md`, claudeAdapter('cricket', 'C.'));
+    const both = await sweepSubagentFrontmatter(
+      input(fakeFs(declaredCricket), true, {
+        adapterNames: {
+          cursor: ['alpha', 'cricket-high'],
+          claude: ['alpha', 'cricket', 'cricket-high'],
+          codex: ['alpha'],
+        },
+      }),
+    );
+    expect(both.refused).toEqual(['cricket: adapters under its own name and under variant names']);
+
+    const kinds = new Map(agreeingTree);
+    kinds.set(
+      `${REPO}/.agent/sub-agents/templates/alpha.md`,
+      '---\nvariants:\n  - name: alpha-x\n    platforms:\n      - claude\n    description: x\n---\n\nAlpha.\n',
+    );
+    kinds.set(
+      `${REPO}/.agent/sub-agents/templates/cricket.md`,
+      '---\ndescription: c\n---\n\nCricket.\n',
+    );
+    const offKind = await sweepSubagentFrontmatter(input(fakeFs(kinds), true));
+    expect(offKind.refused).toEqual([
+      'alpha: declared as a fan-out but has an adapter under its own name',
+      'cricket: declared as a role but its adapters are under variant names',
+    ]);
+    expect(offKind.written).toEqual([]);
+  });
+
+  it('refuses an adapter whose name field is not its basename, and one whose pointer names another template', async () => {
+    const renamed = new Map(agreeingTree);
+    renamed.set(
+      `${REPO}/.claude/agents/alpha.md`,
+      claudeAdapter('alpha', ALPHA).replace('name: alpha', 'name: alfa'),
+    );
+    const renamedOutcome = await sweepSubagentFrontmatter(input(fakeFs(renamed), true));
+    expect(renamedOutcome.refused).toEqual([
+      '.claude/agents/alpha.md: name "alfa" is not the basename "alpha"',
+    ]);
+
+    const misPointed = new Map(agreeingTree);
+    misPointed.set(
+      `${REPO}/.claude/agents/alpha.md`,
+      claudeAdapter('alpha', ALPHA).replace('templates/alpha.md', 'templates/cricket.md'),
+    );
+    misPointed.set(
+      `${REPO}/.cursor/agents/cricket-high.md`,
+      cursorAdapter('cricket-high', HIGH, ['Cursor prose.']).replace(
+        'templates/cricket.md',
+        'templates/alpha.md',
+      ),
+    );
+    const misPointedOutcome = await sweepSubagentFrontmatter(input(fakeFs(misPointed), true));
+    expect(misPointedOutcome.refused).toEqual([
+      'alpha: claude adapter points at template "cricket", not "alpha"',
+      'cricket-high: cursor adapter points at template "alpha", not "cricket"',
+    ]);
+    expect(misPointedOutcome.written).toEqual([]);
   });
 
   it('refuses a missing adapter, a linked one, and an unreadable template, naming each, and writes nothing', async () => {

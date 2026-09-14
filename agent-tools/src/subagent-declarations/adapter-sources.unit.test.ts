@@ -50,6 +50,7 @@ describe('readMarkdownAdapter', () => {
           ['permissionMode', 'plan'],
         ]),
         title: 'Alpha',
+        template: 'alpha',
         pointerWrapped: false,
         pointerTail: '',
         note: 'This file is a thin Claude Code adapter.\n\nMode: Observe, analyse and report. Do not modify code.',
@@ -72,30 +73,100 @@ describe('readMarkdownAdapter', () => {
     );
   });
 
-  it('joins a list-valued field with commas, and reads a body with no note as an empty note', () => {
-    const listed = [
+  it('reads the frontmatter line by line as the platform does: a description that is not a YAML plain scalar is its value, and a body with no note is an empty note', () => {
+    const platformValue = [
       '---',
       'name: alpha',
-      'tools:',
-      '  - Read',
-      '  - Grep',
+      'description: Reviews a: the b, the c.',
       '---',
       '',
       'Your first action MUST be to read and internalise `.agent/sub-agents/templates/alpha.md`.',
       '',
     ].join('\n');
-    const read = readMarkdownAdapter('.claude/agents/alpha.md', listed);
-    expect(read.ok ? read.value.fields.get('tools') : read.error).toBe('Read, Grep');
+    const read = readMarkdownAdapter('.claude/agents/alpha.md', platformValue);
+    expect(read.ok ? read.value.fields.get('description') : read.error).toBe(
+      'Reviews a: the b, the c.',
+    );
     expect(read.ok ? read.value.note : read.error).toBe('');
   });
 
-  it('refuses a field that is not a scalar, and reads only a title above the pointer', () => {
+  it('reads a quoted scalar as YAML reads it (a doubled quote, a backslash escape, a folded block), and refuses text that is not one scalar', () => {
+    const pointer =
+      '\n\nYour first action MUST be to read and internalise `.agent/sub-agents/templates/alpha.md`.\n';
+    const single = readMarkdownAdapter(
+      '.cursor/agents/alpha.md',
+      `---\nname: alpha\ndescription: 'Wilma''s lens.'\n---${pointer}`,
+    );
+    expect(single.ok ? single.value.fields.get('description') : single.error).toBe("Wilma's lens.");
+    const double = readMarkdownAdapter(
+      '.claude/agents/alpha.md',
+      `---\nname: alpha\ndescription: "Says \\"go\\"."\n---${pointer}`,
+    );
+    expect(double.ok ? double.value.fields.get('description') : double.error).toBe('Says "go".');
+    const folded = readMarkdownAdapter(
+      '.cursor/agents/alpha.md',
+      `---\nname: alpha\ndescription: >-\n  Fast check.\n  Returns a verdict.\n---${pointer}`,
+    );
+    expect(folded.ok ? folded.value.fields.get('description') : folded.error).toBe(
+      'Fast check. Returns a verdict.',
+    );
     expect(
       readMarkdownAdapter(
         '.claude/agents/alpha.md',
-        '---\nname: alpha\nhooks:\n  PreToolUse: x\n---\n\nYour first action MUST be to read and internalise `.agent/sub-agents/templates/alpha.md`.\n',
+        `---\nname: alpha\ndescription: 'a' and 'b'\n---${pointer}`,
       ),
-    ).toStrictEqual({ ok: false, error: '.claude/agents/alpha.md: field "hooks" is not a scalar' });
+    ).toStrictEqual({
+      ok: false,
+      error: ".claude/agents/alpha.md: field \"description\" is not a quoted scalar: 'a' and 'b'",
+    });
+  });
+
+  it('refuses a list-valued field, an unknown key and a field with no value, each naming the adapter', () => {
+    const pointer =
+      '\n\nYour first action MUST be to read and internalise `.agent/sub-agents/templates/alpha.md`.\n';
+    expect(
+      readMarkdownAdapter(
+        '.claude/agents/alpha.md',
+        `---\nname: alpha\ntools:\n  - Read\n  - Grep\n---${pointer}`,
+      ),
+    ).toStrictEqual({
+      ok: false,
+      error: '.claude/agents/alpha.md: unparseable frontmatter line 4:   - Read',
+    });
+    expect(
+      readMarkdownAdapter(
+        '.claude/agents/alpha.md',
+        `---\nname: alpha\nhooks:\n  PreToolUse: x\n---${pointer}`,
+      ),
+    ).toStrictEqual({
+      ok: false,
+      error: '.claude/agents/alpha.md: unknown frontmatter key "hooks"',
+    });
+    expect(
+      readMarkdownAdapter('.claude/agents/alpha.md', `---\nname: alpha\ntools:\n---${pointer}`),
+    ).toStrictEqual({
+      ok: false,
+      error: '.claude/agents/alpha.md: field "tools" carries no value',
+    });
+    // An empty quoted scalar is the same absence in a second shape (the code-expert's probe).
+    expect(
+      readMarkdownAdapter(
+        '.claude/agents/alpha.md',
+        `---\nname: alpha\ndescription: ''\n---${pointer}`,
+      ),
+    ).toStrictEqual({
+      ok: false,
+      error: '.claude/agents/alpha.md: field "description" carries no value',
+    });
+    expect(
+      readMarkdownAdapter('.claude/agents/alpha.md', `---\nname: alpha\ntools: ""\n---${pointer}`),
+    ).toStrictEqual({
+      ok: false,
+      error: '.claude/agents/alpha.md: field "tools" carries no value',
+    });
+  });
+
+  it('reads only a title above the pointer', () => {
     const late = readMarkdownAdapter(
       '.claude/agents/alpha.md',
       '---\nname: alpha\n---\n\nYour first action MUST be to read and internalise `.agent/sub-agents/templates/alpha.md`.\n\n# Not the title\n',
@@ -128,6 +199,24 @@ describe('readMarkdownAdapter', () => {
       error: '.claude/agents/alpha.md: the template pointer names no path',
     });
   });
+
+  it('refuses a pointer whose path is not a template path, and carries the template a valid one names', () => {
+    expect(
+      readMarkdownAdapter(
+        '.claude/agents/alpha.md',
+        '---\nname: alpha\n---\n\nYour first action MUST be to read and internalise `docs/alpha.md`.\n',
+      ),
+    ).toStrictEqual({
+      ok: false,
+      error:
+        '.claude/agents/alpha.md: the template pointer names "docs/alpha.md", not a template path',
+    });
+    const variant = readMarkdownAdapter(
+      '.cursor/agents/cricket-high.md',
+      '---\nname: cricket-high\n---\n\nYour first action MUST be to read and internalise `.agent/sub-agents/templates/cricket.md`.\n',
+    );
+    expect(variant.ok ? variant.value.template : variant.error).toBe('cricket');
+  });
 });
 
 describe('readCodexAdapter', () => {
@@ -142,11 +231,28 @@ describe('readCodexAdapter', () => {
           ['sandbox_mode', 'read-only'],
         ]),
         title: undefined,
+        template: 'alpha',
         pointerWrapped: false,
         pointerTail: '',
         note: 'This file is a thin Codex adapter.',
       },
     });
+  });
+
+  it('refuses content after the instructions block, so no field placed there is dropped', () => {
+    expect(
+      readCodexAdapter(
+        '.codex/agents/alpha.toml',
+        `${CODEX_ADAPTER}\n# a comment is fine\nmodel = "gpt-5"\n`,
+      ),
+    ).toStrictEqual({
+      ok: false,
+      error:
+        '.codex/agents/alpha.toml: content after the developer_instructions block is not read: model = "gpt-5"',
+    });
+    expect(
+      readCodexAdapter('.codex/agents/alpha.toml', `${CODEX_ADAPTER}\n# only a comment\n`).ok,
+    ).toBe(true);
   });
 
   it('refuses a head line that is not a key = "value" field, so no value is dropped', () => {

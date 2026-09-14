@@ -13,6 +13,7 @@ function source(
   return {
     fields: new Map(Object.entries(fields)),
     title: 'Alpha',
+    template: 'alpha',
     pointerWrapped: false,
     pointerTail: '',
     note: '',

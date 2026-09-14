@@ -3,11 +3,14 @@
  * as the template's frontmatter.
  *
  * All-or-nothing derivation: an adapter that is not a regular file or cannot be read, a
- * template whose head cannot be read, an adapter name under no template, a role with no
- * adapter on any platform, refuses the whole sweep and nothing is written. Writing then
- * proceeds template by template through the atomic writer; a template that already carries
- * a block is left as it is and reported. The file system is an injected port (`sweep-fs.ts`,
- * shared with the rules sweep), so the sweep is proven over an in-memory tree.
+ * template whose head cannot be read, an adapter whose `name` field is not its basename, an
+ * adapter name under no template or whose pointer names another template, a template with
+ * no adapter on any platform or with adapters under both its own and variant names, refuses
+ * the whole sweep and nothing is written. Writing then proceeds template by template through
+ * the atomic writer; a template that already carries a block is left as it is and reported,
+ * once its adapter group is checked against the shape it declares (`adapter-groups.ts`). The
+ * file system is an injected port (`sweep-fs.ts`, shared with the rules sweep), so the sweep
+ * is proven over an in-memory tree.
  *
  * Adapter discovery is the caller's (the tracked-file listing): every adapter basename on
  * the three surfaces is either a template's own name (a role) or `<template>-<suffix>` for
@@ -22,6 +25,7 @@ import { err, ok, type Result } from '@engraph/result';
 
 import { defaultSweepFs, readSource, type SweepFs } from '../rule-declarations/sweep-fs.js';
 
+import { declaredShapeIssue, groupByTemplate, groupShape } from './adapter-groups.js';
 import {
   readCodexAdapter,
   readMarkdownAdapter,
@@ -77,37 +81,39 @@ function refusal(refused: readonly string[], alreadyDeclared: readonly string[])
   return { refused, declarations: [], reconciliations: [], alreadyDeclared, written: [] };
 }
 
-/** The template an adapter name belongs to: itself, or the longest `<template>-` prefix. */
-function templateOf(adapter: string, templates: ReadonlySet<string>): string | undefined {
-  if (templates.has(adapter)) {
-    return adapter;
-  }
-  return [...templates]
-    .filter((template) => adapter.startsWith(`${template}-`))
-    .sort((a, b) => b.length - a.length)[0];
-}
-
 interface Heads {
   /** Undeclared templates and their text. */
   readonly undeclared: Map<string, string>;
-  readonly alreadyDeclared: string[];
+  /** Declared templates and the kind each declares, in template order. */
+  readonly declared: Map<string, SubagentDeclaration['kind']>;
   readonly refused: string[];
 }
 
 async function readHeads(input: SweepInput, sweepFs: SweepFs): Promise<Heads> {
-  const heads: Heads = { undeclared: new Map(), alreadyDeclared: [], refused: [] };
+  const heads: Heads = { undeclared: new Map(), declared: new Map(), refused: [] };
   for (const name of input.templateNames) {
     const text = await readSource(input.repoRoot, `${TEMPLATES_DIR}/${name}.md`, sweepFs);
     const head = text.ok ? readSubagentDeclaration(name, text.value) : text;
     if (!head.ok) {
       heads.refused.push(head.error);
     } else if (head.value.kind === 'declared') {
-      heads.alreadyDeclared.push(name);
+      heads.declared.set(name, head.value.declaration.kind);
     } else if (text.ok) {
       heads.undeclared.set(name, text.value);
     }
   }
   return heads;
+}
+
+/** The refusal for an adapter whose `name` field is not the basename it is filed under. */
+function nameIssue(relativePath: string, name: string, source: AdapterSource): string | undefined {
+  const declared = source.fields.get('name');
+  if (declared === name) {
+    return undefined;
+  }
+  return declared === undefined
+    ? `${relativePath}: no name field`
+    : `${relativePath}: name "${declared}" is not the basename "${name}"`;
 }
 
 async function readAdapterSets(
@@ -125,52 +131,36 @@ async function readAdapterSets(
         refused.push(source.error);
         continue;
       }
+      const issue = nameIssue(relativePath, name, source.value);
+      if (issue !== undefined) {
+        refused.push(issue);
+        continue;
+      }
       sets.set(name, { ...(sets.get(name) ?? {}), [surface.platform]: source.value });
     }
   }
   return refused.length > 0 ? err(refused) : ok(sets);
 }
 
-/** Group every adapter set under its template; an orphan adapter is a refusal. */
-function groupByTemplate(
-  templates: ReadonlySet<string>,
-  sets: ReadonlyMap<string, AdapterSet>,
-): Result<Map<string, Map<string, AdapterSet>>, string[]> {
-  const groups = new Map<string, Map<string, AdapterSet>>();
-  const refused: string[] = [];
-  for (const [adapter, set] of sets) {
-    const owner = templateOf(adapter, templates);
-    if (owner === undefined) {
-      refused.push(`${adapter}: an adapter under no template`);
-      continue;
-    }
-    const group = groups.get(owner) ?? new Map<string, AdapterSet>();
-    group.set(adapter, set);
-    groups.set(owner, group);
-  }
-  return refused.length > 0 ? err(refused) : ok(groups);
-}
-
 function deriveTemplate(
   template: string,
   group: Map<string, AdapterSet> | undefined,
 ): Result<Derived, string> {
-  if (group === undefined) {
-    return err(`${template}: no adapter on any platform`);
+  const shape = groupShape(template, group);
+  if (!shape.ok) {
+    return shape;
   }
-  const own = group.get(template);
-  if (own === undefined) {
-    return deriveFanOut(template, group);
-  }
-  return group.size === 1
-    ? deriveRole(template, own)
-    : err(`${template}: adapters under its own name and under variant names`);
+  const own = shape.value.group.get(template);
+  return own === undefined ? deriveFanOut(template, shape.value.group) : deriveRole(template, own);
 }
 
-/** Derive the undeclared templates; adapters are grouped under every template, declared or not. */
+/**
+ * Derive the undeclared templates; adapters are grouped under every template, and a declared
+ * template's group is checked against the kind it declares before it is left alone.
+ */
 function deriveAll(
   templates: readonly string[],
-  undeclared: readonly string[],
+  heads: Heads,
   sets: ReadonlyMap<string, AdapterSet>,
 ): Result<Map<string, Derived>, string[]> {
   const grouped = groupByTemplate(new Set(templates), sets);
@@ -179,7 +169,18 @@ function deriveAll(
   }
   const derived = new Map<string, Derived>();
   const refused: string[] = [];
-  for (const template of undeclared) {
+  for (const template of templates) {
+    const kind = heads.declared.get(template);
+    if (kind !== undefined) {
+      const issue = declaredShapeIssue(template, kind, grouped.value.get(template));
+      if (issue !== undefined) {
+        refused.push(issue);
+      }
+      continue;
+    }
+    if (!heads.undeclared.has(template)) {
+      continue;
+    }
     const result = deriveTemplate(template, grouped.value.get(template));
     if (result.ok) {
       derived.set(template, result.value);
@@ -218,25 +219,26 @@ async function writeAll(
 export async function sweepSubagentFrontmatter(input: SweepInput): Promise<SweepOutcome> {
   const sweepFs = input.sweepFs ?? defaultSweepFs;
   const heads = await readHeads(input, sweepFs);
+  const alreadyDeclared = [...heads.declared.keys()];
   const sets = await readAdapterSets(input, sweepFs);
   const refused = [...heads.refused, ...(sets.ok ? [] : sets.error)];
   if (refused.length > 0 || !sets.ok) {
-    return refusal(refused, heads.alreadyDeclared);
+    return refusal(refused, alreadyDeclared);
   }
-  const derived = deriveAll(input.templateNames, [...heads.undeclared.keys()], sets.value);
+  const derived = deriveAll(input.templateNames, heads, sets.value);
   if (!derived.ok) {
-    return refusal(derived.error, heads.alreadyDeclared);
+    return refusal(derived.error, alreadyDeclared);
   }
   const written = await writeAll(input, sweepFs, heads.undeclared, derived.value);
   if (!written.ok) {
-    return refusal([written.error], heads.alreadyDeclared);
+    return refusal([written.error], alreadyDeclared);
   }
   const outcomes = [...derived.value.values()];
   return {
     refused: [],
     declarations: outcomes.map((entry) => entry.declaration),
     reconciliations: outcomes.flatMap((entry) => entry.reconciliations),
-    alreadyDeclared: heads.alreadyDeclared,
+    alreadyDeclared,
     written: written.value,
   };
 }

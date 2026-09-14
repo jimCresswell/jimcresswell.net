@@ -3,25 +3,26 @@
  * read for the sweep (the transplant instrument that mints declarations) and never by the
  * running estate, which reads only the declarations.
  *
- * Cursor and Claude adapters are Markdown with YAML frontmatter; Codex adapters are TOML
- * with flat `key = "value"` lines and one triple-quoted `developer_instructions` string.
- * Each is read into the same shape: its frontmatter fields as strings, its title, the shape
- * of its pointer paragraph (the sentence that names the template: wrapped or not, and
- * whatever follows the path inside that paragraph, verbatim), and the prose after that
- * paragraph (the "note"), so every byte an adapter body varies by is measured, and a
- * variant's platform-specific paragraph survives into its declaration as written. A field
- * that is not a scalar, or a Codex head line that is not a `key = "value"` field, is a
- * refusal: the readers never drop a value silently (the derivation then refuses any key it
- * does not read, `derive-subagent-declaration.ts`).
+ * Cursor and Claude adapters are Markdown with YAML frontmatter, read line by line as the
+ * platform reads it (`adapter-frontmatter.ts`); Codex adapters are TOML with flat
+ * `key = "value"` lines and one triple-quoted `developer_instructions` string. Each is read
+ * into the same shape: its frontmatter fields as strings, its title, the template its pointer
+ * names, the shape of its pointer paragraph (the sentence that names the template: wrapped
+ * or not, and whatever follows the path inside that paragraph, verbatim), and the prose
+ * after that paragraph (the "note"), so every byte an adapter body varies by is measured,
+ * and a variant's platform-specific paragraph survives into its declaration as written. A
+ * field that is a list, carries no value or is a key no adapter carries, a pointer that
+ * names anything but a template path, a Codex head line that is not a `key = "value"` field,
+ * or Codex content after the instructions block, is a refusal: the readers never drop a
+ * value silently (the derivation then refuses any key it does not read,
+ * `derive-subagent-declaration.ts`).
  *
  * @packageDocumentation
  */
 
 import { err, ok, type Result } from '@engraph/result';
-import { parse as parseYaml } from 'yaml';
 
-import { FRONTMATTER_FENCE_LINE } from '../rule-declarations/frontmatter-lines.js';
-
+import { readAdapterFrontmatter } from './adapter-frontmatter.js';
 import type { SubagentPlatform } from './subagent-declaration.js';
 
 /** The three hand-kept surfaces; Gemini is generated only. */
@@ -32,6 +33,8 @@ export interface AdapterSource {
   readonly fields: ReadonlyMap<string, string>;
   /** The `# ` heading, when the adapter carries one (a Codex adapter carries none). */
   readonly title: string | undefined;
+  /** The template basename the pointer names (a variant names its fan-out parent). */
+  readonly template: string;
   /** Whether the pointer sentence wraps its path onto a second line. */
   readonly pointerWrapped: boolean;
   /** What follows the path inside the pointer paragraph, verbatim; empty for a plain stop. */
@@ -43,72 +46,47 @@ export interface AdapterSource {
 const POINTER_SENTENCE_START = 'Your first action MUST be to read and internalise';
 const CODEX_POINTER_START = 'Read and follow `';
 
-/** A scalar or a list of scalars as one line; anything nested is refused. */
-function toLine(value: unknown): string | undefined {
-  if (value === null) {
-    return '';
-  }
-  if (Array.isArray(value)) {
-    return value.every((member) => typeof member !== 'object' || member === null)
-      ? value.map(String).join(', ')
-      : undefined;
-  }
-  return typeof value === 'object' ? undefined : String(value);
-}
+const TEMPLATE_PATH = /^\.agent\/sub-agents\/templates\/([a-z0-9]+(?:-[a-z0-9]+)*)\.md$/u;
 
-/** The frontmatter block's fields as strings, and the index of its closing fence. */
-function readBlock(
+/** The template the backticked path on a pointer line names, and where the path closes. */
+function namedTemplate(
   relativePath: string,
-  lines: readonly string[],
-): Result<{ fields: Map<string, string>; closing: number }, string> {
-  if (lines[0] !== FRONTMATTER_FENCE_LINE) {
-    return err(`${relativePath}: no frontmatter block`);
+  line: string,
+): Result<{ template: string; closingTick: number }, string> {
+  const closingTick = line.lastIndexOf('`');
+  const openingTick = closingTick <= 0 ? -1 : line.lastIndexOf('`', closingTick - 1);
+  if (openingTick === -1) {
+    return err(`${relativePath}: the template pointer names no path`);
   }
-  const closing = lines.indexOf(FRONTMATTER_FENCE_LINE, 1);
-  if (closing === -1) {
-    return err(`${relativePath}: frontmatter block never closes`);
-  }
-  let value: unknown;
-  try {
-    value = parseYaml(lines.slice(1, closing).join('\n'), { mapAsMap: true });
-  } catch (cause: unknown) {
-    return err(`${relativePath}: frontmatter is not YAML (${String(cause)})`);
-  }
-  if (!(value instanceof Map)) {
-    return err(`${relativePath}: frontmatter is not a mapping`);
-  }
-  const fields = new Map<string, string>();
-  for (const [key, field] of value) {
-    const line = toLine(field);
-    if (line === undefined) {
-      return err(`${relativePath}: field "${String(key)}" is not a scalar`);
-    }
-    fields.set(String(key), line);
-  }
-  return ok({ fields, closing });
+  const named = line.slice(openingTick + 1, closingTick);
+  const template = TEMPLATE_PATH.exec(named)?.[1];
+  return template === undefined
+    ? err(`${relativePath}: the template pointer names "${named}", not a template path`)
+    : ok({ template, closingTick });
 }
 
-/** The pointer paragraph's tail and the note after it, given the line that carries the path. */
+/** The template named, the pointer paragraph's tail and the note after it, given the line that carries the path. */
 function bodyAfterPath(
   relativePath: string,
   body: readonly string[],
   pathLine: number,
-): Result<Pick<AdapterSource, 'pointerTail' | 'note'>, string> {
+): Result<Pick<AdapterSource, 'template' | 'pointerTail' | 'note'>, string> {
   const line = body[pathLine] ?? '';
-  const closingTick = line.lastIndexOf('`');
-  if (closingTick === -1) {
-    return err(`${relativePath}: the template pointer names no path`);
+  const named = namedTemplate(relativePath, line);
+  if (!named.ok) {
+    return named;
   }
   let paragraphEnd = pathLine;
   while ((body[paragraphEnd + 1] ?? '').trim() !== '') {
     paragraphEnd += 1;
   }
-  const afterPath = line.slice(closingTick + 1);
+  const afterPath = line.slice(named.value.closingTick + 1);
   const continuation = body.slice(pathLine + 1, paragraphEnd + 1);
   const pointerTail =
     (afterPath === '.' ? '' : afterPath) +
     (continuation.length === 0 ? '' : `\n${continuation.join('\n')}`);
   return ok({
+    template: named.value.template,
     pointerTail,
     note: body
       .slice(paragraphEnd + 1)
@@ -123,7 +101,7 @@ export function readMarkdownAdapter(
   text: string,
 ): Result<AdapterSource, string> {
   const lines = text.split('\n');
-  const block = readBlock(relativePath, lines);
+  const block = readAdapterFrontmatter(relativePath, lines);
   if (!block.ok) {
     return block;
   }
@@ -146,6 +124,7 @@ export function readMarkdownAdapter(
 
 const CODEX_FIELD_LINE = /^([a-z_]+) = "([^"\n]*)"$/u;
 const CODEX_INSTRUCTIONS_OPEN = 'developer_instructions = """';
+const CODEX_INSTRUCTIONS_BLOCK = /^([\s\S]*?)\n"""([\s\S]*)$/u;
 
 /** The flat `key = "value"` fields above the instructions block; any other line refuses. */
 function readCodexFields(relativePath: string, head: string): Result<Map<string, string>, string> {
@@ -163,6 +142,19 @@ function readCodexFields(relativePath: string, head: string): Result<Map<string,
   return ok(fields);
 }
 
+/** The instructions block's lines; a block that never closes, or text after it that is neither blank nor a comment, refuses. */
+function codexInstructions(relativePath: string, rest: string): Result<string[], string> {
+  const match = CODEX_INSTRUCTIONS_BLOCK.exec(rest);
+  if (match === null) {
+    return err(`${relativePath}: developer_instructions block never closes`);
+  }
+  const [, body = '', suffix = ''] = match;
+  const stray = suffix.split('\n').find((line) => line.trim() !== '' && !line.startsWith('#'));
+  return stray === undefined
+    ? ok(body.split('\n'))
+    : err(`${relativePath}: content after the developer_instructions block is not read: ${stray}`);
+}
+
 /** Read a Codex adapter: its flat fields and the pointer shape and note in its instructions. */
 export function readCodexAdapter(
   relativePath: string,
@@ -176,18 +168,18 @@ export function readCodexAdapter(
   if (!fields.ok) {
     return fields;
   }
-  const instructions = /^([\s\S]*?)\n"""/u.exec(
+  const body = codexInstructions(
+    relativePath,
     text.slice(open + CODEX_INSTRUCTIONS_OPEN.length + 1),
   );
-  if (instructions === null) {
-    return err(`${relativePath}: developer_instructions block never closes`);
+  if (!body.ok) {
+    return body;
   }
-  const body = (instructions[1] ?? '').split('\n');
-  const pointerAt = body.findIndex((entry) => entry.startsWith(CODEX_POINTER_START));
+  const pointerAt = body.value.findIndex((entry) => entry.startsWith(CODEX_POINTER_START));
   if (pointerAt === -1) {
     return err(`${relativePath}: no template pointer line`);
   }
-  const rest = bodyAfterPath(relativePath, body, pointerAt);
+  const rest = bodyAfterPath(relativePath, body.value, pointerAt);
   return rest.ok
     ? ok({ fields: fields.value, title: undefined, pointerWrapped: false, ...rest.value })
     : rest;
