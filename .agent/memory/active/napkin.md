@@ -1368,3 +1368,12 @@ parallax, wrap):
 - The ARC channel file is appended to, never rewritten: a script that read it and wrote it back
   whole truncated it for an instant and every tail replayed the file from the start. Use `>>`
   for every entry, including corrections.
+- A merge whose message starts with a type that commitlint does not know (`merge:`) is refused at
+  the commit-msg hook but stays in progress; the next `git commit` for an unrelated edit
+  completes it silently as a two-parent commit under that edit's message. After a refused
+  merge, complete it first with a conventional message, then commit the edit.
+- A records pull request that carries live state through many rounds finds fresh drift each
+  round (twenty on #62); freeze it at a cure and stack later items on a new branch.
+- A granted push slot is held until the grantee says "released"; the Director does not take it
+  back for its own gate, however idle it looks, because the grantee's pre-push checks run
+  silently before the push shows on origin (two full gates overlapped on one host, 23:49Z).

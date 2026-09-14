@@ -9,7 +9,11 @@ and the register PR #63 merged before it), before item 5; scope is the three nap
 (from line 311 to the end of the file at the commit that lands this record: sessions 4 to 8,
 wraps 3 to 7, lane C, lane A, the Director's two sections); the candidates
 go to the owner as one batch of cards in the morning; nothing graduates without the answers; the
-napkins are archived only then.
+napkins are archived only after the owner's answers to the cards (the controlling plan's item 8,
+as written) and the owner's privacy review of the three napkins. The five slow-lane rows are
+presented on the cards and, under PDR-130 as written, decided at their review date
+(2026-12-13) by `promote` or `kill-with-reasoning`; the card's answer for such a row is the
+owner's word on its presentation, and any earlier decision is the owner's word on PDR-130.
 
 ## Participating agent identities
 
@@ -38,8 +42,10 @@ napkins are archived only then.
   falsifiable prediction; duplicates are recorded in the PR body with the line that carries
   them; the readout moves in two proofs, 0 to 33 on filing and 33 to 28 after the five
   constitutional rows move to the slow lane (the accepted readout is 28 decision-debt blocks
-  beside five slow-lane rows); the napkins are archived only after two gates, the answered
-  fast-lane cards and the owner's privacy review of the three napkins.
+  beside five slow-lane rows); the napkins are archived only after two gates: the owner's
+  answers to the cards (a slow-lane answer being the owner's word on the row's presentation,
+  its decision staying with the review date) and the owner's privacy review of the three
+  napkins.
 - **Next safe step:** §Next safe step at the end of this record.
 
 ## How this draft was made
@@ -317,11 +323,13 @@ filed the entries as PR #63 (`SHA: dc23dff`); the register carries the live stat
   while PDR-081 and the curator-pass skill say the opposite: a directory the lineage kept for
   history is not a register the doctrine writes to). If not, a worked-instance clause.
 
-- The consolidate-docs skill: one truth-maintenance pass over frontmatter status, narrative
-  status, next-step sections, current-state notes, roadmap and parent tables, and READMEs that
-  advertise plan state (napkin 2026-03-09 and 2026-04-03 say promoted; confirm the transplanted
-  skill kept it). Also: consolidation checks a domain skill's pitfalls table against findings
-  since the skill was written (2026-03-07).
+- 1a. The consolidate-docs skill: one truth-maintenance pass over frontmatter status,
+  narrative status, next-step sections, current-state notes, roadmap and parent tables, and
+  READMEs that advertise plan state (napkin 2026-03-09 and 2026-04-03 say promoted; confirm
+  the transplanted skill kept it).
+- 1b. The consolidate-docs skill: consolidation checks each domain skill the period's findings
+  touch, diffing its pitfalls table against those findings since the skill was written (napkin
+  2026-03-07).
 - The plan skill: a plan is complete only with verification evidence recorded ("code complete"
   is not complete; gates are acceptance criteria; 2026-03-06); a platform-integration plan that
   settles reusable architecture is mined into an ADR before closing (2026-03-08); losing paths
@@ -405,20 +413,20 @@ review dates, the readout at 28 pending. Nothing here refiles or reclassifies th
 1. The owner's morning cards (the ratified item 8): the Director presents the filed entries in
    the four classes of the PR body, plus proposal E. For the twenty-three fast-lane entries each
    answer is the fast disposition (`graduated`, `rejected`, `duplicate`), recorded on the entry.
-   For the five slow-lane entries (A, B, C, 1a, 1b) the card is PDR-130's review-date decision,
-   `promote` or `kill-with-reasoning`, recorded on the slow-lane row; a card left unanswered
-   leaves the row for its review date (2026-12-13).
+   For the five slow-lane entries (A, B, C, 1a, 1b) the card presents the row; under PDR-130
+   the row is decided at its review date (2026-12-13) by `promote` or `kill-with-reasoning`,
+   recorded on the slow-lane row; an earlier decision is the owner's word on PDR-130.
 2. Every fast-lane outcome drains its row (drain by deciding, the register's contract). A
    `graduated` entry lands as its own small pull request into the named home, one home per PR
    where the homes differ, by the seat the Director routes, and the entry is removed in the
-   same PR. A `rejected` entry is removed in a register commit whose drain note (the register's
-   HTML-comment drain record) carries the rejection reason. A `duplicate` entry is removed the
-   same way, the drain note naming the home that carries it. No decision leaves the durable
-   record: the commits, the homes and the drain notes are the record.
+   same PR; the commit and the home are its record. A `duplicate` entry is removed in a
+   register commit whose message names the home that already carries it; the commit and that
+   home are its record. A `rejected` entry has no home: it is removed in a register commit
+   whose message carries the rejection reason, and that commit is its record. In every case
+   (rule `permanent-doc-is-the-consolidation-record`): no ledger, no drain note, no pointer.
 3. The three napkins under `.agent/memory/active/unconsolidated/` are archived once both
-   gates hold: the fast-lane cards of step 1 are answered, and the owner's privacy review of
-   the three napkins under `privacy.md` (overnight item 5) is done. The slow-lane cards are
-   not an archive gate: an unanswered slow-lane card holds only its own row until the review
-   date, because the row conserves its source text (the archive holds processed material only,
-   and filing is the processing).
+   gates hold: the owner's answers to the cards of step 1 (the controlling plan's item 8: "the
+   napkins are archived only then"; a slow-lane row's answer is the owner's word on its
+   presentation, its decision staying with the review date), and the owner's privacy review of
+   the three napkins under `privacy.md` (overnight item 5).
 4. The slow-lane five are decided at their review date (the owner's card, else 2026-12-13).

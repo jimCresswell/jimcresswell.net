@@ -58,14 +58,10 @@ names a live branch):
   retire under item 5: `validate-ratified-lists`. Not re-checked today: the fitness vocabulary
   in the `practice-fitness` sources.
 
-- Deep consolidation status: **filed, cards pending — closure session 2** (node item 8): the
-  three unprocessed napkins under `.agent/memory/active/unconsolidated/` plus this session's
-  captures are on the pending-graduations register since PR #63 (`SHA: dc23dff`): thirty-three
-  live rows, split as twenty-eight decision-debt blocks (the parser's readout: five 2026-09-12
-  captures plus twenty-three session 2 entries) and five constitutional rows in PDR-130's slow
-  lane, which are not decision-debt. The live continuation is the owner's one batch of cards;
-  the napkins are archived only after two gates: the fast-lane cards answered and the owner's
-  privacy review of the three napkins done.
+- Deep consolidation status: **due — closure session 2, the owner's cards** (node item 8):
+  the session's captures are filed on the pending-graduations register (PR #63); the cards,
+  the graduations and the two archive gates are in
+  `threads/session-2-synthesis.next-session.md`.
 - The generators: lane B's PR #55 (item 6, PR 1) landed the frontmatter sweep; the rules-index
   and trigger generator remains item 6 part 2a (`closure/lane-b-generator` at `SHA: d76bb86`);
   the sub-agent adapter generator (2b) and 2a are handed back to the Director
@@ -123,7 +119,8 @@ Director's handoff. Live now, in order:
    then 2a, 2b, the Gemini projection, the corpus-analysis work, `sif`), and item 7 last.
 2. Session 2's cards: the owner answers the register's session 2 entries in one batch
    (`threads/session-2-synthesis.next-session.md` §Next safe step); graduations land as their
-   own small pull requests; the napkins are archived after two gates, the fast-lane answers
-   and the owner's privacy review of the three napkins.
+   own small pull requests; the napkins are archived after two gates, the owner's answers to
+   the cards (the plan's item 8 as written) and the owner's privacy review of the three
+   napkins.
 3. The `practice-language-separation` node (sketch; not urgent) awaits ratification on cards; the
    tooling residue named in the plan (§Oak residue in tooling) rides item 5.
