@@ -851,6 +851,17 @@ ones the Director would put to the owner had the owner been present.
     `.agent/experience/`. Retrospective offered, not run (a twenty-round records loop and two
     reversed rulings make an arc worth one). Lens 2 (the owner's word) then lens 1.
 
+81. Compaction landed; the seat resumed at 06:41Z on 2026-09-14. Verified by id before re-arming:
+    the comms watcher survived (same pid, running since the evening); records-7 at
+    `SHA: e344fc8` unchanged on origin as #76. Found absent: the Copilot request on #76 (the
+    request made before the boundary never registered: no review, no pending request), so the
+    request-wait-merge chain was re-armed on #76 at its tip. "Director back" sent to lane A;
+    the standing slot continues as absorbed (#74 round three on its verdict, then 2b-i's push
+    and pull request). The #74 round-three chain is prepared with lane A's three grounds
+    (rule names validated at the canonical boundary; no-follow atomic mutations; reads through
+    an open no-follow descriptor) and fires on lane A's release line. Records-8 cut here,
+    stacked on records-7 (frozen at open). Lens 1.
+
 ## Routing log
 
 - 2026-09-13 evening: seat opened; team-start `ca1ba4d8`; lanes A, B, C authored, unfilled.
