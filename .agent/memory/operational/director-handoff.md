@@ -50,22 +50,18 @@ Every line answered first-hand, none inferred:
   archive holds only processed material.
 - The transplant is bounded: closure items 3 to 8 finish it, then editorial work.
 
-## Current handoff state (2026-09-14, 09:01Z, cold pause; n=2 with lane A; owner present)
+## Current handoff state (2026-09-14, 13:05Z, resumed after the cold pause; n=2 with lane A; owner present)
 
 Where this block and the routing log disagree, the log's last entry is current; this block is
 rewritten at each Director push.
 
-**Cold pause (2026-09-14 09:01Z, the owner's word: wait for the session limit to reset).**
-Every process this seat owned is stopped by id (the all-channels watcher, the ARC tail; no
-chain, cron or poll was live); nothing pushes; no comms. Lane A is frozen on the owner's own
-word to it (08:50Z), its successor to re-ground and send one state line. The pause binds until
-the owner lifts it, over any peer word. On the lift: the boundary block below is the re-arm
-recipe (verify by id, arm what is absent, assert, sweep); then read lane A's state line; the
-slot arrangement resumes (ask, confirm, push, release). Open at the pause: #79 (5a-vi, round
-three granted, three findings) and #77 (2b-i, round three granted, five findings), both lane
-A's cures; no chain armed for either until lane A's push lands. This branch, records-9, is
-local at its tip and unpushed under the pause; it pushes and opens at the next natural
-boundary after the lift.
+**Cold pause, lifted (paused 09:01Z, lifted 13:03Z on 2026-09-14, both the owner's word).** Every
+process this seat owned was stopped by id for the pause; on the lift the boundary block below
+was run as the re-arm recipe (verified by id, watcher and ARC tail armed, the assertion green,
+the gap swept with no events, the Director claim refreshed). Lane A resumed on its own lift and
+holds #79 round three first, then #77, per items 93 and 95; the slot arrangement resumes (ask,
+confirm, push, release). This branch, records-9, pushes at the lift as the natural boundary and
+freezes at open; later items go to records-10.
 
 **Boundary block (compaction, 2026-09-14 06:37Z; the seat stays live).** Assume nothing
 session-scoped survives; verify by id first, re-arm only what is absent:
@@ -1121,6 +1117,16 @@ ones the Director would put to the owner had the owner been present.
     napkin. Parallax at screening depth: declined for the pause itself; the one live inquiry
     (the reviewer's non-zero floor under "block on any finding") keeps its charter in items
     88 and 92 and reopens on the first two merges after #79 lands. Lens 2 (the owner's word).
+97. Pause lifted at the owner's word (13:03Z on 2026-09-14) under `start-right-team`: the
+    re-ground ran read-only under the pause (identity, claims, comms, plans, git and the open
+    pull requests read first-hand; nothing armed, nothing pushed). The owner asked which
+    lineage commit the transplant is pinned to; answered from the node's §Mechanism: the pin
+    `e477e62f7`, which the read-only lineage checkout resolves to a merge commit of
+    2026-09-12 (the node's short form is the ratified pin; no tracked file carries the full
+    hash). On the lift: watcher and ARC tail re-armed by the boundary block and asserted, the
+    gap swept (no events), the Director claim heartbeat refreshed; lane A reported its own
+    lift with its tree clean at #79's tip and was given the word for #79 round three, then
+    #77; this seat took the slot for records-9 and releases it before lane A is green.
 
 ## Routing log
 
