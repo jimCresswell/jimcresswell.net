@@ -533,7 +533,7 @@ ones the Director would put to the owner had the owner been present.
     change that makes teardown observable does not ship beside a known false-red path on
     every pre-push gate. Lens 1 (a flake class on the gate costs every push) then lens 4
     (host load is where the stall shows). REVIEW: none.
-51. e2e follow-on 2 is PR #69 (00:48Z on 2026-09-14, `SHA: e1beb30`): the observed teardown
+51. e2e follow-on 2 is PR #69 (00:45Z on 2026-09-14, `SHA: e1beb30`): the observed teardown
     and the finally cells, then the relay cure as bounded (a spawn-line change plus its cell:
     the server runs as this node executable's own child with tsx registered in-process; the
     58 e2e through the real setup, the stop read clean). Copilot requested, bot armed. Four
