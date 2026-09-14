@@ -39,11 +39,17 @@ const EXPECTED_PATHS = [
   '.claude/agents/cricket-high.md',
 ];
 
+const REGISTRY = '.codex/config.toml';
+const REGISTRY_HEAD = 'file_opener = "cursor"\n\n[features]\nmulti_agent = true\n\n';
+const REGISTRY_BLOCKS =
+  '[agents."alpha"]\ndescription = "Alpha reviews a."\nconfig_file = "agents/alpha.toml"\n';
+
 function bareRepo(): ReturnType<typeof fakeProjectionRepo> {
   return fakeProjectionRepo(
     new Map([
       [`${TEMPLATES}/alpha.md`, ALPHA],
       [`${TEMPLATES}/cricket.md`, CRICKET],
+      [REGISTRY, REGISTRY_HEAD],
     ]),
   );
 }
@@ -52,14 +58,17 @@ describe('validateSubagentProjections', () => {
   it('reports every adapter missing on a bare repository, and writes them all in fix mode', async () => {
     const repo = bareRepo();
     const check = await validateSubagentProjections(false, repo);
-    expect(check.issues).toStrictEqual(
-      EXPECTED_PATHS.map((file) => `${file}: missing sub-agent adapter (${FIX})`),
-    );
+    expect(check.issues).toStrictEqual([
+      ...EXPECTED_PATHS.map((file) => `${file}: missing sub-agent adapter (${FIX})`),
+      `${REGISTRY}: drifted from the template's declaration; adapters are never hand-edited (${FIX})`,
+    ]);
     expect(check.templateCount).toBe(2);
 
     const fix = await validateSubagentProjections(true, repo);
     expect(fix.issues).toEqual([]);
-    expect(fix.written).toStrictEqual(EXPECTED_PATHS);
+    expect(fix.written).toStrictEqual([...EXPECTED_PATHS, REGISTRY]);
+    // The registry: the hand-kept head verbatim, then one block per Codex adapter.
+    expect(repo.files.get(REGISTRY)).toBe(`${REGISTRY_HEAD}${REGISTRY_BLOCKS}`);
     expect(repo.files.get('.claude/agents/alpha.md')).toContain(
       "description: 'Alpha reviews a.'\ntools: Read, Grep, Glob, Bash\n",
     );
@@ -182,6 +191,41 @@ describe('validateSubagentProjections', () => {
       '.codex/agents/alpha.toml: the description carries a character',
     );
     expect(fix.written).toEqual([]);
+  });
+
+  it('reads the registry as the fourth surface: reordered blocks drift and are rewritten after the head verbatim; a registry with no file refuses; a foreign line in its tail refuses', async () => {
+    const repo = bareRepo();
+    await validateSubagentProjections(true, repo);
+    repo.files.set(
+      REGISTRY,
+      `${REGISTRY_HEAD}[agents."zeta"]\ndescription = "Gone."\nconfig_file = "agents/zeta.toml"\n\n${REGISTRY_BLOCKS}`,
+    );
+    const check = await validateSubagentProjections(false, repo);
+    expect(check.issues).toEqual([
+      `${REGISTRY}: drifted from the template's declaration; adapters are never hand-edited (${FIX})`,
+    ]);
+    const fix = await validateSubagentProjections(true, repo);
+    expect(fix.written).toEqual([REGISTRY]);
+    expect(repo.files.get(REGISTRY)).toBe(`${REGISTRY_HEAD}${REGISTRY_BLOCKS}`);
+
+    const noRegistry = bareRepo();
+    noRegistry.files.delete(REGISTRY);
+    const absent = await validateSubagentProjections(true, noRegistry);
+    expect(absent.issues).toEqual([
+      `${REGISTRY}: no Codex registry to keep the head of; ${REFUSING}`,
+    ]);
+    expect(absent.written).toEqual([]);
+
+    const foreign = bareRepo();
+    foreign.files.set(
+      REGISTRY,
+      `${REGISTRY_HEAD}${REGISTRY_BLOCKS}\n[mcp_servers.docs]\nurl = "x"\n`,
+    );
+    const refused = await validateSubagentProjections(true, foreign);
+    expect(refused.issues).toEqual([
+      `${REGISTRY}: line "[mcp_servers.docs]" sits in the registry tail, which the declarations render whole; move it above the first agents block; ${REFUSING}`,
+    ]);
+    expect(refused.written).toEqual([]);
   });
 
   it('ends a fix run at a refused mutation, reporting it with what was written before it', async () => {

@@ -21,6 +21,9 @@ import type {
 /** Where the canonical templates live, repo-relative; every pointer sentence names a file here. */
 export const TEMPLATES_DIR = '.agent/sub-agents/templates';
 
+/** The Codex registry: the host's config, whose `[agents."<name>"]` tail the generator renders. */
+export const CODEX_REGISTRY_PATH = '.codex/config.toml';
+
 /** One adapter surface: where a platform keeps its adapters and the extension its files carry. */
 export interface SubagentSurface {
   readonly platform: SourcePlatform;

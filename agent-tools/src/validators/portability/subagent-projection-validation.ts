@@ -24,12 +24,20 @@ import path from 'node:path';
 import { err, ok, type Result } from '@engraph/result';
 
 import { readSubagentDeclaration } from '../../subagent-declarations/read-subagent-declaration.js';
-import { SUBAGENT_SURFACES, TEMPLATES_DIR } from '../../subagent-declarations/adapter-spec.js';
+import {
+  CODEX_REGISTRY_PATH,
+  SUBAGENT_SURFACES,
+  TEMPLATES_DIR,
+} from '../../subagent-declarations/adapter-spec.js';
+import {
+  renderCodexRegistry,
+  splitCodexRegistry,
+} from '../../subagent-declarations/render-codex-registry.js';
 import { renderSubagentAdapters } from '../../subagent-declarations/render-subagent-adapters.js';
 import type { SubagentDeclaration } from '../../subagent-declarations/subagent-declaration.js';
 import { templateNameRefusal } from '../../subagent-declarations/sweep-names.js';
 
-import { applyProjectionDrift, diffProjections } from './projection-drift.js';
+import { applyProjectionDrift, diffProjections, type Projection } from './projection-drift.js';
 import { driftIssues, filesOf, refusing, SUBAGENT_SUBJECT, textOf } from './projection-issues.js';
 import type { RuleProjectionFs } from './rule-projection-fs.js';
 
@@ -65,11 +73,11 @@ export async function validateSubagentProjections(
   if (!surfaces.ok) {
     return { issues: [surfaces.error], templateCount, written: [], removed: [] };
   }
-  const expected = renderSubagentAdapters(canonical.declarations);
+  const expected = renderExpected(canonical.declarations, surfaces.value.registryHead);
   if (!expected.ok) {
     return { issues: [expected.error], templateCount, written: [], removed: [] };
   }
-  const drift = diffProjections(expected.value, surfaces.value);
+  const drift = diffProjections(expected.value, surfaces.value.actual);
   if (!fixMode) {
     return {
       issues: driftIssues(drift, SUBAGENT_SUBJECT),
@@ -79,6 +87,21 @@ export async function validateSubagentProjections(
     };
   }
   return { templateCount, ...(await applyProjectionDrift(expected.value, drift, projectionFs)) };
+}
+
+/** The adapters and the registry the declarations render, the registry after its kept head. */
+function renderExpected(
+  declarations: readonly SubagentDeclaration[],
+  registryHead: string,
+): Result<readonly Projection[], string> {
+  const adapters = renderSubagentAdapters(declarations);
+  if (!adapters.ok) {
+    return adapters;
+  }
+  const registry = renderCodexRegistry(registryHead, declarations);
+  return registry.ok
+    ? ok([...adapters.value, { path: CODEX_REGISTRY_PATH, text: registry.value }])
+    : registry;
 }
 
 interface CanonicalTemplates {
@@ -136,11 +159,36 @@ async function readOneDeclaration(
   return ok(head.value.declaration);
 }
 
-/** Every file currently on the three adapter surfaces, keyed by repo-relative path. */
-async function readSurfaces(
+/** What the surfaces hold: every adapter file and the registry, and the registry's kept head. */
+interface Surfaces {
+  readonly actual: ReadonlyMap<string, string>;
+  readonly registryHead: string;
+}
+
+/** The registry's text and its kept head; a registry with no file refuses (there is no head to keep). */
+async function readRegistry(
   projectionFs: RuleProjectionFs,
-): Promise<Result<ReadonlyMap<string, string>, string>> {
+): Promise<Result<{ readonly text: string; readonly head: string }, string>> {
+  const read = await projectionFs.readEntry(CODEX_REGISTRY_PATH);
+  if (read.kind === 'absent') {
+    return err(`${CODEX_REGISTRY_PATH}: no Codex registry to keep the head of; ${REFUSING}`);
+  }
+  const text = textOf(CODEX_REGISTRY_PATH, read, SUBAGENT_SUBJECT);
+  if (!text.ok) {
+    return text;
+  }
+  const split = splitCodexRegistry(CODEX_REGISTRY_PATH, text.value);
+  return split.ok ? ok({ text: text.value, head: split.value.head }) : split;
+}
+
+/** Every file currently on the three adapter surfaces and the registry, keyed by repo-relative path. */
+async function readSurfaces(projectionFs: RuleProjectionFs): Promise<Result<Surfaces, string>> {
   const actual = new Map<string, string>();
+  const registry = await readRegistry(projectionFs);
+  if (!registry.ok) {
+    return registry;
+  }
+  actual.set(CODEX_REGISTRY_PATH, registry.value.text);
   for (const surface of SUBAGENT_SURFACES) {
     const listing = await projectionFs.listDirectory(surface.dir, surface.extension);
     const files = filesOf(surface.dir, listing, 'projection', SUBAGENT_SUBJECT);
@@ -155,5 +203,5 @@ async function readSurfaces(
       actual.set(file, text.value);
     }
   }
-  return ok(actual);
+  return ok({ actual, registryHead: registry.value.head });
 }
