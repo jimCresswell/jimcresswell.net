@@ -66,8 +66,9 @@ names a live branch):
   lane, which are not decision-debt. The live continuation is the owner's one batch of cards;
   the napkins are archived only after two gates: the fast-lane cards answered and the owner's
   privacy review of the three napkins done.
-- The generators: the rules-index and trigger generator is lane B's PR #55 (item 6, PR 1);
-  the sub-agent adapter generator (2b) and the 2a remainder are handed back to the Director
+- The generators: lane B's PR #55 (item 6, PR 1) landed the frontmatter sweep; the rules-index
+  and trigger generator remains item 6 part 2a (`closure/lane-b-generator` at `SHA: d76bb86`);
+  the sub-agent adapter generator (2b) and 2a are handed back to the Director
   (lane B's handoff record v3).
 - **2026-09-13, late afternoon (wrap 6, historical):** `practice-completion` ratified with its three gates
   cleared and the transplant closure as eight checked exit conditions in two sessions (node
