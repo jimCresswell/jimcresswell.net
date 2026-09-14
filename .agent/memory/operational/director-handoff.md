@@ -524,6 +524,15 @@ ones the Director would put to the owner had the owner been present.
     armed; the Director ruled 5b opens beside #67 (an independent branch reviews in parallel;
     a green branch held back reduces nothing). Lane A starts the e2e follow-on 2 from main at
     `SHA: 53d9495`. Lens 1.
+50. e2e follow-on 2 (00:45Z on 2026-09-14, lane A's ask): the four #66 body cures plus a
+    stricter stop predicate (a child that ended before the stop rejects; clean is exit 0
+    only). Lane A named a follow-on: the harness child runs through the tsx CLI relay, whose
+    30 ms signal-acknowledgement window can turn a correct stop into exit 143 under a stall,
+    which the PR makes red where it was a stderr line. Ruling: the relay cure (`node --import
+    tsx`, the script as the child) rides the same PR as a second commit before the push; a
+    change that makes teardown observable does not ship beside a known false-red path on
+    every pre-push gate. Lens 1 (a flake class on the gate costs every push) then lens 4
+    (host load is where the stall shows). REVIEW: none.
 
 ## Routing log
 
