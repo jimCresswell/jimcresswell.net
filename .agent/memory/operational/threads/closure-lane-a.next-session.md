@@ -78,10 +78,10 @@ explicit pathspec; a green, clean PR is merged without asking.
 ## Waypoint 2026-09-13 15:35Z — compaction checkpoint (Saffron turns Verdure, c39ad7)
 
 - **Item 3 is done on the branch; PR #56 is ready and near merge.** `closure/lane-a` head
-  9a90d1b (the merge of `main` at 4a61112), pushed under the Director's slot at 15:34Z; the
-  push's pre-push gate was in flight at this checkpoint. Eight commits of substance: d1a75c7
-  (tracked-universe gates), 1cb74e9 (substrate audit + wire contract as legs), 9cc25a2 (smoke
-  suite as a check leg and CI step), be3cb46 (register rows), da3065c (napkin), d713bb8 and
+  SHA: 9a90d1b (the merge of `main` at SHA: 4a61112), pushed under the Director's slot at 15:34Z; the
+  push's pre-push gate was in flight at this checkpoint. Eight commits of substance: SHA: d1a75c7
+  (tracked-universe gates), SHA: 1cb74e9 (substrate audit + wire contract as legs), SHA: 9cc25a2 (smoke
+  suite as a check leg and CI step), SHA: be3cb46 (register rows), SHA: da3065c (napkin), SHA: d713bb8 and
   SHA: 80e3189 (two review rounds, twenty-two findings, nineteen taken), SHA: 2380337 (two Copilot
   findings cured), then the merge. CI green on every pushed head so far; both Copilot threads
   replied to and resolved as the bot; reviewer dispositions posted as bot comment

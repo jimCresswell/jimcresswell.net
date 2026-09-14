@@ -13,17 +13,23 @@
  * `.agent/hooks/policy.json`, the block the PreToolUse write-hook also reads,
  * so the commit and CI gate and the write-time guard match the same names and
  * exempt exactly the same files (the records: provenance, changelog, memory,
- * reports, plans, the transplant exploration; and the CV content, where the
- * lineage's organisation is a fact about the owner's work). It is declared
- * rather than derived because the chain cannot select the lineage: it names
- * the owner's own earlier repositories beside it, and the organisation login
- * appears in no provenance field.
+ * reports, plans, the transplant exploration; and the site's content
+ * directory, where the lineage's organisation is a fact about the owner's
+ * work). It is declared rather than derived because the chain cannot select
+ * the lineage: it names the owner's own earlier repositories beside it, and
+ * the organisation login appears in no provenance field.
  *
  * Matching is case-insensitive and literal: a lineage name is a name, not a
- * pattern, and `OakNational` in a URL is the same leak as `oaknational`.
+ * pattern, and a name in any letter case is the same leak. The block is
+ * therefore refused when it is not a literal block, when it declares a name
+ * the hook would read differently (padded, empty or duplicate), or when the
+ * policy carries more than one such block (the hook evaluates every scoped
+ * group; the gate must not read only the first).
  *
  * @packageDocumentation
  */
+
+import { err, ok, type Result } from '@engraph/result';
 
 import { type ScanFile } from '../../core/tracked-file-scan.js';
 import { isPathInScope } from '../../hook-policy/matchers.js';
@@ -43,23 +49,39 @@ export interface LineageNameHit {
 const LINEAGE_NAME_CONCEPT = 'lineage-name';
 
 /**
- * Select the lineage-name block from the policy's scoped content blocks.
+ * Select the one lineage-name block from the policy's scoped content blocks.
  *
- * @returns the block, or `undefined` when the policy does not define it.
+ * @returns the block; an error naming the refusal when the policy defines
+ *   none or more than one (the hook evaluates every group, so a second block
+ *   would guard writes the gate never scans)
  */
 export function selectLineageNameBlock(
   blocks: readonly ScopedContentBlockGroup[],
-): ScopedContentBlockGroup | undefined {
-  return blocks.find((block) => block.concept === LINEAGE_NAME_CONCEPT);
+): Result<ScopedContentBlockGroup, string> {
+  const matching = blocks.filter((block) => block.concept === LINEAGE_NAME_CONCEPT);
+  const [block] = matching;
+  if (block === undefined) {
+    return err('no `lineage-name` block in .agent/hooks/policy.json');
+  }
+  if (matching.length > 1) {
+    return err(
+      `${String(matching.length)} \`lineage-name\` blocks in .agent/hooks/policy.json; the gate reads one`,
+    );
+  }
+  return ok(block);
 }
 
 /**
- * The block's declared names that the hook and the gate would read differently:
- * a padded name (the hook matches it raw, the gate would trim it) or a
+ * The ways the block's declaration and the hook's reading of it would part:
+ * a non-literal kind (the gate matches names, never patterns), a padded or
+ * empty name (the hook matches it raw, the gate would have to trim), or a
  * duplicate. A block carrying one is refused so the two never diverge.
  */
 export function needleDefects(block: ScopedContentBlockGroup): string[] {
   const defects: string[] = [];
+  if (block.kind !== undefined && block.kind !== 'literal') {
+    defects.push(`kind ${JSON.stringify(block.kind)} (the gate matches literal names only)`);
+  }
   const seen = new Set<string>();
   for (const pattern of block.patterns) {
     if (pattern !== pattern.trim() || pattern === '') {

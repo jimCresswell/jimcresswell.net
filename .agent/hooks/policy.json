@@ -388,11 +388,10 @@
             "docs/explorations/",
             "jcdotnet/content/",
             "jcdotnet/archive/",
-            "hooks/policy.json",
-            "validate-no-lineage-names"
+            "hooks/policy.json"
           ],
           "citation": "practice-completion plan §Transplant closure item 5 (lineage residue off the live surfaces); .agent/practice-core/provenance.yml (the chain names the lineage)",
-          "reappraisal": "The lineage the Practice was transplanted from is named only in the records that tell that story (provenance, changelog, memory, reports, plans, the transplant exploration) and in the CV content, where it is a fact about the owner's work. On a live surface (a fixture, a manifest, a reference link, a comment) name this estate instead: the organisation is jimCresswell, the repository jimcresswell.net."
+          "reappraisal": "The lineage the Practice was transplanted from is named only in the records that tell that story (provenance, changelog, memory, reports, plans, the transplant exploration) and in the site's content directory (jcdotnet/content/, the CV and the entity graph: the owner's work history, where the lineage's organisation and its repository are facts about work the owner did there, and the plan of record excludes CV content by scope). On a live surface (a fixture, a manifest, a reference link, a comment) name this estate instead: the organisation is jimCresswell, the repository jimcresswell.net."
         },
         {
           "concept": "machine-local-path",
