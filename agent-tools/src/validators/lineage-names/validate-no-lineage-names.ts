@@ -119,7 +119,7 @@ async function main(): Promise<number> {
   const hits = scanForLineageNames(files, block, needles);
   if (hits.length === 0) {
     writeLine(
-      `✓ no lineage names (${needles.join(', ')}) on ${String(files.length)} tracked files outside the records`,
+      `✓ no lineage names (${needles.join(', ')}) on the live surfaces of ${String(files.length)} scannable tracked files`,
     );
     return 0;
   }

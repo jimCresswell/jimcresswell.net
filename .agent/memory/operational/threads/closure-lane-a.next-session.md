@@ -7,10 +7,10 @@ Director by directed comms event, never to the owner (`route-blocks-and-question
 
 ## State at 17:45Z, 2026-09-13 (n=2 with the Director since 17:16Z)
 
-Item 3 landed (PR #56, `1829cd4`; `closure/lane-a` merged). Live: PR #60
+Item 3 landed (PR #56, `SHA: 1829cd4`; `closure/lane-a` merged). Live: PR #60
 (`fix/e2e-port-per-worktree`, the per-checkout Playwright port; three Copilot threads routed for
 cure) and the #55 path-escape cure in the `closure-lane-b` worktree on `closure/lane-b`. Next:
-item 5 on a fresh branch from `main` (64aa005 held on `closure/lane-a-checkpoint` rides it), and
+item 5 on a fresh branch from `main` (SHA: 64aa005 held on `closure/lane-a-checkpoint` rides it), and
 the follow-on that brings `@engraph/result` into the site workspace for the port helper.
 Dialogue on the ARC channel
 `.agent/collaboration/rapid-comms/2026-09-13-transplant-closure-n2-cauldron-herds-lustre-saffron-turns-verdure.md`;
@@ -19,7 +19,7 @@ quick coordination native; state on the comms stream.
 ## Continuation at the go (2026-09-13 about 14:00Z; historical since the hand-back above)
 
 - **Role:** Implementer (PDR-117). Enter your own worktree before any edit
-  (`worktree-residency`); branch `closure/lane-a` from `main` (at or after `55649a2`).
+  (`worktree-residency`); branch `closure/lane-a` from `main` (at or after `SHA: 55649a2`).
 - **Owns exclusively:** root `package.json` scripts, `.github/workflows/**`, `agent-tools/`
   sources and tests except the rules-index generator (lane B), `tooling/*/package.json`,
   `turbo.json`, `jcdotnet/accept-md.config.js`, the consumed incoming bundle under
@@ -33,7 +33,7 @@ quick coordination native; state on the comms stream.
   exist, `validate-check-ci-parity` is green, `pnpm check` and CI green.
 - **Item 5, second PR — lineage residue off the live surfaces**: retire
   `validate-ratified-lists`, `protocol-conformance`, `pr-throughput`, `ci-turbo-report`
-  (scripts, sources, tests, doc mentions; re-importable from the pin `e477e62f7`); keep
+  (scripts, sources, tests, doc mentions; re-importable from the pin `SHA: e477e62f7`); keep
   `merge-bot`, scrub its lineage residue; the two product files, five package manifests and
   fourteen fixtures named in the plan of record (§Owner rulings round 11, item 3, and §Oak
   residue in tooling); `accept-md.config.js` to TypeScript; `turbo.json`'s `.next/` outputs
@@ -114,7 +114,7 @@ explicit pathspec; a green, clean PR is merged without asking.
 - **Corrections carried:** the push slot is the Director's; announce, wait for the word, then
   push (2026-09-13). Napkin notes live on the branch, never in a scratch file.
 - **Monitors at the checkpoint:** all-channels comms watcher live (re-armed 14:47Z after the
-  one-hour backstop), heartbeat loop live on claim SHA: f024e1f1; both stay armed through
+  one-hour backstop), heartbeat loop live on claim f024e1f1; both stay armed through
   compaction; the seat resumes by re-checking `assert-watcher-live` and the claim's
   `heartbeat_at` before its first act.
 
@@ -144,11 +144,11 @@ explicit pathspec; a green, clean PR is merged without asking.
   read as the runner's internal handshake channel, never deny an env read; (3) ADR-019 §Options
   evaluated item 3 still says subsequent runs reuse the server; true to reuse off. One minimal
   commit, triage on the ARC channel, slot ask, reply and resolve the threads as the bot on the tip
-  (thread ids PRRT_kwDORH1Wfc6h6llh, …6llo, …6llt; comment ids SHA: 4000332532, SHA: 4000332541, SHA: 4000332547).
+  (thread ids PRRT_kwDORH1Wfc6h6llh, …6llo, …6llt; comment ids 4000332532, 4000332541, 4000332547).
   Follow-on on the Director's board under lane A: `@engraph/result` into the site workspace so
   `getFreePort` and the handshake parse return `Result`.
 - **Open, routed to me: PR #55** (lane B's sweep, closure/lane-b at SHA: 6b1b4c3, lane B closed out):
-  one Copilot thread PRRT_kwDORH1Wfc6h6iq- (comment SHA: 4000314563) on
+  one Copilot thread PRRT_kwDORH1Wfc6h6iq- (comment 4000314563) on
   `agent-tools/src/rule-declarations/sweep-rule-frontmatter.ts:157`: `ruleNames` documented as
   basenames but interpolated into `.agent/rules/<name>.md`, `.cursor/rules/<name>.mdc` and
   `.claude/rules/<name>.md` unvalidated, so `../../outside` escapes and `--write` overwrites an
@@ -158,7 +158,7 @@ explicit pathspec; a green, clean PR is merged without asking.
   first; one minimal commit; the dropped-check mutant killed and recorded; code-expert pass; slot
   ask; reply and resolve as the bot. Mechanics ruled: EnterWorktree refuses lane B's worktree, so
   cut a local branch from origin/closure/lane-b in this worktree and push HEAD to closure/lane-b as
-  a fast-forward; claim SHA: 383cde5e is open on that boundary. Read lane B's handoff record
+  a fast-forward; claim 383cde5e is open on that boundary. Read lane B's handoff record
   `.agent/state/collaboration/handoffs/707ed764-320b-443e-99d5-ee3239893782.3.json` first (done once).
 - **Branches on this host.** `fix/e2e-port-per-worktree` SHA: 4fad844 (pushed, PR #60);
   `records/lane-a-checkpoint-2` (this commit; local only by the Director's ruling under the
@@ -181,8 +181,8 @@ explicit pathspec; a green, clean PR is merged without asking.
   that has not landed. Comms event tags are only failure-mode, behaviour-note, heartbeat.
 - **Monitors at this checkpoint.** All-channels watcher (re-armed 19:55Z after the hourly
   backstop; the backstop kills it every hour, re-arm and assert live); ARC tail; PR #60 state poll
-  (`pr-60-state.sh`). Heartbeat loop stopped by design. Claims retained: SHA: f024e1f1 (lane A),
-  SHA: 5828b0ee (port PR), SHA: 383cde5e (#55 boundary).
+  (`pr-60-state.sh`). Heartbeat loop stopped by design. Claims retained: f024e1f1 (lane A),
+  5828b0ee (port PR), 383cde5e (#55 boundary).
 - **Item 5 inputs** unchanged from the 15:35Z waypoint; the pr-watch instrument observation
   (thirty minutes, three tip moves, two CI transitions, no output) is capture-practice-tool-feedback
   for the napkin below.

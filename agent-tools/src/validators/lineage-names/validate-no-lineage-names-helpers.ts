@@ -65,7 +65,7 @@ export function selectLineageNameBlock(
   }
   if (matching.length > 1) {
     return err(
-      `${String(matching.length)} \`lineage-name\` blocks in .agent/hooks/policy.json; the gate reads one`,
+      `${String(matching.length)} \`lineage-name\` blocks in .agent/hooks/policy.json; exactly one is required`,
     );
   }
   return ok(block);
