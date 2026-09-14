@@ -49,9 +49,10 @@ a doctrine home; not yet written there). Lessons already homed by name were set 
 home named (§Already homed). Lessons whose home the Director could not verify without reading
 it are listed for lane A to verify (§Verify before filing). Lessons that are tool traps, product
 facts or plan-shaped work were routed (§Routed elsewhere). The candidate entries below follow
-the register's shape; their status is `draft` until lane A verifies the home is unwritten.
+the register's shape. This is the consumed pre-filing draft: lane A verified each home and
+filed the entries as PR #63 (`SHA: dc23dff`); the register carries the live status now.
 
-## Candidates for the register (draft; lane A verifies each home before filing)
+## Candidates for the register (the consumed pre-filing draft; filed as PR #63)
 
 ### A. Ratified text is the owner's; the lenses resolve only what it leaves open
 
@@ -403,8 +404,9 @@ review dates, the readout at 28 pending. Nothing here refiles or reclassifies th
    where the homes differ, by the seat the Director routes; the register entry is removed in
    the same PR (drain by deciding).
 3. The three napkins under `.agent/memory/active/unconsolidated/` are archived once both
-   prerequisites hold: the morning cards are answered, and the owner's privacy review of the
-   three napkins under `privacy.md` (overnight item 5) is done. A slow-lane row left for its
-   review date does not hold the archive, because its source text is conserved on the register
-   row (the archive holds processed material only, and filing is the processing).
+   gates hold: the fast-lane cards of step 1 are answered, and the owner's privacy review of
+   the three napkins under `privacy.md` (overnight item 5) is done. The slow-lane cards are
+   not an archive gate: an unanswered slow-lane card holds only its own row until the review
+   date, because the row conserves its source text (the archive holds processed material only,
+   and filing is the processing).
 4. The slow-lane five are decided at their review date (the owner's card, else 2026-12-13).
