@@ -52,11 +52,10 @@ describe('readDeclaredAdapters', () => {
 
   it('refuses an absent templates directory and an empty one, naming the directory', async () => {
     const root = await makeRepoRoot();
-    const absent = readDeclaredAdapters(root);
-    expect(absent.ok).toBe(false);
-    if (!absent.ok) {
-      expect(absent.error).toBe(`${TEMPLATES_DIR}: cannot list the templates (ENOENT)`);
-    }
+    expect(readDeclaredAdapters(root)).toStrictEqual({
+      ok: false,
+      error: `${TEMPLATES_DIR}: cannot list the templates (ENOENT)`,
+    });
     await mkdir(path.join(root, TEMPLATES_DIR), { recursive: true });
     expect(readDeclaredAdapters(root)).toStrictEqual({
       ok: false,
