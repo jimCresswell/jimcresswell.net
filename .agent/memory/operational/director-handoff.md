@@ -58,54 +58,40 @@ rewritten at each Director push.
 **Boundary block (compaction, 2026-09-14 06:37Z; the seat stays live).** Assume nothing
 session-scoped survives; verify by id first, re-arm only what is absent:
 
-- The all-channels comms watcher. First find any survivor for this identity by process, and
-  read its command line: the liveness assertion cannot tell a canonical watcher from one
-  armed without the supervisor pid (it reads the heartbeat file and the comms home only).
+- The all-channels comms watcher, in three steps; the arm's shape is the rule's, not copied
+  here.
+  1. Find this seat's survivor by process, never by the heartbeat assertion (a stopped or
+     out-of-contract watcher leaves a fresh heartbeat; other seats on this model share the
+     command line). This seat's canonical watcher carries `--supervisor-pid <pid>` where
+     `<pid>` is this session's process (`$PPID` in any tool shell; the harness session file
+     per the rule from a worktree). A `comms watch` process for this platform and model
+     without a supervisor pid belongs to this seat only when its environment carries this
+     session's `PRACTICE_AGENT_SESSION_ID_CLAUDE` (`ps -E -p <pid>` on macOS, `ps eww` on
+     Linux); such a process is stopped by pid and treated as absent. A process bound to this
+     session's pid is kept (two watchers on one seen-file consume events without delivering
+     them). Any other seat's watcher is left alone. No process of ours means absence.
+  2. On absence, arm per `comms-all-channels-watcher.md`: §Canonical invocation from the
+     principal checkout, §Worktree residency (the literal worktree path, timeout binary and
+     supervisor pid) from a linked worktree; as a persistent Monitor. No heartbeat exclusion
+     at n=2: no seat emits heartbeats under PDR-082, so the exclusion buys nothing and would
+     demand the F-75 poll it pairs with.
+  3. After the arm (or after finding our bound survivor), the assertion, then one foreground
+     sweep of the pre-arm gap from the primary coordination home, refused when the home does
+     not derive:
 
-  ```bash
-  pgrep -fl "comms watch --platform claude --model claude-fable-5-1" || echo "no watcher process"
-  ```
-
-  A survivor whose command line carries `--supervisor-pid` is left running: two watchers
-  share one seen-file and consume events without delivering them. A survivor whose command
-  line lacks it is stopped by its pid (`kill <pid>`) and replaced by arming directly below
-  (its heartbeat file stays fresh for a while after the stop, so the assertion is not the gate
-  on this branch). No process at all: run the assertion; a non-zero exit confirms the absence
-  and the arm follows.
-
-  ```bash
-  pnpm agent-tools:collaboration-state -- comms assert-watcher-live \
-    --platform claude --model claude-fable-5-1
-  ```
-
-  The arm, as a persistent Monitor in the canonical shape of `comms-all-channels-watcher.md`
-  (the supervisor pid bound, the step deadline, the drain bound, the timeout backstop). No
-  heartbeat exclusion at n=2: no seat emits heartbeats under PDR-082, so the exclusion buys
-  nothing and would demand the F-75 poll it pairs with.
-
-  ```bash
-  cd <repo-root> || exit 1
-  set -- pnpm agent-tools:collaboration-state -- comms watch \
-    --platform claude --model claude-fable-5-1 \
-    --supervisor-pid "$PPID" --step-timeout-ms 120000 --max-events-per-drain 100
-  TIMEOUT_BIN="$(command -v timeout || command -v gtimeout || true)"
-  [ -n "$TIMEOUT_BIN" ] && set -- "$TIMEOUT_BIN" 3600 "$@"
-  exec "$@"
-  ```
-
-  Then, whichever branch ran, the assertion and one foreground sweep of the pre-arm gap. The
-  sweep's paths are absolute, derived from the primary worktree, so a resume from a linked
-  worktree reads the canonical cursor and never a worktree-local decoy:
-
-  ```bash
-  pnpm agent-tools:collaboration-state -- comms assert-watcher-live \
-    --platform claude --model claude-fable-5-1
-  COORD_HOME="$(git worktree list --porcelain | head -1 | sed 's/^worktree //')"
-  pnpm agent-tools:collaboration-state -- comms inbox \
-    --comms-dir "$COORD_HOME/.agent/state/collaboration/comms" \
-    --seen-file "$COORD_HOME/.agent/state/collaboration/comms-seen/Cauldron herds Lustre.json" \
-    --platform claude --model claude-fable-5-1
-  ```
+     ```bash
+     pnpm agent-tools:collaboration-state -- comms assert-watcher-live \
+       --platform claude --model claude-fable-5-1
+     COORD_HOME="$(git worktree list --porcelain | head -1 | sed 's/^worktree //')"
+     if [ ! -d "$COORD_HOME/.git" ] && [ ! -f "$COORD_HOME/.git" ]; then
+       echo "STOP: coordination home not derived; no sweep"
+     else
+       pnpm agent-tools:collaboration-state -- comms inbox \
+         --comms-dir "$COORD_HOME/.agent/state/collaboration/comms" \
+         --seen-file "$COORD_HOME/.agent/state/collaboration/comms-seen/Cauldron herds Lustre.json" \
+         --platform claude --model claude-fable-5-1
+     fi
+     ```
 
   The ARC channel tail: a Monitor on
   `.agent/collaboration/rapid-comms/2026-09-13-transplant-closure-n2-cauldron-herds-lustre-saffron-turns-verdure.md`.
