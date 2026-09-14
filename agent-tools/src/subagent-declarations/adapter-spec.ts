@@ -1,6 +1,6 @@
 /**
- * What one adapter renders from, and where it goes: the four generated surfaces (the three
- * the sweep once read from hand-kept adapters, and Gemini, generated only), the spec a role
+ * What one adapter renders from, and where it goes: the four generated surfaces (Cursor,
+ * Claude, Codex and Gemini, every one rendered from the declarations), the spec a role
  * or a variant reduces to (a role with its defaults to fill, a variant exactly as declared),
  * and the pointer sentence every adapter carries. The leaf the Markdown renderer
  * (`render-subagent-adapters.ts`), the Codex renderer (`render-codex-adapter.ts`), the
@@ -17,7 +17,6 @@ import type {
   CodexFields,
   CursorFields,
   GeminiFields,
-  SourcePlatform,
   SubagentDeclaration,
   SubagentVariant,
 } from './subagent-declaration.js';
@@ -42,9 +41,6 @@ export const SUBAGENT_SURFACES: readonly SubagentSurface[] = [
   { platform: 'codex', dir: '.codex/agents', extension: '.toml' },
   { platform: 'gemini', dir: '.gemini/agents', extension: '.md' },
 ];
-
-/** The three source surfaces the sweep reads and the platform contract binds. */
-export const SOURCE_PLATFORMS: readonly SourcePlatform[] = ['cursor', 'claude', 'codex'];
 
 const EVERY_PLATFORM: readonly SubagentPlatform[] = SUBAGENT_SURFACES.map(
   (surface) => surface.platform,

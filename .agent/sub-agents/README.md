@@ -30,10 +30,15 @@ its Cursor `description` where it differs, and every `note`, because the variant
 design and are never flattened. The Gemini block carries only the fields the Gemini CLI
 subagents reference names; nothing is defaulted.
 
-The shape is `agent-tools/src/subagent-declarations/subagent-declaration.ts`. A host that
-arrives with hand-kept adapters mints its declarations once with
-`pnpm --filter @engraph/agent-tools subagent-frontmatter-sweep` (a dry run that prints every
-block; `--write` writes them) and reads the reconciliation report it prints.
+The shape is `agent-tools/src/subagent-declarations/subagent-declaration.ts`. The
+declaration is written by hand at the head of the template; the adapters under
+`.cursor/agents/`, `.claude/agents/`, `.codex/agents/` (with the registry tail of
+`.codex/config.toml`) and `.gemini/agents/` are generated outputs, never hand-authored:
+`pnpm portability:fix` renders them and `pnpm portability:check` recomputes them byte for
+byte, refusing on a template without a declaration. A host arriving with hand-kept
+adapters writes each template's declaration from what its adapters say, then lets the
+generator take the surfaces over. The health probe's adapter parity reads the same
+declarations, so a platform a declaration names is the one the probe expects.
 
 ## Dependency Rules
 

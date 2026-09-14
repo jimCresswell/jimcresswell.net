@@ -25,14 +25,19 @@
 import { err, ok, type Result } from '@engraph/result';
 import { z } from 'zod';
 
-import { line, platform, prose, type SubagentPlatform } from './declaration-scalars.js';
+import {
+  SUBAGENT_PLATFORMS,
+  line,
+  platform,
+  prose,
+  type SubagentPlatform,
+} from './declaration-scalars.js';
 
 /**
- * The three source surfaces the generator renders and the sweep still reads (the sweep stays
- * live, minting declarations from hand-kept adapters, until the reader-retirement pull
- * request; Gemini is generated only, slice B), and the two Markdown ones.
+ * The three source surfaces the generator renders from the declarations (Gemini is the
+ * fourth, generated only, slice B), and the two Markdown ones among them.
  */
-export type SourcePlatform = Exclude<SubagentPlatform, 'gemini'>;
+type SourcePlatform = Exclude<SubagentPlatform, 'gemini'>;
 export type MarkdownPlatform = Exclude<SourcePlatform, 'codex'>;
 
 /** Claude Code adapter fields; every one optional, absent means the estate's default. */
@@ -123,7 +128,7 @@ const roleSchema = z
 const fanOutSchema = z.object({ variants: z.array(variantSchema).min(1) }).strict();
 
 /** The platform blocks a role or a variant may carry, checked against its `platforms`. */
-const BLOCKS = ['cursor', 'claude', 'codex', 'gemini'] as const;
+const BLOCKS = SUBAGENT_PLATFORMS;
 
 /** A block for a platform the declaration does not list, or a platform listed twice. */
 function platformIssue(

@@ -3,7 +3,7 @@
  * renders its Cursor, Claude, Codex and Gemini adapters, byte for byte, in the estate's one adapter
  * shape (`standard-adapter-body.ts`): the frontmatter or the TOML head, the title, the
  * platform's pre-pointer line, the pointer sentence, and the closing prose. A ROLE renders
- * from the defaults it does not deviate from (`derive-subagent-declaration.ts`); a VARIANT
+ * from the defaults it does not deviate from (`adapter-defaults.ts`); a VARIANT
  * renders exactly what it declares, no default filled. The adapters are outputs: the
  * portability validator compares the surfaces with what this renders and `--fix` writes it
  * (`validators/portability/subagent-projection-validation.ts`), so nothing on them is
@@ -30,7 +30,7 @@ import {
   type AdapterSpec,
   type SubagentSurface,
 } from './adapter-spec.js';
-import { CLAUDE_DEFAULTS } from './derive-subagent-declaration.js';
+import { CLAUDE_DEFAULTS } from './adapter-defaults.js';
 import { renderCodexAdapter } from './render-codex-adapter.js';
 import { renderGeminiAdapter } from './render-gemini-adapter.js';
 import { STANDARD_CLOSINGS, STANDARD_PRE_POINTER } from './standard-adapter-body.js';
@@ -118,9 +118,9 @@ function renderOn(surface: SubagentSurface, spec: AdapterSpec): Result<SubagentP
 }
 
 /**
- * The refusal for a pointer tail the reader could not read back: its path delimiter is the
- * backtick, and the transitional reader (`adapter-sources.ts`, which retires with the sweep)
- * takes the last pair on the pointer line for the path.
+ * The refusal for a pointer tail carrying a backtick: the pointer sentence's path delimiter
+ * is the backtick, so a tail with one would leave the path ambiguous to any reader of the
+ * rendered adapter.
  */
 function pointerTailIssue(
   path: string,
