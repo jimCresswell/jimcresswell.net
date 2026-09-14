@@ -185,8 +185,9 @@ session-scoped survives; verify by id first, re-arm only what is absent:
   wrap; it was then stopped and re-armed in the canonical shape because it lacked the
   supervisor pid.
 - Next safe step (owner present; the pause lifted, item 97): #77 (2b-i), #79 (5a-vi) and #80
-  (this branch) open, the bot merging each at zero threads on measured state, lane A curing
-  #79's round three then #77's; then lane A's order in the boundary block; item 7 last.
+  (this branch) open, the bot merging each when settled on measured state (zero threads and,
+  once 5a-vi lands, zero undispositioned suppressed findings), lane A curing #79's round three
+  then #77's; then lane A's order in the boundary block; item 7 last.
   The overnight
   next step, kept as the superseded snapshot: the morning
   report presents §Decisions overnight with its REVIEW marks and the session 2 cards: the
@@ -1005,12 +1006,14 @@ ones the Director would put to the owner had the owner been present.
     that lives only in a review body; the bot reads nothing else. The hold is a new state in
     the closed verdict set (SUPPRESSED-FINDINGS-OPEN, lane A's name, after THREADS-OPEN and before the
     reviewer legs; a tip-bound, landed, non-self-reply body declaring N suppressed findings
-    with fewer than N signed disposition lines for that head and review id; evidence names
-    the review, the count and the shortfall; refused by name; not a wait state). The owner's
+    with fewer than N signed disposition lines for distinct findings of that head and review
+    id; evidence names the review, the count and the shortfall; refused by name; not a wait
+    state). The owner's
     card ("Block on any finding", item 78, after four merges with follow-ons) is joined to the
     ratified format thus: a "Routed to <home>" line does not count toward N; "Cured in
-    SHA:<sha>" and "Rejected" with a rationale do. REVIEW: this joining of two owner texts is
-    a Director reading; lane A builds the sentence rule as one function with its own cells so
+    SHA:<sha>" and "Rejected" do (the rationale after "Rejected" is a reader convention, item
+    91, not a machine condition). REVIEW: this joining of two owner texts is a Director
+    reading; lane A builds the sentence rule as one function with its own cells so
     the owner can remove it by card. Lens 1.
 89. The watcher's hourly backstop expired at 07:49Z (exit 124, the rule's shape) and was
     re-armed by the recipe: no survivor bound to this session, arm, assert, sweep (no gap
@@ -1128,7 +1131,20 @@ ones the Director would put to the owner had the owner been present.
     lineage checkout and is not repeated here). On the lift: watcher and ARC tail re-armed by the boundary block and asserted, the
     gap swept (no events), the Director claim heartbeat refreshed; lane A reported its own
     lift with its tree clean at #79's tip and was given the word for #79 round three, then
-    #77; this seat took the slot for records-9 and releases it before lane A is green.
+. Records-9 opened as #80 at 13:06Z (bot-authored, Copilot under the owner's credential) and
+    merged by the bot at 13:32Z (`SHA: 6699f51`) after three rounds: round one four threads and
+    three suppressed (live state my earlier refresh had left in the block; a second resume
+    contract in `repo-continuity.md`; the letter's pointer; one rejected: the plan's Gemini
+    clause is ratified text, the card to amend it is raised to the owner); round two three
+    threads and four suppressed (placeholder times replaced by the about-form or the measured
+    commit time; pointers over copies); round three zero threads and four nit-level suppressed
+    findings, cured on this branch (the letter's plural, the settled predicate named in the
+    next safe step, "distinct findings" and the reader-convention rationale in item 88). Rounds
+    beyond two on records are this seat's decision (PDR-132), granted as on #76 and #78. #79
+    round three returned one thread (the comments leg read before the confirm view, a stale
+    lift window) and one suppressed finding (a digit run parsed to Infinity, an unliftable
+    hold); round four granted, after #77's push. The merged local records branches 3 to 9
+    deleted; this branch is records-10, cut from `main` at `SHA: 6699f51`.
 
 ## Routing log
 
