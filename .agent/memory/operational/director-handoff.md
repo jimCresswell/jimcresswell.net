@@ -1146,6 +1146,21 @@ ones the Director would put to the owner had the owner been present.
     hold); round four granted, after #77's push. The merged local records branches 3 to 9
     deleted; this branch is records-10, cut from `main` at `SHA: 6699f51`.
 
+98. Records-9 opened as #80 at 13:06Z (bot-authored, Copilot under the owner's credential) and
+    merged by the bot at 13:32Z (`SHA: 6699f51`) after three rounds: round one four threads and
+    three suppressed (live state my earlier refresh had left in the block; a second resume
+    contract in `repo-continuity.md`; the letter's pointer; one rejected: the plan's Gemini
+    clause is ratified text, the card to amend it is raised to the owner); round two three
+    threads and four suppressed (placeholder times replaced by the about-form or the measured
+    commit time; pointers over copies); round three zero threads and four nit-level suppressed
+    findings, cured on this branch (the letter's plural, the settled predicate named in the
+    next safe step, "distinct findings" and the reader-convention rationale in item 88). Rounds
+    beyond two on records are this seat's decision (PDR-132), granted as on #76 and #78. #79
+    round three returned one thread (the comments leg read before the confirm view, a stale
+    lift window) and one suppressed finding (a digit run parsed to Infinity, an unliftable
+    hold); round four granted, after #77's push. The merged local records branches 3 to 9
+    deleted; this branch is records-10, cut from `main` at `SHA: 6699f51`.
+
 ## Routing log
 
 - 2026-09-13 evening: seat opened; team-start `ca1ba4d8`; lanes A, B, C authored, unfilled.
