@@ -775,6 +775,11 @@ ones the Director would put to the owner had the owner been present.
     froze); the synthesis acceptance and next-step clauses read the review date as the
     slow-lane's normal gate and the register-row ruling as the owner's early exception. One
     pull request open (#74). Standing ruling.
+75. Records-6 is PR #75 (`SHA: a9c7442`, 03:38Z on 2026-09-14; Copilot requested, the bot
+    armed); items from 75 on `chore/director-records-7`, stacked on it. Lane A's #74 cure:
+    all eight items written, seven mutants killed, the full suite green, the live
+    recomputation of the 130 rules through the new port byte for byte; committing at the
+    code-expert verdict, slot ask after. Standing ruling.
 
 ## Routing log
 
