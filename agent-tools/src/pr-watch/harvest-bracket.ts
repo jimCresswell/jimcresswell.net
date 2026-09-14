@@ -108,7 +108,8 @@ function sameHarvest(before: ReviewHarvest, after: ReviewHarvest): boolean {
 /**
  * Read the reviews harvest and the review threads as one consistent bracket.
  *
- * @throws when a harvest fails, or when reviews land on consecutive attempts.
+ * @throws when a harvest fails, or when the review harvest or the request surface moves on
+ *   consecutive attempts.
  */
 export function readHarvestAndThreads(
   input: HarvestInput,
