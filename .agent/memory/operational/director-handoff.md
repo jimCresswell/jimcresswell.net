@@ -987,7 +987,7 @@ ones the Director would put to the owner had the owner been present.
     pr-tally node's todo 3) makes a signed issue comment, one line per body finding with the
     bar marker and the head, review, anchor and item reference, the disposition of a finding
     that lives only in a review body; the bot reads nothing else. The hold is a new state in
-    the closed verdict set (BODY-FINDINGS-OPEN, lane A's name, after THREADS-OPEN and before the
+    the closed verdict set (SUPPRESSED-FINDINGS-OPEN, lane A's name, after THREADS-OPEN and before the
     reviewer legs; a tip-bound, landed, non-self-reply body declaring N suppressed findings
     with fewer than N signed disposition lines for that head and review id; evidence names
     the review, the count and the shortfall; refused by name; not a wait state). The owner's
