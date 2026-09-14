@@ -1391,6 +1391,10 @@ parallax, wrap):
   chain keeps no place: read its output for the last step that printed (replies posted, the
   reviewer requested) and re-arm from the next step, as a poll-only script when the request
   already registered; run chains one at a time on a pressed host.
+- `git rev-parse --short` grows past seven characters as soon as a seven-character prefix is
+  ambiguous in the repository (`1ce9d2a7`, `4abe6478` on 2026-09-14), so a script comparing
+  it to a fixed seven-character tip never matches and waits its whole window; pin the length
+  (`--short=7`) on both sides, or compare full hashes.
 
 ### Director, morning (2026-09-14): play seeds from the night, marked as associations
 
