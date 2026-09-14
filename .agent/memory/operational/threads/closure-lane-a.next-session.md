@@ -186,3 +186,35 @@ explicit pathspec; a green, clean PR is merged without asking.
 - **Item 5 inputs** unchanged from the 15:35Z waypoint; the pr-watch instrument observation
   (thirty minutes, three tip moves, two CI transitions, no output) is capture-practice-tool-feedback
   for the napkin below.
+
+## Waypoint 2026-09-14 00:30Z — third checkpoint (Saffron turns Verdure, c39ad7)
+
+- **Landed since the second waypoint.** #60 (the port PR, six rounds, the in-process server
+  redesign), #63 (the pending-graduations register, 28 entries plus the slow lane), #64
+  (5a-i, request visibility), #66 (the e2e follow-on after #60, merged at 0ec4583). Local
+  branches for all four deleted.
+- **Open.** #65 (5a-ii, measured state) at SHA: 3802031 after four rounds; the fourth was the
+  Director's last grant, and its cure is the harvest bracket (the reviews harvest read on
+  both sides of the thread read, agreeing or re-read once, then fail loud). The Director's
+  chain replies, resolves, requests Copilot and arms the bot on #65; the seat writes nothing
+  to its threads.
+- **Stacked and waiting.** 5a-iii (the body tally and #64's six body findings) on
+  `fix/merge-bot-body-tally` at SHA: beddd8b, three forward-only merges beneath it; its PR
+  opens when #65 merges (body drafted in the seat's scratchpad; the Copilot request is the
+  Director's). 5b (the retirements: the four instruments, the consumed incoming bundle, the
+  www build's `.next` outputs in turbo.json, the accept-md config as a typed module) on
+  `chore/retire-lineage-instruments` at SHA: d27790f with this records branch merged in; its
+  PR opens after 5a-iii's; code-expert pass pending at this waypoint.
+- **Routed next, in the Director's order.** 5b's PR; the e2e follow-on 2 (#66's four
+  suppressed body findings: try/finally teardown in two integration cells, `stop()` rejecting
+  on an unexpected non-zero exit, testing-patterns.md still saying the suite is served by the
+  start script); 5c (the residue scrub and the lineage-name leak validator); then 2a, 2b,
+  the Gemini projection, the restore with the five patterns, sif, the stub invoke rules.
+- **Rules carried, new this segment.** A granted slot is held until "released" (the
+  Director's item 41; both seats overlapped once, own branches, no harm). On a stacked PR the
+  Director's chain owns the thread replies (a duplicate pair was deleted). The merge
+  commit's message file goes on the merge command itself; a default header, once landed,
+  stays under the no-amend word. Body findings a bot round suppresses are routed to a
+  follow-on PR after the round budget, never a fifth round.
+- **Monitors at this checkpoint.** A poll on #65 for its merge (`pr65-merge-wait.sh` in the
+  scratchpad, exits on merge or close); the all-channels watcher; claims retained.

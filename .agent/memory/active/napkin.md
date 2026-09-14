@@ -1312,3 +1312,36 @@ parallax, wrap):
   named per claim, the declined item stated with its reason, a state line to the Director
   between long steps. Two lapses, both recorded above (the premature "released"; the reply that
   said three cells after the commit said four, corrected on the thread).
+
+### Session 2026-09-14, lane A, segment four (23:00Z to 00:30Z) — Saffron turns Verdure (c39ad7)
+
+- #65 rounds three and four, #66 landed (0ec4583), 5b cut and committed locally (d27790f).
+  Round three: the run leg's contract stated in both prose homes exactly as the code has it
+  (an observed live run blocks; an unobservable surface is named, never blocking); a gap line
+  made conditional; a token-form cell restored as an `it.each`. Round four: the harvest now
+  brackets the thread read and must agree on both sides, one re-read on a landing, fail loud
+  on two, the same bounded shape as the tip loop; the readers moved to `harvest-bracket.ts`
+  because `state-gh.ts` stood at 245 of its 250 lines.
+- A granted slot is held until released. The Director granted the slot, then took it for its
+  own gate; both pushes overlapped on their own branches (no harm; the Director's item 41).
+  The seat's side of the same trap: "released" is announced after the push's own output.
+- Two seats wrote the same thread replies five seconds apart (the Director's chain and this
+  seat, both on the tip). The duplicates were deleted on the Director's word. On a stacked PR
+  the chain owns the thread replies; the seat names its intent in the release message and
+  waits for the word before any thread write.
+- A merge run without its message file lands the default header; the hook accepts it and the
+  no-amend word keeps it. The message file goes on the merge command itself (`--no-ff -F`).
+- The code-expert's "extract now" at 245 of 250 lines was taken inside the round; the cap
+  bites cures, which are the changes least able to carry a refactor.
+- Comparing two reads of a platform connection by array equality claims the vendor's order;
+  sort the per-element serialisations first (the bracket's `canonical`).
+- The landing-in-the-window class generalises: two surfaces composed into one reading need a
+  monotone surface (reviews are append-only) read on both sides of the non-monotone one
+  (threads). The tip loop was the same shape for the head oid.
+- The accept-md vendor's loader reads only a JavaScript file through `require`; the typed
+  module replaces the file by handing the route the object directly, and the loader is never
+  called (the values the file set already overrode every default the loader merged).
+- Tool traps this segment: the file tool refuses any script content carrying a user-home
+  path (a script takes the scratch directory as `$1` and runs from the worktree root); a
+  combined `switch ... && ... HEAD` line reads to the hook as a checkout of HEAD (one plain
+  command); `pnpm knip` once listed four unused types mid-edit that a clean re-run did not.
