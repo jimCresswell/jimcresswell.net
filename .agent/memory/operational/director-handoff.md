@@ -1036,6 +1036,25 @@ ones the Director would put to the owner had the owner been present.
     stays local until the next natural boundary (the owner's question at 08:15Z on whether
     the close is still bounded, answered with the item table: the Director's records loop is
     the drag; fewer, later records pull requests are the cure). Lens 1.
+92. The owner's question on optimum pull request size (08:2xZ on 2026-09-14), answered from
+    the day's sixteen pull requests measured (files, Copilot rounds, open-to-merge time,
+    findings per pass). Measured: one-round pull requests close in 6 to 21 minutes from open
+    (about 25 with the gate); files and lines predict nothing (46 files in one round, 3 files
+    in five); rounds follow review-facing claims and drift; Copilot's yield per pass is flat
+    at roughly three to eight findings whatever the size; no pass on any of the sixteen ended
+    with zero suppressed findings, and passes on unchanged code raised "previously missed"
+    items (the reviewer samples, it does not conserve). Model offered, held as a model: size
+    by claims to fit two passes (about eight; one behaviour with its tests; six to eight
+    graduation entries), group to avoid file overlap between in-flight pull requests rather
+    than by home, two in flight per Implementer, and record claims, findings per pass, rounds
+    and time per pull request. REVIEW for the owner: under "block on any finding" as built
+    (#79), the measured floor of suppressed findings per pass means every pull request needs
+    a signed-rejection triage pass or it does not terminate; the mechanism is right to the
+    card, its cost is one round plus triage per pull request. #79 round one (08:27Z: three
+    open, two suppressed; a half code span lifting, comments read before the confirm on a
+    mutable surface, the deleted-account sentinel authorised, an empty item counted, a
+    wall-clock assertion in the gated suite) routed to lane A; #77 round two green on lane
+    A's seat, its proofs running. Lens 1.
 
 ## Routing log
 
