@@ -4,10 +4,12 @@
  * hand-kept description with a `: ` inside a sentence, a valid platform value and an invalid
  * YAML plain scalar, is read rather than refused; a quoted scalar is read as YAML reads that
  * one scalar (`''` for a quote inside `'...'`, backslash escapes inside `"..."`); a folded
- * block is joined as YAML joins it. A list, a key no adapter carries, a field with no value
- * once read (bare or an empty quoted scalar: the strict declaration shape would reject the
- * empty line on the next read) and text that is not one scalar are refusals naming the
- * adapter and the key (the #77 round-one findings, 2026-09-14).
+ * block is joined as YAML joins it. A list (a block sequence, or a flow collection such as
+ * `[Read, Grep]`, which a line reader would otherwise keep as the literal text and so change
+ * the adapter's meaning), a key no adapter carries, a field with no value once read (bare or
+ * an empty quoted scalar: the strict declaration shape would reject the empty line on the
+ * next read) and text that is not one scalar are refusals naming the adapter and the key
+ * (the #77 round-one and round-three findings, 2026-09-14).
  *
  * @packageDocumentation
  */
@@ -72,6 +74,9 @@ function fieldValues(
 ): Result<ReadonlyMap<string, string>, string> {
   const fields = new Map<string, string>();
   for (const [key, value] of raw) {
+    if (isFlowCollection(value)) {
+      return err(`${relativePath}: field "${key}" is a flow collection, not a scalar: ${value}`);
+    }
     const read = isQuoted(value) ? quotedScalar(value) : value;
     if (read === undefined) {
       return err(`${relativePath}: field "${key}" is not a quoted scalar: ${value}`);
@@ -82,6 +87,15 @@ function fieldValues(
     fields.set(key, read);
   }
   return ok(fields);
+}
+
+// A YAML plain scalar never starts with a flow indicator, so a plain value that does is a
+// flow sequence or mapping, not the scalar the platform would read. The line reader hands
+// over a folded block's joined text under the same key, so a fold whose text starts with
+// `[` or `{` is refused here too (fail-closed; none in the estate, the code-expert's probe).
+function isFlowCollection(value: string): boolean {
+  const first = value.at(0);
+  return first === '[' || first === '{';
 }
 
 function isQuoted(value: string): boolean {

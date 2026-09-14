@@ -8,7 +8,8 @@
 
 import type { Result } from '@engraph/result';
 
-import { readCodexAdapter, readMarkdownAdapter, type AdapterSource } from './adapter-sources.js';
+import { readMarkdownAdapter, type AdapterSource } from './adapter-sources.js';
+import { readCodexAdapter } from './codex-adapter.js';
 import type { SourcePlatform } from './subagent-declaration.js';
 
 /** One hand-kept platform surface: where its adapters live and how each is read. */

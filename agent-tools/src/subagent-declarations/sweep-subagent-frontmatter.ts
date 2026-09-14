@@ -2,15 +2,18 @@
  * The sweep: derive every template's declaration from its hand-kept adapters and write it
  * as the template's frontmatter.
  *
- * All-or-nothing derivation: an adapter that is not a regular file or cannot be read, a
- * template whose head cannot be read, an adapter whose `name` field is not its basename, an
- * adapter name under no template or whose pointer names another template, a template with
- * no adapter on any platform or with adapters under both its own and variant names, refuses
- * the whole sweep and nothing is written. Writing then proceeds template by template through
- * the atomic writer; a template that already carries a block is left as it is and reported,
- * once its adapter group is checked against the shape it declares (`adapter-groups.ts`). The
- * file system is an injected port (`sweep-fs.ts`, shared with the rules sweep), so the sweep
- * is proven over an in-memory tree.
+ * All-or-nothing derivation: a template or adapter name that is not a basename (refused
+ * before any path is built, `sweep-names.ts`), an adapter that is not a regular file or
+ * cannot be read, a template whose head cannot be read, an adapter whose `name` field is not
+ * its basename, an adapter name under no template or whose pointer names another template, a
+ * template with no adapter on any platform or with adapters under both its own and variant
+ * names, or a derived declaration that does not read back through the strict schema
+ * (`declaration-round-trip.ts`), refuses the whole sweep and nothing is written. Writing
+ * then proceeds template by template through the atomic writer; a template that already
+ * carries a block is left as it is and reported, once its adapter group is checked against
+ * the shape it declares (`adapter-groups.ts`). The file system is an injected port
+ * (`sweep-fs.ts`, shared with the rules sweep), so the sweep is proven over an in-memory
+ * tree.
  *
  * Adapter discovery is the caller's (the tracked-file listing): every adapter basename on
  * the three surfaces is either a template's own name (a role) or `<template>-<suffix>` for
@@ -28,6 +31,7 @@ import { defaultSweepFs, readSource, type SweepFs } from '../rule-declarations/s
 import { declaredShapeIssue, groupByTemplate, groupShape } from './adapter-groups.js';
 import type { AdapterSource } from './adapter-sources.js';
 import { ADAPTER_SURFACES } from './adapter-surfaces.js';
+import { readBackIssue } from './declaration-round-trip.js';
 import { deriveRole } from './derive-role.js';
 import type { AdapterSet, Derived, Reconciliation } from './derive-subagent-declaration.js';
 import { deriveFanOut } from './derive-variant.js';
@@ -37,6 +41,7 @@ import {
   renderSubagentFrontmatter,
 } from './render-subagent-frontmatter.js';
 import type { SourcePlatform, SubagentDeclaration } from './subagent-declaration.js';
+import { refuseNonBasenames } from './sweep-names.js';
 
 export const TEMPLATES_DIR = '.agent/sub-agents/templates';
 
@@ -132,7 +137,13 @@ function deriveTemplate(
     return shape;
   }
   const own = shape.value.group.get(template);
-  return own === undefined ? deriveFanOut(template, shape.value.group) : deriveRole(template, own);
+  const derived =
+    own === undefined ? deriveFanOut(template, shape.value.group) : deriveRole(template, own);
+  if (!derived.ok) {
+    return derived;
+  }
+  const issue = readBackIssue(template, derived.value.declaration);
+  return issue === undefined ? derived : err(issue);
 }
 
 /**
@@ -198,6 +209,10 @@ async function writeAll(
 
 /** Run the sweep; nothing is written unless every derivation succeeded and `write` is set. */
 export async function sweepSubagentFrontmatter(input: SweepInput): Promise<SweepOutcome> {
+  const badNames = refuseNonBasenames(input.templateNames, input.adapterNames);
+  if (badNames.length > 0) {
+    return refusal(badNames, []);
+  }
   const sweepFs = input.sweepFs ?? defaultSweepFs;
   const heads = await readHeads(input, sweepFs);
   const alreadyDeclared = [...heads.declared.keys()];

@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
-import { readCodexAdapter, readMarkdownAdapter } from './adapter-sources.js';
+import { readMarkdownAdapter } from './adapter-sources.js';
+import { readCodexAdapter } from './codex-adapter.js';
 
 /**
  * The hand-kept adapter readers: every field, the title, the template named, the pointer
@@ -174,6 +175,36 @@ describe('readMarkdownAdapter', () => {
     expect(
       readMarkdownAdapter('claude', path, markdown('claude', ['name: alpha', 'tools: ""'])),
     ).toStrictEqual({ ok: false, error: `${path}: field "tools" carries no value` });
+  });
+
+  it('refuses a flow collection as a field value, an empty heading, and an empty Codex value: none reaches derivation (#77 round three)', () => {
+    const path = '.claude/agents/alpha.md';
+    expect(
+      readMarkdownAdapter(
+        'claude',
+        path,
+        markdown('claude', ['name: alpha', 'tools: [Read, Grep]']),
+      ),
+    ).toStrictEqual({
+      ok: false,
+      error: `${path}: field "tools" is a flow collection, not a scalar: [Read, Grep]`,
+    });
+    expect(
+      readMarkdownAdapter(
+        'claude',
+        path,
+        markdown('claude', ['name: alpha'], ['# ', '', PRE_POINTER.claude, '', POINTER, '']),
+      ),
+    ).toStrictEqual({ ok: false, error: `${path}: the heading carries no title` });
+    expect(
+      readCodexAdapter(
+        '.codex/agents/alpha.toml',
+        CODEX_ADAPTER.replace('description = "Alpha reviews a."', 'description = ""'),
+      ),
+    ).toStrictEqual({
+      ok: false,
+      error: '.codex/agents/alpha.toml: field "description" carries no value',
+    });
   });
 
   it('reads only a title above the pointer', () => {

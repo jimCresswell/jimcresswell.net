@@ -4,18 +4,20 @@
  * running estate, which reads only the declarations.
  *
  * Cursor and Claude adapters are Markdown with YAML frontmatter, read line by line as the
- * platform reads it (`adapter-frontmatter.ts`); Codex adapters are TOML with flat
- * `key = "value"` lines and one triple-quoted `developer_instructions` string. Each is read
- * into the same shape: its frontmatter fields as strings, its title, the template its pointer
+ * platform reads it (`adapter-frontmatter.ts`); Codex adapters are TOML, read by
+ * `codex-adapter.ts` through the same pointer and note reader. Each is read into the same
+ * shape: its frontmatter fields as strings, its title, the template its pointer
  * names, the shape of its pointer paragraph (the sentence that names the template: wrapped
  * or not, and whatever follows the path inside that paragraph, verbatim), and the prose
  * after that paragraph (the "note"), so every byte an adapter body varies by is measured,
  * and a variant's platform-specific paragraph survives into its declaration as written. A
- * field that is a list, carries no value or is a key no adapter carries, a pointer that
- * names anything but a template path, a Codex head line that is not a `key = "value"` field,
- * or Codex content after the instructions block, is a refusal: the readers never drop a
- * value silently (the derivation then refuses any key it does not read,
- * `derive-subagent-declaration.ts`).
+ * field that is a list, carries no value (on either platform) or is a key no adapter
+ * carries, a heading with no title, a pointer that names anything but a template path, a
+ * Codex head line that is not a `key = "value"` field, or Codex content after the
+ * instructions block, is a refusal: the readers never drop a value silently (the derivation
+ * then refuses any key it does not read, `derive-subagent-declaration.ts`), and nothing an
+ * adapter says reaches a declaration the strict schema would refuse on the next read
+ * (`declaration-round-trip.ts` reads every derived declaration back besides).
  *
  * @packageDocumentation
  */
@@ -42,7 +44,6 @@ export interface AdapterSource {
 }
 
 const POINTER_SENTENCE_START = 'Your first action MUST be to read and internalise';
-const CODEX_POINTER_START = 'Read and follow `';
 
 const TEMPLATE_PATH = /^\.agent\/sub-agents\/templates\/([a-z0-9]+(?:-[a-z0-9]+)*)\.md$/u;
 
@@ -73,7 +74,7 @@ function paragraphEndFrom(body: readonly string[], from: number): number {
 }
 
 /** The template named, the pointer paragraph's tail and the note after it, given the line that carries the path. */
-function bodyAfterPath(
+export function bodyAfterPath(
   relativePath: string,
   body: readonly string[],
   pathLine: number,
@@ -150,78 +151,19 @@ export function readMarkdownAdapter(
   if (skeleton !== undefined) {
     return err(skeleton);
   }
-  const title = head.find((entry) => entry.startsWith('# '))?.slice(2);
-  return ok({ fields: block.value.fields, title, pointerWrapped, ...rest.value });
+  const title = headingTitle(relativePath, head);
+  return title.ok
+    ? ok({ fields: block.value.fields, title: title.value, pointerWrapped, ...rest.value })
+    : title;
 }
 
-const CODEX_FIELD_LINE = /^([a-z_]+) = "([^"\n]*)"$/u;
-const CODEX_INSTRUCTIONS_OPEN = 'developer_instructions = """';
-const CODEX_INSTRUCTIONS_BLOCK = /^([\s\S]*?)\n"""([\s\S]*)$/u;
-
-/** The flat `key = "value"` fields above the instructions block; any other line refuses. */
-function readCodexFields(relativePath: string, head: string): Result<Map<string, string>, string> {
-  const fields = new Map<string, string>();
-  for (const line of head.split('\n')) {
-    if (line.trim() === '' || line.startsWith('#')) {
-      continue;
-    }
-    const match = CODEX_FIELD_LINE.exec(line);
-    if (match === null) {
-      return err(`${relativePath}: line "${line}" is not a key = "value" field`);
-    }
-    const [, key = '', value = ''] = match;
-    if (fields.has(key)) {
-      return err(`${relativePath}: key "${key}" appears twice`);
-    }
-    fields.set(key, value);
-  }
-  return ok(fields);
-}
-
-/** The instructions block's lines; a block that never closes, or text after it that is neither blank nor a comment, refuses. */
-function codexInstructions(relativePath: string, rest: string): Result<string[], string> {
-  const match = CODEX_INSTRUCTIONS_BLOCK.exec(rest);
-  if (match === null) {
-    return err(`${relativePath}: developer_instructions block never closes`);
-  }
-  const [, body = '', suffix = ''] = match;
-  const stray = suffix.split('\n').find((line) => line.trim() !== '' && !line.startsWith('#'));
-  return stray === undefined
-    ? ok(body.split('\n'))
-    : err(`${relativePath}: content after the developer_instructions block is not read: ${stray}`);
-}
-
-/** Read a Codex adapter: its flat fields and the pointer shape and note in its instructions. */
-export function readCodexAdapter(
+/** The `# ` heading's title when the head carries one; a heading with no title refuses. */
+function headingTitle(
   relativePath: string,
-  text: string,
-): Result<AdapterSource, string> {
-  const open = text.indexOf(`${CODEX_INSTRUCTIONS_OPEN}\n`);
-  if (open === -1) {
-    return err(`${relativePath}: no developer_instructions block`);
-  }
-  const fields = readCodexFields(relativePath, text.slice(0, open));
-  if (!fields.ok) {
-    return fields;
-  }
-  const body = codexInstructions(
-    relativePath,
-    text.slice(open + CODEX_INSTRUCTIONS_OPEN.length + 1),
-  );
-  if (!body.ok) {
-    return body;
-  }
-  const pointerAt = body.value.findIndex((entry) => entry.startsWith(CODEX_POINTER_START));
-  if (pointerAt === -1) {
-    return err(`${relativePath}: no template pointer line`);
-  }
-  // A Codex adapter carries nothing before its pointer (measured, standard-adapter-body.ts).
-  const early = body.value.slice(0, pointerAt).find((entry) => entry.trim() !== '');
-  if (early !== undefined) {
-    return err(`${relativePath}: instructions before the pointer are not read: "${early}"`);
-  }
-  const rest = bodyAfterPath(relativePath, body.value, pointerAt);
-  return rest.ok
-    ? ok({ fields: fields.value, title: undefined, pointerWrapped: false, ...rest.value })
-    : rest;
+  head: readonly string[],
+): Result<string | undefined, string> {
+  const title = head.find((entry) => entry.startsWith('# '))?.slice(2);
+  return title !== undefined && title.trim() === ''
+    ? err(`${relativePath}: the heading carries no title`)
+    : ok(title);
 }

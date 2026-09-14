@@ -377,6 +377,58 @@ describe('sweepSubagentFrontmatter', () => {
     expect(denied.writes.size).toBe(0);
   });
 
+  it('refuses a template or adapter name that is not a basename before any path is built, reading and writing nothing (#77 round three)', async () => {
+    const sweepFs = fakeFs(agreeingTree);
+    const touched: string[] = [];
+    const recording: SweepFs = {
+      entryKind: async (absolutePath) => {
+        touched.push(absolutePath);
+        return sweepFs.entryKind(absolutePath);
+      },
+      readFile: async (absolutePath) => {
+        touched.push(absolutePath);
+        return sweepFs.readFile(absolutePath);
+      },
+      writeFile: sweepFs.writeFile,
+    };
+    const outcome = await sweepSubagentFrontmatter(
+      input(recording, true, {
+        templateNames: ['alpha', '../../outside', 'cricket'],
+        adapterNames: { cursor: ['a/b', 'alpha'], claude: ['alpha'], codex: [''] },
+      }),
+    );
+    const reason =
+      'lowercase letters and digits in single-hyphen groups: one path segment, no dot segment, no suffix';
+    expect(outcome.refused).toStrictEqual([
+      `"../../outside": not a template basename (${reason})`,
+      `cursor "a/b": not an adapter basename (${reason})`,
+      `codex "": not an adapter basename (${reason})`,
+    ]);
+    expect(touched).toStrictEqual([]);
+    expect(sweepFs.writes.size).toBe(0);
+    expect(outcome.alreadyDeclared).toStrictEqual([]);
+  });
+
+  it('refuses a derived declaration the strict schema would reject on the next read, naming the field, and writes nothing (#77 round three)', async () => {
+    // A double-quoted description with an escaped newline is one YAML scalar the reader
+    // accepts; the ruling description then carries a newline the `line` schema refuses.
+    const tree = new Map(agreeingTree);
+    tree.set(
+      `${REPO}/.claude/agents/alpha.md`,
+      claudeAdapter('alpha', ALPHA).replace(
+        `description: '${ALPHA}'`,
+        String.raw`description: "Alpha reviews a.\nTwice."`,
+      ),
+    );
+    const sweepFs = fakeFs(tree);
+    const outcome = await sweepSubagentFrontmatter(input(sweepFs, true));
+    expect(outcome.refused).toStrictEqual([
+      'alpha: the derived declaration does not read back (description: one line)',
+    ]);
+    expect(outcome.declarations).toStrictEqual([]);
+    expect(sweepFs.writes.size).toBe(0);
+  });
+
   it('refuses an adapter the reader cannot parse, naming the path, and writes nothing', async () => {
     const tree = new Map(agreeingTree);
     tree.set(`${REPO}/.claude/agents/alpha.md`, '# Alpha\n\nNo block.\n');
