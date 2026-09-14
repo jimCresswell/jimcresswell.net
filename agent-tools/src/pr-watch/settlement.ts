@@ -18,8 +18,9 @@ import type { PrStateReading, PrVerdict, ReviewRun } from './state-types.js';
  * owner's word ("nothing is happening on the PR ... the 'quiet window' could
  * be replaced with measured state", on #56); the boundary is measured now:
  * the platform clears the request when the review lands, and the compound
- * read takes its threads after the harvest, so a review seen landed has its
- * threads on the read and a review not yet landed shows as its request.
+ * read brackets its thread read with a harvest on each side that must agree
+ * (harvest-bracket.ts), so a review seen landed has its threads on the read
+ * and a review not yet landed shows as its request.
  *
  * The run leg's contract, exactly: an OBSERVED live run mapped to the PR is a
  * measured guard and blocks settlement (roundInFlight); an unavailable or
