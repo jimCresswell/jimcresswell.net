@@ -8,11 +8,12 @@
  *
  * ```sh
  * pnpm portability:check
- * pnpm portability:check --fix   # auto-write missing wrapper files
+ * pnpm portability:fix   # regenerate the rule projections: write missing and
+ *                        # drifted ones, remove stale ones
  * ```
  *
  * Exit code 0 means all checks pass; exit code 1 means at least one issue was
- * found (or `--fix` was not used to resolve missing wrappers).
+ * found (or `--fix` was not used to regenerate the projections).
  */
 
 import path from 'node:path';
@@ -44,7 +45,10 @@ import { practiceSkillPermissionIssues } from './skill-census.js';
 import { reportPortabilityValidation } from './portability-report.js';
 import { realRuleProjectionFs, validateRuleProjections } from './rule-projection-validation.js';
 
-const repoRoot = resolveRepoRoot(import.meta.url);
+// projectDir is explicitly disabled: this validator reads and, under `--fix`,
+// writes the tree it runs inside. The CLAUDE_PROJECT_DIR leg would rebind a
+// worktree invocation to the primary checkout and regenerate the wrong estate.
+const repoRoot = resolveRepoRoot(import.meta.url, { projectDir: undefined });
 const fixMode = process.argv.includes('--fix');
 const writtenWrappers: string[] = [];
 const issues: string[] = [];
@@ -109,14 +113,11 @@ for (const issue of getReviewerAdapterParityIssues({
   issues.push(issue);
 }
 
-const canonicalRules = await listFiles(repoRoot, '.agent/rules', '.md');
+// The index's presence and rows are the projection leg's; the Codex byte budget is the
+// one check the rendered bytes cannot answer for themselves.
 const rulesIndexState = await readOptionalText(repoRoot, RULES_INDEX_PATH);
-for (const issue of getRulesIndexPortabilityIssues({
-  canonicalRuleFiles: canonicalRules,
-  rulesIndexContent: rulesIndexState.value ?? '',
-  rulesIndexExists: rulesIndexState.isPresent,
-})) {
-  issues.push(issue);
+if (rulesIndexState.isPresent && rulesIndexState.value !== null) {
+  issues.push(...getRulesIndexPortabilityIssues({ rulesIndexContent: rulesIndexState.value }));
 }
 
 if (await exists(repoRoot, HOOK_POLICY_PATH)) {
@@ -155,7 +156,15 @@ if (await exists(repoRoot, CLAUDE_SETTINGS_PATH)) {
   }
 }
 
-const stats = `${validatedCanonicalPaths.length} canonical skills, ${canonicalRules.length} canonical rules with their index and three adapter projections recomputed, ${canonicalAgentNames.length} reviewer adapters${removedProjections.length > 0 ? `, ${removedProjections.length} stale rule projections removed` : ''}`;
+const ruleStats =
+  ruleProjections.issues.length === 0
+    ? `${ruleProjections.canonicalRuleCount} canonical rules with their index and three adapter projections recomputed`
+    : `${ruleProjections.canonicalRuleCount} canonical rules (projection leg refused)`;
+const removedStats =
+  removedProjections.length > 0
+    ? `, ${removedProjections.length} stale rule projections removed`
+    : '';
+const stats = `${validatedCanonicalPaths.length} canonical skills, ${ruleStats}, ${canonicalAgentNames.length} reviewer adapters${removedStats}`;
 
 export { reportPortabilityValidation } from './portability-report.js';
 

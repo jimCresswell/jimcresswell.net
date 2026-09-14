@@ -316,49 +316,24 @@ describe('getReviewerAdapterParityIssues', () => {
 });
 
 describe('getRulesIndexPortabilityIssues', () => {
-  const canonicalRuleFiles = [
-    '.agent/rules/apply-architectural-principles.md',
-    '.agent/rules/lint-after-edit.md',
-  ];
+  const index = `# Rules Index
 
-  it('returns no issues when the index lists every canonical rule and stays within budget', () => {
+| \`.agent/rules/lint-after-edit.md\` | core | — |
+`;
+
+  it('returns no issues when the index stays within the Codex byte budget', () => {
     expect(
-      getRulesIndexPortabilityIssues({
-        canonicalRuleFiles,
-        rulesIndexContent: `# Rules Index
-
-- \`.agent/rules/apply-architectural-principles.md\`
-- \`.agent/rules/lint-after-edit.md\`
-`,
-        maxBytes: 200,
-      }),
+      getRulesIndexPortabilityIssues({ rulesIndexContent: index, maxBytes: 200 }),
     ).toStrictEqual([]);
   });
 
-  it('reports missing, extra, missing-file, and byte-budget issues', () => {
+  it('reports the byte size against the budget when the index exceeds it', () => {
+    // The size is the fixture's own UTF-8 length (the em dash is three bytes), never a
+    // transcribed number.
+    const bytes = Buffer.byteLength(index, 'utf8');
     expect(
-      getRulesIndexPortabilityIssues({
-        canonicalRuleFiles,
-        rulesIndexContent: `# Rules Index
-
-- \`.agent/rules/lint-after-edit.md\`
-- \`.agent/rules/not-canonical.md\`
-`,
-        maxBytes: 20,
-      }),
-    ).toStrictEqual([
-      'RULES_INDEX.md: missing canonical rule entry .agent/rules/apply-architectural-principles.md',
-      'RULES_INDEX.md: references non-canonical rule .agent/rules/not-canonical.md',
-      'RULES_INDEX.md: 85 bytes exceeds Codex project-doc budget 20',
-    ]);
-
-    expect(
-      getRulesIndexPortabilityIssues({
-        canonicalRuleFiles,
-        rulesIndexContent: '',
-        rulesIndexExists: false,
-      }),
-    ).toStrictEqual(['RULES_INDEX.md: missing Codex fallback rules index']);
+      getRulesIndexPortabilityIssues({ rulesIndexContent: index, maxBytes: 20 }),
+    ).toStrictEqual([`RULES_INDEX.md: ${String(bytes)} bytes exceeds Codex project-doc budget 20`]);
   });
 });
 

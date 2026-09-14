@@ -35,4 +35,6 @@ declarations from the surfaces that carried them by hand before.
   tracked rules; `pnpm --filter @engraph/agent-tools rule-frontmatter-sweep [--write]`.
 
 The sweep is a transplant instrument: a host that arrives with a hand-kept index and triggers
-runs it once to mint its declarations, then the generator owns the projections.
+runs it once to mint its declarations, then the generator owns the projections. The sweep and
+the hand-kept readers it runs on are retained for that purpose alone; the running estate never
+reads the projections back.
