@@ -1,3 +1,9 @@
+---
+classification: situational
+description: Loads for EVERY merge. Any merge that changes a fact a document states as a premise owes the premise sweep (guide §4i) whatever its size; merges with 100+ files changed on either side, 10+ conflicts in a dry-run merge, or a core-interface refactor follow the full pre-merge divergence analysis guide.
+trigger: "ceremony:merge — every merge: the premise sweep at any size; the full workflow past thresholds"
+---
+
 # Pre-Merge Divergence Analysis
 
 Operationalises [`principles.md` §Code Quality](../directives/principles.md#code-quality) — pre-merge type-check is a canonical gate — and [the plan-node estate](../plans/README.md) — plan-level merge strategy lives in the governing delivery plan.

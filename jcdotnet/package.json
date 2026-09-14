@@ -41,6 +41,7 @@
     "test:coverage": "vitest run --coverage",
     "test:e2e": "playwright test --project=default",
     "test:ui": "playwright test --ui",
+    "e2e:server": "tsx scripts/e2e-web-server.ts",
     "visual-regression:harness": "tsx scripts/run-visual-regression-harness.ts",
     "generate:icons": "tsx logo/generate-icons.ts",
     "logo:statusline": "tsx scripts/statusline-logo-glyphs.ts"
@@ -88,9 +89,6 @@
     "vitest": "^4.1.10"
   },
   "knip": {
-    "ignore": [
-      "accept-md.config.js"
-    ],
     "ignoreDependencies": [
       "markdownlint-cli2-formatter-pretty"
     ],

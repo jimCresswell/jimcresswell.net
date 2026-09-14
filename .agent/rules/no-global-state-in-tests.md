@@ -1,3 +1,12 @@
+---
+classification: situational
+description: Keep tests isolated from global-state mutation
+trigger: surface:**/*.test.*,e2e/**/*
+globs:
+  - "**/*.test.*"
+  - e2e/**/*
+---
+
 # No Global State Manipulation in Tests
 
 Tests MUST NOT read or mutate global state. Prohibited in ALL tests

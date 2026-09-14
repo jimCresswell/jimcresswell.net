@@ -9,11 +9,27 @@ pnpm test:e2e          # Run the full suite against a production build
 pnpm test:ui       # Open Playwright UI mode
 ```
 
-The Playwright web server runs `pnpm build && pnpm start --port 3000` so every
-test exercises the same artefact a visitor would see in production. The build
-is reused between local runs (`reuseExistingServer: true` outside CI). PDF
-generation is part of the `pnpm build` script, so PDF tests run
-alongside everything else with no separate project.
+The suite's server is one process the harness starts from Playwright's
+global setup (`scripts/e2e-global-setup.ts` starts `scripts/e2e-web-server.ts`).
+It binds a free port and keeps the socket for its whole life: it prints the
+port, builds the site with it (so the build's canonical URLs and JSON-LD carry
+that origin; the two Vercel URL variables are cleared for the build and the
+server), attaches Next's production server to the socket in-process
+(`scripts/built-site-server.ts`), and prints `ready`. So two checkouts can run
+the suite at once on one host and each proves its own build: no other process
+can be handed the port, and no server on it can be anything but this run's.
+The origin reaches the workers as Playwright's `baseURL` through the runner's
+environment, written by global setup before any worker is forked; the port is
+chosen in the server process and nowhere else (tests take `baseURL`). PDF
+generation is part of the `pnpm build` script and serves its build the same
+way, so PDF tests run alongside everything else with no separate project.
+
+One falsifier proves the origin cannot be set from outside; run it from this
+directory and expect the full suite green on the bound port:
+
+```bash
+VERCEL_URL=stranger.vercel.app VERCEL_PROJECT_PRODUCTION_URL=www.example.net VERCEL_ENV=production node_modules/.bin/playwright test  # inherited Vercel URLs: cleared
+```
 
 This avoids dev-server-only flakes — Turbopack `Runtime ChunkLoadError`
 overlays and Next.js dev-tools issue badges — by removing the `pnpm dev`

@@ -1,3 +1,8 @@
+---
+classification: core
+description: Before committing to the shape of a build (tool, feature, schema, migration, refactor), verify the data actually supports it — trace value end-to-end and fingerprint the corpus before building, not after.
+---
+
 # Verify the Data Supports the Shape Before Building
 
 Operationalises [ADR-020 (Entity Model as Source of Truth for Shared Atoms)](../../docs/architecture/decision-records/020-entity-model-source-of-truth-for-shared-atoms.md)

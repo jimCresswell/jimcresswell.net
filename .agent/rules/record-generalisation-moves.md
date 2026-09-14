@@ -1,3 +1,15 @@
+---
+classification: situational
+description: When a change makes an element of the Practice more general or more portable, land a row in the generalisation register (date, element, move, commit, lineage status) in the same commit; it feeds contributions back to the lineage, updates from it, the next transplant, and the later extraction of the Practice.
+trigger: surface:agent-tools/**, .agent/practice-core/**, .agent/rules/**, .agent/skills/**, .agent/directives/** — a change that makes a Practice element more general or portable
+globs:
+  - agent-tools/**
+  - .agent/practice-core/**
+  - .agent/rules/**
+  - .agent/skills/**
+  - .agent/directives/**
+---
+
 # Record Generalisation Moves
 
 Owner direction (2026-09-13, verbatim): "where we take action to make an element of the

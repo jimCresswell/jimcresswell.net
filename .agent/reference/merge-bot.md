@@ -66,7 +66,7 @@ NOT apply ruleset bypass grants — yet the bot's code-owner-gate bypass IS
 honoured at the REST layer. So at genuinely-settled the command merges via
 `PUT /repos/{owner}/{repo}/pulls/{n}/merge` (merge-commit method, never
 squash), recomputing the whole settlement verdict — checks, threads,
-per-reviewer legs, quiet window — inside the same invocation, because a
+per-reviewer legs, outstanding requests, live runs — inside the same invocation, because a
 bot review can land in the seconds between (caught twice in forty
 minutes, #570/#574).
 
@@ -273,6 +273,19 @@ Reads may use any credential — attribution matters for writes. Agents keep
 signing reply bodies with their agent tuple: the bot identity says "an
 agent did this", the signature says which one. A maintainer acting from
 their own hands uses their own credential — that contrast is the point.
+
+**Requesting the Copilot reviewer is the one write the bot cannot make
+here.** A `requested_reviewers` POST for `copilot-pull-request-reviewer`
+under the bot token registers nothing on the pull request; the owner's own
+CLI credential registers it on the timeline within a minute, unless the
+previous request's review is still in flight, when it registers nothing
+either (both verified live, 2026-09-13). The request, once registered, is
+what the settlement reads as the round in flight: it is visible only on
+the GraphQL `reviewRequests` connection (gh's `pr view --json
+reviewRequests` and the REST endpoint omit Bot requests), which is why
+`pr state` reads requests there and why an expected reviewer with an
+outstanding request reads `WAITING-REVIEW-RUN-LIVE` until the review lands
+or the checks-green timeout arm ends the leg.
 
 ## Key handling
 

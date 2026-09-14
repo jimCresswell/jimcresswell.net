@@ -11,15 +11,20 @@ import type { PrStateReading, PrVerdict } from './state-types.js';
  * canonical); per-check verdicts travel BY NAME, never positionally (the
  * #437 cure — fixtures in `states.unit.test.ts`).
  *
- * Four states extend the plan's 11-state enumeration, each typed honesty
- * over a lie: `CLOSED` (a closed-unmerged PR gets a refusal, never a
- * mis-mapped healthy verdict), `SETTLING-QUIET-WINDOW` (all legs settled but
- * the more-than-10-minute async-lag window since the latest tip-bound review
- * has not elapsed — SKILL item 4; declaring SETTLE-READY inside the window
- * recreates the bot-round-still-composing hole),
- * `SILENT-WAIT-RUNS-UNREADABLE` (an unreadable or truncated run surface
- * never asserts deadness), and `BEHIND-BASE` (a stale base never reads
- * settled — the founding BEHIND-stall class).
+ * Two states extend the plan's 11-state enumeration, each typed honesty over
+ * a lie: `CLOSED` (a closed-unmerged PR gets a refusal, never a mis-mapped
+ * healthy verdict) and `BEHIND-BASE` (a stale base never reads settled — the
+ * founding BEHIND-stall class). Three were retired on 2026-09-13: the two
+ * run-deadness states (`SILENT-WAIT-RUN-DEAD`, `SILENT-WAIT-RUNS-UNREADABLE`),
+ * because a run's ABSENCE cannot be inferred from the `gh agent-task`
+ * surface (it lists coding-agent sessions and never carried a review run),
+ * so an outstanding request with no mapped run is the round in flight
+ * (`WAITING-REVIEW-RUN-LIVE`) and a request never served is ended by the
+ * timeout arm, while an OBSERVED live session mapped to the PR still blocks
+ * settlement (`settlement.ts` roundInFlight); and `SETTLING-QUIET-WINDOW`,
+ * the ten-minute clock that stood in for a round boundary agents could not
+ * see, replaced by measured state on the owner's word (no expected reviewer
+ * requested, no live run observed).
  */
 
 function failedCheckNames(reading: PrStateReading): string[] {
@@ -47,7 +52,7 @@ const terminalRules: readonly VerdictRule[] = [
 
 const checksAndThreadsRules: readonly VerdictRule[] = [
   // A draft cannot merge via the sanctioned landing path whatever the legs
-  // say (the pr-throughput invariant) — typed refusal before any settlement
+  // say (the landing-path invariant) — typed refusal before any settlement
   // read; unlike review-gate BLOCKED (ratified landable), draftness is a
   // REAL merge blocker at the REST endpoint.
   (r) =>
@@ -115,11 +120,11 @@ const checksAndThreadsRules: readonly VerdictRule[] = [
 /**
  * Resolve the compound reading to its single verdict, most-blocking first:
  * terminal states, then conflict, then the armed/checks/threads ladder, then
- * the per-reviewer legs, the quiet window, and settlement.
+ * the per-reviewer legs and measured settlement.
  *
  * @param reading - the compound reading from the gh seam
- * @param nowIso - injected clock; the timeout and quiet-window legs are
- *   time-bound (SKILL items 3–4)
+ * @param nowIso - injected clock; only the checks-green timeout leg is
+ *   time-bound (SKILL item 3)
  */
 export function computePrVerdict(reading: PrStateReading, nowIso: string): PrVerdict {
   for (const rule of [...terminalRules, ...checksAndThreadsRules]) {

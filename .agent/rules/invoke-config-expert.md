@@ -1,3 +1,9 @@
+---
+classification: situational
+description: invoke config expert
+trigger: surface:next.config, postcss, tsconfig, package.json scripts
+---
+
 # Invoke Config Reviewer
 
 Invoke `config-reviewer` when changes touch build or runtime config, scripts, locks, env handling,

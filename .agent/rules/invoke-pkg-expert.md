@@ -1,3 +1,9 @@
+---
+classification: situational
+description: invoke pkg expert
+trigger: surface:package.json, pnpm-workspace.yaml, lockfile, dependency updates
+---
+
 # Invoke PKG Reviewer
 
 Invoke `pkg-reviewer` when changes touch entity models, `content/`, `lib/pkg`, JSON-LD emission,

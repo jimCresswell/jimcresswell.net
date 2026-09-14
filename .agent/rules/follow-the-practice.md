@@ -1,3 +1,8 @@
+---
+classification: core
+description: Follow the canonical Practice chain from AGENT.md
+---
+
 # Follow the Practice
 
 Enter through `.agent/directives/AGENT.md`, then follow the canonical chain it

@@ -1,3 +1,9 @@
+---
+classification: situational
+description: invoke test expert
+trigger: surface:test files, vitest and playwright config
+---
+
 # Invoke Test Reviewer
 
 Invoke `test-reviewer` when tests, test helpers, proof layers, harness config, or TDD discipline

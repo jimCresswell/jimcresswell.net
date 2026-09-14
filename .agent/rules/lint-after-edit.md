@@ -1,3 +1,9 @@
+---
+classification: situational
+description: Run check and required follow-up proofs after edits
+trigger: surface:source-authoring
+---
+
 # Lint After Edit
 
 Operationalises [`principles.md` §Code Quality](../directives/principles.md#code-quality).

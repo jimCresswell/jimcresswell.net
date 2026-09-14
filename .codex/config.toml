@@ -63,17 +63,21 @@ config_file = "agents/corpus-meta.toml"
 description = "No-tools clustering synthesist for the corpus-analysis reduce workflow stage. Dispatched exclusively via the Workflow agent() agentType option; never invoke for interactive delegation. Clusters the inlined leaf signals into mechanism-grained candidates and answers only through the schema-forced structured output call."
 config_file = "agents/corpus-reducer.toml"
 
+[agents."cricket-judgement-low"]
+description = "Fast low-effort conscience check using contextual judgement. Call directly for a second opinion, rubber duck, or design partnership when priority, proportion, or a wait/gate may be drifting; returns ON-TRACK, DRIFTING, or WRONG-PRIORITY with evidence and one redirection."
+config_file = "agents/cricket-judgement-low.toml"
+
+[agents."cricket-judgement-medium"]
+description = "Fast medium-effort conscience check using contextual judgement. Call directly for a second opinion, rubber duck, or design partnership when priority, proportion, or a wait/gate may be drifting; returns ON-TRACK, DRIFTING, or WRONG-PRIORITY with evidence and one redirection."
+config_file = "agents/cricket-judgement-medium.toml"
+
+[agents."cricket-procedure-xhigh"]
+description = "Fast xhigh-effort conscience check using a compiled decision procedure with quote-anchored evidence and a mechanical verdict table. Call directly for a reproducible second opinion when priority, proportion, or a wait/gate may be drifting; returns ON-TRACK, DRIFTING, or WRONG-PRIORITY with one redirection."
+config_file = "agents/cricket-procedure-xhigh.toml"
+
 [agents."corpus-voter"]
 description = "Single-turn no-tools adversary voter for the corpus-analysis validate workflow. Dispatched exclusively via the Workflow agent() agentType option; never invoke for interactive delegation. Judges one candidate against the four conjunctive apophenia tests from supplied grounding and answers only through the schema-forced structured output call."
 config_file = "agents/corpus-voter.toml"
-
-[agents."cricket-judgement"]
-description = "Use this role for a fast contextual-judgement second opinion when the primary needs to check whether its current work is still the right work. Direct calls are encouraged for rubber ducking, design partnership, uncertain priority or proportion, work that feels unusually fluent or obvious, and any wait or gate that may be invented."
-config_file = "agents/cricket-judgement.toml"
-
-[agents."cricket-procedure"]
-description = "Use this role for a fast, reproducible second opinion when the primary needs its current priority, proportion, or wait/gate audited by a compiled decision procedure rather than contextual judgement. Direct calls are encouraged when the decision needs quote-anchored evidence and a mechanically derived verdict."
-config_file = "agents/cricket-procedure.toml"
 
 [agents."design-system-expert"]
 description = "Design-system reviewer verifying tokens, spacing, and responsive rhythm."
