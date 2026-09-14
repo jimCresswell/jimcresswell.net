@@ -3,6 +3,7 @@ import { describe, expect, it } from 'vitest';
 import type { GhCommandExecutor } from './gh.js';
 import { readPrStateReading } from './state-gh.js';
 import {
+  commentsPayload,
   graphqlResponse,
   HEAD,
   threadsPayload,
@@ -44,7 +45,12 @@ function landingPayloads(): GraphqlPayloads {
   return {
     harvest: () => {
       landed = true;
-      const review = { author: { login: COPILOT }, state: 'COMMENTED', body: 'One finding.' };
+      const review = {
+        id: 'PRR_landing',
+        author: { login: COPILOT },
+        state: 'COMMENTED',
+        body: 'One finding.',
+      };
       const pullRequest = {
         reviews: { nodes: [{ ...review, submittedAt: 't1', commit: { oid: HEAD } }] },
         reviewRequests: { pageInfo: { hasNextPage: false }, nodes: [] },
@@ -56,12 +62,17 @@ function landingPayloads(): GraphqlPayloads {
       const reviewThreads = { totalCount: nodes.length, nodes };
       return JSON.stringify([{ data: { repository: { pullRequest: { reviewThreads } } } }]);
     },
+    comments: () => commentsPayload(),
   };
 }
 
 function executor(
   calls: string[][],
-  payloads: GraphqlPayloads = { harvest: harvestPayload, threads: () => threadsPayload(0) },
+  payloads: GraphqlPayloads = {
+    harvest: harvestPayload,
+    threads: () => threadsPayload(0),
+    comments: () => commentsPayload(),
+  },
 ): GhCommandExecutor {
   return (_file, args) => {
     calls.push([...args]);

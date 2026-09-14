@@ -182,7 +182,24 @@ request the configured Copilot leg is OWED until it binds the tip, and the
 bot obtains it with its own request (§Phase 1, §merge boundary). Suppressed findings are Copilot's own low-confidence
 bucket: the burden of proof is REPRODUCTION before cure — a non-reproducing
 finding gets a reasoned decline with the falsifier recorded, never a
-speculative cure or a silent skip. Two scope facts: the Copilot-review
+speculative cure or a silent skip. **They hold the merge** (the owner's card
+"block on any finding", item 78, 2026-09-14; the fourth measured-state
+clause, `SUPPRESSED-FINDINGS-OPEN` in `agent-tools/src/pr-watch/states.ts`):
+a tip-bound review body's suppressed count holds the bot's merge until each
+finding carries a lifting disposition line in the §Disposition format below,
+or a later review on a later tip carries none. The machine reads the
+sentence's verb here and nowhere else (`dispositionLifts` in
+`agent-tools/src/pr-watch/disposition-lines.ts`): `Cured in SHA:<sha>` and
+`Rejected` lift a finding (the rejection's rationale is the convention a
+reader checks; the machine reads the verb); `Routed to <home>` does not,
+because a routed finding is still a finding the owner asked to block on,
+while a rejection is a false positive the owner did not ask to block on
+forever. A line lifts only from a comment whose author is the repository
+owner or the pull request's author (the seat's dispositions are posted as
+the bot that authored the pull request); the signature is a text convention,
+so any other login's line is ignored. REVIEW: that joining of the ratified
+format and the card is the Director's reading for the owner; the one
+function is the place to change if the card reads the other way. Two scope facts: the Copilot-review
 ruleset does NOT bind `.design-sync/`, `.agent/plans/`, or
 `packages/design` doc paths (confirmed on PR #536's timeline — zero review
 fired), so absence there is configuration, not a skipped reviewer; and a
@@ -548,11 +565,15 @@ nothing else. `**Over-bar**`, `**In scope, over-bar**` and
 `**Below-bar, not over-bar**` and any span with other words read as no
 marker. The prong and the scope reading are stated where they apply; the
 count does not read them. After the marker comes the disposition
-sentence: `Cured in SHA:<sha>` (the `SHA:` prefix and seven to forty hex
-characters, bare or inside a code span), `Routed to <home>`, or
-`Rejected` with the rationale — the convention for a reader; the machine
-reads the marker only, so a disposition whose sentence lacks the verb is
-still counted. A reply on a review thread inherits the thread's head and
+sentence: `Cured in SHA:<sha>` (the `SHA:` prefix and seven to forty
+lowercase hex characters, bare or inside a code span), `Routed to <home>`, or
+`Rejected` with the rationale — the convention for a reader; the raised
+count reads the marker only, so a disposition whose sentence lacks the verb
+is still counted there. The suppressed-findings hold (§Copilot review policy
+above) is the one reader of the verb: on a body-only line the sentence is
+everything after the first ` — ` (space, em dash, space) following the item,
+so an item is never read as a sentence; a line with no separator carries no
+sentence and lifts nothing. A reply on a review thread inherits the thread's head and
 anchor from the harvest. A finding that lives only in a review body (a
 Copilot suppressed item, a Codex body item) has no thread, so its
 disposition is an issue comment carrying ONE LINE PER FINDING: the marker,
@@ -963,13 +984,18 @@ deliberately gone — triage binds from wave one. **The step-back trigger is
    door is `pnpm agent-tools merge-bot merge --pr <n> --expect <reviewer>`
    (MCP-508): it recomputes the LEG-DRIVEN settlement verdict itself,
    merges only on SETTLE-READY with the verdicted tip's sha pinned, and
-   refuses by verdict name — but it does NOT yet consume the tally or
-   disposition state, so the zero-undispositioned and cure-worthy-zero
-   legs above are the MERGING SEAT'S own recomputation at the boundary
-   until the tool learns them (named follow-up on PDR-140: pass
-   machine-readable disposition state into the verdict); a summary-only
-   review carrying an undispositioned body finding is exactly the case
-   the tool cannot see today — including SETTLED-NO-REVIEW, the timeout-settled round
+   refuses by verdict name. Since closure item 5a-vi (2026-09-14) it
+   consumes the body tally and the disposition lines too: a tip-bound
+   summary body declaring suppressed findings holds the round as
+   SUPPRESSED-FINDINGS-OPEN until each is lifted by a signed Cured or
+   Rejected line from a permitted author (`suppressed-hold.ts`), so the
+   tool refuses a marked count that no such line has lifted. That is a
+   floor, not the legs: the zero-undispositioned and cure-worthy-zero
+   legs above stay the MERGING SEAT'S own recomputation at the boundary,
+   because the tool reads the marker, the verb and the head binding and
+   never the rejection's rationale, the cure SHA's presence on the branch,
+   a thread resolved without a disposition, or prose findings a summary
+   carries with no `Suppressed comments (N)` marker — including SETTLED-NO-REVIEW, the timeout-settled round
    this SKILL's item 4 anchor describes, which is watch-endable but NEVER
    merge-eligible — EXCEPT for the class the owner ruled on 2026-09-03
    ("Change the merge policy instead"): a bot-authored pull request that

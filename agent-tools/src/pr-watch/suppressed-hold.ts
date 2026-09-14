@@ -1,0 +1,149 @@
+import { suppressedFindingsPhrase, tallyReviewBody } from './body-tally.js';
+import { dispositionLifts, parseDispositionLines } from './disposition-lines.js';
+import type { IssueComment } from './issue-comments.js';
+import { hasLanded, isSignedSelfReply, type HarvestedReview } from './reviewer-legs.js';
+
+/**
+ * The suppressed-findings hold: the fourth measured-state clause (closure item
+ * 5a-vi, the owner's card "block on any finding", item 78, 2026-09-14). The
+ * body tally (`body-tally.ts`) already measures what a vendor's summary review
+ * says it suppressed; this module turns the measurement into a hold. A
+ * tip-bound, landed review body that is not the seat's own signed reply (a
+ * permitted author and the signature, never the shape alone) declaring N suppressed
+ * findings holds the merge while fewer than N distinct findings of that review
+ * carry a lifting disposition line, and a body declaring a count the tally
+ * cannot bound (`body-tally.ts`, `null`) holds whatever the lines say, until a
+ * later review on a later tip: a line in a signed comment
+ * (`disposition-lines.ts`) whose author is the repository owner or the pull
+ * request's author (the seat's dispositions are posted as the bot that
+ * authored the pull request; any other login's line is ignored, because the
+ * signature is a text convention any commenter could write), bound to this
+ * head and this review, whose sentence is a cure with its SHA or a rejection
+ * (the rationale is the convention a reader checks; the machine reads the
+ * verb); a routing never lifts: only Cured and Rejected do, so a routed finding
+ * is written as a signed Rejected line naming its home (the owner's rule, card
+ * answer 2026-09-14). Because the hold binds the tip, a later review
+ * on a later tip carrying none lifts it too, and the cure for a finding is the
+ * cure for a thread: change, push, new review.
+ *
+ * @packageDocumentation
+ */
+
+/** What the hold reads from the compound reading. */
+export interface SuppressedHoldReading {
+  readonly url: string;
+  /** The pull request's author as `gh pr view` spells it (`app/<slug>` for an App). */
+  readonly author: string;
+  readonly headRefOid: string;
+  readonly reviews: readonly HarvestedReview[];
+  readonly issueComments: readonly IssueComment[];
+}
+
+/** One review holding the merge, with the count and how much of it is lifted. */
+export interface SuppressedHold {
+  readonly author: string;
+  readonly state: string;
+  readonly reviewId: string;
+  /** The tip the hold binds, as the disposition line names it. */
+  readonly headRefOid: string;
+  readonly verdict: string | null;
+  /** The declared count, or `null` for a count the instrument cannot bound (body-tally.ts). */
+  readonly suppressed: number | null;
+  readonly lifted: number;
+}
+
+// One key for the two spellings of a login: `gh pr view` names an App author
+// `app/<slug>` while GraphQL names the same App's comments and reviews by the
+// bare slug (both verified live on PRs #77 and #74, 2026-09-14); users are the
+// same login on both, compared case-insensitively. Only the prefix and the
+// case are normalised: a `[bot]` suffix (REST's spelling, which no leg here
+// reads) is part of the login, so `foo[bot]` is never the permitted `foo`.
+function loginKey(login: string): string {
+  return login.replace(/^app\//u, '').toLowerCase();
+}
+
+/**
+ * The logins whose disposition lines lift: the repository owner and the pull request's
+ * author. The deleted-account sentinel ('unknown', the reading's spelling of a null author
+ * on both `pr view` and the harvest) is never an identity, as the expected set never admits
+ * it; it is excluded after normalisation, so an author spelled `app/unknown` never yields it
+ * either (#79 round five).
+ */
+function liftingLogins(reading: SuppressedHoldReading): ReadonlySet<string> {
+  const owner = /^https:\/\/github\.com\/([^/]+)\//u.exec(reading.url)?.[1];
+  const logins = [reading.author, ...(owner === undefined ? [] : [owner])]
+    .map(loginKey)
+    .filter((login) => login !== 'unknown');
+  return new Set(logins);
+}
+
+/**
+ * The distinct items of a review lifted by permitted, signed disposition lines
+ * bound to this head. The key is the item alone, never the anchor with it: the
+ * item (an ordinal, a heading, a thread id) is unique within a review by the
+ * format's definition, and an anchor-qualified key would let one finding lift
+ * twice under two anchors.
+ */
+function liftedItems(reading: SuppressedHoldReading, reviewId: string): number {
+  const permitted = liftingLogins(reading);
+  const items = new Set<string>();
+  for (const comment of reading.issueComments) {
+    if (!permitted.has(loginKey(comment.author))) {
+      continue;
+    }
+    for (const line of parseDispositionLines(comment.body)) {
+      const boundHere = reading.headRefOid.startsWith(line.headSha) && line.reviewId === reviewId;
+      if (boundHere && dispositionLifts(line.sentence)) {
+        items.add(line.item);
+      }
+    }
+  }
+  return items.size;
+}
+
+/**
+ * A review that is the seat's own signed disposition reply, never a vendor's: its author is
+ * a permitted login (the pull request's author or the repository owner, compared as the
+ * lifting logins are) AND its body ends in the signature. The shape alone is not enough: a
+ * vendor or third-party body ending in a matching line would otherwise drop out of the hold
+ * (#79 round six).
+ */
+function isSelfReplyReview(reading: SuppressedHoldReading, review: HarvestedReview): boolean {
+  return liftingLogins(reading).has(loginKey(review.author)) && isSignedSelfReply(review.body);
+}
+
+/** The reviews holding the merge on this tip; none when nothing holds. */
+export function suppressedHolds(reading: SuppressedHoldReading): SuppressedHold[] {
+  return reading.reviews
+    .filter((review) => review.commitOid === reading.headRefOid)
+    .filter((review) => hasLanded(review) && !isSelfReplyReview(reading, review))
+    .map((review) => ({ review, tally: tallyReviewBody(review.body) }))
+    .filter(({ tally }) => tally.suppressed !== 0)
+    .map(({ review, tally }) => ({
+      author: review.author,
+      state: review.state,
+      reviewId: review.id,
+      headRefOid: reading.headRefOid,
+      verdict: tally.verdict,
+      suppressed: tally.suppressed,
+      lifted: liftedItems(reading, review.id),
+    }))
+    .filter((hold) => hold.suppressed === null || hold.lifted < hold.suppressed);
+}
+
+/** The count and the lift as the evidence states them; an unbounded count no line lifts. */
+function countClause(hold: SuppressedHold): string {
+  const permitted = `by a signed disposition line from the repository owner or the pull request's author (a cure with its SHA or a rejection lifts; a routing does not: owner card item 78, 2026-09-14)`;
+  if (hold.suppressed === null) {
+    return `${suppressedFindingsPhrase(null)}, a count the instrument cannot bound (the marker's digit run is past the safe-integer range), ${String(hold.lifted)} lifting line(s) counted ${permitted}, none lifts an unbounded count — a later review on a later tip carrying none lifts`;
+  }
+  return `${suppressedFindingsPhrase(hold.suppressed)}, ${String(hold.lifted)} lifted ${permitted}, ${String(hold.suppressed - hold.lifted)} remaining — cure and push, disposition the rest, or a later review on a later tip carrying none`;
+}
+
+/** One evidence line per holding review: the review and its id, the tip, the count, the lift and the shortfall. */
+export function suppressedHoldEvidence(holds: readonly SuppressedHold[]): string[] {
+  return holds.map((hold) => {
+    const verdict = hold.verdict === null ? 'no headline verdict' : `verdict "${hold.verdict}"`;
+    return `suppressed findings hold the merge: ${hold.author} (${hold.state}), review ${hold.reviewId} on head SHA:${hold.headRefOid.slice(0, 7)}, ${verdict}, ${countClause(hold)}`;
+  });
+}

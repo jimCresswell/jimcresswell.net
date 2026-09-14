@@ -1,4 +1,5 @@
 import type { CheckBucket, ChecksSummary } from './index.js';
+import type { IssueComment } from './issue-comments.js';
 import type { ReviewThreadsSummary } from './review-threads.js';
 import type { HarvestedReview } from './reviewer-legs.js';
 
@@ -54,6 +55,12 @@ export interface PrStateReading {
   readonly number: number;
   /** The PR's html URL — the repository-scoped identity runs are matched against. */
   readonly url: string;
+  /**
+   * The author login as `gh pr view` spells it (`app/<slug>` for an App): with
+   * the repository owner, one of the two logins whose disposition lines lift
+   * the suppressed-findings hold (`suppressed-hold.ts`).
+   */
+  readonly author: string;
   /** `OPEN` | `CLOSED` | `MERGED`. */
   readonly state: string;
   /** Draft PRs cannot merge via the sanctioned landing path — typed refusal. */
@@ -83,6 +90,11 @@ export interface PrStateReading {
   /** The FULL paginated review harvest — never the latestReviews pointer. */
   readonly reviews: readonly HarvestedReview[];
   readonly reviewRuns: ReviewRunsLeg;
+  /**
+   * The pull request's conversation comments, in full: where a body-only
+   * finding's signed disposition lives (`suppressed-hold.ts`).
+   */
+  readonly issueComments: readonly IssueComment[];
 }
 
 /** The closed verdict set. Adding a state is a reviewed contract change. */
@@ -94,6 +106,7 @@ export const PR_VERDICT_STATES = [
   'CHECKS-RUNNING',
   'CHECKS-RED',
   'THREADS-OPEN',
+  'SUPPRESSED-FINDINGS-OPEN',
   'BEHIND-BASE',
   'ARMED-BEHIND-RED',
   'QUOTA-SKIPPED',

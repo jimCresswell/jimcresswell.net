@@ -7,6 +7,7 @@
 export interface StateViewSeed {
   readonly number: number;
   readonly url: string;
+  readonly author: { readonly login: string };
   readonly state: string;
   readonly isDraft: boolean;
   readonly mergeable: string;
@@ -20,6 +21,7 @@ export function stateViewFixture(): StateViewSeed {
   return {
     number: 461,
     url: 'https://github.com/jimCresswell/jimcresswell.net/pull/461',
+    author: { login: 'app/jimbot-of-the-devonshire-jimbots' },
     state: 'OPEN',
     isDraft: false,
     mergeable: 'MERGEABLE',

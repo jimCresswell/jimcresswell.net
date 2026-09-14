@@ -1,5 +1,6 @@
 import { reviewerLegVerdict } from './settlement.js';
 import type { PrStateReading, PrVerdict } from './state-types.js';
+import { suppressedHoldEvidence, suppressedHolds } from './suppressed-hold.js';
 
 /**
  * The D1 verdict core for `agent-tools pr state`: resolve one compound
@@ -24,7 +25,10 @@ import type { PrStateReading, PrVerdict } from './state-types.js';
  * settlement (`settlement.ts` roundInFlight); and `SETTLING-QUIET-WINDOW`,
  * the ten-minute clock that stood in for a round boundary agents could not
  * see, replaced by measured state on the owner's word (no expected reviewer
- * requested, no live run observed).
+ * requested, no live run observed). One was added on 2026-09-14:
+ * `SUPPRESSED-FINDINGS-OPEN`, the fourth measured-state clause (closure item
+ * 5a-vi, the owner's card "block on any finding"): the body tally that was
+ * evidence beside a settled verdict now holds the round (`suppressed-hold.ts`).
  */
 
 function failedCheckNames(reading: PrStateReading): string[] {
@@ -94,15 +98,28 @@ const checksAndThreadsRules: readonly VerdictRule[] = [
           ],
         }
       : undefined,
+  // Open threads and suppressed body findings can hold together; the verdict
+  // is THREADS-OPEN and its evidence names both.
   (r) =>
     r.reviewThreads.unresolved > 0
       ? {
           state: 'THREADS-OPEN',
           evidence: [
             `${r.reviewThreads.unresolved}/${r.reviewThreads.total} review threads unresolved`,
+            ...suppressedHoldEvidence(suppressedHolds(r)),
           ],
         }
       : undefined,
+  // The fourth measured-state clause (5a-vi, the owner's card "block on any
+  // finding", item 78, 2026-09-14): a tip-bound review body's suppressed
+  // findings hold the merge until each is cured or reasonably rejected by a
+  // signed disposition line, or a later review on a later tip carries none.
+  (r) => {
+    const holds = suppressedHolds(r);
+    return holds.length > 0
+      ? { state: 'SUPPRESSED-FINDINGS-OPEN', evidence: suppressedHoldEvidence(holds) }
+      : undefined;
+  },
   // The founding BEHIND-stall class: a BEHIND base blocks the merge whatever
   // the legs say, and an armed intent behind it stalls silently. Never a
   // settled verdict here — fold/update the branch first.
