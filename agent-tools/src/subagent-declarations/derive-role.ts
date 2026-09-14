@@ -16,6 +16,7 @@ import {
   CLAUDE_DEFAULTS,
   claudeFieldsOf,
   CODEX_DEFAULTS,
+  fieldRefusal,
   PLATFORM_ORDER,
   pointerReconciliations,
   present,
@@ -94,6 +95,10 @@ export function deriveRole(name: string, set: AdapterSet): Result<Derived, strin
   const platforms = present(set);
   if (platforms.length === 0) {
     return err(`${name}: no adapter on any platform`);
+  }
+  const refusal = fieldRefusal(name, set);
+  if (refusal !== undefined) {
+    return err(refusal);
   }
   const ruling = rulingDescription(name, set);
   if (!ruling.ok) {

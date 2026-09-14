@@ -13,7 +13,7 @@ describe('parseSubagentDeclaration', () => {
   it('reads a role with platform deviations and a Gemini block of only declared fields', () => {
     const value = {
       description: 'Alpha reviews a.',
-      platforms: ['cursor', 'claude'],
+      platforms: ['cursor', 'claude', 'codex', 'gemini'],
       claude: { tools: 'inherit', color: 'purple', note: 'Review only.' },
       codex: { effort: 'low', pointerTail: ',\nthen stop.' },
       gemini: { kind: 'local', tools: ['read_file'], temperature: 0.2, max_turns: 5 },
@@ -40,11 +40,56 @@ describe('parseSubagentDeclaration', () => {
   });
 
   it('refuses a key outside the shape, naming the template and the path', () => {
-    const result = parseSubagentDeclaration('alpha', {
-      description: 'Alpha.',
-      claude: { colour: 'purple' },
+    expect(
+      parseSubagentDeclaration('alpha', { description: 'Alpha.', claude: { colour: 'purple' } }),
+    ).toStrictEqual({ ok: false, error: 'alpha: claude: Unrecognized key: "colour"' });
+    expect(
+      parseSubagentDeclaration('cricket', {
+        variants: [
+          { name: 'cricket-high', platforms: ['claude'], description: 'High.', tone: 'x' },
+        ],
+      }),
+    ).toStrictEqual({ ok: false, error: 'cricket: variants.0: Unrecognized key: "tone"' });
+  });
+
+  it('refuses a variant whose name is not the template name with a suffix', () => {
+    expect(
+      parseSubagentDeclaration('cricket', {
+        variants: [{ name: 'other-high', platforms: ['claude'], description: 'High.' }],
+      }),
+    ).toStrictEqual({
+      ok: false,
+      error:
+        'cricket: variants: "other-high" is not a variant of cricket (its name does not start with "cricket-")',
     });
-    expect(result.ok ? '' : result.error.startsWith('alpha: ')).toBe(true);
+  });
+
+  it('refuses a block for a platform the declaration does not list, and a platform listed twice', () => {
+    expect(
+      parseSubagentDeclaration('alpha', {
+        description: 'Alpha.',
+        platforms: ['cursor'],
+        claude: { color: 'red' },
+      }),
+    ).toStrictEqual({ ok: false, error: 'alpha: claude: a block for a platform not in platforms' });
+    expect(
+      parseSubagentDeclaration('alpha', { description: 'Alpha.', platforms: ['claude', 'claude'] }),
+    ).toStrictEqual({ ok: false, error: 'alpha: platforms: listed twice' });
+    expect(
+      parseSubagentDeclaration('cricket', {
+        variants: [
+          {
+            name: 'cricket-high',
+            platforms: ['claude'],
+            description: 'High.',
+            codex: { effort: 'low' },
+          },
+        ],
+      }),
+    ).toStrictEqual({
+      ok: false,
+      error: 'cricket: variants: cricket-high: codex: a block for a platform not in platforms',
+    });
   });
 
   it('refuses a block that is neither a role nor a fan-out, and one that is both', () => {

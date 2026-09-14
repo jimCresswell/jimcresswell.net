@@ -9,7 +9,10 @@
  * of its pointer paragraph (the sentence that names the template: wrapped or not, and
  * whatever follows the path inside that paragraph, verbatim), and the prose after that
  * paragraph (the "note"), so every byte an adapter body varies by is measured, and a
- * variant's platform-specific paragraph survives into its declaration as written.
+ * variant's platform-specific paragraph survives into its declaration as written. A field
+ * that is not a scalar, or a Codex head line that is not a `key = "value"` field, is a
+ * refusal: the readers never drop a value silently (the derivation then refuses any key it
+ * does not read, `derive-subagent-declaration.ts`).
  *
  * @packageDocumentation
  */
@@ -40,11 +43,17 @@ export interface AdapterSource {
 const POINTER_SENTENCE_START = 'Your first action MUST be to read and internalise';
 const CODEX_POINTER_START = 'Read and follow `';
 
-function toLine(value: unknown): string {
+/** A scalar or a list of scalars as one line; anything nested is refused. */
+function toLine(value: unknown): string | undefined {
   if (value === null) {
     return '';
   }
-  return Array.isArray(value) ? value.map(String).join(', ') : String(value);
+  if (Array.isArray(value)) {
+    return value.every((member) => typeof member !== 'object' || member === null)
+      ? value.map(String).join(', ')
+      : undefined;
+  }
+  return typeof value === 'object' ? undefined : String(value);
 }
 
 /** The frontmatter block's fields as strings, and the index of its closing fence. */
@@ -70,7 +79,11 @@ function readBlock(
   }
   const fields = new Map<string, string>();
   for (const [key, field] of value) {
-    fields.set(String(key), toLine(field));
+    const line = toLine(field);
+    if (line === undefined) {
+      return err(`${relativePath}: field "${String(key)}" is not a scalar`);
+    }
+    fields.set(String(key), line);
   }
   return ok({ fields, closing });
 }
@@ -124,8 +137,30 @@ export function readMarkdownAdapter(
   if (!rest.ok) {
     return rest;
   }
-  const title = body.find((entry) => entry.startsWith('# '))?.slice(2);
+  const title = body
+    .slice(0, pointerAt)
+    .find((entry) => entry.startsWith('# '))
+    ?.slice(2);
   return ok({ fields: block.value.fields, title, pointerWrapped, ...rest.value });
+}
+
+const CODEX_FIELD_LINE = /^([a-z_]+) = "([^"\n]*)"$/u;
+const CODEX_INSTRUCTIONS_OPEN = 'developer_instructions = """';
+
+/** The flat `key = "value"` fields above the instructions block; any other line refuses. */
+function readCodexFields(relativePath: string, head: string): Result<Map<string, string>, string> {
+  const fields = new Map<string, string>();
+  for (const line of head.split('\n')) {
+    if (line.trim() === '' || line.startsWith('#')) {
+      continue;
+    }
+    const match = CODEX_FIELD_LINE.exec(line);
+    if (match === null) {
+      return err(`${relativePath}: line "${line}" is not a key = "value" field`);
+    }
+    fields.set(match[1] ?? '', match[2] ?? '');
+  }
+  return ok(fields);
 }
 
 /** Read a Codex adapter: its flat fields and the pointer shape and note in its instructions. */
@@ -133,13 +168,19 @@ export function readCodexAdapter(
   relativePath: string,
   text: string,
 ): Result<AdapterSource, string> {
-  const fields = new Map<string, string>();
-  for (const match of text.matchAll(/^([a-z_]+) = "([^"\n]*)"$/gmu)) {
-    fields.set(match[1] ?? '', match[2] ?? '');
-  }
-  const instructions = /developer_instructions = """\n([\s\S]*?)\n"""/u.exec(text);
-  if (instructions === null) {
+  const open = text.indexOf(`${CODEX_INSTRUCTIONS_OPEN}\n`);
+  if (open === -1) {
     return err(`${relativePath}: no developer_instructions block`);
+  }
+  const fields = readCodexFields(relativePath, text.slice(0, open));
+  if (!fields.ok) {
+    return fields;
+  }
+  const instructions = /^([\s\S]*?)\n"""/u.exec(
+    text.slice(open + CODEX_INSTRUCTIONS_OPEN.length + 1),
+  );
+  if (instructions === null) {
+    return err(`${relativePath}: developer_instructions block never closes`);
   }
   const body = (instructions[1] ?? '').split('\n');
   const pointerAt = body.findIndex((entry) => entry.startsWith(CODEX_POINTER_START));
@@ -147,5 +188,7 @@ export function readCodexAdapter(
     return err(`${relativePath}: no template pointer line`);
   }
   const rest = bodyAfterPath(relativePath, body, pointerAt);
-  return rest.ok ? ok({ fields, title: undefined, pointerWrapped: false, ...rest.value }) : rest;
+  return rest.ok
+    ? ok({ fields: fields.value, title: undefined, pointerWrapped: false, ...rest.value })
+    : rest;
 }

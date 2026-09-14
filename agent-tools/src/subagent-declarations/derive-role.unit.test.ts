@@ -152,6 +152,61 @@ describe('deriveRole', () => {
     });
   });
 
+  it('refuses an adapter field the declaration does not carry, and an invariant field off its value', () => {
+    const set = standardSet();
+    expect(
+      deriveRole('alpha', {
+        ...set,
+        claude: source({ ...CLAUDE_STANDARD, maxTurns: '5' }, { note: STANDARD_CLOSINGS.claude }),
+      }),
+    ).toStrictEqual({
+      ok: false,
+      error: 'alpha: claude adapter field "maxTurns" is not one the declaration carries',
+    });
+    expect(
+      deriveRole('alpha', {
+        ...set,
+        codex: source(
+          { ...CODEX_STANDARD, sandbox_mode: 'workspace-write', approval_policy: 'never' },
+          { title: undefined, note: STANDARD_CLOSINGS.codex },
+        ),
+      }),
+    ).toStrictEqual({
+      ok: false,
+      error:
+        'alpha: codex adapter field "sandbox_mode" is "workspace-write", not the estate\'s "read-only"',
+    });
+  });
+
+  it('keeps the first carried description when no Claude adapter exists, reconciling the rest', () => {
+    const { cursor, codex } = standardSet();
+    const agreeing = deriveRole('alpha', { cursor, codex });
+    expect(agreeing.ok ? agreeing.value : agreeing.error).toStrictEqual({
+      declaration: {
+        kind: 'role',
+        name: 'alpha',
+        description: DESCRIPTION,
+        platforms: ['cursor', 'codex'],
+      },
+      reconciliations: [],
+    });
+    const differing = deriveRole('alpha', {
+      cursor,
+      codex: source(
+        { ...CODEX_STANDARD, description: 'Alpha, for Codex.' },
+        { title: undefined, note: STANDARD_CLOSINGS.codex },
+      ),
+    });
+    expect(differing.ok ? differing.value.reconciliations : differing.error).toStrictEqual([
+      {
+        adapter: 'alpha',
+        field: 'description',
+        kept: DESCRIPTION,
+        dropped: [{ platform: 'codex', value: 'Alpha, for Codex.' }],
+      },
+    ]);
+  });
+
   it('refuses a role with no adapter and one whose adapters carry no description', () => {
     expect(deriveRole('alpha', {})).toStrictEqual({
       ok: false,

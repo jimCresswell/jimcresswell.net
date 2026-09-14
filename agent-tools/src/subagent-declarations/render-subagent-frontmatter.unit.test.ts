@@ -95,8 +95,8 @@ describe('renderSubagentReconciliationReport', () => {
       ]),
     ).toBe(
       [
-        '| Adapter | Field | Kept (the Claude adapter) | Dropped (platform: value) |',
-        '| ------- | ----- | ------------------------- | ------------------------- |',
+        '| Adapter | Field | Kept (the ruling form) | Dropped (platform: value) |',
+        '| ------- | ----- | ---------------------- | ------------------------- |',
         String.raw`| alpha | description | Alpha \| reviews a. | cursor: Alpha, for Cursor.; codex: Alpha, for Codex. |`,
         '',
       ].join('\n'),

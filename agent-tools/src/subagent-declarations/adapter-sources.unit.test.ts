@@ -89,6 +89,20 @@ describe('readMarkdownAdapter', () => {
     expect(read.ok ? read.value.note : read.error).toBe('');
   });
 
+  it('refuses a field that is not a scalar, and reads only a title above the pointer', () => {
+    expect(
+      readMarkdownAdapter(
+        '.claude/agents/alpha.md',
+        '---\nname: alpha\nhooks:\n  PreToolUse: x\n---\n\nYour first action MUST be to read and internalise `.agent/sub-agents/templates/alpha.md`.\n',
+      ),
+    ).toStrictEqual({ ok: false, error: '.claude/agents/alpha.md: field "hooks" is not a scalar' });
+    const late = readMarkdownAdapter(
+      '.claude/agents/alpha.md',
+      '---\nname: alpha\n---\n\nYour first action MUST be to read and internalise `.agent/sub-agents/templates/alpha.md`.\n\n# Not the title\n',
+    );
+    expect(late.ok ? late.value.title : late.error).toBeUndefined();
+  });
+
   it('refuses an adapter with no block, an unclosed block, no pointer sentence, or a pointer with no path', () => {
     expect(readMarkdownAdapter('.claude/agents/alpha.md', '# Alpha\n')).toStrictEqual({
       ok: false,
@@ -135,10 +149,31 @@ describe('readCodexAdapter', () => {
     });
   });
 
-  it('refuses an adapter with no instructions block or no pointer line', () => {
+  it('refuses a head line that is not a key = "value" field, so no value is dropped', () => {
+    expect(
+      readCodexAdapter(
+        '.codex/agents/alpha.toml',
+        'name = "alpha"\nmax_turns = 5\n\ndeveloper_instructions = """\nRead and follow `.agent/sub-agents/templates/alpha.md`.\n"""\n',
+      ),
+    ).toStrictEqual({
+      ok: false,
+      error: '.codex/agents/alpha.toml: line "max_turns = 5" is not a key = "value" field',
+    });
+  });
+
+  it('refuses an adapter with no instructions block, an unclosed one, or no pointer line', () => {
     expect(readCodexAdapter('.codex/agents/alpha.toml', 'name = "alpha"\n')).toStrictEqual({
       ok: false,
       error: '.codex/agents/alpha.toml: no developer_instructions block',
+    });
+    expect(
+      readCodexAdapter(
+        '.codex/agents/alpha.toml',
+        'developer_instructions = """\nRead and follow `x`.\n',
+      ),
+    ).toStrictEqual({
+      ok: false,
+      error: '.codex/agents/alpha.toml: developer_instructions block never closes',
     });
     expect(
       readCodexAdapter(

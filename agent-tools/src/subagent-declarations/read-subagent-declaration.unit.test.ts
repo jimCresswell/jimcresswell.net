@@ -37,7 +37,8 @@ describe('readSubagentDeclaration', () => {
     });
     const notYaml = readSubagentDeclaration('alpha', '---\ndescription: a: b: c\n---\n');
     expect(notYaml.ok ? '' : notYaml.error.startsWith('alpha: frontmatter is not YAML')).toBe(true);
-    const offShape = readSubagentDeclaration('alpha', '---\nsummary: a\n---\n');
-    expect(offShape.ok ? '' : offShape.error.startsWith('alpha: ')).toBe(true);
+    expect(
+      readSubagentDeclaration('alpha', '---\ndescription: a\nsummary: b\n---\n'),
+    ).toStrictEqual({ ok: false, error: 'alpha: Unrecognized key: "summary"' });
   });
 });

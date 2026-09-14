@@ -98,11 +98,13 @@ const agreeingTree = new Map<string, string>([
 
 /**
  * An in-memory tree keyed by absolute POSIX path; `other` names the entries that are not
- * regular files; writes are recorded, never applied.
+ * regular files, `denied` the regular files whose read fails with EACCES; writes are
+ * recorded, never applied.
  */
 function fakeFs(
   files: ReadonlyMap<string, string>,
   other: ReadonlySet<string> = new Set(),
+  denied: ReadonlySet<string> = new Set(),
 ): SweepFs & { writes: Map<string, string> } {
   const writes = new Map<string, string>();
   return {
@@ -114,6 +116,9 @@ function fakeFs(
       return files.has(absolutePath) ? 'file' : 'absent';
     },
     readFile: async (absolutePath) => {
+      if (denied.has(absolutePath)) {
+        throw new Error('EACCES: permission denied');
+      }
       const content = files.get(absolutePath);
       if (content === undefined) {
         throw Object.assign(new Error(`ENOENT: ${absolutePath}`), { code: 'ENOENT' });
@@ -275,18 +280,12 @@ describe('sweepSubagentFrontmatter', () => {
     ]);
     expect(linked.writes.size).toBe(0);
 
-    const denied = fakeFs(agreeingTree);
-    const readFile = denied.readFile;
-    const unreadable: SweepFs = {
-      ...denied,
-      readFile: async (absolutePath) => {
-        if (absolutePath.endsWith('/templates/alpha.md')) {
-          throw new Error('EACCES: permission denied');
-        }
-        return readFile(absolutePath);
-      },
-    };
-    const deniedOutcome = await sweepSubagentFrontmatter(input(unreadable, true));
+    const denied = fakeFs(
+      agreeingTree,
+      new Set(),
+      new Set([`${REPO}/.agent/sub-agents/templates/alpha.md`]),
+    );
+    const deniedOutcome = await sweepSubagentFrontmatter(input(denied, true));
     expect(deniedOutcome.refused).toEqual([
       '.agent/sub-agents/templates/alpha.md: unreadable (EACCES: permission denied)',
     ]);

@@ -14,6 +14,7 @@ import type { AdapterSource } from './adapter-sources.js';
 import { block, withProse } from './declaration-fields.js';
 import {
   claudeFieldsOf,
+  fieldRefusal,
   pointerReconciliations,
   present,
   rulingTitle,
@@ -98,6 +99,10 @@ export function deriveVariant(variant: string, set: AdapterSet): Result<DerivedV
   const platforms = present(set);
   if (platforms.length === 0) {
     return err(`${variant}: no adapter on any platform`);
+  }
+  const refusal = fieldRefusal(variant, set);
+  if (refusal !== undefined) {
+    return err(refusal);
   }
   const description = set.claude?.fields.get('description') ?? set.codex?.fields.get('description');
   if (description === undefined) {

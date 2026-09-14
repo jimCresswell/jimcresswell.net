@@ -1,11 +1,13 @@
 /**
- * The body every standard role adapter carries on each hand-kept surface, measured across
- * the estate's adapters on 2026-09-14 (twenty-five Cursor, twenty-one Claude and
- * twenty-five Codex adapters carry exactly these closings): the canonical title is the
- * template name in title case, the pointer sentence names the template on one line and
- * ends with a stop, and the closing prose is one fixed paragraph pair per platform. The
- * sweep declares only what deviates from this body, and the generator (closure item 6,
- * 2b-ii) renders it, so the two agree on one definition.
+ * The two parts of the standard role-adapter body a declaration deviates from, measured
+ * across the estate's adapters on 2026-09-14: the canonical title (the template name in
+ * title case) and the closing prose (one fixed paragraph pair per platform; twenty-five
+ * Cursor, twenty-one Claude and twenty-five Codex adapters carry exactly these). The rest
+ * of the skeleton (the frontmatter key order and the `name` field, the platform's own
+ * pre-pointer line, the one-line pointer sentence ending in a stop, Cursor `readonly`,
+ * Codex `sandbox_mode`, `approval_policy` and the instructions block form, the registry
+ * entry shape) is constant across every adapter, is not declared, and is the generator's
+ * to hold (closure item 6, 2b-ii). The sweep declares only deviations from what is here.
  *
  * @packageDocumentation
  */

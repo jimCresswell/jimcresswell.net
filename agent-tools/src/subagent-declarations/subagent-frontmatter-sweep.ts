@@ -15,6 +15,7 @@ import { argv, stderr, stdout } from 'node:process';
 import { resolveRepoRoot } from '../core/repo-root.js';
 import { listTrackedFiles } from '../core/tracked-file-scan.js';
 
+import type { SourcePlatform } from './adapter-sources.js';
 import {
   renderSubagentFrontmatter,
   renderSubagentReconciliationReport,
@@ -34,6 +35,12 @@ function basenames(tracked: readonly string[], dir: string, extension: string): 
     .map((file) => file.slice(dir.length + 1, -extension.length));
 }
 
+/** The tracked adapter basenames on one platform's surface. */
+function adapterNamesOn(tracked: readonly string[], platform: SourcePlatform): string[] {
+  const surface = ADAPTER_SURFACES.find((candidate) => candidate.platform === platform);
+  return surface === undefined ? [] : basenames(tracked, surface.dir, surface.extension);
+}
+
 async function main(): Promise<number> {
   const args = argv.slice(2);
   if (args.some((arg) => arg !== '--write')) {
@@ -49,9 +56,9 @@ async function main(): Promise<number> {
     repoRoot,
     templateNames: basenames(tracked, TEMPLATES_DIR, '.md'),
     adapterNames: {
-      cursor: basenames(tracked, ADAPTER_SURFACES[0].dir, ADAPTER_SURFACES[0].extension),
-      claude: basenames(tracked, ADAPTER_SURFACES[1].dir, ADAPTER_SURFACES[1].extension),
-      codex: basenames(tracked, ADAPTER_SURFACES[2].dir, ADAPTER_SURFACES[2].extension),
+      cursor: adapterNamesOn(tracked, 'cursor'),
+      claude: adapterNamesOn(tracked, 'claude'),
+      codex: adapterNamesOn(tracked, 'codex'),
     },
     write: args.includes('--write'),
   });

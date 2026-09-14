@@ -56,8 +56,8 @@ export function prependSubagentFrontmatter(
 }
 
 const HEADER = [
-  '| Adapter | Field | Kept (the Claude adapter) | Dropped (platform: value) |',
-  '| ------- | ----- | ------------------------- | ------------------------- |',
+  '| Adapter | Field | Kept (the ruling form) | Dropped (platform: value) |',
+  '| ------- | ----- | ---------------------- | ------------------------- |',
 ];
 
 function cell(text: string): string {

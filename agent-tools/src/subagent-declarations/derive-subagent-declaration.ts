@@ -18,6 +18,12 @@
  * title case, and a pointer sentence wrapped over two lines. Both are formatting the
  * generator normalises; the report names each so the change is read before it lands.
  *
+ * Nothing is dropped silently: an adapter field the derivation does not read, or one of
+ * the estate's invariant fields (Cursor `readonly`, Codex `sandbox_mode` and
+ * `approval_policy`) carrying another value, refuses the derivation naming the adapter,
+ * the platform and the key, so a host whose adapters say more than this estate's is told
+ * before a declaration is minted without it.
+ *
  * @packageDocumentation
  */
 
@@ -51,6 +57,56 @@ export interface Derived {
 }
 
 export const PLATFORM_ORDER: readonly SourcePlatform[] = ['cursor', 'claude', 'codex'];
+
+/** The fields the derivation reads on each platform; any other key refuses. */
+const KNOWN_FIELDS: Readonly<Record<SourcePlatform, ReadonlySet<string>>> = {
+  cursor: new Set(['name', 'description', 'readonly']),
+  claude: new Set([
+    'name',
+    'description',
+    'tools',
+    'disallowedTools',
+    'permissionMode',
+    'color',
+    'model',
+    'effort',
+  ]),
+  codex: new Set([
+    'name',
+    'description',
+    'model',
+    'model_reasoning_effort',
+    'sandbox_mode',
+    'approval_policy',
+  ]),
+};
+
+/** The fields every adapter on a platform carries with one value; another value refuses. */
+const INVARIANT_FIELDS: Readonly<Record<SourcePlatform, ReadonlyMap<string, string>>> = {
+  cursor: new Map([['readonly', 'true']]),
+  claude: new Map(),
+  codex: new Map([
+    ['sandbox_mode', 'read-only'],
+    ['approval_policy', 'never'],
+  ]),
+};
+
+/** The first unknown key or off-invariant value across the set, as a refusal; none when clean. */
+export function fieldRefusal(adapter: string, set: AdapterSet): string | undefined {
+  for (const platform of present(set)) {
+    const fields = set[platform]?.fields ?? new Map<string, string>();
+    for (const [key, value] of fields) {
+      if (!KNOWN_FIELDS[platform].has(key)) {
+        return `${adapter}: ${platform} adapter field "${key}" is not one the declaration carries`;
+      }
+      const invariant = INVARIANT_FIELDS[platform].get(key);
+      if (invariant !== undefined && value !== invariant) {
+        return `${adapter}: ${platform} adapter field "${key}" is "${value}", not the estate's "${invariant}"`;
+      }
+    }
+  }
+  return undefined;
+}
 
 const CLAUDE_KEYS = [
   'tools',

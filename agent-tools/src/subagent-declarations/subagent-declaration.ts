@@ -6,8 +6,9 @@
  * `.codex/agents/<name>.toml` with its `.codex/config.toml` registration, and the Gemini
  * row `.gemini/agents/<name>.md`) are thin pointers back to it that carry the description
  * and each platform's fields. The declaration is the one source for every adapter: the
- * generator (closure item 6, 2b-ii) derives them, `pnpm portability:fix` writes them and
- * `pnpm portability:check` recomputes them; none is edited by hand (`compute-dont-hope`).
+ * generator (closure item 6, 2b-ii, the next slice) will render them under
+ * `pnpm portability:fix` and recompute them under `pnpm portability:check`, so that none is
+ * edited by hand (`compute-dont-hope`); until it lands the adapters stay hand-kept.
  *
  * Two shapes, never both: a ROLE declares one description and, only where a platform's
  * fields deviate from the estate's defaults, those fields; a FAN-OUT (the cricket templates)
@@ -122,7 +123,32 @@ const roleSchema = z
 
 const fanOutSchema = z.object({ variants: z.array(variantSchema).min(1) }).strict();
 
-const declarationSchema = z.union([roleSchema, fanOutSchema]);
+/** The platform blocks a role or a variant may carry, checked against its `platforms`. */
+const BLOCKS = ['cursor', 'claude', 'codex', 'gemini'] as const;
+
+/** A block for a platform the declaration does not list, or a platform listed twice. */
+function platformIssue(
+  declared: readonly SubagentPlatform[] | undefined,
+  blocks: Partial<Record<(typeof BLOCKS)[number], unknown>>,
+): string | undefined {
+  if (declared === undefined) {
+    return undefined;
+  }
+  if (new Set(declared).size !== declared.length) {
+    return 'platforms: listed twice';
+  }
+  const stray = BLOCKS.find((block) => blocks[block] !== undefined && !declared.includes(block));
+  return stray === undefined ? undefined : `${stray}: a block for a platform not in platforms`;
+}
+
+/** A variant whose name is not `<template>-<suffix>`, or whose blocks are off its platforms. */
+function variantIssue(name: string, variant: z.infer<typeof variantSchema>): string | undefined {
+  if (!variant.name.startsWith(`${name}-`)) {
+    return `variants: "${variant.name}" is not a variant of ${name} (its name does not start with "${name}-")`;
+  }
+  const issue = platformIssue(variant.platforms, variant);
+  return issue === undefined ? undefined : `variants: ${variant.name}: ${issue}`;
+}
 
 export type ClaudeFields = z.infer<typeof claudeFields>;
 export type CodexFields = z.infer<typeof codexFields>;
@@ -163,16 +189,37 @@ export function parseSubagentDeclaration(
   name: string,
   frontmatter: unknown,
 ): Result<SubagentDeclaration, string> {
-  const parsed = declarationSchema.safeParse(frontmatter);
+  // The shape is chosen by the presence of `variants` before parsing, so a refusal names
+  // the offending key's path instead of the union's pathless "invalid input".
+  const isFanOut =
+    typeof frontmatter === 'object' && frontmatter !== null && 'variants' in frontmatter;
+  const parsed = (isFanOut ? fanOutSchema : roleSchema).safeParse(frontmatter);
   if (!parsed.success) {
-    const issue = parsed.error.issues[0];
-    const where = issue?.path.join('.') ?? '';
-    return err(
-      `${name}: ${where === '' ? '' : `${where}: `}${issue?.message ?? 'invalid declaration'}`,
-    );
+    return err(`${name}: ${shapeRefusal(parsed.error)}`);
+  }
+  const issue = bindingIssue(name, parsed.data);
+  if (issue !== undefined) {
+    return err(`${name}: ${issue}`);
   }
   if ('variants' in parsed.data) {
     return ok({ kind: 'fan-out', name, variants: parsed.data.variants });
   }
   return ok({ kind: 'role', name, ...parsed.data });
+}
+
+/** The schema's first issue with its path, so the offending key is findable. */
+function shapeRefusal(error: z.ZodError): string {
+  const issue = error.issues[0];
+  const where = issue?.path.join('.') ?? '';
+  return `${where === '' ? '' : `${where}: `}${issue?.message ?? 'invalid declaration'}`;
+}
+
+/** The first binding the parsed shape breaks: a variant off its template, a block off its platforms. */
+function bindingIssue(
+  name: string,
+  data: z.infer<typeof fanOutSchema> | z.infer<typeof roleSchema>,
+): string | undefined {
+  return 'variants' in data
+    ? data.variants.map((variant) => variantIssue(name, variant)).find(Boolean)
+    : platformIssue(data.platforms, data);
 }
