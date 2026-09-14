@@ -953,6 +953,19 @@ ones the Director would put to the owner had the owner been present.
     disposition was ruled; item 80's "every other branch" hid the local records-8. Cured at
     `SHA: 2363bc9`, pushed 07:06Z. 2b-i opened as #77 (`SHA: a5efd78`) at 07:02Z by lane A;
     its chain armed. PDR-132 Director decision; lens 1.
+85. #76 round four granted (Copilot on `SHA: 2363bc9` at 07:14Z on 2026-09-14: two open, five
+    suppressed). The shape is the records loop again: each cure wrote fresh live state into
+    the boundary block (a round number, a new pull request) while the board and the open
+    pull request bullet on the same frozen branch kept the older snapshot. Cure at
+    `SHA: f54cc8a` (pushed 07:17Z): the boundary block names no round for any pull request
+    and reads the pull request list as authoritative; the board's remaining order is the
+    boundary block's; #77 is in the open bullet and the board cell; the sweep's paths are
+    absolute from the primary worktree; the recipe finds a survivor by process and stops one
+    armed without the supervisor pid (the assertion cannot see that). #74 round four asked
+    for the slot at `SHA: 9ca6ffb` with the code-expert's "ship" and grounds per thread;
+    granted after the records push landed; its chain waits for origin. #77 round one
+    (Copilot on `SHA: a5efd78`: three open, six suppressed; all nine block) routed to lane A
+    after the #74 push, within budget. PDR-132 Director decision on #76; lens 1.
 
 ## Routing log
 
