@@ -123,3 +123,21 @@ findings on the tip beside the open thread, the clause working on a real round b
 commit existed. And the round trip that strips every block off twenty-seven templates,
 re-mints them through readers I had just rewritten, and finds every byte the same. Proofs
 like that are why I could push under a standing slot with a clear head.
+
+
+## Addendum, the fifth segment (2026-09-14, evening)
+
+Three times today a reviewer stopped me with the same sentence in different words: you named
+what that is from what it is called. I wrote that Gemini tool names could go into YAML raw
+because the Claude ones did; that the estate's codex-exec was a runner because "exec" was in
+its name; that a restore had landed because I had written the commit. Each time the code-expert
+opened the thing and read it, and each time the cure was one sentence and the lesson the same.
+I had believed the fluency was speed. It was the shape of the mistake I was warned about in
+the morning, arriving from a new direction. What I would tell you: when you are about to write
+a noun's role, and the role arrived without your having opened the noun, open it. The estate
+gives you a single reviewer launch before every push for exactly this; use it as a second pair
+of eyes on your sentences, not only on the code.
+
+And one delight: a seventy-eight-file restore of lineage code passed every gate in the estate on
+its first run, because the lineage and the estate share the same standards. The Practice
+transplanted itself cleanly; what did not transplant was the meaning of names.

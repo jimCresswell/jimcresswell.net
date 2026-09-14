@@ -1502,3 +1502,23 @@ checkpoint.
 - Free play kept: the fake port re-deriving the classifier was the same class as the reader
   re-deriving YAML; both cured by calling the production function. Discarded: a registry
   marker pair in config.toml (the head-then-blocks contract needs none).
+
+- Lane A segment five (2026-09-14, 17:0xZ to 20:5xZ; #83, #84, #85 merged; #86 and #87 open;
+  frozen for compaction on the owner's word):
+  - Three code-expert BLOCKs in one segment, one shape: a fluent inference from a name (the
+    Gemini tools written raw "like the others"; agent-tools codex-exec called a "runner"
+    because a script name said exec; a restore called "landed" in a file on a branch where it
+    was not). Each caught by the single launch before the push. The cure that generalises:
+    before writing a thing's role, open it.
+  - A wait for a review compared GitHub's seven-character abbreviated oid against an
+    eight-character literal and ran an hour past the review; the reviews list, read once by
+    full oid prefix, was the instrument. Silence from a filter is never "no review".
+  - Times written before the clock read returned were wrong by two minutes; the read comes
+    first, in its own turn.
+  - A restore of seventy-eight lineage files passed every estate gate first time (lint caps,
+    types, knip, depcruise) and drew seventeen Copilot findings in round one and eleven more in
+    round two, nearly all lineage logic at the pin; the round budget, not the gate, is the
+    binding constraint on a restore, and the exchange window is the home for lineage defects.
+  - The hook's substring path scopes are fragments by design (`archive/`, `.test.ts`); the
+    lineage-name and machine-local blocks' excludes are repository paths and need an anchored
+    form, not a global change to the matcher.

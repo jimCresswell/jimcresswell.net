@@ -673,3 +673,130 @@ verify by `ps` against the supervisor pid, not by `assert-watcher-live` alone. C
 heartbeat: `collaboration-state claims heartbeat --claim-id f024e1f1-00c7-4c0d-be73-4a8371fe7d47 --now <iso> --active <repo>/.agent/state/collaboration/active-claims.json`.
 PR mutations as the bot: `scratchpad/gh-as-bot.sh <gh args>`. Follow-on lists in the
 scratchpad: `follow-on-2b.md`, `follow-on-5a-vi.md`; the slice plan `plan-2b-ii.md`.
+
+## Seventh waypoint (2026-09-14, 20:5xZ): item 6 closed, item 4's rows landed or open, frozen for compaction on the owner's word
+
+Owner word (20:5xZ): "prepare for compaction ... and then stop all processes". The freeze
+binds until the owner lifts it; nothing below is started before the lift. The Director wrapped
+at the same word (20:52Z) and granted this seat the push slot until "Director back" (its
+words, quoted under §The Director's standing grant).
+
+### State of the branches (verified by `git branch -vv` at writing)
+
+- `chore/corpus-analysis-restore` at 1e2efef4, equal to origin: item 4 row 3, PR #86, open.
+  Round one (7 threads, 10 suppressed) cured on the round-two push (ten cured with cells,
+  seven signed Rejected drafted, `scratchpad/signed-86.md`). Round two's review
+  PRR_kwDORH1Wfc8AAAABNhu37A on 1e2efef at 20:49Z: "Changes recommended", five threads, six
+  suppressed, none of round one's seven recurring. The Director's ruling (20:52Z, quoted
+  below) grants one more push under the correctness exception.
+- `chore/sif-routing` at 69051418, equal to origin: item 4 row 5, PR #87, open. Round two's
+  review PRR_kwDORH1Wfc8AAAABNhvBPg on 69051418 at 20:49Z: "Approval recommended", zero
+  threads, no suppressed block; nothing to post; the bot poll merges it.
+- Merged this segment: #83 (A2, 2b-ii) at aba2c0e; #84 (B, 2b-ii, the Gemini row) at b17fee8,
+  closure item 6 complete on main; #85 (item 4 row 6, the five patterns and the cited-paths
+  relative form) at eed1f2e. Every merged branch deleted locally and on origin.
+- `records/lane-a-checkpoint-4`: local by the Director's ruling, seven commits ahead of an
+  old main; this checkpoint is its eighth. Lands after the queue with a merge from main.
+- The worktree: lane A's linked worktree (`<repo>-worktrees/closure-lane-a` beside the
+  principal checkout), left on `chore/sif-routing`, tree clean.
+
+### The Director's standing grant (20:52Z, quoted; binds after the owner's lift only)
+
+"Standing grant: the push slot is yours until 'Director back', one gate on the host at a
+time, your own pre-push checks as the gate. You run the chains yourself under the bot token:
+thread replies and resolves, the disposition comment in the ratified format, the Copilot
+request under the owner's credential (`echo '{"reviewers":["copilot-pull-request-reviewer[bot]"]}'
+| gh api -X POST repos/jimCresswell/jimcresswell.net/pulls/N/requested_reviewers --input -`),
+and the bot poll (`pnpm --silent agent-tools merge-bot merge --pr N --expect
+copilot-pull-request-reviewer --interval 30 --max-polls 60 --json`), one at a time."
+
+The #86 ruling (quoted): "one more push under the correctness exception, because three threads
+are the same integration defect the restore introduced here (the three drivers call
+resolveRepoRoot without disabling CLAUDE_PROJECT_DIR ...; cure as the estate's established
+pattern does, one cell); ride on it the trivial ones (the claimed-home doc line; the two
+parseArgs catches in post-run-driver and salvage-driver; the missing provenance block on
+recall-named-kills.unit.test.ts). Signed Rejected to the exchange window, lineage logic
+beyond a restore's story: the map leaf window label (map.workflow.ts:71), the recall rule for
+killed or held candidates (post-run-driver.ts:163), the validate-set completeness at close
+(post-run-driver.ts:156), the salvage tripwire (salvage-driver.ts:139) ... After that push's
+review: signed lines only, then the poll, no further push." The sixth suppressed finding of
+that review was not read before the freeze (the print truncated at five); read it first.
+
+On #87: "when its round-two review lands, post lines for its own items if any, then poll" (it
+landed with none: poll only).
+
+### The queue after the lift (the Director's order)
+
+1. #86's exception push (above), its review, the signed lines, the poll. 2. #87's poll.
+3. The last lane-A closure pull request, planned and the plan accepted (the go, 20:5xZ):
+   5a-v (the body tally's heading capture non-whitespace at both ends), 5c-ii (a root-anchored
+   scope form in the shared matcher taken by the lineage-name and machine-local blocks' path
+   excludes; a smoke driving the lineage-names CLI; the two refusals carrying the relative path
+   and the error code only), the three card amendments as dated Amendment Log entries in
+   PDR-008's shape with the substance quoted from PR #63's body (the proposals the cards
+   presented; the cards' answers were "Adopt as PDR-082 amendment" and "Amend both by card"),
+   the rounds ruling as a second PDR-132 entry quoting the owner verbatim ("I don't want the
+   number of rounds of PRs to go up", 2026-09-14 15:15Z) then the applied rule as handoff item
+   100 states it, the item 92 sizing named as an operating default with no text change (fold
+   into one entry if #63's PDR-132 proposal is the same subject, and say so); row 8 re-dated
+   present. Branch off main after #86 and #87 merge. Nine claims, about eight files.
+4. The reader-retirement pull request, inside the closure (the Director's Cricket catch,
+   20:4xZ): the sweep and the hand-kept readers deleted, the second platform map, the
+   platform-contract module, and the six accepted defects it homes (the Claude zero-tools shape
+   and the corpus roles' envelope drift, the pointer-tail narrowing, the variant-naming-gemini
+   refusal, the template inventories, the stale comments); planned under PDR-132 at about eight
+   claims a slice, likely two. Then item 7 is the Director's.
+
+### Promises sweep
+
+- The seven re-keyed #86 lines: superseded (none of the seven recur in the round-two block);
+  the drafted rationales stay in `scratchpad/signed-86.md` for the exchange-window record.
+- The row 8 re-dating: forwarded into the last closure pull request (Director agreed).
+- The follow-on lists (`scratchpad/follow-on-2b.md`, `follow-on-item4.md`): the homes named
+  on each item; the reader-retirement pull request takes the 2b items it homes.
+- The #84 body's "twenty-three" measured edit: done. The three 2b-ii and the row 6 branches:
+  deleted both sides. No promise to the owner outstanding beyond the freeze itself.
+
+### Compressed reasoning, attribution inferences, blind spots
+
+- Compression judged sufficient: each pull request body carries its measured facts, mutants
+  and verdicts; the commit bodies carry the causes. The one reasoning chain not on a surface
+  (the codex-exec "runner" misread and its cure) is in #87's body and the letter addendum.
+- Inferences flagged: the pin `e477e62f7` is read from the lineage's local checkout (the oak
+  checkout beside this one; the 2026-09-13 napkin entry on reading a directory at a pin gives
+  the recipe) by literal-path git; that the checkout's object store still holds the pin at
+  the next session is assumed. The Copilot review times are read from the reviews list, not
+  observed. The Director's "Director back" phrase is the discharge word for its grant; the
+  owner's lift is a separate word.
+- Blind spots: the sixth suppressed finding on #86's round two, unread; the Director's
+  handoff item 100 and PR #63's body, not re-read this segment (the card wording is sourced
+  from them at authoring time). External bound: the three code-expert BLOCKs this segment
+  (tools written raw; a reader called a runner; a restore called landed) were all fluent
+  inferences caught by outside eyes; point external scrutiny at any sentence that names a
+  thing's role from its name.
+- Fence sweep: no owner wording was held off the repository at the owner's word this segment;
+  nothing to grep for.
+
+### Re-arm recipe (nothing survives compaction)
+
+Verify by the process table keyed on this session's supervisor pid (the Bash tool's
+`$PPID`), never by the heartbeat assertion; stop any watcher of this seat's platform and model
+without a supervisor pid. Then, from the worktree root, background:
+`node agent-tools/dist/src/bin/agent-tools.js collaboration-state -- comms watch --platform claude --model claude-fable-5-1 --supervisor-pid <pid> --step-timeout-ms 120000 --max-events-per-drain 100`
+(under `gtimeout 3600` as the Director runs it, re-armed on exit 124); then the assertion and
+one foreground sweep of the gap. PR mutations as the bot: `scratchpad/gh-as-bot.sh <gh args>`.
+The catch-up rule: after the lift, one native message to the Director before any local work.
+
+### Index of homes
+
+This record (the thread file on the records branch); the napkin (lessons, below); the letter
+under `.agent/experience/`; the pull request bodies and commit bodies on origin; the per-user
+memory index for this repository (`~/.claude/projects/<this repository's project directory>/memory/MEMORY.md`;
+two new entries this segment: the clock read before any time is written; review polls read
+the reviews list by full oid); the scratchpad (session-scoped, not durable: the scripts, the
+pin extraction, the drafted lines and bodies).
+
+### Fixed point
+
+A further pass would only re-find the unread sixth finding and the unverified pin checkout;
+both are named above. The recursion closes here.
