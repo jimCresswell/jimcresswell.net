@@ -38,7 +38,8 @@ napkins are archived only then.
   falsifiable prediction; duplicates are recorded in the PR body with the line that carries
   them; the readout moves in two proofs, 0 to 33 on filing and 33 to 28 after the five
   constitutional rows move to the slow lane (the accepted readout is 28 decision-debt blocks
-  beside five slow-lane rows); the napkins are archived only after the owner's cards.
+  beside five slow-lane rows); the napkins are archived only after two gates, the answered
+  fast-lane cards and the owner's privacy review of the three napkins.
 - **Next safe step:** §Next safe step at the end of this record.
 
 ## How this draft was made
