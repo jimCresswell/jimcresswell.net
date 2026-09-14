@@ -184,9 +184,9 @@ remove .agent-original before we merge 53"; "it should be processed then deleted
    **Landed 2026-09-13 as bounded (PR #57, `4a61112`):** rows 1, 2, 4, 7 and 9 read present;
    rows 3, 5, 6 and 8 read present in part, each naming its residue and the pull request it
    closes on (the corpus-analysis restore and the five absent patterns in lane C's first
-   follow-on, `sif`'s routing in its second; the Gemini per-role commands landed with the
-   generator's fourth platform, 2b-ii slice B); the item is complete when those rows read
-   present.
+   follow-on, `sif`'s routing in its second; the Gemini per-role adapters under
+   `.gemini/agents/` landed as the generator's fourth surface, 2b-ii slice B); the item is
+   complete when those rows read present.
    Method (owner word 2026-09-13, §Owner rulings 1; amended on the owner's word 2026-09-14):
    the Gemini projection is the fourth output of the sub-agent adapter generator (closure
    item 6, 2b-ii slice B), rendered from the same templates' declarations into

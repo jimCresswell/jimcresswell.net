@@ -111,7 +111,8 @@ function renderOn(surface: SubagentSurface, spec: AdapterSpec): Result<SubagentP
     return text.ok ? ok({ path, text: text.value }) : text;
   }
   if (platform === 'gemini') {
-    return ok({ path, text: renderGeminiAdapter(spec) });
+    const gemini = renderGeminiAdapter(path, spec);
+    return gemini.ok ? ok({ path, text: gemini.value }) : gemini;
   }
   return ok({ path, text: platform === 'cursor' ? renderCursor(spec) : renderClaude(spec) });
 }

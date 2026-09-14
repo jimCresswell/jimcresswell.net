@@ -3,8 +3,8 @@
  * a declaration's platforms must cover what `core/reviewer-adapter-platform-contract.ts`
  * (the health probe's contract, whose exception map the retirement pull request deletes
  * with this module) expects it on. A subset would pass this leg and leave the health probe
- * failing, and a Gemini-only declaration would render nothing and let `--fix` remove its
- * files. A superset (an exception-map variant also declaring a surface the map excludes)
+ * failing; a declaration naming gemini alone is short of the contract too, refused here
+ * before anything renders. A superset (an exception-map variant also declaring a surface the map excludes)
  * renders as declared: the declaration is the surviving source of truth, the extra adapter
  * is loud, and it is the probe's finding, not this leg's. Gemini is not bound here: it is
  * optional, generated only (#81 disposition turn and slice B, 2026-09-14).

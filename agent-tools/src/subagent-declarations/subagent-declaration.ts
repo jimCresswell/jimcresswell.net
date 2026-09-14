@@ -72,7 +72,10 @@ const cursorFields = z
  * only when declared and never defaulted here (the CLI's own defaults apply: `kind` local,
  * `model` inherit, `temperature` 1, `max_turns` 30, `timeout_mins` 10; an absent `tools`
  * inherits every tool of the parent session, and the reference says nothing of an explicit
- * empty list, which the schema admits as the declaration's own no-tool configuration).
+ * empty list, which the schema admits as the declaration's own no-tool configuration; the
+ * Gemini renderer refuses to render it while the adapter body is the pointer to the
+ * template, which a no-tools agent cannot read, so a no-tools role leaves gemini out of
+ * its platforms until an inlined-body form exists).
  * `kind` is `local` only: the remote kind routes to Agent-to-Agent delegation, which the
  * estate's body-is-the-pointer shape does not carry. `name` and
  * `description` come from the declaration itself; `mcpServers` (inline MCP servers scoped

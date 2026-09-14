@@ -1,5 +1,8 @@
 ---
 description: No-tools clustering synthesist for the corpus-analysis reduce workflow stage. Dispatched exclusively via the Workflow agent() agentType option; never invoke for interactive delegation. Clusters the inlined leaf signals into mechanism-grained candidates and answers only through the schema-forced structured output call.
+# No Gemini adapter: this estate's adapter body is the pointer to this template, which a
+# no-tools agent cannot read (2b-ii slice B, round two).
+platforms: [cursor, claude, codex]
 ---
 
 # Corpus Reducer: No-Tools Clustering Synthesist

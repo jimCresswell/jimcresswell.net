@@ -335,7 +335,7 @@ describe('renderSubagentAdapters', () => {
     });
   });
 
-  it("renders the declared Gemini fields in the reference's order (kind, tools as a block list or the empty list, model, temperature, max_turns, timeout_mins), a role without a tools list filling the read-only default, and no Gemini adapter for a role whose platforms leave it out", () => {
+  it("renders the declared Gemini fields in the reference's order (kind, tools as a block list, model, temperature, max_turns, timeout_mins), a role without a tools list filling the read-only default, and no Gemini adapter for a role whose platforms leave it out", () => {
     const declared: RoleDeclaration = {
       ...ALPHA,
       description: 'Alpha reviews a.',
@@ -363,10 +363,6 @@ describe('renderSubagentAdapters', () => {
         'timeout_mins: 5',
       ].join('\n'),
     );
-    const noTools: RoleDeclaration = { ...ALPHA, description: 'Alpha.', gemini: { tools: [] } };
-    expect(textsOf([noTools]).get('.gemini/agents/alpha.md')).toContain(
-      "description: 'Alpha.'\ntools: []\n---",
-    );
     // A wildcard or a model YAML would not read plain goes through the scalar rule.
     const wild: RoleDeclaration = {
       ...ALPHA,
@@ -382,6 +378,15 @@ describe('renderSubagentAdapters', () => {
       '.claude/agents/alpha.md',
       '.codex/agents/alpha.toml',
     ]);
+  });
+
+  it("refuses a Gemini adapter whose declared tools are the empty list, naming why: this estate's adapter body is the pointer to the template, which a no-tools agent cannot read", () => {
+    const noTools: RoleDeclaration = { ...ALPHA, gemini: { tools: [] } };
+    expect(renderSubagentAdapters([noTools])).toStrictEqual({
+      ok: false,
+      error:
+        ".gemini/agents/alpha.md: the declaration's Gemini tools are the empty list, and this estate's adapter body is the pointer to the template, which a no-tools agent cannot read; leave gemini out of the role's platforms, or wait for the inlined-body form; refusing to render it",
+    });
   });
 
   it('renders declarations in name order whatever order they arrive in', () => {

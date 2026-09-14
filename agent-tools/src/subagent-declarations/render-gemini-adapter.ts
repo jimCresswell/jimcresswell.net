@@ -14,10 +14,16 @@
  * scalar rule, so a wildcard such as `*` is written as YAML reads it. The body is the
  * estate's pointer skeleton with the Gemini pre-pointer line and closing
  * (`standard-adapter-body.ts`, measured from nothing since no hand-kept Gemini adapter ever
- * existed).
+ * existed). That body is why a declaration whose Gemini tools are the empty list (the
+ * vendor's meaningful no-tool form, which the schema keeps) refuses to render here: a
+ * no-tools agent cannot read the template the body points to, so a no-tools role leaves
+ * gemini out of its platforms until an inlined-body form exists (#84 round two,
+ * 2026-09-14).
  *
  * @packageDocumentation
  */
+
+import { err, ok, type Result } from '@engraph/result';
 
 import { pointerLine, type AdapterSpec } from './adapter-spec.js';
 import { STANDARD_CLOSINGS, STANDARD_PRE_POINTER } from './standard-adapter-body.js';
@@ -44,11 +50,9 @@ const GEMINI_KEY_ORDER = [
   'timeout_mins',
 ] as const;
 
-/** A list as the frontmatter carries it: a block sequence, or the explicit empty list. */
+/** A list as the frontmatter carries it: a block sequence (the empty list never reaches here). */
 function listLines(key: string, tools: readonly string[]): string[] {
-  return tools.length === 0
-    ? [`${key}: []`]
-    : [`${key}:`, ...tools.map((tool) => `  - ${yamlScalar(tool)}`)];
+  return [`${key}:`, ...tools.map((tool) => `  - ${yamlScalar(tool)}`)];
 }
 
 /** One field as its frontmatter lines; `model` through the scalar rule, the rest as the schema admits them. */
@@ -72,12 +76,18 @@ function geminiFieldsOf(spec: AdapterSpec): GeminiFields {
 }
 
 /**
- * The Gemini adapter text for a spec.
+ * The Gemini adapter text for a spec, or the refusal for a no-tools declaration.
  *
+ * @param path - The adapter's repo-relative path, for the refusal.
  * @param spec - The role or variant, with its declared Gemini fields.
  */
-export function renderGeminiAdapter(spec: AdapterSpec): string {
+export function renderGeminiAdapter(path: string, spec: AdapterSpec): Result<string, string> {
   const gemini = geminiFieldsOf(spec);
+  if (gemini.tools !== undefined && gemini.tools.length === 0) {
+    return err(
+      `${path}: the declaration's Gemini tools are the empty list, and this estate's adapter body is the pointer to the template, which a no-tools agent cannot read; leave gemini out of the role's platforms, or wait for the inlined-body form; refusing to render it`,
+    );
+  }
   const head = [
     '---',
     `name: ${spec.name}`,
@@ -86,5 +96,5 @@ export function renderGeminiAdapter(spec: AdapterSpec): string {
     '---',
   ];
   const body = `\n# ${spec.title}\n\n${STANDARD_PRE_POINTER.gemini}\n\n${pointerLine('gemini', spec, undefined)}\n\n${STANDARD_CLOSINGS.gemini}\n`;
-  return `${head.join('\n')}\n${body}`;
+  return ok(`${head.join('\n')}\n${body}`);
 }

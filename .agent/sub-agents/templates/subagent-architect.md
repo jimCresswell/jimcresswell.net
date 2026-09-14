@@ -166,14 +166,15 @@ prior versions of this file): hand-maintained copies drift as specialists
 are added, and an overlap check against a stale roster approves duplicate
 scope.
 
-In this repository the roster is reached through four entry points that must name the same
-set: `CLAUDE.md` and `.claude/agents/` for Claude Code, `AGENTS.md`, `.codex/config.toml` and
-`.codex/agents/` for Codex, `.cursor/agents/` for Cursor, `.gemini/agents/` for the Gemini
-CLI, and `.github/copilot-instructions.md` for Copilot; each reviewer has an `invoke-<name>` rule in `.agent/rules/` that names it, and the
-sub-agent adapters are generated from the templates (a generator this estate is landing as an
-`agent-tools` bin; until then, `pnpm subagents:check` is the proof that a hand-written adapter
-matches). A roster change is complete only when every entry point, the registry, the rule and
-the adapters agree, and the change is best landed one domain at a time.
+In this repository the roster is reached through five entry points that must name the same
+set, less any platform a role's declaration leaves out: `CLAUDE.md` and `.claude/agents/` for
+Claude Code, `AGENTS.md`, `.codex/config.toml` and `.codex/agents/` for Codex,
+`.cursor/agents/` for Cursor, `.gemini/agents/` for the Gemini CLI, and
+`.github/copilot-instructions.md` for Copilot; each reviewer has an `invoke-<name>` rule in
+`.agent/rules/` that names it, and the sub-agent adapters are generated from the templates'
+declarations (`pnpm portability:fix` writes them and `pnpm portability:check` recomputes them,
+which is the proof). A roster change is complete only when every entry point, the registry,
+the rule and the adapters agree, and the change is best landed one domain at a time.
 
 ## Quality Criteria for Subagents
 
