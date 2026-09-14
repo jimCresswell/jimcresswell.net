@@ -11,9 +11,11 @@ wraps 3 to 7, lane C, lane A, the Director's two sections); the candidates
 go to the owner as one batch of cards in the morning; nothing graduates without the answers; the
 napkins are archived only after the owner's answers to the cards (the controlling plan's item 8,
 as written) and the owner's privacy review of the three napkins. The five slow-lane rows are
-presented on the cards and, under PDR-130 as written, decided at their review date
-(2026-12-13) by `promote` or `kill-with-reasoning`; the card's answer for such a row is the
-owner's word on its presentation, and any earlier decision is the owner's word on PDR-130.
+presented on the cards and, under PDR-130 as written (its review date is the gate; promotion
+happens at review), decided at their review date (2026-12-13) by `promote` or
+`kill-with-reasoning`; the card's answer for such a row is the owner's word on its presentation.
+An earlier decision is not PDR-130's: it is recorded, if the owner makes one, on the register's
+slow-lane row as the owner's ruling on that row.
 
 ## Participating agent identities
 
