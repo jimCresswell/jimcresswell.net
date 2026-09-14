@@ -906,6 +906,17 @@ ones the Director would put to the owner had the owner been present.
     pushed. Lane A released #74 at `SHA: eafe7a6`; its chain replied to and resolved the three
     threads and re-requested Copilot. Lens 1; the heartbeat-exclusion drop is REVIEW (a
     Director reading of the rule at n=2).
+83. #74 round four granted (Copilot on `SHA: eafe7a6` at 06:57Z on 2026-09-14: four open
+    threads, four suppressed; all eight block under item 78's ruling). Grounds: the first
+    finding is a regression (the retained frontmatter-sweep reader parses scalars only, so the
+    generated `paths` sequence makes a rerun refuse every scoped rule); the other three are
+    the no-follow contract 2a promises (the new reader without the fd-anchored helper's
+    identity check, the ancestor chain unrevalidated at the read boundary, the skills walk
+    probing canonical files through a following `exists`); the suppressed four are three
+    contract sentences that overstate stale-entry removal and the `listSubdirs` empty-tree
+    mapping already on the 2a follow-on list. Order for lane A: 2b-i's push and pull request
+    first (ready; its review runs during the cure), then the round. PDR-132 Director decision;
+    lens 1.
 
 ## Routing log
 
