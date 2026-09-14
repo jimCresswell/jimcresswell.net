@@ -4,6 +4,7 @@ import { extractBashCommand } from './blocked-patterns.js';
 import type { PolicyRoute, PolicyRouteContext } from './dispatcher.js';
 import { evaluateBashCommand, evaluateContentChanges, type PolicyDecision } from './evaluate.js';
 import { extractContentChanges, resolveContentPair } from './hook-input.js';
+import { REPO_ROOT } from './policy-loader.js';
 import { unwrapPolicySection } from './policy-snapshot.js';
 import type { ScopedContentBlockGroup } from './types.js';
 
@@ -129,7 +130,8 @@ async function evaluateContentRoute(context: PolicyRouteContext): Promise<Policy
     return { newContent, priorContent, filePath: change.filePath };
   });
   const { patterns, blocks } = await resolveContentSections(context);
-  return evaluateContentChanges(changes, patterns, blocks);
+  // The hook's file paths are absolute; the repo root anchors the blocks' root-anchored scopes.
+  return evaluateContentChanges(changes, patterns, blocks, REPO_ROOT);
 }
 
 /** The Bash blocked-pattern route, covering all four recorded command containers. */

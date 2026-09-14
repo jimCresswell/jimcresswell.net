@@ -8,7 +8,9 @@ import {
   copilotCompatStringRoute,
 } from './claude-adapter.js';
 import type { PolicyRouteContext } from './dispatcher.js';
+import { REPO_ROOT } from './policy-loader.js';
 import type { PolicySnapshot } from './policy-snapshot.js';
+import type { ScopedContentBlockGroup } from './types.js';
 
 /** Names of the production routes whose match predicate accepts the payload. */
 function matchedRouteNames(hookInput: unknown): readonly string[] {
@@ -151,6 +153,27 @@ describe('content route evaluation', () => {
       kind: 'deny-content-pattern',
       pattern: 'secret-marker',
     });
+  });
+
+  it('anchors a root-anchored exclude at the policy repo root for an absolute Write path', async () => {
+    const group: ScopedContentBlockGroup = {
+      concept: 'anchored-exemption',
+      patterns: ['anchored-marker'],
+      include_paths: [''],
+      exclude_paths: ['./docs/exempt/'],
+      citation: 'path-scope root-anchored form',
+    };
+    const write = (filePath: string) =>
+      contextFor(
+        { tool_input: { file_path: filePath, content: 'adds anchored-marker' } },
+        { contentPatterns: [], scopedBlocks: [group] },
+      );
+
+    await expect(
+      claudeContentRoute.evaluate(write(`${REPO_ROOT}/docs/exempt/x.md`)),
+    ).resolves.toStrictEqual({ kind: 'allow' });
+    const nested = await claudeContentRoute.evaluate(write(`${REPO_ROOT}/nested/docs/exempt/x.md`));
+    expect(nested.kind).toBe('deny-scoped-block');
   });
 
   it('resolves Write prior content through the injected reader', async () => {

@@ -57,6 +57,7 @@ export function evaluateContentChanges(
   changes: readonly ResolvedContentChange[],
   contentPatterns: readonly string[],
   scopedBlocks: readonly ScopedContentBlockGroup[],
+  repoRoot?: string,
 ): PolicyDecision {
   for (const { newContent, priorContent, filePath } of changes) {
     const pattern = findAddedBlockedContent(newContent, priorContent, contentPatterns);
@@ -64,7 +65,7 @@ export function evaluateContentChanges(
       return { kind: 'deny-content-pattern', pattern };
     }
 
-    const match = findAddedScopedBlock(newContent, priorContent, filePath, scopedBlocks);
+    const match = findAddedScopedBlock(newContent, priorContent, filePath, scopedBlocks, repoRoot);
     if (match !== null) {
       return { kind: 'deny-scoped-block', match };
     }

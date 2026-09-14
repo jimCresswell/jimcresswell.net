@@ -27,7 +27,11 @@
 
 import { resolveRepoRoot } from '../../core/repo-root.js';
 import { writeErrorLine, writeLine } from '../../core/terminal-output.js';
-import { listTrackedFiles, readScanFiles } from '../../core/tracked-file-scan.js';
+import {
+  describeUnreadable,
+  listTrackedFiles,
+  readScanFiles,
+} from '../../core/tracked-file-scan.js';
 import { loadScopedContentBlocks } from '../../hook-policy/policy-loader.js';
 import { type ScopedContentBlockGroup } from '../../hook-policy/types.js';
 
@@ -110,10 +114,7 @@ async function main(): Promise<number> {
   const { block, needles } = resolved;
   const scan = readScanFiles(repoRoot, listTrackedFiles(repoRoot));
   if (!scan.ok) {
-    return refuse(
-      `cannot read tracked file '${scan.error.relativePath}' — fix the file or its permissions; ` +
-        `the scan must not skip a tracked file (${String(scan.error.cause)})`,
-    );
+    return refuse(describeUnreadable(scan.error));
   }
   const files = scan.value;
   const hits = scanForLineageNames(files, block, needles);

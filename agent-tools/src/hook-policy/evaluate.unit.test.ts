@@ -97,6 +97,27 @@ describe('evaluateContentChanges', () => {
     }
   });
 
+  it('reads a root-anchored exclude against an absolute path through the repo root', () => {
+    const anchored: ScopedContentBlockGroup = {
+      ...SCOPED_GROUP,
+      include_paths: [''],
+      exclude_paths: ['./docs/exempt/'],
+    };
+    const change = (filePath: string) => [
+      { newContent: 'section removed for brevity here', priorContent: '', filePath },
+    ];
+    expect(
+      evaluateContentChanges(change('/repo/docs/exempt/x.md'), [], [anchored], '/repo'),
+    ).toEqual({ kind: 'allow' });
+    expect(
+      evaluateContentChanges(change('/repo/nested/docs/exempt/x.md'), [], [anchored], '/repo').kind,
+    ).toBe('deny-scoped-block');
+    // Without the root, an absolute path cannot claim a root-anchored exemption.
+    expect(evaluateContentChanges(change('/repo/docs/exempt/x.md'), [], [anchored]).kind).toBe(
+      'deny-scoped-block',
+    );
+  });
+
   it('returns allow when the scoped group path scope excludes the change', () => {
     const decision = evaluateContentChanges(
       [

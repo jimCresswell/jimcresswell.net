@@ -376,20 +376,20 @@
           "patterns": ["oaknational", "oak-open-curriculum-ecosystem"],
           "include_paths": [""],
           "exclude_paths": [
-            ".agent/practice-core/provenance.yml",
-            ".agent/practice-core/CHANGELOG.md",
-            ".agent/memory/",
-            ".agent/reports/",
-            ".agent/plans/",
-            ".agent/plans-legacy-2026-09/",
-            ".agent/collaboration/",
-            ".agent/experience/",
-            ".agent/state/",
-            "docs/explorations/",
-            "jcdotnet/content/",
-            "jcdotnet/archive/",
-            "jcdotnet/__snapshots__/cv-content-pre-migration.json",
-            ".agent/hooks/policy.json"
+            "./.agent/practice-core/provenance.yml",
+            "./.agent/practice-core/CHANGELOG.md",
+            "./.agent/memory/",
+            "./.agent/reports/",
+            "./.agent/plans/",
+            "./.agent/plans-legacy-2026-09/",
+            "./.agent/collaboration/",
+            "./.agent/experience/",
+            "./.agent/state/",
+            "./docs/explorations/",
+            "./jcdotnet/content/",
+            "./jcdotnet/archive/",
+            "./jcdotnet/__snapshots__/cv-content-pre-migration.json",
+            "./.agent/hooks/policy.json"
           ],
           "citation": "practice-completion plan §Transplant closure item 5 (lineage residue off the live surfaces); .agent/practice-core/provenance.yml (the chain names the lineage)",
           "reappraisal": "The lineage the Practice was transplanted from is named only in the records that tell that story (provenance, changelog, memory, reports, plans, the transplant exploration) and in the site's content directory (jcdotnet/content/, the CV and the entity graph: the owner's work history, where the lineage's organisation and its repository are facts about work the owner did there, and the plan of record excludes CV content by scope; the pre-migration CV snapshot under jcdotnet/__snapshots__/ is the immutable evidence the tilt-retirement plan names, kept byte-identical on the Director's ruling pending the owner's card). On a live surface (a fixture, a manifest, a reference link, a comment) name this estate instead: the organisation is jimCresswell, the repository jimcresswell.net."
@@ -409,7 +409,7 @@
           "include_paths": [""],
           "exclude_paths": [
             "important-state-not-in-temp-files.md",
-            "hooks/policy.json",
+            "./.agent/hooks/policy.json",
             "validate-no-machine-local-paths"
           ],
           "citation": "principles.md §No machine-local paths; .agent/directives/privacy.md §Machine-local paths; no PII (a user-home absolute path leaks a username)",

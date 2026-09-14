@@ -95,4 +95,13 @@ describe('tallyReviewBody', () => {
     // A bell, an escape and a zero-width space: nothing a terminal would show.
     expect(tallyReviewBody('### \u{07}\u{1B}\u{200B}\n### Looks good').verdict).toBe('Looks good');
   });
+
+  it('a heading that is only whitespace, or only an emoji, is no verdict (the #72 body finding)', () => {
+    // Spaces and a tab after the marker, with and without a leading emoji: the
+    // capture must begin and end on a non-whitespace character, and the emoji
+    // alone is not a verdict.
+    expect(tallyReviewBody('###    \t\n### Looks good').verdict).toBe('Looks good');
+    expect(tallyReviewBody('### 🟡 \t \n### Looks good').verdict).toBe('Looks good');
+    expect(tallyReviewBody('### 🟡\n### Looks good').verdict).toBe('Looks good');
+  });
 });

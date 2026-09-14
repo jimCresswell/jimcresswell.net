@@ -34,14 +34,21 @@ export interface BodyTally {
 // the marker tallies no verdict (the #67 body finding, 2026-09-14).
 // Horizontal whitespace only: under the `m` flag `\s` matches a line feed, so a
 // heading emptied by the strip would hand the NEXT line over as its verdict.
-const HEADINGS = /^###[ \t]+(?:\p{Extended_Pictographic}\u{FE0F}?[ \t]+)?(.+?)[ \t]*$/gmu;
+// The capture begins and ends on a non-whitespace character, so a heading that
+// is only whitespace after the marker is no verdict (the #72 body finding: a
+// lazy `.+?` handed a lone space or tab over as the verdict); the leading
+// pictographic token is stripped from the capture afterwards, so a heading
+// that is only an emoji is no verdict either.
+const HEADINGS = /^###[ \t]+(\S(?:.*?\S)?)[ \t]*$/gmu;
+const LEADING_PICTOGRAPH = /^\p{Extended_Pictographic}\u{FE0F}?(?:[ \t]+|$)/u;
 const SUPPRESSED = /^###[ \t]+Suppressed comments \((\d+)\)[ \t]*$/mu;
 const SUPPRESSED_MARKER = /^Suppressed comments \(/u;
 
 function headlineVerdict(body: string): string | null {
   for (const heading of body.matchAll(HEADINGS)) {
-    const text = heading[1] ?? '';
-    // A heading that was only control or format characters is no verdict.
+    const text = (heading[1] ?? '').replace(LEADING_PICTOGRAPH, '');
+    // A heading that was only control or format characters, or only an emoji,
+    // is no verdict.
     if (text !== '' && !SUPPRESSED_MARKER.test(text)) {
       return text;
     }

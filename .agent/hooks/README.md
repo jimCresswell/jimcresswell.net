@@ -152,7 +152,12 @@ policy decision taken entry by entry.
   ```
 
   `kind` and the `excludes_*` options are group-level — every pattern in a group
-  shares them.
+  shares them. A path-scope entry takes one of three forms: a substring of the
+  file path (`archive/`), a `**/*` suffix (`**/*.plan.md`), or a root-anchored
+  path led by `./` (`./.agent/memory/`), which matches from the repository root
+  only, so a nested copy of an exempt path cannot claim its exemption; the
+  whole-tree gates that reuse the scoping (lineage names, machine-local paths)
+  read the same forms.
 
 **The deny message carries the reappraisal.** When a group fires, the message
 names the concept the matched text is a fingerprint of, states the `reappraisal`

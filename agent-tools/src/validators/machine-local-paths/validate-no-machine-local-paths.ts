@@ -23,7 +23,11 @@
 
 import { resolveRepoRoot } from '../../core/repo-root.js';
 import { writeErrorLine, writeLine } from '../../core/terminal-output.js';
-import { listTrackedFiles, readScanFiles } from '../../core/tracked-file-scan.js';
+import {
+  describeUnreadable,
+  listTrackedFiles,
+  readScanFiles,
+} from '../../core/tracked-file-scan.js';
 import { loadScopedContentBlocks } from '../../hook-policy/policy-loader.js';
 
 import {
@@ -46,11 +50,7 @@ if (!scan.ok) {
   // Fail loud: a tracked file the validator cannot read could hide a
   // machine-local path, so silently skipping it would be a green-gate
   // bypass. Refuse the scan instead of continuing.
-  writeErrorLine(
-    `validate-no-machine-local-paths: cannot read tracked file '${scan.error.relativePath}' — ` +
-      `fix the file or its permissions; the scan must not skip a tracked file ` +
-      `(${String(scan.error.cause)})`,
-  );
+  writeErrorLine(`validate-no-machine-local-paths: ${describeUnreadable(scan.error)}`);
   process.exit(2);
 }
 
