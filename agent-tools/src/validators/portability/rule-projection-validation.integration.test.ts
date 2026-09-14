@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import type { DirectoryListing } from './portability-fs.js';
+import type { DirectoryListing, EntryRead } from './directory-listing.js';
 import { validateRuleProjections, type RuleProjectionFs } from './rule-projection-validation.js';
 
 const CORE_RULE = '---\nclassification: core\ndescription: Alpha does a.\n---\n\n# Alpha\n';
@@ -19,11 +19,13 @@ const SCOPED_RULE = [
 
 /**
  * An in-memory repository keyed by repo-relative path; every write and removal is applied. A
- * directory exists when any path lies under it; `listings` overrides what listing it yields.
+ * directory exists when any path lies under it; `listings` overrides what listing it yields
+ * and `reads` what reading a path yields (a foreign or unreadable entry).
  */
 function fakeRepo(
   initial: ReadonlyMap<string, string>,
   listings: ReadonlyMap<string, DirectoryListing> = new Map(),
+  reads: ReadonlyMap<string, EntryRead> = new Map(),
 ): RuleProjectionFs & { files: Map<string, string> } {
   const files = new Map(initial);
   return {
@@ -33,26 +35,27 @@ function fakeRepo(
       if (override !== undefined) {
         return override;
       }
-      const under = [...files.keys()].filter((file) => file.startsWith(`${relDir}/`));
+      const under = [...files.keys()]
+        .filter((file) => file.startsWith(`${relDir}/`))
+        .filter((file) => !file.slice(relDir.length + 1).includes('/'))
+        .sort((left, right) => left.localeCompare(right));
       if (under.length === 0) {
         return { kind: 'absent' };
       }
       return {
         kind: 'files',
-        files: under
-          .filter((file) => file.endsWith(extension))
-          .filter((file) => !file.slice(relDir.length + 1).includes('/'))
-          .sort((left, right) => left.localeCompare(right)),
+        files: under.filter((file) => file.endsWith(extension)),
+        stray: under.filter((file) => !file.endsWith(extension)),
       };
     },
-    readText: async (relPath) => {
-      const text = files.get(relPath);
-      if (text === undefined) {
-        throw new Error(`missing: ${relPath}`);
+    readEntry: async (relPath) => {
+      const override = reads.get(relPath);
+      if (override !== undefined) {
+        return override;
       }
-      return text;
+      const text = files.get(relPath);
+      return text === undefined ? { kind: 'absent' } : { kind: 'text', text };
     },
-    readOptionalText: async (relPath) => files.get(relPath),
     writeText: async (relPath, text) => {
       files.set(relPath, text);
     },
@@ -154,17 +157,102 @@ describe('validateRuleProjections', () => {
       '.agent/rules: unreadable (EACCES: permission denied); refusing to regenerate the rule projections',
     ]);
 
-    const empty = bareRepo();
-    await validateRuleProjections(true, empty);
-    empty.files.delete('.agent/rules/alpha.md');
-    empty.files.delete('.agent/rules/beta.md');
-    empty.files.set('.agent/rules/README.txt', 'not a rule\n');
+    const projected = bareRepo();
+    await validateRuleProjections(true, projected);
+    const empty = fakeRepo(
+      projected.files,
+      new Map([['.agent/rules', { kind: 'files', files: [], stray: [] }]]),
+    );
     const fix = await validateRuleProjections(true, empty);
     expect(fix.issues).toStrictEqual([
       '.agent/rules: no canonical rules; refusing to regenerate the rule projections from an empty set',
     ]);
     expect(fix.removed).toStrictEqual([]);
     expect(empty.files.has('.claude/rules/alpha.md')).toBe(true);
+  });
+
+  it('refuses a regular file on the canonical surface that is not a rule, touching nothing', async () => {
+    const repo = bareRepo();
+    await validateRuleProjections(true, repo);
+    repo.files.set('.agent/rules/README.txt', 'not a rule\n');
+    const before = new Map(repo.files);
+    const fix = await validateRuleProjections(true, repo);
+    expect(fix.issues).toStrictEqual([
+      '.agent/rules/README.txt: not a rule; the canonical rules directory admits .md rules only',
+    ]);
+    expect(repo.files).toStrictEqual(before);
+  });
+
+  it('reads a regular file without the extension on a projection surface as stale and removes it', async () => {
+    const repo = bareRepo();
+    await validateRuleProjections(true, repo);
+    repo.files.set('.claude/rules/README.txt', 'hand-authored\n');
+    repo.files.set('.cursor/rules/alpha.mdc.bak', 'a backup\n');
+    const check = await validateRuleProjections(false, repo);
+    expect(check.issues).toStrictEqual([
+      '.claude/rules/README.txt: no canonical rule renders it (run `pnpm portability:fix` to remove it)',
+      '.cursor/rules/alpha.mdc.bak: no canonical rule renders it (run `pnpm portability:fix` to remove it)',
+    ]);
+    const fix = await validateRuleProjections(true, repo);
+    expect(fix.removed).toStrictEqual(['.claude/rules/README.txt', '.cursor/rules/alpha.mdc.bak']);
+    expect(repo.files.has('.claude/rules/README.txt')).toBe(false);
+  });
+
+  it('refuses when a canonical rule is unreadable, naming it, and writes nothing', async () => {
+    const repo = fakeRepo(
+      bareRepo().files,
+      new Map(),
+      new Map([
+        ['.agent/rules/beta.md', { kind: 'unreadable', cause: 'EACCES: permission denied' }],
+      ]),
+    );
+    const fix = await validateRuleProjections(true, repo);
+    expect(fix.issues).toStrictEqual([
+      '.agent/rules/beta.md: unreadable (EACCES: permission denied); refusing to regenerate the rule projections',
+    ]);
+    expect(fix.written).toStrictEqual([]);
+    expect(repo.files.has('RULES_INDEX.md')).toBe(false);
+  });
+
+  it('refuses when the index is a symlink or unreadable, rather than reading it as absent and writing over it', async () => {
+    const linked = fakeRepo(
+      bareRepo().files,
+      new Map(),
+      new Map([['RULES_INDEX.md', { kind: 'foreign' }]]),
+    );
+    const fix = await validateRuleProjections(true, linked);
+    expect(fix.issues).toStrictEqual([
+      'RULES_INDEX.md: not a regular file; the rule surfaces admit regular files only',
+    ]);
+    expect(fix.written).toStrictEqual([]);
+
+    const unreadable = fakeRepo(
+      bareRepo().files,
+      new Map(),
+      new Map([['RULES_INDEX.md', { kind: 'unreadable', cause: 'EIO: i/o error' }]]),
+    );
+    expect((await validateRuleProjections(true, unreadable)).issues).toStrictEqual([
+      'RULES_INDEX.md: unreadable (EIO: i/o error); refusing to regenerate the rule projections',
+    ]);
+  });
+
+  it('refuses when an existing projection cannot be read, rather than aborting or writing', async () => {
+    const repo = bareRepo();
+    await validateRuleProjections(true, repo);
+    const unreadable = fakeRepo(
+      repo.files,
+      new Map(),
+      new Map([
+        ['.claude/rules/alpha.md', { kind: 'unreadable', cause: 'EACCES: permission denied' }],
+      ]),
+    );
+    unreadable.files.set('.claude/rules/beta.md', 'edited by hand\n');
+    const fix = await validateRuleProjections(true, unreadable);
+    expect(fix.issues).toStrictEqual([
+      '.claude/rules/alpha.md: unreadable (EACCES: permission denied); refusing to regenerate the rule projections',
+    ]);
+    expect(fix.written).toStrictEqual([]);
+    expect(unreadable.files.get('.claude/rules/beta.md')).toBe('edited by hand\n');
   });
 
   it('refuses to act when a surface holds a symlink or special entry, so no write follows a link', async () => {

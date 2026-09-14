@@ -5,8 +5,10 @@
  * refused with the rule path and the reason, so a projection is never generated from a
  * declaration the estate cannot vouch for. The boundary also refuses values the projections
  * cannot carry (`strict-validation-at-boundary`): a description or trigger that spans lines, a
- * trigger with a `|` or a backtick (it sits in a table cell inside a code span), and an empty or
- * repeated glob (the Cursor trigger joins globs with commas).
+ * trigger with a `|` or a backtick (it sits in a table cell inside a code span), an empty or
+ * repeated glob, and a glob that would not survive the Cursor trigger's comma-joined line: the
+ * trigger is rendered by `join(',')` and Cursor reads it back by splitting top-level commas
+ * inside balanced braces, so every member must round-trip through that reader as itself.
  *
  * @packageDocumentation
  */
@@ -17,7 +19,7 @@ import { parse } from 'yaml';
 
 import { isJsonObject, type JsonObject } from '../core/json.js';
 
-import { FRONTMATTER_FENCE_LINE } from './frontmatter-lines.js';
+import { FRONTMATTER_FENCE_LINE, splitCommaList } from './frontmatter-lines.js';
 import {
   isRuleClassification,
   RULE_CLASSIFICATIONS,
@@ -171,5 +173,17 @@ function readGlobs(value: unknown): Result<readonly string[], string> {
     return err('globs must be one-line non-empty strings');
   }
   const repeated = members.find((member, index) => members.indexOf(member) !== index);
-  return repeated === undefined ? ok(members) : err(`globs repeat "${repeated}"`);
+  if (repeated !== undefined) {
+    return err(`globs repeat "${repeated}"`);
+  }
+  const unrenderable = members.find((member) => !survivesCursorCommaList(member));
+  return unrenderable === undefined
+    ? ok(members)
+    : err(`glob "${unrenderable}" would not survive the Cursor trigger's comma-joined globs line`);
+}
+
+/** Whether the Cursor comma-list reader gives the member back as itself and nothing else. */
+function survivesCursorCommaList(member: string): boolean {
+  const read = splitCommaList(member);
+  return read.ok && read.value.length === 1 && read.value[0] === member;
 }

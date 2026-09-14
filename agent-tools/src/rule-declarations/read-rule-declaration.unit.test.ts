@@ -148,6 +148,35 @@ describe('readRuleDeclaration', () => {
     });
   });
 
+  it('refuses a glob the Cursor comma-joined globs line would not carry back as itself', () => {
+    const scoped = ['classification: situational', 'description: d', 'trigger: surface:x'];
+    const refusal = (glob: string): unknown => ({
+      ok: false,
+      error: `.agent/rules/r.md: glob "${glob}" would not survive the Cursor trigger's comma-joined globs line`,
+    });
+    expect(
+      readRuleDeclaration('r', rule([...scoped, 'globs:', '  - "src/a.ts,src/b.ts"'])),
+    ).toStrictEqual(refusal('src/a.ts,src/b.ts'));
+    expect(readRuleDeclaration('r', rule([...scoped, 'globs:', '  - "src/{a,b"']))).toStrictEqual(
+      refusal('src/{a,b'),
+    );
+    expect(readRuleDeclaration('r', rule([...scoped, 'globs:', '  - " src/a.ts"']))).toStrictEqual(
+      refusal(' src/a.ts'),
+    );
+    expect(
+      readRuleDeclaration('r', rule([...scoped, 'globs:', '  - "src/{a,b}/**/*.ts"'])),
+    ).toStrictEqual({
+      ok: true,
+      value: {
+        name: 'r',
+        classification: 'situational',
+        description: 'd',
+        trigger: 'surface:x',
+        globs: ['src/{a,b}/**/*.ts'],
+      },
+    });
+  });
+
   it('refuses a classification outside the closed set and a missing description', () => {
     expect(readRuleDeclaration('r', rule(['classification: optional', 'description: d']))).toEqual({
       ok: false,

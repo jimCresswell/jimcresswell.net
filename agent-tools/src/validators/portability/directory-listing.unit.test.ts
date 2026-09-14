@@ -12,14 +12,18 @@ function other(name: string): DirectoryEntry {
 }
 
 describe('classifyDirectoryEntries', () => {
-  it('lists the regular files with the extension, sorted, as repo-relative paths', () => {
+  it('lists the regular files sorted as repo-relative paths, a file without the extension as stray', () => {
     expect(
       classifyDirectoryEntries(
         '.claude/rules',
         [file('b.md'), file('a.md'), file('notes.txt')],
         '.md',
       ),
-    ).toStrictEqual({ kind: 'files', files: ['.claude/rules/a.md', '.claude/rules/b.md'] });
+    ).toStrictEqual({
+      kind: 'files',
+      files: ['.claude/rules/a.md', '.claude/rules/b.md'],
+      stray: ['.claude/rules/notes.txt'],
+    });
   });
 
   it('a subdirectory on a surface is foreign: a nested file the platform would load stays unseen otherwise', () => {

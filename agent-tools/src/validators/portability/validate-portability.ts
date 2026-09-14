@@ -50,7 +50,7 @@ import { realRuleProjectionFs, validateRuleProjections } from './rule-projection
 // worktree invocation to the primary checkout and regenerate the wrong estate.
 const repoRoot = resolveRepoRoot(import.meta.url, { projectDir: undefined });
 const fixMode = process.argv.includes('--fix');
-const writtenWrappers: string[] = [];
+const writtenPaths: string[] = [];
 const issues: string[] = [];
 
 const { canonicalPaths: discoveredCanonicalPaths } = await collectCanonicalSkillPaths({
@@ -92,7 +92,7 @@ for (const skillPath of discoveredCanonicalPaths) {
 // for byte; `--fix` regenerates them. Nothing on those surfaces is hand-kept.
 const ruleProjections = await validateRuleProjections(fixMode, realRuleProjectionFs(repoRoot));
 issues.push(...ruleProjections.issues);
-writtenWrappers.push(...ruleProjections.written);
+writtenPaths.push(...ruleProjections.written);
 const removedProjections = ruleProjections.removed;
 
 const cursorAgentFiles = await listFiles(repoRoot, '.cursor/agents', '.md');
@@ -120,8 +120,8 @@ if (rulesIndexState.isPresent && rulesIndexState.value !== null) {
   issues.push(...getRulesIndexPortabilityIssues({ rulesIndexContent: rulesIndexState.value }));
 }
 
-if (await exists(repoRoot, HOOK_POLICY_PATH)) {
-  try {
+try {
+  if (await exists(repoRoot, HOOK_POLICY_PATH)) {
     const claudeSettingsState = await readOptionalText(repoRoot, CLAUDE_SETTINGS_PATH);
     for (const issue of getClaudeHookPortabilityIssues({
       hookPolicy: await readJson(repoRoot, HOOK_POLICY_PATH),
@@ -131,15 +131,15 @@ if (await exists(repoRoot, HOOK_POLICY_PATH)) {
     })) {
       issues.push(issue);
     }
-  } catch (error) {
-    issues.push(
-      `Hook portability validation failed: ${error instanceof Error ? error.message : 'Unknown hook portability failure.'}`,
-    );
   }
+} catch (error) {
+  issues.push(
+    `Hook portability validation failed: ${error instanceof Error ? error.message : 'Unknown hook portability failure.'}`,
+  );
 }
 
-if (await exists(repoRoot, CLAUDE_SETTINGS_PATH)) {
-  try {
+try {
+  if (await exists(repoRoot, CLAUDE_SETTINGS_PATH)) {
     const claudeSettings = await readJson(repoRoot, CLAUDE_SETTINGS_PATH);
     const allowList =
       isJsonObject(claudeSettings) &&
@@ -149,11 +149,11 @@ if (await exists(repoRoot, CLAUDE_SETTINGS_PATH)) {
         : [];
     const permissions = allowList.filter((e): e is string => typeof e === 'string');
     issues.push(...(await practiceSkillPermissionIssues(repoRoot, permissions)));
-  } catch (error) {
-    issues.push(
-      `Skill permission validation failed: ${error instanceof Error ? error.message : 'Unknown skill permission check failure.'}`,
-    );
   }
+} catch (error) {
+  issues.push(
+    `Skill permission validation failed: ${error instanceof Error ? error.message : 'Unknown skill permission check failure.'}`,
+  );
 }
 
 const ruleStats =
@@ -162,7 +162,7 @@ const ruleStats =
     : `${ruleProjections.canonicalRuleCount} canonical rules (projection leg refused)`;
 const removedStats =
   removedProjections.length > 0
-    ? `, ${removedProjections.length} stale rule projections removed`
+    ? `, ${removedProjections.length} stale files removed from the rule surfaces`
     : '';
 const stats = `${validatedCanonicalPaths.length} canonical skills, ${ruleStats}, ${canonicalAgentNames.length} reviewer adapters${removedStats}`;
 
@@ -170,7 +170,7 @@ export { reportPortabilityValidation } from './portability-report.js';
 
 const currentFilePath = fileURLToPath(import.meta.url);
 if (process.argv[1] === currentFilePath) {
-  const exitCode = reportPortabilityValidation(stats, writtenWrappers, issues);
+  const exitCode = reportPortabilityValidation(stats, writtenPaths, issues);
   if (exitCode !== 0) {
     process.exit(exitCode);
   }

@@ -10,14 +10,11 @@
  * (`validate-portability-helpers.ts`) — they are entry-point internals only.
  */
 
-import type { Dirent } from 'node:fs';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
 import { isEnoent } from '../../core/authored-surfaces.js';
 import { toLfText } from '../../core/lf-text.js';
-
-import { classifyDirectoryEntries, type DirectoryListing } from './directory-listing.js';
 
 /**
  * Reads the UTF-8 text content of a file at `<repoRoot>/<relPath>`.
@@ -45,19 +42,19 @@ export async function readText(repoRoot: string, relPath: string): Promise<strin
  * @param repoRoot          - Absolute path to the repository root.
  * @param relPath           - Repo-relative destination path.
  * @param content           - Text content to write.
- * @param writtenWrappers   - Mutable array that collects all paths written
+ * @param writtenPaths      - Mutable array that collects all paths written
  *   during a `--fix` run; the path is appended on success.
  */
 export async function writeText(
   repoRoot: string,
   relPath: string,
   content: string,
-  writtenWrappers: string[],
+  writtenPaths: string[],
 ): Promise<void> {
   const absPath = path.join(repoRoot, relPath);
   await fs.mkdir(path.dirname(absPath), { recursive: true });
   await fs.writeFile(absPath, content, 'utf8');
-  writtenWrappers.push(relPath);
+  writtenPaths.push(relPath);
 }
 
 /**
@@ -85,16 +82,29 @@ export async function readJson(repoRoot: string, relPath: string): Promise<unkno
 /**
  * Checks whether a file or directory exists at `<repoRoot>/<relPath>`.
  *
+ * Absence is ENOENT and nothing else: any other failure of `access` (EACCES, ELOOP, an
+ * I/O error) is thrown, so an unreadable path is never reported as merely missing and a
+ * caller never acts on "absent" it did not measure (the #74 round-one finding, 2026-09-14).
+ *
  * @param repoRoot - Absolute path to the repository root.
  * @param relPath  - Repo-relative path to test.
- * @returns `true` when `fs.access` succeeds; `false` otherwise.
+ * @param access   - The probe; `fs.access` by default.
+ * @returns `true` when the probe succeeds; `false` when the path does not exist.
+ * @throws When the path cannot be accessed for any reason other than absence.
  */
-export async function exists(repoRoot: string, relPath: string): Promise<boolean> {
+export async function exists(
+  repoRoot: string,
+  relPath: string,
+  access: (absolutePath: string) => Promise<void> = (absolutePath) => fs.access(absolutePath),
+): Promise<boolean> {
   try {
-    await fs.access(path.join(repoRoot, relPath));
+    await access(path.join(repoRoot, relPath));
     return true;
-  } catch {
-    return false;
+  } catch (error: unknown) {
+    if (isEnoent(error)) {
+      return false;
+    }
+    throw error;
   }
 }
 
@@ -150,37 +160,6 @@ export async function listFiles(
   } catch {
     return [];
   }
-}
-
-export type { DirectoryListing } from './directory-listing.js';
-
-/**
- * Lists the regular files with the given extension in `<repoRoot>/<relDir>`, sorted
- * lexicographically, as a typed outcome: absence is ENOENT and nothing else, any other read
- * failure is `unreadable`, and a directory, symlink or special entry is `foreign` before any
- * file is listed (`directory-listing.ts` says why a directory is foreign on a rule surface).
- * A caller that acts destructively on the listing can therefore never read a failure as
- * "nothing here" (the posture `carriage-fs.ts` documents).
- *
- * @param repoRoot  - Absolute path to the repository root.
- * @param relDir    - Repo-relative path to the directory to list.
- * @param extension - File extension to filter by (including the leading dot).
- * @returns The listing outcome; file paths are repo-relative.
- */
-export async function listDirectory(
-  repoRoot: string,
-  relDir: string,
-  extension: string,
-): Promise<DirectoryListing> {
-  let entries: Dirent[];
-  try {
-    entries = await fs.readdir(path.join(repoRoot, relDir), { withFileTypes: true });
-  } catch (error: unknown) {
-    return isEnoent(error)
-      ? { kind: 'absent' }
-      : { kind: 'unreadable', cause: error instanceof Error ? error.message : String(error) };
-  }
-  return classifyDirectoryEntries(relDir, entries, extension);
 }
 
 /**

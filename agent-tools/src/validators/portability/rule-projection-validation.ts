@@ -7,12 +7,15 @@
  *
  * The leg refuses, with one issue and no write, whenever it cannot vouch for its input: a
  * declaration that cannot be read (a projection set rendered from a partial declaration set
- * would omit that rule and read as green), a canonical rules directory that is absent,
- * unreadable or empty (acting on "no rules" would delete every projection), and a symlink or
- * special entry on any surface (a write would follow the link out of the projection tree). The
+ * would omit that rule and read as green), a canonical rule, index or projection file that is
+ * unreadable (a crash past the leg would leave no refusal on record; an unreadable index read
+ * as absent would be written over), a canonical rules directory that is absent, unreadable or
+ * empty (acting on "no rules" would delete every projection), a regular file on the canonical
+ * surface that is not a rule, and a symlink or special entry on any surface, as the surface,
+ * or as one of its ancestors (a write would follow the link out of the projection tree). The
  * three adapter directories and the index are wholly generated outputs, so a regular file on
- * them that no declaration renders is stale and `--fix` removes it. The file system is an
- * injected port so the leg is proven over an in-memory tree.
+ * them that no declaration renders, whatever its extension, is stale and `--fix` removes it.
+ * The file system is an injected port so the leg is proven over an in-memory tree.
  *
  * @packageDocumentation
  */
@@ -33,14 +36,9 @@ import {
 } from '../../rule-declarations/rule-projection-drift.js';
 import type { RuleDeclaration } from '../../rule-declarations/rule-declaration.js';
 
-import {
-  listDirectory,
-  readOptionalText,
-  readText,
-  removeFile,
-  writeText,
-  type DirectoryListing,
-} from './portability-fs.js';
+import type { DirectoryListing, EntryRead } from './directory-listing.js';
+import { removeFile, writeText } from './portability-fs.js';
+import { listDirectory, readEntry } from './rule-surface-fs.js';
 
 /** The projection surfaces and the extension each carries. */
 const PROJECTION_SURFACES = [
@@ -53,11 +51,14 @@ const CANONICAL_RULES_DIR = '.agent/rules';
 const FIX_HINT = 'run `pnpm portability:fix`';
 const REFUSING = 'refusing to regenerate the rule projections';
 
-/** The file-system operations the leg needs, all repo-relative; the real `node:fs` by default. */
+/**
+ * The file-system operations the leg needs, all repo-relative; the real `node:fs` by default.
+ * Every read is a typed outcome (`directory-listing.ts`), so the leg refuses on what it
+ * measures and never catches its way past a failure.
+ */
 export interface RuleProjectionFs {
   listDirectory: (relDir: string, extension: string) => Promise<DirectoryListing>;
-  readText: (relPath: string) => Promise<string>;
-  readOptionalText: (relPath: string) => Promise<string | undefined>;
+  readEntry: (relPath: string) => Promise<EntryRead>;
   writeText: (relPath: string, text: string) => Promise<void>;
   removeFile: (relPath: string) => Promise<void>;
 }
@@ -66,11 +67,7 @@ export interface RuleProjectionFs {
 export function realRuleProjectionFs(repoRoot: string): RuleProjectionFs {
   return {
     listDirectory: (relDir, extension) => listDirectory(repoRoot, relDir, extension),
-    readText: (relPath) => readText(repoRoot, relPath),
-    readOptionalText: async (relPath) => {
-      const state = await readOptionalText(repoRoot, relPath);
-      return state.isPresent && state.value !== null ? state.value : undefined;
-    },
+    readEntry: (relPath) => readEntry(repoRoot, relPath),
     writeText: (relPath, text) => writeText(repoRoot, relPath, text, []),
     removeFile: (relPath) => removeFile(repoRoot, relPath),
   };
@@ -136,23 +133,42 @@ async function applyDrift(
 
 /**
  * The files a listing yields, or the one issue that refuses the leg. An absent projection
- * surface is empty (a fresh host has none yet); the absent canonical directory is a refusal.
+ * surface is empty (a fresh host has none yet) and a stray regular file on it is listed so
+ * the drift reads it as stale; the absent canonical directory and a stray on it are refusals.
  */
 function filesOf(
   relDir: string,
   listing: DirectoryListing,
-  whenAbsent: 'empty' | 'refuse',
+  surface: 'projection' | 'canonical',
 ): Result<readonly string[], string> {
   if (listing.kind === 'files') {
-    return ok(listing.files);
+    if (surface === 'projection' || listing.stray.length === 0) {
+      return ok([...listing.files, ...listing.stray].sort((a, b) => a.localeCompare(b)));
+    }
+    const strays = listing.stray.join(', ');
+    return err(`${strays}: not a rule; the canonical rules directory admits .md rules only`);
   }
   if (listing.kind === 'absent') {
-    return whenAbsent === 'empty' ? ok([]) : err(`${relDir}: no such directory; ${REFUSING}`);
+    return surface === 'projection' ? ok([]) : err(`${relDir}: no such directory; ${REFUSING}`);
   }
   if (listing.kind === 'unreadable') {
     return err(`${relDir}: unreadable (${listing.cause}); ${REFUSING}`);
   }
   return err(`${listing.entry}: not a regular file; the rule surfaces admit regular files only`);
+}
+
+/** The text an entry read yields, or the one issue that refuses the leg, naming the path. */
+function textOf(relPath: string, read: EntryRead): Result<string, string> {
+  if (read.kind === 'text') {
+    return ok(read.text);
+  }
+  if (read.kind === 'absent') {
+    return err(`${relPath}: vanished between listing and read; ${REFUSING}`);
+  }
+  if (read.kind === 'unreadable') {
+    return err(`${relPath}: unreadable (${read.cause}); ${REFUSING}`);
+  }
+  return err(`${relPath}: not a regular file; the rule surfaces admit regular files only`);
 }
 
 interface CanonicalRules {
@@ -163,7 +179,7 @@ interface CanonicalRules {
 
 async function readDeclarations(projectionFs: RuleProjectionFs): Promise<CanonicalRules> {
   const listing = await projectionFs.listDirectory(CANONICAL_RULES_DIR, '.md');
-  const files = filesOf(CANONICAL_RULES_DIR, listing, 'refuse');
+  const files = filesOf(CANONICAL_RULES_DIR, listing, 'canonical');
   if (!files.ok) {
     return { declarations: [], issues: [files.error], canonicalRuleCount: 0 };
   }
@@ -174,8 +190,12 @@ async function readDeclarations(projectionFs: RuleProjectionFs): Promise<Canonic
   const declarations: RuleDeclaration[] = [];
   const issues: string[] = [];
   for (const ruleFile of files.value) {
-    const name = path.basename(ruleFile, '.md');
-    const declaration = readRuleDeclaration(name, await projectionFs.readText(ruleFile));
+    const text = textOf(ruleFile, await projectionFs.readEntry(ruleFile));
+    if (!text.ok) {
+      issues.push(text.error);
+      continue;
+    }
+    const declaration = readRuleDeclaration(path.basename(ruleFile, '.md'), text.value);
     if (declaration.ok) {
       declarations.push(declaration.value);
     } else {
@@ -190,18 +210,26 @@ async function readSurfaces(
   projectionFs: RuleProjectionFs,
 ): Promise<Result<ReadonlyMap<string, string>, string>> {
   const actual = new Map<string, string>();
-  const index = await projectionFs.readOptionalText(RULES_INDEX_PATH);
-  if (index !== undefined) {
-    actual.set(RULES_INDEX_PATH, index);
+  const index = await projectionFs.readEntry(RULES_INDEX_PATH);
+  if (index.kind !== 'absent') {
+    const text = textOf(RULES_INDEX_PATH, index);
+    if (!text.ok) {
+      return text;
+    }
+    actual.set(RULES_INDEX_PATH, text.value);
   }
   for (const surface of PROJECTION_SURFACES) {
     const listing = await projectionFs.listDirectory(surface.dir, surface.extension);
-    const files = filesOf(surface.dir, listing, 'empty');
+    const files = filesOf(surface.dir, listing, 'projection');
     if (!files.ok) {
-      return err(files.error);
+      return files;
     }
     for (const file of files.value) {
-      actual.set(file, await projectionFs.readText(file));
+      const text = textOf(file, await projectionFs.readEntry(file));
+      if (!text.ok) {
+        return text;
+      }
+      actual.set(file, text.value);
     }
   }
   return ok(actual);
