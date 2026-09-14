@@ -55,6 +55,33 @@ Every line answered first-hand, none inferred:
 Where this block and the routing log disagree, the log's last entry is current; this block is
 rewritten at each Director push.
 
+**Boundary block (compaction, 2026-09-14 06:37Z; the seat stays live).** Assume nothing
+session-scoped survives; verify by id first, re-arm only what is absent:
+
+- The all-channels comms watcher, as a persistent Monitor:
+  `pnpm agent-tools:collaboration-state -- comms watch --platform claude --model claude-fable-5-1 --exclude-tag heartbeat`,
+  then `comms assert-watcher-live`. The ARC channel tail: a Monitor on
+  `.agent/collaboration/rapid-comms/2026-09-13-transplant-closure-n2-cauldron-herds-lustre-saffron-turns-verdure.md`.
+  No heartbeat loop at n=2. No cron.
+- The pull-request chains (session scratch scripts; each is thirty lines: wait for origin to
+  carry the tip, mint the bot token, reply to and resolve each unresolved thread by path, POST
+  the Copilot reviewer under the owner's credential, wait for the review on the tip, run
+  `merge-bot merge --pr N --expect copilot-pull-request-reviewer --interval 30 --max-polls 60 --json`):
+  re-arm on resume for the records-7 pull request at its tip; for #74 once lane A releases
+  its round-three push (`SHA: 87b7793`, three threads to reply on with lane A's grounds); for
+  2b-i's pull request once lane A opens it. Copilot requests are made only under the owner's
+  CLI credential with a JSON body; every other write runs as the bot.
+- The push slot: a standing grant to lane A from the Director's "slot free" until "Director
+  back" (the #74 round-three push, then 2b-i's push and pull request, one release line each).
+  On resume: say "Director back", read lane A's release lines, re-arm the chains above.
+- Lane A's order after 2b-i's pull request: 5a-vi (suppressed findings block the merge, the
+  fourth measured-state clause), the PDR-008, PDR-132 and PDR-082 card amendments in one pull
+  request, 5c-ii, 5a-v, the graduations one home per pull request (every session 2 entry but
+  none deferred: 7 graduates with its setup recipe; the slow-lane five promoted), then 2b-ii.
+  The owner's answers are item 78; the @-import falsifier's result is item 79.
+- The Director's claim `1db07581` is held; the ARC channel stays open; the owner is present
+  and the mode is n=2 owner-visible.
+
 - Director: Cauldron herds Lustre (880ff9), claim `1db07581`, thread `transplant-closure`,
   branch: the merged records-5 (PR #73) was stacked on the merged #70 tip (`main` at
   `SHA: 1643be8` carries it); this branch is `chore/director-records-6`, stacked on the
@@ -815,6 +842,14 @@ ones the Director would put to the owner had the owner been present.
     Ruling for #74 (round three granted, the design's central claim): scoped adapters render
     the plain pointer the unscoped ones use, no `@`; a generator cell pins it; the body's
     REVIEW line becomes this measured fact. Lens 1. REVIEW: none; the falsifier decided it.
+80. Compaction prepared at the owner's word (06:37Z on 2026-09-14) under `wrap` as a non-terminal
+    boundary: work safety proven (records-7 pushed and opened as its pull request; every other
+    branch merged or lane A's); the boundary block above carries the re-arm recipe as if
+    nothing survives; a standing push slot granted to lane A for the gap; the fence sweep of
+    every tracked line this seat wrote found no held-off wording; the metaloss passes and the
+    play seeds are in the report and on the napkin; a formation letter is under
+    `.agent/experience/`. Retrospective offered, not run (a twenty-round records loop and two
+    reversed rulings make an arc worth one). Lens 2 (the owner's word) then lens 1.
 
 ## Routing log
 
