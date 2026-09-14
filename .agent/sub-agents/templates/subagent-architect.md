@@ -1,3 +1,7 @@
+---
+description: Subagent architect ensuring the canonical reviewer architecture stays sane.
+---
+
 ## Delegation Triggers
 
 Invoke the subagent-architect when work involves creating, reviewing, upgrading, or migrating AI subagent definitions. This is the meta-agent for the agent ecosystem — use it whenever the subject of the work is an agent itself rather than the product code the agent reviews.

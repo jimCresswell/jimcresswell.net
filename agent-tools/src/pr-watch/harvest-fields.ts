@@ -37,7 +37,8 @@ const requestedReviewerSchema = z
     return identity;
   });
 
-const authorLogin = z
+/** A GraphQL author's login; a deleted account (null author) reads as 'unknown'. */
+export const authorLogin = z
   .object({ login: z.string() })
   .nullish()
   .transform((value) => value?.login ?? 'unknown');
@@ -56,6 +57,7 @@ const reviewsPageSchema = z.object({
         reviews: z.object({
           nodes: z.array(
             z.object({
+              id: z.string(),
               author: authorLogin,
               state: z.string(),
               body: z.string(),
@@ -110,6 +112,7 @@ export function parseHarvest(raw: unknown): ReviewHarvest {
     reviews: pages
       .flatMap((page) => page.data.repository.pullRequest.reviews.nodes)
       .map((node) => ({
+        id: node.id,
         author: node.author,
         state: node.state,
         body: node.body,

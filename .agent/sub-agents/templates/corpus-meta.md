@@ -1,3 +1,7 @@
+---
+description: Read-only recall-calibration synthesist for the corpus-analysis meta workflow stage. Dispatched exclusively via the Workflow agent() agentType option; never invoke for interactive delegation. Judges per-baseline recall matches and verifies corroboration home paths on disk before claiming them, answering through the schema-forced structured output call.
+---
+
 # Corpus Meta: Read-Only Recall-Calibration Synthesist
 
 Vendor-agnostic canonical definition. Platform adapters: the Claude wrapper

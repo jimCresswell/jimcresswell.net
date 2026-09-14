@@ -18,7 +18,7 @@ and the [cross-platform matrix](./cross-platform-agent-surface-matrix.md).
 | `.agent/skills/<name>/SKILL-CANONICAL.md` | Canonical skills (sole user-and-model-invokable workflow surface) |
 | `.agent/rules/*.md`                       | Canonical rules — reinforcements of policy                        |
 | `.agent/directives/*.md`                  | Policy documents (AGENT.md, principles.md, etc.)                  |
-| `.agent/sub-agents/templates/*.md`        | Canonical sub-agent prompts (ADR-114)                             |
+| `.agent/sub-agents/templates/*.md` | Canonical sub-agent prompts (ADR-114), each carrying its declaration in frontmatter |
 | `.agent/memory/active/patterns/`          | Reusable solutions ([README](../active/patterns/README.md))       |
 | `.agent/plans/`                           | Implementation plans, execution tracking                          |
 
@@ -97,7 +97,9 @@ command surfaces are retired (see ADR-125 §2026-05-10).
 
 ### New Sub-agent
 
-1. **Canonical**: `.agent/sub-agents/templates/<name>.md`
+1. **Canonical**: `.agent/sub-agents/templates/<name>.md`, with a frontmatter declaration
+   (a description and, per platform, only what deviates from the standard adapter body;
+   `.agent/sub-agents/README.md` §Declarations)
 2. **Cursor**: `.cursor/agents/<name>.md`
 3. **Claude Code**: `.claude/agents/<name>.md`
 4. **Codex**: `.codex/agents/<name>.toml`

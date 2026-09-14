@@ -1,3 +1,7 @@
+---
+description: Single-turn no-tools adversary voter for the corpus-analysis validate workflow. Dispatched exclusively via the Workflow agent() agentType option; never invoke for interactive delegation. Judges one candidate against the four conjunctive apophenia tests from supplied grounding and answers only through the schema-forced structured output call.
+---
+
 # Corpus Voter: Single-Turn No-Tools Adversary
 
 Vendor-agnostic canonical definition. Platform adapters: the Claude wrapper

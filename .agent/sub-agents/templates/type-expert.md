@@ -1,3 +1,7 @@
+---
+description: "TypeScript type safety reviewer. Traces type flow from origin through the system. Detects widening, assertions, and missed compile-time guarantees. Core principle: why solve at runtime what you can embed at compile time?."
+---
+
 ## Delegation Triggers
 
 Invoke this expert whenever TypeScript's type system is under pressure: type assertions

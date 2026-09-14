@@ -1,3 +1,7 @@
+---
+description: Configuration reviewer for Next.js, PostCSS, and pnpm scripts.
+---
+
 ## Delegation Triggers
 
 Invoke the config expert whenever tooling or runtime configuration is created, modified, or

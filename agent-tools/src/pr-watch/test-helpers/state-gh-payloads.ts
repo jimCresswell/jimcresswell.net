@@ -13,6 +13,7 @@ export function viewPayload(oid: string = HEAD): string {
   return JSON.stringify({
     number: 461,
     url: PR_URL,
+    author: { login: 'app/jimbot-of-the-devonshire-jimbots' },
     state: 'OPEN',
     isDraft: false,
     mergeable: 'MERGEABLE',
@@ -38,10 +39,22 @@ export function threadsPayload(resolved = 2): string {
   return JSON.stringify([{ data: { repository: { pullRequest: { reviewThreads } } } }]);
 }
 
-/** The two GraphQL legs a suite answers: the threads page and the review harvest. */
+/** The issue-comments page: the given comments, one page. */
+export function commentsPayload(
+  comments: readonly { readonly author: string; readonly body: string }[] = [],
+): string {
+  const nodes = comments.map((comment) => ({
+    author: { login: comment.author },
+    body: comment.body,
+  }));
+  return JSON.stringify([{ data: { repository: { pullRequest: { comments: { nodes } } } } }]);
+}
+
+/** The three GraphQL legs a suite answers: the threads page, the review harvest and the comments. */
 export interface GraphqlPayloads {
   readonly threads: () => string;
   readonly harvest: () => string;
+  readonly comments: () => string;
 }
 
 // The harvest connection the product's query must select; whitespace-tolerant
@@ -57,6 +70,9 @@ export function graphqlResponse(args: readonly string[], payloads: GraphqlPayloa
   const query = args.find((arg) => arg.startsWith('query=')) ?? '';
   if (query.includes('reviewThreads')) {
     return payloads.threads();
+  }
+  if (query.includes('comments(')) {
+    return payloads.comments();
   }
   if (!SELECTS_REQUESTS.test(query)) {
     throw new Error('the harvest query no longer selects reviewRequests');

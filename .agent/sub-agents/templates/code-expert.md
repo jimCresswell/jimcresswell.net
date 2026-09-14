@@ -1,3 +1,7 @@
+---
+description: Gateway code reviewer — quality, correctness, and triage. Assesses code changes for correctness, edge cases, security, performance, readability, maintainability, and test coverage. Triages to specialists.
+---
+
 ## Delegation Triggers
 
 Invoke this agent after any code is written or modified. `code-expert`

@@ -57,6 +57,7 @@ const config: KnipConfig = {
         'src/validators/**/validate-*.ts',
         'src/validators/plan-schema/check-plan-gate-drift.ts',
         'src/rule-declarations/rule-frontmatter-sweep.ts',
+        'src/subagent-declarations/subagent-frontmatter-sweep.ts',
         'src/practice-fitness/validate-practice-fitness.ts',
         'src/plan-state/plan-state.ts',
         'smoke-tests/**/*.ts',

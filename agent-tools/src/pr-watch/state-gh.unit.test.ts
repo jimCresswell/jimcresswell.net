@@ -3,6 +3,7 @@ import { describe, expect, it } from 'vitest';
 import { readPrStateReading } from './state-gh.js';
 import type { GhCommandExecutor } from './gh.js';
 import {
+  commentsPayload,
   graphqlResponse,
   HEAD,
   PR_URL,
@@ -25,6 +26,7 @@ function reviewsPayload(): string {
             reviews: {
               nodes: [
                 {
+                  id: 'PRR_1',
                   author: { login: 'copilot-pull-request-reviewer' },
                   state: 'COMMENTED',
                   body: 'Reviewed.',
@@ -80,7 +82,12 @@ function agentTaskResponse(script: ExecutorScript, args: readonly string[]): str
   return view;
 }
 
-const graphqlPayloads = { threads: () => threadsPayload(), harvest: reviewsPayload };
+const graphqlPayloads = {
+  threads: () => threadsPayload(),
+  harvest: reviewsPayload,
+  comments: () =>
+    commentsPayload([{ author: 'jimCresswell', body: 'a disposition comment\n\n— Seat (abc123)' }]),
+};
 
 function makeExecutor(script: ExecutorScript, calls: string[][]): GhCommandExecutor {
   return (_file, args) => {
@@ -132,6 +139,30 @@ describe('readPrStateReading', () => {
     });
     expect(reading.number).toBe(461);
     expect(reading.checks).toEqual({ total: 1, passed: 1, failed: 0, pending: 0 });
+    // The issue comments ride the reading: where a body-only finding's signed
+    // disposition lives (5a-vi, 2026-09-14).
+    expect(reading.issueComments).toEqual([
+      { author: 'jimCresswell', body: 'a disposition comment\n\n— Seat (abc123)' },
+    ]);
+    // The comments leg reads inside the harvest bracket AFTER the confirm
+    // view, so the dispositions are the freshest leg of the matching-tip
+    // snapshot (a line edited or deleted between an earlier read and the
+    // confirm would lift a stale count); the closing harvest is the last call.
+    // A line binds itself to the tip by its own SHA and review id, and a
+    // comment landing after the bracket closes is the next poll's (#79 rounds
+    // one, three and four, 2026-09-14).
+    const isCommentsCall = (call: readonly string[]): boolean =>
+      call.some((arg) => arg.includes('comments(first: 100'));
+    const isViewCall = (call: readonly string[]): boolean => call[0] === 'pr';
+    const isHarvestCall = (call: readonly string[]): boolean =>
+      call[0] === 'api' &&
+      !isCommentsCall(call) &&
+      !call.some((arg) => arg.includes('reviewThreads'));
+    const commentsAt = calls.findIndex(isCommentsCall);
+    const lastViewAt = calls.map(isViewCall).lastIndexOf(true);
+    const lastHarvestAt = calls.map(isHarvestCall).lastIndexOf(true);
+    expect(commentsAt).toBeGreaterThan(lastViewAt);
+    expect(lastHarvestAt).toBe(calls.length - 1);
     expect(reading.reviewThreads).toEqual({ total: 2, unresolved: 0 });
     expect(reading.reviews).toHaveLength(1);
     // Only the run mapped to THIS PR survives; the other PR's run is filtered.
@@ -538,6 +569,7 @@ describe('readPrStateReading', () => {
     const unknownView = JSON.stringify({
       number: 461,
       url: PR_URL,
+      author: { login: 'app/jimbot-of-the-devonshire-jimbots' },
       state: 'OPEN',
       isDraft: false,
       mergeable: 'UNKNOWN',
@@ -572,6 +604,7 @@ describe('readPrStateReading', () => {
     const mergedView = JSON.stringify({
       number: 461,
       url: PR_URL,
+      author: { login: 'app/jimbot-of-the-devonshire-jimbots' },
       state: 'MERGED',
       isDraft: false,
       mergeable: 'UNKNOWN',

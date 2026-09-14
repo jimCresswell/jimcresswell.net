@@ -1,3 +1,7 @@
+---
+description: "Base architecture reviewer shared by the four named personas (Barney, Betty, Fred, Wilma): module structure, import direction, workspace boundaries, dependency-injection patterns and any decision with long-term architectural consequence. Invoke a named persona for its lens; use this base directly only when no persona fits."
+---
+
 ## Delegation Triggers
 
 Invoke an architecture reviewer when a change touches module structure, import direction, workspace boundaries, dependency injection patterns, or any decision that has long-term architectural consequence. All four personas share the same base workflow; the choice of persona determines the review lens applied.

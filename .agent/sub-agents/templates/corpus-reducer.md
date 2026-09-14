@@ -1,3 +1,7 @@
+---
+description: No-tools clustering synthesist for the corpus-analysis reduce workflow stage. Dispatched exclusively via the Workflow agent() agentType option; never invoke for interactive delegation. Clusters the inlined leaf signals into mechanism-grained candidates and answers only through the schema-forced structured output call.
+---
+
 # Corpus Reducer: No-Tools Clustering Synthesist
 
 Vendor-agnostic canonical definition. Platform adapters: the Claude wrapper
