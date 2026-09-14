@@ -151,8 +151,10 @@ session-scoped survives; verify by id first, re-arm only what is absent:
   records to item 35, twenty rounds), #72 (`SHA: 37eebe9`, item 5a-iv), #70 (`SHA: 1643be8`,
   the Director records, items 36 to 58, four rounds), #71 (`SHA: f377412`, item 5c), #73
   (`SHA: 50546ee`, the Director records, items 59 to 67, three rounds), #75 (`SHA: f7f4a74`,
-  the Director records, items 68 to 74, two rounds); #59 closed as carried. Closure item 5 is
-  closed on `main`.
+  the Director records, items 68 to 74, two rounds), #74 (`SHA: 558be52`, item 2a), #76
+  (`SHA: 1b44f5b`, the Director records, items 75 to 80, five rounds), #78 (`SHA: e7ba800`,
+  the Director records, items 81 to 87, two rounds); #59 closed as carried. Closure item 5
+  and item 2a are closed on `main`.
 - Team state: owner word 17:16Z, "this is now an n=2 session, you and Saffron" (PDR-082; the
   Director's heartbeat stopped, watcher kept); 17:18Z the ARC channel opened beside native
   messaging. Lanes B and C handed every responsibility back and stood down (closeouts on the
@@ -187,7 +189,7 @@ session-scoped survives; verify by id first, re-arm only what is absent:
 
 | Lane | Items | Owns exclusively | Seat | Claim | Branch / PR | State |
 | ---- | ----- | ---------------- | ---- | ----- | ----------- | ----- |
-| A | 3 done; #60 merged (`SHA: 4370e04`) and its follow-on #66 merged (`SHA: 0ec4583`); 5a-i merged (#64, `SHA: 38e9693`); 5a-ii merged (#65, `SHA: 53d9495`); 5a-iii merged (#67, `SHA: fca804e`); 5b merged (#68, `SHA: f362cce`, the four retirements, the accept-md config as a typed module, the incoming bundle gone); the e2e follow-on 2 merged (#69, `SHA: e67559a`); 5a-iv merged (#72, `SHA: 37eebe9`); 5c merged (#71, `SHA: f377412`); 2a merged (#74, `SHA: 558be52`); 2b-i open (#77); then, in the boundary block's order: 5a-vi (suppressed findings block the merge), the PDR-008, PDR-132 and PDR-082 card amendments in one pull request, 5c-ii (the leak gate's four body findings, item 71), 5a-v (the whitespace-only heading, item 64), the graduations one home per pull request (item 78), 2b-ii, then the handed-back residue: the Gemini projection, the corpus-analysis restore with the five patterns, `sif` | root scripts, CI workflow, `agent-tools/` legs and retirements, the leak validator, `tooling/*/package.json`, `turbo.json`, the Playwright harness config, the merge-bot sources, the rules generator and the adapter trees (2a, on `main`); after 2b-ii the Gemini projection | Saffron turns Verdure (c39ad7) | f024e1f1 | `chore/subagent-declarations` PR #77 | ACTIVE at n=2 |
+| A | 3 done; #60 merged (`SHA: 4370e04`) and its follow-on #66 merged (`SHA: 0ec4583`); 5a-i merged (#64, `SHA: 38e9693`); 5a-ii merged (#65, `SHA: 53d9495`); 5a-iii merged (#67, `SHA: fca804e`); 5b merged (#68, `SHA: f362cce`, the four retirements, the accept-md config as a typed module, the incoming bundle gone); the e2e follow-on 2 merged (#69, `SHA: e67559a`); 5a-iv merged (#72, `SHA: 37eebe9`); 5c merged (#71, `SHA: f377412`); 2a merged (#74, `SHA: 558be52`); 2b-i open (#77); then, in the boundary block's order: 5a-vi (suppressed findings block the merge), the PDR-008, PDR-132 and PDR-082 card amendments in one pull request, 5c-ii (the leak gate's four body findings, item 71), 5a-v (the whitespace-only heading, item 64), the graduations one home per pull request (item 78), 2b-ii, then the handed-back residue: the Gemini projection, the corpus-analysis restore with the five patterns, `sif` | root scripts, CI workflow, `agent-tools/` legs and retirements, the leak validator, `tooling/*/package.json`, `turbo.json`, the Playwright harness config, the merge-bot sources, the rules generator and the adapter trees (2a, on `main`) | Saffron turns Verdure (c39ad7) | f024e1f1 | `chore/subagent-declarations` PR #77; `fix/merge-bot-suppressed-hold` local (5a-vi) | ACTIVE at n=2 |
 | B | 6 | (handed back) `.agent/rules/**`, `RULES_INDEX.md`, the three rule-adapter trees, the rules-index and trigger generator, sub-agent adapter descriptions | Sirocco wakes Wingspan (45fe02) | closed | `closure/lane-b` merged as PR #55 at `SHA: 7127bc4` and deleted; `closure/lane-b-generator` at `SHA: d76bb86` on origin (2a fold conserved in the record) | STOOD DOWN 17:14Z; handed back: 2a, 2b, PR 3 (now routed to lane A after item 5) |
 | C | 4 then 7 | the definition report, `testing-strategy.md`, the substrate manifest's register declarations, the Gemini projection | Djinn hunts Solder (36720b) | closed | `closure/lane-c` and `closure/lane-c-restore` deleted (merged in #57; carried in #58); PR #59 closed as carried | STOOD DOWN 16:57Z; handed back: the restore, `sif`, five patterns, the Gemini projection after 2b, item 7 |
 | Director | 7 | reports index, runbook step 13, `provenance.yml` completion entry; merges | Cauldron herds Lustre | 1db07581 | `chore/director-records-7` merged as PR #76 (`SHA: 1b44f5b`); `chore/director-records-8` based on `main`, open as PR #78 (items 81 to 87); `chore/director-records-9` stacked on it | routing lane A; merging |
@@ -1011,6 +1013,15 @@ ones the Director would put to the owner had the owner been present.
     fan-out variant) resolves on the derivation side with Cursor as the final description
     fallback, the schema unchanged. 5a-vi's slice measured before authoring (PDR-132):
     twenty-one files, three review-facing behaviours, cells per behaviour; accepted. Lens 1.
+90. #78 merged by the bot at `SHA: e7ba800` (08:07Z on 2026-09-14) at zero threads with
+    Copilot bound to `SHA: 1ce9d2a`; records-8 (items 81 to 87, two rounds) is on `main`.
+    Three suppressed findings on that pass, merged because 5a-vi is not in, cured here on
+    records-9 (now stacked on `main`): the board row names the Gemini projection once (in
+    the residue; the generator renders it at 2b-ii); the merged list carries #74, #76 and
+    #78; lane C's record no longer says lane C authors the Gemini extension. The #78 chain
+    had to be re-run once: `git rev-parse --short` grew the tip to eight characters and the
+    seven-character comparison never matched (the napkin carries it; every chain script now
+    pins the length). Lens 1.
 
 ## Routing log
 
