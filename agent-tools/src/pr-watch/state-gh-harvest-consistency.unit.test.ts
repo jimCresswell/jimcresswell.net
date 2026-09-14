@@ -195,12 +195,13 @@ describe('readPrStateReading — the harvest brackets the thread read (#65 round
     });
     expect(reading.reviews.map((entry) => entry.body)).toEqual([FIRST.body, LANDING.body]);
     // Every leg reads inside one bracket: the closing harvest is the last
-    // call, after the confirm view, which is after the comments.
+    // call, after the comments, which are read after the confirm view (#79
+    // round four: the freshest leg of the matching-tip snapshot).
     const lastHarvestAt = calls.map(isHarvestCall).lastIndexOf(true);
     const lastViewAt = calls.map(isViewCall).lastIndexOf(true);
     const lastCommentsAt = calls.map(isCommentsCall).lastIndexOf(true);
     expect(lastHarvestAt).toBe(calls.length - 1);
-    expect(lastViewAt).toBeGreaterThan(lastCommentsAt);
+    expect(lastCommentsAt).toBeGreaterThan(lastViewAt);
   });
 
   it('a quiet PR reads the harvest twice and the threads once', () => {

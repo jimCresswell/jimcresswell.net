@@ -1,4 +1,4 @@
-import { tallyReviewBody } from './body-tally.js';
+import { suppressedCountLabel, tallyReviewBody } from './body-tally.js';
 import { dispositionLifts, parseDispositionLines } from './disposition-lines.js';
 import type { IssueComment } from './issue-comments.js';
 import { hasLanded, isSignedSelfReply, type HarvestedReview } from './reviewer-legs.js';
@@ -42,7 +42,8 @@ export interface SuppressedHold {
   /** The tip the hold binds, as the disposition line names it. */
   readonly headRefOid: string;
   readonly verdict: string | null;
-  readonly suppressed: number;
+  /** The declared count, or `null` for a count the instrument cannot bound (body-tally.ts). */
+  readonly suppressed: number | null;
   readonly lifted: number;
 }
 
@@ -100,7 +101,7 @@ export function suppressedHolds(reading: SuppressedHoldReading): SuppressedHold[
     .filter((review) => review.commitOid === reading.headRefOid)
     .filter((review) => hasLanded(review) && !isSignedSelfReply(review.body))
     .map((review) => ({ review, tally: tallyReviewBody(review.body) }))
-    .filter(({ tally }) => tally.suppressed > 0)
+    .filter(({ tally }) => tally.suppressed !== 0)
     .map(({ review, tally }) => ({
       author: review.author,
       state: review.state,
@@ -110,13 +111,22 @@ export function suppressedHolds(reading: SuppressedHoldReading): SuppressedHold[
       suppressed: tally.suppressed,
       lifted: liftedItems(reading, review.id),
     }))
-    .filter((hold) => hold.lifted < hold.suppressed);
+    .filter((hold) => hold.suppressed === null || hold.lifted < hold.suppressed);
+}
+
+/** The count and the lift as the evidence states them; an unbounded count no line lifts. */
+function countClause(hold: SuppressedHold): string {
+  const lifted = `${String(hold.lifted)} lifted by a signed disposition line from the repository owner or the pull request's author (a cure with its SHA or a rejection lifts; a routing does not: owner card item 78, 2026-09-14)`;
+  if (hold.suppressed === null) {
+    return `${suppressedCountLabel(null)} suppressed finding(s), a count the instrument cannot bound (the marker's digit run is past the safe-integer range), ${lifted}, no disposition line lifts it — a later review on a later tip carrying none lifts`;
+  }
+  return `${suppressedCountLabel(hold.suppressed)} suppressed finding(s), ${lifted}, ${String(hold.suppressed - hold.lifted)} remaining — cure and push, disposition the rest, or a later review on a later tip carrying none`;
 }
 
 /** One evidence line per holding review: the review and its id, the tip, the count, the lift and the shortfall. */
 export function suppressedHoldEvidence(holds: readonly SuppressedHold[]): string[] {
   return holds.map((hold) => {
     const verdict = hold.verdict === null ? 'no headline verdict' : `verdict "${hold.verdict}"`;
-    return `suppressed findings hold the merge: ${hold.author} (${hold.state}), review ${hold.reviewId} on head SHA:${hold.headRefOid.slice(0, 7)}, ${verdict}, ${String(hold.suppressed)} suppressed finding(s), ${String(hold.lifted)} lifted by a signed disposition line from the repository owner or the pull request's author (a cure with its SHA or a rejection lifts; a routing does not: owner card item 78, 2026-09-14), ${String(hold.suppressed - hold.lifted)} remaining — cure and push, disposition the rest, or a later review on a later tip carrying none`;
+    return `suppressed findings hold the merge: ${hold.author} (${hold.state}), review ${hold.reviewId} on head SHA:${hold.headRefOid.slice(0, 7)}, ${verdict}, ${countClause(hold)}`;
   });
 }

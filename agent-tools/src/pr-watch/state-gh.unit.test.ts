@@ -144,10 +144,13 @@ describe('readPrStateReading', () => {
     expect(reading.issueComments).toEqual([
       { author: 'jimCresswell', body: 'a disposition comment\n\n— Seat (abc123)' },
     ]);
-    // The comments leg reads inside the harvest bracket, before the confirm
-    // view, and the closing harvest is the last call: a line binds itself to
-    // the tip by its own SHA and review id, and a comment landing after the
-    // bracket closes is the next poll's (#79 rounds one and three, 2026-09-14).
+    // The comments leg reads inside the harvest bracket AFTER the confirm
+    // view, so the dispositions are the freshest leg of the matching-tip
+    // snapshot (a line edited or deleted between an earlier read and the
+    // confirm would lift a stale count); the closing harvest is the last call.
+    // A line binds itself to the tip by its own SHA and review id, and a
+    // comment landing after the bracket closes is the next poll's (#79 rounds
+    // one, three and four, 2026-09-14).
     const isCommentsCall = (call: readonly string[]): boolean =>
       call.some((arg) => arg.includes('comments(first: 100'));
     const isViewCall = (call: readonly string[]): boolean => call[0] === 'pr';
@@ -158,7 +161,7 @@ describe('readPrStateReading', () => {
     const commentsAt = calls.findIndex(isCommentsCall);
     const lastViewAt = calls.map(isViewCall).lastIndexOf(true);
     const lastHarvestAt = calls.map(isHarvestCall).lastIndexOf(true);
-    expect(lastViewAt).toBeGreaterThan(commentsAt);
+    expect(commentsAt).toBeGreaterThan(lastViewAt);
     expect(lastHarvestAt).toBe(calls.length - 1);
     expect(reading.reviewThreads).toEqual({ total: 2, unresolved: 0 });
     expect(reading.reviews).toHaveLength(1);

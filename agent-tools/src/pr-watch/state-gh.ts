@@ -123,19 +123,23 @@ export function readPrStateReading(options: ReadPrStateOptions): PrStateReading 
   const legInput = { run, gh, prNumber, repo };
   for (let attempt = 0; attempt < TIP_CONSISTENT_ATTEMPTS; attempt += 1) {
     const prUrl = view.url;
-    // Every leg reads inside one harvest bracket, the confirm view last: the
-    // confirm closes the tip's race window and, on a match, is the freshest
-    // same-tip snapshot the reading composes from; the closing harvest then
-    // proves no review landed during any leg. The dispositions of body-only
-    // findings are mutable comments: a line binds itself to the tip and the
-    // review by its own SHA and review id (suppressed-hold.ts), and a comment
-    // landing after the bracket closes is the next poll's.
-    const { confirm, ...legs } = readHarvestBracket(legInput, () => ({
-      reviewThreads: readReviewThreads(legInput),
-      reviewRuns: readReviewRunsLeg({ run, gh, prNumber: number, prUrl }),
-      issueComments: readIssueComments(legInput),
-      confirm: readMergeabilityComputedView({ run, gh, viewArgs, prNumber }),
-    }));
+    // Every leg reads inside one harvest bracket: the confirm view closes the
+    // tip's race window and, on a match, is the freshest same-tip snapshot the
+    // reading composes from; the closing harvest then proves no review landed
+    // during any leg. The dispositions of body-only findings are mutable
+    // comments, read AFTER the confirm so they are the freshest leg of the
+    // matching-tip snapshot (a line edited or deleted between an earlier read
+    // and the confirm would lift a stale count, #79 round four): a line binds
+    // itself to the tip and the review by its own SHA and review id
+    // (suppressed-hold.ts), and a comment landing after the bracket closes is
+    // the next poll's.
+    const { confirm, ...legs } = readHarvestBracket(legInput, () => {
+      const reviewThreads = readReviewThreads(legInput);
+      const reviewRuns = readReviewRunsLeg({ run, gh, prNumber: number, prUrl });
+      const tip = readMergeabilityComputedView({ run, gh, viewArgs, prNumber });
+      const issueComments = readIssueComments(legInput);
+      return { reviewThreads, reviewRuns, issueComments, confirm: tip };
+    });
     if (confirm.headRefOid === view.headRefOid) {
       return {
         ...confirm,

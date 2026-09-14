@@ -18,8 +18,13 @@ import { printableBlock } from './printable.js';
 export interface BodyTally {
   /** The headline verdict phrase, or null when the body carries no heading. */
   readonly verdict: string | null;
-  /** The count the body declares as suppressed; zero when it declares none. */
-  readonly suppressed: number;
+  /**
+   * The count the body declares as suppressed; zero when it declares none; `null` when it
+   * declares one the instrument cannot bound (a digit run past the safe-integer range, which
+   * `Number` would read as an unsafe integer or Infinity), so no gate compares it (#79 round
+   * four, 2026-09-14).
+   */
+  readonly suppressed: number | null;
 }
 
 // Every `###` heading, with a leading pictographic token (an emoji, with or
@@ -52,9 +57,20 @@ function headlineVerdict(body: string): string | null {
  */
 export function tallyReviewBody(body: string): BodyTally {
   const shown = printableBlock(body);
-  const suppressed = SUPPRESSED.exec(shown);
-  return {
-    verdict: headlineVerdict(shown),
-    suppressed: suppressed === null ? 0 : Number(suppressed[1]),
-  };
+  return { verdict: headlineVerdict(shown), suppressed: suppressedCount(shown) };
+}
+
+/** The count as the evidence prints it: the number, or the unbounded case named. */
+export function suppressedCountLabel(count: number | null): string {
+  return count === null ? 'an unbounded count of' : String(count);
+}
+
+/** The declared count as a safe integer, zero when none is declared, `null` when it cannot be bound. */
+function suppressedCount(shown: string): number | null {
+  const marker = SUPPRESSED.exec(shown);
+  if (marker === null) {
+    return 0;
+  }
+  const count = Number(marker[1]);
+  return Number.isSafeInteger(count) ? count : null;
 }

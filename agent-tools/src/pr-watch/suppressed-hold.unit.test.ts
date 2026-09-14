@@ -167,6 +167,24 @@ describe('suppressedHolds', () => {
     expect(suppressedHolds(reading([olderTip, selfReply, pending, clean]))).toStrictEqual([]);
   });
 
+  it('holds on an unbounded count, which no disposition line lifts, and says so in its evidence naming the review id (#79 round four)', () => {
+    const unbounded = closerLook(0, {
+      body: `### 🔵 Needs a closer look\n\n<details>\n### Suppressed comments (${'9'.repeat(400)})\n</details>`,
+    });
+    const holds = suppressedHolds(
+      reading([unbounded], [dispositions('Cured in SHA:9f8e7d6', 'Rejected: no')]),
+    );
+    expect(holds.map((hold) => [hold.reviewId, hold.suppressed, hold.lifted])).toStrictEqual([
+      [REVIEW, null, 2],
+    ]);
+    const [evidence] = suppressedHoldEvidence(holds);
+    expect(evidence).toContain(`review ${REVIEW} on head SHA:aaaaaaa`);
+    expect(evidence).toContain(
+      'an unbounded count of suppressed finding(s), a count the instrument cannot bound',
+    );
+    expect(evidence).toContain('no disposition line lifts it');
+  });
+
   it('names the review and its id, the tip, the count and the shortfall in its evidence, one line per holding review', () => {
     const [evidence] = suppressedHoldEvidence([
       {

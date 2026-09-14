@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { tallyReviewBody } from './body-tally.js';
+import { suppressedCountLabel, tallyReviewBody } from './body-tally.js';
 
 /**
  * The body tally reads what a vendor's summary review says about itself: its
@@ -56,6 +56,16 @@ describe('tallyReviewBody', () => {
 
   it('a suppressed heading whose count is not a number is not a count (zero)', () => {
     expect(tallyReviewBody('### Suppressed comments (many)').suppressed).toBe(0);
+  });
+
+  it('a count past the safe-integer range is declared but unbounded (null), never a number the gate can compare (#79 round four)', () => {
+    expect(tallyReviewBody(`### Suppressed comments (${'9'.repeat(400)})`).suppressed).toBeNull();
+    expect(tallyReviewBody(`### Suppressed comments (${'9'.repeat(20)})`).suppressed).toBeNull();
+    expect(tallyReviewBody('### Suppressed comments (9007199254740991)').suppressed).toBe(
+      9007199254740991,
+    );
+    expect(suppressedCountLabel(null)).toBe('an unbounded count of');
+    expect(suppressedCountLabel(6)).toBe('6');
   });
 
   it('a body holding only the suppressed marker tallies no verdict, never the marker as one', () => {
