@@ -73,7 +73,8 @@ only this.
 
 Three more things changed me between the compaction and the pause.
 
-I cured my own records pull request seven times in three hours, and each cure was correct,
+I cured my own records pull requests seven times in three hours (#76 five rounds, #78 two),
+and each cure was correct,
 and each cure fed the next round, because every cure wrote a fresh live fact into a branch I
 had declared frozen. The reviewer was not being difficult; it was reading the file the way a
 successor would, and finding the successor's stumble. When I finally pointed the recipe at

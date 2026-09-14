@@ -50,18 +50,17 @@ Every line answered first-hand, none inferred:
   archive holds only processed material.
 - The transplant is bounded: closure items 3 to 8 finish it, then editorial work.
 
-## Current handoff state (2026-09-14, 13:05Z, resumed after the cold pause; n=2 with lane A; owner present)
+## Current handoff state (2026-09-14, 16:30Z, 5a-vi on main; n=2 with lane A; owner present)
 
 Where this block and the routing log disagree, the log's last entry is current; this block is
 rewritten at each Director push.
 
-**Cold pause, lifted (paused 09:01Z, lifted 13:03Z on 2026-09-14, both the owner's word).** Every
-process this seat owned was stopped by id for the pause; on the lift the boundary block below
-was run as the re-arm recipe (verified by id, watcher and ARC tail armed, the assertion green,
-the gap swept with no events, the Director claim refreshed). Lane A resumed on its own lift and
-holds #79 round three first, then #77, per items 93 and 95; the slot arrangement resumes (ask,
-confirm, push, release). This branch, records-9, pushes at the lift as the natural boundary and
-freezes at open; later items go to records-10.
+**State at this push (2026-09-14, 16:30Z).** 5a-vi (#79) merged: the suppressed-findings hold
+is on `main` and the chains post signed dispositions before each review request. 2b-ii runs
+as three slices (A1 open, A2 local behind it, B designed). The afternoon's owner rulings:
+the pacing word (item 99), rounds do not go up and the four cards (item 100), the two-way
+exchange node ratified (item 101). The cold pause of 09:01Z to 13:03Z is items 96 and 97.
+This branch, records-10, freezes at open; later items go to records-11.
 
 **Boundary block (compaction, 2026-09-14 06:37Z; the seat stays live).** Assume nothing
 session-scoped survives; verify by id first, re-arm only what is absent:
@@ -110,7 +109,8 @@ session-scoped survives; verify by id first, re-arm only what is absent:
   `.agent/collaboration/rapid-comms/2026-09-13-transplant-closure-n2-cauldron-herds-lustre-saffron-turns-verdure.md`.
   No heartbeat loop at n=2. No cron.
 - The pull-request chains (session scratch scripts; each is thirty lines: wait for origin to
-  carry the tip, mint the bot token, reply to and resolve each unresolved thread by path, POST
+  carry the tip, mint the bot token, reply to and resolve each unresolved thread by path, post
+  the signed dispositions for the review's suppressed findings as the bot (the hold reads them), POST
   the Copilot reviewer under the owner's credential, wait for the review on the tip, run
   `merge-bot merge --pr N --expect copilot-pull-request-reviewer --interval 30 --max-polls 60 --json`):
   re-arm on resume for every open pull request at its current tip; the pull request list is
@@ -121,8 +121,8 @@ session-scoped survives; verify by id first, re-arm only what is absent:
 - The push slot: lane A asks, the Director confirms, lane A pushes and releases with one
   line; a standing grant given for a Director absence holds until "Director back". On
   resume: say "Director back", read lane A's release lines, re-arm the chains above.
-- Lane A's order after #79 (5a-vi) and #77 (2b-i): 2b-ii (the generator, then the Gemini row
-  per item 70); item 4's residue rows (the corpus-analysis restore with the five patterns,
+- Lane A's order after 2b-ii (A1 open, A2 local, B the Gemini row per item 70): item 4's
+  residue rows (the corpus-analysis restore with the five patterns,
   `sif`'s routing); one pull request carrying 5a-v, 5c-ii and the PDR-008, PDR-132 and
   PDR-082 card amendments; then item 7, the Director's. The graduation drain is outside the
   closure (owner word, item 94): curator work later, in batches of six to eight entries. The
@@ -131,9 +131,10 @@ session-scoped survives; verify by id first, re-arm only what is absent:
   and the mode is n=2 owner-visible.
 
 - Director: Cauldron herds Lustre (880ff9), claim `1db07581`, thread `transplant-closure`,
-  branch: this branch is `chore/director-records-9`, based on `main` (records-8 merged as
-  PR #78, `SHA: e7ba800`), open as PR #80 and frozen at open; later items on
-  `chore/director-records-10`, stacked on it (records only; the Director makes no source
+  branch: this branch is `chore/director-records-10`, based on `main` (records-9 merged as
+  PR #80, `SHA: 6699f51`; `main` merged in at `SHA: 014fc6e`), opened at this push and frozen
+  at open (the pull request list is authoritative for its number); later items on
+  `chore/director-records-11`, stacked on it (records only; the Director makes no source
   edits).
 - Controlling node: `.agent/plans/delivery/practice-completion.plan.md` §Transplant closure.
   Landed on `main`, every component: item 1 (archive deleted), item 2 (PR #53,
@@ -147,12 +148,14 @@ session-scoped survives; verify by id first, re-arm only what is absent:
   `SHA: e67559a`), item 5a-iv (PR #72, `SHA: 37eebe9`), the Director records to item 58 (PR
   #70, `SHA: 1643be8`), item 5c (PR #71, `SHA: f377412`), the Director records to item 67
   (PR #73, `SHA: 50546ee`), item 2a (PR #74, `SHA: 558be52`), the Director records to item
-  80 (PR #76, `SHA: 1b44f5b`), the Director records to item 87 (PR #78, `SHA: e7ba800`). Not
-  landed: 2b, 5a-vi, the handed-back residue, item 7.
-- Open pull requests (the snapshot at this push): 2b-i (PR #77, `chore/subagent-declarations`,
-  round three, lane A's cures); 5a-vi (PR #79, `fix/merge-bot-suppressed-hold`, round three,
-  lane A's cures); this records branch (PR #80, `chore/director-records-9`, items 88 to 97,
-  frozen at open; its round cures ride the branch). Merged: #54, #56, #57, #58, #61, #55 (`SHA: 7127bc4`),
+  80 (PR #76, `SHA: 1b44f5b`), the Director records to item 87 (PR #78, `SHA: e7ba800`),
+  item 2b-i (PR #77, `SHA: 0e70a2b`), the Director records to item 97 (PR #80,
+  `SHA: 6699f51`), item 5a-vi (PR #79, `SHA: 014fc6e`). Not landed: 2b-ii, 5a-v, 5c-ii, the
+  handed-back residue, item 7.
+- Open pull requests (the snapshot at this push): 2b-ii A1 (PR #81, `chore/subagent-generator`,
+  round two, lane A's cures); this records branch (`chore/director-records-10`, items 98 to
+  102, frozen at open; its round cures ride the branch). Merged (the landed list above is
+  authoritative and carries #77, #79 and #80 as well): #54, #56, #57, #58, #61, #55 (`SHA: 7127bc4`),
   #63 (`SHA: dc23dff`, session 2's register), #60 (`SHA: 4370e04`, the per-checkout
   Playwright port as the in-process server), #64 (`SHA: 38e9693`, item 5a-i), #66
   (`SHA: 0ec4583`, the e2e follow-on), #65 (`SHA: 53d9495`, item 5a-ii, measured state), #67
@@ -184,9 +187,10 @@ session-scoped survives; verify by id first, re-arm only what is absent:
   the evening) was found alive after the compaction that followed the 06:37Z non-terminal
   wrap; it was then stopped and re-armed in the canonical shape because it lacked the
   supervisor pid.
-- Next safe step (owner present; the pause lifted, item 97): #77 (2b-i), #79 (5a-vi) and #80
-  (this branch) open, the bot merging each at zero threads on measured state, lane A curing
-  #79's round three then #77's; then lane A's order in the boundary block; item 7 last.
+- Next safe step (owner present; 5a-vi on `main`, item 102): #81 (2b-ii A1) and this branch
+  open, the bot merging each when settled on measured state (zero threads and zero
+  undispositioned suppressed findings, the hold live), A2's pull request after #81, B after
+  A2; then lane A's order in the boundary block; item 7 last.
   The overnight
   next step, kept as the superseded snapshot: the morning
   report presents §Decisions overnight with its REVIEW marks and the session 2 cards: the
@@ -199,14 +203,14 @@ session-scoped survives; verify by id first, re-arm only what is absent:
 
 | Lane | Items | Owns exclusively | Seat | Claim | Branch / PR | State |
 | ---- | ----- | ---------------- | ---- | ----- | ----------- | ----- |
-| A | 3 done; #60 merged (`SHA: 4370e04`) and its follow-on #66 merged (`SHA: 0ec4583`); 5a-i merged (#64, `SHA: 38e9693`); 5a-ii merged (#65, `SHA: 53d9495`); 5a-iii merged (#67, `SHA: fca804e`); 5b merged (#68, `SHA: f362cce`, the four retirements, the accept-md config as a typed module, the incoming bundle gone); the e2e follow-on 2 merged (#69, `SHA: e67559a`); 5a-iv merged (#72, `SHA: 37eebe9`); 5c merged (#71, `SHA: f377412`); 2a merged (#74, `SHA: 558be52`); 2b-i open (#77); 5a-vi open (#79); then, in the boundary block's order: 2b-ii and the Gemini row, item 4's residue, one pull request for 5a-v (the whitespace-only heading, item 64), 5c-ii (the leak gate's four body findings, item 71) and the three PDR card amendments; the graduation drain outside the closure (item 94). The residue: the Gemini projection, the corpus-analysis restore with the five patterns, `sif` | root scripts, CI workflow, `agent-tools/` legs and retirements, the leak validator, `tooling/*/package.json`, `turbo.json`, the Playwright harness config, the merge-bot sources, the rules generator and the adapter trees (2a, on `main`) | Saffron turns Verdure (c39ad7) | f024e1f1 | `chore/subagent-declarations` PR #77; `fix/merge-bot-suppressed-hold` PR #79 (5a-vi) | ACTIVE at n=2 |
+| A | 3 done; #60 merged (`SHA: 4370e04`) and its follow-on #66 merged (`SHA: 0ec4583`); 5a-i merged (#64, `SHA: 38e9693`); 5a-ii merged (#65, `SHA: 53d9495`); 5a-iii merged (#67, `SHA: fca804e`); 5b merged (#68, `SHA: f362cce`, the four retirements, the accept-md config as a typed module, the incoming bundle gone); the e2e follow-on 2 merged (#69, `SHA: e67559a`); 5a-iv merged (#72, `SHA: 37eebe9`); 5c merged (#71, `SHA: f377412`); 2a merged (#74, `SHA: 558be52`); 2b-i merged (#77, `SHA: 0e70a2b`); 5a-vi merged (#79, `SHA: 014fc6e`); 2b-ii A1 open (#81), A2 local, B designed; then, in the boundary block's order: item 4's residue, one pull request for 5a-v (the whitespace-only heading, item 64), 5c-ii (the leak gate's four body findings, item 71) and the three PDR card amendments; the graduation drain outside the closure (item 94). The residue: the Gemini projection, the corpus-analysis restore with the five patterns, `sif` | root scripts, CI workflow, `agent-tools/` legs and retirements, the leak validator, `tooling/*/package.json`, `turbo.json`, the Playwright harness config, the merge-bot sources, the rules generator and the adapter trees (2a, on `main`) | Saffron turns Verdure (c39ad7) | f024e1f1 | `chore/subagent-generator` PR #81 (A1); `chore/subagent-registry` local (A2) | ACTIVE at n=2 |
 | B | 6 | (handed back) `.agent/rules/**`, `RULES_INDEX.md`, the three rule-adapter trees, the rules-index and trigger generator, sub-agent adapter descriptions | Sirocco wakes Wingspan (45fe02) | closed | `closure/lane-b` merged as PR #55 at `SHA: 7127bc4` and deleted; `closure/lane-b-generator` at `SHA: d76bb86` on origin (2a fold conserved in the record) | STOOD DOWN 17:14Z; handed back: 2a, 2b, PR 3 (now routed to lane A after item 5) |
 | C | 4 then 7 | the definition report, `testing-strategy.md`, the substrate manifest's register declarations, the Gemini projection | Djinn hunts Solder (36720b) | closed | `closure/lane-c` and `closure/lane-c-restore` deleted (merged in #57; carried in #58); PR #59 closed as carried | STOOD DOWN 16:57Z; handed back: the restore, `sif`, five patterns, the Gemini projection after 2b, item 7 |
-| Director | 7 | reports index, runbook step 13, `provenance.yml` completion entry; merges | Cauldron herds Lustre | 1db07581 | `chore/director-records-7` merged as PR #76 (`SHA: 1b44f5b`); `chore/director-records-8` merged as PR #78 (`SHA: e7ba800`); `chore/director-records-9` based on `main`, open as PR #80 (items 88 to 97); `chore/director-records-10` stacked on it | routing lane A; merging |
+| Director | 7 | reports index, runbook step 13, `provenance.yml` completion entry; merges | Cauldron herds Lustre | 1db07581 | `chore/director-records-7` merged as PR #76 (`SHA: 1b44f5b`); `chore/director-records-8` merged as PR #78 (`SHA: e7ba800`); `chore/director-records-9` merged as PR #80 (`SHA: 6699f51`); `chore/director-records-10` based on `main`, opened at this push (items 98 to 102); records-11 next | routing lane A; merging |
 
 Sequencing constraints: lanes B and C are closed, so lane A holds every surface, in the
-boundary block's order (item 5 and 2a are on `main`; 2b-i and 5a-vi open; then 2b-ii with the
-Gemini row, item 4's residue, one pull request for 5a-v, 5c-ii and the card amendments; the
+boundary block's order (item 5's landed parts 5a-i to 5a-iv, 5a-vi, 5b and 5c, with 2a and
+2b-i, are on `main`; 5a-v and 5c-ii are not; 2b-ii in three slices, A1 open; then item 4's residue, one pull request for 5a-v, 5c-ii and the card amendments; the
 graduation drain outside the closure, item 94; item 7 last, the Director's).
 Pushes serialise, one
 gate at a time, for host load: two full-host gates exceed the host (the earlier reason, Playwright
@@ -1005,12 +1009,14 @@ ones the Director would put to the owner had the owner been present.
     that lives only in a review body; the bot reads nothing else. The hold is a new state in
     the closed verdict set (SUPPRESSED-FINDINGS-OPEN, lane A's name, after THREADS-OPEN and before the
     reviewer legs; a tip-bound, landed, non-self-reply body declaring N suppressed findings
-    with fewer than N signed disposition lines for that head and review id; evidence names
-    the review, the count and the shortfall; refused by name; not a wait state). The owner's
+    with fewer than N signed disposition lines for distinct findings of that head and review
+    id; evidence names the review, the count and the shortfall; refused by name; not a wait
+    state). The owner's
     card ("Block on any finding", item 78, after four merges with follow-ons) is joined to the
     ratified format thus: a "Routed to <home>" line does not count toward N; "Cured in
-    SHA:<sha>" and "Rejected" with a rationale do. REVIEW: this joining of two owner texts is
-    a Director reading; lane A builds the sentence rule as one function with its own cells so
+    SHA:<sha>" and "Rejected" do (the rationale after "Rejected" is a reader convention, item
+    91, not a machine condition). REVIEW: this joining of two owner texts is a Director
+    reading; lane A builds the sentence rule as one function with its own cells so
     the owner can remove it by card. Lens 1.
 89. The watcher's hourly backstop expired at 07:49Z (exit 124, the rule's shape) and was
     re-armed by the recipe: no survivor bound to this session, arm, assert, sweep (no gap
@@ -1129,6 +1135,88 @@ ones the Director would put to the owner had the owner been present.
     gap swept (no events), the Director claim heartbeat refreshed; lane A reported its own
     lift with its tree clean at #79's tip and was given the word for #79 round three, then
     #77; this seat took the slot for records-9 and releases it before lane A is green.
+
+98. Records-9 opened as #80 at 13:06Z (bot-authored, Copilot under the owner's credential) and
+    merged by the bot at 13:32Z (`SHA: 6699f51`) after three rounds: round one four threads and
+    three suppressed (live state my earlier refresh had left in the block; a second resume
+    contract in `repo-continuity.md`; the letter's pointer; one rejected: the plan's Gemini
+    clause is ratified text, the card to amend it is raised to the owner); round two three
+    threads and four suppressed (placeholder times replaced by the about-form or the measured
+    commit time; pointers over copies); round three zero threads and four nit-level suppressed
+    findings, cured on records-10 (the letter's plural, the settled predicate named in the
+    next safe step, "distinct findings" and the reader-convention rationale in item 88). Rounds
+    beyond two on records are this seat's decision (PDR-132), granted as on #76 and #78. #79
+    round three returned one thread (the comments leg read before the confirm view, a stale
+    lift window) and one suppressed finding (a digit run parsed to Infinity, an unliftable
+    hold); round four granted, after #77's push. The merged local records branches 3 to 9
+    deleted; this branch is records-10, cut from `main` at `SHA: 6699f51`.
+
+99. #77 (2b-i) merged by the bot at 13:48Z at
+    `SHA: 0e70a2b`, zero threads after round three (the basename preflight, the strict-schema
+    read-back, the reader refusals). Its last review left two suppressed findings, routed not
+    cured: the pointer tail dropping a trailing full stop before a continuation goes to the 2b
+    follow-on behind the assumptions-expert solution-class review of the line-by-line YAML
+    reader (lane A's code-expert measured none of the fifty-eight live descriptions carrying
+    the shape the reader was built for; the friction ratchet is at threshold; ruling: no further
+    reader cure before that review); the declaration schema's non-empty `tools` constraint,
+    which rejects Gemini's explicit empty array, goes into 2b-ii itself. The watcher's hourly
+    backstop expired at about 14:45Z (exit 124) and was re-armed by the recipe, asserted, the gap
+    swept (no events). Owner word at 14:50Z, session-scoped: take your time; no sub-agents
+    without planning; one or two at a time, never fleets. Relayed to lane A (a single
+    code-expert launch, a second reviewer after it, no fleet on #79 or 2b-ii). Open: #79
+    (round four in cure). Records-10 is local, two commits ahead of `main`.
+
+100. #79 round four returned two threads and one suppressed finding (a read-to-merge window on
+     the comments leg; the sentinel filtered before normalisation; trimmed lines letting an
+     indented code block lift); round five granted, the last ordinary round on #79 (a sixth came under the correctness
+     exception, item 102): two cures, one rejection
+     with a TSDoc sentence naming the accepted window. The owner's on-track question answered
+     (15:07Z): direction unchanged, nine or ten pull requests remain, at the measured three to
+     four rounds each that is the next lane-day, not this one. Owner word (15:15Z): the number
+     of review rounds per pull request does not go up. Applied from 2b-ii A1: PDR-132's two
+     rounds bind as written; after round two every remaining finding is dispositioned in the
+     same slot turn as the last push (a trivial cure rides it; everything else a signed Rejected
+     line with its rationale or routed home); a round three is a Director call on a correctness
+     defect only. Cards answered (about 15:20Z): the plan node's item 4 method reads that the
+     generator renders the Gemini row (2b-ii slice B edits the clause on the owner's word);
+     "Routed to <home>" does not lift, only Cured and Rejected do (item 88's REVIEW closed);
+     the item 92 sizing stands as an operating default with no PDR-132 text change; the three
+     unconsolidated napkins need no privacy review and archive only after full processing.
+     REVIEW: item 8's ratified proof includes `unconsolidated/` empty, and the archive follows
+     the graduation drain the owner placed outside the closure (item 94); the Director reads
+     item 8's closure exit as the register filed and the cards answered, the archive following
+     the drain, and asks the owner to amend the proof or move the drain back inside.
+
+101. The lineage's curator delivered a delta note into this estate's Practice Box at the
+     owner's word (comms event at 15:13Z; the note tracked here in the Box, lineage-literal
+     free): what moved on the lineage between the pin and its post-fold head. Routed as the
+     Practice's update pass after the closure, not into it; the overlap between this estate's
+     5a-vi hold and the lineage's pull-request tally family named for that pass. The owner
+     (about 15:45Z): plan the exploration of that delta and whatever else lands by then as a
+     thoughtful two-way exchange raising both Practices to the highest level either defines.
+     Authored `.agent/plans/delivery/practice-two-way-exchange.plan.md` (delivery node under
+     `practice`, blocking on `practice-completion`; deltas computed at the window, on the
+     lineage from its pin `SHA: e477e62f7` and here from the transplant merge `SHA: 55649a2`
+     whose Practice surfaces were imported at that pin (`SHA: a55fd8fdd` was the first
+     import's lineage pin, superseded by the closure's); concept rows with a register and validator, inbound at eight
+     claims and two rounds, outbound through the lineage's Box under its gates). Ratified by
+     the owner's word (about 15:55Z: "yes, you both have Practice boxes, and yes the node is
+     ratified"); the remaining gate is the owner naming the exchange window.
+
+102. #79 (5a-vi) merged by the bot at 16:25Z (`SHA: 014fc6e`) on its sixth review, zero
+     threads and zero suppressed: the first zero-suppressed pass of the day. Round six was the
+     Director's correctness exception under the rounds ruling (the self-reply exclusion keyed
+     on a signature's shape, a bypass of the hold itself), with the lifecycle skill's
+     merge-boundary paragraph cured on the same push. Two items routed to the 5a-vi follow-on
+     list: one exported self-reply predicate for the defaulted expected set and the settled
+     evidence; an assumptions-expert shape review of identity-from-text before the next feature
+     there. 2b-ii: A1 open as #81 (round two, the parity check retired as a deletion, values
+     serialised as YAML scalars, duplicate names refused, the fake port's nested-directory
+     refusal; the second platform map rejected to the reader-retirement pull request); A2 local
+     on a merge commit from A1's tip, its pull request after #81; B designed from the Gemini
+     reference re-read, about five claims, the plan clause amended on the owner's word. This
+     branch took a merge commit from `main` so the bot this seat runs carries the hold, and
+     opens at this push as records-10.
 
 ## Routing log
 
