@@ -149,9 +149,10 @@ not what the author intends:
   integration test — the harness's loopback socket is tool mechanics, not a
   system boundary. A request driven at a separately running black-box system
   over a network interface is E2E. The site's Playwright suite is the E2E
-  case: it runs against a production build served by `pnpm start`
+  case: it runs against a production build served by the harness's own
+  server process, started by the global setup on a port of its own
   (`jcdotnet/e2e/`, `*.e2e-ui.test.ts` for browser journeys and
-  `*.e2e-api.test.ts` for HTTP-level checks).
+  `*.e2e-api.test.ts` for HTTP-level checks; `jcdotnet/e2e/README.md`).
 - **Middleware proofs mount the middleware alone**: mount the
   middleware on a bare app with one probe route and drive it directly; never
   boot the full application to prove one middleware decision (review lens

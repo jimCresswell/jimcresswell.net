@@ -7,10 +7,13 @@
  * directory, reads the port from the child's first matching stdout line, writes the origin into
  * the runner's environment, which every worker inherits and reads as `baseURL` when it
  * evaluates the config, and waits for the child's `ready` line; one 120-second deadline covers
- * both lines. The returned teardown stops the child, which closes its socket. A child that
- * exits before `ready`, one that cannot be started at all (the spawn's `error` event: a missing
- * binary, say), or one that misses the deadline, is stopped and fails the run before any test
- * starts; a child that ends during the run is reported on stderr with its code. `startServer`
+ * both lines. The returned teardown stops the child, which closes its socket, and rejects when
+ * the child had already ended or ends other than with code 0 on the signal (a close that failed
+ * inside the server exits 1), so the run is red rather than green with a line on stderr. A
+ * child that exits before `ready`, one that cannot be started at all (the spawn's `error`
+ * event: a missing binary, say), or one that misses the deadline, is stopped and fails the run
+ * before any test starts; a child that ends during the run is reported on stderr with its code
+ * as it happens and fails the teardown. `startServer`
  * is the seam the cells drive with a command of their own; the default export wires the real
  * one.
  */
@@ -100,15 +103,36 @@ function lineStream(lines: readline.Interface, terminal: Promise<Terminal>): Lin
 }
 
 /** Stop the child and wait for its terminal event; a child that never started has already had it. */
-function stopped(child: ChildProcess, terminal: Promise<Terminal>): Promise<void> {
+function stopped(child: ChildProcess, terminal: Promise<Terminal>): Promise<Terminal> {
   if (child.exitCode === null && child.signalCode === null) {
     child.kill("SIGTERM");
   }
-  return terminal.then(() => undefined);
+  return terminal;
+}
+
+/**
+ * The stop a caller sees: it rejects when the child had already ended before the stop (the
+ * server did not survive the run, whatever its code) or ends other than with code 0 on the
+ * signal it was sent (a close that failed inside the server exits 1), so either fails
+ * Playwright's teardown instead of being written to stderr and forgotten. The startup path
+ * never uses this: there the child is stopped behind the original error, which is the one to
+ * preserve.
+ */
+async function stopObserved(child: ChildProcess, terminal: Promise<Terminal>): Promise<void> {
+  const running = child.exitCode === null && child.signalCode === null;
+  const event = await stopped(child, terminal);
+  if (!running) {
+    throw new Error(`${describeTerminal(event)} before stop`);
+  }
+  if (event.kind !== "exit" || event.code !== 0) {
+    throw new Error(`${describeTerminal(event)} on stop`);
+  }
 }
 
 export interface StartedServer {
   readonly origin: string;
+  /** Resolves when the child has ended, however it ended; a stop after that rejects. */
+  readonly ended: Promise<void>;
   readonly stop: () => Promise<void>;
 }
 
@@ -141,7 +165,11 @@ export async function startServer(
     const [, port] = await lines.next(/^port (\d{1,5})$/u, deadline);
     await lines.next(/^ready$/u, deadline);
     lines.done();
-    return { origin: `http://localhost:${port}`, stop: () => stopped(child, terminal) };
+    return {
+      origin: `http://localhost:${port}`,
+      ended: terminal.then(() => undefined),
+      stop: () => stopObserved(child, terminal),
+    };
   } catch (error: unknown) {
     await stopped(child, terminal);
     throw error;
