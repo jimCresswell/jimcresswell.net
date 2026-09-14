@@ -57,4 +57,17 @@ describe('tallyReviewBody', () => {
   it('a suppressed heading whose count is not a number is not a count (zero)', () => {
     expect(tallyReviewBody('### Suppressed comments (many)').suppressed).toBe(0);
   });
+
+  it('a body holding only the suppressed marker tallies no verdict, never the marker as one', () => {
+    expect(tallyReviewBody('<details>\n### Suppressed comments (6)\n</details>')).toEqual({
+      verdict: null,
+      suppressed: 6,
+    });
+  });
+
+  it('the verdict reaches its consumers printable: control and format characters are dropped', () => {
+    // The verdict is quoted from an external body into terminal lines.
+    const body = '### \u{1B}[31mNeeds\u{1B}[0m a closer​ look';
+    expect(tallyReviewBody(body).verdict).toBe('[31mNeeds[0m a closer look');
+  });
 });

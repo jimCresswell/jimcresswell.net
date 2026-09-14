@@ -19,17 +19,35 @@ export interface BodyTally {
   readonly suppressed: number;
 }
 
-// The first `###` heading, with a leading pictographic token (an emoji, with
-// or without its variation selector) removed; a heading led by a word keeps
-// every word, so a non-vendor body's verdict is quoted whole.
-const HEADLINE = /^###\s+(?:\p{Extended_Pictographic}\u{FE0F}?\s+)?(.+?)\s*$/mu;
+// Every `###` heading, with a leading pictographic token (an emoji, with or
+// without its variation selector) removed; a heading led by a word keeps every
+// word, so a non-vendor body's verdict is quoted whole. The suppressed-count
+// marker is a `###` heading too and is never the verdict: a body holding only
+// the marker tallies no verdict (the #67 body finding, 2026-09-14).
+const HEADINGS = /^###\s+(?:\p{Extended_Pictographic}\u{FE0F}?\s+)?(.+?)\s*$/gmu;
 const SUPPRESSED = /^###\s+Suppressed comments \((\d+)\)\s*$/mu;
+const SUPPRESSED_MARKER = /^Suppressed comments \(/u;
+
+// The verdict is quoted verbatim from an external review body into evidence
+// lines that `pr state` and `merge-bot merge` write to a terminal, so control
+// and format characters (an escape sequence, a zero-width mark) are dropped
+// before it leaves this module; every consumer sees printable text only.
+const NON_PRINTABLE = /[\p{Cc}\p{Cf}]/gu;
+
+function headlineVerdict(body: string): string | null {
+  for (const heading of body.matchAll(HEADINGS)) {
+    const text = heading[1] ?? '';
+    if (!SUPPRESSED_MARKER.test(text)) {
+      return text.replaceAll(NON_PRINTABLE, '');
+    }
+  }
+  return null;
+}
 
 export function tallyReviewBody(body: string): BodyTally {
-  const headline = HEADLINE.exec(body);
   const suppressed = SUPPRESSED.exec(body);
   return {
-    verdict: headline?.[1] ?? null,
+    verdict: headlineVerdict(body),
     suppressed: suppressed === null ? 0 : Number(suppressed[1]),
   };
 }

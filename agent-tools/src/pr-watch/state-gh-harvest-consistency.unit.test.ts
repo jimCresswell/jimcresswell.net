@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 
 import { readPrStateReading } from './state-gh.js';
 import { stateViewFixture } from './state-view-fixture.js';
+import { graphqlResponse } from './test-helpers/state-gh-payloads.js';
 import type { GhCommandExecutor } from './gh.js';
 
 /**
@@ -66,7 +67,9 @@ const LANDING = review('Needs a closer look. 3 suppressed findings.', '2026-07-2
 
 /**
  * Serves one harvest per harvest call and one threads page per thread call
- * (the last of each repeats), so a landing between the calls is scripted.
+ * (the last of each repeats), so a landing between the calls is scripted. The
+ * dispatch is the shared `graphqlResponse`, so a harvest is served only to a
+ * query that selects the request connection (the #67 body finding).
  */
 function landingExecutor(
   script: { readonly harvests: readonly string[]; readonly threads: readonly string[] },
@@ -76,19 +79,23 @@ function landingExecutor(
   let threadsCall = 0;
   const served = (pages: readonly string[], call: number): string =>
     pages[Math.min(call, pages.length - 1)] ?? '';
+  const payloads = {
+    threads: (): string => {
+      threadsCall += 1;
+      return served(script.threads, threadsCall - 1);
+    },
+    harvest: (): string => {
+      harvestCall += 1;
+      return served(script.harvests, harvestCall - 1);
+    },
+  };
   return (_file, args) => {
     calls.push([...args]);
     if (args[0] === 'pr') {
       return JSON.stringify(stateViewFixture());
     }
     if (args[0] === 'api') {
-      const query = args.find((arg) => arg.startsWith('query='));
-      if (query?.includes('reviewThreads') === true) {
-        threadsCall += 1;
-        return served(script.threads, threadsCall - 1);
-      }
-      harvestCall += 1;
-      return served(script.harvests, harvestCall - 1);
+      return graphqlResponse(args, payloads);
     }
     if (args[0] === 'agent-task') {
       return JSON.stringify([]);
