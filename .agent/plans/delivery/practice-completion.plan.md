@@ -203,14 +203,15 @@ remove .agent-original before we merge 53"; "it should be processed then deleted
    Cursor triggers from it and `portability:check` recomputes them; sub-agent adapter
    descriptions derive from the templates. Proof: the generator's tests and a byte-equal
    regeneration of today's files.
-   **Landed 2026-09-14 in part (2b-ii slice A1):** the sub-agent adapter generator renders
-   the Cursor, Claude and Codex adapters from each template's declaration and
-   `portability:check` recomputes them (75 of 86 files byte-equal; eleven normalised on
+   **Landed 2026-09-14 in part (2b-ii slices A1 and A2):** the sub-agent adapter generator
+   renders the Cursor, Claude and Codex adapters and the Codex registry's agent blocks
+   (after the registry's hand-kept head) from each template's declaration, and
+   `portability:check` recomputes them (75 of 86 adapters byte-equal; eleven normalised on
    record: four folded and three apostrophe-quoted Cursor descriptions, two wrapped
-   pointers, two titles). Open: the Codex
-   registry (A2), the Gemini row (B). Retirement condition: once the generator owns every
-   adapter surface, the hand-kept adapter readers and the declaration sweep have no consumer
-   and are deleted in their own pull request.
+   pointers, two titles; the registry's blocks sorted by name, one block moved). Open: the
+   Gemini row (B). Retirement condition: once the generator owns every adapter surface, the
+   hand-kept adapter readers and the declaration sweep have no consumer and are deleted in
+   their own pull request.
 7. **The record compiled** (todo 4): the reports index as the entry (what, how, why,
    how-faster), the runbook's step 13 citing the nine functions, the completion entry in
    `provenance.yml`. Proof: the index and the provenance diff.

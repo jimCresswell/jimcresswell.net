@@ -9,8 +9,8 @@
  * platform's fields. The declaration is the one source for every adapter: the
  * generator (closure item 6, 2b-ii; `render-subagent-adapters.ts`) renders the Cursor,
  * Claude and Codex adapters under `pnpm portability:fix` and `pnpm portability:check`
- * recomputes them, so none is edited by hand (`compute-dont-hope`); the Codex registry and
- * the Gemini row follow in their own slices.
+ * recomputes them, the Codex registry's blocks too (`render-codex-registry.ts`), so none is
+ * edited by hand (`compute-dont-hope`); the Gemini row follows in its own slice.
  *
  * Two shapes, never both: a ROLE declares one description and, only where a platform's
  * fields deviate from the estate's defaults, those fields; a FAN-OUT (the cricket templates)
