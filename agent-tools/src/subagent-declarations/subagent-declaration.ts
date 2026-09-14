@@ -23,7 +23,7 @@ import { err, ok, type Result } from '@engraph/result';
 import { z } from 'zod';
 
 /** The platforms an adapter can be projected to, in the order the surfaces are listed. */
-export const SUBAGENT_PLATFORMS = ['cursor', 'claude', 'codex', 'gemini'] as const;
+const SUBAGENT_PLATFORMS = ['cursor', 'claude', 'codex', 'gemini'] as const;
 
 /** A member of {@link SUBAGENT_PLATFORMS}. */
 export type SubagentPlatform = (typeof SUBAGENT_PLATFORMS)[number];
@@ -33,6 +33,17 @@ const line = z
   .string()
   .min(1)
   .refine((value) => !value.includes('\n'), 'one line');
+
+/**
+ * Prose an adapter body carries beyond the standard shape, verbatim: what follows the
+ * template path inside the pointer paragraph, and the closing paragraphs after it. A role
+ * declares them only where they deviate from the platform's standard closing; a variant
+ * declares every note it carries.
+ */
+const prose = {
+  pointerTail: z.string().min(1).optional(),
+  note: z.string().min(1).optional(),
+};
 
 /** Claude Code adapter fields; every one optional, absent means the estate's default. */
 const claudeFields = z
@@ -44,8 +55,7 @@ const claudeFields = z
     color: line.optional(),
     model: line.optional(),
     effort: line.optional(),
-    /** Prose the adapter carries after its template pointer; variants only. */
-    note: z.string().min(1).optional(),
+    ...prose,
   })
   .strict();
 
@@ -54,19 +64,26 @@ const codexFields = z
   .object({
     model: line.optional(),
     effort: line.optional(),
-    note: z.string().min(1).optional(),
+    ...prose,
   })
   .strict();
 
-/** Cursor adapter fields; a variant may carry its own description and prose. */
+/** Cursor adapter fields; a variant may carry its own description. */
 const cursorFields = z
   .object({
     description: line.optional(),
-    note: z.string().min(1).optional(),
+    ...prose,
   })
   .strict();
 
-/** Gemini adapter fields, exactly the optional fields the Gemini CLI docs name (2026-09-14). */
+/**
+ * Gemini adapter fields: exactly the optional frontmatter fields the Gemini CLI subagents
+ * reference names (https://geminicli.com/docs/core/subagents/, read 2026-09-14), each emitted
+ * only when declared and never defaulted here (the CLI's own defaults apply: `kind` local,
+ * `model` inherit, `temperature` 1, `max_turns` 30, `timeout_mins` 10). `name` and
+ * `description` come from the declaration itself; `mcpServers` (inline MCP servers scoped
+ * to one agent) is host configuration, not a role's declaration, and is not carried.
+ */
 const geminiFields = z
   .object({
     kind: z.enum(['local', 'remote']).optional(),
@@ -83,6 +100,8 @@ const variantSchema = z
     name: line.regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/u, 'a lowercase hyphenated adapter name'),
     platforms: z.array(platform).min(1),
     description: line,
+    /** The adapter heading where it is not the name in title case. */
+    title: line.optional(),
     cursor: cursorFields.optional(),
     claude: claudeFields.optional(),
     codex: codexFields.optional(),
@@ -94,6 +113,7 @@ const roleSchema = z
   .object({
     description: line,
     platforms: z.array(platform).min(1).optional(),
+    cursor: cursorFields.optional(),
     claude: claudeFields.optional(),
     codex: codexFields.optional(),
     gemini: geminiFields.optional(),
@@ -107,7 +127,7 @@ const declarationSchema = z.union([roleSchema, fanOutSchema]);
 export type ClaudeFields = z.infer<typeof claudeFields>;
 export type CodexFields = z.infer<typeof codexFields>;
 export type CursorFields = z.infer<typeof cursorFields>;
-export type GeminiFields = z.infer<typeof geminiFields>;
+type GeminiFields = z.infer<typeof geminiFields>;
 export type SubagentVariant = z.infer<typeof variantSchema>;
 
 /** A role: one adapter per platform under the template's own name. */
@@ -117,6 +137,7 @@ export interface RoleDeclaration {
   readonly description: string;
   /** The platforms carrying an adapter; every platform when absent. */
   readonly platforms?: readonly SubagentPlatform[];
+  readonly cursor?: CursorFields;
   readonly claude?: ClaudeFields;
   readonly codex?: CodexFields;
   readonly gemini?: GeminiFields;

@@ -1,9 +1,12 @@
 /**
  * Small helpers over a platform's declared fields: one-line string values keyed by the
- * field names a platform's adapter carries, plus the `note` prose a variant declares.
+ * field names a platform's adapter carries, plus the prose a declaration keeps verbatim
+ * (the `note` after the pointer paragraph and the `pointerTail` inside it).
  *
  * @packageDocumentation
  */
+
+import type { AdapterSource } from './adapter-sources.js';
 
 /** A platform block: string fields, each present only when declared. */
 export type DeclaredFields = Readonly<Record<string, string | undefined>>;
@@ -22,7 +25,19 @@ export function block<T extends DeclaredFields>(fields: T | undefined): T | unde
   return fields === undefined || isEmpty(fields) ? undefined : fields;
 }
 
-/** The fields with the variant's prose attached when there is any. */
-export function withNote<T extends DeclaredFields>(fields: T, note: string): T {
-  return note === '' ? fields : { ...fields, note };
+/**
+ * The fields with the adapter's prose attached where there is any: the pointer tail, then
+ * the note unless it is the platform's standard closing (a role declares deviations only;
+ * a variant passes no standard and keeps every note).
+ */
+export function withProse<T extends DeclaredFields>(
+  fields: T,
+  source: Pick<AdapterSource, 'pointerTail' | 'note'>,
+  standardNote = '',
+): T {
+  return {
+    ...fields,
+    ...(source.pointerTail === '' ? {} : { pointerTail: source.pointerTail }),
+    ...(source.note === '' || source.note === standardNote ? {} : { note: source.note }),
+  };
 }

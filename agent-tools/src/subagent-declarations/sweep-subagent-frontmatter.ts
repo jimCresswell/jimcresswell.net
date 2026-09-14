@@ -22,15 +22,15 @@ import { err, ok, type Result } from '@engraph/result';
 
 import { defaultSweepFs, readSource, type SweepFs } from '../rule-declarations/sweep-fs.js';
 
-import { readCodexAdapter, readMarkdownAdapter, type AdapterSource } from './adapter-sources.js';
 import {
-  deriveFanOut,
-  deriveRole,
-  type AdapterSet,
-  type Derived,
-  type Reconciliation,
+  readCodexAdapter,
+  readMarkdownAdapter,
+  type AdapterSource,
   type SourcePlatform,
-} from './derive-subagent-declaration.js';
+} from './adapter-sources.js';
+import { deriveRole } from './derive-role.js';
+import type { AdapterSet, Derived, Reconciliation } from './derive-subagent-declaration.js';
+import { deriveFanOut } from './derive-variant.js';
 import { readSubagentDeclaration } from './read-subagent-declaration.js';
 import {
   prependSubagentFrontmatter,
@@ -73,8 +73,8 @@ export interface SweepOutcome {
   readonly written: readonly string[];
 }
 
-function refusal(refused: readonly string[]): SweepOutcome {
-  return { refused, declarations: [], reconciliations: [], alreadyDeclared: [], written: [] };
+function refusal(refused: readonly string[], alreadyDeclared: readonly string[]): SweepOutcome {
+  return { refused, declarations: [], reconciliations: [], alreadyDeclared, written: [] };
 }
 
 /** The template an adapter name belongs to: itself, or the longest `<template>-` prefix. */
@@ -167,8 +167,10 @@ function deriveTemplate(
     : err(`${template}: adapters under its own name and under variant names`);
 }
 
+/** Derive the undeclared templates; adapters are grouped under every template, declared or not. */
 function deriveAll(
   templates: readonly string[],
+  undeclared: readonly string[],
   sets: ReadonlyMap<string, AdapterSet>,
 ): Result<Map<string, Derived>, string[]> {
   const grouped = groupByTemplate(new Set(templates), sets);
@@ -177,7 +179,7 @@ function deriveAll(
   }
   const derived = new Map<string, Derived>();
   const refused: string[] = [];
-  for (const template of templates) {
+  for (const template of undeclared) {
     const result = deriveTemplate(template, grouped.value.get(template));
     if (result.ok) {
       derived.set(template, result.value);
@@ -219,15 +221,15 @@ export async function sweepSubagentFrontmatter(input: SweepInput): Promise<Sweep
   const sets = await readAdapterSets(input, sweepFs);
   const refused = [...heads.refused, ...(sets.ok ? [] : sets.error)];
   if (refused.length > 0 || !sets.ok) {
-    return refusal(refused);
+    return refusal(refused, heads.alreadyDeclared);
   }
-  const derived = deriveAll([...heads.undeclared.keys()], sets.value);
+  const derived = deriveAll(input.templateNames, [...heads.undeclared.keys()], sets.value);
   if (!derived.ok) {
-    return refusal(derived.error);
+    return refusal(derived.error, heads.alreadyDeclared);
   }
   const written = await writeAll(input, sweepFs, heads.undeclared, derived.value);
   if (!written.ok) {
-    return refusal([written.error]);
+    return refusal([written.error], heads.alreadyDeclared);
   }
   const outcomes = [...derived.value.values()];
   return {

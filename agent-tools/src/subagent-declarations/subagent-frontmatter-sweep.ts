@@ -2,9 +2,10 @@
 
 /**
  * `pnpm --filter @engraph/agent-tools subagent-frontmatter-sweep [--write]`: mint every
- * sub-agent template's declaration from its hand-kept adapters (dry run by default) and
- * print the reconciliation report. A transplant instrument: a host arriving with hand-kept
- * adapter trees runs it once; the generator then owns the adapters.
+ * sub-agent template's declaration from its hand-kept adapters and print the reconciliation
+ * report. The dry run (the default) prints every block it would write, so the derivation is
+ * read before it lands; `--write` writes them. A transplant instrument: a host arriving with
+ * hand-kept adapter trees runs it once; the generator then owns the adapters.
  *
  * @packageDocumentation
  */
@@ -14,7 +15,10 @@ import { argv, stderr, stdout } from 'node:process';
 import { resolveRepoRoot } from '../core/repo-root.js';
 import { listTrackedFiles } from '../core/tracked-file-scan.js';
 
-import { renderSubagentReconciliationReport } from './render-subagent-frontmatter.js';
+import {
+  renderSubagentFrontmatter,
+  renderSubagentReconciliationReport,
+} from './render-subagent-frontmatter.js';
 import {
   ADAPTER_SURFACES,
   sweepSubagentFrontmatter,
@@ -57,6 +61,12 @@ async function main(): Promise<number> {
       stderr.write(`- ${reason}\n`);
     }
     return 1;
+  }
+  if (!args.includes('--write')) {
+    for (const declaration of outcome.declarations) {
+      stdout.write(`--- ${TEMPLATES_DIR}/${declaration.name}.md\n`);
+      stdout.write(renderSubagentFrontmatter(declaration));
+    }
   }
   stdout.write(
     outcome.declarations.length > 0

@@ -5,9 +5,11 @@
  *
  * Cursor and Claude adapters are Markdown with YAML frontmatter; Codex adapters are TOML
  * with flat `key = "value"` lines and one triple-quoted `developer_instructions` string.
- * Each is read into the same shape: its frontmatter fields as strings and the prose it
- * carries after its pointer to the template (the "note"), so a variant's platform-specific
- * paragraph survives into its declaration as written.
+ * Each is read into the same shape: its frontmatter fields as strings, its title, the shape
+ * of its pointer paragraph (the sentence that names the template: wrapped or not, and
+ * whatever follows the path inside that paragraph, verbatim), and the prose after that
+ * paragraph (the "note"), so every byte an adapter body varies by is measured, and a
+ * variant's platform-specific paragraph survives into its declaration as written.
  *
  * @packageDocumentation
  */
@@ -17,10 +19,21 @@ import { parse as parseYaml } from 'yaml';
 
 import { FRONTMATTER_FENCE_LINE } from '../rule-declarations/frontmatter-lines.js';
 
-/** One adapter's fields and prose. */
+import type { SubagentPlatform } from './subagent-declaration.js';
+
+/** The three hand-kept surfaces; Gemini is generated only. */
+export type SourcePlatform = Exclude<SubagentPlatform, 'gemini'>;
+
+/** One adapter's fields and body facts. */
 export interface AdapterSource {
   readonly fields: ReadonlyMap<string, string>;
-  /** The prose after the template pointer, trimmed; empty when the adapter carries none. */
+  /** The `# ` heading, when the adapter carries one (a Codex adapter carries none). */
+  readonly title: string | undefined;
+  /** Whether the pointer sentence wraps its path onto a second line. */
+  readonly pointerWrapped: boolean;
+  /** What follows the path inside the pointer paragraph, verbatim; empty for a plain stop. */
+  readonly pointerTail: string;
+  /** The prose after the pointer paragraph, trimmed; empty when the adapter carries none. */
   readonly note: string;
 }
 
@@ -62,16 +75,36 @@ function readBlock(
   return ok({ fields, closing });
 }
 
-/** The prose after the pointer, which may wrap its path onto the next line. */
-function noteAfter(body: readonly string[], pointerAt: number): string {
-  const pointerEnd = body[pointerAt]?.includes('`') === true ? pointerAt : pointerAt + 1;
-  return body
-    .slice(pointerEnd + 1)
-    .join('\n')
-    .trim();
+/** The pointer paragraph's tail and the note after it, given the line that carries the path. */
+function bodyAfterPath(
+  relativePath: string,
+  body: readonly string[],
+  pathLine: number,
+): Result<Pick<AdapterSource, 'pointerTail' | 'note'>, string> {
+  const line = body[pathLine] ?? '';
+  const closingTick = line.lastIndexOf('`');
+  if (closingTick === -1) {
+    return err(`${relativePath}: the template pointer names no path`);
+  }
+  let paragraphEnd = pathLine;
+  while ((body[paragraphEnd + 1] ?? '').trim() !== '') {
+    paragraphEnd += 1;
+  }
+  const afterPath = line.slice(closingTick + 1);
+  const continuation = body.slice(pathLine + 1, paragraphEnd + 1);
+  const pointerTail =
+    (afterPath === '.' ? '' : afterPath) +
+    (continuation.length === 0 ? '' : `\n${continuation.join('\n')}`);
+  return ok({
+    pointerTail,
+    note: body
+      .slice(paragraphEnd + 1)
+      .join('\n')
+      .trim(),
+  });
 }
 
-/** Read a Markdown adapter (Cursor or Claude): its frontmatter fields and its note. */
+/** Read a Markdown adapter (Cursor or Claude): its fields, title, pointer shape and note. */
 export function readMarkdownAdapter(
   relativePath: string,
   text: string,
@@ -86,10 +119,16 @@ export function readMarkdownAdapter(
   if (pointerAt === -1) {
     return err(`${relativePath}: no template pointer sentence`);
   }
-  return ok({ fields: block.value.fields, note: noteAfter(body, pointerAt) });
+  const pointerWrapped = !(body[pointerAt] ?? '').includes('`');
+  const rest = bodyAfterPath(relativePath, body, pointerWrapped ? pointerAt + 1 : pointerAt);
+  if (!rest.ok) {
+    return rest;
+  }
+  const title = body.find((entry) => entry.startsWith('# '))?.slice(2);
+  return ok({ fields: block.value.fields, title, pointerWrapped, ...rest.value });
 }
 
-/** Read a Codex adapter: its flat fields and the prose after the pointer line. */
+/** Read a Codex adapter: its flat fields and the pointer shape and note in its instructions. */
 export function readCodexAdapter(
   relativePath: string,
   text: string,
@@ -107,11 +146,6 @@ export function readCodexAdapter(
   if (pointerAt === -1) {
     return err(`${relativePath}: no template pointer line`);
   }
-  return ok({
-    fields,
-    note: body
-      .slice(pointerAt + 1)
-      .join('\n')
-      .trim(),
-  });
+  const rest = bodyAfterPath(relativePath, body, pointerAt);
+  return rest.ok ? ok({ fields, title: undefined, pointerWrapped: false, ...rest.value }) : rest;
 }

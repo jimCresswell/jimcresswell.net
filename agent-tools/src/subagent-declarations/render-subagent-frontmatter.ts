@@ -28,10 +28,11 @@ function frontmatterFields(declaration: SubagentDeclaration): FrontmatterFields 
   if (declaration.kind === 'fan-out') {
     return { variants: declaration.variants };
   }
-  const { description, platforms, claude, codex, gemini } = declaration;
+  const { description, platforms, cursor, claude, codex, gemini } = declaration;
   return {
     description,
     ...(platforms === undefined ? {} : { platforms }),
+    ...(cursor === undefined ? {} : { cursor }),
     ...(claude === undefined ? {} : { claude }),
     ...(codex === undefined ? {} : { codex }),
     ...(gemini === undefined ? {} : { gemini }),
