@@ -999,6 +999,18 @@ ones the Director would put to the owner had the owner been present.
     SHA:<sha>" and "Rejected" with a rationale do. REVIEW: this joining of two owner texts is
     a Director reading; lane A builds the sentence rule as one function with its own cells so
     the owner can remove it by card. Lens 1.
+89. The watcher's hourly backstop expired at 07:49Z (exit 124, the rule's shape) and was
+    re-armed by the recipe: no survivor bound to this session, arm, assert, sweep (no gap
+    events). #78 round one (Copilot on `SHA: 4abe647` at 07:54Z: two open, one suppressed;
+    the ARC tail's process lookup could not tell this seat's tail from the peer's, and the
+    current-state block above the board still named #76 open) cured at `SHA: 1ce9d2a`
+    (pushed 07:57Z): the tail is this seat's by process ancestry to this session's pid; the
+    block reads the post-#76 state. #77 round two (Copilot on `SHA: 943dfa1` at 07:55Z: one
+    open thread, six suppressed; all seven block, within budget) routed to lane A, which
+    takes 5a-vi to green and its slot ask first, then the round; finding 5 (a Cursor-only
+    fan-out variant) resolves on the derivation side with Cursor as the final description
+    fallback, the schema unchanged. 5a-vi's slice measured before authoring (PDR-132):
+    twenty-one files, three review-facing behaviours, cells per behaviour; accepted. Lens 1.
 
 ## Routing log
 
