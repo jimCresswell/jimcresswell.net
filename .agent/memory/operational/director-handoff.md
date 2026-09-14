@@ -67,13 +67,13 @@ rewritten at each Director push.
   `SHA: ea3142b`), the Director records and the channel rule (PR #54, `SHA: c426c6c`; PR #58,
   `SHA: 6528ecb`). Not landed: item 5's remaining parts, 2a, 2b, the handed-back residue, item 7.
 - Open pull requests: #62 (this records branch; frozen for new items at overnight item 35,
-  thread cures still landing here, the final waypoint being the round-seventeen cure; items
-  from 36 on the stacked `chore/director-records-4` branch,
-  which opens after #62 merges), #65 (lane A, item 5a-ii, measured state, round three) and #66
-  (lane A, the e2e follow-on, `SHA: 8e72969`, Copilot bound). Merged: #54, #56, #57, #58, #61, #55 (`SHA: 7127bc4`), #63
-  (`SHA: dc23dff`, session 2's register), #60 (`SHA: 4370e04`, the per-checkout Playwright port
-  as the in-process server, after six rounds), #64 (`SHA: 38e9693`, item 5a-i); #59 closed as
-  carried.
+  thread cures still landing here, the final waypoint being the round-eighteen cure; items
+  from 36 on the stacked `chore/director-records-4` branch, which opens after #62 merges) and
+  #65 (lane A, item 5a-ii, measured state, round four at `SHA: 3802031`, Copilot bound).
+  Merged: #54, #56, #57, #58, #61, #55 (`SHA: 7127bc4`), #63 (`SHA: dc23dff`, session 2's
+  register), #60 (`SHA: 4370e04`, the per-checkout Playwright port as the in-process server,
+  after six rounds), #64 (`SHA: 38e9693`, item 5a-i), #66 (`SHA: 0ec4583`, the e2e
+  follow-on); #59 closed as carried.
 - Team state: owner word 17:16Z, "this is now an n=2 session, you and Saffron" (PDR-082; the
   Director's heartbeat stopped, watcher kept); 17:18Z the ARC channel opened beside native
   messaging. Lanes B and C handed every responsibility back and stood down (closeouts on the
@@ -93,9 +93,10 @@ rewritten at each Director push.
   heartbeat loop at n=2. Checked 15:39Z: background tasks outlive a compaction.
 - Next safe step (owner away; decisions by the lenses, logged under §Decisions overnight):
   #62 (this records branch) merges by the bot at zero threads with Copilot bound, then #65
-  (item 5a-ii) the same way; lane A then opens 5a-iii (the #64 body findings and the body tally,
-  item 32), then the #60 follow-on (item 31), then 5b; the morning report presents §Decisions
-  overnight with its
+  (item 5a-ii) the same way; lane A then opens the 5a-iii pull request (the #64 body findings
+  and the body tally, item 32; on origin at `SHA: beddd8b`), then 5b (committed locally), then
+  the e2e follow-on 2 (item 43), then 5c; the morning report presents §Decisions overnight with
+  its
   REVIEW marks and the session 2 cards: the twenty-three session 2 fast-lane entries in four
   classes, the five slow-lane rows (PDR-130: `promote` or `kill-with-reasoning`), and proposal
   E. Measured on `main` after #63: twenty-eight decision-debt blocks (five 2026-09-12 captures
@@ -105,7 +106,7 @@ rewritten at each Director push.
 
 | Lane | Items | Owns exclusively | Seat | Claim | Branch / PR | State |
 | ---- | ----- | ---------------- | ---- | ----- | ----------- | ----- |
-| A | 3 done; #60 merged (`SHA: 4370e04`); 5a-i merged (#64, `SHA: 38e9693`); 5a-ii open (#65); the e2e follow-on open (#66); then 5a-iii (on origin), 5b, 5c, 2a, 2b, then the handed-back residue: the Gemini projection, the corpus-analysis restore with the five patterns, `sif` | root scripts, CI workflow, `agent-tools/` legs and retirements, the leak validator, `tooling/*/package.json`, `turbo.json`, `jcdotnet/accept-md.config.js`, the incoming bundle, the Playwright harness config, the merge-bot sources; after 2b the rules generator, the adapter trees and the Gemini projection | Saffron turns Verdure (c39ad7) | f024e1f1, 5828b0ee, the 5a claim | `fix/merge-bot-measured-state` PR #65; `fix/e2e-server-follow-on` PR #66; `fix/merge-bot-body-tally` at `SHA: 38e346a` on origin, PR after #65 | ACTIVE at n=2 |
+| A | 3 done; #60 merged (`SHA: 4370e04`) and its follow-on #66 merged (`SHA: 0ec4583`); 5a-i merged (#64, `SHA: 38e9693`); 5a-ii open (#65); then the 5a-iii PR, 5b, the e2e follow-on 2, 5c, 2a, 2b, then the handed-back residue: the Gemini projection, the corpus-analysis restore with the five patterns, `sif` | root scripts, CI workflow, `agent-tools/` legs and retirements, the leak validator, `tooling/*/package.json`, `turbo.json`, `jcdotnet/accept-md.config.js`, the incoming bundle, the Playwright harness config, the merge-bot sources; after 2b the rules generator, the adapter trees and the Gemini projection | Saffron turns Verdure (c39ad7) | f024e1f1, 5828b0ee, the 5a claim | `fix/merge-bot-measured-state` PR #65; `fix/merge-bot-body-tally` at `SHA: beddd8b` on origin, PR after #65; `chore/retire-lineage-instruments` local | ACTIVE at n=2 |
 | B | 6 | (handed back) `.agent/rules/**`, `RULES_INDEX.md`, the three rule-adapter trees, the rules-index and trigger generator, sub-agent adapter descriptions | Sirocco wakes Wingspan (45fe02) | closed | `closure/lane-b` merged as PR #55 at `SHA: 7127bc4` and deleted; `closure/lane-b-generator` at `SHA: d76bb86` on origin (2a fold conserved in the record) | STOOD DOWN 17:14Z; handed back: 2a, 2b, PR 3 (now routed to lane A after item 5) |
 | C | 4 then 7 | the definition report, `testing-strategy.md`, the substrate manifest's register declarations, the Gemini projection | Djinn hunts Solder (36720b) | closed | `closure/lane-c` and `closure/lane-c-restore` deleted (merged in #57; carried in #58); PR #59 closed as carried | STOOD DOWN 16:57Z; handed back: the restore, `sif`, five patterns, the Gemini projection after 2b, item 7 |
 | Director | 7 | reports index, runbook step 13, `provenance.yml` completion entry; merges | Cauldron herds Lustre | 1db07581 | after the holdings land | routing lane A; merging |

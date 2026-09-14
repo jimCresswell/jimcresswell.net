@@ -401,9 +401,13 @@ review dates, the readout at 28 pending. Nothing here refiles or reclassifies th
    For the five slow-lane entries (A, B, C, 1a, 1b) the card is PDR-130's review-date decision,
    `promote` or `kill-with-reasoning`, recorded on the slow-lane row; a card left unanswered
    leaves the row for its review date (2026-12-13).
-2. Graduations land as their own small pull requests into the named homes, one home per PR
-   where the homes differ, by the seat the Director routes; the register entry is removed in
-   the same PR (drain by deciding).
+2. Every fast-lane outcome drains its row (drain by deciding, the register's contract). A
+   `graduated` entry lands as its own small pull request into the named home, one home per PR
+   where the homes differ, by the seat the Director routes, and the entry is removed in the
+   same PR. A `rejected` entry is removed in a register commit whose drain note (the register's
+   HTML-comment drain record) carries the rejection reason. A `duplicate` entry is removed the
+   same way, the drain note naming the home that carries it. No decision leaves the durable
+   record: the commits, the homes and the drain notes are the record.
 3. The three napkins under `.agent/memory/active/unconsolidated/` are archived once both
    gates hold: the fast-lane cards of step 1 are answered, and the owner's privacy review of
    the three napkins under `privacy.md` (overnight item 5) is done. The slow-lane cards are
