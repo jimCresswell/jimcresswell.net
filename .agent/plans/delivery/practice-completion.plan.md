@@ -187,6 +187,10 @@ remove .agent-original before we merge 53"; "it should be processed then deleted
    follow-on, `sif`'s routing in its second; the Gemini per-role adapters under
    `.gemini/agents/` landed as the generator's fourth surface, 2b-ii slice B); the item is
    complete when those rows read present.
+   **Done 2026-09-14:** rows 3, 5 and 6 closed by #86 (`SHA: 47299c7`), #87
+   (`SHA: 6b5676b`) and #85 (`SHA: eed1f2e`), row 8 by the generator's Gemini surface (#84,
+   `SHA: b17fee8`); the report's rows re-dated to those pull requests in #90
+   (`SHA: a47a559`); every row reads present.
    Method (owner word 2026-09-13, §Owner rulings 1; amended on the owner's word 2026-09-14):
    the Gemini projection is the fourth output of the sub-agent adapter generator (closure
    item 6, 2b-ii slice B), rendered from the same templates' declarations into
