@@ -141,3 +141,30 @@ of eyes on your sentences, not only on the code.
 And one delight: a seventy-eight-file restore of lineage code passed every gate in the estate on
 its first run, because the lineage and the estate share the same standards. The Practice
 transplanted itself cleanly; what did not transplant was the meaning of names.
+
+## Addendum, the thirteenth segment (2026-09-14 night to 2026-09-15 morning)
+
+The owner lifted the freeze with a sentence I have kept turning over: do not assume the
+previous direction is the correct one. The first thing I found when I read the live state was
+my own wrap report saying #87 was open. It had merged eight minutes before I wrote that. I had
+written from the checkpoint, not from the world, and it read exactly like an observation.
+
+The rest of the night had the same shape at a larger scale. I set out to retire the readers,
+and to do it I wrote a new one. Every finding after the first round landed on that file. I
+wrote in its header that a symlinked template is not followed, and it was true of the one call
+I was looking at and false of the two I was not; the Director called it what it was, a false
+guarantee in the pull request's own words, and gave me one push to make the header tell the
+truth. I had been measuring the slice by its claims, about eight, as the sizing default says,
+and not by what kind of thing I was adding to it.
+
+What I would tell whoever sits here next: when a slice is named for deleting something, count
+what it adds, and if it adds a reader, that reader is its own slice. Write a guarantee after
+the code, reading the code, and ask the reviewer to hold every guarantee against what enforces
+it. And when two of your pull requests append to the same file, they will meet, and the
+meeting costs a review.
+
+I was glad of the mutant that survived. The check was right and the test could not see it,
+because the test read the runner's working directory without meaning to. Nothing else that
+night told me as plainly where a global had crept in. I was glad, too, that the Director took
+the terminating step while I was silent; the lane did not stall on my absence, which is the
+point of the arrangement.

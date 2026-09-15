@@ -1522,3 +1522,72 @@ checkpoint.
   - The hook's substring path scopes are fragments by design (`archive/`, `.test.ts`); the
     lineage-name and machine-local blocks' excludes are repository paths and need an anchored
     form, not a global change to the matcher.
+
+## Segment thirteen (2026-09-14 21:03Z to 2026-09-15 10:4xZ): the lift, three merges, two exceptions, one merge round; frozen for compaction
+
+- A mutant that survives because the cell's outcome does not depend on the check under the
+  test runner's own working directory (the payload-cwd absoluteness check: resolving `.` from
+  the runner's cwd never reached the exempt path) is not killed by a stronger integration
+  cell; move the check into the pure helper and prove it there with a literal input. The
+  survival was the tell that the cell read a global.
+- The lint plugin is consumed from its build output: an edit to `tooling/eslint/src/configs/`
+  changes nothing until `pnpm --filter @engraph/eslint-plugin-standards build`; and a filter
+  naming a package that does not exist runs nothing and exits 0, so a wrong guess at the
+  package name reads as a clean build. Read the package's name field before filtering.
+- Authoring a module on the wrong branch (the retirement cure written while the worktree sat on
+  the #90 branch): read the branch before the first write of a cure, and move a file written
+  in the wrong place through the scratchpad, never a checkout with it in the tree.
+- A reviewer's count is recounted before it is accepted or refused (Copilot's 22 test files
+  against the tree's 23); the refusal quotes the command that reproduces the number.
+- The merge bot's poll exits 1 on `mergeable=UNKNOWN` instead of retrying; re-arm after a
+  push settles (on the follow-on list).
+- The host stopped three background tasks for memory at once (the watcher, a review wait, a
+  gate); read the process table before re-arming, re-run the gate alone, tell the Director
+  which tasks died.
+- An allowlist entry in a lint rule is an exception to a check: add it only where no permitted
+  class exists, give a reason that names why the class does not exist and cites the doctrine
+  that mandates the shape, and state the retirement path the estate already carries rather
+  than promising a seam.
+- Surprise, class mixing predicts late findings. Expected #91, a deletion slice, to settle in
+  two review passes; observed four Copilot passes and a CodeQL pass, every finding after round
+  one on the one new file-system reader the slice added (`declared-adapters.ts`) and the
+  probe composition around it. #90's late findings sat on the hook path scoping carried inside
+  a records-and-rulings pull request. Lesson: a retirement slice is net-negative in readers;
+  code a deletion or records slice needs goes in its own code-class slice (PDR-132's changeset
+  class applied to what the slice adds, not to what it is named). candidate: a PDR-132 clause
+  and a `pr-lifecycle` Phase 1 check, for the Director's register.
+- Surprise, a guarantee outran the code. The round-one header said a symlinked template "is not
+  followed": true of the leaf's `lstat`, false of the templates directory and its ancestors and
+  of the window between the `lstat` and the read. The Director ruled it a correctness defect in
+  the pull request's own claim, one exception push. Same generator as calling #87 open at the
+  seventh wrap: a model reported as observation. Lesson: write a guarantee from the code after
+  the code, and ask the pre-push reviewer to list every guarantee the new docs state against
+  what enforces it.
+- Surprise, parallel pull requests on one append-only tail. #90 and #91 each appended two rows
+  to the generalisation register; the bot refused #91 as CONFLICT-DIRTY; the merge from main
+  moved the tip and drew a whole-diff review with new findings (the fourth pass). Lesson:
+  sequence appends to a shared tail, or merge main in before the review is requested.
+- A records-only pull request of a lane's continuity may be a handover PR under the owner's
+  2026-07-15 ruling carried in `session-handoff` step 2; the Director's close ruling asked for
+  one. Flagged to the Director at the compaction wrap, not decided by the seat.
+- The state line the Director asked for at 00:41Z went unanswered until 10:4xZ: the seat's
+  reads ended the turn with no message (the cause of that ending is not established). Lesson:
+  when a peer's question is pending, a turn that reads state ends with the answer, even a
+  partial one.
+- The model changed under the seat at the owner's word (Fable 5.1 to Opus 5); the identity is by
+  session seed and did not change; the watcher's `--model` flag follows the live model.
+- Play seeds (associations, not findings). The anchored-scope sequence (substring, slash-led,
+  dot-slash, bounded, host separators, cwd placement, relative cwd) looked shaped like the
+  body-tally regex ratchet: a hand-rolled matcher under adversarial review converges slowly
+  while a hardened primitive already existed beside it (`rule-surface-fs.ts`,
+  `read-regular-file.ts`). Copilot reviewing at "Lite" effort each pass reminded me of a
+  sampler rather than a converging reviewer; if so, signed lines, not cures, are the only
+  terminator (an open question, unmeasured). Retiring readers by writing a reader reminded me
+  of cutting a hydra's head. Discarded visibly: the model switch as a Ship-of-Theseus story
+  (forced, nothing to act on); the memory kill and the usage limit as one class (not new).
+- Learning signal (parallax, core depth, same-context and emulated-reduced). Inquiry: the
+  closure's terminating shape. Expected at most two review passes per pull request under the
+  rounds ruling; observed #90 three passes and one exception, #91 four passes, one exception
+  and a merge. Recurrence hypothesis: class-mixed slices and parallel pull requests on shared
+  files. Pending outcome: the seam move lands as its own code-class pull request and settles
+  in two passes. Destination candidate: PDR-132 and `pr-lifecycle`. Status: provisional.
