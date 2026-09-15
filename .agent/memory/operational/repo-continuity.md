@@ -22,8 +22,8 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 ## Current State
 
 - `main` carries the monorepo and the Practice since PR #53 merged (`55649a2`, 2026-09-13); the
-  transplant closure ran as small PRs against `main` and is complete but the reader
-  retirement #91 (§Next Safe Steps). Plan of record:
+  transplant closure ran as small PRs against `main` and is complete (the last, #91, merged
+  2026-09-15 at `SHA: f8aab12`). Plan of record:
   `docs/explorations/2026-09-12-oce-practice-lineage-transplant.md` (§Owner rulings, rounds 1
   to 16; the closure's later rulings are in the Director's handoff).
 - Seven pnpm workspaces; root scripts through Turborepo; root devDeps installed.
@@ -90,7 +90,7 @@ names a live branch):
 ## Active Threads
 
 - OCE Practice lineage transplant — closure (Director: Cauldron herds Lustre, `director-handoff.md`;
-  lane A, Saffron turns Verdure, `threads/closure-lane-a.next-session.md`): complete but #91.
+  lane A, Saffron turns Verdure, `threads/closure-lane-a.next-session.md`): complete; lane A closed 2026-09-15.
 - Closure session 2's synthesis (`threads/session-2-synthesis.next-session.md`): the cards were
   answered 2026-09-14 (the Director's handoff item 78); the graduation drain is curator work.
 
@@ -103,19 +103,18 @@ names a live branch):
 
 ## Next Safe Steps
 
-The transplant closure is complete on `main` except one pull request (2026-09-15): the items of
-`.agent/plans/delivery/practice-completion.plan.md` §Transplant closure carry their Done lines
-and proofs (item 4's rows closed by #85 `SHA: eed1f2e`, #87 `SHA: 6b5676b`, #86
+The transplant closure is complete on `main` (2026-09-15): every item of
+`.agent/plans/delivery/practice-completion.plan.md` §Transplant closure carries its Done line
+and proof (item 4's rows closed by #85 `SHA: eed1f2e`, #87 `SHA: 6b5676b`, #86
 `SHA: 47299c7`, re-dated in #90 `SHA: a47a559`; item 5's leak validator green since #79
-`SHA: 014fc6e`; item 7 in #89 `SHA: ffd37d1`; item 8 filed in #63 with the cards answered)
-except item 6's retirement condition, which lands with the reader retirement #91, blocked by a
-red CodeQL check. The compiled record is `.agent/reports/practice-transplant/README.md` §The
-record, compiled. Live now, in order:
+`SHA: 014fc6e`; item 6's retirement in #91 `SHA: f8aab12`; item 7 in #89 `SHA: ffd37d1`; item
+8 filed in #63 with the cards answered). The compiled record is
+`.agent/reports/practice-transplant/README.md` §The record, compiled. Live now, in order:
 
 1. The Director's handoff `.agent/memory/operational/director-handoff.md` §Current handoff state
-   is the resume contract: #91's cure push (lane A's records riding it), #88's review, and the
-   cards for the owner (the runbook's agent-time contract; the closure node's todo 1 wording;
-   the lineage's #145 rebudget question).
+   is the resume contract: no pull request open; the Director's local records
+   (`records/director-12`) ride the next substantive pull request, never a records-only one
+   (owner's card, 2026-09-15); the lineage curator's #145 rebudget is with the owner.
 2. The `practice-two-way-exchange` node (ratified 2026-09-14) is the next Practice work and
    opens on the owner naming its window; the closure's routed findings (the exchange-window
    items on #84, #86, #89, #90 and #91; the hold's second lifting path; the boundary

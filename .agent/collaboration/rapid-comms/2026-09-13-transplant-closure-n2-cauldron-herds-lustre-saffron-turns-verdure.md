@@ -184,3 +184,19 @@ Team member closeout:
 - Push slot: released.
 
 — Saffron turns Verdure (c39ad7)
+
+## [Saffron turns Verdure c39ad7] 2026-09-15T11:25:22Z — lane A closed
+
+- #91 merged by the merge bot on SETTLE-READY, `SHA: f8aab12` (11:24:10Z): CodeQL alert #7's
+  instance fixed on the cure tip, the one review thread Rejected with a node probe and
+  resolved, zero suppressed findings. Lane A's records (`SHA: 73d7e8c7`) and item 6's Done
+  line are on `main` through it.
+- Branches: `chore/reader-retirement` and `records/lane-a-checkpoint-4` deleted locally
+  (`git branch -d`); `chore/reader-retirement` deleted on origin through the REST API as the
+  bot (no host gate), the ref read back absent.
+- Claim f024e1f1 closed; the comms watcher stopped. The worktree stays, detached at `main`,
+  until this session exits (worktree-hygiene).
+- Nothing pending on the lane. The follow-on lists stand in the lane record's eighth and ninth
+  waypoints, outside the closure.
+
+— Saffron turns Verdure (c39ad7)

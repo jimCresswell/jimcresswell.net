@@ -50,61 +50,63 @@ Every line answered first-hand, none inferred:
   archive holds only processed material.
 - The transplant is bounded: closure items 3 to 8 finish it, then editorial work.
 
-## Current handoff state (2026-09-15, 10:42Z, compaction; closure complete but #91; owner present)
+## Current handoff state (2026-09-15, 11:28Z, the transplant closure complete; owner present)
 
 Where this block and the routing log disagree, the log's last entry is current; this block is
-rewritten at each Director push.
+rewritten at each Director records commit.
 
-**State at this push (2026-09-15, 10:42Z, the owner's word: prepare for compaction, then stop
-all processes).** The transplant closure is complete on `main` except one pull request: every
-item of the node's §Transplant closure carries its Done line and proof but item 6's retirement
-condition. Landed since the lift (item 107): item 4 row 3 (#86, `SHA: 47299c7`), item 7 (#89,
-`SHA: ffd37d1`), the rulings pull request (#90, `SHA: a47a559`: 5a-v, 5c-ii, the PDR-082,
-PDR-008 and PDR-132 amendments, the definition report's rows re-dated so every row reads
-present). Open: #91 (the reader retirement, `chore/reader-retirement` at `SHA: 0d67f87`; every
-review finding dispositioned by signed lines; the bot refuses CHECKS-RED on the CodeQL race
-alert; the Director's ruling for the resume in item 108: one cure push, a no-follow descriptor
-read with one cell, then signed lines and the poll; the alert is never dismissed without the
-owner's word) and #88 (this branch, records-11, items 103 to 108; its round-one threads cured
-by this push, Copilot requested, no chain armed). Lane A (Saffron turns Verdure, c39ad7) silent
-since 23:32Z; its records branch local and unread by this seat. Cards with the owner (item
-107): the runbook's agent-time contract; the closure node's todo 1 wording; the lineage
-curator's #145 rebudget. Follow-on lists, none closure work: the exchange window's register
-rows (items 103, 104, 106 to 108); the seam move for the health probe's reads with the CRLF,
-symlink and unreadable-surface cases; the merge-bot follow-ons (the `mergeable=UNKNOWN` retry;
-a `pr-watch chain` bin); the 2b and item 4 follow-on lists (items 104, 106).
+**State at this commit (2026-09-15, 11:28Z).** The transplant closure is complete on `main`:
+every item of the node's §Transplant closure carries its Done line and proof, item 6's in #91
+(`SHA: f8aab12`, merged by the bot at 11:24:10Z). Zero pull requests are open. Landed since the
+compaction (item 109): #88 (`SHA: 30dba5e`, this seat's last records-only pull request, on the
+owner's card) and #91 (the reader retirement; the CodeQL race alert fixed by one no-follow
+descriptor read and never dismissed; lane A's records and item 6's Done line riding it). This
+commit is local on `records/director-12` and rides the next substantive pull request (owner's
+card, 2026-09-15); no records-only pull request opens for it. Lane A (Saffron turns Verdure,
+c39ad7) closed at 11:25Z, claim `f024e1f1` archived. Owner's cards answered this session (item
+109): the runbook's agent-time contract kept as written; closure todo 1's workflow-file clause
+dropped, in this commit. With the owner: the lineage curator's #145 rebudget (put at 10:42Z).
+Follow-on lists, none closure work: the exchange window's register rows (items 103, 104 and
+106 to 109); the seam move for the health probe's reads (CRLF, symlink enumeration, the
+unreadable surface and template, and the synchronous no-follow template read onto the shared
+`read-regular-file.ts`); the merge-bot follow-ons (the `mergeable=UNKNOWN` retry; a `pr-watch
+chain` bin; the merged branch's deletion, which `merge-bot merge` does not discharge); the 2b
+and item 4 follow-on lists (items 104, 106).
 
-**Boundary block (compaction, 2026-09-15 10:42Z).** Nothing session-scoped survives; verify by
+**Boundary block (2026-09-15, 11:28Z).** Nothing session-scoped survives a compaction; verify by
 id first and re-arm only what is absent:
 
 - The canonical watcher, per `.agent/rules/comms-all-channels-watcher.md`: `comms watch
-  --platform claude --model claude-fable-5-1 --supervisor-pid "$PPID" --step-timeout-ms 120000
-  --max-events-per-drain 100` under a 3600-second timeout, pre-checked by the process table for
-  a watcher under this session's pid, re-armed on exit 124, asserted with `comms
-  assert-watcher-live`; the ARC tail of lane A's channel file identified by ancestry; the claim
-  heartbeat on `1db07581`.
-- The chains, one per open pull request at its current tip (the pull request list is
-  authoritative): request the Copilot reviewer under the owner's CLI credential with a JSON
-  body, wait for the review bound to the tip by reading the reviews list, reply to and resolve
-  each thread as the bot, then `merge-bot merge --pr N --expect copilot-pull-request-reviewer
-  --interval 30 --max-polls 60 --json`. Two review rounds bind; after round two, no push
-  unless the Director takes the correctness exception on a defect in the pull request's own
-  claim (or a red check needs a cure, as on #91): one comment by the bot after the LATEST
-  review, one line per suppressed finding in the ratified format (`**Below-bar** head
-  SHA:<sha> · review <id> · <path>:<line> · item N of M — Rejected: <why>` or `— Cured in
-  SHA:<sha>`), the seat's signature last, then the poll alone.
-- Owed at resume: #88's review on this push's tip (signed lines, then the poll); #91's cure
-  push (lane A or a successor Implementer, never the Director), its review, signed lines, the
-  poll; lane A's records riding that cure push, never a records-only pull request; then the
-  closure reads complete and item 6 takes its Done line.
+  --platform claude --model <the session's model> --supervisor-pid "$PPID" --step-timeout-ms
+  120000 --max-events-per-drain 100` under a 3600-second timeout, pre-checked by the process
+  table for a watcher under this session's pid, re-armed on exit 124, asserted with `comms
+  assert-watcher-live`; the claim heartbeat on `1db07581`. A `comms send` must name the model
+  on the claim's identity route (`claude-fable-5-1`) or it refuses as a colliding identity;
+  the session has run on `claude-opus-5` since the compaction. No ARC tail: lane A's channel
+  is closed.
+- No chain is armed, because no pull request is open. The recipe for the next one: request
+  the Copilot reviewer under the owner's CLI credential with a JSON body, wait for the review
+  bound to the tip by reading the reviews list, reply to and resolve each thread as the bot,
+  then `merge-bot merge --pr N --expect copilot-pull-request-reviewer --interval 30
+  --max-polls 60 --json`. Two review rounds bind; after round two, no push unless the Director
+  takes the correctness exception on a defect in the pull request's own claim, or a red check
+  needs a cure (#91): one comment by the bot after the LATEST review, one line per suppressed
+  finding in the ratified format (`**Below-bar** head SHA:<sha> · review <id> · <path>:<line> ·
+  item N of M — Rejected: <why>` or `— Cured in SHA:<sha>`), the seat's signature last, then
+  the poll alone. A finding on the pull request's own wording is cured in its title or
+  description with no push (#88).
+- Owed: `records/director-12` merged into the next substantive pull request's branch by
+  agreement with that lane, never opened alone; the owner's answer on the lineage curator's
+  #145.
 - The push slot: a seat asks, the Director confirms, the seat pushes and releases with one
-  line.
+  line. `git push origin --delete` runs the full pre-push hook and takes the slot (item 109);
+  merged branches are deleted through the REST API.
 
 - Director: Cauldron herds Lustre (880ff9), claim `1db07581`, thread `transplant-closure`,
-  branch: this branch is `chore/director-records-11` (PR #88), based on `main` with `main`
-  merged in at `SHA: a47a559`; it carries items 103 to 108; the Director made one record
-  pull request on the owner's word (item 7, #89, a recorded PDR-117 exception) and no
-  source edits.
+  branch: `records/director-12`, local, based on `main` with `main` merged in at
+  `SHA: f8aab12`; it carries item 109 and the corrections from #88's round two; the Director
+  made one record pull request on the owner's word (item 7, #89, a recorded PDR-117
+  exception) and no source edits.
 - Controlling node: `.agent/plans/delivery/practice-completion.plan.md` §Transplant closure.
   Landed on `main`, every component: item 1 (archive deleted), item 2 (PR #53,
   `SHA: 55649a2`), item 3 (PR #56, `SHA: 1829cd4`), item 4 as bounded (PR #57, `SHA: 4a61112`;
@@ -122,11 +124,10 @@ id first and re-arm only what is absent:
   `SHA: 6699f51`), item 5a-vi (PR #79, `SHA: 014fc6e`). Then the closure's last merges: 2b-ii (#81 `SHA: d660ac7`, #83
   `SHA: aba2c0e`, #84 `SHA: b17fee8`), item 4's rows (#85 `SHA: eed1f2e`, #87 `SHA: 6b5676b`,
   #86 `SHA: 47299c7`), item 7 (#89 `SHA: ffd37d1`), 5a-v, 5c-ii and the amendments (#90
-  `SHA: a47a559`). Not landed: the reader retirement (#91, item 108).
-- Open pull requests (the snapshot at this push): #91 (the reader retirement, CHECKS-RED on
-  the CodeQL race alert, the cure ruling in item 108) and #88 (this records branch, its
-  round two this push). Every other closure pull request is merged; the landed list above
-  and items 103 to 108 carry the numbers and merge SHAs.
+  `SHA: a47a559`), the Director's last records (#88 `SHA: 30dba5e`), the reader retirement
+  and item 6's Done line (#91 `SHA: f8aab12`). Nothing in the closure is unlanded.
+- Open pull requests (the snapshot at this commit): none. Every closure pull request is
+  merged; the landed list above and items 103 to 109 carry the numbers and merge SHAs.
 - Team state: owner word 17:16Z, "this is now an n=2 session, you and Saffron" (PDR-082; the
   Director's heartbeat stopped, watcher kept); 17:18Z the ARC channel opened beside native
   messaging. Lanes B and C handed every responsibility back and stood down (closeouts on the
@@ -146,35 +147,22 @@ id first and re-arm only what is absent:
   the evening) was found alive after the compaction that followed the 06:37Z non-terminal
   wrap; it was then stopped and re-armed in the canonical shape because it lacked the
   supervisor pid.
-- Next safe step (owner present; 5a-vi on `main`, item 102): #81 (2b-ii A1) and this branch
-  open, the bot merging each when settled on measured state (zero threads and zero
-  undispositioned suppressed findings, the hold live), A2's pull request after #81, B after
-  A2; then lane A's order in the boundary block; item 7 last.
-  The overnight
-  next step, kept as the superseded snapshot: the morning
-  report presents §Decisions overnight with its REVIEW marks and the session 2 cards: the
-  twenty-three session 2 fast-lane entries in four classes, the five slow-lane rows (PDR-130:
-  `promote` or `kill-with-reasoning`), and proposal E. Measured on `main` after #63:
-  twenty-eight decision-debt blocks (five 2026-09-12 captures under their own quorum gate plus
-  the twenty-three) and five slow-lane rows, thirty-three live.
+- Next safe step (owner present; the closure complete): none inside the closure. The
+  `practice-two-way-exchange` node opens on the owner naming its window, and this seat's local
+  records ride the first substantive pull request after it; the graduation drain is curator
+  work (item 94).
 
 ## Live board
 
 | Lane | Items | Owns exclusively | Seat | Claim | Branch / PR | State |
 | ---- | ----- | ---------------- | ---- | ----- | ----------- | ----- |
-| A | Landed: items 3 and 5 (5a-i to 5a-vi, 5b, 5c; 5a-v and 5c-ii in #90), item 6's generator (#81, #83, #84), item 4's rows 3, 5 and 6 (#86, #87, #85), the rulings pull request #90 (the three PDR amendments, the definition report re-dated). Open: the reader retirement #91, CHECKS-RED on CodeQL, one cure push owed (item 108). Follow-ons on the lane record with their homes. | `agent-tools/src/subagent-declarations/`, `agent-tools/src/core/` (#91) | Saffron turns Verdure (c39ad7) | f024e1f1 | `chore/reader-retirement` PR #91; the records branch local | STOPPED, silent since 23:32Z |
+| A | Landed: items 3 and 5 (5a-i to 5a-vi, 5b, 5c; 5a-v and 5c-ii in #90), item 6's generator (#81, #83, #84) and its retirement (#91, `SHA: f8aab12`), item 4's rows 3, 5 and 6 (#86, #87, #85), the rulings pull request #90 (the three PDR amendments, the definition report re-dated). Follow-ons on the lane record with their homes. | (released) | Saffron turns Verdure (c39ad7) | closed | `chore/reader-retirement` merged as PR #91 and deleted on both sides; `records/lane-a-checkpoint-4` merged through #91 | CLOSED 11:25Z (item 109) |
 | B | 6 | (handed back) `.agent/rules/**`, `RULES_INDEX.md`, the three rule-adapter trees, the rules-index and trigger generator, sub-agent adapter descriptions | Sirocco wakes Wingspan (45fe02) | closed | `closure/lane-b` merged as PR #55 at `SHA: 7127bc4` and deleted; `closure/lane-b-generator` at `SHA: d76bb86` on origin (2a fold conserved in the record) | STOOD DOWN 17:14Z; handed back: 2a, 2b, PR 3 (now routed to lane A after item 5) |
 | C | 4 then 7 | the definition report, `testing-strategy.md`, the substrate manifest's register declarations, the Gemini projection | Djinn hunts Solder (36720b) | closed | `closure/lane-c` and `closure/lane-c-restore` deleted (merged in #57; carried in #58); PR #59 closed as carried | STOOD DOWN 16:57Z; handed back: the restore, `sif`, five patterns, the Gemini projection after 2b, item 7 |
-| Director | 7 | reports index, runbook step 13, `provenance.yml` completion entry; merges | Cauldron herds Lustre | 1db07581 | `chore/director-records-7` merged as PR #76 (`SHA: 1b44f5b`); `chore/director-records-8` merged as PR #78 (`SHA: e7ba800`); `chore/director-records-9` merged as PR #80 (`SHA: 6699f51`); `chore/director-records-10` based on `main`, opened at this push (items 98 to 102); records-11 next | routing lane A; merging |
+| Director | 7 | reports index, runbook step 13, `provenance.yml` completion entry; merges | Cauldron herds Lustre | 1db07581 | records pull requests #54 to #88 merged, the last (`chore/director-records-11`) as PR #88 at `SHA: 30dba5e`; `records/director-12` local, riding the next substantive pull request | the closure complete; no lane routed |
 
-Sequencing constraints: lanes B and C are closed, so lane A holds every surface, in the
-boundary block's order (item 5's landed parts 5a-i to 5a-iv, 5a-vi, 5b and 5c, with 2a and
-2b-i, are on `main`; 5a-v and 5c-ii are not; 2b-ii in three slices, A1 open; then item 4's residue, one pull request for 5a-v, 5c-ii and the card amendments; the
-graduation drain outside the closure, item 94; item 7 last, the Director's).
-Pushes serialise, one
-gate at a time, for host load: two full-host gates exceed the host (the earlier reason, Playwright
-reusing a running :3000 server, is retired by the per-worktree port PR). Item 7 is written last
-because it records 3 to 6.
+Sequencing constraints: none live. Lanes A, B and C are closed and every closure item is on
+`main`. When two seats share this host, pushes serialise, one gate at a time, for host load.
 
 ## Routed verdict for the handed-back holdings (2026-09-13, about 19:05Z; for the owner's word at the #55 merge)
 
@@ -1480,6 +1468,48 @@ ones the Director would put to the owner had the owner been present.
      pull request (the #91 cure push), superseding this seat's 22:5xZ ruling that it open its
      own.
 
+109. The compaction resume and the closure's close (2026-09-15, 10:56Z to 11:28Z). The owner
+     restarted this seat with `/jc-start-right-team` after the compaction (clock read
+     10:56:58Z); lane A had resumed at 10:52Z on the owner's own word in its session. Re-armed
+     by the boundary block: the watcher under this session's pid (asserted live), the ARC
+     tail, the claim heartbeat. The watcher runs under the session's model (`claude-opus-5`);
+     a `comms send` under that model refused as colliding with the claim's identity route
+     (`claude-fable-5-1`) and went out under the registered route, the switch named in its
+     body. Rulings to lane A: the go and the push slot for #91's cure as item 108 ruled
+     (10:58Z); `O_NONBLOCK` kept beside `O_NOFOLLOW` (the flags of `read-regular-file.ts`, the
+     estate's own no-follow read) with no guarantee claimed for it in the header, and the
+     directory cell kept (the fstat check's proof); item 6's Done line to ride #91 before its
+     Copilot request, because it records #91's work (the owner's card on records). #88 round
+     two (review `PRR_kwDORH1Wfc8AAAABNnwyKA` on `SHA: 8a03900`, 11:00:51Z): the scope thread
+     cured in the title and description with no push; four suppressed findings signed
+     Rejected under the card's one push. Three were real and are corrected in this commit: two
+     #89 times written as estimates (measured from GitHub: opened 21:13:46Z, the round-two
+     commit 21:23:30Z), one bare commit reference, and the stale item-102 next-step bullet and
+     board Director row. The fourth was not: the closure sentence already named item 6's
+     exception. Merged by the bot at 11:04:02Z (`SHA: 30dba5e`), the signed lines lifting the
+     hold. This seat's miss: deleting #88's branch with `git push origin --delete` inside lane
+     A's slot ran the full pre-push hook on the host (about 11:04Z to 11:05:30Z, green); lane
+     A confirmed only its small pre-commit ran in that window; merged branches are deleted
+     through the REST API from here. #91: lane A's cure (`SHA: 3c20a39`: one open with
+     `O_RDONLY | O_NOFOLLOW | O_NONBLOCK`, `fstatSync(fd).isFile()`, the read from the
+     descriptor, `closeSync` in a `finally`; three mutants killed; code-expert "NOTES"), its
+     records merge (`SHA: 51bfd78`), its ninth waypoint (`SHA: a5551f3`) and item 6's Done line
+     (`SHA: fdc5d86`), two pushes inside the slot, released 11:11:03Z. CodeQL green on the tip
+     by 11:15Z with all eleven checks; alert #7 fixed on the pull request's merge ref, never
+     dismissed. Copilot's review on the tip (11:21:26Z): one inline finding (the template-name
+     pattern's `$` said to match before a final line terminator), signed Rejected by lane A as
+     the bot and verified by this seat: without the `m` flag a JavaScript `$` asserts the end
+     of input only, and under Node the pattern refuses a name ending in `\n`, `\r`, U+2028 or
+     U+2029. Merged by the bot at 11:24:10Z (`SHA: f8aab12`): the transplant closure complete,
+     zero pull requests open. Owner's cards (between 11:05Z and 11:11Z): the runbook's
+     Verification contract keeps "elapsed agent time" as written (instance 1's wall span stands
+     as its recorded upper bound; instance 2 instruments agent time before it starts); closure
+     todo 1 drops the workflow file under `.agent/state/` (none exists at the pin; the restored
+     trees are the instrument), edited in this commit. The lineage curator's #145 rebudget
+     stays with the owner. Lane A closed at 11:25Z: its remote branch deleted through the REST
+     API, claim `f024e1f1` archived, its watcher stopped, its closing line on the ARC channel;
+     its worktree stays, detached and clean, until its session exits.
+
 ## Routing log
 
 - 2026-09-13 evening: seat opened; team-start `ca1ba4d8`; lanes A, B, C authored, unfilled.
@@ -1703,3 +1733,6 @@ ones the Director would put to the owner had the owner been present.
   as #64; 5a-ii #65 in round three; the e2e follow-on #66 open; 5a-iii on origin, PR after
   #65; then 5b, 5c), then 2a, 2b, the Gemini projection, the restore with the five patterns,
   `sif`, item 7 last. The overnight decisions from item 36 are on `chore/director-records-4`.
+- 2026-09-15 11:24Z: #91 merged (`SHA: f8aab12`); the transplant closure is complete on
+  `main`, zero pull requests open; lane A closed at 11:25Z (item 109). §Current handoff state
+  is current.
