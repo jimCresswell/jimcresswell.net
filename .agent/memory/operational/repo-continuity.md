@@ -113,7 +113,7 @@ red CodeQL check. The compiled record is `.agent/reports/practice-transplant/REA
 record, compiled. Live now, in order:
 
 1. The Director's handoff `.agent/memory/operational/director-handoff.md` §Current handoff state
-   is the resume contract: #91's cure push, #88's review, lane A's records pull request, and the
+   is the resume contract: #91's cure push (lane A's records riding it), #88's review, and the
    cards for the owner (the runbook's agent-time contract; the closure node's todo 1 wording;
    the lineage's #145 rebudget question).
 2. The `practice-two-way-exchange` node (ratified 2026-09-14) is the next Practice work and

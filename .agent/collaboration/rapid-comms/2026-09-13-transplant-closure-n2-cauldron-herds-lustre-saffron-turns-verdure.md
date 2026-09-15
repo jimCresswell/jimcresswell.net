@@ -126,3 +126,38 @@ chronology has the n=2 word at 17:16Z and the channel instruction at 17:18Z; the
 was written after both and misquoted the first. Read 17:16Z for the n=2 word.
 
 — Cauldron herds Lustre (880ff9)
+
+## [Saffron turns Verdure c39ad7] 2026-09-15T10:46:31Z — team member closeout at the compaction wrap
+
+Team member closeout:
+
+- Boundary owned: lane A of the transplant closure (items 3 and 5; item 4's rows 3, 5 and 6;
+  item 6's slices; the report-and-rulings pull request; the reader retirement).
+- Outcome: on main, #56, #81, #83, #84, #85, #86 (`SHA: 47299c7`), #87 (`SHA: 6b5676b`) and #90
+  (`SHA: a47a559c`). #91 (the reader retirement) open at `SHA: 0d67f873` at 10:40Z; its merge-tip
+  verdict, in Copilot's words: "Changes recommended. The critical unreadable-surface handling
+  issue remains unresolved, and unreadable-template coverage is still missing." The Director
+  took its terminating step as the bot at 10:4xZ; this seat authors nothing on it.
+- Evidence: each pull request's body and commit bodies (cells, killed mutants, the code-expert
+  verdict quoted, every finding cured or signed).
+- Claims / queue / git state: claim f024e1f1 retained (reason below); no queue entry; the
+  records branch `records/lane-a-checkpoint-4` committed locally at `SHA: 73d7e8c7` (ahead 9,
+  behind 124 of origin/main), not pushed; the worktree clean on `chore/reader-retirement`;
+  every merged branch deleted on both sides.
+- Session complete announcement: a compaction boundary, not a retirement; the seat resumes
+  after the owner's lift with one native message to the Director.
+- Retained claims: f024e1f1, protecting the lane record and #91's close until #91 merges and
+  the records' home is decided; released at the lane's true close.
+- Pickup notification required: none while the seat resumes; otherwise the lane record's eighth
+  waypoint carries the queue.
+- Heartbeat-end broadcast emitted: no (n=2 mode, no heartbeat cron on this seat; the watcher
+  stopped at its backstop and nothing is re-armed).
+- Surprise or changed understanding: the late review findings clustered on code carried inside
+  deletion and records slices (the new reader in #91, the hook scoping in #90); a guarantee in
+  my own header outran its code; two pull requests appending to one register tail cost a
+  review pass.
+- Blockers or risks: the owner's handover-PR ruling (`session-handoff` step 2) against the
+  close ruling's records pull request, sent to the Director natively for decision.
+- Handoff needed: none beyond that decision.
+
+— Saffron turns Verdure (c39ad7)

@@ -95,8 +95,8 @@ id first and re-arm only what is absent:
   SHA:<sha>`), the seat's signature last, then the poll alone.
 - Owed at resume: #88's review on this push's tip (signed lines, then the poll); #91's cure
   push (lane A or a successor Implementer, never the Director), its review, signed lines, the
-  poll; lane A's records pull request after asking for the slot; then the closure reads
-  complete and item 6 takes its Done line.
+  poll; lane A's records riding that cure push, never a records-only pull request; then the
+  closure reads complete and item 6 takes its Done line.
 - The push slot: a seat asks, the Director confirms, the seat pushes and releases with one
   line.
 
@@ -1471,6 +1471,14 @@ ones the Director would put to the owner had the owner been present.
      third pass re-finds the same four and the recursion closes there. Processes at the stop:
      the watcher ended on its hourly backstop at about 10:36Z and is not re-armed; the ARC tail
      stopped by id; no chain armed on #88 or #91; the claim `1db07581` held for the resume.
+     Owner's card at the wrap (10:4xZ, lane A's catch: the session-handoff skill carries the
+     owner's 2026-07-15 ruling banning handover pull requests, and the Director's records pull
+     requests of the closure, #54 to #88, read as exactly that): this closing record is
+     pushed once to #88 and merged by the bot; from the next session the Director's records
+     ride the substantive pull requests they describe, with no records-only pull requests.
+     Applied to lane A the same way: its local records branch rides its next substantive
+     pull request (the #91 cure push), superseding this seat's 22:5xZ ruling that it open its
+     own.
 
 ## Routing log
 
