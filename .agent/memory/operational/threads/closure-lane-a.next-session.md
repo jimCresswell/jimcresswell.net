@@ -1141,3 +1141,55 @@ scratchpad (not durable: the drafted closing waypoint, the signed-line drafts, t
 
 A further pass would only re-find the Director's unverified actions on #91 and the handover-PR
 question, both named above. The recursion closes here.
+
+## Ninth waypoint (2026-09-15, 11:05Z): #91's red-check cure, the records riding it
+
+The owner lifted the compaction freeze at 10:52Z (`/jc-start-right-team` in this session);
+the Director's go and the push slot followed at 10:58Z, from its own restarted seat.
+
+### What changed since the eighth waypoint
+
+- #91 did not merge after the Director's 10:38Z signed lines: the merge bot refused
+  CHECKS-RED on CodeQL alert #7, `js/file-system-race` (high), at `declared-adapters.ts:129`
+  ("The file may have changed since it was checked."): the `lstatSync` classification and the
+  by-path `readFileSync` were two calls.
+- The cure, `SHA: 3c20a391`, ruled in the Director's handoff item 108 and counted by the
+  Director as the red-check cure, not a third review round: each template opened once with
+  `O_RDONLY | O_NOFOLLOW | O_NONBLOCK` (the flags `read-regular-file.ts` pairs, each dropping
+  to 0 where the host lacks it), classified by `fstatSync(fd).isFile()`, read from the
+  descriptor, closed in a `finally`; `ELOOP` at the open is the existing `not a regular file`
+  refusal. Cells: the existing symlinked-template cell, one new cell for a directory carrying
+  a template name. Mutants killed and restored byte-identical: dropping `O_NOFOLLOW` (the
+  symlink cell), neutralising the `fstat` check (the directory cell, `EISDIR`), breaking the
+  `ELOOP` mapping (the symlink cell). `O_NONBLOCK` has no cell (a fifo needs `child_process`,
+  which `no-real-io-in-tests` bans); the header does not claim it as a guarantee.
+- The owner's card (2026-09-15, through the Director): no records-only pull requests; records
+  ride the substantive pull request they describe. The eighth waypoint's flagged conflict is
+  therefore settled, and this branch's records (`records/lane-a-checkpoint-4`,
+  `SHA: 73d7e8c7`) are merged into `chore/reader-retirement` (a merge, never a cherry-pick,
+  so the ARC closeout's SHA stands) and ride the cure push.
+
+### The chain after the push (lane A's, on the Director's word)
+
+1. Copilot requested under the owner's CLI credential on the cure tip.
+2. The review bound to that tip answered by one signed bot comment, one line per suppressed
+   finding (cure or Rejected with a home); nothing cured beyond alert #7.
+3. The merge bot's poll. Proof: CodeQL green on the cure tip. If the alert still fires, stop
+   and report to the Director; no second shape, and the alert is never dismissed without the
+   owner's word.
+
+### The queue after #91 merges
+
+1. Delete `chore/reader-retirement` locally, and on origin if the bot left it, in a confirmed
+   slot turn.
+2. Delete the local `records/lane-a-checkpoint-4` (its commits are on `main` through #91).
+3. One closing line on the ARC channel; relinquish claim f024e1f1.
+4. The follow-on lists of the eighth waypoint stand, whole. The seam move (the probe's reads
+   onto the shared async no-follow primitive) now also carries the Windows arm this
+   synchronous reader lacks: `read-regular-file.ts` verifies device and inode after the open
+   where `O_NOFOLLOW` is absent.
+
+### Fixed point
+
+The ninth waypoint cannot name #91's merge SHA: it rides the pull request whose merge it
+would name. `main`'s merge commit for #91 is the record of the close.

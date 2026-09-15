@@ -1637,3 +1637,17 @@ checkpoint.
   and a merge. Recurrence hypothesis: class-mixed slices and parallel pull requests on shared
   files. Pending outcome: the seam move lands as its own code-class pull request and settles
   in two passes. Destination candidate: PDR-132 and `pr-lifecycle`. Status: provisional.
+
+Segment fourteen (10:52Z to 11:05Z, 2026-09-15): #91's red-check cure after the lift.
+
+- The class's cure already existed in the estate. `read-regular-file.ts` had fused the check
+  and the read into one descriptor for the same CodeQL rule (`js/file-system-race`), with
+  `O_NONBLOCK` beside `O_NOFOLLOW` and a Windows identity arm. The new reader in #91 was
+  written beside it with a weaker, two-call shape, and the alert found it after four review
+  passes. A search for the estate's own instrument before authoring a file-system read would
+  have met it at authoring time. Destination candidate: the `consolidate-at-second-consumer`
+  rule's worked instances, or a tripwire at reader authoring. Status: provisional, one
+  instance.
+- Removing a pre-check can remove a guarantee it gave silently: the `lstat` refusal also kept
+  a fifo from blocking the open. The cure had to carry `O_NONBLOCK` to keep it, and the
+  guarantee has no cell (tests cannot make a fifo without `child_process`).
