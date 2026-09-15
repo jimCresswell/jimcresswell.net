@@ -12,7 +12,7 @@
 
 import { err, ok, type Result } from '@engraph/result';
 
-import { CODEX_DEFAULTS } from './derive-subagent-declaration.js';
+import { CODEX_DEFAULTS } from './adapter-defaults.js';
 import { pointerLine, type AdapterSpec } from './adapter-spec.js';
 import { STANDARD_CLOSINGS } from './standard-adapter-body.js';
 import type { CodexFields } from './subagent-declaration.js';

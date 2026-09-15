@@ -115,7 +115,7 @@ describe('validateSubagentProjections', () => {
     repo.files.set(`${TEMPLATES}/gamma.md`, '## Delegation Triggers\n\nUndeclared.\n');
     const fix = await validateSubagentProjections(true, repo);
     expect(fix.issues).toEqual([
-      `${TEMPLATES}/gamma.md: no declaration in its frontmatter (the sub-agent sweep mints one); ${REFUSING}`,
+      `${TEMPLATES}/gamma.md: no declaration in its frontmatter (write the block in the shape .agent/sub-agents/README.md §Declarations gives); ${REFUSING}`,
     ]);
     expect(fix.written).toEqual([]);
     expect(repo.files.has('.cursor/agents/alpha.md')).toBe(false);
@@ -254,7 +254,7 @@ describe('validateSubagentProjections', () => {
     expect(check.written).toEqual([]);
   });
 
-  it("refuses a declaration whose platforms leave out a source surface the platform contract expects, writing nothing; the contract's own exception (a variant on two surfaces) renders (#81 disposition turn)", async () => {
+  it('renders a declaration on exactly the surfaces it names: the declarations are the one platform truth', async () => {
     const declaring = async (platforms: string): Promise<readonly string[]> => {
       const repo = bareRepo();
       repo.files.set(
@@ -262,29 +262,24 @@ describe('validateSubagentProjections', () => {
         `---\ndescription: Beta reviews b.\nplatforms:\n${platforms}---\n\n## Delegation Triggers\n`,
       );
       const fix = await validateSubagentProjections(true, repo);
-      expect(fix.written).toEqual([]);
-      return fix.issues;
+      expect(fix.issues).toEqual([]);
+      return fix.written.filter((written) => written.includes('/beta.'));
     };
-    expect(await declaring('  - gemini\n')).toEqual([
-      'beta: platforms leave out cursor, claude, codex, which the platform contract expects it on; until the reader-retirement pull request every declaration renders the surfaces the contract names (gemini optional); refusing to render the sub-agent adapters',
-    ]);
-    expect(await declaring('  - claude\n')).toEqual([
-      'beta: platforms leave out cursor, codex, which the platform contract expects it on; until the reader-retirement pull request every declaration renders the surfaces the contract names (gemini optional); refusing to render the sub-agent adapters',
-    ]);
+    expect(await declaring('  - gemini\n')).toEqual(['.gemini/agents/beta.md']);
+    expect(await declaring('  - claude\n')).toEqual(['.claude/agents/beta.md']);
     // The bare repository's fan-out variant, cricket-judgement-high on Cursor and Claude,
-    // is the contract's own exception and renders throughout this suite; the same variant
-    // declared on Cursor alone leaves out the surface the exception still expects, which
-    // proves the contract's spelling of that surface is the one consulted.
+    // renders on those two; declared on Cursor alone it renders on Cursor alone and no
+    // gate expects it elsewhere.
     const narrowed = bareRepo();
     narrowed.files.set(
       `${TEMPLATES}/cricket-judgement.md`,
       CRICKET.replace('      - claude\n', ''),
     );
-    const refused = await validateSubagentProjections(true, narrowed);
-    expect(refused.issues).toEqual([
-      'cricket-judgement-high: platforms leave out claude, which the platform contract expects it on; until the reader-retirement pull request every declaration renders the surfaces the contract names (gemini optional); refusing to render the sub-agent adapters',
+    const fix = await validateSubagentProjections(true, narrowed);
+    expect(fix.issues).toEqual([]);
+    expect(fix.written.filter((written) => written.includes('cricket-judgement-high'))).toEqual([
+      '.cursor/agents/cricket-judgement-high.md',
     ]);
-    expect(refused.written).toEqual([]);
   });
 
   it('ends a fix run at a refused mutation, reporting it with what was written before it', async () => {

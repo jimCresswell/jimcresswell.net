@@ -10,7 +10,7 @@
 import { z } from 'zod';
 
 /** The platforms an adapter can be projected to, in the order the surfaces are listed. */
-const SUBAGENT_PLATFORMS = ['cursor', 'claude', 'codex', 'gemini'] as const;
+export const SUBAGENT_PLATFORMS = ['cursor', 'claude', 'codex', 'gemini'] as const;
 
 /** A member of {@link SUBAGENT_PLATFORMS}. */
 export type SubagentPlatform = (typeof SUBAGENT_PLATFORMS)[number];

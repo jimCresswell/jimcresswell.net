@@ -253,6 +253,19 @@ const oakRecommendedConfig: TSESLint.FlatConfig.Config = {
           // theatre. Retire each entry when its subject gains a fake-fs seam.
           '**/agent-tools/src/collaboration-state/coordination-home-consolidation.integration.test.ts',
           '**/agent-tools/src/core/flag-path-resolve.integration.test.ts',
+          // Recorded reason: `testing-strategy.md` §"No reading the `.agent/`
+          // knowledge substrate in tests" mandates an mkdtemp fixture repo for
+          // product code that resolves `.agent/` paths, and this rule permits
+          // real IO structurally only under test-helpers/, test-fakes/ and the
+          // vitest configs, with no class for that mandated shape, so every such
+          // test (the five above included) is a per-file entry. This one proves
+          // the health probe's platform truth at its file-system boundary (an
+          // absent or empty templates directory, a symlinked template, an
+          // undeclared one). Retires when `readDeclaredAdapters` reads through
+          // the seam-backed `SurfaceFs` (the probe is synchronous today, that
+          // seam async); the lane's follow-on list names that move and the
+          // rule's integration class.
+          '**/agent-tools/src/subagent-declarations/declared-adapters.integration.test.ts',
           '**/agent-tools/tests/claude/statusline-debug-log.integration.test.ts',
           '**/agent-tools/tests/collaboration-state/state-integrity.integration.test.ts',
           '**/agent-tools/tests/collaboration-state/watcher-staleness-io.integration.test.ts',
