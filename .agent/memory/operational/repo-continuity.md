@@ -22,9 +22,10 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 ## Current State
 
 - `main` carries the monorepo and the Practice since PR #53 merged (`55649a2`, 2026-09-13); the
-  transplant closure runs as small PRs against `main` (node §Transplant closure; items 1 to 4
-  landed, item 4 as bounded with its residue rows named in the report). Plan of record: `docs/explorations/2026-09-12-oce-practice-lineage-transplant.md`
-  (§Owner rulings, rounds 1 to 16, carry the state; the latest round is current).
+  transplant closure ran as small PRs against `main` and is complete but the reader
+  retirement #91 (§Next Safe Steps). Plan of record:
+  `docs/explorations/2026-09-12-oce-practice-lineage-transplant.md` (§Owner rulings, rounds 1
+  to 16; the closure's later rulings are in the Director's handoff).
 - Seven pnpm workspaces; root scripts through Turborepo; root devDeps installed.
 
 Landed before the closure, all on `main` since PR #53 (kept as the record of how; nothing below
@@ -89,11 +90,9 @@ names a live branch):
 ## Active Threads
 
 - OCE Practice lineage transplant — closure (Director: Cauldron herds Lustre, `director-handoff.md`;
-  lanes A, B, C under `threads/closure-lane-*.next-session.md`).
-- Closure session 2, the synthesis onto the register (`threads/session-2-synthesis.next-session.md`;
-  opened 2026-09-13 about 20:40Z on the owner's word; the register PR #63 merged at
-  `SHA: dc23dff` 22:39Z; the live continuation is the owner's cards and the fast-lane and
-  slow-lane dispositions that follow them).
+  lane A, Saffron turns Verdure, `threads/closure-lane-a.next-session.md`): complete but #91.
+- Closure session 2's synthesis (`threads/session-2-synthesis.next-session.md`): the cards were
+  answered 2026-09-14 (the Director's handoff item 78); the graduation drain is curator work.
 
 ## Paused Threads
 
@@ -104,29 +103,26 @@ names a live branch):
 
 ## Next Safe Steps
 
-The owner-set order of 2026-09-12 (rules triage, harness integration, the two re-evaluation
-slices, the restart assessment, link repair, script naming, the plan-node migration, the
-Practice definition and its delivery node) is done and recorded in the plan node
-`.agent/plans/delivery/practice-completion.plan.md` and the journey report
-`.agent/reports/practice-transplant/journey-so-far.md`. Of the transplant closure's eight
-items: 1 to 3 landed on `main` (PR #53 at `SHA: 55649a2`, then #56), item 4 landed as bounded
-(#57, residue routed), item 6 landed as PR #55 with 2a and 2b remaining, item 8 filed as
-PR #63 with the cards answered; item 5's landed parts (5a-i to 5a-iv, 5a-vi, 5b, 5c) are on
-`main` (the suppressed-findings hold live since PR #79); 2b-ii, 5a-v, 5c-ii and item 7 are the
-ordered closure work in the Director's handoff. Live now, in order:
+The transplant closure is complete on `main` except one pull request (2026-09-15): the items of
+`.agent/plans/delivery/practice-completion.plan.md` §Transplant closure carry their Done lines
+and proofs (item 4's rows closed by #85 `SHA: eed1f2e`, #87 `SHA: 6b5676b`, #86
+`SHA: 47299c7`, re-dated in #90 `SHA: a47a559`; item 5's leak validator green since #79
+`SHA: 014fc6e`; item 7 in #89 `SHA: ffd37d1`; item 8 filed in #63 with the cards answered)
+except item 6's retirement condition, which lands with the reader retirement #91, blocked by a
+red CodeQL check. The compiled record is `.agent/reports/practice-transplant/README.md` §The
+record, compiled. Live now, in order:
 
 1. The Director's handoff `.agent/memory/operational/director-handoff.md` §Current handoff state
-   is the resume contract: the open pull requests (its snapshot at the Director's last push),
-   the lane A order (2b-ii with the Gemini row, item 4's residue, one pull request for 5a-v,
-   5c-ii and the card amendments), and item 7 last.
-2. Session 2's cards were answered in one batch (2026-09-14, the Director's handoff item 78;
-   `threads/session-2-synthesis.next-session.md` §Next safe step); the graduations are curator
-   work after the closure's other items, in batches of six to eight entries (owner word
-   2026-09-14, the Director's handoff item 94; the plan's item 8 proof still names
-   `unconsolidated/` empty, its reconciliation with that word pending, item 100); the napkins
-   are archived only after full processing, which follows the drain (owner word 2026-09-14: no privacy review is needed).
-3. The `practice-language-separation` node (sketch; not urgent) awaits ratification on cards; the
-   tooling residue named in the plan (§Transplant closure, item 5) rides item 5.
-4. The `practice-two-way-exchange` node (ratified 2026-09-14) opens after the closure: both
-   estates' deltas since the ancestor pin are computed at its window, compared at the concept
-   level, and landed on both sides under each owner's word.
+   is the resume contract: #91's cure push, #88's review, lane A's records pull request, and the
+   cards for the owner (the runbook's agent-time contract; the closure node's todo 1 wording;
+   the lineage's #145 rebudget question).
+2. The `practice-two-way-exchange` node (ratified 2026-09-14) is the next Practice work and
+   opens on the owner naming its window; the closure's routed findings (the exchange-window
+   items on #84, #86, #89, #90 and #91; the hold's second lifting path; the boundary
+   re-implementation finding of the Director's handoff item 108) are its register's first rows.
+3. The graduation drain is curator work on its own cadence, in batches of six to eight
+   entries (owner word 2026-09-14, the Director's handoff item 94); the napkins under
+   `unconsolidated/` are archived only after that processing (no privacy review needed).
+4. The `practice-language-separation` node (sketch; not urgent) awaits ratification on cards.
+5. Editorial work follows the closure (the node's own words); nothing on the Practice side
+   blocks it.
