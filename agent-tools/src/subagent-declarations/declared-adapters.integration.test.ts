@@ -12,9 +12,10 @@ import { readDeclaredAdapters } from './declared-adapters.js';
 /**
  * The declared-adapters read at its file-system boundary, on mkdtemp repositories: the
  * health probe's platform truth is read from here, so every refusal arm is proved against
- * real entries (an absent directory, an empty set, a symlinked template, an undeclared
- * template, a name a path cannot carry, a stray regular file), the happy path reads the
- * declarations in name order, and the production composition runs on the same fixtures.
+ * real entries (an absent directory, an empty set, a symlinked template, a directory with a
+ * template's name, an undeclared template, a name a path cannot carry, a stray regular
+ * file), the happy path reads the declarations in name order, and the production
+ * composition runs on the same fixtures.
  */
 
 const tempRoots: string[] = [];
@@ -75,6 +76,16 @@ describe('readDeclaredAdapters', () => {
     expect(readDeclaredAdapters(root)).toStrictEqual({
       ok: false,
       error: `${TEMPLATES_DIR}/linked.md: not a regular file`,
+    });
+  });
+
+  it('refuses a directory carrying a template name, classified on the opened descriptor', async () => {
+    const root = await makeRepoRoot();
+    await writeTemplate(root, 'alpha');
+    await mkdir(path.join(root, TEMPLATES_DIR, 'nested.md'));
+    expect(readDeclaredAdapters(root)).toStrictEqual({
+      ok: false,
+      error: `${TEMPLATES_DIR}/nested.md: not a regular file`,
     });
   });
 

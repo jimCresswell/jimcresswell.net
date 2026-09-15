@@ -8,14 +8,18 @@
  * Both refuse whole rather than return a partial truth: an empty template set (the adapter
  * leg refuses it too, so an inert estate never reads healthy), an entry that is not a
  * template (a name a path cannot carry, a regular file without the `.md` suffix, a leaf
- * that `lstat` finds is not a regular file), a template that cannot be read, a declaration
+ * that is a link or is not a regular file), a template that cannot be read, a declaration
  * that refuses, a template with none, and an adapter name two templates render (the
  * generator refuses that set as unrenderable).
  *
- * What this read does not do, stated plainly: it classifies the leaf with `lstat` and then
- * reads it in a second call, so a link swapped in between the two is followed; it does not
- * classify the templates directory or its ancestors, so a link at or above it is followed
- * by the listing. The estate's fd-anchored no-follow reader with ancestor classification
+ * Each template is opened once and classified and read through that descriptor, so the
+ * file read is the file classified. The open's flags copy the estate's no-follow read
+ * (`skills-adapter-generate/read-regular-file.ts`): `O_NOFOLLOW` and `O_NONBLOCK` where the
+ * host has them, so a link at the final component fails the open. What this read does not
+ * do, stated plainly: on a host without `O_NOFOLLOW` (Windows) a link at the leaf is
+ * followed; the templates directory and its ancestors are never classified, so a link at
+ * or above the directory is followed by the listing and the open. The estate's fd-anchored
+ * no-follow reader with ancestor classification
  * (`validators/portability/rule-surface-fs.ts`) is asynchronous where this probe is
  * synchronous; moving the probe's read onto it is the named follow-on, and until then the
  * adapter leg (`portability:check`), which reads through that seam, is the guard against a
@@ -24,7 +28,7 @@
  * @packageDocumentation
  */
 
-import { lstatSync, readdirSync, readFileSync } from 'node:fs';
+import { closeSync, constants, fstatSync, openSync, readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 import { err, ok, type Result } from '@engraph/result';
@@ -33,6 +37,18 @@ import { TEMPLATES_DIR, specsOf } from './adapter-spec.js';
 import type { SubagentPlatform } from './declaration-scalars.js';
 import { readSubagentDeclaration } from './read-subagent-declaration.js';
 import { templateNameRefusal } from './template-name.js';
+
+/**
+ * The open flags as the host has them: Node's types declare `O_NOFOLLOW` and `O_NONBLOCK`
+ * everywhere, but Windows has neither at runtime, so each is read as possibly absent and
+ * drops to 0 there (`skills-adapter-generate/read-regular-file.ts` models the same truth).
+ */
+const hostFlags: Partial<Record<'O_NOFOLLOW' | 'O_NONBLOCK', number>> = {
+  O_NOFOLLOW: constants.O_NOFOLLOW,
+  O_NONBLOCK: constants.O_NONBLOCK,
+};
+const TEMPLATE_OPEN_FLAGS =
+  constants.O_RDONLY | (hostFlags.O_NOFOLLOW ?? 0) | (hostFlags.O_NONBLOCK ?? 0);
 
 /** One adapter name and the platforms its declaration renders it on. */
 export interface DeclaredAdapter {
@@ -121,17 +137,48 @@ export function readDeclaredAdapters(repoRoot: string): Result<readonly Declared
     if (!name.ok) {
       return name;
     }
-    const file = join(dir, entry);
-    try {
-      if (!lstatSync(file).isFile()) {
-        return err(`${TEMPLATES_DIR}/${entry}: not a regular file`);
-      }
-      templates.push({ name: name.value, text: readFileSync(file, 'utf8') });
-    } catch (cause) {
-      return err(`${TEMPLATES_DIR}/${entry}: cannot read the template (${describe(cause)})`);
+    const text = readTemplateText(join(dir, entry));
+    if (!text.ok) {
+      return err(`${TEMPLATES_DIR}/${entry}: ${text.error}`);
     }
+    templates.push({ name: name.value, text: text.value });
   }
   return declaredAdaptersFrom(templates);
+}
+
+/**
+ * A template's text, opened once and classified and read through the one descriptor.
+ *
+ * @param file - Absolute path to one entry of the templates directory.
+ * @returns The text, or the refusal: `not a regular file` when the open fails with `ELOOP`
+ *   (under `O_NOFOLLOW`, a link at the leaf) or `fstat` does not find a regular file;
+ *   otherwise the failure's code, never its message.
+ */
+function readTemplateText(file: string): Result<string, string> {
+  let fd: number;
+  try {
+    fd = openSync(file, TEMPLATE_OPEN_FLAGS);
+  } catch (cause) {
+    return err(isLinkRefusal(cause) ? 'not a regular file' : unreadable(cause));
+  }
+  try {
+    if (!fstatSync(fd).isFile()) {
+      return err('not a regular file');
+    }
+    return ok(readFileSync(fd, 'utf8'));
+  } catch (cause) {
+    return err(unreadable(cause));
+  } finally {
+    closeSync(fd);
+  }
+}
+
+function isLinkRefusal(cause: unknown): boolean {
+  return cause instanceof Error && 'code' in cause && cause.code === 'ELOOP';
+}
+
+function unreadable(cause: unknown): string {
+  return `cannot read the template (${describe(cause)})`;
 }
 
 /** The error's code or kind, never its message (which carries the working copy's absolute path). */
