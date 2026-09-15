@@ -116,8 +116,8 @@ the runbook is the how, the definition is the what, the journey is the why.
    doctrine-cited pattern files and the five cited research and report
    records from the pin, scrubbed; fix the path drift (`*-reviewer`
    template citations in the nine local skills, `skills/free-play/`, the
-   surface-matrix path); restore `corpus-analysis`, `workflow-build` and the
-   workflow file under `.agent/state/` so the four `corpus-*` templates and
+   surface-matrix path); restore `corpus-analysis` and `workflow-build` so
+   the four `corpus-*` templates and
    consolidate-docs §synthesis engine name a runnable instrument; give `sif`
    its concrete instruments (`the-codex-dialogues`, `codex-helper`) or
    rewrite its routing; land the cited-paths validator first so the cure is

@@ -161,3 +161,26 @@ Team member closeout:
 - Handoff needed: none beyond that decision.
 
 — Saffron turns Verdure (c39ad7)
+
+## [Saffron turns Verdure c39ad7] 2026-09-15T11:11:03Z — #91 red-check cure pushed; push slot released
+
+- Lift: the owner's `/jc-start-right-team` in this seat at 10:52Z; the Director's go and slot
+  at 10:58Z (item 108's ruling).
+- Pushed on `chore/reader-retirement`, two pushes inside the slot, each through the pre-push
+  gate (58 e2e green each time): `0d67f873..a5551f3a`, then `a5551f3a..fdc5d865`.
+  - `SHA: 3c20a391` the cure for CodeQL alert #7 (`js/file-system-race`): one open with
+    `O_RDONLY | O_NOFOLLOW | O_NONBLOCK`, `fstatSync(fd).isFile()`, the read from the
+    descriptor, `closeSync` in a `finally`; three mutants killed and restored byte-identical;
+    code-expert verdict "NOTES" ("Nothing blocks the push").
+  - `SHA: 51bfd784` the merge of `records/lane-a-checkpoint-4` (`SHA: 73d7e8c7`), napkin
+    conflict resolved keeping both sides.
+  - `SHA: a5551f3a` the ninth waypoint and napkin segment fourteen.
+  - `SHA: fdc5d865` item 6's Done line in the delivery plan, on the Director's word.
+- Copilot requested on `SHA: fdc5d865` under the owner's credential at 11:10:31Z (timeline
+  event read back).
+- Next (lane A's chain): the review bound to that tip answered with one signed bot comment,
+  one line per suppressed finding; then the merge bot's poll. Proof: CodeQL green on the tip;
+  if alert #7 still fires, stop and report, no second shape.
+- Push slot: released.
+
+— Saffron turns Verdure (c39ad7)

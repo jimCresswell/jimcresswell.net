@@ -1319,7 +1319,7 @@ ones the Director would put to the owner had the owner been present.
      clause 9 grants a seat one push for records-class only; the curator holds B, its cure
      local and unpushed; #146 at its front door. Check-ins on the curator continue at each of
      this seat's landings.
-     Item 7 pushed at 21:38Z and open as #89 (`SHA: f0dd4a0`, Copilot requested, chain
+     Item 7 pushed at 21:13Z and open as #89 (`SHA: f0dd4a0`, Copilot requested, chain
      armed). #88's review (21:01Z) carried four threads besides its one suppressed finding,
      all records-class staleness in the PR's own claim (the boundary block still stamped
      06:37Z under a 20:55Z header; the live board still naming records-10 current and #81
@@ -1336,7 +1336,7 @@ ones the Director would put to the owner had the owner been present.
      addendum's over-claims: proofs "on main" against un-re-dated rows, the readers "retired",
      proposal 4's falsifier "fired", proposal 1's quarter, proposal 7's clause, proposal 6's
      "live"; the runbook's owner-question count and its agent-time proxy; the item 5 Done line
-     against the handoff's landed list). Round two pushed at 22:03Z (`SHA: 46ed207`): eleven
+     against the handoff's landed list). Round two pushed at 21:23Z (`SHA: 46ed207`): eleven
      cures (the counting rule and the counts; agent time named uninstrumented with the wall
      span as the upper bound; every scoring claim narrowed to the evidence on main), one
      signed Rejected (item 5's Done stands on its ratified proof; the board rulings are review
@@ -1380,7 +1380,7 @@ ones the Director would put to the owner had the owner been present.
      cwd, fail closed without one, with a nested-copy cell, the README trued; the two
      suppressed as signed lines (the env-first root as the #86 class follow-on; the test-file
      count by recount). #91 (the reader retirement, `chore/reader-retirement`) opened 22:29Z
-     at `SHA: 8d1dfa6` from main 47299c7, Copilot requested. Host: three of lane A's
+     at `SHA: 8d1dfa6` from main `SHA: 47299c7`, Copilot requested. Host: three of lane A's
      background tasks killed for low memory at 22:26Z (its watcher and review wait re-armed,
      the gate re-run alone); memory free 46% at 22:26Z; one watcher per seat confirmed.
      #90 round three on the exception tip (22:52Z): zero threads, two suppressed (a tracked
