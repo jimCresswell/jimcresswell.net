@@ -7,7 +7,7 @@
  * pre-pointer line, the one-line pointer sentence ending in a stop, Cursor `readonly`,
  * Codex `sandbox_mode`, `approval_policy` and the instructions block form, the registry
  * entry shape) is constant across every adapter, is not declared, and is the generator's
- * to hold (closure item 6, 2b-ii). The sweep declares only deviations from what is here. The
+ * to hold (closure item 6, 2b-ii). A declaration carries only deviations from what is here. The
  * Gemini entries are the generator's own, measured from nothing (no hand-kept Gemini adapter
  * ever existed): the Claude wording with the platform named.
  *
@@ -48,8 +48,8 @@ export const STANDARD_CLOSINGS: Readonly<Record<SubagentPlatform, string>> = {
 /**
  * The one line a Markdown adapter carries between its title and its pointer, per platform,
  * measured across the 29 Cursor and 29 Claude adapters on 2026-09-14 (one shape each); a
- * Codex adapter carries nothing before its pointer. The readers refuse any other line there
- * (the #77 round-two findings), because the sweep has no place to carry it.
+ * Codex adapter carries nothing before its pointer. The generator renders no other line
+ * there (the #77 round-two findings): a declaration has no place to carry one.
  */
 export const STANDARD_PRE_POINTER: Readonly<Record<MarkdownPlatform | 'gemini', string>> = {
   cursor: '**All file paths in this document are relative to the repository root.**',

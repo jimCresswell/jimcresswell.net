@@ -1,6 +1,6 @@
 /**
- * What one adapter renders from, and where it goes: the four generated surfaces (the three
- * the sweep once read from hand-kept adapters, and Gemini, generated only), the spec a role
+ * What one adapter renders from, and where it goes: the four generated surfaces (Cursor,
+ * Claude, Codex and Gemini, every one rendered from the declarations), the spec a role
  * or a variant reduces to (a role with its defaults to fill, a variant exactly as declared),
  * and the pointer sentence every adapter carries. The leaf the Markdown renderer
  * (`render-subagent-adapters.ts`), the Codex renderer (`render-codex-adapter.ts`), the
@@ -11,13 +11,12 @@
  */
 
 import { canonicalAdapterTitle } from './standard-adapter-body.js';
-import type { SubagentPlatform } from './declaration-scalars.js';
+import { SUBAGENT_PLATFORMS, type SubagentPlatform } from './declaration-scalars.js';
 import type {
   ClaudeFields,
   CodexFields,
   CursorFields,
   GeminiFields,
-  SourcePlatform,
   SubagentDeclaration,
   SubagentVariant,
 } from './subagent-declaration.js';
@@ -35,20 +34,23 @@ export interface SubagentSurface {
   readonly extension: string;
 }
 
-/** The four generated surfaces, in the order the adapters are rendered. */
-export const SUBAGENT_SURFACES: readonly SubagentSurface[] = [
-  { platform: 'cursor', dir: '.cursor/agents', extension: '.md' },
-  { platform: 'claude', dir: '.claude/agents', extension: '.md' },
-  { platform: 'codex', dir: '.codex/agents', extension: '.toml' },
-  { platform: 'gemini', dir: '.gemini/agents', extension: '.md' },
-];
+/** Where each platform keeps its adapters and the extension its files carry; keyed by platform so the map is complete by construction. */
+export const SURFACE_OF: Readonly<
+  Record<SubagentPlatform, { readonly dir: string; readonly extension: string }>
+> = {
+  cursor: { dir: '.cursor/agents', extension: '.md' },
+  claude: { dir: '.claude/agents', extension: '.md' },
+  codex: { dir: '.codex/agents', extension: '.toml' },
+  gemini: { dir: '.gemini/agents', extension: '.md' },
+};
 
-/** The three source surfaces the sweep reads and the platform contract binds. */
-export const SOURCE_PLATFORMS: readonly SourcePlatform[] = ['cursor', 'claude', 'codex'];
+/** The four generated surfaces, in the platform list's order (the order the adapters are rendered). */
+export const SUBAGENT_SURFACES: readonly SubagentSurface[] = SUBAGENT_PLATFORMS.map((platform) => ({
+  platform,
+  ...SURFACE_OF[platform],
+}));
 
-const EVERY_PLATFORM: readonly SubagentPlatform[] = SUBAGENT_SURFACES.map(
-  (surface) => surface.platform,
-);
+const EVERY_PLATFORM: readonly SubagentPlatform[] = SUBAGENT_PLATFORMS;
 
 /** What one adapter renders from: a role with its defaults filled, or a variant as declared. */
 export interface AdapterSpec {

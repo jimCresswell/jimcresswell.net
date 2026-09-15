@@ -1427,3 +1427,227 @@ parallax, wrap):
   run with platform and model but no `--session-prefix` read this seat's watcher as live for
   lane A's seat. If so, the F-95 gate discriminates by display name only when the prefix is
   supplied; the recipe should carry it. To test after the pause, one command per seat.
+
+## Session: 2026-09-14 — lane A, closure item 6 (Saffron turns Verdure, c39ad7, Implementer)
+
+Segment eight (03:20Z to 07:50Z): the #74 rounds one to three, 2b-i minted, the compaction
+checkpoint.
+
+- A minting instrument is proven by a round trip, not a dry run: strip the minted blocks, run
+  the sweep over an injected tree, diff against the committed files. The dry run proves the
+  derivation ran; the round trip proves it is a function of its inputs (27 of 27 identical).
+- A platform behaviour that is the design's load-bearing claim is measured before the design
+  is called done: the `@` import inside a path-scoped rule expanded at launch in two headless
+  runs (one a control reading no file), and the documentation was silent exactly there.
+- The schema, not the instrument, is what lives: a one-time sweep's binding checks (a variant
+  belongs to its template, a block to a declared platform) are discarded after the mint; put
+  every binding in the parser the estate reads every time.
+- A zod union refuses with no path; discriminate on the shape's marker before parsing so a
+  refusal names the key.
+- The line cap bit twice in one round (249 then 254; a new module at 295): split by
+  responsibility before the cap, never at it.
+- A dead subagent leaves no verdict (an API credit error killed a code-expert pass mid-read);
+  re-run it, never infer what it would have said.
+- Measure a corpus through the estate's own readers: a grep census counted a prose word as a
+  frontmatter key; the parsers gave the standard closing per platform exactly.
+- A test fake that branches on a path suffix is logic; a set of failing paths is
+  constant-shaped and says the same thing.
+- The guard's plain forms: a script file in the scratchpad taking the repository root as its
+  first argument, run from the worktree root; the file tool refuses a user-home path inside a
+  scratch script, so a measurement over repository modules runs as a package script.
+- Prettier reformats a file between two writes of it; re-read before the second, or edit by
+  anchor from a script.
+- knip counts an export used only in its own file as unused; make it private. Its run from
+  the package directory failed to find the workspace; run it from the root.
+- A commitlint header over 100 characters fails the commit after the whole pre-commit gate
+  has run; measure the header before committing.
+- Two branches in one worktree: commit (WIP if need be) before every branch change, change
+  from a clean tree, and ship only from the branch whose tree is shipped.
+
+## Segment nine (2026-09-14, ~07:35Z): #74 round four, the cricket suite
+
+- Contract prose overstated the code twice on #74 (round three "every mutation is a typed outcome"; round four "a leaf link is replaced"). Generator: the header sentence is written from intent before the cells, never re-derived from the refusal branches. Cure from here: write header contracts after the cells pass, from the refusal path, and read them against the code before the commit.
+- Two fluent moves caught by guards, not by me: pushing on a standing slot word (three crickets), and briefing the crickets in paraphrase without event ids or quotes (the procedure cricket's DRIFTING). Same class as the earlier harvest: an interpretation reported as an observation. A brief to a checker carries the instrument (quote, id, hash), never the paraphrase.
+- The code-expert's ratchet note is the structural reading: four rounds added probes and refusals; the round that moved the other way (adopt the shared instrument, delete the local one) is the right response. The card for the permissive helpers is framed as retirement, not a fifth round.
+
+## Segment ten (2026-09-14, 08:50Z): four rounds, two clauses, the second compaction
+
+- The gate list is the `check` script's list, not memory: depcruise was absent from this
+  seat's list until a code-expert ran it and found a type-only cycle. Read the script once
+  and run every leg the pre-push hook runs, in order, before calling a tree green.
+- A wall-clock ceiling in a gated suite is nondeterministic under contention and the testing
+  strategy forbids it; the bound for "no pattern over outsider-shaped text" is structural, and
+  the cell keeps the deterministic output assertion only.
+- Mutant anchors drift when a comment near them changes; a mutant script is re-run on the
+  final files and the final hashes recorded, never the hashes of an earlier state.
+- Written cells and modules in one pass twice (5a-vi's three suites; #77 round two's reader
+  rewrite) because the fixture churn made red-first expensive. Named in both commit bodies;
+  the Director accepted the note; the mutants were the proof. Next time the cells still go
+  first: the churn is the same either way, and the red run is what catches a cell that cannot
+  bite (the seam's comments cell was added only after its mutant survived).
+- Two Director messages crossed once and the later governed; acknowledging the supersession
+  explicitly, in the next line, kept the map current on both seats.
+- A checker's brief carries the instruments (quotes, ids, hashes); the procedure cricket read
+  a paraphrased authorisation as absent and said DRIFTING. The record had the words; the brief
+  did not.
+- Free play, harvested honestly: (kept) the hold's "a line binds itself to the tip by its own
+  SHA" reads like the bracket's "the harvest must agree on both sides", two instruments that
+  make a snapshot of a mutable surface trustworthy by carrying the binding inside the data;
+  (kept, small) the reviewer rounds on #74 and #77 both turned when a cure DELETED a local
+  copy of a shared instrument rather than adding a probe; (discarded, forced) that the four
+  reviewers' suppressed counts trend down across rounds means the instrument is converging,
+  which the rounds' own contents do not support (round four of #74 had eight, round two of
+  #77 seven).
+- Concept exploration on the round-three class, "the reader admits what the strict reader
+  will reject": the generator is that a reader's output is typed by a looser shape than the
+  reader of its output; the cure is not per-field refusals but one pass through the strict
+  reader before the write, which the byte-identical round trip already performs live. The
+  proposal the Director ruled is that pass at the sweep's boundary; the falsifier is a derived
+  declaration the schema accepts and the next read rejects, which the round trip would show.
+- Parallax, screening depth: the closure's remaining path is 2b-ii, item 4's residue, one
+  small PR of amendments, item 7; the main uncertainty is 2b-ii's byte-equal regeneration
+  against the seven normalised blocks on record; the cheapest next capability is the
+  generator's first dry run diffed against the three trees.
+
+## Segment eleven (2026-09-14, 09:02Z): cold pause after the second compaction
+
+- The owner's word "cold pause" for the session limit. The process table showed a
+  claude-platform watcher; the fluent reading "my leftover, kill it" was wrong: its supervisor
+  is the Director's session. Verified by pid before acting. Nothing of this seat's runs.
+- Metacognition: the inherited claim "all processes stopped" was true for this seat and
+  untrue for the host; the two are different observables and the memory's "verify by process
+  table" means the seat's own processes, keyed by supervisor pid.
+- Free play kept: the liveness assertion is blind to which seat's watcher answers when two
+  seats share platform and model; `--session-prefix` exists and would split them. Discarded:
+  "refresh the heartbeat on a loop through the pause" (a loop is a process; the pause forbids
+  it; a stale claim under a frozen seat is honest).
+- Concept exploration: the pause's gauge (the session limit) is the owner's, not observable
+  from the seat; the only exit is the owner's word, so no Monitor or wake is warranted.
+- Parallax, screening: frames are the owner's (spend nothing), the Director's (the slot
+  arrangement waits), the successor's (the record carries the exit). The one conflict, a
+  Director word during the pause, resolves by the standing feedback: held, not obeyed.
+
+## Segment twelve (2026-09-14, 13:03Z to 16:3xZ): the lift, six rounds, two slices
+
+- The pause lifted at 13:03Z; my state lines carried estimated clock times up to twenty
+  minutes fast until I read the clock; corrected to the Director, and from then every time
+  in a message is read from `date`.
+- #79 rounds three to six, each a small correct cure to the same shape: identity and format
+  read from text conventions. The code-expert's friction-ratchet count on that surface is on
+  the 5a-vi follow-on list with an assumptions-expert shape review before the next feature.
+- A1 landed the measured facts first (key order, quote style, the eleven files) and the
+  generator second; the code-expert then measured the quote rule against prettier and found
+  mine was a JS-string majority rule, not YAML's. Measure the formatter, not the files it
+  already formatted.
+- Fluency tripwire caught twice: "eleven" was right by accident the first time (prose-expert
+  double-counted, then the Cursor re-quoting added three); the count is a measurement, run
+  the dry run and read it.
+- The owner's two words this session (one or two subagents at a time; rounds never go up)
+  both landed while a pass was in flight; both absorbed and recorded as memory, and the
+  round-two dispositions rode the last push on #81 exactly as ruled.
+- Free play kept: the fake port re-deriving the classifier was the same class as the reader
+  re-deriving YAML; both cured by calling the production function. Discarded: a registry
+  marker pair in config.toml (the head-then-blocks contract needs none).
+
+- Lane A segment five (2026-09-14, 17:0xZ to 20:5xZ; #83, #84, #85 merged; #86 and #87 open;
+  frozen for compaction on the owner's word):
+  - Three code-expert BLOCKs in one segment, one shape: a fluent inference from a name (the
+    Gemini tools written raw "like the others"; agent-tools codex-exec called a "runner"
+    because a script name said exec; a restore called "landed" in a file on a branch where it
+    was not). Each caught by the single launch before the push. The cure that generalises:
+    before writing a thing's role, open it.
+  - A wait for a review compared GitHub's seven-character abbreviated oid against an
+    eight-character literal and ran an hour past the review; the reviews list, read once by
+    full oid prefix, was the instrument. Silence from a filter is never "no review".
+  - Times written before the clock read returned were wrong by two minutes; the read comes
+    first, in its own turn.
+  - A restore of seventy-eight lineage files passed every estate gate first time (lint caps,
+    types, knip, depcruise) and drew seventeen Copilot findings in round one and eleven more in
+    round two, nearly all lineage logic at the pin; the round budget, not the gate, is the
+    binding constraint on a restore, and the exchange window is the home for lineage defects.
+  - The hook's substring path scopes are fragments by design (`archive/`, `.test.ts`); the
+    lineage-name and machine-local blocks' excludes are repository paths and need an anchored
+    form, not a global change to the matcher.
+
+## Segment thirteen (2026-09-14 21:03Z to 2026-09-15 10:4xZ): the lift, three merges, two exceptions, one merge round; frozen for compaction
+
+- A mutant that survives because the cell's outcome does not depend on the check under the
+  test runner's own working directory (the payload-cwd absoluteness check: resolving `.` from
+  the runner's cwd never reached the exempt path) is not killed by a stronger integration
+  cell; move the check into the pure helper and prove it there with a literal input. The
+  survival was the tell that the cell read a global.
+- The lint plugin is consumed from its build output: an edit to `tooling/eslint/src/configs/`
+  changes nothing until `pnpm --filter @engraph/eslint-plugin-standards build`; and a filter
+  naming a package that does not exist runs nothing and exits 0, so a wrong guess at the
+  package name reads as a clean build. Read the package's name field before filtering.
+- Authoring a module on the wrong branch (the retirement cure written while the worktree sat on
+  the #90 branch): read the branch before the first write of a cure, and move a file written
+  in the wrong place through the scratchpad, never a checkout with it in the tree.
+- A reviewer's count is recounted before it is accepted or refused (Copilot's 22 test files
+  against the tree's 23); the refusal quotes the command that reproduces the number.
+- The merge bot's poll exits 1 on `mergeable=UNKNOWN` instead of retrying; re-arm after a
+  push settles (on the follow-on list).
+- The host stopped three background tasks for memory at once (the watcher, a review wait, a
+  gate); read the process table before re-arming, re-run the gate alone, tell the Director
+  which tasks died.
+- An allowlist entry in a lint rule is an exception to a check: add it only where no permitted
+  class exists, give a reason that names why the class does not exist and cites the doctrine
+  that mandates the shape, and state the retirement path the estate already carries rather
+  than promising a seam.
+- Surprise, class mixing predicts late findings. Expected #91, a deletion slice, to settle in
+  two review passes; observed four Copilot passes and a CodeQL pass, every finding after round
+  one on the one new file-system reader the slice added (`declared-adapters.ts`) and the
+  probe composition around it. #90's late findings sat on the hook path scoping carried inside
+  a records-and-rulings pull request. Lesson: a retirement slice is net-negative in readers;
+  code a deletion or records slice needs goes in its own code-class slice (PDR-132's changeset
+  class applied to what the slice adds, not to what it is named). candidate: a PDR-132 clause
+  and a `pr-lifecycle` Phase 1 check, for the Director's register.
+- Surprise, a guarantee outran the code. The round-one header said a symlinked template "is not
+  followed": true of the leaf's `lstat`, false of the templates directory and its ancestors and
+  of the window between the `lstat` and the read. The Director ruled it a correctness defect in
+  the pull request's own claim, one exception push. Same generator as calling #87 open at the
+  seventh wrap: a model reported as observation. Lesson: write a guarantee from the code after
+  the code, and ask the pre-push reviewer to list every guarantee the new docs state against
+  what enforces it.
+- Surprise, parallel pull requests on one append-only tail. #90 and #91 each appended two rows
+  to the generalisation register; the bot refused #91 as CONFLICT-DIRTY; the merge from main
+  moved the tip and drew a whole-diff review with new findings (the fourth pass). Lesson:
+  sequence appends to a shared tail, or merge main in before the review is requested.
+- A records-only pull request of a lane's continuity may be a handover PR under the owner's
+  2026-07-15 ruling carried in `session-handoff` step 2; the Director's close ruling asked for
+  one. Flagged to the Director at the compaction wrap, not decided by the seat.
+- The state line the Director asked for at 00:41Z went unanswered until 10:4xZ: the seat's
+  reads ended the turn with no message (the cause of that ending is not established). Lesson:
+  when a peer's question is pending, a turn that reads state ends with the answer, even a
+  partial one.
+- The model changed under the seat at the owner's word (Fable 5.1 to Opus 5); the identity is by
+  session seed and did not change; the watcher's `--model` flag follows the live model.
+- Play seeds (associations, not findings). The anchored-scope sequence (substring, slash-led,
+  dot-slash, bounded, host separators, cwd placement, relative cwd) looked shaped like the
+  body-tally regex ratchet: a hand-rolled matcher under adversarial review converges slowly
+  while a hardened primitive already existed beside it (`rule-surface-fs.ts`,
+  `read-regular-file.ts`). Copilot reviewing at "Lite" effort each pass reminded me of a
+  sampler rather than a converging reviewer; if so, signed lines, not cures, are the only
+  terminator (an open question, unmeasured). Retiring readers by writing a reader reminded me
+  of cutting a hydra's head. Discarded visibly: the model switch as a Ship-of-Theseus story
+  (forced, nothing to act on); the memory kill and the usage limit as one class (not new).
+- Learning signal (parallax, core depth, same-context and emulated-reduced). Inquiry: the
+  closure's terminating shape. Expected at most two review passes per pull request under the
+  rounds ruling; observed #90 three passes and one exception, #91 four passes, one exception
+  and a merge. Recurrence hypothesis: class-mixed slices and parallel pull requests on shared
+  files. Pending outcome: the seam move lands as its own code-class pull request and settles
+  in two passes. Destination candidate: PDR-132 and `pr-lifecycle`. Status: provisional.
+
+Segment fourteen (10:52Z to 11:05Z, 2026-09-15): #91's red-check cure after the lift.
+
+- The class's cure already existed in the estate. `read-regular-file.ts` had fused the check
+  and the read into one descriptor for the same CodeQL rule (`js/file-system-race`), with
+  `O_NONBLOCK` beside `O_NOFOLLOW` and a Windows identity arm. The new reader in #91 was
+  written beside it with a weaker, two-call shape, and the alert found it after four review
+  passes. A search for the estate's own instrument before authoring a file-system read would
+  have met it at authoring time. Destination candidate: the `consolidate-at-second-consumer`
+  rule's worked instances, or a tripwire at reader authoring. Status: provisional, one
+  instance.
+- Removing a pre-check can remove a guarantee it gave silently: the `lstat` refusal also kept
+  a fifo from blocking the open. The cure had to carry `O_NONBLOCK` to keep it, and the
+  guarantee has no cell (tests cannot make a fifo without `child_process`).

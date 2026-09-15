@@ -222,6 +222,12 @@ remove .agent-original before we merge 53"; "it should be processed then deleted
    Gemini row generated from nothing, one file per role). Retirement condition: once the
    generator owns every adapter surface, the hand-kept adapter readers and the declaration
    sweep have no consumer and are deleted in their own pull request.
+   **Done 2026-09-15:** the retirement condition met in #91: the hand-kept adapter readers
+   (the adapter sources, frontmatter, groups and surfaces readers, the Codex adapter reader,
+   the role and variant derivations, the declaration round trip), the declaration sweep and
+   both platform maps (the reviewer-adapter and sub-agent platform contracts) deleted, so each
+   template's declaration is the one source for every adapter surface and for the health
+   probe's adapter parity; `portability:check` and `subagents:check` green on its tip.
 7. **The record compiled** (todo 4): the reports index as the entry (what, how, why,
    how-faster), the runbook's step 13 citing the nine functions, the completion entry in
    `provenance.yml`. Proof: the index and the provenance diff.

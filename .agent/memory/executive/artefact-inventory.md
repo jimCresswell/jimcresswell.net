@@ -18,7 +18,7 @@ and the [cross-platform matrix](./cross-platform-agent-surface-matrix.md).
 | `.agent/skills/<name>/SKILL-CANONICAL.md` | Canonical skills (sole user-and-model-invokable workflow surface) |
 | `.agent/rules/*.md`                       | Canonical rules — reinforcements of policy                        |
 | `.agent/directives/*.md`                  | Policy documents (AGENT.md, principles.md, etc.)                  |
-| `.agent/sub-agents/templates/*.md` | Canonical sub-agent prompts (ADR-114), each carrying its declaration in frontmatter |
+| `.agent/sub-agents/templates/*.md` | Canonical sub-agent prompts (ADR-114), each carrying its declaration in frontmatter: the one source of the four adapter surfaces, which are generated outputs and never hand-authored |
 | `.agent/memory/active/patterns/`          | Reusable solutions ([README](../active/patterns/README.md))       |
 | `.agent/plans/`                           | Implementation plans, execution tracking                          |
 

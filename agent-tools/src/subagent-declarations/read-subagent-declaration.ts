@@ -1,7 +1,8 @@
 /**
  * Read a sub-agent template's declaration from the frontmatter block at its head.
  *
- * A template without a block is `undeclared` (the sweep mints one); a block that does not
+ * A template without a block is `undeclared` (the adapter leg refuses to render until one
+ * is written); a block that does not
  * close, is not YAML, or fails the declaration schema is a refusal naming the template.
  *
  * @packageDocumentation
