@@ -127,13 +127,24 @@ and proof (item 4's rows closed by #85 `SHA: eed1f2e`, #87 `SHA: 6b5676b`, #86
    `SHA: 6d60e05`, gate green, pull request owed); still queued are the 60%
    compaction-preparation trigger of the retrospective's proposal 10 and the push-time
    settlement-budget gate the owner adopted as proposal 7's fast lane.
-2. The `practice-two-way-exchange` node (ratified 2026-09-14) is the next Practice work and
+2. Maintenance, prioritised by the owner (2026-09-16): remove the hand-authored JavaScript
+   shims from the Claude Code hook surface. Node 24 runs TypeScript sources directly under the
+   repository's `erasableSyntaxOnly` setting, and `tsconfig.base.json` now carries
+   `allowImportingTsExtensions` and `rewriteRelativeImportExtensions`, so a hook is a TypeScript
+   file invoked as `node <source>.ts` with no shim and no build step — proven end to end by the
+   `PreCompact` observer, whose gate ran green across every workspace. The three survivors are
+   `.claude/hooks/practice-session-identity.mjs`, `.claude/hooks/plan-gate-drift-alert.mjs` and
+   `.claude/hooks/run-pretooluse-guard.mjs`; each spawns a built artefact and the last also
+   translates verdicts into a decision, so each gets its own first-hand fire and no-fire probe
+   before its shim is deleted (the enforcement-surface discipline in
+   `hook-policy-substring-discipline`). Routed to Zephyr guards Leeward (281e44) the same day.
+3. The `practice-two-way-exchange` node (ratified 2026-09-14) is the next Practice work and
    opens on the owner naming its window; the closure's routed findings (the exchange-window
    items on #84, #86, #89, #90 and #91; the hold's second lifting path; the boundary
    re-implementation finding of the Director's handoff item 108) are its register's first rows.
-3. The graduation drain is curator work on its own cadence, in batches of six to eight
+4. The graduation drain is curator work on its own cadence, in batches of six to eight
    entries (owner word 2026-09-14, the Director's handoff item 94); the napkins under
    `unconsolidated/` are archived only after that processing (no privacy review needed).
-4. The `practice-language-separation` node (sketch; not urgent) awaits ratification on cards.
+5. The `practice-language-separation` node (sketch; not urgent) awaits ratification on cards.
 5. Editorial work follows the closure (the node's own words); nothing on the Practice side
    blocks it.

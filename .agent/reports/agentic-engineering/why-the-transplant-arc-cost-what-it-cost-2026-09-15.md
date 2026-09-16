@@ -523,3 +523,51 @@ broken, and the design is more dangerous than the problem it solves.
 **Sequence.** Probe the four unknowns; then A (the read); then E and D (marker and gate, the half
 that protects the preparation); then B (the nudge); then C (the window), which is one setting and
 is worthless before D exists.
+
+### First probe of the design's unknowns (2026-09-16)
+
+The owner asked for the smallest piece first: a `PreCompact` hook that never blocks, whose only
+job is to report what the harness puts on stdin and what it does with what the hook writes back.
+It exists as `agent-tools/src/claude/pre-compact-observation.ts` (pure, tested) with its entry at
+`agent-tools/src/bin/claude-pre-compact-observe-hook.ts`, activated in `.claude/settings.json` as
+a built artefact with NO hand-authored JavaScript shim, appending to a git-ignored log under
+`.claude/logs/`. Every path, including every error path, ends at exit 0.
+
+Fired once against a synthetic payload, it already moved three of the four unknowns:
+
+- **There is no `.precompact.json`.** The session's sibling directory holds `custom-title.json`,
+  `subagents/` and `tool-results/`, and nothing matching that name exists anywhere in the project
+  directory. The string in the binary is a RESERVED filename in storage-key validation, not live
+  state — so the attempt counter has no harness state to read and must live in our own marker.
+  This is the flagged inference failing in the direction the flag existed to catch.
+- **The session shape is already in the hook's environment.** The harness exports
+  `CLAUDE_CODE_CHILD_SESSION` and `CLAUDE_CODE_SESSION_ATTENDED`, so "suppress the nudge inside a
+  subagent" and "is anyone watching" need no new plumbing — they are two environment reads. It
+  also exports `CLAUDE_CODE_MESSAGING_TOKEN`, `CLAUDE_CODE_MESSAGING_SOCKET` and
+  `CLAUDE_CODE_SSE_PORT`; the observer records those by NAME with the value withheld, by an
+  allowlist rather than a denylist, so a variable the harness adds tomorrow is withheld by
+  default.
+- **The bounded-tail requirement is now measured, not recalled.** This session's transcript stood
+  at 79,962,698 bytes when the hook stat-ed it.
+
+What the probe CANNOT settle from a synthetic payload, and what the next real compaction will:
+whether the harness delivers `systemMessage`, `hookSpecificOutput.additionalContext`, both or
+neither at this event. The hook plants the same marker on both surfaces for exactly that reason —
+after the next compaction, whichever marker appears in the transcript names the surface that
+works. `SKIP_PRECOMPACT_THRESHOLD` stays unsettled and stays out of the design's load-bearing
+parts until it is measured.
+
+**The hook runs from TypeScript source, with no build step and no shim.** The owner asked whether
+Node 24 could just run it, given `erasableSyntaxOnly` is already set repo-wide. It can, and the
+question was settled by experiment rather than recall: Node 24.18 strips the types, resolves
+`zod` from the workspace, and resolves a relative `./x.ts` specifier — measured at about ten
+milliseconds over running the compiled file (68-79ms against 58-69ms), against a hook timeout of
+ten seconds. The only obstacle was this repository's `.js`-specifier convention, which exists so
+that tsc-emitted `dist` resolves under plain Node ESM — a reason that does not reach source Node
+runs directly. So `tsconfig.base.json` gained `allowImportingTsExtensions` and
+`rewriteRelativeImportExtensions`: the hook's source carries a `.ts` specifier for Node, and tsc
+rewrites it to `.js` on emit, which was verified by reading the emitted line and running the
+emitted file, not by trusting the option's name. The specifier guard's accepted set gained `.ts`
+with that reasoning recorded where the guard lives. A hook that runs from source needs nothing
+built, so it works on a fresh clone — which also makes it the rewrite path for the three
+surviving hand-authored `.mjs` shims.

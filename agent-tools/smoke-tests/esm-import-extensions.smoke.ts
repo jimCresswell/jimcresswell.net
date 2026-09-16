@@ -37,8 +37,18 @@ function collectSourceFiles(directory: string): string[] {
 /** Match static import/export-from and dynamic import() relative specifiers. */
 const RELATIVE_SPECIFIER_PATTERN = /(?:from\s*|import\s*\(\s*)['"](\.[^'"]*)['"]/gu;
 
-/** Extensions Node ESM resolves literally without guessing. */
-const EXPLICIT_EXTENSION_PATTERN = /\.(?:js|mjs|cjs|json)$/u;
+/**
+ * Extensions Node ESM resolves literally without guessing.
+ *
+ * `.ts` belongs here for source Node runs DIRECTLY — the hooks under `src/bin/`,
+ * which `.claude/settings.json` invokes as `node <source>.ts` so a hook never
+ * depends on anything being built. Node 24 strips the types and resolves a
+ * `.ts` specifier literally; `rewriteRelativeImportExtensions` (tsconfig.base)
+ * rewrites it to `.js` on emit, so the same file still resolves from `dist`.
+ * An extensionless specifier fails both ways, which is what this guard exists
+ * to catch.
+ */
+const EXPLICIT_EXTENSION_PATTERN = /\.(?:js|mjs|cjs|json|ts|tsx)$/u;
 
 const violations: string[] = [];
 for (const filePath of collectSourceFiles(SOURCE_ROOT)) {

@@ -1733,6 +1733,16 @@ ones the Director would put to the owner had the owner been present.
      sessions. Four falsifiers are named, the sharpest being that a hook error blocking a
      compaction would make the design more dangerous than the problem it solves.
 
+     First instrument built and armed (2026-09-16, 12:5xZ): a never-blocking `PreCompact`
+     observer, TypeScript compiled to `agent-tools/dist` and invoked directly from
+     `.claude/settings.json` with no shim (owner's word: hooks are TypeScript like all other
+     code, a build step is fine, prefer no shim). Its first firing settled that no
+     `.precompact.json` exists — the binary string is a reserved filename, not state — and that
+     `CLAUDE_CODE_CHILD_SESSION` and `CLAUDE_CODE_SESSION_ATTENDED` are already in the hook
+     environment. Details in the retrospective's §First probe of the design's unknowns.
+     Amended the same day: the observer runs directly from TypeScript source
+     (`node <source>.ts`), so it needs no build step and no shim at all.
+
 ## Routing log
 
 - 2026-09-13 evening: seat opened; team-start `ca1ba4d8`; lanes A, B, C authored, unfilled.

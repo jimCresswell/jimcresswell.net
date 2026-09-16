@@ -24,6 +24,15 @@ and thin native activation lives in platform config.
 - Codex identity context — a separate native `SessionStart` surface activated
   through the thin `.codex/hooks/practice-session-identity.mjs` adapter; it
   injects the PDR-027 identity block and remains soft/fail-open
+- `preCompact` — a never-blocking OBSERVER, not a guard:
+  `agent-tools/src/bin/claude-pre-compact-observe-hook.ts` records what the
+  harness puts on stdin at a compaction and what it does with the response, to
+  a git-ignored log under `.claude/logs/`. Every path, including every error
+  path, exits 0. It is the first hook run DIRECTLY from TypeScript source —
+  `node <source>.ts` under Node 24's type stripping, with no hand-authored
+  shim and no build step, so it works on a fresh clone before anything is
+  built. That is the pattern new hooks follow, and the standing rewrite path
+  for the surviving `.mjs` shims
 - `preCommit` — documented policy only; quality-gate reminders already
   live in the workflow and review surfaces
 

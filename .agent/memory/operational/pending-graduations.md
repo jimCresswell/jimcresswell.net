@@ -626,3 +626,20 @@ under ratified text, frames a question to the owner, adds process, and consolida
   Prediction: the next multi-seat arc opens at two seats, and any widening cites measured
   seat-hours per merge. Home read: PDR-082 defines the n=2 mode's drop and retain sets but no
   starting default; start-right-team's role section names seat cost without a measured test.
+
+- **A hook target no longer demands JavaScript: hooks and command entry points run from TypeScript source**
+  `[captured: 2026-09-16 | source: the compaction-trigger build, 2026-09-16: Node 24.18 runs a
+  TypeScript entry directly under erasableSyntaxOnly (already set repo-wide), resolving workspace
+  dependencies and relative TypeScript specifiers; measured at about ten milliseconds over the
+  compiled file against a ten-second hook timeout; the first PreCompact observer ships with no
+  shim and no build step | target: source-is-typescript-esm-only (its clause requiring a hook
+  target to be compiled from TypeScript) and .agent/hooks/README.md | trigger: the owner's word
+  2026-09-16 that hooks are TypeScript and a shim is a last resort | size: M | status: due]`
+  Prediction: the next hook added to this estate is a TypeScript file invoked as
+  `node <source>.ts` with no shim and no dist dependency, and the three surviving hand-authored
+  `.mjs` shims are deleted rather than rewritten. Home read: the rule's clause was written when a
+  hook target did demand JavaScript; the runtime changed under it, so the clause states a premise
+  that no longer holds rather than a principle that has been broken. Falsifier: a hook that
+  cannot run from source because the harness gives it something only a built artefact receives,
+  or a measured per-invocation cost that matters at the `PreToolUse` call rate (every Bash, Edit
+  and Write).
