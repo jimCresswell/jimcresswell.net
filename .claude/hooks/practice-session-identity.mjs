@@ -96,10 +96,12 @@ function failOpen(cause) {
   process.stderr.write(`${message}\n`);
   try {
     const logDir = resolve(repoRoot, '.claude', 'logs');
-    mkdirSync(logDir, { recursive: true });
+    // Owner-only, as the hook wrapper keeps it: the directory also holds raw hook payloads.
+    mkdirSync(logDir, { recursive: true, mode: 0o700 });
     appendFileSync(
       resolve(logDir, 'hook-errors.log'),
       `[${new Date().toISOString()}] practice-session-identity fail-open\n  ${message}\n\n`,
+      { mode: 0o600 },
     );
   } catch {
     // Best-effort log; observability must never break the session.

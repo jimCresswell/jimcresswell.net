@@ -43,10 +43,12 @@ const log = (message) => process.stderr.write(`[hook-policy] ${message}\n`);
 const appendHookErrorLog = (message) => {
   try {
     const logDir = resolve(repoRoot, '.claude', 'logs');
-    mkdirSync(logDir, { recursive: true });
+    // Owner-only, as the hook wrapper keeps it: the directory also holds raw hook payloads.
+    mkdirSync(logDir, { recursive: true, mode: 0o700 });
     appendFileSync(
       resolve(logDir, 'hook-errors.log'),
       `[${new Date().toISOString()}] hook-policy fail-open\n  ${message}\n\n`,
+      { mode: 0o600 },
     );
   } catch {
     // best-effort observability only — never block on a log-write failure.
