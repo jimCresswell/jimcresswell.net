@@ -7,6 +7,9 @@
  * fails once it has, so `text` cannot be written before the parent has reaped the child.
  * A parent that takes the child's `exit` as the end of its output reads none of `text`.
  * Bounded: the grandchild gives up without writing after 2000 polls, 5 ms apart.
+ * A second copy of this write-after-reap script lives in
+ * `agent-tools/smoke-tests/plan-gate-drift-alert-hook.smoke.ts`; where a helper shared across
+ * the two workspaces should live is an open decision.
  *
  * @param text Text the grandchild writes to the stdout it inherits.
  * @returns The script, to pass after `-e`.
