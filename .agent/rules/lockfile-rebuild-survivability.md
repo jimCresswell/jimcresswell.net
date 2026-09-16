@@ -1,6 +1,6 @@
 ---
 classification: situational
-description: "On any dependency landing — a security-floor bump, version hold, a new or raised pnpm-workspace.yaml override, batch sweep, or single bump — run the delete-and-rebuild test: back up and delete pnpm-lock.yaml, pnpm install from declarations alone, then assert floors, holds, unchanged audit, and a green frozen install. No size threshold; run it, never reason about it. Not for changes touching no dependency declaration. Failure shapes — a floor held only by the lockfile's recorded version, evaporating silently on rebuild; an override changed without regenerating the lockfile, which CI's frozen install refuses; a manifest moved under a standing override, which pnpm silently ignores."
+description: "On any dependency landing — a security-floor bump, version hold, a new or raised pnpm-workspace.yaml override, batch sweep, or single bump — run the rebuild test: copy the tracked package.json files and pnpm-workspace.yaml into an empty directory, resolve them there with pnpm install --lockfile-only, then assert floors, holds, unchanged audit, and a green frozen install. No size threshold; run it, never reason about it. Not for changes touching no dependency declaration. Failure shapes — a floor held only by the lockfile's recorded version, evaporating silently on rebuild; a rebuild run beside node_modules, which pnpm seeds from node_modules/.pnpm/lock.yaml, so once the change is installed it passes without resolving anything; an override changed without regenerating the lockfile, which CI's frozen install refuses; a manifest moved under a standing override, which pnpm silently ignores."
 trigger: surface:dependency-management
 globs:
   - "**/package.json"
@@ -34,28 +34,50 @@ gets mistaken for "the constraint is expressed".
 Run the rebuild; do not reason about it. Reasoning cannot see an incidental
 pin.
 
+Resolve the declarations cold, in an empty directory, never in a checkout with
+`node_modules`. There, `pnpm install` without a lockfile seeds its resolution
+from `node_modules/.pnpm/lock.yaml`: when the declarations match the last
+install, which is the ordinary state once the change has been installed, it
+prints `Already up to date` and writes the old lockfile back byte for byte, so
+every assertion below passes without anything having been resolved.
+`--lockfile-only` does not avoid this; only a directory with no
+`node_modules/.pnpm/lock.yaml` does. Measured on pnpm 12.4.2 (2026-09-17):
+beside `node_modules` the rebuild returned the committed lockfile in under
+30 ms, with and without `--lockfile-only`, while the same declarations
+resolved cold at the same moment picked up five in-range releases the
+committed lockfile did not have. The fallback is not new: pnpm 10.28.2 and
+11.20.0 carry the same `files[0] ?? clone(currentLockfile)` choice of wanted
+lockfile.
+
+Run the recipe from the repository root, where the pathspecs name every
+workspace manifest, and keep the working directory there:
+
 ```bash
-cp pnpm-lock.yaml /tmp/lock-committed.yaml   # forward-going copy, never a git removal
-rm pnpm-lock.yaml
-pnpm install                                  # rebuild from declarations alone
+mktemp -d   # an empty directory, <scratch> below
+git ls-files -z -- package.json '*/package.json' pnpm-workspace.yaml .npmrc \
+  | xargs -0 tar -cf - | tar -xf - -C <scratch>
+pnpm --dir <scratch> install --lockfile-only   # resolve from declarations alone
 ```
+
+`git ls-files` names only tracked paths, so stage a new workspace's
+`package.json` first; the copied content is the working tree's. The committed
+lockfile is never touched. Copy `<scratch>/pnpm-lock.yaml` into the checkout
+only when its state is the one you mean to commit, and before assertion 4.
 
 Then assert all four, and read each result rather than the exit code alone:
 
 1. **Floors** — every advisory-carrying package resolves at or above its fixed
-   version.
-2. **Holds** — every documented major hold still holds (this repo's holds, each
-   with how it is enforced and its lift condition, are listed in
+   version in `<scratch>/pnpm-lock.yaml`.
+2. **Holds** — every documented major hold still holds there (this repo's
+   holds, each with how it is enforced and its lift condition, are listed in
    [`docs/engineering/build-system.md`](../../docs/engineering/build-system.md)
    §Dependency updates).
-3. **Audit** — `pnpm audit` is unchanged, with any deliberate deferral still
-   the only residue.
-4. **Frozen install** — `CI=true pnpm install --frozen-lockfile` exits 0.
+3. **Audit** — `pnpm --dir <scratch> audit` is unchanged, with any deliberate
+   deferral still the only residue.
+4. **Frozen install** — `CI=true pnpm install --frozen-lockfile` exits 0 in the
+   checkout, against the lockfile you commit.
 
-Restore by copying the backup back if the rebuild is not the state you want to
-commit.
-
-**A byte-identical rebuild is the strongest pass.** A rebuild that merely
+**A byte-identical cold rebuild is the strongest pass.** A rebuild that merely
 satisfies all four assertions is still a pass: newly-published in-range
 versions are legitimate drift, not a violation. A rebuild that drops a floor,
 crosses a hold, or fails the frozen install means the constraint was never
@@ -91,7 +113,10 @@ those manifests move in the same change, with the lockfile regenerated.
 - **MCP-151 (2026-07-25)**: the security slice (#530, six bounded floors) and
   the estate-wide drift sweep (#531) were each tested by full delete-and-rebuild
   and came back **byte-identical** — every floor, both major holds, and the
-  audit state proven declaration-derived rather than lockfile-retained.
+  audit state read as declaration-derived rather than lockfile-retained. That
+  was the delete-and-rebuild recipe, which runs in the checkout, and beside
+  `node_modules` a byte-identical result does not prove the floors were
+  declared (see §Action).
 - **The corollary, same lane**: the sweep moved `@types/node` manifests to
   `^24.13.3` while its override still read `^24.13.2`, and CI's frozen install
   failed with `ERR_PNPM_OUTDATED_LOCKFILE`. That was the source lineage on its
