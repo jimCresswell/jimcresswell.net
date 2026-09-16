@@ -51,7 +51,7 @@ the counting structural and by reading an implementation instead of its document
 - **Claim types**: causal, interpretive, design.
 - **Decision owner**: the owner. The inquiry investigates and proposes; it decides nothing.
 - **Scales**: the pull request (review rounds), the seat session (compaction windows), the team
-  (five seats, then two), the account (usage limits), the estate's doctrine, the owner's
+  (four seats, then two), the account (usage limits), the estate's doctrine, the owner's
   attention.
 - **Frames held apart**: F0 investment (the machinery bought); F1 scope growth; F2 review-loop
   economics; F3 the records process; F4 owned doctrine unapplied; F5 capacity.
@@ -125,7 +125,7 @@ the estate's control.
 - **Cure by default, request per cure** (A). Until the owner's rounds word (2026-09-14 15:09Z,
   applied from 15:15Z), findings were cured push by push and Copilot re-requested after each
   push; #62's twenty-one requests in four hours are the extreme. Within control.
-- **Five seats, then two** (A and B; B about 5 to 8%). With four seats (13:34Z to 17:16Z on
+- **Four seats, then two** (A and B; B about 5 to 8%). With four seats (13:34Z to 17:16Z on
   2026-09-13), 11.4 seat-hours for three merges; with two (17:16Z to 01:05Z), 11.3 seat-hours
   for twelve (pass B's windows). Lanes B and C spent about 4.3 agent-hours and handed most of
   their items back; host contention produced the per-worktree e2e port (#60, #66, #69). Pass B
@@ -163,7 +163,7 @@ the estate's control.
 | Records-only pull requests                | yes, review load    | second; commits and seat-hours  | agreed; different measures, same direction  |
 | Usage limits set elapsed time             | about 17.6 hours    | about 17.25 hours (lane A)      | agreed                                      |
 | Instruments built inside the arc          | small in review     | about 10 to 15%                 | agreed as secondary                         |
-| Five seats, then two                      | yes                 | 3.8 against 0.95 seat-hours per merge | agreed, with pass B's caveat          |
+| Four seats, then two                      | yes                 | 3.8 against 0.95 seat-hours per merge | agreed, with pass B's caveat          |
 | Owned doctrine unapplied (PDR-140 etc.)   | meta root           | not seen (by design)            | pass A only; uncorroborated                 |
 | Overnight idle                            | not seen            | about two hours, both seats     | pass B only; verified in the transcripts    |
 | Token totals                              | first count 3.5x high | counted per message id        | pass B corrected pass A's data              |
@@ -413,7 +413,7 @@ the action moment, or whether per-instrument gates like this one suffice.
 
 ## Owner decisions on the second pass (2026-09-16)
 
-Proposal 7 takes both lanes: the push-time budget gate is built now, and the general question —
+Proposal 7 takes both lanes: the push-time budget gate is to be built next (decided, not yet built), and the general question —
 whether the estate needs a mechanism for placing owned doctrine at action moments, or whether
 per-instrument gates suffice — is filed to the slow lane for review on 2026-12-15. The
 correction ratio is re-measured by one protected pass on the corrected 193-message set, since
@@ -464,6 +464,11 @@ Additive, per the `retrospective` skill: the record keeps what it said and state
    its filter (correction 3). Every one is the same shape — a surface whose records are not
    one-to-one with the thing counted — which is the warrant for proposal 4 having been built
    rather than left as a proposal.
+6. **The team had four seats, then two, not five.** The scale line, the review-load bullet's
+   heading and its crosswalk row read "five seats, then two" while the bullet's own measurement
+   and the arc roster count four: the lead and lanes A, B and C. Corrected in place, as was the
+   second pass's wording that the push-time budget gate "is built now": the owner decided it is
+   built next; no such gate exists yet.
 
 ## Proposal 10, revised (2026-09-16): the owner's combined design
 

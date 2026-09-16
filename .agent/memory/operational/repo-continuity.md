@@ -62,7 +62,9 @@ names a live branch):
 - Deep consolidation status: **due — the transplant closure (a plan milestone) closed on
   2026-09-15**, and the napkin holds the arc's segments at over 1,650 lines. It was not run at
   the end-of-arc wrap: the graduation drain is curator work in batches (the Director's handoff
-  item 94), and the owner's retrospective comes first. Session 2's cards and archive gates are
+  item 94); the owner's retrospective, which came first, is recorded in
+  `.agent/reports/agentic-engineering/why-the-transplant-arc-cost-what-it-cost-2026-09-15.md`,
+  so the drain is next. Session 2's cards and archive gates are
   in `threads/session-2-synthesis.next-session.md`.
 - The generators: lane B's PR #55 (item 6, PR 1) landed the frontmatter sweep; the rules-index
   and trigger generator remains item 6 part 2a (`closure/lane-b-generator` at `SHA: d76bb86`);
@@ -187,18 +189,17 @@ and proof (item 4's rows closed by #85 `SHA: eed1f2e`, #87 `SHA: 6b5676b`, #86
 8 filed in #63 with the cards answered). The compiled record is
 `.agent/reports/practice-transplant/README.md` §The record, compiled. Live now, in order:
 
-1. The owner's retrospective of the arc comes first (invoked at the end-of-arc wrap,
-   2026-09-15). The coordination branch `coordination/2026-09-15-b9dcfb`, the primary
-   checkout's own branch, carries the arc's closing records, committed and uncommitted: a later
-   seat commits them, merges `main`, pushes and lands the branch through its own pull request;
-   it is due at the first session-open on or after 2026-09-16 UTC. The Director's handoff
+1. The owner's retrospective of the arc is recorded (the agentic-engineering report of
+   2026-09-15, with its corrections and the owner's decisions on the second pass). The
+   coordination branch carrying the arc's closing records is folded and lands through #97, the
+   FIRST ACTION above. The Director's handoff
    `.agent/memory/operational/director-handoff.md` §Current handoff state is the resume
    contract. The owner's card on required status checks closed at the retrospective: `main`'s
    ruleset requires `install`, `static-checks`, `build-and-test`, `e2e`, `secret-scan` and
    `CodeQL` since 2026-09-16, and the settlement naming its own required checks is queued for
    an Implementer seat. The arc's metrics bin is built and pushed (`feat/arc-metrics` at
-   `SHA: 6d60e05`, gate green, pull request owed); still queued are the 60%
-   compaction-preparation trigger of the retrospective's proposal 10 and the push-time
+   `SHA: 6d60e05`, gate green, pull request owed); still queued, decided but not built, are the
+   60% compaction-preparation trigger of the retrospective's proposal 10 and the push-time
    settlement-budget gate the owner adopted as proposal 7's fast lane.
 2. Maintenance, prioritised by the owner (2026-09-16): remove the hand-authored JavaScript
    shims from the Claude Code hook surface. Node 24 runs TypeScript sources directly under the
@@ -232,5 +233,5 @@ and proof (item 4's rows closed by #85 `SHA: eed1f2e`, #87 `SHA: 6b5676b`, #86
    entries (owner word 2026-09-14, the Director's handoff item 94); the napkins under
    `unconsolidated/` are archived only after that processing (no privacy review needed).
 5. The `practice-language-separation` node (sketch; not urgent) awaits ratification on cards.
-5. Editorial work follows the closure (the node's own words); nothing on the Practice side
+6. Editorial work follows the closure (the node's own words); nothing on the Practice side
    blocks it.
