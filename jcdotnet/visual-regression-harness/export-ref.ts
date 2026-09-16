@@ -1,6 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { spawn } from "node:child_process";
+import { readCommandOutput } from "./command-output";
 import { ensureDirectory } from "./shared";
 
 export const WORKTREE_REF = "WORKTREE";
@@ -19,7 +20,12 @@ export interface ResolvedSnapshotSource {
  * @param refLike Git ref-like to resolve.
  */
 export async function resolveRef(repositoryRoot: string, refLike: string): Promise<string> {
-  return runAndCapture("git", ["rev-parse", "--verify", `${refLike}^{commit}`], repositoryRoot);
+  const output = await readCommandOutput(
+    "git",
+    ["rev-parse", "--verify", `${refLike}^{commit}`],
+    repositoryRoot
+  );
+  return output.trim();
 }
 
 /**
@@ -179,73 +185,8 @@ async function exportWorkingTreeToDirectory(
 }
 
 async function listRepositoryPaths(repositoryRoot: string, args: string[]): Promise<string[]> {
-  return new Promise<string[]>((resolve, reject) => {
-    let stdout = "";
-    let stderr = "";
-
-    const child = spawn("git", args, {
-      cwd: repositoryRoot,
-      stdio: ["ignore", "pipe", "pipe"],
-    });
-
-    child.stdout.on("data", (chunk: Buffer | string) => {
-      stdout += chunk.toString();
-    });
-    child.stderr.on("data", (chunk: Buffer | string) => {
-      stderr += chunk.toString();
-    });
-
-    child.on("error", reject);
-    child.on("exit", (code, signal) => {
-      if (code !== 0) {
-        reject(
-          new Error(
-            `git ${args.join(" ")} failed in ${path.resolve(repositoryRoot)} with code ${code ?? "null"} and signal ${signal ?? "null"}\n${stderr}`.trim()
-          )
-        );
-        return;
-      }
-
-      resolve(stdout.split("\0").filter(Boolean));
-    });
-  });
-}
-
-async function runAndCapture(
-  command: string,
-  args: string[],
-  workingDirectory: string
-): Promise<string> {
-  return new Promise<string>((resolve, reject) => {
-    let stdout = "";
-    let stderr = "";
-
-    const child = spawn(command, args, {
-      cwd: workingDirectory,
-      stdio: ["ignore", "pipe", "pipe"],
-    });
-
-    child.stdout.on("data", (chunk: Buffer | string) => {
-      stdout += chunk.toString();
-    });
-    child.stderr.on("data", (chunk: Buffer | string) => {
-      stderr += chunk.toString();
-    });
-
-    child.on("error", reject);
-    child.on("exit", (code, signal) => {
-      if (code === 0) {
-        resolve(stdout.trim());
-        return;
-      }
-
-      reject(
-        new Error(
-          `${command} ${args.join(" ")} failed in ${path.resolve(workingDirectory)} with code ${code ?? "null"} and signal ${signal ?? "null"}\n${stderr}`.trim()
-        )
-      );
-    });
-  });
+  const output = await readCommandOutput("git", args, repositoryRoot);
+  return output.split("\0").filter(Boolean);
 }
 
 async function pathExists(filePath: string): Promise<boolean> {
