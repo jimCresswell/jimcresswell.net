@@ -113,15 +113,20 @@ Three constraints are held deliberately. A sweep must not break any of them:
   names its binary `tsc6`. The postinstall bootstrap compiles with
   `@typescript/native`, resolving its bin through the package manifest. The
   root manifest declares the `typescript` alias too, because
-  `dependency-cruiser` runs from the root and would otherwise find a compiler
-  only through pnpm's hoisting. `next build` resolves `typescript` and
+  `dependency-cruiser` resolves its compiler from its location in pnpm's
+  virtual store (`node_modules/.pnpm`) by walking up to the root
+  `node_modules`, whichever workspace loads it.
+  `next build` resolves `typescript` and
   type-checks the site with `tsc6`, while `pnpm type-check` uses TypeScript 7,
   so the site is checked by both compilers and either one blocks.
-  Enforced by those alias ranges in each manifest. The two failure modes of
-  getting this wrong differ: `typescript-eslint` stops loudly
+  Enforced by those alias ranges in each manifest. Getting this wrong fails
+  both gates, by different routes: `typescript-eslint` stops loudly
   (`typescript-eslint does not support TS 7.0`), while `dependency-cruiser`
-  exits 0 having cruised one module — read its module count, not its exit
-  code. **Lift condition: `typescript-eslint` and `dependency-cruiser` support
+  on its own cruises only the JavaScript modules and exits 0, so
+  `pnpm depcruise` runs it through `repo-check depcruise-gate`, which reads the
+  cruise summary and fails when no supported TypeScript compiler was found, on
+  any environment warning, and on a violation of any severity.
+  **Lift condition: `typescript-eslint` and `dependency-cruiser` support
   TypeScript 7's API (announced for 7.1); then drop the `typescript` alias and
   declare TypeScript 7 under its own name.**
 - **`@types/node` stays on 24.x**, matching `engines.node: 24.x`. Enforced by
