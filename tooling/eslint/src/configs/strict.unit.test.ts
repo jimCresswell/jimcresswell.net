@@ -15,17 +15,15 @@ import { strict } from './strict.js';
  * with PDR-038 §2026-05-04 amendment which classifies un-enforced doctrine
  * at maturity as a net liability.
  *
- * Per `principles.md` §Code Quality (no skipped tests) and §Testing —
- * skipping mechanisms (`it.skip`, `describe.skip`, `it.only`,
- * `describe.only`, `it.todo`, `xit`, `xdescribe`) are forbidden outright.
+ * Per `principles.md` §Testing and `testing-strategy.md` §Rules ("No
+ * skipped tests"), skipping mechanisms (`it.skip`, `describe.skip`,
+ * `it.todo`, `xit`, `xdescribe`) are forbidden outright; the focusing
+ * mechanisms (`it.only`, `describe.only`) are refused alongside them.
  * The vitest plugin rules `vitest/no-disabled-tests` and
  * `vitest/no-focused-tests` enforce this at the lint surface.
  *
  * Worked example: a regression on this surface would silently allow a
- * future commit to reintroduce `it.skip(...)` six months after the binary
- * deletion of the existing skipped tests. See plan
- * `.agent/plans/agentic-engineering-enhancements/current/doctrine-enforcement-quick-wins.plan.md`
- * §Issue 1.
+ * future commit to introduce `it.skip(...)`.
  */
 
 const linter = new Linter({ configType: 'flat' });
@@ -153,16 +151,15 @@ describe('@engraph/eslint-plugin-standards strict config: vitest test-disabling 
  * principle that escape hatches must carry a substantive justification,
  * never a bare suppression. The strict config also documents a
  * `minimumDescriptionLength` so trivial annotations ("TODO", "fix") do
- * not satisfy the gate. Per `principles.md` § Compiler Time Types and
- * Runtime Validation (no type-information destruction; substantive
- * rationale required for any preserved widening), and per the WS2
- * acceptance criteria of the doctrine-enforcement-quick-wins plan
- * (§Issue 2), bare `@ts-expect-error` MUST error and a descriptively
- * annotated `@ts-expect-error` with a substantive note MUST pass.
+ * not satisfy the gate. The strict config's contract: bare
+ * `@ts-expect-error` MUST error and a descriptively annotated
+ * `@ts-expect-error` with a substantive note MUST pass. Adding either
+ * directive to bypass a type error stays forbidden
+ * (`.agent/rules/never-disable-checks.md`).
  *
  * The companion custom rule `@engraph/no-eslint-disable` continues
  * to ban bare `@ts-expect-error`, `@ts-ignore`, and `@ts-nocheck`. It
- * is loosened in this same workstream to permit
+ * is loosened to permit
  * `@ts-expect-error -- <substantive description>` since the
  * `ban-ts-comment` rule then enforces the substantive-rationale
  * contract structurally with `minimumDescriptionLength`. Two-rule

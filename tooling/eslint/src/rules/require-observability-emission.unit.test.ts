@@ -99,9 +99,7 @@ ruleTester.run('require-observability-emission', requireObservabilityEmissionRul
         `,
     },
     // 8c. Delegate-call pattern: span-based trace emission via withSpan.
-    //     Represents an app module such as src/app/upstream-metadata-fetch.ts
-    //     `fetchUpstreamMetadata` and src/asset-download/asset-proxy.ts
-    //     `proxyUpstreamAsset`, which emit solely through withSpan.
+    //     Represents an app module that emits solely through withSpan.
     {
       filename: APP_FILE,
       code: `
@@ -191,12 +189,3 @@ ruleTester.run('require-observability-emission', requireObservabilityEmissionRul
     },
   ],
 });
-
-// Wave 2 unlock (scheduled, not yet authored):
-// Schema-usage detection cases for `@engraph/observability-events` will be
-// added when that workspace exists. They will cover patterns like
-// `eventEmit(tool_invoked, { ... })` where `tool_invoked` is a schema import.
-// Per `.agent/directives/testing-strategy.md` §Rules, those cases are NOT stubbed as
-// `it.skip` — they are deferred from this file entirely until Wave 2 authors
-// them alongside the workspace. See
-// `.agent/plans/observability/current/observability-events-workspace.plan.md`.

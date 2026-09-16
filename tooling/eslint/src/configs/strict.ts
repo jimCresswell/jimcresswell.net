@@ -10,14 +10,12 @@ import { recommended, RECOMMENDED_RESTRICTED_TYPES } from './recommended.js';
  * Composes the recommended config with strict-only escalations and the
  * vitest test-shape immune surface (PDR-044 § Memetic Immune System,
  * principles.md § Architectural Excellence Over Expediency,
- * principles.md § Code Quality "no skipped tests"). The
+ * principles.md § Testing "no skipped tests"). The
  * `vitest/no-disabled-tests` and `vitest/no-focused-tests` rules at
- * `'error'` severity prevent reintroduction of `it.skip`,
+ * `'error'` severity prevent the introduction of `it.skip`,
  * `describe.skip`, `it.only`, `describe.only`, and adjacent
- * skipping/focusing mechanisms after the binary deletion of those
- * patterns recorded in the plan
- * `agentic-engineering-enhancements/current/doctrine-enforcement-quick-wins.plan.md`
- * (§Issue 1). The behaviour is exercised by `strict.unit.test.ts`.
+ * skipping/focusing mechanisms. The behaviour is exercised by
+ * `strict.unit.test.ts`.
  *
  * Per PDR-038 §2026-05-04 amendment, doctrine without enforcement is a
  * net liability at maturity; this config is the structural reciprocation
@@ -35,8 +33,8 @@ import { recommended, RECOMMENDED_RESTRICTED_TYPES } from './recommended.js';
  * is exercised by `strict.unit.test.ts`.
  *
  * Anchors: PDR-044 (Memetic Immune System) §Innate immunity;
- * principles.md §Compiler Time Types and Runtime Validation; the
- * doctrine-enforcement-quick-wins plan §Issue 2.
+ * `.agent/rules/never-disable-checks.md` (adding a directive to bypass a
+ * type error stays forbidden).
  */
 const TS_EXPECT_ERROR_MINIMUM_DESCRIPTION_LENGTH = 10;
 

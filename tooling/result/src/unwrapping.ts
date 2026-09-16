@@ -7,9 +7,10 @@
 import type { Result } from './result-type.js';
 
 /**
- * The package's single sanctioned Result-to-exception edge (ADR-088
- * boundary translation). Every unwrapping failure funnels through this one
- * `throw`, so the escape hatch stays consolidated: a string failure becomes
+ * The package's single sanctioned Result-to-exception edge (a boundary
+ * translation, `.agent/rules/use-result-pattern.md`). Every unwrapping
+ * failure funnels through this one `throw`, so the escape hatch stays
+ * consolidated: a string failure becomes
  * a fresh `Error` carrying it, while an `Error`-typed failure is thrown AS
  * ITSELF so its message, stack, and `cause` chain survive the edge intact.
  * The discrimination is `typeof`, not `instanceof`: `instanceof Error` is
