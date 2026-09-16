@@ -53,11 +53,14 @@ config must replicate all restricted type entries from `recommended`.
 
 ### Activating new rules
 
-"Autofixable" idiom rules are not automatically safe: Sonar idiom rules
-(S7765 prefer-includes, S7755 prefer-at — implemented in this repo via the
-matching `unicorn/*` rules, see `recommended.ts`) are **type-affecting, not
-stylistic** — their autofixes can force type-unsound rewrites (one broke an
-ADR-153 `value is X` type-guard). When activating a new rule:
+"Autofixable" idiom rules are not automatically safe: Sonar idiom rules are
+**type-affecting, not stylistic** — their autofixes can force type-unsound
+rewrites. S7765 (prefer-includes) is the worked case: its autofix turns the
+`value is X` type-guard of the constant-type-predicate pattern
+(`.agent/directives/validation-strategy.md`) into a type-unsound
+`.includes(value)`, so `unicorn/prefer-includes` is deliberately not enabled,
+while S7755 (prefer-at) is enabled as `unicorn/prefer-at` (see
+`recommended.ts`). When activating a new rule:
 
 - Land it at `error` with full conformance in ONE landing (PDR-126,
   graduating the 2026-07-07 owner ruling — this supersedes the earlier
@@ -70,7 +73,7 @@ ADR-153 `value is X` type-guard). When activating a new rule:
   Downgrading an existing `error` rule to `warn` remains forbidden
   (`never-disable-checks`).
 
-### Flat-config gotchas (verified in-repo)
+### Flat-config gotchas
 
 - **`typescript-eslint`'s `projectService` is a per-run singleton — use ONE
   options object for the whole config.** Two flat-config blocks with different
@@ -79,7 +82,7 @@ ADR-153 `value is X` type-guard). When activating a new rule:
   seen, so a full `eslint .` run drops the mjs allowance ("not found by the
   project service") while linting the mjs file alone passes. Cure: one files
   block `['**/*.ts', '**/*.tsx', '**/*.mjs']` with a single `projectService`
-  object (verified 2026-07-02, demos/oak-curriculum-hub).
+  object (verified 2026-07-02 in the Practice lineage, before the transplant).
 - **`includeIgnoreFile` ships in ESLint core (`eslint/config`)** — do not add
   `@eslint/compat` for it; `@typescript-eslint/no-deprecated` flags the compat
   export as deprecated and names the core replacement (verified against

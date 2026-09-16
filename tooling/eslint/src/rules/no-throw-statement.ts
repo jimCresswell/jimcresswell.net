@@ -4,7 +4,7 @@ import { createMessage, type RuleWithReappraisingMessages } from '../reappraisin
  * ESLint rule that bans `throw` statements in favour of the Result pattern.
  *
  * @remarks
- * Repository doctrine (ADR-088 / `use-result-pattern`) is that errors are part
+ * Repository doctrine (`.agent/rules/use-result-pattern.md`) is that errors are part
  * of the type signature: a function that can fail returns `Result<T, E>`, and
  * the compiler forces every caller to handle both arms. A `throw` re-introduces
  * the invisible control-flow edge the Result pattern exists to remove. Genuine
@@ -24,14 +24,14 @@ const noThrowStatementRule: RuleWithReappraisingMessages<'throwBanned'> = {
     type: 'problem',
     docs: {
       description:
-        'Ban throw statements so errors flow through the Result pattern (ADR-088) and stay in the type signature.',
+        'Ban throw statements so errors flow through the Result pattern (.agent/rules/use-result-pattern.md) and stay in the type signature.',
     },
     schema: [],
     messages: {
       throwBanned: createMessage({
         prohibition: 'Throwing is banned: a thrown error is invisible to the type system.',
         reappraisal:
-          'Return a Result<T, E> (err(...)) from a Result-typed function (ADR-088 / use-result-pattern); where a library that cannot return Result must be wrapped, translate the error to a Result at that single boundary.',
+          'Return a Result<T, E> (err(...)) from a Result-typed function; where a library that cannot return Result must be wrapped, translate the error to a Result at that single boundary. See .agent/rules/use-result-pattern.md.',
       }),
     },
   },

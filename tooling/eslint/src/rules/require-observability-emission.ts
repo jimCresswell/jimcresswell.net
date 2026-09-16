@@ -6,14 +6,11 @@ import { createMessage, type RuleWithReappraisingMessages } from '../reappraisin
 
 /**
  * ESLint rule requiring a structured-observability emission in newly exported
- * async functions under `apps/**` and `packages/sdks/**`. Operationalises
- * [ADR-162 §Enforcement Mechanism #1](../../../../../docs/architecture/architectural-decisions/162-observability-first.md).
+ * async functions under `apps/**` and `packages/sdks/**`.
  *
  * @remarks
- * Scope is intentionally narrow in Wave 1: only `logger.*` / `Sentry.*` /
- * delegate-pattern calls count as emissions. Schema-usage detection for
- * `@engraph/observability-events` is deferred to Wave 2, when that
- * workspace lands. Legitimate non-emission cases use the sentinel comment
+ * Only `logger.*` / `Sentry.*` / delegate-pattern calls count as emissions.
+ * Legitimate non-emission cases use the sentinel comment
  * `// observability-emission-exempt: <reason>` directly above the declaration.
  *
  * The rule tracks *export declaration anchors* (ExportNamedDeclaration /
@@ -59,12 +56,9 @@ const CAPTURE_METHODS = new Set<string>([
   'captureCheckIn',
   'captureFeedback',
   'addBreadcrumb',
-  // Span/tracer verbs — structural trace emission is an engineering-axis
-  // observability loop per ADR-162 §Five Axes. `withSpan` is the dominant
-  // emission shape in jcdotnet (see e.g.
-  // upstream-metadata-fetch.ts `fetchUpstreamMetadata`, asset-proxy.ts
-  // `proxyUpstreamAsset`). Without these, the rule false-positives on
-  // legitimate trace-only emitters.
+  // Span/tracer verbs — structural trace emission counts as an observability
+  // emission. Without these, the rule false-positives on legitimate
+  // trace-only emitters.
   'withSpan',
   'startSpan',
   'startActiveSpan',
@@ -234,14 +228,12 @@ const requireObservabilityEmissionRule: RuleWithReappraisingMessages<'requireEmi
   meta: {
     type: 'suggestion',
     docs: {
-      description:
-        'Require a structured-observability emission in newly exported async functions per ADR-162.',
+      description: 'Require a structured-observability emission in newly exported async functions.',
     },
     schema: [],
     messages: {
       requireEmission: createMessage({
-        prohibition:
-          'Exported async function "{{name}}" has no observability emission. Per ADR-162, every runtime capability emits structured events.',
+        prohibition: 'Exported async function "{{name}}" has no observability emission.',
         reappraisal:
           'Add a logger.*, Sentry.*, or delegate-pattern emission, or tag with `// observability-emission-exempt: <reason>`.',
       }),
