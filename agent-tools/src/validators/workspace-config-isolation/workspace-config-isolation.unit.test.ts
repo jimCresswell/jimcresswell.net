@@ -27,10 +27,10 @@ describe('isWorkspaceConfigFile', () => {
     expect(isWorkspaceConfigFile('apps/oak-search-cli/vitest.experiment.config.ts')).toBe(true);
   });
 
-  it('matches tsup, eslint, and stryker configs across extensions', () => {
+  it('matches tsup and eslint configs across extensions', () => {
     expect(isWorkspaceConfigFile('packages/core/result/tsup.config.ts')).toBe(true);
     expect(isWorkspaceConfigFile('packages/core/env/eslint.config.ts')).toBe(true);
-    expect(isWorkspaceConfigFile('packages/core/type-helpers/stryker.config.mjs')).toBe(true);
+    expect(isWorkspaceConfigFile('tooling/type-helpers/eslint.config.mjs')).toBe(true);
   });
 
   it('rejects non-config sources, declarations, and other tools', () => {
@@ -38,6 +38,7 @@ describe('isWorkspaceConfigFile', () => {
     expect(isWorkspaceConfigFile('packages/core/result/vitest.config.d.ts')).toBe(false);
     expect(isWorkspaceConfigFile('commitlint.config.mjs')).toBe(false);
     expect(isWorkspaceConfigFile('knip.config.ts')).toBe(false);
+    expect(isWorkspaceConfigFile('jcdotnet/postcss.config.mjs')).toBe(false);
   });
 });
 
@@ -148,7 +149,7 @@ describe('findConfigEscapes — path arithmetic', () => {
 });
 
 describe('findConfigEscapes — comments are not code', () => {
-  it('ignores import() mentioned in comments (the type-helpers JSDoc note)', () => {
+  it('ignores import() mentioned in line and block comments', () => {
     const { escapes, unanalysable } = findConfigEscapes({
       file: 'packages/core/type-helpers/eslint.config.ts',
       owner: 'packages/core/type-helpers',
