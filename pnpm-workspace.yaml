@@ -99,12 +99,17 @@ overrides:
   esbuild: '>=0.28.2 <0.29'
   # Peer alignment, added 2026-09-16: eslint-plugin-tsdoc 0.5.3, its latest
   # release, pins @typescript-eslint/utils ~8.56.0, whose typescript peer stops
-  # below 6.0 while the estate type-checks with the 6.0 API — an unmet peer on
-  # every install. The rest of the estate resolves the 8.70 line (tooling/eslint
-  # declares ^8.70.0; its peer admits typescript <6.1.0). Parent-scoped to that
-  # one consumer and bounded below 9, aligned with the manifest range. Remove
-  # when eslint-plugin-tsdoc declares a range that admits TypeScript 6.
-  'eslint-plugin-tsdoc>@typescript-eslint/utils': '>=8.70.0 <9'
+  # below 6.0 while the estate's `typescript` alias resolves the 6.0 API — an
+  # unmet peer on every install. The rest of the estate resolves the 8.70 line
+  # (tooling/eslint declares ^8.70.0; its peer admits typescript <6.1.0). Safe to
+  # force: the plugin's only utils call is ESLintUtils.getParserServices, a
+  # fallback stable across 8.x, and the tsdoc/syntax rule still reports an
+  # undefined tag on the forced line. Qualified to the 0.5 line so a later
+  # tsdoc generation escapes the override (and its peer warning returns loudly
+  # if it still pins an old utils); bounded below 9, aligned with the manifest.
+  # Remove when eslint-plugin-tsdoc's @typescript-eslint/utils range reaches
+  # 8.58.0 or later (8.58.0 is the first line whose peer admits TypeScript 6.0).
+  'eslint-plugin-tsdoc@0.5>@typescript-eslint/utils': '>=8.70.0 <9'
   # Security floor: host confusion via a literal backslash in fast-uri's URI
   # parser (high; patched in 3.1.4); a second host-confusion advisory via a
   # backslash authority introducer patched in 3.1.5 (raised 2026-08-11,
@@ -165,7 +170,14 @@ overrides:
   # tooling. Bounded below 6 for the same reason as fast-uri: 6.x exists and an
   # open floor would take it. Raise the bound when markdown-it moves.
   linkify-it: '>=5.0.2 <6'
-  markdown-it: '>=14.1.2'
+  # Floor carried from the monorepo configuration; bounded below 15 on
+  # 2026-09-16. Its one consumer, markdownlint-cli2 0.23.2, pins markdown-it
+  # 14.3.0 exactly, and the open floor had rewritten that pin to 15.0.2 — a
+  # major the linter was not built against, whose linkify-it ^6 the linkify-it
+  # bound above then forced back to 5.x. The 14 line declares linkify-it ^5.
+  # Raise the bound when markdownlint-cli2 moves to markdown-it 15, together
+  # with the linkify-it bound.
+  markdown-it: '>=14.1.2 <15'
   # Security floor, added 2026-08-11 (MCP-549): infinite loop on a zero-size
   # generator (high; patched in 3.3.17 on the 3.x line). Reached via postcss
   # chains, direct and transitive — a direct postcss bump left transitive
@@ -191,10 +203,16 @@ overrides:
   # Security floor, added 2026-09-16: GHSA-7w5x-hrqm-74c2 (high) in smol-toml
   # <=1.7.0, patched in 1.7.1. markdownlint-cli2 0.23.2, its latest release,
   # pins smol-toml 1.7.0 exactly, so no version move escapes; agent-tools
-  # declares ^1.7.1 and knip already resolves 1.8.0. Dev tooling only (the
-  # markdown lint gate). Bounded below 2 pre-emptively — an open floor admits
-  # the next major the day it ships. Remove when markdownlint-cli2 declares
-  # smol-toml >=1.7.1.
+  # declares ^1.7.1 and knip ^1.8.0. Tree-wide rather than parent-scoped, so a
+  # new consumer cannot bring back a vulnerable line. Safe to force from the
+  # exact pin: 1.8.0 is a minor release, and markdownlint-cli2 calls smol-toml's
+  # parser only for a --config path ending in .toml, which this repository does
+  # not use (its configs are JSON), so the vulnerable path is unreachable here.
+  # This override REWRITES agent-tools' recorded range, and while it stands a
+  # raised manifest range is silently ignored: move floor and bound together
+  # with that manifest. Bounded below 2 pre-emptively; raise the bound when a
+  # consumer needs smol-toml 2. Remove when markdownlint-cli2 declares smol-toml
+  # >=1.7.1.
   smol-toml: '>=1.7.1 <2'
   sucrase: '>=3.35.1'
 minimumReleaseAgeExclude:
