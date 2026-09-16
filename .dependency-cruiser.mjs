@@ -26,7 +26,6 @@ export default {
           // Test helpers may only be imported by tests
           'test-helpers/',
           'test-fakes/',
-          'fakes\\.',
           // Type declaration files
           '\\.d\\.ts$',
           '\\.d\\.mts$',
@@ -98,7 +97,7 @@ export default {
         'workspace. npm/core targets are exempt here — they are the sanctioned declared-dependency ' +
         "path, and undeclared ones are the next rule's finding.",
       from: {
-        path: '^(tooling/[^/]+|agent-tools|jcdotnet)/(?:vitest|tsup|eslint|stryker)[.\\w-]*\\.config\\.(?:ts|mts|cts|js|mjs|cjs)$',
+        path: '^(tooling/[^/]+|agent-tools|jcdotnet)/(?:vitest|tsup|eslint)[.\\w-]*\\.config\\.(?:ts|mts|cts|js|mjs|cjs)$',
       },
       to: {
         pathNot: ['^$1/'],
@@ -124,7 +123,7 @@ export default {
         'undeclared specifier means a copied config without its workspace:* line, which dies on ' +
         'clean installs and inside per-workspace tool sandboxes.',
       from: {
-        path: '^(?:tooling/[^/]+|agent-tools|jcdotnet)/(?:vitest|tsup|eslint|stryker)[.\\w-]*\\.config\\.(?:ts|mts|cts|js|mjs|cjs)$',
+        path: '^(?:tooling/[^/]+|agent-tools|jcdotnet)/(?:vitest|tsup|eslint)[.\\w-]*\\.config\\.(?:ts|mts|cts|js|mjs|cjs)$',
       },
       to: {
         dependencyTypes: ['unknown', 'npm-no-pkg', 'npm-unknown'],
