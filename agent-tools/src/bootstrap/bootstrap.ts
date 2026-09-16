@@ -25,33 +25,42 @@ import {
  *
  * Builds `@engraph/agent-tools` `dist` so the repo's PreToolUse guards
  * (`.claude/settings.json`) and agent CLIs are available immediately after
- * `pnpm install`. It reproduces agent-tools' own build script
- * (`tsc -p tsconfig.build.json` + the executable-bit chmod) by invoking `tsc`
- * directly, so the build orchestrator (`turbo`) and the package manager stay
- * out of the install lifecycle — enforced by the `validate-lifecycle-scripts`
- * validator.
+ * `pnpm install`. It runs the two steps of agent-tools' build script that
+ * produce `dist`, `tsc -p tsconfig.build.json` and the executable-bit chmod,
+ * invoking `tsc` directly so the build orchestrator (`turbo`) and the package
+ * manager stay out of the install lifecycle (enforced by the
+ * `validate-lifecycle-scripts` validator). The build script's third step,
+ * `pnpm build:workflows`, verifies the corpus-analysis workflow bundles in
+ * memory and writes nothing, so the bootstrap does not run it.
  *
  * agent-tools imports workspace packages (`@engraph/result`, `@engraph/safe-path`,
- * `@engraph/type-helpers`), and every workspace's `eslint.config.ts` imports
+ * `@engraph/type-helpers`), and every workspace's `eslint.config.ts` except
+ * the site's, the plugin's own and `@engraph/workspace-config`'s imports
  * `@engraph/eslint-plugin-standards`; all resolve to built `dist` only — there
  * is no source-pointing export condition. Which packages those are is derived
- * from the workspace manifests at run time (`readInstallTimeClosure`). Their `tsup.config.ts` files in turn import
+ * from the workspace manifests at run time (`readInstallTimeClosure`). The
+ * `tsup.config.ts` files of those packages import
  * `@engraph/workspace-config/tsup`, also dist-resolved, so the config-base
  * package is part of the same install-time closure. On a fresh checkout
  * (Vercel, CI, a new worktree) `postinstall` runs before any orchestrated
- * build, so this bootstrap first builds that closure with each package's own
- * toolchain (`tsup` for JS, `tsc --emitDeclarationOnly` for types), skipping
- * any dep whose built `dist` is already current for its `src`.
+ * build, so this bootstrap first builds that closure — each
+ * package's own `tsup` for JS, then agent-tools' compiler with
+ * `--emitDeclarationOnly` over the package's `tsconfig.build.json` for types —
+ * skipping any dep whose built `dist` is already current for its `src` and
+ * build config.
  *
  * The compiler is TypeScript 7, a direct dependency of agent-tools under the
  * npm alias `@typescript/native`. The plain `typescript` name stays on the 6.0
  * compatibility package, because TypeScript 7 does not ship the 6.0 compiler
  * API that typescript-eslint and dependency-cruiser import; the decision and
  * its lift condition live in `docs/engineering/build-system.md` §Dependency
- * updates. Being a direct dependency, the compiler is present in dev and
- * `--prod` installs alike; a missing
- * compiler therefore signals a corrupt install and fails loudly rather than
- * silently leaving the fail-open guards without `dist`. Set
+ * updates. The bootstrap needs a development install: `tsx`, which runs it, is
+ * a root devDependency, and `tsup` and the type packages the builds read are
+ * workspace devDependencies, so a production-only install
+ * (`pnpm install --prod`) fails at this `postinstall` before the bootstrap
+ * starts. In a development install a compiler or `tsup` that cannot be
+ * resolved signals a corrupt install and fails loudly rather than silently
+ * leaving the fail-open guards without `dist`. Set
  * `PRACTICE_SKIP_AGENT_TOOLS_BOOTSTRAP=1` to opt out deliberately.
  *
  * @packageDocumentation

@@ -34,6 +34,7 @@ import {
   runPrettierStaged,
   runPrettierTracked,
 } from './repo-check-gates.js';
+import { runDepcruiseGate } from './repo-check-depcruise.js';
 import { runKnipGate } from './repo-check-knip.js';
 import { runProfile } from './repo-check-runner.js';
 
@@ -44,6 +45,8 @@ function usage(): string {
     'Usage: pnpm agent-tools:repo-check <command>',
     '',
     'Commands:',
+    '  depcruise-gate         Run dependency-cruiser; fail on any violation (error, warn, info or ignore),',
+    '                         an environment issue, or a cruise without the TypeScript compiler.',
     '  knip-gate              Run knip; fail loudly when a crash is swallowed behind exit 0 (F-147).',
     '  markdownlint-staged    Run markdownlint on staged Markdown files only.',
     '  markdownlint-tracked [--fix]',
@@ -67,6 +70,7 @@ const NO_FLAGS: ReadonlySet<string> = new Set();
 
 /** The command table: a Map, so a prototype key can never resolve to a non-command. */
 const COMMANDS: ReadonlyMap<string, RepoCheckCommand> = new Map<string, RepoCheckCommand>([
+  ['depcruise-gate', { flags: NO_FLAGS, run: () => runDepcruiseGate() }],
   ['knip-gate', { flags: NO_FLAGS, run: () => runKnipGate() }],
   ['markdownlint-staged', { flags: NO_FLAGS, run: () => runMarkdownlintStaged() }],
   [
