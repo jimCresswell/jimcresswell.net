@@ -1,19 +1,22 @@
-import { spawnSync } from 'node:child_process';
-import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { dirname, join, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { dirname, join } from 'node:path';
 
 import { z } from 'zod';
+
+import {
+  readHookCommand as readRegisteredHookCommand,
+  runHookCommand,
+} from './claude-hook-command-fixture';
 
 /**
  * Production-shaped smoke for the Claude Code `SessionStart` gate-expiry drift alert.
  *
  * The hook runs the built drift checker and turns its drift report (report on stdout,
  * exit 1) into session context. This smoke reads the hook's command from
- * `.claude/settings.json`, runs it through the shell from the repository root with
- * `CLAUDE_PROJECT_DIR` pointing at a throwaway project whose checker is a stub, and
- * asserts exit 0 and the right answer for each checker outcome. On drift the answer is a
+ * `.claude/settings.json`, runs it through the shared hook-command fixture (the shell,
+ * from the repository root, with `CLAUDE_PROJECT_DIR` pointing at a throwaway project
+ * whose checker is a stub), and asserts exit 0 and the right answer for each checker outcome. On drift the answer is a
  * harness-shaped alert carrying the stub's whole report: one stub writes its report and
  * exits 1 at once; another exits 1 first and its report reaches stdout only after the
  * stub has been reaped, so a hook that decides on the checker's `exit` instead of the
@@ -22,8 +25,6 @@ import { z } from 'zod';
  * stdout, so neither the exit code nor non-empty output alone raises an alert.
  */
 
-const smokeDir = fileURLToPath(new URL('.', import.meta.url));
-const repoRoot = resolve(smokeDir, '..', '..');
 const HOOK_NAME = 'plan-gate-drift-alert';
 const CHECKER_PATH = join(
   'agent-tools',
@@ -38,12 +39,6 @@ const REPORT =
   'Plan gate-expiry drift: 1 expired owner gate\n' +
   '  plan-a — gate expired 2026-09-01 → extend or resolve it\n';
 const ALERT_PREFIX = '[Plan gate-expiry drift alert]\n';
-
-const settingsSchema = z.object({
-  hooks: z.object({
-    SessionStart: z.array(z.object({ hooks: z.array(z.object({ command: z.string() })) })),
-  }),
-});
 
 const responseSchema = z.strictObject({
   hookSpecificOutput: z.strictObject({
@@ -141,14 +136,7 @@ function fail(message: string): never {
 }
 
 function readHookCommand(): string {
-  const settings = settingsSchema.safeParse(
-    JSON.parse(readFileSync(join(repoRoot, '.claude', 'settings.json'), 'utf8')),
-  );
-  const command = settings.success
-    ? settings.data.hooks.SessionStart.flatMap((entry) => entry.hooks)
-        .map((hook) => hook.command)
-        .find((candidate) => candidate.includes(HOOK_NAME))
-    : undefined;
+  const command = readRegisteredHookCommand('SessionStart', HOOK_NAME);
   if (command === undefined) {
     fail(`no SessionStart ${HOOK_NAME} hook command found in .claude/settings.json`);
   }
@@ -156,9 +144,9 @@ function readHookCommand(): string {
 }
 
 /**
- * Run the hook command against a throwaway project whose built checker is `checker`.
- * The command runs from this repository's root, so the real hook script runs, while
- * `CLAUDE_PROJECT_DIR` points the hook at the throwaway project's checker.
+ * Run the hook command against a throwaway project whose built checker is the case's
+ * stub: the real hook script runs from this repository, and `CLAUDE_PROJECT_DIR` points
+ * it at the throwaway project's checker.
  */
 function runCase(command: string, smokeCase: SmokeCase): void {
   const projectDir = mkdtempSync(join(tmpdir(), 'plan-gate-drift-alert-smoke-'));
@@ -166,18 +154,10 @@ function runCase(command: string, smokeCase: SmokeCase): void {
     const checkerPath = join(projectDir, CHECKER_PATH);
     mkdirSync(dirname(checkerPath), { recursive: true });
     writeFileSync(checkerPath, smokeCase.checker, 'utf8');
-    const result = spawnSync('sh', ['-c', command], {
-      cwd: repoRoot,
-      env: { ...process.env, CLAUDE_PROJECT_DIR: projectDir },
-      encoding: 'utf8',
-      timeout: HOOK_TIMEOUT_MS,
-    });
-    if (result.status !== 0) {
-      throw new Error(
-        `hook exited ${result.status ?? `on ${result.signal ?? 'an error'}`}\n${result.stderr}`,
-      );
-    }
-    checkResponse(result.stdout, smokeCase.alerts);
+    checkResponse(
+      runHookCommand(command, { projectDir, timeoutMs: HOOK_TIMEOUT_MS }),
+      smokeCase.alerts,
+    );
   } finally {
     rmSync(projectDir, { recursive: true, force: true });
   }
