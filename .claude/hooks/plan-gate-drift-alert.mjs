@@ -42,25 +42,31 @@ if (!existsSync(checkerPath)) {
 
 // execFile settles on the checker's `close`: after it has exited AND its stdout
 // has ended, so the whole report is read. Its `exit` event can come first, with
-// the report still unread. The output is decoded once, as UTF-8, and a spawn
-// failure or an output over the ceiling arrives as `error`, never as a throw.
-execFile(
-  process.execPath,
-  [checkerPath],
-  { encoding: 'utf8', maxBuffer: MAX_OUTPUT_BYTES },
-  (error, stdout) => {
-    const alert = stdout.trim();
-    if (error?.code === 1 && alert.length > 0) {
-      process.stdout.write(
-        `${JSON.stringify({
-          hookSpecificOutput: {
-            hookEventName: 'SessionStart',
-            additionalContext: `[Plan gate-expiry drift alert]\n${alert}`,
-          },
-        })}\n`,
-      );
-      process.exit(0);
-    }
-    emitEmpty();
-  },
-);
+// the report still unread. The output is decoded once, as UTF-8. A failure Node
+// reports asynchronously (ENOENT, EMFILE, an output over the ceiling) arrives as
+// `error`; one spawn throws synchronously (ENOMEM from fork, say) is caught
+// below. Either way the answer is `{}`.
+try {
+  execFile(
+    process.execPath,
+    [checkerPath],
+    { encoding: 'utf8', maxBuffer: MAX_OUTPUT_BYTES },
+    (error, stdout) => {
+      const alert = stdout.trim();
+      if (error?.code === 1 && alert.length > 0) {
+        process.stdout.write(
+          `${JSON.stringify({
+            hookSpecificOutput: {
+              hookEventName: 'SessionStart',
+              additionalContext: `[Plan gate-expiry drift alert]\n${alert}`,
+            },
+          })}\n`,
+        );
+        process.exit(0);
+      }
+      emitEmpty();
+    },
+  );
+} catch {
+  emitEmpty();
+}
