@@ -125,7 +125,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/_lib/log-hook-errors.sh ${CLAUDE_PROJECT_DIR}/.claude/hooks/secrets/pretool-secrets.sh",
+            "command": "\"${CLAUDE_PROJECT_DIR}/.claude/hooks/_lib/log-hook-errors.sh\" \"${CLAUDE_PROJECT_DIR}/.claude/hooks/secrets/pretool-secrets.sh\"",
             "timeout": 60
           }
         ]
@@ -137,7 +137,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/_lib/log-hook-errors.sh ${CLAUDE_PROJECT_DIR}/.claude/hooks/secrets/prompt-secrets.sh",
+            "command": "\"${CLAUDE_PROJECT_DIR}/.claude/hooks/_lib/log-hook-errors.sh\" \"${CLAUDE_PROJECT_DIR}/.claude/hooks/secrets/prompt-secrets.sh\"",
             "timeout": 60
           }
         ]
