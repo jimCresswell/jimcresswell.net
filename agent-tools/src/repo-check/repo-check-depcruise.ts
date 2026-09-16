@@ -40,42 +40,76 @@ const CONFIG_FILE = './.dependency-cruiser.mjs';
 /** The workspace directories cruised, relative to the repository root. */
 const CRUISE_ROOTS = ['agent-tools', 'tooling', 'jcdotnet'];
 
-/** Write each failure line on stderr under the gate's name. */
-function reportFailures(failures: readonly string[]): void {
+/**
+ * The dependency-cruiser calls and the output streams the gate composes,
+ * injected so the composition is testable without reading the configuration
+ * or cruising the repository.
+ */
+export interface DepcruiseGateRuntime {
+  /** Read the configuration file as cruise options. */
+  readonly extractDepcruiseOptions: typeof extractDepcruiseOptions;
+  /** Parse the tsconfig the options name. */
+  readonly extractTSConfig: typeof extractTSConfig;
+  /** Cruise the given roots. */
+  readonly cruise: typeof cruise;
+  /** Format a cruise result with a reporter. */
+  readonly format: typeof format;
+  /** Write the report text as the reporter produced it. */
+  readonly writeReport: (text: string) => void;
+  /** Write one failure line. */
+  readonly writeFailure: (line: string) => void;
+}
+
+/** The real dependency-cruiser API, the report on stdout and the failure lines on stderr. */
+const defaultDepcruiseGateRuntime: DepcruiseGateRuntime = {
+  extractDepcruiseOptions,
+  extractTSConfig,
+  cruise,
+  format,
+  writeReport: (text) => {
+    process.stdout.write(text);
+  },
+  writeFailure: writeErrorLine,
+};
+
+/** Write each failure line under the gate's name (on stderr, by default). */
+function reportFailures(runtime: DepcruiseGateRuntime, failures: readonly string[]): void {
   for (const failure of failures) {
-    writeErrorLine(`repo-check depcruise-gate: ${failure}`);
+    runtime.writeFailure(`repo-check depcruise-gate: ${failure}`);
   }
 }
 
 /** Cruise the workspaces, print the `err` report, and fail on any violation, warning or partial cruise. */
-export async function runDepcruiseGate(): Promise<number> {
-  const options = await extractDepcruiseOptions(CONFIG_FILE);
+export async function runDepcruiseGate(
+  runtime: DepcruiseGateRuntime = defaultDepcruiseGateRuntime,
+): Promise<number> {
+  const options = await runtime.extractDepcruiseOptions(CONFIG_FILE);
   const optionFailures = unloadedCruiseOptionFailures(options);
   if (optionFailures.length > 0) {
-    reportFailures(optionFailures);
+    reportFailures(runtime, optionFailures);
     return 1;
   }
 
   const tsConfigFileName = options.tsConfig?.fileName;
   const transpileOptions =
-    tsConfigFileName === undefined ? {} : { tsConfig: extractTSConfig(tsConfigFileName) };
-  const cruised = await cruise(CRUISE_ROOTS, options, {}, transpileOptions);
+    tsConfigFileName === undefined ? {} : { tsConfig: runtime.extractTSConfig(tsConfigFileName) };
+  const cruised = await runtime.cruise(CRUISE_ROOTS, options, {}, transpileOptions);
   if (typeof cruised.output === 'string') {
     // No outputType was requested, so the API returns the result object; a
     // string here means the options named a reporter, and there is no summary
     // to read.
-    reportFailures(['the cruise returned reporter text, not a result to read']);
+    reportFailures(runtime, ['the cruise returned reporter text, not a result to read']);
     return 1;
   }
 
-  const report = await format(cruised.output, { outputType: 'err' });
+  const report = await runtime.format(cruised.output, { outputType: 'err' });
   if (typeof report.output !== 'string') {
-    reportFailures(['the err reporter returned no report text']);
+    reportFailures(runtime, ['the err reporter returned no report text']);
     return 1;
   }
-  process.stdout.write(report.output);
+  runtime.writeReport(report.output);
 
   const failures = depcruiseSummaryFailures(cruised.output.summary);
-  reportFailures(failures);
+  reportFailures(runtime, failures);
   return failures.length === 0 ? 0 : 1;
 }
