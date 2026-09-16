@@ -1,6 +1,6 @@
 ---
 classification: situational
-description: "On any dependency landing — a security-floor bump, version hold, a new or raised pnpm-workspace.yaml override, batch sweep, or single bump — run the delete-and-rebuild test: back up and delete pnpm-lock.yaml, pnpm install from declarations alone, then assert floors, holds, unchanged audit, and a green frozen install. No size threshold; run it, never reason about it. Not for changes touching no dependency declaration. Failure shapes — a floor held only by the lockfile's recorded version, evaporating silently on rebuild; an override lagging its manifests until CI's ERR_PNPM_OUTDATED_LOCKFILE."
+description: "On any dependency landing — a security-floor bump, version hold, a new or raised pnpm-workspace.yaml override, batch sweep, or single bump — run the delete-and-rebuild test: back up and delete pnpm-lock.yaml, pnpm install from declarations alone, then assert floors, holds, unchanged audit, and a green frozen install. No size threshold; run it, never reason about it. Not for changes touching no dependency declaration. Failure shapes — a floor held only by the lockfile's recorded version, evaporating silently on rebuild; an override lagging its manifests until CI's ERR_PNPM_OUTDATED_LOCKFILE, or a manifest raised past an override that pnpm silently ignores."
 trigger: surface:dependency-management
 globs:
   - "**/package.json"
@@ -72,6 +72,16 @@ specifier while the manifests carry their own.
 install, so CI's `pnpm install --frozen-lockfile` is the first surface that
 sees it, failing with `ERR_PNPM_OUTDATED_LOCKFILE` and taking `install`,
 `secret-scan` and `run-quality-gates` down with it.
+
+**The opposite direction is silent everywhere.** While an override stands, it
+replaces the specifier of every dependency it binds, so a manifest raised past
+the override changes nothing: the lockfile stays as it was and
+`CI=true pnpm install --frozen-lockfile` still exits 0 (pnpm 12.4.2, verified
+2026-09-16 by raising agent-tools' `smol-toml` to `^1.9.0`, a range no
+published version satisfies, under the `>=1.7.1 <2` floor). A manifest raise
+meant to pick up a new patch therefore leaves the old version installed with
+every gate green, so an override's comment names the manifests it rewrites, and
+the override moves in the same change as any of them.
 
 Keep override and manifest specifiers aligned whenever a sweep moves either.
 
