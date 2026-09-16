@@ -42,7 +42,7 @@ The calling agent executes any code changes.
 - The concern is TypeScript type safety — use `type-expert`
 - The concern is test quality or TDD compliance — use `test-expert`
 - The concern is whether a surface reads well or the eye travels correctly, rather than which
-  token it uses — use the `ui-design` skill's craft judgement with the calling agent
+  token it uses — use the `ui-visual-design` skill's craft judgement with the calling agent
 
 ---
 

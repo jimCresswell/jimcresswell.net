@@ -118,7 +118,7 @@ For each issue:
 - [ ] Names clearly express intent (variables, functions, types)
 - [ ] No duplicated logic that should be extracted
 - [ ] Comments explain "why", not "what"
-- [ ] Error handling uses Result pattern (ADR-088), not throwing
+- [ ] Error handling uses Result pattern (`.agent/rules/use-result-pattern.md`), not throwing
 - [ ] Fails FAST with helpful error messages, never silently
 - [ ] TSDoc/JSDoc annotations on all public APIs
 

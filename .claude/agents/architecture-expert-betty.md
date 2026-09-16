@@ -1,6 +1,6 @@
 ---
 name: architecture-expert-betty
-description: 'Architecture reviewer Betty ensuring navigation and tilt architecture.'
+description: 'Architecture reviewer Betty ensuring navigation and layout architecture.'
 tools: Read, Grep, Glob, Bash
 disallowedTools: Write, Edit
 permissionMode: plan

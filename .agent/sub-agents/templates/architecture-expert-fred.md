@@ -57,7 +57,7 @@ Could it be simpler without compromising quality? Build clarity and resilience r
 ### Required Fixes
 - ...
 ### Specialist Triage
-- Recommend `security-reviewer` or `config-reviewer` when headers or deployment config shift.
+- Recommend `security-expert` or `config-expert` when headers or deployment config shift.
 ### Positive Observations
 - ...
 ```
