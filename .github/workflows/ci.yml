@@ -64,6 +64,13 @@ jobs:
         run: pnpm format-check:root
       - name: Check markdown
         run: pnpm markdownlint-check:root
+      # The pinned shellcheck goes ahead of any the image ships on PATH; the
+      # gate prints the version it ran.
+      - name: Install pinned shellcheck
+        run: |
+          bin_dir="${RUNNER_TEMP}/shellcheck-bin"
+          ./.agent/setup/install-shellcheck.sh "${bin_dir}"
+          echo "${bin_dir}" >> "${GITHUB_PATH}"
       - name: Lint shell scripts
         run: pnpm lint:shell
       - name: Lint runtime-only scripts

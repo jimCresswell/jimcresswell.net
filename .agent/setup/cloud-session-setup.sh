@@ -35,3 +35,10 @@ set -euo pipefail
 # by the universal preflight — no new host (probe invariant).
 pnpm_version="$(node -p "require('./package.json').packageManager.match(/^pnpm@([^+]+)/)[1]")"
 corepack install -g "pnpm@${pnpm_version}"
+
+# The root `lint:shell` gate (a leg of `pnpm check`, so of pre-push) runs
+# the version of shellcheck CI pins, installed where the environment script
+# installs gitleaks. The release asset redirects from github.com to
+# release-assets.githubusercontent.com, the chain the universal preflight
+# already downloads gitleaks through — no new host (probe invariant).
+./.agent/setup/install-shellcheck.sh /usr/local/bin

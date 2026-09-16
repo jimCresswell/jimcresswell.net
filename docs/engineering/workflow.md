@@ -90,9 +90,12 @@ the changed workspaces. The `commit` skill (`/jc-commit`) enacts this phase.
 ## 5. Push
 
 The pre-push hook runs the full read-only gate (`pnpm check`, which includes
-the `secrets:scan` leg) and then the site's
+the `secrets:scan` and `lint:shell` legs) and then the site's
 Playwright suite. If gitleaks is not installed the secret-scan leg fails — install
-from [gitleaks releases](https://github.com/gitleaks/gitleaks/releases). If the
+from [gitleaks releases](https://github.com/gitleaks/gitleaks/releases). If
+shellcheck is not first on your PATH at the version
+`.agent/setup/install-shellcheck.sh` pins, the shell lint leg fails — run that
+script with a directory that comes first on your PATH. If the
 Playwright browser is not installed, run `pnpm exec playwright install` once.
 
 ```bash

@@ -36,6 +36,7 @@ import {
 } from './repo-check-gates.js';
 import { runDepcruiseGate } from './repo-check-depcruise.js';
 import { runProfile } from './repo-check-runner.js';
+import { runShellcheckTracked } from './repo-check-shellcheck.js';
 
 function usage(): string {
   return [
@@ -53,6 +54,8 @@ function usage(): string {
     '  profile [--dry-run] [--capture-output]',
     '                         Capture the pnpm check Turbo graph and, unless dry-run is set, time pnpm check.',
     '                         --capture-output stores pnpm check stdout/stderr beside the profile artifact.',
+    '  shellcheck-tracked     Run shellcheck on every tracked shell script; fail on any finding or',
+    '                         silencing directive, or when the pinned shellcheck is not first on PATH.',
   ].join('\n');
 }
 
@@ -88,6 +91,7 @@ const COMMANDS: ReadonlyMap<string, RepoCheckCommand> = new Map<string, RepoChec
     'profile',
     { flags: new Set(['--dry-run', '--capture-output']), run: (args) => runProfile(args) },
   ],
+  ['shellcheck-tracked', { flags: NO_FLAGS, run: () => runShellcheckTracked() }],
 ]);
 
 /**
