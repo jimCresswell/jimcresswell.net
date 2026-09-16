@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
+    "erasableSyntaxOnly": true,
     "paths": {
-      "@/*": ["jcdotnet/*"]
+      "@/*": ["./jcdotnet/*"]
     }
   }
 }
