@@ -69,7 +69,7 @@ prove the test bites) is in
   state, the DI seam that makes this holdable is the view-binder
   split — views take state as props, a two-line binder owns the
   hook, tests render the view with literal states, zero mocks
-  (the `view-binder-di-seam` pattern in active memory).
+  (recorded in the lineage as the `view-binder-di-seam` pattern).
 
 ## Rules
 
@@ -225,8 +225,9 @@ prove the test bites) is in
   browser testing, vitest for runtime logic.
   ONE named sanctioned shape (recorded 2026-08-07 with the F-112
   push-path landing; the shape the F-112 commit-path cure
-  established — see the `file-backed-stdio-for-spawned-gate-children`
-  pattern): a SPAWN-TOPOLOGY CONTRACT test — where the behaviour
+  established — the lineage's
+  `file-backed-stdio-for-spawned-gate-children` pattern): a
+  SPAWN-TOPOLOGY CONTRACT test — where the behaviour
   under test IS a real child's stdio topology or exit/signal
   fidelity and no DI seam below it can carry the proof (a fake would
   model libuv engine semantics, the "double models the engine"
@@ -468,9 +469,9 @@ The site workspace applies the taxonomy above with these fixed conventions:
 
 ### Stubs vs Fakes
 
-- **Runtime stubs**: plain functions that live in the SDK and are used in
-  product code stub mode (e.g. `createStubRetrievalService`). They return
-  canned data and have no test framework dependency.
+- **Runtime stubs**: plain functions that live in product code and are used when
+  product code runs in a stub mode. They return canned data and have no test
+  framework dependency.
 - **Test fakes**: `vi.fn()` wrappers that live in `test-helpers/` directories
   and are used only in tests. They enable assertions on call counts, arguments,
   and return values.
@@ -713,8 +714,8 @@ and a `test:e2e` script in `package.json`.
 ## Test Assertion Placement
 
 Keep E2E assertions on system/transport invariants; prove runtime
-stub semantics in SDK unit/integration tests, not by asserting
-server output against the same stub path.
+stub semantics in the owning workspace's unit/integration tests, not
+by asserting server output against the same stub path.
 
 ## Acceptance Value-Proxies
 

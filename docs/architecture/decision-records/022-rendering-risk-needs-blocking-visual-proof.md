@@ -96,7 +96,7 @@ normalisation that hides meaningful differences is prohibited.
 
 ### 6. Tool choice is host-local
 
-This PDR does not mandate a specific harness, framework, or artefact format.
+This ADR does not mandate a specific harness, framework, or artefact format.
 Host repos choose the tool that fits their stack. The reusable rule is the
 blocking-proof requirement and the review discipline around it.
 
