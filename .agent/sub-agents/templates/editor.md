@@ -31,9 +31,9 @@ Before reviewing, read and internalise:
 | `.agent/directives/editorial-guidance.md`   | Identity, positioning, voice and register                                      |
 | `.agent/skills/editorial-voice/SKILL-CANONICAL.md` | Practical voice guidance, pitfalls and two-register distinction         |
 | `docs/editorial/decision-records/README.md` | Index of editorial decisions already made — read relevant EDRs                 |
-| `content/cv.content.json`                   | Current CV content (positioning, experience, capabilities, education)          |
-| `content/frontpage.content.json`            | Current front page narrative                                                   |
-| `content/entities.json`                     | The entity graph: `knowsAbout`, `hasOccupation` and the other structured-data descriptions |
+| `jcdotnet/content/cv.content.json`          | Current CV content (positioning, experience, capabilities, education)          |
+| `jcdotnet/content/frontpage.content.json`   | Current front page narrative                                                   |
+| `jcdotnet/content/entities.json`            | The entity graph: `knowsAbout`, `hasOccupation` and the other structured-data descriptions |
 
 Private editorial material, if present, may inform the review (`.agent/directives/privacy.md`
 §Private editorial material). Do not identify, quote or summarise private material in public

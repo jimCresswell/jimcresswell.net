@@ -1,5 +1,5 @@
 ---
-description: Configuration reviewer for Next.js, PostCSS, and pnpm scripts.
+description: Configuration reviewer for TypeScript, ESLint, Vitest, Prettier, markdownlint, Turbo, knip, dependency-cruiser and Husky configuration, pnpm scripts, and the site's Next.js, PostCSS and Playwright configuration.
 ---
 
 ## Delegation Triggers
@@ -158,9 +158,10 @@ Produce the structured output below, including a per-workspace inheritance table
 
 ### TypeScript (`tsconfig.json`)
 
-`agent-tools` and the `tooling/*` workspaces extend the root base configuration, and
-their `tsconfig.build.json` and `tsconfig.lint.json` extend the workspace's own
-`tsconfig.json`:
+`agent-tools` and the `tooling/*` workspaces extend the root base configuration at their own
+depth — `agent-tools/tsconfig.json` through `../tsconfig.base.json`, each
+`tooling/*/tsconfig.json` through `../../tsconfig.base.json` — and their `tsconfig.build.json`
+and `tsconfig.lint.json` extend the workspace's own `tsconfig.json`. `tooling/result/tsconfig.json`:
 
 ```json
 {
@@ -196,9 +197,10 @@ unbuilt plugin (bare `eslint` exits 2 with "No exports main defined").
 
 The shared base configs live in `tooling/workspace-config`: `@engraph/workspace-config/vitest`
 (`baseTestConfig`) and `@engraph/workspace-config/vitest-e2e` (`baseE2EConfig`). Outside the
-site, a workspace's `vitest.config.ts` re-exports `baseTestConfig` and its
-`vitest.e2e.config.ts` merges `baseE2EConfig`; the site's `jcdotnet/vitest.config.ts` defines
-its own. `testing-strategy.md` §Canonical Vitest Configuration is the contract: Pattern 1
+site, every workspace that runs Vitest re-exports `baseTestConfig` from its `vitest.config.ts`
+(`tooling/workspace-config`, which defines the bases, runs no tests), and a workspace with
+Vitest E2E tests (`agent-tools`) merges `baseE2EConfig` in its `vitest.e2e.config.ts`; the
+site's `jcdotnet/vitest.config.ts` defines its own. `testing-strategy.md` §Canonical Vitest Configuration is the contract: Pattern 1
 re-exports the shared base, Pattern 2 is a workspace-specific config. Deviations cause silent
 test-category leaks (E2E tests running under `pnpm test`, CI timeouts).
 
