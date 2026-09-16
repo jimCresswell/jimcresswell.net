@@ -1,6 +1,7 @@
 import fs from "node:fs/promises";
+import os from "node:os";
 import path from "node:path";
-import { pipeCommandOutput, readCommandOutput } from "./command-output";
+import { readCommandOutput } from "./command-output";
 import { ensureDirectory } from "./shared";
 
 export const WORKTREE_REF = "WORKTREE";
@@ -82,6 +83,14 @@ export async function exportRefToDirectory(
   return resolvedRef;
 }
 
+/**
+ * Extract a commit's tree into `outputDirectory`, replacing anything there.
+ *
+ * Two sequential commands, not a pipe: `git archive` writes the tar to a file in a
+ * fresh temporary directory, then `tar` extracts that file. Each command runs to its
+ * own completion and reports its own failure, and the temporary directory is removed
+ * whatever the outcome.
+ */
 async function exportGitRefToDirectory(
   repositoryRoot: string,
   resolvedRef: string,
@@ -90,11 +99,18 @@ async function exportGitRefToDirectory(
   await fs.rm(outputDirectory, { recursive: true, force: true });
   await ensureDirectory(outputDirectory);
 
-  await pipeCommandOutput(
-    { command: "git", args: ["archive", "--format=tar", resolvedRef] },
-    { command: "tar", args: ["-xf", "-", "-C", outputDirectory] },
-    repositoryRoot
-  );
+  const archiveDirectory = await fs.mkdtemp(path.join(os.tmpdir(), "visual-regression-archive-"));
+  const archivePath = path.join(archiveDirectory, "tree.tar");
+  try {
+    await readCommandOutput(
+      "git",
+      ["archive", "--format=tar", `--output=${archivePath}`, resolvedRef],
+      repositoryRoot
+    );
+    await readCommandOutput("tar", ["-xf", archivePath, "-C", outputDirectory], repositoryRoot);
+  } finally {
+    await fs.rm(archiveDirectory, { recursive: true, force: true });
+  }
 }
 
 async function exportWorkingTreeToDirectory(
