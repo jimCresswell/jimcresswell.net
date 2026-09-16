@@ -83,28 +83,29 @@
     "@engraph/eslint-plugin-standards": "workspace:*",
     "@engraph/workspace-config": "workspace:*",
     "@types/node": "^24.13.3",
-    "@types/react": "^19.2.18",
+    "@types/react": "^19.3.0",
     "dependency-cruiser": "^18.1.1",
     "esbuild": "^0.28.2",
     "eslint": "^10.10.0",
     "globals": "^17.9.0",
     "ink-testing-library": "^4.0.0",
     "tsx": "^4.23.12",
+    "typescript": "npm:@typescript/typescript6@^6.0.2",
     "vitest": "^4.1.10"
   },
   "dependencies": {
     "@engraph/result": "workspace:*",
     "@engraph/safe-path": "workspace:*",
     "@engraph/type-helpers": "workspace:*",
+    "@typescript/native": "npm:typescript@^7.0.2",
     "ajv": "^8.20.0",
     "ink": "^7.1.1",
     "jsonc-parser": "^3.3.1",
-    "react": "^19.2.8",
+    "react": "^19.3.0",
     "smol-toml": "^1.7.1",
     "tinyglobby": "^0.2.17",
-    "typescript": "^6.0.3",
     "uuid": "^14.0.1",
     "yaml": "^2.9.0",
-    "zod": "^4.4.3"
+    "zod": "^4.6.5"
   }
 }

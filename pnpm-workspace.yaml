@@ -181,3 +181,9 @@ overrides:
   qs: '>=6.15.2'
   rollup: '>=4.59.0'
   sucrase: '>=3.35.1'
+minimumReleaseAgeExclude:
+  - prettier@3.9.7
+  - '@microsoft/tsdoc-config@0.18.2'
+  - '@microsoft/tsdoc@0.17.0'
+  - eslint-plugin-tsdoc@0.5.3
+  - eslint-plugin-unicorn@75.0.0
