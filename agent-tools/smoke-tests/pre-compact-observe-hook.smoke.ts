@@ -21,7 +21,9 @@ import { z } from 'zod';
 
 const smokeDir = fileURLToPath(new URL('.', import.meta.url));
 const repoRoot = resolve(smokeDir, '..', '..');
-const PROJECT_DIR_PLACEHOLDER = /\$\{CLAUDE_PROJECT_DIR\}/gu;
+const PROJECT_DIR_REFERENCE = /\$\{CLAUDE_PROJECT_DIR\}/gu;
+const REPO_ROOT_VARIABLE = 'PRE_COMPACT_SMOKE_REPO_ROOT';
+const REPO_ROOT_REFERENCE = `\${${REPO_ROOT_VARIABLE}}`;
 const HOOK_TIMEOUT_MS = 10_000;
 const RESPONSE_PREFIX = '[pre-compact-observe] ';
 
@@ -112,9 +114,12 @@ function checkRun(stdout: string, projectDir: string, expectedStatus: string): v
 /**
  * Run the hook command for one case against a throwaway project directory.
  *
- * The command's `${CLAUDE_PROJECT_DIR}` is resolved to this repository so the
- * real wrapper and source run, while the environment variable points at the
- * throwaway directory so every log is written there and not into the tree.
+ * Each `${CLAUDE_PROJECT_DIR}` in the command becomes `${PRE_COMPACT_SMOKE_REPO_ROOT}`,
+ * which holds this repository's root, so the real wrapper and source run, while
+ * `CLAUDE_PROJECT_DIR` itself points at the throwaway directory so every log is
+ * written there and not into the tree. Both paths travel in the environment and are
+ * read as data, as the harness supplies them for a shell-form hook, so the command
+ * text stays fixed whatever characters the checkout path holds.
  */
 function runCase(command: string, smokeCase: SmokeCase): void {
   const projectDir = mkdtempSync(join(tmpdir(), 'pre-compact-observe-smoke-'));
@@ -123,10 +128,14 @@ function runCase(command: string, smokeCase: SmokeCase): void {
     writeFileSync(transcriptPath, '{}\n', 'utf8');
     const result = spawnSync(
       'sh',
-      ['-c', command.replaceAll(PROJECT_DIR_PLACEHOLDER, () => repoRoot)],
+      ['-c', command.replaceAll(PROJECT_DIR_REFERENCE, () => REPO_ROOT_REFERENCE)],
       {
         cwd: repoRoot,
-        env: { ...process.env, CLAUDE_PROJECT_DIR: projectDir },
+        env: {
+          ...process.env,
+          CLAUDE_PROJECT_DIR: projectDir,
+          [REPO_ROOT_VARIABLE]: repoRoot,
+        },
         input: smokeCase.stdin(transcriptPath),
         encoding: 'utf8',
         timeout: HOOK_TIMEOUT_MS,
