@@ -176,13 +176,18 @@ entries that no longer match the file layout; missing or wrong `include`/`exclud
 
 ### ESLint (`eslint.config.ts`)
 
-Each workspace owns a flat config that imports the shared standards plugin
-(`@engraph/eslint-plugin-standards`, built to `dist/` by the postinstall bootstrap) and stays
-on the ESLint major its framework needs.
+Each workspace owns a flat config and stays on the ESLint major its framework needs.
+`agent-tools`, `tooling/result`, `tooling/safe-path` and `tooling/type-helpers` import the
+shared standards plugin (`@engraph/eslint-plugin-standards`, built to `dist/` by the
+postinstall bootstrap). Three configs do not: the site's extends `eslint-config-next` on
+ESLint 9; the plugin's own (`tooling/eslint`) and `tooling/workspace-config`'s hand-roll theirs
+from `typescript-eslint` and `@eslint/js`, because the plugin cannot lint through its own build
+and a dependency from `workspace-config` back onto the plugin would close a workspace cycle
+(`docs/engineering/build-system.md` §ESLint 9 and ESLint 10 coexist).
 
-**Common issues:** `eslint-disable` comments; rules disabled in config; a workspace that
-drifts from the shared plugin; a rule set that assumes the other major; an unbuilt plugin
-(bare `eslint` exits 2 with "No exports main defined").
+**Common issues:** `eslint-disable` comments; rules disabled in config; a plugin-consuming
+workspace that drifts from the shared plugin; a rule set that assumes the other major; an
+unbuilt plugin (bare `eslint` exits 2 with "No exports main defined").
 
 ### Vitest (`vitest.config.ts`, `vitest.e2e.config.ts`)
 
@@ -259,7 +264,7 @@ flags the concern and names the specialist.
 ### Inheritance and Consistency
 
 - [ ] TypeScript configs extend `tsconfig.base.json`
-- [ ] ESLint configs use the shared standards plugin on the right major
+- [ ] ESLint configs stay on the right major, and the plugin-consuming ones use the shared standards plugin
 - [ ] Vitest configs exclude `**/*.e2e.test.ts` and name their test categories
 - [ ] The site's E2E suite has its Playwright config and `test:e2e` script
 - [ ] No unruled workspace-level Prettier or markdownlint override

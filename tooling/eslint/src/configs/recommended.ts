@@ -18,9 +18,9 @@ import { engraphPlugin } from '../plugin.js';
  * `configs.recommended` cannot drift apart.
  *
  * `require-observability-emission` is registered here (rule available)
- * but not activated in the recommended rule set. Per ADR-162 Phase 5
- * acceptance, each `apps/*` and `packages/sdks/*` workspace enables the
- * rule at `warn` in its own flat config. Preset-level activation is
+ * but not activated in the recommended rule set, and no workspace in this
+ * repository enables it: its scope is `apps/*` and `packages/sdks/*`
+ * workspaces, and this repository has neither. Preset-level activation is
  * deliberately avoided so the rule never fires outside its intended scope.
  */
 /**
@@ -55,13 +55,8 @@ const recommendedBase: TSESLint.FlatConfig.ConfigArray = defineConfig(
   ...tseslint.configs.stylistic,
   importX.flatConfigs.recommended,
   importX.flatConfigs.typescript,
-  // Full `sonarjs.configs.recommended` activation is tracked by the
-  // sonarjs-activation-and-sonarcloud-backlog plan in
-  // .agent/plans/architecture-and-infrastructure/current/ — flip the
-  // entry below to `sonarjs.configs.recommended` when the plan is in its
-  // GREEN phase. Until then, keep only the Quality-Gate remediation rules
-  // active so local lint mirrors the current Sonar blocker surface without
-  // importing the whole recommended preset. Sonar S7778 maps to
+  // `sonarjs.configs.recommended` is not activated: only the rules below are,
+  // each annotated with the Sonar rule it corresponds to. Sonar S7778 maps to
   // unicorn/prefer-single-call; enable that one rule without adopting the
   // full Unicorn preset.
   {
@@ -73,20 +68,19 @@ const recommendedBase: TSESLint.FlatConfig.ConfigArray = defineConfig(
       'sonarjs/void-use': 'error',
       'unicorn/prefer-single-call': 'error',
 
-      // Phase 5 (main-sonar-ai-profile-to-zero): matching unicorn rules for the
-      // recently-activated SonarJS idiom classes, enabled at `error`. The autofix
-      // pass in THIS SAME commit clears every existing violation, so no warn-debt
-      // is introduced (principles.md §"No warning toleration": fix the root cause
-      // in the same work-item; do not defer). The new-rules-start-warn carve-out
-      // applies only to a violation surface that needs a separate migration lane
-      // (e.g. no-throw-statement); this is not that. Each maps to a Sonar rule.
-      // Two related classes are deliberately NOT locked here and are handled
-      // per-site in a later tranche: S6594 (prefer-regexp-exec is a
-      // @typescript-eslint rule overlapping generated output, not a clean
-      // autofix) and S7765 (prefer-includes force-converts the ADR-153
-      // `value is X` type-guard `.some((id) => id === value)` idiom to a
-      // type-unsound `.includes(value)` where the argument is wider than the
-      // element type — incompatible with the house type-guard pattern).
+      // Matching unicorn rules for the SonarJS idiom classes, enabled at `error`
+      // with every existing violation cleared in the same landing, so no
+      // warn-debt is introduced (PDR-126; principles.md §Code Quality, "No
+      // warning toleration, anywhere"). Each maps to a Sonar rule.
+      // Two related classes are deliberately not enabled: S6594
+      // (prefer-regexp-exec is a @typescript-eslint rule overlapping generated
+      // output, not a clean
+      // autofix) and S7765 (prefer-includes force-converts the `value is X`
+      // type-guard `.some((id) => id === value)` idiom of the
+      // constant-type-predicate pattern, in
+      // .agent/directives/validation-strategy.md, to a type-unsound
+      // `.includes(value)` where the argument is wider than the element type —
+      // incompatible with the house type-guard pattern).
       'unicorn/prefer-string-replace-all': 'error', // S7781
       'unicorn/prefer-string-raw': 'error', // S7780
       'unicorn/prefer-number-properties': 'error', // S7773
@@ -211,7 +205,7 @@ const oakRecommendedConfig: TSESLint.FlatConfig.Config = {
     // .agent/directives/testing-strategy.md.
     '@engraph/no-agent-substrate-access': 'warn',
     // New rule (2026-06-14): bans `throw` in favour of the Result pattern
-    // (ADR-088 / use-result-pattern). Wired at `warn` first per the
+    // (.agent/rules/use-result-pattern.md). Wired at `warn` first per the
     // no-warning-toleration §"Scope and exceptions" rule-authoring nuance — the
     // existing-throw surface (notably workspaces that predate Result adoption
     // here, such as agent-tools) is captured at `warn` while the throw→Result
