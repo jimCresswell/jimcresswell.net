@@ -33,10 +33,11 @@ const MAX_OUTPUT_BYTES = 32 * 1024 * 1024;
  * @param args Arguments passed to the executable.
  * @param workingDirectory Directory the command runs in.
  * @returns The command's standard output.
- * @throws An `Error` naming the command and directory, whose `cause` is the
- * `execFile` error (with the exit `code` and `signal`, or the spawn error code),
- * when the command cannot start, ends with a non-zero code or a signal, or
- * exceeds the output ceiling.
+ * @throws An `Error` whose message names the command and directory, then the exit
+ * code and signal (or, for a command that did not run to an exit, the reason) and
+ * the command's trimmed stderr, and whose `cause` is the `execFile` error, when
+ * the command cannot start, ends with a non-zero code or a signal, or exceeds the
+ * output ceiling.
  */
 export async function readCommandOutput(
   command: string,
@@ -51,10 +52,30 @@ export async function readCommandOutput(
     });
     return stdout;
   } catch (cause: unknown) {
-    throw new Error(`${command} ${args.join(" ")} failed in ${path.resolve(workingDirectory)}`, {
-      cause,
-    });
+    throw new Error(
+      `${command} ${args.join(" ")} failed in ${path.resolve(workingDirectory)}${describeFailure(cause)}`,
+      { cause }
+    );
   }
+}
+
+/**
+ * The reason an `execFile` call failed, for the error message: the exit code and signal
+ * when the command ran to an exit, the error's own message otherwise (a spawn error, the
+ * output ceiling), then the command's trimmed stderr on its own lines.
+ */
+function describeFailure(cause: unknown): string {
+  if (!(cause instanceof Error)) {
+    return `: ${String(cause)}`;
+  }
+  const code = "code" in cause ? cause.code : undefined;
+  const signal = "signal" in cause ? cause.signal : undefined;
+  const ranToExit = typeof code === "number" || typeof signal === "string";
+  const reason = ranToExit
+    ? ` with code ${String(code ?? null)} and signal ${String(signal ?? null)}`
+    : `: ${cause.message}`;
+  const stderr = "stderr" in cause && typeof cause.stderr === "string" ? cause.stderr.trim() : "";
+  return stderr.length > 0 ? `${reason}\n${stderr}` : reason;
 }
 
 /** A command to run: the executable and its arguments. */

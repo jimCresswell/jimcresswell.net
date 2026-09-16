@@ -20,10 +20,14 @@ describe("readCommandOutput", () => {
     );
   });
 
-  it("rejects with the exit code when the command fails", async () => {
+  it("rejects with the exit code and the command's stderr in the message when the command fails", async () => {
+    const script = 'process.stderr.write("fatal: stub failure\\n"); process.exit(3);';
     await expect(
-      readCommandOutput(process.execPath, ["-e", "process.exit(3)"], os.tmpdir())
-    ).rejects.toMatchObject({ cause: { code: 3 } });
+      readCommandOutput(process.execPath, ["-e", script], os.tmpdir())
+    ).rejects.toMatchObject({
+      message: expect.stringMatching(/with code 3 and signal null\nfatal: stub failure$/u),
+      cause: { code: 3 },
+    });
   });
 });
 
