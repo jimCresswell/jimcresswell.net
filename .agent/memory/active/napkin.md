@@ -1651,3 +1651,332 @@ Segment fourteen (10:52Z to 11:05Z, 2026-09-15): #91's red-check cure after the 
 - Removing a pre-check can remove a guarantee it gave silently: the `lstat` refusal also kept
   a fifo from blocking the open. The cure had to carry `O_NONBLOCK` to keep it, and the
   guarantee has no cell (tests cannot make a fifo without `child_process`).
+
+### Lane A (Saffron turns Verdure, c39ad7), segment fifteen, 2026-09-15 10:52Z to 11:47Z: the close and the end-of-arc wrap
+
+The lane closed when #91 merged (`SHA: f8aab12`, 11:24:10Z); the owner then asked for a full,
+deep end-of-arc handoff. The facts, rulings and follow-ons are in the lane record's tenth
+waypoint; this segment carries the surprises, the loss-scan and metaloss findings, the play
+harvest and the exploration's candidates.
+
+- Surprise, the red check's root was a tip no CI ran on. Expected: CodeQL raised the race late
+  because it analyses late. Observed: the exception-push tip `20d8e50d` had no CI, CodeQL or
+  Dependency Review run, only Copilot; the race entered in that push and CodeQL first saw it on
+  the merge-from-main tip. GitHub requires no status check on `main` (the one ruleset carries
+  deletion, Copilot review and non-fast-forward), and the settlement's checks leg
+  (`pr-watch/states.ts:81-99`) names no required check, so two passing checks from Vercel and
+  Copilot read as passed (inference from the code, not observed). #91 was saved by an unrelated
+  tail conflict that forced a merge from main. Behaviour change: before requesting a review
+  round or arming the merge poll, read the tip's run list for CI and CodeQL, never the rollup
+  alone. Routed to the Director for the owner at 11:3xZ.
+- Surprise, the close records' home was the coordination branch, not a commit. Expected, from
+  the owner's card (records ride the pull request they describe) and the compaction amendment
+  (a wrap may land as its own continuity commit): a closing seat with no pull request commits
+  its records on a local branch for the Director to carry, and the Director agreed. Observed,
+  the owner: "write to the coordination branch, a later seat will handle the commit and push";
+  and, through the Director, "the whole point of coordination branches is to have a common home
+  for things like wraps". Why the expectation failed: the proposal was reasoned from the two
+  nearest memories, and `coordination-branch-24h-lifetime` ("the coordination branch IS the
+  primary checkout's own branch, always") was opened only after the owner's word. The primary
+  checkout's branch then carried a records name (`records/director-12`) until the Director
+  renamed it `coordination/2026-09-15-b9dcfb`. Behaviour change: at a close, route records to
+  the coordination branch's working tree first, append-only where another seat writes; commit
+  only on the owner's word.
+- Surprise, a cure authored against the estate's precedent settled in one pass. Expected, from
+  #90's and #91's history: another round. Observed: CodeQL green on the first cure tip, one
+  Copilot finding and it false, merged seventeen minutes after the push. What differed: the
+  exit criterion was a deterministic analyser's result, ruled before authoring; reading
+  `read-regular-file.ts` before writing surfaced the class (the fifo guarantee the removed
+  pre-check gave, the Windows flags) at authoring; the header claimed only what cells prove;
+  the code-expert brief listed the choices to challenge and asked whether any call pair still
+  matched the rule, and the reviewer read the query source. One instance, not a pattern.
+- Correction absorbed: the first header said "a fifo cannot block it" with no cell behind it.
+  The Director's condition removed the claim before the push. It is segment thirteen's class (a
+  guarantee outran the code), caught by a peer, not by me, in the same day I wrote that lesson
+  down. Naming it did not inoculate; the peer's condition was the gate.
+- A Copilot finding on a regex anchor was settled by a probe in the real runtime, not by recall:
+  cheap, and the reply quoted the probe. The worktree guard refused the inline `node -e`; a
+  scratchpad script ran.
+- Loss scan (session-handoff 6e.2), routed to the tenth waypoint: the merge-gate finding; the
+  Director's rulings this segment, quoted; the code-expert's verified facts (its context is
+  gone); the `GEMINI.md` stale line and the adapter-model sections in two entry points; the
+  cure's untaken notes; the residue branches with the evidence that their content is on `main`;
+  the worktree to remove after the session exits.
+- Metaloss: the compaction summary is the only carrier of the earlier segments' context inside
+  this session, so this scan cannot see what that summary dropped; the earlier waypoints carry
+  their own scans. The error signature this segment, where outside eyes caught what my scans
+  missed: CodeQL (the race), the Director (the header's unproven guarantee), the owner (the
+  records home). Point external scrutiny at prose guarantees, records homes at a close, and
+  whether each tip's analysers ran.
+
+Play harvest (a short wander over this segment's events; associations, never findings):
+
+- Play seed: removing the `lstat` pre-check silently removed the fifo refusal it gave; removing
+  records-only pull requests silently removed the home for a lane's close records, and the
+  owner named the coordination branch within the hour. These look shaped alike: a removed
+  mechanism drops guarantees nobody listed. It reminded me of Chesterton's fence, at two
+  scales on one day.
+- Play seed: Copilot read JavaScript's `$` with PCRE semantics; #90's hook work met a POSIX host
+  reading Windows separators. These look shaped alike: one environment's semantics imported
+  into its neighbour, each settled by a probe in the real runtime.
+- Play seed: the ninth waypoint rode #91 and so could not name #91's merge SHA; the tenth needed
+  a later carrier. It reminded me of the metaloss bound (a recursion cannot certify its own
+  completeness). Crossed into the exploration below.
+- Discarded at the harvest: "the owner, the Director and the Implementer worked as a three-key
+  system" was forced; the owner's word overrides, it is not one key among equals. Discarded:
+  "CodeQL is the better reviewer"; one instance, and the two look for different things.
+
+Concept exploration (four movements, compact). Observations: a record cannot carry its own
+carrier's merge SHA; the owner's card ended records-only pull requests; the first proposed home
+for the close records was a commit, overridden to the coordination branch; the coordination
+branch carried a records name until renamed; the #91 cure converged in one pass on a
+deterministic exit criterion; the merge gate names no required check. Problem frame: two gaps in
+the closure's machinery surfaced at its last step. Where does a close record live when records
+ride the pull request they describe? And what does the merge gate take as evidence of a verified
+tip? Both harm successors silently: a close record with no home is lost or breeds a records-only
+pull request; a tip no analyser saw can merge. Inherited shapes that changed: "records need a
+commit by their author" became "records need a carrier; the coordination branch is the standing
+carrier and the commit a later seat's"; "a green rollup is a verified tip" became "a verified
+tip is one whose required analysers ran".
+
+- candidate: the settlement names its required checks (CI and CodeQL) and reads their absence on
+  the tip as not settled, or the ruleset requires them. Warrant: `20d8e50d`'s runs,
+  `states.ts:81-99`, the ruleset read. Falsifier: the settlement, fed a rollup with only
+  non-CI checks passing, already reads not ready (the inference above is then wrong).
+  Destination: the merge bot and `pr-lifecycle` §Phase 5, on the owner's decision.
+- candidate: `session-handoff` step 2 names the coordination branch as the home of wrap and
+  close records, the commit and push a later seat's, beside the records-ride-the-pull-request
+  card. Warrant: the owner's two sentences at this close; the ninth waypoint's fixed point.
+  Falsifier: coordination-branch records stay uncommitted past the branch's 24-hour rotation.
+- candidate: before requesting a review round, read the tip's run list for the required
+  analysers. Warrant: the race sat unanalysed through one round. Falsifier: a later loop where
+  every tip's analysers ran and a late analyser finding still appears. Destination: the gates
+  skill or `pr-lifecycle`.
+- candidate: a documentation claim names the cell that proves it or is not made, and a reviewer
+  brief lists the author's choices to challenge with the rule-matching question. Warrant: the
+  #90 and #91 exception pushes, this segment's header catch, the one-pass cure. Falsifier: a
+  header bounded this way still draws a guarantee finding. Destination:
+  `tsdoc-and-documentation-hygiene` or the code-expert invocation guidance.
+- Unresolved evidence that could change the synthesis: why no workflow ran on `20d8e50d`, and
+  whether the settlement's other legs would have settled there.
+
+- Correction to lane A's segment fifteen (11:48Z), after the Director's check: the first
+  surprise's counterfactual was wrong. `20d8e50d` ran no workflows because #91 was in conflict
+  on the register tail from #90's merge (22:54:07Z) until the merge of main (23:21Z), and GitHub
+  runs no `pull_request` workflows for a conflicting pull request. Without the conflict the
+  workflows would have run; with it the settlement refuses the tip. The conflict did not save
+  #91; it was why no analyser ran. The general gap stands (a mergeable tip whose workflows never
+  trigger reads green), carried to the owner by the Director (item 110). The third candidate
+  sharpens: a pull request in conflict runs no CI, so cure the conflict before requesting a
+  review round; its falsifier stands. The unresolved evidence about the missing runs is
+  resolved. And the merge came fourteen minutes after the last push (its runs started
+  11:10:31Z; merged 11:24:10Z), not seventeen. The error signature: an inference I flagged as
+  one was still wrong, and a peer's check against documented platform behaviour caught it.
+
+### Director, end of arc (2026-09-15, from 11:33Z) — Cauldron herds Lustre (880ff9): loss scan, metaloss, play and concept passes
+
+- **Surprise (owner correction): the records home.** Expected: under the owner's card (no
+  records-only pull requests), the Director's closing records wait on a local branch for a
+  later substantive pull request. Observed: the owner, twice in minutes (to lane A in its
+  session, then to this seat): the coordination branch is the common home for wraps, and a
+  later seat commits and pushes. Why it was missed: this estate's closure ran without a
+  coordination branch (the primary checkout sat on `chore/director-records-N`), so the rule
+  never fired in the arc; its trigger is keyed to the branch-cut ceremony, not to "where does
+  a wrap go"; and the card closed one path, so I improvised a second instead of looking for
+  the sanctioned one. Behaviour change: when an owner ruling closes a path, search the estate
+  by purpose for the instrument it already owns before building a replacement. Cure applied:
+  the branch renamed in place to `coordination/2026-09-15-b9dcfb`; register entry filed
+  (2026-09-15 section); the handoff's item 110.
+- **candidate: reaching past an owned instrument (a concept pass, not a finding).** Four
+  constructions in one arc beside an instrument the estate already owned for the same
+  purpose: the YAML-emulating reader in #86; the declared-adapters reader in #91 beside the
+  seam-backed surface reads (its cure copied `read-regular-file.ts`'s flags instead of calling
+  it, the synchronous and asynchronous mismatch its stated reason); the records-only pull
+  requests #54 to #88 beside the 2026-07-15 handover ruling; `records/director-12` and the
+  proposed `records/lane-a-close` beside `coordination-branch-24h-lifetime`. Independence
+  tested: the pull-request chain that lived only in the transcript (a missing instrument, not
+  a bypassed one) and the push-based branch delete (a tool-behaviour gap) do not share the
+  generator. Mechanism hypothesis: the seat searches forward from the task; the estate's
+  triggers are keyed to each instrument's own ceremony, so a purpose-first search does not
+  hit them, and an instrument unused in the current arc is not in working memory. Candidate
+  cure: a purpose-first lookup before building, placed at the moment of need (the wrap and
+  handoff skills naming the coordination branch; for code, a lint or seam rule for
+  filesystem reads in `agent-tools`; `tooling/eslint/src/configs/recommended.ts` restricts
+  types and syntax, and whether its `no-restricted-syntax` covers `node:fs` was not read).
+  Falsifier: in the next arc, constructions beside owned instruments still reach review or
+  the owner at the same rate after the placement cure. For the retrospective.
+- **Surprise (formation to self): a lesson written becomes the writer's next error within
+  hours.** Item 108 named "route a new read through the boundary the estate already built";
+  four hours later I routed my records past the coordination branch. The 2026-09-14 letter
+  records the same shape ("the candidate I had drafted that very evening ... was describing
+  me"). Writing a lesson does not change the seat that wrote it inside the session; only a
+  gate at the action moment does (`passive-guidance-loses-to-artefact-gravity`). Behaviour
+  change: when I write a lesson, name the next action in this session it should gate, and
+  check that action against it.
+- **The finish-line cluster, again.** Three fluent moves in the closing hour: the branch
+  delete by `git push` inside lane A's slot (self-caught after the hook ran); the records
+  landing story (owner-caught); the `comms send` under the session's new model (tool-caught).
+  None was caught before acting.
+- **Second instance: record times written as estimates.** #88's review found two #89 times
+  in the handoff that were estimates written before the clock was read (21:38Z for 21:13:46Z;
+  22:03Z for 21:23:30Z); the first instance was the "22:0xZ" stamps of 2026-09-14. The
+  per-user memory "read the clock before writing a time" holds it; two instances make it a
+  register candidate at the next occurrence.
+- **Verified: lane A's merge-gate finding, and its counterfactual.** #91's exception tip
+  `SHA: 20d8e50` ran no CI, CodeQL or Dependency Review because #91 was conflicting on the
+  register tail from #90's merge (22:54:07Z) until lane A merged `main` (23:21Z); GitHub runs
+  no `pull_request` workflow for a conflicted pull request. The merge bot's conflict leg would
+  have refused that tip, so a merge without CI did not follow. The gap underneath stands for
+  the owner: no required status check on `main`, and the settlement's checks leg names none.
+- **Practice/tooling feedback**
+  - **Surface**: `agent-tools:collaboration-state comms send`. **Signal**: friction.
+    **Observation**: after `/model` switched the session from `claude-fable-5-1` to
+    `claude-opus-5`, `comms send --model claude-opus-5` refused ("identity route ... collides
+    with live identity ... claude-fable-5-1"), while `comms watch` and `assert-watcher-live`
+    accepted the new model. **Behaviour change / candidate follow-up**: the send accepts a
+    model change under the same session id, or the refusal names the registered model and the
+    flag to pass. **Source plane**: operational.
+  - **Surface**: `pnpm --silent agent-tools:collaboration-state -- comms send`. **Signal**:
+    friction. **Observation**: the refusal above printed only `ELIFECYCLE ... exit code 1`
+    through pnpm with `--silent`; the direct `node agent-tools/dist/...` call printed the
+    reason. **Behaviour change / candidate follow-up**: recipes for sends do not use
+    `--silent`, or the CLI writes refusals where pnpm's silent mode keeps them.
+  - **Surface**: `agent-tools merge-bot merge`. **Signal**: idea. **Observation**: it prints
+    that the merge-base deletion sweep is not discharged; the seat then deleted the branch
+    with `git push`, which ran the full pre-push gate. **Behaviour change / candidate
+    follow-up**: the bot deletes the merged head ref through the API as its last step, or
+    prints the API call.
+- **Grounded execution knowledge.** A pull request with a merge conflict runs no
+  `pull_request` workflow on a tip pushed while conflicted, so that tip has no CI or CodeQL
+  until the conflict is resolved, and the settlement's checks leg counts Vercel Preview
+  Comments and the Copilot reviewer as passed checks. A finding on a pull request's own scope
+  wording is cured in its title and description with no push (#88). `git cherry origin/main
+  <branch>` counts patches, not content: `closure/lane-a-checkpoint` shows one unmerged patch
+  while its text is on `main`; probe a line before calling a branch stranded. Without the
+  `m` flag, a JavaScript `$` asserts the end of input only (Copilot's #91 finding, rejected
+  and verified under Node).
+- **Loss scan, from inside this context.** Routed: the coordination-branch correction and
+  the rename (item 110, the register, the continuity contract, the per-user memory); #145's
+  merge and its attribution (item 110, flagged as the curator's report); the merge-gate
+  verification and the owner's card (item 110); the branch and worktree residue (item 110);
+  the concept, the formation-to-self surprise and the tool feedback (this block and the
+  letter). Surfaces checked: the comms events of this session (two, both carried by the
+  handoff); conversations (none) and escalations (none open); handoff records (lane B's three,
+  claims closed 2026-09-13, curator-pass residue); platform plans (`abundant-noodling-snail`
+  is this arc's session-1 routing plan, homed by the landed work and the handoff's early
+  items; `mellow-crunching-shannon` is lane A's step-back; the other two recent plan files
+  belong to other estates); the Claude per-user memory (fourteen entries: the rounds and hold
+  entries homed in PDR-132's 2026-09-14 amendment and pr-lifecycle's Below-bar format, the
+  records and branch-deletion entries in the register's 2026-09-15 section, the clock entry
+  in this block); the Codex memory (this estate named only by a 2026-08-09 architecture
+  analysis, nothing from the arc); the Cursor (2026-05-28) and Gemini (2026-07-24) surfaces
+  predate the arc and were not read. Entry points: `CLAUDE.md`, `AGENTS.md` and `GEMINI.md`
+  carry adapter-model sections beyond the default pointer contract; none was added this
+  session and none was moved (a non-trivial move is the owner's); `skills.md` matches its
+  contract; `.codex/AGENTS.md` is absent; the Codex alert block's generator check was not run
+  (its command name was not found). Context-only by choice: the scratch scripts, whose
+  substance is in the records.
+- **Metaloss passes.** Compressed reasoning: the decision to leave this wrap's writes
+  uncommitted (the owner's word to lane A, and a later seat batching both wraps into one
+  continuity commit) and the decision not to run consolidation (item 94; the retrospective
+  first) carry their warrants in item 110 and the continuity contract. Promises: #88's three
+  corrections and the todo 1 edit are on the coordination branch, not yet on `main`
+  (forwarded to the later seat's convergence); the curator check-ins the owner asked for on
+  2026-09-14 end with this wrap's; the stand-down recommendation was answered by the owner's
+  wrap word; the Director identity row on lane A's thread record is owed until lane A's
+  appends finish. Attribution inferences flagged: lane A's resume "on the owner's own word"
+  at 10:52Z (lane A's report); the owner's answer on #145 (the curator's comment); "alert #7
+  fixed" (lane A's read of the alert; this seat's read found no open alert on the pull
+  request's ref); the `falsifier-2a` worktree's creator (not verified). Blind-spot bounds:
+  the arc before the last compaction is visible to this seat only through the compaction
+  summary and the records written before it; lane A's napkin segments, thread waypoints and
+  letter were not read; the lineage curator's repository was read at its branch tip and #145
+  only. Index of homes: the handoff's boundary block. External bound: outside eyes caught
+  what this seat's scans passed three times on the arc's last day (lane A on the handover
+  ruling; Copilot on the record times, the bare reference and the stale mirrors; the owner on
+  the records home). The error signature is where a record lands and the times written in
+  it, so external scrutiny points there. Fence sweep: 425 owner messages scanned for held-off
+  wording; only the standing privacy boundary applies, and nothing this seat wrote touches
+  it. Fixed point: a third pass re-finds the records-landing item and the attribution flags;
+  the recursion closes here.
+- **Play harvest (associations, not findings).** Kept: (1) the CodeQL cure (resolve the path
+  once, hold the descriptor) reminded me of quoting the governing rule inside the ruling:
+  resolve the rule once at the action moment and act on that text, not the remembered read.
+  (2) The handover-PR ban and the coordination branch's daily convergence look like two
+  halves of one design: no per-seat record pull requests, one shared home that converges
+  daily; the review treadmills came from records branches that lived for many hours. (3) A
+  reviewer that never returns zero and a round budget that does not go up reminded me of a
+  halting condition that has to come from outside the loop, the shape of the wrap's fixed
+  point. (4) "A later seat will handle the commit and push" reminded me of PDR-011's
+  author-cannot-self-verify: a lander who did not write the wrap reads it fresh at commit
+  time. (5) The owner corrected lane A's proposal in lane A's session before telling this
+  seat: at n=2 the owner speaks to the seat nearest the error, which does not match PDR-117's
+  single owner interface; for the retrospective. Discarded, visibly: the 24-hour lifetime as a
+  cache expiry (a restatement with no content); "two seats in one liveness domain should be
+  one seat" (forced).
+- **Unresolved evidence for the retrospective.** The lineage's coordination fold pull
+  requests have drawn large review loads (one with thirty-eight findings over five rounds, by
+  its own plan file); PDR-140 (review-response pricing) exists in this estate; whether a
+  coordination fold pull request here draws the treadmill the records pull requests did is
+  untested.
+- **Addendum (Director, 2026-09-15, after lane A's done message): owned doctrine, unapplied.**
+  Lane A's candidate "read the tip's run list and cure a conflict before requesting review" is
+  already homed: pr-lifecycle's "CI can go SILENT" clause (MCP-373, homed 2026-07-31) says a
+  conflicting pull request silently stops `pull_request` runs and a settle watch must confirm
+  runs exist for the current head. Neither the seats nor the merge bot's settlement applied it
+  on #91: Copilot was requested on the conflicted tip, and `states.ts`'s checks leg has no
+  runs-for-the-head leg. This looks shaped like the reaching-past candidate above, but its
+  generator may differ (a doctrine never implemented in the instrument, not a construction
+  beside one): an association for the retrospective, not a finding. Promise discharged: the
+  Director's identity row on lane A's thread record.
+
+### Director, the arc's retrospective (2026-09-15): Parallax learning signal
+
+- **Surprise: three counting errors in one retrospective, one shape.** The owner message count
+  first read 417 (peer-session messages are recorded as user turns; the owner's own count is
+  145); Copilot reviews first read 123 (the first page held 40 reviews and bot thread replies
+  are reviews; paginated, 133); token totals first read 35.8M output and 8.64B cache-read (one
+  response spans several content blocks carrying the same usage; once per message id, 8.35M and
+  2.96B, caught by the protected pass). Each is a surface whose records are not one-to-one with
+  the thing counted. Behaviour change: count from a tested instrument, not a one-off script;
+  the retrospective's proposal 4 is that bin, with a cell per error.
+- **Surprise: #62's twenty-one Copilot reviews were twenty-one requests.** `main`'s ruleset does
+  not review on push; every review on #62 was requested under the owner's credential, one every
+  ten to twelve minutes for four hours, while PDR-140 (pushes are the rationed unit) sat in the
+  estate from the transplant commit. The loop was the seat's, not the platform's.
+
+### Director, the compaction question (2026-09-16): grounded execution knowledge
+
+- A seat cannot compact itself: `/compact` is the user's command, and no hook triggers a
+  compaction or changes a running session's settings or environment. `PreCompact` exists, takes
+  `manual` and `auto` matchers, and cannot block (exit code 2 is not honoured for it).
+- The auto-compact threshold is a token window, not a percentage: the `autoCompactWindow`
+  setting, the `/autocompact` command, the `--autocompact` flag and
+  `CLAUDE_CODE_AUTO_COMPACT_WINDOW`, from 100K to 1M, about 967K by default on million-token
+  models.
+- The percentage is already in the estate's hands twice: Claude Code passes
+  `context_window.used_percentage`, `remaining_percentage` and `context_window_size` to the
+  statusline command on every refresh, and this estate's adapter appends each raw payload to
+  `PRACTICE_STATUSLINE_LOG_FILE` when that is set — so a 60% trigger can be prototyped with an
+  environment variable and a monitor, before any code is written. `agent-tools session-metadata`
+  computes the same percentage from the transcript, with the owner's taught zones.
+- Gap found: `window-registry.ts` knows the 4.x models, Fable 5 and Haiku 4.5, but not Opus 5,
+  Fable 5.1 or their 1M variants, so the percentage does not resolve for the models this arc ran.
+
+### Director, the second pass and the miscount (2026-09-16): grounded execution knowledge
+
+- **A user-turn-only transcript extractor drops about a quarter of the owner's messages.** Claude
+  Code records a message typed while a turn is running as a `queue-operation` entry (`enqueue`,
+  then `remove` with `reason: absorbed_mid_turn`), not as a user turn. Counting user turns alone
+  gave 145 owner messages for this arc; user turns plus deduplicated enqueues give 193, and the
+  active-time proxy moves from 11.1 to 13.4 hours. The owner's coordination-branch correction of
+  2026-09-15T11:37:07Z was invisible to the first method, which made a protected pass record it
+  as unverified. Count owner attention from both entry classes.
+- **The claim "owned doctrine did not fire" was half wrong, and the half matters.** #62's body
+  declared PDR-140's intake contract and a settlement budget of one push, then took twenty-one
+  review requests: the doctrine was consulted at open and breached at the action moment. A gate
+  at the declaration would have changed nothing; a gate at the push is the cure.
+- **The harness's inbound surface**, read at 2026-09-16: one Unix socket per session at
+  `/tmp/cc-socks/<pid>.sock`, mode `srw-------` in a `drwx------` directory, carrying peer
+  messages into the conversation as text; the harness process listens on no TCP port, and a
+  peer cannot make a session run a slash command.

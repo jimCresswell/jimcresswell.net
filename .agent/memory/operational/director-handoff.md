@@ -50,63 +50,87 @@ Every line answered first-hand, none inferred:
   archive holds only processed material.
 - The transplant is bounded: closure items 3 to 8 finish it, then editorial work.
 
-## Current handoff state (2026-09-15, 11:28Z, the transplant closure complete; owner present)
+## Current handoff state (2026-09-15, 11:51Z, end of arc: the transplant closure complete; owner present)
 
 Where this block and the routing log disagree, the log's last entry is current; this block is
-rewritten at each Director records commit.
+rewritten at each Director wrap.
 
-**State at this commit (2026-09-15, 11:28Z).** The transplant closure is complete on `main`:
-every item of the node's §Transplant closure carries its Done line and proof, item 6's in #91
-(`SHA: f8aab12`, merged by the bot at 11:24:10Z). Zero pull requests are open. Landed since the
-compaction (item 109): #88 (`SHA: 30dba5e`, this seat's last records-only pull request, on the
-owner's card) and #91 (the reader retirement; the CodeQL race alert fixed by one no-follow
-descriptor read and never dismissed; lane A's records and item 6's Done line riding it). This
-commit is local on `records/director-12` and rides the next substantive pull request (owner's
-card, 2026-09-15); no records-only pull request opens for it. Lane A (Saffron turns Verdure,
-c39ad7) closed at 11:25Z, claim `f024e1f1` archived. Owner's cards answered this session (item
-109): the runbook's agent-time contract kept as written; closure todo 1's workflow-file clause
-dropped, in this commit. With the owner: the lineage curator's #145 rebudget (put at 10:42Z).
-Follow-on lists, none closure work: the exchange window's register rows (items 103, 104 and
-106 to 109); the seam move for the health probe's reads (CRLF, symlink enumeration, the
-unreadable surface and template, and the synchronous no-follow template read onto the shared
-`read-regular-file.ts`); the merge-bot follow-ons (the `mergeable=UNKNOWN` retry; a `pr-watch
-chain` bin; the merged branch's deletion, which `merge-bot merge` does not discharge); the 2b
-and item 4 follow-on lists (items 104, 106).
+**State at this wrap (2026-09-15, 11:51Z).** The transplant closure is complete on `main`: every
+item of the node's §Transplant closure carries its Done line and proof, item 6's in #91
+(`SHA: f8aab12`, merged by the bot at 11:24:10Z). Zero pull requests are open. Lane A (Saffron
+turns Verdure, c39ad7) closed at 11:25Z, claim `f024e1f1` archived; the Director's claim
+`1db07581` is closed at this wrap. The arc's closing records are on the coordination branch
+`coordination/2026-09-15-b9dcfb` in the primary checkout (items 109 and 110): two local commits
+from this seat (`SHA: f158ad7`, `SHA: b9dcfba`, `main` merged at `SHA: ce3713f`), and both
+seats' end-of-arc writes uncommitted on its working tree, for a later seat to commit, push and
+converge through the branch's own pull request (the owner's words, item 110). Until then
+`main`'s handoff and continuity contract still read "complete but #91". Owner cards answered
+this session: the runbook's agent-time contract kept; closure todo 1's workflow-file clause
+dropped (`SHA: f158ad7`, on the coordination branch); the lineage curator's #145 closed by its
+merge (item 110). Open card for the owner (item 110): required status checks for `main` (the
+ruleset; the settlement's checks leg implementing pr-lifecycle's homed rule that runs exist for
+the current head; or both). The owner's retrospective of the
+arc ran (item 111); its proposals are with the owner. Follow-on lists, none closure work: the exchange window's register
+rows (items 103, 104 and 106 to 110); the seam move for the health probe's reads (CRLF,
+symlink enumeration, the unreadable surface and template, and the synchronous no-follow
+template read onto the shared `read-regular-file.ts`); the merge-bot follow-ons (the
+`mergeable=UNKNOWN` retry; a `pr-watch chain` bin; the merged branch's deletion, which
+`merge-bot merge` does not discharge); the 2b and item 4 follow-on lists (items 104, 106);
+lane A's close-time follow-ons (its thread record's tenth waypoint): the cure's code-expert
+notes ride the seam move; `GEMINI.md`'s reviewer-roles line predates the generated
+`.gemini/agents/` adapters, and `CLAUDE.md` and `GEMINI.md` carry adapter-model sections
+beyond the entry-point pointer contract (the owner's move); lane A's residue branches and
+worktree wait for a later seat or the owner.
 
-**Boundary block (2026-09-15, 11:28Z).** Nothing session-scoped survives a compaction; verify by
+**Boundary block (2026-09-15, 11:51Z).** Nothing session-scoped survives a compaction; verify by
 id first and re-arm only what is absent:
 
-- The canonical watcher, per `.agent/rules/comms-all-channels-watcher.md`: `comms watch
-  --platform claude --model <the session's model> --supervisor-pid "$PPID" --step-timeout-ms
-  120000 --max-events-per-drain 100` under a 3600-second timeout, pre-checked by the process
-  table for a watcher under this session's pid, re-armed on exit 124, asserted with `comms
-  assert-watcher-live`; the claim heartbeat on `1db07581`. A `comms send` must name the model
-  on the claim's identity route (`claude-fable-5-1`) or it refuses as a colliding identity;
-  the session has run on `claude-opus-5` since the compaction. No ARC tail: lane A's channel
-  is closed.
-- No chain is armed, because no pull request is open. The recipe for the next one: request
-  the Copilot reviewer under the owner's CLI credential with a JSON body, wait for the review
-  bound to the tip by reading the reviews list, reply to and resolve each thread as the bot,
-  then `merge-bot merge --pr N --expect copilot-pull-request-reviewer --interval 30
-  --max-polls 60 --json`. Two review rounds bind; after round two, no push unless the Director
-  takes the correctness exception on a defect in the pull request's own claim, or a red check
-  needs a cure (#91): one comment by the bot after the LATEST review, one line per suppressed
-  finding in the ratified format (`**Below-bar** head SHA:<sha> · review <id> · <path>:<line> ·
-  item N of M — Rejected: <why>` or `— Cured in SHA:<sha>`), the seat's signature last, then
-  the poll alone. A finding on the pull request's own wording is cured in its title or
-  description with no push (#88).
-- Owed: `records/director-12` merged into the next substantive pull request's branch by
-  agreement with that lane, never opened alone; the owner's answer on the lineage curator's
-  #145.
+- Nothing is armed after this wrap: no claim, no watcher, no ARC tail, no chain, no pull
+  request. A successor Director re-arms through `start-right-team`: the canonical watcher per
+  `.agent/rules/comms-all-channels-watcher.md` (`comms watch --platform claude --model <the
+  session's model> --supervisor-pid "$PPID" --step-timeout-ms 120000 --max-events-per-drain
+  100` under a 3600-second timeout, pre-checked by the process table, re-armed on exit 124,
+  asserted with `comms assert-watcher-live`) and a new claim. A `comms send` must name the
+  model on the identity route its claim registered, or it refuses as a colliding identity.
+- The chain recipe for the next pull request: request the Copilot reviewer under the owner's
+  CLI credential with a JSON body, wait for the review bound to the tip by reading the reviews
+  list, reply to and resolve each thread as the bot, then `merge-bot merge --pr N --expect
+  copilot-pull-request-reviewer --interval 30 --max-polls 60 --json`. Two review rounds bind;
+  after round two, no push unless the Director takes the correctness exception on a defect in
+  the pull request's own claim, or a red check needs a cure (#91): one comment by the bot after
+  the LATEST review, one line per suppressed finding in the ratified format (`**Below-bar** head
+  SHA:<sha> · review <id> · <path>:<line> · item N of M — Rejected: <why>` or `— Cured in
+  SHA:<sha>`), the seat's signature last, then the poll alone. A finding on the pull request's
+  own wording is cured in its title or description with no push (#88).
+- Owed: the coordination branch `coordination/2026-09-15-b9dcfb`. A later seat commits its
+  uncommitted wrap writes by explicit pathspec (this seat's handoff, continuity contract,
+  register section, napkin block and letter; lane A's napkin block, thread-record tail and
+  letter tail), merges `origin/main`, pushes, and lands the branch through its own pull
+  request; it is due at the first session-open on or after 2026-09-16 UTC
+  (`coordination-branch-24h-lifetime`), and a fresh day-stamped branch is cut from the merged
+  tip. The retrospective record of 2026-09-15 (the agentic-engineering reports) and its row in
+  that directory's README are committed together: until the record is tracked,
+  `validate-markdown-links` reads the row as a broken link and `docs-validators:check` is red
+  on this working tree. The same commit carries the retrospective's additive corrections (the
+  efficiency guidance's closure addendum, the runbook's recorded outcomes, the napkin's
+  learning signal). The owner's card on required status checks. The retrospective's
+  proposals, with the owner (item 111).
 - The push slot: a seat asks, the Director confirms, the seat pushes and releases with one
   line. `git push origin --delete` runs the full pre-push hook and takes the slot (item 109);
   merged branches are deleted through the REST API.
+- The arc's homes: this record (§Current handoff state; items 1 to 110; the routing log);
+  `repo-continuity.md` §Next Safe Steps; the napkin's end-of-arc Director block (the loss
+  scan, the metaloss passes, the play and concept harvests); the register's 2026-09-15
+  section; `.agent/experience/2026-09-15-cauldron-herds-lustre-end-of-arc.md`; lane A's thread
+  record, napkin blocks and letter; the closure node's Done lines; the runbook's recorded
+  outcomes and the reports index (`.agent/reports/practice-transplant/README.md`).
 
-- Director: Cauldron herds Lustre (880ff9), claim `1db07581`, thread `transplant-closure`,
-  branch: `records/director-12`, local, based on `main` with `main` merged in at
-  `SHA: f8aab12`; it carries item 109 and the corrections from #88's round two; the Director
-  made one record pull request on the owner's word (item 7, #89, a recorded PDR-117
-  exception) and no source edits.
+- Director: Cauldron herds Lustre (880ff9), claim `1db07581` (closed at the end-of-arc wrap),
+  thread `transplant-closure`, branch: the coordination branch `coordination/2026-09-15-b9dcfb`
+  in the primary checkout (renamed from `records/director-12`, item 110), based on `main` with
+  `main` merged in at `SHA: f8aab12`; it carries items 109 and 110 and the corrections from
+  #88's round two; the Director made one record pull request on the owner's word (item 7, #89,
+  a recorded PDR-117 exception) and no source edits.
 - Controlling node: `.agent/plans/delivery/practice-completion.plan.md` §Transplant closure.
   Landed on `main`, every component: item 1 (archive deleted), item 2 (PR #53,
   `SHA: 55649a2`), item 3 (PR #56, `SHA: 1829cd4`), item 4 as bounded (PR #57, `SHA: 4a61112`;
@@ -147,10 +171,10 @@ id first and re-arm only what is absent:
   the evening) was found alive after the compaction that followed the 06:37Z non-terminal
   wrap; it was then stopped and re-armed in the canonical shape because it lacked the
   supervisor pid.
-- Next safe step (owner present; the closure complete): none inside the closure. The
-  `practice-two-way-exchange` node opens on the owner naming its window, and this seat's local
-  records ride the first substantive pull request after it; the graduation drain is curator
-  work (item 94).
+- Next safe step (owner present; the closure complete): the owner's decisions on the
+  retrospective's proposals (item 111); then a later seat converges the coordination branch (the boundary block);
+  the `practice-two-way-exchange` node opens on the owner naming its window; the graduation
+  drain is curator work (item 94).
 
 ## Live board
 
@@ -159,7 +183,7 @@ id first and re-arm only what is absent:
 | A | Landed: items 3 and 5 (5a-i to 5a-vi, 5b, 5c; 5a-v and 5c-ii in #90), item 6's generator (#81, #83, #84) and its retirement (#91, `SHA: f8aab12`), item 4's rows 3, 5 and 6 (#86, #87, #85), the rulings pull request #90 (the three PDR amendments, the definition report re-dated). Follow-ons on the lane record with their homes. | (released) | Saffron turns Verdure (c39ad7) | closed | `chore/reader-retirement` merged as PR #91 and deleted on both sides; `records/lane-a-checkpoint-4` merged through #91 | CLOSED 11:25Z (item 109) |
 | B | 6 | (handed back) `.agent/rules/**`, `RULES_INDEX.md`, the three rule-adapter trees, the rules-index and trigger generator, sub-agent adapter descriptions | Sirocco wakes Wingspan (45fe02) | closed | `closure/lane-b` merged as PR #55 at `SHA: 7127bc4` and deleted; `closure/lane-b-generator` at `SHA: d76bb86` on origin (2a fold conserved in the record) | STOOD DOWN 17:14Z; handed back: 2a, 2b, PR 3 (now routed to lane A after item 5) |
 | C | 4 then 7 | the definition report, `testing-strategy.md`, the substrate manifest's register declarations, the Gemini projection | Djinn hunts Solder (36720b) | closed | `closure/lane-c` and `closure/lane-c-restore` deleted (merged in #57; carried in #58); PR #59 closed as carried | STOOD DOWN 16:57Z; handed back: the restore, `sif`, five patterns, the Gemini projection after 2b, item 7 |
-| Director | 7 | reports index, runbook step 13, `provenance.yml` completion entry; merges | Cauldron herds Lustre | 1db07581 | records pull requests #54 to #88 merged, the last (`chore/director-records-11`) as PR #88 at `SHA: 30dba5e`; `records/director-12` local, riding the next substantive pull request | the closure complete; no lane routed |
+| Director | 7 | reports index, runbook step 13, `provenance.yml` completion entry; merges | Cauldron herds Lustre | closed | records pull requests #54 to #88 merged, the last (`chore/director-records-11`) as PR #88 at `SHA: 30dba5e`; the arc's closing records on `coordination/2026-09-15-b9dcfb`, converging through its own pull request | CLOSED at the end-of-arc wrap (item 110) |
 
 Sequencing constraints: none live. Lanes A, B and C are closed and every closure item is on
 `main`. When two seats share this host, pushes serialise, one gate at a time, for host load.
@@ -1482,7 +1506,7 @@ ones the Director would put to the owner had the owner been present.
      Copilot request, because it records #91's work (the owner's card on records). #88 round
      two (review `PRR_kwDORH1Wfc8AAAABNnwyKA` on `SHA: 8a03900`, 11:00:51Z): the scope thread
      cured in the title and description with no push; four suppressed findings signed
-     Rejected under the card's one push. Three were real and are corrected in this commit: two
+     Rejected under the card's one push. Three were real and are corrected on this branch (`SHA: f158ad7`, `SHA: b9dcfba`): two
      #89 times written as estimates (measured from GitHub: opened 21:13:46Z, the round-two
      commit 21:23:30Z), one bare commit reference, and the stale item-102 next-step bullet and
      board Director row. The fourth was not: the closure sentence already named item 6's
@@ -1505,10 +1529,133 @@ ones the Director would put to the owner had the owner been present.
      Verification contract keeps "elapsed agent time" as written (instance 1's wall span stands
      as its recorded upper bound; instance 2 instruments agent time before it starts); closure
      todo 1 drops the workflow file under `.agent/state/` (none exists at the pin; the restored
-     trees are the instrument), edited in this commit. The lineage curator's #145 rebudget
+     trees are the instrument), edited in `SHA: f158ad7`. The lineage curator's #145 rebudget
      stays with the owner. Lane A closed at 11:25Z: its remote branch deleted through the REST
      API, claim `f024e1f1` archived, its watcher stopped, its closing line on the ARC channel;
      its worktree stays, detached and clean, until its session exits.
+
+110. The end-of-arc wrap (2026-09-15, 11:33Z to 11:51Z; the owner's word: "a full and deep end of
+     arc handoff ... and then we reconvene to explore a deep, deep retro"). The owner corrected
+     the records home, received between the 11:33:38Z and 11:42:49Z clock reads: "the whole
+     point of coordination branches is to have a common home for things like wraps"; to lane
+     A, in its own session: "write to the coordination branch, a later seat will handle the
+     commit and push". This seat had written that its closing records, on a local
+     `records/director-12`, ride the next substantive pull request, and had approved lane A's
+     proposed `records/lane-a-close`: two private records branches beside
+     `coordination-branch-24h-lifetime`, whose step 5 already makes the primary checkout's own
+     branch the home of accruing shared state. Cure: the branch renamed in place to
+     `coordination/2026-09-15-b9dcfb` (the name minted by `agent-tools coordination
+     successor-name --base` at its tip `SHA: b9dcfba`; the working tree untouched;
+     `records/lane-a-close` never created). Its commits from this seat (`SHA: f158ad7`,
+     `SHA: b9dcfba`, `main` merged at `SHA: ce3713f`) are local and unpushed; both seats'
+     end-of-arc writes are on its working tree, uncommitted, for a later seat to commit and
+     push; the branch converges through its own pull request and is due at the first
+     session-open on or after 2026-09-16 UTC. A register entry is filed and the per-user
+     memory corrected. The lineage curator's #145 merged at 11:30:45Z by the curator's bot;
+     the curator's comment on it names "the owner's one-push raise", so the owner answered in
+     the curator's seat (reported by the curator, not observed here); that card is closed,
+     and the check-ins the owner asked for on 2026-09-14 end with this one. Lane A's
+     loss-scan finding, verified here: #91's exception tip `SHA: 20d8e50` (Copilot requested
+     23:11:08Z on 2026-09-14) ran no CI, CodeQL or Dependency Review; its check runs were
+     Vercel Preview Comments and the Copilot reviewer only. #90 had merged at 22:54:07Z and
+     left #91 conflicting on the register tail until lane A merged `main` (`SHA: 0d67f87`,
+     23:21Z), and GitHub runs no `pull_request` workflow for a pull request with a merge
+     conflict (GitHub's documented behaviour, not re-read today). That explains the missing
+     runs; the merge bot's conflict leg would have refused that tip, so lane A's
+     counterfactual (a merge without CI had the conflict not occurred) is not supported. The
+     general gap is confirmed and is the owner's: `main`'s one ruleset ("protect main")
+     carries deletion, Copilot code review and non-fast-forward, with no required status check
+     and no classic protection, and the settlement's checks leg
+     (`agent-tools/src/pr-watch/states.ts`, the CHECKS-RED and CHECKS-RUNNING clauses) names
+     no required check, so a tip whose workflows never trigger while it stays mergeable reads
+     green on those two check runs alone. Card: required status checks in the ruleset, the
+     settlement naming its required checks, or both. Residue read at the wrap:
+     `closure/lane-a-checkpoint` (`SHA: 64aa005`) differs from `main` by patch but its napkin
+     and thread-record text is on `main` (two probes), so nothing is stranded;
+     `closure/lane-a` has no unmerged patch; three local branches from before the arc carry
+     commits absent from origin (`docs/workspace-architecture-plan-family`,
+     `feat/visual-regression-workspace`, `main-local-pre-sync-2026-08-12`), unexamined; four
+     prunable worktree registrations in the system temporary directory, and a clean detached
+     `falsifier-2a` worktree at `SHA: 62bd5ff` (on `main`; its creator unverified). The
+     consolidation gate fires (the closure closed; the napkin over 1,650 lines) and is not
+     run here: the drain is curator work in batches (item 94), and the owner's retrospective
+     comes first. The formation letter is
+     `.agent/experience/2026-09-15-cauldron-herds-lustre-end-of-arc.md`; the loss scan, the
+     metaloss passes and the play and concept harvests are the napkin's end-of-arc Director
+     block. Disposition: the claim `1db07581` closed with evidence, the closing broadcast
+     sent, and the watcher stopped before these records were written. After lane A's done
+     message (11:51Z): the Director's claude-opus-5 identity row added to lane A's thread
+     record; lane A's four register candidates dispositioned (required checks: this item's
+     card; the coordination branch as the wrap home: the register's 2026-09-15 entry; a
+     documentation claim naming its proving cell: a napkin candidate, unvalidated, beside
+     item 108's guarantee finding; reading the tip's run list before a review request:
+     already homed, as pr-lifecycle's "CI can go SILENT" clause (MCP-373, homed
+     2026-07-31) requires a settle watch to confirm runs exist for the current head). The
+     settlement's checks leg does not implement that homed clause, which is the card's third
+     option.
+
+111. The arc's retrospective (2026-09-15, 14:45Z to 15:08Z; the owner's `/jc-retrospective` and
+     `/jc-parallax`). Run as a Parallax inquiry at standard depth, with one protected subagent
+     pass kept from this seat's framing; the record is the retrospective record of 2026-09-15
+     in the agentic-engineering reports, status provisional. Measured from primary sources:
+     about sixty agent-active hours across four seats (10.3 to #53, about fifty for the
+     closure); 38 merged pull requests; 133 Copilot reviews and 595 suppressed findings; 6,662
+     model calls and 8.35M output tokens; 145 owner messages and 97 card questions; about 17.6
+     hours of limit stalls in the lead seat's 78.6 wall hours. Causes: scope grew without a
+     re-estimate (the protected pass's first); records-only pull requests (12 of 38 merged,
+     1.4% of added lines, 56% of suppressed findings); cure by default with a Copilot request
+     per push (#62: twenty-one explicit requests in four hours; the ruleset does not review on
+     push); five seats, then two; instruments built inside the arc; both seats idle from
+     04:01Z to 06:04Z on 2026-09-14 (cause unverified); and, from this seat's pass only, owned
+     doctrine that did not fire at the seat's need (PDR-140 present from the transplant commit
+     and never applied to this estate's pull requests). Nine proposals carry warrants,
+     falsifiers and PDR-130 lanes (one slow-lane, review date 2026-12-15); none is routed before
+     the owner's word. Corrections applied additively: the efficiency guidance's "every pull
+     request after the ruling settled at two reviews" (six of eleven did); the runbook's
+     forty-six card questions (forty-four); this seat's own first counts (owner messages 417
+     for 145; Copilot reviews 123 for 133; token totals three to four times high, caught by the
+     protected pass). The record and its README row wait on the coordination branch for the
+     later seat's commit; until then the markdown-links leg reads the row as broken. The
+     owner's decisions at the retrospective (2026-09-16), recorded in the record's own
+     §Owner decisions: proposals 2 (PDR-140's intake declaration at open), 3 (re-cost at every
+     scope ruling) and 6 (start at two seats) adopted as operating defaults and filed on the
+     register; proposal 4 (the metrics bin) to be built before the next arc; proposal 7 held
+     for a second protected pass that may read the doctrine, running at this writing; proposal
+     9 both halves, of which the ruleset half is applied — `main` now requires `install`,
+     `static-checks`, `build-and-test`, `e2e`, `secret-scan` and `CodeQL` (strict policy off,
+     bypass actors still none) — and the settlement half is queued for an Implementer seat.
+     The owner replaced proposal 5 with a question that became proposal 10: a seat's own
+     compaction preparation trigger at 60% of the context window, percentage rather than
+     tokens "because token ceilings will change over time". Read at 2026-09-16: a seat cannot
+     compact itself and no hook can trigger a compaction or change a running session's
+     settings; `PreCompact` exists with `manual` and `auto` matchers but cannot block; the
+     auto-compact threshold is a token window (`autoCompactWindow`, `/autocompact`,
+     `--autocompact`, `CLAUDE_CODE_AUTO_COMPACT_WINDOW`; 100K to 1M; about 967K by default on
+     million-token models). The estate already receives `context_window.used_percentage` in the
+     statusline payload (logged raw when `PRACTICE_STATUSLINE_LOG_FILE` is set) and computes the
+     same figure in `agent-tools session-metadata`, whose zones carry the owner's taught curve;
+     the window registry lacks this arc's models (Opus 5, Fable 5.1 and the 1M variants).
+     The second protected pass on proposal 7 returned partly supported (2026-09-16): #62's body
+     declared PDR-140's intake contract and a settlement budget of one push, so the failure was
+     compliance at the action moment, not consultation at open, and the proposal is reframed —
+     a declared budget is enforced where it is spent. Instances 2 and 4 hold; instance 3 is
+     corroborated at 2026-09-15T11:37:07Z as a mid-turn message; doctrine firing was otherwise
+     the norm (seventeen PDRs and twenty-eight rules cited). Count correction, from the same
+     reading: the owner wrote 193 messages in this seat, not 145 (142 user turns plus 51
+     mid-turn `queue-operation` entries, a quarter of the total), and about 13.4 active hours,
+     not 11.1; the second pass's classification of owner corrections ran on the incomplete set
+     and is owed a re-run. Harness facts read at 2026-09-16: the session's only inbound surface
+     is the Unix socket `/tmp/cc-socks/<pid>.sock`, mode 0600, carrying peer messages into the
+     conversation, never commands; the harness process has no listening TCP port.
+     Owner's decisions on the second pass (2026-09-16): proposal 7 takes both lanes — the
+     push-time budget gate is built now and the general doctrine-placement question is filed to
+     the slow lane for 2026-12-15; the correction ratio is re-measured by one protected pass on
+     the corrected message set; and this seat builds the queued work (the settlement's required
+     checks, the metrics bin, the 60% preparation trigger, the window registry), the Director
+     and Implementer roles collapsing at one seat per `start-right-team` §Choose Temporary
+     Responsibilities. The records on the coordination branch are committed by this seat as the
+     later seat the owner named, by explicit pathspec, before any build work starts; work
+     products go to a worktree off `origin/main`, never the coordination branch.
 
 ## Routing log
 
@@ -1736,3 +1883,8 @@ ones the Director would put to the owner had the owner been present.
 - 2026-09-15 11:24Z: #91 merged (`SHA: f8aab12`); the transplant closure is complete on
   `main`, zero pull requests open; lane A closed at 11:25Z (item 109). §Current handoff state
   is current.
+- 2026-09-15 11:51Z: the end-of-arc wrap; the arc's closing records on
+  `coordination/2026-09-15-b9dcfb`, for a later seat to commit, push and converge (item 110).
+  §Current handoff state is current.
+- 2026-09-15 15:08Z: the arc's retrospective recorded (item 111); its proposals are with the
+  owner. §Current handoff state is current.

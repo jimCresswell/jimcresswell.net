@@ -1,3 +1,9 @@
+> **RETIRED — thread completed 2026-09-15.**
+> Lane A closed when #91 merged (`SHA: f8aab12`, 2026-09-15 11:24:10Z): every closure item lane
+> A owned is on `main`, listed with merge SHAs in the tenth waypoint at the foot of this record.
+> Retained as continuity history; not a live lane. Not listed in `repo-continuity.md` Active or
+> Paused threads.
+
 # Thread: closure-lane-a — instruments activated, lineage residue off the live surfaces
 
 **Thread identity.** Lane A of the transplant closure (node
@@ -57,7 +63,11 @@ quick coordination native; state on the comms stream.
 ## Participating agent identities
 
 - Director: Cauldron herds Lustre (880ff9), 2026-09-13.
-- Implementer: Saffron turns Verdure (c39ad7), claude / claude-fable-5-1, 2026-09-13.
+- Director: Cauldron herds Lustre (880ff9), claude / claude-opus-5, 2026-09-15 (the same session
+  after the model switch; the row above is its claude-fable-5-1 identity).
+- Implementer: Saffron turns Verdure (c39ad7), claude / claude-fable-5-1, 2026-09-14.
+- Implementer: Saffron turns Verdure (c39ad7), claude / claude-opus-5, 2026-09-15 (the same
+  session after the owner switched the model; the identity resolves unchanged).
 
 ## Landing target for the next session
 
@@ -1193,3 +1203,235 @@ the Director's go and the push slot followed at 10:58Z, from its own restarted s
 
 The ninth waypoint cannot name #91's merge SHA: it rides the pull request whose merge it
 would name. `main`'s merge commit for #91 is the record of the close.
+
+## Tenth waypoint (2026-09-15, 11:44Z): the lane closed; the end-of-arc wrap (Saffron turns Verdure, c39ad7)
+
+The owner lifted the compaction freeze at 10:52Z (`/jc-start-right-team`, no arguments; this
+seat read it as the lift and told the owner so, with a window to stop the push; no stop came).
+The Director gave the go and the push slot at 10:58Z. #91 merged at 11:24:10Z. The lane closed
+at 11:26Z. The owner then asked for a full, deep end-of-arc handoff; this waypoint is its
+record, and the session ends after it. Nothing is pending for a successor on this lane.
+
+### The closed state (read on `main` at `SHA: f8aab12`)
+
+- #91 (the reader retirement and its red-check cure) merged by the merge bot on SETTLE-READY,
+  `SHA: f8aab12`, 2026-09-15T11:24:10Z, grounds verbatim: "every expected reviewer leg settled;
+  no expected reviewer requested; no live run observed"; "copilot-pull-request-reviewer:
+  SATISFIED — review binds current tip"; "0 suppressed finding(s)".
+- CodeQL on the cure tip `SHA: fdc5d865`: all 11 checks SUCCESS; alert #7's most recent
+  instance on `refs/pull/91/merge` reads `fixed`, `dismissed_by` null.
+- Copilot's review on that tip (`PRR_kwDORH1Wfc8AAAABNn-QVw`, 11:21:26Z), verbatim: "Changes
+  recommended. Template-name validation still accepts names ending in JavaScript line
+  terminators." One inline finding (`$` in `ADAPTER_NAME` matching before a final line
+  terminator), Rejected below-bar as the bot at 11:22:58Z with a node probe and resolved:
+  without the `m` flag a JavaScript `$` asserts the end of input only; `"alpha\n"`, `"alpha\r"`,
+  `"alpha "` and `"alpha "` fail `/^[a-z0-9]+(?:-[a-z0-9]+)*$/u`, `"alpha"` passes.
+- Merge SHAs read from GitHub at this wrap for the pull requests lane A's records name as its
+  own: #56 `SHA: 1829cd49` (item 3), #60 `SHA: 4370e04f` (the per-checkout e2e port), #77
+  `SHA: 0e70a2bd` (2b-i), #81 `SHA: d660ac7a`, #83 `SHA: aba2c0e3`, #84 `SHA: b17fee84`
+  (2b-ii), #85 `SHA: eed1f2e7` (row 6), #86 `SHA: 47299c73` (row 3), #87 `SHA: 6b5676bd`
+  (row 5), #90 `SHA: a47a559c` (the report and rulings), #91 `SHA: f8aab12a` (item 6's
+  retirement condition). Item 5's slices and the merge-bot cures are named with their SHAs in
+  the second to fifth waypoints above; this list does not re-derive them.
+- Item 6's Done line is in `.agent/plans/delivery/practice-completion.plan.md` (`SHA: fdc5d865`
+  on #91), no merge SHA in it by the Director's word.
+
+### The Director's rulings this segment, quoted (native messages; this is their durable home for lane A)
+
+- The go (10:58Z): "This push counts as the red-check cure, not a third review round, so it
+  cures nothing beyond CodeQL alert #7." And: "If the alert still fires, stop and report to
+  me; do not try a second shape and never dismiss the alert."
+- On this seat's two additions (11:0xZ): "Ruling on the two additions: keep both. They sit
+  inside alert #7's cure." With one condition on `O_NONBLOCK`: "It has no cell, so the header
+  must not claim it as a guarantee."
+- On the records: "merging records/lane-a-checkpoint-4 into chore/reader-retirement is the
+  right form, since it keeps 73d7e8c7 and never rewrites. Resolve any napkin or lane-file
+  conflict by keeping both sides."
+- On item 6: "item 6's Done line belongs in #91, because it records #91's work." And: "It is
+  one commit and one more push inside your slot, and it goes before the Copilot request, so it
+  adds no review round."
+- On the remote branch: "Delete origin/chore/reader-retirement through the REST API as the bot
+  ... No slot is needed, because nothing runs on the host ... Do not fall back to git push.
+  Read the ref back as absent afterwards."
+- The close: "That is lane A's true close, and I route nothing more."
+
+### The owner's words at the close, verbatim
+
+- "write to the coordination branch, a later seat will handle the commit and push" (the wrap's
+  records home; it replaced a local records branch this seat had proposed minutes earlier,
+  which was never created).
+- Through the Director: "the whole point of coordination branches is to have a common home for
+  things like wraps". The primary checkout's branch was renamed in place to
+  `coordination/2026-09-15-b9dcfb` (minted by `agent-tools coordination successor-name`).
+
+### Found at the wrap: the merge gate admits a tip no CI ran on (routed to the Director at 11:3xZ for the owner)
+
+Observed:
+
+- `gh run list --branch chore/reader-retirement`: the exception-push tip `SHA: 20d8e50d`
+  (2026-09-14, about 23:1xZ) has no CI, CodeQL or Dependency Review run; only Copilot ran.
+  Its check runs are exactly "Vercel Preview Comments=success,
+  copilot-pull-request-reviewer=success". No commit message on `36c5a7c8..20d8e50d` carries a
+  skip marker. Why the workflows did not trigger is unknown (not investigated).
+- The lstat-then-read race entered in `SHA: 36c5a7c8`, inside that push; CodeQL first analysed
+  it on the merge-from-main tip `SHA: 0d67f873` (23:22Z), which raised alert #7.
+- GitHub requires no status check on `main`: the one ruleset, "protect main", carries
+  `deletion`, `copilot_code_review` and `non_fast_forward`; classic branch protection answers
+  404 "Branch not protected".
+- The settlement's checks leg (`agent-tools/src/pr-watch/states.ts:81-99`) is CHECKS-RED on
+  any failure and CHECKS-RUNNING on pending or zero passed; it names no required check.
+
+Inference from reading the code, not observed: on `20d8e50d` the checks leg would have read
+two passed, none pending. Had #91 not gone CONFLICT-DIRTY on the register tail, a SETTLE-READY
+merge without CI or CodeQL was possible if the other legs settled. The decision (required
+status checks in the ruleset, or the settlement naming its required checks, or both) is the
+owner's; the Director holds it.
+
+### Grounded execution knowledge (this segment; facts a sub-agent verified are marked)
+
+- CodeQL `js/file-system-race` (read from the query source by the code-expert, whose context is
+  gone): `openSync` and `fstatSync` count as checks and `readFileSync` as a use; a use whose
+  path argument flows from an `openSync` handle is excluded, so a read from the descriptor
+  never matches; `existsSync` followed by `readFileSync` is excluded by design
+  (`core/health-probe-shared.ts:49-53` is that shape and is not flagged).
+- Open flags: `O_NOFOLLOW` on a symlinked leaf fails the open with `ELOOP` on Linux and macOS;
+  FreeBSD reports `EMLINK` (code-expert). Windows has neither `O_NOFOLLOW` nor `O_NONBLOCK` at
+  runtime although Node's types declare both: read them through
+  `Partial<Record<'O_NOFOLLOW' | 'O_NONBLOCK', number>>` with `?? 0`, as
+  `skills-adapter-generate/read-regular-file.ts` does. A unix socket carrying a template name
+  now fails at the open with `ENXIO` (Linux) or `EOPNOTSUPP` (macOS) where the old `lstat`
+  refused it as not a regular file (code-expert).
+- The adapter leg refuses a linked leaf on Windows too: `rule-surface-fs.ts:10-13` reads
+  through `read-regular-file.ts:56-71`, which checks device and inode after the open
+  (code-expert, verified against the header's guard claim).
+- A fifo cannot be made in a test here: `no-real-io-in-tests` bans `child_process`
+  (`tooling/eslint/src/rules/no-real-io-in-tests.ts:85-86`), and Node has no in-process mkfifo.
+- The worktree isolation guard refuses a `node -e` with an inline program and a shell loop that
+  names git; a script file in the session scratchpad runs.
+- The Copilot request's REST answer lists the requested users already present (it printed
+  `jimCresswell`), not Copilot; the timeline's `review_requested` event is the read-back.
+- The merge bot: `pnpm --silent agent-tools merge-bot merge --pr <n> --expect
+  copilot-pull-request-reviewer`; it mints its own merge token and does not run the merge-base
+  deletion sweep (run it first). A thread reply as the bot: REST `POST
+  pulls/<n>/comments/<id>/replies`; resolve through GraphQL `resolveReviewThread` under the
+  bot's pull-request-work token.
+- A merged remote branch is deleted with REST `DELETE git/refs/heads/<branch>` under the bot's
+  pull-request-work token (exit 0, `git ls-remote` empty afterwards); `git push --delete` fires
+  the full pre-push hook on the host (the Director's 11:04Z instance ran inside this seat's
+  slot).
+
+### Follow-ons added at the close, each with its home
+
+1. The merge gate above: owner decision, held by the Director (routed 11:3xZ).
+2. `GEMINI.md` says "Reviewer roles remain canonical in `.agent/sub-agents/templates/`; read the
+   template for the role directly", while 23 generated adapters sit under `.gemini/agents/`
+   since lane A's row 8 work; `CLAUDE.md` and `GEMINI.md` each carry an adapter-model section
+   beyond the entry-point pointer contract (`session-handoff` step 6d). Not edited here: a work
+   product does not ride the coordination branch. Home: the Director's routing.
+3. The cure's code-expert notes not taken (verdict "NOTES"): a throwing `closeSync` escapes the
+   `Result` (the async precedent shares the shape at `read-regular-file.ts:114`); an `ELOOP`
+   from an ancestor loop swapped in after the listing is reported as "not a regular file" (the
+   entry is still refused; only the message is imprecise); a focused security-expert pass on
+   the cure was named as worth having. Home: the seam move below, which replaces this reader.
+4. The seam move (the health probe's reads onto the shared no-follow primitive), carried from
+   the eighth and ninth waypoints, now also carries item 3's notes and the Windows identity
+   arm.
+5. Local residue, all content verified on `main`, for a later seat or the owner to delete:
+   `closure/lane-a` at `2356b2bd` (`git cherry` reads its one commit as patch-equivalent on
+   `main`; its origin ref is gone) and `closure/lane-a-checkpoint` at `64aa0056` (`git cherry`
+   reads `+`, but both sampled added lines, the 15:35Z waypoint heading and its napkin text, are
+   on `main` through `records/lane-a-checkpoint-2`), each needing `git branch -D`;
+   `records/lane-a-checkpoint-2` and `fix/pr55-rule-name-boundary` are merged (`-d`).
+6. This seat's worktree (`closure-lane-a`, detached at `f8aab12a`, clean) is removed after the
+   session exits, from the primary checkout (`worktree-hygiene`).
+
+### Records home at the close
+
+Written by this seat into the coordination branch's working tree (the primary checkout,
+`coordination/2026-09-15-b9dcfb`), uncommitted, append-only where the Director also writes: the
+retirement banner at the top of this record, the new identity row, this waypoint, napkin
+segment fifteen, and the letter's end-of-arc addendum. No git command was run in that tree.
+A later seat commits and pushes them.
+
+### Work safety at the close (evidence)
+
+- This worktree: `git status --branch --short` prints `## HEAD (no branch)` and nothing else,
+  at `SHA: f8aab12a`.
+- `chore/reader-retirement` (was `fdc5d865`) and `records/lane-a-checkpoint-4` (was `73d7e8c7`)
+  deleted locally with `git branch -d`; both tips are ancestors of `origin/main`; the origin
+  branch deleted through the API and read back absent.
+- No stash entry names this seat. Claim f024e1f1 closed at 11:26:00Z and archived. The comms
+  watcher stopped by `TaskStop`; the process table shows no watcher, wait or poll of this
+  session.
+- `main` at `SHA: f8aab12a`: 7 check runs, all success (e2e, build-and-test, static-checks,
+  secret-scan, both Analyze jobs, install). `pnpm check` is the Director's single run for the
+  window, after both seats' appends (`check-singleton-per-window`).
+
+### Promises sweep (this segment)
+
+- One native message to the Director before any act after the lift: discharged 10:53Z.
+- Read #91's alert and checks before touching code: discharged 10:53Z.
+- No push before the Director's confirmed word: discharged (go 10:58Z; pushes 11:07Z, 11:09Z).
+- To the owner, a stop window before the push: offered; no stop came.
+- A state line to the Director every 120 seconds of a long turn: kept from 11:0xZ; the first
+  stretch after the go (10:58Z to the first state line at 11:0xZ, the cells and three mutant
+  runs) ran past 120 seconds without one.
+- Record the push on the ARC channel and release the slot in one line: discharged at 11:1xZ.
+- Signed lines on the cure tip's review, then the poll: discharged 11:22Z to 11:24Z.
+- The post-merge queue of the ninth waypoint (branches, ARC line, claim, watcher): discharged
+  by 11:26Z.
+- Name a records branch tip to the Director: superseded by the owner's word; the branch never
+  existed; the Director was told.
+- Send the Director the appended paths and the napkin line count when done: discharged in the
+  final message of this session.
+
+### Compressed reasoning, attribution inferences, blind spots
+
+- Compressed: `O_NONBLOCK` was added because removing the `lstat` pre-check would remove the
+  refusal that kept a fifo from blocking a synchronous open; that reasoning lives in
+  `SHA: 3c20a391`'s body and here, decision-sufficient. The Windows identity arm was left out
+  because the reader is new in #91 (no regression against `main`) and the adapter leg is the
+  guard; the code-expert verified that guard claim.
+- Inference, flagged: the settlement could have merged `20d8e50d` (above). Who pushed
+  `20d8e50d` and why no workflow triggered were not observed by this seat.
+- Inference, flagged: `falsifier-2a` (a worktree at `62bd5fff`, on `main`) is read as lane B's
+  from its commit subject; its working tree was not inspected (the isolation guard refuses git
+  outside this worktree).
+- Bound: this wrap's loss scan covers the segment after the last compaction; the earlier
+  segments were scanned at the earlier waypoints and survive in this session's transcript only
+  through the compaction summary.
+- Bound: the canonical comms watcher ran 10:52Z to 11:26Z and surfaced one event (the
+  Director's team-start broadcast at 10:59:25Z); events outside that window were not seen.
+- Bound: the code-expert's verified facts survive only as conserved above; its context is gone.
+- Fence sweep: no owner word was held off the repository in this segment's context; fences from
+  earlier segments, if any, were swept at those waypoints.
+
+### Index of homes
+
+This waypoint and the banner; napkin segment fifteen (the loss-scan and metaloss findings, the
+play harvest, the exploration's proposals as candidates); the letter under
+`.agent/experience/`; the body of #91, its commit bodies (`3c20a391`, `51bfd784`, `a5551f3a`,
+`fdc5d865`) and its one thread reply; the ARC channel's entries at 11:1xZ (the push) and 11:25:22Z (the close); the per-user
+memory index for this repository (entries updated at this wrap); the Director's own records
+for the merge-gate finding. Not durable: the session scratchpad (scripts, drafts).
+
+### Fixed point
+
+A further pass would only re-find the merge-gate gap, the unknown workflow trigger on
+`20d8e50d`, and the entry-point drift, each named above with its holder. The recursion closes
+here.
+
+### Correction to the tenth waypoint (2026-09-15, 11:48Z)
+
+The Director checked the merge-gate finding and corrected its counterfactual. The missing
+workflow runs on `20d8e50d` have a cause: #90 merged at 22:54:07Z and left #91 in conflict on
+the register tail until the merge of main at `SHA: 0d67f873` (23:21Z), and GitHub runs no
+`pull_request` workflows for a pull request with a merge conflict (documented behaviour, the
+Director's reading, consistent with the times read here). The inference above therefore does
+not hold: without the conflict the workflows would have run, and with it the settlement's
+conflict leg refuses the tip. #91 was never at risk of merging unanalysed, and the unknown
+about the missing runs is resolved. The general gap stands and is the owner's decision, carried
+by the Director as a card (handoff item 110): a tip whose workflows never trigger while it
+stays mergeable reads green on Vercel and Copilot alone. The behaviour change sharpens: a pull
+request in conflict runs no CI, so cure the conflict before requesting a review round or
+reading its checks.

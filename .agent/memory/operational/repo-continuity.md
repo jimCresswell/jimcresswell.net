@@ -59,10 +59,11 @@ names a live branch):
   retire under item 5: `validate-ratified-lists`. Not re-checked today: the fitness vocabulary
   in the `practice-fitness` sources.
 
-- Deep consolidation status: **due — closure session 2, the owner's cards** (node item 8):
-  the session's captures are filed on the pending-graduations register (PR #63); the cards,
-  the graduations and the two archive gates are in
-  `threads/session-2-synthesis.next-session.md`.
+- Deep consolidation status: **due — the transplant closure (a plan milestone) closed on
+  2026-09-15**, and the napkin holds the arc's segments at over 1,650 lines. It was not run at
+  the end-of-arc wrap: the graduation drain is curator work in batches (the Director's handoff
+  item 94), and the owner's retrospective comes first. Session 2's cards and archive gates are
+  in `threads/session-2-synthesis.next-session.md`.
 - The generators: lane B's PR #55 (item 6, PR 1) landed the frontmatter sweep; the rules-index
   and trigger generator remains item 6 part 2a (`closure/lane-b-generator` at `SHA: d76bb86`);
   the sub-agent adapter generator (2b) and 2a are handed back to the Director
@@ -91,6 +92,8 @@ names a live branch):
 
 - OCE Practice lineage transplant — closure (Director: Cauldron herds Lustre, `director-handoff.md`;
   lane A, Saffron turns Verdure, `threads/closure-lane-a.next-session.md`): complete; lane A closed 2026-09-15.
+  Identities: claude / claude-opus-5 / Cauldron herds Lustre / director / 2026-09-15;
+  claude / claude-opus-5 / Saffron turns Verdure / implementer / 2026-09-15.
 - Closure session 2's synthesis (`threads/session-2-synthesis.next-session.md`): the cards were
   answered 2026-09-14 (the Director's handoff item 78); the graduation drain is curator work.
 
@@ -111,10 +114,17 @@ and proof (item 4's rows closed by #85 `SHA: eed1f2e`, #87 `SHA: 6b5676b`, #86
 8 filed in #63 with the cards answered). The compiled record is
 `.agent/reports/practice-transplant/README.md` §The record, compiled. Live now, in order:
 
-1. The Director's handoff `.agent/memory/operational/director-handoff.md` §Current handoff state
-   is the resume contract: no pull request open; the Director's local records
-   (`records/director-12`) ride the next substantive pull request, never a records-only one
-   (owner's card, 2026-09-15); the lineage curator's #145 rebudget is with the owner.
+1. The owner's retrospective of the arc comes first (invoked at the end-of-arc wrap,
+   2026-09-15). The coordination branch `coordination/2026-09-15-b9dcfb`, the primary
+   checkout's own branch, carries the arc's closing records, committed and uncommitted: a later
+   seat commits them, merges `main`, pushes and lands the branch through its own pull request;
+   it is due at the first session-open on or after 2026-09-16 UTC. The Director's handoff
+   `.agent/memory/operational/director-handoff.md` §Current handoff state is the resume
+   contract. The owner's card on required status checks closed at the retrospective: `main`'s
+   ruleset requires `install`, `static-checks`, `build-and-test`, `e2e`, `secret-scan` and
+   `CodeQL` since 2026-09-16, and the settlement naming its own required checks is queued for
+   an Implementer seat, with the arc's metrics bin (before the next arc) and the 60%
+   compaction-preparation trigger of the retrospective's proposal 10.
 2. The `practice-two-way-exchange` node (ratified 2026-09-14) is the next Practice work and
    opens on the owner naming its window; the closure's routed findings (the exchange-window
    items on #84, #86, #89, #90 and #91; the hold's second lifting path; the boundary

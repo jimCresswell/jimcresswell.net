@@ -179,6 +179,23 @@ PR #75 carried them (pr-lifecycle's reviewer-set clause names the Codex connecto
 and the plan-templates README carry the decision-log sentence). The commits and the homes are
 the record. -->
 
+- **Owned doctrine is placed where the situation arises, not only where the instrument's ceremony lives**
+  `[captured: 2026-09-16 | source: the arc's retrospective and its second protected pass: four
+  situations the arc met were answered by doctrine already in the tree (PDR-140's response
+  pricing, the 2026-07-15 handover ruling, the coordination branch's home clause, pr-lifecycle's
+  silent-CI clause), each surfacing through the owner or a peer; the pass found doctrine firing
+  was otherwise the norm (seventeen decision records and twenty-eight rules cited) and that
+  #62's failure was compliance at the action moment, not consultation at open | owner's card
+  2026-09-16 filing it to this lane | review: 2026-12-15]`
+  Concept: an estate that imports or accumulates doctrine faster than it places it leaves rules
+  that read correctly and fire nowhere; the placement question is whether a general mechanism is
+  needed (triggers keyed to the seat's situation) or whether per-instrument gates suffice.
+  Prediction, by the review date: with the per-instrument gates now adopted (PDR-140's
+  declaration at open, the push-time budget gate, records riding their pull request), owner
+  corrections that already-owned doctrine answered fall to at most one per arc. Falsifier: two
+  or more such corrections in any arc after the gates land, which would show the gates are too
+  narrow and a general placement mechanism is needed.
+
 ## Entries
 
 Every entry is an inline-bracket block the item-count parser counts (schema:
@@ -541,3 +558,71 @@ under ratified text, frames a question to the owner, adds process, and consolida
   Prediction: no seat classes a bot commit unsigned from a local readout in the next ten
   sessions. Home read: no allowed-signers text under .agent/reference/; merge-bot.md lines 273
   to 274 use signature in another sense.
+
+### Captured at the end of the transplant closure (2026-09-15, the Director's end-of-arc wrap)
+
+- **Wrap records go to the coordination branch; no seat mints a private records branch**
+  `[captured: 2026-09-15 | source: owner correction 2026-09-15 ("the whole point of
+  coordination branches is to have a common home for things like wraps"; to lane A, "write to
+  the coordination branch, a later seat will handle the commit and push"), after the Director
+  named its records branch records/director-12 to ride a later substantive pull request and
+  approved lane A's records/lane-a-close; the Director's handoff item 110 | target:
+  session-handoff step 2 (beside the 2026-07-15 handover ruling and its local amendment) and
+  the wrap skill's step 2 (the work-safety evidence names the coordination branch as the
+  wrap's home) | trigger: the owner's word (fired) | size: S | status: due]`
+  Prediction: the next two wraps in this estate write to the primary checkout's day-stamped
+  coordination branch, and neither mints a records branch nor proposes a records pull request.
+  Home read: session-handoff step 2 carries the handover-commit and handover-PR ruling and the
+  2026-09-13 compaction amendment and names no coordination branch;
+  `coordination-branch-24h-lifetime` step 5 makes the primary checkout's own branch the home
+  of accruing shared state, but its trigger is the branch-cut ceremony, not a wrap; the wrap
+  skill names no branch.
+
+- **Delete a merged branch through the REST API; a push-based delete runs the full pre-push gate**
+  `[captured: 2026-09-15 | source: the Director's handoff item 109, the Director deleted #88's
+  branch with git push inside lane A's push slot and the pre-push hook ran the full gate on
+  the shared host (green); lane A deleted #91's branch through the REST API with no hook |
+  target: pr-lifecycle (its "merge without the flag and delete the branch separately" line
+  gains the method: DELETE on git/refs/heads/<branch> through the API, never a push, on a
+  shared host) | trigger: a verified tool behaviour and an in-session miss (fired) | size: S |
+  status: due]`
+  Prediction: no push-slot overlap from a branch deletion in the next ten sessions. Home read:
+  pr-lifecycle's merge section says to merge without `--delete-branch` and delete the branch
+  separately, with no method; `merge-bot merge` prints that the merge-base deletion sweep is
+  not discharged; neither names the pre-push hook.
+
+### Ruled at the arc's retrospective (2026-09-16, the owner's cards)
+
+- **A prose or records pull request declares its intake at open, and a review is requested once per settlement push**
+  `[captured: 2026-09-16 | source: the arc's retrospective (the agentic-engineering reports,
+  2026-09-15): pull request #62 took twenty-one explicit Copilot requests in four hours while
+  PDR-140 sat in this estate from the transplant commit, never applied to its own pull
+  requests; owner's card 2026-09-16 adopting proposal 2 | target: pr-lifecycle (the open step
+  carries PDR-140 clause 3's declaration: artefact class, verification point, settlement
+  budget) and the merge-bot reference (one review request per settlement push) | trigger: the
+  owner's card (fired) | size: M | status: due]`
+  Prediction: the next ten declared prose or records pull requests average three Copilot
+  reviews or fewer. Home read: PDR-140 clause 3 binds the declaration at pull-request open and
+  is unreferenced by pr-lifecycle's open step; the merge-bot reference describes requesting a
+  review, not rationing it.
+
+- **A scope ruling is re-costed in measured agent-hours before work continues**
+  `[captured: 2026-09-16 | source: the arc's retrospective: sixteen ruling rounds and eight
+  closure items with no restated cost, about sixty agent-hours against an opening hour; owner's
+  card 2026-09-16 adopting proposal 3 | target: the plan skill (a re-cost step when a ruling
+  widens a ratified scope) and the start-right-team route | trigger: the owner's card (fired) |
+  size: S | status: due]`
+  Prediction: the next ratified scope expansion carries a restated cost in agent-hours before
+  the work starts, and the owner's decision records the bound. Home read: the plan skill's
+  acceptance and sequencing sections carry no re-estimation step; PDR-026 governs the landing
+  commitment, not the cost of a widened scope.
+
+- **A multi-seat arc starts at two seats and widens only on measured throughput**
+  `[captured: 2026-09-16 | source: the arc's retrospective: four seats ran at 3.8 seat-hours per
+  merge against 0.95 at two, and lanes B and C handed most of their items back; owner's card
+  2026-09-16 adopting proposal 6 | target: PDR-082 (an operating default beside the n=2 mode)
+  and start-right-team §Choose Temporary Responsibilities | trigger: the owner's card (fired) |
+  size: S | status: due]`
+  Prediction: the next multi-seat arc opens at two seats, and any widening cites measured
+  seat-hours per merge. Home read: PDR-082 defines the n=2 mode's drop and retain sets but no
+  starting default; start-right-team's role section names seat cost without a measured test.
