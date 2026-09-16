@@ -94,28 +94,25 @@ API Schema → SDK Generation → Type-safe Usage → Runtime Validation
 
 ### Base Configuration (`tsconfig.base.json`)
 
-```json
-{
-  "compilerOptions": {
-    "erasableSyntaxOnly": true,
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "moduleResolution": "bundler",
-    "target": "ES2023",
-    "module": "ESNext"
-  }
-}
-```
+Strictness is defined once, in `tsconfig.base.json`, and every tsconfig in the
+repository extends it — directly, or through its workspace's `tsconfig.json`.
+A workspace config adds only what its runtime needs (the site's DOM `lib`, JSX
+and Next plugin; a build config's `outDir`); it never restates or relaxes a
+strictness flag. Read the base file for the current set rather than a copy here.
 
 ### Key Compiler Flags
 
-- **strict**: All strict checks enabled
-- **noUnusedLocals/Parameters**: No dead code
-- **noImplicitReturns**: Explicit returns required
-- **erasableSyntaxOnly**: Custom flag for compile-time only features
+- **strict**: every check in TypeScript's `strict` family
+- **noUnusedLocals / noUnusedParameters**: no dead code
+- **noImplicitReturns / noFallthroughCasesInSwitch**: every path returns or
+  breaks explicitly
+- **noImplicitOverride**: an overriding member says `override`
+- **allowUnreachableCode / allowUnusedLabels** (both `false`): unreachable code
+  and unused labels are errors
+- **erasableSyntaxOnly**: only syntax that type stripping can erase — no enums,
+  namespaces or parameter properties — so Node can run the source directly
+- **verbatimModuleSyntax**: type-only imports and exports are marked `type`, so
+  what stays in the emitted module is exactly what was written
 
 ## Architectural Patterns to Enforce
 
