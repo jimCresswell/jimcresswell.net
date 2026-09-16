@@ -70,7 +70,9 @@ this wrap's commit, all LOCAL: the branch has never been pushed and is due to co
 starting at two seats are operating defaults; proposal 7 takes both lanes; required status checks
 are on `main`'s ruleset since 2026-09-16 and the settlement's half is queued. Open with the owner:
 nothing blocking. Follow-on lists unchanged from item 111, plus: the settlement naming its
-required checks, the 60% compaction-preparation trigger, and the push-time settlement-budget gate.
+required checks, the compaction-preparation trigger (the owner's combined
+design of 2026-09-16: a nudge at 60%, the auto-compact window at 70%, a blocking `PreCompact`
+gate with a third-attempt valve — item 113), and the push-time settlement-budget gate.
 
 **Boundary block (2026-09-16, 12:3xZ).** Nothing session-scoped survives a compaction; verify by
 id first and re-arm only what is absent:
@@ -90,7 +92,8 @@ id first and re-arm only what is absent:
   merged tip. Its content includes the retrospective record and its README row, which must be
   committed together or `validate-markdown-links` reads the row as broken. (3) The three queued
   builds: the settlement naming its required checks, the 60% preparation trigger, the push-time
-  budget gate.
+  budget gate — the compaction trigger now built to the owner's combined design of 2026-09-16
+  (the retrospective's §Proposal 10, revised; the Director's item 113).
 - The chain recipe for a pull request: request the Copilot reviewer under the owner's CLI
   credential with a JSON body, wait for the review bound to the tip by reading the reviews list,
   reply to and resolve each thread as the bot, then `merge-bot merge --pr N --expect
@@ -1709,6 +1712,26 @@ ones the Director would put to the owner had the owner been present.
      its observation that a line ceiling selects against the longest comment rather than the
      least load-bearing one. A check it prompted found one of my own follow-ups living in a
      single tracked home: the push-time budget gate, now added to the continuity contract.
+
+113. The compaction-trigger design settled by the owner (2026-09-16, after the wrap). With
+     `PreCompact`'s blocking power established from the binary, the owner combined both halves:
+     a hook that reads the percentage occupancy after a prompt and does nothing below 60% or
+     instructs the seat to prepare above it; auto-compact set to 70%; and a `PreCompact` hook
+     that cancels while the preparation has not recently completed, with a safety valve that
+     lets the compaction through on the third attempt. Recorded in full as the build's contract
+     in the retrospective's §Proposal 10, revised: the shared bounded-tail occupancy read (the
+     existing `session-metadata` reads whole transcripts, and this arc's reach 76MB, so it gains
+     a `--transcript` form); the nudge on `UserPromptSubmit` with `Stop` as the backstop for
+     long autonomous stretches, idempotent per crossing; the window computed per model because
+     the setting takes tokens and the intent is a percentage; the gate's two allow conditions
+     (preparation after the last compaction, and within about fifteen points of the current
+     occupancy) with a named refusal and a fail-open discipline on every error path; and the
+     marker as instance-tier per-session state. Four unknowns are probed before building, not
+     assumed: `SKIP_PRECOMPACT_THRESHOLD`'s semantics, whether `.precompact.json` (a session's
+     project-level sibling file, per the binary's own validation text) carries attempt state,
+     whether `SessionStart` names a compaction as its source, and whether hooks fire in subagent
+     sessions. Four falsifiers are named, the sharpest being that a hook error blocking a
+     compaction would make the design more dangerous than the problem it solves.
 
 ## Routing log
 

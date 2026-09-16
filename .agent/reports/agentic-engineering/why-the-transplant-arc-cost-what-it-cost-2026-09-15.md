@@ -464,3 +464,62 @@ Additive, per the `retrospective` skill: the record keeps what it said and state
    its filter (correction 3). Every one is the same shape — a surface whose records are not
    one-to-one with the thing counted — which is the warrant for proposal 4 having been built
    rather than left as a proposal.
+
+## Proposal 10, revised (2026-09-16): the owner's combined design
+
+The owner combined the two halves after the platform reading was corrected: a nudge that makes
+the preparation an event, an auto-compact window with headroom, and a blocking gate with a valve.
+Written here as the build's contract.
+
+**A. One occupancy read, shared by every component.** A hook payload carries `transcript_path`,
+so the read needs no session bookkeeping: take a BOUNDED TAIL of that file, find the latest
+assistant usage, resolve the window from the model id the transcript itself carries, and emit the
+percentage. `agent-tools session-metadata` computes exactly this today but takes `--session-id`
+and reads the WHOLE file; the measured transcripts reach 76MB and more, so a whole-file read on
+every prompt is not viable. The build adds a `--transcript <path>` form and a tail-bounded read.
+
+**B. The nudge.** Below 60%: exit 0, silent. At or above 60%: return an instruction to run the
+compaction preparation now and write its marker. It fires on `UserPromptSubmit` (one cheap check
+per owner turn, landing at the natural decision point) and on `Stop` (the backstop for a long
+autonomous stretch where the owner says nothing for hours — this arc had several). It is
+idempotent per crossing: the marker records the occupancy at which it last spoke, so a long turn
+is nudged once, not on every tool call.
+
+**C. The window.** Auto-compact set to 70% of the resolved context window. The setting, command,
+flag and environment variable all take TOKENS, not a percentage, so the number is computed per
+model at session start and recomputed when the model changes — which is the point of specifying
+it as a percentage: token ceilings move, the intent does not.
+
+**D. The gate.** `PreCompact` reads the marker. It allows the compaction when the preparation
+completed AFTER the last compaction and at an occupancy within about fifteen points of now;
+otherwise it blocks, naming in its message which of those two conditions failed, and increments
+an attempt counter. On the THIRD attempt it allows the compaction regardless and says loudly that
+it did, and why. Every error path fails OPEN: a hook that throws exits 0 and never blocks. The
+deliberate refusal is the only refusal.
+
+**E. The marker.** Instance-tier, per session, untracked: written by the wrap when the
+preparation finishes, carrying the session id, the timestamp, the occupancy percentage, and the
+transcript position at that moment. The gate reads it; the nudge updates its own "last spoke at"
+field in it; a successful compaction resets the attempt counter.
+
+**Unknowns the build probes FIRST, rather than assumes.** `SKIP_PRECOMPACT_THRESHOLD` sits beside
+`preCompactTokenCount` in the binary and reads like a guard that stops consulting PreCompact
+hooks above some occupancy; if it is, it interacts with D's valve and may mean the valve is never
+reached. `.precompact.json` is a session's project-level sibling file (the binary's own
+validation text says so); whether it carries attempt state is unknown, and our counter must not
+collide with it. Whether `SessionStart` names a compaction as its source decides how the counter
+resets. Whether hooks fire inside subagent sessions decides whether the nudge must suppress
+itself there. Each is settled by one session with the hooks installed and a deliberate
+compaction, not by reading more documentation — that page has already given three incompatible
+answers about this event.
+
+**Falsifiers.** (1) With the nudge armed, two or more of the next ten compactions happen with no
+preparation marker: the nudge is not landing, and the event choice is wrong. (2) The third-attempt
+valve fires more than once in ten compactions: either the preparation is too slow or the 60/70 gap
+is too narrow. (3) The occupancy read adds more than about 200ms to a prompt: it is reading too
+much of the transcript. (4) A hook error ever blocks a compaction: the fail-open discipline is
+broken, and the design is more dangerous than the problem it solves.
+
+**Sequence.** Probe the four unknowns; then A (the read); then E and D (marker and gate, the half
+that protects the preparation); then B (the nudge); then C (the window), which is one setting and
+is worthless before D exists.
