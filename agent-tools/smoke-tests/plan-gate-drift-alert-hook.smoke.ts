@@ -13,10 +13,13 @@ import { z } from 'zod';
  * exit 1) into session context. This smoke reads the hook's command from
  * `.claude/settings.json`, runs it through the shell from the repository root with
  * `CLAUDE_PROJECT_DIR` pointing at a throwaway project whose checker is a stub, and
- * asserts exit 0 and a harness-shaped alert carrying the stub's whole report. One stub
- * writes its report and exits 1 at once; the other exits 1 first and its report
- * reaches stdout only after the stub has been reaped, so a hook that decides on the
- * checker's `exit` instead of the end of its output emits no alert.
+ * asserts exit 0 and the right answer for each checker outcome. On drift the answer is a
+ * harness-shaped alert carrying the stub's whole report: one stub writes its report and
+ * exits 1 at once; another exits 1 first and its report reaches stdout only after the
+ * stub has been reaped, so a hook that decides on the checker's `exit` instead of the
+ * end of its output emits no alert. Without drift the answer is `{}`: a stub that prints
+ * the real checker's no-drift line and exits 0, and one that exits 1 with nothing on
+ * stdout, so neither the exit code nor non-empty output alone raises an alert.
  */
 
 const smokeDir = fileURLToPath(new URL('.', import.meta.url));
@@ -84,13 +87,53 @@ spawn(process.execPath, ['-e', ${JSON.stringify(WRITE_AFTER_REAP)}, String(proce
 process.exitCode = 1;
 `;
 
-const CASES: readonly { readonly label: string; readonly checker: string }[] = [
-  { label: 'a checker that writes its report and exits 1 at once', checker: WRITES_THEN_EXITS },
+const NO_DRIFT_LINE =
+  'check-plan-gate-drift: no expired owner gates on live plans (as of 2026-09-16; 8 plan file(s) checked).\n';
+const PARSE_FAILURE_LINE = 'check-plan-gate-drift: 1 plan file(s) could not be parsed.\n';
+
+/** A stub checker that finds no drift: the real checker's no-drift line on stdout, exit 0. */
+const REPORTS_NO_DRIFT = `
+process.stdout.write(${JSON.stringify(NO_DRIFT_LINE)});
+process.exitCode = 0;
+`;
+
+/** A stub checker that fails with nothing on stdout: a parse failure reported on stderr, exit 1. */
+const FAILS_WITHOUT_REPORT = `
+process.stderr.write(${JSON.stringify(PARSE_FAILURE_LINE)});
+process.exitCode = 1;
+`;
+
+interface SmokeCase {
+  readonly label: string;
+  readonly checker: string;
+  /** Whether the hook must emit the drift alert; otherwise it must emit `{}`. */
+  readonly alerts: boolean;
+}
+
+const CASES: readonly SmokeCase[] = [
+  {
+    label: 'a checker that writes its report and exits 1 at once',
+    checker: WRITES_THEN_EXITS,
+    alerts: true,
+  },
   {
     label: 'a checker whose report reaches stdout after it has exited 1',
     checker: EXITS_BEFORE_REPORT,
+    alerts: true,
+  },
+  {
+    label: 'a checker that prints its no-drift line and exits 0',
+    checker: REPORTS_NO_DRIFT,
+    alerts: false,
+  },
+  {
+    label: 'a checker that exits 1 with nothing on stdout',
+    checker: FAILS_WITHOUT_REPORT,
+    alerts: false,
   },
 ];
+
+const emptyResponseSchema = z.strictObject({});
 
 function fail(message: string): never {
   process.stderr.write(`plan-gate-drift-alert smoke: ${message}\n`);
@@ -117,12 +160,12 @@ function readHookCommand(): string {
  * The command runs from this repository's root, so the real hook script runs, while
  * `CLAUDE_PROJECT_DIR` points the hook at the throwaway project's checker.
  */
-function runCase(command: string, checker: string): void {
+function runCase(command: string, smokeCase: SmokeCase): void {
   const projectDir = mkdtempSync(join(tmpdir(), 'plan-gate-drift-alert-smoke-'));
   try {
     const checkerPath = join(projectDir, CHECKER_PATH);
     mkdirSync(dirname(checkerPath), { recursive: true });
-    writeFileSync(checkerPath, checker, 'utf8');
+    writeFileSync(checkerPath, smokeCase.checker, 'utf8');
     const result = spawnSync('sh', ['-c', command], {
       cwd: repoRoot,
       env: { ...process.env, CLAUDE_PROJECT_DIR: projectDir },
@@ -134,29 +177,41 @@ function runCase(command: string, checker: string): void {
         `hook exited ${result.status ?? `on ${result.signal ?? 'an error'}`}\n${result.stderr}`,
       );
     }
-    const response = responseSchema.safeParse(JSON.parse(result.stdout));
-    if (!response.success) {
-      throw new Error(`expected a SessionStart alert, got: ${result.stdout}`);
-    }
-    const expected = `${ALERT_PREFIX}${REPORT.trim()}`;
-    if (response.data.hookSpecificOutput.additionalContext !== expected) {
-      throw new Error(
-        `expected the alert to carry the whole report, got: ${response.data.hookSpecificOutput.additionalContext}`,
-      );
-    }
+    checkResponse(result.stdout, smokeCase.alerts);
   } finally {
     rmSync(projectDir, { recursive: true, force: true });
+  }
+}
+
+/** The hook's stdout must be the whole-report alert when `alerts`, and `{}` otherwise. */
+function checkResponse(stdout: string, alerts: boolean): void {
+  const parsed: unknown = JSON.parse(stdout);
+  if (!alerts) {
+    if (!emptyResponseSchema.safeParse(parsed).success) {
+      throw new Error(`expected {}, got: ${stdout}`);
+    }
+    return;
+  }
+  const response = responseSchema.safeParse(parsed);
+  if (!response.success) {
+    throw new Error(`expected a SessionStart alert, got: ${stdout}`);
+  }
+  const expected = `${ALERT_PREFIX}${REPORT.trim()}`;
+  if (response.data.hookSpecificOutput.additionalContext !== expected) {
+    throw new Error(
+      `expected the alert to carry the whole report, got: ${response.data.hookSpecificOutput.additionalContext}`,
+    );
   }
 }
 
 const command = readHookCommand();
 for (const smokeCase of CASES) {
   try {
-    runCase(command, smokeCase.checker);
+    runCase(command, smokeCase);
   } catch (error) {
     fail(`${smokeCase.label}: ${error instanceof Error ? error.message : String(error)}`);
   }
 }
 process.stdout.write(
-  `plan-gate-drift-alert smoke OK: settings.json command emitted the whole drift report as a SessionStart alert for ${String(CASES.length)} cases\n`,
+  `plan-gate-drift-alert smoke OK: settings.json command answered ${String(CASES.length)} checker outcomes: the whole drift report as an alert on drift, {} otherwise\n`,
 );
