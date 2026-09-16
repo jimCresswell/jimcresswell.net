@@ -1,12 +1,14 @@
 import { describe, expect, it } from "vitest";
 
+import { exitBeforeWriting } from "../test-helpers/exit-before-writing";
 import { serverCommand, startServer } from "./e2e-global-setup";
 
 /**
  * Spawn-topology cells (testing-strategy §No process spawning names this shape as the
- * sanctioned exception): the behaviour under proof IS the child's `error` and `exit` fidelity,
- * so real children run, as `node -e` one-liners and one unstartable path, with no shell. The
- * 5-second deadline is a harness bound, not a wall-clock claim.
+ * sanctioned exception): the behaviour under proof IS the child's `error` and `exit` fidelity
+ * and the order of its lines against its end, so real children run, as `node -e` scripts and
+ * one unstartable path, with no shell. The 5-second deadline is a harness bound, not a
+ * wall-clock claim.
  */
 describe("serverCommand", () => {
   it("runs the server script as this node executable's own child, no CLI relay between", () => {
@@ -26,6 +28,13 @@ describe("startServer", () => {
   it("a command that exits before ready rejects with its exit code", async () => {
     const started = startServer(process.execPath, ["-e", "process.exit(3)"], 5_000);
     await expect(started).rejects.toThrow(/exited \(code 3, signal null\) before it was ready/u);
+  });
+
+  it("a command whose port and ready lines are read only after its exit resolves with the origin, not as exited before ready", async () => {
+    // The child exits 0 at once; a grandchild writes both lines only after the child is reaped.
+    const script = exitBeforeWriting("port 4242\nready\n");
+    const server = await startServer(process.execPath, ["-e", script], 5_000);
+    expect(server.origin).toBe("http://localhost:4242");
   });
 
   it("a command that prints port and ready resolves with the origin, and stop ends it", async () => {

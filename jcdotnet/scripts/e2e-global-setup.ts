@@ -33,9 +33,14 @@ type Terminal =
   | { readonly kind: "exit"; readonly code: number | null; readonly signal: NodeJS.Signals | null }
   | { readonly kind: "error"; readonly message: string };
 
+/**
+ * The exit is taken from `close`, which fires once the child has exited and its stdout has
+ * ended, so every line it wrote has been delivered first; `exit` can fire with lines still
+ * unread, which would report a child that printed `ready` as ended before it was ready.
+ */
 function terminalOf(child: ChildProcess): Promise<Terminal> {
   return new Promise((resolve) => {
-    child.once("exit", (code, signal) => {
+    child.once("close", (code, signal) => {
       resolve({ kind: "exit", code, signal });
     });
     child.once("error", (error) => {
