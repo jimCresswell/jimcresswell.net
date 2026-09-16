@@ -50,7 +50,7 @@ Every line answered first-hand, none inferred:
   archive holds only processed material.
 - The transplant is bounded: closure items 3 to 8 finish it, then editorial work.
 
-## Current handoff state (2026-09-16, 21:xxZ; #93 merged, this branch folded, known defects in fix lanes)
+## Current handoff state (2026-09-16, 21:12Z; #93 merged, this branch folded, known defects in fix lanes)
 
 Where this block and the routing log disagree, the log's last entry is current; this block is
 rewritten at each Director wrap. Item 116 is the boundary state; items 114 and 115 are history.
@@ -1257,9 +1257,9 @@ ones the Director would put to the owner had the owner been present.
      read as landed evidence); seven signed Rejected lines (the contract amendment to the
      owner's morning card; the second lifting path to the exchange window's register as a
      one-line amendment). Merged by the bot at 21:33Z (`SHA: ffd37d1`): item 7 complete on
-     main. Reporting-time correction: the "22:0xZ" stamps in this seat's native messages to
-     lane A between 21:5xZ and 22:0xZ were estimates ahead of the clock; the clock read
-     21:33Z at #89's merge; every later stamp is a `date` read.
+     main. Reporting-time correction: the "21:5xZ" and "22:0xZ" stamps in this seat's native
+     messages to lane A (sent at 21:24Z and 21:25Z) were estimates ahead of the clock; the
+     clock read 21:33Z at #89's merge; every later stamp is a `date` read.
      #86 (item 4 row 3) merged by the bot on measured state (`SHA: 47299c7`) after its third
      review's seven suppressed findings were lifted by lane A's ten signed lines (eight to the
      exchange window; the two report nits to the rulings pull request). Merge-bot follow-on
@@ -1277,7 +1277,7 @@ ones the Director would put to the owner had the owner been present.
      and five suppressed, cured on the slot at `SHA: efbd548` after two code-expert passes
      (host separators and Windows roots read by every scope form; the pictographic run
      stripped; the anchored file entry bounded; the report and skill nits); round two
-     (22:26Z) one thread and two suppressed. Director's exception taken (22:3xZ): the thread
+     (22:26Z) one thread and two suppressed. Director's exception taken (22:29Z): the thread
      (a relative payload path on the Copilot compat route can claim a root exemption, the
      README's fail-closed sentence overstating) is a correctness defect in the pull request's
      own claim on the estate's write control; one push resolving the payload path against its
@@ -1290,7 +1290,7 @@ ones the Director would put to the owner had the owner been present.
      #90 round three on the exception tip (22:52Z): zero threads, two suppressed (a tracked
      path with control characters printed verbatim in a refusal; the identity-naming
      validator echoing the cause on an unreadable path), two signed Rejected to lane A's
-     follow-on list; merged by the bot at 22:5xZ (`SHA: a47a559`): 5a-v and 5c-ii closed,
+     follow-on list; merged by the bot at 22:54Z (`SHA: a47a559`): 5a-v and 5c-ii closed,
      the PDR-008, PDR-082 and PDR-132 amendments homed, the definition report's rows 3, 4,
      5, 6 and 8 re-dated with their merge SHAs, item 4 complete. #91's round one (22:37Z):
      three threads on the declared-adapters reader (an empty templates directory read as
@@ -1304,12 +1304,12 @@ ones the Director would put to the owner had the owner been present.
      is not a no-follow read, so the header's "never followed" is false in its own words; the
      shared template-name refusal bypassed; strays filtered before validation) and two
      suppressed (no composition test on a fixture repository; the strays). Director's
-     exception taken (23:0xZ on the same ground as #90, a false guarantee in the pull
+     exception taken (23:01Z on the same ground as #90, a false guarantee in the pull
      request's own header): the minimal push (the header trued to what the code does, the
      name refusal applied, strays validated first, a composition cell only if cheap); the
      probe's move onto the async seam-backed file-system boundary stays the follow-on.
 
-108. The closure's last pull request blocked, and the compaction wrap (23:0xZ on 2026-09-14
+108. The closure's last pull request blocked, and the compaction wrap (23:01Z on 2026-09-14
      to 10:42Z on 2026-09-15). #91's exception push (`SHA: 20d8e50`, the reader's header trued
      to what the code does, the shared template-name refusal, strays validated before the
      suffix filter, one composition cell on a fixture repository) drew a review at 23:18Z
@@ -1322,7 +1322,7 @@ ones the Director would put to the owner had the owner been present.
      surface path throwing) and two suppressed (symlinks dropped by the probe's enumeration;
      no unreadable-template cell). Lane A has been silent since 23:32Z with none of its
      processes on the host (inference, not verified: the shared account's usage limit, which
-     stopped this seat at about 23:3xZ). This seat resumed briefly at 00:41Z, then again at
+     stopped this seat at 00:04Z on 2026-09-15). This seat resumed briefly at 00:41Z, then again at
      10:36Z on the owner's word: prepare for compaction under metacognition, free play,
      concept exploration, parallax and wrap, then stop all processes. The Director took #91's
      terminating step as the bot at 10:38Z (both threads Rejected and resolved; two signed
@@ -1375,13 +1375,13 @@ ones the Director would put to the owner had the owner been present.
      third pass re-finds the same four and the recursion closes there. Processes at the stop:
      the watcher ended on its hourly backstop at about 10:36Z and is not re-armed; the ARC tail
      stopped by id; no chain armed on #88 or #91; the claim `1db07581` held for the resume.
-     Owner's card at the wrap (10:4xZ, lane A's catch: the session-handoff skill carries the
+     Owner's card at the wrap (10:43Z, lane A's catch: the session-handoff skill carries the
      owner's 2026-07-15 ruling banning handover pull requests, and the Director's records pull
      requests of the closure, #54 to #88, read as exactly that): this closing record is
      pushed once to #88 and merged by the bot; from the next session the Director's records
      ride the substantive pull requests they describe, with no records-only pull requests.
      Applied to lane A the same way: its local records branch rides its next substantive
-     pull request (the #91 cure push), superseding this seat's 22:5xZ ruling that it open its
+     pull request (the #91 cure push), superseding this seat's 22:56Z ruling that it open its
      own.
 
 109. The compaction resume and the closure's close (2026-09-15, 10:56Z to 11:28Z). The owner
@@ -1497,7 +1497,8 @@ ones the Director would put to the owner had the owner been present.
      re-estimate (the protected pass's first); records-only pull requests (12 of 38 merged,
      1.4% of added lines, 56% of suppressed findings); cure by default with a Copilot request
      per push (#62: twenty-one explicit requests in four hours; the ruleset does not review on
-     push); five seats, then two; instruments built inside the arc; both seats idle from
+     push); four seats, then two (the retrospective's §Corrections after the fact, item 6,
+     corrects its earlier "five"); instruments built inside the arc; both seats idle from
      04:01Z to 06:04Z on 2026-09-14 (cause unverified); and, from this seat's pass only, owned
      doctrine that did not fire at the seat's need (PDR-140 present from the transplant commit
      and never applied to this estate's pull requests). Nine proposals carry warrants,
@@ -1540,8 +1541,9 @@ ones the Director would put to the owner had the owner been present.
      is the Unix socket `/tmp/cc-socks/<pid>.sock`, mode 0600, carrying peer messages into the
      conversation, never commands; the harness process has no listening TCP port.
      Owner's decisions on the second pass (2026-09-16): proposal 7 takes both lanes — the
-     push-time budget gate is built now and the general doctrine-placement question is filed to
-     the slow lane for 2026-12-15; the correction ratio is re-measured by one protected pass on
+     push-time budget gate is built next (decided, not yet built: the retrospective's same
+     correction, item 6) and the general doctrine-placement question is filed to the slow lane
+     for 2026-12-15; the correction ratio is re-measured by one protected pass on
      the corrected message set; and this seat builds the queued work (the settlement's required
      checks, the metrics bin, the 60% preparation trigger, the window registry), the Director
      and Implementer roles collapsing at one seat per `start-right-team` §Choose Temporary
@@ -1574,7 +1576,7 @@ ones the Director would put to the owner had the owner been present.
      marker is absent and the session continues uncompacted; the documentation gave three
      incompatible answers and the implementation settled it.
 
-112. The build session and its wrap (2026-09-16, 11:35Z to 12:3xZ; the owner: build the queued
+112. The build session and its wrap (2026-09-16, 11:35Z to 12:31Z; the owner: build the queued
      work here, then prepare for compaction and stop all processes). Built in a worktree off
      `origin/main` (`feat/arc-metrics`, work products never on the coordination branch): the
      `arc-metrics` topic — per-session and total active hours, model calls, tool calls, tokens,
@@ -1633,7 +1635,7 @@ ones the Director would put to the owner had the owner been present.
      sessions. Four falsifiers are named, the sharpest being that a hook error blocking a
      compaction would make the design more dangerous than the problem it solves.
 
-     First instrument built and armed (2026-09-16, 12:5xZ): a never-blocking `PreCompact`
+     First instrument built and armed (2026-09-16, 12:53Z): a never-blocking `PreCompact`
      observer, TypeScript compiled to `agent-tools/dist` and invoked directly from
      `.claude/settings.json` with no shim (owner's word: hooks are TypeScript like all other
      code, a build step is fine, prefer no shim). Its first firing settled that no
@@ -1643,12 +1645,13 @@ ones the Director would put to the owner had the owner been present.
      Amended the same day: the observer runs directly from TypeScript source
      (`node <source>.ts`), so it needs no build step and no shim at all.
 
-114. The hook session and its corrections (2026-09-16, 11:35Z to 14:1xZ). BOUNDARY STATE at
+114. The hook session and its corrections (2026-09-16, 11:35Z to 13:28Z). BOUNDARY STATE at
      this wrap: primary checkout on `coordination/2026-09-15-b9dcfb`, four commits added this
-     session (`e4e0e0ef` the observer, `e8b055e0` the guard's negative-case proof, `db5148d0` the
-     workspace-scoped compiler options, plus this wrap), NONE pushed; worktree branch
-     `feat/arc-metrics` clean at `SHA: 6d60e05`, pushed, no pull request; no claim, no watcher, no
-     monitor, no cron, no background task, no live peer (`claims active-agents` returned `[]`).
+     session (`SHA: e4e0e0ef` the observer, `SHA: e8b055e0` the guard's negative-case proof,
+     `SHA: db5148d0` the workspace-scoped compiler options, plus this wrap), NONE pushed;
+     worktree branch `feat/arc-metrics` clean at `SHA: 6d60e05`, pushed, no pull request; no
+     claim, no watcher, no monitor, no cron, no background task, no live peer
+     (`claims active-agents` returned `[]`).
      WHAT LANDED: a never-blocking `PreCompact` observer whose entry runs as TypeScript source
      under Node 24 with no hand-authored shim, activated in `.claude/settings.json`; the
      `allowImportingTsExtensions` and `rewriteRelativeImportExtensions` options scoped to
@@ -1670,7 +1673,7 @@ ones the Director would put to the owner had the owner been present.
      agent registry is read at session start, so it becomes available only in a fresh session, and
      validating it is the first thing worth doing with it.
 
-115. The TypeScript session and its wrap (2026-09-16, 13:3xZ to 16:xxZ; the owner's side mission
+115. The TypeScript session and its wrap (2026-09-16, 13:32Z to 15:27Z; the owner's side mission
      became four lanes). SUPERSEDES item 114's boundary state. BOUNDARY STATE at this wrap:
      primary checkout on `coordination/2026-09-15-b9dcfb`, clean except this wrap's records,
      which are committed onto it and NOT pushed (the fold waits on #93, see the continuity
@@ -1700,7 +1703,7 @@ ones the Director would put to the owner had the owner been present.
      `feat/arc-metrics` pull request; after 2026-09-17T08:24Z, delete the release-age exclusion
      block; the queued follow-ups in the continuity contract.
 
-116. The #93 review, the fold, and the fix lanes (2026-09-16, 15:3xZ to 21:xxZ). SUPERSEDES
+116. The #93 review, the fold, and the fix lanes (2026-09-16, 15:31Z to 21:12Z). SUPERSEDES
      item 115's boundary state. #93's comments were reviewed and settled at `SHA: 882a15c`:
      CodeQL alert 8 (the smoke pasted the checkout path into its shell command; reproduced with a
      symlink named `$(echo INJECTED-RAN >&2)`) and alert 9 (a file-system race in the smoke)
@@ -1951,11 +1954,11 @@ ones the Director would put to the owner had the owner been present.
   §Current handoff state is current.
 - 2026-09-15 15:08Z: the arc's retrospective recorded (item 111); its proposals are with the
   owner. §Current handoff state is current.
-- 2026-09-16 12:3xZ: the first queued build pushed (`feat/arc-metrics`, `SHA: 6d60e05`, gate
+- 2026-09-16 12:23Z: the first queued build pushed (`feat/arc-metrics`, `SHA: 6d60e05`, gate
   green, no pull request opened at the compaction boundary); the retrospective corrected
   additively after its own tool found two more counting errors (item 112). §Current handoff
   state is current.
-- 2026-09-16 16:3xZ: #93's comments settled at `SHA: 882a15c` (item 116). §Current handoff state
+- 2026-09-16 16:36Z: #93's comments settled at `SHA: 882a15c` (item 116). §Current handoff state
   is current.
 - 2026-09-16 20:38Z: #93 merged by the owner (`SHA: 958919c`); this branch folded `main` in
   (`SHA: 2961e9c`) and opened #97; the known defects became fix lanes (item 116). §Current

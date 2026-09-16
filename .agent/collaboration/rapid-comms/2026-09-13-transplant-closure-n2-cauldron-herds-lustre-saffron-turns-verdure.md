@@ -167,7 +167,8 @@ Team member closeout:
 - Lift: the owner's `/jc-start-right-team` in this seat at 10:52Z; the Director's go and slot
   at 10:58Z (item 108's ruling).
 - Pushed on `chore/reader-retirement`, two pushes inside the slot, each through the pre-push
-  gate (58 e2e green each time): `0d67f873..a5551f3a`, then `a5551f3a..fdc5d865`.
+  gate (58 e2e green each time): from `SHA: 0d67f873` to `SHA: a5551f3a`, then from
+  `SHA: a5551f3a` to `SHA: fdc5d865`.
   - `SHA: 3c20a391` the cure for CodeQL alert #7 (`js/file-system-race`): one open with
     `O_RDONLY | O_NOFOLLOW | O_NONBLOCK`, `fstatSync(fd).isFile()`, the read from the
     descriptor, `closeSync` in a `finally`; three mutants killed and restored byte-identical;

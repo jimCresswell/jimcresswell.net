@@ -1241,11 +1241,11 @@ record, and the session ends after it. Nothing is pending for a successor on thi
 - The go (10:58Z): "This push counts as the red-check cure, not a third review round, so it
   cures nothing beyond CodeQL alert #7." And: "If the alert still fires, stop and report to
   me; do not try a second shape and never dismiss the alert."
-- On this seat's two additions (11:0xZ): "Ruling on the two additions: keep both. They sit
+- On this seat's two additions (10:59Z): "Ruling on the two additions: keep both. They sit
   inside alert #7's cure." With one condition on `O_NONBLOCK`: "It has no cell, so the header
   must not claim it as a guarantee."
 - On the records: "merging records/lane-a-checkpoint-4 into chore/reader-retirement is the
-  right form, since it keeps 73d7e8c7 and never rewrites. Resolve any napkin or lane-file
+  right form, since it keeps SHA: 73d7e8c7 and never rewrites. Resolve any napkin or lane-file
   conflict by keeping both sides."
 - On item 6: "item 6's Done line belongs in #91, because it records #91's work." And: "It is
   one commit and one more push inside your slot, and it goes before the Copilot request, so it
@@ -1264,15 +1264,16 @@ record, and the session ends after it. Nothing is pending for a successor on thi
   things like wraps". The primary checkout's branch was renamed in place to
   `coordination/2026-09-15-b9dcfb` (minted by `agent-tools coordination successor-name`).
 
-### Found at the wrap: the merge gate admits a tip no CI ran on (routed to the Director at 11:3xZ for the owner)
+### Found at the wrap: the merge gate admits a tip no CI ran on (routed to the Director at 11:39Z for the owner)
 
 Observed:
 
 - `gh run list --branch chore/reader-retirement`: the exception-push tip `SHA: 20d8e50d`
-  (2026-09-14, about 23:1xZ) has no CI, CodeQL or Dependency Review run; only Copilot ran.
+  (pushed 2026-09-14T23:10:46Z) has no CI, CodeQL or Dependency Review run; only Copilot ran.
   Its check runs are exactly "Vercel Preview Comments=success,
-  copilot-pull-request-reviewer=success". No commit message on `36c5a7c8..20d8e50d` carries a
-  skip marker. Why the workflows did not trigger is unknown (not investigated).
+  copilot-pull-request-reviewer=success". No commit message from `SHA: 36c5a7c8` to
+  `SHA: 20d8e50d` carries a skip marker. Why the workflows did not trigger is unknown (not
+  investigated).
 - The lstat-then-read race entered in `SHA: 36c5a7c8`, inside that push; CodeQL first analysed
   it on the merge-from-main tip `SHA: 0d67f873` (23:22Z), which raised alert #7.
 - GitHub requires no status check on `main`: the one ruleset, "protect main", carries
@@ -1281,7 +1282,7 @@ Observed:
 - The settlement's checks leg (`agent-tools/src/pr-watch/states.ts:81-99`) is CHECKS-RED on
   any failure and CHECKS-RUNNING on pending or zero passed; it names no required check.
 
-Inference from reading the code, not observed: on `20d8e50d` the checks leg would have read
+Inference from reading the code, not observed: on `SHA: 20d8e50d` the checks leg would have read
 two passed, none pending. Had #91 not gone CONFLICT-DIRTY on the register tail, a SETTLE-READY
 merge without CI or CodeQL was possible if the other legs settled. The decision (required
 status checks in the ruleset, or the settlement naming its required checks, or both) is the
@@ -1322,7 +1323,7 @@ owner's; the Director holds it.
 
 ### Follow-ons added at the close, each with its home
 
-1. The merge gate above: owner decision, held by the Director (routed 11:3xZ).
+1. The merge gate above: owner decision, held by the Director (routed 11:39Z).
 2. `GEMINI.md` says "Reviewer roles remain canonical in `.agent/sub-agents/templates/`; read the
    template for the role directly", while 23 generated adapters sit under `.gemini/agents/`
    since lane A's row 8 work; `CLAUDE.md` and `GEMINI.md` each carry an adapter-model section
@@ -1342,7 +1343,7 @@ owner's; the Director holds it.
    reads `+`, but both sampled added lines, the 15:35Z waypoint heading and its napkin text, are
    on `main` through `records/lane-a-checkpoint-2`), each needing `git branch -D`;
    `records/lane-a-checkpoint-2` and `fix/pr55-rule-name-boundary` are merged (`-d`).
-6. This seat's worktree (`closure-lane-a`, detached at `f8aab12a`, clean) is removed after the
+6. This seat's worktree (`closure-lane-a`, detached at `SHA: f8aab12a`, clean) is removed after the
    session exits, from the primary checkout (`worktree-hygiene`).
 
 ### Records home at the close
@@ -1357,9 +1358,9 @@ A later seat commits and pushes them.
 
 - This worktree: `git status --branch --short` prints `## HEAD (no branch)` and nothing else,
   at `SHA: f8aab12a`.
-- `chore/reader-retirement` (was `fdc5d865`) and `records/lane-a-checkpoint-4` (was `73d7e8c7`)
-  deleted locally with `git branch -d`; both tips are ancestors of `origin/main`; the origin
-  branch deleted through the API and read back absent.
+- `chore/reader-retirement` (was `SHA: fdc5d865`) and `records/lane-a-checkpoint-4` (was
+  `SHA: 73d7e8c7`) deleted locally with `git branch -d`; both tips are ancestors of
+  `origin/main`; the origin branch deleted through the API and read back absent.
 - No stash entry names this seat. Claim f024e1f1 closed at 11:26:00Z and archived. The comms
   watcher stopped by `TaskStop`; the process table shows no watcher, wait or poll of this
   session.
@@ -1373,10 +1374,13 @@ A later seat commits and pushes them.
 - Read #91's alert and checks before touching code: discharged 10:53Z.
 - No push before the Director's confirmed word: discharged (go 10:58Z; pushes 11:07Z, 11:09Z).
 - To the owner, a stop window before the push: offered; no stop came.
-- A state line to the Director every 120 seconds of a long turn: kept from 11:0xZ; the first
-  stretch after the go (10:58Z to the first state line at 11:0xZ, the cells and three mutant
-  runs) ran past 120 seconds without one.
-- Record the push on the ARC channel and release the slot in one line: discharged at 11:1xZ.
+- A state line to the Director every 120 seconds of a long turn: kept from the first state line
+  (sent 10:58:46Z; the later ones at 11:06:32Z, 11:09:20Z and 11:11:07Z). The stretch before it
+  (the cure's edits, the cells and three mutant runs, 10:55Z to 10:58:35Z) ran past 120 seconds
+  without one; the go arrived at 10:58:26Z, inside that stretch. Corrected at #97's third review
+  from the session transcript's send times: this line had read the first state line's estimated
+  stamp as its send time, which placed the stretch after the go.
+- Record the push on the ARC channel and release the slot in one line: discharged at 11:11:03Z.
 - Signed lines on the cure tip's review, then the poll: discharged 11:22Z to 11:24Z.
 - The post-merge queue of the ninth waypoint (branches, ARC line, claim, watcher): discharged
   by 11:26Z.
@@ -1392,9 +1396,9 @@ A later seat commits and pushes them.
   `SHA: 3c20a391`'s body and here, decision-sufficient. The Windows identity arm was left out
   because the reader is new in #91 (no regression against `main`) and the adapter leg is the
   guard; the code-expert verified that guard claim.
-- Inference, flagged: the settlement could have merged `20d8e50d` (above). Who pushed
-  `20d8e50d` and why no workflow triggered were not observed by this seat.
-- Inference, flagged: `falsifier-2a` (a worktree at `62bd5fff`, on `main`) is read as lane B's
+- Inference, flagged: the settlement could have merged `SHA: 20d8e50d` (above). Who pushed
+  `SHA: 20d8e50d` and why no workflow triggered were not observed by this seat.
+- Inference, flagged: `falsifier-2a` (a worktree at `SHA: 62bd5fff`, on `main`) is read as lane B's
   from its commit subject; its working tree was not inspected (the isolation guard refuses git
   outside this worktree).
 - Bound: this wrap's loss scan covers the segment after the last compaction; the earlier
@@ -1410,21 +1414,22 @@ A later seat commits and pushes them.
 
 This waypoint and the banner; napkin segment fifteen (the loss-scan and metaloss findings, the
 play harvest, the exploration's proposals as candidates); the letter under
-`.agent/experience/`; the body of #91, its commit bodies (`3c20a391`, `51bfd784`, `a5551f3a`,
-`fdc5d865`) and its one thread reply; the ARC channel's entries at 11:1xZ (the push) and 11:25:22Z (the close); the per-user
-memory index for this repository (entries updated at this wrap); the Director's own records
-for the merge-gate finding. Not durable: the session scratchpad (scripts, drafts).
+`.agent/experience/`; the body of #91, its commit bodies (`SHA: 3c20a391`, `SHA: 51bfd784`,
+`SHA: a5551f3a`, `SHA: fdc5d865`) and its one thread reply; the ARC channel's entries at
+11:11:03Z (the push) and 11:25:22Z (the close); the per-user memory index for this repository
+(entries updated at this wrap); the Director's own records for the merge-gate finding. Not
+durable: the session scratchpad (scripts, drafts).
 
 ### Fixed point
 
 A further pass would only re-find the merge-gate gap, the unknown workflow trigger on
-`20d8e50d`, and the entry-point drift, each named above with its holder. The recursion closes
+`SHA: 20d8e50d`, and the entry-point drift, each named above with its holder. The recursion closes
 here.
 
 ### Correction to the tenth waypoint (2026-09-15, 11:48Z)
 
 The Director checked the merge-gate finding and corrected its counterfactual. The missing
-workflow runs on `20d8e50d` have a cause: #90 merged at 22:54:07Z and left #91 in conflict on
+workflow runs on `SHA: 20d8e50d` have a cause: #90 merged at 22:54:07Z and left #91 in conflict on
 the register tail until the merge of main at `SHA: 0d67f873` (23:21Z), and GitHub runs no
 `pull_request` workflows for a pull request with a merge conflict (documented behaviour, the
 Director's reading, consistent with the times read here). The inference above therefore does

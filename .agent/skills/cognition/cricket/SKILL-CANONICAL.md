@@ -71,8 +71,8 @@ through. It is the cheapest seat on the panel and it is not there to complete a 
 | `cricket-judgement-low` | `cricket-judgement.md` | `fable` | low |
 | `cricket-judgement-medium` | `cricket-judgement.md` | `opus` | medium |
 | `cricket-judgement-high` | `cricket-judgement.md` | `sonnet` | high |
-| `cricket-judgement-lowestpower-low` | `cricket-judgement.md` | `haiku` | low |
 | `cricket-procedure-xhigh` | `cricket-procedure.md` | `haiku` | xhigh |
+| `cricket-judgement-lowestpower-low` | `cricket-judgement.md` | `haiku` | low |
 
 Codex bindings:
 
@@ -92,8 +92,8 @@ Cursor bindings:
 | `cricket-judgement-low` | `cricket-judgement.md` | unpinned | unpinned |
 | `cricket-judgement-medium` | `cricket-judgement.md` | unpinned | unpinned |
 | `cricket-judgement-high` | `cricket-judgement.md` | unpinned | unpinned |
-| `cricket-judgement-lowestpower-low` | `cricket-judgement.md` | unpinned | unpinned |
 | `cricket-procedure-xhigh` | `cricket-procedure.md` | unpinned | unpinned |
+| `cricket-judgement-lowestpower-low` | `cricket-judgement.md` | unpinned | unpinned |
 
 Cursor preserves the templates and stable role names but pins neither model nor effort;
 record Cursor runs as template-adapter evidence, not model-plus-effort experiment data.

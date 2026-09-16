@@ -62,7 +62,7 @@ names a live branch):
 - Deep consolidation status: **due — the transplant closure (a plan milestone) closed on
   2026-09-15**, and the napkin holds the arc's segments at over 1,650 lines. It was not run at
   the end-of-arc wrap: the graduation drain is curator work in batches (the Director's handoff
-  item 94); the owner's retrospective, which came first, is recorded in
+  item 94); the owner's retrospective is recorded in
   `.agent/reports/agentic-engineering/why-the-transplant-arc-cost-what-it-cost-2026-09-15.md`,
   so the drain is next. Session 2's cards and archive gates are
   in `threads/session-2-synthesis.next-session.md`.
@@ -155,8 +155,9 @@ FIRST ACTION: land #97 (this branch's fold) at full condition, then cut the fres
 coordination branch from the merged tip (`coordination-branch-24h-lifetime` step 3). Then the
 owed pull request on `feat/arc-metrics`.
 
-Known defects are fixed, not queued (owner word 2026-09-16: "If you know there is broken code,
-fix it"). In flight, each on its own branch from `origin/main`, one pull request each:
+Known defects get fixed, not queued (owner word 2026-09-16: "If you know there is broken code,
+fix it"). These fixes are in flight, each on its own branch from `origin/main`, one pull request
+each:
 
 - `fix/hook-quoting-and-log-modes`: the Read and UserPromptSubmit secrets hooks left
   `${CLAUDE_PROJECT_DIR}` unquoted and did not run under a project path holding a space; a
@@ -189,10 +190,10 @@ and proof (item 4's rows closed by #85 `SHA: eed1f2e`, #87 `SHA: 6b5676b`, #86
 8 filed in #63 with the cards answered). The compiled record is
 `.agent/reports/practice-transplant/README.md` §The record, compiled. Live now, in order:
 
-1. The owner's retrospective of the arc is recorded (the agentic-engineering report of
-   2026-09-15, with its corrections and the owner's decisions on the second pass). The
-   coordination branch carrying the arc's closing records is folded and lands through #97, the
-   FIRST ACTION above. The Director's handoff
+1. The coordination branch carrying the arc's closing records is folded and lands through #97,
+   the FIRST ACTION above. The owner's retrospective of the arc is recorded (the
+   agentic-engineering report of 2026-09-15, with its corrections and the owner's decisions on
+   the second pass). The Director's handoff
    `.agent/memory/operational/director-handoff.md` §Current handoff state is the resume
    contract. The owner's card on required status checks closed at the retrospective: `main`'s
    ruleset requires `install`, `static-checks`, `build-and-test`, `e2e`, `secret-scan` and

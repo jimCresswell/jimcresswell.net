@@ -1660,7 +1660,7 @@ waypoint; this segment carries the surprises, the loss-scan and metaloss finding
 harvest and the exploration's candidates.
 
 - Surprise, the red check's root was a tip no CI ran on. Expected: CodeQL raised the race late
-  because it analyses late. Observed: the exception-push tip `20d8e50d` had no CI, CodeQL or
+  because it analyses late. Observed: the exception-push tip `SHA: 20d8e50d` had no CI, CodeQL or
   Dependency Review run, only Copilot; the race entered in that push and CodeQL first saw it on
   the merge-from-main tip. GitHub requires no status check on `main` (the one ruleset carries
   deletion, Copilot review and non-fast-forward), and the settlement's checks leg
@@ -1668,7 +1668,7 @@ harvest and the exploration's candidates.
   Copilot read as passed (inference from the code, not observed). #91 was saved by an unrelated
   tail conflict that forced a merge from main. Behaviour change: before requesting a review
   round or arming the merge poll, read the tip's run list for CI and CodeQL, never the rollup
-  alone. Routed to the Director for the owner at 11:3xZ.
+  alone. Routed to the Director for the owner at 11:39Z.
 - Surprise, the close records' home was the coordination branch, not a commit. Expected, from
   the owner's card (records ride the pull request they describe) and the compaction amendment
   (a wrap may land as its own continuity commit): a closing seat with no pull request commits
@@ -1740,7 +1740,7 @@ carrier and the commit a later seat's"; "a green rollup is a verified tip" becam
 tip is one whose required analysers ran".
 
 - candidate: the settlement names its required checks (CI and CodeQL) and reads their absence on
-  the tip as not settled, or the ruleset requires them. Warrant: `20d8e50d`'s runs,
+  the tip as not settled, or the ruleset requires them. Warrant: `SHA: 20d8e50d`'s runs,
   `states.ts:81-99`, the ruleset read. Falsifier: the settlement, fed a rollup with only
   non-CI checks passing, already reads not ready (the inference above is then wrong).
   Destination: the merge bot and `pr-lifecycle` §Phase 5, on the owner's decision.
@@ -1757,11 +1757,11 @@ tip is one whose required analysers ran".
   #90 and #91 exception pushes, this segment's header catch, the one-pass cure. Falsifier: a
   header bounded this way still draws a guarantee finding. Destination:
   `tsdoc-and-documentation-hygiene` or the code-expert invocation guidance.
-- Unresolved evidence that could change the synthesis: why no workflow ran on `20d8e50d`, and
+- Unresolved evidence that could change the synthesis: why no workflow ran on `SHA: 20d8e50d`, and
   whether the settlement's other legs would have settled there.
 
 - Correction to lane A's segment fifteen (11:48Z), after the Director's check: the first
-  surprise's counterfactual was wrong. `20d8e50d` ran no workflows because #91 was in conflict
+  surprise's counterfactual was wrong. `SHA: 20d8e50d` ran no workflows because #91 was in conflict
   on the register tail from #90's merge (22:54:07Z) until the merge of main (23:21Z), and GitHub
   runs no `pull_request` workflows for a conflicting pull request. Without the conflict the
   workflows would have run; with it the settlement refuses the tip. The conflict did not save
@@ -1981,7 +1981,7 @@ tip is one whose required analysers ran".
   messages into the conversation as text; the harness process listens on no TCP port, and a
   peer cannot make a session run a slash command.
 
-### Director, the build session and its wrap (2026-09-16, 11:35Z to 12:2xZ) — Cauldron herds Lustre (880ff9)
+### Director, the build session and its wrap (2026-09-16, 11:35Z to 12:31Z) — Cauldron herds Lustre (880ff9)
 
 - **Surprise: PreCompact can block, and one documentation page said three different things.**
   The owner asked whether a hook could hold compaction until the preparation had run. WebFetch
@@ -2089,7 +2089,7 @@ tip is one whose required analysers ran".
   insufficient evidence, but one refuses a command and the other refuses a merge, and nothing
   followed from pairing them.
 
-### Director, the Cricket suite mis-run and what it accidentally measured (2026-09-16, 13:0xZ) — Cauldron herds Lustre (880ff9)
+### Director, the Cricket suite mis-run and what it accidentally measured (2026-09-16, 13:07Z) — Cauldron herds Lustre (880ff9)
 
 - **My error: I overrode the Cricket seats' defined models.** The owner asked for full suites with
   "no Fable instance". The correct reading is to SKIP the one seat defined as fable
@@ -2117,7 +2117,7 @@ tip is one whose required analysers ran".
   compiler options moved down to the workspace where hook sources live. Both findings came from
   outside my own reading — the same external-bound signature this arc keeps producing.
 
-### Director, the hook build and the corrections that followed (2026-09-16, 13:0xZ to 14:1xZ) — Cauldron herds Lustre (880ff9)
+### Director, the hook build and the corrections that followed (2026-09-16, 12:51Z to 13:28Z) — Cauldron herds Lustre (880ff9)
 
 - **The error that matters: I claimed a property from the surface I had exercised, not the surface
   that owns it.** "No build step, works on a fresh clone" was true of my machine, where every
@@ -2163,7 +2163,7 @@ tip is one whose required analysers ran".
   came from outside my own reading — a peer seat, a conscience panel, a reviewer, a gate, the
   owner. That is the signature to point scrutiny at.
 
-### Director, TypeScript 7 side by side and the observer's first real compaction (2026-09-16, 13:3xZ to 14:4xZ) — Cauldron herds Lustre (880ff9)
+### Director, TypeScript 7 side by side and the observer's first real compaction (2026-09-16, 13:32Z to 14:45Z) — Cauldron herds Lustre (880ff9)
 
 - **My probes tested my model of the payload, not the payload.** The synthetic stdin I fed the
   observer while building it carried the shape I assumed — a string `custom_instructions`, a
@@ -2231,7 +2231,7 @@ tip is one whose required analysers ran".
   lane had no commits yet, so `merge --ff-only origin/main` moved it with its uncommitted work
   intact (no overlapping paths), and its gates were re-run on TypeScript 7 before pushing.
 
-### Wrap at the compaction boundary (2026-09-16, 16:xxZ) — Cauldron herds Lustre (880ff9)
+### Wrap at the compaction boundary (2026-09-16, 15:27Z) — Cauldron herds Lustre (880ff9)
 
 - **Metacognition.** The day's one error shape, again: a fact stated from reasoning in the voice
   of measurement — the TS2367 guard claim and the `prefer-at` claim. Everything that went right
