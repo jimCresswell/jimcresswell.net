@@ -113,11 +113,17 @@ STATE, 2026-09-16 afternoon (Cauldron herds Lustre, Director), owner-directed in
   2026-09-17T08:24Z, delete the `minimumReleaseAgeExclude` block in `pnpm-workspace.yaml`: all
   five excluded packages were published 2026-09-16 and it is dead config once they age past the
   24h floor.
-- #93 open as a draft (`SHA: b1dbef7`): the `PreCompact` observer on its own lane, cured
-  test-first of the two defects its first real compaction exposed, with a production-shaped smoke
-  test and the observed contract recorded in the platform matrix. It supersedes this branch's
-  observer commits (`SHA: e4e0e0e`, `SHA: db5148d`): at this branch's fold, take `main`'s versions
-  of the hook files after a pre-merge divergence check.
+- #93 ready for review, review settled 2026-09-16 at `SHA: 882a15c`: checks green,
+  `mergeStateStatus` CLEAN, all five threads resolved, both Copilot rounds (the budget) cured or
+  dispositioned in signed comments, CodeQL alerts 8 (shell command built from an absolute path)
+  and 9 (file-system race) fixed. The cures: the smoke passes the repository root through the
+  environment, as Claude Code supplies `CLAUDE_PROJECT_DIR` to a shell-form hook; an unreadable
+  stdin records `stdin-unreadable` with its reason instead of `empty`; the observation log is
+  owner-only (mode 600, tightened before each append). It supersedes this branch's observer
+  commits (`SHA: e4e0e0e`, `SHA: db5148d`): at this branch's fold, take `main`'s versions of
+  the hook files after a pre-merge divergence check. Until then the primary checkout runs the old
+  hook, which appends to a mode-644 log another local account can read; owner action, surfaced
+  2026-09-16: `chmod 600 .claude/logs/pre-compact-observations.jsonl` now, not at the fold.
 - Strictness, owner word 2026-09-16: "I want the tsconfig brought up to strict everywhere, but if
   there is a better way to do it that is fine, I was being explicit but I am happy with standard
   approaches." Landed as drafts, all green through the full pre-push gate:
@@ -170,6 +176,27 @@ three `no-restricted-imports` rules keyed on modules that do not exist here; an 
 review of source-run hooks before the `PreCompact` gate is built; and `set-up-worktree-lane`
 expects a bot committer while this repository commits as the owner, so the skill and practice
 need reconciling.
+
+Queued from the review of #93's comments (2026-09-16), none blocking #93:
+
+- An intermittent failure outside #93: `jcdotnet/visual-regression-harness/export-ref.integration.test.ts`
+  ("exports WORKTREE ...") read `before` where it expected `staged change` in CI run 35117426721
+  attempt 1 on `SHA: 2577903`; it passed on re-run and 8 of 8 times locally, and it is the only
+  failure in the last 60 CI runs. Reading `export-ref.ts` found no mechanism: the staged path is
+  listed by `git diff HEAD`, and the overlay copy runs after both `git archive` and `tar` exit.
+- On `main`, the Read and UserPromptSubmit secrets hooks leave `${CLAUDE_PROJECT_DIR}` unquoted in
+  `.claude/settings.json`, so a checkout path holding whitespace stops them running (exit 127);
+  quote both, and check how the harness treats exit 126 and 127 rather than assume it.
+- `log-hook-errors.sh` should make `.claude/logs` mode 700 on every run: it closes the
+  observation log's creation window and its size and mtime metadata, and covers `hook-errors.log`,
+  which is mode 644. A small pull request of its own, since the wrapper is shared.
+- The observer still records a failed transcript size or sibling listing as absent without its
+  reason, keeps only the message (not the errno code) of a stdin read error, and derives the
+  transcript path twice; carry a reason per measurement in one slice. Delete its log when the
+  observer retires.
+- For config-expert: `@typescript-eslint/no-import-type-side-effects`, so an inline
+  `import { type X }` cannot turn a source-run hook's type-only import into a runtime import.
+- #93 got no Codex review: the connector reported its usage limit.
 
 The transplant closure is complete on `main` (2026-09-15): every item of
 `.agent/plans/delivery/practice-completion.plan.md` §Transplant closure carries its Done line
