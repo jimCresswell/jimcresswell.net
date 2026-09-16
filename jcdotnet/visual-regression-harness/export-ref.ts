@@ -1,7 +1,6 @@
 import fs from "node:fs/promises";
 import path from "node:path";
-import { spawn } from "node:child_process";
-import { readCommandOutput } from "./command-output";
+import { pipeCommandOutput, readCommandOutput } from "./command-output";
 import { ensureDirectory } from "./shared";
 
 export const WORKTREE_REF = "WORKTREE";
@@ -91,58 +90,11 @@ async function exportGitRefToDirectory(
   await fs.rm(outputDirectory, { recursive: true, force: true });
   await ensureDirectory(outputDirectory);
 
-  await new Promise<void>((resolve, reject) => {
-    const archive = spawn("git", ["archive", "--format=tar", resolvedRef], {
-      cwd: repositoryRoot,
-      stdio: ["ignore", "pipe", "inherit"],
-    });
-    const extract = spawn("tar", ["-xf", "-", "-C", outputDirectory], {
-      cwd: repositoryRoot,
-      stdio: ["pipe", "inherit", "inherit"],
-    });
-
-    archive.stdout.pipe(extract.stdin);
-
-    let archiveExited = false;
-    let extractExited = false;
-
-    const finish = () => {
-      if (archiveExited && extractExited) {
-        resolve();
-      }
-    };
-
-    archive.on("error", reject);
-    extract.on("error", reject);
-
-    archive.on("exit", (code, signal) => {
-      if (code !== 0) {
-        reject(
-          new Error(
-            `git archive failed for ${resolvedRef} with code ${code ?? "null"} and signal ${signal ?? "null"}`
-          )
-        );
-        return;
-      }
-
-      archiveExited = true;
-      finish();
-    });
-
-    extract.on("exit", (code, signal) => {
-      if (code !== 0) {
-        reject(
-          new Error(
-            `tar extraction failed for ${resolvedRef} with code ${code ?? "null"} and signal ${signal ?? "null"}`
-          )
-        );
-        return;
-      }
-
-      extractExited = true;
-      finish();
-    });
-  });
+  await pipeCommandOutput(
+    { command: "git", args: ["archive", "--format=tar", resolvedRef] },
+    { command: "tar", args: ["-xf", "-", "-C", outputDirectory] },
+    repositoryRoot
+  );
 }
 
 async function exportWorkingTreeToDirectory(
