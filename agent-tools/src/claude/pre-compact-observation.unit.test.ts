@@ -1,6 +1,7 @@
+import { err, ok } from '@engraph/result';
 import { describe, expect, it } from 'vitest';
 
-import { buildObservation, readPayload, selectSiblings } from './pre-compact-observation.js';
+import { buildObservation, readPayload } from './pre-compact-observation.js';
 
 const BASE = {
   nowIso: '2026-09-16T12:00:00.000Z',
@@ -80,19 +81,38 @@ describe('readPayload', () => {
 describe('buildObservation', () => {
   it('keeps the raw payload verbatim, which is the whole point of the instrument', () => {
     const rawStdin = '{"session_id":"abc","mystery_field":1}';
-    const observation = buildObservation({ ...BASE, rawStdin });
+    const observation = buildObservation({ ...BASE, stdin: ok(rawStdin) });
 
     expect(observation.rawStdin).toBe(rawStdin);
     expect(observation.payloadKeys).toContain('mystery_field');
     expect(observation.event).toBe('PreCompact');
   });
 
+  it('records a stdin read failure with its reason, and no payload measurement', () => {
+    const reason = 'EAGAIN: resource temporarily unavailable, read';
+    const observation = buildObservation({ ...BASE, stdin: err(reason) });
+
+    expect(observation.payloadStatus).toBe('stdin-unreadable');
+    expect(observation.stdinReadError).toBe(reason);
+    expect(observation.rawStdin).toBeUndefined();
+    expect(observation.rawStdinBytes).toBeUndefined();
+    expect(observation.payloadKeys).toEqual([]);
+  });
+
+  it('records a payload that was read but empty as empty, with no read error', () => {
+    const observation = buildObservation({ ...BASE, stdin: ok('') });
+
+    expect(observation.payloadStatus).toBe('empty');
+    expect(observation.stdinReadError).toBeUndefined();
+    expect(observation.rawStdinBytes).toBe(0);
+  });
+
   it('counts the payload in bytes, not characters', () => {
-    expect(buildObservation({ ...BASE, rawStdin: '{"a":"é"}' }).rawStdinBytes).toBe(10);
+    expect(buildObservation({ ...BASE, stdin: ok('{"a":"é"}') }).rawStdinBytes).toBe(10);
   });
 
   it('records an absent transcript and no siblings without failing', () => {
-    const observation = buildObservation({ ...BASE, rawStdin: '{}' });
+    const observation = buildObservation({ ...BASE, stdin: ok('{}') });
 
     expect(observation.transcriptBytes).toBeUndefined();
     expect(observation.projectSiblings).toEqual([]);
@@ -104,7 +124,7 @@ describe('buildObservation', () => {
   it('carries the measured siblings and their full count through', () => {
     const observation = buildObservation({
       ...BASE,
-      rawStdin: '{}',
+      stdin: ok('{}'),
       projectSiblings: [
         { name: '.precompact.json', kind: 'file', bytes: 12 },
         { name: 'subagents', kind: 'directory' },
@@ -117,13 +137,5 @@ describe('buildObservation', () => {
       { name: 'subagents', kind: 'directory' },
     ]);
     expect(observation.projectSiblingsTotal).toBe(40);
-  });
-});
-
-describe('selectSiblings', () => {
-  it('sorts the entries by name, caps the list, and reports how many there were in total', () => {
-    expect(
-      selectSiblings([{ name: 'c.jsonl' }, { name: 'a.jsonl' }, { name: 'b.jsonl' }], 2),
-    ).toEqual({ entries: [{ name: 'a.jsonl' }, { name: 'b.jsonl' }], total: 3 });
   });
 });

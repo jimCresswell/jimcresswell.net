@@ -1,10 +1,22 @@
 import { spawnSync } from 'node:child_process';
-import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import {
+  chmodSync,
+  closeSync,
+  mkdirSync,
+  mkdtempSync,
+  openSync,
+  readFileSync,
+  rmSync,
+  statSync,
+  writeFileSync,
+} from 'node:fs';
 import { tmpdir } from 'node:os';
-import { join, resolve } from 'node:path';
+import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { z } from 'zod';
+
+import type { PayloadStatus } from '../src/claude/pre-compact-observation.ts';
 
 /**
  * Production-shaped smoke for the Claude Code `PreCompact` observer.
@@ -16,7 +28,8 @@ import { z } from 'zod';
  * compaction. This smoke reads the exact command from `.claude/settings.json`,
  * runs it through the shell, and asserts what the harness enforces — exit 0 and
  * a response carrying only top-level fields with `continue: true` — plus one
- * observation per run whose marker matches the response's.
+ * observation per run, readable by its owner only, whose marker matches the
+ * response's.
  */
 
 const smokeDir = fileURLToPath(new URL('.', import.meta.url));
@@ -26,6 +39,8 @@ const REPO_ROOT_VARIABLE = 'PRE_COMPACT_SMOKE_REPO_ROOT';
 const REPO_ROOT_REFERENCE = `\${${REPO_ROOT_VARIABLE}}`;
 const HOOK_TIMEOUT_MS = 10_000;
 const RESPONSE_PREFIX = '[pre-compact-observe] ';
+const OWNER_ONLY = 0o600;
+const WORLD_READABLE = 0o644;
 
 const settingsSchema = z.object({
   hooks: z.object({
@@ -41,30 +56,48 @@ const responseSchema = z.strictObject({
 
 const observationSchema = z.object({ marker: z.string(), payloadStatus: z.string() });
 
+/** What the hook's stdin is: text the harness wrote, or a directory, whose read fails. */
+type SmokeStdin =
+  | { readonly kind: 'text'; readonly text: (transcriptPath: string) => string }
+  | { readonly kind: 'directory' };
+
 interface SmokeCase {
   readonly label: string;
-  readonly stdin: (transcriptPath: string) => string;
-  readonly expectedStatus: string;
+  readonly stdin: SmokeStdin;
+  /** `world-readable`: an empty log left mode 644, as versions before the owner-only rule wrote it. */
+  readonly logBefore: 'absent' | 'world-readable';
+  readonly expectedStatus: PayloadStatus;
 }
 
 const CASES: readonly SmokeCase[] = [
   {
     label: 'the payload a bare /compact sends',
-    stdin: (transcriptPath) =>
-      JSON.stringify({
-        session_id: 'smoke',
-        transcript_path: transcriptPath,
-        cwd: repoRoot,
-        hook_event_name: 'PreCompact',
-        trigger: 'manual',
-        custom_instructions: null,
-      }),
+    stdin: {
+      kind: 'text',
+      text: (transcriptPath) =>
+        JSON.stringify({
+          session_id: 'smoke',
+          transcript_path: transcriptPath,
+          cwd: repoRoot,
+          hook_event_name: 'PreCompact',
+          trigger: 'manual',
+          custom_instructions: null,
+        }),
+    },
+    logBefore: 'world-readable',
     expectedStatus: 'ok',
   },
   {
     label: 'unparseable stdin',
-    stdin: () => 'not json',
+    stdin: { kind: 'text', text: () => 'not json' },
+    logBefore: 'absent',
     expectedStatus: 'unparseable-json',
+  },
+  {
+    label: 'a stdin that cannot be read',
+    stdin: { kind: 'directory' },
+    logBefore: 'absent',
+    expectedStatus: 'stdin-unreadable',
   },
 ];
 
@@ -94,12 +127,30 @@ function singleLine(text: string, what: string): string {
   return lines[0];
 }
 
-function checkRun(stdout: string, projectDir: string, expectedStatus: string): void {
+function observationLogPath(projectDir: string): string {
+  return join(projectDir, '.claude', 'logs', 'pre-compact-observations.jsonl');
+}
+
+function prepareLog(logBefore: SmokeCase['logBefore'], projectDir: string): void {
+  if (logBefore === 'absent') {
+    return;
+  }
+  const logPath = observationLogPath(projectDir);
+  mkdirSync(dirname(logPath), { recursive: true });
+  writeFileSync(logPath, '', 'utf8');
+  chmodSync(logPath, WORLD_READABLE);
+}
+
+function checkRun(stdout: string, projectDir: string, expectedStatus: PayloadStatus): void {
   const response = responseSchema.safeParse(JSON.parse(singleLine(stdout, 'response')));
   if (!response.success) {
     throw new Error(`response fails the harness shape: ${stdout}`);
   }
-  const logPath = join(projectDir, '.claude', 'logs', 'pre-compact-observations.jsonl');
+  const logPath = observationLogPath(projectDir);
+  const logMode = statSync(logPath).mode & 0o777;
+  if (logMode !== OWNER_ONLY) {
+    throw new Error(`expected the observation log to be mode 600, got ${logMode.toString(8)}`);
+  }
   const observation = observationSchema.parse(
     JSON.parse(singleLine(readFileSync(logPath, 'utf8'), 'observation')),
   );
@@ -109,6 +160,20 @@ function checkRun(stdout: string, projectDir: string, expectedStatus: string): v
   if (`${RESPONSE_PREFIX}${observation.marker}` !== response.data.systemMessage) {
     throw new Error(`the response and the observation carry different markers: ${stdout}`);
   }
+}
+
+/** The spawn options that give the hook its stdin, and how to release them. */
+interface OpenedStdin {
+  readonly options: { readonly input: string } | { readonly stdio: [number, 'pipe', 'pipe'] };
+  readonly close: () => void;
+}
+
+function openStdin(stdin: SmokeStdin, projectDir: string, transcriptPath: string): OpenedStdin {
+  if (stdin.kind === 'text') {
+    return { options: { input: stdin.text(transcriptPath) }, close: () => undefined };
+  }
+  const descriptor = openSync(projectDir, 'r');
+  return { options: { stdio: [descriptor, 'pipe', 'pipe'] }, close: () => closeSync(descriptor) };
 }
 
 /**
@@ -126,6 +191,8 @@ function runCase(command: string, smokeCase: SmokeCase): void {
   try {
     const transcriptPath = join(projectDir, 'session.jsonl');
     writeFileSync(transcriptPath, '{}\n', 'utf8');
+    prepareLog(smokeCase.logBefore, projectDir);
+    const stdin = openStdin(smokeCase.stdin, projectDir, transcriptPath);
     const result = spawnSync(
       'sh',
       ['-c', command.replaceAll(PROJECT_DIR_REFERENCE, () => REPO_ROOT_REFERENCE)],
@@ -136,11 +203,12 @@ function runCase(command: string, smokeCase: SmokeCase): void {
           CLAUDE_PROJECT_DIR: projectDir,
           [REPO_ROOT_VARIABLE]: repoRoot,
         },
-        input: smokeCase.stdin(transcriptPath),
+        ...stdin.options,
         encoding: 'utf8',
         timeout: HOOK_TIMEOUT_MS,
       },
     );
+    stdin.close();
     if (result.status !== 0) {
       throw new Error(
         `hook exited ${result.status ?? `on ${result.signal ?? 'an error'}`}\n${result.stderr}`,

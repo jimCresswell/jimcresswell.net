@@ -26,10 +26,12 @@
  * @packageDocumentation
  */
 
+import type { Result } from '@engraph/result';
 import { typeSafeEntries, typeSafeKeys } from '@engraph/type-helpers';
 import { z } from 'zod';
 
 import { snapshotEnv } from './pre-compact-env-snapshot.ts';
+import type { SiblingFile } from './pre-compact-siblings.ts';
 
 /** The payload fields the observer uses. Every one is optional on purpose: an absent field is itself the finding. */
 const knownFieldsSchema = z.object({
@@ -50,24 +52,18 @@ type PayloadObject = z.infer<typeof payloadObjectSchema>;
 /** The validated subset of a `PreCompact` payload. */
 export type KnownFields = z.infer<typeof knownFieldsSchema>;
 
-/** How the payload read went. `schema-mismatch` means valid JSON whose known fields did not all validate. */
-export type PayloadStatus = 'ok' | 'empty' | 'unparseable-json' | 'schema-mismatch';
+/** How reading a payload went. `schema-mismatch` means valid JSON whose known fields did not all validate. */
+export type PayloadReadStatus = 'ok' | 'empty' | 'unparseable-json' | 'schema-mismatch';
 
-/** What kind of directory entry a sibling of the transcript is. */
-export type SiblingKind = 'file' | 'directory' | 'other';
-
-/** One entry beside the session's transcript: its name and kind, and its size when it is a file that was measured. */
-export interface SiblingFile {
-  readonly name: string;
-  readonly kind: SiblingKind;
-  readonly bytes?: number;
-}
+/** How the observation's payload went: read, or `stdin-unreadable` when the hook could not read its stdin at all. */
+export type PayloadStatus = PayloadReadStatus | 'stdin-unreadable';
 
 /** Everything the entry point measures, passed in so this module stays pure. */
 export interface ObservationInput {
   readonly nowIso: string;
   readonly marker: string;
-  readonly rawStdin: string;
+  /** The text the harness wrote to the hook's stdin, or why it could not be read. */
+  readonly stdin: Result<string, string>;
   readonly env: Readonly<Record<string, string | undefined>>;
   readonly cwd: string;
   readonly argv: readonly string[];
@@ -76,40 +72,58 @@ export interface ObservationInput {
   readonly projectSiblingsTotal?: number | undefined;
 }
 
-/** One line of the observation log. */
-export interface Observation {
-  readonly at: string;
-  readonly marker: string;
-  readonly event: 'PreCompact';
-  readonly payloadStatus: PayloadStatus;
+/** The payload fields of an observation whose stdin was read. */
+interface ReadPayloadEvidence {
+  readonly payloadStatus: PayloadReadStatus;
   readonly payloadKeys: readonly string[];
   readonly known: KnownFields;
   readonly mismatchedFields: readonly string[];
   readonly rawStdinBytes: number;
   readonly rawStdin: string;
+  readonly stdinReadError?: undefined;
+}
+
+/** The payload fields of an observation whose stdin could not be read: nothing of it was measured. */
+interface UnreadablePayloadEvidence {
+  readonly payloadStatus: 'stdin-unreadable';
+  readonly payloadKeys: readonly [];
+  readonly known: KnownFields;
+  readonly mismatchedFields: readonly [];
+  readonly rawStdinBytes?: undefined;
+  readonly rawStdin?: undefined;
+  readonly stdinReadError: string;
+}
+
+/** The fields of an observation that are not about its payload. */
+interface ObservationContext {
+  readonly at: string;
+  readonly marker: string;
+  readonly event: 'PreCompact';
   readonly cwd: string;
   readonly argv: readonly string[];
   readonly envValues: Readonly<Record<string, string>>;
   readonly envNamesWithheld: readonly string[];
+  /** Undefined when not measured: the payload named no transcript, or its size could not be read. */
   readonly transcriptBytes: number | undefined;
   readonly projectSiblings: readonly SiblingFile[];
-  /** How many entries sat beside the transcript before {@link selectSiblings} capped the list. */
+  /**
+   * How many entries sat beside the transcript before `selectSiblings` capped the list.
+   * Undefined when not measured: the payload named no transcript, or its directory could not be
+   * listed; an empty directory reads 0.
+   */
   readonly projectSiblingsTotal: number | undefined;
 }
 
+/** One line of the observation log; its payload fields agree with its status by construction. */
+export type Observation = ObservationContext & (ReadPayloadEvidence | UnreadablePayloadEvidence);
+
 /** The result of reading a payload: how it went, its top-level keys, and the fields that validated. */
 export interface PayloadRead {
-  readonly status: PayloadStatus;
+  readonly status: PayloadReadStatus;
   readonly keys: readonly string[];
   readonly known: KnownFields;
   /** The known fields present with the wrong type, by name. */
   readonly mismatchedFields: readonly string[];
-}
-
-/** The sibling entries worth measuring, and how many there were before the cap. */
-export interface SiblingSelection<T extends { readonly name: string }> {
-  readonly entries: readonly T[];
-  readonly total: number;
 }
 
 /**
@@ -171,43 +185,19 @@ function withoutFields(payload: Readonly<PayloadObject>, fields: readonly string
 }
 
 /**
- * Choose which entries beside the transcript to record.
- *
- * @param entries - Every entry in the transcript's directory, in whatever order
- *   the filesystem returned them.
- * @param limit - The most entries to keep.
- * @returns The entries sorted by name so repeated observations are comparable,
- *   capped at `limit`, and the full count so a capped list never reads as
- *   complete.
- */
-export function selectSiblings<T extends { readonly name: string }>(
-  entries: readonly T[],
-  limit: number,
-): SiblingSelection<T> {
-  const sorted = [...entries].sort((left, right) => left.name.localeCompare(right.name));
-  return { entries: sorted.slice(0, limit), total: entries.length };
-}
-
-/**
  * Build the observation record.
  *
  * @param input - Everything the entry point measured.
  * @returns One log line's worth of evidence about this compaction.
  */
 export function buildObservation(input: ObservationInput): Observation {
-  const payload = readPayload(input.rawStdin);
   const env = snapshotEnv(input.env);
 
   return {
     at: input.nowIso,
     marker: input.marker,
     event: 'PreCompact',
-    payloadStatus: payload.status,
-    payloadKeys: payload.keys,
-    known: payload.known,
-    mismatchedFields: payload.mismatchedFields,
-    rawStdinBytes: Buffer.byteLength(input.rawStdin, 'utf8'),
-    rawStdin: input.rawStdin,
+    ...payloadEvidence(input.stdin),
     cwd: input.cwd,
     argv: input.argv,
     envValues: env.values,
@@ -215,5 +205,28 @@ export function buildObservation(input: ObservationInput): Observation {
     transcriptBytes: input.transcriptBytes,
     projectSiblings: input.projectSiblings ?? [],
     projectSiblingsTotal: input.projectSiblingsTotal,
+  };
+}
+
+function payloadEvidence(
+  stdin: Result<string, string>,
+): ReadPayloadEvidence | UnreadablePayloadEvidence {
+  if (!stdin.ok) {
+    return {
+      payloadStatus: 'stdin-unreadable',
+      payloadKeys: [],
+      known: {},
+      mismatchedFields: [],
+      stdinReadError: stdin.error,
+    };
+  }
+  const payload = readPayload(stdin.value);
+  return {
+    payloadStatus: payload.status,
+    payloadKeys: payload.keys,
+    known: payload.known,
+    mismatchedFields: payload.mismatchedFields,
+    rawStdinBytes: Buffer.byteLength(stdin.value, 'utf8'),
+    rawStdin: stdin.value,
   };
 }

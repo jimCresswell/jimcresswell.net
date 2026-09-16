@@ -35,7 +35,7 @@ narrow.
   contract it has observed is recorded in
   `.agent/memory/executive/cross-platform-agent-surface-matrix.md` §Hook
   Support. Retire it when a `PreCompact` gate replaces it: its
-  `systemMessage` shows on every compaction
+  `systemMessage` shows on every compaction it answers
 - `preCommit` — documented policy only; quality-gate reminders already
   live in the workflow and review surfaces
 

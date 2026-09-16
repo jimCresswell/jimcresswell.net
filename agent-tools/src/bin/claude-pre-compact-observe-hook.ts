@@ -6,8 +6,10 @@
  * Its only job is evidence: what the harness puts on stdin at a compaction,
  * and what it does with what the hook writes back. It never blocks a
  * compaction: once its modules have loaded, every path answers
- * `continue: true` and exits 0, and a failure is reported in the response's
- * `systemMessage` rather than swallowed.
+ * `continue: true` and exits 0. A failure to record the observation is
+ * reported in the response's `systemMessage`; a stdin that cannot be read is
+ * recorded in the observation with its reason; a measurement that cannot be
+ * taken (the transcript's size, the entries beside it) is recorded as absent.
  *
  * Invoked from `.claude/settings.json` straight from TypeScript source under
  * Node 24's type stripping, with no hand-authored JavaScript shim, through the
@@ -28,8 +30,9 @@
  * (`@engraph/no-dynamic-import`).
  *
  * Observations append to `.claude/logs/pre-compact-observations.jsonl`, which
- * is machine-local and git-ignored; the raw payload is recorded verbatim, so
- * this file stays out of the tracked tree.
+ * is machine-local, git-ignored and readable by its owner only: the raw payload
+ * is recorded verbatim, and it can carry what the harness keeps owner-only (the
+ * text typed after `/compact`, session identifiers).
  *
  * @packageDocumentation
  */
@@ -37,25 +40,30 @@
 import { randomUUID } from 'node:crypto';
 import {
   appendFileSync,
+  closeSync,
   type Dirent,
+  fchmodSync,
   mkdirSync,
+  openSync,
   readdirSync,
   readFileSync,
   statSync,
 } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 
+import type { Result } from '@engraph/result';
+
+import { buildObservation, readPayload } from '../claude/pre-compact-observation.ts';
+import { buildFailOpenResponse, buildProbeResponse } from '../claude/pre-compact-response.ts';
 import {
-  buildObservation,
-  readPayload,
   selectSiblings,
   type SiblingFile,
   type SiblingKind,
-} from '../claude/pre-compact-observation.ts';
-import { buildFailOpenResponse, buildProbeResponse } from '../claude/pre-compact-response.ts';
+} from '../claude/pre-compact-siblings.ts';
 
 const LOG_RELATIVE_PATH = join('.claude', 'logs', 'pre-compact-observations.jsonl');
 const SIBLING_LIMIT = 24;
+const OWNER_ONLY = 0o600;
 
 /** The entries beside the transcript that were described, and how many there were in all. */
 interface SiblingMeasurement {
@@ -63,11 +71,11 @@ interface SiblingMeasurement {
   readonly total: number | undefined;
 }
 
-function readStdin(): string {
+function readStdin(): Result<string, string> {
   try {
-    return readFileSync(0, 'utf8');
-  } catch {
-    return '';
+    return { ok: true, value: readFileSync(0, 'utf8') };
+  } catch (error) {
+    return { ok: false, error: error instanceof Error ? error.message : String(error) };
   }
 }
 
@@ -131,23 +139,30 @@ function measureSiblings(transcriptPath: string | undefined): SiblingMeasurement
   }
 }
 
+/** Append one line, first making the log owner-only, so a log created before that rule is tightened too. */
 function appendObservation(logPath: string, line: string): void {
   mkdirSync(dirname(logPath), { recursive: true });
-  appendFileSync(logPath, line, 'utf8');
+  const descriptor = openSync(logPath, 'a', OWNER_ONLY);
+  try {
+    fchmodSync(descriptor, OWNER_ONLY);
+    appendFileSync(descriptor, line, 'utf8');
+  } finally {
+    closeSync(descriptor);
+  }
 }
 
 function run(): void {
   const projectDir = requireProjectDir();
   const nowIso = new Date().toISOString();
   const marker = newMarker(nowIso);
-  const rawStdin = readStdin();
-  const transcriptPath = readPayload(rawStdin).known.transcript_path;
+  const stdin = readStdin();
+  const transcriptPath = stdin.ok ? readPayload(stdin.value).known.transcript_path : undefined;
   const siblings = measureSiblings(transcriptPath);
 
   const record = buildObservation({
     nowIso,
     marker,
-    rawStdin,
+    stdin,
     env: process.env,
     cwd: process.cwd(),
     argv: process.argv,
