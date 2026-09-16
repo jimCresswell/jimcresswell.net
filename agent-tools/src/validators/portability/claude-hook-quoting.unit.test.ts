@@ -51,6 +51,8 @@ describe('projectDirCommandShapeIssue', () => {
       '/bin/sh --noprofile -c "${CLAUDE_PROJECT_DIR}/x.sh"',
       'env zsh -o pipefail -c "${CLAUDE_PROJECT_DIR}/x.sh"',
       'eval "${CLAUDE_PROJECT_DIR}/x.sh"',
+      '"${CLAUDE_PROJECT_DIR}/bash" -c "${CLAUDE_PROJECT_DIR}/x.sh"',
+      '"${CLAUDE_PROJECT_DIR}/tools/eval" "${CLAUDE_PROJECT_DIR}/x.sh"',
     ]) {
       expect(projectDirCommandShapeIssue(command), command).toBe(
         'a shell -c or eval parses the path again',

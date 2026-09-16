@@ -51,8 +51,10 @@ interface LabelledCommand {
   readonly command: string;
 }
 
+/** The program a word names, ignoring surrounding quotes and any directory. */
 function programName(word: string): string {
-  return word.slice(word.lastIndexOf('/') + 1);
+  const unquoted = word.replaceAll('"', '');
+  return unquoted.slice(unquoted.lastIndexOf('/') + 1);
 }
 
 function parsesAgain(words: readonly string[]): boolean {
