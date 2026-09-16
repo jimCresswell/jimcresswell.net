@@ -2088,3 +2088,31 @@ tip is one whose required analysers ran".
   worktree guard and the merge gate are the same mechanism" — superficially both refuse on
   insufficient evidence, but one refuses a command and the other refuses a merge, and nothing
   followed from pairing them.
+
+### Director, the Cricket suite mis-run and what it accidentally measured (2026-09-16, 13:0xZ) — Cauldron herds Lustre (880ff9)
+
+- **My error: I overrode the Cricket seats' defined models.** The owner asked for full suites with
+  "no Fable instance". The correct reading is to SKIP the one seat defined as fable
+  (`cricket-judgement-low`) and let the other three run at their own frontmatter. Instead I passed
+  an explicit model to all four, which both resurrected the fable-named seat under another model
+  and inverted the estate's deliberate INVERSE pairing of model power against effort. Defined:
+  low=fable, medium=opus, high=sonnet, xhigh(procedure)=haiku. Forced: haiku, sonnet, opus, opus.
+- **Why I got it wrong, and the structural cure the owner named.** The generated adapter names
+  carry effort only (`-low`, `-medium`, `-high`, `-xhigh`), so nothing in the name says which model
+  a seat runs. The owner's word: the names are supposed to encode BOTH model power and effort.
+  The templates under `.agent/sub-agents/templates/` already declare both per variant, so the fix
+  is a generator and naming change across four platform adapter trees — captured, not started.
+- **The accidental experiment, worth keeping.** Haiku at LOW effort independently found the
+  blast-radius defect (compiler options placed in the base tsconfig every workspace inherits,
+  where the agent-tools project would do) and the priority problem, and honestly flagged that it
+  could not tell whether the owner's question authorised a repo-wide change. Sonnet at medium
+  effort MISSED that defect and judged the change proportionate. Opus at high effort found both
+  and put the blast radius best. Opus running the xhigh procedure found the unproved guard arm and
+  DISSENTED on priority, holding that a branch absent from the owner's directives is not grounds
+  for a wrong-priority verdict. The cheapest seat caught what a dearer one waved through; the
+  dearest produced the sharpest dissent. That is evidence for running the SUITE rather than any
+  one seat, which is what the inverse pairing exists to buy.
+- **What the suite caught in me, twice over.** Only the accepting arm of a widened guard had been
+  demonstrated; the rejecting arm was reasoned. Probed both ways afterwards, first-hand. And the
+  compiler options moved down to the workspace where hook sources live. Both findings came from
+  outside my own reading — the same external-bound signature this arc keeps producing.

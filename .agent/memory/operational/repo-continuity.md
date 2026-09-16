@@ -138,6 +138,17 @@ and proof (item 4's rows closed by #85 `SHA: eed1f2e`, #87 `SHA: 6b5676b`, #86
    translates verdicts into a decision, so each gets its own first-hand fire and no-fire probe
    before its shim is deleted (the enforcement-surface discipline in
    `hook-policy-substring-discipline`). Routed to Zephyr guards Leeward (281e44) the same day.
+
+   Second maintenance item at the same priority (2026-09-16): the Cricket seat naming. The
+   generated adapter names encode effort alone (`-low`, `-medium`, `-high`, `-xhigh`), so nothing
+   in a name says which model a seat runs, while the estate pairs model power INVERSELY with
+   effort — low is fable, medium is opus, high is sonnet, xhigh is haiku. A caller who cannot read
+   that from the name mis-launches the suite, as the Director did on 2026-09-16 by overriding
+   every seat's model and inverting the design. Names should carry both dimensions. The change
+   lives in `.agent/sub-agents/templates/cricket-judgement.md` and
+   `.agent/sub-agents/templates/cricket-procedure.md` and then regenerates across the four
+   platform adapter trees (`pnpm portability:fix`), so it is a rename with a blast radius rather
+   than a one-line edit.
 3. The `practice-two-way-exchange` node (ratified 2026-09-14) is the next Practice work and
    opens on the owner naming its window; the closure's routed findings (the exchange-window
    items on #84, #86, #89, #90 and #91; the hold's second lifting path; the boundary

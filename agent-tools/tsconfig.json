@@ -4,7 +4,15 @@
   "compilerOptions": {
     "types": ["node", "vitest/globals"],
     "jsx": "react-jsx",
-    "noEmit": true
+    "noEmit": true,
+    // Hooks in src/bin are invoked by the harness as `node <source>.ts` and so
+    // carry `.ts` relative specifiers, which Node resolves literally; tsc
+    // rewrites them to `.js` on emit so the same files still resolve from dist.
+    // Scoped to this workspace because this is where hook sources live — Node
+    // ignores tsconfig entirely when stripping types, so a wider home would buy
+    // nothing.
+    "allowImportingTsExtensions": true,
+    "rewriteRelativeImportExtensions": true
   },
   "include": [
     "src/**/*.ts",
