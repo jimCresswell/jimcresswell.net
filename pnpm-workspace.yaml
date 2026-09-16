@@ -97,6 +97,14 @@ overrides:
   # 0.29/1.x on rebuild unreviewed. Move floor and bound together with
   # the manifests at the next esbuild raise.
   esbuild: '>=0.28.2 <0.29'
+  # Peer alignment, added 2026-09-16: eslint-plugin-tsdoc 0.5.3, its latest
+  # release, pins @typescript-eslint/utils ~8.56.0, whose typescript peer stops
+  # below 6.0 while the estate type-checks with the 6.0 API — an unmet peer on
+  # every install. The rest of the estate resolves the 8.70 line (tooling/eslint
+  # declares ^8.70.0; its peer admits typescript <6.1.0). Parent-scoped to that
+  # one consumer and bounded below 9, aligned with the manifest range. Remove
+  # when eslint-plugin-tsdoc declares a range that admits TypeScript 6.
+  'eslint-plugin-tsdoc>@typescript-eslint/utils': '>=8.70.0 <9'
   # Security floor: host confusion via a literal backslash in fast-uri's URI
   # parser (high; patched in 3.1.4); a second host-confusion advisory via a
   # backslash authority introducer patched in 3.1.5 (raised 2026-08-11,
@@ -180,6 +188,14 @@ overrides:
   postcss: '>=8.5.26 <9'
   qs: '>=6.15.2'
   rollup: '>=4.59.0'
+  # Security floor, added 2026-09-16: GHSA-7w5x-hrqm-74c2 (high) in smol-toml
+  # <=1.7.0, patched in 1.7.1. markdownlint-cli2 0.23.2, its latest release,
+  # pins smol-toml 1.7.0 exactly, so no version move escapes; agent-tools
+  # declares ^1.7.1 and knip already resolves 1.8.0. Dev tooling only (the
+  # markdown lint gate). Bounded below 2 pre-emptively — an open floor admits
+  # the next major the day it ships. Remove when markdownlint-cli2 declares
+  # smol-toml >=1.7.1.
+  smol-toml: '>=1.7.1 <2'
   sucrase: '>=3.35.1'
 minimumReleaseAgeExclude:
   - prettier@3.9.7
