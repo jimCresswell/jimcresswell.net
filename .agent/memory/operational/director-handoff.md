@@ -50,123 +50,23 @@ Every line answered first-hand, none inferred:
   archive holds only processed material.
 - The transplant is bounded: closure items 3 to 8 finish it, then editorial work.
 
-## Current handoff state (2026-09-16, 12:3xZ, compaction; the arc closed, the first queued build pushed)
+## Current handoff state (2026-09-16, 21:xxZ; #93 merged, this branch folded, known defects in fix lanes)
 
 Where this block and the routing log disagree, the log's last entry is current; this block is
-rewritten at each Director wrap.
+rewritten at each Director wrap. Item 116 is the boundary state; items 114 and 115 are history.
 
-**State at this wrap (2026-09-16, 12:3xZ, the owner's word: prepare for compaction, then stop
-all processes).** The transplant closure is complete on `main` and its retrospective is written
-(items 109 to 111). Since then this seat built the first queued instrument: `feat/arc-metrics`
-is pushed at `SHA: 6d60e05` with `pnpm check` green, and NO pull request is open for it — the
-owner's compaction word gates starting a review chain, so opening it is the first owed step at
-resume (item 112). The primary checkout sits on the coordination branch
-`coordination/2026-09-15-b9dcfb`, which carries both seats' arc records (`SHA: 82cecbc`) plus
-this wrap's commit, all LOCAL: the branch has never been pushed and is due to converge under
-`coordination-branch-24h-lifetime`, its stamp being yesterday's. The worktree
-`jimcresswell.net-worktrees/arc-metrics` is kept, clean, on the pushed branch. Lane A closed
-2026-09-15; the Director's claim `1db07581` is closed; nothing is armed. Owner decisions carried
-(items 111, 112): PDR-140's declaration at pull-request open, re-costing at scope rulings and
-starting at two seats are operating defaults; proposal 7 takes both lanes; required status checks
-are on `main`'s ruleset since 2026-09-16 and the settlement's half is queued. Open with the owner:
-nothing blocking. Follow-on lists unchanged from item 111, plus: the settlement naming its
-required checks, the compaction-preparation trigger (the owner's combined
-design of 2026-09-16: a nudge at 60%, the auto-compact window at 70%, a blocking `PreCompact`
-gate with a third-attempt valve — item 113), and the push-time settlement-budget gate.
-
-**Boundary block (2026-09-16, 12:3xZ).** Nothing session-scoped survives a compaction; verify by
-id first and re-arm only what is absent:
-
-- Nothing is armed: no claim, no watcher, no ARC tail, no chain, no cron, no background task.
-  The one `comms watch` process on this host belongs to another repository's session. A
-  successor re-arms through `start-right-team`: the canonical watcher per
-  `.agent/rules/comms-all-channels-watcher.md` (`comms watch --platform claude --model <the
-  session's model> --supervisor-pid "$PPID" --step-timeout-ms 120000 --max-events-per-drain
-  100` under a 3600-second timeout, asserted with `comms assert-watcher-live`) and a new claim.
-  A `comms send` must name the model on the identity route its claim registered.
-- Owed, in order: (1) open the pull request for `feat/arc-metrics` — its body and the run's JSON
-  are drafted in this session's scratchpad, which is machine-local and therefore not named in a
-  tracked file; request the Copilot reviewer under the owner's CLI credential and run the chain
-  below. (2) Converge the coordination branch: it is overdue by its stamp, so merge `origin/main`,
-  push, land it through its own pull request, and cut the fresh day-stamped branch from the
-  merged tip. Its content includes the retrospective record and its README row, which must be
-  committed together or `validate-markdown-links` reads the row as broken. (3) The three queued
-  builds: the settlement naming its required checks, the 60% preparation trigger, the push-time
-  budget gate — the compaction trigger now built to the owner's combined design of 2026-09-16
-  (the retrospective's §Proposal 10, revised; the Director's item 113).
-- The chain recipe for a pull request: request the Copilot reviewer under the owner's CLI
-  credential with a JSON body, wait for the review bound to the tip by reading the reviews list,
-  reply to and resolve each thread as the bot, then `merge-bot merge --pr N --expect
-  copilot-pull-request-reviewer --interval 30 --max-polls 60 --json`. Two review rounds bind;
-  after round two, no push unless the Director takes the correctness exception on a defect in the
-  pull request's own claim, or a red check needs a cure: one comment by the bot after the LATEST
-  review, one line per suppressed finding in the ratified format (`**Below-bar** head SHA:<sha> ·
-  review <id> · <path>:<line> · item N of M — Rejected: <why>` or `— Cured in SHA:<sha>`), the
-  seat's signature last, then the poll alone. A finding on the pull request's own wording is
-  cured in its title or description with no push.
-- Gate discipline learned here (item 112): a background wrapper's exit code is not the gate's —
-  append the gate's own code to its log and read it there; an untracked file escapes the
-  prettier leg and fails at staging; `knip` is a root script.
-- The push slot: a seat asks, the Director confirms, the seat pushes and releases with one line.
-  `git push origin --delete` runs the full pre-push hook and takes the slot; merged branches are
-  deleted through the REST API.
-- The arc's homes: this record (§Current handoff state; items 1 to 112; the routing log);
-  `repo-continuity.md` §Next Safe Steps; the napkin's end-of-arc and 2026-09-16 Director blocks;
-  the register's 2026-09-15 and 2026-09-16 sections and its slow-lane row;
-  `.agent/experience/2026-09-15-cauldron-herds-lustre-end-of-arc.md`; the retrospective record
-  with its §Corrections after the fact; lane A's thread record, napkin blocks and letter; the
-  closure node's Done lines; the runbook's recorded outcomes and the reports index.
-
-- Director: Cauldron herds Lustre (880ff9), claim `1db07581` (closed at the end-of-arc wrap),
-  thread `transplant-closure`, branch: the coordination branch `coordination/2026-09-15-b9dcfb`
-  in the primary checkout (renamed from `records/director-12`, item 110), based on `main` with
-  `main` merged in at `SHA: f8aab12`; it carries items 109 and 110 and the corrections from
-  #88's round two; the Director made one record pull request on the owner's word (item 7, #89,
-  a recorded PDR-117 exception) and no source edits.
-- Controlling node: `.agent/plans/delivery/practice-completion.plan.md` §Transplant closure.
-  Landed on `main`, every component: item 1 (archive deleted), item 2 (PR #53,
-  `SHA: 55649a2`), item 3 (PR #56, `SHA: 1829cd4`), item 4 as bounded (PR #57, `SHA: 4a61112`;
-  the restore carried in #58), item 6's sweep (PR #55, `SHA: 7127bc4`), item 8 filed (PR #63,
-  `SHA: dc23dff`), the per-checkout Playwright port (PR #60, `SHA: 4370e04`) and its follow-on
-  (PR #66, `SHA: 0ec4583`), item 5a-i (PR #64, `SHA: 38e9693`), the Cricket quartet (PR #61,
-  `SHA: ea3142b`), the Director records and the channel rule (PR #54, `SHA: c426c6c`; PR #58,
-  `SHA: 6528ecb`; PR #62, `SHA: a70521e`), item 5a-ii (PR #65, `SHA: 53d9495`), item 5a-iii
-  (PR #67, `SHA: fca804e`), item 5b (PR #68, `SHA: f362cce`), the e2e follow-on 2 (PR #69,
-  `SHA: e67559a`), item 5a-iv (PR #72, `SHA: 37eebe9`), the Director records to item 58 (PR
-  #70, `SHA: 1643be8`), item 5c (PR #71, `SHA: f377412`), the Director records to item 67
-  (PR #73, `SHA: 50546ee`), item 2a (PR #74, `SHA: 558be52`), the Director records to item
-  80 (PR #76, `SHA: 1b44f5b`), the Director records to item 87 (PR #78, `SHA: e7ba800`),
-  item 2b-i (PR #77, `SHA: 0e70a2b`), the Director records to item 97 (PR #80,
-  `SHA: 6699f51`), item 5a-vi (PR #79, `SHA: 014fc6e`). Then the closure's last merges: 2b-ii (#81 `SHA: d660ac7`, #83
-  `SHA: aba2c0e`, #84 `SHA: b17fee8`), item 4's rows (#85 `SHA: eed1f2e`, #87 `SHA: 6b5676b`,
-  #86 `SHA: 47299c7`), item 7 (#89 `SHA: ffd37d1`), 5a-v, 5c-ii and the amendments (#90
-  `SHA: a47a559`), the Director's last records (#88 `SHA: 30dba5e`), the reader retirement
-  and item 6's Done line (#91 `SHA: f8aab12`). Nothing in the closure is unlanded.
-- Open pull requests (the snapshot at this commit): none. Every closure pull request is
-  merged; the landed list above and items 103 to 109 carry the numbers and merge SHAs.
-- Team state: owner word 17:16Z, "this is now an n=2 session, you and Saffron" (PDR-082; the
-  Director's heartbeat stopped, watcher kept); 17:18Z the ARC channel opened beside native
-  messaging. Lanes B and C handed every responsibility back and stood down (closeouts on the
-  stream; lane B's record `handoffs/707ed764-…3.json`; lane C's claim closed).
-- Merge mechanics learned today: every agent PR write runs as the bot; the bot cannot request
-  Copilot here (the owner's CLI credential can; the request registers on the timeline within a
-  minute unless the previous request's review is still in flight, when it registers nothing; the
-  review takes 8 to 15 minutes); a push re-opens the round; `merge-bot merge --expect
-  copilot-pull-request-reviewer` binds the leg and merges only at SETTLE-READY (historical
-  until #65 lands: a ten-minute quiet window after the last review; from #65, item 5a-ii,
-  measured state: every leg landed, no expected reviewer request outstanding, no live run
-  observed, any unavailable run surface named); pushes serialise for host load: the seat asks,
-  the Director confirms, the seat pushes and releases, and a granted slot is held until
-  released.
-- Re-arm after compaction, checking first (PDR-133): the boundary block above is the recipe.
-  Checked 15:39Z and again at the 06:41Z resume: the watcher process (one pid, running since
-  the evening) was found alive after the compaction that followed the 06:37Z non-terminal
-  wrap; it was then stopped and re-armed in the canonical shape because it lacked the
-  supervisor pid.
-- Next safe step (owner present; the closure complete): the owner's decisions on the
-  retrospective's proposals (item 111); then a later seat converges the coordination branch (the boundary block);
-  the `practice-two-way-exchange` node opens on the owner naming its window; the graduation
-  drain is curator work (item 94).
+- `main` is at `SHA: 958919c` (#93, merged by the owner at 20:38Z). The coordination branch
+  `coordination/2026-09-15-b9dcfb` folded `main` in (`SHA: 2961e9c`, every file both sides
+  touched taking `main`'s version), was pushed, and lands through #97; after #97 merges, cut the
+  fresh day-stamped coordination branch from the merged tip.
+- Known defects run as fix lanes, one branch and one pull request each, listed with their state
+  in `repo-continuity.md` §Next Safe Steps. Nothing is queued as "none blocking": the owner's
+  word of 2026-09-16 is "If you know there is broken code, fix it".
+- Still open as drafts: the strictness lanes #94, #95, #96. `feat/arc-metrics` has no pull
+  request yet.
+- Nothing session-scoped is armed at a boundary unless item 116 names it. The chain recipe, the
+  push slot and the merge mechanics are unchanged; the standing rulings above and items 1 to
+  116 carry them.
 
 ## Live board
 
@@ -1800,6 +1700,26 @@ ones the Director would put to the owner had the owner been present.
      `feat/arc-metrics` pull request; after 2026-09-17T08:24Z, delete the release-age exclusion
      block; the queued follow-ups in the continuity contract.
 
+116. The #93 review, the fold, and the fix lanes (2026-09-16, 15:3xZ to 21:xxZ). SUPERSEDES
+     item 115's boundary state. #93's comments were reviewed and settled at `SHA: 882a15c`:
+     CodeQL alert 8 (the smoke pasted the checkout path into its shell command; reproduced with a
+     symlink named `$(echo INJECTED-RAN >&2)`) and alert 9 (a file-system race in the smoke)
+     cured; Copilot's two rounds cured or dispositioned in signed comments. The owner merged #93
+     at 20:38Z. This branch then folded `main` in, taking `main`'s version of all nine files both
+     sides touched after a pre-merge divergence check and a deletion sweep (every removed line
+     was this branch's own later edit to a record `main` had not touched), and lands through #97;
+     the primary checkout's observer smoke passes. The owner's correction the same evening, "If
+     you know there is broken code, fix it", replaced the continuity contract's "queued, none
+     blocking" lists with fix lanes: the unquoted secrets hooks and world-readable hook logs, the
+     visual-regression export flake (git output read on `exit` rather than `close`), the
+     dependency-cruiser gate that could pass having parsed nothing with its knip and ESLint
+     hygiene, and the `smol-toml` advisory with the `eslint-plugin-tsdoc` peer. The primary
+     checkout's and the `falsifier-2a` worktree's `.claude/logs` were made owner-only by hand.
+     OWED, IN ORDER: land #97 and cut the fresh coordination branch; land each fix lane; the fixes
+     named as owed in the continuity contract; the strictness slices and the flag flip; the
+     `feat/arc-metrics` pull request; after 2026-09-17T08:24Z, delete the release-age exclusion
+     block.
+
 ## Routing log
 
 - 2026-09-13 evening: seat opened; team-start `ca1ba4d8`; lanes A, B, C authored, unfilled.
@@ -2035,3 +1955,8 @@ ones the Director would put to the owner had the owner been present.
   green, no pull request opened at the compaction boundary); the retrospective corrected
   additively after its own tool found two more counting errors (item 112). §Current handoff
   state is current.
+- 2026-09-16 16:3xZ: #93's comments settled at `SHA: 882a15c` (item 116). §Current handoff state
+  is current.
+- 2026-09-16 20:38Z: #93 merged by the owner (`SHA: 958919c`); this branch folded `main` in
+  (`SHA: 2961e9c`) and opened #97; the known defects became fix lanes (item 116). §Current
+  handoff state is current.

@@ -1337,8 +1337,8 @@ owner's; the Director holds it.
    the eighth and ninth waypoints, now also carries item 3's notes and the Windows identity
    arm.
 5. Local residue, all content verified on `main`, for a later seat or the owner to delete:
-   `closure/lane-a` at `2356b2bd` (`git cherry` reads its one commit as patch-equivalent on
-   `main`; its origin ref is gone) and `closure/lane-a-checkpoint` at `64aa0056` (`git cherry`
+   `closure/lane-a` at `SHA: 2356b2bd` (`git cherry` reads its one commit as patch-equivalent on
+   `main`; its origin ref is gone) and `closure/lane-a-checkpoint` at `SHA: 64aa0056` (`git cherry`
    reads `+`, but both sampled added lines, the 15:35Z waypoint heading and its napkin text, are
    on `main` through `records/lane-a-checkpoint-2`), each needing `git branch -D`;
    `records/lane-a-checkpoint-2` and `fix/pr55-rule-name-boundary` are merged (`-d`).

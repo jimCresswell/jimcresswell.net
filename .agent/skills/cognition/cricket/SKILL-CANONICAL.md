@@ -92,6 +92,7 @@ Cursor bindings:
 | `cricket-judgement-low` | `cricket-judgement.md` | unpinned | unpinned |
 | `cricket-judgement-medium` | `cricket-judgement.md` | unpinned | unpinned |
 | `cricket-judgement-high` | `cricket-judgement.md` | unpinned | unpinned |
+| `cricket-judgement-lowestpower-low` | `cricket-judgement.md` | unpinned | unpinned |
 | `cricket-procedure-xhigh` | `cricket-procedure.md` | unpinned | unpinned |
 
 Cursor preserves the templates and stable role names but pins neither model nor effort;
@@ -160,15 +161,15 @@ shared-runtime admission failure. Never silently replace it with Sol, Terra, or 
 
 ## Cursor dispatch
 
-On Cursor, run the four stable template adapters as a panel:
+On Cursor, run the five stable template adapters as a panel:
 
-1. Start the four adapters concurrently where the seat permits it, with the identical frame and
+1. Start the five adapters concurrently where the seat permits it, with the identical frame and
    `STANCE: normal`. If a concurrency cap requires waves, preserve the frame and stable role
    order.
-2. Collect all four normal returns.
-3. Start the same four adapters with the identical frame and only `STANCE: adversarial` changed,
+2. Collect all five normal returns.
+3. Start the same five adapters with the identical frame and only `STANCE: adversarial` changed,
    using the same concurrency pattern.
-4. Collect all eight returns. Mark a missing return `UNDELIVERED`; do not substitute a generic
+4. Collect all ten returns. Mark a missing return `UNDELIVERED`; do not substitute a generic
    agent.
 
 Cursor adapters preserve the methods and stable role names, but Cursor does not pin their model

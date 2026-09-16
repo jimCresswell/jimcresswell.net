@@ -90,10 +90,6 @@ names a live branch):
 
 ## Active Threads
 
-- OCE Practice lineage transplant — closure (Director: Cauldron herds Lustre, `director-handoff.md`;
-  lane A, Saffron turns Verdure, `threads/closure-lane-a.next-session.md`): complete; lane A closed 2026-09-15.
-  Identities: claude / claude-opus-5 / Cauldron herds Lustre / director / 2026-09-15;
-  claude / claude-opus-5 / Saffron turns Verdure / implementer / 2026-09-15.
 - Closure session 2's synthesis (`threads/session-2-synthesis.next-session.md`): the cards were
   answered 2026-09-14 (the Director's handoff item 78); the graduation drain is curator work.
 
@@ -113,17 +109,13 @@ STATE, 2026-09-16 afternoon (Cauldron herds Lustre, Director), owner-directed in
   2026-09-17T08:24Z, delete the `minimumReleaseAgeExclude` block in `pnpm-workspace.yaml`: all
   five excluded packages were published 2026-09-16 and it is dead config once they age past the
   24h floor.
-- #93 ready for review, review settled 2026-09-16 at `SHA: 882a15c`: checks green,
-  `mergeStateStatus` CLEAN, all five threads resolved, both Copilot rounds (the budget) cured or
-  dispositioned in signed comments, CodeQL alerts 8 (shell command built from an absolute path)
-  and 9 (file-system race) fixed. The cures: the smoke passes the repository root through the
-  environment, as Claude Code supplies `CLAUDE_PROJECT_DIR` to a shell-form hook; an unreadable
-  stdin records `stdin-unreadable` with its reason instead of `empty`; the observation log is
-  owner-only (mode 600, tightened before each append). It supersedes this branch's observer
-  commits (`SHA: e4e0e0e`, `SHA: db5148d`): at this branch's fold, take `main`'s versions of
-  the hook files after a pre-merge divergence check. Until then the primary checkout runs the old
-  hook, which appends to a mode-644 log another local account can read; owner action, surfaced
-  2026-09-16: `chmod 600 .claude/logs/pre-compact-observations.jsonl` now, not at the fold.
+- #93 merged by the owner 2026-09-16 20:38Z (`SHA: 958919c`): the `PreCompact` observer, run
+  from TypeScript source, with its review settled (CodeQL alerts 8 and 9 fixed; an unreadable
+  stdin recorded as `stdin-unreadable`; the observation log owner-only).
+- This branch folded after #93 (merge `SHA: 2961e9c`), every file both sides touched taking
+  `main`'s version; it lands through #97, and the primary checkout now runs `main`'s observer
+  (its smoke passes there). The primary's `.claude/logs` and both logs were made owner-only by
+  hand the same evening.
 - Strictness, owner word 2026-09-16: "I want the tsconfig brought up to strict everywhere, but if
   there is a better way to do it that is fine, I was being explicit but I am happy with standard
   approaches." Landed as drafts, all green through the full pre-push gate:
@@ -157,47 +149,36 @@ STATE, 2026-09-16 afternoon (Cauldron herds Lustre, Director), owner-directed in
   byte-identical to the patch that became #92, the seven tsconfig edits adding only flags #94's
   base carries.
 
-FIRST ACTION: converge this coordination branch; the owner's files no longer block it. It is
-DUE by its own stamp, and `coordination-branch-24h-lifetime` step 2 requires a seat at n=1 to ACT
-on convergence before staking new work. One ordering fact governs it: the branch carries the
-defective first versions of the hook files that #93 replaces, so fold AFTER #93 merges and take
-`main`'s versions of those files; folding first would land the old code on `main` and give #93
-add/add conflicts. The primary's `node_modules` still holds the owner's TypeScript 7 install over
-this branch's TypeScript 6 lockfile, so run `pnpm install` in the primary right after merging
-`origin/main` in. Then the owed pull request on `feat/arc-metrics`.
+FIRST ACTION: land #97 (this branch's fold) at full condition, then cut the fresh day-stamped
+coordination branch from the merged tip (`coordination-branch-24h-lifetime` step 3). Then the
+owed pull request on `feat/arc-metrics`.
 
-Queued from the reviews of #92 and #93 (2026-09-16), none blocking: a dependency-cruiser gate
-assertion that a TypeScript compiler was found (a plain TypeScript 7 bump made it pass silently
-having cruised one module); ESLint 10 for `jcdotnet` once `eslint-plugin-react` supports it;
-pre-existing on `main` — knip's four redundant-entry hints, the unmet `typescript` peer of
-`@typescript-eslint/*` 8.56.1 via `eslint-plugin-tsdoc`, the `smol-toml` advisory
-GHSA-7w5x-hrqm-74c2, the bootstrap docblock's stale build-script and `--prod` statements, and
-three `no-restricted-imports` rules keyed on modules that do not exist here; an assumptions-expert
-review of source-run hooks before the `PreCompact` gate is built; and `set-up-worktree-lane`
-expects a bot committer while this repository commits as the owner, so the skill and practice
-need reconciling.
+Known defects are fixed, not queued (owner word 2026-09-16: "If you know there is broken code,
+fix it"). In flight, each on its own branch from `origin/main`, one pull request each:
 
-Queued from the review of #93's comments (2026-09-16), none blocking #93:
+- `fix/hook-quoting-and-log-modes`: the Read and UserPromptSubmit secrets hooks left
+  `${CLAUDE_PROJECT_DIR}` unquoted and did not run under a project path holding a space; a
+  portability check now fails on any unquoted reference. The hook logs are owner-only from every
+  writer, and the Read secrets guard scans paths holding a quote or backslash.
+- `fix/export-ref-worktree-flake`: the visual-regression export read git's output on the child
+  process's `exit` event, which on Linux can fire before stdout is read; it now resolves on
+  `close`.
+- `fix/depcruise-compiler-gate`: dependency-cruiser could pass having parsed nothing; with it,
+  knip's redundant-entry hints, dead `no-restricted-imports` rules and the bootstrap docblock's
+  stale statements.
+- `fix/smol-toml-advisory-and-tsdoc-peer`: the `smol-toml` advisory GHSA-7w5x-hrqm-74c2 and the
+  unmet `typescript` peer through `eslint-plugin-tsdoc`.
 
-- An intermittent failure outside #93: `jcdotnet/visual-regression-harness/export-ref.integration.test.ts`
-  ("exports WORKTREE ...") read `before` where it expected `staged change` in CI run 35117426721
-  attempt 1 on `SHA: 2577903`; it passed on re-run and 8 of 8 times locally, and it is the only
-  failure in the last 60 CI runs. Reading `export-ref.ts` found no mechanism: the staged path is
-  listed by `git diff HEAD`, and the overlay copy runs after both `git archive` and `tar` exit.
-- On `main`, the Read and UserPromptSubmit secrets hooks leave `${CLAUDE_PROJECT_DIR}` unquoted in
-  `.claude/settings.json`, so a checkout path holding whitespace stops them running (exit 127);
-  quote both, and check how the harness treats exit 126 and 127 rather than assume it.
-- `log-hook-errors.sh` should make `.claude/logs` mode 700 on every run: it closes the
-  observation log's creation window and its size and mtime metadata, and covers `hook-errors.log`,
-  which is mode 644. A small pull request of its own, since the wrapper is shared.
-- The observer still records a failed transcript size or sibling listing as absent without its
-  reason, keeps only the message (not the errno code) of a stdin read error, and derives the
-  transcript path twice; carry a reason per measurement in one slice. Delete its log when the
-  observer retires.
-- For config-expert: `@typescript-eslint/no-import-type-side-effects`, so an inline
-  `import { type X }` cannot turn a source-run hook's type-only import into a runtime import.
-- #93 got no Codex review: the connector reported its usage limit.
+Owed after those, as fixes: the observer's other measurements carry their failure reason (a
+failed transcript size or sibling listing is recorded as absent, a stdin error keeps only its
+message); `@typescript-eslint/no-import-type-side-effects`, so an inline type import cannot
+become a runtime import in a source-run hook (config-expert); a probe of whether the two
+`SessionStart` hooks' relative paths resolve after a `cd` in the session; and
+`set-up-worktree-lane`, which expects a bot committer while this repository commits as the owner.
 
+Holds, each with its lift condition: ESLint 10 for `jcdotnet` waits on `eslint-plugin-react`
+supporting it (install prints `deprecated eslint@9.39.5` until then); an assumptions-expert
+review of source-run hooks comes before the `PreCompact` gate is built.
 The transplant closure is complete on `main` (2026-09-15): every item of
 `.agent/plans/delivery/practice-completion.plan.md` §Transplant closure carries its Done line
 and proof (item 4's rows closed by #85 `SHA: eed1f2e`, #87 `SHA: 6b5676b`, #86
@@ -221,10 +202,12 @@ and proof (item 4's rows closed by #85 `SHA: eed1f2e`, #87 `SHA: 6b5676b`, #86
    settlement-budget gate the owner adopted as proposal 7's fast lane.
 2. Maintenance, prioritised by the owner (2026-09-16): remove the hand-authored JavaScript
    shims from the Claude Code hook surface. Node 24 runs TypeScript sources directly under the
-   repository's `erasableSyntaxOnly` setting, and `tsconfig.base.json` now carries
-   `allowImportingTsExtensions` and `rewriteRelativeImportExtensions`, so a hook is a TypeScript
-   file invoked as `node <source>.ts` with no shim and no build step — proven end to end by the
-   `PreCompact` observer, whose gate ran green across every workspace. The three survivors are
+   repository's `erasableSyntaxOnly` setting, and `agent-tools/tsconfig.json` carries
+   `allowImportingTsExtensions` and `rewriteRelativeImportExtensions`, so a hook entry is a
+   TypeScript file invoked as `node <source>.ts` with no shim — proven by the `PreCompact`
+   observer. A build step remains for what the entry imports: a workspace package that exports
+   only its built `dist` (the observer imports `@engraph/type-helpers`) must be built, or the
+   hook exits before its own code runs. The three survivors are
    `.claude/hooks/practice-session-identity.mjs`, `.claude/hooks/plan-gate-drift-alert.mjs` and
    `.claude/hooks/run-pretooluse-guard.mjs`; each spawns a built artefact and the last also
    translates verdicts into a decision, so each gets its own first-hand fire and no-fire probe
