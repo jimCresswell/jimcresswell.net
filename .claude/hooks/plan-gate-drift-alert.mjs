@@ -16,10 +16,13 @@
  * the session.
  */
 
-import { spawn } from 'node:child_process';
+import { execFile } from 'node:child_process';
 import { existsSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+
+/** Ceiling on the checker's output, in bytes: its report is a few lines per expired gate. */
+const MAX_OUTPUT_BYTES = 1024 * 1024;
 
 const repoRoot =
   process.env.CLAUDE_PROJECT_DIR ?? resolve(dirname(fileURLToPath(import.meta.url)), '..', '..');
@@ -37,31 +40,27 @@ if (!existsSync(checkerPath)) {
   emitEmpty();
 }
 
-const child = spawn(process.execPath, [checkerPath], {
-  stdio: ['ignore', 'pipe', 'ignore'],
-});
-
-let output = '';
-child.stdout.on('data', (chunk) => {
-  output += String(chunk);
-});
-
-child.on('error', () => {
-  emitEmpty();
-});
-
-child.on('exit', (code) => {
-  const alert = output.trim();
-  if (code === 1 && alert.length > 0) {
-    process.stdout.write(
-      `${JSON.stringify({
-        hookSpecificOutput: {
-          hookEventName: 'SessionStart',
-          additionalContext: `[Plan gate-expiry drift alert]\n${alert}`,
-        },
-      })}\n`,
-    );
-    process.exit(0);
-  }
-  emitEmpty();
-});
+// execFile settles on the checker's `close`: after it has exited AND its stdout
+// has ended, so the whole report is read. Its `exit` event can come first, with
+// the report still unread. The output is decoded once, as UTF-8, and a spawn
+// failure or an output over the ceiling arrives as `error`, never as a throw.
+execFile(
+  process.execPath,
+  [checkerPath],
+  { encoding: 'utf8', maxBuffer: MAX_OUTPUT_BYTES },
+  (error, stdout) => {
+    const alert = stdout.trim();
+    if (error?.code === 1 && alert.length > 0) {
+      process.stdout.write(
+        `${JSON.stringify({
+          hookSpecificOutput: {
+            hookEventName: 'SessionStart',
+            additionalContext: `[Plan gate-expiry drift alert]\n${alert}`,
+          },
+        })}\n`,
+      );
+      process.exit(0);
+    }
+    emitEmpty();
+  },
+);
