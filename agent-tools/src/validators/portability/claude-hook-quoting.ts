@@ -23,8 +23,8 @@ import { z } from 'zod';
 
 const PLAIN_WORD = /^[\w./:=@%+,-]+$/u;
 const QUOTED_PROJECT_PATH = /^"\$\{CLAUDE_PROJECT_DIR(?::-\.)?\}(?:\/[\w./-]*)?"$/u;
-/** Programs that run a command string given after a -c flag; busybox dispatches to its applets. */
-const SHELLS: ReadonlySet<string> = new Set([
+/** POSIX-style shells that run a command string given with -c; busybox dispatches to its applets. */
+const POSIX_SHELLS: ReadonlySet<string> = new Set([
   'sh',
   'ash',
   'bash',
@@ -34,12 +34,24 @@ const SHELLS: ReadonlySet<string> = new Set([
   'fish',
   'ksh',
   'mksh',
-  'pwsh',
   'tcsh',
   'yash',
   'zsh',
 ]);
-const COMMAND_STRING_FLAG = /^-[A-Za-z]*c[A-Za-z]*$/u;
+const POWERSHELLS: ReadonlySet<string> = new Set(['pwsh', 'powershell']);
+/** A POSIX shell's combined short flags that include `c`: `-c`, `-lc`, `-ec`. Case matters: `-C` is noclobber. */
+const POSIX_COMMAND_STRING_FLAG = /^-[a-z]*c[a-z]*$/u;
+
+/**
+ * Whether a PowerShell parameter hands it a command string: `-c`, `-cwa`, or any unambiguous prefix of
+ * `-Command` or `-CommandWithArgs`, in any case. `-File` and `-ConfigurationFile` are not.
+ */
+function isPowerShellCommandParameter(word: string): boolean {
+  const name = word.toLowerCase();
+  return (
+    name === '-c' || name === '-cwa' || (name.length >= 4 && '-commandwithargs'.startsWith(name))
+  );
+}
 
 const WORD_OUTSIDE_SHAPE = 'a word is neither a plain word nor a double-quoted project path';
 const PARSED_AGAIN = 'a shell -c or eval parses the path again';
@@ -66,10 +78,21 @@ interface LabelledCommand {
   readonly command: string;
 }
 
-/** The program a word names, ignoring surrounding quotes and any directory. */
+/** The program a word names: no surrounding quotes, no directory, lower case, no `.exe`. */
 function programName(word: string): string {
   const unquoted = word.replaceAll('"', '');
-  return unquoted.slice(unquoted.lastIndexOf('/') + 1);
+  return unquoted
+    .slice(unquoted.lastIndexOf('/') + 1)
+    .toLowerCase()
+    .replace(/\.exe$/u, '');
+}
+
+function hasLater(
+  words: readonly string[],
+  index: number,
+  test: (word: string) => boolean,
+): boolean {
+  return words.slice(index + 1).some(test);
 }
 
 function parsesAgain(words: readonly string[]): boolean {
@@ -77,7 +100,9 @@ function parsesAgain(words: readonly string[]): boolean {
     const name = programName(word);
     return (
       name === 'eval' ||
-      (SHELLS.has(name) && words.slice(index + 1).some((later) => COMMAND_STRING_FLAG.test(later)))
+      (POSIX_SHELLS.has(name) &&
+        hasLater(words, index, (later) => POSIX_COMMAND_STRING_FLAG.test(later))) ||
+      (POWERSHELLS.has(name) && hasLater(words, index, isPowerShellCommandParameter))
     );
   });
 }

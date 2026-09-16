@@ -247,10 +247,12 @@ denies a path holding a JSON escape it cannot decode rather than let it through
 unscanned. Their commands quote every `${CLAUDE_PROJECT_DIR}`, which the
 portability check enforces for every hook and the status line.
 
-Every writer of `.claude/logs/` keeps it owner-only: the directory mode 700 and
-the logs mode 600. The wrapper tightens what an earlier version left open, leaves
-a symlinked, foreign-owned or non-regular log alone, and says on stderr when a
-failure could not be written.
+Every writer of `.claude/logs/` creates it owner-only: the directory mode 700 and
+the logs mode 600. The wrapper and the Node hooks' shared helper
+(`_lib/append-owner-only-log.mjs`) also tighten what an earlier version left open
+and leave a symlinked, foreign-owned or non-regular log alone; the wrapper says on
+stderr when a failure could not be written. The `PreCompact` observer runs inside
+the wrapper and keeps its own log at 600.
 
 ## Platform Support
 

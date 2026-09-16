@@ -95,7 +95,13 @@ const workDir = mkdtempSync(join(tmpdir(), 'pretool-secrets-smoke-'));
 try {
   const withJq = `${toolDirectory(workDir, 'bin', false)}${delimiter}${process.env.PATH ?? ''}`;
   const withoutJq = toolDirectory(workDir, 'bin-without-jq', true);
-  const files = ['plain.env', 'with space.env', 'with"quote.env', String.raw`with\backslash.env`];
+  const files = [
+    'plain.env',
+    'with space.env',
+    'with"quote.env',
+    String.raw`with\backslash.env`,
+    'ends-with-newline\n',
+  ];
   for (const fileName of files) {
     const filePath = join(workDir, fileName);
     writeFileSync(filePath, 'token\n', 'utf8');
