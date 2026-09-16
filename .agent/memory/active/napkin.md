@@ -2162,3 +2162,113 @@ tip is one whose required analysers ran".
   open, because no real compaction has fired the hook yet. _External bound_: every correction today
   came from outside my own reading — a peer seat, a conscience panel, a reviewer, a gate, the
   owner. That is the signature to point scrutiny at.
+
+### Director, TypeScript 7 side by side and the observer's first real compaction (2026-09-16, 13:3xZ to 14:4xZ) — Cauldron herds Lustre (880ff9)
+
+- **My probes tested my model of the payload, not the payload.** The synthetic stdin I fed the
+  observer while building it carried the shape I assumed — a string `custom_instructions`, a
+  `mystery_field` I invented. The first real `/compact` sent `custom_instructions: null` plus two
+  undocumented keys (`scratchpad_dir`, `prompt_id`), so my schema recorded `schema-mismatch`; and
+  it rejected my response outright, because `hookSpecificOutput` has no `PreCompact` variant. A
+  probe built from an assumption can only confirm the assumption. The instrument earned its keep
+  on its first real firing precisely because it recorded the raw bytes as well as my schema's view.
+- **An exit code is not a verdict; a count is.** Under a plain `typescript@7` bump,
+  dependency-cruiser exited 0 reporting "no dependency violations found (1 modules, 0 dependencies
+  cruised)". typescript-eslint failed loudly; the architecture gate passed while checking nothing.
+  The same shape as yesterday's piped exit codes, one layer up: read what the tool measured.
+- **The survivability rule caught a hold nobody had declared.** Deleting and rebuilding the
+  lockfile resolved `@testing-library/jest-dom` 6.10.0 — a deprecated minor carrying 7.0's
+  incompatible requirements — which `main`'s lockfile had kept out by recording 6.9.1 under a `^6`
+  range. "Run it, never reason about it" was exactly right: no reading of the manifest would have
+  shown it. Knock-on: the rebuild moved Playwright to 1.63, whose browser revision was not
+  installed, and the push's end-to-end leg failed 31 tests on a missing executable — environment,
+  not code; the documented browser install cured it.
+- **Corepack chooses pnpm by the directory you launch from.** `pnpm --dir <worktree> install` run
+  from the primary picked 12.4.2 from the owner's uncommitted root manifest and the worktree
+  (pinned 12.4.1) refused. Run pnpm from inside the worktree it serves.
+- **Two blocks that were questions, taken as questions.** `git checkout <ref> -- <paths>` into a
+  brand-new worktree was blocked by hook policy; the non-destructive transport is `git diff` then
+  `git apply`, which refuses on mismatch instead of overwriting. And `@engraph/no-dynamic-import`
+  rejected my fail-open cure (a dynamic import inside the try); `Object.keys` is restricted to the
+  type-helpers package. Both are deliberate doctrine, so a genuinely build-free hook waits on the
+  `tooling/*` packages exposing source — an estate-wide decision, not a hook-PR decision. The
+  observer's TSDoc now states exactly what fails open and what exits 1.
+- **The commit-message guard reads prose.** "7.0's breaking changes" in a body tripped the
+  major-version guard, which matches its indicators case-insensitively. Say "incompatible".
+- **Owner edits can land mid-move.** While I moved the owner's diff to a worktree they edited
+  `next.config.ts` in the primary; the patch taken a minute earlier lacked it. Re-taking the patch
+  at the moment of transfer and byte-comparing the primary's diff again before commit is what made
+  the transfer safe.
+- **Two reviewers converging on one flaw found a better cure than either proposed.** Both said the
+  specifier guard's `src/bin` scope was wrong for source-run modules outside it; one proposed a
+  reachability-derived guard. The simpler truth: under `rewriteRelativeImportExtensions` a `.ts`
+  specifier is correct everywhere, so the guard went back to allowing it everywhere and the
+  production-shaped smoke test carries the proof the guard could not. When a fix grows machinery,
+  check whether the constraint it serves was real.
+- **Measure strictness before choosing it.** One probe — each candidate flag against each of seven
+  type-check targets on TypeScript 7 — split "strict everywhere" into four free flags for one
+  small pull request and three costly ones (213, 210, 234 errors) to slice. The slicing then
+  turned on one lint fact: with `no-unnecessary-condition` off, flag-agnostic fixes can land
+  before the flag flips. `.at(i)` is declared `T | undefined` under both settings, so a guard
+  after it matches its type in both.
+  **Correction (same day, code-expert with tsc 7 and 6):** I first wrote here that a guard on
+  `arr[i]` is a TS2367 error while the flag is off, and told the owner so. False: a comparison
+  with `undefined` is always allowed; such a guard compiles either way and only trips
+  `no-unnecessary-condition`, which is off. I also claimed `unicorn/prefer-at` is on in the site
+  and ESLint workspaces; it is set only in the shared config others consume. Both were reasoned,
+  not run — the same shape as the day's other corrections: state a compiler fact only after the
+  compiler has said it.
+- **In zsh, never name a variable `path`.** It is tied to `PATH`; a loop assigning `path=` wiped
+  the command search path for that shell (`command not found: sed`). And zsh parses `${x%%(*}` as
+  a glob pattern — reach for Node for string slicing in one-off probes.
+- **Removed, with the owner's word and a proof per path (2026-09-16):** nineteen uncommitted owner
+  files in the primary checkout — twelve dependency files byte-identical to the patch that became
+  #92, seven tsconfig edits adding only `erasableSyntaxOnly` and `verbatimModuleSyntax`, which
+  #94's base carries. The owner was still editing, so the discard re-verified coverage in the same
+  command, immediately before the forward writes, and would have aborted on any drift. Why it
+  mattered: the coordination branch cannot merge `main` over dirty paths.
+- **A merged PR changes every open lane's base.** `git fetch` showed #92 merged mid-lane; the hook
+  lane had no commits yet, so `merge --ff-only origin/main` moved it with its uncommitted work
+  intact (no overlapping paths), and its gates were re-run on TypeScript 7 before pushing.
+
+### Wrap at the compaction boundary (2026-09-16, 16:xxZ) — Cauldron herds Lustre (880ff9)
+
+- **Metacognition.** The day's one error shape, again: a fact stated from reasoning in the voice
+  of measurement — the TS2367 guard claim and the `prefer-at` claim. Everything that went right
+  went right by computing first (the flag probe table, the lockfile rebuild, the byte-compare
+  before the discard, the depcruise module count). Also: the owner asked for the wrap "when
+  reasonable" and then asked again; for this owner "when reasonable" means bound the finishing work
+  tightly, not finish the current slice and its review cycle.
+- **Free play.** Every tool that "passed" today had to be asked what it measured: dependency-
+  cruiser's one module, a type-check that took no time because the incremental cache answered,
+  a background wrapper's exit 0 over a failed inner gate, a render that changed nothing. Kept:
+  green is a claim about a measurement, and the measurement is the thing to read. Kept: the
+  TypeScript 7 aliases split one package name into two meanings so two consumers stop colliding,
+  while the strict base merges twenty-two configs into one so they stop drifting — opposite moves,
+  one purpose. Discarded, visibly: an analogy between `.at()` and optional chaining; nothing
+  followed.
+- **Concept exploration: strictness drift.** The owner's word about the sibling estate — "it
+  drifted over time" — names the concept. Strictness is a property of each config's resolution
+  chain, not of any file, and every config that does not reach the base is a drift vector (here
+  two standalone configs; there one vendored template). Proposal: a validator that runs
+  `tsc --showConfig` over every tracked tsconfig and fails when one does not resolve the base's
+  strict set. Warrant: two drift vectors found in this estate and one in the sibling, all silent
+  to every gate. Falsifier: if no tsconfig drifts in the three months after the flags land, the
+  validator is ceremony. Routed as a candidate, not built.
+- **Reason, for the resume.** The fold is DUE but blocked on #93's merge, which is the owner's
+  call; the strictness slices do not touch the coordination branch. So the resume asks the owner
+  about #93 first and continues slices meanwhile — recorded in the continuity contract, not left
+  as a judgement to re-derive.
+- **Metaloss.** _Promises_: every commitment made in chat today is discharged or recorded (the
+  Zephyr acknowledgement; the fold after #93; the exclusion deletion after 08:24Z; the queued
+  follow-ups; the build-free hook question routed to the maintenance item on shim removal, whose
+  answer is now "it needs the `tooling/*` packages to expose source"). _Attribution_: Zephyr's
+  absorption is Zephyr's report, not checked in that estate; the dead-guard proof and the
+  old-versus-new equivalence runs are the code-expert's measurements; who merged #92 was not
+  checked. _Blind spots_: the review edits after each slice's full check were verified by
+  targeted checks and then by the pre-push gate, not by a second worktree `pnpm check`; the
+  primary's `node_modules` carries TypeScript 7 over a TypeScript 6 lockfile until the fold.
+  _External bound_: today's corrections again came from a compiler, two reviewers and the owner —
+  point outside scrutiny at any compiler or tool fact I state without a command beside it.
+  _Fixed point_: a third pass would only re-find the attribution and blind-spot items above; the
+  recursion closes here.

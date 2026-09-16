@@ -106,19 +106,70 @@ names a live branch):
 
 ## Next Safe Steps
 
-FIRST ACTION AT RESUME (2026-09-16): converge this coordination branch. It is DUE by its own
-stamp, and `coordination-branch-24h-lifetime` step 2 requires a seat at n=1 to ACT on convergence
-before staking new work — a rule this seat cited backwards all session, as grounds for waiting,
-while committing three times onto the branch. Merge `origin/main` in, push, land it through its
-pull request, cut the fresh day-stamped branch. Then the owed pull request on `feat/arc-metrics`.
+STATE, 2026-09-16 afternoon (Cauldron herds Lustre, Director), owner-directed in this order:
 
-Queued with the hook work, from a code-expert review held in full (2026-09-16): move the
-observer's imports inside its try or drop the two dependencies outright, so the never-blocking
-claim is true at module level; remove the `process.exit(0)` that this workspace's own CLI runner
-documents as a flush hazard; scope the widened specifier guard back to `src/bin`; sort the sibling
-listing and record its total; clear the stale references to the base tsconfig in the guard comment,
-the continuity contract and the report; and correct the entry's own TSDoc, which still describes a
-built artefact. A config-expert pass is warranted for the guard scope and the stale references.
+- #92 merged (`SHA: 9fe00be`): TypeScript 7 beside the 6.0 compiler API through npm aliases,
+  holds recorded in `docs/engineering/build-system.md` §Dependency updates. After
+  2026-09-17T08:24Z, delete the `minimumReleaseAgeExclude` block in `pnpm-workspace.yaml`: all
+  five excluded packages were published 2026-09-16 and it is dead config once they age past the
+  24h floor.
+- #93 open as a draft (`SHA: b1dbef7`): the `PreCompact` observer on its own lane, cured
+  test-first of the two defects its first real compaction exposed, with a production-shaped smoke
+  test and the observed contract recorded in the platform matrix. It supersedes this branch's
+  observer commits (`SHA: e4e0e0e`, `SHA: db5148d`): at this branch's fold, take `main`'s versions
+  of the hook files after a pre-merge divergence check.
+- Strictness, owner word 2026-09-16: "I want the tsconfig brought up to strict everywhere, but if
+  there is a better way to do it that is fine, I was being explicit but I am happy with standard
+  approaches." Landed as drafts, all green through the full pre-push gate:
+  - #94 (`SHA: 5746ad8`): one strict base that all 22 tsconfigs extend, adding
+    `verbatimModuleSyntax`, `noImplicitOverride`, `allowUnreachableCode: false` and
+    `allowUnusedLabels: false` (each measured at zero errors first).
+  - #95 (`SHA: 7877996`): `noUncheckedIndexedAccess` slice 2a, jcdotnet and tooling/eslint.
+  - #96 (`SHA: fa4207b`): slice 2b, agent-tools
+    `src/validators` and `src/practice-fitness`; agent-tools errors under the flag 202 → 142.
+  Remaining, one draft pull request each, cut from `origin/main` (worktree
+  `strict-index-site` is reused by switching a clean tree to a fresh branch): 2c agent-tools tests
+  and smoke tests (`tests/collaboration-state`, `tests/claude`, `tests/commit-workflow`, two smoke
+  tests); 2d `src/pr-watch`, `src/corpus-analysis`, `src/spawn`; 2e the remaining eleven `src`
+  files; then the flip of `noUncheckedIndexedAccess` into `tsconfig.base.json`, which needs a
+  config-expert review and a flag-on ESLint run across all of agent-tools first. Then
+  `exactOptionalPropertyTypes` (210 errors) by the same method. Measure with
+  `tsc -p <config> --noEmit --incremental false --noUncheckedIndexedAccess`; prove each slice at zero
+  errors with the flag on AND off. Idioms, settled so the ~140 remaining fixes read one way:
+  `.at(i)` inside an existing guard; `for (const [index, rawLine] of lines.entries())`;
+  `const [head = ''] = text.split(sep)`; a mandatory capture group handled with the function's own
+  not-found result; tests assert `toMatchObject([{ ... }])` (it checks length and fields together),
+  or `map` then `toEqual` for id lists. `noPropertyAccessFromIndexSignature` is NOT adopted — owner
+  word 2026-09-16: "sounds like it is more pain than it is worth" (234 mostly stylistic sites, and
+  it fights ESLint `dot-notation`).
+- The owner directed that the sibling estate's strictness be raised to the same target set as
+  maintenance after these slices land; sent to Zephyr guards Leeward (281e44) as directed comms
+  event 42fe1d6f and by live message, and absorbed there (recorded in that estate's coordination
+  thread record, scheduled as maintenance).
+- The primary checkout's uncommitted owner files were discarded at the owner's word ("if my work
+  is covered elsewhere then you can discard it"), each proven first: the twelve dependency paths
+  byte-identical to the patch that became #92, the seven tsconfig edits adding only flags #94's
+  base carries.
+
+FIRST ACTION: converge this coordination branch; the owner's files no longer block it. It is
+DUE by its own stamp, and `coordination-branch-24h-lifetime` step 2 requires a seat at n=1 to ACT
+on convergence before staking new work. One ordering fact governs it: the branch carries the
+defective first versions of the hook files that #93 replaces, so fold AFTER #93 merges and take
+`main`'s versions of those files; folding first would land the old code on `main` and give #93
+add/add conflicts. The primary's `node_modules` still holds the owner's TypeScript 7 install over
+this branch's TypeScript 6 lockfile, so run `pnpm install` in the primary right after merging
+`origin/main` in. Then the owed pull request on `feat/arc-metrics`.
+
+Queued from the reviews of #92 and #93 (2026-09-16), none blocking: a dependency-cruiser gate
+assertion that a TypeScript compiler was found (a plain TypeScript 7 bump made it pass silently
+having cruised one module); ESLint 10 for `jcdotnet` once `eslint-plugin-react` supports it;
+pre-existing on `main` — knip's four redundant-entry hints, the unmet `typescript` peer of
+`@typescript-eslint/*` 8.56.1 via `eslint-plugin-tsdoc`, the `smol-toml` advisory
+GHSA-7w5x-hrqm-74c2, the bootstrap docblock's stale build-script and `--prod` statements, and
+three `no-restricted-imports` rules keyed on modules that do not exist here; an assumptions-expert
+review of source-run hooks before the `PreCompact` gate is built; and `set-up-worktree-lane`
+expects a bot committer while this repository commits as the owner, so the skill and practice
+need reconciling.
 
 The transplant closure is complete on `main` (2026-09-15): every item of
 `.agent/plans/delivery/practice-completion.plan.md` §Transplant closure carries its Done line

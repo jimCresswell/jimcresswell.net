@@ -1770,6 +1770,36 @@ ones the Director would put to the owner had the owner been present.
      agent registry is read at session start, so it becomes available only in a fresh session, and
      validating it is the first thing worth doing with it.
 
+115. The TypeScript session and its wrap (2026-09-16, 13:3xZ to 16:xxZ; the owner's side mission
+     became four lanes). SUPERSEDES item 114's boundary state. BOUNDARY STATE at this wrap:
+     primary checkout on `coordination/2026-09-15-b9dcfb`, clean except this wrap's records,
+     which are committed onto it and NOT pushed (the fold waits on #93, see the continuity
+     contract's first action). `origin/main` is at `SHA: 9fe00be` (#92 merged at 14:45Z; who merged
+     it was not checked).
+     Pushed lanes, each green through the full pre-push gate, each a draft pull request: #93
+     `feat/pre-compact-observer` (`SHA: b1dbef7`, worktree `pre-compact-observer`, clean); #94
+     `feat/strict-tsconfig` (`SHA: 5746ad8`, worktree `strict-tsconfig`, clean); #95
+     `fix/index-access-site-and-eslint` (`SHA: 7877996`); #96
+     `fix/index-access-validators-and-fitness` (`SHA: fa4207b`, worktree `strict-index-site`,
+     clean).
+     `feat/arc-metrics` still has no pull request. The `next-update` worktree was retired by
+     content-check after #92 merged. No claim, watcher, heartbeat, monitor or cron is armed and
+     none was during this session's solo stretch (n=1, owner present; the watcher rule excludes
+     solo sessions), so nothing needs re-arming. WHAT LANDED OR WAS DECIDED: #92 (TypeScript 7
+     beside the 6.0 API through npm aliases; holds and lift conditions in `build-system.md`); the
+     observer's two real-payload defects cured with a production-shaped smoke test; one strict base
+     for every tsconfig; the owner's rulings — `noPropertyAccessFromIndexSignature` not adopted,
+     the owner's superseded primary-checkout files discarded after a per-path coverage proof, the
+     sibling estate's strictness raised as maintenance (sent to Zephyr, absorbed). WHAT WAS
+     CORRECTED, again from outside this seat's reading: the claim that a guard on `arr[i]` is a
+     TS2367 error while the flag is off (false; a reviewer compiled it), recorded in the napkin
+     before it was checked; a smoke-guard scope both reviewers showed was wrong for source-run
+     modules; a dynamic-import cure the estate's own lint rule bans. OWED, IN ORDER: slices 2c, 2d
+     and 2e, then the flag flip; `exactOptionalPropertyTypes`;
+     after #93 merges, fold this branch (then `pnpm install` in the primary); the
+     `feat/arc-metrics` pull request; after 2026-09-17T08:24Z, delete the release-age exclusion
+     block; the queued follow-ups in the continuity contract.
+
 ## Routing log
 
 - 2026-09-13 evening: seat opened; team-start `ca1ba4d8`; lanes A, B, C authored, unfilled.
