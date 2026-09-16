@@ -41,22 +41,26 @@ overrides:
   # This override IS the hold — lift it when the project moves Node majors
   # (docs/engineering/build-system.md §Dependency updates).
   '@types/node': '^24.13.3'
-  # Security floor, raised 2026-07-25 and again 2026-08-11 (MCP-549).
-  # Originally 5.0.5 for an earlier finding; then 5.0.8 for a DoS via
-  # unbounded expansion length (out-of-memory abort, high); now 5.0.9 for
-  # the quadratic-expansion advisory — the whole tree already resolves 5.x
-  # under this floor, so no major cross occurs. Reaches the tree through
-  # glob/minimatch tooling chains; no production reachability established.
-  # Bounded below 6 pre-emptively (no 6.x published at 2026-08-11): an
-  # open floor admits the next major the day it ships, so the bound is
-  # structural rather than conditional on watching the registry.
-  # Remove when every dependent's declared floor reaches >=5.0.9.
-  # Scoped per major (2026-09-12): the site's ESLint 9 line reaches
-  # brace-expansion ^1 through @eslint/config-array's minimatch@3, and an
-  # unscoped 5.x floor broke that resolver at lint time. Every line keeps
-  # its own patched floor for the quadratic-expansion advisory.
-  'brace-expansion@1': '>=1.1.12 <2'
-  'brace-expansion@5': '>=5.0.9 <6'
+  # Security floor per major line. The tree holds two lines, each through
+  # minimatch: 1.x through minimatch 3 (ESLint 9 and the eslint-plugin-import,
+  # -jsx-a11y and -react plugins), 5.x through minimatch 10 (ESLint 10,
+  # typescript-estree, eslint-plugin-import-x, eslint-plugin-sonarjs and
+  # tooling/eslint). Lint tooling only. Scoped per major (2026-09-12): an
+  # unscoped 5.x floor broke minimatch 3's resolver at lint time, so each line
+  # keeps its own patched floor, bounded below its next major, and no dependent
+  # crosses one. A new consumer on another major gets no floor from these
+  # entries; the advisory check at its dependency landing must catch it.
+  # Floors: the brace-expansion repository's advisories of 2026-09-14,
+  # GHSA-6j4f-fj2g-mc7p and GHSA-qhr7-859c-m2p7 (maintainer severity high;
+  # stack exhaustion through uncontrolled recursion) and GHSA-q2hr-2g5m-vwhr
+  # (maintainer severity medium; quadratic-time rewrite), patched in 1.1.21 and
+  # 5.0.12. They were absent from GitHub's reviewed database on 2026-09-17,
+  # whose newest entry then, GHSA-rgw5-rvv9-x895 (high), is patched in 1.1.18
+  # and 5.0.9.
+  # Remove a line's entry when its dependents declare at least its floor
+  # (minimatch 3.1.5 declares ^1.1.7; minimatch 10.2.6 declares ^5.0.8).
+  'brace-expansion@1': '>=1.1.21 <2'
+  'brace-expansion@5': '>=5.0.12 <6'
   csstype: '>=3.2.3'
   # Floor kept aligned with agent-tools' esbuild range (^0.28.2 as of
   # 2026-08-11, per lockfile-rebuild-survivability §override-alignment).
@@ -79,16 +83,20 @@ overrides:
   # Remove when eslint-plugin-tsdoc's @typescript-eslint/utils range reaches
   # 8.58.0 or later (8.58.0 is the first line whose peer admits TypeScript 6.0).
   'eslint-plugin-tsdoc@0.5>@typescript-eslint/utils': '>=8.70.0 <9'
-  # Security floor: host confusion via a literal backslash in fast-uri's URI
-  # parser (high; patched in 3.1.4); a second host-confusion advisory via a
-  # backslash authority introducer patched in 3.1.5 (raised 2026-08-11,
-  # MCP-549). Dev tooling only: ajv 8 declares fast-uri, and ajv reaches the
-  # tree through agent-tools, commitlint's config validator and
+  # Security floor for fast-uri's run of host-confusion and SSRF advisories.
+  # GitHub's reviewed database patches the 3.x line in 3.1.6
+  # (GHSA-jqff-g426-hqxp, GHSA-f65p-4m7j-42xc, GHSA-fph4-wmhf-6fwf and
+  # GHSA-5jgf-p345-68v8, all high). The fast-uri repository's later advisories,
+  # absent from the reviewed database on 2026-09-17, patch it in 3.1.7
+  # (GHSA-qw65-cvwx-89v3 and GHSA-58mr-gqgx-xq4g, maintainer severity high) and
+  # 3.1.8 (GHSA-hrr3-gc8f-f4qj, maintainer severity medium; published
+  # 2026-09-15). Dev tooling only: ajv 8 declares fast-uri ^3.0.1, and ajv
+  # reaches the tree through agent-tools, commitlint's config validator and
   # eslint-plugin-tsdoc's config loader; the site does not reach it. Bounded
   # below 4 deliberately — 4.x is published, and an open floor would silently
   # adopt a major nobody asked for. Raise the bound when a consumer actually
-  # needs fast-uri 4. Remove when ajv's declared fast-uri floor is >=3.1.5.
-  fast-uri: '>=3.1.5 <4'
+  # needs fast-uri 4. Remove when ajv's declared fast-uri floor is >=3.1.8.
+  fast-uri: '>=3.1.8 <4'
   # Security floor, raised 2026-08-11 (MCP-549): quadratic CPU consumption in
   # !!omap resolution (high; CVE-2026-59870; patched in 4.3.1). Dev/tooling
   # chains only (the site's ESLint 9 config loader, commitlint's cosmiconfig,
@@ -101,22 +109,31 @@ overrides:
   # tooling. Bounded below 6 for the same reason as fast-uri: 6.x exists and an
   # open floor would take it. Raise the bound when markdown-it moves.
   linkify-it: '>=5.0.2 <6'
-  # Floor carried from the monorepo configuration; bounded below 15 on
-  # 2026-09-16. Its one consumer, markdownlint-cli2 0.23.2, pins markdown-it
-  # 14.3.0 exactly, and the open floor had rewritten that pin to 15.0.2 — a
-  # major the linter was not built against, whose linkify-it ^6 the linkify-it
-  # bound above then forced back to 5.x. The 14 line declares linkify-it ^5.
-  # Raise the bound when markdownlint-cli2 moves to markdown-it 15, together
-  # with the linkify-it bound.
-  markdown-it: '>=14.1.2 <15'
-  # Security floor, added 2026-08-11 (MCP-549): infinite loop on a zero-size
-  # generator (high; patched in 3.3.17 on the 3.x line). Reached via postcss
-  # chains, direct and transitive — a direct postcss bump left transitive
-  # postcss nodes carrying the vulnerable pin, so the floor is the tree-wide
-  # mover. Bounded below 4 deliberately: consumers declare ^3.x, and an
-  # unbounded floor would coerce them onto nanoid's ESM-only later majors.
-  # Remove when postcss's declared nanoid floor is >=3.3.17.
-  nanoid: '>=3.3.17 <4'
+  # Security floor: the markdown-it repository's GHSA-r7fv-28h4-cvq7
+  # (maintainer severity high; quadratic smartquotes on unmatched closing
+  # quotes; published 2026-09-12), patched in 14.3.2 on the 14 line, after
+  # GHSA-253c-mchw-3w2r (maintainer severity medium; quadratic linkify paths;
+  # 14.3.1). Both were absent from GitHub's reviewed database on 2026-09-17,
+  # whose newest entry then, GHSA-6v5v-wf23-fmfq (medium), is patched in
+  # 14.2.0. Its one consumer, markdownlint-cli2 0.23.2, pins markdown-it 14.3.0
+  # exactly; the floor moves that pin to a patch release within the major.
+  # Bounded below 15 on 2026-09-16: the open floor had rewritten that pin to
+  # 15.0.2 — a major the linter was not built against, whose linkify-it ^6 the
+  # linkify-it bound above then forced back to 5.x. The 14 line declares
+  # linkify-it ^5. Raise the bound when markdownlint-cli2 moves to markdown-it
+  # 15, together with the linkify-it bound. Remove when markdownlint-cli2
+  # declares markdown-it >=14.3.2.
+  markdown-it: '>=14.3.2 <15'
+  # Security floor, raised 2026-09-17: GHSA-2v37-7h3g-55p8 (high;
+  # CVE-2026-67213; custom generators loop indefinitely when size is zero),
+  # patched in 3.3.18 on the 3.x line, after GHSA-28wg-ghj8-5hjv (high; 3.3.16)
+  # and GHSA-xwg4-73v4-xw9w (high; 3.3.12). postcss is its only consumer.
+  # Bounded below 4 deliberately: postcss declares ^3.x, and an unbounded floor
+  # would coerce it onto nanoid's ESM-only later majors. Remove when every
+  # postcss the tree can resolve declares nanoid >=3.3.18: 8.5.27 is the first
+  # release that does, and the postcss floor below still admits 8.5.26, which
+  # declares ^3.3.17.
+  nanoid: '>=3.3.18 <4'
   picomatch: '>=4.0.4'
   # Security floor, raised 2026-07-25. Originally for next's nested postcss
   # 8.4.31 (GHSA-qx2v-qp2m-jg93, XSS via unescaped </style> in stringify
