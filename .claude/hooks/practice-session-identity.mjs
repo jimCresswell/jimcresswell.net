@@ -37,9 +37,11 @@
  */
 
 import { spawn } from 'node:child_process';
-import { appendFileSync, existsSync, mkdirSync, readFileSync } from 'node:fs';
+import { appendFileSync, existsSync, readFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+
+import { appendOwnerOnlyLog } from './_lib/append-owner-only-log.mjs';
 
 const repoRoot =
   process.env.CLAUDE_PROJECT_DIR ?? resolve(dirname(fileURLToPath(import.meta.url)), '..', '..');
@@ -95,13 +97,10 @@ function failOpen(cause) {
   const message = persisted ? plan.messageWhenPersisted : plan.messageWhenNotPersisted;
   process.stderr.write(`${message}\n`);
   try {
-    const logDir = resolve(repoRoot, '.claude', 'logs');
     // Owner-only, as the hook wrapper keeps it: the directory also holds raw hook payloads.
-    mkdirSync(logDir, { recursive: true, mode: 0o700 });
-    appendFileSync(
-      resolve(logDir, 'hook-errors.log'),
+    appendOwnerOnlyLog(
+      repoRoot,
       `[${new Date().toISOString()}] practice-session-identity fail-open\n  ${message}\n\n`,
-      { mode: 0o600 },
     );
   } catch {
     // Best-effort log; observability must never break the session.

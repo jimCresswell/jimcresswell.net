@@ -21,9 +21,11 @@
 // it cannot itself live in that artefact. Must remain at .claude/hooks/ — the
 // repo-root depth ('..','..') is hardcoded.
 import { spawn } from 'node:child_process';
-import { appendFileSync, existsSync, mkdirSync } from 'node:fs';
+import { existsSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+
+import { appendOwnerOnlyLog } from './_lib/append-owner-only-log.mjs';
 
 const BLOCK = 2; // Claude Code hook contract: only exit 2 blocks the tool call.
 
@@ -42,13 +44,10 @@ const log = (message) => process.stderr.write(`[hook-policy] ${message}\n`);
 // exists to cure.
 const appendHookErrorLog = (message) => {
   try {
-    const logDir = resolve(repoRoot, '.claude', 'logs');
     // Owner-only, as the hook wrapper keeps it: the directory also holds raw hook payloads.
-    mkdirSync(logDir, { recursive: true, mode: 0o700 });
-    appendFileSync(
-      resolve(logDir, 'hook-errors.log'),
+    appendOwnerOnlyLog(
+      repoRoot,
       `[${new Date().toISOString()}] hook-policy fail-open\n  ${message}\n\n`,
-      { mode: 0o600 },
     );
   } catch {
     // best-effort observability only — never block on a log-write failure.
