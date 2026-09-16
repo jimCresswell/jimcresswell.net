@@ -8,21 +8,25 @@ across the personal-sites monorepo.
 This plugin provides:
 
 1. **Custom ESLint rules** that enforce Engraph-specific code quality constraints
-2. **Shared configs** that standardise linting across all workspaces
+2. **Shared configs** that standardise linting across the workspaces that consume the plugin
 
 ## Rules
 
 ### Custom Rules
 
-| Rule                             | Description                                                                                                                 |
-| -------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| `no-export-trivial-type-aliases` | Disallows exporting trivial type aliases that only rename an imported type. Prefer re-exporting the original type directly. |
+The plugin registers these rules under the `@engraph/` prefix.
+`src/configs/recommended.ts` sets the severity of each rule the shared configs
+enable; a rule it does not name is registered but enabled by no shared config.
 
-#### Removing a lib from `LIB_PACKAGES`
-
-When removing an entry from `LIB_PACKAGES`, check ALL packages
-`../${otherLib}/**` relative paths — removing a lib without
-updating all consumers silently breaks their boundary rules.
+| Rule                             | Description                                                                                                                                                                                               |
+| -------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `no-agent-substrate-access`      | Forbids application code from reading the `.agent/` knowledge substrate; only `agent-tools/` operates on it.                                                                                              |
+| `no-conditional-tests`           | Bans Vitest's `skipIf` and `runIf` so every suite registers the same tests on every machine.                                                                                                              |
+| `no-dynamic-import`              | Bans dynamic `import(...)` so module boundaries stay static, reviewable and lintable.                                                                                                                     |
+| `no-eslint-disable`              | Bans `eslint-disable` comments without the project-owner approval marker, and `@ts-ignore` and `@ts-nocheck` outright; `@ts-expect-error` is left to `@typescript-eslint/ban-ts-comment`.                 |
+| `no-export-trivial-type-aliases` | Disallows exporting trivial type aliases that only rename an imported type. Prefer re-exporting the original type directly.                                                                               |
+| `no-real-io-in-tests`            | Bans real IO (filesystem, child processes, worker threads, network, `process`, non-localhost `fetch`) in test files outside the structural path-shape allowlist and the configured `allowlistPathShapes`. |
+| `no-throw-statement`             | Bans `throw` statements so errors flow through the Result pattern and stay in the type signature.                                                                                                         |
 
 ## Configs
 
@@ -85,22 +89,46 @@ while S7755 (prefer-at) is enabled as `unicorn/prefer-at` (see
   object (verified 2026-07-02 in the Practice lineage, before the transplant).
 - **`includeIgnoreFile` ships in ESLint core (`eslint/config`)** — do not add
   `@eslint/compat` for it; `@typescript-eslint/no-deprecated` flags the compat
-  export as deprecated and names the core replacement (verified against
-  eslint ≥10.5; re-verified on the installed 10.6.0).
+  export as deprecated and names the core replacement.
 
 ## Usage
 
-This plugin is consumed internally by workspaces in this monorepo via
-`eslint.config.js` files. It is not published to npm.
+This plugin is private to this monorepo and is not published to npm. A
+consuming workspace declares `"@engraph/eslint-plugin-standards": "workspace:*"`
+in its `devDependencies` and imports the named exports in its
+`eslint.config.ts`:
 
-```javascript
-import oakStandards from '@engraph/eslint-plugin-standards';
+```typescript
+import {
+  configs,
+  createImportResolverSettings,
+  defineConfigArray,
+  ignores as globalIgnores,
+  testRules,
+} from '@engraph/eslint-plugin-standards';
+import { dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-export default [
-  ...oakStandards.configs.recommended,
+const thisDir = dirname(fileURLToPath(import.meta.url));
+const wsTsProject = fileURLToPath(new URL('./tsconfig.lint.json', import.meta.url));
+
+export default defineConfigArray(
+  { ignores: [...globalIgnores, 'dist/**', 'coverage/**'] },
+  configs.strict,
+  {
+    files: ['**/*.ts'],
+    languageOptions: {
+      parserOptions: { projectService: false, project: wsTsProject, tsconfigRootDir: thisDir },
+    },
+    settings: createImportResolverSettings({ project: wsTsProject }),
+  },
+  { files: ['**/*.test.ts'], rules: testRules },
   // workspace-specific overrides
-];
+);
 ```
+
+[`tooling/result/eslint.config.ts`](../result/eslint.config.ts) is a complete
+consumer configuration.
 
 ## Development
 
