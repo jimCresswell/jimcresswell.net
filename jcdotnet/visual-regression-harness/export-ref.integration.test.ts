@@ -16,11 +16,34 @@ describe("exportRefToDirectory", () => {
     );
   });
 
+  it("exports a git ref as its committed tree, not the working tree", async () => {
+    const repositoryRoot = await createRepository({
+      "tracked.txt": "committed\n",
+      "nested/directory/deep.txt": "nested committed\n",
+    });
+    const outputRoot = await fs.mkdtemp(path.join(os.tmpdir(), "visual-regression-export-output-"));
+    temporaryDirectories.push(outputRoot);
+    const outputDirectory = path.join(outputRoot, "exported-head");
+
+    await fs.writeFile(path.join(repositoryRoot, "tracked.txt"), "uncommitted\n");
+
+    const resolvedHead = await exportRefToDirectory(repositoryRoot, "HEAD", outputDirectory);
+
+    expect(resolvedHead).toBe(await resolveRef(repositoryRoot, "HEAD"));
+    expect(await fs.readFile(path.join(outputDirectory, "tracked.txt"), "utf8")).toBe(
+      "committed\n"
+    );
+    expect(
+      await fs.readFile(path.join(outputDirectory, "nested", "directory", "deep.txt"), "utf8")
+    ).toBe("nested committed\n");
+  });
+
   it("exports WORKTREE as the current repo state including unstaged and untracked files", async () => {
     const repositoryRoot = await createRepository({
       "staged.txt": "before\n",
       "tracked.txt": "base\n",
       "removed.txt": "remove me\n",
+      "nested/untouched.txt": "committed and never touched\n",
     });
     const outputRoot = await fs.mkdtemp(path.join(os.tmpdir(), "visual-regression-export-output-"));
     temporaryDirectories.push(outputRoot);
@@ -45,6 +68,10 @@ describe("exportRefToDirectory", () => {
     expect(await fs.readFile(path.join(outputDirectory, "tracked.txt"), "utf8")).toBe("changed\n");
     expect(await fileExists(path.join(outputDirectory, "removed.txt"))).toBe(false);
     expect(await fs.readFile(path.join(outputDirectory, "untracked.txt"), "utf8")).toBe("draft\n");
+    // Reaches the export only through the archive step: nothing overlays or removes it.
+    expect(await fs.readFile(path.join(outputDirectory, "nested", "untouched.txt"), "utf8")).toBe(
+      "committed and never touched\n"
+    );
   });
 });
 
