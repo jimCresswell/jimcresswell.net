@@ -2272,3 +2272,30 @@ tip is one whose required analysers ran".
   point outside scrutiny at any compiler or tool fact I state without a command beside it.
   _Fixed point_: a third pass would only re-find the attribution and blind-spot items above; the
   recursion closes here.
+
+### Director, #93's comments and the fix lanes (2026-09-16, 15:33Z to 22:29Z) — Cauldron herds Lustre (880ff9)
+
+- **A correction, not a new rule.** I filed real defects found during #93's review under a
+  "queued, none blocking" list: secrets hooks that did not run under a project path with a
+  space, world-readable hook logs, a flaky integration test, a dependency-cruiser gate that could
+  pass having parsed nothing. The owner: "If you know there is broken code, fix it." Scope
+  discipline decides which pull request a fix lands in, never whether the fix happens;
+  `local-broken-code-never-leaves` already says so. Nine fix pull requests followed (#98 to
+  #104, three merged the same evening) and each review turned up more real defects in the same
+  classes.
+- **Forward cures keep the round budget.** After a pull request's last review round, a true
+  finding is cured in a commit on a follow-up branch cut from the reviewed head, lifted on the
+  merged pull request by a signed line naming that commit, and landed in its own pull request.
+  Used on #97 (onto the successor coordination branch), #99 (#101) and #100 (#102). I took the
+  Director's correctness exception for a third round twice before settling on it.
+- **A closed shape beats a scanner.** The first quoting check tracked shell quote state; three
+  reviews found false positives (`eval.mjs`) and misses (`bash -lc`, a colonless expansion). The
+  reviewers' friction ratchet was right: a command that names the project directory must be plain
+  words and whole double-quoted project paths, never handed to a shell's `-c` or `eval`, and
+  anything else is reported. It still missed `ash -c` and `pwsh -Command` until named.
+- **The flake was a documented race.** Node's `exit` may fire before stdio closes; libuv on
+  Linux reaps on SIGCHLD and can report exit before stdout is read. A subagent found it with a
+  deterministic write-after-reap test; reading my own code three times had not.
+- **A hook refuses file content holding a machine path.** A script written to the scratchpad
+  that named the scratchpad directory was blocked by the machine-local-path fingerprint; scripts
+  take the directory as an argument instead.

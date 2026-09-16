@@ -114,10 +114,10 @@ STATE, 2026-09-16 afternoon (Cauldron herds Lustre, Director), owner-directed in
 - #93 merged by the owner 2026-09-16 20:38Z (`SHA: 958919c`): the `PreCompact` observer, run
   from TypeScript source, with its review settled (CodeQL alerts 8 and 9 fixed; an unreadable
   stdin recorded as `stdin-unreadable`; the observation log owner-only).
-- This branch folded after #93 (merge `SHA: 2961e9c`), every file both sides touched taking
-  `main`'s version; it lands through #97, and the primary checkout now runs `main`'s observer
-  (its smoke passes there). The primary's `.claude/logs` and both logs were made owner-only by
-  hand the same evening.
+- The coordination branch `coordination/2026-09-15-b9dcfb` folded after #93 and landed as #97
+  (`SHA: bee0141`, 2026-09-16); this branch, `coordination/2026-09-16-bee014`, was cut from that
+  merge and carries #97's fourth-review record cures. The primary checkout's `.claude/logs` and
+  the `falsifier-2a` worktree's were made owner-only by hand the same evening.
 - Strictness, owner word 2026-09-16: "I want the tsconfig brought up to strict everywhere, but if
   there is a better way to do it that is fine, I was being explicit but I am happy with standard
   approaches." Landed as drafts, all green through the full pre-push gate:
@@ -151,33 +151,46 @@ STATE, 2026-09-16 afternoon (Cauldron herds Lustre, Director), owner-directed in
   byte-identical to the patch that became #92, the seven tsconfig edits adding only flags #94's
   base carries.
 
-FIRST ACTION: land #97 (this branch's fold) at full condition, then cut the fresh day-stamped
-coordination branch from the merged tip (`coordination-branch-24h-lifetime` step 3). Then the
-owed pull request on `feat/arc-metrics`.
+FIRST ACTION: settle the open fix pull requests below (each takes the two-round budget; a finding
+after the last round is cured forward in a follow-up pull request cut from the reviewed head and
+lifted by a signed line naming that commit), then the owed pull request on `feat/arc-metrics`.
 
 Known defects get fixed, not queued (owner word 2026-09-16: "If you know there is broken code,
-fix it"). These fixes are in flight, each on its own branch from `origin/main`, one pull request
-each:
+fix it"). Landed on 2026-09-16: #98 (`SHA: 262a9f7`, the `smol-toml` advisory, the
+`eslint-plugin-tsdoc` peer, `markdown-it` bounded to its consumer's major, and the
+lockfile-rebuild rule's two override drift directions); #99 (`SHA: bb284c9`, secrets hooks that
+run under any project path and scan any file name, the command-shape portability check,
+owner-only hook logs from every writer); #100 (`SHA: d8852f0`, dependency-cruiser fails when it
+parsed nothing; knip hints, dead lint entries, the bootstrap docblock). Open:
 
-- `fix/hook-quoting-and-log-modes`: the Read and UserPromptSubmit secrets hooks left
-  `${CLAUDE_PROJECT_DIR}` unquoted and did not run under a project path holding a space; a
-  portability check now fails on any unquoted reference. The hook logs are owner-only from every
-  writer, and the Read secrets guard scans paths holding a quote or backslash.
-- `fix/export-ref-worktree-flake`: the visual-regression export read git's output on the child
-  process's `exit` event, which on Linux can fire before stdout is read; it now resolves on
-  `close`.
-- `fix/depcruise-compiler-gate`: dependency-cruiser could pass having parsed nothing; with it,
-  knip's redundant-entry hints, dead `no-restricted-imports` rules and the bootstrap docblock's
-  stale statements.
-- `fix/smol-toml-advisory-and-tsdoc-peer`: the `smol-toml` advisory GHSA-7w5x-hrqm-74c2 and the
-  unmet `typescript` peer through `eslint-plugin-tsdoc`.
+- #101 `fix/hook-review-followups`: file names ending in a newline, PowerShell `-Command`, the
+  observer's directory mode (the forward cures of #99's third review).
+- #102 `test/depcruise-gate-wiring`: integration tests for the depcruise gate's composition root
+  (the forward cure of #100's second review).
+- #103 `fix/transplant-leftovers`: absent ADR citations, stale workspace-config references,
+  unused `allowBuilds` entries, a wrong fixture comment, a `repo-check profile` that never ran,
+  and the redundant `knip:gate`.
+- #104 `fix/export-ref-worktree-flake`: child output read before its streams closed (the
+  visual-regression export, the drift-alert hook, the e2e setup) and a sequential archive export.
 
-Owed after those, as fixes: the observer's other measurements carry their failure reason (a
-failed transcript size or sibling listing is recorded as absent, a stdin error keeps only its
-message); `@typescript-eslint/no-import-type-side-effects`, so an inline type import cannot
-become a runtime import in a source-run hook (config-expert); a probe of whether the two
-`SessionStart` hooks' relative paths resolve after a `cd` in the session; and
-`set-up-worktree-lane`, which expects a bot committer while this repository commits as the owner.
+Owed, as fixes: the further transplant leftovers #103 lists as out of scope (the
+architecture-expert and config-expert templates' false citations and claims, missing ADRs cited
+in `tooling/eslint` and `tooling/result`, overrides for packages not in the lockfile, `.gitattributes`
+citing `pnpm sdk-codegen`, Stryker names); the two `SessionStart` hook commands move to the
+quoted `"${CLAUDE_PROJECT_DIR}"` form (their relative paths resolve against a hook working
+directory Claude Code takes from the session, not the project root); shellcheck as a gate over
+`.claude/hooks/*.sh`.
+
+Improvements, not defects: the observer's other measurements could carry their failure reason
+(a failed size read or listing is recorded as absent, which the record's TSDoc states); and
+`@typescript-eslint/no-import-type-side-effects` would guard type-only imports in source-run
+hooks.
+
+Decisions for the owner or an architecture review, each named: which identity lane commits use
+(`set-up-worktree-lane` expects the merge bot's, while this repository commits under the
+owner's); where a test helper shared by `agent-tools` and `jcdotnet` lives (the write-after-reap
+script now has a copy in each, #104); whether `repo-check profile`, which nothing consumes,
+stays (config-expert recommended deleting it).
 
 Holds, each with its lift condition: ESLint 10 for `jcdotnet` waits on `eslint-plugin-react`
 supporting it (install prints `deprecated eslint@9.39.5` until then); an assumptions-expert
