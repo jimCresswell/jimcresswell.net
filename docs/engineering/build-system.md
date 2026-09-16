@@ -58,9 +58,16 @@ condition; keep that discipline when adding one.
 ### ESLint 9 and ESLint 10 coexist
 
 The site declares ESLint 9 with `eslint-config-next`; `agent-tools`, every
-`tooling/*` package and the root `lint:runtime-only` script declare ESLint 10
-with `@engraph/eslint-plugin-standards`. Both lines resolve in one lockfile,
-and the split shapes the `brace-expansion` security override: the site's
+`tooling/*` package and the root manifest (for the `lint:runtime-only` script)
+declare ESLint 10. `agent-tools`, `tooling/result`, `tooling/safe-path` and
+`tooling/type-helpers` lint with `@engraph/eslint-plugin-standards`. Two
+configs hand-roll theirs from `typescript-eslint` and `@eslint/js` instead: the
+plugin's own (`tooling/eslint`), which cannot lint through its own build, and
+`tooling/workspace-config`'s, because the plugin's build and test configs
+consume that package and a dependency back onto the plugin would close a
+workspace cycle. `lint:runtime-only` uses `@eslint/js`'s recommended rules.
+Both ESLint lines resolve in one lockfile, and the split shapes the
+`brace-expansion` security override: the site's
 ESLint 9 line reaches `brace-expansion` 1.x through `@eslint/config-array`'s
 `minimatch@3`, and an unscoped 5.x floor broke that resolver at lint time. The
 override is therefore scoped per major (`brace-expansion@1`, `@2`, `@4`, `@5`),

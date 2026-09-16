@@ -23,11 +23,8 @@ packages:
 minimumReleaseAge: 1440
 
 allowBuilds:
-  '@clerk/shared': true
-  '@sentry/cli': true
   esbuild: true
   unrs-resolver: true
-  core-js: true
   sharp: true
   puppeteer: true
 peerDependencyRules:

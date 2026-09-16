@@ -256,9 +256,9 @@ describe('@engraph/eslint-plugin-standards strict config: TS-suppression directi
  * stabilisation) by separate, deliberate decisions; these tests check that
  * the rule fires at all, which is the load-bearing config-activation invariant.
  *
- * Anchors: ADR-078 (dependency injection for testability); the rule code at
- * `../rules/no-real-io-in-tests.ts`; `.agent/rules/test-immediate-fails.md`
- * referenced by the rule's `messageId` strings.
+ * Anchors: `.agent/rules/test-immediate-fails.md` (dependency injection for
+ * testability), which the rule's `messageId` strings reference; the rule code
+ * at `../rules/no-real-io-in-tests.ts`.
  */
 describe('@engraph/eslint-plugin-standards strict config: no-real-io-in-tests activation', () => {
   it('reports @engraph/no-real-io-in-tests for static fs imports in *.test.ts', () => {

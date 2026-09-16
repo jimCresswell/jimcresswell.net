@@ -48,7 +48,6 @@
     "format-check:root": "pnpm agent-tools:repo-check prettier-tracked",
     "knip": "knip",
     "knip:fix": "knip --fix",
-    "knip:gate": "pnpm agent-tools:repo-check knip-gate",
     "lint": "turbo run lint",
     "lint:fix": "turbo run lint:fix",
     "lint:runtime-only": "eslint --config eslint.runtime-only.config.mjs runtime-only-scripts/**/*.mjs",
