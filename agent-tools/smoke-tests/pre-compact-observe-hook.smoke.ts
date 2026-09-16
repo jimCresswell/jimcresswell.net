@@ -2,12 +2,12 @@ import { spawnSync } from 'node:child_process';
 import {
   chmodSync,
   closeSync,
+  fstatSync,
   mkdirSync,
   mkdtempSync,
   openSync,
   readFileSync,
   rmSync,
-  statSync,
   writeFileSync,
 } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -141,18 +141,27 @@ function prepareLog(logBefore: SmokeCase['logBefore'], projectDir: string): void
   chmodSync(logPath, WORLD_READABLE);
 }
 
+/** Read the log through one descriptor, so the mode checked is the mode of the file read. */
+function readOwnerOnlyLog(logPath: string): string {
+  const descriptor = openSync(logPath, 'r');
+  try {
+    const logMode = fstatSync(descriptor).mode & 0o777;
+    if (logMode !== OWNER_ONLY) {
+      throw new Error(`expected the observation log to be mode 600, got ${logMode.toString(8)}`);
+    }
+    return readFileSync(descriptor, 'utf8');
+  } finally {
+    closeSync(descriptor);
+  }
+}
+
 function checkRun(stdout: string, projectDir: string, expectedStatus: PayloadStatus): void {
   const response = responseSchema.safeParse(JSON.parse(singleLine(stdout, 'response')));
   if (!response.success) {
     throw new Error(`response fails the harness shape: ${stdout}`);
   }
-  const logPath = observationLogPath(projectDir);
-  const logMode = statSync(logPath).mode & 0o777;
-  if (logMode !== OWNER_ONLY) {
-    throw new Error(`expected the observation log to be mode 600, got ${logMode.toString(8)}`);
-  }
   const observation = observationSchema.parse(
-    JSON.parse(singleLine(readFileSync(logPath, 'utf8'), 'observation')),
+    JSON.parse(singleLine(readOwnerOnlyLog(observationLogPath(projectDir)), 'observation')),
   );
   if (observation.payloadStatus !== expectedStatus) {
     throw new Error(`expected payloadStatus ${expectedStatus}, got ${observation.payloadStatus}`);
