@@ -3,6 +3,7 @@ import type {
   ICruiseOptions,
   ICruiseResult,
   IEnvironmentIssue,
+  IFormatOptions,
   IViolation,
 } from 'dependency-cruiser';
 import { describe, expect, it } from 'vitest';
@@ -17,11 +18,23 @@ import { depcruiseSummaryFailures } from './repo-check-depcruise-verdict.js';
  * the wiring between them: what reaches the cruise, what is printed, and the
  * status returned. No file is read and nothing is cruised. What a summary maps
  * to is the pure verdict's (`repo-check-depcruise-verdict.unit.test.ts`); the
- * configuration file, the cruised roots and the real API are proved by the
- * gate running (`pnpm depcruise`).
+ * configuration file's name and the real API are proved by the gate running
+ * (`pnpm depcruise`).
  */
 
 const GATE_PREFIX = 'repo-check depcruise-gate: ';
+
+/**
+ * The directories holding every workspace `pnpm-workspace.yaml` declares, all
+ * of which the gate owes a cruise. A literal, not the gate's own constant: a
+ * root dropped from that constant would still equal itself, and a cruise over
+ * fewer roots is a silent partial cruise that exits clean, which the gate
+ * running cannot catch.
+ */
+const WORKSPACE_ROOTS = ['agent-tools', 'jcdotnet', 'tooling'];
+
+/** The reporter the gate's printed report comes from: `err`, as the gate's docblock states. */
+const ERR_REPORTER: IFormatOptions = { outputType: 'err' };
 
 /** Options as the configuration reader returns them, naming a tsconfig. */
 const CONFIGURED_OPTIONS: ICruiseOptions = {
@@ -113,8 +126,9 @@ function gateFailureLines(result: ICruiseResult): readonly string[] {
  */
 function gateRuntime(output: ICruiseResult | string, options: ICruiseOptions = CONFIGURED_OPTIONS) {
   const tsConfigReads: string[] = [];
+  const cruisedRoots: ReadonlySet<string>[] = [];
   const cruises: unknown[] = [];
-  const formatted: ICruiseResult[] = [];
+  const formatted: unknown[] = [];
   const reportWrites: string[] = [];
   const failureLines: string[] = [];
   const runtime: DepcruiseGateRuntime = {
@@ -125,14 +139,16 @@ function gateRuntime(output: ICruiseResult | string, options: ICruiseOptions = C
       tsConfigReads.push(tsConfigFileName);
       return PARSED_TSCONFIG;
     },
-    cruise(_roots, cruiseOptions, _resolveOptions, transpileOptions) {
+    cruise(roots, cruiseOptions, _resolveOptions, transpileOptions) {
+      // A set: the cruise's reach does not depend on the order of its roots.
+      cruisedRoots.push(new Set(roots));
       cruises.push({ options: cruiseOptions, transpileOptions });
       // The API's identity reporter returns exit code 0 whatever the cruise
       // found; the gate's verdict must come from the summary, never an exit code.
       return Promise.resolve({ output, exitCode: 0 });
     },
-    format(cruised) {
-      formatted.push(cruised);
+    format(cruised, formatOptions) {
+      formatted.push({ cruised, formatOptions });
       return Promise.resolve({ output: REPORT, exitCode: 0 });
     },
     writeReport(text) {
@@ -142,17 +158,17 @@ function gateRuntime(output: ICruiseResult | string, options: ICruiseOptions = C
       failureLines.push(line);
     },
   };
-  return { tsConfigReads, cruises, formatted, reportWrites, failureLines, runtime };
+  return { tsConfigReads, cruisedRoots, cruises, formatted, reportWrites, failureLines, runtime };
 }
 
 describe('runDepcruiseGate', () => {
-  it('passes a clean cruise and prints the report formatted from that cruise', async () => {
+  it('passes a clean cruise and prints the err report formatted from that cruise', async () => {
     const result = cruiseResult({ typescript: TYPESCRIPT_FOUND });
     const { formatted, reportWrites, failureLines, runtime } = gateRuntime(result);
 
     await expect(runDepcruiseGate(runtime)).resolves.toBe(0);
 
-    expect(formatted).toStrictEqual([result]);
+    expect(formatted).toStrictEqual([{ cruised: result, formatOptions: ERR_REPORTER }]);
     expect(reportWrites).toStrictEqual([REPORT]);
     expect(failureLines).toStrictEqual([]);
   });
@@ -185,13 +201,14 @@ describe('runDepcruiseGate', () => {
     expect(failureLines).toHaveLength(1);
   });
 
-  it('cruises with the options the configuration reader returned and the tsconfig those options name', async () => {
-    const { tsConfigReads, cruises, runtime } = gateRuntime(
+  it('cruises every workspace with the options the configuration reader returned and the tsconfig those options name', async () => {
+    const { tsConfigReads, cruisedRoots, cruises, runtime } = gateRuntime(
       cruiseResult({ typescript: TYPESCRIPT_FOUND }),
     );
 
     await expect(runDepcruiseGate(runtime)).resolves.toBe(0);
 
+    expect(cruisedRoots).toStrictEqual([new Set(WORKSPACE_ROOTS)]);
     expect(tsConfigReads).toStrictEqual([CONFIGURED_OPTIONS.tsConfig?.fileName]);
     expect(cruises).toStrictEqual([
       { options: CONFIGURED_OPTIONS, transpileOptions: { tsConfig: PARSED_TSCONFIG } },
