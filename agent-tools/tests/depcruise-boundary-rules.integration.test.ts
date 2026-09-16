@@ -13,7 +13,7 @@
  * three of the four rules). The cruise runs in-process through the
  * library API — no child processes (testing-strategy §"No process
  * spawning in in-process tests"). Fixtures live in a temp tree laid out
- * under `packages/core/…` so the rules' workspace regexes match;
+ * under `tooling/…` so the rules' workspace regexes match;
  * committed fixture files named like real configs would themselves be
  * scanned by the gates they prove (forbidden — see the
  * workspace-config-isolation unit suite header).
