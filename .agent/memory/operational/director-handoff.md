@@ -50,80 +50,69 @@ Every line answered first-hand, none inferred:
   archive holds only processed material.
 - The transplant is bounded: closure items 3 to 8 finish it, then editorial work.
 
-## Current handoff state (2026-09-15, 11:51Z, end of arc: the transplant closure complete; owner present)
+## Current handoff state (2026-09-16, 12:3xZ, compaction; the arc closed, the first queued build pushed)
 
 Where this block and the routing log disagree, the log's last entry is current; this block is
 rewritten at each Director wrap.
 
-**State at this wrap (2026-09-15, 11:51Z).** The transplant closure is complete on `main`: every
-item of the node's §Transplant closure carries its Done line and proof, item 6's in #91
-(`SHA: f8aab12`, merged by the bot at 11:24:10Z). Zero pull requests are open. Lane A (Saffron
-turns Verdure, c39ad7) closed at 11:25Z, claim `f024e1f1` archived; the Director's claim
-`1db07581` is closed at this wrap. The arc's closing records are on the coordination branch
-`coordination/2026-09-15-b9dcfb` in the primary checkout (items 109 and 110): two local commits
-from this seat (`SHA: f158ad7`, `SHA: b9dcfba`, `main` merged at `SHA: ce3713f`), and both
-seats' end-of-arc writes uncommitted on its working tree, for a later seat to commit, push and
-converge through the branch's own pull request (the owner's words, item 110). Until then
-`main`'s handoff and continuity contract still read "complete but #91". Owner cards answered
-this session: the runbook's agent-time contract kept; closure todo 1's workflow-file clause
-dropped (`SHA: f158ad7`, on the coordination branch); the lineage curator's #145 closed by its
-merge (item 110). Open card for the owner (item 110): required status checks for `main` (the
-ruleset; the settlement's checks leg implementing pr-lifecycle's homed rule that runs exist for
-the current head; or both). The owner's retrospective of the
-arc ran (item 111); its proposals are with the owner. Follow-on lists, none closure work: the exchange window's register
-rows (items 103, 104 and 106 to 110); the seam move for the health probe's reads (CRLF,
-symlink enumeration, the unreadable surface and template, and the synchronous no-follow
-template read onto the shared `read-regular-file.ts`); the merge-bot follow-ons (the
-`mergeable=UNKNOWN` retry; a `pr-watch chain` bin; the merged branch's deletion, which
-`merge-bot merge` does not discharge); the 2b and item 4 follow-on lists (items 104, 106);
-lane A's close-time follow-ons (its thread record's tenth waypoint): the cure's code-expert
-notes ride the seam move; `GEMINI.md`'s reviewer-roles line predates the generated
-`.gemini/agents/` adapters, and `CLAUDE.md` and `GEMINI.md` carry adapter-model sections
-beyond the entry-point pointer contract (the owner's move); lane A's residue branches and
-worktree wait for a later seat or the owner.
+**State at this wrap (2026-09-16, 12:3xZ, the owner's word: prepare for compaction, then stop
+all processes).** The transplant closure is complete on `main` and its retrospective is written
+(items 109 to 111). Since then this seat built the first queued instrument: `feat/arc-metrics`
+is pushed at `SHA: 6d60e05` with `pnpm check` green, and NO pull request is open for it — the
+owner's compaction word gates starting a review chain, so opening it is the first owed step at
+resume (item 112). The primary checkout sits on the coordination branch
+`coordination/2026-09-15-b9dcfb`, which carries both seats' arc records (`SHA: 82cecbc`) plus
+this wrap's commit, all LOCAL: the branch has never been pushed and is due to converge under
+`coordination-branch-24h-lifetime`, its stamp being yesterday's. The worktree
+`jimcresswell.net-worktrees/arc-metrics` is kept, clean, on the pushed branch. Lane A closed
+2026-09-15; the Director's claim `1db07581` is closed; nothing is armed. Owner decisions carried
+(items 111, 112): PDR-140's declaration at pull-request open, re-costing at scope rulings and
+starting at two seats are operating defaults; proposal 7 takes both lanes; required status checks
+are on `main`'s ruleset since 2026-09-16 and the settlement's half is queued. Open with the owner:
+nothing blocking. Follow-on lists unchanged from item 111, plus: the settlement naming its
+required checks, the 60% compaction-preparation trigger, and the push-time settlement-budget gate.
 
-**Boundary block (2026-09-15, 11:51Z).** Nothing session-scoped survives a compaction; verify by
+**Boundary block (2026-09-16, 12:3xZ).** Nothing session-scoped survives a compaction; verify by
 id first and re-arm only what is absent:
 
-- Nothing is armed after this wrap: no claim, no watcher, no ARC tail, no chain, no pull
-  request. A successor Director re-arms through `start-right-team`: the canonical watcher per
+- Nothing is armed: no claim, no watcher, no ARC tail, no chain, no cron, no background task.
+  The one `comms watch` process on this host belongs to another repository's session. A
+  successor re-arms through `start-right-team`: the canonical watcher per
   `.agent/rules/comms-all-channels-watcher.md` (`comms watch --platform claude --model <the
   session's model> --supervisor-pid "$PPID" --step-timeout-ms 120000 --max-events-per-drain
-  100` under a 3600-second timeout, pre-checked by the process table, re-armed on exit 124,
-  asserted with `comms assert-watcher-live`) and a new claim. A `comms send` must name the
-  model on the identity route its claim registered, or it refuses as a colliding identity.
-- The chain recipe for the next pull request: request the Copilot reviewer under the owner's
-  CLI credential with a JSON body, wait for the review bound to the tip by reading the reviews
-  list, reply to and resolve each thread as the bot, then `merge-bot merge --pr N --expect
+  100` under a 3600-second timeout, asserted with `comms assert-watcher-live`) and a new claim.
+  A `comms send` must name the model on the identity route its claim registered.
+- Owed, in order: (1) open the pull request for `feat/arc-metrics` — its body and the run's JSON
+  are drafted in this session's scratchpad, which is machine-local and therefore not named in a
+  tracked file; request the Copilot reviewer under the owner's CLI credential and run the chain
+  below. (2) Converge the coordination branch: it is overdue by its stamp, so merge `origin/main`,
+  push, land it through its own pull request, and cut the fresh day-stamped branch from the
+  merged tip. Its content includes the retrospective record and its README row, which must be
+  committed together or `validate-markdown-links` reads the row as broken. (3) The three queued
+  builds: the settlement naming its required checks, the 60% preparation trigger, the push-time
+  budget gate.
+- The chain recipe for a pull request: request the Copilot reviewer under the owner's CLI
+  credential with a JSON body, wait for the review bound to the tip by reading the reviews list,
+  reply to and resolve each thread as the bot, then `merge-bot merge --pr N --expect
   copilot-pull-request-reviewer --interval 30 --max-polls 60 --json`. Two review rounds bind;
-  after round two, no push unless the Director takes the correctness exception on a defect in
-  the pull request's own claim, or a red check needs a cure (#91): one comment by the bot after
-  the LATEST review, one line per suppressed finding in the ratified format (`**Below-bar** head
-  SHA:<sha> · review <id> · <path>:<line> · item N of M — Rejected: <why>` or `— Cured in
-  SHA:<sha>`), the seat's signature last, then the poll alone. A finding on the pull request's
-  own wording is cured in its title or description with no push (#88).
-- Owed: the coordination branch `coordination/2026-09-15-b9dcfb`. A later seat commits its
-  uncommitted wrap writes by explicit pathspec (this seat's handoff, continuity contract,
-  register section, napkin block and letter; lane A's napkin block, thread-record tail and
-  letter tail), merges `origin/main`, pushes, and lands the branch through its own pull
-  request; it is due at the first session-open on or after 2026-09-16 UTC
-  (`coordination-branch-24h-lifetime`), and a fresh day-stamped branch is cut from the merged
-  tip. The retrospective record of 2026-09-15 (the agentic-engineering reports) and its row in
-  that directory's README are committed together: until the record is tracked,
-  `validate-markdown-links` reads the row as a broken link and `docs-validators:check` is red
-  on this working tree. The same commit carries the retrospective's additive corrections (the
-  efficiency guidance's closure addendum, the runbook's recorded outcomes, the napkin's
-  learning signal). The owner's card on required status checks. The retrospective's
-  proposals, with the owner (item 111).
-- The push slot: a seat asks, the Director confirms, the seat pushes and releases with one
-  line. `git push origin --delete` runs the full pre-push hook and takes the slot (item 109);
-  merged branches are deleted through the REST API.
-- The arc's homes: this record (§Current handoff state; items 1 to 110; the routing log);
-  `repo-continuity.md` §Next Safe Steps; the napkin's end-of-arc Director block (the loss
-  scan, the metaloss passes, the play and concept harvests); the register's 2026-09-15
-  section; `.agent/experience/2026-09-15-cauldron-herds-lustre-end-of-arc.md`; lane A's thread
-  record, napkin blocks and letter; the closure node's Done lines; the runbook's recorded
-  outcomes and the reports index (`.agent/reports/practice-transplant/README.md`).
+  after round two, no push unless the Director takes the correctness exception on a defect in the
+  pull request's own claim, or a red check needs a cure: one comment by the bot after the LATEST
+  review, one line per suppressed finding in the ratified format (`**Below-bar** head SHA:<sha> ·
+  review <id> · <path>:<line> · item N of M — Rejected: <why>` or `— Cured in SHA:<sha>`), the
+  seat's signature last, then the poll alone. A finding on the pull request's own wording is
+  cured in its title or description with no push.
+- Gate discipline learned here (item 112): a background wrapper's exit code is not the gate's —
+  append the gate's own code to its log and read it there; an untracked file escapes the
+  prettier leg and fails at staging; `knip` is a root script.
+- The push slot: a seat asks, the Director confirms, the seat pushes and releases with one line.
+  `git push origin --delete` runs the full pre-push hook and takes the slot; merged branches are
+  deleted through the REST API.
+- The arc's homes: this record (§Current handoff state; items 1 to 112; the routing log);
+  `repo-continuity.md` §Next Safe Steps; the napkin's end-of-arc and 2026-09-16 Director blocks;
+  the register's 2026-09-15 and 2026-09-16 sections and its slow-lane row;
+  `.agent/experience/2026-09-15-cauldron-herds-lustre-end-of-arc.md`; the retrospective record
+  with its §Corrections after the fact; lane A's thread record, napkin blocks and letter; the
+  closure node's Done lines; the runbook's recorded outcomes and the reports index.
 
 - Director: Cauldron herds Lustre (880ff9), claim `1db07581` (closed at the end-of-arc wrap),
   thread `transplant-closure`, branch: the coordination branch `coordination/2026-09-15-b9dcfb`
@@ -1656,6 +1645,70 @@ ones the Director would put to the owner had the owner been present.
      Responsibilities. The records on the coordination branch are committed by this seat as the
      later seat the owner named, by explicit pathspec, before any build work starts; work
      products go to a worktree off `origin/main`, never the coordination branch.
+     Addendum (2026-09-16), the re-run on the corrected message set: 193 owner messages in this
+     seat (142 user turns, 51 mid-turn), 40 corrections across the arc, 29 after the doctrine
+     landed, 17 answered by doctrine already in the tree (59% post-transplant, 43% arc-wide),
+     11 of the 17 from the mid-turn class. The matches, with the pass's confidence: 09-12
+     13:46Z `verify-dont-trust` (high); 09-13 09:25Z `validate-full-target-estate` (high);
+     11:43Z `verify-dont-trust` (high); 11:47Z `read-diagnostic-artefacts-in-full` (medium);
+     12:59Z `design-work-for-small-prs` (high); 13:08Z
+     `knowledge-preservation-over-fitness-warnings` (very high, near-verbatim); 15:49Z
+     `no-parallel-long-lived-branches` (medium); 16:32Z `pr-comments-resolve-and-recheck`, its
+     body not its frontmatter (very high); 16:41Z `no-warning-toleration` (medium-high); 16:56Z
+     `follow-the-practice` (medium-high); 16:57Z `no-global-state-in-tests` (medium-high);
+     19:58Z PDR-123 with the cricket skill (medium-high); 09-14 06:21Z
+     `handoff-messages-self-contained` (medium); 14:50Z
+     `fleet-design-review-before-expensive-fleets` (high); 15:09Z PDR-132 (high); 21:01Z
+     `re-apply-first-question-at-elaboration-boundaries` (medium-high); 09-15 11:37Z
+     `coordination-branch-24h-lifetime` with PDR-127 (medium-high). Six more were judged
+     arguable and excluded; six are genuinely unanswered, two of them notable — "I expressly
+     said to keep the merge bot tools", which no doctrine covers, and the pull-request-size
+     pushback, which `design-work-for-small-prs` arguably CAUSED. The pass's own bound: presence
+     in the tree is not presence in context. Correction to this item's platform reading
+     (2026-09-16): `PreCompact` CAN block. The installed binary carries
+     `Compaction blocked by PreCompact hook` and `compaction blocked by PreCompact hook;
+     continuing uncompacted`, so the owner's design holds — the hook blocks while the wrap's
+     marker is absent and the session continues uncompacted; the documentation gave three
+     incompatible answers and the implementation settled it.
+
+112. The build session and its wrap (2026-09-16, 11:35Z to 12:3xZ; the owner: build the queued
+     work here, then prepare for compaction and stop all processes). Built in a worktree off
+     `origin/main` (`feat/arc-metrics`, work products never on the coordination branch): the
+     `arc-metrics` topic — per-session and total active hours, model calls, tool calls, tokens,
+     median context per call, compactions, usage-limit stalls and owner messages, as text or
+     JSON; calls and tokens counted once per API message id; owner messages read from user turns
+     AND mid-turn `queue-operation` entries, with the exclusion filter reporting what it removed
+     beside what it kept; active time a named proxy whose threshold travels with the report; a
+     streaming line seam (one transcript reached 100MB). With it: `core/parse-json-line.ts`
+     replacing two private copies; the window registry gaining the three model ids this arc's
+     transcripts carry, with a cell that an unobserved variant stays unknown; and
+     `transcript-locator` exporting the project-directory derivation, because entering a worktree
+     MOVES a session's transcript under the new working directory's key. Committed at
+     `SHA: 6d60e05`, `pnpm check` green (4,139 tests, 28 new cells), pushed; NO pull request
+     opened — opening a review chain is starting something, which the owner's compaction word
+     gates. Its body and the run's JSON are drafted in this session's scratchpad (machine-local,
+     so not named here); the first owed step at resume is to open it and run the chain.
+     The gates caught four defects, all mine, none cosmetic: complexity 12 against 8 and a file
+     at 320 lines against 250 (cured by splitting into `entry`, `owner-messages`, `aggregate`);
+     four banned type assertions (cured by `in`-operator narrowing); a stale hard-coded topic
+     list in a test; and an unused export. Two further lessons: an UNTRACKED file escapes
+     `pnpm check`'s prettier leg and fails only at staging, and `knip` is a root script whose
+     bare invocation inside a package reports findings the gate never sees. My own error, twice:
+     a background wrapper's exit code is not the gate's — "the gate passed (exit 0)" was reported
+     while `pnpm check` had exited 1; the cure is to append the gate's own code to its log.
+     The tool's first run on this estate corrected the retrospective twice more (both now in the
+     record's §Corrections after the fact): the arc had six sessions, not four — the two extra
+     are the falsifier probes of 2026-09-14 — giving 62.2 active hours, 6,720 calls, 8.56M output
+     tokens; and owner messages for this seat read 140 under a written filter against the 193 of
+     a hand extractor, with 1,322 filtered reported beside them. Exchanges with the lineage
+     curator (281e44), recorded in the napkin with attribution: my verdict that a vendor's
+     "Reviewed commit" comment downgrades a refusal but never settles a leg absent an owner
+     ruling; its framing that both our gate defects share one generator, an empty result set read
+     as a satisfied predicate — taken into this tool; its refinement that the safe direction of a
+     filter is set per predicate by what a wrong answer costs, so defaults do not transfer; and
+     its observation that a line ceiling selects against the longest comment rather than the
+     least load-bearing one. A check it prompted found one of my own follow-ups living in a
+     single tracked home: the push-time budget gate, now added to the continuity contract.
 
 ## Routing log
 
@@ -1888,3 +1941,7 @@ ones the Director would put to the owner had the owner been present.
   §Current handoff state is current.
 - 2026-09-15 15:08Z: the arc's retrospective recorded (item 111); its proposals are with the
   owner. §Current handoff state is current.
+- 2026-09-16 12:3xZ: the first queued build pushed (`feat/arc-metrics`, `SHA: 6d60e05`, gate
+  green, no pull request opened at the compaction boundary); the retrospective corrected
+  additively after its own tool found two more counting errors (item 112). §Current handoff
+  state is current.

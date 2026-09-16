@@ -123,8 +123,10 @@ and proof (item 4's rows closed by #85 `SHA: eed1f2e`, #87 `SHA: 6b5676b`, #86
    contract. The owner's card on required status checks closed at the retrospective: `main`'s
    ruleset requires `install`, `static-checks`, `build-and-test`, `e2e`, `secret-scan` and
    `CodeQL` since 2026-09-16, and the settlement naming its own required checks is queued for
-   an Implementer seat, with the arc's metrics bin (before the next arc) and the 60%
-   compaction-preparation trigger of the retrospective's proposal 10.
+   an Implementer seat. The arc's metrics bin is built and pushed (`feat/arc-metrics` at
+   `SHA: 6d60e05`, gate green, pull request owed); still queued are the 60%
+   compaction-preparation trigger of the retrospective's proposal 10 and the push-time
+   settlement-budget gate the owner adopted as proposal 7's fast lane.
 2. The `practice-two-way-exchange` node (ratified 2026-09-14) is the next Practice work and
    opens on the owner naming its window; the closure's routed findings (the exchange-window
    items on #84, #86, #89, #90 and #91; the hold's second lifting path; the boundary

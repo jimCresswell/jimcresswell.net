@@ -8,6 +8,10 @@ profile).
 
 ## The answer in brief
 
+**Read this section with §Corrections after the fact (2026-09-16):** five figures below and
+one platform claim in §Proposal 10 were corrected after publication, by a tool built to make
+the counting structural and by reading an implementation instead of its documentation.
+
 - **The cost.** About 60 agent-active hours across four seats (10.3 in the lead seat to the
   monorepo and transplant, #53; about 50 for the closure); 38 merged pull requests (#53 to #91,
   #59 closed); 133 Copilot reviews, 595 suppressed findings and 245 threads; 6,662 model calls
@@ -417,3 +421,46 @@ the earlier ratio rested on the incomplete one. The queued work (the settlement'
 checks, the metrics bin, the 60% preparation trigger, the model-window registry) is built by
 this seat, where the Director and Implementer roles collapse at one seat, as the team skill
 allows.
+
+## Corrections after the fact (2026-09-16)
+
+Additive, per the `retrospective` skill: the record keeps what it said and states what changed.
+
+1. **PreCompact CAN block a compaction; §Proposal 10 says it cannot.** That section reads "A
+   `PreCompact` hook exists and can distinguish `manual` from `auto`, but it cannot block
+   compaction (exit code 2 is not honoured for it)", and its design therefore claims only the
+   preparation's WINDOW and the VISIBILITY of a missed preparation. The installed binary (Claude
+   Code 2.1.273) carries `executePreCompactHooks`, `Compaction blocked by PreCompact hook`,
+   `compaction blocked by PreCompact hook; continuing uncompacted`, `SKIP_PRECOMPACT_THRESHOLD`,
+   `preCompactTokenCount` and `.precompact.json`. So the owner's design holds as they put it: the
+   hook blocks while the wrap's marker is absent and the session continues uncompacted. Two
+   riders: a hook that blocks unconditionally leaves a session at full occupancy, so it must
+   block only on the missing marker; and `SKIP_PRECOMPACT_THRESHOLD` beside `preCompactTokenCount`
+   *reads like* a wedge guard, which is an inference from a symbol name, not a fact. Method note,
+   because it is the transferable part: the documentation gave three incompatible answers to this
+   question through `WebFetch`'s summarising model — cannot block, can block, section absent — and
+   the implementation settled it.
+2. **The arc had six sessions, not four.** §The answer in brief and the appendix count four seats
+   because four transcripts were named by hand. Scanning the project directories finds six: the
+   extra two are the headless sessions that ran the @-import falsifier on 2026-09-14, about twenty
+   seconds each. Corrected arc figures, from the `arc-metrics` run of 2026-09-16: **62.2
+   agent-active hours, 6,720 model calls, 8.56M output tokens, 3.0B cache-read tokens, 25
+   compactions, 6 usage-limit stalls** (against 60 hours, 6,662 calls, 8.35M tokens, 25
+   compactions as published).
+3. **Owner messages belong to a stated filter.** The record reports 193 for the lead seat from an
+   extractor written for one pass; the protected pass estimated about 118 were owner prose; the
+   tool reports **140**, and 1,322 filtered beside it, because it also excludes command wrappers,
+   shell echoes, re-invocation notices and interrupt markers. Arc-wide the tool reports 204 owner
+   messages, 79 of them mid-turn. Quote the number whose filter is written down and tested.
+4. **The correction ratio is measured now, not indicative.** §The second pass on proposal 7 says
+   ten of fifteen post-transplant corrections were doctrine-answerable, computed on the incomplete
+   message set, and that a re-run was owed. The re-run on the complete set: **40 corrections
+   across the arc, 29 after the doctrine landed, 17 answered by doctrine already in the tree —
+   59% post-transplant, 43% arc-wide — and 11 of the 17 were mid-turn messages the first pass
+   could not see.** Its per-match list, with each doctrine's path and a confidence, is in the
+   Director's handoff (item 111's addendum).
+5. **The counting family now has five members, not three.** To the three in the appendix add: a
+   hand enumeration standing in for a directory scan (correction 2), and a count published without
+   its filter (correction 3). Every one is the same shape — a surface whose records are not
+   one-to-one with the thing counted — which is the warrant for proposal 4 having been built
+   rather than left as a proposal.

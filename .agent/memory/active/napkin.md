@@ -1980,3 +1980,111 @@ tip is one whose required analysers ran".
   `/tmp/cc-socks/<pid>.sock`, mode `srw-------` in a `drwx------` directory, carrying peer
   messages into the conversation as text; the harness process listens on no TCP port, and a
   peer cannot make a session run a slash command.
+
+### Director, the build session and its wrap (2026-09-16, 11:35Z to 12:2xZ) — Cauldron herds Lustre (880ff9)
+
+- **Surprise: PreCompact can block, and one documentation page said three different things.**
+  The owner asked whether a hook could hold compaction until the preparation had run. WebFetch
+  answered "cannot block" from the anchored section, "can block, exit 2 prevents compaction" from
+  the JSON-output section, and "section not present" when asked for the text verbatim — all from
+  one page, because the tool answers through a summarising model over possibly truncated content.
+  The installed binary settles it: `executePreCompactHooks`, `Compaction blocked by PreCompact
+  hook`, `compaction blocked by PreCompact hook; continuing uncompacted`, `SKIP_PRECOMPACT_THRESHOLD`,
+  `preCompactTokenCount`, `.precompact.json` (Claude Code 2.1.273, read with `strings`). Behaviour
+  change: for a load-bearing platform fact, read the implementation or test it; a documentation
+  summary is a lead, never evidence. Flagged as inference, not fact: that
+  `SKIP_PRECOMPACT_THRESHOLD` is a wedge guard — that is a reading of a name, nothing more.
+- **Surprise: entering a worktree re-homes the session's transcript.** Claude Code keys transcript
+  storage by working directory and MOVES the file when that changes; after `EnterWorktree` this
+  session's transcript lived under the worktree's project key and was gone from the original. So
+  an arc's history can span several project directories, and a successor hunting a session under
+  the key it started in will not find it. The metrics tool takes repeatable `--project-dir` for
+  exactly this reason.
+- **Surprise: the arc had six sessions, not four.** The retrospective enumerated four transcripts
+  by hand; scanning the project directories finds six. The extra two are the headless sessions
+  that ran the @-import falsifier on 2026-09-14 (about twenty seconds each). Negligible hours,
+  non-zero calls and tokens, and the fourth error of one family: a hand enumeration standing in
+  for a scan.
+- **Surprise: three numbers for one count, and only one of them had a rule.** Owner messages for
+  this seat read 193 by my hand extractor, about 118 by a protected pass's estimate of prose, and
+  140 by the tool's written, tested filter — which also reports 1,322 filtered, so the difference
+  is visible rather than argued. A count without a stated filter is an opinion.
+- **My own error, twice: a background wrapper's exit code is not the gate's.** I reported "the
+  gate passed (exit 0)" when the wrapper had exited 0 while `pnpm check` exited 1. Cure adopted:
+  the gate's own code is appended to its log (`echo "GATE_EXIT=$?" >> log`) and read from there;
+  the task notification's code is never the gate's.
+- **The gates caught four real defects in my code, none of them style.** A function at complexity
+  12 against a maximum of 8 and a file at 320 lines against 250 (cured by splitting into `entry`,
+  `owner-messages` and `aggregate`, not by shortening prose); four banned type assertions (cured
+  by `in`-operator narrowing); a stale hard-coded topic list in a test (the CLI usage string is
+  asserted literally, twice); and an unused export (`totalsOf`, made module-private).
+- **Grounded execution knowledge.** An UNTRACKED file escapes `pnpm check`'s prettier leg, which
+  reads the tracked universe, and fails only at staging when the pre-commit hook sees it — a new
+  file can pass the full gate and still fail the commit. `knip` is a ROOT script: running
+  `pnpm exec knip` inside a package runs it without the root config and reports unused types the
+  gate never mentions; run it as the gate runs it. The repository's worktree guard refuses a
+  shell command whose text is too complex to prove is not git when a computed variable stands
+  where an option could.
+- **Practice/tooling feedback.**
+  - **Surface**: the worktree-isolation guard. **Signal**: friction. **Observation**: with this
+    session isolated in a worktree, a subagent's `git log` was refused, so a measurement pass fell
+    back to the GitHub API against `main` and could not see branch-local commits. **Candidate
+    follow-up**: admit read-only git in the session's own repository for subagents, or say so in
+    the brief and name the blind spot. **Source plane**: operational.
+  - **Surface**: `WebFetch` on documentation. **Signal**: surprise. **Observation**: three
+    incompatible answers to one question from one page. **Candidate follow-up**: for platform
+    facts, read the implementation or test it.
+  - **Surface**: background Bash tasks. **Signal**: friction. **Observation**: the completion
+    notification carries the wrapper's exit code, which hid a red gate twice. **Candidate
+    follow-up**: recipes that run a gate in the background append the gate's own code to the log.
+- **From the peer seat (Zephyr guards Leeward, 281e44), attributed, three exchanges.**
+  - _The empty-set generator_: both our merge-gate defects were one shape — an empty result set
+    read as a satisfied predicate. Zero required checks reads as all green; zero classifiable
+    evidence reads as nothing to wait for. Cure taken into my own tool: a predicate over a
+    filtered set reports how many it filtered and why.
+  - _Safe directions do not transfer_: for its leg, dropping a real review costs a leg, so
+    over-removal is the danger; for my counter, admitting harness traffic inflates what the owner
+    is said to have asked for, so under-removal is. Same shape, opposite defaults — a filter
+    copied between them would be wrong in the way hardest to see. The rule that carries is: name
+    what a wrong answer costs, and let that set the direction the predicate fails toward.
+  - _Comment pressure_: a file-length ceiling prices lines uniformly, so it selects against the
+    LONGEST comment rather than the least load-bearing one; the peer was one keystroke from
+    cutting the invariant that empties must be counted. Triage question offered and recorded by
+    it: which of these lines could a later reader NOT reconstruct from another surface? Trim those
+    last. Where decomposition is available it beats prose-trimming, but only when it fits the
+    story's budget — with four importers it does not, which is when the heuristic earns its keep.
+- **Loss scan (session-handoff 6e.2), from inside this context.** Routed to durable homes: the
+  PreCompact correction, the corrected ratio, the fourth and fifth counting errors, the tooling
+  feedback and the peer's framings (this block and the records). Owed and recorded in the boundary
+  block, not merely held here: the pull request for `feat/arc-metrics` (branch pushed at
+  `SHA: 6d60e05`, body drafted at the scratchpad path the boundary block names, its evidence JSON
+  saved beside it); the coordination branch's convergence, due today under the 24-hour rule and
+  unpushed; the settlement's required checks, the 60% trigger and the push-time budget gate. Kept
+  deliberately in context only: the scratch scripts, whose substance is in the records.
+- **Metaloss.** _Compressed reasoning_: two decisions carry their warrants in item 112 — no pull
+  request opened at a compaction boundary (opening a review chain is starting something, which the
+  owner's word gates), and the records committed locally without a push (a five-minute gate at a
+  boundary, with no reviewer waiting). _Promises_: the pull request, the convergence, three queued
+  builds, and the owner's card on required checks — all named in the boundary block with their
+  homes; none left in chat alone. _Attribution flags_: `SKIP_PRECOMPACT_THRESHOLD`'s meaning is my
+  inference from a symbol name; the peer's reports of its own gate and tests are its word, not my
+  observation; the doctrine matches in the corrected ratio are the protected pass's judgement, and
+  it says itself that presence in the tree is not presence in context. _Blind spots_: I still have
+  not read lane A's records from the closure; the protected pass's first report never reached me,
+  only its addendum and then its full report on request, so I cannot say what the first contained;
+  and no reviewer has yet seen the arc-metrics code — Copilot's first pass is still owed.
+  _External bound_: every error corrected today was caught by something outside my own reading —
+  the owner, a peer seat, a subagent, a linter, a hook. That is the signature to point scrutiny
+  at: my own counts, and my own claims about what a gate said. _Fence sweep_: no owner wording was
+  held off the repository this session. _Fixed point_: a third pass re-finds the wrapper-exit-code
+  error and the unread lane A records; the recursion closes here.
+- **Play harvest (associations, not findings).** Kept: the gate's four catches and the peer's
+  ceiling breach were both cases of a limit doing its job as a _signal_ while the cheapest
+  response was to satisfy it cosmetically — splitting a module and trimming a comment look alike
+  at the diff level and differ entirely in what survives. Kept: "read the implementation, not the
+  prose about it" applied to the harness this morning and to the estate's own doctrine yesterday
+  (PDR-140 was read at open and breached at the action moment); in both cases the written account
+  and the behaviour had drifted, and only the behaviour was load-bearing. Discarded, visibly: "the
+  worktree guard and the merge gate are the same mechanism" — superficially both refuse on
+  insufficient evidence, but one refuses a command and the other refuses a merge, and nothing
+  followed from pairing them.
