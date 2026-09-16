@@ -12,8 +12,8 @@
  * machine terminates well before it; exhaustion resolves to a `held-for-review` that
  * downstream completeness gates surface, never a spin.
  *
- * Harness primitives are injected (ADR-078), so the loop is unit-tested with fakes and
- * the stage entry stays a thin composition root. Sandbox-safe: no value import here
+ * Harness primitives are injected, so the loop is unit-tested with fakes and the stage
+ * entry stays a thin composition root. Sandbox-safe: no value import here
  * (or transitively) drags zod, Result, or any Node API into the bundle.
  *
  * @packageDocumentation

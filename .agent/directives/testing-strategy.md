@@ -234,7 +234,7 @@ prove the test bites) is in
   (`node -e`, literal env, no shell), homed in the workspace's
   integration-test directory, kept apart from the seam-shaped suite
   (worked instance: `agent-tools/tests/`). The seam-shaped remainder
-  of any such suite stays spawn-free via ADR-078 injection;
+  of any such suite stays spawn-free via dependency injection;
   composition with real binaries belongs at smoke tier.
   `test-immediate-fails.md` item 8 points here.
 

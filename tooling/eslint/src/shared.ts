@@ -114,7 +114,8 @@ export const ignores = [
  * `createHttpObservabilityOrThrow` (i.e. `runtime-config.*.test.ts`,
  * `http-observability.*.test.ts`) add a file-glob override disabling
  *
- * @see ADR-078 for the dependency injection rationale behind the vi.mock ban
+ * @see `.agent/rules/no-global-state-in-tests.md` for the dependency-injection
+ *   rationale behind the vi.mock ban
  * @see principles.md "No type shortcuts" — applies to test code equally
  * @see `.agent/rules/test-immediate-fails.md` — the authoritative checklist
  */
@@ -148,7 +149,7 @@ export const testRules = {
     {
       selector: "MemberExpression[object.name='process'][property.name='env']",
       message:
-        'Tests must not read or write process.env. Pass literal inputs via dependency injection (ADR-078). See .agent/rules/test-immediate-fails.md.',
+        'Tests must not read or write process.env. Pass literal inputs via dependency injection. See .agent/rules/test-immediate-fails.md.',
     },
     {
       selector: "CallExpression[callee.object.name='process'][callee.property.name='cwd']",
@@ -156,7 +157,7 @@ export const testRules = {
         'Tests must not consume process.cwd(). Anchor paths at import.meta.dirname. See .agent/rules/test-immediate-fails.md.',
     },
   ],
-  // Module-cache / global-state manipulation: prohibited by ADR-078 and
+  // Module-cache / global-state manipulation: prohibited by
   // .agent/rules/no-global-state-in-tests.md. Applies repo-wide at
   // `error`. Workspaces carrying existing violations add a per-file
   // allowlist in their own `eslint.config.ts`; the backlog is therefore
@@ -171,19 +172,19 @@ export const testRules = {
       object: 'vi',
       property: 'mock',
       message:
-        'vi.mock mutates the module cache and violates ADR-078 (DI-for-testability). Use dependency injection instead. See .agent/rules/test-immediate-fails.md.',
+        'vi.mock mutates the module cache, which tests must never do. Use dependency injection instead. See .agent/rules/test-immediate-fails.md.',
     },
     {
       object: 'vi',
       property: 'doMock',
       message:
-        'vi.doMock mutates the module cache and violates ADR-078. Use dependency injection instead. See .agent/rules/test-immediate-fails.md.',
+        'vi.doMock mutates the module cache, which tests must never do. Use dependency injection instead. See .agent/rules/test-immediate-fails.md.',
     },
     {
       object: 'vi',
       property: 'stubGlobal',
       message:
-        'vi.stubGlobal mutates global state. Use dependency injection or explicit parameter passing (ADR-078). See .agent/rules/test-immediate-fails.md.',
+        'vi.stubGlobal mutates global state. Use dependency injection or explicit parameter passing. See .agent/rules/test-immediate-fails.md.',
     },
   ],
   // Production-factory ceremony: tests must not import factories that
