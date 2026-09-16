@@ -60,6 +60,30 @@ variants:
 
         Mode: a single fast pass — judge from the supplied context, honour the
         template's speed contract, and report only. Do not modify anything.
+  - name: cricket-judgement-lowestpower-low
+    platforms:
+      - cursor
+      - claude
+    description: Fast low-effort conscience check using contextual judgement on the lowest-power model, running the full judgement prompt rather than the compiled procedure. Call directly for a second opinion, rubber duck, or design partnership when priority, proportion, or a wait/gate may be drifting; returns ON-TRACK, DRIFTING, or WRONG-PRIORITY with evidence and one redirection.
+    title: Cricket Judgement — Lowest Power, Low Effort
+    cursor:
+      description: Cursor adapter for the lowest-power low-effort contextual-judgement role; Cursor pins neither model nor reasoning effort. Call directly for a second opinion, rubber duck, or design partnership when priority, proportion, or a wait/gate may be drifting; returns ON-TRACK, DRIFTING, or WRONG-PRIORITY with evidence and one redirection.
+      note: |-
+        That template is the canonical role definition. This adapter preserves the lowest-power
+        low-effort judgement role's semantics, but the suffix claims neither a Cursor model pin
+        nor a reasoning-effort pin. Judge from the supplied context in a single fast pass and
+        report only. Never explore the repository.
+    claude:
+      tools: Read
+      disallowedTools: Write, Edit, Bash, Grep, Glob
+      color: green
+      model: haiku
+      effort: low
+      note: |-
+        This adapter explicitly waives the template's reading-discipline component to preserve
+        the one-pass speed contract; the identity component remains mandatory. Judge and report
+        from the supplied context and STANCE, using at most the template's two targeted
+        verification Reads when its speed contract permits them. Never explore the repository.
   - name: cricket-judgement-medium
     platforms:
       - cursor

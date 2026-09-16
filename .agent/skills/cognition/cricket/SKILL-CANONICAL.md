@@ -60,7 +60,11 @@ beats an evocative name); verify it against the platform adapter files (`.claude
 the same canonical judgement template; the smallest model executes the compiled procedure.
 Base templates live in `.agent/sub-agents/templates/`.
 
-Claude bindings (the effort-inversion quartet — model capability descends as effort climbs):
+Claude bindings. The first four are the effort-inversion quartet — model capability descends
+as effort climbs. The fifth is deliberately OFF that diagonal: the lowest-power model running the
+full judgement prompt at low effort, added by owner ruling 2026-09-16 after a seat in exactly that
+configuration returned almost immediately and found a real defect that a dearer seat had waved
+through. It is the cheapest seat on the panel and it is not there to complete a pattern.
 
 | Role | Base template | Model | Effort |
 | --- | --- | --- | --- |
@@ -68,6 +72,7 @@ Claude bindings (the effort-inversion quartet — model capability descends as e
 | `cricket-judgement-medium` | `cricket-judgement.md` | `opus` | medium |
 | `cricket-judgement-high` | `cricket-judgement.md` | `sonnet` | high |
 | `cricket-procedure-xhigh` | `cricket-procedure.md` | `haiku` | xhigh |
+| `cricket-judgement-lowestpower-low` | `cricket-judgement.md` | `haiku` | low |
 
 Codex bindings:
 
@@ -88,6 +93,7 @@ Cursor bindings:
 | `cricket-judgement-medium` | `cricket-judgement.md` | unpinned | unpinned |
 | `cricket-judgement-high` | `cricket-judgement.md` | unpinned | unpinned |
 | `cricket-procedure-xhigh` | `cricket-procedure.md` | unpinned | unpinned |
+| `cricket-judgement-lowestpower-low` | `cricket-judgement.md` | unpinned | unpinned |
 
 Cursor preserves the templates and stable role names but pins neither model nor effort;
 record Cursor runs as template-adapter evidence, not model-plus-effort experiment data.
@@ -109,20 +115,22 @@ findings as separate labelled lists. Name the rule or mechanical fact behind eve
 
 ## Claude dispatch
 
-On Claude, run the four registered Cricket roles as a panel:
+On Claude, run the five registered Cricket roles as a panel:
 
-1. Start all four roles concurrently with the identical frame and `STANCE: normal`.
-2. Keep working while the normal wave runs, then collect all four returns.
-3. Start the same four roles again with the identical frame and only `STANCE: adversarial`
+1. Start all five roles concurrently with the identical frame and `STANCE: normal`.
+2. Keep working while the normal wave runs, then collect all five returns.
+3. Start the same five roles again with the identical frame and only `STANCE: adversarial`
    changed.
-4. Collect all eight returns. A missing return is `UNDELIVERED`; do not replace it with a
+4. Collect all ten returns. A missing return is `UNDELIVERED`; do not replace it with a
    generic agent or a differently pinned role.
 
 Label every dispatch and every tally row by the dual scale, so a reader sees that effort climbs
 as model power descends (owner ruling 2026-09-13): `Cricket judgement: highest power, low
 effort, <stance> frame` (fable), `high power, medium effort` (opus), `mid power, high effort`
-(sonnet), and `Cricket procedure: lowest power, xhigh effort, compiled procedure, <stance>
-frame` (haiku).
+(sonnet), `Cricket judgement: lowest power, low effort, full prompt, <stance> frame` (haiku),
+and `Cricket procedure: lowest power, xhigh effort, compiled procedure, <stance> frame`
+(haiku). The two haiku seats differ by prompt and effort, never by model: naming one without
+its prompt or its effort loses the only thing that separates them.
 
 ## Codex dispatch
 
@@ -153,15 +161,15 @@ shared-runtime admission failure. Never silently replace it with Sol, Terra, or 
 
 ## Cursor dispatch
 
-On Cursor, run the four stable template adapters as a panel:
+On Cursor, run the five stable template adapters as a panel:
 
-1. Start the four adapters concurrently where the seat permits it, with the identical frame and
+1. Start the five adapters concurrently where the seat permits it, with the identical frame and
    `STANCE: normal`. If a concurrency cap requires waves, preserve the frame and stable role
    order.
-2. Collect all four normal returns.
-3. Start the same four adapters with the identical frame and only `STANCE: adversarial` changed,
+2. Collect all five normal returns.
+3. Start the same five adapters with the identical frame and only `STANCE: adversarial` changed,
    using the same concurrency pattern.
-4. Collect all eight returns. Mark a missing return `UNDELIVERED`; do not substitute a generic
+4. Collect all ten returns. Mark a missing return `UNDELIVERED`; do not substitute a generic
    agent.
 
 Cursor adapters preserve the methods and stable role names, but Cursor does not pin their model
