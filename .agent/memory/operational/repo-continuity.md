@@ -217,8 +217,9 @@ and proof (item 4's rows closed by #85 `SHA: eed1f2e`, #87 `SHA: 6b5676b`, #86
    `hook-policy-substring-discipline`). Routed to Zephyr guards Leeward (281e44) the same day.
 
    Second maintenance item at the same priority (2026-09-16): the Cricket seat naming. The
-   generated adapter names encode effort alone (`-low`, `-medium`, `-high`, `-xhigh`), so nothing
-   in a name says which model a seat runs, while the estate pairs model power INVERSELY with
+   quartet's generated adapter names encode effort alone (`-low`, `-medium`, `-high`, `-xhigh`), so
+   nothing in those names says which model a seat runs (the fifth seat,
+   `cricket-judgement-lowestpower-low`, added the same day, already names both), while the estate pairs model power INVERSELY with
    effort — low is fable, medium is opus, high is sonnet, xhigh is haiku. A caller who cannot read
    that from the name mis-launches the suite, as the Director did on 2026-09-16 by overriding
    every seat's model and inverting the design. Names should carry both dimensions. The change
