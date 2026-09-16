@@ -15,13 +15,17 @@ import { runDepcruiseGate, type DepcruiseGateRuntime } from './repo-check-depcru
  * runtime. The configuration reader, the tsconfig extractor, the cruise, the
  * formatter and the two output streams are simple fakes, so these tests prove
  * the wiring between them: what reaches the cruise, what is printed, and the
- * status returned. No file is read and nothing is cruised. The failure lines
- * are asserted as the gate prints them for each fixture, without importing the
- * verdict; the verdict's own unit suite
- * (`repo-check-depcruise-verdict.unit.test.ts`) covers every summary it maps.
- * The configuration file's name and the real API are proved by the gate running
- * (`pnpm depcruise`).
+ * status returned. No file is read and nothing is cruised. Each fixture's
+ * failure lines are asserted by their count and by the clauses that carry the
+ * diagnosis or the action, never whole sentences (testing-patterns.md
+ * §Rendered-Output Assertions), and without importing the verdict; the verdict's
+ * own unit suite (`repo-check-depcruise-verdict.unit.test.ts`) covers every
+ * summary it maps. The configuration file's name and the real API are proved by
+ * the gate running (`pnpm depcruise`).
  */
+
+/** The name every failure line is written under. */
+const GATE_PREFIX = 'repo-check depcruise-gate: ';
 
 /**
  * The directories holding every workspace `pnpm-workspace.yaml` declares, all
@@ -114,6 +118,13 @@ function cruiseResult(input: {
   };
 }
 
+/** The one failure line that contains `needle`, so a multi-line assertion never pins line order. */
+function lineContaining(lines: readonly string[], needle: string): string {
+  const matching = lines.filter((line) => line.includes(needle));
+  expect(matching).toHaveLength(1);
+  return matching[0] ?? '';
+}
+
 /**
  * A fake runtime: the reader returns `options`, the cruise returns `output`
  * (a result, or reporter text), and every call the gate makes is recorded.
@@ -175,10 +186,12 @@ describe('runDepcruiseGate', () => {
     await expect(runDepcruiseGate(runtime)).resolves.toBe(1);
 
     expect(reportWrites).toStrictEqual([REPORT]);
-    expect(failureLines).toStrictEqual([
-      'repo-check depcruise-gate: no supported TypeScript compiler (dependency-cruiser supports typescript >=2.0.0 <7.0.0), so the cruise parsed none of the TypeScript estate',
-      'repo-check depcruise-gate: dependency-cruiser raised the environment issue missing-typescript-transpiler (described in the report)',
-    ]);
+    expect(failureLines).toHaveLength(2);
+    const compilerLine = lineContaining(failureLines, 'no supported TypeScript compiler');
+    expect(compilerLine).toContain(GATE_PREFIX);
+    expect(compilerLine).toContain('parsed none of the TypeScript estate');
+    const issueLine = lineContaining(failureLines, MISSING_TYPESCRIPT_ISSUE.name);
+    expect(issueLine).toContain(GATE_PREFIX);
   });
 
   it("fails a cruise with a single violation, writing its one failure line under the gate's name", async () => {
@@ -189,7 +202,10 @@ describe('runDepcruiseGate', () => {
     await expect(runDepcruiseGate(runtime)).resolves.toBe(1);
 
     expect(reportWrites).toStrictEqual([REPORT]);
-    expect(failureLines).toStrictEqual(['repo-check depcruise-gate: 1 error-severity violations']);
+    expect(failureLines).toHaveLength(1);
+    expect(failureLines[0]).toContain(GATE_PREFIX);
+    expect(failureLines[0]).toContain('error-severity violations');
+    expect(failureLines[0]).toMatch(/\b1\b/u);
   });
 
   it('cruises every workspace with the options the configuration reader returned and the tsconfig those options name', async () => {
@@ -216,9 +232,10 @@ describe('runDepcruiseGate', () => {
 
     expect(cruises).toStrictEqual([]);
     expect(reportWrites).toStrictEqual([]);
-    expect(failureLines).toStrictEqual([
-      'repo-check depcruise-gate: the configuration names webpackConfig, which the command line loads and this gate does not; load it in repo-check-depcruise.ts before configuring it',
-    ]);
+    expect(failureLines).toHaveLength(1);
+    expect(failureLines[0]).toContain(GATE_PREFIX);
+    expect(failureLines[0]).toContain('webpackConfig');
+    expect(failureLines[0]).toContain('load it in repo-check-depcruise.ts');
   });
 
   it('refuses a cruise that returned reporter text instead of a result, printing no report', async () => {
@@ -228,8 +245,8 @@ describe('runDepcruiseGate', () => {
 
     expect(formatted).toStrictEqual([]);
     expect(reportWrites).toStrictEqual([]);
-    expect(failureLines).toStrictEqual([
-      'repo-check depcruise-gate: the cruise returned reporter text, not a result to read',
-    ]);
+    expect(failureLines).toHaveLength(1);
+    expect(failureLines[0]).toContain(GATE_PREFIX);
+    expect(failureLines[0]).toContain('reporter text, not a result');
   });
 });
