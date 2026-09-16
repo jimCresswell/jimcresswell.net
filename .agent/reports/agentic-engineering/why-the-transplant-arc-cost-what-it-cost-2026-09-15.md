@@ -568,6 +568,10 @@ runs directly. So `tsconfig.base.json` gained `allowImportingTsExtensions` and
 `rewriteRelativeImportExtensions`: the hook's source carries a `.ts` specifier for Node, and tsc
 rewrites it to `.js` on emit, which was verified by reading the emitted line and running the
 emitted file, not by trusting the option's name. The specifier guard's accepted set gained `.ts`
-with that reasoning recorded where the guard lives. A hook that runs from source needs nothing
+with that reasoning recorded where the guard lives. That guard was then probed BOTH ways, on a
+conscience seat's finding that only the passing half had been shown: with an extensionless
+specifier planted it exits 1 and names the file and the specifier; with the file removed it exits
+0 again. Demonstrating only the direction that agrees with you is the same error as reading a
+number from the nearest surface — this arc's signature, caught here by a peer rather than by me. A hook that runs from source needs nothing
 built, so it works on a fresh clone — which also makes it the rewrite path for the three
 surviving hand-authored `.mjs` shims.
