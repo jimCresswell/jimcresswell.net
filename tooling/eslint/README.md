@@ -53,12 +53,14 @@ config must replicate all restricted type entries from `recommended`.
 
 ### Activating new rules
 
-"Autofixable" idiom rules are not automatically safe: Sonar idiom rules
-(S7765 prefer-includes, S7755 prefer-at — implemented in this repo via the
-matching `unicorn/*` rules, see `recommended.ts`) are **type-affecting, not
-stylistic** — their autofixes can force type-unsound rewrites (one broke a
-`value is X` type-guard of the constant-type-predicate pattern,
-`.agent/directives/validation-strategy.md`). When activating a new rule:
+"Autofixable" idiom rules are not automatically safe: Sonar idiom rules are
+**type-affecting, not stylistic** — their autofixes can force type-unsound
+rewrites. S7765 (prefer-includes) is the worked case: its autofix turns the
+`value is X` type-guard of the constant-type-predicate pattern
+(`.agent/directives/validation-strategy.md`) into a type-unsound
+`.includes(value)`, so `unicorn/prefer-includes` is deliberately not enabled,
+while S7755 (prefer-at) is enabled as `unicorn/prefer-at` (see
+`recommended.ts`). When activating a new rule:
 
 - Land it at `error` with full conformance in ONE landing (PDR-126,
   graduating the 2026-07-07 owner ruling — this supersedes the earlier
