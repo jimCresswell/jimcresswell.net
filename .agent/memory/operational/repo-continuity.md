@@ -161,25 +161,30 @@ fix it"). Landed on 2026-09-16: #98 (`SHA: 262a9f7`, the `smol-toml` advisory, t
 lockfile-rebuild rule's two override drift directions); #99 (`SHA: bb284c9`, secrets hooks that
 run under any project path and scan any file name, the command-shape portability check,
 owner-only hook logs from every writer); #100 (`SHA: d8852f0`, dependency-cruiser fails when it
-parsed nothing; knip hints, dead lint entries, the bootstrap docblock). Open:
+parsed nothing; knip hints, dead lint entries, the bootstrap docblock); #101 (`SHA: 65cf1d0`,
+file names ending in a newline, PowerShell command parameters, the observer's directory mode); #102
+(`SHA: fb0409f`, integration tests for the depcruise gate's composition root); #103 (`SHA: cd56dd5`,
+the first transplant leftovers). Open:
 
-- #101 `fix/hook-review-followups`: file names ending in a newline, PowerShell `-Command`, the
-  observer's directory mode (the forward cures of #99's third review).
-- #102 `test/depcruise-gate-wiring`: integration tests for the depcruise gate's composition root
-  (the forward cure of #100's second review).
-- #103 `fix/transplant-leftovers`: absent ADR citations, stale workspace-config references,
-  unused `allowBuilds` entries, a wrong fixture comment, a `repo-check profile` that never ran,
-  and the redundant `knip:gate`.
 - #104 `fix/export-ref-worktree-flake`: child output read before its streams closed (the
-  visual-regression export, the drift-alert hook, the e2e setup) and a sequential archive export.
+  visual-regression export, the drift-alert hook, the e2e setup) and a sequential archive export;
+  round two requested on `SHA: 0d739fe9` (the drift hook no longer forces an exit over a large
+  report; e2e cleanup waits on `exit`, not `close`).
+- #105 `fix/session-start-hook-paths`: the two `SessionStart` hooks anchored at
+  `"${CLAUDE_PROJECT_DIR}"`, a relative-script check, and PowerShell command parameters matched
+  as pwsh's own parser matches them (the forward cure of #101's second review); round one
+  requested.
+- #106 `test/depcruise-gate-literal-expectations`: the composition suite asserts literal failure
+  lines instead of importing the verdict (the forward cure of #102's second review); round one
+  requested.
 
-Owed, as fixes: the further transplant leftovers #103 lists as out of scope (the
-architecture-expert and config-expert templates' false citations and claims, missing ADRs cited
-in `tooling/eslint` and `tooling/result`, overrides for packages not in the lockfile, `.gitattributes`
-citing `pnpm sdk-codegen`, Stryker names); the two `SessionStart` hook commands move to the
-quoted `"${CLAUDE_PROJECT_DIR}"` form (their relative paths resolve against a hook working
-directory Claude Code takes from the session, not the project root); shellcheck as a gate over
-`.claude/hooks/*.sh`.
+In progress in worktrees, not yet pushed: `fix/shellcheck-gate` (shellcheck over every tracked
+shell script in `pnpm check`, and `prompt-secrets.sh`'s cleanup trap, which expanded its temp
+path when set, so a temporary directory holding whitespace left a copy of the prompt on disk);
+`fix/transplant-citations` (the architecture-expert and config-expert templates' false citations
+and claims, missing ADRs cited in `tooling/eslint` and `tooling/result`, `.gitattributes` citing
+`pnpm sdk-codegen`); `fix/transplant-dead-config` (overrides for packages not in the lockfile,
+Stryker names). Each lands as its own pull request.
 
 Improvements, not defects: the observer's other measurements could carry their failure reason
 (a failed size read or listing is recorded as absent, which the record's TSDoc states); and
