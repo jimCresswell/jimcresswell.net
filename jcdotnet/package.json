@@ -88,28 +88,5 @@
     "typescript": "npm:@typescript/typescript6@^6.0.2",
     "vite": "7.3.5",
     "vitest": "^4.1.10"
-  },
-  "knip": {
-    "ignoreDependencies": [
-      "markdownlint-cli2-formatter-pretty"
-    ],
-    "ignoreBinaries": [
-      "gitleaks",
-      "ldd"
-    ]
-  },
-  "pnpm": {
-    "overrides": {
-      "brace-expansion@1": "1.1.18",
-      "esbuild": "0.28.2",
-      "vite": "7.3.5"
-    },
-    "onlyBuiltDependencies": [
-      "@playwright/test",
-      "esbuild",
-      "puppeteer",
-      "sharp",
-      "unrs-resolver"
-    ]
   }
 }
