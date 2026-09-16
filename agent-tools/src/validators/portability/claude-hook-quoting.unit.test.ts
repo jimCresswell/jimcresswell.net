@@ -54,6 +54,8 @@ describe('projectDirCommandShapeIssue', () => {
       'ash -c "${CLAUDE_PROJECT_DIR}/x.sh"',
       'busybox sh -c "${CLAUDE_PROJECT_DIR}/x.sh"',
       'fish -c "${CLAUDE_PROJECT_DIR}/x.sh"',
+      'pwsh -Command "${CLAUDE_PROJECT_DIR}/x.ps1"',
+      'pwsh -C "${CLAUDE_PROJECT_DIR}/x.ps1"',
       '"${CLAUDE_PROJECT_DIR}/bash" -c "${CLAUDE_PROJECT_DIR}/x.sh"',
       '"${CLAUDE_PROJECT_DIR}/tools/eval" "${CLAUDE_PROJECT_DIR}/x.sh"',
     ]) {

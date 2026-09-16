@@ -141,7 +141,7 @@ function measureSiblings(transcriptPath: string | undefined): SiblingMeasurement
 
 /** Append one line, first making the log owner-only, so a log created before that rule is tightened too. */
 function appendObservation(logPath: string, line: string): void {
-  mkdirSync(dirname(logPath), { recursive: true });
+  mkdirSync(dirname(logPath), { recursive: true, mode: 0o700 });
   const descriptor = openSync(logPath, 'a', OWNER_ONLY);
   try {
     fchmodSync(descriptor, OWNER_ONLY);

@@ -20,7 +20,10 @@ if [[ "$tool_name" != "Read" ]]; then
 fi
 
 if command -v jq &> /dev/null; then
-  file_path=$(printf '%s' "$stdin_data" | jq -r '.tool_input.file_path // empty')
+  # jq -j writes the path with no trailing newline; the sentinel keeps any
+  # newline the path itself ends with, which command substitution would strip.
+  file_path=$(printf '%s' "$stdin_data" | jq -j '.tool_input.file_path // empty'; printf x)
+  file_path=${file_path%x}
 else
   file_path=$(echo "$stdin_data" | sed -n 's/.*"file_path"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' | head -1)
   # sed cannot decode JSON escapes. A path holding one is denied, never read unscanned.

@@ -39,7 +39,8 @@ const SHELLS: ReadonlySet<string> = new Set([
   'yash',
   'zsh',
 ]);
-const COMMAND_STRING_FLAG = /^-[A-Za-z]*c[A-Za-z]*$/u;
+/** A flag that hands a shell a command string: `-c`, `-lc`, PowerShell's `-Command` or `-C`, any case. */
+const COMMAND_STRING_FLAG = /^-[a-z]*c[a-z]*$/iu;
 
 const WORD_OUTSIDE_SHAPE = 'a word is neither a plain word nor a double-quoted project path';
 const PARSED_AGAIN = 'a shell -c or eval parses the path again';
