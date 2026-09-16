@@ -242,6 +242,15 @@ fail-open**: they `exit 0` when the scanner is unavailable so a session is never
 bricked by a missing optional tool. That is a broader fail-open posture than the
 dangerous-command/content guards above: those fail open *only* for the not-built
 case (loudly, as above) and fail **closed** whenever a built guard misbehaves.
+They read the payload with `jq` when it is installed; without it, the Read hook
+denies a path holding a JSON escape it cannot decode rather than let it through
+unscanned. Their commands quote every `${CLAUDE_PROJECT_DIR}`, which the
+portability check enforces for every hook and the status line.
+
+Every writer of `.claude/logs/` keeps it owner-only: the directory mode 700 and
+the logs mode 600. The wrapper tightens what an earlier version left open, leaves
+a symlinked, foreign-owned or non-regular log alone, and says on stderr when a
+failure could not be written.
 
 ## Platform Support
 

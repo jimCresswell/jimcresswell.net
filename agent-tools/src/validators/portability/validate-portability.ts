@@ -23,6 +23,7 @@ import { fileURLToPath } from 'node:url';
 import { isJsonObject } from '../../core/json.js';
 import { resolveRepoRoot } from '../../core/repo-root.js';
 import { readRegularFileTextNoFollow } from '../../skills-adapter-generate/read-regular-file.js';
+import { claudeCommandQuotingIssues } from './claude-hook-quoting.js';
 import {
   type CanonicalSkill,
   collectCanonicalSkillPaths,
@@ -141,6 +142,7 @@ try {
 try {
   if (await exists(repoRoot, CLAUDE_SETTINGS_PATH)) {
     const claudeSettings = await readJson(repoRoot, CLAUDE_SETTINGS_PATH);
+    issues.push(...claudeCommandQuotingIssues(claudeSettings, CLAUDE_SETTINGS_PATH));
     const allowList =
       isJsonObject(claudeSettings) &&
       isJsonObject(claudeSettings['permissions']) &&
@@ -152,7 +154,7 @@ try {
   }
 } catch (error) {
   issues.push(
-    `Skill permission validation failed: ${error instanceof Error ? error.message : 'Unknown skill permission check failure.'}`,
+    `Claude settings validation (command quoting, skill permissions) failed: ${error instanceof Error ? error.message : 'Unknown Claude settings check failure.'}`,
   );
 }
 
