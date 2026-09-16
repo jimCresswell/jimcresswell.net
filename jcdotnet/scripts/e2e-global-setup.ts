@@ -155,7 +155,8 @@ export interface StartedServer {
 /**
  * Start the server command, wait for its `port` and `ready` lines under the deadline, and
  * return its origin with a stop function. Rejects, with the child stopped, when the child ends
- * or cannot start before `ready` or when the deadline passes.
+ * or cannot start before `ready`, when it has exited by the time `ready` is read, or when the
+ * deadline passes.
  */
 export async function startServer(
   command: string,
@@ -182,6 +183,14 @@ export async function startServer(
     const [, port] = await lines.next(/^port (\d{1,5})$/u, deadline);
     await lines.next(/^ready$/u, deadline);
     lines.done();
+    // Waiting on the end of the output reads every line the child wrote, even when its exit
+    // came first, so `ready` can be read from a child that is already gone. The child is the
+    // process that holds the port and serves on it (ADR-019), so an exited child leaves nothing
+    // behind the origin: refuse it here, before any test starts.
+    if (child.exitCode !== null || child.signalCode !== null) {
+      const event: Terminal = { kind: "exit", code: child.exitCode, signal: child.signalCode };
+      throw new Error(`${describeTerminal(event)} by the time its ready line was read`);
+    }
     return {
       origin: `http://localhost:${port}`,
       ended: exited.then(() => undefined),
