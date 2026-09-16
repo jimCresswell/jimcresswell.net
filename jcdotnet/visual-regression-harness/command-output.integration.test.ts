@@ -11,8 +11,8 @@ import { readCommandOutput } from "./command-output";
 /**
  * Writes one line once the process named by its argument has been reaped.
  * `process.kill(pid, 0)` succeeds on an exited process its parent has not yet
- * reaped, so the line cannot exist before the parent has reported that process's
- * exit. Bounded: it gives up without writing after 2000 polls.
+ * reaped and fails once it has, so the line cannot be written before the parent
+ * has reaped the child. Bounded: it gives up without writing after 2000 polls.
  */
 const WRITE_AFTER_REAP = `
 const target = Number(process.argv[1]);
@@ -46,6 +46,6 @@ describe("readCommandOutput", () => {
   it("rejects with the exit code when the command fails", async () => {
     await expect(
       readCommandOutput(process.execPath, ["-e", "process.exit(3)"], os.tmpdir())
-    ).rejects.toThrow("with code 3 and signal null");
+    ).rejects.toMatchObject({ cause: { code: 3 } });
   });
 });
