@@ -1,6 +1,10 @@
 import { describe, expect, it } from 'vitest';
 
-import { claudeCommandQuotingIssues, projectDirCommandShapeIssue } from './claude-hook-quoting.js';
+import {
+  claudeCommandQuotingIssues,
+  projectDirCommandShapeIssue,
+  relativeScriptIssue,
+} from './claude-hook-quoting.js';
 
 const SETTINGS = '.claude/settings.json';
 
@@ -62,6 +66,35 @@ describe('projectDirCommandShapeIssue', () => {
       expect(projectDirCommandShapeIssue(command), command).toBe(
         'a shell -c or eval parses the path again',
       );
+    }
+  });
+});
+
+describe('relativeScriptIssue', () => {
+  it('reports a program or interpreted script given relative to the working directory', () => {
+    for (const command of [
+      '.claude/hooks/practice-session-identity.mjs',
+      './scripts/x.sh --flag',
+      'node .claude/hooks/x.mjs',
+      'bash scripts/x.sh',
+      'python3 tools/x.py',
+    ]) {
+      expect(relativeScriptIssue(command), command).toBe(
+        'the script path is relative to the working directory, which is not always the project root',
+      );
+    }
+  });
+
+  it('accepts absolute, project-directory and PATH-resolved programs', () => {
+    for (const command of [
+      '"${CLAUDE_PROJECT_DIR}/.claude/hooks/practice-session-identity.mjs"',
+      'node "${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/run-pretooluse-guard.mjs" agent-tools/dist/src/hook-policy/pre-tool-use-dispatch.js',
+      '/usr/bin/env node --version',
+      'jq --version',
+      'node --eval 1',
+      'node ${CLAUDE_PROJECT_DIR}/unquoted-is-the-shape-check.mjs',
+    ]) {
+      expect(relativeScriptIssue(command), command).toBeUndefined();
     }
   });
 });

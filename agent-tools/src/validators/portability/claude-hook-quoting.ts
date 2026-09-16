@@ -43,6 +43,21 @@ const SHELLS: ReadonlySet<string> = new Set([
 const COMMAND_STRING_FLAG = /^-[a-z]*c[a-z]*$/iu;
 
 const WORD_OUTSIDE_SHAPE = 'a word is neither a plain word nor a double-quoted project path';
+const RELATIVE_SCRIPT =
+  'the script path is relative to the working directory, which is not always the project root';
+
+/** Programs whose first argument names the script they run. */
+const INTERPRETERS: ReadonlySet<string> = new Set([
+  'node',
+  'bash',
+  'sh',
+  'zsh',
+  'python',
+  'python3',
+  'tsx',
+  'deno',
+  'bun',
+]);
 const PARSED_AGAIN = 'a shell -c or eval parses the path again';
 
 const commandHolderSchema = z.object({
@@ -101,6 +116,29 @@ export function projectDirCommandShapeIssue(command: string): string | undefined
   return parsesAgain(words) ? PARSED_AGAIN : undefined;
 }
 
+/** A path a shell or interpreter resolves against the working directory: it has a slash and no anchor. */
+function isRelativePath(word: string): boolean {
+  return word.includes('/') && !/^(?:\/|~|"?\$\{?CLAUDE_PROJECT_DIR)/u.test(word);
+}
+
+/**
+ * Judge whether a command runs a program or script named relative to the working directory.
+ *
+ * Claude Code runs a hook in the session's working directory, which is not always the
+ * project root, so such a hook fails to start (exit 127) or cannot find its script.
+ *
+ * @param command - A shell command as Claude Code passes it to the shell.
+ * @returns Why the command's script path is unreliable, or `undefined` when its program is
+ *   absolute, project-anchored or found on PATH and any interpreted script is anchored.
+ */
+export function relativeScriptIssue(command: string): string | undefined {
+  const [program = '', script = ''] = command.split(' ');
+  if (isRelativePath(program)) {
+    return RELATIVE_SCRIPT;
+  }
+  return INTERPRETERS.has(program) && isRelativePath(script) ? RELATIVE_SCRIPT : undefined;
+}
+
 /** A hook's command when a shell runs it; the `args` form runs with no shell. */
 function shellCommand(holder: CommandHolder): string | undefined {
   return holder.args === undefined ? holder.command : undefined;
@@ -144,11 +182,19 @@ export function claudeCommandQuotingIssues(
     ];
   }
   return labelledCommands(settings.data).flatMap(({ label, command }) => {
-    const issue = projectDirCommandShapeIssue(command);
-    return issue === undefined
-      ? []
-      : [
-          `${settingsPath}: ${label} names CLAUDE_PROJECT_DIR outside the checked shape (${issue}), so a project path holding whitespace or glob characters may not reach the command as one word: ${command}`,
-        ];
+    const shapeIssue = projectDirCommandShapeIssue(command);
+    const scriptIssue = relativeScriptIssue(command);
+    return [
+      ...(shapeIssue === undefined
+        ? []
+        : [
+            `${settingsPath}: ${label} names CLAUDE_PROJECT_DIR outside the checked shape (${shapeIssue}), so a project path holding whitespace or glob characters may not reach the command as one word: ${command}`,
+          ]),
+      ...(scriptIssue === undefined
+        ? []
+        : [
+            `${settingsPath}: ${label} runs a script whose path is unreliable (${scriptIssue}); anchor it at "\${CLAUDE_PROJECT_DIR}": ${command}`,
+          ]),
+    ];
   });
 }
