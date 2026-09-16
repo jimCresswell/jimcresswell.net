@@ -40,9 +40,6 @@ const config = defineConfigArray(
     settings: createImportResolverSettings({ project: wsTsProject }),
   },
   {
-    files: ['src/**/*.ts'],
-  },
-  {
     files: ['**/*.test.ts', '**/*.spec.ts', '**/__tests__/**/*.ts'],
     rules: testRules,
   },
