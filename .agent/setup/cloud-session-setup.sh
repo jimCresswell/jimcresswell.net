@@ -16,8 +16,9 @@ set -euo pipefail
 # (globalPassThroughEnv) — without that passthrough, Playwright inside gate
 # tasks fell back to ~/.cache/ms-playwright and reported "Executable doesn't
 # exist" while the browsers sat installed here (worked instance 2026-08-26,
-# fresh cloud container, pre-push gates).
-(cd apps/oak-curriculum-mcp-streamable-http \
+# fresh cloud container, pre-push gates). The install runs in the site
+# workspace (jcdotnet), which carries @playwright/test.
+(cd jcdotnet \
   && env -u PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD \
      pnpm exec playwright install --with-deps chromium)
 
