@@ -126,6 +126,15 @@ function lineContaining(lines: readonly string[], needle: string): string {
 }
 
 /**
+ * Assert the line starts with the gate's name. It compares the line's opening
+ * characters rather than searching the whole line, so text written before the
+ * name fails, and the failure message shows what the line actually starts with.
+ */
+function expectUnderGateName(line: string | undefined): void {
+  expect(line?.slice(0, GATE_PREFIX.length)).toBe(GATE_PREFIX);
+}
+
+/**
  * A fake runtime: the reader returns `options`, the cruise returns `output`
  * (a result, or reporter text), and every call the gate makes is recorded.
  */
@@ -188,10 +197,10 @@ describe('runDepcruiseGate', () => {
     expect(reportWrites).toStrictEqual([REPORT]);
     expect(failureLines).toHaveLength(2);
     const compilerLine = lineContaining(failureLines, 'no supported TypeScript compiler');
-    expect(compilerLine).toContain(GATE_PREFIX);
+    expectUnderGateName(compilerLine);
     expect(compilerLine).toContain('parsed none of the TypeScript estate');
     const issueLine = lineContaining(failureLines, MISSING_TYPESCRIPT_ISSUE.name);
-    expect(issueLine).toContain(GATE_PREFIX);
+    expectUnderGateName(issueLine);
   });
 
   it("fails a cruise with a single violation, writing its one failure line under the gate's name", async () => {
@@ -203,7 +212,7 @@ describe('runDepcruiseGate', () => {
 
     expect(reportWrites).toStrictEqual([REPORT]);
     expect(failureLines).toHaveLength(1);
-    expect(failureLines[0]).toContain(GATE_PREFIX);
+    expectUnderGateName(failureLines[0]);
     expect(failureLines[0]).toContain('error-severity violations');
     expect(failureLines[0]).toMatch(/\b1\b/u);
   });
@@ -233,7 +242,7 @@ describe('runDepcruiseGate', () => {
     expect(cruises).toStrictEqual([]);
     expect(reportWrites).toStrictEqual([]);
     expect(failureLines).toHaveLength(1);
-    expect(failureLines[0]).toContain(GATE_PREFIX);
+    expectUnderGateName(failureLines[0]);
     expect(failureLines[0]).toContain('webpackConfig');
     expect(failureLines[0]).toContain('load it in repo-check-depcruise.ts');
   });
@@ -246,7 +255,7 @@ describe('runDepcruiseGate', () => {
     expect(formatted).toStrictEqual([]);
     expect(reportWrites).toStrictEqual([]);
     expect(failureLines).toHaveLength(1);
-    expect(failureLines[0]).toContain(GATE_PREFIX);
+    expectUnderGateName(failureLines[0]);
     expect(failureLines[0]).toContain('reporter text, not a result');
   });
 });
