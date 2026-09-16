@@ -9,8 +9,9 @@ import {
 /**
  * The dependency-cruiser gate reads the cruise's own summary for its verdict.
  * These tests describe the pure mapping from that summary, and from the
- * configured options, to gate failures; the cruise itself lives in the
- * composition root and is proved by the gate running.
+ * configured options, to gate failures. The cruise itself lives in the
+ * composition root: `repo-check-depcruise.integration.test.ts` proves its
+ * wiring, and the gate running proves the real cruise.
  */
 
 const TYPESCRIPT_FOUND = {
