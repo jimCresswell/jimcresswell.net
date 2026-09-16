@@ -71,8 +71,10 @@ function isPowerShellCommandParameter(word: string): boolean {
 }
 
 const WORD_OUTSIDE_SHAPE = 'a word is neither a plain word nor a double-quoted project path';
-const RELATIVE_SCRIPT =
-  'the script path is relative to the working directory, which is not always the project root';
+const UNANCHORED_SCRIPT =
+  "a program or an interpreter's script is not at an anchored path, and the working directory is not always the project root";
+/** Anchored whatever the working directory: the project directory, home, or an absolute POSIX or Windows drive path. */
+const ANCHORED_WORD = /^"?(?:\/|~|\$\{?CLAUDE_PROJECT_DIR|[a-z]:[\\/])/iu;
 
 /** Programs whose first argument names the script they run. */
 const INTERPRETERS: ReadonlySet<string> = new Set([
@@ -110,11 +112,11 @@ interface LabelledCommand {
   readonly command: string;
 }
 
-/** The program a word names: no surrounding quotes, no directory, lower case, no `.exe`. */
+/** The program a word names: no surrounding quotes, no POSIX or Windows directory, lower case, no `.exe`. */
 function programName(word: string): string {
   const unquoted = word.replaceAll('"', '');
   return unquoted
-    .slice(unquoted.lastIndexOf('/') + 1)
+    .slice(Math.max(unquoted.lastIndexOf('/'), unquoted.lastIndexOf('\\')) + 1)
     .toLowerCase()
     .replace(/\.exe$/u, '');
 }
@@ -157,27 +159,32 @@ export function projectDirCommandShapeIssue(command: string): string | undefined
   return parsesAgain(words) ? PARSED_AGAIN : undefined;
 }
 
-/** A path a shell or interpreter resolves against the working directory: it has a slash and no anchor. */
-function isRelativePath(word: string): boolean {
-  return word.includes('/') && !/^(?:\/|~|"?\$\{?CLAUDE_PROJECT_DIR)/u.test(word);
+/** A program word the shell resolves against the working directory: a POSIX or Windows path with no anchor. */
+function isUnanchoredPath(word: string): boolean {
+  return /[\\/]/u.test(word) && !ANCHORED_WORD.test(word);
 }
 
 /**
- * Judge whether a command runs a program or script named relative to the working directory.
+ * Judge whether a command runs a program or script that depends on the working directory.
  *
- * Claude Code runs a hook in the session's working directory, which is not always the
- * project root, so such a hook fails to start (exit 127) or cannot find its script.
+ * Claude Code runs a hook in the session's working directory, not always the project root, so
+ * such a hook fails to start (exit 127) or cannot find its script. A closed shape, not a parser
+ * of interpreter options: a program named by a path is anchored, and every interpreter, at any
+ * position (a wrapper may run one), is followed directly by its anchored script. An option or a
+ * bare file name after an interpreter is reported; widen the shape deliberately when a hook needs one.
  *
  * @param command - A shell command as Claude Code passes it to the shell.
- * @returns Why the command's script path is unreliable, or `undefined` when its program is
- *   absolute, project-anchored or found on PATH and any interpreted script is anchored.
+ * @returns Why the program or an interpreter's script is not anchored, or `undefined` when it fits.
  */
 export function relativeScriptIssue(command: string): string | undefined {
-  const [program = '', script = ''] = command.split(' ');
-  if (isRelativePath(program)) {
-    return RELATIVE_SCRIPT;
-  }
-  return INTERPRETERS.has(program) && isRelativePath(script) ? RELATIVE_SCRIPT : undefined;
+  const words = command.split(' ');
+  const unanchored =
+    isUnanchoredPath(words[0] ?? '') ||
+    words.some(
+      (word, index) =>
+        INTERPRETERS.has(programName(word)) && !ANCHORED_WORD.test(words[index + 1] ?? ''),
+    );
+  return unanchored ? UNANCHORED_SCRIPT : undefined;
 }
 
 /** A hook's command when a shell runs it; the `args` form runs with no shell. */
@@ -208,9 +215,9 @@ function labelledCommands(settings: CommandSettings): readonly LabelledCommand[]
  *
  * @param claudeSettings - The parsed `.claude/settings.json`.
  * @param settingsPath - The settings file's path, for the issue messages.
- * @returns One issue per command outside the shape, or a single issue when the
- *   hooks or status line do not have the shape Claude Code reads; empty when
- *   every command fits.
+ * @returns One issue per command outside the quoting shape, else per command whose script is
+ *   not anchored; a single issue when the hooks or status line do not have the shape Claude Code
+ *   reads; empty when every command fits.
  */
 export function claudeCommandQuotingIssues(
   claudeSettings: unknown,
@@ -224,7 +231,7 @@ export function claudeCommandQuotingIssues(
   }
   return labelledCommands(settings.data).flatMap(({ label, command }) => {
     const shapeIssue = projectDirCommandShapeIssue(command);
-    const scriptIssue = relativeScriptIssue(command);
+    const scriptIssue = shapeIssue === undefined ? relativeScriptIssue(command) : undefined;
     return [
       ...(shapeIssue === undefined
         ? []
