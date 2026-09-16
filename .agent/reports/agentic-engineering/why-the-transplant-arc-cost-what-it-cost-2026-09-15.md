@@ -575,3 +575,46 @@ specifier planted it exits 1 and names the file and the specifier; with the file
 number from the nearest surface — this arc's signature, caught here by a peer rather than by me. A hook that runs from source needs nothing
 built, so it works on a fresh clone — which also makes it the rewrite path for the three
 surviving hand-authored `.mjs` shims.
+
+### Corrections to this section (2026-09-16, after review)
+
+**The no-build-step claim was false.** A code-expert pass found, and this seat then verified, that
+the observer's static imports sit OUTSIDE its try block and reach `@engraph/type-helpers`, whose
+package exports only `./dist/index.js`. So in any tree without the built closure the hook dies at
+module resolution, exits 1, writes nothing, and its catch never runs. One worktree in this estate
+is in exactly that state today. What is genuinely true is narrower and still worth having: the
+hand-authored JavaScript shim is gone, and the ENTRY runs as TypeScript source. The build step is
+not gone, it moved one workspace over. The cure is to drop the two dependencies the observer
+barely uses — a schema over six optional strings, and a typed wrapper around a key read — or to
+resolve them through a dynamic import inside the try, which is the shape the pre-tool-use shim
+already documents at its own import site.
+
+**It fails open, which is why this is a documentation defect rather than a dangerous one.**
+`PreCompact` blocks only on exit 2, so an import failure costs an observation, never a compaction.
+The defect is that three tracked surfaces asserted a guarantee the code does not provide.
+
+**The workspace-scoped compiler options are more clearly right than the argument given for them.**
+The `tooling/*` packages emit with tsup (esbuild), which does not implement
+`rewriteRelativeImportExtensions`. Had the options stayed in the base config, those packages would
+have type-checked a TypeScript specifier clean and shipped a dist pointing at a file that is not
+there — the exact silent breakage the specifier guard exists to prevent. The base placement was a
+live foot-gun, not merely a wide one.
+
+**The widened guard is wider than its own justification.** Its comment justifies TypeScript
+specifiers for the hooks under `src/bin`; the regex admits them anywhere under `src`. Scoping it
+back is queued.
+
+**The sibling listing is not the instrument it should be.** `siblingsOf` takes an unsorted
+`slice(0, 24)` and records no total, so a truncated listing reads exactly like a complete one —
+the defect class this whole instrument exists to avoid. The conclusion it supported (no
+`.precompact.json` exists) still stands, because a separate find across the project directory
+corroborates it, but the instrument needs a sort and a recorded total before it is evidence.
+
+### The coordination-branch citation was backwards (2026-09-16)
+
+Two conscience seats found it and reading the rule settled it. `coordination-branch-24h-lifetime`
+step 2 says that on a DUE branch a seat surfaces convergence to the Director — or, at n=1, ACTS on
+it — BEFORE staking new work onto the branch, and that an overdue coordination branch is "a defect
+to route, not a home to build on". This seat cited that rule all session as grounds for DEFERRING
+convergence, and then staked three commits onto the overdue branch. The rule licenses no such
+wait. Convergence is the first action at resume, not a thing to ask permission for.

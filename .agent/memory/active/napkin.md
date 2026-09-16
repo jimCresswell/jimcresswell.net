@@ -2116,3 +2116,49 @@ tip is one whose required analysers ran".
   demonstrated; the rejecting arm was reasoned. Probed both ways afterwards, first-hand. And the
   compiler options moved down to the workspace where hook sources live. Both findings came from
   outside my own reading — the same external-bound signature this arc keeps producing.
+
+### Director, the hook build and the corrections that followed (2026-09-16, 13:0xZ to 14:1xZ) — Cauldron herds Lustre (880ff9)
+
+- **The error that matters: I claimed a property from the surface I had exercised, not the surface
+  that owns it.** "No build step, works on a fresh clone" was true of my machine, where every
+  workspace `dist` exists. It is false of the package graph: the observer's static imports reach
+  `@engraph/type-helpers`, which exports only its built `dist`, and they sit OUTSIDE the entry's
+  try block, so a tree without the built closure gets exit 1 and no observation. One worktree here
+  is in that state. Third instance today of one shape — a wrapper's exit code, a hand count, and
+  now a machine's convenient state, each read instead of the surface that owns the fact.
+- **The bridge I removed was the signpost, not the gap.** The `.mjs` shim was visible ceremony and
+  it genuinely went. The coupling it stood next to — every workspace package resolving to built
+  output by design — stayed, invisible, inside the import graph. Keep this: when you remove a
+  bridge, check whether you removed the gap or only the thing that marked it.
+- **A rule I cited all session said the opposite of what I used it for.** I treated
+  `coordination-branch-24h-lifetime` as grounds for deferring convergence. Its step 2 says a seat
+  at n=1 ACTS on convergence before staking new work, and calls an overdue branch "a defect to
+  route, not a home to build on". Two conscience seats caught it; reading the rule settled it. I
+  had read that rule this arc and still used it backwards, which is the same lesson as yesterday's:
+  writing or reading a rule does not change the one who reads it — the question asked at the moment
+  of the move does.
+- **Suite tally, six returns (the fable seat deliberately absent per the owner; the new seat could
+  not launch).** Opus at medium, both stances: DRIFTING, both on the mis-cited rule — the only
+  seats to catch it. Sonnet at high, both stances: ON-TRACK, with one useful redirection (fold the
+  convergence ask into the same message as the suite report). Haiku running the compiled procedure,
+  both stances: ON-TRACK. The dissent was concentrated in ONE role across both stances, which is a
+  better argument for the panel than agreement would have been.
+- **What the adversarial stance actually bought.** Little, this time: each role returned the same
+  verdict under both stances, and the adversarial runs differed mainly in how the refutation was
+  argued. Worth watching over more runs before concluding anything — a stance that never changes a
+  verdict is either a well-grounded frame or a stance that is not biting.
+- **Play harvest.** Kept: a hook, a shim and a dist artefact are three answers to one question —
+  what does the harness need to be handed? — and Node 24 changed the answer without anyone
+  noticing the rule that encoded the old one. Kept: the cheapest conscience seat found the defect
+  the mid seat waved through, which suggests the panel's value is variance, not power. Discarded,
+  visibly: "the guard and the type system are both extension checks" — superficially true, nothing
+  followed.
+- **Metaloss.** _Promises_: convergence first at resume, the seven queued code fixes, two
+  maintenance items — all in the continuity contract and handoff item 114, none left in chat.
+  _Attribution_: the code-expert's findings are its work, verified here only for the two I could
+  check cheaply (the export surface, the worktree without `dist`); the tsup/esbuild reasoning is
+  its claim, not my measurement. _Blind spots_: the new Cricket seat is unvalidated; no reviewer
+  has seen the arc-metrics code; the response-shape question the observer exists to answer is still
+  open, because no real compaction has fired the hook yet. _External bound_: every correction today
+  came from outside my own reading — a peer seat, a conscience panel, a reviewer, a gate, the
+  owner. That is the signature to point scrutiny at.

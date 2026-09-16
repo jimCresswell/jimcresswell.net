@@ -632,7 +632,8 @@ under ratified text, frames a question to the owner, adds process, and consolida
   TypeScript entry directly under erasableSyntaxOnly (already set repo-wide), resolving workspace
   dependencies and relative TypeScript specifiers; measured at about ten milliseconds over the
   compiled file against a ten-second hook timeout; the first PreCompact observer ships with no
-  shim and no build step | target: source-is-typescript-esm-only (its clause requiring a hook
+  shim, though a later review falsified the no-build-step half of this warrant: its imports reach a
+  workspace package that exports only dist, so the entry is source while the closure is still built | target: source-is-typescript-esm-only (its clause requiring a hook
   target to be compiled from TypeScript) and .agent/hooks/README.md | trigger: the owner's word
   2026-09-16 that hooks are TypeScript and a shim is a last resort | size: M | status: due]`
   Prediction: the next hook added to this estate is a TypeScript file invoked as

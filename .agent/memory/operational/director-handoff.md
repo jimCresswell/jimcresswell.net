@@ -1743,6 +1743,33 @@ ones the Director would put to the owner had the owner been present.
      Amended the same day: the observer runs directly from TypeScript source
      (`node <source>.ts`), so it needs no build step and no shim at all.
 
+114. The hook session and its corrections (2026-09-16, 11:35Z to 14:1xZ). BOUNDARY STATE at
+     this wrap: primary checkout on `coordination/2026-09-15-b9dcfb`, four commits added this
+     session (`e4e0e0ef` the observer, `e8b055e0` the guard's negative-case proof, `db5148d0` the
+     workspace-scoped compiler options, plus this wrap), NONE pushed; worktree branch
+     `feat/arc-metrics` clean at `SHA: 6d60e05`, pushed, no pull request; no claim, no watcher, no
+     monitor, no cron, no background task, no live peer (`claims active-agents` returned `[]`).
+     WHAT LANDED: a never-blocking `PreCompact` observer whose entry runs as TypeScript source
+     under Node 24 with no hand-authored shim, activated in `.claude/settings.json`; the
+     `allowImportingTsExtensions` and `rewriteRelativeImportExtensions` options scoped to
+     `agent-tools`; the specifier guard widened and probed in both directions; a fifth Cricket seat
+     (`cricket-judgement-lowestpower-low`, haiku at low effort on the full judgement prompt) added
+     by owner ruling after a seat in that configuration found a real defect a dearer seat had
+     waved through. WHAT WAS CORRECTED, all from outside this seat's own reading: the
+     no-build-step claim is false (the observer's static imports reach a workspace package that
+     exports only `dist`, outside its own try block, so a tree without the built closure gets no
+     observation); the widened guard is wider than its stated justification; the sibling listing is
+     an unsorted capped slice with no total; and this seat cited `coordination-branch-24h-lifetime`
+     BACKWARDS all session, as grounds for deferring convergence, when its step 2 requires a seat
+     at n=1 to act on convergence before staking new work — which this seat then did, four times.
+     OWED, IN ORDER: converge this branch (first action, no permission needed — the rule requires
+     it); the pull request on `feat/arc-metrics`; the code-expert's seven queued fixes named in the
+     continuity contract; the two maintenance items (shim removal, Cricket seat renaming); the
+     settlement's required checks; the compaction trigger; the push-time budget gate. NOTE FOR THE
+     SUCCESSOR: the new Cricket seat exists on disk but could not be launched this session — the
+     agent registry is read at session start, so it becomes available only in a fresh session, and
+     validating it is the first thing worth doing with it.
+
 ## Routing log
 
 - 2026-09-13 evening: seat opened; team-start `ca1ba4d8`; lanes A, B, C authored, unfilled.

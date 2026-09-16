@@ -106,6 +106,20 @@ names a live branch):
 
 ## Next Safe Steps
 
+FIRST ACTION AT RESUME (2026-09-16): converge this coordination branch. It is DUE by its own
+stamp, and `coordination-branch-24h-lifetime` step 2 requires a seat at n=1 to ACT on convergence
+before staking new work — a rule this seat cited backwards all session, as grounds for waiting,
+while committing three times onto the branch. Merge `origin/main` in, push, land it through its
+pull request, cut the fresh day-stamped branch. Then the owed pull request on `feat/arc-metrics`.
+
+Queued with the hook work, from a code-expert review held in full (2026-09-16): move the
+observer's imports inside its try or drop the two dependencies outright, so the never-blocking
+claim is true at module level; remove the `process.exit(0)` that this workspace's own CLI runner
+documents as a flush hazard; scope the widened specifier guard back to `src/bin`; sort the sibling
+listing and record its total; clear the stale references to the base tsconfig in the guard comment,
+the continuity contract and the report; and correct the entry's own TSDoc, which still describes a
+built artefact. A config-expert pass is warranted for the guard scope and the stale references.
+
 The transplant closure is complete on `main` (2026-09-15): every item of
 `.agent/plans/delivery/practice-completion.plan.md` §Transplant closure carries its Done line
 and proof (item 4's rows closed by #85 `SHA: eed1f2e`, #87 `SHA: 6b5676b`, #86

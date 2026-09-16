@@ -30,9 +30,13 @@ and thin native activation lives in platform config.
   a git-ignored log under `.claude/logs/`. Every path, including every error
   path, exits 0. It is the first hook run DIRECTLY from TypeScript source —
   `node <source>.ts` under Node 24's type stripping, with no hand-authored
-  shim and no build step, so it works on a fresh clone before anything is
-  built. That is the pattern new hooks follow, and the standing rewrite path
-  for the surviving `.mjs` shims
+  shim. The ENTRY is TypeScript source; the build step is not gone, because the
+  module it imports reaches a workspace package that exports only its built
+  `dist`, and those imports sit outside the entry's try block — in a tree
+  without the built closure the hook exits 1 and records nothing (it fails
+  open: `PreCompact` blocks only on exit 2). Dropping those dependencies, or
+  importing them dynamically inside the try, is queued; until then this is the
+  direction new hooks take, not a finished guarantee
 - `preCommit` — documented policy only; quality-gate reminders already
   live in the workflow and review surfaces
 
