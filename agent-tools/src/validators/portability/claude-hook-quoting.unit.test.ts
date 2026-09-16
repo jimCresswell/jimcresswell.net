@@ -21,6 +21,7 @@ describe('projectDirCommandShapeIssue', () => {
       'pwsh -ConfigurationFile "${CLAUDE_PROJECT_DIR}/session.pssc"',
       'pwsh -File "${CLAUDE_PROJECT_DIR}/x.ps1"',
       'bash -C "${CLAUDE_PROJECT_DIR}/x.sh"',
+      'pwsh -ExecutionPolicy Bypass -File "${CLAUDE_PROJECT_DIR}/x.ps1"',
     ]) {
       expect(projectDirCommandShapeIssue(command), command).toBeUndefined();
     }
@@ -68,11 +69,18 @@ describe('projectDirCommandShapeIssue', () => {
       'powershell -Comm "${CLAUDE_PROJECT_DIR}/x.ps1"',
       'pwsh -CommandWithArgs "${CLAUDE_PROJECT_DIR}/x.ps1"',
       'pwsh -cwa "${CLAUDE_PROJECT_DIR}/x.ps1"',
+      'pwsh -Co "${CLAUDE_PROJECT_DIR}/x.ps1"',
+      'pwsh /c "${CLAUDE_PROJECT_DIR}/x.ps1"',
+      'pwsh --command "${CLAUDE_PROJECT_DIR}/x.ps1"',
+      'pwsh -e "${CLAUDE_PROJECT_DIR}/x.ps1"',
+      'pwsh -ec "${CLAUDE_PROJECT_DIR}/x.ps1"',
+      'pwsh -EncodedCommand "${CLAUDE_PROJECT_DIR}/x.ps1"',
+      'powershell -enc "${CLAUDE_PROJECT_DIR}/x.ps1"',
       '"${CLAUDE_PROJECT_DIR}/bash" -c "${CLAUDE_PROJECT_DIR}/x.sh"',
       '"${CLAUDE_PROJECT_DIR}/tools/eval" "${CLAUDE_PROJECT_DIR}/x.sh"',
     ]) {
       expect(projectDirCommandShapeIssue(command), command).toBe(
-        'a shell -c or eval parses the path again',
+        'a shell command string or eval parses the path again',
       );
     }
   });
@@ -122,7 +130,7 @@ describe('claudeCommandQuotingIssues', () => {
 
     expect(claudeCommandQuotingIssues(settings, SETTINGS)).toEqual([
       '.claude/settings.json: hooks.PreToolUse[1].hooks[0] names CLAUDE_PROJECT_DIR outside the checked shape (a word is neither a plain word nor a double-quoted project path), so a project path holding whitespace or glob characters may not reach the command as one word: ${CLAUDE_PROJECT_DIR}/b.sh',
-      '.claude/settings.json: hooks.Stop[0].hooks[0] names CLAUDE_PROJECT_DIR outside the checked shape (a shell -c or eval parses the path again), so a project path holding whitespace or glob characters may not reach the command as one word: bash -lc "${CLAUDE_PROJECT_DIR}/c.sh"',
+      '.claude/settings.json: hooks.Stop[0].hooks[0] names CLAUDE_PROJECT_DIR outside the checked shape (a shell command string or eval parses the path again), so a project path holding whitespace or glob characters may not reach the command as one word: bash -lc "${CLAUDE_PROJECT_DIR}/c.sh"',
       '.claude/settings.json: statusLine names CLAUDE_PROJECT_DIR outside the checked shape (a word is neither a plain word nor a double-quoted project path), so a project path holding whitespace or glob characters may not reach the command as one word: node ${CLAUDE_PROJECT_DIR}/d.mjs',
     ]);
   });

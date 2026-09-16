@@ -12,10 +12,13 @@
  * plain word (no quotes, `$`, backslash, glob or shell operator) or a whole
  * double-quoted project path — `"${CLAUDE_PROJECT_DIR}"` or
  * `"${CLAUDE_PROJECT_DIR:-.}"`, optionally followed by a plain path — and it
- * must not hand the path to `eval` or a shell's `-c`, which would parse it
- * again. Anything else is reported as outside the checked shape; widen the
- * shape deliberately when a new command needs it. A hook in the `args` form
- * runs with no shell and is not checked; PowerShell hooks are out of scope.
+ * must not hand the path to something that parses it again: `eval`, a POSIX
+ * shell's `-c` (alone or among combined short flags), or a PowerShell
+ * command-string parameter (`-Command`, `-CommandWithArgs` or
+ * `-EncodedCommand`, in every spelling pwsh's command-line parser accepts).
+ * Anything else is reported as outside the checked shape; widen the shape
+ * deliberately when a new command needs it. A hook in the `args` form runs
+ * with no shell and is not checked.
  */
 
 import { typeSafeEntries } from '@engraph/type-helpers';
@@ -42,14 +45,28 @@ const POWERSHELLS: ReadonlySet<string> = new Set(['pwsh', 'powershell']);
 /** A POSIX shell's combined short flags that include `c`: `-c`, `-lc`, `-ec`. Case matters: `-C` is noclobber. */
 const POSIX_COMMAND_STRING_FLAG = /^-[a-z]*c[a-z]*$/u;
 
+/** A PowerShell parameter as pwsh's command-line parser reads it: `-`, `--` or `/`, then the name. */
+const POWERSHELL_PARAMETER = /^(?:--?|\/)([a-z]+)$/iu;
+/** Command-string parameters pwsh matches from any prefix: `-c`, `-Co`, `-e`, `-enc`. */
+const POWERSHELL_PREFIXED_COMMAND_PARAMETERS: readonly string[] = ['command', 'encodedcommand'];
+/** Command-string parameters and aliases pwsh matches only in full. */
+const POWERSHELL_EXACT_COMMAND_PARAMETERS: ReadonlySet<string> = new Set([
+  'commandwithargs',
+  'cwa',
+  'ec',
+]);
+
 /**
- * Whether a PowerShell parameter hands it a command string: `-c`, `-cwa`, or any unambiguous prefix of
- * `-Command` or `-CommandWithArgs`, in any case. `-File` and `-ConfigurationFile` are not.
+ * Whether a PowerShell argument hands pwsh a command string, in any case: a prefix of `Command` or
+ * `EncodedCommand`, or `CommandWithArgs`, `cwa` or `ec` in full. `-File`, `-ExecutionPolicy` and
+ * `-ConfigurationFile` do not.
  */
 function isPowerShellCommandParameter(word: string): boolean {
-  const name = word.toLowerCase();
+  const name = POWERSHELL_PARAMETER.exec(word)?.[1]?.toLowerCase();
   return (
-    name === '-c' || name === '-cwa' || (name.length >= 4 && '-commandwithargs'.startsWith(name))
+    name !== undefined &&
+    (POWERSHELL_EXACT_COMMAND_PARAMETERS.has(name) ||
+      POWERSHELL_PREFIXED_COMMAND_PARAMETERS.some((parameter) => parameter.startsWith(name)))
   );
 }
 
@@ -69,7 +86,7 @@ const INTERPRETERS: ReadonlySet<string> = new Set([
   'deno',
   'bun',
 ]);
-const PARSED_AGAIN = 'a shell -c or eval parses the path again';
+const PARSED_AGAIN = 'a shell command string or eval parses the path again';
 
 const commandHolderSchema = z.object({
   command: z.string().optional(),
