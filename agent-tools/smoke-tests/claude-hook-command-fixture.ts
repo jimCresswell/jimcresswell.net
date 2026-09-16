@@ -82,6 +82,8 @@ export function runHookCommand(command: string, run: HookRun): string {
       env: { ...process.env, CLAUDE_PROJECT_DIR: run.projectDir, [REPO_ROOT_VARIABLE]: repoRoot },
       ...run.stdin,
       encoding: 'utf8',
+      // Room for a hook answer carrying a large report, well past spawnSync's 1 MiB default.
+      maxBuffer: 16 * 1024 * 1024,
       timeout: run.timeoutMs,
     },
   );

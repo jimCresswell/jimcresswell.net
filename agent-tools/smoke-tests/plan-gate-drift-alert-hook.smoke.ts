@@ -16,11 +16,13 @@ import {
  * exit 1) into session context. This smoke reads the hook's command from
  * `.claude/settings.json`, runs it through the shared hook-command fixture (the shell,
  * from the repository root, with `CLAUDE_PROJECT_DIR` pointing at a throwaway project
- * whose checker is a stub), and asserts exit 0 and the right answer for each checker outcome. On drift the answer is a
- * harness-shaped alert carrying the stub's whole report: one stub writes its report and
- * exits 1 at once; another exits 1 first and its report reaches stdout only after the
- * stub has been reaped, so a hook that decides on the checker's `exit` instead of the
- * end of its output emits no alert. Without drift the answer is `{}`: a stub that prints
+ * whose checker is a stub), and asserts exit 0 and the right answer for each checker
+ * outcome. On drift the answer is a harness-shaped alert carrying the stub's whole
+ * report: one stub writes its report and exits 1 at once; another exits 1 first and its
+ * report reaches stdout only after the stub has been reaped, so a hook that decides on
+ * the checker's `exit` instead of the end of its output emits no alert; a third writes a
+ * report far larger than a pipe buffer, so a hook that forces its own exit straight after
+ * writing emits a truncated answer. Without drift the answer is `{}`: a stub that prints
  * the real checker's no-drift line and exits 0, and one that exits 1 with nothing on
  * stdout, so neither the exit code nor non-empty output alone raises an alert.
  */
@@ -98,33 +100,54 @@ process.stderr.write(${JSON.stringify(PARSE_FAILURE_LINE)});
 process.exitCode = 1;
 `;
 
+/**
+ * A drift report far larger than a pipe's buffer (about 530 KiB, under the hook's 1 MiB
+ * ceiling on the checker's output), so the hook's answer cannot reach its reader in one
+ * write: a hook that ends its process right after writing cuts the answer short.
+ */
+const LARGE_REPORT = Array.from(
+  { length: 8192 },
+  (_, index) => `  plan-${String(index)} — gate expired 2026-09-01 → extend or resolve it\n`,
+).join('');
+
+/** A stub checker that writes the large report and exits 1. */
+const WRITES_LARGE_REPORT = `
+process.stdout.write(${JSON.stringify(LARGE_REPORT)});
+process.exitCode = 1;
+`;
+
 interface SmokeCase {
   readonly label: string;
   readonly checker: string;
-  /** Whether the hook must emit the drift alert; otherwise it must emit `{}`. */
-  readonly alerts: boolean;
+  /** The report the hook's alert must carry whole, or `undefined` when it must answer `{}`. */
+  readonly alertReport: string | undefined;
 }
 
 const CASES: readonly SmokeCase[] = [
   {
     label: 'a checker that writes its report and exits 1 at once',
     checker: WRITES_THEN_EXITS,
-    alerts: true,
+    alertReport: REPORT,
   },
   {
     label: 'a checker whose report reaches stdout after it has exited 1',
     checker: EXITS_BEFORE_REPORT,
-    alerts: true,
+    alertReport: REPORT,
+  },
+  {
+    label: 'a checker whose report is larger than a pipe buffer',
+    checker: WRITES_LARGE_REPORT,
+    alertReport: LARGE_REPORT,
   },
   {
     label: 'a checker that prints its no-drift line and exits 0',
     checker: REPORTS_NO_DRIFT,
-    alerts: false,
+    alertReport: undefined,
   },
   {
     label: 'a checker that exits 1 with nothing on stdout',
     checker: FAILS_WITHOUT_REPORT,
-    alerts: false,
+    alertReport: undefined,
   },
 ];
 
@@ -156,30 +179,47 @@ function runCase(command: string, smokeCase: SmokeCase): void {
     writeFileSync(checkerPath, smokeCase.checker, 'utf8');
     checkResponse(
       runHookCommand(command, { projectDir, timeoutMs: HOOK_TIMEOUT_MS }),
-      smokeCase.alerts,
+      smokeCase.alertReport,
     );
   } finally {
     rmSync(projectDir, { recursive: true, force: true });
   }
 }
 
-/** The hook's stdout must be the whole-report alert when `alerts`, and `{}` otherwise. */
-function checkResponse(stdout: string, alerts: boolean): void {
-  const parsed: unknown = JSON.parse(stdout);
-  if (!alerts) {
+/** Hook output for an error message: short output whole, long output by length and ending. */
+function describeOutput(text: string): string {
+  return text.length <= 400
+    ? text
+    : `${String(text.length)} characters ending ${JSON.stringify(text.slice(-120))}`;
+}
+
+/**
+ * The hook's stdout must be one JSON value: the alert carrying `alertReport` whole, or `{}`
+ * when `alertReport` is undefined.
+ */
+function checkResponse(stdout: string, alertReport: string | undefined): void {
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(stdout);
+  } catch (cause) {
+    throw new Error(`the hook's output is not one JSON value: ${describeOutput(stdout)}`, {
+      cause,
+    });
+  }
+  if (alertReport === undefined) {
     if (!emptyResponseSchema.safeParse(parsed).success) {
-      throw new Error(`expected {}, got: ${stdout}`);
+      throw new Error(`expected {}, got: ${describeOutput(stdout)}`);
     }
     return;
   }
   const response = responseSchema.safeParse(parsed);
   if (!response.success) {
-    throw new Error(`expected a SessionStart alert, got: ${stdout}`);
+    throw new Error(`expected a SessionStart alert, got: ${describeOutput(stdout)}`);
   }
-  const expected = `${ALERT_PREFIX}${REPORT.trim()}`;
+  const expected = `${ALERT_PREFIX}${alertReport.trim()}`;
   if (response.data.hookSpecificOutput.additionalContext !== expected) {
     throw new Error(
-      `expected the alert to carry the whole report, got: ${response.data.hookSpecificOutput.additionalContext}`,
+      `expected the alert to carry the whole report, got: ${describeOutput(response.data.hookSpecificOutput.additionalContext)}`,
     );
   }
 }
