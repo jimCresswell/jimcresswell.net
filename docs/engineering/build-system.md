@@ -71,9 +71,10 @@ Do not collapse the four entries into one.
 
 `pnpm install` runs `tsx agent-tools/src/bootstrap/bootstrap.ts` as the root
 `postinstall`. It builds the `@engraph/*` closure that agent-tools imports
-(`workspace-config` first, then the leaf packages) with each package's own
-toolchain, skipping any package whose `dist` is already current for its `src`
-and build config, and then compiles `agent-tools/dist` with `tsc` directly. The
+(`workspace-config` first, then the leaf packages), each with its own `tsup` and
+with agent-tools' TypeScript 7 compiler for its declarations, skipping any
+package whose `dist` is already current for its `src` and build config, and
+then compiles `agent-tools/dist` with `tsc` directly. The
 build orchestrator and the package manager stay out of the install lifecycle
 (`validate-lifecycle-scripts` enforces this). The result is that the
 PreToolUse guards in `.claude/settings.json`, the statusline and the agent CLIs
