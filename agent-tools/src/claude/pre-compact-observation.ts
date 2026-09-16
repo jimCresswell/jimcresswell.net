@@ -3,53 +3,35 @@
  *
  * @remarks
  * This module exists to LEARN a shape, not to enforce one. The harness's
- * `PreCompact` contract is documented inconsistently — one documentation page
- * returned three incompatible answers about this event on 2026-09-16 — so the
- * observer is deliberately two-layered:
+ * `PreCompact` contract is documented inconsistently, so the observer is
+ * deliberately two-layered:
  *
  * - the fields it USES are validated to an exact schema and never widened
- *   ({@link knownFieldsSchema});
+ *   ({@link knownFieldsSchema}), one field at a time, so a field of the wrong
+ *   type is reported by name without discarding the fields that validated;
  * - everything else is recorded as opaque evidence (top-level key names, the
  *   raw stdin text), so an unexpected payload is observed rather than
  *   silently admitted as structure.
  *
  * Nothing here performs I/O and nothing here decides anything: this hook never
- * blocks a compaction. The response builder emits the same marker on two
- * different response surfaces so a later transcript read can say WHICH surface
- * the harness actually delivers.
+ * blocks a compaction. The contract it has observed so far is recorded in
+ * `.agent/memory/executive/cross-platform-agent-surface-matrix.md` §Hook
+ * Support.
+ *
+ * Loaded from TypeScript source by the hook entry
+ * (`src/bin/claude-pre-compact-observe-hook.ts`), so a relative import added
+ * here must name its `.ts` file; `pre-compact-observe-hook.smoke.ts` runs the
+ * entry the way the harness does and fails if one does not.
  *
  * @packageDocumentation
  */
 
-import { typeSafeKeys } from '@engraph/type-helpers';
+import type { Result } from '@engraph/result';
+import { typeSafeEntries, typeSafeKeys } from '@engraph/type-helpers';
 import { z } from 'zod';
 
-/**
- * Environment values recorded with their contents.
- *
- * @remarks
- * Identifiers and session-shape flags only — the variables whose VALUE is the
- * finding (`CLAUDE_CODE_CHILD_SESSION` says whether a hook fired inside a
- * subagent; `CLAUDE_CODE_SESSION_ATTENDED` says whether a human was watching).
- * Every other `CLAUDE_*` / `PRACTICE_*` variable is recorded by NAME with its
- * value withheld, which keeps the credential and transport variables the
- * harness exports (`CLAUDE_CODE_MESSAGING_TOKEN`,
- * `CLAUDE_CODE_MESSAGING_SOCKET`, `CLAUDE_CODE_SSE_PORT`) out of the log
- * permanently. An allowlist, never a denylist: a variable the harness adds
- * tomorrow is withheld by default.
- */
-const ENV_VALUE_ALLOWLIST: readonly string[] = [
-  'CLAUDE_PROJECT_DIR',
-  'CLAUDE_CODE_SESSION_ID',
-  'CLAUDE_CODE_ENTRYPOINT',
-  'CLAUDE_CODE_CHILD_SESSION',
-  'CLAUDE_CODE_SESSION_ATTENDED',
-  'CLAUDE_EFFORT',
-  'CLAUDE_PID',
-  'PRACTICE_AGENT_SESSION_ID_CLAUDE',
-];
-
-const ENV_NAME_PATTERN = /^(?:CLAUDE|PRACTICE)_/;
+import { snapshotEnv } from './pre-compact-env-snapshot.ts';
+import type { SiblingFile } from './pre-compact-siblings.ts';
 
 /** The payload fields the observer uses. Every one is optional on purpose: an absent field is itself the finding. */
 const knownFieldsSchema = z.object({
@@ -58,83 +40,123 @@ const knownFieldsSchema = z.object({
   cwd: z.string().optional(),
   hook_event_name: z.string().optional(),
   trigger: z.string().optional(),
-  custom_instructions: z.string().optional(),
+  custom_instructions: z.string().nullable().optional(),
 });
+
+/** Any JSON object; the known fields are validated separately. */
+const payloadObjectSchema = z.record(z.string(), z.unknown());
+
+/** A payload that parsed as a JSON object, before its known fields are validated. */
+type PayloadObject = z.infer<typeof payloadObjectSchema>;
 
 /** The validated subset of a `PreCompact` payload. */
 export type KnownFields = z.infer<typeof knownFieldsSchema>;
 
-/** How the payload read went. `schema-mismatch` means valid JSON whose known fields did not validate. */
-export type PayloadStatus = 'ok' | 'empty' | 'unparseable-json' | 'schema-mismatch';
+/** How reading a payload went. `schema-mismatch` means valid JSON whose known fields did not all validate. */
+export type PayloadReadStatus = 'ok' | 'empty' | 'unparseable-json' | 'schema-mismatch';
 
-/** One file sitting beside the session's transcript, recorded by name and size only. */
-export interface SiblingFile {
-  readonly name: string;
-  readonly bytes: number;
-}
+/** How the observation's payload went: read, or `stdin-unreadable` when the hook could not read its stdin at all. */
+export type PayloadStatus = PayloadReadStatus | 'stdin-unreadable';
 
 /** Everything the entry point measures, passed in so this module stays pure. */
 export interface ObservationInput {
   readonly nowIso: string;
   readonly marker: string;
-  readonly rawStdin: string;
+  /** The text the harness wrote to the hook's stdin, or why it could not be read. */
+  readonly stdin: Result<string, string>;
   readonly env: Readonly<Record<string, string | undefined>>;
   readonly cwd: string;
   readonly argv: readonly string[];
   readonly transcriptBytes?: number | undefined;
   readonly projectSiblings?: readonly SiblingFile[] | undefined;
+  readonly projectSiblingsTotal?: number | undefined;
 }
 
-/** One line of the observation log. */
-export interface Observation {
+/** The payload fields of an observation whose stdin was read. */
+interface ReadPayloadEvidence {
+  readonly payloadStatus: PayloadReadStatus;
+  readonly payloadKeys: readonly string[];
+  readonly known: KnownFields;
+  readonly mismatchedFields: readonly string[];
+  readonly rawStdinBytes: number;
+  readonly rawStdin: string;
+  readonly stdinReadError?: undefined;
+}
+
+/** The payload fields of an observation whose stdin could not be read: nothing of it was measured. */
+interface UnreadablePayloadEvidence {
+  readonly payloadStatus: 'stdin-unreadable';
+  readonly payloadKeys: readonly [];
+  readonly known: KnownFields;
+  readonly mismatchedFields: readonly [];
+  readonly rawStdinBytes?: undefined;
+  readonly rawStdin?: undefined;
+  readonly stdinReadError: string;
+}
+
+/** The fields of an observation that are not about its payload. */
+interface ObservationContext {
   readonly at: string;
   readonly marker: string;
   readonly event: 'PreCompact';
-  readonly payloadStatus: PayloadStatus;
-  readonly payloadKeys: readonly string[];
-  readonly known: KnownFields;
-  readonly rawStdinBytes: number;
-  readonly rawStdin: string;
   readonly cwd: string;
   readonly argv: readonly string[];
   readonly envValues: Readonly<Record<string, string>>;
   readonly envNamesWithheld: readonly string[];
+  /** Undefined when not measured: the payload named no transcript, or its size could not be read. */
   readonly transcriptBytes: number | undefined;
   readonly projectSiblings: readonly SiblingFile[];
+  /**
+   * How many entries sat beside the transcript before `selectSiblings` capped the list.
+   * Undefined when not measured: the payload named no transcript, or its directory could not be
+   * listed; an empty directory reads 0.
+   */
+  readonly projectSiblingsTotal: number | undefined;
 }
 
-interface PayloadRead {
-  readonly status: PayloadStatus;
+/** One line of the observation log; its payload fields agree with its status by construction. */
+export type Observation = ObservationContext & (ReadPayloadEvidence | UnreadablePayloadEvidence);
+
+/** The result of reading a payload: how it went, its top-level keys, and the fields that validated. */
+export interface PayloadRead {
+  readonly status: PayloadReadStatus;
   readonly keys: readonly string[];
   readonly known: KnownFields;
+  /** The known fields present with the wrong type, by name. */
+  readonly mismatchedFields: readonly string[];
 }
 
 /**
  * Read a `PreCompact` payload without widening it.
  *
- * @param rawStdin - The exact bytes the harness wrote to the hook's stdin.
- * @returns The validated known fields, the raw top-level key names (evidence,
- *   not structure), and how the read went.
+ * @param rawStdin - The text the harness wrote to the hook's stdin.
+ * @returns The fields that validated, the names of those that did not, the raw
+ *   top-level key names (evidence, not structure), and how the read went.
  */
 export function readPayload(rawStdin: string): PayloadRead {
   const trimmed = rawStdin.trim();
   if (trimmed.length === 0) {
-    return { status: 'empty', keys: [], known: {} };
+    return { status: 'empty', keys: [], known: {}, mismatchedFields: [] };
   }
 
   const parsed: unknown = parseJson(trimmed);
   if (parsed === undefined) {
-    return { status: 'unparseable-json', keys: [], known: {} };
+    return { status: 'unparseable-json', keys: [], known: {}, mismatchedFields: [] };
   }
 
-  const keys: readonly string[] =
-    typeof parsed === 'object' && parsed !== null ? typeSafeKeys(parsed) : [];
-  const validated = knownFieldsSchema.safeParse(parsed);
-  if (!validated.success) {
-    return { status: 'schema-mismatch', keys, known: {} };
+  const payload = payloadObjectSchema.safeParse(parsed);
+  if (!payload.success) {
+    return { status: 'schema-mismatch', keys: [], known: {}, mismatchedFields: [] };
   }
 
-  return { status: 'ok', keys, known: validated.data };
+  const mismatchedFields = mismatchedFieldsOf(payload.data);
+  const retained = knownFieldsSchema.safeParse(withoutFields(payload.data, mismatchedFields));
+  return {
+    status: mismatchedFields.length === 0 ? 'ok' : 'schema-mismatch',
+    keys: typeSafeKeys(payload.data),
+    known: retained.success ? retained.data : {},
+    mismatchedFields,
+  };
 }
 
 function parseJson(text: string): unknown {
@@ -146,35 +168,20 @@ function parseJson(text: string): unknown {
   }
 }
 
-interface EnvSnapshot {
-  readonly values: Readonly<Record<string, string>>;
-  readonly withheld: readonly string[];
+function mismatchedFieldsOf(payload: Readonly<PayloadObject>): readonly string[] {
+  const validated = knownFieldsSchema.safeParse(payload);
+  if (validated.success) {
+    return [];
+  }
+  const fields = validated.error.issues.flatMap((issue) => {
+    const [field] = issue.path;
+    return typeof field === 'string' ? [field] : [];
+  });
+  return [...new Set(fields)].sort((left, right) => left.localeCompare(right));
 }
 
-/**
- * Split the hook's environment into recorded values and withheld names.
- *
- * @param env - The process environment as the hook received it.
- * @returns Allowlisted identifiers with their values, and every other matching
- *   variable by name alone.
- */
-export function snapshotEnv(env: Readonly<Record<string, string | undefined>>): EnvSnapshot {
-  const values: Record<string, string> = {};
-  const withheld: string[] = [];
-
-  for (const name of typeSafeKeys(env).sort((left, right) => left.localeCompare(right))) {
-    if (!ENV_NAME_PATTERN.test(name)) {
-      continue;
-    }
-    const value = env[name];
-    if (value !== undefined && ENV_VALUE_ALLOWLIST.includes(name)) {
-      values[name] = value;
-      continue;
-    }
-    withheld.push(name);
-  }
-
-  return { values, withheld };
+function withoutFields(payload: Readonly<PayloadObject>, fields: readonly string[]): PayloadObject {
+  return Object.fromEntries(typeSafeEntries(payload).filter(([key]) => !fields.includes(key)));
 }
 
 /**
@@ -184,43 +191,42 @@ export function snapshotEnv(env: Readonly<Record<string, string | undefined>>): 
  * @returns One log line's worth of evidence about this compaction.
  */
 export function buildObservation(input: ObservationInput): Observation {
-  const payload = readPayload(input.rawStdin);
   const env = snapshotEnv(input.env);
 
   return {
     at: input.nowIso,
     marker: input.marker,
     event: 'PreCompact',
-    payloadStatus: payload.status,
-    payloadKeys: payload.keys,
-    known: payload.known,
-    rawStdinBytes: Buffer.byteLength(input.rawStdin, 'utf8'),
-    rawStdin: input.rawStdin,
+    ...payloadEvidence(input.stdin),
     cwd: input.cwd,
     argv: input.argv,
     envValues: env.values,
     envNamesWithheld: env.withheld,
     transcriptBytes: input.transcriptBytes,
     projectSiblings: input.projectSiblings ?? [],
+    projectSiblingsTotal: input.projectSiblingsTotal,
   };
 }
 
-/**
- * Build the hook's stdout response.
- *
- * @param marker - The per-invocation marker to plant.
- * @returns A JSON line carrying the marker on BOTH response surfaces, so a
- *   later transcript read says which one the harness delivers. `continue` is
- *   true: this hook never blocks a compaction.
- */
-export function buildProbeResponse(marker: string): string {
-  const text = `[pre-compact-observe] ${marker}`;
-  return `${JSON.stringify({
-    continue: true,
-    systemMessage: text,
-    hookSpecificOutput: {
-      hookEventName: 'PreCompact',
-      additionalContext: text,
-    },
-  })}\n`;
+function payloadEvidence(
+  stdin: Result<string, string>,
+): ReadPayloadEvidence | UnreadablePayloadEvidence {
+  if (!stdin.ok) {
+    return {
+      payloadStatus: 'stdin-unreadable',
+      payloadKeys: [],
+      known: {},
+      mismatchedFields: [],
+      stdinReadError: stdin.error,
+    };
+  }
+  const payload = readPayload(stdin.value);
+  return {
+    payloadStatus: payload.status,
+    payloadKeys: payload.keys,
+    known: payload.known,
+    mismatchedFields: payload.mismatchedFields,
+    rawStdinBytes: Buffer.byteLength(stdin.value, 'utf8'),
+    rawStdin: stdin.value,
+  };
 }

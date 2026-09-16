@@ -43,10 +43,16 @@ import {
  * toolchain (`tsup` for JS, `tsc --emitDeclarationOnly` for types), skipping
  * any dep whose built `dist` is already current for its `src`.
  *
- * `typescript` is a direct dependency of agent-tools, so it is present in dev
- * and `--prod` installs alike; a missing compiler therefore signals a corrupt
- * install and fails loudly rather than silently leaving the fail-open guards
- * without `dist`. Set `PRACTICE_SKIP_AGENT_TOOLS_BOOTSTRAP=1` to opt out deliberately.
+ * The compiler is TypeScript 7, a direct dependency of agent-tools under the
+ * npm alias `@typescript/native`. The plain `typescript` name stays on the 6.0
+ * compatibility package, because TypeScript 7 does not ship the 6.0 compiler
+ * API that typescript-eslint and dependency-cruiser import; the decision and
+ * its lift condition live in `docs/engineering/build-system.md` §Dependency
+ * updates. Being a direct dependency, the compiler is present in dev and
+ * `--prod` installs alike; a missing
+ * compiler therefore signals a corrupt install and fails loudly rather than
+ * silently leaving the fail-open guards without `dist`. Set
+ * `PRACTICE_SKIP_AGENT_TOOLS_BOOTSTRAP=1` to opt out deliberately.
  *
  * @packageDocumentation
  */
@@ -106,6 +112,49 @@ function markExecutableArtifacts(): void {
   }
 }
 
+/**
+ * Resolve a package's bin through its manifest, exiting loudly with context
+ * when the package or the bin entry is missing.
+ *
+ * Resolves `<package>/package.json` rather than the bin file itself because an
+ * `exports` map can hide the bin while still exposing the manifest —
+ * TypeScript 7 exports neither `bin/tsc` nor `lib/tsc.js`.
+ *
+ * @param fromDir - Absolute directory of the workspace package resolving the dependency.
+ * @param dependencyName - The dependency's name as that workspace declares it.
+ * @param binName - The bin entry to resolve (the package's command name).
+ * @returns The absolute path to the bin.
+ */
+function resolveBinOrExit(fromDir: string, dependencyName: string, binName: string): string {
+  const fromRelDir = path.relative(repoRoot, fromDir);
+  let manifestPath: string;
+  try {
+    manifestPath = createRequire(path.join(fromDir, 'package.json')).resolve(
+      `${dependencyName}/package.json`,
+    );
+  } catch {
+    writeErrorLine(
+      `[bootstrap-agent-tools] cannot resolve "${dependencyName}" from ${fromRelDir} — the install looks incomplete.`,
+    );
+    writeErrorLine(
+      '[bootstrap-agent-tools] Re-run `pnpm install`, or set PRACTICE_SKIP_AGENT_TOOLS_BOOTSTRAP=1 to bypass deliberately.',
+    );
+    process.exit(1);
+  }
+  const manifest: unknown = JSON.parse(readFileSync(manifestPath, 'utf8'));
+  const binPath = binPathFromManifest(path.dirname(manifestPath), manifest, binName);
+  if (binPath === undefined) {
+    writeErrorLine(
+      `[bootstrap-agent-tools] the resolved ${dependencyName} manifest for ${fromRelDir} has no usable "${binName}" bin entry.`,
+    );
+    writeErrorLine(
+      `[bootstrap-agent-tools] Check that ${fromRelDir}/package.json maps ${dependencyName} to the package that ships "${binName}" — a major version can rename its bin.`,
+    );
+    process.exit(1);
+  }
+  return binPath;
+}
+
 /** Run one build step under the current node binary, exiting loudly on failure. */
 function runStep(label: string, binPath: string, args: readonly string[], cwd: string): void {
   const result = spawnSync(process.execPath, [binPath, ...args], { cwd, stdio: 'inherit' });
@@ -137,24 +186,7 @@ function buildWorkspaceDep(dep: WorkspaceDep, tscBin: string): void {
   if (!workspaceDepDistIsStale(depDir, dep.distArtifacts, productionWorkspaceDepFsIo)) {
     return;
   }
-  const depRequire = createRequire(path.join(depDir, 'package.json'));
-  let tsupManifestPath: string;
-  try {
-    tsupManifestPath = depRequire.resolve('tsup/package.json');
-  } catch {
-    writeErrorLine(
-      `[bootstrap-agent-tools] cannot resolve "tsup" from ${depRelDir} — the install looks incomplete.`,
-    );
-    process.exit(1);
-  }
-  const tsupManifest: unknown = JSON.parse(readFileSync(tsupManifestPath, 'utf8'));
-  const tsupBin = binPathFromManifest(path.dirname(tsupManifestPath), tsupManifest, 'tsup');
-  if (tsupBin === undefined) {
-    writeErrorLine(
-      `[bootstrap-agent-tools] the resolved tsup manifest for ${depRelDir} has no usable bin entry.`,
-    );
-    process.exit(1);
-  }
+  const tsupBin = resolveBinOrExit(depDir, 'tsup', 'tsup');
   runStep(`tsup (${depName})`, tsupBin, [], depDir);
   runStep(
     `tsc declarations (${depName})`,
@@ -171,18 +203,7 @@ function main(): void {
     return;
   }
 
-  let tscBin: string;
-  try {
-    tscBin = createRequire(path.join(agentToolsDir, 'package.json')).resolve('typescript/bin/tsc');
-  } catch {
-    writeErrorLine(
-      '[bootstrap-agent-tools] cannot resolve "typescript" from agent-tools — the install looks incomplete.',
-    );
-    writeErrorLine(
-      '[bootstrap-agent-tools] Re-run `pnpm install`, or set PRACTICE_SKIP_AGENT_TOOLS_BOOTSTRAP=1 to bypass deliberately.',
-    );
-    process.exit(1);
-  }
+  const tscBin = resolveBinOrExit(agentToolsDir, '@typescript/native', 'tsc');
 
   for (const dep of readInstallTimeClosure()) {
     buildWorkspaceDep(dep, tscBin);

@@ -9,7 +9,7 @@
   "engines": {
     "node": "24.x"
   },
-  "packageManager": "pnpm@12.4.1",
+  "packageManager": "pnpm@12.4.2+sha512.08adc6613180275c7c9edada39dcf08c9c61ad4e7eaf330a4f3461f102b0f907423454d117f98e72d47fef0616070644d7bffc973a6a57f5090a6d7c368b07c9",
   "scripts": {
     "agent-tools": "pnpm --filter @engraph/agent-tools agent-tools",
     "agent-tools:agent-identity": "pnpm --filter @engraph/agent-tools agent-identity",
@@ -28,7 +28,6 @@
     "agent-tools:install-cursor-statusline": "node .cursor/scripts/install-statusline-cli-config.mjs",
     "agent-tools:lint": "pnpm --filter @engraph/agent-tools lint",
     "agent-tools:pr-watch": "pnpm --filter @engraph/agent-tools pr-watch",
-    "agent-tools:pre-compact-observe": "pnpm --filter @engraph/agent-tools pre-compact-observe",
     "agent-tools:pre-tool-use-dispatch": "pnpm --filter @engraph/agent-tools pre-tool-use-dispatch",
     "agent-tools:prevent-accidental-major-version": "pnpm --filter @engraph/agent-tools prevent-accidental-major-version",
     "agent-tools:repo-check": "pnpm --filter @engraph/agent-tools repo-check",
@@ -91,8 +90,9 @@
     "husky": "^9.1.7",
     "knip": "^6.35.1",
     "markdownlint-cli2": "^0.23.2",
-    "prettier": "^3.9.6",
+    "prettier": "^3.9.7",
     "tsx": "^4.23.13",
-    "turbo": "^2.10.9"
+    "turbo": "^2.10.13",
+    "typescript": "npm:@typescript/typescript6@^6.0.2"
   }
 }

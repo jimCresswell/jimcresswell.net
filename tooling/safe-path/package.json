@@ -32,10 +32,11 @@
     "@engraph/eslint-plugin-standards": "workspace:*",
     "@engraph/workspace-config": "workspace:*",
     "@types/node": "^24.13.3",
+    "@typescript/native": "npm:typescript@^7.0.2",
     "eslint": "^10.10.0",
     "globals": "^17.9.0",
     "tsup": "^8.5.1",
-    "typescript": "^6.0.3",
+    "typescript": "npm:@typescript/typescript6@^6.0.2",
     "vitest": "^4.1.10"
   },
   "repository": {

@@ -5,12 +5,14 @@
     "types": ["node", "vitest/globals"],
     "jsx": "react-jsx",
     "noEmit": true,
-    // Hooks in src/bin are invoked by the harness as `node <source>.ts` and so
+    // The PreCompact observer (src/bin/claude-pre-compact-observe-hook.ts) is
+    // run by the harness as `node <source>.ts`, so it and the modules it loads
     // carry `.ts` relative specifiers, which Node resolves literally; tsc
     // rewrites them to `.js` on emit so the same files still resolve from dist.
-    // Scoped to this workspace because this is where hook sources live — Node
-    // ignores tsconfig entirely when stripping types, so a wider home would buy
-    // nothing.
+    // Both options are stated: the first follows from the second in TypeScript
+    // 6, and stating it keeps the intent explicit across compiler versions.
+    // Scoped to this workspace because the source-run hook lives here — Node
+    // ignores tsconfig entirely when stripping types.
     "allowImportingTsExtensions": true,
     "rewriteRelativeImportExtensions": true
   },

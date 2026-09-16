@@ -1,11 +1,7 @@
+import { err, ok } from '@engraph/result';
 import { describe, expect, it } from 'vitest';
 
-import {
-  buildObservation,
-  buildProbeResponse,
-  readPayload,
-  snapshotEnv,
-} from './pre-compact-observation.js';
+import { buildObservation, readPayload } from './pre-compact-observation.js';
 
 const BASE = {
   nowIso: '2026-09-16T12:00:00.000Z',
@@ -29,6 +25,41 @@ describe('readPayload', () => {
     expect(read.status).toBe('ok');
     expect(read.known.session_id).toBe('abc');
     expect(read.known.trigger).toBe('auto');
+    expect(read.mismatchedFields).toEqual([]);
+  });
+
+  it('accepts the payload a bare /compact actually sends, whose custom_instructions is null', () => {
+    // The key set and value types of the first real PreCompact payload observed
+    // (2026-09-16); the values are neutral stand-ins.
+    const read = readPayload(
+      JSON.stringify({
+        session_id: 'session-id',
+        transcript_path: '/transcripts/session-id.jsonl',
+        cwd: '/repo',
+        scratchpad_dir: '/scratch/session-id',
+        prompt_id: 'prompt-id',
+        hook_event_name: 'PreCompact',
+        trigger: 'manual',
+        custom_instructions: null,
+      }),
+    );
+
+    expect(read.status).toBe('ok');
+    expect(read.known.trigger).toBe('manual');
+    expect(read.known.custom_instructions).toBeNull();
+    expect(read.known.transcript_path).toBe('/transcripts/session-id.jsonl');
+    expect(read.keys).toEqual(expect.arrayContaining(['scratchpad_dir', 'prompt_id']));
+  });
+
+  it('keeps every valid field when another carries the wrong type, and names the one that did', () => {
+    const read = readPayload(
+      JSON.stringify({ transcript_path: '/transcripts/session-id.jsonl', trigger: 7 }),
+    );
+
+    expect(read.status).toBe('schema-mismatch');
+    expect(read.known).toEqual({ transcript_path: '/transcripts/session-id.jsonl' });
+    expect(read.mismatchedFields).toEqual(['trigger']);
+    expect(read.keys).toEqual(['transcript_path', 'trigger']);
   });
 
   it('records unknown top-level keys as evidence without consuming them as structure', () => {
@@ -45,100 +76,66 @@ describe('readPayload', () => {
   it('reports an empty payload distinctly from a broken one', () => {
     expect(readPayload('   ').status).toBe('empty');
   });
-
-  it('reports a schema mismatch when a used field carries the wrong type', () => {
-    const read = readPayload(JSON.stringify({ session_id: 42 }));
-
-    expect(read.status).toBe('schema-mismatch');
-    expect(read.keys).toContain('session_id');
-  });
-});
-
-describe('snapshotEnv', () => {
-  it('records allowlisted identifiers and withholds every other value by name', () => {
-    const snapshot = snapshotEnv({
-      CLAUDE_PROJECT_DIR: '/repo',
-      CLAUDE_CODE_OAUTH_TOKEN: 'withheld-value',
-      PRACTICE_AGENT_SESSION_ID_CLAUDE: '880ff9',
-      PATH: '/usr/bin',
-    });
-
-    expect(snapshot.values).toEqual({
-      CLAUDE_PROJECT_DIR: '/repo',
-      PRACTICE_AGENT_SESSION_ID_CLAUDE: '880ff9',
-    });
-    expect(snapshot.withheld).toEqual(['CLAUDE_CODE_OAUTH_TOKEN']);
-    expect(JSON.stringify(snapshot)).not.toContain('withheld-value');
-  });
-
-  it('records the session-shape flags whose value is the finding, and withholds the transport ones', () => {
-    const snapshot = snapshotEnv({
-      CLAUDE_CODE_CHILD_SESSION: 'true',
-      CLAUDE_CODE_SESSION_ATTENDED: 'true',
-      CLAUDE_CODE_MESSAGING_TOKEN: 'withheld-value',
-      CLAUDE_CODE_MESSAGING_SOCKET: '/withheld/socket.sock',
-    });
-
-    expect(snapshot.values).toEqual({
-      CLAUDE_CODE_CHILD_SESSION: 'true',
-      CLAUDE_CODE_SESSION_ATTENDED: 'true',
-    });
-    expect(snapshot.withheld).toEqual([
-      'CLAUDE_CODE_MESSAGING_SOCKET',
-      'CLAUDE_CODE_MESSAGING_TOKEN',
-    ]);
-    expect(JSON.stringify(snapshot)).not.toContain('withheld-value');
-  });
-
-  it('ignores variables outside the CLAUDE and PRACTICE namespaces entirely', () => {
-    const snapshot = snapshotEnv({ PATH: '/usr/bin', AWS_SECRET_ACCESS_KEY: 'unused' });
-
-    expect(snapshot.values).toEqual({});
-    expect(snapshot.withheld).toEqual([]);
-  });
 });
 
 describe('buildObservation', () => {
   it('keeps the raw payload verbatim, which is the whole point of the instrument', () => {
     const rawStdin = '{"session_id":"abc","mystery_field":1}';
-    const observation = buildObservation({ ...BASE, rawStdin });
+    const observation = buildObservation({ ...BASE, stdin: ok(rawStdin) });
 
     expect(observation.rawStdin).toBe(rawStdin);
-    expect(observation.rawStdinBytes).toBe(rawStdin.length);
     expect(observation.payloadKeys).toContain('mystery_field');
     expect(observation.event).toBe('PreCompact');
   });
 
+  it('records a stdin read failure with its reason, and no payload measurement', () => {
+    const reason = 'EAGAIN: resource temporarily unavailable, read';
+    const observation = buildObservation({ ...BASE, stdin: err(reason) });
+
+    expect(observation.payloadStatus).toBe('stdin-unreadable');
+    expect(observation.stdinReadError).toBe(reason);
+    expect(observation.rawStdin).toBeUndefined();
+    expect(observation.rawStdinBytes).toBeUndefined();
+    expect(observation.payloadKeys).toEqual([]);
+  });
+
+  it('records a payload that was read but empty as empty, with no read error', () => {
+    const observation = buildObservation({ ...BASE, stdin: ok('') });
+
+    expect(observation.payloadStatus).toBe('empty');
+    expect(observation.stdinReadError).toBeUndefined();
+    expect(observation.rawStdinBytes).toBe(0);
+  });
+
+  it('counts the payload in bytes, not characters', () => {
+    expect(buildObservation({ ...BASE, stdin: ok('{"a":"é"}') }).rawStdinBytes).toBe(10);
+  });
+
   it('records an absent transcript and no siblings without failing', () => {
-    const observation = buildObservation({ ...BASE, rawStdin: '{}' });
+    const observation = buildObservation({ ...BASE, stdin: ok('{}') });
 
     expect(observation.transcriptBytes).toBeUndefined();
     expect(observation.projectSiblings).toEqual([]);
+    expect(observation.projectSiblingsTotal).toBeUndefined();
     expect(observation.payloadStatus).toBe('ok');
+    expect(observation.mismatchedFields).toEqual([]);
   });
 
-  it('carries the measured siblings through', () => {
+  it('carries the measured siblings and their full count through', () => {
     const observation = buildObservation({
       ...BASE,
-      rawStdin: '{}',
-      projectSiblings: [{ name: '.precompact.json', bytes: 12 }],
+      stdin: ok('{}'),
+      projectSiblings: [
+        { name: '.precompact.json', kind: 'file', bytes: 12 },
+        { name: 'subagents', kind: 'directory' },
+      ],
+      projectSiblingsTotal: 40,
     });
 
-    expect(observation.projectSiblings).toEqual([{ name: '.precompact.json', bytes: 12 }]);
-  });
-});
-
-describe('buildProbeResponse', () => {
-  it('plants the marker on both response surfaces and never blocks', () => {
-    const parsed: unknown = JSON.parse(buildProbeResponse('probe-1'));
-
-    expect(parsed).toMatchObject({
-      continue: true,
-      systemMessage: '[pre-compact-observe] probe-1',
-      hookSpecificOutput: {
-        hookEventName: 'PreCompact',
-        additionalContext: '[pre-compact-observe] probe-1',
-      },
-    });
+    expect(observation.projectSiblings).toEqual([
+      { name: '.precompact.json', kind: 'file', bytes: 12 },
+      { name: 'subagents', kind: 'directory' },
+    ]);
+    expect(observation.projectSiblingsTotal).toBe(40);
   });
 });

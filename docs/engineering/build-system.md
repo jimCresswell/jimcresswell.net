@@ -79,8 +79,8 @@ build orchestrator and the package manager stay out of the install lifecycle
 PreToolUse guards in `.claude/settings.json`, the statusline and the agent CLIs
 work immediately after a fresh clone, a new worktree, or a Vercel install.
 `PRACTICE_SKIP_AGENT_TOOLS_BOOTSTRAP=1` opts out deliberately. A missing
-`typescript` compiler fails the install loudly rather than leaving the
-fail-open guards without `dist`.
+compiler (`@typescript/native`, TypeScript 7) fails the install loudly rather
+than leaving the fail-open guards without `dist`.
 
 Two other lifecycle hooks run around install: `pnpm:devPreinstall` validates
 the pnpm version against `packageManager`, and `prepare` installs the husky
@@ -96,27 +96,48 @@ not; pnpm's own resolver applies it deterministically, and whether Dependabot's
 invocation honours it is version-dependent and unestablished here. Read
 Dependabot PRs with that in mind.
 
-Two majors are held deliberately. A sweep must not cross either, and
-`pnpm -r up --latest` crosses both:
+Three constraints are held deliberately. A sweep must not break any of them:
 
-- **`typescript` stays on 6.x.** The binding blocker is the type-aware lint
-  stack: `typescript-eslint` 8.x declares `typescript: ">=4.8.4 <6.1.0"`.
-  Nothing admits TS 7, so adopting it would run type-aware linting on an
-  unsupported compiler — and the only way to make that pass is to switch the
-  layer off, which
+- **The `typescript` name stays on the 6.0 compiler API; the compiler is
+  TypeScript 7.** TypeScript 7.0 ships `tsc` but not the 6.0 compiler API
+  (its programmatic surface is the `unstable/*` subpaths), and the API
+  consumers here import the 6.0 API: `typescript-eslint` 8.x declares
+  `typescript: ">=4.8.4 <6.1.0"` and `dependency-cruiser` 18.x supports
+  `<7.0.0`. Running them on TypeScript 7 would leave type-aware linting on an
+  unsupported compiler, and switching that layer off is what
   [`never-disable-checks`](../../.agent/rules/never-disable-checks.md) forbids.
-  **Lift condition: `typescript-eslint` ships TS 7 support.** Enforced by the
-  `^6` ranges in each manifest. A second, smaller blocker sits behind it:
-  `agent-tools/src/bootstrap/bootstrap.ts` resolves the compiler binary at
-  postinstall, and TS 7's exports map does not expose the subpath the
-  bootstrap reads today; the cure is to read the package's own declared
-  `bin.tsc`, which is correct on TS 6 too.
+  So every workspace that lists TypeScript declares both aliases from the
+  [TypeScript 7.0 announcement](https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/#running-side-by-side-with-typescript-6.0):
+  `@typescript/native` → `npm:typescript@^7`, which supplies `tsc`, and
+  `typescript` → `npm:@typescript/typescript6@^6`, which keeps the 6.0 API and
+  names its binary `tsc6`. The postinstall bootstrap compiles with
+  `@typescript/native`, resolving its bin through the package manifest. The
+  root manifest declares the `typescript` alias too, because
+  `dependency-cruiser` runs from the root and would otherwise find a compiler
+  only through pnpm's hoisting. `next build` resolves `typescript` and
+  type-checks the site with `tsc6`, while `pnpm type-check` uses TypeScript 7,
+  so the site is checked by both compilers and either one blocks.
+  Enforced by those alias ranges in each manifest. The two failure modes of
+  getting this wrong differ: `typescript-eslint` stops loudly
+  (`typescript-eslint does not support TS 7.0`), while `dependency-cruiser`
+  exits 0 having cruised one module — read its module count, not its exit
+  code. **Lift condition: `typescript-eslint` and `dependency-cruiser` support
+  TypeScript 7's API (announced for 7.1); then drop the `typescript` alias and
+  declare TypeScript 7 under its own name.**
 - **`@types/node` stays on 24.x**, matching `engines.node: 24.x`. Enforced by
   the `'@types/node': '^24.x.y'` override in `pnpm-workspace.yaml`, which
   covers workspaces that pull it only as a transitive peer. Lift it when the
-  project moves Node majors.
+  project moves Node majors. `pnpm -r up --latest` crosses this hold.
+- **`jcdotnet` stays on ESLint 9.** `eslint-config-next` 16.x admits ESLint
+  `>=9` but depends on `eslint-plugin-react` 7.37.5, whose peer range ends at
+  ESLint `^9.7`; under ESLint 10 it crashes on the removed
+  `context.getFilename`. Enforced by the `^9` range in `jcdotnet/package.json`;
+  the other workspaces are on ESLint 10. ESLint 9 is out of support upstream
+  (npm marks 9.39.5 deprecated), so this hold carries risk and is worth
+  re-checking at every sweep. **Lift condition: `eslint-plugin-react` ships
+  ESLint 10 support.**
 
-Both holds must survive a full lockfile rebuild — see
+All three holds must survive a full lockfile rebuild — see
 [`lockfile-rebuild-survivability`](../../.agent/rules/lockfile-rebuild-survivability.md).
 
 **Project `.npmrc` is optional.** Use it for npm-compatible registry and auth

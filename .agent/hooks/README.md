@@ -7,7 +7,8 @@ and thin native activation lives in platform config.
 
 ## Current Status
 
-**Guardrail-and-identity only**: the hook layer is intentionally narrow.
+**Guardrails, identity and one observer**: the hook layer is intentionally
+narrow.
 
 - `preToolUse` — natively enforced for Claude Code Bash calls by invoking the
   single prebuilt policy dispatcher
@@ -24,19 +25,17 @@ and thin native activation lives in platform config.
 - Codex identity context — a separate native `SessionStart` surface activated
   through the thin `.codex/hooks/practice-session-identity.mjs` adapter; it
   injects the PDR-027 identity block and remains soft/fail-open
-- `preCompact` — a never-blocking OBSERVER, not a guard:
-  `agent-tools/src/bin/claude-pre-compact-observe-hook.ts` records what the
-  harness puts on stdin at a compaction and what it does with the response, to
-  a git-ignored log under `.claude/logs/`. Every path, including every error
-  path, exits 0. It is the first hook run DIRECTLY from TypeScript source —
-  `node <source>.ts` under Node 24's type stripping, with no hand-authored
-  shim. The ENTRY is TypeScript source; the build step is not gone, because the
-  module it imports reaches a workspace package that exports only its built
-  `dist`, and those imports sit outside the entry's try block — in a tree
-  without the built closure the hook exits 1 and records nothing (it fails
-  open: `PreCompact` blocks only on exit 2). Dropping those dependencies, or
-  importing them dynamically inside the try, is queued; until then this is the
-  direction new hooks take, not a finished guarantee
+- Claude Code `PreCompact` observer — a never-blocking OBSERVER, not a guard,
+  activated in `.claude/settings.json` (it has no key in `policy.json`): it
+  records what the harness sends at a compaction to a git-ignored log under
+  `.claude/logs/`, and is the first hook run directly from TypeScript source
+  (`node <source>.ts`, through the `log-hook-errors.sh` wrapper). What it
+  guarantees, and why its build dependency remains, is stated once in the
+  TSDoc of `agent-tools/src/bin/claude-pre-compact-observe-hook.ts`; the
+  contract it has observed is recorded in
+  `.agent/memory/executive/cross-platform-agent-surface-matrix.md` §Hook
+  Support. Retire it when a `PreCompact` gate replaces it: its
+  `systemMessage` shows on every compaction it answers
 - `preCommit` — documented policy only; quality-gate reminders already
   live in the workflow and review surfaces
 
@@ -248,7 +247,7 @@ case (loudly, as above) and fail **closed** whenever a built guard misbehaves.
 
 | Platform | Upstream hook surface | Repo activation |
 | --- | --- | --- |
-| Claude Code | Native lifecycle hooks | Soft `SessionStart` identity context plus `PreToolUse` command/content guards in tracked `.claude/settings.json` |
+| Claude Code | Native lifecycle hooks | Soft `SessionStart` identity context, `PreToolUse` command/content guards and a never-blocking `PreCompact` observer in tracked `.claude/settings.json` |
 | Codex CLI | Stable lifecycle hooks | Soft `SessionStart` identity context in tracked `.codex/config.toml` |
 | Cursor | Not reassessed in this Codex research pass as of 2026-07-25 | Soft `sessionStart` identity context in tracked `.cursor/hooks.json`; no canonical policy activation |
 | Gemini / Antigravity CLI | Not reassessed in this Codex research pass as of 2026-07-25 | No canonical policy activation |
