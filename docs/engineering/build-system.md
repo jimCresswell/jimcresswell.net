@@ -70,9 +70,9 @@ Both ESLint lines resolve in one lockfile, and the split shapes the
 `brace-expansion` security override: the site's
 ESLint 9 line reaches `brace-expansion` 1.x through `@eslint/config-array`'s
 `minimatch@3`, and an unscoped 5.x floor broke that resolver at lint time. The
-override is therefore scoped per major (`brace-expansion@1`, `@2`, `@4`, `@5`),
-each line kept on its own patched floor for the quadratic-expansion advisory.
-Do not collapse the four entries into one.
+tree holds the 1.x and 5.x lines, so the override is scoped per major
+(`brace-expansion@1`, `@5`), each line kept on its own patched floor for the
+quadratic-expansion advisory. Do not collapse the two entries into one.
 
 ### `postinstall` builds `agent-tools/dist`
 

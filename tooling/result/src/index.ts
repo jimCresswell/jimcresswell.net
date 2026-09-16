@@ -175,7 +175,7 @@ export function collect<T, E>(results: Iterable<Result<T, E>>): Result<readonly 
  * Call in the `default` branch of an exhaustive `switch` (or the final `else`)
  * over a discriminated union. The `value: never` parameter makes the compiler
  * reject the call if any variant is left unhandled — compile-time exhaustiveness
- * with no runtime `throw` (ADR-088, use-result-pattern). If the branch is reached
+ * with no runtime `throw` (`.agent/rules/use-result-pattern.md`). If the branch is reached
  * at runtime because data defeated the types, `makeError` is called with the
  * stringified unexpected value so the failure is debuggable, and the result flows
  * back as the `Err` arm rather than as an exception.
