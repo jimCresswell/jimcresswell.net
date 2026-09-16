@@ -61,14 +61,14 @@ describe('extractReferences', () => {
       source,
       'see [ADR](../../../docs/architecture/decision-records/9.md).',
     );
-    expect(refs).toHaveLength(1);
-    expect(refs[0].resolvedRepoPath).toBe('docs/architecture/decision-records/9.md');
+    expect(refs).toMatchObject([{ resolvedRepoPath: 'docs/architecture/decision-records/9.md' }]);
   });
 
   it('extracts reference definitions', () => {
     const refs = extractReferences(source, '[adr]: ./PDR-2.md\n');
-    expect(refs).toHaveLength(1);
-    expect(refs[0].resolvedRepoPath).toBe('.agent/practice-core/decision-records/PDR-2.md');
+    expect(refs).toMatchObject([
+      { resolvedRepoPath: '.agent/practice-core/decision-records/PDR-2.md' },
+    ]);
   });
 
   it('ignores external URLs and pure anchors', () => {
@@ -81,21 +81,20 @@ describe('extractReferences', () => {
       extractReferences(
         source,
         'arose from [the plan](../../plans/x/y.plan.md) (historical reference)',
-      )[0].historicalMarked,
-    ).toBe(true);
+      ),
+    ).toMatchObject([{ historicalMarked: true }]);
     expect(
-      extractReferences(source, '[plan](../../plans/x/y.plan.md) <!-- historical -->')[0]
-        .historicalMarked,
-    ).toBe(true);
+      extractReferences(source, '[plan](../../plans/x/y.plan.md) <!-- historical -->'),
+    ).toMatchObject([{ historicalMarked: true }]);
   });
 
   it('strips anchors and link titles before resolving', () => {
-    expect(extractReferences(source, '[x](./PDR-2.md#section)')[0].resolvedRepoPath).toBe(
-      '.agent/practice-core/decision-records/PDR-2.md',
-    );
-    expect(extractReferences(source, '[x](./PDR-2.md "Title")')[0].resolvedRepoPath).toBe(
-      '.agent/practice-core/decision-records/PDR-2.md',
-    );
+    expect(extractReferences(source, '[x](./PDR-2.md#section)')).toMatchObject([
+      { resolvedRepoPath: '.agent/practice-core/decision-records/PDR-2.md' },
+    ]);
+    expect(extractReferences(source, '[x](./PDR-2.md "Title")')).toMatchObject([
+      { resolvedRepoPath: '.agent/practice-core/decision-records/PDR-2.md' },
+    ]);
   });
 
   it('extracts multiple links from one line', () => {
@@ -112,9 +111,7 @@ describe('findReferenceDirectionViolations', () => {
       },
     ];
     const violations = findReferenceDirectionViolations(files);
-    expect(violations).toHaveLength(1);
-    expect(violations[0].axis).toBe('portability');
-    expect(violations[0].targetLayer).toBe('repo-doctrine');
+    expect(violations).toMatchObject([{ axis: 'portability', targetLayer: 'repo-doctrine' }]);
   });
 
   it('flags a rule citing a plan (durability)', () => {
@@ -122,8 +119,7 @@ describe('findReferenceDirectionViolations', () => {
       { path: '.agent/rules/x.md', content: 'per [plan](../plans/y/current/z.plan.md)' },
     ];
     const violations = findReferenceDirectionViolations(files);
-    expect(violations).toHaveLength(1);
-    expect(violations[0].axis).toBe('durability');
+    expect(violations).toMatchObject([{ axis: 'durability' }]);
   });
 
   it('flags an ADR citing a thread (durability)', () => {
@@ -134,8 +130,7 @@ describe('findReferenceDirectionViolations', () => {
       },
     ];
     const violations = findReferenceDirectionViolations(files);
-    expect(violations).toHaveLength(1);
-    expect(violations[0].axis).toBe('durability');
+    expect(violations).toMatchObject([{ axis: 'durability' }]);
   });
 
   it('flags an ADR citing an analysis doc (durability) — analysis is ephemeral research', () => {
@@ -146,8 +141,7 @@ describe('findReferenceDirectionViolations', () => {
       },
     ];
     const violations = findReferenceDirectionViolations(files);
-    expect(violations).toHaveLength(1);
-    expect(violations[0].axis).toBe('durability');
+    expect(violations).toMatchObject([{ axis: 'durability' }]);
   });
 
   it('reports portability (not durability) for a portable-core file citing an ephemeral surface', () => {
@@ -158,8 +152,7 @@ describe('findReferenceDirectionViolations', () => {
       },
     ];
     const violations = findReferenceDirectionViolations(files);
-    expect(violations).toHaveLength(1);
-    expect(violations[0].axis).toBe('portability');
+    expect(violations).toMatchObject([{ axis: 'portability' }]);
   });
 
   it('flags a portable-core file citing repo code/docs (portability)', () => {
@@ -169,7 +162,7 @@ describe('findReferenceDirectionViolations', () => {
         content: 'see [code](../../../agent-tools/src/x.ts)',
       },
     ];
-    expect(findReferenceDirectionViolations(files)[0].axis).toBe('portability');
+    expect(findReferenceDirectionViolations(files)).toMatchObject([{ axis: 'portability' }]);
   });
 
   it('does NOT let a historical marker suppress a portability violation', () => {
@@ -307,8 +300,7 @@ describe('findReferenceDirectionViolations — stable-addressed-state exemption'
       },
     ];
     const violations = findReferenceDirectionViolations(files);
-    expect(violations).toHaveLength(1);
-    expect(violations[0].axis).toBe('durability');
+    expect(violations).toMatchObject([{ axis: 'durability' }]);
   });
 
   it('still flags a doctrine file citing an individual pattern file (it graduates/moves)', () => {
@@ -319,8 +311,7 @@ describe('findReferenceDirectionViolations — stable-addressed-state exemption'
       },
     ];
     const violations = findReferenceDirectionViolations(files);
-    expect(violations).toHaveLength(1);
-    expect(violations[0].axis).toBe('durability');
+    expect(violations).toMatchObject([{ axis: 'durability' }]);
   });
 
   it('still flags a portable-core file citing stable-addressed state (portability is strict)', () => {
@@ -331,7 +322,6 @@ describe('findReferenceDirectionViolations — stable-addressed-state exemption'
       },
     ];
     const violations = findReferenceDirectionViolations(files);
-    expect(violations).toHaveLength(1);
-    expect(violations[0].axis).toBe('portability');
+    expect(violations).toMatchObject([{ axis: 'portability' }]);
   });
 });

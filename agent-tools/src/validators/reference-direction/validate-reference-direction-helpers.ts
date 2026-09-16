@@ -125,8 +125,7 @@ export function extractReferences(sourcePath: string, content: string): Extracte
   // start of each individual line string (no cross-line lastIndex carry-over).
   const linkPatternSource = /\]\(([^)]+)\)|^\s*\[[^\]]+\]:\s*(\S+)/.source;
 
-  for (let i = 0; i < lines.length; i++) {
-    const lineText = lines[i];
+  for (const [index, lineText] of lines.entries()) {
     const historicalMarked = HISTORICAL_MARKER.test(lineText);
     let match: RegExpExecArray | null;
     const pattern = new RegExp(linkPatternSource, 'g');
@@ -136,15 +135,13 @@ export function extractReferences(sourcePath: string, content: string): Extracte
       if (!isRepoPathReference(rawTarget)) {
         continue;
       }
-      const withoutAnchor = rawTarget.split('#')[0];
-      if (withoutAnchor === '') {
-        continue;
-      }
+      // Never empty: isRepoPathReference has rejected '' and pure '#' anchors.
+      const [withoutAnchor = ''] = rawTarget.split('#');
       const resolved = posix.normalize(posix.join(sourceDir, withoutAnchor));
       references.push({
         rawTarget: withoutAnchor,
         resolvedRepoPath: resolved,
-        line: i + 1,
+        line: index + 1,
         historicalMarked,
       });
     }
@@ -165,7 +162,8 @@ function isRepoPathReference(target: string): boolean {
   }
   // Only police references that point at repo files (have a path separator or a
   // markdown/json/ts extension). Bare anchors and labels are skipped above.
-  return target.includes('/') || /\.(md|json|ts|tsx|mjs|cjs)$/.test(target.split('#')[0]);
+  const [withoutAnchor = ''] = target.split('#');
+  return target.includes('/') || /\.(md|json|ts|tsx|mjs|cjs)$/.test(withoutAnchor);
 }
 
 /**
