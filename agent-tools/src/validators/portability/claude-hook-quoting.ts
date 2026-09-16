@@ -23,7 +23,22 @@ import { z } from 'zod';
 
 const PLAIN_WORD = /^[\w./:=@%+,-]+$/u;
 const QUOTED_PROJECT_PATH = /^"\$\{CLAUDE_PROJECT_DIR(?::-\.)?\}(?:\/[\w./-]*)?"$/u;
-const SHELLS: ReadonlySet<string> = new Set(['sh', 'bash', 'zsh', 'dash', 'ksh']);
+/** Programs that run a command string given after a -c flag; busybox dispatches to its applets. */
+const SHELLS: ReadonlySet<string> = new Set([
+  'sh',
+  'ash',
+  'bash',
+  'busybox',
+  'csh',
+  'dash',
+  'fish',
+  'ksh',
+  'mksh',
+  'pwsh',
+  'tcsh',
+  'yash',
+  'zsh',
+]);
 const COMMAND_STRING_FLAG = /^-[A-Za-z]*c[A-Za-z]*$/u;
 
 const WORD_OUTSIDE_SHAPE = 'a word is neither a plain word nor a double-quoted project path';

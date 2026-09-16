@@ -28,12 +28,17 @@ project_dir="${CLAUDE_PROJECT_DIR:-$PWD}"
 log_dir="${project_dir}/.claude/logs"
 log_file="${log_dir}/hook-errors.log"
 
+# Create under an owner-only umask so nothing exists open even for an instant,
+# then restore the umask the hook itself inherited.
+inherited_umask=$(umask)
+umask 077
 log_ready=0
 if [[ ! -L "$log_dir" && ! -L "$log_file" ]] && mkdir -p "$log_dir" 2>/dev/null &&
   [[ -O "$log_dir" ]] && chmod 700 "$log_dir" 2>/dev/null && touch "$log_file" 2>/dev/null &&
   [[ -f "$log_file" && ! -L "$log_file" && -O "$log_file" ]] && chmod 600 "$log_file" 2>/dev/null; then
   log_ready=1
 fi
+umask "$inherited_umask"
 
 stderr_capture="$(mktemp)"
 trap 'rm -f "$stderr_capture"' EXIT

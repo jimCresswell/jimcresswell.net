@@ -33,6 +33,14 @@ const CASES: readonly LogCase[] = [
     expectedStderr: 'wrapped-hook-stderr',
   },
   {
+    label: 'the wrapper under an open umask: logs owner-only, the hook keeping that umask',
+    logsBefore: 'absent',
+    argv: ['sh', '-c', 'umask 000; exec "$0" "$@"', WRAPPER, 'sh', '-c', 'umask >&2; exit 4'],
+    expectedExit: 4,
+    expectedLogText: '0000',
+    expectedStderr: '0000',
+  },
+  {
     label: 'the wrapper around a succeeding hook, over logs left readable',
     logsBefore: 'world-readable',
     argv: [WRAPPER, 'true'],
