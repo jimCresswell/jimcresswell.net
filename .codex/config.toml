@@ -28,11 +28,11 @@ description = "Architecture reviewer Barney focused on PKG and graph integrity."
 config_file = "agents/architecture-expert-barney.toml"
 
 [agents."architecture-expert-betty"]
-description = "Architecture reviewer Betty ensuring navigation and layout architecture."
+description = "Architecture reviewer Betty ensuring route, navigation, and layout architecture."
 config_file = "agents/architecture-expert-betty.toml"
 
 [agents."architecture-expert-fred"]
-description = "Architecture reviewer Fred covering builds, caching, and resilience."
+description = "Architecture reviewer Fred covering builds, caching, PDF generation, Playwright against the production build, and resilience."
 config_file = "agents/architecture-expert-fred.toml"
 
 [agents."architecture-expert-wilma"]
@@ -40,7 +40,7 @@ description = "Architecture reviewer Wilma focused on practice governance and do
 config_file = "agents/architecture-expert-wilma.toml"
 
 [agents."assumptions-expert"]
-description = "Meta-level plan specialist for both read-only review and active-workflow planning support, focused on proportionality, assumption validity, and blocking legitimacy. Invoke when plans are being drafted, marked decision-complete, propose 3+ agents, or assert blocking relationships."
+description = "Meta-level plan specialist for both read-only review and active-workflow planning support, focused on proportionality, assumption validity, and blocking legitimacy. Invoke when plans are being drafted, marked decision-complete, propose 3+ agents, assert blocking relationships, integrate a third-party vendor, or commit to technology choices before research."
 config_file = "agents/assumptions-expert.toml"
 
 [agents."code-expert"]
@@ -48,7 +48,7 @@ description = "Gateway code reviewer — quality, correctness, and triage. Asses
 config_file = "agents/code-expert.toml"
 
 [agents."config-expert"]
-description = "Configuration reviewer for Next.js, PostCSS, and pnpm scripts."
+description = "Configuration reviewer for TypeScript, ESLint, Vitest, Prettier, markdownlint, Turbo, knip, dependency-cruiser and Husky configuration, pnpm scripts, and the site's Next.js, PostCSS and Playwright configuration."
 config_file = "agents/config-expert.toml"
 
 [agents."corpus-mapper"]
@@ -80,7 +80,7 @@ description = "Fast xhigh-effort conscience check using a compiled decision proc
 config_file = "agents/cricket-procedure-xhigh.toml"
 
 [agents."design-system-expert"]
-description = "Design-system reviewer verifying tokens, spacing, and responsive rhythm."
+description = "Design-system reviewer verifying tokens, theming, spacing, typography, motion, and responsive rhythm."
 config_file = "agents/design-system-expert.toml"
 
 [agents."docs-adr-expert"]
@@ -100,7 +100,7 @@ description = "PKG specialist reviewer — Schema.org, JSON-LD, and graph correc
 config_file = "agents/pkg-expert.toml"
 
 [agents."prose-expert"]
-description = "Prose craft specialist. Use proactively to review the writing of any authored document — clarity, concision, active voice, omit-needless-words, lead-with-the-point. Read-only craft review; defers Jim's editorial voice to editor, link text and labels on rendered surfaces to accessibility-expert, and documentation structure/accuracy to docs-adr-expert."
+description = "Prose craft specialist. Use proactively to review the writing of any authored document — clarity, concision, active voice, omit-needless-words, lead-with-the-point. Read-only craft review; defers Jim's editorial voice to editor, link text, headings, labels and accessible names on rendered surfaces to accessibility-expert, onboarding journeys to onboarding-expert, and documentation structure/accuracy to docs-adr-expert."
 config_file = "agents/prose-expert.toml"
 
 [agents."react-component-expert"]
