@@ -246,35 +246,56 @@ skill's `references.md:94-95`, the consolidate-docs skill (line 352), the safe-p
 markdown-links exclusion `.github/copilot-worktrees/**`; an unreachable `.d.ts` guard in
 `workspace-topology.ts:25-27`; git's "Preparing worktree" line in the comms-watch smoke fixture.
 
-Proposals from this wrap's concept exploration, for routing, not yet owner-ratified: (P1) most of
-the night's defects share one generator, text the transplant copied without re-truing, on surfaces
-no validator reads (templates, tooling source, rule globs, `.gitattributes`); extend cited-path,
-cited-ADR and agent-name validation to every tracked text surface. Falsifier: run on today's
-`main`, it finds instances no open pull request fixes. (P2) a second generator is the vacuous
-gate: the lockfile rebuild test, lint warnings, non-strict commitlint, `pnpm --filter` without
-`--fail-if-no-match`, a manifest field no tool read; a planted-violation smoke per `pnpm check`
-leg would prove each gate fails. Falsifier: a leg that passes with its planted violation. (P3) cap
-concurrent fix lanes at the throughput of serial pushes and two-round reviews (about three), and
-finish before starting.
+Owner answers by user cards, 2026-09-17 15:20Z to 15:35Z (each is now work, routed as its own pull
+request after the in-flight list, lanes capped at about three):
+
+- The prompt secrets hook, when Sonar itself errors: let the prompt through, but warn visibly that
+  it was not scanned (today it passes silently).
+- Remove the `${CLAUDE_PROJECT_DIR:-.}` fallback from the three PreToolUse guard commands, with a
+  security-expert review.
+- Verify next whether files @-mentioned in a prompt bypass the Read secrets scan (plant a fake
+  secret; fix if real).
+- Bash scripts require bash 5.2 or later: a guard at the top of each bash script that fails with
+  install advice, fail-closed in the security hooks (a block decision, never a bare non-zero exit),
+  enforced by the shellcheck gate, the floor defined once and listed as a prerequisite. Lands after
+  #122 and after the cloud image's bash is measured. Scripts use `#!/usr/bin/env bash` (moved in
+  #122's round-one cure).
+- Husky hooks stay strict POSIX, checked by `shellcheck --shell=sh`; Husky runs them with `sh`.
+- Disable Turbo telemetry for the repository, CI and cloud sessions.
+- Add a CI job running `pnpm audit`, and widen the dependency-currency skill to read repository
+  advisories for pinned floors.
+- Enable `no-export-trivial-type-aliases` at error, violations measured and fixed in the same
+  pull request.
+- `no-warning-toleration.md`: remove the start-at-warn allowance and cite PDR-126.
+- `testing-strategy.md`: the system under test is the site over HTTP or an agent-tools CLI over
+  stdio; drop the MCP-only E2E guidance.
+- Test fakes: tests assert outcomes; no call inspection (resolve `testing-strategy` §Stubs vs
+  Fakes against §Philosophy (e) that way).
+- `use-result-pattern.md:11`: "Errors are part of the type signature, and the compiler rejects a
+  read of value or error until ok is checked; handling the failure is the caller's job." (rides
+  `docs/eslint-readme-follow-ups`).
+- Fix pull requests may correct factual errors in rule and doctrine text; a change to what a rule
+  requires or allows comes to the owner as a card first.
+- The disposition grammar gains the verb "Cured in description", in the parser
+  (`disposition-lines.ts`) and the pr-lifecycle skill together.
+- Ratified: (P1) extend cited-path, cited-ADR and agent-name validation to every tracked text
+  surface; (P2) a planted-violation smoke per `pnpm check` leg; (P3) cap concurrent fix lanes at
+  about three and finish before starting.
+- `principles.md:528`: say knip and gitleaks run repo-wide, verified against the root scripts.
+- Rename `oak-commit-queue-v1` when no intent is queued.
+- Lane commits stay under the owner's identity; correct `set-up-worktree-lane` to say so.
+- The test helper shared by agent-tools and the site moves to a private `tooling/` package.
+- Delete `repo-check profile`.
+- The owner re-pastes `cloud-environment-setup.sh` and starts one cloud session to measure bash
+  once #122 merges; tell the owner when.
+- The strictness drafts (#94 to #96) resume after the fix inventory.
+- Loosen the site's exact vite 7.3.5 pin to `^7.3.6`, with a cold resolution and the site suite.
 
 Improvements, not defects: the observer's other measurements could carry their failure reason
 (a failed size read or listing is recorded as absent, which the record's TSDoc states);
 `@typescript-eslint/no-import-type-side-effects` would guard type-only imports in source-run
 hooks; a validator could fail any script that runs eslint without `--max-warnings 0`; the eslint
 plugin's `configs.react` and `configs.next` have no consumer.
-
-Decisions for the owner, each named: whether the prompt secrets hook blocks when Sonar itself
-errors (today it lets the prompt through); `no-warning-toleration.md` still says a new rule may
-begin at `warn`, which PDR-126 superseded; enable or delete `no-export-trivial-type-aliases`,
-registered and enabled nowhere; `testing-strategy.md` still defines the system under test as the
-lineage's MCP server and carries MCP-only E2E guidance (proposed wordings in #110's lane report:
-system = the site over HTTP or an agent-tools CLI over stdio); doctrine contradicts itself on test
-fakes (§Stubs vs Fakes allows call-count assertions, §Philosophy (e) forbids call inspection);
-whether `principles.md:528` should say knip and gitleaks run in every workspace; whether to rename
-`oak-commit-queue-v1` (a one-time refusal of commit intents in flight at the rebuild); which
-identity lane commits use (`set-up-worktree-lane` expects the merge bot's, this repository commits
-under the owner's); where a test helper shared by `agent-tools` and `jcdotnet` lives; whether
-`repo-check profile`, which nothing consumes, stays.
 
 Orchestration notes (the scripts lived in the session scratchpad and are gone with it): pushes
 ran through a bash queue that checks port 3000 before each `git push` and stops at the first
