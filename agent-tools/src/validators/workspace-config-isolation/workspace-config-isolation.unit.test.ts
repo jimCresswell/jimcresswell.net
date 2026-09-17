@@ -21,21 +21,21 @@ import {
 
 describe('isWorkspaceConfigFile', () => {
   it('matches the vitest config family at any suffix depth', () => {
-    expect(isWorkspaceConfigFile('packages/core/result/vitest.config.ts')).toBe(true);
-    expect(isWorkspaceConfigFile('apps/oak-search-cli/vitest.e2e.config.ts')).toBe(true);
-    expect(isWorkspaceConfigFile('apps/oak-search-cli/vitest.smoke.config.ts')).toBe(true);
-    expect(isWorkspaceConfigFile('apps/oak-search-cli/vitest.experiment.config.ts')).toBe(true);
+    expect(isWorkspaceConfigFile('tooling/result/vitest.config.ts')).toBe(true);
+    expect(isWorkspaceConfigFile('agent-tools/vitest.e2e.config.ts')).toBe(true);
+    expect(isWorkspaceConfigFile('agent-tools/vitest.synthetic-suffix.config.ts')).toBe(true);
+    expect(isWorkspaceConfigFile('agent-tools/vitest.synthetic.two-deep.config.ts')).toBe(true);
   });
 
   it('matches tsup and eslint configs across extensions', () => {
-    expect(isWorkspaceConfigFile('packages/core/result/tsup.config.ts')).toBe(true);
-    expect(isWorkspaceConfigFile('packages/core/env/eslint.config.ts')).toBe(true);
-    expect(isWorkspaceConfigFile('tooling/type-helpers/eslint.config.mjs')).toBe(true);
+    expect(isWorkspaceConfigFile('tooling/result/tsup.config.ts')).toBe(true);
+    expect(isWorkspaceConfigFile('jcdotnet/eslint.config.ts')).toBe(true);
+    expect(isWorkspaceConfigFile('eslint.runtime-only.config.mjs')).toBe(true);
   });
 
   it('rejects non-config sources, declarations, and other tools', () => {
-    expect(isWorkspaceConfigFile('packages/core/result/src/index.ts')).toBe(false);
-    expect(isWorkspaceConfigFile('packages/core/result/vitest.config.d.ts')).toBe(false);
+    expect(isWorkspaceConfigFile('tooling/result/src/index.ts')).toBe(false);
+    expect(isWorkspaceConfigFile('tooling/result/vitest.config.d.ts')).toBe(false);
     expect(isWorkspaceConfigFile('commitlint.config.mjs')).toBe(false);
     expect(isWorkspaceConfigFile('knip.config.ts')).toBe(false);
     expect(isWorkspaceConfigFile('jcdotnet/postcss.config.mjs')).toBe(false);
@@ -45,62 +45,60 @@ describe('isWorkspaceConfigFile', () => {
 describe('expandWorkspaceGlobs', () => {
   const tracked = [
     'agent-tools/package.json',
-    'packages/core/result/package.json',
-    'packages/design/oak-design-ink/package.json',
-    'packages/design/oak-design-react/package.json',
-    'packages/design/oak-design-react/src/index.ts',
-    'fixtures/nested/packages/tooling/package.json',
+    'jcdotnet/package.json',
+    'tooling/result/package.json',
+    'tooling/safe-path/package.json',
+    'tooling/safe-path/src/index.ts',
+    'fixtures/nested/member/package.json',
+    'fixtures/nested/member/deeper/package.json',
   ];
 
   it('keeps literal members and expands star globs to package.json holders', () => {
-    const dirs = expandWorkspaceGlobs(
-      ['agent-tools', 'packages/core/result', 'packages/design/*'],
-      tracked,
-    );
+    const dirs = expandWorkspaceGlobs(['agent-tools', 'jcdotnet', 'tooling/*'], tracked);
 
-    expect(dirs).toEqual([
-      'agent-tools',
-      'packages/core/result',
-      'packages/design/oak-design-ink',
-      'packages/design/oak-design-react',
-    ]);
+    expect(dirs).toEqual(['agent-tools', 'jcdotnet', 'tooling/result', 'tooling/safe-path']);
   });
 
   it('keeps nested members whose parents are not members', () => {
-    const dirs = expandWorkspaceGlobs(['fixtures/nested/packages/tooling'], tracked);
+    const dirs = expandWorkspaceGlobs(['fixtures/nested/member'], tracked);
 
-    expect(dirs).toEqual(['fixtures/nested/packages/tooling']);
+    expect(dirs).toEqual(['fixtures/nested/member']);
+  });
+
+  it('expands a star glob exactly one level under a multi-segment prefix', () => {
+    const dirs = expandWorkspaceGlobs(['fixtures/nested/*'], tracked);
+
+    expect(dirs).toEqual(['fixtures/nested/member']);
   });
 });
 
 describe('resolveOwner', () => {
-  const workspaces = ['agent-tools', 'packages/core/result', 'fixtures/nested/packages/tooling'];
+  const workspaces = ['agent-tools', 'tooling/result', 'tooling/result/fixtures/nested-member'];
 
-  it('picks the longest matching workspace prefix', () => {
-    expect(resolveOwner(workspaces, 'fixtures/nested/packages/tooling/vitest.config.ts')).toBe(
-      'fixtures/nested/packages/tooling',
+  it('picks the longest matching workspace prefix, whatever the member order', () => {
+    const file = 'tooling/result/fixtures/nested-member/vitest.config.ts';
+
+    expect(resolveOwner(workspaces, file)).toBe('tooling/result/fixtures/nested-member');
+    expect(resolveOwner([...workspaces].reverse(), file)).toBe(
+      'tooling/result/fixtures/nested-member',
     );
-    expect(resolveOwner(workspaces, 'packages/core/result/tsup.config.ts')).toBe(
-      'packages/core/result',
-    );
+    expect(resolveOwner(workspaces, 'tooling/result/tsup.config.ts')).toBe('tooling/result');
   });
 
   it('assigns the repo root to files outside every workspace', () => {
-    expect(resolveOwner(workspaces, 'eslint.config.ts')).toBe('');
+    expect(resolveOwner(workspaces, 'eslint.runtime-only.config.mjs')).toBe('');
   });
 
   it('does not treat a sibling name prefix as containment', () => {
-    expect(
-      resolveOwner(['packages/core/result'], 'packages/core/result-extras/tsup.config.ts'),
-    ).toBe('');
+    expect(resolveOwner(['tooling/result'], 'tooling/result-extras/tsup.config.ts')).toBe('');
   });
 });
 
 describe('findConfigEscapes — static specifiers are the resolver’s job', () => {
   it('does not scan static import specifiers (dependency-cruiser owns them)', () => {
     const { escapes, unanalysable } = findConfigEscapes({
-      file: 'packages/core/result/vitest.config.ts',
-      owner: 'packages/core/result',
+      file: 'tooling/result/vitest.config.ts',
+      owner: 'tooling/result',
       content:
         "import { baseTestConfig } from '@engraph/workspace-config/vitest';\n" +
         "import { helper } from './src/helper.js';\n",
@@ -114,20 +112,20 @@ describe('findConfigEscapes — static specifiers are the resolver’s job', () 
 describe('findConfigEscapes — path arithmetic', () => {
   it('fires on an import.meta.url resolve that leaves the workspace', () => {
     const { escapes } = findConfigEscapes({
-      file: 'packages/core/result/vitest.e2e.config.ts',
-      owner: 'packages/core/result',
+      file: 'tooling/result/vitest.config.ts',
+      owner: 'tooling/result',
       content:
-        "setupFiles: [resolve(dirname(fileURLToPath(import.meta.url)), '../../../test.setup.no-network.ts')],\n",
+        "setupFiles: [resolve(dirname(fileURLToPath(import.meta.url)), '../workspace-config/src/no-network.setup.ts')],\n",
     });
 
     expect(escapes).toHaveLength(1);
-    expect(escapes[0]?.resolved).toBe('test.setup.no-network.ts');
+    expect(escapes[0]?.resolved).toBe('tooling/workspace-config/src/no-network.setup.ts');
   });
 
   it('fires on an absolute target, which runtime resolve would escape to directly', () => {
     const { escapes } = findConfigEscapes({
-      file: 'packages/core/result/vitest.e2e.config.ts',
-      owner: 'packages/core/result',
+      file: 'tooling/result/vitest.config.ts',
+      owner: 'tooling/result',
       content:
         "setupFiles: [resolve(dirname(fileURLToPath(import.meta.url)), '/etc/outside.ts')],\n",
     });
@@ -138,10 +136,10 @@ describe('findConfigEscapes — path arithmetic', () => {
 
   it('passes an import.meta.url resolve that stays inside the workspace', () => {
     const { escapes } = findConfigEscapes({
-      file: 'packages/core/workspace-config/src/vitest.e2e.config.base.ts',
-      owner: 'packages/core/workspace-config',
+      file: 'tooling/workspace-config/tsup.config.ts',
+      owner: 'tooling/workspace-config',
       content:
-        "setupFiles: [resolve(dirname(fileURLToPath(import.meta.url)), 'no-network.setup.ts')],\n",
+        "setupFiles: [resolve(dirname(fileURLToPath(import.meta.url)), 'src/no-network.setup.ts')],\n",
     });
 
     expect(escapes).toEqual([]);
@@ -151,8 +149,8 @@ describe('findConfigEscapes — path arithmetic', () => {
 describe('findConfigEscapes — comments are not code', () => {
   it('ignores import() mentioned in line and block comments', () => {
     const { escapes, unanalysable } = findConfigEscapes({
-      file: 'packages/core/type-helpers/eslint.config.ts',
-      owner: 'packages/core/type-helpers',
+      file: 'tooling/type-helpers/eslint.config.ts',
+      owner: 'tooling/type-helpers',
       content:
         '// JSDoc `@type {import(...)}` is the typing mechanism for a plain-JS\n' +
         '/* block comments may also mention import("anything") freely */\n',
@@ -164,11 +162,11 @@ describe('findConfigEscapes — comments are not code', () => {
 
   it('ignores a commented-out path-arithmetic escape', () => {
     const { escapes } = findConfigEscapes({
-      file: 'packages/core/result/vitest.e2e.config.ts',
-      owner: 'packages/core/result',
+      file: 'tooling/result/vitest.config.ts',
+      owner: 'tooling/result',
       content:
         '// setupFiles: [resolve(dirname(fileURLToPath(import.meta.url)), ' +
-        "'../../../test.setup.no-network.ts')],\n",
+        "'../workspace-config/src/no-network.setup.ts')],\n",
     });
 
     expect(escapes).toEqual([]);
@@ -176,11 +174,11 @@ describe('findConfigEscapes — comments are not code', () => {
 
   it('still fires on code that precedes a trailing comment', () => {
     const { escapes } = findConfigEscapes({
-      file: 'packages/core/result/vitest.e2e.config.ts',
-      owner: 'packages/core/result',
+      file: 'tooling/result/vitest.config.ts',
+      owner: 'tooling/result',
       content:
         'const setup = resolve(dirname(fileURLToPath(import.meta.url)), ' +
-        "'../../../test.setup.no-network.ts'); // legacy root reach\n",
+        "'../workspace-config/src/no-network.setup.ts'); // cross-workspace reach\n",
     });
 
     expect(escapes).toHaveLength(1);
@@ -189,23 +187,23 @@ describe('findConfigEscapes — comments are not code', () => {
 
 describe('isDegenerateScan', () => {
   it('refuses a zero-workspace scan (the manifest-tidy red-proof)', () => {
-    expect(isDegenerateScan({ workspaceCount: 0, configFileCount: 55 })).toBe(true);
+    expect(isDegenerateScan({ workspaceCount: 0, configFileCount: 1 })).toBe(true);
   });
 
   it('refuses a zero-config-file scan (the family-rename red-proof)', () => {
-    expect(isDegenerateScan({ workspaceCount: 34, configFileCount: 0 })).toBe(true);
+    expect(isDegenerateScan({ workspaceCount: 1, configFileCount: 0 })).toBe(true);
   });
 
   it('passes a populated scan set', () => {
-    expect(isDegenerateScan({ workspaceCount: 34, configFileCount: 103 })).toBe(false);
+    expect(isDegenerateScan({ workspaceCount: 1, configFileCount: 1 })).toBe(false);
   });
 });
 
 describe('findConfigEscapes — unanalysable constructs fail loud', () => {
   it('flags a non-literal dynamic import', () => {
     const { unanalysable } = findConfigEscapes({
-      file: 'packages/core/result/tsup.config.ts',
-      owner: 'packages/core/result',
+      file: 'tooling/result/tsup.config.ts',
+      owner: 'tooling/result',
       content: 'const mod = await import(configPath);\n',
     });
 
@@ -215,8 +213,8 @@ describe('findConfigEscapes — unanalysable constructs fail loud', () => {
 
   it('flags an import.meta.url resolve whose target is not a literal', () => {
     const { unanalysable } = findConfigEscapes({
-      file: 'packages/core/result/vitest.e2e.config.ts',
-      owner: 'packages/core/result',
+      file: 'tooling/result/vitest.config.ts',
+      owner: 'tooling/result',
       content: 'setupFiles: [resolve(dirname(fileURLToPath(import.meta.url)), setupPath)],\n',
     });
 
@@ -229,8 +227,8 @@ describe('classifyTurboRootInput — the pinned turbo-glob matcher', () => {
     'tsconfig.base.json',
     'fixtures/nested/pnpm-workspace.yaml',
     'fixtures/nested/.github/workflows/check.yml',
-    'fixtures/nested/packages/tooling/lib/cli.ts',
-    'packages/design/oak-design-system/src/tokens/color.ts',
+    'fixtures/nested/member/lib/cli.ts',
+    'tooling/result/src/index.ts',
   ];
 
   it('reports a positive glob with zero tracked matches as dead (the red-proof)', () => {
@@ -239,7 +237,7 @@ describe('classifyTurboRootInput — the pinned turbo-glob matcher', () => {
     });
   });
 
-  it('matches zero intermediate segments under ** (the turbo.json yaml ruling, dry-run-pinned)', () => {
+  it('matches zero intermediate segments under ** (dry-run-pinned)', () => {
     expect(classifyTurboRootInput('$TURBO_ROOT$/fixtures/nested/**/*.yaml', tracked)).toEqual({
       kind: 'alive',
     });
@@ -252,9 +250,7 @@ describe('classifyTurboRootInput — the pinned turbo-glob matcher', () => {
   });
 
   it('matches any depth under a trailing double-star', () => {
-    expect(
-      classifyTurboRootInput('$TURBO_ROOT$/packages/design/oak-design-system/**', tracked),
-    ).toEqual({ kind: 'alive' });
+    expect(classifyTurboRootInput('$TURBO_ROOT$/tooling/**', tracked)).toEqual({ kind: 'alive' });
   });
 
   it('does not let a single star cross a path separator', () => {
@@ -265,8 +261,8 @@ describe('classifyTurboRootInput — the pinned turbo-glob matcher', () => {
 
   it('treats a literal dot as literal, never regex any-char', () => {
     expect(
-      classifyTurboRootInput('$TURBO_ROOT$/fixtures/nested/packages/tooling/lib/*.ts', [
-        'fixtures/nested/packages/tooling/lib/cliXts',
+      classifyTurboRootInput('$TURBO_ROOT$/fixtures/nested/member/lib/*.ts', [
+        'fixtures/nested/member/lib/cliXts',
       ]),
     ).toEqual({ kind: 'dead' });
   });
@@ -294,7 +290,7 @@ describe('classifyTurboRootInput — the pinned turbo-glob matcher', () => {
   });
 
   it('treats a literal naming a tracked DIRECTORY as alive (turbo walks it — probe-measured)', () => {
-    expect(classifyTurboRootInput('$TURBO_ROOT$/fixtures/nested/packages', tracked)).toEqual({
+    expect(classifyTurboRootInput('$TURBO_ROOT$/fixtures/nested/member', tracked)).toEqual({
       kind: 'alive',
     });
     expect(classifyTurboRootInput('$TURBO_ROOT$/missing-directory', tracked)).toEqual({
@@ -308,7 +304,7 @@ describe('classifyTurboRootInput — the pinned turbo-glob matcher', () => {
   });
 
   it('treats a trailing-slash directory literal like the bare form (turbo walks both — probe-measured)', () => {
-    expect(classifyTurboRootInput('$TURBO_ROOT$/fixtures/nested/packages/', tracked)).toEqual({
+    expect(classifyTurboRootInput('$TURBO_ROOT$/fixtures/nested/member/', tracked)).toEqual({
       kind: 'alive',
     });
     expect(classifyTurboRootInput('$TURBO_ROOT$/missing-directory/', tracked)).toEqual({
@@ -326,7 +322,7 @@ describe('classifyTurboRootInput — the pinned turbo-glob matcher', () => {
   });
 
   it('exempts negated inputs entirely, including negations carrying unsupported syntax', () => {
-    expect(classifyTurboRootInput('!$TURBO_ROOT$/packages/design/dist/**', tracked)).toEqual({
+    expect(classifyTurboRootInput('!$TURBO_ROOT$/tooling/result/dist/**', tracked)).toEqual({
       kind: 'exempt',
     });
     expect(classifyTurboRootInput('!$TURBO_ROOT$/**/{dist,coverage}/**', tracked)).toEqual({
@@ -335,17 +331,17 @@ describe('classifyTurboRootInput — the pinned turbo-glob matcher', () => {
   });
 
   it('refuses brace and extglob syntax by naming the token (the refusal red-proof)', () => {
-    const brace = classifyTurboRootInput('$TURBO_ROOT$/packages/{core,libs}/**', tracked);
+    const brace = classifyTurboRootInput('$TURBO_ROOT$/tooling/{result,safe-path}/**', tracked);
     expect(brace.kind).toBe('unsupported');
     expect(brace.kind === 'unsupported' && brace.reason).toContain('{');
 
-    const extglob = classifyTurboRootInput('$TURBO_ROOT$/packages/+(core|libs)/**', tracked);
+    const extglob = classifyTurboRootInput('$TURBO_ROOT$/tooling/+(result|safe-path)/**', tracked);
     expect(extglob.kind).toBe('unsupported');
   });
 
   it('refuses a $TURBO_ROOT$ occurrence outside leading prefix form', () => {
     expect(classifyTurboRootInput('$TURBO_ROOT$', tracked).kind).toBe('unsupported');
-    expect(classifyTurboRootInput('packages/$TURBO_ROOT$/x.ts', tracked).kind).toBe('unsupported');
+    expect(classifyTurboRootInput('tooling/$TURBO_ROOT$/x.ts', tracked).kind).toBe('unsupported');
   });
 
   it('refuses a repeated $TURBO_ROOT$ macro instead of misreading it as a dead literal', () => {
@@ -355,19 +351,19 @@ describe('classifyTurboRootInput — the pinned turbo-glob matcher', () => {
   });
 });
 
-describe('classifyTurboRootInput — separator and spelling truth cures (MCP-553)', () => {
+describe('classifyTurboRootInput — separator and spelling truth cures', () => {
   const tracked = [
     'tsconfig.base.json',
     'fixtures/nested/pnpm-workspace.yaml',
     'fixtures/nested/.github/workflows/check.yml',
-    'fixtures/nested/packages/tooling/lib/cli.ts',
-    'packages/design/oak-design-system/src/tokens/color.ts',
+    'fixtures/nested/member/lib/cli.ts',
+    'tooling/result/src/index.ts',
   ];
 
   it('refuses a backslash whether the entry reads as a literal or as a glob (the refusal red-proof)', () => {
     // turbo reads `\` as a glob ESCAPE (measured, 2.10.9, 2026-08-11):
     // an invalid escape rejects the WHOLE config as a bad pattern, and
-    // the measured valid escape (`stdout-epipe\.ts`, in-repo) was
+    // the measured valid escape (`stdout-epipe\.ts`, in the lineage repository) was
     // accepted yet resolved ZERO files. Neither arm of the pinned
     // matcher reproduces either behaviour, so the entry refuses.
     const literalArm = classifyTurboRootInput(String.raw`$TURBO_ROOT$/a\b.ts`, [
@@ -416,13 +412,13 @@ describe('classifyTurboRootInput — separator and spelling truth cures (MCP-553
   });
 
   it('treats a trailing dot segment as the directory it follows (turbo walked it — dry-run-pinned)', () => {
-    expect(classifyTurboRootInput('$TURBO_ROOT$/fixtures/nested/packages/.', tracked)).toEqual({
+    expect(classifyTurboRootInput('$TURBO_ROOT$/fixtures/nested/member/.', tracked)).toEqual({
       kind: 'alive',
     });
   });
 
   it('drops trailing separator runs on both arms (directory literal stays alive; the glob gains its match)', () => {
-    expect(classifyTurboRootInput('$TURBO_ROOT$/fixtures/nested/packages//', tracked)).toEqual({
+    expect(classifyTurboRootInput('$TURBO_ROOT$/fixtures/nested/member//', tracked)).toEqual({
       kind: 'alive',
     });
     expect(classifyTurboRootInput('$TURBO_ROOT$/a/*//', ['a/x.ts'])).toEqual({ kind: 'alive' });
@@ -495,9 +491,12 @@ describe('scanTurboRootInputs', () => {
 
   it('routes unsupported pattern syntax to the refusal stream, never to findings', () => {
     const turboJsonText =
-      '{"tasks": {"test": {"inputs": ["$TURBO_ROOT$/packages/{core,libs}/**"]}}}';
+      '{"tasks": {"test": {"inputs": ["$TURBO_ROOT$/tooling/{result,safe-path}/**"]}}}';
 
-    const scan = scanTurboRootInputs({ turboJsonText, trackedFiles: ['packages/core/a.ts'] });
+    const scan = scanTurboRootInputs({
+      turboJsonText,
+      trackedFiles: ['tooling/result/src/index.ts'],
+    });
 
     expect(scan.findings).toEqual([]);
     expect(scan.refusals).toHaveLength(1);
@@ -508,7 +507,7 @@ describe('scanTurboRootInputs', () => {
   it('counts only the $TURBO_ROOT$ entries that matched tracked files — dead, refused, and negated all excluded', () => {
     // The bin's success line derives its claim ("N positive $TURBO_ROOT$
     // inputs each matching ≥1 tracked file") from this count, so the
-    // sentence is true by construction in every state — the S1 line
+    // sentence is true by construction in every state — the bare-prose predecessor
     // over-claimed "every positive turbo input" as bare prose while
     // only $TURBO_ROOT$ entries were ever evaluated.
     const turboJsonText = [
@@ -517,9 +516,9 @@ describe('scanTurboRootInputs', () => {
       '    "test": {',
       '      "inputs": [',
       '        "$TURBO_ROOT$/tsconfig.base.json",',
-      '        "!$TURBO_ROOT$/packages/design/dist/**",',
+      '        "!$TURBO_ROOT$/tooling/result/dist/**",',
       '        "$TURBO_ROOT$/vitest.config.ts",',
-      '        "$TURBO_ROOT$/packages/{core,libs}/**",',
+      '        "$TURBO_ROOT$/tooling/{result,safe-path}/**",',
       '        "src/**/*.ts"',
       '      ]',
       '    }',
