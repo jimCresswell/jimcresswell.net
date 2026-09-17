@@ -153,7 +153,24 @@ overrides:
   # release that does, and the postcss floor below still admits 8.5.26, which
   # declares ^3.3.17.
   nanoid: '>=3.3.18 <4'
-  picomatch: '>=4.0.4'
+  # Security floor per major line, scoped 2026-09-17: GHSA-c2c7-rcm5-vvqj
+  # (high; CVE-2026-33671; ReDoS via extglob quantifiers) and GHSA-3v7f-55p6-f55p
+  # (medium; CVE-2026-33672; method injection in POSIX character classes), both
+  # patched in 2.3.2 and 4.0.4. The unscoped '>=4.0.4' had forced micromatch's
+  # declared ^2.3.1 onto picomatch 4, across a major; each line now keeps its
+  # own patched floor, bounded below its next major. Dev tooling only. A new
+  # consumer on another major (3.x is affected below 3.0.2) gets no floor from
+  # these entries; the advisory check at its dependency landing must catch it.
+  # 2.x: micromatch 4.0.8, under markdownlint-cli2, fast-glob (through globby)
+  # and @next/eslint-plugin-next. Remove when micromatch declares picomatch
+  # >=2.3.2.
+  # 4.x: dependency-cruiser pins 4.0.7, knip declares ^4.0.7, tinyglobby
+  # ^4.0.4, vite 7.3.5 and vitest 4.1.11 ^4.0.3. The 4 selector rewrites
+  # dependency-cruiser's exact pin, so a later 4.x release moves it on the next
+  # relock, and rewrites fdir's optional peer ^3 || ^4 to this floor. Remove
+  # when the tree's vite and vitest declare picomatch >=4.0.4.
+  'picomatch@2': '>=2.3.2 <3'
+  'picomatch@4': '>=4.0.4 <5'
   # Security floor, raised 2026-07-25. Originally for next's nested postcss
   # 8.4.31 (GHSA-qx2v-qp2m-jg93, XSS via unescaped </style> in stringify
   # output; patched in 8.5.10); now also covers path traversal in previous
