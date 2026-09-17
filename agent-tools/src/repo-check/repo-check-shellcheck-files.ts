@@ -84,7 +84,8 @@ export function silencingDirectiveFailures(file: string, content: string): reado
 }
 
 /**
- * The argv for `env` that runs shellcheck over exactly the given files.
+ * The argv for `env` that runs the given shellcheck over exactly the given
+ * files.
  *
  * `env -u SHELLCHECK_OPTS` drops the environment's options, which shellcheck
  * would otherwise prepend and a later flag could not undo (an `-e` exclusion
@@ -92,9 +93,10 @@ export function silencingDirectiveFailures(file: string, content: string): reado
  * so every finding, style included, fails. `--` keeps a file name from ever
  * reading as a flag.
  *
+ * @param command - The shellcheck to run: a repo-relative path or a name on PATH.
  * @param files - Repo-relative shell script paths.
  * @returns Arguments for `env`.
  */
-export function shellcheckArgs(files: readonly string[]): readonly string[] {
-  return ['-u', 'SHELLCHECK_OPTS', 'shellcheck', '--norc', '--severity=style', '--', ...files];
+export function shellcheckArgs(command: string, files: readonly string[]): readonly string[] {
+  return ['-u', 'SHELLCHECK_OPTS', command, '--norc', '--severity=style', '--', ...files];
 }

@@ -37,8 +37,9 @@ pnpm_version="$(node -p "require('./package.json').packageManager.match(/^pnpm@(
 corepack install -g "pnpm@${pnpm_version}"
 
 # The root `lint:shell` gate (a leg of `pnpm check`, so of pre-push) runs
-# the version of shellcheck CI pins, installed where the environment script
-# installs gitleaks. The release asset redirects from github.com to
+# the version of shellcheck CI pins. The installer puts it in this repo's own
+# .tools/bin, which the gate runs first, so each Practice repo the session
+# carries keeps its own pin. The release asset redirects from github.com to
 # release-assets.githubusercontent.com, the chain the universal preflight
 # already downloads gitleaks through — no new host (probe invariant).
-./.agent/setup/install-shellcheck.sh /usr/local/bin
+./.agent/setup/install-shellcheck.sh

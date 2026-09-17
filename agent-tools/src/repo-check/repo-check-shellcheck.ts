@@ -1,4 +1,4 @@
-import { closeSync, openSync, readFileSync, readSync } from 'node:fs';
+import { closeSync, existsSync, openSync, readFileSync, readSync } from 'node:fs';
 
 import { writeErrorLine, writeLine } from '../core/terminal-output.js';
 
@@ -10,6 +10,8 @@ import {
 } from './repo-check-shellcheck-files.js';
 import {
   pinnedShellcheckVersion,
+  REPO_SHELLCHECK,
+  resolveShellcheck,
   SHELLCHECK_INSTALLER,
   shellcheckVersion,
 } from './repo-check-shellcheck-version.js';
@@ -21,9 +23,10 @@ import { trackedFiles } from './repo-check-universe.js';
  * shellcheck, failing on any finding at any severity.
  *
  * shellcheck is a system binary, not a package dependency, so the gate first
- * reads the pin from the installer and asks shellcheck for its version: a
- * missing, foreign or other-version `shellcheck` fails the gate with the
- * remedy. The universe is git's tracked tree (`repo-check-universe.ts`); each
+ * reads the pin from the installer, runs the repository's `.tools/bin`
+ * shellcheck when the installer has put one there and the shellcheck on PATH
+ * otherwise, and asks it for its version: a missing, foreign or other-version
+ * shellcheck fails the gate with the remedy. The universe is git's tracked tree (`repo-check-universe.ts`); each
  * file's first line is read to find the extensionless scripts, and each
  * script is read for directives that would silence the lint. The pure
  * verdicts live in `repo-check-shellcheck-files.ts` and
@@ -31,8 +34,8 @@ import { trackedFiles } from './repo-check-universe.js';
  * directory, which agent-tools' `repo-check` script sets to the repository
  * root (`cd ..`).
  *
- * `shellcheck` and `env` resolve through PATH, as `gitleaks` does for the
- * secrets leg. The gate is a lint, not a trust boundary: whoever can write a
+ * `env`, and `shellcheck` when no repository binary is installed, resolve
+ * through PATH, as `gitleaks` does for the secrets leg. The gate is a lint, not a trust boundary: whoever can write a
  * PATH directory already runs code through every tool resolved by name, and
  * the version check pins what a run reports, not which binary produced it.
  *
@@ -48,8 +51,10 @@ const HEAD_BYTES = 256;
 export interface ShellcheckGateRuntime {
   /** The installer script's text, which holds the pin. */
   readonly readInstaller: () => string;
-  /** Run `shellcheck --version`. */
-  readonly probeVersion: () => RepoCheckCommandResult;
+  /** Whether the installer has put the pinned binary at `.tools/bin/shellcheck`. */
+  readonly hasRepoShellcheck: () => boolean;
+  /** Run the given shellcheck with `--version`. */
+  readonly probeVersion: (command: string) => RepoCheckCommandResult;
   /** Git's tracked files. */
   readonly trackedFiles: () => readonly string[];
   /** A file's opening bytes, enough to hold its first line. */
@@ -79,7 +84,8 @@ function readHead(file: string): string {
 /** The real edges: the working tree, git, the process, stdout and stderr. */
 const defaultShellcheckGateRuntime: ShellcheckGateRuntime = {
   readInstaller: () => readFileSync(SHELLCHECK_INSTALLER, 'utf8'),
-  probeVersion: () => defaultRuntime.runCaptured('shellcheck', ['--version']),
+  hasRepoShellcheck: () => existsSync(REPO_SHELLCHECK),
+  probeVersion: (command) => defaultRuntime.runCaptured(command, ['--version']),
   trackedFiles: () => trackedFiles(defaultRuntime),
   readHead,
   readText: (file) => readFileSync(file, 'utf8'),
@@ -104,7 +110,12 @@ export async function runShellcheckTracked(
   if (!pinned.ok) {
     return fail(runtime, [pinned.error]);
   }
-  const version = shellcheckVersion(runtime.probeVersion(), pinned.value);
+  const shellcheck = resolveShellcheck(runtime.hasRepoShellcheck());
+  const version = shellcheckVersion(
+    runtime.probeVersion(shellcheck.command),
+    pinned.value,
+    shellcheck.source,
+  );
   if (!version.ok) {
     return fail(runtime, [version.error]);
   }
@@ -117,11 +128,12 @@ export async function runShellcheckTracked(
     ]);
   }
   runtime.writeLine(
-    `${GATE}: shellcheck ${version.value} over ${String(scripts.length)} tracked shell scripts`,
+    `${GATE}: shellcheck ${version.value} (${shellcheck.source}) over ` +
+      `${String(scripts.length)} tracked shell scripts`,
   );
   const directives = scripts.flatMap((file) =>
     silencingDirectiveFailures(file, runtime.readText(file)),
   );
-  const status = await runtime.runEnv(shellcheckArgs(scripts));
+  const status = await runtime.runEnv(shellcheckArgs(shellcheck.command, scripts));
   return directives.length > 0 ? fail(runtime, directives) : status;
 }

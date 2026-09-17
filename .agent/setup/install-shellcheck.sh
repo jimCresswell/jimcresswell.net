@@ -1,26 +1,28 @@
 #!/usr/bin/env bash
 # Install the shellcheck that the root `lint:shell` gate runs, pinned by
-# version and by the sha256 of each host's release asset. CI
-# (.github/workflows/ci.yml), the cloud session hook (cloud-session-setup.sh
-# beside this file) and developers all install it here. shellcheck versions
-# differ in what they report, so the pin lives here once: the gate reads
-# SHELLCHECK_VERSION from this file and fails when another version is first on
-# PATH. Moving the pin means changing the version and every digest together,
-# each digest recomputed from a download and cross-checked against the
-# `digest` GitHub's release API records for that asset.
+# version and by the sha256 of each host's release asset, into this
+# repository's own .tools/bin (ignored by git). CI (.github/workflows/ci.yml),
+# the cloud session hook (cloud-session-setup.sh beside this file) and
+# developers all install it here, and the gate runs .tools/bin/shellcheck
+# before any shellcheck on PATH, so a checkout never shares the binary with
+# another repository's pin. shellcheck versions differ in what they report, so
+# the pin lives here once: the gate reads SHELLCHECK_VERSION from this file and
+# fails when the shellcheck it runs is another version. Moving the pin means
+# changing the version and every digest together, each digest recomputed from
+# a download and cross-checked against the `digest` GitHub's release API
+# records for that asset.
 #
-# Usage: install-shellcheck.sh <bin-dir>
-#   <bin-dir> receives the binary; the caller puts it on PATH ahead of any
-#   other shellcheck.
+# Usage: install-shellcheck.sh
 set -euo pipefail
 
 SHELLCHECK_VERSION=0.11.0
 
-if [[ $# -ne 1 ]]; then
-  echo "usage: install-shellcheck.sh <bin-dir>" >&2
+if [[ $# -ne 0 ]]; then
+  echo "usage: install-shellcheck.sh (it takes no arguments; it installs into .tools/bin)" >&2
   exit 2
 fi
-bin_dir="$1"
+repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+bin_dir="${repo_root}/.tools/bin"
 
 host="$(uname -s) $(uname -m)"
 case "$host" in

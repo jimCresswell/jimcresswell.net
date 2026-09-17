@@ -28,8 +28,9 @@ path (owner word 2026-08-24).
    `.agent/setup/cloud-session-setup.sh`; the environment script invokes it
    from the repo root after install, under the same fail-fast rules. This
    repo's hook installs the pinned Playwright Chromium for the
-   `test:ui`/e2e suites and the pinned shellcheck for the `lint:shell`
-   gate. A repo with no extra needs commits no hook.
+   `test:ui`/e2e suites and, into the repo's own `.tools/bin`, the pinned
+   shellcheck for the `lint:shell` gate. A repo with no extra needs commits
+   no hook.
 
 ## Changing the environment
 

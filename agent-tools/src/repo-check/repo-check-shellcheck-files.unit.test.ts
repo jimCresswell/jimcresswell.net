@@ -88,11 +88,11 @@ describe('silencingDirectiveFailures', () => {
 });
 
 describe('shellcheckArgs', () => {
-  it('runs shellcheck through env with SHELLCHECK_OPTS removed, no rc file, every severity', () => {
-    expect(shellcheckArgs(['.husky/pre-push', 'a b.sh'])).toStrictEqual([
+  it('runs the given shellcheck through env with SHELLCHECK_OPTS removed, no rc file, every severity', () => {
+    expect(shellcheckArgs('.tools/bin/shellcheck', ['.husky/pre-push', 'a b.sh'])).toStrictEqual([
       '-u',
       'SHELLCHECK_OPTS',
-      'shellcheck',
+      '.tools/bin/shellcheck',
       '--norc',
       '--severity=style',
       '--',

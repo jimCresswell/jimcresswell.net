@@ -55,7 +55,7 @@ function usage(): string {
     '                         Capture the pnpm check Turbo graph and, unless dry-run is set, time pnpm check.',
     '                         --capture-output stores pnpm check stdout/stderr beside the profile artifact.',
     '  shellcheck-tracked     Run shellcheck on every tracked shell script; fail on any finding or',
-    '                         silencing directive, or when the pinned shellcheck is not first on PATH.',
+    '                         silencing directive, or when .tools/bin or PATH has no pinned shellcheck.',
   ].join('\n');
 }
 

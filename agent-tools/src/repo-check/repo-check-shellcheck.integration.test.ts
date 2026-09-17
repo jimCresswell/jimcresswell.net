@@ -5,10 +5,11 @@ import type { RepoCheckCommandResult } from './repo-check-types.js';
 
 /**
  * The shellcheck gate's composition root, driven through its injected
- * runtime. The installer read, the version probe, git's tracked files, the
- * file reads, the lint run and the two output streams are simple fakes, so
- * these tests prove the wiring: what reaches the lint, what is written, and
- * the status returned. What a probe, a path or a script maps to is the pure
+ * runtime. The installer read, the repo-scoped binary's presence, the version
+ * probe, git's tracked files, the file reads, the lint run and the two output
+ * streams are simple fakes, so these tests prove the wiring: which shellcheck
+ * is probed and run, what reaches the lint, what is written, and the status
+ * returned. What a probe, a path or a script maps to is the pure
  * modules' (`repo-check-shellcheck-files.unit.test.ts`,
  * `repo-check-shellcheck-version.unit.test.ts`); the real edges are proved by
  * the gate running (`pnpm lint:shell`).
@@ -40,6 +41,7 @@ interface GateFixture {
   readonly probe?: RepoCheckCommandResult;
   readonly tree?: ReadonlyMap<string, string>;
   readonly lintStatus?: number;
+  readonly repoShellcheck?: boolean;
 }
 
 /**
@@ -49,12 +51,17 @@ interface GateFixture {
  */
 function gateRuntime(fixture: GateFixture = {}) {
   const tree = fixture.tree ?? TREE;
+  const probes: string[] = [];
   const lintRuns: (readonly string[])[] = [];
   const lines: string[] = [];
   const failures: string[] = [];
   const runtime: ShellcheckGateRuntime = {
     readInstaller: () => fixture.installer ?? INSTALLER,
-    probeVersion: () => fixture.probe ?? PROBE_0_11_0,
+    hasRepoShellcheck: () => fixture.repoShellcheck ?? false,
+    probeVersion: (command) => {
+      probes.push(command);
+      return fixture.probe ?? PROBE_0_11_0;
+    },
     trackedFiles: () => [...tree.keys()],
     readHead: (file) => tree.get(file) ?? '',
     readText: (file) => tree.get(file) ?? '',
@@ -65,20 +72,45 @@ function gateRuntime(fixture: GateFixture = {}) {
     writeLine: (line) => lines.push(line),
     writeFailure: (line) => failures.push(line),
   };
-  return { runtime, lintRuns, lines, failures };
+  return { runtime, probes, lintRuns, lines, failures };
 }
 
 describe('runShellcheckTracked', () => {
-  it('lints exactly the shell scripts among the tracked files and passes a clean lint', async () => {
-    const { runtime, lintRuns, lines, failures } = gateRuntime();
+  it('lints exactly the shell scripts among the tracked files with the shellcheck on PATH, and passes a clean lint', async () => {
+    const { runtime, probes, lintRuns, lines, failures } = gateRuntime();
 
     await expect(runShellcheckTracked(runtime)).resolves.toBe(0);
 
+    expect(probes).toStrictEqual(['shellcheck']);
     expect(lintRuns).toStrictEqual([
       ['-u', 'SHELLCHECK_OPTS', 'shellcheck', '--norc', '--severity=style', '--', ...SCRIPTS],
     ]);
-    expect(lines).toStrictEqual([`${GATE_PREFIX}shellcheck 0.11.0 over 3 tracked shell scripts`]);
+    expect(lines).toStrictEqual([
+      `${GATE_PREFIX}shellcheck 0.11.0 (the shellcheck on PATH) over 3 tracked shell scripts`,
+    ]);
     expect(failures).toStrictEqual([]);
+  });
+
+  it('probes and runs the repo-scoped shellcheck when the installer has put one in .tools/bin', async () => {
+    const { runtime, probes, lintRuns, lines } = gateRuntime({ repoShellcheck: true });
+
+    await expect(runShellcheckTracked(runtime)).resolves.toBe(0);
+
+    expect(probes).toStrictEqual(['.tools/bin/shellcheck']);
+    expect(lintRuns).toStrictEqual([
+      [
+        '-u',
+        'SHELLCHECK_OPTS',
+        '.tools/bin/shellcheck',
+        '--norc',
+        '--severity=style',
+        '--',
+        ...SCRIPTS,
+      ],
+    ]);
+    expect(lines).toStrictEqual([
+      `${GATE_PREFIX}shellcheck 0.11.0 (.tools/bin/shellcheck) over 3 tracked shell scripts`,
+    ]);
   });
 
   it('returns the lint status when shellcheck reports a finding', async () => {
@@ -113,7 +145,7 @@ describe('runShellcheckTracked', () => {
     ]);
   });
 
-  it('fails without linting when another shellcheck version is on PATH', async () => {
+  it('fails without linting when the shellcheck it resolved is another version', async () => {
     const probe = { ...PROBE_0_11_0, stdout: 'version: 0.9.0\n' };
     const { runtime, lintRuns, failures } = gateRuntime({ probe });
 
@@ -121,7 +153,9 @@ describe('runShellcheckTracked', () => {
 
     expect(lintRuns).toStrictEqual([]);
     expect(failures).toStrictEqual([
-      expect.stringMatching(/^repo-check shellcheck-tracked: shellcheck 0\.9\.0 /u),
+      expect.stringMatching(
+        /^repo-check shellcheck-tracked: the shellcheck on PATH is shellcheck 0\.9\.0,/u,
+      ),
     ]);
   });
 
