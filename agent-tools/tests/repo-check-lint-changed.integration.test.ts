@@ -17,6 +17,8 @@ const LINT_ARGS = [
   '--filter=...[HEAD]',
   '--output-logs=errors-only',
 ];
+const DEPRECATION_WARNING =
+  ' WARNING  TURBO_REMOTE_CACHE_READ_ONLY is deprecated and will be removed in a future major version. Use TURBO_CACHE=remote:r';
 
 /**
  * A fake runtime that answers the one captured call the step issues (turbo's
@@ -102,6 +104,43 @@ describe('repo-check lint-changed', () => {
       'x Could not resolve workspaces.',
     );
     expect(harness.inheritedCalls).toStrictEqual([]);
+  });
+
+  it('fails, naming the warning, when a successful dry run with an empty plan writes one to stderr', async () => {
+    // turbo 2.10.13's stderr, verbatim, when TURBO_REMOTE_CACHE_READ_ONLY is
+    // set: it exits 0 and prints the warning twice. A green gate prints no
+    // warning. The stderr is still replayed first, so nothing turbo said (a
+    // one-time telemetry notice included) is lost from a failing run.
+    const stderr = `${DEPRECATION_WARNING}\n• turbo 2.10.13\n${DEPRECATION_WARNING}\n`;
+    const harness = lintChangedHarness({
+      plan: { stdout: JSON.stringify({ packages: ['//'], tasks: [] }), stderr },
+    });
+
+    await expect(runLintChanged(harness.runtime, harness.terminal)).rejects.toThrow(
+      'WARNING  TURBO_REMOTE_CACHE_READ_ONLY is deprecated',
+    );
+    expect(harness.lines).toStrictEqual([]);
+    expect(harness.errorText).toStrictEqual([stderr]);
+  });
+
+  it('fails before the lint run when the dry run of a planned run writes a warning', async () => {
+    const harness = lintChangedHarness({
+      plan: {
+        stdout: JSON.stringify({ tasks: [{ taskId: '@engraph/result#lint' }] }),
+        stderr: `${DEPRECATION_WARNING}\n`,
+      },
+    });
+
+    await expect(runLintChanged(harness.runtime, harness.terminal)).rejects.toThrow(/WARNING/u);
+    expect(harness.inheritedCalls).toStrictEqual([]);
+  });
+
+  it('names the warning, not the plan, when the dry run also prints no readable plan', async () => {
+    const harness = lintChangedHarness({
+      plan: { stdout: '', stderr: `${DEPRECATION_WARNING}\n` },
+    });
+
+    await expect(runLintChanged(harness.runtime, harness.terminal)).rejects.toThrow(/WARNING/u);
   });
 
   it('reports a signal-killed dry run by its signal, never as a plan', async () => {

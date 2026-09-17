@@ -1,3 +1,5 @@
+import { stripVTControlCharacters } from 'node:util';
+
 import { z } from 'zod';
 
 import { writeLine } from '../core/terminal-output.js';
@@ -78,6 +80,50 @@ export function plannedTaskCount(dryRunJson: string): number {
 }
 
 /**
+ * turbo's version banner, matched once colour codes are stripped (turbo dims
+ * it under CLICOLOR_FORCE). On turbo 2.10.13 a successful dry run writes it to
+ * stderr every time (a clean tree, a workspace change and a global dependency
+ * change alike).
+ */
+const VERSION_BANNER = /^• turbo \d+\.\d+\.\d+$/u;
+
+/**
+ * turbo 2.10.13's one-time telemetry notice. It precedes the banner on the
+ * first run under a turbo config directory that has not yet shown it (a new
+ * machine, user or container). It is informational and never hidden: it is
+ * replayed with the rest of stderr after a dry run that exits 0, and carried
+ * in the thrown message of one that does not.
+ */
+const TELEMETRY_NOTICE: ReadonlySet<string> = new Set([
+  'Attention:',
+  'Turborepo now collects completely anonymous telemetry regarding usage.',
+  'This information is used to shape the Turborepo roadmap and prioritize features.',
+  "You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:",
+  'https://turborepo.dev/docs/telemetry',
+]);
+
+/**
+ * The diagnostic lines of a successful dry run's stderr.
+ *
+ * Every non-blank line other than turbo's version banner and its one-time
+ * telemetry notice is one, compared without its colour codes: turbo's
+ * `WARNING` lines (a deprecated setting such as TURBO_REMOTE_CACHE_READ_ONLY
+ * exits 0 and prints them) and whatever pnpm or node writes. A line of a shape
+ * this step does not know fails the gate rather than passing unread, as a plan
+ * with no task list does.
+ *
+ * @param stderr - stderr of a `turbo run <task> --dry-run=json` that exited 0.
+ * @returns the diagnostic lines, trimmed and without colour codes; empty when
+ *   stderr holds only the banner and the notice.
+ */
+export function dryRunDiagnostics(stderr: string): readonly string[] {
+  return stderr
+    .split('\n')
+    .map((line) => stripVTControlCharacters(line).trim())
+    .filter((line) => line.length > 0 && !VERSION_BANNER.test(line) && !TELEMETRY_NOTICE.has(line));
+}
+
+/**
  * Describe a failed dry run: how it ended, then turbo's own message. A signal
  * death is named as such, never folded into an exit code (F-112).
  */
@@ -107,11 +153,16 @@ const processTerminal: LintChangedTerminal = {
 /**
  * Lint the workspaces changed since `HEAD`, or say that nothing changed.
  *
- * turbo's stderr from the dry run is replayed whether or not the plan is
- * empty, so a warning turbo prints while planning is never swallowed.
+ * A successful dry run's stderr is replayed verbatim, so nothing turbo prints
+ * while planning is swallowed (its one-time telemetry notice included), and
+ * is then read before the plan. Any line other than turbo's version banner and
+ * telemetry notice is a diagnostic and fails the step whether or not the plan
+ * holds a task, because a green gate prints no warning (no-warning-toleration)
+ * and a replayed one would otherwise still exit 0.
  *
  * @returns the lint run's exit code, or 0 when the plan holds no task.
- * @throws when the dry run fails or prints an unreadable plan.
+ * @throws when the dry run fails, writes a diagnostic to stderr, or prints an
+ *   unreadable plan.
  */
 export async function runLintChanged(
   runtime: RepoCheckRuntime = defaultRuntime,
@@ -123,6 +174,12 @@ export async function runLintChanged(
   }
   if (plan.stderr.length > 0) {
     terminal.errorText(plan.stderr);
+  }
+  const diagnostics = dryRunDiagnostics(plan.stderr);
+  if (diagnostics.length > 0) {
+    throw new Error(
+      `the turbo dry run planning the workspace lint exited 0 but wrote diagnostics to stderr, which fail the step:\n${diagnostics.join('\n')}`,
+    );
   }
   if (plannedTaskCount(plan.stdout) === 0) {
     terminal.line('repo-check lint-changed: turbo plans no lint task for the changes since HEAD');
