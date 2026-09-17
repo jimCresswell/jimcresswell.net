@@ -151,74 +151,103 @@ STATE, 2026-09-16 afternoon (Cauldron herds Lustre, Director), owner-directed in
   byte-identical to the patch that became #92, the seven tsconfig edits adding only flags #94's
   base carries.
 
-STATE, 2026-09-17T15:00Z (Cauldron herds Lustre, Director). The session resumed after the usage
-limit and worked the in-flight inventory in order, at most three lanes at a time.
+STATE, 2026-09-17T16:15Z (Cauldron herds Lustre, Director), written at the owner's wrap for
+compaction.
 
-FIRST ACTION: finish the in-flight list below before starting any new lane. Open no new fix lane
-while more than four fix pull requests are open. Each pull request keeps the two-round budget; a
-finding after the last round is cured forward on a branch cut from the reviewed head, lifted by a
-signed line naming that commit, and landed in its own pull request.
+OWNER HOLDS, binding until the owner lifts them:
 
-Merged 2026-09-16/17 (owner word 2026-09-16: "If you know there is broken code, fix it"): #98
-(`SHA: 262a9f7`), #99 (`SHA: bb284c9`), #100 (`SHA: d8852f0`), #101 (`SHA: 65cf1d0`), #102
-(`SHA: fb0409f`), #103 (`SHA: cd56dd5`), #104 (`SHA: 4d5d334`), #106 (`SHA: e13bce2`), #107
-(`SHA: e98134b`), #108 (`SHA: dbc1feb`), #109 (`SHA: 6667514`), #110 (`SHA: 9a8db1b`), #113
-(`SHA: 278a8cd`), #115 (`SHA: b2cd959`); after the resume #119 (`SHA: 79da5c9`), #111
-(`SHA: ed7e074`), #116 (`SHA: a2cf91b`), #114 (`SHA: 8915de0`), #117 (`SHA: 504109b`), #121
-(`SHA: 6f94f6d`, #117's last-round cure), #112 (`SHA: 8fafbf2`). Their remote branches are deleted.
+- **No new subagent lanes.** Owner word 2026-09-17, about 16:00Z: "don't start any more until I say
+  otherwise, the exception is expert reviewers". The resume starts none: it lands and closes what
+  exists.
+- **Open pull requests go to zero** through normal procedures (owner word, same afternoon), under
+  the plan `.agent/plans/delivery/estate-fix-backlog.plan.md`. The plan is a sketch awaiting the
+  owner's ratification. Close-out is already authorised by that word and by `pr-lifecycle`'s
+  standing zero-open objective. Its §Mechanism item 2 is the change that ends the loop: a true
+  low-value finding from a last review round becomes a row in the plan's §Review dispositions and a
+  resolved thread, never a new pull request. Only a correctness defect in the pull request's own
+  claim is cured forward.
 
-In flight, in order (worktrees are named by their directory under the sibling worktrees folder):
+FIRST ACTION on resume, in order:
 
-1. PR 122 `fix/shellcheck-gate-followups-v2` (`SHA: fb6469bb`, worktree `shellcheck-gate`): #112's
-   last-round cures, round one requested. A local branch `fix/shellcheck-classifier-names`
-   (`SHA: 1594972a`, unpushed, stacked on it) adds shell names shellcheck lints (`bats`, `ksh88`,
-   `ksh93`, `oksh`, `busybox sh`, `ash`, `.ksh`, `.dash`, `.bats`); its code-expert review
-   says the classifier regex grows every round and shellcheck lints any interpreter whose name
-   starts with a shell name, so the cure is a closed classification (an unknown shebang fails
-   loudly), not a larger regex. The local `fix/shellcheck-gate-followups` holds a commit with a
-   commitlint-failing message, superseded by v2; never pushed.
-2. PR 120 `fix/expert-roster-and-personas` (`SHA: 682f4ce8`, worktree
-   `reviewer-template-citations`): #111's follow-up. Round one (review 5237031874) left seven
-   suppressed findings: `skills.md` missing from the gateway's entry-point list; `spacing` missing
-   from the design-system trigger; `jcdotnet/lib/` missing from the PKG trigger;
-   `starter-templates.md` still prescribing `components/personas/*`; agent-tools fixtures naming
-   `components/personas/fred.md`; `GEMINI.md` and `skills.md` missing from the
-   subagent-architect checklist; Cursor's motion globs (out of scope: `fix/site-relative-paths-in-rules`).
-   A lane is curing them with class sweeps; then push, one signed line per finding, round two.
-3. PR 105 `fix/session-start-hook-paths` (`SHA: 8dab8e86`): its follow-up
-   `fix/hook-script-program-positions` (worktree `hook-program-positions`, UNCOMMITTED) is being
-   rebuilt to a closed grammar after two further code-expert rounds found commands the word model
-   accepted although bash runs a working-directory program. Director rulings 2026-09-17: the
-   accepted forms are the known hook commands' productions only (a quoted project path ending
-   `.mjs` or `.sh`; a listed interpreter, today `node`, with a quoted project path script; the
-   error wrapper at a quoted project path followed by one program); no assignments, no `env`, no
-   home, absolute or drive paths (reversing round one's drive-path acceptance). Falsifier: a real
-   hook that needs another form. Then lift on #105 (review `PRR_kwDORH1Wfc8AAAABN7QJxw`, thread
-   `PRRT_kwDORH1Wfc6jJ73j`), merge #105, push, open the follow-up.
-4. PR 118 `fix/gate-output-noise` (`SHA: 48dc6e81`): a lane is curing round one's thread
-   (comment 4031956494, a warning on a successful dry run exits 0) on the branch; then push,
-   answer, round two.
-5. `docs/eslint-readme-follow-ups` (`SHA: dd0af475`, worktree `eslint-tooling-dead-config`,
-   unpushed): #114's two suppressed findings, cured and lifted on #114. Before pushing, add the same
-   claim family the docs-adr-expert found: `.agent/rules/use-result-pattern.md:11` says "the
-   compiler ensures all cases are handled" (false: the compiler rejects an un-narrowed read and no
-   more); `tooling/result/src/index.unit.test.ts:307-311` "forces exhaustive error handling"
-   proves nothing (test-expert decides rename or delete); the Result README's API list omits
-   `unwrapOrThrow`, `collect` and `assertNeverResult`, and two examples use `ok`/`err`
-   unimported.
-6. `fix/lint-warnings-fail` (`SHA: 1bae5445`, not pushed): rebuild as v2 with a message that
-   passes `commitlint --strict`; its root `package.json` line sits next to #112's `lint:shell`.
-7. `fix/tools-lineage-paths` (13 files UNCOMMITTED): verify the partial work or restart; not yet
-   done: `comms-provenance-check.ts:35` and `comms-archive-move.ts:50` scan a nonexistent
-   `docs/architecture/architectural-decisions`.
-8. `fix/site-relative-paths-in-rules` (worktree `expert-roster`, 18 files UNCOMMITTED, cut at
-   682f4ce8): finish after #120 lands; it now also owns Cursor's design-system motion globs.
-9. Delete the `minimumReleaseAgeExclude` block in `pnpm-workspace.yaml` (the hold lifted at
-   2026-09-17T08:24Z), in its own pull request; the `override-floors` worktree is kept for it.
+1. Read the plan's §Close-out.
+2. Read the assumptions-expert review of the plan, if it reported before the stop (the result
+   is summarised below when it did). Apply its fixes to the sketch.
+3. Present the sketch for ratification as one card.
 
-Retire after merge: the worktrees `session-start-paths`, `gate-output-noise` and
-`lineage-oak-identifiers` once their branches land. The strictness drafts #94, #95 and #96 are
-unchanged.
+Merged 2026-09-17 after the resume:
+
+- #119 (`SHA: 79da5c9`)
+- #111 (`SHA: ed7e074`)
+- #116 (`SHA: a2cf91b`)
+- #114 (`SHA: 8915de0`)
+- #117 (`SHA: 504109b`)
+- #121 (`SHA: 6f94f6d`)
+- #112 (`SHA: 8fafbf2`)
+- #105 (`SHA: ad5d7a6`)
+- #123 (`SHA: f86136d`, #105's closed hook grammar)
+- #122 (`SHA: 83e6cb8`, #112's cures and the closed shebang set)
+- #120 (`SHA: 4e9cd80`)
+- #118 (`SHA: 92b596d`, after the owner's one bounded extra review of its CI cure)
+- #124 (`SHA: 68e68e9`)
+
+PR #125 was closed with its reason (its finding is a plan ledger row). The merged branches are deleted
+on origin.
+
+Open, in order:
+
+1. PR #126 `fix/lint-warnings-fail-v2` (worktree `lint-warnings-fail`): pushed as `SHA: 0aad8e48`, a
+   merge of main over `SHA: d89306bb`. Check `gh pr list`: if its pull request is missing, the
+   push did not finish, so push and open it (the description states the red evidence on main,
+   the mutant and the invocation table). Old `fix/lint-warnings-fail` (`SHA: 1bae5445`) is
+   superseded.
+2. `fix/architecture-reviewer-pairing` (worktree `reviewer-template-citations`,
+   `SHA: 21668df0`, NOT pushed): #120's last-round cure. Push, open, review, land.
+3. `fix/mention-secrets-scan` (worktree `override-floors`, 5 files UNCOMMITTED, 24 behind main).
+   The bypass is real: on Claude Code 2.1.274 an @-mentioned file reaches the model with no
+   PreToolUse call, and the prompt hook sees only the prompt text. The cure widens the prompt hook
+   to scan mentioned files. Next steps are the plan's close-out item 5. The lane was stopped at the
+   owner's wrap; its security-expert review was stopped with it.
+4. Drafts #94, #95, #96 (strictness), then the coordination branch fold. This branch's stamp is
+   2026-09-16, so the fold was already due at this session's open (missed at open).
+
+Uncommitted partial work, conserved in place (never discarded):
+
+- `expert-roster` worktree (`fix/site-relative-paths-in-rules`, 18 files): input to plan slice 15.
+- `tools-lineage-paths` worktree (13 files): input to slice 9.
+
+Local superseded branches, deletable once confirmed:
+
+- `fix/shellcheck-classifier-names` (`SHA: 1594972a`, replaced by the closed set in #122);
+- `fix/shellcheck-gate-followups` (`SHA: 99eff2a3`, a commitlint-failing message, replaced by v2).
+
+The remote `fix/shebang-refusal-remedy` stays as slice 7's input.
+
+Owner actions pending:
+
+- Re-paste the cloud environment setup script from main (its first line is now
+  `#!/usr/bin/env bash`).
+- Start one cloud session and report `bash --version` and `command -v bash`. This is the plan's
+  owner gate for the bash 5.2 floor.
+
+The owner was told at about 15:50Z.
+
+Worktrees to retire after their branches land: `gate-output-noise` (#118 merged),
+`eslint-tooling-dead-config` (#124 merged), `lineage-oak-identifiers` (#117 and #121 merged),
+`shellcheck-gate` (once slice 7 takes its branch).
+
+Orchestration recipe (nothing survives compaction):
+
+- **Push queue:** scratchpad `push-queue.sh <logdir> <worktree>=<branch>…`. It checks port 3000,
+  runs `git push -u`, and stops at the first failure.
+- **Review watch:** `review-watch.sh <repo> <pr>:<head-prefix>…`, run under bash. In zsh, write
+  `"${n}:<sha>"`, never `"$n:<sha>"`: zsh reads `:a` after a variable as a path modifier. This
+  broke one watch today.
+- **Merged-branch deletion:** `delete-merged.sh <repo> <branch>…`. It mints the bot token, confirms
+  a merged pull request, deletes over REST, and reads back that the branch is absent.
+- **Signed lines:** the grammar in `agent-tools/src/pr-watch/disposition-lines.ts`. A lift needs
+  `Cured in SHA:<sha>` or `Rejected`.
+
+The scratchpad scripts are ephemeral; this recipe rebuilds them.
 
 Owed, as fixes (each verified by a lane report unless marked; each its own pull request):
 the three PreToolUse guard commands use `${CLAUDE_PROJECT_DIR:-.}`, which runs a

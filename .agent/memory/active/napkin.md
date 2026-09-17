@@ -2342,3 +2342,92 @@ tip is one whose required analysers ran".
   order), this segment (why), the memories index (orchestration facts), the formation letter of
   2026-09-17 in `.agent/experience/`. _Fixed point_: a third pass would only re-find the unread
   partial diffs and the unverified attributions above; the recursion closes here.
+
+### Director, the resumed fix loop to the zero-open-PR plan (2026-09-17, 14:05Z to 16:15Z) — Cauldron herds Lustre (880ff9)
+
+- **Landed.** Thirteen pull requests merged after the resume; #125 was closed with its reason.
+  The owner answered 23 questions by user cards (recorded in repo-continuity). They asked for the
+  open count to reach zero through normal procedures and paused new lanes. The plan
+  `estate-fix-backlog` is a sketch awaiting ratification.
+- **Metacognition, retrospective.** The owner's corrections this afternoon had one shape.
+  - The four corrections:
+    - "review your subagents, and don't start any more";
+    - "what lane, what value";
+    - a round-budget question a memory already answered;
+    - #118 recorded as approved while its CI was red.
+  - In each, my launch rate outran my supervision. I read the owner's newest word ("if you know
+    there is broken code, fix it") by analogy as "every true finding gets its own pull request".
+  - `pr-lifecycle` §Phase 4 state 3 and PDR-140 already had the cure: a correct but
+    disproportionate finding takes a named home and a resolved thread, not a diff. The composition
+    of three rules was the generator, not any one of them:
+    - known broken code gets fixed;
+    - rounds never go up;
+    - last-round cures go forward in their own pull request.
+- **What ended loops today: closing the shape.**
+  - #105's hook check took four rounds as a list of rejected forms. #123 replaced it with the
+    grammar of the forms the settings use, and it was approved in round one.
+  - #112's shebang classifier grew a regex every round. #122 matched the repository's five exact
+    forms and failed loudly on any other.
+  - #118's smoke pinned pnpm's own error text. The cure pins only what this repository prints and
+    checks third-party text for presence and position.
+
+  A bot reviewer samples an open set without end; a closed set turns every sample into a known
+  answer or a loud failure. Where it did not end a loop, the artefact was open prose copied across
+  about 70 files (#120's routing text), so the cure there is generation from one declaration (plan
+  slice 15), not a closed shape.
+- **Free play, harvest.** These are associations, not findings.
+  - The zsh `"$n:a4b4…"` modifier bug reminded me of last night's zsh word-split bug. The
+    interactive shell has now lied twice in two days in the same role. Kept; the memory is updated.
+  - #118's host pnpm (11.20.0 on PATH, 12.4.2 pinned) looks shaped like the owner's
+    bash-3.2-on-macOS objection. In both, a tool the repository does not pin decides behaviour. Kept
+    as a possible "unpinned substrate" class for concept exploration.
+  - The owner's 23 cards turned unknowns into about 23 work items, which reads as "asking
+    questions creates work". Kept lightly: decisions wait well only in a ledger.
+  - "Follow-up pull requests are hydra heads." Discarded: it is a cliché and adds nothing the loop
+    numbers do not say.
+- **Concept exploration.**
+  - Frame: the loop grew because per-finding pull requests met open-shaped artefacts (lists of
+    rejected forms, a regex parser, copied routing text) that give a sampling reviewer endless
+    material.
+  - Proposals:
+    1. Ratify `estate-fix-backlog`. Falsifier: after close-out, ledger rows keep becoming pull
+       requests, or the open count does not reach zero within two sessions.
+    2. For gate and validator findings, close the shape at the second round of same-shape findings.
+       Falsifier: a closed shape that draws two more rounds of shape findings.
+    3. Explore whether gates and fixtures that run host tools should run the pinned versions (bash,
+       pnpm, sh). Falsifier: no third instance beyond these two.
+  - Unresolved:
+    - whether the Sonar CLI's telemetry carries file content;
+    - the cloud image's bash version;
+    - the assumptions-expert verdict on the plan.
+- **Reason.** The next action is fixed in repo-continuity's FIRST ACTION: the plan's review, the
+  ratification card, then close-out in order. The owner's pause stays binding throughout.
+- **Metaloss.**
+  - _Compressed reasoning:_ the rationale for closing #125 lives in its closing comment and the
+    ledger row. The grammar and shebang decisions live in their commit bodies and PR descriptions.
+  - _Promises:_
+    - The cloud re-paste notice was given at #122's merge.
+    - The pairing pull request is unpushed and recorded as close-out item 3.
+    - "Rule globs become a generator change" is slice 15.
+    - "The bash floor follows the measurement" is slice 7 plus the owner gate.
+    - Nothing else was promised in chat.
+  - _Attribution:_
+    - The @-mention bypass was observed by the lane in a headless run, not by me.
+    - "The Sonar scan is local" rests on documentation and a network-denied run; telemetry was not
+      observed.
+    - The CI runner's bash 5.2.21 comes from the runner image readme, not a CI run.
+    - The pnpm 11/12 cause was reproduced by the lane.
+  - _Blind spots:_
+    - No subagent transcript was read, only reports.
+    - The stopped @-mention lane's partial security-expert review is lost.
+    - The assumptions-expert result may land after the stop and be lost unless captured.
+  - _External bound:_ the owner's corrections were today's outside eyes. Point scrutiny at any
+    state recorded without a CI read, and at launch rate against supervision.
+  - _Index of homes:_
+    - repo-continuity §Next Safe Steps (state, holds, order, recipes);
+    - the plan node (sequence and ledger);
+    - this segment (why);
+    - the memories index (reflexes);
+    - the formation letter of 2026-09-17 in `.agent/experience/`.
+  - _Fixed point:_ a third pass would only re-find the unpushed pairing commit, the uncommitted
+    @-mention cure and the unread plan review, all named above. The recursion closes here.
