@@ -580,9 +580,11 @@ converging.
 - **A warning fails lint**: every ESLint script (each workspace's `lint` and
   `lint:fix`, and the root `lint:runtime-only`) passes `--max-warnings 0`, so
   a warn-level finding fails every lint leg that covers the file exactly as an
-  error does: the workspace `lint` at pre-commit, and both scripts at pre-push
-  and in CI
+  error does
   ([`no-warning-toleration`](../../.agent/rules/no-warning-toleration.md)).
+  The read-only `lint` runs at pre-commit for the changed workspaces, at
+  pre-push and in CI; `lint:fix` runs only through the root `pnpm fix`, and
+  carries the flag so a repair pass cannot end green over a warning either.
   A new workspace's ESLint scripts carry the same flag: without it a warning
   exits 0, and Turbo caches that run as a pass. `lint:runtime-only` quotes its
   glob so ESLint expands it: `sh` has no globstar, so an unquoted `**` matches
