@@ -94,8 +94,9 @@ API Schema → SDK Generation → Type-safe Usage → Runtime Validation
 
 ### Base Configuration (`tsconfig.base.json`)
 
-Strictness is defined once, in `tsconfig.base.json`, and every tsconfig in the
-repository extends it — directly, or through its workspace's `tsconfig.json`.
+Strictness is defined once, in `tsconfig.base.json`, and every other tsconfig
+in the repository extends it — directly, or through its workspace's
+`tsconfig.json`.
 A workspace config adds only what its runtime needs (the site's DOM `lib`, JSX
 and Next plugin; a build config's `outDir`); it never restates or relaxes a
 strictness flag. Read the base file for the current set rather than a copy here.
