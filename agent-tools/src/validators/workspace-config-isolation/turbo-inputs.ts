@@ -4,13 +4,13 @@
  * file under the pinned matcher.
  *
  * @remarks turbo silently hashes zero files for an input that matches
- * nothing (measured: five stale entries contributed nothing, with no
- * warning), so cache invalidation rots invisibly. Two facts pin this
- * leg's contract, measured via `--dry=json` resolved inputs (MCP-542,
- * 2026-08-11 — the dry run is the authoritative instrument):
+ * nothing (measured in the lineage repository: five stale entries gave
+ * nothing, no warning), so cache invalidation rots invisibly. Two facts
+ * pin this leg's contract, measured there via turbo 2.10.9 `--dry=json`
+ * (2026-08-11; the dry run is the authoritative instrument):
  *
  * - `**` matches ZERO or more path segments, and dot-directories match
- *   (measured on the research-tree yaml/yml entries).
+ *   (measured on that tree's yaml/yml inputs).
  * - turbo's `inputs` globs walk the FILESYSTEM, not the git index
  *   (untracked and gitignored files hash — that is what the `!`
  *   negations in turbo.json do their work against).

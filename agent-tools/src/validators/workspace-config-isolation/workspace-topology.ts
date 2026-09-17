@@ -64,8 +64,8 @@ export function expandWorkspaceGlobs(
  * directory that path-prefixes it (`''` = repo root).
  *
  * @remarks Longest-prefix matters: a workspace member can be nested
- * inside a non-member directory, and a
- * plain first-match would mis-assign it. The prefix test is
+ * inside another member's directory, and a plain first-match would
+ * assign the inner member's files to the outer one. The prefix test is
  * boundary-aware — `tooling/result` does not own
  * `tooling/result-extras/`.
  */

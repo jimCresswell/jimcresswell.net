@@ -190,14 +190,14 @@ rule, not a licence to abandon planning discipline (PDR-018).
 
 ### Cardinal Rule of This Repository
 
-The entity model in `content/entities.json` is the single source of truth for
+The entity model in `jcdotnet/content/entities.json` is the single source of truth for
 identity, shared atoms, and structured data (ADR-020, ADR-021). Page metadata,
 JSON-LD, the CV, the PDF, and every rendered surface DERIVE from it; nothing
 restates it. If the graph changes, then `pnpm build` MUST be sufficient to
 bring every surface into alignment — no hand-edited duplicates, no ad-hoc
 types. If a surface cannot be derived, the model is missing a field: fix the
 model, not the consumer. Validation of that model at the boundary is strict
-(`lib/entities.ts`); a page never invents identity the graph does not carry.
+(`jcdotnet/lib/entities.ts`); a page never invents identity the graph does not carry.
 
 The same rule governs every generated artefact: runtime behaviour flows from
 the generated output of the one authority, and authored files are thin
@@ -348,8 +348,9 @@ this way produces cleaner boundaries and simpler classification.
   latch, a declarative guard, a per-seat directory) instead of scheduled;
   in review, a correctness argument that contains "the window is small",
   "usually", or an ordering assumption names a defect. The worked shapes
-  are the anti-pattern `timing-derived-state-is-the-defect`; its
-  read-side dual is the pattern `timing-artefact-read-as-state`.
+  are recorded in the lineage as the anti-pattern
+  `timing-derived-state-is-the-defect` and its read-side dual, the
+  pattern `timing-artefact-read-as-state`.
 - **At most one holder, and for continuously owned authority exactly
   one** - a singleton-authority state never has two holders. A
   continuously owned authority (a coordinator role, a document root's
@@ -375,7 +376,7 @@ this way produces cleaner boundaries and simpler classification.
   `overrideToolsListHandler`. The name should explain the removal
   condition.
 - **Build up through scales** - Functions → Modules → Packages
-  (`core`, `libs`, `apps`)
+  (the workspaces in §Architectural Model)
 - **Clear boundaries at each scale** - Define boundaries between
   and within scales CLEARLY with index.ts files
 - **Fail FAST** - Fail fast with helpful error messages, never
@@ -567,7 +568,7 @@ paths, setup files) don't apply.
   deferred warnings consistently explode at the next stage. See
   `.agent/rules/no-warning-toleration.md` for the operational
   discipline (covers esbuild/tsc/ESLint/vitest/depcruise/knip and
-  Sentry runtime/uptime surfaces).
+  Vercel build output, runtime logs and monitoring surfaces).
 - **Fix things** - All quality gates are blocking at all times,
   regardless of location, cause, or context.
 - **An enforcement-scope gap is not a requirement gap** - Repo-wide
@@ -836,8 +837,8 @@ checkout" is the tripwire to re-ground, not a licence.
 
 ### Architectural Model
 
-Three kinds of workspace, documented in the
-[architecture overview](../../docs/architecture/README.md):
+Three kinds of workspace, documented in
+[Build System §Workspace layout](../../docs/engineering/build-system.md#workspace-layout):
 
 - **`jcdotnet`** — the site: Next.js App Router app, CV, personal knowledge
   graph, PDF generation, E2E and visual-regression proof.
@@ -848,7 +849,7 @@ Three kinds of workspace, documented in the
 
 ### Layer Role Topology
 
-Inside the site, data flows one way: `content/*.json` (the graph and the
+Inside the site (`jcdotnet/`), data flows one way: `content/*.json` (the graph and the
 authored content) → `lib/` (validation, derivation, contracts) → `components/`
 → `app/` (routes and metadata). Routes and components are **thin
 presentation**; `lib/` owns derivation and contracts; content owns facts.
@@ -888,7 +889,7 @@ cross-reference is a real defect, not a style nit. Canonical decision:
   never carries.
 - **Inline comments for the why** — The code shows what; comments explain
   why.
-- **Content lives in JSON** — Content changes go in `content/*.json`, never
+- **Content lives in JSON** — Content changes go in `jcdotnet/content/*.json`, never
   hard-coded in components.
 - **Permanent docs never reference ephemeral docs** — Plans and prompts are
   ephemeral; `docs/`, directives, ADRs and EDRs never depend on them. Only the

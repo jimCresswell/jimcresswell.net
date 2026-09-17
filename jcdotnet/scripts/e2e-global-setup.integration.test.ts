@@ -25,20 +25,50 @@ tick();
 `;
 
 /**
- * A `node -e` script that writes `lines`, starts a HOLD_STDOUT grandchild on its own stdout,
+ * A `node -e` script that writes nothing, starts a HOLD_STDOUT grandchild on its own stdout,
  * records the grandchild's pid in the file named by its first argument, and exits 0.
  */
-function exitLeavingStdoutHeld(lines: string): string {
-  return `
+const EXIT_LEAVING_STDOUT_HELD = `
 const { spawn } = require("node:child_process");
 const { writeFileSync } = require("node:fs");
-process.stdout.write(${JSON.stringify(lines)});
 const grandchild = spawn(process.execPath, ["-e", ${JSON.stringify(HOLD_STDOUT)}], {
   stdio: ["ignore", "inherit", "ignore"],
 });
 writeFileSync(process.argv[1], String(grandchild.pid));
 grandchild.unref();
 `;
+
+/**
+ * A `node -e` script for a server that records its pid in the file named by its first argument,
+ * prints its port and ready lines, and stays up until it receives SIGUSR2; then it runs
+ * `onSignal` and exits 0 on its own. The pid file is written before the lines, so it exists once
+ * the setup has read `ready`, and the exit comes only when the cell sends the signal.
+ */
+function readyUntilSignal(onSignal: string): string {
+  return `
+const { spawn } = require("node:child_process");
+const { writeFileSync } = require("node:fs");
+writeFileSync(process.argv[1], String(process.pid));
+process.on("SIGUSR2", () => {
+  ${onSignal}
+  process.exit(0);
+});
+process.stdout.write("port 4242\\nready\\n");
+setInterval(() => {}, 1000);
+`;
+}
+
+/** For `readyUntilSignal`: start a HOLD_STDOUT grandchild, its pid to the second argument's file. */
+const START_STDOUT_HOLDER = `
+  const grandchild = spawn(process.execPath, ["-e", ${JSON.stringify(HOLD_STDOUT)}], {
+    stdio: ["ignore", "inherit", "ignore"],
+  });
+  writeFileSync(process.argv[2], String(grandchild.pid));
+  grandchild.unref();
+`;
+
+async function readPid(file: string): Promise<number> {
+  return Number(await readFile(file, "utf8"));
 }
 
 function isRunning(pid: number): boolean {
@@ -78,11 +108,16 @@ describe("startServer", () => {
     await expect(started).rejects.toThrow(/exited \(code 3, signal null\) before it was ready/u);
   });
 
-  it("a command whose port and ready lines are read only after its exit resolves with the origin, not as exited before ready", async () => {
+  it("a command that has exited by the time its ready line is read rejects, naming the exit, after reading its lines", async () => {
     // The child exits 0 at once; a grandchild writes both lines only after the child is reaped.
+    // The lines are read, since the wait ends on the end of the output and not on the exit: a
+    // wait that ended on the exit would reject with "before it was ready" instead. The child is
+    // refused all the same, because the process that held the port is gone.
     const script = exitBeforeWriting("port 4242\nready\n");
-    const server = await startServer(process.execPath, ["-e", script], 5_000);
-    expect(server.origin).toBe("http://localhost:4242");
+    const started = startServer(process.execPath, ["-e", script], 5_000);
+    await expect(started).rejects.toThrow(
+      /^e2e server exited \(code 0, signal null\) by the time its ready line was read$/u
+    );
   });
 
   it("a command that prints port and ready resolves with the origin, and stop ends it", async () => {
@@ -118,12 +153,12 @@ describe("startServer", () => {
       const pidFile = join(directory, "grandchild.pid");
       const started = startServer(
         process.execPath,
-        ["-e", exitLeavingStdoutHeld(""), pidFile],
+        ["-e", EXIT_LEAVING_STDOUT_HELD, pidFile],
         2_000
       );
       await expect(started).rejects.toThrow(/was not ready within 2000 ms/u);
       // The setup has released the stdout it was reading, so the grandchild's next write fails.
-      const grandchild = Number(await readFile(pidFile, "utf8"));
+      const grandchild = await readPid(pidFile);
       await expect.poll(() => isRunning(grandchild)).toBe(false);
     } finally {
       await rm(directory, { recursive: true, force: true });
@@ -133,12 +168,18 @@ describe("startServer", () => {
   it("a child that ended during the run while a descendant holds its stdout makes stop reject, and the descendant is released", async () => {
     const directory = await mkdtemp(join(tmpdir(), "e2e-setup-held-stdout-"));
     try {
-      const pidFile = join(directory, "grandchild.pid");
-      const script = exitLeavingStdoutHeld("port 4242\nready\n");
-      const server = await startServer(process.execPath, ["-e", script, pidFile], 5_000);
+      const serverPidFile = join(directory, "server.pid");
+      const grandchildPidFile = join(directory, "grandchild.pid");
+      const script = readyUntilSignal(START_STDOUT_HOLDER);
+      const server = await startServer(
+        process.execPath,
+        ["-e", script, serverPidFile, grandchildPidFile],
+        5_000
+      );
+      process.kill(await readPid(serverPidFile), "SIGUSR2");
       await server.ended;
       await expect(server.stop()).rejects.toThrow(/exited \(code 0, signal null\) before stop/u);
-      const grandchild = Number(await readFile(pidFile, "utf8"));
+      const grandchild = await readPid(grandchildPidFile);
       await expect.poll(() => isRunning(grandchild)).toBe(false);
     } finally {
       await rm(directory, { recursive: true, force: true });
@@ -146,10 +187,19 @@ describe("startServer", () => {
   });
 
   it("a child that ended on its own during the run makes stop reject, even at code 0", async () => {
-    const script =
-      "process.stdout.write('port 4242\\nready\\n'); setTimeout(() => process.exit(0), 50);";
-    const server = await startServer(process.execPath, ["-e", script], 5_000);
-    await server.ended;
-    await expect(server.stop()).rejects.toThrow(/exited \(code 0, signal null\) before stop/u);
+    const directory = await mkdtemp(join(tmpdir(), "e2e-setup-ended-"));
+    try {
+      const serverPidFile = join(directory, "server.pid");
+      const server = await startServer(
+        process.execPath,
+        ["-e", readyUntilSignal(""), serverPidFile],
+        5_000
+      );
+      process.kill(await readPid(serverPidFile), "SIGUSR2");
+      await server.ended;
+      await expect(server.stop()).rejects.toThrow(/exited \(code 0, signal null\) before stop/u);
+    } finally {
+      await rm(directory, { recursive: true, force: true });
+    }
   });
 });
