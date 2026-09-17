@@ -4,7 +4,7 @@ Result<T, E> type for explicit error handling without exceptions.
 
 ## Purpose
 
-Provides a type-safe way to handle errors without throwing exceptions. Forces explicit handling of both success and error cases at compile time, making impossible states unrepresentable.
+Provides a type-safe way to handle errors without throwing exceptions. `Result<T, E>` is a discriminated union of `Ok<T>` and `Err<E>` on the `ok` field, so failure is part of a function's return type. TypeScript rejects a read of `value` or `error` from a `Result<T, E>` until the union is narrowed to one arm; checking `ok`, directly or with `isOk` or `isErr`, narrows it. The type does not make a caller handle the failure: a caller can ignore a returned `Result`, substitute a default with `unwrapOr` or `unwrapOrElse`, or call `unwrap`, which throws on an `Err`.
 
 ## Installation
 
@@ -112,8 +112,8 @@ const value = unwrapOr(result, 0);
 
 Result<T, E> applies the Fail FAST and Handle All Cases Explicitly principles ([principles.md](../../.agent/directives/principles.md#code-design-and-architectural-principles)) while providing explicit error information. It makes error handling:
 
-1. **Explicit** - Cannot ignore errors
-2. **Type-safe** - Errors are typed and checked
+1. **Explicit** - Failure is part of the return type
+2. **Type-safe** - `E` names the failure, and TypeScript type-checks every read of `error`
 3. **Composable** - Chain operations safely
 4. **Predictable** - No hidden control flow
 
@@ -121,7 +121,7 @@ Result<T, E> applies the Fail FAST and Handle All Cases Explicitly principles ([
 
 Result<T, E> complements validation at the boundary ([validation-strategy.md §Runtime validation at the boundary](../../.agent/directives/validation-strategy.md#runtime-validation-at-the-boundary)) by:
 
-- Forcing explicit handling of all validation failures
+- Letting a validator return a failure as an `Err` instead of throwing it
 - Making error states part of the type signature
 - Enabling exhaustive case analysis at compile time
 
