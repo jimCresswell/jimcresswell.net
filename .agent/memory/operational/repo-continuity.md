@@ -151,99 +151,82 @@ STATE, 2026-09-16 afternoon (Cauldron herds Lustre, Director), owner-directed in
   byte-identical to the patch that became #92, the seven tsconfig edits adding only flags #94's
   base carries.
 
-STATE, 2026-09-17T13:55Z (Cauldron herds Lustre, Director). Every fix lane stopped at once when
-the session hit its usage limit (reset 03:20 Europe/London); several stopped mid-merge or
-mid-cure. No lane process, monitor or port-3000 listener survives (census at 13:55Z).
+STATE, 2026-09-17T15:00Z (Cauldron herds Lustre, Director). The session resumed after the usage
+limit and worked the in-flight inventory in order, at most three lanes at a time.
 
-FIRST ACTION: finish the in-flight inventory below, in its order, before starting any new lane.
-Open no new fix lane while more than four fix pull requests are open (the night's loop grew faster
-than it closed: see the napkin segment of 2026-09-17). Each pull request keeps the two-round
-budget; a finding after the last round is cured forward on a branch cut from the reviewed head,
-lifted by a signed line naming that commit, and landed in its own pull request.
+FIRST ACTION: finish the in-flight list below before starting any new lane. Open no new fix lane
+while more than four fix pull requests are open. Each pull request keeps the two-round budget; a
+finding after the last round is cured forward on a branch cut from the reviewed head, lifted by a
+signed line naming that commit, and landed in its own pull request.
 
 Merged 2026-09-16/17 (owner word 2026-09-16: "If you know there is broken code, fix it"): #98
 (`SHA: 262a9f7`), #99 (`SHA: bb284c9`), #100 (`SHA: d8852f0`), #101 (`SHA: 65cf1d0`), #102
 (`SHA: fb0409f`), #103 (`SHA: cd56dd5`), #104 (`SHA: 4d5d334`), #106 (`SHA: e13bce2`), #107
 (`SHA: e98134b`), #108 (`SHA: dbc1feb`), #109 (`SHA: 6667514`), #110 (`SHA: 9a8db1b`), #113
-(`SHA: 278a8cd`), #115 (`SHA: b2cd959`).
+(`SHA: 278a8cd`), #115 (`SHA: b2cd959`); after the resume #119 (`SHA: 79da5c9`), #111
+(`SHA: ed7e074`), #116 (`SHA: a2cf91b`), #114 (`SHA: 8915de0`), #117 (`SHA: 504109b`), #121
+(`SHA: 6f94f6d`, #117's last-round cure), #112 (`SHA: 8fafbf2`). Their remote branches are deleted.
 
-In-flight, in order (worktrees are named by their directory under the sibling worktrees folder):
+In flight, in order (worktrees are named by their directory under the sibling worktrees folder):
 
-1. PR 119 `fix/site-vitest-conventions` (`SHA: 530678da`): approved in round one, no findings,
-   CLEAN. Merge it.
-2. PR 116 `fix/override-floors` (`SHA: ad6454d7`): approved in round one, no findings, but it
-   conflicts with #115. The `override-floors` worktree holds `git merge origin/main` IN PROGRESS:
-   no unmerged paths, 29 paths staged, not committed; the lane stopped before its checks. Check
-   the resolution (`jcdotnet/package.json` carries neither the `pnpm` nor the `knip` field;
-   `build-system.md` keeps #115's sentence and this branch's override paragraphs), run
-   `CI=true pnpm install --frozen-lockfile`, `pnpm audit`, markdown lint and `turbo run lint`,
-   commit the merge, push, request round two.
-3. PR 117 `fix/lineage-oak-identifiers` (`SHA: 5c58858a`): the same shape. The
-   `lineage-oak-identifiers` worktree holds a merge of `origin/main` IN PROGRESS: no unmerged
-   paths, 30 staged, not committed. Verify, rerun the `oak-` grep over the lane's scoped paths,
-   run the agent-tools suite and smokes, commit, push, request round two.
-4. PR 105 `fix/session-start-hook-paths` (`SHA: 8dab8e86`): round two (the last) found five
-   defects in the relative-script check: quoted `~` and a lower-cased project variable counted
-   as anchored; a drive-relative program (`C:hook.cmd`); a relative program passed to the
-   `log-hook-errors.sh` wrapper; a leading `NAME=value`; tab or newline separators. The cure is
-   UNCOMMITTED in the `hook-program-positions` worktree (branch
-   `fix/hook-script-program-positions` from 8dab8e86: a new `claude-hook-script-anchoring.ts` and
-   its unit test, edits to the quoting module, its test and `validate-portability.ts`); the lane
-   stopped while re-running gates. Its design: program positions (after leading assignments, and
-   after the exec wrappers `env` and `log-hook-errors.sh`) must be anchored; an interpreter at a
-   program position is followed directly by an anchored script; a shell control character is
-   outside the shape; plain arguments are not checked. Verify the diff against that design and
-   the seven mutants its brief named, commit, then post one signed comment on #105 (review
-   `PRR_kwDORH1Wfc8AAAABN7QJxw`: the thread `PRRT_kwDORH1Wfc6jJ73j`, comment 4031787676, answered
-   and resolved; four Below-bar lines for `claude-hook-quoting.ts` lines 164, 183, 185 and 180),
-   merge #105, push the branch, open its pull request.
-5. PR 111 `fix/reviewer-template-citations` (`SHA: 6adf66bb`): round two (the last) found three
-   routing defects; all are cured in `SHA: 4458f26d` on `fix/expert-roster-and-personas` (the
-   `expert-roster` worktree, not pushed), with `SHA: 682f4ce8` (the expert roster and persona
-   lenses) on top. Lift on #111 (review `PRR_kwDORH1Wfc8AAAABN7Up5Q`: thread
-   `PRRT_kwDORH1Wfc6jKGpw`, comment 4031855784; Below-bar lines for `assumptions-expert.md:397`
-   and `onboarding-expert.md:90`), merge #111, push `fix/expert-roster-and-personas`, open its
-   pull request. The same worktree is on `fix/site-relative-paths-in-rules` (cut at 682f4ce8) with
-   18 UNCOMMITTED files (rule globs and site-relative paths in templates, partial): finish or
-   restart that branch after branch one lands.
-6. PR 112 `fix/shellcheck-gate-v2` (`SHA: 359d5fd5`): round two (the last, review
-   `PRR_kwDORH1Wfc8AAAABN7dTlA`) found: thread `PRRT_kwDORH1Wfc6jKa9E` (comment 4031983405, a
-   grammar slip in `ci.yml:68`); `repo-check-shellcheck-files.ts:31` misses `#!/usr/bin/env -S
-   /bin/bash`; `repo-check-shellcheck.ts:48` reads 256 bytes while a macOS shebang may reach 512;
-   `prompt-secrets.smoke.ts:165` requires jq although the hook treats jq as optional; the PR
-   description still says `/usr/local/bin` (now the repository's `.tools/bin`). Verify, cure
-   forward from 359d5fd5, correct the description, lift, merge.
-7. PR 114 `fix/eslint-tooling-dead-config` (`SHA: 09d8db46`): approved in round two with two
-   suppressed findings (review `PRR_kwDORH1Wfc8AAAABN7YIQw`): the README's copyable config omits
-   the Node and ES globals every consumer adds (`tooling/eslint/README.md:123`), and
-   `tooling/result/README.md:7` overstates what the type forces. The `eslint-tooling-dead-config`
-   worktree is on `docs/eslint-readme-follow-ups` (cut at 09d8db46, no commits). Cure, lift,
-   merge #114, open the follow-up.
-8. PR 118 `fix/gate-output-noise` (`SHA: 48dc6e81`): round one found thread
-   `PRRT_kwDORH1Wfc6jKWtj` (comment 4031956494): `repo-check-lint-changed.ts:125` replays a
-   successful dry run's stderr warning without failing, so an empty plan with a warning still
-   exits 0. Cure on the branch, push, answer, request round two.
-9. `fix/lint-warnings-fail` (`SHA: 1bae5445`, not pushed, 7 behind main): `--max-warnings 0` on
-   every lint and `lint:fix` script, and a quoted `lint:runtime-only` glob (sh has no globstar).
-   Its message trips commitlint `footer-leading-blank` (body lines beginning `Checks:` and
-   `review:`). Never amend: build `fix/lint-warnings-fail-v2` from its parent with
-   `cherry-pick --no-commit` and a message without `word:` line starts, check
-   `commitlint --strict`, push v2. Its root `package.json` line sits next to #112's `lint:shell`.
-10. `fix/tools-lineage-paths` (the `tools-lineage-paths` worktree, from 9a8db1b6, nothing
-    committed, 13 files UNCOMMITTED): the lane deleted the `ui-visual-design` evals (their grader
-    imported a `demos/` directory that does not exist) and edited the `visual-comparison` skill
-    and the design-conversion playbook, then stopped. Not yet done: `comms-provenance-check.ts:35`
-    and `comms-archive-move.ts:50` scan `docs/architecture/architectural-decisions`, which does not
-    exist (reported to exit 1 on every run; not yet run). Verify the partial work or restart.
+1. PR 122 `fix/shellcheck-gate-followups-v2` (`SHA: fb6469bb`, worktree `shellcheck-gate`): #112's
+   last-round cures, round one requested. A local branch `fix/shellcheck-classifier-names`
+   (`SHA: 1594972a`, unpushed, stacked on it) adds shell names shellcheck lints (`bats`, `ksh88`,
+   `ksh93`, `oksh`, `busybox sh`, `ash`, `.ksh`, `.dash`, `.bats`); its code-expert review
+   says the classifier regex grows every round and shellcheck lints any interpreter whose name
+   starts with a shell name, so the cure is a closed classification (an unknown shebang fails
+   loudly), not a larger regex. The local `fix/shellcheck-gate-followups` holds a commit with a
+   commitlint-failing message, superseded by v2; never pushed.
+2. PR 120 `fix/expert-roster-and-personas` (`SHA: 682f4ce8`, worktree
+   `reviewer-template-citations`): #111's follow-up. Round one (review 5237031874) left seven
+   suppressed findings: `skills.md` missing from the gateway's entry-point list; `spacing` missing
+   from the design-system trigger; `jcdotnet/lib/` missing from the PKG trigger;
+   `starter-templates.md` still prescribing `components/personas/*`; agent-tools fixtures naming
+   `components/personas/fred.md`; `GEMINI.md` and `skills.md` missing from the
+   subagent-architect checklist; Cursor's motion globs (out of scope: `fix/site-relative-paths-in-rules`).
+   A lane is curing them with class sweeps; then push, one signed line per finding, round two.
+3. PR 105 `fix/session-start-hook-paths` (`SHA: 8dab8e86`): its follow-up
+   `fix/hook-script-program-positions` (worktree `hook-program-positions`, UNCOMMITTED) is being
+   rebuilt to a closed grammar after two further code-expert rounds found commands the word model
+   accepted although bash runs a working-directory program. Director rulings 2026-09-17: the
+   accepted forms are the known hook commands' productions only (a quoted project path ending
+   `.mjs` or `.sh`; a listed interpreter, today `node`, with a quoted project path script; the
+   error wrapper at a quoted project path followed by one program); no assignments, no `env`, no
+   home, absolute or drive paths (reversing round one's drive-path acceptance). Falsifier: a real
+   hook that needs another form. Then lift on #105 (review `PRR_kwDORH1Wfc8AAAABN7QJxw`, thread
+   `PRRT_kwDORH1Wfc6jJ73j`), merge #105, push, open the follow-up.
+4. PR 118 `fix/gate-output-noise` (`SHA: 48dc6e81`): a lane is curing round one's thread
+   (comment 4031956494, a warning on a successful dry run exits 0) on the branch; then push,
+   answer, round two.
+5. `docs/eslint-readme-follow-ups` (`SHA: dd0af475`, worktree `eslint-tooling-dead-config`,
+   unpushed): #114's two suppressed findings, cured and lifted on #114. Before pushing, add the same
+   claim family the docs-adr-expert found: `.agent/rules/use-result-pattern.md:11` says "the
+   compiler ensures all cases are handled" (false: the compiler rejects an un-narrowed read and no
+   more); `tooling/result/src/index.unit.test.ts:307-311` "forces exhaustive error handling"
+   proves nothing (test-expert decides rename or delete); the Result README's API list omits
+   `unwrapOrThrow`, `collect` and `assertNeverResult`, and two examples use `ok`/`err`
+   unimported.
+6. `fix/lint-warnings-fail` (`SHA: 1bae5445`, not pushed): rebuild as v2 with a message that
+   passes `commitlint --strict`; its root `package.json` line sits next to #112's `lint:shell`.
+7. `fix/tools-lineage-paths` (13 files UNCOMMITTED): verify the partial work or restart; not yet
+   done: `comms-provenance-check.ts:35` and `comms-archive-move.ts:50` scan a nonexistent
+   `docs/architecture/architectural-decisions`.
+8. `fix/site-relative-paths-in-rules` (worktree `expert-roster`, 18 files UNCOMMITTED, cut at
+   682f4ce8): finish after #120 lands; it now also owns Cursor's design-system motion globs.
+9. Delete the `minimumReleaseAgeExclude` block in `pnpm-workspace.yaml` (the hold lifted at
+   2026-09-17T08:24Z), in its own pull request; the `override-floors` worktree is kept for it.
 
-Retire after merge: the worktrees `session-start-paths`, `reviewer-template-citations`,
-`shellcheck-gate`, `gate-output-noise`, `site-vitest-conventions`,
-`ignored-config-and-rebuild-recipe` (merged now), and delete merged remote branches by the bot's
-REST call (`fix/ignored-config-and-rebuild-recipe` is still on origin). The strictness
-drafts #94, #95 and #96 are unchanged. The `minimumReleaseAgeExclude` hold lifted at
-2026-09-17T08:24Z: deleting that block in `pnpm-workspace.yaml` is now due, in its own pull request.
+Retire after merge: the worktrees `session-start-paths`, `gate-output-noise` and
+`lineage-oak-identifiers` once their branches land. The strictness drafts #94, #95 and #96 are
+unchanged.
 
 Owed, as fixes (each verified by a lane report unless marked; each its own pull request):
+the three PreToolUse guard commands use `${CLAUDE_PROJECT_DIR:-.}`, which runs a
+working-directory guard when the variable is unset (remove the fallback, security-expert review;
+falsifier: evidence the variable is always set for hooks); root `knip.config.ts` prints four
+"Remove redundant entry pattern" hints on every run; the merge bot's disposition grammar lifts
+only `Cured in SHA:` or `Rejected`, so a finding cured in a pull request description has no true
+verb (#112 item 2 was written as a rejected code change with the description corrected);
 `.husky/commit-msg` runs commitlint without `--strict`, so message warnings pass; root gate scripts
 calling `pnpm --filter @engraph/agent-tools` lack `--fail-if-no-match`; the commit-queue CLI topic
 ignores `PRACTICE_COORDINATION_HOME` (`agent-tools-cli-topics.ts:52`); nine tests outside the site
