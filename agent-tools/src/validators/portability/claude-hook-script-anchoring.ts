@@ -11,7 +11,9 @@
  *   its data words. The wrapper is recognised only as the first word and only as a quoted project
  *   path named `log-hook-errors.sh`; it runs `"$@"` as a child.
  * - A program is a quoted project path to an `.mjs` or `.sh` file other than the wrapper, or `node`
- *   followed by its script at a quoted project path.
+ *   followed by its script at a quoted project path with a path after the directory. Given the
+ *   project directory itself, or nothing when the variable is unset or empty, node would read its
+ *   program from stdin, which is the hook's JSON payload.
  * - A quoted project path is one double-quoted word, `"${CLAUDE_PROJECT_DIR}"` or
  *   `"${CLAUDE_PROJECT_DIR:-.}"`, optionally followed by `/` and a plain path.
  * - A data word is a plain word: letters, digits and `_./:=@%+,-` only.
@@ -34,6 +36,8 @@ const PLAIN_WORD = /^[\w./:=@%+,-]+$/u;
 const QUOTED_PROJECT_PATH = /^"\$\{CLAUDE_PROJECT_DIR(?::-\.)?\}(?:\/[\w./-]*)?"$/u;
 /** The file types the settings run directly from a quoted project path. */
 const HOOK_SCRIPT = /\.(?:mjs|sh)"$/u;
+/** A quoted project path that names the project directory itself, with no path after it. */
+const PROJECT_DIRECTORY = /\}\/?"$/u;
 /** An option or an assignment, which is not a path even when it holds a `/`. */
 const OPTION_OR_ASSIGNMENT = /^-|=/u;
 const INTERPRETER = 'node';
@@ -64,12 +68,13 @@ function isWrapper(word: string | undefined): boolean {
 }
 
 /**
- * Why the word after `node` is not its script at a quoted project path, if it is not: an option or
- * nothing is outside the grammar, and any other word is a script that is not a quoted project path.
+ * Why the word after `node` is not its script at a quoted project path, if it is not: the project
+ * directory itself, an option or nothing is outside the grammar, and any other word is a script that
+ * is not a quoted project path.
  */
 function scriptIssue(script: string): string | undefined {
   if (QUOTED_PROJECT_PATH.test(script)) {
-    return undefined;
+    return PROJECT_DIRECTORY.test(script) ? OUTSIDE_GRAMMAR : undefined;
   }
   return script === '' || script.startsWith('-') ? OUTSIDE_GRAMMAR : UNANCHORED_SCRIPT;
 }

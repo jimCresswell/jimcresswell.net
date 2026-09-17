@@ -120,6 +120,23 @@ describe('relativeScriptIssue', () => {
     );
   });
 
+  it('reports the project directory itself as a program or as node script, since node would then read its program from stdin', () => {
+    // A hook run directly already needs an .mjs or .sh file name; node needs a path after the directory.
+    expectIssue(
+      [
+        'node "${CLAUDE_PROJECT_DIR}"',
+        'node "${CLAUDE_PROJECT_DIR:-.}"',
+        'node "${CLAUDE_PROJECT_DIR}/"',
+        `${WRAPPER} node "\${CLAUDE_PROJECT_DIR:-.}"`,
+        '"${CLAUDE_PROJECT_DIR}"',
+        '"${CLAUDE_PROJECT_DIR:-.}"',
+        '"${CLAUDE_PROJECT_DIR}/"',
+        `${WRAPPER} "\${CLAUDE_PROJECT_DIR}"`,
+      ],
+      OUTSIDE_GRAMMAR,
+    );
+  });
+
   it('reports node without its script, an unlisted bare program, and a data word that is not plain', () => {
     expectIssue(
       [
