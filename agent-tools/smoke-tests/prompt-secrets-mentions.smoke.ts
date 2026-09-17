@@ -1,4 +1,12 @@
-import { mkdirSync, mkdtempSync, realpathSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
+import {
+  chmodSync,
+  mkdirSync,
+  mkdtempSync,
+  realpathSync,
+  rmSync,
+  symlinkSync,
+  writeFileSync,
+} from 'node:fs';
 import { tmpdir } from 'node:os';
 import { delimiter, join } from 'node:path';
 
@@ -23,12 +31,15 @@ import { requireJq } from './secrets-hooks-support.js';
  * Claude Code resolves it: relative to the payload's `cwd` (not the hook's own
  * working directory), absolute, or under `~`; quoted when it holds a space;
  * with a `#L` line range or trailing punctuation dropped; ended by a no-break
- * space; outside the working directory; and through a symlink, which the stub,
- * like Sonar, would otherwise report clean. A clean file is scanned and the
- * prompt passes silently; a directory and a path naming nothing are not handed
- * to Sonar. Without `realpath` a mentioned file cannot be resolved, so the
- * prompt passes with a warning that it was not scanned; without `jq` a `cwd`
- * holding a JSON escape cannot be decoded, so the prompt is blocked.
+ * space; after a CJK stop; with everything from its first `#` dropped, as
+ * Claude Code drops it; outside the working directory; and through a symlink,
+ * which the stub, like Sonar, would otherwise report clean. A clean file is
+ * scanned once, however often it is mentioned, and the prompt passes silently;
+ * a directory, a path naming nothing and an email address whose domain names a
+ * file are not handed to Sonar. Without `grep` or `realpath` the mentions
+ * cannot be found or resolved, so the prompt passes with a warning that they
+ * were not scanned; without `jq` a `cwd` holding a JSON escape cannot be
+ * decoded, so the prompt is blocked.
  */
 
 /** Whitespace to Claude Code's mention pattern (JavaScript `\s`), but not to grep's `[:space:]`. */
@@ -38,6 +49,8 @@ const NO_BREAK_SPACE = String.fromCodePoint(0xa0);
 const FLAGGED_MENTIONS = [
   'read @flagged.env',
   'read @flagged.env#L2-3',
+  'read @flagged.env#draft',
+  '\u898B\u3066\u3002@flagged.env',
   'see @flagged.env, then',
   `read @flagged.env${NO_BREAK_SPACE}now`,
   'read @../outside.env',
@@ -45,16 +58,17 @@ const FLAGGED_MENTIONS = [
   'read @linked.env',
 ] as const;
 
-function expectCleanScan(run: HookRun, prompt: string, expected: string): void {
-  const mentioned = new Set(run.scannedPaths?.slice(1));
+/** The prompt passes silently and Sonar is handed exactly `expected` after the prompt's copy. */
+function expectCleanScan(run: HookRun, prompt: string, expected: readonly string[]): void {
+  const mentioned = run.scannedPaths?.slice(1) ?? [];
   if (run.status !== 0 || run.stdout.trim() !== '') {
     throw new Error(
       `${JSON.stringify(prompt)} should pass silently, got exit ${String(run.status)}: ${run.stdout}`,
     );
   }
-  if (mentioned.size !== 1 || !mentioned.has(expected)) {
+  if (JSON.stringify(mentioned) !== JSON.stringify(expected)) {
     throw new Error(
-      `for ${JSON.stringify(prompt)} Sonar was handed ${JSON.stringify([...mentioned])}, not only ${expected}`,
+      `for ${JSON.stringify(prompt)} Sonar was handed ${JSON.stringify(mentioned)}, not exactly ${JSON.stringify(expected)}`,
     );
   }
 }
@@ -73,6 +87,7 @@ try {
     join(workDir, 'outside.env'),
     join(workDir, 'link-target.env'),
     join(profile, 'flagged.env'),
+    join(project, 'example.com'),
   ];
   for (const flagged of flaggedFiles) {
     writeFileSync(flagged, 'SECRET\n', 'utf8');
@@ -88,9 +103,9 @@ try {
       const run = runHook(workDir, searchPath, prompt, environment, project);
       expectBlocked(run, prompt, 'Sonar detected secrets');
     }
-    const clean = 'compare @clean.txt with @sub, @absent.txt and jim@example.com';
+    const clean = 'compare @clean.txt with @sub, @absent.txt, @clean.txt again and jim@example.com';
     const cleanRun = runHook(workDir, searchPath, clean, environment, project);
-    expectCleanScan(cleanRun, clean, realpathSync(join(project, 'clean.txt')));
+    expectCleanScan(cleanRun, clean, [realpathSync(join(project, 'clean.txt'))]);
   }
 
   const withoutRealpath = toolDirectory(
@@ -102,12 +117,29 @@ try {
   expectBlocked(runHook(workDir, withJq, quoted, environment, project), quoted, 'Sonar detected');
   const unresolved = 'read @flagged.env';
   const unresolvedRun = runHook(workDir, withoutRealpath, unresolved, environment, project);
-  expectWarned(unresolvedRun, unresolved, 'realpath');
+  expectWarned(unresolvedRun, unresolved, 'realpath is not on PATH');
+  // A realpath that is present but fails on the file: the file is skipped with a warning.
+  const failingRealpath = toolDirectory(
+    workDir,
+    'bin-failing-realpath',
+    JQ_LESS_TOOLS.filter((tool) => tool !== 'realpath'),
+  );
+  writeFileSync(join(failingRealpath, 'realpath'), '#!/bin/sh\nexit 1\n', 'utf8');
+  chmodSync(join(failingRealpath, 'realpath'), 0o755);
+  const failedRun = runHook(workDir, failingRealpath, unresolved, environment, project);
+  expectWarned(failedRun, unresolved, 'realpath could not resolve');
+  const withoutGrep = toolDirectory(
+    workDir,
+    'bin-without-grep',
+    JQ_LESS_TOOLS.filter((tool) => tool !== 'grep'),
+  );
+  const unfound = runHook(workDir, withoutGrep, unresolved, environment, project);
+  expectWarned(unfound, unresolved, 'grep');
   const escapedCwd = join(workDir, 'quo"te');
   const escapedRun = runHook(workDir, withoutJq, unresolved, environment, escapedCwd);
   expectBlocked(escapedRun, unresolved, 'jq');
   process.stdout.write(
-    'prompt-secrets-mentions smoke OK: files named by @-mentions scanned with and without jq (relative to the payload cwd, quoted, ranged, punctuated, no-break-spaced, outside the cwd, absolute, under ~ and through a symlink); a clean file passes, a directory and an absent path are not scanned; no realpath warns; an escaped cwd without jq blocks\n',
+    'prompt-secrets-mentions smoke OK: files named by @-mentions scanned with and without jq (relative to the payload cwd, quoted, ranged, hash-suffixed, punctuated, no-break-spaced, after a CJK stop, outside the cwd, absolute, under ~ and through a symlink); a clean file passes and is forwarded once; a directory, an absent path and an email domain are not scanned; no grep or realpath warns, a failing realpath warns; an escaped cwd without jq blocks\n',
   );
 } catch (error) {
   // exitCode, so the finally block still removes the work directory.

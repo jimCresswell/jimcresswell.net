@@ -252,19 +252,28 @@ each of those commands to the closed hook-command grammar in
 A file a prompt @-mentions never reaches the Read hook. Claude Code puts the
 file's content into the conversation as an attachment, with no tool call, and
 the `UserPromptSubmit` payload carries only the prompt's text (Claude Code
-2.1.274, observed 2026-09-17). The official documentation says only that an
-@-mention "includes the full content of the file in the conversation" and that
-`Read` permission rules apply to `@file` mentions on a best-effort basis. So the
-prompt hook hands Sonar every regular file a mention can name, as Claude Code
-resolves it: against the payload's `cwd`, `~` or the root. Each file goes by its
-real path, since Sonar reports a symlink clean without reading its target. When
-Sonar errors, or `realpath` cannot resolve a mentioned file, the prompt goes
-through with a warning shown to the user that it was not scanned. A mentioned
-file outside the project is read by the scanner as the model would read it: the
-Sonar documentation ("Secrets detection", "Telemetry and privacy") says the
-scan runs locally with no server connection and that telemetry carries no file
-content, path or command argument; `sonar config telemetry --disabled` opts
-out of telemetry altogether. Other
+2.1.274, observed 2026-09-17). The documentation says only that an @-mention
+"includes the full content of the file in the conversation"
+([Common workflows](https://code.claude.com/docs/en/common-workflows)) and
+that `Read` permission rules apply to `@file` mentions on a best-effort basis
+([Permissions](https://code.claude.com/docs/en/permissions)). So the prompt
+hook hands Sonar every regular file a mention can name, found as Claude Code
+finds it. Its patterns, read from the 2.1.274 bundle, take a mention only after
+the start of the text, whitespace or a CJK stop
+(`(^|[\s\u3002\u3001\uFF1F\uFF01])@`), end an unquoted path at the last word
+character before whitespace (`@([^\s]+)\b`), split the path at its first `#`
+whatever follows (`^([^#]+)(?:#L(\d+)(?:-(\d+))?)?(?:#[^#]*)?$`), and resolve
+it against the payload's `cwd`, `~` or the root. Each file goes by its real
+path, once, since Sonar reports a symlink clean without reading its target.
+When Sonar errors, or `grep` or `realpath` is missing or cannot resolve a
+mentioned file, the prompt goes through with a warning shown to the user that
+it was not scanned. A mentioned file outside the project is read by the scanner
+as the model would read it: the Sonar documentation says the scan runs locally
+with no server connection
+([Secrets detection](https://docs.sonarsource.com/sonarqube-cli/analysis/secrets-detection))
+and that telemetry carries no file content, path or command argument
+([Telemetry and privacy](https://docs.sonarsource.com/sonarqube-cli/administration/telemetry-and-privacy));
+`sonar config telemetry --disabled` opts out of telemetry altogether. Other
 content reaches the model without either hook seeing it, among them a nested
 `CLAUDE.md`, a connected IDE's selection or open file, an MCP resource, and a
 file read by a Bash or Grep call.
