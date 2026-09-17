@@ -259,7 +259,12 @@ prompt hook hands Sonar every regular file a mention can name, as Claude Code
 resolves it: against the payload's `cwd`, `~` or the root. Each file goes by its
 real path, since Sonar reports a symlink clean without reading its target. When
 Sonar errors, or `realpath` cannot resolve a mentioned file, the prompt goes
-through with a warning shown to the user that it was not scanned. Other
+through with a warning shown to the user that it was not scanned. A mentioned
+file outside the project is read by the scanner as the model would read it: the
+Sonar documentation ("Secrets detection", "Telemetry and privacy") says the
+scan runs locally with no server connection and that telemetry carries no file
+content, path or command argument; `sonar config telemetry --disabled` opts
+out of telemetry altogether. Other
 content reaches the model without either hook seeing it, among them a nested
 `CLAUDE.md`, a connected IDE's selection or open file, an MCP resource, and a
 file read by a Bash or Grep call.
