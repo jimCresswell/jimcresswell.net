@@ -1,13 +1,25 @@
 /**
  * The shellcheck gate's pure mapping: which tracked files are shell scripts,
- * which of their comments would silence shellcheck, and the argv that lints
- * them.
+ * which shebangs fail the gate, which comments would silence shellcheck, and
+ * the argv that lints them.
  *
  * A shell script is a tracked file named `*.sh` or `*.bash`, a file directly
  * in `.husky/` (husky runs every hook there with `sh`), or one whose first line
- * is a shebang naming a shell shellcheck lints: `sh`, `bash`, `dash` or `ksh`.
- * The file names come from git (`repo-check-files.ts` carries why); the
- * contents are read from the working tree.
+ * is a recognised shell shebang. The file names come from git
+ * (`repo-check-files.ts` carries why); the contents are read from the working
+ * tree.
+ *
+ * The shebang classification is closed, following the closed-shape rule
+ * (`.agent/rules/closed-shape-design-optionality.md`). The first line, less a
+ * trailing carriage return, is matched exactly against the forms the tracked
+ * files use (`SHEBANG_FORMS`), never parsed. Any other first line starting
+ * `#!` fails the gate, and so does a non-shell form on a file whose path makes
+ * it shell, so no script escapes the lint on an interpreter form the gate
+ * cannot read. The falsifier: a real script that needs another interpreter
+ * form, which widens `SHEBANG_FORMS` deliberately, by that form, in the change
+ * that adds the script. The path rules stay as they are: a file with neither a
+ * shebang nor a shell path has nothing to fail on, so dropping a path rule
+ * would let its scripts escape silently.
  *
  * Every finding fails, and nothing outside the gate's own argv decides what
  * counts as one: a `.shellcheckrc` above the checkout and a `SHELLCHECK_OPTS`
@@ -15,7 +27,7 @@
  * `extended-analysis` directive inside a script fails the gate itself, so
  * every check and the full analysis apply to every script. A script names its
  * shell with its shebang (shellcheck also infers bash from a `.bash` name), so
- * a sourced `.sh` library and every husky hook carry one.
+ * a sourced `.sh` library and every husky hook carry one of the shell forms.
  *
  * @packageDocumentation
  */
@@ -25,21 +37,16 @@ const SHELL_EXTENSIONS = ['.sh', '.bash'] as const;
 const HUSKY_HOOK_DIRECTORY = '.husky/';
 
 /**
- * `#!`, optional space and an optional directory, then the shell's name ending
- * the word, either directly or as any later word of an `env` shebang: bare,
- * after a directory (never a `NAME=value` word, which runs nothing), or
- * attached to `-S` or `--split-string=`. So `#!/bin/bash`,
- * `#!/usr/bin/env -S bash -e`, `#!/usr/bin/env -S /bin/bash`,
- * `#!/usr/bin/env -u NAME bash` and `#!/usr/bin/env -Sbash` all name bash.
- *
- * Any later word counts, whatever env's options take as arguments, because
- * the two errors are not alike: a shell script the pattern missed would
- * escape the lint silently, while a shebang the pinned shellcheck cannot
- * identify (it reports `env -S /bin/bash` and `env -u NAME bash` as SC1008)
- * fails the gate loudly until the shebang names the shell plainly.
+ * Every shebang line the gate recognises, each whole line mapped to whether
+ * it runs a shell. These are the forms the tracked files use; a line outside
+ * them fails the gate.
  */
-const SHELL_SHEBANG =
-  /^#!\s*(?:\S*\/)?(?:env(?:\s+\S+)*?\s+(?:-S|--split-string=)?(?:[^\s=]*\/)?)?(?:sh|bash|dash|ksh)(?=\s|$)/u;
+const SHEBANG_FORMS: ReadonlyMap<string, 'shell' | 'not shell'> = new Map([
+  ['#!/usr/bin/env bash', 'shell'],
+  ['#!/usr/bin/env sh', 'shell'],
+  ['#!/usr/bin/env node', 'not shell'],
+  ['#!/usr/bin/env python3', 'not shell'],
+]);
 
 /**
  * A shellcheck directive comment (`# shellcheck key=value ...`, the space
@@ -49,23 +56,62 @@ const SHELL_SHEBANG =
  */
 const SILENCING_DIRECTIVE = /^\s*#\s*shellcheck\s(?:.*\s)?(disable|shell|extended-analysis)=/u;
 
+/** A file's first line, less the carriage return that ends a CRLF line. */
+function firstLine(head: string): string {
+  const [line = ''] = head.split('\n', 1);
+  return line.endsWith('\r') ? line.slice(0, -1) : line;
+}
+
+/** Whether a file's path makes it shell whatever its first line: a `.sh` or `.bash` name, or a husky hook. */
+function hasShellPath(file: string): boolean {
+  const name = file.slice(file.lastIndexOf('/') + 1);
+  return (
+    SHELL_EXTENSIONS.some((extension) => name.endsWith(extension)) ||
+    file === `${HUSKY_HOOK_DIRECTORY}${name}`
+  );
+}
+
 /**
  * Whether a tracked file is a shell script for shellcheck to lint.
  *
  * @param file - Repo-relative path.
  * @param head - The file's opening bytes, enough to hold its first line.
- * @returns True for a `.sh` or `.bash` name, a husky hook, or a first line that is a shell shebang.
+ * @returns True for a `.sh` or `.bash` name, a husky hook, or a first line that is a shell form.
  */
 export function isShellScript(file: string, head: string): boolean {
-  const name = file.slice(file.lastIndexOf('/') + 1);
-  if (SHELL_EXTENSIONS.some((extension) => name.endsWith(extension))) {
-    return true;
+  return hasShellPath(file) || SHEBANG_FORMS.get(firstLine(head)) === 'shell';
+}
+
+/**
+ * The failure for a tracked file whose shebang the gate refuses: a first line
+ * starting `#!` that is not one of `SHEBANG_FORMS`, or a non-shell form on a
+ * file whose path makes it shell.
+ *
+ * @param file - Repo-relative path, named in the failure.
+ * @param head - The file's opening bytes, enough to hold its first line.
+ * @returns One failure line naming the file, its shebang (each carriage return written `\r`) and the remedy; empty when the gate accepts the file.
+ */
+export function shebangFailures(file: string, head: string): readonly string[] {
+  const line = firstLine(head);
+  const form = SHEBANG_FORMS.get(line);
+  const shellPath = hasShellPath(file);
+  if (!line.startsWith('#!') || form === 'shell' || (form === 'not shell' && !shellPath)) {
+    return [];
   }
-  if (file === `${HUSKY_HOOK_DIRECTORY}${name}`) {
-    return true;
-  }
-  const [firstLine = ''] = head.split('\n', 1);
-  return SHELL_SHEBANG.test(firstLine);
+  const forms = [...SHEBANG_FORMS]
+    .filter(([, kind]) => kind === 'shell' || !shellPath)
+    .map(([shebang]) => `\`${shebang}\``);
+  const refusal = shellPath
+    ? 'not a recognised shell form, and its path makes the file a shell script'
+    : 'not a recognised form';
+  const remedy =
+    form === 'not shell'
+      ? 'or rename a script that is not shell off that path'
+      : "or add its form to the gate's SHEBANG_FORMS deliberately";
+  return [
+    `${file}:1: the shebang \`${line.replaceAll('\r', String.raw`\r`)}\` is ${refusal}; ` +
+      `use one of ${forms.join(', ')}, ${remedy}`,
+  ];
 }
 
 /**

@@ -6,6 +6,7 @@ import { defaultRuntime } from './repo-check-runtime.js';
 import {
   silencingDirectiveFailures,
   isShellScript,
+  shebangFailures,
   shellcheckArgs,
 } from './repo-check-shellcheck-files.js';
 import {
@@ -27,9 +28,11 @@ import { trackedFiles } from './repo-check-universe.js';
  * shellcheck when the installer has put one there and the shellcheck on PATH
  * otherwise, and asks it for its version: a missing, foreign or other-version
  * shellcheck fails the gate with the remedy. The universe is git's tracked tree (`repo-check-universe.ts`); each
- * file's opening bytes (`HEAD_BYTES`) are read to find the extensionless scripts, and each
- * script is read for directives that would silence the lint. The pure
- * verdicts live in `repo-check-shellcheck-files.ts` and
+ * file's opening bytes (`HEAD_BYTES`) are read to classify its shebang, which
+ * finds the extensionless scripts and fails any shebang the classification
+ * refuses (an unrecognised form, or a non-shell form on a file whose path makes
+ * it shell), and each script is read for directives that would silence the
+ * lint. The pure verdicts live in `repo-check-shellcheck-files.ts` and
  * `repo-check-shellcheck-version.ts`. Paths are relative to the working
  * directory, which agent-tools' `repo-check` script sets to the repository
  * root (`cd ..`).
@@ -49,7 +52,8 @@ const GATE = 'repo-check shellcheck-tracked';
  * newline included. macOS runs a `#!` line of up to 512 bytes (XNU's
  * `IMG_SHSIZE`; on macOS 26.6 a 512-byte line ran and a 513-byte line failed
  * with ENOEXEC), and Linux reads the first 256 (`BINPRM_BUF_SIZE`), so the
- * shell that runs a script is named within its first 512 bytes.
+ * whole line naming a script's interpreter is within its first 512 bytes, and
+ * a failure quotes all of any shebang line macOS honours.
  */
 const HEAD_BYTES = 512;
 
@@ -125,11 +129,16 @@ export async function runShellcheckTracked(
   if (!version.ok) {
     return fail(runtime, [version.error]);
   }
-  const scripts = runtime
+  const heads = runtime
     .trackedFiles()
-    .filter((file) => isShellScript(file, runtime.readHead(file, HEAD_BYTES)));
+    .map((file) => ({ file, head: runtime.readHead(file, HEAD_BYTES) }));
+  const scripts = heads
+    .filter(({ file, head }) => isShellScript(file, head))
+    .map(({ file }) => file);
+  const shebangs = heads.flatMap(({ file, head }) => shebangFailures(file, head));
   if (scripts.length === 0) {
     return fail(runtime, [
+      ...shebangs,
       'git lists no tracked shell scripts; run the gate from the repository root',
     ]);
   }
@@ -141,5 +150,6 @@ export async function runShellcheckTracked(
     silencingDirectiveFailures(file, runtime.readText(file)),
   );
   const status = await runtime.runEnv(shellcheckArgs(shellcheck.command, scripts));
-  return directives.length > 0 ? fail(runtime, directives) : status;
+  const refusals = [...shebangs, ...directives];
+  return refusals.length > 0 ? fail(runtime, refusals) : status;
 }

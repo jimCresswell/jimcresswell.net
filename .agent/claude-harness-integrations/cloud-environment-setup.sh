@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Claude cloud environment setup script — REFERENCE COPY.
 #
 # The live copy runs from the claude.ai cloud-environment configuration
