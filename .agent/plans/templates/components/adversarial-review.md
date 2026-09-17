@@ -22,10 +22,10 @@ invoke specialist reviewers for an adversarial sweep.
 
 | Change Category | Specialist(s) |
 |----------------|---------------|
-| Structural/boundary changes | `architecture-expert-barney`, `architecture-expert-betty`, `architecture-expert-fred`, `architecture-expert-wilma` |
+| Structural/boundary changes | `architecture-expert`, plus the persona for each lane touched (`architecture-expert-barney`, `architecture-expert-betty`, `architecture-expert-fred`, `architecture-expert-wilma`) |
 | Test changes | `test-expert` |
 | Type-system complexity | `type-expert` |
-| Auth/secrets/PII | `security-expert` |
+| Headers, CSP, secrets, env, PII, proxy or middleware, dependency upgrades with a security bearing | `security-expert` |
 | Docs/ADR changes | `docs-adr-expert` |
 | Config/quality-gate changes | `config-expert` |
 

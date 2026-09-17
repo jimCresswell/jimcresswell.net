@@ -1,7 +1,7 @@
 ---
 classification: situational
 description: Route editorial and public-copy changes through the editor
-trigger: surface:public-facing copy, CV and front-page content, editorial docs
+trigger: surface:public-facing copy, CV and front-page content, structured-data descriptions, editorial docs
 globs:
   - content/**/*
   - docs/editorial/**/*

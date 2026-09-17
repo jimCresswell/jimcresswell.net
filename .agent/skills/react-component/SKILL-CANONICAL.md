@@ -8,7 +8,7 @@ description: Use when work changes App Router components, hooks, or client and s
 
 Use this skill while planning or implementing changes in `app/` or
 `components/` that affect composition, hooks, props flow, or App Router
-boundaries. It complements `react-component-reviewer`; use the reviewer for the
+boundaries. It complements `react-component-expert`; use the reviewer for the
 independent runtime and composition pass.
 
 ## Read in order
@@ -31,6 +31,6 @@ independent runtime and composition pass.
 3. Pair the slice with behaviour proof at the right level: component or
    integration tests for composition, `pnpm test:e2e` when route behaviour
    changes.
-4. Hand off to `react-component-reviewer` once the slice is implemented, and
-   pull in `design-system` or `security` when the component crosses those
-   boundaries.
+4. Hand off to `react-component-expert` once the slice is implemented, and
+   pull in the `design-system` or `security` skill when the component crosses
+   those boundaries.

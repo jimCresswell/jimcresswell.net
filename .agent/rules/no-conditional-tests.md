@@ -77,7 +77,7 @@ If step 3 reveals that the ambiguity is intentional and load-bearing, that is a 
 
 - `test-expert` enforces this rule on every test-touching diff. Conditional execution of any kind is an immediate fail; see [`test-immediate-fails.md`](test-immediate-fails.md).
 - `code-expert` flags conditional test patterns and routes to `test-expert`.
-- `architecture-expert-fred` (principles-first) flags product-code shapes that *force* test authors toward conditionals — multiple-mode functions, env-detection inside libraries, ambient-state coupling — as architectural-failure signals at the source.
+- `architecture-expert` flags product-code shapes that *force* test authors toward conditionals — multiple-mode functions, env-detection inside libraries, ambient-state coupling — as architectural-failure signals at the source.
 
 ## Cross-references
 

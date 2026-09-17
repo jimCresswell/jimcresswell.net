@@ -141,18 +141,19 @@ During development, the AI agent working on the code invokes specialist sub-agen
 
 ### What the sub-agents do
 
-| Sub-agent               | Focus                                                     |
-| ----------------------- | --------------------------------------------------------- |
-| `code-expert`           | Gateway reviewer: code quality, security, maintainability |
-| `architecture-expert-*` | Structural boundaries, dependency direction, coupling     |
-| `test-expert`           | TDD compliance, test quality, mock simplicity             |
-| `type-expert`           | Type safety, generics, schema-to-type flow                |
-| `config-expert`         | Tooling config consistency, quality gate alignment        |
-| `security-expert`       | Headers, secrets, env, proxies, trust surfaces            |
-| `docs-adr-expert`       | Documentation completeness, ADR accuracy                  |
-| `accessibility-expert`  | WCAG 2.2 AA semantics, focus, motion, PDF surfaces        |
-| `pkg-expert`            | Schema.org, JSON-LD, and knowledge-graph correctness      |
-| `editor`                | Editorial voice and audience fit of public-facing content |
+| Sub-agent               | Focus                                                                                    |
+| ----------------------- | ---------------------------------------------------------------------------------------- |
+| `code-expert`           | Gateway reviewer: code quality, security, maintainability                                |
+| `architecture-expert`   | Workspace boundaries, import direction, module structure                                 |
+| `architecture-expert-*` | Four persona lanes: graph, navigation and layout, build and caching, Practice governance |
+| `test-expert`           | TDD compliance, test quality, mock simplicity                                            |
+| `type-expert`           | Type safety, generics, schema-to-type flow                                               |
+| `config-expert`         | Tooling config consistency, quality gate alignment                                       |
+| `security-expert`       | Headers, secrets, env, proxies, trust surfaces                                           |
+| `docs-adr-expert`       | Documentation completeness, ADR accuracy                                                 |
+| `accessibility-expert`  | WCAG 2.2 AA semantics, focus, motion, PDF surfaces                                       |
+| `pkg-expert`            | Schema.org, JSON-LD, and knowledge-graph correctness                                     |
+| `editor`                | Editorial voice and audience fit of public-facing content                                |
 
 ### When they run
 
