@@ -177,10 +177,15 @@ checked test script.
 
 For agent-tools and `tooling/*` tests, the shared Vitest base config
 (`@engraph/workspace-config`) discovers `src/**/*.test.ts`, `src/**/*.spec.ts`,
-`tests/**/*.test.ts` and `tests/**/*.spec.ts`; the site discovers
-`**/*.test.{ts,tsx}`. A `*.unit.test.ts` file matches because `*.test.ts`
-matches it — a file elsewhere in the tree, or with another suffix, is not
-evidence unless the include pattern names it.
+`tests/**/*.test.ts` and `tests/**/*.spec.ts`, where a `*.unit.test.ts` file
+matches because `*.test.ts` matches it. The site's Vitest discovers only
+`**/*.unit.test.ts` and `**/*.integration.test.{ts,tsx}` outside `e2e/`, and
+Playwright reads only `e2e/`, so a site test outside `e2e/` without one of
+those suffixes runs under neither runner. knip takes its site test entries from
+the same include, so it lists such a file under "Unused files" and `pnpm check`
+fails; the cure is the class suffix, never a knip ignore or deleting the test.
+A file elsewhere in the tree, or with another suffix, is not evidence unless
+the include pattern names it.
 
 ## Common Violations And Fixes
 
