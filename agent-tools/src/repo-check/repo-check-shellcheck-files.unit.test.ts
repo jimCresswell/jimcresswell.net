@@ -87,11 +87,12 @@ describe('shebangFailures', () => {
     expect(shebangFailures('bin/run', `${line}\r\nrun\r\n`)).toStrictEqual([]);
   });
 
-  it('fails an unrecognised shebang on a file whose path makes it shell, naming only the shell forms', () => {
-    expect(shebangFailures('lib/legacy.sh', '#!/bin/bash\n')).toStrictEqual([
-      'lib/legacy.sh:1: the shebang `#!/bin/bash` is not a recognised shell form, ' +
+  it('fails an unrecognised shebang on a file whose path makes it shell, naming only the shell forms and both remedies', () => {
+    expect(shebangFailures('tool.sh', '#!/usr/bin/env ruby\n')).toStrictEqual([
+      'tool.sh:1: the shebang `#!/usr/bin/env ruby` is not a recognised shell form, ' +
         'and its path makes the file a shell script; use one of `#!/usr/bin/env bash`, ' +
-        "`#!/usr/bin/env sh`, or add its form to the gate's SHEBANG_FORMS deliberately",
+        "`#!/usr/bin/env sh`, or add its form to the gate's SHEBANG_FORMS deliberately " +
+        'as a shell form, or rename a script that is not shell off that path',
     ]);
   });
 
