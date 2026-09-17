@@ -100,7 +100,7 @@ Per [PDR-079](../practice-core/decision-records/PDR-079-pdr-vs-adr-portability-d
 
 ### Repo-bound surfaces (rule does NOT apply)
 
-- `docs/architecture/architectural-decisions/ADR-*.md` — ADRs are
+- `docs/architecture/decision-records/NNN-*.md` — ADRs are
   repository-specific by definition. SHAs, event UUIDs, repo paths,
   package names, and branch conventions appear in ADRs as appropriate
   evidence and operational specificity. Forcing ADRs to soften

@@ -10,11 +10,11 @@ const PORCELAIN = [
   'HEAD 1111111111111111111111111111111111111111',
   'branch refs/heads/coordination/team-tooling-session-2026-06-28',
   '',
-  'worktree /repo/oak-spawn-flow',
+  'worktree /repo/jc-spawn-flow',
   'HEAD 2222222222222222222222222222222222222222',
   'branch refs/heads/feat/spawn-worktree-view',
   '',
-  'worktree /repo/oak-detached',
+  'worktree /repo/jc-detached',
   'HEAD 3333333333333333333333333333333333333333',
   'detached',
   '',
@@ -29,12 +29,12 @@ describe('parseGitWorktreeList — git ground-truth input for the work-state vie
         head: '1111111111111111111111111111111111111111',
       },
       {
-        path: '/repo/oak-spawn-flow',
+        path: '/repo/jc-spawn-flow',
         branch: 'feat/spawn-worktree-view',
         head: '2222222222222222222222222222222222222222',
       },
       {
-        path: '/repo/oak-detached',
+        path: '/repo/jc-detached',
         head: '3333333333333333333333333333333333333333',
       },
     ]);
@@ -53,7 +53,7 @@ describe('parseGitWorktreeList — git ground-truth input for the work-state vie
 
   it('readGitWorktrees runs `git worktree list --porcelain` through the injected runner', () => {
     const calls: { args: readonly string[]; cwd: string }[] = [];
-    const worktrees = readGitWorktrees('/repo/oak-spawn-flow', {
+    const worktrees = readGitWorktrees('/repo/jc-spawn-flow', {
       runGit: (args, cwd) => {
         calls.push({ args, cwd });
         return PORCELAIN;
@@ -61,7 +61,7 @@ describe('parseGitWorktreeList — git ground-truth input for the work-state vie
     });
 
     expect(calls).toStrictEqual([
-      { args: ['worktree', 'list', '--porcelain'], cwd: '/repo/oak-spawn-flow' },
+      { args: ['worktree', 'list', '--porcelain'], cwd: '/repo/jc-spawn-flow' },
     ]);
     expect(worktrees).toHaveLength(3);
   });

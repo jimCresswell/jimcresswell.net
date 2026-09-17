@@ -46,7 +46,9 @@ workspace-owned package scripts, such as
 `allowBuilds` in `pnpm-workspace.yaml` is an **intentional** allowlist: only
 packages mapped to `true` may run install lifecycle scripts. Security
 `overrides`, `peerDependencyRules`, and the `minimumReleaseAge` floor also live
-in `pnpm-workspace.yaml`, not in root `package.json`.
+in `pnpm-workspace.yaml`, not in root `package.json`. pnpm 12 reads no `pnpm`
+field from any `package.json`: in the root manifest the field draws a warning,
+and in a workspace member it is ignored without one.
 
 **pnpm `overrides` rewrite EVERY transitive contract, not just your pins.** An
 override earns its place only when the transitive resolution is itself the
@@ -70,9 +72,10 @@ Both ESLint lines resolve in one lockfile, and the split shapes the
 `brace-expansion` security override: the site's
 ESLint 9 line reaches `brace-expansion` 1.x through `@eslint/config-array`'s
 `minimatch@3`, and an unscoped 5.x floor broke that resolver at lint time. The
-override is therefore scoped per major (`brace-expansion@1`, `@2`, `@4`, `@5`),
-each line kept on its own patched floor for the quadratic-expansion advisory.
-Do not collapse the four entries into one.
+tree holds the 1.x and 5.x lines, so the override is scoped per major
+(`brace-expansion@1`, `@5`), each line kept on its own patched floor; the
+override's comment in `pnpm-workspace.yaml` names the advisories. Do not
+collapse the two entries into one.
 
 ### `postinstall` builds `agent-tools/dist`
 
@@ -103,6 +106,13 @@ lockfile regeneration is where the 24h floor either binds or silently does
 not; pnpm's own resolver applies it deterministically, and whether Dependabot's
 invocation honours it is version-dependent and unestablished here. Read
 Dependabot PRs with that in mind.
+
+The security floors in the `overrides:` block may rest on advisories a
+maintainer has published in the package's own repository before GitHub reviews
+them. `pnpm audit` and Dependabot read only GitHub's reviewed database, so an
+audit reporting zero does not show that a floor is current: when setting or
+checking a floor, also read the repository's advisories
+(`gh api repos/<owner>/<repo>/security-advisories`).
 
 Three constraints are held deliberately. A sweep must not break any of them:
 
@@ -220,12 +230,12 @@ missing ones fall through to the generic inputs and produce stale cache hits.
 Quality is enforced through four surfaces, each triggered at a different point
 in the development lifecycle:
 
-| Surface        | Runs                                                                                                                                                                                                                                                                                                                                     |
-| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **pre-commit** | The branch guard (refuses commits on `main`), Prettier and markdownlint on the staged files, and `turbo run lint` for the workspaces changed since `HEAD`. Light by design (owner ruling 2026-09-12: light commit, full push).                                                                                                           |
-| **commit-msg** | `prevent-accidental-major-version`, then commitlint (Conventional Commits).                                                                                                                                                                                                                                                              |
-| **pre-push**   | `pnpm check` plus the site's end-to-end suite (`pnpm --filter @jimcresswell/www test:e2e`).                                                                                                                                                                                                                                              |
-| **CI**         | `.github/workflows/ci.yml` — four jobs after `install`: `secret-scan`, `static-checks` (format, markdown, shell, runtime-only, sub-agents, portability, skills, encoding, the docs and repo validator aggregates, knip, depcruise), `build-and-test` (build, lint, type-check, test, the agent-tools end-to-end and smoke suite), `e2e`. |
+| Surface        | Runs                                                                                                                                                                                                                                                                                                                                                |
+| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **pre-commit** | The branch guard (refuses commits on `main`), Prettier and markdownlint on the staged files, and `turbo run lint` for the workspaces changed since `HEAD` (`repo-check lint-changed`, which skips the run when turbo plans no task, as for a commit that changes no workspace). Light by design (owner ruling 2026-09-12: light commit, full push). |
+| **commit-msg** | `prevent-accidental-major-version`, then commitlint (Conventional Commits).                                                                                                                                                                                                                                                                         |
+| **pre-push**   | `pnpm check` plus the site's end-to-end suite (`pnpm --filter @jimcresswell/www test:e2e`).                                                                                                                                                                                                                                                         |
+| **CI**         | `.github/workflows/ci.yml` — four jobs after `install`: `secret-scan`, `static-checks` (format, markdown, shell, runtime-only, sub-agents, portability, skills, encoding, the docs and repo validator aggregates, knip, depcruise), `build-and-test` (build, lint, type-check, test, the agent-tools end-to-end and smoke suite), `e2e`.            |
 
 The merge, cherry-pick and revert paths fire `pre-merge-commit`,
 `prepare-commit-msg` and `applypatch-msg`, which carry the same branch guard.

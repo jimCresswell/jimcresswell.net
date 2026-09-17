@@ -17,8 +17,8 @@ const safe = assertPathWithinBase(untrustedPath, baseDir);
 const contents = readFileSync(safe, 'utf-8');
 ```
 
-Single source of truth: consumed by `@engraph/agent-tools` and the
-`oak-search-cli` app. The injectable `realpath` seam keeps tests off real IO.
+Single source of truth: consumed by `@engraph/agent-tools`. The injectable `realpath`
+seam keeps tests off real IO.
 
 ## Known extension points
 

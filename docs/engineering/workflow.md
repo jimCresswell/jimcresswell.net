@@ -90,9 +90,14 @@ the changed workspaces. The `commit` skill (`/jc-commit`) enacts this phase.
 ## 5. Push
 
 The pre-push hook runs the full read-only gate (`pnpm check`, which includes
-the `secrets:scan` leg) and then the site's
+the `secrets:scan` and `lint:shell` legs) and then the site's
 Playwright suite. If gitleaks is not installed the secret-scan leg fails — install
-from [gitleaks releases](https://github.com/gitleaks/gitleaks/releases). If the
+from [gitleaks releases](https://github.com/gitleaks/gitleaks/releases). If
+neither `.tools/bin/shellcheck` nor the shellcheck on your PATH is the version
+`.agent/setup/install-shellcheck.sh` pins, the shell lint leg fails — run that
+script, which installs it into `.tools/bin`. If jq is not installed the
+agent-tools smoke suite fails, because the secrets hook smokes prove the
+hooks both with jq and without it — install jq. If the
 Playwright browser is not installed, run `pnpm exec playwright install` once.
 
 ```bash
@@ -203,7 +208,7 @@ help implies, not what historical local precedent permits.
 A generator run over sparse or absent local source data can produce
 structurally valid but semantically empty output. The generator exits clean;
 the file shape is correct; the content is wrong. For any generator that
-derives output from input data (the JSON-LD graph from `content/entities.json`,
+derives output from input data (the JSON-LD graph from `jcdotnet/content/entities.json`,
 the PDF from the rendered CV, fixture builders, schema-from-data tools), verify
 the expected size signal (a record count, a page count, a byte count) before
 trusting the output. Structural validity is not semantic validity; the proof of

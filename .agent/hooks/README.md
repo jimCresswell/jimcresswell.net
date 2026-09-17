@@ -245,7 +245,9 @@ case (loudly, as above) and fail **closed** whenever a built guard misbehaves.
 They read the payload with `jq` when it is installed; without it, the Read hook
 denies a path holding a JSON escape it cannot decode rather than let it through
 unscanned. Their commands quote every `${CLAUDE_PROJECT_DIR}`, which the
-portability check enforces for every hook and the status line.
+portability check enforces for every hook and the status line; it also holds
+each of those commands to the closed hook-command grammar in
+`agent-tools/src/validators/portability/claude-hook-script-anchoring.ts`.
 
 Every writer of `.claude/logs/` creates it owner-only: the directory mode 700 and
 the logs mode 600. The wrapper and the Node hooks' shared helper

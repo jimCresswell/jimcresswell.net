@@ -1,9 +1,11 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Session-hook PREFLIGHT — the read-only twin of cloud-session-setup.sh
 # under the hook-preflight contract (cloud-environment.md § Validating and
 # diagnosing): this repo's session hook downloads the pinned Playwright
 # Chromium, so this file falsifies the reachability of the hosts that
-# download contacts, without downloading anything. Invoked as a probe by
+# download contacts, without downloading anything. The hook's shellcheck
+# download adds no host: it uses the github.com release-asset chain the
+# universal preflight already probes for gitleaks. Invoked as a probe by
 # cloud-environment-preflight.sh; non-zero exit fails that probe with this
 # output as the finding.
 set -uo pipefail

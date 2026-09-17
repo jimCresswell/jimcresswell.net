@@ -6,18 +6,14 @@ import { createMessage, type RuleWithReappraisingMessages } from '../reappraisin
  * @remarks
  * Repository doctrine (`.agent/rules/use-result-pattern.md`) is that errors are part
  * of the type signature: a function that can fail returns `Result<T, E>`, and
- * the compiler forces every caller to handle both arms. A `throw` re-introduces
+ * the compiler rejects a read of `value` or `error` until `ok` is checked;
+ * handling the failure is the caller's job. A `throw` re-introduces
  * the invisible control-flow edge the Result pattern exists to remove. Genuine
  * boundary translations — re-expressing an error from a library that cannot
  * return a `Result` — belong at a single named edge, translated to a `Result`
  * there, not scattered through the call graph.
  *
- * Wired at `warn` first (see `configs/recommended.ts`) per the
- * `no-warning-toleration` rule-authoring nuance: the existing-throw surface
- * (notably workspaces that predate Result adoption, such as `agent-tools`) is
- * captured at `warn` while the throw→Result retrofit lane migrates it and the
- * false-positive profile (test files, sanctioned boundary throws) is designed.
- * Promotion to `error` lands with that lane.
+ * Its severity is set in `configs/recommended.ts`, which records why.
  */
 const noThrowStatementRule: RuleWithReappraisingMessages<'throwBanned'> = {
   meta: {

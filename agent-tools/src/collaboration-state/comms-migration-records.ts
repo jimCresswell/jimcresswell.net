@@ -50,20 +50,36 @@ const legacyDirectedSchema = z.strictObject({
   body: nonEmptyString,
 });
 
+/**
+ * Project the legacy comms record collections onto the current event shape.
+ *
+ * A legacy string-form `addressed_to` or `audience` entry carries only a name,
+ * so it is projected with `unknown` placeholders and announced as one line
+ * through `writeWarning`: the operator running the migration sees each name
+ * that lost its identity fields. The line is injected rather than written to
+ * `process.stderr` here, so every caller decides where it goes and a test can
+ * assert it instead of printing it into the gate log.
+ */
 export function migrateLegacyCommsRecordCollections(input: {
   readonly narratives: readonly unknown[];
   readonly lifecycles: readonly unknown[];
   readonly directed: readonly unknown[];
+  readonly writeWarning: (line: string) => void;
 }): readonly CommsEvent[] {
   return [
-    ...input.narratives.map((value) => toNarrativeEvent(legacyNarrativeSchema.parse(value))),
+    ...input.narratives.map((value) =>
+      toNarrativeEvent(legacyNarrativeSchema.parse(value), input.writeWarning),
+    ),
     ...input.lifecycles.map((value) => toLifecycleEvent(legacyLifecycleSchema.parse(value))),
     ...input.directed.map((value) => toDirectedEvent(legacyDirectedSchema.parse(value))),
   ].toSorted((left, right) => left.event_id.localeCompare(right.event_id));
 }
 
-function legacyStringToAgentId(name: string): CollaborationAgentId {
-  process.stderr.write(
+function legacyStringToAgentId(
+  name: string,
+  writeWarning: (line: string) => void,
+): CollaborationAgentId {
+  writeWarning(
     `[comms-migration] legacy string-form addressed_to/audience entry "${name}" migrated with unknown platform/model/session_id_prefix; new writes use tuple form per PDR-027\n`,
   );
   return {
@@ -74,7 +90,10 @@ function legacyStringToAgentId(name: string): CollaborationAgentId {
   };
 }
 
-function toNarrativeEvent(value: z.output<typeof legacyNarrativeSchema>): CommsEvent {
+function toNarrativeEvent(
+  value: z.output<typeof legacyNarrativeSchema>,
+  writeWarning: (line: string) => void,
+): CommsEvent {
   return {
     schema_version: '2.0.0',
     event_id: value.event_id,
@@ -85,10 +104,10 @@ function toNarrativeEvent(value: z.output<typeof legacyNarrativeSchema>): CommsE
     body: value.body,
     ...(value.audience === undefined
       ? {}
-      : { audience: value.audience.map(legacyStringToAgentId) }),
+      : { audience: value.audience.map((name) => legacyStringToAgentId(name, writeWarning)) }),
     ...(value.addressed_to === undefined
       ? {}
-      : { addressed_to: legacyStringToAgentId(value.addressed_to) }),
+      : { addressed_to: legacyStringToAgentId(value.addressed_to, writeWarning) }),
     ...(value.in_response_to === undefined ? {} : { in_response_to: value.in_response_to }),
     ...(value.in_reply_to === undefined ? {} : { in_reply_to: value.in_reply_to }),
   };

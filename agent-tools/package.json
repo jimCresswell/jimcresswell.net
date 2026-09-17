@@ -17,7 +17,7 @@
     "smoke:codex-session-alert-bootstrap": "pnpm --silent build && tsx smoke-tests/codex-session-alert-bootstrap.smoke.ts",
     "smoke:pre-tool-use-dispatch": "tsx smoke-tests/pre-tool-use-dispatch.smoke.ts",
     "smoke:install-version-guard": "tsx smoke-tests/install-version-guard.smoke.ts",
-    "smoke:commit-queue-worktree": "tsx smoke-tests/commit-queue-worktree.smoke.ts",
+    "smoke:commit-queue-worktree": "pnpm --silent build && tsx smoke-tests/commit-queue-worktree.smoke.ts",
     "smoke:commit-queue-git-rename": "tsx smoke-tests/commit-queue-git-rename.smoke.ts",
     "smoke:comms-watch-coordination-home": "tsx smoke-tests/comms-watch-coordination-home.smoke.ts",
     "smoke:collaboration-tui": "tsx smoke-tests/collaboration-tui-start.smoke.ts",

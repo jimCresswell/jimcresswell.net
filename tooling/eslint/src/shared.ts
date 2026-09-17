@@ -65,29 +65,19 @@ export function createImportResolverSettings(options: ImportResolverSettingsOpti
 export const commonSettings = createImportResolverSettings();
 
 /**
- * Global ignore patterns for ESLint.
- * Includes build artifacts, test results, and documentation.
+ * Global ignore patterns for ESLint: scratch, build output, dependencies,
+ * declaration files and test results.
  */
 export const ignores = [
   'tmp/',
   'dist/',
   'node_modules/',
   '**/*.d.ts',
-  'reference/',
   // Ignore ephemeral bundled config artifacts (e.g., tsup.config.bundled_*.mjs)
   '**/*.bundled_*.mjs',
-  // Generated TypeDoc output
-  '**/docs/api/',
-  '**/docs/api-md/',
   // Test results
   '**/test-results/',
   '**/coverage/',
-  // Design-sync machine state: gitignored, but flat config does not read
-  // .gitignore and these files belong to no tsconfig project
-  '.ds-sync/',
-  'ds-bundle/',
-  '.design-sync/.cache/',
-  '.design-sync/learnings/',
 ];
 
 /**

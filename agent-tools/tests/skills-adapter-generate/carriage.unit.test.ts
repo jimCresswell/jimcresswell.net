@@ -277,7 +277,7 @@ describe('collectCarriedFiles', () => {
 
 describe('checkCarriage', () => {
   const canonicalDir = '/repo/.agent/skills/cognition/parallax';
-  const adapterDir = '/repo/.claude/skills/oak-parallax';
+  const adapterDir = '/repo/.claude/skills/jc-parallax';
 
   it('is clean when every carried file exists byte-identically and nothing else is present', async () => {
     const fs = makeReadFs(
@@ -449,7 +449,7 @@ describe('checkCarriage', () => {
 
 describe('syncCarriage', () => {
   const canonicalDir = '/repo/.agent/skills/cognition/parallax';
-  const adapterDir = '/repo/.claude/skills/oak-parallax';
+  const adapterDir = '/repo/.claude/skills/jc-parallax';
 
   it('copies every carried file into the projection byte-stably', async () => {
     const files = new Map([

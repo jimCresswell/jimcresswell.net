@@ -596,7 +596,7 @@ topology for memory-file reconciliation):
 4. **Close the claim** with the merge SHA as usual (move 4).
 
 For the semantic-merge topology itself (which branches merge where, and how
-memory files reconcile as unions), PDR-049 and the `oak-semantic-merge` skill
+memory files reconcile as unions), PDR-049 and the `semantic-merge` skill
 govern; this subsection owns only the commit mechanics.
 
 ### Foreign index lock — no autonomous contact, including waits
@@ -963,18 +963,18 @@ the conflation is captured at
 ## Platform Adapters
 
 This skill is **passive / always-active** — discovery, not invocation.
-Adapters are generated skill-form thin pointers. ADR-125 is authoritative for
+Adapters are generated skill-form thin pointers. PDR-051 is authoritative for
 the current adapter topology; do not hand-maintain a platform inventory here.
 For this owned skill the generated adapters currently live at:
 
-- `.agents/skills/oak-commit/SKILL.md` — cross-tool alias used by Codex,
+- `.agents/skills/jc-commit/SKILL.md` — cross-tool alias used by Codex,
   Cursor, Gemini, and other `.agents/` consumers.
-- `.claude/skills/oak-commit/SKILL.md` — Claude Code adapter.
+- `.claude/skills/jc-commit/SKILL.md` — Claude Code adapter.
 
 The retired custom-command and per-platform skill directories are not valid
 homes for this workflow. Regenerate adapters with `pnpm skills:generate`
 (the root script — it builds first and pins the estate's required
-`--prefix=oak-`) and verify with `pnpm skills:check` or
+`--prefix`) and verify with `pnpm skills:check` or
 `pnpm portability:check` after canonical changes. The workspace-filtered
 form now also works (its script anchors at the repo root and pins the
 prefix; the 2026-07-02 wrong-cwd failure is cured at the script).

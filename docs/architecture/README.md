@@ -3,8 +3,10 @@
 ## Overview
 
 `www.jimcresswell.net` is a Next.js 16 application using the App Router,
-deployed on Vercel. Editorial prose and shared identity atoms are rendered from
-JSON files in `content/`; structural UI labels remain component-owned.
+deployed on Vercel. It is the `jcdotnet/` workspace, and the source paths in
+this document are relative to that workspace. Editorial prose and shared identity
+atoms are rendered from JSON files in `content/`; structural UI labels remain
+component-owned.
 
 ## Repo-Specific Operational Constraints
 
@@ -180,6 +182,7 @@ All significant architectural decisions are recorded as ADRs in [decision-record
 | [019](decision-records/019-playwright-against-production-build.md)           | Playwright runs against a production build                        |
 | [020](decision-records/020-entity-model-source-of-truth-for-shared-atoms.md) | Entity model is the source of truth for shared identity atoms     |
 | [021](decision-records/021-canonical-only-cv-identity.md)                    | Canonical-only CV identity                                        |
+| [022](decision-records/022-rendering-risk-needs-blocking-visual-proof.md)    | Rendering-risk changes need blocking visual proof                 |
 
 The retired tilt content and its former canonical-alias rationale are preserved
 in the [CV tilt reference](reference/cv-tilt-content-and-rationale.md).

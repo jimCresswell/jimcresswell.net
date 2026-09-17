@@ -26,9 +26,8 @@ import { createMessage, type RuleWithReappraisingMessages } from '../reappraisin
  * The structural allowlist is hardcoded into the rule because the
  * directory shapes (`**\/test-helpers/**`, `**\/test-fakes/**`) and the
  * Vitest config files (`vitest.config.ts`, `vitest.*.config.ts`,
- * `vitest.setup.ts`) are stable repo-wide contracts. Per-config additions
- * (a frozen historical-violation inventory at branch-merge time) flow in
- * via the `allowlistPathShapes` option.
+ * `vitest.setup.ts`) are stable repo-wide contracts. Per-config path
+ * shapes flow in via the `allowlistPathShapes` option.
  *
  * Type-only imports (`import type { Stats } from 'node:fs'`) do not
  * execute IO and are not reported.
@@ -69,11 +68,10 @@ export interface NoRealIoInTestsOptions {
    * Per-config additional allowlist path-shape patterns (minimatch globs).
    *
    * @remarks
-   * The historical real-IO inventory is frozen into this option as a
-   * path snapshot at branch-merge time. The structural defaults
-   * (`**\/test-helpers/**`, `**\/test-fakes/**`, `vitest.config.ts`,
-   * `vitest.*.config.ts`, `vitest.setup.ts`) are hardcoded and are not
-   * removable through this option.
+   * The consuming config records each entry's reason beside it. The
+   * structural defaults (`**\/test-helpers/**`, `**\/test-fakes/**`,
+   * `vitest.config.ts`, `vitest.*.config.ts`, `vitest.setup.ts`) are
+   * hardcoded and are not removable through this option.
    */
   readonly allowlistPathShapes?: readonly string[];
 }

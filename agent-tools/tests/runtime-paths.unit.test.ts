@@ -4,9 +4,7 @@ import { escapedRepoPath, isSessionId } from '../src/core/runtime-paths';
 
 describe('runtime paths', () => {
   it('escapes repo path for claude projects folder', () => {
-    expect(escapedRepoPath('/workspace/code/oak/oak-mcp-ecosystem')).toBe(
-      '-workspace-code-oak-oak-mcp-ecosystem',
-    );
+    expect(escapedRepoPath('/workspace/code/jc/jc-site')).toBe('-workspace-code-jc-jc-site');
   });
 
   it('escapes windows-style repo paths', () => {
