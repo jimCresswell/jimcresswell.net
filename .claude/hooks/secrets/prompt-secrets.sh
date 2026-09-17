@@ -61,23 +61,21 @@ printf '%s' "$prompt" > "$temp_file"
 # conversation with no tool call, so the Read hook never sees it and this
 # payload carries only the prompt's text (Claude Code 2.1.274, observed
 # 2026-09-17). Every regular file a mention can name is scanned with the
-# prompt, found as Claude Code finds it. Its patterns (read from the 2.1.274
-# bundle) take `@"<path>"` or `@<path>` only after the start of the text,
-# whitespace or a CJK stop (`(^|[\s。、？！])`), so an email
-# address is no mention; end an unquoted path at the last word character
-# before whitespace (`@([^\s]+)\b`), so trailing punctuation drops; and split
-# the path at its first `#`, whatever follows (`^([^#]+)(?:#L(\d+)(?:-(\d+))?)?
-# (?:#[^#]*)?$`). The path resolves against the working directory, `~` or the
-# root. Its whitespace includes the no-break space, so the run of printable
-# ASCII is tried as well. A name that is no regular file is skipped. Sonar
+# prompt, found by Claude Code's own patterns, read from the 2.1.274 bundle
+# and run on the JavaScript engine they were written for, so the whitespace
+# set, the word boundary and the `#` split are the ones Claude Code applies: a
+# mention starts only after the start of the text, whitespace or a CJK stop;
+# an unquoted path ends at the last word character before whitespace; the path
+# is everything before its first `#`. It resolves against the working
+# directory, `~` or the root. A name that is no regular file is skipped. Sonar
 # reports a symlink clean without reading its target, so each file goes by its
-# real path, once. Without grep or realpath the mentions cannot be found or
+# real path, once. Without node or realpath the mentions cannot be found or
 # resolved, and the prompt goes through with a warning that they were not
 # scanned.
 mentioned=()
 unresolved=0
 missing_tool=''
-for tool in grep realpath; do
+for tool in node realpath; do
   command -v "$tool" &> /dev/null || missing_tool=$tool
 done
 add_mentioned_file() {
@@ -100,27 +98,24 @@ add_mentioned_file() {
   done
   mentioned+=("$resolved")
 }
-# An unquoted mention loses its trailing non-word characters; either form
-# loses everything from its first `#`.
-add_unquoted_mention() {
-  local path=$1
-  while [[ "$path" == *[!0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_] ]]; do
-    path=${path%?}
-  done
-  add_mentioned_file "${path%%#*}"
+# One NUL-terminated path per mention, in order of first appearance. The two
+# forms are alternatives of one pattern, so a quoted mention is never read
+# again as an unquoted one starting with the quote.
+mention_paths_script='
+const text = require("node:fs").readFileSync(process.argv[1], "utf8");
+const lead = "(^|[\\s\\u3002\\u3001\\uFF1F\\uFF01])";
+const pattern = new RegExp(lead + "@(?:\"([^\"]+)\"|([^\\s]+)\\b)", "g");
+const paths = new Set();
+for (const match of text.matchAll(pattern)) {
+  const path = /^([^#]+)/.exec(match[2] ?? match[3]);
+  if (path) paths.add(path[1]);
 }
+process.stdout.write([...paths].map((path) => path + String.fromCharCode(0)).join(""));
+'
 if [[ -z "$missing_tool" ]]; then
-  # The boundary before `@`: start of line, whitespace, the no-break space, the
-  # ideographic space, or one of the four CJK stops, as UTF-8 bytes.
-  lead=$'(^|[[:space:]]|\xc2\xa0|\xe3\x80\x80|\xe3\x80\x82|\xe3\x80\x81|\xef\xbc\x9f|\xef\xbc\x81)'
-  while IFS= read -r token; do
-    token=${token#*@\"}
-    token=${token%\"}
-    add_mentioned_file "${token%%#*}"
-  done < <(LC_ALL=C grep -a -oE "${lead}"'@"[^"]+"' "$temp_file")
-  while IFS= read -r token; do
-    add_unquoted_mention "${token#*@}"
-  done < <(LC_ALL=C grep -a -oE "${lead}"'@[^[:space:]]+' "$temp_file"; LC_ALL=C grep -a -oE "${lead}"'@[!-~]+' "$temp_file")
+  while IFS= read -r -d '' token; do
+    add_mentioned_file "$token"
+  done < <(node -e "$mention_paths_script" "$temp_file")
 fi
 
 # Scan prompt for secrets (using file instead of stdin pipe)
