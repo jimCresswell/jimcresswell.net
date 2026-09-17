@@ -1,7 +1,7 @@
 ---
 classification: situational
-description: "On any significant documentation or Practice change — doctrine added, renamed, or rewritten (.agent/directives, practice-core, rules, ADRs/PDRs, governance), onboarding entry points (README, CONTRIBUTING.md, CLAUDE.md), or cross-file renames of commands, skills, or agents — dispatch BOTH docs-adr-expert AND onboarding-expert in parallel before the work is complete. Not for typo fixes, frontmatter-only edits, citation insertions, or source-only changes with auto-generated docs; when in doubt, it is significant. Failure shape — one reviewer alone: each misses a class the other catches."
-trigger: ceremony:significant-doc-change — Behaviour/API/architecture change without a paired doc update
+description: "On any significant documentation or Practice change — doctrine added, removed, renamed, or rewritten (.agent/directives, practice-core, rules, .agent/reference, docs/engineering, ADRs/PDRs, governance), onboarding entry points (README, CONTRIBUTING.md, the platform entry files), or cross-file renames of commands, skills, or agents — dispatch BOTH docs-adr-expert AND onboarding-expert in parallel before the work is complete. Not for typo fixes, frontmatter-only edits, citation insertions, or source-only changes with auto-generated docs; when in doubt, it is significant. Failure shape — one reviewer alone: each misses a class the other catches."
+trigger: ceremony:significant-doc-change — Doctrine, rule, ADR, PDR, reference, engineering or governance doc added, removed, renamed, rewritten or restructured; onboarding entry point changed; command, skill or agent renamed across files
 ---
 
 # Invoke Doc-ADR and Onboarding Experts on Significant Documentation or Practice Changes
@@ -34,8 +34,9 @@ A change is significant under this rule when any of the following hold:
   `docs/engineering/`, or any host-equivalent permanent doctrine
   surface.
 - Modifies any onboarding entry point: top-level `README.md`,
-  `CONTRIBUTING.md`, platform memory files (`CLAUDE.md`, `AGENTS.md`,
-  `GEMINI.md`, etc.), the `.agent/practice-index.md`, or
+  `CONTRIBUTING.md`, the platform entry files (`CLAUDE.md`, `AGENTS.md`,
+  `GEMINI.md`, `.github/copilot-instructions.md`, `skills.md`), the
+  `.agent/practice-index.md`, or
   `docs/engineering/` material that contributors hit on first arrival.
 - Lands a new ADR, PDR, governance doc, or rule (every new permanent
   doctrine artefact).

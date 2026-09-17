@@ -1,7 +1,7 @@
 ---
 classification: situational
 description: Invoke accessibility-expert when changes touch rendered HTML, ARIA attributes, keyboard interaction, colour contrast, focus management, or WCAG compliance in UI-shipping workspaces.
-trigger: surface:accessibility — Accessibility-touching change (WCAG / keyboard / focus / contrast / ARIA)
+trigger: surface:accessibility — Accessibility-touching change (rendered markup / semantics / interaction flow / WCAG / keyboard / focus / contrast / ARIA / motion / PDF accessibility / assistive technology)
 globs:
   - "**/*.tsx"
   - "**/*.html"
@@ -10,7 +10,7 @@ globs:
 
 # Invoke Accessibility Reviewer
 
-Invoke `accessibility-reviewer` when changes alter markup, interaction flows, focus order,
+Invoke `accessibility-expert` when changes alter markup, interaction flows, focus order,
 semantics, motion, PDF accessibility, or assistive-technology behaviour. Use it for any rendered
 change where WCAG, keyboard access, or screen-reader interpretation could regress.
 

@@ -1,18 +1,22 @@
 ---
 name: architecture
 classification: active
-description: Use when work changes graph, UI, build, or Practice structure and needs the right lane.
+description: Use when work changes workspace, import, graph, UI, build, or Practice structure and needs the right lane.
 ---
 
 # Architecture
 
-Use this skill for active architecture work. This repo does not have one
-generic architecture reviewer; it has four personae with different authority
+Use this skill for active architecture work. Architecture review here is one
+structural reviewer, `architecture-expert`, for workspace boundaries, import
+direction and module structure, and four personas with different authority
 lanes, so start by choosing the right lane rather than collapsing them.
 
 ## Read in order
 
 1. The relevant architecture lane:
+   - Structure across the workspaces:
+     `.agent/rules/invoke-architecture-expert.md` and
+     `.agent/sub-agents/templates/architecture-expert.md`
    - Barney: `.agent/rules/invoke-architecture-expert-barney.md` and
      `.agent/sub-agents/templates/architecture-expert-barney.md`
    - Betty: `.agent/rules/invoke-architecture-expert-betty.md` and
@@ -26,12 +30,14 @@ lanes, so start by choosing the right lane rather than collapsing them.
 
 ## How to use it
 
-1. If the slice spans multiple lanes, read and apply multiple personae instead
-   of forcing one reviewer to cover everything.
-2. Settle the boundary before coding: data contract, route and layout contract,
-   build and runtime contract, or Practice contract.
-3. Keep proof in the right layer: integration tests for data and metadata,
+1. If the slice spans multiple lanes, read and apply each lane's reviewer
+   instead of forcing one reviewer to cover everything.
+2. Settle the boundary before coding: workspace and import contract, data
+   contract, route and layout contract, build and runtime contract, or
+   Practice contract.
+3. Keep proof in the right layer: dependency-cruiser and lint evidence for
+   workspace and import structure, integration tests for data and metadata,
    visual or E2E proof for UI architecture, and build or validator evidence for
    infrastructure or Practice surfaces.
-4. Route the finished slice through the matching architecture reviewer
-   persona(s).
+4. Route the finished slice through `architecture-expert` for structure across
+   the workspaces, plus the persona for each lane it touches.

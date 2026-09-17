@@ -177,6 +177,8 @@ describe('unified comms format CLI behaviour', () => {
             author: sender,
             title: 'Narrative one',
             body: 'Narrative body.',
+            // String form: only the name survives, so the migration warns.
+            addressed_to: recipient.agent_name,
           },
         ],
         [lifecycleDir]: [
@@ -233,6 +235,10 @@ describe('unified comms format CLI behaviour', () => {
       stdout: 'migrated 3 comms events\n',
       stderr: '',
     });
+    // The warning reaches the IO sink, not the CLI result.
+    expect(fake.migrationWarnings()).toStrictEqual([
+      expect.stringContaining(`"${recipient.agent_name}"`),
+    ]);
     expect(fake.readCommsEvents(commsDir)).toStrictEqual([
       {
         schema_version: '2.0.0',
@@ -268,6 +274,12 @@ describe('unified comms format CLI behaviour', () => {
         author: sender,
         title: 'Narrative one',
         body: 'Narrative body.',
+        addressed_to: {
+          agent_name: recipient.agent_name,
+          platform: 'unknown',
+          model: 'unknown',
+          session_id_prefix: 'unknown',
+        },
       },
     ]);
   });
