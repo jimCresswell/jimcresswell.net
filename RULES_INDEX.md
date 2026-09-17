@@ -49,25 +49,25 @@ edit it by hand.
 | `.agent/rules/hook-policy-substring-discipline.md` | core | — |
 | `.agent/rules/identify-as-agent-under-shared-credentials.md` | core | — |
 | `.agent/rules/important-state-not-in-temp-files.md` | core | — |
-| `.agent/rules/invoke-accessibility-expert.md` | situational | `surface:accessibility — Accessibility-touching change (WCAG / keyboard / focus / contrast / ARIA)` |
+| `.agent/rules/invoke-accessibility-expert.md` | situational | `surface:accessibility — Accessibility-touching change (rendered markup / semantics / interaction flow / WCAG / keyboard / focus / contrast / ARIA / motion / PDF accessibility / assistive technology)` |
 | `.agent/rules/invoke-architecture-expert.md` | situational | `surface:workspace boundaries, import direction, module structure, dependency injection, public APIs` |
-| `.agent/rules/invoke-architecture-expert-barney.md` | situational | `surface:content/entities.json, lib/ graph derivation, JSON-LD` |
-| `.agent/rules/invoke-architecture-expert-betty.md` | situational | `surface:app/ routes, navigation, layout` |
-| `.agent/rules/invoke-architecture-expert-fred.md` | situational | `surface:build, caching, PDF generation, Playwright against the production build, Vercel config` |
-| `.agent/rules/invoke-architecture-expert-wilma.md` | situational | `surface:.agent/, docs/, Practice governance` |
-| `.agent/rules/invoke-assumptions-expert.md` | situational | `ceremony:plan-authoring — Plan authoring, decision-complete marks, blocking claims, 3+ agents, third-party vendor integration, technology commitments before research` |
+| `.agent/rules/invoke-architecture-expert-barney.md` | situational | `surface:content/, lib/ graph derivation, JSON-LD, metadata wiring, graph identity contracts` |
+| `.agent/rules/invoke-architecture-expert-betty.md` | situational | `surface:app/ routes, navigation, layout composition, header and footer behaviour, user-journey architecture` |
+| `.agent/rules/invoke-architecture-expert-fred.md` | situational | `surface:build, build-time scripts, caching, the proxy, PDF generation, Playwright against the production build, Vercel config and deployment plumbing, runtime resilience` |
+| `.agent/rules/invoke-architecture-expert-wilma.md` | situational | `surface:.agent/, Practice governance, plans, PDR and ADR wiring, cross-platform Practice surfaces, canonical workflow documentation` |
+| `.agent/rules/invoke-assumptions-expert.md` | situational | `ceremony:plan-authoring — Plan authoring, decision-complete or ready-for-execution marks, blocking claims, 3+ agents, workspace or package topology changes, third-party vendor integration, technology commitments before research, related document sets, requested assumption audits or proportionality checks` |
 | `.agent/rules/invoke-code-experts.md` | core | — |
-| `.agent/rules/invoke-config-expert.md` | situational | `surface:tsconfig, ESLint, Vitest, Prettier, markdownlint, Turbo, knip, dependency-cruiser, Husky, package.json scripts, next.config, postcss, Playwright config` |
-| `.agent/rules/invoke-design-system-expert.md` | situational | `surface:design — Design token / theming / CSS custom property / colour palette / typography / motion change` |
-| `.agent/rules/invoke-doc-and-onboarding-experts-on-significant-changes.md` | situational | `ceremony:significant-doc-change — Behaviour/API/architecture change without a paired doc update` |
-| `.agent/rules/invoke-docs-adr-expert.md` | situational | `surface:docs/, ADRs, EDRs, READMEs` |
-| `.agent/rules/invoke-editor.md` | situational | `surface:public-facing copy, CV and front-page content, editorial docs` |
-| `.agent/rules/invoke-pkg-expert.md` | situational | `surface:jcdotnet/content/entities.json, JSON-LD emission, Schema.org types, @id conventions` |
-| `.agent/rules/invoke-react-component-expert.md` | situational | `surface:react-component — React component edit (hooks, render, prop API, composition)` |
-| `.agent/rules/invoke-security-expert.md` | situational | `surface:headers, secrets, middleware, proxy, CSP` |
-| `.agent/rules/invoke-subagent-architect.md` | situational | `surface:.agent/sub-agents/, platform agent adapters` |
-| `.agent/rules/invoke-test-expert.md` | situational | `surface:test files, vitest and playwright config` |
-| `.agent/rules/invoke-type-expert.md` | situational | `surface:types, schemas, contracts, tsconfig` |
+| `.agent/rules/invoke-config-expert.md` | situational | `surface:tsconfig, ESLint, Vitest, Prettier, markdownlint, Turbo, knip, dependency-cruiser, Husky, package.json scripts, lockfile, env handling, next.config, postcss, Playwright config, deployment tooling` |
+| `.agent/rules/invoke-design-system-expert.md` | situational | `surface:design — Design token / theming / CSS custom property / global CSS / colour palette / spacing / typography / motion / layout rhythm / breakpoint / multi-surface (page and PDF) styling / shared-component styling / visual-consistency change` |
+| `.agent/rules/invoke-doc-and-onboarding-experts-on-significant-changes.md` | situational | `ceremony:significant-doc-change — Doctrine, rule, ADR, PDR, reference, engineering or governance doc added, removed, renamed, rewritten or restructured; onboarding entry point changed; command, skill or agent renamed across files` |
+| `.agent/rules/invoke-docs-adr-expert.md` | situational | `surface:docs/, ADRs, EDRs, READMEs, .agent/ documentation, permanent narrative surfaces` |
+| `.agent/rules/invoke-editor.md` | situational | `surface:public-facing copy, CV and front-page content, structured-data descriptions, editorial docs` |
+| `.agent/rules/invoke-pkg-expert.md` | situational | `surface:jcdotnet/content/entities.json, the graph and JSON-LD modules in jcdotnet/lib/, JSON-LD emission, Schema.org types, @id conventions, graph-backed metadata` |
+| `.agent/rules/invoke-react-component-expert.md` | situational | `surface:react-component — React component edit (hooks, render performance, prop API, composition, client or server boundaries, hydration, lifecycle)` |
+| `.agent/rules/invoke-security-expert.md` | situational | `surface:headers, CSP, secrets, env loading, middleware, proxy, dependencies, auth, public attack surface` |
+| `.agent/rules/invoke-subagent-architect.md` | situational | `surface:reviewer roster, .agent/sub-agents/, invoke-* rules, .agent/skills/, platform agent, rule and skill adapters, platform entry points` |
+| `.agent/rules/invoke-test-expert.md` | situational | `surface:test files, test helpers, proof layers, vitest and playwright config, TDD discipline` |
+| `.agent/rules/invoke-type-expert.md` | situational | `surface:types, exported types, type flow, generics, assertions, schemas and schema inference, compile-time guarantees` |
 | `.agent/rules/knowledge-preservation-over-fitness-warnings.md` | core | — |
 | `.agent/rules/lint-after-edit.md` | situational | `surface:source-authoring` |
 | `.agent/rules/liveness-heartbeat-cron.md` | situational | `session:team — Team session bootstrap` |

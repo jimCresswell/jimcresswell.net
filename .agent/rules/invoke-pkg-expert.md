@@ -1,7 +1,7 @@
 ---
 classification: situational
 description: invoke pkg expert
-trigger: surface:jcdotnet/content/entities.json, JSON-LD emission, Schema.org types, @id conventions
+trigger: surface:jcdotnet/content/entities.json, the graph and JSON-LD modules in jcdotnet/lib/, JSON-LD emission, Schema.org types, @id conventions, graph-backed metadata
 ---
 
 # Invoke PKG Reviewer

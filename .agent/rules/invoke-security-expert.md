@@ -1,7 +1,7 @@
 ---
 classification: situational
 description: invoke security expert
-trigger: surface:headers, secrets, middleware, proxy, CSP
+trigger: surface:headers, CSP, secrets, env loading, middleware, proxy, dependencies, auth, public attack surface
 ---
 
 # Invoke Security Reviewer

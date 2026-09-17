@@ -211,10 +211,11 @@ retired once these pass.
 | [`.agent/reference/`](reference/)         | Local reference material                                                                       |
 | [`.agent/collaboration/`](collaboration/) | Rapid-comms channels                                                                           |
 | [`.agent/state/`](state/)                 | Coordination state (machine-local parts git-ignored)                                           |
-| [`.agents/`](../.agents/)                 | Codex skill adapters (generated)                                                               |
+| [`.agents/`](../.agents/)                 | Cross-tool skill adapters and rule mirrors (generated)                                         |
 | [`.claude/`](../.claude/)                 | Claude adapters for skills, rules, and experts (generated)                                     |
 | [`.codex/`](../.codex/)                   | Codex config and thin expert adapters (generated)                                              |
 | [`.cursor/`](../.cursor/)                 | Cursor adapters (generated)                                                                    |
+| [`.gemini/`](../.gemini/)                 | Gemini expert adapters (generated)                                                             |
 | [`.github/`](../.github/)                 | Copilot instructions, expert wrappers, templates, CI workflows                                 |
 | [`agent-tools/`](../agent-tools/)         | `@engraph/agent-tools` — validators, collaboration state, comms, commit queue                  |
 | [`tooling/`](../tooling/)                 | `@engraph/*` shared packages: eslint plugin, result, safe-path, type-helpers, workspace-config |

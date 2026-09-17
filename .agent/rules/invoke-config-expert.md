@@ -1,7 +1,7 @@
 ---
 classification: situational
 description: invoke config expert
-trigger: surface:tsconfig, ESLint, Vitest, Prettier, markdownlint, Turbo, knip, dependency-cruiser, Husky, package.json scripts, next.config, postcss, Playwright config
+trigger: surface:tsconfig, ESLint, Vitest, Prettier, markdownlint, Turbo, knip, dependency-cruiser, Husky, package.json scripts, lockfile, env handling, next.config, postcss, Playwright config, deployment tooling
 ---
 
 # Invoke Config Reviewer

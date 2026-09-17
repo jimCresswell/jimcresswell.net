@@ -20,7 +20,7 @@ function createTempRepoRoot(): string {
 function writeFixtureRepo(repoRoot: string): void {
   mkdirSync(join(repoRoot, '.codex', 'agents'), { recursive: true });
   mkdirSync(join(repoRoot, '.agent', 'sub-agents', 'templates'), { recursive: true });
-  mkdirSync(join(repoRoot, '.agent', 'sub-agents', 'components', 'personas'), {
+  mkdirSync(join(repoRoot, '.agent', 'sub-agents', 'components', 'behaviours'), {
     recursive: true,
   });
 
@@ -31,7 +31,7 @@ description = "Gateway reviewer."
 config_file = "agents/code-expert.toml"
 
 [agents."architecture-expert-fred"]
-description = "Principles-first architecture reviewer."
+description = "Architecture reviewer Fred covering builds, caching and resilience."
 config_file = "agents/architecture-expert-fred.toml"
 `,
     'utf8',
@@ -57,16 +57,16 @@ Mode: Observe, analyse and report. Do not modify code.
   writeFileSync(
     join(repoRoot, '.codex', 'agents', 'architecture-expert-fred.toml'),
     `name = "architecture-expert-fred"
-description = "Principles-first architecture reviewer."
+description = "Architecture reviewer Fred covering builds, caching and resilience."
 model = "gpt-5.6-terra"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 approval_policy = "never"
 
 developer_instructions = """
-Read and apply \`.agent/sub-agents/components/personas/fred.md\` for your persona identity and review lens.
+Your first action MUST be to read and internalise \`.agent/sub-agents/templates/architecture-expert-fred.md\`.
 
-Your first action MUST be to read and internalise \`.agent/sub-agents/templates/architecture-expert.md\`.
+Read and apply \`.agent/sub-agents/components/behaviours/reading-discipline.md\`.
 
 Mode: Observe, analyse and report. Do not modify code.
 """
@@ -80,13 +80,13 @@ Mode: Observe, analyse and report. Do not modify code.
     'utf8',
   );
   writeFileSync(
-    join(repoRoot, '.agent', 'sub-agents', 'templates', 'architecture-expert.md'),
-    '# architecture reviewer\n',
+    join(repoRoot, '.agent', 'sub-agents', 'templates', 'architecture-expert-fred.md'),
+    '# architecture reviewer fred\n',
     'utf8',
   );
   writeFileSync(
-    join(repoRoot, '.agent', 'sub-agents', 'components', 'personas', 'fred.md'),
-    '# fred\n',
+    join(repoRoot, '.agent', 'sub-agents', 'components', 'behaviours', 'reading-discipline.md'),
+    '# reading discipline\n',
     'utf8',
   );
 }
@@ -129,8 +129,8 @@ describe('resolveCodexProjectAgent', () => {
     expect(resolvedAgent.sandboxMode).toBe('read-only');
     expect(resolvedAgent.approvalPolicy).toBe('never');
     expect(resolvedAgent.referencedCanonicalFiles).toStrictEqual([
-      '.agent/sub-agents/components/personas/fred.md',
-      '.agent/sub-agents/templates/architecture-expert.md',
+      '.agent/sub-agents/components/behaviours/reading-discipline.md',
+      '.agent/sub-agents/templates/architecture-expert-fred.md',
     ]);
   });
 

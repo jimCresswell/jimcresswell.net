@@ -1,7 +1,7 @@
 ---
 classification: situational
 description: invoke test expert
-trigger: surface:test files, vitest and playwright config
+trigger: surface:test files, test helpers, proof layers, vitest and playwright config, TDD discipline
 ---
 
 # Invoke Test Reviewer

@@ -1,7 +1,7 @@
 ---
 classification: situational
 description: Invoke assumptions-expert when plans are marked decision-complete, propose 3+ agents, assert blocking relationships, integrate a third-party vendor, or commit to technology choices before research.
-trigger: ceremony:plan-authoring — Plan authoring, decision-complete marks, blocking claims, 3+ agents, third-party vendor integration, technology commitments before research
+trigger: ceremony:plan-authoring — Plan authoring, decision-complete or ready-for-execution marks, blocking claims, 3+ agents, workspace or package topology changes, third-party vendor integration, technology commitments before research, related document sets, requested assumption audits or proportionality checks
 ---
 
 # Invoke Assumptions Expert

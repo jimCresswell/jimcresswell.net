@@ -1,7 +1,7 @@
 ---
 classification: situational
 description: Invoke design-system-expert when changes touch design tokens, CSS custom properties, colour palettes, spacing scales, typography scales, motion, theming, or visual consistency in UI-shipping workspaces.
-trigger: surface:design — Design token / theming / CSS custom property / colour palette / typography / motion change
+trigger: surface:design — Design token / theming / CSS custom property / global CSS / colour palette / spacing / typography / motion / layout rhythm / breakpoint / multi-surface (page and PDF) styling / shared-component styling / visual-consistency change
 globs:
   - packages/design/**
   - "**/*.css"

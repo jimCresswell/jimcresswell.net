@@ -61,7 +61,8 @@ Then route by domain:
    cross-platform Practice contracts -> `architecture-expert-wilma`
 6. The reviewer estate: sub-agent templates, platform adapters, `invoke-*`
    rules, skills, or the platform entry points (`CLAUDE.md`, `AGENTS.md`,
-   `GEMINI.md`, `.github/copilot-instructions.md`) -> `subagent-architect`
+   `GEMINI.md`, `.github/copilot-instructions.md`, `skills.md`) ->
+   `subagent-architect`
 7. Plans marked decision-complete, 3+ agents, asserted blocking
    relationships, a third-party vendor integration, or technology
    commitments before research -> `assumptions-expert`
@@ -375,7 +376,7 @@ Invoke additional specialists when applicable:
 | Content that represents Jim: CV, front page, LinkedIn, structured-data descriptions, editorial docs | `editor` (voice, positioning, audience fit) |
 | Rendered UI, CSS, design tokens, React components | UI/Frontend cluster: `accessibility-expert`, `design-system-expert`, `react-component-expert` |
 | Accessibility of the generated PDF | `accessibility-expert` |
-| Sub-agent templates, platform adapters, `invoke-*` rules, skills, platform entry points (`CLAUDE.md`, `AGENTS.md`, `GEMINI.md`, `.github/copilot-instructions.md`) | `subagent-architect` |
+| Sub-agent templates, platform adapters, `invoke-*` rules, skills, platform entry points (`CLAUDE.md`, `AGENTS.md`, `GEMINI.md`, `.github/copilot-instructions.md`, `skills.md`) | `subagent-architect` |
 
 Specialist on-demand (not standard roster -- situational trigger only):
 
@@ -422,7 +423,7 @@ significant doc/Practice changes always pair `docs-adr-expert` with `onboarding-
 (both reviewers, in parallel) — neither alone covers the failure surface the other catches.
 "Significant" includes: any new ADR/PDR/governance doc/rule; any rename or restructure
 across permanent doctrine surfaces; any change to onboarding entry points
-(`README.md`, `CONTRIBUTING.md`, platform memory files, `.agent/practice-index.md`).
+(`README.md`, `CONTRIBUTING.md`, the platform entry files, `.agent/practice-index.md`).
 
 **Release go/no-go**: Invoke `release-readiness-expert` (on-demand, situational trigger).
 
@@ -430,7 +431,7 @@ across permanent doctrine surfaces; any change to onboarding entry points
 
 **Build, PDF or caching change**: Invoke `code-expert` + `architecture-expert-fred` immediately. Add `config-expert` when a configuration file or script changes, and `security-expert` when response headers move.
 
-**Reviewer estate change** (sub-agent templates, platform adapters, `invoke-*` rules, skills): Invoke `code-expert` + `subagent-architect` + `architecture-expert-wilma` immediately; a significant change also takes the `docs-adr-expert` and `onboarding-expert` pair above.
+**Reviewer estate change** (sub-agent templates, platform adapters, `invoke-*` rules, skills, platform entry points): Invoke `code-expert` + `subagent-architect` + `architecture-expert-wilma` immediately; a significant change also takes the `docs-adr-expert` and `onboarding-expert` pair above.
 
 **UI/Frontend change**: Invoke `code-expert` + relevant UI/Frontend cluster specialist(s) immediately. Add `architecture-expert-betty` when routes, navigation or layout composition change.
 

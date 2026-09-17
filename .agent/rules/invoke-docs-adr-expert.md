@@ -1,7 +1,7 @@
 ---
 classification: situational
 description: invoke docs adr expert
-trigger: surface:docs/, ADRs, EDRs, READMEs
+trigger: surface:docs/, ADRs, EDRs, READMEs, .agent/ documentation, permanent narrative surfaces
 ---
 
 # Invoke Docs ADR Reviewer

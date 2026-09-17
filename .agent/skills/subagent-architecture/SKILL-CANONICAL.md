@@ -16,7 +16,7 @@ estate-shape review.
 1. `.agent/sub-agents/templates/subagent-architect.md`
 2. `.agent/rules/invoke-subagent-architect.md`
 3. The relevant changed surfaces under `.agent/`, `.cursor/`, `.claude/`,
-   `.codex/`, `.github/`, and `.agents/`
+   `.codex/`, `.gemini/`, `.github/`, and `.agents/`
 4. `docs/architecture/decision-records/015-codex-adapter-model.md` when Codex
    reviewer wiring is involved
 

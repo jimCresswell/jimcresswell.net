@@ -1,7 +1,7 @@
 ---
 classification: situational
 description: invoke architecture expert betty
-trigger: surface:app/ routes, navigation, layout
+trigger: surface:app/ routes, navigation, layout composition, header and footer behaviour, user-journey architecture
 ---
 
 # Invoke Architecture Reviewer Betty

@@ -1,7 +1,7 @@
 ---
 classification: situational
 description: invoke type expert
-trigger: surface:types, schemas, contracts, tsconfig
+trigger: surface:types, exported types, type flow, generics, assertions, schemas and schema inference, compile-time guarantees
 ---
 
 # Invoke Type Reviewer
