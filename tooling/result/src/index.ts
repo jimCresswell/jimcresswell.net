@@ -1,7 +1,9 @@
 /**
  * Result type for explicit error handling without exceptions.
  *
- * Forces handling of both success and error cases at compile time.
+ * A `Result` is a discriminated union of `Ok` and `Err` on `ok`: TypeScript
+ * rejects a read of `value` or `error` until a check on `ok` (directly or
+ * through `isOk` or `isErr`) narrows it to one arm.
  *
  * @example
  * ```typescript

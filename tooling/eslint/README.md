@@ -95,8 +95,8 @@ while S7755 (prefer-at) is enabled as `unicorn/prefer-at` (see
 
 This plugin is private to this monorepo and is not published to npm. A
 consuming workspace declares `"@engraph/eslint-plugin-standards": "workspace:*"`
-in its `devDependencies` and imports the named exports in its
-`eslint.config.ts`:
+in its `devDependencies`, with `globals` at the range the consumers named below
+declare in their `package.json`, and imports both in its `eslint.config.ts`:
 
 ```typescript
 import {
@@ -106,6 +106,7 @@ import {
   ignores as globalIgnores,
   testRules,
 } from '@engraph/eslint-plugin-standards';
+import globals from 'globals';
 import { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -118,6 +119,7 @@ export default defineConfigArray(
   {
     files: ['**/*.{ts,tsx}'],
     languageOptions: {
+      globals: { ...globals.node, ...globals.es2021 },
       parserOptions: { projectService: false, project: wsTsProject, tsconfigRootDir: thisDir },
     },
     settings: createImportResolverSettings({ project: wsTsProject }),
@@ -129,6 +131,11 @@ export default defineConfigArray(
   // workspace-specific overrides
 );
 ```
+
+The shared configs declare no `languageOptions.globals`. ESLint supplies the
+ECMAScript built-ins from `languageOptions.ecmaVersion` but not Node's, so the
+workspace block declares `globals.node`; without it, `no-global-assign` does
+not report an assignment to `process`, `Buffer` or `console`.
 
 `testRules` carries the hermetic-test protections (no `process.env` or
 `process.cwd()`, no `vi.mock`, `vi.doMock` or `vi.stubGlobal`), so its `files`
