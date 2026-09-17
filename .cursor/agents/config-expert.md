@@ -1,6 +1,6 @@
 ---
 name: config-expert
-description: 'Configuration reviewer for Next.js, PostCSS, and pnpm scripts.'
+description: "Configuration reviewer for TypeScript, ESLint, Vitest, Prettier, markdownlint, Turbo, knip, dependency-cruiser and Husky configuration, pnpm scripts, and the site's Next.js, PostCSS and Playwright configuration."
 readonly: true
 ---
 

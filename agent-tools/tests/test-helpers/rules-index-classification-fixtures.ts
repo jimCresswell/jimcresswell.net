@@ -7,7 +7,7 @@ import path from 'node:path';
  * Provides loaders for the canonical rule corpus and the index markdown.
  *
  * Lives under `test-helpers/` per the structural path-shape allowlist
- * named in `packages/core/oak-eslint/src/rules/no-real-io-in-tests.ts`.
+ * named in `tooling/eslint/src/rules/no-real-io-in-tests.ts`.
  * Tests consume these loaders rather than importing `node:fs/promises`
  * directly per the injected-seams rule.
  */

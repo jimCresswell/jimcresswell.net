@@ -8,7 +8,7 @@ description: After non-trivial changes, invoke specialist experts.
 Operationalises the [sub-agent architecture](../sub-agents/README.md) — layered prompt composition and domain-specialist experts.
 
 After non-trivial changes, invoke specialist experts. `code-expert`
-remains the current gateway reviewer: triage what changed, choose the
+is the gateway reviewer: triage what changed, choose the
 specialists and review depth needed, capture findings explicitly, and act on
 them before considering the work complete.
 

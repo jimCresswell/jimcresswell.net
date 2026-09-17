@@ -8,12 +8,13 @@ Accepted
 
 2026-04-19
 
-> **Renumbering note (2026-04-19):** originally landed locally as PDR-025 on
-> 2026-04-19. An incoming Practice Core integration the same day carried an
-> upstream PDR-025 (Quality-Gate Dismissal Discipline) with prior network
-> reservations on PDR-026 through PDR-029, so this local PDR moved to the next
-> free number (PDR-030) without altering its substance. The original local
-> acceptance date is retained.
+> **Renumbering note:** originally landed locally as PDR-025 on 2026-04-19. An
+> incoming Practice Core integration the same day carried an upstream PDR-025
+> (Quality-Gate Dismissal Discipline) with prior network reservations on
+> PDR-026 through PDR-029, so this local record moved to the next free number
+> (PDR-030) without altering its substance. On 2026-09-12 the Practice lineage
+> transplant re-homed PDR-030 as this repository's ADR-022, changing only its
+> title prefix. The original local acceptance date is retained.
 
 ## Related
 
@@ -96,7 +97,7 @@ normalisation that hides meaningful differences is prohibited.
 
 ### 6. Tool choice is host-local
 
-This PDR does not mandate a specific harness, framework, or artefact format.
+This ADR does not mandate a specific harness, framework, or artefact format.
 Host repos choose the tool that fits their stack. The reusable rule is the
 blocking-proof requirement and the review discipline around it.
 

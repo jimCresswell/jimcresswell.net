@@ -25,12 +25,11 @@ describe('createMessage', () => {
 
   it('preserves interpolation placeholders untouched for ESLint runtime substitution', () => {
     const message = createMessage({
-      prohibition: 'Exported async function "{{name}}" has no observability emission.',
-      reappraisal:
-        'Add a logger.* emission, or tag with `// observability-emission-exempt: <reason>`.',
+      prohibition: 'Avoid exporting trivial aliases (`type {{alias}} = {{target}}`).',
+      reappraisal: 'Import the canonical type where it is required instead.',
     });
 
-    expect(message).toContain('{{name}}');
+    expect(message).toContain('`type {{alias}} = {{target}}`');
   });
 
   it('rejects an empty prohibition — a rule must state what is wrong', () => {

@@ -10,15 +10,15 @@
 import path from 'node:path';
 
 const CONFIG_FILE_BASENAME =
-  /^(?:vitest|tsup|eslint|stryker)(?:\.[\w-]+)*\.config\.(?:ts|mts|cts|js|mjs|cjs)$/;
+  /^(?:vitest|tsup|eslint)(?:\.[\w-]+)*\.config\.(?:ts|mts|cts|js|mjs|cjs)$/;
 
 /**
  * Is this repo-relative path a workspace tooling config file in scope?
  *
- * @remarks The vitest family is a glob by design: `vitest.e2e.config.ts`,
- * `vitest.smoke.config.ts`, and `vitest.experiment.config.ts` all carry
- * real escapes today and a literal `vitest.config.ts` match would
- * silently exempt them. Declaration files never match.
+ * @remarks The vitest family is a glob by design: suffixed members such as
+ * agent-tools' `vitest.e2e.config.ts` are config files too, and a literal
+ * `vitest.config.ts` match would silently exempt them. Declaration files
+ * never match.
  */
 export function isWorkspaceConfigFile(filePath: string): boolean {
   const base = path.posix.basename(filePath);
@@ -64,10 +64,10 @@ export function expandWorkspaceGlobs(
  * directory that path-prefixes it (`''` = repo root).
  *
  * @remarks Longest-prefix matters: a workspace member can be nested
- * inside a non-member directory, and a
- * plain first-match would mis-assign it. The prefix test is
- * boundary-aware — `packages/core/result` does not own
- * `packages/core/result-extras/`.
+ * inside another member's directory, and a plain first-match would
+ * assign the inner member's files to the outer one. The prefix test is
+ * boundary-aware — `tooling/result` does not own
+ * `tooling/result-extras/`.
  */
 export function resolveOwner(workspaceDirs: readonly string[], filePath: string): string {
   let owner = '';
@@ -83,8 +83,8 @@ export function resolveOwner(workspaceDirs: readonly string[], filePath: string)
  * Is the scan's input set degenerate — zero workspaces or zero config
  * files?
  *
- * @remarks A manifest-shape change (`packages/*\/*` tidying, a rename of
- * the config-file family) can silently empty the scan set; a validator
+ * @remarks A manifest-shape change (a reshaped `tooling/*` member glob, a
+ * rename of the config-file family) can silently empty the scan set; a validator
  * printing success over nothing checked is the silent-fallback class
  * this estate bans, so the bin refuses (exit 2) instead of passing.
  */

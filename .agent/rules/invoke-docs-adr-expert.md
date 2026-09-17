@@ -1,12 +1,12 @@
 ---
 classification: situational
 description: invoke docs adr expert
-trigger: surface:docs/, ADRs, EDRs, READMEs
+trigger: surface:docs/, ADRs, EDRs, READMEs, .agent/ documentation, permanent narrative surfaces
 ---
 
 # Invoke Docs ADR Reviewer
 
-Invoke `docs-adr-reviewer` when changes add or alter ADRs, EDRs, README contract docs, `.agent/`
+Invoke `docs-adr-expert` when changes add or alter ADRs, EDRs, README contract docs, `.agent/`
 documentation, or other permanent narrative surfaces. Use it for numbering, status, truthfulness,
 and cross-reference checks.
 

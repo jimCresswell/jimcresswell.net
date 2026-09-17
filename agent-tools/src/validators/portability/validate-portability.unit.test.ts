@@ -269,20 +269,17 @@ describe('getSkillPermissionIssues', () => {
   it('reports a missing Skill() permission when a Claude command adapter exists without a settings entry', () => {
     expect(
       getSkillPermissionIssues({
-        claudeCommandFiles: ['.claude/commands/oak-start-right-quick.md'],
-        claudeSettingsPermissions: ['Skill(oak-plan)', 'Skill(oak-plan:*)'],
+        claudeCommandFiles: ['.claude/commands/jc-start-right-quick.md'],
+        claudeSettingsPermissions: ['Skill(jc-plan)', 'Skill(jc-plan:*)'],
       }),
-    ).toContainEqual(expect.stringContaining('oak-start-right-quick'));
+    ).toContainEqual(expect.stringContaining('jc-start-right-quick'));
   });
 
   it('returns no issues when every Claude command adapter has a matching Skill() permission', () => {
     expect(
       getSkillPermissionIssues({
-        claudeCommandFiles: ['.claude/commands/oak-start-right-quick.md'],
-        claudeSettingsPermissions: [
-          'Skill(oak-start-right-quick)',
-          'Skill(oak-start-right-quick:*)',
-        ],
+        claudeCommandFiles: ['.claude/commands/jc-start-right-quick.md'],
+        claudeSettingsPermissions: ['Skill(jc-start-right-quick)', 'Skill(jc-start-right-quick:*)'],
       }),
     ).toStrictEqual([]);
   });
@@ -290,8 +287,8 @@ describe('getSkillPermissionIssues', () => {
   it('does not require the wildcard variant — only the base Skill() entry', () => {
     expect(
       getSkillPermissionIssues({
-        claudeCommandFiles: ['.claude/commands/oak-gates.md'],
-        claudeSettingsPermissions: ['Skill(oak-gates)'],
+        claudeCommandFiles: ['.claude/commands/jc-gates.md'],
+        claudeSettingsPermissions: ['Skill(jc-gates)'],
       }),
     ).toStrictEqual([]);
   });
@@ -299,10 +296,10 @@ describe('getSkillPermissionIssues', () => {
   it('ignores non-Skill permissions in the allow list', () => {
     expect(
       getSkillPermissionIssues({
-        claudeCommandFiles: ['.claude/commands/oak-gates.md'],
+        claudeCommandFiles: ['.claude/commands/jc-gates.md'],
         claudeSettingsPermissions: ['WebSearch', 'Bash(git status:*)'],
       }),
-    ).toContainEqual(expect.stringContaining('oak-gates'));
+    ).toContainEqual(expect.stringContaining('jc-gates'));
   });
 });
 
@@ -453,10 +450,10 @@ describe('selectPracticeSkillDirs', () => {
   const stub = (title: string, pointer: string): string =>
     `---\nname: x\ndescription: y\n---\n\n# ${title} (Claude Code)\n\nRead and follow \`.agent/skills/${pointer}\`.\n`;
   const stubs = new Map<string, string>([
-    ['oak-commit', stub('Commit', 'commit/SKILL-CANONICAL.md')],
+    ['jc-commit', stub('Commit', 'commit/SKILL-CANONICAL.md')],
     ['legacy-reason', stub('Reason', 'cognition/reason/SKILL-CANONICAL.md')],
     ['clerk', '# Clerk\n\nVendor skill body — no derivation marker.\n'],
-    ['oak-mystery', '# Mystery\n\nForeign skill with a coincidental prefix.\n'],
+    ['jc-mystery', '# Mystery\n\nForeign skill with a coincidental prefix.\n'],
   ]);
   const readStub = async (name: string): Promise<FsRead<string | undefined>> => ({
     kind: 'ok',
@@ -464,11 +461,11 @@ describe('selectPracticeSkillDirs', () => {
   });
 
   it.each([
-    { name: 'oak-commit', selected: true, why: 'a genuine stub is censused' },
+    { name: 'jc-commit', selected: true, why: 'a genuine stub is censused' },
     { name: 'legacy-reason', selected: true, why: 'a previous-prefix stub is still ours' },
     { name: 'clerk', selected: false, why: 'a Vendor stub carries no marker' },
     {
-      name: 'oak-mystery',
+      name: 'jc-mystery',
       selected: false,
       why: 'a prefix-lookalike without the marker stays out',
     },
@@ -480,14 +477,14 @@ describe('selectPracticeSkillDirs', () => {
   });
 
   it('surfaces a reader failure instead of dropping the entry as absent', async () => {
-    const result = await selectPracticeSkillDirs(['oak-x'], async () => ({
+    const result = await selectPracticeSkillDirs(['jc-x'], async () => ({
       kind: 'failure',
-      message: 'cannot read .claude/skills/oak-x/SKILL.md: EACCES',
+      message: 'cannot read .claude/skills/jc-x/SKILL.md: EACCES',
     }));
 
     expect(result).toStrictEqual({
       selected: [],
-      failures: ['cannot read .claude/skills/oak-x/SKILL.md: EACCES'],
+      failures: ['cannot read .claude/skills/jc-x/SKILL.md: EACCES'],
     });
   });
 });

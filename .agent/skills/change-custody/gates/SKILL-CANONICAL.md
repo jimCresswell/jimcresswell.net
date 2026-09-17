@@ -37,7 +37,7 @@ Run each gate in order. If a gate fails, fix the issues before proceeding.
 ```bash
 pnpm format-check:root
 pnpm markdownlint-check:root
-pnpm lint:shell
+pnpm lint:shell               # shellcheck over every tracked shell script
 pnpm lint:runtime-only
 pnpm lint
 pnpm type-check

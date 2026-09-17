@@ -46,7 +46,9 @@ workspace-owned package scripts, such as
 `allowBuilds` in `pnpm-workspace.yaml` is an **intentional** allowlist: only
 packages mapped to `true` may run install lifecycle scripts. Security
 `overrides`, `peerDependencyRules`, and the `minimumReleaseAge` floor also live
-in `pnpm-workspace.yaml`, not in root `package.json`.
+in `pnpm-workspace.yaml`, not in root `package.json`. pnpm 12 reads no `pnpm`
+field from any `package.json`: in the root manifest the field draws a warning,
+and in a workspace member it is ignored without one.
 
 **pnpm `overrides` rewrite EVERY transitive contract, not just your pins.** An
 override earns its place only when the transitive resolution is itself the
@@ -58,22 +60,31 @@ condition; keep that discipline when adding one.
 ### ESLint 9 and ESLint 10 coexist
 
 The site declares ESLint 9 with `eslint-config-next`; `agent-tools`, every
-`tooling/*` package and the root `lint:runtime-only` script declare ESLint 10
-with `@engraph/eslint-plugin-standards`. Both lines resolve in one lockfile,
-and the split shapes the `brace-expansion` security override: the site's
+`tooling/*` package and the root manifest (for the `lint:runtime-only` script)
+declare ESLint 10. `agent-tools`, `tooling/result`, `tooling/safe-path` and
+`tooling/type-helpers` lint with `@engraph/eslint-plugin-standards`. Two
+configs hand-roll theirs from `typescript-eslint` and `@eslint/js` instead: the
+plugin's own (`tooling/eslint`), which cannot lint through its own build, and
+`tooling/workspace-config`'s, because the plugin's build and test configs
+consume that package and a dependency back onto the plugin would close a
+workspace cycle. `lint:runtime-only` uses `@eslint/js`'s recommended rules.
+Both ESLint lines resolve in one lockfile, and the split shapes the
+`brace-expansion` security override: the site's
 ESLint 9 line reaches `brace-expansion` 1.x through `@eslint/config-array`'s
 `minimatch@3`, and an unscoped 5.x floor broke that resolver at lint time. The
-override is therefore scoped per major (`brace-expansion@1`, `@2`, `@4`, `@5`),
-each line kept on its own patched floor for the quadratic-expansion advisory.
-Do not collapse the four entries into one.
+tree holds the 1.x and 5.x lines, so the override is scoped per major
+(`brace-expansion@1`, `@5`), each line kept on its own patched floor; the
+override's comment in `pnpm-workspace.yaml` names the advisories. Do not
+collapse the two entries into one.
 
 ### `postinstall` builds `agent-tools/dist`
 
 `pnpm install` runs `tsx agent-tools/src/bootstrap/bootstrap.ts` as the root
 `postinstall`. It builds the `@engraph/*` closure that agent-tools imports
-(`workspace-config` first, then the leaf packages) with each package's own
-toolchain, skipping any package whose `dist` is already current for its `src`
-and build config, and then compiles `agent-tools/dist` with `tsc` directly. The
+(`workspace-config` first, then the leaf packages), each with its own `tsup` and
+with agent-tools' TypeScript 7 compiler for its declarations, skipping any
+package whose `dist` is already current for its `src` and build config, and
+then compiles `agent-tools/dist` with `tsc` directly. The
 build orchestrator and the package manager stay out of the install lifecycle
 (`validate-lifecycle-scripts` enforces this). The result is that the
 PreToolUse guards in `.claude/settings.json`, the statusline and the agent CLIs
@@ -96,6 +107,13 @@ not; pnpm's own resolver applies it deterministically, and whether Dependabot's
 invocation honours it is version-dependent and unestablished here. Read
 Dependabot PRs with that in mind.
 
+The security floors in the `overrides:` block may rest on advisories a
+maintainer has published in the package's own repository before GitHub reviews
+them. `pnpm audit` and Dependabot read only GitHub's reviewed database, so an
+audit reporting zero does not show that a floor is current: when setting or
+checking a floor, also read the repository's advisories
+(`gh api repos/<owner>/<repo>/security-advisories`).
+
 Three constraints are held deliberately. A sweep must not break any of them:
 
 - **The `typescript` name stays on the 6.0 compiler API; the compiler is
@@ -113,15 +131,20 @@ Three constraints are held deliberately. A sweep must not break any of them:
   names its binary `tsc6`. The postinstall bootstrap compiles with
   `@typescript/native`, resolving its bin through the package manifest. The
   root manifest declares the `typescript` alias too, because
-  `dependency-cruiser` runs from the root and would otherwise find a compiler
-  only through pnpm's hoisting. `next build` resolves `typescript` and
+  `dependency-cruiser` resolves its compiler from its location in pnpm's
+  virtual store (`node_modules/.pnpm`) by walking up to the root
+  `node_modules`, whichever workspace loads it.
+  `next build` resolves `typescript` and
   type-checks the site with `tsc6`, while `pnpm type-check` uses TypeScript 7,
   so the site is checked by both compilers and either one blocks.
-  Enforced by those alias ranges in each manifest. The two failure modes of
-  getting this wrong differ: `typescript-eslint` stops loudly
+  Enforced by those alias ranges in each manifest. Getting this wrong fails
+  both gates, by different routes: `typescript-eslint` stops loudly
   (`typescript-eslint does not support TS 7.0`), while `dependency-cruiser`
-  exits 0 having cruised one module — read its module count, not its exit
-  code. **Lift condition: `typescript-eslint` and `dependency-cruiser` support
+  on its own cruises only the JavaScript modules and exits 0, so
+  `pnpm depcruise` runs it through `repo-check depcruise-gate`, which reads the
+  cruise summary and fails when no supported TypeScript compiler was found, on
+  any environment warning, and on a violation of any severity.
+  **Lift condition: `typescript-eslint` and `dependency-cruiser` support
   TypeScript 7's API (announced for 7.1); then drop the `typescript` alias and
   declare TypeScript 7 under its own name.**
 - **`@types/node` stays on 24.x**, matching `engines.node: 24.x`. Enforced by
@@ -207,12 +230,12 @@ missing ones fall through to the generic inputs and produce stale cache hits.
 Quality is enforced through four surfaces, each triggered at a different point
 in the development lifecycle:
 
-| Surface        | Runs                                                                                                                                                                                                                                                                                                                                     |
-| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **pre-commit** | The branch guard (refuses commits on `main`), Prettier and markdownlint on the staged files, and `turbo run lint` for the workspaces changed since `HEAD`. Light by design (owner ruling 2026-09-12: light commit, full push).                                                                                                           |
-| **commit-msg** | `prevent-accidental-major-version`, then commitlint (Conventional Commits).                                                                                                                                                                                                                                                              |
-| **pre-push**   | `pnpm check` plus the site's end-to-end suite (`pnpm --filter @jimcresswell/www test:e2e`).                                                                                                                                                                                                                                              |
-| **CI**         | `.github/workflows/ci.yml` — four jobs after `install`: `secret-scan`, `static-checks` (format, markdown, shell, runtime-only, sub-agents, portability, skills, encoding, the docs and repo validator aggregates, knip, depcruise), `build-and-test` (build, lint, type-check, test, the agent-tools end-to-end and smoke suite), `e2e`. |
+| Surface        | Runs                                                                                                                                                                                                                                                                                                                                                |
+| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **pre-commit** | The branch guard (refuses commits on `main`), Prettier and markdownlint on the staged files, and `turbo run lint` for the workspaces changed since `HEAD` (`repo-check lint-changed`, which skips the run when turbo plans no task, as for a commit that changes no workspace). Light by design (owner ruling 2026-09-12: light commit, full push). |
+| **commit-msg** | `prevent-accidental-major-version`, then commitlint (Conventional Commits).                                                                                                                                                                                                                                                                         |
+| **pre-push**   | `pnpm check` plus the site's end-to-end suite (`pnpm --filter @jimcresswell/www test:e2e`).                                                                                                                                                                                                                                                         |
+| **CI**         | `.github/workflows/ci.yml` — four jobs after `install`: `secret-scan`, `static-checks` (format, markdown, shell, runtime-only, sub-agents, portability, skills, encoding, the docs and repo validator aggregates, knip, depcruise), `build-and-test` (build, lint, type-check, test, the agent-tools end-to-end and smoke suite), `e2e`.            |
 
 The merge, cherry-pick and revert paths fire `pre-merge-commit`,
 `prepare-commit-msg` and `applypatch-msg`, which carry the same branch guard.
@@ -554,6 +577,18 @@ converging.
 
 ## Linting and Auto-Fix Safety
 
+- **A warning fails lint**: every ESLint script (each workspace's `lint` and
+  `lint:fix`, and the root `lint:runtime-only`) passes `--max-warnings 0`, so
+  a warn-level finding fails every lint leg that covers the file exactly as an
+  error does
+  ([`no-warning-toleration`](../../.agent/rules/no-warning-toleration.md)).
+  The read-only `lint` runs at pre-commit for the changed workspaces, at
+  pre-push and in CI; `lint:fix` runs only through the root `pnpm fix`, and
+  carries the flag so a repair pass cannot end green over a warning either.
+  A new workspace's ESLint scripts carry the same flag: without it a warning
+  exits 0, and Turbo caches that run as a pass. `lint:runtime-only` quotes its
+  glob so ESLint expands it: `sh` has no globstar, so an unquoted `**` matches
+  one directory level and drops the top-level scripts once a nested one exists.
 - **`lint:fix` can silently revert manual edits**: `pnpm fix` runs
   `lint:fix`. If an edit introduces code that the linter
   "fixes" back, the edit is lost mid-pipeline. Verify the edited file AFTER

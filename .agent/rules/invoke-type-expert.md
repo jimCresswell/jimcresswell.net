@@ -1,12 +1,12 @@
 ---
 classification: situational
 description: invoke type expert
-trigger: surface:types, schemas, contracts, tsconfig
+trigger: surface:types, exported types, type flow, generics, assertions, schemas and schema inference, compile-time guarantees
 ---
 
 # Invoke Type Reviewer
 
-Invoke `type-reviewer` when changes alter complex type flow, exported types, schema inference,
+Invoke `type-expert` when changes alter complex type flow, exported types, schema inference,
 assertions, generics, or compile-time guarantees. Use it whenever type design is part of the
 change, not just its syntax.
 

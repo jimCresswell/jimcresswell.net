@@ -61,7 +61,7 @@ describe('runLockedClaimOpen — the gates decide on what the locked window read
   let seededText: string;
 
   beforeEach(async () => {
-    root = await makeTempDirectory('oak-claim-open-locked-gate-');
+    root = await makeTempDirectory('jc-claim-open-locked-gate-');
     activePath = join(root, 'active-claims.json');
     seededText = `${JSON.stringify(
       { schema_version: ACTIVE_CLAIMS_SCHEMA_VERSION, claims: [] },

@@ -86,14 +86,14 @@ export function visible<TEntry>(entries: readonly TEntry[], offset: number): rea
 function renderMainEntry(entry: TuiMainEntry): React.JSX.Element {
   return (
     <Box key={entry.id} flexDirection="column">
-      <OakText>
+      <Text>
         <StatusBadge tone={entry.kind === 'lifecycle' ? 'warning' : 'active'}>
           {entry.kind}
         </StatusBadge>{' '}
         {entry.title}
-      </OakText>
-      <OakText dimColor>{entry.created_at}</OakText>
-      <OakText>{truncate(entry.body)}</OakText>
+      </Text>
+      <Text dimColor>{entry.created_at}</Text>
+      <Text>{truncate(entry.body)}</Text>
     </Box>
   );
 }
@@ -101,16 +101,14 @@ function renderMainEntry(entry: TuiMainEntry): React.JSX.Element {
 function renderAgentEntry(entry: TuiAgentEntry): React.JSX.Element {
   return (
     <Box key={entry.routing_key} flexDirection="column">
-      <OakText>
+      <Text>
         <StatusBadge tone={agentTone(entry)}>{entry.visibility_status}</StatusBadge>{' '}
         {entry.routing_key}
-      </OakText>
-      <OakText dimColor>
+      </Text>
+      <Text dimColor>
         claims {entry.claim_count} queue {entry.queue_count} closed {entry.closed_claim_count}
-      </OakText>
-      {entry.latest_intent === undefined ? null : (
-        <OakText>{truncate(entry.latest_intent)}</OakText>
-      )}
+      </Text>
+      {entry.latest_intent === undefined ? null : <Text>{truncate(entry.latest_intent)}</Text>}
     </Box>
   );
 }
@@ -118,12 +116,12 @@ function renderAgentEntry(entry: TuiAgentEntry): React.JSX.Element {
 function renderQueueEntry(entry: TuiQueueEntry): React.JSX.Element {
   return (
     <Box key={entry.intent_id} flexDirection="column">
-      <OakText>
+      <Text>
         <StatusBadge tone={queueTone(entry)}>{entry.status}</StatusBadge> {entry.commit_subject}
-      </OakText>
-      <OakText dimColor>
+      </Text>
+      <Text dimColor>
         {entry.phase} expires {entry.expires_at}
-      </OakText>
+      </Text>
     </Box>
   );
 }
@@ -133,15 +131,15 @@ function renderDirectedEntry(
 ): React.JSX.Element {
   return (
     <Box key={entry.id} flexDirection="column">
-      <OakText>
+      <Text>
         <StatusBadge tone="active">{entry.kind}</StatusBadge> {entry.subject}
-      </OakText>
-      <OakText dimColor>
+      </Text>
+      <Text dimColor>
         {entry.from}
         {' -> '}
         {entry.to}
-      </OakText>
-      <OakText>{truncate(entry.body)}</OakText>
+      </Text>
+      <Text>{truncate(entry.body)}</Text>
     </Box>
   );
 }
@@ -201,16 +199,6 @@ function Panel({
 
 function EmptyState({ children }: { readonly children: React.ReactNode }): React.JSX.Element {
   return <Text dimColor>{children}</Text>;
-}
-
-function OakText({
-  children,
-  dimColor = false,
-}: {
-  readonly children: React.ReactNode;
-  readonly dimColor?: boolean;
-}): React.JSX.Element {
-  return <Text dimColor={dimColor}>{children}</Text>;
 }
 
 function StatusBadge({

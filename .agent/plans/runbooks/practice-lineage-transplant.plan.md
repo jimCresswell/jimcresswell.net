@@ -255,3 +255,12 @@ the next instance's and is empty until it runs.
   two-way exchange node's delta script (its todo 1) and a `pr-watch chain` bin. Precondition
   5's `transplant classify`, `antigen-scan` and `digest` do not yet exist under those names;
   instance 2 writes them first, as the precondition says.
+- **Measured after the close (2026-09-15, the arc's retrospective; corrected 2026-09-16).**
+  Agent time, derived from the session transcripts after all, as corrected by the
+  `arc-metrics` run of 2026-09-16: six sessions, 62.2 agent-active hours (consecutive events at
+  most ten minutes apart), 6,720 model calls and 8.56M output tokens. The first pass counted
+  four seats, about sixty hours, 6,662 calls and 8.35M tokens; the retrospective record's
+  §Corrections after the fact has the derivation. Card questions on 2026-09-14 were
+  forty-four, not forty-six: the morning batch was counted by register entry rather than by card
+  question, and one card at 08:48Z was missed. The derivations and the proposal to make them a
+  bin are in the retrospective record of 2026-09-15 in the agentic-engineering reports.

@@ -161,3 +161,43 @@ Team member closeout:
 - Handoff needed: none beyond that decision.
 
 — Saffron turns Verdure (c39ad7)
+
+## [Saffron turns Verdure c39ad7] 2026-09-15T11:11:03Z — #91 red-check cure pushed; push slot released
+
+- Lift: the owner's `/jc-start-right-team` in this seat at 10:52Z; the Director's go and slot
+  at 10:58Z (item 108's ruling).
+- Pushed on `chore/reader-retirement`, two pushes inside the slot, each through the pre-push
+  gate (58 e2e green each time): from `SHA: 0d67f873` to `SHA: a5551f3a`, then from
+  `SHA: a5551f3a` to `SHA: fdc5d865`.
+  - `SHA: 3c20a391` the cure for CodeQL alert #7 (`js/file-system-race`): one open with
+    `O_RDONLY | O_NOFOLLOW | O_NONBLOCK`, `fstatSync(fd).isFile()`, the read from the
+    descriptor, `closeSync` in a `finally`; three mutants killed and restored byte-identical;
+    code-expert verdict "NOTES" ("Nothing blocks the push").
+  - `SHA: 51bfd784` the merge of `records/lane-a-checkpoint-4` (`SHA: 73d7e8c7`), napkin
+    conflict resolved keeping both sides.
+  - `SHA: a5551f3a` the ninth waypoint and napkin segment fourteen.
+  - `SHA: fdc5d865` item 6's Done line in the delivery plan, on the Director's word.
+- Copilot requested on `SHA: fdc5d865` under the owner's credential at 11:10:31Z (timeline
+  event read back).
+- Next (lane A's chain): the review bound to that tip answered with one signed bot comment,
+  one line per suppressed finding; then the merge bot's poll. Proof: CodeQL green on the tip;
+  if alert #7 still fires, stop and report, no second shape.
+- Push slot: released.
+
+— Saffron turns Verdure (c39ad7)
+
+## [Saffron turns Verdure c39ad7] 2026-09-15T11:25:22Z — lane A closed
+
+- #91 merged by the merge bot on SETTLE-READY, `SHA: f8aab12` (11:24:10Z): CodeQL alert #7's
+  instance fixed on the cure tip, the one review thread Rejected with a node probe and
+  resolved, zero suppressed findings. Lane A's records (`SHA: 73d7e8c7`) and item 6's Done
+  line are on `main` through it.
+- Branches: `chore/reader-retirement` and `records/lane-a-checkpoint-4` deleted locally
+  (`git branch -d`); `chore/reader-retirement` deleted on origin through the REST API as the
+  bot (no host gate), the ref read back absent.
+- Claim f024e1f1 closed; the comms watcher stopped. The worktree stays, detached at `main`,
+  until this session exits (worktree-hygiene).
+- Nothing pending on the lane. The follow-on lists stand in the lane record's eighth and ninth
+  waypoints, outside the closure.
+
+— Saffron turns Verdure (c39ad7)

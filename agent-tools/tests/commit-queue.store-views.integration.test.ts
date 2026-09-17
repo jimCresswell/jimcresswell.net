@@ -90,7 +90,7 @@ describe('commit-queue directory-backed views', () => {
   let queueDir: string;
 
   beforeEach(async () => {
-    repoRoot = await makeTempDirectory('oak-commit-queue-views-');
+    repoRoot = await makeTempDirectory('jc-commit-queue-views-');
     const collaborationDir = join(repoRoot, '.agent/state/collaboration');
     await ensureDirectory(collaborationDir);
     activePath = join(collaborationDir, 'active-claims.json');
