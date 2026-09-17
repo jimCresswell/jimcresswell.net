@@ -262,6 +262,7 @@ describe('comms use cases', () => {
   });
 
   it('migrates legacy record collections without directory traversal', () => {
+    const warnings: string[] = [];
     const migrated = migrateLegacyCommsRecordCollections({
       narratives: [
         {
@@ -285,8 +286,11 @@ describe('comms use cases', () => {
           body: 'Directed body.',
         },
       ],
+      writeWarning: (line) => warnings.push(line),
     });
 
+    // No string-form addressed_to or audience entry, so no placeholder warning.
+    expect(warnings).toStrictEqual([]);
     // Migration preserves the verbatim legacy shape — directed events on
     // disk pre-Phase 0 lack ids and the migrator MUST NOT synthesise them.
     // The expected output uses a direct DirectedCommsMessage literal rather

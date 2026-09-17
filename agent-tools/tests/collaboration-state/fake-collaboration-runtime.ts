@@ -1,4 +1,5 @@
 import { err, ok, unwrapOrThrow } from '@engraph/result';
+import { typeSafeEntries } from '@engraph/type-helpers';
 
 import { createCommsEvent } from '../../src/collaboration-state';
 import { migrateLegacyCommsDirectories } from '../../src/collaboration-state/comms-migration';
@@ -56,6 +57,8 @@ interface FakeCollaborationRuntime {
   readonly writeCommsEvent: (commsDir: string, event: CommsEvent) => void;
   readonly seedTextFile: (filePath: string, text: string) => void;
   readonly ensuredDirectories: () => readonly string[];
+  /** The warning lines the legacy comms migration wrote, in order. */
+  readonly migrationWarnings: () => readonly string[];
 }
 
 interface FakeRuntimeState {
@@ -69,6 +72,7 @@ interface FakeRuntimeState {
   readonly closedClaims: ClosedClaimsArchive;
   readonly worktrees: readonly GitWorktree[];
   readonly ensuredDirectories: Set<string>;
+  readonly migrationWarnings: string[];
 }
 
 export function createFakeCollaborationRuntime(
@@ -99,6 +103,7 @@ export function createFakeCollaborationRuntime(
       state.textByPath.set(posixPath(filePath), text);
     },
     ensuredDirectories: () => [...state.ensuredDirectories],
+    migrationWarnings: () => [...state.migrationWarnings],
   };
 }
 
@@ -107,13 +112,14 @@ function initialFakeRuntimeState(input: FakeCollaborationRuntimeInput): FakeRunt
     commsByDir: new Map(),
     seenByFile: new Map(),
     textByPath: new Map(),
-    legacyByDir: legacyByDir(input.legacyComms ?? {}),
+    legacyByDir: new Map(typeSafeEntries(input.legacyComms ?? {})),
     activeClaims: input.activeClaims ?? emptyActiveClaims,
     commitQueue: input.commitQueue ?? [],
     activeClaimsPaths: [],
     closedClaims: input.closedClaims ?? emptyClosedClaims,
     worktrees: input.worktrees ?? [],
     ensuredDirectories: new Set(),
+    migrationWarnings: [],
   };
 }
 
@@ -176,17 +182,6 @@ function seedComms(
   }
 }
 
-function legacyByDir(
-  legacyComms: Readonly<Record<string, readonly unknown[]>>,
-): Map<string, readonly unknown[]> {
-  const entries = new Map<string, readonly unknown[]>();
-  for (const directory in legacyComms) {
-    entries.set(directory, legacyComms[directory] ?? []);
-  }
-
-  return entries;
-}
-
 function ids(state: FakeRuntimeState, commsDir: string): readonly string[] {
   return Array.from(directory(state, commsDir).keys());
 }
@@ -234,6 +229,7 @@ function migrateLegacyComms(
     writeCommsEvent: async ({ commsDir, event }) => {
       writeCommsEvent(state, commsDir, event);
     },
+    writeWarning: (line) => state.migrationWarnings.push(line),
   });
 }
 
