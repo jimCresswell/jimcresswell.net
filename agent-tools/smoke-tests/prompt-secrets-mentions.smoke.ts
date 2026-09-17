@@ -34,7 +34,8 @@ import { requireJq } from './secrets-hooks-support.js';
  * space or an em space; after a CJK stop; with everything from its first `#`
  * dropped, as Claude Code drops it; outside the working directory; and through
  * a symlink, which the stub, like Sonar, would otherwise report clean. Two
- * spellings of one file forward one path. The
+ * spellings of one file forward one path, and a quoted mention is one mention,
+ * never also an unquoted one starting with the quote. The
  * patterns are Claude Code's own, run on node, so a non-ASCII name is taken
  * whole and a CJK stop inside a token is part of it. A clean file is scanned
  * once, however often it is mentioned, and the prompt passes silently; a
@@ -94,6 +95,7 @@ try {
     join(profile, 'flagged.env'),
     join(project, 'example.com'),
     join(project, 'caf'),
+    join(project, '"dir'),
   ];
   for (const flagged of flaggedFiles) {
     writeFileSync(flagged, 'SECRET\n', 'utf8');
@@ -127,6 +129,12 @@ try {
   );
   const quoted = 'read @"dir with space/flagged.env" now';
   expectBlocked(runHook(workDir, withJq, quoted, environment, project), quoted, 'Sonar detected');
+  // A quoted mention is one mention: the quote-prefixed file `"dir` is not read as a second one.
+  const quotedClean = 'read @"dir with space/clean.txt" now';
+  writeFileSync(join(project, 'dir with space', 'clean.txt'), 'nothing to find\n', 'utf8');
+  expectCleanScan(runHook(workDir, withJq, quotedClean, environment, project), quotedClean, [
+    realpathSync(join(project, 'dir with space', 'clean.txt')),
+  ]);
   const unresolved = 'read @flagged.env';
   const unresolvedRun = runHook(workDir, withoutRealpath, unresolved, environment, project);
   expectWarned(unresolvedRun, unresolved, 'realpath is not on PATH');
@@ -151,7 +159,7 @@ try {
   const escapedRun = runHook(workDir, withoutJq, unresolved, environment, escapedCwd);
   expectBlocked(escapedRun, unresolved, 'jq');
   process.stdout.write(
-    'prompt-secrets-mentions smoke OK: files named by @-mentions scanned with and without jq (relative to the payload cwd, quoted, ranged, hash-suffixed, punctuated, no-break-spaced, em-spaced, after a CJK stop, outside the cwd, absolute, under ~ and through a symlink); a clean file passes and is forwarded once, a non-ASCII name whole; a directory, an absent path, an email domain and a token holding a CJK stop are not scanned; no node or realpath warns, a failing realpath warns; an escaped cwd without jq blocks\n',
+    'prompt-secrets-mentions smoke OK: files named by @-mentions scanned with and without jq (relative to the payload cwd, quoted, ranged, hash-suffixed, punctuated, no-break-spaced, em-spaced, after a CJK stop, outside the cwd, absolute, under ~ and through a symlink); a clean file passes and is forwarded once, a non-ASCII name whole, a quoted name alone; a directory, an absent path, an email domain and a token holding a CJK stop are not scanned; no node or realpath warns, a failing realpath warns; an escaped cwd without jq blocks\n',
   );
 } catch (error) {
   // exitCode, so the finally block still removes the work directory.

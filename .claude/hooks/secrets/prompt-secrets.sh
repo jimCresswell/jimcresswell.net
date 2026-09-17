@@ -98,17 +98,17 @@ add_mentioned_file() {
   done
   mentioned+=("$resolved")
 }
-# One NUL-terminated path per mention, in order of first appearance.
+# One NUL-terminated path per mention, in order of first appearance. The two
+# forms are alternatives of one pattern, so a quoted mention is never read
+# again as an unquoted one starting with the quote.
 mention_paths_script='
 const text = require("node:fs").readFileSync(process.argv[1], "utf8");
 const lead = "(^|[\\s\\u3002\\u3001\\uFF1F\\uFF01])";
-const patterns = [new RegExp(lead + "@\"([^\"]+)\"", "g"), new RegExp(lead + "@([^\\s]+)\\b", "g")];
+const pattern = new RegExp(lead + "@(?:\"([^\"]+)\"|([^\\s]+)\\b)", "g");
 const paths = new Set();
-for (const pattern of patterns) {
-  for (const match of text.matchAll(pattern)) {
-    const path = /^([^#]+)/.exec(match[2]);
-    if (path) paths.add(path[1]);
-  }
+for (const match of text.matchAll(pattern)) {
+  const path = /^([^#]+)/.exec(match[2] ?? match[3]);
+  if (path) paths.add(path[1]);
 }
 process.stdout.write([...paths].map((path) => path + String.fromCharCode(0)).join(""));
 '
