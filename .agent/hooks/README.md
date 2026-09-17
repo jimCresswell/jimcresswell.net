@@ -258,16 +258,18 @@ the `UserPromptSubmit` payload carries only the prompt's text (Claude Code
 that `Read` permission rules apply to `@file` mentions on a best-effort basis
 ([Permissions](https://code.claude.com/docs/en/permissions)). So the prompt
 hook hands Sonar every regular file a mention can name, found as Claude Code
-finds it. Its patterns, read from the 2.1.274 bundle, take a mention only after
-the start of the text, whitespace or a CJK stop
-(`(^|[\s\u3002\u3001\uFF1F\uFF01])@`), end an unquoted path at the last word
-character before whitespace (`@([^\s]+)\b`), split the path at its first `#`
-whatever follows (`^([^#]+)(?:#L(\d+)(?:-(\d+))?)?(?:#[^#]*)?$`), and resolve
-it against the payload's `cwd`, `~` or the root. Each file goes by its real
-path, once, since Sonar reports a symlink clean without reading its target.
-When Sonar errors, or `grep` or `realpath` is missing or cannot resolve a
-mentioned file, the prompt goes through with a warning shown to the user that
-it was not scanned. A mentioned file outside the project is read by the scanner
+finds it: its patterns, read from the 2.1.274 bundle, run on node, the engine
+they were written for, so the whitespace set, the word boundary and the `#`
+split are Claude Code's own. They take a mention only after the start of the
+text, whitespace or a CJK stop (`(^|[\s\u3002\u3001\uFF1F\uFF01])@`), end an
+unquoted path at the last word character before whitespace (`@([^\s]+)\b`),
+and split the path at its first `#` whatever follows
+(`^([^#]+)(?:#L(\d+)(?:-(\d+))?)?(?:#[^#]*)?$`); the hook resolves it against
+the payload's `cwd`, `~` or the root. Each file goes by its real path, once,
+since Sonar reports a symlink clean without reading its target. When Sonar
+errors, or `node` or `realpath` is missing or cannot resolve a mentioned file,
+the prompt goes through with a warning shown to the user that it was not
+scanned. A mentioned file outside the project is read by the scanner
 as the model would read it: the Sonar documentation says the scan runs locally
 with no server connection
 ([Secrets detection](https://docs.sonarsource.com/sonarqube-cli/analysis/secrets-detection))

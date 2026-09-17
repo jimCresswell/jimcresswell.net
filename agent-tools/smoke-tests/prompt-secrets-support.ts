@@ -57,7 +57,7 @@ const SONAR_STUB = [
 ].join('\n');
 
 /** The tools the hook and the stub use other than jq, linked into a jq-less directory. */
-export const JQ_LESS_TOOLS = ['bash', 'sed', 'head', 'cat', 'mktemp', 'rm', 'grep', 'realpath'];
+export const JQ_LESS_TOOLS = ['bash', 'sed', 'head', 'cat', 'mktemp', 'rm', 'node', 'realpath'];
 
 const blockSchema = z.strictObject({ decision: z.literal('block'), reason: z.string() });
 const warningSchema = z.strictObject({ systemMessage: z.string() });
