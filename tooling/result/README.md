@@ -4,13 +4,21 @@ Result<T, E> type for explicit error handling without exceptions.
 
 ## Purpose
 
-Provides a type-safe way to handle errors without throwing exceptions. Forces explicit handling of both success and error cases at compile time, following the schema-first principle of making impossible states unrepresentable.
+Provides a type-safe way to handle errors without throwing exceptions. Forces explicit handling of both success and error cases at compile time, making impossible states unrepresentable.
 
 ## Installation
 
-```bash
-pnpm add @engraph/result
+The package is private to this monorepo. A consuming workspace declares it with the `workspace:` protocol in its `package.json`:
+
+```json
+{
+  "dependencies": {
+    "@engraph/result": "workspace:*"
+  }
+}
 ```
+
+Then run `pnpm install` from the repository root.
 
 ## Usage
 
@@ -102,16 +110,16 @@ const value = unwrapOr(result, 0);
 
 ## Philosophy
 
-Result<T, E> enforces the "fail fast and hard" principle from our rules while providing explicit error information. It makes error handling:
+Result<T, E> applies the Fail FAST and Handle All Cases Explicitly principles ([principles.md](../../.agent/directives/principles.md#code-design-and-architectural-principles)) while providing explicit error information. It makes error handling:
 
 1. **Explicit** - Cannot ignore errors
 2. **Type-safe** - Errors are typed and checked
 3. **Composable** - Chain operations safely
 4. **Predictable** - No hidden control flow
 
-## Integration with Schema-First
+## Integration with Boundary Validation
 
-Result<T, E> complements our schema-first architecture by:
+Result<T, E> complements validation at the boundary ([validation-strategy.md §Runtime validation at the boundary](../../.agent/directives/validation-strategy.md#runtime-validation-at-the-boundary)) by:
 
 - Forcing explicit handling of all validation failures
 - Making error states part of the type signature
