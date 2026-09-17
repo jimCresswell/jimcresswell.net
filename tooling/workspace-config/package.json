@@ -54,8 +54,8 @@
   "scripts": {
     "build": "tsup && tsc --emitDeclarationOnly --project tsconfig.build.json",
     "clean": "rm -rf dist .turbo",
-    "lint": "eslint .",
-    "lint:fix": "eslint --fix .",
+    "lint": "eslint --max-warnings 0 .",
+    "lint:fix": "eslint --max-warnings 0 --fix .",
     "type-check": "tsc -p tsconfig.lint.json --noEmit"
   },
   "repository": {

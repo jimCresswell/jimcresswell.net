@@ -6,8 +6,8 @@
   "description": "TypeScript tooling workspace for agent operational CLIs",
   "scripts": {
     "clean": "rm -rf dist .turbo",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
+    "lint": "eslint --max-warnings 0 .",
+    "lint:fix": "eslint --max-warnings 0 . --fix",
     "test": "vitest run",
     "test:e2e": "vitest run --config vitest.e2e.config.ts && pnpm --silent build && node dist/src/bin/run-smoke-tests.js",
     "smoke:merge-bot-push-output": "tsx smoke-tests/merge-bot-push-output.smoke.ts",
