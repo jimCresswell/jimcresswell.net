@@ -46,8 +46,10 @@ interface GateFixture {
 
 /**
  * A fake runtime over a fixture. `readHead` and `readText` model the file
- * system's documented contract, a file's text by its name (a head may hold the
- * whole of a short file); every lint run and written line is recorded.
+ * system's documented contract, a file's text by its name, a head holding at
+ * most the bytes asked for (the fixtures are ASCII, so a character is a byte,
+ * and a head may hold the whole of a short file); every lint run and written
+ * line is recorded.
  */
 function gateRuntime(fixture: GateFixture = {}) {
   const tree = fixture.tree ?? TREE;
@@ -63,7 +65,7 @@ function gateRuntime(fixture: GateFixture = {}) {
       return fixture.probe ?? PROBE_0_11_0;
     },
     trackedFiles: () => [...tree.keys()],
-    readHead: (file) => tree.get(file) ?? '',
+    readHead: (file, bytes) => (tree.get(file) ?? '').slice(0, bytes),
     readText: (file) => tree.get(file) ?? '',
     runEnv: (args) => {
       lintRuns.push(args);
@@ -111,6 +113,17 @@ describe('runShellcheckTracked', () => {
     expect(lines).toStrictEqual([
       `${GATE_PREFIX}shellcheck 0.11.0 (.tools/bin/shellcheck) over 3 tracked shell scripts`,
     ]);
+  });
+
+  it('lints an extensionless script whose shebang line is as long as macOS honours, 512 bytes', async () => {
+    // `#!/` (3 bytes), 100 directories of `long/` (500), `bin/bash` and its newline (9).
+    const longShebang = `#!/${'long/'.repeat(100)}bin/bash\n`;
+    const tree = new Map([...TREE, ['bin/long', `${longShebang}echo long\n`]]);
+    const { runtime, lintRuns } = gateRuntime({ tree });
+
+    await expect(runShellcheckTracked(runtime)).resolves.toBe(0);
+
+    expect(lintRuns[0]).toContain('bin/long');
   });
 
   it('returns the lint status when shellcheck reports a finding', async () => {

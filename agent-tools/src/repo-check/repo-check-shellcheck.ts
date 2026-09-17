@@ -27,7 +27,7 @@ import { trackedFiles } from './repo-check-universe.js';
  * shellcheck when the installer has put one there and the shellcheck on PATH
  * otherwise, and asks it for its version: a missing, foreign or other-version
  * shellcheck fails the gate with the remedy. The universe is git's tracked tree (`repo-check-universe.ts`); each
- * file's first line is read to find the extensionless scripts, and each
+ * file's opening bytes (`HEAD_BYTES`) are read to find the extensionless scripts, and each
  * script is read for directives that would silence the lint. The pure
  * verdicts live in `repo-check-shellcheck-files.ts` and
  * `repo-check-shellcheck-version.ts`. Paths are relative to the working
@@ -44,8 +44,14 @@ import { trackedFiles } from './repo-check-universe.js';
 
 const GATE = 'repo-check shellcheck-tracked';
 
-/** Enough bytes to hold any shebang line the kernel would honour. */
-const HEAD_BYTES = 256;
+/**
+ * Enough bytes to hold any shebang line a supported kernel honours, its
+ * newline included. macOS runs a `#!` line of up to 512 bytes (XNU's
+ * `IMG_SHSIZE`; on macOS 26.6 a 512-byte line ran and a 513-byte line failed
+ * with ENOEXEC), and Linux reads the first 256 (`BINPRM_BUF_SIZE`), so the
+ * shell that runs a script is named within its first 512 bytes.
+ */
+const HEAD_BYTES = 512;
 
 /** The edges the gate composes, injected so the composition is testable without a repository. */
 export interface ShellcheckGateRuntime {
@@ -57,8 +63,8 @@ export interface ShellcheckGateRuntime {
   readonly probeVersion: (command: string) => RepoCheckCommandResult;
   /** Git's tracked files. */
   readonly trackedFiles: () => readonly string[];
-  /** A file's opening bytes, enough to hold its first line. */
-  readonly readHead: (file: string) => string;
+  /** A file's first `bytes` bytes (fewer when the file is shorter), decoded as UTF-8. */
+  readonly readHead: (file: string, bytes: number) => string;
   /** A file's whole text. */
   readonly readText: (file: string) => string;
   /** Run `env` with the given argv, output inherited, resolving to its exit status. */
@@ -69,12 +75,12 @@ export interface ShellcheckGateRuntime {
   readonly writeFailure: (line: string) => void;
 }
 
-/** The opening bytes of a file, decoded as UTF-8. */
-function readHead(file: string): string {
-  const buffer = Buffer.alloc(HEAD_BYTES);
+/** A file's first `bytes` bytes, decoded as UTF-8. */
+function readHead(file: string, bytes: number): string {
+  const buffer = Buffer.alloc(bytes);
   const descriptor = openSync(file, 'r');
   try {
-    const bytesRead = readSync(descriptor, buffer, 0, HEAD_BYTES, 0);
+    const bytesRead = readSync(descriptor, buffer, 0, bytes, 0);
     return buffer.toString('utf8', 0, bytesRead);
   } finally {
     closeSync(descriptor);
@@ -121,7 +127,7 @@ export async function runShellcheckTracked(
   }
   const scripts = runtime
     .trackedFiles()
-    .filter((file) => isShellScript(file, runtime.readHead(file)));
+    .filter((file) => isShellScript(file, runtime.readHead(file, HEAD_BYTES)));
   if (scripts.length === 0) {
     return fail(runtime, [
       'git lists no tracked shell scripts; run the gate from the repository root',
