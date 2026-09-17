@@ -249,6 +249,21 @@ portability check enforces for every hook and the status line; it also holds
 each of those commands to the closed hook-command grammar in
 `agent-tools/src/validators/portability/claude-hook-script-anchoring.ts`.
 
+A file a prompt @-mentions never reaches the Read hook. Claude Code puts the
+file's content into the conversation as an attachment, with no tool call, and
+the `UserPromptSubmit` payload carries only the prompt's text (Claude Code
+2.1.274, observed 2026-09-17). The official documentation says only that an
+@-mention "includes the full content of the file in the conversation" and that
+`Read` permission rules apply to `@file` mentions on a best-effort basis. So the
+prompt hook hands Sonar every regular file a mention can name, as Claude Code
+resolves it: against the payload's `cwd`, `~` or the root. Each file goes by its
+real path, since Sonar reports a symlink clean without reading its target. When
+Sonar errors, or `realpath` cannot resolve a mentioned file, the prompt goes
+through with a warning shown to the user that it was not scanned. Other
+content reaches the model without either hook seeing it, among them a nested
+`CLAUDE.md`, a connected IDE's selection or open file, an MCP resource, and a
+file read by a Bash or Grep call.
+
 Every writer of `.claude/logs/` creates it owner-only: the directory mode 700 and
 the logs mode 600. The wrapper and the Node hooks' shared helper
 (`_lib/append-owner-only-log.mjs`) also tighten what an earlier version left open
