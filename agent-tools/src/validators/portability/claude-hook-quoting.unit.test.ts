@@ -1,10 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import {
-  claudeCommandQuotingIssues,
-  projectDirCommandShapeIssue,
-  relativeScriptIssue,
-} from './claude-hook-quoting.js';
+import { claudeCommandQuotingIssues, projectDirCommandShapeIssue } from './claude-hook-quoting.js';
 
 const SETTINGS = '.claude/settings.json';
 
@@ -86,58 +82,8 @@ describe('projectDirCommandShapeIssue', () => {
   });
 });
 
-const UNANCHORED_SCRIPT =
-  "a program or an interpreter's script is not at an anchored path, and the working directory is not always the project root";
-
-describe('relativeScriptIssue', () => {
-  it('reports a program or interpreted script given relative to the working directory', () => {
-    for (const command of [
-      '.claude/hooks/practice-session-identity.mjs',
-      './scripts/x.sh --flag',
-      String.raw`.\scripts\x.cmd`,
-      'node .claude/hooks/x.mjs',
-      'node hook.mjs',
-      String.raw`node .\scripts\x.mjs`,
-      'bash scripts/x.sh',
-      'python3 tools/x.py',
-      'python3 script.py',
-      '/usr/bin/node ./hook.mjs',
-      '"${CLAUDE_PROJECT_DIR}/.claude/hooks/_lib/log-hook-errors.sh" node hook.mjs',
-    ]) {
-      expect(relativeScriptIssue(command), command).toBe(UNANCHORED_SCRIPT);
-    }
-  });
-
-  it('reports an interpreter not directly followed by its anchored script, since options are outside the checked shape', () => {
-    for (const command of [
-      'node --experimental-strip-types "${CLAUDE_PROJECT_DIR}/hook.ts"',
-      'node --eval 1',
-      '/usr/bin/env node --version',
-    ]) {
-      expect(relativeScriptIssue(command), command).toBe(UNANCHORED_SCRIPT);
-    }
-  });
-
-  it('accepts programs and scripts anchored at the project directory, home, or an absolute POSIX or Windows path, and PATH-resolved programs', () => {
-    for (const command of [
-      '"${CLAUDE_PROJECT_DIR}/.claude/hooks/practice-session-identity.mjs"',
-      'node "${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/run-pretooluse-guard.mjs" agent-tools/dist/src/hook-policy/pre-tool-use-dispatch.js',
-      '"${CLAUDE_PROJECT_DIR}/.claude/hooks/_lib/log-hook-errors.sh" node "${CLAUDE_PROJECT_DIR}/agent-tools/src/bin/claude-pre-compact-observe-hook.ts"',
-      'jq --version',
-      'node ${CLAUDE_PROJECT_DIR}/unquoted-is-the-shape-check.mjs',
-      '/usr/bin/node /opt/hooks/x.mjs',
-      'node ~/hooks/x.mjs',
-      'C:/repo/.claude/hooks/x.mjs',
-      '"C:/repo/.claude/hooks/x.mjs"',
-      String.raw`node C:\repo\hook.mjs`,
-    ]) {
-      expect(relativeScriptIssue(command), command).toBeUndefined();
-    }
-  });
-});
-
 describe('claudeCommandQuotingIssues', () => {
-  it('names every hook and the status line outside the quoting shape, else with an unanchored script', () => {
+  it('names every hook and the status line outside the quoting shape, else outside the hook-command grammar or not run from a quoted project path', () => {
     const settings = {
       hooks: {
         PreToolUse: [
@@ -145,7 +91,7 @@ describe('claudeCommandQuotingIssues', () => {
           { matcher: 'Read', hooks: [{ command: '${CLAUDE_PROJECT_DIR}/b.sh' }] },
         ],
         Stop: [{ hooks: [{ command: 'bash -lc "${CLAUDE_PROJECT_DIR}/c.sh"' }] }],
-        SessionStart: [{ hooks: [{ command: 'node hook.mjs' }] }],
+        SessionStart: [{ hooks: [{ command: 'node hook.mjs' }, { command: 'env HOOK_MODE=1' }] }],
       },
       statusLine: { command: 'node ${CLAUDE_PROJECT_DIR}/d.mjs' },
     };
@@ -153,7 +99,8 @@ describe('claudeCommandQuotingIssues', () => {
     expect(claudeCommandQuotingIssues(settings, SETTINGS)).toEqual([
       '.claude/settings.json: hooks.PreToolUse[1].hooks[0] names CLAUDE_PROJECT_DIR outside the checked shape (a word is neither a plain word nor a double-quoted project path), so a project path holding whitespace or glob characters may not reach the command as one word: ${CLAUDE_PROJECT_DIR}/b.sh',
       '.claude/settings.json: hooks.Stop[0].hooks[0] names CLAUDE_PROJECT_DIR outside the checked shape (a shell command string or eval parses the path again), so a project path holding whitespace or glob characters may not reach the command as one word: bash -lc "${CLAUDE_PROJECT_DIR}/c.sh"',
-      '.claude/settings.json: hooks.SessionStart[0].hooks[0] runs a script whose path is unreliable (a program or an interpreter\'s script is not at an anchored path, and the working directory is not always the project root); anchor it at "${CLAUDE_PROJECT_DIR}": node hook.mjs',
+      '.claude/settings.json: hooks.SessionStart[0].hooks[0] runs a program or an interpreter\'s script that is not a quoted project path, and the working directory is not always the project root; name it by a quoted "${CLAUDE_PROJECT_DIR}/path" instead: node hook.mjs',
+      '.claude/settings.json: hooks.SessionStart[0].hooks[1] is outside the checked hook-command grammar (a quoted project path to an .mjs or .sh hook, or node and its script at a quoted project path, optionally after the hook-error wrapper, then plain words); rewrite it in that grammar, or widen the grammar deliberately where a real hook needs more: env HOOK_MODE=1',
       '.claude/settings.json: statusLine names CLAUDE_PROJECT_DIR outside the checked shape (a word is neither a plain word nor a double-quoted project path), so a project path holding whitespace or glob characters may not reach the command as one word: node ${CLAUDE_PROJECT_DIR}/d.mjs',
     ]);
   });
@@ -172,7 +119,7 @@ describe('claudeCommandQuotingIssues', () => {
 
   it('reports settings whose hooks do not have the shape Claude Code reads, rather than passing them', () => {
     expect(claudeCommandQuotingIssues({ hooks: { PreToolUse: {} } }, SETTINGS)).toEqual([
-      '.claude/settings.json: hooks or statusLine do not have the shape Claude Code reads, so their commands could not be checked for quoting',
+      '.claude/settings.json: hooks or statusLine do not have the shape Claude Code reads, so their commands could not be checked for quoting or anchoring',
     ]);
   });
 
