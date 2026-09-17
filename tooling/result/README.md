@@ -44,13 +44,17 @@ if (result.ok) {
 
 ### Pattern Matching
 
+Continuing the Basic Example, `isOk` and `isErr` narrow `result` as a check on `ok` does:
+
 ```typescript
 import { isOk, isErr } from '@engraph/result';
 
 if (isOk(result)) {
   // TypeScript knows result.value is available
   console.log(result.value);
-} else {
+}
+
+if (isErr(result)) {
   // TypeScript knows result.error is available
   console.error(result.error);
 }
@@ -59,7 +63,7 @@ if (isOk(result)) {
 ### Chaining Operations
 
 ```typescript
-import { map, flatMap } from '@engraph/result';
+import { ok, err, map, flatMap } from '@engraph/result';
 
 const result = ok(5);
 
@@ -73,7 +77,7 @@ const chained = flatMap(result, (x) => (x > 0 ? ok(x * 2) : err('negative')));
 ### Error Transformation
 
 ```typescript
-import { mapErr, unwrapOr } from '@engraph/result';
+import { err, mapErr, unwrapOr } from '@engraph/result';
 
 // Transform error type
 const result = err('404');
@@ -84,6 +88,12 @@ const value = unwrapOr(result, 0);
 ```
 
 ## API
+
+### Types
+
+- `Result<T, E>` - `Ok<T> | Err<E>`, discriminated on `ok`
+- `Ok<T>` - `{ readonly ok: true; readonly value: T }`
+- `Err<E>` - `{ readonly ok: false; readonly error: E }`
 
 ### Creating Results
 
@@ -100,13 +110,19 @@ const value = unwrapOr(result, 0);
 - `map<T, U, E>(result, fn)` - Transform Ok value
 - `flatMap<T, U, E>(result, fn)` - Chain Results
 - `mapErr<T, E, F>(result, fn)` - Transform Err value
+- `collect<T, E>(results: Iterable<Result<T, E>>): Result<readonly T[], E>` - Collect every Ok value in order, or return the first Err unchanged without reading past it
 
 ### Unwrapping
 
-- `unwrap<T, E>(result)` - Get value or throw (use sparingly)
+- `unwrap<T, E>(result)` - Get value or throw a new `Error` whose message carries the stringified error (use sparingly)
+- `unwrapOrThrow<T>(result: Result<T, Error>)` - Get value or throw the Err's own `Error`, so its message, stack and `cause` survive (use sparingly)
 - `unwrapErr<T, E>(result)` - Get error or throw (unwrap's inverse, for expected failures)
 - `unwrapOr<T, E>(result, defaultValue)` - Get value or default
 - `unwrapOrElse<T, E>(result, fn)` - Get value or compute default
+
+### Exhaustiveness
+
+- `assertNeverResult<E>(value: never, makeError: (unexpected: string) => E): Err<E>` - Call in the `default` branch of an exhaustive `switch` over a discriminated union; the compiler rejects the call while a variant is unhandled, and a value that reaches it at runtime is stringified and passed to `makeError`, whose error the call returns as an `Err`
 
 ## Philosophy
 
