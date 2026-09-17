@@ -164,21 +164,21 @@ settings:
 
 overrides:
   '@types/node': ^24.13.3
-  brace-expansion@1: '>=1.1.12 <2'
-  brace-expansion@5: '>=5.0.9 <6'
-  csstype: '>=3.2.3'
+  brace-expansion@1: '>=1.1.21 <2'
+  brace-expansion@5: '>=5.0.12 <6'
   esbuild: '>=0.28.2 <0.29'
   eslint-plugin-tsdoc@0.5>@typescript-eslint/utils: '>=8.70.0 <9'
-  fast-uri: '>=3.1.5 <4'
-  js-yaml: '>=4.3.1 <5'
-  linkify-it: '>=5.0.2 <6'
-  markdown-it: '>=14.1.2 <15'
-  nanoid: '>=3.3.17 <4'
-  picomatch: '>=4.0.4'
+  fast-uri: '>=3.1.8 <4'
+  js-yaml@4: '>=4.3.2 <5'
+  js-yaml@5: '>=5.4.1 <6'
+  markdown-it: '>=14.3.2 <15'
+  nanoid: '>=3.3.18 <4'
+  picomatch@2: '>=2.3.2 <3'
+  picomatch@4: '>=4.0.4 <5'
   postcss: '>=8.5.26 <9'
-  rollup: '>=4.59.0'
+  rollup: '>=4.59.0 <5'
   smol-toml: '>=1.7.1 <2'
-  sucrase: '>=3.35.1'
+  sucrase: '>=3.35.1 <4'
 
 importers:
 
@@ -3298,7 +3298,7 @@ packages:
     resolution: {integrity: sha512-tIbYtZbucOs0BRGqPJkshJUYdL+SDH7dVM8gjy+ERp3WAUjLEFJE+02kanyHtwjWOnwrKYBiwAmM0p4kLJAnXg==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
-      picomatch: '>=4.0.4'
+      picomatch: '>=4.0.4 <5'
     peerDependenciesMeta:
       picomatch:
         optional: true
@@ -3783,6 +3783,10 @@ packages:
 
   js-yaml@4.3.2:
     resolution: {integrity: sha512-SFNOvSJ+Dgf/9An904Yx+CgSlIPCkIpao4qo51lpee25TIRejdH3rhR4EZMGoNx3/TP3O+wzWuiTFl4sqbltzA==}
+    hasBin: true
+
+  js-yaml@5.4.2:
+    resolution: {integrity: sha512-m+aqu+LwO1O6sIopafj8HUVl5aawITwZQe/yHpMCKjaWBaA/d07B/QdMb3529REftiU+RMMHL3Vlsw3hON7vWg==}
     hasBin: true
 
   jsdom@30.0.1:
@@ -4315,6 +4319,10 @@ packages:
 
   picocolors@1.1.1:
     resolution: {integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==}
+
+  picomatch@2.3.2:
+    resolution: {integrity: sha512-V7+vQEJ06Z+c5tSye8S+nHUfI51xoXIXjHQ99cQtKUkQqqO1kO/KCJUfZXuB47h/YBlDhah2H3hdUGXn8ie0oA==}
+    engines: {node: '>=8.6'}
 
   picomatch@4.0.7:
     resolution: {integrity: sha512-qcJu88Q2IWqJsDD529JKMdwGm/dvInW4HvQnRwiH9JtihJvzGOscDtHE3x1pBKeUOTysQ8kVmLnJ2kJu7yhcGA==}
@@ -8463,6 +8471,10 @@ snapshots:
     dependencies:
       argparse: 2.0.1
 
+  js-yaml@5.4.2:
+    dependencies:
+      argparse: 2.0.1
+
   jsdom@30.0.1:
     dependencies:
       '@asamuzakjp/css-color': 6.0.7
@@ -8676,7 +8688,7 @@ snapshots:
   markdownlint-cli2@0.23.2(supports-color@7.2.0):
     dependencies:
       globby: 16.2.2
-      js-yaml: 4.3.2
+      js-yaml: 5.4.2
       jsonc-parser: 3.3.1
       jsonpointer: 5.0.1
       markdown-it: 14.3.2
@@ -8888,7 +8900,7 @@ snapshots:
   micromatch@4.0.8:
     dependencies:
       braces: 3.0.3
-      picomatch: 4.0.7
+      picomatch: 2.3.2
 
   mimic-fn@2.1.0: {}
 
@@ -9139,6 +9151,8 @@ snapshots:
   pathe@2.0.3: {}
 
   picocolors@1.1.1: {}
+
+  picomatch@2.3.2: {}
 
   picomatch@4.0.7: {}
 

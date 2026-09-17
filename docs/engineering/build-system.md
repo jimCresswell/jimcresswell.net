@@ -73,8 +73,9 @@ Both ESLint lines resolve in one lockfile, and the split shapes the
 ESLint 9 line reaches `brace-expansion` 1.x through `@eslint/config-array`'s
 `minimatch@3`, and an unscoped 5.x floor broke that resolver at lint time. The
 tree holds the 1.x and 5.x lines, so the override is scoped per major
-(`brace-expansion@1`, `@5`), each line kept on its own patched floor for the
-quadratic-expansion advisory. Do not collapse the two entries into one.
+(`brace-expansion@1`, `@5`), each line kept on its own patched floor; the
+override's comment in `pnpm-workspace.yaml` names the advisories. Do not
+collapse the two entries into one.
 
 ### `postinstall` builds `agent-tools/dist`
 
@@ -105,6 +106,13 @@ lockfile regeneration is where the 24h floor either binds or silently does
 not; pnpm's own resolver applies it deterministically, and whether Dependabot's
 invocation honours it is version-dependent and unestablished here. Read
 Dependabot PRs with that in mind.
+
+The security floors in the `overrides:` block may rest on advisories a
+maintainer has published in the package's own repository before GitHub reviews
+them. `pnpm audit` and Dependabot read only GitHub's reviewed database, so an
+audit reporting zero does not show that a floor is current: when setting or
+checking a floor, also read the repository's advisories
+(`gh api repos/<owner>/<repo>/security-advisories`).
 
 Three constraints are held deliberately. A sweep must not break any of them:
 
