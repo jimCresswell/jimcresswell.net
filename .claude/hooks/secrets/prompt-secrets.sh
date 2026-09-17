@@ -12,7 +12,11 @@ stdin_data=$(cat)
 # values; fall back to sed if jq is unavailable. printf hands sed the payload
 # byte for byte, whatever the shell's echo does with backslashes.
 if command -v jq &> /dev/null; then
-  prompt=$(printf '%s' "$stdin_data" | jq -r '.prompt // empty')
+  # jq -j writes the prompt with no trailing newline of its own; the sentinel
+  # keeps the line breaks the prompt itself ends with, which command
+  # substitution would strip.
+  prompt=$(printf '%s' "$stdin_data" | jq -j '.prompt // empty'; printf x)
+  prompt=${prompt%x}
 else
   prompt=$(printf '%s\n' "$stdin_data" | sed -n 's/.*"prompt"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' | head -1)
   # sed leaves JSON escapes undecoded and ends the value at the first escaped

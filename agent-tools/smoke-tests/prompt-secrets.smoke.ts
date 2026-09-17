@@ -22,7 +22,7 @@ import { z } from 'zod';
  * A stub `sonar` on PATH records the path and the text it was given and
  * reports secrets (exit 51) when the text holds `SECRET`. The hook must hand
  * Sonar the prompt verbatim, option-shaped prompts such as `-n`, `-e` and `-E`
- * included, and block a prompt the stub flags. The temporary file is a copy of
+ * and prompts ending in line breaks included, and block a prompt the stub flags. The temporary file is a copy of
  * the prompt, so it must be gone when the hook exits, including when its path
  * holds a space; a canary file named by that path's first word must survive.
  * Without `jq` the sed fallback takes a prompt whole only when it holds no JSON
@@ -177,6 +177,8 @@ try {
   }
   const backslashed = String.raw`keep \c and \n literal`;
   expectScannedVerbatim(runHook(workDir, withJq, backslashed), backslashed);
+  const trailingNewlines = 'ends with two line breaks\n\n';
+  expectScannedVerbatim(runHook(workDir, withJq, trailingNewlines), trailingNewlines);
 
   // The copy lives at a path holding a space whose first word names the
   // canary: the trap removes the copy, as one word, and nothing else.
@@ -201,7 +203,7 @@ try {
   const expandingEcho = { BASHOPTS: 'xpg_echo' };
   expectBlocked(runHook(workDir, withoutJq, multiLine, expandingEcho), multiLine, 'jq');
   process.stdout.write(
-    'prompt-secrets smoke OK: prompts scanned verbatim with and without jq (option-shaped and backslashed included), flagged prompts blocked, the temporary copy removed from a spaced path with the canary intact, escaped prompts blocked without jq under either echo\n',
+    'prompt-secrets smoke OK: prompts scanned verbatim with and without jq (option-shaped, backslashed and newline-ended included), flagged prompts blocked, the temporary copy removed from a spaced path with the canary intact, escaped prompts blocked without jq under either echo\n',
   );
 } catch (error) {
   // exitCode, so the finally block still removes the work directory.
