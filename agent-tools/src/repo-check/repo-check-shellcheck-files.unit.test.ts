@@ -2,21 +2,31 @@ import { describe, expect, it } from 'vitest';
 
 import {
   isShellScript,
+  shebangFailures,
   shellcheckArgs,
   silencingDirectiveFailures,
 } from './repo-check-shellcheck-files.js';
 
 /**
  * The shellcheck gate's pure mapping: which tracked files are shell scripts,
- * which of their comments would silence shellcheck, and the argv that lints
- * them. Git's universe and the file contents are read at the process edge,
- * which the gate itself proves by running (`pnpm lint:shell`).
+ * which shebangs fail the gate, which comments would silence shellcheck, and
+ * the argv that lints them. Git's universe and the file contents are read at
+ * the process edge, which the gate itself proves by running
+ * (`pnpm lint:shell`).
  */
+
+const RECOGNISED_FORMS = [
+  '`#!/usr/bin/env bash`',
+  '`#!/usr/bin/env sh`',
+  '`#!/usr/bin/env node`',
+  '`#!/usr/bin/env python3`',
+].join(', ');
 
 describe('isShellScript', () => {
   it('takes a .sh or .bash file as shell whatever its first line', () => {
     expect(isShellScript('.agent/setup/install-shellcheck.sh', '')).toBe(true);
     expect(isShellScript('scripts/profile.bash', '# sourced, no shebang\n')).toBe(true);
+    expect(isShellScript('lib/misnamed.sh', '#!/usr/bin/env node\n')).toBe(true);
   });
 
   it('takes every file directly in .husky/ as shell, since husky runs each hook with sh', () => {
@@ -28,26 +38,84 @@ describe('isShellScript', () => {
     expect(isShellScript('.husky/docs/README', 'Hooks\n')).toBe(false);
   });
 
-  it('takes an extensionless file as shell when its first line names sh, bash, dash or ksh', () => {
-    expect(isShellScript('bin/a', '#!/bin/bash -eu\n')).toBe(true);
-    expect(isShellScript('bin/b', '#! /bin/dash\n')).toBe(true);
-    expect(isShellScript('bin/c', '#!/usr/bin/env -S ksh -e\n')).toBe(true);
-    expect(isShellScript('bin/d', '#!/bin/sh\r\necho windows line ending\r\n')).toBe(true);
+  it('takes a file as shell when its first line is exactly one of the two shell forms', () => {
+    expect(isShellScript('bin/a', '#!/usr/bin/env bash\necho a\n')).toBe(true);
+    expect(isShellScript('bin/b', '#!/usr/bin/env sh\necho b\n')).toBe(true);
   });
 
-  it('leaves out a file whose shebang names another interpreter or a longer name', () => {
+  it('takes a shell form as shell when a carriage return ends its line', () => {
+    expect(isShellScript('bin/crlf', '#!/usr/bin/env bash\r\necho crlf\r\n')).toBe(true);
+  });
+
+  it('leaves out a file whose first line is a non-shell form or no recognised form', () => {
     expect(isShellScript('bin/run', '#!/usr/bin/env node\n')).toBe(false);
-    expect(isShellScript('bin/check.py', '#!/usr/bin/env python3\n')).toBe(false);
-    expect(isShellScript('bin/zrun', '#!/usr/bin/env zsh\n')).toBe(false);
-    expect(isShellScript('bin/fun', '#!/bin/bashful\n')).toBe(false);
-  });
-
-  it('reads the shebang from the first line alone, so a shell named on the next line does not count', () => {
-    expect(isShellScript('bin/split', '#!/usr/bin/env\nbash\n')).toBe(false);
+    expect(isShellScript('bin/check', '#!/usr/bin/env python3\n')).toBe(false);
+    expect(isShellScript('bin/legacy', '#!/bin/bash\necho legacy\n')).toBe(false);
+    expect(isShellScript('bin/indented', ' #!/usr/bin/env bash\n')).toBe(false);
   });
 
   it('does not take the files in a directory named like a script as scripts', () => {
     expect(isShellScript('fixtures.sh/README', 'plain text\n')).toBe(false);
+  });
+});
+
+describe('shebangFailures', () => {
+  it.each([
+    '#!/usr/bin/env -S "bash" -e',
+    "#!/usr/bin/env -S 'bash -e'",
+    '#!/usr/bin/env -S bash',
+    '#!/bin/sh',
+    '#!/bin/bash',
+    '#!/usr/bin/env zsh',
+    '#!/usr/bin/env -S node --flag',
+    '#!/usr/bin/env bash ',
+    '#!/usr/bin/env  bash',
+  ])('fails the unrecognised shebang %s, naming the file, the line and the forms', (line) => {
+    expect(shebangFailures('bin/run', `${line}\necho run\n`)).toStrictEqual([
+      `bin/run:1: the shebang \`${line}\` is not a recognised form; use one of ` +
+        `${RECOGNISED_FORMS}, or add its form to the gate's SHEBANG_FORMS deliberately`,
+    ]);
+  });
+
+  it.each([
+    '#!/usr/bin/env bash',
+    '#!/usr/bin/env sh',
+    '#!/usr/bin/env node',
+    '#!/usr/bin/env python3',
+  ])('passes the recognised form %s, with or without a carriage return ending it', (line) => {
+    expect(shebangFailures('bin/run', `${line}\nrun\n`)).toStrictEqual([]);
+    expect(shebangFailures('bin/run', `${line}\r\nrun\r\n`)).toStrictEqual([]);
+  });
+
+  it('fails an unrecognised shebang on a file whose path makes it shell, naming only the shell forms', () => {
+    expect(shebangFailures('lib/legacy.sh', '#!/bin/bash\n')).toStrictEqual([
+      'lib/legacy.sh:1: the shebang `#!/bin/bash` is not a recognised shell form, ' +
+        'and its path makes the file a shell script; use one of `#!/usr/bin/env bash`, ' +
+        "`#!/usr/bin/env sh`, or add its form to the gate's SHEBANG_FORMS deliberately",
+    ]);
+  });
+
+  it('fails a non-shell form on a file whose path makes it shell, advising a rename, not a new form', () => {
+    expect(shebangFailures('lib/misnamed.sh', '#!/usr/bin/env node\n')).toStrictEqual([
+      'lib/misnamed.sh:1: the shebang `#!/usr/bin/env node` is not a recognised shell form, ' +
+        'and its path makes the file a shell script; use one of `#!/usr/bin/env bash`, ' +
+        '`#!/usr/bin/env sh`, or rename a script that is not shell off that path',
+    ]);
+  });
+
+  it(
+    String.raw`writes each carriage return in the quoted line as \r, so a terminal cannot overwrite the file name`,
+    () => {
+      expect(shebangFailures('bin/mac', '#!/bin/sh\recho mac\r')).toStrictEqual([
+        expect.stringContaining('bin/mac:1: the shebang `#!/bin/sh\\recho mac` is not'),
+      ]);
+    },
+  );
+
+  it('passes a file with no shebang, and a file whose path makes it shell with a shell form', () => {
+    expect(shebangFailures('lib/common.sh', 'greet() { echo hi; }\n')).toStrictEqual([]);
+    expect(shebangFailures('README.md', '# Readme\n')).toStrictEqual([]);
+    expect(shebangFailures('.husky/pre-push', '#!/usr/bin/env sh\npnpm check\n')).toStrictEqual([]);
   });
 });
 

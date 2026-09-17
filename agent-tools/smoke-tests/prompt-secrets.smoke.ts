@@ -1,4 +1,4 @@
-import { execFileSync, spawnSync } from 'node:child_process';
+import { spawnSync } from 'node:child_process';
 import {
   chmodSync,
   existsSync,
@@ -15,6 +15,8 @@ import { fileURLToPath } from 'node:url';
 
 import { z } from 'zod';
 
+import { requireJq, which } from './secrets-hooks-support.js';
+
 /**
  * Smoke for `.claude/hooks/secrets/prompt-secrets.sh`, the `UserPromptSubmit`
  * guard that writes the prompt to a temporary file and asks Sonar to scan it.
@@ -27,7 +29,8 @@ import { z } from 'zod';
  * holds a space; a canary file named by that path's first word must survive.
  * Without `jq` the sed fallback takes a prompt whole only when it holds no JSON
  * escape, so a prompt holding one must be blocked, including when bash's echo
- * would expand escapes (`BASHOPTS=xpg_echo`).
+ * would expand escapes (`BASHOPTS=xpg_echo`). Every run proves both paths, so
+ * jq must be installed (`secrets-hooks-support.ts` carries why).
  */
 
 const smokeDir = fileURLToPath(new URL('.', import.meta.url));
@@ -58,14 +61,6 @@ interface HookRun {
 
 function readIfPresent(filePath: string): string | undefined {
   return existsSync(filePath) ? readFileSync(filePath, 'utf8') : undefined;
-}
-
-function which(tool: string): string {
-  try {
-    return execFileSync('/usr/bin/which', [tool], { encoding: 'utf8' }).trim();
-  } catch (error) {
-    throw new Error(`${tool} is not on PATH, and the smoke needs it`, { cause: error });
-  }
 }
 
 /** Run the hook on one prompt, then prove the temporary copy Sonar scanned is gone. */
@@ -161,8 +156,7 @@ const OPTION_SHAPED_PROMPTS = ['-n', '-e', '-E', '-neE'] as const;
 
 const workDir = mkdtempSync(join(tmpdir(), 'prompt-secrets-smoke-'));
 try {
-  // The jq runs below must take the jq path, so jq must be installed.
-  which('jq');
+  requireJq();
   const withJq = `${toolDirectory(workDir, 'bin', false)}${delimiter}${process.env.PATH ?? ''}`;
   const withoutJq = toolDirectory(workDir, 'bin-without-jq', true);
 

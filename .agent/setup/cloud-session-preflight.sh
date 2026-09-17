@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Session-hook PREFLIGHT — the read-only twin of cloud-session-setup.sh
 # under the hook-preflight contract (cloud-environment.md § Validating and
 # diagnosing): this repo's session hook downloads the pinned Playwright

@@ -1,10 +1,12 @@
-import { execFileSync, spawnSync } from 'node:child_process';
+import { spawnSync } from 'node:child_process';
 import { chmodSync, mkdirSync, mkdtempSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { delimiter, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { z } from 'zod';
+
+import { requireJq, which } from './secrets-hooks-support.js';
 
 /**
  * Smoke for `.claude/hooks/secrets/pretool-secrets.sh`, the `PreToolUse` guard
@@ -16,7 +18,8 @@ import { z } from 'zod';
  * silent for another tool on the same file and for a path that does not exist.
  * With no `jq` on PATH it must still deny: a plain path through its sed
  * fallback, and a path holding a JSON escape outright, including when bash's
- * echo would expand escapes (`BASHOPTS=xpg_echo`).
+ * echo would expand escapes (`BASHOPTS=xpg_echo`). Every run proves both paths,
+ * so jq must be installed (`secrets-hooks-support.ts` carries why).
  */
 
 const smokeDir = fileURLToPath(new URL('.', import.meta.url));
@@ -86,8 +89,7 @@ function toolDirectory(workDir: string, name: string, withJqLessTools: boolean):
   chmodSync(join(directory, 'sonar'), 0o755);
   if (withJqLessTools) {
     for (const tool of JQ_LESS_TOOLS) {
-      const found = execFileSync('/usr/bin/which', [tool], { encoding: 'utf8' }).trim();
-      symlinkSync(found, join(directory, tool));
+      symlinkSync(which(tool), join(directory, tool));
     }
   }
   return directory;
@@ -95,6 +97,7 @@ function toolDirectory(workDir: string, name: string, withJqLessTools: boolean):
 
 const workDir = mkdtempSync(join(tmpdir(), 'pretool-secrets-smoke-'));
 try {
+  requireJq();
   const withJq = `${toolDirectory(workDir, 'bin', false)}${delimiter}${process.env.PATH ?? ''}`;
   const withoutJq = toolDirectory(workDir, 'bin-without-jq', true);
   const files = [

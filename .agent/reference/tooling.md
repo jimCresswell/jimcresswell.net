@@ -49,6 +49,10 @@ These tools are not managed by pnpm but are required by specific workflows:
   version `.agent/setup/install-shellcheck.sh` pins; the script installs it into
   the checkout's ignored `.tools/bin`, which the gate runs before PATH, for
   developers, CI and cloud sessions alike
+- [jq](https://jqlang.org) — required by the secrets hook smokes
+  (`pnpm agent-tools:test:e2e`, a `pnpm check` leg, so also at pre-push and in
+  CI); the smokes prove each hook with jq and without it, and fail with
+  installation guidance when it is missing
 - [Playwright browsers](https://playwright.dev/docs/browsers) — `pnpm --filter @jimcresswell/www exec playwright install chromium-headless-shell`
   once per checkout, before `pnpm test:e2e`
 

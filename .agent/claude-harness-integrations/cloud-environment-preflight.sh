@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Claude cloud environment PREFLIGHT — read-only probe harness.
 #
 # Falsifies every external assumption cloud-environment-setup.sh makes, in
