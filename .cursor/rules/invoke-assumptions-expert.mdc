@@ -1,5 +1,5 @@
 ---
-description: Invoke assumptions-expert when plans are marked decision-complete, propose 3+ agents, assert blocking relationships, or commit to technology choices before research.
+description: Invoke assumptions-expert when plans are marked decision-complete, propose 3+ agents, assert blocking relationships, integrate a third-party vendor, or commit to technology choices before research.
 alwaysApply: false
 ---
 

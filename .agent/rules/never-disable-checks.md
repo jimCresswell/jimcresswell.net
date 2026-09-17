@@ -190,9 +190,8 @@ during the window — which they will not.
   PDR-126 (gates land strict, in one landing) — a new rule is not
   a "weakening" diff, so this clause names it explicitly.
 - `release-readiness-expert` enforces the rule at PR-ready gate.
-- `architecture-expert-fred` (principles-first) enforces the rule
-  on any architectural decision that proposes a gate-off-fix-gate-on
-  shape.
+- `assumptions-expert` enforces the rule on any plan or proposal
+  that schedules a gate-off-fix-gate-on shape.
 
 ## Cross-references
 

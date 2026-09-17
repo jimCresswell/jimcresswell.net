@@ -67,7 +67,7 @@ and building towards it — not starting from nothing.
 
 At Oak, the data is open by design — access is not constrained. The responsibility concern is
 specifically about AI products consuming the data: how to make those services reliable, safe, and
-accurate. This is product safety through technical means, not data safety. The `KNOWS_ABOUT` term
+accurate. This is product safety through technical means, not data safety. The `knowsAbout` term
 "Responsible AI" should be understood in this light.
 
 ## Collaborative credit

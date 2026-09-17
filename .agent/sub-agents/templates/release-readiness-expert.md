@@ -147,7 +147,8 @@ Structure your review as:
 | Issue Type | Recommended Specialist |
 |------------|------------------------|
 | Security blocker or risk | `security-expert` |
-| Structural reliability concern or boundary violation | `architecture-expert-barney` or `architecture-expert-wilma` |
+| Boundary violation | `architecture-expert` |
+| Build, caching or runtime reliability concern | `architecture-expert-fred` |
 | Missing documentation for rollout | `docs-adr-expert` |
 | Test coverage gaps blocking release | `test-expert` |
 | Type safety issues in changed contracts | `type-expert` |

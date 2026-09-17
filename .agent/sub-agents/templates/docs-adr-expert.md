@@ -254,7 +254,7 @@ documentation, not the referenced artefact itself.
 
 | Issue Type                                                   | Recommended Specialist                                    |
 | ------------------------------------------------------------ | --------------------------------------------------------- |
-| Architecture decision ambiguity or boundary concerns         | `architecture-expert-barney` or `architecture-expert-fred` |
+| Architecture decision ambiguity or boundary concerns         | `architecture-expert`, or the persona for the decision's lane |
 | Practice governance or doctrine structure                    | `architecture-expert-wilma`                               |
 | Security guidance missing or incorrect in docs               | `security-expert`                                         |
 | Behaviour change lacks tests to back documentation claims    | `test-expert`                                             |

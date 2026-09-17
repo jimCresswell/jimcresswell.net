@@ -26,15 +26,27 @@ const PROBE_0_11_0: RepoCheckCommandResult = {
   stderr: '',
 };
 
-/** Tracked files and their text: two scripts, a hook, and a document that is not shell. */
+/** Tracked files and their text: a hook, a bash script and a sourced library to lint, a node script and a document to leave out. */
 const TREE: ReadonlyMap<string, string> = new Map([
   ['.husky/pre-push', '#!/usr/bin/env sh\npnpm check\n'],
   ['README.md', '# Readme\n'],
-  ['bin/run', '#!/bin/bash\necho run\n'],
+  ['bin/run', '#!/usr/bin/env bash\necho run\n'],
+  ['bin/tool', '#!/usr/bin/env node\nconsole.log("tool");\n'],
   ['lib/common.sh', 'greet() { echo hi; }\n'],
 ]);
 
 const SCRIPTS = ['.husky/pre-push', 'bin/run', 'lib/common.sh'];
+
+/** The argv that lints `SCRIPTS` with the shellcheck on PATH. */
+const LINT_SCRIPTS = [
+  '-u',
+  'SHELLCHECK_OPTS',
+  'shellcheck',
+  '--norc',
+  '--severity=style',
+  '--',
+  ...SCRIPTS,
+];
 
 interface GateFixture {
   readonly installer?: string;
@@ -46,8 +58,10 @@ interface GateFixture {
 
 /**
  * A fake runtime over a fixture. `readHead` and `readText` model the file
- * system's documented contract, a file's text by its name (a head may hold the
- * whole of a short file); every lint run and written line is recorded.
+ * system's documented contract, a file's text by its name, a head holding at
+ * most the bytes asked for (the fixtures are ASCII, so a character is a byte,
+ * and a head may hold the whole of a short file); every lint run and written
+ * line is recorded.
  */
 function gateRuntime(fixture: GateFixture = {}) {
   const tree = fixture.tree ?? TREE;
@@ -63,7 +77,7 @@ function gateRuntime(fixture: GateFixture = {}) {
       return fixture.probe ?? PROBE_0_11_0;
     },
     trackedFiles: () => [...tree.keys()],
-    readHead: (file) => tree.get(file) ?? '',
+    readHead: (file, bytes) => (tree.get(file) ?? '').slice(0, bytes),
     readText: (file) => tree.get(file) ?? '',
     runEnv: (args) => {
       lintRuns.push(args);
@@ -82,9 +96,7 @@ describe('runShellcheckTracked', () => {
     await expect(runShellcheckTracked(runtime)).resolves.toBe(0);
 
     expect(probes).toStrictEqual(['shellcheck']);
-    expect(lintRuns).toStrictEqual([
-      ['-u', 'SHELLCHECK_OPTS', 'shellcheck', '--norc', '--severity=style', '--', ...SCRIPTS],
-    ]);
+    expect(lintRuns).toStrictEqual([LINT_SCRIPTS]);
     expect(lines).toStrictEqual([
       `${GATE_PREFIX}shellcheck 0.11.0 (the shellcheck on PATH) over 3 tracked shell scripts`,
     ]);
@@ -113,6 +125,33 @@ describe('runShellcheckTracked', () => {
     ]);
   });
 
+  it('fails an unrecognised shebang, naming the file and its line, and still lints the recognised scripts', async () => {
+    const tree = new Map([...TREE, ['bin/quoted', '#!/usr/bin/env -S "bash" -e\necho quoted\n']]);
+    const { runtime, lintRuns, failures } = gateRuntime({ tree });
+
+    await expect(runShellcheckTracked(runtime)).resolves.toBe(1);
+
+    expect(lintRuns).toStrictEqual([LINT_SCRIPTS]);
+    expect(failures).toStrictEqual([
+      expect.stringMatching(
+        /^repo-check shellcheck-tracked: bin\/quoted:1: the shebang `#!\/usr\/bin\/env -S "bash" -e` is not a recognised form;/u,
+      ),
+    ]);
+  });
+
+  it('names the whole of an unrecognised shebang line as long as macOS honours, 512 bytes', async () => {
+    // `#!/` (3 bytes), 100 directories of `long/` (500), `bin/bash` (8), then the newline.
+    const longShebang = `#!/${'long/'.repeat(100)}bin/bash`;
+    const tree = new Map([...TREE, ['bin/long', `${longShebang}\necho long\n`]]);
+    const { runtime, failures } = gateRuntime({ tree });
+
+    await expect(runShellcheckTracked(runtime)).resolves.toBe(1);
+
+    expect(failures).toStrictEqual([
+      expect.stringContaining(`${GATE_PREFIX}bin/long:1: the shebang \`${longShebang}\` is not`),
+    ]);
+  });
+
   it('returns the lint status when shellcheck reports a finding', async () => {
     const { runtime } = gateRuntime({ lintStatus: 1 });
 
@@ -122,7 +161,7 @@ describe('runShellcheckTracked', () => {
   it('fails a disable directive in a script whose lint is clean, and still runs the lint', async () => {
     const tree = new Map([
       ...TREE,
-      ['bin/run', '#!/bin/bash\n# shellcheck disable=SC2086\necho $1\n'],
+      ['bin/run', '#!/usr/bin/env bash\n# shellcheck disable=SC2086\necho $1\n'],
     ]);
     const { runtime, lintRuns, failures } = gateRuntime({ tree });
 
@@ -167,6 +206,21 @@ describe('runShellcheckTracked', () => {
 
     expect(lintRuns).toStrictEqual([]);
     expect(failures).toStrictEqual([
+      expect.stringMatching(/^repo-check shellcheck-tracked: .*no tracked shell scripts/u),
+    ]);
+  });
+
+  it('still names each refused shebang when git lists no shell scripts', async () => {
+    const tree = new Map([['bin/legacy', '#!/bin/bash\necho legacy\n']]);
+    const { runtime, lintRuns, failures } = gateRuntime({ tree });
+
+    await expect(runShellcheckTracked(runtime)).resolves.toBe(1);
+
+    expect(lintRuns).toStrictEqual([]);
+    expect(failures).toStrictEqual([
+      expect.stringMatching(
+        /^repo-check shellcheck-tracked: bin\/legacy:1: the shebang `#!\/bin\/bash` is not/u,
+      ),
       expect.stringMatching(/^repo-check shellcheck-tracked: .*no tracked shell scripts/u),
     ]);
   });

@@ -6,7 +6,8 @@
 
 /**
  * Result type representing either success (Ok) or failure (Err).
- * Forces explicit handling of both cases.
+ * A discriminated union on `ok`: TypeScript rejects a read of `value` or
+ * `error` until the union is narrowed to one arm.
  */
 export type Result<T, E> = Ok<T> | Err<E>;
 

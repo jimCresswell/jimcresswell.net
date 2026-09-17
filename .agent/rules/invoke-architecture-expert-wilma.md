@@ -1,7 +1,7 @@
 ---
 classification: situational
 description: invoke architecture expert wilma
-trigger: surface:.agent/, docs/, Practice governance
+trigger: surface:.agent/, Practice governance, plans, PDR and ADR wiring, cross-platform Practice surfaces, canonical workflow documentation
 ---
 
 # Invoke Architecture Reviewer Wilma

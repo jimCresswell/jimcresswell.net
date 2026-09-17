@@ -1,4 +1,4 @@
-import { execFileSync, spawnSync } from 'node:child_process';
+import { spawnSync } from 'node:child_process';
 import {
   chmodSync,
   existsSync,
@@ -13,6 +13,8 @@ import { fileURLToPath } from 'node:url';
 
 import { z } from 'zod';
 
+import { which } from './secrets-hooks-support.js';
+
 /**
  * Support for the smokes of `.claude/hooks/secrets/prompt-secrets.sh`:
  * `prompt-secrets.smoke.ts` for the prompt itself and
@@ -21,7 +23,8 @@ import { z } from 'zod';
  * outcomes a run is held to.
  *
  * The stub records every path it is asked to scan and the text of the first,
- * which the hook makes its copy of the prompt. With `SMOKE_SONAR_EXIT` set it
+ * which the hook makes its copy of the prompt. Finding the tools a run needs
+ * is `secrets-hooks-support.ts`, shared with the Read hook's smoke. With `SMOKE_SONAR_EXIT` set it
  * exits with that status before scanning, standing in for a Sonar that errors;
  * otherwise it reports secrets (exit 51) when a path it is given holds
  * `SECRET`. Like the Sonar CLI (1.7.0, observed 2026-09-17), it reports a
@@ -73,21 +76,6 @@ export interface HookRun {
 
 function readIfPresent(filePath: string): string | undefined {
   return existsSync(filePath) ? readFileSync(filePath, 'utf8') : undefined;
-}
-
-/**
- * The absolute path of a tool on PATH.
- *
- * @param tool - The command name.
- * @returns Its path, as `/usr/bin/which` prints it.
- * @throws When the tool is not on PATH.
- */
-export function which(tool: string): string {
-  try {
-    return execFileSync('/usr/bin/which', [tool], { encoding: 'utf8' }).trim();
-  } catch (error) {
-    throw new Error(`${tool} is not on PATH, and the smoke needs it`, { cause: error });
-  }
 }
 
 /**

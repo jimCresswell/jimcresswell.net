@@ -13,6 +13,8 @@ interface LegacyCommsMigrationIo {
     readonly event: CommsEvent;
     readonly nowIso: string;
   }) => Promise<void>;
+  /** Where a newline-terminated migration warning line goes; the filesystem IO writes it to stderr as is. */
+  readonly writeWarning: (line: string) => void;
 }
 
 export async function migrateLegacyCommsDirectories(
@@ -29,6 +31,7 @@ export async function migrateLegacyCommsDirectories(
     narratives: await io.readLegacyRecords(input.eventsDir),
     lifecycles: await io.readLegacyRecords(input.lifecycleDir),
     directed: await io.readLegacyRecords(input.messagesDir),
+    writeWarning: io.writeWarning,
   });
 
   for (const event of events) {
@@ -46,6 +49,9 @@ export const filesystemLegacyCommsIo: LegacyCommsMigrationIo = {
   ensureDirectory: (directory) => mkdir(directory, { recursive: true }).then(() => undefined),
   readLegacyRecords,
   writeCommsEvent,
+  writeWarning: (line) => {
+    process.stderr.write(line);
+  },
 };
 
 async function readLegacyRecords(directory: string): Promise<readonly unknown[]> {

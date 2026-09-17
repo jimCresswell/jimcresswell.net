@@ -65,8 +65,8 @@ jobs:
       - name: Check markdown
         run: pnpm markdownlint-check:root
       # The installer puts the pinned shellcheck in the checkout's .tools/bin,
-      # which the gate runs before any the image ships; the gate prints the
-      # version and the binary it ran.
+      # which the gate runs in preference to any shellcheck the image ships;
+      # the gate prints the version and the binary it ran.
       - name: Install pinned shellcheck
         run: ./.agent/setup/install-shellcheck.sh
       - name: Lint shell scripts

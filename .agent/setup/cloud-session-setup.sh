@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Per-repo cloud-session setup hook for jimcresswell.net.
 #
 # Invoked by the shared cloud environment setup script

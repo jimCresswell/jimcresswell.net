@@ -9,8 +9,8 @@ import {
   expectWarned,
   runHook,
   toolDirectory,
-  which,
 } from './prompt-secrets-support.js';
+import { requireJq } from './secrets-hooks-support.js';
 
 /**
  * Smoke for the at-mention scan of `.claude/hooks/secrets/prompt-secrets.sh`.
@@ -61,7 +61,7 @@ function expectCleanScan(run: HookRun, prompt: string, expected: string): void {
 
 const workDir = mkdtempSync(join(tmpdir(), 'prompt-secrets-mentions-smoke-'));
 try {
-  which('jq');
+  requireJq();
   const project = join(workDir, 'project');
   const profile = join(workDir, 'profile');
   mkdirSync(join(project, 'dir with space'), { recursive: true });

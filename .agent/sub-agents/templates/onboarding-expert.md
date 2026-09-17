@@ -87,7 +87,7 @@ If workspace handoff docs are referenced during onboarding, include them in scop
 
 1. **Developer path**: `README.md` (Getting Started, then Development Standards) -> `CONTRIBUTING.md` and `.agent/directives/AGENT.md` -> the development standards in `.agent/directives/` -> workspace docs.
 2. **Developer-with-agents path**: `README.md` -> `.agent/README.md` -> `.agent/HUMANS.md`; and `docs/README.md` -> `docs/engineering/README.md` -> `docs/engineering/working-with-this-repo-for-devs.md`.
-3. **AI path**: a platform entry file (`CLAUDE.md`, `AGENTS.md`, `GEMINI.md`) -> `AGENT.md` -> a start-right skill (`quick`/`thorough`/`team`) -> directives -> task-specific docs, closing with `wrap` (which runs `session-handoff`).
+3. **AI path**: a platform entry file (`CLAUDE.md`, `AGENTS.md`, `GEMINI.md`, `.github/copilot-instructions.md` for GitHub Copilot, `skills.md` for Linear coding sessions) -> `AGENT.md` -> a start-right skill (`quick`/`thorough`/`team`) -> directives -> task-specific docs, closing with `wrap` (which runs `session-handoff`).
 4. **Executable onboarding surfaces**: any interactive walkthrough or onboarding skill (the `working-with-agentic-ai` primer among them) is an onboarding surface too — audit it for consistency with the static docs (walker-says-X-while-docs-say-Y is a drift axis).
 5. Identify all transition points between documents.
 

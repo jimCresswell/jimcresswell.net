@@ -1,7 +1,7 @@
 ---
 classification: situational
 description: invoke architecture expert barney
-trigger: surface:content/entities.json, lib/ graph derivation, JSON-LD
+trigger: surface:content/, lib/ graph derivation, JSON-LD, metadata wiring, graph identity contracts
 ---
 
 # Invoke Architecture Reviewer Barney

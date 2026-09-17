@@ -9,8 +9,8 @@ import {
   expectWarned,
   runHook,
   toolDirectory,
-  which,
 } from './prompt-secrets-support.js';
+import { requireJq, which } from './secrets-hooks-support.js';
 
 /**
  * Smoke for `.claude/hooks/secrets/prompt-secrets.sh`, the `UserPromptSubmit`
@@ -24,8 +24,10 @@ import {
  * holds a space; a canary file named by that path's first word must survive.
  * Without `jq` the sed fallback takes a prompt whole only when it holds no JSON
  * escape, so a prompt holding one must be blocked, including when bash's echo
- * would expand escapes (`BASHOPTS=xpg_echo`). When Sonar itself errors, the
- * prompt goes through with a warning shown to the user that it was not scanned.
+ * would expand escapes (`BASHOPTS=xpg_echo`). Every run proves both paths, so
+ * jq must be installed (`secrets-hooks-support.ts` carries why). When Sonar
+ * itself errors, the prompt goes through with a warning shown to the user that
+ * it was not scanned.
  */
 
 /**
@@ -47,8 +49,7 @@ const OPTION_SHAPED_PROMPTS = ['-n', '-e', '-E', '-neE'] as const;
 
 const workDir = mkdtempSync(join(tmpdir(), 'prompt-secrets-smoke-'));
 try {
-  // The jq runs below must take the jq path, so jq must be installed.
-  which('jq');
+  requireJq();
   const withJq = `${toolDirectory(workDir, 'bin', [])}${delimiter}${process.env.PATH ?? ''}`;
   const withoutJq = toolDirectory(workDir, 'bin-without-jq', JQ_LESS_TOOLS);
 

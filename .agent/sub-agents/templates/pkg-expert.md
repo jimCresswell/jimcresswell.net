@@ -26,7 +26,7 @@ Before reviewing, read and internalise:
 | Document                                                                      | Purpose                                                                                |
 | ----------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
 | `.agent/plans/strategy/stream-knowledge-graph.md`                             | The live graph strategy: GRAPH-1 (graph-backed source of truth, Track B), GRAPH-2 (publication surface, Track A), GRAPH-3 (Neo4j-ready shape) |
-| `.agent/plans-legacy-2026-09/DISPOSITIONS.md`                                 | Where each conserved legacy graph plan's intent now lives; the legacy files below are evidence, not authority |
+| `.agent/plans-legacy-2026-09/DISPOSITIONS.md`                                 | Where each legacy graph plan's intent now lives; the legacy files below are the evidence record, and the stream above carries the live strategy |
 | `.agent/plans-legacy-2026-09/current/personal-knowledge-graph-execution.plan.md`             | Track A execution record — complete for the current surface                            |
 | `.agent/plans-legacy-2026-09/research/graph-current-state-audit.md`                          | Implementation audit and architecture baseline as recorded; verify against the code    |
 | `.agent/plans-legacy-2026-09/active/personal-knowledge-graph-source-of-truth-design.plan.md` | Track B design record GRAPH-1 cites, when reviewing planning or architecture changes   |
