@@ -26,7 +26,7 @@ describe('practiceSkillPermissionIssues over a real filesystem', () => {
     const root = sandboxRepo();
     writeRepoFile(
       root,
-      '.claude/skills/oak-commit/SKILL.md',
+      '.claude/skills/jc-commit/SKILL.md',
       stub('Commit', 'commit/SKILL-CANONICAL.md'),
     );
     writeRepoFile(root, '.claude/skills/clerk/SKILL.md', '# Clerk\n\nVendor body, no marker.\n');
@@ -34,7 +34,7 @@ describe('practiceSkillPermissionIssues over a real filesystem', () => {
     const issues = await practiceSkillPermissionIssues(root, []);
 
     expect(issues).toStrictEqual([
-      '.claude/settings.json: Claude skill adapter "oak-commit" has no Skill(oak-commit) entry in permissions.allow',
+      '.claude/settings.json: Claude skill adapter "jc-commit" has no Skill(jc-commit) entry in permissions.allow',
     ]);
   });
 
@@ -42,11 +42,11 @@ describe('practiceSkillPermissionIssues over a real filesystem', () => {
     const root = sandboxRepo();
     writeRepoFile(
       root,
-      '.claude/skills/oak-commit/SKILL.md',
+      '.claude/skills/jc-commit/SKILL.md',
       stub('Commit', 'commit/SKILL-CANONICAL.md'),
     );
 
-    const issues = await practiceSkillPermissionIssues(root, ['Skill(oak-commit)']);
+    const issues = await practiceSkillPermissionIssues(root, ['Skill(jc-commit)']);
 
     expect(issues).toStrictEqual([]);
   });
@@ -56,7 +56,7 @@ describe('practiceSkillPermissionIssues over a real filesystem', () => {
     const outside = sandboxRepo();
     writeRepoFile(
       outside,
-      'skills/oak-external/SKILL.md',
+      'skills/jc-external/SKILL.md',
       stub('External', 'external/SKILL-CANONICAL.md'),
     );
     removeRepoPath(root, '.claude/skills');
@@ -66,7 +66,7 @@ describe('practiceSkillPermissionIssues over a real filesystem', () => {
 
     expect(issues).toHaveLength(1);
     expect(issues[0]).toMatch(/resolves outside/);
-    expect(issues.some((issue) => issue.includes('oak-external'))).toBe(false);
+    expect(issues.some((issue) => issue.includes('jc-external'))).toBe(false);
   });
 
   it('surfaces an unreadable .claude/skills root as an issue rather than passing as "no Practice skills"', async () => {
@@ -106,12 +106,12 @@ describe('practiceSkillPermissionIssues fail-closed on unreadable state (injecte
   it('reports an unreadable Practice entry as an issue rather than dropping it', async () => {
     const fs: CensusFs = {
       async listSubdirectoryNames() {
-        return { kind: 'ok', value: ['oak-x'] };
+        return { kind: 'ok', value: ['jc-x'] };
       },
       async readRegularFileTextNoFollow() {
         return {
           kind: 'failure',
-          message: 'cannot read /repo/.claude/skills/oak-x/SKILL.md: EACCES',
+          message: 'cannot read /repo/.claude/skills/jc-x/SKILL.md: EACCES',
         };
       },
       resolveRealPath: passesRootGuard,
@@ -120,7 +120,7 @@ describe('practiceSkillPermissionIssues fail-closed on unreadable state (injecte
     const issues = await practiceSkillPermissionIssues('/repo', [], fs);
 
     expect(issues).toContain(
-      '.claude/settings.json: cannot read /repo/.claude/skills/oak-x/SKILL.md: EACCES',
+      '.claude/settings.json: cannot read /repo/.claude/skills/jc-x/SKILL.md: EACCES',
     );
   });
 });

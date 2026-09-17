@@ -24,12 +24,12 @@ export const baseTestConfig = defineConfig({
       ],
     },
     // Scripts (`scripts/**`, `build-scripts/**`, `runtime-only-scripts/**`) are
-    // intentionally OUTSIDE this include surface — see ADR-168 §5. Scripts get
+    // intentionally OUTSIDE this include surface. Scripts get
     // type-check coverage (all-TS rule) but NOT unit tests; a script complex
     // enough to need tests is the signal to promote its logic into `src/`.
     // A `*.test.ts` under `scripts/` does not run by design and must not be
     // "fixed" by widening these globs.
     include: ['src/**/*.test.ts', 'src/**/*.spec.ts', 'tests/**/*.test.ts', 'tests/**/*.spec.ts'],
-    exclude: ['node_modules', 'dist', 'coverage', '**/*.e2e.test.ts', 'stryker-tmp'],
+    exclude: ['node_modules', 'dist', 'coverage', '**/*.e2e.test.ts'],
   },
 });

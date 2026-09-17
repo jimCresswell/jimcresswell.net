@@ -27,8 +27,8 @@ import {
 import { parseOptions } from '../../src/collaboration-state/cli-options';
 import { createCapturingCoordinationHomeResolver } from './fake-collaboration-runtime-fixtures';
 
-const PRIMARY = '/workspace/oak';
-const LINKED = '/workspace/oak-worktrees/lane-b';
+const PRIMARY = '/workspace/jc';
+const LINKED = '/workspace/jc-worktrees/lane-b';
 // The default is host-joined onto the home, so the expectation is derived in
 // host form (identical to the POSIX literal on POSIX).
 const ACTIVE_IN_PRIMARY = join(PRIMARY, '.agent/state/collaboration/active-claims.json');

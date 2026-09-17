@@ -65,29 +65,19 @@ export function createImportResolverSettings(options: ImportResolverSettingsOpti
 export const commonSettings = createImportResolverSettings();
 
 /**
- * Global ignore patterns for ESLint.
- * Includes build artifacts, test results, and documentation.
+ * Global ignore patterns for ESLint: scratch, build output, dependencies,
+ * declaration files and test results.
  */
 export const ignores = [
   'tmp/',
   'dist/',
   'node_modules/',
   '**/*.d.ts',
-  'reference/',
   // Ignore ephemeral bundled config artifacts (e.g., tsup.config.bundled_*.mjs)
   '**/*.bundled_*.mjs',
-  // Generated TypeDoc output
-  '**/docs/api/',
-  '**/docs/api-md/',
   // Test results
   '**/test-results/',
   '**/coverage/',
-  // Design-sync machine state: gitignored, but flat config does not read
-  // .gitignore and these files belong to no tsconfig project
-  '.ds-sync/',
-  'ds-bundle/',
-  '.design-sync/.cache/',
-  '.design-sync/learnings/',
 ];
 
 /**
@@ -102,19 +92,13 @@ export const ignores = [
  * declare those packages in the workspace manifest rather than relying on
  * the repo root toolchain.
  *
- * The rules below enforce the test-immediate-fails checklist
- * (`.agent/rules/test-immediate-fails.md`) at compile time. Zero-violation
- * patterns (process.env, process.cwd, loadRuntimeConfig, observability
- * factory imports, and vi.mock-family cache mutation) are `error`.
- * Existing violations stay visible only through explicit workspace-local
- * allowlists tracked by
- * `.agent/plans/architecture-and-infrastructure/current/test-ceremony-production-factory-audit.plan.md`.
+ * The `no-restricted-syntax` and `no-restricted-properties` entries below
+ * enforce the lint-checkable items of the test-immediate-fails checklist
+ * (`.agent/rules/test-immediate-fails.md`) when ESLint runs: process.env and
+ * process.cwd access, and vi.mock-family cache mutation, all at `error`.
  *
- * Workspaces that legitimately host the tests FOR `loadRuntimeConfig` or
- * `createHttpObservabilityOrThrow` (i.e. `runtime-config.*.test.ts`,
- * `http-observability.*.test.ts`) add a file-glob override disabling
- *
- * @see ADR-078 for the dependency injection rationale behind the vi.mock ban
+ * @see `.agent/rules/no-global-state-in-tests.md` for the dependency-injection
+ *   rationale behind the vi.mock ban
  * @see principles.md "No type shortcuts" — applies to test code equally
  * @see `.agent/rules/test-immediate-fails.md` — the authoritative checklist
  */
@@ -148,7 +132,7 @@ export const testRules = {
     {
       selector: "MemberExpression[object.name='process'][property.name='env']",
       message:
-        'Tests must not read or write process.env. Pass literal inputs via dependency injection (ADR-078). See .agent/rules/test-immediate-fails.md.',
+        'Tests must not read or write process.env. Pass literal inputs via dependency injection. See .agent/rules/test-immediate-fails.md.',
     },
     {
       selector: "CallExpression[callee.object.name='process'][callee.property.name='cwd']",
@@ -156,64 +140,28 @@ export const testRules = {
         'Tests must not consume process.cwd(). Anchor paths at import.meta.dirname. See .agent/rules/test-immediate-fails.md.',
     },
   ],
-  // Module-cache / global-state manipulation: prohibited by ADR-078 and
-  // .agent/rules/no-global-state-in-tests.md. Applies repo-wide at
-  // `error`. Workspaces carrying existing violations add a per-file
-  // allowlist in their own `eslint.config.ts`; the backlog is therefore
-  // physically visible in the config and each migration is a one-line
-  // deletion. Tracked by
-  // `.agent/plans/architecture-and-infrastructure/current/test-ceremony-production-factory-audit.plan.md`.
-  // Aligned with `patterns/warning-severity-is-off-severity.md` (never
-  // warn: fix or allowlist-with-deadline).
+  // Module-cache / global-state manipulation: prohibited by
+  // .agent/rules/no-global-state-in-tests.md, at `error` in the test files of
+  // every workspace whose ESLint config applies these rules.
   'no-restricted-properties': [
     'error',
     {
       object: 'vi',
       property: 'mock',
       message:
-        'vi.mock mutates the module cache and violates ADR-078 (DI-for-testability). Use dependency injection instead. See .agent/rules/test-immediate-fails.md.',
+        'vi.mock mutates the module cache, which tests must never do. Use dependency injection instead. See .agent/rules/test-immediate-fails.md.',
     },
     {
       object: 'vi',
       property: 'doMock',
       message:
-        'vi.doMock mutates the module cache and violates ADR-078. Use dependency injection instead. See .agent/rules/test-immediate-fails.md.',
+        'vi.doMock mutates the module cache, which tests must never do. Use dependency injection instead. See .agent/rules/test-immediate-fails.md.',
     },
     {
       object: 'vi',
       property: 'stubGlobal',
       message:
-        'vi.stubGlobal mutates global state. Use dependency injection or explicit parameter passing (ADR-078). See .agent/rules/test-immediate-fails.md.',
-    },
-  ],
-  // Production-factory ceremony: tests must not import factories that
-  // route through runtime disk/env resolution or real SDK initialisation.
-  // Applies at `error`. Workspaces carrying existing violations add a
-  // per-file allowlist in their own `eslint.config.ts`; the backlog is
-  // physically visible in config and each migration deletes a line.
-  // Tracked by
-  // `.agent/plans/architecture-and-infrastructure/current/test-ceremony-production-factory-audit.plan.md`.
-  //
-  // Workspaces that host the tests FOR these modules (runtime-config /
-  // http-observability subject-under-test) also declare file-glob
-  // overrides disabling this rule on those specific files.
-  'no-restricted-imports': [
-    'error',
-    {
-      patterns: [
-        {
-          group: ['**/runtime-config', '**/runtime-config.js'],
-          allowTypeImports: true,
-          message:
-            'Tests must not import loadRuntimeConfig or its siblings — that function reads .env files from disk, merging them into the test input. Construct a RuntimeConfig literal via a test helper (e.g. createMockRuntimeConfig from test-helpers). Type-only imports (`import type { RuntimeConfig }`) are permitted. See .agent/rules/test-immediate-fails.md.',
-        },
-        {
-          group: ['**/observability/http-observability', '**/observability/http-observability.js'],
-          allowTypeImports: true,
-          message:
-            'Tests must not import createHttpObservability / createHttpObservabilityOrThrow — those factories route through real Sentry initialisation and register process listeners. Inject createFakeHttpObservability from test-helpers/observability-fakes instead. Type-only imports (`import type { HttpObservability }`) are permitted. See .agent/rules/test-immediate-fails.md.',
-        },
-      ],
+        'vi.stubGlobal mutates global state. Use dependency injection or explicit parameter passing. See .agent/rules/test-immediate-fails.md.',
     },
   ],
 } as const satisfies Linter.RulesRecord;

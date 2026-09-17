@@ -66,7 +66,7 @@ describe('commit-queue order key', () => {
   let activePath: string;
 
   beforeEach(async () => {
-    root = await makeTempDirectory('oak-commit-queue-order-');
+    root = await makeTempDirectory('jc-commit-queue-order-');
     activePath = join(root, 'active-claims.json');
     await writeText(
       activePath,

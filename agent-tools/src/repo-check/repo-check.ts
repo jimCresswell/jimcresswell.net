@@ -34,17 +34,20 @@ import {
   runPrettierStaged,
   runPrettierTracked,
 } from './repo-check-gates.js';
-import { runKnipGate } from './repo-check-knip.js';
+import { runDepcruiseGate } from './repo-check-depcruise.js';
+import { runLintChanged } from './repo-check-lint-changed.js';
 import { runProfile } from './repo-check-runner.js';
-
-export { runKnipGate } from './repo-check-knip.js';
+import { runShellcheckTracked } from './repo-check-shellcheck.js';
 
 function usage(): string {
   return [
     'Usage: pnpm agent-tools:repo-check <command>',
     '',
     'Commands:',
-    '  knip-gate              Run knip; fail loudly when a crash is swallowed behind exit 0 (F-147).',
+    '  depcruise-gate         Run dependency-cruiser; fail on any violation (error, warn, info or ignore),',
+    '                         an environment issue, or a cruise without the TypeScript compiler.',
+    '  lint-changed           Run turbo lint over the workspaces changed since HEAD; skip the run',
+    '                         when turbo plans no task for that scope.',
     '  markdownlint-staged    Run markdownlint on staged Markdown files only.',
     '  markdownlint-tracked [--fix]',
     '                         Run markdownlint on every tracked Markdown file (the root gate).',
@@ -54,6 +57,9 @@ function usage(): string {
     '  profile [--dry-run] [--capture-output]',
     '                         Capture the pnpm check Turbo graph and, unless dry-run is set, time pnpm check.',
     '                         --capture-output stores pnpm check stdout/stderr beside the profile artifact.',
+    '  shellcheck-tracked     Run shellcheck on every tracked shell script; fail on any finding,',
+    '                         silencing directive or unrecognised shebang, or when .tools/bin or PATH',
+    '                         has no pinned shellcheck.',
   ].join('\n');
 }
 
@@ -67,7 +73,8 @@ const NO_FLAGS: ReadonlySet<string> = new Set();
 
 /** The command table: a Map, so a prototype key can never resolve to a non-command. */
 const COMMANDS: ReadonlyMap<string, RepoCheckCommand> = new Map<string, RepoCheckCommand>([
-  ['knip-gate', { flags: NO_FLAGS, run: () => runKnipGate() }],
+  ['depcruise-gate', { flags: NO_FLAGS, run: () => runDepcruiseGate() }],
+  ['lint-changed', { flags: NO_FLAGS, run: () => runLintChanged() }],
   ['markdownlint-staged', { flags: NO_FLAGS, run: () => runMarkdownlintStaged() }],
   [
     'markdownlint-tracked',
@@ -89,6 +96,7 @@ const COMMANDS: ReadonlyMap<string, RepoCheckCommand> = new Map<string, RepoChec
     'profile',
     { flags: new Set(['--dry-run', '--capture-output']), run: (args) => runProfile(args) },
   ],
+  ['shellcheck-tracked', { flags: NO_FLAGS, run: () => runShellcheckTracked() }],
 ]);
 
 /**

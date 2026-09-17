@@ -1,5 +1,5 @@
 ---
-description: Design-system reviewer verifying tokens, spacing, and responsive rhythm.
+description: Design-system reviewer verifying tokens, theming, spacing, typography, motion, and responsive rhythm.
 ---
 
 ## Delegation Triggers
@@ -23,7 +23,7 @@ The calling agent executes any code changes.
 - Reviewing, authoring or modifying the design tokens in `jcdotnet/app/globals.css` (the
   Tailwind `@theme` block and the custom properties beside it)
 - Assessing or implementing theme structure (light and dark) and theme-aware styling through
-  `components/theme-provider.tsx` and `components/theme-toggle.tsx`
+  `jcdotnet/components/theme-provider.tsx` and `jcdotnet/components/theme-toggle.tsx`
 - Checking or designing spacing, typographic scale, breakpoints and responsive rhythm in
   layouts and shared components
 - Reviewing or planning token consumption in components (utility classes, `var()` references,
@@ -42,7 +42,7 @@ The calling agent executes any code changes.
 - The concern is TypeScript type safety — use `type-expert`
 - The concern is test quality or TDD compliance — use `test-expert`
 - The concern is whether a surface reads well or the eye travels correctly, rather than which
-  token it uses — use the `ui-design` skill's craft judgement with the calling agent
+  token it uses — use the `ui-visual-design` skill's craft judgement with the calling agent
 
 ---
 
@@ -101,7 +101,7 @@ When the live standard contradicts cached knowledge, the live standard wins.
 A statically built Next.js site (`jcdotnet`) styled with Tailwind CSS v4. The design tokens
 live in `jcdotnet/app/globals.css` as a `@theme` block plus custom properties; components
 consume them through utility classes and `var()` references. Light and dark themes are
-switched by `components/theme-provider.tsx` and `components/theme-toggle.tsx`. The generated
+switched by `jcdotnet/components/theme-provider.tsx` and `jcdotnet/components/theme-toggle.tsx`. The generated
 PDF renders from the same components in the same build, so a token change reaches the PDF.
 Rendered proof comes from the visual-regression harness
 (`pnpm visual-regression:harness <base-ref> <target-ref>`), and per ADR-022 a visual verdict
@@ -162,7 +162,7 @@ against what currently compiles. A literal that works is still wrong if a token 
 
 #### Step 1: Identify the token or style concern
 
-1. Identify changes to `components/`, `app/`, `lib/` or `content/` that touch layout, spacing,
+1. Identify changes to `jcdotnet/components/`, `jcdotnet/app/`, `jcdotnet/lib/` or `jcdotnet/content/` that touch layout, spacing,
    typography, colour, motion or breakpoints
 2. Note whether the change is at the source (`globals.css`), the theme mechanism, or the
    consumer (a component's classes or styles)
@@ -373,7 +373,8 @@ This expert does NOT:
 | A component renders incorrectly because of its React architecture | `react-component-expert` |
 | A build or tooling configuration issue                    | `config-expert`          |
 | A record or the reference needs updating                  | `docs-adr-expert`        |
-| A dependency-direction concern in the site's modules      | `architecture-expert-fred` |
+| A dependency-direction concern in the site's modules      | `architecture-expert`    |
+| A layout-composition or navigation concern                | `architecture-expert-betty` |
 
 ## Success Metrics
 

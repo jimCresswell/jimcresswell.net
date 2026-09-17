@@ -307,3 +307,13 @@ measured shape:
   2026-09-12, fifteen and a half on 2026-09-13, twenty on 2026-09-14, with an eighty-minute
   usage-limit pause and one cold pause inside them. The runbook's under-two-hours threshold is
   a test for instance 2, which runs by runbook; instance 1 wrote it.
+
+- **Correction (2026-09-15, the arc's retrospective).** The review-loop bullet above says every
+  pull request after the rounds ruling settled at two reviews plus one signed step. Six of the
+  eleven opened after the ruling did. #81 took three reviews (before the terminating shape was
+  understood), #82 four (a records pull request; one push under the correctness exception after
+  a replacement script silently failed to match), #86 and #90 three (correctness exceptions) and
+  #91 five (an exception push, a merge from `main` to clear a conflict, and a red-check cure).
+  The sentence's source, the Director's handoff item 106, carried two of those exceptions; the
+  summary dropped them. The arc's measured cost is in the retrospective record of 2026-09-15 in
+  the agentic-engineering reports.

@@ -60,6 +60,30 @@ variants:
 
         Mode: a single fast pass — judge from the supplied context, honour the
         template's speed contract, and report only. Do not modify anything.
+  - name: cricket-judgement-lowestpower-low
+    platforms:
+      - cursor
+      - claude
+    description: Fast low-effort conscience check using contextual judgement on the lowest-power model, running the full judgement prompt rather than the compiled procedure. Call directly for a second opinion, rubber duck, or design partnership when priority, proportion, or a wait/gate may be drifting; returns ON-TRACK, DRIFTING, or WRONG-PRIORITY with evidence and one redirection.
+    title: Cricket Judgement — Lowest Power, Low Effort
+    cursor:
+      description: Cursor adapter for the lowest-power low-effort contextual-judgement role; Cursor pins neither model nor reasoning effort. Call directly for a second opinion, rubber duck, or design partnership when priority, proportion, or a wait/gate may be drifting; returns ON-TRACK, DRIFTING, or WRONG-PRIORITY with evidence and one redirection.
+      note: |-
+        That template is the canonical role definition. This adapter preserves the lowest-power
+        low-effort judgement role's semantics, but the suffix claims neither a Cursor model pin
+        nor a reasoning-effort pin. Judge from the supplied context in a single fast pass and
+        report only. Never explore the repository.
+    claude:
+      tools: Read
+      disallowedTools: Write, Edit, Bash, Grep, Glob
+      color: green
+      model: haiku
+      effort: low
+      note: |-
+        This adapter explicitly waives the template's reading-discipline component to preserve
+        the one-pass speed contract; the identity component remains mandatory. Judge and report
+        from the supplied context and STANCE, using at most the template's two targeted
+        verification Reads when its speed contract permits them. Never explore the repository.
   - name: cricket-judgement-medium
     platforms:
       - cursor
@@ -132,14 +156,13 @@ lands. Never block on a cricket.
 5. NEXT — your next planned action(s).
 6. STANCE — `normal` or `adversarial` (see above).
 
-### Frame disciplines (graduated from the pair-era tally; standing for every invoker)
+### Frame disciplines (graduated from the lineage's pair-era tally; standing for every invoker)
 
 - **Provenance**: every condition or ruling the frame states carries who ruled it, when,
   and the ruling EVENT ID — never a bare timestamp — and every verification conclusion
   carries a one-line method beside it ("verified clean (git grep origin/main --
   plugins/, 0 matches)"). Full provenance eliminated the false-DRIFTING frame-grounding
-  mode outright (pair-era tally runs 6 and 10 against runs 1–5 —
-  `.agent/reports/agentic-engineering/cricket-two-pair-tally-2026-07-26.md`); partial
+  mode outright (pair-era tally runs 6 and 10 against runs 1–5); partial
   provenance — timestamps without IDs, conclusions without methods — still fires it
   (worked instance 2026-07-29, recorded in the same tally's successor entries).
 - **Two labelled lists**: ABSORBED scope and ROUTED-AWAY findings are separate labelled

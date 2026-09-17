@@ -4,7 +4,7 @@ Guidelines for contributing to [www.jimcresswell.net](https://www.jimcresswell.n
 
 ## Before you start
 
-1. **Set up your environment** — follow the [Getting Started](README.md#getting-started) section in the README. You will need Node.js 24, pnpm, and gitleaks.
+1. **Set up your environment** — follow the [Getting Started](README.md#getting-started) section in the README. You will need Node.js 24, pnpm, gitleaks, shellcheck and jq.
 2. **Read the development standards** — the authoritative rules for all contributors live in two files within `.agent/directives/`. They are written for AI agents but define the conventions everyone follows:
    - [principles.md](.agent/directives/principles.md) — TDD, type safety, code quality, documentation
    - [testing-strategy.md](.agent/directives/testing-strategy.md) — test types, naming, philosophy
@@ -47,11 +47,13 @@ Assumes TDD familiarity. For the full philosophy and rules, see [testing-strateg
 
 ## Troubleshooting
 
-| Problem                                     | Solution                                                                                                                                                                                                                  |
-| ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `gitleaks: command not found`               | Install gitleaks — `brew install gitleaks` on macOS, or see [releases](https://github.com/gitleaks/gitleaks/releases) for other platforms.                                                                                |
-| `pnpm check` fails on knip                  | Unused export detected. Delete the export, or if it is dynamically used, add a targeted entry to the `knip` field in `package.json`. See [ADR-005](docs/architecture/decision-records/005-knip-unused-code-detection.md). |
-| `pnpm portability:check` fails              | A thin wrapper, reviewer adapter, or surface-matrix entry has drifted from the canonical `.agent/` source. Fix the wrapper or update the local surface contract so they match again.                                      |
-| `pnpm practice:fitness:informational` warns | A governed doc has exceeded a target or hard limit. Reflow prose, split the doc by responsibility, or explicitly agree a new limit before raising it in a follow-up reconciliation pass.                                  |
-| Playwright browsers not installed           | Run `pnpm exec playwright install`.                                                                                                                                                                                       |
-| PDF not generated locally                   | Run `pnpm build` first. `/cv/pdf` redirects to a branded 404 until a build has run.                                                                                                                                       |
+| Problem                                       | Solution                                                                                                                                                                                                                  |
+| --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `gitleaks: command not found`                 | Install gitleaks — `brew install gitleaks` on macOS, or see [releases](https://github.com/gitleaks/gitleaks/releases) for other platforms.                                                                                |
+| `lint:shell` cannot run the pinned shellcheck | Run `.agent/setup/install-shellcheck.sh`; it installs the pinned version into the ignored `.tools/bin`, which the gate runs before PATH, on macOS and Linux.                                                              |
+| a secrets hook smoke says `jq is not on PATH` | Install jq — `brew install jq` on macOS when `/usr/bin/jq` is absent, `sudo apt-get install jq` on Debian and Ubuntu.                                                                                                     |
+| `pnpm check` fails on knip                    | Unused export detected. Delete the export, or if it is dynamically used, add a targeted entry to the `knip` field in `package.json`. See [ADR-005](docs/architecture/decision-records/005-knip-unused-code-detection.md). |
+| `pnpm portability:check` fails                | A thin wrapper, reviewer adapter, or surface-matrix entry has drifted from the canonical `.agent/` source. Fix the wrapper or update the local surface contract so they match again.                                      |
+| `pnpm practice:fitness:informational` warns   | A governed doc has exceeded a target or hard limit. Reflow prose, split the doc by responsibility, or explicitly agree a new limit before raising it in a follow-up reconciliation pass.                                  |
+| Playwright browsers not installed             | Run `pnpm exec playwright install`.                                                                                                                                                                                       |
+| PDF not generated locally                     | Run `pnpm build` first. `/cv/pdf` redirects to a branded 404 until a build has run.                                                                                                                                       |

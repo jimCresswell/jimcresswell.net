@@ -6,8 +6,8 @@ import { TrustedGitResolutionError } from '../core/trusted-git.js';
 
 import { type GitRunner, resolveCoordinationHome } from './coordination-home.js';
 
-const PRIMARY = '/workspace/oak';
-const LINKED = '/workspace/oak-worktrees/feature';
+const PRIMARY = '/workspace/jc';
+const LINKED = '/workspace/jc-worktrees/feature';
 
 // `git worktree list --porcelain` lists the main worktree FIRST, then each
 // linked worktree, regardless of which worktree the command runs from.

@@ -1,6 +1,6 @@
 ---
 name: architecture-expert-fred
-description: 'Architecture reviewer Fred covering builds, caching, and resilience.'
+description: 'Architecture reviewer Fred covering builds, caching, PDF generation, Playwright against the production build, and resilience.'
 tools:
   - read_file
   - list_directory

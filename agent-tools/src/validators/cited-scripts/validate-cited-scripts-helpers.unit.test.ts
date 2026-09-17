@@ -125,11 +125,11 @@ describe('findMissingScriptCitations', () => {
   });
 
   it('reports a filter that names no workspace', () => {
-    const files = [{ path: 'docs/a.md', content: '`pnpm --filter @engraph/oak-widget build`' }];
+    const files = [{ path: 'docs/a.md', content: '`pnpm --filter @engraph/jc-widget build`' }];
 
     expect(
       findMissingScriptCitations(files, scripts).map((f) => [f.scope, f.reason]),
-    ).toStrictEqual([['@engraph/oak-widget', 'unknown-workspace']]);
+    ).toStrictEqual([['@engraph/jc-widget', 'unknown-workspace']]);
   });
 
   it('skips allowlisted paths', () => {

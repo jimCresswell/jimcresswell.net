@@ -4,8 +4,8 @@ import { resolveCoordinationHomeForOptions } from '../../src/collaboration-state
 import { parseOptions } from '../../src/collaboration-state/cli-options';
 import { createCapturingCoordinationHomeResolver } from './fake-collaboration-runtime-fixtures';
 
-const LINKED = '/workspace/oak-worktrees/lane-b';
-const PRIMARY = '/workspace/oak';
+const LINKED = '/workspace/jc-worktrees/lane-b';
+const PRIMARY = '/workspace/jc';
 
 describe('resolveCoordinationHomeForOptions integration', () => {
   it('preserves an explicit --repo-root without requiring runtime resolution seams', () => {

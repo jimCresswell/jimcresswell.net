@@ -57,7 +57,7 @@ const activeClaims: CollaborationRegistry = {
 };
 
 const worktrees: readonly GitWorktree[] = [
-  { path: '/repo/oak-spawn-flow', branch: 'feat/spawn-worktree-view', head: 'aaaa111' },
+  { path: '/repo/jc-spawn-flow', branch: 'feat/spawn-worktree-view', head: 'aaaa111' },
   { path: '/repo/primary', branch: 'coordination/team-tooling', head: 'bbbb222' },
 ];
 
@@ -86,14 +86,14 @@ describe('claims work-state — derived cross-worktree view CLI (F-98 / spawn-fl
     });
 
     expect(result.exitCode).toBe(0);
-    // Rows are worktree-path-ordered: oak-spawn-flow (bound) then primary
+    // Rows are worktree-path-ordered: jc-spawn-flow (bound) then primary
     // (unbound — its branch has no heartbeat). The bound row exercises the full
     // join END-TO-END: git worktree ⋈ heartbeat-branch → agent + last-seen
     // recency, and the claims→routing-key→intent join (the stored claim's
     // agent_id keyed against the heartbeat author identity).
     expect(JSON.parse(result.stdout)).toMatchObject([
       {
-        worktreePath: '/repo/oak-spawn-flow',
+        worktreePath: '/repo/jc-spawn-flow',
         branch: 'feat/spawn-worktree-view',
         agent: { agent_name: 'Kingfisher seeks Moorings' },
         intent: 'Lane A Phase 2 derived worktree view',

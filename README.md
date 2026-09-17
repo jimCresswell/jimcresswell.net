@@ -38,6 +38,8 @@ rewrite editorial copy.
 - **Node.js 24** — use [fnm](https://github.com/Schniz/fnm) or [nvm](https://github.com/nvm-sh/nvm) to manage versions
 - **pnpm** — the only supported package manager (`npm install -g pnpm`)
 - **gitleaks** — secret scanning, required by quality gates (`brew install gitleaks` on macOS, see [gitleaks releases](https://github.com/gitleaks/gitleaks/releases) for other platforms)
+- **shellcheck** — shell script linting, required by quality gates at the version `.agent/setup/install-shellcheck.sh` pins: run that script once per checkout (it installs into the ignored `.tools/bin`, which the gate runs before any shellcheck on your PATH, on macOS and Linux, x86_64 and arm64)
+- **jq** — required by quality gates: the secrets hooks read their input with jq when it is installed and without it otherwise, and their smoke tests prove both paths (`brew install jq` on macOS if `/usr/bin/jq` is absent, `sudo apt-get install jq` on Debian and Ubuntu, see [jq downloads](https://jqlang.org/download/) for other platforms)
 
 ```bash
 pnpm install

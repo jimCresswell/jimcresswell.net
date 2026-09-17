@@ -78,12 +78,12 @@
         "hooks": [
           {
             "type": "command",
-            "command": ".claude/hooks/practice-session-identity.mjs",
+            "command": "\"${CLAUDE_PROJECT_DIR}/.claude/hooks/practice-session-identity.mjs\"",
             "timeout": 5
           },
           {
             "type": "command",
-            "command": ".claude/hooks/plan-gate-drift-alert.mjs",
+            "command": "\"${CLAUDE_PROJECT_DIR}/.claude/hooks/plan-gate-drift-alert.mjs\"",
             "timeout": 15
           }
         ]
@@ -125,7 +125,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/_lib/log-hook-errors.sh ${CLAUDE_PROJECT_DIR}/.claude/hooks/secrets/pretool-secrets.sh",
+            "command": "\"${CLAUDE_PROJECT_DIR}/.claude/hooks/_lib/log-hook-errors.sh\" \"${CLAUDE_PROJECT_DIR}/.claude/hooks/secrets/pretool-secrets.sh\"",
             "timeout": 60
           }
         ]
@@ -137,8 +137,20 @@
         "hooks": [
           {
             "type": "command",
-            "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/_lib/log-hook-errors.sh ${CLAUDE_PROJECT_DIR}/.claude/hooks/secrets/prompt-secrets.sh",
+            "command": "\"${CLAUDE_PROJECT_DIR}/.claude/hooks/_lib/log-hook-errors.sh\" \"${CLAUDE_PROJECT_DIR}/.claude/hooks/secrets/prompt-secrets.sh\"",
             "timeout": 60
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"${CLAUDE_PROJECT_DIR}/.claude/hooks/_lib/log-hook-errors.sh\" node \"${CLAUDE_PROJECT_DIR}/agent-tools/src/bin/claude-pre-compact-observe-hook.ts\"",
+            "timeout": 10
           }
         ]
       }

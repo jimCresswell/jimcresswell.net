@@ -54,7 +54,7 @@ export async function createDanglingSymlink(linkPath: string): Promise<void> {
 export async function makeTempCollaborationRepo(
   options: { readonly seedCommsEvent?: boolean } = {},
 ): Promise<string> {
-  const root = await makeTempDirectory('oak-collaboration-integrity-');
+  const root = await makeTempDirectory('jc-collaboration-integrity-');
   const collaborationRoot = join(root, '.agent/state/collaboration');
   await mkdir(join(collaborationRoot, 'comms'), { recursive: true });
   await mkdir(join(collaborationRoot, 'comms-seen'), { recursive: true });

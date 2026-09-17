@@ -23,7 +23,7 @@ const posixPath = (hostPath: string): string => hostPath.split(sep).join('/');
 function makeUnreadableStubFs(unreadableStubPath: string): CarriageReadFs {
   return {
     async listSubdirectoryNames(path) {
-      return ok(posixPath(path).endsWith('/.claude/skills') ? ['oak-broken'] : []);
+      return ok(posixPath(path).endsWith('/.claude/skills') ? ['jc-broken'] : []);
     },
     async listFileNames() {
       return ok([]);
@@ -55,11 +55,11 @@ function makeUnreadableStubFs(unreadableStubPath: string): CarriageReadFs {
 describe('findStaleProjectionEntries — the cannot-classify arm', () => {
   it('surfaces an unreadable stub as a failure and reports NOTHING stale: no verdict over an unobserved entry', async () => {
     const repoRoot = '/repo';
-    const fs = makeUnreadableStubFs('/repo/.claude/skills/oak-broken/SKILL.md');
+    const fs = makeUnreadableStubFs('/repo/.claude/skills/jc-broken/SKILL.md');
 
     const sweep = await findStaleProjectionEntries({
       repoRoot,
-      projections: [{ canonicalRef: 'parallax/SKILL-CANONICAL.md', expectedName: 'oak-parallax' }],
+      projections: [{ canonicalRef: 'parallax/SKILL-CANONICAL.md', expectedName: 'jc-parallax' }],
       fs,
     });
 
@@ -72,7 +72,7 @@ describe('findStaleProjectionEntries — the cannot-classify arm', () => {
     const canonicalPath = `${repoRoot}/.agent/skills/parallax/SKILL-CANONICAL.md`;
     const canonicalBody =
       '---\nname: parallax\ndescription: A skill.\n---\n\n# Parallax\n\nBody.\n';
-    const base = makeUnreadableStubFs(`${repoRoot}/.claude/skills/oak-broken/SKILL.md`);
+    const base = makeUnreadableStubFs(`${repoRoot}/.claude/skills/jc-broken/SKILL.md`);
     const fs: CheckerFs = {
       ...base,
       async listSubdirectoryNames(path) {
@@ -86,7 +86,7 @@ describe('findStaleProjectionEntries — the cannot-classify arm', () => {
       },
     };
 
-    const result = await checkAdapters({ repoRoot, prefix: 'oak-' }, fs);
+    const result = await checkAdapters({ repoRoot, prefix: 'jc-' }, fs);
 
     expect(result.stale).toEqual([]);
     expect(result.refused.some((message) => /EACCES/.test(message))).toBe(true);

@@ -61,7 +61,7 @@ describe('commit-queue per-intent store — write validation backstop', () => {
   let queueDir: string;
 
   beforeEach(async () => {
-    root = await makeTempDirectory('oak-commit-queue-store-validate-');
+    root = await makeTempDirectory('jc-commit-queue-store-validate-');
     queueDir = join(root, 'commit-queue');
   });
 
@@ -127,7 +127,7 @@ describe('commit-queue per-intent store', () => {
   let queueDir: string;
 
   beforeEach(async () => {
-    root = await makeTempDirectory('oak-commit-queue-store-');
+    root = await makeTempDirectory('jc-commit-queue-store-');
     queueDir = commitQueueDirForActivePath(join(root, 'active-claims.json'));
   });
 
@@ -354,7 +354,7 @@ async function readStoredText(queueDir: string, intentId: string): Promise<strin
 
 describe('commit-queue store file format', () => {
   it('writes two-space-indented JSON with a trailing newline, comms-store style', async () => {
-    const root = await makeTempDirectory('oak-commit-queue-store-format-');
+    const root = await makeTempDirectory('jc-commit-queue-store-format-');
     const queueDir = commitQueueDirForActivePath(join(root, 'active-claims.json'));
     await writeCommitQueueEntry({ queueDir, entry: entry(), nowIso: NOW });
 

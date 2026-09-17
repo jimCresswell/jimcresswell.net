@@ -1,6 +1,6 @@
 ---
 name: architecture-expert-betty
-description: 'Architecture reviewer Betty ensuring navigation and tilt architecture.'
+description: 'Architecture reviewer Betty ensuring route, navigation, and layout architecture.'
 tools:
   - read_file
   - list_directory

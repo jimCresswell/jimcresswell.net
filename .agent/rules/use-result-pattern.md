@@ -8,7 +8,7 @@ globs:
 
 # Use Result Pattern
 
-Use `Result<T, E>` for error handling. Never throw exceptions. Errors are part of the type signature; the compiler ensures all cases are handled. Handle all cases explicitly.
+Use `Result<T, E>` for error handling. Never throw exceptions. Errors are part of the type signature, and the compiler rejects a read of `value` or `error` until `ok` is checked; handling the failure is the caller's job. Handle all cases explicitly.
 
 When a constructed error **must** leave a boundary (e.g. at a trust
 edge, a library surface that cannot return `Result`, or inside a
