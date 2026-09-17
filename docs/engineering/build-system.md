@@ -46,7 +46,9 @@ workspace-owned package scripts, such as
 `allowBuilds` in `pnpm-workspace.yaml` is an **intentional** allowlist: only
 packages mapped to `true` may run install lifecycle scripts. Security
 `overrides`, `peerDependencyRules`, and the `minimumReleaseAge` floor also live
-in `pnpm-workspace.yaml`, not in root `package.json`.
+in `pnpm-workspace.yaml`, not in root `package.json`. pnpm 12 reads no `pnpm`
+field from any `package.json`: in the root manifest the field draws a warning,
+and in a workspace member it is ignored without one.
 
 **pnpm `overrides` rewrite EVERY transitive contract, not just your pins.** An
 override earns its place only when the transitive resolution is itself the

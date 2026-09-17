@@ -12,8 +12,9 @@ Any single item below is an **immediate fail** — the test is rejected
 without further analysis. This is the fast gate test-expert applies
 first; tests that pass it then receive the full checklist.
 
-Rooted in `.agent/directives/testing-strategy.md` (§Stubs vs Fakes carries the
-dependency-injection doctrine).
+Rooted in `.agent/directives/testing-strategy.md` (the dependency-injection
+pattern is in `docs/engineering/testing-patterns.md` §In-Process Tests with
+Dependency Injection).
 Violations indicate product-code design problems, not test-authorship
 problems — the fix is usually at the product-code level (expose a
 seam, extract a pure function, inject a dependency).

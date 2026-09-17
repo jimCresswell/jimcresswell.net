@@ -202,7 +202,7 @@ help implies, not what historical local precedent permits.
 A generator run over sparse or absent local source data can produce
 structurally valid but semantically empty output. The generator exits clean;
 the file shape is correct; the content is wrong. For any generator that
-derives output from input data (the JSON-LD graph from `content/entities.json`,
+derives output from input data (the JSON-LD graph from `jcdotnet/content/entities.json`,
 the PDF from the rendered CV, fixture builders, schema-from-data tools), verify
 the expected size signal (a record count, a page count, a byte count) before
 trusting the output. Structural validity is not semantic validity; the proof of
