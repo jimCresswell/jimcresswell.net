@@ -4,7 +4,7 @@ import { sessionIdPrefix } from '../collaboration-state/identity.js';
 import { deriveIdentity } from '../core/agent-identity/index.js';
 
 const COMPOSER_MIRROR_FILE = 'practice-composer-session.local.json';
-const MIRROR_SCHEMA = 'oak.cursor-composer-session.v1';
+const MIRROR_SCHEMA = 'practice.cursor-composer-session.v1';
 
 /**
  * Environment inputs consumed by the Cursor session identity hook.
