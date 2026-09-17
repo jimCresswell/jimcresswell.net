@@ -50,7 +50,7 @@
     "knip:fix": "knip --fix",
     "lint": "turbo run lint",
     "lint:fix": "turbo run lint:fix",
-    "lint:runtime-only": "eslint --config eslint.runtime-only.config.mjs runtime-only-scripts/**/*.mjs",
+    "lint:runtime-only": "eslint --max-warnings 0 --config eslint.runtime-only.config.mjs \"runtime-only-scripts/**/*.mjs\"",
     "lint:shell": "pnpm agent-tools:repo-check shellcheck-tracked",
     "markdownlint:root": "pnpm agent-tools:repo-check markdownlint-tracked --fix",
     "markdownlint-check:root": "pnpm agent-tools:repo-check markdownlint-tracked",

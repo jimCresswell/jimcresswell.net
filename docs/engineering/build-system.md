@@ -577,6 +577,16 @@ converging.
 
 ## Linting and Auto-Fix Safety
 
+- **A warning fails lint**: every ESLint script (each workspace's `lint` and
+  `lint:fix`, and the root `lint:runtime-only`) passes `--max-warnings 0`, so
+  a warn-level finding fails every lint leg that covers the file exactly as an
+  error does: the workspace `lint` at pre-commit, and both scripts at pre-push
+  and in CI
+  ([`no-warning-toleration`](../../.agent/rules/no-warning-toleration.md)).
+  A new workspace's ESLint scripts carry the same flag: without it a warning
+  exits 0, and Turbo caches that run as a pass. `lint:runtime-only` quotes its
+  glob so ESLint expands it: `sh` has no globstar, so an unquoted `**` matches
+  one directory level and drops the top-level scripts once a nested one exists.
 - **`lint:fix` can silently revert manual edits**: `pnpm fix` runs
   `lint:fix`. If an edit introduces code that the linter
   "fixes" back, the edit is lost mid-pipeline. Verify the edited file AFTER
