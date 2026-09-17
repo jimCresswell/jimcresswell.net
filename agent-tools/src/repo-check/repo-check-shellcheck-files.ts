@@ -25,10 +25,21 @@ const SHELL_EXTENSIONS = ['.sh', '.bash'] as const;
 const HUSKY_HOOK_DIRECTORY = '.husky/';
 
 /**
- * `#!`, optional space, an optional directory, an optional `env` with its
- * flags, then the shell's name ending the word.
+ * `#!`, optional space and an optional directory, then the shell's name ending
+ * the word, either directly or as any later word of an `env` shebang: bare,
+ * after a directory (never a `NAME=value` word, which runs nothing), or
+ * attached to `-S` or `--split-string=`. So `#!/bin/bash`,
+ * `#!/usr/bin/env -S bash -e`, `#!/usr/bin/env -S /bin/bash`,
+ * `#!/usr/bin/env -u NAME bash` and `#!/usr/bin/env -Sbash` all name bash.
+ *
+ * Any later word counts, whatever env's options take as arguments, because
+ * the two errors are not alike: a shell script the pattern missed would
+ * escape the lint silently, while a shebang the pinned shellcheck cannot
+ * identify (it reports `env -S /bin/bash` and `env -u NAME bash` as SC1008)
+ * fails the gate loudly until the shebang names the shell plainly.
  */
-const SHELL_SHEBANG = /^#!\s*(?:\S*\/)?(?:env\s+(?:-\S+\s+)*)?(?:sh|bash|dash|ksh)(?=\s|$)/u;
+const SHELL_SHEBANG =
+  /^#!\s*(?:\S*\/)?(?:env(?:\s+\S+)*?\s+(?:-S|--split-string=)?(?:[^\s=]*\/)?)?(?:sh|bash|dash|ksh)(?=\s|$)/u;
 
 /**
  * A shellcheck directive comment (`# shellcheck key=value ...`, the space

@@ -35,11 +35,36 @@ describe('isShellScript', () => {
     expect(isShellScript('bin/d', '#!/bin/sh\r\necho windows line ending\r\n')).toBe(true);
   });
 
+  it('takes an extensionless file as shell when env names the shell by a path, with or without flags', () => {
+    expect(isShellScript('bin/a', '#!/usr/bin/env -S /bin/bash\n')).toBe(true);
+    expect(isShellScript('bin/b', '#!/usr/bin/env -S /bin/bash -e\n')).toBe(true);
+    expect(isShellScript('bin/c', '#!/usr/bin/env /bin/sh\n')).toBe(true);
+  });
+
+  it('takes an extensionless file as shell when the shell is a later word of an env shebang', () => {
+    expect(isShellScript('bin/a', '#!/usr/bin/env -S LC_ALL=C bash -e\n')).toBe(true);
+    expect(isShellScript('bin/b', '#!/usr/bin/env -u NAME bash\n')).toBe(true);
+    expect(isShellScript('bin/c', '#!/usr/bin/env -C /tmp dash\n')).toBe(true);
+  });
+
+  it('takes an extensionless file as shell when env -S or --split-string= carries the shell attached', () => {
+    expect(isShellScript('bin/a', '#!/usr/bin/env -Sbash -e\n')).toBe(true);
+    expect(isShellScript('bin/b', '#!/usr/bin/env --split-string=sh\n')).toBe(true);
+  });
+
   it('leaves out a file whose shebang names another interpreter or a longer name', () => {
     expect(isShellScript('bin/run', '#!/usr/bin/env node\n')).toBe(false);
     expect(isShellScript('bin/check.py', '#!/usr/bin/env python3\n')).toBe(false);
     expect(isShellScript('bin/zrun', '#!/usr/bin/env zsh\n')).toBe(false);
     expect(isShellScript('bin/fun', '#!/bin/bashful\n')).toBe(false);
+    expect(isShellScript('bin/py', '#!/usr/bin/env -S /usr/bin/python3\n')).toBe(false);
+    expect(isShellScript('bin/fuller', '#!/usr/bin/env -S /bin/bashful\n')).toBe(false);
+    expect(isShellScript('bin/node', '#!/usr/bin/env -S LC_ALL=C node\n')).toBe(false);
+    expect(isShellScript('bin/subst', '#!/usr/bin/envsubst sh\n')).toBe(false);
+  });
+
+  it('leaves out an env shebang whose setting holds a shell path, since a setting runs nothing', () => {
+    expect(isShellScript('bin/node', '#!/usr/bin/env -S SHELL=/bin/bash node\n')).toBe(false);
   });
 
   it('reads the shebang from the first line alone, so a shell named on the next line does not count', () => {
