@@ -18,15 +18,15 @@ The plugin registers these rules under the `@engraph/` prefix.
 `src/configs/recommended.ts` sets the severity of each rule the shared configs
 enable; a rule it does not name is registered but enabled by no shared config.
 
-| Rule                             | Description                                                                                                                                                                                               |
-| -------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `no-agent-substrate-access`      | Forbids application code from reading the `.agent/` knowledge substrate; only `agent-tools/` operates on it.                                                                                              |
-| `no-conditional-tests`           | Bans Vitest's `skipIf` and `runIf` so every suite registers the same tests on every machine.                                                                                                              |
-| `no-dynamic-import`              | Bans dynamic `import(...)` so module boundaries stay static, reviewable and lintable.                                                                                                                     |
-| `no-eslint-disable`              | Bans `eslint-disable` comments without the project-owner approval marker, and `@ts-ignore` and `@ts-nocheck` outright; `@ts-expect-error` is left to `@typescript-eslint/ban-ts-comment`.                 |
-| `no-export-trivial-type-aliases` | Disallows exporting trivial type aliases that only rename an imported type. Prefer re-exporting the original type directly.                                                                               |
-| `no-real-io-in-tests`            | Bans real IO (filesystem, child processes, worker threads, network, `process`, non-localhost `fetch`) in test files outside the structural path-shape allowlist and the configured `allowlistPathShapes`. |
-| `no-throw-statement`             | Bans `throw` statements so errors flow through the Result pattern and stay in the type signature.                                                                                                         |
+| Rule                             | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| -------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `no-agent-substrate-access`      | In any file outside `agent-tools/`, reports `new URL(...)` and read calls bound to a `fs`, `node:fs`, `fs/promises` or `node:fs/promises` import (such as `readFileSync`, `readdir`, `stat`, `existsSync` or `open`) when a string or template literal argument contains a `.agent/` path segment.                                                                                                                                                                                                                                  |
+| `no-conditional-tests`           | Reports `skipIf` and `runIf` on Vitest's `it`, `test`, `describe` and `suite`, whether reached as a global, an aliased or namespace import, or a chained form, so every suite registers the same tests on every machine.                                                                                                                                                                                                                                                                                                            |
+| `no-dynamic-import`              | Reports every dynamic `import(...)` expression, so module boundaries stay static, reviewable and lintable.                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| `no-eslint-disable`              | Reports a comment carrying an `eslint-disable` directive without the project-owner approval marker (`APPROVAL_MARKER_PATTERN` in `src/rules/no-eslint-disable.ts`), and every `@ts-ignore` or `@ts-nocheck` comment; a comment carrying `@ts-expect-error` is left to `@typescript-eslint/ban-ts-comment`.                                                                                                                                                                                                                          |
+| `no-export-trivial-type-aliases` | Reports `export type A = B` where `A` has no type parameters and `B` is a non-generic reference rooted in an imported binding whose name starts with a capital letter; import the canonical type where it is needed instead.                                                                                                                                                                                                                                                                                                        |
+| `no-real-io-in-tests`            | In `*.test.*` and `*.spec.*` files outside `test-helpers/`, `test-fakes/`, the Vitest config and setup files and the configured `allowlistPathShapes`, reports value imports (static, dynamic or `require`) of `fs`, `fs/promises`, `child_process`, `worker_threads`, `http`, `https`, `net` and `dgram` (with or without `node:`); `process.env` access; `process.cwd()` and `process.chdir()` calls; and a bare `fetch(...)` whose first argument is not a string literal URL on `http(s)://localhost` or `http(s)://127.0.0.1`. |
+| `no-throw-statement`             | Reports every `throw` statement, so errors flow through the Result pattern and stay in the type signature.                                                                                                                                                                                                                                                                                                                                                                                                                          |
 
 ## Configs
 
@@ -113,22 +113,29 @@ const thisDir = dirname(fileURLToPath(import.meta.url));
 const wsTsProject = fileURLToPath(new URL('./tsconfig.lint.json', import.meta.url));
 
 export default defineConfigArray(
-  { ignores: [...globalIgnores, 'dist/**', 'coverage/**'] },
+  { ignores: [...globalIgnores, 'dist/**', 'coverage/**', '*.log', '.turbo/**'] },
   configs.strict,
   {
-    files: ['**/*.ts'],
+    files: ['**/*.{ts,tsx}'],
     languageOptions: {
       parserOptions: { projectService: false, project: wsTsProject, tsconfigRootDir: thisDir },
     },
     settings: createImportResolverSettings({ project: wsTsProject }),
   },
-  { files: ['**/*.test.ts'], rules: testRules },
+  {
+    files: ['**/*.test.{ts,tsx}', '**/*.spec.{ts,tsx}', '**/__tests__/**/*.{ts,tsx}'],
+    rules: testRules,
+  },
   // workspace-specific overrides
 );
 ```
 
-[`tooling/result/eslint.config.ts`](../result/eslint.config.ts) is a complete
-consumer configuration.
+`testRules` carries the hermetic-test protections (no `process.env` or
+`process.cwd()`, no `vi.mock`, `vi.doMock` or `vi.stubGlobal`), so its `files`
+block covers every test-file shape the workspace has: `*.test.*`, `*.spec.*`
+and `__tests__/`. [`agent-tools/eslint.config.ts`](../../agent-tools/eslint.config.ts)
+and [`tooling/result/eslint.config.ts`](../result/eslint.config.ts) are complete
+consumer configurations.
 
 ## Development
 
