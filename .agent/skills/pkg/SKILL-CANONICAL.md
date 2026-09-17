@@ -10,7 +10,7 @@ description: >-
 # Personal Knowledge Graph
 
 Compact operational reference for PKG work. For full detail, read the
-authoritative sources listed below — this skill is a signpost, not a copy.
+sources listed below — this skill is a signpost, not a copy.
 
 **Current-state reminder:** the visible website still renders from
 `content/cv.content.json` and `content/frontpage.content.json`. The graph is
@@ -23,10 +23,12 @@ Before PKG work, read and internalise:
 
 | Document                                                                      | Purpose                                                        |
 | ----------------------------------------------------------------------------- | -------------------------------------------------------------- |
-| `.agent/plans-legacy-2026-09/current/personal-knowledge-graph-roadmap.plan.md`               | Current graph roadmap — two required tracks, Track A first     |
-| `.agent/plans-legacy-2026-09/current/personal-knowledge-graph-execution.plan.md`             | Current Track A execution authority                            |
-| `.agent/plans-legacy-2026-09/research/graph-current-state-audit.md`                          | Observed implementation truth and architecture audit           |
-| `.agent/plans-legacy-2026-09/active/personal-knowledge-graph-source-of-truth-design.plan.md` | Current Track B design authority                               |
+| `.agent/plans/strategy/stream-knowledge-graph.md`                             | The live graph strategy: GRAPH-1 (graph-backed source of truth, Track B), GRAPH-2 (publication surface, Track A), GRAPH-3 (Neo4j-ready shape) |
+| `.agent/plans-legacy-2026-09/DISPOSITIONS.md`                                 | Where each legacy graph plan's intent now lives; the legacy files below are the evidence record, and the stream above carries the live strategy |
+| `.agent/plans-legacy-2026-09/current/personal-knowledge-graph-roadmap.plan.md`               | Conserved roadmap; the knowledge-graph stream now holds its sequencing and its two tracks |
+| `.agent/plans-legacy-2026-09/current/personal-knowledge-graph-execution.plan.md`             | Track A execution record — complete for the current surface    |
+| `.agent/plans-legacy-2026-09/research/graph-current-state-audit.md`                          | Implementation audit and architecture baseline as recorded; verify against the code |
+| `.agent/plans-legacy-2026-09/active/personal-knowledge-graph-source-of-truth-design.plan.md` | Track B design record GRAPH-1 cites                            |
 | `.agent/plans-legacy-2026-09/archive/graph-metaplan.plan.md`                                 | Completed reset record — why the current stack exists          |
 | `.agent/plans-legacy-2026-09/research/personal-knowledge-graph-design-notes.md`              | Historical design reference — entity inventory and conventions |
 | `.agent/plans-legacy-2026-09/archive/personal-knowledge-graph-phase-model.plan.md`           | Archived phase model and acceptance criteria                   |
@@ -41,7 +43,7 @@ Before editorial-intensive phases (entity population, role descriptions), additi
 
 ## Schema.org type mappings
 
-Source: ADR-008 (`docs/architecture/decision-records/008-schema-org-compliance.md`) + research findings (`.agent/plans-legacy-2026-09/research/pkg-research-findings.md`).
+Source: ADR-008 (`docs/architecture/decision-records/008-schema-org-compliance.md`), ADR-014 §2 (`docs/architecture/decision-records/014-entity-model-design.md`, the abstract and expressive entities) and ADR-021 (`docs/architecture/decision-records/021-canonical-only-cv-identity.md`, the retired tilt entities) + research findings (`.agent/plans-legacy-2026-09/research/pkg-research-findings.md`).
 
 | Entity               | `@type`                                | `additionalType`           |
 | -------------------- | -------------------------------------- | -------------------------- |
@@ -58,9 +60,9 @@ Source: ADR-008 (`docs/architecture/decision-records/008-schema-org-compliance.m
 | Service              | `WebAPI`                               | —                          |
 | ProfessionalIdentity | `Intangible`                           | `.../ProfessionalIdentity` |
 | ResearchBackground   | `Intangible`                           | `.../ResearchBackground`   |
+| GroundedPractice     | `Intangible`                           | `.../GroundedPractice`     |
 | Capability           | `DefinedTerm`                          | `.../Capability`           |
 | PositioningNarrative | `Statement`                            | `.../PositioningNarrative` |
-| TiltVariant          | `Statement`                            | `.../TiltVariant`          |
 | CVPage / FrontPage   | `ProfilePage`                          | —                          |
 
 ## `@id` conventions
@@ -137,10 +139,12 @@ Source: research findings (`.agent/plans-legacy-2026-09/research/pkg-research-fi
 
 ## Reference
 
-- `.agent/plans-legacy-2026-09/current/personal-knowledge-graph-roadmap.plan.md` — current graph roadmap
-- `.agent/plans-legacy-2026-09/current/personal-knowledge-graph-execution.plan.md` — current Track A execution plan
-- `.agent/plans-legacy-2026-09/research/graph-current-state-audit.md` — observed implementation baseline
-- `.agent/plans-legacy-2026-09/active/personal-knowledge-graph-source-of-truth-design.plan.md` — current Track B design plan
+- `.agent/plans/strategy/stream-knowledge-graph.md` — the live knowledge-graph strategy (GRAPH-1 to GRAPH-3)
+- `.agent/plans-legacy-2026-09/DISPOSITIONS.md` — where each legacy graph plan's intent now lives
+- `.agent/plans-legacy-2026-09/current/personal-knowledge-graph-roadmap.plan.md` — conserved roadmap; the knowledge-graph stream holds its sequencing
+- `.agent/plans-legacy-2026-09/current/personal-knowledge-graph-execution.plan.md` — Track A execution record
+- `.agent/plans-legacy-2026-09/research/graph-current-state-audit.md` — implementation baseline as recorded
+- `.agent/plans-legacy-2026-09/active/personal-knowledge-graph-source-of-truth-design.plan.md` — Track B design record
 - `.agent/plans-legacy-2026-09/archive/graph-metaplan.plan.md` — completed reset record
 - `.agent/plans-legacy-2026-09/research/personal-knowledge-graph-design-notes.md` — historical design reference
 - `.agent/plans-legacy-2026-09/archive/personal-knowledge-graph-phase-model.plan.md` — phase model (archived goals, tasks, acceptance criteria)
@@ -148,4 +152,4 @@ Source: research findings (`.agent/plans-legacy-2026-09/research/pkg-research-fi
 - `docs/architecture/decision-records/008-schema-org-compliance.md` — ADR-008: Schema.org compliance
 - `docs/architecture/decision-records/010-canonical-url-graph-identity.md` — ADR-010: canonical URL and graph identity
 - `docs/architecture/decision-records/011-domain-appropriate-descriptions.md` — ADR-011: domain-appropriate descriptions
-- `.agent/plans-legacy-2026-09/future/neo4j-knowledge-graph.plan.md` — future Neo4j migration plan (shapes current design)
+- `.agent/plans-legacy-2026-09/future/neo4j-knowledge-graph.plan.md` — Neo4j migration sketch; its shape rules are GRAPH-3

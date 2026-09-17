@@ -373,7 +373,8 @@ This expert does NOT:
 | A component renders incorrectly because of its React architecture | `react-component-expert` |
 | A build or tooling configuration issue                    | `config-expert`          |
 | A record or the reference needs updating                  | `docs-adr-expert`        |
-| A dependency-direction concern in the site's modules      | `architecture-expert-fred` |
+| A dependency-direction concern in the site's modules      | `architecture-expert`    |
+| A layout-composition or navigation concern                | `architecture-expert-betty` |
 
 ## Success Metrics
 

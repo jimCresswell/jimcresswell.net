@@ -50,6 +50,7 @@ edit it by hand.
 | `.agent/rules/identify-as-agent-under-shared-credentials.md` | core | — |
 | `.agent/rules/important-state-not-in-temp-files.md` | core | — |
 | `.agent/rules/invoke-accessibility-expert.md` | situational | `surface:accessibility — Accessibility-touching change (WCAG / keyboard / focus / contrast / ARIA)` |
+| `.agent/rules/invoke-architecture-expert.md` | situational | `surface:workspace boundaries, import direction, module structure, dependency injection, public APIs` |
 | `.agent/rules/invoke-architecture-expert-barney.md` | situational | `surface:content/entities.json, lib/ graph derivation, JSON-LD` |
 | `.agent/rules/invoke-architecture-expert-betty.md` | situational | `surface:app/ routes, navigation, layout` |
 | `.agent/rules/invoke-architecture-expert-fred.md` | situational | `surface:build, caching, PDF generation, Playwright against the production build, Vercel config` |
@@ -61,7 +62,7 @@ edit it by hand.
 | `.agent/rules/invoke-doc-and-onboarding-experts-on-significant-changes.md` | situational | `ceremony:significant-doc-change — Behaviour/API/architecture change without a paired doc update` |
 | `.agent/rules/invoke-docs-adr-expert.md` | situational | `surface:docs/, ADRs, EDRs, READMEs` |
 | `.agent/rules/invoke-editor.md` | situational | `surface:public-facing copy, CV and front-page content, editorial docs` |
-| `.agent/rules/invoke-pkg-expert.md` | situational | `surface:package.json, pnpm-workspace.yaml, lockfile, dependency updates` |
+| `.agent/rules/invoke-pkg-expert.md` | situational | `surface:jcdotnet/content/entities.json, JSON-LD emission, Schema.org types, @id conventions` |
 | `.agent/rules/invoke-react-component-expert.md` | situational | `surface:react-component — React component edit (hooks, render, prop API, composition)` |
 | `.agent/rules/invoke-security-expert.md` | situational | `surface:headers, secrets, middleware, proxy, CSP` |
 | `.agent/rules/invoke-subagent-architect.md` | situational | `surface:.agent/sub-agents/, platform agent adapters` |

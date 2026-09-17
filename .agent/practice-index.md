@@ -133,7 +133,7 @@ below. The OCE-lineage rules went through a single content-grain triage
 | [architecture-expert-betty](sub-agents/templates/architecture-expert-betty.md)   | Navigation, layout, and experience architecture          |
 | [architecture-expert-fred](sub-agents/templates/architecture-expert-fred.md)     | Build, caching, PDF, and runtime resilience              |
 | [architecture-expert-wilma](sub-agents/templates/architecture-expert-wilma.md)   | Practice, plan, and documentation architecture           |
-| [architecture-expert](sub-agents/templates/architecture-expert.md)               | General architecture reviewer (OCE lineage)              |
+| [architecture-expert](sub-agents/templates/architecture-expert.md)               | Workspace boundaries, import direction, module structure |
 | [accessibility-expert](sub-agents/templates/accessibility-expert.md)             | Accessibility and assistive flows                        |
 | [design-system-expert](sub-agents/templates/design-system-expert.md)             | Tokens, spacing, and responsive rhythm                   |
 | [react-component-expert](sub-agents/templates/react-component-expert.md)         | React hooks and component boundaries                     |

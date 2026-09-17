@@ -9,7 +9,7 @@ globs:
 
 # Invoke Design System Reviewer
 
-Invoke `design-system-reviewer` when changes touch shared visual language: tokens, theming,
+Invoke `design-system-expert` when changes touch shared visual language: tokens, theming,
 spacing, typography, motion, layout rhythm, breakpoints, or multi-surface styling. Use it for
 global CSS, shared components, and visual-system drift checks.
 

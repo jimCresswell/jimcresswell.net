@@ -41,7 +41,7 @@ Do not invoke `assumptions-expert` for:
 
 - **`code-expert`**: Always invoke as the gateway for code changes. `assumptions-expert` operates at the plan level, not the code level — they do not overlap.
 - **`docs-adr-expert`**: Validates documentation accuracy. `assumptions-expert` questions whether the documented decisions are proportional — complementary, not overlapping.
-- **`architecture-expert-barney`**: Simplification focus. `assumptions-expert` questions proportionality at the plan level; Barney questions simplification at the architecture level. Invoke both when a plan proposes significant architectural changes.
+- **`architecture-expert` and the four personas**: Review a proposed structure at the architecture level — `architecture-expert` for workspace boundaries and import direction, and the persona for the lane the plan touches ([reviewer-team.md](../sub-agents/components/architecture/reviewer-team.md)). `assumptions-expert` questions whether that structure is proportional at the plan level. When a plan proposes significant architectural changes, invoke `assumptions-expert` and those architecture reviewers together.
 - **`subagent-architect`**: Reviews agent triplet quality. `assumptions-expert` questions whether the proposed agents are needed at all. Invoke `assumptions-expert` first when 3+ agents are proposed; `subagent-architect` reviews the triplets after the count is validated.
 
 ## Invocation

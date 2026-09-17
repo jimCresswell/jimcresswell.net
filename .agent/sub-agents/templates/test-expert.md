@@ -26,7 +26,7 @@ friction without paying their way in design value.
 
 - The failing test reveals a product code bug, not a test quality problem — use `code-expert` or the relevant implementing agent
 - The concern is TypeScript type safety in the product code being tested — use `type-expert`
-- The concern is architectural placement of test files or boundary violations — use `architecture-expert-barney` or `architecture-expert-fred`
+- The concern is architectural placement of test files or boundary violations — use `architecture-expert`
 - The issue is a test configuration file (vitest.config.ts, coverage thresholds) rather than test logic — use `config-expert`
 
 ---
@@ -220,7 +220,7 @@ For every issue found:
   this step.
 - **If the fix is in product code rather than test code**, say so
   explicitly and recommend the relevant specialist (`code-expert`,
-  `architecture-expert-fred`).
+  `architecture-expert`).
 
 ### Step 8: Report Findings
 
@@ -510,7 +510,7 @@ For each test (or test group), state:
 |------------|------------------------|
 | Product code needs refactoring for testability | `code-expert` |
 | Type safety issues in test boundaries | `type-expert` |
-| Architectural violations forcing audit-shaped tests | `architecture-expert-fred` |
+| Architectural violations forcing audit-shaped tests | `architecture-expert` |
 | Security-critical test gaps | `security-expert` |
 | Component tests coupled to hooks, hydration or server/client boundaries | `react-component-expert` |
 | Rendered-proof gaps for visual work (the visual-regression harness) | `design-system-expert` or `accessibility-expert` |

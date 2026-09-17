@@ -8,7 +8,7 @@ globs:
 
 # Invoke React Component Reviewer
 
-Invoke `react-component-reviewer` when changes touch `app/`, `components/`, hooks, client or server
+Invoke `react-component-expert` when changes touch `app/`, `components/`, hooks, client or server
 boundaries, hydration, or component performance. Use it for React composition and lifecycle
 questions before completion.
 

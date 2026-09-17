@@ -148,8 +148,8 @@ Before finalising any template or wrapper change, verify every item:
 - [ ] Templates include the shared identity declaration component (`.agent/sub-agents/components/behaviours/subagent-identity.md`)
 - [ ] Shared governance references are present and current (`.agent/directives/AGENT.md`, `.agent/directives/principles.md`)
 - [ ] Domain-specific references are explicit and all paths resolve
-- [ ] Legacy generic agent names are not used in active guidance (e.g. `architecture-expert` without a persona suffix)
-- [ ] Architecture reviewer wrapper descriptions are distinct and lens-specific
+- [ ] Every repo sub-agent named in active guidance is a template under `templates/` or a variant a template declares
+- [ ] Architecture reviewer wrapper descriptions are distinct and lane-specific
 - [ ] Standard quality roster and specialist on-demand roster are clearly separated in coordination docs
 - [ ] Consumer wrappers keep template loading as the first action
 - [ ] Components remain leaf nodes and templates remain the composition layer
@@ -170,8 +170,9 @@ In this repository the roster is reached through five entry points that must nam
 set, less any platform a role's declaration leaves out: `CLAUDE.md` and `.claude/agents/` for
 Claude Code, `AGENTS.md`, `.codex/config.toml` and `.codex/agents/` for Codex,
 `.cursor/agents/` for Cursor, `.gemini/agents/` for the Gemini CLI, and
-`.github/copilot-instructions.md` for Copilot; each reviewer has an `invoke-<name>` rule in
-`.agent/rules/` that names it, and the sub-agent adapters are generated from the templates'
+`.github/copilot-instructions.md` for Copilot; each reviewer with a standing trigger has an
+`invoke-*` rule in `.agent/rules/` that names it (`prose-expert` and `release-readiness-expert`
+are routed from the roster alone), and the sub-agent adapters are generated from the templates'
 declarations (`pnpm portability:fix` writes them and `pnpm portability:check` recomputes them,
 which is the proof). A roster change is complete only when every entry point, the registry,
 the rule and the adapters agree, and the change is best landed one domain at a time.
@@ -434,7 +435,7 @@ Add cross-references to related subagents:
 
 | Issue Type | Recommended Specialist |
 |------------|------------------------|
-| Architecture/boundary concerns | `architecture-expert-barney` / `architecture-expert-fred` / `architecture-expert-betty` / `architecture-expert-wilma` |
+| Architecture/boundary concerns | `architecture-expert`, plus the persona for the lane (`.agent/sub-agents/components/architecture/reviewer-team.md`) |
 | Type safety, generics, schema flow | `type-expert` |
 | Test quality, TDD compliance | `test-expert` |
 | Tooling/config changes | `config-expert` |
@@ -552,7 +553,8 @@ The sub-agent system is itself a feedback loop. The architect reviews agents, im
 | Issue Type | Recommended Specialist |
 |------------|------------------------|
 | Agent prompt touches security-sensitive logic | `security-expert` |
-| Agent boundaries affect module architecture | `architecture-expert-barney` or `architecture-expert-fred` |
+| Agent boundaries affect module architecture | `architecture-expert` |
+| Agent wiring affects Practice governance or cross-platform contracts | `architecture-expert-wilma` |
 | Agent template references documentation or ADRs | `docs-adr-expert` |
 | Agent design affects onboarding paths | `onboarding-expert` |
 | Agent definition involves complex type constraints | `type-expert` |

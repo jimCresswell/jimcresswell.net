@@ -446,8 +446,9 @@ section or API reference it follows.]
 | Component uses hardcoded values instead of tokens | `design-system-expert` |
 | Complex generic types in prop interfaces | `type-expert` |
 | Missing component tests | `test-expert` |
-| Component boundary affects package topology | `architecture-expert-fred` |
-| Component resilience under failure conditions | `architecture-expert-wilma` |
+| Component boundary affects package topology | `architecture-expert` |
+| Component placement in routes, navigation or layout composition | `architecture-expert-betty` |
+| Component depends on the proxy, caching or a runtime third-party service | `architecture-expert-fred` |
 
 ## Success Metrics
 

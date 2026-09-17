@@ -5,7 +5,7 @@ description: Gateway code reviewer — quality, correctness, and triage. Assesse
 ## Delegation Triggers
 
 Invoke this agent after any code is written or modified. `code-expert`
-remains the current gateway reviewer: it reviews every change for quality,
+is the gateway reviewer: it reviews every change for quality,
 correctness, and maintainability, and it is responsible for identifying which
 specialist reviewers also need to be called, at what depth, and whether
 coverage is complete. If in doubt, invoke it — the cost of an unnecessary
@@ -204,7 +204,7 @@ the owner can distinguish genuine trade-offs from sunk-cost preservation.
 
 This agent reviews code quality and provides feedback. It does NOT:
 
-- Make architectural decisions (that is `architecture-expert-barney` / `architecture-expert-fred`)
+- Make architectural decisions (that is `architecture-expert` and the persona for the lane)
 - Fix issues directly unless explicitly requested (observe and report by default)
 - Review type-system details beyond basic assertions (that is `type-expert`)
 - Review test quality in depth (that is `test-expert`)
@@ -313,12 +313,20 @@ In every review, check whether the changes touch any of these categories. If the
 
 | Change Signal | Required Specialist |
 |---------------|---------------------|
-| Module boundaries, imports, public APIs | `architecture-expert-barney` / `architecture-expert-fred` / `architecture-expert-betty` / `architecture-expert-wilma` |
-| Auth, OAuth, secrets, PII, injection risk | `security-expert` |
+| Module boundaries, imports, public APIs | `architecture-expert` |
+| `jcdotnet/content/`, the graph and JSON-LD modules, metadata wiring | `architecture-expert-barney` |
+| Routes, navigation, layout composition | `architecture-expert-betty` |
+| Builds, caching, PDF generation, the proxy, E2E against the production build, runtime resilience | `architecture-expert-fred` |
+| Practice governance: `.agent/` surfaces, plans, cross-platform contracts | `architecture-expert-wilma` |
+| Headers, CSP, secrets, env, PII, proxy or middleware, third-party scripts, trust-boundary input, dependency upgrades with a security bearing | `security-expert` |
 | Test additions, modifications, or TDD concerns | `test-expert` |
 | Type complexity, generics, schema flow | `type-expert` |
-| Tooling configs, quality gates | `config-expert` |
+| Tooling configs, the lockfile, quality gates | `config-expert` |
 | README, TSDoc, ADR changes or expected drift | `docs-adr-expert` |
+| Significant authored prose whose readability matters | `prose-expert` |
+| Sub-agent templates, platform adapters, `invoke-*` rules, skills, platform entry points | `subagent-architect` |
+| Onboarding journeys or entry points | `onboarding-expert` |
+| Plans marked decision-complete, 3+ agents, blocking claims, vendor integrations, early technology commitments | `assumptions-expert` |
 | Release boundary or go/no-go context | `release-readiness-expert` (on-demand) |
 | Editorial content: CV, front page, positioning, anything that represents Jim | `editor` |
 | Entity model, JSON-LD generation, `@id` conventions, structured-data output | `pkg-expert` |
