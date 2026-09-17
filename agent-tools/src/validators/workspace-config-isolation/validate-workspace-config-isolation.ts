@@ -143,7 +143,7 @@ if (refusalCount > 0) {
 if (escapes.length === 0 && turboFindings.length === 0) {
   // The turbo clause derives its claim from the scan's own count — the
   // one bare-prose predecessor over-claimed "every positive turbo input"
-  // while only $TURBO_ROOT$ entries were ever evaluated (MCP-553).
+  // while only $TURBO_ROOT$ entries were ever evaluated.
   writeLine(
     `✓ workspace-config resolver-invisible legs hold (${String(configFiles.length)} config ` +
       `files, ${String(workspaceDirs.length)} workspaces: path arithmetic contained, no ` +

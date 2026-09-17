@@ -15,10 +15,11 @@ export function resolveSameAsUrlByHostname(
   hostname: string
 ): string {
   const matches = sameAsUrls.filter((url) => new URL(url).hostname === hostname);
-  if (matches.length !== 1) {
+  const match = matches.at(0);
+  if (matches.length !== 1 || match === undefined) {
     throw new Error(
       `Expected exactly one sameAs URL for hostname ${hostname} (found ${matches.length})`
     );
   }
-  return matches[0];
+  return match;
 }

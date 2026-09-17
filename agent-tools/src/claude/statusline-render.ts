@@ -76,10 +76,10 @@ export interface StatuslineRenderOptions {
  * ```ts
  * renderStatusline({
  *   identity: 'Fragrant Creeping Sapling',
- *   dir: 'oak-wt-eef',
+ *   dir: 'jc-wt-eef',
  *   branch: 'feat/eef-explore-evidence',
  *   dirty: true,
- *   worktree: 'oak-wt-eef',
+ *   worktree: 'jc-wt-eef',
  *   usedPercentage: 12,
  *   model: 'Opus 4.7',
  *   sessionShape: undefined,

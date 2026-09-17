@@ -138,7 +138,7 @@ describe('extractMarkdownLinks', () => {
 
   it('records 1-based line numbers', () => {
     const links = extractMarkdownLinks(source, 'line one\nsee [a](./one.md)');
-    expect(links[0].line).toBe(2);
+    expect(links).toMatchObject([{ line: 2 }]);
   });
 
   it('extracts multiple links from one line', () => {
@@ -182,9 +182,9 @@ describe('findBrokenLinks', () => {
     const files: ScanFile[] = [{ path: 'docs/x.md', content: 'see [a](./missing.md)' }];
     const repoFiles = ['docs/x.md'];
     const report = findBrokenLinks(files, repoFiles);
-    expect(report.broken).toHaveLength(1);
-    expect(report.broken[0].resolvedTarget).toBe('docs/missing.md');
-    expect(report.broken[0].reason).toBe('missing-target');
+    expect(report.broken).toMatchObject([
+      { resolvedTarget: 'docs/missing.md', reason: 'missing-target' },
+    ]);
     expect(report.totals.brokenLinks).toBe(1);
   });
 
@@ -200,8 +200,7 @@ describe('findBrokenLinks', () => {
     const files: ScanFile[] = [{ path: 'docs/x.md', content: 'see [state](../tmp/state.json)' }];
     const repoPaths = ['docs/x.md', 'tmp/state.json'];
     const report = findBrokenLinks(files, repoPaths, new Set(['docs/x.md']));
-    expect(report.broken).toHaveLength(1);
-    expect(report.broken[0].reason).toBe('tracked-source-to-untracked-target');
+    expect(report.broken).toMatchObject([{ reason: 'tracked-source-to-untracked-target' }]);
   });
 
   it('allows an untracked source to link to another present untracked target', () => {
@@ -220,7 +219,7 @@ describe('findBrokenLinks', () => {
     const files: ScanFile[] = [{ path: 'docs/governance/x.md', content: 'see [a](./moved.md)' }];
     const repoFiles = ['docs/governance/x.md', 'docs/architecture/moved.md'];
     const report = findBrokenLinks(files, repoFiles);
-    expect(report.broken[0].suggestedFix).toBe('../architecture/moved.md');
+    expect(report.broken).toMatchObject([{ suggestedFix: '../architecture/moved.md' }]);
     expect(report.totals.autoFixable).toBe(1);
     expect(report.totals.manual).toBe(0);
   });
@@ -228,7 +227,7 @@ describe('findBrokenLinks', () => {
   it('marks a broken link manual when no suggestion exists', () => {
     const files: ScanFile[] = [{ path: 'docs/x.md', content: 'see [a](./gone.md)' }];
     const report = findBrokenLinks(files, ['docs/x.md']);
-    expect(report.broken[0].suggestedFix).toBeNull();
+    expect(report.broken).toMatchObject([{ suggestedFix: null }]);
     expect(report.totals.manual).toBe(1);
     expect(report.totals.autoFixable).toBe(0);
   });

@@ -11,20 +11,27 @@
  * `CLAUDE_PROJECT_DIR` must be single-space-separated words, each either a
  * plain word (no quotes, `$`, backslash, glob or shell operator) or a whole
  * double-quoted project path — `"${CLAUDE_PROJECT_DIR}"` or
- * `"${CLAUDE_PROJECT_DIR:-.}"`, optionally followed by a plain path — and it
- * must not hand the path to `eval` or a shell's `-c`, which would parse it
- * again. Anything else is reported as outside the checked shape; widen the
- * shape deliberately when a new command needs it. A hook in the `args` form
- * runs with no shell and is not checked; PowerShell hooks are out of scope.
+ * `"${CLAUDE_PROJECT_DIR:-.}"`, optionally followed by a plain path, the word
+ * shape `isShapedWord` in `claude-hook-script-anchoring.ts` defines — and it
+ * must not hand the path to something that parses it again: `eval`, a POSIX
+ * shell's `-c` (alone or among combined short flags), or a PowerShell
+ * command-string parameter (`-Command`, `-CommandWithArgs` or
+ * `-EncodedCommand`, in every spelling pwsh's command-line parser accepts).
+ * Anything else is reported as outside the checked shape; widen the shape
+ * deliberately when a new command needs it. A hook in the `args` form runs
+ * with no shell and is not checked. Every command inside the quoting shape,
+ * and every command that never names `CLAUDE_PROJECT_DIR`, is then judged
+ * against the closed hook-command grammar by `relativeScriptIssue` in
+ * `claude-hook-script-anchoring.ts`.
  */
 
 import { typeSafeEntries } from '@engraph/type-helpers';
 import { z } from 'zod';
 
-const PLAIN_WORD = /^[\w./:=@%+,-]+$/u;
-const QUOTED_PROJECT_PATH = /^"\$\{CLAUDE_PROJECT_DIR(?::-\.)?\}(?:\/[\w./-]*)?"$/u;
-/** Programs that run a command string given after a -c flag; busybox dispatches to its applets. */
-const SHELLS: ReadonlySet<string> = new Set([
+import { isShapedWord, programName, relativeScriptIssue } from './claude-hook-script-anchoring.js';
+
+/** POSIX-style shells that run a command string given with -c; busybox dispatches to its applets. */
+const POSIX_SHELLS: ReadonlySet<string> = new Set([
   'sh',
   'ash',
   'bash',
@@ -34,15 +41,41 @@ const SHELLS: ReadonlySet<string> = new Set([
   'fish',
   'ksh',
   'mksh',
-  'pwsh',
   'tcsh',
   'yash',
   'zsh',
 ]);
-const COMMAND_STRING_FLAG = /^-[A-Za-z]*c[A-Za-z]*$/u;
+const POWERSHELLS: ReadonlySet<string> = new Set(['pwsh', 'powershell']);
+/** A POSIX shell's combined short flags that include `c`: `-c`, `-lc`, `-ec`. Case matters: `-C` is noclobber. */
+const POSIX_COMMAND_STRING_FLAG = /^-[a-z]*c[a-z]*$/u;
+
+/** A PowerShell parameter as pwsh's command-line parser reads it: `-`, `--` or `/`, then the name. */
+const POWERSHELL_PARAMETER = /^(?:--?|\/)([a-z]+)$/iu;
+/** Command-string parameters pwsh matches from any prefix: `-c`, `-Co`, `-e`, `-enc`. */
+const POWERSHELL_PREFIXED_COMMAND_PARAMETERS: readonly string[] = ['command', 'encodedcommand'];
+/** Command-string parameters and aliases pwsh matches only in full. */
+const POWERSHELL_EXACT_COMMAND_PARAMETERS: ReadonlySet<string> = new Set([
+  'commandwithargs',
+  'cwa',
+  'ec',
+]);
+
+/**
+ * Whether a PowerShell argument hands pwsh a command string, in any case: a prefix of `Command` or
+ * `EncodedCommand`, or `CommandWithArgs`, `cwa` or `ec` in full. `-File`, `-ExecutionPolicy` and
+ * `-ConfigurationFile` do not.
+ */
+function isPowerShellCommandParameter(word: string): boolean {
+  const name = POWERSHELL_PARAMETER.exec(word)?.[1]?.toLowerCase();
+  return (
+    name !== undefined &&
+    (POWERSHELL_EXACT_COMMAND_PARAMETERS.has(name) ||
+      POWERSHELL_PREFIXED_COMMAND_PARAMETERS.some((parameter) => parameter.startsWith(name)))
+  );
+}
 
 const WORD_OUTSIDE_SHAPE = 'a word is neither a plain word nor a double-quoted project path';
-const PARSED_AGAIN = 'a shell -c or eval parses the path again';
+const PARSED_AGAIN = 'a shell command string or eval parses the path again';
 
 const commandHolderSchema = z.object({
   command: z.string().optional(),
@@ -66,10 +99,12 @@ interface LabelledCommand {
   readonly command: string;
 }
 
-/** The program a word names, ignoring surrounding quotes and any directory. */
-function programName(word: string): string {
-  const unquoted = word.replaceAll('"', '');
-  return unquoted.slice(unquoted.lastIndexOf('/') + 1);
+function hasLater(
+  words: readonly string[],
+  index: number,
+  test: (word: string) => boolean,
+): boolean {
+  return words.slice(index + 1).some(test);
 }
 
 function parsesAgain(words: readonly string[]): boolean {
@@ -77,7 +112,9 @@ function parsesAgain(words: readonly string[]): boolean {
     const name = programName(word);
     return (
       name === 'eval' ||
-      (SHELLS.has(name) && words.slice(index + 1).some((later) => COMMAND_STRING_FLAG.test(later)))
+      (POSIX_SHELLS.has(name) &&
+        hasLater(words, index, (later) => POSIX_COMMAND_STRING_FLAG.test(later))) ||
+      (POWERSHELLS.has(name) && hasLater(words, index, isPowerShellCommandParameter))
     );
   });
 }
@@ -94,7 +131,7 @@ export function projectDirCommandShapeIssue(command: string): string | undefined
     return undefined;
   }
   const words = command.split(' ');
-  if (!words.every((word) => PLAIN_WORD.test(word) || QUOTED_PROJECT_PATH.test(word))) {
+  if (!words.every(isShapedWord)) {
     return WORD_OUTSIDE_SHAPE;
   }
   return parsesAgain(words) ? PARSED_AGAIN : undefined;
@@ -124,13 +161,15 @@ function labelledCommands(settings: CommandSettings): readonly LabelledCommand[]
 }
 
 /**
- * Report every shell-form hook or status-line command that names `CLAUDE_PROJECT_DIR` outside the checked shape.
+ * Report every shell-form hook or status-line command that names `CLAUDE_PROJECT_DIR` outside the
+ * quoting shape, is outside the hook-command grammar, or runs a program or script that is not at a
+ * quoted project path.
  *
  * @param claudeSettings - The parsed `.claude/settings.json`.
  * @param settingsPath - The settings file's path, for the issue messages.
- * @returns One issue per command outside the shape, or a single issue when the
- *   hooks or status line do not have the shape Claude Code reads; empty when
- *   every command fits.
+ * @returns One issue per command outside the quoting shape, else per command that
+ *   `relativeScriptIssue` reports; a single issue when the hooks or status line do not have the
+ *   shape Claude Code reads; empty when every command fits.
  */
 export function claudeCommandQuotingIssues(
   claudeSettings: unknown,
@@ -139,15 +178,21 @@ export function claudeCommandQuotingIssues(
   const settings = commandSettingsSchema.safeParse(claudeSettings);
   if (!settings.success) {
     return [
-      `${settingsPath}: hooks or statusLine do not have the shape Claude Code reads, so their commands could not be checked for quoting`,
+      `${settingsPath}: hooks or statusLine do not have the shape Claude Code reads, so their commands could not be checked for quoting or anchoring`,
     ];
   }
   return labelledCommands(settings.data).flatMap(({ label, command }) => {
-    const issue = projectDirCommandShapeIssue(command);
-    return issue === undefined
-      ? []
-      : [
-          `${settingsPath}: ${label} names CLAUDE_PROJECT_DIR outside the checked shape (${issue}), so a project path holding whitespace or glob characters may not reach the command as one word: ${command}`,
-        ];
+    const shapeIssue = projectDirCommandShapeIssue(command);
+    const scriptIssue = shapeIssue === undefined ? relativeScriptIssue(command) : undefined;
+    return [
+      ...(shapeIssue === undefined
+        ? []
+        : [
+            `${settingsPath}: ${label} names CLAUDE_PROJECT_DIR outside the checked shape (${shapeIssue}), so a project path holding whitespace or glob characters may not reach the command as one word: ${command}`,
+          ]),
+      ...(scriptIssue === undefined
+        ? []
+        : [`${settingsPath}: ${label} ${scriptIssue}: ${command}`]),
+    ];
   });
 }

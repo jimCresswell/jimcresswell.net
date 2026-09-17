@@ -64,11 +64,12 @@ export async function cruiseFixture(input: {
 }): Promise<readonly FixtureViolation[]> {
   const real = await extractDepcruiseConfig(path.join(input.repoRoot, '.dependency-cruiser.mjs'));
   const names = new Set(input.ruleNames);
-  // The enforcement options (exclude, doNotFollow, …) are TOP-LEVEL cruise
-  // options — a nested ruleSet.options key is silently ignored, which would
-  // run the suite under DEFAULT options: the exact nullification class this
-  // helper exists to expose. Only repo-anchored and terminal-state options
-  // are dropped; rest-destructuring leaves them unused by design.
+  // The real config's enforcement options (exclude, doNotFollow, …) must
+  // reach the cruise, or the suite runs under DEFAULT options: the exact
+  // nullification class this helper exists to expose. They are passed at the
+  // top level; dependency-cruiser would honour them nested under
+  // ruleSet.options too, merging those beneath any top-level options. Only the
+  // repo-anchored and terminal-state options are deleted from the copy.
   const enforcementOptions = { ...(real.options ?? {}) };
   delete enforcementOptions.tsConfig;
   delete enforcementOptions.progress;

@@ -1,10 +1,12 @@
-import { execFileSync, spawnSync } from 'node:child_process';
+import { spawnSync } from 'node:child_process';
 import { chmodSync, mkdirSync, mkdtempSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { delimiter, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { z } from 'zod';
+
+import { requireJq, which } from './secrets-hooks-support.js';
 
 /**
  * Smoke for `.claude/hooks/secrets/pretool-secrets.sh`, the `PreToolUse` guard
@@ -15,7 +17,9 @@ import { z } from 'zod';
  * path holds, with a response that is valid JSON naming the path; it must stay
  * silent for another tool on the same file and for a path that does not exist.
  * With no `jq` on PATH it must still deny: a plain path through its sed
- * fallback, and a path holding a JSON escape outright.
+ * fallback, and a path holding a JSON escape outright, including when bash's
+ * echo would expand escapes (`BASHOPTS=xpg_echo`). Every run proves both paths,
+ * so jq must be installed (`secrets-hooks-support.ts` carries why).
  */
 
 const smokeDir = fileURLToPath(new URL('.', import.meta.url));
@@ -33,17 +37,13 @@ const denySchema = z.strictObject({
   }),
 });
 
-function fail(message: string): never {
-  process.stderr.write(`pretool-secrets smoke: ${message}\n`);
-  process.exit(1);
-}
-
 function runHook(
   searchPath: string,
   payload: unknown,
+  environment: NodeJS.ProcessEnv = {},
 ): { readonly status: number | null; readonly stdout: string } {
   const result = spawnSync(HOOK, [], {
-    env: { ...process.env, PATH: searchPath },
+    env: { ...process.env, PATH: searchPath, ...environment },
     input: JSON.stringify(payload),
     encoding: 'utf8',
     timeout: TIMEOUT_MS,
@@ -56,8 +56,13 @@ function readPayload(filePath: string, toolName = 'Read'): unknown {
 }
 
 /** Expect a deny whose reason holds `reasonText`; returns nothing, throws on anything else. */
-function expectDenied(searchPath: string, filePath: string, reasonText: string): void {
-  const { status, stdout } = runHook(searchPath, readPayload(filePath));
+function expectDenied(
+  searchPath: string,
+  filePath: string,
+  reasonText: string,
+  environment: NodeJS.ProcessEnv = {},
+): void {
+  const { status, stdout } = runHook(searchPath, readPayload(filePath), environment);
   const response = denySchema.safeParse(JSON.parse(stdout.trim() === '' ? 'null' : stdout));
   if (status !== 0 || !response.success) {
     throw new Error(
@@ -84,8 +89,7 @@ function toolDirectory(workDir: string, name: string, withJqLessTools: boolean):
   chmodSync(join(directory, 'sonar'), 0o755);
   if (withJqLessTools) {
     for (const tool of JQ_LESS_TOOLS) {
-      const found = execFileSync('/usr/bin/which', [tool], { encoding: 'utf8' }).trim();
-      symlinkSync(found, join(directory, tool));
+      symlinkSync(which(tool), join(directory, tool));
     }
   }
   return directory;
@@ -93,9 +97,16 @@ function toolDirectory(workDir: string, name: string, withJqLessTools: boolean):
 
 const workDir = mkdtempSync(join(tmpdir(), 'pretool-secrets-smoke-'));
 try {
+  requireJq();
   const withJq = `${toolDirectory(workDir, 'bin', false)}${delimiter}${process.env.PATH ?? ''}`;
   const withoutJq = toolDirectory(workDir, 'bin-without-jq', true);
-  const files = ['plain.env', 'with space.env', 'with"quote.env', String.raw`with\backslash.env`];
+  const files = [
+    'plain.env',
+    'with space.env',
+    'with"quote.env',
+    String.raw`with\backslash.env`,
+    'ends-with-newline\n',
+  ];
   for (const fileName of files) {
     const filePath = join(workDir, fileName);
     writeFileSync(filePath, 'token\n', 'utf8');
@@ -110,11 +121,18 @@ try {
   );
   expectDenied(withoutJq, plainPath, plainPath);
   expectDenied(withoutJq, join(workDir, 'with"quote.env'), 'without jq');
+  expectDenied(withoutJq, join(workDir, 'ends-with-newline\n'), 'without jq', {
+    BASHOPTS: 'xpg_echo',
+  });
+  process.stdout.write(
+    'pretool-secrets smoke OK: Reads denied with valid JSON for plain, spaced, quoted and backslashed paths, and without jq under either echo; an Edit and an absent path pass\n',
+  );
 } catch (error) {
-  fail(error instanceof Error ? error.message : String(error));
+  // exitCode, so the finally block still removes the work directory.
+  process.stderr.write(
+    `pretool-secrets smoke: ${error instanceof Error ? error.message : String(error)}\n`,
+  );
+  process.exitCode = 1;
 } finally {
   rmSync(workDir, { recursive: true, force: true });
 }
-process.stdout.write(
-  'pretool-secrets smoke OK: Reads denied with valid JSON for plain, spaced, quoted and backslashed paths, and without jq; an Edit and an absent path pass\n',
-);

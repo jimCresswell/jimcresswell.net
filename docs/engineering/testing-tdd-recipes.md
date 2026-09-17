@@ -177,10 +177,15 @@ checked test script.
 
 For agent-tools and `tooling/*` tests, the shared Vitest base config
 (`@engraph/workspace-config`) discovers `src/**/*.test.ts`, `src/**/*.spec.ts`,
-`tests/**/*.test.ts` and `tests/**/*.spec.ts`; the site discovers
-`**/*.test.{ts,tsx}`. A `*.unit.test.ts` file matches because `*.test.ts`
-matches it — a file elsewhere in the tree, or with another suffix, is not
-evidence unless the include pattern names it.
+`tests/**/*.test.ts` and `tests/**/*.spec.ts`, where a `*.unit.test.ts` file
+matches because `*.test.ts` matches it. The site's Vitest discovers only
+`**/*.unit.test.ts` and `**/*.integration.test.{ts,tsx}` outside `e2e/`, and
+Playwright reads only `e2e/`, so a site test outside `e2e/` without one of
+those suffixes runs under neither runner. knip takes its site test entries from
+the same include, so it lists such a file under "Unused files" and `pnpm check`
+fails; the cure is the class suffix, never a knip ignore or deleting the test.
+A file elsewhere in the tree, or with another suffix, is not evidence unless
+the include pattern names it.
 
 ## Common Violations And Fixes
 
@@ -281,7 +286,7 @@ export function parseConfig(input: unknown): ParseConfigResult {
   /* ... */
 }
 
-// agent-tools/src/lib/parse-config.test.ts (unit, no FS)
+// agent-tools/src/lib/parse-config.unit.test.ts (unit, no FS)
 it('rejects malformed config', () => {
   expect(parseConfig({ foo: 'bar' })).toEqual({ ok: false, error: 'malformed' });
 });
@@ -294,7 +299,7 @@ Local precedent is not a TDD authority; the test-type taxonomy is.
 
 ### Validator Script vs Integration Test
 
-Per [Testing Strategy § Test Types](../../.agent/directives/testing-strategy.md):
+Per [Testing Strategy §Rules](../../.agent/directives/testing-strategy.md#rules):
 _validation scripts that require external resources should be standalone
 scripts, not tests_. A vitest file that walks the real repo file system
 and asserts a property of repo state is running a validator, not testing
@@ -321,7 +326,7 @@ export function adapterMissingFor(canonical: readonly string[], adapters: readon
   return canonical.filter((slug) => !adapters.includes(slug));
 }
 
-// agent-tools/src/validators/portability/portability-checks.test.ts (unit test, no FS)
+// agent-tools/src/validators/portability/portability-checks.unit.test.ts (unit test, no FS)
 it('reports canonical skills with no adapter', () => {
   expect(adapterMissingFor(['a', 'b'], ['a'])).toEqual(['b']);
 });
@@ -336,12 +341,9 @@ if (missing.length > 0) {
 
 Structural cue: if the test body is `readdirSync` / `existsSync` /
 `readFileSync` over real repo paths and assertions are about repo state
-(not function output), it belongs in `scripts/` (or a workspace), not in
-the test runner. "Look at peers" is a useful first orientation, but
-peers can be drift — the canonical-pattern test is _named guidance in
-the directives_, not the count of similar sibling files.
-
-Root `scripts/` is intentionally retired. Runtime validators belong in a
-workspace-owned command surface such as `agent-tools/src/validators/` (each
-wired to a `validate-*` script in `agent-tools/package.json`) or the package
-that owns the contract being validated.
+(not function output), it belongs in a validator owned by the workspace or
+package that owns the contract being validated, such as
+`agent-tools/src/validators/` (each wired to a `validate-*` script in
+`agent-tools/package.json`), not in the test runner. "Look at peers" is a
+useful first orientation, but peers can be drift — the canonical-pattern test
+is _named guidance in the directives_, not the count of similar sibling files.

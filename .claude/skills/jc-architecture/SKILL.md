@@ -1,6 +1,6 @@
 ---
 name: jc-architecture
-description: Use when work changes graph, UI, build, or Practice structure and needs the right lane.
+description: Use when work changes workspace, import, graph, UI, build, or Practice structure and needs the right lane.
 ---
 
 # Architecture (Claude Code)

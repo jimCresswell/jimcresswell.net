@@ -55,7 +55,7 @@ const MODULE_SYSTEM_PATTERNS = [
 /** Runtime schema libraries must never enter the sandbox bundle (derived at build). */
 const PURITY_PATTERNS = [/\bz\./, /\bsafeParse\b/, /\bZod/, /@engraph\/result/];
 
-/** Parse a source string, reporting syntax errors as a Result; injectable for tests (ADR-078). */
+/** Parse a source string, reporting syntax errors as a Result; injected so tests can pass a fake. */
 export type SyntaxValidator = (source: string) => Result<undefined, Error>;
 
 const esbuildSyntaxValidator: SyntaxValidator = (source) => {

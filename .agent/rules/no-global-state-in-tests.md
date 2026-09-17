@@ -26,4 +26,6 @@ Smoke composition roots — the Vitest runner config or spawn invocation — may
 read ambient env, validate it, and inject the result. Test files and setup files
 must not read or mutate `process.env`.
 
-See `.agent/directives/testing-strategy.md` §Stubs vs Fakes for the dependency-injection doctrine.
+Operationalises `.agent/directives/testing-strategy.md` §Rules (No ambient global state
+access); the dependency-injection pattern is in `docs/engineering/testing-patterns.md`
+§In-Process Tests with Dependency Injection.

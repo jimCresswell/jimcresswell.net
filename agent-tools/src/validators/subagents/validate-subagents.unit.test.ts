@@ -338,12 +338,12 @@ Read and follow \`.agent/sub-agents/templates/code-expert.md\`.
     const developerInstructions = readCodexDeveloperInstructions(
       createTopLevelTomlBasicStringReader(`developer_instructions = """
 Read and follow \`.agent/sub-agents/templates/code-expert.md\`.
-Read and apply \`.agent/sub-agents/components/personas/fred.md\`.
+Read and apply \`.agent/sub-agents/components/behaviours/reading-discipline.md\`.
 """`),
     );
 
     expect(extractCanonicalPaths(developerInstructions)).toStrictEqual([
-      '.agent/sub-agents/components/personas/fred.md',
+      '.agent/sub-agents/components/behaviours/reading-discipline.md',
       '.agent/sub-agents/templates/code-expert.md',
     ]);
   });

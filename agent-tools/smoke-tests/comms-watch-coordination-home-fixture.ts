@@ -88,7 +88,7 @@ async function seedCoordinationState(fixture: Fixture): Promise<void> {
 }
 
 export async function makeFixture(): Promise<Fixture> {
-  const root = realpathSync(await mkdtemp(join(tmpdir(), 'oak-mcp360-')));
+  const root = realpathSync(await mkdtemp(join(tmpdir(), 'jc-comms-watch-home-')));
   const primary = join(root, 'primary');
   const linked = join(root, 'linked');
   await seedGitRepository(primary, linked);

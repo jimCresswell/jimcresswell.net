@@ -91,8 +91,7 @@ describe('evaluateDecisionDebt', () => {
     expect(result.zone).toBe('hard'); // count 3 ≤ hard ceiling 3
     expect(result.oldestDwellDays).toBe(4);
     expect(result.dwellZone).toBe('soft'); // 4 days ≤ dwell soft ceiling 4
-    expect(result.findings).toHaveLength(1);
-    expect(result.findings[0].kind).toBe('owner-gated-status');
+    expect(result.findings).toMatchObject([{ kind: 'owner-gated-status' }]);
   });
 });
 

@@ -39,17 +39,14 @@ describe("Entity model integration", () => {
   });
 
   it("has exactly one Person entity", () => {
-    const people = entities.filter((e) => e["@type"] === "Person");
-    expect(people).toHaveLength(1);
-    expect(people[0]["@id"]).toBe("https://www.jimcresswell.net/#person");
+    const peopleIds = entities.filter((e) => e["@type"] === "Person").map((e) => e["@id"]);
+    expect(peopleIds).toEqual(["https://www.jimcresswell.net/#person"]);
   });
 
   it("includes Knowledge graphs in Person.knowsAbout with a Wikidata link", () => {
-    const people = entities.filter((e) => e["@type"] === "Person");
-    expect(people).toHaveLength(1);
-
-    const person = people[0];
-    const knowledgeGraphs = person.knowsAbout.find((item) => item.name === "Knowledge graphs");
+    const knowledgeGraphs = resolveSinglePerson(entities).knowsAbout.find(
+      (item) => item.name === "Knowledge graphs"
+    );
 
     expect(knowledgeGraphs).toBeDefined();
     expect(knowledgeGraphs?.sameAs).toBe("https://www.wikidata.org/wiki/Q33002955");

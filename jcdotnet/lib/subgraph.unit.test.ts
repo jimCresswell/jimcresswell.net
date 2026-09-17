@@ -79,8 +79,7 @@ describe("extractSubgraph", () => {
 
   it("returns only seed entities when they have no outbound references", () => {
     const subgraph = extractSubgraph(ALL_ENTITIES, [WEBSITE["@id"]]);
-    expect(subgraph).toHaveLength(1);
-    expect(subgraph[0]["@id"]).toBe(WEBSITE["@id"]);
+    expect(subgraph.map((e) => e["@id"])).toEqual([WEBSITE["@id"]]);
   });
 
   it("follows transitive references (Person → Role → Org)", () => {

@@ -4,7 +4,7 @@ import { describe, expect, it } from 'vitest';
 
 import { commsWatchPathsFromHome } from '../../src/collaboration-state/comms-watch-paths';
 
-const PRIMARY = '/workspace/oak';
+const PRIMARY = '/workspace/jc';
 const AGENT_NAME = 'Europa stirs Void';
 // Both paths are host-joined onto the home, so the expectations are derived
 // in host form — identical to the POSIX literals on POSIX.

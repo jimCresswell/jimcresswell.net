@@ -82,8 +82,7 @@ export function findStaleScriptInvocations(
     }
 
     const lines = file.content.split('\n');
-    for (let lineIndex = 0; lineIndex < lines.length; lineIndex += 1) {
-      const lineText = lines[lineIndex];
+    for (const [lineIndex, lineText] of lines.entries()) {
       const matches = lineText.matchAll(STALE_INVOCATION_PATTERN);
       for (const match of matches) {
         findings.push({

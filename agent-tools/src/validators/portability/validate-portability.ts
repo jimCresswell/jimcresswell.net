@@ -154,7 +154,7 @@ try {
   }
 } catch (error) {
   issues.push(
-    `Claude settings validation (command quoting, skill permissions) failed: ${error instanceof Error ? error.message : 'Unknown Claude settings check failure.'}`,
+    `Claude settings validation (command quoting and anchoring, skill permissions) failed: ${error instanceof Error ? error.message : 'Unknown Claude settings check failure.'}`,
   );
 }
 

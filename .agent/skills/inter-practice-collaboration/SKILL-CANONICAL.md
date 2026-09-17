@@ -240,6 +240,6 @@ equivalent) so it dies with your session.
 ## Platform Adapters
 
 The generated Claude Code adapter lives at
-`.claude/skills/oak-inter-practice-collaboration/SKILL.md`.
+`.claude/skills/jc-inter-practice-collaboration/SKILL.md`.
 Regenerate with
 `pnpm skills:generate` and verify with `pnpm skills:check`.

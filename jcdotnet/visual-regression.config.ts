@@ -8,20 +8,25 @@ import type {
   VisualRegressionConfiguration,
 } from "./visual-regression-harness/configuration";
 
-const siteChromeRegions = [
-  { key: "site-header", selector: "body header.print-hidden" },
-  { key: "site-footer", selector: "body footer" },
-] satisfies readonly RegressionRegion[];
+/** Site chrome captured on every route: the screen-only site header. */
+const siteHeaderRegion = {
+  key: "site-header",
+  selector: "body header.print-hidden",
+} satisfies RegressionRegion;
 
+/** Site chrome captured on every route: the site footer. */
+const siteFooterRegion = { key: "site-footer", selector: "body footer" } satisfies RegressionRegion;
+
+/** The CV route's regions, in page order, between the shared site chrome. */
 const cvRegions = [
-  { key: "site-header", selector: "body header.print-hidden" },
+  siteHeaderRegion,
   { key: "cv-header", selector: "main > div > header" },
   { key: "positioning", selector: 'main section:has(> h2:has-text("Positioning"))' },
   { key: "capabilities", selector: 'main section:has(> h2:has-text("Capabilities"))' },
   { key: "experience", selector: 'main section:has(> h2:has-text("Experience"))' },
   { key: "before-oak", selector: 'main section:has(> h2:has-text("Before Oak"))' },
   { key: "education", selector: 'main section:has(> h2:has-text("Education"))' },
-  { key: "site-footer", selector: "body footer" },
+  siteFooterRegion,
 ] satisfies readonly RegressionRegion[];
 
 /** Repository-owned routes, regions, and bounded comparison allowances. */
@@ -30,9 +35,9 @@ export const visualRegressionConfiguration = {
     createRoute(
       "home",
       [
-        siteChromeRegions[0],
+        siteHeaderRegion,
         { key: "hero", selector: 'main section:has(> h1:has-text("Jim Cresswell"))' },
-        siteChromeRegions[1],
+        siteFooterRegion,
       ],
       false
     ),
