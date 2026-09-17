@@ -372,7 +372,9 @@ under ratified text, frames a question to the owner, adds process, and consolida
   many-to-one-per-template clause beside the existing trigger-consolidation section) and the
   transplant runbook's completeness step | trigger: the owner's card answer (session 2 batch)
   | size: S | status: pending]`
-  Prediction: the sub-agent adapter generator (item 6, 2b) emits the quartet from a role
+  Prediction (made when the panel was the quartet; a fifth role,
+  `cricket-judgement-lowestpower-low`, joined on 2026-09-16, so the generator now emits five):
+  the sub-agent adapter generator (item 6, 2b) emits all five from a role
   declaration, and the census is a leg or an audit script under inputs/. Home read: PDR-009
   lines 197 to 199 consolidate many rules onto one trigger, the opposite direction; lines 147
   to 148 validate coverage and form with no counts; the runbook lines 159 and 185 to 186 have

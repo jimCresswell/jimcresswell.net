@@ -114,10 +114,10 @@ STATE, 2026-09-16 afternoon (Cauldron herds Lustre, Director), owner-directed in
 - #93 merged by the owner 2026-09-16 20:38Z (`SHA: 958919c`): the `PreCompact` observer, run
   from TypeScript source, with its review settled (CodeQL alerts 8 and 9 fixed; an unreadable
   stdin recorded as `stdin-unreadable`; the observation log owner-only).
-- This branch folded after #93 (merge `SHA: 2961e9c`), every file both sides touched taking
-  `main`'s version; it lands through #97, and the primary checkout now runs `main`'s observer
-  (its smoke passes there). The primary's `.claude/logs` and both logs were made owner-only by
-  hand the same evening.
+- The coordination branch `coordination/2026-09-15-b9dcfb` folded after #93 and landed as #97
+  (`SHA: bee0141`, 2026-09-16); this branch, `coordination/2026-09-16-bee014`, was cut from that
+  merge and carries #97's fourth-review record cures. The primary checkout's `.claude/logs` and
+  the `falsifier-2a` worktree's were made owner-only by hand the same evening.
 - Strictness, owner word 2026-09-16: "I want the tsconfig brought up to strict everywhere, but if
   there is a better way to do it that is fine, I was being explicit but I am happy with standard
   approaches." Landed as drafts, all green through the full pre-push gate:
@@ -151,37 +151,88 @@ STATE, 2026-09-16 afternoon (Cauldron herds Lustre, Director), owner-directed in
   byte-identical to the patch that became #92, the seven tsconfig edits adding only flags #94's
   base carries.
 
-FIRST ACTION: land #97 (this branch's fold) at full condition, then cut the fresh day-stamped
-coordination branch from the merged tip (`coordination-branch-24h-lifetime` step 3). Then the
-owed pull request on `feat/arc-metrics`.
+STATE, 2026-09-17T19:42Z (Cauldron herds Lustre, Director), written at the close-out's end.
 
-Known defects get fixed, not queued (owner word 2026-09-16: "If you know there is broken code,
-fix it"). These fixes are in flight, each on its own branch from `origin/main`, one pull request
-each:
+The open pull request count is zero (owner word 2026-09-17: "bring the number of open PRs down
+to zero via normal procedures"; restated on resume, "land all PRs slowly and carefully, go
+slowly, thoughtfully, do not use subagents"; the reminder at 20:20Z, "the goal is complete as
+soon as the number of open PRs hits zero"). Landed 2026-09-17 evening, in order: #126
+(`SHA: 6254f0cc`), #127 (`SHA: 4ecbc451`), #94 (`SHA: 20d0c8d9`), #95 (`SHA: d7f37d8a`),
+PR #96 (`SHA: cff790fa`), #128 (`SHA: 867e9e0c`), #129 (`SHA: 931f4072`), then the fold of
+this coordination branch. The plan `.agent/plans/delivery/estate-fix-backlog.plan.md` records
+each landing in §Close-out, every routed review finding in §Review dispositions, and the seat's
+reviews in §Review record.
 
-- `fix/hook-quoting-and-log-modes`: the Read and UserPromptSubmit secrets hooks left
-  `${CLAUDE_PROJECT_DIR}` unquoted and did not run under a project path holding a space; a
-  portability check now fails on any unquoted reference. The hook logs are owner-only from every
-  writer, and the Read secrets guard scans paths holding a quote or backslash.
-- `fix/export-ref-worktree-flake`: the visual-regression export read git's output on the child
-  process's `exit` event, which on Linux can fire before stdout is read; it now resolves on
-  `close`.
-- `fix/depcruise-compiler-gate`: dependency-cruiser could pass having parsed nothing; with it,
-  knip's redundant-entry hints, dead `no-restricted-imports` rules and the bootstrap docblock's
-  stale statements.
-- `fix/smol-toml-advisory-and-tsdoc-peer`: the `smol-toml` advisory GHSA-7w5x-hrqm-74c2 and the
-  unmet `typescript` peer through `eslint-plugin-tsdoc`.
+OWNER HOLDS, binding until the owner lifts them:
 
-Owed after those, as fixes: the observer's other measurements carry their failure reason (a
-failed transcript size or sibling listing is recorded as absent, a stdin error keeps only its
-message); `@typescript-eslint/no-import-type-side-effects`, so an inline type import cannot
-become a runtime import in a source-run hook (config-expert); a probe of whether the two
-`SessionStart` hooks' relative paths resolve after a `cd` in the session; and
-`set-up-worktree-lane`, which expects a bot committer while this repository commits as the owner.
+- **No subagents** (owner word 2026-09-17, evening: "do not use subagents"). Every review is the
+  seat's own, under the template it would have invoked, stated in the pull request.
+- **The plan is a sketch awaiting ratification.** Its §Backlog governs no work until the owner
+  ratifies it. The ratification card was presented at this session's close.
+
+FIRST ACTION on resume: read the plan's §Backlog. If ratified, start slice 1 (the guard fallback,
+security) with at most three open non-draft pull requests; slice 2 is the disposition verb, moved
+first among the corrections because the missing verb is what turned #128's last round into #129.
+If not ratified, present the card again and do nothing under §Backlog.
+
+The backlog and every routed review finding live in the plan. The owner's twenty-three card
+answers of 2026-09-17 are recorded verbatim in this file at `SHA: 3372b944`, removed from the
+live text when the plan absorbed them as slices, each marked owner-approved; they are not
+restated here.
+
+Owner actions pending:
+
+- Ratify, amend or decline the plan (one card).
+- Re-paste the cloud environment setup script from main (first line `#!/usr/bin/env bash`), start
+  one cloud session and report `bash --version` and `command -v bash` (the plan's owner gate for
+  the bash 5.2 floor, expires 2026-10-08).
+
+Uncommitted partial work, conserved in place (never discarded): `expert-roster` worktree
+(`fix/site-relative-paths-in-rules`, 18 files, input to slice 15); `tools-lineage-paths` worktree
+(13 files, input to slice 9). Local branches with no pull request: `fix/shellcheck-classifier-names`
+(`SHA: 1594972a`) and `fix/shellcheck-gate-followups` (`SHA: 99eff2a3`), both superseded
+by #122 and #126 and deletable on the owner's word; `fix/lint-warnings-fail` (`SHA: 1bae5445`),
+superseded by #126, likewise. The remote `fix/shebang-refusal-remedy` (`SHA: 9d2dd5b8`) is
+slice 7's input. Worktrees still present and retirable: `gate-output-noise`,
+`eslint-tooling-dead-config`, `lineage-oak-identifiers`, `shellcheck-gate`, `override-floors`
+(on `fix/mention-parse-node`, merged).
+
+Orchestration recipe (the scratchpad scripts are gone with the session):
+
+- **Push and review chain:** commit by pathspec, check port 3000 free, `git push` (the pre-push
+  gate takes about ten minutes), open with `gh pr create --body-file`, request Copilot with a JSON
+  body under the owner's CLI credential, watch by polling the reviews list for a Copilot review on
+  the pushed head. When a settlement changes no commit (a description cure), key the watch on the
+  review id exceeding the last round's, since the head does not move.
+- **Merge:** `pnpm --silent agent-tools merge-bot merge --pr N --expect copilot-pull-request-reviewer`;
+  retry after about twenty seconds on "mergeability not yet computed"; confirm with
+  `gh pr view N --json state,mergeCommit`.
+- **Merged-branch deletion:** REST DELETE as the bot after confirming the merged pull request;
+  read back the ref absent. Then `git worktree remove` and `git branch -d`.
+- **Signed lines:** the grammar in `agent-tools/src/pr-watch/disposition-lines.ts`; a lift needs
+  `Cured in SHA:` or `Rejected`. A last-round finding that earns no diff is rejected with evidence
+  and takes a row in the plan's §Review dispositions.
+- **Reading another branch's claims:** read the files at the branch's base
+  (`git show origin/main:<path>`), never in the primary checkout, which sits on the coordination
+  branch behind main.
+
+Improvements, not defects: the observer's other measurements could carry their failure reason
+(a failed size read or listing is recorded as absent, which the record's TSDoc states);
+`@typescript-eslint/no-import-type-side-effects` would guard type-only imports in source-run
+hooks; a validator could fail any script that runs eslint without `--max-warnings 0`; the eslint
+plugin's `configs.react` and `configs.next` have no consumer.
+
+Orchestration notes (the scripts lived in the session scratchpad and are gone with it): pushes
+ran through a bash queue that checks port 3000 before each `git push` and stops at the first
+failure; review watches ran as a bash script polling `pulls/<n>/reviews` for the Copilot login and
+the head SHA prefix, proven on an already-landed review before arming (zsh does not word-split an
+unquoted list). Lane briefs name a private `mktemp -d` for message files, a `git show --stat`
+check per commit, no push, and no amend.
 
 Holds, each with its lift condition: ESLint 10 for `jcdotnet` waits on `eslint-plugin-react`
 supporting it (install prints `deprecated eslint@9.39.5` until then); an assumptions-expert
 review of source-run hooks comes before the `PreCompact` gate is built.
+
 The transplant closure is complete on `main` (2026-09-15): every item of
 `.agent/plans/delivery/practice-completion.plan.md` §Transplant closure carries its Done line
 and proof (item 4's rows closed by #85 `SHA: eed1f2e`, #87 `SHA: 6b5676b`, #86
@@ -217,8 +268,9 @@ and proof (item 4's rows closed by #85 `SHA: eed1f2e`, #87 `SHA: 6b5676b`, #86
    `hook-policy-substring-discipline`). Routed to Zephyr guards Leeward (281e44) the same day.
 
    Second maintenance item at the same priority (2026-09-16): the Cricket seat naming. The
-   generated adapter names encode effort alone (`-low`, `-medium`, `-high`, `-xhigh`), so nothing
-   in a name says which model a seat runs, while the estate pairs model power INVERSELY with
+   quartet's generated adapter names encode effort alone (`-low`, `-medium`, `-high`, `-xhigh`), so
+   nothing in those names says which model a seat runs (the fifth seat,
+   `cricket-judgement-lowestpower-low`, added the same day, already names both), while the estate pairs model power INVERSELY with
    effort — low is fable, medium is opus, high is sonnet, xhigh is haiku. A caller who cannot read
    that from the name mis-launches the suite, as the Director did on 2026-09-16 by overriding
    every seat's model and inverting the design. Names should carry both dimensions. The change

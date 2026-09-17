@@ -2272,3 +2272,251 @@ tip is one whose required analysers ran".
   point outside scrutiny at any compiler or tool fact I state without a command beside it.
   _Fixed point_: a third pass would only re-find the attribution and blind-spot items above; the
   recursion closes here.
+
+### Director, #93's comments and the fix lanes (2026-09-16, 15:33Z to 22:29Z) — Cauldron herds Lustre (880ff9)
+
+- **A correction, not a new rule.** I filed real defects found during #93's review under a
+  "queued, none blocking" list: secrets hooks that did not run under a project path with a
+  space, world-readable hook logs, a flaky integration test, a dependency-cruiser gate that could
+  pass having parsed nothing. The owner: "If you know there is broken code, fix it." Scope
+  discipline decides which pull request a fix lands in, never whether the fix happens;
+  `local-broken-code-never-leaves` already says so. Nine fix pull requests followed (#98 to
+  #104, three merged the same evening) and each review turned up more real defects in the same
+  classes.
+- **Forward cures keep the round budget.** After a pull request's last review round, a true
+  finding is cured in a commit on a follow-up branch cut from the reviewed head, lifted on the
+  merged pull request by a signed line naming that commit, and landed in its own pull request.
+  Used on #97 (onto the successor coordination branch), #99 (#101) and #100 (#102). I took the
+  Director's correctness exception for a third round twice before settling on it.
+- **A closed shape beats a scanner.** The first quoting check tracked shell quote state; three
+  reviews found false positives (`eval.mjs`) and misses (`bash -lc`, a colonless expansion). The
+  reviewers' friction ratchet was right: a command that names the project directory must be plain
+  words and whole double-quoted project paths, never handed to a shell's `-c` or `eval`, and
+  anything else is reported. It still missed `ash -c` and `pwsh -Command` until named.
+- **The flake was a documented race.** Node's `exit` may fire before stdio closes; libuv on
+  Linux reaps on SIGCHLD and can report exit before stdout is read. A subagent found it with a
+  deterministic write-after-reap test; reading my own code three times had not.
+- **A hook refuses file content holding a machine path.** A script written to the scratchpad
+  that named the scratchpad directory was blocked by the machine-local-path fingerprint; scripts
+  take the directory as an argument instead.
+
+### Director, the fix lanes to the usage limit (2026-09-16T22:29Z to 2026-09-17T13:55Z) — Cauldron herds Lustre (880ff9)
+
+- **The loop grew faster than it closed.** Fourteen fix pull requests merged (#98 to #104,
+  #106 to #110, #113, #115); eight stayed open and five lane branches were unpushed when the
+  session's usage limit stopped every lane at once. Each lane report named more findings than its
+  pull request fixed, and each review round on a prose-heavy pull request found more. Judge a
+  loop by whether rounds shrink (concept-exploration §Loop Dynamics). I bounded parallelism by
+  host CPU; the binding constraints were serial pushes (one pre-push gate at a time, about six
+  minutes each), review latency and the session's usage budget. Lanes beyond about three became
+  inventory: two merges staged but uncommitted, two cures uncommitted, one partial branch.
+- **Two generators sit under most of the defects.** First, transplant residue on surfaces no
+  validator reads: reviewer templates, tooling source comments, rule globs, `.gitattributes`,
+  skill evals. The cited-paths validator scans none of them, so reviewers found each instance and
+  each was fixed one pull request at a time. Second, vacuous gates: a lockfile rebuild test that
+  reseeds from `node_modules/.pnpm/lock.yaml`, lint that passes warnings, commitlint without
+  `--strict`, `pnpm --filter` exiting 0 when nothing matches, a manifest field no tool reads, a
+  smoke asserting one regex. Proposals P1 and P2 in repo-continuity target the generators, each
+  with a falsifier.
+- **Orchestration substrate facts, now memories.** Monitor commands run under zsh, which does
+  not word-split an unquoted list: a three-PR review watch sat silent for 30 minutes over three
+  landed reviews, and only the silence looking wrong exposed it. Lanes share one scratchpad: two
+  lanes' `msg-a.txt` collided and one commit carried the other lane's message; the repair was a v2
+  branch built with `cherry-pick --no-commit`, never an amend. Every pushed commit's `--stat` was
+  audited against its subject; none was wrong.
+- **Evidence decided two calls against fluency.** I first judged whole-sentence diagnostic
+  assertions a contract; `testing-patterns.md` §Rendered-Output Assertions and the repository's
+  own knip-gate tests assert count and clause, and the reviewer was right. A reviewer's claim that
+  macOS tar rejects long options read as plausible; the lane ran bsdtar 3.5.3 and it was false.
+- **A closed shape needs its boundary in positions, not tokens.** The script-anchoring check went
+  through three rounds (slash-only paths; an interpreter anywhere; then program positions after
+  assignments and exec wrappers), and each reviewer found a form outside the previous boundary.
+- **Metaloss.** _Promises_: every open item from chat is in repo-continuity's in-flight or owed
+  list; the lint-warnings v2 rebuild I asked for was not done (the lane stopped) and is item 9.
+  _Attribution_: the comms tools' exit 1 is a code-expert trace, not a run; the @-mention bypass
+  of the Read scan is security-expert's unverified claim; the interrupted lanes' partial diffs are
+  unreviewed. _Blind spots_: I did not read those partial diffs, the interrupted lanes left no
+  final reports, and no subagent transcript was read. _External bound_: tonight Copilot, a hook
+  and a silent watch caught what my own scans missed; point outside scrutiny at any "passes"
+  stated without a command beside it. _Index of homes_: repo-continuity §Next Safe Steps (state and
+  order), this segment (why), the memories index (orchestration facts), the formation letter of
+  2026-09-17 in `.agent/experience/`. _Fixed point_: a third pass would only re-find the unread
+  partial diffs and the unverified attributions above; the recursion closes here.
+
+### Director, the resumed fix loop to the zero-open-PR plan (2026-09-17, 14:05Z to 16:15Z) — Cauldron herds Lustre (880ff9)
+
+- **Landed.** Thirteen pull requests merged after the resume; #125 was closed with its reason.
+  The owner answered 23 questions by user cards (recorded in repo-continuity). They asked for the
+  open count to reach zero through normal procedures and paused new lanes. The plan
+  `estate-fix-backlog` is a sketch awaiting ratification.
+- **Metacognition, retrospective.** The owner's corrections this afternoon had one shape.
+  - The four corrections:
+    - "review your subagents, and don't start any more";
+    - "what lane, what value";
+    - a round-budget question a memory already answered;
+    - #118 recorded as approved while its CI was red.
+  - In each, my launch rate outran my supervision. I read the owner's newest word ("if you know
+    there is broken code, fix it") by analogy as "every true finding gets its own pull request".
+  - `pr-lifecycle` §Phase 4 state 3 and PDR-140 already had the cure: a correct but
+    disproportionate finding takes a named home and a resolved thread, not a diff. The composition
+    of three rules was the generator, not any one of them:
+    - known broken code gets fixed;
+    - rounds never go up;
+    - last-round cures go forward in their own pull request.
+- **What ended loops today: closing the shape.**
+  - #105's hook check took four rounds as a list of rejected forms. #123 replaced it with the
+    grammar of the forms the settings use, and it was approved in round one.
+  - #112's shebang classifier grew a regex every round. #122 matched the repository's five exact
+    forms and failed loudly on any other.
+  - #118's smoke pinned pnpm's own error text. The cure pins only what this repository prints and
+    checks third-party text for presence and position.
+
+  A bot reviewer samples an open set without end; a closed set turns every sample into a known
+  answer or a loud failure. Where it did not end a loop, the artefact was open prose copied across
+  about 70 files (#120's routing text), so the cure there is generation from one declaration (plan
+  slice 15), not a closed shape.
+- **Free play, harvest.** These are associations, not findings.
+  - The zsh `"$n:a4b4…"` modifier bug reminded me of last night's zsh word-split bug. The
+    interactive shell has now lied twice in two days in the same role. Kept; the memory is updated.
+  - #118's host pnpm (11.20.0 on PATH, 12.4.2 pinned) looks shaped like the owner's
+    bash-3.2-on-macOS objection. In both, a tool the repository does not pin decides behaviour. Kept
+    as a possible "unpinned substrate" class for concept exploration.
+  - The owner's 23 cards turned unknowns into about 23 work items, which reads as "asking
+    questions creates work". Kept lightly: decisions wait well only in a ledger.
+  - "Follow-up pull requests are hydra heads." Discarded: it is a cliché and adds nothing the loop
+    numbers do not say.
+- **Concept exploration.**
+  - Frame: the loop grew because per-finding pull requests met open-shaped artefacts (lists of
+    rejected forms, a regex parser, copied routing text) that give a sampling reviewer endless
+    material.
+  - Proposals:
+    1. Ratify `estate-fix-backlog`. Falsifier: after close-out, ledger rows keep becoming pull
+       requests, or the open count does not reach zero within two sessions.
+    2. For gate and validator findings, close the shape at the second round of same-shape findings.
+       Falsifier: a closed shape that draws two more rounds of shape findings.
+    3. Explore whether gates and fixtures that run host tools should run the pinned versions (bash,
+       pnpm, sh). Falsifier: no third instance beyond these two.
+  - Unresolved:
+    - whether the Sonar CLI's telemetry carries file content;
+    - the cloud image's bash version;
+    - the assumptions-expert verdict on the plan.
+- **Reason.** The next action is fixed in repo-continuity's FIRST ACTION: the plan's review, the
+  ratification card, then close-out in order. The owner's pause stays binding throughout.
+- **Metaloss.**
+  - _Compressed reasoning:_ the rationale for closing #125 lives in its closing comment and the
+    ledger row. The grammar and shebang decisions live in their commit bodies and PR descriptions.
+  - _Promises:_
+    - The cloud re-paste notice was given at #122's merge.
+    - The pairing pull request is unpushed and recorded as close-out item 3.
+    - "Rule globs become a generator change" is slice 15.
+    - "The bash floor follows the measurement" is slice 7 plus the owner gate.
+    - Nothing else was promised in chat.
+  - _Attribution:_
+    - The @-mention bypass was observed by the lane in a headless run, not by me.
+    - "The Sonar scan is local" rests on documentation and a network-denied run; telemetry was not
+      observed.
+    - The CI runner's bash 5.2.21 comes from the runner image readme, not a CI run.
+    - The pnpm 11/12 cause was reproduced by the lane.
+  - _Blind spots:_
+    - No subagent transcript was read, only reports.
+    - The stopped @-mention lane's partial security-expert review is lost.
+    - The assumptions-expert result may land after the stop and be lost unless captured.
+  - _External bound:_ the owner's corrections were today's outside eyes. Point scrutiny at any
+    state recorded without a CI read, and at launch rate against supervision.
+  - _Index of homes:_
+    - repo-continuity §Next Safe Steps (state, holds, order, recipes);
+    - the plan node (sequence and ledger);
+    - this segment (why);
+    - the memories index (reflexes);
+    - the formation letter of 2026-09-17 in `.agent/experience/`.
+  - _Fixed point:_ a third pass would only re-find the unpushed pairing commit, the uncommitted
+    @-mention cure and the unread plan review, all named above. The recursion closes here.
+
+### Director, solo close-out under the owner's no-subagent word (2026-09-17, 17:00Z) — Cauldron herds Lustre (880ff9)
+
+- **Owner word at resume:** "please land all PRs slowly and carefully, go slowly, thoughtfully, do
+  not use subagents". Read plainly: no subagents at all, including expert reviewers; every review
+  is mine. Solo n=1, so the comms watcher and heartbeat are exempt (rule text: "Not for solo n=1
+  sessions"; PDR-078 §4 consumer-absent); one registration event is posted for the record.
+- **Metacognition at the boundary.** Inherited: the close-out order (continuity: lint, pairing,
+  mention scan, drafts, fold). Checked against live state: #126 green with one Copilot suppressed
+  item; the pairing branch 98 commits behind main, merging clean. The order stands. What changed:
+  the security-expert review in close-out item 5 was a subagent; it is now my own review under
+  the security-expert template, stated as such in the PR.
+- **#126 triage.** Copilot's item (build-system.md:584) verified true against `.husky/pre-push`
+  (runs `pnpm check`, which runs `pnpm lint`), `ci.yml` (`pnpm lint`) and root `fix` (the only
+  caller of `lint:fix`). A wrong claim the PR itself added: cured in the PR at round one, inside
+  the two-round budget. Marker: `**Over-bar**` for a cured finding. Past inconsistency noted: the
+  #118 line said `**Below-bar**` while curing; the marker reads cure-worthiness, so a cured
+  finding is over-bar.
+- **Sonar privacy question settled by documentation (17:15Z).** The Sonar documentation
+  (sonarqube-cli "Secrets detection" and "Telemetry and privacy" pages, read through the Sonar
+  documentation MCP) says the secrets scan runs locally with no server connection and that
+  telemetry carries no file contents, paths, filenames or command arguments; `sonar config
+  telemetry --disabled` opts out. So the prompt hook scanning a mentioned file outside the
+  project sends nothing off the machine that the mention itself does not already send to the
+  model. The local CLI is 1.7.0 with telemetry enabled.
+- **Plan reviewed by the seat under the assumptions-expert template (17:10Z).** Findings in
+  the plan's new §Review record; the substantive one: AC 4 had no reachable exit while
+  dispositions kept adding rows, so the slice list now closes at ratification.
+- **Near-miss, 17:35Z: I read routing tables from the primary checkout, which sits on the
+  coordination branch, 100-odd commits behind main.** They showed the pre-#120 contract
+  (personas only, "barney or fred"), and for a few minutes I held that #127's cure was
+  wrong. Reading the same files at origin/main showed #120's contract: the base is the
+  structural reviewer and the persona is invoked as well for its lane, so the cure matches
+  its siblings. Reflex: when judging a branch's claim about other files, read those files at
+  the branch's base, never in whichever checkout is handy. Same shape as the #118 "approved
+  with red CI" error: a state read from the wrong surface.
+- **#127 round one, triage.** Copilot: the singular, unconditional "plus the persona for the
+  decision's lane" can name an unrelated persona for a purely structural decision or omit one
+  for a cross-lane ADR. True against the brief ("invoke the persona as well when the change
+  falls in its lane"). Scope: the same singular phrase sits in the assumptions-expert and
+  subagent-architect tables and the roster; the class cure is slice 15's generation from
+  declarations, so this pull request cures its one row and the siblings take a ledger row.
+- **#128 round one (19:05Z): five true findings, four cured, one rejected with the vendor's
+  own regex.** Copilot said `@notes#draft` should keep the `#` in the path; Claude Code 2.1.274's
+  bundle (beside its `input_file_at_mention` strings) splits the path at the first `#` whatever
+  follows, so the hook's behaviour was right and the remedy wrong. The other four (email domains
+  scanned because no left boundary was required; duplicates forwarded; a missing grep silently
+  skipping the mentions; uncited vendor claims) were real. The bundle search that settled it:
+  `grep -a -b -o -F` for fixed strings, then `tail -c +offset | head -c`; a regex with `.{0,120}`
+  context over 214 MB ran for minutes and was killed.
+- **#94 last-round finding, cure-forward without a pull request.** The one-word cure sits on
+  `fix/config-expert-isolated-modules`, cut from #94's reviewed head, cited by SHA in the signed
+  line, and merges into #95 (the next pull request in the sequence) once #94 lands. First attempt
+  failed: I tried to commit it on #95's branch, which does not yet carry #94's round-one text.
+- **Watch trap (19:40Z): a description-only settlement moves no head.** #95's round-one
+  finding was cured in the description, so the head stayed at the reviewed SHA and the
+  head-keyed watch reported round one as round two at once. When the settlement changes no
+  commit, key the watch on the review id being greater than the last round's, not on the head.
+- **Owner reminder (20:20Z): "the goal is to thoughtfully get the PRs to zero."** Count at the
+  reminder: one open (#129, round two) plus the fold to come. The evening landed six and opened
+  three; two of the three (#127, #129) were cure-forwards from last rounds, forced by the hold
+  grammar (only a cure SHA or a rejection lifts; a ledger row does not). Metacognition: I read
+  "cure forward for a correctness defect in the PR's own claim" as licence, when the owner's
+  goal made the cheaper honest path a rejection with evidence plus a ledger row. #129 was still
+  right on its merits (a bypass, and the closed shape replaced an approximation), but it was
+  the last such this session. Plan change: the disposition verb is now slice 2. Rule for the
+  rest of the close-out: no new pull request but the fold.
+
+### Director, the close-out reaches zero (2026-09-17, 17:00Z to 21:00Z) — Cauldron herds Lustre (880ff9)
+
+- **Landed, in order:** #126, #127, #94, #95, #96, #128, #129; then the fold of this branch.
+  The count read zero at #129's merge. No subagents; every review the seat's own.
+- **What the reviews were worth.** Copilot's rounds found real defects each time on the hooks
+  (#128: an email domain scanned as a mention, duplicates, a silent grep absence; #129: a
+  quoted mention re-read as unquoted; a present-but-failing node fails open) and wording defects
+  on the docs. One finding was rejected with the vendor's own regex as evidence. The closed
+  shape held again: the hook stopped approximating Claude Code's grammar and ran it.
+- **The generator, named.** Two of three new pull requests this evening were cure-forwards from
+  last rounds, forced by the hold grammar. The owner's reminder ended that: the last two
+  last-round findings became ledger rows (one under the security slice, first) and #129
+  merged. The disposition verb is now slice 2 of the plan.
+- **Reflexes written:** read a branch's claims at its base, not in the primary checkout; key a
+  watch on the review id when a settlement moves no head; write scripts to files, not into
+  the shell string, once zsh has eaten a quote twice.
+- **Fold gate, first attempt (19:55Z): `practice-substrate check` refused the push** because the
+  generated read model `shared-comms-log.md` was stale after the registration event I appended at
+  session open. `comms render --comms-dir … --output …` regenerates it (the file is machine-local,
+  so nothing to commit). Reflex: after any `comms append` from the primary, render before the
+  next push from it.
