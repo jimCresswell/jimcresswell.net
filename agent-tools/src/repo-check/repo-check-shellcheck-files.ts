@@ -96,13 +96,34 @@ export function isShellScript(file: string, head: string): boolean {
 }
 
 /**
+ * The remedies besides a recognised form for a refused shebang, each one that
+ * can clear the gate on the next run. Adding the line to `SHEBANG_FORMS` clears
+ * only an unlisted line, and on a shell path only as a shell form, since the
+ * path keeps the file shell whatever its form; renaming the file off its path
+ * clears only a file whose path makes it shell.
+ *
+ * @param form - The refused line's kind in `SHEBANG_FORMS`; undefined for a line outside it.
+ * @param shellPath - Whether the file's path makes it shell.
+ * @returns Each remedy, as a clause starting `or`.
+ */
+function refusalRemedies(form: 'not shell' | undefined, shellPath: boolean): readonly string[] {
+  const addForm = shellPath
+    ? "or add its form to the gate's SHEBANG_FORMS deliberately as a shell form"
+    : "or add its form to the gate's SHEBANG_FORMS deliberately";
+  return [
+    ...(form === undefined ? [addForm] : []),
+    ...(shellPath ? ['or rename a script that is not shell off that path'] : []),
+  ];
+}
+
+/**
  * The failure for a tracked file whose shebang the gate refuses: a first line
  * starting `#!` that is not one of `SHEBANG_FORMS`, or a non-shell form on a
  * file whose path makes it shell.
  *
  * @param file - Repo-relative path, named in the failure.
  * @param head - The file's opening bytes, enough to hold its first line.
- * @returns One failure line naming the file, its shebang (each carriage return written `\r`) and the remedy; empty when the gate accepts the file.
+ * @returns One failure line naming the file, its shebang (each carriage return written `\r`) and each remedy that can clear it; empty when the gate accepts the file.
  */
 export function shebangFailures(file: string, head: string): readonly string[] {
   const line = firstLine(head);
@@ -117,13 +138,9 @@ export function shebangFailures(file: string, head: string): readonly string[] {
   const refusal = shellPath
     ? 'not a recognised shell form, and its path makes the file a shell script'
     : 'not a recognised form';
-  const remedy =
-    form === 'not shell'
-      ? 'or rename a script that is not shell off that path'
-      : "or add its form to the gate's SHEBANG_FORMS deliberately";
   return [
     `${file}:1: the shebang \`${line.replaceAll('\r', String.raw`\r`)}\` is ${refusal}; ` +
-      `use one of ${forms.join(', ')}, ${remedy}`,
+      `use one of ${forms.join(', ')}, ${refusalRemedies(form, shellPath).join(', ')}`,
   ];
 }
 
