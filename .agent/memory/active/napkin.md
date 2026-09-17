@@ -2299,3 +2299,46 @@ tip is one whose required analysers ran".
 - **A hook refuses file content holding a machine path.** A script written to the scratchpad
   that named the scratchpad directory was blocked by the machine-local-path fingerprint; scripts
   take the directory as an argument instead.
+
+### Director, the fix lanes to the usage limit (2026-09-16T22:29Z to 2026-09-17T13:55Z) — Cauldron herds Lustre (880ff9)
+
+- **The loop grew faster than it closed.** Fourteen fix pull requests merged (#98 to #104,
+  #106 to #110, #113, #115); eight stayed open and five lane branches were unpushed when the
+  session's usage limit stopped every lane at once. Each lane report named more findings than its
+  pull request fixed, and each review round on a prose-heavy pull request found more. Judge a
+  loop by whether rounds shrink (concept-exploration §Loop Dynamics). I bounded parallelism by
+  host CPU; the binding constraints were serial pushes (one pre-push gate at a time, about six
+  minutes each), review latency and the session's usage budget. Lanes beyond about three became
+  inventory: two merges staged but uncommitted, two cures uncommitted, one partial branch.
+- **Two generators sit under most of the defects.** First, transplant residue on surfaces no
+  validator reads: reviewer templates, tooling source comments, rule globs, `.gitattributes`,
+  skill evals. The cited-paths validator scans none of them, so reviewers found each instance and
+  each was fixed one pull request at a time. Second, vacuous gates: a lockfile rebuild test that
+  reseeds from `node_modules/.pnpm/lock.yaml`, lint that passes warnings, commitlint without
+  `--strict`, `pnpm --filter` exiting 0 when nothing matches, a manifest field no tool reads, a
+  smoke asserting one regex. Proposals P1 and P2 in repo-continuity target the generators, each
+  with a falsifier.
+- **Orchestration substrate facts, now memories.** Monitor commands run under zsh, which does
+  not word-split an unquoted list: a three-PR review watch sat silent for 30 minutes over three
+  landed reviews, and only the silence looking wrong exposed it. Lanes share one scratchpad: two
+  lanes' `msg-a.txt` collided and one commit carried the other lane's message; the repair was a v2
+  branch built with `cherry-pick --no-commit`, never an amend. Every pushed commit's `--stat` was
+  audited against its subject; none was wrong.
+- **Evidence decided two calls against fluency.** I first judged whole-sentence diagnostic
+  assertions a contract; `testing-patterns.md` §Rendered-Output Assertions and the repository's
+  own knip-gate tests assert count and clause, and the reviewer was right. A reviewer's claim that
+  macOS tar rejects long options read as plausible; the lane ran bsdtar 3.5.3 and it was false.
+- **A closed shape needs its boundary in positions, not tokens.** The script-anchoring check went
+  through three rounds (slash-only paths; an interpreter anywhere; then program positions after
+  assignments and exec wrappers), and each reviewer found a form outside the previous boundary.
+- **Metaloss.** _Promises_: every open item from chat is in repo-continuity's in-flight or owed
+  list; the lint-warnings v2 rebuild I asked for was not done (the lane stopped) and is item 9.
+  _Attribution_: the comms tools' exit 1 is a code-expert trace, not a run; the @-mention bypass
+  of the Read scan is security-expert's unverified claim; the interrupted lanes' partial diffs are
+  unreviewed. _Blind spots_: I did not read those partial diffs, the interrupted lanes left no
+  final reports, and no subagent transcript was read. _External bound_: tonight Copilot, a hook
+  and a silent watch caught what my own scans missed; point outside scrutiny at any "passes"
+  stated without a command beside it. _Index of homes_: repo-continuity §Next Safe Steps (state and
+  order), this segment (why), the memories index (orchestration facts), the formation letter of
+  2026-09-17 in `.agent/experience/`. _Fixed point_: a third pass would only re-find the unread
+  partial diffs and the unverified attributions above; the recursion closes here.
