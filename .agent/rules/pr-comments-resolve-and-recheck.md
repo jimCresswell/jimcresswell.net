@@ -1,6 +1,6 @@
 ---
 classification: situational
-description: 'Opening or taking over a pull request binds the session: no merge and no "ready" report until every comment on every surface — GraphQL reviewThreads, reviews, review and issue comments, bots and humans — is fixed in code or explicitly rejected with rationale, replied to, and resolved, re-fetched after every push and at the merge instant. mergeable means possible, never ready; readiness is mergeStateStatus CLEAN. Binds even when the oak-pr-lifecycle skill is not running: the named failure (PR #315) declared "fully green" from the checks table while a High-severity thread sat unresolved.'
+description: 'Opening or taking over a pull request binds the session: no merge and no "ready" report until every comment on every surface — GraphQL reviewThreads, reviews, review and issue comments, bots and humans — is fixed in code or explicitly rejected with rationale, replied to, and resolved, re-fetched after every push and at the merge instant. mergeable means possible, never ready; readiness is mergeStateStatus CLEAN. Binds even when the pr-lifecycle skill is not running: the named failure (a lineage pull request) declared "fully green" from the checks table while a High-severity thread sat unresolved.'
 trigger: ceremony:pr-lifecycle
 ---
 
@@ -22,7 +22,7 @@ a PR "mergeable" as if that meant ready — the two words are different claims.
 **Binding moment: opening (or taking over) a PR binds that session to this rule.** The
 first "merge-ready" / "ready for merge" claim to the owner or a peer is itself a step-5
 declaration and must follow a fresh full-surface harvest run in that same turn — **a CI
-checks table is not a harvest**. Worked instance (2026-07-06, PR #315): "fully green —
+checks table is not a harvest**. Worked instance (2026-07-06, a pull request in the upstream lineage): "fully green —
 ready for your merge" was declared from the checks table alone while a High-Severity
 Bugbot thread sat unresolved; the owner caught it, not the author. Per §"A real issue is
 fixed only when a check guards it", this class's guarding check is a mechanical
