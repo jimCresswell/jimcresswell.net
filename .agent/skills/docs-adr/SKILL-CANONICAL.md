@@ -7,7 +7,7 @@ description: Use when work changes ADRs, durable docs, or README contract surfac
 # Docs & ADR
 
 Use this skill while drafting or revising ADRs, EDRs, README contract docs, or
-other durable documentation. It complements `docs-adr-reviewer`; use the
+other durable documentation. It complements `docs-adr-expert`; use the
 reviewer for the independent truthfulness and cross-reference pass.
 
 ## Read in order
@@ -26,5 +26,5 @@ reviewer for the independent truthfulness and cross-reference pass.
    migration or validation result you have not checked.
 3. Prefer short, specific prose over broad narrative, and keep British English
    throughout.
-4. Hand off to `docs-adr-reviewer` once the draft is coherent, or sooner if the
+4. Hand off to `docs-adr-expert` once the draft is coherent, or sooner if the
    change touches both permanent docs and Practice governance.

@@ -4,19 +4,18 @@ Shared workspace tooling configuration, consumed only through declared
 `package.json` dependencies. This package exists so that no workspace
 config file ever reaches outside its workspace by relative path — the
 violation class it replaced was invisible to lint three layers deep and
-broke tool sandboxes that resolve inside a single workspace (Stryker's
-was the first casualty). A fully copyable workspace subtree additionally
-needs the tsconfig `extends` chain packaged the same way — a recorded
-follow-up in the isolation plan, not yet covered here.
+broke tool sandboxes that resolve inside a single workspace. A fully
+copyable workspace subtree additionally needs the tsconfig `extends` chain
+packaged the same way, which this package does not yet cover.
 
 ## Exports
 
-| Subpath                                      | Export                                                  | Purpose                                                                      |
-| -------------------------------------------- | ------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| `@engraph/workspace-config/vitest`           | `baseTestConfig`                                        | Unit/integration vitest base                                                 |
-| `@engraph/workspace-config/vitest-e2e`       | `baseE2EConfig`                                         | E2E vitest base (network-blocked)                                            |
-| `@engraph/workspace-config/tsup`             | `createLibConfig`, `createSdkConfig`, `createAppConfig` | tsup factories per workspace layer                                           |
-| `@engraph/workspace-config/no-network-setup` | side-effect module                                      | The fetch-blocking E2E setup; keep it FIRST in any `mergeConfig` composition |
+| Subpath                                      | Export             | Purpose                                                                      |
+| -------------------------------------------- | ------------------ | ---------------------------------------------------------------------------- |
+| `@engraph/workspace-config/vitest`           | `baseTestConfig`   | Unit/integration vitest base                                                 |
+| `@engraph/workspace-config/vitest-e2e`       | `baseE2EConfig`    | E2E vitest base (network-blocked)                                            |
+| `@engraph/workspace-config/tsup`             | `createLibConfig`  | tsup factory for workspace libraries                                         |
+| `@engraph/workspace-config/no-network-setup` | side-effect module | The fetch-blocking E2E setup; keep it FIRST in any `mergeConfig` composition |
 
 Consume with a `workspace:*` devDependency and import by package name:
 
@@ -45,6 +44,5 @@ export default baseTestConfig;
 This package carries no unit tests by design: tests prove behaviour,
 and everything here is configuration. Its assurance is consuming
 proof — the estate's builds, lints, and test suites run green THROUGH
-these exports on every gate, the boundary validator's committed
-fixture red-proof covers the isolation invariant, and the mutation
-canary's sandbox run is the end-to-end consumer probe.
+these exports on every gate, and the boundary validator's inline-fixture
+red-proof covers the isolation invariant.

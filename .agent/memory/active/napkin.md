@@ -1651,3 +1651,624 @@ Segment fourteen (10:52Z to 11:05Z, 2026-09-15): #91's red-check cure after the 
 - Removing a pre-check can remove a guarantee it gave silently: the `lstat` refusal also kept
   a fifo from blocking the open. The cure had to carry `O_NONBLOCK` to keep it, and the
   guarantee has no cell (tests cannot make a fifo without `child_process`).
+
+### Lane A (Saffron turns Verdure, c39ad7), segment fifteen, 2026-09-15 10:52Z to 11:47Z: the close and the end-of-arc wrap
+
+The lane closed when #91 merged (`SHA: f8aab12`, 11:24:10Z); the owner then asked for a full,
+deep end-of-arc handoff. The facts, rulings and follow-ons are in the lane record's tenth
+waypoint; this segment carries the surprises, the loss-scan and metaloss findings, the play
+harvest and the exploration's candidates.
+
+- Surprise, the red check's root was a tip no CI ran on. Expected: CodeQL raised the race late
+  because it analyses late. Observed: the exception-push tip `SHA: 20d8e50d` had no CI, CodeQL or
+  Dependency Review run, only Copilot; the race entered in that push and CodeQL first saw it on
+  the merge-from-main tip. GitHub requires no status check on `main` (the one ruleset carries
+  deletion, Copilot review and non-fast-forward), and the settlement's checks leg
+  (`pr-watch/states.ts:81-99`) names no required check, so two passing checks from Vercel and
+  Copilot read as passed (inference from the code, not observed). #91 was saved by an unrelated
+  tail conflict that forced a merge from main. Behaviour change: before requesting a review
+  round or arming the merge poll, read the tip's run list for CI and CodeQL, never the rollup
+  alone. Routed to the Director for the owner at 11:39Z.
+- Surprise, the close records' home was the coordination branch, not a commit. Expected, from
+  the owner's card (records ride the pull request they describe) and the compaction amendment
+  (a wrap may land as its own continuity commit): a closing seat with no pull request commits
+  its records on a local branch for the Director to carry, and the Director agreed. Observed,
+  the owner: "write to the coordination branch, a later seat will handle the commit and push";
+  and, through the Director, "the whole point of coordination branches is to have a common home
+  for things like wraps". Why the expectation failed: the proposal was reasoned from the two
+  nearest memories, and `coordination-branch-24h-lifetime` ("the coordination branch IS the
+  primary checkout's own branch, always") was opened only after the owner's word. The primary
+  checkout's branch then carried a records name (`records/director-12`) until the Director
+  renamed it `coordination/2026-09-15-b9dcfb`. Behaviour change: at a close, route records to
+  the coordination branch's working tree first, append-only where another seat writes; commit
+  only on the owner's word.
+- Surprise, a cure authored against the estate's precedent settled in one pass. Expected, from
+  #90's and #91's history: another round. Observed: CodeQL green on the first cure tip, one
+  Copilot finding and it false, merged seventeen minutes after the push. What differed: the
+  exit criterion was a deterministic analyser's result, ruled before authoring; reading
+  `read-regular-file.ts` before writing surfaced the class (the fifo guarantee the removed
+  pre-check gave, the Windows flags) at authoring; the header claimed only what cells prove;
+  the code-expert brief listed the choices to challenge and asked whether any call pair still
+  matched the rule, and the reviewer read the query source. One instance, not a pattern.
+- Correction absorbed: the first header said "a fifo cannot block it" with no cell behind it.
+  The Director's condition removed the claim before the push. It is segment thirteen's class (a
+  guarantee outran the code), caught by a peer, not by me, in the same day I wrote that lesson
+  down. Naming it did not inoculate; the peer's condition was the gate.
+- A Copilot finding on a regex anchor was settled by a probe in the real runtime, not by recall:
+  cheap, and the reply quoted the probe. The worktree guard refused the inline `node -e`; a
+  scratchpad script ran.
+- Loss scan (session-handoff 6e.2), routed to the tenth waypoint: the merge-gate finding; the
+  Director's rulings this segment, quoted; the code-expert's verified facts (its context is
+  gone); the `GEMINI.md` stale line and the adapter-model sections in two entry points; the
+  cure's untaken notes; the residue branches with the evidence that their content is on `main`;
+  the worktree to remove after the session exits.
+- Metaloss: the compaction summary is the only carrier of the earlier segments' context inside
+  this session, so this scan cannot see what that summary dropped; the earlier waypoints carry
+  their own scans. The error signature this segment, where outside eyes caught what my scans
+  missed: CodeQL (the race), the Director (the header's unproven guarantee), the owner (the
+  records home). Point external scrutiny at prose guarantees, records homes at a close, and
+  whether each tip's analysers ran.
+
+Play harvest (a short wander over this segment's events; associations, never findings):
+
+- Play seed: removing the `lstat` pre-check silently removed the fifo refusal it gave; removing
+  records-only pull requests silently removed the home for a lane's close records, and the
+  owner named the coordination branch within the hour. These look shaped alike: a removed
+  mechanism drops guarantees nobody listed. It reminded me of Chesterton's fence, at two
+  scales on one day.
+- Play seed: Copilot read JavaScript's `$` with PCRE semantics; #90's hook work met a POSIX host
+  reading Windows separators. These look shaped alike: one environment's semantics imported
+  into its neighbour, each settled by a probe in the real runtime.
+- Play seed: the ninth waypoint rode #91 and so could not name #91's merge SHA; the tenth needed
+  a later carrier. It reminded me of the metaloss bound (a recursion cannot certify its own
+  completeness). Crossed into the exploration below.
+- Discarded at the harvest: "the owner, the Director and the Implementer worked as a three-key
+  system" was forced; the owner's word overrides, it is not one key among equals. Discarded:
+  "CodeQL is the better reviewer"; one instance, and the two look for different things.
+
+Concept exploration (four movements, compact). Observations: a record cannot carry its own
+carrier's merge SHA; the owner's card ended records-only pull requests; the first proposed home
+for the close records was a commit, overridden to the coordination branch; the coordination
+branch carried a records name until renamed; the #91 cure converged in one pass on a
+deterministic exit criterion; the merge gate names no required check. Problem frame: two gaps in
+the closure's machinery surfaced at its last step. Where does a close record live when records
+ride the pull request they describe? And what does the merge gate take as evidence of a verified
+tip? Both harm successors silently: a close record with no home is lost or breeds a records-only
+pull request; a tip no analyser saw can merge. Inherited shapes that changed: "records need a
+commit by their author" became "records need a carrier; the coordination branch is the standing
+carrier and the commit a later seat's"; "a green rollup is a verified tip" became "a verified
+tip is one whose required analysers ran".
+
+- candidate: the settlement names its required checks (CI and CodeQL) and reads their absence on
+  the tip as not settled, or the ruleset requires them. Warrant: `SHA: 20d8e50d`'s runs,
+  `states.ts:81-99`, the ruleset read. Falsifier: the settlement, fed a rollup with only
+  non-CI checks passing, already reads not ready (the inference above is then wrong).
+  Destination: the merge bot and `pr-lifecycle` §Phase 5, on the owner's decision.
+- candidate: `session-handoff` step 2 names the coordination branch as the home of wrap and
+  close records, the commit and push a later seat's, beside the records-ride-the-pull-request
+  card. Warrant: the owner's two sentences at this close; the ninth waypoint's fixed point.
+  Falsifier: coordination-branch records stay uncommitted past the branch's 24-hour rotation.
+- candidate: before requesting a review round, read the tip's run list for the required
+  analysers. Warrant: the race sat unanalysed through one round. Falsifier: a later loop where
+  every tip's analysers ran and a late analyser finding still appears. Destination: the gates
+  skill or `pr-lifecycle`.
+- candidate: a documentation claim names the cell that proves it or is not made, and a reviewer
+  brief lists the author's choices to challenge with the rule-matching question. Warrant: the
+  #90 and #91 exception pushes, this segment's header catch, the one-pass cure. Falsifier: a
+  header bounded this way still draws a guarantee finding. Destination:
+  `tsdoc-and-documentation-hygiene` or the code-expert invocation guidance.
+- Unresolved evidence that could change the synthesis: why no workflow ran on `SHA: 20d8e50d`, and
+  whether the settlement's other legs would have settled there.
+
+- Correction to lane A's segment fifteen (11:48Z), after the Director's check: the first
+  surprise's counterfactual was wrong. `SHA: 20d8e50d` ran no workflows because #91 was in conflict
+  on the register tail from #90's merge (22:54:07Z) until the merge of main (23:21Z), and GitHub
+  runs no `pull_request` workflows for a conflicting pull request. Without the conflict the
+  workflows would have run; with it the settlement refuses the tip. The conflict did not save
+  #91; it was why no analyser ran. The general gap stands (a mergeable tip whose workflows never
+  trigger reads green), carried to the owner by the Director (item 110). The third candidate
+  sharpens: a pull request in conflict runs no CI, so cure the conflict before requesting a
+  review round; its falsifier stands. The unresolved evidence about the missing runs is
+  resolved. And the merge came fourteen minutes after the last push (its runs started
+  11:10:31Z; merged 11:24:10Z), not seventeen. The error signature: an inference I flagged as
+  one was still wrong, and a peer's check against documented platform behaviour caught it.
+
+### Director, end of arc (2026-09-15, from 11:33Z) — Cauldron herds Lustre (880ff9): loss scan, metaloss, play and concept passes
+
+- **Surprise (owner correction): the records home.** Expected: under the owner's card (no
+  records-only pull requests), the Director's closing records wait on a local branch for a
+  later substantive pull request. Observed: the owner, twice in minutes (to lane A in its
+  session, then to this seat): the coordination branch is the common home for wraps, and a
+  later seat commits and pushes. Why it was missed: this estate's closure ran without a
+  coordination branch (the primary checkout sat on `chore/director-records-N`), so the rule
+  never fired in the arc; its trigger is keyed to the branch-cut ceremony, not to "where does
+  a wrap go"; and the card closed one path, so I improvised a second instead of looking for
+  the sanctioned one. Behaviour change: when an owner ruling closes a path, search the estate
+  by purpose for the instrument it already owns before building a replacement. Cure applied:
+  the branch renamed in place to `coordination/2026-09-15-b9dcfb`; register entry filed
+  (2026-09-15 section); the handoff's item 110.
+- **candidate: reaching past an owned instrument (a concept pass, not a finding).** Four
+  constructions in one arc beside an instrument the estate already owned for the same
+  purpose: the YAML-emulating reader in #86; the declared-adapters reader in #91 beside the
+  seam-backed surface reads (its cure copied `read-regular-file.ts`'s flags instead of calling
+  it, the synchronous and asynchronous mismatch its stated reason); the records-only pull
+  requests #54 to #88 beside the 2026-07-15 handover ruling; `records/director-12` and the
+  proposed `records/lane-a-close` beside `coordination-branch-24h-lifetime`. Independence
+  tested: the pull-request chain that lived only in the transcript (a missing instrument, not
+  a bypassed one) and the push-based branch delete (a tool-behaviour gap) do not share the
+  generator. Mechanism hypothesis: the seat searches forward from the task; the estate's
+  triggers are keyed to each instrument's own ceremony, so a purpose-first search does not
+  hit them, and an instrument unused in the current arc is not in working memory. Candidate
+  cure: a purpose-first lookup before building, placed at the moment of need (the wrap and
+  handoff skills naming the coordination branch; for code, a lint or seam rule for
+  filesystem reads in `agent-tools`; `tooling/eslint/src/configs/recommended.ts` restricts
+  types and syntax, and whether its `no-restricted-syntax` covers `node:fs` was not read).
+  Falsifier: in the next arc, constructions beside owned instruments still reach review or
+  the owner at the same rate after the placement cure. For the retrospective.
+- **Surprise (formation to self): a lesson written becomes the writer's next error within
+  hours.** Item 108 named "route a new read through the boundary the estate already built";
+  four hours later I routed my records past the coordination branch. The 2026-09-14 letter
+  records the same shape ("the candidate I had drafted that very evening ... was describing
+  me"). Writing a lesson does not change the seat that wrote it inside the session; only a
+  gate at the action moment does (`passive-guidance-loses-to-artefact-gravity`). Behaviour
+  change: when I write a lesson, name the next action in this session it should gate, and
+  check that action against it.
+- **The finish-line cluster, again.** Three fluent moves in the closing hour: the branch
+  delete by `git push` inside lane A's slot (self-caught after the hook ran); the records
+  landing story (owner-caught); the `comms send` under the session's new model (tool-caught).
+  None was caught before acting.
+- **Second instance: record times written as estimates.** #88's review found two #89 times
+  in the handoff that were estimates written before the clock was read (21:38Z for 21:13:46Z;
+  22:03Z for 21:23:30Z); the first instance was the "22:0xZ" stamps of 2026-09-14. The
+  per-user memory "read the clock before writing a time" holds it; two instances make it a
+  register candidate at the next occurrence.
+- **Verified: lane A's merge-gate finding, and its counterfactual.** #91's exception tip
+  `SHA: 20d8e50` ran no CI, CodeQL or Dependency Review because #91 was conflicting on the
+  register tail from #90's merge (22:54:07Z) until lane A merged `main` (23:21Z); GitHub runs
+  no `pull_request` workflow for a conflicted pull request. The merge bot's conflict leg would
+  have refused that tip, so a merge without CI did not follow. The gap underneath stands for
+  the owner: no required status check on `main`, and the settlement's checks leg names none.
+- **Practice/tooling feedback**
+  - **Surface**: `agent-tools:collaboration-state comms send`. **Signal**: friction.
+    **Observation**: after `/model` switched the session from `claude-fable-5-1` to
+    `claude-opus-5`, `comms send --model claude-opus-5` refused ("identity route ... collides
+    with live identity ... claude-fable-5-1"), while `comms watch` and `assert-watcher-live`
+    accepted the new model. **Behaviour change / candidate follow-up**: the send accepts a
+    model change under the same session id, or the refusal names the registered model and the
+    flag to pass. **Source plane**: operational.
+  - **Surface**: `pnpm --silent agent-tools:collaboration-state -- comms send`. **Signal**:
+    friction. **Observation**: the refusal above printed only `ELIFECYCLE ... exit code 1`
+    through pnpm with `--silent`; the direct `node agent-tools/dist/...` call printed the
+    reason. **Behaviour change / candidate follow-up**: recipes for sends do not use
+    `--silent`, or the CLI writes refusals where pnpm's silent mode keeps them.
+  - **Surface**: `agent-tools merge-bot merge`. **Signal**: idea. **Observation**: it prints
+    that the merge-base deletion sweep is not discharged; the seat then deleted the branch
+    with `git push`, which ran the full pre-push gate. **Behaviour change / candidate
+    follow-up**: the bot deletes the merged head ref through the API as its last step, or
+    prints the API call.
+- **Grounded execution knowledge.** A pull request with a merge conflict runs no
+  `pull_request` workflow on a tip pushed while conflicted, so that tip has no CI or CodeQL
+  until the conflict is resolved, and the settlement's checks leg counts Vercel Preview
+  Comments and the Copilot reviewer as passed checks. A finding on a pull request's own scope
+  wording is cured in its title and description with no push (#88). `git cherry origin/main
+  <branch>` counts patches, not content: `closure/lane-a-checkpoint` shows one unmerged patch
+  while its text is on `main`; probe a line before calling a branch stranded. Without the
+  `m` flag, a JavaScript `$` asserts the end of input only (Copilot's #91 finding, rejected
+  and verified under Node).
+- **Loss scan, from inside this context.** Routed: the coordination-branch correction and
+  the rename (item 110, the register, the continuity contract, the per-user memory); #145's
+  merge and its attribution (item 110, flagged as the curator's report); the merge-gate
+  verification and the owner's card (item 110); the branch and worktree residue (item 110);
+  the concept, the formation-to-self surprise and the tool feedback (this block and the
+  letter). Surfaces checked: the comms events of this session (two, both carried by the
+  handoff); conversations (none) and escalations (none open); handoff records (lane B's three,
+  claims closed 2026-09-13, curator-pass residue); platform plans (`abundant-noodling-snail`
+  is this arc's session-1 routing plan, homed by the landed work and the handoff's early
+  items; `mellow-crunching-shannon` is lane A's step-back; the other two recent plan files
+  belong to other estates); the Claude per-user memory (fourteen entries: the rounds and hold
+  entries homed in PDR-132's 2026-09-14 amendment and pr-lifecycle's Below-bar format, the
+  records and branch-deletion entries in the register's 2026-09-15 section, the clock entry
+  in this block); the Codex memory (this estate named only by a 2026-08-09 architecture
+  analysis, nothing from the arc); the Cursor (2026-05-28) and Gemini (2026-07-24) surfaces
+  predate the arc and were not read. Entry points: `CLAUDE.md`, `AGENTS.md` and `GEMINI.md`
+  carry adapter-model sections beyond the default pointer contract; none was added this
+  session and none was moved (a non-trivial move is the owner's); `skills.md` matches its
+  contract; `.codex/AGENTS.md` is absent; the Codex alert block's generator check was not run
+  (its command name was not found). Context-only by choice: the scratch scripts, whose
+  substance is in the records.
+- **Metaloss passes.** Compressed reasoning: the decision to leave this wrap's writes
+  uncommitted (the owner's word to lane A, and a later seat batching both wraps into one
+  continuity commit) and the decision not to run consolidation (item 94; the retrospective
+  first) carry their warrants in item 110 and the continuity contract. Promises: #88's three
+  corrections and the todo 1 edit are on the coordination branch, not yet on `main`
+  (forwarded to the later seat's convergence); the curator check-ins the owner asked for on
+  2026-09-14 end with this wrap's; the stand-down recommendation was answered by the owner's
+  wrap word; the Director identity row on lane A's thread record is owed until lane A's
+  appends finish. Attribution inferences flagged: lane A's resume "on the owner's own word"
+  at 10:52Z (lane A's report); the owner's answer on #145 (the curator's comment); "alert #7
+  fixed" (lane A's read of the alert; this seat's read found no open alert on the pull
+  request's ref); the `falsifier-2a` worktree's creator (not verified). Blind-spot bounds:
+  the arc before the last compaction is visible to this seat only through the compaction
+  summary and the records written before it; lane A's napkin segments, thread waypoints and
+  letter were not read; the lineage curator's repository was read at its branch tip and #145
+  only. Index of homes: the handoff's boundary block. External bound: outside eyes caught
+  what this seat's scans passed three times on the arc's last day (lane A on the handover
+  ruling; Copilot on the record times, the bare reference and the stale mirrors; the owner on
+  the records home). The error signature is where a record lands and the times written in
+  it, so external scrutiny points there. Fence sweep: 425 owner messages scanned for held-off
+  wording; only the standing privacy boundary applies, and nothing this seat wrote touches
+  it. Fixed point: a third pass re-finds the records-landing item and the attribution flags;
+  the recursion closes here.
+- **Play harvest (associations, not findings).** Kept: (1) the CodeQL cure (resolve the path
+  once, hold the descriptor) reminded me of quoting the governing rule inside the ruling:
+  resolve the rule once at the action moment and act on that text, not the remembered read.
+  (2) The handover-PR ban and the coordination branch's daily convergence look like two
+  halves of one design: no per-seat record pull requests, one shared home that converges
+  daily; the review treadmills came from records branches that lived for many hours. (3) A
+  reviewer that never returns zero and a round budget that does not go up reminded me of a
+  halting condition that has to come from outside the loop, the shape of the wrap's fixed
+  point. (4) "A later seat will handle the commit and push" reminded me of PDR-011's
+  author-cannot-self-verify: a lander who did not write the wrap reads it fresh at commit
+  time. (5) The owner corrected lane A's proposal in lane A's session before telling this
+  seat: at n=2 the owner speaks to the seat nearest the error, which does not match PDR-117's
+  single owner interface; for the retrospective. Discarded, visibly: the 24-hour lifetime as a
+  cache expiry (a restatement with no content); "two seats in one liveness domain should be
+  one seat" (forced).
+- **Unresolved evidence for the retrospective.** The lineage's coordination fold pull
+  requests have drawn large review loads (one with thirty-eight findings over five rounds, by
+  its own plan file); PDR-140 (review-response pricing) exists in this estate; whether a
+  coordination fold pull request here draws the treadmill the records pull requests did is
+  untested.
+- **Addendum (Director, 2026-09-15, after lane A's done message): owned doctrine, unapplied.**
+  Lane A's candidate "read the tip's run list and cure a conflict before requesting review" is
+  already homed: pr-lifecycle's "CI can go SILENT" clause (MCP-373, homed 2026-07-31) says a
+  conflicting pull request silently stops `pull_request` runs and a settle watch must confirm
+  runs exist for the current head. Neither the seats nor the merge bot's settlement applied it
+  on #91: Copilot was requested on the conflicted tip, and `states.ts`'s checks leg has no
+  runs-for-the-head leg. This looks shaped like the reaching-past candidate above, but its
+  generator may differ (a doctrine never implemented in the instrument, not a construction
+  beside one): an association for the retrospective, not a finding. Promise discharged: the
+  Director's identity row on lane A's thread record.
+
+### Director, the arc's retrospective (2026-09-15): Parallax learning signal
+
+- **Surprise: three counting errors in one retrospective, one shape.** The owner message count
+  first read 417 (peer-session messages are recorded as user turns; the owner's own count is
+  145); Copilot reviews first read 123 (the first page held 40 reviews and bot thread replies
+  are reviews; paginated, 133); token totals first read 35.8M output and 8.64B cache-read (one
+  response spans several content blocks carrying the same usage; once per message id, 8.35M and
+  2.96B, caught by the protected pass). Each is a surface whose records are not one-to-one with
+  the thing counted. Behaviour change: count from a tested instrument, not a one-off script;
+  the retrospective's proposal 4 is that bin, with a cell per error.
+- **Surprise: #62's twenty-one Copilot reviews were twenty-one requests.** `main`'s ruleset does
+  not review on push; every review on #62 was requested under the owner's credential, one every
+  ten to twelve minutes for four hours, while PDR-140 (pushes are the rationed unit) sat in the
+  estate from the transplant commit. The loop was the seat's, not the platform's.
+
+### Director, the compaction question (2026-09-16): grounded execution knowledge
+
+- A seat cannot compact itself: `/compact` is the user's command, and no hook triggers a
+  compaction or changes a running session's settings or environment. `PreCompact` exists, takes
+  `manual` and `auto` matchers, and cannot block (exit code 2 is not honoured for it).
+- The auto-compact threshold is a token window, not a percentage: the `autoCompactWindow`
+  setting, the `/autocompact` command, the `--autocompact` flag and
+  `CLAUDE_CODE_AUTO_COMPACT_WINDOW`, from 100K to 1M, about 967K by default on million-token
+  models.
+- The percentage is already in the estate's hands twice: Claude Code passes
+  `context_window.used_percentage`, `remaining_percentage` and `context_window_size` to the
+  statusline command on every refresh, and this estate's adapter appends each raw payload to
+  `PRACTICE_STATUSLINE_LOG_FILE` when that is set — so a 60% trigger can be prototyped with an
+  environment variable and a monitor, before any code is written. `agent-tools session-metadata`
+  computes the same percentage from the transcript, with the owner's taught zones.
+- Gap found: `window-registry.ts` knows the 4.x models, Fable 5 and Haiku 4.5, but not Opus 5,
+  Fable 5.1 or their 1M variants, so the percentage does not resolve for the models this arc ran.
+
+### Director, the second pass and the miscount (2026-09-16): grounded execution knowledge
+
+- **A user-turn-only transcript extractor drops about a quarter of the owner's messages.** Claude
+  Code records a message typed while a turn is running as a `queue-operation` entry (`enqueue`,
+  then `remove` with `reason: absorbed_mid_turn`), not as a user turn. Counting user turns alone
+  gave 145 owner messages for this arc; user turns plus deduplicated enqueues give 193, and the
+  active-time proxy moves from 11.1 to 13.4 hours. The owner's coordination-branch correction of
+  2026-09-15T11:37:07Z was invisible to the first method, which made a protected pass record it
+  as unverified. Count owner attention from both entry classes.
+- **The claim "owned doctrine did not fire" was half wrong, and the half matters.** #62's body
+  declared PDR-140's intake contract and a settlement budget of one push, then took twenty-one
+  review requests: the doctrine was consulted at open and breached at the action moment. A gate
+  at the declaration would have changed nothing; a gate at the push is the cure.
+- **The harness's inbound surface**, read at 2026-09-16: one Unix socket per session at
+  `/tmp/cc-socks/<pid>.sock`, mode `srw-------` in a `drwx------` directory, carrying peer
+  messages into the conversation as text; the harness process listens on no TCP port, and a
+  peer cannot make a session run a slash command.
+
+### Director, the build session and its wrap (2026-09-16, 11:35Z to 12:31Z) — Cauldron herds Lustre (880ff9)
+
+- **Surprise: PreCompact can block, and one documentation page said three different things.**
+  The owner asked whether a hook could hold compaction until the preparation had run. WebFetch
+  answered "cannot block" from the anchored section, "can block, exit 2 prevents compaction" from
+  the JSON-output section, and "section not present" when asked for the text verbatim — all from
+  one page, because the tool answers through a summarising model over possibly truncated content.
+  The installed binary settles it: `executePreCompactHooks`, `Compaction blocked by PreCompact
+  hook`, `compaction blocked by PreCompact hook; continuing uncompacted`, `SKIP_PRECOMPACT_THRESHOLD`,
+  `preCompactTokenCount`, `.precompact.json` (Claude Code 2.1.273, read with `strings`). Behaviour
+  change: for a load-bearing platform fact, read the implementation or test it; a documentation
+  summary is a lead, never evidence. Flagged as inference, not fact: that
+  `SKIP_PRECOMPACT_THRESHOLD` is a wedge guard — that is a reading of a name, nothing more.
+- **Surprise: entering a worktree re-homes the session's transcript.** Claude Code keys transcript
+  storage by working directory and MOVES the file when that changes; after `EnterWorktree` this
+  session's transcript lived under the worktree's project key and was gone from the original. So
+  an arc's history can span several project directories, and a successor hunting a session under
+  the key it started in will not find it. The metrics tool takes repeatable `--project-dir` for
+  exactly this reason.
+- **Surprise: the arc had six sessions, not four.** The retrospective enumerated four transcripts
+  by hand; scanning the project directories finds six. The extra two are the headless sessions
+  that ran the @-import falsifier on 2026-09-14 (about twenty seconds each). Negligible hours,
+  non-zero calls and tokens, and the fourth error of one family: a hand enumeration standing in
+  for a scan.
+- **Surprise: three numbers for one count, and only one of them had a rule.** Owner messages for
+  this seat read 193 by my hand extractor, about 118 by a protected pass's estimate of prose, and
+  140 by the tool's written, tested filter — which also reports 1,322 filtered, so the difference
+  is visible rather than argued. A count without a stated filter is an opinion.
+- **My own error, twice: a background wrapper's exit code is not the gate's.** I reported "the
+  gate passed (exit 0)" when the wrapper had exited 0 while `pnpm check` exited 1. Cure adopted:
+  the gate's own code is appended to its log (`echo "GATE_EXIT=$?" >> log`) and read from there;
+  the task notification's code is never the gate's.
+- **The gates caught four real defects in my code, none of them style.** A function at complexity
+  12 against a maximum of 8 and a file at 320 lines against 250 (cured by splitting into `entry`,
+  `owner-messages` and `aggregate`, not by shortening prose); four banned type assertions (cured
+  by `in`-operator narrowing); a stale hard-coded topic list in a test (the CLI usage string is
+  asserted literally, twice); and an unused export (`totalsOf`, made module-private).
+- **Grounded execution knowledge.** An UNTRACKED file escapes `pnpm check`'s prettier leg, which
+  reads the tracked universe, and fails only at staging when the pre-commit hook sees it — a new
+  file can pass the full gate and still fail the commit. `knip` is a ROOT script: running
+  `pnpm exec knip` inside a package runs it without the root config and reports unused types the
+  gate never mentions; run it as the gate runs it. The repository's worktree guard refuses a
+  shell command whose text is too complex to prove is not git when a computed variable stands
+  where an option could.
+- **Practice/tooling feedback.**
+  - **Surface**: the worktree-isolation guard. **Signal**: friction. **Observation**: with this
+    session isolated in a worktree, a subagent's `git log` was refused, so a measurement pass fell
+    back to the GitHub API against `main` and could not see branch-local commits. **Candidate
+    follow-up**: admit read-only git in the session's own repository for subagents, or say so in
+    the brief and name the blind spot. **Source plane**: operational.
+  - **Surface**: `WebFetch` on documentation. **Signal**: surprise. **Observation**: three
+    incompatible answers to one question from one page. **Candidate follow-up**: for platform
+    facts, read the implementation or test it.
+  - **Surface**: background Bash tasks. **Signal**: friction. **Observation**: the completion
+    notification carries the wrapper's exit code, which hid a red gate twice. **Candidate
+    follow-up**: recipes that run a gate in the background append the gate's own code to the log.
+- **From the peer seat (Zephyr guards Leeward, 281e44), attributed, three exchanges.**
+  - _The empty-set generator_: both our merge-gate defects were one shape — an empty result set
+    read as a satisfied predicate. Zero required checks reads as all green; zero classifiable
+    evidence reads as nothing to wait for. Cure taken into my own tool: a predicate over a
+    filtered set reports how many it filtered and why.
+  - _Safe directions do not transfer_: for its leg, dropping a real review costs a leg, so
+    over-removal is the danger; for my counter, admitting harness traffic inflates what the owner
+    is said to have asked for, so under-removal is. Same shape, opposite defaults — a filter
+    copied between them would be wrong in the way hardest to see. The rule that carries is: name
+    what a wrong answer costs, and let that set the direction the predicate fails toward.
+  - _Comment pressure_: a file-length ceiling prices lines uniformly, so it selects against the
+    LONGEST comment rather than the least load-bearing one; the peer was one keystroke from
+    cutting the invariant that empties must be counted. Triage question offered and recorded by
+    it: which of these lines could a later reader NOT reconstruct from another surface? Trim those
+    last. Where decomposition is available it beats prose-trimming, but only when it fits the
+    story's budget — with four importers it does not, which is when the heuristic earns its keep.
+- **Loss scan (session-handoff 6e.2), from inside this context.** Routed to durable homes: the
+  PreCompact correction, the corrected ratio, the fourth and fifth counting errors, the tooling
+  feedback and the peer's framings (this block and the records). Owed and recorded in the boundary
+  block, not merely held here: the pull request for `feat/arc-metrics` (branch pushed at
+  `SHA: 6d60e05`, body drafted at the scratchpad path the boundary block names, its evidence JSON
+  saved beside it); the coordination branch's convergence, due today under the 24-hour rule and
+  unpushed; the settlement's required checks, the 60% trigger and the push-time budget gate. Kept
+  deliberately in context only: the scratch scripts, whose substance is in the records.
+- **Metaloss.** _Compressed reasoning_: two decisions carry their warrants in item 112 — no pull
+  request opened at a compaction boundary (opening a review chain is starting something, which the
+  owner's word gates), and the records committed locally without a push (a five-minute gate at a
+  boundary, with no reviewer waiting). _Promises_: the pull request, the convergence, three queued
+  builds, and the owner's card on required checks — all named in the boundary block with their
+  homes; none left in chat alone. _Attribution flags_: `SKIP_PRECOMPACT_THRESHOLD`'s meaning is my
+  inference from a symbol name; the peer's reports of its own gate and tests are its word, not my
+  observation; the doctrine matches in the corrected ratio are the protected pass's judgement, and
+  it says itself that presence in the tree is not presence in context. _Blind spots_: I still have
+  not read lane A's records from the closure; the protected pass's first report never reached me,
+  only its addendum and then its full report on request, so I cannot say what the first contained;
+  and no reviewer has yet seen the arc-metrics code — Copilot's first pass is still owed.
+  _External bound_: every error corrected today was caught by something outside my own reading —
+  the owner, a peer seat, a subagent, a linter, a hook. That is the signature to point scrutiny
+  at: my own counts, and my own claims about what a gate said. _Fence sweep_: no owner wording was
+  held off the repository this session. _Fixed point_: a third pass re-finds the wrapper-exit-code
+  error and the unread lane A records; the recursion closes here.
+- **Play harvest (associations, not findings).** Kept: the gate's four catches and the peer's
+  ceiling breach were both cases of a limit doing its job as a _signal_ while the cheapest
+  response was to satisfy it cosmetically — splitting a module and trimming a comment look alike
+  at the diff level and differ entirely in what survives. Kept: "read the implementation, not the
+  prose about it" applied to the harness this morning and to the estate's own doctrine yesterday
+  (PDR-140 was read at open and breached at the action moment); in both cases the written account
+  and the behaviour had drifted, and only the behaviour was load-bearing. Discarded, visibly: "the
+  worktree guard and the merge gate are the same mechanism" — superficially both refuse on
+  insufficient evidence, but one refuses a command and the other refuses a merge, and nothing
+  followed from pairing them.
+
+### Director, the Cricket suite mis-run and what it accidentally measured (2026-09-16, 13:07Z) — Cauldron herds Lustre (880ff9)
+
+- **My error: I overrode the Cricket seats' defined models.** The owner asked for full suites with
+  "no Fable instance". The correct reading is to SKIP the one seat defined as fable
+  (`cricket-judgement-low`) and let the other three run at their own frontmatter. Instead I passed
+  an explicit model to all four, which both resurrected the fable-named seat under another model
+  and inverted the estate's deliberate INVERSE pairing of model power against effort. Defined:
+  low=fable, medium=opus, high=sonnet, xhigh(procedure)=haiku. Forced: haiku, sonnet, opus, opus.
+- **Why I got it wrong, and the structural cure the owner named.** The generated adapter names
+  carry effort only (`-low`, `-medium`, `-high`, `-xhigh`), so nothing in the name says which model
+  a seat runs. The owner's word: the names are supposed to encode BOTH model power and effort.
+  The templates under `.agent/sub-agents/templates/` already declare both per variant, so the fix
+  is a generator and naming change across four platform adapter trees — captured, not started.
+- **The accidental experiment, worth keeping.** Haiku at LOW effort independently found the
+  blast-radius defect (compiler options placed in the base tsconfig every workspace inherits,
+  where the agent-tools project would do) and the priority problem, and honestly flagged that it
+  could not tell whether the owner's question authorised a repo-wide change. Sonnet at medium
+  effort MISSED that defect and judged the change proportionate. Opus at high effort found both
+  and put the blast radius best. Opus running the xhigh procedure found the unproved guard arm and
+  DISSENTED on priority, holding that a branch absent from the owner's directives is not grounds
+  for a wrong-priority verdict. The cheapest seat caught what a dearer one waved through; the
+  dearest produced the sharpest dissent. That is evidence for running the SUITE rather than any
+  one seat, which is what the inverse pairing exists to buy.
+- **What the suite caught in me, twice over.** Only the accepting arm of a widened guard had been
+  demonstrated; the rejecting arm was reasoned. Probed both ways afterwards, first-hand. And the
+  compiler options moved down to the workspace where hook sources live. Both findings came from
+  outside my own reading — the same external-bound signature this arc keeps producing.
+
+### Director, the hook build and the corrections that followed (2026-09-16, 12:51Z to 13:28Z) — Cauldron herds Lustre (880ff9)
+
+- **The error that matters: I claimed a property from the surface I had exercised, not the surface
+  that owns it.** "No build step, works on a fresh clone" was true of my machine, where every
+  workspace `dist` exists. It is false of the package graph: the observer's static imports reach
+  `@engraph/type-helpers`, which exports only its built `dist`, and they sit OUTSIDE the entry's
+  try block, so a tree without the built closure gets exit 1 and no observation. One worktree here
+  is in that state. Third instance today of one shape — a wrapper's exit code, a hand count, and
+  now a machine's convenient state, each read instead of the surface that owns the fact.
+- **The bridge I removed was the signpost, not the gap.** The `.mjs` shim was visible ceremony and
+  it genuinely went. The coupling it stood next to — every workspace package resolving to built
+  output by design — stayed, invisible, inside the import graph. Keep this: when you remove a
+  bridge, check whether you removed the gap or only the thing that marked it.
+- **A rule I cited all session said the opposite of what I used it for.** I treated
+  `coordination-branch-24h-lifetime` as grounds for deferring convergence. Its step 2 says a seat
+  at n=1 ACTS on convergence before staking new work, and calls an overdue branch "a defect to
+  route, not a home to build on". Two conscience seats caught it; reading the rule settled it. I
+  had read that rule this arc and still used it backwards, which is the same lesson as yesterday's:
+  writing or reading a rule does not change the one who reads it — the question asked at the moment
+  of the move does.
+- **Suite tally, six returns (the fable seat deliberately absent per the owner; the new seat could
+  not launch).** Opus at medium, both stances: DRIFTING, both on the mis-cited rule — the only
+  seats to catch it. Sonnet at high, both stances: ON-TRACK, with one useful redirection (fold the
+  convergence ask into the same message as the suite report). Haiku running the compiled procedure,
+  both stances: ON-TRACK. The dissent was concentrated in ONE role across both stances, which is a
+  better argument for the panel than agreement would have been.
+- **What the adversarial stance actually bought.** Little, this time: each role returned the same
+  verdict under both stances, and the adversarial runs differed mainly in how the refutation was
+  argued. Worth watching over more runs before concluding anything — a stance that never changes a
+  verdict is either a well-grounded frame or a stance that is not biting.
+- **Play harvest.** Kept: a hook, a shim and a dist artefact are three answers to one question —
+  what does the harness need to be handed? — and Node 24 changed the answer without anyone
+  noticing the rule that encoded the old one. Kept: the cheapest conscience seat found the defect
+  the mid seat waved through, which suggests the panel's value is variance, not power. Discarded,
+  visibly: "the guard and the type system are both extension checks" — superficially true, nothing
+  followed.
+- **Metaloss.** _Promises_: convergence first at resume, the seven queued code fixes, two
+  maintenance items — all in the continuity contract and handoff item 114, none left in chat.
+  _Attribution_: the code-expert's findings are its work, verified here only for the two I could
+  check cheaply (the export surface, the worktree without `dist`); the tsup/esbuild reasoning is
+  its claim, not my measurement. _Blind spots_: the new Cricket seat is unvalidated; no reviewer
+  has seen the arc-metrics code; the response-shape question the observer exists to answer is still
+  open, because no real compaction has fired the hook yet. _External bound_: every correction today
+  came from outside my own reading — a peer seat, a conscience panel, a reviewer, a gate, the
+  owner. That is the signature to point scrutiny at.
+
+### Director, TypeScript 7 side by side and the observer's first real compaction (2026-09-16, 13:32Z to 14:45Z) — Cauldron herds Lustre (880ff9)
+
+- **My probes tested my model of the payload, not the payload.** The synthetic stdin I fed the
+  observer while building it carried the shape I assumed — a string `custom_instructions`, a
+  `mystery_field` I invented. The first real `/compact` sent `custom_instructions: null` plus two
+  undocumented keys (`scratchpad_dir`, `prompt_id`), so my schema recorded `schema-mismatch`; and
+  it rejected my response outright, because `hookSpecificOutput` has no `PreCompact` variant. A
+  probe built from an assumption can only confirm the assumption. The instrument earned its keep
+  on its first real firing precisely because it recorded the raw bytes as well as my schema's view.
+- **An exit code is not a verdict; a count is.** Under a plain `typescript@7` bump,
+  dependency-cruiser exited 0 reporting "no dependency violations found (1 modules, 0 dependencies
+  cruised)". typescript-eslint failed loudly; the architecture gate passed while checking nothing.
+  The same shape as yesterday's piped exit codes, one layer up: read what the tool measured.
+- **The survivability rule caught a hold nobody had declared.** Deleting and rebuilding the
+  lockfile resolved `@testing-library/jest-dom` 6.10.0 — a deprecated minor carrying 7.0's
+  incompatible requirements — which `main`'s lockfile had kept out by recording 6.9.1 under a `^6`
+  range. "Run it, never reason about it" was exactly right: no reading of the manifest would have
+  shown it. Knock-on: the rebuild moved Playwright to 1.63, whose browser revision was not
+  installed, and the push's end-to-end leg failed 31 tests on a missing executable — environment,
+  not code; the documented browser install cured it.
+- **Corepack chooses pnpm by the directory you launch from.** `pnpm --dir <worktree> install` run
+  from the primary picked 12.4.2 from the owner's uncommitted root manifest and the worktree
+  (pinned 12.4.1) refused. Run pnpm from inside the worktree it serves.
+- **Two blocks that were questions, taken as questions.** `git checkout <ref> -- <paths>` into a
+  brand-new worktree was blocked by hook policy; the non-destructive transport is `git diff` then
+  `git apply`, which refuses on mismatch instead of overwriting. And `@engraph/no-dynamic-import`
+  rejected my fail-open cure (a dynamic import inside the try); `Object.keys` is restricted to the
+  type-helpers package. Both are deliberate doctrine, so a genuinely build-free hook waits on the
+  `tooling/*` packages exposing source — an estate-wide decision, not a hook-PR decision. The
+  observer's TSDoc now states exactly what fails open and what exits 1.
+- **The commit-message guard reads prose.** "7.0's breaking changes" in a body tripped the
+  major-version guard, which matches its indicators case-insensitively. Say "incompatible".
+- **Owner edits can land mid-move.** While I moved the owner's diff to a worktree they edited
+  `next.config.ts` in the primary; the patch taken a minute earlier lacked it. Re-taking the patch
+  at the moment of transfer and byte-comparing the primary's diff again before commit is what made
+  the transfer safe.
+- **Two reviewers converging on one flaw found a better cure than either proposed.** Both said the
+  specifier guard's `src/bin` scope was wrong for source-run modules outside it; one proposed a
+  reachability-derived guard. The simpler truth: under `rewriteRelativeImportExtensions` a `.ts`
+  specifier is correct everywhere, so the guard went back to allowing it everywhere and the
+  production-shaped smoke test carries the proof the guard could not. When a fix grows machinery,
+  check whether the constraint it serves was real.
+- **Measure strictness before choosing it.** One probe — each candidate flag against each of seven
+  type-check targets on TypeScript 7 — split "strict everywhere" into four free flags for one
+  small pull request and three costly ones (213, 210, 234 errors) to slice. The slicing then
+  turned on one lint fact: with `no-unnecessary-condition` off, flag-agnostic fixes can land
+  before the flag flips. `.at(i)` is declared `T | undefined` under both settings, so a guard
+  after it matches its type in both.
+  **Correction (same day, code-expert with tsc 7 and 6):** I first wrote here that a guard on
+  `arr[i]` is a TS2367 error while the flag is off, and told the owner so. False: a comparison
+  with `undefined` is always allowed; such a guard compiles either way and only trips
+  `no-unnecessary-condition`, which is off. I also claimed `unicorn/prefer-at` is on in the site
+  and ESLint workspaces; it is set only in the shared config others consume. Both were reasoned,
+  not run — the same shape as the day's other corrections: state a compiler fact only after the
+  compiler has said it.
+- **In zsh, never name a variable `path`.** It is tied to `PATH`; a loop assigning `path=` wiped
+  the command search path for that shell (`command not found: sed`). And zsh parses `${x%%(*}` as
+  a glob pattern — reach for Node for string slicing in one-off probes.
+- **Removed, with the owner's word and a proof per path (2026-09-16):** nineteen uncommitted owner
+  files in the primary checkout — twelve dependency files byte-identical to the patch that became
+  #92, seven tsconfig edits adding only `erasableSyntaxOnly` and `verbatimModuleSyntax`, which
+  #94's base carries. The owner was still editing, so the discard re-verified coverage in the same
+  command, immediately before the forward writes, and would have aborted on any drift. Why it
+  mattered: the coordination branch cannot merge `main` over dirty paths.
+- **A merged PR changes every open lane's base.** `git fetch` showed #92 merged mid-lane; the hook
+  lane had no commits yet, so `merge --ff-only origin/main` moved it with its uncommitted work
+  intact (no overlapping paths), and its gates were re-run on TypeScript 7 before pushing.
+
+### Wrap at the compaction boundary (2026-09-16, 15:27Z) — Cauldron herds Lustre (880ff9)
+
+- **Metacognition.** The day's one error shape, again: a fact stated from reasoning in the voice
+  of measurement — the TS2367 guard claim and the `prefer-at` claim. Everything that went right
+  went right by computing first (the flag probe table, the lockfile rebuild, the byte-compare
+  before the discard, the depcruise module count). Also: the owner asked for the wrap "when
+  reasonable" and then asked again; for this owner "when reasonable" means bound the finishing work
+  tightly, not finish the current slice and its review cycle.
+- **Free play.** Every tool that "passed" today had to be asked what it measured: dependency-
+  cruiser's one module, a type-check that took no time because the incremental cache answered,
+  a background wrapper's exit 0 over a failed inner gate, a render that changed nothing. Kept:
+  green is a claim about a measurement, and the measurement is the thing to read. Kept: the
+  TypeScript 7 aliases split one package name into two meanings so two consumers stop colliding,
+  while the strict base merges twenty-two configs into one so they stop drifting — opposite moves,
+  one purpose. Discarded, visibly: an analogy between `.at()` and optional chaining; nothing
+  followed.
+- **Concept exploration: strictness drift.** The owner's word about the sibling estate — "it
+  drifted over time" — names the concept. Strictness is a property of each config's resolution
+  chain, not of any file, and every config that does not reach the base is a drift vector (here
+  two standalone configs; there one vendored template). Proposal: a validator that runs
+  `tsc --showConfig` over every tracked tsconfig and fails when one does not resolve the base's
+  strict set. Warrant: two drift vectors found in this estate and one in the sibling, all silent
+  to every gate. Falsifier: if no tsconfig drifts in the three months after the flags land, the
+  validator is ceremony. Routed as a candidate, not built.
+- **Reason, for the resume.** The fold is DUE but blocked on #93's merge, which is the owner's
+  call; the strictness slices do not touch the coordination branch. So the resume asks the owner
+  about #93 first and continues slices meanwhile — recorded in the continuity contract, not left
+  as a judgement to re-derive.
+- **Metaloss.** _Promises_: every commitment made in chat today is discharged or recorded (the
+  Zephyr acknowledgement; the fold after #93; the exclusion deletion after 08:24Z; the queued
+  follow-ups; the build-free hook question routed to the maintenance item on shim removal, whose
+  answer is now "it needs the `tooling/*` packages to expose source"). _Attribution_: Zephyr's
+  absorption is Zephyr's report, not checked in that estate; the dead-guard proof and the
+  old-versus-new equivalence runs are the code-expert's measurements; who merged #92 was not
+  checked. _Blind spots_: the review edits after each slice's full check were verified by
+  targeted checks and then by the pre-push gate, not by a second worktree `pnpm check`; the
+  primary's `node_modules` carries TypeScript 7 over a TypeScript 6 lockfile until the fold.
+  _External bound_: today's corrections again came from a compiler, two reviewers and the owner —
+  point outside scrutiny at any compiler or tool fact I state without a command beside it.
+  _Fixed point_: a third pass would only re-find the attribution and blind-spot items above; the
+  recursion closes here.

@@ -8,7 +8,7 @@ description: Use when work changes shared tokens, spacing, type, theming, or res
 
 Use this skill while changing the shared visual language: tokens, spacing,
 typography, theming, responsive layout, or reusable presentation components. It
-complements `design-system-reviewer`; use that reviewer for the independent
+complements `design-system-expert`; use that reviewer for the independent
 check once the slice is shaped.
 
 ## Read in order
@@ -28,6 +28,6 @@ check once the slice is shaped.
    not follow-up polish.
 3. Run `pnpm visual-regression:harness` on any slice that can visibly shift the
    layout, spacing, or theming.
-4. Hand off to `design-system-reviewer` once the component or style surface is
-   implemented, and pull in `accessibility` when contrast or motion are part of
-   the trade-off.
+4. Hand off to `design-system-expert` once the component or style surface is
+   implemented, and pull in the `accessibility` skill when contrast or motion
+   are part of the trade-off.

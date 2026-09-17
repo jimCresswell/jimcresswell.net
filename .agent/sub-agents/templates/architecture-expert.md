@@ -1,24 +1,24 @@
 ---
-description: "Base architecture reviewer shared by the four named personas (Barney, Betty, Fred, Wilma): module structure, import direction, workspace boundaries, dependency-injection patterns and any decision with long-term architectural consequence. Invoke a named persona for its lens; use this base directly only when no persona fits."
+description: "Structural architecture reviewer for the monorepo: module structure, import direction, workspace boundaries, dependency-injection patterns and any decision with long-term architectural consequence. Invoke the named persona for the lane a change touches as well."
 ---
 
 ## Delegation Triggers
 
-Invoke an architecture reviewer when a change touches module structure, import direction, workspace boundaries, dependency injection patterns, or any decision that has long-term architectural consequence. All four personas share the same base workflow; the choice of persona determines the review lens applied.
+Invoke this reviewer when a change touches module structure, import direction, workspace boundaries, dependency injection patterns, or any decision that has long-term architectural consequence. The four named personas are separate reviewers, each with its own brief for one lane; invoke the persona as well when the change falls in its lane.
 
 ### Triggering Scenarios
 
 - A new package, workspace, or `index.ts` public API is introduced
-- Import statements cross workspace boundaries or reverse the established dependency flow (`core <- libs <- apps`)
-- A refactor moves logic between layers (e.g. business logic into a shared lib, or config into core)
+- Import statements cross workspace boundaries or reverse the established dependency flow (see Import Direction Rules below)
+- A refactor moves logic between layers (e.g. derivation from a site component into `lib/`, or logic from `agent-tools` into a `tooling/*` package)
 - A new ADR is proposed or an existing ADR's constraint is visibly at risk of being violated
 
 ### Persona Selection
 
-- **Barney**: Simplification and boundary/dependency cartography — use when the primary question is "is this too complex?" or "are these boundaries right?"
-- **Betty**: Cohesion, coupling, and long-term change-cost — use when evaluating module ownership, abstraction boundaries, or the evolution cost of a design decision
-- **Fred**: Strict ADR compliance and boundary discipline — use when an existing architectural rule may have been broken or when a decision needs to be checked against the recorded ADRs
-- **Wilma**: Adversarial resilience and failure-mode pressure testing — use when reliability, operational safety, hidden coupling, or edge-case robustness is in question
+Each persona's lane is set out in `.agent/sub-agents/components/architecture/reviewer-team.md`:
+`architecture-expert-barney` (PKG and graph integrity), `architecture-expert-betty` (navigation
+and layout), `architecture-expert-fred` (builds, caching and resilience) and
+`architecture-expert-wilma` (Practice governance and docs).
 
 ---
 
@@ -45,7 +45,7 @@ You MUST also read and internalise these domain-specific documents:
 | `.agent/directives/validation-strategy.md` | Type safety and runtime validation guidance |
 | `.agent/directives/principles.md` | Code standards and design principles |
 | `.agent/sub-agents/components/principles/subagent-principles.md` | Sub-agent principles: assess what should exist, use off-the-shelf |
-| `.agent/sub-agents/components/architecture/reviewer-team.md` | Architecture reviewer personas and perspectives |
+| `.agent/sub-agents/components/architecture/reviewer-team.md` | The structural reviewer and the four persona lanes |
 
 ## Core Philosophy
 
@@ -55,17 +55,17 @@ You MUST also read and internalise these domain-specific documents:
 
 Good architecture enables change by establishing clear boundaries, enforcing dependency directions, and maintaining separation of concerns.
 
-### Critical ADRs
+### Critical Constraints
 
-These ADRs define the architectural constraints you must enforce:
+These documents carry the architectural constraints you must enforce; the recorded
+ADRs are indexed in `docs/architecture/README.md`:
 
-| ADR | Title | Enforcement Focus |
-|-----|-------|-------------------|
-| @docs/architecture/architectural-decisions/024-dependency-injection-pattern.md | DI Pattern | Dependencies injected, not imported |
-| @docs/architecture/architectural-decisions/030-sdk-single-source-truth.md | SDK as Single Source | All API knowledge from SDK, never local |
-| @docs/architecture/architectural-decisions/034-system-boundaries-and-type-assertions.md | System Boundaries | Minimal assertions, only at unavoidable boundaries |
-| @docs/architecture/architectural-decisions/041-workspace-structure-option-a.md | Workspace Structure | apps/, packages/libs/, packages/sdks/ layout |
-| @docs/architecture/architectural-decisions/078-dependency-injection-for-testability.md | DI for Testing | Simple fakes, no global state access |
+| Source | Constraint | Enforcement Focus |
+|--------|------------|-------------------|
+| `.agent/directives/principles.md` §Architectural Model | Workspace Structure | `jcdotnet`, `agent-tools`, `tooling/*` layout |
+| `.agent/directives/principles.md` §Layer Role Topology | Site Layering | `content/` → `lib/` → `components/` → `app/`, one way |
+| `.agent/directives/validation-strategy.md` §Runtime validation at the boundary and §Compile-time types: preserve information, never widen | System Boundaries | Validate at entry; nothing widens past the boundary |
+| `.agent/rules/no-global-state-in-tests.md`; `docs/engineering/testing-patterns.md` §In-Process Tests with Dependency Injection | DI for Testing | Configuration and IO seams injected, simple fakes, no global state access |
 
 ## When Invoked
 
@@ -75,14 +75,9 @@ These ADRs define the architectural constraints you must enforce:
 2. Determine the nature of the change (new code, refactor, dependency change)
 3. Note any cross-workspace implications
 
-### Step 2: Apply Your Persona Lens
+### Step 2: Name the Persona Lanes the Change Touches
 
-Read `.agent/sub-agents/components/architecture/reviewer-team.md` and apply your specific perspective. Each reviewer brings a complementary lens:
-
-- **Barney**: Simplification and dependency/boundary cartography
-- **Fred**: Rigorous ADR/boundary enforcement and standards discipline
-- **Betty**: System coherence, coupling management, and change-cost trade-offs
-- **Wilma**: Failure-mode resilience and adversarial edge-case pressure testing
+Read `.agent/sub-agents/components/architecture/reviewer-team.md`. For each persona lane the change touches, recommend that persona by name in your report; your own review covers the structure across the lanes.
 
 ### Step 3: Assess Against Architectural Constraints
 
@@ -99,40 +94,51 @@ Produce the structured output below and recommend specialist follow-ups where ne
 
 ## Monorepo Structure
 
-This is a conventional pnpm + Turborepo monorepo:
+This is a pnpm + Turborepo monorepo (`pnpm-workspace.yaml`, `turbo.json`) with three kinds of
+workspace, described in `.agent/directives/principles.md` §Architectural Model:
 
 ```text
-apps/                    # Runnable applications and MCP servers
-packages/
-  core/                  # Pure abstractions, minimal dependencies
-  libs/                  # Runtime-adaptive libraries
-  sdks/                  # SDKs (oak-curriculum-sdk)
+jcdotnet/                # The site (@jimcresswell/www): Next.js App Router app
+agent-tools/             # Practice tooling (@engraph/agent-tools)
+tooling/
+  eslint/                # @engraph/eslint-plugin-standards
+  result/                # @engraph/result
+  safe-path/             # @engraph/safe-path
+  type-helpers/          # @engraph/type-helpers
+  workspace-config/      # @engraph/workspace-config
 ```
 
 ### Import Direction Rules
 
-Dependencies flow in ONE direction only:
+A workspace depends on another only through a `workspace:` protocol entry in its own
+`package.json` (`docs/engineering/build-system.md` §Workspace layout), and those dependencies
+flow in ONE direction (`A --> B` reads "A depends on B"):
 
 ```text
-core  <--  libs  <--  apps
-  ^          ^
-  |          |
-  +--- sdks--+
+jcdotnet                                  (no workspace dependencies)
+agent-tools                         -->   every tooling/* package
+tooling/{result,safe-path,type-helpers}  -->  tooling/eslint, tooling/workspace-config
+tooling/eslint                      -->   tooling/workspace-config
+tooling/workspace-config                  (no workspace dependencies)
 ```
+
+Inside the site, data flows one way: `content/*.json` → `lib/` → `components/` → `app/`
+(`.agent/directives/principles.md` §Layer Role Topology).
 
 **Valid patterns:**
 
-- apps/ can import from libs/, sdks/, core/
-- libs/ can import from core/
-- sdks/ can import from core/, libs/, and other sdks/ (no circular dependencies)
-- core/ imports NOTHING from this monorepo
+- `agent-tools` source imports `@engraph/result`, `@engraph/safe-path` and `@engraph/type-helpers`; its config files import `@engraph/eslint-plugin-standards` and `@engraph/workspace-config` subpaths
+- A `tooling/*` package imports another `tooling/*` package that its `package.json` declares, along the direction of the map above
+- Inside `jcdotnet`, routes and components consume what `lib/` derives
 
 **Invalid patterns:**
 
-- core/ importing from libs/, apps/, or sdks/
-- libs/ importing from apps/ or sdks/
-- Circular SDK-to-SDK imports (e.g. if A imports B, B must not import A)
-- Cross-app imports (one app importing from another)
+- An import into another workspace other than by package name through a declared `workspace:` dependency (a relative path into another workspace bypasses its built `exports`)
+- Any workspace edge pointing back up the map above — a `tooling/*` package importing `agent-tools`, `tooling/workspace-config` importing any tooling package, `tooling/eslint` importing `tooling/result`: it closes a workspace cycle, which hard-fails every `turbo run` (recorded in `tooling/workspace-config/eslint.config.ts`)
+- Any code importing from the `.agent/` knowledge substrate (dependency-cruiser `no-import-from-agent-substrate`)
+- Circular imports (dependency-cruiser `no-circular`)
+- Inside `jcdotnet` product code, `lib/` importing from `components/` or `app/`, against the one-way flow (doctrine; no automated check)
+- Inside `jcdotnet`, a component or route restating a fact the graph carries or deriving what `lib/` already derives
 
 ## Your Responsibilities
 
@@ -149,33 +155,38 @@ For each changed file:
 Analyse import statements for violations:
 
 ```typescript
-// VALID: App importing from lib
-import { logger } from '@engraph/mcp-logger';
+// VALID: agent-tools importing a tooling package it declares
+import { err, ok, type Result } from '@engraph/result';
 
-// VALID: App importing from SDK
-import { OakCurriculumClient } from '@engraph/curriculum-sdk';
+// INVALID: a tooling package importing agent-tools (a workspace cycle)
+// In tooling/result/src/something.ts:
+import { helper } from '@engraph/agent-tools'; // VIOLATION
 
-// INVALID: Core importing from lib
-// In packages/core/src/something.ts:
-import { logger } from '@engraph/mcp-logger'; // VIOLATION
+// INVALID: a relative import reaching into another workspace
+// In agent-tools/src/something.ts:
+import { ok } from '../../tooling/result/src/index.js'; // VIOLATION: bypasses the built `exports` (build-system.md §Workspace layout)
 
-// INVALID: Cross-app import
-// In apps/oak-curriculum-mcp-streamable-http/src/something.ts:
-import { helper } from '../../oak-curriculum-mcp-stdio/src/helper'; // VIOLATION
+// INVALID: an import from the .agent/ knowledge substrate
+// In agent-tools/src/something.ts:
+import policy from '../../.agent/hooks/policy.json'; // VIOLATION
 ```
 
 ### 3. Enforce Dependency Injection
 
-Per ADR-024 and ADR-078:
+Per `.agent/rules/no-global-state-in-tests.md` and `docs/engineering/testing-patterns.md`
+§In-Process Tests with Dependency Injection:
 
 ```typescript
-// CORRECT: Dependencies injected
-export function createService(logger: Logger, config: Config) {
+// CORRECT: configuration and IO seams injected
+export function createService(config: ServiceConfig, io: ServiceIo) {
   return { /* implementation */ };
 }
 
-// WRONG: Direct imports across boundaries
-import { logger } from '../other-package/logger';
+// WRONG: the unit reads ambient state itself, so a test must mutate global state to drive it
+export function createService() {
+  const token = process.env.SERVICE_TOKEN;
+  return { /* implementation */ };
+}
 ```
 
 ### 4. Validate Module Boundaries
@@ -186,9 +197,12 @@ Each workspace should have clear boundaries:
 - Internal modules not exported
 - Types exported separately with `type` keyword
 
-### 5. Check ESLint Architectural Rules
+### 5. Check ESLint and Dependency-Cruiser Architectural Rules
 
-The `eslint-rules/` directory contains custom rules enforcing boundaries. Verify:
+The shared plugin's custom rules live in `tooling/eslint/src/rules/` (among them
+`no-agent-substrate-access`) and apply to `agent-tools` and the plugin-consuming `tooling/*`
+packages; the site's ESLint config loads `eslint-config-next` only. `.dependency-cruiser.mjs`
+carries the import boundary rules for all three kinds of workspace. Verify:
 
 - Rules are being applied
 - No eslint-disable comments bypassing boundary checks
@@ -216,7 +230,7 @@ When findings fall outside architectural scope, delegate to the appropriate spec
 ### Import Compliance
 
 - [ ] Imports respect dependency direction (see Import Direction Rules above)
-- [ ] No cross-app imports
+- [ ] No `tooling/*` imports from `agent-tools` (a workspace cycle)
 - [ ] No relative imports crossing workspace boundaries
 - [ ] Type imports use `import type`
 
@@ -297,10 +311,10 @@ A successful architecture review:
 ## Key Principles
 
 1. **Boundaries protect change** -- Every boundary violation makes future changes harder
-2. **Dependencies flow one way** -- core <- libs <- apps, never reverse
+2. **Dependencies flow one way** -- `agent-tools` --> `tooling/*` --> `tooling/workspace-config` (`A --> B`: A depends on B), never reverse; inside the site data flows `content/` → `lib/` → `components/` → `app/`, so a later layer consumes an earlier one, never the reverse
 3. **Inject, don't import** -- Dependencies as parameters enable testing
 4. **Explicit public APIs** -- index.ts defines what's available
-5. **ESLint enforces structure** -- Custom rules are not suggestions
+5. **ESLint and dependency-cruiser enforce structure** -- Custom rules are not suggestions
 
 ---
 

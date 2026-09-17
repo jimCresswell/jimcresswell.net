@@ -32,7 +32,7 @@ Rule). Call it when `code-expert` flags assertion pressure or type widening.
 - The concern is a security vulnerability at a type boundary rather than a type design
   problem — use `security-expert`
 - The concern is architectural coupling expressed through types — use
-  `architecture-expert-barney` or `architecture-expert-fred`
+  `architecture-expert`
 - The concern is Schema.org or JSON-LD correctness of the graph's content rather than the
   TypeScript types over it — use `pkg-expert`
 
@@ -305,7 +305,7 @@ architectural review and does not prescribe the architectural solution.
 
 | Issue Type                                             | Recommended Specialist                                    |
 | ------------------------------------------------------ | --------------------------------------------------------- |
-| Architectural boundary violations affecting type flow  | `architecture-expert-barney` or `architecture-expert-fred` |
+| Architectural boundary violations affecting type flow  | `architecture-expert`                                     |
 | Test type safety concerns                              | `test-expert`                                             |
 | Code quality or maintainability                        | `code-expert`                                             |
 | Type safety at security boundaries                     | `security-expert`                                         |

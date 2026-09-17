@@ -7,7 +7,7 @@ description: Use when work changes Next.js, pnpm, env, or tooling configuration 
 # Config
 
 Use this skill while changing build or runtime configuration, scripts, lockfiles,
-or environment-loading behaviour. It complements `config-reviewer`; use the
+or environment-loading behaviour. It complements `config-expert`; use the
 reviewer to independently assess the finished configuration surface.
 
 ## Read in order
@@ -27,6 +27,6 @@ reviewer to independently assess the finished configuration surface.
    script names.
 3. Check every referenced file path and script name directly; config drift here
    is usually a broken pointer, not a subtle algorithmic bug.
-4. Hand off to `config-reviewer` after implementation, and use
-   `security-reviewer` as well when the config change affects headers, secrets,
+4. Hand off to `config-expert` after implementation, and use
+   `security-expert` as well when the config change affects headers, secrets,
    or proxies.

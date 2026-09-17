@@ -4,22 +4,22 @@ import { parseCliFlags } from '../../src/skills-adapter-generate/cli-flags';
 
 describe('parseCliFlags', () => {
   it('parses the pinned generate and check invocations', () => {
-    expect(parseCliFlags(['--prefix=oak-'])).toEqual({
+    expect(parseCliFlags(['--prefix=jc-'])).toEqual({
       kind: 'ok',
-      flags: { clear: false, check: false, prefix: 'oak-' },
+      flags: { clear: false, check: false, prefix: 'jc-' },
     });
-    expect(parseCliFlags(['--check', '--prefix=oak-'])).toEqual({
+    expect(parseCliFlags(['--check', '--prefix=jc-'])).toEqual({
       kind: 'ok',
-      flags: { clear: false, check: true, prefix: 'oak-' },
+      flags: { clear: false, check: true, prefix: 'jc-' },
     });
-    expect(parseCliFlags(['--clear', '--prefix=oak-'])).toEqual({
+    expect(parseCliFlags(['--clear', '--prefix=jc-'])).toEqual({
       kind: 'ok',
-      flags: { clear: true, check: false, prefix: 'oak-' },
+      flags: { clear: true, check: false, prefix: 'jc-' },
     });
   });
 
   it('refuses an unrecognised argument by name instead of silently generating', () => {
-    const result = parseCliFlags(['--chekc', '--prefix=oak-']);
+    const result = parseCliFlags(['--chekc', '--prefix=jc-']);
     expect(result.kind).toBe('error');
     expect(result.kind === 'error' && result.message).toContain('--chekc');
   });

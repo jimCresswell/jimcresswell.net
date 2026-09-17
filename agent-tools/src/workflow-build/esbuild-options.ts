@@ -6,8 +6,7 @@
  * types stripped) into one ESM file per entry, `platform: 'neutral'` so the harness
  * globals (`agent`/`parallel`/`phase`/`log`/`args`) remain free identifiers, in-memory
  * output (`write: false`) so the harness emitter and output contract run before any file
- * is written. Mirrors the MCP app's programmatic-esbuild precedent
- * (`apps/oak-curriculum-mcp-streamable-http/build-scripts/esbuild-config.ts`).
+ * is written.
  *
  * Module coupling (which schemas to inline, whether to seed run data) arrives as the
  * `plugins` argument — instantiated per module from `schema-inline-plugin.ts`'s

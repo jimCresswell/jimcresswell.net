@@ -133,7 +133,7 @@ below. The OCE-lineage rules went through a single content-grain triage
 | [architecture-expert-betty](sub-agents/templates/architecture-expert-betty.md)   | Navigation, layout, and experience architecture          |
 | [architecture-expert-fred](sub-agents/templates/architecture-expert-fred.md)     | Build, caching, PDF, and runtime resilience              |
 | [architecture-expert-wilma](sub-agents/templates/architecture-expert-wilma.md)   | Practice, plan, and documentation architecture           |
-| [architecture-expert](sub-agents/templates/architecture-expert.md)               | General architecture reviewer (OCE lineage)              |
+| [architecture-expert](sub-agents/templates/architecture-expert.md)               | Workspace boundaries, import direction, module structure |
 | [accessibility-expert](sub-agents/templates/accessibility-expert.md)             | Accessibility and assistive flows                        |
 | [design-system-expert](sub-agents/templates/design-system-expert.md)             | Tokens, spacing, and responsive rhythm                   |
 | [react-component-expert](sub-agents/templates/react-component-expert.md)         | React hooks and component boundaries                     |
@@ -146,7 +146,7 @@ below. The OCE-lineage rules went through a single content-grain triage
 | [onboarding-expert](sub-agents/templates/onboarding-expert.md)                   | Cold-start readability of docs and handoffs              |
 | [release-readiness-expert](sub-agents/templates/release-readiness-expert.md)     | Release gates                                            |
 | `corpus-mapper`, `corpus-meta`, `corpus-reducer`, `corpus-voter`                 | Parallax corpus roles                                    |
-| `cricket-judgement-low`, `cricket-judgement-medium`, `cricket-judgement-high`, `cricket-procedure-xhigh` | Cricket panel roles (the effort-inversion quartet)       |
+| `cricket-judgement-low`, `cricket-judgement-medium`, `cricket-judgement-high`, `cricket-judgement-lowestpower-low`, `cricket-procedure-xhigh` | Cricket panel roles (the effort-inversion quartet and the lowest-power judgement seat) |
 
 ### Validation
 
@@ -211,10 +211,11 @@ retired once these pass.
 | [`.agent/reference/`](reference/)         | Local reference material                                                                       |
 | [`.agent/collaboration/`](collaboration/) | Rapid-comms channels                                                                           |
 | [`.agent/state/`](state/)                 | Coordination state (machine-local parts git-ignored)                                           |
-| [`.agents/`](../.agents/)                 | Codex skill adapters (generated)                                                               |
+| [`.agents/`](../.agents/)                 | Cross-tool skill adapters and rule mirrors (generated)                                         |
 | [`.claude/`](../.claude/)                 | Claude adapters for skills, rules, and experts (generated)                                     |
 | [`.codex/`](../.codex/)                   | Codex config and thin expert adapters (generated)                                              |
 | [`.cursor/`](../.cursor/)                 | Cursor adapters (generated)                                                                    |
+| [`.gemini/`](../.gemini/)                 | Gemini expert adapters (generated)                                                             |
 | [`.github/`](../.github/)                 | Copilot instructions, expert wrappers, templates, CI workflows                                 |
 | [`agent-tools/`](../agent-tools/)         | `@engraph/agent-tools` — validators, collaboration state, comms, commit queue                  |
 | [`tooling/`](../tooling/)                 | `@engraph/*` shared packages: eslint plugin, result, safe-path, type-helpers, workspace-config |

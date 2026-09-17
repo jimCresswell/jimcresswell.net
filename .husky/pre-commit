@@ -11,13 +11,13 @@ GUARD_HINT="Move to a branch first: git switch -c <branch> (staged changes trave
 export TURBO_UI=0
 
 echo "📝 Checking formatting on staged files..."
-if ! pnpm --filter @engraph/agent-tools repo-check prettier-staged; then
+if ! pnpm --fail-if-no-match --filter @engraph/agent-tools repo-check prettier-staged; then
   echo "❌ Formatting issues found! Run 'pnpm format:root', then stage the changes."
   exit 1
 fi
 
 echo "🔍 Running markdownlint on staged Markdown files..."
-if ! pnpm --filter @engraph/agent-tools repo-check markdownlint-staged; then
+if ! pnpm --fail-if-no-match --filter @engraph/agent-tools repo-check markdownlint-staged; then
   echo "❌ Markdownlint issues found! Run 'pnpm markdownlint:root', then stage the changes."
   exit 1
 fi
@@ -25,9 +25,12 @@ fi
 echo "🔍 Linting workspaces changed since HEAD..."
 # git exports GIT_DIR / GIT_INDEX_FILE (a transient lock file during a real
 # commit) to hooks; turbo's children must not inherit them. Unset for the
-# turbo child only — the staged-file gates above need GIT_INDEX_FILE.
+# lint step only — the staged-file gates above need GIT_INDEX_FILE. The step
+# runs turbo lint with --filter="...[HEAD]" and skips the run when turbo plans
+# no task for that scope, so a commit that changes no workspace ends without
+# turbo's empty-run warning (repo-check-lint-changed.ts carries the reasoning).
 if ! env -u GIT_DIR -u GIT_INDEX_FILE -u GIT_WORK_TREE \
-  pnpm exec turbo run lint --filter="...[HEAD]" --output-logs=errors-only; then
+  pnpm --fail-if-no-match --filter @engraph/agent-tools repo-check lint-changed; then
   echo "❌ Lint failed!"
   exit 1
 fi

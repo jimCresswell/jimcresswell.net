@@ -41,7 +41,7 @@ const KEBAB_SLUG = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 /** ISO calendar date, the only date form the contract admits. */
 const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
 
-/** A Linear ticket reference, e.g. `MCP-101`. */
+/** A Linear ticket reference, e.g. `ABC-101`. */
 const TICKET_ID = /^[A-Z][A-Z0-9]*-\d+$/;
 
 /**
@@ -86,7 +86,7 @@ const basePlanNodeSchema = z.strictObject({
   serves: nonEmpty.optional(),
   impact_areas: z.array(kebabSlug).min(1, 'every plan declares at least one impact area'),
   tickets: z
-    .array(z.string().regex(TICKET_ID, 'expected a ticket reference like MCP-101'))
+    .array(z.string().regex(TICKET_ID, 'expected a ticket reference like ABC-101'))
     .optional(),
   depends_on: z.array(dependsOnSchema).optional(),
   owner_gates: z.array(ownerGateSchema).optional(),

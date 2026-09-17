@@ -1,6 +1,6 @@
 ---
 name: design-system-expert
-description: 'Design-system reviewer verifying tokens, spacing, and responsive rhythm.'
+description: 'Design-system reviewer verifying tokens, theming, spacing, typography, motion, and responsive rhythm.'
 tools: Read, Grep, Glob, Bash
 disallowedTools: Write, Edit
 permissionMode: plan

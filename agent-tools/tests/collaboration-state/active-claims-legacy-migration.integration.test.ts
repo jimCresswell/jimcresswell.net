@@ -105,7 +105,7 @@ describe('legacy active-claims migration', () => {
   let queueDir: string;
 
   beforeEach(async () => {
-    root = await makeTempDirectory('oak-active-claims-migration-');
+    root = await makeTempDirectory('jc-active-claims-migration-');
     activePath = join(root, 'active-claims.json');
     queueDir = commitQueueDirForActivePath(activePath);
     await writeText(activePath, `${JSON.stringify(legacyRegistry(), null, 2)}\n`);

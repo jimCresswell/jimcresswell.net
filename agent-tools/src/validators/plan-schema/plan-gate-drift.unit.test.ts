@@ -99,9 +99,9 @@ describe('detectGateExpiryDrift — the §Owner gates drift promise', () => {
 
   it('reports every expired gate on a plan that carries more than one', () => {
     const files = [
-      plan('delivery/mcp-67-shape.plan.md', {
+      plan('delivery/two-gates.plan.md', {
         ...RATIFIED_STAMP,
-        tickets: ['MCP-67'],
+        tickets: ['ABC-67'],
         owner_gates: [gate(EXPIRED), { ...gate(EXPIRED), awaiting: 'external-input' }],
       }),
     ];
@@ -119,7 +119,7 @@ describe('detectGateExpiryDrift — the §Owner gates drift promise', () => {
       plan('delivery/ratified.plan.md', {
         ...RATIFIED_STAMP,
         id: 'fixture-ratified',
-        tickets: ['MCP-101'],
+        tickets: ['ABC-101'],
         owner_gates: [gate(EXPIRED)],
       }),
     ];

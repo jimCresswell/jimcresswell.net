@@ -76,12 +76,12 @@ describe('buildAdapterFrontmatter', () => {
   it('renames the skill with the configured prefix and preserves the description', () => {
     const result = buildAdapterFrontmatter(
       { name: 'go', description: 'Re-ground execution.' },
-      'oak-',
+      'jc-',
       'go',
     );
 
     expect(result).toEqual({
-      name: 'oak-go',
+      name: 'jc-go',
       description: 'Re-ground execution.',
     });
   });
@@ -372,9 +372,9 @@ describe('renderAdapter for concern-tier members', () => {
   };
 
   it('links the concern-relative canonical path while naming by leaf id', () => {
-    const content = renderAdapter(familyMember, 'oak-', 'claude');
+    const content = renderAdapter(familyMember, 'jc-', 'claude');
 
-    expect(content).toContain('name: oak-parallax-frame');
+    expect(content).toContain('name: jc-parallax-frame');
     expect(content).toContain(
       'Read and follow `.agent/skills/cognition/parallax-frame/SKILL-CANONICAL.md`.',
     );
@@ -391,18 +391,18 @@ describe('checkAdapters over a concern tier', () => {
       new Map([['/repo/.agent/skills/fam/member-a/SKILL-CANONICAL.md', canonicalBody]]),
     );
 
-    const result = await checkAdapters({ repoRoot: '/repo', prefix: 'oak-' }, fs);
+    const result = await checkAdapters({ repoRoot: '/repo', prefix: 'jc-' }, fs);
 
     expect(result.missing).toEqual([
-      adapterTargetPath('/repo', 'oak-', 'member-a', 'claude'),
-      adapterTargetPath('/repo', 'oak-', 'member-a', 'agents'),
+      adapterTargetPath('/repo', 'jc-', 'member-a', 'claude'),
+      adapterTargetPath('/repo', 'jc-', 'member-a', 'agents'),
     ]);
   });
 });
 
 describe('checkAdapters', () => {
   const repoRoot = '/repo';
-  const prefix = 'oak-';
+  const prefix = 'jc-';
   const sampleCanonical: ParsedCanonicalSkill = {
     id: 'sample',
     relativeDir: 'sample',
@@ -443,7 +443,7 @@ describe('checkAdapters', () => {
     const files = new Map<string, string>();
 
     const result = await checkAdapters(
-      { repoRoot: '/repo', prefix: 'oak-' },
+      { repoRoot: '/repo', prefix: 'jc-' },
       makeTreeFs(directories, files),
     );
 
@@ -455,7 +455,7 @@ describe('checkAdapters', () => {
     const files = new Map<string, string>();
 
     const result = await checkAdapters(
-      { repoRoot: '/repo', prefix: 'oak-' },
+      { repoRoot: '/repo', prefix: 'jc-' },
       makeTreeFs(directories, files),
     );
 
@@ -529,7 +529,7 @@ describe('checkAdapters', () => {
 
 describe('checkAdapters carriage', () => {
   const repoRoot = '/repo';
-  const prefix = 'oak-';
+  const prefix = 'jc-';
   const canonicalDir = '/repo/.agent/skills/cognition/parallax';
   const parsedParallax: ParsedCanonicalSkill = {
     id: 'parallax',
@@ -554,8 +554,8 @@ describe('checkAdapters carriage', () => {
     return makeTreeFs(new Map(), new Map([...adapterFixture(), ...extra]));
   }
 
-  const claudeDir = '/repo/.claude/skills/oak-parallax';
-  const agentsDir = '/repo/.agents/skills/oak-parallax';
+  const claudeDir = '/repo/.claude/skills/jc-parallax';
+  const agentsDir = '/repo/.agents/skills/jc-parallax';
 
   it('is green when every carried file is byte-identical on both surfaces, counting the canonical carried set', async () => {
     const fs = withCarried(

@@ -10,7 +10,7 @@ import {
 
 const PROJECTION = `## Codex team-session alert bootstrap
 
-Load \`$oak-start-right-team\` for coordinated Codex work.
+Load \`$jc-start-right-team\` for coordinated Codex work.
 `;
 const BASE_AGENTS = [
   '# AGENTS.md',

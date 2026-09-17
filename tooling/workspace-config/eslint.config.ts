@@ -4,11 +4,10 @@
  * This package cannot consume `@engraph/eslint-plugin-standards`: the
  * standards package's own tsup/vitest configs consume THIS package, so a
  * devDependency back onto the standards package closes a workspace cycle
- * that hard-fails every `turbo run` (measured on turbo 2.10.6). It is the
- * estate's second standards-package exemption; the first is
- * `packages/core/oak-eslint/eslint.config.ts`, hand-rolled for the same
- * self-bootstrap reason. Registration in the disabled-checks census is
- * pending — the census mechanism is item 4 of the isolation plan.
+ * that hard-fails every `turbo run` (measured on turbo 2.10.6). The
+ * standards package's own `tooling/eslint/eslint.config.ts` is hand-rolled
+ * for the related self-bootstrap reason: it cannot lint through its own
+ * build.
  */
 
 import tseslint from 'typescript-eslint';

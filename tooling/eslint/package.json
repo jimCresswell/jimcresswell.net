@@ -52,8 +52,8 @@
     "build": "tsup && tsc --emitDeclarationOnly --project tsconfig.build.json",
     "clean": "rm -rf dist .turbo",
     "dev": "tsup --watch",
-    "lint": "eslint .",
-    "lint:fix": "eslint --fix .",
+    "lint": "eslint --max-warnings 0 .",
+    "lint:fix": "eslint --max-warnings 0 --fix .",
     "test": "vitest run",
     "type-check": "tsc -p tsconfig.lint.json --noEmit"
   },
@@ -69,7 +69,6 @@
   "keywords": [
     "eslint",
     "eslint-plugin",
-    "oak",
     "architecture",
     "boundaries"
   ],

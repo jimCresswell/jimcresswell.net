@@ -8,7 +8,7 @@ description: Use when work changes headers, secrets, env, proxies, middleware, o
 
 Use this skill while changing headers, secrets handling, env loading, proxy or
 middleware behaviour, third-party scripts, or dependency surfaces with
-meaningful security impact. It complements `security-reviewer`; use the
+meaningful security impact. It complements `security-expert`; use the
 reviewer for the independent defensive review.
 
 ## Read in order
@@ -27,5 +27,6 @@ reviewer for the independent defensive review.
    `process.env`, and avoid serialising sensitive values into rendered output.
 3. Check the existing decision records before widening a security surface; this
    repo already has explicit header and operational-security choices.
-4. Hand off to `security-reviewer` after implementation, and pair with `config`
-   when the security change also rewires build or runtime configuration.
+4. Hand off to `security-expert` after implementation, and pair with the
+   `config` skill when the security change also rewires build or runtime
+   configuration.

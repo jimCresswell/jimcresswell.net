@@ -33,9 +33,16 @@ type Terminal =
   | { readonly kind: "exit"; readonly code: number | null; readonly signal: NodeJS.Signals | null }
   | { readonly kind: "error"; readonly message: string };
 
-function terminalOf(child: ChildProcess): Promise<Terminal> {
+/**
+ * The terminal event taken from `event`: `exit` for the process itself, `close` for the end of
+ * its output. `close` fires once the child has exited and its stdout has ended, so every line it
+ * wrote has been delivered first; `exit` can fire with lines still unread. But `close` is not
+ * bounded by the child: a descendant that inherited its stdout can hold it open after the child
+ * has gone. So readiness races `close` (under the deadline), and stopping waits on `exit`.
+ */
+function terminalOf(child: ChildProcess, event: "exit" | "close"): Promise<Terminal> {
   return new Promise((resolve) => {
-    child.once("exit", (code, signal) => {
+    child.once(event, (code: number | null, signal: NodeJS.Signals | null) => {
       resolve({ kind: "exit", code, signal });
     });
     child.once("error", (error) => {
@@ -102,12 +109,21 @@ function lineStream(lines: readline.Interface, terminal: Promise<Terminal>): Lin
   return { next, done };
 }
 
-/** Stop the child and wait for its terminal event; a child that never started has already had it. */
-function stopped(child: ChildProcess, terminal: Promise<Terminal>): Promise<Terminal> {
+/**
+ * Stop the child, wait for its exit, then destroy the stdout reader; a child that never started
+ * has already had its terminal event. The wait is on `exit`, never `close`: a descendant holding
+ * the inherited stdout open would keep `close` from ever firing. Destroying the reader after the
+ * exit releases this side of the pipe, so such a descendant meets EPIPE on its next write and the
+ * runner keeps no handle open for it; destroying it before the exit could hand the same EPIPE to
+ * a server still closing down.
+ */
+async function stopped(child: ChildProcess, exited: Promise<Terminal>): Promise<Terminal> {
   if (child.exitCode === null && child.signalCode === null) {
     child.kill("SIGTERM");
   }
-  return terminal;
+  const event = await exited;
+  child.stdout?.destroy();
+  return event;
 }
 
 /**
@@ -118,9 +134,9 @@ function stopped(child: ChildProcess, terminal: Promise<Terminal>): Promise<Term
  * never uses this: there the child is stopped behind the original error, which is the one to
  * preserve.
  */
-async function stopObserved(child: ChildProcess, terminal: Promise<Terminal>): Promise<void> {
+async function stopObserved(child: ChildProcess, exited: Promise<Terminal>): Promise<void> {
   const running = child.exitCode === null && child.signalCode === null;
-  const event = await stopped(child, terminal);
+  const event = await stopped(child, exited);
   if (!running) {
     throw new Error(`${describeTerminal(event)} before stop`);
   }
@@ -139,7 +155,8 @@ export interface StartedServer {
 /**
  * Start the server command, wait for its `port` and `ready` lines under the deadline, and
  * return its origin with a stop function. Rejects, with the child stopped, when the child ends
- * or cannot start before `ready` or when the deadline passes.
+ * or cannot start before `ready`, when it has exited by the time `ready` is read, or when the
+ * deadline passes.
  */
 export async function startServer(
   command: string,
@@ -147,8 +164,9 @@ export async function startServer(
   readyTimeoutMs = READY_TIMEOUT_MS
 ): Promise<StartedServer> {
   const child = spawn(command, args, { cwd: SITE_DIRECTORY, stdio: ["ignore", "pipe", "inherit"] });
-  const terminal = terminalOf(child);
-  void terminal.then((event) => {
+  const exited = terminalOf(child, "exit");
+  const outputEnded = terminalOf(child, "close");
+  void exited.then((event) => {
     process.stderr.write(`${describeTerminal(event)}\n`);
   });
   let timer: NodeJS.Timeout | undefined;
@@ -161,17 +179,25 @@ export async function startServer(
     if (child.stdout === null) {
       throw new Error("e2e server: no stdout pipe");
     }
-    const lines = lineStream(readline.createInterface({ input: child.stdout }), terminal);
+    const lines = lineStream(readline.createInterface({ input: child.stdout }), outputEnded);
     const [, port] = await lines.next(/^port (\d{1,5})$/u, deadline);
     await lines.next(/^ready$/u, deadline);
     lines.done();
+    // Waiting on the end of the output reads every line the child wrote, even when its exit
+    // came first, so `ready` can be read from a child that is already gone. The child is the
+    // process that holds the port and serves on it (ADR-019), so an exited child leaves nothing
+    // behind the origin: refuse it here, before any test starts.
+    if (child.exitCode !== null || child.signalCode !== null) {
+      const event: Terminal = { kind: "exit", code: child.exitCode, signal: child.signalCode };
+      throw new Error(`${describeTerminal(event)} by the time its ready line was read`);
+    }
     return {
       origin: `http://localhost:${port}`,
-      ended: terminal.then(() => undefined),
-      stop: () => stopObserved(child, terminal),
+      ended: exited.then(() => undefined),
+      stop: () => stopObserved(child, exited),
     };
   } catch (error: unknown) {
-    await stopped(child, terminal);
+    await stopped(child, exited);
     throw error;
   } finally {
     clearTimeout(timer);

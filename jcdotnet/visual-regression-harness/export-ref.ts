@@ -1,6 +1,7 @@
 import fs from "node:fs/promises";
+import os from "node:os";
 import path from "node:path";
-import { spawn } from "node:child_process";
+import { readCommandOutput } from "./command-output";
 import { ensureDirectory } from "./shared";
 
 export const WORKTREE_REF = "WORKTREE";
@@ -19,7 +20,12 @@ export interface ResolvedSnapshotSource {
  * @param refLike Git ref-like to resolve.
  */
 export async function resolveRef(repositoryRoot: string, refLike: string): Promise<string> {
-  return runAndCapture("git", ["rev-parse", "--verify", `${refLike}^{commit}`], repositoryRoot);
+  const output = await readCommandOutput(
+    "git",
+    ["rev-parse", "--verify", `${refLike}^{commit}`],
+    repositoryRoot
+  );
+  return output.trim();
 }
 
 /**
@@ -77,6 +83,14 @@ export async function exportRefToDirectory(
   return resolvedRef;
 }
 
+/**
+ * Extract a commit's tree into `outputDirectory`, replacing anything there.
+ *
+ * Two sequential commands, not a pipe: `git archive` writes the tar to a file in a
+ * fresh temporary directory, then `tar` extracts that file. Each command runs to its
+ * own completion and reports its own failure, and the temporary directory is removed
+ * whatever the outcome.
+ */
 async function exportGitRefToDirectory(
   repositoryRoot: string,
   resolvedRef: string,
@@ -85,58 +99,18 @@ async function exportGitRefToDirectory(
   await fs.rm(outputDirectory, { recursive: true, force: true });
   await ensureDirectory(outputDirectory);
 
-  await new Promise<void>((resolve, reject) => {
-    const archive = spawn("git", ["archive", "--format=tar", resolvedRef], {
-      cwd: repositoryRoot,
-      stdio: ["ignore", "pipe", "inherit"],
-    });
-    const extract = spawn("tar", ["-xf", "-", "-C", outputDirectory], {
-      cwd: repositoryRoot,
-      stdio: ["pipe", "inherit", "inherit"],
-    });
-
-    archive.stdout.pipe(extract.stdin);
-
-    let archiveExited = false;
-    let extractExited = false;
-
-    const finish = () => {
-      if (archiveExited && extractExited) {
-        resolve();
-      }
-    };
-
-    archive.on("error", reject);
-    extract.on("error", reject);
-
-    archive.on("exit", (code, signal) => {
-      if (code !== 0) {
-        reject(
-          new Error(
-            `git archive failed for ${resolvedRef} with code ${code ?? "null"} and signal ${signal ?? "null"}`
-          )
-        );
-        return;
-      }
-
-      archiveExited = true;
-      finish();
-    });
-
-    extract.on("exit", (code, signal) => {
-      if (code !== 0) {
-        reject(
-          new Error(
-            `tar extraction failed for ${resolvedRef} with code ${code ?? "null"} and signal ${signal ?? "null"}`
-          )
-        );
-        return;
-      }
-
-      extractExited = true;
-      finish();
-    });
-  });
+  const archiveDirectory = await fs.mkdtemp(path.join(os.tmpdir(), "visual-regression-archive-"));
+  const archivePath = path.join(archiveDirectory, "tree.tar");
+  try {
+    await readCommandOutput(
+      "git",
+      ["archive", "--format=tar", `--output=${archivePath}`, resolvedRef],
+      repositoryRoot
+    );
+    await readCommandOutput("tar", ["-xf", archivePath, "-C", outputDirectory], repositoryRoot);
+  } finally {
+    await fs.rm(archiveDirectory, { recursive: true, force: true });
+  }
 }
 
 async function exportWorkingTreeToDirectory(
@@ -179,73 +153,8 @@ async function exportWorkingTreeToDirectory(
 }
 
 async function listRepositoryPaths(repositoryRoot: string, args: string[]): Promise<string[]> {
-  return new Promise<string[]>((resolve, reject) => {
-    let stdout = "";
-    let stderr = "";
-
-    const child = spawn("git", args, {
-      cwd: repositoryRoot,
-      stdio: ["ignore", "pipe", "pipe"],
-    });
-
-    child.stdout.on("data", (chunk: Buffer | string) => {
-      stdout += chunk.toString();
-    });
-    child.stderr.on("data", (chunk: Buffer | string) => {
-      stderr += chunk.toString();
-    });
-
-    child.on("error", reject);
-    child.on("exit", (code, signal) => {
-      if (code !== 0) {
-        reject(
-          new Error(
-            `git ${args.join(" ")} failed in ${path.resolve(repositoryRoot)} with code ${code ?? "null"} and signal ${signal ?? "null"}\n${stderr}`.trim()
-          )
-        );
-        return;
-      }
-
-      resolve(stdout.split("\0").filter(Boolean));
-    });
-  });
-}
-
-async function runAndCapture(
-  command: string,
-  args: string[],
-  workingDirectory: string
-): Promise<string> {
-  return new Promise<string>((resolve, reject) => {
-    let stdout = "";
-    let stderr = "";
-
-    const child = spawn(command, args, {
-      cwd: workingDirectory,
-      stdio: ["ignore", "pipe", "pipe"],
-    });
-
-    child.stdout.on("data", (chunk: Buffer | string) => {
-      stdout += chunk.toString();
-    });
-    child.stderr.on("data", (chunk: Buffer | string) => {
-      stderr += chunk.toString();
-    });
-
-    child.on("error", reject);
-    child.on("exit", (code, signal) => {
-      if (code === 0) {
-        resolve(stdout.trim());
-        return;
-      }
-
-      reject(
-        new Error(
-          `${command} ${args.join(" ")} failed in ${path.resolve(workingDirectory)} with code ${code ?? "null"} and signal ${signal ?? "null"}\n${stderr}`.trim()
-        )
-      );
-    });
-  });
+  const output = await readCommandOutput("git", args, repositoryRoot);
+  return output.split("\0").filter(Boolean);
 }
 
 async function pathExists(filePath: string): Promise<boolean> {

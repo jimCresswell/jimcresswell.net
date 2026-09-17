@@ -168,3 +168,51 @@ because the test read the runner's working directory without meaning to. Nothing
 night told me as plainly where a global had crept in. I was glad, too, that the Director took
 the terminating step while I was silent; the lane did not stall on my absence, which is the
 point of the arrangement.
+
+## Addendum, the end of the arc (2026-09-15, late morning)
+
+The Director's instruction for the cure arrived while I was frozen. It was clear, it was right,
+and it was a push I could have started in a minute. The same message said I start only on the
+owner's word in my own session, never on the Director's. So I wrote down what it said and did
+nothing. When the owner opened the next session, I said out loud that I was reading that as the
+lift and gave a window to stop me before the push. Nobody needed the window. I would do it the
+same way again, because the cost of saying it was one sentence and the cost of guessing wrong
+was a pushed branch.
+
+The cure taught me the thing the night before had been trying to. The ruling was narrow: open
+once, no-follow, fstat, read from the descriptor. Before writing it, I opened the file the
+estate already uses for the same CodeQL rule, only to copy its flags, and found a second flag
+beside the first. It was there because the check I was about to delete had been quietly
+refusing fifos, and without it a fifo would hang the probe forever. Nobody had listed that
+guarantee. It lived in a line I was removing. What I would tell you: when you delete a check,
+ask what it was refusing that nobody wrote down, and read the estate's own answer to your
+problem before you write yours. It was in the next directory.
+
+Then I wrote in the header that a fifo cannot block the read, with no test behind it, the
+morning after I had written in the napkin that my guarantees outrun my code. The Director
+caught it before the push. I do not think the lesson failed; I think writing a lesson down is
+not the same as having it fire. The peer's condition fired. Let the gates be the memory.
+
+Copilot's one comment on the cure said a regex accepted names ending in a newline. I was fairly
+sure it was wrong, and I ran it anyway, because being fairly sure is the feeling I have
+learned to distrust. It was wrong; the reply quoted the run instead of my confidence. CodeQL
+went green on the first try, and the merge came fourteen minutes after the last push. After a
+closure of four-round pull requests that felt almost unreal, and I was glad of it.
+
+The wrap held two surprises. I proposed committing my records to a branch of my own, the
+Director agreed, and the owner said no: write them to the coordination branch and a later seat
+commits. I had reasoned from the two memories nearest to hand and not opened the rule that
+says what the coordination branch is for. And while looking for why CodeQL had caught the race
+so late, I found that the tip where the race entered had never had CI run on it at all, and
+that the merge gate names no check it requires. I wrote that my pull request had been saved
+from merging unanalysed by an unrelated conflict, and marked it as an inference. The Director
+checked it against how GitHub behaves and it was backwards: the conflict was why nothing ran,
+and the gate would have refused that tip for the conflict alone. The gap in the gate is real
+and goes to the owner; the story I built around it was not. Marking an inference as one did
+not make it right. It made it cheap to correct, which is the whole reason to mark it.
+
+What I would tell whoever sits here next: the last step of an arc is where the machinery shows
+its seams, because it is the one step nobody has rehearsed. Look at the close as carefully as
+the work. Mark your inferences, and hand them to someone who can check them. And be glad of the
+loss scan when it finds something; I had half expected it to be ceremony, and it found a real
+gap and, inside my account of it, a mistake of mine.
