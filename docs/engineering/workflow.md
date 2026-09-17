@@ -95,7 +95,9 @@ Playwright suite. If gitleaks is not installed the secret-scan leg fails — ins
 from [gitleaks releases](https://github.com/gitleaks/gitleaks/releases). If
 neither `.tools/bin/shellcheck` nor the shellcheck on your PATH is the version
 `.agent/setup/install-shellcheck.sh` pins, the shell lint leg fails — run that
-script, which installs it into `.tools/bin`. If the
+script, which installs it into `.tools/bin`. If jq is not installed the
+agent-tools smoke suite fails, because the secrets hook smokes prove the
+hooks both with jq and without it — install jq. If the
 Playwright browser is not installed, run `pnpm exec playwright install` once.
 
 ```bash
