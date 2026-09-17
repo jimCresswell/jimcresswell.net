@@ -63,7 +63,7 @@ if (devPreinstall !== `node ${guardRelativePath}`) {
   fail(`root pnpm:devPreinstall must invoke the version guard, got: ${devPreinstall}`);
 }
 
-const fixtureRoot = mkdtempSync(join(tmpdir(), 'oak-install-version-guard-'));
+const fixtureRoot = mkdtempSync(join(tmpdir(), 'jc-install-version-guard-'));
 // The guard and the mismatched pin live in a nested dir (see docstring); the
 // install root deliberately carries no `packageManager`.
 const pinnedRoot = join(fixtureRoot, 'pinned');

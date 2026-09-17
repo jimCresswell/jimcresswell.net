@@ -50,15 +50,15 @@ describe('symlink safety over a real filesystem', () => {
     const root = sandboxRepo();
     const outside = sandboxRepo();
     seedSkill(root);
-    await generateAdapters({ repoRoot: root, prefix: 'oak-' });
+    await generateAdapters({ repoRoot: root, prefix: 'jc-' });
 
     writeRepoFile(outside, 'victim.txt', 'external bytes stay\n');
-    const linkPath = '.claude/skills/oak-parallax/references/orchestration.md';
+    const linkPath = '.claude/skills/jc-parallax/references/orchestration.md';
     writeRepoFile(root, linkPath, ''); // ensure parent exists, then replace with a link
     removeRepoPath(root, `${linkPath}`);
     symlinkRepoPath(root, linkPath, `${outside}/victim.txt`, 'file');
 
-    await generateAdapters({ repoRoot: root, prefix: 'oak-' });
+    await generateAdapters({ repoRoot: root, prefix: 'jc-' });
 
     expect(readRepoBytes(outside, 'victim.txt')).toEqual(
       new TextEncoder().encode('external bytes stay\n'),
@@ -71,13 +71,13 @@ describe('symlink safety over a real filesystem', () => {
     const root = sandboxRepo();
     const outside = sandboxRepo();
     seedSkill(root);
-    await generateAdapters({ repoRoot: root, prefix: 'oak-' });
+    await generateAdapters({ repoRoot: root, prefix: 'jc-' });
 
-    const linkPath = '.claude/skills/oak-parallax/scripts/render_graph.py';
+    const linkPath = '.claude/skills/jc-parallax/scripts/render_graph.py';
     removeRepoPath(root, `${linkPath}`);
     symlinkRepoPath(root, linkPath, `${outside}/hooks/pre-commit`, 'file');
 
-    await generateAdapters({ repoRoot: root, prefix: 'oak-' });
+    await generateAdapters({ repoRoot: root, prefix: 'jc-' });
 
     expect(repoPathExists(outside, 'hooks/pre-commit')).toBe(false);
     expect(repoPathIsSymlink(root, linkPath)).toBe(false);
@@ -88,14 +88,14 @@ describe('symlink safety over a real filesystem', () => {
     const root = sandboxRepo();
     const outside = sandboxRepo();
     seedSkill(root);
-    await generateAdapters({ repoRoot: root, prefix: 'oak-' });
+    await generateAdapters({ repoRoot: root, prefix: 'jc-' });
 
     writeRepoFile(outside, 'victim.txt', '# Orchestration\n'); // byte-identical: only link-awareness can catch it
-    const linkPath = '.claude/skills/oak-parallax/references/orchestration.md';
+    const linkPath = '.claude/skills/jc-parallax/references/orchestration.md';
     removeRepoPath(root, `${linkPath}`);
     symlinkRepoPath(root, linkPath, `${outside}/victim.txt`, 'file');
 
-    const result = await checkAdapters({ repoRoot: root, prefix: 'oak-' });
+    const result = await checkAdapters({ repoRoot: root, prefix: 'jc-' });
 
     // Product reports host-joined absolute paths; expectations compose the
     // same way.
@@ -109,19 +109,19 @@ describe('symlink safety over a real filesystem', () => {
     seedSkill(root);
     // A genuine prior generation makes the target OURS; only then is the
     // later symlinked carried-root inside it ours to prune as the link.
-    await generateAdapters({ repoRoot: root, prefix: 'oak-' });
+    await generateAdapters({ repoRoot: root, prefix: 'jc-' });
     writeRepoFile(outside, 'deep/existing.md', 'external tree stays\n');
-    removeRepoPath(root, '.claude/skills/oak-parallax/references');
-    symlinkRepoPath(root, '.claude/skills/oak-parallax/references', outside, 'dir');
+    removeRepoPath(root, '.claude/skills/jc-parallax/references');
+    symlinkRepoPath(root, '.claude/skills/jc-parallax/references', outside, 'dir');
 
-    await generateAdapters({ repoRoot: root, prefix: 'oak-' });
+    await generateAdapters({ repoRoot: root, prefix: 'jc-' });
 
     expect(readRepoBytes(outside, 'deep/existing.md')).toEqual(
       new TextEncoder().encode('external tree stays\n'),
     );
     expect(repoPathExists(outside, 'orchestration.md')).toBe(false);
-    expect(repoPathIsSymlink(root, '.claude/skills/oak-parallax/references')).toBe(false);
-    expect(readRepoBytes(root, '.claude/skills/oak-parallax/references/orchestration.md')).toEqual(
+    expect(repoPathIsSymlink(root, '.claude/skills/jc-parallax/references')).toBe(false);
+    expect(readRepoBytes(root, '.claude/skills/jc-parallax/references/orchestration.md')).toEqual(
       new TextEncoder().encode('# Orchestration\n'),
     );
   });
@@ -135,13 +135,13 @@ describe('symlink safety over a real filesystem', () => {
 
     const generated = await generateAdapters({
       repoRoot: root,
-      prefix: 'oak-',
+      prefix: 'jc-',
     });
     expect(generated.refused.some((message) => /symlink/.test(message))).toBe(true);
-    expect(repoPathExists(root, '.claude/skills/oak-parallax/references/secret.txt')).toBe(false);
-    expect(repoPathExists(root, '.claude/skills/oak-parallax/SKILL.md')).toBe(false);
+    expect(repoPathExists(root, '.claude/skills/jc-parallax/references/secret.txt')).toBe(false);
+    expect(repoPathExists(root, '.claude/skills/jc-parallax/SKILL.md')).toBe(false);
 
-    const checked = await checkAdapters({ repoRoot: root, prefix: 'oak-' });
+    const checked = await checkAdapters({ repoRoot: root, prefix: 'jc-' });
     expect(checked.refused.some((message) => /symlink/.test(message))).toBe(true);
   });
 
@@ -154,14 +154,14 @@ describe('symlink safety over a real filesystem', () => {
 
     const generated = await generateAdapters({
       repoRoot: root,
-      prefix: 'oak-',
+      prefix: 'jc-',
     });
     expect(generated.refused.some((message) => /resolves outside/.test(message))).toBe(true);
     expect(readRepoBytes(outside, 'skills/precious-external/KEEP.md')).toEqual(
       new TextEncoder().encode('external tree stays\n'),
     );
 
-    const checked = await checkAdapters({ repoRoot: root, prefix: 'oak-' });
+    const checked = await checkAdapters({ repoRoot: root, prefix: 'jc-' });
     expect(checked.refused.some((message) => /resolves outside/.test(message))).toBe(true);
     // The guard runs BEFORE the per-canonical reads: no external content is
     // classified or byte-compared, so every content stream is empty (these
@@ -188,13 +188,13 @@ describe('symlink safety over a real filesystem', () => {
 
     const generated = await generateAdapters({
       repoRoot: root,
-      prefix: 'oak-',
+      prefix: 'jc-',
     });
     expect(generated.refused.some((message) => /symlink/.test(message))).toBe(true);
-    expect(repoPathExists(root, '.claude/skills/oak-parallax/references/smuggled.md')).toBe(false);
-    expect(repoPathExists(root, '.claude/skills/oak-parallax/SKILL.md')).toBe(false);
+    expect(repoPathExists(root, '.claude/skills/jc-parallax/references/smuggled.md')).toBe(false);
+    expect(repoPathExists(root, '.claude/skills/jc-parallax/SKILL.md')).toBe(false);
 
-    const checked = await checkAdapters({ repoRoot: root, prefix: 'oak-' });
+    const checked = await checkAdapters({ repoRoot: root, prefix: 'jc-' });
     expect(checked.refused.some((message) => /symlink/.test(message))).toBe(true);
   });
 });
@@ -204,14 +204,14 @@ describe('shape transitions over a real filesystem', () => {
     const root = sandboxRepo();
     seedSkill(root);
     writeRepoFile(root, `${CANONICAL_DIR}/references/topic`, 'was a file\n');
-    await generateAdapters({ repoRoot: root, prefix: 'oak-' });
+    await generateAdapters({ repoRoot: root, prefix: 'jc-' });
 
     removeRepoPath(root, `${CANONICAL_DIR}/references/topic`);
     writeRepoFile(root, `${CANONICAL_DIR}/references/topic/deep.md`, 'now a directory\n');
 
-    await generateAdapters({ repoRoot: root, prefix: 'oak-' });
+    await generateAdapters({ repoRoot: root, prefix: 'jc-' });
 
-    expect(readRepoBytes(root, '.claude/skills/oak-parallax/references/topic/deep.md')).toEqual(
+    expect(readRepoBytes(root, '.claude/skills/jc-parallax/references/topic/deep.md')).toEqual(
       new TextEncoder().encode('now a directory\n'),
     );
   });
@@ -220,14 +220,14 @@ describe('shape transitions over a real filesystem', () => {
     const root = sandboxRepo();
     seedSkill(root);
     writeRepoFile(root, `${CANONICAL_DIR}/references/topic/deep.md`, 'was a directory\n');
-    await generateAdapters({ repoRoot: root, prefix: 'oak-' });
+    await generateAdapters({ repoRoot: root, prefix: 'jc-' });
 
     removeRepoPath(root, `${CANONICAL_DIR}/references/topic`);
     writeRepoFile(root, `${CANONICAL_DIR}/references/topic`, 'now a file\n');
 
-    await generateAdapters({ repoRoot: root, prefix: 'oak-' });
+    await generateAdapters({ repoRoot: root, prefix: 'jc-' });
 
-    expect(readRepoBytes(root, '.claude/skills/oak-parallax/references/topic')).toEqual(
+    expect(readRepoBytes(root, '.claude/skills/jc-parallax/references/topic')).toEqual(
       new TextEncoder().encode('now a file\n'),
     );
   });
@@ -246,10 +246,10 @@ describe('executable-mode carriage over a real filesystem', () => {
   it('flags executable-bit drift through the checker when the two sides read differently (facet injected)', async () => {
     const root = sandboxRepo();
     seedSkill(root);
-    await generateAdapters({ repoRoot: root, prefix: 'oak-' });
+    await generateAdapters({ repoRoot: root, prefix: 'jc-' });
 
     const canonicalScript = join(root, CANONICAL_DIR, 'scripts/render_graph.py');
-    const projected = '.claude/skills/oak-parallax/scripts/render_graph.py';
+    const projected = '.claude/skills/jc-parallax/scripts/render_graph.py';
     const fs: CheckerFs = {
       ...defaultCheckerFs,
       async isExecutableOrUndefined(path) {
@@ -261,7 +261,7 @@ describe('executable-mode carriage over a real filesystem', () => {
       },
     };
 
-    const flagged = await checkAdapters({ repoRoot: root, prefix: 'oak-' }, fs);
+    const flagged = await checkAdapters({ repoRoot: root, prefix: 'jc-' }, fs);
 
     expect(flagged.drifted).toContain(join(root, projected));
   });
@@ -271,9 +271,9 @@ describe('executable-mode carriage over a real filesystem', () => {
     seedSkill(root);
     const canonicalScript = `${CANONICAL_DIR}/scripts/render_graph.py`;
     chmodRepoFile(root, canonicalScript, 0o755);
-    await generateAdapters({ repoRoot: root, prefix: 'oak-' });
+    await generateAdapters({ repoRoot: root, prefix: 'jc-' });
 
-    const projected = '.claude/skills/oak-parallax/scripts/render_graph.py';
+    const projected = '.claude/skills/jc-parallax/scripts/render_graph.py';
     expect(repoFileIsExecutable(root, projected)).toBe(repoFileIsExecutable(root, canonicalScript));
 
     // A real divergence where bits exist; a no-op where they cannot — either
@@ -293,7 +293,7 @@ describe('executable-mode carriage over a real filesystem', () => {
       value: repoFileIsExecutable(root, projected),
     });
 
-    await generateAdapters({ repoRoot: root, prefix: 'oak-' });
+    await generateAdapters({ repoRoot: root, prefix: 'jc-' });
 
     expect(repoFileIsExecutable(root, projected)).toBe(repoFileIsExecutable(root, canonicalScript));
   });
@@ -303,33 +303,33 @@ describe('projection-root reconciliation over a real filesystem', () => {
   it('reports a renamed canonical’s whole old projection as stale, and a generator run removes it from both surfaces', async () => {
     const root = sandboxRepo();
     seedSkill(root);
-    await generateAdapters({ repoRoot: root, prefix: 'oak-' });
+    await generateAdapters({ repoRoot: root, prefix: 'jc-' });
 
     renameRepoPath(root, CANONICAL_DIR, '.agent/skills/cognition/parallax-two');
 
-    const flagged = await checkAdapters({ repoRoot: root, prefix: 'oak-' });
+    const flagged = await checkAdapters({ repoRoot: root, prefix: 'jc-' });
     expect(flagged.stale).toEqual([
-      join(root, '.agents/skills/oak-parallax'),
-      join(root, '.claude/skills/oak-parallax'),
+      join(root, '.agents/skills/jc-parallax'),
+      join(root, '.claude/skills/jc-parallax'),
     ]);
 
-    await generateAdapters({ repoRoot: root, prefix: 'oak-' });
+    await generateAdapters({ repoRoot: root, prefix: 'jc-' });
 
-    expect(repoPathExists(root, '.claude/skills/oak-parallax')).toBe(false);
-    expect(repoPathExists(root, '.agents/skills/oak-parallax')).toBe(false);
-    expect(repoPathExists(root, '.claude/skills/oak-parallax-two/SKILL.md')).toBe(true);
-    expect(repoPathExists(root, '.agents/skills/oak-parallax-two/scripts/render_graph.py')).toBe(
+    expect(repoPathExists(root, '.claude/skills/jc-parallax')).toBe(false);
+    expect(repoPathExists(root, '.agents/skills/jc-parallax')).toBe(false);
+    expect(repoPathExists(root, '.claude/skills/jc-parallax-two/SKILL.md')).toBe(true);
+    expect(repoPathExists(root, '.agents/skills/jc-parallax-two/scripts/render_graph.py')).toBe(
       true,
     );
 
-    const after = await checkAdapters({ repoRoot: root, prefix: 'oak-' });
+    const after = await checkAdapters({ repoRoot: root, prefix: 'jc-' });
     expect(after.stale).toEqual([]);
   });
 
   it('never sweeps while discovery is incomplete: a skipped directory protects every projection', async () => {
     const root = sandboxRepo();
     seedSkill(root);
-    await generateAdapters({ repoRoot: root, prefix: 'oak-' });
+    await generateAdapters({ repoRoot: root, prefix: 'jc-' });
 
     // A hollow directory (no canonical inside) makes discovery incomplete;
     // an unreadable canonical presents identically. The existing projection
@@ -343,18 +343,18 @@ describe('projection-root reconciliation over a real filesystem', () => {
 
     const outcome = await generateAdapters({
       repoRoot: root,
-      prefix: 'oak-',
+      prefix: 'jc-',
     });
 
     expect(outcome.skipped.length).toBeGreaterThan(0);
-    expect(repoPathExists(root, '.claude/skills/oak-parallax/SKILL.md')).toBe(true);
-    expect(repoPathExists(root, '.agents/skills/oak-parallax/scripts/render_graph.py')).toBe(true);
+    expect(repoPathExists(root, '.claude/skills/jc-parallax/SKILL.md')).toBe(true);
+    expect(repoPathExists(root, '.agents/skills/jc-parallax/scripts/render_graph.py')).toBe(true);
   });
 
   it('reports no stale entries while discovery is incomplete — the checker never demands a sweep the generator refuses', async () => {
     const root = sandboxRepo();
     seedSkill(root);
-    await generateAdapters({ repoRoot: root, prefix: 'oak-' });
+    await generateAdapters({ repoRoot: root, prefix: 'jc-' });
 
     renameRepoPath(
       root,
@@ -362,7 +362,7 @@ describe('projection-root reconciliation over a real filesystem', () => {
       '.agent/skills/parked-canonical-two.md',
     );
 
-    const result = await checkAdapters({ repoRoot: root, prefix: 'oak-' });
+    const result = await checkAdapters({ repoRoot: root, prefix: 'jc-' });
 
     expect(result.skipped.length).toBeGreaterThan(0);
     expect(result.stale).toEqual([]);
@@ -371,18 +371,18 @@ describe('projection-root reconciliation over a real filesystem', () => {
   it('never sweeps against an empty canonical set: an empty skills root protects every projection', async () => {
     const root = sandboxRepo();
     seedSkill(root);
-    await generateAdapters({ repoRoot: root, prefix: 'oak-' });
+    await generateAdapters({ repoRoot: root, prefix: 'jc-' });
 
     removeRepoPath(root, '.agent/skills/cognition');
 
     const outcome = await generateAdapters({
       repoRoot: root,
-      prefix: 'oak-',
+      prefix: 'jc-',
     });
 
     expect(outcome.written).toEqual([]);
-    expect(repoPathExists(root, '.claude/skills/oak-parallax/SKILL.md')).toBe(true);
-    expect(repoPathExists(root, '.agents/skills/oak-parallax/SKILL.md')).toBe(true);
+    expect(repoPathExists(root, '.claude/skills/jc-parallax/SKILL.md')).toBe(true);
+    expect(repoPathExists(root, '.agents/skills/jc-parallax/SKILL.md')).toBe(true);
   });
 });
 
@@ -390,12 +390,12 @@ describe('same-length drift over a real filesystem', () => {
   it('detects a same-length byte difference in a carried copy (length comparison alone cannot)', async () => {
     const root = sandboxRepo();
     seedSkill(root);
-    await generateAdapters({ repoRoot: root, prefix: 'oak-' });
+    await generateAdapters({ repoRoot: root, prefix: 'jc-' });
 
-    const projected = '.claude/skills/oak-parallax/references/orchestration.md';
+    const projected = '.claude/skills/jc-parallax/references/orchestration.md';
     writeRepoFile(root, projected, '# Orchestratioz\n'); // same byte length as '# Orchestration\n'
 
-    const flagged = await checkAdapters({ repoRoot: root, prefix: 'oak-' });
+    const flagged = await checkAdapters({ repoRoot: root, prefix: 'jc-' });
 
     expect(flagged.drifted).toEqual([join(root, projected)]);
   });
@@ -416,10 +416,10 @@ describe('validation jurisdiction: only recognised Practice projections are adju
       'vendor skill installed with --copy\n',
     );
 
-    const flagged = await checkAdapters({ repoRoot: root, prefix: 'oak-' });
+    const flagged = await checkAdapters({ repoRoot: root, prefix: 'jc-' });
     expect(flagged.stale).toEqual([]);
 
-    await generateAdapters({ repoRoot: root, prefix: 'oak-' });
+    await generateAdapters({ repoRoot: root, prefix: 'jc-' });
 
     expect(readRepoBytes(root, '.agents/skills/clerk/SKILL.md')).toEqual(
       new TextEncoder().encode('vendor skill — external machinery owns it\n'),
@@ -435,10 +435,10 @@ describe('validation jurisdiction: only recognised Practice projections are adju
     writeRepoFile(root, '.agents/skills/clerk/SKILL.md', 'vendor canonical copy\n');
     symlinkRepoPath(root, '.claude/skills/clerk', '../../.agents/skills/clerk', 'dir');
 
-    const flagged = await checkAdapters({ repoRoot: root, prefix: 'oak-' });
+    const flagged = await checkAdapters({ repoRoot: root, prefix: 'jc-' });
     expect(flagged.stale).toEqual([]);
 
-    await generateAdapters({ repoRoot: root, prefix: 'oak-' });
+    await generateAdapters({ repoRoot: root, prefix: 'jc-' });
 
     expect(repoPathIsSymlink(root, '.claude/skills/clerk')).toBe(true);
     expect(readRepoBytes(root, '.agents/skills/clerk/SKILL.md')).toEqual(
@@ -449,18 +449,14 @@ describe('validation jurisdiction: only recognised Practice projections are adju
   it('membership is proven by content, never by name: a foreign directory sharing the generation prefix is untouched', async () => {
     const root = sandboxRepo();
     seedSkill(root);
-    writeRepoFile(
-      root,
-      '.claude/skills/oak-mystery/SKILL.md',
-      'foreign skill, coincidental name\n',
-    );
+    writeRepoFile(root, '.claude/skills/jc-mystery/SKILL.md', 'foreign skill, coincidental name\n');
 
-    const flagged = await checkAdapters({ repoRoot: root, prefix: 'oak-' });
+    const flagged = await checkAdapters({ repoRoot: root, prefix: 'jc-' });
     expect(flagged.stale).toEqual([]);
 
-    await generateAdapters({ repoRoot: root, prefix: 'oak-' });
+    await generateAdapters({ repoRoot: root, prefix: 'jc-' });
 
-    expect(readRepoBytes(root, '.claude/skills/oak-mystery/SKILL.md')).toEqual(
+    expect(readRepoBytes(root, '.claude/skills/jc-mystery/SKILL.md')).toEqual(
       new TextEncoder().encode('foreign skill, coincidental name\n'),
     );
   });
@@ -470,14 +466,14 @@ describe('validation jurisdiction: only recognised Practice projections are adju
     const outside = sandboxRepo();
     seedSkill(root);
     writeRepoFile(outside, 'elsewhere/SKILL.md', 'external skill tree\n');
-    symlinkRepoPath(root, '.claude/skills/oak-linked-estate', `${outside}/elsewhere`, 'dir');
+    symlinkRepoPath(root, '.claude/skills/jc-linked-estate', `${outside}/elsewhere`, 'dir');
 
-    const flagged = await checkAdapters({ repoRoot: root, prefix: 'oak-' });
+    const flagged = await checkAdapters({ repoRoot: root, prefix: 'jc-' });
     expect(flagged.stale).toEqual([]);
 
-    await generateAdapters({ repoRoot: root, prefix: 'oak-' });
+    await generateAdapters({ repoRoot: root, prefix: 'jc-' });
 
-    expect(repoPathIsSymlink(root, '.claude/skills/oak-linked-estate')).toBe(true);
+    expect(repoPathIsSymlink(root, '.claude/skills/jc-linked-estate')).toBe(true);
     expect(readRepoBytes(outside, 'elsewhere/SKILL.md')).toEqual(
       new TextEncoder().encode('external skill tree\n'),
     );
@@ -486,32 +482,32 @@ describe('validation jurisdiction: only recognised Practice projections are adju
   it('recognises a projection generated under a previous prefix and sweeps it: the marker, not the name, is the class test', async () => {
     const root = sandboxRepo();
     seedSkill(root);
-    await generateAdapters({ repoRoot: root, prefix: 'oak-' });
+    await generateAdapters({ repoRoot: root, prefix: 'jc-' });
 
-    const flagged = await checkAdapters({ repoRoot: root, prefix: 'oak2-' });
+    const flagged = await checkAdapters({ repoRoot: root, prefix: 'jc2-' });
     expect(flagged.stale).toEqual([
-      join(root, '.agents/skills/oak-parallax'),
-      join(root, '.claude/skills/oak-parallax'),
+      join(root, '.agents/skills/jc-parallax'),
+      join(root, '.claude/skills/jc-parallax'),
     ]);
 
-    await generateAdapters({ repoRoot: root, prefix: 'oak2-' });
+    await generateAdapters({ repoRoot: root, prefix: 'jc2-' });
 
-    expect(repoPathExists(root, '.claude/skills/oak-parallax')).toBe(false);
-    expect(repoPathExists(root, '.claude/skills/oak2-parallax/SKILL.md')).toBe(true);
-    expect(repoPathExists(root, '.agents/skills/oak2-parallax/SKILL.md')).toBe(true);
+    expect(repoPathExists(root, '.claude/skills/jc-parallax')).toBe(false);
+    expect(repoPathExists(root, '.claude/skills/jc2-parallax/SKILL.md')).toBe(true);
+    expect(repoPathExists(root, '.agents/skills/jc2-parallax/SKILL.md')).toBe(true);
   });
 
   it('leaves a foreign directory with no SKILL.md alone: what cannot be proven ours is never reported or removed', async () => {
     const root = sandboxRepo();
     seedSkill(root);
-    writeRepoFile(root, '.claude/skills/oak-parallax-residue/notes.md', 'just files\n');
+    writeRepoFile(root, '.claude/skills/jc-parallax-residue/notes.md', 'just files\n');
 
-    const flagged = await checkAdapters({ repoRoot: root, prefix: 'oak-' });
+    const flagged = await checkAdapters({ repoRoot: root, prefix: 'jc-' });
     expect(flagged.stale).toEqual([]);
 
-    await generateAdapters({ repoRoot: root, prefix: 'oak-' });
+    await generateAdapters({ repoRoot: root, prefix: 'jc-' });
 
-    expect(repoPathExists(root, '.claude/skills/oak-parallax-residue/notes.md')).toBe(true);
+    expect(repoPathExists(root, '.claude/skills/jc-parallax-residue/notes.md')).toBe(true);
   });
 });
 
@@ -522,12 +518,12 @@ describe('emission-target jurisdiction: a name-addressed write never crosses int
     seedSkill(root);
     writeRepoFile(outside, 'vendor-real/SKILL.md', 'vendor content stays\n');
     writeRepoFile(outside, 'vendor-real/scripts/vendor.sh', 'echo vendor\n');
-    symlinkRepoPath(root, '.claude/skills/oak-parallax', `${outside}/vendor-real`, 'dir');
+    symlinkRepoPath(root, '.claude/skills/jc-parallax', `${outside}/vendor-real`, 'dir');
 
-    const generated = await generateAdapters({ repoRoot: root, prefix: 'oak-' });
+    const generated = await generateAdapters({ repoRoot: root, prefix: 'jc-' });
 
     expect(generated.refused.some((message) => /not recognisably ours/.test(message))).toBe(true);
-    expect(repoPathIsSymlink(root, '.claude/skills/oak-parallax')).toBe(true);
+    expect(repoPathIsSymlink(root, '.claude/skills/jc-parallax')).toBe(true);
     expect(readRepoBytes(outside, 'vendor-real/SKILL.md')).toEqual(
       new TextEncoder().encode('vendor content stays\n'),
     );
@@ -535,39 +531,39 @@ describe('emission-target jurisdiction: a name-addressed write never crosses int
       new TextEncoder().encode('echo vendor\n'),
     );
 
-    const checked = await checkAdapters({ repoRoot: root, prefix: 'oak-' });
+    const checked = await checkAdapters({ repoRoot: root, prefix: 'jc-' });
     expect(checked.refused.some((message) => /not recognisably ours/.test(message))).toBe(true);
   });
 
   it('refuses a foreign real directory at the expected projection name: its content is never adjudicated or overwritten', async () => {
     const root = sandboxRepo();
     seedSkill(root);
-    writeRepoFile(root, '.agents/skills/oak-parallax/SKILL.md', 'vendor skill, colliding name\n');
-    writeRepoFile(root, '.agents/skills/oak-parallax/scripts/vendor.sh', 'echo vendor\n');
+    writeRepoFile(root, '.agents/skills/jc-parallax/SKILL.md', 'vendor skill, colliding name\n');
+    writeRepoFile(root, '.agents/skills/jc-parallax/scripts/vendor.sh', 'echo vendor\n');
 
-    const checked = await checkAdapters({ repoRoot: root, prefix: 'oak-' });
+    const checked = await checkAdapters({ repoRoot: root, prefix: 'jc-' });
     expect(checked.refused.some((message) => /not recognisably ours/.test(message))).toBe(true);
 
-    const generated = await generateAdapters({ repoRoot: root, prefix: 'oak-' });
+    const generated = await generateAdapters({ repoRoot: root, prefix: 'jc-' });
 
     expect(generated.refused.some((message) => /not recognisably ours/.test(message))).toBe(true);
-    expect(readRepoBytes(root, '.agents/skills/oak-parallax/SKILL.md')).toEqual(
+    expect(readRepoBytes(root, '.agents/skills/jc-parallax/SKILL.md')).toEqual(
       new TextEncoder().encode('vendor skill, colliding name\n'),
     );
-    expect(repoPathExists(root, '.agents/skills/oak-parallax/scripts/vendor.sh')).toBe(true);
+    expect(repoPathExists(root, '.agents/skills/jc-parallax/scripts/vendor.sh')).toBe(true);
   });
 
   it('refuses a foreign directory whose SKILL.md is a symlink to a genuine stub: content is never borrowed through a link', async () => {
     const root = sandboxRepo();
     seedSkill(root);
-    await generateAdapters({ repoRoot: root, prefix: 'oak-' });
+    await generateAdapters({ repoRoot: root, prefix: 'jc-' });
     writeRepoFile(root, '.claude/skills/vendor-x/scripts/vendor.sh', 'echo vendor\n');
-    symlinkRepoPath(root, '.claude/skills/vendor-x/SKILL.md', '../oak-parallax/SKILL.md', 'file');
+    symlinkRepoPath(root, '.claude/skills/vendor-x/SKILL.md', '../jc-parallax/SKILL.md', 'file');
 
-    const flagged = await checkAdapters({ repoRoot: root, prefix: 'oak-' });
+    const flagged = await checkAdapters({ repoRoot: root, prefix: 'jc-' });
     expect(flagged.stale).toEqual([]);
 
-    await generateAdapters({ repoRoot: root, prefix: 'oak-' });
+    await generateAdapters({ repoRoot: root, prefix: 'jc-' });
 
     expect(repoPathExists(root, '.claude/skills/vendor-x/scripts/vendor.sh')).toBe(true);
     expect(repoPathIsSymlink(root, '.claude/skills/vendor-x/SKILL.md')).toBe(true);

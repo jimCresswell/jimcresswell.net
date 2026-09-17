@@ -19,7 +19,7 @@ const SOURCE_PROJECTION_START = '<!-- CODEX_TEAM_ALERT_BOOTSTRAP_SOURCE_START --
 const SOURCE_PROJECTION_END = '<!-- CODEX_TEAM_ALERT_BOOTSTRAP_SOURCE_END -->';
 const PROJECTION = `## Codex team-session alert bootstrap
 
-Load \`$oak-start-right-team\` for coordinated Codex work.
+Load \`$jc-start-right-team\` for coordinated Codex work.
 `;
 const CANONICAL = [
   '# Rule',

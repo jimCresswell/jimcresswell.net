@@ -85,9 +85,9 @@ describe('renderStatusline — usage on the model row', () => {
     const out = renderStatusline({
       ...base,
       model: 'Opus 4.8',
-      dir: 'oak-wt-eef',
+      dir: 'jc-wt-eef',
       branch: 'feat/eef',
-      worktree: 'oak-wt-eef',
+      worktree: 'jc-wt-eef',
       usedPercentage: 38,
       fiveHourPercentage: 23,
       coordinationBranch: 'coordination/pilot',
@@ -141,10 +141,10 @@ describe('renderStatusline — primary checkout', () => {
 describe('renderStatusline — linked worktree', () => {
   const worktree: StatuslineParts = {
     ...base,
-    dir: 'oak-wt-eef',
+    dir: 'jc-wt-eef',
     branch: 'feat/eef-explore-evidence',
     dirty: true,
-    worktree: 'oak-wt-eef',
+    worktree: 'jc-wt-eef',
     coordinationBranch: 'coordination/worktree-pilot',
     coordinationPlace: 'jimcresswell.net',
   };
@@ -153,7 +153,7 @@ describe('renderStatusline — linked worktree', () => {
     const out = renderStatusline(worktree);
     expect(lineWith(out, 'coordination/worktree-pilot')).toContain('coord:');
     const worktreeLine = lineWith(out, 'feat/eef-explore-evidence');
-    expect(worktreeLine).toContain('oak-wt-eef');
+    expect(worktreeLine).toContain('jc-wt-eef');
     expect(worktreeLine).not.toContain('coord:');
     expect(out).toContain('jimcresswell.net');
   });
@@ -197,14 +197,14 @@ describe('renderStatusline — reasoning effort on the checkout row', () => {
   it('appends e:<level> to the worktree row in the linked-worktree layout, never the coordination rows', () => {
     const out = renderStatusline({
       ...base,
-      dir: 'oak-wt-eef',
+      dir: 'jc-wt-eef',
       branch: 'feat/eef-explore-evidence',
-      worktree: 'oak-wt-eef',
+      worktree: 'jc-wt-eef',
       coordinationBranch: 'coordination/worktree-pilot',
       coordinationPlace: 'jimcresswell.net',
       effortLevel: 'max',
     });
-    expect(stripAnsi(lineWith(out, 'oak-wt-eef'))).toContain('e:max');
+    expect(stripAnsi(lineWith(out, 'jc-wt-eef'))).toContain('e:max');
     expect(lineWith(out, 'coordination/worktree-pilot')).not.toContain('e:max');
     expect(lineWith(out, 'jimcresswell.net')).not.toContain('e:max');
   });
@@ -321,9 +321,9 @@ describe('renderStatusline — logo column mechanism', () => {
     const out = renderStatusline(
       {
         ...base,
-        dir: 'oak-wt-eef',
+        dir: 'jc-wt-eef',
         branch: 'feat/eef',
-        worktree: 'oak-wt-eef',
+        worktree: 'jc-wt-eef',
         coordinationBranch: 'coordination/pilot',
         coordinationPlace: 'jimcresswell.net',
       },

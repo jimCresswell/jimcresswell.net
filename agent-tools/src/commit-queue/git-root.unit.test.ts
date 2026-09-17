@@ -7,10 +7,10 @@ import { resolveInvokingGitRoot } from './git-root.js';
 
 describe('resolveInvokingGitRoot', () => {
   it('returns the trimmed toplevel of the invoking worktree', () => {
-    const runGit: GitRunner = () => '/workspace/oak-worktrees/feature\n';
+    const runGit: GitRunner = () => '/workspace/jc-worktrees/feature\n';
 
-    expect(resolveInvokingGitRoot('/workspace/oak-worktrees/feature/sub', runGit)).toBe(
-      '/workspace/oak-worktrees/feature',
+    expect(resolveInvokingGitRoot('/workspace/jc-worktrees/feature/sub', runGit)).toBe(
+      '/workspace/jc-worktrees/feature',
     );
   });
 
@@ -31,10 +31,10 @@ describe('resolveInvokingGitRoot', () => {
       throw new TrustedGitResolutionError('No trusted git binary found. Searched: …');
     };
 
-    expect(() => resolveInvokingGitRoot('/workspace/oak', resolverRefuses)).toThrow(
+    expect(() => resolveInvokingGitRoot('/workspace/jc', resolverRefuses)).toThrow(
       /No trusted git binary found/u,
     );
-    expect(() => resolveInvokingGitRoot('/workspace/oak', resolverRefuses)).not.toThrow(
+    expect(() => resolveInvokingGitRoot('/workspace/jc', resolverRefuses)).not.toThrow(
       /not inside a git working tree/u,
     );
   });
@@ -42,6 +42,6 @@ describe('resolveInvokingGitRoot', () => {
   it('throws on an empty toplevel report rather than returning an unusable root', () => {
     const runGit: GitRunner = () => '  \n';
 
-    expect(() => resolveInvokingGitRoot('/workspace/oak', runGit)).toThrow(/returned\s+nothing/u);
+    expect(() => resolveInvokingGitRoot('/workspace/jc', runGit)).toThrow(/returned\s+nothing/u);
   });
 });

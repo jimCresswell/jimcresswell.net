@@ -74,7 +74,7 @@ function activeAgent(identity: CollaborationAgentId, intent: string): ActiveAgen
 describe('projectWorkState — derived cross-worktree work-state view (F-98 / spawn-flow Phase 2)', () => {
   it('binds a worktree to its agent via the heartbeat branch and enriches with claim intent', () => {
     const rows = projectWorkState({
-      worktrees: [worktree('/repo/oak-spawn-flow', 'feat/spawn-worktree-view')],
+      worktrees: [worktree('/repo/jc-spawn-flow', 'feat/spawn-worktree-view')],
       events: [heartbeat(kingfisher, 'feat/spawn-worktree-view', 60_000)],
       activeAgents: [activeAgent(kingfisher, 'Lane A Phase 2')],
       nowMs: NOW_MS,

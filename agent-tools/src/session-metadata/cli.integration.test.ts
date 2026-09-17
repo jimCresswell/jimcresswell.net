@@ -40,7 +40,7 @@ const baseInput = (
   fs: SessionMetadataFileSystem,
 ): SessionMetadataCliInput => ({
   argv,
-  cwd: '/ws/code/oak.repo',
+  cwd: '/ws/code/jc.repo',
   env: { HOME: '/h' },
   fs,
 });
@@ -68,7 +68,7 @@ describe('runSessionMetadataCli', () => {
         '',
       ].join('\n'),
     );
-    expect(fs.calls).toStrictEqual(['/h/.claude/projects/-ws-code-oak-repo/sess-1.jsonl']);
+    expect(fs.calls).toStrictEqual(['/h/.claude/projects/-ws-code-jc-repo/sess-1.jsonl']);
   });
 
   it('renders JSON output with a fixed shape under --json', async () => {
@@ -159,7 +159,7 @@ describe('runSessionMetadataCli', () => {
     const fs = fakeFs(transcript(1, 0, 0));
     const result = await runSessionMetadataCli({
       argv: ['--vendor', 'claude', '--model', 'claude-opus-4-8', '--session-id', 'sess-1'],
-      cwd: '/ws/code/oak.repo',
+      cwd: '/ws/code/jc.repo',
       env: {},
       fs,
     });
