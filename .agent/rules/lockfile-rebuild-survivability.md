@@ -49,30 +49,30 @@ committed lockfile did not have. The fallback is not new: pnpm 10.28.2 and
 11.20.0 carry the same `files[0] ?? clone(currentLockfile)` choice of wanted
 lockfile.
 
-Run the recipe from the repository root, where the pathspecs name every
-workspace manifest, and keep the working directory there:
+Run the block in one shell from the repository root, where the pathspecs name
+every workspace manifest, and stay in that shell for the assertions:
 
 ```bash
-mktemp -d   # an empty directory, <scratch> below
+scratch="$(mktemp -d)"   # an empty directory
 git ls-files -z -- package.json '*/package.json' pnpm-workspace.yaml .npmrc \
-  | xargs -0 tar -cf - | tar -xf - -C <scratch>
-pnpm --dir <scratch> install --lockfile-only   # resolve from declarations alone
+  | xargs -0 tar -cf - | tar -xf - -C "$scratch"
+pnpm --dir "$scratch" install --lockfile-only   # resolve from declarations alone
 ```
 
 `git ls-files` names only tracked paths, so stage a new workspace's
 `package.json` first; the copied content is the working tree's. The committed
-lockfile is never touched. Copy `<scratch>/pnpm-lock.yaml` into the checkout
+lockfile is never touched. Copy `"$scratch/pnpm-lock.yaml"` into the checkout
 only when its state is the one you mean to commit, and before assertion 4.
 
 Then assert all four, and read each result rather than the exit code alone:
 
 1. **Floors** — every advisory-carrying package resolves at or above its fixed
-   version in `<scratch>/pnpm-lock.yaml`.
+   version in `"$scratch/pnpm-lock.yaml"`.
 2. **Holds** — every documented major hold still holds there (this repo's
    holds, each with how it is enforced and its lift condition, are listed in
    [`docs/engineering/build-system.md`](../../docs/engineering/build-system.md)
    §Dependency updates).
-3. **Audit** — `pnpm --dir <scratch> audit` is unchanged, with any deliberate
+3. **Audit** — `pnpm --dir "$scratch" audit` is unchanged, with any deliberate
    deferral still the only residue.
 4. **Frozen install** — `CI=true pnpm install --frozen-lockfile` exits 0 in the
    checkout, against the lockfile you commit.
