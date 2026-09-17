@@ -13,13 +13,18 @@ const ENTRY = (status: string): string =>
 
 describe('parseRegisterItems', () => {
   it('extracts the fields of a single inline-bracket entry, including status', () => {
-    const [item] = parseRegisterItems(ENTRY('pending'));
-    expect(item.fields.captured).toBe('2026-06-16');
-    expect(item.fields.source).toBe('a napkin entry');
-    expect(item.fields.target).toBe('a rule');
-    expect(item.fields.trigger).toBe('a second instance');
-    expect(item.fields.size).toBe('S');
-    expect(item.status).toBe('pending');
+    expect(parseRegisterItems(ENTRY('pending'))).toMatchObject([
+      {
+        fields: {
+          captured: '2026-06-16',
+          source: 'a napkin entry',
+          target: 'a rule',
+          trigger: 'a second instance',
+          size: 'S',
+        },
+        status: 'pending',
+      },
+    ]);
   });
 
   it('parses an entry whose bracket block wraps across several physical lines', () => {
@@ -29,10 +34,9 @@ describe('parseRegisterItems', () => {
       '  non-reproducing pre-push failure | size: M',
       '  | status: pending]`',
     ].join('\n');
-    const [item] = parseRegisterItems(wrapped);
-    expect(item.fields.captured).toBe('2026-06-12');
-    expect(item.fields.size).toBe('M');
-    expect(item.status).toBe('pending');
+    expect(parseRegisterItems(wrapped)).toMatchObject([
+      { fields: { captured: '2026-06-12', size: 'M' }, status: 'pending' },
+    ]);
   });
 
   it('parses every entry when several are present', () => {
@@ -93,33 +97,28 @@ describe('validateRegisterItems', () => {
 
   it('rejects an owner-gated status as its own finding kind', () => {
     const findings = validateRegisterItems(ENTRY('owner-gated'));
-    expect(findings).toHaveLength(1);
-    expect(findings[0].kind).toBe('owner-gated-status');
+    expect(findings).toMatchObject([{ kind: 'owner-gated-status' }]);
   });
 
   it('rejects an unknown status that is not owner-gated', () => {
     const findings = validateRegisterItems(ENTRY('parked'));
-    expect(findings).toHaveLength(1);
-    expect(findings[0].kind).toBe('unknown-status');
+    expect(findings).toMatchObject([{ kind: 'unknown-status' }]);
   });
 
   it('flags an annotated owner-gated status with the owner-gated finding kind', () => {
     const findings = validateRegisterItems(ENTRY('owner-gated 2026-06-02 — keep until recurrence'));
-    expect(findings).toHaveLength(1);
-    expect(findings[0].kind).toBe('owner-gated-status');
+    expect(findings).toMatchObject([{ kind: 'owner-gated-status' }]);
   });
 
   it('flags an annotated live status as non-conformant — the status must be a bare enum token', () => {
     const findings = validateRegisterItems(ENTRY('pending — see the note below'));
-    expect(findings).toHaveLength(1);
-    expect(findings[0].kind).toBe('unknown-status');
+    expect(findings).toMatchObject([{ kind: 'unknown-status' }]);
   });
 
   it('rejects an inline entry missing a required field as malformed', () => {
     const missingTrigger = `- **t**\n  \`[captured: 2026-06-16 | source: s | target: r | size: S | status: pending]\``;
     const findings = validateRegisterItems(missingTrigger);
-    expect(findings).toHaveLength(1);
-    expect(findings[0].kind).toBe('malformed');
+    expect(findings).toMatchObject([{ kind: 'malformed' }]);
   });
 
   it('rejects a legacy block-format entry as malformed', () => {
@@ -133,8 +132,7 @@ describe('validateRegisterItems', () => {
       '- **status**: pending',
     ].join('\n');
     const findings = validateRegisterItems(legacy);
-    expect(findings).toHaveLength(1);
-    expect(findings[0].kind).toBe('malformed');
+    expect(findings).toMatchObject([{ kind: 'malformed' }]);
   });
 
   it('flags a fenced bare-pipe entry with a known status as malformed (it is silently uncounted otherwise)', () => {
@@ -146,8 +144,7 @@ describe('validateRegisterItems', () => {
       '  ```',
     ].join('\n');
     const findings = validateRegisterItems(fencedBare);
-    expect(findings).toHaveLength(1);
-    expect(findings[0].kind).toBe('malformed');
+    expect(findings).toMatchObject([{ kind: 'malformed' }]);
   });
 
   it('flags a bare unwrapped entry (no fence, no bracket) with a known status as malformed', () => {
@@ -156,8 +153,7 @@ describe('validateRegisterItems', () => {
       '  captured: 2026-06-21 | source: s | target: r | trigger: t | size: S | status: due',
     ].join('\n');
     const findings = validateRegisterItems(bare);
-    expect(findings).toHaveLength(1);
-    expect(findings[0].kind).toBe('malformed');
+    expect(findings).toMatchObject([{ kind: 'malformed' }]);
   });
 
   it('does not flag a fenced canonical bracket block — a documented example is not a malformed entry', () => {

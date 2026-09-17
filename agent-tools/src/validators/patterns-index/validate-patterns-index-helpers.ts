@@ -59,14 +59,14 @@ const CATEGORY_ORDER: readonly string[] = [
 export function categoryLabel(category: string): string {
   return category
     .split('-')
-    .map((part) => (part.length === 0 ? part : part[0].toUpperCase() + part.slice(1)))
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
     .join(' ');
 }
 
 /** The document's first H1 heading text, or `null` when there is none. */
 function firstH1(content: string): string | null {
-  const match = /^# (.+)$/m.exec(content);
-  return match ? match[1].trim() : null;
+  const heading = /^# (.+)$/m.exec(content)?.[1];
+  return heading === undefined ? null : heading.trim();
 }
 
 /**

@@ -71,8 +71,8 @@ export function extractMarkdownLinks(_sourcePath: string, content: string): Extr
   let inFence = false;
   const fenceDelimiter = /^\s*(?:```|~~~)/;
 
-  for (let i = 0; i < lines.length; i++) {
-    if (fenceDelimiter.test(lines[i])) {
+  for (const [index, rawLine] of lines.entries()) {
+    if (fenceDelimiter.test(rawLine)) {
       inFence = !inFence;
       continue;
     }
@@ -80,8 +80,8 @@ export function extractMarkdownLinks(_sourcePath: string, content: string): Extr
       continue;
     }
     // Strip inline code spans so backticked paths are not treated as links.
-    const lineText = lines[i].replaceAll(/`[^`]*`/g, '');
-    links.push(...extractLinksFromLine(lineText, i + 1));
+    const lineText = rawLine.replaceAll(/`[^`]*`/g, '');
+    links.push(...extractLinksFromLine(lineText, index + 1));
   }
   return links;
 }
@@ -104,7 +104,7 @@ function extractLinksFromLine(lineText: string, line: number): ExtractedLink[] {
 
 /** Distinguish reference-definition paths from bracket-labelled prose. */
 function isPathShapedReferenceTarget(target: string): boolean {
-  const withoutDecoration = target.replaceAll(/^<|>$/g, '').split(/[?#]/)[0];
+  const [withoutDecoration = ''] = target.replaceAll(/^<|>$/g, '').split(/[?#]/);
   return (
     withoutDecoration.startsWith('.') ||
     withoutDecoration.startsWith('/') ||
@@ -140,11 +140,12 @@ export function resolveLinkTarget(sourcePath: string, rawTarget: string): string
   // Strip a markdown link title (`path "Title"`), then the fragment.
   const withoutTitle = rawTarget.replace(/\s+"[^"]*"$/, '').trim();
   const withoutAngles = withoutTitle.replace(/^<(.+)>$/, '$1');
-  const withoutFragment = withoutAngles.split('#')[0];
+  const [withoutFragment = ''] = withoutAngles.split('#');
   if (withoutFragment === '') {
     return null;
   }
-  const decoded = decodeUrlPath(withoutFragment.split('?')[0]);
+  const [withoutQuery = ''] = withoutFragment.split('?');
+  const decoded = decodeUrlPath(withoutQuery);
   if (decoded.startsWith('/')) {
     // Repo-root-relative: drop the leading slash and normalise.
     return normaliseResolvedPath(decoded.replace(/^\/+/, ''));
@@ -186,10 +187,11 @@ export function suggestFix(
   const matches = repoFiles.filter(
     (file) => posix.basename(file) === basename && !isExcludedPath(file),
   );
-  if (matches.length !== 1) {
+  const match = matches.at(0);
+  if (matches.length !== 1 || match === undefined) {
     return null;
   }
   const sourceDir = posix.dirname(sourcePath.replace(/^\.\//, ''));
-  const relative = posix.relative(sourceDir, matches[0]);
+  const relative = posix.relative(sourceDir, match);
   return relative === '' ? basename : relative;
 }
