@@ -73,7 +73,7 @@ describe('runPushSecretScan', () => {
     // A path destination carries neither "://" nor "@", so recognising it
     // rests on it naming no configured remote, never on its spelling.
     const result = run({
-      remoteName: '/srv/mirrors/oak.git',
+      remoteName: '/srv/mirrors/site.git',
       refsText: `refs/heads/lane ${LOCAL} refs/heads/lane ${ZERO}`,
     });
 

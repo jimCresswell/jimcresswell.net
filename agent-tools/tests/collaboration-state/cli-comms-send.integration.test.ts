@@ -6,8 +6,8 @@ import { runCollaborationStateCli } from '../../src/collaboration-state';
 import { createCapturingCoordinationHomeResolver } from './fake-collaboration-runtime-fixtures';
 import { createFakeCollaborationRuntime } from './fake-collaboration-runtime';
 
-const LINKED = '/workspace/oak-worktrees/lane-b';
-const PRIMARY = '/workspace/oak';
+const LINKED = '/workspace/jc-worktrees/lane-b';
+const PRIMARY = '/workspace/jc';
 const EXPLICIT_COMMS_DIR = '/explicit/comms';
 // Derived defaults are host-joined onto the home, so these expectations are
 // built in host form (identical to the POSIX literals on POSIX).

@@ -22,9 +22,9 @@ import {
 describe('isWorkspaceConfigFile', () => {
   it('matches the vitest config family at any suffix depth', () => {
     expect(isWorkspaceConfigFile('packages/core/result/vitest.config.ts')).toBe(true);
-    expect(isWorkspaceConfigFile('apps/oak-search-cli/vitest.e2e.config.ts')).toBe(true);
-    expect(isWorkspaceConfigFile('apps/oak-search-cli/vitest.smoke.config.ts')).toBe(true);
-    expect(isWorkspaceConfigFile('apps/oak-search-cli/vitest.experiment.config.ts')).toBe(true);
+    expect(isWorkspaceConfigFile('apps/example-search-cli/vitest.e2e.config.ts')).toBe(true);
+    expect(isWorkspaceConfigFile('apps/example-search-cli/vitest.smoke.config.ts')).toBe(true);
+    expect(isWorkspaceConfigFile('apps/example-search-cli/vitest.experiment.config.ts')).toBe(true);
   });
 
   it('matches tsup and eslint configs across extensions', () => {
@@ -46,9 +46,9 @@ describe('expandWorkspaceGlobs', () => {
   const tracked = [
     'agent-tools/package.json',
     'packages/core/result/package.json',
-    'packages/design/oak-design-ink/package.json',
-    'packages/design/oak-design-react/package.json',
-    'packages/design/oak-design-react/src/index.ts',
+    'packages/design/example-design-ink/package.json',
+    'packages/design/example-design-react/package.json',
+    'packages/design/example-design-react/src/index.ts',
     'fixtures/nested/packages/tooling/package.json',
   ];
 
@@ -61,8 +61,8 @@ describe('expandWorkspaceGlobs', () => {
     expect(dirs).toEqual([
       'agent-tools',
       'packages/core/result',
-      'packages/design/oak-design-ink',
-      'packages/design/oak-design-react',
+      'packages/design/example-design-ink',
+      'packages/design/example-design-react',
     ]);
   });
 
@@ -230,7 +230,7 @@ describe('classifyTurboRootInput — the pinned turbo-glob matcher', () => {
     'fixtures/nested/pnpm-workspace.yaml',
     'fixtures/nested/.github/workflows/check.yml',
     'fixtures/nested/packages/tooling/lib/cli.ts',
-    'packages/design/oak-design-system/src/tokens/color.ts',
+    'packages/design/example-design-system/src/tokens/color.ts',
   ];
 
   it('reports a positive glob with zero tracked matches as dead (the red-proof)', () => {
@@ -253,7 +253,7 @@ describe('classifyTurboRootInput — the pinned turbo-glob matcher', () => {
 
   it('matches any depth under a trailing double-star', () => {
     expect(
-      classifyTurboRootInput('$TURBO_ROOT$/packages/design/oak-design-system/**', tracked),
+      classifyTurboRootInput('$TURBO_ROOT$/packages/design/example-design-system/**', tracked),
     ).toEqual({ kind: 'alive' });
   });
 
@@ -361,7 +361,7 @@ describe('classifyTurboRootInput — separator and spelling truth cures (MCP-553
     'fixtures/nested/pnpm-workspace.yaml',
     'fixtures/nested/.github/workflows/check.yml',
     'fixtures/nested/packages/tooling/lib/cli.ts',
-    'packages/design/oak-design-system/src/tokens/color.ts',
+    'packages/design/example-design-system/src/tokens/color.ts',
   ];
 
   it('refuses a backslash whether the entry reads as a literal or as a glob (the refusal red-proof)', () => {

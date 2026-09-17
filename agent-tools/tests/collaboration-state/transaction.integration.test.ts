@@ -19,7 +19,7 @@ import {
 
 describe('collaboration JSON atomic writes', () => {
   it('writes parseable JSON after validating the serialized text', async () => {
-    const directory = await makeTempDirectory('oak-collaboration-transaction-');
+    const directory = await makeTempDirectory('jc-collaboration-transaction-');
     const filePath = tempPath(directory, 'state.json');
     try {
       await writeJsonFileAtomically({
@@ -41,7 +41,7 @@ describe('collaboration JSON atomic writes', () => {
   });
 
   it('creates no target or temp file when serialized JSON validation fails', async () => {
-    const directory = await makeTempDirectory('oak-collaboration-transaction-');
+    const directory = await makeTempDirectory('jc-collaboration-transaction-');
     const filePath = tempPath(directory, 'state.json');
     try {
       await expect(
@@ -63,7 +63,7 @@ describe('collaboration JSON atomic writes', () => {
     // gate's Err carries the parser's original error, and this fold must
     // rethrow exactly that object. A fold that wraps or re-labels breaks
     // the smoke-pinned loud-message contract downstream.
-    const directory = await makeTempDirectory('oak-collaboration-transaction-');
+    const directory = await makeTempDirectory('jc-collaboration-transaction-');
     const filePath = tempPath(directory, 'state.json');
     const original = new Error('the original loud message');
     try {
@@ -84,7 +84,7 @@ describe('collaboration JSON atomic writes', () => {
   });
 
   it('exclusively creates immutable JSON files without overwriting an existing target', async () => {
-    const directory = await makeTempDirectory('oak-collaboration-transaction-');
+    const directory = await makeTempDirectory('jc-collaboration-transaction-');
     const filePath = tempPath(directory, 'event.json');
     try {
       await createJsonFileAtomically({
@@ -198,7 +198,7 @@ describe('collaboration JSON atomic writes', () => {
   });
 
   it('serializes concurrent JSON file updates without lost writes', async () => {
-    const directory = await makeTempDirectory('oak-collaboration-transaction-');
+    const directory = await makeTempDirectory('jc-collaboration-transaction-');
     const filePath = tempPath(directory, 'counter.json');
     try {
       await writeText(filePath, '{"value":0}\n');
