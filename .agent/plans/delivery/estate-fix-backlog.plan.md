@@ -63,7 +63,10 @@ ends instead of looping.
    - After the last round, only a correctness defect in the pull request's
      own claim is cured forward in a new pull request.
    - Every other true finding is answered with a signed line, recorded as a
-     row under §Review dispositions naming its slice, and resolved.
+     row under §Review dispositions naming its slice, and resolved. Until
+     slice 2 lands, the line's verb is `Rejected as a cure in this pull
+     request` with the row named, the one form besides a cure SHA that
+     lifts the merge hold today; slice 2 adds a lifting `Routed to <row>`.
 3. **Work in progress is capped.** At most three open non-draft pull
    requests at a time (proposal P3, owner-ratified 2026-09-17). The next
    slice starts when one merges.
@@ -109,7 +112,8 @@ ends instead of looping.
 2. #124 landed 2026-09-17 (`SHA: 68e68e9`). #125 was closed with its reason
    under the triage in §Mechanism; its finding is a row under §Review
    dispositions.
-3. `fix/lint-warnings-fail-v2` (lint warnings pass every gate today), #126:
+3. `fix/lint-warnings-fail-v2` (lint warnings passed every gate before it),
+   #126:
    landed 2026-09-17 (`SHA: 6254f0cc`). Round one's finding, a wrong sentence
    the pull request added, was cured in its settlement push
    (`SHA: faec77b3`); round two's wording item is a row under §Review
@@ -126,20 +130,13 @@ ends instead of looping.
    two findings as rows below. The bypass was real. On Claude Code 2.1.274, a
    headless run showed an @-mentioned file reaching the model with no
    PreToolUse call, and the prompt hook's payload held only the prompt text.
-   The cure is uncommitted in the `override-floors` worktree. Its next steps,
-   in order:
-   - commit the work in progress;
-   - merge `origin/main` (#122 conflicts in the prompt smoke);
-   - move the helpers into #122's `secrets-hooks-support.ts`;
-   - trim the smoke to what the cure needs;
-   - settle, with evidence, whether scanning files outside the project sends
-     content off the machine (Sonar documents the scan as local; telemetry is
-     on);
-   - rerun the mutants and `pnpm check`;
-   - a security review by the seat under the security-expert template,
-     recorded in the pull request description (the owner's word of
-     2026-09-17: no subagents, expert reviewers included);
-   - open, review, land.
+   The steps taken, in order: the work in progress committed; `origin/main`
+   merged; the helpers consolidated onto #122's `secrets-hooks-support.ts`;
+   the privacy question settled from the Sonar documentation (the scan is
+   local; telemetry carries no content or paths); the mutants and
+   `pnpm check` rerun; the seat's own security review recorded in the
+   description (the owner's word of 2026-09-17: no subagents); opened,
+   reviewed, landed.
 6. The strictness drafts, as the owner directed on 2026-09-16:
    - #94, the strict base: landed 2026-09-17 (`SHA: 20d0c8d9`). Round one's
      two documentation findings were cured in its settlement push; round two's
@@ -158,6 +155,9 @@ ends instead of looping.
    #129's merge, before the fold opened.
 
 ## Backlog, in value order
+
+Slices marked owner-approved trace to the owner's card answers of 2026-09-17,
+recorded verbatim in `repo-continuity.md` at `SHA: 3372b944`.
 
 Security:
 
@@ -255,67 +255,71 @@ Structure and clean-up:
 ## Review dispositions
 
 One row per finding routed out of a pull request, dated. The row names the
-source, the finding in one line, and the slice that carries it.
+source, the finding in one line, the slice that carries it, and why it was
+routed rather than cured or rejected: outside the pull request's scope, below
+its bar, or found in its last round. The signed line on the source pull
+request carries the verb and the full rationale.
 
 - 2026-09-17, #120 round two: the Barney trigger writes `content/` and `lib/`
-  where the tree has `jcdotnet/`. Slice 15.
+  where the tree has `jcdotnet/`. Slice 15, outside #120's scope, a generator-level cure.
 - 2026-09-17, #120 round two: design-system globs match no motion or component
-  source (`packages/design/**` does not exist). Slice 15.
+  source (`packages/design/**` does not exist). Slice 15, outside #120's scope, a generator-level cure.
 - 2026-09-17, #120 round two: editor globs miss `jcdotnet/content/entities.json`.
-  Slice 15.
+  Slice 15, outside #120's scope, a generator-level cure.
 - 2026-09-17, #120 round two: `invoke-subagent-architect` globs miss
-  `.gemini/**/*` and the five entry files. Slice 15.
+  `.gemini/**/*` and the five entry files. Slice 15, outside #120's scope, a generator-level cure.
 - 2026-09-17, #120 round two: accessibility globs miss the PDF sources
   `jcdotnet/scripts/generate-pdf.ts` and `jcdotnet/lib/pdf-config.ts`.
-  Slice 15.
+  Slice 15, outside #120's scope, a generator-level cure.
 - 2026-09-17, #120 round-one reviewers: `.agent/HUMANS.md`, `.agent/README.md`
   and `subagent-practice-core-protection.md` misdescribe `.github/agents/` and
   list two entry files; `GEMINI.md` omits the generated `.gemini/agents/`;
-  `.codex/README.md` cites the surface matrix at a wrong path. Slice 16.
+  `.codex/README.md` cites the surface matrix at a wrong path. Slice 16, outside #120's scope.
 - 2026-09-17, #120 round-one reviewers: five agents have no `.github/agents/`
   wrapper. `codex-project-agents` tests read the live tree and duplicate the
-  canonical-path extractor. Slice 15.
+  canonical-path extractor. Slice 15, outside #120's scope.
 - 2026-09-17, #118 CI cure: when no pnpm is found, the commit workflow reports
-  "advisory orchestrator exit 1" with no cause. Slice 8.
+  "advisory orchestrator exit 1" with no cause. Slice 8, outside #118's scope.
 - 2026-09-17, #118 CI cure: `pnpm check` prints `unknown format "date-time"
-  ignored` on a green run. Slice 10.
+  ignored` on a green run. Slice 10, outside #118's scope.
 - 2026-09-17, #118 round one: `runLintChanged` throws where `principles.md`
-  prefers `Result`. Slice 19.
+  prefers `Result`. Slice 19, outside #118's scope.
 - 2026-09-17, #122 closed classifier: a `.ksh`, `.dash` or `.bats` file with
   no shebang is not linted, and Husky hooks could be required to use the `sh`
-  form. Slice 7.
+  form. Slice 7, outside #122's scope.
 - 2026-09-17, #122 round two and #125 round one: an unlisted shebang on a
   shell path is told remedies that do not clear the gate alone. Renaming
   alone leaves the form unlisted; adding it as not shell alone leaves the path
   shell. #125 closed with its reason; its branch `fix/shebang-refusal-remedy`
-  (`SHA: 9d2dd5b8`) is input. Slice 7.
+  (`SHA: 9d2dd5b8`) is input. Slice 7, last round, no diff of its own.
 - 2026-09-17, #124 docs review: the `assertNeverResult` TSDoc says "instead of
   an exception", and the Result README's "No hidden control flow" sits beside
-  three throwing helpers. Slice 19.
+  three throwing helpers. Slice 19, outside #124's scope.
 - 2026-09-17, #124 test review: in the Result unit tests, "narrows type
   correctly" compiles only through assignment narrowing, three tests repeat
   others, and the `map`, `flatMap` and `mapErr` assertions sit inside `if`
-  blocks. Slice 19.
+  blocks. Slice 19, outside #124's scope.
 - 2026-09-17, #126 round two: `build-system.md` says `lint:fix` runs only
   through the root `pnpm fix`; the root also has a `lint:fix` script, so
-  `pnpm fix` is a caller, not the only route. Slice 8.
+  `pnpm fix` is a caller, not the only route. Slice 8, last round, below the bar.
 - 2026-09-17, #127 round one: the assumptions-expert and subagent-architect
   tables and the reviewer roster say "plus the persona for the lane" in the
   singular and without the brief's condition (invoked when the change falls
-  in its lane). Slice 15.
+  in its lane). Slice 15, outside #127's one-row scope, the class.
 - 2026-09-17, #129 round two: `.agent/hooks/README.md` cites Claude Code's
   full path pattern while the hook applies its first group `^([^#]+)`; a path
   holding two `#` characters matches the full pattern not at all. State the
-  applied prefix beside the full pattern. Slice 16.
+  applied prefix beside the full pattern. Slice 16, last round, below the bar.
 - 2026-09-17, #129 round two: a present-but-failing node leaves the mentioned
-  files unscanned with no warning. Slice 1, first item.
+  files unscanned with no warning. Slice 1, first item, last round, no diff of its own; security.
 
 ## Review record
 
 - 2026-09-17, assumptions review by the seat under the assumptions-expert
   template, since the owner's word of that day allows no subagents. Findings
   applied: the completion criterion had no reachable exit while review rows
-  kept arriving (now closed at ratification, above); the security review in
+  kept arriving (it closes at ratification, as AC 4 now says); the security
+  review in
   close-out item 5 named a subagent (now the seat's own review, recorded in
   the pull request); the close-out order listed the pairing branch before the
   lint pull request that was already open and reviewed (now in the order
@@ -333,7 +337,14 @@ source, the finding in one line, and the slice that carries it.
   earns no diff of its own therefore forces a pull request. That is the
   generator, so the disposition verb moved to slice 2. For the rest of the
   close-out no pull request opens except the coordination fold; a last-round
-  finding on #129 or the fold is rejected with evidence or takes a ledger row.
+  finding on #129 or the fold takes a ledger row and the `Rejected as a cure
+  in this pull request` line, the form that lifts the hold until slice 2.
+- 2026-09-17, the fold's round one (Copilot): a delivery node is one bounded
+  step of a lane, and this node holds nineteen slices; the reviewer asks for a
+  split or a backlog surface. True as a reading of `.agent/plans/README.md`.
+  Not cured here: the node's shape is the owner's to ratify, so the question
+  rides the ratification card as its own item (keep one node with slices, or
+  split into delivery nodes under a strategic backlog).
 - The `plan-body-first-principles-check` clauses: the shape clause fires on
   §Mechanism item 2 (the ledger row replaces the per-finding pull request);
   the landing-path clause on §Close-out item 7 (the fold carries this plan to

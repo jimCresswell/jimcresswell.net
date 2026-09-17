@@ -2515,3 +2515,8 @@ tip is one whose required analysers ran".
 - **Reflexes written:** read a branch's claims at its base, not in the primary checkout; key a
   watch on the review id when a settlement moves no head; write scripts to files, not into
   the shell string, once zsh has eaten a quote twice.
+- **Fold gate, first attempt (19:55Z): `practice-substrate check` refused the push** because the
+  generated read model `shared-comms-log.md` was stale after the registration event I appended at
+  session open. `comms render --comms-dir … --output …` regenerates it (the file is machine-local,
+  so nothing to commit). Reflex: after any `comms append` from the primary, render before the
+  next push from it.

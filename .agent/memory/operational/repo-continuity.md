@@ -175,8 +175,10 @@ security) with at most three open non-draft pull requests; slice 2 is the dispos
 first among the corrections because the missing verb is what turned #128's last round into #129.
 If not ratified, present the card again and do nothing under §Backlog.
 
-The backlog, the owner's twenty-three card answers of 2026-09-17 and every routed review finding
-live in the plan and are not restated here.
+The backlog and every routed review finding live in the plan. The owner's twenty-three card
+answers of 2026-09-17 are recorded verbatim in this file at `SHA: 3372b944`, removed from the
+live text when the plan absorbed them as slices, each marked owner-approved; they are not
+restated here.
 
 Owner actions pending:
 

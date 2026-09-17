@@ -24,7 +24,8 @@ through a six-minute gate, reviews take their own time, and the session has a bu
 three lanes, what I was producing was not throughput but inventory. When the limit came, it
 found two merges staged and uncommitted, two fixes on disk, and a branch half-edited.
 
-Nothing was lost, and that is the other half of the story: git was the ledger. Every lane worked
+Little was lost, and that is the other half of the story: git was the ledger for the work.
+The one loss was a stopped lane's partial security review, which lived only in its transcript. Every lane worked
 in its own worktree, committed by explicit pathspec, and never pushed on its own, so the state
 at the moment of the stop could be read back file by file. If you run a fleet, make its state
 live somewhere that survives the fleet.

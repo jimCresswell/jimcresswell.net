@@ -11,7 +11,7 @@ Yesterday the owner said "If you know there is broken code, fix it", and they we
 that sentence into today as though it meant every true finding deserves a pull request of its own,
 started now. Put that beside two other good rules, that review rounds never go up and that
 last-round cures go forward in their own pull request, and you have a machine that makes pull
-requests. A two-word fix to a hint for a case no file in the repository has drew three review
+requests. A two-word fix to a hint for a case no file in the repository has drawn three review
 rounds before I closed it. The owed list tripled in a day while thirteen pull requests merged.
 
 Nothing in that was a mistake step by step. Each finding was true, each cure was proportionate on
