@@ -95,7 +95,12 @@ ends instead of looping.
    count at each slice start in `repo-continuity.md`.
 4. **The plan completes.** Every slice under §Backlog is landed, with its own
    pull request's proof, or dispositioned with a reason. Proof: `repo-safe`.
-   Each slice line names its merged pull request or its disposition.
+   Each slice line names its merged pull request or its disposition. The
+   slice list closes at ratification: a later disposition row joins an
+   existing slice or, when none fits, is marked `carried forward` and a
+   successor plan takes it at this plan's completion. Without that closure
+   the ledger grows with every review and this criterion is never reached
+   (`loop-exit-criteria-required`).
 
 ## Close-out, in order
 
@@ -104,11 +109,21 @@ ends instead of looping.
 2. #124 landed 2026-09-17 (`SHA: 68e68e9`). #125 was closed with its reason
    under the triage in §Mechanism; its finding is a row under §Review
    dispositions.
-3. `fix/architecture-reviewer-pairing` (#120's last-round cure,
-   `SHA: 21668df0`): open its pull request, review, land.
-4. `fix/lint-warnings-fail-v2` (lint warnings pass every gate today): open,
-   review, land.
-5. `fix/mention-secrets-scan`: the bypass is real. On Claude Code 2.1.274, a
+3. `fix/lint-warnings-fail-v2` (lint warnings pass every gate today), #126:
+   landed 2026-09-17 (`SHA: 6254f0cc`). Round one's finding, a wrong sentence
+   the pull request added, was cured in its settlement push
+   (`SHA: faec77b3`); round two's wording item is a row under §Review
+   dispositions.
+4. `fix/architecture-reviewer-pairing` (#120's last-round cure,
+   `SHA: 21668df0`), #127: landed 2026-09-17 (`SHA: 4ecbc451`). Round one
+   made the persona clause conditional and plural in the settlement push; the
+   same phrase in three sibling surfaces is a row under §Review dispositions.
+5. `fix/mention-secrets-scan`, #128: landed 2026-09-17 (`SHA: 867e9e0c`).
+   Round one's five findings were cured or rejected with Claude Code's own
+   patterns as evidence; round two's Unicode edge is cured forward in #129
+   (`fix/mention-parse-node`), which runs those patterns on node; #129 landed
+   2026-09-17 (`SHA: 931f4072`) after its own two rounds, with the last round's
+   two findings as rows below. The bypass was real. On Claude Code 2.1.274, a
    headless run showed an @-mentioned file reaching the model with no
    PreToolUse call, and the prompt hook's payload held only the prompt text.
    The cure is uncommitted in the `override-floors` worktree. Its next steps,
@@ -121,27 +136,50 @@ ends instead of looping.
      content off the machine (Sonar documents the scan as local; telemetry is
      on);
    - rerun the mutants and `pnpm check`;
-   - get a security-expert review;
+   - a security review by the seat under the security-expert template,
+     recorded in the pull request description (the owner's word of
+     2026-09-17: no subagents, expert reviewers included);
    - open, review, land.
 6. The strictness drafts, as the owner directed on 2026-09-16:
-   - #94, the strict base;
-   - then #95;
-   - then #96.
+   - #94, the strict base: landed 2026-09-17 (`SHA: 20d0c8d9`). Round one's
+     two documentation findings were cured in its settlement push; round two's
+     one-word finding is carried on `fix/config-expert-isolated-modules`
+     (`SHA: c864bc07`), merged into #95;
+   - #95: landed 2026-09-17 (`SHA: d7f37d8a`), carrying #94's last-round
+     line; its own round one (the carried line undeclared in the description)
+     was cured in the description;
+   - #96: landed 2026-09-17 (`SHA: cff790fa`), approved in round one.
 
    Each merges main, reruns its measurement with the flag on and off, is
    marked ready and lands.
 7. The coordination branch folds into main through its pull request, carrying
    this plan and the continuity records. Close-out ends when that merge
-   leaves the count at zero.
+   leaves the count at zero. The count first read zero on 2026-09-17 at
+   #129's merge, before the fold opened.
 
 ## Backlog, in value order
 
 Security:
 
-1. Remove `${CLAUDE_PROJECT_DIR:-.}` from the three PreToolUse guard commands
-   and from the hook grammar's accepted forms, with a security-expert review.
-2. The prompt secrets hook, when Sonar itself errors, lets the prompt through
-   with a visible "not scanned" warning.
+1. Security, in this order:
+   - the prompt secrets hook treats a node that is present but exits non-zero
+     as "no mentions" (bash carries no exit status through
+     `done < <(node ...)`), so the mentioned files go unscanned with no
+     warning; capture the parser's status and warn as for a missing node, with
+     a present-but-failing node stub in the mentions smoke (#129 round two,
+     2026-09-17);
+   - remove `${CLAUDE_PROJECT_DIR:-.}` from the three PreToolUse guard
+     commands and from the hook grammar's accepted forms, with a security
+     review.
+2. The disposition grammar gains `Cured in description` and a lifting
+   `Routed to <row>` form, in the parser and in `pr-lifecycle` together
+   (owner-approved 2026-09-17; moved up from slice 14 the same evening). Only
+   a cure SHA or a rejection lifts the merge hold today, so a true last-round
+   finding that earns no diff of its own can only become a new pull request,
+   which is how #128's last round became #129 during the close-out. With the
+   verb, that finding is a ledger row and the reviewed pull request merges.
+   The slice's earlier item, the visible "not scanned" warning when Sonar
+   errors, landed in #128.
 
 Gates that pass without checking:
 
@@ -192,12 +230,10 @@ Doctrine corrections (owner-approved 2026-09-17):
       an agent-tools CLI over stdio;
     - tests assert outcomes, never call inspection;
     - `principles.md`: knip and gitleaks run repo-wide.
-14. Four more:
+14. Three more:
     - `set-up-worktree-lane` says lane commits use the owner's identity;
     - ADR-005's knip location;
-    - `recommended.ts`'s comment that `warn` avoids blocking;
-    - the disposition grammar gains "Cured in description", in the parser and
-      in `pr-lifecycle` together.
+    - `recommended.ts`'s comment that `warn` avoids blocking.
 
 Structure and clean-up:
 
@@ -260,6 +296,49 @@ source, the finding in one line, and the slice that carries it.
   correctly" compiles only through assignment narrowing, three tests repeat
   others, and the `map`, `flatMap` and `mapErr` assertions sit inside `if`
   blocks. Slice 19.
+- 2026-09-17, #126 round two: `build-system.md` says `lint:fix` runs only
+  through the root `pnpm fix`; the root also has a `lint:fix` script, so
+  `pnpm fix` is a caller, not the only route. Slice 8.
+- 2026-09-17, #127 round one: the assumptions-expert and subagent-architect
+  tables and the reviewer roster say "plus the persona for the lane" in the
+  singular and without the brief's condition (invoked when the change falls
+  in its lane). Slice 15.
+- 2026-09-17, #129 round two: `.agent/hooks/README.md` cites Claude Code's
+  full path pattern while the hook applies its first group `^([^#]+)`; a path
+  holding two `#` characters matches the full pattern not at all. State the
+  applied prefix beside the full pattern. Slice 16.
+- 2026-09-17, #129 round two: a present-but-failing node leaves the mentioned
+  files unscanned with no warning. Slice 1, first item.
+
+## Review record
+
+- 2026-09-17, assumptions review by the seat under the assumptions-expert
+  template, since the owner's word of that day allows no subagents. Findings
+  applied: the completion criterion had no reachable exit while review rows
+  kept arriving (now closed at ratification, above); the security review in
+  close-out item 5 named a subagent (now the seat's own review, recorded in
+  the pull request); the close-out order listed the pairing branch before the
+  lint pull request that was already open and reviewed (now in the order
+  worked). Blocking held legitimate: no backlog slice opens before the count
+  reaches zero, which is the owner's word of 2026-09-17 restated on resume
+  ("land all PRs slowly and carefully"). Proportionality: the backlog is a
+  ledger and an order, not a commitment to work it in one session; the cap
+  of three bounds what is in flight.
+- 2026-09-17, evening, the owner's reminder ("the goal is to thoughtfully get
+  the PRs to zero") while #129 was in review. Reflection: the close-out landed
+  #126, #127, #94, #95, #96 and #128, and opened three pull requests (#127
+  from #120's last round, #128 the secrets cure, #129 from #128's last round).
+  #127 and #129 exist because a last-round finding can lift the merge hold only
+  by a cure SHA or a rejection, never by a ledger row; a true finding that
+  earns no diff of its own therefore forces a pull request. That is the
+  generator, so the disposition verb moved to slice 2. For the rest of the
+  close-out no pull request opens except the coordination fold; a last-round
+  finding on #129 or the fold is rejected with evidence or takes a ledger row.
+- The `plan-body-first-principles-check` clauses: the shape clause fires on
+  §Mechanism item 2 (the ledger row replaces the per-finding pull request);
+  the landing-path clause on §Close-out item 7 (the fold carries this plan to
+  main); the vendor-literal clause does not fire, since no vendor call shape
+  is planned.
 
 ## Out of scope
 

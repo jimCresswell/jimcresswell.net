@@ -151,174 +151,68 @@ STATE, 2026-09-16 afternoon (Cauldron herds Lustre, Director), owner-directed in
   byte-identical to the patch that became #92, the seven tsconfig edits adding only flags #94's
   base carries.
 
-STATE, 2026-09-17T16:15Z (Cauldron herds Lustre, Director), written at the owner's wrap for
-compaction.
+STATE, 2026-09-17T19:42Z (Cauldron herds Lustre, Director), written at the close-out's end.
+
+The open pull request count is zero (owner word 2026-09-17: "bring the number of open PRs down
+to zero via normal procedures"; restated on resume, "land all PRs slowly and carefully, go
+slowly, thoughtfully, do not use subagents"; the reminder at 20:20Z, "the goal is complete as
+soon as the number of open PRs hits zero"). Landed 2026-09-17 evening, in order: #126
+(`SHA: 6254f0cc`), #127 (`SHA: 4ecbc451`), #94 (`SHA: 20d0c8d9`), #95 (`SHA: d7f37d8a`),
+PR #96 (`SHA: cff790fa`), #128 (`SHA: 867e9e0c`), #129 (`SHA: 931f4072`), then the fold of
+this coordination branch. The plan `.agent/plans/delivery/estate-fix-backlog.plan.md` records
+each landing in §Close-out, every routed review finding in §Review dispositions, and the seat's
+reviews in §Review record.
 
 OWNER HOLDS, binding until the owner lifts them:
 
-- **No new subagent lanes.** Owner word 2026-09-17, about 16:00Z: "don't start any more until I say
-  otherwise, the exception is expert reviewers". The resume starts none: it lands and closes what
-  exists.
-- **Open pull requests go to zero** through normal procedures (owner word, same afternoon), under
-  the plan `.agent/plans/delivery/estate-fix-backlog.plan.md`. The plan is a sketch awaiting the
-  owner's ratification. Close-out is already authorised by that word and by `pr-lifecycle`'s
-  standing zero-open objective. Its §Mechanism item 2 is the change that ends the loop: a true
-  low-value finding from a last review round becomes a row in the plan's §Review dispositions and a
-  resolved thread, never a new pull request. Only a correctness defect in the pull request's own
-  claim is cured forward.
+- **No subagents** (owner word 2026-09-17, evening: "do not use subagents"). Every review is the
+  seat's own, under the template it would have invoked, stated in the pull request.
+- **The plan is a sketch awaiting ratification.** Its §Backlog governs no work until the owner
+  ratifies it. The ratification card was presented at this session's close.
 
-FIRST ACTION on resume, in order:
+FIRST ACTION on resume: read the plan's §Backlog. If ratified, start slice 1 (the guard fallback,
+security) with at most three open non-draft pull requests; slice 2 is the disposition verb, moved
+first among the corrections because the missing verb is what turned #128's last round into #129.
+If not ratified, present the card again and do nothing under §Backlog.
 
-1. Read the plan's §Close-out.
-2. Read the assumptions-expert review of the plan, if it reported before the stop (the result
-   is summarised below when it did). Apply its fixes to the sketch.
-3. Present the sketch for ratification as one card.
-
-Merged 2026-09-17 after the resume:
-
-- #119 (`SHA: 79da5c9`)
-- #111 (`SHA: ed7e074`)
-- #116 (`SHA: a2cf91b`)
-- #114 (`SHA: 8915de0`)
-- #117 (`SHA: 504109b`)
-- #121 (`SHA: 6f94f6d`)
-- #112 (`SHA: 8fafbf2`)
-- #105 (`SHA: ad5d7a6`)
-- #123 (`SHA: f86136d`, #105's closed hook grammar)
-- #122 (`SHA: 83e6cb8`, #112's cures and the closed shebang set)
-- #120 (`SHA: 4e9cd80`)
-- #118 (`SHA: 92b596d`, after the owner's one bounded extra review of its CI cure)
-- #124 (`SHA: 68e68e9`)
-
-PR #125 was closed with its reason (its finding is a plan ledger row). The merged branches are deleted
-on origin.
-
-Open, in order:
-
-1. PR #126 `fix/lint-warnings-fail-v2` (worktree `lint-warnings-fail`): pushed as `SHA: 0aad8e48`, a
-   merge of main over `SHA: d89306bb`. Check `gh pr list`: if its pull request is missing, the
-   push did not finish, so push and open it (the description states the red evidence on main,
-   the mutant and the invocation table). Old `fix/lint-warnings-fail` (`SHA: 1bae5445`) is
-   superseded.
-2. `fix/architecture-reviewer-pairing` (worktree `reviewer-template-citations`,
-   `SHA: 21668df0`, NOT pushed): #120's last-round cure. Push, open, review, land.
-3. `fix/mention-secrets-scan` (worktree `override-floors`, 5 files UNCOMMITTED, 24 behind main).
-   The bypass is real: on Claude Code 2.1.274 an @-mentioned file reaches the model with no
-   PreToolUse call, and the prompt hook sees only the prompt text. The cure widens the prompt hook
-   to scan mentioned files. Next steps are the plan's close-out item 5. The lane was stopped at the
-   owner's wrap; its security-expert review was stopped with it.
-4. Drafts #94, #95, #96 (strictness), then the coordination branch fold. This branch's stamp is
-   2026-09-16, so the fold was already due at this session's open (missed at open).
-
-Uncommitted partial work, conserved in place (never discarded):
-
-- `expert-roster` worktree (`fix/site-relative-paths-in-rules`, 18 files): input to plan slice 15.
-- `tools-lineage-paths` worktree (13 files): input to slice 9.
-
-Local superseded branches, deletable once confirmed:
-
-- `fix/shellcheck-classifier-names` (`SHA: 1594972a`, replaced by the closed set in #122);
-- `fix/shellcheck-gate-followups` (`SHA: 99eff2a3`, a commitlint-failing message, replaced by v2).
-
-The remote `fix/shebang-refusal-remedy` stays as slice 7's input.
+The backlog, the owner's twenty-three card answers of 2026-09-17 and every routed review finding
+live in the plan and are not restated here.
 
 Owner actions pending:
 
-- Re-paste the cloud environment setup script from main (its first line is now
-  `#!/usr/bin/env bash`).
-- Start one cloud session and report `bash --version` and `command -v bash`. This is the plan's
-  owner gate for the bash 5.2 floor.
+- Ratify, amend or decline the plan (one card).
+- Re-paste the cloud environment setup script from main (first line `#!/usr/bin/env bash`), start
+  one cloud session and report `bash --version` and `command -v bash` (the plan's owner gate for
+  the bash 5.2 floor, expires 2026-10-08).
 
-The owner was told at about 15:50Z.
+Uncommitted partial work, conserved in place (never discarded): `expert-roster` worktree
+(`fix/site-relative-paths-in-rules`, 18 files, input to slice 15); `tools-lineage-paths` worktree
+(13 files, input to slice 9). Local branches with no pull request: `fix/shellcheck-classifier-names`
+(`SHA: 1594972a`) and `fix/shellcheck-gate-followups` (`SHA: 99eff2a3`), both superseded
+by #122 and #126 and deletable on the owner's word; `fix/lint-warnings-fail` (`SHA: 1bae5445`),
+superseded by #126, likewise. The remote `fix/shebang-refusal-remedy` (`SHA: 9d2dd5b8`) is
+slice 7's input. Worktrees still present and retirable: `gate-output-noise`,
+`eslint-tooling-dead-config`, `lineage-oak-identifiers`, `shellcheck-gate`, `override-floors`
+(on `fix/mention-parse-node`, merged).
 
-Worktrees to retire after their branches land: `gate-output-noise` (#118 merged),
-`eslint-tooling-dead-config` (#124 merged), `lineage-oak-identifiers` (#117 and #121 merged),
-`shellcheck-gate` (once slice 7 takes its branch).
+Orchestration recipe (the scratchpad scripts are gone with the session):
 
-Orchestration recipe (nothing survives compaction):
-
-- **Push queue:** scratchpad `push-queue.sh <logdir> <worktree>=<branch>…`. It checks port 3000,
-  runs `git push -u`, and stops at the first failure.
-- **Review watch:** `review-watch.sh <repo> <pr>:<head-prefix>…`, run under bash. In zsh, write
-  `"${n}:<sha>"`, never `"$n:<sha>"`: zsh reads `:a` after a variable as a path modifier. This
-  broke one watch today.
-- **Merged-branch deletion:** `delete-merged.sh <repo> <branch>…`. It mints the bot token, confirms
-  a merged pull request, deletes over REST, and reads back that the branch is absent.
-- **Signed lines:** the grammar in `agent-tools/src/pr-watch/disposition-lines.ts`. A lift needs
-  `Cured in SHA:<sha>` or `Rejected`.
-
-The scratchpad scripts are ephemeral; this recipe rebuilds them.
-
-Owed, as fixes (each verified by a lane report unless marked; each its own pull request):
-the three PreToolUse guard commands use `${CLAUDE_PROJECT_DIR:-.}`, which runs a
-working-directory guard when the variable is unset (remove the fallback, security-expert review;
-falsifier: evidence the variable is always set for hooks); root `knip.config.ts` prints four
-"Remove redundant entry pattern" hints on every run; the merge bot's disposition grammar lifts
-only `Cured in SHA:` or `Rejected`, so a finding cured in a pull request description has no true
-verb (#112 item 2 was written as a rejected code change with the description corrected);
-`.husky/commit-msg` runs commitlint without `--strict`, so message warnings pass; root gate scripts
-calling `pnpm --filter @engraph/agent-tools` lack `--fail-if-no-match`; the commit-queue CLI topic
-ignores `PRACTICE_COORDINATION_HOME` (`agent-tools-cli-topics.ts:52`); nine tests outside the site
-have no class suffix (listed in #119); ADR-005 says knip configuration lives in `package.json`;
-`tooling/eslint/src/configs/recommended.ts:218-224` says `warn` avoids blocking work, false once
-lint fails on warnings; no workflow runs `pnpm audit`, and the dependency-currency skill reads only
-GitHub's reviewed advisories (a Practice change); gitleaks pins differ (CI 8.30.1, cloud setup
-8.30.0) and a `run-quality-gates` job named in `validate-check-ci-parity.ts` and
-`cloud-environment-routing.md:52` does not exist; the site pins vite 7.3.5, the only reason vite
-crosses to esbuild 0.28 (7.3.6 admits it); unverified, security-expert: @-mentioned files may
-bypass the Read secrets scan. Lineage residue: about 55 ticket-ID lines in agent-tools outside the
-validators; `MCP-000` in the delivery-plan template; lineage paths in
-`operationalisation-contract.md:48`, `comms-cited-events.md:23`, PDR-079, PDR-125, the parallax
-skill's `references.md:94-95`, the consolidate-docs skill (line 352), the safe-path README and
-`documentation-propagation.md:11-12`; `/oak-under-the-hood` in the onboarding-expert template;
-`oakRuleModules`, `oakRecommendedConfig` and lineage fixture paths in three eslint rule tests; the
-markdown-links exclusion `.github/copilot-worktrees/**`; an unreachable `.d.ts` guard in
-`workspace-topology.ts:25-27`; git's "Preparing worktree" line in the comms-watch smoke fixture.
-
-Owner answers by user cards, 2026-09-17 15:20Z to 15:35Z (each is now work, routed as its own pull
-request after the in-flight list, lanes capped at about three):
-
-- The prompt secrets hook, when Sonar itself errors: let the prompt through, but warn visibly that
-  it was not scanned (today it passes silently).
-- Remove the `${CLAUDE_PROJECT_DIR:-.}` fallback from the three PreToolUse guard commands, with a
-  security-expert review.
-- Verify next whether files @-mentioned in a prompt bypass the Read secrets scan (plant a fake
-  secret; fix if real).
-- Bash scripts require bash 5.2 or later: a guard at the top of each bash script that fails with
-  install advice, fail-closed in the security hooks (a block decision, never a bare non-zero exit),
-  enforced by the shellcheck gate, the floor defined once and listed as a prerequisite. Lands after
-  #122 and after the cloud image's bash is measured. Scripts use `#!/usr/bin/env bash` (moved in
-  #122's round-one cure).
-- Husky hooks stay strict POSIX, checked by `shellcheck --shell=sh`; Husky runs them with `sh`.
-- Disable Turbo telemetry for the repository, CI and cloud sessions.
-- Add a CI job running `pnpm audit`, and widen the dependency-currency skill to read repository
-  advisories for pinned floors.
-- Enable `no-export-trivial-type-aliases` at error, violations measured and fixed in the same
-  pull request.
-- `no-warning-toleration.md`: remove the start-at-warn allowance and cite PDR-126.
-- `testing-strategy.md`: the system under test is the site over HTTP or an agent-tools CLI over
-  stdio; drop the MCP-only E2E guidance.
-- Test fakes: tests assert outcomes; no call inspection (resolve `testing-strategy` §Stubs vs
-  Fakes against §Philosophy (e) that way).
-- `use-result-pattern.md:11`: "Errors are part of the type signature, and the compiler rejects a
-  read of value or error until ok is checked; handling the failure is the caller's job." (rides
-  `docs/eslint-readme-follow-ups`).
-- Fix pull requests may correct factual errors in rule and doctrine text; a change to what a rule
-  requires or allows comes to the owner as a card first.
-- The disposition grammar gains the verb "Cured in description", in the parser
-  (`disposition-lines.ts`) and the pr-lifecycle skill together.
-- Ratified: (P1) extend cited-path, cited-ADR and agent-name validation to every tracked text
-  surface; (P2) a planted-violation smoke per `pnpm check` leg; (P3) cap concurrent fix lanes at
-  about three and finish before starting.
-- `principles.md:528`: say knip and gitleaks run repo-wide, verified against the root scripts.
-- Rename `oak-commit-queue-v1` when no intent is queued.
-- Lane commits stay under the owner's identity; correct `set-up-worktree-lane` to say so.
-- The test helper shared by agent-tools and the site moves to a private `tooling/` package.
-- Delete `repo-check profile`.
-- The owner re-pastes `cloud-environment-setup.sh` and starts one cloud session to measure bash
-  once #122 merges; tell the owner when.
-- The strictness drafts (#94 to #96) resume after the fix inventory.
-- Loosen the site's exact vite 7.3.5 pin to `^7.3.6`, with a cold resolution and the site suite.
+- **Push and review chain:** commit by pathspec, check port 3000 free, `git push` (the pre-push
+  gate takes about ten minutes), open with `gh pr create --body-file`, request Copilot with a JSON
+  body under the owner's CLI credential, watch by polling the reviews list for a Copilot review on
+  the pushed head. When a settlement changes no commit (a description cure), key the watch on the
+  review id exceeding the last round's, since the head does not move.
+- **Merge:** `pnpm --silent agent-tools merge-bot merge --pr N --expect copilot-pull-request-reviewer`;
+  retry after about twenty seconds on "mergeability not yet computed"; confirm with
+  `gh pr view N --json state,mergeCommit`.
+- **Merged-branch deletion:** REST DELETE as the bot after confirming the merged pull request;
+  read back the ref absent. Then `git worktree remove` and `git branch -d`.
+- **Signed lines:** the grammar in `agent-tools/src/pr-watch/disposition-lines.ts`; a lift needs
+  `Cured in SHA:` or `Rejected`. A last-round finding that earns no diff is rejected with evidence
+  and takes a row in the plan's §Review dispositions.
+- **Reading another branch's claims:** read the files at the branch's base
+  (`git show origin/main:<path>`), never in the primary checkout, which sits on the coordination
+  branch behind main.
 
 Improvements, not defects: the observer's other measurements could carry their failure reason
 (a failed size read or listing is recorded as absent, which the record's TSDoc states);
