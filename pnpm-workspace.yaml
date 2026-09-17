@@ -61,14 +61,24 @@ overrides:
   # (minimatch 3.1.5 declares ^1.1.7; minimatch 10.2.6 declares ^5.0.8).
   'brace-expansion@1': '>=1.1.21 <2'
   'brace-expansion@5': '>=5.0.12 <6'
-  csstype: '>=3.2.3'
-  # Floor kept aligned with agent-tools' esbuild range (^0.28.2 as of
-  # 2026-08-11, per lockfile-rebuild-survivability §override-alignment).
-  # Bounded to the 0.28 line: esbuild is 0.x (minors are breaking lines)
-  # and the override REWRITES the direct dependents' recorded ranges, so
-  # an open floor would discard that manifest's caret bound and admit
-  # 0.29/1.x on rebuild unreviewed. Move floor and bound together with
-  # that manifest at the next esbuild raise.
+  # Security floor that deliberately crosses tsup and vite onto the 0.28 line.
+  # GHSA-g7r4-m6w7-qqqr (low; esbuild's development server allows arbitrary
+  # file reads on Windows) affects >=0.27.3 <0.28.1, with no patched 0.27
+  # release. tsup 8.5.1 and vite 7.3.5 declare esbuild ^0.27.0, which resolves
+  # 0.27.7, so without this crossing pnpm audit reports the advisory; tsx
+  # declares ~0.28.0 (which admits 0.28.0), bundle-require's peer >=0.18,
+  # agent-tools ^0.28.2. Not reachable here: tsup, vite, tsx and this
+  # repository's code never call esbuild's serve API, and the flaw is
+  # Windows-only. Safe to cross: 0.28.0's breaking changes are an integrity
+  # check in the install script's fallback download, the Go 1.26 toolchain and
+  # text import attributes, none of them the build or transform API that tsup
+  # and vite call; every tsup build and vitest run passes on 0.28. The floor is
+  # agent-tools' ^0.28.2, and the override REWRITES that manifest's recorded
+  # range (lockfile-rebuild-survivability §override-alignment): move floor and
+  # bound together with it. Bounded to the 0.28 line: esbuild is 0.x, its
+  # minors are breaking lines, and an open floor would admit 0.29 unreviewed.
+  # Remove when tsup, vite and tsx declare an esbuild range with no release
+  # below 0.28.1.
   esbuild: '>=0.28.2 <0.29'
   # Peer alignment, added 2026-09-16: eslint-plugin-tsdoc 0.5.3, its latest
   # release, pins @typescript-eslint/utils ~8.56.0, whose typescript peer stops
@@ -123,11 +133,6 @@ overrides:
   # options. Remove when markdownlint-cli2 declares js-yaml >=5.4.1.
   'js-yaml@4': '>=4.3.2 <5'
   'js-yaml@5': '>=5.4.1 <6'
-  # Security floor: quadratic-complexity ReDoS via the mailto: matcher in
-  # linkify-it (high; patched in 5.0.2). Arrives transitively through markdown
-  # tooling. Bounded below 6 for the same reason as fast-uri: 6.x exists and an
-  # open floor would take it. Raise the bound when markdown-it moves.
-  linkify-it: '>=5.0.2 <6'
   # Security floor: the markdown-it repository's GHSA-r7fv-28h4-cvq7
   # (maintainer severity high; quadratic smartquotes on unmatched closing
   # quotes; published 2026-09-12), patched in 14.3.2 on the 14 line, after
@@ -137,11 +142,12 @@ overrides:
   # 14.2.0. Its one consumer, markdownlint-cli2 0.23.2, pins markdown-it 14.3.0
   # exactly; the floor moves that pin to a patch release within the major.
   # Bounded below 15 on 2026-09-16: the open floor had rewritten that pin to
-  # 15.0.2 — a major the linter was not built against, whose linkify-it ^6 the
-  # linkify-it bound above then forced back to 5.x. The 14 line declares
-  # linkify-it ^5. Raise the bound when markdownlint-cli2 moves to markdown-it
-  # 15, together with the linkify-it bound. Remove when markdownlint-cli2
-  # declares markdown-it >=14.3.2.
+  # 15.0.2, a major the linter was not built against. The floor also keeps
+  # linkify-it patched without an override of its own: markdown-it 14.3.x
+  # declares linkify-it ^5.0.2, the patched release for GHSA-v245-v573-v5vm
+  # (high), and markdown-it 15 declares ^6.0.0, outside it. Raise the bound
+  # when markdownlint-cli2 moves to markdown-it 15.
+  # Remove when markdownlint-cli2 declares markdown-it >=14.3.2.
   markdown-it: '>=14.3.2 <15'
   # Security floor, raised 2026-09-17: GHSA-2v37-7h3g-55p8 (high;
   # CVE-2026-67213; custom generators loop indefinitely when size is zero),
@@ -171,33 +177,50 @@ overrides:
   # when the tree's vite and vitest declare picomatch >=4.0.4.
   'picomatch@2': '>=2.3.2 <3'
   'picomatch@4': '>=4.0.4 <5'
-  # Security floor, raised 2026-07-25. Originally for next's nested postcss
-  # 8.4.31 (GHSA-qx2v-qp2m-jg93, XSS via unescaped </style> in stringify
-  # output; patched in 8.5.10); now also covers path traversal in previous
-  # source-map auto-loading (high; patched in 8.5.18). Build-time surface only.
-  # Bounded below 9 pre-emptively (no 9.x published at 2026-08-11) — an
-  # open floor admits the next major the day it ships. Raised 2026-08-11 to 8.5.26 to
-  # keep the override aligned with the direct manifest's ^8.5.26 (jcdotnet)
-  # (lockfile-rebuild-survivability §override-alignment) — no new postcss
-  # advisory at this raise. Remove when next's nested postcss floor and the
-  # direct manifest both clear the newest patched line.
+  # Security floor: postcss's advisories run to GHSA-fxqj-rqcc-2cmp (medium;
+  # sourceMappingURL reads arbitrary .map files when `from` is unset), patched
+  # in 8.5.23, after GHSA-r28c-9q8g-f849 (high; 8.5.18), GHSA-6g55-p6wh-862q
+  # (high; 8.5.12) and GHSA-qx2v-qp2m-jg93 (medium; 8.5.10). The floor sits
+  # above them at 8.5.26, aligned with jcdotnet's direct ^8.5.26
+  # (lockfile-rebuild-survivability §override-alignment): the override REWRITES
+  # that manifest's recorded range, so move them together. Build-time surface:
+  # next pins postcss 8.5.23 exactly, which the floor moves within the 8.5
+  # line, and @tailwindcss/postcss, vite and tsup's config loader reach it too.
+  # Bounded below 9 pre-emptively (no 9.x published at 2026-09-17) — an open
+  # floor admits the next major the day it ships. Remove when every dependent
+  # declares postcss >=8.5.23 (vite 7.3.5 declares ^8.5.6, @tailwindcss/postcss
+  # 4.3.3 ^8.5.16).
   postcss: '>=8.5.26 <9'
-  rollup: '>=4.59.0'
+  # Security floor: GHSA-mw96-cpmx-2vgc (high; arbitrary file write through
+  # path traversal in Rollup 4), patched in 4.59.0. vite 7.3.5 declares rollup
+  # ^4.43.0; tsup 8.5.1 and its fix-dts-default-cjs-exports declare ^4.34.8.
+  # Build and test tooling only. Bounded below 5 pre-emptively (no 5.x
+  # published at 2026-09-17): an open floor admits the next major the day it
+  # ships and forces it onto every ^4 dependent. Remove when vite and tsup
+  # declare rollup >=4.59.0.
+  rollup: '>=4.59.0 <5'
   # Security floor, added 2026-09-16: GHSA-7w5x-hrqm-74c2 (high) in smol-toml
   # <=1.7.0, patched in 1.7.1. markdownlint-cli2 0.23.2, its latest release,
   # pins smol-toml 1.7.0 exactly, so no version move escapes; agent-tools
   # declares ^1.7.1 and knip ^1.8.0. Tree-wide rather than parent-scoped, so a
   # new consumer cannot bring back a vulnerable line. Safe to force from the
   # exact pin: 1.8.0 is a minor release, and markdownlint-cli2 calls smol-toml's
-  # parser only for a --config path ending in .toml, which this repository does
-  # not use (its configs are JSON), so the vulnerable path is unreachable here.
+  # parser for a configuration path ending in .toml and as a fallback parser
+  # for configuration files that fail to parse as JSONC; this repository's
+  # configurations are valid JSON, so the vulnerable path is unreachable here.
   # This override REWRITES agent-tools' recorded range, and while it stands a
   # raised manifest range is silently ignored: move floor and bound together
   # with that manifest. Bounded below 2 pre-emptively; raise the bound when a
   # consumer needs smol-toml 2. Remove when markdownlint-cli2 declares smol-toml
   # >=1.7.1.
   smol-toml: '>=1.7.1 <2'
-  sucrase: '>=3.35.1'
+  # Transitive floor; no advisory names sucrase itself. sucrase 3.35.0 declares
+  # glob ^10.3.10, a range whose floor sits inside GHSA-5j98-mcp5-4vw2 (high;
+  # command injection through the glob CLI's -c option; patched in 10.5.0);
+  # 3.35.1 replaced glob with tinyglobby. tsup 8.5.1, its one consumer,
+  # declares ^3.35.0. Bounded below 4 pre-emptively (no 4.x published at
+  # 2026-09-17). Remove when tsup declares sucrase >=3.35.1.
+  sucrase: '>=3.35.1 <4'
 minimumReleaseAgeExclude:
   - prettier@3.9.7
   - '@microsoft/tsdoc-config@0.18.2'
