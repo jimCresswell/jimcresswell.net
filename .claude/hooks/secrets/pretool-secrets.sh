@@ -8,11 +8,13 @@ fi
 
 # Read JSON from stdin. Prefer jq, which decodes JSON escapes, so a path holding
 # a quote or a backslash is the real path; fall back to sed if jq is unavailable.
+# printf hands sed the payload byte for byte, whatever the shell's echo does
+# with backslashes.
 stdin_data=$(cat)
 if command -v jq &> /dev/null; then
   tool_name=$(printf '%s' "$stdin_data" | jq -r '.tool_name // empty')
 else
-  tool_name=$(echo "$stdin_data" | sed -n 's/.*"tool_name"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' | head -1)
+  tool_name=$(printf '%s\n' "$stdin_data" | sed -n 's/.*"tool_name"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' | head -1)
 fi
 
 if [[ "$tool_name" != "Read" ]]; then
@@ -25,7 +27,7 @@ if command -v jq &> /dev/null; then
   file_path=$(printf '%s' "$stdin_data" | jq -j '.tool_input.file_path // empty'; printf x)
   file_path=${file_path%x}
 else
-  file_path=$(echo "$stdin_data" | sed -n 's/.*"file_path"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' | head -1)
+  file_path=$(printf '%s\n' "$stdin_data" | sed -n 's/.*"file_path"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' | head -1)
   # sed cannot decode JSON escapes. A path holding one is denied, never read unscanned.
   if [[ "$file_path" == *\\* ]]; then
     echo '{"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"The file path holds a JSON escape this hook cannot decode without jq; install jq so the path can be scanned for secrets"}}'

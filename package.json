@@ -51,7 +51,7 @@
     "lint": "turbo run lint",
     "lint:fix": "turbo run lint:fix",
     "lint:runtime-only": "eslint --config eslint.runtime-only.config.mjs runtime-only-scripts/**/*.mjs",
-    "lint:shell": "for f in .husky/pre-commit .husky/commit-msg .husky/prepare-commit-msg .husky/pre-merge-commit .husky/applypatch-msg .husky/pre-rebase .husky/pre-push .husky/refuse-commit-on-main.sh; do sh -n \"$f\" || exit \"$?\"; done",
+    "lint:shell": "pnpm agent-tools:repo-check shellcheck-tracked",
     "markdownlint:root": "pnpm agent-tools:repo-check markdownlint-tracked --fix",
     "markdownlint-check:root": "pnpm agent-tools:repo-check markdownlint-tracked",
     "outdated": "pnpm outdated -r",

@@ -16,8 +16,9 @@ set -euo pipefail
 # (globalPassThroughEnv) — without that passthrough, Playwright inside gate
 # tasks fell back to ~/.cache/ms-playwright and reported "Executable doesn't
 # exist" while the browsers sat installed here (worked instance 2026-08-26,
-# fresh cloud container, pre-push gates).
-(cd apps/oak-curriculum-mcp-streamable-http \
+# fresh cloud container, pre-push gates). The install runs in the site
+# workspace (jcdotnet), which carries @playwright/test.
+(cd jcdotnet \
   && env -u PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD \
      pnpm exec playwright install --with-deps chromium)
 
@@ -34,3 +35,11 @@ set -euo pipefail
 # by the universal preflight — no new host (probe invariant).
 pnpm_version="$(node -p "require('./package.json').packageManager.match(/^pnpm@([^+]+)/)[1]")"
 corepack install -g "pnpm@${pnpm_version}"
+
+# The root `lint:shell` gate (a leg of `pnpm check`, so of pre-push) runs
+# the version of shellcheck CI pins. The installer puts it in this repo's own
+# .tools/bin, which the gate runs first, so each Practice repo the session
+# carries keeps its own pin. The release asset redirects from github.com to
+# release-assets.githubusercontent.com, the chain the universal preflight
+# already downloads gitleaks through — no new host (probe invariant).
+./.agent/setup/install-shellcheck.sh
