@@ -2281,7 +2281,7 @@ tip is one whose required analysers ran".
   pass having parsed nothing. The owner: "If you know there is broken code, fix it." Scope
   discipline decides which pull request a fix lands in, never whether the fix happens;
   `local-broken-code-never-leaves` already says so. Nine fix pull requests followed (#98 to
-  #104, three merged the same evening) and each review turned up more real defects in the same
+  #106, three merged the same evening) and each review turned up more real defects in the same
   classes.
 - **Forward cures keep the round budget.** After a pull request's last review round, a true
   finding is cured in a commit on a follow-up branch cut from the reviewed head, lifted on the

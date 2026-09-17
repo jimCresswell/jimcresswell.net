@@ -373,8 +373,9 @@ under ratified text, frames a question to the owner, adds process, and consolida
   transplant runbook's completeness step | trigger: the owner's card answer (session 2 batch)
   | size: S | status: pending]`
   Prediction (made when the panel was the quartet; a fifth role,
-  `cricket-judgement-lowestpower-low`, joined on 2026-09-16, so the generator now emits five):
-  the sub-agent adapter generator (item 6, 2b) emits all five from a role
+  `cricket-judgement-lowestpower-low`, joined on 2026-09-16, so the generator now emits five on Claude and Cursor, and three on Codex, which omits
+  `cricket-judgement-high` by design):
+  the sub-agent adapter generator (item 6, 2b) emits the per-platform set from a role
   declaration, and the census is a leg or an audit script under inputs/. Home read: PDR-009
   lines 197 to 199 consolidate many rules onto one trigger, the opposite direction; lines 147
   to 148 validate coverage and form with no counts; the runbook lines 159 and 185 to 186 have

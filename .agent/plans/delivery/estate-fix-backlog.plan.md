@@ -5,7 +5,7 @@ name: Estate fix backlog — open pull requests to zero, then known defects in v
 overview: >-
   Land or close every open pull request, then work the estate's known defects
   and owner-approved corrections in a fixed value order, at most three open
-  pull requests at a time, with routed review findings recorded here instead
+  non-draft pull requests at a time, with routed review findings recorded here instead
   of each becoming its own pull request.
 status: sketch
 ratified_by: null
@@ -31,7 +31,7 @@ last_updated: 2026-09-17
 
 ## Goal
 
-The count of open pull requests reaches zero and stays near it. Known defects
+The count of open pull requests reaches zero. Known defects
 and the corrections the owner approved on 2026-09-17 are worked in one
 published order, so each session starts from a stated next step, and fixing
 ends instead of looping.
@@ -91,14 +91,16 @@ ends instead of looping.
 2. **No routed finding is dropped.** Every review finding routed out of a
    pull request from 2026-09-17 on has a row under §Review dispositions,
    naming its source pull request and the slice that carries it. Proof:
-   `repo-safe`. The section is read against the signed disposition lines on
-   those pull requests.
+   `owner-held`. The Director reads the section against the signed
+   disposition lines on those pull requests and records the reading in
+   `repo-continuity.md`.
 3. **The cap holds.** No backlog slice opens while three non-draft pull
    requests are open. Proof: `owner-held`. The Director records the open
    count at each slice start in `repo-continuity.md`.
 4. **The plan completes.** Every slice under §Backlog is landed, with its own
-   pull request's proof, or dispositioned with a reason. Proof: `repo-safe`.
-   Each slice line names its merged pull request or its disposition. The
+   pull request's proof, or dispositioned with a reason. Proof: `owner-held`.
+   Each slice line names its merged pull request or its disposition, and the
+   Director records each merge reading in `repo-continuity.md`. The
    slice list closes at ratification: a later disposition row joins an
    existing slice or, when none fits, is marked `carried forward` and a
    successor plan takes it at this plan's completion. Without that closure
@@ -345,11 +347,21 @@ request carries the verb and the full rationale.
   Not cured here: the node's shape is the owner's to ratify, so the question
   rides the ratification card as its own item (keep one node with slices, or
   split into delivery nodes under a strategic backlog).
+- 2026-09-17, the fold's round two (Copilot, the last round): ten record
+  findings, all true and below the bar, carried to the successor branch's
+  first commit; the plan's own (proof classes on AC 2 and AC 4, "non-draft"
+  in the overview, "stays near it" in the goal, the six check clauses) are
+  applied in that commit ahead of the ratification stamp.
 - The `plan-body-first-principles-check` clauses: the shape clause fires on
   §Mechanism item 2 (the ledger row replaces the per-finding pull request);
   the landing-path clause on §Close-out item 7 (the fold carries this plan to
-  main); the vendor-literal clause does not fire, since no vendor call shape
-  is planned.
+  main); the vendor-literal clause fires on every named version, tool and path
+  (Claude Code 2.1.274, Sonar 1.7.0, node, pnpm, bash, `${CLAUDE_PROJECT_DIR}`,
+  the file paths), each verified at pickup; the optionality clause finds no
+  open alternative left to the implementer; the record-consumer clause names
+  the Director and the next session as the readers of §Close-out and §Review
+  dispositions; the rules-tier clause finds no rule change, only ledger rows
+  and slices.
 
 ## Out of scope
 

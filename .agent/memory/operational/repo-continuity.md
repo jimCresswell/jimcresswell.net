@@ -21,6 +21,12 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
+- 2026-09-17 evening: zero open pull requests. The close-out landed #126, #127, #94, #95,
+  #96, #128 and #129, and the fold #130 (`SHA: 5f3225e2`) carried this window's records to
+  `main`; the primary now resides on `coordination/2026-09-17-5f3225`. The plan
+  `estate-fix-backlog` awaits the owner's ratification and governs no work until then. The
+  live reading is §Next Safe Steps, STATE 2026-09-17T19:42Z; the Director's handoff item 117
+  carries the seated block.
 - `main` carries the monorepo and the Practice since PR #53 merged (`55649a2`, 2026-09-13); the
   transplant closure ran as small PRs against `main` and is complete (the last, #91, merged
   2026-09-15 at `SHA: f8aab12`). Plan of record:
@@ -199,7 +205,9 @@ slice 7's input. Worktrees still present and retirable: `gate-output-noise`,
 
 Orchestration recipe (the scratchpad scripts are gone with the session):
 
-- **Push and review chain:** commit by pathspec, check port 3000 free, `git push` (the pre-push
+- **Push and review chain**, under the owner's word for the work (a push is part of the
+  pull-request lifecycle the owner directs, never the recipe's own authority; `AGENT.md`'s
+  rule stands): commit by pathspec, check port 3000 free, `git push` (the pre-push
   gate takes about ten minutes), open with `gh pr create --body-file`, request Copilot with a JSON
   body under the owner's CLI credential, watch by polling the reviews list for a Copilot review on
   the pushed head. When a settlement changes no commit (a description cure), key the watch on the
@@ -270,8 +278,8 @@ and proof (item 4's rows closed by #85 `SHA: eed1f2e`, #87 `SHA: 6b5676b`, #86
    Second maintenance item at the same priority (2026-09-16): the Cricket seat naming. The
    quartet's generated adapter names encode effort alone (`-low`, `-medium`, `-high`, `-xhigh`), so
    nothing in those names says which model a seat runs (the fifth seat,
-   `cricket-judgement-lowestpower-low`, added the same day, already names both), while the estate pairs model power INVERSELY with
-   effort — low is fable, medium is opus, high is sonnet, xhigh is haiku. A caller who cannot read
+   `cricket-judgement-lowestpower-low`, added the same day, already names both), while the
+   estate pairs model power INVERSELY with effort — low is fable, medium is opus, high is sonnet, xhigh is haiku. A caller who cannot read
    that from the name mis-launches the suite, as the Director did on 2026-09-16 by overriding
    every seat's model and inverting the design. Names should carry both dimensions. The change
    lives in `.agent/sub-agents/templates/cricket-judgement.md` and

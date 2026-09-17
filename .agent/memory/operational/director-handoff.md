@@ -50,23 +50,22 @@ Every line answered first-hand, none inferred:
   archive holds only processed material.
 - The transplant is bounded: closure items 3 to 8 finish it, then editorial work.
 
-## Current handoff state (2026-09-16, 21:12Z; #93 merged, this branch folded, known defects in fix lanes)
+## Current handoff state (2026-09-17T20:09Z; zero open pull requests, the fold #130 merged, the plan awaits ratification)
 
 Where this block and the routing log disagree, the log's last entry is current; this block is
-rewritten at each Director wrap. Item 116 is the boundary state; items 114 and 115 are history.
+rewritten at each Director wrap. Item 117 is the boundary state; items 114 to 116 are history.
 
-- `main` is at `SHA: 958919c` (#93, merged by the owner at 20:38Z). The coordination branch
-  `coordination/2026-09-15-b9dcfb` folded `main` in (`SHA: 2961e9c`, every file both sides
-  touched taking `main`'s version), was pushed, and lands through #97; after #97 merges, cut the
-  fresh day-stamped coordination branch from the merged tip.
-- Known defects run as fix lanes, one branch and one pull request each, listed with their state
-  in `repo-continuity.md` §Next Safe Steps. Nothing is queued as "none blocking": the owner's
-  word of 2026-09-16 is "If you know there is broken code, fix it".
-- Still open as drafts: the strictness lanes #94, #95, #96. `feat/arc-metrics` has no pull
-  request yet.
-- Nothing session-scoped is armed at a boundary unless item 116 names it. The chain recipe, the
-  push slot and the merge mechanics are unchanged; the standing rulings above and items 1 to
-  116 carry them.
+- `main` is at `SHA: 5f3225e2` (#130, the fold of `coordination/2026-09-16-bee014`). The
+  primary resides on `coordination/2026-09-17-5f3225`, cut from that tip.
+- Zero pull requests open (owner word 2026-09-17, "bring the number of open PRs down to zero";
+  "the goal is complete as soon as the number of open PRs hits zero"). Landed this evening:
+  #126, #127, #94, #95, #96, #128, #129, #130.
+- The plan `.agent/plans/delivery/estate-fix-backlog.plan.md` is a sketch awaiting the owner's
+  ratification (the card was presented at this session's close). It governs no work until the
+  stamp lands. Its §Backlog is the next work, slice 1 (security) first.
+- Owner holds: no subagents (owner word 2026-09-17, evening). Every review is the seat's own.
+- Nothing session-scoped is armed at a boundary unless item 117 names it. The chain recipe,
+  the push slot and the merge mechanics are in `repo-continuity.md` §Next Safe Steps.
 
 ## Live board
 
@@ -1723,6 +1722,21 @@ ones the Director would put to the owner had the owner been present.
      `feat/arc-metrics` pull request; after 2026-09-17T08:24Z, delete the release-age exclusion
      block.
 
+117. The close-out to zero (2026-09-17, 17:00Z to 20:09Z). BOUNDARY STATE. Solo, no subagents
+     (owner word). Landed in order: #126 (`SHA: 6254f0cc`), #127 (`SHA: 4ecbc451`), #94
+     (`SHA: 20d0c8d9`), #95 (`SHA: d7f37d8a`), #96 (`SHA: cff790fa`), #128 (`SHA: 867e9e0c`,
+     the @-mention secrets gap, real), #129 (`SHA: 931f4072`, Claude Code's own mention
+     patterns run on node), then the fold #130 (`SHA: 5f3225e2`). Two review rounds each; every
+     last-round finding a signed line and a ledger row in the plan, never a third push. The
+     owner's reminder at 20:20Z ("thoughtfully to zero") ended cure-forward pull requests; the
+     missing lifting verb is the plan's slice 2. Successor branch
+     `coordination/2026-09-17-5f3225` cut from `SHA: 5f3225e2`; its first commit carries the
+     fold's last-round record corrections. moved for the sites: the strict tsconfig base and the
+     two `noUncheckedIndexedAccess` slices / moved for the Practice: the @-mention gap closed,
+     every ESLint gate failing on a warning, the reviewer-routing fixes, the plan that turns
+     review findings into ledger rows, and this window's continuity. Nothing armed at the
+     boundary; monitors and background chains all ended.
+
 ## Routing log
 
 - 2026-09-13 evening: seat opened; team-start `ca1ba4d8`; lanes A, B, C authored, unfilled.
@@ -1963,3 +1977,5 @@ ones the Director would put to the owner had the owner been present.
 - 2026-09-16 20:38Z: #93 merged by the owner (`SHA: 958919c`); this branch folded `main` in
   (`SHA: 2961e9c`) and opened #97; the known defects became fix lanes (item 116). §Current
   handoff state is current.
+- 2026-09-17T20:09Z: #130 merged (`SHA: 5f3225e2`); zero open pull requests; the successor
+  `coordination/2026-09-17-5f3225` cut (item 117). §Current handoff state is current.
