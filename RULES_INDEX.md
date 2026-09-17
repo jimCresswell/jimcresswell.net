@@ -51,7 +51,7 @@ edit it by hand.
 | `.agent/rules/important-state-not-in-temp-files.md` | core | — |
 | `.agent/rules/invoke-accessibility-expert.md` | situational | `surface:accessibility — Accessibility-touching change (WCAG / keyboard / focus / contrast / ARIA)` |
 | `.agent/rules/invoke-architecture-expert-barney.md` | situational | `surface:content/entities.json, lib/ graph derivation, JSON-LD` |
-| `.agent/rules/invoke-architecture-expert-betty.md` | situational | `surface:app/ routes, navigation, layout, tilt variants` |
+| `.agent/rules/invoke-architecture-expert-betty.md` | situational | `surface:app/ routes, navigation, layout` |
 | `.agent/rules/invoke-architecture-expert-fred.md` | situational | `surface:build, caching, PDF generation, Vercel config` |
 | `.agent/rules/invoke-architecture-expert-wilma.md` | situational | `surface:.agent/, docs/, Practice governance` |
 | `.agent/rules/invoke-assumptions-expert.md` | situational | `ceremony:plan-authoring — Plan authoring, decision-complete marks, blocking claims, 3+ agents` |

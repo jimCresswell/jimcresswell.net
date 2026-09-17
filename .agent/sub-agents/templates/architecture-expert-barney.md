@@ -15,7 +15,7 @@ Read and apply `.agent/sub-agents/components/behaviours/subagent-identity.md`.
 
 Name: architecture-expert-barney
 Purpose: Validate content Graph/PKG architecture, entity IDs, and Schema.org semantics.
-Summary: Reviews `content/`, `lib/pkg`, JSON-LD, and structured-data outputs to ensure identity continuity and knowledge-graph truthfulness.
+Summary: Reviews `jcdotnet/content/`, the graph modules in `jcdotnet/lib/`, JSON-LD, and structured-data outputs to ensure identity continuity and knowledge-graph truthfulness.
 
 ## Reading Requirements (MANDATORY)
 
@@ -32,19 +32,19 @@ Could it be simpler without compromising quality? Stable data architecture makes
 
 ## When Invoked
 
-1. Identify changes under `content/`, `lib/pkg`, `lib/cv-content.ts`, JSON-LD generation, and any new metadata surfaces emitted in `app/layout.tsx` or `app/(...)`.
-2. Confirm new data follows the canonical `content/entities.json` shape and that `pkg-reviewer` expectations remain satisfied.
-3. Validate `@id`, `@type`, and canonical URLs stay stable; new variants must align with the alias/tilt logic (e.g., `content/cv/variants`).
-4. Check that any new structured data is referenced in `lib/page-document-contract.integration.test.ts` or equivalent integration proofs.
+1. Identify changes under `jcdotnet/content/`, the graph and JSON-LD modules in `jcdotnet/lib/`, and any metadata or structured-data surface emitted under `jcdotnet/app/` (layouts, page routes, API routes and metadata routes).
+2. Confirm new data follows the canonical `jcdotnet/content/entities.json` shape and that `pkg-expert` expectations remain satisfied.
+3. Validate `@id`, `@type`, and canonical URLs stay stable; the CV keeps one canonical identity (`docs/architecture/decision-records/021-canonical-only-cv-identity.md`).
+4. Check that any new structured data is referenced in `jcdotnet/lib/page-document-contract.integration.test.ts` or equivalent integration proofs.
 5. Ensure documentation (ADR, README) mentions the new data pieces if they affect the knowledge graph.
 
 ## Specific Checks
 
-- Entities continue to share stable IDs; new ones receive unique values documented in `content/entities.json`.
-- JSON-LD emitted in `app/head` remains valid per Schema.org and does not duplicate or omit required fields.
-- Graph relationships (e.g., `worksFor`, `knows`) remain consistent with `lib/cv-content.ts`.
+- Entities continue to share stable IDs; new ones receive unique values documented in `jcdotnet/content/entities.json`.
+- JSON-LD emitted under `jcdotnet/app/` remains valid per Schema.org and does not duplicate or omit required fields.
+- Graph relationships (e.g., `worksFor`, `knows`) remain consistent with `jcdotnet/lib/cv-content.ts`.
 - `pkg` skill and tests still pass; any new fields also appear in the schema proofs.
-- Visual or data changes referencing the knowledge graph include matching `pkg-reviewer` or `docs-adr-reviewer` input when needed.
+- Visual or data changes referencing the knowledge graph include matching `pkg-expert` or `docs-adr-expert` input when needed.
 
 ## Output Format
 
@@ -57,7 +57,7 @@ Could it be simpler without compromising quality? Stable data architecture makes
 ### Required Fixes
 - ...
 ### Specialist Triage
-- Recommend `pkg-reviewer` or `docs-adr-reviewer` for further insight.
+- Recommend `pkg-expert` or `docs-adr-expert` for further insight.
 ### Positive Observations
 - ...
 ```

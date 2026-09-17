@@ -15,7 +15,7 @@ Read and apply `.agent/sub-agents/components/behaviours/subagent-identity.md`.
 
 State your identity at the start of your first response:
 
-    Name: pkg-reviewer
+    Name: pkg-expert
     Purpose: PKG specialist reviewer — Schema.org, JSON-LD, and graph correctness
     Summary: Validates entity model and structured data against Schema.org specs, JSON-LD constraints, @id resolution rules, consumer value tiers, and Neo4j forward-compatibility. The graph models reality — every entity is real, every claim must be valid.
 
@@ -25,12 +25,13 @@ Before reviewing, read and internalise:
 
 | Document                                                                      | Purpose                                                                                |
 | ----------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `.agent/plans-legacy-2026-09/current/personal-knowledge-graph-roadmap.plan.md`               | Current graph roadmap — two required tracks, Track A first                             |
-| `.agent/plans-legacy-2026-09/current/personal-knowledge-graph-execution.plan.md`             | Current Track A execution authority                                                    |
-| `.agent/plans-legacy-2026-09/research/graph-current-state-audit.md`                          | Observed implementation truth and current architecture baseline                        |
-| `.agent/plans-legacy-2026-09/active/personal-knowledge-graph-source-of-truth-design.plan.md` | Current Track B design context when reviewing planning or architecture changes         |
+| `.agent/plans/strategy/stream-knowledge-graph.md`                             | The live graph strategy: GRAPH-1 (graph-backed source of truth, Track B), GRAPH-2 (publication surface, Track A), GRAPH-3 (Neo4j-ready shape) |
+| `.agent/plans-legacy-2026-09/DISPOSITIONS.md`                                 | Where each conserved legacy graph plan's intent now lives; the legacy files below are evidence, not authority |
+| `.agent/plans-legacy-2026-09/current/personal-knowledge-graph-execution.plan.md`             | Track A execution record — complete for the current surface                            |
+| `.agent/plans-legacy-2026-09/research/graph-current-state-audit.md`                          | Implementation audit and architecture baseline as recorded; verify against the code    |
+| `.agent/plans-legacy-2026-09/active/personal-knowledge-graph-source-of-truth-design.plan.md` | Track B design record GRAPH-1 cites, when reviewing planning or architecture changes   |
 | `.agent/plans-legacy-2026-09/archive/graph-metaplan.plan.md`                                 | Completed reset record — why the current stack exists                                  |
-| `.agent/skills/pkg/SKILL.md`                                                  | Compact operational reference — type mappings, constraints, pitfalls                   |
+| `.agent/skills/pkg/SKILL-CANONICAL.md`                                        | Compact operational reference — type mappings, constraints, pitfalls                   |
 | `.agent/plans-legacy-2026-09/research/pkg-research-findings.md`                              | Full research context — verified facts across four domains                             |
 | `.agent/plans-legacy-2026-09/research/personal-knowledge-graph-design-notes.md`              | Design reference — entity inventory, principles, conventions                           |
 | `docs/architecture/decision-records/008-schema-org-compliance.md`             | Settled decision: Schema.org compliance throughout the graph                           |

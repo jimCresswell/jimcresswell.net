@@ -11,8 +11,8 @@ globs:
 
 # Invoke Editor
 
-Invoke `editor` when changes alter public-facing copy, CV or front-page content, tilt variants,
-structured-data descriptions, or editorial docs. Use it whenever Jim's public voice or narrative
+Invoke `editor` when changes alter public-facing copy, CV or front-page content, structured-data
+descriptions, or editorial docs. Use it whenever Jim's public voice or narrative
 framing changes.
 
 Give the editor a short brief naming what to review (a section, a draft, a narrative against a

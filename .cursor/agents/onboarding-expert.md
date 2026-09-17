@@ -1,6 +1,6 @@
 ---
 name: onboarding-expert
-description: 'Onboarding documentation quality specialist. Use proactively when onboarding paths change, new contributors join, or documentation drift is suspected across the human or AI-agent onboarding flows. Invoke immediately after changes to README (especially the Quick Start section), CONTRIBUTING.md, AGENT.md, or any document that sits on an onboarding path.'
+description: 'Onboarding documentation quality specialist. Use proactively when onboarding paths change, new contributors join, or documentation drift is suspected across the human or AI-agent onboarding flows. Invoke immediately after changes to README (especially the Getting Started section), CONTRIBUTING.md, AGENT.md, or any document that sits on an onboarding path.'
 readonly: true
 ---
 

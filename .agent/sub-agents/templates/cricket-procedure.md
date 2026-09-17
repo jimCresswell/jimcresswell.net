@@ -127,8 +127,7 @@ line to UNGROUNDED.
   directive NAMED by file name or id. A named standing rule IS a citation: spend a
   budget Read to verify it exists only when your verdict turns on it, and NEVER mark a
   gate FAIL for complying with a standing rule the frame omitted to quote (the
-  Director-endorsed adjudication principle — pair-era tally run 8,
-  `.agent/reports/agentic-engineering/cricket-two-pair-tally-2026-07-26.md`: three
+  Director-endorsed adjudication principle — the lineage's pair-era tally, run 8: three
   WRONG-PRIORITY grounds all failed because the rules existed outside the frame). A
   cited forcing fact must also pass the necessity test: its content must actually force
   THIS gate (a citation whose substance is unrelated to the gate it defends does not
