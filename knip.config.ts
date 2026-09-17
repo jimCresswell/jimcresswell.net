@@ -85,8 +85,10 @@ const config: KnipConfig = {
       entry: ['src/*.ts'],
     },
     jcdotnet: {
-      // Next.js is auto-detected; the build-time scripts are package-script entries.
-      entry: ['scripts/**/*.ts'],
+      // Next.js is auto-detected; the build-time scripts are package-script entries. Test files
+      // under scripts/ are left out of this entry so they enter only through the Vitest include:
+      // a mis-suffixed test there runs under no runner and must surface as an unused file.
+      entry: ['scripts/**/*.ts', '!scripts/**/*.{test,spec}.ts'],
     },
   },
 };
