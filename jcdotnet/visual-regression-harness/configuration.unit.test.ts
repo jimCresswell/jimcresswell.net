@@ -1,18 +1,20 @@
 import { describe, expect, it } from "vitest";
 import { parseVisualRegressionConfiguration } from "./configuration";
 
+const contentRegion = { key: "content", selector: "main" };
+
+const exampleRoute = {
+  key: "example",
+  path: "/example",
+  regions: [contentRegion],
+  expectedSectionIds: ["summary"],
+  allowances: {
+    targetOnlyExpectedSectionIds: true,
+  },
+};
+
 const completeConfiguration = {
-  routes: [
-    {
-      key: "example",
-      path: "/example",
-      regions: [{ key: "content", selector: "main" }],
-      expectedSectionIds: ["summary"],
-      allowances: {
-        targetOnlyExpectedSectionIds: true,
-      },
-    },
-  ],
+  routes: [exampleRoute],
 };
 
 describe("parseVisualRegressionConfiguration", () => {
@@ -29,7 +31,7 @@ describe("parseVisualRegressionConfiguration", () => {
       {
         routes: [
           {
-            ...completeConfiguration.routes[0],
+            ...exampleRoute,
             path: "example",
           },
         ],
@@ -39,20 +41,14 @@ describe("parseVisualRegressionConfiguration", () => {
     [
       "duplicate route keys",
       {
-        routes: [
-          completeConfiguration.routes[0],
-          { ...completeConfiguration.routes[0], path: "/another-example" },
-        ],
+        routes: [exampleRoute, { ...exampleRoute, path: "/another-example" }],
       },
       "Duplicate route key: example",
     ],
     [
       "duplicate route paths",
       {
-        routes: [
-          completeConfiguration.routes[0],
-          { ...completeConfiguration.routes[0], key: "another-example" },
-        ],
+        routes: [exampleRoute, { ...exampleRoute, key: "another-example" }],
       },
       "Duplicate route path: /example",
     ],
@@ -61,11 +57,8 @@ describe("parseVisualRegressionConfiguration", () => {
       {
         routes: [
           {
-            ...completeConfiguration.routes[0],
-            regions: [
-              completeConfiguration.routes[0].regions[0],
-              completeConfiguration.routes[0].regions[0],
-            ],
+            ...exampleRoute,
+            regions: [contentRegion, contentRegion],
           },
         ],
       },
@@ -76,7 +69,7 @@ describe("parseVisualRegressionConfiguration", () => {
       {
         routes: [
           {
-            ...completeConfiguration.routes[0],
+            ...exampleRoute,
             key: "../../escaped",
           },
         ],
@@ -88,7 +81,7 @@ describe("parseVisualRegressionConfiguration", () => {
       {
         routes: [
           {
-            ...completeConfiguration.routes[0],
+            ...exampleRoute,
             regions: [{ key: "../../artifact", selector: "main" }],
           },
         ],
@@ -100,7 +93,7 @@ describe("parseVisualRegressionConfiguration", () => {
       {
         routes: [
           {
-            ...completeConfiguration.routes[0],
+            ...exampleRoute,
             regions: [{ key: "document", selector: "main" }],
           },
         ],
@@ -112,7 +105,7 @@ describe("parseVisualRegressionConfiguration", () => {
       {
         routes: [
           {
-            ...completeConfiguration.routes[0],
+            ...exampleRoute,
             path: "//example.com/",
           },
         ],
@@ -124,7 +117,7 @@ describe("parseVisualRegressionConfiguration", () => {
       {
         routes: [
           {
-            ...completeConfiguration.routes[0],
+            ...exampleRoute,
             path: "/example/../escaped",
           },
         ],

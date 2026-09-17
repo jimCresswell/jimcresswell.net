@@ -172,8 +172,8 @@ and `tsconfig.lint.json` extend the workspace's own `tsconfig.json`. `tooling/re
 ```
 
 The site's `jcdotnet/tsconfig.json` extends the base as well and adds only the Next.js shape:
-the DOM `lib`, `jsx`, `allowJs`, `noEmit`, `incremental`, the `next` plugin and the `@/*`
-path alias.
+the DOM `lib`, `jsx`, `allowJs`, `noEmit`, `isolatedModules` (which Next writes into a config
+that lacks it), `incremental`, the `next` plugin and the `@/*` path alias.
 
 **Common issues:** a base-extending workspace that stops extending the base; loosening strict
 settings; `paths` or `lib` entries that no longer match the file layout; missing or wrong

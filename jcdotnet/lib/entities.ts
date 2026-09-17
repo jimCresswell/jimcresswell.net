@@ -302,10 +302,11 @@ export const entities = entityGraph["@graph"];
  */
 export function resolveSinglePerson(nodes: readonly Entity[]): Person {
   const people = nodes.filter((entity): entity is Person => entity["@type"] === "Person");
-  if (people.length !== 1) {
+  const singlePerson = people.at(0);
+  if (people.length !== 1 || singlePerson === undefined) {
     throw new Error(`Entity model must contain exactly one Person entity (found ${people.length})`);
   }
-  return people[0];
+  return singlePerson;
 }
 
 /** The Person entity — central node of the graph. */
