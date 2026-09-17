@@ -434,7 +434,7 @@ Add cross-references to related subagents:
 
 | Issue Type | Recommended Specialist |
 |------------|------------------------|
-| Architecture/boundary concerns | `architecture-expert-barney` / `-fred` / `-betty` / `-wilma` |
+| Architecture/boundary concerns | `architecture-expert-barney` / `architecture-expert-fred` / `architecture-expert-betty` / `architecture-expert-wilma` |
 | Type safety, generics, schema flow | `type-expert` |
 | Test quality, TDD compliance | `test-expert` |
 | Tooling/config changes | `config-expert` |

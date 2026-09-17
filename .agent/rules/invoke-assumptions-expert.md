@@ -1,7 +1,7 @@
 ---
 classification: situational
-description: Invoke assumptions-expert when plans are marked decision-complete, propose 3+ agents, assert blocking relationships, or commit to technology choices before research.
-trigger: ceremony:plan-authoring — Plan authoring, decision-complete marks, blocking claims, 3+ agents
+description: Invoke assumptions-expert when plans are marked decision-complete, propose 3+ agents, assert blocking relationships, integrate a third-party vendor, or commit to technology choices before research.
+trigger: ceremony:plan-authoring — Plan authoring, decision-complete marks, blocking claims, 3+ agents, third-party vendor integration, technology commitments before research
 ---
 
 # Invoke Assumptions Expert
@@ -18,6 +18,9 @@ Invoke `assumptions-expert` when:
 - A plan asserts blocking relationships over other workstreams
 - A plan proposes 3+ new specialist agents
 - A plan proposes new workspace categories or package topology changes
+- A plan integrates a third-party vendor without attesting that first-party
+  integrations (plugins, SDKs, managed flows, official GitHub Actions) were
+  evaluated before a bespoke wrapper's shape is chosen
 - A plan commits to technology choices before research phases complete
 - A related PDR, ADR, or plan set is drafted in one session or depends on
   cross-document coupling; review the set boundary, not only each document

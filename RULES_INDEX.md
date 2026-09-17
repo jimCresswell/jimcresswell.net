@@ -52,12 +52,12 @@ edit it by hand.
 | `.agent/rules/invoke-accessibility-expert.md` | situational | `surface:accessibility — Accessibility-touching change (WCAG / keyboard / focus / contrast / ARIA)` |
 | `.agent/rules/invoke-architecture-expert-barney.md` | situational | `surface:content/entities.json, lib/ graph derivation, JSON-LD` |
 | `.agent/rules/invoke-architecture-expert-betty.md` | situational | `surface:app/ routes, navigation, layout` |
-| `.agent/rules/invoke-architecture-expert-fred.md` | situational | `surface:build, caching, PDF generation, Vercel config` |
+| `.agent/rules/invoke-architecture-expert-fred.md` | situational | `surface:build, caching, PDF generation, Playwright against the production build, Vercel config` |
 | `.agent/rules/invoke-architecture-expert-wilma.md` | situational | `surface:.agent/, docs/, Practice governance` |
-| `.agent/rules/invoke-assumptions-expert.md` | situational | `ceremony:plan-authoring — Plan authoring, decision-complete marks, blocking claims, 3+ agents` |
+| `.agent/rules/invoke-assumptions-expert.md` | situational | `ceremony:plan-authoring — Plan authoring, decision-complete marks, blocking claims, 3+ agents, third-party vendor integration, technology commitments before research` |
 | `.agent/rules/invoke-code-experts.md` | core | — |
-| `.agent/rules/invoke-config-expert.md` | situational | `surface:next.config, postcss, tsconfig, package.json scripts` |
-| `.agent/rules/invoke-design-system-expert.md` | situational | `surface:design — Design token / theming / CSS custom property / colour palette change` |
+| `.agent/rules/invoke-config-expert.md` | situational | `surface:tsconfig, ESLint, Vitest, Prettier, markdownlint, Turbo, knip, dependency-cruiser, Husky, package.json scripts, next.config, postcss, Playwright config` |
+| `.agent/rules/invoke-design-system-expert.md` | situational | `surface:design — Design token / theming / CSS custom property / colour palette / typography / motion change` |
 | `.agent/rules/invoke-doc-and-onboarding-experts-on-significant-changes.md` | situational | `ceremony:significant-doc-change — Behaviour/API/architecture change without a paired doc update` |
 | `.agent/rules/invoke-docs-adr-expert.md` | situational | `surface:docs/, ADRs, EDRs, READMEs` |
 | `.agent/rules/invoke-editor.md` | situational | `surface:public-facing copy, CV and front-page content, editorial docs` |
