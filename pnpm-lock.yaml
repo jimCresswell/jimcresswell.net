@@ -170,7 +170,8 @@ overrides:
   esbuild: '>=0.28.2 <0.29'
   eslint-plugin-tsdoc@0.5>@typescript-eslint/utils: '>=8.70.0 <9'
   fast-uri: '>=3.1.8 <4'
-  js-yaml: '>=4.3.1 <5'
+  js-yaml@4: '>=4.3.2 <5'
+  js-yaml@5: '>=5.4.1 <6'
   linkify-it: '>=5.0.2 <6'
   markdown-it: '>=14.3.2 <15'
   nanoid: '>=3.3.18 <4'
@@ -3783,6 +3784,10 @@ packages:
 
   js-yaml@4.3.2:
     resolution: {integrity: sha512-SFNOvSJ+Dgf/9An904Yx+CgSlIPCkIpao4qo51lpee25TIRejdH3rhR4EZMGoNx3/TP3O+wzWuiTFl4sqbltzA==}
+    hasBin: true
+
+  js-yaml@5.4.2:
+    resolution: {integrity: sha512-m+aqu+LwO1O6sIopafj8HUVl5aawITwZQe/yHpMCKjaWBaA/d07B/QdMb3529REftiU+RMMHL3Vlsw3hON7vWg==}
     hasBin: true
 
   jsdom@30.0.1:
@@ -8463,6 +8468,10 @@ snapshots:
     dependencies:
       argparse: 2.0.1
 
+  js-yaml@5.4.2:
+    dependencies:
+      argparse: 2.0.1
+
   jsdom@30.0.1:
     dependencies:
       '@asamuzakjp/css-color': 6.0.7
@@ -8676,7 +8685,7 @@ snapshots:
   markdownlint-cli2@0.23.2(supports-color@7.2.0):
     dependencies:
       globby: 16.2.2
-      js-yaml: 4.3.2
+      js-yaml: 5.4.2
       jsonc-parser: 3.3.1
       jsonpointer: 5.0.1
       markdown-it: 14.3.2

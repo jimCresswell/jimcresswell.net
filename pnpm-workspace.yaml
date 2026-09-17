@@ -97,13 +97,32 @@ overrides:
   # adopt a major nobody asked for. Raise the bound when a consumer actually
   # needs fast-uri 4. Remove when ajv's declared fast-uri floor is >=3.1.8.
   fast-uri: '>=3.1.8 <4'
-  # Security floor, raised 2026-08-11 (MCP-549): quadratic CPU consumption in
-  # !!omap resolution (high; CVE-2026-59870; patched in 4.3.1). Dev/tooling
-  # chains only (the site's ESLint 9 config loader, commitlint's cosmiconfig,
-  # markdownlint-cli2). Bounded below 5 — 5.x is published, and an open floor
-  # would adopt it unreviewed. Raise the bound when a consumer actually needs
-  # js-yaml 5. Remove when every dependent's declared floor reaches >=4.3.1.
-  js-yaml: '>=4.3.1 <5'
+  # Security floor per major line, scoped 2026-09-17: the unscoped '>=4.3.1 <5'
+  # had forced markdownlint-cli2's exact js-yaml 5.2.2 down to 4.3.2, across a
+  # major. Each line keeps its own patched floor, bounded below its next major.
+  # Dev tooling only. A new consumer on another major (3.x is affected below
+  # 3.15.2) gets no floor from these entries; the advisory check at its
+  # dependency landing must catch it.
+  # 4.x: @eslint/eslintrc (the site's ESLint 9 config loader) declares ^4.3.2
+  # and cosmiconfig 9.0.2 (commitlint's config loader) ^4.1.0. Floor 4.3.2 for
+  # GHSA-2883-xcg3-v3hh (high; CVE-2026-84375; empty merge sources escape
+  # maxTotalMergeKeys), after GHSA-5p4m-2wfm-xmqj (high; quadratic !!omap
+  # resolution; 4.3.1). Remove when the tree's cosmiconfig declares js-yaml
+  # >=4.3.2.
+  # 5.x: markdownlint-cli2 0.23.2, its latest release, pins 5.2.2 exactly.
+  # Floor 5.4.1 for GHSA-r3ph-w7gj-g6xm (maintainer severity medium; the same
+  # merge-source flaw on 5.x), a js-yaml repository advisory absent from
+  # GitHub's reviewed database on 2026-09-17, whose newest 5.x entry then,
+  # GHSA-pm4m-ph32-ghv5 (high), is patched in 5.2.2. Safe to force from the
+  # exact pin within the major: markdownlint-cli2 calls js-yaml's load with
+  # default options, whose schema has no merge keys, on .yaml configuration
+  # files and as the last-resort parser for others; this repository's
+  # configurations are JSON. The
+  # breaking entries in the 5.3 and 5.4 changelogs change the AST, the dumper,
+  # custom tag definitions and the MERGE_KEY export, not load with default
+  # options. Remove when markdownlint-cli2 declares js-yaml >=5.4.1.
+  'js-yaml@4': '>=4.3.2 <5'
+  'js-yaml@5': '>=5.4.1 <6'
   # Security floor: quadratic-complexity ReDoS via the mailto: matcher in
   # linkify-it (high; patched in 5.0.2). Arrives transitively through markdown
   # tooling. Bounded below 6 for the same reason as fast-uri: 6.x exists and an
