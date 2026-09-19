@@ -173,13 +173,13 @@ OWNER HOLDS, binding until the owner lifts them:
 
 - **No subagents** (owner word 2026-09-17, evening: "do not use subagents"). Every review is the
   seat's own, under the template it would have invoked, stated in the pull request.
-- **The plan is a sketch awaiting ratification.** Its §Backlog governs no work until the owner
-  ratifies it. The ratification card was presented at this session's close.
+- **The plan is ratified** (owner, 2026-09-19, on the card: "Ratify as it stands"). Its §Backlog
+  governs the next work, slice 1 first, at most three open non-draft pull requests.
 
-FIRST ACTION on resume: read the plan's §Backlog. If ratified, start slice 1 (the guard fallback,
-security) with at most three open non-draft pull requests; slice 2 is the disposition verb, moved
-first among the corrections because the missing verb is what turned #128's last round into #129.
-If not ratified, present the card again and do nothing under §Backlog.
+FIRST ACTION on resume: read the plan's §Backlog and start slice 1 (security: the failing-node
+fail-open in the prompt secrets hook, then the guard fallback), at most three open non-draft pull
+requests; slice 2 is the disposition verb, first among the corrections because the missing verb
+is what turned #128's last round into #129.
 
 The backlog and every routed review finding live in the plan. The owner's twenty-three card
 answers of 2026-09-17 are recorded verbatim in this file at `SHA: 3372b944`, removed from the
@@ -188,7 +188,6 @@ restated here.
 
 Owner actions pending:
 
-- Ratify, amend or decline the plan (one card).
 - Re-paste the cloud environment setup script from main (first line `#!/usr/bin/env bash`), start
   one cloud session and report `bash --version` and `command -v bash` (the plan's owner gate for
   the bash 5.2 floor, expires 2026-10-08).

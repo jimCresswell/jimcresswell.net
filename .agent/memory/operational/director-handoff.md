@@ -60,9 +60,9 @@ rewritten at each Director wrap. Item 117 is the boundary state; items 114 to 11
 - Zero pull requests open (owner word 2026-09-17, "bring the number of open PRs down to zero";
   "the goal is complete as soon as the number of open PRs hits zero"). Landed this evening:
   #126, #127, #94, #95, #96, #128, #129, #130.
-- The plan `.agent/plans/delivery/estate-fix-backlog.plan.md` is a sketch awaiting the owner's
-  ratification (the card was presented at this session's close). It governs no work until the
-  stamp lands. Its §Backlog is the next work, slice 1 (security) first.
+- The plan `.agent/plans/delivery/estate-fix-backlog.plan.md` is ratified (owner, 2026-09-19, on
+  the card: "Ratify as it stands"). Its §Backlog is the next work, slice 1 (security) first, at
+  most three open non-draft pull requests.
 - Owner holds: no subagents (owner word 2026-09-17, evening). Every review is the seat's own.
 - Nothing session-scoped is armed at a boundary unless item 117 names it. The chain recipe,
   the push slot and the merge mechanics are in `repo-continuity.md` §Next Safe Steps.

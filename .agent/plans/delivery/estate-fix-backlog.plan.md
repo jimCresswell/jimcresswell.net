@@ -7,10 +7,14 @@ overview: >-
   and owner-approved corrections in a fixed value order, at most three open
   non-draft pull requests at a time, with routed review findings recorded here instead
   of each becoming its own pull request.
-status: sketch
-ratified_by: null
-ratified_date: null
-ratified_where: null
+status: ratified
+ratified_by: jimCresswell
+ratified_date: 2026-09-19
+ratified_where: >-
+  The ratification card of Claude Code session
+  session_01AUCVhG9EEoH8sUhcRjyP4W (Cauldron herds Lustre), answered
+  "Ratify as it stands" on 2026-09-19; recorded in repo-continuity.md
+  §Next Safe Steps and the Director's handoff item 117.
 serves: practice
 impact_areas:
   - practice-and-estate
@@ -24,7 +28,7 @@ owner_gates:
       `command -v bash`; the bash version floor slice is sized from that
       measurement.
     expires: 2026-10-08
-last_updated: 2026-09-17
+last_updated: 2026-09-19
 ---
 
 # Estate fix backlog
@@ -352,6 +356,9 @@ request carries the verb and the full rationale.
   first commit; the plan's own (proof classes on AC 2 and AC 4, "non-draft"
   in the overview, "stays near it" in the goal, the six check clauses) are
   applied in that commit ahead of the ratification stamp.
+- 2026-09-19, ratified by the owner on the card: "Ratify as it stands", one
+  delivery node with the ordered slices and the ledger; the reviewer's split
+  question is answered by that word. Work starts at slice 1.
 - The `plan-body-first-principles-check` clauses: the shape clause fires on
   §Mechanism item 2 (the ledger row replaces the per-finding pull request);
   the landing-path clause on §Close-out item 7 (the fold carries this plan to
