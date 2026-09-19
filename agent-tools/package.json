@@ -91,7 +91,7 @@
     "ink-testing-library": "^4.0.0",
     "tsx": "^4.23.12",
     "typescript": "npm:@typescript/typescript6@^6.0.2",
-    "vitest": "^4.1.10"
+    "vitest": "^5.0.1"
   },
   "dependencies": {
     "@engraph/result": "workspace:*",
