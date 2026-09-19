@@ -65,8 +65,10 @@ This means Knip runs:
 
 ### Configuration
 
-Configuration is minimal — a `knip` field in `package.json` ignores
-the `.agent/temp/` working directory and the `gitleaks` system binary.
+Configuration is minimal. It was first a `knip` field in `package.json`
+ignoring the `.agent/temp/` working directory and the `gitleaks` system
+binary; since the monorepo (2026-09) it lives in the root `knip.config.ts`,
+one entry per workspace.
 Knip otherwise auto-detects the project's toolchain from `package.json`,
 `tsconfig.json`, `next.config.ts`, `vitest.config.ts`, `playwright.config.ts`,
 and other config files.

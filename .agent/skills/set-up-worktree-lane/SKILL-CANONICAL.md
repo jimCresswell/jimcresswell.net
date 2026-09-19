@@ -3,16 +3,15 @@ name: set-up-worktree-lane
 classification: active
 description: >-
   Create and verify a lane worktree: the branch cut explicitly from origin/<base>,
-  the inherited bot identity verified with no worktree-scoped override, deps
+  the inherited commit identity verified with no worktree-scoped override, deps
   installed, .env.local carried, a draft PR at first push; in a detected ChatGPT
   Work cloud host, static branch/base checks only with execution routed to
   draft-PR CI. Use for a new lane or a misbehaving worktree (commits attributed
   to nobody, missing env, hook failures). Not for switching branches in place,
   changing session residency alone, or disposing of a worktree. Wrong looks
   like: EnterWorktree fresh mode basing the branch on the principal's
-  coordination HEAD so the lane PR ships foreign commits; the bot commit email
-  carrying the app id instead of the bot user id, which resolves to no GitHub
-  user.
+  coordination HEAD so the lane PR ships foreign commits; a worktree-scoped
+  identity override that outlives the next correction.
 ---
 
 # Set Up a Worktree Lane
@@ -86,54 +85,22 @@ This step applies to standard and separately provisioned profiles only. In a
 detected ChatGPT Work cloud session, step 0 replaces it completely.
 
 The identity lives once in the clone's shared local config and every worktree
-inherits it (owner ruling 2026-08-04; doctrine in
-`bot-identity-on-third-party-systems`).
-A new worktree therefore needs no identity step at all — only a check that what it
-inherited is right:
+inherits it. In this repository lane commits are made under the owner's identity
+(owner, 2026-09-17: "Owner identity, as now"). The acting agent is named in the
+commit's `Co-Authored-By` trailer, and bot credentials are for third-party writes
+only (`bot-identity-on-third-party-systems`). A new worktree therefore needs no
+identity step at all — only a check that what it inherited matches the primary:
 
 ```bash
-git -C <path> config user.email
-# expect: 307435217+jimbot-oakington-iii[bot]@users.noreply.github.com
-```
-
-If that is wrong or absent, fix the SHARED config once. Never patch this worktree: a
-`--worktree` override is a second copy that outlives the next correction and
-reintroduces the exact drift this step exists to catch.
-
-```bash
-# The merge-bot config is per-checkout and never tracked, so it lives only at
-# the clone's primary checkout; a linked worktree holds no copy of it. Every
-# derivation is checked before the shared identity is written: an empty slug
-# or id would otherwise land as "[bot]" while the block exits clean.
 PRIMARY="$(git worktree list --porcelain | head -1 | sed 's/^worktree //')"
-CONFIG="$PRIMARY/.github/merge-bot.json"
-[ -n "$PRIMARY" ] && [ -f "$CONFIG" ] \
-  || { echo "no per-checkout config at $CONFIG (copy .github/merge-bot.json.example there)"; exit 1; }
-BOT_SLUG=$(jq -r .appSlug "$CONFIG")
-[ -n "$BOT_SLUG" ] && [ "$BOT_SLUG" != null ] \
-  || { echo "appSlug missing from $CONFIG"; exit 1; }
-BOT_ID=$(gh api "users/${BOT_SLUG}%5Bbot%5D" --jq .id)
-[ -n "$BOT_ID" ] && [ "$BOT_ID" != null ] \
-  || { echo "no bot user id for ${BOT_SLUG}[bot] from the GitHub API"; exit 1; }
-
-git config user.name  "${BOT_SLUG}[bot]"
-git config user.email "${BOT_ID}+${BOT_SLUG}[bot]@users.noreply.github.com"
+[ "$(git -C <path> config user.email)" = "$(git -C "$PRIMARY" config user.email)" ] \
+  && echo inherited
 ```
 
-Derive the id, never transcribe it — the address embeds the **bot user id**, not the
-app id, the two sit near each other in the docs, and the wrong one produces an
-address that resolves to no GitHub user at all. A literal id copied into a document
-is a second copy of a fact that already lives somewhere authoritative, and the copy
-is the one that goes stale: the identity produced by this sequence is correct by
-construction, one transcribed by hand was wrong for days. Because there is exactly
-one copy, fixing it cures every worktree at once.
-
-Committer and author are different identities by owner ruling: the **committer** is
-the acting agent (the config above); the **author** is the human whose authority the
-work carries, passed per commit —
-`git commit --author="Jim Cresswell <1314980+jimCresswell@users.noreply.github.com>" -F <msg>`.
-The default is deliberately fail-safe: forget the flag and you get a bot-authored
-commit, never a commit that silently credits the owner with agent work.
+If that differs or is absent, fix the SHARED config once, with the owner's name and
+email. Never patch this worktree: a `--worktree` override is a second copy that
+outlives the next correction and reintroduces the exact drift this step exists to
+catch.
 
 ### 3. Make the worktree buildable
 
@@ -193,10 +160,10 @@ local runtime or full-gate claim is made.
 
 | Check | Command | Expected |
 | --- | --- | --- |
-| Identity resolves in the worktree | `git -C <path> config user.email` | the bot address above |
+| Identity resolves in the worktree | `git -C <path> config user.email` | the primary's address |
 | Nothing shadows the shared copy | `git -C <path> config --worktree --get-regexp '^user\.'` | no output |
 | Base is clean | `git -C <path> log --oneline origin/<base>..HEAD` | only this story's commits |
-| Attribution is right | `git -C <path> log -1 --format='%an / %cn'` | author human, committer bot |
+| Attribution is right | `git -C <path> log -1 --format='%an / %cn'` | author and committer the owner; the agent in the `Co-Authored-By` trailer |
 
 The second row is not optional, and a green first row cannot stand in for it. A
 `--worktree` override holding the *same* value reads correct today and silently keeps
