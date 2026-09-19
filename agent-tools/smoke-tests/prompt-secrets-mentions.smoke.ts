@@ -40,7 +40,8 @@ import { requireJq } from './secrets-hooks-support.js';
  * whole and a CJK stop inside a token is part of it. A clean file is scanned
  * once, however often it is mentioned, and the prompt passes silently; a
  * directory, a path naming nothing and an email address whose domain names a
- * file are not handed to Sonar. Without `node` or `realpath` the mentions
+ * file are not handed to Sonar. Without `node` or `realpath`, or when node
+ * exits non-zero, the mentions
  * cannot be found or resolved, so the prompt passes with a warning that they
  * were not scanned; without `jq` a `cwd` holding a JSON escape cannot be
  * decoded, so the prompt is blocked.
@@ -154,12 +155,22 @@ try {
     JQ_LESS_TOOLS.filter((tool) => tool !== 'node'),
   );
   const unfound = runHook(workDir, withoutNode, unresolved, environment, project);
-  expectWarned(unfound, unresolved, 'node');
+  expectWarned(unfound, unresolved, 'node is not on PATH');
+  // A node that is present but exits non-zero: the mentions go unscanned, with a warning.
+  const failingNode = toolDirectory(
+    workDir,
+    'bin-failing-node',
+    JQ_LESS_TOOLS.filter((tool) => tool !== 'node'),
+  );
+  writeFileSync(join(failingNode, 'node'), '#!/bin/sh\nexit 3\n', 'utf8');
+  chmodSync(join(failingNode, 'node'), 0o755);
+  const failedParse = runHook(workDir, failingNode, unresolved, environment, project);
+  expectWarned(failedParse, unresolved, 'node exited with status 3');
   const escapedCwd = join(workDir, 'quo"te');
   const escapedRun = runHook(workDir, withoutJq, unresolved, environment, escapedCwd);
   expectBlocked(escapedRun, unresolved, 'jq');
   process.stdout.write(
-    'prompt-secrets-mentions smoke OK: files named by @-mentions scanned with and without jq (relative to the payload cwd, quoted, ranged, hash-suffixed, punctuated, no-break-spaced, em-spaced, after a CJK stop, outside the cwd, absolute, under ~ and through a symlink); a clean file passes and is forwarded once, a non-ASCII name whole, a quoted name alone; a directory, an absent path, an email domain and a token holding a CJK stop are not scanned; no node or realpath warns, a failing realpath warns; an escaped cwd without jq blocks\n',
+    'prompt-secrets-mentions smoke OK: files named by @-mentions scanned with and without jq (relative to the payload cwd, quoted, ranged, hash-suffixed, punctuated, no-break-spaced, em-spaced, after a CJK stop, outside the cwd, absolute, under ~ and through a symlink); a clean file passes and is forwarded once, a non-ASCII name whole, a quoted name alone; a directory, an absent path, an email domain and a token holding a CJK stop are not scanned; no node or realpath warns, a failing node or realpath warns; an escaped cwd without jq blocks\n',
   );
 } catch (error) {
   // exitCode, so the finally block still removes the work directory.

@@ -10,8 +10,7 @@
  * The check is a closed shape, not a shell parser. A command that names
  * `CLAUDE_PROJECT_DIR` must be single-space-separated words, each either a
  * plain word (no quotes, `$`, backslash, glob or shell operator) or a whole
- * double-quoted project path — `"${CLAUDE_PROJECT_DIR}"` or
- * `"${CLAUDE_PROJECT_DIR:-.}"`, optionally followed by a plain path, the word
+ * double-quoted project path — `"${CLAUDE_PROJECT_DIR}"`, optionally followed by a plain path, the word
  * shape `isShapedWord` in `claude-hook-script-anchoring.ts` defines — and it
  * must not hand the path to something that parses it again: `eval`, a POSIX
  * shell's `-c` (alone or among combined short flags), or a PowerShell

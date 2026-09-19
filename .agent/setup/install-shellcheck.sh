@@ -13,6 +13,13 @@
 # records for that asset.
 #
 # Usage: install-shellcheck.sh
+
+# The bash floor: the shellcheck gate holds it once and requires this guard first.
+if ((BASH_VERSINFO[0] < 5 || (BASH_VERSINFO[0] == 5 && BASH_VERSINFO[1] < 2))); then
+  echo "bash 5.2 or later is required, found ${BASH_VERSION}: install it (brew install bash on macOS, apt-get install bash on Debian and Ubuntu) and put it first on PATH" >&2
+  exit 1
+fi
+
 set -euo pipefail
 
 SHELLCHECK_VERSION=0.11.0

@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 # UserPromptSubmit hook: Scan prompt for secrets before sending
 
+# The bash floor: the shellcheck gate holds it once and requires this guard first.
+if ((BASH_VERSINFO[0] < 5 || (BASH_VERSINFO[0] == 5 && BASH_VERSINFO[1] < 2))); then
+  echo "{\"decision\":\"block\",\"reason\":\"bash 5.2 or later is required, found ${BASH_VERSION}: install it (brew install bash on macOS, apt-get install bash on Debian and Ubuntu) and put it first on PATH, so the prompt can be scanned for secrets\"}"
+  exit 0
+fi
+
 if ! command -v sonar &> /dev/null; then
   exit 0
 fi
@@ -51,7 +57,8 @@ cwd=${cwd:-$PWD}
 temp_file=$(mktemp -t 'sonarqube-cli-hook.XXXXXX')
 # Single-quoted: the path expands when the trap runs, as one quoted word, so
 # the copy of the prompt is removed whatever characters its path holds.
-trap 'rm -f "$temp_file"' EXIT
+mentions_file=''
+trap 'rm -f "$temp_file" "$mentions_file"' EXIT
 
 # printf '%s' writes the prompt byte for byte, an option-shaped prompt such as
 # -n or -e included.
@@ -69,9 +76,10 @@ printf '%s' "$prompt" > "$temp_file"
 # is everything before its first `#`. It resolves against the working
 # directory, `~` or the root. A name that is no regular file is skipped. Sonar
 # reports a symlink clean without reading its target, so each file goes by its
-# real path, once. Without node or realpath the mentions cannot be found or
-# resolved, and the prompt goes through with a warning that they were not
-# scanned.
+# real path, once. Without node or realpath, or when node exits non-zero, the
+# mentions cannot be found or resolved, and the prompt goes through with a
+# warning that they were not scanned. node writes to a file, since bash carries
+# no exit status out of a process substitution.
 mentioned=()
 unresolved=0
 missing_tool=''
@@ -112,10 +120,16 @@ for (const match of text.matchAll(pattern)) {
 }
 process.stdout.write([...paths].map((path) => path + String.fromCharCode(0)).join(""));
 '
+parser_status=0
 if [[ -z "$missing_tool" ]]; then
-  while IFS= read -r -d '' token; do
-    add_mentioned_file "$token"
-  done < <(node -e "$mention_paths_script" "$temp_file")
+  mentions_file=$(mktemp -t 'sonarqube-cli-hook.XXXXXX')
+  node -e "$mention_paths_script" "$temp_file" > "$mentions_file"
+  parser_status=$?
+  if [[ $parser_status -eq 0 ]]; then
+    while IFS= read -r -d '' token; do
+      add_mentioned_file "$token"
+    done < "$mentions_file"
+  fi
 fi
 
 # Scan prompt for secrets (using file instead of stdin pipe)
@@ -133,6 +147,8 @@ fi
 # the user that it was not scanned.
 if [[ $exit_code -ne 0 ]]; then
   echo "{\"systemMessage\":\"Sonar exited with status $exit_code, so the prompt and the files it @-mentions were not scanned for secrets\"}"
+elif [[ $parser_status -ne 0 ]]; then
+  echo "{\"systemMessage\":\"node exited with status $parser_status while finding the files the prompt @-mentions, so they were not scanned for secrets\"}"
 elif [[ -n "$missing_tool" ]]; then
   echo "{\"systemMessage\":\"$missing_tool is not on PATH, so the files the prompt @-mentions were not scanned for secrets\"}"
 elif [[ $unresolved -ne 0 ]]; then
