@@ -86,7 +86,7 @@
     "tailwindcss": "^4.3.3",
     "tsx": "^4.23.12",
     "typescript": "npm:@typescript/typescript6@^6.0.2",
-    "vite": "7.3.5",
+    "vite": "8.3.0",
     "vitest": "^4.1.10"
   }
 }
