@@ -176,10 +176,33 @@ OWNER HOLDS, binding until the owner lifts them:
 - **The plan is ratified** (owner, 2026-09-19, on the card: "Ratify as it stands"). Its §Backlog
   governs the next work, slice 1 first, at most three open non-draft pull requests.
 
-FIRST ACTION on resume: read the plan's §Backlog and start slice 1 (security: the failing-node
-fail-open in the prompt secrets hook, then the guard fallback), at most three open non-draft pull
-requests; slice 2 is the disposition verb, first among the corrections because the missing verb
-is what turned #128's last round into #129.
+IN FLIGHT at the wrap of 2026-09-19T15:30Z: ONE pull request, the owner's closing act for this
+thread ("all of that happens in ONE PR, and then this thread is 100% finished"). Branch
+`fix/bash-floor-security-doctrine`, worktree `floor-doctrine-security`, head `SHA: 77d52beb`,
+two commits: the rule-text corrections, then the bash 5.2 floor with the two hook fixes. The
+full check passed on the branch before the push. It carries: the floor guard as the first
+command of all ten bash scripts, held once in the shellcheck gate; the prompt hook reading
+node's exit status; the three guard commands without the `:-.` default, refused by the grammar;
+six of the seven approved text corrections (the seventh no longer exists on main).
+
+FIRST ACTION on resume: `gh pr list`. If the pull request is open, read its review in full,
+settle round one in one push, answer the last round with signed lines (`Rejected as a cure in
+this pull request` plus the reason for anything that earns no diff), merge through the bot,
+delete the branch over REST, remove the worktree. Open nothing else.
+
+If `gh pr list` shows nothing, the push did not pass its gate: the branch is local only, in the
+worktree above. The first push failed on the machine, not the change: Playwright's browser build
+was missing from the local cache, cured by `pnpm --filter @jimcresswell/www exec playwright
+install chromium`; the second push was running at this wrap. Push again, then open the pull
+request from the description kept in the session scratchpad, or rewrite it from the two commit
+messages.
+
+AFTER THE MERGE, the thread ends (owner, 2026-09-19). Complete the plan under its own fourth
+criterion, which allows a slice to be dispositioned with a reason: slices 1, 7, 13 and 14 name
+this pull request; slice 6 reads "dropped by the owner, 2026-09-19"; every other slice reads
+"not worth its time, the seat's review of 2026-09-19, which the owner answered by choosing three
+items". Then archive the plan with its inbound links swept to plain text, as the plan skill
+says. No work is owed after that. The next session starts from the owner's ask, not from a list.
 
 The backlog and every routed review finding live in the plan. The owner's twenty-three card
 answers of 2026-09-17 are recorded verbatim in this file at `SHA: 3372b944`, removed from the
