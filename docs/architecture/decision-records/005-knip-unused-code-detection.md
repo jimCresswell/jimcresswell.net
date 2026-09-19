@@ -77,8 +77,9 @@ If a false positive arises (e.g. a dynamically imported module that
 Knip cannot trace), the preferred resolution order is:
 
 1. Fix the code so Knip can trace it (e.g. use a static import).
-2. If that is not possible, add a targeted `knip.json` config to
-   explicitly include the entry point or ignore the specific export.
+2. If that is not possible, add a targeted entry to the affected
+   workspace in the root `knip.config.ts` to explicitly include the entry
+   point or ignore the specific export.
 3. Never suppress Knip wholesale or remove it from `pnpm check`.
 
 ### Why it is in the quality gate, not just advisory
