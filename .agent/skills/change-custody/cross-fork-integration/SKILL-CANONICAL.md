@@ -150,23 +150,16 @@ procedure resumes at step 4 with step 3's attributes (author, committer,
 Work in a dedicated worktree checked out at the EXISTING carrier head —
 `git worktree add <path> -b <carrier> origin/<carrier>` on the remote-tracking
 ref step 1 fetched; the lane-cut skill's step 1 cuts a new branch from a base,
-which is not this — with the inherited bot identity verified (its step 2),
+which is not this — with the inherited commit identity verified (its step 2),
 dependencies installed BEFORE any commit, and the local env file carried.
 Install first is a hook-integrity requirement, not a convenience: a fresh
 worktree has no `.husky/_` until install runs, so a merge commit made before
 it is created with no commit-msg or pre-commit hook and reads as if the gate
-passed. Merge the default branch INTO the carrier with the owner as author and
-the bot as committer, `--no-ff`, and a message that names the situation
-without spelling the CI-skip token anywhere in the message. `git merge` has no
-author option (the first attempt on 2026-09-09 failed on one, exit 129): the
-owner-as-author identity is set in the call's environment and the committer
-comes from the checkout's inherited bot configuration —
-`GIT_AUTHOR_NAME="<owner name>" GIT_AUTHOR_EMAIL="<owner address>" git merge
---no-ff -F <message-file> <fork-default-tip>`. The environment must also be
-set on the command that completes a conflicted merge (`git merge --continue`
-or `git commit` after step 2's genuine-conflict route), because `git merge`
-commits automatically only when the merge succeeds and a later completion
-otherwise takes the checkout's bot identity as author. In every case the pair
+passed. Merge the default branch INTO the carrier, `--no-ff`, with a message
+that names the situation without spelling the CI-skip token anywhere in the
+message: `git merge --no-ff -F <message-file> <fork-default-tip>`. Author and
+committer are both the owner, from the clone's shared identity, on the merge
+and on the command that completes a conflicted one. In every case the pair
 is read back off the commit (`git log -1 --format='%an <%ae> / %cn <%ce>'`)
 before the push. The CI-skip token matters because the host scans the whole
 head message, and a head that is upstream's release commit runs no workflow

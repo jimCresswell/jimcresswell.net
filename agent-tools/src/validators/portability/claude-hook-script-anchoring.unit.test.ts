@@ -20,7 +20,7 @@ describe('relativeScriptIssue', () => {
       [
         '"${CLAUDE_PROJECT_DIR}/.claude/hooks/practice-session-identity.mjs"',
         '"${CLAUDE_PROJECT_DIR}/.claude/hooks/plan-gate-drift-alert.mjs"',
-        'node "${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/run-pretooluse-guard.mjs" agent-tools/dist/src/hook-policy/pre-tool-use-dispatch.js',
+        'node "${CLAUDE_PROJECT_DIR}/.claude/hooks/run-pretooluse-guard.mjs" agent-tools/dist/src/hook-policy/pre-tool-use-dispatch.js',
         `${WRAPPER} "\${CLAUDE_PROJECT_DIR}/.claude/hooks/secrets/pretool-secrets.sh"`,
         `${WRAPPER} "\${CLAUDE_PROJECT_DIR}/.claude/hooks/secrets/prompt-secrets.sh"`,
         `${WRAPPER} node "\${CLAUDE_PROJECT_DIR}/agent-tools/src/bin/claude-pre-compact-observe-hook.ts"`,
@@ -30,15 +30,11 @@ describe('relativeScriptIssue', () => {
     );
   });
 
-  it('accepts the two dependences on the working directory the grammar cannot close', () => {
-    // "${CLAUDE_PROJECT_DIR:-.}" resolves against the working directory when the variable is unset
-    // or empty. The three PreToolUse guard commands use it; removing it is a security-reviewed fix of
-    // its own. A hook script also decides what its data words mean: run-pretooluse-guard.mjs
-    // resolves its guard path against the project directory.
+  it('accepts the dependence on the working directory the grammar cannot close', () => {
+    // A hook script decides what its data words mean: run-pretooluse-guard.mjs resolves its guard
+    // path against the project directory.
     expectIssue(
       [
-        '"${CLAUDE_PROJECT_DIR:-.}/x.mjs"',
-        'node "${CLAUDE_PROJECT_DIR:-.}/x.mjs"',
         'node "${CLAUDE_PROJECT_DIR}/x.mjs" relative/data/arg.js',
         '"${CLAUDE_PROJECT_DIR}/x.sh" ./data.json',
       ],
@@ -67,6 +63,12 @@ describe('relativeScriptIssue', () => {
         './a.sh && ./b.sh',
         'node "${CLAUDE_PROJECT_DIR}/$(./x.sh).mjs"',
         '"${CLAUDE_PROJECT_DIR}/`./b.sh`.sh"',
+        // A default would run whatever sits at that path under the working directory when the
+        // variable is unset, so no default is a quoted project path.
+        '"${CLAUDE_PROJECT_DIR:-.}/x.mjs"',
+        'node "${CLAUDE_PROJECT_DIR:-.}/x.mjs"',
+        'node "${CLAUDE_PROJECT_DIR:-.}"',
+        `${WRAPPER} node "\${CLAUDE_PROJECT_DIR:-.}"`,
         '"${CLAUDE_PROJECT_DIR:-./hooks}/x.sh"',
         '"${CLAUDE_PROJECT_DIR:-..}/x.sh"',
         '"${CLAUDE_PROJECT_DIR}/.claude/hooks/_lib/Log-Hook-Errors.sh" node hook.mjs',
@@ -125,9 +127,8 @@ describe('relativeScriptIssue', () => {
     expectIssue(
       [
         'node "${CLAUDE_PROJECT_DIR}"',
-        'node "${CLAUDE_PROJECT_DIR:-.}"',
         'node "${CLAUDE_PROJECT_DIR}/"',
-        `${WRAPPER} node "\${CLAUDE_PROJECT_DIR:-.}"`,
+        `${WRAPPER} node "\${CLAUDE_PROJECT_DIR}"`,
         '"${CLAUDE_PROJECT_DIR}"',
         '"${CLAUDE_PROJECT_DIR:-.}"',
         '"${CLAUDE_PROJECT_DIR}/"',

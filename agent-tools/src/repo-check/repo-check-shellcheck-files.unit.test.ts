@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest';
 
 import {
+  BASH_FLOOR_GUARD,
+  bashFloorFailures,
   isShellScript,
   shebangFailures,
   shellcheckArgs,
@@ -167,5 +169,34 @@ describe('shellcheckArgs', () => {
       '.husky/pre-push',
       'a b.sh',
     ]);
+  });
+});
+
+describe('bashFloorFailures', () => {
+  const guarded = `#!/usr/bin/env bash\n# What the script does.\n\n${BASH_FLOOR_GUARD}\n  exit 1\nfi\necho run\n`;
+
+  it('accepts a bash script whose first command is the floor guard, after comments and blank lines', () => {
+    expect(bashFloorFailures('bin/run', guarded)).toStrictEqual([]);
+  });
+
+  it('leaves a script that is not bash alone', () => {
+    expect(bashFloorFailures('.husky/pre-push', '#!/usr/bin/env sh\npnpm check\n')).toStrictEqual(
+      [],
+    );
+    expect(bashFloorFailures('lib/common.sh', 'greet() { echo hi; }\n')).toStrictEqual([]);
+  });
+
+  it('fails a bash script with no guard, a guard after another command, or a lower floor', () => {
+    for (const content of [
+      '#!/usr/bin/env bash\necho run\n',
+      guarded.replace(`${BASH_FLOOR_GUARD}\n`, `set -eu\n${BASH_FLOOR_GUARD}\n`),
+      guarded.replace('BASH_VERSINFO[1] < 2', 'BASH_VERSINFO[1] < 1'),
+    ]) {
+      expect(bashFloorFailures('bin/run', content), content).toStrictEqual([
+        expect.stringMatching(
+          /^bin\/run: a bash script's first command is the bash floor guard, /u,
+        ),
+      ]);
+    }
   });
 });

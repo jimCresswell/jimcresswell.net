@@ -4,6 +4,7 @@ import { writeErrorLine, writeLine } from '../core/terminal-output.js';
 
 import { defaultRuntime } from './repo-check-runtime.js';
 import {
+  bashFloorFailures,
   silencingDirectiveFailures,
   isShellScript,
   shebangFailures,
@@ -146,10 +147,10 @@ export async function runShellcheckTracked(
     `${GATE}: shellcheck ${version.value} (${shellcheck.source}) over ` +
       `${String(scripts.length)} tracked shell scripts`,
   );
-  const directives = scripts.flatMap((file) =>
-    silencingDirectiveFailures(file, runtime.readText(file)),
-  );
+  const texts = scripts.map((file) => ({ file, text: runtime.readText(file) }));
+  const directives = texts.flatMap(({ file, text }) => silencingDirectiveFailures(file, text));
+  const floors = texts.flatMap(({ file, text }) => bashFloorFailures(file, text));
   const status = await runtime.runEnv(shellcheckArgs(shellcheck.command, scripts));
-  const refusals = [...shebangs, ...directives];
+  const refusals = [...shebangs, ...directives, ...floors];
   return refusals.length > 0 ? fail(runtime, refusals) : status;
 }

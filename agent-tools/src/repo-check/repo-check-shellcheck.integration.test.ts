@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
+import { BASH_FLOOR_GUARD } from './repo-check-shellcheck-files.js';
 import { runShellcheckTracked, type ShellcheckGateRuntime } from './repo-check-shellcheck.js';
 import type { RepoCheckCommandResult } from './repo-check-types.js';
 
@@ -30,7 +31,7 @@ const PROBE_0_11_0: RepoCheckCommandResult = {
 const TREE: ReadonlyMap<string, string> = new Map([
   ['.husky/pre-push', '#!/usr/bin/env sh\npnpm check\n'],
   ['README.md', '# Readme\n'],
-  ['bin/run', '#!/usr/bin/env bash\necho run\n'],
+  ['bin/run', `#!/usr/bin/env bash\n${BASH_FLOOR_GUARD}\n  exit 1\nfi\necho run\n`],
   ['bin/tool', '#!/usr/bin/env node\nconsole.log("tool");\n'],
   ['lib/common.sh', 'greet() { echo hi; }\n'],
 ]);
@@ -161,7 +162,10 @@ describe('runShellcheckTracked', () => {
   it('fails a disable directive in a script whose lint is clean, and still runs the lint', async () => {
     const tree = new Map([
       ...TREE,
-      ['bin/run', '#!/usr/bin/env bash\n# shellcheck disable=SC2086\necho $1\n'],
+      [
+        'bin/run',
+        `#!/usr/bin/env bash\n# shellcheck disable=SC2086\n${BASH_FLOOR_GUARD}\n  exit 1\nfi\necho $1\n`,
+      ],
     ]);
     const { runtime, lintRuns, failures } = gateRuntime({ tree });
 
@@ -170,6 +174,20 @@ describe('runShellcheckTracked', () => {
     expect(lintRuns).toHaveLength(1);
     expect(failures).toStrictEqual([
       expect.stringMatching(/^repo-check shellcheck-tracked: bin\/run:2: /u),
+    ]);
+  });
+
+  it('fails a bash script that lacks the bash floor guard, and still runs the lint', async () => {
+    const tree = new Map([...TREE, ['bin/run', '#!/usr/bin/env bash\necho run\n']]);
+    const { runtime, lintRuns, failures } = gateRuntime({ tree });
+
+    await expect(runShellcheckTracked(runtime)).resolves.toBe(1);
+
+    expect(lintRuns).toHaveLength(1);
+    expect(failures).toStrictEqual([
+      expect.stringMatching(
+        /^repo-check shellcheck-tracked: bin\/run: a bash script's first command /u,
+      ),
     ]);
   });
 
