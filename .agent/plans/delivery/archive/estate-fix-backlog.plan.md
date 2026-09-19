@@ -7,7 +7,7 @@ overview: >-
   and owner-approved corrections in a fixed value order, at most three open
   non-draft pull requests at a time, with routed review findings recorded here instead
   of each becoming its own pull request.
-status: ratified
+status: archived
 ratified_by: jimCresswell
 ratified_date: 2026-09-19
 ratified_where: >-
@@ -20,14 +20,7 @@ impact_areas:
   - practice-and-estate
 tickets: []
 depends_on: []
-owner_gates:
-  - awaiting: external-input
-    clears_when: >-
-      The owner re-pastes the cloud environment setup script from main, starts
-      one cloud session, and reports the image's `bash --version` and
-      `command -v bash`; the bash version floor slice is sized from that
-      measurement.
-    expires: 2026-10-08
+owner_gates: []
 last_updated: 2026-09-19
 ---
 
@@ -110,6 +103,22 @@ ends instead of looping.
    successor plan takes it at this plan's completion. Without that closure
    the ledger grows with every review and this criterion is never reached
    (`loop-exit-criteria-required`).
+
+## Completion, 2026-09-19
+
+The owner closed this plan on 2026-09-19: one closing pull request, then the
+thread ends, and no slice is done because it is listed. That pull request,
+PR 131, merged on 2026-09-19 (`SHA: c68f831c`) with the open count at zero
+after it. Every slice under §Backlog is settled (criterion 4):
+
+- Slices 1, 7, 13 and 14: landed in PR 131. Slice 14's ESLint-comment
+  correction had no target left on main.
+- Slice 6: dropped by the owner, 2026-09-19.
+- Slices 2 to 5, 8 to 12 and 15 to 19: not worth their time (owner,
+  2026-09-19). None is carried forward, and no successor plan exists.
+
+The owner gate on the cloud bash measurement is void: the owner set the floor
+at 5.2 without it and accepted the risk recorded in PR 131's description.
 
 ## Close-out, in order
 

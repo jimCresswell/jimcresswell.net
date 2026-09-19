@@ -55,14 +55,14 @@ Every line answered first-hand, none inferred:
 Where this block and the routing log disagree, the log's last entry is current; this block is
 rewritten at each Director wrap. Item 117 is the boundary state; items 114 to 116 are history.
 
-- `main` is at `SHA: 5f3225e2` (#130, the fold of `coordination/2026-09-16-bee014`). The
+- `main` is at `SHA: c68f831c` (PR 131). The fold before it was #130 (`SHA: 5f3225e2`). The
   primary resides on `coordination/2026-09-17-5f3225`, cut from that tip.
 - Zero pull requests open (owner word 2026-09-17, "bring the number of open PRs down to zero";
   "the goal is complete as soon as the number of open PRs hits zero"). Landed this evening:
   #126, #127, #94, #95, #96, #128, #129, #130.
-- The plan `.agent/plans/delivery/estate-fix-backlog.plan.md` is ratified (owner, 2026-09-19, on
-  the card: "Ratify as it stands"). Its §Backlog is the next work, slice 1 (security) first, at
-  most three open non-draft pull requests.
+- The owner's closing pull request, PR 131, merged 2026-09-19 (`SHA: c68f831c`); zero pull
+  requests open after it. The plan `estate-fix-backlog` is complete and archived; nothing is
+  carried forward and no work is owed. The next session starts from the owner's ask.
 - Owner holds: no subagents (owner word 2026-09-17, evening). Every review is the seat's own.
 - Nothing session-scoped is armed at a boundary unless item 117 names it. The chain recipe,
   the push slot and the merge mechanics are in `repo-continuity.md` §Next Safe Steps.

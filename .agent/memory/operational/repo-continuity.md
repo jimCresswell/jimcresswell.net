@@ -24,7 +24,7 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 - 2026-09-17 evening: zero open pull requests. The close-out landed #126, #127, #94, #95,
   #96, #128 and #129, and the fold #130 (`SHA: 5f3225e2`) carried this window's records to
   `main`; the primary now resides on `coordination/2026-09-17-5f3225`. The plan
-  `estate-fix-backlog` awaits the owner's ratification and governs no work until then. The
+  `estate-fix-backlog` was ratified, completed and archived on 2026-09-19 (PR 131). The
   live reading is §Next Safe Steps, STATE 2026-09-17T19:42Z; the Director's handoff item 117
   carries the seated block.
 - `main` carries the monorepo and the Practice since PR #53 merged (`55649a2`, 2026-09-13); the
@@ -173,36 +173,20 @@ OWNER HOLDS, binding until the owner lifts them:
 
 - **No subagents** (owner word 2026-09-17, evening: "do not use subagents"). Every review is the
   seat's own, under the template it would have invoked, stated in the pull request.
-- **The plan is ratified** (owner, 2026-09-19, on the card: "Ratify as it stands"). Its §Backlog
-  governs the next work, slice 1 first, at most three open non-draft pull requests.
 
-IN FLIGHT at the wrap of 2026-09-19T15:30Z: ONE pull request, the owner's closing act for this
-thread ("all of that happens in ONE PR, and then this thread is 100% finished"). Branch
-`fix/bash-floor-security-doctrine`, worktree `floor-doctrine-security`, head `SHA: 77d52beb`,
-two commits: the rule-text corrections, then the bash 5.2 floor with the two hook fixes. The
-full check passed on the branch before the push. It carries: the floor guard as the first
-command of all ten bash scripts, held once in the shellcheck gate; the prompt hook reading
-node's exit status; the three guard commands without the `:-.` default, refused by the grammar;
-six of the seven approved text corrections (the seventh no longer exists on main).
+CLOSED, 2026-09-19 (Cauldron herds Lustre, Director). The owner's closing pull request, PR 131,
+merged at `SHA: c68f831c` after two review rounds: round one settled in one push
+(`SHA: 1f30331b`), round two answered with one signed rejection. Open pull requests after it:
+zero, read from `gh pr list`. It carries the bash 5.2 floor held in the shellcheck gate, the hook
+wrapper handing over on an older bash so the secrets hooks still block, node's exit status read in
+the prompt hook, no `:-` default in the guard commands, and the approved text corrections. Its
+branch and worktree are gone.
 
-FIRST ACTION on resume: `gh pr list`. If the pull request is open, read its review in full,
-settle round one in one push, answer the last round with signed lines (`Rejected as a cure in
-this pull request` plus the reason for anything that earns no diff), merge through the bot,
-delete the branch over REST, remove the worktree. Open nothing else.
-
-If `gh pr list` shows nothing, the push did not pass its gate: the branch is local only, in the
-worktree above. The first push failed on the machine, not the change: Playwright's browser build
-was missing from the local cache, cured by `pnpm --filter @jimcresswell/www exec playwright
-install chromium`; the second push was running at this wrap. Push again, then open the pull
-request from the description kept in the session scratchpad, or rewrite it from the two commit
-messages.
-
-AFTER THE MERGE, the thread ends (owner, 2026-09-19). Complete the plan under its own fourth
-criterion, which allows a slice to be dispositioned with a reason: slices 1, 7, 13 and 14 name
-this pull request; slice 6 reads "dropped by the owner, 2026-09-19"; every other slice reads
-"not worth its time, the seat's review of 2026-09-19, which the owner answered by choosing three
-items". Then archive the plan with its inbound links swept to plain text, as the plan skill
-says. No work is owed after that. The next session starts from the owner's ask, not from a list.
+The plan `estate-fix-backlog` is complete and archived under `.agent/plans/delivery/archive/`:
+slices 1, 7, 13 and 14 landed in PR 131, slice 6 was dropped by the owner, and the rest were
+closed as not worth their time. Nothing is carried forward. No work is owed. The next session
+starts from the owner's ask, not from a list. The worktree inputs named below serve no scheduled
+work.
 
 The backlog and every routed review finding live in the plan. The owner's twenty-three card
 answers of 2026-09-17 are recorded verbatim in this file at `SHA: 3372b944`, removed from the
