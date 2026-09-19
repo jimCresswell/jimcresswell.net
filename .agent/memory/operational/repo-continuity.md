@@ -186,11 +186,13 @@ answers of 2026-09-17 are recorded verbatim in this file at `SHA: 3372b944`, rem
 live text when the plan absorbed them as slices, each marked owner-approved; they are not
 restated here.
 
-Owner actions pending:
-
-- Re-paste the cloud environment setup script from main (first line `#!/usr/bin/env bash`), start
-  one cloud session and report `bash --version` and `command -v bash` (the plan's owner gate for
-  the bash 5.2 floor, expires 2026-10-08).
+Owner word, 2026-09-19: "I am not going to paste the cloud setup script, stop asking." The cloud
+bash measurement will not happen and is never asked for again; the plan's bash-floor slice has no
+path as written. The same message: "I am not interested in finishing things just because they are
+on a list." The ratified backlog is permission, not obligation: a slice is picked up for what it
+changes for a reader of the site, for the owner's secrets or for the next agent's behaviour, never
+to shorten the list. The seat's review of the backlog under that word was given to the owner in
+chat on 2026-09-19; the owner's choice among its proposals is the next input.
 
 Uncommitted partial work, conserved in place (never discarded): `expert-roster` worktree
 (`fix/site-relative-paths-in-rules`, 18 files, input to slice 15); `tools-lineage-paths` worktree
