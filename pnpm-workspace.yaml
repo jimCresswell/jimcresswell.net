@@ -129,6 +129,23 @@ overrides:
   # postcss the tree can resolve declares nanoid >=3.3.18: 8.5.27 is the first
   # release that does, and the postcss floor below still admits 8.5.26, which
   # declares ^3.3.17.
+  # Security floor, restored 2026-09-21 on the 15 line: the markdown-it
+  # repository's GHSA-r7fv-28h4-cvq7 (maintainer severity high; quadratic
+  # smartquotes on unmatched closing quotes) has TWO vulnerable ranges: below
+  # 14.3.2, and 15.0.0 up to but not including 15.0.2. The earlier floor
+  # ('>=14.3.2 <15') was removed the same day when markdownlint-cli2 0.23.3
+  # moved its exact pin to 15.0.1; that removal read the floor's number and
+  # not the advisory's second range, and took this estate from the patched
+  # 14.3.2 to the vulnerable 15.0.1. The advisory is a repository advisory,
+  # absent from GitHub's reviewed database, so pnpm audit, Dependabot and the
+  # dependency-review gate cannot see it: this entry is the only control.
+  # Safe to force from the exact pin: 15.0.2 is a patch release on the line
+  # the linter is built against. markdown-it 15 declares linkify-it ^6.0.0;
+  # no published linkify-it advisory covers the 6 line. Dev tooling only.
+  # Bounded below 16. Remove when markdownlint-cli2 declares markdown-it
+  # >=15.0.2; before removing ANY floor here, read every vulnerable range of
+  # the advisories it names, never only the number in the entry.
+  markdown-it: '>=15.0.2 <16'
   nanoid: '>=3.3.18 <4'
   # Security floor per major line, scoped 2026-09-17: GHSA-c2c7-rcm5-vvqj
   # (high; CVE-2026-33671; ReDoS via extglob quantifiers) and GHSA-3v7f-55p6-f55p
@@ -157,12 +174,14 @@ overrides:
   # 4.3.3 ^8.5.16).
   postcss: '>=8.5.26 <9'
   # Security floor: GHSA-mw96-cpmx-2vgc (high; arbitrary file write through
-  # path traversal in Rollup 4), patched in 4.59.0. vite 7.3.5 declares rollup
-  # ^4.43.0; tsup 8.5.1 and its fix-dts-default-cjs-exports declare ^4.34.8.
+  # path traversal in Rollup 4), patched in 4.59.0. tsup 8.5.1 and its
+  # fix-dts-default-cjs-exports declare ^4.34.8.
   # Build and test tooling only. Bounded below 5 pre-emptively (no 5.x
   # published at 2026-09-17): an open floor admits the next major the day it
-  # ships and forces it onto every ^4 dependent. Remove when vite and tsup
-  # declare rollup >=4.59.0.
+  # ships and forces it onto every ^4 dependent. vite left rollup for rolldown
+  # at 8.0 (this estate took vite 8.3.0 on 2026-09-21), so tsup and its
+  # fix-dts-default-cjs-exports are the remaining consumers. Remove when tsup
+  # declares rollup >=4.59.0.
   rollup: '>=4.59.0 <5'
   # Transitive floor; no advisory names sucrase itself. sucrase 3.35.0 declares
   # glob ^10.3.10, a range whose floor sits inside GHSA-5j98-mcp5-4vw2 (high;
