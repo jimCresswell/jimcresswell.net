@@ -218,6 +218,13 @@ two-round ruling of 2026-09-14 do too.
    hand (the delta lane's seven review rounds each found a true omission of the hand-written
    list). Two of the three are Copilot's observations on pull request 137 (review 5266093341),
    routed here below the bar.
+8. The Core's portability measure (before todo 5's outbound note, and before any decision to
+   extract the Practice into an installable entity): PDR-105 says a PDR never cites an ADR,
+   and on 2026-09-21 this estate's Core held 78 ADR citations in 19 of 141 PDRs, to 17 distinct
+   ADRs, none of which exist here (PDR-011 alone cites the lineage's ADR-150 seven times). The
+   cure is the authoring estate's text; the class closes with a Core validator that refuses an
+   ADR citation in a PDR, offered in the outbound note. Copilot's observation on pull request
+   145 (review 5268801620), verified and widened, routed here below the bar.
 
 ## Plan-body first-principles check
 
