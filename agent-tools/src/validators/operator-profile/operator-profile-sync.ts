@@ -38,11 +38,17 @@ type Command = { readonly kind: 'pull' } | { readonly kind: 'push'; readonly mes
 
 const USAGE = 'usage: operator-profile-sync <pull | push --message "<text>"> [--root <dir>]';
 
-/** The options each command admits; every option takes exactly one value. */
-const OPTIONS: Readonly<Record<Command['kind'], ReadonlySet<string>>> = {
-  pull: new Set(['--root']),
-  push: new Set(['--root', '--message']),
-};
+/** The options each command admits, as literal tuples; every option takes exactly one value. */
+const OPTIONS = {
+  pull: ['--root'],
+  push: ['--root', '--message'],
+} as const satisfies Readonly<Record<Command['kind'], readonly string[]>>;
+
+/** Membership in a command's option tuple without widening the tuple to string[]. */
+function isOption(kind: Command['kind'], flag: string): boolean {
+  const options: readonly string[] = OPTIONS[kind];
+  return options.includes(flag);
+}
 
 /** The value after a flag; undefined when absent, blank, or itself a flag. */
 function valueAfter(rest: readonly string[], index: number): string | undefined {
@@ -63,7 +69,7 @@ function parseOptions(
   const seen = new Map<string, string>();
   for (let index = 0; index < rest.length; index += 2) {
     const flag = rest[index] ?? '';
-    if (!OPTIONS[kind].has(flag)) {
+    if (!isOption(kind, flag)) {
       return err(`unknown argument "${flag}" — ${USAGE}`);
     }
     if (seen.has(flag)) {
