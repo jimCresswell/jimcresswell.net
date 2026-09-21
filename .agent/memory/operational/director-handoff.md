@@ -55,7 +55,7 @@ Every line answered first-hand, none inferred:
 Where this block and the routing log disagree, the log's last entry is current; this block is
 rewritten at each Director wrap. Item 119 is the boundary state; item 118 is the window's opening; item 117 and before are history.
 
-- `main` is at `SHA: 1044b358` (PR 142, the action pins, merged 15:18Z). Landed today, in order: #137 (`SHA: 4bfc64d4`, the
+- `main` is at `SHA: 1b2596dc` (PR 143, the dependency upgrade, merged 15:46Z, after PR 142's action pins at `SHA: 1044b358` and the fold PR 141 at `SHA: 19cfcc2e`). Landed today, in order: #137 (`SHA: 4bfc64d4`, the
   delta instrument and pins), #138 (`SHA: d2e7ee12`, PDR-141 and the operator-profile schema
   from the lineage), #140 (`SHA: 02ec85ab`, the profile cures Codex raised after 138), #139
   (`SHA: 7655b1b6`, the three-estate register and its validator). The primary resides on
@@ -70,8 +70,9 @@ rewritten at each Director wrap. Item 119 is the boundary state; item 118 is the
 - The five Dependabot bumps of 2026-09-19 (#132 to #136) are closed on the owner's word,
   each naming its replacements: PR 142 (every GitHub Action pinned to its latest stable
   release by SHA with the version in the comment; merged `SHA: 1044b358` at 15:18Z) and PR
-  143 (every outdated package upgraded in one change; green, Copilot requested at 15:26Z;
-  the site package holds ESLint at 9.39.5 until eslint-plugin-react supports 10).
+  143 (every outdated package upgraded in one change and four satisfied overrides removed;
+  merged `SHA: 1b2596dc` at 15:46Z; the site package holds ESLint at 9.39.5 until
+  eslint-plugin-react supports 10).
 - The operator profile at `~/.practice/profile` was synced on the owner's word at 12:34Z (a
   scope file for this line; the index and machine file current; `SHA: fad8e36` pushed under
   the owner's identity).
@@ -2003,3 +2004,4 @@ ones the Director would put to the owner had the owner been present.
 - 2026-09-21 14:28Z: item 119, the compaction boundary; every process stopped; PR 141 cures, PR 142 open, the deps lane dirty and red with its two roots named.
 - 2026-09-21 15:26Z: after the compaction, the owner's four-leg Cricket suite (four ON-TRACK; tally under `.agent/reports/agentic-engineering/`); PR 142 merged at `SHA: 1044b358`; the deps lane green and open as PR 143; Dependabot #132 to #136 closed naming #142 and #143; the register's landings table carries PR 139, PR 140 and the lineage's #172 (`SHA: 272910f1d`); PR 141 at round two, its three findings cured in this push.
 - 2026-09-21 15:39Z: PR 141 merged at `SHA: 19cfcc2e` after three Copilot rounds (round three's two records findings lifted by signed lines and cured here); successor `coordination/2026-09-21-19cfcc` cut from that merge; the folded branch deleted on the remote; item 118's PR 139 count corrected to nine Copilot reviews and three Codex reviews (verified 15:37Z); the current-state block's owed-at-next-landing line retired (the rows are in the register). PR 143 at round two with the four satisfied overrides removed.
+- 2026-09-21 15:50Z: PR 143 merged at `SHA: 1b2596dc` (two rounds; the override removals verified against declared ranges). The exchange's inbound landings started by register order: L2 (PDR-117) as PR 144 awaiting Copilot; L4 and L5 (PDR-026, PDR-011, the Core changelog as a dated union) committed at `SHA: 28fa1a6d`, pushing. The owner reopened castr's future (minimum Practice, full re-transplant, or extraction once the two estates converge); answered in chat: the enabling subset is common to all three, the 2-versus-3 fork waits for the converged fixed point and one spike.
