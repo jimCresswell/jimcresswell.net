@@ -28,8 +28,27 @@ describe('parseRegisterRows', () => {
       '| L1 | jcnet | 137 | lineage `72cab5667c` |',
     ].join('\n');
     expect(parseRegisterRows(markdown)).toStrictEqual([
-      { id: 'L1', group: 'L', globs: ['.agent/x/**', 'agent-tools/src/y/**'], catchAll: false },
-      { id: 'J15', group: 'J', globs: ['**'], catchAll: true },
+      {
+        id: 'L1',
+        group: 'L',
+        globs: ['.agent/x/**', 'agent-tools/src/y/**'],
+        catchAll: false,
+        lists: null,
+      },
+      { id: 'J15', group: 'J', globs: ['**'], catchAll: true, lists: null },
+    ]);
+  });
+
+  it('reads a (list: ...) scope as the lists the row is confined to', () => {
+    const markdown = [
+      '| Row | Concept | Path globs |',
+      '| --- | --- | --- |',
+      '| C15 | rest | `**` (catch-all) (list: oce-since-castr-pin) |',
+      '| C9 | two | `a/**` (list: castr-since-transplant, oce-since-castr-pin) |',
+    ].join('\n');
+    expect(parseRegisterRows(markdown).map((row) => row.lists)).toStrictEqual([
+      ['oce-since-castr-pin'],
+      ['castr-since-transplant', 'oce-since-castr-pin'],
     ]);
   });
 });
@@ -103,6 +122,31 @@ describe('computeCoverage', () => {
     expect(report.deadGlobs).toStrictEqual([]);
     expect(report.matchesByRow.get('J15')).toBe(1);
     expect(report.matchesByRow.get('L1')).toBe(2);
+  });
+
+  it('confines a list-scoped catch-all to its list, so a sibling catch-all owns the other', () => {
+    const scoped = parseRegisterRows(
+      [
+        '| Row | Concept | Path globs |',
+        '| --- | --- | --- |',
+        '| C12 | castr rest | `**` (catch-all) (list: castr-since-transplant) |',
+        '| C15 | lineage rest | `**` (catch-all) (list: oce-since-castr-pin) |',
+      ].join('\n'),
+    );
+    const report = computeCoverage(
+      scoped,
+      PINS,
+      new Map([
+        ['oce-since-jcnet-pin', []],
+        ['jcnet-since-transplant', []],
+        ['castr-since-transplant', ['a.md', 'b.md']],
+        ['oce-since-castr-pin', ['c.md']],
+      ]),
+    );
+    expect(report.uncovered).toStrictEqual([]);
+    expect(report.deadGlobs).toStrictEqual([]);
+    expect(report.matchesByRow.get('C12')).toBe(2);
+    expect(report.matchesByRow.get('C15')).toBe(1);
   });
 
   it('reports an uncovered path and a dead glob', () => {

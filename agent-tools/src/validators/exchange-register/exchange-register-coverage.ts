@@ -74,13 +74,23 @@ interface CompiledRow {
   readonly globs: readonly CompiledGlob[];
 }
 
+/** The group's lists, narrowed to the row's declared `(list: ...)` scope when it has one. */
+function listsForRow(row: RegisterRow, pins: readonly PinsRow[]): ReadonlySet<string> {
+  const groupLists = listsForGroup(row.group, pins);
+  const declared = row.lists;
+  if (declared === null) {
+    return new Set(groupLists);
+  }
+  return new Set(groupLists.filter((label) => declared.includes(label)));
+}
+
 function compileRows(
   rows: readonly RegisterRow[],
   pins: readonly PinsRow[],
 ): readonly CompiledRow[] {
   return rows.map((row) => ({
     row,
-    lists: new Set(listsForGroup(row.group, pins)),
+    lists: listsForRow(row, pins),
     globs: row.globs.map((glob) => ({ glob, regexp: globToRegExp(glob), hits: 0 })),
   }));
 }

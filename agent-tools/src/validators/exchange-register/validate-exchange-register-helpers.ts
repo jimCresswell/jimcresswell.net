@@ -9,7 +9,20 @@ import { type PinsRow, type RegisterRow } from './exchange-register-types.js';
 
 const ROW_ID = /^([A-Z])(\d+)$/u;
 const CODE_SPAN = /`([^`]+)`/gu;
+const LIST_SCOPE = /\(list:\s*([^)]+)\)/u;
 const GLOB_COLUMN = 'Path globs';
+
+/** The lists a glob cell names with `(list: a, b)`, or null when it names none. */
+function parseListScope(cell: string): readonly string[] | null {
+  const match = LIST_SCOPE.exec(cell);
+  if (match === null) {
+    return null;
+  }
+  return (match[1] ?? '')
+    .split(',')
+    .map((label) => label.trim())
+    .filter((label) => label !== '');
+}
 
 function splitTableCells(line: string): readonly string[] {
   const trimmed = line.trim();
@@ -37,7 +50,13 @@ function parseRow(cells: readonly string[]): RegisterRow | null {
   const globs = [...last.matchAll(CODE_SPAN)]
     .map((span) => span[1] ?? '')
     .filter((glob) => glob !== '');
-  return { id: first, group: match[1] ?? '', globs, catchAll: last.includes('(catch-all)') };
+  return {
+    id: first,
+    group: match[1] ?? '',
+    globs,
+    catchAll: last.includes('(catch-all)'),
+    lists: parseListScope(last),
+  };
 }
 
 interface TableState {

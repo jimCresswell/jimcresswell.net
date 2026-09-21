@@ -1,11 +1,16 @@
 /** Shared shapes of the exchange-register validator. */
 
-/** One register row: its id, its group letter, and the globs it declares. */
+/**
+ * One register row: its id, its group letter, the globs it declares, whether
+ * it is a catch-all, and the lists it is scoped to (`null` when the row
+ * covers every list of its group).
+ */
 export interface RegisterRow {
   readonly id: string;
   readonly group: string;
   readonly globs: readonly string[];
   readonly catchAll: boolean;
+  readonly lists: readonly string[] | null;
 }
 
 /** One pins row: the list label and the estate whose delta it is. */
