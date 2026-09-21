@@ -134,7 +134,7 @@ function positionMessages(
   }
   const field = frontmatter.kind === 'scope' ? 'scope_key' : 'machine_key';
   return [
-    `frontmatter ${field} "${key}" does not match the file name "${expectation.expectedKey}"`,
+    `frontmatter ${field} does not match the file name "${expectation.expectedKey}" (the value is withheld: a mismatched key may be credential-shaped)`,
   ];
 }
 
