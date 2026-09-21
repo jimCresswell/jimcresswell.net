@@ -13,11 +13,8 @@ import {
   listsForGroup,
 } from './exchange-register-coverage.js';
 import { type PinsRow } from './exchange-register-types.js';
-import {
-  parseDeltaPaths,
-  parsePinsRows,
-  parseRegisterRows,
-} from './validate-exchange-register-helpers.js';
+import { parseDeltaPaths, parsePinsRows } from './exchange-register-inputs.js';
+import { parseRegisterRows } from './validate-exchange-register-helpers.js';
 
 const PINS: readonly PinsRow[] = [
   { label: 'oce-since-jcnet-pin', estate: 'oce' },
@@ -77,6 +74,8 @@ describe('parseRegisterRows', () => {
   it.each([
     ['`a/**` (list: jcnet-since-transplant', 'opens a (list: scope it never closes'],
     ['`a/**` (list: a) (list: b)', 'carries more than one (list: ...) scope'],
+    ['`a/**` (list : castr-since-transplant)', 'carries the scope marker `(list :`'],
+    ['`a/**` ( List: castr-since-transplant)', 'carries the scope marker `( List:`'],
   ])('refuses the malformed scope cell %s rather than reading it as unscoped', (cell, message) => {
     const markdown = [
       '| Row | Concept | Path globs |',

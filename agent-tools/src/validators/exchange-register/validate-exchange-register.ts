@@ -33,11 +33,8 @@ import {
   type RegisterRow,
   type UnknownScope,
 } from './exchange-register-types.js';
-import {
-  parseDeltaPaths,
-  parsePinsRows,
-  parseRegisterRows,
-} from './validate-exchange-register-helpers.js';
+import { parseDeltaPaths, parsePinsRows } from './exchange-register-inputs.js';
+import { parseRegisterRows } from './validate-exchange-register-helpers.js';
 
 const NAME = 'validate-exchange-register';
 const INPUTS = '.agent/reports/practice-transplant/inputs';

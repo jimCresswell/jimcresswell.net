@@ -1,36 +1,43 @@
 /**
  * Parsing helpers for the exchange-register validator: the register's row
- * tables, the pins file and the computed delta lists. No IO here; the
- * validator entry point supplies file contents. Coverage lives beside this
- * in `exchange-register-coverage.ts`.
+ * tables. The pins file and the delta lists are read in
+ * `exchange-register-inputs.ts`; coverage lives in
+ * `exchange-register-coverage.ts`. No IO here; the validator entry point
+ * supplies file contents.
  */
 
 import { err, ok, type Result } from '@engraph/result';
 
-import { type PinsRow, type RegisterRow } from './exchange-register-types.js';
+import { type RegisterRow } from './exchange-register-types.js';
 
 const ROW_ID = /^([LJCO])(\d+)$/u;
 const ANY_ROW_ID = /^([A-Z])(\d+)$/u;
 const CODE_SPAN = /`([^`]+)`/gu;
 const LIST_SCOPE = /\(list:\s*([^)]*)\)/u;
+/** Anything that reads as a list-scope marker, however mis-typed: `( list :`, `(List:`, `(list :`. */
+const SCOPE_LIKE = /\(\s*list\s*:/giu;
 const GLOB_COLUMN = 'Path globs';
-const LABEL_SHAPE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/u;
-const ESTATES: ReadonlySet<string> = new Set(['oce', 'jcnet', 'castr']);
 
 /**
  * The lists a glob cell names with `(list: a, b)`, or null when it names
- * none. A cell that opens a scope it does not close, or that carries two
- * scopes, is refused rather than read as unscoped: either typo would widen
- * the row to every list of its group.
+ * none. A cell that opens a scope it does not close, carries two scopes, or
+ * spells the marker any way but `(list:` is refused rather than read as
+ * unscoped: each typo would widen the row to every list of its group.
  */
 function parseListScope(cell: string): Result<readonly string[] | null, string> {
-  const openings = cell.split('(list:').length - 1;
-  if (openings > 1) {
+  const markers = cell.match(SCOPE_LIKE) ?? [];
+  if (markers.length > 1) {
     return err('carries more than one (list: ...) scope');
+  }
+  const [marker] = markers;
+  if (marker !== undefined && marker !== '(list:') {
+    return err(
+      `carries the scope marker \`${marker}\`; the grammar is exactly \`(list: <label>[, <label>])\``,
+    );
   }
   const match = LIST_SCOPE.exec(cell);
   if (match === null) {
-    return openings === 0 ? ok(null) : err('opens a (list: scope it never closes');
+    return marker === undefined ? ok(null) : err('opens a (list: scope it never closes');
   }
   return ok(
     (match[1] ?? '')
@@ -161,90 +168,4 @@ function acceptRow(
   }
   seen.add(parsed.value.id);
   return parsed;
-}
-
-/** One pins line as a row, or why it is refused: label shape, closed estate set, uniqueness. */
-function pinsRow(
-  cells: readonly string[],
-  indices: { readonly label: number; readonly estate: number },
-  seen: Set<string>,
-): Result<PinsRow, string> {
-  const label = cells[indices.label] ?? '';
-  const estate = cells[indices.estate] ?? '';
-  if (!LABEL_SHAPE.test(label)) {
-    return err(`pins label \`${label}\` is not lower-case words joined by hyphens`);
-  }
-  if (!ESTATES.has(estate)) {
-    return err(`pins row ${label}: estate \`${estate}\` is not one of oce, jcnet, castr`);
-  }
-  if (seen.has(label)) {
-    return err(`pins label ${label} appears more than once`);
-  }
-  seen.add(label);
-  return ok({ label, estate });
-}
-
-/**
- * Reads the pins TSV (header row first) into label and estate pairs. A label
- * is lower-case words joined by hyphens (it names a file), unique, and its
- * estate is one of the three; anything else is refused.
- */
-export function parsePinsRows(tsv: string): Result<readonly PinsRow[], string> {
-  const [header, ...lines] = tsv.split('\n').filter((line) => line.trim() !== '');
-  if (header === undefined) {
-    return ok([]);
-  }
-  const columns = header.split('\t');
-  const labelIndex = columns.indexOf('label');
-  const estateIndex = columns.indexOf('estate');
-  if (labelIndex < 0 || estateIndex < 0) {
-    return err('the pins file must carry `label` and `estate` columns');
-  }
-  const seen = new Set<string>();
-  const rows: PinsRow[] = [];
-  for (const line of lines) {
-    const row = pinsRow(line.split('\t'), { label: labelIndex, estate: estateIndex }, seen);
-    if (!row.ok) {
-      return row;
-    }
-    rows.push(row.value);
-  }
-  return ok(rows);
-}
-
-/**
- * Reads a computed delta list into its paths. Every non-blank line is
- * exactly `label`, `status`, `path`, and the label is the one the list was
- * loaded for; a line of another shape or another label is refused, so a
- * truncated or swapped list never passes as the declared one.
- */
-export function parseDeltaPaths(tsv: string, label: string): Result<readonly string[], string> {
-  const paths: string[] = [];
-  for (const [index, line] of tsv.split('\n').entries()) {
-    if (line.trim() === '') {
-      continue;
-    }
-    const path = deltaPath(line.split('\t'), label, index + 1);
-    if (!path.ok) {
-      return path;
-    }
-    paths.push(path.value);
-  }
-  return ok(paths);
-}
-
-/** The path of one delta line, or why the line is refused. */
-function deltaPath(
-  cells: readonly string[],
-  label: string,
-  lineNumber: number,
-): Result<string, string> {
-  const [rowLabel, status, path] = cells;
-  if (cells.length !== 3 || status === '' || path === undefined || path === '') {
-    return err(`${label} list line ${lineNumber}: not \`label<TAB>status<TAB>path\``);
-  }
-  if (rowLabel !== label) {
-    return err(`${label} list line ${lineNumber}: labelled \`${rowLabel ?? ''}\`, not ${label}`);
-  }
-  return ok(path);
 }
