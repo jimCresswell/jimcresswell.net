@@ -183,7 +183,15 @@ two-round ruling of 2026-09-14 do too.
 - castr carries every concept its register column marks as landing, through the re-transplant
   the owner sequenced (castr's open pull requests closed, the enabling subset of at most six
   instruments landed, the debt work finished, then the re-transplant), and none of the nine
-  surfaces the owner named as leaving; castr's provenance chain carries the exchange entry and
+  surfaces the owner named as leaving on 2026-09-21, each with what replaces it: the 835-line
+  practice-lineage (the trinity's current form); the session-continuation prompt as the
+  continuity bridge (repo-continuity and thread records); the nine plan directories (the
+  plan-node estate); ADRs inside `.agent/directives` (docs); reviewer-suffixed templates
+  (experts); the `.agent/workflows` directory (a pointer to the start-right skill); the
+  duplicate `.agent/report` directory beside `.agent/reports`; the cloud setup scripts under
+  the harness integrations (the tri-state cloud-environment-routing directive); and the
+  memory/collaboration directory outside the three-mode model. The register's row C13 carries
+  the same nine with their path globs. castr's provenance chain carries the exchange entry and
   its PDRs are renumbered above 141. Proof: the re-transplant's runbook run and its loss scan
   on castr, the register's castr landing rows citing castr's merged pull requests, castr's
   `provenance.yml`; the owner verifies on the castr estate (`owner-held`).
