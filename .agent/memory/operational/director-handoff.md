@@ -50,22 +50,38 @@ Every line answered first-hand, none inferred:
   archive holds only processed material.
 - The transplant is bounded: closure items 3 to 8 finish it, then editorial work.
 
-## Current handoff state (2026-09-17T20:09Z; zero open pull requests, the fold #130 merged, the plan awaits ratification)
+## Current handoff state (2026-09-21T14:25Z; the exchange window's first day landed, five Dependabot bumps open, the coordination branch folding)
 
 Where this block and the routing log disagree, the log's last entry is current; this block is
-rewritten at each Director wrap. Item 117 is the boundary state; items 114 to 116 are history.
+rewritten at each Director wrap. Item 118 is the boundary state; item 117 and before are history.
 
-- `main` is at `SHA: c68f831c` (PR 131). The fold before it was #130 (`SHA: 5f3225e2`). The
-  primary resides on `coordination/2026-09-17-5f3225`, cut from that tip.
-- Zero pull requests open (owner word 2026-09-17, "bring the number of open PRs down to zero";
-  "the goal is complete as soon as the number of open PRs hits zero"). Landed this evening:
-  #126, #127, #94, #95, #96, #128, #129, #130.
-- The owner's closing pull request, PR 131, merged 2026-09-19 (`SHA: c68f831c`); zero pull
-  requests open after it. The plan `estate-fix-backlog` is complete and archived; nothing is
-  carried forward and no work is owed. The next session starts from the owner's ask.
-- Owner holds: no subagents (owner word 2026-09-17, evening). Every review is the seat's own.
-- Nothing session-scoped is armed at a boundary unless item 117 names it. The chain recipe,
-  the push slot and the merge mechanics are in `repo-continuity.md` §Next Safe Steps.
+- `main` is at `SHA: 7655b1b6` (PR 139). Landed today, in order: #137 (`SHA: 4bfc64d4`, the
+  delta instrument and pins), #138 (`SHA: d2e7ee12`, PDR-141 and the operator-profile schema
+  from the lineage), #140 (`SHA: 02ec85ab`, the profile cures Codex raised after 138), #139
+  (`SHA: 7655b1b6`, the three-estate register and its validator). The primary resides on
+  `coordination/2026-09-17-5f3225`, four days over the 24-hour rule and folding as PR 141; the
+  successor is cut from the fold merge.
+- The three-estate exchange is open on the owner's rulings of 2026-09-21 (item 118 and the
+  node `.agent/plans/delivery/practice-two-way-exchange.plan.md` §Rulings). Owed at the next
+  landing: 139's own row and 140's cure lane in the register's landings table, L1's lineage
+  cell when the lineage's #172 merges (Zephyr guards Leeward holds it). Plan-ledger
+  follow-ups from the reviews: a `--root` flag for the register validator so its smoke writes
+  in a scratch copy, the two fused document readers to consolidate, explicit probes in the
+  fake-reader tests.
+- Five Dependabot bumps of 2026-09-19 stand open (#132 to #136); the owner's word at
+  14:25Z: close them and replace with one dependency-upgrade pull request, and one pull
+  request pinning every GitHub Action to its latest stable release by SHA with the version
+  in the comment. Both lanes are cut (`chore/deps-upgrade-2026-09-21`,
+  `chore/actions-latest-stable-sha`).
+- The operator profile at `~/.practice/profile` was synced on the owner's word at 12:34Z (a
+  scope file for this line; the index and machine file current; `SHA: fad8e36` pushed under
+  the owner's identity).
+- Codex's usage limit returned at 13:39Z (comms event dac869d4, after the morning's
+  40ce4858); merges fire with the Copilot leg declared and a subagent code-expert leg standing
+  until it recovers.
+- Owner holds: none. The no-subagents hold of 2026-09-17 ended with the close-out; the owner
+  lifted the fleet constraint for all seats on 2026-09-16.
+- Nothing session-scoped is armed at a boundary unless item 118 names it.
 
 ## Live board
 
@@ -1737,6 +1753,10 @@ ones the Director would put to the owner had the owner been present.
      review findings into ledger rows, and this window's continuity. Nothing armed at the
      boundary; monitors and background chains all ended.
 
+118. The exchange window opened (2026-09-21, 10:07Z record). Item 101's remaining gate, the owner naming the exchange window, closed at 06:20Z to 09:00Z by the owner's rulings to Brazier spins Temper (c70341): open now on the most up-to-date delta; three estates (this one, the lineage, castr) in one register with three landing columns; PDR-141 taken now as one small PR. The node `.agent/plans/delivery/practice-two-way-exchange.plan.md` carries `owner_gates: []` and §Rulings of 2026-09-21. Lanes: PR 137 (delta instrument and pins; merged SHA: 4bfc64d4 at 11:49:54Z after seven rounds, every round an omission of the hand-written machinery list, so todo 7 derives the list from the artefact inventory), PR 138 (PDR-141; merged SHA: d2e7ee12 at 12:19:55Z; Codex returned at 12:20Z and reviewed the merged tip, so PR 140 carried its cures and merged SHA: 02ec85ab at 13:58:11Z after nine Copilot rounds, Codex out again since 13:39Z, declared as event dac869d4), PR 139 (the register and its validator; merged SHA: 7655b1b6 at 14:10:11Z after eleven Copilot rounds and three Codex rounds, every finding cured, one Rejected with proof; the validator refuses everything its grammar does not name, tracks a fingerprinted per-row baseline and carries precedence markers for overlapping rows). Open pull requests of the exchange after 139: zero; five Dependabot bumps of 2026-09-19 (#132 knip, #133 vitest 5, #134 coverage-v8 5, #135 eslint 10 with build-and-test red, #136 vite 8) stand open outside it, unreviewed, three of them major versions; not started, since a bump lane opens for what it changes, never for the list. Owed at the next landing: 139's own row and 140's cure lane in the register's landings table, L1's lineage cell when the lineage's #172 merges; plan-ledger follow-ups from the reviews: a --root flag for the register validator so its smoke writes in a scratch copy, the two fused document readers to consolidate, explicit probes in the fake-reader tests). The operator profile at ~/.practice/profile was synced on the owner's word at 12:34Z (a scope file for this line, the index and machine file brought current; SHA: fad8e36 pushed under the owner's identity). The sentence in item 101 stands as the state of 2026-09-17; this item supersedes it.
+
+119. Compaction boundary (2026-09-21, 14:28Z, the owner's word: "prepare for compaction … include reflections … stop all processes"). BOUNDARY STATE; item 118 is the window's opening. Every process is stopped; nothing survives the compaction. Lanes: PR 141 (the fold of `coordination/2026-09-17-5f3225`; Copilot's seven records findings cured in the wrap commit at the tip of PR 141 after this push, its disposition posted there; when it settles: front door with `--expect copilot-pull-request-reviewer`, then the successor cut with `pnpm --silent agent-tools coordination successor-name --base "$BASE"` from the post-fold `origin/main` and the rotation broadcast); PR 142 (`chore/actions-latest-stable-sha`, `SHA: 6fdeb406`, every action pinned to its latest stable release by SHA, Copilot requested); `chore/deps-upgrade-2026-09-21` DIRTY and uncommitted in `jimcresswell.net-worktrees/deps-upgrade` (every outdated package upgraded, @types/node held at 24; red on `eslint-plugin-react`'s `display-name` under ESLint 10 in `jcdotnet` and on `tooling/workspace-config`'s vitest peer `^4.1.10`; finish, green the gate, open the PR, then close Dependabot #132 to #136 with a comment naming PR 142 and the deps PR). Codex out since 13:39Z (event dac869d4). Zephyr guards Leeward owes #172's merge SHA for L1's lineage cell. Re-arm recipe (verify by id first, re-arm only what is absent): reviews poll `bash <scratchpad>/reviews-poll.sh <pr…> | grep --line-buffered -E 'copilot|codex|failed'` (the script: `gh pr view <n> --json reviews` every 60 s, one line per new row); ARC tail `tail -n 0 -F <the 2026-09-21 rapid-comms channel file in the Oak fork checkout> | grep --line-buffered -E '^## \[Zephyr'`; OCE watcher: `find <oak checkout>/.agent/state/collaboration/comms -name '*.json' -newer <marker>` every 30 s printing created_at, author and title. Reflections (the napkin's boundary block carries them whole): the validator review loops ballooned because the parsers were authored to recognise and skip, and the generator cure — a closed grammar with the reviewers' refusal table as the first test, the code-expert leg before ready — was visible at round four and taken at round eight; the next validator lane runs the leg first.
+
 ## Routing log
 
 - 2026-09-13 evening: seat opened; team-start `ca1ba4d8`; lanes A, B, C authored, unfilled.
@@ -1980,4 +2000,5 @@ ones the Director would put to the owner had the owner been present.
 - 2026-09-17T20:09Z: #130 merged (`SHA: 5f3225e2`); zero open pull requests; the successor
   `coordination/2026-09-17-5f3225` cut (item 117). §Current handoff state is current.
 
-118. The exchange window opened (2026-09-21, 10:07Z record). Item 101's remaining gate, the owner naming the exchange window, closed at 06:20Z to 09:00Z by the owner's rulings to Brazier spins Temper (c70341): open now on the most up-to-date delta; three estates (this one, the lineage, castr) in one register with three landing columns; PDR-141 taken now as one small PR. The node `.agent/plans/delivery/practice-two-way-exchange.plan.md` carries `owner_gates: []` and §Rulings of 2026-09-21. Lanes: PR 137 (delta instrument and pins; merged 4bfc64d4 at 11:49:54Z after seven rounds, every round an omission of the hand-written machinery list, so todo 7 derives the list from the artefact inventory), PR 138 (PDR-141; merged d2e7ee12 at 12:19:55Z; Codex returned at 12:20Z and reviewed the merged tip, so PR 140 carried its cures and merged 02ec85ab at 13:58:11Z after nine Copilot rounds, Codex out again since 13:39Z, declared as event dac869d4), PR 139 (the register and its validator; merged 7655b1b6 at 14:10:11Z after eleven Copilot rounds and three Codex rounds, every finding cured, one Rejected with proof; the validator refuses everything its grammar does not name, tracks a fingerprinted per-row baseline and carries precedence markers for overlapping rows). Open pull requests of the exchange after 139: zero; five Dependabot bumps of 2026-09-19 (#132 knip, #133 vitest 5, #134 coverage-v8 5, #135 eslint 10 with build-and-test red, #136 vite 8) stand open outside it, unreviewed, three of them major versions; not started, since a bump lane opens for what it changes, never for the list. Owed at the next landing: 139's own row and 140's cure lane in the register's landings table, L1's lineage cell when the lineage's #172 merges; plan-ledger follow-ups from the reviews: a --root flag for the register validator so its smoke writes in a scratch copy, the two fused document readers to consolidate, explicit probes in the fake-reader tests). The operator profile at ~/.practice/profile was synced on the owner's word at 12:34Z (a scope file for this line, the index and machine file brought current; fad8e36 pushed under the owner's identity). The sentence in item 101 stands as the state of 2026-09-17; this item supersedes it.
+- 2026-09-21 14:25Z: item 118 written and moved above this log; the current-state block rewritten from the 2026-09-21 boundary (PRs 137 to 140 landed, the fold PR 141 open, the Dependabot replacement lanes cut).
+- 2026-09-21 14:28Z: item 119, the compaction boundary; every process stopped; PR 141 cures, PR 142 open, the deps lane dirty and red with its two roots named.

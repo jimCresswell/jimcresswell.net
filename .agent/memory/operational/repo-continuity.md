@@ -21,12 +21,19 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
+- 2026-09-21 14:25Z: the three-estate Practice exchange opened on the owner's rulings and its
+  first window landed: #137 (`SHA: 4bfc64d4`), #138 (`SHA: d2e7ee12`), #140 (`SHA: 02ec85ab`),
+  #139 (`SHA: 7655b1b6`); `main` is at `SHA: 7655b1b6`. Open: five Dependabot bumps (#132 to
+  #136), being replaced on the owner's word by one dependency-upgrade pull request (its lane dirty and
+  red at the compaction boundary; the Director's handoff item 119 names the two roots) and
+  the action-pinning PR 142; the fold of `coordination/2026-09-17-5f3225` as PR 141, with
+  the successor cut from its merge. The live reading is the Director's handoff item 118 and
+  its current-state block; the exchange's node is
+  `.agent/plans/delivery/practice-two-way-exchange.plan.md`.
 - 2026-09-17 evening: zero open pull requests. The close-out landed #126, #127, #94, #95,
-  #96, #128 and #129, and the fold #130 (`SHA: 5f3225e2`) carried this window's records to
-  `main`; the primary now resides on `coordination/2026-09-17-5f3225`. The plan
-  `estate-fix-backlog` was ratified, completed and archived on 2026-09-19 (PR 131). The
-  live reading is §Next Safe Steps, STATE 2026-09-17T19:42Z; the Director's handoff item 117
-  carries the seated block.
+  #96, #128 and #129, and the fold #130 (`SHA: 5f3225e2`) carried that window's records to
+  `main`. The plan `estate-fix-backlog` was ratified, completed and archived on 2026-09-19
+  (PR 131); §Next Safe Steps below is that window's snapshot (STATE 2026-09-17T19:42Z).
 - `main` carries the monorepo and the Practice since PR #53 merged (`55649a2`, 2026-09-13); the
   transplant closure ran as small PRs against `main` and is complete (the last, #91, merged
   2026-09-15 at `SHA: f8aab12`). Plan of record:
@@ -165,7 +172,7 @@ slowly, thoughtfully, do not use subagents"; the reminder at 20:20Z, "the goal i
 soon as the number of open PRs hits zero"). Landed 2026-09-17 evening, in order: #126
 (`SHA: 6254f0cc`), #127 (`SHA: 4ecbc451`), #94 (`SHA: 20d0c8d9`), #95 (`SHA: d7f37d8a`),
 PR #96 (`SHA: cff790fa`), #128 (`SHA: 867e9e0c`), #129 (`SHA: 931f4072`), then the fold of
-this coordination branch. The plan `.agent/plans/delivery/estate-fix-backlog.plan.md` records
+this coordination branch. The plan `.agent/plans/delivery/archive/estate-fix-backlog.plan.md` records
 each landing in §Close-out, every routed review finding in §Review dispositions, and the seat's
 reviews in §Review record.
 
