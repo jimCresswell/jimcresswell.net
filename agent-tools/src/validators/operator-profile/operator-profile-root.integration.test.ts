@@ -260,7 +260,7 @@ describe('readDocument — reading without following a symlink', () => {
     expect(closed).toEqual(['closed']);
   });
 
-  it('turns a close the platform refuses after a read into a message, never a throw', async () => {
+  it('names a close the platform refuses after a read as a close failure, never a throw', async () => {
     const refusal = Object.assign(new Error('EIO: i/o error'), { code: 'EIO' });
     const read = await readDocument('index.md', () =>
       Promise.resolve({
@@ -271,8 +271,29 @@ describe('readDocument — reading without following a symlink', () => {
     expect(read).toEqual({
       ok: false,
       error:
-        'cannot read the document (EIO) — a symlink or an unreadable file is never a profile document',
+        'cannot close the document after reading it (EIO) — the text read is discarded, never trusted',
     });
+  });
+
+  it('closes the handle once when the read fails, and a refused close then adds nothing', async () => {
+    const readRefusal = Object.assign(new Error('EACCES: permission denied'), { code: 'EACCES' });
+    const closeRefusal = Object.assign(new Error('EIO: i/o error'), { code: 'EIO' });
+    const closed: string[] = [];
+    const read = await readDocument('index.md', () =>
+      Promise.resolve({
+        readFile: () => Promise.reject(readRefusal),
+        close: () => {
+          closed.push('closed');
+          return Promise.reject(closeRefusal);
+        },
+      }),
+    );
+    expect(read).toEqual({
+      ok: false,
+      error:
+        'cannot read the document (EACCES) — a symlink or an unreadable file is never a profile document',
+    });
+    expect(closed).toEqual(['closed']);
   });
 
   it('turns an open the platform refuses (ELOOP on a symlink) into a message, never a throw', async () => {

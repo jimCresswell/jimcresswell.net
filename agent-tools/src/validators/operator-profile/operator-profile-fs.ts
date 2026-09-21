@@ -195,23 +195,32 @@ export async function readDocument(
   absolute: string,
   openDocument: OpenDocument = openReal,
 ): Promise<Result<string, string>> {
-  let handle: DocumentHandle | undefined;
+  let opened: DocumentHandle;
   try {
-    handle = await openDocument(absolute, DOCUMENT_OPEN_FLAGS);
-    const text = await handle.readFile('utf8');
-    const open = handle;
-    handle = undefined;
-    await open.close();
-    return ok(text);
+    opened = await openDocument(absolute, DOCUMENT_OPEN_FLAGS);
+  } catch (cause) {
+    return err(unreadable(cause));
+  }
+  let text: string;
+  try {
+    text = await opened.readFile('utf8');
+  } catch (cause) {
+    // The refusal is the outcome; a second failure on this close adds nothing.
+    await opened.close().catch(() => undefined);
+    return err(unreadable(cause));
+  }
+  try {
+    await opened.close();
   } catch (cause) {
     return err(
-      `cannot read the document (${errorCode(cause)}) — a symlink or an unreadable file is never a profile document`,
+      `cannot close the document after reading it (${errorCode(cause)}) — the text read is discarded, never trusted`,
     );
-  } finally {
-    // Only reached with a handle when the read itself failed: the refusal
-    // above is the outcome, and a second failure on this close adds nothing.
-    await handle?.close().catch(() => undefined);
   }
+  return ok(text);
+}
+
+function unreadable(cause: unknown): string {
+  return `cannot read the document (${errorCode(cause)}) — a symlink or an unreadable file is never a profile document`;
 }
 
 /** The filesystem the root reader goes through; tests inject a fake. */
