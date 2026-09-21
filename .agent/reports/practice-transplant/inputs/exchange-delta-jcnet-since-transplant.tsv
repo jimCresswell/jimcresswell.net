@@ -828,6 +828,11 @@ jcnet-since-transplant	M	agent-tools/tests/test-helpers/depcruise-fixture.ts
 jcnet-since-transplant	M	agent-tools/tests/test-helpers/rules-index-classification-fixtures.ts
 jcnet-since-transplant	M	agent-tools/tests/test-helpers/temp-collaboration-state.ts
 jcnet-since-transplant	M	agent-tools/tsconfig.json
+jcnet-since-transplant	M	docs/architecture/decision-records/005-knip-unused-code-detection.md
+jcnet-since-transplant	M	docs/architecture/decision-records/009-content-negotiation-proxy.md
+jcnet-since-transplant	M	docs/architecture/decision-records/019-playwright-against-production-build.md
+jcnet-since-transplant	M	docs/architecture/decision-records/022-rendering-risk-needs-blocking-visual-proof.md
+jcnet-since-transplant	M	docs/architecture/decision-records/README.md
 jcnet-since-transplant	M	docs/engineering/README.md
 jcnet-since-transplant	M	docs/engineering/build-system.md
 jcnet-since-transplant	M	docs/engineering/testing-patterns.md
