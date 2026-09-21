@@ -1,9 +1,9 @@
-import { unwrap } from '@engraph/result';
+import { err, ok, unwrap } from '@engraph/result';
 import { describe, expect, it } from 'vitest';
 
 import { pullProfile, readSyncState, type GitRunner } from './operator-profile-git.js';
 import { pushProfile } from './operator-profile-git-push.js';
-import { parseSyncArgs } from './operator-profile-sync.js';
+import { parseSyncArgs, syncTarget, type SyncTargetProbes } from './operator-profile-sync.js';
 import {
   assessSyncState,
   dirtyPaths,
@@ -405,6 +405,53 @@ describe('pushProfile', () => {
     expect(failure(pushProfile(run, 'seat: fact', PROFILE_PATHSPECS))).toContain(
       'the commits are local',
     );
+  });
+});
+
+describe('syncTarget — the root is probed without following links before any git runs', () => {
+  const runner: GitRunner = () => ({ ok: true, stdout: '', stderr: '' });
+  const probesWith = (
+    presenceValue: 'directory' | 'absent' | 'not-a-directory' | 'symlink',
+    repository: boolean,
+  ) => {
+    const runnersCreated: string[] = [];
+    const probes: SyncTargetProbes = {
+      presence: () => Promise.resolve(ok(presenceValue)),
+      isGitRepository: () => Promise.resolve(repository),
+      createRunner: (root) => {
+        runnersCreated.push(root);
+        return runner;
+      },
+    };
+    return { probes, runnersCreated };
+  };
+
+  it('refuses a symlinked root by name and creates no runner, so git never runs in the target', async () => {
+    const { probes, runnersCreated } = probesWith('symlink', true);
+    const target = await syncTarget('/profile', probes);
+    expect(target).toEqual({
+      ok: false,
+      error: '/profile is a symlink — the profile root is never followed',
+    });
+    expect(runnersCreated).toEqual([]);
+  });
+
+  it('reports an absent root and a non-repository as information, never as errors', async () => {
+    const absent = await syncTarget('/profile', probesWith('absent', false).probes);
+    expect(unwrap(absent)).toContain('absent or not a git repository');
+    const plain = await syncTarget('/profile', probesWith('directory', false).probes);
+    expect(unwrap(plain)).toContain('absent or not a git repository');
+  });
+
+  it('treats a path that is not a directory and an unreadable root as failures', async () => {
+    const file = await syncTarget('/profile', probesWith('not-a-directory', false).probes);
+    expect(file).toEqual({ ok: false, error: '/profile exists but is not a directory' });
+    const denied: SyncTargetProbes = {
+      ...probesWith('directory', true).probes,
+      presence: () => Promise.resolve(err('cannot read /profile (EACCES)')),
+    };
+    const unreadable = await syncTarget('/profile', denied);
+    expect(unreadable.ok ? '' : unreadable.error).toContain('EACCES');
   });
 });
 
