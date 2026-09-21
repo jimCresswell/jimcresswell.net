@@ -9,9 +9,12 @@
 # entrypoints (AGENTS.md, CLAUDE.md, GEMINI.md, skills.md), the Practice-owned root
 # configuration (dependency-cruiser, knip, tsconfig, eslint, prettier, markdownlint, commitlint,
 # nvmrc, gitattributes, gitignore, sonar; a name absent in an estate matches nothing there) and
-# the canonical patterns under .agent/memory/active/patterns. The other continuity and memory
-# surfaces (the rest of memory, state, plans, reports, experience, research, the Practice Box)
-# are local by doctrine and never enter the delta.
+# the canonical patterns under .agent/memory/active/patterns, and the Practice-owned shared
+# tooling workspaces (this estate's tooling/ and the lineage's five under packages/core: the
+# eslint plugin, result, safe-path, type-helpers, workspace-config; castr carries none, and a
+# path absent in an estate matches nothing there). The other continuity and memory surfaces
+# (the rest of memory, state, plans, reports, experience, research, the Practice Box) are local
+# by doctrine and never enter the delta.
 #
 # Usage: exchange-delta.sh <label> <repo-path> <ancestor> <head>
 # Output: label<TAB>status<TAB>path, one row per changed path, sorted by path under the C locale
@@ -41,6 +44,8 @@ machinery=(
   eslint.config.ts eslint.config.mjs eslint.config.js prettier.config.ts .prettierrc.json
   .prettierignore .markdownlint-cli2.jsonc .markdownlint.json commitlint.config.mjs .nvmrc
   .gitattributes .gitignore .sonarcloud.properties .editorconfig
+  tooling packages/core/oak-eslint packages/core/result packages/core/safe-path
+  packages/core/type-helpers packages/core/workspace-config
 )
 git -C "$repo" rev-parse --verify --quiet "$ancestor^{commit}" > /dev/null || { echo "ancestor not found in $label: $ancestor" >&2; exit 1; }
 git -C "$repo" rev-parse --verify --quiet "$head^{commit}" > /dev/null || { echo "head not found in $label: $head" >&2; exit 1; }
