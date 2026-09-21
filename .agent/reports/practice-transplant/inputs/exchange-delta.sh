@@ -12,15 +12,18 @@
 # the canonical patterns under .agent/memory/active/patterns, and the Practice-owned shared
 # tooling workspaces (this estate's tooling/ and the lineage's five under packages/core: the
 # eslint plugin, result, safe-path, type-helpers, workspace-config; castr carries none, and a
-# path absent in an estate matches nothing there). The other continuity and memory surfaces
-# (the rest of memory, state, plans, reports, experience, research, the Practice Box) are local
-# by doctrine and never enter the delta.
+# path absent in an estate matches nothing there), and the Practice-governance docs trees
+# (docs/engineering, docs/governance, docs/foundation) the transplant guidance classes as
+# Practice machinery outside .agent. The other continuity and memory surfaces (the rest of
+# memory, state, plans, reports, experience, research, the Practice Box) are local by doctrine
+# and never enter the delta.
 #
 # Usage: exchange-delta.sh <label> <repo-path> <ancestor> <head>
 # Output: label<TAB>status<TAB>path, one row per changed path, sorted by path under the C locale
 # so the tracked lists are byte-stable across machines. The ancestor must be reachable from the
 # head, or the diff would compare unrelated trees rather than a since-ancestor interval.
-# Recompute for all estates with `bash .agent/reports/practice-transplant/inputs/exchange-deltas.sh`.
+# Recompute for all estates with
+# `bash .agent/reports/practice-transplant/inputs/exchange-deltas.sh <oce-tree-path> <castr-tree-path>`.
 # The bash floor: the shellcheck gate holds it once and requires this guard first.
 if ((BASH_VERSINFO[0] < 5 || (BASH_VERSINFO[0] == 5 && BASH_VERSINFO[1] < 2))); then
   echo "bash 5.2 or later is required, found ${BASH_VERSION}: install it (brew install bash on macOS, apt-get install bash on Debian 12 or Ubuntu 24.04 and later) and put it first on PATH" >&2
@@ -43,7 +46,8 @@ machinery=(
   tsconfig.base.json tsconfig.json tsconfig.depcruise.json tsconfig.lint.json
   eslint.config.ts eslint.config.mjs eslint.config.js prettier.config.ts .prettierrc.json
   .prettierignore .markdownlint-cli2.jsonc .markdownlint.json commitlint.config.mjs .nvmrc
-  .gitattributes .gitignore .sonarcloud.properties .editorconfig
+  .gitattributes .gitignore .sonarcloud.properties .editorconfig .gitleaks.toml tsdoc.json
+  docs/engineering docs/governance docs/foundation
   tooling packages/core/oak-eslint packages/core/result packages/core/safe-path
   packages/core/type-helpers packages/core/workspace-config
 )
