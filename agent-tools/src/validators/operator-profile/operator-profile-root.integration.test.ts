@@ -291,7 +291,7 @@ describe('readDocument — reading without following a symlink', () => {
     });
   });
 
-  it('closes the handle once when the read fails, and a refused close then adds nothing', async () => {
+  it('closes the handle once when the read fails, and names a refused close beside the read failure', async () => {
     const readRefusal = Object.assign(new Error('EACCES: permission denied'), { code: 'EACCES' });
     const closeRefusal = Object.assign(new Error('EIO: i/o error'), { code: 'EIO' });
     const closed: string[] = [];
