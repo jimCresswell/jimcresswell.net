@@ -50,14 +50,17 @@ function loadInputs(repoRoot: string): Inputs | string {
   if (!pins.ok) {
     return pins.error;
   }
-  const lists = new Map<string, readonly string[]>(
-    pins.value.map((pin) => [
+  const lists = new Map<string, readonly string[]>();
+  for (const pin of pins.value) {
+    const paths = parseDeltaPaths(
+      readFileSync(join(repoRoot, INPUTS, `exchange-delta-${pin.label}.tsv`), 'utf8'),
       pin.label,
-      parseDeltaPaths(
-        readFileSync(join(repoRoot, INPUTS, `exchange-delta-${pin.label}.tsv`), 'utf8'),
-      ),
-    ]),
-  );
+    );
+    if (!paths.ok) {
+      return paths.error;
+    }
+    lists.set(pin.label, paths.value);
+  }
   return { rows: rows.value, pins: pins.value, lists };
 }
 
@@ -81,7 +84,10 @@ function reportFindings(
 }
 
 function main(): number {
-  const inputs = loadInputs(resolveRepoRoot(import.meta.url));
+  // projectDir is explicitly disabled: this validator reads the tree it runs
+  // inside. The CLAUDE_PROJECT_DIR leg would rebind a worktree invocation to
+  // the primary checkout and report the wrong estate green.
+  const inputs = loadInputs(resolveRepoRoot(import.meta.url, { projectDir: undefined }));
   if (typeof inputs === 'string') {
     writeErrorLine(`${NAME}: ${inputs}`);
     return 2;
@@ -105,7 +111,7 @@ function main(): number {
   }
   const total = [...lists.values()].reduce((sum, paths) => sum + paths.length, 0);
   writeLine(
-    `${NAME}: OK (${total} paths over ${lists.size} lists covered by ${rows.length} rows).`,
+    `${NAME}: OK (${total} list entries over ${lists.size} lists, every one covered by one of ${rows.length} rows).`,
   );
   return 0;
 }

@@ -325,7 +325,7 @@ builds, product tests, or browser suites: root Prettier and markdownlint, then
 the documentation validators (`validate-reference-direction`,
 `validate-no-machine-local-paths`, `validate-no-lineage-names`,
 `validate-markdown-links`, `validate-cited-scripts`, `validate-cited-paths`,
-`validate-patterns-index`).
+`validate-patterns-index`, `validate-exchange-register`).
 It is deliberately narrower than `pnpm check` and
 makes no full-repository verification claim. Fitness reports
 (`pnpm practice:fitness` and siblings) are not part of this gate: they remain

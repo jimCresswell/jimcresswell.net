@@ -170,9 +170,10 @@ two-round ruling of 2026-09-14 do too.
   covering many paths). Proof: the register validator as a `docs-validators:check` leg, green
   (`repo-safe`).
 - Every register row has a disposition in every estate's column and, where it lands here, a
-  merged pull request in this repository. Proof: the register's rows cite merged pull requests;
-  the validator refuses a landing row for this estate without one (`repo-safe`); landings on
-  the lineage and on castr are proven by the owner-held criteria below.
+  merged pull request in this repository. Proof: the register's landings table cites merged
+  pull requests by number and merge SHA, read against this repository by the exchange seat at
+  each landing (documentary; the validator checks path coverage, never the landings table);
+  landings on the lineage and on castr are proven by the owner-held criteria below.
 - The owner's cards for the conflicting rows are answered and the answers are the dispositions.
   Proof: the plan of record's ruling round, cited from the register (`owner-held`, the owner
   verifies on the cards).

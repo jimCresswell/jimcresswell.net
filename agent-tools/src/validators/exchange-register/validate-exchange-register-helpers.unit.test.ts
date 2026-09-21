@@ -56,6 +56,16 @@ describe('parseRegisterRows', () => {
     expect(refused.ok ? '' : refused.error).toContain('L21 appears more than once');
   });
 
+  it('refuses an empty (list:) scope, which would confine the row to no list', () => {
+    const markdown = [
+      '| Row | Concept | Path globs |',
+      '| --- | --- | --- |',
+      '| C9 | a | `a/**` (list: ) |',
+    ].join('\n');
+    const refused = parseRegisterRows(markdown);
+    expect(refused.ok ? '' : refused.error).toContain('C9: an empty (list:) scope');
+  });
+
   it('reads a (list: ...) scope as the lists the row is confined to', () => {
     const markdown = [
       '| Row | Concept | Path globs |',
@@ -74,15 +84,34 @@ describe('parsePinsRows and parseDeltaPaths', () => {
   it('reads labels and estates by header name, and the third column of a delta list', () => {
     const pins = unwrap(parsePinsRows('label\testate\torigin\nx\tjcnet\tgithub.com/a/b\n'));
     expect(pins).toStrictEqual([{ label: 'x', estate: 'jcnet' }]);
-    expect(parseDeltaPaths('x\tA\t.agent/a.md\nx\tM\tagent-tools/b.ts\n')).toStrictEqual([
-      '.agent/a.md',
-      'agent-tools/b.ts',
-    ]);
+    expect(
+      unwrap(parseDeltaPaths('x\tA\t.agent/a.md\nx\tM\tagent-tools/b.ts\n', 'x')),
+    ).toStrictEqual(['.agent/a.md', 'agent-tools/b.ts']);
   });
 
   it('refuses a pins file without the named columns', () => {
     const refused = parsePinsRows('a\tb\n1\t2\n');
     expect(refused.ok ? '' : refused.error).toContain('label');
+  });
+
+  it.each([
+    ['label\testate\nx\tjcnet\nx\toce\n', 'appears more than once'],
+    ['label\testate\n../x\tjcnet\n', 'not lower-case words'],
+    ['label\testate\n\tjcnet\n', 'not lower-case words'],
+    ['label\testate\nx\tmoon\n', 'not one of oce, jcnet, castr'],
+  ])('refuses the pins file %j: %s', (tsv, message) => {
+    const refused = parsePinsRows(tsv);
+    expect(refused.ok ? '' : refused.error).toContain(message);
+  });
+
+  it.each([
+    ['x\tA\n', 'not `label<TAB>status<TAB>path`'],
+    ['x\tA\t\n', 'not `label<TAB>status<TAB>path`'],
+    ['x\tA\ta.md\textra\n', 'not `label<TAB>status<TAB>path`'],
+    ['y\tA\ta.md\n', 'labelled `y`, not x'],
+  ])('refuses the delta list %j: %s', (tsv, message) => {
+    const refused = parseDeltaPaths(tsv, 'x');
+    expect(refused.ok ? '' : refused.error).toContain(message);
   });
 });
 
