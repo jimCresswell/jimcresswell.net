@@ -250,3 +250,12 @@ two-round ruling of 2026-09-14 do too.
 - Editing the lineage's tree from this estate: outbound material lands under the lineage's own
   gates by its own seats.
 - Reconciling continuity and memory surfaces: local by doctrine on both sides.
+
+## Review dispositions
+
+One dated row per routed finding (PDR-140): the source pull request, the finding in one line, and
+the routing rationale. Read and dispositioned at pickup before implementation begins.
+
+| Date | Source | Finding | Routing rationale |
+| --- | --- | --- | --- |
+| 2026-09-21 | PR 149, Copilot round two (overview observation, no thread) | In `pnpm-workspace.yaml` the restored `markdown-it` comment and entry sit between the existing `nanoid` security comment and the `nanoid` entry it documents. Cure: move the `markdown-it` comment and entry above the `nanoid` comment. | Below-bar, comment order only. Not cured in PR 149: rounds do not go up, and `main` resolved a vulnerable version until it landed. Rides the next change that touches `pnpm-workspace.yaml`. |
