@@ -15,7 +15,7 @@ ratified_where: >-
   both have Practice boxes, and yes the node is ratified"), recorded in
   .agent/memory/operational/director-handoff.md §Decisions overnight, item 101.
   Amended by the owner's card answers of 2026-09-21 in the session of Brazier spins
-  Temper (c70341), recorded in this node's §Rulings of 2026-09-21 and in the napkin.
+  Temper (c70341), recorded verbatim in this node's §Rulings of 2026-09-21.
 serves: practice
 impact_areas:
   - practice-and-estate
@@ -83,8 +83,9 @@ file-level merge would overwrite one estate's learning with the other's encoding
 no mechanism yet gives every such concept one disposition and lands it on both sides. The
 harm: each estate keeps repairing what the other has already cured, and the drift compounds
 with every session on either side. Success: every concept that changed on either side since
-the ancestor has one disposition, recorded once, landed in both estates under each owner's
-ratification, with the Box empty and the provenance chains naming each other's heads.
+the ancestor has one disposition, recorded once, landed in every estate under each owner's
+ratification (the 2026-09-14 framing said "both estates"; the owner's rulings of 2026-09-21
+made it three), with every Box empty and the provenance chains naming each other's heads.
 
 ## Goal
 
@@ -96,20 +97,21 @@ project.
 
 ## User groups and value
 
-- **The owner**, who runs both estates: one set of cards per exchange, decisions made once,
-  and no concept cured twice.
-- **Seats on either estate**: the rules, skills and instruments they run are the best either
-  estate has found; a lesson learned on one side stops recurring on the other.
+- **The owner**, who runs all three estates: one set of cards per exchange, decisions made
+  once, and no concept cured twice.
+- **Seats on any estate**: the rules, skills and instruments they run are the best any estate
+  has found; a lesson learned on one side stops recurring on the others.
 - **The Practice itself**: its exchange doctrine (transformation and conjugation, the Box, the
   provenance chain) is exercised in both directions and amended where the exercise finds it
   thin.
 
 ## Mechanism
 
-The exchange is conjugation, not transformation: both estates are live and the material is
-negotiated, so the inter-Practice collaboration protocol governs the writes and the join, and
-the lineage doctrine's Integration Flow governs the reading. Deltas are computed at the window,
-never pinned in this node, so whatever lands on either side before then is in scope.
+The exchange is conjugation, not transformation: this estate and the lineage are live and the
+material is negotiated, so the inter-Practice collaboration protocol governs the writes and the
+join, and the lineage doctrine's Integration Flow governs the reading; castr is read here and
+written only through its re-transplant (ruling 5). Deltas are computed at the window, never
+pinned in this node, so whatever lands on any side before then is in scope.
 
 1. **Compute every delta from its ancestor** at the window's opening: on the lineage the
    Practice surfaces changed between its pin and its main, on this estate those changed between
@@ -123,13 +125,14 @@ never pinned in this node, so whatever lands on either side before then is in sc
    `.agent/reports/practice-transplant/inputs/exchange-deltas.sh`; the computed lists sit beside
    them, so every delta is recomputable. Heads are re-pinned once before the register closes.
 2. **Classify every changed path into a concept row**, not a file row: the same concept on
-   both sides (which encoding is higher, or a merge of the two); one side only (bring, or
+   more than one side (which encoding is higher, or a merge); one side only (bring, or
    decline with the reason: product, host-specific, already implicit); a conflicting ruling
-   (a card, to the owner, once, for both estates). The first pass is one seat with the
-   assumptions-expert lens on the rows that claim "already implicit"; no fleet.
+   (a card, to the owner, once, for every estate). Each row carries a disposition per estate.
+   The first pass is one seat with the assumptions-expert lens on the rows that claim
+   "already implicit"; no fleet.
 3. **The exchange register**: one file under the transplant's reports carrying every row with
-   its disposition, its direction and its landing pull request on each side; a validator
-   refuses a path in either delta with no row.
+   its disposition and landing pull request per estate; a validator refuses a path in any
+   delta with no row.
 4. **Land inbound here** as pull requests sized to about eight review-facing claims, two review
    rounds binding by default, every finding left after round two dispositioned in that same
    slot turn, a further round only as the Director's correctness exception (closure record,
