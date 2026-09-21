@@ -29,22 +29,36 @@ interface GitOutcome {
 /** Runs one git command against the profile root and reports its outcome. */
 export type GitRunner = (args: readonly string[]) => GitOutcome;
 
-/** The real runner: the trusted git binary, `-C <root>`, never a shell. */
-export function createGitRunner(root: string): GitRunner {
-  const git = resolveTrustedGit();
-  return (args) => {
+/**
+ * The real runner: the trusted git binary, `-C <root>`, never a shell. The
+ * runner never throws: a binary that cannot execute (spawn error, no
+ * stdout) reads as a failed command carrying the spawn error's message,
+ * and a trusted-git resolution that refuses is this function's error.
+ *
+ * @param root - the profile root
+ * @returns the runner, or why no git can run here
+ */
+export function createGitRunner(root: string): Result<GitRunner, string> {
+  let git: string;
+  try {
+    git = resolveTrustedGit();
+  } catch (cause) {
+    return err(`no trusted git binary: ${cause instanceof Error ? cause.message : String(cause)}`);
+  }
+  return ok((args) => {
     const result = spawnSync(git, ['-C', root, ...args], {
       encoding: 'utf8',
       stdio: ['ignore', 'pipe', 'pipe'],
     });
     return {
       ok: result.status === 0,
-      stdout: result.stdout.trimEnd(),
-      stderr: result.stderr.trimEnd(),
+      stdout: (result.stdout ?? '').trimEnd(),
+      stderr: (result.stderr ?? result.error?.message ?? '').trimEnd(),
     };
-  };
+  });
 }
 
+/** The first line of a git output, or the empty string. */
 export function firstLine(text: string): string {
   return text.split('\n')[0] ?? '';
 }

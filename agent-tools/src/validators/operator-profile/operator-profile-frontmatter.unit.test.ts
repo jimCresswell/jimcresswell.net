@@ -233,9 +233,24 @@ describe('findCredentialLikeLines', () => {
     expect(findCredentialLikeLines('notes\nPassword:\n\n')).toEqual([]);
   });
 
+  it('flags a qualified or compound label bound to one token', () => {
+    const content = [
+      'GitHub password: hunter2',
+      '- Vercel token: vcp_9f8e',
+      'client_secret: abc',
+      'private_key: abc',
+      'aws_secret_access_key: abc',
+      'npm token = npm_abc',
+      // A label-shaped binding to one token is refused by design, prose or not.
+      'password managers: 1Password',
+      'clean line',
+    ].join('\n');
+    expect(findCredentialLikeLines(content)).toEqual([1, 2, 3, 4, 5, 6, 7]);
+  });
+
   it('passes prose that mentions a credential label without binding a value to it', () => {
     const content = [
-      'password managers: 1Password',
+      'password managers: 1Password and Bitwarden both work',
       'the token budget is 200',
       'token:',
       'secrets live in the keychain, never here',

@@ -24,6 +24,7 @@ export interface ProfileDocumentExpectation {
   readonly expectedKey?: string;
 }
 
+/** A document that parsed: its expectation and the frontmatter the schema admitted. */
 export interface ParsedProfileDocument {
   readonly relPath: string;
   readonly frontmatter: OperatorProfileFrontmatter;
@@ -76,14 +77,14 @@ function parseFrontmatterMapping(frontmatter: string): Result<unknown, string> {
   return isJsonObject(parsed) ? ok(parsed) : err('frontmatter is not a YAML mapping');
 }
 
+/** One issue of a parse failure, typed off the error itself, never Zod's core API. */
+type ZodIssueOf = ZodError['issues'][number];
+
 /**
  * One schema issue as a message. An unrecognised key's name is withheld: the
  * key can be the credential-shaped token this validator exists to keep out of
  * every output, so the message carries the count and the path only.
  */
-/** One issue of a parse failure, typed off the error itself, never Zod's core API. */
-type ZodIssueOf = ZodError['issues'][number];
-
 function issueMessage(issue: ZodIssueOf): string {
   const at = issue.path.map(String).join('.') || '(root)';
   if (issue.code === 'unrecognized_keys') {

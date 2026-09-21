@@ -20,6 +20,7 @@ export interface ProfileEntry {
   readonly kind: ProfileEntryKind;
 }
 
+/** A root listing classified: the documents to validate and the entries to refuse. */
 export interface ProfileLayout {
   /** Documents to validate, with their layout expectations. */
   readonly documents: readonly ProfileDocumentExpectation[];

@@ -69,6 +69,12 @@ const CREDENTIAL_LIKE_PATTERNS: readonly RegExp[] = [
   // binding a value (`password managers`, `the token budget`) passes.
   /^\s*[\s\-*>#_`]*["']?(?:password|passwd|secret|api[ _-]?key|token|access[ _-]?token|auth[ _-]?token)["']?[*_`]*\s*[:=]\s*[*_`]*\s*[^\s*_`]/i,
   /^\s*[\s\-*>#_`]*["']?authorization["']?[*_`]*\s*[:=]\s*["'`]?bearer\s+\S+/i,
+  // A qualified or compound label (`GitHub password`, `Vercel token`,
+  // `client_secret`, `private_key`, `aws_secret_access_key`, `npm token`) bound
+  // to ONE token: the qualifier words admit any prose, so the value must be a
+  // single token for the line to read as a binding (`Ask for the API key: the
+  // operator holds it` passes; `password managers: 1Password` is refused).
+  /^\s*[\s\-*>#_`]*["']?(?:[a-z0-9]+[ _-])*(?:password|passwd|secret|token|api[ _-]?key|private[ _-]?key|access[ _-]?key|secret[ _-]?key)(?:[ _-][a-z0-9]+)*["']?[*_`]*\s*[:=]\s*[*_`]*\s*[^\s|*_`][^\s|]*\s*$/i,
   // A table row binding a label to one token (`| Password | hunter2 |`); a
   // header cell followed by prose (`| Password | Where it lives |`) passes.
   /^\s*\|\s*[*_`]*["']?(?:password|passwd|secret|api[ _-]?key|token|access[ _-]?token|auth[ _-]?token)["']?[*_`]*\s*\|\s*[*_`]*[^\s|*_`]+[*_`]*\s*\|/i,

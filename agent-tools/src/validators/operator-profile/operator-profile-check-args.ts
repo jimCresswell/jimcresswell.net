@@ -10,6 +10,7 @@ import { err, ok, type Result } from '@engraph/result';
 
 const CHECK_USAGE = 'usage: validate-operator-profile [--root <dir>] [--emit <relPath>]...';
 
+/** The check CLI's parsed arguments. */
 export interface CheckArgs {
   /** The `--root` value, or undefined when the environment decides the root. */
   readonly root: string | undefined;

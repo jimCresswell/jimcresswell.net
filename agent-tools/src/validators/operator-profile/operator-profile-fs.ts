@@ -7,13 +7,14 @@
  */
 
 import { constants, type Dirent, type Stats } from 'node:fs';
-import { type FileHandle, lstat, open, readdir, stat } from 'node:fs/promises';
+import { type FileHandle, lstat, open, readdir } from 'node:fs/promises';
 import path from 'node:path';
 
 import { err, ok, type Result } from '@engraph/result';
 
 import { type ProfileEntry, type ProfileEntryKind } from './operator-profile-layout.js';
 
+/** What is at a path, read without following links; `symlink` is never resolved. */
 export type Presence = 'directory' | 'absent' | 'not-a-directory' | 'symlink';
 
 /** Reports what is at a path; the filesystem one is the default, tests inject a fake. */
@@ -128,13 +129,31 @@ export async function listEntries(
   }
 }
 
-/** Whether the root is a git repository (a `.git` directory or file). */
-export async function isGitRepository(root: string): Promise<boolean> {
-  try {
-    await stat(path.join(root, '.git'));
-    return true;
-  } catch {
-    return false;
+/**
+ * Whether the root is a git repository (a `.git` directory or file), read
+ * without following links: a symlinked `.git` is refused, never followed
+ * into; an unreadable `.git` is an error, never "not a repository".
+ *
+ * @param root - the profile root
+ * @param probe - the presence probe (the filesystem by default)
+ * @returns true for a repository, false for none, or the refusal
+ */
+export async function isGitRepository(
+  root: string,
+  probe: PresenceProbe = presence,
+): Promise<Result<boolean, string>> {
+  const dotGit = path.join(root, '.git');
+  const there = await probe(dotGit);
+  if (!there.ok) {
+    return there;
+  }
+  switch (there.value) {
+    case 'symlink':
+      return err(`${dotGit} is a symlink — never followed`);
+    case 'absent':
+      return ok(false);
+    default:
+      return ok(true);
   }
 }
 
@@ -197,12 +216,13 @@ export interface ProfileFileSystem {
     dirName: string | undefined,
   ) => Promise<Result<ProfileEntry[], string>>;
   readonly readDocument: (absolute: string) => Promise<Result<string, string>>;
-  readonly isGitRepository: (root: string) => Promise<boolean>;
+  readonly isGitRepository: (root: string) => Promise<Result<boolean, string>>;
 }
 
+/** The real filesystem: `lstat`-bound presence, a no-follow listing and reader. */
 export const REAL_PROFILE_FILE_SYSTEM: ProfileFileSystem = {
   presence: (target) => presence(target),
   listEntries: (root, dirName) => listEntries(root, dirName),
   readDocument: (absolute) => readDocument(absolute),
-  isGitRepository,
+  isGitRepository: (root) => isGitRepository(root),
 };

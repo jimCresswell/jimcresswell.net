@@ -9,6 +9,7 @@
 
 import { INDEX_FILE_NAME, MACHINES_DIR_NAME, SCOPES_DIR_NAME } from './operator-profile-schema.js';
 
+/** The git facts the sync assessment reads: repository, remote, upstream, porcelain, counts. */
 export interface SyncStateInput {
   /** The root has a `.git` entry. */
   readonly isRepository: boolean;

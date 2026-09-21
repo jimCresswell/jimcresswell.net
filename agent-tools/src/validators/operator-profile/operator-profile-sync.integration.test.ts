@@ -3,7 +3,8 @@ import { describe, expect, it } from 'vitest';
 
 import { pullProfile, readSyncState, type GitRunner } from './operator-profile-git.js';
 import { pushProfile } from './operator-profile-git-push.js';
-import { parseSyncArgs, syncTarget, type SyncTargetProbes } from './operator-profile-sync.js';
+import { parseSyncArgs } from './operator-profile-sync.js';
+import { syncTarget, type SyncTargetProbes } from './operator-profile-sync-target.js';
 import {
   assessSyncState,
   dirtyPaths,
@@ -417,10 +418,10 @@ describe('syncTarget — the root is probed without following links before any g
     const runnersCreated: string[] = [];
     const probes: SyncTargetProbes = {
       presence: () => Promise.resolve(ok(presenceValue)),
-      isGitRepository: () => Promise.resolve(repository),
+      isGitRepository: () => Promise.resolve(ok(repository)),
       createRunner: (root) => {
         runnersCreated.push(root);
-        return runner;
+        return ok(runner);
       },
     };
     return { probes, runnersCreated };
@@ -441,6 +442,21 @@ describe('syncTarget — the root is probed without following links before any g
     expect(unwrap(absent)).toContain('absent or not a git repository');
     const plain = await syncTarget('/profile', probesWith('directory', false).probes);
     expect(unwrap(plain)).toContain('absent or not a git repository');
+  });
+
+  it('refuses a symlinked .git and an unmakeable runner as failures, never as nothing to sync', async () => {
+    const linkedDotGit: SyncTargetProbes = {
+      ...probesWith('directory', true).probes,
+      isGitRepository: () => Promise.resolve(err('/profile/.git is a symlink — never followed')),
+    };
+    const linked = await syncTarget('/profile', linkedDotGit);
+    expect(linked.ok ? '' : linked.error).toContain('.git is a symlink');
+    const noGit: SyncTargetProbes = {
+      ...probesWith('directory', true).probes,
+      createRunner: () => err('no trusted git binary: refused'),
+    };
+    const unmakeable = await syncTarget('/profile', noGit);
+    expect(unmakeable.ok ? '' : unmakeable.error).toContain('no trusted git binary');
   });
 
   it('treats a path that is not a directory and an unreadable root as failures', async () => {

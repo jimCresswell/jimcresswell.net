@@ -28,6 +28,7 @@ import {
 import { INDEX_FILE_NAME, MACHINES_DIR_NAME, SCOPES_DIR_NAME } from './operator-profile-schema.js';
 import { syncReport } from './operator-profile-sync-report.js';
 
+/** One document (or the sync leg) and the messages that refused it. */
 export interface DocumentFailure {
   readonly relPath: string;
   readonly messages: readonly string[];

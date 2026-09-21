@@ -20,14 +20,10 @@ import { fileURLToPath } from 'node:url';
 import { err, ok, type Result } from '@engraph/result';
 
 import { writeErrorLine, writeLine } from '../../core/terminal-output.js';
-import { isGitRepository, presence, type PresenceProbe } from './operator-profile-fs.js';
-import {
-  createGitRunner,
-  pullProfile,
-  remoteNames,
-  type GitRunner,
-} from './operator-profile-git.js';
+import { pullProfile, type GitRunner } from './operator-profile-git.js';
 import { pushProfile } from './operator-profile-git-push.js';
+import { SYNC_REL_PATH } from './operator-profile-sync-report.js';
+import { syncTarget } from './operator-profile-sync-target.js';
 import {
   existingProfilePaths,
   readProfileReport,
@@ -119,7 +115,7 @@ async function nonConformingDocuments(root: string): Promise<Result<number, stri
   if (report.value === 'absent') {
     return ok(0);
   }
-  return ok(report.value.failures.filter((failure) => failure.relPath !== '(sync)').length);
+  return ok(report.value.failures.filter((failure) => failure.relPath !== SYNC_REL_PATH).length);
 }
 
 function report(outcome: Result<string, string>): number {
@@ -148,72 +144,6 @@ async function runPush(root: string, run: GitRunner, message: string): Promise<n
     return report(paths);
   }
   return report(pushProfile(run, message, paths.value));
-}
-
-/** What syncTarget asks of the filesystem; the real probes are the defaults, tests inject fakes. */
-export interface SyncTargetProbes {
-  readonly presence: PresenceProbe;
-  readonly isGitRepository: (root: string) => Promise<boolean>;
-  readonly createRunner: (root: string) => GitRunner;
-}
-
-const REAL_SYNC_TARGET_PROBES: SyncTargetProbes = {
-  presence: (target) => presence(target),
-  isGitRepository,
-  createRunner: createGitRunner,
-};
-
-/** The root as a directory or absent; a symlink, a file or an unreadable path is a refusal. */
-async function rootPresence(
-  root: string,
-  probe: PresenceProbe,
-): Promise<Result<'directory' | 'absent', string>> {
-  const there = await probe(root);
-  if (!there.ok) {
-    return err(`${there.error} — an unreadable profile root is a failure, never absence`);
-  }
-  switch (there.value) {
-    case 'symlink':
-      return err(`${root} is a symlink — the profile root is never followed`);
-    case 'not-a-directory':
-      return err(`${root} exists but is not a directory`);
-    default:
-      return ok(there.value);
-  }
-}
-
-/**
- * The runner for a root that is a repository with a remote; a message for the
- * two first-class states with nothing to sync; an error when git cannot read
- * the repository (never mistaken for "no remote"). The root is probed WITHOUT
- * following links before any git runner exists: a symlinked root is refused
- * by name, so `profile:sync pull --root <link>` never runs git in the link's
- * target.
- *
- * @param root - the profile root
- * @param probes - the filesystem and runner (the real ones by default)
- * @returns the runner, an information line, or the refusal
- */
-export async function syncTarget(
-  root: string,
-  probes: SyncTargetProbes = REAL_SYNC_TARGET_PROBES,
-): Promise<Result<GitRunner | string, string>> {
-  const there = await rootPresence(root, probes.presence);
-  if (!there.ok) {
-    return there;
-  }
-  if (there.value === 'absent' || !(await probes.isGitRepository(root))) {
-    return ok(`profile at ${root} is absent or not a git repository — nothing to sync`);
-  }
-  const run = probes.createRunner(root);
-  const remotes = remoteNames(run);
-  if (!remotes.ok) {
-    return err(`profile at ${root}: ${remotes.error}`);
-  }
-  if (remotes.value.length === 0) {
-    return ok(`profile at ${root} has no remote — nothing to sync`);
-  }
-  return ok(run);
 }
 
 async function main(argv: readonly string[]): Promise<number> {

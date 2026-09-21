@@ -7,6 +7,7 @@ import { VALID_INDEX_DOCUMENT } from './operator-profile-fixtures.js';
 import {
   type DocumentHandle,
   entryKind,
+  isGitRepository,
   listEntries,
   type Presence,
   presence,
@@ -125,6 +126,24 @@ describe('listEntries — one level, never through a link, never a thrown error'
   });
 });
 
+describe('isGitRepository — the .git probe never follows a link', () => {
+  it('reads a directory or file .git as a repository, absence as none, and a symlink as a refusal', async () => {
+    const answer =
+      (value: Presence): PresenceProbe =>
+      () =>
+        Promise.resolve(ok(value));
+    expect(unwrap(await isGitRepository(ROOT, answer('directory')))).toBe(true);
+    expect(unwrap(await isGitRepository(ROOT, answer('not-a-directory')))).toBe(true);
+    expect(unwrap(await isGitRepository(ROOT, answer('absent')))).toBe(false);
+    const linked = await isGitRepository(ROOT, answer('symlink'));
+    expect(linked.ok ? '' : linked.error).toContain('.git is a symlink');
+    const denied = await isGitRepository(ROOT, () =>
+      Promise.resolve(err('cannot read x (EACCES)')),
+    );
+    expect(denied.ok ? '' : denied.error).toContain('EACCES');
+  });
+});
+
 describe('entryKind', () => {
   it('reports a symlink as a symlink whatever it points at, then a directory, a file, or other', () => {
     const answers = (symlink: boolean, directory: boolean, file: boolean) => ({
@@ -153,7 +172,7 @@ function fakeFileSystem(
       reads.push(absolute);
       return Promise.resolve(ok(text));
     },
-    isGitRepository: () => Promise.resolve(false),
+    isGitRepository: () => Promise.resolve(ok(false)),
   };
   return { fs, reads };
 }
