@@ -60,6 +60,7 @@ const config: KnipConfig = {
         'src/secret-scan/run-push-secret-scan.ts',
         'src/version-guard/prevent-accidental-major-version.ts',
         'src/validators/**/validate-*.ts',
+        'src/validators/operator-profile/operator-profile-sync.ts',
         'src/validators/plan-schema/check-plan-gate-drift.ts',
         'src/rule-declarations/rule-frontmatter-sweep.ts',
         'src/practice-fitness/validate-practice-fitness.ts',

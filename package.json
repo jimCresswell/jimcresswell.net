@@ -59,6 +59,8 @@
     "pnpm:devPreinstall": "node runtime-only-scripts/validate-package-manager-version.mjs",
     "portability:check": "pnpm --filter @engraph/agent-tools validate-portability",
     "portability:fix": "pnpm --filter @engraph/agent-tools validate-portability:fix",
+    "profile:check": "pnpm --filter @engraph/agent-tools validate-operator-profile",
+    "profile:sync": "pnpm --filter @engraph/agent-tools operator-profile-sync",
     "postinstall": "tsx agent-tools/src/bootstrap/bootstrap.ts",
     "practice:fitness": "pnpm --filter @engraph/agent-tools validate-practice-fitness",
     "practice:substrate:check": "pnpm --filter @engraph/agent-tools practice-substrate check",

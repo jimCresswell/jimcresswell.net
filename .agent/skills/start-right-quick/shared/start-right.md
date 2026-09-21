@@ -3,7 +3,7 @@ prompt_id: start-right-quick
 title: 'Start Right (Quick)'
 type: workflow
 status: active
-last_updated: 2026-09-08
+last_updated: 2026-09-21
 ---
 
 # Start Right (Quick)
@@ -87,23 +87,58 @@ rendered surface.
   activity, not a session-open one — see `consolidate-docs`
   step 3.
 
-### 3a. Operator profile (machine-local; absence is normal)
+### 3a. Operator profile (home directory; absence is normal)
 
 Read the operator profile if this machine has one. It carries facts about the
 human you are working with that cannot be tracked: which credential identity
 performs which action class on third-party systems, their tone-of-voice and
 communication preferences, and personal operating preferences. The contract,
 including what must never be stored there, is
-[`.agent/operator-local/README.md`](../../../operator-local/README.md).
+[PDR-141](../../../practice-core/decision-records/PDR-141-operator-profile-in-the-home-directory.md).
 
-It is machine-local, so it does not travel through git and a linked worktree
-holds no copy. Resolve it in the **primary checkout**:
+It lives in the operator's home directory, shared by every Practice
+repository, linked worktree and clone on the machine, and it may be a git
+repository the operator syncs between machines. Pull the profile first,
+then run the check — it exits 0 and says so when nothing is there, and it
+refuses a document carrying a credential-shaped line before anything is
+read into the session — then read the index, the current repository's
+scope file (keyed by the `origin` remote's owner and name in any of its
+https, scp-style or ssh forms, never a path), then this machine's file
+(keyed by the short host name).
+
+The check and the sync need the host's tooling (agent-tools, installed and
+built): on a cold clone run this step after the install and build below,
+never before; the grounding never blocks on the profile.
 
 ```bash
-PRIMARY="$(git worktree list --porcelain | head -1 | sed 's/^worktree //')"
-[ -f "$PRIMARY/.agent/operator-local/profile.md" ] \
-  && cat "$PRIMARY/.agent/operator-local/profile.md"
+# First the host's profile sync, pull side (PDR-141 decisions 13 to 16): a
+# no-op that says so unless the root is a repository with a remote. A refused
+# pull (a conflict, no network) is surfaced and the grounding continues; the
+# check below then reports the sync state.
+pnpm profile:sync pull || echo "profile not pulled: read the line above — a conflict is the operator's to resolve by union (PDR-141 decision 15); the check still runs"
+if pnpm profile:check; then
+  PROFILE_ROOT="${PRACTICE_HOME:-$HOME/.practice}/profile"
+  [ -f "$PROFILE_ROOT/index.md" ] && cat "$PROFILE_ROOT/index.md"
+  SCOPE="$(git remote get-url origin 2>/dev/null \
+    | sed -E 's#^(ssh://)?(https?://)?([A-Za-z0-9._-]+@)?[^/:]+[:/]##; s#\.git$##; s#/#--#' \
+    | tr '[:upper:]' '[:lower:]')"
+  [ -n "$SCOPE" ] && [ -f "$PROFILE_ROOT/repos/$SCOPE.md" ] \
+    && cat "$PROFILE_ROOT/repos/$SCOPE.md"
+  MACHINE="$(hostname -s | tr '[:upper:]' '[:lower:]')"
+  [ -f "$PROFILE_ROOT/machines/$MACHINE.md" ] \
+    && cat "$PROFILE_ROOT/machines/$MACHINE.md"
+else
+  echo "profile not read: the check refused it or the tooling is not built yet — fix, or return here after install and build"
+fi
 ```
+
+A present profile that fails the check is fixed at once, never read around:
+the contract is `practice-core/schemas/operator-profile.schema.json`. When a
+session writes the profile on the operator's word, it runs the push side in
+the same breath (`pnpm profile:sync push --message "<seat>: <fact>"`): the
+check runs first, the commit is the operator's, and no write sits unpushed
+across a session boundary. The sync is a no-op on a profile that is not a
+repository, and both absence and a non-repository profile stay first-class.
 
 **A missing profile is the expected condition, not a defect** (`principles.md`
 §Any User, Any Machine): proceed on tracked defaults and say nothing. Never

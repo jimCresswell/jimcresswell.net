@@ -116,6 +116,14 @@ practice.md:
       incoming from agent-collaboration
 
 practice-lineage.md:
+  - id: 3f6c2c1e-9b7d-4c0a-8a1e-5d2b7e4f9a61
+    repo: jimcresswell.net
+    date: 2026-09-21
+    purpose: >-
+      Practice exchange, first inbound landing: PDR-141 and the
+      operator-profile schema taken from the lineage at the head named in
+      the exchange register, with the host's enforcement validator bound to
+      the contract and the checkout-local profile tier retired.
   - id: 7360db7b-0576-434d-a3ae-997ef1a1e786
     repo: jimcresswell.net
     date: 2026-09-14
