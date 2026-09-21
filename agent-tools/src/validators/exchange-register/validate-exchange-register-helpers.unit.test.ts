@@ -3,6 +3,7 @@ import { describe, expect, it } from 'vitest';
 
 import {
   countDrift,
+  coverageOf,
   parseCoverageCounts,
   renderCoverageCounts,
 } from './exchange-register-counts.js';
@@ -26,14 +27,14 @@ const PINS: readonly PinsRow[] = [
 describe('parseRegisterRows', () => {
   it('reads row id, group, backticked globs and the catch-all mark from glob tables only', () => {
     const markdown = [
-      '| Row | Concept | jcnet | Path globs |',
-      '| --- | --- | --- | --- |',
-      '| L1 | profile | bring | `.agent/x/**`, `agent-tools/src/y/**` |',
-      '| J15 | rest | origin | `**` (catch-all) |',
+      '| Row | Concept | jcnet | lineage | castr | Path globs |',
+      '| --- | --- | --- | --- | --- | --- |',
+      '| L1 | profile | bring | origin | bring | `.agent/x/**`, `agent-tools/src/y/**` |',
+      '| J15 | rest | origin | origin | bring | `**` (catch-all) |',
       '',
       '| Row | Estate | Pull request | Head read |',
-      '| --- | --- | --- | --- |',
-      '| L1 | jcnet | 137 | lineage `72cab5667c` |',
+      '| --- | --- | --- | --- | --- | --- |',
+      '| L1 | jcnet | 137 | origin | bring | lineage `72cab5667c` |',
     ].join('\n');
     expect(unwrap(parseRegisterRows(markdown))).toStrictEqual([
       {
@@ -49,10 +50,10 @@ describe('parseRegisterRows', () => {
 
   it('refuses a row id that appears twice, since ids are unique and never reused', () => {
     const markdown = [
-      '| Row | Concept | Path globs |',
-      '| --- | --- | --- |',
-      '| L21 | a | `a/**` |',
-      '| L21 | b | `b/**` |',
+      '| Row | Concept | jcnet | lineage | castr | Path globs |',
+      '| --- | --- | --- | --- | --- | --- |',
+      '| L21 | a | bring | origin | bring | `a/**` |',
+      '| L21 | b | bring | origin | bring | `b/**` |',
     ].join('\n');
     const refused = parseRegisterRows(markdown);
     expect(refused.ok ? '' : refused.error).toContain('L21 appears more than once');
@@ -62,9 +63,9 @@ describe('parseRegisterRows', () => {
     'refuses the empty scope %s, which would confine the row to no list',
     (scope) => {
       const markdown = [
-        '| Row | Concept | Path globs |',
-        '| --- | --- | --- |',
-        `| C9 | a | \`a/**\` ${scope} |`,
+        '| Row | Concept | jcnet | lineage | castr | Path globs |',
+        '| --- | --- | --- | --- | --- | --- |',
+        `| C9 | a | bring | origin | bring | \`a/**\` ${scope} |`,
       ].join('\n');
       const refused = parseRegisterRows(markdown);
       expect(refused.ok ? '' : refused.error).toContain('C9: an empty (list:) scope');
@@ -78,19 +79,46 @@ describe('parseRegisterRows', () => {
     ['`a/**` ( List: castr-since-transplant)', 'carries the scope marker `( List:`'],
   ])('refuses the malformed scope cell %s rather than reading it as unscoped', (cell, message) => {
     const markdown = [
-      '| Row | Concept | Path globs |',
-      '| --- | --- | --- |',
-      `| J1 | a | ${cell} |`,
+      '| Row | Concept | jcnet | lineage | castr | Path globs |',
+      '| --- | --- | --- | --- | --- | --- |',
+      `| J1 | a | bring | origin | bring | ${cell} |`,
     ].join('\n');
     const refused = parseRegisterRows(markdown);
     expect(refused.ok ? '' : refused.error).toContain(`J1: ${message}`);
   });
 
-  it('refuses a row whose group is not L, J, C or O, which would resolve to no list', () => {
-    const markdown = [
+  it.each([
+    [
       '| Row | Concept | Path globs |',
       '| --- | --- | --- |',
-      '| X1 | a | `a/**` |',
+      '| J1 | a | `a/**` |',
+      "a glob table's header is",
+    ],
+    [
+      '| Row | Concept | jcnet | lineage | castr | Path globs |',
+      '| --- | --- | --- | --- | --- | --- |',
+      '| J1 | a | bring |  | bring | `a/**` |',
+      'row J1: the lineage cell is empty',
+    ],
+    [
+      '| Row | Concept | jcnet | lineage | castr | Path globs |',
+      '| --- | --- | --- | --- | --- | --- |',
+      '| J1 | a | bring | `a/**` |',
+      'row J1: 4 cells, not 6',
+    ],
+  ])(
+    'refuses a concept table with a wrong header or a blank cell: %s',
+    (header, separator, row, message) => {
+      const refused = parseRegisterRows([header, separator, row].join('\n'));
+      expect(refused.ok ? '' : refused.error).toContain(message);
+    },
+  );
+
+  it('refuses a row whose group is not L, J, C or O, which would resolve to no list', () => {
+    const markdown = [
+      '| Row | Concept | jcnet | lineage | castr | Path globs |',
+      '| --- | --- | --- | --- | --- | --- |',
+      '| X1 | a | bring | origin | bring | `a/**` |',
     ].join('\n');
     const refused = parseRegisterRows(markdown);
     expect(refused.ok ? '' : refused.error).toContain('X1: the group is not one of L, J, C, O');
@@ -98,10 +126,10 @@ describe('parseRegisterRows', () => {
 
   it('reads a (list: ...) scope as the lists the row is confined to', () => {
     const markdown = [
-      '| Row | Concept | Path globs |',
-      '| --- | --- | --- |',
-      '| C15 | rest | `**` (catch-all) (list: oce-since-castr-pin) |',
-      '| C9 | two | `a/**` (list: castr-since-transplant, oce-since-castr-pin) |',
+      '| Row | Concept | jcnet | lineage | castr | Path globs |',
+      '| --- | --- | --- | --- | --- | --- |',
+      '| C15 | rest | bring | origin | bring | `**` (catch-all) (list: oce-since-castr-pin) |',
+      '| C9 | two | bring | origin | bring | `a/**` (list: castr-since-transplant, oce-since-castr-pin) |',
     ].join('\n');
     expect(unwrap(parseRegisterRows(markdown)).map((row) => row.lists)).toStrictEqual([
       ['oce-since-castr-pin'],
@@ -162,10 +190,10 @@ describe('collectUnknownScopes', () => {
     const rows = unwrap(
       parseRegisterRows(
         [
-          '| Row | Concept | Path globs |',
-          '| --- | --- | --- |',
-          '| J1 | a | `a/**` (list: oce-since-castr-pin) |',
-          '| C1 | b | `b/**` (list: castr-since-transplant) |',
+          '| Row | Concept | jcnet | lineage | castr | Path globs |',
+          '| --- | --- | --- | --- | --- | --- |',
+          '| J1 | a | bring | origin | bring | `a/**` (list: oce-since-castr-pin) |',
+          '| C1 | b | bring | origin | bring | `b/**` (list: castr-since-transplant) |',
         ].join('\n'),
       ),
     );
@@ -196,12 +224,12 @@ describe('computeCoverage', () => {
   const rows = unwrap(
     parseRegisterRows(
       [
-        '| Row | Concept | Path globs |',
-        '| --- | --- | --- |',
-        '| L1 | a | `agent-tools/src/a/**` |',
-        '| J1 | b | `.agent/rules/*.md` |',
-        '| J15 | rest | `**` (catch-all) |',
-        '| C1 | c | `agent-tools/src/c/**` |',
+        '| Row | Concept | jcnet | lineage | castr | Path globs |',
+        '| --- | --- | --- | --- | --- | --- |',
+        '| L1 | a | bring | origin | bring | `agent-tools/src/a/**` |',
+        '| J1 | b | bring | origin | bring | `.agent/rules/*.md` |',
+        '| J15 | rest | bring | origin | bring | `**` (catch-all) |',
+        '| C1 | c | bring | origin | bring | `agent-tools/src/c/**` |',
       ].join('\n'),
     ),
   );
@@ -227,10 +255,10 @@ describe('computeCoverage', () => {
     const scoped = unwrap(
       parseRegisterRows(
         [
-          '| Row | Concept | Path globs |',
-          '| --- | --- | --- |',
-          '| C12 | castr rest | `**` (catch-all) (list: castr-since-transplant) |',
-          '| C15 | lineage rest | `**` (catch-all) (list: oce-since-castr-pin) |',
+          '| Row | Concept | jcnet | lineage | castr | Path globs |',
+          '| --- | --- | --- | --- | --- | --- |',
+          '| C12 | castr rest | bring | origin | bring | `**` (catch-all) (list: castr-since-transplant) |',
+          '| C15 | lineage rest | bring | origin | bring | `**` (catch-all) (list: oce-since-castr-pin) |',
         ].join('\n'),
       ),
     );
@@ -254,10 +282,10 @@ describe('computeCoverage', () => {
     const crossGroup = unwrap(
       parseRegisterRows(
         [
-          '| Row | Concept | Path globs |',
-          '| --- | --- | --- |',
-          '| L1 | a | `a/**` |',
-          '| C15 | lineage rest | `**` (catch-all) (list: oce-since-castr-pin) |',
+          '| Row | Concept | jcnet | lineage | castr | Path globs |',
+          '| --- | --- | --- | --- | --- | --- |',
+          '| L1 | a | bring | origin | bring | `a/**` |',
+          '| C15 | lineage rest | bring | origin | bring | `**` (catch-all) (list: oce-since-castr-pin) |',
         ].join('\n'),
       ),
     );
@@ -281,10 +309,10 @@ describe('computeCoverage', () => {
     const shadowed = unwrap(
       parseRegisterRows(
         [
-          '| Row | Concept | Path globs |',
-          '| --- | --- | --- |',
-          '| J1 | a | `a/**` |',
-          '| J15 | rest | `**` (catch-all) |',
+          '| Row | Concept | jcnet | lineage | castr | Path globs |',
+          '| --- | --- | --- | --- | --- | --- |',
+          '| J1 | a | bring | origin | bring | `a/**` |',
+          '| J15 | rest | bring | origin | bring | `**` (catch-all) |',
         ].join('\n'),
       ),
     );
@@ -308,9 +336,9 @@ describe('computeCoverage', () => {
     const twoGlobs = unwrap(
       parseRegisterRows(
         [
-          '| Row | Concept | Path globs |',
-          '| --- | --- | --- |',
-          '| J1 | a | `a/**`, `**/x.md` |',
+          '| Row | Concept | jcnet | lineage | castr | Path globs |',
+          '| --- | --- | --- | --- | --- | --- |',
+          '| J1 | a | bring | origin | bring | `a/**`, `**/x.md` |',
         ].join('\n'),
       ),
     );
@@ -350,52 +378,84 @@ describe('coverage counts', () => {
   const rows = unwrap(
     parseRegisterRows(
       [
-        '| Row | Concept | Path globs |',
-        '| --- | --- | --- |',
-        '| J1 | a | `a/**` |',
-        '| J15 | rest | `**` (catch-all) |',
+        '| Row | Concept | jcnet | lineage | castr | Path globs |',
+        '| --- | --- | --- | --- | --- | --- |',
+        '| J1 | a | bring | origin | bring | `a/**` |',
+        '| J2 | b | bring | origin | bring | `b/**` |',
       ].join('\n'),
     ),
   );
+  const lists = (
+    a: readonly string[],
+    b: readonly string[],
+  ): ReadonlyMap<string, readonly string[]> =>
+    new Map([
+      ['oce-since-jcnet-pin', []],
+      ['jcnet-since-transplant', [...a, ...b]],
+      ['castr-since-transplant', []],
+      ['oce-since-castr-pin', []],
+    ]);
 
-  it('renders one line per row in register order and reads it back', () => {
-    const text = renderCoverageCounts(rows, new Map([['J1', 3]]));
-    expect(text).toBe('row\tmatches\nJ1\t3\nJ15\t0\n');
-    expect(unwrap(parseCoverageCounts(text))).toStrictEqual(
-      new Map([
-        ['J1', 3],
-        ['J15', 0],
-      ]),
+  it('renders one line per row in register order with a fingerprint, and reads it back', () => {
+    const coverage = coverageOf(rows, computeCoverage(rows, PINS, lists(['a/x', 'a/y'], ['b/x'])));
+    const text = renderCoverageCounts(coverage);
+    expect(text).toMatch(
+      /^row\tmatches\tfingerprint\nJ1\t2\t[0-9a-f]{16}\nJ2\t1\t[0-9a-f]{16}\n$/u,
     );
+    expect(unwrap(parseCoverageCounts(text))).toStrictEqual(coverage);
   });
 
   it.each([
-    ['rows\tmatches\nJ1\t3\n', 'does not start with'],
-    ['row\tmatches\nJ1\tthree\n', 'whole number'],
-    ['row\tmatches\nJ1\t\n', 'whole number'],
-    ['row\tmatches\nJ1\t-1\n', 'whole number'],
-    ['row\tmatches\nJ1\t9007199254740993\n', 'whole number'],
-    ['row\tmatches\nJ1\t3\textra\n', 'whole number'],
-    ['row\tmatches\nJ1\t3\nJ1\t4\n', 'appears more than once'],
+    ['row\tmatches\nJ1\t3\n', 'does not start with'],
+    ['row\tmatches\tfingerprint\nJ1\tthree\t0123456789abcdef\n', 'whole number'],
+    ['row\tmatches\tfingerprint\nJ1\t\t0123456789abcdef\n', 'whole number'],
+    ['row\tmatches\tfingerprint\nJ1\t-1\t0123456789abcdef\n', 'whole number'],
+    ['row\tmatches\tfingerprint\nJ1\t9007199254740993\t0123456789abcdef\n', 'whole number'],
+    ['row\tmatches\tfingerprint\nJ1\t3\tnothex\n', '16-hex fingerprint'],
+    ['row\tmatches\tfingerprint\nJ1\t3\n', '16-hex fingerprint'],
+    [
+      'row\tmatches\tfingerprint\nJ1\t3\t0123456789abcdef\nJ1\t4\t0123456789abcdef\n',
+      'appears more than once',
+    ],
   ])('refuses the counts file %j: %s', (tsv, message) => {
     const refused = parseCoverageCounts(tsv);
     expect(refused.ok ? '' : refused.error).toContain(message);
   });
 
   it('names a deleted row, a changed count and a new row as drift, so a specific row cannot vanish into a catch-all', () => {
-    const tracked = new Map([
-      ['J1', 3],
-      ['J15', 0],
-    ]);
-    const recomputed = new Map([
-      ['J15', 3],
-      ['J2', 1],
-    ]);
-    expect(countDrift(tracked, recomputed)).toStrictEqual([
-      { rowId: 'J1', expected: 3, actual: null },
-      { rowId: 'J15', expected: 0, actual: 3 },
-      { rowId: 'J2', expected: null, actual: 1 },
-    ]);
+    const tracked = coverageOf(rows, computeCoverage(rows, PINS, lists(['a/x', 'a/y'], ['b/x'])));
+    const fewer = unwrap(
+      parseRegisterRows(
+        [
+          '| Row | Concept | jcnet | lineage | castr | Path globs |',
+          '| --- | --- | --- | --- | --- | --- |',
+          '| J2 | b | bring | origin | bring | `b/**` |',
+          '| J3 | c | bring | origin | bring | `**` (catch-all) |',
+        ].join('\n'),
+      ),
+    );
+    const recomputed = coverageOf(
+      fewer,
+      computeCoverage(fewer, PINS, lists(['a/x', 'a/y'], ['b/x'])),
+    );
+    expect(countDrift(tracked, recomputed).map((d) => d.rowId)).toStrictEqual(['J1', 'J3']);
     expect(countDrift(tracked, new Map(tracked))).toStrictEqual([]);
+  });
+
+  it('names swapped globs as drift even when every count is unchanged', () => {
+    const tracked = coverageOf(rows, computeCoverage(rows, PINS, lists(['a/x'], ['b/x'])));
+    const swapped = unwrap(
+      parseRegisterRows(
+        [
+          '| Row | Concept | jcnet | lineage | castr | Path globs |',
+          '| --- | --- | --- | --- | --- | --- |',
+          '| J1 | a | bring | origin | bring | `b/**` |',
+          '| J2 | b | bring | origin | bring | `a/**` |',
+        ].join('\n'),
+      ),
+    );
+    const recomputed = coverageOf(swapped, computeCoverage(swapped, PINS, lists(['a/x'], ['b/x'])));
+    expect([...recomputed.values()].map((c) => c.count)).toStrictEqual([1, 1]);
+    expect(countDrift(tracked, recomputed).map((d) => d.rowId)).toStrictEqual(['J1', 'J2']);
   });
 });

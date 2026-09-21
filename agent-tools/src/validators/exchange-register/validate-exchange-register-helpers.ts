@@ -17,6 +17,15 @@ const LIST_SCOPE = /\(list:\s*([^)]*)\)/u;
 /** Anything that reads as a list-scope marker, however mis-typed: `( list :`, `(List:`, `(list :`. */
 const SCOPE_LIKE = /\(\s*list\s*:/giu;
 const GLOB_COLUMN = 'Path globs';
+/** A concept table's header, exactly: the row, its concept, one disposition per estate, the globs. */
+const CONCEPT_HEADER: readonly string[] = [
+  'Row',
+  'Concept',
+  'jcnet',
+  'lineage',
+  'castr',
+  GLOB_COLUMN,
+];
 
 /**
  * The lists a glob cell names with `(list: a, b)`, or null when it names
@@ -122,6 +131,27 @@ function nextTableState(state: TableState, cells: readonly string[]): TableState
   return { previousCells: cells, inGlobTable: state.inGlobTable };
 }
 
+/** A glob table's header is the concept header exactly; anything else is refused. */
+function headerRefusal(header: readonly string[]): string | null {
+  const same =
+    header.length === CONCEPT_HEADER.length &&
+    header.every((cell, index) => cell === CONCEPT_HEADER[index]);
+  return same
+    ? null
+    : `a glob table's header is \`| ${CONCEPT_HEADER.join(' | ')} |\`, not \`| ${header.join(' | ')} |\``;
+}
+
+/** A concept row has one non-empty cell per header column: no disposition may be blank. */
+function cellsRefusal(cells: readonly string[]): string | null {
+  if (cells.length !== CONCEPT_HEADER.length) {
+    return `row ${cells[0] ?? ''}: ${cells.length} cells, not ${CONCEPT_HEADER.length}`;
+  }
+  const blank = cells.findIndex((cell) => cell === '');
+  return blank === -1
+    ? null
+    : `row ${cells[0] ?? ''}: the ${CONCEPT_HEADER[blank] ?? ''} cell is empty`;
+}
+
 /**
  * Reads every row of every table whose header's LAST column is `Path globs`
  * and whose first cell is a row id (`L1`, `J15`, ...): each backticked span
@@ -137,12 +167,12 @@ export function parseRegisterRows(markdown: string): Result<readonly RegisterRow
   let state: TableState = { previousCells: [], inGlobTable: false };
   for (const line of markdown.split('\n')) {
     const cells = splitTableCells(line);
-    const wasSeparator = isSeparatorRow(cells);
+    const header = isSeparatorRow(cells) ? state.previousCells : null;
     state = nextTableState(state, cells);
-    if (!state.inGlobTable || wasSeparator) {
+    if (!state.inGlobTable) {
       continue;
     }
-    const row = acceptRow(cells, seen);
+    const row = header === null ? acceptLine(cells, seen) : headerLine(header);
     if (!row.ok) {
       return row;
     }
@@ -151,6 +181,21 @@ export function parseRegisterRows(markdown: string): Result<readonly RegisterRow
     }
   }
   return ok(rows);
+}
+
+/** A separator line inside a glob table: its header must be the concept header; it yields no row. */
+function headerLine(header: readonly string[]): Result<RegisterRow | null, string> {
+  const refusal = headerRefusal(header);
+  return refusal === null ? ok(null) : err(refusal);
+}
+
+/** A data line inside a glob table: every cell present and non-empty, then the row itself. */
+function acceptLine(
+  cells: readonly string[],
+  seen: Set<string>,
+): Result<RegisterRow | null, string> {
+  const refusal = cellsRefusal(cells);
+  return refusal === null ? acceptRow(cells, seen) : err(refusal);
 }
 
 /** Parses one glob-table line and admits its row: null for a non-row line, an error for a refused one. */

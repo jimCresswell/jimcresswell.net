@@ -37,9 +37,14 @@ export interface DeadGlob {
   readonly glob: string;
 }
 
-/** What the coverage computation found: uncovered paths, dead globs, and matches per row. */
+/**
+ * What the coverage computation found: uncovered paths, dead globs, the
+ * number of list entries each row covers, and those entries themselves
+ * (`label<TAB>path`), from which the tracked fingerprint is taken.
+ */
 export interface CoverageReport {
   readonly uncovered: readonly UncoveredPath[];
   readonly deadGlobs: readonly DeadGlob[];
   readonly matchesByRow: ReadonlyMap<string, number>;
+  readonly entriesByRow: ReadonlyMap<string, readonly string[]>;
 }

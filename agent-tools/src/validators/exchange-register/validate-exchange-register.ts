@@ -25,6 +25,8 @@ import { resolveRepoRoot } from '../../core/repo-root.js';
 import { writeErrorLine, writeLine } from '../../core/terminal-output.js';
 import {
   countDrift,
+  coverageOf,
+  describeCoverage,
   parseCoverageCounts,
   renderCoverageCounts,
 } from './exchange-register-counts.js';
@@ -123,12 +125,13 @@ function reportFindings(
 function checkCounts(
   repoRoot: string,
   rows: readonly RegisterRow[],
-  matchesByRow: ReadonlyMap<string, number>,
+  report: CoverageReport,
   write: boolean,
 ): number {
   const relPath = `${INPUTS}/${COUNTS}`;
+  const recomputed = coverageOf(rows, report);
   if (write) {
-    writeFileSync(join(repoRoot, relPath), renderCoverageCounts(rows, matchesByRow), 'utf8');
+    writeFileSync(join(repoRoot, relPath), renderCoverageCounts(recomputed), 'utf8');
     writeLine(`${NAME}: coverage counts written for ${rows.length} rows.`);
     return 0;
   }
@@ -137,10 +140,10 @@ function checkCounts(
     writeErrorLine(`${NAME}: ${tracked.error}`);
     return 2;
   }
-  const drift = countDrift(tracked.value, matchesByRow);
+  const drift = countDrift(tracked.value, recomputed);
   for (const { rowId, expected, actual } of drift) {
     writeErrorLine(
-      `${NAME}: row ${rowId}: tracked ${expected ?? 'no row'}, recomputed ${actual ?? 'no row'}`,
+      `${NAME}: row ${rowId}: tracked ${describeCoverage(expected)}, recomputed ${describeCoverage(actual)}`,
     );
   }
   if (drift.length > 0) {
@@ -193,7 +196,7 @@ function main(): number {
     reportFindings(report);
     return 1;
   }
-  const counts = checkCounts(repoRoot, rows, report.matchesByRow, flags.includes('--write-counts'));
+  const counts = checkCounts(repoRoot, rows, report, flags.includes('--write-counts'));
   if (counts !== 0) {
     return counts;
   }

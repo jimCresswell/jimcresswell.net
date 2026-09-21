@@ -112,17 +112,24 @@ function compileRows(
   }));
 }
 
+/** The coverage credited to rows: a count and the list entries (`label<TAB>path`) per row. */
+interface Credit {
+  readonly label: string;
+  readonly matchesByRow: Map<string, number>;
+  readonly entriesByRow: Map<string, string[]>;
+}
+
 /**
  * Records every glob of the candidate rows that matches the path; true when
- * any did. With `matchesByRow` the row's coverage count grows too, once per
- * path however many of its globs match; without it only the glob hits are
- * recorded, which is how a shadowed catch-all is kept alive without being
- * credited with coverage it did not supply.
+ * any did. With `credit` the row's coverage count and entry list grow too,
+ * once per path however many of its globs match; without it only the glob
+ * hits are recorded, which is how a shadowed catch-all is kept alive without
+ * being credited with coverage it did not supply.
  */
 function matchPath(
   path: string,
   candidates: readonly CompiledRow[],
-  matchesByRow: Map<string, number> | null,
+  credit: Credit | null,
 ): boolean {
   let covered = false;
   for (const entry of candidates) {
@@ -132,30 +139,36 @@ function matchPath(
     }
     if (matching.length > 0) {
       covered = true;
-      matchesByRow?.set(entry.row.id, (matchesByRow.get(entry.row.id) ?? 0) + 1);
+      creditRow(credit, entry.row.id, path);
     }
   }
   return covered;
+}
+
+function creditRow(credit: Credit | null, rowId: string, path: string): void {
+  if (credit === null) {
+    return;
+  }
+  credit.matchesByRow.set(rowId, (credit.matchesByRow.get(rowId) ?? 0) + 1);
+  const entries = credit.entriesByRow.get(rowId) ?? [];
+  entries.push(`${credit.label}\t${path}`);
+  credit.entriesByRow.set(rowId, entries);
 }
 
 /**
  * Within one group, a specific row covers first and the group's catch-all
  * only when no specific sibling did; the register's rule is "of its group".
  */
-function coverPathInGroup(
-  path: string,
-  rows: readonly CompiledRow[],
-  matchesByRow: Map<string, number>,
-): boolean {
+function coverPathInGroup(path: string, rows: readonly CompiledRow[], credit: Credit): boolean {
   const specific = rows.filter((c) => !c.row.catchAll);
   const catchAll = rows.filter((c) => c.row.catchAll);
-  if (matchPath(path, specific, matchesByRow)) {
+  if (matchPath(path, specific, credit)) {
     // Shadowed: the catch-all's globs still register the hit, so a live
     // catch-all beside a specific sibling is never reported dead.
     matchPath(path, catchAll, null);
     return true;
   }
-  return matchPath(path, catchAll, matchesByRow);
+  return matchPath(path, catchAll, credit);
 }
 
 /**
@@ -163,18 +176,13 @@ function coverPathInGroup(
  * group is evaluated on its own, so an L-specific match never stops the C
  * catch-all from taking a path no C-specific row covers.
  */
-function coverPath(
-  label: string,
-  path: string,
-  compiled: readonly CompiledRow[],
-  matchesByRow: Map<string, number>,
-): boolean {
-  const inList = compiled.filter((c) => c.lists.has(label));
+function coverPath(path: string, compiled: readonly CompiledRow[], credit: Credit): boolean {
+  const inList = compiled.filter((c) => c.lists.has(credit.label));
   const groups = [...new Set(inList.map((c) => c.row.group))];
   let covered = false;
   for (const group of groups) {
     const rows = inList.filter((c) => c.row.group === group);
-    covered = coverPathInGroup(path, rows, matchesByRow) || covered;
+    covered = coverPathInGroup(path, rows, credit) || covered;
   }
   return covered;
 }
@@ -200,13 +208,15 @@ export function computeCoverage(
 ): CoverageReport {
   const compiled = compileRows(rows, pins);
   const matchesByRow = new Map<string, number>(rows.map((row) => [row.id, 0]));
+  const entriesByRow = new Map<string, string[]>(rows.map((row) => [row.id, []]));
   const uncovered: UncoveredPath[] = [];
   for (const [label, paths] of lists) {
+    const credit: Credit = { label, matchesByRow, entriesByRow };
     for (const path of paths) {
-      if (!coverPath(label, path, compiled, matchesByRow)) {
+      if (!coverPath(path, compiled, credit)) {
         uncovered.push({ label, path });
       }
     }
   }
-  return { uncovered, deadGlobs: collectDeadGlobs(compiled), matchesByRow };
+  return { uncovered, deadGlobs: collectDeadGlobs(compiled), matchesByRow, entriesByRow };
 }
