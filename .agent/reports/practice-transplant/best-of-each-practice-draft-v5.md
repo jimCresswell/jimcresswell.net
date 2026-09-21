@@ -1,4 +1,4 @@
-# The best of each Practice — draft version 5, for the owner's ratification
+# The best of each Practice — draft version 5, signed by both seats, for the owner's ratification
 
 Status: UNRATIFIED DRAFT. It binds nothing until the owner ratifies it. Written jointly by the
 two exchange seats (Brazier spins Temper, c70341, on this estate; Zephyr guards Leeward,
@@ -10,8 +10,8 @@ every estate; the plan lands as a strategic plan node whose body is identical in
 that holds it and whose frontmatter is that estate's binding. This draft file is then removed.
 
 How it was tested: two blind drafts; four real cases answered blind by both seats; a blind
-ordering of the shared work; five adversarial checks from the seats' own model family; one
-adversarial check from another vendor's model, which found the defect the other five had
+ordering of the shared work; four adversarial checks from the seats' own model family; one
+adversarial check from another vendor's model, which found the defect the other four had
 missed; and nine answers from the owner by card, which settled what the seats could not.
 
 ---
@@ -102,8 +102,7 @@ Landed is not arrived.
 No new tracker, register growth, daily ritual, standing count, or review gate in front of the
 owner. No seat-made gate on a lane the owner approved. Kept, because the owner asked for it or
 a failure earned it: a state line between seats; a removal condition written beside any
-security floor; one reading from outside the seats' own model family before a text of this
-weight goes to the owner (one instance: it found what five inside checks had not).
+security floor.
 
 ---
 
@@ -155,7 +154,10 @@ node for a lane that ends within a session; any new ritual. Drift is read at the
 coordination fold the estates already run: a dry run of the merge, three numbers in the fold's
 state line (files a clean merge would change, conflict hunks, files waiting). A seat opens a
 merge lane on judgement. This is a habit of this exchange, since it reads another estate's
-checkout on one machine, never Core doctrine.
+checkout on one machine, never Core doctrine. A second habit of this exchange: a text of this
+weight gets one cold reading from outside the seats' own model family where one is available,
+and the reader is not told which line the seats doubt (one instance; falsifier: two such
+readings that find nothing the inside checks had not).
 
 Runs whatever happens to this text: every lane the owner has already approved, every security
 floor, and every bug, among them any failing shared observation.
