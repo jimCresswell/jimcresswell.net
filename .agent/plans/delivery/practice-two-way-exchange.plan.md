@@ -1,11 +1,12 @@
 ---
 id: practice-two-way-exchange
 node_type: delivery
-name: Practice two-way exchange — both instances raised to the highest level either defines
+name: Practice exchange — every instance raised to the highest level any of them defines
 overview: >-
   After the transplant closes, compute what each Practice instance has learned
-  since their common ancestor, compare at the concept level, and land the higher
-  form of every concept in both estates, each under its own owner's word.
+  since its ancestor, compare at the concept level, and land the higher form of
+  every concept in every estate, each under its own owner's word. Three estates
+  since 2026-09-21: this one, the lineage, and castr.
 status: ratified
 ratified_by: Jim Cresswell
 ratified_date: 2026-09-14
@@ -13,6 +14,8 @@ ratified_where: >-
   The owner's word to the Director in the Director session of 2026-09-14 ("yes, you
   both have Practice boxes, and yes the node is ratified"), recorded in
   .agent/memory/operational/director-handoff.md §Decisions overnight, item 101.
+  Amended by the owner's card answers of 2026-09-21 in the session of Brazier spins
+  Temper (c70341), recorded in this node's §Rulings of 2026-09-21 and in the napkin.
 serves: practice
 impact_areas:
   - practice-and-estate
@@ -20,18 +23,39 @@ tickets: []
 depends_on:
   - plan: practice-completion
     kind: blocking
-owner_gates:
-  - awaiting: owner-decision
-    clears_when: >-
-      The owner names the exchange window: the session in which the deltas are
-      computed and the concept comparison is authored, after the transplant
-      closure's items 3 to 8 land. The owner owns both estates, so one word
-      opens the window on both sides.
-    expires: 2026-10-05
-last_updated: 2026-09-14
+owner_gates: []
+last_updated: 2026-09-21
 ---
 
-# Practice two-way exchange
+# Practice exchange
+
+## Rulings of 2026-09-21
+
+The owner answered sixteen cards in chat on 2026-09-21 (Brazier spins Temper, c70341); the
+ones that change this node, verbatim where quoted:
+
+1. The window is open: "open now, but make sure that we are working with the most up to date
+   delta possible." The gate that waited on this word cleared with it.
+2. Three estates, one register: this estate, the lineage (EngraphCode/open-curriculum-ecosystem)
+   and castr (EngraphCode/castr), with one concept register carrying three landing columns;
+   castr's own innovations ledger folds in as rows.
+3. Numbering: the lineage's PDR numbers stay canonical; castr's colliding records (096, 097,
+   124) renumber above 141 when they land.
+4. This seat leads the window as the exchange seat; no Director seat unless a team forms.
+5. castr's refresh is a re-transplant with this estate's runbook, sequenced by the owner:
+   "in parallel we should identify a subset of upgrades to the Castr Practice that will enable
+   the tidying and architectural and functional debt work to complete more efficiently and to a
+   higher standard, then we finish that work, then we finish the transplant." The subset is
+   chosen by the open castr pull requests' blockers, bounded to six instruments (the review-round
+   machine, the merge bot with its measured-state hold, the pr-watch grammar, the worktree-lane
+   skill, the ship-independent rule, the declaration generators); this seat measures the blockers
+   read-only.
+6. PDR-141 lands here now as one small pull request, ahead of the register.
+7. The lineage's delta note in the Practice Box is register input at the window, not processed
+   on its own.
+8. The lineage's method amendment (its seat, on the ARC channel, 2026-09-21): a records path
+   satisfies the register validator with a row reading "records, not portable" or "graduated
+   into <row>".
 
 Authored 2026-09-14 by the Director at the owner's direction, verbatim: "make sure that we have
 a plan for exploring that Practice delta, and any other advancements that have happened by the
@@ -85,13 +109,17 @@ negotiated, so the inter-Practice collaboration protocol governs the writes and 
 the lineage doctrine's Integration Flow governs the reading. Deltas are computed at the window,
 never pinned in this node, so whatever lands on either side before then is in scope.
 
-1. **Compute both deltas from the ancestor** at the window's opening: on the lineage the
+1. **Compute every delta from its ancestor** at the window's opening: on the lineage the
    Practice surfaces changed between its pin and its main, on this estate those changed between
-   the transplant merge and its main (Core, directives,
-   rules, skills, hooks, agent-tools; continuity and memory surfaces excluded as local by
-   doctrine). The delta note is an input to the lineage side's list, superseded by the computed
-   list. The instrument is a script kept with the transplant's inputs, so the pair is
-   recomputable.
+   the transplant merge and its main, on castr those changed since its own Core transplant, and
+   on the lineage those changed since castr's pinned read (Core, directives, rules, skills,
+   sub-agents, hooks, adapters, agent-tools, CI and root manifests; continuity and memory
+   surfaces excluded as local by doctrine). The delta note is an input to the lineage side's
+   list, superseded by the computed list. The instrument is
+   `.agent/reports/practice-transplant/inputs/exchange-delta.sh`, driven over the pins in
+   `.agent/reports/practice-transplant/inputs/exchange-pins.tsv` by
+   `.agent/reports/practice-transplant/inputs/exchange-deltas.sh`; the computed lists sit beside
+   them, so every delta is recomputable. Heads are re-pinned once before the register closes.
 2. **Classify every changed path into a concept row**, not a file row: the same concept on
    both sides (which encoding is higher, or a merge of the two); one side only (bring, or
    decline with the reason: product, host-specific, already implicit); a conflicting ruling
@@ -148,7 +176,8 @@ two-round ruling of 2026-09-14 do too.
 
 ## Todos
 
-1. At the window: the delta script and the two computed lists (one pull request, code-class).
+1. At the window: the delta script and the computed lists, one per pins row (one pull request,
+   code-class; this amendment rides it).
 2. The concept rows and the register (one pull request, prose-class, the intake contract
    declared at open), then the register validator (one pull request, code-class).
 3. The cards for conflicting rows, one batch.
