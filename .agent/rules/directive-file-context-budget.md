@@ -23,7 +23,7 @@ queue the directive work for a fresh session.
 
 Files under `.agent/directives/` (`AGENT.md`, `principles.md`,
 `tdd-as-design.md`, `testing-strategy.md`,
-`schema-first-execution.md`, `orientation.md`,
+`orientation.md`,
 `agent-collaboration.md`, `user-collaboration.md`,
 `continuity-practice.md`, `operationalisation-contract.md`) are:
 
