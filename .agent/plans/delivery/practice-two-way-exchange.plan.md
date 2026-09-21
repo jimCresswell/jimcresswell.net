@@ -125,9 +125,11 @@ never pinned in this node, so whatever lands on either side before then is in sc
    decline with the reason: product, host-specific, already implicit); a conflicting ruling
    (a card, to the owner, once, for both estates). The first pass is one seat with the
    assumptions-expert lens on the rows that claim "already implicit"; no fleet.
-3. **The exchange register**: one file under the transplant's reports carrying every row with
-   its disposition, its direction and its landing pull request on each side; a validator
-   refuses a path in either delta with no row.
+3. **The exchange register**: one file under the transplant's reports
+   (`.agent/reports/practice-transplant/exchange-register.md`) carrying every row with its
+   disposition per estate, its path globs and its landing pull request on each side; the
+   validator `pnpm exchange-register:check`, a `docs-validators:check` leg, refuses a path in
+   any delta with no row and a glob that matches nothing.
 4. **Land inbound here** as pull requests sized to about eight review-facing claims, two review
    rounds binding by default, every finding left after round two dispositioned in that same
    slot turn, a further round only as the Director's correctness exception (closure record,

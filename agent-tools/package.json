@@ -56,6 +56,7 @@
     "validate-markdown-links": "cd .. && pnpm exec tsx agent-tools/src/validators/markdown-links/validate-markdown-links.ts",
     "validate-cited-scripts": "cd .. && pnpm exec tsx agent-tools/src/validators/cited-scripts/validate-cited-scripts.ts",
     "validate-cited-paths": "cd .. && pnpm exec tsx agent-tools/src/validators/cited-paths/validate-cited-paths.ts",
+    "validate-exchange-register": "cd .. && pnpm exec tsx agent-tools/src/validators/exchange-register/validate-exchange-register.ts",
     "validate-portability": "cd .. && pnpm exec tsx agent-tools/src/validators/portability/validate-portability.ts",
     "validate-portability:fix": "cd .. && pnpm exec tsx agent-tools/src/validators/portability/validate-portability.ts --fix",
     "validate-practice-fitness": "cd .. && pnpm exec tsx agent-tools/src/practice-fitness/validate-practice-fitness.ts",
