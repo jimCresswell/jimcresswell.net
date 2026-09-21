@@ -30,8 +30,10 @@ import {
   parseCoverageCounts,
   renderCoverageCounts,
 } from './exchange-register-counts.js';
+import { collectBadReferences } from './exchange-register-contested.js';
 import { collectUnknownScopes, computeCoverage } from './exchange-register-coverage.js';
 import {
+  type BadReference,
   type CoverageReport,
   type PinsRow,
   type RegisterRow,
@@ -98,23 +100,42 @@ function loadInputs(repoRoot: string): Inputs | string {
   return { rows: rows.value, pins: pins.value, lists };
 }
 
-function reportFindings(
-  report: CoverageReport & { readonly unknownScopes: readonly UnknownScope[] },
-): void {
+interface Findings extends CoverageReport {
+  readonly unknownScopes: readonly UnknownScope[];
+  readonly badReferences: readonly BadReference[];
+}
+
+function countFindings(report: Findings): number {
+  return (
+    report.uncovered.length +
+    report.contested.length +
+    report.deadGlobs.length +
+    report.unknownScopes.length +
+    report.badReferences.length
+  );
+}
+
+function reportFindings(report: Findings): void {
   for (const { label, path } of report.uncovered) {
     writeErrorLine(`${NAME}: ${label}: no row covers ${path}`);
   }
+  for (const { label, path, rowIds } of report.contested) {
+    writeErrorLine(
+      `${NAME}: ${label}: ${path} is claimed by ${rowIds.join(' and ')}; one must except the other, or one must declare (shares: ...)`,
+    );
+  }
   for (const { rowId, label } of report.unknownScopes) {
     writeErrorLine(`${NAME}: row ${rowId}: (list: ${label}) names no list of its group`);
+  }
+  for (const { rowId, marker, target } of report.badReferences) {
+    writeErrorLine(`${NAME}: row ${rowId}: (${marker}: ${target}) is not another row of its group`);
   }
   for (const { rowId, glob } of report.deadGlobs) {
     writeErrorLine(
       `${NAME}: row ${rowId}: glob \`${glob}\` matches nothing in the lists it covers`,
     );
   }
-  writeErrorLine(
-    `${NAME}: ${report.uncovered.length} uncovered path(s), ${report.deadGlobs.length} dead glob(s), ${report.unknownScopes.length} unknown list scope(s)`,
-  );
+  writeErrorLine(`${NAME}: ${countFindings(report)} finding(s)`);
 }
 
 /**
@@ -184,15 +205,12 @@ function main(): number {
     return 2;
   }
   const { rows, pins, lists } = inputs;
-  const report = {
+  const report: Findings = {
     ...computeCoverage(rows, pins, lists),
     unknownScopes: collectUnknownScopes(rows, pins),
+    badReferences: collectBadReferences(rows),
   };
-  if (
-    report.uncovered.length > 0 ||
-    report.deadGlobs.length > 0 ||
-    report.unknownScopes.length > 0
-  ) {
+  if (countFindings(report) > 0) {
     reportFindings(report);
     return 1;
   }

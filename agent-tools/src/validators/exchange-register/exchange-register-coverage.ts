@@ -4,6 +4,7 @@
  * listed path to a row. Pure; no IO.
  */
 
+import { collectContested } from './exchange-register-contested.js';
 import {
   type CoverageReport,
   type DeadGlob,
@@ -73,6 +74,8 @@ interface CompiledRow {
   readonly row: RegisterRow;
   readonly lists: ReadonlySet<string>;
   readonly globs: readonly CompiledGlob[];
+  /** The compiled rows this row excepts: a path any of them matches is never credited here. */
+  excepting: readonly CompiledRow[];
 }
 
 /**
@@ -105,11 +108,22 @@ function compileRows(
   rows: readonly RegisterRow[],
   pins: readonly PinsRow[],
 ): readonly CompiledRow[] {
-  return rows.map((row) => ({
+  const compiled: CompiledRow[] = rows.map((row) => ({
     row,
     lists: listsForRow(row, pins),
     globs: row.globs.map((glob) => ({ glob, regexp: globToRegExp(glob), hits: 0 })),
+    excepting: [],
   }));
+  const byId = new Map(compiled.map((entry) => [entry.row.id, entry]));
+  for (const entry of compiled) {
+    entry.excepting = entry.row.excepting.flatMap((id) => byId.get(id) ?? []);
+  }
+  return compiled;
+}
+
+/** True when a row the entry excepts matches the path, so the entry yields it. */
+function excepted(entry: CompiledRow, path: string): boolean {
+  return entry.excepting.some((other) => other.globs.some((g) => g.regexp.test(path)));
 }
 
 /** The coverage credited to rows: a count and the list entries (`label<TAB>path`) per row. */
@@ -137,7 +151,7 @@ function matchPath(
     for (const compiledGlob of matching) {
       compiledGlob.hits += 1;
     }
-    if (matching.length > 0) {
+    if (matching.length > 0 && !excepted(entry, path)) {
       covered = true;
       creditRow(credit, entry.row.id, path);
     }
@@ -187,12 +201,11 @@ function coverPath(path: string, compiled: readonly CompiledRow[], credit: Credi
   return covered;
 }
 
+/** Every glob with no hit, on every row: a row covering no list (an O row) with a glob is dead too. */
 function collectDeadGlobs(compiled: readonly CompiledRow[]): readonly DeadGlob[] {
-  return compiled
-    .filter((entry) => entry.lists.size > 0)
-    .flatMap((entry) =>
-      entry.globs.filter((g) => g.hits === 0).map((g) => ({ rowId: entry.row.id, glob: g.glob })),
-    );
+  return compiled.flatMap((entry) =>
+    entry.globs.filter((g) => g.hits === 0).map((g) => ({ rowId: entry.row.id, glob: g.glob })),
+  );
 }
 
 /**
@@ -218,5 +231,11 @@ export function computeCoverage(
       }
     }
   }
-  return { uncovered, deadGlobs: collectDeadGlobs(compiled), matchesByRow, entriesByRow };
+  return {
+    uncovered,
+    contested: collectContested(rows, entriesByRow),
+    deadGlobs: collectDeadGlobs(compiled),
+    matchesByRow,
+    entriesByRow,
+  };
 }

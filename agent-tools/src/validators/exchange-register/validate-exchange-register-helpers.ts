@@ -12,9 +12,11 @@ import { type RegisterRow } from './exchange-register-types.js';
 
 const ROW_ID = /^([LJCO])(\d+)$/u;
 const CODE_SPAN = /`([^`]+)`/gu;
-const LIST_SCOPE = /\(list:\s*([^)]*)\)/u;
-/** Anything that reads as a list-scope marker, however mis-typed: `( list :`, `(List:`, `(list :`. */
-const SCOPE_LIKE = /\(\s*list\s*:/giu;
+/** The three markers a glob cell may carry, each exactly `(<word>: a, b)`. */
+type Marker = 'list' | 'excepting' | 'shares';
+const MARKERS: readonly Marker[] = ['list', 'excepting', 'shares'];
+/** Anything that reads as one of the markers, however mis-typed: `( list :`, `(Excepting:`. */
+const MARKER_LIKE = /\(\s*(list|excepting|shares)\s*:/giu;
 const GLOB_COLUMN = 'Path globs';
 /** A concept table's header, exactly: the row, its concept, one disposition per estate, the globs. */
 const CONCEPT_HEADER: readonly string[] = [
@@ -27,32 +29,59 @@ const CONCEPT_HEADER: readonly string[] = [
 ];
 
 /**
- * The lists a glob cell names with `(list: a, b)`, or null when it names
- * none. A cell that opens a scope it does not close, carries two scopes, or
- * spells the marker any way but `(list:` is refused rather than read as
- * unscoped: each typo would widen the row to every list of its group.
+ * The labels a glob cell names with `(<marker>: a, b)`, or null when it has
+ * no such marker. A cell that opens a marker it does not close, carries the
+ * marker twice, spells it any way but exactly `(<marker>:`, or names an
+ * empty label (`(list: a,)`) is refused rather than read loosely: each typo
+ * would widen or shift what the row covers.
  */
-function parseListScope(cell: string): Result<readonly string[] | null, string> {
-  const markers = cell.match(SCOPE_LIKE) ?? [];
-  if (markers.length > 1) {
-    return err('carries more than one (list: ...) scope');
+function parseMarker(cell: string, name: Marker): Result<readonly string[] | null, string> {
+  const found = [...cell.matchAll(MARKER_LIKE)].filter((m) => (m[1] ?? '').toLowerCase() === name);
+  if (found.length > 1) {
+    return err(`carries more than one (${name}: ...) marker`);
   }
-  const [marker] = markers;
-  if (marker !== undefined && marker !== '(list:') {
+  const [marker] = found;
+  if (marker === undefined) {
+    return ok(null);
+  }
+  if (marker[0] !== `(${name}:`) {
     return err(
-      `carries the scope marker \`${marker}\`; the grammar is exactly \`(list: <label>[, <label>])\``,
+      `carries the marker \`${marker[0]}\`; the grammar is exactly \`(${name}: <label>[, <label>])\``,
     );
   }
-  const match = LIST_SCOPE.exec(cell);
-  if (match === null) {
-    return marker === undefined ? ok(null) : err('opens a (list: scope it never closes');
+  const close = cell.indexOf(')', marker.index);
+  if (close === -1) {
+    return err(`opens a (${name}: marker it never closes`);
   }
-  return ok(
-    (match[1] ?? '')
-      .split(',')
-      .map((label) => label.trim())
-      .filter((label) => label !== ''),
-  );
+  const labels = cell
+    .slice(marker.index + marker[0].length, close)
+    .split(',')
+    .map((label) => label.trim());
+  if (labels.length === 0 || labels.every((label) => label === '')) {
+    return ok([]);
+  }
+  return labels.some((label) => label === '')
+    ? err(
+        `names an empty label in (${name}: ...); the grammar is \`(${name}: <label>[, <label>])\``,
+      )
+    : ok(labels);
+}
+
+/** The three markers of a cell, or the first refusal. */
+function parseMarkers(cell: string): Result<Record<Marker, readonly string[] | null>, string> {
+  const parsed: Partial<Record<Marker, readonly string[] | null>> = {};
+  for (const name of MARKERS) {
+    const labels = parseMarker(cell, name);
+    if (!labels.ok) {
+      return labels;
+    }
+    parsed[name] = labels.value;
+  }
+  return ok({
+    list: parsed.list ?? null,
+    excepting: parsed.excepting ?? null,
+    shares: parsed.shares ?? null,
+  });
 }
 
 function splitTableCells(line: string): readonly string[] {
@@ -86,16 +115,18 @@ function parseRow(cells: readonly string[]): Result<RegisterRow, string> {
   const globs = [...last.matchAll(CODE_SPAN)]
     .map((span) => span[1] ?? '')
     .filter((glob) => glob !== '');
-  const lists = parseListScope(last);
-  if (!lists.ok) {
-    return err(`row ${first}: ${lists.error}`);
+  const markers = parseMarkers(last);
+  if (!markers.ok) {
+    return err(`row ${first}: ${markers.error}`);
   }
   return ok({
     id: first,
     group: match[1] ?? '',
     globs,
     catchAll: last.includes('(catch-all)'),
-    lists: lists.value,
+    lists: markers.value.list,
+    excepting: markers.value.excepting ?? [],
+    shares: markers.value.shares ?? [],
   });
 }
 
@@ -106,6 +137,9 @@ function rowRefusal(row: RegisterRow, seen: ReadonlySet<string>): string | null 
   }
   if (row.lists !== null && row.lists.length === 0) {
     return `row ${row.id}: an empty (list:) scope names no list`;
+  }
+  if (row.excepting.includes(row.id) || row.shares.includes(row.id)) {
+    return `row ${row.id}: names itself in a marker`;
   }
   return null;
 }

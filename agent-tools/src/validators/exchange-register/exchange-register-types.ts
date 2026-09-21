@@ -11,6 +11,10 @@ export interface RegisterRow {
   readonly globs: readonly string[];
   readonly catchAll: boolean;
   readonly lists: readonly string[] | null;
+  /** Rows of the same group whose globs take precedence: an entry they match is never credited here. */
+  readonly excepting: readonly string[];
+  /** Rows of the same group this row knowingly shares entries with: two concepts in the same files. */
+  readonly shares: readonly string[];
 }
 
 /** One pins row: the list label and the estate whose delta it is. */
@@ -31,6 +35,20 @@ export interface UnknownScope {
   readonly label: string;
 }
 
+/** An `(excepting: ...)` or `(shares: ...)` id that is not another row of the same group. */
+export interface BadReference {
+  readonly rowId: string;
+  readonly marker: 'excepting' | 'shares';
+  readonly target: string;
+}
+
+/** A list entry credited to two or more specific rows of one group, neither declaring the share. */
+export interface ContestedEntry {
+  readonly label: string;
+  readonly path: string;
+  readonly rowIds: readonly string[];
+}
+
 /** A glob on a row that matches nothing in any list the row covers. */
 export interface DeadGlob {
   readonly rowId: string;
@@ -44,6 +62,7 @@ export interface DeadGlob {
  */
 export interface CoverageReport {
   readonly uncovered: readonly UncoveredPath[];
+  readonly contested: readonly ContestedEntry[];
   readonly deadGlobs: readonly DeadGlob[];
   readonly matchesByRow: ReadonlyMap<string, number>;
   readonly entriesByRow: ReadonlyMap<string, readonly string[]>;

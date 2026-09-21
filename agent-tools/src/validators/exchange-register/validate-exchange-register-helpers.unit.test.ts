@@ -7,6 +7,7 @@ import {
   parseCoverageCounts,
   renderCoverageCounts,
 } from './exchange-register-counts.js';
+import { collectBadReferences } from './exchange-register-contested.js';
 import {
   collectUnknownScopes,
   computeCoverage,
@@ -43,8 +44,18 @@ describe('parseRegisterRows', () => {
         globs: ['.agent/x/**', 'agent-tools/src/y/**'],
         catchAll: false,
         lists: null,
+        excepting: [],
+        shares: [],
       },
-      { id: 'J15', group: 'J', globs: ['**'], catchAll: true, lists: null },
+      {
+        id: 'J15',
+        group: 'J',
+        globs: ['**'],
+        catchAll: true,
+        lists: null,
+        excepting: [],
+        shares: [],
+      },
     ]);
   });
 
@@ -73,10 +84,16 @@ describe('parseRegisterRows', () => {
   );
 
   it.each([
-    ['`a/**` (list: jcnet-since-transplant', 'opens a (list: scope it never closes'],
-    ['`a/**` (list: a) (list: b)', 'carries more than one (list: ...) scope'],
-    ['`a/**` (list : castr-since-transplant)', 'carries the scope marker `(list :`'],
-    ['`a/**` ( List: castr-since-transplant)', 'carries the scope marker `( List:`'],
+    ['`a/**` (list: jcnet-since-transplant', 'opens a (list: marker it never closes'],
+    ['`a/**` (list: a) (list: b)', 'carries more than one (list: ...) marker'],
+    ['`a/**` (list : castr-since-transplant)', 'carries the marker `(list :`'],
+    ['`a/**` ( List: castr-since-transplant)', 'carries the marker `( List:`'],
+    ['`a/**` (list: a,)', 'names an empty label in (list: ...)'],
+    ['`a/**` (list: ,a)', 'names an empty label in (list: ...)'],
+    ['`a/**` (list: a,,b)', 'names an empty label in (list: ...)'],
+    ['`a/**` (excepting: J2', 'opens a (excepting: marker it never closes'],
+    ['`a/**` (shares: J2) (shares: J3)', 'carries more than one (shares: ...) marker'],
+    ['`a/**` (excepting: J1)', 'names itself in a marker'],
   ])('refuses the malformed scope cell %s rather than reading it as unscoped', (cell, message) => {
     const markdown = [
       '| Row | Concept | jcnet | lineage | castr | Path globs |',
@@ -185,6 +202,78 @@ describe('listsForGroup', () => {
       'oce-since-castr-pin',
     ]);
     expect(listsForGroup('O', PINS)).toStrictEqual([]);
+  });
+});
+
+describe('excepting and shares', () => {
+  const twoLists = new Map<string, readonly string[]>([
+    ['oce-since-jcnet-pin', []],
+    ['jcnet-since-transplant', ['rules/a.md', 'rules/b.md', 'x/y.ts']],
+    ['castr-since-transplant', []],
+    ['oce-since-castr-pin', []],
+  ]);
+  const table = (...rows: readonly string[]): string =>
+    [
+      '| Row | Concept | jcnet | lineage | castr | Path globs |',
+      '| --- | --- | --- | --- | --- | --- |',
+      ...rows,
+    ].join('\n');
+
+  it('refuses a path claimed by two specific rows of one group that declare nothing', () => {
+    const rows = unwrap(
+      parseRegisterRows(
+        table(
+          '| J1 | a | bring | origin | bring | `rules/*.md` |',
+          '| J2 | b | bring | origin | bring | `rules/a.md` |',
+        ),
+      ),
+    );
+    const report = computeCoverage(rows, PINS, twoLists);
+    expect(report.contested).toStrictEqual([
+      { label: 'jcnet-since-transplant', path: 'rules/a.md', rowIds: ['J1', 'J2'] },
+    ]);
+  });
+
+  it('yields every path an excepted row matches, so the narrower row alone is credited', () => {
+    const rows = unwrap(
+      parseRegisterRows(
+        table(
+          '| J1 | a | bring | origin | bring | `rules/*.md` (excepting: J2) |',
+          '| J2 | b | bring | origin | bring | `rules/a.md` |',
+        ),
+      ),
+    );
+    const report = computeCoverage(rows, PINS, twoLists);
+    expect(report.contested).toStrictEqual([]);
+    expect(report.matchesByRow.get('J1')).toBe(1);
+    expect(report.matchesByRow.get('J2')).toBe(1);
+    expect(report.deadGlobs).toStrictEqual([]);
+  });
+
+  it('lets two rows share a path when one declares it, and refuses a share outside the group', () => {
+    const rows = unwrap(
+      parseRegisterRows(
+        table(
+          '| J1 | a | bring | origin | bring | `rules/*.md` (shares: J2) |',
+          '| J2 | b | bring | origin | bring | `rules/a.md` |',
+          '| J3 | c | bring | origin | bring | `x/**` (excepting: L1) |',
+        ),
+      ),
+    );
+    const report = computeCoverage(rows, PINS, twoLists);
+    expect(report.contested).toStrictEqual([]);
+    expect(report.matchesByRow.get('J1')).toBe(2);
+    expect(collectBadReferences(rows)).toStrictEqual([
+      { rowId: 'J3', marker: 'excepting', target: 'L1' },
+    ]);
+  });
+
+  it('reports a glob on a row that covers no list (an O row) as dead', () => {
+    const rows = unwrap(
+      parseRegisterRows(table('| O1 | owner word | same | same | same | `x/**` |')),
+    );
+    const report = computeCoverage(rows, PINS, twoLists);
+    expect(report.deadGlobs).toStrictEqual([{ rowId: 'O1', glob: 'x/**' }]);
   });
 });
 
@@ -443,6 +532,26 @@ describe('coverage counts', () => {
     );
     expect(countDrift(tracked, recomputed).map((d) => d.rowId)).toStrictEqual(['J1', 'J3']);
     expect(countDrift(tracked, new Map(tracked))).toStrictEqual([]);
+  });
+
+  it('names a widened glob as drift even when the entries it credits today are unchanged', () => {
+    const tracked = coverageOf(rows, computeCoverage(rows, PINS, lists(['a/x.md'], ['b/x'])));
+    const widened = unwrap(
+      parseRegisterRows(
+        [
+          '| Row | Concept | jcnet | lineage | castr | Path globs |',
+          '| --- | --- | --- | --- | --- | --- |',
+          '| J1 | a | bring | origin | bring | `a/**`, `a/*.md` |',
+          '| J2 | b | bring | origin | bring | `b/**` |',
+        ].join('\n'),
+      ),
+    );
+    const recomputed = coverageOf(
+      widened,
+      computeCoverage(widened, PINS, lists(['a/x.md'], ['b/x'])),
+    );
+    expect([...recomputed.values()].map((c) => c.count)).toStrictEqual([1, 1]);
+    expect(countDrift(tracked, recomputed).map((d) => d.rowId)).toStrictEqual(['J1']);
   });
 
   it('names swapped globs as drift even when every count is unchanged', () => {

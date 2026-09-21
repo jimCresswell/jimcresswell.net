@@ -66,9 +66,23 @@ function isWholeNumber(text: string): boolean {
   return /^\d+$/u.test(text) && Number.isSafeInteger(Number(text));
 }
 
-/** A deterministic fingerprint of the entries a row covers, whatever order they were credited in. */
-function fingerprintOf(entries: readonly string[]): string {
+/**
+ * A deterministic fingerprint of a row's declaration (globs, catch-all,
+ * list scope, excepting, shares) and of the entries it covers, whatever
+ * order they were credited in: a glob removed or widened changes it even
+ * when the entries it credits today do not.
+ */
+function fingerprintOf(row: RegisterRow, entries: readonly string[]): string {
+  const declaration = [
+    row.globs.join('\u0000'),
+    row.catchAll ? 'catch-all' : '',
+    (row.lists ?? ['*']).join('\u0000'),
+    row.excepting.join('\u0000'),
+    row.shares.join('\u0000'),
+  ].join('\u0001');
   return createHash('sha256')
+    .update(declaration)
+    .update('\u0002')
     .update([...entries].sort((a, b) => a.localeCompare(b, 'en')).join('\n'))
     .digest('hex')
     .slice(0, 16);
@@ -84,7 +98,7 @@ export function coverageOf(
       row.id,
       {
         count: report.matchesByRow.get(row.id) ?? 0,
-        fingerprint: fingerprintOf(report.entriesByRow.get(row.id) ?? []),
+        fingerprint: fingerprintOf(row, report.entriesByRow.get(row.id) ?? []),
       },
     ]),
   );
