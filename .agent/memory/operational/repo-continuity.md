@@ -21,6 +21,18 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
+- 2026-09-21 15:26Z: the three-estate Practice exchange opened on the owner's rulings and its
+  first window landed: #137 (`SHA: 4bfc64d4`), #138 (`SHA: d2e7ee12`), #140 (`SHA: 02ec85ab`),
+  #139 (`SHA: 7655b1b6`), then the action pins #142 (`SHA: 1044b358`); `main` is at
+  `SHA: 1044b358`. Open: the dependency-upgrade pull request #143 (green, Copilot requested),
+  which replaced the five Dependabot bumps #132 to #136 on the owner's word (closed naming it),
+  and the fold of `coordination/2026-09-17-5f3225` as PR 141, with the successor cut from its
+  merge. The live reading is the Director's handoff item 119 and its current-state block; the
+  exchange's node is `.agent/plans/delivery/practice-two-way-exchange.plan.md`.
+- 2026-09-17 evening: zero open pull requests. The close-out landed #126, #127, #94, #95,
+  #96, #128 and #129, and the fold #130 (`SHA: 5f3225e2`) carried that window's records to
+  `main`. The plan `estate-fix-backlog` was ratified, completed and archived on 2026-09-19
+  (PR 131); §Next Safe Steps below is that window's snapshot (STATE 2026-09-17T19:42Z).
 - `main` carries the monorepo and the Practice since PR #53 merged (`55649a2`, 2026-09-13); the
   transplant closure ran as small PRs against `main` and is complete (the last, #91, merged
   2026-09-15 at `SHA: f8aab12`). Plan of record:
@@ -159,7 +171,7 @@ slowly, thoughtfully, do not use subagents"; the reminder at 20:20Z, "the goal i
 soon as the number of open PRs hits zero"). Landed 2026-09-17 evening, in order: #126
 (`SHA: 6254f0cc`), #127 (`SHA: 4ecbc451`), #94 (`SHA: 20d0c8d9`), #95 (`SHA: d7f37d8a`),
 PR #96 (`SHA: cff790fa`), #128 (`SHA: 867e9e0c`), #129 (`SHA: 931f4072`), then the fold of
-this coordination branch. The plan `.agent/plans/delivery/estate-fix-backlog.plan.md` records
+this coordination branch. The plan `.agent/plans/delivery/archive/estate-fix-backlog.plan.md` records
 each landing in §Close-out, every routed review finding in §Review dispositions, and the seat's
 reviews in §Review record.
 
@@ -167,25 +179,33 @@ OWNER HOLDS, binding until the owner lifts them:
 
 - **No subagents** (owner word 2026-09-17, evening: "do not use subagents"). Every review is the
   seat's own, under the template it would have invoked, stated in the pull request.
-- **The plan is a sketch awaiting ratification.** Its §Backlog governs no work until the owner
-  ratifies it. The ratification card was presented at this session's close.
 
-FIRST ACTION on resume: read the plan's §Backlog. If ratified, start slice 1 (the guard fallback,
-security) with at most three open non-draft pull requests; slice 2 is the disposition verb, moved
-first among the corrections because the missing verb is what turned #128's last round into #129.
-If not ratified, present the card again and do nothing under §Backlog.
+CLOSED, 2026-09-19 (Cauldron herds Lustre, Director). The owner's closing pull request, PR 131,
+merged at `SHA: c68f831c` after two review rounds: round one settled in one push
+(`SHA: 1f30331b`), round two answered with one signed rejection. Open pull requests after it:
+zero, read from `gh pr list`. It carries the bash 5.2 floor held in the shellcheck gate, the hook
+wrapper handing over on an older bash so the secrets hooks still block, node's exit status read in
+the prompt hook, no `:-` default in the guard commands, and the approved text corrections. Its
+branch and worktree are gone.
+
+The plan `estate-fix-backlog` is complete and archived under `.agent/plans/delivery/archive/`:
+slices 1, 7, 13 and 14 landed in PR 131, slice 6 was dropped by the owner, and the rest were
+closed as not worth their time. Nothing is carried forward. No work is owed. The next session
+starts from the owner's ask, not from a list. The worktree inputs named below serve no scheduled
+work.
 
 The backlog and every routed review finding live in the plan. The owner's twenty-three card
 answers of 2026-09-17 are recorded verbatim in this file at `SHA: 3372b944`, removed from the
 live text when the plan absorbed them as slices, each marked owner-approved; they are not
 restated here.
 
-Owner actions pending:
-
-- Ratify, amend or decline the plan (one card).
-- Re-paste the cloud environment setup script from main (first line `#!/usr/bin/env bash`), start
-  one cloud session and report `bash --version` and `command -v bash` (the plan's owner gate for
-  the bash 5.2 floor, expires 2026-10-08).
+Owner word, 2026-09-19: "I am not going to paste the cloud setup script, stop asking." The cloud
+bash measurement will not happen and is never asked for again; the plan's bash-floor slice has no
+path as written. The same message: "I am not interested in finishing things just because they are
+on a list." The ratified backlog is permission, not obligation: a slice is picked up for what it
+changes for a reader of the site, for the owner's secrets or for the next agent's behaviour, never
+to shorten the list. The seat's review of the backlog under that word was given to the owner in
+chat on 2026-09-19; the owner's choice among its proposals is the next input.
 
 Uncommitted partial work, conserved in place (never discarded): `expert-roster` worktree
 (`fix/site-relative-paths-in-rules`, 18 files, input to slice 15); `tools-lineage-paths` worktree
@@ -199,7 +219,9 @@ slice 7's input. Worktrees still present and retirable: `gate-output-noise`,
 
 Orchestration recipe (the scratchpad scripts are gone with the session):
 
-- **Push and review chain:** commit by pathspec, check port 3000 free, `git push` (the pre-push
+- **Push and review chain**, under the owner's word for the work (a push is part of the
+  pull-request lifecycle the owner directs, never the recipe's own authority; `AGENT.md`'s
+  rule stands): commit by pathspec, check port 3000 free, `git push` (the pre-push
   gate takes about ten minutes), open with `gh pr create --body-file`, request Copilot with a JSON
   body under the owner's CLI credential, watch by polling the reviews list for a Copilot review on
   the pushed head. When a settlement changes no commit (a description cure), key the watch on the
@@ -270,8 +292,8 @@ and proof (item 4's rows closed by #85 `SHA: eed1f2e`, #87 `SHA: 6b5676b`, #86
    Second maintenance item at the same priority (2026-09-16): the Cricket seat naming. The
    quartet's generated adapter names encode effort alone (`-low`, `-medium`, `-high`, `-xhigh`), so
    nothing in those names says which model a seat runs (the fifth seat,
-   `cricket-judgement-lowestpower-low`, added the same day, already names both), while the estate pairs model power INVERSELY with
-   effort — low is fable, medium is opus, high is sonnet, xhigh is haiku. A caller who cannot read
+   `cricket-judgement-lowestpower-low`, added the same day, already names both), while the
+   estate pairs model power INVERSELY with effort — low is fable, medium is opus, high is sonnet, xhigh is haiku. A caller who cannot read
    that from the name mis-launches the suite, as the Director did on 2026-09-16 by overriding
    every seat's model and inverting the design. Names should carry both dimensions. The change
    lives in `.agent/sub-agents/templates/cricket-judgement.md` and

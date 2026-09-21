@@ -156,3 +156,6 @@ Appended as each row lands: row, estate, pull request, head read.
 | --- | --- | --- | --- |
 | J11 | jcnet | PR 137 (merged `4bfc64d47e`, 2026-09-21T11:49:54Z) | lineage `72cab5667c`, castr `d1fe56b928` |
 | L1 | jcnet | PR 138 (merged `d2e7ee12fb`, 2026-09-21T12:19:55Z) | lineage `72cab5667c` |
+| L1 | jcnet | PR 140 (merged `02ec85ab13`, 2026-09-21T13:58:11Z; the post-merge cures) | lineage `72cab5667c` |
+| J11 | jcnet | PR 139 (merged `7655b1b69c`, 2026-09-21T14:10:11Z; this register and its validator) | lineage `72cab5667c`, castr `d1fe56b928` |
+| L1 | lineage | #172 (merged `272910f1df`, 2026-09-21T14:45:02Z; the twin of PR 138 and PR 140) | jcnet `7655b1b69c` |
