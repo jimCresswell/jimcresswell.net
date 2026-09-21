@@ -1,6 +1,12 @@
+import { unwrap } from '@engraph/result';
 import { describe, expect, it } from 'vitest';
 
-import { computeCoverage, globToRegExp, listsForGroup } from './exchange-register-coverage.js';
+import {
+  collectUnknownScopes,
+  computeCoverage,
+  globToRegExp,
+  listsForGroup,
+} from './exchange-register-coverage.js';
 import { type PinsRow } from './exchange-register-types.js';
 import {
   parseDeltaPaths,
@@ -27,7 +33,7 @@ describe('parseRegisterRows', () => {
       '| --- | --- | --- | --- |',
       '| L1 | jcnet | 137 | lineage `72cab5667c` |',
     ].join('\n');
-    expect(parseRegisterRows(markdown)).toStrictEqual([
+    expect(unwrap(parseRegisterRows(markdown))).toStrictEqual([
       {
         id: 'L1',
         group: 'L',
@@ -39,6 +45,17 @@ describe('parseRegisterRows', () => {
     ]);
   });
 
+  it('refuses a row id that appears twice, since ids are unique and never reused', () => {
+    const markdown = [
+      '| Row | Concept | Path globs |',
+      '| --- | --- | --- |',
+      '| L21 | a | `a/**` |',
+      '| L21 | b | `b/**` |',
+    ].join('\n');
+    const refused = parseRegisterRows(markdown);
+    expect(refused.ok ? '' : refused.error).toContain('L21 appears more than once');
+  });
+
   it('reads a (list: ...) scope as the lists the row is confined to', () => {
     const markdown = [
       '| Row | Concept | Path globs |',
@@ -46,7 +63,7 @@ describe('parseRegisterRows', () => {
       '| C15 | rest | `**` (catch-all) (list: oce-since-castr-pin) |',
       '| C9 | two | `a/**` (list: castr-since-transplant, oce-since-castr-pin) |',
     ].join('\n');
-    expect(parseRegisterRows(markdown).map((row) => row.lists)).toStrictEqual([
+    expect(unwrap(parseRegisterRows(markdown)).map((row) => row.lists)).toStrictEqual([
       ['oce-since-castr-pin'],
       ['castr-since-transplant', 'oce-since-castr-pin'],
     ]);
@@ -55,7 +72,7 @@ describe('parseRegisterRows', () => {
 
 describe('parsePinsRows and parseDeltaPaths', () => {
   it('reads labels and estates by header name, and the third column of a delta list', () => {
-    const pins = parsePinsRows('label\testate\torigin\nx\tjcnet\tgithub.com/a/b\n');
+    const pins = unwrap(parsePinsRows('label\testate\torigin\nx\tjcnet\tgithub.com/a/b\n'));
     expect(pins).toStrictEqual([{ label: 'x', estate: 'jcnet' }]);
     expect(parseDeltaPaths('x\tA\t.agent/a.md\nx\tM\tagent-tools/b.ts\n')).toStrictEqual([
       '.agent/a.md',
@@ -64,7 +81,8 @@ describe('parsePinsRows and parseDeltaPaths', () => {
   });
 
   it('refuses a pins file without the named columns', () => {
-    expect(() => parsePinsRows('a\tb\n1\t2\n')).toThrow('label');
+    const refused = parsePinsRows('a\tb\n1\t2\n');
+    expect(refused.ok ? '' : refused.error).toContain('label');
   });
 });
 
@@ -80,6 +98,24 @@ describe('listsForGroup', () => {
   });
 });
 
+describe('collectUnknownScopes', () => {
+  it('names a (list: ...) label outside the row group, which would otherwise empty the row silently', () => {
+    const rows = unwrap(
+      parseRegisterRows(
+        [
+          '| Row | Concept | Path globs |',
+          '| --- | --- | --- |',
+          '| J1 | a | `a/**` (list: oce-since-castr-pin) |',
+          '| C1 | b | `b/**` (list: castr-since-transplant) |',
+        ].join('\n'),
+      ),
+    );
+    expect(collectUnknownScopes(rows, PINS)).toStrictEqual([
+      { rowId: 'J1', label: 'oce-since-castr-pin' },
+    ]);
+  });
+});
+
 describe('globToRegExp', () => {
   it.each([
     ['**', 'anything/at/all.ts', true],
@@ -90,21 +126,25 @@ describe('globToRegExp', () => {
     ['PDR-008*', 'PDR-008-canonical.md', true],
     ['.husky/pre-push', '.husky/pre-push', true],
     ['.husky/pre-push', '.husky/pre-push.bak', false],
+    ['a?b.md', 'a?b.md', true],
+    ['a?b.md', 'axb.md', false],
   ])('%s against %s is %s', (glob, path, expected) => {
     expect(globToRegExp(glob).test(path)).toBe(expected);
   });
 });
 
 describe('computeCoverage', () => {
-  const rows = parseRegisterRows(
-    [
-      '| Row | Concept | Path globs |',
-      '| --- | --- | --- |',
-      '| L1 | a | `agent-tools/src/a/**` |',
-      '| J1 | b | `.agent/rules/*.md` |',
-      '| J15 | rest | `**` (catch-all) |',
-      '| C1 | c | `agent-tools/src/c/**` |',
-    ].join('\n'),
+  const rows = unwrap(
+    parseRegisterRows(
+      [
+        '| Row | Concept | Path globs |',
+        '| --- | --- | --- |',
+        '| L1 | a | `agent-tools/src/a/**` |',
+        '| J1 | b | `.agent/rules/*.md` |',
+        '| J15 | rest | `**` (catch-all) |',
+        '| C1 | c | `agent-tools/src/c/**` |',
+      ].join('\n'),
+    ),
   );
 
   it('covers a path by a specific row first and a catch-all only when nothing else matches', () => {
@@ -125,13 +165,15 @@ describe('computeCoverage', () => {
   });
 
   it('confines a list-scoped catch-all to its list, so a sibling catch-all owns the other', () => {
-    const scoped = parseRegisterRows(
-      [
-        '| Row | Concept | Path globs |',
-        '| --- | --- | --- |',
-        '| C12 | castr rest | `**` (catch-all) (list: castr-since-transplant) |',
-        '| C15 | lineage rest | `**` (catch-all) (list: oce-since-castr-pin) |',
-      ].join('\n'),
+    const scoped = unwrap(
+      parseRegisterRows(
+        [
+          '| Row | Concept | Path globs |',
+          '| --- | --- | --- |',
+          '| C12 | castr rest | `**` (catch-all) (list: castr-since-transplant) |',
+          '| C15 | lineage rest | `**` (catch-all) (list: oce-since-castr-pin) |',
+        ].join('\n'),
+      ),
     );
     const report = computeCoverage(
       scoped,

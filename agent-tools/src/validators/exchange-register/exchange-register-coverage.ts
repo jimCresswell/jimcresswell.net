@@ -10,6 +10,7 @@ import {
   type PinsRow,
   type RegisterRow,
   type UncoveredPath,
+  type UnknownScope,
 } from './exchange-register-types.js';
 
 /**
@@ -33,7 +34,7 @@ export function listsForGroup(group: string, pins: readonly PinsRow[]): readonly
 }
 
 function escapeRegExp(text: string): string {
-  return text.replaceAll(/[.+^${}()|[\]\\]/gu, String.raw`\$&`);
+  return text.replaceAll(/[.+?^${}()|[\]\\]/gu, String.raw`\$&`);
 }
 
 /**
@@ -72,6 +73,22 @@ interface CompiledRow {
   readonly row: RegisterRow;
   readonly lists: ReadonlySet<string>;
   readonly globs: readonly CompiledGlob[];
+}
+
+/**
+ * Every `(list: ...)` label a row declares outside its group's lists: such a
+ * label would silently empty the row's list set, so it is a finding.
+ */
+export function collectUnknownScopes(
+  rows: readonly RegisterRow[],
+  pins: readonly PinsRow[],
+): readonly UnknownScope[] {
+  return rows.flatMap((row) => {
+    const groupLists = listsForGroup(row.group, pins);
+    return (row.lists ?? [])
+      .filter((label) => !groupLists.includes(label))
+      .map((label) => ({ rowId: row.id, label }));
+  });
 }
 
 /** The group's lists, narrowed to the row's declared `(list: ...)` scope when it has one. */

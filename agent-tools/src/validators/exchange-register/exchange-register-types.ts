@@ -25,12 +25,19 @@ export interface UncoveredPath {
   readonly path: string;
 }
 
+/** A `(list: ...)` label on a row that names no list of the row's group. */
+export interface UnknownScope {
+  readonly rowId: string;
+  readonly label: string;
+}
+
 /** A glob on a row that matches nothing in any list the row covers. */
 export interface DeadGlob {
   readonly rowId: string;
   readonly glob: string;
 }
 
+/** What the coverage computation found: uncovered paths, dead globs, and matches per row. */
 export interface CoverageReport {
   readonly uncovered: readonly UncoveredPath[];
   readonly deadGlobs: readonly DeadGlob[];

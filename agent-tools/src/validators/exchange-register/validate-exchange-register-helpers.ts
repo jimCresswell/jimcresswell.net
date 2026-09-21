@@ -5,6 +5,8 @@
  * in `exchange-register-coverage.ts`.
  */
 
+import { err, ok, type Result } from '@engraph/result';
+
 import { type PinsRow, type RegisterRow } from './exchange-register-types.js';
 
 const ROW_ID = /^([A-Z])(\d+)$/u;
@@ -81,10 +83,12 @@ function nextTableState(state: TableState, cells: readonly string[]): TableState
  * in the last cell is one glob, and the literal `(catch-all)` marks a row
  * that covers only what no sibling row of its group covers. Tables with
  * another last column (the landings table, the owner-word rows) are skipped,
- * so a row id in their first cell never becomes a concept row.
+ * so a row id in their first cell never becomes a concept row. A row id that
+ * appears twice is a refusal: ids are unique and never reused.
  */
-export function parseRegisterRows(markdown: string): readonly RegisterRow[] {
+export function parseRegisterRows(markdown: string): Result<readonly RegisterRow[], string> {
   const rows: RegisterRow[] = [];
+  const seen = new Set<string>();
   let state: TableState = { previousCells: [], inGlobTable: false };
   for (const line of markdown.split('\n')) {
     const cells = splitTableCells(line);
@@ -94,29 +98,36 @@ export function parseRegisterRows(markdown: string): readonly RegisterRow[] {
       continue;
     }
     const row = parseRow(cells);
-    if (row !== null) {
-      rows.push(row);
+    if (row === null) {
+      continue;
     }
+    if (seen.has(row.id)) {
+      return err(`row id ${row.id} appears more than once; ids are unique and never reused`);
+    }
+    seen.add(row.id);
+    rows.push(row);
   }
-  return rows;
+  return ok(rows);
 }
 
 /** Reads the pins TSV (header row first) into label and estate pairs. */
-export function parsePinsRows(tsv: string): readonly PinsRow[] {
+export function parsePinsRows(tsv: string): Result<readonly PinsRow[], string> {
   const [header, ...lines] = tsv.split('\n').filter((line) => line.trim() !== '');
   if (header === undefined) {
-    return [];
+    return ok([]);
   }
   const columns = header.split('\t');
   const labelIndex = columns.indexOf('label');
   const estateIndex = columns.indexOf('estate');
   if (labelIndex < 0 || estateIndex < 0) {
-    throw new Error('the pins file must carry `label` and `estate` columns');
+    return err('the pins file must carry `label` and `estate` columns');
   }
-  return lines.map((line) => {
-    const cells = line.split('\t');
-    return { label: cells[labelIndex] ?? '', estate: cells[estateIndex] ?? '' };
-  });
+  return ok(
+    lines.map((line) => {
+      const cells = line.split('\t');
+      return { label: cells[labelIndex] ?? '', estate: cells[estateIndex] ?? '' };
+    }),
+  );
 }
 
 /** Reads a computed delta list (label, status, path per line) into its paths. */

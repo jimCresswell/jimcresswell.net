@@ -18,8 +18,13 @@ import { join } from 'node:path';
 
 import { resolveRepoRoot } from '../../core/repo-root.js';
 import { writeErrorLine, writeLine } from '../../core/terminal-output.js';
-import { computeCoverage } from './exchange-register-coverage.js';
-import { type CoverageReport, type PinsRow, type RegisterRow } from './exchange-register-types.js';
+import { collectUnknownScopes, computeCoverage } from './exchange-register-coverage.js';
+import {
+  type CoverageReport,
+  type PinsRow,
+  type RegisterRow,
+  type UnknownScope,
+} from './exchange-register-types.js';
 import {
   parseDeltaPaths,
   parsePinsRows,
@@ -36,23 +41,34 @@ interface Inputs {
   readonly lists: ReadonlyMap<string, readonly string[]>;
 }
 
-function loadInputs(repoRoot: string): Inputs {
+function loadInputs(repoRoot: string): Inputs | string {
   const rows = parseRegisterRows(readFileSync(join(repoRoot, REGISTER), 'utf8'));
+  if (!rows.ok) {
+    return rows.error;
+  }
   const pins = parsePinsRows(readFileSync(join(repoRoot, INPUTS, 'exchange-pins.tsv'), 'utf8'));
+  if (!pins.ok) {
+    return pins.error;
+  }
   const lists = new Map<string, readonly string[]>(
-    pins.map((pin) => [
+    pins.value.map((pin) => [
       pin.label,
       parseDeltaPaths(
         readFileSync(join(repoRoot, INPUTS, `exchange-delta-${pin.label}.tsv`), 'utf8'),
       ),
     ]),
   );
-  return { rows, pins, lists };
+  return { rows: rows.value, pins: pins.value, lists };
 }
 
-function reportFindings(report: CoverageReport): void {
+function reportFindings(
+  report: CoverageReport & { readonly unknownScopes: readonly UnknownScope[] },
+): void {
   for (const { label, path } of report.uncovered) {
     writeErrorLine(`${NAME}: ${label}: no row covers ${path}`);
+  }
+  for (const { rowId, label } of report.unknownScopes) {
+    writeErrorLine(`${NAME}: row ${rowId}: (list: ${label}) names no list of its group`);
   }
   for (const { rowId, glob } of report.deadGlobs) {
     writeErrorLine(
@@ -60,18 +76,30 @@ function reportFindings(report: CoverageReport): void {
     );
   }
   writeErrorLine(
-    `${NAME}: ${report.uncovered.length} uncovered path(s), ${report.deadGlobs.length} dead glob(s)`,
+    `${NAME}: ${report.uncovered.length} uncovered path(s), ${report.deadGlobs.length} dead glob(s), ${report.unknownScopes.length} unknown list scope(s)`,
   );
 }
 
 function main(): number {
-  const { rows, pins, lists } = loadInputs(resolveRepoRoot(import.meta.url));
+  const inputs = loadInputs(resolveRepoRoot(import.meta.url));
+  if (typeof inputs === 'string') {
+    writeErrorLine(`${NAME}: ${inputs}`);
+    return 2;
+  }
+  const { rows, pins, lists } = inputs;
   if (rows.length === 0 || pins.length === 0) {
     writeErrorLine(`${NAME}: the register has no rows or the pins file has no rows`);
     return 2;
   }
-  const report = computeCoverage(rows, pins, lists);
-  if (report.uncovered.length > 0 || report.deadGlobs.length > 0) {
+  const report = {
+    ...computeCoverage(rows, pins, lists),
+    unknownScopes: collectUnknownScopes(rows, pins),
+  };
+  if (
+    report.uncovered.length > 0 ||
+    report.deadGlobs.length > 0 ||
+    report.unknownScopes.length > 0
+  ) {
     reportFindings(report);
     return 1;
   }
