@@ -211,6 +211,12 @@ two-round ruling of 2026-09-14 do too.
 4. Inbound landings, one pull request per eight claims, in the register's order.
 5. The outbound note and material, delivered through the join ceremony.
 6. The close: provenance, audit, Box, and the doctrine amendments as register candidates.
+7. The re-pin (mechanism step 1, before the register closes): the pins carry forty-character
+   commit ids; the driver fails closed on a tracked list with no pin row before replacing any
+   output; the machinery list is derived from the artefact inventory rather than written by
+   hand (the delta lane's seven review rounds each found a true omission of the hand-written
+   list). Two of the three are Copilot's observations on pull request 137 (review 5266093341),
+   routed here below the bar.
 
 ## Plan-body first-principles check
 
