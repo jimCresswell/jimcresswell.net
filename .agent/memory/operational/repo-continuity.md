@@ -21,14 +21,15 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
-- 2026-09-21 15:26Z: the three-estate Practice exchange opened on the owner's rulings and its
-  first window landed: #137 (`SHA: 4bfc64d4`), #138 (`SHA: d2e7ee12`), #140 (`SHA: 02ec85ab`),
-  #139 (`SHA: 7655b1b6`), then the action pins #142 (`SHA: 1044b358`); `main` is at
-  `SHA: 1044b358`. Open: the dependency-upgrade pull request #143 (green, Copilot requested),
-  which replaced the five Dependabot bumps #132 to #136 on the owner's word (closed naming it),
-  and the fold of `coordination/2026-09-17-5f3225` as PR 141, with the successor cut from its
-  merge. The live reading is the Director's handoff item 119 and its current-state block; the
-  exchange's node is `.agent/plans/delivery/practice-two-way-exchange.plan.md`.
+- 2026-09-21T16:43Z: the three-estate Practice exchange opened on the owner's rulings; ten pull requests
+  merged today (#137 to #146; `main` is at `SHA: e84da526`), among them the coordination fold
+  #141, the dependency upgrade #143 and the first inbound rows (#144 L2, #145 L4 and L5, #146
+  L22). OPEN and FROZEN: #147 and #148 (row L11 slices, heads `SHA: ffb399f9` and
+  `SHA: 17a648cc`), held still while the owner's wide review fleet reads them. The live reading
+  is the Director's handoff current-state block and item 120, then the napkin's tail; the
+  exchange's node is `.agent/plans/delivery/practice-two-way-exchange.plan.md`; the fleet's plan
+  is `.agent/reports/agentic-engineering/wide-review-fleet-plan-2026-09-21.md`. Owner-held:
+  castr's future.
 - 2026-09-17 evening: zero open pull requests. The close-out landed #126, #127, #94, #95,
   #96, #128 and #129, and the fold #130 (`SHA: 5f3225e2`) carried that window's records to
   `main`. The plan `estate-fix-backlog` was ratified, completed and archived on 2026-09-19

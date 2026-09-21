@@ -50,38 +50,55 @@ Every line answered first-hand, none inferred:
   archive holds only processed material.
 - The transplant is bounded: closure items 3 to 8 finish it, then editorial work.
 
-## Current handoff state (2026-09-21T15:26Z; the exchange window's first day landed, the Dependabot bumps replaced and closed, the coordination branch folding)
+## Current handoff state (2026-09-21T16:43Z; ten pull requests merged today, two open and FROZEN, the owner's wide review fleet running)
 
 Where this block and the routing log disagree, the log's last entry is current; this block is
-rewritten at each Director wrap. Item 119 is the boundary state; item 118 is the window's opening; item 117 and before are history.
+rewritten at each Director wrap and whenever a reviewer finds it stale. Item 120 is the live
+state; item 119 is the 14:28Z compaction boundary (history); item 118 is the window's opening.
+The napkin's tail (`.agent/memory/active/napkin.md`, entries dated 2026-09-21) is the fullest
+live reading.
 
-- `main` is at `SHA: 1b2596dc` (PR 143, the dependency upgrade, merged 15:46Z, after PR 142's action pins at `SHA: 1044b358` and the fold PR 141 at `SHA: 19cfcc2e`). Landed today, in order: #137 (`SHA: 4bfc64d4`, the
-  delta instrument and pins), #138 (`SHA: d2e7ee12`, PDR-141 and the operator-profile schema
-  from the lineage), #140 (`SHA: 02ec85ab`, the profile cures Codex raised after 138), #139
-  (`SHA: 7655b1b6`, the three-estate register and its validator). The primary resides on
-  `coordination/2026-09-17-5f3225`, four days over the 24-hour rule and folding as PR 141; the
-  successor is cut from the fold merge.
-- The three-estate exchange is open on the owner's rulings of 2026-09-21 (item 118 and the
-  node `.agent/plans/delivery/practice-two-way-exchange.plan.md` §Rulings). The register's
-  landings table carries PR 139, PR 140 and the lineage's #172 (`SHA: 272910f1d`); nothing is
-  owed at the next landing. Plan-ledger follow-ups from the reviews: a `--root` flag for the
-  register validator so its smoke writes in a scratch copy, the two fused document readers to
-  consolidate, explicit probes in the fake-reader tests.
-- The five Dependabot bumps of 2026-09-19 (#132 to #136) are closed on the owner's word,
-  each naming its replacements: PR 142 (every GitHub Action pinned to its latest stable
-  release by SHA with the version in the comment; merged `SHA: 1044b358` at 15:18Z) and PR
-  143 (every outdated package upgraded in one change and four satisfied overrides removed;
-  merged `SHA: 1b2596dc` at 15:46Z; the site package holds ESLint at 9.39.5 until
-  eslint-plugin-react supports 10).
-- The operator profile at `~/.practice/profile` was synced on the owner's word at 12:34Z (a
-  scope file for this line; the index and machine file current; `SHA: fad8e36` pushed under
-  the owner's identity).
-- Codex's usage limit returned at 13:39Z (comms event dac869d4, after the morning's
-  40ce4858); merges fire with the Copilot leg declared and a subagent code-expert leg standing
-  until it recovers.
-- Owner holds: none. The no-subagents hold of 2026-09-17 ended with the close-out; the owner
-  lifted the fleet constraint for all seats on 2026-09-16.
-- Nothing session-scoped is armed at a boundary unless item 119 names it.
+- `main` is at `SHA: e84da526` (PR 146). Merged today, in order: #137 (`SHA: 4bfc64d4`), #138
+  (`SHA: d2e7ee12`), #140 (`SHA: 02ec85ab`), #139 (`SHA: 7655b1b6`), #142 (`SHA: 1044b358`),
+  #141 the coordination fold (`SHA: 19cfcc2e`), #143 the dependency upgrade (`SHA: 1b2596dc`),
+  #144 row L2 (`SHA: 4a87709f`), #145 rows L4 and L5 (`SHA: 51ea9dd0`), #146 row L22
+  (`SHA: e84da526`). The primary resides on the successor `coordination/2026-09-21-19cfcc`.
+- OPEN and FROZEN: PR 147 (row L11 slice one, head `SHA: ffb399f9`) and PR 148 (slice two, head
+  `SHA: 17a648cc`). Each has four Copilot findings from round one, unworked; seven of the eight
+  concern the lineage's own text. Frozen by this seat at 16:38Z so the review fleet reads fixed
+  objects. Thaw condition: the fleet's merge-audit swarm returns or is skipped; then this seat
+  (or its successor) dispositions the eight findings and lands or reworks the slices. If no
+  fleet result exists, thaw at once: the freeze protects nothing.
+- The owner's wide review fleet is running. Its plan of record, with the three design-review
+  verdicts, is `.agent/reports/agentic-engineering/wide-review-fleet-plan-2026-09-21.md` (a copy
+  of the session plan file `~/.claude/plans/swift-jingling-glade.md`; the neighbouring
+  `jolly-exploring-yeti.md` there is the LINEAGE seat's fleet plan, not this one). Its tally will
+  sit beside it. Inputs and the launch record are session-local and rebuildable.
+- Row L11 method and sizing: a three-way merge per file, base the lineage at the transplant pin
+  `e477e62f7e`, ours this estate's file, theirs the lineage head `272910f1df`
+  (`git merge-file`). Expected split: rules 39 changed clean and 3 conflict files; skills and
+  templates 15 changed clean and 4 conflict files. Sixteen rules are in PRs 147 and 148.
+- Owed to the lineage's seat (Zephyr guards Leeward): nothing outstanding; #172's SHA arrived
+  (`SHA: 272910f1d`) and is in the register. Owed BY the lineage: a bar verdict on the PDR-117
+  takeover wording; the PDR-105 ADR-citation lane; a byte-identity measurement of the Core across
+  the two estates. Its #173 (two Core-text files) is HELD for the owner: do not re-twin from it.
+  Zephyr's first read as receiver of an outbound bundle: concepts with falsifiers and proofs, not
+  bytes (its gates refused this estate's credential patterns as bytes).
+- OWNER-HELD, open: castr's future (a minimum-quality Practice, a full re-transplant, or
+  extraction into an installable entity once the two estates converge), reopened by the owner at
+  15:40Z. This seat's answer in chat: the enabling subset is common to all three; the fork between
+  the second and third waits for the converged fixed point and one install spike. The fleet's
+  direction legs are reading this question. A separate castr plan exists in the owner's session
+  plans directory as `the-practice-was-partially-vivid-bee.md`; this seat has not read it.
+- The five Dependabot bumps (#132 to #136) are closed naming PR 142 and PR 143; the site package
+  holds ESLint at 9.39.5 until eslint-plugin-react supports 10.
+- Codex is at its usage limit since 13:39Z (comms event dac869d4); merges fire with the Copilot
+  leg declared.
+- A known defect in a landed instrument, found by this seat's mutation run at 16:42Z: the
+  register validator enforces neither the disposition vocabulary nor anything in the Landings
+  table (six of fifteen mutants passed silently). Uncured.
+- Nothing session-scoped survives a seat change: monitors (review polls, the ARC tail, the
+  lineage comms watcher) are rebuilt from item 119's descriptions, not run from its placeholders.
 
 ## Live board
 
@@ -1757,6 +1774,8 @@ ones the Director would put to the owner had the owner been present.
 
 119. Compaction boundary (2026-09-21, 14:28Z, the owner's word: "prepare for compaction … include reflections … stop all processes"). BOUNDARY STATE; item 118 is the window's opening. Every process is stopped; nothing survives the compaction. Lanes: PR 141 (the fold of `coordination/2026-09-17-5f3225`; Copilot's seven records findings cured in the wrap commit at the tip of PR 141 after this push, its disposition posted there; when it settles: front door with `--expect copilot-pull-request-reviewer`, then the successor cut with `pnpm --silent agent-tools coordination successor-name --base "$BASE"` from the post-fold `origin/main` and the rotation broadcast); PR 142 (`chore/actions-latest-stable-sha`, `SHA: 6fdeb406`, every action pinned to its latest stable release by SHA, Copilot requested); `chore/deps-upgrade-2026-09-21` DIRTY and uncommitted in `jimcresswell.net-worktrees/deps-upgrade` (every outdated package upgraded, @types/node held at 24; red on `eslint-plugin-react`'s `display-name` under ESLint 10 in `jcdotnet` and on `tooling/workspace-config`'s vitest peer `^4.1.10`; finish, green the gate, open the PR, then close Dependabot #132 to #136 with a comment naming PR 142 and the deps PR). Codex out since 13:39Z (event dac869d4). Zephyr guards Leeward owes #172's merge SHA for L1's lineage cell. Re-arm recipe (verify by id first, re-arm only what is absent): reviews poll `bash <scratchpad>/reviews-poll.sh <pr…> | grep --line-buffered -E 'copilot|codex|failed'` (the script: `gh pr view <n> --json reviews` every 60 s, one line per new row); ARC tail `tail -n 0 -F <the 2026-09-21 rapid-comms channel file in the Oak fork checkout> | grep --line-buffered -E '^## \[Zephyr'`; OCE watcher: `find <oak checkout>/.agent/state/collaboration/comms -name '*.json' -newer <marker>` every 30 s printing created_at, author and title. Reflections (the napkin's boundary block carries them whole): the validator review loops ballooned because the parsers were authored to recognise and skip, and the generator cure — a closed grammar with the reviewers' refusal table as the first test, the code-expert leg before ready — was visible at round four and taken at round eight; the next validator lane runs the leg first.
 
+120. Live state (2026-09-21T16:43Z). The current-state block at the top of this file is written from this item; read it there. Item 119's deps lane, fold and owed-SHA lines are DISCHARGED: PR 143 merged, PR 141 folded and its branch is gone, #172's SHA arrived. Open: PRs 147 and 148, frozen for the owner's review fleet with the thaw condition in the block; castr's future, owner-held; the register validator's unvalidated Landings table and vocabulary, uncured.
+
 ## Routing log
 
 - 2026-09-13 evening: seat opened; team-start `ca1ba4d8`; lanes A, B, C authored, unfilled.
@@ -2007,3 +2026,4 @@ ones the Director would put to the owner had the owner been present.
 - 2026-09-21 15:50Z: PR 143 merged at `SHA: 1b2596dc` (two rounds; the override removals verified against declared ranges). The exchange's inbound landings started by register order: L2 (PDR-117) as PR 144 awaiting Copilot; L4 and L5 (PDR-026, PDR-011, the Core changelog as a dated union) committed at `SHA: 28fa1a6d`, pushing. The owner reopened castr's future (minimum Practice, full re-transplant, or extraction once the two estates converge); answered in chat: the enabling subset is common to all three, the 2-versus-3 fork waits for the converged fixed point and one spike.
 - 2026-09-21 16:00Z: inbound landings by register order: L2 as PR 144 (`SHA: 4a87709f`; its one finding Rejected with proof from PDR-064 and PDR-117, the wording residue routed to the lineage), L4 and L5 as PR 145 (`SHA: 51ea9dd0`; its one observation true and widened: 78 ADR citations in 19 of 141 PDRs against PDR-105, routed to the lineage and to the exchange plan's todo 8), L22 open as PR 146. The register's landings table and the generalisations table carry L2, L4 and L5. `main` is at `SHA: 51ea9dd0`. L12 sized for its own lane (one clean rule, one with no trigger here, one compare lane with host binding); L24 is a two-sided merge.
 - 2026-09-21 16:10Z: L22 landed as PR 146 (`SHA: e84da526`). Row L11 re-instrumented: a three-way merge per file with the lineage at the transplant pin (`e477e62f7e`) as base keeps this estate's frontmatter and host bindings and brings only post-pin text. Measured: rules 39 changed clean and three conflict files; skills and templates 15 changed clean and four conflict files; 54 clean files in slices of eight, seven conflict files (fourteen hunks) for a compare lane. Slice one (eight rules) is on `feat/exchange-l11-rules-slice-a1` at `SHA: ffb399f9`, its second commit curing two host bindings the first method overwrote; its pull request opens when the push lands. A body replacement is never the method for a rule or a skill: no gate sees a re-imported host fact that is neither a link nor a lineage name.
+- 2026-09-21T16:43Z: the onboarding leg of the owner's review fleet read these records cold and found the two entry-point surfaces stale and PRs 147 and 148 unmentioned (true: this seat had appended routing bullets without rewriting the blocks). Cured here: the current-state block rewritten, item 120 added, repo-continuity rewritten, the fleet's plan of record copied into the reports tier.
