@@ -58,6 +58,7 @@ pull request once one exists.
 | L18 | The lineage's hand-kept platform adapters and rules index | graduated into J1 | local | graduated into J1 | `.claude/**`, `.agents/**`, `.cursor/**`, `.codex/**`, `RULES_INDEX.md` |
 | L19 | Landing instruments read the evidence: the door reads a reviewer's completion comment, a configured vendor's zero-findings result, inline-only reviews as a leg input (the lineage's item 1) | bring with L9 | build (their lane; twins with the pr-watch row) | bring | `agent-tools/src/merge-bot/**`, `agent-tools/src/pr-tally/**` |
 | L20 | TypeScript strictness brought to the target set as maintenance, by this estate's slice method (the lineage's item 7) | origin | their-lane-owns-coordinate (inherited there already) | bring | none: the tsconfig files sit outside the machinery universe |
+| L21 | Root entrypoint AGENTS.md: the review-scope clause's code specification (the tests and recorded fixtures a pull request carries are the specification; a case no input exercises is an observation, reported in one place; items on code unchanged after the settlement budget is spent are observations) | bring (per-section merge with this estate's AGENTS.md, which took the scope clause at the transplant) | origin | bring | `AGENTS.md` |
 | L21 | Root manifests, hooks, CI, the CLI topic registry and the index surfaces touched since the pin (the pre-push secret scan over pushed refs, script registrations, the Practice index, the tooling README) | compare (line by line with the jcnet copies) | origin | bring | `package.json`, `agent-tools/package.json`, `agent-tools/README.md`, `turbo.json`, `.husky/**`, `.github/**`, `.agent/practice-index.md`, `agent-tools/src/bin/**`, `agent-tools/tests/agent-tools-cli.unit.test.ts` |
 | L22 | The Workflow tool operating note under the harness integrations | bring | origin | bring | `.agent/claude-harness-integrations/**` |
 | L23 | The dedicated consolidation session prompt | compare (with the consolidate-until-done skill here) | origin | bring | `.agent/prompts/**` |
@@ -72,7 +73,7 @@ pull request once one exists.
 | J1 | Rule and sub-agent declarations, and the generators that render every adapter and the rules index byte for byte | origin | their-lane-owns-coordinate (a lineage lane lands the frontmatter in slices with the generators) | bring at re-transplant (replaces C6) | `agent-tools/src/rule-declarations/**`, `agent-tools/src/subagent-declarations/**`, `.agent/rules/*.md`, `.agent/sub-agents/**`, `RULES_INDEX.md`, `.claude/**`, `.cursor/**`, `.codex/**`, `.agents/**`, `.gemini/**` (jcnet list) |
 | J2 | Tracked-universe validators: cited paths, cited scripts, markdown links, the authored-surfaces walker, machine-local paths, lineage names | origin | bring (their lane, after J1; the two share the tracked-universe read) | bring | `agent-tools/src/validators/**` (jcnet list) |
 | J3 | repo-check: prettier, markdownlint and shellcheck over the tracked tree; the bash floor | origin | already-present-verify-parity (repo-check exists there; the bash floor to compare) | bring | `agent-tools/src/repo-check/**`, `.husky/**` (jcnet list) |
-| J4 | practice-substrate: the instance tier derived from the ignore rules | origin | bring (the lineage's audit blocks on a fresh checkout) | bring | `agent-tools/src/practice-substrate/**` |
+| J4 | practice-substrate: the instance tier derived from the ignore rules | origin | bring into the existing practice-substrate module, their lane (the lineage's module has no ignore-derived probe; its audit blocks on a fresh checkout) | bring | `agent-tools/src/practice-substrate/**` |
 | J5 | Merge bot with the measured-state hold and the signed disposition-line grammar | origin | graduated into L9 (the hold and the grammar are this estate's unique pr-watch modules; the grammar twins into pr-tally todo 2, their lane) | bring | `agent-tools/src/merge-bot/**`, `agent-tools/src/pr-watch/**` |
 | J6 | The smoke runner discovered from `smoke-tests/*.smoke.ts`; the derived postinstall closure | origin | compare (against the lineage's hand-chained smokes and its bootstrap) | bring | `agent-tools/src/smoke/**`, `agent-tools/smoke-tests/**`, `agent-tools/src/bootstrap/**`, `agent-tools/package.json` |
 | J7 | hook-policy path scoping (root-anchored `./`) and the shared unreadable-file describer | origin | compare (the lineage carries the argv matcher and its follow-ups; the path scoping may be one of them) | bring | `agent-tools/src/hook-policy/**`, `agent-tools/src/core/**`, `.agent/hooks/**` |
@@ -84,15 +85,16 @@ pull request once one exists.
 | J13 | Practice tooling text that named one estate's prefix (the adapter generator's usage, the health probe) | origin | bring | bring | `agent-tools/src/skills-adapter-generate/**`, `agent-tools/src/claude/**` (jcnet list) |
 | J14 | Language-pack leaks found this window: the worktree-lane skill's committer step names one estate's identity contract and omits the browser install | cure | cure | cure at re-transplant | `.agent/skills/set-up-worktree-lane/**` |
 | J15 | Everything else in the jcnet list: adaptations made at transplant time (lineage numbers replaced by concepts, product modules excised, names scrubbed) | origin | already-present-verify-parity (the lineage's own text stands there) | bring at re-transplant | `**` (catch-all) |
+| J16 | Root platform entrypoints: CLAUDE.md as a pointer to the adapter model and its regeneration command; GEMINI.md added for the Gemini CLI adapter (the open Agent Skills layout under `.agents/`) | origin | compare (the lineage carries a GEMINI.md; diff the two, take the higher encoding) | compare (castr carries a GEMINI.md; the re-transplant takes this estate's form with the runbook) | `CLAUDE.md`, `GEMINI.md` |
 
 ## Rows from castr (since `c048173929`) and the lineage since castr's pin (`4470266647`)
 
 | Row | Concept | jcnet | lineage | castr | Path globs |
 | --- | --- | --- | --- | --- | --- |
 | C1 | semantic-merge git merge driver: refuse a line merge of memory files and route to the skill | bring | bring (the fold's manual napkin union is the recorded friction) | origin | `agent-tools/src/semantic-merge/**` |
-| C2 | drift validator: count claims and anchors consistent across the substrate | bring | bring | origin | `agent-tools/src/validators/drift/**` |
-| C3 | loop-closure-references validator: hollow enforcement claims, unresolved script references in doctrine | compare (with cited-scripts, J2; bring what it adds) | bring | origin | `agent-tools/src/validators/loop-closure-references/**` |
-| C4 | Coverage-as-signal CI wiring with the fail-loud workspace enumeration guard | bring | bring | origin | `.github/workflows/ci.yml` (castr list) |
+| C2 | drift validator: count claims and anchors consistent across the substrate | bring | bring (no count-claim validator there) | origin | `agent-tools/src/validators/drift/**` |
+| C3 | loop-closure-references validator: hollow enforcement claims, unresolved script references in doctrine | compare (with cited-scripts, J2; bring what it adds) | compare with stale-script-invocations and markdown-links, which cover the named-script and link halves; bring the enforcement-claim half | origin | `agent-tools/src/validators/loop-closure-references/**` |
+| C4 | Coverage-as-signal CI wiring with the fail-loud workspace enumeration guard | bring | bring (coverage is read through Sonar's gate there; the guard's invariant holds as stated) | origin | `.github/workflows/ci.yml` (castr list) |
 | C5 | Statusline: an absent registry reads as truthful solo; the checkout-directory label | compare (verify parity) | compare (verify parity) | origin | `agent-tools/src/claude/statusline-*` (castr list) |
 | C6 | agent-adapter-generate and its cricket-contract integration test | graduated into J1; the contract test taken | graduated into J1 | replace at re-transplant | `agent-tools/src/agent-adapter-generate/**` |
 | C7 | PDR-005 §Default disposition: bring by default; the gradient governs how, never whether | card (a PDR-005 amendment lands in both estates in one window by the birthplace ruling; its own lane) | card (the same) | origin | `.agent/practice-core/decision-records/PDR-005*` (castr) |
@@ -104,6 +106,7 @@ pull request once one exists.
 | C13 | The nine castr surfaces the owner named as leaving: the long practice-lineage, the session-continuation bridge, the plan directories, ADRs in directives, reviewer-suffixed templates, the workflows directory, the duplicate report directory, the cloud setup scripts, memory/collaboration | none | none | drop at re-transplant, each recorded under the ruling of 2026-09-21 | the named paths (castr) |
 | C14 | Distilled insights: genotype and phenotype (rules are host expression, PDRs travel); a fitness number is a signal, never a goal | records, not portable (observations until a second instance; the owner's word of 2026-09-21 that two instances never override innovation work applies to extraction, not to these) | records, not portable | origin | none: memory sits outside the machinery universe |
 | C15 | The lineage's changes since castr's pin that the rows above do not name | graduated into the L rows | origin | bring at re-transplant | `**` (catch-all) |
+| C16 | castr's AGENTS.md: the product line replaced by a pointer to RULES_INDEX.md | already-present-verify-parity (this estate's AGENTS.md points at the adapter model and the rules index) | compare (the lineage's AGENTS.md since castr's pin carries thirty new lines, L21 among them) | origin | `AGENTS.md` |
 
 ## Rows from the owner's word of 2026-09-21
 
@@ -119,4 +122,4 @@ Appended as each row lands: row, estate, pull request, head read.
 
 | Row | Estate | Pull request | Head read |
 | --- | --- | --- | --- |
-| L1 | jcnet | PR 138 (draft, open) | lineage `72cab5667c` |
+| L1 | jcnet | PR 138 (ready, open) | lineage `72cab5667c` |
