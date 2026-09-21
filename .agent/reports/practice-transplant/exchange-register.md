@@ -18,7 +18,10 @@ recorded in the node's §Rulings of 2026-09-21.
 Every path in the four computed lists (`inputs/exchange-delta-*.tsv`, from the pins in
 `inputs/exchange-pins.tsv`) maps to at least one row through the row's path globs; the
 register validator (`pnpm exchange-register:check`) refuses a path with none, and it refuses a
-glob that matches nothing in any list the row covers. A row's group names the lists its globs
+glob that matches nothing in any list the row covers. It also recomputes each row's coverage
+count against `inputs/exchange-coverage-counts.tsv` and refuses any drift, so a specific row
+cannot be deleted and its paths fall silently to a catch-all; an intended change is recorded
+with `pnpm exchange-register:check --write-counts` in the same commit. A row's group names the lists its globs
 cover: L rows cover both lineage lists, J rows the jcnet list, C rows the castr list and the
 lineage-since-castr list; a row marked `(list: <label>[, <label>])` covers only those lists of
 its group, and a label outside its group's lists is refused. A row marked `(catch-all)` covers

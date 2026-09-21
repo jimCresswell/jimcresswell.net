@@ -112,18 +112,23 @@ function compileRows(
   }));
 }
 
-/** Records every glob of the candidate rows that matches the path; true when any did. */
+/**
+ * Records every glob of the candidate rows that matches the path; true when
+ * any did. With `matchesByRow` the row's coverage count grows too; without
+ * it only the glob's hits are recorded, which is how a shadowed catch-all is
+ * kept alive without being credited with coverage it did not supply.
+ */
 function matchPath(
   path: string,
   candidates: readonly CompiledRow[],
-  matchesByRow: Map<string, number>,
+  matchesByRow: Map<string, number> | null,
 ): boolean {
   let covered = false;
   for (const entry of candidates) {
     for (const compiledGlob of entry.globs.filter((g) => g.regexp.test(path))) {
       compiledGlob.hits += 1;
       covered = true;
-      matchesByRow.set(entry.row.id, (matchesByRow.get(entry.row.id) ?? 0) + 1);
+      matchesByRow?.set(entry.row.id, (matchesByRow.get(entry.row.id) ?? 0) + 1);
     }
   }
   return covered;
@@ -139,10 +144,13 @@ function coverPathInGroup(
   matchesByRow: Map<string, number>,
 ): boolean {
   const specific = rows.filter((c) => !c.row.catchAll);
+  const catchAll = rows.filter((c) => c.row.catchAll);
   if (matchPath(path, specific, matchesByRow)) {
+    // Shadowed: the catch-all's globs still register the hit, so a live
+    // catch-all beside a specific sibling is never reported dead.
+    matchPath(path, catchAll, null);
     return true;
   }
-  const catchAll = rows.filter((c) => c.row.catchAll);
   return matchPath(path, catchAll, matchesByRow);
 }
 

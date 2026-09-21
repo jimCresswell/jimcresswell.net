@@ -17,16 +17,27 @@ const GLOB_COLUMN = 'Path globs';
 const LABEL_SHAPE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/u;
 const ESTATES: ReadonlySet<string> = new Set(['oce', 'jcnet', 'castr']);
 
-/** The lists a glob cell names with `(list: a, b)`, or null when it names none. */
-function parseListScope(cell: string): readonly string[] | null {
+/**
+ * The lists a glob cell names with `(list: a, b)`, or null when it names
+ * none. A cell that opens a scope it does not close, or that carries two
+ * scopes, is refused rather than read as unscoped: either typo would widen
+ * the row to every list of its group.
+ */
+function parseListScope(cell: string): Result<readonly string[] | null, string> {
+  const openings = cell.split('(list:').length - 1;
+  if (openings > 1) {
+    return err('carries more than one (list: ...) scope');
+  }
   const match = LIST_SCOPE.exec(cell);
   if (match === null) {
-    return null;
+    return openings === 0 ? ok(null) : err('opens a (list: scope it never closes');
   }
-  return (match[1] ?? '')
-    .split(',')
-    .map((label) => label.trim())
-    .filter((label) => label !== '');
+  return ok(
+    (match[1] ?? '')
+      .split(',')
+      .map((label) => label.trim())
+      .filter((label) => label !== ''),
+  );
 }
 
 function splitTableCells(line: string): readonly string[] {
@@ -64,12 +75,16 @@ function parseRow(cells: readonly string[]): Result<RegisterRow | null, string> 
   const globs = [...last.matchAll(CODE_SPAN)]
     .map((span) => span[1] ?? '')
     .filter((glob) => glob !== '');
+  const lists = parseListScope(last);
+  if (!lists.ok) {
+    return err(`row ${first}: ${lists.error}`);
+  }
   return ok({
     id: first,
     group: match[1] ?? '',
     globs,
     catchAll: last.includes('(catch-all)'),
-    lists: parseListScope(last),
+    lists: lists.value,
   });
 }
 

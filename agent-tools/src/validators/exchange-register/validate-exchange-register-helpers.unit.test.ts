@@ -2,6 +2,11 @@ import { unwrap } from '@engraph/result';
 import { describe, expect, it } from 'vitest';
 
 import {
+  countDrift,
+  parseCoverageCounts,
+  renderCoverageCounts,
+} from './exchange-register-counts.js';
+import {
   collectUnknownScopes,
   computeCoverage,
   globToRegExp,
@@ -68,6 +73,19 @@ describe('parseRegisterRows', () => {
       expect(refused.ok ? '' : refused.error).toContain('C9: an empty (list:) scope');
     },
   );
+
+  it.each([
+    ['`a/**` (list: jcnet-since-transplant', 'opens a (list: scope it never closes'],
+    ['`a/**` (list: a) (list: b)', 'carries more than one (list: ...) scope'],
+  ])('refuses the malformed scope cell %s rather than reading it as unscoped', (cell, message) => {
+    const markdown = [
+      '| Row | Concept | Path globs |',
+      '| --- | --- | --- |',
+      `| J1 | a | ${cell} |`,
+    ].join('\n');
+    const refused = parseRegisterRows(markdown);
+    expect(refused.ok ? '' : refused.error).toContain(`J1: ${message}`);
+  });
 
   it('refuses a row whose group is not L, J, C or O, which would resolve to no list', () => {
     const markdown = [
@@ -260,6 +278,33 @@ describe('computeCoverage', () => {
     expect(report.matchesByRow.get('C15')).toBe(1);
   });
 
+  it('keeps a catch-all alive when every path it matches is taken by a specific sibling', () => {
+    const shadowed = unwrap(
+      parseRegisterRows(
+        [
+          '| Row | Concept | Path globs |',
+          '| --- | --- | --- |',
+          '| J1 | a | `a/**` |',
+          '| J15 | rest | `**` (catch-all) |',
+        ].join('\n'),
+      ),
+    );
+    const report = computeCoverage(
+      shadowed,
+      PINS,
+      new Map([
+        ['oce-since-jcnet-pin', []],
+        ['jcnet-since-transplant', ['a/x']],
+        ['castr-since-transplant', []],
+        ['oce-since-castr-pin', []],
+      ]),
+    );
+    expect(report.uncovered).toStrictEqual([]);
+    expect(report.deadGlobs).toStrictEqual([]);
+    expect(report.matchesByRow.get('J1')).toBe(1);
+    expect(report.matchesByRow.get('J15')).toBe(0);
+  });
+
   it('reports an uncovered path and a dead glob', () => {
     const report = computeCoverage(
       rows,
@@ -275,5 +320,56 @@ describe('computeCoverage', () => {
       { label: 'oce-since-jcnet-pin', path: 'agent-tools/src/q/x.ts' },
     ]);
     expect(report.deadGlobs.map((d) => d.rowId)).toStrictEqual(['L1', 'J1', 'J15', 'C1']);
+  });
+});
+
+describe('coverage counts', () => {
+  const rows = unwrap(
+    parseRegisterRows(
+      [
+        '| Row | Concept | Path globs |',
+        '| --- | --- | --- |',
+        '| J1 | a | `a/**` |',
+        '| J15 | rest | `**` (catch-all) |',
+      ].join('\n'),
+    ),
+  );
+
+  it('renders one line per row in register order and reads it back', () => {
+    const text = renderCoverageCounts(rows, new Map([['J1', 3]]));
+    expect(text).toBe('row\tmatches\nJ1\t3\nJ15\t0\n');
+    expect(unwrap(parseCoverageCounts(text))).toStrictEqual(
+      new Map([
+        ['J1', 3],
+        ['J15', 0],
+      ]),
+    );
+  });
+
+  it.each([
+    ['rows\tmatches\nJ1\t3\n', 'does not start with'],
+    ['row\tmatches\nJ1\tthree\n', 'whole number'],
+    ['row\tmatches\nJ1\t3\textra\n', 'whole number'],
+    ['row\tmatches\nJ1\t3\nJ1\t4\n', 'appears more than once'],
+  ])('refuses the counts file %j: %s', (tsv, message) => {
+    const refused = parseCoverageCounts(tsv);
+    expect(refused.ok ? '' : refused.error).toContain(message);
+  });
+
+  it('names a deleted row, a changed count and a new row as drift, so a specific row cannot vanish into a catch-all', () => {
+    const tracked = new Map([
+      ['J1', 3],
+      ['J15', 0],
+    ]);
+    const recomputed = new Map([
+      ['J15', 3],
+      ['J2', 1],
+    ]);
+    expect(countDrift(tracked, recomputed)).toStrictEqual([
+      { rowId: 'J1', expected: 3, actual: null },
+      { rowId: 'J15', expected: 0, actual: 3 },
+      { rowId: 'J2', expected: null, actual: 1 },
+    ]);
+    expect(countDrift(tracked, new Map(tracked))).toStrictEqual([]);
   });
 });
