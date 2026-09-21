@@ -126,6 +126,7 @@ oce-since-jcnet-pin	M	.github/workflows/upstream-carrier.yml
 oce-since-jcnet-pin	M	.github/workflows/upstream-mirror.yml
 oce-since-jcnet-pin	M	.husky/commit-msg
 oce-since-jcnet-pin	M	.husky/pre-push
+oce-since-jcnet-pin	M	AGENTS.md
 oce-since-jcnet-pin	M	RULES_INDEX.md
 oce-since-jcnet-pin	M	agent-tools/README.md
 oce-since-jcnet-pin	M	agent-tools/package.json

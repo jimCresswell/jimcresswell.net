@@ -410,6 +410,8 @@ jcnet-since-transplant	A	.gemini/agents/test-expert.md
 jcnet-since-transplant	A	.gemini/agents/type-expert.md
 jcnet-since-transplant	M	.github/workflows/ci.yml
 jcnet-since-transplant	M	.husky/pre-commit
+jcnet-since-transplant	M	CLAUDE.md
+jcnet-since-transplant	A	GEMINI.md
 jcnet-since-transplant	M	RULES_INDEX.md
 jcnet-since-transplant	M	agent-tools/README.md
 jcnet-since-transplant	M	agent-tools/docs/agent-identity.md

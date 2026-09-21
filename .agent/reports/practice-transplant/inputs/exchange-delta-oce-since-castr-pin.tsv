@@ -1099,6 +1099,7 @@ oce-since-castr-pin	M	.husky/pre-push
 oce-since-castr-pin	A	.husky/pre-rebase
 oce-since-castr-pin	A	.husky/prepare-commit-msg
 oce-since-castr-pin	A	.husky/refuse-commit-on-main.sh
+oce-since-castr-pin	M	AGENTS.md
 oce-since-castr-pin	M	RULES_INDEX.md
 oce-since-castr-pin	M	agent-tools/README.md
 oce-since-castr-pin	M	agent-tools/docs/agent-identity.md
