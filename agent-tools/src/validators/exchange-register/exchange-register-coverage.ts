@@ -114,9 +114,10 @@ function compileRows(
 
 /**
  * Records every glob of the candidate rows that matches the path; true when
- * any did. With `matchesByRow` the row's coverage count grows too; without
- * it only the glob's hits are recorded, which is how a shadowed catch-all is
- * kept alive without being credited with coverage it did not supply.
+ * any did. With `matchesByRow` the row's coverage count grows too, once per
+ * path however many of its globs match; without it only the glob hits are
+ * recorded, which is how a shadowed catch-all is kept alive without being
+ * credited with coverage it did not supply.
  */
 function matchPath(
   path: string,
@@ -125,8 +126,11 @@ function matchPath(
 ): boolean {
   let covered = false;
   for (const entry of candidates) {
-    for (const compiledGlob of entry.globs.filter((g) => g.regexp.test(path))) {
+    const matching = entry.globs.filter((g) => g.regexp.test(path));
+    for (const compiledGlob of matching) {
       compiledGlob.hits += 1;
+    }
+    if (matching.length > 0) {
       covered = true;
       matchesByRow?.set(entry.row.id, (matchesByRow.get(entry.row.id) ?? 0) + 1);
     }

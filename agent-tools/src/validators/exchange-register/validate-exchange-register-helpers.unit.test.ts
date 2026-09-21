@@ -304,6 +304,30 @@ describe('computeCoverage', () => {
     expect(report.matchesByRow.get('J15')).toBe(0);
   });
 
+  it('counts a path once for a row however many of its globs match it', () => {
+    const twoGlobs = unwrap(
+      parseRegisterRows(
+        [
+          '| Row | Concept | Path globs |',
+          '| --- | --- | --- |',
+          '| J1 | a | `a/**`, `**/x.md` |',
+        ].join('\n'),
+      ),
+    );
+    const report = computeCoverage(
+      twoGlobs,
+      PINS,
+      new Map([
+        ['oce-since-jcnet-pin', []],
+        ['jcnet-since-transplant', ['a/x.md']],
+        ['castr-since-transplant', []],
+        ['oce-since-castr-pin', []],
+      ]),
+    );
+    expect(report.deadGlobs).toStrictEqual([]);
+    expect(report.matchesByRow.get('J1')).toBe(1);
+  });
+
   it('reports an uncovered path and a dead glob', () => {
     const report = computeCoverage(
       rows,
@@ -348,6 +372,9 @@ describe('coverage counts', () => {
   it.each([
     ['rows\tmatches\nJ1\t3\n', 'does not start with'],
     ['row\tmatches\nJ1\tthree\n', 'whole number'],
+    ['row\tmatches\nJ1\t\n', 'whole number'],
+    ['row\tmatches\nJ1\t-1\n', 'whole number'],
+    ['row\tmatches\nJ1\t9007199254740993\n', 'whole number'],
     ['row\tmatches\nJ1\t3\textra\n', 'whole number'],
     ['row\tmatches\nJ1\t3\nJ1\t4\n', 'appears more than once'],
   ])('refuses the counts file %j: %s', (tsv, message) => {

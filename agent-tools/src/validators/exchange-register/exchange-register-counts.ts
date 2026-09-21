@@ -44,9 +44,12 @@ export function parseCoverageCounts(tsv: string): Result<ReadonlyMap<string, num
 function parseCountLine(line: string): { readonly rowId: string; readonly count: number } | null {
   const cells = line.split('\t');
   const [rowId, matches] = cells;
-  const count = Number(matches);
   const shaped = cells.length === 2 && rowId !== undefined && rowId !== '';
-  return shaped && Number.isInteger(count) && count >= 0 ? { rowId, count } : null;
+  if (!shaped || matches === undefined || !/^\d+$/u.test(matches)) {
+    return null;
+  }
+  const count = Number(matches);
+  return Number.isSafeInteger(count) ? { rowId, count } : null;
 }
 
 /** The counts file text for the rows in register order. */

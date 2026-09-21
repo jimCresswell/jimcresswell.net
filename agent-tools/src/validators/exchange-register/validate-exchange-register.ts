@@ -19,6 +19,8 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 
+import { err, ok, type Result } from '@engraph/result';
+
 import { resolveRepoRoot } from '../../core/repo-root.js';
 import { writeErrorLine, writeLine } from '../../core/terminal-output.js';
 import {
@@ -48,20 +50,43 @@ interface Inputs {
   readonly lists: ReadonlyMap<string, readonly string[]>;
 }
 
+/** Reads one input by its repository-relative path; a missing or unreadable file names itself. */
+function readInput(repoRoot: string, relPath: string): Result<string, string> {
+  try {
+    return ok(readFileSync(join(repoRoot, relPath), 'utf8'));
+  } catch (cause) {
+    const code = cause instanceof Error && 'code' in cause ? String(cause.code) : 'unreadable';
+    return err(`cannot read ${relPath} (${code})`);
+  }
+}
+
+/** Reads and parses one input; the first failure, read or parse, is the message. */
+function loadInput<T>(
+  repoRoot: string,
+  relPath: string,
+  parse: (text: string) => Result<T, string>,
+): Result<T, string> {
+  const text = readInput(repoRoot, relPath);
+  if (!text.ok) {
+    return text;
+  }
+  const parsed = parse(text.value);
+  return parsed.ok ? parsed : err(`${relPath}: ${parsed.error}`);
+}
+
 function loadInputs(repoRoot: string): Inputs | string {
-  const rows = parseRegisterRows(readFileSync(join(repoRoot, REGISTER), 'utf8'));
+  const rows = loadInput(repoRoot, REGISTER, parseRegisterRows);
   if (!rows.ok) {
     return rows.error;
   }
-  const pins = parsePinsRows(readFileSync(join(repoRoot, INPUTS, 'exchange-pins.tsv'), 'utf8'));
+  const pins = loadInput(repoRoot, `${INPUTS}/exchange-pins.tsv`, parsePinsRows);
   if (!pins.ok) {
     return pins.error;
   }
   const lists = new Map<string, readonly string[]>();
   for (const pin of pins.value) {
-    const paths = parseDeltaPaths(
-      readFileSync(join(repoRoot, INPUTS, `exchange-delta-${pin.label}.tsv`), 'utf8'),
-      pin.label,
+    const paths = loadInput(repoRoot, `${INPUTS}/exchange-delta-${pin.label}.tsv`, (text) =>
+      parseDeltaPaths(text, pin.label),
     );
     if (!paths.ok) {
       return paths.error;
@@ -96,17 +121,18 @@ function reportFindings(
  * tracked file is unreadable.
  */
 function checkCounts(
-  countsPath: string,
+  repoRoot: string,
   rows: readonly RegisterRow[],
   matchesByRow: ReadonlyMap<string, number>,
   write: boolean,
 ): number {
+  const relPath = `${INPUTS}/${COUNTS}`;
   if (write) {
-    writeFileSync(countsPath, renderCoverageCounts(rows, matchesByRow), 'utf8');
+    writeFileSync(join(repoRoot, relPath), renderCoverageCounts(rows, matchesByRow), 'utf8');
     writeLine(`${NAME}: coverage counts written for ${rows.length} rows.`);
     return 0;
   }
-  const tracked = parseCoverageCounts(readFileSync(countsPath, 'utf8'));
+  const tracked = loadInput(repoRoot, relPath, parseCoverageCounts);
   if (!tracked.ok) {
     writeErrorLine(`${NAME}: ${tracked.error}`);
     return 2;
@@ -167,12 +193,7 @@ function main(): number {
     reportFindings(report);
     return 1;
   }
-  const counts = checkCounts(
-    join(repoRoot, INPUTS, COUNTS),
-    rows,
-    report.matchesByRow,
-    flags.includes('--write-counts'),
-  );
+  const counts = checkCounts(repoRoot, rows, report.matchesByRow, flags.includes('--write-counts'));
   if (counts !== 0) {
     return counts;
   }
