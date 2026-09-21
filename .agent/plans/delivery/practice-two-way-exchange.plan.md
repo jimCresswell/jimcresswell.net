@@ -130,9 +130,11 @@ pinned in this node, so whatever lands on any side before then is in scope.
    (a card, to the owner, once, for every estate). Each row carries a disposition per estate.
    The first pass is one seat with the assumptions-expert lens on the rows that claim
    "already implicit"; no fleet.
-3. **The exchange register**: one file under the transplant's reports carrying every row with
-   its disposition and landing pull request per estate; a validator refuses a path in any
-   delta with no row.
+3. **The exchange register**: one file under the transplant's reports
+   (`.agent/reports/practice-transplant/exchange-register.md`) carrying every row with its
+   disposition per estate, its path globs and its landing pull request per estate; the
+   validator `pnpm exchange-register:check`, a `docs-validators:check` leg, refuses a path in
+   any delta with no row and a glob that matches nothing.
 4. **Land inbound here** as pull requests sized to about eight review-facing claims, two review
    rounds binding by default, every finding left after round two dispositioned in that same
    slot turn, a further round only as the Director's correctness exception (closure record,
@@ -168,9 +170,10 @@ two-round ruling of 2026-09-14 do too.
   covering many paths). Proof: the register validator as a `docs-validators:check` leg, green
   (`repo-safe`).
 - Every register row has a disposition in every estate's column and, where it lands here, a
-  merged pull request in this repository. Proof: the register's rows cite merged pull requests;
-  the validator refuses a landing row for this estate without one (`repo-safe`); landings on
-  the lineage and on castr are proven by the owner-held criteria below.
+  merged pull request in this repository. Proof: the register's landings table cites merged
+  pull requests by number and merge SHA, read against this repository by the exchange seat at
+  each landing (documentary; the validator checks path coverage, never the landings table);
+  landings on the lineage and on castr are proven by the owner-held criteria below.
 - The owner's cards for the conflicting rows are answered and the answers are the dispositions.
   Proof: the plan of record's ruling round, cited from the register (`owner-held`, the owner
   verifies on the cards).
@@ -209,6 +212,12 @@ two-round ruling of 2026-09-14 do too.
 4. Inbound landings, one pull request per eight claims, in the register's order.
 5. The outbound note and material, delivered through the join ceremony.
 6. The close: provenance, audit, Box, and the doctrine amendments as register candidates.
+7. The re-pin (mechanism step 1, before the register closes): the pins carry forty-character
+   commit ids; the driver fails closed on a tracked list with no pin row before replacing any
+   output; the machinery list is derived from the artefact inventory rather than written by
+   hand (the delta lane's seven review rounds each found a true omission of the hand-written
+   list). Two of the three are Copilot's observations on pull request 137 (review 5266093341),
+   routed here below the bar.
 
 ## Plan-body first-principles check
 
