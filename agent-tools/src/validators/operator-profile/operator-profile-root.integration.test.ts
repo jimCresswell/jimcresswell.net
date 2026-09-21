@@ -274,20 +274,20 @@ describe('readDocument — reading without following a symlink', () => {
     });
   });
 
-  it('contains a close that throws synchronously after a failed read, never a throw', async () => {
+  it('contains a close that throws synchronously after a failed read and names both causes', async () => {
     const readRefusal = Object.assign(new Error('EACCES: permission denied'), { code: 'EACCES' });
     const read = await readDocument('index.md', () =>
       Promise.resolve({
         readFile: () => Promise.reject(readRefusal),
         close: () => {
-          throw new Error('close exploded synchronously');
+          throw Object.assign(new Error('EBADF: bad file descriptor'), { code: 'EBADF' });
         },
       }),
     );
     expect(read).toEqual({
       ok: false,
       error:
-        'cannot read the document (EACCES) — a symlink or an unreadable file is never a profile document',
+        'cannot read the document (EACCES) — a symlink or an unreadable file is never a profile document; the close after it failed too (EBADF)',
     });
   });
 
@@ -307,7 +307,7 @@ describe('readDocument — reading without following a symlink', () => {
     expect(read).toEqual({
       ok: false,
       error:
-        'cannot read the document (EACCES) — a symlink or an unreadable file is never a profile document',
+        'cannot read the document (EACCES) — a symlink or an unreadable file is never a profile document; the close after it failed too (EIO)',
     });
     expect(closed).toEqual(['closed']);
   });

@@ -62,8 +62,12 @@ export async function readDocument(
   try {
     text = await opened.readFile('utf8');
   } catch (cause) {
-    await closeQuietly(opened);
-    return err(unreadable(cause));
+    const closeFailure = await closeAfterFailure(opened);
+    return err(
+      closeFailure === null
+        ? unreadable(cause)
+        : `${unreadable(cause)}; the close after it failed too (${closeFailure})`,
+    );
   }
   try {
     await opened.close();
@@ -76,14 +80,16 @@ export async function readDocument(
 }
 
 /**
- * Closes a handle whose read already failed: the refusal is the outcome, so
- * a second failure here, thrown or rejected, adds nothing and is contained.
+ * Closes a handle whose read already failed. The read's refusal is the
+ * outcome; a failure here, thrown or rejected, is contained and returned as
+ * its code so the refusal can carry both causes.
  */
-async function closeQuietly(handle: DocumentHandle): Promise<void> {
+async function closeAfterFailure(handle: DocumentHandle): Promise<string | null> {
   try {
     await handle.close();
-  } catch {
-    // Contained on purpose; see above.
+    return null;
+  } catch (cause) {
+    return errorCode(cause);
   }
 }
 
