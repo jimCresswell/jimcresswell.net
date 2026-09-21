@@ -11,6 +11,8 @@ type Marker = 'list' | 'excepting' | 'shares';
 const MARKERS: readonly Marker[] = ['list', 'excepting', 'shares'];
 /** Anything that reads as one of the markers, however mis-typed: `( list :`, `(Excepting:`. */
 const MARKER_LIKE = /\(\s*(list|excepting|shares)\s*:/giu;
+/** Anything shaped like a marker at all: `(<word>:`; a word that is not one of the three is refused. */
+const MARKER_SHAPED = /\(\s*([a-z-]+)\s*:/giu;
 
 /**
  * The labels a glob cell names with `(<marker>: a, b)`, or null when it has
@@ -52,9 +54,24 @@ function parseMarker(cell: string, name: Marker): Result<readonly string[] | nul
 }
 
 /** The three markers of a cell, or the first refusal. */
+/** The first marker-shaped token whose word is not one of the three markers, or null. */
+function unknownMarker(cell: string): string | null {
+  const known = new Set<string>(MARKERS);
+  for (const match of cell.matchAll(MARKER_SHAPED)) {
+    if (!known.has((match[1] ?? '').toLowerCase())) {
+      return match[0];
+    }
+  }
+  return null;
+}
+
 export function parseMarkers(
   cell: string,
 ): Result<Record<Marker, readonly string[] | null>, string> {
+  const unknown = unknownMarker(cell);
+  if (unknown !== null) {
+    return err(`carries the marker \`${unknown}\`, which is none of (list:, (excepting:, (shares:`);
+  }
   const parsed: Partial<Record<Marker, readonly string[] | null>> = {};
   for (const name of MARKERS) {
     const labels = parseMarker(cell, name);

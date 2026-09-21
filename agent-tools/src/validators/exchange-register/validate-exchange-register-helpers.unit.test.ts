@@ -95,6 +95,8 @@ describe('parseRegisterRows', () => {
     ['`a/**` (shares: J2) (shares: J3)', 'carries more than one (shares: ...) marker'],
     ['`a/**` (excepting: J1)', 'names itself in a marker'],
     ['`a/**` (excepting:)', 'an empty (excepting:) marker names no row'],
+    ['`a/**` (lists: oce-since-castr-pin)', 'carries the marker `(lists:`, which is none of'],
+    ['`a/**` (share: J2)', 'carries the marker `(share:`, which is none of'],
     ['`a/**` (shares: )', 'an empty (shares:) marker names no row'],
   ])('refuses the malformed scope cell %s rather than reading it as unscoped', (cell, message) => {
     const markdown = [
