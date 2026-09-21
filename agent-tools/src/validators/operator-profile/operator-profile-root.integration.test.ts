@@ -271,6 +271,22 @@ describe('readDocument — reading without following a symlink', () => {
     expect(closed).toEqual(['closed']);
   });
 
+  it('names a refused close beside a descriptor refusal', async () => {
+    const refusal = Object.assign(new Error('EIO: i/o error'), { code: 'EIO' });
+    const read = await readDocument('index.md', () =>
+      Promise.resolve({
+        stat: () => Promise.resolve({ isFile: () => false, dev: 1n, ino: 42n }),
+        readFile: () => Promise.resolve('text'),
+        close: () => Promise.reject(refusal),
+      }),
+    );
+    expect(read).toEqual({
+      ok: false,
+      error:
+        'the path is not a regular file — a directory, a fifo or a special file is never a profile document; the close after it failed too (EIO)',
+    });
+  });
+
   it('on a host without O_NOFOLLOW, refuses a path entry that is not the opened file, and reads one that is', async () => {
     const closed: string[] = [];
     const swapped = await readDocument(

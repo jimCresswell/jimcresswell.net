@@ -91,17 +91,11 @@ export async function readDocument(
   try {
     const identity = await verifyRegularFile(absolute, opened, probes);
     if (identity !== null) {
-      await closeAfterFailure(opened);
-      return err(identity);
+      return err(withCloseFailure(identity, await closeAfterFailure(opened)));
     }
     text = await opened.readFile('utf8');
   } catch (cause) {
-    const closeFailure = await closeAfterFailure(opened);
-    return err(
-      closeFailure === null
-        ? unreadable(cause)
-        : `${unreadable(cause)}; the close after it failed too (${closeFailure})`,
-    );
+    return err(withCloseFailure(unreadable(cause), await closeAfterFailure(opened)));
   }
   try {
     await opened.close();
@@ -150,6 +144,13 @@ async function closeAfterFailure(handle: DocumentHandle): Promise<string | null>
   } catch (cause) {
     return errorCode(cause);
   }
+}
+
+/** A refusal, with the close failure that followed it named when there was one. */
+function withCloseFailure(refusal: string, closeFailure: string | null): string {
+  return closeFailure === null
+    ? refusal
+    : `${refusal}; the close after it failed too (${closeFailure})`;
 }
 
 function unreadable(cause: unknown): string {
