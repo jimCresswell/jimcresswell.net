@@ -104,7 +104,8 @@ harvested") carries the reflections whole.
   The testing directive lands BEFORE the three conflicting test rules, with a recovery plan.
 - Owed BY the lineage (Zephyr guards Leeward): a bar verdict on the PDR-117 takeover wording; the
   PDR-105 ADR-citation lane; a byte-identity measure of the Core across the two estates. Owed TO
-  it: the docs-adr leg's six lineage-text items (listed in the harvest file), not yet sent. Its
+  it: nothing; the docs-adr leg's six lineage-text items went on the ARC channel at 17:06:19Z
+  with a native message (no reply read; this seat's watcher is stopped). Its
   #173 is HELD for the owner: do not re-twin from it.
 - Known defects in landed instruments, uncured: the register validator's six silent passes and
   the code-expert leg's further classes (harvest file, "Cure here"); weigh the cure against
