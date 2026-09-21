@@ -142,10 +142,13 @@ overrides:
   # Safe to force from the exact pin: 15.0.2 is a patch release on the line
   # the linter is built against. markdown-it 15 declares linkify-it ^6.0.0;
   # no published linkify-it advisory covers the 6 line. Dev tooling only.
-  # Bounded below 16. Remove when markdownlint-cli2 declares markdown-it
+  # Scoped to the 15 line, as the js-yaml and picomatch entries are scoped to
+  # theirs: an unscoped selector would force a later 14.x consumer across a
+  # major, and that consumer needs its own floor (>=14.3.2) instead. Bounded
+  # below 16. Remove when markdownlint-cli2 declares markdown-it
   # >=15.0.2; before removing ANY floor here, read every vulnerable range of
   # the advisories it names, never only the number in the entry.
-  markdown-it: '>=15.0.2 <16'
+  'markdown-it@15': '>=15.0.2 <16'
   nanoid: '>=3.3.18 <4'
   # Security floor per major line, scoped 2026-09-17: GHSA-c2c7-rcm5-vvqj
   # (high; CVE-2026-33671; ReDoS via extglob quantifiers) and GHSA-3v7f-55p6-f55p
@@ -180,8 +183,8 @@ overrides:
   # published at 2026-09-17): an open floor admits the next major the day it
   # ships and forces it onto every ^4 dependent. vite left rollup for rolldown
   # at 8.0 (this estate took vite 8.3.0 on 2026-09-21), so tsup and its
-  # fix-dts-default-cjs-exports are the remaining consumers. Remove when tsup
-  # declares rollup >=4.59.0.
+  # fix-dts-default-cjs-exports are the remaining consumers, each declaring
+  # its own range. Remove when BOTH declare rollup >=4.59.0.
   rollup: '>=4.59.0 <5'
   # Transitive floor; no advisory names sucrase itself. sucrase 3.35.0 declares
   # glob ^10.3.10, a range whose floor sits inside GHSA-5j98-mcp5-4vw2 (high;
