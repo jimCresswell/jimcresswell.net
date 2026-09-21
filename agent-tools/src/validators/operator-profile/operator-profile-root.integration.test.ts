@@ -5,7 +5,6 @@ import { describe, expect, it } from 'vitest';
 
 import { VALID_INDEX_DOCUMENT } from './operator-profile-fixtures.js';
 import {
-  type DocumentHandle,
   entryKind,
   isGitRepository,
   listEntries,
@@ -13,8 +12,8 @@ import {
   presence,
   type PresenceProbe,
   type ProfileFileSystem,
-  readDocument,
 } from './operator-profile-fs.js';
+import { type DocumentHandle, readDocument } from './operator-profile-read.js';
 import { type ProfileEntry } from './operator-profile-layout.js';
 import { existingProfilePaths, readProfileReport } from './operator-profile-root.js';
 
@@ -272,6 +271,23 @@ describe('readDocument — reading without following a symlink', () => {
       ok: false,
       error:
         'cannot close the document after reading it (EIO) — the text read is discarded, never trusted',
+    });
+  });
+
+  it('contains a close that throws synchronously after a failed read, never a throw', async () => {
+    const readRefusal = Object.assign(new Error('EACCES: permission denied'), { code: 'EACCES' });
+    const read = await readDocument('index.md', () =>
+      Promise.resolve({
+        readFile: () => Promise.reject(readRefusal),
+        close: () => {
+          throw new Error('close exploded synchronously');
+        },
+      }),
+    );
+    expect(read).toEqual({
+      ok: false,
+      error:
+        'cannot read the document (EACCES) — a symlink or an unreadable file is never a profile document',
     });
   });
 
