@@ -14,7 +14,8 @@
 # eslint plugin, result, safe-path, type-helpers, workspace-config; castr carries none, and a
 # path absent in an estate matches nothing there), and the Practice-governance docs trees
 # (docs/engineering, docs/governance, docs/foundation) the transplant guidance classes as
-# Practice machinery outside .agent. The other continuity and memory surfaces (the rest of
+# Practice machinery outside .agent, with each estate's Practice-governance ADR directory as
+# travelling documentation. The other continuity and memory surfaces (the rest of
 # memory, state, plans, reports, experience, research, the Practice Box) are local by doctrine
 # and never enter the delta.
 #
@@ -47,7 +48,9 @@ machinery=(
   eslint.config.ts eslint.config.mjs eslint.config.js prettier.config.ts .prettierrc.json
   .prettierignore .markdownlint-cli2.jsonc .markdownlint.json commitlint.config.mjs .nvmrc
   .gitattributes .gitignore .sonarcloud.properties .editorconfig .gitleaks.toml tsdoc.json
-  docs/engineering docs/governance docs/foundation
+  docs/engineering docs/governance docs/foundation eslint.runtime-only.config.mjs
+  docs/architecture/decision-records docs/architecture/architectural-decisions
+  docs/architectural_decision_records
   tooling packages/core/oak-eslint packages/core/result packages/core/safe-path
   packages/core/type-helpers packages/core/workspace-config
 )
