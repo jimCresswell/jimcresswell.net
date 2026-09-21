@@ -133,7 +133,7 @@ fi
 ```
 
 A present profile that fails the check is fixed at once, never read around:
-the contract is `practice-core/schemas/operator-profile.schema.json`. When a
+the contract is `.agent/practice-core/schemas/operator-profile.schema.json`. When a
 session writes the profile on the operator's word, it runs the push side in
 the same breath (`pnpm profile:sync push --message "<seat>: <fact>"`): the
 check runs first, the commit is the operator's, and no write sits unpushed
