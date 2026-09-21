@@ -50,12 +50,12 @@ Every line answered first-hand, none inferred:
   archive holds only processed material.
 - The transplant is bounded: closure items 3 to 8 finish it, then editorial work.
 
-## Current handoff state (2026-09-21T14:25Z; the exchange window's first day landed, five Dependabot bumps open, the coordination branch folding)
+## Current handoff state (2026-09-21T15:26Z; the exchange window's first day landed, the Dependabot bumps replaced and closed, the coordination branch folding)
 
 Where this block and the routing log disagree, the log's last entry is current; this block is
-rewritten at each Director wrap. Item 118 is the boundary state; item 117 and before are history.
+rewritten at each Director wrap. Item 119 is the boundary state; item 118 is the window's opening; item 117 and before are history.
 
-- `main` is at `SHA: 7655b1b6` (PR 139). Landed today, in order: #137 (`SHA: 4bfc64d4`, the
+- `main` is at `SHA: 1044b358` (PR 142, the action pins, merged 15:18Z). Landed today, in order: #137 (`SHA: 4bfc64d4`, the
   delta instrument and pins), #138 (`SHA: d2e7ee12`, PDR-141 and the operator-profile schema
   from the lineage), #140 (`SHA: 02ec85ab`, the profile cures Codex raised after 138), #139
   (`SHA: 7655b1b6`, the three-estate register and its validator). The primary resides on
@@ -68,11 +68,11 @@ rewritten at each Director wrap. Item 118 is the boundary state; item 117 and be
   follow-ups from the reviews: a `--root` flag for the register validator so its smoke writes
   in a scratch copy, the two fused document readers to consolidate, explicit probes in the
   fake-reader tests.
-- Five Dependabot bumps of 2026-09-19 stand open (#132 to #136); the owner's word at
-  14:25Z: close them and replace with one dependency-upgrade pull request, and one pull
-  request pinning every GitHub Action to its latest stable release by SHA with the version
-  in the comment. Both lanes are cut (`chore/deps-upgrade-2026-09-21`,
-  `chore/actions-latest-stable-sha`).
+- The five Dependabot bumps of 2026-09-19 (#132 to #136) are closed on the owner's word,
+  each naming its replacements: PR 142 (every GitHub Action pinned to its latest stable
+  release by SHA with the version in the comment; merged `SHA: 1044b358` at 15:18Z) and PR
+  143 (every outdated package upgraded in one change; green, Copilot requested at 15:26Z;
+  the site package holds ESLint at 9.39.5 until eslint-plugin-react supports 10).
 - The operator profile at `~/.practice/profile` was synced on the owner's word at 12:34Z (a
   scope file for this line; the index and machine file current; `SHA: fad8e36` pushed under
   the owner's identity).
@@ -81,7 +81,7 @@ rewritten at each Director wrap. Item 118 is the boundary state; item 117 and be
   until it recovers.
 - Owner holds: none. The no-subagents hold of 2026-09-17 ended with the close-out; the owner
   lifted the fleet constraint for all seats on 2026-09-16.
-- Nothing session-scoped is armed at a boundary unless item 118 names it.
+- Nothing session-scoped is armed at a boundary unless item 119 names it.
 
 ## Live board
 
@@ -2002,3 +2002,4 @@ ones the Director would put to the owner had the owner been present.
 
 - 2026-09-21 14:25Z: item 118 written and moved above this log; the current-state block rewritten from the 2026-09-21 boundary (PRs 137 to 140 landed, the fold PR 141 open, the Dependabot replacement lanes cut).
 - 2026-09-21 14:28Z: item 119, the compaction boundary; every process stopped; PR 141 cures, PR 142 open, the deps lane dirty and red with its two roots named.
+- 2026-09-21 15:26Z: after the compaction, the owner's four-leg Cricket suite (four ON-TRACK; tally under `.agent/reports/agentic-engineering/`); PR 142 merged at `SHA: 1044b358`; the deps lane green and open as PR 143; Dependabot #132 to #136 closed naming #142 and #143; the register's landings table carries PR 139, PR 140 and the lineage's #172 (`SHA: 272910f1d`); PR 141 at round two, its three findings cured in this push.
