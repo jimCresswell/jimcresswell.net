@@ -5,10 +5,13 @@
 # ancestor commit and a head commit, with git's status letter (A added, M modified, D deleted).
 # Machinery is the Core, directives, rules, skills, sub-agent templates, hooks, roles, setup,
 # prompts, reference, harness integrations, the Practice index, the rules index, agent-tools,
-# the platform adapter trees, the git hooks, CI, the root manifests and the root platform
-# entrypoints (AGENTS.md, CLAUDE.md, GEMINI.md, skills.md). Continuity and memory
-# surfaces (memory, state, plans, reports, experience, research, the Practice Box) are local by
-# doctrine and never enter the delta.
+# the platform adapter trees, the git hooks, CI, the root manifests, the root platform
+# entrypoints (AGENTS.md, CLAUDE.md, GEMINI.md, skills.md), the Practice-owned root
+# configuration (dependency-cruiser, knip, tsconfig, eslint, prettier, markdownlint, commitlint,
+# nvmrc, gitattributes, gitignore, sonar; a name absent in an estate matches nothing there) and
+# the canonical patterns under .agent/memory/active/patterns. The other continuity and memory
+# surfaces (the rest of memory, state, plans, reports, experience, research, the Practice Box)
+# are local by doctrine and never enter the delta.
 #
 # Usage: exchange-delta.sh <label> <repo-path> <ancestor> <head>
 # Output: label<TAB>status<TAB>path, one row per changed path, sorted by path under the C locale
@@ -32,6 +35,12 @@ machinery=(
   .agent/claude-harness-integrations .agent/practice-index.md .agent/README.md RULES_INDEX.md
   agent-tools .claude .codex .cursor .agents .gemini .husky .github
   package.json pnpm-workspace.yaml turbo.json AGENTS.md CLAUDE.md GEMINI.md skills.md
+  .agent/memory/active/patterns
+  .dependency-cruiser.mjs .dependency-cruiser.cjs knip.config.ts knip.ts
+  tsconfig.base.json tsconfig.json tsconfig.depcruise.json tsconfig.lint.json
+  eslint.config.ts eslint.config.mjs eslint.config.js prettier.config.ts .prettierrc.json
+  .prettierignore .markdownlint-cli2.jsonc .markdownlint.json commitlint.config.mjs .nvmrc
+  .gitattributes .gitignore .sonarcloud.properties .editorconfig
 )
 git -C "$repo" rev-parse --verify --quiet "$ancestor^{commit}" > /dev/null || { echo "ancestor not found in $label: $ancestor" >&2; exit 1; }
 git -C "$repo" rev-parse --verify --quiet "$head^{commit}" > /dev/null || { echo "head not found in $label: $head" >&2; exit 1; }

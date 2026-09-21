@@ -14,6 +14,18 @@ oce-since-jcnet-pin	M	.agent/directives/tdd-as-design.md
 oce-since-jcnet-pin	M	.agent/directives/testing-strategy.md
 oce-since-jcnet-pin	M	.agent/directives/user-collaboration.md
 oce-since-jcnet-pin	M	.agent/directives/validation-strategy.md
+oce-since-jcnet-pin	M	.agent/memory/active/patterns/README.md
+oce-since-jcnet-pin	M	.agent/memory/active/patterns/baseline-transmits-its-stance.md
+oce-since-jcnet-pin	M	.agent/memory/active/patterns/fix-at-source-not-consumer.md
+oce-since-jcnet-pin	M	.agent/memory/active/patterns/frame-free-absolutes-are-unhandled-cases.md
+oce-since-jcnet-pin	M	.agent/memory/active/patterns/harness-shell-and-commit-edge-cases.md
+oce-since-jcnet-pin	A	.agent/memory/active/patterns/memory-surface-four-part-lifecycle.md
+oce-since-jcnet-pin	M	.agent/memory/active/patterns/passive-guidance-loses-to-artefact-gravity.md
+oce-since-jcnet-pin	M	.agent/memory/active/patterns/referent-narrowing.md
+oce-since-jcnet-pin	M	.agent/memory/active/patterns/scope-parsimony-is-not-discipline.md
+oce-since-jcnet-pin	A	.agent/memory/active/patterns/signal-read-as-fact.md
+oce-since-jcnet-pin	M	.agent/memory/active/patterns/test-coverage-review-lens.md
+oce-since-jcnet-pin	M	.agent/memory/active/patterns/zero-match-false-green.md
 oce-since-jcnet-pin	M	.agent/practice-core/CHANGELOG.md
 oce-since-jcnet-pin	M	.agent/practice-core/decision-records/PDR-011-continuity-surfaces-and-surprise-pipeline.md
 oce-since-jcnet-pin	M	.agent/practice-core/decision-records/PDR-026-per-session-landing-commitment.md
@@ -253,5 +265,6 @@ oce-since-jcnet-pin	M	agent-tools/tests/skills-adapter-generate/generator.unit.t
 oce-since-jcnet-pin	A	agent-tools/tests/skills/chatgpt-merged-skill-derivation.integration.test.ts
 oce-since-jcnet-pin	A	agent-tools/tests/skills/chatgpt-plugin-package-invariants.integration.test.ts
 oce-since-jcnet-pin	M	agent-tools/tests/workspace-census.unit.test.ts
+oce-since-jcnet-pin	M	knip.config.ts
 oce-since-jcnet-pin	M	package.json
 oce-since-jcnet-pin	M	turbo.json

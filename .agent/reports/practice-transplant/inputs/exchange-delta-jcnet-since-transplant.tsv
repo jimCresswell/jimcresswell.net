@@ -8,6 +8,13 @@ jcnet-since-transplant	M	.agent/directives/principles.md
 jcnet-since-transplant	M	.agent/directives/testing-strategy.md
 jcnet-since-transplant	M	.agent/hooks/README.md
 jcnet-since-transplant	M	.agent/hooks/policy.json
+jcnet-since-transplant	M	.agent/memory/active/patterns/README.md
+jcnet-since-transplant	A	.agent/memory/active/patterns/baseline-transmits-its-stance.md
+jcnet-since-transplant	A	.agent/memory/active/patterns/cross-session-pattern-emergence.md
+jcnet-since-transplant	A	.agent/memory/active/patterns/fabricated-gate-as-avoidance.md
+jcnet-since-transplant	A	.agent/memory/active/patterns/fluency-is-a-failure-vector.md
+jcnet-since-transplant	A	.agent/memory/active/patterns/legitimate-principle-as-avoidance-cover.md
+jcnet-since-transplant	A	.agent/memory/active/patterns/referent-narrowing.md
 jcnet-since-transplant	M	.agent/practice-core/decision-records/PDR-008-canonical-quality-gate-naming.md
 jcnet-since-transplant	M	.agent/practice-core/decision-records/PDR-082-n2-collaboration-mode.md
 jcnet-since-transplant	M	.agent/practice-core/decision-records/PDR-132-changeset-health-round-budgets-bind-at-authoring-time.md
@@ -385,6 +392,7 @@ jcnet-since-transplant	M	.cursor/rules/use-built-agent-tools-cli.mdc
 jcnet-since-transplant	M	.cursor/rules/use-monitor-for-event-driven-wake.mdc
 jcnet-since-transplant	M	.cursor/rules/use-result-pattern.mdc
 jcnet-since-transplant	M	.cursor/rules/visual-verdicts-require-rendered-proof.mdc
+jcnet-since-transplant	M	.dependency-cruiser.mjs
 jcnet-since-transplant	A	.gemini/agents/accessibility-expert.md
 jcnet-since-transplant	A	.gemini/agents/architecture-expert-barney.md
 jcnet-since-transplant	A	.gemini/agents/architecture-expert-betty.md
@@ -408,8 +416,12 @@ jcnet-since-transplant	A	.gemini/agents/security-expert.md
 jcnet-since-transplant	A	.gemini/agents/subagent-architect.md
 jcnet-since-transplant	A	.gemini/agents/test-expert.md
 jcnet-since-transplant	A	.gemini/agents/type-expert.md
+jcnet-since-transplant	M	.gitattributes
 jcnet-since-transplant	M	.github/workflows/ci.yml
+jcnet-since-transplant	M	.gitignore
 jcnet-since-transplant	M	.husky/pre-commit
+jcnet-since-transplant	M	.markdownlint-cli2.jsonc
+jcnet-since-transplant	M	.prettierignore
 jcnet-since-transplant	M	CLAUDE.md
 jcnet-since-transplant	A	GEMINI.md
 jcnet-since-transplant	M	RULES_INDEX.md
@@ -816,6 +828,9 @@ jcnet-since-transplant	M	agent-tools/tests/test-helpers/depcruise-fixture.ts
 jcnet-since-transplant	M	agent-tools/tests/test-helpers/rules-index-classification-fixtures.ts
 jcnet-since-transplant	M	agent-tools/tests/test-helpers/temp-collaboration-state.ts
 jcnet-since-transplant	M	agent-tools/tsconfig.json
+jcnet-since-transplant	M	knip.config.ts
 jcnet-since-transplant	M	package.json
 jcnet-since-transplant	M	pnpm-workspace.yaml
+jcnet-since-transplant	M	tsconfig.base.json
+jcnet-since-transplant	M	tsconfig.depcruise.json
 jcnet-since-transplant	M	turbo.json
