@@ -31,7 +31,7 @@ for the operational-memory surfaces and authority order within them.
 | **Research** | Default exploratory-synthesis tier and holding bay for un-promoted material | `.agent/research/` (with optional transient `notes/` holding bay) | When investigating a topic, or when authoring fresh material that has not been (and may not be) promoted to reference |
 | **Workflow** | Named rituals and canonical skills | `.agent/skills/`, `.agent/rules/`, `.agent/sub-agents/` | On invocation or trigger |
 | **Platform Adapters** | Thin wrappers pointing back at canonical surfaces | `.cursor/`, `.claude/`, `.gemini/`, `.agents/`, `.codex/` | Platform-specific activation |
-| **Operator-Local Profile** | Machine-local facts about the human at *this* machine: credential bindings, tone of voice, personal operating preferences. Lowest authority; see below | `.agent/operator-local/` (tracked README, untracked `profile.md`) | Session open — grounding, via the shared start-right workflow |
+| **Operator-Local Profile** | Facts about the human operator that no tracked surface may carry — credential bindings by name, tone of voice, personal operating preferences — in three scopes: operator-wide (`index.md`), one repository (`repos/<scope-key>.md`) and one machine (`machines/<machine-key>.md`). Lowest authority; see below | `~/.practice/profile/` (home directory, shared by every Practice repository on the machine; may not exist; [PDR-141](../practice-core/decision-records/PDR-141-operator-profile-in-the-home-directory.md)) | Session open — grounding, via the shared start-right workflow |
 
 ## Authority Order (for same-scope conflicts)
 
@@ -53,7 +53,7 @@ explicitly amends the ADR in the same commit.
 ### The Operator-Local Profile Tier
 
 The operator-local tier sits **below every tracked surface** in this order. It
-is invisible to every other checkout and to CI, so it can never be the
+is invisible to every other machine and to CI, so it can never be the
 authority for anything a second reader must see.
 
 **A local binding or preference cannot override tracked governance.** Where the
@@ -72,9 +72,12 @@ tracked rule owns the portable mapping and points here for the binding
 the binding and nothing else.
 
 A missing profile is the expected condition, not a defect: readers proceed on
-tracked defaults and say nothing. The full contract, including what must never
-be stored there, is
-[`.agent/operator-local/README.md`](../operator-local/README.md).
+tracked defaults and say nothing. The tier lives in the home directory,
+`~/.practice/profile/`, shared by every Practice repository on the machine
+(PDR-141, taken from the lineage 2026-09-21); the full contract, including what
+must never be stored there, is
+[PDR-141](../practice-core/decision-records/PDR-141-operator-profile-in-the-home-directory.md)
+and the Core schema it names.
 
 ## Routing Rule
 
