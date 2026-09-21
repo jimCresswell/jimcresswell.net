@@ -11,7 +11,6 @@ import { err, ok, type Result } from '@engraph/result';
 import { type RegisterRow } from './exchange-register-types.js';
 
 const ROW_ID = /^([LJCO])(\d+)$/u;
-const ANY_ROW_ID = /^([A-Z])(\d+)$/u;
 const CODE_SPAN = /`([^`]+)`/gu;
 const LIST_SCOPE = /\(list:\s*([^)]*)\)/u;
 /** Anything that reads as a list-scope marker, however mis-typed: `( list :`, `(List:`, `(list :`. */
@@ -73,19 +72,15 @@ function isSeparatorRow(cells: readonly string[]): boolean {
 
 /**
  * A row id in the first cell and the last cell's globs make a register row.
- * A first cell shaped like a row id with a group outside L, J, C and O is
- * refused: it would resolve to no lists and pass unchecked.
+ * Every body line of a glob table is a concept row, so a first cell that is
+ * not a row id (`l1`, `LL1`, `Lx`, `X1`) is refused rather than skipped: a
+ * skipped row's paths would fall to a sibling catch-all and pass unchecked.
  */
-function parseRow(cells: readonly string[]): Result<RegisterRow | null, string> {
-  const [first] = cells;
-  if (first === undefined) {
-    return ok(null);
-  }
+function parseRow(cells: readonly string[]): Result<RegisterRow, string> {
+  const [first = ''] = cells;
   const match = ROW_ID.exec(first);
   if (match === null) {
-    return ANY_ROW_ID.test(first)
-      ? err(`row ${first}: the group is not one of L, J, C, O`)
-      : ok(null);
+    return err(`row cell \`${first}\`: not a row id (one of L, J, C, O, then digits)`);
   }
   const last = cells.at(-1) ?? '';
   const globs = [...last.matchAll(CODE_SPAN)]
@@ -190,21 +185,15 @@ function headerLine(header: readonly string[]): Result<RegisterRow | null, strin
 }
 
 /** A data line inside a glob table: every cell present and non-empty, then the row itself. */
-function acceptLine(
-  cells: readonly string[],
-  seen: Set<string>,
-): Result<RegisterRow | null, string> {
+function acceptLine(cells: readonly string[], seen: Set<string>): Result<RegisterRow, string> {
   const refusal = cellsRefusal(cells);
   return refusal === null ? acceptRow(cells, seen) : err(refusal);
 }
 
 /** Parses one glob-table line and admits its row: null for a non-row line, an error for a refused one. */
-function acceptRow(
-  cells: readonly string[],
-  seen: Set<string>,
-): Result<RegisterRow | null, string> {
+function acceptRow(cells: readonly string[], seen: Set<string>): Result<RegisterRow, string> {
   const parsed = parseRow(cells);
-  if (!parsed.ok || parsed.value === null) {
+  if (!parsed.ok) {
     return parsed;
   }
   const refusal = rowRefusal(parsed.value, seen);

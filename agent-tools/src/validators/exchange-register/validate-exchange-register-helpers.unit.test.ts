@@ -114,15 +114,18 @@ describe('parseRegisterRows', () => {
     },
   );
 
-  it('refuses a row whose group is not L, J, C or O, which would resolve to no list', () => {
-    const markdown = [
-      '| Row | Concept | jcnet | lineage | castr | Path globs |',
-      '| --- | --- | --- | --- | --- | --- |',
-      '| X1 | a | bring | origin | bring | `a/**` |',
-    ].join('\n');
-    const refused = parseRegisterRows(markdown);
-    expect(refused.ok ? '' : refused.error).toContain('X1: the group is not one of L, J, C, O');
-  });
+  it.each(['X1', 'l1', 'LL1', 'Lx', 'rest'])(
+    'refuses the first cell %s in a glob table body, since a skipped row would fall to a catch-all',
+    (cell) => {
+      const markdown = [
+        '| Row | Concept | jcnet | lineage | castr | Path globs |',
+        '| --- | --- | --- | --- | --- | --- |',
+        `| ${cell} | a | bring | origin | bring | \`a/**\` |`,
+      ].join('\n');
+      const refused = parseRegisterRows(markdown);
+      expect(refused.ok ? '' : refused.error).toContain(`row cell \`${cell}\`: not a row id`);
+    },
+  );
 
   it('reads a (list: ...) scope as the lists the row is confined to', () => {
     const markdown = [
