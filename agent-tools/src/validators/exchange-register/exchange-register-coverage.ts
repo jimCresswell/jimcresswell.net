@@ -121,9 +121,15 @@ function compileRows(
   return compiled;
 }
 
-/** True when a row the entry excepts matches the path, so the entry yields it. */
-function excepted(entry: CompiledRow, path: string): boolean {
-  return entry.excepting.some((other) => other.globs.some((g) => g.regexp.test(path)));
+/**
+ * True when a row the entry excepts both covers the list and matches the
+ * path, so the entry yields it; an excepted row scoped away from this list
+ * cannot take the path and the entry keeps it.
+ */
+function excepted(entry: CompiledRow, label: string, path: string): boolean {
+  return entry.excepting.some(
+    (other) => other.lists.has(label) && other.globs.some((g) => g.regexp.test(path)),
+  );
 }
 
 /** The coverage credited to rows: a count and the list entries (`label<TAB>path`) per row. */
@@ -151,7 +157,7 @@ function matchPath(
     for (const compiledGlob of matching) {
       compiledGlob.hits += 1;
     }
-    if (matching.length > 0 && !excepted(entry, path)) {
+    if (matching.length > 0 && (credit === null || !excepted(entry, credit.label, path))) {
       covered = true;
       creditRow(credit, entry.row.id, path);
     }

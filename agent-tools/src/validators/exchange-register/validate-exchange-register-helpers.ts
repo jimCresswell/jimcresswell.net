@@ -8,15 +8,11 @@
 
 import { err, ok, type Result } from '@engraph/result';
 
+import { parseMarkers } from './exchange-register-markers.js';
 import { type RegisterRow } from './exchange-register-types.js';
 
 const ROW_ID = /^([LJCO])(\d+)$/u;
 const CODE_SPAN = /`([^`]+)`/gu;
-/** The three markers a glob cell may carry, each exactly `(<word>: a, b)`. */
-type Marker = 'list' | 'excepting' | 'shares';
-const MARKERS: readonly Marker[] = ['list', 'excepting', 'shares'];
-/** Anything that reads as one of the markers, however mis-typed: `( list :`, `(Excepting:`. */
-const MARKER_LIKE = /\(\s*(list|excepting|shares)\s*:/giu;
 const GLOB_COLUMN = 'Path globs';
 /** A concept table's header, exactly: the row, its concept, one disposition per estate, the globs. */
 const CONCEPT_HEADER: readonly string[] = [
@@ -27,61 +23,14 @@ const CONCEPT_HEADER: readonly string[] = [
   'castr',
   GLOB_COLUMN,
 ];
+/** The register's other two tables whose first column is `Row`: the owner-word rows and the landings. */
+const OTHER_ROW_TABLES: readonly (readonly string[])[] = [
+  ['Row', 'Concept', 'jcnet', 'lineage', 'castr', 'Source'],
+  ['Row', 'Estate', 'Pull request', 'Head read'],
+];
 
-/**
- * The labels a glob cell names with `(<marker>: a, b)`, or null when it has
- * no such marker. A cell that opens a marker it does not close, carries the
- * marker twice, spells it any way but exactly `(<marker>:`, or names an
- * empty label (`(list: a,)`) is refused rather than read loosely: each typo
- * would widen or shift what the row covers.
- */
-function parseMarker(cell: string, name: Marker): Result<readonly string[] | null, string> {
-  const found = [...cell.matchAll(MARKER_LIKE)].filter((m) => (m[1] ?? '').toLowerCase() === name);
-  if (found.length > 1) {
-    return err(`carries more than one (${name}: ...) marker`);
-  }
-  const [marker] = found;
-  if (marker === undefined) {
-    return ok(null);
-  }
-  if (marker[0] !== `(${name}:`) {
-    return err(
-      `carries the marker \`${marker[0]}\`; the grammar is exactly \`(${name}: <label>[, <label>])\``,
-    );
-  }
-  const close = cell.indexOf(')', marker.index);
-  if (close === -1) {
-    return err(`opens a (${name}: marker it never closes`);
-  }
-  const labels = cell
-    .slice(marker.index + marker[0].length, close)
-    .split(',')
-    .map((label) => label.trim());
-  if (labels.length === 0 || labels.every((label) => label === '')) {
-    return ok([]);
-  }
-  return labels.some((label) => label === '')
-    ? err(
-        `names an empty label in (${name}: ...); the grammar is \`(${name}: <label>[, <label>])\``,
-      )
-    : ok(labels);
-}
-
-/** The three markers of a cell, or the first refusal. */
-function parseMarkers(cell: string): Result<Record<Marker, readonly string[] | null>, string> {
-  const parsed: Partial<Record<Marker, readonly string[] | null>> = {};
-  for (const name of MARKERS) {
-    const labels = parseMarker(cell, name);
-    if (!labels.ok) {
-      return labels;
-    }
-    parsed[name] = labels.value;
-  }
-  return ok({
-    list: parsed.list ?? null,
-    excepting: parsed.excepting ?? null,
-    shares: parsed.shares ?? null,
-  });
+function sameHeader(a: readonly string[], b: readonly string[]): boolean {
+  return a.length === b.length && a.every((cell, index) => cell === b[index]);
 }
 
 function splitTableCells(line: string): readonly string[] {
@@ -155,19 +104,25 @@ function nextTableState(state: TableState, cells: readonly string[]): TableState
     return { previousCells: [], inGlobTable: false };
   }
   if (isSeparatorRow(cells)) {
-    return { previousCells: cells, inGlobTable: state.previousCells.at(-1) === GLOB_COLUMN };
+    return { previousCells: cells, inGlobTable: sameHeader(state.previousCells, CONCEPT_HEADER) };
   }
   return { previousCells: cells, inGlobTable: state.inGlobTable };
 }
 
-/** A glob table's header is the concept header exactly; anything else is refused. */
+/**
+ * Every table whose first column is `Row` is one of the register's three
+ * tables exactly (concepts, owner-word rows, landings); a header that is
+ * none of them, such as a mistyped `Path globs`, is refused rather than
+ * skipped, since a skipped table's rows would vanish into catch-all cover.
+ */
 function headerRefusal(header: readonly string[]): string | null {
-  const same =
-    header.length === CONCEPT_HEADER.length &&
-    header.every((cell, index) => cell === CONCEPT_HEADER[index]);
-  return same
+  if (header[0] !== 'Row') {
+    return null;
+  }
+  const known = [CONCEPT_HEADER, ...OTHER_ROW_TABLES].some((other) => sameHeader(header, other));
+  return known
     ? null
-    : `a glob table's header is \`| ${CONCEPT_HEADER.join(' | ')} |\`, not \`| ${header.join(' | ')} |\``;
+    : `the table headed \`| ${header.join(' | ')} |\` is none of the register's three: a concept table's header is \`| ${CONCEPT_HEADER.join(' | ')} |\``;
 }
 
 /** A concept row has one non-empty cell per header column: no disposition may be blank. */
@@ -198,10 +153,17 @@ export function parseRegisterRows(markdown: string): Result<readonly RegisterRow
     const cells = splitTableCells(line);
     const header = isSeparatorRow(cells) ? state.previousCells : null;
     state = nextTableState(state, cells);
+    if (header !== null) {
+      const refusal = headerRefusal(header);
+      if (refusal !== null) {
+        return err(refusal);
+      }
+      continue;
+    }
     if (!state.inGlobTable) {
       continue;
     }
-    const row = header === null ? acceptLine(cells, seen) : headerLine(header);
+    const row = acceptLine(cells, seen);
     if (!row.ok) {
       return row;
     }
@@ -210,12 +172,6 @@ export function parseRegisterRows(markdown: string): Result<readonly RegisterRow
     }
   }
   return ok(rows);
-}
-
-/** A separator line inside a glob table: its header must be the concept header; it yields no row. */
-function headerLine(header: readonly string[]): Result<RegisterRow | null, string> {
-  const refusal = headerRefusal(header);
-  return refusal === null ? ok(null) : err(refusal);
 }
 
 /** A data line inside a glob table: every cell present and non-empty, then the row itself. */

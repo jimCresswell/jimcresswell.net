@@ -94,6 +94,8 @@ describe('parseRegisterRows', () => {
     ['`a/**` (excepting: J2', 'opens a (excepting: marker it never closes'],
     ['`a/**` (shares: J2) (shares: J3)', 'carries more than one (shares: ...) marker'],
     ['`a/**` (excepting: J1)', 'names itself in a marker'],
+    ['`a/**` (excepting:)', 'an empty (excepting:) marker names no row'],
+    ['`a/**` (shares: )', 'an empty (shares:) marker names no row'],
   ])('refuses the malformed scope cell %s rather than reading it as unscoped', (cell, message) => {
     const markdown = [
       '| Row | Concept | jcnet | lineage | castr | Path globs |',
@@ -109,7 +111,13 @@ describe('parseRegisterRows', () => {
       '| Row | Concept | Path globs |',
       '| --- | --- | --- |',
       '| J1 | a | `a/**` |',
-      "a glob table's header is",
+      "is none of the register's three",
+    ],
+    [
+      '| Row | Concept | jcnet | lineage | castr | Path glob |',
+      '| --- | --- | --- | --- | --- | --- |',
+      '| J1 | a | bring | origin | bring | `a/**` |',
+      "is none of the register's three",
     ],
     [
       '| Row | Concept | jcnet | lineage | castr | Path globs |',
@@ -266,6 +274,48 @@ describe('excepting and shares', () => {
     expect(collectBadReferences(rows)).toStrictEqual([
       { rowId: 'J3', marker: 'excepting', target: 'L1' },
     ]);
+  });
+
+  it('applies an exception only on lists the excepted row covers', () => {
+    const rows = unwrap(
+      parseRegisterRows(
+        table(
+          '| L1 | a | bring | origin | bring | `a/**` (excepting: L2) |',
+          '| L2 | b | bring | origin | bring | `a/x` (list: oce-since-castr-pin) |',
+        ),
+      ),
+    );
+    const report = computeCoverage(
+      rows,
+      PINS,
+      new Map([
+        ['oce-since-jcnet-pin', ['a/x']],
+        ['jcnet-since-transplant', []],
+        ['castr-since-transplant', []],
+        ['oce-since-castr-pin', ['a/x']],
+      ]),
+    );
+    expect(report.uncovered).toStrictEqual([]);
+    expect(report.contested).toStrictEqual([]);
+    expect(report.entriesByRow.get('L1')).toStrictEqual(['oce-since-jcnet-pin\ta/x']);
+    expect(report.entriesByRow.get('L2')).toStrictEqual(['oce-since-castr-pin\ta/x']);
+  });
+
+  it('reads the owner-word and landings tables past without rows, since their headers are known', () => {
+    const rows = unwrap(
+      parseRegisterRows(
+        [
+          '| Row | Concept | jcnet | lineage | castr | Source |',
+          '| --- | --- | --- | --- | --- | --- |',
+          '| O1 | word | same | same | same | the aside |',
+          '',
+          '| Row | Estate | Pull request | Head read |',
+          '| --- | --- | --- | --- |',
+          '| L1 | jcnet | 138 | lineage `x` |',
+        ].join('\n'),
+      ),
+    );
+    expect(rows).toStrictEqual([]);
   });
 
   it('reports a glob on a row that covers no list (an O row) as dead', () => {
