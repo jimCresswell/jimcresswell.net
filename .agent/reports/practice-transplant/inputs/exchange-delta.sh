@@ -6,12 +6,14 @@
 # Machinery is the Core, directives, rules, skills, sub-agent templates, hooks, roles, setup,
 # prompts, reference, harness integrations, the Practice index, the rules index, agent-tools,
 # the platform adapter trees, the git hooks, CI, the root manifests and the root platform
-# entrypoints (AGENTS.md, CLAUDE.md, GEMINI.md). Continuity and memory
+# entrypoints (AGENTS.md, CLAUDE.md, GEMINI.md, skills.md). Continuity and memory
 # surfaces (memory, state, plans, reports, experience, research, the Practice Box) are local by
 # doctrine and never enter the delta.
 #
 # Usage: exchange-delta.sh <label> <repo-path> <ancestor> <head>
-# Output: label<TAB>status<TAB>path, one row per changed path, sorted by path.
+# Output: label<TAB>status<TAB>path, one row per changed path, sorted by path under the C locale
+# so the tracked lists are byte-stable across machines. The ancestor must be reachable from the
+# head, or the diff would compare unrelated trees rather than a since-ancestor interval.
 # Recompute for all estates with `bash .agent/reports/practice-transplant/inputs/exchange-deltas.sh`.
 # The bash floor: the shellcheck gate holds it once and requires this guard first.
 if ((BASH_VERSINFO[0] < 5 || (BASH_VERSINFO[0] == 5 && BASH_VERSINFO[1] < 2))); then
@@ -29,11 +31,12 @@ machinery=(
   .agent/hooks .agent/roles .agent/setup .agent/prompts .agent/reference
   .agent/claude-harness-integrations .agent/practice-index.md .agent/README.md RULES_INDEX.md
   agent-tools .claude .codex .cursor .agents .gemini .husky .github
-  package.json pnpm-workspace.yaml turbo.json AGENTS.md CLAUDE.md GEMINI.md
+  package.json pnpm-workspace.yaml turbo.json AGENTS.md CLAUDE.md GEMINI.md skills.md
 )
 git -C "$repo" rev-parse --verify --quiet "$ancestor^{commit}" > /dev/null || { echo "ancestor not found in $label: $ancestor" >&2; exit 1; }
 git -C "$repo" rev-parse --verify --quiet "$head^{commit}" > /dev/null || { echo "head not found in $label: $head" >&2; exit 1; }
+git -C "$repo" merge-base --is-ancestor "$ancestor" "$head" || { echo "ancestor is not reachable from head in $label: $ancestor..$head is not a since-ancestor interval" >&2; exit 1; }
 git -C "$repo" diff --name-status --no-renames "$ancestor" "$head" -- "${machinery[@]}" \
   ':(exclude).agent/practice-core/incoming' ':(exclude)agent-tools/dist' \
-  | awk -v label="$label" 'BEGIN { OFS = "\t" } { print label, $1, $2 }' \
-  | sort -t "$(printf '\t')" -k3,3
+  | awk -F '\t' -v label="$label" 'BEGIN { OFS = "\t" } { print label, $1, $2 }' \
+  | LC_ALL=C sort -t "$(printf '\t')" -k3,3

@@ -2501,4 +2501,5 @@ oce-since-castr-pin	M	agent-tools/vitest.config.ts
 oce-since-castr-pin	M	agent-tools/vitest.e2e.config.ts
 oce-since-castr-pin	M	package.json
 oce-since-castr-pin	M	pnpm-workspace.yaml
+oce-since-castr-pin	A	skills.md
 oce-since-castr-pin	M	turbo.json
