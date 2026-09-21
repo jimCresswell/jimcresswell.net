@@ -88,9 +88,11 @@ ratification, with the Box empty and the provenance chains naming each other's h
 
 ## Goal
 
-Both Practice instances carry the higher form of every concept either one defined since the
-ancestor, each landed through its own estate's gates, with a recomputable record of what moved
-where and why, and a repeatable procedure so the next exchange is a session, not a project.
+Every Practice instance (this estate, the lineage and castr) carries the higher form of every
+concept any one of them defined since the ancestor, each landed through its own estate's gates
+(castr's through the re-transplant the owner sequenced), with a recomputable record of what
+moved where and why, and a repeatable procedure so the next exchange is a session, not a
+project.
 
 ## User groups and value
 
@@ -141,12 +143,16 @@ never pinned in this node, so whatever lands on either side before then is in sc
 5. **Deliver outbound** into the lineage's Practice Box as a pin-free note plus the material,
    with the paired delivery event on that estate's comms stream, through the join ceremony;
    the lineage's own seats land it under the lineage's gates. This estate never writes into the
-   lineage's tree.
-6. **Close**: both provenance chains carry the exchange's entries (repo, date, purpose) and
-   the heads read live in the delivery events and the register; both Boxes are empty; the
-   exchange register is the record; the lineage doctrine's §Integration Flow and the
-   collaboration protocol are amended where this exchange found them thin, as candidates on the
-   register first.
+   lineage's tree. castr's landings ride its re-transplant: the register's castr column names
+   the concepts the re-transplant carries (the enabling subset first, then the rest), and the
+   re-transplant's runbook cites the register row for each; this estate writes into castr's
+   tree only from a session opened there under the owner's sequence (ruling 5).
+6. **Close**: all three provenance chains carry the exchange's entries (repo, date, purpose)
+   and the heads read live in the delivery events and the register; every Box is empty; the
+   exchange register is the record, its castr column showing each row landed by the
+   re-transplant, dropped under the ruling of 2026-09-21, or held local; the lineage doctrine's
+   §Integration Flow and the collaboration protocol are amended where this exchange found them
+   thin, as candidates on the register first.
 
 Known overlap for step 2, recorded now so the window starts with it: this estate's
 suppressed-findings hold (closure item 5a-vi) and the lineage's pull-request tally family cover
@@ -160,10 +166,10 @@ two-round ruling of 2026-09-14 do too.
   concept row (a path-to-row mapping, one row
   covering many paths). Proof: the register validator as a `docs-validators:check` leg, green
   (`repo-safe`).
-- Every register row has a disposition and, where it lands here, a merged pull request in this
-  repository. Proof: the register's rows cite merged pull requests; the validator refuses a
-  landing row for this estate without one (`repo-safe`); landings on the lineage are proven by
-  the owner-held criterion below.
+- Every register row has a disposition in every estate's column and, where it lands here, a
+  merged pull request in this repository. Proof: the register's rows cite merged pull requests;
+  the validator refuses a landing row for this estate without one (`repo-safe`); landings on
+  the lineage and on castr are proven by the owner-held criteria below.
 - The owner's cards for the conflicting rows are answered and the answers are the dispositions.
   Proof: the plan of record's ruling round, cited from the register (`owner-held`, the owner
   verifies on the cards).
@@ -176,6 +182,13 @@ two-round ruling of 2026-09-14 do too.
   entry. Proof: the delivery event id, the lineage's landing pull requests, its provenance
   entry and its empty Box, recorded in the register; the owner verifies on the lineage estate
   (`owner-held`).
+- castr carries every concept its register column marks as landing, through the re-transplant
+  the owner sequenced (castr's open pull requests closed, the enabling subset of at most six
+  instruments landed, the debt work finished, then the re-transplant), and none of the nine
+  surfaces the owner named as leaving; castr's provenance chain carries the exchange entry and
+  its PDRs are renumbered above 141. Proof: the re-transplant's runbook run and its loss scan
+  on castr, the register's castr landing rows citing castr's merged pull requests, castr's
+  `provenance.yml`; the owner verifies on the castr estate (`owner-held`).
 
 ## Todos
 
