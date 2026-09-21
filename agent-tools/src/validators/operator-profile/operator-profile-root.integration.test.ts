@@ -13,7 +13,7 @@ import {
   type PresenceProbe,
   type ProfileFileSystem,
 } from './operator-profile-fs.js';
-import { type DocumentHandle, readDocument } from './operator-profile-read.js';
+import { type DocumentHandle, type EntryIdentity, readDocument } from './operator-profile-read.js';
 import { type ProfileEntry } from './operator-profile-layout.js';
 import { existingProfilePaths, readProfileReport } from './operator-profile-root.js';
 
@@ -244,12 +244,54 @@ describe('readProfileReport — entries that are not regular files', () => {
 });
 
 describe('readDocument — reading without following a symlink', () => {
-  const handleOf = (text: string, closed: string[]): DocumentHandle => ({
+  const regular: EntryIdentity = { isFile: () => true, dev: 1n, ino: 42n };
+  const handleOf = (
+    text: string,
+    closed: string[],
+    identity: EntryIdentity = regular,
+  ): DocumentHandle => ({
+    stat: () => Promise.resolve(identity),
     readFile: () => Promise.resolve(text),
     close: () => {
       closed.push('closed');
       return Promise.resolve();
     },
+  });
+
+  it('refuses a descriptor that is not a regular file (a fifo, a directory) and closes it', async () => {
+    const closed: string[] = [];
+    const read = await readDocument('index.md', () =>
+      Promise.resolve(handleOf('text', closed, { isFile: () => false, dev: 1n, ino: 42n })),
+    );
+    expect(read).toEqual({
+      ok: false,
+      error:
+        'the path is not a regular file — a directory, a fifo or a special file is never a profile document',
+    });
+    expect(closed).toEqual(['closed']);
+  });
+
+  it('on a host without O_NOFOLLOW, refuses a path entry that is not the opened file, and reads one that is', async () => {
+    const closed: string[] = [];
+    const swapped = await readDocument(
+      'index.md',
+      () => Promise.resolve(handleOf('text', closed)),
+      {
+        noFollowAtOpen: false,
+        entryStat: () => Promise.resolve({ isFile: () => true, dev: 1n, ino: 7n }),
+      },
+    );
+    expect(swapped).toEqual({
+      ok: false,
+      error:
+        'the path entry is not the file that was opened — a symlink or a swapped entry is never read through',
+    });
+    const same = await readDocument('index.md', () => Promise.resolve(handleOf('text', closed)), {
+      noFollowAtOpen: false,
+      entryStat: () => Promise.resolve(regular),
+    });
+    expect(unwrap(same)).toBe('text');
+    expect(closed).toEqual(['closed', 'closed']);
   });
 
   it('reads the text through the opened handle and closes it', async () => {
@@ -263,6 +305,7 @@ describe('readDocument — reading without following a symlink', () => {
     const refusal = Object.assign(new Error('EIO: i/o error'), { code: 'EIO' });
     const read = await readDocument('index.md', () =>
       Promise.resolve({
+        stat: () => Promise.resolve(regular),
         readFile: () => Promise.resolve('text'),
         close: () => Promise.reject(refusal),
       }),
@@ -278,6 +321,7 @@ describe('readDocument — reading without following a symlink', () => {
     const readRefusal = Object.assign(new Error('EACCES: permission denied'), { code: 'EACCES' });
     const read = await readDocument('index.md', () =>
       Promise.resolve({
+        stat: () => Promise.resolve(regular),
         readFile: () => Promise.reject(readRefusal),
         close: () => {
           throw Object.assign(new Error('EBADF: bad file descriptor'), { code: 'EBADF' });
@@ -297,6 +341,7 @@ describe('readDocument — reading without following a symlink', () => {
     const closed: string[] = [];
     const read = await readDocument('index.md', () =>
       Promise.resolve({
+        stat: () => Promise.resolve(regular),
         readFile: () => Promise.reject(readRefusal),
         close: () => {
           closed.push('closed');
