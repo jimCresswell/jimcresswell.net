@@ -57,6 +57,42 @@ ones that change this node, verbatim where quoted:
    satisfies the register validator with a row reading "records, not portable" or "graduated
    into <row>".
 
+Later on 2026-09-21 the owner ruled again, in chat and by card (same session); verbatim where
+quoted. Two of these supersede rulings above, and say so.
+
+9. The goal, in the owner's opening words of 06:20Z: "We need to bring each Practice instance up
+   to the highest standards and best capabilities of each", and of castr, "some of which needs
+   replacing, and some bad ideas need removing". By card, the reading is confirmed: each estate
+   gets what the other holds, every estate takes the higher of two, and the bad is removed
+   everywhere, the owner's own rulings only by the owner's word.
+10. SUPERSEDES ruling 4: "you and Zephyr are equal n=2 partners and collaborators, drop the
+    Director status". The two exchange seats hold one shared definition and one shared plan
+    (draft: `.agent/reports/practice-transplant/best-of-each-practice-draft-v5.md`, unratified).
+11. The reach of a ruling about the Practice given in one estate: "Everywhere for now, and later
+    we will explore some kind of centralisation of the Practice, the distributed model creates
+    too much overhead".
+12. Sequence: "Full alignment first, we are defining excellent, this is absolutely the right
+    choice, nothing is delayed or avoided because of the future extraction". On the two rulings
+    that are expensive in this estate (the absolute no-IO test invariant; the commit as the full
+    local gate), asked again because an earlier click collided with those words: "All six here
+    now".
+13. SUPERSEDES ruling 5: "I think first we move Castr into OCE, then we extract an installable
+    package, and later we review if we need to break OCE into multiple repos". On castr's seat
+    closing thirteen pull requests unmerged: "I directed it, it was a point where sunk cost was
+    causing further loss, it was the economic choice. Castr remains very important, and
+    development will continue, but identifying the value in the older work was far more expensive
+    than fresh development. Please feel free to open channels to Poppy" (castr's seat is Poppy
+    calls Topsoil).
+14. Each estate's own Practice once the package exists: "both OCE and JC.net contribute to the new
+    definition in the package, and both adapt their local Practices to use the package, we will
+    still need Practice wide , Typescript Practice wide, repo-local and machine-local doctrine,
+    memories, state, so it is doubtful that everything will be in the Package, although likely all
+    contracts will be".
+15. The shared definition's home in the Core: a new record, PDR-142.
+16. The site is deliberately parked: "Yes, deliberately: Practice first".
+17. Row L11 lands as one change by three-way merge from the transplant pin (the owner's word of
+    17:24Z); done in part as pull request 150, recorded in the register as PARTIAL.
+
 Authored 2026-09-14 by the Director at the owner's direction, verbatim: "make sure that we have
 a plan for exploring that Practice delta, and any other advancements that have happened by the
 time we get to it. We have also developed our Practice beyond theirs. We will need a thoughtful

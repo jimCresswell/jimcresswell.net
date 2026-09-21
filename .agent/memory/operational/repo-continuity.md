@@ -21,19 +21,18 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
-- 2026-09-21T17:04Z (a compaction boundary): the three-estate Practice exchange opened on the owner's
-  rulings; ten pull requests merged today (#137 to #146; `main` is at `SHA: e84da526`), among
-  them the coordination fold #141, the dependency upgrade #143 and the first inbound rows (#144
-  L2, #145 L4 and L5, #146 L22). FIRST ACT on resume: open the pull request for the pushed
-  branch `fix/markdown-it-15-security-floor` (`SHA: c8aae634`); #143 regressed `markdown-it`
-  into a vulnerable range and `main` carries it until that lands. OPEN and FROZEN: #147 and #148
-  (row L11 slices, heads `SHA: ffb399f9` and `SHA: 17a648cc`), waiting on the owner's word on
-  L11's landing shape. The owner's wide review fleet is harvested in
-  `.agent/reports/agentic-engineering/wide-review-fleet-harvest-2026-09-21.md` (plan beside it).
-  The live reading is the Director's handoff current-state block and item 121, then the napkin's
-  tail; the exchange's node is `.agent/plans/delivery/practice-two-way-exchange.plan.md`.
-  Owner-held: castr's future (its thirteen pull requests were closed unmerged), L11's landing
-  shape, the no-IO invariant's reach here, the site's frozen status.
+- 2026-09-21T18:36Z: the three-estate Practice exchange runs as an equal n=2 partnership between this
+  estate's seat and the lineage's (the owner's word; no Director). Twelve pull requests merged
+  today (#137 to #146, #149, #150; `main` is at `SHA: 6e576da2`); none open. #150 landed row L11
+  in part by three-way merge from the transplant pin (34 rules, 5 skills); fifteen clean merges
+  wait and seven files conflict. The owner ruled nine times by card: the reading of "the best of
+  each Practice" is confirmed; a Practice ruling given in one estate reaches every estate, for
+  now; full alignment comes first and nothing waits for the package; castr then moves into the
+  lineage's repository, an installable package is extracted, and both estates adapt to it; the
+  shared definition becomes PDR-142; the site is deliberately parked. The joint draft is
+  `.agent/reports/practice-transplant/best-of-each-practice-draft-v5.md` (unratified). The live
+  reading is the handoff's current-state block, the exchange plan's §Rulings items 9 to 17, then
+  the napkin's tail.
 - 2026-09-17 evening: zero open pull requests. The close-out landed #126, #127, #94, #95,
   #96, #128 and #129, and the fold #130 (`SHA: 5f3225e2`) carried that window's records to
   `main`. The plan `estate-fix-backlog` was ratified, completed and archived on 2026-09-19
