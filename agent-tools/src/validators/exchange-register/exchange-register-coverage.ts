@@ -129,7 +129,28 @@ function matchPath(
   return covered;
 }
 
-/** A specific row covers first; a catch-all row only when no specific row did. */
+/**
+ * Within one group, a specific row covers first and the group's catch-all
+ * only when no specific sibling did; the register's rule is "of its group".
+ */
+function coverPathInGroup(
+  path: string,
+  rows: readonly CompiledRow[],
+  matchesByRow: Map<string, number>,
+): boolean {
+  const specific = rows.filter((c) => !c.row.catchAll);
+  if (matchPath(path, specific, matchesByRow)) {
+    return true;
+  }
+  const catchAll = rows.filter((c) => c.row.catchAll);
+  return matchPath(path, catchAll, matchesByRow);
+}
+
+/**
+ * A path is covered when any group that covers its list covers it. Each
+ * group is evaluated on its own, so an L-specific match never stops the C
+ * catch-all from taking a path no C-specific row covers.
+ */
 function coverPath(
   label: string,
   path: string,
@@ -137,12 +158,13 @@ function coverPath(
   matchesByRow: Map<string, number>,
 ): boolean {
   const inList = compiled.filter((c) => c.lists.has(label));
-  const specific = inList.filter((c) => !c.row.catchAll);
-  if (matchPath(path, specific, matchesByRow)) {
-    return true;
+  const groups = [...new Set(inList.map((c) => c.row.group))];
+  let covered = false;
+  for (const group of groups) {
+    const rows = inList.filter((c) => c.row.group === group);
+    covered = coverPathInGroup(path, rows, matchesByRow) || covered;
   }
-  const catchAll = inList.filter((c) => c.row.catchAll);
-  return matchPath(path, catchAll, matchesByRow);
+  return covered;
 }
 
 function collectDeadGlobs(compiled: readonly CompiledRow[]): readonly DeadGlob[] {

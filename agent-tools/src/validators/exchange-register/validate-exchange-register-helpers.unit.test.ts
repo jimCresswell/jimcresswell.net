@@ -56,14 +56,27 @@ describe('parseRegisterRows', () => {
     expect(refused.ok ? '' : refused.error).toContain('L21 appears more than once');
   });
 
-  it('refuses an empty (list:) scope, which would confine the row to no list', () => {
+  it.each(['(list: )', '(list:)'])(
+    'refuses the empty scope %s, which would confine the row to no list',
+    (scope) => {
+      const markdown = [
+        '| Row | Concept | Path globs |',
+        '| --- | --- | --- |',
+        `| C9 | a | \`a/**\` ${scope} |`,
+      ].join('\n');
+      const refused = parseRegisterRows(markdown);
+      expect(refused.ok ? '' : refused.error).toContain('C9: an empty (list:) scope');
+    },
+  );
+
+  it('refuses a row whose group is not L, J, C or O, which would resolve to no list', () => {
     const markdown = [
       '| Row | Concept | Path globs |',
       '| --- | --- | --- |',
-      '| C9 | a | `a/**` (list: ) |',
+      '| X1 | a | `a/**` |',
     ].join('\n');
     const refused = parseRegisterRows(markdown);
-    expect(refused.ok ? '' : refused.error).toContain('C9: an empty (list:) scope');
+    expect(refused.ok ? '' : refused.error).toContain('X1: the group is not one of L, J, C, O');
   });
 
   it('reads a (list: ...) scope as the lists the row is confined to', () => {
@@ -217,6 +230,33 @@ describe('computeCoverage', () => {
     expect(report.uncovered).toStrictEqual([]);
     expect(report.deadGlobs).toStrictEqual([]);
     expect(report.matchesByRow.get('C12')).toBe(2);
+    expect(report.matchesByRow.get('C15')).toBe(1);
+  });
+
+  it('lets a C catch-all take a lineage-since-castr path an L-specific row also covers', () => {
+    const crossGroup = unwrap(
+      parseRegisterRows(
+        [
+          '| Row | Concept | Path globs |',
+          '| --- | --- | --- |',
+          '| L1 | a | `a/**` |',
+          '| C15 | lineage rest | `**` (catch-all) (list: oce-since-castr-pin) |',
+        ].join('\n'),
+      ),
+    );
+    const report = computeCoverage(
+      crossGroup,
+      PINS,
+      new Map([
+        ['oce-since-jcnet-pin', ['a/x.md']],
+        ['jcnet-since-transplant', []],
+        ['castr-since-transplant', []],
+        ['oce-since-castr-pin', ['a/x.md']],
+      ]),
+    );
+    expect(report.uncovered).toStrictEqual([]);
+    expect(report.deadGlobs).toStrictEqual([]);
+    expect(report.matchesByRow.get('L1')).toBe(2);
     expect(report.matchesByRow.get('C15')).toBe(1);
   });
 

@@ -9,9 +9,10 @@ import { err, ok, type Result } from '@engraph/result';
 
 import { type PinsRow, type RegisterRow } from './exchange-register-types.js';
 
-const ROW_ID = /^([A-Z])(\d+)$/u;
+const ROW_ID = /^([LJCO])(\d+)$/u;
+const ANY_ROW_ID = /^([A-Z])(\d+)$/u;
 const CODE_SPAN = /`([^`]+)`/gu;
-const LIST_SCOPE = /\(list:\s*([^)]+)\)/u;
+const LIST_SCOPE = /\(list:\s*([^)]*)\)/u;
 const GLOB_COLUMN = 'Path globs';
 const LABEL_SHAPE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/u;
 const ESTATES: ReadonlySet<string> = new Set(['oce', 'jcnet', 'castr']);
@@ -43,24 +44,44 @@ function isSeparatorRow(cells: readonly string[]): boolean {
   return cells.length > 0 && cells.every((cell) => /^:?-{3,}:?$/u.test(cell));
 }
 
-/** A row id in the first cell and the last cell's globs make a register row. */
-function parseRow(cells: readonly string[]): RegisterRow | null {
+/**
+ * A row id in the first cell and the last cell's globs make a register row.
+ * A first cell shaped like a row id with a group outside L, J, C and O is
+ * refused: it would resolve to no lists and pass unchecked.
+ */
+function parseRow(cells: readonly string[]): Result<RegisterRow | null, string> {
   const [first] = cells;
-  const match = first === undefined ? null : ROW_ID.exec(first);
-  if (first === undefined || match === null) {
-    return null;
+  if (first === undefined) {
+    return ok(null);
+  }
+  const match = ROW_ID.exec(first);
+  if (match === null) {
+    return ANY_ROW_ID.test(first)
+      ? err(`row ${first}: the group is not one of L, J, C, O`)
+      : ok(null);
   }
   const last = cells.at(-1) ?? '';
   const globs = [...last.matchAll(CODE_SPAN)]
     .map((span) => span[1] ?? '')
     .filter((glob) => glob !== '');
-  return {
+  return ok({
     id: first,
     group: match[1] ?? '',
     globs,
     catchAll: last.includes('(catch-all)'),
     lists: parseListScope(last),
-  };
+  });
+}
+
+/** Why a parsed row is refused: a reused id or an empty list scope; null when it stands. */
+function rowRefusal(row: RegisterRow, seen: ReadonlySet<string>): string | null {
+  if (seen.has(row.id)) {
+    return `row id ${row.id} appears more than once; ids are unique and never reused`;
+  }
+  if (row.lists !== null && row.lists.length === 0) {
+    return `row ${row.id}: an empty (list:) scope names no list`;
+  }
+  return null;
 }
 
 interface TableState {
@@ -99,20 +120,32 @@ export function parseRegisterRows(markdown: string): Result<readonly RegisterRow
     if (!state.inGlobTable || wasSeparator) {
       continue;
     }
-    const row = parseRow(cells);
-    if (row === null) {
-      continue;
+    const row = acceptRow(cells, seen);
+    if (!row.ok) {
+      return row;
     }
-    if (seen.has(row.id)) {
-      return err(`row id ${row.id} appears more than once; ids are unique and never reused`);
+    if (row.value !== null) {
+      rows.push(row.value);
     }
-    if (row.lists !== null && row.lists.length === 0) {
-      return err(`row ${row.id}: an empty (list:) scope names no list`);
-    }
-    seen.add(row.id);
-    rows.push(row);
   }
   return ok(rows);
+}
+
+/** Parses one glob-table line and admits its row: null for a non-row line, an error for a refused one. */
+function acceptRow(
+  cells: readonly string[],
+  seen: Set<string>,
+): Result<RegisterRow | null, string> {
+  const parsed = parseRow(cells);
+  if (!parsed.ok || parsed.value === null) {
+    return parsed;
+  }
+  const refusal = rowRefusal(parsed.value, seen);
+  if (refusal !== null) {
+    return err(refusal);
+  }
+  seen.add(parsed.value.id);
+  return parsed;
 }
 
 /** One pins line as a row, or why it is refused: label shape, closed estate set, uniqueness. */
