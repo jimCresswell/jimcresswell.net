@@ -99,7 +99,7 @@ describe('parseOperatorProfileDocument', () => {
       VALID_SCOPE_DOCUMENT,
     );
     expect(messagesOf(result)).toContain(
-      'frontmatter scope_key "jimcresswell--jimcresswell.net" does not match the file name "other--repo"',
+      'frontmatter scope_key does not match the file name "other--repo" (the value is withheld: a mismatched key may be credential-shaped)',
     );
   });
 
@@ -109,7 +109,7 @@ describe('parseOperatorProfileDocument', () => {
       VALID_MACHINE_DOCUMENT,
     );
     expect(messagesOf(result)).toContain(
-      'frontmatter machine_key "studio-laptop" does not match the file name "other"',
+      'frontmatter machine_key does not match the file name "other" (the value is withheld: a mismatched key may be credential-shaped)',
     );
   });
 
@@ -356,6 +356,17 @@ describe('classifyProfileEntries', () => {
     ]);
     expect(layout.documents).toEqual([INDEX_POSITION, SCOPE_POSITION, MACHINE_POSITION]);
     expect(layout.unexpected).toEqual(['notes.md', 'repos/stray.txt', 'index.md.bak', 'drafts']);
+    expect(layout.notRegular).toEqual([]);
+  });
+
+  it('refuses git furniture of the wrong kind: a directory named .gitignore is unexpected, never furniture', () => {
+    const layout = classifyProfileEntries([
+      { relPath: '.gitignore', kind: 'directory' },
+      { relPath: '.gitattributes', kind: 'directory' },
+      { relPath: '.git', kind: 'file' },
+    ]);
+    expect(layout.documents).toEqual([]);
+    expect(layout.unexpected).toEqual(['.gitignore', '.gitattributes']);
     expect(layout.notRegular).toEqual([]);
   });
 

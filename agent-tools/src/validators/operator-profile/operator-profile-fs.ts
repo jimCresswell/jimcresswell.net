@@ -198,13 +198,19 @@ export async function readDocument(
   let handle: DocumentHandle | undefined;
   try {
     handle = await openDocument(absolute, DOCUMENT_OPEN_FLAGS);
-    return ok(await handle.readFile('utf8'));
+    const text = await handle.readFile('utf8');
+    const open = handle;
+    handle = undefined;
+    await open.close();
+    return ok(text);
   } catch (cause) {
     return err(
       `cannot read the document (${errorCode(cause)}) — a symlink or an unreadable file is never a profile document`,
     );
   } finally {
-    await handle?.close();
+    // Only reached with a handle when the read itself failed: the refusal
+    // above is the outcome, and a second failure on this close adds nothing.
+    await handle?.close().catch(() => undefined);
   }
 }
 

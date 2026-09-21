@@ -260,6 +260,21 @@ describe('readDocument — reading without following a symlink', () => {
     expect(closed).toEqual(['closed']);
   });
 
+  it('turns a close the platform refuses after a read into a message, never a throw', async () => {
+    const refusal = Object.assign(new Error('EIO: i/o error'), { code: 'EIO' });
+    const read = await readDocument('index.md', () =>
+      Promise.resolve({
+        readFile: () => Promise.resolve('text'),
+        close: () => Promise.reject(refusal),
+      }),
+    );
+    expect(read).toEqual({
+      ok: false,
+      error:
+        'cannot read the document (EIO) — a symlink or an unreadable file is never a profile document',
+    });
+  });
+
   it('turns an open the platform refuses (ELOOP on a symlink) into a message, never a throw', async () => {
     const refusal = Object.assign(new Error('ELOOP: too many symbolic links'), { code: 'ELOOP' });
     const read = await readDocument('index.md', () => Promise.reject(refusal));

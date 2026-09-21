@@ -35,7 +35,9 @@ export interface ProfileLayout {
  * The Practice never creates them; it only refrains from calling them
  * unexpected.
  */
-const GIT_FURNITURE: ReadonlySet<string> = new Set(['.git', '.gitignore', '.gitattributes']);
+const GIT_FURNITURE_FILES: ReadonlySet<string> = new Set(['.git', '.gitignore', '.gitattributes']);
+/** `.git` is a directory in a plain clone and a file in a linked worktree; the other two are files only. */
+const GIT_FURNITURE_DIRS: ReadonlySet<string> = new Set(['.git']);
 
 const SCOPED_DIRS: ReadonlySet<string> = new Set([SCOPES_DIR_NAME, MACHINES_DIR_NAME]);
 
@@ -46,7 +48,7 @@ type EntryClass =
   | { readonly kind: 'not-regular' };
 
 function classifyDirectory(relPath: string): EntryClass {
-  return SCOPED_DIRS.has(relPath) || GIT_FURNITURE.has(relPath)
+  return SCOPED_DIRS.has(relPath) || GIT_FURNITURE_DIRS.has(relPath)
     ? { kind: 'furniture' }
     : { kind: 'unexpected' };
 }
@@ -55,7 +57,7 @@ function classifyFile(relPath: string): EntryClass {
   if (relPath === INDEX_FILE_NAME) {
     return { kind: 'document', expectation: { relPath, expectedKind: 'index' } };
   }
-  if (GIT_FURNITURE.has(relPath)) {
+  if (GIT_FURNITURE_FILES.has(relPath)) {
     return { kind: 'furniture' };
   }
   const scopeKey = scopeKeyFromRelPath(relPath);
