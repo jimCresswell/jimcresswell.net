@@ -99,6 +99,7 @@ function cruiseResult(input: {
     modules: [],
     summary: {
       error: input.error ?? 0,
+      advisedExitCode: input.error ?? 0,
       warn: 0,
       info: 0,
       ignore: 0,
