@@ -44,13 +44,24 @@ resides on the coordination branch).
    source change is code-class and stays on the review-round state machine, no intake. It
    expects the rounds it brings. Worked instance, 2026-09-12: a 470-line exploration report
    committed to the coordination branch drew thirty of the fold's thirty-eight findings, and the fold
-   took a day.
+   took a day. Second instance, 2026-09-16 to 2026-09-19: a dedicated consolidation's doctrine
+   rode the coordination branch through four folds (#150, #152, #153, #155). Each fold was
+   large, the lifetime rule forced the next before the consolidation's own work could start,
+   and the last fold's whole content was records about the fold before it (twenty-three
+   findings, all true). A consolidation's doctrine edits are a work product with their own
+   review contract.
 
 ## Ceremony
 
 3. Commit by explicit pathspec (`stage-by-explicit-pathspec`);
    lowercase-start subjects (commitlint).
 4. `git fetch origin main`, then merge `origin/main` INTO the branch.
+   Resolve the ref to a full sha in the same shell call as the merge, merge
+   that sha, and write the merge message AFTER resolving, from
+   `git log <head>..<sha>`: a remote-tracking ref moves whenever any hook or
+   seat fetches, so a message written from an earlier reading names the wrong
+   tip and the wrong content (two seats made this slip on one day, 2026-09-20;
+   one merge message named #157 while the merge also carried #158).
    Probe the merge for silent stale-capture reverts (a clean merge can
    still revert an approved newer version — marker-probe suspicious
    files against main) before pushing.
@@ -130,7 +141,13 @@ resides on the coordination branch).
     record is finer grain a successor elsewhere cannot read (a reviewer
     found the pickup map unreachable when the journal had stopped two days
     earlier, 2026-09-08); broadcast the rotation on the canonical comms
-    stream so every seat re-homes.
+    stream so every seat re-homes. A fold entry is a few lines of state (the
+    merge sha, the successor's name, the gravity line), never a narrative of
+    the fold: every sentence written here is a claim the next fold's reviewers
+    price. A broadcast filled from a template by substitution is re-read whole
+    before posting, not only at its placeholders; a template keeps every
+    sentence that was true when it was written ("one review round" survived
+    into a fold that took three, caught before posting, 2026-09-17).
 
 ## Wrap-not-closeout
 
