@@ -97,7 +97,7 @@ pull request once one exists.
 | J20 | Practice-owned root configuration this estate changed since the transplant: dependency-cruiser, knip, the base and depcruise tsconfigs, markdownlint, prettierignore, gitattributes, gitignore | origin | compare (the lineage changed the same files in the same window, L28; the strictness set is L20) | bring at re-transplant | `.dependency-cruiser.mjs`, `knip.config.ts`, `tsconfig*.json`, `.markdownlint*`, `.prettierignore`, `.gitattributes`, `.gitignore` |
 | J21 | The shared tooling workspaces since the transplant: the eslint plugin's Practice rules (no-real-io-in-tests, no-agent-substrate-access, no-eslint-disable, no-throw-statement, no-export-trivial-type-aliases) tightened, max-files-per-dir and require-observability-emission removed, the result type's unwrapping, the workspace-config build and test bases | origin | compare per rule (the lineage's five are unchanged since this estate's pin, so every difference is this estate's; the two removals are a card on the lineage's side, since a rule leaving is a doctrine change there) | decline (no shared tooling workspaces in castr; the enforcement it needs arrives with the re-transplant's gates) | `tooling/**` |
 | J22 | This estate's docs/engineering since the transplant: five documents moved | origin | compare per document with L30 | bring at re-transplant | `docs/engineering/**` |
-| J23 | This estate's architecture decision records since the transplant (docs/architecture/decision-records, five files) and the runtime-only eslint configuration | origin | compare per record (an ADR that decides a Practice concept twins; a site decision stays) | compare at re-transplant | `docs/architecture/decision-records/**`, `eslint.runtime-only.config.mjs` |
+| J23 | This estate's architecture decision records since the transplant (docs/architecture/decision-records, five files) | origin | compare per record (an ADR that decides a Practice concept twins; a site decision stays) | compare at re-transplant | `docs/architecture/decision-records/**` |
 
 ## Rows from castr (since `c048173929`) and the lineage since castr's pin (`4470266647`)
 
@@ -137,4 +137,5 @@ Appended as each row lands: row, estate, pull request, head read.
 
 | Row | Estate | Pull request | Head read |
 | --- | --- | --- | --- |
+| J11 | jcnet | PR 137 (merged `4bfc64d47e`, 2026-09-21T11:49:54Z) | lineage `72cab5667c`, castr `d1fe56b928` |
 | L1 | jcnet | PR 138 (ready, open) | lineage `72cab5667c` |
