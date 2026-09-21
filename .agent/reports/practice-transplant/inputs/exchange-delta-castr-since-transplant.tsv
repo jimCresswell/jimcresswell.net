@@ -938,6 +938,7 @@ castr-since-transplant	A	.github/pull_request_template.md
 castr-since-transplant	M	.github/workflows/ci.yml
 castr-since-transplant	D	.github/workflows/publish.yml
 castr-since-transplant	M	.gitignore
+castr-since-transplant	A	.gitleaks.toml
 castr-since-transplant	A	.husky/commit-msg
 castr-since-transplant	M	.husky/pre-commit
 castr-since-transplant	M	.husky/pre-push
@@ -1450,4 +1451,5 @@ castr-since-transplant	A	agent-tools/vitest.e2e.config.ts
 castr-since-transplant	A	commitlint.config.mjs
 castr-since-transplant	M	package.json
 castr-since-transplant	M	pnpm-workspace.yaml
+castr-since-transplant	A	tsdoc.json
 castr-since-transplant	M	turbo.json

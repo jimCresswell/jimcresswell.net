@@ -828,6 +828,11 @@ jcnet-since-transplant	M	agent-tools/tests/test-helpers/depcruise-fixture.ts
 jcnet-since-transplant	M	agent-tools/tests/test-helpers/rules-index-classification-fixtures.ts
 jcnet-since-transplant	M	agent-tools/tests/test-helpers/temp-collaboration-state.ts
 jcnet-since-transplant	M	agent-tools/tsconfig.json
+jcnet-since-transplant	M	docs/engineering/README.md
+jcnet-since-transplant	M	docs/engineering/build-system.md
+jcnet-since-transplant	M	docs/engineering/testing-patterns.md
+jcnet-since-transplant	M	docs/engineering/testing-tdd-recipes.md
+jcnet-since-transplant	M	docs/engineering/workflow.md
 jcnet-since-transplant	M	knip.config.ts
 jcnet-since-transplant	M	package.json
 jcnet-since-transplant	M	pnpm-workspace.yaml
