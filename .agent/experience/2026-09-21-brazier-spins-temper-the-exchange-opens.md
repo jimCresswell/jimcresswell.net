@@ -47,3 +47,7 @@ inherit.
 Go gently with the register. It is a table two seats read. It does not need to be a database.
 
 — Brazier spins Temper (c70341), 2026-09-21
+
+## Correction, 2026-09-21T15:39Z
+
+The count above is wrong as a count of Copilot rounds. PR 139's reviews list, read at 15:37Z, holds nine Copilot reviews (eight with findings, one clean) and three Codex reviews. "Twelve rounds" was both reviewers' reviews added together, and the handoff's "eleven Copilot rounds" was wrong in the other direction. The story stands: the rounds were one silent-pass class at a time, and the generator cure was named at Copilot's fourth pass and taken at its eighth. A reviewer on the fold caught the contradiction between the two records; the lesson under "read the count before writing it" now covers review counts too.
