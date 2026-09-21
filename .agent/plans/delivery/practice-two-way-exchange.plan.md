@@ -153,8 +153,9 @@ two-round ruling of 2026-09-14 do too.
 
 ## Acceptance criteria (each with a proof)
 
-- Both deltas are recomputable from the ancestor and each estate's main by one script, and the
-  register covers every path in either delta by a concept row (a path-to-row mapping, one row
+- Every computed delta (one per pin row, four at the window's opening) is recomputable from its
+  ancestor and head by one script, and the register covers every path in every delta by a
+  concept row (a path-to-row mapping, one row
   covering many paths). Proof: the register validator as a `docs-validators:check` leg, green
   (`repo-safe`).
 - Every register row has a disposition and, where it lands here, a merged pull request in this

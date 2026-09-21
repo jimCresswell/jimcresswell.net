@@ -803,6 +803,7 @@ castr-since-transplant	D	.github/workflows/publish.yml
 castr-since-transplant	A	.husky/commit-msg
 castr-since-transplant	M	.husky/pre-commit
 castr-since-transplant	M	.husky/pre-push
+castr-since-transplant	M	AGENTS.md
 castr-since-transplant	A	RULES_INDEX.md
 castr-since-transplant	A	agent-tools/.dependency-cruiser.cjs
 castr-since-transplant	A	agent-tools/README.md

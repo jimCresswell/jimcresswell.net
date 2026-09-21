@@ -5,7 +5,8 @@
 # ancestor commit and a head commit, with git's status letter (A added, M modified, D deleted).
 # Machinery is the Core, directives, rules, skills, sub-agent templates, hooks, roles, setup,
 # prompts, reference, harness integrations, the Practice index, the rules index, agent-tools,
-# the platform adapter trees, the git hooks, CI and the root manifests. Continuity and memory
+# the platform adapter trees, the git hooks, CI, the root manifests and the root platform
+# entrypoints (AGENTS.md, CLAUDE.md, GEMINI.md). Continuity and memory
 # surfaces (memory, state, plans, reports, experience, research, the Practice Box) are local by
 # doctrine and never enter the delta.
 #
@@ -28,7 +29,7 @@ machinery=(
   .agent/hooks .agent/roles .agent/setup .agent/prompts .agent/reference
   .agent/claude-harness-integrations .agent/practice-index.md .agent/README.md RULES_INDEX.md
   agent-tools .claude .codex .cursor .agents .gemini .husky .github
-  package.json pnpm-workspace.yaml turbo.json
+  package.json pnpm-workspace.yaml turbo.json AGENTS.md CLAUDE.md GEMINI.md
 )
 git -C "$repo" rev-parse --verify --quiet "$ancestor^{commit}" > /dev/null || { echo "ancestor not found in $label: $ancestor" >&2; exit 1; }
 git -C "$repo" rev-parse --verify --quiet "$head^{commit}" > /dev/null || { echo "head not found in $label: $head" >&2; exit 1; }
