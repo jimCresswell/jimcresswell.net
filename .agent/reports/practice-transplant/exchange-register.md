@@ -162,3 +162,4 @@ Appended as each row lands: row, estate, pull request, head read.
 | L2 | jcnet | PR 144 (merged `4a87709f2d`, 2026-09-21T15:54:07Z; byte-identical to the lineage) | lineage `272910f1df` |
 | L4 | jcnet | PR 145 (merged `51ea9dd06f`, 2026-09-21T15:58:04Z; byte-identical to the lineage) | lineage `272910f1df` |
 | L5 | jcnet | PR 145 (merged `51ea9dd06f`, 2026-09-21T15:58:04Z; PDR-011 byte-identical, the Core changelog a dated union, the README already identical) | lineage `272910f1df` |
+| L22 | jcnet | PR 146 (merged `e84da52682`, 2026-09-21T16:03:07Z; byte-identical to the lineage) | lineage `272910f1df` |
