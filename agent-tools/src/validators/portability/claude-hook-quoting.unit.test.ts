@@ -7,7 +7,7 @@ const SETTINGS = '.claude/settings.json';
 describe('projectDirCommandShapeIssue', () => {
   it('accepts the shapes the settings use: plain words and double-quoted project paths', () => {
     for (const command of [
-      'node "${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/run-pretooluse-guard.mjs" agent-tools/dist/src/hook-policy/pre-tool-use-dispatch.js',
+      'node "${CLAUDE_PROJECT_DIR}/.claude/hooks/run-pretooluse-guard.mjs" agent-tools/dist/src/hook-policy/pre-tool-use-dispatch.js',
       '"${CLAUDE_PROJECT_DIR}/.claude/hooks/_lib/log-hook-errors.sh" "${CLAUDE_PROJECT_DIR}/.claude/hooks/secrets/pretool-secrets.sh"',
       '"${CLAUDE_PROJECT_DIR}/.claude/hooks/_lib/log-hook-errors.sh" node "${CLAUDE_PROJECT_DIR}/agent-tools/src/bin/claude-pre-compact-observe-hook.ts"',
       'node "${CLAUDE_PROJECT_DIR}/.claude/scripts/statusline-identity.mjs"',
@@ -38,6 +38,7 @@ describe('projectDirCommandShapeIssue', () => {
       'node $CLAUDE_PROJECT_DIR/x.mjs',
       "node '${CLAUDE_PROJECT_DIR}/x.mjs'",
       'node "${CLAUDE_PROJECT_DIR-.}/x.mjs"',
+      'node "${CLAUDE_PROJECT_DIR:-.}/x.mjs"',
       'node "$(dirname "${CLAUDE_PROJECT_DIR}")/x.mjs"',
       'node "${CLAUDE_PROJECT_DIR}/my dir/x.mjs"',
       'D="${CLAUDE_PROJECT_DIR}"; node $D/x.mjs',

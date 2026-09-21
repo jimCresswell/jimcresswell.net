@@ -306,7 +306,8 @@ not on error-shape absence.
   points define boundaries of responsibility. Integration points
   have integration tests. Naming convention:
   `*.integration.test.ts`.
-- System: The complete MCP server exposed via stdio transport.
+- System: the site served over HTTP, or an agent-tools CLI driven over
+  stdio.
   Systems have E2E tests. Naming convention: `*.e2e.test.ts`.
 
 ### Test Types
@@ -330,8 +331,7 @@ about testing CODE, not testing RUNNING SYSTEMS.
   loopback harness exchange defined below, have NO side effects
   outside the test process, and can contain SIMPLE mocks which
   must be injected as arguments to the function under test. Integration tests are
-  automatically run in CI/CD and include MCP protocol compliance
-  testing. **Important**: Integration tests are NOT about testing
+  automatically run in CI/CD. **Important**: Integration tests are NOT about testing
   a deployed or running system - they test how multiple code units
   integrate when imported and called directly. An HTTP exchange
   whose counterparty is an app the test itself imported and booted
@@ -359,7 +359,7 @@ net, and may produce side effects locally and in external systems.
 - **E2E test**: A test that verifies the behaviour of a running
   system. E2E tests CAN exchange STDIO with the running system —
   this is the protocol channel that defines what an E2E test IS for
-  stdio-transport systems (MCP stdio). E2E tests MUST NOT trigger
+  stdio-transport systems (an agent-tools CLI). E2E tests MUST NOT trigger
   filesystem IO, network IO beyond the system under test's
   protocol channel, or any other side-effecting IO; the test's
   job is to drive the system over its protocol channel and
@@ -380,9 +380,7 @@ net, and may produce side effects locally and in external systems.
   running black-box system over a network interface is E2E — see
   [`testing-patterns.md` §Test File
   Classification](../../docs/engineering/testing-patterns.md#test-file-classification).
-  Note supertest exercises the HTTP/JSON-RPC exchange but not SSE
-  transport serialisation; keep MCP-client-SDK E2E tests alongside it
-  for transport fidelity. Naming alone (a `.e2e.test.ts` filename)
+  Naming alone (a `.e2e.test.ts` filename)
   does NOT exempt a test from in-process restrictions; classification
   is by **behaviour shape** (does the test drive a separately
   running system it did not import, or does it import product code
@@ -473,8 +471,9 @@ The site workspace applies the taxonomy above with these fixed conventions:
   product code runs in a stub mode. They return canned data and have no test
   framework dependency.
 - **Test fakes**: `vi.fn()` wrappers that live in `test-helpers/` directories
-  and are used only in tests. They enable assertions on call counts, arguments,
-  and return values.
+  and are used only in tests. They stand in for a dependency so the code under
+  test can run; a test asserts on the outcome, never on how the fake was called
+  (§Philosophy).
 
 Do not conflate the two. Runtime stubs are product code; test fakes are test
 infrastructure.
@@ -615,7 +614,6 @@ the slicing was wrong.
   imported and booted in-process, E2E when it drives a separately
   running system (see §Test Types)
 - Use Playwright for UI E2E tests
-- Use the MCP client SDK for MCP protocol E2E tests
 - Use the canonical mocking approaches for the testing tools in use for a given test
 - Tests live next to the code they test, not in a `test` directory
   - Unit tests live next to the pure function file containing the
@@ -769,6 +767,4 @@ Four browser-specific proof categories for UI-shipping workspaces:
 3. **Responsive validation** — viewport and fluid layout coverage.
 4. **Theme/mode correctness** — light, dark, high-contrast passes.
 
-For MCP App HTML resources: serve content directly to Playwright
-(resource-level a11y), then verify via basic-host (integration-level).
 See `.agent/reference/accessibility-practice.md`.

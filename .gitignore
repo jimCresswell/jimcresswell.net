@@ -52,7 +52,8 @@ Thumbs.db
 # Isolated local notes: an ignored compatibility boundary (privacy.md), never source-controlled.
 .agent/private/
 
-# Operator profile: machine-local; the two stubs are tracked and declare the contract.
+# Operator profile: moved to ~/.practice/profile/ (PDR-141); the two stubs are tracked and
+# point there, and a file placed here by an older habit stays untracked.
 .agent/operator-local/**/*
 !.agent/operator-local/.gitignore
 !.agent/operator-local/README.md

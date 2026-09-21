@@ -267,7 +267,7 @@ and split the path at its first `#` whatever follows
 (`^([^#]+)(?:#L(\d+)(?:-(\d+))?)?(?:#[^#]*)?$`); the hook resolves it against
 the payload's `cwd`, `~` or the root. Each file goes by its real path, once,
 since Sonar reports a symlink clean without reading its target. When Sonar
-errors, or `node` or `realpath` is missing or cannot resolve a mentioned file,
+errors, or `node` or `realpath` is missing, exits non-zero or cannot resolve a mentioned file,
 the prompt goes through with a warning shown to the user that it was not
 scanned. A mentioned file outside the project is read by the scanner
 as the model would read it: the Sonar documentation says the scan runs locally

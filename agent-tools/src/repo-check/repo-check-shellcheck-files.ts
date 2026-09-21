@@ -1,7 +1,7 @@
 /**
  * The shellcheck gate's pure mapping: which tracked files are shell scripts,
- * which shebangs fail the gate, which comments would silence shellcheck, and
- * the argv that lints them.
+ * which shebangs fail the gate, which comments would silence shellcheck, which
+ * bash scripts lack the bash floor, and the argv that lints them.
  *
  * A shell script is a tracked file named `*.sh` or `*.bash`, a file directly
  * in `.husky/` (husky runs every hook there with `sh`), or one whose first line
@@ -47,6 +47,19 @@ const SHEBANG_FORMS: ReadonlyMap<string, 'shell' | 'not shell'> = new Map([
   ['#!/usr/bin/env node', 'not shell'],
   ['#!/usr/bin/env python3', 'not shell'],
 ]);
+
+const BASH_SHEBANG = '#!/usr/bin/env bash';
+
+/**
+ * The bash floor, held here once: bash 5.2 (owner, 2026-09-19). Every bash
+ * script's first command is this line, so an older bash, such as the 3.2 macOS
+ * ships, stops with install advice instead of running on. What follows the
+ * line is the script's own: the two secrets hooks answer with a block
+ * decision, the rest write to stderr and exit non-zero. Husky hooks run under
+ * `sh` and carry no floor.
+ */
+export const BASH_FLOOR_GUARD =
+  'if ((BASH_VERSINFO[0] < 5 || (BASH_VERSINFO[0] == 5 && BASH_VERSINFO[1] < 2))); then';
 
 /**
  * A shellcheck directive comment (`# shellcheck key=value ...`, the space
@@ -111,6 +124,31 @@ export function shebangFailures(file: string, head: string): readonly string[] {
   return [
     `${file}:1: the shebang \`${line.replaceAll('\r', String.raw`\r`)}\` is ${refusal}; ` +
       `use one of ${forms.join(', ')}, ${remedy}`,
+  ];
+}
+
+/**
+ * The failure for a bash script whose first command is not the bash floor
+ * guard. Blank lines and comments may come first; nothing else may.
+ *
+ * @param file - Repo-relative path, named in the failure.
+ * @param content - The script's text.
+ * @returns One failure line; empty for a script that is not bash or that opens with the guard.
+ */
+export function bashFloorFailures(file: string, content: string): readonly string[] {
+  if (firstLine(content) !== BASH_SHEBANG) {
+    return [];
+  }
+  const firstCommand = content
+    .split('\n')
+    .slice(1)
+    .find((line) => line.trim() !== '' && !line.trimStart().startsWith('#'));
+  if (firstCommand === BASH_FLOOR_GUARD) {
+    return [];
+  }
+  return [
+    `${file}: a bash script's first command is the bash floor guard, \`${BASH_FLOOR_GUARD}\`, ` +
+      'so an older bash stops with install advice; add the guard after the opening comments',
   ];
 }
 

@@ -211,15 +211,12 @@ permitted response is:
 
 This is the only legitimate shape; "I'll get to it" is not.
 
-There is one bounded rule-authoring nuance for custom ESLint rules:
-a newly authored rule may begin at `warn` while the rule's matching
-logic, false-positive profile, autofix behaviour, and existing
-violation surface are still being designed. That warning state is not
-a toleration state. The authoring lane must name the promotion point
-to `error`, and the rule must not be used to claim green quality gates
-until either all warnings are fixed or the rule has become an error
-with a blocking migration plan. Once the rule is part of the normal
-gate surface, this rule's zero-warning requirement applies unchanged.
+A newly authored ESLint rule lands at `error`, with its existing
+violations fixed in the landing that introduces it
+([PDR-126](../practice-core/decision-records/PDR-126-gates-land-strict-in-one-landing.md):
+gates land strict, in one landing). `warn` is not a staging level: every
+ESLint script runs with `--max-warnings 0`, so a rule left at `warn` fails
+lint the moment it fires.
 
 ## Reviewer cadence
 

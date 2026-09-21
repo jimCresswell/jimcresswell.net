@@ -526,7 +526,8 @@ Use the right tool for the job:
 - **TypeScript** for compiler time types
 - **ESLint** for syntax correctness and code-style adherence
 - **Prettier** for code-style adherence
-- **knip** and **gitleaks** for unused code and secrets in the site workspace
+- **knip** and **gitleaks** for unused code and secrets, repo-wide (the root
+  `pnpm knip` and `pnpm secrets:scan`)
 - **The visual regression harness** for rendering proof (ADR-022)
 
 Practice tooling workspaces (`agent-tools`, `tooling/*`) MUST follow the

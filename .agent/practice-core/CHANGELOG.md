@@ -4,6 +4,20 @@ Changes to the Practice Core files, newest first. Each entry records the repo
 that made the change and what was changed. This file travels with the
 Practice Core package.
 
+## [jimcresswell.net] 2026-09-21 — PDR-141 and the operator-profile schema taken from the lineage
+
+- PDR-141 (Accepted on the lineage 2026-09-14, with its 2026-09-14,
+  2026-09-17 and 2026-09-21 amendments) taken byte-identical from the head of
+  the lineage's pull request #172 (the 2026-09-21 amendment that makes
+  decision 7's emit call abstract), and
+  `schemas/operator-profile.schema.json` (family 1.0.0) taken byte-identical
+  from the lineage at its #169 fold, as the first inbound landing of the
+  three-estate Practice exchange (the owner's word, 2026-09-21). Both estates validate the same home-directory files with the
+  same contract, so the schema stays twinned byte for byte. The host binds
+  its enforcement validator and names `pnpm profile:check` and
+  `pnpm profile:sync` in its Practice index; the checkout-local tier is
+  retired to a pointer.
+
 ## [EngraphCode/open-curriculum-ecosystem] 2026-09-09 — PDR-027 open question: which model name wins when four disagree
 
 - PDR-027 §Notes gains a dated open question, re-homed from the host's

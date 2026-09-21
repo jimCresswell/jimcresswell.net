@@ -95,7 +95,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/run-pretooluse-guard.mjs\" agent-tools/dist/src/hook-policy/pre-tool-use-dispatch.js",
+            "command": "node \"${CLAUDE_PROJECT_DIR}/.claude/hooks/run-pretooluse-guard.mjs\" agent-tools/dist/src/hook-policy/pre-tool-use-dispatch.js",
             "timeout": 5
           }
         ]
@@ -105,7 +105,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/run-pretooluse-guard.mjs\" agent-tools/dist/src/hook-policy/pre-tool-use-dispatch.js",
+            "command": "node \"${CLAUDE_PROJECT_DIR}/.claude/hooks/run-pretooluse-guard.mjs\" agent-tools/dist/src/hook-policy/pre-tool-use-dispatch.js",
             "timeout": 5
           }
         ]
@@ -115,7 +115,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/run-pretooluse-guard.mjs\" agent-tools/dist/src/hook-policy/pre-tool-use-dispatch.js",
+            "command": "node \"${CLAUDE_PROJECT_DIR}/.claude/hooks/run-pretooluse-guard.mjs\" agent-tools/dist/src/hook-policy/pre-tool-use-dispatch.js",
             "timeout": 5
           }
         ]

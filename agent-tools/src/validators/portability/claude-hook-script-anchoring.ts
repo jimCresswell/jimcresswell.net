@@ -14,8 +14,9 @@
  *   followed by its script at a quoted project path with a path after the directory. Given the
  *   project directory itself, or nothing when the variable is unset or empty, node would read its
  *   program from stdin, which is the hook's JSON payload.
- * - A quoted project path is one double-quoted word, `"${CLAUDE_PROJECT_DIR}"` or
- *   `"${CLAUDE_PROJECT_DIR:-.}"`, optionally followed by `/` and a plain path.
+ * - A quoted project path is one double-quoted word, `"${CLAUDE_PROJECT_DIR}"`, optionally
+ *   followed by `/` and a plain path. A default (`:-.`) is outside the grammar: it would run
+ *   whatever sits at that path under the working directory when the variable is unset.
  * - A data word is a plain word: letters, digits and `_./:=@%+,-` only.
  *
  * There are no leading assignments, no `env`, no interpreter but `node`, no hook run directly from a
@@ -23,17 +24,16 @@
  * Windows drive path, because no known hook needs one. A real hook that does widens the grammar,
  * deliberately.
  *
- * Three dependences on the working directory remain outside what a grammar over the command text
- * can close. `"${CLAUDE_PROJECT_DIR:-.}"` resolves against it when the variable is unset or empty;
- * the three PreToolUse guard commands use that form, and removing it is a fix of its own. A hook
- * script decides what its own data words mean: `run-pretooluse-guard.mjs` resolves its guard path
- * against the project directory, which this check cannot see. And `node`, like the
+ * Two dependences on the working directory remain outside what a grammar over the command text
+ * can close. A hook script decides what its own data words mean: `run-pretooluse-guard.mjs`
+ * resolves its guard path against the project directory, which this check cannot see. And `node`,
+ * like the
  * `#!/usr/bin/env` line of a hook run directly, is found through the `PATH` the hook inherits, so
  * a relative entry there is resolved from the working directory.
  */
 
 const PLAIN_WORD = /^[\w./:=@%+,-]+$/u;
-const QUOTED_PROJECT_PATH = /^"\$\{CLAUDE_PROJECT_DIR(?::-\.)?\}(?:\/[\w./-]*)?"$/u;
+const QUOTED_PROJECT_PATH = /^"\$\{CLAUDE_PROJECT_DIR\}(?:\/[\w./-]*)?"$/u;
 /** The file types the settings run directly from a quoted project path. */
 const HOOK_SCRIPT = /\.(?:mjs|sh)"$/u;
 /** A quoted project path that names the project directory itself, with no path after it. */
