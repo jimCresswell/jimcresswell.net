@@ -8,8 +8,9 @@ Practice Core package.
 
 - PDR-142 and PDR-125 clause 7, on the owner's card of the same evening: a
   receiver's convention or gate that refuses the donor's bytes is a standard
-  the estates align, the higher of the two taken by both, because every
-  difference is a cost the eventual package must reconcile. Until it is
+  the estates align, the higher of the two taken by both and the donor's where
+  neither is shown higher, because every difference is a cost the eventual
+  package must reconcile. Until it is
   aligned, the receiver changes only what its gate refuses and declares each
   change as a debt to that alignment. This replaces clause 7's standing
   normalisation to the receiving repo's format. The inter-practice-collaboration
@@ -20,8 +21,10 @@ Practice Core package.
   point at each other; a rendition is written before the file's landing
   merges; a joint cure is one signed text reaching every estate that carries
   the contradiction as the same bytes, which §Boundaries says is not an edit
-  where the text is read; and a new falsifier replaces one that could pass
-  without the remedy being exercised.
+  where the text is read, and a joint cure of ratified text waits for the
+  owner's word; a Core record's byte identity allows a declared format debt;
+  and a new falsifier, which tests the remedy where it is used, replaces one
+  that concluded from the remedy's absence that it was not needed.
 - PDR-141 gains its 2026-09-23 amendment section, naming the four changed
   places and each estate's authority, byte-identical with the lineage.
 
