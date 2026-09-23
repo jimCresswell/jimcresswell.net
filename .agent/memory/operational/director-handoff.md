@@ -52,6 +52,10 @@ Every line answered first-hand, none inferred:
 - Interventions and ceremony at the absolute minimum, to preserve context; this applies to all
   Directors (owner, 2026-09-23, twice). Seats own their work; the Director gives a second opinion
   when asked and a check when a seat is in a rabbit hole, and never lays out a seat's work.
+- Questions reach the owner only when they survive the Decision Lenses (owner, 2026-09-23,
+  verbatim: "Use the decision matrix, ONLY ask questions that survive that"): two excellent options
+  left that differ on the owner's intent or own risk, or an action only the owner can perform.
+  Wording that implements a ruling already given is the seats' work under review, never a card.
 
 ## Current handoff state (2026-09-23T19:10Z; the owner's card of 2026-09-23 ANSWERED, eight items; PRs 152, 153 and 154 MERGED; PR 155 OPEN; a compaction boundary with every process left running)
 
