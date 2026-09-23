@@ -6,10 +6,10 @@
  * `pull`: bring a profile that is a git repository with a remote up to date
  * (fetch, fast-forward, else a plain merge; conflicts are surfaced for a
  * union resolution). `push --message <m>`: run the profile check, then
- * commit and push the operator's ratified writes under the operator's own
- * git identity. Both are no-ops that say so when the root is absent, is
- * not a repository, or has no remote — all first-class states of the
- * operator-profile PDR (decisions 13 to 16).
+ * commit and push every write made on the operator's word under the
+ * operator's own git identity. Both are no-ops that say so when the root is
+ * absent, is not a repository, or has no remote — all first-class states of
+ * the operator-profile PDR (decisions 13 to 16).
  *
  * The root is `${PRACTICE_HOME:-~/.practice}/profile` or `--root <dir>`.
  */

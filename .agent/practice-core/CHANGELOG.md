@@ -4,6 +4,27 @@ Changes to the Practice Core files, newest first. Each entry records the repo
 that made the change and what was changed. This file travels with the
 Practice Core package.
 
+## [jimcresswell.net] 2026-09-23 — PDR-142 and PDR-125: concepts travel; PDR-141: every write on the operator's word is pushed
+
+- PDR-142 amended on the owner's word that concept transfer is the goal and
+  byte-for-byte transfer never is: identical bytes are the means wherever they
+  carry the concept in the receiving estate's Practice context; where they do
+  not, a missing standard is raised in the receiver, a donor's host fact is
+  cured at its source, and only a context difference neither would remove
+  lets the receiver write the concept in its own words, naming the
+  difference. PDR-125 clause 7's receipt sentence amended to match, in both
+  estates in one window. On the owner's card the same day, PDR-142's read-through
+  also covers "never re-authors" and places a third-reason rendition at receipt,
+  never as an edit of a merged line, and its merged-text bullet names a third
+  remedy: a contradiction the donor carries too, cured jointly at the source.
+- PDR-141 takes the lineage's cure in all four places, so the record is
+  byte-identical in both estates. Decisions 11 and 14: the push after a write
+  covers every write made on the operator's word, not only ratified writes,
+  matching the record's own rule that no write sits unpushed across a session
+  boundary. The sovereignty test says those two decisions pass it. Decision
+  3's example scope key is the general form, since a host's own key is a fact
+  of that host.
+
 ## [jimcresswell.net] 2026-09-23 — PDR-142: the best of each Practice
 
 - PDR-142 (Accepted, owner-ratified 2026-09-21 by card) added: how the

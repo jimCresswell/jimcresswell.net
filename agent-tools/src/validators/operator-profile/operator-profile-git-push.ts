@@ -125,9 +125,9 @@ function pushAhead(run: GitRunner, committed: boolean): Result<string, string> {
 }
 
 /**
- * Commit and push the operator's ratified writes: stage the profile's
- * documents by pathspec, commit those paths only, push whatever the upstream
- * lacks (setting the upstream on the first push); a branch behind its
+ * Commit and push every write made on the operator's word: stage the
+ * profile's documents by pathspec, commit those paths only, push whatever the
+ * upstream lacks (setting the upstream on the first push); a branch behind its
  * remote is refused with the pull cure. The caller runs the profile check
  * first and passes the document paths that exist; tracked deletions are
  * added here.
