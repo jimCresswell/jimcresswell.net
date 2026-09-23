@@ -219,7 +219,7 @@ and one-line pointers to it in the three places whose unqualified "bytes" would 
 contradict it (Core decision records; text held at the copy point; Arrived). PDR-125 clause 7
 is amended in the same window, in both estates.
 
-**Falsifier.** A text both estates hold is written anew by a receiver where the donor's bytes
-would have carried the concept: a fold's dry-run merge shows conflict hunks rising on a file
-the receiver wrote in its own words without naming a context difference. One such instance
-returns the default to the donor's bytes, and this log says so.
+**Falsifier.** A receiver writes a shared text in its own words under the third reason, naming
+the context difference, and a later fold's dry-run merge shows conflict hunks rising on that
+file, or the concept stops reading true in either estate. One such instance reopens this clause
+with the owner, and this log says so.

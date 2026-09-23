@@ -14,10 +14,13 @@ Practice Core package.
   lets the receiver write the concept in its own words, naming the
   difference. PDR-125 clause 7's receipt sentence amended to match, in both
   estates in one window.
-- PDR-141 decisions 11 and 14: the push after a write covers every write made
-  on the operator's word, not only ratified writes, matching the record's own
-  rule that no write sits unpushed across a session boundary. The same cure as
-  the lineage's for these two sentences.
+- PDR-141 takes the lineage's cure in all four places, so the record is
+  byte-identical in both estates. Decisions 11 and 14: the push after a write
+  covers every write made on the operator's word, not only ratified writes,
+  matching the record's own rule that no write sits unpushed across a session
+  boundary. The sovereignty test says those two decisions pass it. Decision
+  3's example scope key is the general form, since a host's own key is a fact
+  of that host.
 
 ## [jimcresswell.net] 2026-09-23 — PDR-142: the best of each Practice
 

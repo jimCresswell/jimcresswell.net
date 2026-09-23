@@ -86,7 +86,8 @@ scopes by repository identity instead.
    (decision 10).
 3. **The scope key** is the repository's identity, never its path: the
    `origin` remote's owner and repository name, lowercased, joined with
-   `--` (for this line, `engraphcode--open-curriculum-ecosystem`). A fork
+   `--` (`<owner>--<repository>`; a host's own key is a fact of that host,
+   never named in this record). A fork
    and its upstream therefore hold separate scope files, which is correct:
    the facts differ by line. A repository with no `origin` remote has no
    scope file until it has one; readers proceed on the shared index.
@@ -290,7 +291,11 @@ repository line, a machine), each typed by the contract, versioned in a
 repository the operator alone controls, and read by every Practice the
 operator runs. Later amendments test against it: anything that would move
 the canonical copy out of the operator's control, or that would let a
-Practice write it, breaks the sovereignty the surface exists to give.
+Practice write it on anything but the operator's word, breaks the
+sovereignty the surface exists to give (decisions 11 and 14 pass that test:
+the operator initialises the repository and every write is made on the
+operator's word; the Practice syncs under the operator's own identity and
+never rewrites).
 
 ## Provenance
 
