@@ -50,73 +50,67 @@ Every line answered first-hand, none inferred:
   archive holds only processed material.
 - The transplant is bounded: closure items 3 to 8 finish it, then editorial work.
 
-## Current handoff state (2026-09-23T10:48Z; MODEL-CHANGE BOUNDARY: PDR-142 ratified and on a lane branch, unmerged; the lineage's seat paused; the coordination branch past its lifetime)
+## Current handoff state (2026-09-23T13:01Z; PDR-142 LANDED; the fold of coordination/2026-09-21-19cfcc in flight; both seats on a new model and live)
 
 Written for a reader who was never here and may run on a different model. Where this block and
 the routing log disagree, the log's last entry is current. The owner's words are verbatim in the
-napkin's three blocks headed "OWNER RULINGS by card" and in the exchange plan's §Rulings 9 to 17.
+napkin's blocks headed "OWNER RULINGS by card" (2026-09-21 and 2026-09-23) and in the exchange
+plan's §Rulings 9 to 17.
 
-- FIRST ACTS, in order. (1) Land `feat/pdr-142-best-of-each-practice` (`SHA: 36da7b3f`, worktree
-  `jimcresswell.net-worktrees/pdr-142`; pushed if the pre-push gate passed, else push it): open
-  the pull request as the bot, request Copilot, read the requested login by name (`Copilot`),
-  disposition findings with signed lines, merge with `merge-bot merge --pr N --expect
-  copilot-pull-request-reviewer`, delete the branch by REST and read back 404, remove the
-  worktree after `git merge-base --is-ancestor`. It carries PDR-142 (the owner-ratified
-  definition, "Ratify both texts", 2026-09-21), the strategic node `best-of-each-practice`, the
-  exchange node re-pointed to serve it with rulings 9 to 17, the index and changelog rows.
-  (2) Fold `coordination/2026-09-21-19cfcc` (past its 24-hour lifetime; last commit 2026-09-21
-  19:38 local) by the coordination-fold skill, then cut the successor. The fold carries the
-  draft `.agent/reports/practice-transplant/best-of-each-practice-draft-v5.md`, which is
-  REMOVED in the fold (its header promises removal on ratification; PDR-142 is its home) with
-  its README row. (3) Then the work the owner's rulings ordered, below.
-- `main` is at `SHA: 6e576da2` (PR 150). Nothing open. Merged 2026-09-21: #137 to #146, #149
-  (markdown-it floor), #150 (row L11, PARTIAL: 34 rules and 5 skills by three-way merge from
-  the transplant pin). PRs 147 and 148 closed unmerged, branches and worktrees removed on the
-  owner's word.
-- THE OWNER'S RULINGS OF 2026-09-21 (verbatim in the napkin; binding): the reading of "the
-  best of each Practice" (union upward, the higher of two, the bad removed everywhere, the
-  owner's own rulings only by the owner's word); a Practice ruling given in one estate reaches
-  every estate "Everywhere for now"; "Full alignment first, we are defining excellent … nothing
-  is delayed or avoided because of the future extraction"; "All six here now" (the six rulings
-  land in this estate, the expensive two included); castr's route "first we move Castr into
-  OCE, then we extract an installable package, and later we review if we need to break OCE into
-  multiple repos"; castr's thirteen closures were the owner's economic choice; castr's seat is
-  Poppy calls Topsoil (the peer session listed as "estate-writeoff-course-plot"), and the owner
-  invited channels to it; PDR-142 is the definition's home; the site is deliberately parked.
-- WORK ORDERED BY THOSE RULINGS, none started: the six rulings raised here. Four as text
-  (two full gates in parallel in separate worktrees; ceremony scaled down for a solo session;
-  graduate, then archive; rounds never go up). Two expensive: the absolute no-IO test invariant
-  (amend `testing-strategy.md` together with a recovery plan for the 46 of 417 test files
-  that use the forbidden shapes, then work it) and the commit as the full local gate (this
-  estate's pre-commit hook runs formatting and lint only; the full gate runs at push). Raising
-  each makes waiting merged files true here. Then: the six merged files that contradicted this
-  estate's surfaces re-enter (the rulings resolve them); the seven conflict files are joint
-  work; the offers each way are listed (the exchange register is the working list); removals
-  proposed as merge reads find them.
-- THE LINEAGE'S SEAT (Zephyr guards Leeward, 281e44) IS PAUSED for days at the owner's word,
-  with no watcher and no channel tail; its silence is the pause, never agreement. Anything
-  needing its estate goes through the owner. Owed by it and not started: the symmetric merge
-  (this estate's post-pin text into the lineage, base the transplant pin `e477e62f7e`, theirs
-  pinned to `SHA: 6e576da2`, recipe on the channel at 17:54:31Z and in the napkin); its
-  repo-local facts in shared text cured at the source (list on the channel, same entry); its
-  markdown-it floor (it resolves 15.0.0, inside GHSA-r7fv-28h4-cvq7); PDR-142 landed there
-  byte-identical; its pull request 173 held on the owner confirming the rounds ruling in its own
-  session. It holds every ruling relayed by this seat as data until the owner confirms it there.
-- Channel: the 2026-09-21 three-estate rapid-comms file in the lineage checkout; entries are
-  composed whole and appended in ONE write, headed `## [Brazier spins Temper (c70341)] <clock>`.
-  Native session messaging works both ways when both seats are up.
-- castr: a short self-contained note to Poppy calls Topsoil is owed after PDR-142 lands (the
-  owner's invitation; Zephyr said send it alone if it is not back). Content: the definition's
-  home, the owner's route for castr, what the exchange offers (concepts with proofs, never bytes
-  or a plan for castr), and what it asks (castr's own view of what it wants).
-- Seat-decided, off the owner's list: the exchange register stays as the working list of
-  offers and judgements; its validator stops demanding a row per changed path; what survives
-  gets its six silent passes cured, by pull request under review.
-- Still open from the review fleet (harvest file beside the fleet plan): Fred's conditions on
-  PR 143; `dependency-review.yml`'s workflow-level write permission; the false records listed
-  there; Codex's P1 on merged PR 138 (Basic credentials pass the guard), open on purpose.
-- Codex is at its usage limit since 2026-09-21 13:39Z; merges fire with the Copilot leg. Every
-  monitor is session-scoped and stopped at this boundary.
+- STATE. `main` is at `SHA: f7a54165` (PR 151: PDR-142, the strategic node
+  `best-of-each-practice`, the exchange node re-pointed to serve it, and the Practice strategy
+  stream's serving list replaced by a search pointer). The fold of this coordination branch is
+  the pull request that follows this block's commit; the successor branch is cut when it merges.
+  The resume at the model change found the handed-off PDR-142 lane defective (it deleted five
+  Core changelog entries; its frame was false in the lineage) and cured it before review.
+- THE LINEAGE'S SEAT (Zephyr guards Leeward, 281e44) RESUMED at 10:57Z on a new model. The
+  pause recorded here before is over. Its own overdue fold landed (its PR 175 at
+  `SHA: 0ea8fb232`); it is landing PDR-142 byte-identical (blob e0b71504) on its own lane; the
+  owner confirmed in its session "I ratify the decisions that Brazier communicated to you on my
+  behalf" and the concept-over-bytes answer. Native messaging and the channel work both ways.
+- THE OWNER'S RULINGS OF 2026-09-23 (verbatim in the napkin): (1) concept transfer is the goal,
+  never byte-for-byte transfer; identical bytes are fine where they carry the concept in that
+  repository's Practice context; (2) the Practice stream reads as ONE strategic node, reworded:
+  PRACTICE-1 reworded to the union-upward reading, `best-of-each-practice` the stream's one
+  strategic node, `practice-completion`, `practice-language-separation` and
+  `practice-lineage-transplant` re-pointed to it, the `practice` node archived; (3) "Amend
+  both": one dated amendment each to PDR-142 and PDR-125 carrying the owner's words, this seat
+  drafts, the lineage's seat judges as receiver, the owner ratifies the text, then both estates
+  land it; (4) the lowest-power low-effort Cricket seat may be removed if it adds no value; the
+  seat's verdict on four registered returns is that it adds nothing the panel lacks (tally
+  `.agent/reports/agentic-engineering/cricket-suite-tally-2026-09-23-exchange-seat-after-model-change.md`).
+- QUEUE, in order (the full Cricket suite of 2026-09-23 moved the rulings up, per the ratified
+  node's §The bet): (1) finish this fold and cut the successor; (2) draft the PDR-142 and
+  PDR-125 amendments, send them to the lineage's seat, card them to the owner; with them, card
+  the owner on the two-line PDR-141 cure the lineage's PR 173 carries (decisions 11 and 14 push
+  only ratified writes, against the record's own "No write sits unpushed across a session
+  boundary"; this estate's PDR-141 is byte-identical to the lineage's older text); (3) the
+  topology change in ruling (2), with rulings 18 to 21 recorded in the exchange plan; (4) remove
+  the lowest-power low-effort Cricket seat, its own pull request (the lineage never carried it);
+  (5) the section both estates wrote twice (the operator-profile section of the shared
+  start-right workflow), with the lineage's seat, the bet's first item; (6) the six rulings of
+  2026-09-21 ("All six here now"): four as text, the absolute no-IO test invariant (testing
+  directive plus a recovery plan for 46 of 417 test files), the commit as the full local gate;
+  (7) the note to Poppy calls Topsoil (castr's seat), the exchange register's validator, and the
+  routed items below.
+- PR MECHANICS LEARNED TODAY. A Copilot review request made with the bot's pull-request-work
+  token returns success and never fires on this repository: request it under the default gh
+  identity, and prove it by the timeline's `review_requested` event naming `Copilot`. Codex was
+  not requested on PR 151; its state since 2026-09-21 (usage limit) is unknown: ask it at the
+  next pull request's open.
+- ROUTED, OPEN: the ratified strategic node's §Delivery carries operating detail the schema's
+  §Strategic excludes (owner card once the node is in both estates; ledger row in the exchange
+  node); PDR-125's per-estate phenotype note names host paths inside Core (the owner's
+  concept answer did not settle it); the rounds ruling's Core text (PDR-132 home, a PDR-140
+  note, this estate's repo-local PDR-132 entry out of Core; agreed with the lineage's seat as a
+  pair, after the amendments); Codex's P1 on merged PR 138 (open on purpose); Fred's conditions
+  on PR 143; `dependency-review.yml`'s workflow-level write permission; two stale
+  operator-profile clauses (the castr route; one Playwright port and a Director push slot),
+  written only on the owner's word; the lineage's owner ruling that its commits carry the owner
+  as author and the bot as committer, to be checked against this estate's practice.
+- Every monitor is session-scoped. Live at this block's writing: the all-channels comms watcher
+  (supervisor pid 99338) and the exchange channel tail, both re-armed on their thirty-minute
+  caps.
 
 ## Live board
 
@@ -1797,6 +1791,8 @@ ones the Director would put to the owner had the owner been present.
 121. Compaction boundary (2026-09-21T17:04Z, the owner's word: "prepare for compaction … include reflections on if you are doing the right things, and stop all processes"). BOUNDARY STATE; the current-state block at the top is written from this item. The review fleet is harvested into `.agent/reports/agentic-engineering/wide-review-fleet-harvest-2026-09-21.md`; its full merge-audit swarm did not launch. One security cure is pushed with no pull request (`fix/markdown-it-15-security-floor`, `SHA: c8aae634`): the first act on resume. PRs 147 and 148 stay frozen pending the owner's word on row L11's landing shape. Four owner questions are open (castr, L11's shape, the no-IO invariant's reach, the site's frozen status). Every process of this seat is stopped. The seat's reflection in one line: the day was all Practice and the ceremony outweighed what it carried; the next acts are small (one pull request, four questions) and nothing is built before the answers.
 
 122. Model-change boundary (2026-09-23T10:48Z, the owner's word: "we are going to change models, please make sure everything that matters is written down"). BOUNDARY STATE; the current-state block at the top is written from this item. The owner ratified PDR-142 and its plan on 2026-09-21; both are committed on `feat/pdr-142-best-of-each-practice` (`SHA: 36da7b3f`), unmerged: the first act on resume. The coordination branch is past its lifetime: the fold is the second act, and it removes the draft file. The lineage's seat is paused for days. Every process of this seat is stopped. The seat's reflection in one line: the day's best work was reading the owner's own words instead of remembering them, and asking the owner by card instead of deciding for them; its recurring failure was a fact held in context felt read.
+
+123. Resume on a new model and PDR-142 landed (2026-09-23, from 10:52Z; the block at the top is written from this item at 13:01Z). The resume read the handed-off lane first-hand and cured three defects the gate could not see before review; PR 151 merged at `SHA: f7a54165` after two rounds and a final review (seven findings, all true: four cured, three routed to the owner). The owner then ruled by card: concept over bytes; one Practice strategic node, reworded; amend PDR-142 and PDR-125; the lowest-power low-effort Cricket seat removable. A full Cricket suite moved the six rulings up the queue. The lineage's seat resumed at 10:57Z and is landing PDR-142. The seat's reflection in one line: every check it had run compared a text with its source, never with where it would be read; and a time held in context still felt read on the new model.
 
 ## Routing log
 
