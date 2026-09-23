@@ -151,8 +151,10 @@ clone) is left out.
 32. On the format of received text, in free text on a card: "We are standardising the Practice
     between OCE and JC.net. broadly I agree with option 1, but in this case we are also trying
     minimise the cost of the eventual extraction and replacement of the Practice". The words
-    that carry it, signed by both exchange seats, went back to the owner as one question before
-    they land.
+    that carry it, signed by both exchange seats, went back to the owner as one question, and
+    the owner ratified them by card the same evening: a receiver's convention or gate that
+    refuses the donor's bytes is a standard the estates align, and a change made meanwhile is
+    a declared debt to that alignment (PDR-142; PDR-125 clause 7).
 33. For all agents, given in the lineage seat's session and to this estate's Director: the
     Director hears questions and requests, never state. Its home is
     `route-blocks-and-questions-to-director`, §The Director Hears Questions and Requests, Never
