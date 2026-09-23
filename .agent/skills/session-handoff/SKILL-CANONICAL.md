@@ -785,11 +785,12 @@ no retrospective memos; those are close-out work, this skill's §Steps.
     item 6. Apply the
     [`check-singleton-per-window`](../../rules/check-singleton-per-window.md)
     rule: before invoking `pnpm check`, broadcast on the comms stream
-    *"Lane &lt;name&gt; running pnpm check, ETA ~30s, will broadcast
-    result"*, observe in-flight broadcasts from peers in the same tree
-    and defer if one is live, and broadcast the result event (green or
-    red with first blocker) carrying the HEAD SHA at run time. Peers in
-    that tree consume the result; do not duplicate the run.
+    *"Lane &lt;name&gt; running pnpm check in &lt;worktree&gt;, ETA ~30s,
+    will broadcast result"*, observe in-flight broadcasts that name the
+    same working tree and defer if one is live, and broadcast the result
+    event (green or red with first blocker) naming the tree and carrying
+    the HEAD SHA at run time. Peers in that tree consume the result; do
+    not duplicate the run.
 
 11a. **Dispatch PENDING reviewers if the session touched a plan body.**
     If a thread record's plan carries PENDING reviewer markers AND this

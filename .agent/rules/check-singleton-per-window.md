@@ -45,11 +45,12 @@ ETA, result), which a static role field cannot:
 
 1. **Before** invoking `pnpm check` (or equivalent whole-repo gate),
    the agent broadcasts a comms event of the shape
-   `"Lane <name> running pnpm check, ETA ~30s, will broadcast
-   result"`.
+   `"Lane <name> running pnpm check in <worktree>, ETA ~30s, will
+   broadcast result"`, where `<worktree>` is the working tree's directory
+   name, so a peer can tell whether the run is in its own tree.
 2. **After** the run completes, the agent broadcasts a result event:
-   `"Lane <name> pnpm check: green"` (or `"red <gate>:<file:line>"`),
-   carrying the HEAD SHA at run time.
+   `"Lane <name> pnpm check in <worktree>: green"` (or
+   `"red <gate>:<file:line>"`), carrying the HEAD SHA at run time.
 3. Other agents in the same working tree observing the in-flight
    broadcast **defer** their own check run and consume the result event
    when it arrives.
