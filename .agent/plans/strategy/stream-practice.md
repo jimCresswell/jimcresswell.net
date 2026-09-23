@@ -41,7 +41,9 @@ actually close._
 A strategic node serving a choice here declares `serves: PRACTICE-<n>`; a delivery node or
 runbook declares the strategic node it serves. Enumerate them by searching `.agent/plans/`
 for those `serves` values, never by a hand-kept list (the plans README); the plan-corpus
-validator resolves every edge.
+validator resolves every edge. PRACTICE-2 and PRACTICE-3 have no node of their own: they trace
+to `best-of-each-practice`, and a search for their `serves` value finds nothing by design (the
+owner's card of 2026-09-23, recorded in `practice-two-way-exchange` as ruling 27).
 
 ## Won't do
 

@@ -141,9 +141,9 @@ clone) is left out.
 27. No new node for PRACTICE-2 and PRACTICE-3; they trace to `best-of-each-practice`.
 28. The stream's Won't do reads "Fork the Practice from the instances it shares with; divergence
     is recorded, never silent".
-29. PDR-142's read-through names "never re-authors", and a rendition under its third reason is
-    made at receipt, never as an edit of a merged line: one pointer, the same bytes in both
-    estates, carried by PR 155.
+29. PDR-142's read-through names "never re-authors", and a rendition under its third reason
+    acts before a merge, never as an edit of a merged line: one pointer, the same bytes in both
+    estates, carried by PR 155 and worded more plainly by PR 158.
 30. `best-of-each-practice` §The bet reads "Text travels by bytes where they carry the concept
     (PDR-142)".
 31. PDR-142's merged-text bullet names a third remedy: a contradiction the donor carries too,
