@@ -15,13 +15,13 @@ ratified_where: >-
   the same round cleared the three gates recorded under §Owner rulings.
   Plan of record: docs/explorations/2026-09-12-oce-practice-lineage-transplant.md
   §Owner rulings, round 8.
-serves: practice
+serves: best-of-each-practice
 impact_areas:
   - practice-and-estate
 tickets: []
 depends_on: []
 owner_gates: []
-last_updated: 2026-09-14
+last_updated: 2026-09-23
 ---
 
 # Practice completion

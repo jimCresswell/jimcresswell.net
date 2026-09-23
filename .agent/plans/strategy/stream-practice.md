@@ -9,16 +9,22 @@ governed_by:
 
 # Stream — the Practice
 
-_Part of the [strategy](README.md). The engineering practice and agent estate: a lineage
-the repository takes deliberately, and a learning loop it must actually close._
+_Part of the [strategy](README.md). The engineering practice and agent estate: one Practice
+that several repositories carry, raised to the best of each, and a learning loop it must
+actually close._
 
 ## Choices
 
-- **PRACTICE-1 — The Practice is a lineage the repository takes deliberately.** The
-  practice and agent estate follow the shared lineage (the 2026-09-12 transplant is the
-  first generation here); a host takes a newer generation by the transplant runbook when
-  its owner decides the delta is worth the rulings, preserving local divergence and
-  recording it; conventions converge on the lineage's practice, never aliased side by side.
+- **PRACTICE-1 — Every instance of the Practice holds the best of each.** The practice and
+  agent estate here are one instance of a Practice that several repositories carry (the
+  2026-09-12 transplant from the lineage is the first generation here). The instances are
+  aligned upward, never toward one of them: where they hold different things each takes the
+  other's, where they hold two encodings of one thing every instance takes the higher, and
+  what is bad is removed wherever it is carried. What travels is the concept; shared
+  concepts converge and are never aliased side by side, and what is repo-local by kind stays
+  here and is recorded
+  ([PDR-142](../../practice-core/decision-records/PDR-142-the-best-of-each-practice.md)).
+  Reworded 2026-09-23 on the owner's card ("One node, reworded").
 - **PRACTICE-2 — The learning loop is closed, not nominal.** Napkin → distilled → pending
   graduations → doctrine is the reason the Practice is here; the 57 archived lessons are
   synthesised by one seat and reviewed by the owner before anything graduates; every

@@ -6,7 +6,8 @@ overview: >-
   The engineering practice and agent estate run the shared lineage's current
   generation with this repository's divergence recorded, and close the
   learning loop they exist for.
-status: ratified
+status: superseded
+superseded_by: best-of-each-practice
 ratified_by: Jim Cresswell
 ratified_date: 2026-09-13
 ratified_where: >-
@@ -20,10 +21,16 @@ gate_expiry_default: P21D
 depends_on: []
 owner_gates: []
 tickets: []
-last_updated: 2026-09-13
+last_updated: 2026-09-23
 ---
 
 # The Practice
+
+**Disposition (2026-09-23): superseded by
+[`best-of-each-practice`](../best-of-each-practice.plan.md), archived.** The owner's card of
+2026-09-23 ("One node, reworded") made that node the Practice stream's one strategic node and
+reworded PRACTICE-1 to its reading; the plans that served this node serve that one. The text
+below is this node as ratified on 2026-09-13.
 
 ## Outcome
 
