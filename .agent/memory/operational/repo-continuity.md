@@ -21,19 +21,21 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
-- 2026-09-23T13:27Z: a Director is seated on this estate. At 13:08Z the owner named Wick binds
+- 2026-09-23T13:49Z: a Director is seated on this estate. At 13:08Z the owner named Wick binds
   Temper (ed7b48) Director: every question, block and card from this estate's seats goes to the
   Director, never to the owner, and the Director carries cards to the owner. The exchange seat
   (Brazier spins Temper, c70341) is an implementer; its partnership with the lineage's seat stays
-  equal, and both run on a new model. `main` is at `SHA: f7a54165`: PR 151 landed PDR-142 (the
-  definition of the best of each Practice, owner-ratified 2026-09-21) and the strategic node
-  `best-of-each-practice`; the lineage landed the same PDR-142 bytes as its PR 177. The fold of
-  `coordination/2026-09-21-19cfcc` is PR 152. The owner ruled by card on 2026-09-23: concept
-  transfer is the goal, never byte-for-byte; amend PDR-142 and PDR-125 accordingly (this seat
-  drafts, the lineage's seat judges, the Director carries one card to the owner); the Practice
-  stream gets one strategic node, reworded; the lowest-power low-effort Cricket seat is
-  removable. The live reading is the handoff's current-state block and item 123, then the
-  napkin's tail.
+  equal, and both run on a new model. `main` is at `SHA: 551f2c39`, the merge of PR 152, which
+  folded `coordination/2026-09-21-19cfcc`; the primary is on its successor
+  `coordination/2026-09-23-551f2c`. PR 151 (`SHA: f7a54165`) landed PDR-142 (the definition of
+  the best of each Practice, owner-ratified 2026-09-21) and the strategic node
+  `best-of-each-practice`; the lineage landed the same PDR-142 bytes as its PR 177. The owner
+  ruled by card on 2026-09-23: concept transfer is the goal, never byte-for-byte; amend PDR-142
+  and PDR-125 accordingly (the exchange seat drafts, the lineage's seat judges, the Director
+  carries one batched card to the owner); the Practice stream gets one strategic node, reworded
+  (PR 153, held until the owner ratifies its wording); the lowest-power low-effort Cricket seat
+  is removable. The live reading is the handoff's current-state block and the last entry of its
+  routing log, then the napkin's tail.
 - 2026-09-17 evening: zero open pull requests. The close-out landed #126, #127, #94, #95,
   #96, #128 and #129, and the fold #130 (`SHA: 5f3225e2`) carried that window's records to
   `main`. The plan `estate-fix-backlog` was ratified, completed and archived on 2026-09-19

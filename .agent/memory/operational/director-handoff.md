@@ -50,7 +50,7 @@ Every line answered first-hand, none inferred:
   archive holds only processed material.
 - The transplant is bounded: closure items 3 to 8 finish it, then editorial work.
 
-## Current handoff state (2026-09-23T13:27Z; a Director SEATED at 13:08Z; PDR-142 LANDED in both estates; the fold of coordination/2026-09-21-19cfcc in review as PR 152)
+## Current handoff state (2026-09-23T13:49Z; a Director SEATED at 13:08Z; PDR-142 LANDED in both estates; the fold LANDED as PR 152; the primary on coordination/2026-09-23-551f2c; PR 153 HELD)
 
 Written for a reader who was never here and may run on a different model. Where this block and
 the routing log disagree, the log's last entry is current. The owner's words are verbatim in the
@@ -68,12 +68,13 @@ Director", and in the exchange plan's §Rulings 9 to 17.
   (the Director's answer of 2026-09-23): before a push, a seat reads the process table for
   another seat's live gate and waits for it. The exchange partnership with the lineage's seat
   stays equal.
-- STATE. `main` is at `SHA: f7a54165` (PR 151: PDR-142, the strategic node
-  `best-of-each-practice`, the exchange node re-pointed to serve it, and the Practice strategy
-  stream's serving list replaced by a search pointer). The fold of this coordination branch is PR
-  152; the successor branch is cut when it merges, and its name goes to the Director in one line.
-  The resume at the model change found the handed-off PDR-142 lane defective (it deleted five
-  Core changelog entries; its frame was false in the lineage) and cured it before review.
+- STATE. `main` is at `SHA: 551f2c39`, the merge of PR 152, which folded
+  `coordination/2026-09-21-19cfcc` after two settlement pushes and a final round. Before it, PR
+  151 (`SHA: f7a54165`) landed PDR-142, the strategic node `best-of-each-practice` and the
+  exchange node's re-point. The primary checkout is on the successor
+  `coordination/2026-09-23-551f2c`, cut from that merge and pushed at 13:46Z; the Director has its
+  name. The resume at the model change found the handed-off PDR-142 lane defective (it deleted
+  five Core changelog entries; its frame was false in the lineage) and cured it before review.
 - THE LINEAGE'S SEAT (Zephyr guards Leeward, 281e44) RESUMED at 10:57Z on a new model. Its own
   overdue fold landed (its PR 175 at `SHA: 0ea8fb232`), and PDR-142 landed there byte-identical
   (blob e0b71504) as its PR 177 at `SHA: 138e0128f`. The owner confirmed in its session "I ratify
@@ -91,15 +92,24 @@ Director", and in the exchange plan's §Rulings 9 to 17.
   seat's verdict on four registered returns is that it adds nothing the panel lacks (tally
   `.agent/reports/agentic-engineering/cricket-suite-tally-2026-09-23-exchange-seat-after-model-change.md`).
 - QUEUE, in order (the full Cricket suite of 2026-09-23 moved the rulings up, per the ratified
-  node's §The bet): (1) finish this fold and cut the successor; (2) the PDR-142 and PDR-125
+  node's §The bet): (1) DONE, the fold and the successor cut; (2) the PDR-142 and PDR-125
   amendments: drafted and committed on the lane `docs/concept-over-bytes-amendments` at
-  `SHA: faca1cc8`, unpushed, with the lineage's seat for its judgement as receiver since 13:18Z;
-  then the final text and that judgement go to the Director, who carries ONE card to the owner
-  with four items: the two amendments; the two-line PDR-141 cure the lineage's PR 173 carries,
+  `SHA: faca1cc8`, unpushed, with the operator-profile replacement text in the message of the
+  empty commit above it (`SHA: 3cafd296`). The receiver who judges is the lineage's seat, per the
+  owner's ruling; the Director decides which session holds it from that seat's measured context
+  and routes the judging (the exchange seat sends the lineage's seat nothing directly). Then the
+  final text and that judgement go to the Director, who carries ONE batched
+  card to the owner: the two amendments; the two-line PDR-141 cure the lineage's PR 173 carries,
   drafted on the same lane (decisions 11 and 14 push only ratified writes, against the record's
-  own "No write sits unpushed across a session boundary"); and the stale operator-profile
-  clauses with proposed replacement text. Nothing on that lane lands before the card returns;
-  (3) the topology change in ruling (2), with rulings 18 to 21 recorded in the exchange plan; (4) remove
+  own "No write sits unpushed across a session boundary"); and two stale operator-profile clauses,
+  the castr route in the profile's index and the one-Playwright-port and Director-slot line in
+  this estate's scope file, with the replacement text at `SHA: 3cafd296`; the batched card also
+  carries the items listed under ROUTED below. Nothing on that lane lands before the card
+  returns; (3) the topology change in ruling (2), with rulings 18 to 21 recorded in the exchange
+  plan: PR 153 (lane `docs/practice-one-strategic-node`), reviewed before it opened by the
+  architecture reviewer (sound with changes, cured). HELD by the Director at 13:49Z: it is not
+  merged, even green, until the owner has read and ratified its PRACTICE-1 wording, which the
+  Director puts to the owner separately; review findings are cured meanwhile; (4) remove
   the lowest-power low-effort Cricket seat, its own pull request (the lineage never carried it);
   (5) the section both estates wrote twice (the operator-profile section of the shared
   start-right workflow), with the lineage's seat, the bet's first item; (6) the six rulings of
@@ -110,10 +120,20 @@ Director", and in the exchange plan's §Rulings 9 to 17.
 - PR MECHANICS LEARNED TODAY. A Copilot review request made with the bot's pull-request-work
   token returns success and never fires on this repository: request it under the default gh
   identity, and prove it by the timeline's `review_requested` event naming `Copilot`. Codex
-  answers again: it reviewed PR 152 at "@codex review" posted under the default identity.
+  reviewed PR 152's first two rounds at "@codex review" posted under the default identity, then
+  answered its third request at 13:30Z with its usage limit; a code-expert subagent leg stood in.
+  Before any push from the primary checkout, render the comms read model (`comms render
+  --comms-dir .agent/state/collaboration/comms --output
+  .agent/state/collaboration/shared-comms-log.md`): the pre-push substrate check reads that
+  gitignored file, and another seat's comms event can leave it stale mid-gate (the first
+  successor push failed on it at 13:43Z).
 - ROUTED, OPEN: the ratified strategic node's §Delivery carries operating detail the schema's
-  §Strategic excludes (owner card once the node is in both estates; ledger row in the exchange
-  node); PDR-125's per-estate phenotype note names host paths inside Core (the owner's
+  §Strategic excludes (its card became due when the lineage landed the node as its PR 177; sent
+  to the Director at 13:46Z for the batched card; ledger row in the exchange node); the
+  governance review of the topology lane found two gaps for the owner, sent to the Director with
+  it (the superseded `practice` node's outcome carried PRACTICE-2 and PRACTICE-3's matters,
+  which the one remaining node does not; the stream's ratified Won't do casts the lineage as
+  the parent); PDR-125's per-estate phenotype note names host paths inside Core (the owner's
   concept answer did not settle it); the rounds ruling's Core text (PDR-132 home, a PDR-140
   note, this estate's repo-local PDR-132 entry out of Core; agreed with the lineage's seat as a
   pair, after the amendments); Codex's P1 on merged PR 138 (open on purpose); Fred's conditions
@@ -2059,3 +2079,4 @@ ones the Director would put to the owner had the owner been present.
 - 2026-09-21T16:43Z: the onboarding leg of the owner's review fleet read these records cold and found the two entry-point surfaces stale and PRs 147 and 148 unmentioned (true: this seat had appended routing bullets without rewriting the blocks). Cured here: the current-state block rewritten, item 120 added, repo-continuity rewritten, the fleet's plan of record copied into the reports tier.
 - 2026-09-23T13:12Z: the entries between 2026-09-21T16:43Z and now live in items 121 to 123 above, which this log did not mirror; this entry brings the log level with them. The seat resumed on a new model at 10:52Z today; the handed-off PDR-142 lane was cured and landed as PR 151 (`SHA: f7a54165`); the owner ruled by card (concept over bytes; one Practice strategic node, reworded; amend PDR-142 and PDR-125; the lowest-power low-effort Cricket seat removable); a full Cricket suite reordered the queue; the fold of this branch is PR 152. The owner seated a Director at 13:08Z, Wick binds Temper (ed7b48), who routes every seat on this host; its team-start is event of 13:11:30Z. The current-state block at the top is current as of this entry.
 - 2026-09-23T13:28Z: the current-state block above rewritten for the Director's seating at 13:08Z (PR 152 round two, Copilot and Codex): questions, blocks and cards go to the Director, who carries one card with four items to the owner; the amendments are with the lineage's seat at `SHA: faca1cc8`; PDR-142 landed in the lineage as its PR 177; the Director push slot is retired.
+- 2026-09-23T13:50Z: PR 152 merged at `SHA: 551f2c39` (final round: Copilot none new, one previously missed Rejected by recomputation; a code-expert leg stood in for Codex, four findings accepted and cured in this commit). Successor `coordination/2026-09-23-551f2c` pushed at 13:46Z after one refusal: the pre-push substrate check found the gitignored comms read model stale mid-gate; render before a push. PR 153 (topology) opened and HELD by the Director until the owner ratifies its PRACTICE-1 wording. The amendment drafts and the profile text are at `SHA: 3cafd296` for the Director to route.
