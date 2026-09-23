@@ -39,7 +39,9 @@ Two surfaces compose. The **registry surface**: the check-runner's
 active claim carries `role` (e.g. `--role marshal` on `claims open`),
 the optional claim-schema field landed 2026-06-12 as the structural
 cure for singleton-role visibility — peers and glance surfaces resolve
-who holds the runner role per window from `active-claims.json` alone.
+who holds the runner role per window from `active-claims.json`. A claim
+records no working tree, so the broadcast, which names the tree, binds
+that role to its tree.
 The **broadcast convention** signals the in-flight run itself (start,
 ETA, result), which a static role field cannot:
 
@@ -124,7 +126,8 @@ The structural claim-schema cure pending since 2026-05-22 landed
 claims — an open-vocabulary session-role marker rather than the
 originally predicted `area-kind: gate-sweep`. The check-runner opens
 its claim with `--role marshal` (or another agreed runner label), so
-the singleton holder is observable through the registry. The broadcast
+the singleton holder is observable through the registry, and its
+broadcast names the working tree it holds the seat for. The broadcast
 convention remains the in-flight signal: roles answer *who holds the
 runner seat this window*; broadcasts answer *is a sweep running right
 now and what did it conclude*.
