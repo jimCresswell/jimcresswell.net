@@ -13,8 +13,8 @@ Practice Core package.
   bad removed everywhere; the owner's scope layers; how each kind of surface
   travels; and that a ruling about the Practice given in one estate reaches
   every estate, for now. Numbered from the lineage, where PDR numbers are
-  canonical, ahead of the third estate's renumbering above 141; to be landed
-  byte-identical in the lineage by its own seat.
+  canonical, ahead of the third estate's renumbering above 141. Its bytes are
+  identical in every estate that carries it; each estate's own seat lands it.
 
 ## [jimcresswell.net] 2026-09-21 — PDR-117, PDR-026 and PDR-011 amendments taken from the lineage
 
