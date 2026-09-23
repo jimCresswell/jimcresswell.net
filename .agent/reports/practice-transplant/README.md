@@ -13,7 +13,6 @@ these are the process outputs kept alongside the work.
 | [what-the-practice-is.md](what-the-practice-is.md)                   | The Practice defined by nine functions, the transplant set that follows, and what this transplant failed to migrate by evidence class (owner-asked 2026-09-13; provisional) | The `practice-completion` node's completeness audit |
 | [practice-language-separation.md](practice-language-separation.md)   | The universal Practice and its language packs: the measured leakage, the three kinds of instrument contract, six proposals with falsifiers (owner-directed 2026-09-13; provisional) | The `practice-language-separation` node; a PDR amendment candidate |
 | [generalisations.md](generalisations.md)                                 | The generalisation register: every move that made a Practice element more general or portable, with its commit and lineage status (owner-directed 2026-09-13; append-only) | Contributions back, the update from the lineage, the next transplant, the extraction |
-| [best-of-each-practice-draft-v5.md](best-of-each-practice-draft-v5.md) | UNRATIFIED joint draft by the two exchange seats: the definition of "the best of each Practice" and the shared plan, assembled whole for the owner's ratification (owner-directed 2026-09-21) | PDR-142 in the Core and a strategic plan node; this draft is removed on ratification |
 
 ## The record, compiled (closure item 7)
 
