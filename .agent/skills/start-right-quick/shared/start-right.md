@@ -112,10 +112,10 @@ built): on a cold clone run this step after the install and build below,
 never before; the grounding never blocks on the profile.
 
 ```bash
-# First the host's profile sync, pull side (PDR-141 decisions 13 to 16): a
-# no-op that says so unless the root is a repository with a remote. A refused
-# pull (a conflict, no network) is surfaced and the grounding continues; the
-# check below then reports the sync state.
+# First the host's profile sync, pull side (PDR-141 decisions 13 to 16), as the
+# Practice index names it: a no-op that says so unless the root is a repository
+# with a remote. A refused pull (a conflict, no network) is surfaced and the
+# grounding continues; the check below then reports the sync state.
 pnpm profile:sync pull || echo "profile not pulled: read the line above — a conflict is the operator's to resolve by union (PDR-141 decision 15); the check still runs"
 # The check prints the documents it validated from the same reads it checked
 # (--emit), so nothing reopens a path after the check: a file replaced by a
@@ -130,11 +130,13 @@ pnpm profile:check --emit index.md --emit "repos/${SCOPE:-none}.md" --emit "mach
 
 A present profile that fails the check is fixed at once, never read around:
 the contract is `.agent/practice-core/schemas/operator-profile.schema.json`. When a
-session writes the profile on the operator's word, it runs the push side in
-the same breath (`pnpm profile:sync push --message "<seat>: <fact>"`): the
-check runs first, the commit is the operator's, and no write sits unpushed
-across a session boundary. The sync is a no-op on a profile that is not a
-repository, and both absence and a non-repository profile stay first-class.
+session writes the profile on the operator's word, it runs the host's
+profile sync, push side, in the same breath (PDR-141 decisions 13 to 16;
+the Practice index names the command once the host binds one): the check
+runs first, the commit is the operator's with a message naming the seat and
+the fact, and no write sits unpushed across a session boundary. The sync is
+a no-op on a profile that is not a repository, and both absence and a
+non-repository profile stay first-class.
 
 **A missing profile is the expected condition, not a defect** (`principles.md`
 §Any User, Any Machine): proceed on tracked defaults and say nothing. Never
@@ -186,8 +188,10 @@ consulted. When the session is playing a named coordination role
 `--role <role>` on `claims open` so peers and glance surfaces (such as
 the statusline session-shape indicators) can resolve the team shape from
 the registry; the vocabulary is open and honest-by-convention. If no
-entries other than your own exist, log "no other agents
-present" through an immutable comms event and proceed (bootstrap fast-path).
+entries other than your own exist and the comms log shows no live peer,
+the session is solo: record your claim and proceed without broadcasts
+(`use-agent-comms-log` §Scale ceremony to the audience; bootstrap
+fast-path).
 On overlap, consult the shared communication log and any
 open decision-thread and escalation files before deciding whether to
 proceed, ping, append a decision thread, request a sidebar, record a
