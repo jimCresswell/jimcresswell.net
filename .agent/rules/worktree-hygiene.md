@@ -291,8 +291,8 @@ worktree gives false-clean dependency runs (Node resolution walks up into the pa
 checkout's `node_modules`, so a missing dependency passes locally and fails everywhere
 else); parallel `isolation: worktree` subagents can inherit the **wrong base commit**
 and write to main-repo **absolute paths**, so verify a spawned worktree's HEAD and keep
-paths worktree-relative; and `pnpm check`'s opening clean step deletes shared build
-output from under every sibling (the
+paths worktree-relative; and a whole-repo sweep rebuilds shared build output, deleting it
+first where the `check` script runs a `clean` step, from under every sibling (the
 [`check-singleton-per-window`](check-singleton-per-window.md) hazard). Isolation is a
 property to verify per-seam, never an assumption.
 

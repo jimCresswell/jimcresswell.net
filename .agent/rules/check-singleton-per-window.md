@@ -1,32 +1,37 @@
 ---
 classification: situational
-description: "Before any whole-repo gate sweep (pnpm check, pnpm test, large turbo runs) in a multi-agent window, check the comms stream for an in-flight run: at most one agent sweeps per coordination window — broadcast start and ETA, broadcast the result with HEAD SHA, peers defer and consume it (the runner claims --role marshal). Not for solo sessions, per-workspace scoped gates, or targeted single-file runs — those are parallel-safe. Failure shape — pnpm check's opening clean step deleting shared agent-tools/dist under every concurrent peer, killing their CLIs and watchers for the rebuild window."
+description: "Before any whole-repo gate sweep (pnpm check, pnpm test, large turbo runs) in a working tree other agents share, check the comms stream for an in-flight run: at most one agent sweeps per working tree per coordination window — broadcast start and ETA, broadcast the result with HEAD SHA, peers in that tree defer and consume it (the runner claims --role marshal). Seats in separate worktrees run their own sweeps side by side under no-unbounded-host-load item 6. Not for solo sessions, per-workspace scoped gates, or targeted single-file runs — those are parallel-safe. Failure shape — a sweep rebuilding the tree's shared agent-tools/dist under every concurrent peer in it, deleting it first where the check script runs a clean step, killing their CLIs and watchers for the rebuild window."
 trigger: tool:gate-sweep
 ---
 
-# Check-Runner Singleton Per Coordination Window
+# Check-Runner Singleton Per Working Tree, Per Coordination Window
 
 Only **one** agent runs a whole-repo gate sweep (`pnpm check`,
-`pnpm test`, large `turbo` invocations) per coordination window.
-Multiple parallel runs duplicate ~30s+ of work per run, produce no
-marginal signal, and can collide on advisory-orchestrator file
-outputs. The sharpest hazard: `pnpm check`'s opening `clean` step
-deletes shared build output (e.g. `agent-tools/dist/`) from under
-every concurrent peer — their CLIs (heartbeats, comms, marshal
-commands) and watchers die for the rebuild window (~90s). A
-whole-repo sweep is a shared-substrate mutation, not a private read.
+`pnpm test`, large `turbo` invocations) in one working tree per
+coordination window. Multiple parallel runs in one tree duplicate ~30s+
+of work per run, produce no marginal signal, and can collide on
+advisory-orchestrator file outputs. The sharpest hazard: a whole-repo
+sweep rebuilds the tree's shared build output (e.g. `agent-tools/dist/`)
+under every concurrent peer in that tree, and where the `check` script
+runs a `clean` step it deletes that output first — the peers' CLIs
+(heartbeats, comms, marshal commands) and watchers then die for the
+rebuild window (~90s). A whole-repo sweep is a shared-substrate
+mutation, not a private read.
 
 This rule complements `session-handoff` step §11 (which directs every
 closing agent to run `pnpm check`) by adding an N-agent constraint:
-the *team* runs check once, not N times.
+the *team* in one working tree runs check once, not N times.
 
 ## The Invariant
 
 Per any single coordination window (the period bounded by the most
 recent commit-window claim, comms-stream activity, or active source
-claim overlap), **at most one agent** runs the whole-repo gate sweep.
-The result of that run binds for the window; other agents observe
-the result and defer their own run.
+claim overlap), **at most one agent** runs the whole-repo gate sweep
+in any one working tree. The result of that run binds that tree for
+the window; other agents in the tree observe the result and defer
+their own run. Seats in separate worktrees run their own sweeps side
+by side, within the host bound of
+[`no-unbounded-host-load`](no-unbounded-host-load.md) item 6.
 
 ## Observable Surface
 
@@ -45,9 +50,9 @@ ETA, result), which a static role field cannot:
 2. **After** the run completes, the agent broadcasts a result event:
    `"Lane <name> pnpm check: green"` (or `"red <gate>:<file:line>"`),
    carrying the HEAD SHA at run time.
-3. Other agents in the window observing the in-flight broadcast
-   **defer** their own check run and consume the result event when
-   it arrives.
+3. Other agents in the same working tree observing the in-flight
+   broadcast **defer** their own check run and consume the result event
+   when it arrives.
 
 If the result event has not arrived within ~2× the announced ETA, a
 peer may take over with a fresh broadcast — the prior agent is
@@ -55,9 +60,10 @@ either retired or stalled.
 
 ## When the Rule Fires
 
-- Multi-agent sessions (≥2 agents visible in active-claims or comms).
-- Any session-handoff window where two or more agents are closing
-  concurrently.
+- Multi-agent sessions where two or more agents share one working tree
+  (≥2 agents visible in active-claims or comms).
+- Any session-handoff window where two or more agents in one working
+  tree are closing concurrently.
 - Any time the agent reflexively reaches for `pnpm check` without
   observing the comms stream for a recent in-flight broadcast.
 
@@ -80,6 +86,12 @@ kind of record of who is running check when"*. The friction this
 rule prevents is duplicate ~30s+ work across N agents at session
 close, plus the advisory-orchestrator file-collision risk when two
 runs overlap.
+
+Read through the owner's 2026-09-20 ruling (verbatim: "two parallel gate
+runs are fine as long as they are in different work trees"), the
+invariant above binds one working tree: seats in separate worktrees run
+their own sweeps under
+[`no-unbounded-host-load`](no-unbounded-host-load.md) item 6.
 
 ## Composition
 
