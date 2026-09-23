@@ -119,36 +119,7 @@ overrides:
   # maxTotalMergeKeys), after GHSA-5p4m-2wfm-xmqj (high; quadratic !!omap
   # resolution; 4.3.1). Remove when the tree's cosmiconfig declares js-yaml
   # >=4.3.2.
-  # 5.x: markdownlint-cli2 0.23.2, its latest release, pins 5.2.2 exactly.
-  # Floor 5.4.1 for GHSA-r3ph-w7gj-g6xm (maintainer severity medium; the same
-  # merge-source flaw on 5.x), a js-yaml repository advisory absent from
-  # GitHub's reviewed database on 2026-09-17, whose newest 5.x entry then,
-  # GHSA-pm4m-ph32-ghv5 (high), is patched in 5.2.2. Safe to force from the
-  # exact pin within the major: markdownlint-cli2 calls js-yaml's load with
-  # default options, whose schema has no merge keys, on .yaml configuration
-  # files and as the last-resort parser for others; this repository's
-  # configurations are JSON. The
-  # breaking entries in the 5.3 and 5.4 changelogs change the AST, the dumper,
-  # custom tag definitions and the MERGE_KEY export, not load with default
-  # options. Remove when markdownlint-cli2 declares js-yaml >=5.4.1.
   'js-yaml@4': '>=4.3.2 <5'
-  'js-yaml@5': '>=5.4.1 <6'
-  # Security floor: the markdown-it repository's GHSA-r7fv-28h4-cvq7
-  # (maintainer severity high; quadratic smartquotes on unmatched closing
-  # quotes; published 2026-09-12), patched in 14.3.2 on the 14 line, after
-  # GHSA-253c-mchw-3w2r (maintainer severity medium; quadratic linkify paths;
-  # 14.3.1). Both were absent from GitHub's reviewed database on 2026-09-17,
-  # whose newest entry then, GHSA-6v5v-wf23-fmfq (medium), is patched in
-  # 14.2.0. Its one consumer, markdownlint-cli2 0.23.2, pins markdown-it 14.3.0
-  # exactly; the floor moves that pin to a patch release within the major.
-  # Bounded below 15 on 2026-09-16: the open floor had rewritten that pin to
-  # 15.0.2, a major the linter was not built against. The floor also keeps
-  # linkify-it patched without an override of its own: markdown-it 14.3.x
-  # declares linkify-it ^5.0.2, the patched release for GHSA-v245-v573-v5vm
-  # (high), and markdown-it 15 declares ^6.0.0, outside it. Raise the bound
-  # when markdownlint-cli2 moves to markdown-it 15.
-  # Remove when markdownlint-cli2 declares markdown-it >=14.3.2.
-  markdown-it: '>=14.3.2 <15'
   # Security floor, raised 2026-09-17: GHSA-2v37-7h3g-55p8 (high;
   # CVE-2026-67213; custom generators loop indefinitely when size is zero),
   # patched in 3.3.18 on the 3.x line, after GHSA-28wg-ghj8-5hjv (high; 3.3.16)
@@ -158,6 +129,26 @@ overrides:
   # postcss the tree can resolve declares nanoid >=3.3.18: 8.5.27 is the first
   # release that does, and the postcss floor below still admits 8.5.26, which
   # declares ^3.3.17.
+  # Security floor, restored 2026-09-21 on the 15 line: the markdown-it
+  # repository's GHSA-r7fv-28h4-cvq7 (maintainer severity high; quadratic
+  # smartquotes on unmatched closing quotes) has TWO vulnerable ranges: below
+  # 14.3.2, and 15.0.0 up to but not including 15.0.2. The earlier floor
+  # ('>=14.3.2 <15') was removed the same day when markdownlint-cli2 0.23.3
+  # moved its exact pin to 15.0.1; that removal read the floor's number and
+  # not the advisory's second range, and took this estate from the patched
+  # 14.3.2 to the vulnerable 15.0.1. The advisory is a repository advisory,
+  # absent from GitHub's reviewed database, so pnpm audit, Dependabot and the
+  # dependency-review gate cannot see it: this entry is the only control.
+  # Safe to force from the exact pin: 15.0.2 is a patch release on the line
+  # the linter is built against. markdown-it 15 declares linkify-it ^6.0.0;
+  # no published linkify-it advisory covers the 6 line. Dev tooling only.
+  # Scoped to the 15 line, as the js-yaml and picomatch entries are scoped to
+  # theirs: an unscoped selector would force a later 14.x consumer across a
+  # major, and that consumer needs its own floor (>=14.3.2) instead. Bounded
+  # below 16. Remove when markdownlint-cli2 declares markdown-it
+  # >=15.0.2; before removing ANY floor here, read every vulnerable range of
+  # the advisories it names, never only the number in the entry.
+  'markdown-it@15': '>=15.0.2 <16'
   nanoid: '>=3.3.18 <4'
   # Security floor per major line, scoped 2026-09-17: GHSA-c2c7-rcm5-vvqj
   # (high; CVE-2026-33671; ReDoS via extglob quantifiers) and GHSA-3v7f-55p6-f55p
@@ -170,13 +161,7 @@ overrides:
   # 2.x: micromatch 4.0.8, under markdownlint-cli2, fast-glob (through globby)
   # and @next/eslint-plugin-next. Remove when micromatch declares picomatch
   # >=2.3.2.
-  # 4.x: dependency-cruiser pins 4.0.7, knip declares ^4.0.7, tinyglobby
-  # ^4.0.4, vite 7.3.5 and vitest 4.1.11 ^4.0.3. The 4 selector rewrites
-  # dependency-cruiser's exact pin, so a later 4.x release moves it on the next
-  # relock, and rewrites fdir's optional peer ^3 || ^4 to this floor. Remove
-  # when the tree's vite and vitest declare picomatch >=4.0.4.
   'picomatch@2': '>=2.3.2 <3'
-  'picomatch@4': '>=4.0.4 <5'
   # Security floor: postcss's advisories run to GHSA-fxqj-rqcc-2cmp (medium;
   # sourceMappingURL reads arbitrary .map files when `from` is unset), patched
   # in 8.5.23, after GHSA-r28c-9q8g-f849 (high; 8.5.18), GHSA-6g55-p6wh-862q
@@ -192,28 +177,15 @@ overrides:
   # 4.3.3 ^8.5.16).
   postcss: '>=8.5.26 <9'
   # Security floor: GHSA-mw96-cpmx-2vgc (high; arbitrary file write through
-  # path traversal in Rollup 4), patched in 4.59.0. vite 7.3.5 declares rollup
-  # ^4.43.0; tsup 8.5.1 and its fix-dts-default-cjs-exports declare ^4.34.8.
+  # path traversal in Rollup 4), patched in 4.59.0. tsup 8.5.1 and its
+  # fix-dts-default-cjs-exports declare ^4.34.8.
   # Build and test tooling only. Bounded below 5 pre-emptively (no 5.x
   # published at 2026-09-17): an open floor admits the next major the day it
-  # ships and forces it onto every ^4 dependent. Remove when vite and tsup
-  # declare rollup >=4.59.0.
+  # ships and forces it onto every ^4 dependent. vite left rollup for rolldown
+  # at 8.0 (this estate took vite 8.3.0 on 2026-09-21), so tsup and its
+  # fix-dts-default-cjs-exports are the remaining consumers, each declaring
+  # its own range. Remove when BOTH declare rollup >=4.59.0.
   rollup: '>=4.59.0 <5'
-  # Security floor, added 2026-09-16: GHSA-7w5x-hrqm-74c2 (high) in smol-toml
-  # <=1.7.0, patched in 1.7.1. markdownlint-cli2 0.23.2, its latest release,
-  # pins smol-toml 1.7.0 exactly, so no version move escapes; agent-tools
-  # declares ^1.7.1 and knip ^1.8.0. Tree-wide rather than parent-scoped, so a
-  # new consumer cannot bring back a vulnerable line. Safe to force from the
-  # exact pin: 1.8.0 is a minor release, and markdownlint-cli2 calls smol-toml's
-  # parser for a configuration path ending in .toml and as a fallback parser
-  # for configuration files that fail to parse as JSONC; this repository's
-  # configurations are valid JSON, so the vulnerable path is unreachable here.
-  # This override REWRITES agent-tools' recorded range, and while it stands a
-  # raised manifest range is silently ignored: move floor and bound together
-  # with that manifest. Bounded below 2 pre-emptively; raise the bound when a
-  # consumer needs smol-toml 2. Remove when markdownlint-cli2 declares smol-toml
-  # >=1.7.1.
-  smol-toml: '>=1.7.1 <2'
   # Transitive floor; no advisory names sucrase itself. sucrase 3.35.0 declares
   # glob ^10.3.10, a range whose floor sits inside GHSA-5j98-mcp5-4vw2 (high;
   # command injection through the glob CLI's -c option; patched in 10.5.0);

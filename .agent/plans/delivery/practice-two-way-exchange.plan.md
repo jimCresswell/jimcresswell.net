@@ -16,7 +16,7 @@ ratified_where: >-
   .agent/memory/operational/director-handoff.md §Decisions overnight, item 101.
   Amended by the owner's card answers of 2026-09-21 in the session of Brazier spins
   Temper (c70341), recorded verbatim in this node's §Rulings of 2026-09-21.
-serves: practice
+serves: best-of-each-practice
 impact_areas:
   - practice-and-estate
 tickets: []
@@ -24,7 +24,7 @@ depends_on:
   - plan: practice-completion
     kind: blocking
 owner_gates: []
-last_updated: 2026-09-21
+last_updated: 2026-09-23
 ---
 
 # Practice exchange
@@ -66,8 +66,8 @@ quoted. Two of these supersede rulings above, and say so.
    gets what the other holds, every estate takes the higher of two, and the bad is removed
    everywhere, the owner's own rulings only by the owner's word.
 10. SUPERSEDES ruling 4: "you and Zephyr are equal n=2 partners and collaborators, drop the
-    Director status". The two exchange seats hold one shared definition and one shared plan
-    (draft: `.agent/reports/practice-transplant/best-of-each-practice-draft-v5.md`, unratified).
+    Director status". The two exchange seats hold one shared definition and one shared plan:
+    PDR-142 and the strategic node `best-of-each-practice`, both ratified 2026-09-21 by card.
 11. The reach of a ruling about the Practice given in one estate: "Everywhere for now, and later
     we will explore some kind of centralisation of the Practice, the distributed model creates
     too much overhead".
@@ -296,3 +296,6 @@ the routing rationale. Read and dispositioned at pickup before implementation be
 | --- | --- | --- | --- |
 | 2026-09-21 | PR 149, Copilot round two (overview observation, no thread) | In `pnpm-workspace.yaml` the restored `markdown-it` comment and entry sit between the existing `nanoid` security comment and the `nanoid` entry it documents. Cure: move the `markdown-it` comment and entry above the `nanoid` comment. | Below-bar, comment order only. Not cured in PR 149: rounds do not go up, and `main` resolved a vulnerable version until it landed. Rides the next change that touches `pnpm-workspace.yaml`. |
 | 2026-09-21 | PR 150, Copilot round one (item 8 of 9) | `verify-dont-trust` cites a pattern named `falsification-cost-determines-claim-quality`; no such pattern file or index entry exists here. The citation stood on `main` before PR 150. Verified: the citation stood in the lineage's text at the transplant pin, and the lineage holds that pattern file; this estate never received it. Cure: bring the pattern as a one-sided offer (the patterns row of the exchange register), after a host-fit read. | Below-bar and not introduced by PR 150. The citation is valid where it was written, so the source needs no edit; the missing thing is the pattern here. |
+| 2026-09-23 | PR 151, Copilot round one (thread on `best-of-each-practice.plan.md` §Delivery) | The strategic node's §Delivery carries implementation detail (a state line every thirty minutes, native-message routing, one-write channel appends), which the plan-node schema's §Strategic excludes ("no implementation detail"). Verified against the schema. | Not cured in PR 151: the node body is owner-ratified text ("Ratify both texts", 2026-09-21), never edited to satisfy a reviewer. Goes to the owner as a card after the node lands in both estates. The likely cure is moving those operating habits to this delivery node, so both estates' copies change together. |
+| 2026-09-23 | PR 151, Copilot round two (thread on PDR-142 §Decision, lines 110 and 126) | PDR-142's ratified transfer rules (text held at a copy point travels as the donor's bytes; Core records name no host) conflict with PDR-125 §7 ("concepts travel, never bytes", with format normalised on receipt) and with its per-estate phenotype note. Verified against both records: a seat cannot follow both. | Not cured in PR 151: both records are owner-ratified, and PDR-142's Boundaries leave PDR-125's amendment to the owner. To the owner by card after PDR-142 lands: which record governs where they differ, then PDR-125's dated amendment in both estates as a pair. |
+| 2026-09-23 | PR 151, Copilot round two (review body, previously missed, `best-of-each-practice.plan.md:17`) | Two ratified strategic nodes now serve PRACTICE-1 (`practice` and `best-of-each-practice`), while the plans README gives `strategic/` one node per stream. PRACTICE-1's own text (a host takes the lineage's newer generation; conventions converge on the lineage's) also predates the owner's union-upward reading. Verified. | Not cured in PR 151: the node type ("a strategic node's body"), the `practice` node and the stream are all owner-ratified. To the owner by card with the topology options (a choice of its own in the stream; one node replacing the other; or the README contract reading one node per choice). |

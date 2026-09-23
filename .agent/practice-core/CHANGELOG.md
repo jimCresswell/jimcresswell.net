@@ -4,6 +4,29 @@ Changes to the Practice Core files, newest first. Each entry records the repo
 that made the change and what was changed. This file travels with the
 Practice Core package.
 
+## [jimcresswell.net] 2026-09-23 — PDR-142: the best of each Practice
+
+- PDR-142 (Accepted, owner-ratified 2026-09-21 by card) added: how the
+  Practice's instances are aligned, judged and pruned. Its decision is the
+  definition the two exchange seats authored jointly and both signed, in the
+  owner's words where the owner spoke: union upward, the higher of two, the
+  bad removed everywhere; the owner's scope layers; how each kind of surface
+  travels; and that a ruling about the Practice given in one estate reaches
+  every estate, for now. Numbered from the lineage, where PDR numbers are
+  canonical, ahead of the third estate's renumbering above 141. Its bytes are
+  identical in every estate that carries it; each estate's own seat lands it.
+
+## [jimcresswell.net] 2026-09-21 — PDR-117, PDR-026 and PDR-011 amendments taken from the lineage
+
+- PDR-117 (the 2026-09-14 and 2026-09-17 amendments and the routing,
+  planning, executor-binding and review-lane clauses), PDR-026 (the
+  2026-07-30 owner endorsement of surfaced falsifiable structure) and PDR-011
+  (the 2026-09-17 amendment: graduate, then archive; the four-part surface
+  lifecycle) taken byte-identical from the lineage's text of 2026-09-21 as
+  register rows L2, L4 and L5 of the three-estate Practice exchange. This
+  changelog carries the lineage's entries of 2026-09-14 to 2026-09-19 below,
+  in date order beside this estate's own.
+
 ## [jimcresswell.net] 2026-09-21 — PDR-141 and the operator-profile schema taken from the lineage
 
 - PDR-141 (Accepted on the lineage 2026-09-14, with its 2026-09-14,
@@ -17,6 +40,58 @@ Practice Core package.
   its enforcement validator and names `pnpm profile:check` and
   `pnpm profile:sync` in its Practice index; the checkout-local tier is
   retired to a pointer.
+
+## [EngraphCode/open-curriculum-ecosystem] 2026-09-19 — PDR-011: graduate, then archive; the four-part surface lifecycle
+
+- PDR-011 Amendment Log, dated 2026-09-17 (the owner's decision) and landed
+  2026-09-19: the finished disposition for continuity-surface content becomes
+  graduate, then archive to a dated file proven byte-identical, replacing
+  curate-and-delete. A memory surface is curated only when it has a role, a
+  disposition, a trigger (a named workflow step) and a proof; the 2026-06-08
+  disposition lacked a trigger and the surfaces grew. Archiving happens only
+  after full processing, never to change a fitness category.
+
+## [EngraphCode/open-curriculum-ecosystem] 2026-09-17 — PDR-117 and PDR-141 amendments from the dedicated consolidation
+
+- PDR-117 §Takeover verification, with a dated amendment: neither the claims
+  registry nor the heartbeat stream licenses a Director takeover. Moment 2
+  rests on the outgoing Director's explicit written stand-down or the owner's
+  word; a row that licenses nothing when stale licenses nothing when fresh,
+  and the two reads guard only against taking the seat over a live Director.
+- PDR-141 decision 7, with a dated amendment: the order at session open is
+  decision 14's sync (where the profile root is a repository with a remote),
+  then the profile check, then the reads, where decision 7 had said the check
+  runs "FIRST"; decision 11's "before anything is synced" now reads before
+  anything is read into a session, the same order, and names what the push
+  leg checks (the working tree, not the pushed commits' content).
+
+## [EngraphCode/open-curriculum-ecosystem] 2026-09-14 — PDR-141: the operator profile lives in the home directory
+
+- New PDR-141 (Accepted: owner-ratified 2026-09-14 with the same day's
+  amendment; owner-directed core): the operator profile — which
+  identity acts where, how the operator wants to be written to and for,
+  personal operating preferences — moves out of the checkout
+  (`.agent/operator-local/profile.md`) to `~/.practice/profile/index.md`
+  with repository-scoped files under `repos/<scope-key>.md`, keyed by the
+  origin remote's owner and name rather than a path. Strictly optional,
+  below every tracked surface, no credentials, nothing load-bearing. Names
+  `~/.practice/` as the Practice's home-directory root, the first surface
+  the Practice creates and consumes outside a repository; any further such
+  surface needs its own decision.
+
+## [EngraphCode/open-curriculum-ecosystem] 2026-09-14 — operator-profile schema: the Core-carried contract for the home-directory profile
+
+- New `schemas/operator-profile.schema.json` (family 1.0.0): the frontmatter
+  contract for the operator profile, the Practice's one surface outside a
+  repository (`~/.practice/profile/`, per the estate's operator-profile PDR,
+  numbered locally). Three document kinds — `index` (the operator
+  everywhere), `scope` (one repository line, keyed by the origin remote's
+  owner and name), `machine` (one machine, keyed by the short host name) —
+  so the root can be an optional private git repository the operator syncs
+  between machines without the estate assuming any machine. Strict shapes,
+  additive-optional minors, MAJOR for a breaking change. The host binds it
+  to its enforcement validator with a conformance smoke, as the wire
+  contract is bound.
 
 ## [EngraphCode/open-curriculum-ecosystem] 2026-09-09 — PDR-027 open question: which model name wins when four disagree
 
