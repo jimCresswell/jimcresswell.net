@@ -45,5 +45,5 @@ validator resolves every edge.
 
 ## Won't do
 
-- Fork the Practice from its lineage; divergence is recorded, never silent.
+- Fork the Practice from the instances it shares with; divergence is recorded, never silent.
 - Graduate a lesson without the owner's review.

@@ -124,6 +124,40 @@ PDR-142 landed here; verbatim where quoted. The numbering continues from the rul
     ruling 10, which dropped the exchange seat's own Director status: the two exchange seats
     remain equal partners.
 
+Rulings 22 to 31 are the owner's answers on the Director's cards of the same evening, relayed by
+the Director, each the card's recommended option; the lineage's own item (a setting in its
+clone) is left out.
+
+22. The paired amendments to ruling 18, PDR-142's clause "Concepts travel; bytes where they
+    carry the concept" and PDR-125 clause 7, drafted here and signed by the lineage's seat as
+    receiver: ratified for both estates (carried here by PR 155).
+23. PDR-141 takes the lineage's cure here, byte-identical in both estates (every write made on
+    the operator's word is pushed), with the Practice index row.
+24. PRACTICE-1's rewording under ruling 19: ratified, and PR 153 merged when green.
+25. The operator profile's four replacements that the card listed are written on the owner's
+    word and pushed through the profile sync.
+26. `best-of-each-practice` §Delivery's keep-in-touch habits move to this node, in both estates,
+    as §How the seats keep in touch; §Delivery keeps its search pointer.
+27. No new node for PRACTICE-2 and PRACTICE-3; they trace to `best-of-each-practice`.
+28. The stream's Won't do reads "Fork the Practice from the instances it shares with; divergence
+    is recorded, never silent".
+29. PDR-142's read-through names "never re-authors", and a rendition under its third reason is
+    made at receipt, never as an edit of a merged line: one pointer, the same bytes in both
+    estates, carried by PR 155.
+30. `best-of-each-practice` §The bet reads "Text travels by bytes where they carry the concept
+    (PDR-142)".
+31. PDR-142's merged-text bullet names a third remedy: a contradiction the donor carries too,
+    cured jointly at the source.
+32. On the format of received text, in free text on a card: "We are standardising the Practice
+    between OCE and JC.net. broadly I agree with option 1, but in this case we are also trying
+    minimise the cost of the eventual extraction and replacement of the Practice". The words
+    that carry it, signed by both exchange seats, went back to the owner as one question before
+    they land.
+33. For all agents, given in the lineage seat's session and to this estate's Director: the
+    Director hears questions and requests, never state. Its home is
+    `route-blocks-and-questions-to-director`, §The Director Hears Questions and Requests, Never
+    State.
+
 Authored 2026-09-14 by the Director at the owner's direction, verbatim: "make sure that we have
 a plan for exploring that Practice delta, and any other advancements that have happened by the
 time we get to it. We have also developed our Practice beyond theirs. We will need a thoughtful
@@ -228,6 +262,12 @@ Known overlap for step 2, recorded now so the window starts with it: this estate
 suppressed-findings hold (closure item 5a-vi) and the lineage's pull-request tally family cover
 the same ground with different encodings; the lineage's review-cost push gate and this estate's
 two-round ruling of 2026-09-14 do too.
+
+## How the seats keep in touch
+
+The seats keep in touch by a state line at every landing, every block, and every thirty
+minutes of work on this plan; a native message for anything another seat must act on; channel
+entries composed whole and appended in one write.
 
 ## Acceptance criteria (each with a proof)
 
