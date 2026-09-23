@@ -66,8 +66,8 @@ quoted. Two of these supersede rulings above, and say so.
    gets what the other holds, every estate takes the higher of two, and the bad is removed
    everywhere, the owner's own rulings only by the owner's word.
 10. SUPERSEDES ruling 4: "you and Zephyr are equal n=2 partners and collaborators, drop the
-    Director status". The two exchange seats hold one shared definition and one shared plan
-    (draft: `.agent/reports/practice-transplant/best-of-each-practice-draft-v5.md`, unratified).
+    Director status". The two exchange seats hold one shared definition and one shared plan:
+    PDR-142 and the strategic node `best-of-each-practice`, both ratified 2026-09-21 by card.
 11. The reach of a ruling about the Practice given in one estate: "Everywhere for now, and later
     we will explore some kind of centralisation of the Practice, the distributed model creates
     too much overhead".

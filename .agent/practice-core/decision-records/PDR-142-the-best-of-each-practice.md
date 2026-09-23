@@ -12,16 +12,15 @@ two exchange seats and signed by both before the card)
 (the inter-Practice protocol; clause 6's union posture, which this record
 sharpens, and its "never shared code", which the owner's chosen route will
 amend), [PDR-105](PDR-105-reference-direction-invariants.md) (portability),
-[PDR-140](PDR-140-review-response-pricing.md) (review pricing, whose one
-rebudget the owner's rounds ruling now overrides everywhere)
+[PDR-140](PDR-140-review-response-pricing.md) (review pricing)
 
 ## Context
 
 Several repositories carry one Practice, copied from one another at known
 points and evolved apart since. The owner's opening words of 2026-09-21,
-verbatim: "we transplanted the Practice from OCE to here. In that process we
-improved and evolved the Practice. The Practice in OCE also continued to
-evolve. We need to bring each Practice instance up to the highest standards
+verbatim: "we transplanted the Practice from [the lineage] to [a second
+estate]. In that process we improved and evolved the Practice. The Practice
+in [the lineage] also continued to evolve. We need to bring each Practice instance up to the highest standards
 and best capabilities of each. We also have [a third estate] which has a
 Practice that is badly lagging, some of which needs replacing, and some bad
 ideas need removing." Later the same day, to the two seats: decide TOGETHER
@@ -168,10 +167,10 @@ chosen the package as the route.
 
 Owner direction 2026-09-21 (the opening words, the together-NOW word, the
 equal-partners word, and nine answers by card, each recorded verbatim with
-its question in this estate's napkin of that day and in the exchange plan's
-rulings 9 to 17). Authored jointly by Brazier spins Temper (c70341, this
-estate) and Zephyr guards Leeward (281e44, the lineage) on the shared
-rapid-comms channel of 2026-09-21: two blind drafts, four real cases answered
+its question in the continuity records and the exchange plan of the estate
+where it was given). Authored jointly by the two exchange seats, Brazier
+spins Temper (c70341) in the second estate and Zephyr guards Leeward
+(281e44) in the lineage, on the shared rapid-comms channel of 2026-09-21: two blind drafts, four real cases answered
 blind, a blind ordering of the shared work, four adversarial checks from the
 seats' own model family and one from another vendor's model (Whippoorwill
 holds Frost, 1e8a53), five versions, both signatures. Numbering allotted
