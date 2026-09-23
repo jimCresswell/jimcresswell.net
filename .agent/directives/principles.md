@@ -667,7 +667,9 @@ paths, setup files) don't apply.
   production build — ADR-019). Run `check` and the E2E suite sequentially,
   never in parallel: each is a full-host run (builds, test workers, the
   Playwright web server). Across worktrees, full gates run side by side, at
-  most two at once, and inside one worktree gate runs are sequential
+  most two at once (item 6's ceiling of three is the hard stop of the
+  mechanism it names, never a seat's allowance), and inside one worktree
+  gate runs are sequential
   ([`no-unbounded-host-load` item 6](../rules/no-unbounded-host-load.md);
   owner, 2026-09-20: "two parallel gate runs are fine as long as they are in
   different work trees"). These bounds are about
