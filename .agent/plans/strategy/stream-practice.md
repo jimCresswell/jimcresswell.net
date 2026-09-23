@@ -20,11 +20,13 @@ actually close._
   2026-09-12 transplant from the lineage is the first generation here). The instances are
   aligned upward, never toward one of them: where they hold different things each takes the
   other's, where they hold two encodings of one thing every instance takes the higher, and
-  what is bad is removed wherever it is carried. What travels is the concept; shared
-  concepts converge and are never aliased side by side, and what is repo-local by kind stays
-  here and is recorded
+  what is bad is removed wherever it is carried. A decline is allowed and never the default;
+  where neither encoding is shown higher, each instance keeps its own
   ([PDR-142](../../practice-core/decision-records/PDR-142-the-best-of-each-practice.md)).
-  Reworded 2026-09-23 on the owner's card ("One node, reworded").
+  Shared concepts converge and are never aliased side by side, and what is repo-local by kind
+  stays here and is recorded. What travels is the concept, in the owner's words of
+  2026-09-23: "byte for byte transfer is never the goal, concept transfer is". Reworded
+  2026-09-23 on the owner's card ("One node, reworded").
 - **PRACTICE-2 — The learning loop is closed, not nominal.** Napkin → distilled → pending
   graduations → doctrine is the reason the Practice is here; the 57 archived lessons are
   synthesised by one seat and reviewed by the owner before anything graduates; every

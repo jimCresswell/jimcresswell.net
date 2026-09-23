@@ -29,7 +29,7 @@ last_updated: 2026-09-23
 **Disposition (2026-09-23): superseded by
 [`best-of-each-practice`](../best-of-each-practice.plan.md), archived.** The owner's card of
 2026-09-23 ("One node, reworded") made that node the Practice stream's one strategic node and
-reworded PRACTICE-1 to its reading; the plans that served this node serve that one. The text
+reworded PRACTICE-1 to its reading; the live plans that served this node serve that one. The text
 below is this node as ratified on 2026-09-13.
 
 ## Outcome

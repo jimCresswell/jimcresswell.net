@@ -35,7 +35,7 @@ node. Enumerate what serves a node by search, never by a hand-kept list._
 | `delivery/`                                  | Delivery plans (steps of the live lanes)                                                                          |
 | `runbooks/`                                  | Operational procedures                                                                                            |
 | [`templates/`](templates/README.md)          | The three authoring templates, each opening with its ratification block                                           |
-| `archive/`                                   | Terminal plans (completed or abandoned, each with its disposition); the validator scans it like any other directory |
+| `*/archive/`                                 | Terminal plans (completed, abandoned or superseded, each with its disposition), inside their type's directory; the validator scans them like any other directory |
 
 Plans are public-repository artefacts: **mechanism only**; anything
 private stays behind the private editorial boundary.

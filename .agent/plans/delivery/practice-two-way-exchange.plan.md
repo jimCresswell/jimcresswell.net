@@ -110,17 +110,19 @@ PDR-142 landed here; verbatim where quoted. The numbering continues from the rul
 19. How the Practice stream reads, with two strategic nodes serving PRACTICE-1: "One node,
     reworded". PRACTICE-1 is reworded to the union-upward reading; `best-of-each-practice` is the
     stream's one strategic node; `practice-completion`, `practice-language-separation` and the
-    runbook `practice-lineage-transplant` serve it; the `practice` node is archived. The schema
-    records a replaced ratified node as `superseded`, naming its successor, so that is its status
-    in `strategic/archive/`.
-20. Whether to amend both records to ruling 18: "Amend both". One dated amendment each to
-    PDR-142 and PDR-125 carrying the owner's words: this estate's exchange seat drafts, a receiver
-    in the lineage judges, the owner ratifies the text, then both estates land it.
+    runbook `practice-lineage-transplant` serve it; the `practice` node is archived (the card's
+    option text). The seat's mapping onto the schema: a replaced ratified node is `superseded`,
+    naming its successor, so that is its status in `strategic/archive/`.
+20. Whether to amend both records to ruling 18: "Amend both". As the card put it: one dated
+    amendment each to PDR-142 and PDR-125 carrying the owner's words, drafted by this estate's
+    exchange seat, judged by a receiver in the lineage, ratified by the owner, then landed in
+    both estates.
 21. A Director for this estate: "Wick binds Temper (ed7b48) is the Director. If and when you have
     questions, contact them rather than me, they will answer your questions, they will contact
-    me if absolutely necessary". This estate's seats send questions, blocks and cards to the
-    Director, who carries cards to the owner. Ruling 10 stands: the two exchange seats remain
-    equal partners.
+    me if absolutely necessary". By the Director's routing: this estate's seats send questions,
+    blocks and cards to the Director, who carries cards to the owner. The seat reads this with
+    ruling 10, which dropped the exchange seat's own Director status: the two exchange seats
+    remain equal partners.
 
 Authored 2026-09-14 by the Director at the owner's direction, verbatim: "make sure that we have
 a plan for exploring that Practice delta, and any other advancements that have happened by the

@@ -3,7 +3,7 @@ title: 'Strategy'
 type: strategy
 doc_role: index
 status: ratified
-last_updated: 2026-09-13
+last_updated: 2026-09-23
 audience: 'The owner (decide) and every seat on the repository (build)'
 ---
 
