@@ -93,24 +93,23 @@ Director", and in the exchange plan's §Rulings 9 to 17.
   `.agent/reports/agentic-engineering/cricket-suite-tally-2026-09-23-exchange-seat-after-model-change.md`).
 - QUEUE, in order (the full Cricket suite of 2026-09-23 moved the rulings up, per the ratified
   node's §The bet): (1) DONE, the fold and the successor cut; (2) the PDR-142 and PDR-125
-  amendments: drafted and committed on the lane `docs/concept-over-bytes-amendments` at
-  `SHA: faca1cc8`, unpushed, with the operator-profile replacement text in the message of the
-  empty commit above it (`SHA: 3cafd296`). The receiver who judges is the lineage's seat, per the
-  owner's ruling; the Director decides which session holds it from that seat's measured context
-  and routes the judging (the exchange seat sends the lineage's seat nothing directly). Then the
-  final text and that judgement go to the Director, who carries ONE batched
-  card to the owner: the two amendments; the two-line PDR-141 cure the lineage's PR 173 carries,
+  amendments: SIGNED by the lineage's seat as receiver (PDR-125 as drafted; PDR-142 and PDR-141
+  each with one change, taken). The text is on the lane `docs/concept-over-bytes-amendments-v2`
+  at `SHA: 2185dc9f`, unpushed; PDR-141 there is byte-identical with the lineage's. The
+  profile replacement text went to the Director by native message, off the pushed lane (the
+  local-only `SHA: 3cafd296` on the first branch is never pushed). The Director assembles ONE
+  batched card to the owner: the two amendments; the two-line PDR-141 cure the lineage's PR 173 carries,
   drafted on the same lane (decisions 11 and 14 push only ratified writes, against the record's
   own "No write sits unpushed across a session boundary"); and two stale operator-profile clauses,
   the castr route in the profile's index and the one-Playwright-port and Director-slot line in
-  this estate's scope file, with the replacement text at `SHA: 3cafd296`; the batched card also
+  this estate's scope file, with the replacement text; the batched card also
   carries the items listed under ROUTED below. Nothing on that lane lands before the card
   returns; (3) the topology change in ruling (2), with rulings 18 to 21 recorded in the exchange
   plan: PR 153 (lane `docs/practice-one-strategic-node`), reviewed before it opened by the
   architecture reviewer (sound with changes, cured). HELD by the Director at 13:49Z: it is not
   merged, even green, until the owner has read and ratified its PRACTICE-1 wording, which the
-  Director puts to the owner separately; review findings are cured meanwhile; (4) remove
-  the lowest-power low-effort Cricket seat, its own pull request (the lineage never carried it);
+  Director puts to the owner separately; review findings are cured meanwhile; (4) DONE, the
+  lowest-power low-effort Cricket seat removed as PR 154 (`SHA: 03f6adfa`);
   (5) the section both estates wrote twice (the operator-profile section of the shared
   start-right workflow), with the lineage's seat, the bet's first item; (6) the six rulings of
   2026-09-21 ("All six here now"): four as text, the absolute no-IO test invariant (testing
@@ -2080,3 +2079,4 @@ ones the Director would put to the owner had the owner been present.
 - 2026-09-23T13:12Z: the entries between 2026-09-21T16:43Z and now live in items 121 to 123 above, which this log did not mirror; this entry brings the log level with them. The seat resumed on a new model at 10:52Z today; the handed-off PDR-142 lane was cured and landed as PR 151 (`SHA: f7a54165`); the owner ruled by card (concept over bytes; one Practice strategic node, reworded; amend PDR-142 and PDR-125; the lowest-power low-effort Cricket seat removable); a full Cricket suite reordered the queue; the fold of this branch is PR 152. The owner seated a Director at 13:08Z, Wick binds Temper (ed7b48), who routes every seat on this host; its team-start is event of 13:11:30Z. The current-state block at the top is current as of this entry.
 - 2026-09-23T13:28Z: the current-state block above rewritten for the Director's seating at 13:08Z (PR 152 round two, Copilot and Codex): questions, blocks and cards go to the Director, who carries one card with four items to the owner; the amendments are with the lineage's seat at `SHA: faca1cc8`; PDR-142 landed in the lineage as its PR 177; the Director push slot is retired.
 - 2026-09-23T13:50Z: PR 152 merged at `SHA: 551f2c39` (final round: Copilot none new, one previously missed Rejected by recomputation; a code-expert leg stood in for Codex, four findings accepted and cured in this commit). Successor `coordination/2026-09-23-551f2c` pushed at 13:46Z after one refusal: the pre-push substrate check found the gitignored comms read model stale mid-gate; render before a push. PR 153 (topology) opened and HELD by the Director until the owner ratifies its PRACTICE-1 wording. The amendment drafts and the profile text are at `SHA: 3cafd296` for the Director to route.
+- 2026-09-23T14:13Z: PR 154 merged at `SHA: 03f6adfa` (the lowest-power low-effort Cricket seat removed; Copilot approval recommended, no findings). The amendments are signed by the lineage's seat as receiver; its two changes are taken at `SHA: 2185dc9f` on `docs/concept-over-bytes-amendments-v2`. The profile text went to the Director natively, and the Director is assembling the owner card.

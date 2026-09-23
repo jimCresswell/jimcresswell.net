@@ -21,7 +21,7 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
-- 2026-09-23T13:49Z: a Director is seated on this estate. At 13:08Z the owner named Wick binds
+- 2026-09-23T14:12Z: a Director is seated on this estate. At 13:08Z the owner named Wick binds
   Temper (ed7b48) Director: every question, block and card from this estate's seats goes to the
   Director, never to the owner, and the Director carries cards to the owner. The exchange seat
   (Brazier spins Temper, c70341) is an implementer; its partnership with the lineage's seat stays
@@ -34,8 +34,9 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
   and PDR-125 accordingly (the exchange seat drafts, the lineage's seat judges, the Director
   carries one batched card to the owner); the Practice stream gets one strategic node, reworded
   (PR 153, held until the owner ratifies its wording); the lowest-power low-effort Cricket seat
-  is removable. The live reading is the handoff's current-state block and the last entry of its
-  routing log, then the napkin's tail.
+  is removed (PR 154, `SHA: 03f6adfa`), and the amendments are signed by the lineage's seat as
+  receiver and wait for the owner's card. The live reading is the handoff's current-state block
+  and the last entry of its routing log, then the napkin's tail.
 - 2026-09-17 evening: zero open pull requests. The close-out landed #126, #127, #94, #95,
   #96, #128 and #129, and the fold #130 (`SHA: 5f3225e2`) carried that window's records to
   `main`. The plan `estate-fix-backlog` was ratified, completed and archived on 2026-09-19
@@ -298,8 +299,7 @@ and proof (item 4's rows closed by #85 `SHA: eed1f2e`, #87 `SHA: 6b5676b`, #86
 
    Second maintenance item at the same priority (2026-09-16): the Cricket seat naming. The
    quartet's generated adapter names encode effort alone (`-low`, `-medium`, `-high`, `-xhigh`), so
-   nothing in those names says which model a seat runs (the fifth seat,
-   `cricket-judgement-lowestpower-low`, added the same day, already names both), while the
+   nothing in those names says which model a seat runs, while the
    estate pairs model power INVERSELY with effort — low is fable, medium is opus, high is sonnet, xhigh is haiku. A caller who cannot read
    that from the name mis-launches the suite, as the Director did on 2026-09-16 by overriding
    every seat's model and inverting the design. Names should carry both dimensions. The change
