@@ -14,8 +14,7 @@ Practice Core package.
   travels; and that a ruling about the Practice given in one estate reaches
   every estate, for now. Numbered from the lineage, where PDR numbers are
   canonical, ahead of the third estate's renumbering above 141; to be landed
-  byte-identical in the lineage by its own seat. The plan that serves it is a
-  strategic plan node in each estate, never Core text.
+  byte-identical in the lineage by its own seat.
 
 ## [jimcresswell.net] 2026-09-21 — PDR-117, PDR-026 and PDR-011 amendments taken from the lineage
 

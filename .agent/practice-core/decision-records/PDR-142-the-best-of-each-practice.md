@@ -20,12 +20,12 @@ Several repositories carry one Practice, copied from one another at known
 points and evolved apart since. The owner's opening words of 2026-09-21,
 verbatim: "we transplanted the Practice from [the lineage] to [a second
 estate]. In that process we improved and evolved the Practice. The Practice
-in [the lineage] also continued to evolve. We need to bring each Practice instance up to the highest standards
-and best capabilities of each. We also have [a third estate] which has a
-Practice that is badly lagging, some of which needs replacing, and some bad
-ideas need removing." Later the same day, to the two seats: decide TOGETHER
-what "best of each Practice" means, and hold one shared definition and one
-shared plan.
+in [the lineage] also continued to evolve. We need to bring each Practice
+instance up to the highest standards and best capabilities of each. We also
+have [a third estate] which has a Practice that is badly lagging, some of
+which needs replacing, and some bad ideas need removing." Later the same
+day, to the two seats: decide TOGETHER what "best of each Practice" means,
+and hold one shared definition and one shared plan.
 
 Before this record, PDR-125 clause 6 held the union posture ("wherever
 possible, innovations … apply to BOTH estates") and no record said what
@@ -146,8 +146,8 @@ security floor.
 
 - This record defines how instances of the Practice are aligned, judged and
   pruned. It does not decide the package's shape, the third estate's move,
-  or the amendment of PDR-125 clause 6: those are the owner's, recorded in
-  the plan that serves this record and in later records.
+  or the amendment of PDR-125 clause 6: those are the owner's, and each
+  lands in a later record of its own.
 - Nothing in it licenses a seat to edit ratified text, a merged line, or
   another estate's tree. A false-here sentence names work; it is never
   edited where it is read.
@@ -159,7 +159,7 @@ under the merge recipe (a dry run at each fold changes fewer files, conflicts
 in fewer hunks and leaves fewer files waiting, fold over fold) while the
 standards and capabilities each holds rise to the higher of the two, and
 removals judged are carried out in both. Falsifier: conflict hunks OR the
-waiting set rising fold over fold while both seats work the plan; then the
+waiting set rising fold over fold while both seats apply this record; then the
 method is not converging and the numbers go to the owner, who has already
 chosen the package as the route.
 
@@ -167,11 +167,11 @@ chosen the package as the route.
 
 Owner direction 2026-09-21 (the opening words, the together-NOW word, the
 equal-partners word, and nine answers by card, each recorded verbatim with
-its question in the continuity records and the exchange plan of the estate
-where it was given). Authored jointly by the two exchange seats, Brazier
-spins Temper (c70341) in the second estate and Zephyr guards Leeward
-(281e44) in the lineage, on the shared rapid-comms channel of 2026-09-21: two blind drafts, four real cases answered
-blind, a blind ordering of the shared work, four adversarial checks from the
+its question in the estate where it was given). Authored jointly by the two
+exchange seats, Brazier spins Temper (c70341) in the second estate and
+Zephyr guards Leeward (281e44) in the lineage, on the shared rapid-comms
+channel of 2026-09-21: two blind drafts, four real cases answered blind, a
+blind ordering of the shared work, four adversarial checks from the
 seats' own model family and one from another vendor's model (Whippoorwill
 holds Frost, 1e8a53), five versions, both signatures. Numbering allotted
 from the lineage estate, where PDR numbers are canonical; taken before the
