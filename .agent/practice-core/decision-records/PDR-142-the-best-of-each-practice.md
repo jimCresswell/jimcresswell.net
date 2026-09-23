@@ -257,9 +257,9 @@ so.
 ### 2026-09-23 — a receiver's format gate, and the review's cures (the owner's card)
 
 **Context.** Asked how a receiver treats a donor's bytes that its own format gate refuses, the
-owner answered: "We are standardising the Practice between OCE and JC.net. broadly I agree with
-option 1, but in this case we are also trying minimise the cost of the eventual extraction and
-replacement of the Practice". The final reviews of the entry above, in both estates, found its
+owner answered: "We are standardising the Practice between [the lineage] and [the second
+estate]. broadly I agree with option 1, but in this case we are also trying minimise the cost of
+the eventual extraction and replacement of the Practice". The final reviews of the entry above, in both estates, found its
 wording unclear in four places. The merged-text bullet and this clause listed different third
 items. "At receipt" and "a line already merged" each carried two senses. The joint cure sat
 against §Boundaries. Its falsifier could pass without the remedy ever being exercised.
