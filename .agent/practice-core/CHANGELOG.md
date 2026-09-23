@@ -4,6 +4,21 @@ Changes to the Practice Core files, newest first. Each entry records the repo
 that made the change and what was changed. This file travels with the
 Practice Core package.
 
+## [jimcresswell.net] 2026-09-23 — PDR-142 and PDR-125: concepts travel; PDR-141: every write on the operator's word is pushed
+
+- PDR-142 amended on the owner's word that concept transfer is the goal and
+  byte-for-byte transfer never is: identical bytes are the means wherever they
+  carry the concept in the receiving estate's Practice context; where they do
+  not, a missing standard is raised in the receiver, a donor's host fact is
+  cured at its source, and only a context difference neither would remove
+  lets the receiver write the concept in its own words, naming the
+  difference. PDR-125 clause 7's receipt sentence amended to match, in both
+  estates in one window.
+- PDR-141 decisions 11 and 14: the push after a write covers every write made
+  on the operator's word, not only ratified writes, matching the record's own
+  rule that no write sits unpushed across a session boundary. The same cure as
+  the lineage's for these two sentences.
+
 ## [jimcresswell.net] 2026-09-23 — PDR-142: the best of each Practice
 
 - PDR-142 (Accepted, owner-ratified 2026-09-21 by card) added: how the
