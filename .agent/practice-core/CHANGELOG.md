@@ -13,7 +13,10 @@ Practice Core package.
   cured at its source, and only a context difference neither would remove
   lets the receiver write the concept in its own words, naming the
   difference. PDR-125 clause 7's receipt sentence amended to match, in both
-  estates in one window.
+  estates in one window. On the owner's card the same day, PDR-142's read-through
+  also covers "never re-authors" and places a third-reason rendition at receipt,
+  never as an edit of a merged line, and its merged-text bullet names a third
+  remedy: a contradiction the donor carries too, cured jointly at the source.
 - PDR-141 takes the lineage's cure in all four places, so the record is
   byte-identical in both estates. Decisions 11 and 14: the push after a write
   covers every write made on the operator's word, not only ratified writes,
