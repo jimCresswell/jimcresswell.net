@@ -160,10 +160,11 @@ the awareness (Director, minimum action).**
 - **Records compressed verdicts.** Writes distilled conclusions, not raw
   artefacts, to the normal records (its thread record, its pull request),
   where the Director reads them when it needs them, and messages the
-  Director only with a question or a request (2026-09-23 amendment) — this
-  is what keeps the Director's metabolism slow.
+  Director only with a question, a request, a block, or an acknowledgement
+  a route asks for (2026-09-23 amendment) — this is what keeps the
+  Director's metabolism slow.
 - **Retires with a handoff (PDR-063).** At the natural boundary or under
-  context-budget pressure, freezes work-in-progress to a deep handoff
+  context-budget pressure, freezes work-in-progress to its PDR-063 handoff
   record, where the Director reads it when it needs it. Routes durable,
   repo-wide substance **up to the Director** rather than editing repo-wide
   surfaces from a feature-branch worktree (which would diverge them).
@@ -367,7 +368,9 @@ instruction for the Implementer role.** Its operational home is the
   names).
 - An Implementer routing questions straight to the owner by reflex while a
   Director holds the interface — **except** the owner's own direct downward
-  direction, which the Implementer follows and then mirrors to the Director.
+  direction, which the Implementer follows and then mirrors to the Director
+  by recording it in its thread record (the reading beside §The routing
+  contract's asymmetry clause).
 - An Implementer self-executing a multiply-directed single-owner-surface lane
   without routing the "who executes" question to the Director.
 
@@ -840,6 +843,7 @@ actually need them". Two Implementer bullets sent the Director state: the
 compressed-verdict report and the deep handoff. They now name the normal
 records as the home of both, which the Director reads when it needs them.
 The routing contract's asymmetry clause is owner-ratified text; it keeps
-its words and gains a reading through the ruling beside them. A seat
+its words and gains a reading through the ruling beside them, and the
+Forbidden list's restatement of that clause points at the reading. A seat
 messages the Director with a question, a request, a block, or an
 acknowledgement a route asks for, and nothing else.

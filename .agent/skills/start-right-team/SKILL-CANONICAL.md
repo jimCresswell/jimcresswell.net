@@ -679,7 +679,7 @@ defined in full by
 the **Director** (long-lived, minimum-action, the single owner-interface
 and cross-session awareness carrier — routes, does not execute) and the
 **Implementer** (ephemeral, owns one bounded lane in its own worktree,
-runs its own gates, reports compressed verdicts, retires with a handoff).
+runs its own gates, records compressed verdicts, retires with a handoff).
 One idea in two layers: **isolate the doing (Implementers); centralise the
 awareness (Director).** Every other label in this section stays a
 session-local example; these two are doctrine.
