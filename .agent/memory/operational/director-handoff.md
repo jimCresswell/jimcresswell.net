@@ -49,6 +49,9 @@ Every line answered first-hand, none inferred:
 - Records are technical, not emotional. A move is a stepping stone, never an end state; an
   archive holds only processed material.
 - The transplant is bounded: closure items 3 to 8 finish it, then editorial work.
+- Interventions and ceremony at the absolute minimum, to preserve context; this applies to all
+  Directors (owner, 2026-09-23, twice). Seats own their work; the Director gives a second opinion
+  when asked and a check when a seat is in a rabbit hole, and never lays out a seat's work.
 
 ## Current handoff state (2026-09-23T13:49Z; a Director SEATED at 13:08Z; PDR-142 LANDED in both estates; the fold LANDED as PR 152; the primary on coordination/2026-09-23-551f2c; PR 153 HELD)
 
