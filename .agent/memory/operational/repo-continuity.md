@@ -21,15 +21,18 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
-- 2026-09-23T13:01Z: both exchange seats run on a new model and are live, as equal n=2
-  partners (the owner's word; no Director). `main` is at `SHA: f7a54165`: PR 151 landed PDR-142
-  (the definition of the best of each Practice, owner-ratified 2026-09-21) and the strategic node
-  `best-of-each-practice`. The fold of `coordination/2026-09-21-19cfcc` is the pull request after
-  this commit. The owner ruled by card on 2026-09-23: concept transfer is the goal, never
-  byte-for-byte; amend PDR-142 and PDR-125 accordingly (this seat drafts, the lineage's seat
-  judges, the owner ratifies); the Practice stream gets one strategic node, reworded; the
-  lowest-power low-effort Cricket seat is removable. The lineage's seat resumed at 10:57Z and is
-  landing PDR-142. The live reading is the handoff's current-state block and item 123, then the
+- 2026-09-23T13:27Z: a Director is seated on this estate. At 13:08Z the owner named Wick binds
+  Temper (ed7b48) Director: every question, block and card from this estate's seats goes to the
+  Director, never to the owner, and the Director carries cards to the owner. The exchange seat
+  (Brazier spins Temper, c70341) is an implementer; its partnership with the lineage's seat stays
+  equal, and both run on a new model. `main` is at `SHA: f7a54165`: PR 151 landed PDR-142 (the
+  definition of the best of each Practice, owner-ratified 2026-09-21) and the strategic node
+  `best-of-each-practice`; the lineage landed the same PDR-142 bytes as its PR 177. The fold of
+  `coordination/2026-09-21-19cfcc` is PR 152. The owner ruled by card on 2026-09-23: concept
+  transfer is the goal, never byte-for-byte; amend PDR-142 and PDR-125 accordingly (this seat
+  drafts, the lineage's seat judges, the Director carries one card to the owner); the Practice
+  stream gets one strategic node, reworded; the lowest-power low-effort Cricket seat is
+  removable. The live reading is the handoff's current-state block and item 123, then the
   napkin's tail.
 - 2026-09-17 evening: zero open pull requests. The close-out landed #126, #127, #94, #95,
   #96, #128 and #129, and the fold #130 (`SHA: 5f3225e2`) carried that window's records to
