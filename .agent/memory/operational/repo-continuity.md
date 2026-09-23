@@ -21,22 +21,19 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
-- 2026-09-23T14:12Z: a Director is seated on this estate. At 13:08Z the owner named Wick binds
-  Temper (ed7b48) Director: every question, block and card from this estate's seats goes to the
-  Director, never to the owner, and the Director carries cards to the owner. The exchange seat
-  (Brazier spins Temper, c70341) is an implementer; its partnership with the lineage's seat stays
-  equal, and both run on a new model. `main` is at `SHA: 551f2c39`, the merge of PR 152, which
-  folded `coordination/2026-09-21-19cfcc`; the primary is on its successor
-  `coordination/2026-09-23-551f2c`. PR 151 (`SHA: f7a54165`) landed PDR-142 (the definition of
-  the best of each Practice, owner-ratified 2026-09-21) and the strategic node
-  `best-of-each-practice`; the lineage landed the same PDR-142 bytes as its PR 177. The owner
-  ruled by card on 2026-09-23: concept transfer is the goal, never byte-for-byte; amend PDR-142
-  and PDR-125 accordingly (the exchange seat drafts, the lineage's seat judges, the Director
-  carries one batched card to the owner); the Practice stream gets one strategic node, reworded
-  (PR 153, held until the owner ratifies its wording); the lowest-power low-effort Cricket seat
-  is removed (PR 154, `SHA: 03f6adfa`), and the amendments are signed by the lineage's seat as
-  receiver and wait for the owner's card. The live reading is the handoff's current-state block
-  and the last entry of its routing log, then the napkin's tail.
+- 2026-09-23T19:11Z: the owner answered the Director's card of 2026-09-23, eight items, all as recommended
+  (the napkin and the handoff carry them). `main` is at `SHA: bf9daf47`: PR 152 folded
+  `coordination/2026-09-21-19cfcc`, PR 154 removed the lowest-power low-effort Cricket seat, PR
+  153 made `best-of-each-practice` the Practice stream's one strategic node with PRACTICE-1
+  reworded (the owner ratified the words). PR 155, the concept-over-bytes amendments to PDR-142
+  and PDR-125 with the PDR-141 cure, is open after Copilot's round one. The operator profile is
+  written on the owner's word. The Director is Wick binds Temper (ed7b48); by the owner's ruling
+  of 2026-09-23 for all agents, seats message the Director only with a question or a request, and
+  state lives in the records. The exchange seat (Brazier spins Temper, c70341) is an implementer;
+  its partnership with the lineage's seat stays equal, and a joint-texts pull request per estate
+  is agreed with that seat. The primary is on `coordination/2026-09-23-551f2c`. The live reading
+  is the handoff's current-state block and the last entry of its routing log, then the napkin's
+  tail.
 - 2026-09-17 evening: zero open pull requests. The close-out landed #126, #127, #94, #95,
   #96, #128 and #129, and the fold #130 (`SHA: 5f3225e2`) carried that window's records to
   `main`. The plan `estate-fix-backlog` was ratified, completed and archived on 2026-09-19
