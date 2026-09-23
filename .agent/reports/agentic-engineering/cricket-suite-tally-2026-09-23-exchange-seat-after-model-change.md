@@ -17,7 +17,7 @@ node `best-of-each-practice` or the handoff's resume block (lines 53 to 120).
 | Role (dual-scale label) | Model | Effort | Stance | Verdict | Redirection (one line) | Tokens | Tool uses | Runtime |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | cricket-judgement-low (highest power, low effort) | fable | low | normal | ON-TRACK | None; note: the fold's continuity records must say the lineage seat has resumed | 29,523 | 4 | 23.5 s |
-| cricket-judgement-medium (high power, medium effort) | opus | medium | normal | ON-TRACK | Send the partner seat the owner's 12:40Z words verbatim before the fold's records | 30,820 | 4 | 28.5 s |
+| cricket-judgement-medium (high power, medium effort) | opus | medium | normal | ON-TRACK | Send the partner seat the owner's 12:44Z words verbatim before the fold's records | 30,820 | 4 | 28.5 s |
 | cricket-judgement-high (mid power, high effort) | sonnet | high | normal | ON-TRACK | None | 36,412 | 4 | 97.4 s |
 | cricket-procedure-xhigh (lowest power, xhigh effort, compiled procedure) | haiku | xhigh | normal | ON-TRACK | None | 22,165 | 2 | 69.5 s |
 | cricket-judgement-lowestpower-low (lowest power, low effort, full prompt) | haiku | low | normal | ON-TRACK | None | 33,100 | 4 | 126.5 s |
@@ -48,7 +48,7 @@ Evidence errors, each checked against the source:
 ## Adjudication (the seat's decision; verdicts were evidence)
 
 - Accepted, from two seats (high power medium effort, adversarial; lowest power low effort,
-  adversarial): the owner's 12:40Z words do not by themselves call for amending PDR-142 and
+  adversarial): the owner's 12:44Z words do not by themselves call for amending PDR-142 and
   PDR-125, and both are owner-ratified. The owner is asked by card whether to amend or to
   record the ruling; any amendment text lands only with the owner's ratification, the partner
   seat judging beside it.
@@ -56,13 +56,15 @@ Evidence errors, each checked against the source:
   the six rulings were placed "later" against the ratified bet's order. Checked against the
   node's §The bet: the twice-written section goes first, then "the standards that waiting
   files name are raised now … the expensive ones included". The queue becomes: the fold; the
-  owner's card on the amendments; the topology change the owner directed today (small, his
-  freshest word); the twice-written start-right section with the partner seat; then the six
-  rulings, the expensive two included.
+  owner's card on the amendments; the topology change the owner directed today (small, the
+  owner's freshest word); the twice-written start-right section with the partner seat; then
+  the six rulings, the expensive two included.
 - Accepted (highest power low effort, both stances): the fold's continuity records say the
   lineage seat resumed at 10:57Z; the fold carries records and the draft's removal only.
-- Already done, a frame omission: the owner's 12:40Z words were sent to the partner seat at
-  about 12:46Z, and its 12:47:26Z channel entry acknowledges them.
+- Already done, a frame omission: the owner's 12:44Z words (the card answer's time in the
+  session transcript; the frame said "about 12:40Z", a clock read taken before the answer
+  arrived) were sent to the partner seat at 12:45:26Z, and its 12:47:26Z channel entry
+  acknowledges them.
 - Rejected: a separate cold state verification at the fold's close. The fold skill's step 11
   loss scan is that act; a second one is ceremony.
 

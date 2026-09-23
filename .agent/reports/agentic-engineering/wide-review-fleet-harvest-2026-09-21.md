@@ -114,7 +114,7 @@ DRIFTING, two WRONG-PRIORITY and two ON-TRACK; the same panel on seat-authored c
    replacement is unsafe in the Core, proven: this estate's PDR-027 carries its own 2026-09-12
    amendment and a renamed identity variable that a replacement would silently undo. A whole-tree
    merge imports 17 lineage-only host rules. Package plus overlay is "premature, not wrong": 46 of
-   111 rules diverge mechanically (frontmatter), 43 by hand-written host de-binding. She switches
+   111 rules diverge mechanically (frontmatter), 43 by hand-written host de-binding. Wilma switches
    to the package the day the divergence is GENERATED (a sidecar for frontmatter and a declared
    glossary for host bindings, no hand-edited prose left). On PDR-105: 78 citations in 19 of 142
    records, every one a bare prose identifier and none a link, so the predicted harm (a dangling
