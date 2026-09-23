@@ -242,12 +242,12 @@ lineage's seat has taken the PDR-117 wording and the PDR-105 lane onto the owner
 4. Is the site deliberately frozen while the Practice is the deliverable? The owner-and-product
    leg's finding is only a labelling problem if so.
 
-## The swarm's state, for whoever resumes it
+## The swarm's state when the fleet stopped
 
-Script persisted by the harness under the session's workflows directory as
-`merge-audit-swarm-wf_57c82680-b09.js`; static batches for the full run (12 batches: five single
-large files, seven batches of seven) in the session scratch as `swarm-a-args-full.json`, with the
-mechanical pre-scan attached per unit. Pilot: 7 units, 2 agents, 158k tokens, no errors; both
+The script and the full run's static batches (12 batches: five single large files, seven batches
+of seven, with the mechanical pre-scan attached per unit) lived in one session's workflows
+directory and scratch, which no other session can read; they are not preserved, and a resumption
+rebuilds both from the method stated here and in the plan. Pilot: 7 units, 2 agents, 158k tokens, no errors; both
 planted defects FOUND and spot-verified by the overseer; `absent_citation` came back
 COULD_NOT_CHECK on three of seven units because workers cannot list directories: resolve
 citations in the seat's script and hand the result in. Before a full launch: shrink the worker
