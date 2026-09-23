@@ -11,7 +11,7 @@ status: sketch
 ratified_by: null
 ratified_date: null
 ratified_where: null
-serves: practice
+serves: best-of-each-practice
 impact_areas:
   - practice-and-estate
 tickets: []
@@ -43,7 +43,7 @@ owner_gates:
       Python pack is authored from the universal layer with a structure
       matching the lineage, and that repository provides hints, never intent.
     expires: 2026-10-04
-last_updated: 2026-09-13
+last_updated: 2026-09-23
 ---
 
 # Practice language separation

@@ -16,10 +16,10 @@ ratified_where: >-
 impact_areas:
   - practice-and-estate
 tickets: []
-serves: practice
+serves: best-of-each-practice
 depends_on: []
 owner_gates: []
-last_updated: 2026-09-14
+last_updated: 2026-09-23
 ---
 
 # Practice lineage transplant
