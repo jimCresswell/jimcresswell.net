@@ -8,9 +8,10 @@ Practice Core package.
 
 - PDR-142 and PDR-125 clause 7, on the owner's card of the same evening: a
   receiver's convention or gate that refuses the donor's bytes is a standard
-  the estates align, the higher of the two taken by both and the donor's where
-  neither is shown higher, because every difference is a cost the eventual
-  package must reconcile. Until it is
+  the estates align, the higher of the two taken by both. For format, the
+  owner's word makes one shared form higher than two, because every difference
+  is a cost the eventual package must reconcile, so where nothing else shows
+  either form higher the estates take the donor's. Until it is
   aligned, the receiver changes only what its gate refuses and declares each
   change as a debt to that alignment. This replaces clause 7's standing
   normalisation to the receiving repo's format. The inter-practice-collaboration

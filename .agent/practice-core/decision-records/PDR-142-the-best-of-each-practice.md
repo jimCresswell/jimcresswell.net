@@ -159,11 +159,12 @@ they do is judged in that context, in the one full read each merged file already
 they do, the receiver takes the donor's bytes unchanged, because separately written twins of
 one text multiply merge conflicts (the instance above) and every difference is a cost the
 eventual package must reconcile. A convention or gate of the receiver's that refuses those
-bytes is a standard the estates align, the higher of the two taken by both (§How we judge), and
-the donor's where neither is shown higher, so that the estates end on one form; until it is
-aligned, the receiver changes only what its gate refuses and declares each change in the
-integrating commit as a debt to that alignment (PDR-125 clause 7). Where the bytes do
-not carry the concept, the reason is one of three, in this order: the receiver lacks a standard
+bytes is a standard the estates align, the higher of the two taken by both (§How we judge).
+For format that judgement already has its first ground, the owner's word: one shared form is
+higher than two. So where nothing else shows either form higher, the estates take the donor's.
+Until it is aligned, the receiver changes only what its gate refuses and declares each change in
+the integrating commit as a debt to that alignment (PDR-125 clause 7). Where the bytes do not
+carry the concept, the reason is one of three, in this order: the receiver lacks a standard
 the text assumes, which is raised in the receiver; the text carries a fact of the donor's own
 repository, which is cured at its source; or the receiver's context differs in a way neither of
 those, nor a joint cure of a contradiction the donor carries too (the merged-text bullet above),
@@ -269,8 +270,9 @@ unclear in four places. The merged-text bullet and this clause listed different 
 §Boundaries. Its falsifier concluded from the remedy's absence that it was not needed.
 
 **Decision.** A receiver's convention or gate that refuses the donor's bytes is a standard the
-estates align, the donor's where neither is shown higher, and a change made meanwhile is a
-declared debt to that alignment; PDR-125 clause 7 is narrowed to match. The bullet and the
+estates align. The owner's word makes one shared form higher than two, so where nothing else
+shows either form higher, the estates take the donor's. A change made meanwhile is a declared
+debt to that alignment; PDR-125 clause 7 is narrowed to match. The bullet and the
 clause now point at each other. A rendition is written before the file's landing merges. A
 joint cure is one signed text that reaches every estate carrying the contradiction as the same
 bytes. §Boundaries says that is not an edit where the text is read, and that a joint cure of
