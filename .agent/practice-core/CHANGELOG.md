@@ -4,6 +4,18 @@ Changes to the Practice Core files, newest first. Each entry records the repo
 that made the change and what was changed. This file travels with the
 Practice Core package.
 
+## [jimcresswell.net] 2026-09-23 — PDR-142: the best of each Practice
+
+- PDR-142 (Accepted, owner-ratified 2026-09-21 by card) added: how the
+  Practice's instances are aligned, judged and pruned. Its decision is the
+  definition the two exchange seats authored jointly and both signed, in the
+  owner's words where the owner spoke: union upward, the higher of two, the
+  bad removed everywhere; the owner's scope layers; how each kind of surface
+  travels; and that a ruling about the Practice given in one estate reaches
+  every estate, for now. Numbered from the lineage, where PDR numbers are
+  canonical, ahead of the third estate's renumbering above 141. Its bytes are
+  identical in every estate that carries it; each estate's own seat lands it.
+
 ## [jimcresswell.net] 2026-09-21 — PDR-117, PDR-026 and PDR-011 amendments taken from the lineage
 
 - PDR-117 (the 2026-09-14 and 2026-09-17 amendments and the routing,

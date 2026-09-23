@@ -2,7 +2,7 @@
 title: 'Strategy — Stream: the Practice'
 type: strategy
 status: ratified
-last_updated: 2026-09-14
+last_updated: 2026-09-23
 governed_by:
   - .agent/plans/strategy/README.md
 ---
@@ -28,11 +28,12 @@ the repository takes deliberately, and a learning loop it must actually close._
   seat meets them; a red is cured by making the assertion checkable, by removing the
   dependence, or by truing the text, in that order.
 
-## Serving nodes today
+## Serving nodes
 
-The transplant runbook (`practice-lineage-transplant`), the completion delivery node
-(`practice-completion`) and the two-way exchange delivery node (`practice-two-way-exchange`,
-ratified 2026-09-14, opening after the completion node) serve the Practice strategic node.
+A strategic node serving a choice here declares `serves: PRACTICE-<n>`; a delivery node or
+runbook declares the strategic node it serves. Enumerate them by searching `.agent/plans/`
+for those `serves` values, never by a hand-kept list (the plans README); the plan-corpus
+validator resolves every edge.
 
 ## Won't do
 

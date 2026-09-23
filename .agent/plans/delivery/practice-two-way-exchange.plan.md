@@ -16,7 +16,7 @@ ratified_where: >-
   .agent/memory/operational/director-handoff.md §Decisions overnight, item 101.
   Amended by the owner's card answers of 2026-09-21 in the session of Brazier spins
   Temper (c70341), recorded verbatim in this node's §Rulings of 2026-09-21.
-serves: practice
+serves: best-of-each-practice
 impact_areas:
   - practice-and-estate
 tickets: []
@@ -24,7 +24,7 @@ depends_on:
   - plan: practice-completion
     kind: blocking
 owner_gates: []
-last_updated: 2026-09-21
+last_updated: 2026-09-23
 ---
 
 # Practice exchange
@@ -56,6 +56,42 @@ ones that change this node, verbatim where quoted:
 8. The lineage's method amendment (its seat, on the ARC channel, 2026-09-21): a records path
    satisfies the register validator with a row reading "records, not portable" or "graduated
    into <row>".
+
+Later on 2026-09-21 the owner ruled again, in chat and by card (same session); verbatim where
+quoted. Two of these supersede rulings above, and say so.
+
+9. The goal, in the owner's opening words of 06:20Z: "We need to bring each Practice instance up
+   to the highest standards and best capabilities of each", and of castr, "some of which needs
+   replacing, and some bad ideas need removing". By card, the reading is confirmed: each estate
+   gets what the other holds, every estate takes the higher of two, and the bad is removed
+   everywhere, the owner's own rulings only by the owner's word.
+10. SUPERSEDES ruling 4: "you and Zephyr are equal n=2 partners and collaborators, drop the
+    Director status". The two exchange seats hold one shared definition and one shared plan:
+    PDR-142 and the strategic node `best-of-each-practice`, both ratified 2026-09-21 by card.
+11. The reach of a ruling about the Practice given in one estate: "Everywhere for now, and later
+    we will explore some kind of centralisation of the Practice, the distributed model creates
+    too much overhead".
+12. Sequence: "Full alignment first, we are defining excellent, this is absolutely the right
+    choice, nothing is delayed or avoided because of the future extraction". On the two rulings
+    that are expensive in this estate (the absolute no-IO test invariant; the commit as the full
+    local gate), asked again because an earlier click collided with those words: "All six here
+    now".
+13. SUPERSEDES ruling 5: "I think first we move Castr into OCE, then we extract an installable
+    package, and later we review if we need to break OCE into multiple repos". On castr's seat
+    closing thirteen pull requests unmerged: "I directed it, it was a point where sunk cost was
+    causing further loss, it was the economic choice. Castr remains very important, and
+    development will continue, but identifying the value in the older work was far more expensive
+    than fresh development. Please feel free to open channels to Poppy" (castr's seat is Poppy
+    calls Topsoil).
+14. Each estate's own Practice once the package exists: "both OCE and JC.net contribute to the new
+    definition in the package, and both adapt their local Practices to use the package, we will
+    still need Practice wide , Typescript Practice wide, repo-local and machine-local doctrine,
+    memories, state, so it is doubtful that everything will be in the Package, although likely all
+    contracts will be".
+15. The shared definition's home in the Core: a new record, PDR-142.
+16. The site is deliberately parked: "Yes, deliberately: Practice first".
+17. Row L11 lands as one change by three-way merge from the transplant pin (the owner's word of
+    17:24Z); done in part as pull request 150, recorded in the register as PARTIAL.
 
 Authored 2026-09-14 by the Director at the owner's direction, verbatim: "make sure that we have
 a plan for exploring that Practice delta, and any other advancements that have happened by the
@@ -218,6 +254,13 @@ two-round ruling of 2026-09-14 do too.
    hand (the delta lane's seven review rounds each found a true omission of the hand-written
    list). Two of the three are Copilot's observations on pull request 137 (review 5266093341),
    routed here below the bar.
+8. The Core's portability measure (before todo 5's outbound note, and before any decision to
+   extract the Practice into an installable entity): PDR-105 says a PDR never cites an ADR,
+   and on 2026-09-21 this estate's Core held 78 ADR citations in 19 of 141 PDRs, to 17 distinct
+   ADRs, none of which exist here (PDR-011 alone cites the lineage's ADR-150 seven times). The
+   cure is the authoring estate's text; the class closes with a Core validator that refuses an
+   ADR citation in a PDR, offered in the outbound note. Copilot's observation on pull request
+   145 (review 5268801620), verified and widened, routed here below the bar.
 
 ## Plan-body first-principles check
 
@@ -243,3 +286,16 @@ two-round ruling of 2026-09-14 do too.
 - Editing the lineage's tree from this estate: outbound material lands under the lineage's own
   gates by its own seats.
 - Reconciling continuity and memory surfaces: local by doctrine on both sides.
+
+## Review dispositions
+
+One dated row per routed finding (PDR-140): the source pull request, the finding in one line, and
+the routing rationale. Read and dispositioned at pickup before implementation begins.
+
+| Date | Source | Finding | Routing rationale |
+| --- | --- | --- | --- |
+| 2026-09-21 | PR 149, Copilot round two (overview observation, no thread) | In `pnpm-workspace.yaml` the restored `markdown-it` comment and entry sit between the existing `nanoid` security comment and the `nanoid` entry it documents. Cure: move the `markdown-it` comment and entry above the `nanoid` comment. | Below-bar, comment order only. Not cured in PR 149: rounds do not go up, and `main` resolved a vulnerable version until it landed. Rides the next change that touches `pnpm-workspace.yaml`. |
+| 2026-09-21 | PR 150, Copilot round one (item 8 of 9) | `verify-dont-trust` cites a pattern named `falsification-cost-determines-claim-quality`; no such pattern file or index entry exists here. The citation stood on `main` before PR 150. Verified: the citation stood in the lineage's text at the transplant pin, and the lineage holds that pattern file; this estate never received it. Cure: bring the pattern as a one-sided offer (the patterns row of the exchange register), after a host-fit read. | Below-bar and not introduced by PR 150. The citation is valid where it was written, so the source needs no edit; the missing thing is the pattern here. |
+| 2026-09-23 | PR 151, Copilot round one (thread on `best-of-each-practice.plan.md` §Delivery) | The strategic node's §Delivery carries implementation detail (a state line every thirty minutes, native-message routing, one-write channel appends), which the plan-node schema's §Strategic excludes ("no implementation detail"). Verified against the schema. | Not cured in PR 151: the node body is owner-ratified text ("Ratify both texts", 2026-09-21), never edited to satisfy a reviewer. Goes to the owner as a card after the node lands in both estates. The likely cure is moving those operating habits to this delivery node, so both estates' copies change together. |
+| 2026-09-23 | PR 151, Copilot round two (thread on PDR-142 §Decision, lines 110 and 126) | PDR-142's ratified transfer rules (text held at a copy point travels as the donor's bytes; Core records name no host) conflict with PDR-125 §7 ("concepts travel, never bytes", with format normalised on receipt) and with its per-estate phenotype note. Verified against both records: a seat cannot follow both. | Not cured in PR 151: both records are owner-ratified, and PDR-142's Boundaries leave PDR-125's amendment to the owner. To the owner by card after PDR-142 lands: which record governs where they differ, then PDR-125's dated amendment in both estates as a pair. |
+| 2026-09-23 | PR 151, Copilot round two (review body, previously missed, `best-of-each-practice.plan.md:17`) | Two ratified strategic nodes now serve PRACTICE-1 (`practice` and `best-of-each-practice`), while the plans README gives `strategic/` one node per stream. PRACTICE-1's own text (a host takes the lineage's newer generation; conventions converge on the lineage's) also predates the owner's union-upward reading. Verified. | Not cured in PR 151: the node type ("a strategic node's body"), the `practice` node and the stream are all owner-ratified. To the owner by card with the topology options (a choice of its own in the stream; one node replacing the other; or the README contract reading one node per choice). |
