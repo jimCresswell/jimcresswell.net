@@ -159,3 +159,8 @@ Appended as each row lands: row, estate, pull request, head read.
 | L1 | jcnet | PR 140 (merged `02ec85ab13`, 2026-09-21T13:58:11Z; the post-merge cures) | lineage `72cab5667c` |
 | J11 | jcnet | PR 139 (merged `7655b1b69c`, 2026-09-21T14:10:11Z; this register and its validator) | lineage `72cab5667c`, castr `d1fe56b928` |
 | L1 | lineage | #172 (merged `272910f1df`, 2026-09-21T14:45:02Z; the twin of PR 138 and PR 140) | jcnet `7655b1b69c` |
+| L2 | jcnet | PR 144 (merged `4a87709f2d`, 2026-09-21T15:54:07Z; byte-identical to the lineage) | lineage `272910f1df` |
+| L4 | jcnet | PR 145 (merged `51ea9dd06f`, 2026-09-21T15:58:04Z; byte-identical to the lineage) | lineage `272910f1df` |
+| L5 | jcnet | PR 145 (merged `51ea9dd06f`, 2026-09-21T15:58:04Z; PDR-011 byte-identical, the Core changelog a dated union, the README already identical) | lineage `272910f1df` |
+| L22 | jcnet | PR 146 (merged `e84da52682`, 2026-09-21T16:03:07Z; byte-identical to the lineage) | lineage `272910f1df` |
+| L11 | jcnet | PR 150 (merged `6e576da266`, 2026-09-21T18:11:45Z; PARTIAL: a three-way merge from the transplant pin landed 34 rules and 5 skills of the 54 files that merge clean; fifteen clean merges wait, each for a reason the pull request's description states, and seven files conflict; row L11 is not settled by this landing) | lineage `272910f1df` |

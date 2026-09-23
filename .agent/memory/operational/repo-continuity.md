@@ -21,14 +21,19 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
-- 2026-09-21 15:26Z: the three-estate Practice exchange opened on the owner's rulings and its
-  first window landed: #137 (`SHA: 4bfc64d4`), #138 (`SHA: d2e7ee12`), #140 (`SHA: 02ec85ab`),
-  #139 (`SHA: 7655b1b6`), then the action pins #142 (`SHA: 1044b358`); `main` is at
-  `SHA: 1044b358`. Open: the dependency-upgrade pull request #143 (green, Copilot requested),
-  which replaced the five Dependabot bumps #132 to #136 on the owner's word (closed naming it),
-  and the fold of `coordination/2026-09-17-5f3225` as PR 141, with the successor cut from its
-  merge. The live reading is the Director's handoff item 119 and its current-state block; the
-  exchange's node is `.agent/plans/delivery/practice-two-way-exchange.plan.md`.
+- 2026-09-23T13:27Z: a Director is seated on this estate. At 13:08Z the owner named Wick binds
+  Temper (ed7b48) Director: every question, block and card from this estate's seats goes to the
+  Director, never to the owner, and the Director carries cards to the owner. The exchange seat
+  (Brazier spins Temper, c70341) is an implementer; its partnership with the lineage's seat stays
+  equal, and both run on a new model. `main` is at `SHA: f7a54165`: PR 151 landed PDR-142 (the
+  definition of the best of each Practice, owner-ratified 2026-09-21) and the strategic node
+  `best-of-each-practice`; the lineage landed the same PDR-142 bytes as its PR 177. The fold of
+  `coordination/2026-09-21-19cfcc` is PR 152. The owner ruled by card on 2026-09-23: concept
+  transfer is the goal, never byte-for-byte; amend PDR-142 and PDR-125 accordingly (this seat
+  drafts, the lineage's seat judges, the Director carries one card to the owner); the Practice
+  stream gets one strategic node, reworded; the lowest-power low-effort Cricket seat is
+  removable. The live reading is the handoff's current-state block and item 123, then the
+  napkin's tail.
 - 2026-09-17 evening: zero open pull requests. The close-out landed #126, #127, #94, #95,
   #96, #128 and #129, and the fold #130 (`SHA: 5f3225e2`) carried that window's records to
   `main`. The plan `estate-fix-backlog` was ratified, completed and archived on 2026-09-19
