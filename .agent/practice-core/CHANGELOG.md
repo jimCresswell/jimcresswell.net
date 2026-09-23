@@ -4,6 +4,31 @@ Changes to the Practice Core files, newest first. Each entry records the repo
 that made the change and what was changed. This file travels with the
 Practice Core package.
 
+## [jimcresswell.net] 2026-09-23 — PDR-142 and PDR-125: a receiver's format gate is a standard to align; PDR-141: its amendment recorded
+
+- PDR-142 and PDR-125 clause 7, on the owner's card of the same evening: a
+  receiver's convention or gate that refuses the donor's bytes is a standard
+  the estates align, the higher of the two taken by both. For format, the
+  owner's word makes one shared form higher than two, because every difference
+  is a cost the eventual package must reconcile, so where nothing else shows
+  either form higher the estates take the donor's. Until it is
+  aligned, the receiver changes only what its gate refuses and declares each
+  change as a debt to that alignment. This replaces clause 7's standing
+  normalisation to the receiving repo's format. The inter-practice-collaboration
+  skill says the same, and its receipt step now lists PDR-142's remedies in
+  order.
+- PDR-142's wording of the owner's earlier card, cured after the final reviews
+  in both estates: the merged-text bullet and the clause "Concepts travel"
+  point at each other; a rendition is written before the file's landing
+  merges; a joint cure is one signed text reaching every estate that carries
+  the contradiction as the same bytes, which §Boundaries says is not an edit
+  where the text is read, and a joint cure of ratified text waits for the
+  owner's word; a Core record's byte identity allows a declared format debt;
+  and a new falsifier, which tests the remedy where it is used, replaces one
+  that concluded from the remedy's absence that it was not needed.
+- PDR-141 gains its 2026-09-23 amendment section, naming the four changed
+  places and each estate's authority, byte-identical with the lineage.
+
 ## [jimcresswell.net] 2026-09-23 — PDR-142 and PDR-125: concepts travel; PDR-141: every write on the operator's word is pushed
 
 - PDR-142 amended on the owner's word that concept transfer is the goal and
