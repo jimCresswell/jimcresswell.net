@@ -28,9 +28,13 @@ For worked Red/Green/Refactor examples, see
 
 Tests that exercise a unit in-process must configure it through dependency
 injection — explicit config objects and injected IO seams — never by reading or
-mutating `process.env`. Do not import production config loaders unless the test
-is directly proving the loader; they may read `.env` files as part of the
-production pipeline.
+mutating `process.env`. A test never imports a production config loader that
+reads files or the environment. The loader's parsing and validation are proven
+as a pure function over an injected input (the file's text, or an environment
+record passed in). The loader's own read of the file or environment is never
+exercised by a test: it is proven by non-test validation (a validator script's
+own self-proof, run by a CI-gated task) or by an observation made once at cure
+time and recorded (`testing-strategy.md` §Philosophy).
 
 ### The Pattern
 
@@ -61,8 +65,11 @@ expect(stale).toBe(true);
 
 - Do not read or write `process.env` in tests. Build literal config objects or
   use hermetic test helpers that do not read disk.
-- Do not import a runtime config loader into these tests unless the loader is
-  the direct unit under test.
+- Never import a runtime config loader that reads files or the environment
+  into a test. Prove its parsing and validation as a pure function over an
+  injected input (the file's text, or an environment record passed in). Its
+  own read of the file or environment is never a test's to prove: non-test
+  validation or an observation made once at cure time and recorded proves it.
 - For tests needing multiple configurations (e.g. a token present vs absent),
   create **separate config objects** for each case.
 - Helpers that mutate `process.env` to flip a mode must not exist. Use the
@@ -125,14 +132,14 @@ For any generator, transform, extractor, or content firewall, **green
 fixtures are not proof**: fixtures encode the cases you already thought
 of, and the real source carries the ones you didn't. Add a backstop that
 runs on the real source — a generation-time assertion or a real-content
-test — and inspect the real output before calling the transform done
-(worked instances 2026-06-30: fixtures passed twice while the real
-generated body carried a routing coupling and a structure leak that only
-grepping the real content caught). For a separation or firewall that
-encodes a principle, the real-content check IS the proof. The site's
-`e2e/behaviour/content-integrity.e2e-ui.test.ts` is the local instance: it
-proves the rendered pages against the JSON sources in `content/`, not
-against fixtures.
+check, never a test — and inspect the real output before calling the
+transform done (worked instances 2026-06-30: fixtures passed twice while
+the real generated body carried a routing coupling and a structure leak
+that only grepping the real content caught). For a separation or
+firewall that encodes a principle, the real-content check IS the proof.
+The site's E2E check `e2e/behaviour/content-integrity.e2e-ui.test.ts` is
+the local instance: it proves the rendered pages against the JSON sources
+in `content/`, not against fixtures.
 
 ## Test File Classification
 
@@ -157,7 +164,7 @@ not what the author intends:
   application, or open a listener, to prove one middleware decision (review
   lens Q3/Q4).
 
-## Composition Testing
+## Composition Checks
 
 Unit tests and E2E checks can all pass while the integrated product fails. For
 features spanning multiple modules, add a **composition check** that exercises the

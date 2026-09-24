@@ -7,10 +7,16 @@ overview: >-
   2026-09-24 ruling: each offender is cured by injection or moved to
   validation, never exempted, and an IO lint rule with no allow-list refuses
   IO in every test, helper and setup file of every workspace.
-status: sketch
-ratified_by: null
-ratified_date: null
-ratified_where: null
+status: ratified
+ratified_by: Jim Cresswell
+ratified_date: 2026-09-24
+ratified_where: >-
+  The owner's card answer of 2026-09-24 in the Director session of Wick binds
+  Temper (ed7b48), ratifying this shape as recommended: inventory, cure by
+  injection or move to validation, then the no-IO rule at error with no
+  allow-list, widened to helpers, setup files and the site; the test-doctrine
+  slice lands under it. Relayed to the exchange seat at 13:00Z and recorded on
+  its napkin.
 serves: best-of-each-practice
 impact_areas:
   - practice-and-estate
@@ -117,6 +123,8 @@ loads it fails through `--max-warnings 0`. Its gaps are these:
 - "E2E tests" wording in `CONTRIBUTING.md`, `docs/engineering/workflow.md`,
   `jcdotnet/e2e/README.md`, `docs/engineering/testing-tdd-recipes.md` and the config-expert
   template.
+- The `trigger` and `globs` of `test-immediate-fails` (`**/*.test.ts`), which bind the test rule
+  to the site's E2E checks by their suffix.
 
 ## Mechanism
 

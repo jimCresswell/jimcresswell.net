@@ -22,21 +22,28 @@ seam, extract a pure function, inject a dependency).
 ## Boundary Immediate Fails
 
 1. **Test imports product code that is not directly under test.**
-   Tests must import only the unit they are testing. Incidental
-   production factories (`createHttpObservabilityOrThrow`,
-   `loadRuntimeConfig`, `initialiseTelemetry`, app bootstrappers) that
-   the test is not proving must be replaced with a fake injected via
-   DI. Rationale: imports define the test boundary; a test that
-   imports factory X is coupled to X's behaviour and breaks on
-   unrelated refactors of X.
+   Tests must import only the unit they are testing. A production
+   factory or loader that reads configuration or does IO
+   (`createHttpObservabilityOrThrow`, `loadRuntimeConfig`,
+   `initialiseTelemetry`, app bootstrappers) is never imported into a
+   test, whether or not the test sets out to prove it. The unit that
+   needs it takes a fake injected via DI; any parsing or validation it
+   does is proven as a pure function over an injected input; its IO
+   is not a test's to prove. Rationale: imports define the test
+   boundary; a test that imports factory X is coupled to X's behaviour
+   and breaks on unrelated refactors of X.
 2. **Test imports a complex test helper it does not own.** If the
    helper exists to make the test runnable (not to prove the unit),
    the helper itself has become incidental infrastructure. Fix the
    product code or inline a simple fake.
 3. **Test uses a real production object where a fake would suffice.**
    E.g. real logger, real observability, real database adapter, real
-   HTTP client. If the test does not assert on that object's
-   behaviour, it must not receive a real instance.
+   HTTP client. A test never receives a real instance of an object
+   that does IO, whether or not it asserts on that object's
+   behaviour: the object's pure logic (an adapter's mapping) is
+   tested, and its IO is proven by validation, never by a test. A
+   real object without IO that the test does not assert on is
+   replaced with a fake.
 
 ## Side-Effect Immediate Fails
 
@@ -124,10 +131,11 @@ seam, extract a pure function, inject a dependency).
 
 20. **Test category does not match its file name.** A
     `*.unit.test.ts` that exercises several units working together is an
-    integration test under the wrong name: rename it. Per
-    `testing-strategy.md`, naming IS the category. A test that touches
-    IO is item 4's defect under any name; its cure is an injected seam
-    or a move to validation.
+    integration test under the wrong name: rename it. The name must
+    match the category the test's behaviour puts it in; a suffix names a
+    file and never classifies it. A test that touches IO is item 4's
+    defect under any name; its cure is an injected seam or a move to
+    validation.
 21. **Test is named `*.integration.test.ts` but opens a socket, hits
     the network, or spawns processes.** Classify by the boundary,
     then cure: a genuine separately-running-system exchange is an
