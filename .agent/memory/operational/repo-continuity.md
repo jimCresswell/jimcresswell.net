@@ -21,6 +21,17 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
+- 2026-09-24T09:29Z, the fold of `coordination/2026-09-23-551f2c`: `main` is at `SHA: ba504ffe`.
+  Since the entry below, PRs 155 to 158 merged on 2026-09-23 (the concept-over-bytes amendments,
+  the joint rules texts, format at receipt with PDR-142's wording cures, and the joint plans with
+  rulings 22 to 33). On 2026-09-24, PR 163 (a transaction lock left without its owner file is
+  reclaimed by its directory's age, `SHA: 256bd68b`) and PR 162 (the gate slot: at most two full
+  gates on the host and one per working tree, PR A of the `commit-as-the-full-local-gate` lane,
+  `SHA: ba504ffe`) merged. Open: PRs 159, 160 and 161, joint sets F to I, held for the lineage's
+  signature; the lineage's exchange seat has been vacant since 20:31Z on 2026-09-23. Next for
+  the exchange seat: the lane's PR B, scoped first against D's pushed-range secret scan. The
+  Director is Wick binds Temper (ed7b48). The live reading is the handoff's current-state block
+  and its last routing entry, then the napkin's tail.
 - 2026-09-23T19:11Z: the owner answered the Director's card of 2026-09-23, eight items, all as recommended
   (the napkin and the handoff carry them). `main` is at `SHA: bf9daf47`: PR 152 folded
   `coordination/2026-09-21-19cfcc`, PR 154 removed the lowest-power low-effort Cricket seat, PR
