@@ -22,18 +22,32 @@ const usageSchema = z.object({
   cache_read_input_tokens: z.number().int().nonnegative().default(0),
 });
 
+/** Who the transcript says sent a prompt: `human`, `peer`, `task-notification`, and others. */
+const originSchema = z.object({
+  kind: z.string().optional(),
+});
+
 const entrySchema = z.object({
   type: z.string().optional(),
   subtype: z.string().optional(),
   timestamp: z.string().optional(),
   isCompactSummary: z.boolean().optional(),
-  operation: z.string().optional(),
   content: z.unknown().optional(),
+  /** On a user turn: how the prompt was submitted (`typed`, `queued`, `system`, …). */
+  promptSource: z.string().optional(),
+  origin: originSchema.optional(),
   message: z
     .object({
       id: z.string().optional(),
       usage: usageSchema.optional(),
       content: z.unknown().optional(),
+    })
+    .optional(),
+  attachment: z
+    .object({
+      type: z.string().optional(),
+      prompt: z.unknown().optional(),
+      origin: originSchema.optional(),
     })
     .optional(),
 });

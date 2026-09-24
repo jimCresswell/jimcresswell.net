@@ -17,7 +17,13 @@ function assistant(at: string, id: string, usage: Record<string, number>): strin
 }
 
 function userTurn(at: string, text: string): string {
-  return JSON.stringify({ type: 'user', timestamp: at, message: { content: text } });
+  return JSON.stringify({
+    type: 'user',
+    timestamp: at,
+    promptSource: 'typed',
+    origin: { kind: 'human' },
+    message: { content: text },
+  });
 }
 
 function event(type: string, at: string, fields: Record<string, unknown> = {}): string {
@@ -62,75 +68,39 @@ describe('aggregateSession', () => {
     expect(session.toolCalls).toBe(2);
   });
 
-  it('counts owner messages from user turns and from mid-turn enqueues', async () => {
+  it('reports owner messages, those typed mid-turn, and the traffic it excluded', async () => {
     const session = await aggregateSession({
       sessionId: 'abc',
       gapSeconds: 600,
       lines: lines(
         userTurn('2026-09-16T10:00:00Z', 'please do the thing'),
-        JSON.stringify({
-          type: 'queue-operation',
+        event('queue-operation', '2026-09-16T10:05:00Z', {
           operation: 'enqueue',
-          timestamp: '2026-09-16T10:05:00Z',
           content: 'and also this',
         }),
-        JSON.stringify({
-          type: 'queue-operation',
+        event('queue-operation', '2026-09-16T10:05:01Z', {
           operation: 'remove',
-          timestamp: '2026-09-16T10:05:00Z',
           content: 'and also this',
+        }),
+        event('attachment', '2026-09-16T10:05:01Z', {
+          attachment: {
+            type: 'queued_command',
+            commandMode: 'prompt',
+            prompt: 'and also this',
+            origin: { kind: 'human' },
+          },
+        }),
+        event('user', '2026-09-16T10:06:00Z', {
+          promptSource: 'system',
+          origin: { kind: 'task-notification' },
+          message: { content: '<task-notification>done</task-notification>' },
         }),
       ),
     });
 
     expect(session.ownerMessages).toBe(2);
     expect(session.ownerMessagesMidTurn).toBe(1);
-  });
-
-  it('excludes peer relays, limit continues and harness wrappers from owner messages', async () => {
-    const session = await aggregateSession({
-      sessionId: 'abc',
-      gapSeconds: 600,
-      lines: lines(
-        userTurn('2026-09-16T10:00:00Z', 'Another Claude session sent a message: hello'),
-        userTurn('2026-09-16T10:01:00Z', 'Your claude.ai usage limit has reset.'),
-        userTurn('2026-09-16T10:02:00Z', '<task-notification>done</task-notification>'),
-        userTurn('2026-09-16T10:03:00Z', 'the real instruction'),
-      ),
-    });
-
-    expect(session.ownerMessages).toBe(1);
-  });
-
-  it('excludes the bracket spelling of a peer notice, not only the angle-bracket one', async () => {
-    const session = await aggregateSession({
-      sessionId: 'abc',
-      gapSeconds: 600,
-      lines: lines(
-        userTurn('2026-09-16T10:00:00Z', '[Cross-session idle notice] a peer went idle'),
-        userTurn(
-          '2026-09-16T10:01:00Z',
-          '<cross-session-message from="x">hello</cross-session-message>',
-        ),
-      ),
-    });
-
-    expect(session.ownerMessages).toBe(0);
-  });
-
-  it('counts what the filter removed, so an empty owner set is never silently a pass', async () => {
-    const session = await aggregateSession({
-      sessionId: 'abc',
-      gapSeconds: 600,
-      lines: lines(
-        userTurn('2026-09-16T10:00:00Z', '<bash-input>git status</bash-input>'),
-        userTurn('2026-09-16T10:01:00Z', '(Re-invocation of /jc-wrap — previously loaded)'),
-        userTurn('2026-09-16T10:02:00Z', '[Request interrupted by user]'),
-      ),
-    });
-
-    expect(session.ownerMessages).toBe(0);
-    expect(session.ownerMessagesFiltered).toBe(3);
+    expect(session.ownerMessagesFiltered).toBe(1);
   });
 
   it('sums only the gaps below the active-time threshold', async () => {

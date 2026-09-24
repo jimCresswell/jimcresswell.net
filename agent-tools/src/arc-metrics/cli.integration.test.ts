@@ -21,6 +21,8 @@ function transcript(sessionSuffix: string): string {
     JSON.stringify({
       type: 'user',
       timestamp: `2026-09-16T10:0${sessionSuffix}:30Z`,
+      promptSource: 'typed',
+      origin: { kind: 'human' },
       message: { content: 'the owner speaks' },
     }),
   ].join('\n');
