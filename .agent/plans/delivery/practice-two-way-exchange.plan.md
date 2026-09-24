@@ -345,20 +345,31 @@ entries composed whole and appended in one write.
 
 ## Todos
 
+Each todo carries its status as read on 2026-09-24. Every prose pull request on this node
+updates them, so the list is checked rather than believed.
+
 1. At the window: the delta script and the computed lists, one per pins row (one pull request,
    code-class; this amendment rides it).
+   Status: **done**. The delta scripts and the four computed lists are in `inputs/`.
 2. The concept rows and the register (one pull request, prose-class, the intake contract
    declared at open), then the register validator (one pull request, code-class).
+   Status: **done**. The register validator runs in the `docs-validators:check` leg.
 3. The cards for conflicting rows, one batch.
+   Status: **in progress**. One row, C7, is still a card in both estates, in its own lane.
 4. Inbound landings, one pull request per eight claims, in the register's order.
+   Status: **in progress**. Five of the 28 inbound rows have landed: L1, L2, L4, L5 and L22.
 5. The outbound note and material, delivered through the join ceremony.
+   Status: **in progress**. Batches one, two and three are in the lineage's Box and
+   acknowledged, and none of the 21 outbound rows has landed.
 6. The close: provenance, audit, Box, and the doctrine amendments as register candidates.
+   Status: **not started**.
 7. The re-pin (mechanism step 1, before the register closes): the pins carry forty-character
    commit ids; the driver fails closed on a tracked list with no pin row before replacing any
    output; the machinery list is derived from the artefact inventory rather than written by
    hand (the delta lane's seven review rounds each found a true omission of the hand-written
    list). Two of the three are Copilot's observations on pull request 137 (review 5266093341),
    routed here below the bar.
+   Status: **not started**. The pins still carry ten-character ids.
 8. The Core's portability measure (before todo 5's outbound note, and before any decision to
    extract the Practice into an installable entity): PDR-105 says a PDR never cites an ADR,
    and on 2026-09-21 this estate's Core held 78 ADR citations in 19 of 141 PDRs, to 17 distinct
@@ -366,6 +377,8 @@ entries composed whole and appended in one write.
    cure is the authoring estate's text; the class closes with a Core validator that refuses an
    ADR citation in a PDR, offered in the outbound note. Copilot's observation on pull request
    145 (review 5268801620), verified and widened, routed here below the bar.
+   Status: **in progress**. The text cure and the validator went to the lineage in batch one,
+   whose own pull requests land them.
 
 ## Plan-body first-principles check
 
