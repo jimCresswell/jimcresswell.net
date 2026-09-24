@@ -82,7 +82,7 @@ edit it by hand.
 | `.agent/rules/never-use-git-to-remove-work.md` | core | — |
 | `.agent/rules/new-rule-vs-pdr-clause.md` | core | — |
 | `.agent/rules/no-conditional-tests.md` | situational | `surface:test-authoring` |
-| `.agent/rules/no-global-state-in-tests.md` | situational | `surface:**/*.test.*,e2e/**/*` |
+| `.agent/rules/no-global-state-in-tests.md` | situational | `surface:**/*.test.*,e2e/**/*,**/smoke-tests/**/*` |
 | `.agent/rules/no-hedging-vocabulary.md` | core | — |
 | `.agent/rules/no-moving-targets-in-permanent-docs.md` | core | — |
 | `.agent/rules/no-parallel-long-lived-branches.md` | core | — |

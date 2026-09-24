@@ -1,6 +1,6 @@
 ---
 description: Keep tests isolated from global-state mutation
-globs: '**/*.test.*,e2e/**/*'
+globs: '**/*.test.*,e2e/**/*,**/smoke-tests/**/*'
 alwaysApply: false
 ---
 

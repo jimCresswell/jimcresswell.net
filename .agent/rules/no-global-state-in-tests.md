@@ -1,10 +1,11 @@
 ---
 classification: situational
 description: Keep tests isolated from global-state mutation
-trigger: surface:**/*.test.*,e2e/**/*
+trigger: surface:**/*.test.*,e2e/**/*,**/smoke-tests/**/*
 globs:
   - "**/*.test.*"
   - e2e/**/*
+  - "**/smoke-tests/**/*"
 ---
 
 # No Global State Manipulation in Tests
