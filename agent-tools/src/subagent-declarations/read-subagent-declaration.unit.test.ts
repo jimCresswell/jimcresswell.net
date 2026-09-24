@@ -101,6 +101,20 @@ describe('readSubagentDeclaration', () => {
     }
   });
 
+  it('carries the real quote beside a fenced example of one, before it or after it: a fenced line is never a quote', () => {
+    const fencedExample = ['```markdown', '> An example.', '```', ''];
+    const real = ['> The real prompt.', ''];
+    for (const body of [
+      [...fencedExample, ...real],
+      [...real, ...fencedExample],
+    ]) {
+      expect(promptOf(['', '## System prompt', '', ...body])).toMatchObject({
+        ok: true,
+        value: { declaration: { systemPrompt: 'The real prompt.' } },
+      });
+    }
+  });
+
   it('carries a quote that a heading closes on the next line: a lower one inside the section, or the one that ends it', () => {
     for (const heading of ['### Next', '## Next']) {
       expect(promptOf(['', '## System prompt', '', '> Closed.', heading, ''])).toMatchObject({
