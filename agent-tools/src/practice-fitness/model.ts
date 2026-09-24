@@ -5,7 +5,7 @@ export const FITNESS_MODE_INFORMATIONAL = 'informational';
 /**
  * Ratio above `fitness_*_limit` that triggers the `critical` zone.
  *
- * See the two-threshold fitness model (a source-lineage decision this validator
+ * See the three-zone fitness model (a source-lineage decision this validator
  * carries). The ratio is deliberately global: per-file critical overrides
  * would invent optionality that the current evidence does not justify.
  */
