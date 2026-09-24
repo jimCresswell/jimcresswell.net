@@ -65,6 +65,9 @@ Every line answered first-hand, none inferred:
   delivery into the lineage is the exchange seat's own act through the join ceremony and does not wait
   on a live OCE seat. And: "the memories and records of this repo are local to this repo, but the
   lessons learned from them are not".
+- Owner, 2026-09-24 about 13:55Z, verbatim: "the labelling of Cricket agents is better in JC.net than in
+  OCE: make sure the Cricket implementations and other sub-agent details are compared between the
+  repos". A goal-one item, routed to both exchange seats.
 - Every 45 minutes the Director checks in with all agents, corrects where needed, and has each run a
   full Cricket suite (owner, 2026-09-24, verbatim: "once every 45 minutes, check in with all agents and
   make sure they are staying on track, correct them if needed, and instruct them to run full Cricket
