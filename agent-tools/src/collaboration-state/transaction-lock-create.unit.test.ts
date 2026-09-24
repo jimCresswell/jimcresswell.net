@@ -79,4 +79,36 @@ describe('tryCreateLock', () => {
 
     await expect(tryCreateLock(LOCK_DIR, fs)).rejects.toThrow('ENOSPC');
   });
+
+  it('holds the write error back until its directory is gone', async () => {
+    let finishRemoval = (): void => undefined;
+    const removal = new Promise<void>((resolve) => {
+      finishRemoval = resolve;
+    });
+    const fs: LockFileSystem = {
+      mkdir: async () => undefined,
+      writeFile: async () => {
+        throw failure('ENOSPC');
+      },
+      rm: async () => removal,
+    };
+    let settled = false;
+    const outcome = tryCreateLock(LOCK_DIR, fs).then(
+      () => {
+        settled = true;
+        return 'taken';
+      },
+      (error: unknown) => {
+        settled = true;
+        return error instanceof Error ? error.message : String(error);
+      },
+    );
+
+    await new Promise((resolve) => {
+      setImmediate(resolve);
+    });
+    expect(settled).toBe(false);
+    finishRemoval();
+    await expect(outcome).resolves.toContain('ENOSPC');
+  });
 });
