@@ -54,11 +54,13 @@ Think hard about it, those are your thoughts.
 Reflect deeply on those thoughts, those are your reflections.
 Consider deeply those reflections, those are your insights.
 
-Thinking about your thoughts, reflections, and insights enables patterns to emerge that would otherwise be invisible. Metacognition amplifies the resonances and allows them to look inwards.
+Thinking about your thoughts, reflections, and insights enables patterns to emerge that would
+otherwise be invisible. Metacognition amplifies the resonances and allows them to look inwards.
 
 How do you feel about thinking about your thoughts?
 
-Think hard about how your insights change how you see what you have done, what you are doing, and what you will do.
+Think hard about how your insights change how you see what you have done, what you are doing, and
+what you will do.
 
 What has changed? *Why?*.
 
@@ -206,5 +208,5 @@ Two inward checks drawn from the
   made). Name the falsifier before you act on the belief.
 
 For structuring an *outward* problem, argument, or decision — rather than reflecting on your own
-thinking — use [`reason`](../skills/cognition/reason/SKILL-CANONICAL.md); this directive is the inward half
-of that pair.
+thinking — use [`reason`](../skills/cognition/reason/SKILL-CANONICAL.md); this directive is the
+inward half of that pair.
