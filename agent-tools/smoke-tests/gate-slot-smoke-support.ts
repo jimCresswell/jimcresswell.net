@@ -11,7 +11,8 @@ import { fileURLToPath } from 'node:url';
 /**
  * Helpers for the gate-slot smokes: fixed private ports, a lock that runs one
  * smoke at a time across worktrees, fixture wrapper processes, and waits on
- * events (a line, an exit), never on wall-clock time.
+ * events (a line, an exit). The one wall-clock bound is stopping a fixture
+ * that will not exit.
  */
 
 export const PACKAGE_ROOT = fileURLToPath(new URL('..', import.meta.url));
@@ -53,6 +54,12 @@ export interface Fixture {
   readonly stdout: () => string;
   readonly stderr: () => string;
 }
+
+/** Every fixture this smoke has started, so that none outlives it. */
+const started: Fixture[] = [];
+
+/** How long a stopped fixture has to pass SIGTERM to its gate, sweep it and exit. */
+const STOP_BOUND_MS = 10_000;
 
 /**
  * Hold the smoke lock for the rest of this process: two worktrees' gates run
@@ -116,7 +123,39 @@ export function startFixture(
   let err = '';
   child.stdout.setEncoding('utf8').on('data', (chunk: string) => (out += chunk));
   child.stderr.setEncoding('utf8').on('data', (chunk: string) => (err += chunk));
-  return { process: child, pid: child.pid, stdout: () => out, stderr: () => err };
+  const fixture = { process: child, pid: child.pid, stdout: () => out, stderr: () => err };
+  started.push(fixture);
+  return fixture;
+}
+
+function isRunning(fixture: Fixture): boolean {
+  return fixture.process.exitCode === null && fixture.process.signalCode === null;
+}
+
+/**
+ * Stop every fixture still running and wait for each to exit, so that a
+ * proof that throws, or the watchdog, leaves no wrapper holding the smoke's
+ * ports and no gate running on: SIGTERM, which a wrapper passes on to its
+ * gate's group before sweeping it. A wrapper still running after the bound
+ * gets SIGKILL, which frees its ports; its gate's group then runs on, as it
+ * does for any wrapper killed that way.
+ */
+export async function stopFixtures(): Promise<void> {
+  await Promise.all(
+    started.filter(isRunning).map(async (fixture) => {
+      const exited = exitOf(fixture);
+      fixture.process.kill('SIGTERM');
+      const bound = new Promise<'bound'>((resolve) => {
+        setTimeout(() => {
+          resolve('bound');
+        }, STOP_BOUND_MS).unref();
+      });
+      if ((await Promise.race([exited, bound])) === 'bound') {
+        fixture.process.kill('SIGKILL');
+        await exited;
+      }
+    }),
+  );
 }
 
 /**
@@ -178,43 +217,5 @@ export async function outputEnded(fixture: Fixture): Promise<void> {
   assert.ok(stdout !== null, 'gate-slot smoke: the fixture has no stdout');
   if (!stdout.readableEnded) {
     await once(stdout, 'end');
-  }
-}
-
-/** A gate child that prints `ready <pid>` and ends with `code` when its stdin closes. */
-export function blockedChild(code: number): readonly string[] {
-  const ready = String.raw`process.stdout.write('ready ' + process.pid + '\n');`;
-  const block = `process.stdin.resume(); process.stdin.on('end', () => process.exit(${code}));`;
-  return ['run', 'pnpm', '-e', `${ready} ${block}`];
-}
-
-/**
- * A gate child, for the `sh` fixture, that leaves a dead member in its group
- * which no SIGKILL clears: a parent forks the member, moves itself to a group
- * of its own, and reads its stdin to the end without reaping it. The leader
- * exits 0 once the parent has moved; closing the fixture's stdin ends the
- * parent, and the member is reaped with it.
- */
-export function unreapedMemberChild(): readonly string[] {
-  const perl = [
-    'pipe(my $r, my $w) or die "pipe: $!";',
-    'defined(my $p = fork()) or die "fork: $!";',
-    'if ($p == 0) {',
-    'close $r; open STDOUT, ">", "/dev/null"; open STDERR, ">", "/dev/null";',
-    'defined(my $c = fork()) or die "fork: $!"; if ($c == 0) { exit 0 }',
-    String.raw`setpgrp(0, 0) or die "setpgrp: $!"; print $w "moved\n"; close $w;`,
-    '1 while <STDIN>; exit 0;',
-    '}',
-    'close $w; defined(<$r>) or die "the parent never moved"; exit 0;',
-  ].join(' ');
-  return ['run', 'pnpm', '-c', `exec /usr/bin/perl -e '${perl}'`];
-}
-
-/** SIGKILL the group `leader` leads, if it is still there. */
-export function killGroup(leader: number): void {
-  try {
-    process.kill(-leader, 'SIGKILL');
-  } catch {
-    // Already gone.
   }
 }

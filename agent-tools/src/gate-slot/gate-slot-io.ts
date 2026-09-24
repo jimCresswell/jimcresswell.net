@@ -16,6 +16,8 @@ export interface GateSlotHost {
   readonly childCommand: string;
   readonly childMaxMs: number;
   readonly childGraceMs: number;
+  /** The host's platform: a negative pid names a process group only on POSIX, never on win32. */
+  readonly platform: NodeJS.Platform;
 }
 
 /**
@@ -29,6 +31,7 @@ export function createGateSlotIo(host: GateSlotHost): GateSlotIo {
   return {
     limit: host.limit,
     worktree: host.worktree,
+    processGroups: host.platform !== 'win32',
     pid: process.pid,
     heldMarker: host.heldMarker,
     now: () => new Date().toISOString(),

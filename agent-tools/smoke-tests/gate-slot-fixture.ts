@@ -62,6 +62,7 @@ const io = createGateSlotIo({
   childCommand: config.child === 'sh' ? '/bin/sh' : process.execPath,
   childMaxMs: config.childMaxMs,
   childGraceMs: config.childGraceMs,
+  platform: process.platform,
 });
 
 process.exitCode = await main(gateSlotArgv, {

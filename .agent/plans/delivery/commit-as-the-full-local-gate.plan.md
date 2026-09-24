@@ -49,10 +49,14 @@ Six pull requests, in order.
   mutex for one admission decision. The limit is 2, and there are three slot ports, so the
   ceiling of three is structural. A holder serves its identity (worktree, pid, command, start
   time) to anyone who connects, and an acquirer waits while a holder names its own worktree or
-  does not answer (a stopped gate may be in its own tree). The gate child runs in its own
-  process group, so every signal reaches the whole gate; it is bounded (SIGTERM at thirty
-  minutes, SIGKILL after a grace period, and a gate stopped at its bound fails); a gate never
-  acquires inside a gate; and `status` lists the holders. `.husky/pre-push` acquires around
+  does not answer (a stopped gate may be in its own tree); an identity no reader could match
+  to its tree is refused before any slot is bound. The gate child runs in its own process
+  group, so every signal reaches the whole gate; it is bounded (SIGTERM at thirty minutes,
+  SIGKILL after a grace period, and a gate stopped at its bound fails); once it ends, its group
+  is swept with SIGKILL until the kernel reports it gone (only ESRCH proves that; EPERM does
+  not), and a group the sweep cannot clear fails the gate; a gate never acquires inside a
+  gate, nor on a host without process groups to signal (Windows); and `status` lists the
+  holders. `.husky/pre-push` acquires around
   `pnpm check` and around the site end-to-end suite.
 - **B.** One agent-tools build per gate (`check` rebuilds it three times today), and the
   push-range query.
@@ -102,10 +106,17 @@ suite); records commits get no lighter path; `repo-check profile` measures befor
   never answers blocks every gate as a stopped gate would, each named in the wait report with
   the `lsof` lookup that finds it; a listener on the mutex port stops every gate until it goes,
   named the same way; a worktree on a branch cut before A merges runs the old, unbounded hook
-  until it is rebased.
+  until it is rebased; a descendant that leaves the gate's process group, through setsid or
+  setpgid, is not swept.
 - Routed from A's reviews to their own changes: the collaboration-state transaction lock can be
-  left without its owner file and then never reclaimed (its own pull request next); CI's
+  left without its owner file and then never reclaimed (its own pull request, PR 163); CI's
   `--filter` calls lack `--fail-if-no-match`, and a validator should refuse any that do;
   `spawnInheritedProcess` has two consumers outside `repo-check` and moves to `core`; the pnpm
   launcher script on this host resolves `uname`, `sed` and `dirname` through `PATH`.
+- Routed from PR 163's last review: every removal of the collaboration-state transaction lock
+  is by path, so a holder that cannot prove it still holds the directory it made can remove
+  another holder's lock. Two waiters reclaiming one stale lock can both remove it, and a failed
+  owner write stalled past the stale age can remove a waiter's replacement lock. One change
+  cures the class: a removal that proves ownership first, such as a rename to a unique name
+  before the owner check.
 - Forward note for D: a pre-commit that waits holds git's index lock for the whole wait.

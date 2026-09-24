@@ -40,6 +40,7 @@ try {
     childCommand: 'pnpm',
     childMaxMs: GATE_CHILD_MAX_MINUTES * 60_000,
     childGraceMs: GATE_CHILD_GRACE_MS,
+    platform: process.platform,
   });
   // process.exitCode, never process.exit(): exit() can cut off piped output.
   process.exitCode = await main(process.argv.slice(2), io);

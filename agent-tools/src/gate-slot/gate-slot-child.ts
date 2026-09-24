@@ -13,9 +13,6 @@ export interface GateChildRunnerOptions {
   readonly graceMs: number;
 }
 
-/** Whether a finished gate's group is swept: a negative pid names a group only on POSIX. */
-const SWEEPS_GROUPS = process.platform !== 'win32';
-
 /**
  * How long a finished gate's group sweep waits for the kernel to report the
  * group gone: up to 50 SIGKILLs, 20 ms apart, about a second. Once a group's
@@ -36,6 +33,7 @@ const FORWARDED: readonly NodeJS.Signals[] = ['SIGINT', 'SIGTERM', 'SIGHUP'];
 
 /**
  * Run a gate child with inherited stdio, bounded, in its own process group.
+ * POSIX only: `main` refuses a gate on a host without process groups.
  *
  * Every signal goes to the whole group, because the gate's real work sits
  * below the process spawned here (the pnpm launcher is a shell script that
@@ -105,7 +103,7 @@ export function createGateChildRunner(
 async function sweepLeavesGroup(
   killGroup: ((signal: NodeJS.Signals) => SignalOutcome) | undefined,
 ): Promise<boolean> {
-  if (!SWEEPS_GROUPS || killGroup === undefined) {
+  if (killGroup === undefined) {
     return false;
   }
 

@@ -54,6 +54,8 @@ export interface GateSlotIo {
   readonly limit: GateSlotLimit;
   /** The real path of the working tree this gate runs in. */
   readonly worktree: string;
+  /** Whether this host can run a gate in its own process group and signal the whole group. */
+  readonly processGroups: boolean;
   readonly pid: number;
   /** The enclosing gate's slot, when this process runs inside a gate. */
   readonly heldMarker: string | undefined;

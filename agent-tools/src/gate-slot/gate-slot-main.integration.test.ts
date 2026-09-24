@@ -52,6 +52,7 @@ function hostIo(
   const io: GateSlotIo = {
     limit: 3,
     worktree: HERE,
+    processGroups: true,
     pid: 9000,
     heldMarker: undefined,
     now: () => '2026-09-24T08:00:00.000Z',
@@ -146,6 +147,22 @@ describe('gate-slot run', () => {
 
     await expect(main(['run', 'pnpm', 'check'], io)).resolves.toBe(1);
     expect(transactions).toBe(0);
+    expect(sinks.err.join('\n')).toContain('pnpm check');
+  });
+
+  it('refuses, before taking a slot, on a host with no process groups to signal', async () => {
+    let transactions = 0;
+    const { io, sinks } = hostIo(EMPTY_HOST, {
+      processGroups: false,
+      transact: async ({ decide }) => {
+        transactions += 1;
+        return { kind: 'decided', decision: decide(EMPTY_HOST), release: NO_RELEASE };
+      },
+    });
+
+    await expect(main(['run', 'pnpm', 'check'], io)).resolves.toBe(1);
+    expect(transactions).toBe(0);
+    expect(sinks.err.join('\n')).toContain('process group');
     expect(sinks.err.join('\n')).toContain('pnpm check');
   });
 

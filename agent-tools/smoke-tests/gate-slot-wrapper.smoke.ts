@@ -5,19 +5,18 @@ import net from 'node:net';
 import { GATE_SLOT_HELD_ENV } from '../src/gate-slot/gate-slot-contract';
 
 import {
-  blockedChild,
   exitOf,
   holdSmokeLock,
-  killGroup,
   makeTree,
   outputEnded,
   readyPid,
   SMOKE_MUTEX_PORT,
   SMOKE_SLOT_PORTS,
   startFixture,
-  unreapedMemberChild,
+  stopFixtures,
   waitFor,
 } from './gate-slot-smoke-support';
+import { blockedChild, killGroup, unreapedMemberChild } from './gate-slot-smoke-children';
 
 /**
  * The gate-slot wrapper on real loopback listeners and real processes, through
@@ -28,7 +27,10 @@ import {
 
 const watchdog = setTimeout(() => {
   process.stderr.write('gate-slot wrapper smoke: timed out\n');
-  process.exit(1);
+  // Exit only once every fixture has let go of the smoke's ports, so the lock never frees early.
+  void stopFixtures().finally(() => {
+    process.exit(1);
+  });
 }, 180_000);
 watchdog.unref();
 
@@ -240,5 +242,6 @@ try {
   await proveAGroupTheSweepCannotClearFailsTheGate();
   process.stdout.write('gate-slot wrapper smoke: 12/12 proofs passed\n');
 } finally {
+  await stopFixtures();
   await Promise.all(trees.map(async (path) => rm(path, { recursive: true, force: true })));
 }

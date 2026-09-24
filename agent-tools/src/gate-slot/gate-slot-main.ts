@@ -64,13 +64,8 @@ async function status(io: GateSlotIo): Promise<number> {
 
 async function run(pnpmArgs: readonly string[], io: GateSlotIo): Promise<number> {
   const command = holderCommand(pnpmArgs);
-  const admitted =
-    io.heldMarker === undefined
-      ? await acquire(command, io)
-      : err(
-          `refused: this command already runs inside the gate holding port ${io.heldMarker}, ` +
-            'and a gate never acquires inside a gate.',
-        );
+  const refusal = refusalFor(io);
+  const admitted = refusal === undefined ? await acquire(command, io) : err(refusal);
   if (!admitted.ok) {
     io.stderr(`gate-slot: ${admitted.error}`);
     io.stderr(`gate-slot: ${command} did not run.`);
@@ -110,6 +105,25 @@ function verdict(child: GateChildEnd, io: GateSlotIo): number {
   }
 
   return faults.length === 0 ? exitCodeFor(child.end) : Math.max(exitCodeFor(child.end), 1);
+}
+
+/** Why this process may not take a slot at all, or `undefined` when it may try. */
+function refusalFor(io: GateSlotIo): string | undefined {
+  if (io.heldMarker !== undefined) {
+    return (
+      `refused: this command already runs inside the gate holding port ${io.heldMarker}, ` +
+      'and a gate never acquires inside a gate.'
+    );
+  }
+  if (!io.processGroups) {
+    return (
+      'refused: a gate runs in its own process group so that every signal and the final sweep ' +
+      'reach all of it, and this host has no process group to signal; run it from a POSIX host, ' +
+      'such as WSL.'
+    );
+  }
+
+  return undefined;
 }
 
 interface AdmittedSlot {
