@@ -51,7 +51,7 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
     watches the Box. Its order: joint set F from PR 159 (`SHA: 037d54a5`), then G from PR 160
     (`SHA: 2501b9d9`) with PR 171's three files; the test doctrine goes to a fresh session there
     (PDR-052), with this estate's five follow-up cures if they have landed.
-  - Parked, local branches. `feat/alignment-start-right-test-rules` (`SHA: 4b9fd501`, worktree
+  - Branches waiting behind goal one. `feat/alignment-start-right-test-rules` (`SHA: 4b9fd501`, worktree
     `align-five`; its first push failed the portability leg, three projections not regenerated,
     cured at `SHA: 5eb897f0`; pushed after the handover with no pull request, verify with
     `git ls-remote`): start-right's two-legs paragraph from
@@ -75,7 +75,7 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
   lineage's Practice Box through the join ceremony, and the lineage's seats land it. Its inputs:
   the register's J rows refreshed against the lineage head, and the lessons swept from this
   estate's records (napkin, distilled, pending graduations, experience, reports), which travel
-  as lessons while the records stay here. Goal two (inbound) waits behind it; its parked slice
+  as lessons while the records stay here. Goal two (inbound) waits behind it; its slice
   is `feat/alignment-start-right-test-rules` at `SHA: 4b9fd501`, local and unpushed.
 - 2026-09-24T13:28Z, a correction to the two opener entries below: PDR-052 covers only
   `.agent/directives/*`. The fresh session's queue is the directives alone: `AGENT.md`,
