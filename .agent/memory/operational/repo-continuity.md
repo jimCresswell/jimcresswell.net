@@ -227,6 +227,7 @@ names a live branch):
 
 ## Active Threads
 
+- JC.net's exchange seat (`threads/practice-exchange-seat.next-session.md`): Siren herds Rudder (158275) handed over at rest 2026-09-24 18:20Z under PDR-063; the next session lands queue item 1 (batch six, the compare rows) unless the Director asks for item 2 first.
 - Closure session 2's synthesis (`threads/session-2-synthesis.next-session.md`): the cards were
   answered 2026-09-14 (the Director's handoff item 78); the graduation drain is curator work.
 
