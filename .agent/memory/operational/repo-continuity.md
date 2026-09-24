@@ -10,7 +10,9 @@ fitness_line_length_rationale: >-
   transient non-cure on a file that grows by append each session; 115 clears the
   noise while still flagging genuine over-runs.
 fitness_content_role: reference
-overflow_disposition: "leave-if-live; else conserve-insight-and-delete — never archive/split/rotate/shard (see continuity-practice.md §Disposition of Continuity Surfaces)"
+overflow_disposition: >-
+  leave-if-live; else conserve-insight-and-delete — never archive/split/rotate/shard (see
+  continuity-practice.md §Disposition of Continuity Surfaces)
 merge_class: index-narrative-tables
 ---
 
@@ -21,6 +23,12 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
+- 2026-09-24T10:08Z, a compaction boundary on the owner's word, every process of the exchange seat
+  stopped: the owner ruled that tests prove product behaviour only, never configuration or
+  implementation, and that there are no exemptions, strict, everywhere, all of the time. The
+  napkin's last block holds the queue those rulings set on merged code, the filter guard's state
+  (committed locally at `SHA: 5ca00f52`, not pushed), and the first acts on resume: push the
+  coordination branch and the filter guard, open its draft PR, then the queue.
 - 2026-09-24T09:29Z, the fold of `coordination/2026-09-23-551f2c`: `main` is at `SHA: ba504ffe`.
   Since the entry below, PRs 155 to 158 merged on 2026-09-23 (the concept-over-bytes amendments,
   the joint rules texts, format at receipt with PDR-142's wording cures, and the joint plans with
@@ -307,8 +315,9 @@ and proof (item 4's rows closed by #85 `SHA: eed1f2e`, #87 `SHA: 6b5676b`, #86
 
    Second maintenance item at the same priority (2026-09-16): the Cricket seat naming. The
    quartet's generated adapter names encode effort alone (`-low`, `-medium`, `-high`, `-xhigh`), so
-   nothing in those names says which model a seat runs, while the
-   estate pairs model power INVERSELY with effort — low is fable, medium is opus, high is sonnet, xhigh is haiku. A caller who cannot read
+   nothing in those names says which model a seat runs, while the estate pairs model power
+   INVERSELY with effort — low is fable, medium is opus, high is sonnet, xhigh is haiku. A caller
+   who cannot read
    that from the name mis-launches the suite, as the Director did on 2026-09-16 by overriding
    every seat's model and inverting the design. Names should carry both dimensions. The change
    lives in `.agent/sub-agents/templates/cricket-judgement.md` and
