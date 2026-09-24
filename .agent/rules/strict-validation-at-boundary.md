@@ -29,8 +29,7 @@ alone: a transient-file allowlist that exempted by basename before kind
 handling let a symlink wearing a transient name ride out of the symlink
 refusals, and a place-only design-token admission did the same in the same
 sitting (2026-08-19). An allowlist that deliberately admits along one axis (a
-string-only token allowlist; a path-only stale-invocation allowlist) binds
-that one axis and invents no other. Validate each axis the decision depends
+string-only token allowlist) binds that one axis and invents no other. Validate each axis the decision depends
 on, at the boundary the value crosses.
 
 Owner ruling (2026-07-28): **"Strict, all the time, everywhere"** — every

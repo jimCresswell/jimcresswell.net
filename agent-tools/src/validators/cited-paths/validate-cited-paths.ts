@@ -65,15 +65,6 @@ const SCANNED_EXTENSIONS: ReadonlySet<string> = new Set(['.md']);
 /** Scope exclusions: archives and the pre-transplant snapshot are history, not live doctrine. */
 const EXCLUDED_PATH_FRAGMENTS: readonly string[] = ['/archive/'];
 
-/**
- * Targets exempted by hand. Empty by design: a target that is neither
- * tracked nor ignored by the repository's rules is a finding, and the cure
- * is a tracked file or an ignore rule, never an entry here.
- */
-const ALLOWLISTED_TARGETS: readonly string[] = [];
-
-const ALLOWLISTED_PATHS: readonly string[] = [];
-
 /** Whether the repository itself says the target belongs: tracked, or ignored by its rules. */
 function repositoryResolver(
   tracked: ReadonlySet<string>,
@@ -104,10 +95,7 @@ async function main(): Promise<void> {
   const candidates = [
     ...new Set(files.flatMap((file) => extractPathCitations(file.content).map((c) => c.target))),
   ];
-  const findings = findMissingPathCitations(files, repositoryResolver(tracked, candidates), {
-    allowlistedTargets: ALLOWLISTED_TARGETS,
-    allowlistedPaths: ALLOWLISTED_PATHS,
-  });
+  const findings = findMissingPathCitations(files, repositoryResolver(tracked, candidates));
 
   if (findings.length === 0) {
     writeLine(
