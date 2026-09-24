@@ -9,11 +9,12 @@
  *
  * Exit 0 = clean. Exit 1 = drift found.
  *
- * Scope: walks all `.md` files under `.agent/`, `docs/`, root `*.md`, and
- * repo `*.md` plan/prompt locations; excludes `archive/`, backup
- * directories, `incoming/` practice boxes, and the fitness model's decision record itself (which is
- * allowed to discuss the retired vocabulary in §Context, §Decision #6,
- * and §Consequences).
+ * Scope (`walk.ts`): the working tree's `.md`, `.ts` and `.mjs` files, skipping
+ * `.git`, `coverage`, `dist` and `node_modules`, any `archive/` segment, the
+ * Practice Core backups and `incoming/` boxes, `.agent/experience/`, `.remember/`,
+ * and the gitignored `tmp` and `.agent/reference-local` roots. This validator and
+ * its unit test are the only files that may name the retired vocabulary, because
+ * they define it.
  *
  * Forbidden phrases list (case-sensitive unless noted):
  * - "two-threshold", "Two-Threshold", "Two Threshold" (model name retired)
