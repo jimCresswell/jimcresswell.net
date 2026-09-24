@@ -21,8 +21,8 @@ roster.
   `quality-gates`, and kin. A workflow summons modes at its judgement moments
   and may summon sibling workflows for sub-purposes.
 - **Programmes** — compositions that loop workflows toward a declared
-  end-state across sittings: `wrap` (deep closeout to the metaloss fixed
-  point), `consolidate-until-done` (grounding plus consolidation passes until
+  end-state across sittings: `wrap` (the close of every session, to the
+  metaloss fixed point), `consolidate-until-done` (grounding plus consolidation passes until
   every buffer is drained), and the session-boot compositions
   (`start-right-quick`, `start-right-thorough`, `start-right-team`) that
   structure a whole session's execution. A programme owns the loop, the exit
