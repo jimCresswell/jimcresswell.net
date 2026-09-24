@@ -14,7 +14,7 @@ import { resolveTrustedGit } from '../src/core/trusted-git';
  * commit needs the deletion side or its temporary index still tracks a file the
  * worktree no longer has (worked instance: every tracked-file validator crashed
  * mid-hook on the phantom). Real git process IO makes this a smoke rather than an
- * in-process Vitest suite (testing-strategy: no process spawning in in-process tests);
+ * in-process Vitest suite (testing-strategy: no process spawning in tests);
  * the package's test:e2e script keeps it in the full gate. That boundary is pre-push +
  * CI, not per-commit (the relocation trades the old every-commit vitest run for
  * doctrine compliance — a regression still cannot leave the machine), and the test:e2e

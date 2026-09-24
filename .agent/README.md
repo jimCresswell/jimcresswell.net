@@ -114,7 +114,7 @@ processing; it is never a goal in itself.
 | ------------------- | --------------------------------------------------------------------------------- |
 | `reference/`        | Supporting reference material                                                     |
 | `reference-local/`  | Git-ignored local material, never source-controlled                              |
-| `operator-local/`   | Git-ignored operator profile; the two stubs declare the contract                  |
+| `operator-local/`   | Retired tier: a pointer to the home-directory profile that PDR-141 defines        |
 | `practice-context/` | Local exchange context (incoming / outgoing)                                      |
 
 ## Entry point and reading order

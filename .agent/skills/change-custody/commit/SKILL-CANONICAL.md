@@ -268,11 +268,9 @@ to peers.
 git operations colliding, that is not necessary for work in separate worktrees").**
 The queue and the bare `git:index/head` window serialise the SHARED PRIMARY
 checkout only. A lane in its own worktree (PDR-117) commits by plain pathspec —
-`git add -- <paths>` then `git commit --author="<owner name> <owner noreply email>"
--F <message> -- <paths>` — the `--author` flag on every commit, as the bot-identity
-rule requires: the worktree's `user.*` is the bot, so an omitted flag yields a
-bot-authored commit — hooks running, the owner as author and the bot as
-committer, with an audit line in the message
+`git add -- <paths>` then `git commit -F <message> -- <paths>` — hooks running,
+the owner as author and committer from the clone's shared identity (owner,
+2026-09-17; the lane-setup skill checks it), with an audit line in the message
 naming the worktree and that the queue was not used; it opens no queue intent and
 no window claim (F-132, F-139 and F-169 are superseded by scope). Two mechanics of
 the pathspec commit, measured 2026-09-07: the queue guard accepts only the bare
@@ -280,8 +278,10 @@ the pathspec commit, measured 2026-09-07: the queue guard accepts only the bare
 commit records a deletion only for a path it names — after a `git mv`, list the
 old path as well as the new one or the move never lands. The separate host bound
 — two, at most three, simultaneous full local gates — is engineered as a
-semaphore, not declared; until it lands, a seat runs one full gate at a time and
-starts no second while a peer's runs.
+semaphore, not declared (`no-unbounded-host-load` item 6); until it lands, seats
+run full gates side by side only in different worktrees, at most two at once, and
+inside one worktree gate runs are sequential (owner, 2026-09-20: "two parallel
+gate runs are fine as long as they are in different work trees").
 
 ### Intent-Scoped End-to-End (2026-05-22 cure)
 
@@ -596,7 +596,7 @@ topology for memory-file reconciliation):
 4. **Close the claim** with the merge SHA as usual (move 4).
 
 For the semantic-merge topology itself (which branches merge where, and how
-memory files reconcile as unions), PDR-049 and the `oak-semantic-merge` skill
+memory files reconcile as unions), PDR-049 and the `semantic-merge` skill
 govern; this subsection owns only the commit mechanics.
 
 ### Foreign index lock — no autonomous contact, including waits
@@ -963,18 +963,18 @@ the conflation is captured at
 ## Platform Adapters
 
 This skill is **passive / always-active** — discovery, not invocation.
-Adapters are generated skill-form thin pointers. ADR-125 is authoritative for
+Adapters are generated skill-form thin pointers. PDR-051 is authoritative for
 the current adapter topology; do not hand-maintain a platform inventory here.
 For this owned skill the generated adapters currently live at:
 
-- `.agents/skills/oak-commit/SKILL.md` — cross-tool alias used by Codex,
+- `.agents/skills/jc-commit/SKILL.md` — cross-tool alias used by Codex,
   Cursor, Gemini, and other `.agents/` consumers.
-- `.claude/skills/oak-commit/SKILL.md` — Claude Code adapter.
+- `.claude/skills/jc-commit/SKILL.md` — Claude Code adapter.
 
 The retired custom-command and per-platform skill directories are not valid
 homes for this workflow. Regenerate adapters with `pnpm skills:generate`
 (the root script — it builds first and pins the estate's required
-`--prefix=oak-`) and verify with `pnpm skills:check` or
+`--prefix`) and verify with `pnpm skills:check` or
 `pnpm portability:check` after canonical changes. The workspace-filtered
 form now also works (its script anchors at the repo root and pins the
 prefix; the 2026-07-02 wrong-cwd failure is cured at the script).

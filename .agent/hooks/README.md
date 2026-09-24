@@ -7,7 +7,8 @@ and thin native activation lives in platform config.
 
 ## Current Status
 
-**Guardrail-and-identity only**: the hook layer is intentionally narrow.
+**Guardrails, identity and one observer**: the hook layer is intentionally
+narrow.
 
 - `preToolUse` — natively enforced for Claude Code Bash calls by invoking the
   single prebuilt policy dispatcher
@@ -24,6 +25,17 @@ and thin native activation lives in platform config.
 - Codex identity context — a separate native `SessionStart` surface activated
   through the thin `.codex/hooks/practice-session-identity.mjs` adapter; it
   injects the PDR-027 identity block and remains soft/fail-open
+- Claude Code `PreCompact` observer — a never-blocking OBSERVER, not a guard,
+  activated in `.claude/settings.json` (it has no key in `policy.json`): it
+  records what the harness sends at a compaction to a git-ignored log under
+  `.claude/logs/`, and is the first hook run directly from TypeScript source
+  (`node <source>.ts`, through the `log-hook-errors.sh` wrapper). What it
+  guarantees, and why its build dependency remains, is stated once in the
+  TSDoc of `agent-tools/src/bin/claude-pre-compact-observe-hook.ts`; the
+  contract it has observed is recorded in
+  `.agent/memory/executive/cross-platform-agent-surface-matrix.md` §Hook
+  Support. Retire it when a `PreCompact` gate replaces it: its
+  `systemMessage` shows on every compaction it answers
 - `preCommit` — documented policy only; quality-gate reminders already
   live in the workflow and review surfaces
 
@@ -230,12 +242,56 @@ fail-open**: they `exit 0` when the scanner is unavailable so a session is never
 bricked by a missing optional tool. That is a broader fail-open posture than the
 dangerous-command/content guards above: those fail open *only* for the not-built
 case (loudly, as above) and fail **closed** whenever a built guard misbehaves.
+They read the payload with `jq` when it is installed; without it, the Read hook
+denies a path holding a JSON escape it cannot decode rather than let it through
+unscanned. Their commands quote every `${CLAUDE_PROJECT_DIR}`, which the
+portability check enforces for every hook and the status line; it also holds
+each of those commands to the closed hook-command grammar in
+`agent-tools/src/validators/portability/claude-hook-script-anchoring.ts`.
+
+A file a prompt @-mentions never reaches the Read hook. Claude Code puts the
+file's content into the conversation as an attachment, with no tool call, and
+the `UserPromptSubmit` payload carries only the prompt's text (Claude Code
+2.1.274, observed 2026-09-17). The documentation says only that an @-mention
+"includes the full content of the file in the conversation"
+([Common workflows](https://code.claude.com/docs/en/common-workflows)) and
+that `Read` permission rules apply to `@file` mentions on a best-effort basis
+([Permissions](https://code.claude.com/docs/en/permissions)). So the prompt
+hook hands Sonar every regular file a mention can name, found as Claude Code
+finds it: its patterns, read from the 2.1.274 bundle, run on node, the engine
+they were written for, so the whitespace set, the word boundary and the `#`
+split are Claude Code's own. They take a mention only after the start of the
+text, whitespace or a CJK stop (`(^|[\s\u3002\u3001\uFF1F\uFF01])@`), end an
+unquoted path at the last word character before whitespace (`@([^\s]+)\b`),
+and split the path at its first `#` whatever follows
+(`^([^#]+)(?:#L(\d+)(?:-(\d+))?)?(?:#[^#]*)?$`); the hook resolves it against
+the payload's `cwd`, `~` or the root. Each file goes by its real path, once,
+since Sonar reports a symlink clean without reading its target. When Sonar
+errors, or `node` or `realpath` is missing, exits non-zero or cannot resolve a mentioned file,
+the prompt goes through with a warning shown to the user that it was not
+scanned. A mentioned file outside the project is read by the scanner
+as the model would read it: the Sonar documentation says the scan runs locally
+with no server connection
+([Secrets detection](https://docs.sonarsource.com/sonarqube-cli/analysis/secrets-detection))
+and that telemetry carries no file content, path or command argument
+([Telemetry and privacy](https://docs.sonarsource.com/sonarqube-cli/administration/telemetry-and-privacy));
+`sonar config telemetry --disabled` opts out of telemetry altogether. Other
+content reaches the model without either hook seeing it, among them a nested
+`CLAUDE.md`, a connected IDE's selection or open file, an MCP resource, and a
+file read by a Bash or Grep call.
+
+Every writer of `.claude/logs/` creates it owner-only: the directory mode 700 and
+the logs mode 600. The wrapper and the Node hooks' shared helper
+(`_lib/append-owner-only-log.mjs`) also tighten what an earlier version left open
+and leave a symlinked, foreign-owned or non-regular log alone; the wrapper says on
+stderr when a failure could not be written. The `PreCompact` observer runs inside
+the wrapper and keeps its own log at 600.
 
 ## Platform Support
 
 | Platform | Upstream hook surface | Repo activation |
 | --- | --- | --- |
-| Claude Code | Native lifecycle hooks | Soft `SessionStart` identity context plus `PreToolUse` command/content guards in tracked `.claude/settings.json` |
+| Claude Code | Native lifecycle hooks | Soft `SessionStart` identity context, `PreToolUse` command/content guards and a never-blocking `PreCompact` observer in tracked `.claude/settings.json` |
 | Codex CLI | Stable lifecycle hooks | Soft `SessionStart` identity context in tracked `.codex/config.toml` |
 | Cursor | Not reassessed in this Codex research pass as of 2026-07-25 | Soft `sessionStart` identity context in tracked `.cursor/hooks.json`; no canonical policy activation |
 | Gemini / Antigravity CLI | Not reassessed in this Codex research pass as of 2026-07-25 | No canonical policy activation |

@@ -73,7 +73,7 @@ permanent docs this rule's hook covers:
   never "global"/"complete"/"the inventory".
 - Prescriptions for unrun work are **invariants plus a promotion trigger**,
   never pinned argv, pinned proof output, or mechanics fixed at landing
-  time (see `future-work-items-are-pointers`).
+  time (the ticket-management skill's "pointers, never specs" clause).
 - In diagnosis, read the entire governing surface unfiltered before
   hypothesis-matching, and treat any catalogue of named failure classes as
   an open set — pattern-matching against a closed catalogue is this same
@@ -100,7 +100,7 @@ Per [PDR-079](../practice-core/decision-records/PDR-079-pdr-vs-adr-portability-d
 
 ### Repo-bound surfaces (rule does NOT apply)
 
-- `docs/architecture/architectural-decisions/ADR-*.md` — ADRs are
+- `docs/architecture/decision-records/NNN-*.md` — ADRs are
   repository-specific by definition. SHAs, event UUIDs, repo paths,
   package names, and branch conventions appear in ADRs as appropriate
   evidence and operational specificity. Forcing ADRs to soften
@@ -206,6 +206,22 @@ Owner sharpening 2026-05-05: *"plans are ephemeral! ADRs are
 permanent. The ADRs are the source of truth, plans reference
 THEM"*.
 
+The directionality also settles what an audit may indict. A decision record
+states how things SHOULD be; making that statement true of built reality is
+not the record's job (owner, 2026-07-23: "an ADR is not the place for intents
+— decision records are statements of how things should be; making those
+statements a true reflection of built reality is not the responsibility of
+the ADR"). The test is intent-shapedness, not document type. An audit checks
+the PAIR: every not-yet-true should-be in a decision record has a named
+means-home — a ticket or plan with a sequence position — somewhere in the
+estate. Finding none, mint the pointer home; never "fix" the record by
+deleting or hedging its should-be, and never demand it carry or track the
+means (that would corrupt a decision record into a plan). Dated amendments
+record reality having MOVED, not promises. And search the WHOLE plan corpus
+before a no-means verdict — the live plan estate and any frozen backlog
+directory alike; a means-home once existed in the backlog while a seat
+declared "no plan exists".
+
 ## What to Do Instead
 
 | Impulse | Wrong move | Right move |
@@ -283,7 +299,6 @@ carrying PR is dispositioned, never cured.
 
 - [PDR-105](../practice-core/decision-records/PDR-105-reference-direction-invariants.md)
   §Axis 1 (durability) — the reference-direction invariant this rule operationalises
-- per-user feedback memory: `feedback_no_moving_targets_in_permanent_docs`
 - PDR-044 §Innate immunity (write-time fingerprints)
 - PDR-038 §2026-05-04 amendment (stated principles require structural enforcement)
 

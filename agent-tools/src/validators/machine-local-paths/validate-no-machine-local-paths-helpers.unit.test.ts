@@ -52,11 +52,11 @@ describe('machine-local-path patterns (live policy.json set)', () => {
   it('flags user-home and machine-temp absolute paths (positive controls)', async () => {
     const block = await loadBlockOrInert();
     const positives = [
-      '/Users/alice/code/oak',
+      '/Users/alice/code/site',
       '/home/user/project',
       String.raw`C:\Users\dev\repo`,
-      '~/.claude/projects/-Users-alice-code-oak/memory', // flattened Claude project id
-      '.cursor/projects/Users-alice-code-oak/transcripts', // flattened Cursor project id
+      '~/.claude/projects/-Users-alice-code-site/memory', // flattened Claude project id
+      '.cursor/projects/Users-alice-code-site/transcripts', // flattened Cursor project id
       '/private/tmp/scratch',
       '/var/folders/ab/cd',
     ];
@@ -75,7 +75,7 @@ describe('machine-local-path patterns (live policy.json set)', () => {
       '/Users/<user>/code', // teaching placeholder
       '/Users/<name>/x',
       '~/.claude/projects/<project>/memory', // flattened-id placeholder
-      '~/.cache/oak',
+      '~/.cache/site',
       'agent-tools/src/foo.ts',
     ];
     for (const value of negatives) {

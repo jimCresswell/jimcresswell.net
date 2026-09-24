@@ -3,7 +3,7 @@ prompt_id: start-right-quick
 title: 'Start Right (Quick)'
 type: workflow
 status: active
-last_updated: 2026-09-08
+last_updated: 2026-09-24
 ---
 
 # Start Right (Quick)
@@ -36,6 +36,20 @@ file-editing instruments are the platform's native per-file editing operation
 (each platform adapter names its own) and one plain command per shell call; the
 compound heredoc that rewrote two files was the instrument the owner refused,
 though the work inside it was right.
+
+Regrounding has TWO legs, and the second is the one skipped. After a
+compaction or a handoff, verifying mechanical state — PRs, claims, comms,
+git, the board — is not being up to speed; the governing corpus (the plans
+README, the strategic node, the live plans, recent closeout records) carries
+the intent those states serve, and a proposal reasoned from a summary and
+memory fragments re-opens decisions already made (owner, 2026-07-24, after a
+"drain the plans backlog" recommendation that the corpus reset had
+deliberately frozen: "I think you need to spend more time understanding the
+history rather than trying to make sensible guesses about next steps").
+Before any scope proposal or card, cite the governing document read THIS
+session that grounds it; no citation, not ready to propose. And read
+inherited letters and records critically — drift accumulates, so their
+claims are checked against the artefacts, never assumed.
 
 ### 1. Durable directives
 
@@ -87,23 +101,56 @@ rendered surface.
   activity, not a session-open one — see `consolidate-docs`
   step 3.
 
-### 3a. Operator profile (machine-local; absence is normal)
+### 3a. Operator profile (home directory; absence is normal)
 
 Read the operator profile if this machine has one. It carries facts about the
 human you are working with that cannot be tracked: which credential identity
 performs which action class on third-party systems, their tone-of-voice and
 communication preferences, and personal operating preferences. The contract,
 including what must never be stored there, is
-[`.agent/operator-local/README.md`](../../../operator-local/README.md).
+[PDR-141](../../../practice-core/decision-records/PDR-141-operator-profile-in-the-home-directory.md).
 
-It is machine-local, so it does not travel through git and a linked worktree
-holds no copy. Resolve it in the **primary checkout**:
+It lives in the operator's home directory, shared by every Practice
+repository, linked worktree and clone on the machine, and it may be a git
+repository the operator syncs between machines. Pull the profile first,
+then run the check — it exits 0 and says so when nothing is there, and it
+refuses a document carrying a credential-shaped line before anything is
+read into the session — asking it to emit the index, the current
+repository's scope file (keyed by the `origin` remote's owner and name in
+any of its https, scp-style or ssh forms, never a path) and this machine's
+file (keyed by the short host name); a named document that is absent
+prints nothing, and nothing prints unless every document conformed.
+
+The check and the sync need the host's tooling (agent-tools, installed and
+built): on a cold clone run this step after the install and build below,
+never before; the grounding never blocks on the profile.
 
 ```bash
-PRIMARY="$(git worktree list --porcelain | head -1 | sed 's/^worktree //')"
-[ -f "$PRIMARY/.agent/operator-local/profile.md" ] \
-  && cat "$PRIMARY/.agent/operator-local/profile.md"
+# First the host's profile sync, pull side (PDR-141 decisions 13 to 16), as the
+# Practice index names it: a no-op that says so unless the root is a repository
+# with a remote. A refused pull (a conflict, no network) is surfaced and the
+# grounding continues; the check below then reports the sync state.
+pnpm profile:sync pull || echo "profile not pulled: read the line above — a conflict is the operator's to resolve by union (PDR-141 decision 15); the check still runs"
+# The check prints the documents it validated from the same reads it checked
+# (--emit), so nothing reopens a path after the check: a file replaced by a
+# link between a check and a read would otherwise enter the session unread.
+SCOPE="$(git remote get-url origin 2>/dev/null \
+  | sed -E 's#^(ssh://)?(https?://)?([A-Za-z0-9._-]+@)?[^/:]+[:/]##; s#\.git$##; s#/#--#' \
+  | tr '[:upper:]' '[:lower:]')"
+MACHINE="$(hostname -s | tr '[:upper:]' '[:lower:]')"
+pnpm profile:check --emit index.md --emit "repos/${SCOPE:-none}.md" --emit "machines/$MACHINE.md" \
+  || echo "profile not read: the check refused it or the tooling is not built yet — fix, or return here after install and build"
 ```
+
+A present profile that fails the check is fixed at once, never read around:
+the contract is `.agent/practice-core/schemas/operator-profile.schema.json`. When a
+session writes the profile on the operator's word, it runs the host's
+profile sync, push side, in the same breath (PDR-141 decisions 13 to 16;
+the Practice index names the command once the host binds one): the check
+runs first, the commit is the operator's with a message naming the seat and
+the fact, and no write sits unpushed across a session boundary. The sync is
+a no-op on a profile that is not a repository, and both absence and a
+non-repository profile stay first-class.
 
 **A missing profile is the expected condition, not a defect** (`principles.md`
 §Any User, Any Machine): proceed on tracked defaults and say nothing. Never
@@ -155,8 +202,9 @@ consulted. When the session is playing a named coordination role
 `--role <role>` on `claims open` so peers and glance surfaces (such as
 the statusline session-shape indicators) can resolve the team shape from
 the registry; the vocabulary is open and honest-by-convention. If no
-entries other than your own exist, log "no other agents
-present" through an immutable comms event and proceed (bootstrap fast-path).
+entries other than your own exist and the comms log shows no live peer,
+the session is solo: record your claim and proceed without broadcasts
+(`use-agent-comms-log` §Scale ceremony to the audience; bootstrap fast-path).
 On overlap, consult the shared communication log and any
 open decision-thread and escalation files before deciding whether to
 proceed, ping, append a decision thread, request a sidebar, record a

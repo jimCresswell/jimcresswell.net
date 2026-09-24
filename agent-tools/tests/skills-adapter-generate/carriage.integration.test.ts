@@ -51,13 +51,13 @@ describe('generateAdapters carriage over a real filesystem', () => {
 
     const outcome = await generateAdapters({
       repoRoot: root,
-      prefix: 'oak-',
+      prefix: 'jc-',
     });
 
     expect(outcome.skipped).toEqual([]);
     expect(outcome.pruned).toEqual([]);
     for (const surface of ['.claude', '.agents']) {
-      const skillDir = `${surface}/skills/oak-parallax`;
+      const skillDir = `${surface}/skills/jc-parallax`;
       expect(listRepoFiles(root, skillDir)).toEqual([
         'assets/mark.png',
         'references/family/graphs/catalogue.json',
@@ -78,8 +78,8 @@ describe('generateAdapters carriage over a real filesystem', () => {
     const root = sandboxRepo();
     seedSkill(root);
 
-    await generateAdapters({ repoRoot: root, prefix: 'oak-' });
-    const result = await checkAdapters({ repoRoot: root, prefix: 'oak-' });
+    await generateAdapters({ repoRoot: root, prefix: 'jc-' });
+    const result = await checkAdapters({ repoRoot: root, prefix: 'jc-' });
 
     expect(result.drifted).toEqual([]);
     expect(result.missing).toEqual([]);
@@ -91,43 +91,43 @@ describe('generateAdapters carriage over a real filesystem', () => {
   it('detects a mutated carried copy as drift and a deleted copy as missing', async () => {
     const root = sandboxRepo();
     seedSkill(root);
-    await generateAdapters({ repoRoot: root, prefix: 'oak-' });
+    await generateAdapters({ repoRoot: root, prefix: 'jc-' });
 
-    writeRepoFile(root, '.claude/skills/oak-parallax/references/orchestration.md', 'mutated\n');
+    writeRepoFile(root, '.claude/skills/jc-parallax/references/orchestration.md', 'mutated\n');
 
-    const result = await checkAdapters({ repoRoot: root, prefix: 'oak-' });
+    const result = await checkAdapters({ repoRoot: root, prefix: 'jc-' });
 
     expect(result.drifted).toEqual([
-      join(root, '.claude/skills/oak-parallax/references/orchestration.md'),
+      join(root, '.claude/skills/jc-parallax/references/orchestration.md'),
     ]);
   });
 
   it('prunes orphans (and the directories they emptied) when a canonical source is deleted', async () => {
     const root = sandboxRepo();
     seedSkill(root);
-    await generateAdapters({ repoRoot: root, prefix: 'oak-' });
+    await generateAdapters({ repoRoot: root, prefix: 'jc-' });
 
     // Delete the canonical script; the projection copies become orphans.
     removeRepoFile(root, '.agent/skills/cognition/parallax/scripts/render_graph.py');
 
-    const flagged = await checkAdapters({ repoRoot: root, prefix: 'oak-' });
+    const flagged = await checkAdapters({ repoRoot: root, prefix: 'jc-' });
     expect([...flagged.orphaned].sort((a, b) => a.localeCompare(b, 'en'))).toEqual([
-      join(root, '.agents/skills/oak-parallax/scripts/render_graph.py'),
-      join(root, '.claude/skills/oak-parallax/scripts/render_graph.py'),
+      join(root, '.agents/skills/jc-parallax/scripts/render_graph.py'),
+      join(root, '.claude/skills/jc-parallax/scripts/render_graph.py'),
     ]);
 
     const regenerated = await generateAdapters({
       repoRoot: root,
-      prefix: 'oak-',
+      prefix: 'jc-',
     });
     expect([...regenerated.pruned].sort((a, b) => a.localeCompare(b, 'en'))).toEqual([
-      join(root, '.agents/skills/oak-parallax/scripts/render_graph.py'),
-      join(root, '.claude/skills/oak-parallax/scripts/render_graph.py'),
+      join(root, '.agents/skills/jc-parallax/scripts/render_graph.py'),
+      join(root, '.claude/skills/jc-parallax/scripts/render_graph.py'),
     ]);
-    expect(repoPathExists(root, '.claude/skills/oak-parallax/scripts')).toBe(false);
-    expect(repoPathExists(root, '.agents/skills/oak-parallax/scripts')).toBe(false);
+    expect(repoPathExists(root, '.claude/skills/jc-parallax/scripts')).toBe(false);
+    expect(repoPathExists(root, '.agents/skills/jc-parallax/scripts')).toBe(false);
 
-    const after = await checkAdapters({ repoRoot: root, prefix: 'oak-' });
+    const after = await checkAdapters({ repoRoot: root, prefix: 'jc-' });
     expect(after.orphaned).toEqual([]);
     expect(after.missing).toEqual([]);
   });

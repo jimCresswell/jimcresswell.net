@@ -11,7 +11,9 @@ import { isJsonObject } from '../../core/json.js';
  * into its legs, the CI workflow text is parsed into the coverage it
  * actually provides, and the gap set is the difference. See
  * `validate-check-ci-parity.ts` for the composition root and the
- * structural-equivalence table.
+ * structural-equivalence table. `parseCheckLegs` is also read by the
+ * repo-check profile (`repo-check/repo-check-check-legs.ts`), which
+ * classifies a captured `pnpm check` run by the leg it stopped in.
  *
  * @packageDocumentation
  */

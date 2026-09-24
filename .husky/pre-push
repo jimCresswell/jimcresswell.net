@@ -1,16 +1,25 @@
 #!/usr/bin/env sh
 
 # Full pre-push (owner ruling 2026-09-12: light commit, full push): the
-# read-only aggregate gate plus the site's end-to-end suite.
+# read-only aggregate gate plus the site's end-to-end suite. Each runs under a
+# host gate slot (no-unbounded-host-load item 6): at most two full gates on
+# the host at once, and one at a time in a working tree; a blocked push waits
+# and names the gates it waits for (`pnpm agent-tools:gate-slot status` lists
+# them), and a step that holds a slot past thirty minutes is stopped.
+# --fail-if-no-match on every filter: pnpm exits 0 without running anything
+# when a filter matches no project.
 export TURBO_UI=0
 
 echo "🚀 Running pre-push checks..."
-if ! env -u GIT_DIR -u GIT_INDEX_FILE -u GIT_WORK_TREE pnpm check; then
-  echo "❌ check failed!"
+if ! env -u GIT_DIR -u GIT_INDEX_FILE -u GIT_WORK_TREE \
+  pnpm --fail-if-no-match --filter @engraph/agent-tools gate-slot run pnpm check; then
+  echo "❌ check did not pass (the reason is above)."
   exit 1
 fi
-if ! env -u GIT_DIR -u GIT_INDEX_FILE -u GIT_WORK_TREE pnpm --filter @jimcresswell/www test:e2e; then
-  echo "❌ Site end-to-end suite failed!"
+if ! env -u GIT_DIR -u GIT_INDEX_FILE -u GIT_WORK_TREE \
+  pnpm --fail-if-no-match --filter @engraph/agent-tools gate-slot run \
+  pnpm --fail-if-no-match --filter @jimcresswell/www test:e2e; then
+  echo "❌ Site end-to-end suite did not pass (the reason is above)."
   exit 1
 fi
 echo "✅ Pre-push checks completed!"

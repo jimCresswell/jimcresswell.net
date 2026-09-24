@@ -7,13 +7,13 @@ describe('resolveTranscriptPath', () => {
     const result = resolveTranscriptPath({
       vendor: 'claude',
       home: '/h',
-      cwd: '/ws/code/oak.repo',
+      cwd: '/ws/code/jc.repo',
       sessionId: 'sess-123',
     });
 
     expect(result).toStrictEqual({
       ok: true,
-      path: '/h/.claude/projects/-ws-code-oak-repo/sess-123.jsonl',
+      path: '/h/.claude/projects/-ws-code-jc-repo/sess-123.jsonl',
     });
   });
 
@@ -32,11 +32,11 @@ describe('resolveTranscriptPath', () => {
     const result = resolveTranscriptPath({
       vendor: 'claude',
       home: '/h',
-      cwd: String.raw`\ws\code\oak`,
+      cwd: String.raw`\ws\code\jc`,
       sessionId: 's',
     });
 
-    expect(result).toStrictEqual({ ok: true, path: '/h/.claude/projects/-ws-code-oak/s.jsonl' });
+    expect(result).toStrictEqual({ ok: true, path: '/h/.claude/projects/-ws-code-jc/s.jsonl' });
   });
 
   it('returns a typed error for an unsupported vendor', () => {

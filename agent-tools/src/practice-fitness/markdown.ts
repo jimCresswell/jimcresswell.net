@@ -15,11 +15,11 @@ export function extractFrontmatter(content: string): string | null {
 export function getFrontmatterNumber(frontmatter: string | null, key: string): number | null {
   const escapedKey = key.replaceAll(/[.*+?^${}()|[\]\\]/g, String.raw`\$&`);
   const regex = new RegExp(String.raw`^${escapedKey}:\s*(.+)$`, 'm');
-  const match = frontmatter?.match(regex);
-  if (!match) {
+  const value = frontmatter?.match(regex)?.[1];
+  if (value === undefined) {
     return null;
   }
-  const num = Number(match[1].trim());
+  const num = Number(value.trim());
   return Number.isNaN(num) ? null : num;
 }
 

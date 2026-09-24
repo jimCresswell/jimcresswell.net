@@ -519,7 +519,7 @@ Examples:
 
 ```bash
 pnpm agent-tools:cursor-session-from-claude-session help
-pnpm agent-tools:cursor-session-from-claude-session find --last-hours 4 --file "apps/oak-search-cli/src/cli/admin/index.ts"
+pnpm agent-tools:cursor-session-from-claude-session find --last-hours 4 --file "jcdotnet/lib/entities.ts"
 pnpm agent-tools:cursor-session-from-claude-session inspect 143494d9
 pnpm agent-tools:cursor-session-from-claude-session takeover 143494d9 --output .agent/prompts/takeover.md
 ```

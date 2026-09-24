@@ -16,7 +16,7 @@
  * field: **live** statuses are undecided decision-debt; **terminal** statuses
  * record a disposition and are removed from the register on the same pass. There
  * is no `owner-gated` status — every live item is debt to decide now (the
- * abolition recorded in the consolidation-doctrine PDR and the two-threshold fitness model's count
+ * abolition recorded in the consolidation-doctrine PDR and the three-zone fitness model's count
  * metric-kind amendment). See
  * `.agent/plans/agent-tooling/current/pending-graduations-schema-and-count-fitness.plan.md`.
  */
@@ -102,8 +102,9 @@ function parseFields(inner: string): Record<string, string> {
  */
 export function parseRegisterItems(content: string): ParsedItem[] {
   const items: ParsedItem[] = [];
-  for (const match of stripFencedBlocks(content).matchAll(INLINE_ENTRY)) {
-    const fields = parseFields(match[1]);
+  // The group is mandatory; an empty body would surface as a malformed entry, never vanish.
+  for (const [, body = ''] of stripFencedBlocks(content).matchAll(INLINE_ENTRY)) {
+    const fields = parseFields(body);
     items.push({ fields, status: fields.status ?? null });
   }
   return items;
@@ -119,7 +120,7 @@ function statusToken(status: string | null): string | null {
   if (status == null) {
     return null;
   }
-  const [token] = status.trim().split(/\s/);
+  const [token = ''] = status.trim().split(/\s/);
   return token.replace(/[^\w-]+$/, '');
 }
 

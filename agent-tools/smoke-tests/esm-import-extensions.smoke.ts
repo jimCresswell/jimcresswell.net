@@ -37,8 +37,19 @@ function collectSourceFiles(directory: string): string[] {
 /** Match static import/export-from and dynamic import() relative specifiers. */
 const RELATIVE_SPECIFIER_PATTERN = /(?:from\s*|import\s*\(\s*)['"](\.[^'"]*)['"]/gu;
 
-/** Extensions Node ESM resolves literally without guessing. */
-const EXPLICIT_EXTENSION_PATTERN = /\.(?:js|mjs|cjs|json)$/u;
+/**
+ * Explicit extensions this workspace accepts on a relative specifier.
+ *
+ * What this guard proves is only that no relative specifier is extensionless,
+ * which fails under plain Node whether a module runs from `dist` or from
+ * source. `.ts` and `.tsx` are accepted anywhere: `rewriteRelativeImportExtensions`
+ * (set in `agent-tools/tsconfig.json`) rewrites them to `.js` on emit, so they
+ * resolve from `dist`, and Node 24 resolves them literally when it runs the
+ * source directly, as it does for the `PreCompact` observer and its modules.
+ * Whether a source-run module graph actually resolves — a `.js` specifier there
+ * does not — is proven by running it, in `pre-compact-observe-hook.smoke.ts`.
+ */
+const EXPLICIT_EXTENSION_PATTERN = /\.(?:js|mjs|cjs|json|ts|tsx)$/u;
 
 const violations: string[] = [];
 for (const filePath of collectSourceFiles(SOURCE_ROOT)) {

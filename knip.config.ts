@@ -1,6 +1,11 @@
 import type { KnipConfig } from 'knip';
 
 const config: KnipConfig = {
+  // A hint is a warning, and warnings fail every gate here
+  // (no-warning-toleration): knip otherwise prints configuration and tag
+  // hints and exits 0.
+  treatConfigHintsAsErrors: true,
+  treatTagHintsAsErrors: true,
   ignoreBinaries: [
     // External tools not installed via npm
     'gitleaks',
@@ -50,23 +55,22 @@ const config: KnipConfig = {
         'src/cursor/**/*.ts',
         'src/hook-policy/pre-tool-use-dispatch.ts',
         'src/repo-check/repo-check.ts',
+        'src/gate-slot/gate-slot.ts',
         'src/commit-advisories/check-commit-message.ts',
         'src/commit-advisories/check-commit-skill-advisories.ts',
         'src/secret-scan/run-push-secret-scan.ts',
         'src/version-guard/prevent-accidental-major-version.ts',
         'src/validators/**/validate-*.ts',
+        'src/validators/operator-profile/operator-profile-sync.ts',
         'src/validators/plan-schema/check-plan-gate-drift.ts',
         'src/rule-declarations/rule-frontmatter-sweep.ts',
         'src/practice-fitness/validate-practice-fitness.ts',
         'src/plan-state/plan-state.ts',
-        // Corpus-analysis (closure item 4, row 3): the four workflow stage entries are
-        // consumed by esbuild as string entry points in workflows/build/build-config.ts,
-        // and the build and post-run drivers are tsx-invoked package scripts.
+        // Corpus-analysis: the four workflow stage entries are consumed by esbuild as
+        // string entry points in workflows/build/build-config.ts. The build and
+        // post-run drivers need no pattern: their package scripts run them as
+        // `tsx src/...` from the workspace directory, which knip reads as entries.
         'src/corpus-analysis/workflows/*.workflow.ts',
-        'src/corpus-analysis/workflows/build/build-workflows.ts',
-        'src/corpus-analysis/workflows/build/build-run-artefact.ts',
-        'src/corpus-analysis/post-run/post-run-driver.ts',
-        'src/corpus-analysis/post-run/salvage-driver.ts',
         'smoke-tests/**/*.ts',
       ],
       project: ['src/**/*.{ts,tsx,css}', 'tests/**/*.ts', 'smoke-tests/**/*.ts'],
@@ -83,8 +87,10 @@ const config: KnipConfig = {
       entry: ['src/*.ts'],
     },
     jcdotnet: {
-      // Next.js is auto-detected; the build-time scripts are package-script entries.
-      entry: ['scripts/**/*.ts'],
+      // Next.js is auto-detected; the build-time scripts are package-script entries. Test files
+      // under scripts/ are left out of this entry so they enter only through the Vitest include:
+      // a mis-suffixed test there runs under no runner and must surface as an unused file.
+      entry: ['scripts/**/*.ts', '!scripts/**/*.{test,spec}.ts'],
     },
   },
 };

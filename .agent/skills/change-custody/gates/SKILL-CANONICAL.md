@@ -37,7 +37,7 @@ Run each gate in order. If a gate fails, fix the issues before proceeding.
 ```bash
 pnpm format-check:root
 pnpm markdownlint-check:root
-pnpm lint:shell
+pnpm lint:shell               # shellcheck over every tracked shell script
 pnpm lint:runtime-only
 pnpm lint
 pnpm type-check
@@ -51,7 +51,7 @@ pnpm subagents:check
 pnpm skills:check
 pnpm encoding:check
 pnpm repo-validators:check     # CI parity, claim freshness, guard routing, policy reappraisal, lifecycle scripts, stale invocations, collaboration state, identity naming, workspace config, plan corpus, protocol wire contract, practice substrate
-pnpm docs-validators:check     # reference direction, machine-local paths, lineage names, markdown links, cited scripts, cited paths, patterns index
+pnpm docs-validators:check     # reference direction, machine-local paths, lineage names, markdown links, cited scripts, cited paths, patterns index, exchange register
 ```
 
 Gates outside `check`, run when the work touches their surface:

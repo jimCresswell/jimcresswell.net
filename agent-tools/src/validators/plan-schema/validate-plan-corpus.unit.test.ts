@@ -81,7 +81,7 @@ const DELIVERY_LINES = [
   '  - served-surface',
   '  - guidance-content',
   'tickets:',
-  '  - MCP-101',
+  '  - ABC-101',
   'last_updated: 2026-07-23',
 ];
 
@@ -112,7 +112,7 @@ function ratified(lines: readonly string[]): string[] {
 
 /** Remove the tickets block from a fixture's lines entirely. */
 function ticketless(lines: readonly string[]): string[] {
-  return dropLine(dropLine(lines, 'tickets:'), '  - MCP-');
+  return dropLine(dropLine(lines, 'tickets:'), '  - ABC-');
 }
 
 function parsedFixture(path: string, lines: readonly string[]): ParsedPlanFile {
@@ -263,7 +263,7 @@ describe('validatePlanFile — the D23 contract', () => {
   it('rejects a malformed ticket reference', () => {
     const result = validatePlanFile(
       'd.plan.md',
-      planDoc(replaceLine(DELIVERY_LINES, '  - MCP-101', '  - ticket 101')),
+      planDoc(replaceLine(DELIVERY_LINES, '  - ABC-101', '  - ticket 101')),
     );
     expect(isErr(result)).toBe(true);
   });
@@ -338,7 +338,7 @@ describe('validateCorpus — cross-file resolution', () => {
       parsedFixture('strategic/fixture-release.plan.md', [
         ...STRATEGIC_LINES,
         'tickets:',
-        '  - MCP-101',
+        '  - ABC-101',
       ]),
       parsedFixture('delivery/fixture-lane.plan.md', ratified(ticketless(DELIVERY_LINES))),
     ];

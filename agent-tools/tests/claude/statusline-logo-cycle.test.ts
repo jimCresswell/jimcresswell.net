@@ -73,8 +73,8 @@ const hostForm = (posixPath: string): string => posixPath.split('/').join(sep);
 
 describe('frameCounterPath', () => {
   it('keeps the file inside the base directory and sanitises the session id', () => {
-    const base = '/tmp/oak-frames';
-    expect(frameCounterPath(base, 'sess-12_AB')).toBe(hostForm('/tmp/oak-frames/sess-12_AB'));
+    const base = '/tmp/jc-frames';
+    expect(frameCounterPath(base, 'sess-12_AB')).toBe(hostForm('/tmp/jc-frames/sess-12_AB'));
 
     const traversal = frameCounterPath(base, '../../evil');
     expect(traversal.startsWith(hostForm(`${base}/`))).toBe(true);
@@ -82,7 +82,7 @@ describe('frameCounterPath', () => {
   });
 
   it('falls back to a default name for an empty session id', () => {
-    expect(frameCounterPath('/tmp/oak-frames', '')).toBe(hostForm('/tmp/oak-frames/default'));
+    expect(frameCounterPath('/tmp/jc-frames', '')).toBe(hostForm('/tmp/jc-frames/default'));
   });
 });
 

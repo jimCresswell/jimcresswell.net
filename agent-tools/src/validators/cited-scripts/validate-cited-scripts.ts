@@ -75,8 +75,6 @@ const EXCLUDED_PATH_FRAGMENTS: readonly string[] = [
   'docs/explorations/',
 ];
 
-const ALLOWLISTED_PATHS: readonly string[] = [];
-
 function formatFindings(findings: readonly MissingScriptFinding[]): string {
   return findings
     .map((finding) => {
@@ -100,9 +98,7 @@ async function main(): Promise<void> {
     }),
     loadWorkspaceScripts(repoRoot),
   ]);
-  const findings = findMissingScriptCitations(files, scripts, {
-    allowlistedPaths: ALLOWLISTED_PATHS,
-  });
+  const findings = findMissingScriptCitations(files, scripts);
 
   if (findings.length === 0) {
     writeLine(
@@ -115,8 +111,7 @@ async function main(): Promise<void> {
     `validate-cited-scripts: ${String(findings.length)} cited script(s) do not exist.\n\n` +
       `${formatFindings(findings)}\n\n` +
       'Every `pnpm <script>` in a code span or fenced block must name a script the root or the ' +
-      'filtered workspace defines in package.json. Fix the citation, add the script, or — for a ' +
-      'surface that legitimately quotes a dead name — add the path to ALLOWLISTED_PATHS here.',
+      'filtered workspace defines in package.json. Fix the citation or add the script.',
   );
   process.exitCode = 1;
 }

@@ -85,8 +85,7 @@ ruleTester.run('no-real-io-in-tests', noRealIoInTestsRule, {
     },
 
     // ────────────────────────────────────────────────────────────────────
-    // Allowlisted by caller-supplied allowlistPathShapes option — for a
-    // frozen historical-violation inventory.
+    // Allowlisted by the caller-supplied allowlistPathShapes option.
     // ────────────────────────────────────────────────────────────────────
     {
       filename: 'jcdotnet/src/legacy/legacy.test.ts',

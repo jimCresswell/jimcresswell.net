@@ -22,7 +22,8 @@ import {
  *
  * The migration test covers legacy string-form `addressed_to`/`audience`
  * being projected to tuples with `'unknown'` placeholders by
- * `migrateLegacyCommsRecordCollections`.
+ * `migrateLegacyCommsRecordCollections`, and the warning line each such entry
+ * writes through the injected sink.
  */
 
 const sender: CollaborationAgentId = {
@@ -170,12 +171,16 @@ describe('migrateLegacyCommsRecordCollections — legacy string-form addressed_t
       addressed_to: 'Mistbound Drifting Vow',
     };
 
+    const warnings: string[] = [];
     const result = migrateLegacyCommsRecordCollections({
       narratives: [legacyNarrative],
       lifecycles: [],
       directed: [],
+      writeWarning: (line) => warnings.push(line),
     });
 
+    // The placeholder projection is announced once per string-form entry.
+    expect(warnings).toStrictEqual([expect.stringContaining('"Mistbound Drifting Vow"')]);
     expect(result).toHaveLength(1);
     expect(result[0]).toMatchObject({
       kind: 'narrative',
@@ -196,12 +201,18 @@ describe('migrateLegacyCommsRecordCollections — legacy string-form addressed_t
       audience: ['Mistbound Drifting Vow', 'Foamy Charting Fjord'],
     };
 
+    const warnings: string[] = [];
     const result = migrateLegacyCommsRecordCollections({
       narratives: [legacyNarrative],
       lifecycles: [],
       directed: [],
+      writeWarning: (line) => warnings.push(line),
     });
 
+    expect(warnings).toStrictEqual([
+      expect.stringContaining('"Mistbound Drifting Vow"'),
+      expect.stringContaining('"Foamy Charting Fjord"'),
+    ]);
     expect(result).toHaveLength(1);
     expect(result[0]).toMatchObject({
       kind: 'narrative',

@@ -44,6 +44,15 @@ These tools are not managed by pnpm but are required by specific workflows:
 
 - [gitleaks](https://github.com/gitleaks/gitleaks) — required for secrets scanning
   (`pnpm secrets:scan`, a `pnpm check` leg, so also at pre-push and in CI)
+- [shellcheck](https://www.shellcheck.net) — required for shell script linting
+  (`pnpm lint:shell`, a `pnpm check` leg, over every tracked shell script) at the
+  version `.agent/setup/install-shellcheck.sh` pins; the script installs it into
+  the checkout's ignored `.tools/bin`, which the gate runs before PATH, for
+  developers, CI and cloud sessions alike
+- [jq](https://jqlang.org) — required by the secrets hook smokes
+  (`pnpm agent-tools:test:e2e`, a `pnpm check` leg, so also at pre-push and in
+  CI); the smokes prove each hook with jq and without it, and fail with
+  installation guidance when it is missing
 - [Playwright browsers](https://playwright.dev/docs/browsers) — `pnpm --filter @jimcresswell/www exec playwright install chromium-headless-shell`
   once per checkout, before `pnpm test:e2e`
 

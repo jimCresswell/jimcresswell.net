@@ -15,13 +15,13 @@ ratified_where: >-
   the same round cleared the three gates recorded under §Owner rulings.
   Plan of record: docs/explorations/2026-09-12-oce-practice-lineage-transplant.md
   §Owner rulings, round 8.
-serves: practice
+serves: best-of-each-practice
 impact_areas:
   - practice-and-estate
 tickets: []
 depends_on: []
 owner_gates: []
-last_updated: 2026-09-14
+last_updated: 2026-09-23
 ---
 
 # Practice completion
@@ -116,9 +116,7 @@ the runbook is the how, the definition is the what, the journey is the why.
    doctrine-cited pattern files and the five cited research and report
    records from the pin, scrubbed; fix the path drift (`*-reviewer`
    template citations in the nine local skills, `skills/free-play/`, the
-   surface-matrix path); restore `corpus-analysis`, `workflow-build` and the
-   workflow file under `.agent/state/` so the four `corpus-*` templates and
-   consolidate-docs §synthesis engine name a runnable instrument; give `sif`
+   surface-matrix path); give `sif`
    its concrete instruments (`the-codex-dialogues`, `codex-helper`) or
    rewrite its routing; land the cited-paths validator first so the cure is
    measured.

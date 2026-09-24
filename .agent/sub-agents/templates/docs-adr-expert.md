@@ -252,16 +252,16 @@ documentation, not the referenced artefact itself.
 
 ## When to Recommend Other Reviews
 
-| Issue Type                                                   | Recommended Specialist                                    |
-| ------------------------------------------------------------ | --------------------------------------------------------- |
-| Architecture decision ambiguity or boundary concerns         | `architecture-expert-barney` or `architecture-expert-fred` |
-| Practice governance or doctrine structure                    | `architecture-expert-wilma`                               |
-| Security guidance missing or incorrect in docs               | `security-expert`                                         |
-| Behaviour change lacks tests to back documentation claims    | `test-expert`                                             |
-| Code quality issues discovered during the docs review        | `code-expert`                                             |
-| Prose craft or readability                                   | `prose-expert`                                            |
-| Jim's public-facing content and editorial voice              | `editor`                                                  |
-| Structured-data or entity-graph claims                       | `pkg-expert`                                              |
+| Issue Type                                                | Recommended Specialist                                                                                                                                                                         |
+| --------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Architecture decision ambiguity or boundary concerns      | `architecture-expert` for the structure, plus the persona for each lane the decision touches, when it touches one (§Persona Selection in `.agent/sub-agents/templates/architecture-expert.md`) |
+| Practice governance or doctrine structure                 | `architecture-expert-wilma`                                                                                                                                                                    |
+| Security guidance missing or incorrect in docs            | `security-expert`                                                                                                                                                                              |
+| Behaviour change lacks tests to back documentation claims | `test-expert`                                                                                                                                                                                  |
+| Code quality issues discovered during the docs review     | `code-expert`                                                                                                                                                                                  |
+| Prose craft or readability                                | `prose-expert`                                                                                                                                                                                 |
+| Jim's public-facing content and editorial voice           | `editor`                                                                                                                                                                                       |
+| Structured-data or entity-graph claims                    | `pkg-expert`                                                                                                                                                                                   |
 
 ## Success Metrics
 

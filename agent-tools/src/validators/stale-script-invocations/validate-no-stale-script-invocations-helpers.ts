@@ -24,19 +24,6 @@ export interface StaleScriptInvocationFinding {
 }
 
 /**
- * Optional configuration for {@link findStaleScriptInvocations}.
- */
-export interface FindStaleScriptInvocationsOptions {
-  /**
-   * Repo-relative paths exempted from the check. Use for plan documents
-   * and similar surfaces that legitimately discuss the stale invocation
-   * pattern in prose (e.g. the PR-90 closure plan describes the drift
-   * verbatim while specifying the cure).
-   */
-  readonly allowlistedPaths?: readonly string[];
-}
-
-/**
  * The pattern matches common command forms that execute a root script:
  * `node scripts/<file>`, `npx tsx scripts/<file>`, and package-manager tsx
  * execution. Restricting
@@ -52,8 +39,6 @@ const STALE_INVOCATION_PATTERN =
  * @param files - In-memory representation of the files to scan. Each
  *   entry carries a repo-relative path and the file contents as a UTF-8
  *   string.
- * @param options - Optional configuration; see
- *   {@link FindStaleScriptInvocationsOptions}.
  * @returns The list of findings, in file then line order. Empty when no
  *   stale invocations are present.
  *
@@ -71,19 +56,12 @@ const STALE_INVOCATION_PATTERN =
  */
 export function findStaleScriptInvocations(
   files: readonly { readonly path: string; readonly content: string }[],
-  options: FindStaleScriptInvocationsOptions = {},
 ): readonly StaleScriptInvocationFinding[] {
-  const allowlistedPaths = new Set(options.allowlistedPaths ?? []);
   const findings: StaleScriptInvocationFinding[] = [];
 
   for (const file of files) {
-    if (allowlistedPaths.has(file.path)) {
-      continue;
-    }
-
     const lines = file.content.split('\n');
-    for (let lineIndex = 0; lineIndex < lines.length; lineIndex += 1) {
-      const lineText = lines[lineIndex];
+    for (const [lineIndex, lineText] of lines.entries()) {
       const matches = lineText.matchAll(STALE_INVOCATION_PATTERN);
       for (const match of matches) {
         findings.push({

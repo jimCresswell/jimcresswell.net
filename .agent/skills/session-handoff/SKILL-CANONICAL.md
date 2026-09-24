@@ -127,13 +127,16 @@ Team member closeout:
 - Outcome:
 - Evidence:
 - Claims / queue / git state:
+- Open pull requests owned (each merged, or its claim retained with the next step named):
 - Surprise or changed understanding:
 - Blockers or risks:
 - Handoff needed:
 ```
 
-Then clean up any claims, queue entries, or comms obligations you own. Stop
-there unless the owner or closeout owner gives a further assignment.
+Then clean up any claims, queue entries, or comms obligations you own, except
+the claim of an open pull request, which `start-right-team` §Closeout Contract
+retains until the pull request merges. Stop there unless the owner or closeout
+owner gives a further assignment.
 
 ## Mid-Session Light Update (distinct, lighter cadence)
 
@@ -777,16 +780,20 @@ no retrospective memos; those are close-out work, this skill's §Steps.
     completes with no errors or warnings. This step makes that standing
     direction structurally enforced rather than agent-recalled.
 
-    **Singleton in multi-agent windows.** When two or more agents are
-    closing concurrently, only **one** of them runs the whole-repo
-    `pnpm check`. Apply the
+    **Singleton per working tree in multi-agent windows.** When two or
+    more agents in one working tree are closing concurrently, only
+    **one** of them runs the whole-repo `pnpm check`; seats closing in
+    separate worktrees each run their own under
+    [`no-unbounded-host-load`](../../rules/no-unbounded-host-load.md)
+    item 6. Apply the
     [`check-singleton-per-window`](../../rules/check-singleton-per-window.md)
     rule: before invoking `pnpm check`, broadcast on the comms stream
-    *"Lane &lt;name&gt; running pnpm check, ETA ~30s, will broadcast
-    result"*, observe peers' in-flight broadcasts and defer if one is
-    live, and broadcast the result event (green or red with first
-    blocker) carrying the HEAD SHA at run time. Peers consume the
-    result; do not duplicate the run.
+    *"Lane &lt;name&gt; running pnpm check in &lt;worktree&gt;, ETA ~30s,
+    will broadcast result"*, observe in-flight broadcasts that name the
+    same working tree and defer if one is live, and broadcast the result
+    event (green or red with first blocker) naming the tree and carrying
+    the HEAD SHA at run time. Peers in that tree consume the result; do
+    not duplicate the run.
 
 11a. **Dispatch PENDING reviewers if the session touched a plan body.**
     If a thread record's plan carries PENDING reviewer markers AND this

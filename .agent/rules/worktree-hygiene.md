@@ -291,10 +291,40 @@ worktree gives false-clean dependency runs (Node resolution walks up into the pa
 checkout's `node_modules`, so a missing dependency passes locally and fails everywhere
 else); parallel `isolation: worktree` subagents can inherit the **wrong base commit**
 and write to main-repo **absolute paths**, so verify a spawned worktree's HEAD and keep
-paths worktree-relative; and `pnpm check`'s opening clean step deletes shared build
-output from under every sibling (the
+paths worktree-relative; and a whole-repo sweep rebuilds its tree's build output, deleting
+it first where the `check` script runs a `clean` step, from under every session that reads
+that output, a session in a sibling worktree whose hooks resolve the primary checkout's
+build among them (the
 [`check-singleton-per-window`](check-singleton-per-window.md) hazard). Isolation is a
 property to verify per-seam, never an assumption.
+
+**A linked worktree's merge markers live in its own git directory.** `MERGE_HEAD`,
+`MERGE_MODE` and `MERGE_MSG` for a linked worktree sit under
+`.git/worktrees/<name>/`, never at the main `.git`; a marker read at the main
+`.git` looks "gone" while the merge is intact. In a linked worktree every
+marker path is `$(git rev-parse --git-dir)/<marker>`, resolved from the
+worktree. A seat once recorded a "vanished marker" trap and carried a recovery
+recipe across a compaction boundary when the marker had never moved and the
+actual refusal was one lint error in the gate log it had not read (2026-09-10):
+read the gate log in full before naming a refusal's cause, and never carry an
+unread diagnosis across a boundary as a fact.
+
+**Every git act precedes the removal of the session's own worktree.** A
+worktree-resident session may not run `git -C <other-checkout>` nor
+`cd <dir> && git …`; once its own worktree is removed, every git invocation
+is refused by the residency hook and the shell's cwd recovers to the home
+directory (measured 2026-09-08). Ancestor proofs, branch deletes and
+`git worktree list` all run BEFORE the removal; afterwards the evidence
+comes from `ls` on `.git/worktrees/`, `grep`, and the GitHub API. The
+removal of the session's own worktree works from a script that changes
+directory out first and targets the path with `git -C <that-worktree>`.
+And never let the persistent shell's cwd land in the primary: a
+`cd <primary> && <command>` runs once, then the Bash tool's cwd persists
+there and the residency hook refuses every later command, a bare `cd` out
+included, and subagents inherit the pinned cwd. Run the one-off in a
+subshell, `( cd <primary> && … )`, so the cwd never moves; the escape that
+worked was `EnterWorktree` with `path` set to an existing worktree under
+`.claude/worktrees/`.
 
 ## Failure mode this prevents
 

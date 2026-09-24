@@ -15,7 +15,7 @@ reference material under `.agent/reference/`.
 
 ## Contents
 
-- [Root README Quick Start](../../README.md#quick-start) — setup, key commands and the workspace layout
+- [Root README](../../README.md) — the workspace layout, getting started and key commands
 - [Working with this Repo for Devs](./working-with-this-repo-for-devs.md) — the practical guide: how you direct the work, what the agents do around you, and what keeps the quality honest
 - [Developer Experience](./developer-experience.md) — the session surfaces and feedback loops a developer works through, including the statusline
 - [Build System](./build-system.md) — Turborepo tasks, caching, the gate aggregate and what pre-commit, pre-push and CI each run

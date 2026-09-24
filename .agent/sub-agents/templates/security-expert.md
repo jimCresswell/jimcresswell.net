@@ -28,7 +28,7 @@ security signal, invoke this expert immediately.
 - The concern is code quality, style, naming or maintainability with no security dimension —
   use `code-expert`
 - The concern is module boundaries or architectural coupling with no direct security
-  implication — use `architecture-expert-barney` or `architecture-expert-wilma`
+  implication — use `architecture-expert`
 - The concern is TypeScript type safety at a non-security boundary — use `type-expert`
 - The concern is whether a configuration file is wired and inherits correctly, not whether it
   is safe — use `config-expert`
@@ -197,7 +197,8 @@ not implement it.
 | Issue Type                                            | Recommended Specialist                                    |
 | ----------------------------------------------------- | --------------------------------------------------------- |
 | Header or config wiring rather than its safety        | `config-expert`                                           |
-| Structural boundary weakness affecting security       | `architecture-expert-barney` or `architecture-expert-wilma` |
+| Structural boundary weakness affecting security       | `architecture-expert`                                     |
+| Caching or proxy runtime behaviour behind the finding | `architecture-expert-fred`                                |
 | Test gaps for security-critical behaviour             | `test-expert`                                             |
 | Security documentation or decision-record drift       | `docs-adr-expert`                                         |
 | Type safety at a trust boundary                       | `type-expert`                                             |

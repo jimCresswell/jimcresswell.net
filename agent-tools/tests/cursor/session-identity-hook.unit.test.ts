@@ -64,7 +64,7 @@ describe('planCursorSessionIdentityHook', () => {
       // the expectation derives the same host form.
       absolutePath: join(projectDir, '.cursor', 'practice-composer-session.local.json'),
       payload: {
-        schema: 'oak.cursor-composer-session.v1',
+        schema: 'practice.cursor-composer-session.v1',
         updatedAt: nowIso,
         composerSessionId: sessionId,
         sessionIdPrefix: 'unit-t',

@@ -1,5 +1,5 @@
 name = "design-system-expert"
-description = "Design-system reviewer verifying tokens, spacing, and responsive rhythm."
+description = "Design-system reviewer verifying tokens, theming, spacing, typography, motion, and responsive rhythm."
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 approval_policy = "never"

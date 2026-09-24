@@ -3,7 +3,7 @@
  * validator's turbo-inputs leg.
  *
  * @remarks Semantics pinned against turbo's own `--dry=json` resolved
- * inputs (MCP-542, 2026-08-11 — the dry run is the authoritative
+ * inputs (2026-08-11 — the dry run is the authoritative
  * instrument, never a docs statement): `**` matches ZERO or more whole
  * path segments; dot-directories match (no JS-glob dot default); a
  * literal directory input is expanded to its recursive contents; the
@@ -101,12 +101,11 @@ export type NormalisedSpelling =
  * runs collapse, single-dot segments drop, and `..` pops the previous
  * segment; a `..` with nothing left to pop escapes the repository root.
  *
- * @remarks Probe ledger (turbo 2.10.9 — the version this worktree pins;
- * the primary checkout carries 2.10.6, so reproduce from inside a
- * 2.10.9 tree. Command: `pnpm turbo run build` filtered to
- * `@engraph/result` with `--dry=json`, temporary entries in the
- * `build` task's `inputs`, reverted after; 2026-08-11, MCP-553.
- * Every row measured in THIS repository):
+ * @remarks Probe ledger (turbo 2.10.9; command: `pnpm turbo run build`
+ * filtered to `@engraph/result` with `--dry=json`, temporary entries in
+ * the `build` task's `inputs`, reverted after; 2026-08-11. Every row was
+ * measured in the lineage repository before the transplant, so the
+ * input counts below describe that tree, not this one):
  *
  * - `agent-tools//package.json` and `agent-tools/src//bin/*.ts` both
  *   resolved their real files — interior `//` is normalised, literal
@@ -152,10 +151,11 @@ export function normaliseTurboPathSpelling(relative: string): NormalisedSpelling
 
 /**
  * turbo expands a literal input naming a DIRECTORY to that directory's
- * recursive contents before hashing (probe-measured on the pinned turbo,
- * 2026-08-11: a literal directory entry contributed its 7 tracked
- * descendants to the resolved input set, with and without a trailing
- * slash; `$TURBO_ROOT$/` alone resolved the whole repository). A literal
+ * recursive contents before hashing (probe-measured on turbo 2.10.9 in
+ * the lineage repository, 2026-08-11: a literal directory entry
+ * contributed its 7 tracked descendants to the resolved input set, with
+ * and without a trailing slash; `$TURBO_ROOT$/` alone resolved the whole
+ * repository). A literal
  * is therefore alive when it prefixes at least one tracked file, not
  * only when it IS one — and the empty relative path names the repository
  * root itself, which every tracked file sits under.

@@ -6,7 +6,7 @@ import {
   parseAdapterStubPointer,
 } from '../../src/skills-adapter-generate/adapter-stub';
 
-const FRONTMATTER = '---\nname: oak-parallax\ndescription: A skill.\n---\n\n';
+const FRONTMATTER = '---\nname: jc-parallax\ndescription: A skill.\n---\n\n';
 const TITLE = '# Parallax (Claude Code)\n\n';
 
 /** The one literal pin of the marker's on-disk form: if the builder's

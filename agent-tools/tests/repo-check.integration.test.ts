@@ -7,13 +7,13 @@ import {
   buildCheckProfileArtifact,
   classifyCheckFailurePhase,
   profilePostTurboGateStatus,
-  runKnipGate,
   runMarkdownlintStaged,
   runMarkdownlintTracked,
   runPrettierStaged,
   runPrettierTracked,
   type RepoCheckRuntime,
 } from '../src/repo-check/repo-check';
+import { readCheckLegs } from '../src/repo-check/repo-check-check-legs';
 import { normaliseSpawnResult } from '../src/repo-check/repo-check-runtime';
 
 interface CommandCall {
@@ -349,131 +349,7 @@ describe('repo-check tracked gates', () => {
   });
 });
 
-describe('repo-check knip gate', () => {
-  function knipRuntime(input: {
-    readonly status: number | null;
-    readonly signal?: NodeJS.Signals | null;
-    readonly stdout?: string;
-    readonly stderr?: string;
-  }): {
-    readonly capturedCalls: readonly CommandCall[];
-    readonly inheritedCalls: readonly CommandCall[];
-    readonly runtime: RepoCheckRuntime;
-  } {
-    const capturedCalls: CommandCall[] = [];
-    const inheritedCalls: CommandCall[] = [];
-    return {
-      capturedCalls,
-      inheritedCalls,
-      runtime: {
-        runCaptured(command, args) {
-          capturedCalls.push({ command, args });
-          return {
-            status: input.status,
-            signal: input.signal ?? null,
-            stdout: input.stdout ?? '',
-            stderr: input.stderr ?? '',
-          };
-        },
-        runInherited(command, args) {
-          inheritedCalls.push({ command, args });
-          return Promise.resolve(0);
-        },
-      },
-    };
-  }
-
-  it('runs knip captured (never inherited) so crash signatures stay inspectable, passing a clean run through with exit 0', async () => {
-    const { capturedCalls, inheritedCalls, runtime } = knipRuntime({
-      status: 0,
-      stdout: '✂️  Excellent!\n',
-    });
-
-    await expect(runKnipGate(runtime)).resolves.toBe(0);
-
-    expect(capturedCalls).toStrictEqual([{ command: 'pnpm', args: ['exec', 'knip'] }]);
-    expect(inheritedCalls).toStrictEqual([]);
-  });
-
-  it('propagates knip findings as the blocking exit code knip chose', async () => {
-    const { runtime } = knipRuntime({ status: 1, stdout: 'Unused exports (2)\n' });
-
-    await expect(runKnipGate(runtime)).resolves.toBe(1);
-  });
-
-  it('names a signal-killed knip child as a crash class, on the injected diagnostic channel', async () => {
-    // The F-112 push-path instance (2026-08-07): the knip child died with a
-    // null status and empty streams, and diagnosis written to stderr was
-    // itself eaten by the poisoned chain. The crash-class line is therefore
-    // injectable (assertable without global spies) and stdout-bound by
-    // default — the stream that survived.
-    const lines: string[] = [];
-    const { runtime } = knipRuntime({ status: null, signal: 'SIGTERM' });
-
-    await expect(runKnipGate(runtime, (line) => lines.push(line))).resolves.toBe(1);
-
-    expect(lines).toHaveLength(1);
-    expect(lines[0]).toContain('died without a verdict');
-    expect(lines[0]).toContain('status=null');
-    expect(lines[0]).toContain('signal=SIGTERM');
-  });
-
-  it('names a signal-killed knip child even when it spoke first — a partial verdict is not a verdict', async () => {
-    // The realistic kill: knip prints a progress line, then the poisoned
-    // chain (or the OOM killer) takes it. The null status alone must fire
-    // the crash line; this is the test the `status !== null` conjunct bites.
-    const lines: string[] = [];
-    const { runtime } = knipRuntime({
-      status: null,
-      signal: 'SIGKILL',
-      stdout: 'partial verdict\n',
-    });
-
-    await expect(runKnipGate(runtime, (line) => lines.push(line))).resolves.toBe(1);
-
-    expect(lines).toHaveLength(1);
-    expect(lines[0]).toContain('signal=SIGKILL');
-  });
-
-  it('names an empty-output non-zero run as a crash class — knip always prints a verdict', async () => {
-    const lines: string[] = [];
-    const { runtime } = knipRuntime({ status: 1 });
-
-    await expect(runKnipGate(runtime, (line) => lines.push(line))).resolves.toBe(1);
-
-    expect(lines).toHaveLength(1);
-    expect(lines[0]).toContain('died without a verdict');
-  });
-
-  it('keeps real findings off the crash-class channel — a spoken verdict is not a crash', async () => {
-    const lines: string[] = [];
-    const { runtime } = knipRuntime({ status: 1, stdout: 'Unused exports (2)\n' });
-
-    await expect(runKnipGate(runtime, (line) => lines.push(line))).resolves.toBe(1);
-
-    expect(lines).toStrictEqual([]);
-  });
-
-  it('fails loudly when knip exits 0 after swallowing a config-load crash (F-147)', async () => {
-    const { runtime } = knipRuntime({
-      status: 0,
-      stderr:
-        'ERROR: Error loading apps/oak-search-cli/vitest.smoke.config.ts ' +
-        '(No "exports" main defined in apps/oak-search-cli/node_modules/@engraph/env-resolution/package.json)\n',
-    });
-
-    await expect(runKnipGate(runtime)).resolves.toBe(1);
-  });
-
-  it('detects the swallowed-crash signature through ANSI colour codes', async () => {
-    const { runtime } = knipRuntime({
-      status: 0,
-      stderr: '\u001b[31mERROR\u001b[39m: Error loading packages/foo/vitest.config.ts (boom)\n',
-    });
-
-    await expect(runKnipGate(runtime)).resolves.toBe(1);
-  });
-
+describe('repo-check runtime', () => {
   it('surfaces a spawn launch failure as a diagnosable non-zero result, never null streams', () => {
     // spawnSync sets `error` with null status and null streams when the
     // resolved binary cannot launch; downstream stream reads must see
@@ -492,18 +368,6 @@ describe('repo-check knip gate', () => {
     expect(result.stdout).toBe('');
     expect(result.stderr).toContain('pnpm: spawn EACCES');
   });
-
-  it('passes an unrelated ERROR line on a zero exit — only the load-crash signature reds the gate', async () => {
-    // A successfully loaded config or dependency may emit its own
-    // ERROR-prefixed output; that is not the F-147 swallowed crash and must
-    // stay a clean pass, never a false-red gate.
-    const { runtime } = knipRuntime({
-      status: 0,
-      stderr: 'ERROR: deprecation notice from a loaded plugin\n',
-    });
-
-    await expect(runKnipGate(runtime)).resolves.toBe(0);
-  });
 });
 
 describe('repo-check profile artifact helpers', () => {
@@ -519,29 +383,131 @@ describe('repo-check profile artifact helpers', () => {
     sandboxNote: 'sandbox evidence note',
   } as const;
 
+  // A check chain shaped like the root one: a leg before turbo, a turbo leg,
+  // and two legs after it.
+  const scripts = {
+    check: 'pnpm format-check:root && pnpm lint && pnpm knip && pnpm depcruise',
+    'format-check:root': 'pnpm agent-tools:repo-check prettier-tracked',
+    lint: 'turbo run lint',
+    knip: 'knip',
+    depcruise: 'depcruise agent-tools tooling jcdotnet',
+  };
+  function legsOf(manifestScripts: Readonly<Record<string, string>>) {
+    const result = readCheckLegs(manifestScripts);
+    if (!result.ok) {
+      throw result.error;
+    }
+    return result.value;
+  }
+  const legs = legsOf(scripts);
+  const checkEcho = `$ ${scripts.check}`;
+  const formatStart = '$ pnpm agent-tools:repo-check prettier-tracked';
+  const lintStart = '$ turbo run lint';
+  const knipStart = '$ knip';
+  const depcruiseStart = '$ depcruise agent-tools tooling jcdotnet';
+
+  it('reads the fixture legs', () => {
+    expect(legs.map((leg) => leg.name)).toStrictEqual([
+      'format-check:root',
+      'lint',
+      'knip',
+      'depcruise',
+    ]);
+  });
+
   it('classifies macOS Chromium launch failures as environment failures', () => {
     expect(
       classifyCheckFailurePhase({
         exitCode: 1,
         output: 'browserType.launch failed: MachPortRendezvous permission denied',
+        legs,
       }),
     ).toBe('environment');
   });
 
-  it('classifies Turbo task failures separately from post-Turbo gate failures', () => {
-    expect(
-      classifyCheckFailurePhase({
-        exitCode: 1,
-        output: 'Tasks: 87 successful, 88 total\nFailed: @engraph/app#test:e2e',
-      }),
-    ).toBe('turbo-task');
+  it('classifies a failure in a turbo leg as a turbo-task failure', () => {
+    const output = [checkEcho, formatStart, lintStart, 'Failed: @engraph/agent-tools#lint'].join(
+      '\n',
+    );
 
+    expect(classifyCheckFailurePhase({ exitCode: 1, output, legs })).toBe('turbo-task');
     expect(
-      classifyCheckFailurePhase({
-        exitCode: 4,
-        output: '> pnpm markdownlint-check:root\nError: ENOENT',
+      profilePostTurboGateStatus({
+        outputCaptured: true,
+        failurePhase: 'turbo-task',
+        output,
+        legs,
       }),
-    ).toBe('post-turbo-gate');
+    ).toBe('skipped-after-turbo-failure');
+  });
+
+  it('classifies a failure in a leg after the last turbo leg as a post-turbo gate failure', () => {
+    const output = [checkEcho, formatStart, lintStart, knipStart, depcruiseStart, 'error'].join(
+      '\n',
+    );
+
+    expect(classifyCheckFailurePhase({ exitCode: 1, output, legs })).toBe('post-turbo-gate');
+    expect(
+      profilePostTurboGateStatus({
+        outputCaptured: true,
+        failurePhase: 'post-turbo-gate',
+        output,
+        legs,
+      }),
+    ).toBe('ran');
+  });
+
+  it('does not read post-turbo legs as run because the check echo names them', () => {
+    // The echo of the check script contains `pnpm knip` and `pnpm depcruise`
+    // on every run; only their own start lines show they ran.
+    const output = [checkEcho, formatStart, 'Code style issues found'].join('\n');
+
+    expect(classifyCheckFailurePhase({ exitCode: 1, output, legs })).toBe('check-command');
+    expect(
+      profilePostTurboGateStatus({
+        outputCaptured: true,
+        failurePhase: 'check-command',
+        output,
+        legs,
+      }),
+    ).toBe('not-observed');
+  });
+
+  it('reads no leg as post-turbo in a chain that runs no turbo leg', () => {
+    const noTurboLegs = legsOf({
+      check: 'pnpm knip && pnpm depcruise',
+      knip: 'knip',
+      depcruise: 'depcruise agent-tools',
+    });
+    const output = ['$ knip', '$ depcruise agent-tools', 'error'].join('\n');
+
+    expect(classifyCheckFailurePhase({ exitCode: 1, output, legs: noTurboLegs })).toBe(
+      'check-command',
+    );
+    expect(
+      profilePostTurboGateStatus({
+        outputCaptured: true,
+        failurePhase: 'check-command',
+        output,
+        legs: noTurboLegs,
+      }),
+    ).toBe('not-observed');
+  });
+
+  it('names the leg a failed run stopped in', () => {
+    const artifact = buildCheckProfileArtifact({
+      startedAt: '2026-05-12T07:31:30.160Z',
+      finishedAt: '2026-05-12T07:33:57.773Z',
+      durationMs: 1_000,
+      exitCode: 1,
+      turboDryGraph: '.logs/check-profiles/check-turbo-graph.json',
+      environment,
+      output: [checkEcho, formatStart, 'Code style issues found'].join('\n'),
+      legs,
+    });
+
+    expect(artifact.failurePhase).toBe('check-command');
+    expect(artifact.failedLeg).toBe('format-check:root');
   });
 
   it('records output log pointers, environment evidence, and post-Turbo status', () => {
@@ -553,7 +519,8 @@ describe('repo-check profile artifact helpers', () => {
       turboDryGraph: '.logs/check-profiles/check-turbo-graph.json',
       environment,
       outputLog: '.logs/check-profiles/check-output.log',
-      output: '> pnpm markdownlint-check:root\n> pnpm format-check:root\n',
+      output: [checkEcho, formatStart, lintStart, knipStart, depcruiseStart].join('\n'),
+      legs,
     });
 
     expect(artifact).toStrictEqual({
@@ -568,15 +535,5 @@ describe('repo-check profile artifact helpers', () => {
       failurePhase: 'passed',
       postTurboGateStatus: 'ran',
     });
-  });
-
-  it('marks post-Turbo gates skipped when a captured Turbo failure exits first', () => {
-    expect(
-      profilePostTurboGateStatus({
-        outputCaptured: true,
-        failurePhase: 'turbo-task',
-        output: 'Tasks: 87 successful, 88 total\nFailed: @engraph/app#test:e2e',
-      }),
-    ).toBe('skipped-after-turbo-failure');
   });
 });

@@ -100,7 +100,7 @@ describe('selectCoordinationBranch', () => {
         primaryBranch: 'coordination/worktree-pilot',
         primaryName: 'jimcresswell.net',
         workingBranch: 'feat/seat-work',
-        workingWorktreeName: 'oak-wt-seat',
+        workingWorktreeName: 'jc-wt-seat',
       }),
     ).toEqual({
       kind: 'branch',
@@ -140,7 +140,7 @@ describe('selectCoordinationBranch', () => {
         primaryBranch: 'main',
         primaryName: 'jimcresswell.net',
         workingBranch: 'main',
-        workingWorktreeName: 'oak-wt-seat',
+        workingWorktreeName: 'jc-wt-seat',
       }),
     ).toEqual({ kind: 'matches-working' });
   });
@@ -152,7 +152,7 @@ describe('selectCoordinationBranch', () => {
         primaryBranch: 'main',
         primaryName: 'jimcresswell.net',
         workingBranch: undefined,
-        workingWorktreeName: 'oak-wt-seat',
+        workingWorktreeName: 'jc-wt-seat',
       }),
     ).toEqual({ kind: 'branch', branch: 'main', primaryName: 'jimcresswell.net' });
   });
@@ -164,7 +164,7 @@ describe('selectCoordinationBranch', () => {
         primaryBranch: 'main',
         primaryName: 'jimcresswell.net',
         workingBranch: 'e2796757c',
-        workingWorktreeName: 'oak-wt-seat',
+        workingWorktreeName: 'jc-wt-seat',
       }),
     ).toEqual({ kind: 'branch', branch: 'main', primaryName: 'jimcresswell.net' });
   });
@@ -188,7 +188,7 @@ describe('selectCoordinationBranch', () => {
         primaryBranch: undefined,
         primaryName: 'jimcresswell.net',
         workingBranch: 'feat/seat-work',
-        workingWorktreeName: 'oak-wt-seat',
+        workingWorktreeName: 'jc-wt-seat',
       }),
     ).toEqual({
       kind: 'error',
@@ -256,7 +256,7 @@ describe('parsePrimaryWorktreeRoot', () => {
       'HEAD 5bbda2fa900000000000000000000000000000000',
       'branch refs/heads/main',
       '',
-      'worktree /pretend/absolute/pathoak-sonar-p1',
+      'worktree /pretend/absolute/pathjc-sonar-p1',
       'HEAD ac2901fe100000000000000000000000000000000',
       'branch refs/heads/fix/sonar-s8707-cli-path-injection',
       '',

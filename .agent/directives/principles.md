@@ -190,14 +190,14 @@ rule, not a licence to abandon planning discipline (PDR-018).
 
 ### Cardinal Rule of This Repository
 
-The entity model in `content/entities.json` is the single source of truth for
+The entity model in `jcdotnet/content/entities.json` is the single source of truth for
 identity, shared atoms, and structured data (ADR-020, ADR-021). Page metadata,
 JSON-LD, the CV, the PDF, and every rendered surface DERIVE from it; nothing
 restates it. If the graph changes, then `pnpm build` MUST be sufficient to
 bring every surface into alignment — no hand-edited duplicates, no ad-hoc
 types. If a surface cannot be derived, the model is missing a field: fix the
 model, not the consumer. Validation of that model at the boundary is strict
-(`lib/entities.ts`); a page never invents identity the graph does not carry.
+(`jcdotnet/lib/entities.ts`); a page never invents identity the graph does not carry.
 
 The same rule governs every generated artefact: runtime behaviour flows from
 the generated output of the one authority, and authored files are thin
@@ -310,9 +310,12 @@ this way produces cleaner boundaries and simpler classification.
 
 ### Code Design and Architectural Principles
 
-- **TDD** - ALWAYS use TDD at ALL levels — unit, integration, AND
-  E2E. Test and product code are two halves of one act of design;
-  they land together as one atomic commit. See
+- **TDD** - ALWAYS use TDD at ALL levels — unit and integration
+  tests, AND the E2E checks that describe the running system (a
+  validation surface, written first like a test;
+  [testing-strategy.md](testing-strategy.md)). Test and product code are
+  two halves of one act of design; they land together as one atomic
+  commit. See
   [tdd-as-design.md](tdd-as-design.md) for the foundational
   definition and atomic-landing invariant.
 - **Keep it simple** - DRY, KISS, YAGNI, SOLID principles
@@ -348,8 +351,9 @@ this way produces cleaner boundaries and simpler classification.
   latch, a declarative guard, a per-seat directory) instead of scheduled;
   in review, a correctness argument that contains "the window is small",
   "usually", or an ordering assumption names a defect. The worked shapes
-  are the anti-pattern `timing-derived-state-is-the-defect`; its
-  read-side dual is the pattern `timing-artefact-read-as-state`.
+  are recorded in the lineage as the anti-pattern
+  `timing-derived-state-is-the-defect` and its read-side dual, the
+  pattern `timing-artefact-read-as-state`.
 - **At most one holder, and for continuously owned authority exactly
   one** - a singleton-authority state never has two holders. A
   continuously owned authority (a coordinator role, a document root's
@@ -375,7 +379,7 @@ this way produces cleaner boundaries and simpler classification.
   `overrideToolsListHandler`. The name should explain the removal
   condition.
 - **Build up through scales** - Functions → Modules → Packages
-  (`core`, `libs`, `apps`)
+  (the workspaces in §Architectural Model)
 - **Clear boundaries at each scale** - Define boundaries between
   and within scales CLEARLY with index.ts files
 - **Fail FAST** - Fail fast with helpful error messages, never
@@ -525,7 +529,8 @@ Use the right tool for the job:
 - **TypeScript** for compiler time types
 - **ESLint** for syntax correctness and code-style adherence
 - **Prettier** for code-style adherence
-- **knip** and **gitleaks** for unused code and secrets in the site workspace
+- **knip** and **gitleaks** for unused code and secrets, repo-wide (the root
+  `pnpm knip` and `pnpm secrets:scan`)
 - **The visual regression harness** for rendering proof (ADR-022)
 
 Practice tooling workspaces (`agent-tools`, `tooling/*`) MUST follow the
@@ -542,7 +547,7 @@ shared bases — they do not replace them. This applies to
 `tsconfig.json` `extends` chains are the one root-anchored
 convention that remains (an `extends` reference is not a module
 import). Deviations cause silent quality-gate leaks (e.g. E2E
-tests running under `pnpm test`, disabled lint rules, weakened
+checks running under `pnpm test`, disabled lint rules, weakened
 type-checking). See [Testing Strategy: Canonical Vitest
 Configuration][vitest-config] for vitest-specific patterns. E2E
 vitest configs may be workspace-specific when base defaults (include
@@ -567,7 +572,7 @@ paths, setup files) don't apply.
   deferred warnings consistently explode at the next stage. See
   `.agent/rules/no-warning-toleration.md` for the operational
   discipline (covers esbuild/tsc/ESLint/vitest/depcruise/knip and
-  Sentry runtime/uptime surfaces).
+  Vercel build output, runtime logs and monitoring surfaces).
 - **Fix things** - All quality gates are blocking at all times,
   regardless of location, cause, or context.
 - **An enforcement-scope gap is not a requirement gap** - Repo-wide
@@ -608,7 +613,7 @@ paths, setup files) don't apply.
   exploration, exercise, review, external comment — is not resolved
   until a check of the appropriate kind exists that would catch the
   instance AND its class. The kind fits the class: behaviour → a
-  unit/integration/E2E test; types → the type-check gate or a
+  unit or integration test, or an E2E check; types → the type-check gate or a
   `satisfies` anchor; structural → an ESLint/boundary rule;
   process/CI coverage → a required status check or validator;
   content-quality invariant → construction plus human review, never
@@ -664,7 +669,13 @@ paths, setup files) don't apply.
   The site workspace adds the Playwright suite (`pnpm --filter @jimcresswell/www test:e2e`, against a
   production build — ADR-019). Run `check` and the E2E suite sequentially,
   never in parallel: each is a full-host run (builds, test workers, the
-  Playwright web server), and two at once exceed the host. That rule is about
+  Playwright web server). Across worktrees, full gates run side by side, at
+  most two at once (item 6's ceiling of three is the hard stop of the
+  mechanism it names, never a seat's allowance), and inside one worktree
+  gate runs are sequential
+  ([`no-unbounded-host-load` item 6](../rules/no-unbounded-host-load.md);
+  owner, 2026-09-20: "two parallel gate runs are fine as long as they are in
+  different work trees"). These bounds are about
   load, not correctness: each Playwright run serves on a port its own server
   process binds and keeps for its whole life, so checkouts no longer share a
   fixed port, and it reuses no existing server, so a gate can only ever prove
@@ -777,18 +788,25 @@ Universal testing principles:
 - each proof happens once and must prove product code;
 - unit tests are pure, in-process, and mock-free;
 - integration tests import code directly and use only simple DI fakes;
-- E2E tests prove running-system behaviour;
-- smoke tests prove the built artefact is viable in its shipped form (invoked as
-  production invokes it, no loaders); every built binary carries at least one —
-  new ones at landing, the pre-existing gap as recorded debt;
+- tests never use or create IO, of any kind, at any level, and no helper a test
+  imports does (owner, 2026-09-14: an absolute invariant); what needs a running
+  system, a filesystem or a process is a validation surface, never a test
+  ([testing-strategy.md](testing-strategy.md) §Philosophy;
+  [validation-strategy.md](validation-strategy.md));
+- E2E checks prove running-system behaviour, as validation surfaces;
+- smoke checks prove the built artefact is viable in its shipped form (invoked as
+  production invokes it, no loaders), as validators reachable from a CI-gated
+  task; every built binary carries at least one — new ones at landing, the
+  pre-existing gap as recorded debt;
 - tests must never read or mutate `process.env`, global objects, module cache,
-  ambient env files, or `process.cwd()` — smoke composition roots only;
+  ambient env files, or `process.cwd()`; a validation check's composition root
+  may read ambient env and inject it;
 - do not test types — tests are for runtime logic; a test that only proves a
   type is deleted;
 - no useless tests — each test proves something about product code, never
   about test code;
 - no skipped tests, no conditional tests, no complex mocks, no complex test
-  logic, no process spawning in in-process tests. Conditional tests are an
+  logic, no process spawning in tests. Conditional tests are an
   architectural-failure symptom — remove them, fix the ambiguity in product
   code, write deterministic behaviour-proving tests.
 
@@ -836,8 +854,8 @@ checkout" is the tripwire to re-ground, not a licence.
 
 ### Architectural Model
 
-Three kinds of workspace, documented in the
-[architecture overview](../../docs/architecture/README.md):
+Three kinds of workspace, documented in
+[Build System §Workspace layout](../../docs/engineering/build-system.md#workspace-layout):
 
 - **`jcdotnet`** — the site: Next.js App Router app, CV, personal knowledge
   graph, PDF generation, E2E and visual-regression proof.
@@ -848,7 +866,7 @@ Three kinds of workspace, documented in the
 
 ### Layer Role Topology
 
-Inside the site, data flows one way: `content/*.json` (the graph and the
+Inside the site (`jcdotnet/`), data flows one way: `content/*.json` (the graph and the
 authored content) → `lib/` (validation, derivation, contracts) → `components/`
 → `app/` (routes and metadata). Routes and components are **thin
 presentation**; `lib/` owns derivation and contracts; content owns facts.
@@ -888,7 +906,7 @@ cross-reference is a real defect, not a style nit. Canonical decision:
   never carries.
 - **Inline comments for the why** — The code shows what; comments explain
   why.
-- **Content lives in JSON** — Content changes go in `content/*.json`, never
+- **Content lives in JSON** — Content changes go in `jcdotnet/content/*.json`, never
   hard-coded in components.
 - **Permanent docs never reference ephemeral docs** — Plans and prompts are
   ephemeral; `docs/`, directives, ADRs and EDRs never depend on them. Only the
