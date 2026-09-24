@@ -3194,3 +3194,15 @@ The owner at 14:2xZ: "when you reach a sensible point please prepare for compact
   - F5: one TSDoc sentence on why signalling an ended group is safe (POSIX reuses no pid while its group exists), and `SignalOutcome` worded for groups only.
   - F6: the CLI smoke's comment claims too much ("as the hooks run it").
   The lesson, with the generator named: I rewrote call proofs into output proofs, but for four behaviours I deleted the call proof and put no output proof in its place. My mutant list covered only the proofs I had kept, so "each killed" was true only of a list I chose. Routed, not this PR: nothing proves non-group mode leaves the child in the parent's group (a mutant that always detaches survives). It is older than this commit and goes to the strict lane's inventory.
+- 11:10Z TEST-EXPERT on PR one (`SHA: 083eac79`): not ready. It confirmed claims 2, 4, 6 and 7, and that `force` stays; a TSDoc line should tie `force` to the two races.
+  - S2-a: `scriptedGroup` is a stateful fake that counts calls by proxy. Cure: extract a pure `sweepStep(answer, attempt, attempts)` with literal rows, and leave the loop as thin wiring.
+  - S2-b: the wait between SIGKILLs is proven at no tier. Cure: in the wrapper smoke's straggler proof, the leader exits 0 on SIGTERM and the proof asserts exit 0.
+  - S2-c: `created_at` is proven nowhere. An epoch time would make every held lock stale on sight. Cure: a lock-smoke proof that a held lock whose directory is aged but whose owner is fresh is not reclaimed.
+  - S3-a: give the refusal tests a `transact` that fails with "slot port reached", and assert each refusal's own reason.
+  - S3-b: the CLI smoke's comment is false. It argues the smoke should run the hook's command (smoke tier: "invoked exactly as production invokes it"), which contradicts my queue item 3. To be settled against the doctrine's text.
+  - S3-c: assert the whole map in the "another holder" test.
+  - S3-d: the lock-create test uses a fake and a timer, so it is integration by name, not unit. The doctrine itself conflicts on in-memory seams in `.unit` files (about 20 agent-tools files do the same); routed to the Director.
+  - S4-a: '43' collides with a fixture port.
+  - S4-b: the watchdog drops the rejection's reason.
+  - S4-c: the spawn-topology suite reads `TMPDIR` through `tmpdir()`.
+  Routed as a product DI defect: `acquireFileTransactionLock` hard-wires `lstat`, `readFile`, the node filesystem and `Date.now`, so the races `force` serves have no proof at any tier. It joins the lock's removal-class row.
