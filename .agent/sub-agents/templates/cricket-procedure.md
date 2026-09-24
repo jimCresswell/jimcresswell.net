@@ -119,8 +119,9 @@ being present does not make its content grounded — any factual claim inside a 
 item that the supplied context cannot itself substantiate is marked on-trust and goes
 to UNGROUNDED (the PAIR-2 lesson: treating every supplied claim as grounded is the
 failure this step exists to catch). Finally list the SOURCES items from the `SOURCES:`
-block only: one item per quoted owner sentence, and one per quoted todo that no source
-states done. Step 3b's omission audit covers this list; its contradiction audit reads the whole
+block only: one item per clause of a quoted owner sentence that states a goal, an order
+or a hold, quoted exactly (a sentence carrying two goals is two items), and one per
+quoted todo that no source states done. Step 3b's omission audit covers this list; its contradiction audit reads the whole
 `SOURCES:` block, done todos included, and neither reads anything else.
 
 **Step 3 — The four questions.** Answer each PASS / FAIL / UNVERIFIABLE with a one-line
@@ -163,8 +164,8 @@ Using only the `SOURCES:` block and the Step-2 SOURCES list:
 - **No sources**: if no `SOURCES:` block is supplied, or the Step-2 SOURCES list is
   empty, write `FRAME: NO VERBATIM SOURCE`; the invoker's reading is then the only record
   of the goal.
-- **Each item**: for every SOURCES item, quote the phrase in `READING:`, INTENT or NEXT
-  that addresses it and write `ADDRESSED: "<source phrase>" ← "<reading phrase>"`, or
+- **Each item**: for every SOURCES item, quote the phrase in `READING:` that addresses
+  it and write `ADDRESSED: "<source phrase>" ← "<reading phrase>"`, or
   write `OMITTED:` with the source phrase quoted. An item the reading ranks below where
   the source puts it (a source's "first" read as later) is `OMITTED` too.
 - **Contradictions**: for each claim of `READING:` (a status, a hold, an order, a rule's
