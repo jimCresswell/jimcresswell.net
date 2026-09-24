@@ -229,7 +229,7 @@ canonical run order lives in the
    dependencies; circular dependencies; layer violations. Linting enforces _what
    you should do_; static analysis detects _what you forgot to clean up_.
 5. **Testing and checks** — `test` proves product behaviour at every level, with
-   no IO; `test:e2e`, the smoke checks and the site's Playwright suite are
+   no IO; the smoke runner's checks and the site's Playwright suite are
    validation checks of the running system and its shipped form.
 6. **Mutation checks** (§Prove the guard bites) — test-suite effectiveness: proves
    tests detect real faults, not merely exercise code paths.

@@ -83,7 +83,7 @@ seam, extract a pure function, inject a dependency).
 12. **Integration test contains a mock with logic.** Integration
     mocks are *simple* fakes — constant returns, or a record of what
     the product sent out through the port, read as output; which calls
-    were made is never asserted. No
+    were made, how often or in what order is never asserted. No
     branching, no state machines, no string interpolation of inputs.
     Complexity signals product-code needs refactoring for
     testability.

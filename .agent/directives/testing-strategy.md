@@ -133,11 +133,11 @@ prove the test bites) is in
   harmless change; and the cure for a **content-quality invariant**
   (a firewall, e.g. "no curriculum data in this prose") is NOT a
   grep test but **construction plus human review**. A literal content
-  pin is never admissible, whatever decision it is said to guard: the
-  cure for a pinned value is a test of the mechanism that generates
-  it, red only when the mechanism breaks and silent on upstream
-  content drift (trigger artefact, in the lineage: the MCP-462
-  differential examples test that replaced three value-pinned tests).
+  pin is never admissible: the cure for a pinned value is a test of
+  the mechanism that generates it, red only when the mechanism breaks
+  and silent on upstream content drift (trigger artefact, in the
+  lineage: the MCP-462 differential examples test that replaced three
+  value-pinned tests).
 - **Pinning an absence is not proof** (owner doctrine 2026-08-19,
   verbatim: "tests should prove behaviour, not configuration, pinning
   a lack of something does not provide value"): an assertion that a
@@ -241,8 +241,8 @@ prove the test bites) is in
   accept config as a parameter. See [`no-global-state-in-tests`][di].
   A validation check's composition root (a smoke or E2E check's runner
   config, global setup or entry script) may read ambient env, validate
-  it, and inject the result. Test files and setup files must not read or mutate
-  `process.env`.
+  it, and inject the result. Test files and other setup files must not read
+  or mutate `process.env`.
 
 [di]: ../rules/no-global-state-in-tests.md
 [testing-patterns-value-proxies]: ../../docs/engineering/testing-patterns.md#acceptance-value-proxies
@@ -478,11 +478,11 @@ The site workspace applies the taxonomy above with these fixed conventions:
 - **Runtime stubs**: plain functions that live in product code and are used when
   product code runs in a stub mode. They return canned data and have no test
   framework dependency.
-- **Test fakes**: `vi.fn()` wrappers that live in `test-helpers/` directories
-  and are used only in tests. They stand in for a dependency so the code under
-  test can run. A fake may hold a record of what the product sent out through
-  it, which the test reads as output; which calls were made is never asserted
-  (§Philosophy).
+- **Test fakes**: simple functions or objects that live in `test-helpers/`
+  directories and are used only in tests. They stand in for a dependency so
+  the code under test can run. A fake may hold a record of what the product
+  sent out through it, which the test reads as output; which calls were made,
+  how often or in what order is never asserted (§Philosophy).
 
 Do not conflate the two. Runtime stubs are product code; test fakes are test
 infrastructure.
@@ -643,9 +643,11 @@ the slicing was wrong.
     running _system_ rather than importing it: the site's Playwright
     suite in `jcdotnet/e2e/`, named `*.e2e-ui.test.ts` and
     `*.e2e-api.test.ts` and run by the site's `test:e2e` against the
-    production build. An agent-tools check that drives a built CLI is a
-    smoke check under `agent-tools/smoke-tests/`, which the smoke runner
-    finds by directory. A check is reachable from a CI-gated task,
+    production build. An agent-tools check that drives a built CLI lives
+    under `agent-tools/smoke-tests/`, where the smoke runner runs its
+    `*.smoke.ts` files: it is a smoke check when it proves the artefact's
+    truth-set, and an E2E check when it proves feature behaviour over
+    stdio. A check is reachable from a CI-gated task,
     because a check that nothing runs is the worse defect (the
     reachability rule of §Smoke Checks)
 
@@ -731,8 +733,7 @@ locally).
 Workspaces with `*.e2e.test.ts` files MUST also have
 `vitest.e2e.config.ts` (extending `baseE2EConfig` from
 `@engraph/workspace-config/vitest-e2e`, or workspace-specific)
-and a `test:e2e` script in `package.json`. These names describe the
-estate as it stands. A file they govern that drives a separately
+and a `test:e2e` script in `package.json`. A file they govern that drives a separately
 running system is an E2E check (§Out-of-process checks); one that
 imports product code is an integration test under the wrong name
 (`test-immediate-fails` item 20). The `exclude` keeps them out of the

@@ -44,7 +44,9 @@ host's filesystem, clock and process table did. Tests stay fast and deterministi
 Measured at `SHA: 32f81d80`, not yet classified per file.
 
 **The census.** 454 in-suite test files (every `*.test.ts` and `*.test.tsx` outside
-`jcdotnet/e2e/`), counted by the patterns in the script below, run from the repository root:
+`jcdotnet/e2e/`), counted by the patterns in the script below, run from the repository root. The
+census sizes the work; it greps raw text, so the IO rule's own tests, which carry banned imports as
+string fixtures, keep it above zero, and it is never the acceptance proof:
 
 ```bash
 C=32f81d80
@@ -55,9 +57,12 @@ count "node:child_process|\bspawn\(|execFile|execa"                            #
 count "node:net|node:http|\blisten\(|fetch\(['\"]https?://(localhost|127\.0\.0\.1)"  # 2 socket
 count "Date\.now\(|new Date\(\)|performance\.now\(|setTimeout\(|setInterval\(" # 13 clock or timer
 count "toHaveBeenCalled|toHaveBeenNthCalledWith|\.mock\.calls|\bcalls\)\.to|calls\.length|\bcalls\[" # 23 call inspection
+count "sentinel: re-adjudicate"                                                # 1 literal content pin
+count "test-helpers/(repo-doc|context-cost-fixture|temp-substrate-repo|skills-repo-sandbox|agent-identity-doc|depcruise-fixture|rules-index-classification-fixtures|temp-collaboration-state)" # 27 IO helpers
 ```
 
-A further 27 test files do filesystem IO through eight helper modules they import:
+27 test files, 2 of them also counted above, do filesystem IO through eight helper modules they
+import:
 `repo-doc.ts`, `context-cost-fixture.ts`, `temp-substrate-repo.ts`, `skills-repo-sandbox.ts`,
 `agent-identity-doc.ts`, `depcruise-fixture.ts`, `rules-index-classification-fixtures.ts` and
 `temp-collaboration-state.ts`, each under a `test-helpers/` directory in `agent-tools`.
@@ -80,6 +85,9 @@ A further 27 test files do filesystem IO through eight helper modules they impor
   heading.
 - `agent-tools/e2e-tests/collaboration-tui.e2e.test.ts` imports product code and runs in process
   with injected fakes: an integration test under an E2E name, cured by a rename.
+- `agent-tools/src/merge-bot/merge-cli.integration.test.ts` pins two literal messages, each marked
+  "A6 sentinel: re-adjudicate amendment A6": content pins, which the doctrine no longer admits.
+  The cure proves the behaviour the messages carry, or drops the pins.
 
 **The enforcement gaps.** The rule `@engraph/no-real-io-in-tests`
 (`tooling/eslint/src/rules/no-real-io-in-tests.ts`) runs at `warn`, which every workspace that
@@ -134,7 +142,7 @@ loads it fails through `--max-warnings 0`. Its gaps are these:
    allowance, and it lints every workspace's tests, helpers and setup files. Proof, `repo-safe`: the
    lint leg of the gate over the whole tree, and fixtures the rule refuses.
 3. No test, helper or setup file uses a filesystem, process, network or clock API. Proof,
-   `repo-safe`: the widened rule, and the census reading zero.
+   `repo-safe`: the widened rule over the whole tree, and the inventory with no offender left.
 
 ## Estate status
 

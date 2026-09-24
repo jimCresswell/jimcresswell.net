@@ -152,10 +152,10 @@ not what the author intends:
   server process, started by the global setup on a port of its own
   (`jcdotnet/e2e/`, `*.e2e-ui.test.ts` for browser journeys and
   `*.e2e-api.test.ts` for HTTP-level checks; `jcdotnet/e2e/README.md`).
-- **Middleware proofs mount the middleware alone**: mount the
-  middleware on a bare app with one probe route and drive it directly; never
-  boot the full application to prove one middleware decision (review lens
-  Q3/Q4).
+- **Middleware proofs call the middleware alone**: call the middleware
+  function directly with request and response values; never boot the full
+  application, or open a listener, to prove one middleware decision (review
+  lens Q3/Q4).
 
 ## Composition Testing
 

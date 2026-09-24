@@ -130,7 +130,7 @@ For each test file:
   code and runs it in the test process is an integration test under the wrong
   name (`test-immediate-fails.md` item 20): flag it. An E2E or smoke check must
   be reachable from a CI-gated task, and its suffix is a name, never a
-  classification (`testing-strategy.md` §Development Workflow).
+  classification (`testing-strategy.md` §Out-of-process checks).
 - Flag any mismatch as an immediate-fail (per `test-immediate-fails.md`
   §Pipeline).
 
@@ -210,7 +210,8 @@ The atomic-landing invariant from `tdd-as-design.md`:
 - **Unit tests have NO mocks** (parameters in, result out).
 - **Integration tests have only SIMPLE mocks** — constant returns, or a
   record of what the product sent out through the port, read as output;
-  which calls were made is never asserted. No branching, no state machines, no string
+  which calls were made, how often or in what order is never asserted. No
+  branching, no state machines, no string
   interpolation of inputs.
 - **All mocks injected as parameters** (DI, per `no-global-state-in-tests`). No
   `vi.mock`, `vi.doMock`, `vi.stubGlobal`. No `process.env` reads or
@@ -258,7 +259,7 @@ file names below is a name, never a classification.
 
 | Type | Purpose | Mocks | IO | Naming |
 |------|---------|-------|-----|--------|
-| **E2E check** | Running system behaviour | Minimal, largely around network IO | The system's protocol channel (stdio or HTTP for a server; the browser for a UI) | The site's `jcdotnet/e2e/*.e2e-ui.test.ts` and `*.e2e-api.test.ts` (Playwright); a name, never a classification |
+| **E2E check** | Running system behaviour | Minimal, largely around network IO | The system's protocol channel (stdio or HTTP for a server; the browser for a UI) | The site's `jcdotnet/e2e/**/*.e2e-ui.test.ts` and `**/*.e2e-api.test.ts` (Playwright); an agent-tools CLI's E2E check under `agent-tools/smoke-tests/`; a name, never a classification |
 | **Smoke check** | The shipped form is viable | NONE | All types | Files under `smoke-tests/` matching the workspace runner's glob, or standalone scripts |
 
 ### The Critical Distinction

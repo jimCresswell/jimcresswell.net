@@ -124,7 +124,7 @@ Each test scale describes a different swathe of behaviour:
 | Unit | A single pure function's behaviour from inputs to outputs | How units compose into a feature |
 | Integration | Several units composed at a boundary | Whether the system delivers value end to end |
 | E2E (system) | A whole-system behaviour through its protocol/transport | Visual presentation, accessibility, runtime performance |
-| UI | A component's rendered behaviour | Whole-system flow |
+| UI | A browser journey through the rendered interface | Whole-system flow |
 | a11y | Emergent accessibility properties | Functional correctness |
 | Visual regression | Appearance stability | Behaviour |
 
