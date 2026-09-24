@@ -1,6 +1,6 @@
-import { randomUUID } from 'node:crypto';
-import { mkdir, readFile, rm, stat, writeFile } from 'node:fs/promises';
+import { lstat, readFile, rm } from 'node:fs/promises';
 
+import { tryCreateLock } from './transaction-lock-create.js';
 import { isStaleLock } from './transaction-lock-staleness.js';
 
 /**
@@ -30,34 +30,6 @@ export async function acquireFileTransactionLock(input: {
   throw new Error(`could not acquire state transaction for ${input.filePath}`);
 }
 
-/**
- * Make the lock directory and write its owner file, returning the owner id,
- * or `undefined` when another holder has the directory. If the owner file
- * cannot be written, the directory is removed again before the write's error
- * goes up, so a failed write leaves no ownerless lock behind; a holder killed
- * between the two steps still does, and waiters reclaim that by its age.
- */
-async function tryCreateLock(lockDir: string): Promise<string | undefined> {
-  try {
-    await mkdir(lockDir);
-  } catch (error) {
-    if (isFileExistsError(error)) {
-      return undefined;
-    }
-    throw error;
-  }
-  const metadata = lockMetadata();
-  try {
-    await writeFile(`${lockDir}/owner.json`, `${JSON.stringify(metadata, null, 2)}\n`);
-  } catch (error) {
-    // A failed removal is not reported: the write's error is the cause, and
-    // an ownerless directory left behind is reclaimed by its age.
-    await rm(lockDir, { recursive: true, force: true }).catch(() => undefined);
-    throw error;
-  }
-  return metadata.owner_id;
-}
-
 async function releaseOwnLock(lockDir: string, ownerId: string): Promise<void> {
   const metadata = await readLockMetadata(lockDir);
   if (metadata?.owner_id === ownerId) {
@@ -78,9 +50,16 @@ async function removeStaleLock(lockDir: string, staleMs: number): Promise<void> 
   }
 }
 
+/**
+ * The lock directory's modification time, or `undefined` when nothing is
+ * there or the entry is not a directory: a regular file or a symbolic link at
+ * the lock path was not made by `mkdir`, so its own age is no evidence of a
+ * dead holder.
+ */
 async function directoryModifiedMs(lockDir: string): Promise<number | undefined> {
   try {
-    return (await stat(lockDir)).mtimeMs;
+    const entry = await lstat(lockDir);
+    return entry.isDirectory() ? entry.mtimeMs : undefined;
   } catch {
     return undefined;
   }
@@ -100,13 +79,6 @@ async function readLockMetadata(lockDir: string): Promise<LockMetadata | undefin
   }
 }
 
-function lockMetadata(): { readonly owner_id: string; readonly created_at: string } {
-  return {
-    owner_id: randomUUID(),
-    created_at: new Date().toISOString(),
-  };
-}
-
 function delay(milliseconds: number): Promise<void> {
   return new Promise((resolve) => {
     setTimeout(resolve, milliseconds);
@@ -120,8 +92,4 @@ function isLockMetadata(value: unknown): value is LockMetadata {
     (!('owner_id' in value) || typeof value.owner_id === 'string') &&
     (!('created_at' in value) || typeof value.created_at === 'string')
   );
-}
-
-function isFileExistsError(error: unknown): error is Error & { readonly code: 'EEXIST' } {
-  return error instanceof Error && 'code' in error && error.code === 'EEXIST';
 }
