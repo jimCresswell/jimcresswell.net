@@ -9,9 +9,10 @@ fitness_line_length: 100
 
 # Generalisation register
 
-Closed on 2026-09-24: a move is now recorded as a `Practice-Generalisation:` trailer on the
-commit that makes it (rule `record-generalisation-moves`), and the list is computed from git
-history. The rows below are the moves recorded before that date.
+Closed on 2026-09-24, when the `Practice-Generalisation:` commit trailer replaced it (rule
+`record-generalisation-moves`). Its last row is the last move recorded here; every later move
+carries the trailer. The full list is these rows, then the rule's trailer query over the commits
+after the closing. The text below describes the register as it ran.
 
 Every move that makes an element of the Practice more general or more portable, recorded when
 it lands (owner direction 2026-09-13, verbatim: "where we take action to make an element of the
@@ -23,9 +24,9 @@ system with installable elements.
 
 A row is a record of intent — why the element is more general than before — and cites the
 commit that carries the change, so the register can be checked against history rather than
-remembered. The rule that adds rows is
-[`record-generalisation-moves`](../../rules/record-generalisation-moves.md). Rows are appended,
-never edited; a later move that supersedes one adds its own row and names the earlier commit.
+remembered. The rule that added rows was
+[`record-generalisation-moves`](../../rules/record-generalisation-moves.md). Rows were appended,
+never edited; a later move that superseded one added its own row and named the earlier commit.
 
 Lineage status: **sent** (reported to the lineage seat under ruling 6, with the batch),
 **owed** (landed here, not yet sent), **local** (host-specific by nature, not a lineage
