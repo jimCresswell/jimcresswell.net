@@ -59,6 +59,10 @@ Every line answered first-hand, none inferred:
 - The overall goal of the exchange work, verbatim (owner, 2026-09-24): "The overall goal here is
   to bring the Engraph OCE Practice and JC.net Practice into alignment". Every Practice change is
   judged against that convergence; a text ratified in one estate lands as the same bytes in the other.
+- Every 45 minutes the Director checks in with all agents, corrects where needed, and has each run a
+  full Cricket suite (owner, 2026-09-24, verbatim: "once every 45 minutes, check in with all agents and
+  make sure they are staying on track, correct them if needed, and instruct them to run full Cricket
+  suites"). One identical frame to every seat; the seat runs its own suite and acts on its verdicts.
 
 ## Current handoff state (2026-09-23T19:10Z; the owner's card of 2026-09-23 ANSWERED, eight items; PRs 152, 153 and 154 MERGED; PR 155 OPEN; a compaction boundary with every process left running)
 
