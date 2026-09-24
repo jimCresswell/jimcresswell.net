@@ -2,7 +2,7 @@
 export interface LockAgeEvidence {
   /** The owner file's `created_at`, when the file exists and parses. */
   readonly ownerCreatedAt: string | undefined;
-  /** The lock directory's modification time, when the directory still exists. */
+  /** The lock directory's modification time, when a real directory is at the lock path. */
   readonly directoryModifiedMs: number | undefined;
   readonly nowMs: number;
   readonly staleMs: number;

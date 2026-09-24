@@ -1,14 +1,17 @@
 import { randomUUID } from 'node:crypto';
 import { mkdir, rm, writeFile } from 'node:fs/promises';
 
-/** The filesystem calls making a lock takes: `node:fs/promises` in production. */
+/** The filesystem calls a lock takes: `node:fs/promises` in production. */
 export interface LockFileSystem {
+  /** Make a directory exclusively, failing with EEXIST when anything is at the path. */
   readonly mkdir: (path: string) => Promise<unknown>;
   readonly writeFile: (path: string, text: string) => Promise<void>;
+  /** Remove a directory and its contents; a missing path is not an error. */
   readonly rm: (path: string) => Promise<void>;
 }
 
-const NODE_LOCK_FILE_SYSTEM: LockFileSystem = {
+/** The production lock filesystem, whose `rm` also removes every lock a holder releases or a waiter reclaims. */
+export const nodeLockFileSystem: LockFileSystem = {
   mkdir: async (path) => mkdir(path),
   writeFile: async (path, text) => writeFile(path, text),
   rm: async (path) => rm(path, { recursive: true, force: true }),
@@ -20,10 +23,11 @@ const NODE_LOCK_FILE_SYSTEM: LockFileSystem = {
  * cannot be written, the directory is removed again before the write's error
  * goes up, so a failed write leaves no ownerless lock behind; a holder killed
  * between the two steps still does, and waiters reclaim that by its age.
+ * `fs` is the filesystem the lock is made on.
  */
 export async function tryCreateLock(
   lockDir: string,
-  fs: LockFileSystem = NODE_LOCK_FILE_SYSTEM,
+  fs: LockFileSystem = nodeLockFileSystem,
 ): Promise<string | undefined> {
   try {
     await fs.mkdir(lockDir);

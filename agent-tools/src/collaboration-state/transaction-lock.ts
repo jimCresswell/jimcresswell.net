@@ -1,6 +1,6 @@
-import { lstat, readFile, rm } from 'node:fs/promises';
+import { lstat, readFile } from 'node:fs/promises';
 
-import { tryCreateLock } from './transaction-lock-create.js';
+import { nodeLockFileSystem, tryCreateLock } from './transaction-lock-create.js';
 import { isStaleLock } from './transaction-lock-staleness.js';
 
 /**
@@ -10,7 +10,9 @@ import { isStaleLock } from './transaction-lock-staleness.js';
  * before writing its owner file. The returned release removes the lock only
  * while its owner file still names this holder, so a holder whose lock was
  * reclaimed does not remove a lock whose owner file names another holder (a
- * window between the read and the removal remains).
+ * window between the read and the removal remains). Only a directory at the
+ * lock path is ever reclaimed. Two waiters that find one lock stale at once
+ * can both remove it, the second removing the lock the first has just made.
  */
 export async function acquireFileTransactionLock(input: {
   readonly filePath: string;
@@ -33,20 +35,29 @@ export async function acquireFileTransactionLock(input: {
 async function releaseOwnLock(lockDir: string, ownerId: string): Promise<void> {
   const metadata = await readLockMetadata(lockDir);
   if (metadata?.owner_id === ownerId) {
-    await rm(lockDir, { recursive: true, force: true });
+    await nodeLockFileSystem.rm(lockDir);
   }
 }
 
+/**
+ * Remove the lock at `lockDir` if it is stale. The entry's kind is checked
+ * before its owner file is read, so no owner file read through a symbolic
+ * link ever dates an entry `mkdir` did not make.
+ */
 async function removeStaleLock(lockDir: string, staleMs: number): Promise<void> {
+  const modifiedMs = await directoryModifiedMs(lockDir);
+  if (modifiedMs === undefined) {
+    return;
+  }
   const metadata = await readLockMetadata(lockDir);
   const stale = isStaleLock({
     ownerCreatedAt: metadata?.created_at,
-    directoryModifiedMs: await directoryModifiedMs(lockDir),
+    directoryModifiedMs: modifiedMs,
     nowMs: Date.now(),
     staleMs,
   });
   if (stale) {
-    await rm(lockDir, { recursive: true, force: true });
+    await nodeLockFileSystem.rm(lockDir);
   }
 }
 

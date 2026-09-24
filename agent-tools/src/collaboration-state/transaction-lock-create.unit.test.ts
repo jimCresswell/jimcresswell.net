@@ -51,6 +51,7 @@ describe('tryCreateLock', () => {
     expect(calls).toStrictEqual([`mkdir ${LOCK_DIR}`, `writeFile ${LOCK_DIR}/owner.json`]);
     expect(ownerId).toBeDefined();
     expect(JSON.parse(written[0] ?? '')).toMatchObject({ owner_id: ownerId });
+    expect(written[0]).toMatch(/"created_at": "\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z"/u);
   });
 
   it('reports a lock another holder has, and writes nothing', async () => {
