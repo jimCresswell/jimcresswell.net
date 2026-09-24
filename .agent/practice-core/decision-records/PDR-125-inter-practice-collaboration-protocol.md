@@ -47,7 +47,12 @@ PDR-142, which carries the owner's words in full. Amended again
 2026-09-23 on the owner's card (clause 7's format sentence: a receiver's
 convention or gate that refuses the donor's bytes is aligned across the
 estates, and a change made meanwhile is a declared debt to that
-alignment), with the matching sentence in PDR-142.
+alignment), with the matching sentence in PDR-142. Amended 2026-09-24
+(clause 7's lint-before-delivery sentence: the donor runs the receiver's
+own formatting and lint configurations over every box file and delivers
+only bytes they pass, so a delivery never fails the receiver's formatting
+and lint gates): twinned in both estates by the two exchange seats as
+joint set K2.
 **Date**: 2026-07-06
 **Related**: PDR-005 (transplantation and provenance), PDR-024
 (vital integration surfaces and outbound routing), PDR-027 (identity
