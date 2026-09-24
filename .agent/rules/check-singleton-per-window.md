@@ -65,7 +65,9 @@ either retired or stalled.
 ## When the Rule Fires
 
 - Multi-agent sessions where two or more agents share one working tree, or read its build output
-  (≥2 agents visible in active-claims or comms).
+  (≥2 agents visible in active-claims or comms). A sweep in the primary checkout counts every
+  live seat of the estate as a reader: no surface records where a session was launched, and a
+  session launched in the primary checkout reads that build through its hooks.
 - Any session-handoff window where two or more agents in one working
   tree are closing concurrently.
 - Any time the agent reflexively reaches for `pnpm check` without
