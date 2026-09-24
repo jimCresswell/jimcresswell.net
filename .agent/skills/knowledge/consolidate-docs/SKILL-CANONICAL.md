@@ -321,6 +321,24 @@ Worked instance: the 2026-07-02 salvage —
 `discovery-run-salvage-report-2026-07-02.md` with its tier table, work-listed
 by `corpus-analysis-salvage-and-topology-redesign.plan.md`.
 
+## Sweep pointers into a moved range before moving it
+
+A moved or archived range leaves its readers behind. PR #80 (2026-09-08,
+the director-handoff disposition) was a correct move that the Director
+had read, and still paid seven review rounds after the YES, every finding a
+real pointer into the moved range: a retained block's "below", a
+next-safe-steps entry, a rule's provenance line, the archive's own relative
+link, a snapshot's "homed here" for a contract with no other home, the
+header's byte-equality claim after the link edit. Each stale pointer is a
+reader misled, so each costs a round and the tail is geometric. BEFORE the
+move, in one pass: grep the file name across `.agent` and `docs` and re-true
+every hit; read the moved text's own self-references ("below", "above",
+"this file", "stays here") from the reader's new position; re-resolve every
+relative link from the new directory; sweep provenance lines in rules and
+records and the identity-naming census rows; and if a contract lived only
+in the moved or replaceable text, home it in a durable surface first. Then
+the move lands in one round.
+
 ## Plan supersession discipline
 
 When a plan is narrowed, reframed, or superseded, the same change set
@@ -595,6 +613,22 @@ Rule; the standalone crosswalk plan was archived in the same pass.)
     `pdr_kind: pattern` for ecosystem-agnostic abstractions), rules, skills,
     or permanent docs. Source archived napkins are evidence; do not rewrite
     them.
+6b. **Archive finished continuity history (graduate, then archive).** For each
+    continuity surface, journal-shaped record or register that carries finished
+    history above its live state, run `continuity-practice.md` §Disposition of
+    Continuity Surfaces: per entry, live or finished; the behaviour-changing
+    finished entries graduated and their homes read back; the finished range
+    moved whole to `archive/<surface>-YYYY-MM-DD.md` beside the surface (a
+    letter suffix for a second archive that day; never overwrite one) and
+    proven byte-identical against the committed blob (finished ranges that are
+    not contiguous: a snapshot of the whole pre-curation file, proven the same
+    way, then the live file curated); the runbook's token and
+    neighbour checks run; the live surface left with its live state and a
+    one-line pointer. This is the trigger the continuity surfaces lacked
+    until 2026-09-17, when only the napkin had one. Archiving happens only after
+    full processing, never as a means to tick a box (owner, 2026-09-19): never
+    archive uncurated content, never shard, and a fitness readout is a reason
+    to read the surface, never a reason to move it.
 7. **Graduate settled content.** This is the "enforce" edge of the knowledge flow (ADR-131 §Interaction Points, ADR-150 §Decision §5 — capture → distil → **graduate → enforce**). Treat it as a structural step, not a pass-through.
 
    **Graduating a learned lesson into its doctrine home is non-deferrable — it is the point of the pass.** Learning from a captured note (a Director brief's standing lessons, a session's distilled entry, a curator-pass finding) and writing it into its permanent home (rule / PDR / ADR / pattern / governance doc) IS consolidation; "owner-routed", "owner-gated", or "deferred to a future/synthesis session" is valid *only* for a genuinely owner-constitutive **decision** (a verdict, a product-scope call) — never for the **homing** of an already-settled lesson. Do not let an adjacent owner-gated decision's gating bleed onto a graduation: the model *verdict* may be owner-routed while the *craft lessons* graduate now. The one legitimate graduation-time deferral is **collision avoidance** — when the home is owned by an *active mid-flight thread* (see 7b), defer to that thread rather than author a colliding standalone artefact; a stable doctrine surface (a PDR, a governance doc) is never "mid-flight", so that exemption does not license parking a homing there. Deferring a homing as "owner-routed" when the home is a stable surface is the deferral-dressed-as-deference failure (`patterns/legitimate-principle-as-avoidance-cover.md`).
@@ -884,7 +918,7 @@ Rule; the standalone crosswalk plan was archived in the same pass.)
    to relocate to where it fires; completed or already-homed narrative diluting a
    live surface (drain it to free the surface for the next reader, judged against
    the file's `overflow_disposition` / `continuity-practice` §Disposition:
-   leave-if-live, else conserve-insight-and-delete); or genuinely dense live content
+   leave-if-live, else graduate, then archive, step 6b); or genuinely dense live content
    earning its place. A verdict resting only on size, role, or a limit ("legit
    growth", "big continuity file", "over/under the limit", "owner-routed") is
    forbidden — it answers the proxy, not the impact question.
