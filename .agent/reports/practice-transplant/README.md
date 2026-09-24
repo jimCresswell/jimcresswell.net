@@ -27,8 +27,8 @@ are in the Director's handoff `.agent/memory/operational/director-handoff.md` §
 overnight (the numbered items) and §Routing log; the closure's completion entry is on the `practice-lineage.md` chain of
 `.agent/practice-core/provenance.yml`.
 
-The five explorations are born sketch and govern nothing until ratified; the register is a live
-append-only record. Running capture for
+The five explorations are born sketch and govern nothing until ratified; the generalisation register
+is a closed historical record, since the commit trailer replaced it on 2026-09-24. Running capture for
 the session is in `.agent/memory/active/napkin.md`.
 
 The procedure these records distil is the runbook node
