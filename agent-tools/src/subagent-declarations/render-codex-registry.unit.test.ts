@@ -1,3 +1,4 @@
+import { unwrapErr } from '@engraph/result';
 import { describe, expect, it } from 'vitest';
 
 import { renderCodexRegistry, splitCodexRegistry } from './render-codex-registry.js';
@@ -152,6 +153,19 @@ describe('renderCodexRegistry', () => {
       ok: true,
       value: EXPECTED,
     });
+  });
+
+  it("carries a role's Codex description in its block in place of the role description, and refuses one a TOML basic string cannot carry verbatim", () => {
+    const rendered = renderCodexRegistry(HEAD, [
+      { ...ALPHA, codex: { description: 'Alpha on Codex.' } },
+    ]);
+    expect(rendered.ok).toBe(true);
+    const registry = rendered.ok ? rendered.value : '';
+    expect(registry).toContain('Alpha on Codex.');
+    expect(registry).not.toContain(ALPHA.description);
+    expect(
+      unwrapErr(renderCodexRegistry(HEAD, [{ ...ALPHA, codex: { description: 'Says "hi".' } }])),
+    ).toMatch(/^\.codex\/config\.toml: /u);
   });
 
   it('refuses a description a TOML basic string cannot carry verbatim, naming the registry', () => {

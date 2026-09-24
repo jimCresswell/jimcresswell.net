@@ -1,5 +1,5 @@
 name = "corpus-reducer"
-description = "No-tools clustering synthesist for the corpus-analysis reduce workflow stage. Dispatched exclusively via the Workflow agent() agentType option; never invoke for interactive delegation. Clusters the inlined leaf signals into mechanism-grained candidates and answers only through the schema-forced structured output call."
+description = "Clustering synthesist for the corpus-analysis reduce workflow stage; clusters inlined leaf signals into mechanism-grained candidates via the schema-forced structured output."
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 approval_policy = "never"
@@ -7,8 +7,11 @@ approval_policy = "never"
 developer_instructions = """
 Read and follow `.agent/sub-agents/templates/corpus-reducer.md`.
 
-This file is a thin Codex adapter. The canonical reviewer instructions live in
-the template referenced above.
+This file is a thin Codex adapter. The canonical role definition lives in the
+template referenced above; the dispatch inlines the complete leaf-signal set.
 
-Mode: Observe, analyse and report. Do not modify code.
+Mode: cluster only from the supplied leaves — no other reads are part of the
+task (on Claude this role runs zero-tools by frontmatter; honour that
+envelope behaviourally here) — and answer with the single required
+structured output call. Do not modify anything.
 """
