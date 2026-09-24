@@ -4,6 +4,16 @@ Changes to the Practice Core files, newest first. Each entry records the repo
 that made the change and what was changed. This file travels with the
 Practice Core package.
 
+## [jimcresswell.net] 2026-09-23 — PDR-117: the Director hears questions and requests, never state
+
+- PDR-117, on the owner's ruling of 2026-09-23 for all agents ("do not update
+  the Director unless you have a question or other request, the normal records
+  keep the record"): the Implementer's compressed verdicts and deep handoff
+  go to the normal records, where the Director reads them when it needs them.
+  The routing contract's owner-ratified asymmetry clause keeps its words and
+  gains a reading through the ruling. A dated amendment section records the
+  change. The same texts land in the lineage as a joint cure.
+
 ## [jimcresswell.net] 2026-09-23 — PDR-142 and PDR-125: a receiver's format gate is a standard to align; PDR-141: its amendment recorded
 
 - PDR-142 and PDR-125 clause 7, on the owner's card of the same evening: a
