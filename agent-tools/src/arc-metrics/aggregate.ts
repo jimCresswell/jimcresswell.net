@@ -11,8 +11,8 @@
  *   summing entries over-counts (three to four times over in the measured arc).
  * - **Owner messages come from two entry classes**, and the excluded ones are
  *   counted rather than dropped (see `owner-messages.ts`).
- * - **Active time is a proxy, and says so.** It sums the gaps between
- *   consecutive events closer together than the threshold: it cannot see
+ * - **Active time is a proxy, and says so.** It sums each gap between
+ *   consecutive events that is at most the threshold: it cannot see
  *   thinking before a burst's first event, and it counts a long tool call as
  *   active. The threshold travels with the report. An event is any timestamped
  *   entry except the harness's idle recap (see `eventTimeOf`), and the session

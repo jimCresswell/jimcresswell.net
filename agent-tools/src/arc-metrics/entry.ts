@@ -46,6 +46,8 @@ const entrySchema = z.object({
   attachment: z
     .object({
       type: z.string().optional(),
+      /** On a queued command: how it was entered (`prompt`, `task-notification`, …). */
+      commandMode: z.string().optional(),
       prompt: z.unknown().optional(),
       origin: originSchema.optional(),
     })

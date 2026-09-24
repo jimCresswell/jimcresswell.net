@@ -4,12 +4,18 @@
  * @remarks
  * Vendor and project directories in, an arc's measures out. Parses argv,
  * resolves the project directories (the launch directory's own when none is
- * named), lists each one's transcripts, aggregates them, and emits text or
- * JSON. The pure pieces do the work; this layer wires them and translates
- * failures into exit codes — no throw escapes (the Result pattern).
+ * named; a directory named twice is measured once), lists each one's
+ * transcripts, aggregates them, and emits text or JSON. The pure pieces do the
+ * work; this layer wires them and translates failures into exit codes — no
+ * throw escapes (the Result pattern).
+ *
+ * The arc is every transcript in the directories measured, so the report grows
+ * as sessions are added there: the directories named are what bound an arc.
  *
  * @packageDocumentation
  */
+
+import { resolve } from 'node:path';
 
 import { projectDirectoryFor } from '../session-metadata/transcript-locator.js';
 import { aggregateSession, type SessionMetrics } from './aggregate.js';
@@ -17,6 +23,7 @@ import { ARC_METRICS_HELP_TEXT, parseArgs, type ArcMetricsOptions } from './cli-
 import type { ArcMetricsFileSystem } from './file-system.js';
 import { nodeArcMetricsFileSystem } from './file-system-node.js';
 import { formatJson, formatText, type ArcMetricsReport } from './format.js';
+import { sessionIdOf } from './session-id.js';
 
 /** Inputs for {@link runArcMetricsCli}. */
 export interface ArcMetricsCliInput {
@@ -87,7 +94,7 @@ function resolveDirectories(
   input: ArcMetricsCliInput,
 ): readonly string[] {
   if (options.projectDirs.length > 0) {
-    return options.projectDirs;
+    return [...new Set(options.projectDirs.map((directory) => resolve(input.cwd, directory)))];
   }
   const home = input.env.HOME;
   if (home === undefined || home.length === 0) {
@@ -156,11 +163,6 @@ async function aggregate(
   } catch (cause) {
     return { ok: false, error: `failed to read ${path}: ${describe(cause)}` };
   }
-}
-
-function sessionIdOf(path: string): string {
-  const base = path.slice(path.lastIndexOf('/') + 1);
-  return base.endsWith('.jsonl') ? base.slice(0, -'.jsonl'.length) : base;
 }
 
 function describe(cause: unknown): string {

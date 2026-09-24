@@ -79,6 +79,41 @@ describe('runArcMetricsCli', () => {
     expect(result.stdout).toContain('sessions 2');
   });
 
+  it('measures a directory once, however often and however it is named', async () => {
+    const fs = fakeFs({
+      '/h/.claude/projects/-a': ['/p/one.jsonl'],
+      '/h/.claude/projects/-a/': ['/p/one.jsonl'],
+    });
+
+    const result = await runArcMetricsCli(
+      baseInput(
+        [
+          '--vendor',
+          'claude',
+          '--project-dir',
+          '/h/.claude/projects/-a',
+          '--project-dir',
+          '/h/.claude/projects/-a',
+          '--project-dir',
+          '/h/.claude/projects/-a/',
+        ],
+        fs,
+      ),
+    );
+
+    expect(result.exitCode).toBe(0);
+    expect(result.stdout).toContain('sessions 1');
+  });
+
+  it("reports each session's cache reads in its own text row", async () => {
+    const fs = fakeFs({ '/h/.claude/projects/-ws-code-site': ['/p/one.jsonl'] });
+
+    const result = await runArcMetricsCli(baseInput(['--vendor', 'claude'], fs));
+
+    const row = result.stdout.split('\n').find((line) => line.startsWith('  one '));
+    expect(row).toContain('cache-read 90');
+  });
+
   it('emits JSON with the totals and the threshold when asked', async () => {
     const fs = fakeFs({ '/h/.claude/projects/-ws-code-site': ['/p/one.jsonl'] });
 

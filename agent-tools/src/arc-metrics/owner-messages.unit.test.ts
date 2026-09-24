@@ -18,11 +18,16 @@ function turn(at: string, text: string, attribution: Record<string, unknown> = T
   return entryOf({ type: 'user', timestamp: at, ...attribution, message: { content: text } });
 }
 
-function absorbed(at: string, text: string, origin: Record<string, unknown> = HUMAN): Entry {
+function absorbed(
+  at: string,
+  text: string,
+  origin: Record<string, unknown> = HUMAN,
+  commandMode = 'prompt',
+): Entry {
   return entryOf({
     type: 'attachment',
     timestamp: at,
-    attachment: { type: 'queued_command', commandMode: 'prompt', prompt: text, origin },
+    attachment: { type: 'queued_command', commandMode, prompt: text, origin },
   });
 }
 
@@ -76,6 +81,12 @@ describe('createOwnerMessageCounter', () => {
     expect(tally).toStrictEqual({ messages: 0, midTurn: 0, filtered: 1 });
   });
 
+  it('never counts a shell escape absorbed mid-turn, though the owner typed it', () => {
+    const tally = tallyOf(absorbed('2026-09-16T10:00:06Z', 'git status', HUMAN, 'bash'));
+
+    expect(tally).toStrictEqual({ messages: 0, midTurn: 0, filtered: 1 });
+  });
+
   it('never counts a scheduled prompt delivered as a system turn', () => {
     const tally = tallyOf(
       queue('2026-09-16T10:00:00Z', 'enqueue', 'check the open pull requests'),
@@ -101,6 +112,21 @@ describe('createOwnerMessageCounter', () => {
     );
 
     expect(tally).toStrictEqual({ messages: 0, midTurn: 0, filtered: 3 });
+  });
+
+  it('counts a compaction summary as excluded by its marker, whatever its text or attribution', () => {
+    const tally = tallyOf(
+      entryOf({ type: 'user', timestamp: '2026-09-16T10:00:00Z', isCompactSummary: true }),
+      entryOf({
+        type: 'user',
+        timestamp: '2026-09-16T10:01:00Z',
+        isCompactSummary: true,
+        ...TYPED,
+        message: { content: 'This session is being continued from a previous conversation.' },
+      }),
+    );
+
+    expect(tally).toStrictEqual({ messages: 0, midTurn: 0, filtered: 2 });
   });
 
   it('counts an owner slash command as an action, not a message', () => {

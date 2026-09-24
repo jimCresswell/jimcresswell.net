@@ -68,7 +68,8 @@ export function formatText(report: ArcMetricsReport): string {
     (session) =>
       `  ${session.sessionId.slice(0, 8)}  active ${round1(session.activeSeconds / 3600)}h  ` +
       `calls ${session.apiCalls}  tools ${session.toolCalls}  out ${session.outputTokens}  ` +
-      `median-context ${session.medianContextTokens}  compactions ${session.compactions}  ` +
+      `cache-read ${session.cacheReadTokens}  median-context ${session.medianContextTokens}  ` +
+      `compactions ${session.compactions}  ` +
       `limits ${session.limitStalls}  owner ${session.ownerMessages} ` +
       `(${session.ownerMessagesMidTurn} mid-turn, ${session.ownerMessagesFiltered} filtered)`,
   );

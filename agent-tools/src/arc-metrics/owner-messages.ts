@@ -15,7 +15,8 @@
  *   would count one line several times.
  * - **A message typed while a turn runs** is counted once, as mid-turn, in the
  *   form it finally took: the `queued_command` attachment, carrying the same
- *   `origin`, when the running turn absorbed it; or the turn whose
+ *   `origin` and entered as a prompt (`commandMode` `prompt`; a shell escape
+ *   is another mode), when the running turn absorbed it; or the turn whose
  *   `promptSource` is `queued` when it waited for the turn to end. Its
  *   `enqueue` record carries no attribution and is never counted. Counting
  *   turns alone misses every message a running turn absorbed.
@@ -36,6 +37,7 @@ import type { Entry } from './entry.js';
 const OWNER_ORIGIN = 'human';
 const QUEUED_PROMPT = 'queued';
 const ABSORBED_MESSAGE = 'queued_command';
+const PROMPT_MODE = 'prompt';
 
 /** One transcript's owner-message counts. */
 export interface OwnerMessageTally {
@@ -85,8 +87,15 @@ function speakerOf(entry: Entry): Speaker | undefined {
   return entry.type === 'attachment' ? absorbedSpeaker(entry) : undefined;
 }
 
-/** A user turn: a prompt only when it carries text, the owner's only when attributed so. */
+/**
+ * A user turn: a compaction summary is excluded by its marker, whatever it
+ * carries; otherwise a prompt only when it carries text, the owner's only when
+ * attributed so.
+ */
 function turnSpeaker(entry: Entry): Speaker | undefined {
+  if (entry.isCompactSummary === true) {
+    return 'excluded';
+  }
   if (!hasText(entry.message?.content)) {
     return undefined;
   }
@@ -96,13 +105,18 @@ function turnSpeaker(entry: Entry): Speaker | undefined {
   return entry.promptSource === QUEUED_PROMPT ? 'owner-mid-turn' : 'owner';
 }
 
-/** An attachment: a message only when it is a running turn's absorbed prompt with text. */
+/**
+ * An attachment: a message only when it is a running turn's absorbed command
+ * with text, the owner's only when entered as a prompt and attributed to them.
+ */
 function absorbedSpeaker(entry: Entry): Speaker | undefined {
   const attachment = entry.attachment;
   if (attachment?.type !== ABSORBED_MESSAGE || !hasText(attachment.prompt)) {
     return undefined;
   }
-  return attachment.origin?.kind === OWNER_ORIGIN ? 'owner-mid-turn' : 'excluded';
+  const ownerPrompt =
+    attachment.commandMode === PROMPT_MODE && attachment.origin?.kind === OWNER_ORIGIN;
+  return ownerPrompt ? 'owner-mid-turn' : 'excluded';
 }
 
 function hasText(content: unknown): boolean {

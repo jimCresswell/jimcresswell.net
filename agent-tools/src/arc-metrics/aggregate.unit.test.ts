@@ -103,7 +103,7 @@ describe('aggregateSession', () => {
     expect(session.ownerMessagesFiltered).toBe(1);
   });
 
-  it('sums only the gaps below the active-time threshold', async () => {
+  it('sums only the gaps no longer than the active-time threshold', async () => {
     const session = await aggregateSession({
       sessionId: 'abc',
       gapSeconds: 600,
@@ -117,6 +117,20 @@ describe('aggregateSession', () => {
 
     expect(session.activeSeconds).toBe(420);
     expect(session.wallSeconds).toBe(7320);
+  });
+
+  it('counts a gap exactly at the threshold as active, and a second longer as idle', async () => {
+    const session = await aggregateSession({
+      sessionId: 'abc',
+      gapSeconds: 600,
+      lines: lines(
+        assistant('2026-09-16T10:00:00Z', 'msg_1', USAGE),
+        assistant('2026-09-16T10:10:00Z', 'msg_2', USAGE),
+        assistant('2026-09-16T10:20:01Z', 'msg_3', USAGE),
+      ),
+    });
+
+    expect(session.activeSeconds).toBe(600);
   });
 
   it('counts every timestamped entry as an event, not only turns', async () => {
