@@ -1,6 +1,6 @@
 ---
 classification: situational
-description: "Before any whole-repo gate sweep (pnpm check, pnpm test, large turbo runs) in a working tree other agents share, or whose build output they read, check the comms stream for an in-flight run: at most one agent sweeps per working tree per coordination window — broadcast start and ETA, broadcast the result with HEAD SHA, peers in that tree defer and consume it (the runner claims --role marshal). Seats in separate worktrees run their own sweeps side by side under no-unbounded-host-load item 6. Not for solo sessions, per-workspace scoped gates, or targeted single-file runs — those are parallel-safe. Failure shape — a sweep rebuilding the tree's shared agent-tools/dist under every concurrent peer in it, deleting it first where the check script runs a clean step, killing their CLIs and watchers for the rebuild window."
+description: "Before any whole-repo gate sweep (pnpm check, pnpm test, large turbo runs) in a working tree other agents share, or whose build output they read, check the comms stream for an in-flight run: at most one agent sweeps per working tree per coordination window — broadcast start and ETA, broadcast the result with HEAD SHA, peers in that tree defer and consume it (the runner claims --role marshal). Seats in separate worktrees run their own sweeps side by side under no-unbounded-host-load item 6. Not for solo sessions, per-workspace scoped gates, or targeted single-file runs — those are parallel-safe. Failure shape — a sweep rebuilding the tree's shared agent-tools/dist under every concurrent session that reads it, deleting it first where the check script runs a clean step, killing their CLIs and watchers for the rebuild window."
 trigger: tool:gate-sweep
 ---
 
@@ -56,7 +56,9 @@ ETA, result), which a static role field cannot:
    `"red <gate>:<file:line>"`), carrying the HEAD SHA at run time.
 3. Other agents in the same working tree observing the in-flight
    broadcast **defer** their own check run and consume the result event
-   when it arrives.
+   when it arrives. An agent that reads the tree's build output from
+   another worktree observes the broadcast (its CLIs and hooks fail for
+   the rebuild window) and runs its own worktree's gates.
 
 If the result event has not arrived within ~2× the announced ETA, a
 peer may take over with a fresh broadcast — the prior agent is
