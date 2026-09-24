@@ -33,8 +33,8 @@ const linter = new Linter({ configType: 'flat' });
  * `tseslint.configs.strict` and the recommended config. Linting an
  * in-memory fixture cannot supply parser services without spawning a
  * TypeScript project, which the testing-strategy directive forbids in
- * unit tests (`testing-strategy.md` § No process spawning in in-process
- * tests). The override below disables only those typed rules so the
+ * unit tests (`testing-strategy.md` § No process spawning in tests). The
+ * override below disables only those typed rules so the
  * parser-free run still produces faithful coverage of the syntactic
  * rules under test.
  */

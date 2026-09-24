@@ -28,9 +28,13 @@ For worked Red/Green/Refactor examples, see
 
 Tests that exercise a unit in-process must configure it through dependency
 injection — explicit config objects and injected IO seams — never by reading or
-mutating `process.env`. Do not import production config loaders unless the test
-is directly proving the loader; they may read `.env` files as part of the
-production pipeline.
+mutating `process.env`. A test never imports a production config loader that
+reads files or the environment. The loader's parsing and validation are proven
+as a pure function over an injected input (the file's text, or an environment
+record passed in). The loader's own read of the file or environment is never
+exercised by a test: it is proven by non-test validation (a validator script's
+own self-proof, run by a CI-gated task) or by an observation made once at cure
+time and recorded (`testing-strategy.md` §Philosophy).
 
 ### The Pattern
 
@@ -61,24 +65,27 @@ expect(stale).toBe(true);
 
 - Do not read or write `process.env` in tests. Build literal config objects or
   use hermetic test helpers that do not read disk.
-- Do not import a runtime config loader into these tests unless the loader is
-  the direct unit under test.
+- Never import a runtime config loader that reads files or the environment
+  into a test. Prove its parsing and validation as a pure function over an
+  injected input (the file's text, or an environment record passed in). Its
+  own read of the file or environment is never a test's to prove: non-test
+  validation or an observation made once at cure time and recorded proves it.
 - For tests needing multiple configurations (e.g. a token present vs absent),
   create **separate config objects** for each case.
 - Helpers that mutate `process.env` to flip a mode must not exist. Use the
   isolated config pattern instead.
 
-### Subprocess-Spawned Tests
+### Subprocess-Spawned Checks
 
-Tests that spawn a built command as a **separate process** (e.g. the
-`smoke:*` scripts using `spawn('node', [entryPoint], { env })`) may pass
-environment variables via the spawn `env` option. This is safe because the
-variables are scoped to the child process and cannot leak into the test runner.
+A test never spawns a process (`testing-strategy.md` §Rules). A check that
+spawns a built command as a **separate process** (a smoke check using
+`spawn('node', [entryPoint], { env })`) may pass environment variables via the
+spawn `env` option: they are scoped to the child process.
 
-Vitest smoke suites may load ambient environment in the runner config
-composition root, validate it, and pass the resulting object through
-`test.provide` / `inject`. Test files and setup files must consume the
-injected object; they must not read or write `process.env`.
+A check's composition root (its runner config, global setup or entry script)
+may load ambient environment, validate it, and pass the resulting object on.
+The check's other files consume the injected object; they never read or write
+`process.env`.
 
 ### Reference Implementations
 
@@ -110,9 +117,8 @@ a dependency-injection seam:
   repository: extract the core with the service injected + a
   `createHandler(fn)` factory). "Tests would be audit-shaped" is a signal to
   inspect the product code's injectability, never merely a reason to skip.
-- **A unit or integration test that seems to need real IO** beyond the
-  in-process exchange with an imported module (see [Test File
-  Classification](#test-file-classification)). The fix is to refactor the
+- **A unit or integration test that seems to need real IO** (see [Test File
+  Classification](#test-file-classification)): a loopback socket counts. The fix is to refactor the
   product to be testable (route the read/write through an injectable
   dependency, as sibling modules already do) and inject an in-memory fake —
   never to leave the IO in the test, and never to treat the refactor as
@@ -126,47 +132,47 @@ For any generator, transform, extractor, or content firewall, **green
 fixtures are not proof**: fixtures encode the cases you already thought
 of, and the real source carries the ones you didn't. Add a backstop that
 runs on the real source — a generation-time assertion or a real-content
-test — and inspect the real output before calling the transform done
-(worked instances 2026-06-30: fixtures passed twice while the real
-generated body carried a routing coupling and a structure leak that only
-grepping the real content caught). For a separation or firewall that
-encodes a principle, the real-content check IS the proof. The site's
-`e2e/behaviour/content-integrity.e2e-ui.test.ts` is the local instance: it
-proves the rendered pages against the JSON sources in `content/`, not
-against fixtures.
+check, never a test — and inspect the real output before calling the
+transform done (worked instances 2026-06-30: fixtures passed twice while
+the real generated body carried a routing coupling and a structure leak
+that only grepping the real content caught). For a separation or
+firewall that encodes a principle, the real-content check IS the proof.
+The site's E2E check `e2e/behaviour/content-integrity.e2e-ui.test.ts` is
+the local instance: it proves the rendered pages against the JSON sources
+in `content/`, not against fixtures.
 
 ## Test File Classification
 
 Test classification is based on what the test actually does,
 not what the author intends:
 
-- **Module-level state = integration**: any test that touches
-  module-level singletons with IO must be
-  `*.integration.test.ts`, even if it injects DI fakes for
-  the new behaviour.
-- **In-process HTTP harnesses classify by boundary, not tool** (owner-ratified
-  2026-07-29): a request driven at an imported, in-process app is an
-  integration test — the harness's loopback socket is tool mechanics, not a
-  system boundary. A request driven at a separately running black-box system
-  over a network interface is E2E. The site's Playwright suite is the E2E
+- **Module-level state with IO is a missing seam**: a test that touches a
+  module-level singleton with IO is a defect under any name. Inject the
+  singleton's IO and prove the rest in process.
+- **A socket is IO, whatever tool opens it**: a request driven at an
+  imported, in-process app over a harness's loopback listener is IO in a
+  test. Exercise the handler below the listener, called directly. A request
+  driven at a separately running black-box system over a network interface is
+  an E2E check, classified by the boundary, not the tool (owner-ratified
+  2026-07-29). The site's Playwright suite is the E2E
   case: it runs against a production build served by the harness's own
   server process, started by the global setup on a port of its own
   (`jcdotnet/e2e/`, `*.e2e-ui.test.ts` for browser journeys and
   `*.e2e-api.test.ts` for HTTP-level checks; `jcdotnet/e2e/README.md`).
-- **Middleware proofs mount the middleware alone**: mount the
-  middleware on a bare app with one probe route and drive it directly; never
-  boot the full application to prove one middleware decision (review lens
-  Q3/Q4).
+- **Middleware proofs call the middleware alone**: call the middleware
+  function directly with request and response values; never boot the full
+  application, or open a listener, to prove one middleware decision (review
+  lens Q3/Q4).
 
-## Composition Testing
+## Composition Checks
 
-Unit + E2E tests can all pass while the integrated product fails. For features
-spanning multiple modules, add a **composition test** that exercises the
+Unit tests and E2E checks can all pass while the integrated product fails. For
+features spanning multiple modules, add a **composition check** that exercises the
 integration seam. The site's content negotiation is the local example: the
 proxy, the route handler and the rendered document each have their own tests,
 and `e2e/behaviour/markdown-content-negotiation.e2e-api.test.ts` proves the
 composed path (an `Accept` header in, the right representation out). A
-composition test IS the enforcement for multi-module integration — it is what
+composition check IS the enforcement for multi-module integration — it is what
 catches a knip or depcruise cleanup that removed a module every unit test had
 already stopped exercising.
 
@@ -264,10 +270,8 @@ ambient overrides — see `no-global-state-in-tests`.
   `tsconfig.lint.json`. Files must be included in both for linting to work.
 - Stale vitest include globs are silent because of `passWithNoTests: true` — remove
   dead globs promptly after file moves.
-- Integration tests that need `.env` file isolation: use `'/tmp'` as the start
-  directory to prevent ambient `.env` files from satisfying schema requirements.
 - After refactoring entry points (removing `dotenv`, changing a config loader's
-  signature), check E2E and smoke tests that launch the process directly — they
+  signature), check the E2E and smoke checks that launch the process directly — they
   break when the entry-point contract changes.
 - Removing a test (e.g. deleting an audit-shaped constant assertion) can orphan the
   export it referenced — knip then blocks the commit. Un-export or delete the orphan

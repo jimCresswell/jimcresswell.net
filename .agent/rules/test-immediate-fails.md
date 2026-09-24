@@ -22,61 +22,64 @@ seam, extract a pure function, inject a dependency).
 ## Boundary Immediate Fails
 
 1. **Test imports product code that is not directly under test.**
-   Tests must import only the unit they are testing. Incidental
-   production factories (`createHttpObservabilityOrThrow`,
-   `loadRuntimeConfig`, `initialiseTelemetry`, app bootstrappers) that
-   the test is not proving must be replaced with a fake injected via
-   DI. Rationale: imports define the test boundary; a test that
-   imports factory X is coupled to X's behaviour and breaks on
-   unrelated refactors of X.
+   Tests must import only the unit they are testing. A production
+   factory or loader that reads configuration or does IO
+   (`createHttpObservabilityOrThrow`, `loadRuntimeConfig`,
+   `initialiseTelemetry`, app bootstrappers) is never imported into a
+   test, whether or not the test sets out to prove it. The unit that
+   needs it takes a fake injected via DI; any parsing or validation it
+   does is proven as a pure function over an injected input; its IO
+   is not a test's to prove. Rationale: imports define the test
+   boundary; a test that imports factory X is coupled to X's behaviour
+   and breaks on unrelated refactors of X.
 2. **Test imports a complex test helper it does not own.** If the
    helper exists to make the test runnable (not to prove the unit),
    the helper itself has become incidental infrastructure. Fix the
    product code or inline a simple fake.
 3. **Test uses a real production object where a fake would suffice.**
    E.g. real logger, real observability, real database adapter, real
-   HTTP client. If the test does not assert on that object's
-   behaviour, it must not receive a real instance.
+   HTTP client. A test never receives a real instance of an object
+   that does IO, whether or not it asserts on that object's
+   behaviour: the object's pure logic (an adapter's mapping) is
+   tested, and its IO is proven by validation, never by a test. A
+   real object without IO that the test does not assert on is
+   replaced with a fake.
 
 ## Side-Effect Immediate Fails
 
-4. **Unit test triggers any IO.** Unit tests are for pure functions
-   only — no filesystem reads/writes, no network calls, no child
-   process spawning, no timers that interact with the runtime, no
-   SDK init calls with side effects. ONE named sanctioned shape
-   (owner-carded ruling 2026-08-02; tier wording generalised with the
-   2026-08-03 owner ratification of source-derived expectations — the
-   carve-out's own rationale is tier-agnostic): an in-process test
-   (`.unit.test.ts` or `.integration.test.ts`) MAY read COMMITTED
-   repo artefacts through an owned `test-helpers/` fixture surface
-   anchored at `import.meta.dirname` (two lineage worked instances: a
-   conformance-suite fixture loader and a codegen schema-cache reader,
-   each an owned `test-helpers/` module) — committed bytes are fixtures by provenance, not
-   runtime IO; the helper must exist to pin real committed fixtures
-   at their canonical paths (never to make the test runnable — item
-   2's complex-helper prohibition still binds), and the
-   classification axis stays the boundary, never the mechanism.
-5. **Any test (unit/integration/E2E in-process) touches
-   `process.env`.** Reading OR writing `process.env` is prohibited.
+4. **Any test triggers any IO.** IO is a filesystem read or write, a
+   network call, a socket (loopback included), a child process, a
+   clock read (`Date.now()`, `new Date()`, `performance.now()`), a
+   timer that interacts with the runtime, or an SDK init call with
+   side effects, in the test or in any helper it imports. This is
+   the absolute invariant of `testing-strategy.md` §Philosophy
+   (owner, 2026-09-14 and 2026-09-15). A filesystem read is IO
+   whatever the provenance of the bytes: committed fixtures enter a
+   test as imported modules or as literal values. A fixture-reading
+   `test-helpers/` module (the lineage's two worked instances were a
+   conformance-suite fixture loader and a codegen schema-cache reader)
+   is a defect under this item; existing code is evidence of the
+   estate and carries no approval
+   ([PDR-091](../practice-core/decision-records/PDR-091-precedence-is-not-approval.md)).
+5. **Any test (unit or integration) touches `process.env`.** Reading OR writing `process.env` is prohibited.
    Pass literal inputs; do not inherit from shell state.
-6. **Any in-process test touches `process.cwd()`.** Anchor file
-   paths at `import.meta.dirname`, not the caller's cwd.
-7. **Any in-process test reads from `.env` / `.env.local` / any
+6. **Any test touches `process.cwd()`.** A test has no file path to
+   anchor (item 4); a path the unit needs is passed in as a literal.
+7. **Any test reads from `.env` / `.env.local` / any
    runtime environment file.** Tests construct config literals
    directly; they do not route through loaders that read disk.
-8. **Any in-process test spawns a child process, fork, or
-   test-authored worker.** Covered by `testing-strategy.md §No
-   process spawning in in-process tests`, which also carries the ONE
-   named sanctioned shape (the spawn-topology contract test,
-   recorded 2026-08-07 with the F-112 push-path landing) — the
-   directive is the authority; this item only points at it.
-9. **Any test makes a real network call beyond its tier's protocol
-   channel.** Two channels are calling mechanics, not violations:
-   an E2E test's exchange with the separately running system under
-   test, and a harness's loopback exchange with an app the test
-   itself imported and booted in-process (owner-ratified
-   2026-07-29). All other real network IO is smoke-tier only;
-   smoke tests run on-demand, outside the network-free PR-check boundary.
+8. **Any test spawns a child process, fork, or test-authored
+   worker.** Covered by `testing-strategy.md` §Rules, "No process spawning
+   in tests". A proof that needs a real child process (a child's stdio
+   topology, its exit and signal fidelity) is an observation made
+   once and recorded, or a validator's self-proof outside the test
+   suites. The directive is the authority; this item points at it.
+9. **Any test makes a real network or socket call.** Driving a
+   separately running system is an E2E check, a validation surface.
+   Code imported into the test process is proven at the handler
+   seam, called directly: a harness's loopback listener is a socket.
+   Network reach lives in validation checks run by CI-gated tasks, the
+   deploy pipeline and operator context; never in a test.
 
 ## Mock/Stub Immediate Fails
 
@@ -85,7 +88,9 @@ seam, extract a pure function, inject a dependency).
 11. **Unit test contains any mock.** Unit tests are pure — no mocks,
     fakes, or stubs of any kind. Parameters in, result out.
 12. **Integration test contains a mock with logic.** Integration
-    mocks are *simple* fakes — constant returns, captured calls. No
+    mocks are *simple* fakes — constant returns, or a record of what
+    the product sent out through the port, read as output; which calls
+    were made, how often or in what order is never asserted. No
     branching, no state machines, no string interpolation of inputs.
     Complexity signals product-code needs refactoring for
     testability.
@@ -98,15 +103,7 @@ seam, extract a pure function, inject a dependency).
 14. **Test authors any function with non-trivial complexity.**
     Helpers in tests must be trivial: build a literal, wrap a call.
     Conditional logic, loops with side effects, or multi-step state
-    setup in a test function = test code testing itself. ONE named
-    sanctioned shape (owner-ratified 2026-08-03, the meta-examples
-    round-trip rework): a test MAY author a small derivation helper
-    that projects EXPECTATIONS from a committed fixture read via item
-    4's sanctioned surface, when the projection models a DOCUMENTED
-    product contract named in a comment — deriving expectations from
-    the owning source is the ratified alternative to pinning copies
-    of upstream content, which stays admissible only as a designed
-    sentinel carrying a named decision.
+    setup in a test function = test code testing itself.
 15. **Test contains skipped or pending cases** (`it.skip`,
     `describe.skip`, `test.todo`, `it.todo`, `xit`, `xdescribe`, or
     any skip/pending mechanism). Fix or delete. See
@@ -133,19 +130,17 @@ seam, extract a pure function, inject a dependency).
 ## Pipeline Immediate Fails
 
 20. **Test category does not match its file name.** A
-    `*.unit.test.ts` that touches IO is a category error — either
-    rename or redesign. Per `testing-strategy.md`, naming IS the
-    category. The one exception is item 4's sanctioned shape:
-    helper-mediated reads of COMMITTED artefacts via an owned
-    `test-helpers/` fixture surface remain `.unit` — renaming such a
-    test to `.integration` cures nothing, since integration also
-    forbids filesystem IO.
-21. **Test is named `*.integration.test.ts` but hits network beyond
-    a harness's loopback exchange with an app the test itself
-    imported and booted in-process, or spawns processes.** Classify
-    by the boundary, then cure: a genuine separately-running-system
-    exchange belongs at E2E/smoke tier; outbound IO from imported
-    code is a missing DI seam to fix, never a rename.
+    `*.unit.test.ts` that exercises several units working together is an
+    integration test under the wrong name: rename it. The name must
+    match the category the test's behaviour puts it in; a suffix names a
+    file and never classifies it. A test that touches IO is item 4's
+    defect under any name; its cure is an injected seam or a move to
+    validation.
+21. **Test is named `*.integration.test.ts` but opens a socket, hits
+    the network, or spawns processes.** Classify by the boundary,
+    then cure: a genuine separately-running-system exchange is an
+    E2E or smoke check outside the test suites; outbound IO from
+    imported code is a missing DI seam to fix.
 22. **Test depends on test-execution order to pass.** Shared mutable
     state between tests is a correctness hazard. Each test must be
     self-contained.
@@ -164,8 +159,8 @@ problems:
 
 - "Test imports production factory X" → product code lacks a DI seam;
   refactor to accept X as a parameter.
-- "Unit test touches IO" → the code under test isn't a pure function;
-  extract a pure core.
+- "A test touches IO" → inject the seam or extract a pure core; what
+  needs real IO moves to validation.
 - "Integration test has complex mock" → the dependency surface is too
   wide; split the responsibility in product code.
 

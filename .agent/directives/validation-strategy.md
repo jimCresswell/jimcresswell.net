@@ -1,7 +1,7 @@
 ---
 title: "Validation Strategy"
 status: active
-last_updated: 2026-09-12
+last_updated: 2026-09-24
 fitness_line_target: 330
 fitness_line_limit: 400
 fitness_char_limit: 24000
@@ -30,8 +30,9 @@ suites in this repository produce real experience to write from.
 ## The spine: test / evaluate / assure
 
 - **Test** — _deterministic_. Proves code does what its spec says. Binary,
-  reproducible; unit of truth is the assertion. This is all of
-  [testing-strategy.md](testing-strategy.md). Mutation checks (§Prove the guard
+  reproducible; unit of truth is the assertion, and a test uses no IO.
+  [testing-strategy.md](testing-strategy.md) defines the tests, and the E2E and
+  smoke checks beside them, which are validation surfaces. Mutation checks (§Prove the guard
   bites, below) are the meta-quality layer that makes test coverage meaningful.
 - **Evaluate** — _probabilistic_. Measures the value and reliability of a
   judgement-laden capability across realistic inputs, graded relative to a
@@ -227,8 +228,9 @@ canonical run order lives in the
 4. **Static analysis** (`knip`, `depcruise`) — unused code, exports and
    dependencies; circular dependencies; layer violations. Linting enforces _what
    you should do_; static analysis detects _what you forgot to clean up_.
-5. **Testing** (`test`, `test:e2e`, the smoke tests) — behavioural correctness at
-   every level.
+5. **Testing and checks** — `test` proves product behaviour at every level, with
+   no IO; the smoke runner's checks and the site's Playwright suite are
+   validation checks of the running system and its shipped form.
 6. **Mutation checks** (§Prove the guard bites) — test-suite effectiveness: proves
    tests detect real faults, not merely exercise code paths.
 7. **Build** (`build`) — every derived surface compiles from the entity graph.
@@ -244,7 +246,7 @@ production runs. Worked instance (2026-07-2x): a Vitest unit test passed on a
 runtime fact the real build path could not satisfy, because Vite resolves
 workspace packages and a `tsx`-driven build script does not — the green unit test
 "proved" a resolution the shipped artefact lacked. When a claim is about a RUNTIME
-or BUILD property, the check must run on that runtime or build path (a smoke test
+or BUILD property, the check must run on that runtime or build path (a smoke check
 on the built artefact, not a unit test on the source graph). Composes with the
 `green-parts-red-composition` pattern: per-path checks compose no better than
 per-part ones.
@@ -267,6 +269,21 @@ estate is **strictly ESM — zero `require` statements**; the presence of a
 discouraged**: it errors by default, with any sanctioned use carried as a
 recorded, per-instance exemption in the rule configuration — never a silent
 allowance.
+
+**An observation is an instrument** (owner, 2026-09-14, verbatim: "sometimes
+you don't need an automated check @validation-strategy.md sometimes you need
+an observation"). Where the property's real machinery cannot run inside a
+test (git's own merge semantics, a filesystem, a running vendor, a spawned
+process), because tests never use or create IO
+([testing-strategy.md](testing-strategy.md) §Philosophy), the property is
+exercised once at cure time by hand and the run is recorded on the pull
+request and in the records: the commands, the inputs, what was seen. An
+observation is dated, first-hand and reproducible from its record; it is
+never narrated as a suite's proof, and a suite is never built to replace it
+with IO. Worked instance, in the lineage's estate (2026-09-14): its review-cost
+gate's sync predicate, proven by unit tests over injected git output plus one
+recorded run of the real git on its PR #146, a scratch repository exercising
+the admitted and refused merge shapes by hand.
 
 ## Prove the guard bites: claim-directed mutation checks
 
@@ -314,6 +331,19 @@ projection roots, defining an external skills CLI's standard install layout as a
 defect tolerated only via a homegrown lock exemption; cured by recognising
 Practice projections through their recorded derivation and leaving everything
 else untouched.
+
+## Visibility precedes validation
+
+A validator over a shape nobody has ratified promotes the accidental to the
+canonical (owner correction, 2026-07-09, on an audit of agent-facing content
+that had evolved organically: "a validator at this time might accidentally
+lock in shapes that evolved organically and without intention or oversight").
+Before proposing any validator, guard or eval gate, ask whether the surface's
+shape has been ratified from first principles. If not, the sequence is: make
+the shape visible and reviewable (a registry, a report), let the right people
+judge it, ratify the intended shape, and only then guard it. The reflex to
+guard drift the moment it is found presupposes that the current shape is
+intended.
 
 ## Eval home
 

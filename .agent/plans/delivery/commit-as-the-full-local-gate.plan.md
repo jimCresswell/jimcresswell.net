@@ -5,10 +5,14 @@ name: The commit as the full local gate, with a host-wide bound on concurrent ga
 overview: >-
   Bound concurrent full local gates on the host by a mechanism, then move the
   full gate from push to commit, as the owner ruled for both estates.
-status: sketch
-ratified_by: null
-ratified_date: null
-ratified_where: null
+status: ratified
+ratified_by: Jim Cresswell
+ratified_date: 2026-09-24
+ratified_where: >-
+  The owner's card answer of 2026-09-24 in the Director session of Wick binds
+  Temper (ed7b48), ratifying this shape as recommended: six pull requests, A
+  to F, with D proceeding after B and C and no further card. Relayed to the
+  exchange seat at 13:00Z and recorded on its napkin.
 serves: best-of-each-practice
 impact_areas:
   - practice-and-estate
