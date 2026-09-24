@@ -64,9 +64,8 @@ interface Incoherence {
 const ZERO_TOOL_RULES: readonly Incoherence[] = [
   {
     key: 'tools',
-    breaks: (block) =>
-      toolNames(block.tools).includes(ZERO_TOOLS) && toolNames(block.tools).length > 1,
-    message: `${ZERO_TOOLS} stands alone: a zero-tool adapter lists no tool`,
+    breaks: (block) => toolNames(block.tools).includes(ZERO_TOOLS) && block.tools !== ZERO_TOOLS,
+    message: `${ZERO_TOOLS} stands alone, written exactly: a zero-tool adapter lists no tool`,
   },
   {
     key: 'disallowedTools',

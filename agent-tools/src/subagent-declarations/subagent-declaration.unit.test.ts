@@ -169,12 +169,13 @@ describe('parseSubagentDeclaration', () => {
     expect(unwrapErr(withGemini('Alpha\non Gemini.'))).toMatch(/^alpha: gemini\.description: /u);
   });
 
-  it('refuses a zero-tool Claude block that names a tool, a deny list, or the pointer body a no-tools agent cannot follow, naming the field that breaks it', () => {
+  it('refuses a zero-tool Claude block that names a tool, pads the word, keeps a deny list, or keeps the pointer body a no-tools agent cannot follow, naming the field that breaks it', () => {
     const refusal = (claude: Record<string, unknown>) =>
       unwrapErr(parseSubagentDeclaration('voter', { description: 'Voter.', claude }));
     expect(refusal({ tools: 'none, Read', body: 'system-prompt' })).toMatch(
       /^voter: claude\.tools: /u,
     );
+    expect(refusal({ tools: ' none ', body: 'system-prompt' })).toMatch(/^voter: claude\.tools: /u);
     expect(refusal({ tools: 'none', disallowedTools: 'Write', body: 'system-prompt' })).toMatch(
       /^voter: claude\.disallowedTools: /u,
     );

@@ -1,12 +1,12 @@
 /**
  * A template's System prompt block: the one blockquote under its `## System prompt` heading,
  * before the next heading of the same or a higher level, unquoted line by line (a bare `>`
- * line is a paragraph break). A heading inside a code fence is example text, never the
- * section's start or end. The block is carried whole or not at all: a quote that a
- * non-blank line runs on from (a lazy continuation, which Markdown reads as part of the
- * quote), a second quote in the section, or a quote with no text in it, reads as none,
- * which the reader refuses. A Claude adapter whose declaration names the block carries it verbatim as its body
- * (`claude-fields.ts`), so the template is its one home.
+ * line is a paragraph break). A heading or a quote line inside a code fence is example
+ * text: never the section's start or end, and never its quote. The block is carried whole or
+ * not at all: a quote that a non-blank line runs on from (a lazy continuation, which Markdown
+ * reads as part of the quote), a second quote in the section, or a quote with no text in it,
+ * reads as none, which the reader refuses. A Claude adapter whose declaration names the block
+ * carries it verbatim as its body (`claude-fields.ts`), so the template is its one home.
  *
  * @packageDocumentation
  */
@@ -41,8 +41,14 @@ function unfenced(lines: readonly string[]): readonly boolean[] {
   });
 }
 
-/** The lines of the System prompt section, after its heading; undefined when there is none. */
-function promptSection(lines: readonly string[]): readonly string[] | undefined {
+/** A section's lines, and for each whether it sits outside every code fence. */
+interface Section {
+  readonly lines: readonly string[];
+  readonly outside: readonly boolean[];
+}
+
+/** The System prompt section, after its heading; undefined when there is none. */
+function promptSection(lines: readonly string[]): Section | undefined {
   const outside = unfenced(lines);
   const start = lines.findIndex((line, index) => outside[index] === true && line === HEADING);
   if (start === -1) {
@@ -51,7 +57,13 @@ function promptSection(lines: readonly string[]): readonly string[] | undefined 
   const end = lines.findIndex(
     (line, index) => index > start && outside[index] === true && SECTION_END.test(line),
   );
-  return lines.slice(start + 1, end === -1 ? undefined : end);
+  const stop = end === -1 ? undefined : end;
+  return { lines: lines.slice(start + 1, stop), outside: outside.slice(start + 1, stop) };
+}
+
+/** Whether a section line is a quote line outside every fence. */
+function quotedAt(section: Section, index: number): boolean {
+  return section.outside[index] === true && isQuoted(section.lines[index] ?? '');
 }
 
 /** Whether a line ends the quote before it rather than running on into it: blank, or a heading. */
@@ -63,15 +75,14 @@ function closesQuote(line: string): boolean {
  * The quoted run that starts the section's first quote, when it is the section's one quote
  * and nothing runs on from it; undefined otherwise.
  */
-function wholeQuote(section: readonly string[], first: number): readonly string[] | undefined {
-  const stop = section.findIndex((line, index) => index > first && !isQuoted(line));
+function wholeQuote(section: Section, first: number): readonly string[] | undefined {
+  const { lines } = section;
+  const stop = lines.findIndex((_line, index) => index > first && !quotedAt(section, index));
   if (stop === -1) {
-    return section.slice(first);
+    return lines.slice(first);
   }
-  const rest = section.slice(stop);
-  return closesQuote(rest[0] ?? '') && !rest.some(isQuoted)
-    ? section.slice(first, stop)
-    : undefined;
+  const another = lines.some((_line, index) => index >= stop && quotedAt(section, index));
+  return closesQuote(lines[stop] ?? '') && !another ? lines.slice(first, stop) : undefined;
 }
 
 /**
@@ -82,8 +93,8 @@ function wholeQuote(section: readonly string[], first: number): readonly string[
  * carry whole.
  */
 export function systemPromptBlock(markdown: string): string | undefined {
-  const section = promptSection(markdown.split('\n')) ?? [];
-  const first = section.findIndex(isQuoted);
+  const section = promptSection(markdown.split('\n')) ?? { lines: [], outside: [] };
+  const first = section.lines.findIndex((_line, index) => quotedAt(section, index));
   const quote = first === -1 ? undefined : wholeQuote(section, first);
   const text = quote?.map((line) => line.replace(/^> ?/u, '')).join('\n');
   return text?.trim() === '' ? undefined : text;
