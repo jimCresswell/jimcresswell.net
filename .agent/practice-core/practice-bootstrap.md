@@ -353,8 +353,10 @@ layer is not yet installed, make that status explicit in `AGENT.md` and
 the Practice bridge.
 
 Platform adapters contain only activation metadata and a pointer to the
-canonical template (see Artefact Model table for paths). Unsupported
-platforms stay explicit in the local matrix.
+canonical template (see Artefact Model table for paths). The one exception is
+PDR-009's: a role that cannot read files, or whose bounded turns belong to its
+task, carries its template's System prompt block verbatim in place of the
+pointer. Unsupported platforms stay explicit in the local matrix.
 
 ### Template Structure
 
