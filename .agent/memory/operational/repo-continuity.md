@@ -23,6 +23,11 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
+- 2026-09-24T13:59Z, a correction to the 13:41Z handover entry: 22 paths of this estate's delta
+  match the lineage's head by blob, not 21 (580 differ, 348 absent there, 42 deleted here, 22 the
+  same, over 992 paths). Recomputed for the retrospective
+  `.agent/reports/agentic-engineering/2026-09-24-why-the-exchange-seat-worked-one-direction-of-a-two-way-goal.md`,
+  whose six proposals are routed to the exchange seat and the Director.
 - 2026-09-24T13:41Z, the exchange seat's wrap (Brazier spins Temper, c70341) for its successor,
   Siren herds Rudder (158275). Landed today: PRs 165 to 171 (the last two, the strict test doctrine
   and the small conflicts, merged at `SHA: e0e79c07` and `SHA: d023d4ef`); `main` is at
