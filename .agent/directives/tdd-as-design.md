@@ -47,10 +47,12 @@ and every check the test-expert applies, derives from it.
    describe value flow that lower-scale tests cannot reach. Different
    scales have different greening costs, and that is intentional, not a
    flaw to optimise away. The scales that drive a running system (E2E,
-   UI, a11y, visual regression) use IO, so they are validation checks,
-   not tests (`testing-strategy.md` §Philosophy); the cycle discipline
-   applies to them unchanged, as checks written before the code they
-   describe, and "test" at those scales in this directive reads "check".
+   a browser journey at the UI scale, a11y, visual regression) use IO,
+   so they are validation checks, not tests (`testing-strategy.md`
+   §Philosophy); a component's rendered behaviour, proven in process,
+   is an integration test. The cycle discipline applies to the checks
+   unchanged, as checks written before the code they describe, and
+   "test" at those scales in this directive reads "check".
 
 ## The Atomic Landing Invariant
 
@@ -196,8 +198,6 @@ refactoring. They should be deleted or rewritten as descriptions.
   examples of the cycle at each scale, atomic-landing scenarios,
   parallel-cycle sequencing for multi-level deliveries, refactoring
   TDD edge cases) lives in the recipes file and grows over time.
-  The plan `validation-and-tdd-doctrine-restructure` (P2) promotes
-  this seed into the full playbook.
 - **It is not a process checklist.** It is a description of what TDD
   *is*. The atomic landing invariant has process consequences, but
   the invariant exists because of the foundational definition, not

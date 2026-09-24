@@ -1,7 +1,7 @@
 ---
 title: "Validation Strategy"
 status: active
-last_updated: 2026-09-12
+last_updated: 2026-09-24
 fitness_line_target: 330
 fitness_line_limit: 400
 fitness_char_limit: 24000
@@ -30,8 +30,9 @@ suites in this repository produce real experience to write from.
 ## The spine: test / evaluate / assure
 
 - **Test** — _deterministic_. Proves code does what its spec says. Binary,
-  reproducible; unit of truth is the assertion. This is all of
-  [testing-strategy.md](testing-strategy.md). Mutation checks (§Prove the guard
+  reproducible; unit of truth is the assertion, and a test uses no IO.
+  [testing-strategy.md](testing-strategy.md) defines the tests, and the E2E and
+  smoke checks beside them, which are validation surfaces. Mutation checks (§Prove the guard
   bites, below) are the meta-quality layer that makes test coverage meaningful.
 - **Evaluate** — _probabilistic_. Measures the value and reliability of a
   judgement-laden capability across realistic inputs, graded relative to a
@@ -227,8 +228,9 @@ canonical run order lives in the
 4. **Static analysis** (`knip`, `depcruise`) — unused code, exports and
    dependencies; circular dependencies; layer violations. Linting enforces _what
    you should do_; static analysis detects _what you forgot to clean up_.
-5. **Testing** (`test`, `test:e2e`, the smoke tests) — behavioural correctness at
-   every level.
+5. **Testing and checks** — `test` proves product behaviour at every level, with
+   no IO; `test:e2e`, the smoke checks and the site's Playwright suite are
+   validation checks of the running system and its shipped form.
 6. **Mutation checks** (§Prove the guard bites) — test-suite effectiveness: proves
    tests detect real faults, not merely exercise code paths.
 7. **Build** (`build`) — every derived surface compiles from the entity graph.
@@ -261,6 +263,13 @@ path idioms, comment-stripping bypasses) are the instrument's shape, not bugs to
 patch one spelling at a time. Prefer the instrument that exercises the property's
 real path over a textual shadow of it.
 
+The module-system policy those rules enforce (owner ruling 2026-08-09): this
+estate is **strictly ESM — zero `require` statements**; the presence of a
+`require` IS the finding, never a style note. **Dynamic `import()` is strongly
+discouraged**: it errors by default, with any sanctioned use carried as a
+recorded, per-instance exemption in the rule configuration — never a silent
+allowance.
+
 **An observation is an instrument** (owner, 2026-09-14, verbatim: "sometimes
 you don't need an automated check @validation-strategy.md sometimes you need
 an observation"). Where the property's real machinery cannot run inside a
@@ -275,13 +284,6 @@ with IO. Worked instance, in the lineage's estate (2026-09-14): its review-cost
 gate's sync predicate, proven by unit tests over injected git output plus one
 recorded run of the real git on its PR #146, a scratch repository exercising
 the admitted and refused merge shapes by hand.
-
-The module-system policy those rules enforce (owner ruling 2026-08-09): this
-estate is **strictly ESM — zero `require` statements**; the presence of a
-`require` IS the finding, never a style note. **Dynamic `import()` is strongly
-discouraged**: it errors by default, with any sanctioned use carried as a
-recorded, per-instance exemption in the rule configuration — never a silent
-allowance.
 
 ## Prove the guard bites: claim-directed mutation checks
 
@@ -339,8 +341,8 @@ lock in shapes that evolved organically and without intention or oversight").
 Before proposing any validator, guard or eval gate, ask whether the surface's
 shape has been ratified from first principles. If not, the sequence is: make
 the shape visible and reviewable (a registry, a report), let the right people
-judge it, ratify the intended shape, and only then guard it. The
-guard-drift-when-you-find-it reflex presupposes that the current shape is
+judge it, ratify the intended shape, and only then guard it. The reflex to
+guard drift the moment it is found presupposes that the current shape is
 intended.
 
 ## Eval home

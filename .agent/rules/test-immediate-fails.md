@@ -42,6 +42,7 @@ seam, extract a pure function, inject a dependency).
 
 4. **Any test triggers any IO.** IO is a filesystem read or write, a
    network call, a socket (loopback included), a child process, a
+   clock read (`Date.now()`, `new Date()`, `performance.now()`), a
    timer that interacts with the runtime, or an SDK init call with
    side effects, in the test or in any helper it imports. This is
    the absolute invariant of `testing-strategy.md` §Philosophy
@@ -50,8 +51,8 @@ seam, extract a pure function, inject a dependency).
    test as imported modules or as literal values. A fixture-reading
    `test-helpers/` module (the lineage's two worked instances were a
    conformance-suite fixture loader and a codegen schema-cache reader)
-   is pre-invariant estate for `no-io-test-boundary-and-di-recovery.plan.md`;
-   existing code is evidence of the estate and carries no approval
+   is a defect under this item; existing code is evidence of the
+   estate and carries no approval
    ([PDR-091](../practice-core/decision-records/PDR-091-precedence-is-not-approval.md)).
 5. **Any test (unit or integration) touches `process.env`.** Reading OR writing `process.env` is prohibited.
    Pass literal inputs; do not inherit from shell state.
@@ -70,8 +71,8 @@ seam, extract a pure function, inject a dependency).
    separately running system is an E2E check, a validation surface.
    Code imported into the test process is proven at the handler
    seam, called directly: a harness's loopback listener is a socket.
-   Network reach lives only in the deploy pipeline, validation checks
-   and operator context, outside the network-free PR-check boundary.
+   Network reach lives in validation checks run by CI-gated tasks, the
+   deploy pipeline and operator context; never in a test.
 
 ## Mock/Stub Immediate Fails
 
@@ -80,7 +81,9 @@ seam, extract a pure function, inject a dependency).
 11. **Unit test contains any mock.** Unit tests are pure — no mocks,
     fakes, or stubs of any kind. Parameters in, result out.
 12. **Integration test contains a mock with logic.** Integration
-    mocks are *simple* fakes — constant returns, captured calls. No
+    mocks are *simple* fakes — constant returns, or a record of what
+    the product sent out through the port, read as output; which calls
+    were made is never asserted. No
     branching, no state machines, no string interpolation of inputs.
     Complexity signals product-code needs refactoring for
     testability.
@@ -93,15 +96,7 @@ seam, extract a pure function, inject a dependency).
 14. **Test authors any function with non-trivial complexity.**
     Helpers in tests must be trivial: build a literal, wrap a call.
     Conditional logic, loops with side effects, or multi-step state
-    setup in a test function = test code testing itself. ONE named
-    sanctioned shape (owner-ratified 2026-08-03, the meta-examples
-    round-trip rework): a test MAY author a small derivation helper
-    that projects EXPECTATIONS from a committed fixture (imported as
-    a module, per item 4), when the projection models a DOCUMENTED
-    product contract named in a comment — deriving expectations from
-    the owning source is the ratified alternative to pinning copies
-    of upstream content, which stays admissible only as a designed
-    sentinel carrying a named decision.
+    setup in a test function = test code testing itself.
 15. **Test contains skipped or pending cases** (`it.skip`,
     `describe.skip`, `test.todo`, `it.todo`, `xit`, `xdescribe`, or
     any skip/pending mechanism). Fix or delete. See
@@ -156,8 +151,8 @@ problems:
 
 - "Test imports production factory X" → product code lacks a DI seam;
   refactor to accept X as a parameter.
-- "Unit test touches IO" → the code under test isn't a pure function;
-  extract a pure core.
+- "A test touches IO" → inject the seam or extract a pure core; what
+  needs real IO moves to validation.
 - "Integration test has complex mock" → the dependency surface is too
   wide; split the responsibility in product code.
 

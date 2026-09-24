@@ -68,17 +68,17 @@ expect(stale).toBe(true);
 - Helpers that mutate `process.env` to flip a mode must not exist. Use the
   isolated config pattern instead.
 
-### Subprocess-Spawned Tests
+### Subprocess-Spawned Checks
 
-Tests that spawn a built command as a **separate process** (e.g. the
-`smoke:*` scripts using `spawn('node', [entryPoint], { env })`) may pass
-environment variables via the spawn `env` option. This is safe because the
-variables are scoped to the child process and cannot leak into the test runner.
+A test never spawns a process (`testing-strategy.md` §Rules). A check that
+spawns a built command as a **separate process** (a smoke check using
+`spawn('node', [entryPoint], { env })`) may pass environment variables via the
+spawn `env` option: they are scoped to the child process.
 
-Vitest smoke suites may load ambient environment in the runner config
-composition root, validate it, and pass the resulting object through
-`test.provide` / `inject`. Test files and setup files must consume the
-injected object; they must not read or write `process.env`.
+A check's composition root (its runner config, global setup or entry script)
+may load ambient environment, validate it, and pass the resulting object on.
+The check's other files consume the injected object; they never read or write
+`process.env`.
 
 ### Reference Implementations
 
@@ -110,9 +110,8 @@ a dependency-injection seam:
   repository: extract the core with the service injected + a
   `createHandler(fn)` factory). "Tests would be audit-shaped" is a signal to
   inspect the product code's injectability, never merely a reason to skip.
-- **A unit or integration test that seems to need real IO** beyond the
-  in-process exchange with an imported module (see [Test File
-  Classification](#test-file-classification)). The fix is to refactor the
+- **A unit or integration test that seems to need real IO** (see [Test File
+  Classification](#test-file-classification)): a loopback socket counts. The fix is to refactor the
   product to be testable (route the read/write through an injectable
   dependency, as sibling modules already do) and inject an in-memory fake —
   never to leave the IO in the test, and never to treat the refactor as
@@ -140,15 +139,15 @@ against fixtures.
 Test classification is based on what the test actually does,
 not what the author intends:
 
-- **Module-level state = integration**: any test that touches
-  module-level singletons with IO must be
-  `*.integration.test.ts`, even if it injects DI fakes for
-  the new behaviour.
-- **In-process HTTP harnesses classify by boundary, not tool** (owner-ratified
-  2026-07-29): a request driven at an imported, in-process app is an
-  integration test — the harness's loopback socket is tool mechanics, not a
-  system boundary. A request driven at a separately running black-box system
-  over a network interface is E2E. The site's Playwright suite is the E2E
+- **Module-level state with IO is a missing seam**: a test that touches a
+  module-level singleton with IO is a defect under any name. Inject the
+  singleton's IO and prove the rest in process.
+- **A socket is IO, whatever tool opens it**: a request driven at an
+  imported, in-process app over a harness's loopback listener is IO in a
+  test. Exercise the handler below the listener, called directly. A request
+  driven at a separately running black-box system over a network interface is
+  an E2E check, classified by the boundary, not the tool (owner-ratified
+  2026-07-29). The site's Playwright suite is the E2E
   case: it runs against a production build served by the harness's own
   server process, started by the global setup on a port of its own
   (`jcdotnet/e2e/`, `*.e2e-ui.test.ts` for browser journeys and
@@ -264,8 +263,6 @@ ambient overrides — see `no-global-state-in-tests`.
   `tsconfig.lint.json`. Files must be included in both for linting to work.
 - Stale vitest include globs are silent because of `passWithNoTests: true` — remove
   dead globs promptly after file moves.
-- Integration tests that need `.env` file isolation: use `'/tmp'` as the start
-  directory to prevent ambient `.env` files from satisfying schema requirements.
 - After refactoring entry points (removing `dotenv`, changing a config loader's
   signature), check E2E and smoke tests that launch the process directly — they
   break when the entry-point contract changes.
