@@ -8,6 +8,7 @@ import { join } from 'node:path';
 import { typeSafeEntries } from '@engraph/type-helpers';
 
 import { GATE_SLOT_HELD_ENV, GATE_SLOT_HOST } from '../src/gate-slot/gate-slot-contract';
+import { encodeHolderIdentity } from '../src/gate-slot/gate-slot-identity';
 import { createPortRegistry } from '../src/gate-slot/gate-slot-ports';
 import { resolvePnpm } from '../src/spawn/pnpm-path';
 
@@ -77,15 +78,16 @@ async function proveNoProbeListenerOutlivesAFailedStep(): Promise<void> {
     slotPorts: SMOKE_SLOT_PORTS,
     patience: { mutexAttempts: 5, mutexRetryMs: 50, identityTimeoutMs: 200 },
   });
-  const identity = {
+  const identityLine = encodeHolderIdentity({
     worktree: PACKAGE_ROOT,
     pid: process.pid,
     command: 'pnpm check',
     acquired_at: new Date().toISOString(),
-  };
+  });
+  assert.ok(identityLine.ok);
   await assert.rejects(
     registry.transact({
-      identity,
+      identityLine: identityLine.value,
       decide: () => {
         throw new Error('a failing step');
       },

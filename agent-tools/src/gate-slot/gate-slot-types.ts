@@ -1,6 +1,7 @@
 import type { InheritedProcessEnd } from '../repo-check/repo-check-runtime.js';
 
-import type { GateHolderIdentity, GateSlotLimit } from './gate-slot-contract.js';
+import type { GateSlotLimit } from './gate-slot-contract.js';
+import type { HolderIdentityLine } from './gate-slot-identity.js';
 import type { AdmissionDecision, SlotObservation } from './gate-slot-policy.js';
 
 /**
@@ -12,7 +13,8 @@ import type { AdmissionDecision, SlotObservation } from './gate-slot-policy.js';
 
 /** One admission attempt: who is asking, and the verdict to apply under the mutex. */
 interface TransactRequest {
-  readonly identity: GateHolderIdentity;
+  /** The identity line to serve on an admitted slot. */
+  readonly identityLine: HolderIdentityLine;
   readonly decide: (slots: readonly SlotObservation[]) => AdmissionDecision;
 }
 
@@ -39,10 +41,12 @@ export interface ChildRequest {
   readonly extraEnv: Readonly<Record<string, string>>;
 }
 
-/** How a gate child ended, and the bound that stopped it, if one did. */
+/** How a gate child ended, the bound that stopped it, if one did, and what its group left. */
 export interface GateChildEnd {
   readonly end: InheritedProcessEnd;
   readonly stoppedAtBoundMs: number | undefined;
+  /** True when the child's process group still answered after the sweep's last SIGKILL. */
+  readonly groupNotCleared: boolean;
 }
 
 /** Everything gate-slot reads from or does to the world, injected. */
@@ -56,8 +60,8 @@ export interface GateSlotIo {
   readonly now: () => string;
   /**
    * Under the mutex, observe every slot, apply the request's verdict, and on
-   * an admit keep the chosen slot, serving the request's identity on it until
-   * released.
+   * an admit keep the chosen slot, serving the request's identity line on it
+   * until released.
    */
   readonly transact: (request: TransactRequest) => Promise<TransactOutcome>;
   readonly observe: () => Promise<ObserveOutcome>;

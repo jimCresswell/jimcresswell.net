@@ -8,12 +8,14 @@ import {
   blockedChild,
   exitOf,
   holdSmokeLock,
+  killGroup,
   makeTree,
   outputEnded,
   readyPid,
   SMOKE_MUTEX_PORT,
   SMOKE_SLOT_PORTS,
   startFixture,
+  unreapedMemberChild,
   waitFor,
 } from './gate-slot-smoke-support';
 
@@ -46,14 +48,6 @@ async function statusOf(): Promise<string> {
 
 function freeCount(status: string): number {
   return (status.match(/: free$/gmu) ?? []).length;
-}
-
-function killGroup(leader: number): void {
-  try {
-    process.kill(-leader, 'SIGKILL');
-  } catch {
-    // Already gone.
-  }
 }
 
 async function proveTheKernelFreesTheSlotOfAKilledHolder(): Promise<void> {
@@ -199,6 +193,20 @@ async function proveAGatePastItsBoundIsStoppedWhole(): Promise<void> {
   await outputEnded(gate);
 }
 
+/** An unreaped dead member, which no SIGKILL clears, fails the gate though its leader exited 0. */
+async function proveAGroupTheSweepCannotClearFailsTheGate(): Promise<void> {
+  const gate = startFixture(
+    { worktree: await tree('unreaped'), child: 'sh' },
+    unreapedMemberChild(),
+  );
+  try {
+    await waitFor(gate.process.stderr, gate.stderr, 'process group was not cleared');
+    assert.equal(await exitOf(gate), 1, gate.stderr());
+  } finally {
+    gate.process.stdin?.end();
+  }
+}
+
 /** A reader that reads a holder's identity and never closes cannot keep a finished gate from exiting. */
 async function proveAHalfOpenReaderCannotHoldAGateOpen(): Promise<void> {
   const gate = startFixture({ worktree: await tree('half-open') }, blockedChild(0));
@@ -229,7 +237,8 @@ try {
   await proveAFinishedGateLeavesNoStraggler();
   await proveATerminalInterruptReachesTheGate();
   await proveAGatePastItsBoundIsStoppedWhole();
-  process.stdout.write('gate-slot wrapper smoke: 11/11 proofs passed\n');
+  await proveAGroupTheSweepCannotClearFailsTheGate();
+  process.stdout.write('gate-slot wrapper smoke: 12/12 proofs passed\n');
 } finally {
   await Promise.all(trees.map(async (path) => rm(path, { recursive: true, force: true })));
 }

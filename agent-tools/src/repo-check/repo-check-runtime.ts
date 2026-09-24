@@ -4,7 +4,7 @@ import { writeErrorLine } from '../core/terminal-output.js';
 import { resolveTrustedGit } from '../core/trusted-git.js';
 import { childEnvironment } from '../spawn/child-environment.js';
 import { resolvePnpm } from '../spawn/pnpm-path.js';
-import { signalProcessGroup } from '../spawn/process-group.js';
+import { signalProcess, signalProcessGroup, type SignalOutcome } from '../spawn/process-group.js';
 
 import type { RepoCheckRuntime } from './repo-check-types.js';
 
@@ -81,11 +81,10 @@ export interface InheritedProcessOptions {
   readonly processGroup?: boolean;
   /**
    * Receives a kill for the child once it is spawned, so a caller can
-   * forward signals to it and bound its lifetime. With `processGroup` the
-   * kill signals the whole group, and a group that has already ended is not
-   * an error.
+   * forward signals to it and bound its lifetime. The kill returns the
+   * kernel's answer; with `processGroup` it signals the whole group.
    */
-  readonly onSpawn?: (kill: (signal: NodeJS.Signals) => void) => void;
+  readonly onSpawn?: (kill: (signal: NodeJS.Signals) => SignalOutcome) => void;
 }
 
 /**
@@ -135,10 +134,13 @@ export function spawnInheritedProcess(
     const spawned = child;
     options.onSpawn?.((signal) => {
       if (options.processGroup === true) {
-        signalProcessGroup(spawned.pid, signal);
-      } else {
-        spawned.kill(signal);
+        return signalProcessGroup(spawned.pid, signal);
       }
+      // Once Node has reported the child's end its pid may be reused, so it is not signalled.
+      if (spawned.exitCode !== null || spawned.signalCode !== null) {
+        return 'ended';
+      }
+      return signalProcess(spawned.pid, signal);
     });
     child.on('close', (status, signal) => resolve({ status, signal }));
     child.on('error', (error) => {

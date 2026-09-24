@@ -1,4 +1,5 @@
 import { spawnInheritedProcess } from '../repo-check/repo-check-runtime.js';
+import { sweepProcessGroup, type SignalOutcome } from '../spawn/process-group.js';
 
 import type { ChildRequest, GateChildEnd } from './gate-slot-types.js';
 
@@ -15,6 +16,21 @@ export interface GateChildRunnerOptions {
 /** Whether a finished gate's group is swept: a negative pid names a group only on POSIX. */
 const SWEEPS_GROUPS = process.platform !== 'win32';
 
+/**
+ * How long a finished gate's group sweep waits for the kernel to report the
+ * group gone: up to 50 SIGKILLs, 20 ms apart, about a second. Once a group's
+ * dead members have a parent that reaps them, the kernel reports it gone in
+ * about half a millisecond (measured).
+ */
+const GROUP_SWEEP = {
+  attempts: 50,
+  intervalMs: 20,
+  sleep: async (milliseconds: number): Promise<void> =>
+    new Promise((resolve) => {
+      setTimeout(resolve, milliseconds);
+    }),
+};
+
 /** The termination signals the wrapper passes on to the gate while it runs. */
 const FORWARDED: readonly NodeJS.Signals[] = ['SIGINT', 'SIGTERM', 'SIGHUP'];
 
@@ -28,17 +44,19 @@ const FORWARDED: readonly NodeJS.Signals[] = ['SIGINT', 'SIGTERM', 'SIGHUP'];
  * that lands before the spawn has handed back its kill; the wrapper stays
  * until the child has ended, so it can free the slot. A passed-on signal, or
  * the bound at `maxMs`, starts a grace period of `graceMs`, after which the
- * group gets SIGKILL. However the child ends, its group then gets SIGKILL
- * before the slot is freed: anything still in the gate's own group is a
- * straggler (a process meant to outlive the gate leaves the group through
- * setsid), and none may keep loading the host outside the bound. A wrapper
- * that is itself SIGKILLed cannot pass anything on; its child's group runs on.
+ * group gets SIGKILL. However the child ends, its group is then swept with
+ * SIGKILL until the kernel reports it gone, before the slot is freed:
+ * anything still in the gate's own group is a straggler (a process meant to
+ * outlive the gate leaves the group through setsid or setpgid), and none may
+ * keep loading the host outside the bound. A group the sweep cannot clear is
+ * reported, and the gate fails. A wrapper that is itself SIGKILLed cannot
+ * pass anything on; its child's group runs on.
  */
 export function createGateChildRunner(
   options: GateChildRunnerOptions,
 ): (request: ChildRequest) => Promise<GateChildEnd> {
   return async ({ args, extraEnv }) => {
-    let killGroup: ((signal: NodeJS.Signals) => void) | undefined;
+    let killGroup: ((signal: NodeJS.Signals) => SignalOutcome) | undefined;
     let pending: NodeJS.Signals | undefined;
     let stoppedAtBound = false;
     let graceTimer: NodeJS.Timeout | undefined;
@@ -70,16 +88,28 @@ export function createGateChildRunner(
           }
         },
       });
-      if (SWEEPS_GROUPS) {
-        killGroup?.('SIGKILL');
-      }
-      return { end, stoppedAtBoundMs: stoppedAtBound ? options.maxMs : undefined };
+      return {
+        end,
+        stoppedAtBoundMs: stoppedAtBound ? options.maxMs : undefined,
+        groupNotCleared: await sweepLeavesGroup(killGroup),
+      };
     } finally {
       clearTimeout(boundTimer);
       clearTimeout(graceTimer);
       stopForwarding();
     }
   };
+}
+
+/** Sweep a finished gate's group; true when it still answers after the sweep's last SIGKILL. */
+async function sweepLeavesGroup(
+  killGroup: ((signal: NodeJS.Signals) => SignalOutcome) | undefined,
+): Promise<boolean> {
+  if (!SWEEPS_GROUPS || killGroup === undefined) {
+    return false;
+  }
+
+  return (await sweepProcessGroup(killGroup, GROUP_SWEEP)) === 'not-cleared';
 }
 
 /** Pass the forwarded signals to `forward` until the returned function is called. */

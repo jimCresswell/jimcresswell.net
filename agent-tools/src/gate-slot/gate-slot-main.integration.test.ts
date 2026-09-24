@@ -61,7 +61,11 @@ function hostIo(
       release: NO_RELEASE,
     }),
     observe: async () => ({ kind: 'observed', slots }),
-    runChild: async () => ({ end: { status: 0, signal: null }, stoppedAtBoundMs: undefined }),
+    runChild: async () => ({
+      end: { status: 0, signal: null },
+      stoppedAtBoundMs: undefined,
+      groupNotCleared: false,
+    }),
     sleep: NEXT_TICK,
     stdout: (line) => sinks.out.push(line),
     stderr: (line) => sinks.err.push(line),
@@ -76,6 +80,7 @@ describe('gate-slot run', () => {
       runChild: async () => ({
         end: { status: null, signal: 'SIGHUP' },
         stoppedAtBoundMs: undefined,
+        groupNotCleared: false,
       }),
     });
 
@@ -129,6 +134,34 @@ describe('gate-slot run', () => {
     expect(sinks.err.join('\n')).toContain('pnpm check');
   });
 
+  it('refuses, before taking a slot, a working tree no reader could match to its tree', async () => {
+    let transactions = 0;
+    const { io, sinks } = hostIo(EMPTY_HOST, {
+      worktree: '/work/line\nbreak',
+      transact: async ({ decide }) => {
+        transactions += 1;
+        return { kind: 'decided', decision: decide(EMPTY_HOST), release: NO_RELEASE };
+      },
+    });
+
+    await expect(main(['run', 'pnpm', 'check'], io)).resolves.toBe(1);
+    expect(transactions).toBe(0);
+    expect(sinks.err.join('\n')).toContain('pnpm check');
+  });
+
+  it('fails a gate whose process group the sweep could not clear, and says so', async () => {
+    const { io, sinks } = hostIo(EMPTY_HOST, {
+      runChild: async () => ({
+        end: { status: 0, signal: null },
+        stoppedAtBoundMs: undefined,
+        groupNotCleared: true,
+      }),
+    });
+
+    await expect(main(['run', 'pnpm', 'check'], io)).resolves.toBe(1);
+    expect(sinks.err.join('\n')).toContain('process group');
+  });
+
   it('keeps the gate verdict when the release fails, and says so', async () => {
     const { io, sinks } = hostIo(EMPTY_HOST, {
       transact: async ({ decide }) => ({
@@ -138,7 +171,11 @@ describe('gate-slot run', () => {
           throw new Error('close failed');
         },
       }),
-      runChild: async () => ({ end: { status: 3, signal: null }, stoppedAtBoundMs: undefined }),
+      runChild: async () => ({
+        end: { status: 3, signal: null },
+        stoppedAtBoundMs: undefined,
+        groupNotCleared: false,
+      }),
     });
 
     await expect(main(['run', 'pnpm', 'check'], io)).resolves.toBe(3);
@@ -169,7 +206,7 @@ describe('gate-slot run', () => {
     { name: 'exiting 0 on its way down', end: { status: 0, signal: null }, code: 1 },
   ])('fails a gate stopped at its bound, $name, and names the bound', async ({ end, code }) => {
     const { io, sinks } = hostIo(EMPTY_HOST, {
-      runChild: async () => ({ end, stoppedAtBoundMs: 43 * 60_000 }),
+      runChild: async () => ({ end, stoppedAtBoundMs: 43 * 60_000, groupNotCleared: false }),
     });
 
     await expect(main(['run', 'pnpm', 'check'], io)).resolves.toBe(code);

@@ -1,7 +1,10 @@
 import net from 'node:net';
 
-import type { GateHolderIdentity } from './gate-slot-contract.js';
-import { encodeHolderIdentity, parseHolderIdentity } from './gate-slot-identity.js';
+import {
+  IDENTITY_LINE_MAX_CHARS,
+  parseHolderIdentity,
+  type HolderIdentityLine,
+} from './gate-slot-identity.js';
 import type { AdmissionDecision, OccupiedSlot, SlotObservation } from './gate-slot-policy.js';
 import { close, closeAll, delay, listen, refuse } from './gate-slot-listen.js';
 import type { GateSlotIo, ObserveOutcome, TransactOutcome } from './gate-slot-types.js';
@@ -43,9 +46,6 @@ export interface GateSlotPorts {
 /** The adapter's two operations, as `main` consumes them. */
 export type GateSlotRegistry = Pick<GateSlotIo, 'transact' | 'observe'>;
 
-/** An identity line longer than this reads as foreign. */
-const IDENTITY_MAX_CHARS = 4096;
-
 interface ProbedSlot {
   readonly observation: SlotObservation;
   readonly server: net.Server | undefined;
@@ -67,9 +67,9 @@ interface Settled<T> {
 /** Build the registry over the given ports. */
 export function createPortRegistry(ports: GateSlotPorts): GateSlotRegistry {
   return {
-    transact: async ({ identity, decide }) =>
+    transact: async ({ identityLine, decide }) =>
       underMutex(ports, async () =>
-        withProbedSlots(ports, serveIdentity(identity), (slots) => settle(slots, decide)),
+        withProbedSlots(ports, serveIdentity(identityLine), (slots) => settle(slots, decide)),
       ),
     observe: async () => underMutex(ports, async () => withProbedSlots(ports, refuse, observeStep)),
   };
@@ -174,7 +174,7 @@ function readAnswer(ports: GateSlotPorts, port: number): Promise<OccupiedSlot> {
     socket.setEncoding('utf8');
     socket.on('data', (chunk: string) => {
       text += chunk;
-      if (text.length > IDENTITY_MAX_CHARS) {
+      if (text.length > IDENTITY_LINE_MAX_CHARS) {
         finish({ port, state: 'foreign' });
       }
     });
@@ -195,8 +195,7 @@ function answerFrom(port: number, text: string): OccupiedSlot {
 }
 
 /** Write the identity line, then drop the connection, so no reader can hold a release open. */
-function serveIdentity(identity: GateHolderIdentity): (socket: net.Socket) => void {
-  const line = encodeHolderIdentity(identity);
+function serveIdentity(line: HolderIdentityLine): (socket: net.Socket) => void {
   return (socket) => {
     socket.on('error', () => undefined);
     socket.end(line, () => {

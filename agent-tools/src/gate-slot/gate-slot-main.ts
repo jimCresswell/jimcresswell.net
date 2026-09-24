@@ -1,8 +1,8 @@
 import { err, ok, type Result } from '@engraph/result';
 
 import { parseGateSlotArgv } from './gate-slot-argv.js';
-import { GATE_SLOT_HELD_ENV, type GateHolderIdentity } from './gate-slot-contract.js';
-import { holderCommand } from './gate-slot-identity.js';
+import { GATE_SLOT_HELD_ENV } from './gate-slot-contract.js';
+import { encodeHolderIdentity, holderCommand } from './gate-slot-identity.js';
 import {
   decideAdmission,
   type AdmissionDecision,
@@ -15,7 +15,7 @@ import {
   GIVE_UP_AFTER_POLLS,
   waitStep,
 } from './gate-slot-schedule.js';
-import type { GateSlotIo, TransactOutcome } from './gate-slot-types.js';
+import type { GateChildEnd, GateSlotIo, TransactOutcome } from './gate-slot-types.js';
 
 /** The exit code for a command-line mistake; a gate child's own code may also be 2. */
 const USAGE_EXIT = 2;
@@ -81,20 +81,35 @@ async function run(pnpmArgs: readonly string[], io: GateSlotIo): Promise<number>
       args: pnpmArgs,
       extraEnv: { [GATE_SLOT_HELD_ENV]: String(admitted.value.port) },
     });
-    if (child.stoppedAtBoundMs === undefined) {
-      return exitCodeFor(child.end);
-    }
-    io.stderr(
-      `gate-slot: the gate ran past its ${child.stoppedAtBoundMs / 60_000}-minute bound and was stopped.`,
-    );
-    // A gate stopped at its bound never passes, even if its child exited 0 on the way down.
-    return Math.max(exitCodeFor(child.end), 1);
+    return verdict(child, io);
   } catch (error: unknown) {
     io.stderr(`gate-slot: ${command} could not run: ${describeError(error)}`);
     return 1;
   } finally {
     await releaseReporting(admitted.value, io);
   }
+}
+
+/**
+ * The exit code for how the gate ended. A gate stopped at its bound, or one
+ * whose process group the sweep could not clear, never passes, even if its
+ * child exited 0.
+ */
+function verdict(child: GateChildEnd, io: GateSlotIo): number {
+  const faults = [
+    child.stoppedAtBoundMs === undefined
+      ? undefined
+      : `the gate ran past its ${child.stoppedAtBoundMs / 60_000}-minute bound and was stopped.`,
+    child.groupNotCleared
+      ? "the gate's process group was not cleared by repeated SIGKILLs: it holds a member " +
+        'this user may not signal, one that will not die, or a dead one its parent has not reaped.'
+      : undefined,
+  ].filter((fault) => fault !== undefined);
+  for (const fault of faults) {
+    io.stderr(`gate-slot: ${fault}`);
+  }
+
+  return faults.length === 0 ? exitCodeFor(child.end) : Math.max(exitCodeFor(child.end), 1);
 }
 
 interface AdmittedSlot {
@@ -112,19 +127,23 @@ async function releaseReporting(admitted: AdmittedSlot, io: GateSlotIo): Promise
 
 /**
  * Take a slot, polling while the verdict is to wait. Each attempt stamps the
- * identity afresh, so a holder's start time is when it took its slot.
+ * identity afresh, so a holder's start time is when it took its slot, and
+ * refuses before binding when no reader could match that identity to its tree.
  */
 async function acquire(command: string, io: GateSlotIo): Promise<Result<AdmittedSlot, string>> {
   const decide = (slots: readonly SlotObservation[]): AdmissionDecision =>
     decideAdmission(slots, io.worktree, io.limit);
   for (let poll = 1; ; poll += 1) {
-    const identity: GateHolderIdentity = {
+    const identityLine = encodeHolderIdentity({
       worktree: io.worktree,
       pid: io.pid,
       command,
       acquired_at: io.now(),
-    };
-    const outcome = await io.transact({ identity, decide });
+    });
+    if (!identityLine.ok) {
+      return err(`refused: ${identityLine.error}`);
+    }
+    const outcome = await io.transact({ identityLine: identityLine.value, decide });
     if (outcome.kind === 'failed') {
       return err(`cannot read the gate slots: ${outcome.message}`);
     }

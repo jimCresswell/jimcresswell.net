@@ -1,5 +1,6 @@
 import { isAbsolute } from 'node:path';
 
+import { err, ok, type Result } from '@engraph/result';
 import { z } from 'zod';
 
 import { parseJsonTextResult } from '../core/json.js';
@@ -11,6 +12,14 @@ const MAX_COMMAND_CHARS = 256;
 
 /** The longest worktree path an identity may carry. */
 const MAX_WORKTREE_CHARS = 1024;
+
+/** The longest identity line a reader reads; a longer answer reads as foreign. */
+export const IDENTITY_LINE_MAX_CHARS = 4096;
+
+declare const readable: unique symbol;
+
+/** An identity line every reader accepts; only {@link encodeHolderIdentity} makes one. */
+export type HolderIdentityLine = string & { readonly [readable]: true };
 
 /** True when no C0, DEL or C1 control character appears: nothing can forge a line or an escape. */
 function isPrintable(text: string): boolean {
@@ -34,9 +43,30 @@ const HolderIdentitySchema = z.object({
   acquired_at: z.iso.datetime(),
 });
 
-/** The line a holder writes to every connection on its slot port. */
-export function encodeHolderIdentity(identity: GateHolderIdentity): string {
-  return `${JSON.stringify(identity)}\n`;
+/**
+ * The line a holder writes to every connection on its slot port, or why no
+ * reader would accept it. A holder whose line reads as foreign could not be
+ * matched to its tree, so a second gate could be admitted there; such an
+ * identity is refused here, before any slot is bound. The line is checked
+ * by the reader's own parse, so the two cannot drift apart.
+ */
+export function encodeHolderIdentity(
+  identity: GateHolderIdentity,
+): Result<HolderIdentityLine, string> {
+  const line = `${JSON.stringify(identity)}\n`;
+  if (!isReadableLine(line)) {
+    return err(
+      `a reader could not match this gate to its working tree ${JSON.stringify(identity.worktree)}: ` +
+        `a tree must be an absolute path of at most ${MAX_WORKTREE_CHARS} printable characters, ` +
+        `in an identity line of at most ${IDENTITY_LINE_MAX_CHARS}.`,
+    );
+  }
+
+  return ok(line);
+}
+
+function isReadableLine(line: string): line is HolderIdentityLine {
+  return parseHolderIdentity(line) !== undefined;
 }
 
 /**
@@ -54,11 +84,15 @@ export function holderCommand(pnpmArgs: readonly string[]): string {
 
 /**
  * Read what a slot's listener answered. Anything that is not a whole,
- * well-formed identity (a foreign service's greeting, a cut-off answer, a
- * field carrying a line break or out of bounds) reads as `undefined`: the
- * slot still counts as held, but by no gate the same-tree rule can match.
+ * well-formed identity (a foreign service's greeting, a cut-off or oversize
+ * answer, a field carrying a line break or out of bounds) reads as
+ * `undefined`: the slot still counts as held, but by no gate the same-tree
+ * rule can match.
  */
 export function parseHolderIdentity(text: string): GateHolderIdentity | undefined {
+  if (text.length > IDENTITY_LINE_MAX_CHARS) {
+    return undefined;
+  }
   const parsed = parseJsonTextResult(text, 'gate slot holder identity');
   if (!parsed.ok) {
     return undefined;
