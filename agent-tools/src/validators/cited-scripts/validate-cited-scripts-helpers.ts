@@ -91,7 +91,11 @@ export function findMissingScriptCitations(
   return findings;
 }
 
-function resolveCitation(
+/**
+ * Resolve one citation found in the file at `path`: unfiltered against the
+ * root table, filtered against the named workspace's.
+ */
+export function resolveCitation(
   path: string,
   citation: ScriptCitation,
   scripts: WorkspaceScripts,

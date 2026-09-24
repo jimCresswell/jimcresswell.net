@@ -64,7 +64,8 @@ async function expandWorkspacePattern(
     .map((entry) => path.join(parent, entry.name));
 }
 
-async function workspaceDirectories(repoRoot: string): Promise<readonly string[]> {
+/** The absolute directory of every workspace `pnpm-workspace.yaml` names. */
+export async function workspaceDirectories(repoRoot: string): Promise<readonly string[]> {
   const text = await fs.readFile(path.join(repoRoot, 'pnpm-workspace.yaml'), 'utf8');
   const parsed: unknown = parseYaml(text);
   const patterns = isWorkspaceManifest(parsed) ? parsed.packages : undefined;

@@ -82,21 +82,30 @@ function inlineCodeSpans(lineText: string): readonly string[] {
   return [...lineText.matchAll(INLINE_CODE_PATTERN)].map((match) => match[1] ?? '');
 }
 
-/** Whitespace-split tokens up to the first shell comment. */
+/**
+ * Whitespace-split tokens up to the first shell comment. A `;` closing a
+ * token (`pnpm check; then`) is split off as its own terminator.
+ */
 function commandTokens(text: string): readonly string[] {
   const tokens: string[] = [];
   for (const token of text.split(/\s+/)) {
     if (token.startsWith(COMMENT_PREFIX)) {
       break;
     }
-    if (token.length > 0) {
+    if (token.length > 1 && token.endsWith(';')) {
+      tokens.push(token.slice(0, -1), ';');
+    } else if (token.length > 0) {
       tokens.push(token);
     }
   }
   return tokens;
 }
 
-function citationsInCommandText(text: string, line: number): readonly ScriptCitation[] {
+/**
+ * The `pnpm` script citations in one line of command text, numbered `line`.
+ * Every invocation on the line is read, up to a shell comment.
+ */
+export function citationsInCommandText(text: string, line: number): readonly ScriptCitation[] {
   const tokens = commandTokens(text);
   const citations: ScriptCitation[] = [];
   for (let index = 0; index < tokens.length; index += 1) {
