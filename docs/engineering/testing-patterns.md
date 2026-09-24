@@ -159,13 +159,13 @@ not what the author intends:
 
 ## Composition Testing
 
-Unit + E2E tests can all pass while the integrated product fails. For features
-spanning multiple modules, add a **composition test** that exercises the
+Unit tests and E2E checks can all pass while the integrated product fails. For
+features spanning multiple modules, add a **composition check** that exercises the
 integration seam. The site's content negotiation is the local example: the
 proxy, the route handler and the rendered document each have their own tests,
 and `e2e/behaviour/markdown-content-negotiation.e2e-api.test.ts` proves the
 composed path (an `Accept` header in, the right representation out). A
-composition test IS the enforcement for multi-module integration — it is what
+composition check IS the enforcement for multi-module integration — it is what
 catches a knip or depcruise cleanup that removed a module every unit test had
 already stopped exercising.
 
@@ -264,7 +264,7 @@ ambient overrides — see `no-global-state-in-tests`.
 - Stale vitest include globs are silent because of `passWithNoTests: true` — remove
   dead globs promptly after file moves.
 - After refactoring entry points (removing `dotenv`, changing a config loader's
-  signature), check E2E and smoke tests that launch the process directly — they
+  signature), check the E2E and smoke checks that launch the process directly — they
   break when the entry-point contract changes.
 - Removing a test (e.g. deleting an audit-shaped constant assertion) can orphan the
   export it referenced — knip then blocks the commit. Un-export or delete the orphan

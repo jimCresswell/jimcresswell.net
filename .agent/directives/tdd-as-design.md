@@ -130,14 +130,14 @@ Each test scale describes a different swathe of behaviour:
 
 A unit test proves *that the unit works in isolation*; it never proves
 that *value reaches a user*. You always need at least one higher-scale
-test to prove value flow, even when the unit tests are exhaustive.
-Conversely, a high-scale test alone leaves the lower scales unspecified
+test or check to prove value flow, even when the unit tests are exhaustive.
+Conversely, a high-scale check alone leaves the lower scales unspecified
 and the implementation under-described.
 
 The doctrine is therefore: **all the scales, all the time, in
 parallel cycles**. The cost difference between scales is intentional —
 a unit test is fast to green because it specifies narrow behaviour; an
-E2E test is slower to green because it specifies whole-system
+E2E check is slower to green because it specifies whole-system
 behaviour and requires many lower-level pieces to be in place first.
 Collapsing scales toward the cheapest one is *not* an optimisation; it
 is a description gap that future failure will exploit.

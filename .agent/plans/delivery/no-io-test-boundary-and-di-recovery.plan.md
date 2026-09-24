@@ -128,7 +128,9 @@ loads it fails through `--max-warnings 0`. Its gaps are these:
    observation. Nothing is exempted.
 3. **Widen and harden the rule**, in the landing that cures the last offender:
    - its trigger covers every test, helper and setup file;
-   - checks leave its scope by location (`jcdotnet/e2e/`, `smoke-tests/`), never by an allow-list;
+   - checks leave its scope by location (`jcdotnet/e2e/`, `smoke-tests/`), never by an allow-list,
+     and a companion refusal rejects any file there that imports product code and runs it in
+     process, so location alone never exempts a test;
    - it detects clock reads and the missing modules;
    - the localhost `fetch` allowance and both allow-lists are deleted;
    - it runs at `error`;
@@ -139,7 +141,8 @@ loads it fails through `--max-warnings 0`. Its gaps are these:
 1. The inventory has a row for every offender and no blank cell. Proof, `repo-safe`: the table in
    this node, recomputed by the census script at its commit.
 2. The rule is at `error`, with no allow-list option, no structural patterns and no localhost
-   allowance, and it lints every workspace's tests, helpers and setup files. Proof, `repo-safe`: the
+   allowance, and it lints every workspace's tests, helpers and setup files; a file in a check
+   location that runs product code in process is refused. Proof, `repo-safe`: the
    lint leg of the gate over the whole tree, and fixtures the rule refuses.
 3. No test, helper or setup file uses a filesystem, process, network or clock API. Proof,
    `repo-safe`: the widened rule over the whole tree, and the inventory with no offender left.
