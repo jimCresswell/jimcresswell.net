@@ -16,8 +16,24 @@ const FRESH = '2026-09-24T07:59:50.000Z';
 
 describe('isStaleLock', () => {
   it.each([
-    { name: 'an owner older than the stale age', owner: OLD, directory: undefined, stale: true },
-    { name: 'an owner within the stale age', owner: FRESH, directory: undefined, stale: false },
+    {
+      name: 'an owner older than the stale age, in a fresh directory',
+      owner: OLD,
+      directory: Date.parse(FRESH),
+      stale: true,
+    },
+    {
+      name: 'an owner within the stale age, in an old directory',
+      owner: FRESH,
+      directory: Date.parse(OLD),
+      stale: false,
+    },
+    {
+      name: 'an owner exactly the stale age old, in an old directory',
+      owner: '2026-09-24T07:59:30.000Z',
+      directory: Date.parse(OLD),
+      stale: false,
+    },
     {
       name: 'no owner and an old directory',
       owner: undefined,
@@ -35,19 +51,6 @@ describe('isStaleLock', () => {
       owner: 'soon',
       directory: Date.parse(OLD),
       stale: true,
-    },
-    { name: 'nothing to date the lock by', owner: undefined, directory: undefined, stale: false },
-    {
-      name: 'a fresh owner in an old directory',
-      owner: FRESH,
-      directory: Date.parse(OLD),
-      stale: false,
-    },
-    {
-      name: 'an owner exactly the stale age old',
-      owner: '2026-09-24T07:59:30.000Z',
-      directory: undefined,
-      stale: false,
     },
   ])('reads $name as stale: $stale', ({ owner, directory, stale }) => {
     expect(

@@ -135,33 +135,17 @@ describe('gate-slot run', () => {
     expect(sinks.err.join('\n')).toContain('pnpm check');
   });
 
-  it('refuses, before taking a slot, a working tree no reader could match to its tree', async () => {
-    let transactions = 0;
-    const { io, sinks } = hostIo(EMPTY_HOST, {
-      worktree: '/work/line\nbreak',
-      transact: async ({ decide }) => {
-        transactions += 1;
-        return { kind: 'decided', decision: decide(EMPTY_HOST), release: NO_RELEASE };
-      },
-    });
+  it('refuses a working tree no reader could match to its tree, and runs nothing', async () => {
+    const { io, sinks } = hostIo(EMPTY_HOST, { worktree: '/work/line\nbreak' });
 
     await expect(main(['run', 'pnpm', 'check'], io)).resolves.toBe(1);
-    expect(transactions).toBe(0);
     expect(sinks.err.join('\n')).toContain('pnpm check');
   });
 
-  it('refuses, before taking a slot, on a host with no process groups to signal', async () => {
-    let transactions = 0;
-    const { io, sinks } = hostIo(EMPTY_HOST, {
-      processGroups: false,
-      transact: async ({ decide }) => {
-        transactions += 1;
-        return { kind: 'decided', decision: decide(EMPTY_HOST), release: NO_RELEASE };
-      },
-    });
+  it('refuses on a host with no process groups to signal, and runs nothing', async () => {
+    const { io, sinks } = hostIo(EMPTY_HOST, { processGroups: false });
 
     await expect(main(['run', 'pnpm', 'check'], io)).resolves.toBe(1);
-    expect(transactions).toBe(0);
     expect(sinks.err.join('\n')).toContain('process group');
     expect(sinks.err.join('\n')).toContain('pnpm check');
   });

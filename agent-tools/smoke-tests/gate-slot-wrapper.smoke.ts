@@ -25,12 +25,11 @@ import { blockedChild, killGroup, unreapedMemberChild } from './gate-slot-smoke-
  * harness mechanics.
  */
 
+const exitFailed = (): never => process.exit(1);
 const watchdog = setTimeout(() => {
   process.stderr.write('gate-slot wrapper smoke: timed out\n');
   // Exit only once every fixture has let go of the smoke's ports, so the lock never frees early.
-  void stopFixtures().finally(() => {
-    process.exit(1);
-  });
+  stopFixtures().then(exitFailed, exitFailed);
 }, 180_000);
 watchdog.unref();
 

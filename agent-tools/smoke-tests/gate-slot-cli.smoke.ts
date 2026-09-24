@@ -5,12 +5,9 @@ import net from 'node:net';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
-import { typeSafeEntries } from '@engraph/type-helpers';
-
 import { GATE_SLOT_HELD_ENV, GATE_SLOT_HOST } from '../src/gate-slot/gate-slot-contract';
 import { encodeHolderIdentity } from '../src/gate-slot/gate-slot-identity';
 import { createPortRegistry } from '../src/gate-slot/gate-slot-ports';
-import { resolvePnpm } from '../src/spawn/pnpm-path';
 
 import {
   holdSmokeLock,
@@ -20,14 +17,17 @@ import {
 } from './gate-slot-smoke-support';
 
 /**
- * The gate-slot command line as the hook runs it (the root alias, through
- * the filtered pnpm the hook uses), and the port adapter's promise that no
- * probe listener outlives a failed step. The command line touches no slot
- * except to read `status`; each run is its own process group with a
- * harness timeout, so a regression can never hang the gate it runs inside.
+ * The gate-slot command line through its entry point, run from source under
+ * tsx as the hooks run it, and the port adapter's promise that no probe
+ * listener outlives a failed step. The command line touches no slot except to
+ * read `status`; each run is its own process group with a harness timeout, so
+ * a regression can never hang the gate it runs inside. Each run's environment
+ * is built here, and carries no held marker unless a proof sets one, because
+ * the smoke itself runs inside a real gate that set one.
  */
 
 const REPO_ROOT = join(PACKAGE_ROOT, '..');
+const ENTRY = join(PACKAGE_ROOT, 'src/gate-slot/gate-slot.ts');
 const CLI_TIMEOUT_MS = 60_000;
 
 interface CliRun {
@@ -40,19 +40,12 @@ async function runCli(
   args: readonly string[],
   extraEnv: Readonly<Record<string, string>> = {},
 ): Promise<CliRun> {
-  const pnpm = resolvePnpm(process.env);
-  assert.ok(pnpm.ok, 'gate-slot cli smoke: pnpm not found');
-  const inherited = typeSafeEntries(pnpm.value.env).filter(([name]) => name !== GATE_SLOT_HELD_ENV);
-  const child = spawn(
-    pnpm.value.file,
-    [...pnpm.value.leadingArgs, '--silent', 'agent-tools:gate-slot', ...args],
-    {
-      cwd: REPO_ROOT,
-      env: { ...Object.fromEntries(inherited), ...extraEnv },
-      stdio: ['ignore', 'pipe', 'pipe'],
-      detached: true,
-    },
-  );
+  const child = spawn(process.execPath, ['--import', 'tsx', ENTRY, ...args], {
+    cwd: PACKAGE_ROOT,
+    env: { ...extraEnv },
+    stdio: ['ignore', 'pipe', 'pipe'],
+    detached: true,
+  });
   const leader = child.pid;
   assert.ok(leader !== undefined, 'gate-slot cli smoke: the command did not start');
   let stdout = '';

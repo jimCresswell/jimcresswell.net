@@ -33,15 +33,6 @@ export function signalProcessGroup(
   return leader === undefined ? 'ended' : signalTarget(-leader, signal, kill);
 }
 
-/** Signal the one process `pid` and report the kernel's answer. */
-export function signalProcess(
-  pid: number | undefined,
-  signal: NodeJS.Signals,
-  kill: Kill = process.kill.bind(process),
-): SignalOutcome {
-  return pid === undefined ? 'ended' : signalTarget(pid, signal, kill);
-}
-
 /**
  * SIGKILL a group until the kernel reports it gone. Only ESRCH proves that:
  * after a group SIGKILL, macOS answers EPERM for about half a millisecond
@@ -67,7 +58,7 @@ export async function sweepProcessGroup(
   return 'not-cleared';
 }
 
-/** Signal `target` (a negative pid names a group); any failure but ESRCH or EPERM is thrown. */
+/** Signal `target`, a negated leader naming its group; any failure but ESRCH or EPERM is thrown. */
 function signalTarget(target: number, signal: NodeJS.Signals, kill: Kill): SignalOutcome {
   try {
     kill(target, signal);

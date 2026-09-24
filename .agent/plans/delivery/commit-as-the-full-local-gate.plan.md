@@ -77,6 +77,17 @@ Six pull requests, in order.
 Decided with the plan: the end-to-end suite stays at push (the donor's commit runs no browser
 suite); records commits get no lighter path; `repo-check profile` measures before any card.
 
+## Estate status
+
+The owner's goal for the exchange is to bring the lineage's Practice and this estate's into
+alignment, so every landing of this lane names its estate status. The lane's code is a declared
+local gap: the lineage's `engraph` carries no gate slot, no process-group module, and its
+transaction lock is the single file without the reclaim of an ownerless lock. The concepts
+travel outbound, for the lineage's seat to write in its own code: a host-wide bound on full gates
+held by a mechanism, the reclaim of an ownerless lock, and tests that prove behaviour through
+outputs and state. D's hook change and the words of the five homes are exchange items, the same
+bytes in both estates.
+
 ## Acceptance criteria (each with a proof)
 
 1. While a gate's command runs, it holds exactly one slot. No second holder from its worktree

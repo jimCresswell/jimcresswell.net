@@ -51,24 +51,14 @@ describe('spawnInheritedProcess', () => {
     ).resolves.toStrictEqual({ status: 0, signal: null });
   });
 
-  it('hands the caller a kill that ends the child by the signal it names', async () => {
+  it('hands the caller a kill for its group that ends the child by the signal it names', async () => {
     const blocked = 'setTimeout(() => process.exit(9), 30_000)';
     const answers: string[] = [];
     await expect(
       spawnInheritedProcess(process.execPath, ['-e', blocked], {
-        onSpawn: (kill) => answers.push(kill('SIGHUP')),
+        processGroup: { onSpawn: (killGroup) => answers.push(killGroup('SIGHUP')) },
       }),
     ).resolves.toStrictEqual({ status: null, signal: 'SIGHUP' });
     expect(answers).toStrictEqual(['signalled']);
-  });
-
-  it('answers a kill after the child has ended as ended, and signals nothing', async () => {
-    let kill: ((signal: NodeJS.Signals) => string) | undefined;
-    await spawnInheritedProcess(process.execPath, ['-e', 'process.exit(0)'], {
-      onSpawn: (handed) => {
-        kill = handed;
-      },
-    });
-    expect(kill?.('SIGTERM')).toBe('ended');
   });
 });

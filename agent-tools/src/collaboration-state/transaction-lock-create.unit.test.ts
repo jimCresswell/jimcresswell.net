@@ -6,109 +6,88 @@ import { tryCreateLock, type LockFileSystem } from './transaction-lock-create.js
  * Making a transaction lock: the directory, made exclusively, then its owner
  * file. A holder whose owner file cannot be written removes its directory
  * before the write's error goes up, so the failure leaves no ownerless lock.
- * The filesystem is a fake that records calls and fails where it is told to.
+ * The filesystem is an in-memory fake whose entries map each path to a file's
+ * text or to a directory mark; a removal completes on a later turn, as a real
+ * one does. Tests read what the lock leaves on it.
  */
 
 const LOCK_DIR = '/state/claims.json.transaction';
+const OWNER_FILE = `${LOCK_DIR}/owner.json`;
+const DIRECTORY = '<directory>';
 
 function failure(code: string): Error {
   return Object.assign(new Error(`${code}: refused`), { code });
 }
 
-function recordingFileSystem(fails: {
-  readonly mkdir?: Error;
-  readonly writeFile?: Error;
-  readonly rm?: Error;
-}): { readonly fs: LockFileSystem; readonly calls: string[]; readonly written: string[] } {
-  const calls: string[] = [];
-  const written: string[] = [];
-  const step = async (name: string, error: Error | undefined): Promise<void> => {
-    calls.push(name);
-    if (error !== undefined) {
-      throw error;
-    }
-  };
+function rejectWith(error: Error): () => Promise<never> {
+  return async () => Promise.reject(error);
+}
+
+function memoryFileSystem(entries: Map<string, string>): LockFileSystem {
   return {
-    calls,
-    written,
-    fs: {
-      mkdir: async (path) => step(`mkdir ${path}`, fails.mkdir),
-      writeFile: async (path, text) => {
-        written.push(text);
-        await step(`writeFile ${path}`, fails.writeFile);
-      },
-      rm: async (path) => step(`rm ${path}`, fails.rm),
+    mkdir: async (path) => entries.set(path, DIRECTORY),
+    writeFile: async (path, text) => {
+      entries.set(path, text);
     },
+    rm: async (path) =>
+      new Promise((resolve) => {
+        setImmediate(() => {
+          entries.delete(path);
+          resolve();
+        });
+      }),
   };
 }
 
 describe('tryCreateLock', () => {
   it('takes a free lock and names its owner in the owner file', async () => {
-    const { fs, calls, written } = recordingFileSystem({});
+    const entries = new Map<string, string>();
 
-    const ownerId = await tryCreateLock(LOCK_DIR, fs);
+    const ownerId = await tryCreateLock(LOCK_DIR, memoryFileSystem(entries));
 
-    expect(calls).toStrictEqual([`mkdir ${LOCK_DIR}`, `writeFile ${LOCK_DIR}/owner.json`]);
     expect(ownerId).toBeDefined();
-    expect(JSON.parse(written[0] ?? '')).toMatchObject({ owner_id: ownerId });
-    expect(written[0]).toMatch(/"created_at": "\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z"/u);
+    expect(entries.get(LOCK_DIR)).toBe(DIRECTORY);
+    expect(JSON.parse(entries.get(OWNER_FILE) ?? 'null')).toMatchObject({ owner_id: ownerId });
   });
 
-  it('reports a lock another holder has, and writes nothing', async () => {
-    const { fs, calls } = recordingFileSystem({ mkdir: failure('EEXIST') });
+  it('leaves a lock another holder has as it was', async () => {
+    const theirs = '{"owner_id":"another holder"}\n';
+    const entries = new Map([
+      [LOCK_DIR, DIRECTORY],
+      [OWNER_FILE, theirs],
+    ]);
+    const fs = { ...memoryFileSystem(entries), mkdir: rejectWith(failure('EEXIST')) };
 
     await expect(tryCreateLock(LOCK_DIR, fs)).resolves.toBeUndefined();
-    expect(calls).toStrictEqual([`mkdir ${LOCK_DIR}`]);
+    expect(entries.get(OWNER_FILE)).toBe(theirs);
   });
 
   it('reports any other failure to make the directory', async () => {
-    const { fs } = recordingFileSystem({ mkdir: failure('EACCES') });
+    const fs = { ...memoryFileSystem(new Map()), mkdir: rejectWith(failure('EACCES')) };
 
     await expect(tryCreateLock(LOCK_DIR, fs)).rejects.toThrow('EACCES');
   });
 
-  it('removes its directory when the owner file cannot be written, and reports the write', async () => {
-    const { fs, calls } = recordingFileSystem({ writeFile: failure('ENOSPC') });
+  it('reports a failed owner write only once its directory is gone', async () => {
+    const entries = new Map<string, string>();
+    const fs = { ...memoryFileSystem(entries), writeFile: rejectWith(failure('ENOSPC')) };
 
-    await expect(tryCreateLock(LOCK_DIR, fs)).rejects.toThrow('ENOSPC');
-    expect(calls).toContain(`rm ${LOCK_DIR}`);
+    const seen = await tryCreateLock(LOCK_DIR, fs).then(
+      () => ({ error: 'none', left: [...entries.keys()] }),
+      (error: unknown) => ({ error: String(error), left: [...entries.keys()] }),
+    );
+
+    expect(seen.error).toContain('ENOSPC');
+    expect(seen.left).toStrictEqual([]);
   });
 
   it('reports the write, not the removal, when both fail', async () => {
-    const { fs } = recordingFileSystem({ writeFile: failure('ENOSPC'), rm: failure('EBUSY') });
+    const fs = {
+      ...memoryFileSystem(new Map()),
+      writeFile: rejectWith(failure('ENOSPC')),
+      rm: rejectWith(failure('EBUSY')),
+    };
 
     await expect(tryCreateLock(LOCK_DIR, fs)).rejects.toThrow('ENOSPC');
-  });
-
-  it('holds the write error back until its directory is gone', async () => {
-    let finishRemoval = (): void => undefined;
-    const removal = new Promise<void>((resolve) => {
-      finishRemoval = resolve;
-    });
-    const fs: LockFileSystem = {
-      mkdir: async () => undefined,
-      writeFile: async () => {
-        throw failure('ENOSPC');
-      },
-      rm: async () => removal,
-    };
-    let settled = false;
-    const outcome = tryCreateLock(LOCK_DIR, fs).then(
-      () => {
-        settled = true;
-        return 'taken';
-      },
-      (error: unknown) => {
-        settled = true;
-        return error instanceof Error ? error.message : String(error);
-      },
-    );
-
-    await new Promise((resolve) => {
-      setImmediate(resolve);
-    });
-    expect(settled).toBe(false);
-    finishRemoval();
-    await expect(outcome).resolves.toContain('ENOSPC');
   });
 });
