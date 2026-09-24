@@ -125,11 +125,13 @@ lands. Never block on a cricket.
 
 1. OBJECTIVE FRAME — the current controlling objective, in two labelled blocks.
    `SOURCES:` quotes the governing texts VERBATIM and attributed, never paraphrased: the
-   owner's latest words on the objective, and the governing plan node's todo list with the
-   plan's own status for each todo. `READING:` states the invoker's reading of them: the goal
-   as it understands it, the order, the holds, and the status it acts on. The work verdict
-   judges the work against `READING:`; the frame verdict judges `READING:` against
-   `SOURCES:`.
+   owner's latest words on the objective, and the governing plan node's todo lines as an
+   excerpt with the file and commit they were read at, carrying the plan's own status for
+   each todo. `READING:` states the invoker's reading of them: the goal as it understands
+   it, one measure per direction or part of the goal with its method line (who computed
+   it, from which source), each owner word mapped to its owning todo, status and receiver,
+   the order, the holds, and the status it acts on. The work verdict judges the work
+   against `READING:`; the frame verdict judges `READING:` against `SOURCES:`.
 2. CRITICAL-PATH OWNER — who (which seat or agent) is actively driving the controlling
    objective right now, and its last known status. "Me" is a valid answer; "unstated" is
    a finding.

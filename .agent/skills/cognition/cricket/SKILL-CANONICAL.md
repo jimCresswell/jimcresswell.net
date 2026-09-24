@@ -106,11 +106,13 @@ record Cursor runs as template-adapter evidence, not model-plus-effort experimen
 Supply every role with the same six fields:
 
 1. **OBJECTIVE FRAME** — the controlling objective, in two labelled blocks: `SOURCES:`,
-   the owner's latest words on it and the governing plan node's todo list with the plan's
-   own status for each todo, quoted verbatim and attributed; and `READING:`, the invoker's
-   reading of them (the goal, the order, the holds, the status it acts on). The work
-   verdict judges against `READING:`; the frame verdict judges `READING:` against
-   `SOURCES:`, so the invoker never paraphrases a source.
+   the owner's latest words on it and the governing plan node's todo lines with the plan's
+   own status for each, quoted verbatim with the file and commit they were read at; and
+   `READING:`, the invoker's reading of them (the goal; one measure per direction or part of
+   the goal, each with its method line; each owner word mapped to its owning todo, status
+   and receiver; the order, the holds, the status it acts on). The work verdict judges
+   against `READING:`; the frame verdict judges `READING:` against `SOURCES:`, so the
+   invoker never paraphrases a source.
 2. **CRITICAL-PATH OWNER** — the seat or person driving it and their last known status.
 3. **INTENT** — what the invoker believes it is doing.
 4. **RECENT ACTIONS** — the last few concrete actions.

@@ -61,11 +61,13 @@ procedure's domain — invokers dispatch those to a judgement role only.
 
 1. OBJECTIVE FRAME — the current controlling objective, in two labelled blocks.
    `SOURCES:` quotes the governing texts VERBATIM and attributed, never paraphrased: the
-   owner's latest words on the objective, and the governing plan node's todo list with the
-   plan's own status for each todo. `READING:` states the invoker's reading of them: the goal
-   as it understands it, the order, the holds, and the status it acts on. The work verdict
-   judges the work against `READING:`; the frame verdict judges `READING:` against
-   `SOURCES:`.
+   owner's latest words on the objective, and the governing plan node's todo lines as an
+   excerpt with the file and commit they were read at, carrying the plan's own status for
+   each todo. `READING:` states the invoker's reading of them: the goal as it understands
+   it, one measure per direction or part of the goal with its method line (who computed
+   it, from which source), each owner word mapped to its owning todo, status and receiver,
+   the order, the holds, and the status it acts on. The work verdict judges the work
+   against `READING:`; the frame verdict judges `READING:` against `SOURCES:`.
 2. CRITICAL-PATH OWNER — who is actively driving the controlling objective right now, and
    its last known status. "Me" is a valid answer; "unstated" is a finding.
 3. INTENT — what the invoker believes it is doing.
@@ -116,7 +118,8 @@ item that the supplied context cannot itself substantiate is marked on-trust and
 to UNGROUNDED (the PAIR-2 lesson: treating every supplied claim as grounded is the
 failure this step exists to catch). Finally list the SOURCES items from the `SOURCES:`
 block only: one item per quoted owner sentence, and one per quoted todo whose status is not
-done. Step 3b audits the `READING:` block against this list and nothing else.
+done. Step 3b's omission audit covers this list; its contradiction audit reads the whole
+`SOURCES:` block, done todos included, and neither reads anything else.
 
 **Step 3 — The four questions.** Answer each PASS / FAIL / UNVERIFIABLE with a one-line
 justification that QUOTES at least one exact phrase from the supplied context. A
@@ -153,17 +156,19 @@ this sweep is skipped.
 
 **Step 3b — Frame audit.** The four questions judge the work inside the frame; this step
 judges the frame (the owner's word of 2026-09-24: "Crickets judge in the frame provided, we need them to also judge the frame itself").
-Using only the Step-2 SOURCES list:
+Using only the `SOURCES:` block and the Step-2 SOURCES list:
 
-- **No sources**: if the list is empty, write `FRAME: NO VERBATIM SOURCE`; the invoker's
-  reading is then the only record of the goal.
+- **No sources**: if no `SOURCES:` block is supplied, write `FRAME: NO VERBATIM SOURCE`;
+  the invoker's reading is then the only record of the goal.
 - **Each item**: for every SOURCES item, quote the phrase in `READING:`, INTENT or NEXT
   that addresses it and write `ADDRESSED: "<source phrase>" ← "<reading phrase>"`, or
   write `OMITTED:` with the source phrase quoted. An item the reading ranks below where
   the source puts it (a source's "first" read as later) is `OMITTED` too.
 - **Contradictions**: for each claim of `READING:` (a status, a hold, an order, a rule's
-  scope), check it against the quoted sources; a claim a quoted source contradicts is
-  written `CONTRADICTED:` with both quotes.
+  scope), check it against the whole `SOURCES:` block, done todos included (a reading
+  that treats a done todo as open, or an open one as done, is contradicted by the plan's
+  own status); a claim a quoted source contradicts is written `CONTRADICTED:` with both
+  quotes.
 
 Under STANCE adversarial, add one working line naming the strongest source phrase the
 reading may have dropped or bent, quoted exactly, and say whether it becomes an `OMITTED:`
@@ -222,8 +227,8 @@ block".
   a prior cricket) already issued a verdict on this identical frame AND supplies that
   prior return, replay it — fill every output-contract field with the prior return's
   values verbatim and add `DUPLICATE: replay of prior verdict` directly after
-  `STANCE:`; a field the prior return lacks (a return from before the frame verdict) reads
-  `NOT IN PRIOR RETURN`. If the prior return's values are not supplied, the prior-verdict claim is
+  `STANCE:`. A prior return from before the frame verdict lacks the frame fields, so it is
+  not a replayable return: run the procedure instead. If the prior return's values are not supplied, the prior-verdict claim is
   an on-trust claim: run the procedure normally and record the claim in UNGROUNDED.
 - Acting on the verdict instead of returning it: messaging any peer or sub-agent, telling
   another seat to wait, claiming to have routed a card or question to the owner, drafting an
