@@ -67,7 +67,7 @@ function withSystemPrompt(
   const systemPrompt = systemPromptBlock(markdown);
   return systemPrompt === undefined
     ? err(
-        `${name}: claude.body names the System prompt block, and the template carries none it can carry whole (one blockquote under "## System prompt", closed by a blank line or a heading, and no second quote in that section)`,
+        `${name}: claude.body names the System prompt block, and the template carries none it can carry whole (one blockquote with text in it under "## System prompt", closed by a blank line or a heading, and no second quote in that section)`,
       )
     : ok({ kind: 'declared', declaration: { ...declaration, systemPrompt } });
 }

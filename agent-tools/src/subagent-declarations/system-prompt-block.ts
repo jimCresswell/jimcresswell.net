@@ -4,8 +4,8 @@
  * line is a paragraph break). A heading inside a code fence is example text, never the
  * section's start or end. The block is carried whole or not at all: a quote that a
  * non-blank line runs on from (a lazy continuation, which Markdown reads as part of the
- * quote), or a second quote in the section, reads as none, which the reader refuses. A
- * Claude adapter whose declaration names the block carries it verbatim as its body
+ * quote), a second quote in the section, or a quote with no text in it, reads as none,
+ * which the reader refuses. A Claude adapter whose declaration names the block carries it verbatim as its body
  * (`claude-fields.ts`), so the template is its one home.
  *
  * @packageDocumentation
@@ -81,5 +81,6 @@ export function systemPromptBlock(markdown: string): string | undefined {
   const section = promptSection(markdown.split('\n')) ?? [];
   const first = section.findIndex(isQuoted);
   const quote = first === -1 ? undefined : wholeQuote(section, first);
-  return quote?.map((line) => line.replace(/^> ?/u, '')).join('\n');
+  const text = quote?.map((line) => line.replace(/^> ?/u, '')).join('\n');
+  return text?.trim() === '' ? undefined : text;
 }

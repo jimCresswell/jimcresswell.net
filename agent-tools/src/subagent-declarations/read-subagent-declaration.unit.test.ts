@@ -105,6 +105,12 @@ describe('readSubagentDeclaration', () => {
     ).toMatch(REFUSAL);
   });
 
+  it('refuses a System prompt block with no text in it: bare quote markers, or only whitespace after them', () => {
+    const section = ['', '## System prompt', ''];
+    expect(unwrapErr(promptOf([...section, '>', '']))).toMatch(REFUSAL);
+    expect(unwrapErr(promptOf([...section, '>', '>   ', '> ', '']))).toMatch(REFUSAL);
+  });
+
   it('refuses a System prompt block it cannot carry whole: a lazy continuation line after the quote, or a second quote in the section', () => {
     const section = ['', '## System prompt', '', '> Line one'];
     expect(unwrapErr(promptOf([...section, 'lazy continuation', '']))).toMatch(REFUSAL);
