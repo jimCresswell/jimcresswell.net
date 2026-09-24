@@ -22,6 +22,14 @@ const WINDOW_REGISTRY = new Map<string, number>([
   ['claude-sonnet-4-6[1m]', 1_000_000],
   ['claude-haiku-4-5-20251001', 200_000],
   ['claude-fable-5', 200_000],
+  // Added 2026-09-16 from the model ids the transplant arc's own transcripts
+  // carry (`claude-opus-5`, `claude-opus-5[1m]`, `claude-fable-5-1`); the 1M
+  // variant is the one the harness names "Opus 5 (1M context)". A variant with
+  // no observed id is deliberately absent: an unknown model returns `undefined`
+  // and the caller is told, which is truer than a guessed window.
+  ['claude-opus-5', 200_000],
+  ['claude-opus-5[1m]', 1_000_000],
+  ['claude-fable-5-1', 200_000],
 ]);
 
 /**

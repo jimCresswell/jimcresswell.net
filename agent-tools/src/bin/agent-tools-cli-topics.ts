@@ -1,3 +1,4 @@
+import { runArcMetricsCli } from '../arc-metrics/cli.js';
 import { runBranchTouchedFilesCli } from '../branch-touched-files/cli.js';
 import { runCodexExecCli } from '../codex-exec/cli.js';
 import {
@@ -103,6 +104,21 @@ export function runCoordinationTopic(
   const stderr = new OutputBuffer();
   const exitCode = runCoordinationCli({ args, cwd: input.cwd, stdout, stderr });
   return { exitCode, stdout: stdout.text(), stderr: stderr.text() };
+}
+
+export async function runArcMetricsTopic(
+  input: AgentToolsCliInput,
+  args: readonly string[],
+): Promise<AgentToolsCliResult> {
+  const stdout = new OutputBuffer();
+  const stderr = new OutputBuffer();
+  return runArcMetricsCli({
+    argv: args,
+    cwd: input.cwd,
+    env: input.env,
+    stdout,
+    stderr,
+  });
 }
 
 export async function runSessionMetadataTopic(

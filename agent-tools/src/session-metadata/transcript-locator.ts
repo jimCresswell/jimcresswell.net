@@ -53,9 +53,30 @@ export function resolveTranscriptPath(input: {
     };
   }
 
-  const projectKey = input.cwd.replaceAll(/[/.\\]/g, '-');
   return {
     ok: true,
-    path: `${input.home}/.claude/projects/${projectKey}/${input.sessionId}.jsonl`,
+    path: `${projectDirectoryFor({ home: input.home, cwd: input.cwd })}/${input.sessionId}.jsonl`,
   };
+}
+
+/**
+ * Resolve the directory holding a working directory's session transcripts.
+ *
+ * @param input - `home` (user home dir) and `cwd` (the working directory whose
+ *   transcripts are wanted).
+ * @returns The absolute project directory path.
+ *
+ * @remarks
+ * Claude Code keys transcript storage by working directory, so a session that
+ * changes directory — entering a worktree, for instance — has its transcript
+ * MOVED under the new key, and an arc's history can span several of these
+ * directories. Callers that measure an arc therefore resolve one directory per
+ * working directory the arc used, rather than assuming a session stayed put.
+ */
+export function projectDirectoryFor(input: {
+  readonly home: string;
+  readonly cwd: string;
+}): string {
+  const projectKey = input.cwd.replaceAll(/[/.\\]/g, '-');
+  return `${input.home}/.claude/projects/${projectKey}`;
 }
