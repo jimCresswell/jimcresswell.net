@@ -80,7 +80,14 @@ Every line answered first-hand, none inferred:
   out of phase, about 22 minutes after the others"); the owner's timer outranks the cricket skill's
   event-boundary default for this seat.
 
-## Current handoff state (2026-09-23T19:10Z; the owner's card of 2026-09-23 ANSWERED, eight items; PRs 152, 153 and 154 MERGED; PR 155 OPEN; a compaction boundary with every process left running)
+## Current handoff state (2026-09-24T14:34:36Z; compaction boundary 2 of the Director seat; the live reading is the napkin's COMPACTION BOUNDARY 2 block of the same time)
+
+- Boundary 2, 2026-09-24T14:34:36Z: the Director's cadence (check-ins every 45 minutes, its own Cricket suites 22
+  minutes out of phase, frame verdicts required) paused for a compaction on the owner's word; claim
+  58c2684a retained; first act on resume, per the owner: check every seat is on the proper things,
+  Siren (JC.net exchange seat, goal one outbound, todo 5) first, then Swallow (Codex support with
+  Luna) and the OCE seat if reopened; then check-in 6. Live seats, verdicts and slips of the day are
+  in the napkin from 10:25Z on. The state below this bullet is the previous boundary's, kept.
 
 Written for a reader who was never here and may run on a different model. Where this block and
 the routing log disagree, the log's last entry is current. The owner's words are verbatim in the
