@@ -23,6 +23,15 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
+- 2026-09-24T13:28Z, a correction to the two opener entries below: PDR-052 covers only
+  `.agent/directives/*`. The fresh session's queue is the directives alone: `AGENT.md`,
+  `principles.md`'s non-test hunks, `orientation.md`, `agent-collaboration.md`, and the two
+  settlement fixes in `testing-strategy.md` and `validation-strategy.md`. The rules
+  (`check-singleton-per-window`, `no-warning-toleration`, and `no-global-state-in-tests`' globs),
+  the skills (`session-handoff`, `cross-fork-integration`, the start-right shared workflow,
+  `pr-lifecycle`), the test-expert template's Step 2, the Practice-Core `CHANGELOG.md` and
+  `testing-patterns.md` are alignment work for the current seat. The recovery node's inventory is
+  paused: it is estate-local, and the owner's goal is the Practice's alignment.
 - 2026-09-24T13:16Z, added to the PDR-052 opener below, and first in its queue: PR 170's
   settlement review (`SHA: 5ce5918f`) found four doctrine gaps past the two-round bound. The fresh
   session cures them before the queued merges: `testing-strategy.md`'s levels table and cycle text
