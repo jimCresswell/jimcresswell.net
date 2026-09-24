@@ -23,6 +23,22 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
+- 2026-09-24T13:14Z, the exchange seat's PDR-052 handoff opener: the remaining directive-file
+  alignment work is queued for a fresh session and is not done in the session that wrote this.
+  `main` is at `SHA: d023d4ef` (PR 171 merged); PR 170, the strict test doctrine slice, carries
+  the owner's 2026-09-24 stamps on `commit-as-the-full-local-gate` and
+  `no-io-test-boundary-and-di-recovery` and waits on its settlement review. The method, for
+  recomputation: a three-way `git merge-file` per file with this estate's `main` as ours, the
+  transplant pin (lineage `SHA: e477e62f7`) as base and the lineage's `origin/engraph` as theirs;
+  keep the lineage's text wherever it fits and this estate's host facts. Queued, in order: the
+  directives and rules (`AGENT.md`, `principles.md`'s non-test hunks, `orientation.md`,
+  `agent-collaboration.md`, `check-singleton-per-window`, `no-warning-toleration`); then
+  `session-handoff`, `cross-fork-integration`, the start-right shared workflow, the Practice-Core
+  `CHANGELOG.md` and `pr-lifecycle`; then `testing-patterns.md`'s full merge. The OCE side has no
+  live seat since the lineage's exchange seat stood down at about 12:55Z; its successor's pickup
+  points at PRs 170 and 171 for the joint bytes, and the outbound queue stays in this estate's
+  exchange register. Order for the exchange seat meanwhile, after Cricket suite 4: PR 170's
+  merge, the recovery node's first cure slice, then gate PR B.
 - 2026-09-24T11:03Z, the exchange seat's non-terminal wrap at the owner's word ("this is not
   session end, this is making sure that context and understanding are safe"). `main` is at
   `SHA: b33c2320`: joint sets F to I merged as PRs 159 to 161, signed by the lineage's exchange
