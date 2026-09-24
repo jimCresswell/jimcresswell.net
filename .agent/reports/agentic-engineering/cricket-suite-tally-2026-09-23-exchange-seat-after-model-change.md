@@ -62,9 +62,9 @@ Evidence errors, each checked against the source:
 - Accepted (highest power low effort, both stances): the fold's continuity records say the
   lineage seat resumed at 10:57Z; the fold carries records and the draft's removal only.
 - Already done, a frame omission: the owner's 12:44Z words (the card answer's time in the
-  session transcript; the frame said "about 12:40Z", a clock read taken before the answer
-  arrived) were sent to the partner seat at 12:45:26Z, and its 12:47:26Z channel entry
-  acknowledges them.
+  session transcript; the frame said "about 12:40Z", an estimate: no clock read fell between
+  12:01Z and the answer) were sent to the partner seat at 12:45:26Z, and its 12:47:26Z
+  channel entry acknowledges them.
 - Rejected: a separate cold state verification at the fold's close. The fold skill's step 11
   loss scan is that act; a second one is ceremony.
 

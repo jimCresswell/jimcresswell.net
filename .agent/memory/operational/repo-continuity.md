@@ -21,19 +21,30 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
-- 2026-09-23T13:27Z: a Director is seated on this estate. At 13:08Z the owner named Wick binds
-  Temper (ed7b48) Director: every question, block and card from this estate's seats goes to the
-  Director, never to the owner, and the Director carries cards to the owner. The exchange seat
-  (Brazier spins Temper, c70341) is an implementer; its partnership with the lineage's seat stays
-  equal, and both run on a new model. `main` is at `SHA: f7a54165`: PR 151 landed PDR-142 (the
-  definition of the best of each Practice, owner-ratified 2026-09-21) and the strategic node
-  `best-of-each-practice`; the lineage landed the same PDR-142 bytes as its PR 177. The fold of
-  `coordination/2026-09-21-19cfcc` is PR 152. The owner ruled by card on 2026-09-23: concept
-  transfer is the goal, never byte-for-byte; amend PDR-142 and PDR-125 accordingly (this seat
-  drafts, the lineage's seat judges, the Director carries one card to the owner); the Practice
-  stream gets one strategic node, reworded; the lowest-power low-effort Cricket seat is
-  removable. The live reading is the handoff's current-state block and item 123, then the
-  napkin's tail.
+- 2026-09-24T09:29Z, the fold of `coordination/2026-09-23-551f2c`: `main` is at `SHA: ba504ffe`.
+  Since the entry below, PRs 155 to 158 merged on 2026-09-23 (the concept-over-bytes amendments,
+  the joint rules texts, format at receipt with PDR-142's wording cures, and the joint plans with
+  rulings 22 to 33). On 2026-09-24, PR 163 (a transaction lock left without its owner file is
+  reclaimed by its directory's age, `SHA: 256bd68b`) and PR 162 (the gate slot: at most two full
+  gates on the host and one per working tree, PR A of the `commit-as-the-full-local-gate` lane,
+  `SHA: ba504ffe`) merged. Open: PRs 159, 160 and 161, joint sets F to I, held for the lineage's
+  signature; the lineage's exchange seat has been vacant since 20:31Z on 2026-09-23. Next for
+  the exchange seat: the lane's PR B, scoped first against D's pushed-range secret scan. The
+  Director is Wick binds Temper (ed7b48). The live reading is the handoff's current-state block
+  and its last routing entry, then the napkin's tail.
+- 2026-09-23T19:11Z: the owner answered the Director's card of 2026-09-23, eight items, all as recommended
+  (the napkin and the handoff carry them). `main` is at `SHA: bf9daf47`: PR 152 folded
+  `coordination/2026-09-21-19cfcc`, PR 154 removed the lowest-power low-effort Cricket seat, PR
+  153 made `best-of-each-practice` the Practice stream's one strategic node with PRACTICE-1
+  reworded (the owner ratified the words). PR 155, the concept-over-bytes amendments to PDR-142
+  and PDR-125 with the PDR-141 cure, is open after Copilot's round one. The operator profile is
+  written on the owner's word. The Director is Wick binds Temper (ed7b48); by the owner's ruling
+  of 2026-09-23 for all agents, seats message the Director only with a question or a request, and
+  state lives in the records. The exchange seat (Brazier spins Temper, c70341) is an implementer;
+  its partnership with the lineage's seat stays equal, and a joint-texts pull request per estate
+  is agreed with that seat. The primary is on `coordination/2026-09-23-551f2c`. The live reading
+  is the handoff's current-state block and the last entry of its routing log, then the napkin's
+  tail.
 - 2026-09-17 evening: zero open pull requests. The close-out landed #126, #127, #94, #95,
   #96, #128 and #129, and the fold #130 (`SHA: 5f3225e2`) carried that window's records to
   `main`. The plan `estate-fix-backlog` was ratified, completed and archived on 2026-09-19
@@ -296,8 +307,7 @@ and proof (item 4's rows closed by #85 `SHA: eed1f2e`, #87 `SHA: 6b5676b`, #86
 
    Second maintenance item at the same priority (2026-09-16): the Cricket seat naming. The
    quartet's generated adapter names encode effort alone (`-low`, `-medium`, `-high`, `-xhigh`), so
-   nothing in those names says which model a seat runs (the fifth seat,
-   `cricket-judgement-lowestpower-low`, added the same day, already names both), while the
+   nothing in those names says which model a seat runs, while the
    estate pairs model power INVERSELY with effort — low is fable, medium is opus, high is sonnet, xhigh is haiku. A caller who cannot read
    that from the name mis-launches the suite, as the Director did on 2026-09-16 by overriding
    every seat's model and inverting the design. Names should carry both dimensions. The change
