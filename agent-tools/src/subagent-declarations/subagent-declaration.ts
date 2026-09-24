@@ -71,12 +71,15 @@ const cursorFields = z
  * template, which a no-tools agent cannot read, so a no-tools role leaves gemini out of
  * its platforms; the inlined-body form is the Claude adapter's alone, `claude-fields.ts`).
  * `kind` is `local` only: the remote kind routes to Agent-to-Agent delegation, which the
- * estate's body-is-the-pointer shape does not carry. `name` and
- * `description` come from the declaration itself; `mcpServers` (inline MCP servers scoped
- * to one agent) is host configuration, not a role's declaration, and is not carried.
+ * estate's body-is-the-pointer shape does not carry. `name` comes from the declaration
+ * itself, and so does `description` unless the block declares its own, as a Codex block
+ * may, for a role whose description states what only another platform enforces;
+ * `mcpServers` (inline MCP servers scoped to one agent) is host configuration, not a
+ * role's declaration, and is not carried.
  */
 const geminiFields = z
   .object({
+    description: line.optional(),
     kind: z.literal('local').optional(),
     tools: z.array(line).optional(),
     model: line.optional(),

@@ -19,7 +19,7 @@
 
 import { err, ok, type Result } from '@engraph/result';
 
-import { CODEX_REGISTRY_PATH, codexDescription, specsOf } from './adapter-spec.js';
+import { CODEX_REGISTRY_PATH, platformDescription, specsOf } from './adapter-spec.js';
 import { carriesTomlLineUnsafe } from './render-codex-adapter.js';
 import type { SubagentDeclaration } from './subagent-declaration.js';
 
@@ -114,7 +114,7 @@ export function renderCodexRegistry(
     .flatMap(specsOf)
     .filter((spec) => spec.platforms.includes('codex'))
     .sort((left, right) => left.name.localeCompare(right.name));
-  const unsafe = specs.find((spec) => carriesTomlLineUnsafe(codexDescription(spec)));
+  const unsafe = specs.find((spec) => carriesTomlLineUnsafe(platformDescription('codex', spec)));
   if (unsafe !== undefined) {
     return err(
       `${CODEX_REGISTRY_PATH}: the description of ${unsafe.name} carries a character a TOML basic string cannot carry verbatim (a double quote, a backslash or a control character); refusing to render it`,
@@ -122,7 +122,7 @@ export function renderCodexRegistry(
   }
   const blocks = specs.map(
     (spec) =>
-      `[agents."${spec.name}"]\ndescription = "${codexDescription(spec)}"\nconfig_file = "agents/${spec.name}.toml"\n`,
+      `[agents."${spec.name}"]\ndescription = "${platformDescription('codex', spec)}"\nconfig_file = "agents/${spec.name}.toml"\n`,
   );
   return ok(`${head}${blocks.join('\n')}`);
 }

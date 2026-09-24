@@ -156,6 +156,19 @@ describe('parseSubagentDeclaration', () => {
     ).toMatchObject({ ok: true, value: { codex: { description: 'Alpha on Codex.' } } });
   });
 
+  it('reads a Gemini description, the sentence the Gemini adapter carries in place of the role description, refusing one that is not a single line', () => {
+    const withGemini = (description: string) =>
+      parseSubagentDeclaration('alpha', {
+        description: 'Alpha reviews a.',
+        gemini: { description },
+      });
+    expect(withGemini('Alpha on Gemini.')).toMatchObject({
+      ok: true,
+      value: { gemini: { description: 'Alpha on Gemini.' } },
+    });
+    expect(unwrapErr(withGemini('Alpha\non Gemini.'))).toMatch(/^alpha: gemini\.description: /u);
+  });
+
   it('refuses a zero-tool Claude block that names a tool, a deny list, or the pointer body a no-tools agent cannot follow, naming the field that breaks it', () => {
     const refusal = (claude: Record<string, unknown>) =>
       unwrapErr(parseSubagentDeclaration('voter', { description: 'Voter.', claude }));

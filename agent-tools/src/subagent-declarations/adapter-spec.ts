@@ -113,9 +113,16 @@ export function specsOf(declaration: SubagentDeclaration): readonly AdapterSpec[
   ];
 }
 
-/** The description a Codex adapter and its registry block carry: the Codex one where declared. */
-export function codexDescription(spec: AdapterSpec): string {
-  return spec.codex?.description ?? spec.description;
+/**
+ * The description a platform's adapter carries (and, for Codex, its registry block): the
+ * platform block's own where declared, else the declaration's. Claude has no such field:
+ * the declaration's description is the Claude one.
+ */
+export function platformDescription(
+  platform: Exclude<SubagentPlatform, 'claude'>,
+  spec: AdapterSpec,
+): string {
+  return spec[platform]?.description ?? spec.description;
 }
 
 /** The pointer sentence with its declared tail, or the plain stop. */

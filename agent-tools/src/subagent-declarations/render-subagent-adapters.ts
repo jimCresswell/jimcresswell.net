@@ -30,6 +30,7 @@
 import { err, ok, type Result } from '@engraph/result';
 
 import {
+  platformDescription,
   pointerLine,
   specsOf,
   SUBAGENT_SURFACES,
@@ -77,7 +78,7 @@ function markdownBody(
 }
 
 function renderCursor(spec: AdapterSpec): string {
-  const description = spec.cursor?.description ?? spec.description;
+  const description = platformDescription('cursor', spec);
   const head = `---\nname: ${spec.name}\ndescription: ${yamlQuoted(description)}\nreadonly: true\n---\n`;
   return `${head}${markdownBody('cursor', spec, spec.cursor)}`;
 }

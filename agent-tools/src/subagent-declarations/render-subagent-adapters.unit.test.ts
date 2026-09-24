@@ -317,6 +317,20 @@ describe('renderSubagentAdapters', () => {
     expect(unwrapErr(renderSubagentAdapters([unsafe]))).toMatch(/^\.codex\/agents\/alpha\.toml: /u);
   });
 
+  it('renders a Gemini description on the Gemini adapter and nowhere else', () => {
+    const texts = textsOf([{ ...ALPHA, gemini: { description: 'Alpha on Gemini.' } }]);
+    const gemini = texts.get('.gemini/agents/alpha.md');
+    expect(gemini).toContain('Alpha on Gemini.');
+    expect(gemini).not.toContain(ALPHA.description);
+    for (const path of [
+      '.cursor/agents/alpha.md',
+      '.claude/agents/alpha.md',
+      '.codex/agents/alpha.toml',
+    ]) {
+      expect(texts.get(path)).toContain(ALPHA.description);
+    }
+  });
+
   it('renders a System prompt body with a declared tool list exactly as declared: its tools, its deny list and its turn bound, no permission mode filled', () => {
     const mapper: RoleDeclaration = {
       kind: 'role',
