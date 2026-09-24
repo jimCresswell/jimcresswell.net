@@ -16,7 +16,8 @@ ratified_where: >-
   .agent/memory/operational/director-handoff.md §Decisions overnight, item 101.
   Amended by the owner's card answers of 2026-09-21 in the session of Brazier spins
   Temper (c70341), recorded verbatim in this node's §Rulings of 2026-09-21, and by those of
-  2026-09-23 in §Rulings of 2026-09-23.
+  2026-09-23 in §Rulings of 2026-09-23, and by the owner's words of 2026-09-24, recorded
+  verbatim in §Rulings of 2026-09-24.
 serves: best-of-each-practice
 impact_areas:
   - practice-and-estate
@@ -25,7 +26,7 @@ depends_on:
   - plan: practice-completion
     kind: blocking
 owner_gates: []
-last_updated: 2026-09-23
+last_updated: 2026-09-24
 ---
 
 # Practice exchange
@@ -159,6 +160,37 @@ clone) is left out.
     Director hears questions and requests, never state. Its home is
     `route-blocks-and-questions-to-director`, §The Director Hears Questions and Requests, Never
     State.
+
+## Rulings of 2026-09-24
+
+The owner's words on 2026-09-24, given in chat to the exchange seat (Brazier spins Temper,
+c70341) and to the Director (Wick binds Temper, ed7b48), who relayed them to the seat;
+verbatim where quoted. The numbering continues from the rulings above.
+
+34. The goal, to the Director: "The overall goal here is to bring the Engraph OCE Practice and
+    JC.net Practice into alignment".
+35. The goal's order, to the exchange seat: "Our purpose here is to first make sure that all of
+    our Practice innovations are integrated into the OCE Practice, our second goal is to bring
+    our Practice up to speed with their innovations". So todo 5 (outbound) ranks before todo
+    4's remaining inbound landings, whatever their numbering. Delivery into the lineage's Box
+    is this estate's seat's own act through the join ceremony, and it never waits on a live
+    lineage seat; only the landing there does.
+36. The lessons, to the exchange seat: "the memories and records of this repo are local to this
+    repo, but the lessons learned from them are not". So todo 5's material includes the lessons
+    swept from this estate's records (the napkin, the distilled learnings, the pending
+    graduations, the experience letters and the reports), carried as self-contained lessons
+    while the records stay here.
+37. The sub-agent layer, relayed by the Director: "the labelling of Cricket agents is better in
+    JC.net than in OCE: make sure the Cricket implementations and other sub-agent details are
+    compared between the repos". The comparison runs both ways: what this estate does better
+    goes to todo 5, and what the lineage does better goes to todo 4.
+38. The frame, relayed by the Director: "Crickets judge in the frame provided, we need them to
+    also judge the frame itself". Its home is the cricket skill and its two base templates; it
+    lands here first, then as the same bytes in the lineage.
+39. Tests, to the exchange seat: "tests prove behaviour of product code, they must never, ever
+    be used to constrain configuration or implementation", and "no excemptions, strict,
+    everywhere, all of the time". Its home is `testing-strategy.md` §Philosophy, in the words
+    signed jointly with the lineage's exchange seat.
 
 Authored 2026-09-14 by the Director at the owner's direction, verbatim: "make sure that we have
 a plan for exploring that Practice delta, and any other advancements that have happened by the
