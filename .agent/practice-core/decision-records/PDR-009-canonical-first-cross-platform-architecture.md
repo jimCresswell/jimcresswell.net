@@ -134,6 +134,14 @@ steps, or logic that does not exist in the canonical source. The
 canonical content describes **what** to do; the wrapper describes
 **how** to invoke it on a specific platform.
 
+One exception: a role that cannot read files carries its prompt in its
+adapter, because a pointer is an instruction it cannot follow. The
+prompt's one home stays the canonical template. The adapter copies the
+template's System prompt block verbatim, nothing else in the adapter
+is substantive, and a check compares every copy with its template; a
+generator that writes the copy from the template is that check. The
+~10-line red flag below does not apply to the copied block.
+
 Concretely: a wrapper file longer than ~10 content lines (excluding
 frontmatter) is a red flag that substance has leaked into the wrapper.
 
@@ -398,6 +406,18 @@ hydrations, the graduation would mark this PDR as `Superseded by
 <Core section>` and retain it as provenance.
 
 ## Amendment Log
+
+### 2026-09-24 — A role that cannot read files carries its generated prompt
+
+A review of the corpus-analysis adapters found the thin-wrapper rule
+silent on a role with no file access. A pointer to its template is an
+instruction such a role cannot follow, so both estates' adapters for
+those roles already carried the prompt inline: one set generated, one
+kept by hand under a "keep both in sync" note. The exception above,
+joint set K2, is signed by both estates' exchange seats. It names the
+case and keeps the canonical-first decision: the template stays the
+prompt's one home, and a check (a generator, or a comparison of each
+hand-kept copy with its template) keeps every copy true.
 
 ### 2026-04-24 — Cross-platform standard directories are adapters
 
