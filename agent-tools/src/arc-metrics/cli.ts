@@ -90,7 +90,10 @@ function resolveDirectories(
     return options.projectDirs;
   }
   const home = input.env.HOME;
-  return home === undefined ? [] : [projectDirectoryFor({ home, cwd: input.cwd })];
+  if (home === undefined || home.length === 0) {
+    return [];
+  }
+  return [projectDirectoryFor({ home, cwd: input.cwd })];
 }
 
 type MeasureOutcome =

@@ -5,7 +5,9 @@
  * Two entry classes carry the owner's words: a user turn, and a
  * `queue-operation` `enqueue` — the record of a message typed while a turn was
  * running. Counting user turns alone dropped about a quarter of the owner's
- * messages in the measured arc.
+ * messages in the measured arc. A queued message that waits for the turn to
+ * end is recorded in both classes, and only that pair is counted once (see
+ * {@link createOwnerMessageCounter}).
  *
  * Everything else that arrives user-shaped is harness or peer traffic: relays
  * from another session (in both spellings the harness uses), usage-limit
@@ -42,20 +44,86 @@ const NOT_OWNER_PREFIXES = [
   'Base directory for this skill',
 ] as const;
 
-/** An entry's owner texts, split into what counts and what was removed. */
-export interface OwnerTextSplit {
+/** One transcript's owner-message counts. */
+export interface OwnerMessageTally {
+  readonly messages: number;
+  readonly midTurn: number;
+  /** User-shaped entries excluded as harness or peer traffic, never silently. */
+  readonly filtered: number;
+}
+
+/** Counts one transcript's owner messages, entry by entry in transcript order. */
+export interface OwnerMessageCounter {
+  readonly absorb: (entry: Entry) => void;
+  readonly tally: () => OwnerMessageTally;
+}
+
+/**
+ * Create a counter for one transcript's owner messages.
+ *
+ * @remarks
+ * A message typed while a turn runs is recorded at its `enqueue`; if it waits
+ * for the turn to end, it is recorded again as the user turn it is delivered
+ * as. The transcript links the two by their text alone, so a turn whose text
+ * matches a still-queued message is that message's delivery and is not counted
+ * again. A message leaves the queue by that delivery or by a `remove` carrying
+ * its text (absorbed into the running turn), after which the same words are a
+ * new message. Nothing else is deduplicated: two identical messages are two.
+ *
+ * @returns A counter to feed entries to, and to read the tally from.
+ */
+export function createOwnerMessageCounter(): OwnerMessageCounter {
+  const queued = new Map<string, number>();
+  const tally = { messages: 0, midTurn: 0, filtered: 0 };
+  return {
+    absorb: (entry) => {
+      const removed = removedText(entry);
+      if (removed !== undefined) {
+        takeQueued(queued, removed);
+        return;
+      }
+      const split = classifyOwnerTexts(entry);
+      tally.filtered += split.filtered;
+      for (const text of split.kept) {
+        if (entry.type === 'queue-operation') {
+          tally.messages += 1;
+          tally.midTurn += 1;
+          queued.set(text, (queued.get(text) ?? 0) + 1);
+        } else if (!takeQueued(queued, text)) {
+          tally.messages += 1;
+        }
+      }
+    },
+    tally: () => ({ ...tally }),
+  };
+}
+
+function removedText(entry: Entry): string | undefined {
+  if (entry.type !== 'queue-operation' || entry.operation !== 'remove') {
+    return undefined;
+  }
+  return typeof entry.content === 'string' ? entry.content.trim() : undefined;
+}
+
+function takeQueued(queued: Map<string, number>, text: string): boolean {
+  const waiting = queued.get(text) ?? 0;
+  if (waiting === 0) {
+    return false;
+  }
+  if (waiting === 1) {
+    queued.delete(text);
+  } else {
+    queued.set(text, waiting - 1);
+  }
+  return true;
+}
+
+interface OwnerTextSplit {
   readonly kept: readonly string[];
   readonly filtered: number;
 }
 
-/**
- * Split one entry's candidate texts into owner messages and excluded traffic.
- *
- * @param entry - The transcript entry.
- * @returns The texts that count as the owner speaking, and how many candidates
- *   the exclusion list removed.
- */
-export function classifyOwnerTexts(entry: Entry): OwnerTextSplit {
+function classifyOwnerTexts(entry: Entry): OwnerTextSplit {
   const kept: string[] = [];
   let filtered = 0;
   for (const text of candidateTexts(entry)) {

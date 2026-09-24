@@ -112,6 +112,20 @@ describe('runArcMetricsCli', () => {
     expect(result.stderr).toContain('--gap-minutes');
   });
 
+  it('refuses an empty HOME as an input error rather than reporting from the filesystem root', async () => {
+    const fs = fakeFs({ '/.claude/projects/-ws-code-site': ['/p/one.jsonl'] });
+
+    const result = await runArcMetricsCli({
+      argv: ['--vendor', 'claude'],
+      cwd: '/ws/code/site',
+      env: { HOME: '' },
+      fs,
+    });
+
+    expect(result.exitCode).toBe(2);
+    expect(result.stdout).toBe('');
+  });
+
   it('reports a listing failure as exit code 1 with the directory named', async () => {
     const fs: ArcMetricsFileSystem = {
       listTranscripts: async () => {

@@ -20,6 +20,10 @@ function userTurn(at: string, text: string): string {
   return JSON.stringify({ type: 'user', timestamp: at, message: { content: text } });
 }
 
+function event(type: string, at: string, fields: Record<string, unknown> = {}): string {
+  return JSON.stringify({ type, timestamp: at, ...fields });
+}
+
 const USAGE = {
   input_tokens: 10,
   output_tokens: 100,
@@ -143,6 +147,50 @@ describe('aggregateSession', () => {
 
     expect(session.activeSeconds).toBe(420);
     expect(session.wallSeconds).toBe(7320);
+  });
+
+  it('counts every timestamped entry as an event, not only turns', async () => {
+    const session = await aggregateSession({
+      sessionId: 'abc',
+      gapSeconds: 600,
+      lines: lines(
+        assistant('2026-09-16T10:00:00Z', 'msg_1', USAGE),
+        event('system', '2026-09-16T10:06:00Z', { subtype: 'turn_duration' }),
+        event('queue-operation', '2026-09-16T10:12:00Z', { operation: 'dequeue' }),
+        assistant('2026-09-16T10:18:00Z', 'msg_2', USAGE),
+      ),
+    });
+
+    expect(session.activeSeconds).toBe(1080);
+  });
+
+  it('measures the gaps between events in time order, which transcript lines are not in', async () => {
+    const session = await aggregateSession({
+      sessionId: 'abc',
+      gapSeconds: 600,
+      lines: lines(
+        assistant('2026-09-16T10:00:00Z', 'msg_1', USAGE),
+        assistant('2026-09-16T10:05:00Z', 'msg_2', USAGE),
+        assistant('2026-09-16T10:03:00Z', 'msg_3', USAGE),
+        assistant('2026-09-16T10:06:00Z', 'msg_4', USAGE),
+      ),
+    });
+
+    expect(session.activeSeconds).toBe(360);
+  });
+
+  it('spans the session from its first event to its last, whatever their class', async () => {
+    const session = await aggregateSession({
+      sessionId: 'abc',
+      gapSeconds: 600,
+      lines: lines(
+        event('attachment', '2026-09-16T09:58:00Z'),
+        assistant('2026-09-16T10:00:00Z', 'msg_1', USAGE),
+      ),
+    });
+
+    expect(session.firstAt).toBe('2026-09-16T09:58:00.000Z');
+    expect(session.wallSeconds).toBe(120);
   });
 
   it('counts compaction summaries and usage-limit stalls', async () => {

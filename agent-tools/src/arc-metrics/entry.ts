@@ -24,6 +24,7 @@ const usageSchema = z.object({
 
 const entrySchema = z.object({
   type: z.string().optional(),
+  subtype: z.string().optional(),
   timestamp: z.string().optional(),
   isCompactSummary: z.boolean().optional(),
   operation: z.string().optional(),
@@ -61,13 +62,29 @@ export function parseEntry(line: string): Entry | undefined {
 }
 
 /**
- * Read an entry's timestamp as epoch milliseconds.
+ * The `system` subtype the harness writes on an idle timer — about three
+ * minutes after the last event — to recap the session for an owner who has
+ * stepped away. It records absence, so it is not an event.
+ */
+const IDLE_RECAP_SUBTYPE = 'away_summary';
+
+/**
+ * Read the time at which an entry records something happening in the session.
+ *
+ * @remarks
+ * Every timestamped entry is an event, whatever its class — turns, harness
+ * `system` entries, queue operations, attachments — except the idle recap,
+ * which the harness writes because nothing happened.
  *
  * @param entry - The entry.
- * @returns Milliseconds, or `null` when absent or unparseable.
+ * @returns Epoch milliseconds, or `null` when the entry carries no parseable
+ *   timestamp or is the idle recap.
  */
-export function timestampOf(entry: Entry): number | null {
+export function eventTimeOf(entry: Entry): number | null {
   if (entry.timestamp === undefined) {
+    return null;
+  }
+  if (entry.type === 'system' && entry.subtype === IDLE_RECAP_SUBTYPE) {
     return null;
   }
   const at = Date.parse(entry.timestamp);

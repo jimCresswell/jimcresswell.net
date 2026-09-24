@@ -14,13 +14,18 @@
  * - **Active time is a proxy, and says so.** It sums the gaps between
  *   consecutive events closer together than the threshold: it cannot see
  *   thinking before a burst's first event, and it counts a long tool call as
- *   active. The threshold travels with the report.
+ *   active. The threshold travels with the report. An event is any timestamped
+ *   entry except the harness's idle recap (see `eventTimeOf`), and the session
+ *   spans its first event to its last. Transcript lines are not in time order —
+ *   a queued command's attachment carries the time it was queued — so the event
+ *   times are sorted before the gaps are taken; one number per event is held
+ *   to do it.
  *
  * @packageDocumentation
  */
 
-import { parseEntry, timestampOf, type Entry } from './entry.js';
-import { classifyOwnerTexts } from './owner-messages.js';
+import { eventTimeOf, parseEntry, type Entry } from './entry.js';
+import { createOwnerMessageCounter, type OwnerMessageCounter } from './owner-messages.js';
 
 /** One session's measures. */
 export interface SessionMetrics {
@@ -50,10 +55,7 @@ export interface AggregateSessionInput {
 }
 
 interface Accumulator {
-  first: number | null;
-  last: number | null;
-  active: number;
-  previous: number | null;
+  readonly times: number[];
   readonly callIds: Set<string>;
   output: number;
   cacheRead: number;
@@ -61,9 +63,7 @@ interface Accumulator {
   tools: number;
   compactions: number;
   limits: number;
-  readonly ownerKeys: Set<string>;
-  midTurn: number;
-  filtered: number;
+  readonly owner: OwnerMessageCounter;
 }
 
 /**
@@ -78,22 +78,22 @@ export async function aggregateSession(input: AggregateSessionInput): Promise<Se
   for await (const line of input.lines) {
     const entry = parseEntry(line);
     if (entry !== undefined) {
-      absorb(acc, entry, input.gapSeconds);
+      absorb(acc, entry);
     }
   }
-  return report(input.sessionId, acc);
+  return report(input.sessionId, acc, input.gapSeconds);
 }
 
-function absorb(acc: Accumulator, entry: Entry, gapSeconds: number): void {
-  const at = timestampOf(entry);
-  if (at !== null && (entry.type === 'user' || entry.type === 'assistant')) {
-    trackTime(acc, at, gapSeconds);
+function absorb(acc: Accumulator, entry: Entry): void {
+  const at = eventTimeOf(entry);
+  if (at !== null) {
+    acc.times.push(at);
   }
   absorbMarkers(acc, entry);
   if (entry.type === 'assistant') {
     absorbAssistant(acc, entry);
   }
-  absorbOwnerMessage(acc, entry, at);
+  acc.owner.absorb(entry);
 }
 
 function absorbMarkers(acc: Accumulator, entry: Entry): void {
@@ -103,18 +103,6 @@ function absorbMarkers(acc: Accumulator, entry: Entry): void {
   if (entry.type === 'system' && /usage limit reached/i.test(JSON.stringify(entry.content ?? ''))) {
     acc.limits += 1;
   }
-}
-
-function trackTime(acc: Accumulator, at: number, gapSeconds: number): void {
-  acc.first = acc.first === null ? at : Math.min(acc.first, at);
-  acc.last = acc.last === null ? at : Math.max(acc.last, at);
-  if (acc.previous !== null) {
-    const gap = (at - acc.previous) / 1000;
-    if (gap > 0 && gap <= gapSeconds) {
-      acc.active += gap;
-    }
-  }
-  acc.previous = at;
 }
 
 function absorbAssistant(acc: Accumulator, entry: Entry): void {
@@ -145,28 +133,9 @@ function isToolUse(block: unknown): boolean {
   );
 }
 
-function absorbOwnerMessage(acc: Accumulator, entry: Entry, at: number | null): void {
-  const { kept, filtered } = classifyOwnerTexts(entry);
-  acc.filtered += filtered;
-  const minute = at === null ? '' : new Date(at).toISOString().slice(0, 16);
-  for (const text of kept) {
-    const key = `${minute}|${text.slice(0, 60)}`;
-    if (acc.ownerKeys.has(key)) {
-      continue;
-    }
-    acc.ownerKeys.add(key);
-    if (entry.type === 'queue-operation') {
-      acc.midTurn += 1;
-    }
-  }
-}
-
 function emptyAccumulator(): Accumulator {
   return {
-    first: null,
-    last: null,
-    active: 0,
-    previous: null,
+    times: [],
     callIds: new Set<string>(),
     output: 0,
     cacheRead: 0,
@@ -174,21 +143,21 @@ function emptyAccumulator(): Accumulator {
     tools: 0,
     compactions: 0,
     limits: 0,
-    ownerKeys: new Set<string>(),
-    midTurn: 0,
-    filtered: 0,
+    owner: createOwnerMessageCounter(),
   };
 }
 
-function report(sessionId: string, acc: Accumulator): SessionMetrics {
-  const span =
-    acc.first === null || acc.last === null ? 0 : Math.round((acc.last - acc.first) / 1000);
+function report(sessionId: string, acc: Accumulator, gapSeconds: number): SessionMetrics {
+  const times = [...acc.times].sort((left, right) => left - right);
+  const first = times.at(0);
+  const last = times.at(-1);
+  const owner = acc.owner.tally();
   return {
     sessionId,
-    firstAt: acc.first === null ? '' : new Date(acc.first).toISOString(),
-    lastAt: acc.last === null ? '' : new Date(acc.last).toISOString(),
-    wallSeconds: span,
-    activeSeconds: Math.round(acc.active),
+    firstAt: first === undefined ? '' : new Date(first).toISOString(),
+    lastAt: last === undefined ? '' : new Date(last).toISOString(),
+    wallSeconds: first === undefined || last === undefined ? 0 : Math.round((last - first) / 1000),
+    activeSeconds: Math.round(activeSecondsOf(times, gapSeconds)),
     apiCalls: acc.callIds.size,
     toolCalls: acc.tools,
     outputTokens: acc.output,
@@ -196,10 +165,25 @@ function report(sessionId: string, acc: Accumulator): SessionMetrics {
     medianContextTokens: median(acc.contexts),
     compactions: acc.compactions,
     limitStalls: acc.limits,
-    ownerMessages: acc.ownerKeys.size,
-    ownerMessagesMidTurn: acc.midTurn,
-    ownerMessagesFiltered: acc.filtered,
+    ownerMessages: owner.messages,
+    ownerMessagesMidTurn: owner.midTurn,
+    ownerMessagesFiltered: owner.filtered,
   };
+}
+
+function activeSecondsOf(sortedTimes: readonly number[], gapSeconds: number): number {
+  let active = 0;
+  let previous: number | undefined;
+  for (const at of sortedTimes) {
+    if (previous !== undefined) {
+      const gap = (at - previous) / 1000;
+      if (gap > 0 && gap <= gapSeconds) {
+        active += gap;
+      }
+    }
+    previous = at;
+  }
+  return active;
 }
 
 function median(values: readonly number[]): number {
