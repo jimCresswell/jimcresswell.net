@@ -1,6 +1,6 @@
 ---
 classification: situational
-description: "Before any whole-repo gate sweep (pnpm check, pnpm test, large turbo runs) in a working tree other agents share, check the comms stream for an in-flight run: at most one agent sweeps per working tree per coordination window — broadcast start and ETA, broadcast the result with HEAD SHA, peers in that tree defer and consume it (the runner claims --role marshal). Seats in separate worktrees run their own sweeps side by side under no-unbounded-host-load item 6. Not for solo sessions, per-workspace scoped gates, or targeted single-file runs — those are parallel-safe. Failure shape — a sweep rebuilding the tree's shared agent-tools/dist under every concurrent peer in it, deleting it first where the check script runs a clean step, killing their CLIs and watchers for the rebuild window."
+description: "Before any whole-repo gate sweep (pnpm check, pnpm test, large turbo runs) in a working tree other agents share, or whose build output they read, check the comms stream for an in-flight run: at most one agent sweeps per working tree per coordination window — broadcast start and ETA, broadcast the result with HEAD SHA, peers in that tree defer and consume it (the runner claims --role marshal). Seats in separate worktrees run their own sweeps side by side under no-unbounded-host-load item 6. Not for solo sessions, per-workspace scoped gates, or targeted single-file runs — those are parallel-safe. Failure shape — a sweep rebuilding the tree's shared agent-tools/dist under every concurrent peer in it, deleting it first where the check script runs a clean step, killing their CLIs and watchers for the rebuild window."
 trigger: tool:gate-sweep
 ---
 
@@ -12,10 +12,11 @@ coordination window. Multiple parallel runs in one tree duplicate ~30s+
 of work per run, produce no marginal signal, and can collide on
 advisory-orchestrator file outputs. The sharpest hazard: a whole-repo
 sweep rebuilds the tree's shared build output (e.g. `agent-tools/dist/`)
-under every concurrent peer in that tree, and where the `check` script
-runs a `clean` step it deletes that output first — the peers' CLIs
-(heartbeats, comms, marshal commands) and watchers then die for the
-rebuild window (~90s). A whole-repo sweep is a shared-substrate
+under every concurrent session that reads it (a session working a
+sibling worktree from the primary checkout among them), and where the
+`check` script runs a `clean` step it deletes that output first — the
+peers' CLIs (heartbeats, comms, marshal commands) and watchers then die
+for the rebuild window (~90s). A whole-repo sweep is a shared-substrate
 mutation, not a private read.
 
 This rule complements `session-handoff` step §11 (which directs every
@@ -63,7 +64,7 @@ either retired or stalled.
 
 ## When the Rule Fires
 
-- Multi-agent sessions where two or more agents share one working tree
+- Multi-agent sessions where two or more agents share one working tree, or read its build output
   (≥2 agents visible in active-claims or comms).
 - Any session-handoff window where two or more agents in one working
   tree are closing concurrently.
