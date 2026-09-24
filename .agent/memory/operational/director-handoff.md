@@ -59,6 +59,12 @@ Every line answered first-hand, none inferred:
 - The overall goal of the exchange work, verbatim (owner, 2026-09-24): "The overall goal here is
   to bring the Engraph OCE Practice and JC.net Practice into alignment". Every Practice change is
   judged against that convergence; a text ratified in one estate lands as the same bytes in the other.
+- The goal's order, verbatim (owner to the JC.net exchange seat, 2026-09-24 about 13:30Z, relayed):
+  "Our purpose here is to first make sure that all of our Practice innovations are integrated into the
+  OCE Practice, our second goal is to bring our Practice up to speed with their innovations". Outbound
+  delivery into the lineage is the exchange seat's own act through the join ceremony and does not wait
+  on a live OCE seat. And: "the memories and records of this repo are local to this repo, but the
+  lessons learned from them are not".
 - Every 45 minutes the Director checks in with all agents, corrects where needed, and has each run a
   full Cricket suite (owner, 2026-09-24, verbatim: "once every 45 minutes, check in with all agents and
   make sure they are staying on track, correct them if needed, and instruct them to run full Cricket
