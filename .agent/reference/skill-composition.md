@@ -21,13 +21,13 @@ roster.
   `quality-gates`, and kin. A workflow summons modes at its judgement moments
   and may summon sibling workflows for sub-purposes.
 - **Programmes** — compositions that loop workflows toward a declared
-  end-state across sittings: `wrap` (deep closeout to the metaloss fixed
-  point), `consolidate-until-done` (grounding plus consolidation passes until
+  end-state across sittings: `wrap` (the close of every session, to the
+  metaloss fixed point), `consolidate-until-done` (grounding plus consolidation passes until
   every buffer is drained), and the session-boot compositions
-  (`start-right-quick`, `start-right-thorough`, `start-right-team`) that
-  structure a whole session's execution. A programme owns the loop, the exit
-  contract, and the honest partial-exit; the work inside each pass belongs to
-  the summoned workflows.
+  (`start-right-quick`, `start-right-thorough`, `start-right-team`) and the
+  cadence harness (`go`) that structure a whole session's execution. A
+  programme owns the loop, the exit contract, and the honest partial-exit; the
+  work inside each pass belongs to the summoned workflows.
 
 ## The two rules
 
@@ -44,7 +44,7 @@ roster.
    restates its inputs is the named failure (each mode's own success test
    governs).
 
-## Current composition map (2026-08-09)
+## Current composition map (2026-09-24)
 
 ```text
 programmes   wrap ────────────────────▶ modes; work-safety evidence;
@@ -54,6 +54,9 @@ programmes   wrap ────────────────────�
                                           recursion to its fixed point
              consolidate-until-done ──▶ start-right-quick, consolidate-docs
              start-right-* ────────────▶ grounding over everything
+             go ───────────────────────▶ start-right-quick at each GROUNDING
+                                          step; the ACTION/REVIEW/GROUNDING
+                                          cadence over a session's todo list
 
 workflows    consolidate-docs ─────────▶ modes at drain-open; loss-scan
                                           discipline per knowledge-safety-sweep;
