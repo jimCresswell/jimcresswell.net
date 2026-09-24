@@ -310,8 +310,10 @@ this way produces cleaner boundaries and simpler classification.
 
 ### Code Design and Architectural Principles
 
-- **TDD** - ALWAYS use TDD at ALL levels — unit, integration, AND
-  E2E. Test and product code are two halves of one act of design;
+- **TDD** - ALWAYS use TDD at ALL levels — unit and integration
+  tests, AND the E2E checks that describe the running system (a
+  validation surface, written first like a test;
+  [testing-strategy.md](testing-strategy.md)). Test and product code are two halves of one act of design;
   they land together as one atomic commit. See
   [tdd-as-design.md](tdd-as-design.md) for the foundational
   definition and atomic-landing invariant.
@@ -544,7 +546,7 @@ shared bases — they do not replace them. This applies to
 `tsconfig.json` `extends` chains are the one root-anchored
 convention that remains (an `extends` reference is not a module
 import). Deviations cause silent quality-gate leaks (e.g. E2E
-tests running under `pnpm test`, disabled lint rules, weakened
+checks running under `pnpm test`, disabled lint rules, weakened
 type-checking). See [Testing Strategy: Canonical Vitest
 Configuration][vitest-config] for vitest-specific patterns. E2E
 vitest configs may be workspace-specific when base defaults (include
@@ -610,7 +612,7 @@ paths, setup files) don't apply.
   exploration, exercise, review, external comment — is not resolved
   until a check of the appropriate kind exists that would catch the
   instance AND its class. The kind fits the class: behaviour → a
-  unit/integration/E2E test; types → the type-check gate or a
+  unit or integration test, or an E2E check; types → the type-check gate or a
   `satisfies` anchor; structural → an ESLint/boundary rule;
   process/CI coverage → a required status check or validator;
   content-quality invariant → construction plus human review, never
@@ -785,18 +787,25 @@ Universal testing principles:
 - each proof happens once and must prove product code;
 - unit tests are pure, in-process, and mock-free;
 - integration tests import code directly and use only simple DI fakes;
-- E2E tests prove running-system behaviour;
-- smoke tests prove the built artefact is viable in its shipped form (invoked as
-  production invokes it, no loaders); every built binary carries at least one —
-  new ones at landing, the pre-existing gap as recorded debt;
+- tests never use or create IO, of any kind, at any level, and no helper a test
+  imports does (owner, 2026-09-14: an absolute invariant); what needs a running
+  system, a filesystem or a process is a validation surface, never a test
+  ([testing-strategy.md](testing-strategy.md) §Philosophy;
+  [validation-strategy.md](validation-strategy.md));
+- E2E checks prove running-system behaviour, as validation surfaces;
+- smoke checks prove the built artefact is viable in its shipped form (invoked as
+  production invokes it, no loaders), as validators reachable from a CI-gated
+  task; every built binary carries at least one — new ones at landing, the
+  pre-existing gap as recorded debt;
 - tests must never read or mutate `process.env`, global objects, module cache,
-  ambient env files, or `process.cwd()` — smoke composition roots only;
+  ambient env files, or `process.cwd()`; a validation check's composition root
+  may read ambient env and inject it;
 - do not test types — tests are for runtime logic; a test that only proves a
   type is deleted;
 - no useless tests — each test proves something about product code, never
   about test code;
 - no skipped tests, no conditional tests, no complex mocks, no complex test
-  logic, no process spawning in in-process tests. Conditional tests are an
+  logic, no process spawning in tests. Conditional tests are an
   architectural-failure symptom — remove them, fix the ambiguity in product
   code, write deterministic behaviour-proving tests.
 
