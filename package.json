@@ -25,6 +25,7 @@
     "agent-tools:commit-queue": "pnpm --filter @engraph/agent-tools commit-queue",
     "agent-tools:context-cost": "pnpm --filter @engraph/agent-tools context-cost",
     "agent-tools:cursor-session-from-claude-session": "pnpm --filter @engraph/agent-tools cursor-session-from-claude-session",
+    "agent-tools:gate-slot": "pnpm --fail-if-no-match --filter @engraph/agent-tools gate-slot",
     "agent-tools:install-cursor-statusline": "node .cursor/scripts/install-statusline-cli-config.mjs",
     "agent-tools:lint": "pnpm --filter @engraph/agent-tools lint",
     "agent-tools:pr-watch": "pnpm --filter @engraph/agent-tools pr-watch",

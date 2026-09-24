@@ -41,4 +41,22 @@ describe('spawnInheritedProcess', () => {
       signal: null,
     });
   });
+
+  it('gives the child the extra environment variables it is handed', async () => {
+    const probe = `process.exit(process.env.GATE_TOPOLOGY_PROBE === 'handed' ? 0 : 7)`;
+    await expect(
+      spawnInheritedProcess(process.execPath, ['-e', probe], {
+        extraEnv: { GATE_TOPOLOGY_PROBE: 'handed' },
+      }),
+    ).resolves.toStrictEqual({ status: 0, signal: null });
+  });
+
+  it('hands the caller a kill that ends the child by the signal it names', async () => {
+    const blocked = 'setTimeout(() => process.exit(9), 30_000)';
+    await expect(
+      spawnInheritedProcess(process.execPath, ['-e', blocked], {
+        onSpawn: (kill) => kill('SIGHUP'),
+      }),
+    ).resolves.toStrictEqual({ status: null, signal: 'SIGHUP' });
+  });
 });
