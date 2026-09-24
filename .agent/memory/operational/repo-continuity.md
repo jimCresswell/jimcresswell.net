@@ -23,6 +23,16 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
+- 2026-09-24T13:17Z, added to the PDR-052 opener below, and first in its queue: PR 170's
+  settlement review (`SHA: 5ce5918f`) found four doctrine gaps past the two-round bound. The fresh
+  session cures them before the queued merges: `testing-strategy.md`'s levels table and cycle text
+  still call E2E a test level (rewrite in test-or-check terms); `validation-strategy.md` says the
+  `test` command proves behaviour at every level (limit it to unit and integration);
+  `no-global-state-in-tests`' trigger and globs miss the smoke-check locations; the test-expert
+  template's Step 2 omits the smoke check and its feature-versus-artefact discriminator. The
+  recovery node's inventory slice takes the other two: the import boundary for check-only
+  locations, and `commit-queue-git-rename.smoke.ts`, an in-process integration test under a
+  check's name.
 - 2026-09-24T13:14Z, the exchange seat's PDR-052 handoff opener: the remaining directive-file
   alignment work is queued for a fresh session and is not done in the session that wrote this.
   `main` is at `SHA: d023d4ef` (PR 171 merged); PR 170, the strict test doctrine slice, carries
