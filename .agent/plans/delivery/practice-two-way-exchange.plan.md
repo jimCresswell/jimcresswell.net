@@ -345,20 +345,31 @@ entries composed whole and appended in one write.
 
 ## Todos
 
+Each todo carries its status as read on 2026-09-24. Every prose pull request on this node
+updates them, so the list is checked rather than believed.
+
 1. At the window: the delta script and the computed lists, one per pins row (one pull request,
    code-class; this amendment rides it).
+   Status: **done**. The delta scripts and the four computed lists are in `inputs/`.
 2. The concept rows and the register (one pull request, prose-class, the intake contract
    declared at open), then the register validator (one pull request, code-class).
+   Status: **done**. The register validator runs in the `docs-validators:check` leg.
 3. The cards for conflicting rows, one batch.
+   Status: **in progress**. One row, C7, is still a card in both estates, in its own lane.
 4. Inbound landings, one pull request per eight claims, in the register's order.
+   Status: **in progress**. Five of the 28 inbound rows have landed: L1, L2, L4, L5 and L22.
 5. The outbound note and material, delivered through the join ceremony.
+   Status: **in progress**. Batches one, two and three are in the lineage's Box and
+   acknowledged, and none of the 21 outbound rows has landed.
 6. The close: provenance, audit, Box, and the doctrine amendments as register candidates.
+   Status: **not started**.
 7. The re-pin (mechanism step 1, before the register closes): the pins carry forty-character
    commit ids; the driver fails closed on a tracked list with no pin row before replacing any
    output; the machinery list is derived from the artefact inventory rather than written by
    hand (the delta lane's seven review rounds each found a true omission of the hand-written
    list). Two of the three are Copilot's observations on pull request 137 (review 5266093341),
    routed here below the bar.
+   Status: **not started**. The pins still carry ten-character ids.
 8. The Core's portability measure (before todo 5's outbound note, and before any decision to
    extract the Practice into an installable entity): PDR-105 says a PDR never cites an ADR,
    and on 2026-09-21 this estate's Core held 78 ADR citations in 19 of 141 PDRs, to 17 distinct
@@ -366,6 +377,8 @@ entries composed whole and appended in one write.
    cure is the authoring estate's text; the class closes with a Core validator that refuses an
    ADR citation in a PDR, offered in the outbound note. Copilot's observation on pull request
    145 (review 5268801620), verified and widened, routed here below the bar.
+   Status: **in progress**. The text cure and the validator went to the lineage in batch one,
+   whose own pull requests land them.
 
 ## Plan-body first-principles check
 
@@ -407,3 +420,5 @@ the routing rationale. Read and dispositioned at pickup before implementation be
 | 2026-09-24 | PR 172, Copilot on the cure tip (thread, `cricket-procedure.md:125` and `:160`) | Step 2 lists an owner clause that states a goal, an order or a hold, but not one that only names who owns or receives the work, so the audit can pass a reading that drops the receiver the frame asks it to map. | Rejected as a cure in PR 172 (signed lines only, the two-rounds ruling); cured with joint set K, in the same pull request as this row. |
 | 2026-09-24 | PR 172, Copilot on the cure tip (review body, previously missed, `cricket-judgement.md:274`) | A judgement role given no `SOURCES:` block must return NARROWED, yet each FRAME EVIDENCE bullet must quote a source phrase. | Rejected as a cure in PR 172 as above; cured with joint set K: the one bullet reads `NO VERBATIM SOURCE`. |
 | 2026-09-24 | PR 172, Copilot on the cure tip (review body, previously missed, `cricket-procedure.md:217`) | Step 5 put the frame repair first only on ON-TRACK, while the skill acts on a non-SOUND frame before any work verdict. | Rejected as a cure in PR 172 as above; cured with joint set K: the frame repair leads whatever the work verdict. |
+| 2026-09-24 | PR 179, Copilot round one (thread on `render-subagent-adapters.ts`, out-of-scope observation) | Projecting a zero-tool role's full System prompt into its Claude adapter conflicts with PDR-009's thin-wrapper rule, which records no exception; the lineage's hand-kept corpus adapters carry the same inline prompts. | Rejected as a cure in PR 179 and routed to joint set K2: its PDR-009 clause, signed by both exchange seats (lineage event da7c49bf), names the exception and requires a check of every copy; here the generator is that check, and the lineage builds its own. |
+| 2026-09-24 | PR 179, Copilot on the cure tip (thread on `claude-fields.ts`; review body, previously missed, `system-prompt-block.ts:88`) | A quoted `" none "` passes the mixed-list rule and escapes the other zero-tool rules and the renderer; a fenced `> example` beside the real blockquote makes the reader refuse a valid System prompt section. | Rejected as cures in PR 179, because after round two a finding that is not a trivial cure takes a signed Rejected line (PDR-132's 2026-09-14 amendment "the number of review rounds per pull request does not go up"; this plan's §Mechanism, item 4). Both are cured, test first, in PR 182, the zero-tool follow-up slice. The older whole-text oracles of `render-subagent-adapters.unit.test.ts` stay their own slice, as PR 179 left them, and this row is not their ledger. |

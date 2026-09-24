@@ -303,7 +303,15 @@ below serves one of those three.
    integration ledger joins file ↔ event ↔ execution-time pin. The two
    host rule families (SHA-required in collaboration content;
    SHA-forbidden in permanent docs) are this one layering rule seen
-   from its two sides. **Format on receipt**: where the receiving
+   from its two sides. **Lint before delivery**: a box file lands in the
+   receiver's working tree, where the receiver's whole-tree gates read
+   it before any receipt. The donor runs the receiver's own formatting
+   and lint configurations over every box file before delivery and
+   delivers only bytes they pass, so a delivery never fails the
+   receiver's formatting and lint gates (worked instance 2026-09-24: a cover note that
+   passed the donor's lint failed the receiver's MD032 and broke every
+   pre-push gate in the receiver's primary checkout).
+   **Format on receipt**: where the receiving
    repo's conventions or gates refuse the donor's bytes (markdown
    conventions, heading shapes, gate-satisfying style), the estates
    align that convention or gate so the bytes stay identical
