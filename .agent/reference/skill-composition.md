@@ -24,8 +24,8 @@ roster.
   end-state across sittings: `wrap` (the close of every session, to the
   metaloss fixed point), `consolidate-until-done` (grounding plus consolidation passes until
   every buffer is drained), and the session-boot compositions
-  (`start-right-quick`, `start-right-thorough`, `start-right-team`) that
-  structure a whole session's execution. A programme owns the loop, the exit
+  (`start-right-quick`, `start-right-thorough`, `start-right-team`) and the
+  cadence harness (`go`) that structure a whole session's execution. A programme owns the loop, the exit
   contract, and the honest partial-exit; the work inside each pass belongs to
   the summoned workflows.
 
