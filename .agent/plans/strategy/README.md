@@ -3,7 +3,7 @@ title: 'Strategy'
 type: strategy
 doc_role: index
 status: ratified
-last_updated: 2026-09-13
+last_updated: 2026-09-23
 audience: 'The owner (decide) and every seat on the repository (build)'
 ---
 
@@ -45,7 +45,7 @@ this README's families and the concrete IDs the stream files publish.
 | Decision                                   | Owner | Status / note                                                                 |
 | ------------------------------------------ | ----- | ----------------------------------------------------------------------------- |
 | The streams and their names                | Owner | **Settled 2026-09-13** — four streams; the platform split into site and Practice |
-| The choices per stream                     | Owner | **Ratified 2026-09-13** with the strategic nodes; living-strategy refinement    |
+| The choices per stream                     | Owner | **Ratified 2026-09-13** with the strategic nodes; living-strategy refinement; PRACTICE-1 reworded 2026-09-23 by the owner's card, with `best-of-each-practice` the Practice stream's one strategic node |
 | Whether the site and the Practice separate | Owner | **Settled 2026-09-13** — separate streams and nodes                            |
 
 ## Related
