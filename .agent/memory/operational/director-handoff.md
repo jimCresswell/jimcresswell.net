@@ -56,6 +56,9 @@ Every line answered first-hand, none inferred:
   verbatim: "Use the decision matrix, ONLY ask questions that survive that"): two excellent options
   left that differ on the owner's intent or own risk, or an action only the owner can perform.
   Wording that implements a ruling already given is the seats' work under review, never a card.
+- The overall goal of the exchange work, verbatim (owner, 2026-09-24): "The overall goal here is
+  to bring the Engraph OCE Practice and JC.net Practice into alignment". Every Practice change is
+  judged against that convergence; a text ratified in one estate lands as the same bytes in the other.
 
 ## Current handoff state (2026-09-23T19:10Z; the owner's card of 2026-09-23 ANSWERED, eight items; PRs 152, 153 and 154 MERGED; PR 155 OPEN; a compaction boundary with every process left running)
 
