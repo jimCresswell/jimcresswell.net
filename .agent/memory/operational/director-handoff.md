@@ -63,6 +63,10 @@ Every line answered first-hand, none inferred:
   full Cricket suite (owner, 2026-09-24, verbatim: "once every 45 minutes, check in with all agents and
   make sure they are staying on track, correct them if needed, and instruct them to run full Cricket
   suites"). One identical frame to every seat; the seat runs its own suite and acts on its verdicts.
+- The Director runs its own full Cricket suite at the same cadence, about 22 minutes after the
+  seats' check-in (owner, 2026-09-24, verbatim: "run your own Cricket suites at the same cadence, but
+  out of phase, about 22 minutes after the others"); the owner's timer outranks the cricket skill's
+  event-boundary default for this seat.
 
 ## Current handoff state (2026-09-23T19:10Z; the owner's card of 2026-09-23 ANSWERED, eight items; PRs 152, 153 and 154 MERGED; PR 155 OPEN; a compaction boundary with every process left running)
 
