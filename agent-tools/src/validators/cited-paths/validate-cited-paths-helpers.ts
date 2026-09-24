@@ -31,27 +31,12 @@ export interface MissingPathFinding {
   readonly target: string;
 }
 
-/** Optional configuration for {@link findMissingPathCitations}. */
-export interface FindMissingPathCitationsOptions {
-  /**
-   * Repo-relative targets exempted from the check: directories a tool
-   * creates at runtime, or ignored boundaries whose absence is normal.
-   */
-  readonly allowlistedTargets?: readonly string[];
-  /**
-   * Repo-relative source paths exempted from the check: surfaces that
-   * legitimately quote a path that no longer exists.
-   */
-  readonly allowlistedPaths?: readonly string[];
-}
-
 /**
  * Resolve every path citation in the given files through `exists`.
  *
  * @param files - In-memory files with repo-relative paths.
  * @param exists - Whether a repo-relative path names an existing file or
  * directory.
- * @param options - See {@link FindMissingPathCitationsOptions}.
  * @returns Findings in file then line order; empty when every citation
  * resolves.
  *
@@ -67,14 +52,8 @@ export interface FindMissingPathCitationsOptions {
 export function findMissingPathCitations(
   files: readonly { readonly path: string; readonly content: string }[],
   exists: (target: string) => boolean,
-  options: FindMissingPathCitationsOptions = {},
 ): readonly MissingPathFinding[] {
-  const allowlistedTargets = new Set(options.allowlistedTargets ?? []);
-  const allowlistedPaths = new Set(options.allowlistedPaths ?? []);
-  const resolves = (target: string): boolean => allowlistedTargets.has(target) || exists(target);
-  return files
-    .filter((file) => !allowlistedPaths.has(file.path))
-    .flatMap((file) => missingCitationsInFile(file, resolves));
+  return files.flatMap((file) => missingCitationsInFile(file, exists));
 }
 
 function missingCitationsInFile(
