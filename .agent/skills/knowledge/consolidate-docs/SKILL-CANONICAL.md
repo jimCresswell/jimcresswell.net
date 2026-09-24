@@ -323,8 +323,8 @@ by `corpus-analysis-salvage-and-topology-redesign.plan.md`.
 
 ## Sweep pointers into a moved range before moving it
 
-A moved or archived range leaves its readers behind. PR #80 (2026-09-08,
-the director-handoff disposition) was a correct move that the Director
+A moved or archived range leaves its readers behind. The lineage's PR #80
+(2026-09-08, the director-handoff disposition) was a correct move that the Director
 had read, and still paid seven review rounds after the YES, every finding a
 real pointer into the moved range: a retained block's "below", a
 next-safe-steps entry, a rule's provenance line, the archive's own relative
