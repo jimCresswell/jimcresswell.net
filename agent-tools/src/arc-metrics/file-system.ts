@@ -8,8 +8,8 @@
  *
  * The line port streams rather than returning a string: an arc's transcripts
  * run to a hundred megabytes each, and the whole-file read the session-metadata
- * seam uses (one file, its tail) would hold every byte of every session in
- * memory at once here.
+ * seam uses (one file, its tail) would hold a whole transcript in memory here,
+ * one session at a time.
  *
  * @packageDocumentation
  */

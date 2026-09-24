@@ -30,6 +30,11 @@ const WINDOW_REGISTRY = new Map<string, number>([
   ['claude-opus-5', 200_000],
   ['claude-opus-5[1m]', 1_000_000],
   ['claude-fable-5-1', 200_000],
+  // Added 2026-09-24: the harness names this session's model
+  // `claude-opus-5-5[1m]`, "Opus 5.5 (1M context)"; its transcripts record the
+  // bare `claude-opus-5-5`, whose default window was not observed, so it stays
+  // absent.
+  ['claude-opus-5-5[1m]', 1_000_000],
 ]);
 
 /**
