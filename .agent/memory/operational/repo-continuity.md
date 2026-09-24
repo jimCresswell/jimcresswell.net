@@ -23,6 +23,16 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
+- 2026-09-24T13:33Z, the owner's order for the exchange, verbatim: "Our purpose here is to first
+  make sure that all of our Practice innovations are integrated into the OCE Practice, our second
+  goal is to bring our Practice up to speed with their innovations", and "the memories and
+  records of this repo are local to this repo, but the lessons learned from them are not". Goal
+  one is the exchange node's todo 5: this seat delivers the outbound note and material into the
+  lineage's Practice Box through the join ceremony, and the lineage's seats land it. Its inputs:
+  the register's J rows refreshed against the lineage head, and the lessons swept from this
+  estate's records (napkin, distilled, pending graduations, experience, reports), which travel
+  as lessons while the records stay here. Goal two (inbound) waits behind it; its parked slice
+  is `feat/alignment-start-right-test-rules` at `SHA: 4b9fd501`, local and unpushed.
 - 2026-09-24T13:28Z, a correction to the two opener entries below: PDR-052 covers only
   `.agent/directives/*`. The fresh session's queue is the directives alone: `AGENT.md`,
   `principles.md`'s non-test hunks, `orientation.md`, `agent-collaboration.md`, and the two
