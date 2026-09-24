@@ -1,16 +1,17 @@
 import { describe, expect, it } from 'vitest';
 
-import { signalProcessGroup, sweepProcessGroup, type SignalOutcome } from './process-group.js';
+import { signalProcessGroup, sweepStep } from './process-group.js';
 
 /**
- * Signalling a child's process group, and sweeping the group once the child
- * has ended. Only ESRCH proves a group has ended. EPERM answers both for a
- * group whose members have all exited and are not yet reaped (macOS, for
- * about half a millisecond after a group SIGKILL, measured) and for a group
- * holding a live process this user may not signal, so a sweep waits for
- * ESRCH and reports a group that never gives it as not cleared. That the
- * signal reaches every member of the group is proven on real processes by
- * the gate-slot wrapper smoke.
+ * Signalling a child's process group, and the sweep's decision on each of
+ * the kernel's answers once the child has ended. Only ESRCH proves a group
+ * has ended. EPERM answers both for a group whose members have all exited
+ * and are not yet reaped (macOS, for about half a millisecond after a group
+ * SIGKILL, measured) and for a group holding a live process this user may
+ * not signal, so the sweep sends again until ESRCH or its last attempt. The
+ * sweep's waits are proven over time in the integration test beside this
+ * file, and the signal reaching every member of the group on real processes
+ * by the gate-slot wrapper smoke.
  */
 
 function failingKill(code: string): (pid: number, signal: NodeJS.Signals) => true {
@@ -18,20 +19,6 @@ function failingKill(code: string): (pid: number, signal: NodeJS.Signals) => tru
     throw Object.assign(new Error(`kill ${code}`), { code });
   };
 }
-
-/** A group whose kernel answers each SIGKILL with the next outcome, repeating the last. */
-function scriptedGroup(
-  outcomes: readonly SignalOutcome[],
-): (signal: NodeJS.Signals) => SignalOutcome {
-  let answered = 0;
-  return () => {
-    answered += 1;
-    return outcomes[Math.min(answered, outcomes.length) - 1] ?? 'ended';
-  };
-}
-
-/** Three SIGKILLs at most; the waits between them are not slept. */
-const PATIENCE = { attempts: 3, intervalMs: 10, sleep: async (): Promise<void> => undefined };
 
 describe('signalProcessGroup', () => {
   it.each([
@@ -55,23 +42,18 @@ describe('signalProcessGroup', () => {
   });
 });
 
-describe('sweepProcessGroup', () => {
+describe('sweepStep', () => {
   it.each([
-    { name: 'an empty group', outcomes: ['ended'] },
-    { name: 'a group of unreaped members', outcomes: ['not-permitted', 'not-permitted', 'ended'] },
-    { name: 'a group with a straggler', outcomes: ['signalled', 'not-permitted', 'ended'] },
-  ] as const)('reports $name as cleared once the kernel says so', async ({ outcomes }) => {
-    await expect(sweepProcessGroup(scriptedGroup(outcomes), PATIENCE)).resolves.toBe('cleared');
-  });
-
-  it.each([
-    { name: 'a member it may not signal', outcomes: ['not-permitted'] },
-    { name: 'a member that will not die', outcomes: ['signalled'] },
-    {
-      name: 'a member that dies only after the last SIGKILL',
-      outcomes: ['signalled', 'signalled', 'signalled', 'ended'],
+    { answer: 'ended', attempt: 1, attempts: 3, step: 'cleared' },
+    { answer: 'ended', attempt: 3, attempts: 3, step: 'cleared' },
+    { answer: 'not-permitted', attempt: 2, attempts: 3, step: 'again' },
+    { answer: 'signalled', attempt: 1, attempts: 3, step: 'again' },
+    { answer: 'not-permitted', attempt: 3, attempts: 3, step: 'not-cleared' },
+    { answer: 'signalled', attempt: 3, attempts: 3, step: 'not-cleared' },
+  ] as const)(
+    'decides $step on $answer at SIGKILL $attempt of $attempts',
+    ({ answer, attempt, attempts, step }) => {
+      expect(sweepStep(answer, attempt, attempts)).toBe(step);
     },
-  ] as const)('reports a group with $name as not cleared', async ({ outcomes }) => {
-    await expect(sweepProcessGroup(scriptedGroup(outcomes), PATIENCE)).resolves.toBe('not-cleared');
-  });
+  );
 });

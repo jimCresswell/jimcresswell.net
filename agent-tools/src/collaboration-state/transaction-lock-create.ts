@@ -10,7 +10,13 @@ export interface LockFileSystem {
   readonly rm: (path: string) => Promise<void>;
 }
 
-/** The production lock filesystem, whose `rm` also removes every lock a holder releases or a waiter reclaims. */
+/**
+ * The production lock filesystem, whose `rm` also removes every lock a holder
+ * releases or a waiter reclaims. Its `force` is the port's "a missing path is
+ * not an error": two waiters can both find one lock stale and both remove it,
+ * and a waiter can reclaim a lock between its holder's owner read and its
+ * removal.
+ */
 export const nodeLockFileSystem: LockFileSystem = {
   mkdir: async (path) => mkdir(path),
   writeFile: async (path, text) => writeFile(path, text),

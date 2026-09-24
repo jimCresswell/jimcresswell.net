@@ -2,12 +2,11 @@
 type Kill = (pid: number, signal: NodeJS.Signals) => true;
 
 /**
- * What the kernel answered a signal: delivered to the process, or to at
- * least one member of the group; no such process or group (ESRCH); or no
- * target it was permitted to signal (EPERM). EPERM does not prove a group
- * has ended: macOS gives it for a group whose members have all exited and
- * are not yet reaped, and for one holding a live process this user may not
- * signal.
+ * What the kernel answered a group signal: delivered to at least one member
+ * of the group; no such group (ESRCH); or no member it was permitted to
+ * signal (EPERM). EPERM does not prove a group has ended: macOS gives it for
+ * a group whose members have all exited and are not yet reaped, and for one
+ * holding a live process this user may not signal.
  */
 export type SignalOutcome = 'signalled' | 'ended' | 'not-permitted';
 
@@ -40,22 +39,40 @@ export function signalProcessGroup(
  * again after each interval, which also catches a member forked since the
  * last. A group still answering after `attempts` SIGKILLs is reported as not
  * cleared: it holds a member this user may not signal, one that will not
- * die, or a dead one whose parent has not reaped it.
+ * die, or a dead one whose parent has not reaped it. Signalling the group
+ * after its leader has ended reaches only the gate's own members: POSIX
+ * reuses no process id while a process group with that id exists, and once
+ * the group is empty the first ESRCH ends the sweep.
  */
 export async function sweepProcessGroup(
   signal: (signal: NodeJS.Signals) => SignalOutcome,
   patience: SweepPatience,
 ): Promise<GroupSweep> {
-  for (let attempt = 1; attempt <= patience.attempts; attempt += 1) {
-    if (signal('SIGKILL') === 'ended') {
-      return 'cleared';
+  for (let attempt = 1; ; attempt += 1) {
+    const step = sweepStep(signal('SIGKILL'), attempt, patience.attempts);
+    if (step !== 'again') {
+      return step;
     }
-    if (attempt < patience.attempts) {
-      await patience.sleep(patience.intervalMs);
-    }
+    await patience.sleep(patience.intervalMs);
+  }
+}
+
+/**
+ * The sweep's decision on the kernel's answer to SIGKILL number `attempt`
+ * of `attempts`: the group is cleared once the kernel reports it gone; it
+ * is not cleared if it still answers after the last SIGKILL; otherwise the
+ * sweep waits and sends again.
+ */
+export function sweepStep(
+  answer: SignalOutcome,
+  attempt: number,
+  attempts: number,
+): GroupSweep | 'again' {
+  if (answer === 'ended') {
+    return 'cleared';
   }
 
-  return 'not-cleared';
+  return attempt < attempts ? 'again' : 'not-cleared';
 }
 
 /** Signal `target`, a negated leader naming its group; any failure but ESRCH or EPERM is thrown. */

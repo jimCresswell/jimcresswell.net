@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
 import type { GateHolderIdentity } from './gate-slot-contract.js';
+import { createGateSlotIo, type GateSlotHost } from './gate-slot-io.js';
 import { main } from './gate-slot-main.js';
 import type { SlotObservation } from './gate-slot-policy.js';
 import type { GateSlotIo } from './gate-slot-types.js';
@@ -11,7 +12,8 @@ import type { GateSlotIo } from './gate-slot-types.js';
  * a fixed host snapshot, as the adapter does under the mutex, and returns the
  * verdict with a release (a parametric fake: the verdict is contract data
  * flowing through the port); `runChild` reports how the gate child ended.
- * Tests assert only what the command returns and writes.
+ * The win32 refusal runs over the real composition, whose ports the command
+ * never reaches. Tests assert only what the command returns and writes.
  */
 
 const HERE = '/work/here';
@@ -32,6 +34,35 @@ const EMPTY_HOST: readonly SlotObservation[] = [
 ];
 
 const NO_RELEASE = async (): Promise<void> => undefined;
+
+/**
+ * A host where this tree already holds a slot, as it does for a command run
+ * inside its gate: a command that tried to take a slot here would wait, and
+ * report the wait, before anything else.
+ */
+const THIS_TREE_HELD: readonly SlotObservation[] = [
+  { port: 41, state: 'held', holder: MINE },
+  ...EMPTY_HOST.slice(1),
+];
+
+/**
+ * The real composition for a host the command must refuse: its ports and
+ * child runner are never used, because the refusal comes first.
+ */
+const WIN32_HOST: Omit<GateSlotHost, 'platform'> = {
+  ports: {
+    host: '127.0.0.1',
+    mutexPort: 41_000,
+    slotPorts: [41_001],
+    patience: { mutexAttempts: 1, mutexRetryMs: 1, identityTimeoutMs: 1 },
+  },
+  worktree: HERE,
+  limit: 2,
+  heldMarker: undefined,
+  childCommand: 'pnpm',
+  childMaxMs: 1000,
+  childGraceMs: 100,
+};
 
 /** Yields a macrotask, so a loop that never gives up fails on the timeout instead of hanging. */
 const NEXT_TICK = async (): Promise<void> =>
@@ -127,27 +158,39 @@ describe('gate-slot run', () => {
     expect(sinks.err.join('\n')).toContain('EPERM');
   });
 
-  it('refuses inside a gate, naming the enclosing slot and the command that did not run', async () => {
-    const { io, sinks } = hostIo(EMPTY_HOST, { heldMarker: '31918' });
+  it('refuses inside a gate before any wait, naming the enclosing slot', async () => {
+    const { io, sinks } = hostIo(THIS_TREE_HELD, { heldMarker: '31918' });
 
     await expect(main(['run', 'pnpm', 'check'], io)).resolves.toBe(1);
-    expect(sinks.err.join('\n')).toContain('31918');
+    expect(sinks.err[0]).toContain('31918');
     expect(sinks.err.join('\n')).toContain('pnpm check');
+  }, 30_000);
+
+  it('refuses a working tree no reader could match to its tree, naming it', async () => {
+    const worktree = '/work/line\nbreak';
+    const { io, sinks } = hostIo(EMPTY_HOST, { worktree });
+
+    await expect(main(['run', 'pnpm', 'check'], io)).resolves.toBe(1);
+    expect(sinks.err[0]).toContain(JSON.stringify(worktree));
   });
 
-  it('refuses a working tree no reader could match to its tree, and runs nothing', async () => {
-    const { io, sinks } = hostIo(EMPTY_HOST, { worktree: '/work/line\nbreak' });
+  it('refuses on a host with no process groups to signal before any wait', async () => {
+    const { io, sinks } = hostIo(THIS_TREE_HELD, { processGroups: false });
 
     await expect(main(['run', 'pnpm', 'check'], io)).resolves.toBe(1);
+    expect(sinks.err[0]).toContain('process group');
     expect(sinks.err.join('\n')).toContain('pnpm check');
-  });
+  }, 30_000);
 
-  it('refuses on a host with no process groups to signal, and runs nothing', async () => {
-    const { io, sinks } = hostIo(EMPTY_HOST, { processGroups: false });
+  it('refuses a gate on a win32 host, which has no process groups to signal', async () => {
+    const err: string[] = [];
+    const io: GateSlotIo = {
+      ...createGateSlotIo({ ...WIN32_HOST, platform: 'win32' }),
+      stderr: (line) => err.push(line),
+    };
 
     await expect(main(['run', 'pnpm', 'check'], io)).resolves.toBe(1);
-    expect(sinks.err.join('\n')).toContain('process group');
-    expect(sinks.err.join('\n')).toContain('pnpm check');
+    expect(err.join('\n')).toContain('process group');
   });
 
   it('fails a gate whose process group the sweep could not clear, and says so', async () => {
@@ -211,7 +254,7 @@ describe('gate-slot run', () => {
     });
 
     await expect(main(['run', 'pnpm', 'check'], io)).resolves.toBe(code);
-    expect(sinks.err.join('\n')).toContain('43');
+    expect(sinks.err.join('\n')).toContain('43-minute');
   });
 });
 

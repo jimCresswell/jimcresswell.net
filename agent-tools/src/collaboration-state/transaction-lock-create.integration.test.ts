@@ -7,8 +7,9 @@ import { tryCreateLock, type LockFileSystem } from './transaction-lock-create.js
  * file. A holder whose owner file cannot be written removes its directory
  * before the write's error goes up, so the failure leaves no ownerless lock.
  * The filesystem is an in-memory fake whose entries map each path to a file's
- * text or to a directory mark; a removal completes on a later turn, as a real
- * one does. Tests read what the lock leaves on it.
+ * text or to a directory mark; a removal takes the path and its contents and
+ * completes on a later turn, as a real one does. Tests read what the lock
+ * leaves on it.
  */
 
 const LOCK_DIR = '/state/claims.json.transaction';
@@ -23,6 +24,13 @@ function rejectWith(error: Error): () => Promise<never> {
   return async () => Promise.reject(error);
 }
 
+/** Remove `path` and every entry under it. */
+function removeTree(entries: Map<string, string>, path: string): void {
+  [...entries.keys()]
+    .filter((key) => key === path || key.startsWith(`${path}/`))
+    .forEach((key) => entries.delete(key));
+}
+
 function memoryFileSystem(entries: Map<string, string>): LockFileSystem {
   return {
     mkdir: async (path) => entries.set(path, DIRECTORY),
@@ -32,7 +40,7 @@ function memoryFileSystem(entries: Map<string, string>): LockFileSystem {
     rm: async (path) =>
       new Promise((resolve) => {
         setImmediate(() => {
-          entries.delete(path);
+          removeTree(entries, path);
           resolve();
         });
       }),
@@ -59,7 +67,10 @@ describe('tryCreateLock', () => {
     const fs = { ...memoryFileSystem(entries), mkdir: rejectWith(failure('EEXIST')) };
 
     await expect(tryCreateLock(LOCK_DIR, fs)).resolves.toBeUndefined();
-    expect(entries.get(OWNER_FILE)).toBe(theirs);
+    expect([...entries]).toStrictEqual([
+      [LOCK_DIR, DIRECTORY],
+      [OWNER_FILE, theirs],
+    ]);
   });
 
   it('reports any other failure to make the directory', async () => {

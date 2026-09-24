@@ -1,4 +1,4 @@
-import { tmpdir } from 'node:os';
+import { fileURLToPath } from 'node:url';
 
 import { describe, expect, it } from 'vitest';
 
@@ -28,9 +28,10 @@ describe('spawnInheritedProcess', () => {
   });
 
   it('runs the child in the requested working directory', async () => {
-    // The child compares real paths itself: the system temp directory is a
-    // symlink on macOS, and process.cwd() reports the resolved path.
-    const cwd = tmpdir();
+    // The child compares real paths itself, since process.cwd() reports the
+    // resolved path. The directory is this test's own, read from no ambient
+    // environment.
+    const cwd = fileURLToPath(new URL('.', import.meta.url));
     const probe =
       `const { realpathSync } = require('node:fs');` +
       `process.exit(realpathSync(process.cwd()) === realpathSync(${JSON.stringify(cwd)}) ? 0 : 5)`;

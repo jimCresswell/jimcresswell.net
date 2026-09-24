@@ -25,11 +25,14 @@ import { blockedChild, killGroup, unreapedMemberChild } from './gate-slot-smoke-
  * harness mechanics.
  */
 
-const exitFailed = (): never => process.exit(1);
+const exitAfterFailedStop = (error: unknown): never => {
+  process.stderr.write(`gate-slot wrapper smoke: fixtures did not stop: ${String(error)}\n`);
+  return process.exit(1);
+};
 const watchdog = setTimeout(() => {
   process.stderr.write('gate-slot wrapper smoke: timed out\n');
   // Exit only once every fixture has let go of the smoke's ports, so the lock never frees early.
-  stopFixtures().then(exitFailed, exitFailed);
+  stopFixtures().then(() => process.exit(1), exitAfterFailedStop);
 }, 180_000);
 watchdog.unref();
 
@@ -145,21 +148,21 @@ async function proveASignalReachesTheWholeGate(
 }
 
 /**
- * The gate's leader handles SIGTERM and exits 1, leaving a grandchild that
- * ignores it: the group is swept once the leader has ended, whatever its
- * status, so the grandchild is gone before the slot is freed.
+ * The gate's leader exits 0 on SIGTERM, leaving a grandchild that ignores it:
+ * the group is swept once the leader has ended, the grandchild is gone before
+ * the slot is freed, and the gate passes only once the sweep reports it clear.
  */
 async function proveAFinishedGateLeavesNoStraggler(): Promise<void> {
   const script =
     `const { spawn } = require('node:child_process');` +
-    `process.on('SIGTERM', () => process.exit(1));` +
+    `process.on('SIGTERM', () => process.exit(0));` +
     `const grandchild = spawn('/bin/sh', ['-c', "trap '' TERM; sleep 20; echo survived"], { stdio: ['ignore', 'inherit', 'ignore'] });` +
     String.raw`process.stdout.write('ready ' + grandchild.pid + '\n');` +
     `setInterval(() => undefined, 1000);`;
   const gate = startFixture({ worktree: await tree('straggler') }, ['run', 'pnpm', '-e', script]);
   await readyPid(gate);
   gate.process.kill('SIGTERM');
-  assert.equal(await exitOf(gate), 1, gate.stderr());
+  assert.equal(await exitOf(gate), 0, gate.stderr());
   // The grandchild holds the fixture's stdout, so the pipe ends only once it has
   // gone; had it outlived the sweep, it would have said so before going.
   await outputEnded(gate);
