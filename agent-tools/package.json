@@ -29,6 +29,7 @@
     "codex-reviewer-resolve": "tsx src/bin/codex-reviewer-resolve.ts",
     "skills-adapter-generate": "cd .. && tsx agent-tools/src/bin/skills-adapter-generate.ts --prefix=jc-",
     "repo-check": "cd .. && pnpm exec tsx agent-tools/src/repo-check/repo-check.ts",
+    "gate-slot": "cd .. && pnpm exec tsx agent-tools/src/gate-slot/gate-slot.ts",
     "plan-state": "cd .. && pnpm exec tsx agent-tools/src/plan-state/plan-state.ts",
     "pre-tool-use-dispatch": "cd .. && pnpm exec tsx agent-tools/src/hook-policy/pre-tool-use-dispatch.ts",
     "check-commit-message": "cd .. && pnpm exec tsx agent-tools/src/commit-advisories/check-commit-message.ts",

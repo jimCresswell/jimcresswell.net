@@ -1,8 +1,10 @@
-import { spawn, spawnSync, type SpawnSyncReturns } from 'node:child_process';
+import { spawn, spawnSync, type ChildProcess, type SpawnSyncReturns } from 'node:child_process';
 
 import { writeErrorLine } from '../core/terminal-output.js';
 import { resolveTrustedGit } from '../core/trusted-git.js';
+import { childEnvironment } from '../spawn/child-environment.js';
 import { resolvePnpm } from '../spawn/pnpm-path.js';
+import { signalProcess, signalProcessGroup, type SignalOutcome } from '../spawn/process-group.js';
 
 import type { RepoCheckRuntime } from './repo-check-types.js';
 
@@ -62,22 +64,46 @@ export interface InheritedProcessEnd {
   readonly signal: NodeJS.Signals | null;
 }
 
+/** How {@link spawnInheritedProcess} starts its child. */
+export interface InheritedProcessOptions {
+  /** The child's working directory; defaults to this process's. */
+  readonly cwd?: string;
+  /** Variables set over the environment the child would otherwise get. */
+  readonly extraEnv?: Readonly<Record<string, string>>;
+  /**
+   * Start the child as the leader of its own process group (and session), so
+   * the kill seam reaches every process it starts. A signal sent to one pid
+   * reaches only that process: the pnpm launcher on this estate's hosts is a
+   * shell script that runs pnpm without exec, so a gate's real work sits two
+   * levels below it. The child also leaves the controlling terminal, so a
+   * terminal's Ctrl-C reaches it only through the caller.
+   */
+  readonly processGroup?: boolean;
+  /**
+   * Receives a kill for the child once it is spawned, so a caller can
+   * forward signals to it and bound its lifetime. The kill returns the
+   * kernel's answer; with `processGroup` it signals the whole group.
+   */
+  readonly onSpawn?: (kill: (signal: NodeJS.Signals) => SignalOutcome) => void;
+}
+
 /**
  * Spawn a trusted command with inherited stdio and report how it ended.
  *
  * A signal death is reported as such (`status` null, `signal` named), never
  * folded into an exit code: a gate that says "exit 1" for a child the OOM
- * killer took misclassifies a crash as a finding (F-112). A launch failure is
- * written to stderr and reported as status 1.
+ * killer took misclassifies a crash as a finding (F-112). A launch failure,
+ * whether spawn reports it or throws it, is written to stderr and reported as
+ * status 1.
  *
  * @param command - The command; `pnpm` and `git` resolve to their trusted binaries.
  * @param args - Arguments.
- * @param options - `cwd` for the child; defaults to this process's.
+ * @param options - The child's working directory, extra environment, group and kill seam.
  */
 export function spawnInheritedProcess(
   command: string,
   args: readonly string[],
-  options: { readonly cwd?: string } = {},
+  options: InheritedProcessOptions = {},
 ): Promise<InheritedProcessEnd> {
   const trusted = trustedSpawnTarget(command);
 
@@ -87,10 +113,34 @@ export function spawnInheritedProcess(
   }
 
   return new Promise((resolve) => {
-    const child = spawn(trusted.command, [...(trusted.leadingArgs ?? []), ...args], {
-      stdio: 'inherit',
-      env: trusted.environment,
-      cwd: options.cwd,
+    let child: ChildProcess;
+    try {
+      child = spawn(trusted.command, [...(trusted.leadingArgs ?? []), ...args], {
+        stdio: 'inherit',
+        env: childEnvironment({
+          pnpm: trusted.environment !== undefined,
+          ambient: process.env,
+          extra: options.extraEnv,
+          platform: process.platform,
+        }),
+        cwd: options.cwd,
+        detached: options.processGroup ?? false,
+      });
+    } catch (error: unknown) {
+      writeErrorLine(`${command}: ${error instanceof Error ? error.message : String(error)}`);
+      resolve({ status: 1, signal: null });
+      return;
+    }
+    const spawned = child;
+    options.onSpawn?.((signal) => {
+      if (options.processGroup === true) {
+        return signalProcessGroup(spawned.pid, signal);
+      }
+      // Once Node has reported the child's end its pid may be reused, so it is not signalled.
+      if (spawned.exitCode !== null || spawned.signalCode !== null) {
+        return 'ended';
+      }
+      return signalProcess(spawned.pid, signal);
     });
     child.on('close', (status, signal) => resolve({ status, signal }));
     child.on('error', (error) => {
