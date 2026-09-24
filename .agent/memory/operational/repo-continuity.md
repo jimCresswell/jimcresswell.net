@@ -23,23 +23,25 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
-- 2026-09-24T10:08Z, a compaction boundary on the owner's word, every process of the exchange seat
-  stopped: the owner ruled that tests prove product behaviour only, never configuration or
-  implementation, and that there are no exemptions, strict, everywhere, all of the time. The
-  napkin's last block holds the queue those rulings set on merged code, the filter guard's state
-  (committed locally at `SHA: 5ca00f52`, not pushed), and the first acts on resume: push the
-  coordination branch and the filter guard, open its draft PR, then the queue.
+- 2026-09-24T11:03Z, the exchange seat's non-terminal wrap at the owner's word ("this is not
+  session end, this is making sure that context and understanding are safe"). `main` is at
+  `SHA: b33c2320`: joint sets F to I merged as PRs 159 to 161, signed by the lineage's exchange
+  seat (Zephyr guards Leeward, 281e44, back since about 10:14Z). The owner's goal, relayed by the
+  Director at 10:25:54Z: "The overall goal here is to bring the Engraph OCE Practice and JC.net
+  Practice into alignment". The owner's rulings of the same morning: tests prove product
+  behaviour only, never configuration or implementation; no exemptions. The seat's re-ranked
+  plan, approved by the Director: cure PR one, the gate and lock lane's tests (local at
+  `SHA: 083eac79` on `fix/gate-lane-tests-prove-behaviour`, in pre-open review); cure PR two,
+  the validators' allow-lists; then the alignment lane from the napkin's baseline count. The
+  filter guard stays local at `SHA: 5ca00f52` until it is cured. The live reading is the
+  napkin's blocks from 10:25Z on.
 - 2026-09-24T09:29Z, the fold of `coordination/2026-09-23-551f2c`: `main` is at `SHA: ba504ffe`.
   Since the entry below, PRs 155 to 158 merged on 2026-09-23 (the concept-over-bytes amendments,
   the joint rules texts, format at receipt with PDR-142's wording cures, and the joint plans with
   rulings 22 to 33). On 2026-09-24, PR 163 (a transaction lock left without its owner file is
   reclaimed by its directory's age, `SHA: 256bd68b`) and PR 162 (the gate slot: at most two full
   gates on the host and one per working tree, PR A of the `commit-as-the-full-local-gate` lane,
-  `SHA: ba504ffe`) merged. Open: PRs 159, 160 and 161, joint sets F to I, held for the lineage's
-  signature; the lineage's exchange seat has been vacant since 20:31Z on 2026-09-23. Next for
-  the exchange seat: the lane's PR B, scoped first against D's pushed-range secret scan. The
-  Director is Wick binds Temper (ed7b48). The live reading is the handoff's current-state block
-  and its last routing entry, then the napkin's tail.
+  `SHA: ba504ffe`) merged. The Director is Wick binds Temper (ed7b48).
 - 2026-09-23T19:11Z: the owner answered the Director's card of 2026-09-23, eight items, all as recommended
   (the napkin and the handoff carry them). `main` is at `SHA: bf9daf47`: PR 152 folded
   `coordination/2026-09-21-19cfcc`, PR 154 removed the lowest-power low-effort Cricket seat, PR
@@ -95,13 +97,15 @@ names a live branch):
   retire under item 5: `validate-ratified-lists`. Not re-checked today: the fitness vocabulary
   in the `practice-fitness` sources.
 
-- Deep consolidation status: **due — the transplant closure (a plan milestone) closed on
-  2026-09-15**, and the napkin holds the arc's segments at over 1,650 lines. It was not run at
-  the end-of-arc wrap: the graduation drain is curator work in batches (the Director's handoff
-  item 94); the owner's retrospective is recorded in
+- Deep consolidation status: **due — napkin pressure and doctrine held only in ephemeral
+  surfaces** (2026-09-24 wrap). The napkin is over 3,100 lines and shared by every seat on this
+  host. The owner's rulings of 2026-09-24 on tests live only in the napkin and per-user memory;
+  their doctrine text is routed as one joint text with the lineage's seat. It was not run at the
+  non-terminal wrap: a rotation of a napkin other seats are writing is curator work, done
+  deliberately in batches (the Director's handoff item 94). The transplant arc's graduation
+  drain is still undone; its retrospective is
   `.agent/reports/agentic-engineering/why-the-transplant-arc-cost-what-it-cost-2026-09-15.md`,
-  so the drain is next. Session 2's cards and archive gates are
-  in `threads/session-2-synthesis.next-session.md`.
+  and session 2's cards and archive gates are in `threads/session-2-synthesis.next-session.md`.
 - The generators: lane B's PR #55 (item 6, PR 1) landed the frontmatter sweep; the rules-index
   and trigger generator remains item 6 part 2a (`closure/lane-b-generator` at `SHA: d76bb86`);
   the sub-agent adapter generator (2b) and 2a are handed back to the Director

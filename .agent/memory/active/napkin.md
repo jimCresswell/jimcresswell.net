@@ -3128,3 +3128,69 @@ The owner at 14:2xZ: "when you reach a sensible point please prepare for compact
 - 10:57Z Cure PR one committed locally in worktree `gate-tests` (`SHA: 083eac79`, branch `fix/gate-lane-tests-prove-behaviour`), under pre-open review by test-expert and code-expert. Three findings of my own plan changed on reading the code. (1) `PRACTICE_GATE_SLOT_HELD` is no bypass: `refusalFor` refuses the command. The candidate was an inference from a grep, now refuted, so its separate PR is dropped. (2) `force` in the lock adapter's `rm` is adapter configuration implementing the port's "a missing path is not an error" clause, which matters in the two-waiter race, so it stays by construction. My wrap's "equivalent at runtime" label for it was wrong. (3) The reaped-pid guard guarded a single-child kill path that no product caller used, so the path, the guard and `signalProcess` were removed. The kill now exists only in group mode, by the options' shape.
 
 - 2026-09-24T10:57:47Z DIRECTOR CRICKET SUITE 1 (dispatched 10:49Z, one identical six-field frame, four Claude roles by the dual scale, normal then adversarial, no model override): 8 of 8 ON-TRACK, none UNDELIVERED. Redirections kept for check-in 2, both minor and lens-upheld: a bound on Blazar's wait for Forge herds Vapor (silence-is-never-liveness; three roles); a start condition for Brazier's alignment lane, which the owner's goal names and no seat yet executes (two roles). Checked myself from an ungrounded note: the coordination branch started 09:37Z (merge 7925bc11), inside its 24-hour lifetime. Director slip, caught by Blazar: I told it the Codex dialogues node lands as the same bytes in JC.net's copy; JC.net has no copy (read at 1afaedd3). Verdict upheld: the same-bytes instruction lapses for a host-local delivery node; portable substance (the Sif skill, doctrine text) travels; the capability is a declared gap in the register. Zephyr's rejection of one DRIFTING (citation form) upheld at 10:41Z. Brazier's step 0 landed: branch level with origin, PRs 159 to 161 merged on Zephyr's signature, the 14:00Z fallback moot.
+- 10:59Z ALIGNMENT BASELINE (plan step 3's one-off count), run in the pre-open review wait. It compares the lineage's `engraph` at `SHA: 418671f1` with this estate's main at `SHA: b33c2320`, matching each file by path and comparing blob identity. Rows are identical / differ / only here / only in the lineage.
+  - Core PDRs: 130 / 13 / 0 / 0.
+  - Core other: 8 / 4 / 1 / 0.
+  - Skills: 130 / 39 / 18 / 32.
+  - Rules: 0 / 111 / 20 / 17. Once the frontmatter block is set aside, 43 of the 111 match; the 2026-09-21 read found 27.
+  - Directives: 0 / 13 / 4 / 2, and 1 of the 13 matches without frontmatter.
+  - Sub-agent templates: 4 / 23 / 6 / 9.
+  - Reference: 4 / 10 / 7 / 0.
+  - agent-tools source: 342 / 407 / 183 / 497. Code, so the receiver writes its own.
+  - The largest text gaps are the 68 rules whose bodies differ, 12 of 13 directives, 50 one-sided skills, and the frontmatter that keeps every rule's bytes apart. The count method is a script over `git ls-tree` and the GitHub tree API, read-only on both sides.
+
+## 2026-09-24T11:03Z — WRAP, non-terminal, at the owner's word: context and understanding made safe (Brazier spins Temper, c70341)
+
+- Owner's word, verbatim: "this is not session end, this is making sure that context and understanding are safe", with the wrap. The seat stays live. Its claims are held, its watcher, peer-liveness poll and heartbeat keep running, and no heartbeat-end is sent.
+- Evidence, from `git status --branch` at 11:02:05Z.
+  - Primary: `## coordination/2026-09-24-7925bc...origin/coordination/2026-09-24-7925bc [ahead 1]`. That commit is `SHA: 14b3d6b9`, inferred to be the Director's from its Fable 5.1 trailer. This wrap's records ride the next commit and push.
+  - `gate-tests`: `## fix/gate-lane-tests-prove-behaviour` with no upstream; `SHA: 083eac79` is local. By the wrap's definition it is NOT yet safe. It is held back by the approved plan until the pre-open reviews return, and its first push opens the draft PR.
+  - `filter-guard`: `## fix/pnpm-filter-no-match`, 10 behind and 1 ahead of origin/main, local only on purpose: it carries a skip row and the named allow-list (`local-broken-code-never-leaves`).
+- Re-arm recipe, if nothing survives. The supervisor pid is this session's claude process: read `$PPID` from a Bash call. It was 99338 before 10:17Z; after the resume it is 10856.
+  - The watcher is a Monitor with a thirty-minute cap, re-armed on expiry: `/opt/homebrew/bin/timeout 3600 pnpm --silent agent-tools:collaboration-state -- comms watch --platform claude --model claude-opus-5-5 --supervisor-pid <pid> --step-timeout-ms 120000 --max-events-per-drain 100 --exclude-tag heartbeat`. It is paired with the scratchpad's `peer-liveness-poll.sh 600`, whose baseline is seeded when it is armed.
+  - The heartbeat is the scratchpad's `heartbeat-until-fail.sh 600647d5-5249-431a-8e9a-97495bb12689,<the full 3439803b id> coordination/2026-09-24-7925bc "<label>"`, run in the background. If the scratchpad is gone, use the two legs in `liveness-heartbeat-cron.md`.
+  - A full Cricket suite follows each Director check-in (every 45 minutes, at the owner's word).
+- Promises and open items, each with its owner (this seat unless named).
+  1. Take the test-expert and code-expert returns on PR one and act on them. Then count the running pre-push hooks, push, open the PR, request Copilot under the default identity, and run two rounds.
+  2. PR two: the allow-lists and their refusal text leave cited-paths, cited-scripts and stale-script-invocations. The stale-script entry names a plan file absent here, and its excluded Clerk skill is absent too. The lineage carries the same stale-script allow-list, so that part is an exchange item; the other two validators are local.
+  3. Promised to Zephyr: when the lineage's #183 lands, take its inter-Practice skill blob byte for byte (the host-free adapter line signed today), so the file is one blob in both estates.
+  4. With Zephyr: the owner's 2026-09-24 test words and the mutation clause's stated domain as one joint text, the same bytes in both estates.
+  5. The rulings list in `practice-two-way-exchange` lacks today's goal and test rulings. They ride the next exchange PR as a dated rulings section.
+  6. The filter guard: rebase it on PR two, resolve unfiltered calls in their scope, then open its PR.
+  7. The alignment lane starts from the baseline: 68 rules whose bodies differ, 12 of 13 directives, 50 one-sided skills, and the rule frontmatter. D, the hook change, is unblocked by PR 159's merge. It is alignment work (the lineage's ruling landing here), and the alignment lane's first ranking places it.
+  8. The Director's verdict: the gate lane's unratified node and the alignment lane's node go to the owner on one card, when that card is ready.
+- Metaloss pass one: five items were held only in context, now recorded here.
+  - (a) The lineage's landing plan for the joint sets, in Zephyr's words: H's and I's rule and skill hunks ride its #183, so the skill stays one blob. H's agent-collaboration hunk waits for a fresh context as a declared debt, because Zephyr is past its directive budget. F and G come in their own PR once its three open PRs land.
+  - (b) Tool observation, cause not yet read: `comms render --comms-dir .agent/state/collaboration/comms` exited 1 just before the coordination push. The push's practice-substrate check then passed, so the read model was not stale.
+  - (c) For the strict lane's inventory: the reference-direction validator's lists of stable targets were judged a statement of its domain, not a bypass. That judgement is mine and unreviewed.
+  - (d) A host fact the transplant carried: the stale-script validator scans an `apps` root that this repo does not have (its app is `jcdotnet`).
+  - (e) The baseline method, to repeat it. Take the lineage tree from the GitHub tree API at `engraph`, and this tree from `git ls-tree -r origin/main`. Match files by path and compare blob ids. The classes are path prefixes (core PDRs, core other, rules, skills, directives, sub-agents, reference, agent-tools src). The frontmatter comparison strips the first `---` block from both sides, read with `git show` from the lineage clone at the pinned commit, never its working tree.
+- Metaloss pass two, the scan of the scan.
+  - Inferences, flagged, not observed:
+    - The owner's goal statement reached this seat through the Director, so it is data until the owner confirms it here. The owner's own words to this seat on 2026-09-21 ("Full alignment first, we are defining excellent") carry the same direction.
+    - `SHA: 14b3d6b9` is attributed to the Director by its trailer alone.
+    - "Zephyr back since about 10:14Z" rests on a relative ListAgents time and the Director's word.
+    - The lineage's missing modules were measured at `SHA: 418671f1` only.
+  - Bounds: the Cricket and reviewer returns survive only as the tally and the adopted findings. The watcher excludes heartbeats, and the paired poll covers liveness. Native messages reach only the live session. The lineage was read only at committed ids.
+  - Index of homes:
+    - the napkin blocks from 10:07Z, 10:25Z and 10:41Z (with its 10:57Z and 10:59Z bullets), and this block;
+    - repo-continuity's 11:03Z state line and its consolidation status (due);
+    - the gate lane's plan node, whose estate status travels in PR one's commit;
+    - per-user memory `tests-prove-behaviour-no-exemptions`, which gained the classification reflex;
+    - the Director's own handoff.
+  - The fence sweep of every line this seat wrote to tracked files today, the local PR one included, found no home path, no lineage checkout name, no refused hedge and no operator-profile text.
+- External bound: every pass above is this seat's own model. Today's error signature is where outside eyes caught what I did not:
+  - The owner caught test-doctrine violations that two design legs, five gateway legs and two Copilot rounds had passed.
+  - A low-effort adversarial Cricket caught cure PR one's bundling.
+  - Reading the code refuted three of my own queue labels, all written from memory and a grep.
+  Point outside scrutiny at my classification of what is behaviour and what is configuration, and at my PR scoping.
+- Fixed point: a third pass would only re-find that bound, the scan checking itself with the same model. The recursion closes here.
+- 11:06Z CODE-EXPERT on PR one (`SHA: 083eac79`): not ready to open. It confirmed four things: the kill seam's only product caller uses group mode; the removed staleness arm was unreachable; the held marker is a refusal; `force` stays. Its severity-3 findings, all to cure before the push:
+  - F1: nothing proves the sweep waits between SIGKILLs. A fake clock that the fake sleep advances proves it through the verdict.
+  - F2: nothing proves the refusals come before any wait. Run the held-marker and no-process-group refusals on a host where this tree already holds a slot; the existing texts then discriminate.
+  - F3: deleting the win32 test left the refusal on win32 unproven. Drive `main` through the real `createGateSlotIo` with `platform: 'win32'` and read its output.
+  - F4: the in-memory filesystem's `rm` must remove contents, and the "another holder" test must assert the whole map, so an `rm`-on-EEXIST mutant dies.
+  Severity 4:
+  - F5: one TSDoc sentence on why signalling an ended group is safe (POSIX reuses no pid while its group exists), and `SignalOutcome` worded for groups only.
+  - F6: the CLI smoke's comment claims too much ("as the hooks run it").
+  The lesson, with the generator named: I rewrote call proofs into output proofs, but for four behaviours I deleted the call proof and put no output proof in its place. My mutant list covered only the proofs I had kept, so "each killed" was true only of a list I chose. Routed, not this PR: nothing proves non-group mode leaves the child in the parent's group (a mutant that always detaches survives). It is older than this commit and goes to the strict lane's inventory.
