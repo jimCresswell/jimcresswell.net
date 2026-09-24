@@ -6,7 +6,8 @@
  * `.codex/agents/<name>.toml` with its `.codex/config.toml` registration, and the Gemini
  * row `.gemini/agents/<name>.md`, the Gemini CLI subagents surface, the Director's ruling
  * item 70 of 2026-09-14) are thin pointers back to it that carry the description and each
- * platform's fields. The declaration is the one source for every adapter: the
+ * platform's fields, save a Claude adapter whose body is the template's own System prompt
+ * block (`claude-fields.ts`). The declaration is the one source for every adapter: the
  * generator (closure item 6, 2b-ii; `render-subagent-adapters.ts`) renders the Cursor,
  * Claude, Codex and Gemini adapters under `pnpm portability:fix` and `pnpm portability:check`
  * recomputes them, the Codex registry's blocks too (`render-codex-registry.ts`), so none is
@@ -25,6 +26,7 @@
 import { err, ok, type Result } from '@engraph/result';
 import { z } from 'zod';
 
+import { roleClaudeFields, variantClaudeFields, type ClaudeFields } from './claude-fields.js';
 import {
   SUBAGENT_PLATFORMS,
   line,
@@ -35,20 +37,6 @@ import {
 
 /** The two Markdown adapter surfaces (Codex renders TOML; Gemini has its own renderer). */
 export type MarkdownPlatform = Exclude<SubagentPlatform, 'codex' | 'gemini'>;
-
-/** Claude Code adapter fields; every one optional, absent means the estate's default. */
-const claudeFields = z
-  .object({
-    /** A comma-joined tool list, or `inherit` for an adapter that carries no tools field. */
-    tools: line.optional(),
-    disallowedTools: line.optional(),
-    permissionMode: line.optional(),
-    color: line.optional(),
-    model: line.optional(),
-    effort: line.optional(),
-    ...prose,
-  })
-  .strict();
 
 /** Codex adapter fields; absent means the estate's default. */
 const codexFields = z
@@ -74,9 +62,9 @@ const cursorFields = z
  * `model` inherit, `temperature` 1, `max_turns` 30, `timeout_mins` 10; an absent `tools`
  * inherits every tool of the parent session, and the reference says nothing of an explicit
  * empty list, which the schema admits as the declaration's own no-tool configuration; the
- * Gemini renderer refuses to render it while the adapter body is the pointer to the
+ * Gemini renderer refuses to render it while the Gemini adapter body is the pointer to the
  * template, which a no-tools agent cannot read, so a no-tools role leaves gemini out of
- * its platforms until an inlined-body form exists).
+ * its platforms; the inlined-body form is the Claude adapter's alone, `claude-fields.ts`).
  * `kind` is `local` only: the remote kind routes to Agent-to-Agent delegation, which the
  * estate's body-is-the-pointer shape does not carry. `name` and
  * `description` come from the declaration itself; `mcpServers` (inline MCP servers scoped
@@ -104,7 +92,7 @@ const variantSchema = z
     /** The adapter heading where it is not the name in title case. */
     title: line.optional(),
     cursor: cursorFields.optional(),
-    claude: claudeFields.optional(),
+    claude: variantClaudeFields.optional(),
     codex: codexFields.optional(),
     gemini: geminiFields.optional(),
   })
@@ -115,7 +103,7 @@ const roleSchema = z
     description: line,
     platforms: z.array(platform).min(1).optional(),
     cursor: cursorFields.optional(),
-    claude: claudeFields.optional(),
+    claude: roleClaudeFields.optional(),
     codex: codexFields.optional(),
     gemini: geminiFields.optional(),
   })
@@ -150,7 +138,6 @@ function variantIssue(name: string, variant: z.infer<typeof variantSchema>): str
   return issue === undefined ? undefined : `variants: ${variant.name}: ${issue}`;
 }
 
-export type ClaudeFields = z.infer<typeof claudeFields>;
 export type CodexFields = z.infer<typeof codexFields>;
 export type CursorFields = z.infer<typeof cursorFields>;
 export type GeminiFields = z.infer<typeof geminiFields>;
@@ -167,6 +154,12 @@ export interface RoleDeclaration {
   readonly claude?: ClaudeFields;
   readonly codex?: CodexFields;
   readonly gemini?: GeminiFields;
+  /**
+   * The template's System prompt block, verbatim: the Claude adapter's body in place of the
+   * pointer. Never written in the frontmatter; the reader (`read-subagent-declaration.ts`)
+   * takes it from the template exactly when the Claude block's `body` names it.
+   */
+  readonly systemPrompt?: string;
 }
 
 /** A fan-out: adapters only under the variants' names, never the template's. */

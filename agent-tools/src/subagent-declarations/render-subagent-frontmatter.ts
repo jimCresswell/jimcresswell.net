@@ -16,9 +16,12 @@ import type {
 
 const FENCE = `${FRONTMATTER_FENCE_LINE}\n`;
 
-/** The block's fields: a role's, or a fan-out's variants; never the kind or the name. */
+/**
+ * The block's fields: a role's, or a fan-out's variants; never the kind, the name, or the
+ * System prompt block the reader takes from the template's body.
+ */
 type FrontmatterFields =
-  Omit<RoleDeclaration, 'kind' | 'name'> | Pick<FanOutDeclaration, 'variants'>;
+  Omit<RoleDeclaration, 'kind' | 'name' | 'systemPrompt'> | Pick<FanOutDeclaration, 'variants'>;
 
 /** The declaration's fields without its kind and name (the name is the template's basename). */
 function frontmatterFields(declaration: SubagentDeclaration): FrontmatterFields {

@@ -10,7 +10,9 @@ readonly: true
 
 Your first action MUST be to read and internalise `.agent/sub-agents/templates/corpus-reducer.md`.
 
-This file is a thin Cursor adapter. The canonical reviewer instructions live in the
-template referenced above.
-
-Mode: Observe, analyse and report. Do not modify code.
+That template is the canonical role definition (purpose, capability envelope,
+system prompt, delegation triggers). The dispatch inlines the complete
+leaf-signal set: cluster only from the supplied leaves — no other reads are
+part of the task — and answer with the single required structured output
+call. (On Claude this role runs zero-tools by frontmatter; Cursor cannot
+enforce that envelope, so honour it behaviourally.)

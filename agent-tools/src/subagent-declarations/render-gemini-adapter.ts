@@ -17,8 +17,9 @@
  * existed). That body is why a declaration whose Gemini tools are the empty list (the
  * vendor's meaningful no-tool form, which the schema keeps) refuses to render here: a
  * no-tools agent cannot read the template the body points to, so a no-tools role leaves
- * gemini out of its platforms until an inlined-body form exists (#84 round two,
- * 2026-09-14).
+ * gemini out of its platforms until a Gemini inlined-body form exists (#84 round two,
+ * 2026-09-14; the Claude adapter's form, `body: system-prompt` in `claude-fields.ts`, is
+ * Claude's alone, since the Gemini CLI's no-tool shape is unprobed).
  *
  * @packageDocumentation
  */

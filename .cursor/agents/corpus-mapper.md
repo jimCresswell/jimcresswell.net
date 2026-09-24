@@ -10,7 +10,8 @@ readonly: true
 
 Your first action MUST be to read and internalise `.agent/sub-agents/templates/corpus-mapper.md`.
 
-This file is a thin Cursor adapter. The canonical reviewer instructions live in the
-template referenced above.
-
-Mode: Observe, analyse and report. Do not modify code.
+That template is the canonical role definition (purpose, capability envelope,
+system prompt, delegation triggers). The dispatch prompt names the window's
+corpus files and carries the full task instructions; read only the named
+files, extract the specified leaf signals, and answer with the single
+required structured output call.

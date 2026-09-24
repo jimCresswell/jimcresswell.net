@@ -10,7 +10,9 @@ readonly: true
 
 Your first action MUST be to read and internalise `.agent/sub-agents/templates/corpus-meta.md`.
 
-This file is a thin Cursor adapter. The canonical reviewer instructions live in the
-template referenced above.
-
-Mode: Observe, analyse and report. Do not modify code.
+That template is the canonical role definition (purpose, capability envelope,
+system prompt, delegation triggers). The dispatch supplies the complete
+judgment inputs (dispositioned candidates + frozen recall baselines); use
+read-only search solely to verify on-disk corroboration home paths, emit
+per-item judgments and prose only — never aggregate numbers — and answer
+with the single required structured output call.

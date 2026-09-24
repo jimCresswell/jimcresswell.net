@@ -15,8 +15,14 @@
  * carried a folded form and three the other quote style, and normalise on the first
  * regeneration); every other field value is plain where YAML reads it plain and quoted by
  * the same rule otherwise; the Claude field order is the one that reproduces
- * every file, `tools`, `disallowedTools`, `color`, `permissionMode`, `model`, `effort`; the
- * Codex form and what it refuses are `render-codex-adapter.ts`.
+ * every file, `tools`, `disallowedTools`, `color`, `permissionMode`, `model`, `effort`, then
+ * `maxTurns` written as its number; the Codex form and what it refuses are
+ * `render-codex-adapter.ts`.
+ *
+ * One Claude shape departs from the pointer skeleton (`claude-fields.ts`): a role whose
+ * Claude body is its template's System prompt block renders exactly the fields it declares,
+ * `tools: none` as the null-value `tools:` field, and the block verbatim as its body, then
+ * the provenance comment (`standard-adapter-body.ts`); its other platforms keep the pointer.
  *
  * @packageDocumentation
  */
@@ -27,13 +33,19 @@ import {
   pointerLine,
   specsOf,
   SUBAGENT_SURFACES,
+  TEMPLATES_DIR,
   type AdapterSpec,
   type SubagentSurface,
 } from './adapter-spec.js';
 import { CLAUDE_DEFAULTS } from './adapter-defaults.js';
+import { ZERO_TOOLS, type ClaudeFields } from './claude-fields.js';
 import { renderCodexAdapter } from './render-codex-adapter.js';
 import { renderGeminiAdapter } from './render-gemini-adapter.js';
-import { STANDARD_CLOSINGS, STANDARD_PRE_POINTER } from './standard-adapter-body.js';
+import {
+  STANDARD_CLOSINGS,
+  STANDARD_PRE_POINTER,
+  systemPromptClosing,
+} from './standard-adapter-body.js';
 import type { MarkdownPlatform, SubagentDeclaration } from './subagent-declaration.js';
 import { yamlQuoted, yamlScalar } from './yaml-scalar.js';
 
@@ -51,6 +63,7 @@ const CLAUDE_KEY_ORDER = [
   'permissionMode',
   'model',
   'effort',
+  'maxTurns',
 ] as const;
 
 function markdownBody(
@@ -68,10 +81,13 @@ function renderCursor(spec: AdapterSpec): string {
   return `${head}${markdownBody('cursor', spec, spec.cursor)}`;
 }
 
-/** The Claude fields as lines: a role's defaults filled, inherited tools written as no line. */
-function claudeFieldLines(spec: AdapterSpec): string[] {
+/**
+ * The Claude fields a spec renders: a role's defaults filled, save a role whose body is its
+ * System prompt block, which renders exactly what it declares, as a variant does.
+ */
+function claudeFieldsOf(spec: AdapterSpec): ClaudeFields {
   const declared = spec.claude ?? {};
-  const values: Partial<Record<(typeof CLAUDE_KEY_ORDER)[number], string>> = spec.fillDefaults
+  return spec.fillDefaults && spec.systemPrompt === undefined
     ? {
         ...declared,
         tools: declared.tools ?? CLAUDE_DEFAULTS.tools,
@@ -79,23 +95,37 @@ function claudeFieldLines(spec: AdapterSpec): string[] {
         permissionMode: declared.permissionMode ?? CLAUDE_DEFAULTS.permissionMode,
       }
     : declared;
-  return CLAUDE_KEY_ORDER.flatMap((key) => {
-    const value = values[key];
-    return value === undefined || (key === 'tools' && value === 'inherit')
-      ? []
-      : [`${key}: ${yamlScalar(value)}`];
-  });
+}
+
+/** One Claude field as its lines: `inherit` tools as no line, `none` as the null value, a number bare. */
+function claudeFieldLine(key: (typeof CLAUDE_KEY_ORDER)[number], fields: ClaudeFields): string[] {
+  const value = fields[key];
+  if (value === undefined || (key === 'tools' && value === 'inherit')) {
+    return [];
+  }
+  if (key === 'tools' && value === ZERO_TOOLS) {
+    return ['tools:'];
+  }
+  return [`${key}: ${typeof value === 'number' ? String(value) : yamlScalar(value)}`];
+}
+
+/** The Claude body: the template's System prompt block and its provenance, or the pointer skeleton. */
+function claudeBody(spec: AdapterSpec): string {
+  return spec.systemPrompt === undefined
+    ? markdownBody('claude', spec, spec.claude)
+    : `\n${spec.systemPrompt}\n\n${systemPromptClosing(`${TEMPLATES_DIR}/${spec.template}.md`)}\n`;
 }
 
 function renderClaude(spec: AdapterSpec): string {
+  const fields = claudeFieldsOf(spec);
   const lines = [
     '---',
     `name: ${spec.name}`,
     `description: ${yamlQuoted(spec.description)}`,
-    ...claudeFieldLines(spec),
+    ...CLAUDE_KEY_ORDER.flatMap((key) => claudeFieldLine(key, fields)),
     '---',
   ];
-  return `${lines.join('\n')}\n${markdownBody('claude', spec, spec.claude)}`;
+  return `${lines.join('\n')}\n${claudeBody(spec)}`;
 }
 
 function renderOn(surface: SubagentSurface, spec: AdapterSpec): Result<SubagentProjection, string> {

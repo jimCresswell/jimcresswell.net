@@ -2,7 +2,7 @@
  * What one adapter renders from, and where it goes: the four generated surfaces (Cursor,
  * Claude, Codex and Gemini, every one rendered from the declarations), the spec a role
  * or a variant reduces to (a role with its defaults to fill, a variant exactly as declared),
- * and the pointer sentence every adapter carries. The leaf the Markdown renderer
+ * and the pointer sentence every pointer adapter carries. The leaf the Markdown renderer
  * (`render-subagent-adapters.ts`), the Codex renderer (`render-codex-adapter.ts`), the
  * Gemini renderer (`render-gemini-adapter.ts`) and the registry renderer
  * (`render-codex-registry.ts`) read.
@@ -10,10 +10,10 @@
  * @packageDocumentation
  */
 
+import type { ClaudeFields } from './claude-fields.js';
 import { canonicalAdapterTitle } from './standard-adapter-body.js';
 import { SUBAGENT_PLATFORMS, type SubagentPlatform } from './declaration-scalars.js';
 import type {
-  ClaudeFields,
   CodexFields,
   CursorFields,
   GeminiFields,
@@ -66,6 +66,8 @@ export interface AdapterSpec {
   readonly gemini: GeminiFields | undefined;
   /** A role fills the estate's defaults; a variant renders only what it declares. */
   readonly fillDefaults: boolean;
+  /** The Claude body in place of the pointer, a role's only: its template's System prompt block. */
+  readonly systemPrompt: string | undefined;
 }
 
 function platformsOf(
@@ -86,6 +88,7 @@ function variantSpec(template: string, variant: SubagentVariant): AdapterSpec {
     codex: variant.codex,
     gemini: variant.gemini,
     fillDefaults: false,
+    systemPrompt: undefined,
   };
 }
 
@@ -105,6 +108,7 @@ export function specsOf(declaration: SubagentDeclaration): readonly AdapterSpec[
       codex: declaration.codex,
       gemini: declaration.gemini,
       fillDefaults: true,
+      systemPrompt: declaration.systemPrompt,
     },
   ];
 }
