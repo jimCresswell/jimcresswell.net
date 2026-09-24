@@ -87,6 +87,20 @@ describe('readSubagentDeclaration', () => {
     });
   });
 
+  it('closes a fence only on a line of its own character, at least as long, with nothing but whitespace after it', () => {
+    const real = ['## System prompt', '', '> The real prompt.', ''];
+    const example = ['## System prompt', '', '> Fenced.'];
+    const trailing = ['', '```markdown', '```not-a-close', ...example, '```  ', '', ...real];
+    const shorter = ['', '````markdown', '```', ...example, '````', '', ...real];
+    const other = ['', '```markdown', '~~~', ...example, '```', '', ...real];
+    for (const body of [trailing, shorter, other]) {
+      expect(promptOf(body)).toMatchObject({
+        ok: true,
+        value: { declaration: { systemPrompt: 'The real prompt.' } },
+      });
+    }
+  });
+
   it('carries a quote that a heading closes on the next line: a lower one inside the section, or the one that ends it', () => {
     for (const heading of ['### Next', '## Next']) {
       expect(promptOf(['', '## System prompt', '', '> Closed.', heading, ''])).toMatchObject({

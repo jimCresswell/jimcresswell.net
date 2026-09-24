@@ -15,25 +15,29 @@ const HEADING = '## System prompt';
 const SECTION_END = /^#{1,2}\s/u;
 const ANY_HEADING = /^#{1,6}\s/u;
 const FENCE = /^ {0,3}(`{3,}|~{3,})/u;
+const CLOSING_FENCE = /^ {0,3}(`{3,}|~{3,})[ \t]*$/u;
 
 function isQuoted(line: string): boolean {
   return line.startsWith('>');
 }
 
-/** Whether each line sits outside every code fence; a fence's own lines sit inside it. */
+/**
+ * Whether each line sits outside every code fence; a fence's own lines sit inside it. A fence
+ * closes only on a line of its own character, at least as long, with nothing but whitespace
+ * after it; any other fence-like line inside it is content.
+ */
 function unfenced(lines: readonly string[]): readonly boolean[] {
   let open: string | undefined;
   return lines.map((line) => {
-    const fence = FENCE.exec(line)?.[1];
-    if (fence === undefined) {
-      return open === undefined;
+    if (open !== undefined) {
+      const closing = CLOSING_FENCE.exec(line)?.[1];
+      if (closing?.startsWith(open) === true) {
+        open = undefined;
+      }
+      return false;
     }
-    if (open === undefined) {
-      open = fence;
-    } else if (fence.startsWith(open)) {
-      open = undefined;
-    }
-    return false;
+    open = FENCE.exec(line)?.[1];
+    return open === undefined;
   });
 }
 
