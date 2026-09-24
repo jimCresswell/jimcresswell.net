@@ -13,7 +13,7 @@
 import { err, ok, type Result } from '@engraph/result';
 
 import { CODEX_DEFAULTS } from './adapter-defaults.js';
-import { pointerLine, type AdapterSpec } from './adapter-spec.js';
+import { codexDescription, pointerLine, type AdapterSpec } from './adapter-spec.js';
 import { STANDARD_CLOSINGS } from './standard-adapter-body.js';
 import type { CodexFields } from './subagent-declaration.js';
 
@@ -30,7 +30,7 @@ export function carriesTomlLineUnsafe(value: string): boolean {
 /** The first Codex value the TOML form cannot carry verbatim, as the refusal; none when clean. */
 function tomlRefusal(path: string, spec: AdapterSpec, codex: CodexFields): string | undefined {
   const lines: readonly (readonly [string, string | undefined])[] = [
-    ['description', spec.description],
+    ['description', codexDescription(spec)],
     ['model', codex.model],
     ['effort', codex.effort],
   ];
@@ -56,7 +56,7 @@ export function renderCodexAdapter(path: string, spec: AdapterSpec): Result<stri
   const effort = spec.fillDefaults ? (codex.effort ?? CODEX_DEFAULTS.effort) : codex.effort;
   const lines = [
     `name = "${spec.name}"`,
-    `description = "${spec.description}"`,
+    `description = "${codexDescription(spec)}"`,
     ...(codex.model === undefined ? [] : [`model = "${codex.model}"`]),
     ...(effort === undefined ? [] : [`model_reasoning_effort = "${effort}"`]),
     'sandbox_mode = "read-only"',

@@ -39,6 +39,7 @@ import {
 } from './adapter-spec.js';
 import { CLAUDE_DEFAULTS } from './adapter-defaults.js';
 import { ZERO_TOOLS, type ClaudeFields } from './claude-fields.js';
+import type { SubagentPlatform } from './declaration-scalars.js';
 import { renderCodexAdapter } from './render-codex-adapter.js';
 import { renderGeminiAdapter } from './render-gemini-adapter.js';
 import {
@@ -87,7 +88,7 @@ function renderCursor(spec: AdapterSpec): string {
  */
 function claudeFieldsOf(spec: AdapterSpec): ClaudeFields {
   const declared = spec.claude ?? {};
-  return spec.fillDefaults && spec.systemPrompt === undefined
+  return spec.fillDefaults && declared.body === undefined
     ? {
         ...declared,
         tools: declared.tools ?? CLAUDE_DEFAULTS.tools,
@@ -109,14 +110,28 @@ function claudeFieldLine(key: (typeof CLAUDE_KEY_ORDER)[number], fields: ClaudeF
   return [`${key}: ${typeof value === 'number' ? String(value) : yamlScalar(value)}`];
 }
 
-/** The Claude body: the template's System prompt block and its provenance, or the pointer skeleton. */
-function claudeBody(spec: AdapterSpec): string {
+/**
+ * The Claude body: the pointer skeleton, or, where the declared body names it, the template's
+ * System prompt block and its provenance; the refusal when the spec carries no block to name.
+ */
+function claudeBody(path: string, spec: AdapterSpec): Result<string, string> {
+  if (spec.claude?.body === undefined) {
+    return ok(markdownBody('claude', spec, spec.claude));
+  }
   return spec.systemPrompt === undefined
-    ? markdownBody('claude', spec, spec.claude)
-    : `\n${spec.systemPrompt}\n\n${systemPromptClosing(`${TEMPLATES_DIR}/${spec.template}.md`)}\n`;
+    ? err(
+        `${path}: claude.body names the System prompt block, and the declaration carries none (the reader takes it from the template); refusing to render it`,
+      )
+    : ok(
+        `\n${spec.systemPrompt}\n\n${systemPromptClosing(`${TEMPLATES_DIR}/${spec.template}.md`)}\n`,
+      );
 }
 
-function renderClaude(spec: AdapterSpec): string {
+function renderClaude(path: string, spec: AdapterSpec): Result<string, string> {
+  const body = claudeBody(path, spec);
+  if (!body.ok) {
+    return body;
+  }
   const fields = claudeFieldsOf(spec);
   const lines = [
     '---',
@@ -125,8 +140,18 @@ function renderClaude(spec: AdapterSpec): string {
     ...CLAUDE_KEY_ORDER.flatMap((key) => claudeFieldLine(key, fields)),
     '---',
   ];
-  return `${lines.join('\n')}\n${claudeBody(spec)}`;
+  return ok(`${lines.join('\n')}\n${body.value}`);
 }
+
+/** Each platform's adapter text for a spec at its path, or the refusal its form raises. */
+const RENDERERS: Readonly<
+  Record<SubagentPlatform, (path: string, spec: AdapterSpec) => Result<string, string>>
+> = {
+  cursor: (_path, spec) => ok(renderCursor(spec)),
+  claude: renderClaude,
+  codex: renderCodexAdapter,
+  gemini: renderGeminiAdapter,
+};
 
 function renderOn(surface: SubagentSurface, spec: AdapterSpec): Result<SubagentProjection, string> {
   const { platform } = surface;
@@ -136,15 +161,8 @@ function renderOn(surface: SubagentSurface, spec: AdapterSpec): Result<SubagentP
   if (tail !== undefined) {
     return err(tail);
   }
-  if (platform === 'codex') {
-    const text = renderCodexAdapter(path, spec);
-    return text.ok ? ok({ path, text: text.value }) : text;
-  }
-  if (platform === 'gemini') {
-    const gemini = renderGeminiAdapter(path, spec);
-    return gemini.ok ? ok({ path, text: gemini.value }) : gemini;
-  }
-  return ok({ path, text: platform === 'cursor' ? renderCursor(spec) : renderClaude(spec) });
+  const text = RENDERERS[platform](path, spec);
+  return text.ok ? ok({ path, text: text.value }) : text;
 }
 
 /**
@@ -180,7 +198,8 @@ function duplicateName(specs: readonly AdapterSpec[]): string | undefined {
  *
  * @param declarations - The templates' declarations, in any order.
  * @returns The adapters, or the first refusal (a name two declarations render, a pointer
- * tail with a backtick, or a value the Codex form cannot carry).
+ * tail with a backtick, a Claude body naming a System prompt block the spec does not carry,
+ * or a value the Codex form cannot carry).
  */
 export function renderSubagentAdapters(
   declarations: readonly SubagentDeclaration[],

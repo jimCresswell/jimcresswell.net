@@ -1,3 +1,4 @@
+import { unwrapErr } from '@engraph/result';
 import { describe, expect, it } from 'vitest';
 
 import { readSubagentDeclaration } from './read-subagent-declaration.js';
@@ -47,6 +48,8 @@ describe('readSubagentDeclaration', () => {
       '',
       'The Claude adapter carries this block verbatim.',
       '',
+      '### Note',
+      '',
       '> You are a voter.',
       '>',
       '> Judge only from the supplied evidence.',
@@ -71,22 +74,44 @@ describe('readSubagentDeclaration', () => {
     });
   });
 
+  const HEAD = '---\ndescription: Voter.\nclaude:\n  tools: none\n  body: system-prompt\n---\n';
+  const promptOf = (body: readonly string[]) =>
+    readSubagentDeclaration('voter', `${HEAD}${body.join('\n')}`);
+  const REFUSAL = /^voter: claude\.body /u;
+
+  it('reads the System prompt heading outside code fences only: a fenced example of the heading is not the section', () => {
+    const fenced = ['', '```markdown', '## System prompt', '', '> Fenced example.', '```', ''];
+    expect(promptOf([...fenced, '## System prompt', '', '> The real prompt.', ''])).toMatchObject({
+      ok: true,
+      value: { declaration: { systemPrompt: 'The real prompt.' } },
+    });
+  });
+
+  it('carries a quote that a heading closes on the next line: a lower one inside the section, or the one that ends it', () => {
+    for (const heading of ['### Next', '## Next']) {
+      expect(promptOf(['', '## System prompt', '', '> Closed.', heading, ''])).toMatchObject({
+        ok: true,
+        value: { declaration: { systemPrompt: 'Closed.' } },
+      });
+    }
+  });
+
   it('refuses a Claude body naming the System prompt block when the template carries none', () => {
-    const head = '---\ndescription: Voter.\nclaude:\n  tools: none\n  body: system-prompt\n---\n';
-    const refusal = {
-      ok: false,
-      error:
-        'voter: claude.body names the System prompt block, and the template carries none (a blockquote under "## System prompt")',
-    };
-    expect(readSubagentDeclaration('voter', `${head}\n# Voter\n\n> A quote.\n`)).toStrictEqual(
-      refusal,
-    );
+    expect(unwrapErr(promptOf(['', '# Voter', '', '> A quote.', '']))).toMatch(REFUSAL);
     expect(
-      readSubagentDeclaration(
-        'voter',
-        `${head}\n## System prompt\n\nProse only.\n\n## Next\n\n> Late.\n`,
+      unwrapErr(
+        promptOf(['', '## System prompt', '', 'Prose only.', '', '## Next', '', '> Late.', '']),
       ),
-    ).toStrictEqual(refusal);
+    ).toMatch(REFUSAL);
+  });
+
+  it('refuses a System prompt block it cannot carry whole: a lazy continuation line after the quote, or a second quote in the section', () => {
+    const section = ['', '## System prompt', '', '> Line one'];
+    expect(unwrapErr(promptOf([...section, 'lazy continuation', '']))).toMatch(REFUSAL);
+    expect(unwrapErr(promptOf([...section, 'lazy continuation', '> after', '']))).toMatch(REFUSAL);
+    expect(
+      unwrapErr(promptOf([...section, '', 'Between.', '', '> A second quote.', '', '## Next', ''])),
+    ).toMatch(REFUSAL);
   });
 
   it('refuses a block that never closes, is not YAML, or fails the schema, naming the template', () => {

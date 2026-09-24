@@ -38,9 +38,14 @@ import {
 /** The two Markdown adapter surfaces (Codex renders TOML; Gemini has its own renderer). */
 export type MarkdownPlatform = Exclude<SubagentPlatform, 'codex' | 'gemini'>;
 
-/** Codex adapter fields; absent means the estate's default. */
+/**
+ * Codex adapter fields; absent means the estate's default. A description here replaces the
+ * declaration's on the Codex adapter and its registry block, for a role whose description
+ * states what only another platform enforces.
+ */
 const codexFields = z
   .object({
+    description: line.optional(),
     model: line.optional(),
     effort: line.optional(),
     ...prose,

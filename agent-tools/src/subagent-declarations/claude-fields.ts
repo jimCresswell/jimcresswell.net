@@ -13,7 +13,8 @@
  *   is the role's own prompt, not the reviewer pointer the defaults belong to, so it renders
  *   exactly what it declares, the template's capability envelope in full, and no default is
  *   filled. The reader (`read-subagent-declaration.ts`) takes the block from the template; a
- *   fan-out's variants carry the pointer to their shared template and never declare it.
+ *   fan-out's variants carry the pointer to their shared template and never declare it, so
+ *   no variant is zero-tool.
  *
  * `maxTurns` is Claude's own turn bound, written as the number declared.
  *
@@ -52,12 +53,15 @@ function toolNames(tools: string | undefined): readonly string[] {
 
 const INLINE = 'an adapter whose body is the System prompt block';
 
-/** Each shape a Claude block cannot take, keyed by the field that breaks it, in refusal order. */
-const INCOHERENT: readonly {
+/** One shape a Claude block cannot take, keyed by the field that breaks it. */
+interface Incoherence {
   readonly key: keyof ClaudeBlock;
   readonly breaks: (block: ClaudeBlock) => boolean;
   readonly message: string;
-}[] = [
+}
+
+/** The shapes a zero-tool block cannot take, a role's or a variant's. */
+const ZERO_TOOL_RULES: readonly Incoherence[] = [
   {
     key: 'tools',
     breaks: (block) =>
@@ -69,6 +73,21 @@ const INCOHERENT: readonly {
     breaks: (block) => block.tools === ZERO_TOOLS && block.disallowedTools !== undefined,
     message: 'a zero-tool adapter grants nothing to deny',
   },
+];
+
+/** A variant's own: its body is the pointer to its fan-out's template, which it must read. */
+const VARIANT_RULES: readonly Incoherence[] = [
+  {
+    key: 'tools',
+    breaks: (block) => block.tools === ZERO_TOOLS,
+    message: `a variant points to its fan-out's template, which a zero-tool agent cannot read`,
+  },
+  ...ZERO_TOOL_RULES,
+];
+
+/** A role's, in refusal order: the zero-tool shapes, then the System prompt body's. */
+const ROLE_RULES: readonly Incoherence[] = [
+  ...ZERO_TOOL_RULES,
   {
     key: 'body',
     breaks: (block) => block.tools === ZERO_TOOLS && block.body === undefined,
@@ -92,16 +111,24 @@ const INCOHERENT: readonly {
   },
 ];
 
-function refuseIncoherent(block: ClaudeBlock, context: z.RefinementCtx): void {
-  for (const rule of INCOHERENT.filter((entry) => entry.breaks(block))) {
-    context.addIssue({ code: 'custom', path: [rule.key], message: rule.message });
-  }
+/** The refinement that adds one issue per rule the block breaks, at the rule's key. */
+function refusing(rules: readonly Incoherence[]) {
+  return (block: ClaudeBlock, context: z.RefinementCtx): void => {
+    for (const rule of rules.filter((entry) => entry.breaks(block))) {
+      context.addIssue({ code: 'custom', path: [rule.key], message: rule.message });
+    }
+  };
 }
 
 /** A role's Claude block: every field, its System prompt body included. */
-export const roleClaudeFields = claudeBlock.superRefine(refuseIncoherent);
+export const roleClaudeFields = claudeBlock.superRefine(refusing(ROLE_RULES));
 
-/** A variant's Claude block: a variant points to its fan-out's template, so it declares no body. */
-export const variantClaudeFields = claudeBlock.omit({ body: true }).superRefine(refuseIncoherent);
+/**
+ * A variant's Claude block: a variant points to its fan-out's template, so it declares no
+ * body and cannot be zero-tool.
+ */
+export const variantClaudeFields = claudeBlock
+  .omit({ body: true })
+  .superRefine(refusing(VARIANT_RULES));
 
 export type ClaudeFields = z.infer<typeof roleClaudeFields>;

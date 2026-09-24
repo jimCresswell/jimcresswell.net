@@ -113,6 +113,11 @@ export function specsOf(declaration: SubagentDeclaration): readonly AdapterSpec[
   ];
 }
 
+/** The description a Codex adapter and its registry block carry: the Codex one where declared. */
+export function codexDescription(spec: AdapterSpec): string {
+  return spec.codex?.description ?? spec.description;
+}
+
 /** The pointer sentence with its declared tail, or the plain stop. */
 export function pointerLine(
   platform: SubagentPlatform,

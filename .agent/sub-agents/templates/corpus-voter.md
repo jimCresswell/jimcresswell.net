@@ -4,6 +4,7 @@ description: Single-turn no-tools adversary voter for the corpus-analysis valida
 # no-tools agent cannot read; the System prompt body is the Claude adapter's alone.
 platforms: [cursor, claude, codex]
 cursor:
+  description: Single-turn adversary voter for the corpus-analysis validate workflow. Dispatched by a corpus-analysis orchestrator, one call per candidate-lens vote; never invoke for interactive delegation. Judges one candidate against the four conjunctive apophenia tests from supplied grounding and answers only through the schema-forced structured output call.
   note: |-
     That template is the canonical role definition (purpose, capability envelope,
     system prompt, delegation triggers). The dispatch supplies the complete
@@ -18,6 +19,7 @@ claude:
   maxTurns: 4
   body: system-prompt
 codex:
+  description: Single-turn adversary voter for the corpus-analysis validate workflow; judges one candidate against the four conjunctive apophenia tests from supplied grounding only.
   note: |-
     This file is a thin Codex adapter. The canonical role definition lives in the
     template referenced above; each dispatch supplies the complete evidence — one

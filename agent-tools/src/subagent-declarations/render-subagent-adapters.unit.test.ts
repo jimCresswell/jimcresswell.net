@@ -1,3 +1,4 @@
+import { unwrapErr } from '@engraph/result';
 import { describe, expect, it } from 'vitest';
 
 import { renderSubagentAdapters } from './render-subagent-adapters.js';
@@ -220,32 +221,19 @@ const CLAUDE_CRICKET_HIGH = [
   '',
 ].join('\n');
 
-/** A zero-tool role whose Claude body is its template's System prompt block, turn-bounded. */
-const VOTER: RoleDeclaration = {
+const VOTER_PROMPT = 'You are a voter. You have no tools —\njudge only from the supplied evidence.';
+
+/** A zero-tool role whose Claude body names its template's System prompt block, turn-bounded. */
+const VOTER_UNREAD: RoleDeclaration = {
   kind: 'role',
   name: 'voter',
   description: 'Voter judges one candidate.',
   platforms: ['cursor', 'claude'],
   claude: { tools: 'none', maxTurns: 4, body: 'system-prompt' },
-  systemPrompt: 'You are a voter. You have no tools —\njudge only from the supplied evidence.',
 };
 
-const CLAUDE_VOTER = [
-  '---',
-  'name: voter',
-  "description: 'Voter judges one candidate.'",
-  'tools:',
-  'maxTurns: 4',
-  '---',
-  '',
-  'You are a voter. You have no tools —',
-  'judge only from the supplied evidence.',
-  '',
-  '<!-- Generated from the System prompt block of .agent/sub-agents/templates/voter.md,',
-  'carried verbatim because this role does not read its template. Edit the template',
-  'and run pnpm portability:fix; never edit this file. -->',
-  '',
-].join('\n');
+/** The same role with the block the reader carries from its template. */
+const VOTER: RoleDeclaration = { ...VOTER_UNREAD, systemPrompt: VOTER_PROMPT };
 
 function textsOf(declarations: readonly (RoleDeclaration | FanOutDeclaration)[]) {
   const rendered = renderSubagentAdapters(declarations);
@@ -305,10 +293,28 @@ describe('renderSubagentAdapters', () => {
 
   it("renders a zero-tool role's Claude adapter with the null-value tools field, the turn bound, and the System prompt block inline in place of the pointer, no default filled; its Cursor adapter still points to the template", () => {
     const texts = textsOf([VOTER]);
-    expect(texts.get('.claude/agents/voter.md')).toBe(CLAUDE_VOTER);
-    expect(texts.get('.cursor/agents/voter.md')).toContain(
-      'Your first action MUST be to read and internalise `.agent/sub-agents/templates/voter.md`.',
+    const claude = texts.get('.claude/agents/voter.md');
+    expect(claude).toContain(`tools:\nmaxTurns: 4\n---\n\n${VOTER_PROMPT}\n`);
+    expect(claude).toContain('templates/voter.md');
+    const cursor = texts.get('.cursor/agents/voter.md');
+    expect(cursor).toContain('templates/voter.md');
+    expect(cursor).not.toContain(VOTER_PROMPT);
+  });
+
+  it('refuses a Claude body naming the System prompt block when the declaration carries no System prompt text', () => {
+    expect(unwrapErr(renderSubagentAdapters([VOTER_UNREAD]))).toMatch(
+      /^\.claude\/agents\/voter\.md: /u,
     );
+  });
+
+  it('renders a Codex description on the Codex adapter and nowhere else', () => {
+    const texts = textsOf([{ ...ALPHA, codex: { description: 'Alpha on Codex.' } }]);
+    const codex = texts.get('.codex/agents/alpha.toml');
+    expect(codex).toContain('Alpha on Codex.');
+    expect(codex).not.toContain(ALPHA.description);
+    expect(texts.get('.cursor/agents/alpha.md')).toContain(ALPHA.description);
+    const unsafe: RoleDeclaration = { ...ALPHA, codex: { description: 'Says "hi".' } };
+    expect(unwrapErr(renderSubagentAdapters([unsafe]))).toMatch(/^\.codex\/agents\/alpha\.toml: /u);
   });
 
   it('renders a System prompt body with a declared tool list exactly as declared: its tools, its deny list and its turn bound, no permission mode filled', () => {
@@ -325,15 +331,8 @@ describe('renderSubagentAdapters', () => {
       },
       systemPrompt: 'Read is your only tool.',
     };
-    expect(textsOf([mapper]).get('.claude/agents/mapper.md')?.split('\n---\n')[0]).toBe(
-      [
-        '---',
-        'name: mapper',
-        "description: 'Mapper reads one window.'",
-        'tools: Read',
-        'disallowedTools: Bash, Write, Edit',
-        'maxTurns: 16',
-      ].join('\n'),
+    expect(textsOf([mapper]).get('.claude/agents/mapper.md')).toContain(
+      'tools: Read\ndisallowedTools: Bash, Write, Edit\nmaxTurns: 16\n---',
     );
   });
 

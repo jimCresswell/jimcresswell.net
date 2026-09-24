@@ -1,6 +1,7 @@
 ---
 description: Read-only leaf-signal extractor for the corpus-analysis map workflow stage. Dispatched exclusively via the Workflow agent() agentType option; never invoke for interactive delegation. Reads one time-contiguous window's corpus files in full and answers only through the schema-forced structured output call.
 cursor:
+  description: Read-only leaf-signal extractor for the corpus-analysis map workflow stage. Dispatched by a corpus-analysis orchestrator, one agent per time-contiguous corpus window; never invoke for interactive delegation. Reads one window's corpus files in full and answers only through the schema-forced structured output call.
   note: |-
     That template is the canonical role definition (purpose, capability envelope,
     system prompt, delegation triggers). The dispatch prompt names the window's
@@ -13,6 +14,7 @@ claude:
   maxTurns: 16
   body: system-prompt
 codex:
+  description: Read-only leaf-signal extractor for the corpus-analysis map workflow stage; one agent per corpus window, answering only via the schema-forced structured output.
   note: |-
     This file is a thin Codex adapter. The canonical role definition lives in the
     template referenced above; the dispatch prompt names the window's corpus

@@ -21,7 +21,9 @@ Every template carries a frontmatter declaration: the one source for its adapter
 platform. A role declares its `description` and, per platform (`cursor`, `claude`, `codex`,
 `gemini`), only what deviates from the standard adapter body: a Claude `tools` list off the
 default (`inherit` when the adapter carries none), `disallowedTools`, `permissionMode`,
-`color`, `model`, `effort`, `maxTurns`; a Codex `model` or `effort`; a `note` where the closing prose is
+`color`, `model`, `effort`, `maxTurns`; a Codex `model` or `effort`; a Cursor or Codex
+`description` where the role's own states what only another platform enforces (the Codex one
+also heads the role's registry block); a `note` where the closing prose is
 not the platform's standard one; a `pointerTail` where the pointer paragraph continues past
 the template path (verbatim, as `cricket-procedure-xhigh` carries ", then execute its
 procedure exactly."). A standard role declares one line. A fan-out (the cricket
@@ -33,17 +35,21 @@ subagents reference names; nothing is defaulted.
 A role whose Claude adapter must not spend turns reading its template (a workflow role
 dispatched with its full task, such as the corpus-analysis stages) declares
 `claude.body: system-prompt`: the Claude adapter's body is then the template's System prompt
-block (the first blockquote under its `## System prompt` heading), verbatim, followed by a
-generated comment naming the template, in place of the title and pointer. The block's one
+block (the one blockquote under its `## System prompt` heading, a heading inside a code fence
+not counting), verbatim, followed by a generated comment naming the template, in place of
+the title and pointer. The block is carried whole or refused: a quote that a non-blank line
+runs on from, or a second quote in the section, refuses the template. The block's one
 home is the template; the generator copies it. Such an adapter is the role's own prompt,
 not the reviewer pointer, so no default is filled: it declares its whole capability envelope,
 `tools` included, and carries no `pointerTail` or `note`. `tools: none` is the zero-tool
 adapter, rendered as the null-value `tools:` field (the one Claude spelling that grants no
 tools; `tools: []` and an absent field grant every tool); it stands alone, carries no
 `disallowedTools`, and requires the System prompt body, since a zero-tool agent cannot read
-the template a pointer names. Its Cursor and Codex adapters keep the pointer; its Gemini
+the template a pointer names. Its Cursor and Codex adapters keep the pointer, and declare
+their own `description` where the role's names the Claude envelope; its Gemini
 adapter has no inlined-body form, so a zero-tool role leaves `gemini` out of its platforms.
-The schema refuses each broken combination by name.
+A fan-out variant is never zero-tool: its body is the pointer to its shared template. The
+schema refuses each broken combination by name.
 
 The shape is `agent-tools/src/subagent-declarations/subagent-declaration.ts`. The
 declaration is written by hand at the head of the template; the adapters under

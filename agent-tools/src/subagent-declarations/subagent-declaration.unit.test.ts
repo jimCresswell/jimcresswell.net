@@ -1,3 +1,4 @@
+import { unwrapErr } from '@engraph/result';
 import { describe, expect, it } from 'vitest';
 
 import { parseSubagentDeclaration } from './subagent-declaration.js';
@@ -134,70 +135,68 @@ describe('parseSubagentDeclaration', () => {
     });
   });
 
-  it('reads a Claude block of no tools, a turn bound and the System prompt block as its body', () => {
-    const value = {
-      description: 'Voter judges.',
-      platforms: ['cursor', 'claude', 'codex'],
-      claude: { tools: 'none', maxTurns: 4, body: 'system-prompt' },
-    };
-    expect(parseSubagentDeclaration('voter', value)).toStrictEqual({
-      ok: true,
-      value: { kind: 'role', name: 'voter', ...value },
-    });
+  it('reads a Claude turn bound as a positive whole number, refusing zero and a fraction', () => {
+    const withTurns = (maxTurns: number) =>
+      parseSubagentDeclaration('voter', {
+        description: 'Voter judges.',
+        claude: { tools: 'none', maxTurns, body: 'system-prompt' },
+      });
+    expect(withTurns(4)).toMatchObject({ ok: true, value: { claude: { maxTurns: 4 } } });
+    for (const refused of [0, 2.5]) {
+      expect(unwrapErr(withTurns(refused))).toMatch(/^voter: claude\.maxTurns: /u);
+    }
   });
 
-  it('refuses a zero-tool Claude block that names a tool, a deny list, or the pointer body a no-tools agent cannot follow', () => {
-    const refusal = (claude: Record<string, unknown>) =>
-      parseSubagentDeclaration('voter', { description: 'Voter.', claude });
-    expect(refusal({ tools: 'none, Read', body: 'system-prompt' })).toStrictEqual({
-      ok: false,
-      error: 'voter: claude.tools: none stands alone: a zero-tool adapter lists no tool',
-    });
+  it('reads a Codex description, the sentence the Codex adapter and its registry block carry in place of the role description', () => {
     expect(
-      refusal({ tools: 'none', disallowedTools: 'Write', body: 'system-prompt' }),
-    ).toStrictEqual({
-      ok: false,
-      error: 'voter: claude.disallowedTools: a zero-tool adapter grants nothing to deny',
-    });
-    expect(refusal({ tools: 'none' })).toStrictEqual({
-      ok: false,
-      error:
-        "voter: claude.body: a zero-tool adapter cannot read the template a pointer names, so its body is the template's System prompt block (body: system-prompt)",
-    });
-  });
-
-  it('refuses a System prompt body without its tools declared, or with a pointer tail or a note, and in a fan-out variant', () => {
-    const refusal = (claude: Record<string, unknown>) =>
-      parseSubagentDeclaration('mapper', { description: 'Mapper.', claude });
-    expect(refusal({ body: 'system-prompt' })).toStrictEqual({
-      ok: false,
-      error:
-        'mapper: claude.tools: an adapter whose body is the System prompt block fills no default, so it declares its tools (none, inherit or a list)',
-    });
-    expect(
-      refusal({ tools: 'Read', body: 'system-prompt', pointerTail: ', then stop.' }),
-    ).toStrictEqual({
-      ok: false,
-      error:
-        'mapper: claude.pointerTail: an adapter whose body is the System prompt block carries no pointer',
-    });
-    expect(refusal({ tools: 'Read', body: 'system-prompt', note: 'Report only.' })).toStrictEqual({
-      ok: false,
-      error:
-        'mapper: claude.note: an adapter whose body is the System prompt block closes with the generated provenance comment',
-    });
-    expect(
-      parseSubagentDeclaration('cricket', {
-        variants: [
-          {
-            name: 'cricket-high',
-            platforms: ['claude'],
-            description: 'High.',
-            claude: { tools: 'Read', body: 'system-prompt' },
-          },
-        ],
+      parseSubagentDeclaration('alpha', {
+        description: 'Alpha reviews a.',
+        codex: { description: 'Alpha on Codex.' },
       }),
-    ).toStrictEqual({ ok: false, error: 'cricket: variants.0.claude: Unrecognized key: "body"' });
+    ).toMatchObject({ ok: true, value: { codex: { description: 'Alpha on Codex.' } } });
+  });
+
+  it('refuses a zero-tool Claude block that names a tool, a deny list, or the pointer body a no-tools agent cannot follow, naming the field that breaks it', () => {
+    const refusal = (claude: Record<string, unknown>) =>
+      unwrapErr(parseSubagentDeclaration('voter', { description: 'Voter.', claude }));
+    expect(refusal({ tools: 'none, Read', body: 'system-prompt' })).toMatch(
+      /^voter: claude\.tools: /u,
+    );
+    expect(refusal({ tools: 'none', disallowedTools: 'Write', body: 'system-prompt' })).toMatch(
+      /^voter: claude\.disallowedTools: /u,
+    );
+    expect(refusal({ tools: 'none' })).toMatch(/^voter: claude\.body: /u);
+  });
+
+  it('refuses a zero-tool fan-out variant at its tools: a variant points to its template, which a zero-tool agent cannot read', () => {
+    const variant = { name: 'cricket-high', platforms: ['claude'], description: 'High.' };
+    expect(
+      unwrapErr(
+        parseSubagentDeclaration('cricket', {
+          variants: [{ ...variant, claude: { tools: 'none' } }],
+        }),
+      ),
+    ).toMatch(/^cricket: variants\.0\.claude\.tools: /u);
+  });
+
+  it('refuses a System prompt body without its tools declared, or with a pointer tail or a note, and in a fan-out variant, naming the field that breaks it', () => {
+    const refusal = (claude: Record<string, unknown>) =>
+      unwrapErr(parseSubagentDeclaration('mapper', { description: 'Mapper.', claude }));
+    expect(refusal({ body: 'system-prompt' })).toMatch(/^mapper: claude\.tools: /u);
+    expect(refusal({ tools: 'Read', body: 'system-prompt', pointerTail: ', then stop.' })).toMatch(
+      /^mapper: claude\.pointerTail: /u,
+    );
+    expect(refusal({ tools: 'Read', body: 'system-prompt', note: 'Report only.' })).toMatch(
+      /^mapper: claude\.note: /u,
+    );
+    const variant = { name: 'cricket-high', platforms: ['claude'], description: 'High.' };
+    expect(
+      unwrapErr(
+        parseSubagentDeclaration('cricket', {
+          variants: [{ ...variant, claude: { tools: 'Read', body: 'system-prompt' } }],
+        }),
+      ),
+    ).toMatch(/^cricket: variants\.0\.claude: .*\bbody\b/u);
   });
 
   it('refuses a control character in a line field (a NUL in the description), which YAML forbids and the quote rule would write raw, and a carriage return as a line break', () => {

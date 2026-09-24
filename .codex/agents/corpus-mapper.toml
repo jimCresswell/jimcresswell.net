@@ -1,5 +1,5 @@
 name = "corpus-mapper"
-description = "Read-only leaf-signal extractor for the corpus-analysis map workflow stage. Dispatched exclusively via the Workflow agent() agentType option; never invoke for interactive delegation. Reads one time-contiguous window's corpus files in full and answers only through the schema-forced structured output call."
+description = "Read-only leaf-signal extractor for the corpus-analysis map workflow stage; one agent per corpus window, answering only via the schema-forced structured output."
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 approval_policy = "never"

@@ -4,6 +4,7 @@ description: No-tools clustering synthesist for the corpus-analysis reduce workf
 # no-tools agent cannot read; the System prompt body is the Claude adapter's alone.
 platforms: [cursor, claude, codex]
 cursor:
+  description: Clustering synthesist for the corpus-analysis reduce workflow stage. Dispatched by a corpus-analysis orchestrator, one call per run; never invoke for interactive delegation. Clusters the inlined leaf signals into mechanism-grained candidates and answers only through the schema-forced structured output call.
   note: |-
     That template is the canonical role definition (purpose, capability envelope,
     system prompt, delegation triggers). The dispatch inlines the complete
@@ -16,6 +17,7 @@ claude:
   maxTurns: 6
   body: system-prompt
 codex:
+  description: Clustering synthesist for the corpus-analysis reduce workflow stage; clusters inlined leaf signals into mechanism-grained candidates via the schema-forced structured output.
   note: |-
     This file is a thin Codex adapter. The canonical role definition lives in the
     template referenced above; the dispatch inlines the complete leaf-signal set.
