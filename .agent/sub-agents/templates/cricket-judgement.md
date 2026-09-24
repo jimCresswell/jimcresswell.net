@@ -271,7 +271,8 @@ word of 2026-09-24: "Crickets judge in the frame provided, we need them to also 
   Read)
 - `FRAME VERDICT:` SOUND | NARROWED | CONTRADICTED (the frame itself)
 - `FRAME EVIDENCE:` up to 2 bullets, each quoting the source phrase and naming what the
-  reading omits or contradicts; on SOUND, one bullet naming the source items checked
+  reading omits or contradicts; on SOUND, one bullet naming the source items checked; with no
+  `SOURCES:` block supplied, one bullet reading `NO VERBATIM SOURCE`
 - `REDIRECTION:` the single highest-value change to the invoker's next action or to its
   frame — or "none"
 - `UNGROUNDED:` load-bearing claims you had to take on trust, including any of the six

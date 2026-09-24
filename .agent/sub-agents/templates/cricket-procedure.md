@@ -119,8 +119,9 @@ being present does not make its content grounded — any factual claim inside a 
 item that the supplied context cannot itself substantiate is marked on-trust and goes
 to UNGROUNDED (the PAIR-2 lesson: treating every supplied claim as grounded is the
 failure this step exists to catch). Finally list the SOURCES items from the `SOURCES:`
-block only: one item per clause of a quoted owner sentence that states a goal, an order
-or a hold, quoted exactly (a sentence carrying two goals is two items), and one per
+block only: one item per clause of a quoted owner sentence that states a goal, an order,
+a hold, or who owns or receives the work, quoted exactly (a sentence carrying two goals is
+two items), and one per
 quoted todo that no source states done. Step 3b's omission audit covers this list; its contradiction audit reads the whole
 `SOURCES:` block, done todos included, and neither reads anything else.
 
@@ -209,12 +210,13 @@ This table is total too: row 4 catches every audit left incomplete, so an audit 
 ran can never read as SOUND. The frame verdict is independent of the work verdict;
 ON-TRACK inside a NARROWED frame is a valid pair.
 
-**Step 5 — REDIRECTION.** The single highest-value change implied by the FIRST matching
-row above — or "none" when row 7 (the clean all-PASS row) fired. When the work verdict is
-ON-TRACK (row 6 or 7) and the frame verdict is not SOUND, the frame repair replaces it: the
-first `CONTRADICTED:` line in Step 3b's order, else the first `OMITTED:` line, else the first
-`UNAUDITED:` line's source phrase, else "supply the sources verbatim in a `SOURCES:`
-block".
+**Step 5 — REDIRECTION.** When the frame verdict is not SOUND, the redirection is the
+frame repair, whatever the work verdict, because a redirection steered by a frame known to be
+incomplete or false inherits its gap: the first `CONTRADICTED:` line in Step 3b's order, else
+the first `OMITTED:` line, else the first `UNAUDITED:` line's source phrase, else "supply the
+sources verbatim in a `SOURCES:` block". When the frame verdict is SOUND, the redirection is
+the single highest-value change implied by the FIRST matching row above — or "none" when row
+7 (the clean all-PASS row) fired.
 
 ## Banned Moves
 
