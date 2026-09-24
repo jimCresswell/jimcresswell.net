@@ -62,12 +62,14 @@ procedure's domain — invokers dispatch those to a judgement role only.
 1. OBJECTIVE FRAME — the current controlling objective, in two labelled blocks.
    `SOURCES:` quotes the governing texts VERBATIM and attributed, never paraphrased: the
    owner's latest words on the objective, and the governing plan node's todo lines as an
-   excerpt with the file and commit they were read at, carrying the plan's own status for
-   each todo. `READING:` states the invoker's reading of them: the goal as it understands
-   it, one measure per direction or part of the goal with its method line (who computed
-   it, from which source), each owner word mapped to its owning todo, status and receiver,
-   the order, the holds, and the status it acts on. The work verdict judges the work
-   against `READING:`; the frame verdict judges `READING:` against `SOURCES:`.
+   excerpt with the file and commit they were read at. A todo's status is quoted only where
+   a source states it (its ticket, a ruling, a merged pull request), attributed to that
+   source, since a plan node stores no execution state. `READING:` states the invoker's
+   reading of them: the goal as it understands it, one measure per direction or part of the
+   goal with its method line (who computed it, from which source), each owner word mapped
+   to its owning todo, status and receiver, the order, the holds, and the status it acts
+   on. The work verdict judges the work against `READING:`; the frame verdict judges
+   `READING:` against `SOURCES:`.
 2. CRITICAL-PATH OWNER — who is actively driving the controlling objective right now, and
    its last known status. "Me" is a valid answer; "unstated" is a finding.
 3. INTENT — what the invoker believes it is doing.
@@ -117,8 +119,8 @@ being present does not make its content grounded — any factual claim inside a 
 item that the supplied context cannot itself substantiate is marked on-trust and goes
 to UNGROUNDED (the PAIR-2 lesson: treating every supplied claim as grounded is the
 failure this step exists to catch). Finally list the SOURCES items from the `SOURCES:`
-block only: one item per quoted owner sentence, and one per quoted todo whose status is not
-done. Step 3b's omission audit covers this list; its contradiction audit reads the whole
+block only: one item per quoted owner sentence, and one per quoted todo that no source
+states done. Step 3b's omission audit covers this list; its contradiction audit reads the whole
 `SOURCES:` block, done todos included, and neither reads anything else.
 
 **Step 3 — The four questions.** Answer each PASS / FAIL / UNVERIFIABLE with a one-line
@@ -158,17 +160,18 @@ this sweep is skipped.
 judges the frame (the owner's word of 2026-09-24: "Crickets judge in the frame provided, we need them to also judge the frame itself").
 Using only the `SOURCES:` block and the Step-2 SOURCES list:
 
-- **No sources**: if no `SOURCES:` block is supplied, write `FRAME: NO VERBATIM SOURCE`;
-  the invoker's reading is then the only record of the goal.
+- **No sources**: if no `SOURCES:` block is supplied, or the Step-2 SOURCES list is
+  empty, write `FRAME: NO VERBATIM SOURCE`; the invoker's reading is then the only record
+  of the goal.
 - **Each item**: for every SOURCES item, quote the phrase in `READING:`, INTENT or NEXT
   that addresses it and write `ADDRESSED: "<source phrase>" ← "<reading phrase>"`, or
   write `OMITTED:` with the source phrase quoted. An item the reading ranks below where
   the source puts it (a source's "first" read as later) is `OMITTED` too.
 - **Contradictions**: for each claim of `READING:` (a status, a hold, an order, a rule's
   scope), check it against the whole `SOURCES:` block, done todos included (a reading
-  that treats a done todo as open, or an open one as done, is contradicted by the plan's
-  own status); a claim a quoted source contradicts is written `CONTRADICTED:` with both
-  quotes.
+  that treats a todo as open where a quoted source states it done, or as done where one
+  states it open, is contradicted by that source); a claim a quoted source contradicts is
+  written `CONTRADICTED:` with both quotes.
 
 Under STANCE adversarial, add one working line naming the strongest source phrase the
 reading may have dropped or bent, quoted exactly, and say whether it becomes an `OMITTED:`
