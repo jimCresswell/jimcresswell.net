@@ -20,14 +20,19 @@ import {
 } from './gate-slot-smoke-support';
 
 /**
- * The gate-slot command line as the hook runs it (the root alias, through
- * the filtered pnpm the hook uses), and the port adapter's promise that no
- * probe listener outlives a failed step. The command line touches no slot
- * except to read `status`; each run is its own process group with a
- * harness timeout, so a regression can never hang the gate it runs inside.
+ * The gate-slot command line invoked exactly as `.husky/pre-push` invokes
+ * it: trusted pnpm running the filtered `gate-slot` script from the
+ * repository root, in the ambient environment less any held marker, because
+ * the smoke itself runs inside a real gate that set one. Also the port
+ * adapter's promise that no probe listener outlives a failed step. The
+ * command line touches no slot except to read `status`; each run is its own
+ * process group with a harness timeout, so a regression can never hang the
+ * gate it runs inside.
  */
 
 const REPO_ROOT = join(PACKAGE_ROOT, '..');
+/** The pnpm arguments before the gate-slot's own, as the pre-push hook passes them. */
+const HOOK_COMMAND = ['--fail-if-no-match', '--filter', '@engraph/agent-tools', 'gate-slot'];
 const CLI_TIMEOUT_MS = 60_000;
 
 interface CliRun {
@@ -43,16 +48,12 @@ async function runCli(
   const pnpm = resolvePnpm(process.env);
   assert.ok(pnpm.ok, 'gate-slot cli smoke: pnpm not found');
   const inherited = typeSafeEntries(pnpm.value.env).filter(([name]) => name !== GATE_SLOT_HELD_ENV);
-  const child = spawn(
-    pnpm.value.file,
-    [...pnpm.value.leadingArgs, '--silent', 'agent-tools:gate-slot', ...args],
-    {
-      cwd: REPO_ROOT,
-      env: { ...Object.fromEntries(inherited), ...extraEnv },
-      stdio: ['ignore', 'pipe', 'pipe'],
-      detached: true,
-    },
-  );
+  const child = spawn(pnpm.value.file, [...pnpm.value.leadingArgs, ...HOOK_COMMAND, ...args], {
+    cwd: REPO_ROOT,
+    env: { ...Object.fromEntries(inherited), ...extraEnv },
+    stdio: ['ignore', 'pipe', 'pipe'],
+    detached: true,
+  });
   const leader = child.pid;
   assert.ok(leader !== undefined, 'gate-slot cli smoke: the command did not start');
   let stdout = '';
@@ -125,8 +126,11 @@ async function proveTheCommandLineTruthSet(): Promise<void> {
   try {
     await writeFile(join(decoy, 'pnpm-workspace.yaml'), 'packages: []\n');
     const status = await runCli(['status'], { CLAUDE_PROJECT_DIR: decoy });
-    const firstLine = status.stdout.split('\n')[0] ?? '';
-    assert.ok(firstLine.endsWith(await realpath(REPO_ROOT)), firstLine);
+    // pnpm writes its own lines around a filtered script's output, so the tree line is found by what it says.
+    const treeLine = status.stdout
+      .split('\n')
+      .find((line) => line.startsWith('This working tree: '));
+    assert.ok(treeLine?.endsWith(await realpath(REPO_ROOT)), status.stdout);
   } finally {
     await rm(decoy, { recursive: true, force: true });
   }
