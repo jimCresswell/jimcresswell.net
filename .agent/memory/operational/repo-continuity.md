@@ -23,6 +23,50 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
+- 2026-09-24T13:41Z, the exchange seat's wrap (Brazier spins Temper, c70341) for its successor,
+  Siren herds Rudder (158275). Landed today: PRs 165 to 171 (the last two, the strict test doctrine
+  and the small conflicts, merged at `SHA: e0e79c07` and `SHA: d023d4ef`); `main` is at
+  `SHA: e0e79c07`. Start with goal one, per the owner's order recorded below.
+  - The outbound index. This estate's delta, recomputed to `main`
+    (`bash .agent/reports/practice-transplant/inputs/exchange-delta.sh jcnet-since-transplant .
+    55649a20e6 <main-sha>`), has 992 paths; the register's rows J1 to J23 cover all of them
+    (run `computeCoverage` from `agent-tools/src/validators/exchange-register/` over the J rows
+    with that list). Against the lineage's `origin/engraph` at `SHA: fcbaa9bf5`, compared by blob
+    per path: J1 355 paths (227 differ, 108 absent there), J2 95, J5 41, J6 37, J8 74, J15 183,
+    J21 37 absent there; no row is fully landed there, and 21 paths match. A differing blob can be
+    a host-adapted twin of the same concept, so "differs" bounds what is owed from above. The concepts added since the
+    register's pin, each needing its own row: the host gate slot, the exchange-register
+    validator, the operator-profile validator's changes, the transaction lock and spawn modules,
+    the allow-list removals in three validators, the three-zone fitness vocabulary, and the
+    PDR-117, PDR-125 and PDR-027 amendments.
+  - The lessons sweep. It is the due consolidation too: one pass, two destinations. One row per
+    lesson: the lesson in portable words, its evidence, the JC.net file that already states it,
+    the OCE file that does (or partial, or no), and the proposed OCE home. Sources: the napkin
+    (3,299 lines), `distilled.md`, `pending-graduations.md`, the unconsolidated napkins, the
+    September experience letters, and the per-user memory buffer. A pilot on `distilled.md` ran
+    at the wrap; its result is in the napkin if it landed.
+  - The delivery. The note and the material go into the lineage's Box
+    (`.agent/practice-core/incoming/`, empty at the wrap) through the join ceremony, with a
+    paired comms event. Marten mends Shadow (74fc02), the lineage's new exchange seat, is live and
+    watches the Box. Its order: joint set F from PR 159 (`SHA: 037d54a5`), then G from PR 160
+    (`SHA: 2501b9d9`) with PR 171's three files; the test doctrine goes to a fresh session there
+    (PDR-052), with this estate's five follow-up cures if they have landed.
+  - Parked, local branches. `feat/alignment-start-right-test-rules` (`SHA: 4b9fd501`, worktree
+    `align-five`; its first push failed the portability leg, three projections not regenerated,
+    cured at `SHA: 5eb897f0`; pushed after the handover with no pull request, verify with
+    `git ls-remote`): start-right's two-legs paragraph from
+    the lineage, and two of the five follow-up cures (no-global-state-in-tests' smoke globs, the
+    test-expert's Step 2). `fix/pnpm-filter-no-match` (`SHA: 5ca00f52`, worktree `filter-guard`)
+    stays local: it carries an allow-list the owner's rulings forbid, and it is estate-local
+    capability, held. `docs/concept-over-bytes-amendments` is never pushed.
+  - Held behind goal one and goal two: the ratified gate node's PRs B to F, and the ratified
+    recovery node's inventory (estate-local; its pilots showed an evidence-extraction design at
+    about 7k tokens a file). Owed with that inventory, promised in PR 170's signed dispositions:
+    the node's import boundary for check-only locations, and the corrected comment on
+    `commit-queue-git-rename.smoke.ts` (an in-process integration test under a check's name).
+  - Records pushes batch to the end of a stretch: every push runs the full gate, including the
+    site's build and end-to-end suite, and the owner saw the site open in the IDE while only the
+    Practice was in hand.
 - 2026-09-24T13:33Z, the owner's order for the exchange, verbatim: "Our purpose here is to first
   make sure that all of our Practice innovations are integrated into the OCE Practice, our second
   goal is to bring our Practice up to speed with their innovations", and "the memories and
@@ -142,8 +186,9 @@ names a live branch):
   retire under item 5: `validate-ratified-lists`. Not re-checked today: the fitness vocabulary
   in the `practice-fitness` sources.
 
-- Deep consolidation status: **due — napkin pressure and doctrine held only in ephemeral
-  surfaces** (2026-09-24 wrap). The napkin is over 3,100 lines and shared by every seat on this
+- Deep consolidation status: **due — the napkin at 3,299 lines; run it as goal one's lessons
+  sweep** (2026-09-24, 13:41Z wrap). Earlier reason, the 11:03Z wrap: napkin pressure and doctrine
+  held only in ephemeral surfaces. The napkin is over 3,100 lines and shared by every seat on this
   host. The owner's rulings of 2026-09-24 on tests live only in the napkin and per-user memory;
   their doctrine text is routed as one joint text with the lineage's seat. It was not run at the
   non-terminal wrap: a rotation of a napkin other seats are writing is curator work, done
