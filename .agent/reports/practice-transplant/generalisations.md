@@ -1,6 +1,6 @@
 ---
 type: register
-status: active
+status: closed
 date: 2026-09-13
 fitness_line_target: 160
 fitness_line_limit: 220
@@ -8,6 +8,10 @@ fitness_line_length: 100
 ---
 
 # Generalisation register
+
+Closed on 2026-09-24: a move is now recorded as a `Practice-Generalisation:` trailer on the
+commit that makes it (rule `record-generalisation-moves`), and the list is computed from git
+history. The rows below are the moves recorded before that date.
 
 Every move that makes an element of the Practice more general or more portable, recorded when
 it lands (owner direction 2026-09-13, verbatim: "where we take action to make an element of the

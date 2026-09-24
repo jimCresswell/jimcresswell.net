@@ -12,7 +12,7 @@ these are the process outputs kept alongside the work.
 | [journey-so-far.md](journey-so-far.md)                               | An understanding of the journey to date: the spine, three frames and a counterframe, bridge claims, status | Reopened after the 57-lesson synthesis or the next transplant |
 | [what-the-practice-is.md](what-the-practice-is.md)                   | The Practice defined by nine functions, the transplant set that follows, and what this transplant failed to migrate by evidence class (owner-asked 2026-09-13; provisional) | The `practice-completion` node's completeness audit |
 | [practice-language-separation.md](practice-language-separation.md)   | The universal Practice and its language packs: the measured leakage, the three kinds of instrument contract, six proposals with falsifiers (owner-directed 2026-09-13; provisional) | The `practice-language-separation` node; a PDR amendment candidate |
-| [generalisations.md](generalisations.md)                                 | The generalisation register: every move that made a Practice element more general or portable, with its commit and lineage status (owner-directed 2026-09-13; append-only) | Contributions back, the update from the lineage, the next transplant, the extraction |
+| [generalisations.md](generalisations.md)                                 | The generalisation register, closed on 2026-09-24: the moves recorded before a `Practice-Generalisation:` commit trailer replaced it (owner-directed 2026-09-13) | Contributions back, the update from the lineage, the next transplant, the extraction |
 
 ## The record, compiled (closure item 7)
 
