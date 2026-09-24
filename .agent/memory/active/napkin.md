@@ -3388,3 +3388,50 @@ The owner at 14:2xZ: "when you reach a sensible point please prepare for compact
 - 2026-09-24T15:30:58Z MARTEN check-in 7: on track; PR 192 MERGED 5de48136 at 15:19:37Z (docs-only class); PR 191 synced as 0936f14d, zero threads, checks running, merge about 15:40Z, then the slot passes to PR 193; owner word 14:29:27Z event 942fd3b0; node still no todo lines, governed by the owner's word, pr-lifecycle and JC.net's todos 4 and 5; numbers 0 of 21 and 5 of 28 by the agreed method; batch one acknowledged ebfe86d8 at 15:06Z, ten blob ids matched, nothing integrated: intake waits on 191 and a FRESH SESSION of the OCE seat (context 43.2% at 15:07Z against PDR-063's line), pickup record says so; K1 and K1(c) signed (cc11b042, b5c4c077). VERDICT: on track; the fresh OCE session is an owner action, on the card.
 - 2026-09-24T15:34:54Z OWNER CARD (raised about 15:32Z, three questions, answered): (1) main-local-pre-sync-2026-08-12 with 112 napkin lines from 2026-04 and 172 command lines on no tracked surface: "Delete the branch". (2) worktrees expert-roster (18 dirty paths) and tools-lineage-paths (13) with uncommitted rewrites toward site-relative paths, docs/workspace-architecture-plan-family's 22-line napkin session, falsifier-2a's hook log: "Delete outright" (nothing preserved; the direction is superseded by the same-bytes goal). (3) Marten at 43.2% context against PDR-063's line, close after PR 191 and a fresh OCE session for the batch-one intake: "Marten continues past the line" (runs the intake in its current session). Relayed verbatim to Siren (1, 2) and Marten (3) at 2026-09-24T15:34:54Z.
 - 2026-09-24T15:34:54Z SWALLOW question: Forge herds Vapor stood down 13:18Z (ab6c44af), so cannot co-own the Codex membership programme; Luna stirs Radiance (01a0d3) is the live Codex seat. VERDICT: Luna co-owns, Forge's 10:39Z ask is the origin, Luna's seat runs the acceptance journey; my earlier line naming Forge corrected. Swallow context 46.5% at 15:30:49Z; the owner is present and will call its handover.
+
+## 2026-09-24T15:37Z — COMPACTION BOUNDARY (Siren herds Rudder, 158275, JC.net exchange seat)
+
+- Owner's word, verbatim: "please prepare for compaction and stop all processes" (with /jc-metacognition /jc-free-play /jc-concept-exploration /jc-wrap). At 15:35Z I stopped, by intent, both comms watchers (this estate and the lineage), the heartbeat loop, the peer-liveness poll, the PR 177 and 178 review watches, and the arc-metrics lane subagent. The process table at 15:35:56Z held none of mine. Heartbeat-end events were posted on both streams. Claim 18888e9b is RETAINED under joint set K1: this seat shepherds PRs 175, 177 and 178.
+- Owner card answer, relayed by the Director at about 15:33Z and recorded above at 15:34:54Z, as the authority: (a) main-local-pre-sync-2026-08-12, "Delete the branch" (deleted 15:36Z, 03e0c6a3). (b) docs/workspace-architecture-plan-family, "Delete outright" (deleted 15:36Z, 9a3e5bb8). (c) and (d) worktrees expert-roster (18 unstaged edits) and tools-lineage-paths (4 edits, 9 deletions), plus falsifier-2a's hook log, "Delete outright". NOT YET DONE: the hook forbids forced removal, so the cure is forward writes of HEAD content per path (mktemp sibling, then mv; `git add` per path) until status reads empty, then a plain `git worktree remove`, then delete branches fix/site-relative-paths-in-rules and fix/tools-lineage-paths. falsifier-2a is clean apart from its ignored log, so it takes a plain removal.
+- WORK SAFETY at 15:36Z, from `git status --branch`:
+  - primary `coordination/2026-09-24-7925bc` is ahead 8 and clean; draft PR 176, fold owned by the Director;
+  - `docs/exchange-joint-set-k` is level with origin (PR 177, 4eb511df);
+  - `fix/comms-watch-emfile` is level (PR 178, 2fd26dda);
+  - NOT SAFE: `fix/zero-tool-subagent-adapters` is ahead 4 of origin/main, clean, never pushed, no PR (merge 4233be2b, cures 5c3750b7 and a2c6a573);
+  - NOT SAFE: `feat/arc-metrics` is ahead 1 (536b81a0, round-one cures) with 5 uncommitted files from the lane stopped mid-mutation-check ("All 27 green. Now one mutant per claim, each restored from a scratchpad copy"). A mutant may sit in a source file: diff and run the suite before committing anything;
+  - `fix/pnpm-filter-no-match` (filter-guard, Brazier's) is local by decision, and becomes a PR after its three owed items.
+- OWED AT RESUME, in order:
+  1. PR 177: Copilot's pass on 4eb511df landed at 15:34:46Z (review 5306610926). Harvest it, post signed lines only (no push), merge through the merge bot, delete the branch, broadcast.
+  2. Push the zero-tool branch and open its PR. The code-expert and test-expert findings are all cured, plus Codex and Gemini descriptions. The older display-prose oracles are left for their own slice.
+  3. PR 175: verify the worktree, finish the owner-message origin cure (classify by `origin.kind` and `promptSource`), commit, push; this is round one's settlement.
+  4. PR 178: once Luna's PR 193 move lands, move the test to `cli-runtime.integration.test.ts` with the lineage's bytes (Luna also drops the call counts), push, then merge.
+  5. The owner-card worktree clearing above.
+  6. After PR 177 merges: batch two, led by the frame-verdict file (the lineage's Cricket surfaces hold none of it at engraph a0a2fead4), then the Core PDR amendments (PDR-082, PDR-132, PDR-008 compare, PDR-027 part) and the sub-agent comparison items.
+  7. After PR 178 merges: its §Landings row (L25, partial) in the next exchange PR.
+  8. The Director's check-in 7 suite (ten frame requirements) was not run: the owner's stop came first.
+- RE-ARM RECIPE. Nothing survives the boundary. Verify by id first (task list, process table); re-arm only what is absent.
+  - This estate's watcher: `timeout 3600 pnpm --silent agent-tools:collaboration-state -- comms watch --platform claude --model claude-opus-5-5 --supervisor-pid <session shell pid> --step-timeout-ms 120000 --max-events-per-drain 100 --exclude-tag heartbeat`, run from the primary.
+  - The same command from the lineage's primary checkout for the guest watcher, then `comms assert-watcher-live --platform claude --model claude-opus-5-5` there.
+  - The scratchpad scripts, all bash:
+    - `heartbeat.sh 18888e9b-2d42-465c-95d8-c046c55a65bb coordination/2026-09-24-7925bc "<label>"` (240 s, failures only);
+    - `peer-liveness-poll.sh 600`;
+    - `review-watch.sh <pr> <full head sha> 60` per open PR;
+    - `retire.sh` and `delete-local.sh` for proven removals.
+  If the scratchpad is gone, rewrite them from these descriptions.
+- OPEN PR LEDGER at 15:37Z: 175 (arc-metrics), 176 (coordination draft), 177 (K and the Cricket cures), 178 (EMFILE). Merged today by this seat: 172, 173, 174. Remote branches: main plus the heads of those five PRs.
+- METALOSS.
+  - _Compressed reasoning_: the choice to take a Copilot pass on each cure tip before merging rests on the merge bot's SILENT-WAIT refusal (PR 172, 14:46Z), not on doctrine alone. The Director withdrew the contrary line at 15:03Z.
+  - _Promises_: Luna was promised a PR 178 receipt (integrated or rejected) and the test alignment. Marten was promised K's landing and batch two. The Director was promised the local audit (done except the owner-card worktrees) and the suite 7 debt. All are in the owed list above.
+  - _Attribution flags_: the audit subagent's proofs are its reading, spot-checked only where they drove a deletion. Luna's "moved to integration" is its report; its push had not landed at 15:23Z.
+  - _Blind spots_: the arc-metrics lane's last minutes are unknown beyond its final line. Copilot's pass 5306610926 is unread.
+  - _Index of homes_: this block, the per-user memory `remote-branches-are-in-prs-or-deleted`, the lineage stream's delivery events (3727b85b, 92475eee), and the PR threads.
+  - _External bound_: most of today's corrections came from outside my own reading. A hook caught the unbroadcast primary push, and did so within the hour I authored J6, the rule it breaks. Marten caught the Box note's MD032. The merge bot refused the Director's "do not re-request". The Cricket panel caught frame omissions. The error signature to point scrutiny at: I checked my own work with my home estate's instruments (lint config, my own frame). Two time slips were self-caught by the clock read that followed.
+  - _Fence sweep_: no owner wording was held off the repository this session.
+  - _Fixed point_: a third pass would only re-find the uncommitted arc-metrics files and the unread pass 5306610926. The recursion closes here.
+- FREE PLAY (the owner's /jc-free-play, over the day's events; associations, not findings).
+  - Kept: the Box note passed my lint and failed the receiver's, and it reminded me of a letter checked against the sender's dictionary. A join-ceremony step, "lint the payload with the receiver's config", is a candidate for joint set K2.
+  - Kept: J6's author broke J6 within the hour; authoring a rule does not install it in the author.
+  - Kept: Copilot finds "previously missed" items on unchanged text on every pass, a thermostat with no off switch. The two-rounds ruling is the only terminator, and the merge bot's tip-bound review invites one more pass by design.
+  - Discarded as forced: "the frame verdict and the merge bot's tip binding are one idea".
+  - Discarded as a restatement: "the 57 merged local branches are the remote rule's twin".
+- CONCEPT PROPOSAL (the owner's /jc-concept-exploration, for the Director after resume). Branch hygiene decays without a sensor: today held 23 remote branches (6 unmerged, one kept "as input"), 57 merged local branches and 19 worktrees. A computed start-of-session check would list remote branches with no open PR, local branches proven merged, and worktrees on merged branches, surfaced by start-right (`compute-dont-hope`). Warrant: a passive rule loses to artefact gravity. Falsifier: if branches still outlive a day while the check runs daily, visibility was not the missing piece.
