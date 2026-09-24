@@ -307,8 +307,8 @@ below serves one of those three.
    receiver's working tree, where the receiver's whole-tree gates read
    it before any receipt. The donor runs the receiver's own formatting
    and lint configurations over every box file before delivery and
-   delivers only bytes they pass, so a delivery never breaks the
-   receiver's gates (worked instance 2026-09-24: a cover note that
+   delivers only bytes they pass, so a delivery never fails the
+   receiver's formatting and lint gates (worked instance 2026-09-24: a cover note that
    passed the donor's lint failed the receiver's MD032 and broke every
    pre-push gate in the receiver's primary checkout).
    **Format on receipt**: where the receiving
