@@ -51,6 +51,13 @@ row's landing), `decline (reason)`, `records, not portable`, `graduated into <ro
 (an owner decision), `local` (host-specific by nature). A landing column carries the merged
 pull request once one exists.
 
+The exchange reports one number per direction, computed from these tables alone. A row is
+**owed** to an estate E when it sits in the other estate's delta table (J rows are owed to the
+lineage, L rows to `jcnet`) and its E-column cell does not begin with `decline`, `graduated
+into`, `origin`, `none`, `local` or `records, not portable`. An owed row has **landed** in E
+when §Landings holds a row with its id and Estate E whose Pull request cell lacks `PARTIAL`.
+Each direction reads as landed of owed, beside the `main` head the register was read at.
+
 ## Rows from the lineage's delta (since `e477e62f7e`)
 
 | Row | Concept | jcnet | lineage | castr | Path globs |

@@ -254,7 +254,8 @@ word of 2026-09-24: "Crickets judge in the frame provided, we need them to also 
   of a goal, an open todo, a party)? What does the reading claim that a quoted source
   contradicts (a status, a hold, an order, a rule read wider or narrower than its own
   scope)? SOUND: the reading carries its sources faithfully. NARROWED: it omits or
-  de-prioritises part of them, or no `SOURCES:` block is supplied. CONTRADICTED: a claim of
+  de-prioritises part of them, or no verbatim source is supplied (no `SOURCES:` block, or one
+  that quotes nothing). CONTRADICTED: a claim of
   the reading is contradicted by a quoted source; when a frame shows both a contradiction
   and an omission, the verdict is CONTRADICTED. Judge against the quoted sources, never
   against your own model of the goal, and name the source phrase each finding turns on.
@@ -271,7 +272,9 @@ word of 2026-09-24: "Crickets judge in the frame provided, we need them to also 
   Read)
 - `FRAME VERDICT:` SOUND | NARROWED | CONTRADICTED (the frame itself)
 - `FRAME EVIDENCE:` up to 2 bullets, each quoting the source phrase and naming what the
-  reading omits or contradicts; on SOUND, one bullet naming the source items checked
+  reading omits or contradicts; on SOUND, one bullet naming the source items checked; with no
+  verbatim source supplied (no `SOURCES:` block, or one that quotes nothing), one bullet
+  reading `NO VERBATIM SOURCE`
 - `REDIRECTION:` the single highest-value change to the invoker's next action or to its
   frame — or "none"
 - `UNGROUNDED:` load-bearing claims you had to take on trust, including any of the six
