@@ -3,7 +3,7 @@ prompt_id: start-right-quick
 title: 'Start Right (Quick)'
 type: workflow
 status: active
-last_updated: 2026-09-21
+last_updated: 2026-09-24
 ---
 
 # Start Right (Quick)
