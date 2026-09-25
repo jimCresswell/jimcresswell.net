@@ -3,8 +3,9 @@
 **Thread identity.** JC.net's exchange seat on the node `practice-two-way-exchange`: outbound
 delivery into the lineage's Box and joint sets with the lineage's seat (goal one), inbound
 landings here (goal two). **Participating agent identities:** Brazier spins Temper (c70341),
-then Siren herds Rudder (158275). **Landing target for the next session:** queue item 1, or
-item 2 if the Director asks first. **Grounding order:** `AGENT.md`, the start-right-team
+then Siren herds Rudder (158275). **Landing target for the next session:** the seat resumed on
+2026-09-25 and at 10:58Z put queue item 5 (K4) before item 1 (batch six), so the target is K4,
+then batch six, then the queue as written. **Grounding order:** `AGENT.md`, the start-right-team
 skill, this record, the node's §Rulings and §Todos at main, the register, then the lineage's
 comms stream from OCE event 269c5e97 onwards.
 
