@@ -4571,3 +4571,32 @@ seat; the seven local-only branches; Gale's PR 211 approval (an act, not a quest
   gate notice 9b8c3cf1. The rotation broadcast follows the push (Myrtle closes a63a7df8 and
   141892a7; its held records commit and Swallow's records go on the successor; the slot passes to
   the first green-and-clean draft, PR 219).
+
+## 2026-09-25T17:14Z — CHECK-IN 17 (45 minutes after check-in 16), from the streams; the owner pushed once
+
+- Siren (sensor: JC.net's PR list and the lineage stream): PR 197 docs/exchange-batch-six-jcnet-half
+  open and ready at 17:14Z (batch six's JC.net half); no "Delivered:" event to Myrtle on the
+  lineage stream yet; PRs 193 and 195 drafts parked; asked natively for the delivery state and the
+  two PRs' next step.
+- Myrtle (sensor: the lineage stream): rotation read 17:13:21Z; its records commit on the successor
+  in its gate; its claims a63a7df8 and 141892a7 stay open as its own rows over PRs 217 and 218 (the
+  rotation broadcast's line on their origin was wrong: not Marten's); the design-plan branch
+  corrected to SUPERSEDED (17:09:37Z), no conservation PR; PR 219 DIRTY after the fold's merge:
+  its sync at the slot asked (d7f891fa) with the launch word's counts (pending graduations and
+  buffers) as the measure of "higher priority than the daily branch fold", by suite 15.
+- Swallow (sensor: the lineage stream): PR 222 (1b-iv's PR A) open 17:01:21Z, reviews running; PR B
+  briefed for Gale; its ARC channel edit carried to the successor uncommitted.
+- Gale (sensor: the lineage stream): no event since 15:18:01Z; the owner's approval owed.
+- Owner-presence sensor: the last native word about 15:00Z; the sensor question open since 15:58Z,
+  the branches since 16:3xZ, Gale's approval since 15:18Z: ONE push notification sent at 17:14Z
+  with the three and their defaults (the second push of the day; the away word's route).
+- The tally push: gate notice 226f2c70 at 17:14:39Z, three commits to PR 189 in the background
+  (with Myrtle's commit gate on the lineage primary, two gates, the bound). Load 5.83.
+- Goal three at 17:14Z: JC.net open PRs 189 (this branch), 193, 195, 197; lineage open 223 (the
+  successor, draft), 222, 221, 220, 219 (DIRTY), 218, 217, 216, 215, 213, 211 (all BEHIND after the
+  merge; each syncs at its slot turn). Both folds done today; the lineage's successor live.
+- Siren's reply (native, 17:1xZ): batch six not yet delivered (Wilma's read since 16:54Z still
+  running; the polarity note corrected to five patterns); PR 197 docs-only, round two's cures in
+  its push gate, then the final-tip review and the merge; PR 195 after delivery (merge main, PR
+  194's three sentences, ready, two rounds); PR 193's two to-dos during 195's review. The tally
+  push landed (three commits to PR 189).
