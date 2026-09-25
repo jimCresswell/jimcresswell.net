@@ -4679,3 +4679,28 @@ deletion sweep read whole); receipt to Siren: PR 192 INTEGRATED as the same byte
 slot passes to PR 213; the primary's records push landed. PR 222 green and clean at c0ddb2188,
 BEHIND, syncs at its turn. Myrtle's records commit (the branches card with every tip, batch six's
 21 dispositions: nine small PRs in order, twelve code lanes for fresh contexts) on the successor.
+
+## 2026-09-25T17:58Z — CHECK-IN 18 (45 minutes after check-in 17), from the streams; the push-without-owner count
+
+- Siren (sensor: its native check-in line, 17:55Z): context 21.4% (H4's sensor fresh); pushes and
+  opens PRs WITHOUT an owner prompt (afe21bc5 on PR 193 at 17:42Z, 94446edc on PR 195 at 17:53Z;
+  PRs 194, 196, 197 opened as the bot; auto mode); its order: PRs 195 and 193 to merge (round-two
+  cures posted); then Myrtle's two Core joint cures (PDR-063's release sentence, PDR-142's six
+  sentences from draft PR 225) as one small inbound PR first, since they gate the lineage; then
+  the seven cures one PR each, security pair first (claim 2f400f0c, worktree cut); then the next
+  inbound batch of eight as lanes free. Host hazard for every seat: Playwright pruned the
+  chromium_headless_shell-1243 build at 17:50Z because its install link pointed at a retired
+  worktree; reinstalled from the primary. ACCEPTED as given.
+- Myrtle (sensor: the lineage stream): PR 219 merged e3cf59330 17:40:51Z; PR 213 at the slot,
+  BLOCKED on checks and legs at 17:57Z; drafts 224, 225 (the PDR-142 joint cure to Siren), 226 on
+  the board; the push-without-owner answer, PR 213's state and batch six's first receipts asked
+  (the check-in 18 event, 17:58Z) by suite 16.
+- Swallow (sensor: the lineage stream): no event since 17:36:12Z; slice 2's first commit, PR 222's
+  turn and the push-without-owner answer asked natively by 18:20Z.
+- Gale (sensor: the lineage stream): no event since 15:18:01Z; the owner's approval restated once
+  in the check-in 18 event with the backstop: no event by check-in 19 (18:43Z) re-homes the config
+  split's push requirement to Swallow's lane; PR 211's cure stays Gale's at resume.
+- Push-without-owner count at 17:58Z: 1 of 4 live seats answered (Siren yes); Myrtle and Swallow
+  asked; Gale is the known no (the Codex approval review).
+- Load 28.40 at 17:57Z (fifteen gate process lines): the Director's records push (4 commits) HELD
+  under the two-gate bound; sensor: uptime and the process table; backstop: suite 16.
