@@ -4784,7 +4784,7 @@ gate, not four. The records push landed 03415165 at 18:24Z, nothing unpushed.
 - Push: 1 commit unpushed before this block; one gate on the host at 18:41Z; the tally push follows
   this commit with a gate notice. Load 20.41.
 
-## 2026-09-25T18:57Z — Slot ruling; PR 215 merged; the Codex config split's design ruled
+## 2026-09-25T18:56Z — Slot ruling; PR 215 merged; the Codex config split's design ruled
 
 - Slot ruling (lineage stream e365cfa8, 18:45Z, on Swallow's native proposal 18:43Z): the merge
   slot goes by READINESS, not by lane; "slot taken: PR N" before the engraph merge, "slot
