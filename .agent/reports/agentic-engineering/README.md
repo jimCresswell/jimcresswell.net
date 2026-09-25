@@ -18,6 +18,7 @@ the lineage's.
 | [cricket-suite-tally-2026-09-24-exchange-seat-first-frame-verdicts.md](cricket-suite-tally-2026-09-24-exchange-seat-first-frame-verdicts.md) | The first suite asked for frame verdicts beside work verdicts: eight ON-TRACK, seven frames NARROWED on a dropped second goal, and the case for a mechanical frame audit |
 | [wide-review-fleet-plan-2026-09-21.md](wide-review-fleet-plan-2026-09-21.md) | The owner's wide review fleet as designed: direction first, artefacts second, swarms gated, with the three design-review verdicts |
 | [wide-review-fleet-harvest-2026-09-21.md](wide-review-fleet-harvest-2026-09-21.md) | That fleet's conserved returns: per-leg tally, the direction findings for the owner with the seat's response, artefact findings by home, the swarm's resume state |
+| [2026-09-24-why-the-exchange-seat-worked-one-direction-of-a-two-way-goal.md](2026-09-24-why-the-exchange-seat-worked-one-direction-of-a-two-way-goal.md) | The exchange seat's retrospective: why four passing Cricket suites let it work one direction of a two-way goal, the frame written by the seat it judged, and six proposals routed to the exchange seat and the Director |
 | [why-the-transplant-arc-cost-what-it-cost-2026-09-15.md](why-the-transplant-arc-cost-what-it-cost-2026-09-15.md) | The retrospective on the transplant arc: its measured cost, causal stack, counterfactuals and proposals |
 
 The transplant's own process records live in

@@ -80,94 +80,45 @@ Every line answered first-hand, none inferred:
   out of phase, about 22 minutes after the others"); the owner's timer outranks the cricket skill's
   event-boundary default for this seat.
 
-## Current handoff state (2026-09-24T22:3xZ; compaction boundary 3 of the Director seat; the live reading is the napkin's COMPACTION BOUNDARY 3 block)
-
-- Boundary 2, 2026-09-24T14:34:36Z: the Director's cadence (check-ins every 45 minutes, its own Cricket suites 22
-  minutes out of phase, frame verdicts required) paused for a compaction on the owner's word; claim
-  58c2684a retained; first act on resume, per the owner: check every seat is on the proper things,
-  Siren (JC.net exchange seat, goal one outbound, todo 5) first, then Swallow (Codex support with
-  Luna) and the OCE seat if reopened; then check-in 6. Live seats, verdicts and slips of the day are
-  in the napkin from 10:25Z on. The state below this bullet is the previous boundary's, kept.
+## Current handoff state (2026-09-25T10:58Z; after the Director's third compaction; the live reading is this block, then the napkin from its 10:37Z block on)
 
 Written for a reader who was never here and may run on a different model. Where this block and
 the routing log disagree, the log's last entry is current. The owner's words are verbatim in the
-napkin's blocks headed "OWNER RULINGS by card" (2026-09-21 and 2026-09-23), "the owner names a
-Director" and the Director's own block of 19:59 local, and in the exchange plan's §Rulings 9 to 21.
+napkin's blocks headed "OWNER RULINGS by card" and in §Standing owner rulings above.
 
-- ROLES. The Director is Wick binds Temper (ed7b48), seated by the owner at 13:08Z. The exchange
-  seat (Brazier spins Temper, c70341) is an implementer and keeps the primary checkout's branch
-  mechanics. The lineage's seat (Zephyr guards Leeward, 281e44) is the equal cross-estate partner.
-  OWNER RULING relayed by Zephyr (arrived here at 19:08:20Z; the Director's commit
-  `SHA: 65455ee5` above records the same word for all Directors): "This applies to ALL agents, do not update the Director unless you have
-  a question or other request, the normal records keep the record, we preserve the Director's
-  context until we actually need them". So no state lines, acknowledgements or copies to the
-  Director: a native message to it carries a question or a request, and state lives in the
-  records, the PRs and the channel. Gates: the owner's 2026-09-20 ruling governs (the Director
-  withdrew its one-gate instruction): at most two full gates at once, each in its own worktree,
-  sequential inside one; match `.husky/(_/)?pre-push` when reading the process table.
-- THE OWNER'S CARD OF 2026-09-23, relayed by the Director, all eight answered as recommended:
-  (1) the PDR-142 and PDR-125 amendments ratified for both estates; (2) the PDR-141 cure ratified
-  here, with the Practice index row; (3) the PRACTICE-1 wording ratified; (4) fsmonitor off in the
-  lineage's clone (the lineage's); (5) the operator profile written with all four replacements
-  (DONE: pushed through profile:sync as a7bfd51, the check passes); (6) best-of-each-practice's
-  §Delivery keep-in-touch habits move to the practice-two-way-exchange node, §Delivery keeping
-  its search pointer; (7) no new node for PRACTICE-2 and PRACTICE-3, they trace to
-  best-of-each-practice; (8) the stream's Won't do reads "Fork the Practice from the instances it
-  shares with; divergence is recorded, never silent".
-- STATE. `main` is at `SHA: bf9daf47` (PR 153, the one Practice strategic node). Merged today:
-  PR 152 (the fold, `SHA: 551f2c39`), PR 154 (the lowest-power low-effort Cricket seat removed,
-  `SHA: 03f6adfa`), PR 153. The primary is on `coordination/2026-09-23-551f2c`.
-- OPEN, in order of next action:
-  (a) PR 155, lane `docs/concept-over-bytes-amendments-v2` (worktree
-  `concept-amendments`, tip `SHA: 5e73e75d`): the paired amendments, the PDR-141 cure and the
-  index row. Copilot round one (review 5295534204) raised three findings, all verified true:
-  the inter-practice-collaboration skill still says "concepts travel, never bytes" and normalises
-  every receipt (cure in this PR, and send Zephyr the identical bytes); the profile-sync code's
-  TSDoc says only "ratified writes" are pushed (cure in this PR; code does not travel); PDR-142's
-  new third reason beside its "never edited there" and Boundaries prohibitions (owner-ratified
-  text: answer Rejected as a cure with the reading that the third reason governs what a receiver
-  lands in place of the donor's bytes, before a merge, and route one clarifying line to the owner
-  as a request through the Director). Settlement push one of two carries the two cures. The
-  local branch `docs/concept-over-bytes-amendments` holds `SHA: 3cafd296`, which carries operator-
-  profile clauses in its message: never push it.
-  (b) The joint-texts PR, one per estate, agreed with Zephyr. Zephyr has signed cures A, C and D
-  as written, and B widened to two more places (the texts are in this seat's native messages to
-  Zephyr of 19:02:17Z and 19:09:01Z; the napkin's wrap block restates them). Its parts: §3a of the shared
-  start-right workflow (`SHA: f4f2b542` on `docs/start-right-profile-section`, agreed); the two
-  held rule merges (`SHA: 5481ea3f` on `docs/rulings-host-gates-and-solo-ceremony`); cure A
-  (the commit skill's gate sentence) and this estate's own principles.md §Quality gates sentence
-  ("two at once exceed the host"); cure B in three places (register-active-areas §Bootstrap and
-  case (a-1), respect-active-agent-claims §Bootstrap); the card's items 6 and 8 (and a ruling
-  record for 22 onwards in the exchange plan); the owner's minimum-intervention ruling in
-  route-blocks-and-questions-to-director.md in Zephyr's exact words. C and D unblock the
-  continuity directive and consolidate-docs / consolidate-until-done merges here (graduate, then
-  archive): the lineage cures its scope sentence and its report citation at source first.
-  (c) A candidate for a future owner card: best-of-each-practice §The bet says "Text travels by
-  bytes" against the amended PDR-142; and PDR-142's merged-text bullet lists two remedies where
-  today found a third (a contradiction the donor also carries, cured jointly at source).
-  (d) Later in the queue: the six rulings' expensive two (the absolute no-IO test invariant with
-  a recovery plan for 46 of 417 test files; the commit as the full local gate); the note to
-  Poppy calls Topsoil; the exchange register's validator.
-- ROUTED, OPEN: PDR-125's per-estate phenotype note names host paths inside Core (left open by the
-  owner's concept answer); the rounds ruling's Core text (PDR-132 home, a PDR-140 note), joint;
-  Codex's P1 on merged PR 138 (open on purpose); Fred's conditions on PR 143;
-  `dependency-review.yml`'s workflow-level write permission; the lineage's owner ruling that its
-  commits carry the owner as author and the bot as committer, to be checked here.
-- PR MECHANICS. Copilot is requested under the DEFAULT gh identity (a bot-token request returns
-  success and never fires); prove it by the timeline's `review_requested` event naming Copilot.
-  Codex is at its usage limit since 13:30Z; a code-expert subagent stands in for its final round.
-  Rounds: two settlement pushes; after the final review, signed lines only.
-- PROCESSES at this boundary, left running at the owner's word ("do not stop any processes"); a
-  compaction ends every session-scoped process, so the resume verifies by id and re-arms only
-  what is absent. The comms watcher: `/opt/homebrew/bin/timeout 3600 pnpm
-  agent-tools:collaboration-state -- comms watch --platform claude --model claude-opus-5-5
-  --supervisor-pid 99338 --step-timeout-ms 120000 --max-events-per-drain 100`. The channel
-  tail: `tail -n 0 -F` on the lineage's rapid-comms file
-  `2026-09-21-three-estate-practice-exchange-brazier-spins-temper-and-zephyr-guards-leeward.md`
-  under its `.agent/collaboration/rapid-comms/`, grepped for `^## \[Zephyr|^## \[Poppy|tail:`.
-  The heartbeat: every 240 s, `comms send --tag heartbeat` then `claims heartbeat` on this
-  seat's open claim (amendments claim 7280f64a). The PR 155 review poll: reviews plus Codex
-  comments every 60 s. Each runs as a Monitor with a thirty-minute cap and is re-armed on expiry.
+- THE OWNER'S LAST WORDS. 2026-09-25 morning, verbatim: "review progress. We want 1. All JC.net
+  Practice innovations integrated into the OCE Practice 2. Codex brought up to first class Practice
+  citizen status 3. All local and remote branches deleted or in PRs, all PRs merged"; "Review,
+  assess, report, stop"; then "Please continue". The assessment is the napkin's 10:37Z block: goal
+  one about a third landed (J4, J18, J11 in full, J9 partial; five rows delivered and not landed;
+  twelve undrafted); goal two 0 of 3 todos, gated on OCE PR 196; goal three mostly mechanical (OCE
+  holds 72 remote branches, 65 already merged into `engraph`).
+- ROLES. The Director is Wick binds Temper (ed7b48), on the primary checkout. JC.net's exchange
+  seat is Siren herds Rudder (158275), resumed 10:2xZ, working its handover record's queue with K4
+  first (its own re-order, 10:58Z), then batch six, the filter-guard branch's disposition and the
+  register's §Landings. The lineage's exchange seat is VACANT: Marten mends Shadow (74fc02) stood
+  down at the owner's word with its handoff record in the lineage's primary
+  (`.agent/state/collaboration/handoffs/74fc02-marten-mends-shadow-exchange-lane-handoff-2026-09-25.md`);
+  Geyser rides Pewter (eeecbd) is standby at the owner's "come up to speed and start no work", so
+  the succession is the owner's word, put to the owner in the Director's report. Swallow holds
+  Drift (516619) resumed 10:49Z on OCE PR 196 with Titan turns Ether (01a0d8, Codex) as partner;
+  the wake bridge's todo 1 opens at PR 196's merge. Luna stirs Radiance (01a0d3) closed out 10:34Z.
+- STATE. `main` is at `SHA: 3c4e4e22` (PR 185). The fold of `coordination/2026-09-24-7925bc` (PR
+  176) is in flight: main merged in as `SHA: cdee9fdf`, one settlement push carrying Copilot's three
+  true findings (this block, the continuity record's current entry, the README row). After its merge:
+  cut the successor from the fetched `origin/main` with the coordination tool, re-arm the
+  heartbeat with the new label, broadcast the rotation, then resume the cadence as check-in 10
+  with the suite 22 minutes after, on the fourteen-requirement frame.
+- OWED BY THE DIRECTOR. The lineage's coordination branch (`coordination/2026-09-24-f66fd0`, OCE
+  PR 187) was due 11:07Z with no seat to fold it; that fold and the lineage's exchange succession
+  are in the report to the owner. Marten's four closing items are answered in the napkin's fold
+  block (the successor's brief is the owner's; PR G and claims a63a7df8 and 141892a7 pass to the
+  successor, who opens draft PRs at pickup; Marten's napkin entry waits for it).
+- STANDING LESSONS OF THE LAST STRETCH, each in the napkin with its evidence: a card holds the
+  turn, so raise one only when no seat's deadline waits on the Director and put the questions in the
+  report text too; re-read every hold's sensor at dispatch before building a frame; a merge message
+  is written after the sha is resolved, from the log; a body line over 100 characters fails the
+  commit-msg hook.
 
 ## Live board
 

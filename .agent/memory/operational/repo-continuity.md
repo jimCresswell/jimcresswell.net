@@ -21,6 +21,23 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
+- 2026-09-25T10:53Z, the Director's fold of `coordination/2026-09-24-7925bc` (PR 176, due 09:39Z),
+  after its third compaction and the owner's "Please continue". `main` is at `SHA: 3c4e4e22` (PR 185);
+  merged since the 13:59Z entry below: PRs 172 to 185 (the Cricket frame verdict, the alignment
+  regrounding legs, arc metrics, joint sets K1 to K3, the generalisation trailer, the zero-tool
+  adapter cures, the session-metadata pins removed). `feat/alignment-start-right-test-rules` merged
+  as PR 174; the remote holds `main` and the coordination branch only. Overnight the lineage's
+  exchange seat (Marten mends Shadow, 74fc02) landed J4 in full (OCE PRs 202, 203, 205) and J18 in
+  full (OCE PRs 204, 206 to 209), then stood down at the owner's word; its handoff record is in the
+  lineage's primary. The register's §Landings lags those landings (the exchange seat's queue item 2).
+  Seats: Siren herds Rudder (158275) resumed at 10:2xZ on the queue in its handover record (Marten's
+  nine events, batch six, K4 below 30%, the filter-guard branch to a PR or deletion, the register);
+  the lineage's exchange seat is vacant (Geyser rides Pewter, eeecbd, standby at the owner's "start
+  no work"); Swallow holds Drift (516619) resumed at 10:49Z landing OCE PR 196 with Titan turns
+  Ether (01a0d8) as its Codex partner. The Director's assessment of the owner's three goals is the
+  napkin block of 10:37Z. Next safe step for any seat: read the successor coordination branch's
+  name from the Director's rotation broadcast on the comms stream before writing a continuity file.
+
 - 2026-09-24T13:59Z, a correction to the 13:41Z handover entry: 22 paths of this estate's delta
   match the lineage's head by blob, not 21 (580 differ, 348 absent there, 42 deleted here, 22 the
   same, over 992 paths). Recomputed for the retrospective
