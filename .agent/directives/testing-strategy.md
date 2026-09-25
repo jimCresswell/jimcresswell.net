@@ -39,11 +39,11 @@ prove the test bites) is in
   be used to constrain configuration or implementation", and of its
   reach: "no excemptions, strict, everywhere, all of the time"). A test
   reads what the product returns, writes or leaves behind at its
-  boundary, and what it sends through an output port is what it writes
-  (§Stubs vs Fakes); it never asserts which queries the product made of
-  a collaborator, how often or in what order, never pins a configuration
-  value and never asserts an implementation shape. Configuration is guaranteed by construction or
-  by a validator.
+  boundary; what the product sends through an output port is something
+  it writes (§Stubs vs Fakes). A test never asserts which queries the
+  product made of a collaborator, how often or in what order, never pins
+  a configuration value and never asserts an implementation shape.
+  Configuration is guaranteed by construction or by a validator.
 - Prefer pure functions and unit tests
 - Always use TDD at ALL levels (unit and integration tests; an E2E check is
   written first in the same way)
@@ -163,8 +163,8 @@ prove the test bites) is in
 - **Counters and reported stats are configuration echoes** (owner,
   2026-08-13, mid-review: "you are still testing configuration, not
   behaviour"): a test asserting an exclusion counter, a stat field or the
-  argument of a query the product made asserts what the configuration echoes back, not whether
-  the restricted content flowed. The cure is a sentinel-content assertion
+  argument of a query the product made asserts what the configuration
+  echoes back, not whether the restricted content flowed. The cure is a sentinel-content assertion
   through the public result (in the lineage: the hidden lesson's keyword
   appears only when the switch admits it). The generator to watch is testing at the
   seam where the wiring is visible instead of the surface where the
@@ -245,7 +245,8 @@ prove the test bites) is in
   `process.env`, use `vi.stubGlobal`, `vi.mock` or `vi.doMock`, or
   replace the clock with `vi.useFakeTimers` or `vi.setSystemTime`. If a
   function needs configuration or the time, refactor it to accept the
-  configuration, or a clock or scheduler, as a parameter. See [`no-global-state-in-tests`][di].
+  configuration, or a clock or scheduler, as a parameter. See
+  [`no-global-state-in-tests`][di].
   A validation check's composition root (a smoke or E2E check's runner
   config, global setup or entry script) may read ambient env, validate
   it, and inject the result. Test files and other setup files must not read
@@ -496,7 +497,8 @@ The site workspace applies the taxonomy above with these fixed conventions:
   (a collaborator it queries) is never asserted: which queries it made, how
   often or in what order is implementation (§Philosophy). A collaborator
   that both answers queries and receives output (a store with get and put)
-  is split per operation.
+  is judged per operation: what it receives is output, and the queries it
+  answers are never asserted.
 
 Do not conflate the two. Runtime stubs are product code; test fakes are test
 infrastructure.
