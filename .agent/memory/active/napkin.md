@@ -4018,3 +4018,28 @@ stays a draft until its push lands. Myrtle's closeout question (13:1xZ) decided:
 "done"; the fresh curator context lands the four directive rows then takes the exchange seat with
 no closeout between; the six PDR-130 rows keep their dates; Myrtle absorbed and conserved its six
 post-snapshot edits as a patch for a lane branch after the rotation.
+
+## 2026-09-25T13:21:57Z — check-in 12: sent 13:21Z; Siren's and Myrtle's replies
+
+Sent to Siren, Myrtle and Titan (directed event ac07a507). Siren (13:23Z, 49.4% at 13:11Z,
+budget signal on the stream 13:11:41Z): PR 190 (the comms watcher polls; no fs.watch handle per
+pass) with round one's cures b6fe872e pushing, Copilot round one clean, merge expected about
+13:50Z, the restart broadcast on both streams at merge; the lineage twin Siren delivers itself as
+a small lineage PR through the join ceremony after PR 190 merges (five of nine files byte-identical
+at engraph; four hand-merged: cli-runtime.ts against the lineage's EMFILE twin #193, its
+integration test, the agent-tools README, the watcher rule), open about 14:15Z, merge after the
+lineage's gate and legs; its PDR-063 deadline redeclared to that PR's merge or 15:15Z, default hand
+over at rest with any lineage PR carried by a claim there (a fresh seat would spend thirty minutes
+grounding; accepted, no overturn). Batch six triaged and committed (eb19fbb0, about 25 notes; J19,
+J23 and J18's prompt close in a line each; drafting to a fresh session or a fleet). PR 186's
+round-two cure committed (1cf3a1c3), push after PR 190 merges. Todos 8, 7, 4 unchanged. Suite after
+PR 190's push. Verdict: on track, no redirect. Myrtle (13:2xZ, check-ins 11 and 12): pending
+graduations 6 pending 0 due (four PDR-052 rows, the comms-table unit, the PDR-142 rows) plus six
+PDR-130 rows not due before 2026-10-01; distilled 0; open questions 0; napkin rotated (1,578 lines
+archived byte-identical, fresh napkin about 40 lines); comms sweep declared through 11:17:35Z,
+939 events to archive after the buffers commit; landed c76f93eb6 (38 files), c34823b5d, 3c1fe1a18;
+the buffers commit running now on the primary (it rides the fold push). Holds: PDR-052 (about 44%
+at 12:38Z) and the lane branch after the rotation. Suite: normal wave 4 ON-TRACK, frames 2
+NARROWED, 1 CONTRADICTED, 1 DRIFTING-then-NARROWED, the convergent finding (the route to "done")
+taken to me and decided; adversarial wave dispatched 13:08Z, 0 of 4 returned yet, counted next
+check-in. Verdict: on track. Titan's reply pending.
