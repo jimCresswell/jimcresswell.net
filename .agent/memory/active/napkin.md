@@ -4920,3 +4920,43 @@ reads it. Records: 2 commits unpushed plus this one, held under two gates (load 
 - The lineage's `--expect` clause (a `[bot]` suffix makes every leg OWED) is false here:
   `agent-tools/src/pr-watch/reviewer-legs.ts:94-103` strips the suffix on both sides. The inbound
   doc clause is not brought, and the code cure travels outbound under row L9.
+
+## 2026-09-25T20:51Z — Director suite 18 tally (frame built 20:44Z); the records pushed; PR 225 at the slot
+
+Work verdicts: 8 ON-TRACK. Frame verdicts: 6 CONTRADICTED (normal low, medium, high; adversarial
+low, medium, high), 1 NARROWED (normal procedure), 1 SOUND (adversarial procedure). The
+contradiction is one residue in two places that the sweep list did not name: "200 ready, Siren's"
+in goal three's reading (stale since suite 16) and "215 (C2, at the slot)" in goal one's, plus
+"check-in 20 counts them again" after check-in 20 had run. Two further true findings: goal two's
+count "1 of 6 complete" overstates (todo 2 has 2a merged and 2b in three PRs unpushed; the true
+count is 0 of 6 with sub-PRs landing); the frame's build time 20:44Z precedes a fold dated
+20:46Z (PR B's start). Cures for suite 19's frame:
+
+1. The sweep greps EVERY PR number and sha in the frame against the current PR lists, not the
+   numbers that changed since the last build; a "ready" or "at the slot" claim is checked against
+   gh pr list before dispatch (six roles).
+2. Goal two's measure counts todos complete, with sub-PR progress named beside it: 0 of 6, 2a and
+   PR A merged (adversarial low, medium).
+3. The header's build time is the last edit's clock read, and a fold after it re-stamps it (normal
+   low).
+4. UNOWNED (a) carries the reason the Swallow push of 00a23728b is the owner's and not the
+   lenses': Gale's harness denied that push, and a peer performing a harness-denied action is
+   permission laundering unless the owner directs it (adversarial low, second suite running).
+5. Todo 3 (the cards, done) gets one line in goal one's reading on its effect on the landings
+   (normal procedure); the 12:02Z and 14:0xZ owner words marked as seats' paraphrases (normal
+   medium); Myrtle's launch word's two remaining pending graduations given an owner and status
+   (adversarial medium).
+
+Between the build and the tally: Siren's correction (native, 20:4xZ): the bot's silent Copilot
+request has been recorded in this estate's merge-bot reference since 2026-09-13 (lines 284 to
+289); its probe re-observed it (read-before-asking missed, recorded by Siren); the pr-lifecycle
+joint cure stays owed citing that clause; the "--expect login-form" inbound clause not brought.
+Swallow: PR B started 20:46Z (claim de2e9f7a) with a finding that today's rollout reader fails a
+real 0.157.0 rollout on model-authored code-mode output; its cure (harness-authored
+CommandExecution items as the only output evidence) under code-expert review, no Director word
+asked. Myrtle: L12 joint cures as OCE PR 242 (rule blob cffc37df, research 12f2aa43); PR 225 at
+the slot since 20:33Z, CHECKS-RED on the hub demo's Turbopack font build flake (second instance
+today after PR 216; the re-run under the session's credential since the bot cannot re-run
+workflows), then BEHIND-BASE after PR 228, synced 6e1809f70, push queued. Two instances make the
+flake a defect to cure, not re-run: an owner at check-in 21. The records push landed 20:4xZ
+(c162d8d7..50861460, five commits, four Siren's), nothing unpushed.
