@@ -1,11 +1,11 @@
-import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
-import { tmpdir } from 'node:os';
+import { mkdirSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 
 import { z } from 'zod';
 
 import {
-  readHookCommand as readRegisteredHookCommand,
+  inThrowawayProject,
+  registeredHookCommand,
   runHookCommand,
 } from './claude-hook-command-fixture';
 
@@ -159,21 +159,20 @@ function fail(message: string): never {
 }
 
 function readHookCommand(): string {
-  const command = readRegisteredHookCommand('SessionStart', HOOK_NAME);
-  if (command === undefined) {
-    fail(`no SessionStart ${HOOK_NAME} hook command found in .claude/settings.json`);
+  try {
+    return registeredHookCommand('SessionStart', HOOK_NAME);
+  } catch (error) {
+    return fail(error instanceof Error ? error.message : String(error));
   }
-  return command;
 }
 
 /**
  * Run the hook command against a throwaway project whose built checker is the case's
- * stub: the real hook script runs from this repository, and `CLAUDE_PROJECT_DIR` points
- * it at the throwaway project's checker.
+ * stub: the project links only `.claude/hooks`, so the real hook script runs, and its
+ * `agent-tools/dist` is the project's own, holding the stub and never the real build.
  */
 function runCase(command: string, smokeCase: SmokeCase): void {
-  const projectDir = mkdtempSync(join(tmpdir(), 'plan-gate-drift-alert-smoke-'));
-  try {
+  inThrowawayProject(['.claude/hooks'], (projectDir) => {
     const checkerPath = join(projectDir, CHECKER_PATH);
     mkdirSync(dirname(checkerPath), { recursive: true });
     writeFileSync(checkerPath, smokeCase.checker, 'utf8');
@@ -181,9 +180,7 @@ function runCase(command: string, smokeCase: SmokeCase): void {
       runHookCommand(command, { projectDir, timeoutMs: HOOK_TIMEOUT_MS }),
       smokeCase.alertReport,
     );
-  } finally {
-    rmSync(projectDir, { recursive: true, force: true });
-  }
+  });
 }
 
 /** Hook output for an error message: short output whole, long output by length and ending. */
