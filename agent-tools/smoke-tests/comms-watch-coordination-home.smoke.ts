@@ -134,12 +134,17 @@ function runCli(
   env: NodeJS.ProcessEnv,
   args: readonly string[],
 ): SpawnSyncReturns<string> {
-  return spawnSync(process.execPath, [BIN, 'collaboration-state', '--', ...args], {
+  const result = spawnSync(process.execPath, [BIN, 'collaboration-state', '--', ...args], {
     cwd: fixture.linked,
     env,
     encoding: 'utf8',
     timeout: WATCHER_HANG_BACKSTOP_MS,
   });
+  if (result.error !== undefined) {
+    const what = `collaboration-state ${args.slice(0, 2).join(' ')} did not finish`;
+    assert.fail(`${backstopMessage(what)}: ${result.error.message}\n${result.stderr}`);
+  }
+  return result;
 }
 
 function provePrimaryState(fixture: Fixture): void {

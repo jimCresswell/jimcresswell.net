@@ -124,12 +124,7 @@ export function productionCollaborationStateRuntime(
 
 /**
  * The production wait between passes of the comms watch and the TUI: resolve
- * after one `pollMs` interval, so both poll. No `fs.watch` handle is opened.
- * The earlier watch wake opened and closed one handle per directory on every
- * pass; on macOS under fseventsd pressure a synchronous close blocked the
- * event loop for 8 s and 110 s, and the watcher overran its promise to exit
- * within one poll cycle of its supervisor dying. Every wait already armed
- * this timer, so the watch bought only sub-poll latency.
+ * after one `pollMs` interval.
  */
 function waitOnePollInterval(input: { readonly pollMs: number }): Promise<void> {
   return new Promise((resolve) => {
