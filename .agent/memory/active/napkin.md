@@ -3773,3 +3773,20 @@ opens after one further fresh-context step, so not before this evening. Put to t
 with the option that Geyser takes the lineage's exchange seat now; no answer yet. Swallow's push
 landed (d488950da..e23535fd9); the lineage fold's sweep may proceed once Myrtle's running commit
 (pid 23350) lands.
+
+## 2026-09-25T11:57:54Z — the shared-index sweep at 772cf225; goal one's count corrected
+
+Slip: at 11:55:51Z my `git add` by pathspec and `git commit` took the whole shared index, which
+held Siren's three staged files (its retrospective
+`.agent/reports/agentic-engineering/2026-09-25-why-goal-one-read-zero-while-the-lineage-landed.md`,
+its thread record's §Retrospective routing, its 11:44Z napkin block), so 772cf225 carries them
+under my subject; the content matches Siren's final version and Siren does not rewrite it. Cause:
+two seats committing on one primary without the index window claim; Siren held e380fa4e, I held
+none. Cure, every commit from now: read `git diff --cached --name-only` first and stop if it is
+not empty; take the index/head window claim before staging.
+
+Correction from Siren's retrospective, taken over my 10:37Z count: goal one's WHOLE landings in
+the lineage are J4 alone; J9, J10 and J18 are PART-landed (J18's compare half was never
+delivered); J11 has no lineage landing (its rows name jcnet). The count for the next frame: 1 of
+23 whole, 3 part, 5 delivered not integrated, 12 undrafted (batch six), J5 and J12 unread. The
+lessons stream (ruling 36) is unstarted.
