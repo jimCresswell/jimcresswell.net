@@ -187,6 +187,10 @@ describe('findMissingFilteredCommands', () => {
       line: 'pnpm --filter "@jimcresswell/www" test:e2e',
     },
     {
+      name: 'a hint that time -p prints',
+      line: 'time -p echo pnpm --filter @nope/missing check',
+    },
+    {
       name: 'a hint a condition prints',
       line: 'if echo pnpm --filter @nope/missing check; then true; fi',
     },
@@ -201,6 +205,12 @@ describe('findMissingFilteredCommands on shell syntax', () => {
     { name: 'a call run by sh -c', line: "sh -c 'pnpm --filter @nope/missing check'" },
     { name: 'a call run by bash -c', line: 'bash -c "pnpm --filter @nope/missing check"' },
     { name: 'a call run by zsh -c', line: "zsh -c 'pnpm --filter @nope/missing check'" },
+    { name: 'a call run by bash -lc', line: "bash -lc 'pnpm --filter @nope/missing check'" },
+    { name: 'a call run by sh -e -c', line: 'sh -e -c "pnpm --filter @nope/missing check"' },
+    {
+      name: 'a shell call that time -p runs',
+      line: "time -p bash -c 'pnpm --filter @nope/missing check'",
+    },
     {
       name: 'a shell call a condition runs',
       line: "if bash -c 'pnpm --filter @nope/missing check'; then echo ok; fi",
