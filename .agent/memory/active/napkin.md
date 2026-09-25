@@ -3561,3 +3561,38 @@ dirty (primary 7 files, gh-write-guard 4). Upstream mirror remotes excluded (Oak
 coordination 187 fold due 11:07Z with Marten at rest.
 
 Uncommitted in the primary tree: Siren's card-answers block in its thread record (not mine; left).
+
+## 2026-09-25T10:53Z — the fold of PR 176 (overdue 09:39Z, begun 10:41Z at the owner's "Please continue")
+
+Sweep: Siren's settled card-answers block folded as 69f69235 with authorship named. Merge of main
+3c4e4e22 (PRs 159 to 161, 165 to 185) as cdee9fdf: one conflict, repo-continuity's
+overflow_disposition frontmatter, resolved to main's reviewed text (9b33a5a2); napkin union
+complete (no main heading absent); no other both-sides file. Two served documents ride the branch
+(the exchange seat's retrospective, 241 lines; the first frame verdicts, 76 lines): named in §Scope
+with the records-class intake, per the lifetime rule's clause 4. Push through the full gate
+(58 e2e passed) landed cdee9fdf; PR 176 titled, bodied and marked ready at about 10:50Z (clock read 10:53:44Z after); settle watch
+armed (30 min, loud on every state). Merge by the bot at the fetched head follows SETTLE-READY.
+
+Seat traffic during the fold. Siren (resumed, 13.9%) sent its order: Marten's nine events, batch
+six, K4 below 30%, the filter-guard branch to a PR or deletion, the register's §Landings; verdict:
+stands, no redirect; answered that the lineage's exchange seat is vacant. Marten's closing message
+(its socket gone before my reply, so the answers live here): (1) the next OCE exchange seat is the
+owner's word, Geyser rides Pewter (eeecbd) being standby at "start no work"; (2) PR G (gh write
+guard, four uncommitted files in oce-wt-gh-write-guard, patch beside the record) passes to that
+successor; (3) claims a63a7df8 and 141892a7: the successor opens a draft PR each at pickup
+(worktree-hygiene §1); unadopted by the lineage's next fold, they close there, not at JC.net's;
+(4) Marten's uncommitted napkin entry waits for the successor. Its PreCompact note: the lineage's
+f66fd0 branch predates PR 209, so the observer runs there only after the re-cut and dist rebuild.
+Swallow (resumed 10:49Z, 14.5%) took the lineage's landing slot for PR 196 with Titan turns Ether
+(01a0d8) as its Codex partner; its reading of PR 196's red checks: the hub's Turbopack font flake.
+
+Outcome (clock 11:16Z): PR 176 merged by the bot as cf689735 at 11:16Z after three Copilot
+rounds. Round one: three findings, all true (the handoff's stale current block, the continuity
+record's stale current entry, the README's missing row), cured in 712ccfa3. Round two: one (the
+thread record's landing target after Siren's re-order), cured in 62415968. Round three, budget
+spent: the continuity ordering thread Rejected under the declared bar (an entry judged at its
+time); the handoff's push count and the continuity status line Routed to this rotation's records;
+the letter count cured in the description (five letters, not four). Successor cut from the fetched
+main: coordination/2026-09-25-cf6897 at cf689735. Slips: a stderr log written into the repo root
+(moved to the scratchpad, never staged); two times written before a clock read, both corrected;
+the owner's login is auto-requested as a reviewer at "ready" by the repository, not by me.

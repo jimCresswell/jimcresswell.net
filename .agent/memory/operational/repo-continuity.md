@@ -21,6 +21,13 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
+- 2026-09-25T11:17Z, the fold landed: PR 176 merged as `SHA: cf689735`; the successor coordination
+  branch is `coordination/2026-09-25-cf6897`, and the primary resides there. Every continuity write
+  from now goes there. The JC.net exchange seat's live order is K4 first (its 10:58Z re-order), then
+  batch six, then its record's queue as written. The owner's 2026-09-24 test rulings have their
+  durable home in `.agent/directives/testing-strategy.md` (PR 170); what remains of the 13:41Z
+  status line below is the consolidation itself, not the re-homing.
+
 - 2026-09-25T10:53Z, the Director's fold of `coordination/2026-09-24-7925bc` (PR 176, due 09:39Z),
   after its third compaction and the owner's "Please continue". `main` is at `SHA: 3c4e4e22` (PR 185);
   merged since the 13:59Z entry below: PRs 172 to 185 (the Cricket frame verdict, the alignment

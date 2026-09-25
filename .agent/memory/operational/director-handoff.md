@@ -80,7 +80,7 @@ Every line answered first-hand, none inferred:
   out of phase, about 22 minutes after the others"); the owner's timer outranks the cricket skill's
   event-boundary default for this seat.
 
-## Current handoff state (2026-09-25T10:58Z; after the Director's third compaction; the live reading is this block, then the napkin from its 10:37Z block on)
+## Current handoff state (2026-09-25T11:17Z; after the fold of PR 176; the live reading is this block, then the napkin from its 10:37Z block on)
 
 Written for a reader who was never here and may run on a different model. Where this block and
 the routing log disagree, the log's last entry is current. The owner's words are verbatim in the
@@ -103,12 +103,18 @@ napkin's blocks headed "OWNER RULINGS by card" and in §Standing owner rulings a
   the succession is the owner's word, put to the owner in the Director's report. Swallow holds
   Drift (516619) resumed 10:49Z on OCE PR 196 with Titan turns Ether (01a0d8, Codex) as partner;
   the wake bridge's todo 1 opens at PR 196's merge. Luna stirs Radiance (01a0d3) closed out 10:34Z.
-- STATE. `main` is at `SHA: 3c4e4e22` (PR 185). The fold of `coordination/2026-09-24-7925bc` (PR
-  176) is in flight: main merged in as `SHA: cdee9fdf`, one settlement push carrying Copilot's three
-  true findings (this block, the continuity record's current entry, the README row). After its merge:
-  cut the successor from the fetched `origin/main` with the coordination tool, re-arm the
-  heartbeat with the new label, broadcast the rotation, then resume the cadence as check-in 10
-  with the suite 22 minutes after, on the fourteen-requirement frame.
+- STATE. `main` is at `SHA: cf689735`: the fold of `coordination/2026-09-24-7925bc` (PR 176) merged
+  by the bot at 11:16Z on 2026-09-25 after two settlement pushes and four findings cured (three in
+  `SHA: 712ccfa3`, one in `SHA: 62415968`), with round three's four items dispositioned without a
+  push (one Rejected under the bar, two Routed here, one cured in the description). The successor
+  is `coordination/2026-09-25-cf6897`, cut from the fetched `origin/main`; the primary resides
+  there. moved for the sites: nothing (the site is deliberately frozen, Practice first) / moved for
+  the Practice: the crickets judge the frame (PR 172), the test doctrine and the no-io invariant
+  with the owner's words (PRs 165, 166, 170, 183), the alignment slices (PRs 167, 168, 171, 174),
+  joint sets K1 to K3 (PRs 177, 181, 184), the generalisation trailer (PR 185), arc metrics (PR
+  175), the zero-tool adapter cures (PRs 179, 182). Next: re-arm the heartbeat with the new label,
+  broadcast the rotation, open the successor's draft pull request, then resume the cadence as
+  check-in 10 with the suite 22 minutes after, on the fourteen-requirement frame.
 - OWED BY THE DIRECTOR. The lineage's coordination branch (`coordination/2026-09-24-f66fd0`, OCE
   PR 187) was due 11:07Z with no seat to fold it; that fold and the lineage's exchange succession
   are in the report to the owner. Marten's four closing items are answered in the napkin's fold
