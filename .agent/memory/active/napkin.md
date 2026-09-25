@@ -4000,3 +4000,21 @@ class (a consolidation's doctrine riding folds, 2026-09-16 to 19); named in PR 1
 prose-class with the intake, and Myrtle routed to a lane branch with its own draft PR for every
 batch after the rotation (clause 4). PR 187's body drafted in the scratchpad; edit, ready, settle
 watch and bot merge follow the push.
+
+## 2026-09-25T13:20:16Z — the lineage fold's push fails on the same watcher smoke; both folds wait on the fix
+
+merge-bot push at 13:11Z (load 9.75 at launch) ran the lineage's pre-push gate: 133 of 134 tasks
+passed; agent-tools test:e2e failed on comms-watch-coordination-home.smoke.ts, "watcher did not
+exit within 10 seconds", the byte-identical twin of JC.net's smoke and Siren's true positive (the
+watcher's fs.watch churn). The remote stays at 18609df7f; the merge commit 00d219dd0 is local.
+Decision: no retry loop; the lineage's push waits on the watcher fix, which lands in JC.net first
+(Siren's lane, reviews under way) and in the lineage as the same bytes; the lineage's receiver for
+that row is whichever seat is live there when the JC.net PR merges (Titan's queue is full: PR 211,
+the config split, the sink), so the Director asks Siren at check-in 12 for the fix's ETA and
+whether Siren delivers the lineage twin itself through the join ceremony (the donor delivers;
+the fold is the Director's, and the row unblocks it). PR 187's title and body set (three classes
+declared: records, prose for the graduations, nodes and reports, config at the owner's word); it
+stays a draft until its push lands. Myrtle's closeout question (13:1xZ) decided: counts, never
+"done"; the fresh curator context lands the four directive rows then takes the exchange seat with
+no closeout between; the six PDR-130 rows keep their dates; Myrtle absorbed and conserved its six
+post-snapshot edits as a patch for a lane branch after the rotation.
