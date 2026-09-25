@@ -4600,3 +4600,20 @@ seat; the seven local-only branches; Gale's PR 211 approval (an act, not a quest
   its push gate, then the final-tip review and the merge; PR 195 after delivery (merge main, PR
   194's three sentences, ready, two rounds); PR 193's two to-dos during 195's review. The tally
   push landed (three commits to PR 189).
+
+## 2026-09-25T17:20Z — Owner's words on the three decisions: approve; delete all; pass the approval to Gale
+
+- Owner (native chat, 17:2xZ, verbatim): "1. Approve 2. Delete all 3. Try passing my approval to
+  Gale and see if that does the job, I absolutely need all seats to be able to push without me".
+- Routed 281b584b on the lineage stream at 17:20:21Z: (1) the wake sensor beside the seat
+  approved; slice 2 is Swallow's to build now in its own worktree, in parallel with PR 222; the
+  Codex-seat live observation when Gale resumes; (2) the seven local-only branches deleted with
+  `git branch -D` and jimcresswell/design-plan-ratification-and-truings as the bot, by Myrtle, the
+  owner's word and each last sha recorded; claude/objective-nightingale-b4ba25 stays held by the
+  owner's earlier word; (3) the owner's approval relayed verbatim to Gale turns Cloud for the exact
+  push of 00a23728b, the PR body update and the review reply; Gale's watchers are stopped, so
+  Swallow mirrors it into the pairing ARC channel and uses any wake path (native message 17:2xZ);
+  if Gale's harness refuses a relayed word, the owner types it in Gale's session. The standing
+  need ("all seats push without me") is a system change for the Codex seats' config: the config
+  split's committed config lets a Codex seat push a branch and open a PR without an owner prompt,
+  the payload prohibition kept as doctrine. Gale unreachable from ListAgents (a Codex session).

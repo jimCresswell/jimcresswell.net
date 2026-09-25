@@ -122,6 +122,14 @@ Every line answered first-hand, none inferred:
   Director accepted two threshold handovers today (Swallow 51.3%, Siren 58.7%) under PDR-063; that
   reading is retired.
 
+- 2026-09-25 17:2xZ (native, verbatim, answering the Director's three open decisions): "1. Approve
+  2. Delete all 3. Try passing my approval to Gale and see if that does the job, I absolutely need
+  all seats to be able to push without me". Read: the wake sensor beside the Codex seat is
+  approved (slice 2 built by Swallow); the eight branches on the card are deleted (Myrtle, the
+  owner's word and each last sha recorded); the owner's approval for Gale's PR 211 push is relayed
+  verbatim; every seat must be able to push without an owner prompt, which the Codex config split
+  must deliver.
+
 ## Current handoff state (2026-09-25T14:38:15Z; COMPACTION BOUNDARY 4 of the Director seat; the live reading is this block, then the napkin's COMPACTION BOUNDARY 4 block)
 
 Written for a reader who was never here and may run on a different model. Where this block and
