@@ -13,11 +13,11 @@ barrier:
   stable: true
 ---
 
-Imported from the lineage at pin `e477e62f7` on 2026-09-13 (practice-completion todo 1). The worked instances and measurements are the lineage's; local divergence is recorded where it exists.
-
 > **POLARITY: ANTI-PATTERN.** This entry names a *failure mode to avoid*, not a shape to repeat. The name is the diagnostic: when the failure mode is about to fire, recognising the shape is the first move in not repeating it.
 >
 > See [`patterns/README.md` § Polarity](README.md#polarity-required-every-pattern) for the polarity discipline.
+
+Imported from the lineage at pin `e477e62f7` on 2026-09-13 (practice-completion todo 1). The worked instances and measurements are the lineage's; local divergence is recorded where it exists.
 
 # Structural Enforcer Recursive Exclusion
 
