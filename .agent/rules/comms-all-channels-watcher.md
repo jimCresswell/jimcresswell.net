@@ -405,8 +405,9 @@ before treating any check here as proof a seat is reachable.
 ### Liveness self-check (cycle boundaries)
 
 The watcher writes a liveness heartbeat **on by default** at
-`<seen-file>.heartbeat.json`, on the first pass that ends after each 30 s
-heartbeat interval (a long pass delays the write); `--heartbeat-file` relocates it
+`<seen-file>.heartbeat.json` after its first pass, then on the first pass that
+ends at least 30 s after the previous write (a long pass delays it);
+`--heartbeat-file` relocates it
 and `--no-heartbeat` disables it. The heartbeat records `last_drain_at`,
 `last_emit_at`, `last_error_at`, `emitted_count`, `pid`, and the lexically
 absolute `watched_comms_dir` it actually drains. At cycle boundaries, classify
