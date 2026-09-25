@@ -1,6 +1,6 @@
 import { join } from 'node:path';
 
-import { optional, optionalPositiveInteger, type Options } from '../cli-options.js';
+import { optional, optionalTimerMs, type Options } from '../cli-options.js';
 import { resolveCoordinationHome } from '../coordination-home.js';
 
 const DEFAULT_ACTIVE = '.agent/state/collaboration/active-claims.json';
@@ -24,6 +24,8 @@ export function collaborationTuiConfig(
   options: Options,
   runtime?: CollaborationTuiConfigRuntime,
 ): CollaborationTuiConfig {
+  // The interval is validated before the repo root resolves, which runs git.
+  const pollMs = optionalTimerMs(options, 'poll-ms') ?? DEFAULT_POLL_MS;
   const resolvedRuntime = runtime ?? { cwd: process.cwd() };
   const repoRoot = optional(options, 'repo-root') ?? resolveCoordinationHome(resolvedRuntime.cwd);
   const nowIso = optional(options, 'now');
@@ -32,7 +34,7 @@ export function collaborationTuiConfig(
     activePath: optional(options, 'active') ?? join(repoRoot, DEFAULT_ACTIVE),
     closedPath: optional(options, 'closed') ?? join(repoRoot, DEFAULT_CLOSED),
     commsDir: optional(options, 'comms-dir') ?? join(repoRoot, DEFAULT_COMMS_DIR),
-    pollMs: optionalPositiveInteger(options, 'poll-ms') ?? DEFAULT_POLL_MS,
+    pollMs,
     ...(nowIso === undefined ? {} : { nowIso }),
   };
 }
