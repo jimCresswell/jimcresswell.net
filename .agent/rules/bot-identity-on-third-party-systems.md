@@ -1,6 +1,6 @@
 ---
 classification: core
-description: "Bot identity on third-party systems. Owner ruling — wherever a bot identity exists to represent us (on GitHub, the bot the clone's merge-bot config names; a Linear agent actor; ...), every agent WRITE on that system MUST use it: PR creation, PR and issue comments, standalone inline review comments and replies, merges, thread resolutions, label and state edits. Commits and pushes follow the estate's identity contract, which a tracked host surface records (the lane set-up skill's identity step). The rule's action map (owner ruling 2026-08-17) carries the only exceptions, exhaustively: a pull-request review submitted through the reviews endpoint — APPROVE, REQUEST_CHANGES or COMMENT state, including its body and any inline comments in the same call — under the operator's own credential, because only a human credential discharges a code-owner review gate; and a Copilot review request under the operator's credential where the host's merge-bot reference records that the bot's request does not register. Every other fallback to owner credentials without user-instigated permission is never permitted; a bot capability gap is a blocker to surface, never a licence."
+description: "Bot identity on third-party systems. Owner ruling — wherever a bot identity exists to represent us (on GitHub, the bot the clone's merge-bot config names; a Linear agent actor; ...), every agent WRITE on that system MUST use it: PR creation, PR and issue comments, standalone inline review comments and replies, merges, thread resolutions, label and state edits. Commits and pushes follow the estate's identity contract, which a tracked host surface records (the lane set-up skill's identity step). The rule's action map (owner ruling 2026-08-17) carries the only exceptions, exhaustively: in a detected ChatGPT Work cloud, the configured default credential for the task's delivery writes; a pull-request review submitted through the reviews endpoint — APPROVE, REQUEST_CHANGES or COMMENT state, including its body and any inline comments in the same call — under the operator's own credential, because only a human credential discharges a code-owner review gate; and a Copilot review request under the operator's credential where the host's merge-bot reference records that the bot's request does not register. Every other fallback to owner credentials without user-instigated permission is never permitted; a bot capability gap is a blocker to surface, never a licence."
 ---
 
 # Bot Identity on Third-Party Systems
@@ -216,6 +216,7 @@ the first hop. Confirm the id from the API, never from prose:
 
   ```bash
   token=$(pnpm --silent agent-tools merge-bot mint-token --scope pull-request-work) || exit 1
+  [ ${#token} -ge 20 ] || exit 1
   GH_TOKEN="$token" gh pr edit <n> --body-file …
   ```
 
@@ -240,16 +241,17 @@ the first hop. Confirm the id from the API, never from prose:
      refuses `$(…)`); `pwd` is one token.
   2. **Guard the token by LENGTH, not exit code** (`[ ${#token} -ge 20 ]`)
      — an empty read is a failure whatever the exit code.
-  3. **Echo the author back in-band on every bot write** — request
-     `.user.login` / `.user.type` in the same call and read it before
-     proceeding. An empty `GH_TOKEN` is invisible at the call site; the
-     echo-back is the only reliable detector, and it converts a silent
-     misattribution into a same-call stop. Sequenced LATE it detects and
-     cures nothing: a PR created under the ambient owner credential was
-     caught by an echo that ran AFTER the write, and the cure was
-     close-and-recreate under the bot (2026-08-18); the tripwire's whole
-     value is before the first write. For an installation token `/user`
-     answers 403 — read the timeline actor instead (2026-09-01).
+  3. **Prove the credential before the first write** — a read-only
+     `GH_TOKEN="$token" gh api user`. An installation token answers 403
+     ("Resource not accessible by integration"), and a human credential
+     answers with its login, so an answer that names anyone is a stop
+     (both verified 2026-09-25). An empty `GH_TOKEN` is invisible at the
+     call site; the preflight turns a silent misattribution into a stop
+     before anything is written. A read of the author after the write
+     detects and cures nothing: a PR created under the ambient owner
+     credential was caught by an echo that ran AFTER the write, and the
+     cure was close-and-recreate under the bot (2026-08-18). After a
+     write, the timeline actor confirms it (2026-09-01).
 
 ## Action (all other systems)
 
@@ -354,11 +356,14 @@ Three riders bind every operator-credential row:
   The credential displays the human; the words must not let a reader conclude the
   human wrote them. The grant makes this requirement stronger, not weaker.
 - **The author-cannot-review intersection applies.** GitHub forbids the author of
-  a pull request from reviewing it in any state, so on a PR authored by the same
-  human account the review would be posted under, no review row yields a usable
-  path: the agent's review of record rides an ordinary PR **comment** (bot, per
-  the map), and any `APPROVE` or `REQUEST_CHANGES` state needs a different
-  non-author account. Route that case rather than working around it.
+  a pull request from approving it or requesting changes on it; a `COMMENT`
+  review stays open to the author. So on a PR authored by the same human
+  account the review would be posted under, the `APPROVE` and
+  `REQUEST_CHANGES` rows yield no usable path: the agent's review of record
+  rides a `COMMENT` review (operator, per its row) or an ordinary PR
+  **comment** (bot, per the map), and any `APPROVE` or `REQUEST_CHANGES` state
+  needs a different non-author account. Route that case rather than working
+  around it.
 
 ## Standing owner-granted exceptions (dated, narrow)
 

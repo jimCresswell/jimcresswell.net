@@ -81,6 +81,7 @@ names the bot as the transport), mint a token and use it:
 
 ```bash
 token=$(pnpm --silent agent-tools merge-bot mint-token --scope pull-request-work) || exit 1
+[ ${#token} -ge 20 ] || exit 1
 ```
 
 **Assign the token first; never use the `GH_TOKEN=$(…) gh …` prefix form.**
@@ -136,7 +137,7 @@ permissions investigation.
 - **Owner merge-word can arrive as chat approval** ("I approved the PR, that
   is signal enough"; "Merge now") — it is equivalent to the settled-read
   handshake. Where the owner is the PR author-of-record, GitHub blocks
-  self-review, so the owner's word is recorded as an ordinary PR comment from
+  self-approval, so the owner's word is recorded as an ordinary PR comment from
   the bot that quotes it and names the seat (the rule's author-cannot-review
   rider); an `APPROVE` state needs a non-author account.
 - **Codex-seat bridge**: the Codex GitHub connector refuses merge actions
