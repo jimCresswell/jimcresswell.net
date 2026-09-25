@@ -36,7 +36,7 @@ When a file is added, moved or dropped, this index changes in the same commit.
 | File                              | Purpose                                                                                            |
 | --------------------------------- | -------------------------------------------------------------------------------------------------- |
 | `arc-rapid-communication.md`      | The ARC rapid-communication protocol and its aliases                                               |
-| `comms-watch-mechanism.md`        | Event-driven all-channel comms intake with a liveness-attestation seam                             |
+| `comms-watch-mechanism.md`        | Polled all-channel comms intake with a liveness-attestation seam                                   |
 | `comms-heartbeat-cadence.md`      | Durable aggregate of the heartbeat event class (rotation survivor)                                 |
 | `comms-cited-events.md`           | Provenance digest for comms events cited by id in permanent records                                |
 | `cross-machine-collaboration.md`  | Worked instance: a Director seat and a sibling checkout on a second host                           |
