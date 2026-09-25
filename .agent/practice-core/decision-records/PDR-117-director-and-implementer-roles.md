@@ -325,9 +325,11 @@ instruction for the Implementer role.** Its operational home is the
   is the benefit this PDR claims, pending second-instance evidence
   (§Falsifiability assertion 3).
 - **Why minimum action for the Director.** Continuity is the scarce good in a
-  rotating-cast model. An agent's lifespan is bounded by context budget; the
-  proposed way one seat outlasts many is to spend context slowly — verdicts not
-  artefacts, externalise the map not the reasoning.
+  many-agent model. A seat keeps its lane through compactions, and each
+  compaction costs it detail it held only in context; the way a Director keeps
+  the map whole is to spend context slowly — verdicts not artefacts,
+  externalise the map not the reasoning — so compactions come rarely and lose
+  nothing the records do not hold.
 - **Why route-don't-execute.** A Director that self-dispatches work is
   unavailable for routing for that duration, silently re-creating the
   coordinator-less window. The cost of delegating is one routing event; the

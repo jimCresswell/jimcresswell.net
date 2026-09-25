@@ -45,22 +45,17 @@ Core cites hosts by role, never by path, per PDR-105).
 
 ## Context
 
-Multi-agent operation in this Practice is moving from human-pace
-sessions with natural-boundary closeouts (slice-complete,
-commit-landed, peer-closeout) toward rotating-cast operation: a
-larger pool of agents, each bounded to a fixed context budget, with
-auto-spawn cadence approaching human-faster-than-pace operation.
-Under those conditions a new and previously unobserved retirement
-mode becomes routine:
-
-> An agent approaching its context budget mid-cycle, mid-edit,
-> possibly mid-claim must retire before the natural boundary they
-> were heading for.
+Multi-agent operation in this Practice runs many seats at once, and
+the owner sometimes hands a seat's work to a successor before the
+natural boundary it was heading for: mid-cycle, mid-edit, possibly
+mid-claim. (When this PDR was written, a seat nearing its context
+budget retired this way. Since 2026-09-25 no context reading starts
+a handoff: §Context readings never stop a seat.)
 
 The existing closeout contract (codified in the `start-right-team`
 SKILL §Closeout Contract) only governs natural-boundary closeouts.
-A token-pressured retirement at an unnatural boundary has two
-failure paths the closeout contract cannot prevent:
+A handoff at an unnatural boundary has two failure paths the
+closeout contract cannot prevent:
 
 1. **Indeterminate-state leakage**: the agent retires without
    leaving the next agent a structured view of where the work
@@ -69,11 +64,11 @@ failure paths the closeout contract cannot prevent:
    still owed. The next agent rediscovers state by re-reading
    artefacts and inferring, which is expensive and lossy.
 
-2. **Rushed-landing breaches atomic-landing**: the agent senses the
-   ceiling and tries to force a commit at an unsafe point, which
-   either breaks the atomic-landing invariant (tests and product
-   code split across commits) or skips reviewer absorption to make
-   the deadline.
+2. **Rushed-landing breaches atomic-landing**: the handing-off agent
+   tries to force a commit at an unsafe point before it hands over,
+   which either breaks the atomic-landing invariant (tests and
+   product code split across commits) or skips reviewer absorption
+   to make it.
 
 The capture trigger for this PDR is the rotating-cast operational
 model: the first rotating-cast Round 1 launch will be the controlled
@@ -81,10 +76,6 @@ stress test for the protocol. The PDR exists to give that stress
 test a structured artefact to observe against, rather than retro-
 fitting a protocol from whatever the first instance happens to
 produce.
-
-The two failure paths above are this protocol's reasons on a handoff
-the owner calls. A seat's own context reading never starts one
-(§Context readings never stop a seat).
 
 ## Decision
 
