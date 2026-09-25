@@ -311,3 +311,33 @@ If the scratchpad is gone, the napkin's RE-ARM RECIPE of 2026-09-24 carries the 
 - Pickup: this seat after compaction (the owner's card of 2026-09-24; today's word on it is with
   the Director), or a named successor through `claims adopt`.
 - If no one adopts them, they expire at freshness, at about 15:20Z, and are archived stale.
+
+## Retrospective routing, 2026-09-25 11:44Z (Siren herds Rudder, 158275)
+
+The owner's "yes, please run a retro" produced
+`.agent/reports/agentic-engineering/2026-09-25-why-goal-one-read-zero-while-the-lineage-landed.md`.
+Its proposals make these entries (its proposal 3, applied to itself):
+
+- **Queue item 4 (the next exchange pull request) gains:**
+  - compound rows split into members at the unit a pull request lands (J18's observer and its
+    compare half; J9's seven doctrines), each member undrafted, delivered, landed or declined;
+  - a window row for each delivered post-pin concept (batch two's frame verdict and template
+    gains, batch three's gate slot and ownerless-lock reclaim, K1 to K3) and each lesson family;
+  - the count reported by member as undrafted, delivered, landed or declined (the Director's
+    10:36Z split);
+  - landings by the row texts: J4 whole (lineage 202, 203, 205); J9 part (194, 195, 197, 201;
+    four doctrines declined, receipt `c46a0e4b`); J10 part (199; PDR-082's channel bullet rides
+    the lineage's PR C2); J18 part (the observer, 204 and 206 to 209). Not J11: its landings rows
+    name jcnet.
+- **Batch six gains J18's compare half** (the reference notes and the session-continuation prompt).
+- **New queue item, the lessons batch (ruling 36), after PR 186 and PR 188, beside batch six:**
+  sweep the napkin, `distilled.md`, the pending graduations, the experience letters and the
+  reports; one window row per lesson family; deliver as a batch into the lineage's Box. It
+  carries the record's proposal 3: the retrospective skill's step 6 names each proposal's home by
+  path and quotes the entry made there.
+- **New work behind gate plan PRs B to F:** an advisory hook on content edits under
+  `.agent/directives/`, scoped to PDR-052's §Scope list. It prints session-metadata's live
+  reading, and at 30% or more names PDR-063's hand-over route. It does not refuse (register row
+  O1). This is the record's proposal 4.
+- **PR 188's directive review** needs a session below 30%. This session resumed at about 11%
+  after the owner's compaction; read session-metadata immediately before starting it.

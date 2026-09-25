@@ -3705,3 +3705,71 @@ launch word ranks Myrtle's own job, not the fold), and P4 is dissolved by the My
 5. Metacognition check on the swing between relaying and asking: each decision names the lens and
 is written where the owner overturns it in a line; that is the synthesis the 2026-09-24 letter asked
 for.
+
+## 2026-09-25T11:44Z — Siren herds Rudder (158275): retrospective on the exchange arc
+
+The owner's "yes, please run a retro": the record is
+`.agent/reports/agentic-engineering/2026-09-25-why-goal-one-read-zero-while-the-lineage-landed.md`.
+Goal one's register count read 0 of 21 from 14:50Z yesterday to the wrap. The lineage merged 17
+pull requests of JC.net material from 15:19Z to 03:23Z, 13 while this seat was at rest. By the row
+texts: J4 landed whole; J9 (four doctrines declined), J10 and J18 in part; 17 rows with no
+lineage pull request, of which 12 were never drafted here (batch six). Three readings of one state
+disagreed: the register (0), the Director at 10:36Z (3: J4, J18, J11) and this seat at 10:53Z (J4,
+J18). J18's compare half was never delivered, and J11's landings name jcnet.
+
+- CANDIDATE, contested, not graduated: a second instance of "an instrument's shape becomes the
+  work's shape" (2026-09-24). The register's pinned, compound, donor-recorded rows set the progress
+  reading (zero through the night). But the seat's delivery order did not follow the register, so
+  the outside review judged the instance contested. It would extend the lineage's pattern
+  `classification-instrument-is-a-symptom`.
+- LESSON: "routed to the lessons sweep" routed nothing. The sweep had no queue item, and P3, P5 and
+  P6 of the 2026-09-24 retrospective went nowhere. A proposal is routed when its entry exists.
+- LESSON: a measure adopted by agreement is calibrated against a first-hand read of a known state
+  before it steers. The exchange count never was, and its first comparison found three readings
+  that disagreed.
+- SLIP, caught by an outside review: the record's first draft said the wrap had built its
+  proposals on the zero count. The wrap's text reasoned from the lineage's merged pull requests.
+  The draft had read the wrap from the compaction summary, not the record. Reconstruct from
+  primary sources, including your own records.
+
+## 2026-09-25T11:55:42Z — Director suite 9 tally (frame built 11:46Z, dispatched 11:47Z to 11:55Z)
+
+Work verdicts: 7 ON-TRACK, 1 DRIFTING, 0 WRONG-PRIORITY, 0 UNDELIVERED. Normal wave: highest power
+low effort ON-TRACK; high power medium effort ON-TRACK; mid power high effort ON-TRACK; lowest
+power xhigh procedure ON-TRACK. Adversarial wave: highest power low effort DRIFTING (vacant goal-one
+owner plus meta-work NEXT; both redirections, the owner ask about Geyser and Myrtle's estimate,
+were taken between the frame's build and the return, so the finding is overtaken); high power
+medium effort ON-TRACK; mid power high effort ON-TRACK; procedure ON-TRACK.
+
+Frame verdicts: 2 SOUND (normal high, normal procedure), 6 NARROWED. Convergent frame findings,
+each with its disposition:
+
+1. Todos 7 and 8 (and 1 to 4, 6) are quoted but the reading gives them no status, owner or
+   order; todo 8 gates todo 5 ("before todo 5's outbound note") and its status is unknown to me.
+   Four roles. ACCEPTED: fifteenth frame requirement, every node todo carries a status line with
+   its source and an owner, not only the todo the goal serves; at check-in 11 Siren is asked for
+   todo 8's status and todo 7's place in its queue (item 3).
+2. The inbound direction (todo 4, "our second goal") has a number but no owner or hold. Two
+   roles. ACCEPTED: inbound is Siren's after goal one by the owner's order; the next frame maps
+   it so.
+3. The lineage's 80 merged local branches have no owner. Two roles. ACCEPTED: routed with the
+   65 remote deletions to the lineage's exchange seat at its taking (Myrtle, or whoever the owner
+   names).
+4. My reading of Myrtle's launch word ("higher priority than the daily branch fold") as ranking
+   Myrtle's job only; the plain reading may put the fold after the consolidation whoever runs it.
+   One role. ACCEPTED as ambiguity: Myrtle has planned around the fold and states its job is
+   undisturbed, which satisfies both readings; stated to the owner, who stops the fold with a line.
+5. The load watch will not fire on the supplied history; do not re-arm it; name a smoke-cure
+   owner now. Two roles. ACCEPTED: no second re-arm; the records ride PR 189 at the next natural
+   push; the smoke cure is unowned in JC.net while Siren is on the owner's retro, and the question
+   of a seat for it is folded into the Geyser question with the owner.
+6. Ungrounded: whose commit pid 55841 was (Myrtle's, per Swallow at 11:5xZ); a self-contradiction
+   in NEXT (2) naming Myrtle's three files where H2 named Swallow's (both true: each seat had
+   three); C7's receiver unmapped (the C7 amendment is routed to the lineage's exchange seat with
+   JC.net's seat as co-author). Frame hygiene, taken into the next frame.
+
+Myrtle's estimate (native, 11:5xZ): the consolidation closes about 18:00Z; the exchange seat
+opens after one further fresh-context step, so not before this evening. Put to the owner in text
+with the option that Geyser takes the lineage's exchange seat now; no answer yet. Swallow's push
+landed (d488950da..e23535fd9); the lineage fold's sweep may proceed once Myrtle's running commit
+(pid 23350) lands.
