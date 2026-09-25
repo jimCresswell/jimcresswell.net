@@ -217,7 +217,7 @@ function citationFor(
     : { line, match, scriptName: token, workspaceFilter: state.workspaceFilter };
 }
 
-/** A `--filter` value that names a package rather than a path, a glob or a placeholder. */
+/** A `--filter` value that names a package rather than a path, a glob, a placeholder or an expansion. */
 function isPackageName(filter: string): boolean {
-  return !/[*.]{2,}|^\.{1,2}\/|\/$|[<>{}*]/.test(filter);
+  return !/[*.]{2,}|^\.{1,2}\/|\/$|[<>{}*$`]/.test(filter);
 }

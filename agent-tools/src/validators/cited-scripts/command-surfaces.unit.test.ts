@@ -194,6 +194,42 @@ describe('findMissingFilteredCommands', () => {
       name: 'a hint a condition prints',
       line: 'if echo pnpm --filter @nope/missing check; then true; fi',
     },
+    {
+      name: 'a single-quoted command substitution, which prints as written',
+      line: "echo '$(pnpm --filter @nope/missing check)'",
+    },
+    {
+      name: 'single-quoted backticks, which print as written',
+      line: "echo '`pnpm --filter @nope/missing check`'",
+    },
+    {
+      name: 'a quoted filter in backticks inside double quotes that names a workspace',
+      line: 'echo "`pnpm --filter \\"@jimcresswell/www\\" test:e2e`"',
+    },
+    {
+      name: 'a filter a backtick substitution computes',
+      line: 'pnpm --filter `node scripts/ws.mjs` check',
+    },
+    {
+      name: 'a filter a quoted command substitution computes',
+      line: 'pnpm --filter "$(jq -r .name package.json)" check',
+    },
+    {
+      name: 'printed text after a substitution whose backticks hold a parenthesis',
+      line: 'echo "$(echo `echo )`) pnpm --filter @nope/missing check"',
+    },
+    {
+      name: 'printed text after a substitution that holds a parameter expansion',
+      line: 'echo "$(echo ${fallback:-none}) pnpm --filter @nope/missing check"',
+    },
+    {
+      name: 'printed words after an unquoted command substitution',
+      line: 'echo $(true) pnpm --filter @nope/missing check',
+    },
+    {
+      name: 'an escaped backtick, which is a literal character',
+      line: String.raw`echo \`pnpm --filter @nope/missing check\``,
+    },
   ])('ignores $name', ({ line }) => {
     expect(findMissingFilteredCommands([surface(line)], scripts)).toStrictEqual([]);
   });
@@ -221,6 +257,55 @@ describe('findMissingFilteredCommands on shell syntax', () => {
     },
     { name: 'a call after a quoted #', line: "echo '#' && pnpm --filter @nope/missing check" },
     { name: 'a call after an assignment', line: 'CI=1 pnpm --filter @nope/missing check' },
+    { name: 'a call in backticks', line: 'echo `pnpm --filter @nope/missing check`' },
+    {
+      name: 'a call in backticks inside double quotes',
+      line: 'echo "`pnpm --filter @nope/missing check`"',
+    },
+    {
+      name: 'a call in a command substitution inside double quotes',
+      line: 'VERSION="$(pnpm --filter @nope/missing check)"',
+    },
+    {
+      name: 'a call in a nested command substitution inside double quotes',
+      line: 'echo "$(echo "$(pnpm --filter @nope/missing check)")"',
+    },
+    {
+      name: 'a call in an unquoted command substitution that echo prints',
+      line: 'echo $(pnpm --filter @nope/missing check)',
+    },
+    {
+      name: 'a call after a subshell in a double-quoted command substitution',
+      line: 'echo "$( (true) && pnpm --filter @nope/missing check)"',
+    },
+    {
+      name: 'a call in a substitution that the outer shell runs for sh -c',
+      line: 'bash -c "echo $(pnpm --filter @nope/missing check)"',
+    },
+    {
+      name: 'a call in backticks that the outer shell runs for sh -c',
+      line: 'bash -c "echo `pnpm --filter @nope/missing check`"',
+    },
+    {
+      name: 'a call after an escaped parenthesis in a double-quoted command substitution',
+      line: String.raw`echo "$(echo \) && pnpm --filter @nope/missing check)"`,
+    },
+    {
+      name: 'a call after backticks holding a parenthesis in a double-quoted command substitution',
+      line: 'echo "$(echo `echo )` && pnpm --filter @nope/missing check)"',
+    },
+    {
+      name: 'a call after a parameter expansion holding a parenthesis in a command substitution',
+      line: 'echo "$(echo ${fallback:-)} && pnpm --filter @nope/missing check)"',
+    },
+    {
+      name: 'a call in an unquoted command substitution after an assignment',
+      line: 'VERSION=$(pnpm --filter @nope/missing check)',
+    },
+    {
+      name: 'a call after a quoted parenthesis in a double-quoted command substitution',
+      line: `echo "$(echo ')' && pnpm --filter @nope/missing check)"`,
+    },
   ])('reports $name', ({ line }) => {
     const findings = findMissingFilteredCommands([surface(line)], scripts);
 
