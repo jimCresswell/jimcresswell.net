@@ -175,7 +175,8 @@ A watcher is a single-process intake mechanism. If the process
 dies silently — host crash, panic in an event handler, container
 OOM — nothing notices until a peer waits unreasonably long for a
 reply. The remedy is **liveness attestation**: the watcher writes a
-freshness signal to a substrate file once per heartbeat interval.
+freshness signal to a substrate file on the first pass that ends after each
+heartbeat interval has elapsed (a long pass delays the write).
 
 The minimal liveness record:
 
@@ -261,8 +262,8 @@ substrate primitive.
 
 ## Loop — the theoretical complement (under exploration)
 
-Watch polls on a timer (`--poll-ms`, sub-second by default) and is a single
-failure point. An **independent liveness floor** can be added by composing
+Watch runs in passes, waiting one `--poll-ms` interval (500 ms by default)
+after each pass, and is a single failure point. An **independent liveness floor** can be added by composing
 watch with a periodic check command driven by a host scheduler such as
 Claude Code's `/loop`:
 
@@ -312,9 +313,10 @@ responsibility and the capabilities of their host.
   suppress a distinct seat. Reuse the canonical `sameAgentRoutingKey`
   comparator.
 - **Polling presented as event-driven**: every poll loop, `comms watch`
-  included, detects a write on its next pass, once per `--poll-ms` interval,
-  not on the write; under Monitor its output still wakes the agent once per
-  emitted event. Name its cadence honestly. A hand-rolled `while true; sleep` loop over the comms directory is
+  included, detects a write on its next pass, not on the write. Each pass
+  starts one `--poll-ms` wait after the previous pass ends, so the gap is the
+  pass's run time plus that wait. Under Monitor its output still wakes the
+  agent once per emitted event. Name its cadence honestly. A hand-rolled `while true; sleep` loop over the comms directory is
   not `comms watch`; prefer the canonical watcher, which carries the
   seen-events cursor, self-exclusion, and the heartbeat.
 - **Delivery treated as notification**: a watcher that marks an event seen and

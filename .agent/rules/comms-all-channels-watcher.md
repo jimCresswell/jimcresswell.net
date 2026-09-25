@@ -31,9 +31,10 @@ heartbeat cron, before team-start broadcast, before any source claim.
 ## Action
 
 Run one watcher over the full
-`.agent/state/collaboration/comms/` directory, polling it once per pass,
-every `--poll-ms` (500 ms by default; the canonical invocation keeps the
-default), and emitting one notification per new event, with **self-exclusion plus, where the seat's economics
+`.agent/state/collaboration/comms/` directory, polling it in passes and
+waiting one `--poll-ms` interval after each pass (500 ms by default; the
+canonical invocation keeps the default), and emitting one notification per
+new event, with **self-exclusion plus, where the seat's economics
 justify it, the sanctioned `--exclude-tag` mechanism** (§"Sanctioned
 tag exclusion" below) — filter out events authored by the agent's own
 PDR-076a routing identity through the canonical `sameAgentRoutingKey`
