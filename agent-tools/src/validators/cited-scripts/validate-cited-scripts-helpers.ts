@@ -76,7 +76,11 @@ export function findMissingScriptCitations(
   return findings;
 }
 
-function resolveCitation(
+/**
+ * Resolve one citation found in the file at `path`: unfiltered against the
+ * root table, filtered against the named workspace's.
+ */
+export function resolveCitation(
   path: string,
   citation: ScriptCitation,
   scripts: WorkspaceScripts,
@@ -90,7 +94,7 @@ function resolveCitation(
   if (workspace === undefined) {
     return finding(path, citation, citation.workspaceFilter, 'unknown-workspace');
   }
-  return workspace.has(citation.scriptName)
+  return citation.builtin === true || workspace.has(citation.scriptName)
     ? undefined
     : finding(path, citation, citation.workspaceFilter, 'missing-script');
 }

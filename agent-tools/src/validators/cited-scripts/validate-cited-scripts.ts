@@ -3,6 +3,8 @@ import { resolveRepoRoot } from '../../core/repo-root.js';
 import { collectTrackedPaths } from '../../core/repository-paths.js';
 import { writeErrorLine, writeLine } from '../../core/terminal-output.js';
 
+import { loadCommandSurfaces } from './command-surface-files.js';
+import { findMissingFilteredCommands } from './command-surfaces.js';
 import {
   findMissingScriptCitations,
   type MissingScriptFinding,
@@ -22,6 +24,12 @@ import { loadWorkspaceScripts } from './workspace-scripts.js';
  * see the problem (it skips code spans and fenced blocks by design), and
  * `validate-no-stale-script-invocations` matches retired `scripts/*.mjs`
  * paths only.
+ *
+ * The commands a gate actually runs are read too: every package.json
+ * script, the git hooks and the CI workflow steps. There only filtered calls
+ * are checked (`command-surfaces.ts`): pnpm exits 0 without running anything
+ * when a `--filter` names no workspace, so each must name a real workspace
+ * and a script it defines.
  *
  * Wired into `pnpm docs-validators:check`.
  *
@@ -88,30 +96,38 @@ function formatFindings(findings: readonly MissingScriptFinding[]): string {
 }
 
 async function main(): Promise<void> {
-  const [files, scripts] = await Promise.all([
+  const trackedPaths = collectTrackedPaths(repoRoot);
+  const [files, scripts, commandSurfaces] = await Promise.all([
     discoverAuthoredFiles(repoRoot, {
       roots: SCANNED_ROOTS,
       rootFiles: SCANNED_ROOT_FILES,
       extensions: SCANNED_EXTENSIONS,
       excludedPathFragments: EXCLUDED_PATH_FRAGMENTS,
-      universe: collectTrackedPaths(repoRoot),
+      universe: trackedPaths,
     }),
     loadWorkspaceScripts(repoRoot),
+    loadCommandSurfaces(repoRoot, trackedPaths),
   ]);
-  const findings = findMissingScriptCitations(files, scripts);
+  const findings = [
+    ...findMissingScriptCitations(files, scripts),
+    ...findMissingFilteredCommands(commandSurfaces, scripts),
+  ];
 
   if (findings.length === 0) {
     writeLine(
-      `validate-cited-scripts: OK (${String(files.length)} files scanned; every cited pnpm script exists).`,
+      `validate-cited-scripts: OK (${String(files.length)} files and ` +
+        `${String(commandSurfaces.length)} command surfaces scanned; every cited pnpm script exists).`,
     );
     return;
   }
 
   writeErrorLine(
-    `validate-cited-scripts: ${String(findings.length)} cited script(s) do not exist.\n\n` +
+    `validate-cited-scripts: ${String(findings.length)} invalid pnpm command reference(s).\n\n` +
       `${formatFindings(findings)}\n\n` +
       'Every `pnpm <script>` in a code span or fenced block must name a script the root or the ' +
-      'filtered workspace defines in package.json. Fix the citation or add the script.',
+      'filtered workspace defines in package.json, and every filtered call in a package.json ' +
+      'script, a git hook or a CI workflow must name a real workspace and a script it defines. ' +
+      'Fix the citation or the call, or add the script.',
   );
   process.exitCode = 1;
 }
