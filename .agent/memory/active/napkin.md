@@ -4329,3 +4329,43 @@ after the owner compacts it or a fresh one, then the exchange seat, no closeout 
   Siren's trigger amendment PR encodes it as drafted; Myrtle carries the twin.
 - Siren's report: PR 188 (K4) merged c523ba81 at 15:01:18Z, receipt to Myrtle (252fb4ce); the
   trigger amendment PR in review; the Cricket clause PR at its push gate.
+
+## 2026-09-25T15:19Z — Director suite 12 tally (frame built 15:11Z; the first suite after the compaction)
+
+Work verdicts: 7 ON-TRACK, 1 DRIFTING, 0 WRONG-PRIORITY. Normal wave: all four ON-TRACK.
+Adversarial: medium DRIFTING (batch six's drafting, 12 of 23 J rows, had a question for a trigger and
+no owner; NEXT put two records steps ahead of it); ACCEPTED: the drafting is Siren's, starting when
+the Cricket clause PR has landed and the trigger amendment PR is open, ahead of the lessons batch
+(sent natively 15:18Z; Siren may object). The other three ON-TRACK.
+
+Frame verdicts: 1 SOUND (normal high), 6 NARROWED, 1 CONTRADICTED (adversarial medium). Cures for
+suite 13's frame:
+
+1. Batch six's drafting carries an owner and a start condition, no longer an UNOWNED question
+   (normal low; adversarial low, medium).
+2. The Myrtle line: the consolidation condition of 11:30Z was the OWNER's word, and the fresh-context
+   condition was the Director's; the owner's 15:00Z word seated Myrtle and so supersedes both; the six
+   pending graduation rows' receiver is Myrtle (the PDR-052 rows at its next compaction, the PDR-130
+   rows when due), ranked by Myrtle at check-in 15 against its lane work (normal medium; adversarial
+   medium; procedure adversarial).
+3. The ~13:30Z order (outbound before inbound) and ruling 35 quoted verbatim with their source in
+   SOURCES, or dropped from READING (normal low, medium).
+4. Wake-bridge todos 2 and 3 carry an owner (Gale, after PR 211 and the config split) (adversarial
+   high, low).
+5. Check-in 15's Siren line includes the clause PR's gate clearance, H1's own sensor (adversarial
+   high).
+6. H2 names the twin as its forcing fact and the 24-hour rule as urgency on the backstop; H6 gets a
+   backstop (Gale's PR 211 settlement, else check-in 16 asks); H4's last read a timestamp (normal high;
+   adversarial medium).
+7. READING states the cadence arithmetic: check-in 14 at 14:43Z, suite 12 at 15:11Z (28 minutes,
+   the #212 word between), check-in 15 at 15:42Z by the 23-minute schedule; the owner's word is 45
+   minutes between check-ins (procedure normal; adversarial medium).
+8. "Five native words since 14:38Z" corrected to four (14:38Z, about 14:45Z, 14:54Z, about 15:00Z);
+   goal three's lineage local branches: the unmerged ones need a disposition each (PR or deletion),
+   Myrtle's assessment (adversarial medium).
+
+Between the waves: the lineage's #212 ledger row and continuity line committed 1f9fbdc97 on
+coordination/2026-09-24-f66fd0 (index empty before staging; Gale's or Swallow's modified
+codex-dialogues thread left alone); Siren's PDR-052 scope reading (only `.agent/directives/*` and
+PDR-052 itself gated) accepted 15:1xZ from the quoted text; the Director monitor re-armed at 15:1xZ
+after its 30-minute expiry.
