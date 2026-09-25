@@ -15,6 +15,7 @@ import type { PayloadStatus } from '../src/claude/pre-compact-observation.ts';
 import {
   type HookStdin,
   inThrowawayProject,
+  proveUnquotedPathSplits,
   registeredHookCommand,
   repoRoot,
   runHookCommand,
@@ -28,7 +29,9 @@ import {
  * both map a `.js` specifier onto its `.ts` file, so a relative import that
  * plain Node cannot resolve passes every other check and fails only at a real
  * compaction. This smoke reads the exact command from `.claude/settings.json`,
- * runs it through the shell, and asserts what the harness enforces — exit 0 and
+ * runs it unchanged through the shell from a throwaway project whose name holds a
+ * space (the same text with its quotes removed must fail), and asserts what the
+ * harness enforces — exit 0 and
  * a response carrying only top-level fields with `continue: true` — plus one
  * observation per run, readable by its owner only, whose marker matches the
  * response's.
@@ -199,6 +202,11 @@ function runCase(command: string, smokeCase: SmokeCase): void {
 }
 
 const command = readHookCommand();
+try {
+  proveUnquotedPathSplits(command, ['.claude/hooks', 'agent-tools'], HOOK_TIMEOUT_MS);
+} catch (error) {
+  fail(`fixture self-proof: ${error instanceof Error ? error.message : String(error)}`);
+}
 for (const smokeCase of CASES) {
   try {
     runCase(command, smokeCase);
@@ -207,5 +215,5 @@ for (const smokeCase of CASES) {
   }
 }
 process.stdout.write(
-  `pre-compact-observe smoke OK: settings.json command ran from source for ${CASES.length} cases, exit 0, harness-shaped response, matching observation\n`,
+  `pre-compact-observe smoke OK: settings.json command ran from source for ${CASES.length} cases, exit 0, harness-shaped response, matching observation; the unquoted text fails\n`,
 );

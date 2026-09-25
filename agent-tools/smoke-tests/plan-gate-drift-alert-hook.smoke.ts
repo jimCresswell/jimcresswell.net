@@ -5,6 +5,7 @@ import { z } from 'zod';
 
 import {
   inThrowawayProject,
+  proveUnquotedPathSplits,
   registeredHookCommand,
   runHookCommand,
 } from './claude-hook-command-fixture';
@@ -14,10 +15,10 @@ import {
  *
  * The hook runs the built drift checker and turns its drift report (report on stdout,
  * exit 1) into session context. This smoke reads the hook's command from
- * `.claude/settings.json`, runs it through the shared hook-command fixture (the shell,
- * from the repository root, with `CLAUDE_PROJECT_DIR` pointing at a throwaway project
- * whose checker is a stub), and asserts exit 0 and the right answer for each checker
- * outcome. On drift the answer is a harness-shaped alert carrying the stub's whole
+ * `.claude/settings.json`, runs the registered text unchanged through the shared
+ * hook-command fixture (the shell, from a throwaway project whose name holds a space, whose
+ * checker is a stub, and which `CLAUDE_PROJECT_DIR` names), and asserts exit 0 and the right
+ * answer for each checker outcome; the same text with its quotes removed must fail. On drift the answer is a harness-shaped alert carrying the stub's whole
  * report: one stub writes its report and exits 1 at once; another exits 1 first and its
  * report reaches stdout only after the stub has been reaped, so a hook that decides on
  * the checker's `exit` instead of the end of its output emits no alert; a third writes a
@@ -222,6 +223,11 @@ function checkResponse(stdout: string, alertReport: string | undefined): void {
 }
 
 const command = readHookCommand();
+try {
+  proveUnquotedPathSplits(command, ['.claude/hooks'], HOOK_TIMEOUT_MS);
+} catch (error) {
+  fail(`fixture self-proof: ${error instanceof Error ? error.message : String(error)}`);
+}
 for (const smokeCase of CASES) {
   try {
     runCase(command, smokeCase);
@@ -230,5 +236,5 @@ for (const smokeCase of CASES) {
   }
 }
 process.stdout.write(
-  `plan-gate-drift-alert smoke OK: settings.json command answered ${String(CASES.length)} checker outcomes: the whole drift report as an alert on drift, {} otherwise\n`,
+  `plan-gate-drift-alert smoke OK: settings.json command answered ${String(CASES.length)} checker outcomes: the whole drift report as an alert on drift, {} otherwise; the unquoted text fails\n`,
 );

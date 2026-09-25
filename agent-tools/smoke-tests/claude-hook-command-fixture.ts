@@ -13,15 +13,14 @@
  * then the trusted shell directories, so nothing else on the ambient `PATH` can shadow what
  * the hook runs.
  */
-import { spawnSync } from 'node:child_process';
-import { mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync } from 'node:fs';
+import { spawnSync, type SpawnSyncReturns } from 'node:child_process';
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { delimiter, dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { z } from 'zod';
 
-import { which } from './secrets-hooks-support.js';
 import { trustedShellPath } from './trusted-shell-directories.js';
 
 /** This repository's root: where the linked hook scripts and sources live. */
@@ -29,6 +28,27 @@ export const repoRoot = resolve(fileURLToPath(new URL('.', import.meta.url)), '.
 
 /** The throwaway project's scratch `bin/`: the running Node and the host's `bash`. */
 const SCRATCH_BIN = 'bin';
+
+/** The shell's status for a command it cannot find, as an unquoted spaced path produces. */
+const COMMAND_NOT_FOUND = 127;
+
+/**
+ * The first `tool` in the directories of a `PATH` value, found by Node rather than by a
+ * `which` binary, so the lookup is the same on every platform.
+ *
+ * @throws When no directory holds the tool.
+ */
+function findOnPath(tool: string, searchPath: string): string {
+  const names = process.platform === 'win32' ? [`${tool}.exe`, tool] : [tool];
+  const found = searchPath
+    .split(delimiter)
+    .flatMap((directory) => names.map((name) => join(directory, name)))
+    .find((candidate) => existsSync(candidate));
+  if (found === undefined) {
+    throw new Error(`${tool} is not on PATH, and the hook smokes need it`);
+  }
+  return found;
+}
 
 const settingsSchema = z.object({
   hooks: z.record(
@@ -80,7 +100,7 @@ export function inThrowawayProject(
     }
     mkdirSync(join(projectDir, SCRATCH_BIN));
     symlinkSync(process.execPath, join(projectDir, SCRATCH_BIN, 'node'));
-    symlinkSync(which('bash'), join(projectDir, SCRATCH_BIN, 'bash'));
+    symlinkSync(findOnPath('bash', process.env.PATH ?? ''), join(projectDir, SCRATCH_BIN, 'bash'));
     run(projectDir);
   } finally {
     // rmSync unlinks each symlink and never follows it, so the linked paths stay.
@@ -101,8 +121,22 @@ export interface HookRun {
   readonly timeoutMs: number;
 }
 
+/** Run a command through the bounded `PATH`'s `sh -c` (`/bin/sh` on POSIX hosts). */
+function spawnHook(command: string, run: HookRun): SpawnSyncReturns<string> {
+  const searchPath = [join(run.projectDir, SCRATCH_BIN), trustedShellPath()].join(delimiter);
+  return spawnSync(findOnPath('sh', searchPath), ['-c', command], {
+    cwd: run.projectDir,
+    env: { CLAUDE_PROJECT_DIR: run.projectDir, PATH: searchPath },
+    ...run.stdin,
+    encoding: 'utf8',
+    // Room for a hook answer carrying a large report, well past spawnSync's 1 MiB default.
+    maxBuffer: 16 * 1024 * 1024,
+    timeout: run.timeoutMs,
+  });
+}
+
 /**
- * Run a registered hook command through `/bin/sh -c`, as the harness does, and return its
+ * Run a registered hook command through the shell, as the harness does, and return its
  * stdout.
  *
  * @param command - The command as registered in `.claude/settings.json`, unchanged.
@@ -112,22 +146,38 @@ export interface HookRun {
  * carrying its stderr.
  */
 export function runHookCommand(command: string, run: HookRun): string {
-  const result = spawnSync('/bin/sh', ['-c', command], {
-    cwd: run.projectDir,
-    env: {
-      CLAUDE_PROJECT_DIR: run.projectDir,
-      PATH: [join(run.projectDir, SCRATCH_BIN), trustedShellPath()].join(delimiter),
-    },
-    ...run.stdin,
-    encoding: 'utf8',
-    // Room for a hook answer carrying a large report, well past spawnSync's 1 MiB default.
-    maxBuffer: 16 * 1024 * 1024,
-    timeout: run.timeoutMs,
-  });
+  const result = spawnHook(command, run);
   if (result.status !== 0) {
     throw new Error(
       `hook exited ${result.status ?? `on ${result.signal ?? 'an error'}`}\n${result.stderr}`,
     );
   }
   return result.stdout;
+}
+
+/**
+ * Prove the fixture runs the registered text from a project whose path holds a space: the
+ * same command with its quotes removed must end with the shell's command-not-found status,
+ * because the unquoted project path splits. A fixture that rewrote the path, or ran from a
+ * path without a space, would let it run.
+ *
+ * @param command - The command as registered, quoted.
+ * @param links - The repository paths the hook's project links, as its smoke gives them.
+ * @param timeoutMs - The bound on the run.
+ * @throws When the unquoted command ends any other way.
+ */
+export function proveUnquotedPathSplits(
+  command: string,
+  links: readonly string[],
+  timeoutMs: number,
+): void {
+  inThrowawayProject(links, (projectDir) => {
+    const result = spawnHook(command.replaceAll('"', ''), { projectDir, timeoutMs });
+    if (result.status !== COMMAND_NOT_FOUND) {
+      throw new Error(
+        `the command with its quotes removed should fail with ${String(COMMAND_NOT_FOUND)}, ` +
+          `ended ${String(result.status ?? result.signal)}\n${result.stderr}`,
+      );
+    }
+  });
 }
