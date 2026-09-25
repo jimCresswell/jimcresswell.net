@@ -1,11 +1,12 @@
-import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
-import { tmpdir } from 'node:os';
+import { mkdirSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 
 import { z } from 'zod';
 
 import {
-  readHookCommand as readRegisteredHookCommand,
+  inThrowawayProject,
+  proveUnquotedPathSplits,
+  registeredHookCommand,
   runHookCommand,
 } from './claude-hook-command-fixture';
 
@@ -14,10 +15,10 @@ import {
  *
  * The hook runs the built drift checker and turns its drift report (report on stdout,
  * exit 1) into session context. This smoke reads the hook's command from
- * `.claude/settings.json`, runs it through the shared hook-command fixture (the shell,
- * from the repository root, with `CLAUDE_PROJECT_DIR` pointing at a throwaway project
- * whose checker is a stub), and asserts exit 0 and the right answer for each checker
- * outcome. On drift the answer is a harness-shaped alert carrying the stub's whole
+ * `.claude/settings.json`, runs the registered text unchanged through the shared
+ * hook-command fixture (the shell, from a throwaway project whose name holds a space, whose
+ * checker is a stub, and which `CLAUDE_PROJECT_DIR` names), and asserts exit 0 and the right
+ * answer for each checker outcome; the same text with its quotes removed must fail. On drift the answer is a harness-shaped alert carrying the stub's whole
  * report: one stub writes its report and exits 1 at once; another exits 1 first and its
  * report reaches stdout only after the stub has been reaped, so a hook that decides on
  * the checker's `exit` instead of the end of its output emits no alert; a third writes a
@@ -159,21 +160,20 @@ function fail(message: string): never {
 }
 
 function readHookCommand(): string {
-  const command = readRegisteredHookCommand('SessionStart', HOOK_NAME);
-  if (command === undefined) {
-    fail(`no SessionStart ${HOOK_NAME} hook command found in .claude/settings.json`);
+  try {
+    return registeredHookCommand('SessionStart', HOOK_NAME);
+  } catch (error) {
+    return fail(error instanceof Error ? error.message : String(error));
   }
-  return command;
 }
 
 /**
  * Run the hook command against a throwaway project whose built checker is the case's
- * stub: the real hook script runs from this repository, and `CLAUDE_PROJECT_DIR` points
- * it at the throwaway project's checker.
+ * stub: the project links only `.claude/hooks`, so the real hook script runs, and its
+ * `agent-tools/dist` is the project's own, holding the stub and never the real build.
  */
 function runCase(command: string, smokeCase: SmokeCase): void {
-  const projectDir = mkdtempSync(join(tmpdir(), 'plan-gate-drift-alert-smoke-'));
-  try {
+  inThrowawayProject(['.claude/hooks'], (projectDir) => {
     const checkerPath = join(projectDir, CHECKER_PATH);
     mkdirSync(dirname(checkerPath), { recursive: true });
     writeFileSync(checkerPath, smokeCase.checker, 'utf8');
@@ -181,9 +181,7 @@ function runCase(command: string, smokeCase: SmokeCase): void {
       runHookCommand(command, { projectDir, timeoutMs: HOOK_TIMEOUT_MS }),
       smokeCase.alertReport,
     );
-  } finally {
-    rmSync(projectDir, { recursive: true, force: true });
-  }
+  });
 }
 
 /** Hook output for an error message: short output whole, long output by length and ending. */
@@ -225,6 +223,11 @@ function checkResponse(stdout: string, alertReport: string | undefined): void {
 }
 
 const command = readHookCommand();
+try {
+  proveUnquotedPathSplits(command, ['.claude/hooks'], HOOK_TIMEOUT_MS);
+} catch (error) {
+  fail(`fixture self-proof: ${error instanceof Error ? error.message : String(error)}`);
+}
 for (const smokeCase of CASES) {
   try {
     runCase(command, smokeCase);
@@ -233,5 +236,5 @@ for (const smokeCase of CASES) {
   }
 }
 process.stdout.write(
-  `plan-gate-drift-alert smoke OK: settings.json command answered ${String(CASES.length)} checker outcomes: the whole drift report as an alert on drift, {} otherwise\n`,
+  `plan-gate-drift-alert smoke OK: settings.json command answered ${String(CASES.length)} checker outcomes: the whole drift report as an alert on drift, {} otherwise; the unquoted text fails\n`,
 );

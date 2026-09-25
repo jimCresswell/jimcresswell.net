@@ -3,13 +3,10 @@ import {
   closeSync,
   fstatSync,
   mkdirSync,
-  mkdtempSync,
   openSync,
   readFileSync,
-  rmSync,
   writeFileSync,
 } from 'node:fs';
-import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 
 import { z } from 'zod';
@@ -17,7 +14,9 @@ import { z } from 'zod';
 import type { PayloadStatus } from '../src/claude/pre-compact-observation.ts';
 import {
   type HookStdin,
-  readHookCommand as readRegisteredHookCommand,
+  inThrowawayProject,
+  proveUnquotedPathSplits,
+  registeredHookCommand,
   repoRoot,
   runHookCommand,
 } from './claude-hook-command-fixture';
@@ -30,7 +29,9 @@ import {
  * both map a `.js` specifier onto its `.ts` file, so a relative import that
  * plain Node cannot resolve passes every other check and fails only at a real
  * compaction. This smoke reads the exact command from `.claude/settings.json`,
- * runs it through the shell, and asserts what the harness enforces — exit 0 and
+ * runs it unchanged through the shell from a throwaway project whose name holds a
+ * space (the same text with its quotes removed must fail), and asserts what the
+ * harness enforces — exit 0 and
  * a response carrying only top-level fields with `continue: true` — plus one
  * observation per run, readable by its owner only, whose marker matches the
  * response's.
@@ -101,11 +102,11 @@ function fail(message: string): never {
 }
 
 function readHookCommand(): string {
-  const command = readRegisteredHookCommand('PreCompact', HOOK_NAME);
-  if (command === undefined) {
-    fail(`no PreCompact ${HOOK_NAME} hook command found in .claude/settings.json`);
+  try {
+    return registeredHookCommand('PreCompact', HOOK_NAME);
+  } catch (error) {
+    return fail(error instanceof Error ? error.message : String(error));
   }
-  return command;
 }
 
 function singleLine(text: string, what: string): string {
@@ -175,13 +176,13 @@ function openStdin(stdin: SmokeStdin, projectDir: string, transcriptPath: string
 }
 
 /**
- * Run the hook command for one case against a throwaway project directory, through the
- * shared hook-command fixture: the real wrapper and source run from this repository,
- * while every log is written under the throwaway directory and not into the tree.
+ * Run the hook command for one case against a throwaway project, through the shared
+ * hook-command fixture: the project links `.claude/hooks` and `agent-tools`, so the real
+ * wrapper and source run, while every log is written under the project's own `.claude/logs`
+ * and not into the tree.
  */
 function runCase(command: string, smokeCase: SmokeCase): void {
-  const projectDir = mkdtempSync(join(tmpdir(), 'pre-compact-observe-smoke-'));
-  try {
+  inThrowawayProject(['.claude/hooks', 'agent-tools'], (projectDir) => {
     const transcriptPath = join(projectDir, 'session.jsonl');
     writeFileSync(transcriptPath, '{}\n', 'utf8');
     prepareLog(smokeCase.logBefore, projectDir);
@@ -197,12 +198,15 @@ function runCase(command: string, smokeCase: SmokeCase): void {
       stdin.close();
     }
     checkRun(stdout, projectDir, smokeCase.expectedStatus);
-  } finally {
-    rmSync(projectDir, { recursive: true, force: true });
-  }
+  });
 }
 
 const command = readHookCommand();
+try {
+  proveUnquotedPathSplits(command, ['.claude/hooks', 'agent-tools'], HOOK_TIMEOUT_MS);
+} catch (error) {
+  fail(`fixture self-proof: ${error instanceof Error ? error.message : String(error)}`);
+}
 for (const smokeCase of CASES) {
   try {
     runCase(command, smokeCase);
@@ -211,5 +215,5 @@ for (const smokeCase of CASES) {
   }
 }
 process.stdout.write(
-  `pre-compact-observe smoke OK: settings.json command ran from source for ${CASES.length} cases, exit 0, harness-shaped response, matching observation\n`,
+  `pre-compact-observe smoke OK: settings.json command ran from source for ${CASES.length} cases, exit 0, harness-shaped response, matching observation; the unquoted text fails\n`,
 );
