@@ -249,7 +249,7 @@ instead of reading to resolve them.
 The four questions judge the work inside the frame; this one judges the frame. The owner's
 word of 2026-09-24: "Crickets judge in the frame provided, we need them to also judge the frame itself".
 
-- FRAME: set the `SOURCES:` block beside the `READING:` block, INTENT and NEXT. What do
+- FRAME: set the `SOURCES:` block beside the `READING:` block. What do
   the sources name that the reading omits, or ranks lower than they do (a goal, a direction
   of a goal, an open todo, a party)? What does the reading claim that a quoted source
   contradicts (a status, a hold, an order, a rule read wider or narrower than its own
