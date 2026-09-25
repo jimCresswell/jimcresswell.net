@@ -138,3 +138,176 @@ cures); an owner card for register row C7; whether the Director accepts the node
   window". JC.net's seat and the lineage's seat author it in its own lane.
 - The node-status removal under the plan-node schema stands; statuses live in frames, from
   stated sources.
+
+## Resumed session, 2026-09-25 10:46Z onwards (Siren herds Rudder, 158275)
+
+This section supersedes §In flight and §Queue above where they differ. Recompute every fact.
+
+**Owner words today.**
+
+- To the Director at about 10:31Z, verbatim: "1. All JC.net Practice innovations integrated into
+  the OCE Practice 2. Codex brought up to first class Practice citizen status 3. All local and
+  remote branches deleted or in PRs, all PRs merged".
+- To the lineage's standby seat at about 11:00Z (lineage event of 11:06:26Z), verbatim: "We are
+  prioritising all JC.net Practice innovations being integrated into OCE, then we review. This is
+  a fixed process with an end, not an ongoing effort. Once the Practice contains the best of both
+  it will be extracted into an installable entity." It is not yet homed in the node: it goes in
+  §Rulings with the next exchange pull request.
+
+**The lineage's exchange seat is unheld.** Marten's session is over. Geyser rides Pewter
+(eeecbd) is on standby. Address lineage events to the seat.
+
+**Merged:** PR 187 (2b085f6f), the Cricket frame audit's joint cures F1 to F7. Receipt with the
+F1 and F5 to F7 bytes: lineage event 8ec17ddf.
+
+**Open pull requests of this seat:**
+
+- **PR 186, the K amendment twin** (worktree `k-twin`, head 339f69f3). Round one had two findings:
+  (b) and (c) scoped to the inline-prompt role (cured), and claim retention (Rejected, with
+  reason). Round two was requested. Then run the sweep, merge, and send the lineage a receipt with
+  the (b) and (c) bytes, which it takes.
+- **PR 188, K4, DRAFT** (worktree `k4`, head 4a41a83a). The `testing-strategy.md` hunks were
+  written at 30 to 38% context, past PDR-052's floor. A fresh session below 30% reads them in full
+  and cures them, then takes the PR out of draft and runs the review rounds. Only then does the
+  lineage get the final bytes (it was told in 20cc0c88). The lineage's intake branch waits on it.
+- **The filter-guard branch, draft pull request** (worktree `filter-guard`, 5ca00f52). It
+  conflicts with main in `validate-cited-scripts.ts`. It also carries three owed items in its
+  commit message:
+  - unfiltered calls resolved in their scope;
+  - the allow-list bypass removed;
+  - the semicolon unit row.
+
+**Answered to the lineage:**
+
+- 5aa3b314: the seed source. Subagent writes are the parent's, by Sif. The platform gate is signed
+  as a joint cure.
+- 26fc7185: the K amendment signed. J4 and J18 are recorded LANDED.
+- a969acc5: the Cricket answers.
+- 0c23f589: K4 timing and the retirement.
+
+**Queue, in order:**
+
+1. PR 186 to merge, then its receipt.
+2. PR 188's sub-30% directive review, then its rounds, merge and receipt.
+3. Batch six: the twelve compare rows (goal one, the owner's fixed process).
+4. The next exchange pull request. It carries:
+   - §Landings rows: J4 (lineage PRs 202, 203, 205), J18 (204, 206 to 209, with the three
+     departures in 2a33cf89), batch two INTEGRATED (199, 200), and K1 to K3(e) INTEGRATED (201);
+   - the owner's 11:00Z word as a ruling;
+   - the items listed under queue item 2 above.
+5. The five Cricket refinements (lineage event 989e10c8). JC.net writes them; the lineage follows.
+6. Four JC.net test files that call `vi.useFakeTimers`: inject a scheduler (PR 188's body lists
+   them).
+7. The seed platform gate: `CLAUDE_CODE_SESSION_ID` is read only on a Claude platform (joint, and
+   it bears on goal two).
+8. The owner-only append re-tighten: refuse or replace a pre-existing file whose mode admits
+   another account (2a33cf89).
+9. The ignore probe without `--no-index` (ff75b6d2).
+10. The filter-guard draft: rebase, the three owed items, then out of draft.
+11. The older items 3 to 10 above.
+
+**Claims** a30304be, 3d4b9361 and 2cdb5931 are this seat's, and are closed or handed over at
+retirement.
+
+## Wrap block, 2026-09-25 11:2xZ (the owner's word: prepare for compaction and stop all processes)
+
+**PR 186, round two** (Copilot review 5317041919, on 339f69f3): one finding, comment 4104010768.
+PDR-009's thin-wrapper prohibitions (about lines 132 to 134 and 336 to 340) forbid substantive
+content in any adapter. That conflicts with the inline-prompt copy. Round two binds: cure it in
+the last push, or reject it with a signed line.
+
+- Cure direction (a proposal, not yet drafted): state the thin-wrapper rule by its domain in both
+  places. An adapter adds no substantive instruction of its own. An inline-prompt role's copied
+  System prompt block is its template's text, compared with it.
+- The lineage's PDR-009 carries the same conflict, so the bytes go to it with the receipt, along
+  with the (b) and (c) cure.
+- Then run the merge-base sweep, merge, and send the receipt.
+
+**PR 188, residue for the sub-30% reviewer.** Below-bar items left untaken by choice:
+
+- The partial global-state lists in `never-disable-checks`, the starter templates and the Cursor
+  bugbot file stay as examples.
+- Item 1's bootstrapper wording stays, although its head clause already covers clock IO: it
+  settles the lineage reviewers' split.
+
+**A promise missing from the queue above:** as item 12, JC.net compares its own adapter check for
+the pointer-existence gap (lineage event 1440e0c3).
+
+**Queue order under the owner's 11:00Z word:**
+
+- Items 6 to 8 are JC.net defects, and bugs come first.
+- Item 9 (the ignore probe without `--no-index`) is an inbound gain. It comes after the review the
+  owner named.
+
+**Attribution.** None of these owner words was heard first-hand by this seat:
+
+- The owner's 11:00Z word is Geyser's recording (lineage event of 11:06:26Z).
+- The 10:31Z word is from the Director's napkin.
+- "Marten's session is over" and "Geyser is standby" are the Director's relays.
+
+**The filter-guard branch.** Its push was stopped at the owner's freeze word before any remote ref
+existed. It is still local only, and goal three owes it a pull request. Its draft body can be
+rebuilt from the commit message.
+
+**Check-in 10 (Director, 11:21Z).**
+
+1. The todo served is todo 5, verbatim: "The outbound note and material, delivered through the
+   join ceremony."
+   - Status by the register at main: outbound 0 of 21 LANDED, inbound 5 of 28.
+   - The lineage's merge-landed events show J4 (its PRs 202, 203, 205) and J18 (204, 206 to 209)
+     landed. The register does not yet record them (queue item 4).
+   - This session moved joint text (the K twin, the Cricket cures, K4) and answered the lineage.
+     It delivered no new rows.
+2. What holds this seat:
+   - The owner's freeze word at about 11:20Z. The rule is wrap §Use When: no subagent, monitor or
+     fleet starts until compaction lands. The sensor is owner chat, last read then.
+   - PR 188: PDR-052. The sensor is session-metadata, 43.3% at 11:22:40Z.
+   - PR 186: round two, above.
+3. The Cricket suite was not run, because the freeze word gates subagents. It runs once, on the
+   handover frame, after compaction and before any work.
+
+**Concept exploration: delivery is not landing.**
+
+- *Observations.*
+  - When the lineage's seat was held overnight, it landed batch two, K1 to K3(e), J4 (3 PRs) and
+    J18 (6 PRs), about one PR every 40 minutes.
+  - Since 10:35Z that seat is unheld, and its integration rate is zero.
+  - Batches three and five are acknowledged but not integrated, and J2 and J3 receipts are owed.
+  - The byte twins cost this seat about 15 minutes each (the K amendment, the Cricket cures). A
+    concept-note row costs the receiver several PRs of its own code.
+- *Problem.* Goal one is counted in landings in the lineage, not in deliveries. The constraint on
+  landings is the lineage's integration capacity. Drafting batch six adds inventory, which goes
+  stale as the lineage's head moves.
+- *What changed in this seat's view.* The fluent next step, "batch six next", serves delivery.
+  The owner's 11:00Z word ("integrated", "a fixed process with an end") names landing.
+- *Proposals.*
+  - **P1.** The owner seats the lineage's exchange seat; the Director has put the succession to
+    the owner. Warrant: the overnight rate against zero now. Falsifier: lineage landings continue
+    with no exchange seat held.
+  - **P2.** Triage batch six's twelve rows by disposition before drafting notes. Some cells
+    already name a closing outcome: J15 "already-present-verify-parity", J8 "decline until castr
+    has a corpus". Those close on a one-line receipt each. Warrant: the register cells. Falsifier:
+    the two-sided reads find that every row needs a full note.
+  - **P3.** For rows whose code is still near-identical in both estates, deliver exact bytes (the
+    twin pattern) with the concept note, so the receiver applies rather than rewrites. Warrant:
+    twin costs against J4's and J18's PR counts. Falsifier: the estates' code has diverged so far
+    that the bytes do not apply.
+  - **P4 (a question for the owner, through the Director, never acted on unasked).** Should the
+    donor seat integrate its own rows in the lineage through the join ceremony? Card C7's "land
+    it in both estates in one window" may already imply it.
+- *Unresolved:* whether any lineage seat other than the exchange seat lands exchange rows (Swallow
+  landed Codex work today, not exchange rows).
+
+**Re-arm after compaction.** Every process of this seat is stopped. The scratchpad scripts are:
+
+- `watch-comms.sh <estate primary> <session pid>`, once for each estate;
+- `heartbeat.sh <claim ids, comma-separated> <branch> "<label>"`;
+- `review-watch.sh <pr> <40-character head> 60`.
+
+If the scratchpad is gone, the napkin's RE-ARM RECIPE of 2026-09-24 carries the commands.
+
+**Claims kept for the open PRs:** a30304be, 3d4b9361 and 2cdb5931.
+
+- Pickup: this seat after compaction (the owner's card of 2026-09-24; today's word on it is with
+  the Director), or a named successor through `claims adopt`.
+- If no one adopts them, they expire at freshness, at about 15:20Z, and are archived stale.

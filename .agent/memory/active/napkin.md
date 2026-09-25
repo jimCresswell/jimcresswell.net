@@ -3596,3 +3596,49 @@ the letter count cured in the description (five letters, not four). Successor cu
 main: coordination/2026-09-25-cf6897 at cf689735. Slips: a stderr log written into the repo root
 (moved to the scratchpad, never staged); two times written before a clock read, both corrected;
 the owner's login is auto-requested as a reviewer at "ready" by the repository, not by me.
+
+## 2026-09-25T11:2xZ — Siren herds Rudder (158275): the resumed segment's wrap, before the owner's compaction
+
+- PDR-052 departure. The context check ran once, at 10:47Z (14%), and was then treated as
+  standing. The directive edits to `testing-strategy.md` began at about 11:04Z at 30% and ran to
+  38%. Corollary 2 requires the check immediately before directive work.
+  - Measured burn: 8% to 43% in 36 minutes, almost all from full-file reads (start-right-team's
+    1081 lines, the shared workflow, event bodies, diffs).
+  - Cure applied: PR 188 stays a draft until a session below 30% re-reviews its directive hunks.
+  - Structural cure proposed, not built: a PreToolUse hook on edits under `.agent/directives/`
+    that reads session-metadata and refuses at 30% or above. The check then fires at the edit,
+    not from memory of an earlier read. Falsifier: if the hook cannot resolve the session id and
+    transcript at hook time, the gate belongs elsewhere.
+- session-metadata now runs from the primary. The coordination branch cut from cf689735 carries
+  PR 183's registration (run it through tsx over the source). It read 43.3% at 11:22:40Z, within
+  a point of the hand read (the last assistant usage: input + cache_creation + cache_read).
+- Lexical search misses paraphrased siblings. K4's first draft changed "which calls were made" at
+  the three sites a grep found. It left the governing sentence standing: §Philosophy's "which
+  calls the product made". The test-expert and docs-adr-expert reviews caught it, along with four
+  more over-bar defects. When a change alters a rule's meaning, read the governing section and
+  find every statement of the rule by concept, not by the finding's wording.
+- exit-codes-in-band-never-piped, broken by this seat. `claims open … | jq -r .claim_id; echo
+  exit=$?` reported jq's exit 5, because pnpm's echo line broke the JSON. The retry opened a
+  duplicate claim (f3506184, closed). Write the output to a file, read the exit code in band, then
+  parse.
+- zsh traps, new to this seat:
+  - `GID` is a read-only special parameter; assigning it fails with "bad math expression".
+  - `set -- $p` does not word-split.
+  - A `cd` inside a Bash call moves the session's cwd.
+  Use bash scripts or subshells.
+- The comms concept gate refuses "carve-out" and "an exception to", even inside a quoted passage
+  name. Reword to the passage's content.
+- Registration lapse. The Cricket template edits and the K4 edits began before a claim covered
+  them. They were claimed late (3d4b9361, 2cdb5931), with the lapse stated in each intent.
+- Play seeds (associations, not findings):
+  - The exception shape met three layers in one morning. The K amendment removed "exception"
+    from PDR-009. K4's first draft brought it back as a permission after a ban, and the docs
+    reviewer named the shape. The comms gate refused the word twice.
+  - The owner's 11:00Z endpoint, "extracted into an installable entity", puts every
+    Practice-Generalisation trailer on the critical path.
+  - Discarded as forced: that the 30% floor caused K4's draft defects (a lexical-search miss
+    produces them at any context); that a standby seat relaying an owner word means something
+    structural.
+- A concept seed, routed to the Director: delivery is not landing. The exchange's constraint is
+  integration on the lineage's side, and that seat is unheld, so batch six adds inventory, not
+  landings. Proposals are in the exchange-seat thread record's wrap block.
