@@ -616,6 +616,12 @@ compaction. Watchers, heartbeat and the peer-liveness poll re-armed.
     and the lane skill's step 2 identity check records a failed comparison. That last one is a
     JC.net defect: this estate's loop exits 0 when the name differs but the email matches.
     Take the bytes from PR 216's merge, not from an interim head.
+  - Curator-passes retirement (lineage PR 245, head fee8d2a68, 22:23Z): JC.net has the
+    curator-pass skill and the temp-files rule's curator clause, but no passes directory. After
+    PR 245 merges, take the skill's joint parts (step 6's last sentence and the never-list
+    bullet; whole-file blob 7f2857bc there), and compare the rule's clause with the lineage's
+    bytes. PDR-081's Cascade, Consequences and Forbids still describe the log as live; that
+    is a Core amendment named as a lineage follow-up.
   - Deferred directive edit (PDR-052, 57.8% at 21:25Z): the lineage's
     `cloud-environment-routing.md` back-link to the bot-identity rule, at the next sub-30% reading.
   - The shell reader's known limits (PR 207's final line and the code review): a `case` arm's
