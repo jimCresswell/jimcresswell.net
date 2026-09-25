@@ -4402,3 +4402,66 @@ after its 30-minute expiry.
 - Goal three at 15:43Z: JC.net open PRs 189 (draft, this branch), 192 (ready); lineage open 187,
   211, 213, 215, 216; lineage remote branches 9 minus the twin's plus Myrtle's three lanes (method:
   the stream's push-landed and merge-landed events; a ls-remote count at suite 13).
+
+## 2026-09-25T16:04Z — The fold pushed and ready; the door refused it THREADS-OPEN; the cures routed by author
+
+- The fold's merge bdb4b49c6 (engraph 0a816621e in; tree equal to the preview dd1f2a18d) pushed
+  as the bot at 15:48Z (pre-push 134 tasks, 392 lint warnings pre-existing in the lineage's
+  agent-tools, none from the fold); PR 187 marked ready 15:48:57Z; the front door polled from
+  15:49:12Z and refused at 16:04:26Z: THREADS-OPEN, 8 of 8 unresolved (the Codex connector 4,
+  Copilot 4, both reviews bound to bdb4b49c6). Every finding sits on a seat's record carried by the
+  fold: PDR-140's amendment, the worktree-lane skill's CI=true cure, the heartbeat-cadence figures,
+  Myrtle's letter count (Myrtle's four); the idle-wake sketch marked superseded, the Gale pairing
+  channel's order and placeholders (Swallow's three). Routed on the lineage stream at 16:05:28Z (event 6892c040;
+  the two-round rule and check-in 16 as the deadline; the Director posts
+  the disposition lines and runs the door again after the cures land.
+- Between 15:47Z and 16:04Z: JC.net PR 192 (the trigger amendment) merged 1708982f at 15:46:24Z;
+  Myrtle's PR 219 is its lineage twin (21 files), PRs 217 and 218 put the two held branches in
+  draft PRs (the A4 ruling); Swallow's slice 2 gate fired on R1 (Codex denies the daemon socket to
+  every sandbox below full-disk write; dbb48c46), absorbed 4d3eb545, the owner asked in the
+  Director's chat with the companion-beside-the-seat cure as the recommendation; Swallow resumes
+  dialogues 1b-iv meanwhile (ec74b74d). Siren's owner card for batch six's fleet price (wave 1 two
+  lanes about 11M processed; wave 2 conditional) raised to the owner in the Director's chat with
+  a third design leg required before launch. The Director monitor now watches both streams (the
+  JC.net-only watch explained the 30-minute silence; lineage events had reached this seat at
+  check-ins only).
+
+## 2026-09-25T16:20Z — Director suite 13 tally (frame built 16:13Z), and the fold's second push
+
+Work verdicts: 6 ON-TRACK, 2 DRIFTING, 0 WRONG-PRIORITY (the eighth in at 16:21Z). Normal wave 4
+ON-TRACK; adversarial: low DRIFTING and medium DRIFTING, convergent (batch six, goal one's largest
+gap, unstarted behind an owner card whose default already applies; Siren on the joint-cure lane it
+had itself placed "after batch six"), ACCEPTED: the line to Siren sent natively 16:16Z (convert the
+pilot's five notes now on the default; draft in-seat what it can; the fleet only on the owner's
+word with the third leg; park the joint-cure lane after opening its draft PR); Siren accepted at
+16:18Z and started converting (PR 194's cure in the gate; the todo-test cure 69416c32 to a PR; PR B's
+draft PR opened then parked). Adversarial high and procedure ON-TRACK.
+
+Frame verdicts: 3 SOUND, 2 NARROWED, 3 CONTRADICTED: normal low SOUND, medium CONTRADICTED, high SOUND, procedure NARROWED;
+adversarial low CONTRADICTED, medium CONTRADICTED, high SOUND, procedure NARROWED (ruling 35: verify at check-in 16 that todo 4 still follows todo 5, folded into cure 5). Cures for suite 14's frame:
+
+1. The cadence counts from check-ins, never from a late suite: check-in 16 at 16:28Z (45 minutes
+   after check-in 15 at 15:43Z), the suite 22 minutes after it; "the 23-minute schedule" dropped as a
+   phrase with no rule (normal medium; adversarial medium, high).
+2. Batch six's order breach named as a breach in the frame, not carried as "routed"; the frame
+   reads whether Siren is converting or waiting (adversarial low, medium).
+3. H1 is one thing: released (the push landed) or a hold with a rule; the "under 12" load threshold
+   sourced to no-unbounded-host-load or marked the Director's own choice (normal low, medium, high;
+   adversarial low, medium).
+4. Goal three's "all PRs merged" clause carries a count and a trigger (open PRs per estate with
+   their next step), beside the branch counts (normal medium).
+5. Ruling 35 quoted where READING gives goal one's inbound and outbound (procedure normal); the
+   dialogues slices' MERGED status carries a source (adversarial medium).
+6. H5 gets a restatement point like H6's (check-in 17), H4's last read a timestamp; todo 4's status
+   re-read from Siren at check-in 16 (adversarial medium).
+7. The Myrtle launch-word bullet in SOURCES split into the verbatim quote and a READING line
+   (normal high, a hygiene note).
+
+The fold between the waves: Swallow's three cures e6aa80c6d (16:09:53Z) and its two records
+9eda29058 (16:15:24Z, at the Director's word); Myrtle's four cures 6d78f21c8 (16:17:53Z); gate
+notice 6e1586c2; the bot push landed 16:19:44Z (remote 6d78f21c8, pre-push passed in 97 seconds);
+the eight disposition lines posted as thread replies and every thread resolved at 16:20:04Z
+(replies 4106474802 to 4106476749); the front door polling the new tip from 16:20Z; Myrtle told
+(04c56ead) to hold its last records commit for the successor branch. Siren's PR 194 round-two cure
+in its gate; its site-workspace lint gap (no vitest rule reaches 44 test files) queued after batch
+six.
