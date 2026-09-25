@@ -10,6 +10,7 @@ import { spawn, spawnSync, type ChildProcess, type SpawnSyncReturns } from 'node
 import { existsSync, readFileSync } from 'node:fs';
 import { availableParallelism, loadavg } from 'node:os';
 import { dirname, join } from 'node:path';
+import { setTimeout as delay } from 'node:timers/promises';
 import { fileURLToPath } from 'node:url';
 
 import {
@@ -49,12 +50,6 @@ interface WatcherHarness {
   readonly watcher: ChildProcess;
   readonly stdout: () => string;
   readonly stderr: () => string;
-}
-
-function delay(milliseconds: number): Promise<void> {
-  return new Promise((resolve) => {
-    setTimeout(resolve, milliseconds);
-  });
 }
 
 function waitForExit(child: ChildProcess, label: string): Promise<number | null> {
@@ -146,8 +141,12 @@ function runCli(
     timeout: WATCHER_HANG_BACKSTOP_MS,
   });
   if (result.error !== undefined) {
-    const call = `collaboration-state ${args.slice(0, 2).join(' ')} failed to run`;
-    assert.fail(`${call}: ${result.error.message} ${hostDiagnostics()}\n${result.stderr}`);
+    const call = `collaboration-state ${args.slice(0, 2).join(' ')}`;
+    const hung = 'code' in result.error && result.error.code === 'ETIMEDOUT';
+    const failure = hung
+      ? backstopMessage(`${call} did not exit`)
+      : `${call} failed to run: ${result.error.message} ${hostDiagnostics()}`;
+    assert.fail(`${failure}\n${result.stderr}`);
   }
   return result;
 }
