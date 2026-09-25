@@ -5050,3 +5050,52 @@ the Codex seat. (4) Goal three tightened to ZERO OPEN PRs on both repositories t
 proper quality and merge processes (reviews, legs, the door), every appropriate skill used; the
 coordination PRs (189, 223) fold at the day's end by the coordination-fold skill; PR 211 is the
 one PR that waits for the morning.
+
+## 2026-09-25T21:52Z — CHECK-IN 22 and the recommendations suite's outcome (the owner's 21:41Z condition met)
+
+The suite: eight Crickets (R1 to R6 each judged EXECUTE, AMEND or WITHHOLD) and the assumptions
+reviewer, which re-read every checkable fact at its source (both rulesets, the mirror workflow
+and its four runs today, the PR lists and bodies, the profile files, PDR-081, PDR-141, PDR-142,
+the pending-graduations row, the napkin decision table, the curator-pass skill and directory).
+Outcome, ruled by the Director at 21:52Z (f8b435e7 lineage, f2653ebb JC.net):
+
+- R1 PDR-142's three sentences: HELD, all three (the Director read them from fd3e32271; the
+  reviewer traced them to napkin decision rows A39, A41, A42: a seat's inference, lesson and
+  prediction, not owner words; A41 would add a review gate PDR-142 refuses by name); the
+  earlier "approve 1 and 2" REVERSED; default none lands.
+- R2 the scope file line: EXECUTE as amended, two lines (the repository line to the
+  line-specific fact; the shared index's "everywhere" narrowed to the fork line), Siren after
+  PR 208, under the owner's 21:41Z word; the reviewer found no record of a convergence intent.
+- R3 the `main` pull-request rule: WITHDRAWN (the Director's own read at 21:46Z, confirmed:
+  ruleset 23729318 is "mirror branch: fast-forward only", the owner's word of 2026-09-20; the
+  upstream-mirror workflow updates `main` four times a day; the rule would break it; the
+  workflow fails loud on divergence, so the "only control" premise was wrong too).
+- R4 the path-scoped owner-review ruleset: WITHHELD and dropped (required reviewers accept a
+  Team only and the org has none; engraph requires zero approvals and no code-owner review;
+  every expressible shape puts the owner on those files' critical path).
+- R5 (a) wording amended in PR 241's body: "the same residual exists on Claude seats and is
+  unowned in both" (precedence-is-not-approval); (b) stands; (c) the curator-passes retirement
+  PR PROCEEDS (PDR-081's Amendment Log of 2026-06-14 already records the supersession) amended
+  to cure the generator (the skill line and the README), re-home the carry-forward items from
+  the eight files first, and drop the PDR-081 status-line edit; check-in 22's "waits for the
+  owner" line corrected on the stream.
+- R6 zero open PRs: a direction through the proper processes, no deadline; the floor: PR 211
+  (Gale's), PR 224 (the OWNER's own draft, no seat readies it), the two successor coordination
+  PRs; PRs 220 and 221 are ready; PR 241 lands tonight on six conditions; the folds run at the
+  00:00Z rollover by the 24-hour rule, not after the last landing.
+Three of the Director's premises fell to the reviewer's reads (R1, R3, R4), all three taken
+from a seat's summary without reading the primary surface: the suite-19 cure binds and was not
+applied; the owner's condition caught what the Director's own check did not.
+
+Check-in 22 reads (21:51Z): PR 227 merged 185c15d2b (batch six's first); PR 233 at the slot
+(synced 3ee319f4a, legs re-requested); PR 243 (the e2e-inputs lane) new; PR 208 BLOCKED at its
+final tip c475c91c (the last settlement, joint bytes 4fd5b7f5 to PR 216); one gate on the host,
+load 18.2; nothing unpushed (the 21:44Z push landed four commits). Context readings: Siren 65.3%
+at 21:51:56Z (keeps PR 208's door and receipt; the rest to the morning if late); Myrtle's harness
+compacts on its own threshold (one compaction at about 21:05Z, lane state kept); Swallow about a
+quarter of a 1M window since its last compaction. Myrtle's done-condition: the pending-
+graduations register (`.agent/memory/operational/pending-graduations.md` on the lineage) was
+not counted by the Director this check-in (the directory search found no directory; the
+register is a file); read at suite 20. The slot order stands as the seats proposed, interleaved
+by readiness; the Turbopack flake's F-208 written. The owner's 21:34Z push notification is H5's
+sensor; the owner's word at 21:41Z answered it (the Codex seat in the morning).
