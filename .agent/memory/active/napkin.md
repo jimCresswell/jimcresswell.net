@@ -4137,3 +4137,14 @@ Frame verdicts: 0 SOUND, 5 NARROWED, 3 CONTRADICTED. Cures, all taken into the n
    H2's sensor is Titan's lineage twin, not Siren's (adversarial medium, from the git snapshot).
 7. Goal three's OCE half is the Director's own step where mechanical (done at 13:51Z), not parked
    on the vacant seat (normal low).
+
+## 2026-09-25T14:14:47Z — the watcher fix landed; the records push passed; Siren at rest
+
+PR 190 merged 5d4edebb (13:5xZ) and PR 186 merged a9ed6463; Siren's restart notice on both
+streams (20dd9627, 20385b9c); Siren handed over at rest at 14:10Z (heartbeat-end 14:10:36Z,
+record ca897005 on this branch, claims a30304be, 3d4b9361, 2cdb5931 carried with handoff records;
+open: PR 188 draft under PDR-052, the local filter-guard branch owing a draft PR; the twin's plan
+sent to Titan, event 09f9a852). Main merged into the coordination branch as eedb1bca (PRs 190,
+186; clean; napkin union whole), gate notice af9f83ae, push through the full gate passed at 14:14Z
+on the fixed smoke: remote eedb1bca, 26 commits, all on PR 189. The Director monitor stopped and
+re-armed on the rebuilt dist. No JC.net seat is live besides the Director; the lineage has Titan.
