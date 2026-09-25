@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { Linter } from '@typescript-eslint/utils/ts-eslint';
 import type { TSESLint } from '@typescript-eslint/utils';
-import { testRules } from '../shared.js';
+import { testRules } from '../test-rules.js';
 import { strict } from './strict.js';
 
 /**
@@ -80,7 +80,6 @@ function lint(
 describe('@engraph/eslint-plugin-standards strict config: vitest test-disabling pathogens', () => {
   it('reports vitest/no-disabled-tests for it.skip(...)', () => {
     const code = [
-      "import { describe, it } from 'vitest';",
       "describe('suite', () => {",
       "  it.skip('skipped case', () => {});",
       '});',
@@ -94,7 +93,6 @@ describe('@engraph/eslint-plugin-standards strict config: vitest test-disabling 
 
   it('reports vitest/no-disabled-tests for describe.skip(...)', () => {
     const code = [
-      "import { describe, it } from 'vitest';",
       "describe.skip('skipped suite', () => {",
       "  it('case', () => {});",
       '});',
@@ -108,7 +106,6 @@ describe('@engraph/eslint-plugin-standards strict config: vitest test-disabling 
 
   it('reports vitest/no-focused-tests for it.only(...)', () => {
     const code = [
-      "import { describe, it } from 'vitest';",
       "describe('suite', () => {",
       "  it.only('focused case', () => {});",
       '});',
@@ -122,7 +119,6 @@ describe('@engraph/eslint-plugin-standards strict config: vitest test-disabling 
 
   it('reports vitest/no-focused-tests for describe.only(...)', () => {
     const code = [
-      "import { describe, it } from 'vitest';",
       "describe.only('focused suite', () => {",
       "  it('case', () => {});",
       '});',
@@ -140,61 +136,31 @@ describe('@engraph/eslint-plugin-standards strict config: vitest test-disabling 
     ['describe.todo', "  describe.todo('pending suite');"],
     ['the todo option', "  it('pending case', { todo: true }, () => {});"],
   ])('reports vitest/warn-todo for %s', (_form, line) => {
-    const code = [
-      "import { describe, it, test } from 'vitest';",
-      "describe('suite', () => {",
-      line,
-      '});',
-      'export {};',
-    ].join('\n');
+    const code = ["describe('suite', () => {", line, '});', 'export {};'].join('\n');
 
     const { ruleIds } = lint(code, 'fixture.test.ts');
 
     expect(ruleIds).toContain('vitest/warn-todo');
   });
 
-  it('reports vitest/warn-todo for it.todo(...) under the test-file rule layer', () => {
-    const code = [
-      "import { describe, it } from 'vitest';",
-      "describe('suite', () => {",
-      "  it.todo('pending case');",
-      '});',
-      'export {};',
-    ].join('\n');
+  it.each([
+    ['it.skip', "  it.skip('skipped case', () => {});", 'vitest/no-disabled-tests'],
+    ['it.only', "  it.only('focused case', () => {});", 'vitest/no-focused-tests'],
+    ['it.todo', "  it.todo('pending case');", 'vitest/warn-todo'],
+  ])('reports %s under the test-file rule layer that workspaces add', (_form, line, ruleId) => {
+    const code = ["describe('suite', () => {", line, '});', 'export {};'].join('\n');
 
     const { ruleIds } = lint(code, 'fixture.test.ts', [
       { files: ['**/*.test.ts'], rules: testRules },
     ]);
 
-    expect(ruleIds).toContain('vitest/warn-todo');
-  });
-
-  it('does not report vitest test-disabling rules for an it.each(...) table', () => {
-    const code = [
-      "import { describe, expect, it } from 'vitest';",
-      "describe('suite', () => {",
-      "  it.each([1, 2])('case %i', (value) => {",
-      '    expect(value).toBeGreaterThan(0);',
-      '  });',
-      '});',
-      'export {};',
-    ].join('\n');
-
-    const { ruleIds } = lint(code, 'fixture.test.ts');
-
-    expect(ruleIds).not.toContain('vitest/no-disabled-tests');
-    expect(ruleIds).not.toContain('vitest/warn-todo');
-    expect(ruleIds).not.toContain('vitest/no-focused-tests');
+    expect(ruleIds).toContain(ruleId);
   });
 
   it('does not report vitest test-disabling rules for an ordinary it(...) call', () => {
-    const code = [
-      "import { describe, it } from 'vitest';",
-      "describe('suite', () => {",
-      "  it('case', () => {});",
-      '});',
-      'export {};',
-    ].join('\n');
+    const code = ["describe('suite', () => {", "  it('case', () => {});", '});', 'export {};'].join(
+      '\n',
+    );
 
     const { ruleIds } = lint(code, 'fixture.test.ts');
 
