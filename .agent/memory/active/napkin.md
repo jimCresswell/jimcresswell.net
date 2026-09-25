@@ -4108,3 +4108,32 @@ merge; the F-200 to F-207 JC.net twins go to Siren's successor queue as one item
 my 13:47Z push wording: Myrtle's consolidation reached its reachable end, not "done" by the launch
 word (six pending rows, four of them PDR-052-bound for the fresh context, six PDR-130 rows not
 due); the owner's start decision is unchanged by the wording.
+
+## 2026-09-25T13:56:46Z — Director suite 11 tally (frame built 13:48Z)
+
+Work verdicts: 7 ON-TRACK, 1 DRIFTING, 0 WRONG-PRIORITY, 0 UNDELIVERED. Normal wave: all four
+ON-TRACK. Adversarial: highest power low effort DRIFTING (batch six's drafting has no active owner;
+redirection: a Director fleet now); REJECTED with the adversarial medium role's own refutation:
+the receiver is the bottleneck (five rows delivered and not integrated, no merge-landed event since
+04:11Z, the seat opens only at the owner's act, pushed 13:47Z), a fleet would add to that pile at
+load 12 and displace the seat's lane; the other three ON-TRACK.
+
+Frame verdicts: 0 SOUND, 5 NARROWED, 3 CONTRADICTED. Cures, all taken into the next frame:
+
+1. The three goals are co-equal measures under the owner's alignment objective ("bring the Engraph
+   OCE Practice and JC.net Practice into alignment"); the ~13:30Z order is between goal one's two
+   directions only; "governing measure" and "instruments" wording dropped (normal low, high;
+   adversarial high; procedure adversarial).
+2. Myrtle's launch word is NOT met by its own definition: six pending rows (four PDR-052-bound,
+   the comms-table unit, the PDR-142 rows) and six PDR-130 rows not due; the Director ruled
+   closure-with-counts under the away word; the 13:47Z push said "closed", corrected in the record
+   at 13:5xZ, no second push (normal medium, adversarial medium).
+3. Batch six's drafting (12 J rows) gets its own UNOWNED entry with a trigger (a fresh Siren
+   session at the owner's return, or a fleet the seat runs), placed ahead of the seam rename and
+   the TUI fix in Siren's successor queue (adversarial high; the low role's finding, re-homed).
+4. The cadence interval quoted verbatim in the frame (procedure normal).
+5. The 10:37Z report timed in SOURCES (procedure normal).
+6. Goal three's counts carry their method and reflect the 13:51Z deletions (62 gone, 10 remain);
+   H2's sensor is Titan's lineage twin, not Siren's (adversarial medium, from the git snapshot).
+7. Goal three's OCE half is the Director's own step where mechanical (done at 13:51Z), not parked
+   on the vacant seat (normal low).
