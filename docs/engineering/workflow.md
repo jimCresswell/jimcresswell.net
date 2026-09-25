@@ -27,13 +27,13 @@ Commits never land on `main` directly: the `pre-commit`, `pre-merge-commit` and
 
 ## 2. Develop With TDD
 
-Write tests **before** code, at every level. The cycle is:
+Write the test or check **before** code, at every level. The cycle is:
 
-1. **Red** — Write a test specifying the desired behaviour. Run it. It must fail.
-2. **Green** — Write the minimal code to make the test pass. Run it. It must pass.
-3. **Refactor** — Improve the implementation without changing behaviour. Tests must remain green.
+1. **Red** — Write a test or check specifying the desired behaviour. Run it. It must fail.
+2. **Green** — Write the minimal code to make it pass. Run it. It must pass.
+3. **Refactor** — Improve the implementation without changing behaviour. Tests and checks must remain green.
 
-When changing system behaviour, update tests at the same level first:
+When changing system behaviour, update the tests or checks at the same level first:
 
 | Change level            | Update first                                                    |
 | ----------------------- | --------------------------------------------------------------- |

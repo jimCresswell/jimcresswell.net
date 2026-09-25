@@ -146,17 +146,17 @@ Wrong sequence:
 // 3. Update E2E checks after implementation.
 ```
 
-The test became a regression patch, not a specification.
+The check became a regression patch, not a specification.
 
 ## Rule Summary
 
-| Test Level  | Specifies                   | Write Before             | Red Phase       |
+| Level       | Specifies                   | Write Before             | Red Phase       |
 | ----------- | --------------------------- | ------------------------ | --------------- |
 | Unit        | Pure function behaviour     | Before function exists   | No function     |
 | Integration | Code units working together | Before units are wired   | Units not wired |
 | E2E         | System behaviour            | System behaviour changes | Old behaviour   |
 
-If tests lag behind code at any level, TDD was not followed at that level.
+If tests or checks lag behind code at any level, TDD was not followed at that level.
 
 ## Red Specs And File Naming
 
