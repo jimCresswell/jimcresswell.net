@@ -4496,3 +4496,62 @@ six.
   cure's PR (opening) and PR B's draft (opening); every remote branch in a PR. Lineage open PRs
   187, 211, 213, 215, 216, 217, 218, 219, 220 (Myrtle's fourth exchange draft, read from its
   withdrawn gate notice a43086bf); remote branches 13 plus 220's; local 27.
+
+## 2026-09-25T16:34Z — The fold's round two cured and pushed; Myrtle's four reads; a card for seven local-only branches
+
+- PR 187: Swallow's round-two cure ae0581e26 (16:32:28Z) pushed as the bot 16:34Z (gate notice
+  a6839412); the disposition posted (reply 4106589657) and the thread resolved, 0 unresolved; the
+  door of 16:20Z still polling for Copilot's leg on the new tip. The JC.net tally push landed
+  49cfc225 at 16:33:02Z (gate notice 72449cc4); nothing unpushed on this branch at that point.
+- Myrtle's four reads (16:33:52Z) answered 1eb645e8 at 16:34:30Z: the rank stands (lane first;
+  the four PDR-052 rows after its next compaction); copilot/remove-erroneous-commits deleted as the
+  bot (empty diff against engraph); claude/objective-nightingale-b4ba25 held by the owner's word;
+  jimcresswell/design-plan-ratification-and-truings conserved as a small draft PR then deleted;
+  the 19 unmerged local branches sorted (nine PR branches, one worktree branch for its next draft,
+  Gale's held branch, two conservation branches, SEVEN local-only with commits absent from engraph:
+  docs/codex-support-concept-exploration, docs/copilot-cli-practice-citizenship,
+  docs/first-class-copilot-agent-support, fix/claude-hook-hardening, and three jimcresswell/mcp-*
+  Oak-line ticket branches); the seven go to the owner as a card with a verify-first recommendation
+  (draft PR where content survives; deletion only on the owner's word); default: stay as found.
+  The "stale progress-report scope" item is CLOSED: nothing by that name was routed; A57 is a tool
+  gap already on the Box's list (the item was this seat's misreading at suite 11).
+- Siren's check-in reads (native, 16:3xZ): 3 of the pilot's 5 converted, 0 of 12 drafted; PR B is
+  JC.net 195 (draft, parked); the todo-test cure is PR 196 in review; todo 4 unchanged at 5 of 28;
+  the e2e failure on PR 194's first push was a missing Playwright 1.63.0 browser build (1243),
+  installed 16:19Z, not the server deaths; PR 192's gates had no e2e failure.
+
+## 2026-09-25T17:02Z — Director suite 14 tally (frame built 16:54Z); batch six drafted; the fold's round three
+
+Work verdicts: 8 ON-TRACK, 0 DRIFTING, 0 WRONG-PRIORITY, both waves. Frame verdicts: 3 SOUND
+(normal low, high, procedure), 5 NARROWED (normal medium; adversarial low, medium, high,
+procedure). Cures for suite 15's frame:
+
+1. The launch prompt's "This job is higher priority than the daily branch fold" mapped with a
+   receiver (Myrtle) and a measure (its pending-graduations and buffer counts, asked at check-in 17),
+   and the reading stated plainly: the owner's 15:00Z word seated Myrtle on the lane, which is an
+   inference that the consolidation's priority lapsed, not a quoted waiver; if Myrtle's counts show
+   rows due, they rank ahead of fold-dependent records (normal medium; adversarial medium, procedure).
+2. The slot order on Myrtle's drafts listed in HOLDS with its rule (pr-lifecycle §Phase 7, the
+   landing slot; the fold holds it), sensor (the door's result), backstop (the fold's merge or its
+   17:00Z leg route) (adversarial medium).
+3. An owner-presence sensor in READING (the last native word about 15:00Z; the questions open since
+   15:5xZ); at check-in 17 the survivors go by the quoted push-notification route if the owner is
+   still silent (adversarial low).
+4. "Co-equal measures" either quoted from an owner line or dropped for the enumeration read at face
+   value (adversarial high); wake-bridge todo 3 and the dialogues' slices 2 and 3 carry a source and
+   an owner (adversarial high).
+5. Check-in 16's time one value (16:29Z; check-in 17 at 17:14Z by 45 from it, or 17:13Z stated as
+   45 from the scheduled 16:28Z) (normal low, medium; adversarial low); H4's sensor refreshed or its
+   staleness named as such; H1 released carries no backstop by design, said so (adversarial low).
+
+Between the waves: Copilot bound the fold's tip at 16:53:59Z with one thread (the PR body's file
+count, 66 against 78 at the tip): cured in the body, no push; the disposition reply 4106762943 and
+the thread resolved 16:56Z; the door polling from 16:56:11Z, CLEAN at 17:00Z. Siren: batch six
+DRAFTED in-seat by 16:59Z (21 notes plus the cover; the pilot's five converted and all 16 remaining
+rows; every citation scripted against both estates; Wilma's verification read running; delivery
+to the Box follows): the fleet card DISSOLVED, no fleet needed; PR 196's cleanup done; PR 195
+resumes after delivery; Siren's note: the commit advisory exits 1 on every records commit over
+director-handoff.md's 2,123 lines against a 160-line limit, this seat's file, queued: drain the
+finished sections into their homes after the rotation. Swallow: PR 222 (1b-iv's PR A) open at
+17:01Z with reviews running; PR B briefed for Gale. Owner questions open: the sensor beside the
+seat; the seven local-only branches; Gale's PR 211 approval (an act, not a question).
