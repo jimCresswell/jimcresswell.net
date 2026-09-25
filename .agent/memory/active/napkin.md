@@ -4893,3 +4893,20 @@ reads it. Records: 2 commits unpushed plus this one, held under two gates (load 
   back to the lineage, not an ignore entry.
 - The register validator refuses a path glob that matches no entry in the delta lists. Files
   that predate the pins (the two research foundations) are named in the row's prose instead.
+
+## 2026-09-25T20:39Z — Siren: the Copilot probe settled; two misses of mine; L12 open as PR 206
+
+- The probe: PR 206's first Copilot request went as the bot at its opening (20:37:40Z). After
+  21 seconds no `review_requested` event had registered; the owner-credential request
+  registered at 20:38:07Z. With PRs 204 and 205, n = 3, and the alternative that only a
+  re-request drops is falsified. The Director agreed the fallback (read the timeline, then the
+  operator's credential) as a pr-lifecycle clause, a joint cure with the lineage riding the next
+  pr-lifecycle change. Row L12 carries the record.
+- My miss: every disposition line I signed before 20:28Z ended "…, an agent", and
+  `isSignedSelfReply` (`agent-tools/src/pr-watch/reviewer-legs.ts:139`) reads only a last line
+  ending in the seat's `(158275)`. None of those lines read as signed. The form from 20:28Z:
+  "— Siren herds Rudder, JC.net's exchange seat, an agent (158275)".
+- My miss: PR 205 merged before its merge-base deletion sweep ran (the skill runs it before ANY
+  merge). The sweep read afterwards showed six intended removals. PR 204's ran before its merge.
+- The Director ruled `one-pr-per-leaf-issue` declined here (no trigger: no work tracked in
+  issues), reopening as a bring if that changes.
