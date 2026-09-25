@@ -1,21 +1,17 @@
-import vitestPlugin from '@vitest/eslint-plugin';
 import { defineConfig } from 'eslint/config';
 import type { TSESLint } from '@typescript-eslint/utils';
 import { recommended, RECOMMENDED_RESTRICTED_TYPES } from './recommended.js';
+import { testShape } from './test-shape.js';
 
 /**
  * Strict shared lint config for Engraph workspaces.
  *
  * @remarks
  * Composes the recommended config with strict-only escalations and the
- * vitest test-shape immune surface (PDR-044 § Memetic Immune System,
- * principles.md § Architectural Excellence Over Expediency,
- * principles.md § Testing "no skipped tests"). The
- * `vitest/no-disabled-tests`, `vitest/warn-todo` and
- * `vitest/no-focused-tests` rules at `'error'` severity prevent the
- * introduction of `it.skip`, `describe.skip`, `it.todo`, `describe.todo`,
- * `it.only`, `describe.only`, and adjacent skipping/focusing mechanisms.
- * The behaviour is exercised by `strict.integration.test.ts`.
+ * vitest test-shape immune surface in `test-shape.ts` (PDR-044 § Memetic
+ * Immune System, principles.md § Architectural Excellence Over Expediency,
+ * principles.md § Testing "no skipped tests"). The behaviour is exercised
+ * by `strict.integration.test.ts`.
  *
  * Per PDR-038 §2026-05-04 amendment, doctrine without enforcement is a
  * net liability at maturity; this config is the structural reciprocation
@@ -40,13 +36,7 @@ const TS_EXPECT_ERROR_MINIMUM_DESCRIPTION_LENGTH = 10;
 
 const strictExtensions: TSESLint.FlatConfig.ConfigArray = defineConfig(
   {
-    plugins: {
-      vitest: vitestPlugin,
-    },
     rules: {
-      'vitest/no-disabled-tests': 'error',
-      'vitest/warn-todo': 'error',
-      'vitest/no-focused-tests': 'error',
       '@typescript-eslint/ban-ts-comment': [
         'error',
         {
@@ -185,4 +175,8 @@ const strictExtensions: TSESLint.FlatConfig.ConfigArray = defineConfig(
   },
 );
 
-export const strict: TSESLint.FlatConfig.ConfigArray = [...recommended, ...strictExtensions];
+export const strict: TSESLint.FlatConfig.ConfigArray = [
+  ...recommended,
+  ...testShape,
+  ...strictExtensions,
+];
