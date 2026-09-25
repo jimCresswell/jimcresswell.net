@@ -8,10 +8,6 @@ if ((BASH_VERSINFO[0] < 5 || (BASH_VERSINFO[0] == 5 && BASH_VERSINFO[1] < 2))); 
   exit 0
 fi
 
-if ! command -v sonar &> /dev/null; then
-  exit 0
-fi
-
 # Read JSON from stdin. Prefer jq, which decodes JSON escapes, so a path holding
 # a quote or a backslash is the real path; fall back to sed if jq is unavailable.
 # printf hands sed the payload byte for byte, whatever the shell's echo does
@@ -24,6 +20,13 @@ else
 fi
 
 if [[ "$tool_name" != "Read" ]]; then
+  exit 0
+fi
+
+# With no scanner the Read goes through, with a warning shown to the user that
+# the file was not scanned.
+if ! command -v sonar &> /dev/null; then
+  echo '{"systemMessage":"sonar is not on PATH, so the file this Read opens was not scanned for secrets"}'
   exit 0
 fi
 
@@ -59,6 +62,12 @@ if [[ $exit_code -eq 51 ]]; then
     echo "{\"hookSpecificOutput\":{\"hookEventName\":\"PreToolUse\",\"permissionDecision\":\"deny\",\"permissionDecisionReason\":\"$reason\"}}"
   fi
   exit 0
+fi
+
+# A scan that could not run lets the Read through, with a warning shown to the
+# user that the file was not scanned.
+if [[ $exit_code -ne 0 ]]; then
+  echo "{\"systemMessage\":\"Sonar exited with status $exit_code, so the file this Read opens was not scanned for secrets\"}"
 fi
 
 exit 0

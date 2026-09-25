@@ -26,8 +26,8 @@ import { requireJq, which } from './secrets-hooks-support.js';
  * escape, so a prompt holding one must be blocked, including when bash's echo
  * would expand escapes (`BASHOPTS=xpg_echo`). Every run proves both paths, so
  * jq must be installed (`secrets-hooks-support.ts` carries why). When Sonar
- * itself errors, the prompt goes through with a warning shown to the user that
- * it was not scanned.
+ * itself errors, or no `sonar` is on PATH, the prompt goes through with a
+ * warning shown to the user that it was not scanned.
  */
 
 /**
@@ -68,6 +68,9 @@ try {
       'not scanned',
     );
   }
+  const withoutSonar = toolDirectory(workDir, 'bin-without-sonar', [...JQ_LESS_TOOLS, 'jq'], false);
+  const noScanner = 'no scanner for this SECRET';
+  expectWarned(runHook(workDir, withoutSonar, noScanner), noScanner, 'sonar is not on PATH');
   const backslashed = String.raw`keep \c and \n literal`;
   expectScannedVerbatim(runHook(workDir, withJq, backslashed), backslashed);
   const trailingNewlines = 'ends with two line breaks\n\n';
@@ -96,7 +99,7 @@ try {
   const expandingEcho = { BASHOPTS: 'xpg_echo' };
   expectBlocked(runHook(workDir, withoutJq, multiLine, expandingEcho), multiLine, 'jq');
   process.stdout.write(
-    'prompt-secrets smoke OK: prompts scanned verbatim with and without jq (option-shaped, backslashed and newline-ended included), flagged prompts blocked, a Sonar error passed with a warning, the temporary copy removed from a spaced path with the canary intact, escaped prompts blocked without jq under either echo\n',
+    'prompt-secrets smoke OK: prompts scanned verbatim with and without jq (option-shaped, backslashed and newline-ended included), flagged prompts blocked, a Sonar error and a missing Sonar passed with a warning, the temporary copy removed from a spaced path with the canary intact, escaped prompts blocked without jq under either echo\n',
   );
 } catch (error) {
   // exitCode, so the finally block still removes the work directory.

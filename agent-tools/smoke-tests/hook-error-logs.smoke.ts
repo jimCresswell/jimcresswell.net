@@ -13,7 +13,8 @@ import { type LogCase, runLogCase } from './hook-error-logs-support.ts';
  * harness payload, so every writer keeps it mode 700 and the log mode 600,
  * tightening what an earlier version left open. The wrapper leaves a symlinked
  * logs directory or log alone and says on stderr that the failure was not
- * written; it still passes its hook's exit code and stderr through.
+ * written; it still passes its hook's exit code and stderr through. A Node
+ * writer in a process with no uid refuses before creating anything.
  */
 
 const smokeDir = fileURLToPath(new URL('.', import.meta.url));
@@ -22,6 +23,8 @@ const WRAPPER = join(HOOKS, '_lib', 'log-hook-errors.sh');
 const IDENTITY_HOOK = join(HOOKS, 'practice-session-identity.mjs');
 const GUARD_SHIM = join(HOOKS, 'run-pretooluse-guard.mjs');
 const NOT_WRITTEN = 'this failure was not written to hook-errors.log';
+/** A preload that leaves the process with no uid, as Node does on Windows and Android. */
+const NO_UID = ['--import', 'data:text/javascript,delete process.getuid'] as const;
 
 const CASES: readonly LogCase[] = [
   {
@@ -100,6 +103,20 @@ const CASES: readonly LogCase[] = [
     argv: [process.execPath, GUARD_SHIM, 'not-built/guard.js'],
     expectedExit: 0,
   },
+  {
+    label: 'the session identity hook failing open in a process with no uid',
+    logsBefore: 'absent',
+    argv: [process.execPath, ...NO_UID, IDENTITY_HOOK],
+    expectedExit: 0,
+    expectedLogs: 'absent',
+  },
+  {
+    label: 'the guard shim failing open in a process with no uid',
+    logsBefore: 'absent',
+    argv: [process.execPath, ...NO_UID, GUARD_SHIM, 'not-built/guard.js'],
+    expectedExit: 0,
+    expectedLogs: 'absent',
+  },
 ];
 
 for (const logCase of CASES) {
@@ -113,5 +130,5 @@ for (const logCase of CASES) {
   }
 }
 process.stdout.write(
-  `hook-error-logs smoke OK: ${CASES.length} cases, logs directory 700 and log 600 from every writer, symlinks in the logs path left alone\n`,
+  `hook-error-logs smoke OK: ${CASES.length} cases, logs directory 700 and log 600 from every writer, symlinks in the logs path left alone, nothing written without a uid\n`,
 );

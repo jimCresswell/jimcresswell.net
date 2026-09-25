@@ -7,7 +7,10 @@ if ((BASH_VERSINFO[0] < 5 || (BASH_VERSINFO[0] == 5 && BASH_VERSINFO[1] < 2))); 
   exit 0
 fi
 
+# With no scanner the prompt goes through, with a warning shown to the user
+# that it was not scanned.
 if ! command -v sonar &> /dev/null; then
+  echo '{"systemMessage":"sonar is not on PATH, so the prompt and the files it @-mentions were not scanned for secrets"}'
   exit 0
 fi
 

@@ -38,6 +38,8 @@ export interface LogCase {
   readonly expectedLogText?: string;
   /** Text the program's stderr must hold; when absent, nothing is asserted. */
   readonly expectedStderr?: string;
+  /** `absent`: the writer must refuse before touching anything, leaving no logs directory. */
+  readonly expectedLogs?: 'absent';
 }
 
 /** What a symlink in the logs path points at, and the mode it must keep. */
@@ -149,10 +151,14 @@ function checkOutcome(
   if (logCase.expectedStderr !== undefined && !outcome.stderr.includes(logCase.expectedStderr)) {
     throw new Error(`stderr lacks ${JSON.stringify(logCase.expectedStderr)}: ${outcome.stderr}`);
   }
-  if (linkTarget === undefined) {
-    checkLogs(logsDir, logCase);
-  } else {
+  if (linkTarget !== undefined) {
     checkLinkTargetUntouched(linkTarget);
+  } else if (logCase.expectedLogs === 'absent') {
+    if (existsSync(logsDir)) {
+      throw new Error('a writer created .claude/logs when it should have refused');
+    }
+  } else {
+    checkLogs(logsDir, logCase);
   }
 }
 
