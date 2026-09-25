@@ -93,6 +93,7 @@ edit it by hand.
 | `.agent/rules/no-unbounded-host-load.md` | core | — |
 | `.agent/rules/no-verify-requires-fresh-authorisation.md` | core | — |
 | `.agent/rules/no-warning-toleration.md` | core | — |
+| `.agent/rules/one-instance-is-an-observation.md` | core | — |
 | `.agent/rules/owner-attention-at-action-moments.md` | core | — |
 | `.agent/rules/per-user-memory-is-a-buffer.md` | core | — |
 | `.agent/rules/permanent-doc-is-the-consolidation-record.md` | core | — |
