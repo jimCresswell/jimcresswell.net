@@ -19,6 +19,7 @@ edit it by hand.
 | `.agent/rules/agentic-judgment-conserve-by-default.md` | core | — |
 | `.agent/rules/agents-default-no-gender.md` | core | — |
 | `.agent/rules/apply-architectural-principles.md` | core | — |
+| `.agent/rules/bot-identity-on-third-party-systems.md` | core | — |
 | `.agent/rules/capability-landing-decision-procedure.md` | situational | `surface:lever-authoring — Landing, converting, or re-homing a capability; not landed-home edits` |
 | `.agent/rules/capture-practice-tool-feedback.md` | core | — |
 | `.agent/rules/channel-by-audience-lifetime-and-consumer.md` | situational | `session:team — every cross-seat send` |
