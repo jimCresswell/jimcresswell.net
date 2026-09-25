@@ -5024,3 +5024,29 @@ Myrtle's receipt 21:36:25Z: taken at the same blob, no joint findings, lands wit
 commit, two host-side cures (the lane skill's identity step states the lineage's contract; the
 merge-bot reference records the bot's Copilot request registering there). Records: 1 commit
 unpushed plus this one, held under two gates.
+
+## 2026-09-25T21:42Z — OWNER WORDS (native, the Director's chat, about 21:41Z), verbatim
+
+"I am happy to go with your recommendations, but run them by a full Cricket suite and assumption
+reviewer first, and I will re/start a Codex seat in the morning, push what you can in the
+meantime, and shoot for zero open PRs for both repos via the proper quality and merge processes,
+use all appropriate skills"
+
+The recommendations on the board at that moment (the "Any open questions?" answer, 21:3xZ): the
+ask (a Codex session, or the Swallow push of 00a23728b); card 1 (PDR-142's three concept
+sentences: approve 1 and 2, hold 3); card 2 (the owner's machine-local scope file line corrected
+to "owner author and committer"); two ruleset recommendations on the lineage repository (the
+pull-request rule on `main`; a path-scoped owner-review ruleset over `.codex/`, `.husky/` and
+the Claude settings files); three informational veto lines (the config split's hooks residual
+with the credential half; rule 4's evidence rewrite; the curator-passes record retired by the
+permanent-document rule).
+
+Read: (1) the recommendations are APPROVED CONDITIONALLY: a full Cricket suite (four roles,
+normal then adversarial) and the assumptions-expert judge them first; what survives executes.
+(2) The Codex session comes in the morning: H5's sensor is the morning's session; PR 211's push
+and PR 241's live proof wait for it; the Swallow-push alternative is moot; no restatement. (3)
+"push what you can in the meantime": every seat pushes and lands everything that does not need
+the Codex seat. (4) Goal three tightened to ZERO OPEN PRs on both repositories through the
+proper quality and merge processes (reviews, legs, the door), every appropriate skill used; the
+coordination PRs (189, 223) fold at the day's end by the coordination-fold skill; PR 211 is the
+one PR that waits for the morning.
