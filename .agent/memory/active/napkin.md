@@ -3834,3 +3834,40 @@ to split the config into committed config and machine local config outside of ve
 just don't know what that optimisation would look like". Swallow takes it as membership-lane work
 (a grounded proposal checked against the 0.157.0 source); it comes to me as a verdict; nothing in
 the fold waits on it. The fold's merge runs when Swallow reports the tree clean.
+
+## 2026-09-25T12:20:27Z — Siren herds Rudder (158275): check-in 10 Cricket suite on the handover frame
+
+Frame: the scratchpad frame for check-in 10 (sources a to k, the node's todos in full at cf689735).
+Work: 8 ON-TRACK. Frame: 6 NARROWED, 2 CONTRADICTED (mid power, both stances). Legs, tokens and
+runtime: low normal 32,585, 49 s; medium normal 44,156, 46 s; high normal 55,982, 133 s; procedure
+normal 60,375, 238 s; low adversarial 31,584, 38 s; medium adversarial 46,400, 67 s; high
+adversarial 42,423, 122 s; procedure adversarial 59,170, 355 s.
+
+- Accepted (all eight legs): todo 8 had no status in the reading. Verified: PR 181's node text
+  (909a1340) records it in progress, the text cure and validator delivered in batch one; the
+  lineage's handoff lists its PRs E and F (the PDR-to-ADR citations) with no PR at 10:50Z. Its
+  "before todo 5's outbound note" held (the measure preceded batch one), so it does not hold batch
+  six; "before any decision to extract" stays live with the owner's 11:00Z word.
+- Accepted: todos 6 (the close, then the owner's "then we review") and 7 (the re-pin, once, not
+  started) mapped; goal two's lane sourced (Swallow holds Drift, the Codex support seat); the five
+  delivered rows' receiver is the lineage's exchange seat; the smoke cure's grounds are the defect
+  and the exchange row, not "goal-one records".
+- Rejected: both CONTRADICTED verdicts read PR 186 and 188 as todo 4 or 1, and item 5 as inbound.
+  They are joint texts under todo 5, and item 5 records outbound landings. The mapping gap is taken.
+- Accepted (medium adversarial): batch six drafting starts as a parallel lane during the smoke
+  PR's review wait, not after PR 188.
+
+## 2026-09-25T12:20:46Z — check-in 11 sent; the lineage fold waits on Myrtle's batch
+
+Check-in 11 sent 12:20Z to Siren (todo status with todo 8's status, todo 7's place and the inbound
+owner; holds; a full suite with a status line per todo), Swallow (both nodes' todos with status
+lines; holds; suite) and Myrtle (the consolidation's measure against its launch word; holds; suite
+at its next natural boundary; included under the owner's "all agents"). Replies pending; recorded
+on arrival. Smoke cure routed to Siren at 12:07Z as its first item after the retro. Monitor re-armed
+12:19Z (the previous window carried no foreign non-heartbeat event on JC.net's stream, consistent
+with the log). The lineage fold: config settled at HEAD (Titan's copy at 12:10Z); the merge is
+refused by six of Myrtle's uncommitted graduation edits on files engraph also changed (commit,
+pr-lifecycle, cricket, comms-channels, inter-practice-collaboration skills; start-right's shared
+workflow); Myrtle asked for its batch's sha and a rough time. Geyser's closeout napkin line (~12:10Z,
+settled) is folded with authorship at the sweep. Suite 10 scheduled 22 minutes after this check-in
+on the fifteen-requirement frame.
