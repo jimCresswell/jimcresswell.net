@@ -3669,7 +3669,7 @@ estates, an exchange row). Until then this seat pushes from the primary only whe
 one-minute load is below 12 (a load watch, then the push). Slip: my push command's `tail -3` cut
 the gate's reason and left the exit unread; exit codes in band, never piped.
 
-## 2026-09-25T11:39Z — check-in 10 replies and verdicts
+## 2026-09-25T11:36Z — check-in 10 replies and verdicts
 
 Swallow (30.5% at 11:24Z): ON TRACK. PR 196 (dialogues 1b-ii) merged 1a4450a69 at 11:14:02Z through
 the door (both legs SATISFIED, CI 21 of 21, merge-landed ae8a8c07). Wake-bridge todo 1 OPEN since
