@@ -609,6 +609,13 @@ compaction. Watchers, heartbeat and the peer-liveness poll re-armed.
     69bcb9f1; the sections are the discriminator paragraph and its two map rows, and the Why
     section's first paragraph). JC.net takes those bytes in one small PR after PR 216 merges
     and its merge SHA is on the stream.
+  - PR 216 round one (22:18Z, head 6c04233ee; blobs 1392d856 and 415b8304) adds four joint cures
+    for the same intake: the bot preflight reads the HTTP status (403 is the bot, 200 a human
+    credential, 401 or nothing a broken token; only a 403 continues); the Copilot-request
+    command has two forms, each bound to its credential; the marker's fact 3 has a bot form;
+    and the lane skill's step 2 identity check records a failed comparison. That last one is a
+    JC.net defect: this estate's loop exits 0 when the name differs but the email matches.
+    Take the bytes from PR 216's merge, not from an interim head.
   - Deferred directive edit (PDR-052, 57.8% at 21:25Z): the lineage's
     `cloud-environment-routing.md` back-link to the bot-identity rule, at the next sub-30% reading.
   - The shell reader's known limits (PR 207's final line and the code review): a `case` arm's
