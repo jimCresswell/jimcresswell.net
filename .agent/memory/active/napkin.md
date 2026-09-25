@@ -3687,13 +3687,17 @@ Siren: at check-in 10 it was at rest for compaction (no suite; runs it once on t
 todo 5 served, register 0 of 21 outbound landed by its predicate with J4 and J18 landed in the
 lineage and unrecorded; then resumed 11:27Z on the owner's retro word. Marten: session over.
 
-## 2026-09-25T11:52Z — owner's words: the lenses pass; Codex CLI is the target
+## 2026-09-25T11:42Z — owner's words: the lenses pass; Codex CLI is the target
 
 The owner asked which open questions survive the lenses and decision matrix. Answer given: one,
 Swallow's card A (the desktop-host legs need a human at the keyboard). The owner's reply dissolved
-it (verbatim): "why do we need the ChatGPT desktop host? My interest is Codex CLI". The desktop
-host was in the node only because Luna and Titan were started through the ChatGPT desktop app and
-the queue wake was first seen there. Relayed to Swallow with the consequences as seat work: todo 1
+it (verbatim): "why do we need the ChatGPT desktop host? My interest is Codex CLI". I explained the desktop
+host as the seats' launch host; the owner corrected it (verbatim): "nope! They were both started
+via the terminal with `codex`". So the node's desktop-host premise was wrong at its root, and my
+line to Swallow that Titan runs inside the desktop app is withdrawn (verify pid 35269's parentage
+first-hand). Three times in this block's first draft were written ahead of the clock (11:50Z,
+11:52Z, 11:5xZ for 11:40Z, 11:42Z, 11:41Z): the fourth instance today; the cure is the `date`
+read as the first command of any record-writing call, never after. Relayed to Swallow with the consequences as seat work: todo 1
 scoped to the CLI, Titan's TUI runs are the evidence, the editor-terminal CODEX_THREAD_ID check is
 a seat's to run, the live acceptance seat starts from the CLI. Decided without the owner: the
 lineage's fold is mine to run (fold skill: the Director's ceremony; lens 2, no exception; Myrtle's
