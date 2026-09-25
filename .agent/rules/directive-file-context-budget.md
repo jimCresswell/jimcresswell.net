@@ -1,6 +1,6 @@
 ---
 classification: situational
-description: "Editing any file under .agent/directives/ (AGENT.md, principles.md) requires session context-usage below 30%; at or above, finish the in-flight step, write a handoff, and queue directive work for a fresh session. Apply at consolidation open, not just when a directive file is touched — directives are the final step of the pass, and by the time one is open the budget is already spent. Not a bar on reading directives, only editing. Failure shape: \"I'll just be careful\" under context pressure — eager rounding-off that fills partial structures by inference and corrupts doctrine invisibly."
+description: "Editing any file under .agent/directives/ (AGENT.md, principles.md) requires session context-usage below 30%; at or above, finish the in-flight step, record the queued directive work in the continuity record, carry on with other work, and make the directive edit after the next compaction. Apply at consolidation open, not just when a directive file is touched — directives are the final step of the pass, and by the time one is open the budget is already spent. Not a bar on reading directives, only editing. Failure shape: \"I'll just be careful\" under context pressure — eager rounding-off that fills partial structures by inference and corrupts doctrine invisibly."
 trigger: surface:directive-files ∪ ceremony:consolidation
 globs:
   - .agent/directives/**
@@ -16,8 +16,11 @@ Operationalises
 
 Editing any file under `.agent/directives/` requires the agent's
 session context-usage to be below 30%. If context is at or above
-30%, finish current-step work, write a session-handoff opener, and
-queue the directive work for a fresh session.
+30%, finish current-step work, record the queued directive work in
+the continuity record, and carry on with other work; the directive
+step runs after the next compaction, with the check repeated
+immediately before it. The deferral never stops the seat (PDR-063
+§Context readings never stop a seat).
 
 ## The Rule
 
@@ -55,8 +58,8 @@ A consolidation pass runs through capture surfaces in order:
 
 Directive-file work is the final step. Earlier-stage work happens
 first; if the agent reaches the directive boundary at or above 30%
-context, finish the in-flight step, write a handoff, and queue
-the directive edits for a fresh session.
+context, finish the in-flight step, record the queued directive
+edits, and make them after the next compaction.
 
 The gate covers directive-file work as PDR-052 defines it: direct editing of a
 directive's content, restructuring its sections or cross-references, and
@@ -99,8 +102,8 @@ If owner direction asks for directive-file edits in a session that
 is over 30%, surface the conflict explicitly:
 
 - Name the rule and the current context-usage estimate.
-- Offer to do all non-directive graduation work in this session
-  and queue the directive edits for a fresh session.
+- Offer to do all non-directive graduation work now and make the
+  directive edits after the next compaction.
 - Proceed with directive edits only if the owner expressly
   authorises overriding this rule for the current session.
 
