@@ -80,6 +80,14 @@ Every line answered first-hand, none inferred:
   out of phase, about 22 minutes after the others"); the owner's timer outranks the cricket skill's
   event-boundary default for this seat.
 
+- OWNER WORD, 2026-09-25 about 11:30Z, in the Director's chat (native, no event id), verbatim:
+  "Myrtle turns Canopy (bf4957) takes the exchange seat, but not until they have completed their
+  dedicated consolidation session". Myrtle is the lineage's curator (OCE team start 11:26:10Z), so
+  the seat is the lineage's exchange seat, vacant since Marten mends Shadow stood down; relayed to
+  Myrtle natively at 11:31Z with Marten's handoff record named as the brief. Siren herds Rudder
+  resumed in the same session at 11:27Z on the owner's "yes, please run a retro" (a retrospective
+  on the two-day exchange arc, for the Director to commit).
+
 ## Current handoff state (2026-09-25T11:17Z; after the fold of PR 176; the live reading is this block, then the napkin from its 10:37Z block on)
 
 Written for a reader who was never here and may run on a different model. Where this block and

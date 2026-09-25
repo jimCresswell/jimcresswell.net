@@ -3642,3 +3642,29 @@ the owner's login is auto-requested as a reviewer at "ready" by the repository, 
 - A concept seed, routed to the Director: delivery is not landing. The exchange's constraint is
   integration on the lineage's side, and that seat is unheld, so batch six adds inventory, not
   landings. Proposals are in the exchange-seat thread record's wrap block.
+
+## 2026-09-25T11:32Z — owner's word on the lineage's exchange seat; Siren resumed
+
+Owner, in chat (native, no event id), verbatim: "Myrtle turns Canopy (bf4957) takes the exchange
+seat, but not until they have completed their dedicated consolidation session". Myrtle is the
+lineage's curator on coordination/2026-09-24-f66fd0 (OCE team start 11:26:10Z), so this is the
+lineage's exchange seat (my report's question 1). Relayed to Myrtle natively at 11:31Z with the
+brief (Marten's handoff record). Siren resumed in the same session at 11:27Z (question 3 answered
+by the owner's act) on "yes, please run a retro": a retrospective on the exchange arc, held work
+(PR 186 round two, PR 188, the filter-guard branch, the check-in 10 suite) behind it. Open with the
+owner: the lineage's coordination fold (PR 187, overdue since 11:07Z) and Siren's P4. Push of
+2d85c0b7 failed in the gate's `pnpm check`; the reason was cut by my own tail (exit codes in band,
+never piped: the rule, again); rerun in full to a log.
+
+## 2026-09-25T11:34Z — the primary's push blocked by a load-sensitive smoke; the cure is unowned here
+
+The push of 2d85c0b7 failed in `pnpm check`: `comms-watch-coordination-home.smoke.ts` rejects with
+"watcher did not exit within 10 seconds" (its `waitForExit` deadline is a fixed 10_000 ms) under a
+one-minute load average of 19 to 27 with four seats' gates running. Alone under the same load it
+fails in 12.8 s. The lineage names this defect and its cure (the smoke waits on the watcher's own
+exit signal, or a deadline that reads the host, not a constant) and works around it with a
+"load below 12" push gate; JC.net has no routing for the cure. UNOWNED here: routed to the JC.net
+exchange seat's queue at check-in 11 as a small lane after the retrospective (same bytes both
+estates, an exchange row). Until then this seat pushes from the primary only when the host's
+one-minute load is below 12 (a load watch, then the push). Slip: my push command's `tail -3` cut
+the gate's reason and left the exit unread; exit codes in band, never piped.
