@@ -468,3 +468,49 @@ compaction. Watchers, heartbeat and the peer-liveness poll re-armed.
   five half-B notes into the scratchpad (starter templates, merge-bot, polarity, tsconfig flags,
   tdd-recipes). The rest of the fleet waits on its measured cost and a hand check of its output,
   per the fleet-design rule.
+
+**Update, 15:51:19Z.**
+
+- PR 192 (context readings never stop a seat) MERGED at 15:46:24Z as `1708982f`, after three
+  Copilot rounds:
+  - round one's cures are in ef364ba4 (the floor judged on the exact figure; PDR-075, PDR-078
+    and PDR-117 wording);
+  - round two's are in b11cb9db (PDR-063's Context; PDR-117's rationale);
+  - the final-tip note was rejected with a signed line: every band is judged on the exact
+    figure.
+  The branch, worktree and four claims are closed. Myrtle has the receipt (61d90207) and takes
+  the twin from 1708982f.
+- The seed question (lineage 9f9e7b8f) is answered (f8c07846) and accepted by Myrtle: a
+  subagent's collaboration write is its parent's by design, and the three Claude seeds count
+  only on a Claude platform, in both resolvers. The lineage's seed branch carries the gate
+  test-first; JC.net twins it once that settles (queued).
+- Goal three, JC.net: the filter-guard branch is draft PR 193 (merge of main e5cc73a2; its two
+  remaining to-dos are in the body). Remote branches: the coordination branch (PR 189) and
+  `fix/pnpm-filter-no-match` (PR 193), both in PRs. Claim 1ae13bc0.
+- Batch six: the pilot (5 notes, 252,175 tokens) is in the scratchpad. Wilma's design review
+  asks for changes:
+  - drop B4 (batch three delivered it), N3 (it rides the lineage intake) and B1 (the gate node
+    pre-empts it);
+  - reduce N9 and B12, and reframe N1 against amended PDR-009;
+  - restate B8 and B9 under PDR-126;
+  - take SHAs and line numbers out of box notes into a citation ledger;
+  - use the batch 3 to 5 skeleton for machinery notes;
+  - deliver with lint in the lineage's configs, per-member receipts and register updates.
+  The assumptions review is pending; then a revised plan goes to the Director for owner
+  pricing.
+
+**Update, 16:17:19Z.**
+
+- PR 194 (watcher cadence wording): round two's two findings are cured in bf201137 (the
+  reference index says polled; the watchComms TSDoc says the first pass after each heartbeat
+  interval). The first push failed at the site end-to-end step of the pre-push gate; a retry
+  is running with the full log kept. A final-tip review follows the push.
+- PR B (`fix/watcher-joint-code-cures`, worktree watcher-code): the local commit is under
+  code-expert review; it opens after PR 194 merges and main is merged in.
+- The todo-test cure (Myrtle's no-skipped-tests finding, the joint shape of lineage reply
+  2d861b43): branch `fix/lint-refuses-todo-tests`, worktree warn-todo, commit 69416c32.
+  `vitest/warn-todo` runs at error in the strict config; unit rows for it.todo, test.todo,
+  describe.todo and the `{ todo: true }` option, one under the test-file rule layer, and an
+  it.each row. Config and test reviews are running. Claim ca1e90ae.
+- Found: the site workspace's lint config composes eslint-config-next only, so no vitest
+  skip, only or todo rule reaches its 44 test files. The cure is its own PR after this one.
