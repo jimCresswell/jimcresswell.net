@@ -123,3 +123,17 @@ cures); an owner card for register row C7; whether the Director accepts the node
 - The re-pin: NOT-OBTAINED (ratified to run once, at the close).
 - Batch four's integration in the lineage: NOT-OBTAINED (acknowledged only).
 - Batch five's acknowledgement and integration: NOT-OBTAINED (delivered only).
+
+## Owner's card answers (relayed by the Director at 22:25Z; answered about 18:4xZ)
+
+- "Siren resumes in the same session": after the owner's compaction and "carry on", Siren
+  re-opens its claim and takes queue item 1, batch six. Below 30% it also takes K4, the
+  test-doctrine cures (directive edits).
+- The gh write guard is built in JC.net behind PRs B to F, as the same bytes for both estates.
+- "After its queue" binds the queue as it stood at 16:31Z, plus the node's own todos and their
+  review cures; new work goes behind PRs B to F.
+- C7, verbatim: "Ratify the concept", "Bring by default becomes PDR-005's default disposition;
+  the exchange seats author the amendment text under review and land it in both estates in one
+  window". JC.net's seat and the lineage's seat author it in its own lane.
+- The node-status removal under the plan-node schema stands; statuses live in frames, from
+  stated sources.
