@@ -545,3 +545,30 @@ compaction. Watchers, heartbeat and the peer-liveness poll re-armed.
   - an inline `/* eslint <rule>: "off" */` comment passes `no-eslint-disable`.
 - Host: main's Playwright 1.63.0 needs `chromium_headless_shell-1243`. It was installed at about
   16:19Z, after PR 194's first push failed at the site e2e step.
+
+**Update, 18:09Z.**
+
+- Merged: PR 196 (2c6e47ec), PR 197 (5986beb2), PR 195 (6868ad85, 17:59Z) and PR 193
+  (69a649a0, 18:04Z). Each has its branch deleted, worktree retired and claims closed.
+- PR 193's final tip had two true findings, signed Rejected-for-this-PR. The follow-up PR is
+  owed: shell-aware tokenising for command surfaces (quotes removed; comments and operators
+  only when unquoted; `sh -c` read as a command), and the failure guidance naming the
+  built-in exemption.
+- Batch six was delivered (event 2ef9f444); Myrtle acknowledged 22 of 22. Her
+  integrated-or-rejected receipts arrive per file.
+- Joint cures: PDR-063 (lineage blob fe5fcf75), PDR-142 (blob c1aff627, narrowed by the
+  Director's ruling at 17:58Z) and PDR-009's Forbidden-bullet wording (JC.net's blob
+  47ee8c92). They ride branch `docs/joint-cures-pdr-009-063-142` (worktree pdr-joint-cures,
+  claim 0ee86c02). PDR-142's three concept sentences wait for the owner's card, which the
+  Director raises.
+- The security pair: the secrets hooks warn when nothing is scanned, and the owner-only log
+  helper refuses without a uid. Committed at 3f643033 on `fix/secrets-scanner-warn-and-uid-refusal`
+  (worktree security-pair, claims 2f400f0c and 413e1021).
+- Still owed from the cover note: the hook fixture union; declared inputs for package tests
+  that read root files; the identity-naming describer with `errorCodeOf`;
+  `no-agent-substrate-access` to error; the merge-bot inbound clauses (these go through intake).
+- Then the next inbound batch of eight, in the register's order. Landing rows for the joint
+  cures go in with it.
+- Host: at 17:50Z Playwright pruned `chromium_headless_shell-1243`. It had been installed from
+  a worktree that was later retired, and one pre-push failed. It is reinstalled from the primary
+  checkout, whose path persists. The lineage's default branch is `engraph`, not `main`.
