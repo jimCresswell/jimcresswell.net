@@ -3911,3 +3911,23 @@ rest at 12:40Z, record written for either successor; (2) the config PR proceeds 
 "happy for the config to be optimised ... split" word, overturnable by a line, authored by Titan
 after PR 211 as goal two's evidence, else by Swallow's resumed session; (3) the "he" and signature
 defects go to the Cricket templates' joint-cures row in both estates.
+
+## 2026-09-25T12:39:23Z — the smoke failure is a true positive: the comms watcher churns fs.watch handles
+
+Siren's pre-execution review (12:25Z to 12:37Z, scratch runs): after its supervisor dies the
+watcher exits in 5 to 15 s at load 10 to 11 and had not exited after 120 s at load 17.6; with
+fs.watch stubbed, 46 to 49 ms at load 23.7 (one poll cycle); a bare fs.watch(dir).close()
+blocked the main thread 8.2 s then 110.8 s. Cause in code: waitForAnyDirectoryChange
+(agent-tools/src/collaboration-state/cli-runtime.ts) opens a fs.watch handle per directory on
+every loop pass and closes them synchronously in done(); under fseventsd pressure the close blocks
+the event loop, stalling heartbeats and step deadlines; at --poll-ms 50 that is 20 open/close
+cycles a second in every comms watcher on this host, both estates, so the watchers may be a source
+of the host's load, not only its victim. Siren's lane (same bytes for the lineage): one handle per
+directory for the watcher's life with a wait on the handle's signal or the poll timer (the TUI's
+three-directory wait shares it), a pre-execution code and resilience review first; the smoke gets
+one named hang backstop WATCHER_HANG_BACKSTOP_MS = 180_000 (2 × stepTimeoutMs, the gate-slot
+wrapper's precedent), load printed as diagnostics; proof by before/after exit times and a mutant
+without --supervisor-pid. Verdict: proceeds as scoped (telling, not asking); at landing a broadcast
+on both streams so every seat re-arms its watcher on the new dist; the lineage's receiver is the
+exchange seat after Myrtle's consolidation. Batch six's triage continues in parallel (13 notes
+across J17 to J23; J19 and J23 close in one line each).
