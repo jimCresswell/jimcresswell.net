@@ -427,8 +427,8 @@ run on 2026-09-25 (416 test files, 4,589 tests) found it reading root files
 and trees its inputs did not declare, among them `.agent/hooks/policy.json`,
 `.agent/rules`, a sub-agent template, `.codex/**`, `.dependency-cruiser.mjs`,
 `RULES_INDEX.md`, the root `package.json` and `pnpm-workspace.yaml`. That run
-took 7.7 s, which is the cost each gate that reaches Turbo's `test` task now pays. Most of those reads are the
-real IO that the no-IO recovery plan removes from tests; once they are gone,
+took 7.7 s, which is the cost each gate that reaches Turbo's `test` task now pays. Most of those reads are real IO in
+tests, which the testing strategy forbids; once the tests read no root file,
 declared inputs with a recomputing check can bring the cache back.
 
 ## Mixing pnpm and turbo
