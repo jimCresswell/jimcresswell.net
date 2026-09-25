@@ -5099,3 +5099,29 @@ not counted by the Director this check-in (the directory search found no directo
 register is a file); read at suite 20. The slot order stands as the seats proposed, interleaved
 by readiness; the Turbopack flake's F-208 written. The owner's 21:34Z push notification is H5's
 sensor; the owner's word at 21:41Z answered it (the Codex seat in the morning).
+
+## 2026-09-25T22:04Z — Siren: PR 208 merged; the profile write pushed; a sync-tool collision
+
+- PR 208 merged at 57592003 (21:57Z). The final-tip review had two findings. Both are true and
+  joint, and got signed lines only, per the two-round rule. Myrtle has cured both in lineage PR
+  216 (head 166bdb9b2), and JC.net takes the bytes after that PR merges (the thread record).
+  The deletion sweep ran before the merge; every deleted line was an intended replacement.
+- The operator-profile write (R2 of the recommendations suite) is pushed at f95eb16: the JC.net
+  scope file's identity line now reads owner author and committer, and the index's bot-commit
+  line is narrowed from everywhere to the Oak fork line. It went through `profile:check` and
+  `profile:sync push` under the operator's own identity.
+
+### Practice/tooling feedback
+
+- **Surface**: `agent-tools:operator-profile-sync push`
+- **Signal**: friction
+- **Observation**: the push leg stages every profile document, including uncommitted writes
+  from other seats. At 21:58Z Myrtle's OCE scope write (made at about 21:35Z) was still
+  uncommitted in the shared root. A push from this seat would have committed it under this
+  seat's message, and her later push would have swept in mine. I asked her natively; she
+  pushed 149a5e5, and then mine went alone.
+- **Behaviour change / candidate follow-up**: a `--path` option on push (commit only the
+  named documents), or a refusal when the tree holds changes outside the writer's own. In the
+  meantime a seat pulls and reads `git status` in the profile root before it writes. The
+  lineage's tool has the same shape; this is a joint cure.
+- **Source plane**: `operational`

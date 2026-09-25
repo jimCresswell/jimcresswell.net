@@ -601,14 +601,20 @@ compaction. Watchers, heartbeat and the peer-liveness poll re-armed.
     identity step (not the profile: PDR-141 decisions 4 and 5). The lineage adopts the same body
     (blob 78d43e1b) with its PR 216's derivation block. L12's landing row goes in after PR 208
     merges, not PARTIAL.
+  - L12 (update, 22:04Z): PR 208 merged at 57592003 (body blob 4fd5b7f5), so the landing row is
+    owed. The final-tip review's two findings are true and joint: the identify-as-agent Why
+    section still narrates the owner-credential frame, and the bot-identity review row names
+    REST only (the GraphQL `addPullRequestReview` and `submitPullRequestReview` mutations fall
+    through). Myrtle cured both in lineage PR 216 (head 166bdb9b2; files 493fa7c2 and
+    69bcb9f1; the sections are the discriminator paragraph and its two map rows, and the Why
+    section's first paragraph). JC.net takes those bytes in one small PR after PR 216 merges
+    and its merge SHA is on the stream.
   - Deferred directive edit (PDR-052, 57.8% at 21:25Z): the lineage's
     `cloud-environment-routing.md` back-link to the bot-identity rule, at the next sub-30% reading.
   - The shell reader's known limits (PR 207's final line and the code review): a `case` arm's
     pattern `)` inside `$( )` closes the scan early; hook files are read line by line, so a quoted
     heredoc that shows a call in backticks would read as a citation. No surface carries either
     today.
-  - The owner's card batch (the Director's): the machine-local scope file's stale line "Bot
-    commits, owner author, as everywhere" for this repository.
   - L3: PDR-027 is ahead here (the 2026-09-12 seed entry, the `PRACTICE_` override name); the
     twin-back is owed to the lineage.
   - The hook fixture's docblock (`agent-tools/smoke-tests/claude-hook-command-fixture.ts`) still
