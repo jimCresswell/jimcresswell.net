@@ -5125,3 +5125,34 @@ sensor; the owner's word at 21:41Z answered it (the Codex seat in the morning).
   meantime a seat pulls and reads `git status` in the profile root before it writes. The
   lineage's tool has the same shape; this is a joint cure.
 - **Source plane**: `operational`
+
+## 2026-09-25T22:20Z — Director suite 20 tally (frame built 22:17Z); the records pushed; PR 242 at the slot
+
+Work verdicts: 8 ON-TRACK. Frame verdicts: 2 SOUND (normal high, normal procedure), 2 NARROWED
+(adversarial high, adversarial procedure), 4 CONTRADICTED (normal low, medium; adversarial low,
+medium), all four on one fault: todo 7's STATUS and READING still called batch six's first merge
+an open gate ("nothing in it is decidable before batch six's first merge") while the same frame
+recorded PR 227 as that merge (185c15d2b, 21:46:09Z); a leftover sentence gating todo 8 on the
+same fired gate sat beside its cured twin. Cures for suite 21's frame:
+
+1. A gate named in a STATUS line is re-read against SOURCES at each build: when its trigger has
+   fired, the line says so and names the remaining gates (todo 7: the lessons batch alone, to be
+   confirmed by Siren at check-in 23; todo 8: none, next in Siren's order) (four roles).
+2. The residue pass reads for duplicated sentences, not only PR numbers: a cured sentence and
+   its predecessor never stand together (normal medium, adversarial medium).
+3. R1 to R6 quoted in SOURCES beside the suite's disposition, and the sentence naming which
+   amended forms the owner's 21:41Z approval covers (adversarial medium).
+4. Goal one's "landed whole" count read by the Director from the merged list, not from relayed
+   events (adversarial high): read at 22:20Z from gh pr list merged today: the exchange carriers
+   219, 213, 215, 230, 225, 227 plus J4 earlier, seven whole, the count holds; "use all
+   appropriate skills" mapped to a receiver (every seat's door; the coordination-fold skill for
+   the folds; the assumptions-expert and Cricket suites for the recommendations) (adversarial
+   high, adversarial low).
+5. The owner's 2026-09-24 principle "Crickets judge in the frame provided, we need them to also
+   judge the frame itself" stated in READING as the ground for the frame verdict (adversarial
+   procedure); todo 1's source named by file (Siren's handover record path) (adversarial low).
+
+Redirections acted on between the build and the tally: PR 242's door read by type at 22:18Z
+(85446bbc4 BLOCKED: unit-tests and browser-tests pending, nothing failed; no refusal). The records
+push landed 22:1xZ (two commits), nothing unpushed. PR 216's round one: four joint cures at
+6c04233ee (Myrtle, 22:18Z) for Siren to take.
