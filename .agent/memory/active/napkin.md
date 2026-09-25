@@ -3931,3 +3931,41 @@ without --supervisor-pid. Verdict: proceeds as scoped (telling, not asking); at 
 on both streams so every seat re-arms its watcher on the new dist; the lineage's receiver is the
 exchange seat after Myrtle's consolidation. Batch six's triage continues in parallel (13 notes
 across J17 to J23; J19 and J23 close in one line each).
+
+## 2026-09-25T12:57:08Z — Director suite 10 tally (frame built 12:46Z, fifteen requirements)
+
+Work verdicts: 7 ON-TRACK, 1 DRIFTING, 0 WRONG-PRIORITY, 0 UNDELIVERED. Normal wave: all four
+ON-TRACK. Adversarial wave: highest power low effort DRIFTING (goal two's sink parked on "the
+owner's return"; decided and routed to Titan at 12:49Z, event c540e862, three minutes after the
+frame's build, so overtaken); the other three ON-TRACK.
+
+Frame verdicts: 1 SOUND (normal procedure), 1 CONTRADICTED (normal medium: H6 cited the node's gate
+against its own condition, and UNOWNED (b) handed a Director-owned routing to the owner against the
+away word), 6 NARROWED. Dispositions:
+
+1. The sink's routing (medium normal, low adversarial): ACCEPTED, decided: Titan retries the
+   daemon leg once with output captured, then the config split, then the sink, test-first through
+   the door (event c540e862, acknowledgement owed). PR 211 states the daemon leg's status before
+   it merges (medium adversarial), in the same routing.
+2. PR 212 has no reader or owner (low normal, low adversarial): read at 12:47Z: the lineage's
+   automated upstream-mirror carrier (bot draft, 12:03:43Z), a routine item for the lineage's
+   exchange seat at its taking; recorded in ROUTED-AWAY for the next frame.
+3. "Requirement 11" and "folds are instruments" unsourced (high, both stances): ACCEPTED; the
+   numbered requirements are this seat's own list from suites 7 to 9 (napkin blocks), not an owner
+   word; the next frame cites the owner's goal order and the napkin block by time, and drops the
+   number.
+4. Goal two's measure omits the dialogues node's three open slices (medium adversarial):
+   ACCEPTED; the next frame counts six open items with their order.
+5. Myrtle's outstanding check-in reply unmeasured (low normal): its heartbeats continue (12:17Z),
+   so liveness holds; the reply is owed and its absence is a sensor line in the next frame.
+6. The lineage push waits for the one-minute load below the measured exit threshold (about 11)
+   rather than a third failed attempt (low normal): ACCEPTED as H2's rule.
+7. The owner's "Review, assess, report, stop; Please continue" cycle unmapped (procedure
+   adversarial): the assessment ended at "stop" (10:37Z report); "Please continue" opened the
+   post-compaction programme and the cadence; mapped in the next frame.
+
+Host: Swallow reports the harness killed its push at about 12:54Z for critically low memory; the
+lineage's pre-commit gate on my merge commit (pid 48709) is the heavy process; no new host work
+until it lands. Swallow handed over at rest (record on claim 372ac08b: the sink's pre-execution
+review first, the Cricket-clause edit, the call-inspection PR); its handover commit e240904e5 rides
+my fold push.
