@@ -102,7 +102,7 @@ loads it fails through `--max-warnings 0`. Its gaps are these:
 - a per-file allow-list of nine entries (`tooling/eslint/src/configs/recommended.ts`), whose ninth
   recorded reason cites an `mkdtemp` mandate the doctrine no longer carries;
 - a structural allow-list admitting `test-helpers/`, `test-fakes/` and the Vitest configuration
-  files, pinned by `tooling/eslint/src/configs/strict.unit.test.ts`;
+  files, pinned by `tooling/eslint/src/configs/strict.integration.test.ts`;
 - a `fetch` allowance for `localhost` and `127.0.0.1` URLs, which lets a test open a loopback
   socket;
 - no clock detection, and no `node:process`, `tls`, `http2`, `dns`, `os` or `execa` in its banned
