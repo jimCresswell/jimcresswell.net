@@ -8,7 +8,7 @@ const EXECUTE_BITS = 0o111;
 
 /**
  * CLI truth-set smoke for the built `run-smoke-tests` binary
- * (testing-strategy §Smoke Tests — Artefact Viability): the dist file exists,
+ * (testing-strategy §Smoke Checks — Artefact Viability): the dist file exists,
  * is executable and carries its shebang; `--help` exits 0 with usage on
  * stdout; an unknown argument exits non-zero with guidance on stderr and no
  * stack trace. The happy-path item is discharged by `test:e2e` itself, which

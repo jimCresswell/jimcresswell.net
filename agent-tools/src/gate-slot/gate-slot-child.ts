@@ -78,12 +78,13 @@ export function createGateChildRunner(
       const end = await spawnInheritedProcess(options.command, args, {
         cwd: options.cwd,
         extraEnv,
-        processGroup: true,
-        onSpawn: (kill) => {
-          killGroup = kill;
-          if (pending !== undefined) {
-            kill(pending);
-          }
+        processGroup: {
+          onSpawn: (kill) => {
+            killGroup = kill;
+            if (pending !== undefined) {
+              kill(pending);
+            }
+          },
         },
       });
       return {

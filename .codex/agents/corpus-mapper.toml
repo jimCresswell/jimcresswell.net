@@ -1,5 +1,5 @@
 name = "corpus-mapper"
-description = "Read-only leaf-signal extractor for the corpus-analysis map workflow stage. Dispatched exclusively via the Workflow agent() agentType option; never invoke for interactive delegation. Reads one time-contiguous window's corpus files in full and answers only through the schema-forced structured output call."
+description = "Read-only leaf-signal extractor for the corpus-analysis map workflow stage; one agent per corpus window, answering only via the schema-forced structured output."
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 approval_policy = "never"
@@ -7,8 +7,11 @@ approval_policy = "never"
 developer_instructions = """
 Read and follow `.agent/sub-agents/templates/corpus-mapper.md`.
 
-This file is a thin Codex adapter. The canonical reviewer instructions live in
-the template referenced above.
+This file is a thin Codex adapter. The canonical role definition lives in the
+template referenced above; the dispatch prompt names the window's corpus
+files and carries the full task instructions.
 
-Mode: Observe, analyse and report. Do not modify code.
+Mode: read only the named corpus files, extract the specified leaf signals,
+answer with the single required structured output call. Do not modify
+anything.
 """

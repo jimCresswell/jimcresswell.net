@@ -2,8 +2,8 @@
 export interface LockAgeEvidence {
   /** The owner file's `created_at`, when the file exists and parses. */
   readonly ownerCreatedAt: string | undefined;
-  /** The lock directory's modification time, when a real directory is at the lock path. */
-  readonly directoryModifiedMs: number | undefined;
+  /** The modification time of the directory at the lock path; a waiter dates only a real directory. */
+  readonly directoryModifiedMs: number;
   readonly nowMs: number;
   readonly staleMs: number;
 }
@@ -14,12 +14,12 @@ export interface LockAgeEvidence {
  * time does not parse, it is the directory's own modification time. A holder
  * that dies between making the directory and writing the owner file leaves a
  * lock with no owner, and without this fallback no waiter would ever reclaim
- * it. A lock with nothing to date it by is not stale.
+ * it.
  */
 export function isStaleLock(evidence: LockAgeEvidence): boolean {
   const createdMs =
     evidence.ownerCreatedAt === undefined ? Number.NaN : Date.parse(evidence.ownerCreatedAt);
   const since = Number.isNaN(createdMs) ? evidence.directoryModifiedMs : createdMs;
 
-  return since !== undefined && evidence.nowMs - since > evidence.staleMs;
+  return evidence.nowMs - since > evidence.staleMs;
 }

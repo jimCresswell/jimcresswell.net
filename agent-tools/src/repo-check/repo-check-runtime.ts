@@ -4,7 +4,7 @@ import { writeErrorLine } from '../core/terminal-output.js';
 import { resolveTrustedGit } from '../core/trusted-git.js';
 import { childEnvironment } from '../spawn/child-environment.js';
 import { resolvePnpm } from '../spawn/pnpm-path.js';
-import { signalProcess, signalProcessGroup, type SignalOutcome } from '../spawn/process-group.js';
+import { signalProcessGroup, type SignalOutcome } from '../spawn/process-group.js';
 
 import type { RepoCheckRuntime } from './repo-check-types.js';
 
@@ -71,20 +71,18 @@ export interface InheritedProcessOptions {
   /** Variables set over the environment the child would otherwise get. */
   readonly extraEnv?: Readonly<Record<string, string>>;
   /**
-   * Start the child as the leader of its own process group (and session), so
-   * the kill seam reaches every process it starts. A signal sent to one pid
-   * reaches only that process: the pnpm launcher on this estate's hosts is a
-   * shell script that runs pnpm without exec, so a gate's real work sits two
-   * levels below it. The child also leaves the controlling terminal, so a
-   * terminal's Ctrl-C reaches it only through the caller.
+   * Start the child as the leader of its own process group (and session),
+   * and hand `onSpawn` a kill for the whole group once it is spawned, so the
+   * caller can forward signals to it, bound its lifetime and sweep it. A
+   * signal sent to one pid reaches only that process: the pnpm launcher on
+   * this estate's hosts is a shell script that runs pnpm without exec, so a
+   * gate's real work sits two levels below it. The kill returns the kernel's
+   * answer. The child also leaves the controlling terminal, so a terminal's
+   * Ctrl-C reaches it only through the caller.
    */
-  readonly processGroup?: boolean;
-  /**
-   * Receives a kill for the child once it is spawned, so a caller can
-   * forward signals to it and bound its lifetime. The kill returns the
-   * kernel's answer; with `processGroup` it signals the whole group.
-   */
-  readonly onSpawn?: (kill: (signal: NodeJS.Signals) => SignalOutcome) => void;
+  readonly processGroup?: {
+    readonly onSpawn: (killGroup: (signal: NodeJS.Signals) => SignalOutcome) => void;
+  };
 }
 
 /**
@@ -124,24 +122,15 @@ export function spawnInheritedProcess(
           platform: process.platform,
         }),
         cwd: options.cwd,
-        detached: options.processGroup ?? false,
+        detached: options.processGroup !== undefined,
       });
     } catch (error: unknown) {
       writeErrorLine(`${command}: ${error instanceof Error ? error.message : String(error)}`);
       resolve({ status: 1, signal: null });
       return;
     }
-    const spawned = child;
-    options.onSpawn?.((signal) => {
-      if (options.processGroup === true) {
-        return signalProcessGroup(spawned.pid, signal);
-      }
-      // Once Node has reported the child's end its pid may be reused, so it is not signalled.
-      if (spawned.exitCode !== null || spawned.signalCode !== null) {
-        return 'ended';
-      }
-      return signalProcess(spawned.pid, signal);
-    });
+    const leader = child.pid;
+    options.processGroup?.onSpawn((signal) => signalProcessGroup(leader, signal));
     child.on('close', (status, signal) => resolve({ status, signal }));
     child.on('error', (error) => {
       writeErrorLine(`${command}: ${error.message}`);

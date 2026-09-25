@@ -32,7 +32,7 @@
  *   deterministic write-time detection at the commit boundary.
  * - PDR-053 — orchestrator-vs-gate structural cure (advisory polarity at
  *   filename + banner + skill-doctrine).
- * - the two-threshold fitness model — three-zone fitness vocabulary consistency.
+ * - the three-zone fitness model — fitness vocabulary consistency.
  * - the advisory-orchestrator naming — commit-skill advisory orchestrator naming and surface polarity.
  *
  * The orchestrator is dependency-injected so the wiring shape can be unit
@@ -124,7 +124,7 @@ function describeFailure(
 ): string {
   const headers: Record<typeof failure.failedCheck, string> = {
     fitness: 'practice:fitness:strict-hard (PDR-038 §2026-05-04 amendment)',
-    vocabulary: 'practice:vocabulary (the two-threshold fitness model)',
+    vocabulary: 'practice:vocabulary (the three-zone fitness model)',
     message: 'pnpm agent-tools:check-commit-message',
   };
 

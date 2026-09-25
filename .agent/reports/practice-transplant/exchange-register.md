@@ -51,6 +51,13 @@ row's landing), `decline (reason)`, `records, not portable`, `graduated into <ro
 (an owner decision), `local` (host-specific by nature). A landing column carries the merged
 pull request once one exists.
 
+The exchange reports one number per direction, computed from these tables alone. A row is
+**owed** to an estate E when it sits in the other estate's delta table (J rows are owed to the
+lineage, L rows to `jcnet`) and its E-column cell does not begin with `decline`, `graduated
+into`, `origin`, `none`, `local` or `records, not portable`. An owed row has **landed** in E
+when §Landings holds a row with its id and Estate E whose Pull request cell lacks `PARTIAL`.
+Each direction reads as landed of owed, beside the `main` head the register was read at.
+
 ## Rows from the lineage's delta (since `e477e62f7e`)
 
 | Row | Concept | jcnet | lineage | castr | Path globs |
@@ -94,7 +101,7 @@ pull request once one exists.
 | --- | --- | --- | --- | --- | --- |
 | J1 | Rule and sub-agent declarations, and the generators that render every adapter and the rules index byte for byte | origin | their-lane-owns-coordinate (a lineage lane lands the frontmatter in slices with the generators) | bring at re-transplant (replaces C6) | `agent-tools/src/rule-declarations/**`, `agent-tools/src/subagent-declarations/**`, `.agent/rules/*.md`, `.agent/sub-agents/**`, `RULES_INDEX.md`, `.claude/**`, `.cursor/**`, `.codex/**`, `.agents/**`, `.gemini/**` (excepting: J9, J12) |
 | J2 | Tracked-universe validators: cited paths, cited scripts, markdown links, the authored-surfaces walker, machine-local paths, lineage names | origin | bring (their lane, after J1; the two share the tracked-universe read) | bring | `agent-tools/src/validators/**` |
-| J3 | repo-check: prettier, markdownlint and shellcheck over the tracked tree; the bash floor | origin | bring (the lineage's repo-check is the staged-only prettier and markdownlint pair; the tracked-tree legs, shellcheck, the universe and the bash floor are absent there) | bring | `agent-tools/src/repo-check/**`, `.husky/**`, `agent-tools/tests/repo-check*`, `.agent/setup/install-shellcheck.sh` |
+| J3 | repo-check: prettier, markdownlint and shellcheck over the tracked tree; the bash floor | origin | bring (the lineage's repo-check is the staged-only prettier and markdownlint pair; its root format and markdown legs walk the disk, not the tracked tree, and its shell leg is a `bash -n` syntax pass; shellcheck, the tracked universe and the bash floor are absent there) | bring | `agent-tools/src/repo-check/**`, `.husky/**`, `agent-tools/tests/repo-check*`, `.agent/setup/install-shellcheck.sh` |
 | J4 | practice-substrate: the instance tier derived from the ignore rules | origin | bring into the existing practice-substrate module, their lane (the lineage's module has no ignore-derived probe; its audit blocks on a fresh checkout) | bring | `agent-tools/src/practice-substrate/**` |
 | J5 | Merge bot with the measured-state hold and the signed disposition-line grammar | origin | graduated into L9 (the hold and the grammar are this estate's unique pr-watch modules; the grammar twins into pr-tally todo 2, their lane) | bring | `agent-tools/src/merge-bot/**`, `agent-tools/src/pr-watch/**` |
 | J6 | The smoke runner discovered from `smoke-tests/*.smoke.ts`; the derived postinstall closure | origin | compare (against the lineage's hand-chained smokes and its bootstrap) | bring | `agent-tools/src/smoke/**`, `agent-tools/smoke-tests/**`, `agent-tools/src/bootstrap/**`, `agent-tools/package.json`, `agent-tools/src/bin/run-smoke-tests.ts` |
@@ -164,3 +171,5 @@ Appended as each row lands: row, estate, pull request, head read.
 | L5 | jcnet | PR 145 (merged `51ea9dd06f`, 2026-09-21T15:58:04Z; PDR-011 byte-identical, the Core changelog a dated union, the README already identical) | lineage `272910f1df` |
 | L22 | jcnet | PR 146 (merged `e84da52682`, 2026-09-21T16:03:07Z; byte-identical to the lineage) | lineage `272910f1df` |
 | L11 | jcnet | PR 150 (merged `6e576da266`, 2026-09-21T18:11:45Z; PARTIAL: a three-way merge from the transplant pin landed 34 rules and 5 skills of the 54 files that merge clean; fifteen clean merges wait, each for a reason the pull request's description states, and seven files conflict; row L11 is not settled by this landing) | lineage `272910f1df` |
+| J9 | lineage | #194 (merged `ce5b662496`, 2026-09-24T16:53:30Z; PARTIAL: compute-dont-hope as a core rule, and documentation-hygiene loading as core; the rest of batch one's set lands in the lineage's later intake pull requests) | jcnet `909a13405d` |
+| J9 | lineage | #195 (merged `7409e51000`, 2026-09-24T17:42:47Z; PARTIAL: record-generalisation-moves, recast as a `Practice-Generalisation:` commit trailer; the rest of batch one's set lands in the lineage's later intake pull requests) | jcnet `c2e1dd5521` |

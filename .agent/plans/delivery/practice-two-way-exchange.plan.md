@@ -16,7 +16,8 @@ ratified_where: >-
   .agent/memory/operational/director-handoff.md §Decisions overnight, item 101.
   Amended by the owner's card answers of 2026-09-21 in the session of Brazier spins
   Temper (c70341), recorded verbatim in this node's §Rulings of 2026-09-21, and by those of
-  2026-09-23 in §Rulings of 2026-09-23.
+  2026-09-23 in §Rulings of 2026-09-23, and by the owner's words of 2026-09-24, recorded
+  verbatim in §Rulings of 2026-09-24.
 serves: best-of-each-practice
 impact_areas:
   - practice-and-estate
@@ -25,7 +26,7 @@ depends_on:
   - plan: practice-completion
     kind: blocking
 owner_gates: []
-last_updated: 2026-09-23
+last_updated: 2026-09-24
 ---
 
 # Practice exchange
@@ -159,6 +160,37 @@ clone) is left out.
     Director hears questions and requests, never state. Its home is
     `route-blocks-and-questions-to-director`, §The Director Hears Questions and Requests, Never
     State.
+
+## Rulings of 2026-09-24
+
+The owner's words on 2026-09-24, given in chat to the exchange seat (Brazier spins Temper,
+c70341) and to the Director (Wick binds Temper, ed7b48), who relayed them to the seat;
+verbatim where quoted. The numbering continues from the rulings above.
+
+34. The goal, to the Director: "The overall goal here is to bring the Engraph OCE Practice and
+    JC.net Practice into alignment".
+35. The goal's order, to the exchange seat: "Our purpose here is to first make sure that all of
+    our Practice innovations are integrated into the OCE Practice, our second goal is to bring
+    our Practice up to speed with their innovations". So todo 5 (outbound) ranks before todo
+    4's remaining inbound landings, whatever their numbering. Delivery into the lineage's Box
+    is this estate's seat's own act through the join ceremony, and it never waits on a live
+    lineage seat; only the landing there does.
+36. The lessons, to the exchange seat: "the memories and records of this repo are local to this
+    repo, but the lessons learned from them are not". So todo 5's material includes the lessons
+    swept from this estate's records (the napkin, the distilled learnings, the pending
+    graduations, the experience letters and the reports), carried as self-contained lessons
+    while the records stay here.
+37. The sub-agent layer, relayed by the Director: "the labelling of Cricket agents is better in
+    JC.net than in OCE: make sure the Cricket implementations and other sub-agent details are
+    compared between the repos". The comparison runs both ways: what this estate does better
+    goes to todo 5, and what the lineage does better goes to todo 4.
+38. The frame, relayed by the Director: "Crickets judge in the frame provided, we need them to
+    also judge the frame itself". Its home is the cricket skill and its two base templates; it
+    lands here first, then as the same bytes in the lineage.
+39. Tests, to the exchange seat: "tests prove behaviour of product code, they must never, ever
+    be used to constrain configuration or implementation", and "no excemptions, strict,
+    everywhere, all of the time". Its home is `testing-strategy.md` §Philosophy, in the words
+    signed jointly with the lineage's exchange seat.
 
 Authored 2026-09-14 by the Director at the owner's direction, verbatim: "make sure that we have
 a plan for exploring that Practice delta, and any other advancements that have happened by the
@@ -372,3 +404,9 @@ the routing rationale. Read and dispositioned at pickup before implementation be
 | 2026-09-23 | PR 151, Copilot round one (thread on `best-of-each-practice.plan.md` §Delivery) | The strategic node's §Delivery carries implementation detail (a state line every thirty minutes, native-message routing, one-write channel appends), which the plan-node schema's §Strategic excludes ("no implementation detail"). Verified against the schema. | Not cured in PR 151: the node body is owner-ratified text ("Ratify both texts", 2026-09-21), never edited to satisfy a reviewer. Goes to the owner as a card after the node lands in both estates. The likely cure is moving those operating habits to this delivery node, so both estates' copies change together. |
 | 2026-09-23 | PR 151, Copilot round two (thread on PDR-142 §Decision, lines 110 and 126) | PDR-142's ratified transfer rules (text held at a copy point travels as the donor's bytes; Core records name no host) conflict with PDR-125 §7 ("concepts travel, never bytes", with format normalised on receipt) and with its per-estate phenotype note. Verified against both records: a seat cannot follow both. | Not cured in PR 151: both records are owner-ratified, and PDR-142's Boundaries leave PDR-125's amendment to the owner. To the owner by card after PDR-142 lands: which record governs where they differ, then PDR-125's dated amendment in both estates as a pair. Answered by card 2026-09-23: rulings 18 and 20. |
 | 2026-09-23 | PR 151, Copilot round two (review body, previously missed, `best-of-each-practice.plan.md:17`) | Two ratified strategic nodes now serve PRACTICE-1 (`practice` and `best-of-each-practice`), while the plans README gives `strategic/` one node per stream. PRACTICE-1's own text (a host takes the lineage's newer generation; conventions converge on the lineage's) also predates the owner's union-upward reading. Verified. | Not cured in PR 151: the node type ("a strategic node's body"), the `practice` node and the stream are all owner-ratified. To the owner by card with the topology options (a choice of its own in the stream; one node replacing the other; or the README contract reading one node per choice). Answered by card 2026-09-23: ruling 19, carried out in the change that records it. |
+| 2026-09-24 | PR 172, Copilot on the cure tip (thread, `cricket-procedure.md:125` and `:160`) | Step 2 lists an owner clause that states a goal, an order or a hold, but not one that only names who owns or receives the work, so the audit can pass a reading that drops the receiver the frame asks it to map. | Rejected as a cure in PR 172 (signed lines only, the two-rounds ruling); cured with joint set K, in the same pull request as this row. |
+| 2026-09-24 | PR 172, Copilot on the cure tip (review body, previously missed, `cricket-judgement.md:274`) | A judgement role given no `SOURCES:` block must return NARROWED, yet each FRAME EVIDENCE bullet must quote a source phrase. | Rejected as a cure in PR 172 as above; cured with joint set K: the one bullet reads `NO VERBATIM SOURCE`. |
+| 2026-09-24 | PR 172, Copilot on the cure tip (review body, previously missed, `cricket-procedure.md:217`) | Step 5 put the frame repair first only on ON-TRACK, while the skill acts on a non-SOUND frame before any work verdict. | Rejected as a cure in PR 172 as above; cured with joint set K: the frame repair leads whatever the work verdict. |
+| 2026-09-24 | PR 179, Copilot round one (thread on `render-subagent-adapters.ts`, out-of-scope observation) | Projecting a zero-tool role's full System prompt into its Claude adapter conflicts with PDR-009's thin-wrapper rule, which records no exception; the lineage's hand-kept corpus adapters carry the same inline prompts. | Rejected as a cure in PR 179 and routed to joint set K2: its PDR-009 clause, signed by both exchange seats (lineage event da7c49bf), names the exception and requires a check of every copy; here the generator is that check, and the lineage builds its own. |
+| 2026-09-24 | PR 179, Copilot on the cure tip (thread on `claude-fields.ts`; review body, previously missed, `system-prompt-block.ts:88`) | A quoted `" none "` passes the mixed-list rule and escapes the other zero-tool rules and the renderer; a fenced `> example` beside the real blockquote makes the reader refuse a valid System prompt section. | Rejected as cures in PR 179, because after round two a finding that is not a trivial cure takes a signed Rejected line (PDR-132's 2026-09-14 amendment "the number of review rounds per pull request does not go up"; this plan's §Mechanism, item 4). Both are cured, test first, in PR 182, the zero-tool follow-up slice. The older whole-text oracles of `render-subagent-adapters.unit.test.ts` stay their own slice, as PR 179 left them, and this row is not their ledger. |
+| 2026-09-24 | PR 181, Copilot on the cure tip (threads on `PDR-009-canonical-first-cross-platform-architecture.md` and `PDR-125-inter-practice-collaboration-protocol.md`) | The PDR-009 exception contradicts the adapter contract in `practice-bootstrap.md` and `practice-verification.md` item 11; PDR-125's Status line and index row carry no dated record of K2(b). | Rejected as cures in PR 181, because the pass after round two takes signed lines only. Routed to joint set K3, signed by both exchange seats (the lineage's event of 2026-09-24T17:35:11Z), and cured where K3 lands in this estate. |

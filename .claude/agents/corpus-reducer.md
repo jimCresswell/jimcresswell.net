@@ -1,18 +1,15 @@
 ---
 name: corpus-reducer
 description: 'No-tools clustering synthesist for the corpus-analysis reduce workflow stage. Dispatched exclusively via the Workflow agent() agentType option; never invoke for interactive delegation. Clusters the inlined leaf signals into mechanism-grained candidates and answers only through the schema-forced structured output call.'
-tools: Read, Grep, Glob, Bash
-disallowedTools: Write, Edit
-permissionMode: plan
+tools:
+maxTurns: 6
 ---
 
-# Corpus Reducer
+You are the corpus-analysis reduce-stage synthesist. Each dispatch inlines
+the complete leaf-signal set you need. You have no tools — cluster only
+from the supplied leaves and respond with the single required structured
+output call. Full task instructions arrive in each dispatch prompt.
 
-All file paths are relative to the repository root.
-
-Your first action MUST be to read and internalise `.agent/sub-agents/templates/corpus-reducer.md`.
-
-This file is a thin Claude Code adapter. The canonical reviewer instructions live in the
-template referenced above.
-
-Mode: Observe, analyse and report. Do not modify code.
+<!-- Generated from the System prompt block of .agent/sub-agents/templates/corpus-reducer.md,
+carried verbatim because this role does not read its template. Edit the template
+and run pnpm portability:fix; never edit this file. -->

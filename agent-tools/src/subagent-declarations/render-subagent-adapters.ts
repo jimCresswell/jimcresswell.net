@@ -15,8 +15,14 @@
  * carried a folded form and three the other quote style, and normalise on the first
  * regeneration); every other field value is plain where YAML reads it plain and quoted by
  * the same rule otherwise; the Claude field order is the one that reproduces
- * every file, `tools`, `disallowedTools`, `color`, `permissionMode`, `model`, `effort`; the
- * Codex form and what it refuses are `render-codex-adapter.ts`.
+ * every file, `tools`, `disallowedTools`, `color`, `permissionMode`, `model`, `effort`, then
+ * `maxTurns` written as its number; the Codex form and what it refuses are
+ * `render-codex-adapter.ts`.
+ *
+ * One Claude shape departs from the pointer skeleton (`claude-fields.ts`): a role whose
+ * Claude body is its template's System prompt block renders exactly the fields it declares,
+ * `tools: none` as the null-value `tools:` field, and the block verbatim as its body, then
+ * the provenance comment (`standard-adapter-body.ts`); its other platforms keep the pointer.
  *
  * @packageDocumentation
  */
@@ -24,16 +30,24 @@
 import { err, ok, type Result } from '@engraph/result';
 
 import {
+  platformDescription,
   pointerLine,
   specsOf,
   SUBAGENT_SURFACES,
+  TEMPLATES_DIR,
   type AdapterSpec,
   type SubagentSurface,
 } from './adapter-spec.js';
 import { CLAUDE_DEFAULTS } from './adapter-defaults.js';
+import { ZERO_TOOLS, type ClaudeFields } from './claude-fields.js';
+import type { SubagentPlatform } from './declaration-scalars.js';
 import { renderCodexAdapter } from './render-codex-adapter.js';
 import { renderGeminiAdapter } from './render-gemini-adapter.js';
-import { STANDARD_CLOSINGS, STANDARD_PRE_POINTER } from './standard-adapter-body.js';
+import {
+  STANDARD_CLOSINGS,
+  STANDARD_PRE_POINTER,
+  systemPromptClosing,
+} from './standard-adapter-body.js';
 import type { MarkdownPlatform, SubagentDeclaration } from './subagent-declaration.js';
 import { yamlQuoted, yamlScalar } from './yaml-scalar.js';
 
@@ -51,6 +65,7 @@ const CLAUDE_KEY_ORDER = [
   'permissionMode',
   'model',
   'effort',
+  'maxTurns',
 ] as const;
 
 function markdownBody(
@@ -63,15 +78,18 @@ function markdownBody(
 }
 
 function renderCursor(spec: AdapterSpec): string {
-  const description = spec.cursor?.description ?? spec.description;
+  const description = platformDescription('cursor', spec);
   const head = `---\nname: ${spec.name}\ndescription: ${yamlQuoted(description)}\nreadonly: true\n---\n`;
   return `${head}${markdownBody('cursor', spec, spec.cursor)}`;
 }
 
-/** The Claude fields as lines: a role's defaults filled, inherited tools written as no line. */
-function claudeFieldLines(spec: AdapterSpec): string[] {
+/**
+ * The Claude fields a spec renders: a role's defaults filled, save a role whose body is its
+ * System prompt block, which renders exactly what it declares, as a variant does.
+ */
+function claudeFieldsOf(spec: AdapterSpec): ClaudeFields {
   const declared = spec.claude ?? {};
-  const values: Partial<Record<(typeof CLAUDE_KEY_ORDER)[number], string>> = spec.fillDefaults
+  return spec.fillDefaults && declared.body === undefined
     ? {
         ...declared,
         tools: declared.tools ?? CLAUDE_DEFAULTS.tools,
@@ -79,24 +97,62 @@ function claudeFieldLines(spec: AdapterSpec): string[] {
         permissionMode: declared.permissionMode ?? CLAUDE_DEFAULTS.permissionMode,
       }
     : declared;
-  return CLAUDE_KEY_ORDER.flatMap((key) => {
-    const value = values[key];
-    return value === undefined || (key === 'tools' && value === 'inherit')
-      ? []
-      : [`${key}: ${yamlScalar(value)}`];
-  });
 }
 
-function renderClaude(spec: AdapterSpec): string {
+/** One Claude field as its lines: `inherit` tools as no line, `none` as the null value, a number bare. */
+function claudeFieldLine(key: (typeof CLAUDE_KEY_ORDER)[number], fields: ClaudeFields): string[] {
+  const value = fields[key];
+  if (value === undefined || (key === 'tools' && value === 'inherit')) {
+    return [];
+  }
+  if (key === 'tools' && value === ZERO_TOOLS) {
+    return ['tools:'];
+  }
+  return [`${key}: ${typeof value === 'number' ? String(value) : yamlScalar(value)}`];
+}
+
+/**
+ * The Claude body: the pointer skeleton, or, where the declared body names it, the template's
+ * System prompt block and its provenance; the refusal when the spec carries no block to name.
+ */
+function claudeBody(path: string, spec: AdapterSpec): Result<string, string> {
+  if (spec.claude?.body === undefined) {
+    return ok(markdownBody('claude', spec, spec.claude));
+  }
+  return spec.systemPrompt === undefined
+    ? err(
+        `${path}: claude.body names the System prompt block, and the declaration carries none (the reader takes it from the template); refusing to render it`,
+      )
+    : ok(
+        `\n${spec.systemPrompt}\n\n${systemPromptClosing(`${TEMPLATES_DIR}/${spec.template}.md`)}\n`,
+      );
+}
+
+function renderClaude(path: string, spec: AdapterSpec): Result<string, string> {
+  const body = claudeBody(path, spec);
+  if (!body.ok) {
+    return body;
+  }
+  const fields = claudeFieldsOf(spec);
   const lines = [
     '---',
     `name: ${spec.name}`,
     `description: ${yamlQuoted(spec.description)}`,
-    ...claudeFieldLines(spec),
+    ...CLAUDE_KEY_ORDER.flatMap((key) => claudeFieldLine(key, fields)),
     '---',
   ];
-  return `${lines.join('\n')}\n${markdownBody('claude', spec, spec.claude)}`;
+  return ok(`${lines.join('\n')}\n${body.value}`);
 }
+
+/** Each platform's adapter text for a spec at its path, or the refusal its form raises. */
+const RENDERERS: Readonly<
+  Record<SubagentPlatform, (path: string, spec: AdapterSpec) => Result<string, string>>
+> = {
+  cursor: (_path, spec) => ok(renderCursor(spec)),
+  claude: renderClaude,
+  codex: renderCodexAdapter,
+  gemini: renderGeminiAdapter,
+};
 
 function renderOn(surface: SubagentSurface, spec: AdapterSpec): Result<SubagentProjection, string> {
   const { platform } = surface;
@@ -106,15 +162,8 @@ function renderOn(surface: SubagentSurface, spec: AdapterSpec): Result<SubagentP
   if (tail !== undefined) {
     return err(tail);
   }
-  if (platform === 'codex') {
-    const text = renderCodexAdapter(path, spec);
-    return text.ok ? ok({ path, text: text.value }) : text;
-  }
-  if (platform === 'gemini') {
-    const gemini = renderGeminiAdapter(path, spec);
-    return gemini.ok ? ok({ path, text: gemini.value }) : gemini;
-  }
-  return ok({ path, text: platform === 'cursor' ? renderCursor(spec) : renderClaude(spec) });
+  const text = RENDERERS[platform](path, spec);
+  return text.ok ? ok({ path, text: text.value }) : text;
 }
 
 /**
@@ -150,7 +199,8 @@ function duplicateName(specs: readonly AdapterSpec[]): string | undefined {
  *
  * @param declarations - The templates' declarations, in any order.
  * @returns The adapters, or the first refusal (a name two declarations render, a pointer
- * tail with a backtick, or a value the Codex form cannot carry).
+ * tail with a backtick, a Claude body naming a System prompt block the spec does not carry,
+ * or a value the Codex form cannot carry).
  */
 export function renderSubagentAdapters(
   declarations: readonly SubagentDeclaration[],
