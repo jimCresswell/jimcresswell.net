@@ -12,8 +12,10 @@ Agent direction lives in [AGENT.md](.agent/directives/AGENT.md), read it.
   and the canonical rules in `.agent/rules/`, enumerated in `RULES_INDEX.md`; Gemini reads
   every canonical rule at session open, as Codex does.
 - Reviewer roles remain canonical in `.agent/sub-agents/templates/`. `pnpm portability:fix`
-  renders each role's Gemini sub-agent into `.gemini/agents/` from the template's declaration,
-  so a role is dispatched as a sub-agent; never edit a rendered file by hand.
+  renders a Gemini sub-agent into `.gemini/agents/` for each role whose declaration includes
+  Gemini, and that role is dispatched as a sub-agent. The no-tools corpus roles
+  (`corpus-reducer`, `corpus-voter`) declare no Gemini adapter. Never edit a rendered file by
+  hand.
 - Supported and unsupported platform mappings are documented in
   [.agent/memory/executive/cross-platform-agent-surface-matrix.md](.agent/memory/executive/cross-platform-agent-surface-matrix.md).
 - After changing adapter surfaces or reviewer wiring, run `pnpm portability:check`.
