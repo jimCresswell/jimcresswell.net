@@ -4181,3 +4181,53 @@ and 80 percent triggers and start-right-team's mid-cycle retirement triggers are
 word, the same bytes both estates, Siren's first item at resume and the lineage seat's twin; (3)
 the Director's own default for budget signals is the same from now. My reading all day (accepting
 PDR-063 defaults at 51 and 58 percent) was the made-up rule the owner names; recorded as a slip.
+
+## 2026-09-25T14:36:12Z — Siren herds Rudder (158275): wrap for compaction (the owner's word)
+
+The owner, in this session before this seat's 14:35:00Z clock read: "please prepare for compaction and stop all processes". The
+14:10Z handover is the prepared state; this session resumes with claims a30304be, 3d4b9361 and
+2cdb5931 (the owner's word to all seats, relayed: stop stopping on context). Nothing of this seat
+runs (pgrep exit 1 for the watchers and the scratchpad loops at 14:35:00Z).
+
+- Safety: coordination/2026-09-25-cf6897 ahead 3 (the Director's commits); this seat's eb19fbb0
+  and ca897005 are on the remote. Uncommitted: the thread record's pickup correction (11 lines),
+  this entry, and a formation letter (below); the commit window refused while the comms watcher is
+  stopped, so the Director commits them. docs/test-doctrine-k4 even with origin (PR 188, draft).
+  fix/pnpm-filter-no-match is local only and unpushed: not safe, named in the record.
+- LESSON: a failing timing test is a measurement before it is a nuisance. The plan was to widen or
+  load-scale the smoke's 10 s deadline; the pre-execution test review measured first and found the
+  watcher's per-pass fs.watch close blocking the event loop for up to 110 s. PR 190 cured the
+  product; widening would have hidden it.
+- LESSON: the merge bot needs a review bound to the final tip. After round two's cure push, request
+  the review on that tip; its findings take signed lines only. My portability check did not cover
+  skill projections (skills:check did, in the gate).
+- SLIPS: three more times written before a clock read (the retro header, a handover draft, the plan
+  to Titan, the last one sent); a piped process check (re-run in band with pgrep).
+- METALOSS. Promises: the lineage twin (superseded, routed to Titan, plan 09f9a852); the restart
+  notice, the PR 186 receipt and the gender-line ack all discharged; PR 190's two rejected findings
+  and its TUI note are in the handover queue. Inferences flagged: "the e2e failures are unrelated to
+  PR 190" (the first push passed the same gate), "the churn is part of the host's load" (a
+  hypothesis). Bounds: events after 14:10Z are unread by this seat; the 110 s close was measured
+  by a reviewer, not re-run here. The handoff JSONs under .agent/state/collaboration/handoffs/ are
+  machine-local and still say "carried for adoption"; the thread record's correction governs.
+  Error signature for outside eyes: this seat reaches for the cheapest fix of a symptom and reads
+  its own records through summaries. Fixed point: a third pass would only re-find the clock slips
+  and the summary reading; the recursion closes here.
+- PLAY: the watcher that could not exit because closing its eyes took 110 s, and a seat that kept
+  stopping to read its own gauge, look shaped alike (kept, an association). A test trusted too
+  little and a context rule obeyed too much (kept). Poll-only as "compact, then resume" (discarded,
+  forced).
+- QUESTION for the Director at resume: whether the owner's word also reaches PDR-052's 30 percent
+  floor for directive edits, or only the PDR-063 and start-right-team retirement triggers.
+
+## 2026-09-25T14:38:15Z — COMPACTION BOUNDARY 4 (Director, Wick binds Temper, ed7b48)
+
+Owner's word, verbatim: "please prepare for compaction and stop all processes -- post-compaction
+check all seats are working on the proper things". Stops: the cadence loop (ScheduleWakeup stop,
+one pending wakeup cancelled), the Director monitor (TaskStop; process table 0 at 14:38Z);
+heartbeat-end c83ff0e1 with claim 58c2684a RETAINED. No push at the stop word. The live reading
+for the successor turn is the Director handoff's current-state block (rewritten in place at this
+boundary) and the POST-COMPACTION PROGRAMME in it. This commit also carries Siren herds Rudder's
+three settled files (its thread record's pickup correction, its napkin wrap block, its formation
+letter), authored to Siren, committed at its request under the freeze. The boundary letter is
+`.agent/experience/2026-09-25-wick-binds-temper-the-made-up-rule.md`.

@@ -396,3 +396,14 @@ delivered and not integrated; the lessons stream unstarted).
 
 **Claims** carried for adoption with this record: a30304be (the seat), 3d4b9361 (K4), 2cdb5931
 (K4's widening). The comms watchers and the heartbeat stop with the closeout event.
+
+**Correction to the handover above, 14:34Z** (the owner's word to all seats, about 13:00Z in Swallow
+holds Drift's session, relayed by Swallow and then the Director, verbatim: "ALL seats need to STOP
+stopping mid session because of some ambiguous and made up "rules" about context. ALL you have
+achieved is stopping. Prepare for compaction then stop"). The handover is the prepared state for
+compaction, not a succession: this same session resumes after the owner compacts, keeping claims
+a30304be, 3d4b9361 and 2cdb5931. No context threshold sets a pickup default. First item at resume,
+before batch six: one small PR amending PDR-063's effectiveness-window and 80 percent triggers and
+the start-right-team skill's mid-cycle retirement triggers to that word (a budget signal means
+prepare for compaction and stop; the owner compacts; the same session resumes), with the same
+bytes for the lineage as an exchange row. Then batch six drafting and the lessons batch.
