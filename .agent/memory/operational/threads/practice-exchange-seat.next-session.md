@@ -407,3 +407,64 @@ before batch six: one small PR amending PDR-063's effectiveness-window and 80 pe
 the start-right-team skill's mid-cycle retirement triggers to that word (a budget signal means
 prepare for compaction and stop; the owner compacts; the same session resumes), with the same
 bytes for the lineage as an exchange row. Then batch six drafting and the lessons batch.
+
+## Resumed after compaction, 2026-09-25 15:00:08Z (Siren herds Rudder, 158275)
+
+Resumed on the owner's "carry on" (14:41Z rejoin, event 358551e4); context 6.3% after the
+compaction. Watchers, heartbeat and the peer-liveness poll re-armed.
+
+- PR 188 (K4): the sub-30% directive re-read ran at 11.6% (774517a9: three wording cures). Main
+  merged in at a9ed6463. Copilot round one gave one finding (item 12's heading), cured in 33c4e06d.
+  Round two on that tip had no findings. The merge waits on CI.
+- The Director's verdict on the two relays of the owner's word is Swallow's reading: no context
+  reading stops a seat or starts a succession. Records stay current; the drill runs only when the
+  owner calls a compaction; the same session resumes on the owner's word. PDR-052's floor stands,
+  and a compaction satisfies it.
+- Trigger amendment PR, branch `docs/context-never-stops-a-seat` (worktree
+  `context-never-stops`), claims 8c2a7569 and 4947b615. It changes PDR-063, PDR-052, PDR-064,
+  PDR-078, the Core CHANGELOG, start-right-team, the heartbeat rule and the session-metadata
+  advice strings. The checks are green and docs-adr-expert and Wilma are reviewing. PDR-063,
+  PDR-064, PDR-078 and compute.ts are byte-identical in the lineage. PDR-052, the skill and the
+  rule differ only outside the edited hunks.
+- Queued next: Swallow's Cricket clause (lineage f67bd1f06, event bfc686cf, the same bytes) as
+  its own small PR; then batch six drafting and the lessons batch.
+
+**Update, 15:04:35Z.**
+
+- PR 188 (K4) MERGED at 15:01:18Z as `c523ba81`. Its branch is deleted, its worktree retired, and
+  claims 3d4b9361 and 2cdb5931 are closed. The receipt went to the lineage (event 252fb4ce).
+- The owner's word, relayed by the Director: Myrtle turns Canopy (bf4957) is the lineage's
+  exchange seat and this seat's counterpart for every row (the trigger amendment twin, batch six,
+  the F-200 to F-207 twins). Myrtle acknowledged the PDR-009 joint cure (1592fa3d) and lands
+  blob bc4612df as one PR behind the lineage slot order.
+- The Director ruled for both estates (15:04:16Z) that PDR-052's floor stands as a deferral,
+  never a stop, and the amendment PR encodes it as drafted. This seat read 31.1% at 15:04:24Z,
+  so any further edit to PDR-052 waits for the next compaction. One candidate clause is held
+  there, from the ruling: a seat whose only remaining work is directive edits above the floor
+  says so and asks for a compaction.
+- Cricket clause PR: branch `docs/cricket-hold-release-sensor` (worktree `cricket-sensor`),
+  claim 39f0f4b5, commit 14ba003a, at its push gate.
+
+**Update, 15:22:25Z.**
+
+- PR 191 (the Cricket hold-release-sensor clause) MERGED at 15:09Z as `251cd984`. Its branch,
+  worktree and claim 39f0f4b5 are gone, and the receipt went to Swallow (lineage 7851b636).
+- PR 192 (the trigger amendment, "context readings never stop a seat") is OPEN at head `630be53e`,
+  with Copilot round one requested. It grew to 21 files after the docs-adr-expert and Wilma
+  reviews, on the Director's rulings:
+  - one PR for every stale surface;
+  - an owner-called compaction gets the drill, while a platform compaction gets none and the seat
+    re-arms and carries on;
+  - only `.agent/directives/*` and PDR-052 itself are gated by PDR-052.
+  The twin row went to Myrtle (lineage 9c109112). The claims are 8c2a7569, 4947b615, 3f9befe3
+  and 3b602eb1.
+- Queued for after the next compaction (PDR-052's self-applying clause; 31.1% at 15:04:24Z), as
+  one small commit and its own row to Myrtle: a seat whose only remaining work is directive edits
+  asks for a compaction; with no compaction coming, the seat names the queued edit in its next
+  report.
+- The watcher-twin joint-cure set (Swallow 15:16:19Z, ten findings) is accepted as one
+  JC.net-drafted PR (lineage 440d5773). It sits after batch six, with PR 190's routed cures.
+- Batch six: the Director placed it next (it is not directive work). A one-lane pilot is drafting
+  five half-B notes into the scratchpad (starter templates, merge-bot, polarity, tsconfig flags,
+  tdd-recipes). The rest of the fleet waits on its measured cost and a hand check of its output,
+  per the fleet-design rule.
