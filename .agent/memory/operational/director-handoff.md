@@ -110,6 +110,18 @@ Every line answered first-hand, none inferred:
   PushNotification, never a card. Relayed to Siren, Swallow and Myrtle natively and broadcast on
   both streams at 12:06Z.
 
+- OWNER WORD to ALL seats, 2026-09-25 about 13:00Z, given in Swallow's session and relayed by
+  Swallow at 14:33Z (recorded as relayed, consistent with the owner's compaction words of
+  2026-09-24), verbatim: "ALL seats need to STOP stopping mid session because of some ambiguous and
+  made up "rules" about context. ALL you have achieved is stopping. Prepare for compaction then
+  stop". So: no seat hands over on a context threshold; at a budget signal a seat prepares for
+  compaction (records committed, processes stopped, claim retained) and stops; the owner compacts;
+  the same session resumes on "carry on". PDR-063's effectiveness-window and 80% triggers and the
+  start-right-team skill's mid-cycle retirement triggers are amended to this word, as the same
+  bytes in both estates: JC.net's exchange seat at its resume, the lineage's seat as the twin. The
+  Director accepted two threshold handovers today (Swallow 51.3%, Siren 58.7%) under PDR-063; that
+  reading is retired.
+
 ## Current handoff state (2026-09-25T11:17Z; after the fold of PR 176; the live reading is this block, then the napkin from its 10:37Z block on)
 
 Written for a reader who was never here and may run on a different model. Where this block and
