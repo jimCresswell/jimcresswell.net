@@ -171,9 +171,8 @@ emission.** The Director who absorbs substrate-worthy observations
 into agent-private notes through the window, then synthesises a
 comprehensive handoff record at closeout, has:
 
-- concentrated O(session) authoring cost at exactly the boundary
-  where context-budget pressure is highest (the PDR-063 trigger
-  surface);
+- concentrated O(session) authoring cost at the handoff boundary,
+  where the seat's context is fullest;
 - deprived peers of real-time substrate visibility
   (broad-awareness-as-substrate-cognition per PDR-074 cannot
   operate on substrate the Director is hoarding);
