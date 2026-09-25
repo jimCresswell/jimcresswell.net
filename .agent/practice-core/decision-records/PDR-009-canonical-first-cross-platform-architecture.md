@@ -129,9 +129,10 @@ containing thin wrappers. A thin wrapper contains ONLY:
   cannot express a platform's native mechanism (e.g. `@file` mentions,
   argument-substitution placeholders, skill-invocation syntax).
 
-A thin wrapper MUST NOT contain substantive instructions, workflow
-steps, or logic that does not exist in the canonical source. The
-canonical content describes **what** to do; the wrapper describes
+A thin wrapper MUST NOT add substantive instructions, workflow steps,
+or logic of its own: whatever substance it carries is the canonical
+source's text, as an inline-prompt role's compared copy (below) is.
+The canonical content describes **what** to do; the wrapper describes
 **how** to invoke it on a specific platform.
 
 An adapter carries what its role needs to reach the canonical prompt.
@@ -335,9 +336,11 @@ Layer-2 artefact types.
 
 ### Forbidden
 
-- Substantive content in platform adapter directories. Policy
-  prose, workflow steps, or decision logic in a wrapper is a
-  contract violation.
+- Substantive content of an adapter's own in platform adapter
+  directories. Policy prose, workflow steps, or decision logic that
+  a wrapper adds is a contract violation; an inline-prompt role's
+  System prompt block is its template's text, copied verbatim and
+  compared with it.
 - Canonical rules that duplicate authoritative-source content rather
   than pointing at it. A canonical rule is itself a pointer layer in
   the three-layer model; its own substance should be minimal.
