@@ -64,7 +64,8 @@ The site declares ESLint 9 with `eslint-config-next`; `agent-tools`, every
 declare ESLint 10. `agent-tools`, `tooling/result`, `tooling/safe-path` and
 `tooling/type-helpers` lint with `@engraph/eslint-plugin-standards`. Two
 configs hand-roll theirs from `typescript-eslint` and `@eslint/js` instead: the
-plugin's own (`tooling/eslint`), which cannot lint through its own build, and
+plugin's own (`tooling/eslint`), which cannot lint through its own build and
+imports only its test-shape block (`src/configs/test-shape.ts`) from source, and
 `tooling/workspace-config`'s, because the plugin's build and test configs
 consume that package and a dependency back onto the plugin would close a
 workspace cycle. `lint:runtime-only` uses `@eslint/js`'s recommended rules.

@@ -4,6 +4,10 @@ import eslint from '@eslint/js';
 import { createTypeScriptImportResolver } from 'eslint-import-resolver-typescript';
 import { createNodeResolver } from 'eslint-plugin-import-x';
 
+// The test-shape surface from source: this config cannot import the package it
+// lints, and `test-shape.ts` needs nothing built.
+import { testShape } from './src/configs/test-shape.js';
+
 export default defineConfig(
   {
     // Self-bootstrap ignores: this config cannot import the shared list, so the
@@ -54,4 +58,5 @@ export default defineConfig(
       ],
     },
   },
+  testShape,
 );
