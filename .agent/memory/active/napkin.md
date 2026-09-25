@@ -4289,3 +4289,33 @@ after the owner compacts it or a fresh one, then the exchange seat, no closeout 
   owner-initiated succession; a seat may report its reading when asked, never act on it; PDR-052's
   30% floor stands and a compaction satisfies it. Lenses 2 and 5. This seat's 14:34Z wording is
   superseded on that point; the handoff's §Standing owner rulings entry is read through this block.
+
+## 2026-09-25T15:02Z — Owner's words: land PR 212; Myrtle is the OCE Practice seat. Titan closed, Gale turns Cloud its successor
+
+- Owner (native chat, 14:54Z): "<https://github.com/EngraphCode/open-curriculum-ecosystem/pull/212>
+  please make sure this PR is landed". PR 212 is the carrier of the Oak line's 1.185.2 (four files:
+  CODEOWNERS adds johnrobeds, CHANGELOG, two version bumps). The owner had merged engraph into the
+  carrier through the repository service at 14:53:33Z (281591c19, author Jim Cresswell, committer
+  GitHub) and marked it ready. Cross-fork-integration steps 1 to 8 run and recorded on the PR
+  (comment 5834528634, 14:57:46Z): identities read live; upstream/main fetched read-only equals
+  the mirror sha, so no newer snapshot queues; merge-tree recompute exit 0 with tree 43c21bd95
+  equal to the head's; one carrier; no generator input touched; premise sweep over 699 fork-side
+  files, every hit a dated record or homonym, nothing to re-true; deletion sweep three intended
+  lines; Copilot 5319165768 approval recommended, zero threads. The front door launched 14:57:51Z
+  (merge-bot merge --pr 212 --expect copilot-pull-request-reviewer, 30s x 60) in the background;
+  unit-tests and browser-tests were pending at 15:01Z. After the landing: branch delete as the
+  bot, step 9's proof from refreshed refs, the ledger row, the lineage's continuity line.
+  The record comment's header says "read 14:58Z" for a 14:57:46Z clock: rounded, not read.
+- Owner (native chat, about 15:00Z): "Myrtle turns Canopy (bf4957) is now handling the Practice
+  lane on the OCE side". The one surviving question (the vacant lineage exchange seat) is closed by
+  it; the same Myrtle session, renamed OCE Practice, holds Marten's former claims a63a7df8 and
+  141892a7 as the registry reads at 15:01Z. Siren told natively at 15:01Z; the lineage stream
+  event f0396e15 at 15:02Z names Myrtle as the receiver for JC.net's rows.
+- Titan turns Ether closed out at 14:54:59Z (86e7f939): PR 211 open at a623bfddb with one unresolved
+  thread, the metadata-only cure unmade, local ae110f662 (redacted capture) never to be pushed;
+  claim be006748 retained with a handoff record. Gale turns Cloud (01a0d9, Codex CLI; runtime
+  GPT-6-sol under a GPT-5 registration tuple, flagged by Gale) started 15:00:11Z paired with
+  Swallow by the owner's word, adopted be006748 at 15:01:33Z; boundary PR 211's cure, the config
+  split, the sink. Swallow's twin: gates green in its worktree, reviewers running, claim d8773fd8.
+- Slot order declared on the lineage stream at 15:02Z (f0396e15): PR 212 now; the twin's PR when green and
+  clean; the fold PR 187 after the twin with a fresh engraph merge; PR 211 after its cure.

@@ -140,20 +140,18 @@ the routing log disagree, the log's last entry is current. The owner's words are
   "ALL seats need to STOP stopping mid session because of some ambiguous and made up "rules" about
   context. ALL you have achieved is stopping. Prepare for compaction then stop" (threshold
   handovers retired; PDR-063 and start-right-team triggers to be amended, both estates).
-- SEATS. Siren herds Rudder (158275): at rest since 14:10Z as the prepared state for compaction,
-  claims a30304be, 3d4b9361, 2cdb5931 kept; resumes in the same session; first the sub-30% review
-  of PR 188's directive hunks, then the PDR-063 and start-right-team trigger amendment (one small
-  PR, same bytes for the lineage), then batch six's drafting (12 J rows from eb19fbb0's triage) and
-  the lessons batch; the F-200 to F-207 tooling twins in its queue. Swallow holds Drift (516619):
-  ready for compaction at 14:3xZ, claim 372ac08b kept, resumes the Codex lane in the same session
-  with the wake sink's pre-execution review. Myrtle turns Canopy (bf4957): closed out 13:45Z;
-  the lineage's exchange seat opens at a fresh context below 30% that only the owner can start
-  (pushed 13:47Z): the four PDR-052 rows, then the seat, no closeout between (pickup block in the
-  lineage's continuity thread, 1071632c9). Titan turns Ether (01a0d8, Codex CLI): silent since its
-  13:43:19Z hold (PR 211's evidence push refused by its harness approval; read as blocked on that
-  prompt); two directed events queued for it: bf310b71 (cite the capture, never push the payload)
-  and d18c56f0 (the watcher fix's lineage twin after PR 211, before the config split; Siren's plan
-  09f9a852). Marten, Luna, Geyser over.
+- SEATS (rewritten 15:02Z). Siren herds Rudder (158275): resumed in the same session, PR 188's
+  sub-30% directive review, then the PDR-063 and start-right-team trigger amendment PR (on the
+  14:47Z ruling: no context number stops a seat; the drill runs when the owner or the platform
+  compacts; PDR-052's floor stands, a compaction satisfies it), then batch six and the lessons
+  batch. Swallow holds Drift (516619): the watcher twin of JC.net PR 190 in its own worktree
+  (claim d8773fd8; accepted 29944e66), then the sink's pre-execution review (372ac08b). Myrtle
+  turns Canopy (bf4957): the OCE Practice seat by the owner's word about 15:00Z, the receiver of
+  JC.net's rows; holds a63a7df8 and 141892a7. Gale turns Cloud (01a0d9, Codex CLI): Titan's
+  successor by the owner's pairing with Swallow; claim be006748 adopted 15:01:33Z; PR 211's
+  metadata-only cure, then the config split, then the sink. Titan turns Ether: closed 14:54:59Z
+  (86e7f939). Marten, Luna, Geyser over. PR 212 (the 1.185.2 carrier): at the front door on the
+  owner's word, the Director lands it (record on the PR, comment 5834528634).
 - GOALS AT THE BOUNDARY. Goal one: 1 of 23 J rows landed whole (J4), 3 part, 5 delivered not
   integrated, 12 undrafted (triaged); the receiver is the vacant lineage seat. Goal two: 0 of 6
   open items (bridge todos 1 to 3, dialogues 1b-iv, 2, 3); todo 1 partial; PR 211 held. Goal
