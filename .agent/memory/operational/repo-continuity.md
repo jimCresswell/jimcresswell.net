@@ -21,17 +21,136 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
+- 2026-09-25T10:53Z, the Director's fold of `coordination/2026-09-24-7925bc` (PR 176, due 09:39Z),
+  after its third compaction and the owner's "Please continue". `main` is at `SHA: 3c4e4e22` (PR 185);
+  merged since the 13:59Z entry below: PRs 172 to 185 (the Cricket frame verdict, the alignment
+  regrounding legs, arc metrics, joint sets K1 to K3, the generalisation trailer, the zero-tool
+  adapter cures, the session-metadata pins removed). `feat/alignment-start-right-test-rules` merged
+  as PR 174; the remote holds `main` and the coordination branch only. Overnight the lineage's
+  exchange seat (Marten mends Shadow, 74fc02) landed J4 in full (OCE PRs 202, 203, 205) and J18 in
+  full (OCE PRs 204, 206 to 209), then stood down at the owner's word; its handoff record is in the
+  lineage's primary. The register's §Landings lags those landings (the exchange seat's queue item 2).
+  Seats: Siren herds Rudder (158275) resumed at 10:2xZ on the queue in its handover record (Marten's
+  nine events, batch six, K4 below 30%, the filter-guard branch to a PR or deletion, the register);
+  the lineage's exchange seat is vacant (Geyser rides Pewter, eeecbd, standby at the owner's "start
+  no work"); Swallow holds Drift (516619) resumed at 10:49Z landing OCE PR 196 with Titan turns
+  Ether (01a0d8) as its Codex partner. The Director's assessment of the owner's three goals is the
+  napkin block of 10:37Z. Next safe step for any seat: read the successor coordination branch's
+  name from the Director's rotation broadcast on the comms stream before writing a continuity file.
+
+- 2026-09-24T13:59Z, a correction to the 13:41Z handover entry: 22 paths of this estate's delta
+  match the lineage's head by blob, not 21 (580 differ, 348 absent there, 42 deleted here, 22 the
+  same, over 992 paths). Recomputed for the retrospective
+  `.agent/reports/agentic-engineering/2026-09-24-why-the-exchange-seat-worked-one-direction-of-a-two-way-goal.md`,
+  whose six proposals are routed to the exchange seat and the Director.
+- 2026-09-24T13:41Z, the exchange seat's wrap (Brazier spins Temper, c70341) for its successor,
+  Siren herds Rudder (158275). Landed today: PRs 165 to 171 (the last two, the strict test doctrine
+  and the small conflicts, merged at `SHA: e0e79c07` and `SHA: d023d4ef`); `main` is at
+  `SHA: e0e79c07`. Start with goal one, per the owner's order recorded below.
+  - The outbound index. This estate's delta, recomputed to `main`
+    (`bash .agent/reports/practice-transplant/inputs/exchange-delta.sh jcnet-since-transplant .
+    55649a20e6 <main-sha>`), has 992 paths; the register's rows J1 to J23 cover all of them
+    (run `computeCoverage` from `agent-tools/src/validators/exchange-register/` over the J rows
+    with that list). Against the lineage's `origin/engraph` at `SHA: fcbaa9bf5`, compared by blob
+    per path: J1 355 paths (227 differ, 108 absent there), J2 95, J5 41, J6 37, J8 74, J15 183,
+    J21 37 absent there; no row is fully landed there, and 21 paths match. A differing blob can be
+    a host-adapted twin of the same concept, so "differs" bounds what is owed from above. The concepts added since the
+    register's pin, each needing its own row: the host gate slot, the exchange-register
+    validator, the operator-profile validator's changes, the transaction lock and spawn modules,
+    the allow-list removals in three validators, the three-zone fitness vocabulary, and the
+    PDR-117, PDR-125 and PDR-027 amendments.
+  - The lessons sweep. It is the due consolidation too: one pass, two destinations. One row per
+    lesson: the lesson in portable words, its evidence, the JC.net file that already states it,
+    the OCE file that does (or partial, or no), and the proposed OCE home. Sources: the napkin
+    (3,299 lines), `distilled.md`, `pending-graduations.md`, the unconsolidated napkins, the
+    September experience letters, and the per-user memory buffer. A pilot on `distilled.md` ran
+    at the wrap; its result is in the napkin if it landed.
+  - The delivery. The note and the material go into the lineage's Box
+    (`.agent/practice-core/incoming/`, empty at the wrap) through the join ceremony, with a
+    paired comms event. Marten mends Shadow (74fc02), the lineage's new exchange seat, is live and
+    watches the Box. Its order: joint set F from PR 159 (`SHA: 037d54a5`), then G from PR 160
+    (`SHA: 2501b9d9`) with PR 171's three files; the test doctrine goes to a fresh session there
+    (PDR-052), with this estate's five follow-up cures if they have landed.
+  - Branches waiting behind goal one. `feat/alignment-start-right-test-rules` (`SHA: 4b9fd501`, worktree
+    `align-five`; its first push failed the portability leg, three projections not regenerated,
+    cured at `SHA: 5eb897f0`; pushed after the handover with no pull request, verify with
+    `git ls-remote`): start-right's two-legs paragraph from
+    the lineage, and two of the five follow-up cures (no-global-state-in-tests' smoke globs, the
+    test-expert's Step 2). `fix/pnpm-filter-no-match` (`SHA: 5ca00f52`, worktree `filter-guard`)
+    stays local: it carries an allow-list the owner's rulings forbid, and it is estate-local
+    capability, held. `docs/concept-over-bytes-amendments` is never pushed.
+  - Held behind goal one and goal two: the ratified gate node's PRs B to F, and the ratified
+    recovery node's inventory (estate-local; its pilots showed an evidence-extraction design at
+    about 7k tokens a file). Owed with that inventory, promised in PR 170's signed dispositions:
+    the node's import boundary for check-only locations, and the corrected comment on
+    `commit-queue-git-rename.smoke.ts` (an in-process integration test under a check's name).
+  - Records pushes batch to the end of a stretch: every push runs the full gate, including the
+    site's build and end-to-end suite, and the owner saw the site open in the IDE while only the
+    Practice was in hand.
+- 2026-09-24T13:33Z, the owner's order for the exchange, verbatim: "Our purpose here is to first
+  make sure that all of our Practice innovations are integrated into the OCE Practice, our second
+  goal is to bring our Practice up to speed with their innovations", and "the memories and
+  records of this repo are local to this repo, but the lessons learned from them are not". Goal
+  one is the exchange node's todo 5: this seat delivers the outbound note and material into the
+  lineage's Practice Box through the join ceremony, and the lineage's seats land it. Its inputs:
+  the register's J rows refreshed against the lineage head, and the lessons swept from this
+  estate's records (napkin, distilled, pending graduations, experience, reports), which travel
+  as lessons while the records stay here. Goal two (inbound) waits behind it; its slice
+  is `feat/alignment-start-right-test-rules` at `SHA: 4b9fd501`, local and unpushed.
+- 2026-09-24T13:28Z, a correction to the two opener entries below: PDR-052 covers only
+  `.agent/directives/*`. The fresh session's queue is the directives alone: `AGENT.md`,
+  `principles.md`'s non-test hunks, `orientation.md`, `agent-collaboration.md`, and the two
+  settlement fixes in `testing-strategy.md` and `validation-strategy.md`. The rules
+  (`check-singleton-per-window`, `no-warning-toleration`, and `no-global-state-in-tests`' globs),
+  the skills (`session-handoff`, `cross-fork-integration`, the start-right shared workflow,
+  `pr-lifecycle`), the test-expert template's Step 2, the Practice-Core `CHANGELOG.md` and
+  `testing-patterns.md` are alignment work for the current seat. The recovery node's inventory is
+  paused: it is estate-local, and the owner's goal is the Practice's alignment.
+- 2026-09-24T13:16Z, added to the PDR-052 opener below, and first in its queue: PR 170's
+  settlement review (`SHA: 5ce5918f`) found four doctrine gaps past the two-round bound. The fresh
+  session cures them before the queued merges: `testing-strategy.md`'s levels table and cycle text
+  still call E2E a test level (rewrite in test-or-check terms); `validation-strategy.md` says the
+  `test` command proves behaviour at every level (limit it to unit and integration);
+  `no-global-state-in-tests`' trigger and globs miss the smoke-check locations; the test-expert
+  template's Step 2 omits the smoke check and its feature-versus-artefact discriminator. The
+  recovery node's inventory slice takes the other two: the import boundary for check-only
+  locations, and `commit-queue-git-rename.smoke.ts`, an in-process integration test under a
+  check's name.
+- 2026-09-24T13:14Z, the exchange seat's PDR-052 handoff opener: the remaining directive-file
+  alignment work is queued for a fresh session and is not done in the session that wrote this.
+  `main` is at `SHA: d023d4ef` (PR 171 merged); PR 170, the strict test doctrine slice, carries
+  the owner's 2026-09-24 stamps on `commit-as-the-full-local-gate` and
+  `no-io-test-boundary-and-di-recovery` and waits on its settlement review. The method, for
+  recomputation: a three-way `git merge-file` per file with this estate's `main` as ours, the
+  transplant pin (lineage `SHA: e477e62f7`) as base and the lineage's `origin/engraph` as theirs;
+  keep the lineage's text wherever it fits and this estate's host facts. Queued, in order: the
+  directives and rules (`AGENT.md`, `principles.md`'s non-test hunks, `orientation.md`,
+  `agent-collaboration.md`, `check-singleton-per-window`, `no-warning-toleration`); then
+  `session-handoff`, `cross-fork-integration`, the start-right shared workflow, the Practice-Core
+  `CHANGELOG.md` and `pr-lifecycle`; then `testing-patterns.md`'s full merge. The OCE side has no
+  live seat since the lineage's exchange seat stood down at about 12:55Z; its successor's pickup
+  points at PRs 170 and 171 for the joint bytes, and the outbound queue stays in this estate's
+  exchange register. Order for the exchange seat meanwhile, after Cricket suite 4: PR 170's
+  merge, the recovery node's first cure slice, then gate PR B.
+- 2026-09-24T11:03Z, the exchange seat's non-terminal wrap at the owner's word ("this is not
+  session end, this is making sure that context and understanding are safe"). `main` is at
+  `SHA: b33c2320`: joint sets F to I merged as PRs 159 to 161, signed by the lineage's exchange
+  seat (Zephyr guards Leeward, 281e44, back since about 10:14Z). The owner's goal, relayed by the
+  Director at 10:25:54Z: "The overall goal here is to bring the Engraph OCE Practice and JC.net
+  Practice into alignment". The owner's rulings of the same morning: tests prove product
+  behaviour only, never configuration or implementation; no exemptions. The seat's re-ranked
+  plan, approved by the Director: cure PR one, the gate and lock lane's tests (local at
+  `SHA: 083eac79` on `fix/gate-lane-tests-prove-behaviour`, in pre-open review); cure PR two,
+  the validators' allow-lists; then the alignment lane from the napkin's baseline count. The
+  filter guard stays local at `SHA: 5ca00f52` until it is cured. The live reading is the
+  napkin's blocks from 10:25Z on.
 - 2026-09-24T09:29Z, the fold of `coordination/2026-09-23-551f2c`: `main` is at `SHA: ba504ffe`.
   Since the entry below, PRs 155 to 158 merged on 2026-09-23 (the concept-over-bytes amendments,
   the joint rules texts, format at receipt with PDR-142's wording cures, and the joint plans with
   rulings 22 to 33). On 2026-09-24, PR 163 (a transaction lock left without its owner file is
   reclaimed by its directory's age, `SHA: 256bd68b`) and PR 162 (the gate slot: at most two full
   gates on the host and one per working tree, PR A of the `commit-as-the-full-local-gate` lane,
-  `SHA: ba504ffe`) merged. Open: PRs 159, 160 and 161, joint sets F to I, held for the lineage's
-  signature; the lineage's exchange seat has been vacant since 20:31Z on 2026-09-23. Next for
-  the exchange seat: the lane's PR B, scoped first against D's pushed-range secret scan. The
-  Director is Wick binds Temper (ed7b48). The live reading is the handoff's current-state block
-  and its last routing entry, then the napkin's tail.
+  `SHA: ba504ffe`) merged. The Director is Wick binds Temper (ed7b48).
 - 2026-09-23T19:11Z: the owner answered the Director's card of 2026-09-23, eight items, all as recommended
   (the napkin and the handoff carry them). `main` is at `SHA: bf9daf47`: PR 152 folded
   `coordination/2026-09-21-19cfcc`, PR 154 removed the lowest-power low-effort Cricket seat, PR
@@ -87,13 +206,16 @@ names a live branch):
   retire under item 5: `validate-ratified-lists`. Not re-checked today: the fitness vocabulary
   in the `practice-fitness` sources.
 
-- Deep consolidation status: **due — the transplant closure (a plan milestone) closed on
-  2026-09-15**, and the napkin holds the arc's segments at over 1,650 lines. It was not run at
-  the end-of-arc wrap: the graduation drain is curator work in batches (the Director's handoff
-  item 94); the owner's retrospective is recorded in
+- Deep consolidation status: **due — the napkin at 3,299 lines; run it as goal one's lessons
+  sweep** (2026-09-24, 13:41Z wrap). Earlier reason, the 11:03Z wrap: napkin pressure and doctrine
+  held only in ephemeral surfaces. The napkin is over 3,100 lines and shared by every seat on this
+  host. The owner's rulings of 2026-09-24 on tests live only in the napkin and per-user memory;
+  their doctrine text is routed as one joint text with the lineage's seat. It was not run at the
+  non-terminal wrap: a rotation of a napkin other seats are writing is curator work, done
+  deliberately in batches (the Director's handoff item 94). The transplant arc's graduation
+  drain is still undone; its retrospective is
   `.agent/reports/agentic-engineering/why-the-transplant-arc-cost-what-it-cost-2026-09-15.md`,
-  so the drain is next. Session 2's cards and archive gates are
-  in `threads/session-2-synthesis.next-session.md`.
+  and session 2's cards and archive gates are in `threads/session-2-synthesis.next-session.md`.
 - The generators: lane B's PR #55 (item 6, PR 1) landed the frontmatter sweep; the rules-index
   and trigger generator remains item 6 part 2a (`closure/lane-b-generator` at `SHA: d76bb86`);
   the sub-agent adapter generator (2b) and 2a are handed back to the Director
@@ -120,6 +242,7 @@ names a live branch):
 
 ## Active Threads
 
+- JC.net's exchange seat (`threads/practice-exchange-seat.next-session.md`): Siren herds Rudder (158275) handed over at rest 2026-09-24 18:20Z under PDR-063; the next session lands queue item 1 (batch six, the compare rows) unless the Director asks for item 2 first.
 - Closure session 2's synthesis (`threads/session-2-synthesis.next-session.md`): the cards were
   answered 2026-09-14 (the Director's handoff item 78); the graduation drain is curator work.
 
@@ -307,8 +430,9 @@ and proof (item 4's rows closed by #85 `SHA: eed1f2e`, #87 `SHA: 6b5676b`, #86
 
    Second maintenance item at the same priority (2026-09-16): the Cricket seat naming. The
    quartet's generated adapter names encode effort alone (`-low`, `-medium`, `-high`, `-xhigh`), so
-   nothing in those names says which model a seat runs, while the
-   estate pairs model power INVERSELY with effort — low is fable, medium is opus, high is sonnet, xhigh is haiku. A caller who cannot read
+   nothing in those names says which model a seat runs, while the estate pairs model power
+   INVERSELY with effort — low is fable, medium is opus, high is sonnet, xhigh is haiku. A caller
+   who cannot read
    that from the name mis-launches the suite, as the Director did on 2026-09-16 by overriding
    every seat's model and inverting the design. Names should carry both dimensions. The change
    lives in `.agent/sub-agents/templates/cricket-judgement.md` and
