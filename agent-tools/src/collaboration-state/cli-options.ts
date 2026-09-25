@@ -87,8 +87,8 @@ const MAX_TIMER_DELAY_MS = 2 ** 31 - 1;
 
 /**
  * A positive integer that a timer waits on. Node clamps a larger delay to
- * 1 ms, which would turn a wait into a spin, so the bound is refused here at
- * the boundary.
+ * 1 ms, which would turn a wait into a spin or a deadline into an immediate
+ * false timeout, so the bound is refused here at the boundary.
  */
 export function optionalTimerMs(options: Options, key: string): number | undefined {
   const value = optionalPositiveInteger(options, key);

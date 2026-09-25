@@ -294,22 +294,22 @@ describe('watchComms — supervisor-death detection (F-101 refined-(i) kill-tree
   });
 });
 
+const BASE_OPTIONS: Record<string, string> = {
+  'comms-dir': COMMS_DIR,
+  'seen-file': SEEN_FILE,
+  'agent-name': 'Watcher Self',
+  platform: 'claude',
+  model: 'test',
+  'session-prefix': 'self99',
+  'max-events-per-drain': '1',
+  'no-auto-seed': 'true',
+  'supervisor-pid': '999999',
+};
+
 describe('watchComms — sanctioned --exclude-tag boundary (F-146)', () => {
   function heartbeatEvent(eventId: string): CommsEvent {
     return { ...otherAgentEvent(eventId), tags: ['heartbeat'] };
   }
-
-  const BASE_OPTIONS: Record<string, string> = {
-    'comms-dir': COMMS_DIR,
-    'seen-file': SEEN_FILE,
-    'agent-name': 'Watcher Self',
-    platform: 'claude',
-    model: 'test',
-    'session-prefix': 'self99',
-    'max-events-per-drain': '1',
-    'no-auto-seed': 'true',
-    'supervisor-pid': '999999',
-  };
 
   it('threads a canonical exclusion through to the drain: heartbeat suppressed from output, both ids marked seen', async () => {
     const fake = createFakeCollaborationRuntime({
@@ -341,7 +341,7 @@ describe('watchComms — sanctioned --exclude-tag boundary (F-146)', () => {
     await expect(
       watchComms(watchOptions(BASE_OPTIONS, ['hearbeat']), EMPTY_ENV, captured.runtime),
     ).rejects.toThrow(/unknown comms event tag: 'hearbeat'/u);
-    expect(fake.readTextFile(DERIVED_HEARTBEAT)).toBeUndefined();
+    expect(fake.ensuredDirectories()).toStrictEqual([]);
   });
 
   it('rejects a duplicate exclude tag at the boundary', async () => {
@@ -358,11 +358,14 @@ describe('watchComms — sanctioned --exclude-tag boundary (F-146)', () => {
       ),
     ).rejects.toThrow(/duplicate comms event tag: 'heartbeat'/u);
   });
+});
 
-  // Node clamps a timer delay above 2 ** 31 - 1 ms to 1 ms, so an oversized
-  // interval would spin the loop instead of waiting. The supervisor is dead,
-  // so a watcher that accepted the value would exit at once, never spin here.
-  it.each(['poll-ms', 'step-timeout-ms', 'heartbeat-interval-ms'])(
+describe('watchComms — timer option bounds', () => {
+  // Node clamps a timer delay above 2 ** 31 - 1 ms to 1 ms: an oversized poll
+  // would spin the loop, and an oversized step deadline would fire at once as
+  // a false timeout. The supervisor is dead, so a watcher that accepted the
+  // value would exit at the first loop-top probe, never spin here.
+  it.each(['poll-ms', 'step-timeout-ms'])(
     'rejects a --%s beyond the largest timer delay Node honours, before any comms IO',
     async (key) => {
       const fake = createFakeCollaborationRuntime({
@@ -378,7 +381,23 @@ describe('watchComms — sanctioned --exclude-tag boundary (F-146)', () => {
           captured.runtime,
         ),
       ).rejects.toThrow(`--${key} must be at most ${String(2 ** 31 - 1)}`);
-      expect(fake.readTextFile(DERIVED_HEARTBEAT)).toBeUndefined();
+      expect(fake.ensuredDirectories()).toStrictEqual([]);
     },
   );
+
+  it('accepts a --poll-ms at the largest timer delay Node honours', async () => {
+    const fake = createFakeCollaborationRuntime({
+      comms: { [COMMS_DIR]: [otherAgentEvent('evt-1')] },
+      processIsAlive: () => false,
+    });
+    const captured = captureStdout(fake.runtime);
+
+    await expect(
+      watchComms(
+        watchOptions({ ...BASE_OPTIONS, 'poll-ms': String(2 ** 31 - 1) }),
+        EMPTY_ENV,
+        captured.runtime,
+      ),
+    ).resolves.toBe('');
+  });
 });

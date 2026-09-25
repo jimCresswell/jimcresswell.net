@@ -56,6 +56,8 @@ describe('collaboration-state tui CLI integration', () => {
         'state/comms',
         '--now',
         '2026-05-13T17:50:00Z',
+        '--repo-root',
+        '/workspace',
       ],
       env: {},
       io: fake.runtime.io,
@@ -132,7 +134,7 @@ describe('collaboration-state tui CLI integration', () => {
     const fake = createFakeCollaborationRuntime();
 
     const result = await runCollaborationStateCli({
-      argv: ['--', 'tui', '--format', 'text', '--poll-ms', '0'],
+      argv: ['--', 'tui', '--format', 'text', '--repo-root', '/workspace', '--poll-ms', '0'],
       env: {},
       io: fake.runtime.io,
     });
@@ -145,7 +147,16 @@ describe('collaboration-state tui CLI integration', () => {
     const fake = createFakeCollaborationRuntime();
 
     const result = await runCollaborationStateCli({
-      argv: ['--', 'tui', '--format', 'text', '--poll-ms', String(2 ** 31)],
+      argv: [
+        '--',
+        'tui',
+        '--format',
+        'text',
+        '--repo-root',
+        '/workspace',
+        '--poll-ms',
+        String(2 ** 31),
+      ],
       env: {},
       io: fake.runtime.io,
     });

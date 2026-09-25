@@ -163,7 +163,7 @@ function resolveWatchTunables(options: Options): {
     maxEventsPerDrain: optionalPositiveInteger(options, 'max-events-per-drain'),
     stepTimeoutMs: optionalTimerMs(options, 'step-timeout-ms') ?? DEFAULT_STEP_TIMEOUT_MS,
     heartbeatIntervalMs:
-      optionalTimerMs(options, 'heartbeat-interval-ms') ?? DEFAULT_HEARTBEAT_INTERVAL_MS,
+      optionalPositiveInteger(options, 'heartbeat-interval-ms') ?? DEFAULT_HEARTBEAT_INTERVAL_MS,
   };
 }
 

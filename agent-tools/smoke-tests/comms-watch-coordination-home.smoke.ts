@@ -29,9 +29,9 @@ const BIN = join(AGENT_TOOLS_ROOT, 'dist', 'src', 'bin', 'agent-tools.js');
 const SMOKE_POLL_MS = 50;
 const SMOKE_STEP_TIMEOUT_MS = 45_000;
 /**
- * A hang backstop, not a speed assertion: a pass chains three step deadlines
- * (drain, emit, markSeen) before the supervisor probe, and one more step of
- * margin keeps a slow but live watcher below it. It never reads the host.
+ * A hang backstop, not a speed assertion: with no --exclude-tag, a pass chains
+ * three step deadlines (drain, emit, markSeen) before the supervisor probe, and
+ * one more step of margin keeps a slow but live watcher below it. No host read.
  */
 const WATCHER_HANG_BACKSTOP_MS = 4 * SMOKE_STEP_TIMEOUT_MS + SMOKE_POLL_MS;
 
