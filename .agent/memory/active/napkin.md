@@ -4988,3 +4988,39 @@ flake a defect to cure, not re-run: an owner at check-in 21. The records push la
 - Push: one gate on the host at 21:03Z (Siren's), load 18.0; the tally push (2eba7db3) started
   21:04Z as the second gate with a gate notice (178d289e). Lineage open PRs 23; merged since
   check-in 20: none (PR 228 at 20:32Z before it); JC.net open 189, 206.
+
+## 2026-09-25T21:36Z — Director suite 19 tally (frame built 21:32Z); the owner pushed once; PR 227 at the slot
+
+Work verdicts: 8 ON-TRACK. Frame verdicts: 3 SOUND (normal high, adversarial high, adversarial
+procedure), 3 NARROWED (normal low, normal procedure, adversarial low), 2 CONTRADICTED (normal
+medium, adversarial medium). The first suite since 15 with no residue class: the whole-frame
+sweep held. Findings, each with its cure for suite 20:
+
+1. PR 208 opened during the build (21:30:40Z) and was folded into SOURCES and H4 but READING kept
+   "JC.net 1 open" (adversarial medium): the sweep runs AFTER the last fold, not before it.
+2. "3 of 4 live seats" counts Gale, which the same frame calls OVER (adversarial medium): the
+   measure reads "3 of 3 live seats push; the Codex seat, OVER, does not", the owner's need met
+   for every live seat and unmet for the Codex harness.
+3. Todo 8's JC.net text cure was gated on batch six's first merge by the reading; its source gates
+   it on L12 alone (normal medium): corrected; check-in 22 asks Siren where it sits after PR 208.
+4. Myrtle's done-condition ("Done means empty pending graduations and empty buffers") never
+   stated met, superseded or open (adversarial low, normal medium): the Director reads the
+   pending-graduations directory itself at check-in 22, one command, and states which.
+5. UNOWNED has two items labelled (c) (three roles): relabel (d). The 12:02Z and 14:0xZ owner
+   words are mapped though marked paraphrases (normal low): the mapping names the seat's
+   paraphrase as its source. The premise-miss cure goes into NEXT as a sub-step, not only into
+   RECENT ACTIONS (adversarial high). Todo 6's STATUS line carries an unattributed editorial
+   sentence (adversarial high): moved to READING. Todos 1 to 3 subsumed by the aggregate measure,
+   said so (normal procedure).
+
+ACTED between the build and the tally: the adversarial medium's redirection (the owner's 12:06Z
+word set push notification as the route for questions that survive the lenses; the Gale ask had
+sat on the board since 18:46Z with no push since 17:14Z) → ONE push notification sent at 21:34Z
+(the Codex session or the Swallow push authorisation; 3 of 4 seats push). H5's sensor is now
+that notification's answer; the ask is not restated further in reports until the owner answers.
+Between the build and the tally: PR 227 at the slot since 21:28:27Z; Siren's draft PR 208 (the
+bot-identity portable core, body blob 78d43e1b) open 21:30:40Z, an hour inside H4's bound;
+Myrtle's receipt 21:36:25Z: taken at the same blob, no joint findings, lands with PR 216 as one
+commit, two host-side cures (the lane skill's identity step states the lineage's contract; the
+merge-bot reference records the bot's Copilot request registering there). Records: 1 commit
+unpushed plus this one, held under two gates.
