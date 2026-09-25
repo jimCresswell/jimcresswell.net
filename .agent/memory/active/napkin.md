@@ -4804,3 +4804,38 @@ gate, not four. The records push landed 03415165 at 18:24Z, nothing unpushed.
   merge-bot default-branch refusal lands first; README names the reviewer key; the owner-held
   live-seat proof is goal two's acceptance test.
 - Tally push landed 18:46Z (03415165..2eede9fd, 58 e2e passed); monitor re-armed btigmz3lz.
+
+## 2026-09-25T19:11Z — Director suite 17 tally (frame built 19:08Z); PRs 222 and 230 at the door
+
+Work verdicts: 8 ON-TRACK. Frame verdicts: 6 CONTRADICTED (normal low, medium, high; adversarial
+low, medium, high) and 2 NARROWED (both procedure roles), all on one fault class: the post-build
+folds (PR 222 merged 19:06:19Z, PR 230 at the slot 19:07:12Z, PR 215 merged, PR 200 merged) went
+into SOURCES and the holds but not into READING or CRITICAL-PATH OWNER, so "200 ready, Siren's",
+"1b-iv's PR A green and clean in the slot's queue", "the slot at 215" and "if 222 stalls" stood
+against their own sources; the header's "no stream correction is pending" claim was false for
+those lines. Cures for suite 18's frame:
+
+1. A fold is a sweep, not an edit: for every PR number or sha changed in SOURCES after the build,
+   grep every section for that number and refresh each mention before dispatch (six roles).
+2. Todos 7 (the re-pin) and 8 (the Core's portability measure) get a line in goal one's reading
+   with their queued status, or the frame says why they are outside the measure (both procedure
+   roles).
+3. Gale-owned items (PR B of 1b-iv; wake-bridge todo 3) listed in UNOWNED with a re-home trigger at
+   check-in 20 (adversarial medium).
+4. Owner words quoted whole: Myrtle's launch prompt and the about-13:30Z order to Brazier, or the
+   napkin block named as the source without an ellipsis (adversarial medium, normal medium).
+5. H4's backstop given a time bound: Siren's reading asked at each check-in; the hunks land at its
+   next compaction or by the owner's word (adversarial medium).
+
+REJECTED with reason: adversarial low's redirection to rule the Swallow push of Gale's commit
+00a23728b under the relayed approval and withdraw the ask from the owner's board. Gale's harness
+refused that push; a peer performing an action another seat's harness denied is permission
+laundering unless the owner directs it directly, so it stays the owner's ask.
+
+Between the build and the tally: PR 222 (1b-iv PR A) merged 92cbe0afe at 19:06:19Z (Swallow, both
+legs, 14 of 14 checks); Myrtle took the slot for PR 230 at 19:07:12Z; Siren opened JC.net PR 205
+(PDR-142's twin, blob 4cde49d7) at 19:08Z; the Director's provenance ruling cb15680d at 19:09Z (the
+2026-09-25 quote is the owner's word recorded by Geyser in 777320b2; relayed in both estates;
+nothing pending ratification); Myrtle absorbed 19:10:11Z. PR 225 is in a third review round;
+the two-round rule binds: dispositions in the last push's slot turn, no fourth round; check-in 20
+reads it. Records: 2 commits unpushed plus this one, held under two gates (load 52.85 at 19:04Z).
