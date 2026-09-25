@@ -4756,3 +4756,30 @@ PR 193 merged; Myrtle's check-in 18 line: pushes without the owner YES (PR 227 o
 Swallow's: YES (feat/codex-wake-sink 6337f131a; slice 2a with 48 tests after two review rounds);
 the push-without-owner count 3 of 4, Gale the Codex no. The load notice of 18:2xZ corrected: one
 gate, not four. The records push landed 03415165 at 18:24Z, nothing unpushed.
+
+## 2026-09-25T18:41Z — CHECK-IN 19 (45 minutes after check-in 18), from the streams; the Gale backstop executed
+
+- Siren (sensor: its native line 18:36Z and its 18:3xZ correction): context 50.3%; merged since
+  check-in 18: PRs 195 (6868ad85), 193 (69a649a0), 198 (3fe1a325, the joint cures), 199
+  (7da1d4b9, the security pair), 200 (5ec732d0, errorCodeOf inbound and the identity describer);
+  open: PR 201 (PR 193's follow-up, round one), 202, the lint-shape change under config-expert
+  review; inbound: L3 at parity, L12's three rules wait for its next compaction (PDR-052, 39.7% at
+  18:19Z), one-pr-per-leaf-issue binds nothing (zero issues), bot-identity-on-third-party-systems
+  needs the operator profile; its question (the agent-tools test task's cache) RULED: cache: false
+  now, the cost named in build-system.md (measured 7.70 s, not a minute), declared inputs with a
+  recomputing check after the no-IO recovery; my d37dfc57 swept Siren's 18:25Z napkin lines
+  (shared primary; authorship Siren's).
+- Swallow (sensor: the lineage stream 18:33:52Z): PR 222 waits its slot; PR 228 (wake 2a) cured
+  at 2a94c1c67, legs re-requested; PR 233 (2a-ii, the thread id owner) open and CLEAN; 2b's
+  pre-execution review next; Gale's channel has PR B's new base.
+- Myrtle (sensor: the lineage stream): no event since 18:04:43Z; PR 215 BLOCKED at the slot since
+  18:03Z (38 minutes at 18:41Z; H7's backstop: its door state asked by type); drafts 231 to 235
+  new on the board (21 lineage PRs open); the batch six receipts and the next in its order asked
+  by suite 17.
+- Gale (sensor: the lineage stream): no event since 15:18:01Z; the BACKSTOP EXECUTED on the
+  stream at 18:4xZ: the push-without-owner requirement re-homed to Swallow's lane (the config
+  split after wake 2b's review); PR 211's cure stays Gale's; ONE ask to the owner in the report:
+  resume Gale's Codex session so the approval test runs, or authorise Swallow to push Gale's
+  reviewed one-file commit 00a23728b under the owner's approval.
+- Push: 1 commit unpushed before this block; one gate on the host at 18:41Z; the tally push follows
+  this commit with a gate notice. Load 20.41.
