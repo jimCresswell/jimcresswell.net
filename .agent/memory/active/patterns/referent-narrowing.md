@@ -40,13 +40,13 @@ adjacent: >-
   PDR-133's liveness classes.
 ---
 
-# Referent Narrowing
-
 > **POLARITY: ANTI-PATTERN.** This entry names a *failure mode to avoid*,
 > not a shape to repeat.
 >
 > See [`patterns/README.md` § Polarity](README.md#polarity-required-every-pattern)
 > for the polarity discipline.
+
+# Referent Narrowing
 
 Imported from the lineage at pin `e477e62f7` on 2026-09-14 (practice-completion closure item 4, row 6). The worked instances and measurements are the lineage's; local divergence is recorded where it exists.
 

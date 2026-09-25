@@ -35,11 +35,11 @@ Write tests **before** code, at every level. The cycle is:
 
 When changing system behaviour, update tests at the same level first:
 
-| Change level            | Update first                                                   |
-| ----------------------- | -------------------------------------------------------------- |
-| Pure function behaviour | Unit tests (`*.unit.test.ts`)                                  |
-| Integration behaviour   | Integration tests (`*.integration.test.ts`)                    |
-| System behaviour        | E2E tests (`*.e2e.test.ts`; the site's `*.e2e-ui/api.test.ts`) |
+| Change level            | Update first                                                    |
+| ----------------------- | --------------------------------------------------------------- |
+| Pure function behaviour | Unit tests (`*.unit.test.ts`)                                   |
+| Integration behaviour   | Integration tests (`*.integration.test.ts`)                     |
+| System behaviour        | E2E checks (`*.e2e.test.ts`; the site's `*.e2e-ui/api.test.ts`) |
 
 See [Testing Strategy](../../.agent/directives/testing-strategy.md) for full details.
 
