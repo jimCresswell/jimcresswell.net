@@ -595,10 +595,20 @@ compaction. Watchers, heartbeat and the peer-liveness poll re-armed.
     overwrite the real build.
   - The site onto ESLint 10 and the Practice configs.
   - The merge-bot inbound clauses.
-  - L12: rule one (`one-instance-is-an-observation` with its two research foundations) in its
-    pull request; its landing row carries PARTIAL. `one-pr-per-leaf-issue` waits on the
-    Director's disposition; `bot-identity-on-third-party-systems` is a compare lane through the
-    operator profile (PDR-141).
+  - L12 (update, 21:30Z): rule one merged as PR 206 (086f39de); `one-pr-per-leaf-issue` declined by
+    the Director's ruling; `bot-identity-on-third-party-systems` is draft PR 208 (head 8966f554), a
+    portable core as one joint text. Commit and push identity bind to the lane set-up skill's
+    identity step (not the profile: PDR-141 decisions 4 and 5). The lineage adopts the same body
+    (blob 78d43e1b) with its PR 216's derivation block. L12's landing row goes in after PR 208
+    merges, not PARTIAL.
+  - Deferred directive edit (PDR-052, 57.8% at 21:25Z): the lineage's
+    `cloud-environment-routing.md` back-link to the bot-identity rule, at the next sub-30% reading.
+  - The shell reader's known limits (PR 207's final line and the code review): a `case` arm's
+    pattern `)` inside `$( )` closes the scan early; hook files are read line by line, so a quoted
+    heredoc that shows a call in backticks would read as a citation. No surface carries either
+    today.
+  - The owner's card batch (the Director's): the machine-local scope file's stale line "Bot
+    commits, owner author, as everywhere" for this repository.
   - L3: PDR-027 is ahead here (the 2026-09-12 seed entry, the `PRACTICE_` override name); the
     twin-back is owed to the lineage.
   - The hook fixture's docblock (`agent-tools/smoke-tests/claude-hook-command-fixture.ts`) still
