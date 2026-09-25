@@ -88,6 +88,18 @@ Every line answered first-hand, none inferred:
   resumed in the same session at 11:27Z on the owner's "yes, please run a retro" (a retrospective
   on the two-day exchange arc, for the Director to commit).
 
+- OWNER WORD, 2026-09-25 about 11:50Z, in the Director's chat (native, no event id), verbatim:
+  "why do we need the ChatGPT desktop host? My interest is Codex CLI". So the Codex membership
+  programme targets the Codex CLI (a terminal TUI, `codex exec`); the wake bridge's todo 1 drops its
+  ChatGPT desktop legs, Titan's TUI runs are its evidence, and the live acceptance seat starts from
+  the CLI. Relayed to Swallow natively with the node's todo 1 wording as seat work (same bytes both
+  estates). Swallow's card A is closed; no owner action is pending.
+- DECIDED by the Director, 11:5xZ, overturnable by a line: the lineage's overdue fold (OCE PR 187)
+  is the Director's to run once the host load allows a gate, with the gate announced and the sweep
+  coordinated with Myrtle and Swallow (the owner's launch word ranks Myrtle's consolidation above
+  the fold for Myrtle, not for the fold); Siren's P4 is dissolved by the word seating Myrtle and by
+  todo 5 (the donor delivers, the receiver lands).
+
 ## Current handoff state (2026-09-25T11:17Z; after the fold of PR 176; the live reading is this block, then the napkin from its 10:37Z block on)
 
 Written for a reader who was never here and may run on a different model. Where this block and

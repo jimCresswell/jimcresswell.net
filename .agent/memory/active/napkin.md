@@ -3686,3 +3686,18 @@ watchers under pid 35269 are Titan's (app-server started 10:43:01Z), not Luna's;
 Siren: at check-in 10 it was at rest for compaction (no suite; runs it once on the handover frame),
 todo 5 served, register 0 of 21 outbound landed by its predicate with J4 and J18 landed in the
 lineage and unrecorded; then resumed 11:27Z on the owner's retro word. Marten: session over.
+
+## 2026-09-25T11:52Z — owner's words: the lenses pass; Codex CLI is the target
+
+The owner asked which open questions survive the lenses and decision matrix. Answer given: one,
+Swallow's card A (the desktop-host legs need a human at the keyboard). The owner's reply dissolved
+it (verbatim): "why do we need the ChatGPT desktop host? My interest is Codex CLI". The desktop
+host was in the node only because Luna and Titan were started through the ChatGPT desktop app and
+the queue wake was first seen there. Relayed to Swallow with the consequences as seat work: todo 1
+scoped to the CLI, Titan's TUI runs are the evidence, the editor-terminal CODEX_THREAD_ID check is
+a seat's to run, the live acceptance seat starts from the CLI. Decided without the owner: the
+lineage's fold is mine to run (fold skill: the Director's ceremony; lens 2, no exception; Myrtle's
+launch word ranks Myrtle's own job, not the fold), and P4 is dissolved by the Myrtle word and todo
+5. Metacognition check on the swing between relaying and asking: each decision names the lens and
+is written where the owner overturns it in a line; that is the synthesis the 2026-09-24 letter asked
+for.
