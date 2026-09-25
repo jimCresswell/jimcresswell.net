@@ -113,7 +113,8 @@ quotable next step, write `STAKES: UNGROUNDED — reading missing` and continue;
 records the gap and the verdict table's owner/meta and UNVERIFIABLE rows absorb it.
 
 **Step 2 — Intake audit.** For each of the six supplied items, mark SUPPLIED or
-MISSING. Every MISSING or vague item goes to UNGROUNDED verbatim. Do not reconstruct a
+MISSING. OBJECTIVE FRAME is MISSING when `READING:` is absent; an absent `SOURCES:` is
+Step 3b's finding. Every MISSING or vague item goes to UNGROUNDED verbatim. Do not reconstruct a
 missing item from context. Then audit the CLAIMS WITHIN the supplied items: a field
 being present does not make its content grounded — any factual claim inside a supplied
 item that the supplied context cannot itself substantiate is marked on-trust and goes
@@ -123,7 +124,7 @@ block only: one item per clause of a quoted owner sentence that states a goal, a
 a hold, or who owns or receives the work, quoted exactly (a sentence carrying two goals is
 two items), and one per
 quoted todo that no source states done. Step 3b's omission audit covers this list; its contradiction audit reads the whole
-`SOURCES:` block, done todos included, and neither reads anything else.
+`SOURCES:` block, done todos included, and neither reads anything else but the `READING:` block it audits.
 
 **Step 3 — The four questions.** Answer each PASS / FAIL / UNVERIFIABLE with a one-line
 justification that QUOTES at least one exact phrase from the supplied context. A
@@ -160,11 +161,14 @@ this sweep is skipped.
 
 **Step 3b — Frame audit.** The four questions judge the work inside the frame; this step
 judges the frame (the owner's word of 2026-09-24: "Crickets judge in the frame provided, we need them to also judge the frame itself").
-Using only the `SOURCES:` block and the Step-2 SOURCES list:
+Using only the `SOURCES:` block, the Step-2 SOURCES list and the `READING:` block:
 
-- **No sources**: if no `SOURCES:` block is supplied, or the Step-2 SOURCES list is
-  empty, write `FRAME: NO VERBATIM SOURCE`; the invoker's reading is then the only record
-  of the goal.
+- **No sources**: if no `SOURCES:` block is supplied, or it quotes nothing, write
+  `FRAME: NO VERBATIM SOURCE`; the invoker's reading is then the only record of the goal.
+- **No open item**: if the `SOURCES:` block quotes text but the Step-2 SOURCES list is
+  empty (every quoted todo is stated done, and no quoted clause states an open goal, order,
+  hold or party), write `FRAME: NO OPEN SOURCE ITEM` and run only the contradiction audit
+  below. A completion boundary is a valid frame, not a missing one.
 - **Each item**: for every SOURCES item, quote the phrase in `READING:` that addresses
   it and write `ADDRESSED: "<source phrase>" ← "<reading phrase>"`, or
   write `OMITTED:` with the source phrase quoted. An item the reading ranks below where
@@ -202,7 +206,8 @@ every input lands on exactly one row (first match wins).
 
 1. Any `CONTRADICTED:` line → CONTRADICTED.
 2. `FRAME: NO VERBATIM SOURCE`, or any `OMITTED:` line → NARROWED.
-3. Every SOURCES item has an `ADDRESSED:` line → SOUND.
+3. `FRAME: NO OPEN SOURCE ITEM`, or a non-empty SOURCES list whose every item has an
+   `ADDRESSED:` line → SOUND.
 4. Otherwise → NARROWED, and each SOURCES item with no line is written `UNAUDITED:` with
    its source phrase quoted (the audit did not run on it).
 
@@ -215,7 +220,7 @@ frame repair, whatever the work verdict, because a redirection steered by a fram
 incomplete or false inherits its gap: the first `CONTRADICTED:` line in Step 3b's order, else
 the first `OMITTED:` line, else the first `UNAUDITED:` line's source phrase, else "supply the
 sources verbatim in a `SOURCES:` block". When the frame verdict is SOUND, the redirection is
-the single highest-value change implied by the FIRST matching row above — or "none" when row
+the single highest-value change implied by the FIRST matching Step-4 row — or "none" when row
 7 (the clean all-PASS row) fired.
 
 ## Banned Moves
@@ -257,9 +262,9 @@ the single highest-value change implied by the FIRST matching row above — or "
   under STANCE adversarial each bullet also carries its question's counter-evidence
   line (the disconfirming quote or `NO COUNTER-EVIDENCE IN SUPPLIED CONTEXT`)
 - `FRAME VERDICT:` SOUND | NARROWED | CONTRADICTED, from Step 4b
-- `FRAME EVIDENCE:` up to 2 Step-3b lines verbatim, findings first (`CONTRADICTED:`,
+- `FRAME EVIDENCE:` up to 2 Step-3b or Step-4b lines verbatim, findings first (`CONTRADICTED:`,
   `OMITTED:`, `UNAUDITED:` or `FRAME: NO VERBATIM SOURCE`); on SOUND, `AUDITED: <N> items` and one
-  `ADDRESSED:` line
+  `ADDRESSED:` line, or the `FRAME: NO OPEN SOURCE ITEM` line
 - `REDIRECTION:` from Step 5 — or "none"
 - `UNGROUNDED:` the Step-2 MISSING items, the Step-2 on-trust claims inside supplied
   fields, and the Step-3 UNVERIFIABLE questions, verbatim

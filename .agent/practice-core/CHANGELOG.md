@@ -4,6 +4,35 @@ Changes to the Practice Core files, newest first. Each entry records the repo
 that made the change and what was changed. This file travels with the
 Practice Core package.
 
+## [jimcresswell.net] 2026-09-25 — the K amendment: PDR-009's inline-prompt role replaces the exception
+
+- PDR-009 states the adapter rule by its domain. A role that cannot read
+  files, or whose bounded turns belong to its task, is an inline-prompt role,
+  and its adapter carries the template's System prompt block. The word
+  "exception" is gone, because this estate's `rules-have-no-exceptions` rule
+  bars it. PDR-009's validator clauses (b) and (c) and its
+  bidirectional-validation sentence now admit a compared copy, where before
+  they would have failed every inline-prompt adapter.
+- `practice-bootstrap.md` names the inline-prompt role at its three anchors
+  and gains the System prompt section in §Template Structure.
+  `practice-verification.md` item 11 follows.
+- PDR-125 clause 7's worked instance names the lint rule by what it checks
+  (list spacing), not by one linter's rule id.
+- The lineage's exchange seat drafted the amendment. Both seats signed it,
+  and these are the lineage's bytes, twinned in window with its PR 201.
+
+## [jimcresswell.net] 2026-09-24 — joint sets K2 and K3: an adapter that carries its prompt, lint before delivery
+
+- PDR-009 gains joint set K2(a): a role that cannot read files, or whose
+  bounded turns belong to its task, carries its template's System prompt
+  block in its adapter, and a check compares every copy with its template.
+- PDR-125 clause 7 gains lint before delivery (K2(b)): the donor runs the
+  receiver's own formatting and lint configurations over every box file.
+  The `inter-practice-collaboration` skill's step 7 carries it (K2(c)).
+- Joint set K3 carries K2 to the other Core surfaces:
+  `practice-bootstrap.md` (three anchors), `practice-verification.md`
+  item 11, and PDR-125's Status paragraph and index row.
+
 ## [jimcresswell.net] 2026-09-23 — PDR-117: the Director hears questions and requests, never state
 
 - PDR-117, on the owner's ruling of 2026-09-23 for all agents ("do not update
