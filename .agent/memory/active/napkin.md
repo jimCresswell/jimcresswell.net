@@ -3890,3 +3890,24 @@ dependence; reviewers decide); PR 186 round two after the smoke PR opens (1 unre
 filter-guard branch behind the smoke fix; batch six as a parallel lane. Suite 12:11Z to 12:22Z: 8
 ON-TRACK; frames 6 NARROWED, 2 CONTRADICTED (the mid-power role read PRs 186 and 188 as inbound;
 rejected), six accepted cures, no re-run. Verdict: on track, no redirect.
+
+## 2026-09-25T12:28:53Z — check-in 11: Swallow's reply and three verdicts
+
+Swallow (51.3% at 12:27:33Z): on the proper things. Wake-bridge node at f8816970e: todo 1 OPEN
+under Titan's claim be006748 (TUI no-daemon legs all four observed; editor-terminal
+CODEX_THREAD_ID present, PRACTICE_AGENT_SESSION_ID_CODEX absent; daemon-mode legs NOT observed,
+one bounded run at 12:24:40Z exited in 25 s with no rollout, no retry, cleanup clean; the addendum
+is OCE PR 211 draft at 5735b2630, Titan's); todo 2 NOT STARTED (gate: the findings, none breaks
+the mechanism); todo 3 not started. Dialogues node: slices 0 to 1b-iii merged; 1b-iv, 2, 3 after
+the sink by my 11:38Z decision. Suite 11: 8 ON-TRACK; frames 7 given, 1 MISSING (the adversarial
+procedure seat omitted it despite the required clause: UNDELIVERED for the frame half), 3 sound, 4
+flagged and cured. Behaviour defects: two medium returns wrote "he" for the owner
+(agents-default-no-gender), the normal procedure seat signed as Swallow. Config verdict from the
+0.156.1 source: the project file (precedence 25) beats the user file (20); commit only what every
+seat needs identical; approval_policy is a seat-mode choice and moves to the machine-local layer
+with launch presets (unattended: -a never, bounded by workspace-write); one small PR with a
+config-expert review, no config-pin tests. Verdicts: (1) PDR-063 handover default accepted, at
+rest at 12:40Z, record written for either successor; (2) the config PR proceeds under the owner's
+"happy for the config to be optimised ... split" word, overturnable by a line, authored by Titan
+after PR 211 as goal two's evidence, else by Swallow's resumed session; (3) the "he" and signature
+defects go to the Cricket templates' joint-cures row in both estates.
