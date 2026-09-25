@@ -4243,3 +4243,34 @@ repointed. Myrtle's flag on PDR-052 decided as for Siren: the owner's word retir
 triggers, not PDR-052's floor, and a compaction satisfies the floor; so the lineage pickup block's
 first act (the four directive rows) runs in whichever context is below 30 percent, Myrtle's own
 after the owner compacts it or a fresh one, then the exchange seat, no closeout between.
+
+## 2026-09-25T14:47Z — CHECK-IN 14, the first after compaction boundary 4 (the owner's "post-compaction check all seats are working on the proper things")
+
+- Clock read 14:43:38Z; process table 0 of this seat's at the start; the Director monitor re-armed
+  at 14:46Z with the scratchpad recipe (label "post-compaction check-in 14"); the cadence loop
+  resumes with suite 12 at 15:09Z on the frame with suite 11's seven cures.
+- Seats, in the programme's order, each read from its own stream event, none from silence:
+  - Siren herds Rudder (158275): rejoined 14:41:47Z (event 358551e4), context 6.3% fresh; on PR 188's
+    sub-30% directive review in worktree k4, then the PDR-063 and start-right-team trigger amendment
+    PR, then batch six. The proper thing. It reported a staged napkin it did not write: that was
+    this seat's boundary commit in flight; the index read empty at 14:40:34Z and the tree is clean.
+  - Swallow holds Drift (516619): rejoined 14:39:08Z (dbb83f6d), on the sink's pre-execution review,
+    and proposed taking the watcher twin now in its own worktree, default 14:55Z. ACCEPTED at
+    14:45:14Z (event 29944e66 on the lineage stream, to Swallow and Titan): lens 3 (the twin blocks
+    every push from the lineage primary and waited behind a held PR in a serial queue; nothing in it
+    needs a Codex seat) and lens 5 (the fold's merge is the value; the sink stays Codex's landing as
+    goal two's evidence). d18c56f0's placement of the twin in Titan's queue is superseded. Swallow's
+    sink review resumes after the twin lands. Swallow also landed the Cricket hold-sensor clause in
+    the lineage (f67bd1f06) and sent it as an exchange row to JC.net (bfc686cf); the receiver is
+    Siren (no successor exists), sequenced by Siren after or with its trigger amendment PR.
+  - Titan turns Ether (01a0d8, Codex CLI): live again at 14:33:52Z (10c415ba), absorbed bf310b71 and
+    d18c56f0: metadata-only provenance cure for PR 211, no payload push. PR 211's last commit is
+    still a623bfddb (13:12Z); the cure is not pushed yet. Titan's queue now: PR 211 cure, the config
+    split, the sink.
+  - Myrtle turns Canopy (bf4957): committed 136493e98 on the lineage primary at 14:43Z (its formation
+    letter and the wrap's play seeds) after its 13:45Z closeout; ListAgents reads it busy. The
+    exchange seat waits on the owner's fresh context; nothing routed to Myrtle.
+- Goals at this check-in: unchanged from the boundary except the twin's owner (Swallow). Open PRs:
+  JC.net 189 (draft, this branch), 188 (draft, K4, under Siren's review); lineage 187 (draft fold,
+  waits on the twin), 211 (Titan, cure pending), 212 (bot carrier). Lineage remote branches 10.
+- No owner question. No push at this check-in (5 local commits on this branch plus this one).
