@@ -122,7 +122,7 @@ async function main(): Promise<void> {
   }
 
   writeErrorLine(
-    `validate-cited-scripts: ${String(findings.length)} cited script(s) do not exist.\n\n` +
+    `validate-cited-scripts: ${String(findings.length)} invalid pnpm command reference(s).\n\n` +
       `${formatFindings(findings)}\n\n` +
       'Every `pnpm <script>` in a code span or fenced block must name a script the root or the ' +
       'filtered workspace defines in package.json, and every filtered call in a package.json ' +

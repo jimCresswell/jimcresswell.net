@@ -36,6 +36,24 @@ describe('linesOfCommandFile', () => {
       { line: 2, text: 'b' },
     ]);
   });
+
+  it('joins a backslash continuation into one command, numbered by its first line', () => {
+    expect(linesOfCommandFile('x\npnpm --filter \\\n  @a/b check\ny')).toStrictEqual([
+      { line: 1, text: 'x' },
+      { line: 2, text: 'pnpm --filter @a/b check' },
+      { line: 4, text: 'y' },
+    ]);
+  });
+
+  it('joins a folded YAML run value into one command, numbered by its first line', () => {
+    expect(
+      linesOfCommandFile('      run: >-\n        pnpm --filter @a/b\n        check\n      name: z'),
+    ).toStrictEqual([
+      { line: 1, text: '      run: >-' },
+      { line: 2, text: 'pnpm --filter @a/b check' },
+      { line: 4, text: '      name: z' },
+    ]);
+  });
 });
 
 describe('scriptLinesOfManifest', () => {
@@ -126,10 +144,50 @@ describe('findMissingFilteredCommands', () => {
     ]);
   });
 
+  it('reports a filtered built-in whose filter names no workspace, and passes a real one', () => {
+    const findings = findMissingFilteredCommands(
+      [
+        surface(
+          'pnpm --filter @nope/missing exec playwright install',
+          'pnpm --filter @jimcresswell/www exec playwright install',
+        ),
+      ],
+      scripts,
+    );
+
+    expect(findings.map((finding) => [finding.line, finding.reason])).toStrictEqual([
+      [1, 'unknown-workspace'],
+    ]);
+  });
+
+  it('reports a filter that names no workspace when a separator touches the script', () => {
+    const findings = findMissingFilteredCommands(
+      [surface('pnpm --filter @nope/missing check&&echo done')],
+      scripts,
+    );
+
+    expect(findings.map((finding) => [finding.scriptName, finding.reason])).toStrictEqual([
+      ['check', 'unknown-workspace'],
+    ]);
+  });
+
+  it('reports a filtered call split across continued lines', () => {
+    const findings = findMissingFilteredCommands(
+      [surface('pnpm --filter \\', '  @nope/missing check')],
+      scripts,
+    );
+
+    expect(findings.map((finding) => [finding.line, finding.reason])).toStrictEqual([
+      [1, 'unknown-workspace'],
+    ]);
+  });
+
   it.each([
     { name: 'an unfiltered call, whose scope depends on where it runs', line: 'pnpm nope' },
     { name: 'a comment', line: '# pnpm --filter @nope/missing run-me' },
     { name: 'an echoed hint', line: `echo "Run 'pnpm --filter @nope/missing run-me'"` },
+    { name: 'an unquoted echoed hint', line: 'echo pnpm --filter @nope/missing run-me' },
+    { name: 'a printed hint', line: String.raw`printf "%s\n" pnpm --filter @nope/missing run-me` },
   ])('ignores $name', ({ line }) => {
     expect(findMissingFilteredCommands([surface(line)], scripts)).toStrictEqual([]);
   });

@@ -94,7 +94,7 @@ export function resolveCitation(
   if (workspace === undefined) {
     return finding(path, citation, citation.workspaceFilter, 'unknown-workspace');
   }
-  return workspace.has(citation.scriptName)
+  return citation.builtin === true || workspace.has(citation.scriptName)
     ? undefined
     : finding(path, citation, citation.workspaceFilter, 'missing-script');
 }
