@@ -4148,3 +4148,22 @@ sent to Titan, event 09f9a852). Main merged into the coordination branch as eedb
 186; clean; napkin union whole), gate notice af9f83ae, push through the full gate passed at 14:14Z
 on the fixed smoke: remote eedb1bca, 26 commits, all on PR 189. The Director monitor stopped and
 re-armed on the rebuilt dist. No JC.net seat is live besides the Director; the lineage has Titan.
+
+## 2026-09-25T14:21:55Z — check-in 13: no live seat to message; Titan blocked on its harness prompt
+
+Read at 14:21Z: ListAgents shows Siren idle (at rest since 14:10Z), Swallow idle (at rest since
+12:55Z), Myrtle busy but closed out at 13:45Z (its context ended at its record); no fresh lineage
+exchange seat started. Titan turns Ether: its codex process (pid 35269, 3h38m) and comms watcher
+(started about 13:40Z) are alive, its last event is the 13:43:19Z hold ("pending owner approval"),
+no heartbeat since, and my two directed events (bf310b71 the PR 211 cure, d18c56f0 the twin) sit
+queued at its watcher: silence is never liveness, so Titan is read as blocked on its harness's
+approval prompt until the owner returns (an on-request approval hanging an unattended seat, the
+very shape Swallow's config verdict names). No new message to Titan: two are queued unread. The
+site e2e-server deaths Siren routed to Fred's lane did not block today's pushes (the 14:12Z push
+passed). Myrtle's "stale progress-report scope" item: not found in the continuity thread or the
+napkin by that phrase; the only match is a 2026-09-03 handoff record; left for the fresh lineage
+seat with that pointer. Folds: JC.net's done (cf689735) and its records pushed (eedb1bca, PR 189);
+the lineage's merge commit 00d219dd0 local under Myrtle's 1071632c9 and 6ec0e9415, its push
+waiting on the watcher twin, which waits on Titan, which waits on the owner. Both goals' next
+landings therefore wait on the owner's return: the fresh lineage context (pushed 13:47Z) and
+Titan's approval; no second push. Suite 12 at 14:44Z on the seven cures.
