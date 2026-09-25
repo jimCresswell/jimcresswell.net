@@ -3790,3 +3790,19 @@ the lineage are J4 alone; J9, J10 and J18 are PART-landed (J18's compare half wa
 delivered); J11 has no lineage landing (its rows name jcnet). The count for the next frame: 1 of
 23 whole, 3 part, 5 delivered not integrated, 12 undrafted (batch six), J5 and J12 unread. The
 lessons stream (ruling 36) is unstarted.
+
+## 2026-09-25T12:01:44Z — the lineage fold's one blocker, and the smoke fails at load 10 too
+
+The lineage fold (OCE PR 187): Myrtle's and Swallow's commits landed (5239452f1, e23535fd9); the
+merge of engraph 1a4450a69 (142 commits, PRs 179 to 210 and 986, one both-sides file, the commit
+skill, no conflict in the dry merge) is refused by git over the uncommitted `.codex/config.toml`.
+My first reading (a network widening) was wrong; Swallow's first-hand diff: the sandbox block only
+moved (the harness re-serialises the file at each managed-daemon TUI start), and the one semantic
+line, `approval_policy = "on-request"`, has sat uncommitted on the primary since before 2026-09-24
+15:30Z by an unestablished author. Verdict (no card; lenses 2 and 4 with the owner's standing Codex
+permission): the line belongs in the repository's file, and the file is committed exactly as the
+harness serialises it so its rewrite is a no-op; Swallow commits it as the membership lane's own
+chore(codex), Titan's answer wins on what the seat needs, the owner overturns by a line. Then the
+merge. The JC.net push failed a second time on `comms-watch-coordination-home.smoke.ts` with the
+one-minute load 9.6 at launch (my own gate and Siren's raised it during the run): the "load below
+12" workaround does not hold; no third attempt; the cure needs an owner (with the owner in text).
