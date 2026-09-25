@@ -4839,3 +4839,35 @@ legs, 14 of 14 checks); Myrtle took the slot for PR 230 at 19:07:12Z; Siren open
 nothing pending ratification); Myrtle absorbed 19:10:11Z. PR 225 is in a third review round;
 the two-round rule binds: dispositions in the last push's slot turn, no fourth round; check-in 20
 reads it. Records: 2 commits unpushed plus this one, held under two gates (load 52.85 at 19:04Z).
+
+## 2026-09-25T20:20Z — CHECK-IN 20 (after the host's usage-limit pause, about 19:13Z to 20:11Z)
+
+- The pause: every seat and the Director held on the harness usage limit from about 19:13Z to
+  20:11Z (Siren's native line; Myrtle's late slot notice 02a7c51c); check-in 20 ran at 20:19Z, 53
+  minutes late; the cadence recounts from it (suite 18 at 20:42Z, check-in 21 at 21:05Z).
+- Siren (sensor: its native line 20:19Z; JC.net stream): context 10.3% after compaction; merged
+  PRs 201 (0018acac), 202 (ad62059f), 203 (ef1ea98e); PR 204 (the hook fixture) round two cured
+  79a8dc07 (win32 junctions and exec wrappers, a mutant), final-tip review next; PR 205 (PDR-142's
+  twin) round two: Copilot found PDR-079 broken by the 19:09Z provenance identifiers. RULED
+  (83dd6aa8, 20:19:53Z): Siren's verdict stands, the identifiers leave PDR-142 line 73, the
+  concept stays, joint bytes both estates; Siren's blob fe6ee7ad posted 20:20:32Z for Myrtle.
+  Finding recorded for L12's bot-identity row: the bot's Copilot request on PR 204 answered 200
+  but registered no review_requested event; the owner-credential request did. Next lane: L12's
+  first rule with its two research foundations. Site strict-lint sizing: 239 errors over 75
+  files, a multi-PR lane. H4 reading: 10.3%, below the floor, so the PDR-052 hunks are decidable
+  now; asked at suite 18.
+- Myrtle (sensor: the lineage stream 20:12:41Z to 20:12:50Z): PR 230 (PDR-009, blob 47ee8c92)
+  merged 6a0045eb7 at 19:26:07Z (GitHub's clock; the door settled 19:13Z by Myrtle's), the third
+  whole landing since the fold; receipt to Siren; PR 225 round-three cure b8143c5df (ce8a40fa),
+  superseded by the PDR-079 ruling; PR 225 DIRTY at 20:19Z; the two-round rule restated on the
+  stream (aad8e176): round three is dispositions in the last push's slot turn, no fourth round.
+  PRs 236 to 240 new on the board, content asked. Batch six's first merge still owed.
+- Swallow (sensor: the lineage stream 20:13:09Z; the process table): slot taken for PR 228 (wake
+  2a) at 20:13:09Z, BLOCKED at 20:19Z (sync and legs); one gate in oce-wt-codex-seat-rules read
+  as the rules lane; PR 233 retargets after 228. RE-HOMED to Swallow at 20:20Z (aad8e176): PR B of
+  1b-iv and wake-bridge todo 3 (Gale silent through the pause); ACK with order asked.
+- Gale (sensor: the lineage stream): no event since 15:18:01Z; the owner's ask restated once in
+  this check-in's report.
+- Push: one gate on the host at 20:19Z (Swallow's), load 20.6; the Director's push of 3 napkin
+  commits started 20:20Z as the second gate with a gate notice. Lineage open PRs 23 (238 to 240
+  new); JC.net open 189, 204 (BLOCKED, pushing), 205 (CLEAN).
