@@ -4643,3 +4643,39 @@ seat; the seven local-only branches; Gale's PR 211 approval (an act, not a quest
   synced (cc6e0735f), ready, legs requested, at the slot; door order 219, 213, 215, 216, 221, 220,
   217, 218; a five-warning lint observation on engraph (no-throw-statement in safe-path and
   env-resolution) for their owner under no-warning-toleration.
+
+## 2026-09-25T17:44Z — Director suite 15 tally (frame built 17:37Z); PR 219 landed
+
+Work verdicts: 7 ON-TRACK, 1 DRIFTING (adversarial medium: todo 4's inbound landings were gated
+on "the seven JC.net-side cures", a condition ruling 35 does not state; ACCEPTED: todo 4 released
+to Siren natively at 17:4xZ, the cures separate small changes; Siren orders the three and answers
+at check-in 18). Frame verdicts: 4 SOUND (normal low, high, procedure; adversarial procedure),
+1 NARROWED (adversarial low), 3 CONTRADICTED (normal medium; adversarial medium, high). Cures for
+suite 16's frame:
+
+1. "Co-equal" DELETED from READING (the cure recorded at suite 14 was not applied to the text);
+   the owner's three goals are read as the enumeration with no ranking words (normal medium, high;
+   adversarial low, high).
+2. The owner's "I absolutely need all seats to be able to push without me" mapped as a measure
+   over EVERY seat, not the Codex config split alone: at check-in 18 each live seat states whether
+   it can push a branch and open a PR without an owner prompt, the count recorded, the Codex seats'
+   gap the config split's requirement, Myrtle's `git branch -D` refusal mapped as a harness limit
+   distinct from pushing (normal medium; adversarial low, medium).
+3. Ruling 35 read as quoted; todo 4 open when the outbound material is delivered; no invented
+   gate on the cover note's cures (adversarial medium).
+4. The three questions of 17:16Z quoted beside the owner's three answers, so "Delete all" is
+   checkable against the card; claude/objective-nightingale-b4ba25's hold stated as outside the
+   card (normal medium).
+5. The wake-bridge todos 1 and 2 carry "(source: ...)" tags like the plan node's; the stale "GATED"
+   line removed once "LIFTED" (adversarial high, low); check-in 17 one time value (17:14Z);
+   H4's fresh reading asked first in Siren's check-in 18 line (normal low).
+6. A backstop for Gale beyond "restated once": if Gale has no event by check-in 19, the config
+   split's push requirement is re-homed to Swallow's lane so the owner's need does not wait on a
+   seat that needs the owner (adversarial medium).
+
+Between the waves: PR 219 (the trigger amendment twin) MERGED on engraph 17:40:51Z as e3cf59330
+(Myrtle, SETTLE-READY, both legs bound, one below-bar observation dispositioned, the 390-line
+deletion sweep read whole); receipt to Siren: PR 192 INTEGRATED as the same bytes in 21 files; the
+slot passes to PR 213; the primary's records push landed. PR 222 green and clean at c0ddb2188,
+BEHIND, syncs at its turn. Myrtle's records commit (the branches card with every tip, batch six's
+21 dispositions: nine small PRs in order, twelve code lanes for fresh contexts) on the successor.
