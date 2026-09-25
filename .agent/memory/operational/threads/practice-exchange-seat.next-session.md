@@ -341,3 +341,11 @@ Its proposals make these entries (its proposal 3, applied to itself):
   O1). This is the record's proposal 4.
 - **PR 188's directive review** needs a session below 30%. This session resumed at about 11%
   after the owner's compaction; read session-metadata immediately before starting it.
+- **Joint cure, queued behind the smoke backstop** (lineage event `0d7ce353`, Swallow at the
+  Director's word, absorbed in `f9af143f`): both Cricket templates' output discipline gain "Refer
+  to every person and agent you name by name or with they/them; never infer a gender from a name
+  or a role." JC.net lands it first; the merged bytes go to the lineage's exchange seat.
+- **Batch six triaged** (2026-09-25, `.agent/reports/practice-transplant/batch-six-triage-2026-09-25.md`):
+  about 25 notes and 330 lines; J19, J23 and J18's prompt close with a line each; the J17 gate note
+  states the direction of the ratified `commit-as-the-full-local-gate` node. Drafting goes to a
+  fresh session or a fleet (this seat was at about 43% context when the triage landed).
