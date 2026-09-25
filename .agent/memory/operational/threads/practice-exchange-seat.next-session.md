@@ -595,4 +595,13 @@ compaction. Watchers, heartbeat and the peer-liveness poll re-armed.
     overwrite the real build.
   - The site onto ESLint 10 and the Practice configs.
   - The merge-bot inbound clauses.
-  - After the next compaction: L12's rules (PDR-052 floor) and L3's register parity row.
+  - L12: rule one (`one-instance-is-an-observation` with its two research foundations) in its
+    pull request; its landing row carries PARTIAL. `one-pr-per-leaf-issue` waits on the
+    Director's disposition; `bot-identity-on-third-party-systems` is a compare lane through the
+    operator profile (PDR-141).
+  - L3: PDR-027 is ahead here (the 2026-09-12 seed entry, the `PRACTICE_` override name); the
+    twin-back is owed to the lineage.
+  - The hook fixture's docblock (`agent-tools/smoke-tests/claude-hook-command-fixture.ts`) still
+    says the bash 5.2 floor "rules out" older bash; the wrapper warns and runs the hook unlogged,
+    and the plan-gate hook never invokes bash (PR 204's final-tip line). The next change to that
+    file corrects it.
