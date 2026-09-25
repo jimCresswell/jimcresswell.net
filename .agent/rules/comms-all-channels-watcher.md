@@ -30,9 +30,9 @@ heartbeat cron, before team-start broadcast, before any source claim.
 
 ## Action
 
-Run one event-driven watcher over the full
-`.agent/state/collaboration/comms/` directory, emitting one notification
-per new event, with **self-exclusion plus, where the seat's economics
+Run one watcher over the full
+`.agent/state/collaboration/comms/` directory, polling it every
+`--poll-ms` and emitting one notification per new event, with **self-exclusion plus, where the seat's economics
 justify it, the sanctioned `--exclude-tag` mechanism** (§"Sanctioned
 tag exclusion" below) — filter out events authored by the agent's own
 PDR-076a routing identity through the canonical `sameAgentRoutingKey`
@@ -62,13 +62,13 @@ into context, and the owner asked for "just enough for the Director to wake
 you"). The shape that satisfied both this rule and the economy:
 
 - `comms watch --exclude-tag heartbeat` — `directed` and `group` always surface
-  whatever their tags, so an activation still arrives instantly; and
+  whatever their tags, so an activation still arrives on the next pass; and
 - the mandatory F-75 pairing run as a **diff-only anomaly poll**: peer-liveness
   every ~10 minutes with its **baseline seeded at arm time**, so already-retired
   seats never emit and only *newly* degraded peers do.
 
 Measured result: zero empty ticks, and a directed activation reached the seat
-immediately. Falsifier for the configuration: a quiet-configured standby that
+on the watcher's next pass. Falsifier for the configuration: a quiet-configured standby that
 misses coordination a full watcher would have delivered — the exposure is
 heartbeat-borne information only, which the poll covers by construction. Reserve-
 seat freshness is load-bearing economics, not a nicety: a standby that burns
