@@ -25,20 +25,23 @@ import {
 const AGENT_TOOLS_ROOT = fileURLToPath(new URL('..', import.meta.url));
 const BIN = join(AGENT_TOOLS_ROOT, 'dist', 'src', 'bin', 'agent-tools.js');
 
+// The smoke sets the watcher's poll and step deadline, never the product defaults.
+const SMOKE_POLL_MS = 50;
+const SMOKE_STEP_TIMEOUT_MS = 45_000;
 /**
- * A hang backstop, not a speed assertion: above the watcher's own worst
- * self-exit (two 60 s step timeouts), so only a real hang trips it. The
- * bound never reads the host; the failure message reports host load only
- * as a diagnostic.
+ * A hang backstop, not a speed assertion: a pass chains three step deadlines
+ * (drain, emit, markSeen) before the supervisor probe, and one more step of
+ * margin keeps a slow but live watcher below it. It never reads the host.
  */
-const WATCHER_HANG_BACKSTOP_MS = 180_000;
+const WATCHER_HANG_BACKSTOP_MS = 4 * SMOKE_STEP_TIMEOUT_MS + SMOKE_POLL_MS;
+
+function hostDiagnostics(): string {
+  const load = loadavg()[0]?.toFixed(2) ?? 'unknown';
+  return `(host one-minute load ${load}, ${String(availableParallelism())} cores)`;
+}
 
 function backstopMessage(what: string): string {
-  const load = loadavg()[0]?.toFixed(2) ?? 'unknown';
-  return (
-    `${what} within the ${String(WATCHER_HANG_BACKSTOP_MS)} ms hang backstop ` +
-    `(host one-minute load ${load}, ${String(availableParallelism())} cores)`
-  );
+  return `${what} within the ${String(WATCHER_HANG_BACKSTOP_MS)} ms hang backstop ${hostDiagnostics()}`;
 }
 
 interface WatcherHarness {
@@ -92,7 +95,9 @@ function startWatcher(fixture: Fixture, env: NodeJS.ProcessEnv): WatcherHarness 
       '--supervisor-pid',
       String(supervisor.pid),
       '--poll-ms',
-      '50',
+      String(SMOKE_POLL_MS),
+      '--step-timeout-ms',
+      String(SMOKE_STEP_TIMEOUT_MS),
     ],
     { cwd: fixture.linked, env, stdio: ['ignore', 'pipe', 'pipe'] },
   );
@@ -141,8 +146,8 @@ function runCli(
     timeout: WATCHER_HANG_BACKSTOP_MS,
   });
   if (result.error !== undefined) {
-    const what = `collaboration-state ${args.slice(0, 2).join(' ')} did not finish`;
-    assert.fail(`${backstopMessage(what)}: ${result.error.message}\n${result.stderr}`);
+    const call = `collaboration-state ${args.slice(0, 2).join(' ')} failed to run`;
+    assert.fail(`${call}: ${result.error.message} ${hostDiagnostics()}\n${result.stderr}`);
   }
   return result;
 }

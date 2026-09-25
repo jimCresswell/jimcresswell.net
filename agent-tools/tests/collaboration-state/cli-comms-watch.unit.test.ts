@@ -358,4 +358,27 @@ describe('watchComms — sanctioned --exclude-tag boundary (F-146)', () => {
       ),
     ).rejects.toThrow(/duplicate comms event tag: 'heartbeat'/u);
   });
+
+  // Node clamps a timer delay above 2 ** 31 - 1 ms to 1 ms, so an oversized
+  // interval would spin the loop instead of waiting. The supervisor is dead,
+  // so a watcher that accepted the value would exit at once, never spin here.
+  it.each(['poll-ms', 'step-timeout-ms', 'heartbeat-interval-ms'])(
+    'rejects a --%s beyond the largest timer delay Node honours, before any comms IO',
+    async (key) => {
+      const fake = createFakeCollaborationRuntime({
+        comms: { [COMMS_DIR]: [otherAgentEvent('evt-1')] },
+        processIsAlive: () => false,
+      });
+      const captured = captureStdout(fake.runtime);
+
+      await expect(
+        watchComms(
+          watchOptions({ ...BASE_OPTIONS, [key]: String(2 ** 31) }),
+          EMPTY_ENV,
+          captured.runtime,
+        ),
+      ).rejects.toThrow(`--${key} must be at most ${String(2 ** 31 - 1)}`);
+      expect(fake.readTextFile(DERIVED_HEARTBEAT)).toBeUndefined();
+    },
+  );
 });

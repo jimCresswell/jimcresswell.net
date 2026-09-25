@@ -140,6 +140,19 @@ describe('collaboration-state tui CLI integration', () => {
     expect(result.exitCode).toBe(2);
     expect(result.stderr).toContain('--poll-ms must be a positive integer');
   });
+
+  it('rejects a live refresh interval beyond the largest timer delay Node honours', async () => {
+    const fake = createFakeCollaborationRuntime();
+
+    const result = await runCollaborationStateCli({
+      argv: ['--', 'tui', '--format', 'text', '--poll-ms', String(2 ** 31)],
+      env: {},
+      io: fake.runtime.io,
+    });
+
+    expect(result.exitCode).toBe(2);
+    expect(result.stderr).toContain(`--poll-ms must be at most ${String(2 ** 31 - 1)}`);
+  });
 });
 
 function activeClaims(): CollaborationRegistry {
