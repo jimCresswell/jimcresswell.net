@@ -3527,3 +3527,37 @@ The owner at 14:2xZ: "when you reach a sensible point please prepare for compact
 - Other lessons of the stretch: a premise put on a card is verified first-hand first (the semaphore was built; the placeholder was the invoker's frame); plan nodes store no execution state (plan-node-schema), so a check-in asks for the register and the PRs, not for status words on todos; native messages and chat words carry no event id and the frame says so; both procedure roles deliver FRAME VERDICT when the prompt says "required whatever your compiled procedure says".
 - POST-COMPACTION PROGRAMME (the owner's standing word, "post-compaction check all seats are working on the proper things"): verify the process table; re-arm exactly one monitor with the scratchpad recipe (director-monitor.sh 58c2684a-5e8d-4a33-a29e-ed074df63128 coordination/2026-09-24-7925bc "<label>", timeout 1800000); ListAgents; check each seat is on the proper things (Siren: resumed in the same session after the owner's compaction, batch six then K4; Marten: batch four landings, PR 202, the C7 amendment with Siren; Swallow: PR 196, then the bridge's first step with Luna); resume the cadence as check-in 10 with the suite 22 minutes after, on the fourteen-requirement frame; fold PR 176 before 09:39Z 2026-09-25 (rebase onto main cures the conflicts and refreshes the Cricket templates); verify these records landed on origin.
 - 2026-09-24T22:28:37Z CORRECTION to the 22:2xZ verdict on Marten's Q2: REVERSED. Marten withdrew it against .agent/rules/bot-identity-on-third-party-systems.md lines 106 to 109: `user.*` stays the bot as the fail-safe, so a forgotten --author yields a visibly bot-authored commit and never silently credits the owner with agent work; a repository `author.*` setting is that failure by default. My "yes" was given without reading the rule (third unverified premise of the day). The cure stays per-commit discipline; nothing was set. Marten's state: PR 202 (J4 part A) merged 21:54Z; PR 203 (J4 part B) in CI; J18 part A in its last cure; J3 and C7 absorbed; context about 36%.
+
+## 2026-09-25T10:37Z — Director resumed after compaction 3; owner word "review, assess, report, stop"
+
+Clock read 10:31:57Z at resume. No loop, monitor or pulse of mine running (process table 0). Owner's
+words this turn, verbatim: "review progress. We want 1. All JC.net Practice innovations integrated into
+the OCE Practice 2. Codex brought up to first class Practice citizen status 3. All local and remote
+branches deleted or in PRs, all PRs merged"; "Review, assess, report, stop". No cadence resumed, no
+suite run, no seat messaged: the word is stop.
+
+Seats at 10:36Z (ListAgents + streams): Siren and Swallow restarted by the owner about 10:23Z, both
+idle, no event since; Marten "at rest, handed over at 61.8%" (heartbeat loop still ticking 10:30Z);
+Luna closed out 10:34:46Z ("Codex support handed off"). Marten's overnight landings: J4 in full (OCE
+202, 203, 205), J18 in full (204, 206 to 209), 210 hooks-quote; slot free since 04:11Z.
+
+Goal 1 count (method: register delta rows J1 to J23 on main; landings from the lineage's
+merge-landed events and the register's §Landings): landed 3 (J4, J18, J11) + J9 partial; delivered
+not landed 5 (J10, J3, J2, J13, J14); undrafted batch six 12 (J1, J6, J7, J8, J15, J16, J17, J19 to
+J23); J5, J12 need Siren's read. Register §Landings shows J11 only: it lags the lineage's overnight
+landings (Siren queue item 2). OCE side: Marten's record carries 15 owed items (7 doctrine, 8 code).
+
+Goal 2 count: bridge node ratified 2026-09-24 (0d31f746, on OCE coordination f66fd0, not yet on
+engraph); todos 0 of 3 started; todo 1 gated on PR 196 (draft at f06807bb9 since 24th 17:11Z, red on
+knip-depcruise and run-quality-gates); the Codex co-owner seat is closed. JC.net holds no Codex node.
+
+Goal 3 count. JC.net remote: main + coordination 7925bc (PR 176 CONFLICTING, fold due 09:39Z,
+OVERDUE). Local: bee014 merged+gone (delete), fix/pnpm-filter-no-match unmerged no PR (Siren item
+11), stale ref pr/125 (PR closed). OCE origin: 72 branches, 2 in open PRs (187 coordination, 196);
+65 merged into engraph (deletable), 7 unmerged (3 need assessment: objective-nightingale,
+copilot/remove-erroneous-commits, design-plan-ratification-and-truings; 2 wait on K4 and the seed
+question). OCE local: 93, 80 merged, 13 unmerged (mostly July/August lineage stubs); 9 worktrees, 2
+dirty (primary 7 files, gh-write-guard 4). Upstream mirror remotes excluded (Oak's, not ours). OCE
+coordination 187 fold due 11:07Z with Marten at rest.
+
+Uncommitted in the primary tree: Siren's card-answers block in its thread record (not mine; left).
