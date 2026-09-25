@@ -1,7 +1,8 @@
 /**
  * Shared core for the smokes that run a Claude Code hook as the harness runs it: the one
- * command `.claude/settings.json` registers, run unchanged through `/bin/sh -c` from a
- * throwaway project that `CLAUDE_PROJECT_DIR` names.
+ * command `.claude/settings.json` registers, run unchanged through `sh -c` (`/bin/sh` on POSIX
+ * hosts, Git for Windows' `sh` on win32) from a throwaway project that `CLAUDE_PROJECT_DIR`
+ * names.
  *
  * The project's name holds a space, so an unquoted `${CLAUDE_PROJECT_DIR}` in a registered
  * command splits and the run fails. Each case names the repository paths the project links
@@ -121,10 +122,11 @@ export interface HookRun {
   readonly timeoutMs: number;
 }
 
-/** Run a command through the bounded `PATH`'s `sh -c` (`/bin/sh` on POSIX hosts). */
+/** Run a command through `sh -c`: `/bin/sh` on POSIX hosts, the bounded `PATH`'s on win32. */
 function spawnHook(command: string, run: HookRun): SpawnSyncReturns<string> {
   const searchPath = [join(run.projectDir, SCRATCH_BIN), trustedShellPath()].join(delimiter);
-  return spawnSync(findOnPath('sh', searchPath), ['-c', command], {
+  const shell = process.platform === 'win32' ? findOnPath('sh', searchPath) : '/bin/sh';
+  return spawnSync(shell, ['-c', command], {
     cwd: run.projectDir,
     env: { CLAUDE_PROJECT_DIR: run.projectDir, PATH: searchPath },
     ...run.stdin,
