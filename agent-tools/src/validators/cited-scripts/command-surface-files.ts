@@ -9,11 +9,12 @@ import {
   type CommandSurface,
 } from './command-surfaces.js';
 import { workspaceDirectories } from './workspace-scripts.js';
+import { workflowSurface } from './workflow-surface.js';
 
 /**
- * Read the repository's command surfaces from disk: the tracked git hooks
- * and CI workflows, line by line, and the scripts of the root and every
- * workspace `package.json`.
+ * Read the repository's command surfaces from disk: the tracked git hooks,
+ * line by line, the run steps of the CI workflows, and the scripts of the
+ * root and every workspace `package.json`.
  *
  * @packageDocumentation
  */
@@ -27,7 +28,9 @@ function isCommandFile(trackedPath: string): boolean {
 
 async function hookOrWorkflow(repoRoot: string, file: string): Promise<CommandSurface> {
   const content = await fs.readFile(path.join(repoRoot, file), 'utf8');
-  return { path: file, lines: linesOfCommandFile(content) };
+  return file.startsWith('.husky/')
+    ? { path: file, lines: linesOfCommandFile(content) }
+    : workflowSurface(file, content);
 }
 
 async function manifestScripts(

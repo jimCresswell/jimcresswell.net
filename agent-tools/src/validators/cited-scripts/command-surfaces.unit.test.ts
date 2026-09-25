@@ -44,16 +44,6 @@ describe('linesOfCommandFile', () => {
       { line: 4, text: 'y' },
     ]);
   });
-
-  it('joins a folded YAML run value into one command, numbered by its first line', () => {
-    expect(
-      linesOfCommandFile('      run: >-\n        pnpm --filter @a/b\n        check\n      name: z'),
-    ).toStrictEqual([
-      { line: 1, text: '      run: >-' },
-      { line: 2, text: 'pnpm --filter @a/b check' },
-      { line: 4, text: '      name: z' },
-    ]);
-  });
 });
 
 describe('scriptLinesOfManifest', () => {

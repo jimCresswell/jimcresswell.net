@@ -39,75 +39,36 @@ export interface CommandSurface {
   readonly lines: readonly CommandLine[];
 }
 
-/** A YAML key whose value is a folded block scalar (`run: >`, `>-` or `>+`). */
-const FOLDED_BLOCK_KEY = /:\s*>[-+]?\s*$/;
-
 /**
- * Every command of a hook or a workflow, one per entry, numbered by the line
- * it starts on. A shell continuation (a line ending in `\`) and a folded
- * YAML value are joined into the one command they spell, so a filter and its
- * script split across lines are read together.
+ * Every command of a hook, one per entry, numbered by the line it starts on.
+ * A shell continuation (a line ending in `\`) is joined into the one command
+ * it spells, so a filter and its script split across lines are read together.
  */
 export function linesOfCommandFile(content: string): readonly CommandLine[] {
-  const lines = content.split('\n');
-  const commands: CommandLine[] = [];
-  let index = 0;
-  while (index < lines.length) {
-    const text = lines[index] ?? '';
-    if (FOLDED_BLOCK_KEY.test(text)) {
-      commands.push({ line: index + 1, text });
-      const folded = foldedBlock(lines, index);
-      if (folded.command !== undefined) {
-        commands.push(folded.command);
-      }
-      index = folded.end + 1;
-      continue;
-    }
-    const start = index;
-    let joined = text;
-    while (joined.trimEnd().endsWith('\\') && index + 1 < lines.length) {
-      index += 1;
-      joined = `${joined.trimEnd().slice(0, -1).trimEnd()} ${(lines[index] ?? '').trimStart()}`;
-    }
-    commands.push({ line: start + 1, text: joined });
-    index += 1;
-  }
-  return commands;
+  return joinContinuations(content.split('\n').map((text, index) => ({ line: index + 1, text })));
 }
 
 /**
- * The one command a folded block after `keyIndex` spells, numbered by its
- * first line, and the index of the block's last line.
+ * The lines given, with each shell continuation (a line ending in `\`)
+ * joined to the line after it, the joined command numbered by its first line.
  */
-function foldedBlock(
-  lines: readonly string[],
-  keyIndex: number,
-): { readonly command: CommandLine | undefined; readonly end: number } {
-  const end = foldedBlockEnd(lines, keyIndex);
-  const body = lines.slice(keyIndex + 1, end + 1);
-  const offset = body.findIndex((text) => text.trim().length > 0);
-  const parts = body.map((text) => text.trim()).filter((text) => text.length > 0);
-  const command =
-    offset === -1 ? undefined : { line: keyIndex + offset + 2, text: parts.join(' ') };
-  return { command, end };
-}
-
-/** The index of a folded block's last line: the last before a line indented no deeper than its key. */
-function foldedBlockEnd(lines: readonly string[], keyIndex: number): number {
-  const keyIndent = indentOf(lines[keyIndex] ?? '');
-  let end = keyIndex;
-  for (let index = keyIndex + 1; index < lines.length; index += 1) {
-    const text = lines[index] ?? '';
-    if (text.trim().length > 0 && indentOf(text) <= keyIndent) {
-      break;
+export function joinContinuations(lines: readonly CommandLine[]): readonly CommandLine[] {
+  const commands: CommandLine[] = [];
+  let pending: CommandLine | undefined;
+  for (const current of lines) {
+    const command =
+      pending === undefined
+        ? current
+        : {
+            line: pending.line,
+            text: `${pending.text.trimEnd().slice(0, -1).trimEnd()} ${current.text.trimStart()}`,
+          };
+    pending = command.text.trimEnd().endsWith('\\') ? command : undefined;
+    if (pending === undefined) {
+      commands.push(command);
     }
-    end = index;
   }
-  return end;
-}
-
-function indentOf(text: string): number {
-  return text.length - text.trimStart().length;
+  return pending === undefined ? commands : [...commands, pending];
 }
 
 /** Each script's command in a package.json text, numbered by the line that declares it. */
