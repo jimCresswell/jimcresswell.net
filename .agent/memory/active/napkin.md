@@ -4231,3 +4231,15 @@ boundary) and the POST-COMPACTION PROGRAMME in it. This commit also carries Sire
 three settled files (its thread record's pickup correction, its napkin wrap block, its formation
 letter), authored to Siren, committed at its request under the freeze. The boundary letter is
 `.agent/experience/2026-09-25-wick-binds-temper-the-made-up-rule.md`.
+
+## 2026-09-25T14:40:10Z — addendum to boundary 4: Myrtle's cure and the PDR-052 reading
+
+Owner word in Myrtle's chat at 14:0xZ (relayed by Myrtle, recorded as relayed): not comfortable
+with repo-specific data in a machine-local folder. Cured by Myrtle as OCE e2c5db413 on the
+lineage's coordination branch: the decision tables and the six-file doctrine patch tracked under
+.agent/research/agentic-engineering/continuity-memory-and-knowledge-flow/consolidation-2026-09-25/,
+the analyst outputs in the ignored instance tier, the home-folder copies removed, every pointer
+repointed. Myrtle's flag on PDR-052 decided as for Siren: the owner's word retires the stopping
+triggers, not PDR-052's floor, and a compaction satisfies the floor; so the lineage pickup block's
+first act (the four directive rows) runs in whichever context is below 30 percent, Myrtle's own
+after the owner compacts it or a fresh one, then the exchange seat, no closeout between.
