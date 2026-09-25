@@ -4960,3 +4960,31 @@ today after PR 216; the re-run under the session's credential since the bot cann
 workflows), then BEHIND-BASE after PR 228, synced 6e1809f70, push queued. Two instances make the
 flake a defect to cure, not re-run: an owner at check-in 21. The records push landed 20:4xZ
 (c162d8d7..50861460, five commits, four Siren's), nothing unpushed.
+
+## 2026-09-25T21:04Z — CHECK-IN 21 (45 minutes after check-in 20), from the streams and PR lists
+
+- Rulings since suite 18: the trailer on PR 239's final commit is enough (9bb90a89; its
+  merge-message clause withdrawn at b722118f: the repository's merge_commit_message setting makes
+  the merge message the PR title, the trailer lives in 5412485bd as a merge parent); rule 4's
+  evidence rewrite and the five-PR re-slice of 1b-iv ACCEPTED (b722118f): the verdict's output
+  evidence becomes the harness-authored CommandExecution items alone, B0 (the evidence cure, a
+  0.157.0 fixture projected from the recorded rollout, the 0.156.1 fixtures retired) stacked
+  before B; the cross-vendor read OWED on the owner's Codex session; the owner reads the rewrite
+  as one informational line.
+- Myrtle (sensor: the lineage stream to 21:02:37Z; gh pr list 21:03Z): PR 225 CLEAN at the slot
+  (held since 20:33Z: the font-build flake re-run, then BEHIND-BASE, synced 6e1809f70); PR 242
+  (the L12 joint cures, blob c5f90b1e after Siren's written-record cure) pushed 6b7018e94, legs
+  re-requested; batch six readied (227 CLEAN; 226, 229, 231, 232, 234, 235, 236 BLOCKED on
+  checks), first merge still owed. THE FLAKE (the hub demo's Turbopack font build; PRs 216 and
+  225 today) given an owner on the stream (76f128f2): Myrtle's ledger entry now, the cure as its
+  own small PR by the first free seat, default Myrtle after batch six's first merge.
+- Swallow (sensor: the lineage stream 20:59:00Z, 21:03:24Z): PR 239 final push 5412485bd (2 of 2
+  rounds), threads resolved, legs re-requested, its door at its turn; PR 241 BEHIND, legs
+  requested; PR B's pre-execution review passed items 1 to 3 and split item 4 into B0; 2b-i after.
+- Siren (sensor: the JC.net stream; gh pr list): PR 206 CLEAN, its last push on Myrtle's blob
+  c5f90b1e; one gate running in its shell-subst worktree; H4's time bound stands (21:50Z).
+- Gale (sensor: the lineage stream): no event since 15:18:01Z; PR 211 DIRTY at 21:03Z (engraph
+  moved), Gale's to sync at resume; the owner's ask restated once in this check-in's report.
+- Push: one gate on the host at 21:03Z (Siren's), load 18.0; the tally push (2eba7db3) started
+  21:04Z as the second gate with a gate notice (178d289e). Lineage open PRs 23; merged since
+  check-in 20: none (PR 228 at 20:32Z before it); JC.net open 189, 206.
