@@ -3819,3 +3819,18 @@ still wins on the fact; (2) Geyser and the lineage's exchange seat: the owner ga
 so the default keeps them; goal one's landings wait for Myrtle unless a seat's deadline forces the
 question, and this one does not reach the owner; (3) the smoke-deadline cure: Siren's first item
 after the owner-commissioned retrospective; no third push attempt before then.
+
+## 2026-09-25T12:07:46Z — the config line decided by the owner in Swallow's session; fold sweep almost clear
+
+Relayed by Swallow (recorded as relayed, consistent with the owner's words to me): at about
+12:02Z, before leaving, the owner answered Swallow's question (my verdict as the recommended
+option) "Commit it (Recommended)"; committed as OCE e728a998d, "chore(codex): commit the project
+config as the Codex harness writes it", pushed e23535fd9..e728a998d. Titan had answered at
+12:02:55Z that its seat does not need the line and restored the old bytes ten seconds after the
+commit, so the working copy is dirty in the other direction; the owner's word decides, Swallow is
+having Titan bring the copy to HEAD. The owner's further word as they left, relayed by Swallow,
+verbatim: "to be clear, I am happy for the config to be optimised by an agent, and I am also happy
+to split the config into committed config and machine local config outside of version control, I
+just don't know what that optimisation would look like". Swallow takes it as membership-lane work
+(a grounded proposal checked against the 0.157.0 source); it comes to me as a verdict; nothing in
+the fold waits on it. The fold's merge runs when Swallow reports the tree clean.
