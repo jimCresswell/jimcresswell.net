@@ -3985,3 +3985,18 @@ Titan's worktree has its own index and Swallow disowns it, so it is Myrtle's or 
 asked, default at 13:15Z: removed with the holder check in one command. The merge stays staged
 (MERGE_HEAD 1a4450a69, 182 paths). No gate notice went out before the first attempt's gate: the
 same slip as this morning, in the lineage's primary this time; the notice goes before the retry.
+
+## 2026-09-25T13:11:56Z — the lineage fold: merge committed, push under way; graduations re-routed after rotation
+
+Stale index.lock removed 13:07:24Z with the holder check in one command (zero bytes, no lsof
+holder, no git write process; Swallow and Myrtle disowned it; born at the 12:54Z memory kill).
+Gate notice a4577207 posted before the retry. Merge committed 00d219dd0 (parents e240904e5,
+1a4450a69) at 13:09Z, the gate fast on cache. Push deferred at load 14.45 (13:09:47Z), then run at
+load 9.75 (13:11:10Z) through merge-bot push. Titan acknowledged routing c540e862 at 12:53:25Z.
+The fold's diff against engraph: 66 files, 4,412 insertions: 25 records; Myrtle's graduations
+(20 rules, 10 skills, 2 references, PDR-063 and PDR-140 amendments); the four Codex plan nodes; two
+retrospectives; .codex/config.toml. The graduations are the lifetime rule's own worked-instance
+class (a consolidation's doctrine riding folds, 2026-09-16 to 19); named in PR 187's §Scope as
+prose-class with the intake, and Myrtle routed to a lane branch with its own draft PR for every
+batch after the rotation (clause 4). PR 187's body drafted in the scratchpad; edit, ready, settle
+watch and bot merge follow the push.
