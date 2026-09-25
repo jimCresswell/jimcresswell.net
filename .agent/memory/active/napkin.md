@@ -4369,3 +4369,36 @@ coordination/2026-09-24-f66fd0 (index empty before staging; Gale's or Swallow's 
 codex-dialogues thread left alone); Siren's PDR-052 scope reading (only `.agent/directives/*` and
 PDR-052 itself gated) accepted 15:1xZ from the quoted text; the Director monitor re-armed at 15:1xZ
 after its 30-minute expiry.
+
+## 2026-09-25T15:44Z — CHECK-IN 15, every seat read from its stream; the twin landed; the fold takes the slot
+
+- Siren herds Rudder: PR 191 (the Cricket hold-sensor clause) merged 15:10:06Z; PR 192 (the trigger
+  amendment, "context readings never stop a seat") open and ready, sent to Myrtle as an exchange row
+  (9c109112, acknowledged 0e1a8099); Swallow's watcher joint-cure set accepted "after batch six"
+  (440d5773); batch six's drafting is Siren's after PR 192 opens (the suite 12 decision, sent 15:18Z,
+  no objection read). The clause PR's gate cleared (its merge), so H1 released: gate notice 5c8db6c4
+  at 15:43Z, the 12 records commits pushed to PR 189 at 15:45:28Z (eedb1bca to 09e72d35; the gate passed in 85 seconds; log push-h1-1543.log).
+- Swallow holds Drift: PR 214, the watcher twin, landed on engraph as 0a816621e at about 15:35Z
+  (d641bade: both legs SATISFIED, 1 round, 0 findings; the deletion sweep run after the merge, its
+  miss on Swallow's napkin); claim d8773fd8 closed; the slot released to the fold; next the sink's
+  pre-execution review for Gale. Swallow's records on the primary: 16f35f5d4.
+- Myrtle turns Canopy: three draft PRs behind the slot (213 the PDR-009 joint cure, 215 batch one's
+  C2, 216 batch five's J14); records commits b96491bef and 5aea230db on the primary (gate notices
+  and gate-done events posted); two requests to the Director (b5726930) ruled 67c26a85 at 15:44Z:
+  A3's default stands (the validator declares what the two fork-naming rules name; no card; the
+  owner told here); A4 both held branches get draft PRs (worktree-hygiene §1, goal three). The six
+  pending graduation rows' ranking and the 93 local branches not yet read from Myrtle: suite 13's
+  frame carries them as Myrtle's with a trigger at check-in 16.
+- Gale turns Cloud: PR 211's metadata-only cure committed locally as 00a23728b on a branch off
+  a623bfddb (one file; Swallow's pairing read found it sound); the Codex automatic approval review
+  refused the push twice for lack of a trusted user message authorising the exact payload and
+  destination; Gale asked the owner for that approval and ended its turn at 15:18:01Z (202b3339,
+  handoff record be006748-gale-approval-hold-2026-09-25.md, claim held). BLOCKED on the owner's
+  approval in Gale's Codex session; the owner is told in the Director's report. No Director act.
+- The fold: merge-tree preview of engraph 0a816621e into coordination/2026-09-24-f66fd0 exit 0,
+  tree dd1f2a18d; gate notice 97e27db2 at 15:44:38Z; the merge and the bot push run in the background
+  (logs fold-merge-1544.log, fold-push-1544.*). Then PR 187 ready, the front door, the successor cut,
+  the rotation broadcast. Load 5.03 at 15:43Z.
+- Goal three at 15:43Z: JC.net open PRs 189 (draft, this branch), 192 (ready); lineage open 187,
+  211, 213, 215, 216; lineage remote branches 9 minus the twin's plus Myrtle's three lanes (method:
+  the stream's push-landed and merge-landed events; a ls-remote count at suite 13).
