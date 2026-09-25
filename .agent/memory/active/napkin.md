@@ -4043,3 +4043,47 @@ at 12:38Z) and the lane branch after the rotation. Suite: normal wave 4 ON-TRACK
 NARROWED, 1 CONTRADICTED, 1 DRIFTING-then-NARROWED, the convergent finding (the route to "done")
 taken to me and decided; adversarial wave dispatched 13:08Z, 0 of 4 returned yet, counted next
 check-in. Verdict: on track. Titan's reply pending.
+
+## 2026-09-25T13:39:28Z — Siren herds Rudder (158275): check-in 12 Cricket suite
+
+Frame: the check-in 12 frame (sources a to m, every todo with a sourced status line). Work: 8
+ON-TRACK. Frame: 6 NARROWED, 2 CONTRADICTED (mid power, both stances). Tokens and seconds: low
+32,300 / 36 and 33,643 / 51; medium 35,091 / 49 and 35,408 / 51; high 43,114 / 116 and 40,026 /
+95; procedure 32,261 / 116 and the adversarial leg's usage not reported by the time of writing.
+The procedure seat signed as itself in both stances when asked to.
+
+- Accepted: K4 (PR 188) and the lineage's seed branch (waiting on JC.net's seed platform gate, a
+  joint cure) had no line in the reading; each queue item is now placed against the owner's "new
+  work goes behind PRs B to F" (PR 190 a push-blocking defect cure, the lineage twin and the
+  Cricket gender line exchange rows under todo 5, the seam rename a routed review cure); PR 188's
+  hold cites PDR-052's rule (h) and the latest reading (m) separately, which was the two
+  CONTRADICTED verdicts' point; C7's ruling cited from the card answers, not (e) as quoted; the
+  successor's queue starts with batch six drafting and the lessons batch (goal one, c35).
+- Rejected: goal two's lane as unsourced (the Director's routing to Titan, c540e862); (d)'s rules
+  as dropped (applied: PR 190 is in a PR, its tests prove behaviour).
+- Also found this hour: the site's e2e server failed PR 190's round-one push twice. The PDF
+  generator died after "Launching Puppeteer..." with exit 1 and no error logged, and
+  e2e-global-setup gave up at its fixed 120 s. A load-sensitive, silent failure for Fred's lane.
+
+## 2026-09-25T13:49:04Z — Titan's check-in 12, PR 211's hold decided, Myrtle's closeout, the first owner push
+
+Titan (OCE event 13:29:45Z): on the proper things; todo 1 PARTIAL (one no-daemon TUI queue run,
+the shell-presence check, three bounded managed-daemon startup observations, none reaching a queue
+call; PR 211 ready at a623bfddb), todos 2 and 3 PENDING behind routing c540e862; Codex suite 6 of
+6 ON-TRACK, frames 4 SOUND 2 NARROWED (the owner's scope word has no event id: native chat, stated
+in the frame). Titan's hold (13:43:19Z): the current-head Codex review raised one provenance
+finding on the daemon capture; Titan's harness approval reviewer refused to push the capture
+payload, exact or redacted, and Titan asked the owner. Decided by the Director under the away word
+(event bf310b71, 13:45:56Z): never push the payload; provenance is met by citing the capture under
+the instance tier with size, sha256, times, version and command line; if the reviewer insists on
+the payload, that is the one owner question and the Director carries it. Myrtle's closeout (native,
+13:4xZ): the consolidation reached its reachable end; pending graduations 6 pending 0 due plus six
+PDR-130 rows; buffers empty or rotated; comms swept; landed c76f93eb6, 1071632c9, 6ec0e9415; suite
+8 of 8 ON-TRACK; register findings F-200 to F-207 (tooling defects: the commit tool's empty staged
+read, the door's unattested sweep, merge-bot push writing nothing under redirection (my own blank
+push-exit lines today), the review-cost survey pricing an unreviewed settlement push at 0, the
+archive harness's missing disposition, the ungated census check, no compare-and-swap on a channel
+append, the argv matcher reading prose as commands); left to the Director: the stale
+progress-report scope and Marten's claims release (closed at the rotation). The lineage's exchange
+seat opens at a fresh context below 30 percent, which only the owner can start: the first
+PushNotification of the away period sent at about 13:47Z (a matrix survivor: an owner-only act).
