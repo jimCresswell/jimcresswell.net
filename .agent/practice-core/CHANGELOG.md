@@ -4,6 +4,70 @@ Changes to the Practice Core files, newest first. Each entry records the repo
 that made the change and what was changed. This file travels with the
 Practice Core package.
 
+## [jimcresswell.net] 2026-09-25 — context readings never stop a seat
+
+- PDR-063 gains §Context readings never stop a seat, on the owner's word to
+  every seat: no context reading stops a seat, hands its work over or starts
+  a succession, and a seat keeps its records current as it goes. An
+  owner-called compaction gets the compaction drill, and the same session
+  resumes on the owner's word. A platform compaction gets no drill: the seat
+  re-arms and carries on. After either, the seat validates against its own
+  continuity record. The effectiveness calibration stays, as the reason to
+  keep records current.
+- PDR-063's five steps now start only on the owner's call (Step 1), and every
+  succession of a live seat is deliberate; a standing owner naming counts as
+  the call. §Retirement authority keeps the no-recipient broadcast and
+  owner-mediated instantiation. The rationale, forbidden list, accepted cost,
+  open questions and §Handover timing follow.
+- Withdrawn with the context triggers: the owner-absent autonomous handoff at
+  a declared deadline, the post-commit budget floor, and a coordinator's
+  authority to call a succession.
+- PDR-052's floor for directive-file edits stands: at or above 30% the edit
+  waits for the next compaction, and the seat carries on with other work.
+- PDR-078 §3 recovers a silent seat's claims without PDR-063's five steps.
+  PDR-064's intersection and forced exception, PDR-077's marshal
+  intersection and PDR-117's implementer handoff start on the owner's call.
+  PDR-075's rationale drops the trigger.
+
+## [jimcresswell.net] 2026-09-25 — the K amendment: PDR-009's inline-prompt role replaces the exception
+
+- PDR-009 states the adapter rule by its domain. A role that cannot read
+  files, or whose bounded turns belong to its task, is an inline-prompt role,
+  and its adapter carries the template's System prompt block. The word
+  "exception" is gone, because this estate's `rules-have-no-exceptions` rule
+  bars it. PDR-009's validator clauses (b) and (c) and its
+  bidirectional-validation sentence now admit a compared copy, where before
+  they would have failed every inline-prompt adapter.
+- `practice-bootstrap.md` names the inline-prompt role at its three anchors
+  and gains the System prompt section in §Template Structure.
+  `practice-verification.md` item 11 follows.
+- PDR-125 clause 7's worked instance names the lint rule by what it checks
+  (list spacing), not by one linter's rule id.
+- The lineage's exchange seat drafted the amendment. Both seats signed it,
+  and these are the lineage's bytes, twinned in window with its PR 201.
+
+## [jimcresswell.net] 2026-09-24 — joint sets K2 and K3: an adapter that carries its prompt, lint before delivery
+
+- PDR-009 gains joint set K2(a): a role that cannot read files, or whose
+  bounded turns belong to its task, carries its template's System prompt
+  block in its adapter, and a check compares every copy with its template.
+- PDR-125 clause 7 gains lint before delivery (K2(b)): the donor runs the
+  receiver's own formatting and lint configurations over every box file.
+  The `inter-practice-collaboration` skill's step 7 carries it (K2(c)).
+- Joint set K3 carries K2 to the other Core surfaces:
+  `practice-bootstrap.md` (three anchors), `practice-verification.md`
+  item 11, and PDR-125's Status paragraph and index row.
+
+## [jimcresswell.net] 2026-09-23 — PDR-117: the Director hears questions and requests, never state
+
+- PDR-117, on the owner's ruling of 2026-09-23 for all agents ("do not update
+  the Director unless you have a question or other request, the normal records
+  keep the record"): the Implementer's compressed verdicts and deep handoff
+  go to the normal records, where the Director reads them when it needs them.
+  The routing contract's owner-ratified asymmetry clause keeps its words and
+  gains a reading through the ruling. A dated amendment section records the
+  change. The same texts land in the lineage as a joint cure.
+
 ## [jimcresswell.net] 2026-09-23 — PDR-142 and PDR-125: a receiver's format gate is a standard to align; PDR-141: its amendment recorded
 
 - PDR-142 and PDR-125 clause 7, on the owner's card of the same evening: a

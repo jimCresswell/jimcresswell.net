@@ -88,46 +88,4 @@ describe('findStaleScriptInvocations', () => {
 
     expect(findStaleScriptInvocations([{ path: 'docs/guide.md', content }])).toStrictEqual([]);
   });
-
-  it('skips files whose path is in the allowlist', () => {
-    const allowlistedPath =
-      '.agent/plans/architecture-and-infrastructure/current/pr-90-landing-closure.plan.md';
-
-    expect(
-      findStaleScriptInvocations(
-        [
-          {
-            path: allowlistedPath,
-            content:
-              'The drift was `node scripts/foo.mjs`; we replaced it with the canonical form.\n',
-          },
-        ],
-        { allowlistedPaths: [allowlistedPath] },
-      ),
-    ).toStrictEqual([]);
-  });
-
-  it('still flags files whose path is not in the allowlist when an allowlist is configured', () => {
-    expect(
-      findStaleScriptInvocations(
-        [
-          {
-            path: '.agent/plans/architecture-and-infrastructure/current/some-other.plan.md',
-            content: 'A `node scripts/foo.mjs` reference here.\n',
-          },
-        ],
-        {
-          allowlistedPaths: [
-            '.agent/plans/architecture-and-infrastructure/current/pr-90-landing-closure.plan.md',
-          ],
-        },
-      ),
-    ).toStrictEqual([
-      {
-        path: '.agent/plans/architecture-and-infrastructure/current/some-other.plan.md',
-        line: 1,
-        match: 'node scripts/foo.mjs',
-      },
-    ]);
-  });
 });

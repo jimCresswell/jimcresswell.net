@@ -83,8 +83,6 @@ const EXCLUDED_PATH_FRAGMENTS: readonly string[] = [
   'docs/explorations/',
 ];
 
-const ALLOWLISTED_PATHS: readonly string[] = [];
-
 function formatFindings(findings: readonly MissingScriptFinding[]): string {
   return findings
     .map((finding) => {
@@ -111,7 +109,7 @@ async function main(): Promise<void> {
     loadCommandSurfaces(repoRoot, trackedPaths),
   ]);
   const findings = [
-    ...findMissingScriptCitations(files, scripts, { allowlistedPaths: ALLOWLISTED_PATHS }),
+    ...findMissingScriptCitations(files, scripts),
     ...findMissingFilteredCommands(commandSurfaces, scripts),
   ];
 
@@ -129,8 +127,7 @@ async function main(): Promise<void> {
       'Every `pnpm <script>` in a code span or fenced block must name a script the root or the ' +
       'filtered workspace defines in package.json, and every filtered call in a package.json ' +
       'script, a git hook or a CI workflow must name a real workspace and a script it defines. ' +
-      'Fix the citation or the call, or add the script; for a document that legitimately quotes ' +
-      'a dead name, add its path to ALLOWLISTED_PATHS here.',
+      'Fix the citation or the call, or add the script.',
   );
   process.exitCode = 1;
 }

@@ -131,12 +131,4 @@ describe('findMissingScriptCitations', () => {
       findMissingScriptCitations(files, scripts).map((f) => [f.scope, f.reason]),
     ).toStrictEqual([['@engraph/jc-widget', 'unknown-workspace']]);
   });
-
-  it('skips allowlisted paths', () => {
-    const files = [{ path: 'docs/history.md', content: '`pnpm sdk-codegen`' }];
-
-    expect(
-      findMissingScriptCitations(files, scripts, { allowlistedPaths: ['docs/history.md'] }),
-    ).toStrictEqual([]);
-  });
 });

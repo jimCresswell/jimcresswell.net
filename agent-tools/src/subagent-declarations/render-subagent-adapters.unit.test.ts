@@ -1,3 +1,4 @@
+import { unwrapErr } from '@engraph/result';
 import { describe, expect, it } from 'vitest';
 
 import { renderSubagentAdapters } from './render-subagent-adapters.js';
@@ -220,6 +221,20 @@ const CLAUDE_CRICKET_HIGH = [
   '',
 ].join('\n');
 
+const VOTER_PROMPT = 'You are a voter. You have no tools —\njudge only from the supplied evidence.';
+
+/** A zero-tool role whose Claude body names its template's System prompt block, turn-bounded. */
+const VOTER_UNREAD: RoleDeclaration = {
+  kind: 'role',
+  name: 'voter',
+  description: 'Voter judges one candidate.',
+  platforms: ['cursor', 'claude'],
+  claude: { tools: 'none', maxTurns: 4, body: 'system-prompt' },
+};
+
+/** The same role with the block the reader carries from its template. */
+const VOTER: RoleDeclaration = { ...VOTER_UNREAD, systemPrompt: VOTER_PROMPT };
+
 function textsOf(declarations: readonly (RoleDeclaration | FanOutDeclaration)[]) {
   const rendered = renderSubagentAdapters(declarations);
   expect(rendered.ok).toBe(true);
@@ -274,6 +289,65 @@ describe('renderSubagentAdapters', () => {
     expect(line(`It's "so".`)).toBe(`description: 'It''s "so".'`);
     expect(line(`It's 'so' "x".`)).toBe(`description: 'It''s ''so'' "x".'`);
     expect(line(String.raw`C:\it's`)).toBe(String.raw`description: "C:\\it's"`);
+  });
+
+  it("renders a zero-tool role's Claude adapter with the null-value tools field, the turn bound, and the System prompt block inline in place of the pointer, no default filled; its Cursor adapter still points to the template", () => {
+    const texts = textsOf([VOTER]);
+    const claude = texts.get('.claude/agents/voter.md');
+    expect(claude).toContain(`tools:\nmaxTurns: 4\n---\n\n${VOTER_PROMPT}\n`);
+    expect(claude).toContain('templates/voter.md');
+    const cursor = texts.get('.cursor/agents/voter.md');
+    expect(cursor).toContain('templates/voter.md');
+    expect(cursor).not.toContain(VOTER_PROMPT);
+  });
+
+  it('refuses a Claude body naming the System prompt block when the declaration carries no System prompt text', () => {
+    expect(unwrapErr(renderSubagentAdapters([VOTER_UNREAD]))).toMatch(
+      /^\.claude\/agents\/voter\.md: /u,
+    );
+  });
+
+  it('renders a Codex description on the Codex adapter and nowhere else', () => {
+    const texts = textsOf([{ ...ALPHA, codex: { description: 'Alpha on Codex.' } }]);
+    const codex = texts.get('.codex/agents/alpha.toml');
+    expect(codex).toContain('Alpha on Codex.');
+    expect(codex).not.toContain(ALPHA.description);
+    expect(texts.get('.cursor/agents/alpha.md')).toContain(ALPHA.description);
+    const unsafe: RoleDeclaration = { ...ALPHA, codex: { description: 'Says "hi".' } };
+    expect(unwrapErr(renderSubagentAdapters([unsafe]))).toMatch(/^\.codex\/agents\/alpha\.toml: /u);
+  });
+
+  it('renders a Gemini description on the Gemini adapter and nowhere else', () => {
+    const texts = textsOf([{ ...ALPHA, gemini: { description: 'Alpha on Gemini.' } }]);
+    const gemini = texts.get('.gemini/agents/alpha.md');
+    expect(gemini).toContain('Alpha on Gemini.');
+    expect(gemini).not.toContain(ALPHA.description);
+    for (const path of [
+      '.cursor/agents/alpha.md',
+      '.claude/agents/alpha.md',
+      '.codex/agents/alpha.toml',
+    ]) {
+      expect(texts.get(path)).toContain(ALPHA.description);
+    }
+  });
+
+  it('renders a System prompt body with a declared tool list exactly as declared: its tools, its deny list and its turn bound, no permission mode filled', () => {
+    const mapper: RoleDeclaration = {
+      kind: 'role',
+      name: 'mapper',
+      description: 'Mapper reads one window.',
+      platforms: ['claude'],
+      claude: {
+        tools: 'Read',
+        disallowedTools: 'Bash, Write, Edit',
+        maxTurns: 16,
+        body: 'system-prompt',
+      },
+      systemPrompt: 'Read is your only tool.',
+    };
+    expect(textsOf([mapper]).get('.claude/agents/mapper.md')).toContain(
+      'tools: Read\ndisallowedTools: Bash, Write, Edit\nmaxTurns: 16\n---',
+    );
   });
 
   it('a variant inheriting tools carries no tools line', () => {

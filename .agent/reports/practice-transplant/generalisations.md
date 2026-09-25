@@ -1,6 +1,6 @@
 ---
 type: register
-status: active
+status: closed
 date: 2026-09-13
 fitness_line_target: 160
 fitness_line_limit: 220
@@ -8,6 +8,11 @@ fitness_line_length: 100
 ---
 
 # Generalisation register
+
+Closed on 2026-09-24, when the `Practice-Generalisation:` commit trailer replaced it (rule
+`record-generalisation-moves`). Its last row is the last move recorded here; every later move
+carries the trailer. The full list is these rows, then the rule's trailer query over the commits
+after the closing. The text below describes the register as it ran.
 
 Every move that makes an element of the Practice more general or more portable, recorded when
 it lands (owner direction 2026-09-13, verbatim: "where we take action to make an element of the
@@ -19,9 +24,9 @@ system with installable elements.
 
 A row is a record of intent — why the element is more general than before — and cites the
 commit that carries the change, so the register can be checked against history rather than
-remembered. The rule that adds rows is
-[`record-generalisation-moves`](../../rules/record-generalisation-moves.md). Rows are appended,
-never edited; a later move that supersedes one adds its own row and names the earlier commit.
+remembered. The rule that added rows was
+[`record-generalisation-moves`](../../rules/record-generalisation-moves.md). Rows were appended,
+never edited; a later move that superseded one added its own row and named the earlier commit.
 
 Lineage status: **sent** (reported to the lineage seat under ruling 6, with the batch),
 **owed** (landed here, not yet sent), **local** (host-specific by nature, not a lineage
@@ -68,3 +73,7 @@ candidate), **from-lineage** (an enhancement taken from the lineage, the update 
 | 2026-09-21 | PDR-026 and PDR-011 | The lineage's amendments (owner endorsement of surfaced falsifiable structure; graduate, then archive, and the four-part surface lifecycle) taken byte-identical as exchange rows L4 and L5 | 51ea9dd0 (PR 145) | from-lineage |
 | 2026-09-21 | Core changelog | Two estates' entries merge as a dated union over an identical tail, each entry headed by its estate, so the changelog reads one history in every estate that carries the Core | 51ea9dd0 (PR 145) | owed |
 | 2026-09-21 | Workflow tool operating note (`claude-harness-integrations/workflow-tool-operations.md`) | The lineage's operating note for the Workflow tool, which states two failures the platform's reference does not (a died agent reads as a successful run unless `agents_error` and `failures` are read; a background agent whose command a hook holds stalls the run, with the diagnosis path and the cure by resume), taken byte-identical as exchange row L22; the fleet-design-review rule's citation of it arrives with row L11 | e84da526 (PR 146) | from-lineage |
+| 2026-09-24 | check-singleton-per-window, agent-state-observable, no-unbounded-host-load | The gate-sweep hazard is scoped to every session that reads a tree's build output, a session working a sibling worktree from the primary checkout among them, not only to seats sharing the tree; item 5 says item 6 sets how many gates may run at once, true in both estates (joint set J, signed by both exchange seats) | PR 173 (joint set J) | sent |
+| 2026-09-24 | Sub-agent declarations (Claude block: `tools: none`, `maxTurns`, `body: system-prompt`) | A role's Claude block declares the zero-tool adapter (rendered as the null-value `tools:` field, the one spelling that grants no tools), a turn bound, and a body that is the template's System prompt block copied verbatim, which renders exactly what it declares with no reviewer default; the schema refuses each incoherent combination (a zero-tool block naming a tool, a deny list or a pointer body; a System prompt body without its tools, or with a pointer tail or note; a variant naming the body), so a workflow role that cannot or must not read its template is generated from its one home instead of hand-kept beside it; the four corpus-analysis roles regenerate to the lineage's reference shape | lands with it (`fix/zero-tool-subagent-adapters`) | owed (the lineage's corpus adapters are hand-kept, the prompt paired by a keep-in-sync comment) |
+| 2026-09-24 | Sub-agent declarations (Codex `description`; the System prompt block read whole) | A role's Codex block declares its own description, which the Codex adapter and its registry block carry in place of the role's, as a role's Cursor block already could, so a role whose description names what only Claude enforces (zero tools, dispatch by the Workflow tool) carries a true sentence on each platform; the System prompt reader skips headings inside code fences and refuses a block it cannot carry whole (a lazy continuation line, a second quote in the section); a fan-out variant is refused zero tools at its `tools` key; builds on 60ac670c, and the four corpus roles' Cursor and Codex descriptions are the lineage's bytes | lands with it (`fix/zero-tool-subagent-adapters`) | owed (the lineage's corpus adapters are hand-kept) |
+| 2026-09-24 | Sub-agent declarations (Gemini `description`; one per-platform description helper) | A role's Gemini block declares its own description, carried by the Gemini adapter in place of the role's, so the Cursor, Codex and Gemini descriptions are one field read through one helper (`platformDescription` in `adapter-spec.ts`, replacing the Codex-only helper of 5c3750b7) and a role whose description names what only Claude enforces carries a true sentence on every platform; the corpus mapper and meta roles' Gemini adapters take the lineage's platform-neutral Cursor sentence, since the lineage keeps no Gemini adapter | lands with it (`fix/zero-tool-subagent-adapters`) | owed (the lineage has no Gemini adapter surface) |

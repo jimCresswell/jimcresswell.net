@@ -54,23 +54,10 @@ const SCANNED_ROOTS: readonly string[] = [
 const SCANNED_EXTENSIONS: ReadonlySet<string> = new Set(['.md', '.yml', '.yaml']);
 
 /**
- * Path-fragment exclusions. Files matching any fragment are skipped.
- *
- * - `/archive/` — historical record, never edited as live guidance.
- * - `clerk-backend-api/SKILL.md` — vendored third-party skill that
- *   references its upstream `node scripts/extract-tags.js` invocation
- *   (Clerk-internal, not repo-internal).
+ * The validator's domain is live authored guidance, so an archive, the
+ * historical record never edited as guidance, is outside it.
  */
-const EXCLUDED_PATH_FRAGMENTS: readonly string[] = ['/archive/', 'clerk-backend-api/SKILL.md'];
-
-/**
- * Files allowlisted in the helper because they legitimately discuss the
- * stale-invocation pattern in prose (e.g. plans describing the drift
- * verbatim alongside the cure).
- */
-const ALLOWLISTED_PATHS: readonly string[] = [
-  '.agent/plans/architecture-and-infrastructure/current/pr-90-landing-closure.plan.md',
-];
+const EXCLUDED_PATH_FRAGMENTS: readonly string[] = ['/archive/'];
 
 /**
  * Surfaces may be optional (e.g. `.agent/research` exists in some checkouts
@@ -94,7 +81,7 @@ function formatFindings(findings: readonly StaleScriptInvocationFinding[]): stri
 
 async function main(): Promise<void> {
   const files = await discoverScannableFiles();
-  const findings = findStaleScriptInvocations(files, { allowlistedPaths: ALLOWLISTED_PATHS });
+  const findings = findStaleScriptInvocations(files);
 
   if (findings.length === 0) {
     writeLine('validate-no-stale-script-invocations: OK (no stale root `scripts/...` invocations)');
@@ -105,8 +92,7 @@ async function main(): Promise<void> {
     `validate-no-stale-script-invocations: ${findings.length} stale invocation(s) found.\n\n` +
       `${formatFindings(findings)}\n\n` +
       `Authored surfaces must call workspace-owned package scripts instead of root \`scripts/\` files. ` +
-      `Convert each finding above (or, for plans/research material legitimately describing ` +
-      `the drift in prose, add the file path to ALLOWLISTED_PATHS in this script).`,
+      `Convert each finding above.`,
   );
   process.exit(1);
 }

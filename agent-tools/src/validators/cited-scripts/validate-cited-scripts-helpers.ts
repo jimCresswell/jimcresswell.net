@@ -43,21 +43,11 @@ export interface MissingScriptFinding {
   readonly reason: 'missing-script' | 'unknown-workspace';
 }
 
-/** Optional configuration for {@link findMissingScriptCitations}. */
-export interface FindMissingScriptCitationsOptions {
-  /**
-   * Repo-relative paths exempted from the check: surfaces that legitimately
-   * quote a dead script name (a lineage changelog, a dated exploration).
-   */
-  readonly allowlistedPaths?: readonly string[];
-}
-
 /**
  * Resolve every citation in the given files against the script tables.
  *
  * @param files - In-memory files with repo-relative paths.
  * @param scripts - The root and workspace script tables.
- * @param options - See {@link FindMissingScriptCitationsOptions}.
  * @returns Findings in file then line order; empty when every citation
  * resolves.
  *
@@ -73,14 +63,9 @@ export interface FindMissingScriptCitationsOptions {
 export function findMissingScriptCitations(
   files: readonly { readonly path: string; readonly content: string }[],
   scripts: WorkspaceScripts,
-  options: FindMissingScriptCitationsOptions = {},
 ): readonly MissingScriptFinding[] {
-  const allowlistedPaths = new Set(options.allowlistedPaths ?? []);
   const findings: MissingScriptFinding[] = [];
   for (const file of files) {
-    if (allowlistedPaths.has(file.path)) {
-      continue;
-    }
     for (const citation of extractScriptCitations(file.content)) {
       const finding = resolveCitation(file.path, citation, scripts);
       if (finding !== undefined) {

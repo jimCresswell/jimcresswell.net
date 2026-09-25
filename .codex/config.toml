@@ -52,31 +52,31 @@ description = "Configuration reviewer for TypeScript, ESLint, Vitest, Prettier, 
 config_file = "agents/config-expert.toml"
 
 [agents."corpus-mapper"]
-description = "Read-only leaf-signal extractor for the corpus-analysis map workflow stage. Dispatched exclusively via the Workflow agent() agentType option; never invoke for interactive delegation. Reads one time-contiguous window's corpus files in full and answers only through the schema-forced structured output call."
+description = "Read-only leaf-signal extractor for the corpus-analysis map workflow stage; one agent per corpus window, answering only via the schema-forced structured output."
 config_file = "agents/corpus-mapper.toml"
 
 [agents."corpus-meta"]
-description = "Read-only recall-calibration synthesist for the corpus-analysis meta workflow stage. Dispatched exclusively via the Workflow agent() agentType option; never invoke for interactive delegation. Judges per-baseline recall matches and verifies corroboration home paths on disk before claiming them, answering through the schema-forced structured output call."
+description = "Read-only recall-calibration synthesist for the corpus-analysis meta workflow stage; judges per-baseline matches and verifies corroboration paths, emitting per-item judgments only."
 config_file = "agents/corpus-meta.toml"
 
 [agents."corpus-reducer"]
-description = "No-tools clustering synthesist for the corpus-analysis reduce workflow stage. Dispatched exclusively via the Workflow agent() agentType option; never invoke for interactive delegation. Clusters the inlined leaf signals into mechanism-grained candidates and answers only through the schema-forced structured output call."
+description = "Clustering synthesist for the corpus-analysis reduce workflow stage; clusters inlined leaf signals into mechanism-grained candidates via the schema-forced structured output."
 config_file = "agents/corpus-reducer.toml"
 
 [agents."corpus-voter"]
-description = "Single-turn no-tools adversary voter for the corpus-analysis validate workflow. Dispatched exclusively via the Workflow agent() agentType option; never invoke for interactive delegation. Judges one candidate against the four conjunctive apophenia tests from supplied grounding and answers only through the schema-forced structured output call."
+description = "Single-turn adversary voter for the corpus-analysis validate workflow; judges one candidate against the four conjunctive apophenia tests from supplied grounding only."
 config_file = "agents/corpus-voter.toml"
 
 [agents."cricket-judgement-low"]
-description = "Fast low-effort conscience check using contextual judgement. Call directly for a second opinion, rubber duck, or design partnership when priority, proportion, or a wait/gate may be drifting; returns ON-TRACK, DRIFTING, or WRONG-PRIORITY with evidence and one redirection."
+description = "Fast low-effort conscience check using contextual judgement. Call directly for a second opinion, rubber duck, or design partnership when priority, proportion, or a wait/gate may be drifting; returns a work verdict (ON-TRACK, DRIFTING or WRONG-PRIORITY) and a frame verdict (SOUND, NARROWED or CONTRADICTED), with evidence and one redirection."
 config_file = "agents/cricket-judgement-low.toml"
 
 [agents."cricket-judgement-medium"]
-description = "Fast medium-effort conscience check using contextual judgement. Call directly for a second opinion, rubber duck, or design partnership when priority, proportion, or a wait/gate may be drifting; returns ON-TRACK, DRIFTING, or WRONG-PRIORITY with evidence and one redirection."
+description = "Fast medium-effort conscience check using contextual judgement. Call directly for a second opinion, rubber duck, or design partnership when priority, proportion, or a wait/gate may be drifting; returns a work verdict (ON-TRACK, DRIFTING or WRONG-PRIORITY) and a frame verdict (SOUND, NARROWED or CONTRADICTED), with evidence and one redirection."
 config_file = "agents/cricket-judgement-medium.toml"
 
 [agents."cricket-procedure-xhigh"]
-description = "Fast xhigh-effort conscience check using a compiled decision procedure with quote-anchored evidence and a mechanical verdict table. Call directly for a reproducible second opinion when priority, proportion, or a wait/gate may be drifting; returns ON-TRACK, DRIFTING, or WRONG-PRIORITY with one redirection."
+description = "Fast xhigh-effort conscience check using a compiled decision procedure with quote-anchored evidence and a mechanical verdict table. Call directly for a reproducible second opinion when priority, proportion, or a wait/gate may be drifting; returns a work verdict (ON-TRACK, DRIFTING or WRONG-PRIORITY) and a mechanically derived frame verdict (SOUND, NARROWED or CONTRADICTED), with one redirection."
 config_file = "agents/cricket-procedure-xhigh.toml"
 
 [agents."design-system-expert"]

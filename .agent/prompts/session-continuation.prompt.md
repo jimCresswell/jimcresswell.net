@@ -20,9 +20,9 @@ controlling node is
 §Transplant closure: items 1 to 4 landed (the archive deleted after a computed loss-scan, PR #53,
 item 3 at `1829cd4`, item 4 at `4a61112` as bounded, its residue rows named in the report); items 5 to 7 and the handed-back holdings are routed from the board in `.agent/memory/operational/director-handoff.md`, never from this paragraph;
 session 2 runs the 57-lesson synthesis from `.agent/memory/active/unconsolidated/`. Editorial work
-follows. Every move that makes a Practice element more general lands a row in
-[`../reports/practice-transplant/generalisations.md`](../reports/practice-transplant/generalisations.md)
-(rule `record-generalisation-moves`). Read `.agent/memory/operational/repo-continuity.md`
+follows. Every move that makes a Practice element more general carries a
+`Practice-Generalisation:` trailer on the commit that makes it (rule
+`record-generalisation-moves`). Read `.agent/memory/operational/repo-continuity.md`
 §Current State and §Next Safe Steps first.
 
 **Director session (2026-09-13, evening):** this seat is the Director (PDR-117), at n=2 with lane

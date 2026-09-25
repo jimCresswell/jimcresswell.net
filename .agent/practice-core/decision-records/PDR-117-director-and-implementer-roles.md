@@ -4,7 +4,8 @@ pdr_kind: governance
 
 # PDR-117: Director and Implementer Roles (the Two First-Class Seats of the Many-Agent Model)
 
-**Status**: Proposed
+**Status**: Proposed (amended 2026-09-25 — context readings never retire a
+seat or route its work to a successor, per PDR-063)
 **Date**: 2026-06-24
 **Related**:
 [PDR-064](PDR-064-coordinator-handoff-two-moments.md)
@@ -38,7 +39,7 @@ author-agnostic substrate. In that model two needs pull in opposite
 directions:
 
 - **The doing must be intense and isolated.** An agent that touches source,
-  runs gates, and iterates spends context fast and retires young. Several
+  runs gates, and iterates spends context fast and compacts often. Several
   such agents working in parallel must not collide on one working tree or
   index.
 - **The awareness must persist.** The live map — what is decided, what is in
@@ -92,7 +93,7 @@ the awareness (Director, minimum action).**
   (its claim freshness via the liveness tool), not state from minutes prior; a
   reversal-in-minutes and a finding routed to an agent that retired a second later
   both came from routing on stale state. Route **nothing** to an agent that has
-  been told to close out or is high-context — route to its successor.
+  been told to close out — route to its successor.
 - **Single owner-interface; lens-resolve before escalate.** Implementers route
   questions to the Director; the Director answers what it can, runs anything
   ambiguous through the decision lenses (`principles.md` §Decision Lenses), and
@@ -157,14 +158,18 @@ the awareness (Director, minimum action).**
   before any commit — never commit from the shared tree to "finish first".
 - **Runs its own gates; proves behaviour.** Full pre-commit gate green, no
   `--no-verify`; value is proven by observed behaviour, not "it compiles."
-- **Reports compressed verdicts.** Returns distilled conclusions to the
-  Director (the cheap channel), not raw artefacts — this is what keeps the
+- **Records compressed verdicts.** Writes distilled conclusions, not raw
+  artefacts, to the normal records (its thread record, its pull request),
+  where the Director reads them when it needs them, and messages the
+  Director only with a question, a request, a block, or an acknowledgement
+  a route asks for (2026-09-23 amendment) — this is what keeps the
   Director's metabolism slow.
-- **Retires with a handoff (PDR-063).** At the natural boundary or under
-  context-budget pressure, freezes work-in-progress to a handoff record and
-  routes a deep handoff to the Director. Routes durable, repo-wide substance
-  **up to the Director** rather than editing repo-wide surfaces from a
-  feature-branch worktree (which would diverge them).
+- **Retires with a record.** At the natural boundary it closes out per the
+  start-right-team Closeout Contract. When the owner calls its handoff
+  mid-cycle, it freezes work-in-progress to its PDR-063 handoff record,
+  where the Director reads it when it needs it. Routes durable,
+  repo-wide substance **up to the Director** rather than editing repo-wide
+  surfaces from a feature-branch worktree (which would diverge them).
 - **Routes questions to the Director** (single owner-interface), not the owner
   directly; the Director escalates as needed. (See §The routing contract for
   the upward/downward asymmetry, the multiply-directed case, and the
@@ -212,6 +217,12 @@ instruction for the Implementer role.** Its operational home is the
   directly (owner-direction-beats-plan). When the owner directs an Implementer
   directly, the Implementer **follows it AND informs the Director** so the map
   stays current.
+  Read through the owner's ruling for all agents (2026-09-23, verbatim: "do
+  not update the Director unless you have a question or other request, the
+  normal records keep the record"), the Implementer informs the Director by
+  recording the direction in its thread record, where the Director reads the
+  map when it needs it, and messages the Director only when the direction
+  raises a question or a request.
 - **Multiply-directed coordination.** When the owner issues the **same**
   directive to more than one Implementer, "who executes" is itself an upward
   coordination question that **routes to the Director**; an Implementer must
@@ -314,9 +325,11 @@ instruction for the Implementer role.** Its operational home is the
   is the benefit this PDR claims, pending second-instance evidence
   (§Falsifiability assertion 3).
 - **Why minimum action for the Director.** Continuity is the scarce good in a
-  rotating-cast model. An agent's lifespan is bounded by context budget; the
-  proposed way one seat outlasts many is to spend context slowly — verdicts not
-  artefacts, externalise the map not the reasoning.
+  many-agent model. A seat keeps its lane through compactions, and each
+  compaction costs it detail it held only in context; the way a Director keeps
+  the map whole is to spend context slowly — verdicts not artefacts,
+  externalise the map not the reasoning — so compactions come rarely and lose
+  nothing the records do not hold.
 - **Why route-don't-execute.** A Director that self-dispatches work is
   unavailable for routing for that duration, silently re-creating the
   coordinator-less window. The cost of delegating is one routing event; the
@@ -359,7 +372,9 @@ instruction for the Implementer role.** Its operational home is the
   names).
 - An Implementer routing questions straight to the owner by reflex while a
   Director holds the interface — **except** the owner's own direct downward
-  direction, which the Implementer follows and then mirrors to the Director.
+  direction, which the Implementer follows and then mirrors to the Director
+  by recording it in its thread record (the reading beside §The routing
+  contract's asymmetry clause).
 - An Implementer self-executing a multiply-directed single-owner-surface lane
   without routing the "who executes" question to the Director.
 
@@ -488,8 +503,8 @@ sharpen §The Director role:
    sub-agents on a double relay; one collided with a peer's still-live slice
    and left a type-breaking orphan.
 2. **Don't retire or park an implementer lane mid-session for seat-cost.**
-   Drive-to-completion beats seat-cost optimisation; a context-limited lane
-   relays to an IMMEDIATELY-active successor (the lane never idles), never
+   Drive-to-completion beats seat-cost optimisation; a lane the owner hands
+   over relays to an IMMEDIATELY-active successor (the lane never idles), never
    parks until next session. Completion must be crisply defined in the guiding
    plan — if missing, the Director authors it.
 3. **Decide-and-drive; idling for owner input is worse than deciding and
@@ -822,3 +837,17 @@ The bullet now says so. Registry freshness and comms liveness are evidence
 against acting over a live seat; the licence for Moment 2 is the outgoing
 seat's written stand-down (its PDR-064 pre-positioning or retirement event) or
 the owner's word.
+
+## Amendment (2026-09-23) — The Director hears questions and requests, never state
+
+Owner ruling, 2026-09-23, verbatim: "This applies to ALL agents, do not
+update the Director unless you have a question or other request, the normal
+records keep the record, we preserve the Director's context until we
+actually need them". Two Implementer bullets sent the Director state: the
+compressed-verdict report and the deep handoff. They now name the normal
+records as the home of both, which the Director reads when it needs them.
+The routing contract's asymmetry clause is owner-ratified text; it keeps
+its words and gains a reading through the ruling beside them, and the
+Forbidden list's restatement of that clause points at the reading. A seat
+messages the Director with a question, a request, a block, or an
+acknowledgement a route asks for, and nothing else.

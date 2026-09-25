@@ -1,3 +1,4 @@
+import { unwrapErr } from '@engraph/result';
 import { describe, expect, it } from 'vitest';
 
 import { parseSubagentDeclaration } from './subagent-declaration.js';
@@ -132,6 +133,84 @@ describe('parseSubagentDeclaration', () => {
         gemini: { tools: [] },
       },
     });
+  });
+
+  it('reads a Claude turn bound as a positive whole number, refusing zero and a fraction', () => {
+    const withTurns = (maxTurns: number) =>
+      parseSubagentDeclaration('voter', {
+        description: 'Voter judges.',
+        claude: { tools: 'none', maxTurns, body: 'system-prompt' },
+      });
+    expect(withTurns(4)).toMatchObject({ ok: true, value: { claude: { maxTurns: 4 } } });
+    for (const refused of [0, 2.5]) {
+      expect(unwrapErr(withTurns(refused))).toMatch(/^voter: claude\.maxTurns: /u);
+    }
+  });
+
+  it('reads a Codex description, the sentence the Codex adapter and its registry block carry in place of the role description', () => {
+    expect(
+      parseSubagentDeclaration('alpha', {
+        description: 'Alpha reviews a.',
+        codex: { description: 'Alpha on Codex.' },
+      }),
+    ).toMatchObject({ ok: true, value: { codex: { description: 'Alpha on Codex.' } } });
+  });
+
+  it('reads a Gemini description, the sentence the Gemini adapter carries in place of the role description, refusing one that is not a single line', () => {
+    const withGemini = (description: string) =>
+      parseSubagentDeclaration('alpha', {
+        description: 'Alpha reviews a.',
+        gemini: { description },
+      });
+    expect(withGemini('Alpha on Gemini.')).toMatchObject({
+      ok: true,
+      value: { gemini: { description: 'Alpha on Gemini.' } },
+    });
+    expect(unwrapErr(withGemini('Alpha\non Gemini.'))).toMatch(/^alpha: gemini\.description: /u);
+  });
+
+  it('refuses a zero-tool Claude block that names a tool, pads the word, keeps a deny list, or keeps the pointer body a no-tools agent cannot follow, naming the field that breaks it', () => {
+    const refusal = (claude: Record<string, unknown>) =>
+      unwrapErr(parseSubagentDeclaration('voter', { description: 'Voter.', claude }));
+    expect(refusal({ tools: 'none, Read', body: 'system-prompt' })).toMatch(
+      /^voter: claude\.tools: /u,
+    );
+    expect(refusal({ tools: ' none ', body: 'system-prompt' })).toMatch(/^voter: claude\.tools: /u);
+    expect(refusal({ tools: 'none', disallowedTools: 'Write', body: 'system-prompt' })).toMatch(
+      /^voter: claude\.disallowedTools: /u,
+    );
+    expect(refusal({ tools: 'none' })).toMatch(/^voter: claude\.body: /u);
+  });
+
+  it('refuses a zero-tool fan-out variant at its tools: a variant points to its template, which a zero-tool agent cannot read', () => {
+    const variant = { name: 'cricket-high', platforms: ['claude'], description: 'High.' };
+    expect(
+      unwrapErr(
+        parseSubagentDeclaration('cricket', {
+          variants: [{ ...variant, claude: { tools: 'none' } }],
+        }),
+      ),
+    ).toMatch(/^cricket: variants\.0\.claude\.tools: /u);
+  });
+
+  it('refuses a System prompt body without its tools declared, or with a pointer tail or a note, and in a fan-out variant, naming the field that breaks it', () => {
+    const refusal = (claude: Record<string, unknown>) =>
+      unwrapErr(parseSubagentDeclaration('mapper', { description: 'Mapper.', claude }));
+    expect(refusal({ body: 'system-prompt' })).toMatch(/^mapper: claude\.tools: /u);
+    expect(refusal({ tools: 'Read', body: 'system-prompt', pointerTail: ', then stop.' })).toMatch(
+      /^mapper: claude\.pointerTail: /u,
+    );
+    expect(refusal({ tools: 'Read', body: 'system-prompt', note: 'Report only.' })).toMatch(
+      /^mapper: claude\.note: /u,
+    );
+    const variant = { name: 'cricket-high', platforms: ['claude'], description: 'High.' };
+    expect(
+      unwrapErr(
+        parseSubagentDeclaration('cricket', {
+          variants: [{ ...variant, claude: { tools: 'Read', body: 'system-prompt' } }],
+        }),
+      ),
+    ).toMatch(/^cricket: variants\.0\.claude: .*\bbody\b/u);
   });
 
   it('refuses a control character in a line field (a NUL in the description), which YAML forbids and the quote rule would write raw, and a carriage return as a line break', () => {

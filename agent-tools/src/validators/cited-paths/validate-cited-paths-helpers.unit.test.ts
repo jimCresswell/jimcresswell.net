@@ -120,24 +120,4 @@ describe('findMissingPathCitations', () => {
       },
     ]);
   });
-
-  it('skips allowlisted targets', () => {
-    const files = [
-      { path: '.agent/rules/a.md', content: '`.agent/state/collaboration/commit-queue/`' },
-    ];
-
-    expect(
-      findMissingPathCitations(files, exists, {
-        allowlistedTargets: ['.agent/state/collaboration/commit-queue'],
-      }),
-    ).toStrictEqual([]);
-  });
-
-  it('skips allowlisted source paths', () => {
-    const files = [{ path: 'docs/history.md', content: '`.agent/memory/active/patterns/gone.md`' }];
-
-    expect(
-      findMissingPathCitations(files, exists, { allowlistedPaths: ['docs/history.md'] }),
-    ).toStrictEqual([]);
-  });
 });

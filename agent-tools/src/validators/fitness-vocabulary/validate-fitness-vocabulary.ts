@@ -3,17 +3,18 @@
 /**
  * Fitness-Vocabulary Consistency Check
  *
- * Enforces the two-threshold fitness model §Key Principles #1 ("one scale, one vocabulary everywhere")
+ * Enforces the three-zone fitness model's Key Principles #1 ("one scale, one vocabulary everywhere")
  * and Principle #6 ("no backward compatibility"). Scans live surfaces for the
  * retired two-threshold vocabulary and fails if any forbidden phrase appears.
  *
  * Exit 0 = clean. Exit 1 = drift found.
  *
- * Scope: walks all `.md` files under `.agent/`, `docs/`, root `*.md`, and
- * repo `*.md` plan/prompt locations; excludes `archive/`, backup
- * directories, `incoming/` practice boxes, and the two-threshold fitness model itself (which is
- * allowed to discuss the retired vocabulary in §Context, §Decision #6,
- * and §Consequences).
+ * Scope (`walk.ts`): the working tree's `.md`, `.ts` and `.mjs` files, skipping
+ * `.git`, `coverage`, `dist` and `node_modules`, any `archive/` segment, the
+ * Practice Core backups and `incoming/` boxes, `.agent/experience/`, `.remember/`,
+ * and the gitignored `tmp` and `.agent/reference-local` roots. This validator and
+ * its unit test are the only files that may name the retired vocabulary, because
+ * they define it.
  *
  * Forbidden phrases list (case-sensitive unless noted):
  * - "two-threshold", "Two-Threshold", "Two Threshold" (model name retired)
@@ -25,7 +26,7 @@
  * - "not a blocking gate" (same)
  *
  * Each forbidden phrase is matched as a literal substring. The list is
- * intentionally narrow: these are the exact phrases the pre-rewrite the two-threshold fitness model
+ * intentionally narrow: these are the exact phrases the fitness model's pre-rewrite text
  * used and that the three-zone revision retired.
  */
 
@@ -52,7 +53,7 @@ const FORBIDDEN_PHRASES = [
 ];
 
 /**
- * The two-threshold fitness model filename is preserved as `144-two-threshold-fitness-model.md`
+ * The fitness model's decision record keeps the filename `144-two-threshold-fitness-model.md`
  * for URL/link stability (git history preserves the evolution). Any line that
  * references the filename directly — a markdown link, an import path, a JSDoc
  * `@see` — must be exempt from the `two-threshold` forbidden-phrase match,
@@ -63,7 +64,7 @@ const ADR_144_FILENAME = '144-two-threshold-fitness-model.md';
 /**
  * Decide whether a match of a forbidden phrase should be reported.
  * Exempts matches that only appear because the line references the preserved
- * the two-threshold fitness model filename.
+ * filename of the fitness model's decision record.
  *
  * @param phrase - the forbidden phrase that matched
  * @param line - the full line the phrase appeared in
@@ -133,7 +134,7 @@ async function main(): Promise<number> {
     }
   }
 
-  writeLine('\nFitness Vocabulary Consistency Check (the two-threshold fitness model)');
+  writeLine('\nFitness Vocabulary Consistency Check (the three-zone fitness model)');
   writeLine('════════════════════════════════════════════════\n');
 
   if (allFindings.length === 0) {
@@ -153,7 +154,7 @@ async function main(): Promise<number> {
   }
 
   writeLine(
-    '\x1b[33mRemediation: translate each occurrence to the three-zone vocabulary.\nSee the two-threshold fitness model §Decision for the canonical zone names.\x1b[0m\n',
+    '\x1b[33mRemediation: translate each occurrence to the three-zone vocabulary.\nSee the three-zone fitness model for the canonical zone names.\x1b[0m\n',
   );
   return 1;
 }

@@ -4,6 +4,7 @@ import { agentIdentityCliEnvironmentFromProcessEnv } from './agent-identity-cli-
 import { runAgentIdentityCli } from './agent-identity-cli.js';
 import {
   OutputBuffer,
+  runArcMetricsTopic,
   runBranchTouchedFilesTopic,
   runCodexExecTopic,
   runCommitQueueTopic,
@@ -123,6 +124,7 @@ type UniformTopicHandler = (
 ) => AgentToolsCliResult | Promise<AgentToolsCliResult>;
 
 const UNIFORM_TOPIC_HANDLERS: Readonly<Record<string, UniformTopicHandler>> = {
+  'arc-metrics': runArcMetricsTopic,
   'commit-queue': runCommitQueueTopic,
   'branch-touched-files': runBranchTouchedFilesTopic,
   'context-cost': runContextCostTopic,
@@ -224,6 +226,7 @@ function usage(): string {
     '',
     'Topics:',
     '  agent-identity',
+    '  arc-metrics',
     '  collaboration-state',
     '  commit-queue',
     '  branch-touched-files',
