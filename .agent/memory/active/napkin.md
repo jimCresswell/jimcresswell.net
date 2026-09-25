@@ -3806,3 +3806,16 @@ chore(codex), Titan's answer wins on what the seat needs, the owner overturns by
 merge. The JC.net push failed a second time on `comms-watch-coordination-home.smoke.ts` with the
 one-minute load 9.6 at launch (my own gate and Siren's raised it during the run): the "load below
 12" workaround does not hold; no third attempt; the cure needs an owner (with the owner in text).
+
+## 2026-09-25T12:06:36Z — owner away for a few hours; all questions route to the Director
+
+Owner, verbatim: "I will be away from keyboard for a few hours. All questions go to you first, and
+any that genuinely survive the decision matrix can come to me via push notification, but I don't
+expect there to be many". Standing decisions taken under it at once: (1) the `.codex/config.toml`
+approval-policy line: the Director's verdict of 12:0xZ is the operative answer (lens 2 inside the
+owner's standing Codex permission; lens 4 the harness-serialisation cure), Titan's fact of need
+still wins on the fact; (2) Geyser and the lineage's exchange seat: the owner gave both words
+("start no work"; Myrtle after its consolidation) knowing the consolidation was a dedicated session,
+so the default keeps them; goal one's landings wait for Myrtle unless a seat's deadline forces the
+question, and this one does not reach the owner; (3) the smoke-deadline cure: Siren's first item
+after the owner-commissioned retrospective; no third push attempt before then.

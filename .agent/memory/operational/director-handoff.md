@@ -101,6 +101,15 @@ Every line answered first-hand, none inferred:
   the fold for Myrtle, not for the fold); Siren's P4 is dissolved by the word seating Myrtle and by
   todo 5 (the donor delivers, the receiver lands).
 
+- OWNER WORD, 12:06Z on 2026-09-25, in the Director's chat (native, no event id), verbatim: "I will
+  be away from keyboard for a few hours. All questions go to you first, and any that genuinely
+  survive the decision matrix can come to me via push notification, but I don't expect there to be
+  many". So while the owner is away: every seat's question comes to the Director; the Director
+  decides by the lenses and PDR-063 (owner-absent: a declared deadline and a default); only a
+  question that survives all five lenses and is constitutively the owner's goes to the owner, by
+  PushNotification, never a card. Relayed to Siren, Swallow and Myrtle natively and broadcast on
+  both streams at 12:06Z.
+
 ## Current handoff state (2026-09-25T11:17Z; after the fold of PR 176; the live reading is this block, then the napkin from its 10:37Z block on)
 
 Written for a reader who was never here and may run on a different model. Where this block and
