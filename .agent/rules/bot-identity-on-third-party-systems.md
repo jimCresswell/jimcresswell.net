@@ -345,7 +345,9 @@ owns the portable mapping; the config and the profile own the bindings. A rule t
 one person's accounts would be false on every other machine (`principles.md`
 §Any User, Any Machine).
 
-Three riders bind every operator-credential row:
+Three riders bind the operator-credential rows. The first and third bind the review
+rows; the second binds every write under a human credential, save a commit, whose
+`Co-Authored-By` model trailer is its marker:
 
 - **The credential is licensed, never the judgement.** An agent reviews
   first-hand before approving. The grant permits posting a review, never
