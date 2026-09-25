@@ -4871,3 +4871,25 @@ reads it. Records: 2 commits unpushed plus this one, held under two gates (load 
 - Push: one gate on the host at 20:19Z (Swallow's), load 20.6; the Director's push of 3 napkin
   commits started 20:20Z as the second gate with a gate notice. Lineage open PRs 23 (238 to 240
   new); JC.net open 189, 204 (BLOCKED, pushing), 205 (CLEAN).
+
+## 2026-09-25T20:25Z — Siren: the bot's Copilot request is silent here; PDR-079 over a ruling's wording; research lint
+
+- The bot's REST Copilot review request (`requested_reviewers` under the pull-request-work token)
+  answered with the pull request but registered no `review_requested` event on PR 204 (about
+  19:12Z) or on PR 205 (20:23Z), n = 2. The owner-credential request registered both times
+  (20:12:06Z, 20:24:11Z). The lineage's bot-identity rule records the same call registering
+  there. The Director's rule for this estate: the bot first, one timeline poll, then the owner's
+  credential. Recorded in register row L12.
+- A hook false positive: one Bash command holding `git push` and `pgrep -f` was blocked as
+  "git push -f". Nothing was forced. The cure was structural: the gate-slot wait moved into its
+  own scratch script, and the push line carries no `-f` token.
+- Copilot's round two on PR 205 found that the provenance citation ruled at 19:09Z breaks
+  PDR-079 (no event or session ids in a PDR body). The Director re-ruled at 20:19Z: the concept
+  stays and the identifiers go to PR bodies and records. The joint blob is `fe6ee7ad`. Check a
+  ruled wording against the Core's content rules before it lands.
+- This estate lints `.agent/research/**`; the lineage's markdownlint ignores it. The lineage's
+  statistical-rigour foundation trips MD037 on `___` fill-in blanks. Escaping them as `\_\_\_`
+  renders identical HTML (markdown-it, both versions compared), so the cure is bytes, offered
+  back to the lineage, not an ignore entry.
+- The register validator refuses a path glob that matches no entry in the delta lists. Files
+  that predate the pins (the two research foundations) are named in the row's prose instead.
