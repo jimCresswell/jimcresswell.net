@@ -11,11 +11,11 @@ import { recommended, RECOMMENDED_RESTRICTED_TYPES } from './recommended.js';
  * vitest test-shape immune surface (PDR-044 § Memetic Immune System,
  * principles.md § Architectural Excellence Over Expediency,
  * principles.md § Testing "no skipped tests"). The
- * `vitest/no-disabled-tests` and `vitest/no-focused-tests` rules at
- * `'error'` severity prevent the introduction of `it.skip`,
- * `describe.skip`, `it.only`, `describe.only`, and adjacent
- * skipping/focusing mechanisms. The behaviour is exercised by
- * `strict.unit.test.ts`.
+ * `vitest/no-disabled-tests`, `vitest/warn-todo` and
+ * `vitest/no-focused-tests` rules at `'error'` severity prevent the
+ * introduction of `it.skip`, `describe.skip`, `it.todo`, `describe.todo`,
+ * `it.only`, `describe.only`, and adjacent skipping/focusing mechanisms.
+ * The behaviour is exercised by `strict.integration.test.ts`.
  *
  * Per PDR-038 §2026-05-04 amendment, doctrine without enforcement is a
  * net liability at maturity; this config is the structural reciprocation
@@ -30,7 +30,7 @@ import { recommended, RECOMMENDED_RESTRICTED_TYPES } from './recommended.js';
  * Ten characters is sufficient to filter trivial annotations ("TODO",
  * "fix", "later") while permitting genuine one-sentence rationales such
  * as "upstream type mismatch" or "schema regen pending". The contract
- * is exercised by `strict.unit.test.ts`.
+ * is exercised by `strict.integration.test.ts`.
  *
  * Anchors: PDR-044 (Memetic Immune System) §Innate immunity;
  * `.agent/rules/never-disable-checks.md` (adding a directive to bypass a
@@ -45,6 +45,7 @@ const strictExtensions: TSESLint.FlatConfig.ConfigArray = defineConfig(
     },
     rules: {
       'vitest/no-disabled-tests': 'error',
+      'vitest/warn-todo': 'error',
       'vitest/no-focused-tests': 'error',
       '@typescript-eslint/ban-ts-comment': [
         'error',
