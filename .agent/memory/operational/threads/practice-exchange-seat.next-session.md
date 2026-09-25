@@ -349,3 +349,50 @@ Its proposals make these entries (its proposal 3, applied to itself):
   about 25 notes and 330 lines; J19, J23 and J18's prompt close with a line each; the J17 gate note
   states the direction of the ratified `commit-as-the-full-local-gate` node. Drafting goes to a
   fresh session or a fleet (this seat was at about 43% context when the triage landed).
+
+## Handover at rest, 2026-09-25 14:08Z (Siren herds Rudder, 158275; PDR-063, budget signal 4ce7af01)
+
+The owner is away (12:06:36Z word); the Director routes. This seat hands over past-peak (58.7% at
+13:48:28Z). Read `.agent/reports/agentic-engineering/2026-09-25-why-goal-one-read-zero-while-the-lineage-landed.md`
+first: it corrects goal one's count (J4 whole; J9, J10 and J18 in part; 12 rows undrafted; 5
+delivered and not integrated; the lessons stream unstarted).
+
+**Current edit state.**
+
+- PR 190 MERGED at 13:56:00Z as `5d4edebb`: the comms watcher polls (no fs.watch handle per pass),
+  and the coordination-home smoke has one 180 s hang backstop. Its branch is deleted and its worktree
+  retired. The restart notice went out on both streams (JC.net `20dd9627`, lineage `20385b9c`).
+  Its lineage twin is Titan turns Ether's (01a0d8), by the Director's routing (d18c56f0); this seat's
+  plan event is `09f9a852`.
+- PR 186 (the K amendment twin, worktree `k-twin`): MERGED at 14:07:29Z as `a9ed6463` after main (with PR 190) was merged into its branch; its round-two cure (1cf3a1c3) rides it. Branch deleted, worktree retired. The lineage has the receipt with PDR-009's two scoped sentences as a joint cure (`1592fa3d`).
+- PR 188 (K4, draft, worktree `k4`): held by PDR-052 for a session below 30%.
+- `fix/pnpm-filter-no-match` (worktree `filter-guard`): local only; owes a draft PR (goal three).
+
+**Decisions made.**
+
+- Poll-only over a held watch handle (test-expert, code-expert, architecture-expert-fred): a held
+  handle moves the blocking close to exit and can go deaf without an error.
+- PR 190's final-tip findings were rejected as cures in that PR, with signed lines, and queued below:
+  the latency wording (a wake waits for the pass in progress plus `pollMs`) and a regression guard.
+  The guard is structural, a restricted-import lint rule keeping fs.watch out of the collaboration-state
+  runtime, because a wall-clock "prompt exit" test is what testing-strategy forbids.
+
+**Queue for the successor, in order** (the check-in 12 suite's accepted order: goal one first).
+
+1. Goal one: batch six drafting from `.agent/reports/practice-transplant/batch-six-triage-2026-09-25.md`
+   (about 25 notes; J19, J23 and J18's prompt close with a line each), and the lessons batch (the
+   retrospective's proposal 2). Delivery never waits on a live lineage seat (ruling 35).
+2. Exchange joint cures (todo 5): the Cricket templates' no-inferred-gender line (lineage event
+   `0d7ce353`, absorbed `f9af143f`); the lineage's receipt of PDR-009's two sentences (`1592fa3d`)
+   to watch for; the seed platform gate, on which the lineage's seed branch waits.
+3. PR 190's routed review cures: the wait-seam rename (`waitForCommsChange` and siblings carry
+   change-wake names and dead path inputs), with the latency wording and the fs.watch import guard.
+4. Defects: the site's e2e server died twice in PR 190's gate (the PDF generator after "Launching
+   Puppeteer..." with exit 1 and no error logged; `e2e-global-setup.ts` gave up at its fixed 120 s),
+   Fred's lane; the TUI's `useLiveRefresh` re-subscribes on every render; the JC.net twins of the
+   lineage's tooling defects F-200 to F-207 (Myrtle turns Canopy's register in the lineage is the
+   source), one item by the Director's routing.
+5. PR 188's sub-30% directive review; the filter-guard draft PR; the older items in §Queue above.
+
+**Claims** carried for adoption with this record: a30304be (the seat), 3d4b9361 (K4), 2cdb5931
+(K4's widening). The comms watchers and the heartbeat stop with the closeout event.
