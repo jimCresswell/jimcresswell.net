@@ -3668,3 +3668,21 @@ exchange seat's queue at check-in 11 as a small lane after the retrospective (sa
 estates, an exchange row). Until then this seat pushes from the primary only when the host's
 one-minute load is below 12 (a load watch, then the push). Slip: my push command's `tail -3` cut
 the gate's reason and left the exit unread; exit codes in band, never piped.
+
+## 2026-09-25T11:39Z — check-in 10 replies and verdicts
+
+Swallow (30.5% at 11:24Z): ON TRACK. PR 196 (dialogues 1b-ii) merged 1a4450a69 at 11:14:02Z through
+the door (both legs SATISFIED, CI 21 of 21, merge-landed ae8a8c07). Wake-bridge todo 1 OPEN since
+that merge; Titan turns Ether (01a0d8, claim be006748) ran the TUI legs by 11:26Z in tmux on
+0.157.0 in a disposable Codex home: idle wake, typed-then-queued order, queue-during-turn runs after
+the turn, queue-to-killed-TUI runs after an explicit resume; none breaks the mechanism. Todos 2 and
+3 not started. Suite: 7 ON-TRACK, 1 DRIFTING (high adversarial: the dialogues remainder's order is
+the seat's reading and belongs with the owner), frames 5 sound, 3 flagged, all dispositioned.
+Verdicts: card B (order of 1b-iv, slice 2, slice 3) DECIDED, no card: Swallow's order stands, after
+the bridge's sink, lens 5 with the owner's 15:27Z focus word; overturnable by a line. Card A (the
+desktop-host legs need the owner at the keyboard, about ten minutes, or "not now" with the addendum
+recording them unproven) is the owner's: in the report text. Correction taken: the two comms
+watchers under pid 35269 are Titan's (app-server started 10:43:01Z), not Luna's; my line withdrawn.
+Siren: at check-in 10 it was at rest for compaction (no suite; runs it once on the handover frame),
+todo 5 served, register 0 of 21 outbound landed by its predicate with J4 and J18 landed in the
+lineage and unrecorded; then resumed 11:27Z on the owner's retro word. Marten: session over.
