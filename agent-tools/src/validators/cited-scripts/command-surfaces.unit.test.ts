@@ -219,6 +219,14 @@ describe('findMissingFilteredCommands', () => {
       line: 'echo "$(echo `echo )`) pnpm --filter @nope/missing check"',
     },
     {
+      name: 'printed text after a substitution that holds a parameter expansion',
+      line: 'echo "$(echo ${fallback:-none}) pnpm --filter @nope/missing check"',
+    },
+    {
+      name: 'printed words after an unquoted command substitution',
+      line: 'echo $(true) pnpm --filter @nope/missing check',
+    },
+    {
       name: 'an escaped backtick, which is a literal character',
       line: String.raw`echo \`pnpm --filter @nope/missing check\``,
     },
@@ -285,6 +293,14 @@ describe('findMissingFilteredCommands on shell syntax', () => {
     {
       name: 'a call after backticks holding a parenthesis in a double-quoted command substitution',
       line: 'echo "$(echo `echo )` && pnpm --filter @nope/missing check)"',
+    },
+    {
+      name: 'a call after a parameter expansion holding a parenthesis in a command substitution',
+      line: 'echo "$(echo ${fallback:-)} && pnpm --filter @nope/missing check)"',
+    },
+    {
+      name: 'a call in an unquoted command substitution after an assignment',
+      line: 'VERSION=$(pnpm --filter @nope/missing check)',
     },
     {
       name: 'a call after a quoted parenthesis in a double-quoted command substitution',

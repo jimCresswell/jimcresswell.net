@@ -6,6 +6,8 @@
  * @packageDocumentation
  */
 
+import { substitutionEnd } from './substitution-end.js';
+
 /** A word, its quotes removed, or an unquoted control operator. */
 export interface ShellToken {
   readonly kind: 'word' | 'operator';
@@ -78,49 +80,7 @@ function readBackticks(
   return index + 1;
 }
 
-/** The characters that open a quoted run, backticks among them, inside `$( )`. */
-const QUOTES: ReadonlySet<string> = new Set(["'", '"', '`']);
-
-/** The quote state after `character`: an unquoted quote opens, the same quote closes. */
-function nextQuote(quote: string | undefined, character: string): string | undefined {
-  if (quote === undefined) {
-    return QUOTES.has(character) ? character : undefined;
-  }
-  return character === quote ? undefined : quote;
-}
-
-/** How an unquoted character inside `$( )` moves the nesting depth. */
-const PAREN_DEPTH: ReadonlyMap<string, number> = new Map([
-  ['(', 1],
-  [')', -1],
-]);
-
-/**
- * The index of the `)` that closes a `$(` whose body starts at `start`. A
- * backslash outside single quotes takes the next character with it, and a
- * parenthesis counts only outside quotes and backticks.
- */
-function substitutionEnd(text: string, start: number): number {
-  let depth = 1;
-  let quote: string | undefined;
-  let index = start;
-  while (index < text.length) {
-    const character = text.charAt(index);
-    if (character === '\\' && quote !== "'") {
-      index += 2;
-    } else {
-      quote = nextQuote(quote, character);
-      depth += quote === undefined ? (PAREN_DEPTH.get(character) ?? 0) : 0;
-      if (depth === 0) {
-        return index;
-      }
-      index += 1;
-    }
-  }
-  return text.length;
-}
-
-/** Read a `$(` substitution inside double quotes, starting at its body; returns the index after its `)`. */
+/** Read a `$(` substitution, starting at its body; returns the index after its `)`. */
 function readDollarParen(text: string, start: number, lexer: Lexer): number {
   const end = substitutionEnd(text, start);
   const body = text.slice(start, end);
@@ -173,6 +133,14 @@ function operatorAt(text: string, index: number): string | undefined {
   return OPERATORS.find((operator) => text.startsWith(operator, index));
 }
 
+/** Read a substitution that starts unquoted at `index`, if one does; returns where the next step starts. */
+function readUnquotedSubstitution(text: string, index: number, lexer: Lexer): number | undefined {
+  if (text.charAt(index) === '`') {
+    return readBackticks(text, index + 1, lexer, BACKTICK_ESCAPES);
+  }
+  return text.startsWith('$(', index) ? readDollarParen(text, index + 2, lexer) : undefined;
+}
+
 /** Lex what starts at `index`; returns where the next step starts. */
 function lexStep(text: string, index: number, lexer: Lexer): number {
   const character = text.charAt(index);
@@ -183,14 +151,15 @@ function lexStep(text: string, index: number, lexer: Lexer): number {
   if (character === '#' && lexer.word === undefined) {
     return text.length;
   }
+  const substituted = readUnquotedSubstitution(text, index, lexer);
+  if (substituted !== undefined) {
+    return substituted;
+  }
   const operator = operatorAt(text, index);
   if (operator !== undefined) {
     endWord(lexer);
     lexer.tokens.push({ kind: 'operator', text: operator });
     return index + operator.length;
-  }
-  if (character === '`') {
-    return readBackticks(text, index + 1, lexer, BACKTICK_ESCAPES);
   }
   return character === "'" || character === '"'
     ? readQuoted(text, index + 1, character, lexer)
@@ -202,10 +171,10 @@ function lexStep(text: string, index: number, lexer: Lexer): number {
  * quotes are literal, double quotes honour `\` before `$`, a backtick, `"` and
  * `\`, a backslash outside quotes escapes the next character, and a `#` that
  * starts an unquoted word begins a comment. Parameter expansions stay as
- * written in their words. The body of each backtick substitution, and of each
- * `$( )` inside double quotes, is collected as a command line of its own and
- * leaves a marker in its word (an unquoted `$( )` needs nothing more, since
- * its parentheses are operators).
+ * written in their words. The body of each command substitution, in backticks
+ * or `$( )`, unquoted or inside double quotes, is collected as a command line
+ * of its own and leaves a marker in its word, so the words around it stay one
+ * simple command.
  */
 export function shellLex(text: string): ShellLex {
   const lexer: Lexer = { tokens: [], substitutions: [], word: undefined };
