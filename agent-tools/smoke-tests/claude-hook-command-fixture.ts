@@ -5,17 +5,27 @@
  * names.
  *
  * The project's name holds a space, so an unquoted `${CLAUDE_PROJECT_DIR}` in a registered
- * command splits and the run fails. Each case names the repository paths the project links
- * (such as `.claude/hooks` or `agent-tools`), so the registered text reaches the real hook
- * scripts; everything else in the project, its logs directory among them, is the case's own.
- * The environment holds only `CLAUDE_PROJECT_DIR` and `PATH`. `PATH` is a scratch `bin/`
- * linking the running Node and the host's `bash` (the one the harness would resolve; the
- * hook wrapper's bash 5.2 floor rules out the older bash some trusted directories hold),
- * then the trusted shell directories, so nothing else on the ambient `PATH` can shadow what
- * the hook runs.
+ * command splits and the run fails. Each case names the repository directories the project
+ * links (such as `.claude/hooks` or `agent-tools`), so the registered text reaches the real
+ * hook scripts; everything else in the project, its logs directory among them, is the case's
+ * own. The links are junctions, which win32 creates without privilege and POSIX treats as
+ * ordinary symlinks. The environment holds only `CLAUDE_PROJECT_DIR` and `PATH`. `PATH` is a
+ * scratch `bin/` whose `node` and `bash` are `sh` wrappers that exec the running Node and the
+ * host's `bash` (the one the harness would resolve; the hook wrapper's bash 5.2 floor rules
+ * out the older bash some trusted directories hold), then the trusted shell directories, so
+ * nothing else on the ambient `PATH` can shadow what the hook runs.
  */
 import { spawnSync, type SpawnSyncReturns } from 'node:child_process';
-import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync } from 'node:fs';
+import {
+  existsSync,
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  rmSync,
+  symlinkSync,
+  unlinkSync,
+  writeFileSync,
+} from 'node:fs';
 import { tmpdir } from 'node:os';
 import { delimiter, dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -27,7 +37,7 @@ import { trustedShellPath } from './trusted-shell-directories.js';
 /** This repository's root: where the linked hook scripts and sources live. */
 export const repoRoot = resolve(fileURLToPath(new URL('.', import.meta.url)), '..', '..');
 
-/** The throwaway project's scratch `bin/`: the running Node and the host's `bash`. */
+/** The throwaway project's scratch `bin/`: wrappers for the running Node and the host's `bash`. */
 const SCRATCH_BIN = 'bin';
 
 /** The shell's status for a command it cannot find, as an unquoted spaced path produces. */
@@ -84,9 +94,18 @@ export function registeredHookCommand(event: string, name: string): string {
 }
 
 /**
+ * Write an `sh` script at `path` that execs `target` with its arguments: a stand-in for a
+ * file symlink, which win32 creates only under Developer Mode or elevation.
+ */
+function writeExecWrapper(path: string, target: string): void {
+  const quoted = `'${target.replaceAll("'", String.raw`'\''`)}'`;
+  writeFileSync(path, `#!/bin/sh\nexec ${quoted} "$@"\n`, { encoding: 'utf8', mode: 0o755 });
+}
+
+/**
  * Run the case in a fresh throwaway project, then remove it.
  *
- * @param links - Repository paths, relative to the root, the project links to.
+ * @param links - Repository directories, relative to the root, the project links to.
  * @param run - The case, given the project's path.
  */
 export function inThrowawayProject(
@@ -94,17 +113,26 @@ export function inThrowawayProject(
   run: (projectDir: string) => void,
 ): void {
   const projectDir = mkdtempSync(join(tmpdir(), 'claude-hook smoke '));
+  const linked: string[] = [];
   try {
     for (const link of links) {
-      mkdirSync(dirname(join(projectDir, link)), { recursive: true });
-      symlinkSync(join(repoRoot, link), join(projectDir, link));
+      const linkPath = join(projectDir, link);
+      mkdirSync(dirname(linkPath), { recursive: true });
+      symlinkSync(join(repoRoot, link), linkPath, 'junction');
+      linked.push(linkPath);
     }
     mkdirSync(join(projectDir, SCRATCH_BIN));
-    symlinkSync(process.execPath, join(projectDir, SCRATCH_BIN, 'node'));
-    symlinkSync(findOnPath('bash', process.env.PATH ?? ''), join(projectDir, SCRATCH_BIN, 'bash'));
+    writeExecWrapper(join(projectDir, SCRATCH_BIN, 'node'), process.execPath);
+    writeExecWrapper(
+      join(projectDir, SCRATCH_BIN, 'bash'),
+      findOnPath('bash', process.env.PATH ?? ''),
+    );
     run(projectDir);
   } finally {
-    // rmSync unlinks each symlink and never follows it, so the linked paths stay.
+    // Each link goes first, so removing the tree never rests on how rmSync treats a link.
+    for (const linkPath of linked) {
+      unlinkSync(linkPath);
+    }
     rmSync(projectDir, { recursive: true, force: true });
   }
 }
