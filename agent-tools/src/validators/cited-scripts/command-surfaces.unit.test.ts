@@ -186,6 +186,10 @@ describe('findMissingFilteredCommands', () => {
       name: 'a quoted filter that names a workspace',
       line: 'pnpm --filter "@jimcresswell/www" test:e2e',
     },
+    {
+      name: 'a hint a condition prints',
+      line: 'if echo pnpm --filter @nope/missing check; then true; fi',
+    },
   ])('ignores $name', ({ line }) => {
     expect(findMissingFilteredCommands([surface(line)], scripts)).toStrictEqual([]);
   });
@@ -196,6 +200,15 @@ describe('findMissingFilteredCommands on shell syntax', () => {
     { name: 'a quoted filter', line: "pnpm --filter '@nope/missing' check" },
     { name: 'a call run by sh -c', line: "sh -c 'pnpm --filter @nope/missing check'" },
     { name: 'a call run by bash -c', line: 'bash -c "pnpm --filter @nope/missing check"' },
+    { name: 'a call run by zsh -c', line: "zsh -c 'pnpm --filter @nope/missing check'" },
+    {
+      name: 'a shell call a condition runs',
+      line: "if bash -c 'pnpm --filter @nope/missing check'; then echo ok; fi",
+    },
+    {
+      name: 'a call a then branch runs',
+      line: 'if true; then pnpm --filter @nope/missing check; fi',
+    },
     { name: 'a call after a quoted #', line: "echo '#' && pnpm --filter @nope/missing check" },
     { name: 'a call after an assignment', line: 'CI=1 pnpm --filter @nope/missing check' },
   ])('reports $name', ({ line }) => {

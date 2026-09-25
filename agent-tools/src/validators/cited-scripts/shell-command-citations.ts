@@ -26,6 +26,19 @@ const HINT_COMMANDS: ReadonlySet<string> = new Set(['echo', 'printf']);
 const SHELLS: ReadonlySet<string> = new Set(['sh', 'bash', 'zsh']);
 /** A variable assignment ahead of a command's name (`CI=1 pnpm …`). */
 const ASSIGNMENT = /^[A-Za-z_]\w*=/;
+/** Reserved words and `!` that can stand ahead of a command's name (`if bash -c …`, `then pnpm …`). */
+const CONTROL_PREFIXES: ReadonlySet<string> = new Set([
+  '!',
+  '{',
+  'if',
+  'then',
+  'else',
+  'elif',
+  'while',
+  'until',
+  'do',
+  'time',
+]);
 
 interface Lexer {
   readonly tokens: ShellToken[];
@@ -128,7 +141,7 @@ function citationsInSimpleCommand(
   words: readonly string[],
   line: number,
 ): readonly ScriptCitation[] {
-  const name = words.find((word) => !ASSIGNMENT.test(word));
+  const name = words.find((word) => !ASSIGNMENT.test(word) && !CONTROL_PREFIXES.has(word));
   if (name === undefined || HINT_COMMANDS.has(name)) {
     return [];
   }
