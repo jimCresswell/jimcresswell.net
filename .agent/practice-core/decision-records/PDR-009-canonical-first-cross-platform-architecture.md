@@ -320,11 +320,12 @@ Layer-2 artefact types.
   policy file.
 - Portability validation (automated) checks: (a) every canonical
   artefact has the required adapters; (b) every adapter is thin
-  (content-line count under the threshold; no substantive prose), or
-  carries exactly its template's System prompt block and is compared
-  with it; (c) every platform adapter points back to, or is compared
-  with, an existing canonical artefact; (d) every platform's tracked configuration grants the
-  permissions wrappers need to activate.
+  (content-line count under the threshold; no substantive prose), or,
+  for an inline-prompt role, carries exactly its template's System
+  prompt block and is compared with it; (c) every platform adapter
+  points back to an existing canonical artefact or, for an
+  inline-prompt role, is compared with it; (d) every platform's tracked
+  configuration grants the permissions wrappers need to activate.
 - Cross-platform probes use platform-neutral inputs by default, or
   explicitly provide parity across the platforms they claim to verify.
 - Tripwire installs should include at least one self-applying
