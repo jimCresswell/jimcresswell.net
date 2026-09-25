@@ -178,7 +178,31 @@ describe('findMissingFilteredCommands', () => {
     { name: 'an echoed hint', line: `echo "Run 'pnpm --filter @nope/missing run-me'"` },
     { name: 'an unquoted echoed hint', line: 'echo pnpm --filter @nope/missing run-me' },
     { name: 'a printed hint', line: String.raw`printf "%s\n" pnpm --filter @nope/missing run-me` },
+    {
+      name: 'a separator inside an echoed string',
+      line: 'echo "done && pnpm --filter @nope/missing check"',
+    },
+    {
+      name: 'a quoted filter that names a workspace',
+      line: 'pnpm --filter "@jimcresswell/www" test:e2e',
+    },
   ])('ignores $name', ({ line }) => {
     expect(findMissingFilteredCommands([surface(line)], scripts)).toStrictEqual([]);
+  });
+});
+
+describe('findMissingFilteredCommands on shell syntax', () => {
+  it.each([
+    { name: 'a quoted filter', line: "pnpm --filter '@nope/missing' check" },
+    { name: 'a call run by sh -c', line: "sh -c 'pnpm --filter @nope/missing check'" },
+    { name: 'a call run by bash -c', line: 'bash -c "pnpm --filter @nope/missing check"' },
+    { name: 'a call after a quoted #', line: "echo '#' && pnpm --filter @nope/missing check" },
+    { name: 'a call after an assignment', line: 'CI=1 pnpm --filter @nope/missing check' },
+  ])('reports $name', ({ line }) => {
+    const findings = findMissingFilteredCommands([surface(line)], scripts);
+
+    expect(findings.map((finding) => [finding.scriptName, finding.reason])).toStrictEqual([
+      ['check', 'unknown-workspace'],
+    ]);
   });
 });
