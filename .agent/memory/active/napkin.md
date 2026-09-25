@@ -3969,3 +3969,19 @@ lineage's pre-commit gate on my merge commit (pid 48709) is the heavy process; n
 until it lands. Swallow handed over at rest (record on claim 372ac08b: the sink's pre-execution
 review first, the Cricket-clause edit, the call-inspection PR); its handover commit e240904e5 rides
 my fold push.
+
+## 2026-09-25T13:06:53Z — the lineage fold's merge commit: two refusals, one lesson
+
+The first commit attempt (12:42Z to 13:03Z) ran the lineage's whole pre-commit gate (turbo builds
+of the monorepo, about twenty minutes under load 20 to 31) and then the commit-msg hook refused
+one body line over 100 characters; the twenty minutes were spent before the cheap check. Lesson,
+already Myrtle's graduation into the commit skill (c76f93eb6): validate the message file with the
+check-commit-message tool before any commit in this estate, where the commit-msg hook runs after
+the whole gate and a warning fails the commit; my second message drew a footer-leading-blank
+warning from a body line opening "Engraph's pull requests since the cut:" (a word: opener reads
+as a footer), rewritten. The second attempt was refused by a zero-byte .git/index.lock born 12:54Z
+with no holder, the moment the harness killed processes for memory (Swallow's push among them);
+Titan's worktree has its own index and Swallow disowns it, so it is Myrtle's or nobody's; Myrtle
+asked, default at 13:15Z: removed with the holder check in one command. The merge stays staged
+(MERGE_HEAD 1a4450a69, 182 paths). No gate notice went out before the first attempt's gate: the
+same slip as this morning, in the lineage's primary this time; the notice goes before the retry.
