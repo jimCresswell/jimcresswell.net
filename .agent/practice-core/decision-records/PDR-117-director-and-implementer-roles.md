@@ -164,9 +164,10 @@ the awareness (Director, minimum action).**
   Director only with a question, a request, a block, or an acknowledgement
   a route asks for (2026-09-23 amendment) — this is what keeps the
   Director's metabolism slow.
-- **Retires with a handoff (PDR-063).** At the natural boundary or at the
-  owner's call, freezes work-in-progress to its PDR-063 handoff
-  record, where the Director reads it when it needs it. Routes durable,
+- **Retires with a record.** At the natural boundary it closes out per the
+  start-right-team Closeout Contract. When the owner calls its handoff
+  mid-cycle, it freezes work-in-progress to its PDR-063 handoff record,
+  where the Director reads it when it needs it. Routes durable,
   repo-wide substance **up to the Director** rather than editing repo-wide
   surfaces from a feature-branch worktree (which would diverge them).
 - **Routes questions to the Director** (single owner-interface), not the owner

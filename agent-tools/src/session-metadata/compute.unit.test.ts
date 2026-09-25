@@ -23,6 +23,14 @@ describe('computeMetadata', () => {
     expect(at.advice).toBe(`${below.advice}; directive edits wait for the next compaction`);
   });
 
+  it('judges the 30% floor on the unrounded figure, not the one-decimal report', () => {
+    const below = computeMetadata({ usedTokens: 299_000, windowTokens: 1_000_000 });
+    const justBelow = computeMetadata({ usedTokens: 299_950, windowTokens: 1_000_000 });
+
+    expect(justBelow.pctUsed).toBe(30);
+    expect(justBelow.advice).toBe(below.advice);
+  });
+
   it('rounds percentages to one decimal', () => {
     const result = computeMetadata({ usedTokens: 333_333, windowTokens: 1_000_000 });
 

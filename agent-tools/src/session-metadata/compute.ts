@@ -47,11 +47,13 @@ export function computeMetadata(input: {
   readonly windowTokens: number;
 }): SessionContextMetadata {
   const remainingTokens = Math.max(0, input.windowTokens - input.usedTokens);
-  const pctUsed = roundTo1(percentage(input.usedTokens, input.windowTokens));
+  const exactPctUsed = percentage(input.usedTokens, input.windowTokens);
+  const pctUsed = roundTo1(exactPctUsed);
   // Derive from the floored remaining so the two never disagree when occupancy
   // exceeds the window (a caller can pass a smaller window than the real one).
   const pctRemaining = roundTo1(percentage(remainingTokens, input.windowTokens));
-  const { zone, advice } = classifyZone(pctUsed);
+  // Classify on the exact figure: rounding 29.95% up to 30.0 must not cross a floor.
+  const { zone, advice } = classifyZone(exactPctUsed);
 
   return {
     usedTokens: input.usedTokens,

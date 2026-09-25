@@ -510,8 +510,8 @@ not free-form content.
 ## Owner direction (source-of-record)
 
 The heartbeat-cadence rules emerged from multi-agent windows
-where role-retirement under context-budget pressure produced
-silent-failure observations: roles whose identity authority
+where role-retirement (at the time, often on a context reading)
+produced silent-failure observations: roles whose identity authority
 persisted in claim state past the role's effective retirement,
 peers acting on stale role-status, owner intervention required
 to surface the retirement and re-route work. The contract
