@@ -239,7 +239,10 @@ artefact-failure shapes:
 The Read / `UserPromptSubmit` secrets-scan hooks (via
 `.claude/hooks/_lib/log-hook-errors.sh`) are deliberately **best-effort /
 fail-open**: they `exit 0` when the scanner is unavailable so a session is never
-bricked by a missing optional tool. That is a broader fail-open posture than the
+bricked by a missing optional tool, and the allow is loud: with no `sonar` on PATH,
+or a scan that exits with an error, the prompt or the Read goes through with a
+warning shown to the user that it was not scanned (the Read hook stays silent
+for every other tool). That is a broader fail-open posture than the
 dangerous-command/content guards above: those fail open *only* for the not-built
 case (loudly, as above) and fail **closed** whenever a built guard misbehaves.
 They read the payload with `jq` when it is installed; without it, the Read hook
@@ -267,7 +270,7 @@ and split the path at its first `#` whatever follows
 (`^([^#]+)(?:#L(\d+)(?:-(\d+))?)?(?:#[^#]*)?$`); the hook resolves it against
 the payload's `cwd`, `~` or the root. Each file goes by its real path, once,
 since Sonar reports a symlink clean without reading its target. When Sonar
-errors, or `node` or `realpath` is missing, exits non-zero or cannot resolve a mentioned file,
+is missing or errors, or `node` or `realpath` is missing, exits non-zero or cannot resolve a mentioned file,
 the prompt goes through with a warning shown to the user that it was not
 scanned. A mentioned file outside the project is read by the scanner
 as the model would read it: the Sonar documentation says the scan runs locally
@@ -284,7 +287,9 @@ Every writer of `.claude/logs/` creates it owner-only: the directory mode 700 an
 the logs mode 600. The wrapper and the Node hooks' shared helper
 (`_lib/append-owner-only-log.mjs`) also tighten what an earlier version left open
 and leave a symlinked, foreign-owned or non-regular log alone; the wrapper says on
-stderr when a failure could not be written. The `PreCompact` observer runs inside
+stderr when a failure could not be written. In a process with no uid (Node gives
+none on Windows or Android) the helper cannot check ownership, and the modes
+cannot make a file owner-only on Windows, so it writes nothing. The `PreCompact` observer runs inside
 the wrapper and keeps its own log at 600.
 
 ## Platform Support

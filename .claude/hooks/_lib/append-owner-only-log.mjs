@@ -9,6 +9,11 @@
  * written, so no mode change ever follows a link elsewhere. The log is opened
  * without following a final symlink and without blocking on a FIFO.
  *
+ * A process with no uid (Node gives none on Windows or Android) cannot check
+ * who owns a file, and on Windows the modes cannot make a file owner-only
+ * either, since access there is governed by ACLs. The append then refuses
+ * before touching anything and nothing is written.
+ *
  * Callers treat this as best-effort observability and catch what it throws.
  */
 
@@ -34,8 +39,8 @@ const APPEND_WITHOUT_FOLLOWING =
   constants.O_NOFOLLOW |
   constants.O_NONBLOCK;
 
-/** Whether this process's user owns the file a stat describes; true where there is no uid to compare. */
-const ownedByThisUser = (stats) => process.getuid === undefined || stats.uid === process.getuid();
+/** Whether this process's user owns the file a stat describes. */
+const ownedByThisUser = (stats) => stats.uid === process.getuid();
 
 /**
  * Append text to the hook error log under a project root.
@@ -45,6 +50,9 @@ const ownedByThisUser = (stats) => process.getuid === undefined || stats.uid ===
  * @returns {boolean} Whether the entry was written.
  */
 export function appendOwnerOnlyLog(projectRoot, text) {
+  if (process.getuid === undefined) {
+    return false;
+  }
   const logDir = resolve(projectRoot, '.claude', 'logs');
   mkdirSync(logDir, { recursive: true, mode: OWNER_ONLY_DIRECTORY });
   const directory = lstatSync(logDir);
