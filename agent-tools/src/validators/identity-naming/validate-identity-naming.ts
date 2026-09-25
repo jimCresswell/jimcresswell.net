@@ -36,7 +36,11 @@ import path from 'node:path';
 
 import { resolveRepoRoot } from '../../core/repo-root.js';
 import { writeErrorLine, writeLine } from '../../core/terminal-output.js';
-import { listTrackedFiles, readScanFiles } from '../../core/tracked-file-scan.js';
+import {
+  describeUnreadable,
+  listTrackedFiles,
+  readScanFiles,
+} from '../../core/tracked-file-scan.js';
 
 import {
   CENSUS_PATH,
@@ -99,12 +103,9 @@ if (trackedPaths.length === 0) {
 
 const scan = readScanFiles(repoRoot, trackedPaths);
 if (!scan.ok) {
-  writeErrorLine(
-    `validate-identity-naming: cannot read tracked file '${scan.error.relativePath}' — most ` +
-      `likely a tracked file deleted but not staged. Fix the file, its permissions, or the index ` +
-      `— the scan must not skip a tracked file.`,
-  );
-  writeErrorLine(String(scan.error.cause));
+  // The describer names the path and the error's code, never the cause's
+  // message, which carries the working copy's absolute path into the CI log.
+  writeErrorLine(`validate-identity-naming: ${describeUnreadable(scan.error)}`);
   process.exit(2);
 }
 const scannable = scan.value;
