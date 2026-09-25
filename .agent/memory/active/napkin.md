@@ -4783,3 +4783,24 @@ gate, not four. The records push landed 03415165 at 18:24Z, nothing unpushed.
   reviewed one-file commit 00a23728b under the owner's approval.
 - Push: 1 commit unpushed before this block; one gate on the host at 18:41Z; the tally push follows
   this commit with a gate notice. Load 20.41.
+
+## 2026-09-25T18:57Z — Slot ruling; PR 215 merged; the Codex config split's design ruled
+
+- Slot ruling (lineage stream e365cfa8, 18:45Z, on Swallow's native proposal 18:43Z): the merge
+  slot goes by READINESS, not by lane; "slot taken: PR N" before the engraph merge, "slot
+  released: PR N merged as SHA" after; one turn then yield; order inside a lane is the seat's.
+  Myrtle absorbed (18:44Z, no dependency collision); Swallow took the slot for PR 222 (18:45Z).
+- PR 215 (c2 hunks 1, 2, 4, the channel-by-audience clause) merged db7517e1e at 18:43Z; Myrtle's
+  receipt to Siren 18:44Z; Copilot's second-pass observation (the ARC reference's §Relationship
+  sentence) priced as a one-clause follow-up; Myrtle's next settled: 225 or 230.
+- The Codex config split's design (Swallow, directed b97ce206, 18:55Z, read whole): exec-policy
+  rules in `.codex/rules/seat-landing.rules` allow merge-bot push, git add/commit, gh pr create,
+  and the worktree flow; raw `git push` never allowed; no `.git` writable root; machine-local
+  items listed in `.codex/README.md`; merge-bot to refuse `engraph` by name (separate PR);
+  proof by `codex execpolicy check` transcripts. RESIDUAL (allowed commits run hooks and
+  agent-tools unsandboxed) RULED as parity with every Claude seat's existing posture, narrower
+  in fact; not an owner card; one informational line to the owner with a veto. Five door
+  conditions sent: security-expert verdict in the PR body; execpolicy transcripts as proof; the
+  merge-bot default-branch refusal lands first; README names the reviewer key; the owner-held
+  live-seat proof is goal two's acceptance test.
+- Tally push landed 18:46Z (03415165..2eede9fd, 58 e2e passed); monitor re-armed btigmz3lz.
