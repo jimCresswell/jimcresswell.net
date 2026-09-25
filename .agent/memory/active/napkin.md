@@ -4704,3 +4704,55 @@ BEHIND, syncs at its turn. Myrtle's records commit (the branches card with every
   asked; Gale is the known no (the Codex approval review).
 - Load 28.40 at 17:57Z (fifteen gate process lines): the Director's records push (4 commits) HELD
   under the two-gate bound; sensor: uptime and the process table; backstop: suite 16.
+
+## 2026-09-25T18:25Z — Siren: lessons from PRs 193 to 200
+
+- Playwright's cleanup pruned `chromium_headless_shell-1243` at 17:50Z: its install link pointed
+  at a worktree retired since, and another install on the host cleaned it. One pre-push failed at
+  the site E2E step. Install browsers from the primary checkout, whose path persists (n = 1).
+- The lineage's default branch is `engraph`; its `origin/main` stopped at a 10:14Z release and
+  showed PDR-063 without the day's amendment. Read lineage blobs at `origin/engraph`.
+- A mutant that dies on a syntax error proves nothing: removing an `echo` left an empty `then`
+  block (bash exit 2). Replace a removed statement with `:` so the mutant fails on the claim.
+- A folded YAML `run: >-` keeps a line break at a blank line; the hand-written fold joined two
+  commands and hid a pnpm call behind an echo. Parse workflows with `yaml` and read only
+  `steps[].run` (PR 193, round two).
+- A spliced quote changed the owner's subject: "the best of both … will be extracted" for "Once
+  the Practice contains the best of both it will be extracted". Quote an owner sentence whole
+  or not at all (PDR-142 joint cure, the Director's ruling 17:58Z).
+- L12's three rules wait for the next compaction: context read 39.7% at 18:19Z, and adding a
+  file under `.agent/rules/` falls under PDR-052's 30% floor. one-pr-per-leaf-issue has nothing
+  to bind here (zero GitHub issues on 2026-09-25); bot-identity moves every seat's push to
+  `merge-bot push` and needs its host bindings moved to the operator profile.
+
+## 2026-09-25T18:30Z — Director suite 16 tally (frame built 18:22Z); the records pushed; PR 213 landed
+
+Work verdicts: 7 ON-TRACK, 1 DRIFTING (adversarial medium: the records push held on a gate count
+the frame itself retracted, and Gale's sensor "next event" cannot fire on a session that ended
+its turn). ACCEPTED on both: the six records commits pushed at 18:24Z (03415165) once the normal
+wave read the same; the Gale point becomes the check-in 19 ask to the owner (resume Gale's Codex
+session, or authorise Swallow to push Gale's reviewed one-file commit under the owner's approval),
+since only the owner starts Codex sessions. Frame verdicts: 2 SOUND (normal high, procedure), 1
+NARROWED (adversarial procedure), 5 CONTRADICTED (normal low, medium; adversarial low, medium,
+high), all on one fault: H1's forcing fact carried the retracted count of four gates while
+SOURCES said one, corrected on the stream (35fec3a0) after the frame was built. Cures for suite
+17's frame:
+
+1. A correction made after the frame is built goes into the frame before dispatch: H1 (and RECENT
+   ACTIONS) rebuilt on the one-gate reading; the rule: re-read the holds against the last SOURCES
+   edit (five roles).
+2. H3's last read and backstop refreshed to the 18:0xZ merges and check-in 19 (normal low, medium;
+   adversarial low).
+3. Gale's hold gets a path that can fire: the owner's act (resume the session) or the Swallow push
+   under the owner's approval, with a backstop for PR 211 itself, not only the config split
+   (adversarial medium).
+4. Plan node todo 6 (the close) addressed in goal one's reading with its queued status (adversarial
+   procedure); "the five lenses" cited to principles.md §Decision Lenses (normal high).
+
+Between the waves: PR 213 (the PDR-009 joint cure) merged 94a8fba90 18:02:10Z, the slot to PR 215;
+PR 225 narrowed to the ruling (fd3e32271); JC.net PR 198 merged 3fe1a325 18:15Z (PDR-063, PDR-142,
+PDR-009 as the lineage's blobs: todo 4's first landing); JC.net PR 195 merged 6868ad85 17:59Z;
+PR 193 merged; Myrtle's check-in 18 line: pushes without the owner YES (PR 227 opened as the bot);
+Swallow's: YES (feat/codex-wake-sink 6337f131a; slice 2a with 48 tests after two review rounds);
+the push-without-owner count 3 of 4, Gale the Codex no. The load notice of 18:2xZ corrected: one
+gate, not four. The records push landed 03415165 at 18:24Z, nothing unpushed.
