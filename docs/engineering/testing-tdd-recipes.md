@@ -25,21 +25,23 @@ unit, integration, and E2E levels.
 - [TDD At All Levels](#tdd-at-all-levels)
   - [Unit Test TDD](#unit-test-tdd)
   - [Integration Test TDD](#integration-test-tdd)
-  - [E2E Test TDD](#e2e-test-tdd)
+  - [E2E Check TDD](#e2e-check-tdd)
 - [Rule Summary](#rule-summary)
 - [Red Specs And File Naming](#red-specs-and-file-naming)
   - [Validate Test Discovery](#validate-test-discovery)
 - [Common Violations And Fixes](#common-violations-and-fixes)
   - [Writing Code Before Tests](#writing-code-before-tests)
-  - [Updating E2E Tests After Implementation](#updating-e2e-tests-after-implementation)
+  - [Updating E2E Checks After Implementation](#updating-e2e-checks-after-implementation)
   - [Tests That Only Pass With The Current Implementation](#tests-that-only-pass-with-the-current-implementation)
   - [Adding To Existing IO Debt In A Unit Test File](#adding-to-existing-io-debt-in-a-unit-test-file)
   - [Validator Script vs Integration Test](#validator-script-vs-integration-test)
 
 ## TDD At All Levels
 
-TDD applies to unit, integration, and E2E tests. Each level specifies the
-desired behaviour before implementation changes at that same level.
+TDD applies to unit tests, integration tests and E2E checks (an E2E check
+drives a running system and is a validation surface, not a test). Each level
+specifies the desired behaviour before implementation changes at that same
+level.
 
 ### Unit Test TDD
 
@@ -108,10 +110,10 @@ export function createProfileLinks(options: ProfileLinksOptions) {
 // Run test -> passes.
 ```
 
-### E2E Test TDD
+### E2E Check TDD
 
-E2E tests specify system behaviour. When system behaviour changes, update the
-E2E test first and run it against the old system to prove the red phase.
+E2E checks specify system behaviour. When system behaviour changes, update the
+E2E check first and run it against the old system to prove the red phase.
 
 Example:
 
@@ -132,7 +134,7 @@ test.describe('REQ-07: PDF response correctness', () => {
     expect(response.headers()['cache-control']).toContain('immutable');
   });
 });
-// Run E2E test -> fails while the old route handler serves the file without the cache header.
+// Run E2E check -> fails while the old route handler serves the file without the cache header.
 // Implement the route handler change, then rerun -> passes.
 ```
 
@@ -140,21 +142,21 @@ Wrong sequence:
 
 ```typescript
 // 1. Implement new behaviour first.
-// 2. Run E2E tests; they fail because they specify old behaviour.
-// 3. Update E2E tests after implementation.
+// 2. Run E2E checks; they fail because they specify old behaviour.
+// 3. Update E2E checks after implementation.
 ```
 
-The test became a regression patch, not a specification.
+The check became a regression patch, not a specification.
 
 ## Rule Summary
 
-| Test Level  | Specifies                   | Write Before             | Red Phase       |
+| Level       | Specifies                   | Write Before             | Red Phase       |
 | ----------- | --------------------------- | ------------------------ | --------------- |
 | Unit        | Pure function behaviour     | Before function exists   | No function     |
 | Integration | Code units working together | Before units are wired   | Units not wired |
 | E2E         | System behaviour            | System behaviour changes | Old behaviour   |
 
-If tests lag behind code at any level, TDD was not followed at that level.
+If tests or checks lag behind code at any level, TDD was not followed at that level.
 
 ## Red Specs And File Naming
 
@@ -213,23 +215,23 @@ function add(a: number, b: number) {
 // Run -> passes.
 ```
 
-### Updating E2E Tests After Implementation
+### Updating E2E Checks After Implementation
 
 Wrong:
 
 ```typescript
 // 1. Implement new feature.
-// 2. Run E2E tests; they fail because they specify old behaviour.
-// 3. Update E2E tests to match implementation.
+// 2. Run E2E checks; they fail because they specify old behaviour.
+// 3. Update E2E checks to match implementation.
 ```
 
 Correct:
 
 ```typescript
-// 1. Update E2E tests to specify new behaviour.
-// 2. Run E2E tests; they fail because the feature is absent.
+// 1. Update E2E checks to specify new behaviour.
+// 2. Run E2E checks; they fail because the feature is absent.
 // 3. Implement the feature.
-// 4. Run E2E tests; they pass.
+// 4. Run E2E checks; they pass.
 ```
 
 ### Tests That Only Pass With The Current Implementation
@@ -281,12 +283,12 @@ it('rejects malformed config', () => {
 Correct shape (factor the pure parser; unit-test the extract):
 
 ```typescript
-// agent-tools/src/lib/parse-config.ts (pure)
+// agent-tools/src/core/parse-config.ts (pure)
 export function parseConfig(input: unknown): ParseConfigResult {
   /* ... */
 }
 
-// agent-tools/src/lib/parse-config.unit.test.ts (unit, no FS)
+// agent-tools/src/core/parse-config.unit.test.ts (unit, no FS)
 it('rejects malformed config', () => {
   expect(parseConfig({ foo: 'bar' })).toEqual({ ok: false, error: 'malformed' });
 });

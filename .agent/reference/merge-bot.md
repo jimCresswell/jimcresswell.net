@@ -107,6 +107,7 @@ are defined in `agent-tools/src/merge-bot/token-scopes.ts`:
 | `pull-request-work`    | `pull_requests: write`, `contents: write`, `workflows: write` | update-branch, push, PR create/edit, comment, review reply, thread resolution |
 | `pull-request-merge`   | `pull_requests: write`, `contents: write`                     | the merge act alone (what `merge-bot merge` mints itself)                     |
 | `code-scanning-alerts` | `security_events: read`                                       | reading code-scanning alerts                                                  |
+| `workflow-dispatch`    | `actions: write`                                              | dispatching a workflow; re-running a failed job                               |
 
 That table is a **mirror**, kept inline because a reader choosing a scope
 needs the read/write levels in front of them. `token-scopes.ts` is
@@ -192,11 +193,12 @@ copy on the next fast-forward, and the ignore rule then hides its absence, so
 the very next `merge-bot` command exits 2 with the config-not-readable
 message. Recreate the file at the primary checkout from the template, naming
 the app that clone used, before the next merge or push.
-The app holds no Actions permission, so no bot token can re-run a failed workflow job.
-When a required check failed on the runner side rather than in the change (2026-09-06), the
-only bot-shaped cure was a new push, and that push re-opened the review round. Re-running a
-job needs `actions: write`; whether any bot scope should carry it travels with the MCP-391
-scope split.
+The installation holds `actions: write`, and the `workflow-dispatch` scope requests it, so a bot
+token can dispatch a workflow and re-run a failed job. The mint is the proof: an ungranted
+permission fails it with 422, and a `workflow-dispatch` mint succeeded on 2026-09-25. When a
+required check failed on the runner side rather than in the change (2026-09-06), the only cure
+taken was a new push, and that push re-opened the review round. Whether a re-run should be a
+routine bot act travels with the MCP-391 scope split.
 
 ## Setting up a bot (requires org-admin rights)
 
