@@ -75,21 +75,18 @@ measured-state clause, `SUPPRESSED-FINDINGS-OPEN`, owner card item 78,
 bot review can land in the seconds between (caught twice in forty
 minutes, #570/#574).
 
-For the OTHER bot writes (pushes, PR create/edit, comments, review
-replies, thread resolution, update-branch), mint a token and use it:
+For the OTHER bot writes (PR create/edit, comments, review replies, thread
+resolution, update-branch, and pushes where the estate's identity contract
+names the bot as the transport), mint a token and use it:
 
 ```bash
 token=$(pnpm --silent agent-tools merge-bot mint-token --scope pull-request-work) || exit 1
 ```
 
-**Assign the token first; never use the `GH_TOKEN=$(…) gh …` prefix form.** A
-prefix substitution cannot fail fast: if the mint fails for any reason — a bad
-`--scope`, an unreadable key, a `422` — the substitution yields an empty
-string, and `gh` treats an empty `GH_TOKEN` as _unset_ and falls back to the
-keyring. The command then runs as the signed-in human, who may be
-bypass-capable, which is the owner-credential fallback
-`bot-identity-on-third-party-systems` (a lineage rule not adopted here; the ban stands on `identify-as-agent-under-shared-credentials`)
-bans outright. A separate assignment with `|| exit 1` stops there instead.
+**Assign the token first; never use the `GH_TOKEN=$(…) gh …` prefix form.**
+[`bot-identity-on-third-party-systems`](../rules/bot-identity-on-third-party-systems.md)
+§Action holds why (an empty `GH_TOKEN` falls back to the keyring and runs as
+the signed-in human) and the three tripwires that close the residual paths.
 
 Each minted token is scoped at mint time to this repository and to exactly
 the permissions of the `--scope` you name — least-privilege by construction,
@@ -139,8 +136,9 @@ permissions investigation.
 - **Owner merge-word can arrive as chat approval** ("I approved the PR, that
   is signal enough"; "Merge now") — it is equivalent to the settled-read
   handshake. Where the owner is the PR author-of-record, GitHub blocks
-  self-review, so the approval is recorded as an owner-directed APPROVE
-  submitted via the bot.
+  self-review, so the owner's word is recorded as an ordinary PR comment from
+  the bot that quotes it and names the seat (the rule's author-cannot-review
+  rider); an `APPROVE` state needs a non-author account.
 - **Codex-seat bridge**: the Codex GitHub connector refuses merge actions
   without in-session owner authorisation, so at genuinely-settled a Codex
   lane routes the mechanical key-turn to the Director as proxy — judgment
@@ -323,4 +321,4 @@ on POSIX), and hands the transfer to the git binary with a
 static credential helper reading that file — the child environment names
 only the file's path. Never argv, no force flags, no `--no-verify`, and
 pushes to the default branch refuse by name (see
-`bot-identity-on-third-party-systems` (a lineage rule not adopted here; the ban stands on `identify-as-agent-under-shared-credentials`)).
+[`bot-identity-on-third-party-systems`](../rules/bot-identity-on-third-party-systems.md)).

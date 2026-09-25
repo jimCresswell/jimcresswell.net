@@ -5,11 +5,17 @@ description: Identify as an agent under shared credentials. When an agent author
 
 # Identify as an Agent Under Shared Credentials
 
-> **Scope in this repository.** No bot identity exists here yet, so every
-> outward write an agent makes lands under the owner's own credentials. This
-> rule is therefore the standing attribution discipline for all such writes;
-> when a bot identity is created, content posted as the bot still names the
-> acting agent per PDR-027.
+> **Frame inverted 2026-07-23 by owner ruling.** Shared human credentials are
+> no longer the working norm this rule was written against:
+> [`bot-identity-on-third-party-systems`](./bot-identity-on-third-party-systems.md)
+> now makes the bot identity mandatory wherever one exists, and
+> owner-credential use is an exception granted (and generally instigated) by
+> the owner. This rule remains in force for what survives: (a) the
+> owner-permitted exceptional cases, (b) surfaces where no bot identity
+> exists yet (a standing gap to surface, per the bot-identity rule), and
+> (c) **seat-level attribution on the shared bot identity** — the bot account
+> is shared by every seat, so content posted as the bot still names the
+> acting agent per PDR-027, exactly as it did under the owner's account.
 
 When an agent authors outward-facing content through **shared credentials** —
 a human's account, or the team bot account shared by all seats — it MUST
@@ -22,9 +28,10 @@ is silently credited with words they did not write.
 ## Trigger
 
 The agent is about to author or edit any **outward, human-visible artefact**
-via shared credentials. In this repository no bot identity exists yet, so every outward write lands
-under the owner account (`@jimCresswell`) — the shared-credential case this rule
-exists for; the rule fires before:
+via shared credentials. In this repository that means the team bot account
+(the one the clone's merge-bot config names, the mandatory default) or — only
+in the owner-permitted exceptional cases — the owner account
+(`@jimCresswell`); the rule fires before:
 
 - a PR or issue **comment** (`gh pr comment`, `gh issue comment`, `gh api
   .../comments`);
