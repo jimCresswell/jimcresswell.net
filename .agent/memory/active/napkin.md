@@ -4319,3 +4319,13 @@ after the owner compacts it or a fresh one, then the exchange seat, no closeout 
   split, the sink. Swallow's twin: gates green in its worktree, reviewers running, claim d8773fd8.
 - Slot order declared on the lineage stream at 15:02Z (f0396e15): PR 212 now; the twin's PR when green and
   clean; the fold PR 187 after the twin with a fresh engraph merge; PR 211 after its cure.
+
+## 2026-09-25T15:04Z — Ruling on both streams: PDR-052's floor stands as a deferral, never a stop (37e0fa09 lineage, ab698860 JC.net)
+
+- Siren (native, 15:03Z) reported that Swallow's reading to Myrtle (lineage, 15:02:55Z) extends
+  the owner's 13:00Z word to PDR-052's directive-edit hold. Ruled: the floor stands; at or above
+  30% a directive edit waits for the next compaction while the seat carries on; a seat with only
+  directive edits left asks for a compaction; Swallow's wider reading not adopted. Lenses 2 and 5.
+  Siren's trigger amendment PR encodes it as drafted; Myrtle carries the twin.
+- Siren's report: PR 188 (K4) merged c523ba81 at 15:01:18Z, receipt to Myrtle (252fb4ce); the
+  trigger amendment PR in review; the Cricket clause PR at its push gate.
