@@ -4275,14 +4275,14 @@ after the owner compacts it or a fresh one, then the exchange seat, no closeout 
   waits on the twin), 211 (Titan, cure pending), 212 (bot carrier). Lineage remote branches 10.
 - No owner question. No push at this check-in (5 local commits on this branch plus this one).
 
-## 2026-09-25T14:53Z — Ruling for the trigger amendment PR: no context number stops a seat (Siren's question, native message; no event id)
+## 2026-09-25T14:47Z — Ruling for the trigger amendment PR: no context number stops a seat (Siren's question, native message; no event id)
 
 - Siren herds Rudder showed that the two relays of the owner's 13:00Z word differ: Swallow's (6292fda0,
   heard directly) has a seat work through thresholds and run the compaction drill only when the
   owner calls one; this seat's routing a43b808e/b3433873 still had a seat stop itself at ~50% or 80%,
   for compaction instead of handover. That residue is still stopping on a context number, which the
   owner said achieved nothing.
-- Verdict, sent natively to Siren at 14:5xZ: Swallow's reading. No context reading stops a seat or
+- Verdict, sent natively to Siren at 14:47Z: Swallow's reading. No context reading stops a seat or
   starts a succession; records stay current as the seat goes; the drill runs when the owner calls a
   compaction or the platform compacts; the same session resumes on the owner's word; the ~50%/80%
   calibration survives only as a reason to keep records current; PDR-063's five steps stay for
