@@ -115,6 +115,17 @@ describe('findMissingFilteredCommands', () => {
     ]);
   });
 
+  it('reports a missing script that a semicolon closes, named without the semicolon', () => {
+    const findings = findMissingFilteredCommands(
+      [surface('if ! pnpm --filter @engraph/agent-tools nope; then')],
+      scripts,
+    );
+
+    expect(findings.map((finding) => [finding.match, finding.reason])).toStrictEqual([
+      ['pnpm --filter @engraph/agent-tools nope', 'missing-script'],
+    ]);
+  });
+
   it.each([
     { name: 'an unfiltered call, whose scope depends on where it runs', line: 'pnpm nope' },
     { name: 'a comment', line: '# pnpm --filter @nope/missing run-me' },

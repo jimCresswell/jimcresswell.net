@@ -18,7 +18,9 @@ import {
  * turn every call that names it into a silent pass. Every filtered call on
  * these surfaces must therefore name a real workspace and a script it
  * defines. Unfiltered calls are left alone: their scope depends on the
- * directory they run in, and a missing root script fails loudly anyway.
+ * directory they run in, and pnpm exits 1 for a missing script without a
+ * filter, at the root or in a workspace (probed on pnpm 12.4.2, 2026-09-25),
+ * so they cannot pass silently.
  *
  * @packageDocumentation
  */
