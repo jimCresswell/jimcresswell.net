@@ -110,10 +110,24 @@ function commandTokens(text: string): readonly string[] {
 }
 
 /**
- * The `pnpm` script citations in one line of command text, numbered `line`.
- * Every invocation on the line is read, up to a shell comment.
+ * The `pnpm` script citations among one simple command's words, which a
+ * shell reader has already split and unquoted, numbered `line`.
  */
-export function citationsInCommandText(text: string, line: number): readonly ScriptCitation[] {
+export function citationsInWords(
+  words: readonly string[],
+  line: number,
+): readonly ScriptCitation[] {
+  return words.flatMap((word, index) => {
+    const citation = word === 'pnpm' ? parseInvocation(words, index + 1, line) : undefined;
+    return citation === undefined ? [] : [citation];
+  });
+}
+
+/**
+ * The `pnpm` script citations in one line of prose command text, numbered
+ * `line`. Every invocation on the line is read, up to a shell comment.
+ */
+function citationsInCommandText(text: string, line: number): readonly ScriptCitation[] {
   const tokens = commandTokens(text);
   const citations: ScriptCitation[] = [];
   let printing = false;

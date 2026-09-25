@@ -126,8 +126,9 @@ async function main(): Promise<void> {
       `${formatFindings(findings)}\n\n` +
       'Every `pnpm <script>` in a code span or fenced block must name a script the root or the ' +
       'filtered workspace defines in package.json, and every filtered call in a package.json ' +
-      'script, a git hook or a CI workflow must name a real workspace and a script it defines. ' +
-      'Fix the citation or the call, or add the script.',
+      'script, a git hook or a CI workflow must name a real workspace and, unless it is a pnpm ' +
+      'built-in such as `exec`, a script that workspace defines. Fix the citation or the call, ' +
+      'or add the script.',
   );
   process.exitCode = 1;
 }

@@ -2,7 +2,7 @@ import { typeSafeEntries } from '@engraph/type-helpers';
 
 import { isJsonObject } from '../../core/json.js';
 
-import { citationsInCommandText } from './extract-script-citations.js';
+import { citationsInShellCommand } from './shell-command-citations.js';
 import {
   resolveCitation,
   type MissingScriptFinding,
@@ -98,7 +98,7 @@ export function findMissingFilteredCommands(
 ): readonly MissingScriptFinding[] {
   return surfaces.flatMap((surface) =>
     surface.lines.flatMap(({ line, text }) =>
-      citationsInCommandText(text, line)
+      citationsInShellCommand(text, line)
         .filter((citation) => citation.workspaceFilter !== undefined)
         .map((citation) => resolveCitation(surface.path, citation, scripts))
         .filter((finding) => finding !== undefined),
