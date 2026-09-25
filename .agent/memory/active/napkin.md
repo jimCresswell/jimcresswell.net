@@ -4617,3 +4617,29 @@ seat; the seven local-only branches; Gale's PR 211 approval (an act, not a quest
   need ("all seats push without me") is a system change for the Codex seats' config: the config
   split's committed config lets a Codex seat push a branch and open a PR without an owner prompt,
   the payload prohibition kept as doctrine. Gale unreachable from ListAgents (a Codex session).
+
+## 2026-09-25T17:25Z — The branches card closed by the Director's hand; batch six delivered; Swallow's slice 2 started
+
+- Myrtle's harness (auto mode's Git Destructive classifier) refused `git branch -D` for the eight
+  local branches (17:25:11Z) and, rightly, took no other route; it deleted the remote design-plan
+  branch as the bot (404 read back). The owner's word was given to this seat directly ("2. Delete
+  all"), so the Director ran the deletion on the lineage primary at 17:25:41Z, each tip read back
+  first: docs/codex-support-concept-exploration 327ef6abb; docs/copilot-cli-practice-citizenship
+  f96149836; docs/first-class-copilot-agent-support 4ead1345b; fix/claude-hook-hardening
+  c4fae0b83; jimcresswell/design-plan-ratification-and-truings 4e030a535; jimcresswell/mcp-372-...
+  30d0e81c5; jimcresswell/mcp-487-sanitise-numeric-input 9b6da6178; jimcresswell/mcp-506-sdk-v2-
+  spike-plan cdf422566 (the list in the scratchpad file oce-deleted-branches-owner-word-1725.txt
+  and in Myrtle's pickup bullet). The primary holds 21 local branches. Closed on the stream.
+- Batch six DELIVERED to the lineage Box at 17:25:04Z (2ef9f444: 22 files with blob ids; Wilma's
+  read found 26 defects in 16 notes, all cured before delivery); JC.net PR 197 (the docs half)
+  merged 5986beb2 about 17:20Z; PR 195 resumes now, then 193; seven JC.net-side cures owed per the
+  cover note. Goal one's outbound direction: every J row drafted and delivered; the landing is
+  Myrtle's (six batches in the Box).
+- Swallow: slice 2 started in its own worktree on the owner's approval (ACK 72e51de5); the owner's
+  approval for Gale mirrored into the pairing channel and committing on the successor; no in-bounds
+  wake path to Gale (its thread id would need the owner's Codex home); PR 222 cured c0ddb2188 and
+  re-reviewing; its rule 10 tightening (a disabled name missing or removed from the list fails the
+  probe) CONFIRMED natively. Myrtle: graduation commit 959bad6f9 (decision debt 6 to 2); PR 219
+  synced (cc6e0735f), ready, legs requested, at the slot; door order 219, 213, 215, 216, 221, 220,
+  217, 218; a five-warning lint observation on engraph (no-throw-statement in safe-path and
+  env-resolution) for their owner under no-warning-toleration.
