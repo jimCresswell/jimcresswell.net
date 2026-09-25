@@ -572,3 +572,27 @@ compaction. Watchers, heartbeat and the peer-liveness poll re-armed.
 - Host: at 17:50Z Playwright pruned `chromium_headless_shell-1243`. It had been installed from
   a worktree that was later retired, and one pre-push failed. It is reinstalled from the primary
   checkout, whose path persists. The lineage's default branch is `engraph`, not `main`.
+
+**Update, 18:41Z.**
+
+- Merged since 18:09Z: PR 198 (3fe1a325; the joint cures PDR-063 fe5fcf75, PDR-142 c1aff627,
+  PDR-009 47ee8c92; the lineage takes the PDR-009 blob), PR 199 (7da1d4b9; the security pair)
+  and PR 200 (5ec732d0; `errorCodeOf` inbound, identity naming refuses through the describer).
+- Open:
+  - PR 201 (`fix/cited-scripts-shell-tokens`, worktree shell-tokens, claim 9b87a35e): command
+    surfaces read as the shell reads them. Round one is cured at 91fb33ed; round two is requested.
+  - PR 202 (`fix/agent-tools-test-uncached`, worktree test-cache, claim 25d32056):
+    `@engraph/agent-tools#test` runs uncached by the Director's ruling; a read trace found eleven
+    undeclared root reads (7.7 s per run).
+  - `fix/lint-shape-reaches-every-workspace` (worktree lint-shape, claim 79a18cd8, commit
+    c7458a24, pushing): the substrate rule at error, and `configs/test-shape.ts` shared by
+    `strict` and the plugin's own config. The site was taken out on the config review: it runs
+    ESLint 9, so a dependency on the plugin brings an unmet-peer warning.
+- Next lanes:
+  - The hook-fixture union. The plan-gate smoke writes its stub checker at
+    `agent-tools/dist/src/validators/plan-schema/check-plan-gate-drift.js` under the project, so
+    the union fixture must let each case choose its links; symlinking `agent-tools` there would
+    overwrite the real build.
+  - The site onto ESLint 10 and the Practice configs.
+  - The merge-bot inbound clauses.
+  - After the next compaction: L12's rules (PDR-052 floor) and L3's register parity row.
