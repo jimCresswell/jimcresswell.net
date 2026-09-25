@@ -4910,3 +4910,13 @@ reads it. Records: 2 commits unpushed plus this one, held under two gates (load 
   merge). The sweep read afterwards showed six intended removals. PR 204's ran before its merge.
 - The Director ruled `one-pr-per-leaf-issue` declined here (no trigger: no work tracked in
   issues), reopening as a bring if that changes.
+
+## 2026-09-25T20:44Z — Siren: correction to the 20:25Z and 20:39Z sections
+
+- The bot's silent Copilot request is not a new finding. `.agent/reference/merge-bot.md:284-289`
+  has recorded it since 2026-09-13, verified live ("Requesting the Copilot reviewer is the one
+  write the bot cannot make here"). The probe re-observed a documented fact. The miss: I did
+  not read this estate's own reference before probing. Row L12 points at the reference.
+- The lineage's `--expect` clause (a `[bot]` suffix makes every leg OWED) is false here:
+  `agent-tools/src/pr-watch/reviewer-legs.ts:94-103` strips the suffix on both sides. The inbound
+  doc clause is not brought, and the code cure travels outbound under row L9.
