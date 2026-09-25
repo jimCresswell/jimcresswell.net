@@ -514,3 +514,34 @@ compaction. Watchers, heartbeat and the peer-liveness poll re-armed.
   it.each row. Config and test reviews are running. Claim ca1e90ae.
 - Found: the site workspace's lint config composes eslint-config-next only, so no vitest
   skip, only or todo rule reaches its 44 test files. The cure is its own PR after this one.
+
+**Update, 16:43Z.**
+
+- PR 194 MERGED at 16:27Z as a831be86. Cleanup is done: the branch was deleted by API, the
+  worktree retired, the local branch deleted and four claims closed. The final tip's three true
+  findings (the agent-tools README's "every `--poll-ms`", the rule's liveness "every 30 s", "one
+  notification per event") have signed lines on the PR and ride PR 195. Lineage receipt:
+  70aa8a70. Swallow confirms the lineage twin carries the same three sentences.
+- PR 195 is PR B, a draft (head b4ba36a3, with the code review's four findings cured). By the
+  Director's order its next step, merging main and marking it ready, runs once batch six's drafts
+  are delivered. It then also takes PR 194's three sentences.
+- PR 196 is the todo-test cure. Round one had one finding (the no-IO plan's stale test path),
+  cured in fc2d642d; round two is requested. The config review was clean, and the test review's
+  cures are in 6d7281a5: `testRules` has an IO-free module, the file is renamed
+  `strict.integration.test.ts`, and the layer rows cover all three rules. Myrtle has the twin
+  notes (0a513742).
+- Batch six, in the Director's order (16:17Z: batch six first):
+  - the pilot's five notes are converted to box format;
+  - nine rows are drafted in-seat: N2, N7, N8, N10, N12, B8, B9, B10 and B11;
+  - still to draft: N1, N4, N5, N6, N9, N11 and B2.
+  Each note has a citation ledger (`path:line@sha` at JC.net 1708982f and lineage 0a816621e),
+  and a scripted pass proves every anchor is found. The drafts are in the scratchpad until
+  delivery.
+- JC.net defects found by drafting, queued:
+  - `validate-identity-naming.ts` prints `String(scan.error.cause)`, so an absolute path reaches
+    the CI log; this is a twin cure with the lineage;
+  - the site workspace and `tooling/eslint` compose no strict config, so no vitest skip, only or
+    todo rule reaches their tests;
+  - an inline `/* eslint <rule>: "off" */` comment passes `no-eslint-disable`.
+- Host: main's Playwright 1.63.0 needs `chromium_headless_shell-1243`. It was installed at about
+  16:19Z, after PR 194's first push failed at the site e2e step.
