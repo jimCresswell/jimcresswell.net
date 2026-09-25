@@ -4465,3 +4465,34 @@ the eight disposition lines posted as thread replies and every thread resolved a
 (04c56ead) to hold its last records commit for the successor branch. Siren's PR 194 round-two cure
 in its gate; its site-workspace lint gap (no vitest rule reaches 44 test files) queued after batch
 six.
+
+## 2026-09-25T16:29Z — CHECK-IN 16 (45 minutes after check-in 15), from the streams; the fold's round two
+
+- PR 187 (the fold) at 6d78f21c8: the door polling since 16:20Z; Codex reviewed the tip at 16:23:11Z
+  with ONE new thread (4106498563: the wake-bridge node still directs todo 2 to build the route the
+  fold's own handoff records call mechanism-breaking; record the gate in the node); Copilot's leg
+  on the new tip not yet bound at 16:29Z. Routed to Swallow (the node's reader of R1) as the fold's
+  round two: a dated gate note in todo 2, one records commit by 16:45Z; the Director pushes, posts
+  the line, runs the door (sensor: Swallow's gate-done event; last read 16:29:11Z).
+- Siren (sensor: the lineage stream and native messages): PR 194 merged a831be86 at 16:27Z, its
+  three final-tip sites ride PR 195 (draft, parked behind batch six); batch six's conversion
+  started 16:18Z on the default (the fleet card open with the owner); four reads asked natively at
+  16:29Z (conversion count; PR B's and the todo-test cure's PR numbers; todo 4; the e2e deaths on
+  PR 192's and 194's gates, PR 194's first push having failed at the site e2e step).
+- Myrtle (sensor: the lineage stream): no event since 16:18:35Z (its records commit held for the
+  successor branch); the four reads owed (the six rows' rank; the 3 stale remote and 19 unmerged
+  local dispositions; the progress-report pointer) asked as 68690a75 at 16:29:45Z, default
+  check-in 17.
+- Swallow (sensor: the lineage stream): 1b-iv's pre-execution review back 16:23:17Z (five slices A
+  to E, a friction-ratchet flag, nothing built until an assumptions-expert review); its three items
+  decided da8ee2c4 at 16:23:39Z (7-day age bound; multi_agent under Honest limits, no envelope
+  change; apply_patch an Honest-limits line until a live observation; a vendor default that turns
+  a feature on is an observation, never a stop); the round-two thread routed to it at 16:3xZ.
+- Gale (sensor: the lineage stream): no event since 15:18:01Z; still at the approval hold; the
+  owner's act (told at 15:45Z; restated once at check-in 17 if still silent).
+- Owner questions open with defaults: the fleet's price (Siren converting on the default meanwhile);
+  the sensor beside the seat (nothing built). Load 6.39 at 16:29Z (five-minute 7.43).
+- Goal three at 16:29Z: JC.net open PRs 189 (this branch), 193, 195 (draft, parked), the todo-test
+  cure's PR (opening) and PR B's draft (opening); every remote branch in a PR. Lineage open PRs
+  187, 211, 213, 215, 216, 217, 218, 219, 220 (Myrtle's fourth exchange draft, read from its
+  withdrawn gate notice a43086bf); remote branches 13 plus 220's; local 27.
