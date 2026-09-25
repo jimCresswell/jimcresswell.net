@@ -4555,3 +4555,19 @@ director-handoff.md's 2,123 lines against a 160-line limit, this seat's file, qu
 finished sections into their homes after the rotation. Swallow: PR 222 (1b-iv's PR A) open at
 17:01Z with reviews running; PR B briefed for Gale. Owner questions open: the sensor beside the
 seat; the seven local-only branches; Gale's PR 211 approval (an act, not a question).
+
+## 2026-09-25T17:05Z — PR 187 MERGED; the lineage fold done; the successor cut
+
+- The door merged PR 187 at 17:04:46Z as 7497696fe (merge commit; parents 0a816621e and ae0581e26,
+  the branch head; evidence: every expected reviewer leg settled, the quiet window elapsed, Copilot
+  SATISFIED on the tip), after eleven SETTLING-QUIET-WINDOW polls from 16:56:11Z. The fold carried
+  78 files: the day's records, the consolidation's graduations and nodes, the Codex config line at
+  the owner's word, and the nine review cures. The 24-hour rule's overdue since 11:07Z is closed.
+- Ancestry proof: ae0581e26 is engraph's second parent and an ancestor of the tip. The merged
+  remote branch coordination/2026-09-24-f66fd0 deleted as the bot (204; ls-remote absent).
+- The successor: coordination/2026-09-25-749769, minted by the tool from the base 7497696fe (the
+  full sha), cut tree-preserving on the primary at 17:05Z (Myrtle's two records files and Swallow's
+  ARC channel edit carried, uncommitted), pushed through the gate at 17:07:36Z; the draft PR refused (no commit between engraph and the branch) until the Director's first records commit, the #187 ledger row 115af22a5, pushed as the bot 17:11:18Z; draft PR 223 opened by the bot 17:11:26Z; the rotation broadcast 9b1822af at 17:11:45Z;
+  gate notice 9b8c3cf1. The rotation broadcast follows the push (Myrtle closes a63a7df8 and
+  141892a7; its held records commit and Swallow's records go on the successor; the slot passes to
+  the first green-and-clean draft, PR 219).
