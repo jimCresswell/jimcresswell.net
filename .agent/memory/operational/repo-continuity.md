@@ -21,6 +21,15 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
+- **2026-09-26T15:28Z, the fold of PR 211 landed and the successor is cut** (the Director, Wick
+  binds Temper, ed7b48). PR 211 merged by the bot at 15:28:25Z as `SHA:26ca4dab9` (two Copilot
+  rounds cured in `SHA:dc42f15e` and `SHA:a36dc7db`; the late-cure leg's three findings disposed
+  without a push). The successor coordination branch is `coordination/2026-09-26-26ca4d`, cut from
+  that sha; the primary resides there and every continuity write from now goes there. The folded
+  branch is deleted, remote and local, read back absent. The lineage's coordination draft is PR 254;
+  both are DUE at the UTC rollover. The live reading is the napkin's 15:28Z fold block, then its
+  15:00Z check-in 27, then the Director handoff §Current handoff state.
+
 - **2026-09-26T15:08Z, the resume and the fold of PR 211** (the Director, Wick binds Temper,
   ed7b48). Resumed at the owner's "carry on" (14:42Z). The boundary records committed (SHA:81eab535)
   and main merged in (SHA:47ff8d2b: PRs 210, 212, 213 and 214); PR 211 ready at the door under the
@@ -308,7 +317,10 @@ names a live branch):
 
 ## Active Threads
 
-- JC.net's exchange seat (`threads/practice-exchange-seat.next-session.md`): Siren herds Rudder (158275) handed over at rest 2026-09-24 18:20Z under PDR-063; the next session lands queue item 1 (batch six, the compare rows) unless the Director asks for item 2 first.
+- JC.net's exchange seat (`threads/practice-exchange-seat.next-session.md`): Siren herds Rudder
+  (158275) live on 2026-09-26 under the Director's Lane 4 routing (landings first): J13 open as
+  lineage PRs 252, 253 and 256, J11a pushed; the record's latest dated block governs, and its pickup
+  contract is refreshed at Siren's next wrap.
 - Closure session 2's synthesis (`threads/session-2-synthesis.next-session.md`): the cards were
   answered 2026-09-14 (the Director's handoff item 78); the graduation drain is curator work.
 

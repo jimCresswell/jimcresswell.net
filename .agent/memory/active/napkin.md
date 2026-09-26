@@ -6377,3 +6377,32 @@ scope for the napkin, thread records and continuity); cured as one settlement pu
 untouched so its cmp proof holds); the seven dispositions signed as the bot and the threads
 resolved (unresolved 0 at 15:13Z); Copilot re-requested as the operator (timeline 15:13:51Z);
 merge-bot polling from 15:14Z on head dc42f15e.
+
+## 2026-09-26T15:28Z — The fold of PR 211 landed; the successor is coordination/2026-09-26-26ca4d (the Director)
+
+PR 211 merged by the bot at 15:28:25Z as SHA:26ca4dab9 at full condition: every check green,
+Copilot's leg bound to the final tip a36dc7db, zero unresolved threads. The rounds: round one
+(15:04Z, seven findings: three stale current-state lines, four bare commit hashes under the
+SHA-prefix rule) cured in SHA:dc42f15e; round two (15:18Z, four findings: the carrier claim, the
+heading, the plan pointer, the provenance line) cured in SHA:a36dc7db, the last settlement push
+under the two-round budget; the late-cure leg (15:26Z, three findings) disposed without a push
+under PDR-140 clause 4: the PR body's scope cured in place, Siren's pickup contract routed to
+Siren's next wrap, the report's index row routed to this commit. Copilot's verdict on the last
+leg: "Changes recommended", zero suppressed.
+
+The successor: `coordination/2026-09-26-26ca4d`, cut tree-preservingly from post-fold main
+SHA:26ca4dab9 (one resolution for the mint and the cut), the primary residing there; Siren's dirty
+thread record carried across. The folded branch deleted remote (the bot's REST delete, read back
+404) and local (`git branch -d`, zero refs remain). Rotation broadcast on both streams. DUE at the
+UTC rollover.
+
+moved for the sites: nothing. / moved for the Practice: PR 210 (the exchange register's fifteen
+landings), PR 212 (the cost model's fixed term, the slot's three exits, the late-cure leg), PR 213
+(the bot-identity core's six joint cures), PR 214 (folds twice a day; a ruling names the primary
+surface it read); the Director's handoff drained to a pointer page with its archive; the approved
+programme plan conserved as a report.
+
+The fold's cost, as a datum for the cost model: from ready (14:59Z) to merge (15:28Z), 29 minutes
+and three Copilot legs on a records-only PR of nine files; two settlement pushes at about ten
+minutes of gate each. The "zero at each fold moment" measure on JC.net at 15:28:25Z: zero other
+open PRs, met.
