@@ -682,3 +682,86 @@ lines (done at f95eb16), then L12's landing row and "todo 8's text cure", or the
 This seat has not yet identified which todo 8 that is. Read the plan node's todos on resume
 before acting, and ask the Director if it is still ambiguous. The Director folds PR 189 on
 resume (due 11:17Z); no seat folds it.
+
+## Wrap block, 2026-09-26 11:0xZ (the owner's second compaction word of the day)
+
+Resumed 10:09Z on the owner's "carry on" (the resume plan approved about 10:28Z). The Director's
+word on all four of the seat's proposals (native, about 10:35Z): lineage door turns after PR 241
+(then Myrtle resumed at 10:33Z, so the door went back to Myrtle; this seat took no turn); one
+JC.net PR at a time (the "next exchange PR"); todo 8 stays the lineage's lane (PR E under
+Marten's receipt c46a0e4b; no JC.net drafting until a lineage seat opens the twin); the owner's
+2026-09-25 11:00Z word already sits in PDR-142 (JC.net PR 205), so no node ruling is owed. The
+owner's answers relayed by the Director: no intake bound; coordination drafts count toward zero
+and fold twice a day; deletions approved.
+
+**Merged:** PR 209 (0caa0327, about 10:59Z), the JC.net twin of lineage PR 216's joint cures.
+Its branch was deleted by API, the worktree retired and claim e5059b77 closed. Myrtle has the
+receipt (lineage 40112d9b). The owner merged lineage PR 216 by hand at 10:50Z (81e126e8e9)
+before this twin settled; its blobs equal its head's (1392d856, 415b8304, 39ca8b24).
+
+**Unpushed: PR A**, branch `docs/exchange-register-landings`, worktree
+`jimcresswell.net-worktrees/exchange-landings`, three commits (48824c5b, 4a7011f3, 13cf8878) on
+main 57592003. The push was held at the wrap: two lineage pre-push gates held the host, so it
+takes the next free slot. The draft body is in the scratchpad (`prA.*/body.md`); if the
+scratchpad is gone, the commit messages carry it. Claims: 2fd554e1, 1d8a9dd8 and 9b8d3f42.
+The register recounts outbound 3 of 21 (J4, J9, J14) and inbound 6 of 28 at engraph
+81e126e8e9. **Six findings from the docs-adr check of 13cf8878 must be cured before the push:**
+
+1. High. L12's cell (register line about 77) credits PR 208 with "the joint text the lineage
+   adopted in its #216". That is false: PR 208's blob is d6f86aa8, and the joint text reached
+   this estate in PR 209. Fix: credit the joint text to PR 209 and append an L12 row for PR 209.
+   The PR 208 row takes PARTIAL and drops "the row is settled". Inbound stays 6 of 28 with PR
+   209 as the settling row.
+2. Medium. The `generalisations.md` banner says "every later move carries the trailer but one",
+   which is false: 8966f554 (PR 208) carries none either. Fix: sweep `ca811fe2..main` under the
+   rule's globs, name every move without a trailer in the banner, add a dispositions row for
+   each, and make the node's "from this row" read "from these rows".
+3. Medium. L12's cell: "the lineage's copy of the rule records its own bot App … registering" is
+   stale. The joint rule is host-neutral now, and the lineage's
+   `docs/engineering/merge-bot.md:286` holds that record. Fix: name that reference.
+4. Low. J14's label is past tense, but this estate's lane skill step 3 still omits the browser
+   install (the pre-push runs the site's `test:e2e`). Fix: present tense, or note this estate's
+   open step 3. The JC.net cure itself is a small follow-up PR.
+5. Low. J9's cell says "four landed", but no-skipped-tests landed as #220's `vitest/warn-todo`
+   lint gate, and its body says the rule text does not travel. Fix: say so.
+6. Low. L6's cell says "found under L12", which is stale once L12 no longer names the clause.
+   Fix: "found while landing PR 208".
+
+After those cures, the lineage rows landed since 81e126e8e9 (221, 234, 238, 245, and any
+others) get rows only if PR A reads a newer head; otherwise the next register update takes
+them. A register PR declares its read head and stops there (the napkin's 11:0xZ entry).
+
+**Agreed with Myrtle (lineage 11:01:26Z):** the next joint change of the bot-identity core,
+with JC.net drafting the bytes and Myrtle signing or amending, carries six items:
+
+- the marker's bot form, "— <agent-name> (<prefix>), an agent";
+- the preflight variable renamed from `status` (read-only in zsh) to `code`;
+- the empty-token sentence (an empty `GH_TOKEN` falls back to the stored login and answers
+  200);
+- the 403 narrowed to a body carrying "Resource not accessible by integration";
+- identify-as-agent's two passages that still assume a human login;
+- the operator's Copilot-request command bound to the stored operator token, with `GH_TOKEN`
+  and `GITHUB_TOKEN` removed from its environment (`gh auth token` prints an ambient token;
+  observed, and PR 209 thread 4111162181).
+
+It lands in both estates after PR A.
+
+**Also owed:**
+
+- The JC.net twin of lineage PR 246's branch-guard fix, through this seat once 246 lands
+  (Swallow's sweep, lineage 11:00Z).
+- PR 245's curator-pass blob 7f2857bc, at its landing.
+- This estate's lane skill step 3 browser install (item 4 above).
+- The castr cells resting on ruling 5.
+- The J13 "override variable" clause.
+
+**Re-arm on "carry on"** (nothing survives the compaction; verify by the process table first).
+The session process was pid 15907 at 11:0xZ; re-read it with
+`p=$$; ps -o pid=,ppid=,comm= -p $p`, walking up to `claude`.
+
+- `watch-comms.sh <JC.net primary> <pid>` and `watch-comms.sh <lineage primary> <pid>`, as
+  Monitors;
+- `heartbeat.sh a30304be-…,2fd554e1-…,1d8a9dd8-…,9b8d3f42-… <live coordination branch> "<label>"`;
+- `peer-liveness-poll.sh 600`.
+
+The claims open for the watcher (F-95) only; arm it before any commit window.

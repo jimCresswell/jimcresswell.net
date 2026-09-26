@@ -5620,3 +5620,77 @@ server; two hands on PR 211) goes to the retrospective and to the cost-model wor
 fourth membership measure for the wake-bridge node (cold Codex start to first landed PR, observed
 by the owner at the acceptance test): a concept addition to a ratified node, proposed on the node
 with a card line at its next touch, Swallow's to draft.
+
+## 2026-09-26T11:0xZ — Siren: the second compaction wrap; metacognition, play, exploration and reason
+
+**What changed in this seat's view (metacognition).**
+
+- The approved resume plan went stale twice within twenty minutes: the owner's 10:09Z word
+  reached this seat through the Director's resume report, then Myrtle resumed. What survived
+  was the order and the constraints, never the specifics. Re-reading live state before leaving
+  plan mode is what caught the first change.
+- PR A grew from one commit to three, and each review found more landings, because the lineage
+  kept merging (eleven by the owner's hand, 10:35Z to 10:48Z). I accepted a reviewer's
+  "complete at merge" frame, when the register needs only to be true at its declared read head
+  (every landing row carries its own head). The loop grew the surface, which is the
+  divergence signature. Next time the register PR declares its head and stops there.
+- Running the text found what reading it did not. The joint rule's preflight names its
+  variable `status`, which is read-only in zsh, the shell Claude Code seats run. Three Copilot
+  rounds and the Codex leg in the lineage, and Wilma here, had all read that text. One
+  execution found the defect.
+- Relayed facts were wrong four times this hour, and first-hand reads caught each one:
+  - an Explore survey counted 19 open lineage PRs, not 24, because it dropped the drafts;
+  - the Director's Explore pass read a stale coordination-branch copy of PDR-142;
+  - a subagent ran `git fetch` under a "read-only" brief (twice, in two agents);
+  - the thread record's "four declined" J9 count was really three.
+
+**Tooling feedback (capture-practice-tool-feedback).**
+
+- `pnpm --filter @engraph/agent-tools validate-exchange-register -- --write-counts` passes a
+  literal `--`, and the validator refuses it as bad usage. Run the tsx entry directly.
+- `gh auth token` prints an ambient `GH_TOKEN`, so a command meant to reach the operator's
+  stored credential gets the bot's instead (PR 209 thread 4111162181). This is in the joint
+  change.
+- The commit queue refused a window claim before the watcher was armed (F-95). This is correct
+  behaviour, but on resume the watcher must be armed before the first commit.
+- Explore agents briefed as read-only still ran `git fetch`. It only moves remote-tracking
+  refs, but it is a write; say "no fetch" in the brief.
+
+**Play harvest** (ten minutes over the morning's events; associations only):
+
+- The owner's hand merges of eleven PRs in thirteen minutes look like the ceiling a merge queue
+  would reach with CI kept. That is evidence for the Director's suite proposal A.
+  Kept → the Director's suite.
+- Inverted: the twin rule (ruling 4) looked like the defect, since the owner merged 216 before
+  its twin and nothing broke. A second look reversed it: PR 209's round one then found a
+  joint-text defect after 216 had merged, which is exactly the by-blob re-take that ruling 4
+  prevents. Kept, reversed → today's case is support for ruling 4, not a counter-instance.
+- `status` is read-only in zsh, and a plan node "stores no status". A word the system already
+  owns cannot carry your meaning. Discarded as forced: a pun, not a structure.
+- `gh auth token` reports its environment rather than the credential it names. This is shaped
+  like yesterday's letter (a tool built for a world with one author). Kept lightly: it
+  reinforces an existing seed and adds nothing new.
+
+**Concept exploration: artefacts that summarise a moving external state.**
+
+- Frame: the register, the plan and the PR bodies go stale during their own review. That grows
+  review rounds and makes counts false by merge time. The mechanism is claiming completeness
+  "as of now" rather than "as of a read head".
+- What changed: the register already carries a head per row, so the structure supports
+  read-head truth, and the gap was my discipline. A generator for landing rows (pull request
+  bodies name their row ids) was weighed and not proposed: the exchange is "a fixed process
+  with an end", so the build would not pay.
+- P1: a register pull request names its read heads in its body and takes no landing after them.
+  Warrant: today's growth from 15 rows to 26. Falsifier: a merged register update found false at
+  its own declared heads.
+- P2: execute every command in a joint text, in the shell the seats run, before signing it.
+  Warrant: `status`. Falsifier: a later defect of the same class in text that was executed
+  before signing.
+- Unresolved: whether the lineage's slot, now that the owner's hand-landing hour is done,
+  converges to zero open PRs without proposal A.
+
+**Reason: order after the compaction.** Commit or verify the records, re-arm, then PR A: cure
+the six docs-adr findings (the thread record lists them), push in a free gate slot, open, run
+two rounds, merge. Then the six-item joint change (JC.net drafts, Myrtle signs), then the
+owed twins. Every step is reversible; the only thing that decides the order is where goal one
+counts.
