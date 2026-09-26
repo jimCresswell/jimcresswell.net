@@ -765,3 +765,13 @@ The session process was pid 15907 at 11:0xZ; re-read it with
 - `peer-liveness-poll.sh 600`.
 
 The claims open for the watcher (F-95) only; arm it before any commit window.
+
+**The Director's check-in 24 tally (JC.net comms, 11:04:32Z), read at the wrap: this seat's lanes**
+in the owner-approved plan (about 10:56Z) are the register PR (PR A above), the two-round rule's
+text into JC.net, and the slot protocol text. Ruling 2: the owner's cost model (slices sized to
+the optimum, not the minimum; rows that share a story go as one moderate PR) goes into PDR-132
+§Decision and `design-work-for-small-prs` as one blob in both estates, which Siren authors and
+Myrtle signs. Ruling 5: the merge queue is refuted on vendor facts; ADR-204 stands with an
+amendment-log note. Ruling 1: among ready PRs, order is by changed-file count ascending. On
+resume, read the tally in full (the event's body) before choosing between these lanes and the
+joint change above; the Director orders them.

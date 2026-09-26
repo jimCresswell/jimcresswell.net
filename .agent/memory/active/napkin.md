@@ -5694,3 +5694,9 @@ the six docs-adr findings (the thread record lists them), push in a free gate sl
 two rounds, merge. Then the six-item joint change (JC.net drafts, Myrtle signs), then the
 owed twins. Every step is reversible; the only thing that decides the order is where goal one
 counts.
+
+Correction, 11:0xZ (Siren): the play harvest's first seed (the owner's hand merges as evidence
+for a merge queue) is superseded by the Director's ruling 5 of check-in 24. The merge queue is
+refuted on vendor facts read first-hand (the required CodeQL check never reports on
+`merge_group`), which the association could not see. The discard pile keeps it, as a seed that
+a primary-surface read overturned.
