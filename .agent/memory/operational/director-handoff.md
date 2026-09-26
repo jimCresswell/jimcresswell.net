@@ -180,15 +180,13 @@ Every line answered first-hand, none inferred:
   name PRACTICE_STATUSLINE_LOG_FILE in place of OAK_STATUSLINE_LOG_FILE, or the statusline log
   stops (Siren, 13:10Z; the file is the operator's).
 
-## Current handoff state (2026-09-26, after the 15:28Z fold of PR 211; pointer-biased by design)
+## Current handoff state (2026-09-26, COMPACTION BOUNDARY 8 at 16:32Z; pointer-biased by design)
 
-Resumed at the owner's "carry on" (14:42Z) after COMPACTION BOUNDARY 7 (13:08Z). PR 211, the day's
-first coordination draft, folded to main at 15:28:25Z as SHA:26ca4dab9; the successor coordination
-branch is `coordination/2026-09-26-26ca4d` (the primary resides there; DUE at the UTC rollover;
-its draft PR opens on its first push). The napkin's latest dated blocks (the 15:28Z fold block,
-the 15:00Z check-in 27 and the blocks after them) are the live reading: the state, the ready list,
-the card queue, the seats. Processes: the monitor (both streams and the pulse) under the new
-branch label. Claim 58c2684a.
+COMPACTION BOUNDARY 8 at 16:32Z on 2026-09-26, at the owner's word; the freeze binds until "carry
+on". The napkin's 16:32Z block is the live reading: the state, the ready list, the card queue
+(eight lines), the re-arm recipe and the owed-on-resume order. PR 211 folded at 15:28:25Z as
+SHA:26ca4dab9; the primary resides on coordination/2026-09-26-26ca4d (draft PR 215, DUE at the
+rollover). Processes: none of this seat's. Claim 58c2684a retained.
 
 Written for a reader who was never here and may run on a different model. The live reading is
 the napkin's latest dated block (`.agent/memory/active/napkin.md`; on 2026-09-26 the check-in and

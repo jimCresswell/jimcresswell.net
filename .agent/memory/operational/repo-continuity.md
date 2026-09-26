@@ -21,6 +21,13 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
+- **2026-09-26T16:32Z, the Director's COMPACTION BOUNDARY 8** (Wick binds Temper, ed7b48), at the
+  owner's word. JC.net at its coordination draft only (215, DUE at the rollover); PRs 211 (the
+  fold), 216, 218 and 217 merged since 15:28Z; the lineage at twelve open with the door turning
+  (five landings since 14:42Z, five opened); the seats live and routed; the freeze binds this seat
+  until "carry on". The napkin's 16:32Z block is the live reading; the boundary records are
+  uncommitted by the owner's morning precedent and go up first on the resume.
+
 - **2026-09-26T15:28Z, the fold of PR 211 landed and the successor is cut** (the Director, Wick
   binds Temper, ed7b48). PR 211 merged by the bot at 15:28:25Z as `SHA:26ca4dab9` (two Copilot
   rounds cured in `SHA:dc42f15e` and `SHA:a36dc7db`; the late-cure leg's three findings disposed
