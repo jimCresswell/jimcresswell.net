@@ -7239,3 +7239,56 @@ sketch; (9) the wording PR, drafted, opens at the first free slot; (10) the Clef
 NEXT: suite 27 about 21:24Z on this snapshot (the frame carries the Lane status line and the
 trigger's status); check-in 32 about 21:47Z with the count read first; the folds at 00:00Z with
 the count read at each merge instant and the trigger judged there.
+
+## 2026-09-26T21:36Z — Director suite 27 tally; P7 corrected to done in both estates; the first DRIFTING of the day (the Director)
+
+Frame built after check-in 31 (21:02Z) from the 21:02Z snapshot and the 21:26Z reads, with suite
+26's cures applied (the Lane status line; the trigger's re-anchored condition and status; 250
+mapped to the 19:3xZ word only). Eight returns, none UNDELIVERED; the procedure seat judged only,
+in both stances.
+
+| Role | Stance | Work | Frame | Redirection |
+| --- | --- | --- | --- | --- |
+| cricket-judgement-low | normal | ON-TRACK | CONTRADICTED (P7 "not started" against the status table's "done") | correct P7; a one-line ratification item for the trigger re-anchor on the card queue |
+| cricket-judgement-medium | normal | ON-TRACK | CONTRADICTED (P7) | correct at check-in 32 from 249's diff, the primary surface |
+| cricket-judgement-high | normal | ON-TRACK | SOUND | none |
+| cricket-procedure-xhigh | normal | ON-TRACK | CONTRADICTED (P7) | reconcile P7 with its verified state |
+| cricket-judgement-low | adversarial | DRIFTING (goal one's eight rows have no named seat after 245) | CONTRADICTED (P7; Lane 2's order changed by the 250 routing) | name the seat and slot sequence for the eight goal-one rows, interleaved with 250's lane |
+| cricket-judgement-medium | adversarial | ON-TRACK | CONTRADICTED (the re-anchor rests on the Director's own amendment; P7) | judge the trigger at the fold by the quoted condition unless ratified; no WIP slot for a Director-authored retrospective on that authority |
+| cricket-judgement-high | adversarial | ON-TRACK | CONTRADICTED (P7) | correct P7 before the retrospective inherits it |
+| cricket-procedure-xhigh | adversarial | ON-TRACK | NARROWED (the amendment note not quoted in SOURCES; two sub-conditions) | quote the amendment verbatim; state both sub-conditions |
+
+Tally: 7 ON-TRACK, 1 DRIFTING; frame SOUND 1, NARROWED 1, CONTRADICTED 6, all six on the P7 line.
+
+CORRECTED (P7, read first-hand at 21:3xZ): the rule "A ruling names the primary surface it read"
+is at line 64 of `.agent/rules/verify-dont-trust.md` at origin/engraph, carried by PR 249's merge
+(SHA:527eb969c, which touched that rule file and two others), and landed in JC.net by PR 214
+(merged 12:39:14Z as SHA:49b2addd5, the same rule file). Lane 1 item 6 (P7) is DONE in both
+estates; the Lane status line at check-in 31 was wrong and the plan's own status table was right.
+The retrospective reads P1 to P10 against their falsifiers from this corrected line.
+
+ACCEPTED (the trigger re-anchor goes to the owner; the retrospective's PR takes no slot from the
+seats): the re-anchored condition is the Director's amendment of the plan's own clause, not an
+owner word, so it joins the card queue as line 11, a one-line ratification with a default; at the
+00:00Z fold both readings are recorded, the plan's quoted condition ("both estates read one open
+PR each") and the re-anchored one (the count at or under the limit AND every drain row landed, two
+sub-conditions, both required); the retrospective is authored when the re-anchored condition reads
+met, and its PR opens only behind every seat's waiting item (the wording PR, the twin, the reader,
+the guard twin, the register PR, the goal-one rows), never ahead of them. Suite 28's SOURCES quote
+the amendment note verbatim.
+
+ACCEPTED IN PART (the DRIFTING verdict, goal one's remaining rows): true that after 245 Myrtle
+goes to 250's lane for about two seat-days and no seat was named for the eight goal-one rows (J2,
+J3, J6, J7, J8, J16, J20, J18's compare half). Two owner words differ in priority here: the
+2026-09-25 arc ("prioritising all JC.net Practice innovations being integrated into OCE") and
+tonight's Appendix E on 250 (four skills for complete implementation in this PR, the owner's hand
+on it at 20:24Z and 20:25Z). That survives the lenses as the owner's intent, so it is card line 12
+with a default: 250's lane first (the owner's hand is on it), and Siren takes J2 and J3 (docs
+rows) after the runbook twin and the register PR, the code rows (J6, J7, J8, J16, J20, J18's
+compare half) to Myrtle after 250 or to Swallow after the reader, one PR per row at a free slot.
+The default is routed now as the standing order; the owner reverses it by a word. The verdict is
+recorded as the day's first DRIFTING.
+
+Landings since check-in 31: 246 at 21:22Z (Swallow's door, the count reaching the limit at three);
+256 at the slot (Siren, from 21:23:56Z). Engraph's push CI on 246's merge SHA:b332041ba: eight
+success and four in progress at 21:26Z.
