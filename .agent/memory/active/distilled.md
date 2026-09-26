@@ -152,3 +152,16 @@ Both reversed. The Decision Lenses answer questions the ratified text leaves ope
 sequencing, a form the doctrine forbids); they never answer against the text. A case for changing
 ratified text is a card to the owner, after the item lands, never a PR. Source: napkin
 2026-09-13 (Session 8); routing: `director-handoff.md` §Standing owner rulings, PDR-117 candidate.
+
+## A seat's stated fact is not a read; a ruling names the surface it read (2026-09-25)
+
+Three Director recommendations reached the owner on facts taken from seats' summaries: a CI
+flake counted as two instances from a line (the runs said one); a register row called LOCAL from
+a line (the row said cure); two GitHub rulesets read as gaps from a line (the `main` ruleset is
+the upstream mirror's fast-forward-only lock, and a pull-request rule would have broken the
+mirror). The owner's condition, a full Cricket suite plus the assumptions reviewer, reversed all
+three; eight read-only Crickets could not, the one reviewer with 35 source reads did. Before a
+routing, an acceptance or a recommendation that rests on a count, a row, a ruleset or a workflow,
+read that surface in one command and name it in the ruling. Source: napkin 2026-09-25 (21:12Z,
+21:2xZ, 21:52Z; the suite 20 tally); routing: `verify-dont-trust`, `read-before-asking`, the
+Director handoff §Standing lessons, a rule candidate.

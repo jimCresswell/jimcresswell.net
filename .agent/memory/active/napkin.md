@@ -5156,3 +5156,231 @@ Redirections acted on between the build and the tally: PR 242's door read by typ
 (85446bbc4 BLOCKED: unit-tests and browser-tests pending, nothing failed; no refusal). The records
 push landed 22:1xZ (two commits), nothing unpushed. PR 216's round one: four joint cures at
 6c04233ee (Myrtle, 22:18Z) for Siren to take.
+
+## 2026-09-26T09:53Z — Siren: wrap for compaction; metacognition, play and exploration harvest
+
+- **A pause misses clock-pinned duties.** A usage limit froze this seat from about 22:42Z to
+  09:48Z. That the other seats froze too is inferred, not read: the streams since 22:30Z were
+  unread at this wrap. The 00:00Z folds did not run, and the coordination branch is still
+  2026-09-25's. The recorded queues are hypotheses after the freeze.
+- **The summary's plan was carried out fluently, and it drifted once.** The plan was "one issue
+  comment, two lines" for PR 208's final tip. I split it into a thread reply without the
+  reference line, plus one issue comment. The merge bot accepted, and the thread anchors the
+  reply. Small, but it is the fluency tell: I executed a summary's plan without re-reading it
+  against the ratified form.
+- **The queue ran reactively.** Every lineage event became a JC.net intake item, so the work
+  flowed lineage to JC.net. Goal one flows the other way. The next session opens on the
+  register's J-row landings.
+
+**Play harvest (associations, not findings).** Kept:
+
+- _Use versus mention_, an observation: n=3, no comparator. The hook policy read "git push -f"
+  out of `pgrep -f` in a command's text. Myrtle's send check matched an error word in her echoed
+  body. The vocabulary validator flags "two-threshold" in napkin lines that quote the retired
+  term. Different tools each time. A fourth independent instance, with a count of clean runs,
+  would warrant an exploration.
+- The profile root is shaped like the primary checkout before the commit queue existed.
+- The 00:00Z fold is shaped like a cron job on a laptop that sleeps (the anacron shape is "the
+  first wake after the rollover"). This one is for the Director.
+
+Discarded, visibly:
+
+- "The two-round rule routes unpushable findings into the exchange": forced; it was timing.
+- "Every cure tonight was a proxy for the property": too general to falsify.
+
+**Exploration: profile writes with one identity and many writers.** This defect is proven by
+reading the mechanism in both estates, not inferred from the one collision (7 profile commits
+in 11 days, 1 collision), so the one-instance rule gates only a wider claim. The check's own
+cure text for a dirty tree tells whoever runs it to sweep. For the Director to order:
+
+- P1, interim: pull, read status, and ask the writer of any foreign write to push it first.
+  Falsifier: a write lands between the status read and the push.
+- P2, a joint tool change: `push` requires `--path`, commits only those documents and names any
+  undeclared dirty file. Falsifier: wrappers that pass every file.
+- candidate: P3, a joint amendment to PDR-141 decision 15. "One author" means one identity,
+  with many writers. Falsifier: a ruling that one seat alone writes the profile.
+- Unresolved: why Myrtle's write sat about 25 minutes; whether the lineage's check text
+  matches ours.
+
+## 2026-09-26T09:50Z — COMPACTION BOUNDARY 5 (Director, Wick binds Temper, ed7b48)
+
+OWNER WORD (native, the Director's chat, read at 09:48:10Z), verbatim: "ultrathink
+/jc-metacognition /jc-free-play /jc-concept-exploration /jc-wrap please prepare for compaction and
+stop all processes". A freeze order: the wrap programme runs, nothing starts until the compaction
+lands, the session resumes on the owner's "carry on".
+
+### State at the word (read first-hand at 09:48Z to 09:50Z; the methods named)
+
+- Clock 09:48:10Z, eleven hours after check-in 23 fired at 22:36Z; the Director's last act was the
+  suite 20 tally (48fc2f8c, 22:20Z). Streams (stream-since.sh): the lineage had 8 events after
+  22:29Z, all heartbeats (Myrtle 5, Swallow 3), none after midnight; JC.net: Siren's heartbeats to
+  09:46:32Z, cycle "PR 208 merged; the operator profile edit next". gh pr list: lineage 22 open
+  (245, 244, 243, 241 BLOCKED at the slot since 22:26Z, 240, 238, 237, 236, 235, 234, 232, 231,
+  229, 226, 224 the owner's draft, 223 the coordination PR, 221, 220, 218, 217, 216, 211); JC.net 1
+  open (189, the coordination PR). Merged since 22:07Z: the lineage's 233 (286440f78) and 242
+  (8c9434ae3, 22:24:18Z), nothing after; JC.net none after 208. Host load 2.22, no gate running.
+  JC.net primary: coordination/2026-09-25-cf6897 ahead 3 of origin (f00a6cd2 and eedfb3e3 Siren's,
+  48fc2f8c mine), tree clean before this block. The lineage primary: coordination/2026-09-25-749769
+  level with origin, tree DIRTY with seats' work the Director did not touch (frictions-register.md
+  +21 lines, F-209, Swallow's records write; Titan's formation letter untracked, 15:54Z); Swallow's
+  records commit of 21:39Z never ran.
+- PROCESSES: ScheduleWakeup stopped (no wakeup was pending: check-in 23's fired at 22:36Z and no
+  successor was scheduled); the last Monitor (bpdcg29wm) expired at about 22:50Z; no background
+  task, no subagent (the last suite's eight Crickets all returned by 22:20Z). Process table of this
+  seat's: 0. Claim 58c2684a RETAINED (a compaction boundary, not a retirement).
+- RE-ARM RECIPE FOR RESUME (as if nothing survives): verify by id first (the task list, the process
+  table), then `bash /private/tmp/claude-502/-Users-jim-code-personal-jimcresswell-net/ed7b489a-5419-46b6-8ebf-572f7e0a4d5d/scratchpad/director-monitor.sh 58c2684a-5e8d-4a33-a29e-ed074df63128 coordination/2026-09-25-cf6897 "<label>"`
+  as a Monitor, timeout 1800000, re-armed at each expiry (the script watches both streams without
+  heartbeats, prints [OCE] for the lineage, and runs pulse.sh); the cadence as ScheduleWakeup
+  check-ins every 45 minutes with a suite 22 minutes after each; the scratchpad may not survive,
+  in which case the script is rewritten from its description here and in the handoff.
+- OWED ON RESUME, in order: both coordination folds by the coordination-fold skill (JC.net 189 due
+  11:17Z today; the lineage's 223 due 17:05Z today, from its primary, with the dirty seat files
+  left to their seat's commit or named in the fold); the seats checked as the handoff's programme
+  says; the Codex seat the owner starts (PR 211's sync and push, PR 241's live proof after 241
+  lands); the handoff file's drain (2,146 lines against 160; the live board stale since
+  2026-09-13).
+
+### Metacognition (retrospective mode, the directive applied to this seat's day)
+
+Inherited: the cadence shape (45-minute check-ins, suites 22 minutes after, the owner's
+2026-09-24 word) and, from my own earlier boundaries, a frame that grew from 326 to 520 lines
+and was rebuilt by regex every cycle. Ratified from first principles? The cadence yes (the
+owner's word); the frame's size and its hand-copied state, no: they are my inheritance from
+myself. Does the shape fit the impact? The owner's three goals moved by the seats' doors
+(fourteen lineage merges and twenty JC.net merges on 2026-09-25) and by two rulings of mine (the
+readiness slot; the config split); the twenty cadence suites mostly judged my frame's staleness
+(suites 16 to 20: 4 to 6 CONTRADICTED each, every one a hand-copied number or a fired gate), while
+the one decision suite with a read-capable reviewer reversed three of my five recommendations.
+The bridge from the next action to the impact: the folds and the seats' doors, not another frame
+cure. The checked assumption: "more cures per suite converges the frame" is false on the
+evidence (each suite's cures bred the next suite's residue); a frame whose state block is
+GENERATED from reads (gh pr list both estates, merges since, the process table, the registers)
+and pasted verbatim removes the class. Verdict: change the frame's shape at resume; keep the
+cadence, which is the owner's. The fluency tripwire fired once today and I did not heed it: the
+three recommendations arrived smoothly from seats' lines and I wrote lenses under them.
+
+### Free play (time-boxed to the day's events; associations, never findings)
+
+- The `main` ruleset named "mirror branch: fast-forward only" and my reading of it as "the only
+  control" — this reminded me of reading a lock as a hole because I read its shape and not its
+  name. KEPT (it hums; it grew a shape below).
+- Myrtle sending one event three times because a grep for the word "error" matched its own body
+  text, beside my residue sweeps grepping PR numbers through a frame I wrote — these look shaped
+  alike: string matching standing where reading should stand, and both felt like care. KEPT.
+- The readiness slot's "taken/released" events turning over eleven landings with 16-second
+  handovers — this is shaped like a token ring; a ring needs no arbiter once the token rule is
+  agreed, and the Director stopped being the arbiter the moment the ruling landed. KEPT as a
+  small sharp observation for the napkin only.
+- The seats' silence after 22:30Z and the host's usage-limit pause of 19:13Z — "the same cause".
+  DISCARDED: forced; nothing read supports it; the seats may have hit their own limits or their
+  sessions ended; recorded as unknown, not as a guess.
+- The owner's "as everywhere" in the scope file as a hint of intended convergence — DISCARDED
+  after the reviewer found no record of such an intent; I had kept it as a hedge.
+- Sat still on: the owner's three sentences at 21:41Z did more for the day than my twenty suites.
+  Not an association, a fact; it goes to the letter, not here.
+
+### Concept exploration (four movements) on the day's recurring incident class
+
+1. Raw observations: three Director premise misses from seats' summaries (the flake count; J14's
+   row; the rulesets and the mirror), all reversed by one reviewer's 35 source reads; six cadence
+   suites CONTRADICTED on stale hand-copied numbers or fired gates in my own frame; a peer's
+   triple send from a grep over its own prose. Exact words that matter: the reviewer's "before
+   anything reaches the owner as a recommendation about a GitHub ruleset, a workflow-written
+   branch or a Core record, read the primary surface yourself in one command".
+2. The problem space: the kind of thing is a verification instrument that checks copies against
+   copies. The gap: the Director's rulings and frames rest on text (a seat's line, my frame, a
+   grep) and are never reconciled with the surface the text is about. Who it harms: the owner
+   (three wrong recommendations reached him; one would have broken the mirror carrier by API
+   under his credentials), the seats (rulings built on wrong premises), the suites (spent on
+   residue). Mechanism: a 500-line frame rebuilt by regex accumulates copies of state; each cycle
+   edits some and not others; grep verifies the copy's self-consistency; the world moves. The
+   constraint: a 45-minute cadence and the freeze; success: a ruling names the surface it read,
+   and the frame's state block cannot be stale because it is generated.
+3. Solutions re-opened: the fluent answer "one more cure per suite" is the treadmill the evidence
+   refutes (suites 16 to 20). The inversion: the frame is not a document to keep consistent but a
+   snapshot to regenerate; READING then cites the snapshot's rows rather than restating numbers.
+   The other fluent answer, "more Crickets", is refuted too: eight read-only judges missed what
+   one reading judge found; the instrument for a decision is a reader, the instrument for a frame
+   is a Cricket.
+4. Synthesis and proposals, each with warrant and falsifier: (a) at resume, the cadence frame's
+   SOURCES state block becomes a generated snapshot (one script: gh pr list both estates with
+   states and authors; merges since the last build; the process table by worktree; load; the
+   unpushed counts; the last heartbeat per seat), pasted verbatim and cited by row; warrant:
+   every CONTRADICTED verdict in suites 16 to 20 was a hand-copied number or a fired gate;
+   falsifier: a suite on a generated snapshot still returns CONTRADICTED on a state claim. (b) A
+   rule candidate for both estates, "a ruling names the primary surface it read" (the distilled
+   entry of this boundary); warrant: the reviewer's reversals; falsifier: a ruling that names its
+   read surface still reverses on a later source read. (c) Decision suites keep the shape that
+   worked (eight Crickets and the assumptions-expert with reads); warrant: 21:52Z; falsifier: a
+   decision suite with the reviewer still lets a false premise through to the owner. Unresolved
+   evidence: whether the owner wants the cadence frame at this weight at all (he ratified the
+   cadence, not the frame); to ask in the morning report, once, with (a) as the default.
+
+### Promises sweep (every commitment this seat made on 2026-09-25 after 18:41Z)
+
+- The Gale ask to the owner: DISCHARGED by the owner's 21:41Z word (the Codex seat in the morning).
+- The recommendations suite before execution: DISCHARGED at 21:52Z; the survivors posted
+  (f8b435e7, f2653ebb) with executors named.
+- The scope file's two lines: FORWARDED to Siren (live, on it at 09:46Z).
+- The curator-passes retirement with the generator cured: FORWARDED to Myrtle, PR 245 open.
+- PR 241's conditions 6 to 8, the guard-fix PR, the wrapper PR, B0: FORWARDED to Swallow (silent);
+  the first act of whoever holds Swallow's lane is PR 241's door.
+- The folds at the 00:00Z rollover: NOT DISCHARGED (the Director's cadence ended at 22:36Z with
+  no successor wakeup scheduled, so the rollover passed with no seat awake; the falsifier for
+  "the folds run at the rollover regardless" fired); owed on resume, first.
+- The two ruleset recommendations: WITHDRAWN and DROPPED, recorded on both streams.
+- The handoff file's drain: NOT DISCHARGED, still queued after the folds.
+- The frictions register entry for the CI commitlint gap (F-209): written by Swallow, UNCOMMITTED
+  on the lineage primary; owed to that seat's next records commit.
+- A reply to Siren's 22:20Z-era lines on todo 7's gate and todo 8's place: asked at check-in 23's
+  prompt, never asked (the wakeup fired into a session that did not run); asked at resume.
+
+### Attribution flags (inference, not observation)
+
+- "The seats went silent about 22:30Z" is observed from the streams; WHY is not known and not
+  inferred. "Swallow's records commit never ran" is inferred from the dirty tree plus its 21:39Z
+  gate notice; the commit may have failed a gate rather than never started.
+- PR 227 as "batch six's first" is Myrtle's statement, read as such; the merged list confirms the
+  merge, not the batch membership.
+- Myrtle's launch prompt is known only through Myrtle's own quotation with an ellipsis.
+
+### Metaloss passes
+
+1. Compressed reasoning: the day's rulings live as one-line dispositions in this napkin with event
+   ids; the reasoning for the three reversed recommendations is in the 21:52Z block and the
+   reviewer's report is not conserved verbatim anywhere (its substance is in the 21:52Z block and
+   the distilled entry). Decision-sufficient for a successor: yes for what to do, partly for why
+   R4's mechanism fails (the REST schema fact, "required_reviewers accept a Team only", is in the
+   21:52Z block). Recorded as sufficient.
+2. Promises: above; two not discharged, both owed to this seat with a named order.
+3. Attribution: above.
+4. Blind-spot bounds: this seat cannot see the lineage seats' sessions (whether they are paused or
+   ended), the Codex seat's state, or any event on a stream between the last read and the
+   compaction; the scratchpad may not survive; the recommendations-suite reports (nine agents'
+   full outputs) exist only in task files under the session directory, not in the repository.
+5. Index of homes: this block (the napkin, tracked, pushed with this commit); the Director handoff
+   §Current handoff state (rewritten) and its routing log entry; repo-continuity §Current State
+   (the boundary bullet); distilled.md (the lesson); the formation letter in `.agent/experience/`;
+   the owner's words verbatim in the 21:42Z block; the suite tallies in their dated blocks; the
+   comms events by id on both streams; the auto-memory files under the harness's memory directory
+   (two new entries). A successor loads the handoff first, then this block.
+6. External bound: this scan is the same mind that missed the mirror; the error signature to point
+   outside eyes at is "a fact stated by a seat and repeated by the Director without a read", and
+   the reviewer's report showed exactly where it bites (rulesets, workflows, register rows).
+7. Fence sweep: no owner wording was held off the repository at the owner's word during this
+   stretch that this seat knows of; the owner's 21:41Z words are recorded verbatim by his own
+   choice of channel. Bound: a fence set before 14:38Z on 2026-09-25 would be in the earlier
+   boundary blocks, not re-swept here.
+8. The fixed point: a further pass would only re-find the two undischarged promises, the silent
+   seats' unknown cause and the unconserved reviewer report; the recursion closes here.
+
+### Small sharp observations (play seeds and rulings not yet homed)
+
+- The readiness slot with taken/released events ran eleven doors with no arbiter after one
+  ruling (e365cfa8): a rule candidate for pr-lifecycle §Phase 7 in both estates, a joint cure for
+  the exchange seats.
+- Myrtle's triple send (a grep for "error" over a tool result that echoes the body): the check
+  reads the tool's event id, Myrtle's own cure; the same class as the frame sweeps.
+- The check-in 23 wakeup fired at 22:36Z into a session that did not run it; the cadence has no
+  backstop when the Director's harness pauses, and the rollover folds depended on it.
