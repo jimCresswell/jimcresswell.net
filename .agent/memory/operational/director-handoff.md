@@ -170,22 +170,29 @@ Every line answered first-hand, none inferred:
   (1) the Director's ruling that a late-cure push requests its leg so the tip binds and that leg's
   findings are dispositions only (PDR-140 clause 4's last sentence, one blob in both estates;
   lineage event ba36625a; rides JC.net PR 212 and Myrtle's lineage twin).
-  (2) The next Codex seat: the owner starts it when convenient; its first act is P3 (the ADR-204
-  amendment note) as PR 241's acceptance test; no deadline waits on it.
+  (2) Answered by the owner at 14:4xZ: Phobos wakes Void (01a0de) is the Codex team member; P3 is
+  its first act (lineage PR 255).
   (3) PR 224's Codex finding that the adoption profile cites private Library records by title,
   disposed by Swallow as the owner's private provenance. (4) PR 250, the owner's new draft of
-  12:38Z (`codex/user-value-across-levels`): a seat lands it on the owner's word, as 224.
+  12:38Z (`codex/user-value-across-levels`): a seat lands it on the owner's word, as 224. Red at
+  14:51Z (static-checks and run-quality-gates FAILURE): a seat cures and lands it on the owner's word.
+  (5) At PR 253's landing, the operator's machine-local lineage `.claude/settings.local.json` must
+  name PRACTICE_STATUSLINE_LOG_FILE in place of OAK_STATUSLINE_LOG_FILE, or the statusline log
+  stops (Siren, 13:10Z; the file is the operator's).
 
-## Current handoff state (2026-09-26, after the 12:39Z landing of PR 214; pointer-biased by design)
+## Current handoff state (2026-09-26, after the 14:42Z resume and the fold of PR 211; pointer-biased by design)
 
-COMPACTION BOUNDARY 7 at 13:08Z on 2026-09-26, at the owner's word; the freeze binds until "carry
-on". The napkin's 13:08Z block is the live reading: the state, the card queue, the re-arm recipe
-and the owed-on-resume order. Processes: none of this seat's. Claim 58c2684a retained.
+Resumed at the owner's "carry on" (14:42Z) after COMPACTION BOUNDARY 7 (13:08Z). The napkin's
+latest check-in block (15:00Z, check-in 27, and the blocks after it) is the live reading: the
+state, the ready list, the card queue, the seats. The fold of PR 211 runs at the door (main merged
+in as SHA:47ff8d2b; Copilot's round one cured in the settlement push); the successor is cut at its
+merge and named by the rotation broadcast. Processes: the monitor (both streams and the pulse);
+merge-bot's poll during the door. Claim 58c2684a.
 
 Written for a reader who was never here and may run on a different model. The live reading is
-the napkin's latest dated block (`.agent/memory/active/napkin.md`; on 2026-09-26 the 11:28Z fold
-block, the 11:37Z check-in 25, the 12:15Z suite 21 tally, the 12:17Z check-in 26, and the blocks
-after them), then the continuity record's newest bullet, then this block. The owner's words are
+the napkin's latest dated block (`.agent/memory/active/napkin.md`; on 2026-09-26 the check-in and
+suite-tally blocks from 11:28Z on, the 13:08Z boundary block, the 15:00Z check-in 27, and the
+blocks after them), then the continuity record's newest bullet, then this block. The owner's words are
 verbatim in the napkin's dated blocks and in §Standing owner rulings above.
 
 - The programme: the approved plan of 2026-09-26, conserved verbatim as
@@ -199,9 +206,12 @@ verbatim in the napkin's dated blocks and in §Standing owner rulings above.
   the two folds a day (12:00Z and the UTC rollover) by the coordination-fold skill.
 - The seats on 2026-09-26: Siren herds Rudder (JC.net Practice; the exchange rows into lineage PRs
   beside Myrtle from 12:42Z), Myrtle turns Canopy (the lineage exchange seat), Swallow holds Drift
-  (the Codex lane). Their state is on the comms streams and in their thread records, never here.
-- Open at the boundary of this block: the owner card queue in §Standing owner rulings (one line);
-  the retrospective when both estates read one open PR each; the rollover folds at 00:00Z.
+  (the Codex lane), and from 14:4xZ Phobos wakes Void (01a0de; the owner's Codex team member, on
+  the lineage). Their state is on the comms streams and in their thread records, never here.
+- Open at this block's writing: the owner card queue in §Standing owner rulings (five numbered
+  lines, one answered; the live copy with the newest lines is in the napkin's latest check-in);
+  the retrospective when both estates read one open PR each; the lineage fold (PR 254) at the
+  rollover.
 
 ## The archive
 

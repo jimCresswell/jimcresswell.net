@@ -188,3 +188,14 @@ whole was checked. The fragment (a header line, a block about to be appended) is
 in one command (`wc -c` on the header; markdownlint on the block file) before it joins the record;
 a check that runs only on the whole runs late, and each late refusal cost a commit or a gate run.
 Source: napkin 2026-09-26 (11:37Z to 12:49Z); routing: `lint-after-edit`, `compute-dont-hope`.
+
+## Read the stream before a routing post on a contested item (2026-09-26)
+
+Three Director posts in five minutes on one item, each written from the monitor's last events
+rather than a fresh read of the stream: a routing crossed a pickup the seats had already settled
+between themselves, a ruling crossed their settlement, and its withdrawal crossed a seat's
+absorption of the ruling, so the item changed hands four times with no source edit. One command
+reads the stream since the last post; a routing on a contested item is written after that read and
+is one line. Source: napkin 2026-09-26 (15:00Z); routing:
+`directed-routing-requires-absorption-ack`, `read-before-asking`, the Director handoff §Standing
+lessons.

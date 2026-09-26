@@ -2,7 +2,7 @@
 
 The four accreted blocks of `director-handoff.md` (§Live board, §Routed verdict, §Decisions overnight,
 §Routing log), moved here whole by the Director (Wick binds Temper, ed7b48) on 2026-09-26 under the
-plan's Lane 1 item 5, unchanged from the file as committed at afd287be. The behaviour-changing owner
+plan's Lane 1 item 5, unchanged from the file as committed at SHA:afd287be. The behaviour-changing owner
 words the routing log held after 2026-09-21 were graduated into the live file's standing rulings
 before the move; everything else here is history and reads as it was written.
 

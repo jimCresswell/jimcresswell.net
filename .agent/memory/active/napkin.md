@@ -5540,7 +5540,7 @@ OWNER WORDS this hour (native, verbatim, in order; the times are the reads):
   PRs many, many times faster than Practice agents".
 - About 10:57Z: "check, I merged them in order of the number of changed files". VERIFIED from the
   merged list at 10:58Z: 240, 229, 235, 243, 247 (one file), 226 (two), 231, 236 (three), 220, 232
-  (four), 237 (five), 216 (seven); 211 also by the owner's hand at 10:41:59Z (fae981877), twelve
+  (four), 237 (five), 216 (seven); 211 also by the owner's hand at 10:41:59Z (SHA:fae981877), twelve
   seconds after the owner's own branch update cured its conflict.
 - About 11:00Z: "don't block small green PRs on manual, but do maintain a list so that when I ask
   you can give me links".
@@ -5603,10 +5603,10 @@ ruleset bypass (10:35Z to 10:50Z), some BEHIND with CI in flight, including 240 
 (conflicting, cured by the owner's own branch update). Routed at 10:52Z: every seat holds syncs
 until the owner says done; Myrtle's 217 sync of 10:36Z wasted. The owner's "done" at 10:55Z; the
 hold lifted 11:00Z with the size order. Two hands met on PR 211 (the owner's branch update and
-Swallow's local cure; the seat's push refused; a pointer fix c7fdf7192 opening as a docs PR).
-Engraph's push CI on the final tip 81e126e8e is the proof of the waived guarantee; Myrtle's
+Swallow's local cure; the seat's push refused; a pointer fix SHA:c7fdf7192 opening as a docs PR).
+Engraph's push CI on the final tip SHA:81e126e8e is the proof of the waived guarantee; Myrtle's
 watcher posts its conclusion before any door. Lineage open at 10:52Z: ten. JC.net: 189, ready at
-1d7b57be for the fold at 11:0xZ.
+SHA:1d7b57be for the fold at 11:0xZ.
 
 PLAN (approved): lanes for the door (size order, the ready list with links for the owner), the
 Director (the two folds, the mirror to the streams, check-in 25, the handoff drain, the
@@ -5709,13 +5709,13 @@ OWNER WORD (native, verbatim): "prepare for compaction ultrathink /jc-metacognit
 wakeup is pending. To Swallow, as Swallow relays it: "fold the coordination branch, or let the
 Director do it, then prepare for compaction, and when it makes sense stop all processes".
 
-STATE READ FIRST-HAND at 11:06Z. JC.net: PR 189 ready and CLEAN at 1d7b57be, the Codex connector's
-review on it, no Copilot review yet; the branch ahead 3 (2d109d7d mine; 2452b423 and f4be8420
+STATE READ FIRST-HAND at 11:06Z. JC.net: PR 189 ready and CLEAN at SHA:1d7b57be, the Codex connector's
+review on it, no Copilot review yet; the branch ahead 3 (SHA:2d109d7d mine; SHA:2452b423 and SHA:f4be8420
 Siren's wrap), pushed by this wrap as the fold's last records push; the merge and the successor
 cut are owed to the resume, or the owner's hand (green, one story, records-class: on the ready
-list). Lineage: 60c28af0b (Gale's letter) on the branch, unpushed; Swallow's thread record
+list). Lineage: SHA:60c28af0b (Gale's letter) on the branch, unpushed; Swallow's thread record
 modified (its own); PR 223 a draft; the fold ROUTED to Swallow (the owner's option) after 221
-lands; engraph 81e126e8e, its push CI CodeQL and code quality green, CI running. Open at 10:58Z:
+lands; engraph SHA:81e126e8e, its push CI CodeQL and code quality green, CI running. Open at 10:58Z:
 lineage ten (217, 218, 221, 223, 224, 234, 238, 244, 245, 246); JC.net one (189). Seats: Siren
 PAUSED 11:05Z (PR A unpushed, six cures listed, its first act after); Myrtle at the slot for 221;
 Swallow live (246 and 244 to CLEAN candidates, the pointer-fix PR, a second records commit, the
@@ -5787,7 +5787,7 @@ are processes).
 
 PROMISES SWEEP. To Swallow: the landing-system datum and the fourth membership measure recorded
 in the tally block and routed (its own to draft on the node); the fold of 223 (11:0xZ message);
-the deletions (approved, the plan event landed). To Siren: the twin (done, PR 209 at 0caa0327);
+the deletions (approved, the plan event landed). To Siren: the twin (done, PR 209 at SHA:0caa0327);
 the register PR is its first act. To Myrtle: the size order (done); PDR-081 after 245. To the
 owner: the ready list with links (the snapshot's READY LIST; today's in the final reply); the
 plan's Lane 1 items (owed to the resume). Undischarged and named: none other.
@@ -5809,24 +5809,24 @@ point outside eyes at is "a mechanism recommended before its vendor issue was re
 sweep: no owner wording held off the repository this window. (8) The fixed point: a further pass
 re-finds only the plan file's non-repository home; the recursion closes here.
 
-OWNER WORD at 11:1xZ (native, verbatim): "please commit and push post-compaction". So the boundary records above (napkin, handoff, continuity, distilled, the letter) stay UNCOMMITTED on disk through the compaction; the commit by pathspec and the push (with Siren's 2452b423 and f4be8420 and the tally 2d109d7d) are the resume's FIRST act, before PR 189's merge. Processes stopped 11:1xZ: monitor bjehnxf60, the pulse, both watchers; 0 remaining. Boundary events: lineage 146cdd75, JC.net a8ee26f6.
+OWNER WORD at 11:1xZ (native, verbatim): "please commit and push post-compaction". So the boundary records above (napkin, handoff, continuity, distilled, the letter) stay UNCOMMITTED on disk through the compaction; the commit by pathspec and the push (with Siren's SHA:2452b423 and SHA:f4be8420 and the tally SHA:2d109d7d) are the resume's FIRST act, before PR 189's merge. Processes stopped 11:1xZ: monitor bjehnxf60, the pulse, both watchers; 0 remaining. Boundary events: lineage 146cdd75, JC.net a8ee26f6.
 
 ### 2026-09-26T11:26Z — Siren: PR 210 landed; the generalisation trailer is rarely written
 
-- PR 210 (the exchange register to engraph 81e126e8e9 and main 0caa0327, with the Core
-  changelog's two missing entries) merged at 876c3b4b, 11:23:01Z. Copilot round one had no
+- PR 210 (the exchange register to engraph SHA:81e126e8e9 and main SHA:0caa0327, with the Core
+  changelog's two missing entries) merged at SHA:876c3b4b, 11:23:01Z. Copilot round one had no
   findings. Branch deleted by API, worktree retired, claims closed. By the register's predicate,
   outbound is 3 of 21 (J4, J9, J14) and inbound 6 of 28 (L12 settled by PR 209). Lineage PRs
   218, 238, 244 and later go to the next register update, which declares its own read heads.
-- The docs-adr sweep of `ca811fe2..0caa0327` (the rule's globs plus the platform adapters)
-  found that the rule's own trailer query lists no move after the register closed. `4fcf3cab`
+- The docs-adr sweep of `SHA:ca811fe2..0caa0327` (the rule's globs plus the platform adapters)
+  found that the rule's own trailer query lists no move after the register closed. `SHA:4fcf3cab`
   wrote the trailer, but a blank line puts it before the `Co-Authored-By:` block, and git reads
-  trailers from the final paragraph only. `a359d65c`, `1cf3a1c3` and `8966f554` wrote none;
-  8966f554 and a359d65c are this seat's. The rule is loaded, and still no seat wrote the
+  trailers from the final paragraph only. `SHA:a359d65c`, `SHA:1cf3a1c3` and `SHA:8966f554` wrote none;
+  SHA:8966f554 and SHA:a359d65c are this seat's. The rule is loaded, and still no seat wrote the
   trailer. Tooling feedback (capture-practice-tool-feedback): the commit-message check could
   refuse a `Practice-Generalisation:` line outside the final trailer block, a mechanical check
   that needs no judgement. Whether a change is a move stays a judgement. The cost-model PR's
-  bc055d16 carries one, and the rule's query reads it.
+  SHA:bc055d16 carries one, and the rule's query reads it.
 - Clock slip: three claim closes were stamped 11:24:30Z after a clock read of 11:23:40Z. The
   time was typed from the next expected minute, not from the read. Paste the read value.
 
@@ -5834,14 +5834,14 @@ OWNER WORD at 11:1xZ (native, verbatim): "please commit and push post-compaction
 
 Resumed at the owner's "please carry on" (clock 11:15Z at the first read). The owner's word
 "please commit and push post-compaction" executed first: the boundary-6 records committed as
-f2d1554e (five files by pathspec; prettier, markdownlint and the path validator green) and pushed
+SHA:f2d1554e (five files by pathspec; prettier, markdownlint and the path validator green) and pushed
 after the 11:16:56Z gate notice with the tally and Siren's two wraps (58 e2e passed at the gate).
-Read first-hand after the push: PR 189 MERGED at 11:15:14Z as 1ed8ef2a by the owner's hand at
-Siren's 1d7b57be, before the push, so the four commits (2d109d7d, 2452b423, f4be8420, f2d1554e)
+Read first-hand after the push: PR 189 MERGED at 11:15:14Z as SHA:1ed8ef2a by the owner's hand at
+Siren's SHA:1d7b57be, before the push, so the four commits (SHA:2d109d7d, SHA:2452b423, SHA:f4be8420, SHA:f2d1554e)
 sat on the folded branch outside main.
 
-Fold outcome: the successor cut from ONE resolved post-fold main (1ed8ef2a) as
-`coordination/2026-09-26-1ed8ef`; the folded branch's tip merged in as 6ee99779 (no rebase, no
+Fold outcome: the successor cut from ONE resolved post-fold main (SHA:1ed8ef2a) as
+`coordination/2026-09-26-1ed8ef`; the folded branch's tip merged in as SHA:6ee99779 (no rebase, no
 amend; the four commits ride the successor's fold); pushed after the 11:21:19Z gate notice; draft
 PR 211 opened as the bot; the folded remote branch deleted as the bot with the read-back absent
 (its tip verified an ancestor of the pushed successor before the delete); the local ref deleted
@@ -5852,8 +5852,8 @@ to 208 landing, and the owner's words of 2026-09-25 and 2026-09-26 verbatim. Thi
 the midday fold under the owner's twice-a-day word; the next fold is the UTC rollover.
 
 The lineage, read from its stream and gh: the owner landed 234, 244, 238 and 218 by hand at 11:13Z
-to 11:15Z; Myrtle read engraph's push CI on 81e126e8e green (no cure lane opens); Swallow took the
-fold of 223 at 11:12Z, its background chain synced engraph e6cf8ee4c as 86fcf2d57 and pushed, then
+to 11:15Z; Myrtle read engraph's push CI on SHA:81e126e8e green (no cure lane opens); Swallow took the
+fold of 223 at 11:12Z, its background chain synced engraph SHA:e6cf8ee4c as SHA:86fcf2d57 and pushed, then
 Swallow paused for its own compaction at 11:20Z (claims for 246 and 248 retained); Myrtle took
 the fold over at 11:25Z (ready, both legs requested, settle watch, then the door and the
 successor cut). Deletions read back by Myrtle (eleven merged lanes, Marten's two leftovers, then
@@ -5861,9 +5861,9 @@ successor cut). Deletions read back by Myrtle (eleven merged lanes, Marten's two
 harness). Open on the lineage at 11:2xZ, seven: 248 (DIRTY, Swallow's pointer fix), 246 (BEHIND,
 Swallow), 245 (Myrtle's cure owed), 224 (the owner's draft, a seat lands it on the word), 223 (the
 fold, Myrtle), 221 (BLOCKED by the windows-basic timeout, F-208's class), 217 (its cure at
-7de43823b). JC.net: 211 (the successor draft) only. Siren landed PR 209 (216's twin, 0caa0327) and
-PR 210 (the register, 876c3b4bc, 11:23Z) and is on the cost-model PR in its worktree; Siren's
-napkin commit 0d9f8b4f (11:26Z) on the successor rides this seat's next push.
+SHA:7de43823b). JC.net: 211 (the successor draft) only. Siren landed PR 209 (216's twin, SHA:0caa0327) and
+PR 210 (the register, SHA:876c3b4bc, 11:23Z) and is on the cost-model PR in its worktree; Siren's
+napkin commit SHA:0d9f8b4f (11:26Z) on the successor rides this seat's next push.
 
 Observation (one instance): a push to a coordination branch after the owner's hand merged its PR
 strands the commits; the cure was a merge into the successor; the check that prevents it is a
@@ -5888,7 +5888,7 @@ Verification numbers (the plan's four, from the snapshot):
   conditions still need a push. `review_requested` after sync: not measured this check-in (P1
   unlanded).
 
-Per PR on the lineage (snapshot): 217 BEHIND, 2 threads, cure at 7de43823b (Myrtle); 221 BEHIND,
+Per PR on the lineage (snapshot): 217 BEHIND, 2 threads, cure at SHA:7de43823b (Myrtle); 221 BEHIND,
 windows-basic FAILURE (F-208's class; Myrtle; a re-run or a cure); 223 BLOCKED, 6 threads
 (Swallow's one-commit cure for its five files pushing under Myrtle's door; the sixth is Myrtle's
 or a signed line); 224 draft, BEHIND, 0 threads, 12 files (the owner's draft; a seat lands it on
@@ -5938,7 +5938,7 @@ landings, not merges since 11:00Z), the slot holder's age and verdict, and engra
 the last owner-landed tip by sha.
 
 Redirections absorbed: P7 rides the Director's doctrine PR (branch
-docs/fold-twice-a-day-and-primary-surface, commit 416f08ab: the lifetime rule takes the owner's
+docs/fold-twice-a-day-and-primary-surface, commit SHA:416f08ab: the lifetime rule takes the owner's
 twice-a-day word, the fold skill names the cadence, verify-dont-trust §Rule takes the clause;
 the regenerated Cursor projection in a second commit; pushing at 12:16Z after the gate refused the
 hand-drifted projection). Check-in 26 computes the §Verification numbers as written. 221 and 224
@@ -5946,7 +5946,7 @@ get receivers (judgement medium, adversarial: a hold with a sensor and no seat t
 hold on nobody). The 223 timeline inversion (judgement high, adversarial: the snapshot's BLOCKED
 with two threads at 11:59:13Z, after a heartbeat's CLEAN at 11:59:02Z and before the resolve event
 at 11:59:34Z) is three sensors at three instants, closed by the live read: PR 223 merged as
-b8432103a at 12:09:25Z (Myrtle's rotation broadcast 12:12:31Z; the successor
+SHA:b8432103a at 12:09:25Z (Myrtle's rotation broadcast 12:12:31Z; the successor
 coordination/2026-09-26-b84321), to be read on gh at the check-in.
 
 Frame cures for suite 22: the snapshot floor set to the last check-in's time, not 11:00Z; the
@@ -5956,7 +5956,7 @@ not "zero threads".
 
 UNGROUNDED lines the judges named, answered: 223's resolve and CLEAN were seat lines at the
 frame's build, now read as merged; the predicate cure is the snapshot script's diff; the seats'
-heartbeat times are the snapshot's LAST HEARTBEAT block; engraph's push CI on e6cf8ee4c (PR
+heartbeat times are the snapshot's LAST HEARTBEAT block; engraph's push CI on SHA:e6cf8ee4c (PR
 218's merge, the last owner-landed tip) read on gh at 12:09Z: CI success, CodeQL success, Code
 Quality success, the earlier tips' runs cancelled as superseded.
 
@@ -5972,9 +5972,9 @@ The plan's verification numbers, as written:
 - Heads with CI in flight: lineage 0 at the read (248's sync merge is local in Swallow's worktree,
   83 commits ahead of its origin branch, push pending); JC.net 0. The green list is empty on the
   lineage, so the unkept-slot clause does not fire.
-- Landings since the last check-in (11:37Z): lineage 1, PR 223 the fold, merged as b8432103a at
+- Landings since the last check-in (11:37Z): lineage 1, PR 223 the fold, merged as SHA:b8432103a at
   12:09:25Z by the bot through Myrtle's door (the seat door's first landing today); JC.net 1, PR
-  212 the cost model, merged as d09a0e00 at 12:04:46Z by the bot through Siren's door. Below the
+  212 the cost model, merged as SHA:d09a0e00 at 12:04:46Z by the bot through Siren's door. Below the
   plan's bar of two per 45 minutes on the lineage; the holder's verdict for the window: the fold
   (cures on its records, then landed), then Swallow on 248 from 12:07Z (BEHIND-BASE and DIRTY:
   one sync, in flight; the door's failure rule allows two re-syncs). The door is working; the
@@ -5982,11 +5982,11 @@ The plan's verification numbers, as written:
 - Slot holder: Swallow, PR 248, taken 12:07Z, age 10 minutes at 12:17Z; the yield rule does not
   fire.
 - review_requested after sync commits: not measured (P1 unlanded; Swallow's lane).
-- Engraph's push CI on the last owner-landed tip e6cf8ee4c (PR 218's merge, 11:14:53Z): CI
+- Engraph's push CI on the last owner-landed tip SHA:e6cf8ee4c (PR 218's merge, 11:14:53Z): CI
   success, CodeQL success, Code Quality success (gh run list at 12:09Z); the intermediate tips'
-  runs cancelled as superseded. On the fold's merge b8432103a: read at check-in 27.
-- The folds: JC.net done (PR 189 → 1ed8ef2a; successor coordination/2026-09-26-1ed8ef; draft PR
-  211); lineage done (PR 223 → b8432103a; successor coordination/2026-09-26-b84321, Myrtle's
+  runs cancelled as superseded. On the fold's merge SHA:b8432103a: read at check-in 27.
+- The folds: JC.net done (PR 189 → SHA:1ed8ef2a; successor coordination/2026-09-26-1ed8ef; draft PR
+  211); lineage done (PR 223 → SHA:b8432103a; successor coordination/2026-09-26-b84321, Myrtle's
   rotation broadcast 12:12:31Z; no draft PR for it yet, opened at its fold by the skill).
 - Deletions: read back (Myrtle three passes, Swallow two, Siren's PR 212 lane).
 
@@ -6010,7 +6010,7 @@ Routings (this check-in):
    second copy takes them. 213 is the first copy: its door is Siren's after its own legs (Copilot
    round one, Wilma), and it does not wait for the lineage twin's legs; the twin takes the
    settled blobs. "Each copy waits for the other's legs" would hold both; ruling 4 holds one.
-5. The Director's doctrine PR (docs/fold-twice-a-day-and-primary-surface, 416f08ab plus two
+5. The Director's doctrine PR (docs/fold-twice-a-day-and-primary-surface, SHA:416f08ab plus two
    projection commits): the lifetime rule takes the owner's "Fold them twice a day", the fold
    skill names the cadence, verify-dont-trust §Rule takes "a ruling names the primary surface it
    read" (P7). The gate refused the push twice on projection drift (the Cursor rule projection,
@@ -6052,13 +6052,13 @@ the frame identical, only STANCE changed.
 What the judges converged on, and the disposition:
 
 1. P7, P6 and P10(a) are done and the frame never said so (five judges). P7 landed in JC.net PR
-   214 (49b2addd5, verify-dont-trust §Rule), P6 and P10(a) in PR 212 (d09a0e00). Frame cure for
+   214 (SHA:49b2addd5, verify-dont-trust §Rule), P6 and P10(a) in PR 212 (SHA:d09a0e00). Frame cure for
    suite 23: a todo-status table for the plan's named items, each with its PR or its seat.
 2. The yield line (two judges, one CONTRADICTED): READING replaced the plan's "over 25 minutes"
    with PR 212's landed three-exit text without quoting it in SOURCES. The landed text is the
    primary surface now; the plan's §Verification line was written before it landed and is
    superseded at this checkpoint. Frame cure: quote the landed slot bullet from
-   pr-lifecycle §Phase 7 at main d09a0e00 in SOURCES, and read the yield by it.
+   pr-lifecycle §Phase 7 at main SHA:d09a0e00 in SOURCES, and read the yield by it.
 3. "Zero at each fold moment" (judgement low, adversarial): both folds landed with other PRs open
    (six on the lineage, two on JC.net at the read). Stated plainly: the clause is unmet today; the
    number that moves it is the seat door's landings per window, which check-in 27 reads.
@@ -6071,10 +6071,10 @@ What the judges converged on, and the disposition:
    the standing rulings this window: the owner's 2026-09-24 words assign goal two to its seat the
    same day; "then we review" sequences goal one's two directions, not the goals.
 7. Start P9 now (judgement medium, normal): done. The handoff is drained to 201 lines from 2,176
-   (commit 1e637360; the four blocks archived whole, cmp-proven; five owner words graduated first).
+   (commit SHA:1e637360; the four blocks archived whole, cmp-proven; five owner words graduated first).
 
-Since check-in 26: 214 merged through its door (49b2addd5, 12:39:14Z), its worktree, local and
-remote branch gone with read-back; 248 merged (2c75350a9, Swallow); 213 merged (ee19708b,
+Since check-in 26: 214 merged through its door (SHA:49b2addd5, 12:39:14Z), its worktree, local and
+remote branch gone with read-back; 248 merged (SHA:2c75350a9, Swallow); 213 merged (SHA:ee19708b,
 Siren); 224 synced and ready with both legs (Swallow's slot); 221 green after its re-run
 (Myrtle); 249 (the cost-model twin) and 251 (the bot-identity twin) open with both legs
 (Myrtle); Siren routed to take J11 and J13 into lineage PRs beside Myrtle (absorbed).
@@ -6089,7 +6089,7 @@ supervisor 53462, and Swallow's, 98750). Nothing starts before the owner's "carr
 
 WORK SAFETY, verbatim: `git status --branch --short` reads
 `## coordination/2026-09-26-1ed8ef...origin/coordination/2026-09-26-1ed8ef` (level, HEAD
-a3d185a2) before this block was written. This block, the handoff's boundary line, the continuity
+SHA:a3d185a2) before this block was written. This block, the handoff's boundary line, the continuity
 bullet and one distilled entry are the only uncommitted changes, left UNCOMMITTED on purpose by
 the owner's precedent of this morning ("please commit and push post-compaction", 11:1xZ): the
 first act after "carry on" is their commit by pathspec with a gate notice and the push. If the
@@ -6097,11 +6097,11 @@ owner would rather the records go up before the compaction, one word reverses it
 (the primary); no lane worktree of this seat's.
 
 STATE AT THE BOUNDARY (gh at 13:07Z). JC.net: 1 open (211, the successor draft, CLEAN, 9 files);
-merged since 12:38Z: 214 (49b2addd5, the doctrine PR, through its door). The lineage: 9 open:
+merged since 12:38Z: 214 (SHA:49b2addd5, the doctrine PR, through its door). The lineage: 9 open:
 252 (Siren's J13a, code, BLOCKED with checks running), 251 (Myrtle's bot-identity twin, CLEAN,
 5 files), 250 (the OWNER'S draft, `codex/user-value-across-levels`, opened 12:38:32Z, 12 files;
 inference from the branch name: authored with Codex; not yet routed), 249 (the cost-model twin
-carrying the 214 twin at d36f732b4, BEHIND, 13 files, both legs on the head, zero threads), 246
+carrying the 214 twin at SHA:d36f732b4, BEHIND, 13 files, both legs on the head, zero threads), 246
 (BEHIND, Swallow's cure committed), 245 (DIRTY, Myrtle's reconcile and cure owed), 224 (the
 owner's draft, CLEAN at Swallow's door, zero threads after two dispositions, the door polling),
 221 (BEHIND, green, Myrtle's one sync at its turn), 217 (BEHIND, 2 threads). Merged on the
@@ -6113,7 +6113,7 @@ owner stopped landing by hand: 12:17Z to 13:07Z the lineage's seat door landed o
 the cost-model twin, the bot-identity twin, 224's cures and J13a in flight.
 
 SEATS: Siren live (J13 as three lineage PRs under the 12:42Z routing, J13a open as 252; PR 213
-landed ee19708b; the register's next update owed). Myrtle live (249 with the 214 twin, 251, 221
+landed SHA:ee19708b; the register's next update owed). Myrtle live (249 with the 214 twin, 251, 221
 next at the slot, 217, 245; two joint dispositions posted 13:06Z). Swallow live (224 at the
 door; then 246; then the DEGRADED-scan cure in merge-bot push, routed 12:55Z and absorbed; the
 sync-lineage cure re-ranked behind both on Swallow's datum). No seat was told to stop; the
@@ -6196,7 +6196,7 @@ to Swallow, sent; the DEGRADED-scan routing, absorbed; the 214 twin routing, abs
 premise correction for the retrospective, recorded here; the snapshot's DIRTY cure, in the
 scratchpad only (volatile; described in the re-arm recipe). Zero silent drops found.
 
-ATTRIBUTION FLAGS (inference, not observation): that 0d9f8b4f and 8c178572 on the successor are
+ATTRIBUTION FLAGS (inference, not observation): that SHA:0d9f8b4f and SHA:8c178572 on the successor are
 Siren's (all commits carry the owner as author; the subjects and Siren's stream lines say so);
 that PR 250 was authored with Codex (the branch name); that Siren's watchers stopped (their
 supervisor pid 15907 is absent from the process table at 13:08Z; Siren's heartbeat at 12:37Z was
@@ -6230,7 +6230,7 @@ volatility; the recursion closes here.
   modules" licensed the re-authoring; the owner's same-bytes word supersedes it. Proposed to the
   Director as a Box convention: shared text travels as bytes, and host content stays the host's.
 - **Read an identifier before writing it.** An event draft carried a commit SHA from nowhere
-  ("1ca1d1a6d"). Reading the real one (24edec275) caught it before the send. This is the clock
+  ("1ca1d1a6d"). Reading the real one (SHA:24edec275) caught it before the send. This is the clock
   rule's class: an identifier is a fact to read in its own call.
 - **`git add … && rc=0; git commit …` commits after a failed add.** The `;` runs the commit
   whatever the add returned. The add failed because a `git mv`'s old path matches no pathspec: the
@@ -6240,3 +6240,71 @@ volatility; the recursion closes here.
 - Play seed (an association, not a finding): an observation routed through comms has almost no
   flat cost. The Director routed the DEGRADED scan in 36 seconds. That looks like the PR cost
   model inverted: for observations, the optimum is the smallest unit, sent at once.
+
+## 2026-09-26T15:00Z — Director check-in 27 on the generated snapshot (the resume)
+
+Resume at the owner's "carry on" (14:42Z). The owner's word at 14:4xZ, verbatim: "Phobos wakes
+Void (01a0de) is the Codex team member". Snapshot generated 14:51Z (floor 12:38Z), then the
+streams to 15:00Z.
+
+VERIFICATION (the plan's numbers). Open PRs: the lineage 8 at 14:51Z (250 the owner's draft, 245
+DIRTY), 9 by 14:57Z (253, Siren's J13b) and 10 by 15:00Z (254, the successor branch's draft,
+opened by the Director as the bot; the branch had no PR since its cut at 12:12Z); JC.net 1 (211,
+the fold, at the door). Heads with CI in flight: the lineage 251 (Myrtle's sync at the slot from
+14:52Z) and 253 (legs at open); JC.net 211. Landings since check-in 26 (12:17Z): the lineage 224
+(13:08Z) and JC.net 214 (12:39Z), one each in a window that held the owner's compaction freeze on
+every seat from about 13:10Z to 14:42Z; the door stood idle from 13:13Z to 14:52Z with no live
+seat, the freeze's cost and not the door's. Slot holder: Myrtle on 251 since 14:52Z. Engraph's
+push CI on the last tip: not re-read this window (SHA:43eb62a55, PR 224's merge, landed through the
+door with green checks). Folds: 211 DUE by the rule at main (cut 11:21Z, before 12:00Z; the rule
+landed 12:39Z), running now; 254 DUE at the rollover.
+
+READY LIST at 14:51Z (green, zero threads, non-draft, not DIRTY; by changed files ascending): 251
+(5 files) <https://github.com/EngraphCode/open-curriculum-ecosystem/pull/251>; 252 (6)
+<https://github.com/EngraphCode/open-curriculum-ecosystem/pull/252>; 221 (11)
+<https://github.com/EngraphCode/open-curriculum-ecosystem/pull/221>; 249 (13)
+<https://github.com/EngraphCode/open-curriculum-ecosystem/pull/249>. JC.net: none (211 is the
+fold).
+
+THE FOLD OF 211. The boundary records committed as SHA:81eab535 (the napkin whole, Siren's 13:10Z
+block at Siren's request) on Siren's SHA:8a1c67d5. The first push was refused by the pre-push gate:
+the site end-to-end suite failed because `~/Library/Caches/ms-playwright/` was absent from the
+machine, while the 12:5xZ push had run the same suite green (58 passed); restored by `playwright
+install chromium` from the site workspace (Playwright 1.63.0, chromium_headless_shell-1243); the
+cause is unknown, one instance, an observation for the owner. Main merged in at SHA:49b2addd as
+SHA:47ff8d2b (PRs 210, 212, 213 and 214, docs only, no conflicts) so one push carried the records and
+the convergence; pushed with the gate green. PR 211: the body with the gravity line and the
+records-class scope, ready as the bot 14:59Z, Copilot requested as the operator (timeline
+review_requested 14:59:51Z), head SHA:47ff8d2b; `merge-bot merge --pr 211 --expect
+copilot-pull-request-reviewer` polling in the background from 15:00Z. The successor cut and the
+surface refresh follow the merge; this block rides the successor.
+
+SEATS. Siren: 252 at its turn (second in size order), 253 open with both legs (16 files as one
+story, approved: a rename across one tool's surfaces), J13c next as its own PR (the lineage copy
+settles its Core bytes first; the JC.net twin takes them), then J11. Myrtle: 251 at the slot on
+its own line (event 1d9b118c, 14:52Z), then 221, 217, 249, and 245 after its reconcile; a records
+commit in the gate at 15:00Z. Swallow: the DEGRADED-scan cure in worktree oce-wt-scan-scope (claim
+25181dfb), 246 at its turn. Phobos wakes Void (01a0de), Codex GPT-5, the owner's Codex team
+member: P3 (the ADR-204 amendment note, one file) as PR 241's acceptance test through the bot path
+(routing 92e0b647, accepted 14:54Z).
+
+A CROSSING, a defect of this seat: three Director posts in five minutes on one item. The P3
+routing (14:53Z) crossed Phobos's pickup of the DEGRADED-scan cure that Swallow had proposed on
+the Codex dialogue channel; the seats settled it themselves (Phobos released the cure at 14:54Z;
+Swallow took it back at 14:57Z); the ruling "Phobos takes both" (14:57:50Z) was written from the
+monitor's events without a fresh read of the stream and crossed that settlement; its withdrawal
+(14:58:21Z) crossed Swallow's absorption of the ruling (14:58:48Z), and Swallow corrected again at
+14:59:48Z. The settled state: Phobos P3 only; Swallow the cure; Siren 252; nothing more posted on
+it. The lesson is in distilled.
+
+OWNER CARD QUEUE (none blocking): (1) the late-cure leg ruling (reverse by a word); (2) answered:
+Phobos is the Codex seat; (3) PR 224's private-provenance disposition; (4) PR 250, the owner's
+draft, RED at 14:51Z (static-checks and run-quality-gates FAILURE): a seat cures and lands it on
+the owner's word; (5) NEW, an action moment at PR 253's landing: the operator's machine-local
+lineage `.claude/settings.local.json` names OAK_STATUSLINE_LOG_FILE and must then name
+PRACTICE_STATUSLINE_LOG_FILE or the statusline log stops (Siren, 13:10Z; the file is the
+operator's); (6) the Playwright cache observation above.
+
+NEXT: suite 23 about 15:22Z on this snapshot with suite 22's frame cures; the successor cut at
+211's merge, then this block and the fold entries commit on the successor; check-in 28 about
+15:45Z.

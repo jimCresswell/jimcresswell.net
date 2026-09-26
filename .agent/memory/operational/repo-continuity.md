@@ -21,26 +21,18 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
-- 2026-09-26T09:48Z, the Director's COMPACTION BOUNDARY 5 at the owner's word. `main` is at
-  `SHA: 57592003` (PR 208, the bot-identity portable core); merged on 2026-09-25 after the 11:17Z
-  entry below: PRs 186 to 188 and 190 to 208 (the watcher fix, the trigger amendment, the seven
-  JC.net-side cures, PDR-142's twin, L12's three rules with their research foundations, the shell
-  reader). The primary resides on `coordination/2026-09-25-cf6897` (PR 189, draft), whose fold is
-  DUE at 11:17Z today by the 24-hour rule and is the Director's first act on resume, by the
-  coordination-fold skill. The owner's words of 21:41Z on 2026-09-25 govern: zero open PRs on
-  both repositories through the proper quality and merge processes, a direction; the Codex seat
-  restarts in the owner's morning; the recommendations' outcome is in the Director handoff
-  §Current handoff state. Seats: Siren herds Rudder (158275) live on the scope file's two lines
-  (the owner's amended word), then L12's landing row and todo 8's text cure; the lineage's seats
-  silent since about 22:30Z on 2026-09-25 with PR 241 at its slot and uncommitted records on the
-  lineage primary (F-209; Titan's formation letter). Next safe step for any seat: read the
-  Director handoff's §Current handoff state and the napkin's COMPACTION BOUNDARY 5 block before
-  writing a continuity file; the successor coordination branch's name comes from the Director's
-  rotation broadcast after the fold.
+- **2026-09-26T15:08Z, the resume and the fold of PR 211** (the Director, Wick binds Temper,
+  ed7b48). Resumed at the owner's "carry on" (14:42Z). The boundary records committed (SHA:81eab535)
+  and main merged in (SHA:47ff8d2b: PRs 210, 212, 213 and 214); PR 211 ready at the door under the
+  bot's poll, Copilot's round one (seven findings: three stale current-state lines, four bare commit
+  hashes) cured in this push; the successor is cut at its merge and named by the rotation broadcast.
+  The lineage: ten open at 15:00Z (254 is its coordination draft, DUE at the rollover); Phobos wakes
+  Void (01a0de) is the owner's Codex team member, on P3 as PR 255. The live reading is the napkin's
+  15:00Z check-in 27 block, then the Director handoff §Current handoff state.
 
 - **2026-09-26T13:08Z, the Director's COMPACTION BOUNDARY 7** (Wick binds Temper, ed7b48), at the
   owner's word. JC.net at its coordination draft only (211); PR 214 (the twice-daily fold and the
-  primary-surface clause) merged 49b2addd5 through its door; the lineage at nine open with two ready;
+  primary-surface clause) merged SHA:49b2addd5 through its door; the lineage at nine open with two ready;
   the seats live and routed; the freeze binds this seat until "carry on". The napkin's 13:08Z block
   is the live reading; the boundary records are uncommitted by the owner's morning precedent and go
   up first on the resume.
@@ -57,7 +49,7 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 - **2026-09-26T11:28Z, the fold landed and the successor is cut** (the Director, Wick binds Temper,
   ed7b48). PR 189 merged as `SHA: 1ed8ef2a` by the owner's hand at 11:15:14Z; the successor
   coordination branch is `coordination/2026-09-26-1ed8ef`, cut from that sha, carrying the folded
-  branch's four post-merge commits by merge commit 6ee99779; draft PR 211; the primary resides
+  branch's four post-merge commits by merge commit SHA:6ee99779; draft PR 211; the primary resides
   there and every continuity write from now goes there. Folds twice a day from now (the owner's
   word, 2026-09-26): midday and the UTC rollover; this cut stands for the midday fold. The folded
   branch is deleted, remote and local, read back absent.
@@ -70,6 +62,23 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
   the successor cut are the resume's first act, or the owner's hand. The lineage: the fold of PR
   223 routed to Swallow; ten open at 10:58Z. The live reading is the handoff's current-state block,
   then the napkin's 11:06Z block.
+
+- 2026-09-26T09:48Z, the Director's COMPACTION BOUNDARY 5 at the owner's word. `main` is at
+  `SHA: 57592003` (PR 208, the bot-identity portable core); merged on 2026-09-25 after the 11:17Z
+  entry below: PRs 186 to 188 and 190 to 208 (the watcher fix, the trigger amendment, the seven
+  JC.net-side cures, PDR-142's twin, L12's three rules with their research foundations, the shell
+  reader). The primary resides on `coordination/2026-09-25-cf6897` (PR 189, draft), whose fold is
+  DUE at 11:17Z today by the 24-hour rule and is the Director's first act on resume, by the
+  coordination-fold skill. The owner's words of 21:41Z on 2026-09-25 govern: zero open PRs on
+  both repositories through the proper quality and merge processes, a direction; the Codex seat
+  restarts in the owner's morning; the recommendations' outcome is in the Director handoff
+  §Current handoff state. Seats: Siren herds Rudder (158275) live on the scope file's two lines
+  (the owner's amended word), then L12's landing row and todo 8's text cure; the lineage's seats
+  silent since about 22:30Z on 2026-09-25 with PR 241 at its slot and uncommitted records on the
+  lineage primary (F-209; Titan's formation letter). Next safe step for any seat: read the
+  Director handoff's §Current handoff state and the napkin's COMPACTION BOUNDARY 5 block before
+  writing a continuity file; the successor coordination branch's name comes from the Director's
+  rotation broadcast after the fold.
 
 - 2026-09-25T11:17Z, the fold landed: PR 176 merged as `SHA: cf689735`; the successor coordination
   branch is `coordination/2026-09-25-cf6897`, and the primary resides there. Every continuity write
