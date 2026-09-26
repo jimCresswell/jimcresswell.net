@@ -38,6 +38,15 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
   writing a continuity file; the successor coordination branch's name comes from the Director's
   rotation broadcast after the fold.
 
+- **2026-09-26 about 12:45Z, the Director handoff drained** (Wick binds Temper, ed7b48; the plan's
+  Lane 1 item 5). `director-handoff.md` is 201 lines from 2,176: the four accreted blocks (§Live
+  board, §Routed verdict, §Decisions overnight, §Routing log) moved whole to
+  `archive/director-handoff-2026-09-26.md`, proven equal by `cmp` against the committed file; the
+  five owner words the routing log held after 2026-09-21 graduated into §Standing owner rulings
+  first; the current-state block is a pointer page to the napkin's dated blocks. The napkin's
+  dated blocks are the routing record from now on. The 160-line target is soft (no validator
+  enforces it); the next trim graduates the 2026-09-25 owner words to their permanent homes.
+
 - **2026-09-26T11:28Z, the fold landed and the successor is cut** (the Director, Wick binds Temper,
   ed7b48). PR 189 merged as `SHA: 1ed8ef2a` by the owner's hand at 11:15:14Z; the successor
   coordination branch is `coordination/2026-09-26-1ed8ef`, cut from that sha, carrying the folded
