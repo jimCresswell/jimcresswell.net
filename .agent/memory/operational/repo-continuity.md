@@ -21,6 +21,48 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
+- **2026-09-26T15:08Z, the resume and the fold of PR 211** (the Director, Wick binds Temper,
+  ed7b48). Resumed at the owner's "carry on" (14:42Z). The boundary records committed (SHA:81eab535)
+  and main merged in (SHA:47ff8d2b: PRs 210, 212, 213 and 214); PR 211 ready at the door under the
+  bot's poll, Copilot's round one (seven findings: three stale current-state lines, four bare commit
+  hashes) cured in this push; the successor is cut at its merge and named by the rotation broadcast.
+  The lineage: ten open at 15:00Z (254 is its coordination draft, DUE at the rollover); Phobos wakes
+  Void (01a0de) is the owner's Codex team member, on P3 as PR 255. The live reading is the napkin's
+  15:00Z check-in 27 block, then the Director handoff §Current handoff state.
+
+- **2026-09-26T13:08Z, the Director's COMPACTION BOUNDARY 7** (Wick binds Temper, ed7b48), at the
+  owner's word. JC.net at its coordination draft only (211); PR 214 (the twice-daily fold and the
+  primary-surface clause) merged SHA:49b2addd5 through its door; the lineage at nine open with two ready;
+  the seats live and routed; the freeze binds this seat until "carry on". The napkin's 13:08Z block
+  is the live reading; the boundary records are uncommitted by the owner's morning precedent and go
+  up first on the resume.
+
+- **2026-09-26 about 12:45Z, the Director handoff drained** (Wick binds Temper, ed7b48; the plan's
+  Lane 1 item 5). `director-handoff.md` is 201 lines from 2,176: the four accreted blocks (§Live
+  board, §Routed verdict, §Decisions overnight, §Routing log) moved whole to
+  `archive/director-handoff-2026-09-26.md`, proven equal by `cmp` against the committed file; the
+  five owner words the routing log held after 2026-09-21 graduated into §Standing owner rulings
+  first; the current-state block is a pointer page to the napkin's dated blocks. The napkin's
+  dated blocks are the routing record from now on. The 160-line target is soft (no validator
+  enforces it); the next trim graduates the 2026-09-25 owner words to their permanent homes.
+
+- **2026-09-26T11:28Z, the fold landed and the successor is cut** (the Director, Wick binds Temper,
+  ed7b48). PR 189 merged as `SHA: 1ed8ef2a` by the owner's hand at 11:15:14Z; the successor
+  coordination branch is `coordination/2026-09-26-1ed8ef`, cut from that sha, carrying the folded
+  branch's four post-merge commits by merge commit SHA:6ee99779; draft PR 211; the primary resides
+  there and every continuity write from now goes there. Folds twice a day from now (the owner's
+  word, 2026-09-26): midday and the UTC rollover; this cut stands for the midday fold. The folded
+  branch is deleted, remote and local, read back absent.
+
+- **2026-09-26T11:09Z, the Director's COMPACTION BOUNDARY 6** (Wick binds Temper, ed7b48). The
+  owner's morning words: zero open PRs is a standing target; the plan approved 10:56Z; thirteen
+  lineage PRs landed by the owner's hand 10:35Z to 10:50Z; small green PRs are never held for the
+  owner, the Director keeps the ready list with links; the PR cost model gains a fixed term. JC.net:
+  PR 189 (this branch's fold) ready and CLEAN with the records pushed by the wrap; its merge and
+  the successor cut are the resume's first act, or the owner's hand. The lineage: the fold of PR
+  223 routed to Swallow; ten open at 10:58Z. The live reading is the handoff's current-state block,
+  then the napkin's 11:06Z block.
+
 - 2026-09-26T09:48Z, the Director's COMPACTION BOUNDARY 5 at the owner's word. `main` is at
   `SHA: 57592003` (PR 208, the bot-identity portable core); merged on 2026-09-25 after the 11:17Z
   entry below: PRs 186 to 188 and 190 to 208 (the watcher fix, the trigger amendment, the seven

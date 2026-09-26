@@ -165,3 +165,37 @@ routing, an acceptance or a recommendation that rests on a count, a row, a rules
 read that surface in one command and name it in the ruling. Source: napkin 2026-09-25 (21:12Z,
 21:2xZ, 21:52Z; the suite 20 tally); routing: `verify-dont-trust`, `read-before-asking`, the
 Director handoff §Standing lessons, a rule candidate.
+
+## Read the vendor's issue before the suite; read Practice text at the default branch's tip (2026-09-26)
+
+A merge queue was framed as the cure for the lineage's serial door and sent to a nine-agent
+decision suite. The assumptions reviewer read codeql-action#1537 (open) and GitHub's documentation
+and found the mechanism absent as framed: the required CodeQL check is the code-scanning app's and
+never reports on a merge group, and the queue is offered instead of require-up-to-date, not with
+it. One source read before the suite would have settled it. The same morning an Explore pass read
+PDR-142 in a coordination-branch checkout 56 commits behind engraph and reported a missing
+amendment; a blob read at origin/engraph refuted it. Before recommending a vendor mechanism, read
+the vendor's issue and its documentation first-hand; before calling a Practice text stale, read
+its blob at the default branch's tip, never at a checkout on a coordination branch. Source: napkin
+2026-09-26 (10:17Z, 11:01Z); routing: `verify-dont-trust`, `verify-vendor-call-shapes-at-plan-author-time`,
+the Director handoff §Standing lessons, the rule candidate "a ruling names the primary surface it read".
+
+## Run the checker on the fragment before it joins the whole (2026-09-26)
+
+In one window three commit headers were refused by commitlint for one to two characters over the
+limit and three markdownlint faults surfaced in one appended napkin block, each found only when the
+whole was checked. The fragment (a header line, a block about to be appended) is checkable on its own
+in one command (`wc -c` on the header; markdownlint on the block file) before it joins the record;
+a check that runs only on the whole runs late, and each late refusal cost a commit or a gate run.
+Source: napkin 2026-09-26 (11:37Z to 12:49Z); routing: `lint-after-edit`, `compute-dont-hope`.
+
+## Read the stream before a routing post on a contested item (2026-09-26)
+
+Three Director posts in five minutes on one item, each written from the monitor's last events
+rather than a fresh read of the stream: a routing crossed a pickup the seats had already settled
+between themselves, a ruling crossed their settlement, and its withdrawal crossed a seat's
+absorption of the ruling, so the item changed hands four times with no source edit. One command
+reads the stream since the last post; a routing on a contested item is written after that read and
+is one line. Source: napkin 2026-09-26 (15:00Z); routing:
+`directed-routing-requires-absorption-ack`, `read-before-asking`, the Director handoff §Standing
+lessons.
