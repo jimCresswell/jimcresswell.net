@@ -93,16 +93,23 @@ identity step at all — only a check that what it inherited matches the primary
 
 ```bash
 PRIMARY="$(git worktree list --porcelain | head -1 | sed 's/^worktree //')"
+ok=1
 for key in user.name user.email; do
   want="$(git -C "$PRIMARY" config "$key")"
-  [ -n "$want" ] && [ "$(git -C <path> config "$key")" = "$want" ] \
-    && echo "$key inherited: $want"
+  if [ -n "$want" ] && [ "$(git -C <path> config "$key")" = "$want" ]; then
+    echo "$key inherited: $want"
+  else
+    echo "$key: not inherited from the primary"; ok=0
+  fi
 done
+[ "$ok" = 1 ]
 ```
 
-Both lines must print, and both values must be the owner's. If either differs,
-is absent, or names anyone else, fix the SHARED config once, with the owner's name and
-email. Never patch this worktree: a `--worktree` override is a second copy that
+Both keys must report inherited (the check exits non-zero otherwise), and both
+values must be the owner's. The check proves inheritance, not correctness: a
+worktree inherits the primary's error too, so compare `want` with the owner's
+name and email. If either differs, is absent, or names anyone else, fix the
+SHARED config once, with the owner's name and email. Never patch this worktree: a `--worktree` override is a second copy that
 outlives the next correction and reintroduces the exact drift this step exists to
 catch.
 
