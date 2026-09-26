@@ -923,3 +923,51 @@ freeze line at 13:10:10Z named this.
   edits through `edit-body-lineage.sh <pr> <file>`, both run from a lineage checkout.
 - Every process was stopped at 13:10Z, and the one-shot cron 5d207d8a (the superseded Lane 4
   default) was deleted.
+
+## Resumed, 2026-09-26 14:41Z onwards (Siren herds Rudder, 158275)
+
+Resumed on the owner's start-right word. Re-armed at 14:42Z. The Director's reply (native,
+about 14:50Z) held the order: 252 at its size-order turn; J13b pushed and opened now, with its
+sync held until its turn; J13c as its own PR; then J11. The Director approved J13b's 16 files
+as one story. The joint-change door holds ONE copy: the lineage copy settles first, and a
+JC.net twin is cut from the settled bytes afterwards.
+
+- **PR 253 (J13b)** opened at 1df64692f. Both legs are clean on that head: Copilot found
+  nothing (5326299107), Codex found no major issues, and Sonar passed. Its sync waits for its
+  size-order turn.
+- **PR 256 (J13c)** opened at 77d5d9e37, 30 files. Claim 3786be33; worktree
+  `oce-wt-identity-override`. Every reader of the override now reads
+  `PRACTICE_AGENT_IDENTITY_OVERRIDE`. Tests went 11 red, then 209 green; the full suite passes
+  (540 files, 6146 tests). A new test sets only the old name and gets the seed-derived result.
+  The changed lines in PDR-027, the rule and the docs equal JC.net main's, so no JC.net twin is
+  owed for this row.
+- **PR 252** is still READY at 6010cceeb. PR 251 merged at 15:11:50Z, so 252 comes next after
+  Phobos's one-file PR 255, once 255's legs settle.
+
+**Tool feedback (capture-practice-tool-feedback):** this estate's Bash guard read
+`git add -- <30 explicit paths>; ... | grep -c .` as the wildcard-staging pattern `git add .`.
+The guard's token match took the pattern's `.` from the grep argument elsewhere in the same
+compound command. Staging passed once the add ran in its own call. The workaround: a staging
+call carries no other command with a bare `.` argument.
+
+**Owed on this estate (found in J13c's cross-estate diff):** JC.net's PDR-027 and code lack the
+lineage's 2026-09-25 seed gate: the three Claude seeds count only on a Claude platform, and
+`--platform` is required without `--seed`. The queue already holds its twin ("JC.net twins it
+once that settles"). The lineage copy has now settled at origin/engraph. The two copies also date
+the CLI-session-id amendment differently: 2026-09-12 in JC.net's, 2026-09-24 in the lineage's.
+
+**The next joint change, three items (Myrtle 7f873867, absorbed 927bd3a0):**
+
+- the preflight's `awk 'NR==1{print $2}'` form (the bot-identity rule);
+- `test-immediate-fails` item 12's header: "Integration test contains a mock with branching or a
+  state machine";
+- tdd-as-design §The Atomic Landing Invariant (JC.net main lines 69 to 70): "Every commit ends
+  with every test and check the landing's gates run passing, at every level."
+
+This seat drafts once J11a is open, unless Myrtle starts first. One copy settles first, then the
+twin is cut from its settled bytes (the Director's joint-change door).
+
+**J11a** (the transplant runbook, born sketch) was committed at df30d9e0c. Claim fd35ce72;
+worktree `oce-wt-transplant-runbook`. A correction owed on this estate: JC.net's runbook says
+PDR-005 "calls" this case "harder and more common". Neither estate's PDR-005 says so. The
+lineage copy drops the claim.
