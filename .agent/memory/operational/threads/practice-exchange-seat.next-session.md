@@ -847,3 +847,79 @@ Round two requested at 11:52:12Z. Two items routed from the round:
 - Unchanged: 246's twin at its landing, 245's blob 7f2857bc at its landing, the castr cells on
   ruling 5, J13's "override variable" clause, and the lessons batch, arc-metrics and J18's
   observer compare as the last outbound material.
+
+## Wrap block, 2026-09-26 13:10Z (the owner's third compaction word of the day)
+
+**Lane:** row J13 in the lineage, on the Director's 12:42Z routing ("start with J11 and J13").
+Adopted on the lineage stream at 12:51:34Z (event 202e38c6). Myrtle has the open receipt
+(9bde302d, 12:55:14Z).
+
+**PR 252 (J13a), open and READY.** Branch `fix/exchange-j13-estate-neutral-tooling-text`,
+worktree `oce-wt-estate-neutral-tooling`, claim 6c57aaf3. Head 6010cceeb. The generator's usage,
+its refusal and its bin header, the adapter-stub comment and the health probe's box detail
+name no estate value.
+
+- 24edec275 was test-first: three new assertions, red then green.
+- 6010cceeb is settlement push 1 of 2, a convergence push. `cli-flags.ts` and `adapter-stub.ts`
+  now equal this estate's main byte for byte. Copilot's round one on 24edec275 found nothing.
+- On 6010cceeb Copilot found nothing (5325986566), Codex found no major issues, and Sonar
+  passed. Zero threads.
+- Next: the lineage door at the slot turn (sync once, both legs, the sweep, merge-bot merge).
+
+**J13b, committed and NOT pushed.** Local branch `fix/exchange-j13b-statusline-practice-names`,
+worktree `oce-wt-statusline-names` (installed and built), commit 1df64692f, claim effcb559. It has
+no remote ref and no PR. The statusline family takes this estate's names:
+`PRACTICE_STATUSLINE_LOGO`, `_MOTION` and `_LOG_FILE`; `practice-statusline-frames`; and `logo`
+with `LogoStyle` and `LOGO_ROWS`.
+
+- Test-first: 10 of 24 tests red after the test rename, then green. The agent-tools suite passes
+  (540 files, 6145 tests).
+- Before writing, a rename-mapped diff against this estate's main showed three files identical.
+  The other six differ only in host content: brand marks, ADR references and examples.
+
+**The resume order:**
+
+1. Re-arm, then read live state.
+2. PR 252 through the door.
+3. Read PDR-132 item 2's size warning. If the fold fits, fold J13c into J13b's branch before its
+   first push, test-first. J13c is the `PRACTICE_AGENT_IDENTITY_OVERRIDE` rename across every
+   reader, with no fallback, per the Box §Tests. Its falsifier: item 2 names a file bound that 46
+   files exceed, in which case J13b goes alone.
+4. Push, open as the bot, request both legs, and send Myrtle the receipt.
+5. J11.
+
+**For the Director at J13b's landing:** the lineage primary's machine-local
+`.claude/settings.local.json` sets `OAK_STATUSLINE_LOG_FILE`. It must name the new variable, or
+the operator's statusline log stops. That is the operator's file, not a seat's. The lineage
+freeze line at 13:10:10Z named this.
+
+**Routed and absorbed this stretch:**
+
+- The bot push's secret scan runs DEGRADED: `merge-bot push` pushes to a URL, not a named remote,
+  so the scan's range is not scoped to the destination. Routed at 12:55Z. The Director made it
+  Swallow's next code PR after 224 and 246 (12:55:50Z), and Swallow absorbed it. This estate
+  takes the cure by the next upstream carrier.
+- PR 251, the lineage twin of PR 213, stands at 22d97dd18. Its four blobs were read here first-hand:
+  3a00508d, beafd2d4, 624aa6a3 and 0d294299. The bot-identity body equals this estate's
+  byte for byte; this estate's copy differs only in its front matter.
+- Myrtle's dispositions on joint pieces (13:06:20Z):
+  - PR 249's lifetime-clause finding is Rejected: "target" is a target, not an invariant held at
+    every instant.
+  - PR 217's `test-immediate-fails` item-12 header goes to that file's next joint change as
+    "Integration test contains a mock with branching or a state machine". This estate's line 97
+    carries the same words.
+  - PR 251's Codex P1 on the preflight's stderr is Rejected on a first-hand run with the
+    installation token.
+- The twin of PR 214 rides PR 249's settlement push d36f732b4 (the Director's routing, 12:46Z).
+
+**Re-arm recipe** (nothing survives a compaction; verify by id, re-arm only what is absent):
+
+- `watch-comms.sh <primary> <session pid>` as a Monitor for each primary. The pid was 15907.
+- `heartbeat.sh a30304be-4986-40f0-883b-fd518224472b <live coordination branch> "<label>"`.
+  The branch was `coordination/2026-09-26-1ed8ef`; re-point it after any fold.
+- `peer-liveness-poll.sh 600`.
+- For PR 252: `review-watch-repo.sh EngraphCode/open-curriculum-ecosystem 252 <head> 60
+  'el-graphael[bot]'` only if the head moves. Legs go through `legs-lineage.sh <pr>` and body
+  edits through `edit-body-lineage.sh <pr> <file>`, both run from a lineage checkout.
+- Every process was stopped at 13:10Z, and the one-shot cron 5d207d8a (the superseded Lane 4
+  default) was deleted.
