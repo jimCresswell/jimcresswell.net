@@ -2,7 +2,8 @@
 
 **Status**: Accepted (owner-commissioned fast-lane 2026-07-20; the owner's
 framing: the shaping principle must reach work at planning time, because at
-PR time "that is too late to plan work").
+PR time "that is too late to plan work"; amended 2026-09-14 and 2026-09-26 — see
+Amendment Log).
 
 ## Context
 
@@ -47,7 +48,15 @@ shaped.
    archival exemption below narrows only the size warnings.** When a third
    round opens on any PR, the shepherd records budget-exceeded and runs
    the generator question THEN — ahead of the state machine's mechanical
-   step-back arms, which remain the failure backstop.
+   step-back arms, which remain the failure backstop. After round two,
+   every remaining finding is dispositioned in the same turn as the last
+   push: over-bar cures ride that push, and the rest are signed
+   `Rejected` or `Routed to <home>` lines. On prose-class changesets a
+   further push opens only through PDR-140's doors (clause 4's rebudget
+   by recorded decision, or clause 9(b)'s late over-bar cure); code-class
+   changesets keep the review-round state machine's budget and step-back
+   arms. The owner's word of 2026-09-14: "I don't want the number of
+   rounds of PRs to go up".
 2. **Size thresholds are authoring-time warnings, never blocks**: more than
    ~300 added lines or more than ~8 changed files each predict a heavy
    review (a changeset's final commit count is the outcome proxy itself,
@@ -74,6 +83,22 @@ shaped.
    arm the checks are verified green-or-progressing; every open PR names a
    shepherd. A PR in a state nobody is watching is unhealthy regardless of
    its diff.
+7. **A pull request's cost has a flat part, so the optimum slice is well
+   above one line.** Every pull request pays a fixed cost whatever its
+   size: a branch and its worktree, a claim, a gate run, a landing turn
+   with its continuous-integration run, the reviewer legs, and the records
+   and deletions after merge. Review cost then rises steeply with
+   complexity. The fixed part dominates a tiny change, so effort per unit
+   of value is lowest at a moderate slice, not the smallest one. Slices
+   are sized to that optimum: changes that share one story travel as one
+   pull request inside the sizing bands of `design-work-for-small-prs`,
+   never one pull request per line or per register row. Item 4's caution
+   still binds: the optimum is found by story, never by fragmenting one
+   story or by bundling two. The owner's word of 2026-09-26: "there are
+   flat costs that dominate for tiny PRs, and while complexity based cost
+   rises exponetially with complexity, the fixed cost suggests that there
+   is an optimum in the effort to value curve that is well above a single
+   line change".
 
 ## Prediction and falsifier
 
@@ -101,6 +126,7 @@ amendment.
   state machine; silent-wait verification legs in Phases 6 and 7; Phase 1
   changeset-shape check (pointer form).
 - `start-right-team` SKILL: this record joins the foundation reading.
+- `design-work-for-small-prs` rule: the lower bound of item 7 (pointer form).
 - The falsifier's measurement is the corpus-methodology re-run above; the
   register's added dimensions are the standing instrument once landed.
 
@@ -141,3 +167,20 @@ sixteen pull requests (about eight claims per slice, the closure record's
 item 92) stands as an operating default and changes no threshold in
 Decision 2 (owner card, 2026-09-14, about 15:20Z: "the item 92 sizing stands as
 an operating default with no PDR-132 text change").
+
+### 2026-09-26 — jimcresswell.net: §Decision item 1 carries the two-round rule
+
+The rule the 2026-09-14 entry above records reached the lineage through the inter-Practice
+exchange, and the lineage wrote it into §Decision item 1 on 2026-09-24. This estate takes that
+paragraph byte-identical, so the Decision itself carries the same-turn disposition after round
+two and the doors a further push opens through, in both estates.
+
+### 2026-09-26 — a pull request's flat cost puts the optimum slice above one line
+
+Owner word (2026-09-26, to the Director, after the owner had merged thirteen small pull requests
+by hand in fifteen minutes), verbatim: "Perhaps we need to update our cost model for PRs, there
+are flat costs that dominate for tiny PRs, and while complexity based cost rises exponetially
+with complexity, the fixed cost suggests that there is an optimum in the effort to value curve
+that is well above a single line change". The Director's ruling of the same hour made it this
+record's text. §Decision item 7 states the flat cost and the optimum it implies;
+`design-work-for-small-prs` carries the lower bound as a pointer here.
