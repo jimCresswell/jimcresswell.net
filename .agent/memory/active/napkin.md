@@ -7292,3 +7292,77 @@ recorded as the day's first DRIFTING.
 Landings since check-in 31: 246 at 21:22Z (Swallow's door, the count reaching the limit at three);
 256 at the slot (Siren, from 21:23:56Z). Engraph's push CI on 246's merge SHA:b332041ba: eight
 success and four in progress at 21:26Z.
+
+## 2026-09-26T21:47Z — Director check-in 32 on the generated snapshot; the drain's last row at the slot; the first opening under the rule (the Director)
+
+Snapshot generated 21:47Z (floor 21:02Z). Clock read 21:47:07Z. Both streams read to 21:47Z:
+nothing addressed to the Director; both seats' ACKs of suite 27's standing order landed within a
+minute of the tally (Swallow 21:37:33Z, Myrtle 21:37:57Z, the latter reading card line 12's
+default "as routed, not as the owner's"). Suite 27's push landed (SHA:b0865857, read by
+ls-remote).
+
+THE COUNT (first-hand from gh at 21:47Z): the lineage 3 open (254 the coordination draft; 250 the
+owner's lane; 245 at the slot), JC.net 1 (215). Non-coordination across both estates: 2 against
+the limit of 3 at the snapshot instant, with the third being opened by the rule: Siren read the
+count first-hand on both estates at 21:46:25Z, posted "WIP slot taken: 3 of 3", and pushed the
+WIP-limit clause's branch with its PR, the push under its gate at the read (the PR number is read
+at suite 28). The first opening since the owner's word, done by the letter of item 2. Landings
+since check-in 31: 246 at 21:23:06Z (Swallow's door) and 256 at 21:45:08Z (Siren's); since the
+word: seven in about two hours twenty, through three seats and eight slot handovers with no
+Director word on the order. Opened since 21:02Z: none at the snapshot instant.
+
+VERIFICATION. Heads with CI in flight: the lineage 1 (245's reconciling sync at the slot, Myrtle
+from 21:45:34Z, seven seconds after Siren's release) plus the wording PR's push gate (an opening,
+not a sync); JC.net 0. Engraph's push CI: on 246's merge SHA:b332041ba seventeen success; on 256's
+merge SHA:d5838af37 seven success and five in progress at 21:47Z; nothing red on any of the seven.
+Folds: 215 and 254 DUE at 00:00Z.
+
+READY LIST at 21:47Z: 245 (45)
+<https://github.com/EngraphCode/open-curriculum-ecosystem/pull/245>, at the slot (DIRTY against
+engraph until its reconciling sync lands; the snapshot's predicate read it UNKNOWN). JC.net: none.
+
+THE RETROSPECTIVE TRIGGER, both conditions (suite 27's ruling): the plan's quoted condition, "both
+estates read one open PR each": the lineage reads three, JC.net one; not met. The re-anchored
+condition (card line 11, awaiting the owner's one line): seven of eight drain rows landed (257,
+259, 249, 217, 253, 246, 256), 245 at the slot; the count two, under the limit; not met until 245
+lands. Projection: 245 lands about 22:05Z; the re-anchored condition then reads met and is judged
+at the 00:00Z fold moment; the quoted condition will not read met while 250 and the fresh openings
+are open. The retrospective's PR opens only behind every seat's waiting item, never ahead.
+
+GOAL THREE, the waiting-work line (per estate; seat; oldest unpushed commit; read 21:47Z): the
+lineage 1 waiting (feat/codex-rollout-command-records, Swallow, three commits from 20:32Z, fifteen
+dirty paths: cycle 3 in progress) plus one leaving the list (docs/pr-lifecycle-wip-limit, Siren,
+pushing with its PR); JC.net 1 (docs/exchange-j11-runbook-twin, Siren, one commit at 19:29Z, 138
+minutes old, next at the slot 245's landing frees). Not yet cut: the guard twin, the register PR.
+Not waiting on a slot: the three lineage branches for the owner's hand. Every remote branch on
+both estates is on an open PR or is a default or coordination branch (the lineage 6 remote
+branches after the deletions passes, JC.net 2). Goal three does not read clean while the two wait.
+
+THE LANE STATUS LINE (corrected at suite 27): Lane 0 running, seven landings since the word; Lane
+1 items 1 to 3 done, 4 running, 5 done once with its second trim owed, 6 (P7) DONE in both estates
+(JC.net 214 at 12:39Z; the lineage 249, verify-dont-trust line 64 at engraph), 7 re-anchored
+pending the owner's line; Lane 2 (Myrtle) 259, 249, 217 landed, 245 at the slot, then 250's lane,
+then goal one's code rows if free first; Lane 3 (Swallow) 257 and 246 landed, the reader in its
+third cycle, then goal one's code rows if free first, P1 on the ledger; Lane 4 (Siren) 252, 258,
+253, 256 landed, the wording PR opening, the twin next, the guard twin, the register PR, then J2
+and J3; Lane 5 done; Lane 6 done except the three for the owner's hand.
+
+PR 250, THE LANE: draft at the owner's head SHA:9a7ffdbaa, 21 files, untouched since 20:25Z;
+Myrtle after 245 by its posted shape (seven commits, the runner verified, about two seat-days);
+holds one slot throughout.
+
+OWNER CARD QUEUE (twelve lines, none blocking): (1) the late-cure leg ruling; (3) 224's provenance
+line; (4) 250 a lane on the owner's Appendix E, one slot held; (5) the operator's machine-local
+statusline key, fired at 20:58Z, the exact rename given; (6) the Codex lane's remaining items; (7)
+the three local branches for the owner's hand; (8) the runbook's re-ratification, both copies at
+sketch; (9) the wording PR, opening now; (10) the Clef name, not gating; (11) NEW: ratify the
+retrospective trigger's re-anchor (the count at or under the limit and the drain's eight rows
+landed, judged at a fold moment), default: recorded as the Director's amendment, both conditions
+reported at each fold; (12) NEW: goal one's remaining rows after 250's lane, default routed as the
+standing order (Siren J2 and J3 after the twin and the register; the code rows to whichever of
+Myrtle or Swallow frees first).
+
+NEXT: suite 28 about 22:09Z on this snapshot (its SOURCES quote the plan amendment note verbatim;
+the frame carries both trigger conditions and the corrected Lane status line); check-in 33 about
+22:32Z; the folds at 00:00Z with the count read at each merge instant and both trigger conditions
+judged at 254's.
