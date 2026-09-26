@@ -188,7 +188,9 @@ the routing log disagree, the log's last entry is current. The owner's words are
   and may not survive; the script watches both comms streams without heartbeats and runs the
   pulse); resume the cadence as check-in 24 with the suite 22 minutes after, on a frame built as
   the napkin's boundary block proposes (a generated state snapshot, the holds, the owner board);
-  no owner card unless one survives the lenses; a push notification only for a survivor.
+  no owner card unless one survives the lenses; a push notification only for a survivor. The
+  owner's "agreed" (10:01Z, 2026-09-26) ratifies the generated-snapshot frame: build the snapshot
+  script first, then the frame from it; the cadence itself unchanged.
 - STANDING LESSONS OF 2026-09-25, each in the napkin with evidence: a fact taken from a seat's
   summary is not a read (three premise misses, all reversed by the assumptions reviewer's source
   reads: the flake count, J14's row, the rulesets and the mirror); the clock is read in a separate

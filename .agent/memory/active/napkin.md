@@ -5384,3 +5384,13 @@ three recommendations arrived smoothly from seats' lines and I wrote lenses unde
   reads the tool's event id, Myrtle's own cure; the same class as the frame sweeps.
 - The check-in 23 wakeup fired at 22:36Z into a session that did not run it; the cadence has no
   backstop when the Director's harness pauses, and the rollover folds depended on it.
+
+### 2026-09-26T10:01Z — OWNER WORD on the boundary report (native, verbatim): "agreed"
+
+Read: the proposal in the report is ratified: the cadence stands unchanged (the owner's 2026-09-24
+word); at resume the cadence frame's state block becomes a GENERATED snapshot (one script: gh pr
+list on both estates with states and authors; merges since the last build; the process table by
+worktree; load; the unpushed counts; the last heartbeat per seat), pasted verbatim and cited by
+row in READING; decision suites keep the eight-Cricket-plus-assumptions-reviewer shape. The
+Director builds the snapshot script as its first frame act after the folds. Recorded under the
+freeze; nothing starts before "carry on".
