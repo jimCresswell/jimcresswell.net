@@ -7089,3 +7089,76 @@ repository; default kept as written; 250's door waits on it.
 NEXT: suite 26 about 20:37Z on this snapshot (the frame carries the arc's endpoint sentence and
 the waiting-work line); check-in 31 about 21:00Z with the count read first; the folds at 00:00Z
 with the count read at each merge instant.
+
+## 2026-09-26T20:53Z — Director suite 26 tally; PR 250 is a lane; the retrospective trigger re-anchored (the Director)
+
+Frame built after check-in 30 (20:15Z) from the 20:14Z snapshot and the 20:39Z reads, with suite
+25's two cures applied (the arc's endpoint under READING; the waiting-work line under goal three)
+and, before dispatch, PR 250's draft flag verified against its timeline. Eight returns, none
+UNDELIVERED; the procedure seat judged only, in both stances.
+
+| Role | Stance | Work | Frame | Redirection |
+| --- | --- | --- | --- | --- |
+| cricket-judgement-low | normal | ON-TRACK | SOUND | read PR 241's acceptance test first-hand; the plan's Lane 5 table is the stalest sensor |
+| cricket-judgement-medium | normal | ON-TRACK | CONTRADICTED (the 224 answer widened to 250) | read the owner's commit on 250; close or restate the Clef card from it; map 250 to the 19:3xZ word |
+| cricket-judgement-high | normal | ON-TRACK | SOUND | none |
+| cricket-procedure-xhigh | normal | ON-TRACK | NARROWED (Lane 1 item 1's status; the trigger's condition absent) | state Lane 1's status |
+| cricket-judgement-low | adversarial | ON-TRACK | NARROWED (the trigger's condition is the static zero the owner called undesirable) | re-anchor the retrospective trigger and record it in the plan's amendment |
+| cricket-judgement-medium | adversarial | ON-TRACK | CONTRADICTED (the same widening) | map 250 to the cloud-PR word; the 224 answer covered 224 only; 250 is the owner's work in progress |
+| cricket-judgement-high | adversarial | ON-TRACK | SOUND | none |
+| cricket-procedure-xhigh | adversarial | ON-TRACK | NARROWED (the trigger's standing condition not monitored) | state the trigger's status at each check-in |
+
+Tally: 8 ON-TRACK; frame SOUND 3, NARROWED 3, CONTRADICTED 2.
+
+ACCEPTED (the 224 widening, two independent readings): the owner's 10:50Z answer "A seat lands it
+on this word" covered PR 224 only; the Director applied it as a precedent to 250's ready-mark at
+19:3xZ, and the owner reversed that mark at 20:24:39Z. From here 250 maps to the 19:3xZ word only
+("checked out locally, evaluated, and then worked on as normal by the team"), which gives no
+landing authority beyond normal work; a cloud-authored PR's ready-mark is the owner's or follows
+the owner's stated acceptance, never a precedent's. The handoff's rulings carry the narrowing at
+the next records commit.
+
+ACCEPTED and DONE (the owner's commit read): SHA:9a7ffdbaa (20:25:41Z) touches four files and adds
+Appendix E to the framework note, "Owner ratification and PR acceptance — 26 September 2026": the
+acceptance scope for PR 250 is the complete `user-value`, `specify`, `specify-connection` and
+`assess-specification` skills plus an evaluation of the changed `plan` routing; complete canonical
+files, generated adapters, an `evals/evals.json` with fixtures per skill, executed and retained
+evaluation evidence by the named method, the framework and reports reconciled, the required checks
+green on the final head, and the PR kept draft until complete; "no approval to merge". The Clef
+count in the framework note is fourteen at both heads; the card is not answered and no longer
+gates anything today. So 250 is a LANE, routed at 20:44Z to Myrtle after 245's door (event
+42e41c7d, absorbed 20:45Z); Myrtle's shape at 20:49Z: the host's own runner found and verified by
+a one-case probe (`claude plugin eval`, with-without ablation, a real run at USD 0.04), the §13.8
+sequence as seven owner-authored commits through merge-bot push, evidence per skill, about two
+seat-days from 245's door. Consequence for the count: 250 holds one of the three slots throughout,
+so the drain and the intake run on two; the owner told in the report, reverse by a word.
+
+ACCEPTED (the retrospective trigger re-anchored, two readings): the plan's clause fires "when both
+estates read one open PR each", which under the 19:2xZ word is the static zero the owner called
+undesirable. Amended in the plan report's amendment section: the retrospective runs at the first
+fold moment (12:00Z or 00:00Z) at which the non-coordination count across both estates reads at or
+under the limit and every row of the 19:24Z drain list other than 250 (257, 259, 249, 217, 253,
+246, 256, 245) has landed; 250 is a lane and does not hold it. The arc is unchanged. Each check-in
+states the trigger's status under that condition: at 20:39Z, four of eight rows landed, the count
+five; not fired.
+
+ACCEPTED (Lane 1's status and the plan's stale tables, frame cures for suite 27): READING carries
+a Lane status line: Lane 1 items 1 and 2 done (JC.net's fold landed as PR 211 at 15:28Z, the
+lineage's as 223 at 12:09Z), 3 done, 4 running, 5 the handoff drain (its second trim owed), 6 (P7,
+the rule) not started, 7 the retrospective as re-anchored; Lane 5's acceptance test done (255 at
+15:38Z, read first-hand this afternoon: SHA:af49326dd, seventeen check runs success). The SOURCES
+tables are the plan's 10:45Z snapshot and READING says so.
+
+DISPOSED (the low normal seat's redirection): PR 241's acceptance test was read first-hand at
+15:4xZ (255's merge and its CI); READING's goal-two measure carries it; the frame's SOURCES table
+is the plan's snapshot, addressed by the Lane status line above.
+
+CORRECTIONS carried from check-in 30: the "second lineage wording PR" for the landing-slot bullet
+does not exist (the convergence rode 249; Siren's byte check at 20:1xZ); Swallow's 20:31Z CLEAN
+line on 250 was of the superseded head SHA:f41ad8e78 and was carried by the Director for eight
+minutes after the owner's draft conversion (Swallow's own correction on the stream at 20:42Z).
+
+Landings since check-in 30: 249 (20:16Z) and 217 (20:37Z), both through Myrtle's door; engraph's
+push CI on 249's merge SHA:527eb969c seventeen success, on 217's merge SHA:320c146ea eleven
+success and four in progress at 20:4xZ, nothing red. 253 at the slot (Siren, from 20:38:12Z). The
+count at 20:39Z: five against three.

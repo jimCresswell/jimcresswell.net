@@ -419,3 +419,13 @@ static zero the owner named as undesirable.
 
 **Reopen conditions.** The number of implementer seats changes (the limit follows it); the owner
 asks for the count per estate rather than across both.
+
+**Amendment note, 20:5xZ (suite 26).** The retrospective trigger (§The retrospective trigger)
+fired on "both estates read one open PR each", which under the WIP limit is the static zero the
+owner named as undesirable. Re-anchored: the retrospective runs at the first fold moment (12:00Z
+or 00:00Z) at which the non-coordination count across both estates reads at or under the limit and
+every row of the 19:24Z drain list other than 250 (257, 259, 249, 217, 253, 246, 256, 245) has
+landed. PR 250 is a lane under the owner's Appendix E (commit 9a7ffdbaa: four skills with evals,
+the PR draft until complete) and does not hold the trigger; it holds one of the three slots for
+the lane's duration. The arc is unchanged. Each check-in states the trigger's status under this
+condition.
