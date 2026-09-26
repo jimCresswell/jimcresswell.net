@@ -5394,3 +5394,136 @@ worktree; load; the unpushed counts; the last heartbeat per seat), pasted verbat
 row in READING; decision suites keep the eight-Cricket-plus-assumptions-reviewer shape. The
 Director builds the snapshot script as its first frame act after the folds. Recorded under the
 freeze; nothing starts before "carry on".
+
+### 2026-09-26T10:17Z — RESUME after compaction 5: OWNER WORD (verbatim), check-in 24, the 24 open PRs
+
+OWNER WORD (native, read 10:09:47Z, with `/jc-start-right-team`, `/jc-pr-lifecycle` and
+`/jc-proportionality` invoked on it; verbatim): "work is safe when it is merged, the target number
+of open PRs is always zero. 24 open PRs is a process failure and creates a risk of losing work and
+creating rework <https://github.com/EngraphCode/open-curriculum-ecosystem/pulls> ultrathink
+/jc-metacognition /jc-free-play /jc-concept-exploration /jc-reason". Read as the "carry on" plus a
+sharpened goal three: zero is a standing target, and the 24 are a process failure to diagnose as
+well as drain.
+
+STATE READ FIRST-HAND (each line names its surface):
+
+- `gh pr list` on the lineage at 10:10Z: 24 open. 17 non-draft, green (20 checks SUCCESS) and
+  BEHIND engraph: 216, 217, 218, 220, 221, 226, 229, 231, 232, 234, 235, 236, 237, 238, 243, 244,
+  245. 241 BLOCKED (six unresolved threads, head 2458002cf level with engraph). 240 two checks
+  FAILURE (unit-tests, run-quality-gates). 211 CONFLICTING (Gale's; head 00a23728b pushed 09:58Z
+  under the owner's direct approval; one unresolved thread). Drafts: 223 (the fold), 224 (the
+  owner's), 246 and 247 (Swallow's, cut 09:52Z and 09:57Z today). JC.net: 189 only. Engraph tip
+  8c9434ae3 (PR 242, 22:24Z on 2026-09-25); no lineage merge since.
+- `gh api rulesets/21202096` (engraph): strict_required_status_checks_policy TRUE; required checks
+  run-quality-gates (integration 15368) and CodeQL (57789); required_review_thread_resolution TRUE;
+  approvals 0; copilot review_on_push FALSE; NO merge_queue rule.
+- `.github/workflows/ci.yml`: `merge_group:` trigger present, commented INERT "no merge queue is
+  configured (ADR-204)". `codeql.yml`: advanced setup (migrated from default setup), triggers
+  push/pull_request/schedule, NO merge_group.
+- ADR-204 (`docs/architecture/architectural-decisions/204-…md`, owner-ratified 2026-06-26): require
+  up to date, not a merge queue, because CodeQL DEFAULT setup cannot run on merge_group
+  (codeql-action#1537) and SonarCloud's app cannot either (ADR-161 forbids the CI scanner); "at this
+  repo's low PR volume, the re-run cost is negligible". Three premises moved: CodeQL is advanced
+  setup now; engraph requires no Sonar check; the exchange programme cut 12 PRs in one evening.
+- `gh run list` on two heads: CI 13.5 to 15 min wall-clock, CodeQL 3, Copilot 4: one door is about
+  16 minutes of CI after its sync, serial under strict currency.
+- Threads (GraphQL): 241 six unresolved (four Copilot, two Codex P1); 216 one P2 (Myrtle: on a
+  signed line, unresolved); 245 one P2 (cure on Myrtle's resume); 217, 226, 224 zero.
+- Streams since 22:24Z (stream-since.sh, both): the harness paused every seat 22:32Z to 09:49Z;
+  Swallow released the slot 09:50Z (bd95be2d) and reversed its own recommendation in its closeout
+  (de231c7a, to me): dispose the six under the ruled residual and LAND; Gale pushed 211 and
+  released its claim, "Director to assign next custodian" (aae41a0f); Myrtle's closeout (8ba29fb3):
+  seventeen open PRs settled or named, order from 226, three proposals (a clean sync re-runs CI
+  without re-opening a round; a merge queue on engraph with merge-bot enqueuing; a joint text's twin
+  waits for both legs). ListAgents 10:10Z: Siren live (resumed 09:57Z), Swallow live (resumed
+  10:06Z), Myrtle in a shell (closing out).
+- Lineage primary tree: F-209 and Titan's letter COMMITTED by their seats (acf4bba09, ff660e9b0);
+  untracked now: Gale's letter and `.agent/practice-core/incoming/jcnet-batch-1..6/` (Myrtle's
+  working material); named for the 223 fold, not mine to stage.
+- This seat: process table 0 at 10:10Z; claim 58c2684a heartbeat 10:12:56Z (was stale since
+  22:49Z); monitor re-armed 10:13Z with the recipe (task bbfu68ob6, 30 min).
+
+PROPORTIONALITY (the gate before the lenses): scope: four things wearing one name: the drain today
+(operational), the door mechanism (systemic), the intake bound (systemic), PR 241's ruling
+(seat-level); kept separate, each homed below. Instrument: the drain is seats and gh, no fleet;
+the systemic recommendations take the owner's mandated instrument (full Cricket suite plus the
+assumptions reviewer, 21:41Z word), not lightened; PR 241's ruling is one read of the rules file
+plus the precedent (R5a), no suite. Level: the queue, the intake bound and the round-counting
+refinement are the owner's (a ruleset, an ADR amendment, the two-round rule's counting); the slot
+rule, the door order, 211's custody and 241's disposition are the Director's; execution is the
+seats'. Changed by the gate: 241 takes a ruling not a suite; the door mechanism climbs to an ADR
+amendment, not a rule tweak.
+
+CONCEPT EXPLORATION (four movements, compressed):
+
+1. Raw observations: above. Inherited assumption exposed: "the readiness slot is the mechanism".
+   It is a hand-run serialiser for a policy the owner keeps (strict currency, ADR-204), and ADR-204's
+   "low PR volume" premise is June's, refuted by the exchange programme (one PR per row by design:
+   design-work-for-small-prs plus records-ride-substantive-PRs).
+2. Problem space: the KIND is a queueing failure with a head-of-line blocker, not a quality
+   failure. Gap: production about 12 PRs per evening from two exchange seats against a door of
+   about 1.5 per hour realised (15 merges in 10 hours on 2026-09-25; 3.75 per hour is the CI
+   ceiling). Harms: the owner (unsafe work, rework as engraph moves), seats (every slot sync
+   re-opens a bot round on unchanged text and spends the two-round budget: 241 six, 216 five, 227
+   one, 229 one in one evening, Myrtle's count), the estate (24 exposures to drift). Mechanism:
+   strict currency + serial slot + bot re-review on the sync push + no WIP bound + a BLOCKED PR
+   holding the slot across an 11-hour pause (241 took it at 22:26Z with six open threads). Success:
+   the count returns to zero each day; no PR waits on a live arbiter; a sync spends no round.
+3. Solutions reflected: the fluent first answer, "more seats at the door", fails (the door is
+   serial whatever the seat count; seats add slot chatter). The second, "relax strict currency",
+   fails Lens 2 and ADR-204's reason (merge skew). The shape that changed: the cure sits at the
+   door's mechanism and the intake, not at the seats' effort.
+4. Synthesis: (A) a merge queue on engraph: the queue's merge_group ref carries the currency, so
+   no sync push, no bot round, no slot, no head-of-line block (a failed group is dequeued); needs
+   `merge_group:` on codeql.yml, the merge_queue rule on ruleset 21202096, merge-bot enqueue
+   (`gh pr merge --auto`), ADR-204 amended for engraph. Warrant: three premises moved (above);
+   Myrtle proposed the same independently. Falsifier: the "CodeQL" check (integration 57789) not
+   reporting on merge_group refs under advanced setup (codeql-action#1537's current state, unread).
+   (B) an intake bound: a seat holds at most two open non-draft PRs (one at the door, one
+   preparing); the next row's PR is cut when one lands. Warrant: opening is free and landing is
+   expensive, so the backlog is unbounded without a coupling. Falsifier: seats idle at the bound
+   while the door is empty. (C) the slot rule: CLEAN takes the slot; BLOCKED never does and a holder
+   that becomes BLOCKED yields at once (Director ruling now; the taken/released protocol into
+   pr-lifecycle §Phase 7, joint). (D) rounds bind to content heads: a clean sync push (no diff in
+   the PR's own files) re-runs CI and opens no round (Myrtle 1; refines the owner's two-round word,
+   so the owner's). (E) a joint text's twin merges after both copies' legs settle (Myrtle 3;
+   Director ruling for the exchange lanes: bounded by one bot cycle, prevents the by-blob re-take).
+   Unresolved evidence: #1537's state; whether the Codex connector re-reviews on a sync push by
+   mechanism (observed yes, unread); CI wall-clock on a merge group.
+
+FREE PLAY (three minutes on the morning's material; harvest with the guard): the readiness slot
+reminded me of a single-lane bridge with a flagman: when the flagman goes home (the harness
+pause) the bridge stays blocked with a car on it (241), and a traffic light (the queue) needs no
+flagman. Kept: it routes into (A). Swallow reversed its own recommendation in twelve minutes
+(09:50Z wrapper route, 10:02Z land with residuals) by asking "is this a new boundary?": the
+shared-generator test of concept-exploration §Loop Dynamics fired in a peer unprompted. Kept as a
+napkin seed. Discarded visibly: ADR-204's author sharing the naming schema (nothing there); 24
+PRs and the 24-hour branch lifetime (numerology).
+
+RULINGS (Director-level, posted to the lineage stream; the surfaces read are named above):
+
+- PR 241: LAND. The six are disposed under the residual the rules file's header names ("an allowed
+  command can run code written inside the sandbox … the same residual exists on Claude seats and
+  is unowned in both"): `--upload-pack` and `worktree add` are sandbox-written code reaching the
+  host (the hooks class); `merge --no-verify` is the trailing-flag class already ruled on commit
+  (position match, rule.rs:16-25); `fetch --force --update-head-ok`, `add -u`/`-p` and the
+  whole-index commit are local ref and staging hygiene in an isolated worktree (the push wrapper
+  refuses default branches). One signed line per thread in the ratified format, then resolve; no
+  push (the head is level with engraph: no sync, no CI wait). Condition 5 (the owner's live proof)
+  becomes the acceptance test after landing; a failure is the follow-up's first cure. Follow-up,
+  named home, goal two's next item: the landing toolkit (commit and sync wrappers first, then stage
+  and worktree), each replacing its git allow. Falsifier (Swallow's): if the gates could run with
+  no workspace code on their path, the six would be the remaining escapes.
+- PR 211 custody: Swallow (the Codex Support lane, Gale's pair). The capture rule stands: cite by
+  path, size and hash; never push it; ae110f662 never leaves the machine.
+- The slot: 241 first (no sync). Then age order among CLEAN non-drafts: 217, 218, 220, 221, 226,
+  229, 231, 232, 234, 235, 236, 237 (after 217, Myrtle), 238, 243, 244 (legs pending); 216 and 245
+  when their one thread each is resolved; 240 after its cure; the fold 223 at 17:05Z. The live seat
+  at the door lands the next CLEAN PR in age order whatever its lane; the Director rules the order,
+  not the lane. Whether the Director itself keeps the door while seats cycle goes to the suite.
+- (E) stands for the exchange lanes from now.
+
+TO THE SUITE THEN THE OWNER (one frame, eight Crickets both stances plus the assumptions reviewer,
+the owner's instrument): (A) the merge queue with the ADR-204 amendment; (B) the intake bound; (D)
+rounds bind to content heads; the Director at the door for orphaned CLEAN PRs. The fold of PR 189
+is due 11:17Z and runs first when the suite is out.
