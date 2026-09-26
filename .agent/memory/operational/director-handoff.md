@@ -43,6 +43,10 @@ Every line answered first-hand, none inferred:
 
 - A green, clean pull request is merged, by merge commit, without asking; cards are for
   decisions only the owner can make.
+- The owner's answer "A seat lands it on this word" (2026-09-26 10:50Z) covered PR 224 only. A
+  cloud-authored or owner-authored draft is ready-marked by the owner or by the owner's stated
+  acceptance (PR 250's Appendix E, 20:25Z), never by precedent: the Director widened the 224
+  answer to 250 and the owner reversed the mark within five minutes (20:24Z).
 - Compute, don't hope: no hand-kept list; every list is derived or gated by a validator.
 - The private editorial material is optional, confidential, never a dependency, mentioned
   minimally, never quoted.
@@ -180,14 +184,25 @@ Every line answered first-hand, none inferred:
   name PRACTICE_STATUSLINE_LOG_FILE in place of OAK_STATUSLINE_LOG_FILE, or the statusline log
   stops (Siren, 13:10Z; the file is the operator's).
 
-## Current handoff state (2026-09-26, after the 14:42Z resume, the fold of PR 211 in progress; pointer-biased by design)
+- The WIP limit (owner, 2026-09-26 19:2xZ, verbatim summary: "Each repo is allowed one
+  coordination PR"; "The total number of allowed PRs not including coordination PRs is the number
+  of implementer agents, in this case three"; "We always strive for all PRs to be merged"). The
+  count is read across both estates together; external PRs (fork syncs, Dependabot, CV content)
+  count, and the Director analyses and schedules each into the door order; no PR opens while the
+  count reads three or more, and the opener reads it first-hand and posts "WIP slot taken: N of
+  3" on the estate's stream. Supersedes "No bound" (10:50Z). Cloud-authored PRs (a non-executing
+  host, the PR body's own statement) are team intake: checked out locally, gated, evaluated, then
+  worked as normal (owner, 19:3xZ). The full words and the operated rule: the napkin's
+  2026-09-26T19:29Z and 19:38Z blocks.
 
-Resumed at the owner's "carry on" (14:42Z) after COMPACTION BOUNDARY 7 (13:08Z). The napkin's
-latest check-in block (15:00Z, check-in 27, and the blocks after it) is the live reading: the
-state, the ready list, the card queue, the seats. The fold of PR 211 runs at the door (main merged
-in as SHA:47ff8d2b; Copilot's round one cured in the settlement push); the successor is cut at its
-merge and named by the rotation broadcast. Processes: the monitor (both streams and the pulse);
-merge-bot's poll during the door. Claim 58c2684a.
+## Current handoff state (2026-09-26, resumed 19:1xZ after COMPACTION BOUNDARY 8; pointer-biased by design)
+
+Resumed at the owner's start word (19:1xZ) after COMPACTION BOUNDARY 8 (16:32Z); the boundary
+records are on origin (SHA:fd448c0b). The napkin's latest dated check-in block is the live
+reading (the state, the count against the limit, the ready list, the waiting-work line, the card
+queue); the 19:29Z and 19:38Z blocks carry the owner's WIP-limit and cloud-PR words verbatim. PR 211 folded at 15:28:25Z as
+SHA:26ca4dab9; the primary resides on coordination/2026-09-26-26ca4d (draft PR 215, DUE at the
+rollover). Processes: none of this seat's. Claim 58c2684a retained.
 
 Written for a reader who was never here and may run on a different model. The live reading is
 the napkin's latest dated block (`.agent/memory/active/napkin.md`; on 2026-09-26 the check-in and
