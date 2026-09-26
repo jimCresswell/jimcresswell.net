@@ -172,8 +172,15 @@ Every line answered first-hand, none inferred:
   lineage event ba36625a; rides JC.net PR 212 and Myrtle's lineage twin).
   (2) The next Codex seat: the owner starts it when convenient; its first act is P3 (the ADR-204
   amendment note) as PR 241's acceptance test; no deadline waits on it.
+  (3) PR 224's Codex finding that the adoption profile cites private Library records by title,
+  disposed by Swallow as the owner's private provenance. (4) PR 250, the owner's new draft of
+  12:38Z (`codex/user-value-across-levels`): a seat lands it on the owner's word, as 224.
 
 ## Current handoff state (2026-09-26, after the 12:39Z landing of PR 214; pointer-biased by design)
+
+COMPACTION BOUNDARY 7 at 13:08Z on 2026-09-26, at the owner's word; the freeze binds until "carry
+on". The napkin's 13:08Z block is the live reading: the state, the card queue, the re-arm recipe
+and the owed-on-resume order. Processes: none of this seat's. Claim 58c2684a retained.
 
 Written for a reader who was never here and may run on a different model. The live reading is
 the napkin's latest dated block (`.agent/memory/active/napkin.md`; on 2026-09-26 the 11:28Z fold

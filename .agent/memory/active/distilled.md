@@ -179,3 +179,12 @@ the vendor's issue and its documentation first-hand; before calling a Practice t
 its blob at the default branch's tip, never at a checkout on a coordination branch. Source: napkin
 2026-09-26 (10:17Z, 11:01Z); routing: `verify-dont-trust`, `verify-vendor-call-shapes-at-plan-author-time`,
 the Director handoff §Standing lessons, the rule candidate "a ruling names the primary surface it read".
+
+## Run the checker on the fragment before it joins the whole (2026-09-26)
+
+In one window three commit headers were refused by commitlint for one to two characters over the
+limit and three markdownlint faults surfaced in one appended napkin block, each found only when the
+whole was checked. The fragment (a header line, a block about to be appended) is checkable on its own
+in one command (`wc -c` on the header; markdownlint on the block file) before it joins the record;
+a check that runs only on the whole runs late, and each late refusal cost a commit or a gate run.
+Source: napkin 2026-09-26 (11:37Z to 12:49Z); routing: `lint-after-edit`, `compute-dont-hope`.

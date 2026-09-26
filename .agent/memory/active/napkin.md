@@ -6078,3 +6078,165 @@ remote branch gone with read-back; 248 merged (2c75350a9, Swallow); 213 merged (
 Siren); 224 synced and ready with both legs (Swallow's slot); 221 green after its re-run
 (Myrtle); 249 (the cost-model twin) and 251 (the bot-identity twin) open with both legs
 (Myrtle); Siren routed to take J11 and J13 into lineage PRs beside Myrtle (absorbed).
+
+## 2026-09-26T13:08Z — COMPACTION BOUNDARY 7 of the Director seat (Wick binds Temper, ed7b48)
+
+The owner's word, 13:0xZ, verbatim: "prepare for compaction ultrathink /jc-metacognition
+/jc-free-play /jc-concept-exploration /jc-reason /jc-wrap then stop all processes". A freeze:
+the wakeup for check-in 27 cancelled before it fired (it was due 13:07Z); the monitor bppt3bbcq
+stopped; this seat's process table read zero by ps (the remaining comms watchers are Myrtle's,
+supervisor 53462, and Swallow's, 98750). Nothing starts before the owner's "carry on".
+
+WORK SAFETY, verbatim: `git status --branch --short` reads
+`## coordination/2026-09-26-1ed8ef...origin/coordination/2026-09-26-1ed8ef` (level, HEAD
+a3d185a2) before this block was written. This block, the handoff's boundary line, the continuity
+bullet and one distilled entry are the only uncommitted changes, left UNCOMMITTED on purpose by
+the owner's precedent of this morning ("please commit and push post-compaction", 11:1xZ): the
+first act after "carry on" is their commit by pathspec with a gate notice and the push. If the
+owner would rather the records go up before the compaction, one word reverses it. One worktree
+(the primary); no lane worktree of this seat's.
+
+STATE AT THE BOUNDARY (gh at 13:07Z). JC.net: 1 open (211, the successor draft, CLEAN, 9 files);
+merged since 12:38Z: 214 (49b2addd5, the doctrine PR, through its door). The lineage: 9 open:
+252 (Siren's J13a, code, BLOCKED with checks running), 251 (Myrtle's bot-identity twin, CLEAN,
+5 files), 250 (the OWNER'S draft, `codex/user-value-across-levels`, opened 12:38:32Z, 12 files;
+inference from the branch name: authored with Codex; not yet routed), 249 (the cost-model twin
+carrying the 214 twin at d36f732b4, BEHIND, 13 files, both legs on the head, zero threads), 246
+(BEHIND, Swallow's cure committed), 245 (DIRTY, Myrtle's reconcile and cure owed), 224 (the
+owner's draft, CLEAN at Swallow's door, zero threads after two dispositions, the door polling),
+221 (BEHIND, green, Myrtle's one sync at its turn), 217 (BEHIND, 2 threads). Merged on the
+lineage since 12:38Z: none (248 at 12:35:57Z was the last). READY LIST by the cured predicate:
+lineage 251 (5 files) <https://github.com/EngraphCode/open-curriculum-ecosystem/pull/251> and
+224 (12 files, its door running) <https://github.com/EngraphCode/open-curriculum-ecosystem/pull/224>;
+JC.net none. The plan's landings bar (two per 45 minutes) was met in neither window since the
+owner stopped landing by hand: 12:17Z to 13:07Z the lineage's seat door landed one (248) with
+the cost-model twin, the bot-identity twin, 224's cures and J13a in flight.
+
+SEATS: Siren live (J13 as three lineage PRs under the 12:42Z routing, J13a open as 252; PR 213
+landed ee19708b; the register's next update owed). Myrtle live (249 with the 214 twin, 251, 221
+next at the slot, 217, 245; two joint dispositions posted 13:06Z). Swallow live (224 at the
+door; then 246; then the DEGRADED-scan cure in merge-bot push, routed 12:55Z and absorbed; the
+sync-lineage cure re-ranked behind both on Swallow's datum). No seat was told to stop; the
+freeze binds this seat only, as the owner's word was given here.
+
+OWNER CARD QUEUE (four lines, none blocking; the owner reverses or answers by a word): (1) the
+late-cure leg ruling (PDR-140 clause 4's last sentence; landed in JC.net 212 and riding lineage
+249); (2) the next Codex seat for P3, when convenient; (3) PR 224's Codex finding that the
+adoption profile cites private Library records by title, disposed by Swallow as the owner's
+private provenance; (4) PR 250, the owner's new draft: a seat lands it on the owner's word, as
+224, or the owner's hand.
+
+RE-ARM RECIPE (unchanged): `<scratchpad>/director-monitor.sh 58c2684a-5e8d-4a33-a29e-ed074df63128
+coordination/2026-09-26-1ed8ef "<label>"` as a Monitor, timeout 1800000; the snapshot
+`<scratchpad>/snapshot.sh <iso floor>` (its ready predicate now excludes DIRTY; the floor is the
+last check-in's time); the frame builder pattern: the last frame's SOURCES kept, READING and
+fields 2 to 5 rewritten from the snapshot, then four roles per stance by the Agent tool, never a
+model override. If the scratchpad is gone, all three are rebuilt from these descriptions and the
+napkin's 11:06Z block.
+
+OWED ON RESUME, in order: (1) the clock; the process table (zero of this seat's); ListAgents; both
+streams since 13:00Z; gh pr list on both estates, first-hand. (2) Commit the four boundary files by
+pathspec, gate notice, push. (3) Re-arm the monitor; check-in 27 on a fresh snapshot (floor
+12:38Z) with the ready list; the suite 22 minutes after with suite 22's frame cures (the
+todo-status table; the landed slot bullet quoted in SOURCES; the fold clause read plainly). (4)
+The rollover folds at 00:00Z if the freeze has lifted by then; if not, the folds slip to the
+resume and the DUE check names them. (5) The retrospective when both estates read one open PR
+each. (6) The handoff's second trim (the 2026-09-25 owner words to permanent homes) when the
+cadence allows.
+
+METACOGNITION (retrospective mode). This window's shape: one resume, one fold ceremony closed
+under a two-hands case (the owner's merge four minutes before the push), two suites, two
+check-ins, five rulings, one doctrine PR authored and landed, one drain. The pattern that cost
+the most: three commit-message headers refused for length and three markdownlint faults in one
+appended block, all of one class (the fragment was never run through the checker that the whole
+would meet); cured mechanically from the fourth commit (`wc -c` on the header before the
+commit) and a lesson below. The judgement that held: refusing to build the merge queue, the
+Director-at-the-door and now the sync-lineage cure on a first-hand datum. The judgement that
+slipped: the drain moved the 2026-09-13 to 2026-09-16 blocks to the archive without reading
+them line by line (only the post-2026-09-21 routing entries were read and five owner words
+graduated); the archive holds every byte, so a successor can scan; the loss is bounded to
+"unread", never "gone".
+
+FREE PLAY (kept and discarded). Kept: the owner's ready list can be a saved GitHub search the
+owner opens without the Director, for instance the lineage's open, non-draft, green PRs
+(`is:pr is:open -is:draft status:success` on the repository's pulls page); offered as one line
+at the next contact, no card. Kept as a datum for the cost model: JC.net's door ran 19 minutes
+from PR 214's open (12:20Z) to its merge (12:39Z) with one leg and no findings; the lineage's
+door with a sync costs about 16 minutes of CI plus the legs; the flat cost the owner named reads
+as about twenty minutes of wall clock per PR on either estate before any cure. Discarded: a
+re-query of merge states after each merge (GitHub's UNKNOWN recomputes in seconds; no value);
+a per-PR CI-in-flight sensor in the snapshot (the table already shows it).
+
+CONCEPT EXPLORATION (the door as a queue with one server per estate). Realised throughput today:
+the owner's hand, seventeen landings in about twenty minutes; the seat door, 223 at 12:09Z and
+248 at 12:36Z, two in ninety minutes, every one of the remaining seven needing a sync and most a
+cure. The plan's bar of two landings per 45 minutes assumed cure-free PRs; the honest clock for
+the seat door is one landing per 20 to 45 minutes depending on cures, so the seven open at the
+boundary are three to five hours of door time without the owner's hand. Swallow's datum narrows
+the plan's third mechanism: of seven reviewed tip moves on four PRs, one was sync-only, so most
+review rounds today were content rounds and the sync-lineage cure's yield is one round in seven;
+the slot already bounds syncs to one per PR. Falsifier for the re-rank: the review-cost survey
+shows sync-only tip moves costing rounds on the exchange seats' PRs.
+
+REASON (the decisions of this window, each with its warrant). Leaving the boundary records
+uncommitted: the owner's own precedent this morning, reversible by a word. The joint-change door
+holds one copy: ruling 4's shape (one estate settles the bytes, the other takes them); both held
+would deadlock. The late-cure leg: the owner's concept (rounds do not go up) kept, the seat
+wording of 2026-09-25 replaced, the owner's card queue holds the reversal line. Lane 4 to
+landings: the goal moves on landings, the Box holds ten unlanded rows, the intake is unbounded
+by the owner's word but the seat's time is the Director's to order. The 214 twin onto 249: the
+cost-model word. P1 re-ranked: the datum. The drain: the plan's Lane 1 item 5, proven by cmp.
+
+PROMISES SWEEP (this seat's, in chat and on the streams): the ready list, kept in every check-in
+and in this block; the card queue, four lines above; the fold-cadence text, landed (214); P7,
+landed (214); P9, done in its first pass, the second trim owed above; the retrospective, on its
+trigger; check-in 27 and suite 23, NOT run (the freeze), owed on resume; the rollover folds,
+owed conditionally above; the reply to Siren's Lane 4 question, sent and absorbed; the re-rank
+to Swallow, sent; the DEGRADED-scan routing, absorbed; the 214 twin routing, absorbed; the
+premise correction for the retrospective, recorded here; the snapshot's DIRTY cure, in the
+scratchpad only (volatile; described in the re-arm recipe). Zero silent drops found.
+
+ATTRIBUTION FLAGS (inference, not observation): that 0d9f8b4f and 8c178572 on the successor are
+Siren's (all commits carry the owner as author; the subjects and Siren's stream lines say so);
+that PR 250 was authored with Codex (the branch name); that Siren's watchers stopped (their
+supervisor pid 15907 is absent from the process table at 13:08Z; Siren's heartbeat at 12:37Z was
+its last read here); that Swallow's "two forced deletes refused by the harness" are the hook's
+refusals (Swallow's line).
+
+METALOSS PASSES. (1) Compressed reasoning: the drain's unread archive blocks and the yield
+line's supersession are named above with their bounds. (2) Promises: swept above. (3)
+Attribution: flagged above. (4) Blind-spot bounds: the monitor excluded heartbeats, so liveness
+was read from the snapshot's LAST HEARTBEAT block only; the lineage's events reached this seat
+truncated by the monitor (full bodies are in the comms directory); the eight suite transcripts
+were read as their reports only. (5) Index of homes: this block; the napkin's 11:28Z, 11:37Z,
+12:15Z, 12:17Z and 12:49Z blocks; the handoff's pointer page, standing rulings and card queue;
+`archive/director-handoff-2026-09-26.md`; the continuity record's bullets; the plan report; the
+auto-memory files named in the 11:06Z block plus the freeze memory updated today; the scratchpad
+(volatile). (6) External bound: the suites judge this seat's own frames from this seat's own
+briefing; today's error signature, where outside eyes caught what the frame missed: the P7
+status omitted three times, the yield line's unquoted source, and the Codex seat missing from the
+owner's queue. (7) Fence sweep: no owner word was held off the repository this window; nothing
+to grep. Exit: a third pass would only re-find the unread archive blocks and the scratchpad's
+volatility; the recursion closes here.
+
+### 2026-09-26 13:10Z — Siren herds Rudder (158275): the J13 lane's lessons
+
+- **A twin row starts from the other estate's bytes.** I wrote J13a's usage and refusal text in
+  my own words. The Box row gave that text word for word, and this estate's main already carried
+  it. Converging cost settlement push 1 and a second leg round on PR 252. For J13b, a
+  rename-mapped diff of each target file against this estate's main came before any write. It
+  showed three files identical and six differing only in host content. Cure: diff first, then
+  write only what differs by host. The Box row's own line "the concept travels, not JC.net's
+  modules" licensed the re-authoring; the owner's same-bytes word supersedes it. Proposed to the
+  Director as a Box convention: shared text travels as bytes, and host content stays the host's.
+- **Read an identifier before writing it.** An event draft carried a commit SHA from nowhere
+  ("1ca1d1a6d"). Reading the real one (24edec275) caught it before the send. This is the clock
+  rule's class: an identifier is a fact to read in its own call.
+- **`git add … && rc=0; git commit …` commits after a failed add.** The `;` runs the commit
+  whatever the add returned. The add failed because a `git mv`'s old path matches no pathspec: the
+  rename is already staged, so staging a rename by explicit pathspec needs only the new path. The
+  commit took only the two renames (local, never pushed) and was repaired by amend. Cure: chain
+  the commit with `&&`, or capture the add's exit in band on its own.
+- Play seed (an association, not a finding): an observation routed through comms has almost no
+  flat cost. The Director routed the DEGRADED scan in 36 seconds. That looks like the PR cost
+  model inverted: for observations, the optimum is the smallest unit, sent at once.

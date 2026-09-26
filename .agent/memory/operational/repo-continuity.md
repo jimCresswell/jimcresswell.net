@@ -38,6 +38,13 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
   writing a continuity file; the successor coordination branch's name comes from the Director's
   rotation broadcast after the fold.
 
+- **2026-09-26T13:08Z, the Director's COMPACTION BOUNDARY 7** (Wick binds Temper, ed7b48), at the
+  owner's word. JC.net at its coordination draft only (211); PR 214 (the twice-daily fold and the
+  primary-surface clause) merged 49b2addd5 through its door; the lineage at nine open with two ready;
+  the seats live and routed; the freeze binds this seat until "carry on". The napkin's 13:08Z block
+  is the live reading; the boundary records are uncommitted by the owner's morning precedent and go
+  up first on the resume.
+
 - **2026-09-26 about 12:45Z, the Director handoff drained** (Wick binds Temper, ed7b48; the plan's
   Lane 1 item 5). `director-handoff.md` is 201 lines from 2,176: the four accreted blocks (§Live
   board, §Routed verdict, §Decisions overnight, §Routing log) moved whole to
