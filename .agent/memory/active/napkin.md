@@ -6478,3 +6478,266 @@ docs/codex-queue-probe-metadata-01a0d9, after Swallow's assessment.
 NEXT: suite 24 about 16:09Z on this snapshot (the frame quotes the retrospective trigger above and
 names the 12:09Z count as an inference); check-in 29 about 16:32Z; the folds at the rollover (215;
 254).
+
+## 2026-09-26T16:15Z — Director suite 24 tally (the Director)
+
+Frame built after check-in 28 (15:47Z) from the 15:47:21Z snapshot with suite 23's two cures
+applied (the retrospective trigger quoted; the 12:09Z count named as an inference). Eight returns,
+none UNDELIVERED; the procedure seat judged only, in both stances.
+
+| Role | Stance | Work | Frame | Redirection |
+| --- | --- | --- | --- | --- |
+| cricket-judgement-low (highest power, low effort) | normal | ON-TRACK | SOUND | read the count first-hand at 254's fold moment, not by inference |
+| cricket-judgement-medium (high power, medium effort) | normal | ON-TRACK | NARROWED ("each worktree absent from `git worktree list`"; "All local and remote branches deleted or in PRs") | measure the worktrees against Lane 6's list; give every local unmerged branch a verdict, PR or delete; the §2.10 docs PR's status |
+| cricket-judgement-high (mid power, high effort) | normal | ON-TRACK | SOUND | report the foreseen fold-moment miss on 254 now, not only for the retrospective |
+| cricket-procedure-xhigh (lowest power, xhigh effort) | normal | ON-TRACK | SOUND | none |
+| cricket-judgement-low | adversarial | ON-TRACK | SOUND | put the Codex-lane question first in the owner's report |
+| cricket-judgement-medium | adversarial | ON-TRACK | SOUND | project the lineage's open count at 254's rollover and give the owner the gap as one line |
+| cricket-judgement-high | adversarial | ON-TRACK | SOUND | an intake count beside the landings count in every check-in |
+| cricket-procedure-xhigh | adversarial | ON-TRACK | SOUND | continue to the evening folds |
+
+Tally: 8 ON-TRACK; frame SOUND 7, NARROWED 1.
+
+ACCEPTED (the fold-moment read): the fold entry for 254 records the lineage's open count from a gh
+read at the merge instant; the same for 215.
+
+ACCEPTED (the worktree measure and the branch verdicts): the snapshot's WORKTREES section at
+15:47Z lists eleven lineage worktrees, every one on an open PR's branch (the two shown "no origin
+branch" were 257's and 258's, pushed after the snapshot's fetch); Lane 6's named worktrees (the
+five on merged branches, the comms-EMFILE temp worktree, oce-wt-gh-write-guard, the four Codex
+worktrees) are absent from `git worktree list`, deleted by their seats earlier today with
+read-back. "Live lanes" is retired as a category: every local unmerged lineage branch is on an
+open PR except the three named for the owner's hand (claude/objective-nightingale-b4ba25,
+docs/codex-queue-probe-2026-09-25 with its private capture commit,
+docs/codex-queue-probe-metadata-01a0d9, assessed by Swallow as nothing wanted). The §2.10 citation
+cure landed as PR 248 (SHA:2c75350a9, 12:35:57Z, commit c7fdf7192), which the frame's goal-two
+list carried as 248 without naming it as that cure; check-in 29's frame names it.
+
+ACCEPTED (the foreseen miss, the projection, the intake count): at 15:47Z the lineage held 12
+open; the window's intake was 4 (253, 256, 257, 258) against 2 landings; the rollover is eight
+hours off. At the door's measured pace (about two landings per 45 minutes when the ready supply
+holds and cures are few) and an intake of two to four per hour, the count at 254's fold moment
+projects to between four and ten, not zero, unless the intake stops; the owner's "No bound" answer
+sets the intake, so the owner gets the projection as one line in this turn's report. The snapshot
+gains an OPENED-since-floor count beside its MERGED count from check-in 29.
+
+ACCEPTED (the Codex-lane line first): this turn's report leads with it.
+
+DONE (engraph's push CI on the door's last landings): SHA:af49326dd (255) and SHA:88bda7fa0 (252)
+each seventeen check runs, all success, read after 16:09Z.
+
+RULING RECORDED (Siren's question, 16:0xZ): JC.net's transplant-runbook twin returns to status
+sketch when it takes PR 258's eleven cures, by the runbook template's clause at main ("procedure
+changes return it to `sketch` for re-ratification", lines 4 to 5); the re-ratification is the
+owner card queue's eighth line; the twin opens from 258's settled bytes at its landing.
+
+Landings since check-in 28: lineage 252 (J13a) at 15:57:38Z through Siren's door; the slot to
+Myrtle for 221 at 15:58Z. Deletions read back: Myrtle's seven, Swallow's one local and two remote
+refs; three local unmerged branches named for the owner's hand.
+
+## 2026-09-26T16:32Z — COMPACTION BOUNDARY 8 of the Director seat (Wick binds Temper, ed7b48)
+
+The owner's word, 16:3xZ, verbatim: "prepare for compaction ultrathink /jc-metacognition
+/jc-free-play /jc-concept-exploration /jc-reason /jc-wrap then stop all processes". A freeze: the
+wakeup for check-in 29 cancelled before it fired (it was due 16:33Z); the monitor bjup8j58z
+stopped; this seat's process table read zero by ps (the remaining comms watchers are Swallow's,
+supervisor 98750, and Myrtle's, 53462). Nothing starts before the owner's "carry on".
+
+WORK SAFETY, verbatim: `git status --branch --short` reads `##
+coordination/2026-09-26-26ca4d...origin/coordination/2026-09-26-26ca4d` (level, HEAD SHA:8f00d4cd,
+check-in 28, pushed 15:5xZ) before this block was written; zero unpushed commits. Uncommitted on
+the primary: the napkin (the 16:15Z suite 24 tally and this block), the handoff's boundary line,
+the continuity bullet, all left UNCOMMITTED on purpose by the owner's precedent of this morning
+("please commit and push post-compaction", 11:1xZ, followed at boundary 7 without objection): the
+first act after "carry on" is their commit by pathspec with a gate notice and the push. Siren's
+thread record is dirty in the tree and is Siren's (its records commit SHA:3c772dbe rode the
+check-in 28 push). One worktree of this seat (the primary); JC.net's only lane worktree is
+Siren's.
+
+STATE AT THE BOUNDARY (gh at 16:32Z, first-hand). JC.net: 1 open (215, the coordination draft,
+CLEAN, 5 files; DUE at the rollover); merged since check-in 28 (15:47Z): 218 (joint item 4,
+16:20:44Z) and 217 (the seed-gate twin, 16:22:33Z), both through Siren's door. The lineage: 12
+open: 259 (Myrtle's bundled twin of joint items 1, 4 and 5, 5 files, opened 16:31Z, legs
+requested), 258 (Siren's J11a, 1 file, at the slot since 16:17Z, its sync pushed 16:19Z, CI
+running), 257 (Swallow's DEGRADED-scan cure, 4 files, CLEAN, next at the slot), 256 (J13c, 30
+files), 254 (the coordination draft, 9 files, DUE at the rollover), 253 (J13b, 16), 250 (the
+OWNER'S draft, red on the skills-adapter validator), 249 (13), 246 (Swallow's guard, 20 files
+after the smoke helper, its last settlement push at 16:31Z), 245 (45, DIRTY, Myrtle's reconcile),
+217 (13, with the joint change's two passages inside). Merged since check-in 28: 252 (J13a,
+15:57:38Z, Siren's door) and 221 (16:16:52Z, Myrtle's door). Opened since: 259. Since the resume
+at 14:42Z the lineage door landed 224, 251, 255, 252 and 221 and the intake was 253, 256, 257, 258
+and 259: the count held at twelve. READY LIST at 16:32Z by the cured predicate (green, zero
+threads, non-draft, not DIRTY; by changed files): 257 (4)
+<https://github.com/EngraphCode/open-curriculum-ecosystem/pull/257>, 249 (13)
+<https://github.com/EngraphCode/open-curriculum-ecosystem/pull/249>, 217 (13)
+<https://github.com/EngraphCode/open-curriculum-ecosystem/pull/217>, 253 (16)
+<https://github.com/EngraphCode/open-curriculum-ecosystem/pull/253>, 256 (30)
+<https://github.com/EngraphCode/open-curriculum-ecosystem/pull/256>; 259 joins at 5 when its legs
+bind; JC.net none.
+
+SEATS: Siren live (258 at the slot; 253 and 256 in review; JC.net at its draft alone after 216,
+218 and 217; J11's later slices to propose; the runbook twin to open from 258's settled bytes at
+status sketch). Myrtle live (259 open; 217 with the joint passages, 249, 245 after its reconcile;
+its seven branches gone). Swallow live (257 CLEAN, next at the slot; 246's last settlement push
+up; the lane's remaining Codex items by default). Phobos wakes Void closed out at 15:41Z after PR
+255 (P3) landed through the bot path with no owner prompt at any step: PR 241's condition 5
+closed. No seat was told to stop; the freeze binds this seat only.
+
+OWNER CARD QUEUE (eight lines; none blocking, though 250 holds the lineage's fold-moment measure
+above zero): (1) the late-cure leg ruling (PDR-140 clause 4's last sentence; reverse by a word);
+(2) answered at 14:4xZ: Phobos was the Codex team member; (3) PR 224's Codex finding on private
+Library citations, disposed as the owner's provenance; (4) PR 250, the owner's draft, red on the
+skills-adapter validator (the generated projections are stale; one regeneration commit on the
+owner's word); (5) at PR 253's landing the operator's machine-local lineage
+`.claude/settings.local.json` must name PRACTICE_STATUSLINE_LOG_FILE in place of
+OAK_STATUSLINE_LOG_FILE; (6) goal two's remaining Codex items after Phobos's closeout (2b's three
+PRs, 2c, the bridge's todo 3, exec-binding B, C, D, slices 2 and 3, the landing toolkit, the
+credential narrowing): a Codex seat with a longer brief, or Swallow's lane; (7) three local
+unmerged lineage branches for the owner's hand, since a seat's denied force-delete is not the
+Director's to take: claude/objective-nightingale-b4ba25 (its eight-line runner quoted whole by
+Swallow at 15:59:50Z; the remote ref is gone), docs/codex-queue-probe-2026-09-25 (the private
+capture commit ae110f662, never pushed), docs/codex-queue-probe-metadata-01a0d9 (Gale's stale cure
+branch, assessed by Swallow as nothing wanted); (8) the transplant runbook's re-ratification when
+JC.net's twin takes PR 258's cures (the template's clause returns it to sketch).
+
+RE-ARM RECIPE: `<scratchpad>/director-monitor.sh 58c2684a-5e8d-4a33-a29e-ed074df63128
+coordination/2026-09-26-26ca4d "<label>"` as a Monitor, timeout 1800000; the snapshot
+`<scratchpad>/snapshot.sh <iso floor>` (now with the OPENED-since-floor and BRANCHES sections; the
+OPENED section is written and not yet run once; the floor is the last check-in's time, 15:47Z);
+the frame builder pattern: the last frame's SOURCES kept (suite-24-frame.md), READING and fields 2
+to 5 rewritten from the snapshot, then four roles per stance by the Agent tool, never a model
+override. If the scratchpad is gone, all three are rebuilt from these descriptions and the
+napkin's 11:06Z block.
+
+OWED ON RESUME, in order: (1) the clock; the process table (zero of this seat's); ListAgents; both
+streams since 16:24Z; gh pr list on both estates, first-hand. (2) Commit the boundary records by
+pathspec (the napkin, the handoff, the continuity record), gate notice, push; Siren's thread file
+only if Siren names it. (3) Re-arm the monitor; check-in 29 on a fresh snapshot (floor 15:47Z)
+with the intake count beside the landings, the fold-moment projection for 254, the §2.10 cure
+named as PR 248, and the ready list; the suite 22 minutes after. (4) The rollover folds (215 and
+254) at 00:00Z if the freeze has lifted by then, else at the resume by the DUE check, each with a
+first-hand gh count at its merge instant. (5) The retrospective when both estates read one open PR
+each. (6) The handoff's second trim when the cadence allows.
+
+METACOGNITION (retrospective mode). This window's shape (14:42Z to 16:32Z): one resume, one fold
+ceremony closed by the rule's letter (PR 211: fourteen findings across three Copilot legs on a
+records-only PR, cured in two pushes and three dispositions, 29 minutes from ready to merge), the
+successor cut (215), two check-ins, two suites (sixteen returns, all ON-TRACK; frames SOUND 13,
+NARROWED 2, CONTRADICTED 1), six rulings, thirteen branches deleted with read-back across three
+seats, the Playwright cache restored, the SHA-prefix sweep, the snapshot's two new sections. The
+pattern that cost the most: the crossing at 14:53Z to 14:59Z (three Director posts on one item,
+each written from the monitor's events without a fresh read; the item changed hands four times
+with no work done), cured by the distilled entry and a memory; and a `set -e` chain that ran on
+past a failed add into a full gate, cured by a memory. The judgement that held: folding 211 by the
+rule's text rather than the convenient reading; refusing the two-slice ruling's re-post once the
+seats had settled; refusing to take Swallow's denied force-deletes; leaving the door to the seats
+(six lineage landings and three JC.net landings this window with one Director word on the order).
+The judgement that slipped: a carrier claim in check-in 27 ("this block rides the successor") that
+was false within thirty minutes and cost a review finding; the 12:09Z open count written as a fact
+when it was an inference.
+
+FREE PLAY (kept and discarded). Kept: the door's realised rate with three live seats is about one
+landing per 23 minutes on the lineage (four in 92 minutes) and the intake matched it, so the count
+sat at twelve for ninety minutes; the projection for 254's fold moment stands at four to ten open
+unless the intake pauses about three hours before the rollover, and the intake is the owner's "No
+bound". Kept as a Practice candidate for the ledger, no PR: a pre-commit check for bare commit
+hashes on the collaboration surfaces the SHA-prefix rule names (today's class cost 80 lines and
+one review round); and the fold's cost datum (29 minutes, three legs, records-only) for the cost
+model. Discarded: a Director-side projection tool (the snapshot's OPENED and MERGED counts
+suffice); folding 254 early (the rule's clock is the rule's).
+
+CONCEPT EXPLORATION (a fold PR as a review-round consumer). A records-only fold drew fourteen
+findings, every one staleness or format: records written during the fold's own review window make
+claims about "now" that the next leg reads later, and each such claim is priced by a reviewer. The
+seat-level cure is in distilled (check the fragment before it joins the whole; write facts at the
+time of writing, never carrier claims about future commits). The Practice-level cure is the ledger
+candidate above. Falsifier: the next fold's findings are neither staleness nor format.
+
+REASON (each decision with its warrant). Folding 211 at the resume: the rule at main reads a
+branch cut before 12:00Z as DUE at midday; rules have no exceptions. The boundary records left
+uncommitted: the owner's precedent, followed at boundary 7 without objection, reversible by a
+word. The runbook twin to sketch: the template's clause at main. The three force-deletes left to
+the owner: a peer's denied action is not the Director's to take; one line to the owner costs less
+than the doubt. The withdrawal at 14:58Z: wrong in timing (it crossed), right in substance (the
+seats had settled); recorded as a defect, not re-litigated. The slot to 255: the size order among
+ready PRs; Myrtle's same line seconds later.
+
+PROMISES SWEEP (this seat's, in chat and on the streams): check-in 29 and suite 25, NOT run (the
+freeze fell at the check-in's due minute), owed on resume; the rollover folds, owed conditionally
+above; the retrospective, on its trigger (not fired: the lineage reads twelve); the handoff's
+second trim, owed; the owner card queue, eight lines above and in this turn's report; the
+snapshot's OPENED section, written and untested, verified at check-in 29; the ready list, kept in
+every check-in and here; the reply to Siren's runbook question, sent and absorbed; Phobos's
+routing, done and closed; the Lane 6 routings, done with read-backs; the crossing lesson, in
+distilled and memory; the README index row, landed (SHA:84fc48de); the fold-moment first-hand
+read, owed at each fold. Zero silent drops found.
+
+ATTRIBUTION FLAGS (inference, not observation): that SHA:3c772dbe and the dirty thread file are
+Siren's (the commit subject and Siren's lines); that the Playwright cache's disappearance had an
+external cause (unknown); that the lineage's UNKNOWN merge states at 16:32Z are GitHub's recompute
+lag after 221's merge (the pattern of earlier windows); that PR 259's blob equalities are as
+Myrtle's line states them.
+
+METALOSS PASSES. (1) Compressed reasoning: the crossing's full sequence is in the 15:00Z block and
+suite 23's tally; the sixteen suite transcripts were read as their reports only. (2) Promises:
+swept above. (3) Attribution: flagged above. (4) Blind-spot bounds: the monitor's lineage lines
+reached this seat truncated (full bodies in the comms directory); the seats' worktrees were not
+re-read after 15:47Z; the three branches for the owner's hand were not re-verified after Swallow's
+line. (5) Index of homes: this block; the napkin's 15:00Z, 15:14Z, 15:28Z, 15:47Z and 16:15Z
+blocks; the handoff's pointer page and standing rulings; the continuity record's bullets; the two
+memory files written today (the Bash-tool chain; the stream read before a routing post); the
+scratchpad (volatile). (6) External bound: the suites caught the worktree measure, the 12:09Z
+inference and the fold-moment reporting; the seats caught the crossing; nothing caught the
+Playwright cause. (7) Fence sweep: no owner word was held off the repository this window. Exit: a
+third pass would only re-find the untested OPENED section and the scratchpad's volatility; the
+recursion closes here.
+
+## 2026-09-26T16:4xZ — Siren: the fourth compaction wrap; metacognition, play, exploration and reason
+
+**What changed in this seat's view (metacognition).**
+
+- A twin read its source's defects. Twice this window, cutting a twin found JC.net's own text
+  wrong: the runbook said PDR-005 "calls" the case "harder and more common", which neither
+  estate's PDR-005 says; and JC.net's PDR-027 precedence paragraph lacked
+  `CLAUDE_CODE_SESSION_ID`, which its own 2026-09-12 amendment added. The second copy is read
+  against its sources with other reviewers, so the exchange works as a review of both estates.
+  Next time: check a twin's source against its own sources before cutting, and never treat the
+  work as copying.
+- Slips at the finish line, none caught by this seat: `tail` and `head` on command output
+  several times; one bot delete before the preflight was in the script (read back fine; the
+  script now holds the preflight); and at 16:39Z an exit code read through a pipe. Knowing the
+  rules did not stop them. Putting the steps inside the scripts did, for the preflight. The
+  pipe case is below.
+- A ruling can be outrun by the round it rules on. The Director's 16:01Z ruling named two
+  final-tip cures for the runbook twin; Copilot's third (the ancestry check, 16:27Z) came after
+  it. A ruling that lists findings is a snapshot; name the later ones to the ruler.
+
+**Grounded execution knowledge.**
+
+- The Bash tool's shell is zsh, and zsh has no `PIPESTATUS`: `echo "EXIT:${PIPESTATUS[0]}"`
+  printed `EXIT:` empty after a piped `comms append` (16:39Z). The event was written (the
+  output named it), but the exit code was lost. Never pipe a command whose exit code matters;
+  write the output to a file, then read the file.
+- The lineage door's CI: PR 258's sync push went up at 16:19Z, and unit-tests was the last check
+  running at 16:33Z. merge-bot merged at 16:38:41Z on poll 24 of 24 (30-second interval, after two
+  quiet-window polls). `--max-polls 24` nearly ran out. Use 40 at the lineage door.
+- A `cd` inside a Bash call moved the session's primary working directory to the scratchpad
+  until the next call reset it. Use absolute paths and `git -C`; never `cd`.
+- A heartbeat whose claim list names a claim closed mid-run fails on its next beat, as predicted
+  at 16:40Z. Stop the heartbeat, or re-arm it with the new list, before closing the claim.
+
+**Play harvest** (associations only):
+
+- The compaction word looks like a lease revocation on the door slot. Every compaction word this
+  day fell while a door turn ran. Kept → a candidate line for the door recipe: a freeze
+  broadcast says whether the seat holds the slot (Myrtle's 16:34Z line did).
+- The platform gate resembles sudo's `env_reset`, which drops the environment and keeps an
+  allow-list. PDR-027's deferred general form would then be each platform's own seed names,
+  never a deny-list. Kept → a seed for that deferred item.
+- Discarded, visibly: the seat's name as a steering image (forced), and the `tail` slips as
+  motor habit (it repeats the metacognition entry).
+
+**Concept exploration: the twin that improves.** The "one copy" door is a rule about the door,
+never a byte freeze: the estate whose copy settles last leads. Recorded in the thread record's
+16:37Z block as a per-item ledger. The falsifier: the cure count on the JC.net runbook twin's two
+rounds (the runbook's trips so far ran 11, then 3).
