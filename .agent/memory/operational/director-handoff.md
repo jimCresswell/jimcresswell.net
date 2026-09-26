@@ -130,12 +130,20 @@ Every line answered first-hand, none inferred:
   verbatim; every seat must be able to push without an owner prompt, which the Codex config split
   must deliver.
 
-## Current handoff state (2026-09-26T11:09Z; COMPACTION BOUNDARY 6 of the Director seat; the live reading is this block, then the napkin's 11:06Z block, then the 11:01Z tally block)
+## Current handoff state (2026-09-26T11:09Z; COMPACTION BOUNDARY 6 of the Director seat; the live reading is this block, then the napkin's 11:28Z fold block, then its 11:06Z and 11:01Z blocks)
 
 Written for a reader who was never here and may run on a different model. Where this block and
 the routing log disagree, the log's last entry is current. The owner's words are verbatim in the
 napkin's dated blocks (10:17Z, 11:01Z, 11:06Z on 2026-09-26).
 
+- RESUMED at 11:15Z on the owner's "please carry on"; the owner's "please commit and push
+  post-compaction" executed first (f2d1554e pushed). FOLD CLOSED: PR 189 merged as 1ed8ef2a by the
+  owner's hand at 11:15:14Z; the successor `coordination/2026-09-26-1ed8ef` cut from that sha,
+  carrying the four post-merge commits by merge 6ee99779; draft PR 211 as the bot; the folded
+  branch deleted with read-back; the monitor re-armed on the successor's label. The lineage's fold
+  of 223 is Myrtle's (taken over at Swallow's 11:20Z compaction pause; synced 86fcf2d57, ready,
+  settle watch armed). The freeze is lifted; the cadence resumes at check-in 25 (11:45Z). The
+  napkin's 11:28Z block is the live reading; the BOUNDARY bullet below is history.
 - BOUNDARY. At 11:04Z on 2026-09-26 the owner said "prepare for compaction ultrathink
   /jc-metacognition /jc-free-play /jc-concept-exploration /jc-reason /jc-wrap then stop all
   processes". The monitor is stopped at the end of the wrap; no wakeup is pending (check-in 25's

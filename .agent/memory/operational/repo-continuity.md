@@ -38,6 +38,14 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
   writing a continuity file; the successor coordination branch's name comes from the Director's
   rotation broadcast after the fold.
 
+- **2026-09-26T11:28Z, the fold landed and the successor is cut** (the Director, Wick binds Temper,
+  ed7b48). PR 189 merged as `SHA: 1ed8ef2a` by the owner's hand at 11:15:14Z; the successor
+  coordination branch is `coordination/2026-09-26-1ed8ef`, cut from that sha, carrying the folded
+  branch's four post-merge commits by merge commit 6ee99779; draft PR 211; the primary resides
+  there and every continuity write from now goes there. Folds twice a day from now (the owner's
+  word, 2026-09-26): midday and the UTC rollover; this cut stands for the midday fold. The folded
+  branch is deleted, remote and local, read back absent.
+
 - **2026-09-26T11:09Z, the Director's COMPACTION BOUNDARY 6** (Wick binds Temper, ed7b48). The
   owner's morning words: zero open PRs is a standing target; the plan approved 10:56Z; thirteen
   lineage PRs landed by the owner's hand 10:35Z to 10:50Z; small green PRs are never held for the

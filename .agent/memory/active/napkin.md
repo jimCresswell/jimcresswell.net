@@ -5829,3 +5829,42 @@ OWNER WORD at 11:1xZ (native, verbatim): "please commit and push post-compaction
   bc055d16 carries one, and the rule's query reads it.
 - Clock slip: three claim closes were stamped 11:24:30Z after a clock read of 11:23:40Z. The
   time was typed from the next expected minute, not from the read. Paste the read value.
+
+## 2026-09-26T11:28Z — the Director (Wick binds Temper, ed7b48): resumed on "carry on"; the JC.net fold closed
+
+Resumed at the owner's "please carry on" (clock 11:15Z at the first read). The owner's word
+"please commit and push post-compaction" executed first: the boundary-6 records committed as
+f2d1554e (five files by pathspec; prettier, markdownlint and the path validator green) and pushed
+after the 11:16:56Z gate notice with the tally and Siren's two wraps (58 e2e passed at the gate).
+Read first-hand after the push: PR 189 MERGED at 11:15:14Z as 1ed8ef2a by the owner's hand at
+Siren's 1d7b57be, before the push, so the four commits (2d109d7d, 2452b423, f4be8420, f2d1554e)
+sat on the folded branch outside main.
+
+Fold outcome: the successor cut from ONE resolved post-fold main (1ed8ef2a) as
+`coordination/2026-09-26-1ed8ef`; the folded branch's tip merged in as 6ee99779 (no rebase, no
+amend; the four commits ride the successor's fold); pushed after the 11:21:19Z gate notice; draft
+PR 211 opened as the bot; the folded remote branch deleted as the bot with the read-back absent
+(its tip verified an ancestor of the pushed successor before the delete); the local ref deleted
+with `-d`; loss scan clean (tree clean; two worktrees, the primary and Siren's cost-model lane).
+The monitor re-armed as bt5npnqud on the successor's label. The gravity line of the fold (PR 189's
+body): moved for the sites, nothing; for the Practice, the day's rulings, the records of PRs 190
+to 208 landing, and the owner's words of 2026-09-25 and 2026-09-26 verbatim. This cut stands for
+the midday fold under the owner's twice-a-day word; the next fold is the UTC rollover.
+
+The lineage, read from its stream and gh: the owner landed 234, 244, 238 and 218 by hand at 11:13Z
+to 11:15Z; Myrtle read engraph's push CI on 81e126e8e green (no cure lane opens); Swallow took the
+fold of 223 at 11:12Z, its background chain synced engraph e6cf8ee4c as 86fcf2d57 and pushed, then
+Swallow paused for its own compaction at 11:20Z (claims for 246 and 248 retained); Myrtle took
+the fold over at 11:25Z (ready, both legs requested, settle watch, then the door and the
+successor cut). Deletions read back by Myrtle (eleven merged lanes, Marten's two leftovers, then
+218 and 238) and by Swallow (six Codex worktrees and branches; two forced deletes refused by the
+harness). Open on the lineage at 11:2xZ, seven: 248 (DIRTY, Swallow's pointer fix), 246 (BEHIND,
+Swallow), 245 (Myrtle's cure owed), 224 (the owner's draft, a seat lands it on the word), 223 (the
+fold, Myrtle), 221 (BLOCKED by the windows-basic timeout, F-208's class), 217 (its cure at
+7de43823b). JC.net: 211 (the successor draft) only. Siren landed PR 209 (216's twin, 0caa0327) and
+PR 210 (the register, 876c3b4bc, 11:23Z) and is on the cost-model PR in its worktree; Siren's
+napkin commit 0d9f8b4f (11:26Z) on the successor rides this seat's next push.
+
+Observation (one instance): a push to a coordination branch after the owner's hand merged its PR
+strands the commits; the cure was a merge into the successor; the check that prevents it is a
+`gh pr view --json state` read before every push to a coordination branch.
