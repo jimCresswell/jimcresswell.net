@@ -4,6 +4,30 @@ Changes to the Practice Core files, newest first. Each entry records the repo
 that made the change and what was changed. This file travels with the
 Practice Core package.
 
+## [jimcresswell.net] 2026-09-25 — PDR-142's goal quote stands whole
+
+- The owner's 2026-09-25 words on the exchange's goal are quoted whole, as
+  recorded by the seat they were spoken to, with the estates given as
+  roles, in place of the fragments quoted before. PDR-142's Status line and
+  its row in the decision-record index carry the 2026-09-25 amendment. The
+  lineage carries the same blob, so the record is one blob in both estates.
+
+## [jimcresswell.net] 2026-09-25 — joint cures: PDR-009's Forbidden bullet, PDR-063's hold, PDR-142's pace, goal and authority class
+
+- PDR-009's Forbidden item reads "Substantive content that is an adapter's
+  own, in platform adapter directories", the wording a review of the
+  lineage's PR 213 found incomplete. The lineage took this blob.
+- PDR-063: a lane waiting on a peer needs the same release condition as a
+  hold, because a hold with no default is a stall waiting to happen. These
+  are the lineage's bytes.
+- PDR-142: the owner's words on the exchange's pace and its goal sit beside
+  the owner's sentence. §Boundaries names the authority class a seat reads
+  before curing any finding: a change of concept in ratified text is the
+  owner's, and wording that implements the owner's concept is the seats'
+  work under review. The Amendment Log records it, and three further
+  sentences that add a concept wait for the owner's word.
+- Each of the three records is one blob in both estates.
+
 ## [jimcresswell.net] 2026-09-25 — context readings never stop a seat
 
 - PDR-063 gains §Context readings never stop a seat, on the owner's word to
