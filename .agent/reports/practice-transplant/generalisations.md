@@ -10,11 +10,12 @@ fitness_line_length: 100
 # Generalisation register
 
 Closed on 2026-09-24, when the `Practice-Generalisation:` commit trailer replaced it (rule
-`record-generalisation-moves`). Its last row is the last move recorded here; every later move
-carries the trailer but one. `a359d65c` (2026-09-24, the rule made to work for an estate that
-kept a register) carries none, and the exchange node's §Review dispositions records it. The full
-list is these rows, then the rule's trailer query over the commits after the closing, then that
-one commit. The text below describes the register as it ran.
+`record-generalisation-moves`). Its last row is the last move recorded here. Read at
+`0caa0327`, the rule's trailer query lists none of the later moves: `4fcf3cab` carries the
+trailer in a paragraph before the final trailer block, where the query does not read it, and
+`a359d65c`, `1cf3a1c3` and `8966f554` carry none. The exchange node's §Review dispositions
+records all four. The full list is these rows, then the rule's trailer query over the commits
+after the closing, then those four commits. The text below describes the register as it ran.
 
 Every move that makes an element of the Practice more general or more portable, recorded when
 it lands (owner direction 2026-09-13, verbatim: "where we take action to make an element of the
