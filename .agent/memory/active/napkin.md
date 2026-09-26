@@ -6993,3 +6993,99 @@ Landings since check-in 29: 257 (19:39:28Z) and 259 (19:56:32Z), both through My
 seventeen minutes apart; the count reads seven non-coordination open; 249 at the slot from
 19:56:54Z. Joint items 1, 4 and 5 closed on both sides by Myrtle's receipt and Siren's byte check
 (19:57Z).
+
+## 2026-09-26T20:15Z — Director check-in 30 on the generated snapshot; the first WIP count and the waiting-work line (the Director)
+
+Snapshot generated 20:14Z (floor 19:20Z). Clock read 20:14:08Z, again 20:14:54Z before this block.
+Both streams read to 20:14Z: nothing addressed to the Director on either; the seats' traffic is
+the door, the receipts and the exchange findings. Suite 25's push landed (SHA:d5ef5722, read by
+ls-remote).
+
+THE COUNT (the owner's 19:2xZ word; first-hand from gh at 20:14Z): the lineage 8 open (254 the
+coordination draft; 250 the owner's draft; 217, 245, 246, 249, 253, 256), JC.net 1 (215 the
+coordination draft). Non-coordination across both estates: 7 against the limit of 3, the breach
+inherited from before the word; opened since 19:20Z: none on either estate; no seat has opened
+outside the rule. Landings since check-in 29: the lineage 2 (257 at 19:39:28Z, 259 at 19:56:13Z,
+both through Myrtle's door, seventeen minutes apart), JC.net 0; the bar of two per 45 minutes met.
+
+VERIFICATION (the plan's numbers with the amendment's two). Heads with CI in flight: the lineage 2
+(249's sync at the slot, unit-tests running at 20:13Z on its synced head SHA:51c45ad36; 254's
+records push at 20:05Z, a coordination push, not a sync), JC.net 0. Slot holder: Myrtle on 249
+from 19:56:54Z, eighteen minutes at the read. Engraph's push CI on 257's merge SHA:e80122437 and
+on 259's merge SHA:d7f78b161: seventeen success each, nothing red (read 20:14Z). Folds: 215 and
+254 DUE at 00:00Z. The retrospective trigger: not fired (the lineage reads eight).
+
+READY LIST at 20:14Z (green, zero threads, non-draft, not DIRTY; by changed files ascending): 217
+(13) <https://github.com/EngraphCode/open-curriculum-ecosystem/pull/217>; 253 (16)
+<https://github.com/EngraphCode/open-curriculum-ecosystem/pull/253>; 246 (20)
+<https://github.com/EngraphCode/open-curriculum-ecosystem/pull/246>; 256 (30)
+<https://github.com/EngraphCode/open-curriculum-ecosystem/pull/256>; 245 (45)
+<https://github.com/EngraphCode/open-curriculum-ecosystem/pull/245>, whose merge state read
+UNKNOWN at 20:14Z after DIRTY at 19:20Z and whose turn carries Myrtle's scripted reconcile as its
+sync. 249 at the slot. JC.net: none.
+
+GOAL THREE, the waiting-work line (suite 25's accepted measure; method: the snapshot's BRANCHES
+and WORKTREES sections, then `git rev-list --count <default>..HEAD` and the first commit's date in
+each waiting worktree). Work outside a PR, waiting for a WIP slot: the lineage 2
+(docs/pr-lifecycle-wip-limit, Siren, worktree oce-wt-wip-limit, one commit SHA:2df2fc3f7 at
+20:04Z, ten minutes old; feat/codex-rollout-command-records, Swallow, worktree
+oce-wt-command-records, no commit yet); JC.net 1 (docs/exchange-j11-runbook-twin, Siren, worktree
+jcnet-wt-runbook-twin, one commit at 19:29Z, 45 minutes old). Not waiting on a slot: the three
+lineage branches for the owner's hand (claude/objective-nightingale-b4ba25, 2026-09-10;
+docs/codex-queue-probe-2026-09-25, the private capture, never pushed;
+docs/codex-queue-probe-metadata-01a0d9, 2026-09-26 11:39Z). Every remote branch on both estates is
+on an open PR or is a default or coordination branch (the lineage 11, JC.net 2). Goal three does
+not read clean: three prepared items wait on the limit, the oldest 45 minutes.
+
+THE DRAIN (the merge schedule, updated). 249 lands when its CI answers, about 20:20Z; then 217
+(13), 253 (16, Siren), 246 (20, Swallow), at which point, about 21:20Z, the count reads three; 256
+(30, Siren) about 21:40Z frees the first slot, to the wording PR; 245 (45, its reconcile as its
+sync) about 22:00Z frees the second, to the JC.net runbook twin (JC.net's door needs no sync); 250
+waits on the owner's Clef word and lands whole (no split, ruled 20:1xZ). The fold of 254 at 00:00Z
+then reads zero to two others open. Assumption: no external PR; the door's pace of seventeen to 23
+minutes a landing holds.
+
+GOAL TWO, the ledger: P1 (a pure sync push requests no review) returned at suite 25; Swallow's
+timing, after 250 and its review-cost survey. The command-record reader (the reader-update premise
+refuted) waits on a slot. 246 fourth in the order. 250 under Swallow's intake.
+
+PR 250 (the owner's draft, cloud-authored, team intake under the 19:3xZ word): two reviews
+returned REVISE (docs-adr-expert three blocking, prose-expert one blocking and shoulds); the
+Director ruled at 20:0xZ: the private-upstream citation goes in and nothing of the owner's text is
+redacted; the dated pr-relationships note re-homes whole to `.agent/reports/user-value/` with an
+index row (a review record, not research); the method review's §Completion elsewhere handoff
+section is deleted, the PR body's own completion list being that record. The reviewers' one-story
+verdict read TWO (the skill and its framing; the 730-line specification-framework proposal); ruled
+NO SPLIT (the owner packaged both on purpose; the note lands no capability; a split opens a PR
+under the limit for no landing gain; if the owner's word takes the note out it leaves by one
+commit to a second branch). Eighteen files cured and staged at 20:12Z; the cure commit, push, legs
+and ready-mark follow; the door shut until the owner's Clef word (card line 10). Whether "Clef"
+may be named on the public repository is the owner's risk: nineteen mentions in the framework
+note, two private documents cited by filename, nothing on the base names the project; default if
+silent: kept as the owner wrote it.
+
+THE WORDING PR: Siren drafted the WIP-limit clause at 20:04Z (SHA:2df2fc3f7, one 20-line bullet
+after the landing-slot bullet in the lineage's pr-lifecycle §Phase 7, claim 0c6862e8); it opens at
+the first free slot, before the twin. The two estates' landing-slot bullets have diverged (the
+lineage's still reads "the default is the oldest non-draft PR"); Siren judged the convergence past
+the optimum inside the same PR (about eight claims of its own against roughly eight a slice) and
+holds it as a second lineage PR from the same file after the clause lands; the Director had
+offered either and takes Siren's judgement. Myrtle's two wording findings on the joint lifetime
+paragraphs (PR 249's legs, 20:14Z) are on Siren's owed list for the first copy, no PR under the
+limit.
+
+HOST: eight "Google Chrome for Testing" processes reported by Siren at 20:0xZ were two orphaned
+browser trees from a dead session (roots 55664 and 83412, parent launchd, thirty hours old, zero
+CPU); the Director stopped both roots and read back zero remaining. The host's load (about 20) is
+the gates.
+
+OWNER CARD QUEUE (ten lines; one now gates a door): (1) the late-cure leg ruling; (3) PR 224's
+provenance line; (4) 250 scheduled under the 19:2xZ word; (5) the statusline setting at 253's
+landing; (6) the Codex lane's remaining items; (7) the three local branches for the owner's hand;
+(8) the runbook's re-ratification, both copies at sketch; (9) the WIP-limit wording, drafted, a
+seat's work; (10) NEW, asked in the 20:0xZ report: may "Clef" be named on the public lineage
+repository; default kept as written; 250's door waits on it.
+
+NEXT: suite 26 about 20:37Z on this snapshot (the frame carries the arc's endpoint sentence and
+the waiting-work line); check-in 31 about 21:00Z with the count read first; the folds at 00:00Z
+with the count read at each merge instant.
