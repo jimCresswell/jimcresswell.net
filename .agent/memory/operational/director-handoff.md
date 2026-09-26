@@ -180,7 +180,7 @@ Every line answered first-hand, none inferred:
   name PRACTICE_STATUSLINE_LOG_FILE in place of OAK_STATUSLINE_LOG_FILE, or the statusline log
   stops (Siren, 13:10Z; the file is the operator's).
 
-## Current handoff state (2026-09-26, after the 14:42Z resume and the fold of PR 211; pointer-biased by design)
+## Current handoff state (2026-09-26, after the 14:42Z resume, the fold of PR 211 in progress; pointer-biased by design)
 
 Resumed at the owner's "carry on" (14:42Z) after COMPACTION BOUNDARY 7 (13:08Z). The napkin's
 latest check-in block (15:00Z, check-in 27, and the blocks after it) is the live reading: the
@@ -197,7 +197,10 @@ verbatim in the napkin's dated blocks and in §Standing owner rulings above.
 
 - The programme: the approved plan of 2026-09-26, conserved verbatim as
   `.agent/reports/agentic-engineering/2026-09-26-the-estates-programme-plan.md`; its lanes are the
-  seats' todos; its §Verification numbers are read at every check-in from the generated snapshot.
+  seats' todos; its §Verification numbers are read at every check-in from the generated snapshot,
+  except that its 25-minute slot-holder line is superseded by the landed slot text (pr-lifecycle
+  §Phase 7 at main: a holder lands and releases, yields when it needs a cure push, or is freed
+  after twenty silent minutes and an unanswered ping), which the check-ins read instead.
 - The cadence: check-ins every 45 minutes on the generated snapshot (the script in the seat's
   scratchpad, described in the napkin's boundary blocks), the full Cricket suite 22 minutes after
   each, both stances, the tally on the napkin and both streams.

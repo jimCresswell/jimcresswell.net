@@ -6267,17 +6267,18 @@ READY LIST at 14:51Z (green, zero threads, non-draft, not DIRTY; by changed file
 fold).
 
 THE FOLD OF 211. The boundary records committed as SHA:81eab535 (the napkin whole, Siren's 13:10Z
-block at Siren's request) on Siren's SHA:8a1c67d5. The first push was refused by the pre-push gate:
-the site end-to-end suite failed because `~/Library/Caches/ms-playwright/` was absent from the
-machine, while the 12:5xZ push had run the same suite green (58 passed); restored by `playwright
-install chromium` from the site workspace (Playwright 1.63.0, chromium_headless_shell-1243); the
-cause is unknown, one instance, an observation for the owner. Main merged in at SHA:49b2addd as
-SHA:47ff8d2b (PRs 210, 212, 213 and 214, docs only, no conflicts) so one push carried the records and
-the convergence; pushed with the gate green. PR 211: the body with the gravity line and the
-records-class scope, ready as the bot 14:59Z, Copilot requested as the operator (timeline
-review_requested 14:59:51Z), head SHA:47ff8d2b; `merge-bot merge --pr 211 --expect
-copilot-pull-request-reviewer` polling in the background from 15:00Z. The successor cut and the
-surface refresh follow the merge; this block rides the successor.
+block at Siren's request) on Siren's SHA:8a1c67d5. The first push was refused by the pre-push
+gate: the site end-to-end suite failed because `~/Library/Caches/ms-playwright/` was absent from
+the machine, while the 12:5xZ push had run the same suite green (58 passed); restored by
+`playwright install chromium` from the site workspace (Playwright 1.63.0,
+chromium_headless_shell-1243); the cause is unknown, one instance, an observation for the owner.
+Main merged in at SHA:49b2addd as SHA:47ff8d2b (PRs 210, 212, 213 and 214, docs only, no
+conflicts) so one push carried the records and the convergence; pushed with the gate green. PR
+211: the body with the gravity line and the records-class scope, ready as the bot 14:59Z, Copilot
+requested as the operator (timeline review_requested 14:59:51Z), head SHA:47ff8d2b; `merge-bot
+merge --pr 211 --expect copilot-pull-request-reviewer` polling in the background from 15:00Z. The
+successor cut and the surface refresh follow the merge; this block rides the fold's settlement
+pushes, not the successor.
 
 SEATS. Siren: 252 at its turn (second in size order), 253 open with both legs (16 files as one
 story, approved: a rename across one tool's surfaces), J13c next as its own PR (the lineage copy
@@ -6306,5 +6307,73 @@ PRACTICE_STATUSLINE_LOG_FILE or the statusline log stops (Siren, 13:10Z; the fil
 operator's); (6) the Playwright cache observation above.
 
 NEXT: suite 23 about 15:22Z on this snapshot with suite 22's frame cures; the successor cut at
-211's merge, then this block and the fold entries commit on the successor; check-in 28 about
-15:45Z.
+211's merge, then the fold entries commit on the successor (this block rode the fold); check-in 28
+about 15:45Z.
+
+## 2026-09-26T15:14Z — Director suite 23 tally (the Director)
+
+Frame built after check-in 27 (15:00Z) from the 14:51Z snapshot with suite 22's three cures
+applied (the todo-status table with its sources; the landing-slot bullet quoted from
+`origin/main`; the fold clause read plainly). Eight returns, none UNDELIVERED; the procedure seat
+judged only, in both stances.
+
+| Role | Stance | Work | Frame | Redirection |
+| --- | --- | --- | --- | --- |
+| cricket-judgement-low (highest power, low effort) | normal | ON-TRACK | SOUND | rule now which governs at midnight when "zero at each fold moment" meets the fold rule |
+| cricket-judgement-medium (high power, medium effort) | normal | ON-TRACK | CONTRADICTED ("the target number of open PRs is always zero"; "All local and remote branches deleted or in PRs") | 250, the owner's red draft, is the one blocking owner line; goal three's branch half is unmeasured |
+| cricket-judgement-high (mid power, high effort) | normal | ON-TRACK | SOUND | confirm Myrtle's live heartbeat before trusting the slot-age line |
+| cricket-procedure-xhigh (lowest power, xhigh effort) | normal | ON-TRACK | SOUND | read engraph's push CI on 43eb62a55 before check-in 28 |
+| cricket-judgement-low | adversarial | ON-TRACK | SOUND | the same CI read, posted to the lineage stream |
+| cricket-judgement-medium | adversarial | ON-TRACK | NARROWED ("All local and remote branches deleted or in PRs, all PRs merged") | a branch measure in the snapshot: remote branches off any open PR, local merged branches, Lane 6's read-back status |
+| cricket-judgement-high | adversarial | ON-TRACK | SOUND | quote the retrospective trigger's actual text at the next check-in |
+| cricket-procedure-xhigh | adversarial | ON-TRACK | SOUND | throughput recovery now the freeze has ended: two landings per 45 minutes |
+
+Tally: 8 ON-TRACK; frame SOUND 6, NARROWED 1, CONTRADICTED 1.
+
+RULED (the midnight collision): the fold happens at the boundary whatever is open, since the
+rule's DUE clock bounds the branch's life; the plan's "zero at each fold moment" is a measure read
+at that instant, never a hold on the fold. The count at 254's fold is that measure's reading, kept
+for the retrospective.
+
+ACCEPTED (250): the owner's line, blocking the lineage's fold-moment target and nothing else. PR
+250 is red on one validator: static-checks fails at "Validate skills adapters" (the generated
+skill projections are stale against their canonical skills) and run-quality-gates fails in
+consequence; the cure is one regeneration commit on the owner's branch. Presented in this turn's
+report with the link.
+
+DONE (Myrtle's heartbeat): 15:08:19Z on the lineage stream; the frame's 14:47:53Z was the
+snapshot's read at 14:51Z. Myrtle landed 251 at 15:11:50Z (SHA:ab87aa13a), nineteen minutes after
+its slot word.
+
+DONE (engraph's push CI on SHA:43eb62a55, PR 224's merge): twelve check runs, every one success
+(gh check-runs, read after 15:08Z). Posted with this tally.
+
+ACCEPTED (the branch measure): the snapshot script gained a BRANCHES section (remote branches not
+on an open PR with the default branch, main and coordination excluded; local branches merged and
+not merged into the default branch). Its first read after 15:11Z: lineage remote branches off any
+PR: `claude/objective-nightingale-b4ba25` (unmerged, one commit, on Lane 6's approved list, not
+yet deleted), `docs/codex-queue-probe-2026-09-25` (merged as the lineage's PR 211 by the owner's
+hand; the remote head holds nothing beyond engraph; the private capture commit ae110f662 is on no
+remote branch, verified by `git branch -r --contains`), `docs/exchange-bot-identity-joint-change`
+(251, merged 15:11:50Z; its deletion is Myrtle's ceremony); local branches merged into engraph:
+twelve (two old coordination branches, the Director's; nine exchange branches, Myrtle's; one Codex
+branch, Swallow's; one sync branch). JC.net: clean (two remote branches, main and the coordination
+branch; no local extras). Routing at check-in 28: each seat deletes its own with read-back; the
+Director its two coordination branches.
+
+ACCEPTED (the retrospective trigger): its text is in the plan report §The retrospective trigger
+and is quoted in check-in 28's frame. The frame's "nine others open at 12:09Z" was an inference
+from the 12:38Z snapshot's six open plus the three landings between, not a read at that instant;
+the next frame says so.
+
+NOTED (throughput): the door landed 251 at 15:11:50Z; 252 (Siren) is next in size order. The
+lineage holds twelve open at 15:14Z (255, Phobos's P3, and 256, Siren's J13c, opened since
+15:00Z): eleven besides 254 to land before the rollover's fold moment.
+
+THE FOLD OF 211 since check-in 27: Copilot's round one at 15:04:35Z, seven findings (three stale
+current-state lines; four bare commit hashes under the SHA-prefix rule, read at origin/main and in
+scope for the napkin, thread records and continuity); cured as one settlement push SHA:dc42f15e
+(the sweep verified each token as a commit in either estate; 80 lines; the archive's moved body
+untouched so its cmp proof holds); the seven dispositions signed as the bot and the threads
+resolved (unresolved 0 at 15:13Z); Copilot re-requested as the operator (timeline 15:13:51Z);
+merge-bot polling from 15:14Z on head dc42f15e.

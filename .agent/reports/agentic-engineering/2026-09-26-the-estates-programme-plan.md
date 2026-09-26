@@ -169,7 +169,8 @@ nine-agent suite once and is not worth a second. Level: named per item.
 
 Provenance for items 1 to 4: the owner's answers to the Director's four-question card in this
 session (the harness's question tool, about 10:50Z on 2026-09-26); the selected option is quoted
-verbatim in each item; the napkin's check-in 24 tally records them with this plan's path.
+verbatim in each item; the napkin's check-in 24 tally (the 11:0xZ block) records the four answers,
+and its check-in 25 block (about 11:37Z) records this report's path.
 
 1. **No intake bound** (selected: "No bound"). The seats keep cutting one PR per row; the door's
    pace and the count in every check-in are the only brakes.
