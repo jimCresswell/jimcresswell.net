@@ -22,7 +22,8 @@ pnpm agent-tools:build
 node agent-tools/dist/src/bin/agent-identity.js --seed example-session-id-001 --format display
 ```
 
-If `--seed` is omitted, the CLI reads (in order)
+If `--seed` is omitted, `--platform <label>` is required (`claude-code`,
+`cursor`, `codex` or `gemini`) and the CLI reads (in order)
 `PRACTICE_AGENT_SESSION_ID_CLAUDE`,
 `PRACTICE_AGENT_SESSION_ID_CURSOR`,
 `PRACTICE_AGENT_SESSION_ID_GEMINI`,
@@ -30,16 +31,22 @@ If `--seed` is omitted, the CLI reads (in order)
 `CLAUDE_CODE_REMOTE_SESSION_ID` (type tag stripped), then the harness-native
 `CLAUDE_CODE_SESSION_ID` (Claude Code CLI seats) and `CODEX_THREAD_ID`, then
 Antigravity's stable `conversationId` surfaces (`conversationId` or
-`ANTIGRAVITY_SOURCE_METADATA.conversationId`). If none is set, it exits with
-code `2`. There is no personal-email fallback; hashing `git config user.email`
-would silently use a personal identifier and could collapse concurrent
-same-machine agents into one identity.
+`ANTIGRAVITY_SOURCE_METADATA.conversationId`). The three Claude seeds count
+only on a Claude platform: Claude Code exports its session id into every Bash
+shell and its `SessionStart` hook appends the Practice seed to the env file
+every later shell reads, so a Codex or Cursor seat opened from a Claude shell
+would otherwise take the Claude seat's identity. On another platform the
+missing-seed error names any Claude seed that was set but did not count. If no
+seed resolves, the CLI exits with code `2`. There is no personal-email
+fallback; hashing `git config user.email` would silently use a personal
+identifier and could collapse concurrent same-machine agents into one
+identity.
 
 The `PRACTICE_AGENT_SESSION_ID_*` variables are written into the platform's
 session-scoped environment by the corresponding platform hook (see
 **Platform Wrapper Status** below). The platform suffix matches the platform
-that set the variable; the CLI does not care which one is present, only that
-exactly one of them resolves to a non-empty seed.
+that set the variable; the CLI reads the seat's platform from `--platform`,
+never from which variables happen to be present.
 
 ## Identity, Statusline, And Title
 
@@ -339,8 +346,8 @@ session or resumes one. The harness pipes a JSON object on stdin containing
    was created, and no Bash call in the session saw the variable). Every
    Bash tool shell carries the harness-native `$CLAUDE_CODE_SESSION_ID`,
    which the seed CLIs read after the cloud id, so any tool using CLI
-   identity resolution (e.g. `pnpm agent-tools:agent-identity --format
-display`) re-derives the same session identity without `--seed` either
+   identity resolution (e.g. `pnpm agent-tools:agent-identity --platform
+claude-code --format display`) re-derives the same session identity without `--seed` either
    way — no cached name is involved. The hook's `additionalContext` states
    whether a write was planned; a run without `$CLAUDE_ENV_FILE` says so.
 
@@ -354,18 +361,22 @@ present.
 ### Codex thread-id wiring
 
 Codex exposes the active thread id to shell commands as `CODEX_THREAD_ID`.
-For this platform, running the built CLI without `--seed` is sufficient when
-that environment variable is present:
+For this platform, running the built CLI with `--platform codex` and without
+`--seed` is sufficient when that environment variable is present; the
+platform flag keeps a Codex seat opened from a Claude shell on its own thread
+id:
 
 ```bash
-node agent-tools/dist/src/bin/agent-identity.js --format display
+node agent-tools/dist/src/bin/agent-identity.js --platform codex --format display
 ```
 
 The current seed precedence keeps explicit and platform-specific sources
 predictable: `--seed`, then `PRACTICE_AGENT_SESSION_ID_CLAUDE`, then
 `PRACTICE_AGENT_SESSION_ID_CURSOR`, then `PRACTICE_AGENT_SESSION_ID_GEMINI`,
-then `PRACTICE_AGENT_SESSION_ID_CODEX`, then the harness-native
-`CODEX_THREAD_ID`, then Antigravity's stable `conversationId` surfaces.
+then `PRACTICE_AGENT_SESSION_ID_CODEX`, then `CLAUDE_CODE_REMOTE_SESSION_ID`,
+then `CLAUDE_CODE_SESSION_ID`, then the harness-native `CODEX_THREAD_ID`, then
+Antigravity's stable `conversationId` surfaces; the three Claude seeds count
+only on a Claude platform.
 
 ### Codex `SessionStart` wiring
 
