@@ -5527,3 +5527,286 @@ TO THE SUITE THEN THE OWNER (one frame, eight Crickets both stances plus the ass
 the owner's instrument): (A) the merge queue with the ADR-204 amendment; (B) the intake bound; (D)
 rounds bind to content heads; the Director at the door for orphaned CLEAN PRs. The fold of PR 189
 is due 11:17Z and runs first when the suite is out.
+
+### 2026-09-26T11:01Z — check-in 24 tally: the suite, the plan, the owner's five words, the door by hand
+
+OWNER WORDS this hour (native, verbatim, in order; the times are the reads):
+
+- About 10:3xZ, with pr-lifecycle, proportionality, metacognition, free-play, concept-exploration,
+  reason, plan and parallax invoked: "reflect deeply on what needs doing across the estates, and
+  plan it". Plan mode: the plan is the harness plan file (the session's plans directory,
+  `logical-tinkering-babbage.md`); approved about 10:56Z.
+- About 10:55Z: "I have finished landing PRs. I can make judgements that allow me to merge small
+  PRs many, many times faster than Practice agents".
+- About 10:57Z: "check, I merged them in order of the number of changed files". VERIFIED from the
+  merged list at 10:58Z: 240, 229, 235, 243, 247 (one file), 226 (two), 231, 236 (three), 220, 232
+  (four), 237 (five), 216 (seven); 211 also by the owner's hand at 10:41:59Z (fae981877), twelve
+  seconds after the owner's own branch update cured its conflict.
+- About 11:00Z: "don't block small green PRs on manual, but do maintain a list so that when I ask
+  you can give me links".
+- About 11:01Z: "I recognise my rapid merging may have caused issues, but I still think that
+  identifying and fixing them will take much, much less effort than would have been required to
+  merge those PRs. Perhaps we need to update our cost model for PRs, there are flat costs that
+  dominate for tiny PRs, and while complexity based cost rises exponetially with complexity, the
+  fixed cost suggests that there is an optimum in the effort to value curve that is well above a
+  single line change".
+
+Read of the fifth word: a concept for the Practice's cost model (the owner's, PDR-142): the fixed
+cost per PR (a slot turn, about sixteen minutes of CI, two bot legs, a claim, a worktree, a branch
+deletion, a records commit) dominates tiny changes; slices are sized to the optimum, not the
+minimum; the exchange lane batches rows that share a story into one moderate PR instead of one
+per row. Wording home: PDR-132 §Decision (both estates, one blob) and `design-work-for-small-prs`
+gains its lower bound; Siren authors, Myrtle signs. Operational consequence now: Myrtle's rows
+without PRs (J11, J13, J2, J3, the code lanes) go as a few moderate PRs. Fix-forward posture: what
+the bypass landings broke is found by engraph's push CI and fixed forward, never re-litigated.
+
+THE OWNER'S ANSWERS to the four-question card (the harness's question tool, about 10:50Z; the
+selected option verbatim): intake bound "No bound"; what zero counts "Fold them twice a day" (the
+coordination drafts count; the Director folds at the rollover and at midday); PR 224 "A seat lands
+it on this word"; deletions "Delete all listed" (the four merged remote branches, the merged local
+branches, the worktrees on merged branches, the nightingale runner branch, Marten's gh-write-guard
+worktree, the private capture branch after 211's merge, the incoming batch directories when their
+rows land).
+
+SUITE on the door frame (nine agents, dispatched 10:25Z, all returned by 10:36Z). Work: ON-TRACK
+7, DRIFTING 2 (procedure xhigh adversarial: D1 unverified; medium adversarial: no one at the door,
+overtaken by Swallow's slot-taken at 10:23Z). Frame: SOUND 3, NARROWED 2, CONTRADICTED 4. D1 the
+merge queue: AMEND 6, WITHHOLD 1, EXECUTE 1; the assumptions reviewer then INVALIDATED it on two
+load-bearing facts read first-hand: codeql-action#1537 is OPEN (last confirmed 2026-05-22) and the
+ruleset's required "CodeQL" check is the code-scanning app's (integration 57789), which never
+reports on a merge_group ref under any setup (ADR-204 misattributed the cause to default setup;
+the advanced-setup migration cures nothing); GitHub documents the queue as the ALTERNATIVE to
+require-up-to-date, not its partner. D1 is REFUTED; ADR-204's decision stands; its amendment-log
+note corrects the premise (P3). D2 the intake bound: the owner said no bound. D3: NARROWED; the
+sync-push rounds are SELF-INFLICTED: the seats' own identity re-requests Copilot about two minutes
+after each sync (PR 241's timeline 22:28:36Z after the 22:26:41Z sync; 216 likewise); the cure is
+seat tooling (P1: a review bound to a prior head binds through a pure sync lineage). D4 the
+Director at the door: WITHHELD; PDR-117's 2026-07-06 amendment forbids a Director seizing a large
+remaining workload; seats land, the Director routes.
+
+WORDING CURES from the suite (four judges caught the same slips): "CLEAN" in the 10:17Z rulings
+meant green legs with zero unresolved threads (pr-lifecycle's "green and clean"), never GitHub's
+mergeStateStatus CLEAN; every lineage PR is BEHIND under strict currency until its slot sync, so
+each door costs one sync push and about sixteen minutes of CI. "BLOCKED never takes the slot"
+against "241 first": the rule reads "a PR takes the slot when its remaining conditions need no
+push" (241's were signed lines); cured in the plan. The D1 executor line contradicted assumption
+8: the ruleset is the owner's yes.
+
+NINTH stale-surface instance (the eighth was yesterday's): an Explore pass read PDR-142 in the
+lineage's coordination-branch checkout, 56 commits behind engraph, and reported a missing
+amendment; Siren read the blob at origin/engraph and origin/main: byte-identical (fe6ee7ad). Cure:
+read Practice text at `origin/engraph` or `origin/main`, never at a checkout on a coordination
+branch; and a subagent's "missing" is a claim to verify by blob before it becomes a row.
+
+THE DOOR BY HAND: while the plan was written the owner merged thirteen lineage PRs under the
+ruleset bypass (10:35Z to 10:50Z), some BEHIND with CI in flight, including 240 (red) and 211
+(conflicting, cured by the owner's own branch update). Routed at 10:52Z: every seat holds syncs
+until the owner says done; Myrtle's 217 sync of 10:36Z wasted. The owner's "done" at 10:55Z; the
+hold lifted 11:00Z with the size order. Two hands met on PR 211 (the owner's branch update and
+Swallow's local cure; the seat's push refused; a pointer fix c7fdf7192 opening as a docs PR).
+Engraph's push CI on the final tip 81e126e8e is the proof of the waived guarantee; Myrtle's
+watcher posts its conclusion before any door. Lineage open at 10:52Z: ten. JC.net: 189, ready at
+1d7b57be for the fold at 11:0xZ.
+
+PLAN (approved): lanes for the door (size order, the ready list with links for the owner), the
+Director (the two folds, the mirror to the streams, check-in 25, the handoff drain, the
+ruling-names-its-surface rule), Myrtle, Swallow (P1, the door verb only if the seat door runs a
+day of code PRs, 2b, the toolkit), Siren (the register PR, the twin, P10a, P6), the next Codex
+seat (P3 as PR 241's acceptance test), the deletions; verification numbers per check-in; the
+retrospective when both estates read one open PR each.
+
+SWALLOW's two routed items (11:0xZ): (1) the landing-system datum (the owner's hand the fastest
+server; two hands on PR 211) goes to the retrospective and to the cost-model wording; (2) a
+fourth membership measure for the wake-bridge node (cold Codex start to first landed PR, observed
+by the owner at the acceptance test): a concept addition to a ratified node, proposed on the node
+with a card line at its next touch, Swallow's to draft.
+
+## 2026-09-26T11:0xZ — Siren: the second compaction wrap; metacognition, play, exploration and reason
+
+**What changed in this seat's view (metacognition).**
+
+- The approved resume plan went stale twice within twenty minutes: the owner's 10:09Z word
+  reached this seat through the Director's resume report, then Myrtle resumed. What survived
+  was the order and the constraints, never the specifics. Re-reading live state before leaving
+  plan mode is what caught the first change.
+- PR A grew from one commit to three, and each review found more landings, because the lineage
+  kept merging (eleven by the owner's hand, 10:35Z to 10:48Z). I accepted a reviewer's
+  "complete at merge" frame, when the register needs only to be true at its declared read head
+  (every landing row carries its own head). The loop grew the surface, which is the
+  divergence signature. Next time the register PR declares its head and stops there.
+- Running the text found what reading it did not. The joint rule's preflight names its
+  variable `status`, which is read-only in zsh, the shell Claude Code seats run. Three Copilot
+  rounds and the Codex leg in the lineage, and Wilma here, had all read that text. One
+  execution found the defect.
+- Relayed facts were wrong four times this hour, and first-hand reads caught each one:
+  - an Explore survey counted 19 open lineage PRs, not 24, because it dropped the drafts;
+  - the Director's Explore pass read a stale coordination-branch copy of PDR-142;
+  - a subagent ran `git fetch` under a "read-only" brief (twice, in two agents);
+  - the thread record's "four declined" J9 count was really three.
+
+**Tooling feedback (capture-practice-tool-feedback).**
+
+- `pnpm --filter @engraph/agent-tools validate-exchange-register -- --write-counts` passes a
+  literal `--`, and the validator refuses it as bad usage. Run the tsx entry directly.
+- `gh auth token` prints an ambient `GH_TOKEN`, so a command meant to reach the operator's
+  stored credential gets the bot's instead (PR 209 thread 4111162181). This is in the joint
+  change.
+- The commit queue refused a window claim before the watcher was armed (F-95). This is correct
+  behaviour, but on resume the watcher must be armed before the first commit.
+- Explore agents briefed as read-only still ran `git fetch`. It only moves remote-tracking
+  refs, but it is a write; say "no fetch" in the brief.
+
+**Play harvest** (ten minutes over the morning's events; associations only):
+
+- The owner's hand merges of eleven PRs in thirteen minutes look like the ceiling a merge queue
+  would reach with CI kept. That is evidence for the Director's suite proposal A.
+  Kept → the Director's suite.
+- Inverted: the twin rule (ruling 4) looked like the defect, since the owner merged 216 before
+  its twin and nothing broke. A second look reversed it: PR 209's round one then found a
+  joint-text defect after 216 had merged, which is exactly the by-blob re-take that ruling 4
+  prevents. Kept, reversed → today's case is support for ruling 4, not a counter-instance.
+- `status` is read-only in zsh, and a plan node "stores no status". A word the system already
+  owns cannot carry your meaning. Discarded as forced: a pun, not a structure.
+- `gh auth token` reports its environment rather than the credential it names. This is shaped
+  like yesterday's letter (a tool built for a world with one author). Kept lightly: it
+  reinforces an existing seed and adds nothing new.
+
+**Concept exploration: artefacts that summarise a moving external state.**
+
+- Frame: the register, the plan and the PR bodies go stale during their own review. That grows
+  review rounds and makes counts false by merge time. The mechanism is claiming completeness
+  "as of now" rather than "as of a read head".
+- What changed: the register already carries a head per row, so the structure supports
+  read-head truth, and the gap was my discipline. A generator for landing rows (pull request
+  bodies name their row ids) was weighed and not proposed: the exchange is "a fixed process
+  with an end", so the build would not pay.
+- P1: a register pull request names its read heads in its body and takes no landing after them.
+  Warrant: today's growth from 15 rows to 26. Falsifier: a merged register update found false at
+  its own declared heads.
+- P2: execute every command in a joint text, in the shell the seats run, before signing it.
+  Warrant: `status`. Falsifier: a later defect of the same class in text that was executed
+  before signing.
+- Unresolved: whether the lineage's slot, now that the owner's hand-landing hour is done,
+  converges to zero open PRs without proposal A.
+
+**Reason: order after the compaction.** Commit or verify the records, re-arm, then PR A: cure
+the six docs-adr findings (the thread record lists them), push in a free gate slot, open, run
+two rounds, merge. Then the six-item joint change (JC.net drafts, Myrtle signs), then the
+owed twins. Every step is reversible; the only thing that decides the order is where goal one
+counts.
+
+Correction, 11:0xZ (Siren): the play harvest's first seed (the owner's hand merges as evidence
+for a merge queue) is superseded by the Director's ruling 5 of check-in 24. The merge queue is
+refuted on vendor facts read first-hand (the required CodeQL check never reports on
+`merge_group`), which the association could not see. The discard pile keeps it, as a seed that
+a primary-surface read overturned.
+
+### 2026-09-26T11:06Z — COMPACTION BOUNDARY 6 of the Director seat (the owner's word, read 11:04Z)
+
+OWNER WORD (native, verbatim): "prepare for compaction ultrathink /jc-metacognition /jc-free-play
+/jc-concept-exploration /jc-reason /jc-wrap then stop all processes". The two tool calls before it
+(a PR 189 read and check-in 25's wakeup) were refused by the owner: the freeze's first sign; no
+wakeup is pending. To Swallow, as Swallow relays it: "fold the coordination branch, or let the
+Director do it, then prepare for compaction, and when it makes sense stop all processes".
+
+STATE READ FIRST-HAND at 11:06Z. JC.net: PR 189 ready and CLEAN at 1d7b57be, the Codex connector's
+review on it, no Copilot review yet; the branch ahead 3 (2d109d7d mine; 2452b423 and f4be8420
+Siren's wrap), pushed by this wrap as the fold's last records push; the merge and the successor
+cut are owed to the resume, or the owner's hand (green, one story, records-class: on the ready
+list). Lineage: 60c28af0b (Gale's letter) on the branch, unpushed; Swallow's thread record
+modified (its own); PR 223 a draft; the fold ROUTED to Swallow (the owner's option) after 221
+lands; engraph 81e126e8e, its push CI CodeQL and code quality green, CI running. Open at 10:58Z:
+lineage ten (217, 218, 221, 223, 224, 234, 238, 244, 245, 246); JC.net one (189). Seats: Siren
+PAUSED 11:05Z (PR A unpushed, six cures listed, its first act after); Myrtle at the slot for 221;
+Swallow live (246 and 244 to CLEAN candidates, the pointer-fix PR, a second records commit, the
+deletions, the fold, then its stop).
+
+PROCESSES: the monitor bjehnxf60 stopped at the end of this wrap; no wakeup; no subagent (the
+last, the plan's Cricket, returned 10:5xZ); claim 58c2684a RETAINED. RE-ARM RECIPE unchanged:
+`<scratchpad>/director-monitor.sh 58c2684a-5e8d-4a33-a29e-ed074df63128 <live JC.net coordination
+branch> "<label>"` as a Monitor with timeout 1800000; the snapshot: `<scratchpad>/snapshot.sh <iso
+floor>` (gh GraphQL per estate: every open PR with merge state, unresolved threads, non-green
+checks, changed files and url; the READY LIST sorted by changed files; merges since the floor; the
+process table; load; worktrees; last heartbeats). If the scratchpad is gone, both are rebuilt
+from this description.
+
+OWED ON RESUME, in order: (1) the clock; the process table (0 of this seat's); ListAgents; both
+streams since 11:00Z; gh pr list on both estates, read first-hand. (2) JC.net: if 189 is merged
+(the owner's hand), cut the successor from the fetched main, re-arm with its name, the fold
+entries, the rotation broadcast; else request Copilot as the owner, `merge-bot merge --pr 189
+--expect copilot-pull-request-reviewer`, then the cut. (3) The lineage: read whether Swallow
+folded 223; if not, the fold at the first free slot (Gale's letter is on the branch). (4) The
+ready list for the owner from the snapshot. (5) Check-in 25 on the snapshot; the suite 22 minutes
+after. (6) The plan's Lane 1 items 5 to 7 (the handoff drain; the rule "a ruling names the primary
+surface it read"; the retrospective trigger) and the twice-daily fold cadence (midday and the
+rollover). (7) Siren's PR A push (Siren's first act); the cost-model wording (Siren authors,
+Myrtle signs); the delivery node authored from the approved plan (the plan file lives in the
+harness's plans directory, NOT in the repository; the plan skill's rule makes a repo node the home).
+
+METACOGNITION at the boundary. Inherited this morning: the merge queue as the cure, the seats'
+review rounds as the vendor's doing, and the Director's execution scope as mine to widen. A read
+undid each: the vendor's open issue (#1537) refuted the queue; the PR timelines showed the rounds
+were self-requested; PDR-117's amendment closed the door on a Director at the door. The fluent
+answer arrived three times and a read reversed it three times, the same shape as 2026-09-25's
+three reversals, caught this time by the instrument before the owner saw it, which is what the
+suite is for; but the reviewer's own redirection names the cheaper path: one source read before
+the suite, not inside it. My slips: "CLEAN" for green (four judges), and an Explore pass's stale
+checkout taken as a read (the ninth instance). What changed in me: the ready list is now the
+Director's standing instrument for the owner, and the cost of a PR is a fixed term plus a
+complexity term, not a size alone.
+
+FREE PLAY (three minutes; the confabulation guard). The owner's hand as "the fastest server in the
+landing system" (Swallow's datum) reminded me of a toll plaza: the fixed cost per PR is the booth,
+and the owner drove the express lane; kept, it is the cost-model word as a picture. The register
+that read zero while the lineage landed and the door that reads BEHIND while green look shaped
+alike: a count of the record, not of the thing (validators-must-recompute); kept as a seed for the
+retrospective. Discarded visibly: three Explore agents and three reversals (coincidence); twelve
+minutes for Swallow's reversal and twelve owner merges (numerology).
+
+CONCEPT EXPLORATION (the owner's cost-model word, the four movements compressed). Observed:
+thirteen PRs landed by hand in fifteen minutes; a seat door costs about sixteen minutes of CI
+plus two legs, a claim, a worktree, a records commit and a branch deletion; one-file rows paid
+all of it. The problem: the Practice prices complexity (PDR-132's round budgets bind at
+authoring) but not the fixed cost per PR, so "as small as possible" is the wrong slicing rule
+below the optimum. Solutions reflected: the queue (refuted); the owner's hand (real, not a
+Practice step); slices sized to the optimum, rows that share a story in one moderate PR, the
+exponential complexity cost bounding the top. Proposal: PDR-132 §Decision gains the fixed-cost
+clause and the optimum band (the owner's numbers to come); design-work-for-small-prs gains its
+lower bound; the exchange lane's "one PR per row" becomes "one PR per story"; Siren authors,
+Myrtle signs, one blob both estates. Warrant: the owner's word and this morning's measurements.
+Falsifier: moderate PRs draw more rounds per row than the one-file PRs did.
+
+REASON (what next, the moves that bite). The kind: a routing decision under a freeze. The frame:
+records are safe when pushed, work when merged; two folds are mid-flight. The warrant for handing
+223 to Swallow: the owner's own option to Swallow, Swallow live with the recipe, the slot free
+since Myrtle's 11:07Z release (221 BLOCKED by a Windows test timeout in a file it does not touch,
+F-208's class). Falsifier: Swallow stops before the fold, then the resume folds. Reversibility:
+every act is two-way (a draft PR, a branch push). Stress-test: the strongest alternative, folding
+both myself before compacting, fails the word "then stop all processes" (the ceremonies' CI waits
+are processes).
+
+PROMISES SWEEP. To Swallow: the landing-system datum and the fourth membership measure recorded
+in the tally block and routed (its own to draft on the node); the fold of 223 (11:0xZ message);
+the deletions (approved, the plan event landed). To Siren: the twin (done, PR 209 at 0caa0327);
+the register PR is its first act. To Myrtle: the size order (done); PDR-081 after 245. To the
+owner: the ready list with links (the snapshot's READY LIST; today's in the final reply); the
+plan's Lane 1 items (owed to the resume). Undischarged and named: none other.
+
+ATTRIBUTION FLAGS. The owner's word to Swallow is Swallow's relay, not read by me. Myrtle's slot
+state and the Windows timeout are Myrtle's lines. Engraph's push CI state is my read at 11:0xZ.
+
+METALOSS PASSES. (1) Compressed reasoning: the suite's nine reports and the two Plan agents'
+designs live in the session's task files only; their substance is in the approved plan file and
+the tally block; the plan file is OUTSIDE the repository (the harness's plans directory), which
+the plan skill names as the wrong home for a plan a fresh session must implement: the cure is the
+delivery node at resume; until then the handoff's programme carries the lanes in compressed form.
+(2) Promises: above. (3) Attribution: above. (4) Blind spots: the seats' sessions; whether the
+owner merges 189 or Swallow folds 223 before the resume; the scratchpad's survival. (5) Index of
+homes: this block; the handoff §Current handoff state (BOUNDARY 6); repo-continuity's bullet;
+distilled's entry; the letter; the comms events (the tally 445e0c98 and 35a0bebb, the fold intent
+a70e276c, the boundary events); the auto-memory files. (6) External bound: the error signature to
+point outside eyes at is "a mechanism recommended before its vendor issue was read". (7) Fence
+sweep: no owner wording held off the repository this window. (8) The fixed point: a further pass
+re-finds only the plan file's non-repository home; the recursion closes here.
+
+OWNER WORD at 11:1xZ (native, verbatim): "please commit and push post-compaction". So the boundary records above (napkin, handoff, continuity, distilled, the letter) stay UNCOMMITTED on disk through the compaction; the commit by pathspec and the push (with Siren's 2452b423 and f4be8420 and the tally 2d109d7d) are the resume's FIRST act, before PR 189's merge. Processes stopped 11:1xZ: monitor bjehnxf60, the pulse, both watchers; 0 remaining. Boundary events: lineage 146cdd75, JC.net a8ee26f6.

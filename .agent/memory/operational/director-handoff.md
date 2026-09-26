@@ -130,75 +130,65 @@ Every line answered first-hand, none inferred:
   verbatim; every seat must be able to push without an owner prompt, which the Codex config split
   must deliver.
 
-## Current handoff state (2026-09-26T09:48Z; COMPACTION BOUNDARY 5 of the Director seat; the live reading is this block, then the napkin's COMPACTION BOUNDARY 5 block)
+## Current handoff state (2026-09-26T11:09Z; COMPACTION BOUNDARY 6 of the Director seat; the live reading is this block, then the napkin's 11:06Z block, then the 11:01Z tally block)
 
 Written for a reader who was never here and may run on a different model. Where this block and
-the routing log disagree, the log's last entry is current. The owner's words are verbatim in
-§Standing owner rulings above and in the napkin's dated blocks.
+the routing log disagree, the log's last entry is current. The owner's words are verbatim in the
+napkin's dated blocks (10:17Z, 11:01Z, 11:06Z on 2026-09-26).
 
-- BOUNDARY. At 09:48Z on 2026-09-26 the owner said "please prepare for compaction and stop all
-  processes" with the metacognition, free-play, concept-exploration and wrap skills invoked. The
-  cadence loop is stopped (ScheduleWakeup stop; no wakeup was pending), no Monitor is armed (the
-  last expired at about 22:50Z on 2026-09-25), no subagent runs; claim 58c2684a RETAINED; this
-  session resumes after the owner's compaction and "carry on". The freeze binds until then:
-  answering is in order, starting anything is not.
-- THE OWNER'S LAST WORDS (2026-09-25, native, verbatim in the napkin's 21:42Z block): "I am happy
-  to go with your recommendations, but run them by a full Cricket suite and assumption reviewer
-  first, and I will re/start a Codex seat in the morning, push what you can in the meantime, and
-  shoot for zero open PRs for both repos via the proper quality and merge processes, use all
-  appropriate skills". The condition was met at 21:52Z; the outcome is in the napkin's 21:52Z
-  block: PDR-142's three sentences HELD; the scope-file line EXECUTES as amended (Siren, two
-  lines); the `main` pull-request rule WITHDRAWN (main is the upstream mirror, fast-forward only
-  by the owner's 2026-09-20 word); the path-scoped owner-review ruleset WITHHELD; the veto lines
-  stand; zero open PRs a direction through the proper processes, no deadline.
-- SEATS AT THE BOUNDARY (read 09:48Z from both streams and gh pr list). Siren herds Rudder
-  (158275): LIVE, heartbeats at 09:42Z and 09:46Z, cycle "PR 208 merged; the operator profile edit
-  next" (the scope file's two lines under the owner's amended word); its context read 65.3% at
-  21:51Z on 2026-09-25. Swallow holds Drift (516619) and Myrtle turns Canopy (bf4957): SILENT
-  since about 22:30Z on 2026-09-25 (three and five heartbeats after 22:29Z, none after midnight);
-  PR 241 (Swallow, the Codex seat rules) took the slot at 22:26Z and never reached the door; no
-  lineage merge since PR 242 (8c9434ae3, 22:24Z). Gale turns Cloud (01a0d9, Codex): over since
-  15:18Z on 2026-09-25; the owner restarts a Codex seat in the morning (PR 211's push, PR 241's
-  live proof). The lineage primary (coordination/2026-09-25-749769) carries UNCOMMITTED seat work
-  the Director did not touch: `.agent/memory/operational/frictions-register.md` (+21 lines, F-209,
-  Swallow's) and `.agent/experience/2026-09-25-titan-turns-ether-formation-letter.md` (Titan's,
-  untracked); Swallow's records commit of 21:39Z never ran. Owed to Swallow's resume or successor.
-- GOALS AT THE BOUNDARY. Goal one: 7 of 23 J rows landed whole (J4, PRs 219, 213, 215, 230, 225,
-  227), batch six's first landed; L12 closed both directions (JC.net PRs 206 to 208; lineage PR
-  242). Goal two: 0 of 6 items complete; sub-PRs: 228 (2a), 222 (PR A), 233 (2a-ii) merged; PR 244
-  (B0) open; PR 241 at the slot, unlanded; the push-without-owner measure 3 of 3 live seats; the
-  Codex seat's cure waits on PR 241's door and the owner's morning session. Goal three: JC.net 1
-  open (189, the coordination PR, cut 11:17Z on 2026-09-25, its fold DUE at 11:17Z
-  today); the lineage 22 open (223 the coordination PR, cut 17:05Z on
-  2026-09-25, due 17:05Z today; 224 the owner's own draft; 211 Gale's; 19 ready PRs by readiness);
-  merged on 2026-09-25: JC.net 176, 186 to 188, 190 to 208; the lineage 196, 212, 214, 187, 219,
-  213, 215, 222, 230, 228, 225, 239, 227, 233, 242 (eleven through the readiness slot).
-- POST-COMPACTION PROGRAMME (the owner's standing word, "carry on"): read the clock; process table
-  0 of this seat's; ListAgents and both streams; read gh pr list on both estates and the merged
-  list since 22:24Z on 2026-09-25 yourself (never from a seat's line); check every seat: Siren (the
-  scope file's two lines, then L12's landing row and todo 8's text cure, or its compaction), the
-  lineage seats (if silent, the slot is free and PR 241's door is the first act of whoever holds
-  Swallow's lane; the uncommitted F-209 and Titan's letter go in that seat's next records commit),
-  the Codex seat the owner starts (PR 211's sync and push; PR 241's live proof after it lands);
-  then the two FOLDS by the coordination-fold skill, JC.net 189 from this primary and the lineage's
-  223 from its primary, records current, each due at its cut time plus 24 hours; re-arm one monitor
-  with the scratchpad recipe (`bash <scratchpad>/director-monitor.sh 58c2684a-5e8d-4a33-a29e-ed074df63128
-  coordination/2026-09-25-cf6897 "<label>"`, Monitor timeout 1800000, re-armed at each expiry; the
-  scratchpad is `<scratchpad>/`
-  and may not survive; the script watches both comms streams without heartbeats and runs the
-  pulse); resume the cadence as check-in 24 with the suite 22 minutes after, on a frame built as
-  the napkin's boundary block proposes (a generated state snapshot, the holds, the owner board);
-  no owner card unless one survives the lenses; a push notification only for a survivor. The
-  owner's "agreed" (10:01Z, 2026-09-26) ratifies the generated-snapshot frame: build the snapshot
-  script first, then the frame from it; the cadence itself unchanged.
-- STANDING LESSONS OF 2026-09-25, each in the napkin with evidence: a fact taken from a seat's
-  summary is not a read (three premise misses, all reversed by the assumptions reviewer's source
-  reads: the flake count, J14's row, the rulesets and the mirror); the clock is read in a separate
-  call before the writing call (the eighth instance); the whole-frame sweep runs after the last
-  fold and re-reads every named gate; a peer's harness-denied action is never another seat's to
-  do; PDR-052's floor gates directives and itself only; the readiness slot with "taken/released"
-  events turned over eleven landings at 16-second handovers; the recommendations-suite shape
-  (eight Crickets and a read-capable assumptions reviewer) is the instrument for decisions.
+- BOUNDARY. At 11:04Z on 2026-09-26 the owner said "prepare for compaction ultrathink
+  /jc-metacognition /jc-free-play /jc-concept-exploration /jc-reason /jc-wrap then stop all
+  processes". The monitor is stopped at the end of the wrap; no wakeup is pending (check-in 25's
+  was refused by the owner); no subagent runs; claim 58c2684a RETAINED. The freeze binds until the
+  owner's "carry on": answering is in order, starting anything is not.
+- THE OWNER'S WORDS THIS MORNING, in order: "work is safe when it is merged, the target number of
+  open PRs is always zero. 24 open PRs is a process failure …" (10:09Z); "reflect deeply on what
+  needs doing across the estates, and plan it" (10:3xZ; the plan approved 10:56Z, its lanes in the
+  napkin's 11:01Z block); "I have finished landing PRs. I can make judgements that allow me to
+  merge small PRs many, many times faster than Practice agents" (10:55Z; thirteen lineage PRs by
+  the owner's hand 10:35Z to 10:50Z, in changed-file order, verified); "don't block small green PRs
+  on manual, but do maintain a list so that when I ask you can give me links" (11:00Z); the
+  cost-model word (11:01Z: a flat cost per PR dominates tiny PRs; the optimum is well above one
+  line). Card answers: no intake bound; the coordination drafts count and fold twice a day; PR 224
+  landed by a seat; every listed deletion approved.
+- SEATS AT THE BOUNDARY. Siren herds Rudder (158275): PAUSED 11:05Z, its wrap on this branch
+  (2452b423, f4be8420) pushed by this wrap; PR A (the register's recount) unpushed, its first act.
+  Myrtle turns Canopy (bf4957): LIVE; PR 221 BLOCKED at 11:04Z by a Windows test timeout in a file
+  it does not touch (F-208's class); the slot released to the fold; next 234, 217, 238, 245.
+  Swallow holds Drift (516619): LIVE; the lineage fold of PR 223 ROUTED to it (the owner's option
+  to Swallow: "fold the coordination branch, or let the Director do it"); 246 and 244 to CLEAN
+  candidates; the pointer-fix docs PR; the approved deletions; then its stop. No Codex seat (Gale
+  closed 10:08Z); the next starts at the owner's word, its first act the ADR-204 amendment note
+  as PR 241's acceptance test (a push with no prompt).
+- GOALS AT THE BOUNDARY. Goal one: by the register's rule 3 of 21 (J4, J9, J14) and 6 of 28 at
+  engraph 81e126e8e (Siren's recount, carried by PR A); by the merged list J1, J15, J17, J18's
+  observer, J19, J21 and J22 landed whole or partial in the owner's thirteen; ten rows have no PR
+  yet, to go as a few moderate PRs under the cost-model word. Goal two: PR 241 landed (fc645531c,
+  the Codex seat-landing rules, the six findings disposed as the ruled residual); 244 and 246
+  open; about fourteen PRs remain across the bridge and exec-binding nodes. Goal three: the
+  lineage ten open at 10:58Z (217, 218, 221, 223, 224, 234, 238, 244, 245, 246); JC.net one (189,
+  ready and CLEAN at 1d7b57be plus this wrap's push; the merge and the successor cut owed to the
+  resume or the owner's hand); the deletions approved, run by each seat as the bot with read-back.
+- THE DOOR FROM NOW. The seat door lands every ready PR, order by changed-file count ascending,
+  one turn then yield, "slot taken" and "slot released" events; a PR takes the slot when its
+  remaining conditions need no push; a BLOCKED holder yields; the Director keeps the READY LIST
+  with links (the snapshot script's section) for the owner; while the owner lands by hand the
+  seats hold syncs until "done"; the merge queue is REFUTED (codeql-action#1537 open; the
+  code-scanning app's CodeQL check never reports on merge_group); the Director never takes the
+  door (PDR-117, 2026-07-06); the sync-push rounds were self-requested (Swallow's next code PR
+  cures it: a leg binds through a pure sync lineage).
+- POST-COMPACTION PROGRAMME (the napkin's 11:06Z block, "OWED ON RESUME", verbatim order): the
+  clock and the process table; ListAgents and both streams since 11:00Z; gh pr list both estates;
+  JC.net's fold closed (189 merged by the bot or the owner's hand, then the successor cut, the
+  monitor re-armed with its name, the fold entries, the rotation broadcast); the lineage's fold
+  read (Swallow's, else the first free slot); the ready list; check-in 25 on the snapshot with
+  the suite 22 minutes after; the handoff drain (this file, 2,200 lines against 160), the rule
+  "a ruling names the primary surface it read", the retrospective when both estates read one
+  open PR each; the twice-daily fold cadence; the delivery node authored from the approved plan.
+- STANDING LESSONS. Read the primary surface (the ninth instance today: an Explore pass read a
+  coordination-branch checkout 56 commits behind engraph and reported a gap that a blob read
+  refuted); read the vendor's issue before a suite, not inside it; "green and clean" is not
+  GitHub's CLEAN; a seat's line is a claim until read.
 
 ## Live board
 
@@ -2152,3 +2142,10 @@ ones the Director would put to the owner had the owner been present.
   Both coordination folds DUE today (JC.net 189 at 11:17Z, the lineage's 223 at 17:05Z), owed to
   this seat's resume. The live board below is stale since 2026-09-13 and this file is 2,100 lines
   against a 160 limit: the drain is this seat's first records act after the folds.
+- 2026-09-26T11:09Z: COMPACTION BOUNDARY 6 at the owner's 11:04Z word. This morning: the owner's
+  word on zero open PRs (10:09Z); the resume block and rulings (PR 241 landed fc645531c; PR 211 to
+  Swallow, landed by the owner's hand; the slot rule; the twin rule); the decision suite on the door
+  frame and the assumptions reviewer's refutation of the merge queue; the plan approved 10:56Z; the
+  owner's thirteen hand landings and five words verbatim; JC.net PR 189 ready at the fold, its last
+  records push by this wrap; the lineage fold of 223 routed to Swallow; the deletions approved. The
+  current-state block at the top is current as of this entry.

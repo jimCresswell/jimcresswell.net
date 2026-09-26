@@ -38,6 +38,15 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
   writing a continuity file; the successor coordination branch's name comes from the Director's
   rotation broadcast after the fold.
 
+- **2026-09-26T11:09Z, the Director's COMPACTION BOUNDARY 6** (Wick binds Temper, ed7b48). The
+  owner's morning words: zero open PRs is a standing target; the plan approved 10:56Z; thirteen
+  lineage PRs landed by the owner's hand 10:35Z to 10:50Z; small green PRs are never held for the
+  owner, the Director keeps the ready list with links; the PR cost model gains a fixed term. JC.net:
+  PR 189 (this branch's fold) ready and CLEAN with the records pushed by the wrap; its merge and
+  the successor cut are the resume's first act, or the owner's hand. The lineage: the fold of PR
+  223 routed to Swallow; ten open at 10:58Z. The live reading is the handoff's current-state block,
+  then the napkin's 11:06Z block.
+
 - 2026-09-25T11:17Z, the fold landed: PR 176 merged as `SHA: cf689735`; the successor coordination
   branch is `coordination/2026-09-25-cf6897`, and the primary resides there. Every continuity write
   from now goes there. The JC.net exchange seat's live order is K4 first (its 10:58Z re-order), then
