@@ -25,8 +25,11 @@ Practice Core package.
   defect only.
 - PDR-140 clause 4 takes the lineage's paragraph on the rebudget under the
   owner's 2026-09-14 ruling, byte-identical, and a new amendment entry
-  records it; its Status line names its amendments. The record is one
-  blob in both estates once the lineage takes the entry and the line.
+  records it; its Status line names its amendments. By the Director's
+  ruling of 2026-09-26, the late-cure push requests its expected leg so
+  the tip binds for the merge boundary, and that leg's findings are
+  dispositions only. The record is one blob in both estates once the
+  lineage takes the entry, the line and the sentence.
 
 ## [jimcresswell.net] 2026-09-25 — PDR-142's goal quote stands whole
 
