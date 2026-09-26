@@ -212,12 +212,14 @@ joint decision, open or close an escalation, or ask the owner.
 
 When registering your PDR-027 identity row, use an existing owner-assigned
 `agent_name` if one matches. Otherwise derive a session display name with
-`pnpm agent-tools:agent-identity --format display`. The CLI reads (in order)
-`PRACTICE_AGENT_SESSION_ID_CLAUDE`, `PRACTICE_AGENT_SESSION_ID_CURSOR`,
+`pnpm agent-tools:agent-identity --platform <label> --format display`, the label
+your platform (`claude-code`, `cursor`, `codex` or `gemini`). The CLI reads (in
+order) `PRACTICE_AGENT_SESSION_ID_CLAUDE`, `PRACTICE_AGENT_SESSION_ID_CURSOR`,
 `PRACTICE_AGENT_SESSION_ID_GEMINI`, `PRACTICE_AGENT_SESSION_ID_CODEX`, the
 cloud seat's `CLAUDE_CODE_REMOTE_SESSION_ID`, then the harness-native
 `CLAUDE_CODE_SESSION_ID` (present in every Claude Code Bash tool shell) and
-`CODEX_THREAD_ID`. Platform hooks set the platform-suffixed Practice
+`CODEX_THREAD_ID`; the Claude seeds count only on a Claude platform, so a seat
+opened from a Claude shell keeps its own identity. Platform hooks set the platform-suffixed Practice
 variable: the Claude Code `SessionStart` hook
 (`.claude/hooks/practice-session-identity.mjs`) appends
 `PRACTICE_AGENT_SESSION_ID_CLAUDE` to `$CLAUDE_ENV_FILE` for shells created
