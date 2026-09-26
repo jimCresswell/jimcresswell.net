@@ -170,6 +170,8 @@ Every line answered first-hand, none inferred:
   (1) the Director's ruling that a late-cure push requests its leg so the tip binds and that leg's
   findings are dispositions only (PDR-140 clause 4's last sentence, one blob in both estates;
   lineage event ba36625a; rides JC.net PR 212 and Myrtle's lineage twin).
+  (2) The next Codex seat: the owner starts it when convenient; its first act is P3 (the ADR-204
+  amendment note) as PR 241's acceptance test; no deadline waits on it.
 
 ## Current handoff state (2026-09-26, after the 12:39Z landing of PR 214; pointer-biased by design)
 

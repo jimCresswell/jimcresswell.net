@@ -6038,3 +6038,43 @@ handoff drain (P9) between them; the rollover folds at 00:00Z.
   Round two's missed over-bar finding (`gh auth token` returns the active account) took one
   late-cure push with its binding leg. The leg's only note was a repeat of a routed below-bar
   finding, and the door merged. The two-round budget held, and no round three opened.
+
+## 2026-09-26T12:49Z — Director suite 22 tally (the Director)
+
+Director suite 22 tally (the frame built after the 12:38:04Z clock read on the 12:38:16Z snapshot;
+written 12:49Z).
+
+Eight returns, none UNDELIVERED. Work verdict: ON-TRACK eight of eight. Frame verdict: SOUND two
+(procedure, both stances), NARROWED five (judgement medium and high, both stances; judgement low,
+adversarial), CONTRADICTED one (judgement low, normal). Labels by the dual scale as in suite 21;
+the frame identical, only STANCE changed.
+
+What the judges converged on, and the disposition:
+
+1. P7, P6 and P10(a) are done and the frame never said so (five judges). P7 landed in JC.net PR
+   214 (49b2addd5, verify-dont-trust §Rule), P6 and P10(a) in PR 212 (d09a0e00). Frame cure for
+   suite 23: a todo-status table for the plan's named items, each with its PR or its seat.
+2. The yield line (two judges, one CONTRADICTED): READING replaced the plan's "over 25 minutes"
+   with PR 212's landed three-exit text without quoting it in SOURCES. The landed text is the
+   primary surface now; the plan's §Verification line was written before it landed and is
+   superseded at this checkpoint. Frame cure: quote the landed slot bullet from
+   pr-lifecycle §Phase 7 at main d09a0e00 in SOURCES, and read the yield by it.
+3. "Zero at each fold moment" (judgement low, adversarial): both folds landed with other PRs open
+   (six on the lineage, two on JC.net at the read). Stated plainly: the clause is unmet today; the
+   number that moves it is the seat door's landings per window, which check-in 27 reads.
+4. The next Codex seat is an owner action the goal-two proof depends on and it is not on the
+   owner's queue (judgement medium, adversarial). Added to the OWNER CARD QUEUE as its second
+   line: start a Codex seat for P3 when convenient; no deadline waits on it.
+5. Route the twin of 214 onto Myrtle's open 249 rather than a new PR (judgement low,
+   adversarial): done at 12:4xZ (lineage event 1ae99fb9; Myrtle absorbed 12:48:50Z).
+6. The arc's "then we review" against parallel goal lanes (judgement high, normal): reconciled in
+   the standing rulings this window: the owner's 2026-09-24 words assign goal two to its seat the
+   same day; "then we review" sequences goal one's two directions, not the goals.
+7. Start P9 now (judgement medium, normal): done. The handoff is drained to 201 lines from 2,176
+   (commit 1e637360; the four blocks archived whole, cmp-proven; five owner words graduated first).
+
+Since check-in 26: 214 merged through its door (49b2addd5, 12:39:14Z), its worktree, local and
+remote branch gone with read-back; 248 merged (2c75350a9, Swallow); 213 merged (ee19708b,
+Siren); 224 synced and ready with both legs (Swallow's slot); 221 green after its re-run
+(Myrtle); 249 (the cost-model twin) and 251 (the bot-identity twin) open with both legs
+(Myrtle); Siren routed to take J11 and J13 into lineage PRs beside Myrtle (absorbed).
