@@ -343,3 +343,13 @@ a second rebudget, or a below-bar cure landing on a post-budget push;
 PR, or a routed write found in no napkin, register or PR by the
 seat's session close; 9(d) — a PR whose body carries another PR's
 review residue as its story.
+
+### 2026-09-26 — clause 4 reads its rebudget with the owner's two-round ruling
+
+Clause 4 gained the reading of its rebudget under the owner's ruling of 2026-09-14, verbatim "I
+don't want the number of rounds of PRs to go up": the rebudget licenses the one settlement push
+that carries the pending mandatory cure and the dispositions, never a further cure round; past
+round two a later below-bar finding is a disposition riding the settlement; and an over-bar
+finding found after that push keeps one late-cure push, with no further round of review
+requests. The lineage wrote the paragraph on 2026-09-25 with no entry here; this entry records
+it, and both estates carry the same bytes from 2026-09-26.
