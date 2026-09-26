@@ -75,21 +75,19 @@ measured-state clause, `SUPPRESSED-FINDINGS-OPEN`, owner card item 78,
 bot review can land in the seconds between (caught twice in forty
 minutes, #570/#574).
 
-For the OTHER bot writes (pushes, PR create/edit, comments, review
-replies, thread resolution, update-branch), mint a token and use it:
+For the OTHER bot writes (PR create/edit, comments, review replies, thread
+resolution, update-branch, and pushes where the estate's identity contract
+names the bot as the transport), mint a token and use it:
 
 ```bash
 token=$(pnpm --silent agent-tools merge-bot mint-token --scope pull-request-work) || exit 1
+[ ${#token} -ge 20 ] || exit 1
 ```
 
-**Assign the token first; never use the `GH_TOKEN=$(…) gh …` prefix form.** A
-prefix substitution cannot fail fast: if the mint fails for any reason — a bad
-`--scope`, an unreadable key, a `422` — the substitution yields an empty
-string, and `gh` treats an empty `GH_TOKEN` as _unset_ and falls back to the
-keyring. The command then runs as the signed-in human, who may be
-bypass-capable, which is the owner-credential fallback
-`bot-identity-on-third-party-systems` (a lineage rule not adopted here; the ban stands on `identify-as-agent-under-shared-credentials`)
-bans outright. A separate assignment with `|| exit 1` stops there instead.
+**Assign the token first; never use the `GH_TOKEN=$(…) gh …` prefix form.**
+[`bot-identity-on-third-party-systems`](../rules/bot-identity-on-third-party-systems.md)
+§Action holds why (an empty `GH_TOKEN` falls back to the keyring and runs as
+the signed-in human) and the three tripwires that close the residual paths.
 
 Each minted token is scoped at mint time to this repository and to exactly
 the permissions of the `--scope` you name — least-privilege by construction,
@@ -107,6 +105,7 @@ are defined in `agent-tools/src/merge-bot/token-scopes.ts`:
 | `pull-request-work`    | `pull_requests: write`, `contents: write`, `workflows: write` | update-branch, push, PR create/edit, comment, review reply, thread resolution |
 | `pull-request-merge`   | `pull_requests: write`, `contents: write`                     | the merge act alone (what `merge-bot merge` mints itself)                     |
 | `code-scanning-alerts` | `security_events: read`                                       | reading code-scanning alerts                                                  |
+| `workflow-dispatch`    | `actions: write`                                              | dispatching a workflow; re-running a failed job                               |
 
 That table is a **mirror**, kept inline because a reader choosing a scope
 needs the read/write levels in front of them. `token-scopes.ts` is
@@ -138,8 +137,9 @@ permissions investigation.
 - **Owner merge-word can arrive as chat approval** ("I approved the PR, that
   is signal enough"; "Merge now") — it is equivalent to the settled-read
   handshake. Where the owner is the PR author-of-record, GitHub blocks
-  self-review, so the approval is recorded as an owner-directed APPROVE
-  submitted via the bot.
+  self-approval, so the owner's word is recorded as an ordinary PR comment from
+  the bot that quotes it and names the seat (the rule's author-cannot-review
+  rider); an `APPROVE` state needs a non-author account.
 - **Codex-seat bridge**: the Codex GitHub connector refuses merge actions
   without in-session owner authorisation, so at genuinely-settled a Codex
   lane routes the mechanical key-turn to the Director as proxy — judgment
@@ -192,11 +192,12 @@ copy on the next fast-forward, and the ignore rule then hides its absence, so
 the very next `merge-bot` command exits 2 with the config-not-readable
 message. Recreate the file at the primary checkout from the template, naming
 the app that clone used, before the next merge or push.
-The app holds no Actions permission, so no bot token can re-run a failed workflow job.
-When a required check failed on the runner side rather than in the change (2026-09-06), the
-only bot-shaped cure was a new push, and that push re-opened the review round. Re-running a
-job needs `actions: write`; whether any bot scope should carry it travels with the MCP-391
-scope split.
+The installation holds `actions: write`, and the `workflow-dispatch` scope requests it, so a bot
+token can dispatch a workflow and re-run a failed job. The mint is the proof: an ungranted
+permission fails it with 422, and a `workflow-dispatch` mint succeeded on 2026-09-25. When a
+required check failed on the runner side rather than in the change (2026-09-06), the only cure
+taken was a new push, and that push re-opened the review round. Whether a re-run should be a
+routine bot act travels with the MCP-391 scope split.
 
 ## Setting up a bot (requires org-admin rights)
 
@@ -321,4 +322,4 @@ on POSIX), and hands the transfer to the git binary with a
 static credential helper reading that file — the child environment names
 only the file's path. Never argv, no force flags, no `--no-verify`, and
 pushes to the default branch refuse by name (see
-`bot-identity-on-third-party-systems` (a lineage rule not adopted here; the ban stands on `identify-as-agent-under-shared-credentials`)).
+[`bot-identity-on-third-party-systems`](../rules/bot-identity-on-third-party-systems.md)).

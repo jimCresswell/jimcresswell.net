@@ -11,7 +11,7 @@ import {
   WATCHER_HEARTBEAT_SCHEMA_VERSION,
 } from './watcher-heartbeat.js';
 import { resolveCommsWatchPaths, resolveWatchedCommsDir } from './comms-watch-paths.js';
-import { optional, optionalPositiveInteger, type Options } from './cli-options.js';
+import { optional, optionalPositiveInteger, optionalTimerMs, type Options } from './cli-options.js';
 import {
   cliIo,
   type CollaborationStateCliIo,
@@ -61,8 +61,9 @@ function resolveHeartbeatFile(options: Options, seenFile: string): string | unde
  * exit path at all — the watcher rule mandates the supervisor pid.
  *
  * Liveness surface (FM-2 cure, 2026-05-23; default-on 2026-06-10): the watcher
- * writes a substrate-typed heartbeat JSON every `--heartbeat-interval-ms`
- * milliseconds (default 30000) with `last_drain_at`, `last_emit_at`,
+ * writes a substrate-typed heartbeat JSON after its first pass, then on the
+ * first pass ending one `--heartbeat-interval-ms` (default 30000) after the
+ * previous write, with `last_drain_at`, `last_emit_at`,
  * `last_error_at`, `emitted_count`, the `pid`, and the lexically absolute
  * comms directory actually drained. The path is the seen-file's derived
  * default (`<seen-file>.heartbeat.json`) unless `--heartbeat-file` overrides
@@ -159,9 +160,9 @@ function resolveWatchTunables(options: Options): {
   readonly heartbeatIntervalMs: number;
 } {
   return {
-    pollMs: optionalPositiveInteger(options, 'poll-ms') ?? DEFAULT_POLL_MS,
+    pollMs: optionalTimerMs(options, 'poll-ms') ?? DEFAULT_POLL_MS,
     maxEventsPerDrain: optionalPositiveInteger(options, 'max-events-per-drain'),
-    stepTimeoutMs: optionalPositiveInteger(options, 'step-timeout-ms') ?? DEFAULT_STEP_TIMEOUT_MS,
+    stepTimeoutMs: optionalTimerMs(options, 'step-timeout-ms') ?? DEFAULT_STEP_TIMEOUT_MS,
     heartbeatIntervalMs:
       optionalPositiveInteger(options, 'heartbeat-interval-ms') ?? DEFAULT_HEARTBEAT_INTERVAL_MS,
   };

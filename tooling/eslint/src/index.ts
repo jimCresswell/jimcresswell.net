@@ -13,8 +13,8 @@ export {
   createImportResolverSettings,
   commonSettings,
   ignores,
-  testRules,
 } from './shared.js';
+export { testRules } from './test-rules.js';
 export type { ImportResolverSettingsOptions } from './shared.js';
 
 export const configs = {

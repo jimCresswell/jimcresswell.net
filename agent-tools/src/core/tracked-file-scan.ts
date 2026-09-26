@@ -27,6 +27,7 @@ import path from 'node:path';
 
 import { err, ok, type Result } from '@engraph/result';
 
+import { errorCodeOf } from './error-code.js';
 import { resolveTrustedGit } from './trusted-git.js';
 
 /** Null byte: the `git ls-files -z` record separator, and the binary-content marker. */
@@ -92,16 +93,13 @@ export interface UnreadableTrackedFile {
 
 /**
  * The refusal line for an unreadable tracked file, fit for a CI log: the
- * repo-relative path and the error's code (or kind), never the cause's own
- * message, which carries the working copy's absolute path (5c-ii).
+ * repo-relative path and the error's code, never the cause's own message,
+ * which carries the working copy's absolute path (5c-ii). Only a code shaped
+ * as one crosses ({@link errorCodeOf}); any other cause reads `unknown`.
  */
 export function describeUnreadable(file: UnreadableTrackedFile): string {
   const { cause } = file;
-  let kind = 'unknown';
-  if (cause instanceof Error) {
-    const code = 'code' in cause ? cause.code : undefined;
-    kind = typeof code === 'string' && code.length > 0 ? code : cause.name;
-  }
+  const kind = (cause instanceof Error ? errorCodeOf(cause) : undefined) ?? 'unknown';
   return (
     `cannot read tracked file '${file.relativePath}' — fix the file or its permissions; ` +
     `the scan must not skip a tracked file (${kind})`

@@ -19,6 +19,7 @@ edit it by hand.
 | `.agent/rules/agentic-judgment-conserve-by-default.md` | core | — |
 | `.agent/rules/agents-default-no-gender.md` | core | — |
 | `.agent/rules/apply-architectural-principles.md` | core | — |
+| `.agent/rules/bot-identity-on-third-party-systems.md` | core | — |
 | `.agent/rules/capability-landing-decision-procedure.md` | situational | `surface:lever-authoring — Landing, converting, or re-homing a capability; not landed-home edits` |
 | `.agent/rules/capture-practice-tool-feedback.md` | core | — |
 | `.agent/rules/channel-by-audience-lifetime-and-consumer.md` | situational | `session:team — every cross-seat send` |
@@ -93,6 +94,7 @@ edit it by hand.
 | `.agent/rules/no-unbounded-host-load.md` | core | — |
 | `.agent/rules/no-verify-requires-fresh-authorisation.md` | core | — |
 | `.agent/rules/no-warning-toleration.md` | core | — |
+| `.agent/rules/one-instance-is-an-observation.md` | core | — |
 | `.agent/rules/owner-attention-at-action-moments.md` | core | — |
 | `.agent/rules/per-user-memory-is-a-buffer.md` | core | — |
 | `.agent/rules/permanent-doc-is-the-consolidation-record.md` | core | — |

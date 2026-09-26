@@ -33,6 +33,32 @@ const config = defineConfigArray(
     settings: createImportResolverSettings({ project: wsTsProject }),
   },
   {
+    // The collaboration-state runtime polls on a plain timer. A per-pass
+    // fs.watch handle blocked the event loop on close under load, so no
+    // watch primitive may come back in. A later block that sets this rule
+    // replaces these options rather than merging with them.
+    files: ['src/collaboration-state/**/*.{ts,tsx}'],
+    rules: {
+      'no-restricted-imports': [
+        'error',
+        {
+          paths: [
+            ...['node:fs', 'fs'].map((name) => ({
+              name,
+              importNames: ['watch', 'watchFile', 'unwatchFile', 'promises', 'default'],
+              message: 'The collaboration-state runtime polls on a plain timer; no fs watch.',
+            })),
+            ...['node:fs/promises', 'fs/promises'].map((name) => ({
+              name,
+              importNames: ['watch', 'default'],
+              message: 'The collaboration-state runtime polls on a plain timer; no fs watch.',
+            })),
+          ],
+        },
+      ],
+    },
+  },
+  {
     files: ['**/*.test.{ts,tsx}', '**/*.spec.{ts,tsx}', '**/__tests__/**/*.{ts,tsx}'],
     rules: {
       ...testRules,

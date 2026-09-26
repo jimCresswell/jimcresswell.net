@@ -179,10 +179,11 @@ const oakRecommendedConfig: TSESLint.FlatConfig.Config = {
     // knowledge substrate at runtime (fs reads / `new URL` into `.agent/`).
     // agent-tools/ (the substrate operator) is exempt inside the rule. The
     // companion IMPORT boundary is enforced by the depcruise
-    // `no-import-from-agent-substrate` forbidden rule. Its `warn` level is a
-    // transition-debt tier under PDR-126 (gates land strict, in one landing).
+    // `no-import-from-agent-substrate` forbidden rule. Its transition-debt
+    // `warn` tier (PDR-126) retired at `error` once every lint gate, run with
+    // `--max-warnings 0`, measured its surface empty (2026-09-25).
     // Doctrine: owner 2026-06-22, .agent/directives/testing-strategy.md.
-    '@engraph/no-agent-substrate-access': 'warn',
+    '@engraph/no-agent-substrate-access': 'error',
     // Bans `throw` in favour of the Result pattern. Switched off in this
     // repository by owner ruling (2026-09-12), recorded in
     // .agent/rules/use-result-pattern.md; until the owner re-enables it,

@@ -409,8 +409,8 @@ spaces, so a positional `awk` field split is wrong).
 
 The standalone command is the read-model; the poll-recipe is the alert. Wiring
 the same classifier into `comms watch` as an `--alert-stale-peers` mode is a
-recorded follow-on (it would couple an absence/timer concern into the
-event-driven watcher, so it is kept a separate thin consumer).
+recorded follow-on (it would couple an absence concern into the
+event-emitting comms watcher, so it is kept a separate thin consumer).
 
 ### Reading calibrations (consolidated 2026-07-30, all measured)
 
@@ -546,9 +546,10 @@ not a retirement signal:
   `silence-is-never-liveness`: the stand-down is announced before it
   begins, which is what makes it not silence. The seat states the estate
   names, for the record: active; standby (no claim, watcher only); paused
-  at owner word (claim held, monitors down); retiring mid-cycle on a
-  measured budget signal (PDR-063); dissolved into a peer by owner-directed
-  succession (PDR-063 §Deliberate succession); closed.
+  at owner word (claim held, monitors down; the compaction drill is one);
+  handing off mid-cycle at the owner's call (PDR-063); dissolved into a
+  peer by owner-directed succession (PDR-063 §Deliberate succession);
+  closed.
 
 ## Worked Instance
 

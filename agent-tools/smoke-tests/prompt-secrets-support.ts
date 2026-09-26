@@ -189,18 +189,26 @@ export function expectWarned(run: HookRun, prompt: string, warningText: string):
 }
 
 /**
- * A directory holding the stub `sonar` and links to `tools`.
+ * A directory holding links to `tools` and, unless told otherwise, the stub `sonar`.
  *
  * @param workDir - Where the directory is made.
  * @param name - The directory's name.
  * @param tools - The tools on PATH to link into it.
+ * @param withSonar - Whether the stub `sonar` is in it; without it, no scanner is installed.
  * @returns The directory's path.
  */
-export function toolDirectory(workDir: string, name: string, tools: readonly string[]): string {
+export function toolDirectory(
+  workDir: string,
+  name: string,
+  tools: readonly string[],
+  withSonar = true,
+): string {
   const directory = join(workDir, name);
   mkdirSync(directory);
-  writeFileSync(join(directory, 'sonar'), SONAR_STUB, 'utf8');
-  chmodSync(join(directory, 'sonar'), 0o755);
+  if (withSonar) {
+    writeFileSync(join(directory, 'sonar'), SONAR_STUB, 'utf8');
+    chmodSync(join(directory, 'sonar'), 0o755);
+  }
   for (const tool of tools) {
     symlinkSync(which(tool), join(directory, tool));
   }

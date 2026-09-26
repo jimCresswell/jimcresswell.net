@@ -64,7 +64,8 @@ The site declares ESLint 9 with `eslint-config-next`; `agent-tools`, every
 declare ESLint 10. `agent-tools`, `tooling/result`, `tooling/safe-path` and
 `tooling/type-helpers` lint with `@engraph/eslint-plugin-standards`. Two
 configs hand-roll theirs from `typescript-eslint` and `@eslint/js` instead: the
-plugin's own (`tooling/eslint`), which cannot lint through its own build, and
+plugin's own (`tooling/eslint`), which cannot lint through its own build and
+imports only its test-shape block (`src/configs/test-shape.ts`) from source, and
 `tooling/workspace-config`'s, because the plugin's build and test configs
 consume that package and a dependency back onto the plugin would close a
 workspace cycle. `lint:runtime-only` uses `@eslint/js`'s recommended rules.
@@ -390,6 +391,7 @@ TUI does not swallow output.
 | `test`                          | ✅     | Re-runs only when source or tests change                         |
 | `test:e2e`                      | ✅     | Re-runs only when the e2e inputs change                          |
 | `@engraph/agent-tools#test:e2e` | ❌     | The smoke suite proves the built binaries every run; no outputs  |
+| `@engraph/agent-tools#test`     | ❌     | Reads root files outside its inputs; see the section below       |
 | `lint:fix`                      | ❌     | Modifies source files                                            |
 | `clean`                         | ❌     | Destructive operation                                            |
 | `dev`                           | ❌     | Persistent process                                               |
@@ -411,6 +413,24 @@ deployments. Playwright's web server and Vercel run the site's own `build`
 script directly, outside Turbo. When adding or changing a task, enumerate every
 path its script writes (read the script, not the task name) and declare them
 all, and every environment variable that changes what it writes.
+
+### A cached task's pass must answer for every file it reads
+
+Turbo replays a cached pass whenever a task's declared inputs are unchanged. A
+task that reads a file outside those inputs can replay a pass that the file's
+new content would fail. A task is cached only on inputs that cover every file
+it reads. Where its reads can be listed, they are declared, with a check that
+recomputes the list; a list kept by hand is the shape `compute-dont-hope`
+forbids. Where they cannot, the task runs uncached, and its cost is named.
+
+`@engraph/agent-tools#test` is uncached for this reason. A read trace over one
+run on 2026-09-25 (416 test files, 4,589 tests) found it reading root files
+and trees its inputs did not declare, among them `.agent/hooks/policy.json`,
+`.agent/rules`, a sub-agent template, `.codex/**`, `.dependency-cruiser.mjs`,
+`RULES_INDEX.md`, the root `package.json` and `pnpm-workspace.yaml`. That run
+took 7.7 s, which is the cost each gate that reaches Turbo's `test` task now pays. Most of those reads are real IO in
+tests, which the testing strategy forbids; once the tests read no root file,
+declared inputs with a recomputing check can bring the cache back.
 
 ## Mixing pnpm and turbo
 

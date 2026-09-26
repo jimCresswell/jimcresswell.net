@@ -314,7 +314,8 @@ PRACTICE_AGENT_IDENTITY_OVERRIDE="Frolicking Toast" pnpm agent-tools agent-ident
   / `comms direct`); explicit `--agent-name` + a REQUIRED non-empty
   `--session-prefix` is available for admin/test overrides (a supplied
   `--session-prefix` is trimmed and must be non-empty on any path). `watch` polls the comms
-  directory every `--poll-ms` and records seen event ids in a durable cursor. Omit
+  directory in passes, waiting one `--poll-ms` interval between passes, and records seen event
+  ids in a durable cursor. Omit
   `--comms-dir` and `--seen-file` together to resolve the PRIMARY coordination
   home and derive `comms-seen/<exact display name>.json`; `--repo-root`
   overrides that derived home. Resolution precedence is explicit

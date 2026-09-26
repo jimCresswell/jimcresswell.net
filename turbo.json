@@ -118,7 +118,7 @@
     },
     "@engraph/agent-tools#test": {
       "dependsOn": ["^build"],
-      "cache": true,
+      "cache": false,
       "outputs": [],
       "inputs": [
         "$TURBO_DEFAULT$",

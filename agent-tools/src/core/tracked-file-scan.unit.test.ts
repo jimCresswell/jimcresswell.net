@@ -64,10 +64,17 @@ describe('describeUnreadable', () => {
     expect(text).not.toContain('/checkout/repo');
   });
 
-  it('a cause without a code is named by its kind', () => {
-    expect(describeUnreadable({ relativePath: 'x.md', cause: new RangeError('why') })).toContain(
-      '(RangeError)',
-    );
-    expect(describeUnreadable({ relativePath: 'x.md', cause: 'boom' })).toContain('(unknown)');
+  it.each([
+    { label: 'an error without a code', cause: new RangeError('why') },
+    {
+      label: 'an error whose code is not shaped as one',
+      cause: Object.assign(new Error('denied'), { code: "EACCES '/checkout/repo/x.md'" }),
+    },
+    { label: 'a thrown non-error', cause: 'boom' },
+  ])('names $label as unknown, never its message or code text', ({ cause }) => {
+    const text = describeUnreadable({ relativePath: 'x.md', cause });
+    expect(text).toContain("cannot read tracked file 'x.md'");
+    expect(text).toContain('(unknown)');
+    expect(text).not.toContain('/checkout/repo');
   });
 });

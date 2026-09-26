@@ -6,8 +6,10 @@
  * counts as a command. Each `pnpm` token starts a small tokenizer that skips
  * pass-through flags, consumes `--filter` and `run`, and stops at a shell
  * terminator; invocations that cannot be resolved to one scope (a `-C`
- * directory, a recursive run, a path or glob filter, a placeholder name, a
- * pnpm built-in) are omitted rather than guessed at.
+ * directory, a recursive run, a path or glob filter, a placeholder name, an
+ * unfiltered pnpm built-in) are omitted rather than guessed at. A filtered
+ * built-in is kept so its filter is checked, and a `pnpm` that an `echo` or
+ * `printf` prints is text, not a command.
  *
  * @packageDocumentation
  */
@@ -24,6 +26,8 @@ export interface ScriptCitation {
   readonly scriptName: string;
   /** The `--filter` target when the command names a workspace. */
   readonly workspaceFilter?: string;
+  /** Set when the command is a pnpm built-in: only its filter is checked, never a script. */
+  readonly builtin?: true;
 }
 
 /** Flags that consume the next token. */
@@ -46,6 +50,10 @@ const UNRESOLVABLE_FLAGS: ReadonlySet<string> = new Set([
 
 /** Tokens that end a shell command. */
 const COMMAND_TERMINATORS: ReadonlySet<string> = new Set(['&&', '||', '|', ';']);
+/** The terminators, split off a token they touch (`check&&echo`); `||` before `|`. */
+const TERMINATOR_SPLIT = /(&&|\|\||\||;)/;
+/** Commands whose arguments are printed text, so a `pnpm` among them is not run. */
+const HINT_COMMANDS: ReadonlySet<string> = new Set(['echo', 'printf']);
 
 /** A script name: word characters and dots, with colon-separated segments that never end bare. */
 const SCRIPT_NAME_PATTERN = /^[A-Za-z][\w.-]*(?::[\w.-]+)*$/;
@@ -82,25 +90,55 @@ function inlineCodeSpans(lineText: string): readonly string[] {
   return [...lineText.matchAll(INLINE_CODE_PATTERN)].map((match) => match[1] ?? '');
 }
 
-/** Whitespace-split tokens up to the first shell comment. */
+/**
+ * Whitespace-split tokens up to the first shell comment. A terminator touching
+ * a token (`pnpm check; then`, `check&&echo`) is split off as its own token.
+ */
 function commandTokens(text: string): readonly string[] {
   const tokens: string[] = [];
   for (const token of text.split(/\s+/)) {
     if (token.startsWith(COMMENT_PREFIX)) {
       break;
     }
-    if (token.length > 0) {
-      tokens.push(token);
+    for (const part of token.split(TERMINATOR_SPLIT)) {
+      if (part.length > 0) {
+        tokens.push(part);
+      }
     }
   }
   return tokens;
 }
 
+/**
+ * The `pnpm` script citations among one simple command's words, which a
+ * shell reader has already split and unquoted, numbered `line`.
+ */
+export function citationsInWords(
+  words: readonly string[],
+  line: number,
+): readonly ScriptCitation[] {
+  return words.flatMap((word, index) => {
+    const citation = word === 'pnpm' ? parseInvocation(words, index + 1, line) : undefined;
+    return citation === undefined ? [] : [citation];
+  });
+}
+
+/**
+ * The `pnpm` script citations in one line of prose command text, numbered
+ * `line`. Every invocation on the line is read, up to a shell comment.
+ */
 function citationsInCommandText(text: string, line: number): readonly ScriptCitation[] {
   const tokens = commandTokens(text);
   const citations: ScriptCitation[] = [];
+  let printing = false;
   for (let index = 0; index < tokens.length; index += 1) {
-    if (tokens[index] !== 'pnpm') {
+    const token = tokens[index] ?? '';
+    if (COMMAND_TERMINATORS.has(token)) {
+      printing = false;
+    } else if (HINT_COMMANDS.has(token)) {
+      printing = true;
+    }
+    if (token !== 'pnpm' || printing) {
       continue;
     }
     const citation = parseInvocation(tokens, index + 1, line);
@@ -163,18 +201,23 @@ function citationFor(
   state: ParseState,
   line: number,
 ): ScriptCitation | undefined {
-  if (state.unresolvable || PNPM_BUILTINS.has(token) || !SCRIPT_NAME_PATTERN.test(token)) {
+  if (state.unresolvable || !SCRIPT_NAME_PATTERN.test(token)) {
     return undefined;
   }
   if (state.workspaceFilter !== undefined && !isPackageName(state.workspaceFilter)) {
     return undefined;
+  }
+  if (PNPM_BUILTINS.has(token)) {
+    return state.workspaceFilter === undefined
+      ? undefined
+      : { line, match, scriptName: token, workspaceFilter: state.workspaceFilter, builtin: true };
   }
   return state.workspaceFilter === undefined
     ? { line, match, scriptName: token }
     : { line, match, scriptName: token, workspaceFilter: state.workspaceFilter };
 }
 
-/** A `--filter` value that names a package rather than a path, a glob or a placeholder. */
+/** A `--filter` value that names a package rather than a path, a glob, a placeholder or an expansion. */
 function isPackageName(filter: string): boolean {
-  return !/[*.]{2,}|^\.{1,2}\/|\/$|[<>{}*]/.test(filter);
+  return !/[*.]{2,}|^\.{1,2}\/|\/$|[<>{}*$`]/.test(filter);
 }

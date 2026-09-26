@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { Linter } from '@typescript-eslint/utils/ts-eslint';
 import type { TSESLint } from '@typescript-eslint/utils';
+import { testRules } from '../test-rules.js';
 import { strict } from './strict.js';
 
 /**
@@ -19,8 +20,8 @@ import { strict } from './strict.js';
  * skipped tests"), skipping mechanisms (`it.skip`, `describe.skip`,
  * `it.todo`, `xit`, `xdescribe`) are forbidden outright; the focusing
  * mechanisms (`it.only`, `describe.only`) are refused alongside them.
- * The vitest plugin rules `vitest/no-disabled-tests` and
- * `vitest/no-focused-tests` enforce this at the lint surface.
+ * The vitest plugin rules `vitest/no-disabled-tests`, `vitest/warn-todo`
+ * and `vitest/no-focused-tests` enforce this at the lint surface.
  *
  * Worked example: a regression on this surface would silently allow a
  * future commit to introduce `it.skip(...)`.
@@ -59,8 +60,12 @@ interface LintResult {
   readonly messages: readonly TSESLint.Linter.LintMessage[];
 }
 
-function lint(code: string, filename: string): LintResult {
-  const config: TSESLint.FlatConfig.ConfigArray = [...strict, TYPED_RULES_OVERRIDE];
+function lint(
+  code: string,
+  filename: string,
+  layers: TSESLint.FlatConfig.ConfigArray = [],
+): LintResult {
+  const config: TSESLint.FlatConfig.ConfigArray = [...strict, TYPED_RULES_OVERRIDE, ...layers];
   const messages = linter.verify(code, config, {
     filename,
   });
@@ -75,7 +80,6 @@ function lint(code: string, filename: string): LintResult {
 describe('@engraph/eslint-plugin-standards strict config: vitest test-disabling pathogens', () => {
   it('reports vitest/no-disabled-tests for it.skip(...)', () => {
     const code = [
-      "import { describe, it } from 'vitest';",
       "describe('suite', () => {",
       "  it.skip('skipped case', () => {});",
       '});',
@@ -89,7 +93,6 @@ describe('@engraph/eslint-plugin-standards strict config: vitest test-disabling 
 
   it('reports vitest/no-disabled-tests for describe.skip(...)', () => {
     const code = [
-      "import { describe, it } from 'vitest';",
       "describe.skip('skipped suite', () => {",
       "  it('case', () => {});",
       '});',
@@ -103,7 +106,6 @@ describe('@engraph/eslint-plugin-standards strict config: vitest test-disabling 
 
   it('reports vitest/no-focused-tests for it.only(...)', () => {
     const code = [
-      "import { describe, it } from 'vitest';",
       "describe('suite', () => {",
       "  it.only('focused case', () => {});",
       '});',
@@ -117,7 +119,6 @@ describe('@engraph/eslint-plugin-standards strict config: vitest test-disabling 
 
   it('reports vitest/no-focused-tests for describe.only(...)', () => {
     const code = [
-      "import { describe, it } from 'vitest';",
       "describe.only('focused suite', () => {",
       "  it('case', () => {});",
       '});',
@@ -129,18 +130,42 @@ describe('@engraph/eslint-plugin-standards strict config: vitest test-disabling 
     expect(ruleIds).toContain('vitest/no-focused-tests');
   });
 
+  it.each([
+    ['it.todo', "  it.todo('pending case');"],
+    ['test.todo', "  test.todo('pending case');"],
+    ['describe.todo', "  describe.todo('pending suite');"],
+    ['the todo option', "  it('pending case', { todo: true }, () => {});"],
+  ])('reports vitest/warn-todo for %s', (_form, line) => {
+    const code = ["describe('suite', () => {", line, '});', 'export {};'].join('\n');
+
+    const { ruleIds } = lint(code, 'fixture.test.ts');
+
+    expect(ruleIds).toContain('vitest/warn-todo');
+  });
+
+  it.each([
+    ['it.skip', "  it.skip('skipped case', () => {});", 'vitest/no-disabled-tests'],
+    ['it.only', "  it.only('focused case', () => {});", 'vitest/no-focused-tests'],
+    ['it.todo', "  it.todo('pending case');", 'vitest/warn-todo'],
+  ])('reports %s under the test-file rule layer that workspaces add', (_form, line, ruleId) => {
+    const code = ["describe('suite', () => {", line, '});', 'export {};'].join('\n');
+
+    const { ruleIds } = lint(code, 'fixture.test.ts', [
+      { files: ['**/*.test.ts'], rules: testRules },
+    ]);
+
+    expect(ruleIds).toContain(ruleId);
+  });
+
   it('does not report vitest test-disabling rules for an ordinary it(...) call', () => {
-    const code = [
-      "import { describe, it } from 'vitest';",
-      "describe('suite', () => {",
-      "  it('case', () => {});",
-      '});',
-      'export {};',
-    ].join('\n');
+    const code = ["describe('suite', () => {", "  it('case', () => {});", '});', 'export {};'].join(
+      '\n',
+    );
 
     const { ruleIds } = lint(code, 'fixture.test.ts');
 
     expect(ruleIds).not.toContain('vitest/no-disabled-tests');
+    expect(ruleIds).not.toContain('vitest/warn-todo');
     expect(ruleIds).not.toContain('vitest/no-focused-tests');
   });
 });
