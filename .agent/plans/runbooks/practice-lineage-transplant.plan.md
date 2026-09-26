@@ -7,19 +7,17 @@ overview: >-
   to a newer generation of the same lineage, preserving the host's own
   divergence, with every mechanical step run by an instrument and every
   judgement step presented to the owner as one numbered list.
-status: ratified
-ratified_by: Jim Cresswell
-ratified_date: 2026-09-12
-ratified_where: >-
-  Owner's word in session 880ff9 (Cauldron herds Lustre), 2026-09-12: "Both
-  nodes are ratified"; captured on the napkin §Session 5 (2026-09-12).
+status: sketch
+ratified_by: null
+ratified_date: null
+ratified_where: null
 impact_areas:
   - practice-and-estate
 tickets: []
 serves: best-of-each-practice
 depends_on: []
 owner_gates: []
-last_updated: 2026-09-23
+last_updated: 2026-09-26
 ---
 
 # Practice lineage transplant
@@ -27,13 +25,23 @@ last_updated: 2026-09-23
 Written from the first instance (OCE → `jimcresswell.net`, 2026-09-12) and
 ratified on the same day. The next instance tests every step and
 fills the timing table's second column; a step that fails there returns this
-runbook to sketch for re-ratification. PDR-005 owns the Practice-free destination; this runbook owns the case
-PDR-005 calls harder and more common: the destination already has a
-Practice, an older generation of the same lineage plus its own local
-divergence. The cross-instance guidance this runbook distils is
+runbook to sketch for re-ratification. PDR-005 covers transplantation into
+a Practice-free repository. This runbook covers the other case: the
+destination already has a Practice, an older generation of the same lineage
+plus its own local divergence. The cross-instance guidance this runbook distils is
 `.agent/reports/practice-transplant/efficiency-guidance.md`; the
 exploration of packaging the Practice is its sibling report. Neither is
 doctrine until ratified.
+
+**Returned to sketch, 2026-09-26.** The two-way exchange (register row J11)
+brought back fourteen cures found by the review of this runbook's lineage
+copy in lineage PR 258. They change what the operator does at preconditions
+2, 3 and 5, at steps 2, 5 and 10, and in the rollback. By the runbook
+template's rule, a procedure change returns a runbook to sketch, so the
+owner's ratification of 2026-09-12 is superseded until the owner ratifies
+again. That word was given in session 880ff9 (Cauldron herds Lustre): "Both
+nodes are ratified", captured on the napkin §Session 5. The lineage's copy
+is also at sketch, so one ratification covers both.
 
 ## When to run
 
@@ -65,13 +73,21 @@ Each item is checkable; the check is named.
    `.agent/practice-core/provenance.yml` and `CHANGELOG.md` date the last
    time it took the lineage, and the host's own transplant records may name
    a later re-sync; the candidate ancestor is the source commit on or before
-   the latest such date. Check: for every machinery path the host has not
-   edited since, the host's file is byte-equal to the candidate's — a
-   candidate that fails this on many paths is the wrong date. The ancestor
+   the latest such date. Check: `git -C <source-checkout> merge-base
+   --is-ancestor <ancestor> <pin>` succeeds, because an interval counts as
+   since-ancestor only when the ancestor is reachable from the pin; and for
+   every machinery path the host has not edited since, the host's file is
+   byte-equal to the candidate's — a candidate that fails this on many
+   paths is the wrong date. The ancestor
    SHA goes in the manifest; every count in step 1 is measured against it.
-3. **A tagged pre-state.** `git tag transplant/pre-<date>` on the host.
-   Check: the tag exists. Corrections are a corrective pass, never a
-   rollback (PDR-005), but the tag makes every audit possible post hoc.
+3. **A tagged pre-state.** `git tag
+   transplant/pre-<YYYYMMDDTHHMMSSZ>-<short HEAD>` on the host, the time in
+   the basic ISO form because a colon is illegal in a ref name. The tag is
+   unique to this run, pushed to the host's remote, and its SHA is recorded
+   in the manifest. Check: the tag resolves to the host's HEAD before step
+   1, and the remote holds it. Corrections are a corrective pass, never a
+   rollback (PDR-005), but the tag makes every audit possible post hoc,
+   from any clone.
 4. **A clean host tree and a claim.** Check: `git status --short` is empty;
    the transplanting seat's claim names the machinery areas; any other live
    seat on the host has been told the areas.
@@ -80,6 +96,8 @@ Each item is checkable; the check is named.
    sub-agent adapter generator, the rules-index generator, and the
    assertion validators (cited scripts, reference direction, machine-local
    paths, CI parity, markdown links, portability, sub-agents, skills).
+   Each runs against the host tree: from the host checkout, or from the
+   transplanting checkout with the host checkout's path as its argument.
    Check: each is a `package.json` script that runs. A transplant that
    starts without them writes them first and lands them before anything
    else (instance 1 lost two generators to context end).
@@ -100,8 +118,9 @@ taking one word, declines by item number.
    reference, prompts, executive memory, agent-tools). Record the counts in
    the manifest. This number sizes every later step; a transplant whose
    size is unknown is planned by guess.
-2. **Classify every machinery path three ways** (`agent`, `transplant
-   classify`). Given ancestor, pin and host: **unchanged-in-host** (host
+2. **Classify every machinery path by a three-way comparison** (`agent`,
+   `transplant classify`). Given ancestor, pin and host, each path takes
+   exactly one of five classes: **unchanged-in-host** (host
    equals ancestor: mechanical overwrite from the pin); **theirs-only**
    (new upstream: subject to the drop verdicts); **ours-only** (host-local:
    keep, untouched); **both-changed** (judgement); **upstream-deleted**
@@ -127,15 +146,19 @@ taking one word, declines by item number.
    names on the lineage's as practised, read from the lineage's root
    `package.json` at the pin rather than from its naming record (instance 1
    found the record and the scripts disagreed), and surface the choice as one
-   ruling; never keep both conventions side by side, because every
-   transplanted skill cites the lineage's names and an alias doubles the
-   citations. Then overwrite unchanged-in-host from
-   the pin; add theirs-only after the drop verdicts; run the org scrub
-   (scope and org name are a `sed`; product-shaped references are excised
-   or judged one by one — rename when the import target exists on the host,
-   excise the importer when it does not, and match import syntax, print the
-   list, then delete); renumber collisions; never rewrite records (napkin,
-   experience, archived plans keep old names).
+   ruling. Every caller of a renamed script (hooks, gates, CI, skills,
+   adapters) moves in the same change (`replace-dont-bridge`); never keep
+   both conventions side by side, because every transplanted skill cites
+   the lineage's names and an alias doubles the citations. Then apply step
+   3's renumbering before any copy, moving every reference to a renumbered
+   record in the same change (PDR-049). Then
+   overwrite unchanged-in-host from the pin; add theirs-only after the drop
+   verdicts; run the org scrub (scope and org name are a `sed`;
+   product-shaped references are excised or judged one by one — rename when
+   the import target exists on the host, excise the importer when it does
+   not, and match import syntax, print the list, then delete). The scrub
+   never rewrites records: napkin, experience and archived plans keep their
+   old names.
 6. **Merge the judgement set at content grain** (`agent`). Directives first
    (source structure, host sections at role positions); then rules, triaged
    from the per-rule digest (`transplant digest`: frontmatter, headings,
@@ -164,10 +187,17 @@ taking one word, declines by item number.
    preference. A link whose target is a lineage-only record or surface is
    removed, never re-pointed; a record number that survived the copy is
    checked by title at its target before it is kept.
-10. **Run every root script once** (`agent`). Keep a script when a consumer
-    exists on the host (a hook, a gate, a skill that cites it, a platform in
-    use); retire it when its subject is an upstream artefact, a vendor
-    account the host does not hold, or a product surface.
+10. **Exercise every root script once, reading before running** (`agent`).
+    Read each script's definition first. The generators and validators that
+    steps 8 and 9 name have already run under those steps, their definitions
+    read there. Any other script whose effect goes beyond a check is judged
+    from its definition and never run: one that publishes, deploys or
+    releases; writes to a remote or a vendor account; installs, deletes or
+    rewrites files; or starts a long-lived process. Every other script runs
+    once. Keep a script when a consumer exists on the host (a hook, a gate,
+    a skill that cites it, a platform in use); retire it when its subject is
+    an upstream artefact, a vendor account the host does not hold, or a
+    product surface.
 11. **Home the docs layer by role** (`agent`, PDR-014): doctrine into
     directives, recipes and host guides into reference, contracts into
     executive memory, developer narrative into `docs/`; never as a
@@ -208,11 +238,14 @@ the session's transcript at close, which must be zero.
 
 ## Rollback
 
-Steps 5 to 11 change shared state; every one is reversible from the
-pre-state tag and the pinned source (`git show <pin>:<path>` restores any
-drop). The corrective pass is the PDR-005 default: correct forward on the
-manifest, never reset the branch. Step 7 has a specific recovery: if the
-guard locks the session out, restore the policy file with a tool the
+Steps 5 to 11 change shared state; every one is reversible per path from
+the pre-state tag and the pinned source, each restore writing the file:
+`git show <pre-state tag>:<path> > <path>` restores any host file, `git -C
+<source-checkout> show <pin>:<path> > <path>` restores any drop, and a path
+the transplant added, absent from the pre-state, is deleted in the same
+forward commit. The corrective pass is the PDR-005 default: correct forward
+on the manifest, never reset the branch. Step 7 has a specific recovery: if
+the guard locks the session out, restore the policy file with a tool the
 matchers do not name, then re-run the sequence in order. Records written in
 step 12 are never rolled back.
 
