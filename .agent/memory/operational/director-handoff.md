@@ -184,7 +184,7 @@ the routing log disagree, the log's last entry is current. The owner's words are
   223 from its primary, records current, each due at its cut time plus 24 hours; re-arm one monitor
   with the scratchpad recipe (`bash <scratchpad>/director-monitor.sh 58c2684a-5e8d-4a33-a29e-ed074df63128
   coordination/2026-09-25-cf6897 "<label>"`, Monitor timeout 1800000, re-armed at each expiry; the
-  scratchpad is `/private/tmp/claude-502/-Users-jim-code-personal-jimcresswell-net/ed7b489a-5419-46b6-8ebf-572f7e0a4d5d/scratchpad/`
+  scratchpad is `<scratchpad>/`
   and may not survive; the script watches both comms streams without heartbeats and runs the
   pulse); resume the cadence as check-in 24 with the suite 22 minutes after, on a frame built as
   the napkin's boundary block proposes (a generated state snapshot, the holds, the owner board);

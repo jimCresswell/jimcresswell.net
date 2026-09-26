@@ -5229,7 +5229,7 @@ lands, the session resumes on the owner's "carry on".
   task, no subagent (the last suite's eight Crickets all returned by 22:20Z). Process table of this
   seat's: 0. Claim 58c2684a RETAINED (a compaction boundary, not a retirement).
 - RE-ARM RECIPE FOR RESUME (as if nothing survives): verify by id first (the task list, the process
-  table), then `bash /private/tmp/claude-502/-Users-jim-code-personal-jimcresswell-net/ed7b489a-5419-46b6-8ebf-572f7e0a4d5d/scratchpad/director-monitor.sh 58c2684a-5e8d-4a33-a29e-ed074df63128 coordination/2026-09-25-cf6897 "<label>"`
+  table), then `bash <scratchpad>/director-monitor.sh 58c2684a-5e8d-4a33-a29e-ed074df63128 coordination/2026-09-25-cf6897 "<label>"`
   as a Monitor, timeout 1800000, re-armed at each expiry (the script watches both streams without
   heartbeats, prints [OCE] for the lineage, and runs pulse.sh); the cadence as ScheduleWakeup
   check-ins every 45 minutes with a suite 22 minutes after each; the scratchpad may not survive,
