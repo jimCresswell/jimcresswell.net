@@ -165,3 +165,17 @@ routing, an acceptance or a recommendation that rests on a count, a row, a rules
 read that surface in one command and name it in the ruling. Source: napkin 2026-09-25 (21:12Z,
 21:2xZ, 21:52Z; the suite 20 tally); routing: `verify-dont-trust`, `read-before-asking`, the
 Director handoff §Standing lessons, a rule candidate.
+
+## Read the vendor's issue before the suite; read Practice text at the default branch's tip (2026-09-26)
+
+A merge queue was framed as the cure for the lineage's serial door and sent to a nine-agent
+decision suite. The assumptions reviewer read codeql-action#1537 (open) and GitHub's documentation
+and found the mechanism absent as framed: the required CodeQL check is the code-scanning app's and
+never reports on a merge group, and the queue is offered instead of require-up-to-date, not with
+it. One source read before the suite would have settled it. The same morning an Explore pass read
+PDR-142 in a coordination-branch checkout 56 commits behind engraph and reported a missing
+amendment; a blob read at origin/engraph refuted it. Before recommending a vendor mechanism, read
+the vendor's issue and its documentation first-hand; before calling a Practice text stale, read
+its blob at the default branch's tip, never at a checkout on a coordination branch. Source: napkin
+2026-09-26 (10:17Z, 11:01Z); routing: `verify-dont-trust`, `verify-vendor-call-shapes-at-plan-author-time`,
+the Director handoff §Standing lessons, the rule candidate "a ruling names the primary surface it read".
