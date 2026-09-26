@@ -4,6 +4,57 @@ Changes to the Practice Core files, newest first. Each entry records the repo
 that made the change and what was changed. This file travels with the
 Practice Core package.
 
+## [jimcresswell.net] 2026-09-26 — PDR-132's cost model and two-round text; PDR-140 clause 4 joins
+
+- PDR-132 §Decision item 7: a pull request pays a flat cost whatever its
+  size, and complexity-based cost rises steeply, so the optimum slice is
+  well above one line. The cost model is the owner's word of 2026-09-26;
+  sizing slices to it, with changes that share a story going as one pull
+  request, is the Director's ruling of that hour. §Consequences points to
+  `design-work-for-small-prs`, which carries the floor, and an amendment
+  entry records the word. The item and the entry are joint bytes for the
+  lineage.
+- PDR-132 §Decision item 1 takes the lineage's paragraph on the two-round
+  rule, with one joint cure naming clause 4's late-cure push as the door:
+  after round two, every remaining finding is dispositioned in the same
+  turn as the last push. Item 1 differs from this estate's 2026-09-14
+  amendment entry in two places, and item 1 governs (the Director's ruling
+  of 2026-09-26): an over-bar cure, not only a trivial one, rides the last
+  push; and a further push opens only through PDR-140's doors, where the
+  2026-09-14 entry made a round three a Director call on a correctness
+  defect only.
+- PDR-140 clause 4 takes the lineage's paragraph on the rebudget under the
+  owner's 2026-09-14 ruling, byte-identical, and a new amendment entry
+  records it; its Status line names its amendments. By the Director's
+  ruling of 2026-09-26, the late-cure push requests its expected leg so
+  the tip binds for the merge boundary, and that leg's findings are
+  dispositions only. The record is one blob in both estates once the
+  lineage takes the entry, the line and the sentence.
+
+## [jimcresswell.net] 2026-09-25 — PDR-142's goal quote stands whole
+
+- The owner's 2026-09-25 words on the exchange's goal are quoted whole, as
+  recorded by the seat they were spoken to, with the estates given as
+  roles, in place of the fragments quoted before. PDR-142's Status line and
+  its row in the decision-record index carry the 2026-09-25 amendment. The
+  lineage carries the same blob, so the record is one blob in both estates.
+
+## [jimcresswell.net] 2026-09-25 — joint cures: PDR-009's Forbidden bullet, PDR-063's hold, PDR-142's pace, goal and authority class
+
+- PDR-009's Forbidden item reads "Substantive content that is an adapter's
+  own, in platform adapter directories", the wording a review of the
+  lineage's PR 213 found incomplete. The lineage took this blob.
+- PDR-063: a lane waiting on a peer needs the same release condition as a
+  hold, because a hold with no default is a stall waiting to happen. These
+  are the lineage's bytes.
+- PDR-142: the owner's words on the exchange's pace and its goal sit beside
+  the owner's sentence. §Boundaries names the authority class a seat reads
+  before curing any finding: a change of concept in ratified text is the
+  owner's, and wording that implements the owner's concept is the seats'
+  work under review. The Amendment Log records it, and three further
+  sentences that add a concept wait for the owner's word.
+- Each of the three records is one blob in both estates.
+
 ## [jimcresswell.net] 2026-09-25 — context readings never stop a seat
 
 - PDR-063 gains §Context readings never stop a seat, on the owner's word to

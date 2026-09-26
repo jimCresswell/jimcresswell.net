@@ -124,14 +124,20 @@ not trigger provisioning.
 ```bash
 pnpm --dir <path> install
 pnpm --dir <path> build
+pnpm --dir <path> --filter <app> exec playwright install chromium-headless-shell
 ```
 
-Both scoped to the worktree with `--dir`, because this step runs before entry, from the
+All three scoped to the worktree with `--dir`, because this step runs before entry, from the
 principal: an unscoped `pnpm install` there rebuilds the principal and leaves the new
-worktree without its dependencies or `dist/`. Both, before any gate, work or entry:
+worktree without its dependencies or `dist/`. All three, before any gate, work or entry:
 `type-check` and `vitest` pass on install alone,
 but the internal ESLint plugin resolves to `dist/`, so an unbuilt worktree fails `lint`
-with `No exports main defined`. A fresh worktree has **no `.env.local`** — copy it from
+with `No exports main defined`. The third line runs once for each workspace whose gate
+drives a browser (`<app>`). `pnpm install` fetches no Playwright browser: the binaries sit in one
+per-user cache outside the tree, keyed by the revision the lockfile's Playwright selects,
+and an install in any checkout on the host can remove a revision another needs. So every
+lane runs the line, and a gate that fails with `Executable doesn't exist` is this step
+missed, not a flake. A fresh worktree has **no `.env.local`** — copy it from
 a worktree that has one when the lane runs anything env-dependent (codegen, ingest, a
 local server). Data directories that are gitignored (bulk downloads) do not travel
 either; fetch them per the owning workflow rather than copying, so their manifest
