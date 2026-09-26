@@ -775,3 +775,51 @@ Myrtle signs. Ruling 5: the merge queue is refuted on vendor facts; ADR-204 stan
 amendment-log note. Ruling 1: among ready PRs, order is by changed-file count ascending. On
 resume, read the tally in full (the event's body) before choosing between these lanes and the
 joint change above; the Director orders them.
+
+## Resumed, 2026-09-26 11:08Z to 11:43Z (Siren herds Rudder, 158275)
+
+The owner's "carry on" at about 11:08Z. Re-armed at pid 15907. The Director's check-in 24 tally
+(11:04Z) is the live direction for this lane.
+
+**Merged:** PR 210 (the exchange register and the Core changelog's two missing entries), at
+876c3b4b, 11:23:01Z, by the bot's door after one Copilot round with no findings. Branch deleted by
+API, worktree retired, claims 2fd554e1, 1d8a9dd8 and 9b8d3f42 closed. The register reads at
+engraph 81e126e8e9: outbound 3 of 21 (J4, J9, J14), inbound 6 of 28 (L12, settled by PR 209).
+The next register update declares its own read heads. Myrtle's receipts to fold into it: 218 and
+238 (e6cf8ee4c, 11:14Z), 234 (J19, cf6012ebc, 11:13Z), 244, and whatever lands after.
+
+**Open: PR 212**, branch `docs/pr-cost-model-and-slot-protocol`, worktree `cost-model`, head
+3841fa6d, eight files. Claims 80c7c99d and 0ba12671. It carries four pieces, cut as one PR on the
+Director's word:
+
+- the owner's cost model (PDR-132 §Decision item 7, `design-work-for-small-prs` floor);
+- the two-round text (P10a: PDR-132 item 1, PDR-140 clause 4, the state-machine sentence);
+- the readiness slot protocol (P6: the landing-slot bullet);
+- the 2026-09-26 decisions paragraph in `best-of-each-practice` §Delivery.
+
+Wilma and docs-adr reviewed it before the push; every finding is cured in 11ed158d. The
+Director's rulings on the three questions (native, about 11:40Z):
+
+- the slot's three exits stand, and a yield costs nothing with no other ready PR waiting;
+- PDR-132 item 1 governs here, so the Director-call gate retires;
+- the ready list and the twice-daily fold are the Director's to home.
+
+Copilot requested at 11:43:00Z. Myrtle has the seven joint pieces to sign or amend (lineage event
+45945cb1); the lineage's twin follows the lineage's drain.
+
+**Next after PR 212:** the six-item joint change of the bot-identity core, where this seat drafts
+and Myrtle signs. The rest of the owed list is unchanged from the 11:0xZ wrap block.
+
+**PR 212, 11:52Z.** Copilot's round one (5325811595) found four things, all cured in d0c4c2be;
+Myrtle signed with one amendment, then re-signed the four changed pieces (lineage 11:52:52Z).
+Round two requested at 11:52:12Z. Two items routed from the round:
+
+- PDR-140 clause 4's last sentence ("with no further round of review requests") conflicts with
+  PDR-132 item 6 and with the merge boundary for a PR the no-review settle does not admit. The
+  proposed joint cure, which Myrtle endorses: the late-cure push requests its leg so the tip
+  binds for the door, and that review's findings are dispositions only. Ratified Core text, so it
+  waits on the Director's ruling (lineage events 1ae50a33 and Myrtle's reply).
+- This estate's host-tagged amendment entries in PDR-008, PDR-082 and PDR-132 break
+  practice-core-portability. They move to a host-side record so each Core record is one blob.
+  This is one convergence item for the exchange; the lineage follows once the move's shape
+  lands.
