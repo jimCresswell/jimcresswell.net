@@ -180,11 +180,21 @@ Every line answered first-hand, none inferred:
   name PRACTICE_STATUSLINE_LOG_FILE in place of OAK_STATUSLINE_LOG_FILE, or the statusline log
   stops (Siren, 13:10Z; the file is the operator's).
 
-## Current handoff state (2026-09-26, COMPACTION BOUNDARY 8 at 16:32Z; pointer-biased by design)
+- The WIP limit (owner, 2026-09-26 19:2xZ, verbatim summary: "Each repo is allowed one
+  coordination PR"; "The total number of allowed PRs not including coordination PRs is the number
+  of implementer agents, in this case three"; "We always strive for all PRs to be merged"). The
+  count is read across both estates together; external PRs (fork syncs, Dependabot, CV content)
+  count, and the Director analyses and schedules each into the door order; no PR opens while the
+  count reads three or more, and the opener reads it first-hand and posts "WIP slot taken: N of
+  3" on the estate's stream. Supersedes "No bound" (10:50Z). The full word and the operated rule:
+  the napkin's 2026-09-26T19:29Z block.
 
-COMPACTION BOUNDARY 8 at 16:32Z on 2026-09-26, at the owner's word; the freeze binds until "carry
-on". The napkin's 16:32Z block is the live reading: the state, the ready list, the card queue
-(eight lines), the re-arm recipe and the owed-on-resume order. PR 211 folded at 15:28:25Z as
+## Current handoff state (2026-09-26, resumed 19:1xZ after COMPACTION BOUNDARY 8; pointer-biased by design)
+
+Resumed at the owner's start word (19:1xZ) after COMPACTION BOUNDARY 8 (16:32Z); the boundary
+records are on origin (SHA:fd448c0b). The napkin's 19:29Z block is the live reading: the state,
+the ready list, the owner's WIP-limit word and the rule as operated, the drain schedule, the
+card queue (nine lines). PR 211 folded at 15:28:25Z as
 SHA:26ca4dab9; the primary resides on coordination/2026-09-26-26ca4d (draft PR 215, DUE at the
 rollover). Processes: none of this seat's. Claim 58c2684a retained.
 

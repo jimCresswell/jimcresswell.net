@@ -6741,3 +6741,158 @@ recursion closes here.
 never a byte freeze: the estate whose copy settles last leads. Recorded in the thread record's
 16:37Z block as a per-item ledger. The falsifier: the cure count on the JC.net runbook twin's two
 rounds (the runbook's trips so far ran 11, then 3).
+
+## 2026-09-26T19:29Z — Director check-in 29 on the generated snapshot, and the owner's WIP-limit word (the Director)
+
+RESUME. The owner's start word landed at 19:1xZ (the start skill after `/compact`); clock read
+19:17:17Z. This seat's process table read zero; the three seats were resuming in the same minute
+(Siren's watchers 23 seconds old at the read; Myrtle's heartbeat 19:18:51Z; Swallow's 19:21:21Z).
+Both streams read since 16:24Z: every seat paused between 16:34Z and 16:45Z and nothing moved
+until 19:17Z. The boundary records went up: Siren's records commit SHA:2ef1f5b8 (19:19:31Z)
+carried the napkin, whose diff held this seat's 16:15Z and 16:32Z blocks whole, with Siren's
+thread record and its letter; this seat's SHA:fd448c0b (19:19:52Z) carried the handoff and the
+continuity record, and its message overclaims (it says the napkin rides it; it does not),
+corrected here and not amended, since Siren's push was in flight. One push, Siren's, carried both;
+origin read SHA:fd448c0b by this seat's own ls-remote at 19:24Z. The monitor re-armed at 19:20Z
+(bsbklgi3g).
+
+SNAPSHOT generated 19:20:43Z (floor 15:47Z). The OPENED section ran for the first time and read
+true: the five Dependabot PRs it listed for JC.net (219 to 223, opened 17:22Z to 17:23Z) had been
+closed by the owner's hand two minutes before the run (19:18:08Z to 19:18:10Z, by jimCresswell per
+each timeline; not merged), so the OPEN table's count of one was right, not a defect. Nothing rode
+them.
+
+VERIFICATION (the plan's numbers). Open PRs: the lineage 10 (254 the coordination draft; 250 the
+owner's draft, red; 245 DIRTY at 45 files; 217 with one thread, cured at 19:27Z as SHA:2b83adf09
+with both legs requested; 246 CLEAN at 20 files since Swallow's signed line at 19:23Z; 249, 253,
+256, 257, 259 green), JC.net 1 (215). Heads with CI in flight: the lineage 1 (257's sync, Myrtle
+at the slot from 19:20:23Z under Swallow's standing consent); JC.net 0. Landings since check-in 28
+(15:47Z): the lineage 3 (252 at 15:57:38Z, 221 at 16:16:52Z, 258 at 16:38:41Z), JC.net 2 (218 at
+16:20:44Z, 217 at 16:22:33Z), all before the freeze; the bar of two per 45 minutes met in the 58
+live minutes, unmeasurable across the freeze. Intake since 15:47Z: the lineage 1 (259); JC.net 7
+(218 and 217, landed; the five Dependabot PRs, closed). The §2.10 cure named as PR 248 (owed from
+check-in 28): merged 12:35:57Z as SHA:2c75350a9. Folds: 215 and 254 both DUE at 00:00Z, neither
+due at the resume. The retrospective trigger: not fired.
+
+READY LIST at 19:20Z (green, zero threads, non-draft, not DIRTY; by changed files ascending): 257
+(4) <https://github.com/EngraphCode/open-curriculum-ecosystem/pull/257>; 259 (5)
+<https://github.com/EngraphCode/open-curriculum-ecosystem/pull/259>; 249 (13)
+<https://github.com/EngraphCode/open-curriculum-ecosystem/pull/249>; 253 (16)
+<https://github.com/EngraphCode/open-curriculum-ecosystem/pull/253>; 256 (30)
+<https://github.com/EngraphCode/open-curriculum-ecosystem/pull/256>; 246 (20)
+<https://github.com/EngraphCode/open-curriculum-ecosystem/pull/246> joined at 19:23Z, after the
+snapshot. JC.net: none.
+
+THE OWNER'S WORD at 19:2xZ, in this session, verbatim: "there are still 9 open Engraph OCE PRs,
+let's get that to zero, and let's try a WIP limit, at any time Engraph OCE and JC.net is allowed
+one coordination branch PR each, three other open PRs each between them. The goal remains zero,
+but obviously a static zero means no useful work is happening so that is undersireable, I am
+talking about aiming for zero while useful value is still created and merged. Sometimes an
+external process will create a PR, such as synching between the Oak and Engraph OCE forks, or
+adding some content to the CV -- those additional PRs absolutely do count towards the WIP limit,
+and must automatically be taken on by the Director, analysed, and made part of the marge schedule
+to be handled by this team. To summarise - Each repo is allowed one coordination PR - The total
+number of allowed PRs not including coordination PRs is the number of implementer agents, in this
+case three - We always strive for all PRs to be merged". The word supersedes the plan's decided
+item 1 ("No bound", 10:50Z) and the standing "no intake bound" line of check-in 24.
+
+THE RULE AS OPERATED (the Director's reading, broadcast on both streams at 19:27Z, JC.net event
+d7ad4deb and lineage 65181d0e, after a first attempt was refused for an unknown tag; the withdrawn
+routings corrected natively at 19:26Z). (1) The count: open PRs on both estates together,
+excluding one coordination PR per repo; nine at 19:24Z, all lineage. The limit: three, the number
+of implementer seats. (2) No PR opens on either estate while the count reads three or more; the
+opener reads the count first-hand from gh on both estates immediately before opening and posts
+"WIP slot taken: N of 3" on the estate's stream, the door slot's own serialiser; the branch pushes
+with its PR, never before. (3) Withdrawn: this seat's 19:24Z routing that opened Swallow's
+reader-update PR, and its 19:26Z answer that opened Siren's runbook twin; both wait for a slot; a
+next slice may be prepared locally. (4) The drain: the door order by changed files; the cures that
+free the count. (5) PR 250 counts and joins the schedule. (6) External PRs count; the Director
+analyses each at the check-in that first sees it (the OPENED section) or at once on the monitor,
+and routes it into the door order to a named seat. (7) The wording: pr-lifecycle §Phase 7 beside
+the readiness slot, or a rule by new-rule-vs-pdr-clause; one lineage PR when a slot frees,
+JC.net's twin by the exchange; until then the stream event and this block carry the rule. (8) The
+measure: every check-in reads the count, any breach, and the opened-since count beside the
+landings; the target is a count moving between zero and three with value merging, never a static
+zero.
+
+THE DRAIN SCHEDULE (the merge schedule the owner asked for; assumption: no external PR and no seat
+opens outside the rule). Door order by changed files among ready PRs: 257 (4, Myrtle, running),
+259 (5, Myrtle), 249 (13, Myrtle), 253 (16, Siren), 246 (20, Swallow), 256 (30, Siren); then 217
+(13, when its legs answer on SHA:2b83adf09), 245 (45, its scripted reconcile as its one sync at
+its turn, Myrtle's answer of 19:28Z), 250 (12, after its cure). At about 23 minutes a landing with
+no gap, six landings by about 21:40Z bring the count to three and the intake reopens, one in for
+one out; 217, 245 and 250 land by about 23:00Z; the fold of 254 at 00:00Z then reads zero to two
+others open. Myrtle's answer at 19:28Z closed item 4: 217 cured, 245 at its turn, Swallow's offer
+not needed.
+
+PR 250 (the owner's draft, analysed first-hand at 19:2xZ). Head SHA:b5a7c7804, four commits, the
+last 12:52:54Z; 12 files (three research notes, the user-value skill with its evals and
+references, the skills README, the plan skill, `.claude/settings.json`). Checks: static-checks red
+at the step "Validate skills adapters" (`pnpm skills:check` lists eight missing generated files,
+`.claude/skills/oak-user-value/` and `.agents/skills/oak-user-value/`, the SKILL.md and three
+references each, and says "Regenerate with `pnpm skills:generate`, then `pnpm skills:check` to
+confirm"); run-quality-gates red as its aggregate; every other check green. The cure: one
+regeneration commit on the owner's branch, then both legs, ready-marked by the seat under the PR
+224 precedent, the door at its size turn. Routed to Swallow at 19:3xZ. Reverse by a word.
+
+SEATS. Siren: its five-item order approved at 19:26Z (the runbook twin first, at status sketch by
+the runbook template's clause at main, "procedure changes return it to `sketch`", ruled at 19:29Z
+against Siren's reading of the schema's "scope change" clause; the twin's PR waits for a WIP slot;
+253 fourth and 256 sixth at the door; the register PR after the twin; the three final-tip cures
+back to the lineage with J11's next slice or one small PR; 246's JC.net twin when it lands).
+Myrtle: the slot on 257, then 259 and 249; 217's legs; 245's reconcile at its turn. Swallow: 246's
+door at its turn; 250's cure; the waiting item re-scoped on the source (Swallow, 19:29Z: codex-rs
+0.157.0 to 0.157.1 changes nothing under rollout, and Phobos's rollout differed in kind, a seat's
+function tools, not in version) to a seat-rollout command-record reader, about seven files,
+prepared locally under claim f7d8f0de and opened at the first free slot.
+
+OWNER CARD QUEUE (none blocking): (1) the late-cure leg ruling (reverse by a word); (3) PR 224's
+private-provenance disposition; (4) PR 250 is now scheduled under the 19:2xZ word (the cure, the
+ready-marking, the door), reverse by a word; (5) at PR 253's landing the operator's machine-local
+lineage settings must name PRACTICE_STATUSLINE_LOG_FILE; (6) goal two's remaining Codex items (a
+longer-brief Codex seat, or Swallow's lane, which now also carries the command-record reader); (7)
+three local unmerged lineage branches for the owner's hand (claude/objective-nightingale-b4ba25,
+docs/codex-queue-probe-2026-09-25, docs/codex-queue-probe-metadata-01a0d9); (8) the transplant
+runbook's re-ratification, both estates' copies at sketch, one stamp; (9) NEW: the WIP limit's
+wording PR opens on the lineage at the first free slot (a seat's work; no word needed unless the
+owner wants the count per estate rather than across both).
+
+METACOGNITION. The owner's word reversed two routings within three minutes of their posting;
+neither was wrong under the rules of its minute, and the cost was two native corrections and one
+re-broadcast (the first was refused for a tag outside the namespace, and the piped exit code read
+zero: the memory's lesson, met again). The premise this seat carried since 10:50Z, "no bound", was
+the owner's own answer and was right to carry until replaced. What this seat did not do: predict
+the limit from the evidence in hand (the count sat at twelve for ninety minutes with the intake
+matching the door, recorded at boundary 8 as a projection, not as a proposal). A Director's second
+opinion includes proposing the constraint the numbers ask for; recorded as the lesson.
+
+FREE PLAY. Kept: Little's law on the door: at about 2.6 landings an hour, a WIP of three gives a
+lead time of about seventy minutes a PR, against hours today; the limit is a lead-time promise,
+not a throttle. Kept: the count is the number of hands; an external PR is a found object the
+Director catalogues into the queue. Kept for the wording: the WIP slot and the door slot are one
+mechanism read at two ends of a PR's life. Discarded: a per-estate split of the three (the owner
+said "between them"); a Director-held allocation of open slots (a bottleneck; the stream line
+serialises as well as it does for the door).
+
+CONCEPT EXPLORATION. What a WIP limit changes in a serial door: the queue's length is bounded, so
+the seats' idle time moves from "waiting behind twelve" to "waiting for a slot with the next slice
+ready"; the cures (threads, reconciles, regenerations) become the work that frees the count, so
+every seat has finishing work while the door turns. The risk it creates: three seats idle with
+three PRs in CI; the owner accepts it ("aiming for zero while useful value is still created"). The
+falsifier for the shape: a check-in where the count reads three or less, the ready list is
+non-empty, and no seat holds the slot; that is an unkept door, not a limit problem.
+
+REASON. Withdrawing the two routings at once: the owner's word binds from its moment, and a seat
+opening under the old routing would breach the limit on the Director's word. The broadcast before
+the block: the seats act on the stream, the napkin is the record. PR 250 into the schedule by the
+seats: the owner's "we always strive for all PRs to be merged" and the 224 precedent; the reversal
+costs one word. The twin to sketch: the specific text at main over the general one. The count
+across both estates, not per estate: the owner's "between them" and the summary's "total".
+
+PLAN. The estates' programme plan report carries an amendment section dated 19:2xZ (this block's
+rule and schedule; the verification numbers gain the count and the breach); the plan's decided
+item 1 is annotated as superseded in place.
+
+NEXT: suite 25 about 19:52Z on this snapshot (the frame carries the owner's word verbatim and the
+drain schedule); check-in 30 about 20:14Z with the count read first; the wording PR routed at the
+first free slot; the folds at 00:00Z with the count read at each merge instant.
