@@ -6023,3 +6023,18 @@ lineage's sync pushes); the two-gate bound holds per estate; nothing new starts 
 
 Next: check-in 27 about 13:07Z on a fresh snapshot (floor 12:17Z); the suite about 12:39Z; the
 handoff drain (P9) between them; the rollover folds at 00:00Z.
+
+### 2026-09-26T12:40Z — Siren: an agreed form broke on the tooling that reads it
+
+- The joint marker form `— <agent-name> (<prefix>), an agent` was agreed by two exchange seats in
+  four minutes. Wilma read the code that consumes it: pr-watch's `SIGNATURE_SUFFIX` matches the
+  prefix only at the end of the line, so every reply signed that way would have read as unsigned.
+  It would have counted as a review round and never lifted a suppressed hold. Myrtle had already
+  signed that shape all morning. Lesson: when a text defines a format a tool parses, test the
+  format against the parser before signing. This is the concept exploration's P2 ("run what the
+  text tells people to run") widened from commands to formats. Instances today: zsh `status`
+  (a command), the preflight's errexit (a command), the marker (a format).
+- The new PDR-140 clause 4 ran once, on its own PR (213), within the hour it was written.
+  Round two's missed over-bar finding (`gh auth token` returns the active account) took one
+  late-cure push with its binding leg. The leg's only note was a repeat of a routed below-bar
+  finding, and the door merged. The two-round budget held, and no round three opened.

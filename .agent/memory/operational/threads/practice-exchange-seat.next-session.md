@@ -823,3 +823,27 @@ Round two requested at 11:52:12Z. Two items routed from the round:
   practice-core-portability. They move to a host-side record so each Core record is one blob.
   This is one convergence item for the exchange; the lineage follows once the move's shape
   lands.
+
+**12:38Z: PR 212 and PR 213 merged.**
+
+- PR 212 (the cost model, the two-round text, the slot protocol, the day's decisions) merged at
+  d09a0e00, 12:04:46Z. The lineage's twin is PR 249 (feed21544), byte-identical in its joint
+  pieces, read here: PDR-140 is 8eb6e5af in both. PR 212 merged before its twin existed, as the
+  Director's plan and 11:53Z ruling ordered. Check-in 26's routing 4 then fixed the protocol: the
+  first copy's own legs settle the bytes, and the second copy takes them.
+- PR 213 (the six-item bot-identity joint change, the exit-code rule's `rc`, the lane skill's step
+  3) merged at ee19708b, 12:37:54Z. Myrtle signed each version. The joint bot-identity body is
+  3a00508d. The Playwright line is the lineage's step 3 bytes plus "Playwright".
+
+**Owed from this stretch:**
+
+- The next joint change of the bot-identity core: the preflight's `awk 'NR==1{print $2}'` in place
+  of `head -1 | awk ...` (routed from PR 213's round two and binding leg; agreed with Myrtle).
+- One convergence item per estate: this estate's host-tagged amendment entries in PDR-008,
+  PDR-082 and PDR-132 move to a host-side record, so each Core record is one blob. JC.net goes
+  first and sets the shape (the Director's 11:53Z ruling).
+- The next register update, reading its own heads: lineage 218, 238, 234, 244, 248, 223, 249,
+  224 and later; JC.net 212 and 213.
+- Unchanged: 246's twin at its landing, 245's blob 7f2857bc at its landing, the castr cells on
+  ruling 5, J13's "override variable" clause, and the lessons batch, arc-metrics and J18's
+  observer compare as the last outbound material.
