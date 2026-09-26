@@ -1147,3 +1147,100 @@ therefore void, and the runbook twin (step 4) comes next after the catch-up.
   `2026-09-26-siren-herds-rudder-the-twin-that-read-me.md`.
 - Fixed point: a third pass would only re-find 259's unread blobs and the truncated stream. The
   recursion closes here.
+
+## Resumed after compaction 4, 2026-09-26 19:17Z onwards (Siren herds Rudder, 158275)
+
+The owner's start word at 19:1xZ. Re-armed and verified: both comms watchers, a heartbeat per
+estate, and the peer-liveness poll. Records commit SHA:2ef1f5b8 was pushed with the Director's
+SHA:fd448c0b; the tip was read back by `ls-remote`.
+
+**The Director's answers (native messages, 19:2xZ):** the order stands (twin, then the doors for
+253 and 256, then the register PR). Item 1's status is sketch: the runbook template's header
+(`.agent/plans/templates/runbook-plan-template.md`, lines 3 to 5) returns a runbook to sketch on
+a procedure change. That specific text governs over the plan schema's general "scope change"
+clause. Re-ratification is card line 8, and one word covers both estates' copies.
+
+**The owner's word at 19:2xZ, relayed on both streams (event title "OWNER WORD 19:2xZ"):** a
+WIP limit of three open non-coordination PRs across both estates together, plus one coordination
+PR per repo. No PR opens while the count reads three or more. The opener reads the count
+first-hand from gh on both estates, posts "WIP slot taken: N of 3" on the estate's stream, and
+pushes the branch with its PR, never before. At 19:24Z the count read nine, all lineage.
+
+**The twin, prepared locally only:** worktree `jcnet-wt-runbook-twin`, branch
+`docs/exchange-j11-runbook-twin`, local commit SHA:a8979211, not pushed. Claim 6e38aeab. The
+fourteen cures, the PDR-005 claim dropped, `status: sketch` with a dated note. The PR body is in
+the scratchpad (`twin-body.md`). It opens when the count reads below three.
+
+**Next:** the door for 253 at its turn (after 257, 259 and 249; 217 joins the order at 13 files
+when its legs clear), then 256 (after 246).
+
+**19:57Z, lineage PR 259 landed (SHA:d7f78b161, Myrtle).** Joint items 1, 4 and 5 byte-checked
+first-hand against JC.net main: the Latency row's `comms-landscape.md` is blob 9fc17802 in both;
+the bot-identity rule's body is byte-equal (only JC.net's front matter differs, by convention);
+the seed gate's `--platform` help and `MISSING_PLATFORM_MESSAGE` are byte-equal. Receipt check
+posted on the lineage stream (750a0b8f). Owed and new, no PR under the WIP limit: the CLI's
+`$CLAUDE_CODE_SESSION_ID` wording (help grouping, doc comment, missing-seed message naming it in
+JC.net only) joins the PDR-027 CLI-session-id item. The override name is 256's.
+
+**20:05Z, the WIP-limit clause, prepared locally (the Director's routing, suite 25 item 3).** One
+bullet in the lineage's `pr-lifecycle` §Phase 7, after the landing-slot bullet: worktree
+`oce-wt-wip-limit`, branch `docs/pr-lifecycle-wip-limit`, local commit SHA:2df2fc3f7 (the owner as
+author, the bot as committer), not pushed; lineage claim 0c6862e8. It opens at the first free WIP
+slot, before the runbook twin. JC.net's copy takes the settled bytes after the lineage's review.
+Found on the way: the two estates' landing-slot bullets have diverged. JC.net's leads with the
+size order, the "slot taken" and "slot released" turn, and the three ways a holder leaves; the
+lineage's still reads "the oldest non-draft PR". This is a convergence item, owed.
+
+**20:14Z, two wording findings routed from lineage PR 249's synced head (Myrtle, signed lines
+4112631448 and 4112631489).** On `coordination-branch-24h-lifetime`'s fold-cadence paragraphs,
+JC.net's copy leads (merged as SHA:49b2addd5). Both verified against JC.net's text and accepted as
+owed, no PR under the WIP limit: (1) name the Director's check-in cadence as the reader of the DUE
+clock beside the two triggers (the cut and session-open), since a 12:00Z or 00:00Z boundary
+with no session has no other reader; (2) read the cut time from the rotation broadcast's
+`created_at` and drop the first-own-commit reading, which runs late and can skip the midday fold
+(check first that the cut skill always posts the broadcast). JC.net's copy cures first; the
+lineage twin follows.
+
+**20:17Z, lineage PR 249 landed (SHA:527eb969c, Myrtle).** Correction to the 20:05Z line: 249
+carried the landing-slot bullet's convergence, so the lineage's bullet has no word difference from
+JC.net's at 527eb969c; that owed item is closed. PDR-140 is blob 8eb6e5af in both estates. The
+other joint pieces of 249 (PDR-132 item 7, the floor bullet, the state-machine sentence, the
+lifetime paragraphs, verify-dont-trust §Rule, the fold skill's description, the §Delivery
+paragraph) are checked piece by piece in the register PR's verification. The WIP-clause branch
+merges clean onto 527eb969c by `merge-tree`.
+
+**20:58Z, lineage PR 253 (J13b) landed.** Slot taken 20:38Z (57a55b9d); sync SHA:3fbaae10b (owner
+author, bot committer) on origin/engraph SHA:320c146ea; one merge-bot push with the full pre-push
+gate; legs clean on the synced head (Copilot: no findings; Codex: no major issues); sweep read
+whole (66 removed lines, all the rename's own); merge-bot merged it as SHA:3377a3b1c at 20:58:48Z
+(16 files, no deletions, two renames). Slot released (a769f565, with owner card line 5's note:
+the statusline log now reads PRACTICE_STATUSLINE_LOG_FILE). Remote branch deleted as the bot and
+read back absent; worktree `oce-wt-statusline-names` removed; local branch deleted with `-d`;
+claim effcb559 closed. The WIP clause's local commit is now SHA:d5ac4c3a4 (amended unpushed: a
+cloud-authored PR's ready-mark is the owner's or follows the owner's stated acceptance, the
+Director's suite 26 item 1). Next: 256 after 246.
+
+**21:37Z, the Director's suite 27 routing (default standing order; card line 12 to the owner).**
+This seat takes register rows J2 (tracked-universe validators) and J3 (repo-check over the tracked
+tree, shellcheck, the bash floor), both "bring" to the lineage, after the runbook twin and the
+register PR, one PR per row at a free WIP slot. Also received at 21:23Z (Swallow, with 246's
+landing, SHA:b332041ba): the JC.net twin of the commit guard fix (the guard reads the default
+branch origin names, not the literal main), if JC.net's hook has the same shape, carrying 246's
+two follow-ups (the smoke's hermetic PATH against the trusted-git allowlist). The seat's waiting
+list, in order: the WIP clause (lineage, prepared), the runbook twin (JC.net, prepared), the
+guard twin (JC.net), the register PR (JC.net), the WIP clause's JC.net twin, then J2 and J3.
+
+**21:45Z, lineage PR 256 (J13c) landed.** Slot taken 21:24Z (78e829b1); sync SHA:376c3f146 on
+origin/engraph SHA:b332041ba (the CLI auto-merged with 259's seed gate; both changes checked
+present; the two remaining `OAK_AGENT_IDENTITY_OVERRIDE` mentions are deliberate no-fallback
+tests); legs clean on the synced head; sweep read whole (94 removed lines, all the override's
+rename); merged as SHA:d5838af37 at 21:45:08Z (30 files, no deletions). Slot released
+(a177c7f2). Remote branch deleted and read back absent; worktree `oce-wt-identity-override`
+removed; local branch deleted with `-d`; claim 3786be33 closed. J13 is complete on the lineage.
+
+**21:46Z, the WIP clause opened as lineage PR 260.** The count read first-hand from gh on both
+estates: 245 and 250 open (coordination drafts 254 and 215 excluded). "WIP slot taken: 3 of 3"
+posted on the lineage stream (5fd9fb72), then the branch pushed with its PR (head SHA:d5ac4c3a4,
+through merge-bot with the full pre-push gate), both legs requested. The count now reads three:
+nothing else of this seat's opens until a landing. Claim 0c6862e8 carries it; the door at its
+turn takes one sync.
