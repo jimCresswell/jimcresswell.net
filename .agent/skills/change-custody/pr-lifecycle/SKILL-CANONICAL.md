@@ -1502,7 +1502,8 @@ allow_squash_merge, allow_rebase_merge}'`; `allow_merge_commit` has
   the seat then yields to the next ready PR. A holder leaves the slot in one
   of three ways: it lands and releases; it cannot land without a cure push (a
   red check), so it yields, rejoins the ready list, and its re-sync rides that
-  cure push (2026-09-10: two PRs landed while the holder cured a red check,
+  cure push; with no other ready PR waiting, the yield costs nothing and the
+  same PR retakes the slot after that push (2026-09-10: two PRs landed while the holder cured a red check,
   and an order to land one of them arrived twice while the holder waited on
   its leg, and was held); or its heartbeat and state lines stop for twenty
   minutes and a direct ping goes unanswered, which frees the slot. While the
