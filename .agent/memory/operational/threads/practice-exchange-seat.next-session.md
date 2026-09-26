@@ -634,3 +634,51 @@ compaction. Watchers, heartbeat and the peer-liveness poll re-armed.
     says the bash 5.2 floor "rules out" older bash; the wrapper warns and runs the hook unlogged,
     and the plan-gate hook never invokes bash (PR 204's final-tip line). The next change to that
     file corrects it.
+
+## Wrap block, 2026-09-26 09:53Z (the owner's word: prepare for compaction and stop all processes)
+
+**What happened between blocks.** A usage limit paused this seat from about 22:42Z on
+2026-09-25 until about 09:48Z on 2026-09-26. Whether the other seats paused too is an inference,
+not an observation: the streams from 22:30Z on were not read before this wrap (the read was
+interrupted). What was observed is consistent with a fleet-wide pause. The 00:00Z folds did not run:
+`coordination/2026-09-25-cf6897` is still live, 3 commits ahead of its remote at this wrap (two
+of this seat's records commits, eedfb3e3 and f00a6cd2, and the Director's 48fc2f8c), plus this
+wrap's commit. Lineage PRs 216 and 245 were still open at 09:48Z; JC.net's only open PR is 189.
+
+**Landed since the 22:04Z update.** Nothing new on main. The profile write is at f95eb16 in the
+profile repository. The records commits are named above.
+
+**Next safe step after compaction.** Do not start from the intake list. First read the live
+state and send the Director one native message (the pause has made this queue a hypothesis).
+Then open on goal one: read the register's J rows (`bring`, `compare`) against their lineage
+landings, because tonight's queue ran reactively in the lineage-to-JC.net direction. The
+intakes from PR 216 (six cures) and PR 245 (the curator-pass skill) run when those PRs merge.
+
+**Grounded facts the next executor would re-derive.**
+
+- The profile sync push stages every existing and tracked profile document, and it does so in
+  both estates (`operator-profile-git-push.ts`, `stagingPaths` and `stageAndCommit`). Before
+  any profile write, pull and read `git status --short` in the root; if another seat's write
+  is there, ask its writer to push first.
+- JC.net's lane skill step 2 check
+  (`.agent/skills/set-up-worktree-lane/SKILL-CANONICAL.md`, the block after "matches the
+  primary") exits with the `user.email` comparison's status only. PR 216 cures it jointly.
+- PR 242's research blobs equal JC.net main, and its rule body equals JC.net's body (only
+  JC.net's frontmatter differs). JC.net owes nothing from PR 242.
+- Every host process of this seat is stopped: the heartbeat, both comms watchers, the
+  peer-liveness poll and the PR watch. Claim a30304be is kept but unrefreshed.
+
+**Re-arm recipe on "carry on"** (verify by task list and process table first; nothing
+survives a compaction). The scripts live in the session scratchpad:
+
+- `heartbeat.sh a30304be-4986-40f0-883b-fd518224472b coordination/<live branch> "<label>"`
+- `watch-comms.sh <JC.net primary> 39355` and `watch-comms.sh <lineage primary> 39355`
+- `peer-liveness-poll.sh 600`
+- 39355 was this session's supervisor process id at 22:12Z on 2026-09-25; re-read it before
+  re-arming, never reuse it blind.
+
+**The Director's line at the wrap** (native, about 09:5xZ on 2026-09-26): the scope file's two
+lines (done at f95eb16), then L12's landing row and "todo 8's text cure", or the compaction.
+This seat has not yet identified which todo 8 that is. Read the plan node's todos on resume
+before acting, and ask the Director if it is still ambiguous. The Director folds PR 189 on
+resume (due 11:17Z); no seat folds it.
