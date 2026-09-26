@@ -43,6 +43,10 @@ Every line answered first-hand, none inferred:
 
 - A green, clean pull request is merged, by merge commit, without asking; cards are for
   decisions only the owner can make.
+- The owner's answer "A seat lands it on this word" (2026-09-26 10:50Z) covered PR 224 only. A
+  cloud-authored or owner-authored draft is ready-marked by the owner or by the owner's stated
+  acceptance (PR 250's Appendix E, 20:25Z), never by precedent: the Director widened the 224
+  answer to 250 and the owner reversed the mark within five minutes (20:24Z).
 - Compute, don't hope: no hand-kept list; every list is derived or gated by a validator.
 - The private editorial material is optional, confidential, never a dependency, mentioned
   minimally, never quoted.
@@ -194,9 +198,9 @@ Every line answered first-hand, none inferred:
 ## Current handoff state (2026-09-26, resumed 19:1xZ after COMPACTION BOUNDARY 8; pointer-biased by design)
 
 Resumed at the owner's start word (19:1xZ) after COMPACTION BOUNDARY 8 (16:32Z); the boundary
-records are on origin (SHA:fd448c0b). The napkin's 19:29Z block is the live reading: the state,
-the ready list, the owner's WIP-limit word and the rule as operated, the drain schedule, the
-card queue (nine lines). PR 211 folded at 15:28:25Z as
+records are on origin (SHA:fd448c0b). The napkin's latest dated check-in block is the live
+reading (the state, the count against the limit, the ready list, the waiting-work line, the card
+queue); the 19:29Z and 19:38Z blocks carry the owner's WIP-limit and cloud-PR words verbatim. PR 211 folded at 15:28:25Z as
 SHA:26ca4dab9; the primary resides on coordination/2026-09-26-26ca4d (draft PR 215, DUE at the
 rollover). Processes: none of this seat's. Claim 58c2684a retained.
 

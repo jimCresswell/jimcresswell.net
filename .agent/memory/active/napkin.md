@@ -7162,3 +7162,80 @@ Landings since check-in 30: 249 (20:16Z) and 217 (20:37Z), both through Myrtle's
 push CI on 249's merge SHA:527eb969c seventeen success, on 217's merge SHA:320c146ea eleven
 success and four in progress at 20:4xZ, nothing red. 253 at the slot (Siren, from 20:38:12Z). The
 count at 20:39Z: five against three.
+
+## 2026-09-26T21:02Z — Director check-in 31 on the generated snapshot; the count four against three; five of eight drain rows landed (the Director)
+
+Snapshot generated 21:02Z (floor 20:14Z). Clock read 21:02:08Z. Both streams read to 21:02Z:
+nothing addressed to the Director. Suite 26's push landed (SHA:990d1dbd, read by ls-remote).
+
+THE COUNT (first-hand from gh at 21:02Z): the lineage 5 open (254 the coordination draft; 250 the
+owner's draft, now a lane; 245, 246, 256), JC.net 1 (215). Non-coordination across both estates: 4
+against the limit of 3, the inherited breach down from nine; opened since 20:14Z: none on either
+estate. Landings since check-in 30: the lineage 3 (249 at 20:16:22Z and 217 at 20:37:36Z through
+Myrtle's door; 253 at 20:58:48Z through Siren's), JC.net 0; since the owner's word at 19:2xZ: five
+(257, 259, 249, 217, 253) in about 95 minutes, one every nineteen minutes on average, through
+three seats and six slot handovers with no Director word on the order (the longest gap between a
+release and the next take: 47 seconds). The bar of two per 45 minutes met.
+
+VERIFICATION. Heads with CI in flight: the lineage 1 (246's sync at the slot, Swallow from
+20:59:58Z); JC.net 0. Slot holder: Swallow on 246, two minutes at the read. Engraph's push CI: on
+217's merge SHA:320c146ea seventeen success; on 253's merge SHA:3377a3b1c ten success and five in
+progress at 21:02Z; nothing red. Folds: 215 and 254 DUE at 00:00Z.
+
+READY LIST at 21:02Z (green, zero threads, non-draft, not DIRTY; by changed files ascending): 246
+(20) <https://github.com/EngraphCode/open-curriculum-ecosystem/pull/246>, at the slot; 256 (30)
+<https://github.com/EngraphCode/open-curriculum-ecosystem/pull/256>; 245 (45)
+<https://github.com/EngraphCode/open-curriculum-ecosystem/pull/245>, whose turn carries its
+scripted reconcile as its sync. JC.net: none.
+
+THE RETROSPECTIVE TRIGGER (as re-anchored at suite 26): five of the eight drain rows landed (257,
+259, 249, 217, 253); 246, 256 and 245 remain; the count four, above the limit; not fired.
+Projection: 246 about 21:17Z (the count three), 256 about 21:37Z (a slot frees, to the wording
+PR), 245 about 21:57Z (a slot frees, to the JC.net runbook twin); the eight rows landed by about
+22:00Z; the fold moment at 00:00Z then reads 250 and at most one or two fresh PRs open, and the
+trigger fires there if the count reads at or under three. The retrospective's home is the
+lineage's `.agent/reports/agentic-engineering/` with a pointer in JC.net; as a report it is a work
+product with its own review contract (the fold skill's precondition 3), so it goes as its own PR
+and takes a slot, never the coordination branch; the Director authors it as Lane 1's item 7.
+
+GOAL THREE, the waiting-work line (per estate; seat; oldest unpushed commit; read 21:02Z): the
+lineage 2 (docs/pr-lifecycle-wip-limit, Siren, one commit rebuilt at 20:55Z onto 249's tip;
+feat/codex-rollout-command-records, Swallow, two commits, the first at 20:32Z, one untracked
+file), JC.net 1 (docs/exchange-j11-runbook-twin, Siren, one commit at 19:29Z, 93 minutes old). Not
+waiting on a slot: the three lineage branches for the owner's hand. Every remote branch on both
+estates is on an open PR or is a default or coordination branch (the lineage 8 remote branches
+after the deletions passes, JC.net 2). Goal three does not read clean: three prepared items wait,
+the oldest 93 minutes.
+
+THE LANE STATUS LINE (the plan's lanes at 21:02Z): Lane 0 (the door) running, five landings since
+the word; Lane 1 (the Director) items 1 and 2 done (JC.net's fold landed as 211 at 15:28Z; the
+lineage's as 223 at 12:09Z), 3 done, 4 running (this cadence), 5 the handoff drain done once with
+its second trim owed, 6 (P7, the rule "a ruling names the primary surface it read") not started, 7
+the retrospective re-anchored; Lane 2 (Myrtle) 259, 249, 217 landed, 245 at its turn, then 250's
+lane; Lane 3 (Swallow) 257 landed, 246 at the slot, the command-record reader waiting, P1 on the
+ledger; Lane 4 (Siren) 252, 258, 253 landed, 256 at its turn, the wording PR and the twin waiting,
+the register PR after; Lane 5 done (255, condition 5 closed); Lane 6 done except the three
+branches for the owner's hand.
+
+PR 250, THE LANE: draft at SHA:9a7ffdbaa (the owner's head), 21 files; Myrtle's shape posted
+20:49Z and its runner verified 20:50Z (a one-case probe under `claude plugin eval`, a real run,
+USD 0.04, three judge votes, evidence retained): the §13.8 sequence as seven owner-authored
+commits through merge-bot push, evidence per skill, about two seat-days from 245's door; it holds
+one of the three slots throughout. Nothing of it touched since the owner's commit.
+
+THE HANDOFF carries the 224 narrowing at this records commit: the 10:50Z answer covered PR 224
+only; a cloud-authored or owner-authored draft is ready-marked by the owner or by the owner's
+stated acceptance (250's Appendix E), never by precedent.
+
+OWNER CARD QUEUE (ten lines, none blocking): (1) the late-cure leg ruling; (3) 224's provenance
+line; (4) 250 is a lane on the owner's Appendix E, routed to Myrtle, one slot held for about two
+seat-days, reverse by a word; (5) FIRED at 253's landing (20:58Z): line 4 of the lineage
+checkout's machine-local `.claude/settings.local.json` names OAK_STATUSLINE_LOG_FILE and must read
+PRACTICE_STATUSLINE_LOG_FILE, or the lineage seats' statusline log stays stopped (the file is
+ignored and the owner's; read first-hand 21:0xZ); (6) the Codex lane's remaining items; (7) the
+three local branches for the owner's hand; (8) the runbook's re-ratification, both copies at
+sketch; (9) the wording PR, drafted, opens at the first free slot; (10) the Clef name, not gating.
+
+NEXT: suite 27 about 21:24Z on this snapshot (the frame carries the Lane status line and the
+trigger's status); check-in 32 about 21:47Z with the count read first; the folds at 00:00Z with
+the count read at each merge instant and the trigger judged there.
