@@ -6896,3 +6896,38 @@ item 1 is annotated as superseded in place.
 NEXT: suite 25 about 19:52Z on this snapshot (the frame carries the owner's word verbatim and the
 drain schedule); check-in 30 about 20:14Z with the count read first; the wording PR routed at the
 first free slot; the folds at 00:00Z with the count read at each merge instant.
+
+## 2026-09-26T19:38Z — The owner's word on cloud-authored PRs; PR 250's routing widened (the Director)
+
+THE OWNER'S WORD at 19:3xZ, in this session, verbatim: "yes, some of the PRs opened by cloud
+agents are created in environments that cannot run code, so they cannot validate their own work or
+run build etc. Those PRs need to be checked out locally, evaluated, and then worked on as normal
+by the team".
+
+ITEM 9 OF THE RULE AS OPERATED (joins the 19:29Z block's items 1 to 8; broadcast on both streams
+at 19:3xZ): a PR from a non-executing host (a cloud agent, ChatGPT Work, Codex cloud; the tell is
+the PR body's own statement, or no local gate anywhere in its history) is team intake and counts
+toward the limit from the moment it opens. The Director names the class at analysis; a seat checks
+it out in a worktree, runs the estate's gates on its head, reads the PR's own "complete on an
+execution-capable host" list as the PR's todo, evaluates the content as a peer's PR (the reviewer
+subagents as the seat sees fit), cures within the round budget or records Rejected with reasons,
+then legs, ready-mark and the door at its size turn. The wording PR carries this clause with the
+limit. The doctrine's other half already exists at main: the start-right-team skill's §1a cloud
+branch has the non-executing seat open a draft PR so CI produces the verdict; this word names the
+receiving side.
+
+PR 250 is of the class by its own body, read first-hand at 19:37Z (line 48: "No local package
+setup, build, runtime tests or repository gates ran: this host is classified as ChatGPT Work
+non-execution."; line 55: "Complete on an execution-capable host:"). Swallow's routing widened at
+19:3xZ, natively and on the stream: after the regeneration commit (Swallow's ACK of 19:33Z:
+exactly the eight projections written, gates started), the full local gates in oce-wt-user-value
+on the head; the body's own completion list worked; the skill evaluated against
+skill-naming-and-description-quality and the validators, its evals run if the estate has a runner,
+the plan-skill change and the settings.json change judged for belonging, the three research notes
+for their home; cures within the two-round budget; a finding that the PR is not one story comes to
+the Director before any split, since a split opens PRs under the limit; then legs, ready-mark
+under the 224 precedent, the door. The other nine open PRs checked at 19:37Z: every one opened by
+a seat on this host with its gates run; none of the class. JC.net: none.
+
+FALSIFIER: a cloud-authored PR reaching the door with no local gate run recorded on the stream by
+the seat that took it.

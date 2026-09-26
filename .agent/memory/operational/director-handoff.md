@@ -186,8 +186,10 @@ Every line answered first-hand, none inferred:
   count is read across both estates together; external PRs (fork syncs, Dependabot, CV content)
   count, and the Director analyses and schedules each into the door order; no PR opens while the
   count reads three or more, and the opener reads it first-hand and posts "WIP slot taken: N of
-  3" on the estate's stream. Supersedes "No bound" (10:50Z). The full word and the operated rule:
-  the napkin's 2026-09-26T19:29Z block.
+  3" on the estate's stream. Supersedes "No bound" (10:50Z). Cloud-authored PRs (a non-executing
+  host, the PR body's own statement) are team intake: checked out locally, gated, evaluated, then
+  worked as normal (owner, 19:3xZ). The full words and the operated rule: the napkin's
+  2026-09-26T19:29Z and 19:38Z blocks.
 
 ## Current handoff state (2026-09-26, resumed 19:1xZ after COMPACTION BOUNDARY 8; pointer-biased by design)
 
