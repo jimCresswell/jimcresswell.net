@@ -6406,3 +6406,75 @@ The fold's cost, as a datum for the cost model: from ready (14:59Z) to merge (15
 and three Copilot legs on a records-only PR of nine files; two settlement pushes at about ten
 minutes of gate each. The "zero at each fold moment" measure on JC.net at 15:28:25Z: zero other
 open PRs, met.
+
+## 2026-09-26T15:47Z — Director check-in 28 on the generated snapshot (the Director)
+
+Snapshot generated 15:47:21Z (floor 14:51Z), the first with the BRANCHES section. Clock read
+15:47:05Z. Both streams read to 15:47Z: nothing addressed to the Director.
+
+VERIFICATION (the plan's numbers). Open PRs: the lineage 12 (250 the owner's draft, red; 254 the
+coordination draft; 245 DIRTY at 45 files; 252 at the door; 257 and 258 with threads and
+settlement pushes in flight; 246 with three threads and its cure unpushed; 217, 221, 249, 253, 256
+green), JC.net 1 (215, the successor's draft). Heads with CI in flight: the lineage 2 (252's sync
+at the slot; 258's settlement push, which is not a sync); JC.net 0. Landings since check-in 27
+(15:00Z): the lineage 2 (251 at 15:11:50Z through Myrtle's door; 255 at 15:38:20Z through Phobos's
+door), the plan's bar of two per 45 minutes met in a 47-minute window; JC.net 2 (211, the fold, at
+15:28:25Z; 216, Siren's three-item joint change, at 15:40:13Z). Slot holder: Siren on 252 from
+15:41Z, six minutes at the read, its sync pushed 15:42Z with CI running. `review_requested` after
+sync commits: not measured. Engraph's push CI on SHA:43eb62a55: twelve success (read after
+15:08Z); on SHA:af49326dd (255's merge): 14 success and 2 in progress at 15:48Z. Folds: JC.net 211
+landed as SHA:26ca4dab9 and 215 cut, DUE at the rollover; the lineage's 254 DUE at the rollover.
+"Zero at each fold moment": JC.net met at 15:28:25Z; the lineage's next fold moment has eleven
+others open at 15:47Z.
+
+READY LIST at 15:47Z (green, zero threads, non-draft, not DIRTY; by changed files ascending): 221
+(11 files) <https://github.com/EngraphCode/open-curriculum-ecosystem/pull/221>; 217 (13)
+<https://github.com/EngraphCode/open-curriculum-ecosystem/pull/217>; 249 (13)
+<https://github.com/EngraphCode/open-curriculum-ecosystem/pull/249>; 253 (16)
+<https://github.com/EngraphCode/open-curriculum-ecosystem/pull/253>; 256 (30)
+<https://github.com/EngraphCode/open-curriculum-ecosystem/pull/256>. JC.net: none (215 is the
+draft).
+
+GOAL THREE, the branch half (the snapshot's new section, method: the refs API against the open
+PRs' heads; `git branch --merged origin/<default>`). The lineage's remote branches on no open PR:
+two (claude/objective-nightingale-b4ba25, unmerged, on the approved list;
+docs/codex-queue-probe-2026-09-25, merged as the lineage's PR 211 by the owner's hand, its local
+capture commit never pushed, verified by `git branch -r --contains`). Local merged into engraph at
+the read: eleven; the Director deleted the two old coordination branches and
+sync/upstream-2026-09-02 (each an ancestor of origin/engraph; the sync branch needed `-D` after
+`-d` refused against HEAD; read back absent), Myrtle its seven at 15:49Z with read-back, Swallow's
+one routed. Local unmerged: thirteen, twelve on open PRs or live lanes and one unlisted
+(docs/codex-queue-probe-metadata-01a0d9, routed to Swallow to assess: a PR if wanted, else the
+owner's word). JC.net: clean (two remote branches, main and the coordination branch; no local
+extras). Routing event on the lineage stream at 15:4xZ.
+
+SEATS. Siren: 252 at the slot; 253, 256 and 258 in review; JC.net 216 landed and the joint
+change's settled blobs handed to Myrtle; J11's later slices to be proposed in order; its records
+commit SHA:3c772dbe on the primary rides this push. Myrtle: 221 next at the slot, then 217 (with
+the joint change's two passages inside, one push and one round under the cost model), 249, and 245
+after its reconcile; the seven branches gone. Swallow: 257's settlement push 1 of 2; 246 at its
+turn; the nightingale and probe branches and the unlisted branch to assess. Phobos wakes Void:
+closed out at 15:41Z after PR 255 (P3, the ADR-204 note) landed through the bot path with no owner
+prompt at any step (commit, push, open, legs, sync push, merge, deletions, read-back), which
+closes PR 241's condition 5.
+
+RETROSPECTIVE TRIGGER, quoted from the plan report §The retrospective trigger: "When both estates
+read one open PR each (the coordination draft), `jc-retrospective` runs on the arc "the
+twenty-four open PRs, 2026-09-25 to zero": the causal stack (an unbounded intake, a serial door
+under strict currency, self-inflicted review rounds, a BLOCKED holder across an eleven-hour pause,
+a harness pause with no backstop), the counterfactual of a mechanised door, and P1 to P10 read
+against their falsifiers; recorded under the lineage's `.agent/reports/agentic-engineering/` with
+a pointer in JC.net." JC.net reads one; the lineage twelve; not fired.
+
+OWNER CARD QUEUE (none blocking, except that 250 holds the lineage's fold-moment measure above
+zero): (1) the late-cure leg ruling (reverse by a word); (3) PR 224's private-provenance
+disposition; (4) PR 250, the owner's draft, red on the skills-adapter validator (the generated
+projections are stale; one regeneration commit on the owner's word); (5) at PR 253's landing, the
+operator's machine-local lineage settings must name PRACTICE_STATUSLINE_LOG_FILE; (6) NEW: goal
+two's remaining Codex items after Phobos's closeout (a Codex seat with a longer brief, or
+Swallow's lane carries them); (7) NEW: the unlisted local branch
+docs/codex-queue-probe-metadata-01a0d9, after Swallow's assessment.
+
+NEXT: suite 24 about 16:09Z on this snapshot (the frame quotes the retrospective trigger above and
+names the 12:09Z count as an inference); check-in 29 about 16:32Z; the folds at the rollover (215;
+254).
