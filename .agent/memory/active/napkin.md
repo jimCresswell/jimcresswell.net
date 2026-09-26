@@ -5868,3 +5868,55 @@ napkin commit 0d9f8b4f (11:26Z) on the successor rides this seat's next push.
 Observation (one instance): a push to a coordination branch after the owner's hand merged its PR
 strands the commits; the cure was a merge into the successor; the check that prevents it is a
 `gh pr view --json state` read before every push to a coordination branch.
+
+## 2026-09-26T11:37Z — check-in 25 (the Director), on the 11:35:31Z generated snapshot
+
+Verification numbers (the plan's four, from the snapshot):
+
+- Open PRs: lineage 7 (217, 221, 223, 224, 245, 246, 248); JC.net 1 (211, the successor draft).
+  Target by the end of the day: one each. READY LIST (green, zero threads, non-draft): EMPTY on
+  both estates; nothing for the owner's hand right now.
+- Heads with CI in flight: lineage 1 (223, unit-tests, the fold under Myrtle); JC.net 1 (211, the
+  cut's first run). No off-slot sync.
+- Landings since 11:00Z: lineage 4 (234, 244, 238, 218, all the owner's hand, 11:13Z to 11:15Z);
+  JC.net 2 (189 by the owner's hand 11:15Z; 210 by the bot 11:23Z). The seat door has landed
+  nothing since 241 (10:32Z): the fold of 223 holds the slot (Swallow from 11:12Z, Myrtle from
+  11:25Z).
+- Slot-holder age: 25 minutes at 11:37Z from Swallow's 11:12Z "slot taken". The yield rule's
+  purpose is an idle door; no ready PR waits (the list is empty), so the fold keeps the slot while
+  it is the only candidate, and yields the moment a ready PR appears if its own remaining
+  conditions still need a push. `review_requested` after sync: not measured this check-in (P1
+  unlanded).
+
+Per PR on the lineage (snapshot): 217 BEHIND, 2 threads, cure at 7de43823b (Myrtle); 221 BEHIND,
+windows-basic FAILURE (F-208's class; Myrtle; a re-run or a cure); 223 BLOCKED, 6 threads
+(Swallow's one-commit cure for its five files pushing under Myrtle's door; the sixth is Myrtle's
+or a signed line); 224 draft, BEHIND, 0 threads, 12 files (the owner's draft; a seat lands it on
+the word); 245 BEHIND, 2 threads (Myrtle's cure owed); 246 BEHIND, 3 threads (Swallow, cures
+prepared); 248 DIRTY, 1 thread, 1 file (Swallow; a conflict with 244's landing on the
+exec-binding node; reconcile).
+
+Routings (this check-in):
+
+1. PR 224: the first free seat at its size-order turn (after 248 and 221; before 217 and 246)
+   marks it ready, syncs once, legs, bot merge, records its landing: Myrtle if the fold frees it
+   first, Swallow if 248 lands first. No card: the owner's word ("a seat lands it on this word").
+2. The lineage worktree `oce-wt-comms-emfile-01a0d3` (fix/codex-comms-watch-emfile, merged as
+   PR 193, no origin branch, tree clean by the snapshot): Swallow removes it without --force (the
+   harness refuses forced deletes; a clean worktree needs none) and reads back.
+3. Siren's cost-model PR takes one dated paragraph in the strategic node
+   `best-of-each-practice` §Delivery (the programme's decisions of 2026-09-26: the door's shape,
+   the twice-daily fold, no intake bound, the cost model's fixed term), same bytes to the lineage
+   through Myrtle: one story, one moderate PR, under the cost-model word.
+4. The approved plan is conserved verbatim as
+   `.agent/reports/agentic-engineering/2026-09-26-the-estates-programme-plan.md` (records-class;
+   rides this branch's fold). The plan skill rules a delivery node out (one step of a lane,
+   authored by its implementer at pickup); the long-lived home is the strategic node under item 3.
+
+Seats: Siren live (heartbeat 11:32Z; PR 210 merged 11:23Z; the cost-model PR in its worktree).
+Myrtle live (11:35Z; the fold of 223, then 217, 221, 245; 224 at its turn). Swallow live (resumed
+11:27Z; the fold's five-thread cure; then 248, 246). Load 10.6 on the host; the two-gate bound
+holds (one gate per estate: the fold's CI on the lineage, 211's on JC.net).
+
+Next: the suite 22 minutes after this check-in (about 11:59Z) on a frame built from this
+snapshot; check-in 26 about 12:22Z; the handoff drain (P9) on this branch between them.
