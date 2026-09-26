@@ -3,7 +3,7 @@ prompt_id: session-continuation
 title: "Session Continuation"
 type: handoff
 status: active
-last_updated: 2026-09-13
+last_updated: 2026-09-24
 ---
 
 Ground first via `start-right-quick` or `start-right-thorough`.
