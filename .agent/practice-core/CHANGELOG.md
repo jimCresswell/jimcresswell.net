@@ -7,18 +7,22 @@ Practice Core package.
 ## [jimcresswell.net] 2026-09-26 — PDR-132's cost model and two-round text; PDR-140 clause 4 joins
 
 - PDR-132 §Decision item 7: a pull request pays a flat cost whatever its
-  size, and review cost rises steeply with complexity, so the optimum
-  slice is well above one line. Changes that share a story go as one
-  pull request inside the sizing bands. This is the owner's word of
-  2026-09-26. §Consequences points to `design-work-for-small-prs`, which
-  carries the floor, and an amendment entry records the word. The item
-  and the entry are joint bytes for the lineage.
+  size, and complexity-based cost rises steeply, so the optimum slice is
+  well above one line. The cost model is the owner's word of 2026-09-26;
+  sizing slices to it, with changes that share a story going as one pull
+  request, is the Director's ruling of that hour. §Consequences points to
+  `design-work-for-small-prs`, which carries the floor, and an amendment
+  entry records the word. The item and the entry are joint bytes for the
+  lineage.
 - PDR-132 §Decision item 1 takes the lineage's paragraph on the two-round
-  rule byte-identical: after round two, every remaining finding is
-  dispositioned in the same turn as the last push. A local amendment
-  entry records the adoption.
-- PDR-140 clause 4 takes the lineage's reading of the rebudget under the
-  owner's 2026-09-14 ruling, so the record is one blob in both estates.
+  rule, with one joint cure naming clause 4 as the late-cure door: after
+  round two, every remaining finding is dispositioned in the same turn as
+  the last push. A local amendment entry records the adoption and names
+  how item 1 differs from this estate's 2026-09-14 entry.
+- PDR-140 clause 4 takes the lineage's paragraph on the rebudget under the
+  owner's 2026-09-14 ruling, byte-identical, and a new amendment entry
+  records it. The record is one blob in both estates once the lineage
+  takes the entry.
 
 ## [jimcresswell.net] 2026-09-25 — PDR-142's goal quote stands whole
 

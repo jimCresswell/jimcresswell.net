@@ -782,11 +782,12 @@ deliberately gone — triage binds from wave one. **The step-back trigger is
    HEAD, named on the PR when that push lands. Read with the owner's ruling of
    2026-09-14, verbatim "I don't want the number of rounds of PRs to go up": the
    rebudget licenses the one settlement push that carries the pending mandatory
-   cure and the dispositions, never a further cure round after it; past round
-   two each later below-bar finding is a disposition riding the settlement, and
-   a later over-bar finding takes PDR-140 clause 4's one late-cure push with no
-   further review request (a prose-class pull request took two rebudget pushes
-   under clause 4 before the ruling reached its seat, 2026-09-24). A binding
+   cure and the dispositions, never a further cure round after it; past the round
+   budget each later below-bar finding is a disposition riding the settlement,
+   and a later over-bar finding takes PDR-140's one late-cure push (clause 4;
+   9(b) on records-class) with no further review request (a prose-class pull
+   request took two rebudget pushes under clause 4 before the ruling reached
+   its seat, 2026-09-24). A binding
    worth declaring names its exception in advance (a
    statement a rule falsifies, cured with a sweep) or is owner-gated from
    the start: a "no further cure push" declared before reading what the
@@ -1480,10 +1481,10 @@ allow_squash_merge, allow_rebase_merge}'`; `allow_merge_commit` has
   (four times on one carrier, 2026-09-09); a waiting PR keeps its own head
   and prepares everything that does not depend on the tip — dispositions,
   sweeps, the merge message. Slot order is the Director's call — among ready PRs
-  the default is changed-file count, smallest first (the owner's order,
-  2026-09-26), and the slot goes to a ready PR rather than being held empty.
-  The slot follows readiness, never a queue order written earlier: a draft is
-  not in the queue until its legs
+  the default is changed-file count, smallest first (the Director's ruling of
+  2026-09-26, the order the owner landed by hand), and the slot goes to a ready
+  PR rather than being held empty. The slot follows readiness, never a list
+  order written earlier: a draft is not on the ready list until its legs
   can bind, and a slot needs a named keeper, not just a next PR (two
   handovers thirty minutes apart left it unkept, 2026-09-24). Settle-ready
   needs a BINDING round: a dismissed round binds nothing and Copilot never
@@ -1491,21 +1492,22 @@ allow_squash_merge, allow_rebase_merge}'`; `allow_merge_commit` has
   blocker to route around (2026-08-19). A holder that has synced and is
   waiting for a per-tip reviewer leg to bind is NOT an empty slot: nothing else
   lands meanwhile, because every landing knocks the holder BEHIND and voids the
-  leg bound to its head, a livelock. A holder yields only when it cannot land
-  inside its window (a red check to cure), and its re-sync rides that cure push
-  (2026-09-10: #117 and #113 landed while #116 cured a red check; "land #117
-  now" arrived twice while #116 waited on its leg, and was held). A PR is ready
-  for the slot when its legs are green and its unresolved threads are zero or
-  can be settled by signed lines with no push; "clean" in a slot ruling means
-  this, never GitHub's `mergeStateStatus`. A turn opens and closes on the
-  coordination stream: "slot taken" with the PR's number, one sync push, the
-  legs bound to the synced head, the merge door run as the bot, "slot
-  released", then the remote branch deleted as the bot with read-back. One
-  turn, then yield to the next ready PR. A holder silent for twenty minutes
-  frees the slot. While the owner lands by hand, every seat holds its syncs
-  until the owner says done, and the Director keeps the ready list, with
-  links, for the owner. The fold takes the slot at each fold time, the UTC
-  rollover and midday. Any auto-sync babysitter — a watcher running
+  leg bound to its head, a livelock. A PR takes the slot when its legs are
+  green and its remaining conditions need no push: its unresolved threads are
+  zero or settled by signed lines. "Clean" in a slot ruling means green legs
+  and zero unresolved threads, never GitHub's `mergeStateStatus`. A turn opens
+  and closes on the coordination stream: "slot taken" with the PR's number,
+  one sync push, the legs bound to the synced head, the merge-bot front door,
+  "slot released", then the remote branch deleted as the bot with read-back;
+  the seat then yields to the next ready PR. A holder leaves the slot in one
+  of three ways: it lands and releases; it cannot land without a cure push (a
+  red check), so it yields, rejoins the ready list, and its re-sync rides that
+  cure push (2026-09-10: two PRs landed while the holder cured a red check,
+  and an order to land one of them arrived twice while the holder waited on
+  its leg, and was held); or its heartbeat and state lines stop for twenty
+  minutes and a direct ping goes unanswered, which frees the slot. While the
+  owner lands by hand, every seat holds its syncs until the owner says done.
+  A coordination fold takes the slot at its time. Any auto-sync babysitter — a watcher running
   `gh pr update-branch` on OPEN and BEHIND auto-merge PRs — runs for the
   slot-holder only; a waiting PR is never auto-synced, because each sync is
   a push and each push is a review round. Worked instance (2026-09-06): one

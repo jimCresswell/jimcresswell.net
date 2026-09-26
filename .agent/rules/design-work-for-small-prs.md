@@ -1,6 +1,6 @@
 ---
 classification: core
-description: "Work is DESIGNED to deliver as small, safe PRs — decomposition happens at plan/ticket/stack shaping time, not at PR-open. Owner sizing bands (2026-07-27, permanent doctrine): ~5 files changed normal, 10 acceptable, 20 a problem. Purpose is reviewer-comment complexity; one mechanism among several, never a substitute for review triage or round convergence. The bands have a floor: every PR pays a flat cost, so changes that share a story go as one moderate PR (PDR-132 item 7)."
+description: "Work is DESIGNED to deliver as small, safe PRs — decomposition happens at plan/ticket/stack shaping time, not at PR-open. Owner sizing bands (2026-07-27, permanent doctrine): ~5 files changed normal, 10 acceptable, 20 a problem. Purpose is reviewer-comment complexity; one mechanism among several, never a substitute for review triage or round convergence. The bands have a floor: every PR pays a flat cost, so changes that share a story go as one PR inside the bands (PDR-132 item 7)."
 ---
 
 # Design Work for Small PRs
@@ -33,10 +33,10 @@ small PRs."*
   band never excuses skipping the others; exceeding it is never cured by
   arguing the others suffice.
 - **The bands have a floor as well as a ceiling**: every pull request pays
-  a flat cost whatever its size, so a slice below one story's natural size
-  costs more than it saves. Changes that share a story go as one moderate
-  pull request, never one per line or per row (PDR-132 §Decision item 7,
-  the owner's word of 2026-09-26).
+  a flat cost whatever its size, so a slice smaller than its story needs
+  costs more than it saves. Changes that share a story go as one pull
+  request inside the bands, never one per line or per row (PDR-132
+  §Decision item 7, the owner's word of 2026-09-26).
 - **Worked instances**: the 92-file landing-page PR whose 43 threads never
   converged (restacked by owner ruling as six small PRs); the 30-file PR
   that ran ten review rounds. Both predate the bands; both are why they

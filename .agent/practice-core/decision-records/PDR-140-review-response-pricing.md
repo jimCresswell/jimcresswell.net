@@ -351,5 +351,5 @@ don't want the number of rounds of PRs to go up": the rebudget licenses the one 
 that carries the pending mandatory cure and the dispositions, never a further cure round; past
 round two a later below-bar finding is a disposition riding the settlement; and an over-bar
 finding found after that push keeps one late-cure push, with no further round of review
-requests. The lineage wrote the paragraph on 2026-09-25 with no entry here; this entry records
-it, and both estates carry the same bytes from 2026-09-26.
+requests. The lineage wrote the paragraph on 2026-09-25 with no entry; this entry records it,
+and the second estate took the same bytes on 2026-09-26.
