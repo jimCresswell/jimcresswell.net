@@ -6931,3 +6931,65 @@ a seat on this host with its gates run; none of the class. JC.net: none.
 
 FALSIFIER: a cloud-authored PR reaching the door with no local gate run recorded on the stream by
 the seat that took it.
+
+## 2026-09-26T20:00Z — Director suite 25 tally (the Director)
+
+Frame built after check-in 29 (19:29Z) from the 19:20:43Z snapshot and the 19:49Z reads, with
+suite 24's cures applied (the §2.10 cure named as PR 248; the intake count beside the landings;
+the fold-moment read owed at each fold) and the owner's two new words verbatim in SOURCES. Eight
+returns, none UNDELIVERED; the procedure seat judged only, in both stances.
+
+| Role | Stance | Work | Frame | Redirection |
+| --- | --- | --- | --- | --- |
+| cricket-judgement-low | normal | ON-TRACK | SOUND | read engraph's push CI on 257's merge now, before 259 lands |
+| cricket-judgement-medium | normal | ON-TRACK | NARROWED (goal three against the WAITING list) | count every waiting local branch at check-in 30 with seat and unpushed age; rule no new local preparation while the count is over three |
+| cricket-judgement-high | normal | ON-TRACK | SOUND | none |
+| cricket-procedure-xhigh | normal | ON-TRACK | SOUND | none |
+| cricket-judgement-low | adversarial | ON-TRACK | NARROWED (P1 absent from the goal-two and waiting lists) | P1 back on the ledger, prepared locally by Swallow after 250, the first free slot after 246 |
+| cricket-judgement-medium | adversarial | ON-TRACK | NARROWED (goal three reads clean while work sits outside PRs) | the WIP backlog counted per estate under goal three at check-in 30 |
+| cricket-judgement-high | adversarial | ON-TRACK | SOUND | name a seat to draft the wording PR locally now, ready to open the instant the count clears |
+| cricket-procedure-xhigh | adversarial | ON-TRACK | NARROWED (the arc's endpoint absent from READING) | connect the drain's completion to the arc's endpoint, extraction and the installable entity |
+
+Tally: 8 ON-TRACK; frame SOUND 4, NARROWED 4.
+
+DONE (engraph's push CI on 257's merge): SHA:e80122437 read at 19:5xZ, fifteen check runs success
+and one in progress (the CI workflow, started 19:39:30Z), nothing red; 259 landed at 19:56:32Z as
+SHA:d7f78b161 with both legs on its synced head.
+
+ACCEPTED (the WIP backlog measure, two independent readings): from check-in 30 the goal-three line
+counts, per estate, every local branch or worktree holding prepared work that waits for a slot,
+with its seat and the age of its oldest unpushed commit; goal three never reads "clean" while work
+sits outside a PR. Method: the snapshot's BRANCHES and WORKTREES sections (local unmerged branches
+not on an open PR; dirty or ahead worktrees) plus the seats' own waiting lines.
+
+REJECTED (no new local preparation while the count is over three): the owner's word bounds open
+PRs and says a static zero "means no useful work is happening so that is undesirable"; a seat idle
+for an hour between door turns creates no value, and the exposure the cure aims at (unpushed work)
+is measured by the accepted line instead. The bound that stands: a seat prepares its next slice
+only, and a door turn or a cure that frees the count always comes first. Falsifier: a waiting item
+older than one fold with no slot in sight; then the rule tightens.
+
+ACCEPTED (P1 on the ledger): P1 (a pure sync push requests no review; `syncLineage` in the PR
+state reading, the plan's Lane 3) returns to the goal-two list and the waiting list; every landing
+in the drain pays a review round it would spare. Timing is Swallow's: after 250's intake and by
+Swallow's own map (its team start of 19:23Z: "the sync-lineage cure waits on the review-cost
+survey"); no PR until a slot.
+
+ACCEPTED (the wording drafted now): Siren drafts the WIP-limit clause locally now, one bullet in
+the lineage's pr-lifecycle §Phase 7 beside the readiness slot it wrote (the count across both
+estates with one coordination PR per repo excluded; the limit as the number of implementer seats;
+the opening read and the "WIP slot taken: N of 3" line; a branch pushes with its PR; external and
+cloud-authored PRs count, the Director analyses and schedules them, a cloud-authored PR is checked
+out, gated, evaluated and worked as normal), the same bytes for JC.net's twin; it opens at the
+first free slot, before the runbook twin, since it binds every seat. Routed on the lineage stream
+with this tally.
+
+ACCEPTED (the arc's endpoint in the frame): check-in 30's frame carries one sentence under READING
+connecting the drain to the arc: the drain lands goal-one rows (J13b, J13c, K4, the cost model),
+the eight rows with no PR follow one in for one out, and the owner's "then we review" and the
+extraction into an installable entity come after, on the owner's word, not the seats'.
+
+Landings since check-in 29: 257 (19:39:28Z) and 259 (19:56:32Z), both through Myrtle's door,
+seventeen minutes apart; the count reads seven non-coordination open; 249 at the slot from
+19:56:54Z. Joint items 1, 4 and 5 closed on both sides by Myrtle's receipt and Siren's byte check
+(19:57Z).
