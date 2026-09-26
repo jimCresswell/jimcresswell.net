@@ -245,7 +245,7 @@ the first hop. Confirm the id from the API, never from prose:
      status read, then a stop unless it is the installation's answer:
 
      ```bash
-     out=$(GH_TOKEN="$token" gh api -i user 2>/dev/null)
+     out=$(GH_TOKEN="$token" gh api -i user 2>/dev/null || true)
      code=$(printf '%s\n' "$out" | head -1 | awk '{print $2}')
      [ "$code" = 403 ] || exit 1
      printf '%s' "$out" | grep -q 'Resource not accessible by integration' || exit 1
@@ -256,10 +256,13 @@ the first hop. Confirm the id from the API, never from prose:
      login, and an empty token falls back to the stored login and answers
      200 the same way; a broken token answers 401 or nothing. A human
      credential can also answer 403, on a rate limit, so the body decides,
-     not the code alone; the bare call's exit code tells none of these
-     apart (all four answers verified 2026-09-26). The variable is never
-     `status`, which zsh reserves: the assignment fails there as
-     `read-only variable: status`. An empty `GH_TOKEN` is invisible at the
+     not the code alone. The call exits 0 only on a 200, so its exit code
+     cannot tell the installation's 403 from a 401 or a rate-limited 403,
+     and the capture's `|| true` keeps an expected non-zero exit from
+     stopping the block under errexit (the installation's 403, the empty
+     token's 200 and a broken token's 401 verified 2026-09-26). The
+     variable is never `status`, which zsh reserves: the assignment fails
+     there as `read-only variable: status`. An empty `GH_TOKEN` is invisible at the
      call site; the preflight turns a silent misattribution into a stop
      before anything is written. A read of the author after the write
      detects and cures nothing: a PR created under the ambient owner

@@ -68,9 +68,11 @@ Agent-authored on behalf of `jimCresswell` by Inferno holds Tongs (Claude Code, 
 
 Under the team bot, the account shows which credential posted and names no
 human, so the marker names the agent and says it is one: a last line that
-begins with an em dash and carries the seat's PDR-027 session prefix and the
-words "an agent", `— <agent-name> (<prefix>), an agent`, with words between
-allowed (`— <agent-name>, <role>, an agent (<prefix>)`).
+begins with an em dash and ends with the seat's PDR-027 session prefix,
+`— <agent-name>, an agent (<prefix>)`, with words between them allowed
+(`— <agent-name>, <role>, an agent (<prefix>)`). The prefix ends the line
+because tooling that tells a seat's signed reply from a reviewer's reads that
+ending.
 Never the human-account trailer: "on behalf of `<account>`" under the bot's
 token attributes the post to a human who did not make it.
 
