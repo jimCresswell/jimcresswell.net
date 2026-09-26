@@ -19,9 +19,9 @@ description: >-
 **Governance**: the procedure that composes three rules at the one moment they all
 apply — [`worktree-residency`](../../rules/worktree-residency.md) (where you work and
 how residency is established), [`worktree-hygiene`](../../rules/worktree-hygiene.md)
-(lane lifecycle, the first-push draft PR, dispositions), and
-`bot-identity-on-third-party-systems`
-(who commits, and under whose authority). Those rules own the doctrine and the
+(lane lifecycle, the first-push draft PR, dispositions), and the estate's
+committer identity rule (who commits, and under whose authority), here
+[`bot-identity-on-third-party-systems`](../../rules/bot-identity-on-third-party-systems.md). Those rules own the doctrine and the
 reasoning; this skill owns the ordered steps and the verification, because every
 defect below was found in a worktree that satisfied each rule read separately.
 
@@ -93,16 +93,25 @@ identity step at all — only a check that what it inherited matches the primary
 
 ```bash
 PRIMARY="$(git worktree list --porcelain | head -1 | sed 's/^worktree //')"
+ok=1
 for key in user.name user.email; do
   want="$(git -C "$PRIMARY" config "$key")"
-  [ -n "$want" ] && [ "$(git -C <path> config "$key")" = "$want" ] \
-    && echo "$key inherited: $want"
+  if [ -n "$want" ] && [ "$(git -C <path> config "$key")" = "$want" ]; then
+    echo "$key inherited: $want"
+  else
+    echo "$key: not inherited from the primary"; ok=0
+  fi
 done
+[ "$ok" = 1 ]
 ```
 
-Both lines must print, and both values must be the owner's. If either differs,
-is absent, or names anyone else, fix the SHARED config once, with the owner's name and
-email. Never patch this worktree: a `--worktree` override is a second copy that
+Both keys must report inherited (the check exits non-zero otherwise), and both
+values must be the owner's. The check proves inheritance, not correctness: a
+worktree inherits the primary's error too, so compare `want` with the owner's
+identity: the email [`secops`](../../directives/secops.md) §Git identity names,
+and the name on the owner's GitHub profile. If either differs, is absent, or
+names anyone else, fix the SHARED config once, with the owner's name and email.
+Never patch this worktree: a `--worktree` override is a second copy that
 outlives the next correction and reintroduces the exact drift this step exists to
 catch.
 
@@ -164,7 +173,7 @@ local runtime or full-gate claim is made.
 
 | Check | Command | Expected |
 | --- | --- | --- |
-| Identity resolves in the worktree | `git -C <path> config user.email` | the primary's address |
+| Identity resolves in the worktree | `git -C <path> config user.name` and `git -C <path> config user.email` | the primary's name and address |
 | Nothing shadows the shared copy | `git -C <path> config --worktree --get-regexp '^user\.'` | no output |
 | Base is clean | `git -C <path> log --oneline origin/<base>..HEAD` | only this story's commits |
 | Attribution is right | `git -C <path> log -1 --format='%an / %cn'` | author and committer the owner; the agent in the `Co-Authored-By` trailer |
@@ -230,7 +239,8 @@ never as a local-gate result.
   platform-pinned; clause 8's pre-PR contamination check.
 - [`worktree-hygiene`](../../rules/worktree-hygiene.md) — lane lifecycle, the
   first-push draft PR clause, and §6 dispositions when the lane ends.
-- `bot-identity-on-third-party-systems`
+- the estate's committer identity rule, here
+  [`bot-identity-on-third-party-systems`](../../rules/bot-identity-on-third-party-systems.md)
   — the identity contract this configures, and the author/committer ruling.
 - [`never-commit-to-main`](../../rules/never-commit-to-main.md) — why lane work
   starts on its own branch in its own worktree at all.
