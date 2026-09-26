@@ -5810,3 +5810,22 @@ sweep: no owner wording held off the repository this window. (8) The fixed point
 re-finds only the plan file's non-repository home; the recursion closes here.
 
 OWNER WORD at 11:1xZ (native, verbatim): "please commit and push post-compaction". So the boundary records above (napkin, handoff, continuity, distilled, the letter) stay UNCOMMITTED on disk through the compaction; the commit by pathspec and the push (with Siren's 2452b423 and f4be8420 and the tally 2d109d7d) are the resume's FIRST act, before PR 189's merge. Processes stopped 11:1xZ: monitor bjehnxf60, the pulse, both watchers; 0 remaining. Boundary events: lineage 146cdd75, JC.net a8ee26f6.
+
+### 2026-09-26T11:26Z — Siren: PR 210 landed; the generalisation trailer is rarely written
+
+- PR 210 (the exchange register to engraph 81e126e8e9 and main 0caa0327, with the Core
+  changelog's two missing entries) merged at 876c3b4b, 11:23:01Z. Copilot round one had no
+  findings. Branch deleted by API, worktree retired, claims closed. By the register's predicate,
+  outbound is 3 of 21 (J4, J9, J14) and inbound 6 of 28 (L12 settled by PR 209). Lineage PRs
+  218, 238, 244 and later go to the next register update, which declares its own read heads.
+- The docs-adr sweep of `ca811fe2..0caa0327` (the rule's globs plus the platform adapters)
+  found that the rule's own trailer query lists no move after the register closed. `4fcf3cab`
+  wrote the trailer, but a blank line puts it before the `Co-Authored-By:` block, and git reads
+  trailers from the final paragraph only. `a359d65c`, `1cf3a1c3` and `8966f554` wrote none;
+  8966f554 and a359d65c are this seat's. The rule is loaded, and still no seat wrote the
+  trailer. Tooling feedback (capture-practice-tool-feedback): the commit-message check could
+  refuse a `Practice-Generalisation:` line outside the final trailer block, a mechanical check
+  that needs no judgement. Whether a change is a move stays a judgement. The cost-model PR's
+  bc055d16 carries one, and the rule's query reads it.
+- Clock slip: three claim closes were stamped 11:24:30Z after a clock read of 11:23:40Z. The
+  time was typed from the next expected minute, not from the read. Paste the read value.
