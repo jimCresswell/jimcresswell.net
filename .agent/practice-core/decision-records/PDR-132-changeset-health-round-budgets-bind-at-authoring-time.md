@@ -53,10 +53,11 @@ shaped.
    push: over-bar cures ride that push, and the rest are signed
    `Rejected` or `Routed to <home>` lines. On prose-class changesets a
    further push opens only through PDR-140's doors (clause 4's rebudget
-   by recorded decision, or clause 4's one late over-bar cure, which 9(b)
-   repeats for records-class); code-class changesets keep the review-round
-   state machine's budget and step-back arms. The owner's word of
-   2026-09-14: "I don't want the number of rounds of PRs to go up".
+   by recorded decision, or clause 4's late-cure push for an over-bar
+   finding, which 9(b) states for records-class); code-class changesets
+   keep the review-round state machine's budget and step-back arms. The
+   owner's word of 2026-09-14: "I don't want the number of rounds of PRs
+   to go up".
 2. **Size thresholds are authoring-time warnings, never blocks**: more than
    ~300 added lines or more than ~8 changed files each predict a heavy
    review (a changeset's final commit count is the outcome proxy itself,
@@ -169,17 +170,6 @@ item 92) stands as an operating default and changes no threshold in
 Decision 2 (owner card, 2026-09-14, about 15:20Z: "the item 92 sizing stands as
 an operating default with no PDR-132 text change").
 
-### 2026-09-26 — jimcresswell.net: §Decision item 1 carries the two-round rule
-
-The rule the 2026-09-14 entry above records reached the lineage through the inter-Practice
-exchange, and the lineage wrote it into §Decision item 1 on 2026-09-24. This estate takes that
-paragraph, with one joint cure naming clause 4 as the late-cure door, so the Decision itself
-carries the same-turn disposition after round two and the doors a further push opens through,
-in both estates. Item 1 differs from the entry above in two places, and item 1 governs: an
-over-bar cure, not only a trivial one, rides the last push; and a further push opens only
-through PDR-140's doors, where the entry above made a round three a Director call on a
-correctness defect only.
-
 ### 2026-09-26 — a pull request's flat cost puts the optimum slice above one line
 
 Owner word (2026-09-26, to the Director, after merging thirteen small pull requests in the
@@ -189,4 +179,6 @@ exponetially with complexity, the fixed cost suggests that there is an optimum i
 value curve that is well above a single line change". The Director's ruling of the same hour
 sized slices to that optimum, with changes that share a story going as one pull request, and
 made it this record's text. §Decision item 7 states the flat cost and the optimum it implies;
-`design-work-for-small-prs` carries the lower bound as a pointer here.
+`design-work-for-small-prs` carries the lower bound as a pointer here. Item 1 now names clause
+4's late-cure push for an over-bar finding as the door a further push opens through, where it
+named clause 9(b), which binds records-class only.

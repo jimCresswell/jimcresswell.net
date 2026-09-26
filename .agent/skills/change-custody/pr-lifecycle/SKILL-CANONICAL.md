@@ -784,10 +784,9 @@ deliberately gone — triage binds from wave one. **The step-back trigger is
    rebudget licenses the one settlement push that carries the pending mandatory
    cure and the dispositions, never a further cure round after it; past the round
    budget each later below-bar finding is a disposition riding the settlement,
-   and a later over-bar finding takes PDR-140's one late-cure push (clause 4;
-   9(b) on records-class) with no further review request (a prose-class pull
-   request took two rebudget pushes under clause 4 before the ruling reached
-   its seat, 2026-09-24). A binding
+   and a later over-bar finding takes PDR-140's late-cure push (clause 4; 9(b)
+   on records-class). A prose-class pull request took two rebudget pushes
+   under clause 4 before the ruling reached its seat (2026-09-24). A binding
    worth declaring names its exception in advance (a
    statement a rule falsifies, cured with a sweep) or is owner-gated from
    the start: a "no further cure push" declared before reading what the
@@ -1503,9 +1502,10 @@ allow_squash_merge, allow_rebase_merge}'`; `allow_merge_commit` has
   of three ways: it lands and releases; it cannot land without a cure push (a
   red check), so it yields, rejoins the ready list, and its re-sync rides that
   cure push; with no other ready PR waiting, the yield costs nothing and the
-  same PR retakes the slot after that push (2026-09-10: two PRs landed while the holder cured a red check,
-  and an order to land one of them arrived twice while the holder waited on
-  its leg, and was held); or its heartbeat and state lines stop for twenty
+  same PR retakes the slot after that push (2026-09-10: two PRs landed while
+  the holder cured a red check, and an order to land one of them arrived
+  twice while the holder waited on its leg, and was held); or its heartbeat
+  and state lines stop for twenty
   minutes and a direct ping goes unanswered, which frees the slot. While the
   owner lands by hand, every seat holds its syncs until the owner says done.
   A coordination fold takes the slot at its time. Any auto-sync babysitter — a watcher running

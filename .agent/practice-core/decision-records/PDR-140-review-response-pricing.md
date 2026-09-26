@@ -10,7 +10,8 @@ providing?" and, on the cure direction, "flipping the default action on
 feedback to no action unless action is critically determined as
 worthwhile" — with the explicit constraint that auto-merge is not the
 answer, because "that just ignores feedback"; and, on sufficiency, the
-PR skill must correct its own loops without out-of-band skill pokes).
+PR skill must correct its own loops without out-of-band skill pokes;
+amended 2026-09-07 and 2026-09-26 — see Amendment Log).
 **Date**: 2026-08-31
 
 ## Context
@@ -352,4 +353,4 @@ that carries the pending mandatory cure and the dispositions, never a further cu
 round two a later below-bar finding is a disposition riding the settlement; and an over-bar
 finding found after that push keeps one late-cure push, with no further round of review
 requests. The lineage wrote the paragraph on 2026-09-25 with no entry; this entry records it,
-and the second estate took the same bytes on 2026-09-26.
+and both estates hold the same bytes from 2026-09-26.

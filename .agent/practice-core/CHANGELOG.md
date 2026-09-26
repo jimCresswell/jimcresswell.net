@@ -15,14 +15,18 @@ Practice Core package.
   entry records the word. The item and the entry are joint bytes for the
   lineage.
 - PDR-132 §Decision item 1 takes the lineage's paragraph on the two-round
-  rule, with one joint cure naming clause 4 as the late-cure door: after
-  round two, every remaining finding is dispositioned in the same turn as
-  the last push. A local amendment entry records the adoption and names
-  how item 1 differs from this estate's 2026-09-14 entry.
+  rule, with one joint cure naming clause 4's late-cure push as the door:
+  after round two, every remaining finding is dispositioned in the same
+  turn as the last push. Item 1 differs from this estate's 2026-09-14
+  amendment entry in two places, and item 1 governs (the Director's ruling
+  of 2026-09-26): an over-bar cure, not only a trivial one, rides the last
+  push; and a further push opens only through PDR-140's doors, where the
+  2026-09-14 entry made a round three a Director call on a correctness
+  defect only.
 - PDR-140 clause 4 takes the lineage's paragraph on the rebudget under the
   owner's 2026-09-14 ruling, byte-identical, and a new amendment entry
-  records it. The record is one blob in both estates once the lineage
-  takes the entry.
+  records it; its Status line names its amendments. The record is one
+  blob in both estates once the lineage takes the entry and the line.
 
 ## [jimcresswell.net] 2026-09-25 — PDR-142's goal quote stands whole
 
