@@ -1,6 +1,6 @@
 ---
 classification: core
-description: "Bot identity on third-party systems. Owner ruling — wherever a bot identity exists to represent us (on GitHub, the bot the clone's merge-bot config names; a Linear agent actor; ...), every agent WRITE on that system MUST use it: PR creation, PR and issue comments, standalone inline review comments and replies, merges, thread resolutions, label and state edits. Commits and pushes follow the estate's identity contract, which a tracked host surface records (the lane set-up skill's identity step). The rule's action map (owner ruling 2026-08-17) carries the only exceptions, exhaustively: in a detected ChatGPT Work cloud, the configured default credential for the task's delivery writes; a pull-request review submitted through the reviews endpoint — APPROVE, REQUEST_CHANGES or COMMENT state, including its body and any inline comments in the same call — under the operator's own credential, because only a human credential discharges a code-owner review gate; and a Copilot review request under the operator's credential where the host's merge-bot reference records that the bot's request does not register. Every other fallback to owner credentials without user-instigated permission is never permitted; a bot capability gap is a blocker to surface, never a licence."
+description: "Bot identity on third-party systems. Owner ruling — wherever a bot identity exists to represent us (on GitHub, the bot the clone's merge-bot config names; a Linear agent actor; ...), every agent WRITE on that system MUST use it: PR creation, PR and issue comments, standalone inline review comments and replies, merges, thread resolutions, label and state edits. Commits and pushes follow the estate's identity contract, which a tracked host surface records (the lane set-up skill's identity step). The rule's action map (owner ruling 2026-08-17) carries the only exceptions, exhaustively: in a detected ChatGPT Work cloud, the configured default credential for the task's delivery writes; a pull-request review submitted through the reviews endpoint or the GraphQL review mutations — APPROVE, REQUEST_CHANGES or COMMENT state, including its body and any inline comments in the same call — under the operator's own credential, because only a human credential discharges a code-owner review gate; and a Copilot review request under the operator's credential where the host's merge-bot reference records that the bot's request does not register. Every other fallback to owner credentials without user-instigated permission is never permitted; a bot capability gap is a blocker to surface, never a licence."
 ---
 
 # Bot Identity on Third-Party Systems
@@ -242,10 +242,13 @@ the first hop. Confirm the id from the API, never from prose:
   2. **Guard the token by LENGTH, not exit code** (`[ ${#token} -ge 20 ]`)
      — an empty read is a failure whatever the exit code.
   3. **Prove the credential before the first write** — a read-only
-     `GH_TOKEN="$token" gh api user`. An installation token answers 403
-     ("Resource not accessible by integration"), and a human credential
-     answers with its login, so an answer that names anyone is a stop
-     (both verified 2026-09-25). An empty `GH_TOKEN` is invisible at the
+     status read, `status=$(GH_TOKEN="$token" gh api -i user 2>/dev/null | head -1 | awk '{print $2}')`,
+     then `[ "$status" = 403 ] || exit 1`. An installation token answers 403
+     ("Resource not accessible by integration"), a human credential
+     answers 200 with its login, and an empty or broken token answers 401
+     or nothing, so only the 403 lets the sequence continue; the bare
+     call's exit code cannot tell these apart (both answers verified
+     2026-09-25). An empty `GH_TOKEN` is invisible at the
      call site; the preflight turns a silent misattribution into a stop
      before anything is written. A read of the author after the write
      detects and cures nothing: a PR created under the ambient owner
@@ -301,10 +304,12 @@ bot identity.** An estate's identity contract may route commits and pushes to
 the operator's shared identity instead, and the map's commit row follows it.
 It is not a per-seat grant, and no seat needs its own version of it.
 
-**The discriminator is the endpoint, never the noun in the action's name.**
-Anything submitted through the pull-request _reviews_ endpoint
-(`POST /repos/<org>/<repo>/pulls/<n>/reviews`) is a review — whatever state it
-carries, and whatever body or inline comments travel inside the same call. One
+**The discriminator is the review-submission operation, never the noun in the
+action's name.** Anything submitted as a pull-request review — the REST reviews
+endpoint (`POST /repos/<org>/<repo>/pulls/<n>/reviews`) or the GraphQL
+`addPullRequestReview` and `submitPullRequestReview` mutations — is a review,
+whatever state it carries, and whatever body or inline comments travel inside
+the same call. One
 call, one credential: a review's body has no credential of its own, so an
 approval that carries a body and a changes-requested review each have exactly one
 path. Every other write on the system is an ordinary write.
@@ -316,8 +321,8 @@ noun.
 | --- | --- | --- |
 | Task-scoped story-branch and draft-PR delivery writes in detected ChatGPT Work cloud | configured default (the host's own GitHub credential, displayed as the owner's identity; read before the write) | first-priority non-execution route; excludes reviews, merges, bypasses and destructive/admin writes |
 | Review submitted as `APPROVE` | operator | only a human review supplies the approval a code-owner ruleset waits on |
-| Review submitted as `REQUEST_CHANGES` | operator | same endpoint, same gate: a bot's changes-requested neither discharges the human review request nor registers with the ruleset |
-| Review submitted as `COMMENT` state | operator | same endpoint; it discharges the review request assigned to the human |
+| Review submitted as `REQUEST_CHANGES` | operator | same operation, same gate: a bot's changes-requested neither discharges the human review request nor registers with the ruleset |
+| Review submitted as `COMMENT` state | operator | same operation; it discharges the review request assigned to the human |
 | The **body** of any review, and any inline comment carried inside the same submission | operator, inseparably — it is one API call | see the discriminator above |
 | A **standalone** inline review comment or thread reply (`POST …/pulls/<n>/comments`, `POST …/pulls/comments/<id>/replies`) | bot | not a review submission: it discharges no request and sets no review state |
 | An ordinary PR or issue comment (`POST …/issues/<n>/comments`) | bot | as above — a comment is a write, not a review |
@@ -391,10 +396,17 @@ carry.
   the timeline, and the requested-reviewers list never shows the bot
   reviewer). Where the host's merge-bot reference records that an
   installation's request does not register, this grant is the route, and the
-  operator's credential makes the same call. The worked command:
+  operator's credential makes the same call. The worked commands, each
+  bound to its credential (a bare `gh api` would take whatever the keyring
+  holds):
 
   ```bash
-  gh api -X POST repos/<org>/<repo>/pulls/<n>/requested_reviewers \
+  # As the bot, after tripwire 3's preflight on $token:
+  GH_TOKEN="$token" gh api -X POST repos/<org>/<repo>/pulls/<n>/requested_reviewers \
+    -f "reviewers[]=copilot-pull-request-reviewer[bot]"
+  # Under the grant, where the host's merge-bot reference records that the
+  # bot's request does not register:
+  GH_TOKEN="$(gh auth token)" gh api -X POST repos/<org>/<repo>/pulls/<n>/requested_reviewers \
     -f "reviewers[]=copilot-pull-request-reviewer[bot]"
   ```
 
