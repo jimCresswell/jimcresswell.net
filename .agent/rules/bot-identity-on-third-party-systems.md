@@ -420,9 +420,10 @@ carry.
     -f "reviewers[]=copilot-pull-request-reviewer[bot]"
   # Under the grant, where the host's merge-bot reference records that the
   # bot's request does not register. `gh auth token` prints an exported
-  # GH_TOKEN, so the stored operator token is read with both token
-  # variables removed from its environment:
-  op=$(env -u GH_TOKEN -u GITHUB_TOKEN gh auth token) || exit 1
+  # GH_TOKEN, and without --user the active account's token, so the
+  # operator's stored token is read by the operator's login (the operator
+  # profile names it) with both token variables removed from its environment:
+  op=$(env -u GH_TOKEN -u GITHUB_TOKEN gh auth token --user "<operator-login>") || exit 1
   [ ${#op} -ge 20 ] || exit 1
   GH_TOKEN="$op" gh api -X POST repos/<org>/<repo>/pulls/<n>/requested_reviewers \
     -f "reviewers[]=copilot-pull-request-reviewer[bot]"
