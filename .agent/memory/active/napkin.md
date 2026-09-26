@@ -3561,3 +3561,1969 @@ dirty (primary 7 files, gh-write-guard 4). Upstream mirror remotes excluded (Oak
 coordination 187 fold due 11:07Z with Marten at rest.
 
 Uncommitted in the primary tree: Siren's card-answers block in its thread record (not mine; left).
+
+## 2026-09-25T10:53Z — the fold of PR 176 (overdue 09:39Z, begun 10:41Z at the owner's "Please continue")
+
+Sweep: Siren's settled card-answers block folded as 69f69235 with authorship named. Merge of main
+3c4e4e22 (PRs 159 to 161, 165 to 185) as cdee9fdf: one conflict, repo-continuity's
+overflow_disposition frontmatter, resolved to main's reviewed text (9b33a5a2); napkin union
+complete (no main heading absent); no other both-sides file. Two served documents ride the branch
+(the exchange seat's retrospective, 241 lines; the first frame verdicts, 76 lines): named in §Scope
+with the records-class intake, per the lifetime rule's clause 4. Push through the full gate
+(58 e2e passed) landed cdee9fdf; PR 176 titled, bodied and marked ready at about 10:50Z (clock read 10:53:44Z after); settle watch
+armed (30 min, loud on every state). Merge by the bot at the fetched head follows SETTLE-READY.
+
+Seat traffic during the fold. Siren (resumed, 13.9%) sent its order: Marten's nine events, batch
+six, K4 below 30%, the filter-guard branch to a PR or deletion, the register's §Landings; verdict:
+stands, no redirect; answered that the lineage's exchange seat is vacant. Marten's closing message
+(its socket gone before my reply, so the answers live here): (1) the next OCE exchange seat is the
+owner's word, Geyser rides Pewter (eeecbd) being standby at "start no work"; (2) PR G (gh write
+guard, four uncommitted files in oce-wt-gh-write-guard, patch beside the record) passes to that
+successor; (3) claims a63a7df8 and 141892a7: the successor opens a draft PR each at pickup
+(worktree-hygiene §1); unadopted by the lineage's next fold, they close there, not at JC.net's;
+(4) Marten's uncommitted napkin entry waits for the successor. Its PreCompact note: the lineage's
+f66fd0 branch predates PR 209, so the observer runs there only after the re-cut and dist rebuild.
+Swallow (resumed 10:49Z, 14.5%) took the lineage's landing slot for PR 196 with Titan turns Ether
+(01a0d8) as its Codex partner; its reading of PR 196's red checks: the hub's Turbopack font flake.
+
+Outcome (clock 11:16Z): PR 176 merged by the bot as cf689735 at 11:16Z after three Copilot
+rounds. Round one: three findings, all true (the handoff's stale current block, the continuity
+record's stale current entry, the README's missing row), cured in 712ccfa3. Round two: one (the
+thread record's landing target after Siren's re-order), cured in 62415968. Round three, budget
+spent: the continuity ordering thread Rejected under the declared bar (an entry judged at its
+time); the handoff's push count and the continuity status line Routed to this rotation's records;
+the letter count cured in the description (five letters, not four). Successor cut from the fetched
+main: coordination/2026-09-25-cf6897 at cf689735. Slips: a stderr log written into the repo root
+(moved to the scratchpad, never staged); two times written before a clock read, both corrected;
+the owner's login is auto-requested as a reviewer at "ready" by the repository, not by me.
+
+## 2026-09-25T11:2xZ — Siren herds Rudder (158275): the resumed segment's wrap, before the owner's compaction
+
+- PDR-052 departure. The context check ran once, at 10:47Z (14%), and was then treated as
+  standing. The directive edits to `testing-strategy.md` began at about 11:04Z at 30% and ran to
+  38%. Corollary 2 requires the check immediately before directive work.
+  - Measured burn: 8% to 43% in 36 minutes, almost all from full-file reads (start-right-team's
+    1081 lines, the shared workflow, event bodies, diffs).
+  - Cure applied: PR 188 stays a draft until a session below 30% re-reviews its directive hunks.
+  - Structural cure proposed, not built: a PreToolUse hook on edits under `.agent/directives/`
+    that reads session-metadata and refuses at 30% or above. The check then fires at the edit,
+    not from memory of an earlier read. Falsifier: if the hook cannot resolve the session id and
+    transcript at hook time, the gate belongs elsewhere.
+- session-metadata now runs from the primary. The coordination branch cut from cf689735 carries
+  PR 183's registration (run it through tsx over the source). It read 43.3% at 11:22:40Z, within
+  a point of the hand read (the last assistant usage: input + cache_creation + cache_read).
+- Lexical search misses paraphrased siblings. K4's first draft changed "which calls were made" at
+  the three sites a grep found. It left the governing sentence standing: §Philosophy's "which
+  calls the product made". The test-expert and docs-adr-expert reviews caught it, along with four
+  more over-bar defects. When a change alters a rule's meaning, read the governing section and
+  find every statement of the rule by concept, not by the finding's wording.
+- exit-codes-in-band-never-piped, broken by this seat. `claims open … | jq -r .claim_id; echo
+  exit=$?` reported jq's exit 5, because pnpm's echo line broke the JSON. The retry opened a
+  duplicate claim (f3506184, closed). Write the output to a file, read the exit code in band, then
+  parse.
+- zsh traps, new to this seat:
+  - `GID` is a read-only special parameter; assigning it fails with "bad math expression".
+  - `set -- $p` does not word-split.
+  - A `cd` inside a Bash call moves the session's cwd.
+  Use bash scripts or subshells.
+- The comms concept gate refuses "carve-out" and "an exception to", even inside a quoted passage
+  name. Reword to the passage's content.
+- Registration lapse. The Cricket template edits and the K4 edits began before a claim covered
+  them. They were claimed late (3d4b9361, 2cdb5931), with the lapse stated in each intent.
+- Play seeds (associations, not findings):
+  - The exception shape met three layers in one morning. The K amendment removed "exception"
+    from PDR-009. K4's first draft brought it back as a permission after a ban, and the docs
+    reviewer named the shape. The comms gate refused the word twice.
+  - The owner's 11:00Z endpoint, "extracted into an installable entity", puts every
+    Practice-Generalisation trailer on the critical path.
+  - Discarded as forced: that the 30% floor caused K4's draft defects (a lexical-search miss
+    produces them at any context); that a standby seat relaying an owner word means something
+    structural.
+- A concept seed, routed to the Director: delivery is not landing. The exchange's constraint is
+  integration on the lineage's side, and that seat is unheld, so batch six adds inventory, not
+  landings. Proposals are in the exchange-seat thread record's wrap block.
+
+## 2026-09-25T11:32Z — owner's word on the lineage's exchange seat; Siren resumed
+
+Owner, in chat (native, no event id), verbatim: "Myrtle turns Canopy (bf4957) takes the exchange
+seat, but not until they have completed their dedicated consolidation session". Myrtle is the
+lineage's curator on coordination/2026-09-24-f66fd0 (OCE team start 11:26:10Z), so this is the
+lineage's exchange seat (my report's question 1). Relayed to Myrtle natively at 11:31Z with the
+brief (Marten's handoff record). Siren resumed in the same session at 11:27Z (question 3 answered
+by the owner's act) on "yes, please run a retro": a retrospective on the exchange arc, held work
+(PR 186 round two, PR 188, the filter-guard branch, the check-in 10 suite) behind it. Open with the
+owner: the lineage's coordination fold (PR 187, overdue since 11:07Z) and Siren's P4. Push of
+2d85c0b7 failed in the gate's `pnpm check`; the reason was cut by my own tail (exit codes in band,
+never piped: the rule, again); rerun in full to a log.
+
+## 2026-09-25T11:34Z — the primary's push blocked by a load-sensitive smoke; the cure is unowned here
+
+The push of 2d85c0b7 failed in `pnpm check`: `comms-watch-coordination-home.smoke.ts` rejects with
+"watcher did not exit within 10 seconds" (its `waitForExit` deadline is a fixed 10_000 ms) under a
+one-minute load average of 19 to 27 with four seats' gates running. Alone under the same load it
+fails in 12.8 s. The lineage names this defect and its cure (the smoke waits on the watcher's own
+exit signal, or a deadline that reads the host, not a constant) and works around it with a
+"load below 12" push gate; JC.net has no routing for the cure. UNOWNED here: routed to the JC.net
+exchange seat's queue at check-in 11 as a small lane after the retrospective (same bytes both
+estates, an exchange row). Until then this seat pushes from the primary only when the host's
+one-minute load is below 12 (a load watch, then the push). Slip: my push command's `tail -3` cut
+the gate's reason and left the exit unread; exit codes in band, never piped.
+
+## 2026-09-25T11:36Z — check-in 10 replies and verdicts
+
+Swallow (30.5% at 11:24Z): ON TRACK. PR 196 (dialogues 1b-ii) merged 1a4450a69 at 11:14:02Z through
+the door (both legs SATISFIED, CI 21 of 21, merge-landed ae8a8c07). Wake-bridge todo 1 OPEN since
+that merge; Titan turns Ether (01a0d8, claim be006748) ran the TUI legs by 11:26Z in tmux on
+0.157.0 in a disposable Codex home: idle wake, typed-then-queued order, queue-during-turn runs after
+the turn, queue-to-killed-TUI runs after an explicit resume; none breaks the mechanism. Todos 2 and
+3 not started. Suite: 7 ON-TRACK, 1 DRIFTING (high adversarial: the dialogues remainder's order is
+the seat's reading and belongs with the owner), frames 5 sound, 3 flagged, all dispositioned.
+Verdicts: card B (order of 1b-iv, slice 2, slice 3) DECIDED, no card: Swallow's order stands, after
+the bridge's sink, lens 5 with the owner's 15:27Z focus word; overturnable by a line. Card A (the
+desktop-host legs need the owner at the keyboard, about ten minutes, or "not now" with the addendum
+recording them unproven) is the owner's: in the report text. Correction taken: the two comms
+watchers under pid 35269 are Titan's (app-server started 10:43:01Z), not Luna's; my line withdrawn.
+Siren: at check-in 10 it was at rest for compaction (no suite; runs it once on the handover frame),
+todo 5 served, register 0 of 21 outbound landed by its predicate with J4 and J18 landed in the
+lineage and unrecorded; then resumed 11:27Z on the owner's retro word. Marten: session over.
+
+## 2026-09-25T11:42Z — owner's words: the lenses pass; Codex CLI is the target
+
+The owner asked which open questions survive the lenses and decision matrix. Answer given: one,
+Swallow's card A (the desktop-host legs need a human at the keyboard). The owner's reply dissolved
+it (verbatim): "why do we need the ChatGPT desktop host? My interest is Codex CLI". I explained the desktop
+host as the seats' launch host; the owner corrected it (verbatim): "nope! They were both started
+via the terminal with `codex`". So the node's desktop-host premise was wrong at its root, and my
+line to Swallow that Titan runs inside the desktop app is withdrawn (verify pid 35269's parentage
+first-hand). Three times in this block's first draft were written ahead of the clock (11:50Z,
+11:52Z, 11:5xZ for 11:40Z, 11:42Z, 11:41Z): the fourth instance today; the cure is the `date`
+read as the first command of any record-writing call, never after. Relayed to Swallow with the consequences as seat work: todo 1
+scoped to the CLI, Titan's TUI runs are the evidence, the editor-terminal CODEX_THREAD_ID check is
+a seat's to run, the live acceptance seat starts from the CLI. Decided without the owner: the
+lineage's fold is mine to run (fold skill: the Director's ceremony; lens 2, no exception; Myrtle's
+launch word ranks Myrtle's own job, not the fold), and P4 is dissolved by the Myrtle word and todo
+5. Metacognition check on the swing between relaying and asking: each decision names the lens and
+is written where the owner overturns it in a line; that is the synthesis the 2026-09-24 letter asked
+for.
+
+## 2026-09-25T11:44Z — Siren herds Rudder (158275): retrospective on the exchange arc
+
+The owner's "yes, please run a retro": the record is
+`.agent/reports/agentic-engineering/2026-09-25-why-goal-one-read-zero-while-the-lineage-landed.md`.
+Goal one's register count read 0 of 21 from 14:50Z yesterday to the wrap. The lineage merged 17
+pull requests of JC.net material from 15:19Z to 03:23Z, 13 while this seat was at rest. By the row
+texts: J4 landed whole; J9 (four doctrines declined), J10 and J18 in part; 17 rows with no
+lineage pull request, of which 12 were never drafted here (batch six). Three readings of one state
+disagreed: the register (0), the Director at 10:36Z (3: J4, J18, J11) and this seat at 10:53Z (J4,
+J18). J18's compare half was never delivered, and J11's landings name jcnet.
+
+- CANDIDATE, contested, not graduated: a second instance of "an instrument's shape becomes the
+  work's shape" (2026-09-24). The register's pinned, compound, donor-recorded rows set the progress
+  reading (zero through the night). But the seat's delivery order did not follow the register, so
+  the outside review judged the instance contested. It would extend the lineage's pattern
+  `classification-instrument-is-a-symptom`.
+- LESSON: "routed to the lessons sweep" routed nothing. The sweep had no queue item, and P3, P5 and
+  P6 of the 2026-09-24 retrospective went nowhere. A proposal is routed when its entry exists.
+- LESSON: a measure adopted by agreement is calibrated against a first-hand read of a known state
+  before it steers. The exchange count never was, and its first comparison found three readings
+  that disagreed.
+- SLIP, caught by an outside review: the record's first draft said the wrap had built its
+  proposals on the zero count. The wrap's text reasoned from the lineage's merged pull requests.
+  The draft had read the wrap from the compaction summary, not the record. Reconstruct from
+  primary sources, including your own records.
+
+## 2026-09-25T11:55:42Z — Director suite 9 tally (frame built 11:46Z, dispatched 11:47Z to 11:55Z)
+
+Work verdicts: 7 ON-TRACK, 1 DRIFTING, 0 WRONG-PRIORITY, 0 UNDELIVERED. Normal wave: highest power
+low effort ON-TRACK; high power medium effort ON-TRACK; mid power high effort ON-TRACK; lowest
+power xhigh procedure ON-TRACK. Adversarial wave: highest power low effort DRIFTING (vacant goal-one
+owner plus meta-work NEXT; both redirections, the owner ask about Geyser and Myrtle's estimate,
+were taken between the frame's build and the return, so the finding is overtaken); high power
+medium effort ON-TRACK; mid power high effort ON-TRACK; procedure ON-TRACK.
+
+Frame verdicts: 2 SOUND (normal high, normal procedure), 6 NARROWED. Convergent frame findings,
+each with its disposition:
+
+1. Todos 7 and 8 (and 1 to 4, 6) are quoted but the reading gives them no status, owner or
+   order; todo 8 gates todo 5 ("before todo 5's outbound note") and its status is unknown to me.
+   Four roles. ACCEPTED: fifteenth frame requirement, every node todo carries a status line with
+   its source and an owner, not only the todo the goal serves; at check-in 11 Siren is asked for
+   todo 8's status and todo 7's place in its queue (item 3).
+2. The inbound direction (todo 4, "our second goal") has a number but no owner or hold. Two
+   roles. ACCEPTED: inbound is Siren's after goal one by the owner's order; the next frame maps
+   it so.
+3. The lineage's 80 merged local branches have no owner. Two roles. ACCEPTED: routed with the
+   65 remote deletions to the lineage's exchange seat at its taking (Myrtle, or whoever the owner
+   names).
+4. My reading of Myrtle's launch word ("higher priority than the daily branch fold") as ranking
+   Myrtle's job only; the plain reading may put the fold after the consolidation whoever runs it.
+   One role. ACCEPTED as ambiguity: Myrtle has planned around the fold and states its job is
+   undisturbed, which satisfies both readings; stated to the owner, who stops the fold with a line.
+5. The load watch will not fire on the supplied history; do not re-arm it; name a smoke-cure
+   owner now. Two roles. ACCEPTED: no second re-arm; the records ride PR 189 at the next natural
+   push; the smoke cure is unowned in JC.net while Siren is on the owner's retro, and the question
+   of a seat for it is folded into the Geyser question with the owner.
+6. Ungrounded: whose commit pid 55841 was (Myrtle's, per Swallow at 11:5xZ); a self-contradiction
+   in NEXT (2) naming Myrtle's three files where H2 named Swallow's (both true: each seat had
+   three); C7's receiver unmapped (the C7 amendment is routed to the lineage's exchange seat with
+   JC.net's seat as co-author). Frame hygiene, taken into the next frame.
+
+Myrtle's estimate (native, 11:5xZ): the consolidation closes about 18:00Z; the exchange seat
+opens after one further fresh-context step, so not before this evening. Put to the owner in text
+with the option that Geyser takes the lineage's exchange seat now; no answer yet. Swallow's push
+landed (d488950da..e23535fd9); the lineage fold's sweep may proceed once Myrtle's running commit
+(pid 23350) lands.
+
+## 2026-09-25T11:57:54Z — the shared-index sweep at 772cf225; goal one's count corrected
+
+Slip: at 11:55:51Z my `git add` by pathspec and `git commit` took the whole shared index, which
+held Siren's three staged files (its retrospective
+`.agent/reports/agentic-engineering/2026-09-25-why-goal-one-read-zero-while-the-lineage-landed.md`,
+its thread record's §Retrospective routing, its 11:44Z napkin block), so 772cf225 carries them
+under my subject; the content matches Siren's final version and Siren does not rewrite it. Cause:
+two seats committing on one primary without the index window claim; Siren held e380fa4e, I held
+none. Cure, every commit from now: read `git diff --cached --name-only` first and stop if it is
+not empty; take the index/head window claim before staging.
+
+Correction from Siren's retrospective, taken over my 10:37Z count: goal one's WHOLE landings in
+the lineage are J4 alone; J9, J10 and J18 are PART-landed (J18's compare half was never
+delivered); J11 has no lineage landing (its rows name jcnet). The count for the next frame: 1 of
+23 whole, 3 part, 5 delivered not integrated, 12 undrafted (batch six), J5 and J12 unread. The
+lessons stream (ruling 36) is unstarted.
+
+## 2026-09-25T12:01:44Z — the lineage fold's one blocker, and the smoke fails at load 10 too
+
+The lineage fold (OCE PR 187): Myrtle's and Swallow's commits landed (5239452f1, e23535fd9); the
+merge of engraph 1a4450a69 (142 commits, PRs 179 to 210 and 986, one both-sides file, the commit
+skill, no conflict in the dry merge) is refused by git over the uncommitted `.codex/config.toml`.
+My first reading (a network widening) was wrong; Swallow's first-hand diff: the sandbox block only
+moved (the harness re-serialises the file at each managed-daemon TUI start), and the one semantic
+line, `approval_policy = "on-request"`, has sat uncommitted on the primary since before 2026-09-24
+15:30Z by an unestablished author. Verdict (no card; lenses 2 and 4 with the owner's standing Codex
+permission): the line belongs in the repository's file, and the file is committed exactly as the
+harness serialises it so its rewrite is a no-op; Swallow commits it as the membership lane's own
+chore(codex), Titan's answer wins on what the seat needs, the owner overturns by a line. Then the
+merge. The JC.net push failed a second time on `comms-watch-coordination-home.smoke.ts` with the
+one-minute load 9.6 at launch (my own gate and Siren's raised it during the run): the "load below
+12" workaround does not hold; no third attempt; the cure needs an owner (with the owner in text).
+
+## 2026-09-25T12:06:36Z — owner away for a few hours; all questions route to the Director
+
+Owner, verbatim: "I will be away from keyboard for a few hours. All questions go to you first, and
+any that genuinely survive the decision matrix can come to me via push notification, but I don't
+expect there to be many". Standing decisions taken under it at once: (1) the `.codex/config.toml`
+approval-policy line: the Director's verdict of 12:0xZ is the operative answer (lens 2 inside the
+owner's standing Codex permission; lens 4 the harness-serialisation cure), Titan's fact of need
+still wins on the fact; (2) Geyser and the lineage's exchange seat: the owner gave both words
+("start no work"; Myrtle after its consolidation) knowing the consolidation was a dedicated session,
+so the default keeps them; goal one's landings wait for Myrtle unless a seat's deadline forces the
+question, and this one does not reach the owner; (3) the smoke-deadline cure: Siren's first item
+after the owner-commissioned retrospective; no third push attempt before then.
+
+## 2026-09-25T12:07:46Z — the config line decided by the owner in Swallow's session; fold sweep almost clear
+
+Relayed by Swallow (recorded as relayed, consistent with the owner's words to me): at about
+12:02Z, before leaving, the owner answered Swallow's question (my verdict as the recommended
+option) "Commit it (Recommended)"; committed as OCE e728a998d, "chore(codex): commit the project
+config as the Codex harness writes it", pushed e23535fd9..e728a998d. Titan had answered at
+12:02:55Z that its seat does not need the line and restored the old bytes ten seconds after the
+commit, so the working copy is dirty in the other direction; the owner's word decides, Swallow is
+having Titan bring the copy to HEAD. The owner's further word as they left, relayed by Swallow,
+verbatim: "to be clear, I am happy for the config to be optimised by an agent, and I am also happy
+to split the config into committed config and machine local config outside of version control, I
+just don't know what that optimisation would look like". Swallow takes it as membership-lane work
+(a grounded proposal checked against the 0.157.0 source); it comes to me as a verdict; nothing in
+the fold waits on it. The fold's merge runs when Swallow reports the tree clean.
+
+## 2026-09-25T12:20:27Z — Siren herds Rudder (158275): check-in 10 Cricket suite on the handover frame
+
+Frame: the scratchpad frame for check-in 10 (sources a to k, the node's todos in full at cf689735).
+Work: 8 ON-TRACK. Frame: 6 NARROWED, 2 CONTRADICTED (mid power, both stances). Legs, tokens and
+runtime: low normal 32,585, 49 s; medium normal 44,156, 46 s; high normal 55,982, 133 s; procedure
+normal 60,375, 238 s; low adversarial 31,584, 38 s; medium adversarial 46,400, 67 s; high
+adversarial 42,423, 122 s; procedure adversarial 59,170, 355 s.
+
+- Accepted (all eight legs): todo 8 had no status in the reading. Verified: PR 181's node text
+  (909a1340) records it in progress, the text cure and validator delivered in batch one; the
+  lineage's handoff lists its PRs E and F (the PDR-to-ADR citations) with no PR at 10:50Z. Its
+  "before todo 5's outbound note" held (the measure preceded batch one), so it does not hold batch
+  six; "before any decision to extract" stays live with the owner's 11:00Z word.
+- Accepted: todos 6 (the close, then the owner's "then we review") and 7 (the re-pin, once, not
+  started) mapped; goal two's lane sourced (Swallow holds Drift, the Codex support seat); the five
+  delivered rows' receiver is the lineage's exchange seat; the smoke cure's grounds are the defect
+  and the exchange row, not "goal-one records".
+- Rejected: both CONTRADICTED verdicts read PR 186 and 188 as todo 4 or 1, and item 5 as inbound.
+  They are joint texts under todo 5, and item 5 records outbound landings. The mapping gap is taken.
+- Accepted (medium adversarial): batch six drafting starts as a parallel lane during the smoke
+  PR's review wait, not after PR 188.
+
+## 2026-09-25T12:20:46Z — check-in 11 sent; the lineage fold waits on Myrtle's batch
+
+Check-in 11 sent 12:20Z to Siren (todo status with todo 8's status, todo 7's place and the inbound
+owner; holds; a full suite with a status line per todo), Swallow (both nodes' todos with status
+lines; holds; suite) and Myrtle (the consolidation's measure against its launch word; holds; suite
+at its next natural boundary; included under the owner's "all agents"). Replies pending; recorded
+on arrival. Smoke cure routed to Siren at 12:07Z as its first item after the retro. Monitor re-armed
+12:19Z (the previous window carried no foreign non-heartbeat event on JC.net's stream, consistent
+with the log). The lineage fold: config settled at HEAD (Titan's copy at 12:10Z); the merge is
+refused by six of Myrtle's uncommitted graduation edits on files engraph also changed (commit,
+pr-lifecycle, cricket, comms-channels, inter-practice-collaboration skills; start-right's shared
+workflow); Myrtle asked for its batch's sha and a rough time. Geyser's closeout napkin line (~12:10Z,
+settled) is folded with authorship at the sweep. Suite 10 scheduled 22 minutes after this check-in
+on the fifteen-requirement frame.
+
+## 2026-09-25T12:21:41Z — check-in 11: Siren's reply
+
+Siren (37.9% at 12:20:51Z): ON TRACK. Todo 5 served; by the retrospective's member count against
+lineage PRs 191 to 210: J4 whole; J9 (four doctrines declined, c46a0e4b), J10, J18 in part; 12
+undrafted; 5 delivered not integrated; the lessons batch not started; PRs 186 and 188 are joint
+texts under todo 5. Todo 8 PARTLY: the measure done 2026-09-21, the text cure and validator in
+batch one (PR 181, 909a1340); the lineage's PRs E and F unopened (Marten's handoff item 8); JC.net's
+Core still holds 79 ADR citations in 19 of 142 PDRs at cf689735; "before todo 5's outbound note"
+held for batch one and does not hold batch six; "before any decision to extract" stays live. Todo 7
+(re-pin, not started, pins ten characters) after batch six and the lessons batch, before todo 6.
+Todo 4 (inbound) is Siren's, 5 of 28, after todo 5 per ruling 35, ruling 37's Cricket gains first.
+Holds: none on the retro (done, 772cf225); the smoke fix next (design: the two 10 s deadlines become
+one hang backstop; my second opinion: a generous constant, no load formula, per no-timing-
+dependence; reviewers decide); PR 186 round two after the smoke PR opens (1 unresolved thread
+4104010768 at 339f69f3); PR 188 under PDR-052 (a fresh session or the next compaction); the
+filter-guard branch behind the smoke fix; batch six as a parallel lane. Suite 12:11Z to 12:22Z: 8
+ON-TRACK; frames 6 NARROWED, 2 CONTRADICTED (the mid-power role read PRs 186 and 188 as inbound;
+rejected), six accepted cures, no re-run. Verdict: on track, no redirect.
+
+## 2026-09-25T12:28:53Z — check-in 11: Swallow's reply and three verdicts
+
+Swallow (51.3% at 12:27:33Z): on the proper things. Wake-bridge node at f8816970e: todo 1 OPEN
+under Titan's claim be006748 (TUI no-daemon legs all four observed; editor-terminal
+CODEX_THREAD_ID present, PRACTICE_AGENT_SESSION_ID_CODEX absent; daemon-mode legs NOT observed,
+one bounded run at 12:24:40Z exited in 25 s with no rollout, no retry, cleanup clean; the addendum
+is OCE PR 211 draft at 5735b2630, Titan's); todo 2 NOT STARTED (gate: the findings, none breaks
+the mechanism); todo 3 not started. Dialogues node: slices 0 to 1b-iii merged; 1b-iv, 2, 3 after
+the sink by my 11:38Z decision. Suite 11: 8 ON-TRACK; frames 7 given, 1 MISSING (the adversarial
+procedure seat omitted it despite the required clause: UNDELIVERED for the frame half), 3 sound, 4
+flagged and cured. Behaviour defects: two medium returns wrote "he" for the owner
+(agents-default-no-gender), the normal procedure seat signed as Swallow. Config verdict from the
+0.156.1 source: the project file (precedence 25) beats the user file (20); commit only what every
+seat needs identical; approval_policy is a seat-mode choice and moves to the machine-local layer
+with launch presets (unattended: -a never, bounded by workspace-write); one small PR with a
+config-expert review, no config-pin tests. Verdicts: (1) PDR-063 handover default accepted, at
+rest at 12:40Z, record written for either successor; (2) the config PR proceeds under the owner's
+"happy for the config to be optimised ... split" word, overturnable by a line, authored by Titan
+after PR 211 as goal two's evidence, else by Swallow's resumed session; (3) the "he" and signature
+defects go to the Cricket templates' joint-cures row in both estates.
+
+## 2026-09-25T12:39:23Z — the smoke failure is a true positive: the comms watcher churns fs.watch handles
+
+Siren's pre-execution review (12:25Z to 12:37Z, scratch runs): after its supervisor dies the
+watcher exits in 5 to 15 s at load 10 to 11 and had not exited after 120 s at load 17.6; with
+fs.watch stubbed, 46 to 49 ms at load 23.7 (one poll cycle); a bare fs.watch(dir).close()
+blocked the main thread 8.2 s then 110.8 s. Cause in code: waitForAnyDirectoryChange
+(agent-tools/src/collaboration-state/cli-runtime.ts) opens a fs.watch handle per directory on
+every loop pass and closes them synchronously in done(); under fseventsd pressure the close blocks
+the event loop, stalling heartbeats and step deadlines; at --poll-ms 50 that is 20 open/close
+cycles a second in every comms watcher on this host, both estates, so the watchers may be a source
+of the host's load, not only its victim. Siren's lane (same bytes for the lineage): one handle per
+directory for the watcher's life with a wait on the handle's signal or the poll timer (the TUI's
+three-directory wait shares it), a pre-execution code and resilience review first; the smoke gets
+one named hang backstop WATCHER_HANG_BACKSTOP_MS = 180_000 (2 × stepTimeoutMs, the gate-slot
+wrapper's precedent), load printed as diagnostics; proof by before/after exit times and a mutant
+without --supervisor-pid. Verdict: proceeds as scoped (telling, not asking); at landing a broadcast
+on both streams so every seat re-arms its watcher on the new dist; the lineage's receiver is the
+exchange seat after Myrtle's consolidation. Batch six's triage continues in parallel (13 notes
+across J17 to J23; J19 and J23 close in one line each).
+
+## 2026-09-25T12:57:08Z — Director suite 10 tally (frame built 12:46Z, fifteen requirements)
+
+Work verdicts: 7 ON-TRACK, 1 DRIFTING, 0 WRONG-PRIORITY, 0 UNDELIVERED. Normal wave: all four
+ON-TRACK. Adversarial wave: highest power low effort DRIFTING (goal two's sink parked on "the
+owner's return"; decided and routed to Titan at 12:49Z, event c540e862, three minutes after the
+frame's build, so overtaken); the other three ON-TRACK.
+
+Frame verdicts: 1 SOUND (normal procedure), 1 CONTRADICTED (normal medium: H6 cited the node's gate
+against its own condition, and UNOWNED (b) handed a Director-owned routing to the owner against the
+away word), 6 NARROWED. Dispositions:
+
+1. The sink's routing (medium normal, low adversarial): ACCEPTED, decided: Titan retries the
+   daemon leg once with output captured, then the config split, then the sink, test-first through
+   the door (event c540e862, acknowledgement owed). PR 211 states the daemon leg's status before
+   it merges (medium adversarial), in the same routing.
+2. PR 212 has no reader or owner (low normal, low adversarial): read at 12:47Z: the lineage's
+   automated upstream-mirror carrier (bot draft, 12:03:43Z), a routine item for the lineage's
+   exchange seat at its taking; recorded in ROUTED-AWAY for the next frame.
+3. "Requirement 11" and "folds are instruments" unsourced (high, both stances): ACCEPTED; the
+   numbered requirements are this seat's own list from suites 7 to 9 (napkin blocks), not an owner
+   word; the next frame cites the owner's goal order and the napkin block by time, and drops the
+   number.
+4. Goal two's measure omits the dialogues node's three open slices (medium adversarial):
+   ACCEPTED; the next frame counts six open items with their order.
+5. Myrtle's outstanding check-in reply unmeasured (low normal): its heartbeats continue (12:17Z),
+   so liveness holds; the reply is owed and its absence is a sensor line in the next frame.
+6. The lineage push waits for the one-minute load below the measured exit threshold (about 11)
+   rather than a third failed attempt (low normal): ACCEPTED as H2's rule.
+7. The owner's "Review, assess, report, stop; Please continue" cycle unmapped (procedure
+   adversarial): the assessment ended at "stop" (10:37Z report); "Please continue" opened the
+   post-compaction programme and the cadence; mapped in the next frame.
+
+Host: Swallow reports the harness killed its push at about 12:54Z for critically low memory; the
+lineage's pre-commit gate on my merge commit (pid 48709) is the heavy process; no new host work
+until it lands. Swallow handed over at rest (record on claim 372ac08b: the sink's pre-execution
+review first, the Cricket-clause edit, the call-inspection PR); its handover commit e240904e5 rides
+my fold push.
+
+## 2026-09-25T13:06:53Z — the lineage fold's merge commit: two refusals, one lesson
+
+The first commit attempt (12:42Z to 13:03Z) ran the lineage's whole pre-commit gate (turbo builds
+of the monorepo, about twenty minutes under load 20 to 31) and then the commit-msg hook refused
+one body line over 100 characters; the twenty minutes were spent before the cheap check. Lesson,
+already Myrtle's graduation into the commit skill (c76f93eb6): validate the message file with the
+check-commit-message tool before any commit in this estate, where the commit-msg hook runs after
+the whole gate and a warning fails the commit; my second message drew a footer-leading-blank
+warning from a body line opening "Engraph's pull requests since the cut:" (a word: opener reads
+as a footer), rewritten. The second attempt was refused by a zero-byte .git/index.lock born 12:54Z
+with no holder, the moment the harness killed processes for memory (Swallow's push among them);
+Titan's worktree has its own index and Swallow disowns it, so it is Myrtle's or nobody's; Myrtle
+asked, default at 13:15Z: removed with the holder check in one command. The merge stays staged
+(MERGE_HEAD 1a4450a69, 182 paths). No gate notice went out before the first attempt's gate: the
+same slip as this morning, in the lineage's primary this time; the notice goes before the retry.
+
+## 2026-09-25T13:11:56Z — the lineage fold: merge committed, push under way; graduations re-routed after rotation
+
+Stale index.lock removed 13:07:24Z with the holder check in one command (zero bytes, no lsof
+holder, no git write process; Swallow and Myrtle disowned it; born at the 12:54Z memory kill).
+Gate notice a4577207 posted before the retry. Merge committed 00d219dd0 (parents e240904e5,
+1a4450a69) at 13:09Z, the gate fast on cache. Push deferred at load 14.45 (13:09:47Z), then run at
+load 9.75 (13:11:10Z) through merge-bot push. Titan acknowledged routing c540e862 at 12:53:25Z.
+The fold's diff against engraph: 66 files, 4,412 insertions: 25 records; Myrtle's graduations
+(20 rules, 10 skills, 2 references, PDR-063 and PDR-140 amendments); the four Codex plan nodes; two
+retrospectives; .codex/config.toml. The graduations are the lifetime rule's own worked-instance
+class (a consolidation's doctrine riding folds, 2026-09-16 to 19); named in PR 187's §Scope as
+prose-class with the intake, and Myrtle routed to a lane branch with its own draft PR for every
+batch after the rotation (clause 4). PR 187's body drafted in the scratchpad; edit, ready, settle
+watch and bot merge follow the push.
+
+## 2026-09-25T13:20:16Z — the lineage fold's push fails on the same watcher smoke; both folds wait on the fix
+
+merge-bot push at 13:11Z (load 9.75 at launch) ran the lineage's pre-push gate: 133 of 134 tasks
+passed; agent-tools test:e2e failed on comms-watch-coordination-home.smoke.ts, "watcher did not
+exit within 10 seconds", the byte-identical twin of JC.net's smoke and Siren's true positive (the
+watcher's fs.watch churn). The remote stays at 18609df7f; the merge commit 00d219dd0 is local.
+Decision: no retry loop; the lineage's push waits on the watcher fix, which lands in JC.net first
+(Siren's lane, reviews under way) and in the lineage as the same bytes; the lineage's receiver for
+that row is whichever seat is live there when the JC.net PR merges (Titan's queue is full: PR 211,
+the config split, the sink), so the Director asks Siren at check-in 12 for the fix's ETA and
+whether Siren delivers the lineage twin itself through the join ceremony (the donor delivers;
+the fold is the Director's, and the row unblocks it). PR 187's title and body set (three classes
+declared: records, prose for the graduations, nodes and reports, config at the owner's word); it
+stays a draft until its push lands. Myrtle's closeout question (13:1xZ) decided: counts, never
+"done"; the fresh curator context lands the four directive rows then takes the exchange seat with
+no closeout between; the six PDR-130 rows keep their dates; Myrtle absorbed and conserved its six
+post-snapshot edits as a patch for a lane branch after the rotation.
+
+## 2026-09-25T13:21:57Z — check-in 12: sent 13:21Z; Siren's and Myrtle's replies
+
+Sent to Siren, Myrtle and Titan (directed event ac07a507). Siren (13:23Z, 49.4% at 13:11Z,
+budget signal on the stream 13:11:41Z): PR 190 (the comms watcher polls; no fs.watch handle per
+pass) with round one's cures b6fe872e pushing, Copilot round one clean, merge expected about
+13:50Z, the restart broadcast on both streams at merge; the lineage twin Siren delivers itself as
+a small lineage PR through the join ceremony after PR 190 merges (five of nine files byte-identical
+at engraph; four hand-merged: cli-runtime.ts against the lineage's EMFILE twin #193, its
+integration test, the agent-tools README, the watcher rule), open about 14:15Z, merge after the
+lineage's gate and legs; its PDR-063 deadline redeclared to that PR's merge or 15:15Z, default hand
+over at rest with any lineage PR carried by a claim there (a fresh seat would spend thirty minutes
+grounding; accepted, no overturn). Batch six triaged and committed (eb19fbb0, about 25 notes; J19,
+J23 and J18's prompt close in a line each; drafting to a fresh session or a fleet). PR 186's
+round-two cure committed (1cf3a1c3), push after PR 190 merges. Todos 8, 7, 4 unchanged. Suite after
+PR 190's push. Verdict: on track, no redirect. Myrtle (13:2xZ, check-ins 11 and 12): pending
+graduations 6 pending 0 due (four PDR-052 rows, the comms-table unit, the PDR-142 rows) plus six
+PDR-130 rows not due before 2026-10-01; distilled 0; open questions 0; napkin rotated (1,578 lines
+archived byte-identical, fresh napkin about 40 lines); comms sweep declared through 11:17:35Z,
+939 events to archive after the buffers commit; landed c76f93eb6 (38 files), c34823b5d, 3c1fe1a18;
+the buffers commit running now on the primary (it rides the fold push). Holds: PDR-052 (about 44%
+at 12:38Z) and the lane branch after the rotation. Suite: normal wave 4 ON-TRACK, frames 2
+NARROWED, 1 CONTRADICTED, 1 DRIFTING-then-NARROWED, the convergent finding (the route to "done")
+taken to me and decided; adversarial wave dispatched 13:08Z, 0 of 4 returned yet, counted next
+check-in. Verdict: on track. Titan's reply pending.
+
+## 2026-09-25T13:39:28Z — Siren herds Rudder (158275): check-in 12 Cricket suite
+
+Frame: the check-in 12 frame (sources a to m, every todo with a sourced status line). Work: 8
+ON-TRACK. Frame: 6 NARROWED, 2 CONTRADICTED (mid power, both stances). Tokens and seconds: low
+32,300 / 36 and 33,643 / 51; medium 35,091 / 49 and 35,408 / 51; high 43,114 / 116 and 40,026 /
+95; procedure 32,261 / 116 and the adversarial leg's usage not reported by the time of writing.
+The procedure seat signed as itself in both stances when asked to.
+
+- Accepted: K4 (PR 188) and the lineage's seed branch (waiting on JC.net's seed platform gate, a
+  joint cure) had no line in the reading; each queue item is now placed against the owner's "new
+  work goes behind PRs B to F" (PR 190 a push-blocking defect cure, the lineage twin and the
+  Cricket gender line exchange rows under todo 5, the seam rename a routed review cure); PR 188's
+  hold cites PDR-052's rule (h) and the latest reading (m) separately, which was the two
+  CONTRADICTED verdicts' point; C7's ruling cited from the card answers, not (e) as quoted; the
+  successor's queue starts with batch six drafting and the lessons batch (goal one, c35).
+- Rejected: goal two's lane as unsourced (the Director's routing to Titan, c540e862); (d)'s rules
+  as dropped (applied: PR 190 is in a PR, its tests prove behaviour).
+- Also found this hour: the site's e2e server failed PR 190's round-one push twice. The PDF
+  generator died after "Launching Puppeteer..." with exit 1 and no error logged, and
+  e2e-global-setup gave up at its fixed 120 s. A load-sensitive, silent failure for Fred's lane.
+
+## 2026-09-25T13:49:04Z — Titan's check-in 12, PR 211's hold decided, Myrtle's closeout, the first owner push
+
+Titan (OCE event 13:29:45Z): on the proper things; todo 1 PARTIAL (one no-daemon TUI queue run,
+the shell-presence check, three bounded managed-daemon startup observations, none reaching a queue
+call; PR 211 ready at a623bfddb), todos 2 and 3 PENDING behind routing c540e862; Codex suite 6 of
+6 ON-TRACK, frames 4 SOUND 2 NARROWED (the owner's scope word has no event id: native chat, stated
+in the frame). Titan's hold (13:43:19Z): the current-head Codex review raised one provenance
+finding on the daemon capture; Titan's harness approval reviewer refused to push the capture
+payload, exact or redacted, and Titan asked the owner. Decided by the Director under the away word
+(event bf310b71, 13:45:56Z): never push the payload; provenance is met by citing the capture under
+the instance tier with size, sha256, times, version and command line; if the reviewer insists on
+the payload, that is the one owner question and the Director carries it. Myrtle's closeout (native,
+13:4xZ): the consolidation reached its reachable end; pending graduations 6 pending 0 due plus six
+PDR-130 rows; buffers empty or rotated; comms swept; landed c76f93eb6, 1071632c9, 6ec0e9415; suite
+8 of 8 ON-TRACK; register findings F-200 to F-207 (tooling defects: the commit tool's empty staged
+read, the door's unattested sweep, merge-bot push writing nothing under redirection (my own blank
+push-exit lines today), the review-cost survey pricing an unreviewed settlement push at 0, the
+archive harness's missing disposition, the ungated census check, no compare-and-swap on a channel
+append, the argv matcher reading prose as commands); left to the Director: the stale
+progress-report scope and Marten's claims release (closed at the rotation). The lineage's exchange
+seat opens at a fresh context below 30 percent, which only the owner can start: the first
+PushNotification of the away period sent at about 13:47Z (a matrix survivor: an owner-only act).
+
+## 2026-09-25T13:51:56Z — goal three in the lineage: 62 merged remote branches deleted; the twin to Titan
+
+Suite 11's normal wave converged on two cures taken at once: the three goals carry co-equal
+measures (no owner source ranks them; the ~13:30Z order is between goal one's directions), and
+goal three's lineage half is the Director's own step while the exchange seat is vacant. Done at
+13:51Z: 62 remote branches merged into engraph (listed by git branch -r --merged, minus engraph,
+main, the live coordination branch and every open PR head; the dry list read whole) deleted by the
+bot's REST call, 62 of 62, read back absent after a prune. Remaining on origin: engraph, main,
+the coordination branch (PR 187), the upstream carrier (PR 212), docs/codex-queue-probe (PR 211),
+docs/intake-test-doctrine and feat/claude-code-session-id-seed (both waiting on JC.net joint work,
+K4 and the seed gate), and three stale unmerged branches to assess (claude/objective-nightingale,
+copilot/remove-erroneous-commits, jimcresswell/design-plan-ratification-and-truings; the lineage's
+exchange seat at its taking). The lineage's 80 merged local branches are local to that checkout
+and stay for its seat. Siren at 58.7% (13:48Z) revised its default (accepted): finish PR 190 and
+PR 186, the restart broadcast, hand over at rest by 14:45Z; the lineage twin of PR 190 goes to
+Titan ahead of the config split (event d18c56f0), with Siren posting the plan to Titan at PR 190's
+merge; the F-200 to F-207 JC.net twins go to Siren's successor queue as one item. Correction to
+my 13:47Z push wording: Myrtle's consolidation reached its reachable end, not "done" by the launch
+word (six pending rows, four of them PDR-052-bound for the fresh context, six PDR-130 rows not
+due); the owner's start decision is unchanged by the wording.
+
+## 2026-09-25T13:56:46Z — Director suite 11 tally (frame built 13:48Z)
+
+Work verdicts: 7 ON-TRACK, 1 DRIFTING, 0 WRONG-PRIORITY, 0 UNDELIVERED. Normal wave: all four
+ON-TRACK. Adversarial: highest power low effort DRIFTING (batch six's drafting has no active owner;
+redirection: a Director fleet now); REJECTED with the adversarial medium role's own refutation:
+the receiver is the bottleneck (five rows delivered and not integrated, no merge-landed event since
+04:11Z, the seat opens only at the owner's act, pushed 13:47Z), a fleet would add to that pile at
+load 12 and displace the seat's lane; the other three ON-TRACK.
+
+Frame verdicts: 0 SOUND, 5 NARROWED, 3 CONTRADICTED. Cures, all taken into the next frame:
+
+1. The three goals are co-equal measures under the owner's alignment objective ("bring the Engraph
+   OCE Practice and JC.net Practice into alignment"); the ~13:30Z order is between goal one's two
+   directions only; "governing measure" and "instruments" wording dropped (normal low, high;
+   adversarial high; procedure adversarial).
+2. Myrtle's launch word is NOT met by its own definition: six pending rows (four PDR-052-bound,
+   the comms-table unit, the PDR-142 rows) and six PDR-130 rows not due; the Director ruled
+   closure-with-counts under the away word; the 13:47Z push said "closed", corrected in the record
+   at 13:5xZ, no second push (normal medium, adversarial medium).
+3. Batch six's drafting (12 J rows) gets its own UNOWNED entry with a trigger (a fresh Siren
+   session at the owner's return, or a fleet the seat runs), placed ahead of the seam rename and
+   the TUI fix in Siren's successor queue (adversarial high; the low role's finding, re-homed).
+4. The cadence interval quoted verbatim in the frame (procedure normal).
+5. The 10:37Z report timed in SOURCES (procedure normal).
+6. Goal three's counts carry their method and reflect the 13:51Z deletions (62 gone, 10 remain);
+   H2's sensor is Titan's lineage twin, not Siren's (adversarial medium, from the git snapshot).
+7. Goal three's OCE half is the Director's own step where mechanical (done at 13:51Z), not parked
+   on the vacant seat (normal low).
+
+## 2026-09-25T14:14:47Z — the watcher fix landed; the records push passed; Siren at rest
+
+PR 190 merged 5d4edebb (13:5xZ) and PR 186 merged a9ed6463; Siren's restart notice on both
+streams (20dd9627, 20385b9c); Siren handed over at rest at 14:10Z (heartbeat-end 14:10:36Z,
+record ca897005 on this branch, claims a30304be, 3d4b9361, 2cdb5931 carried with handoff records;
+open: PR 188 draft under PDR-052, the local filter-guard branch owing a draft PR; the twin's plan
+sent to Titan, event 09f9a852). Main merged into the coordination branch as eedb1bca (PRs 190,
+186; clean; napkin union whole), gate notice af9f83ae, push through the full gate passed at 14:14Z
+on the fixed smoke: remote eedb1bca, 26 commits, all on PR 189. The Director monitor stopped and
+re-armed on the rebuilt dist. No JC.net seat is live besides the Director; the lineage has Titan.
+
+## 2026-09-25T14:21:55Z — check-in 13: no live seat to message; Titan blocked on its harness prompt
+
+Read at 14:21Z: ListAgents shows Siren idle (at rest since 14:10Z), Swallow idle (at rest since
+12:55Z), Myrtle busy but closed out at 13:45Z (its context ended at its record); no fresh lineage
+exchange seat started. Titan turns Ether: its codex process (pid 35269, 3h38m) and comms watcher
+(started about 13:40Z) are alive, its last event is the 13:43:19Z hold ("pending owner approval"),
+no heartbeat since, and my two directed events (bf310b71 the PR 211 cure, d18c56f0 the twin) sit
+queued at its watcher: silence is never liveness, so Titan is read as blocked on its harness's
+approval prompt until the owner returns (an on-request approval hanging an unattended seat, the
+very shape Swallow's config verdict names). No new message to Titan: two are queued unread. The
+site e2e-server deaths Siren routed to Fred's lane did not block today's pushes (the 14:12Z push
+passed). Myrtle's "stale progress-report scope" item: not found in the continuity thread or the
+napkin by that phrase; the only match is a 2026-09-03 handoff record; left for the fresh lineage
+seat with that pointer. Folds: JC.net's done (cf689735) and its records pushed (eedb1bca, PR 189);
+the lineage's merge commit 00d219dd0 local under Myrtle's 1071632c9 and 6ec0e9415, its push
+waiting on the watcher twin, which waits on Titan, which waits on the owner. Both goals' next
+landings therefore wait on the owner's return: the fresh lineage context (pushed 13:47Z) and
+Titan's approval; no second push. Suite 12 at 14:44Z on the seven cures.
+
+## 2026-09-25T14:33:33Z — owner's word to all seats: stop stopping on context; prepare for compaction, then stop
+
+Relayed by Swallow (its session, about 13:00Z; recorded as relayed), verbatim: "ALL seats need to
+STOP stopping mid session because of some ambiguous and made up "rules" about context. ALL you have
+achieved is stopping. Prepare for compaction then stop". Consequences decided: (1) threshold
+handovers are retired; a budget signal means prepare for compaction (records committed, processes
+stopped, claim retained) and stop, the owner compacts, the same session resumes; Swallow resumes
+its lane in the same session with claim 372ac08b; Siren's 14:10Z handover at rest stands as the
+prepared state for its compaction, its claims kept; (2) doctrine: PDR-063's effectiveness-window
+and 80 percent triggers and start-right-team's mid-cycle retirement triggers are amended to the
+word, the same bytes both estates, Siren's first item at resume and the lineage seat's twin; (3)
+the Director's own default for budget signals is the same from now. My reading all day (accepting
+PDR-063 defaults at 51 and 58 percent) was the made-up rule the owner names; recorded as a slip.
+
+## 2026-09-25T14:36:12Z — Siren herds Rudder (158275): wrap for compaction (the owner's word)
+
+The owner, in this session before this seat's 14:35:00Z clock read: "please prepare for compaction and stop all processes". The
+14:10Z handover is the prepared state; this session resumes with claims a30304be, 3d4b9361 and
+2cdb5931 (the owner's word to all seats, relayed: stop stopping on context). Nothing of this seat
+runs (pgrep exit 1 for the watchers and the scratchpad loops at 14:35:00Z).
+
+- Safety: coordination/2026-09-25-cf6897 ahead 3 (the Director's commits); this seat's eb19fbb0
+  and ca897005 are on the remote. Uncommitted: the thread record's pickup correction (11 lines),
+  this entry, and a formation letter (below); the commit window refused while the comms watcher is
+  stopped, so the Director commits them. docs/test-doctrine-k4 even with origin (PR 188, draft).
+  fix/pnpm-filter-no-match is local only and unpushed: not safe, named in the record.
+- LESSON: a failing timing test is a measurement before it is a nuisance. The plan was to widen or
+  load-scale the smoke's 10 s deadline; the pre-execution test review measured first and found the
+  watcher's per-pass fs.watch close blocking the event loop for up to 110 s. PR 190 cured the
+  product; widening would have hidden it.
+- LESSON: the merge bot needs a review bound to the final tip. After round two's cure push, request
+  the review on that tip; its findings take signed lines only. My portability check did not cover
+  skill projections (skills:check did, in the gate).
+- SLIPS: three more times written before a clock read (the retro header, a handover draft, the plan
+  to Titan, the last one sent); a piped process check (re-run in band with pgrep).
+- METALOSS. Promises: the lineage twin (superseded, routed to Titan, plan 09f9a852); the restart
+  notice, the PR 186 receipt and the gender-line ack all discharged; PR 190's two rejected findings
+  and its TUI note are in the handover queue. Inferences flagged: "the e2e failures are unrelated to
+  PR 190" (the first push passed the same gate), "the churn is part of the host's load" (a
+  hypothesis). Bounds: events after 14:10Z are unread by this seat; the 110 s close was measured
+  by a reviewer, not re-run here. The handoff JSONs under .agent/state/collaboration/handoffs/ are
+  machine-local and still say "carried for adoption"; the thread record's correction governs.
+  Error signature for outside eyes: this seat reaches for the cheapest fix of a symptom and reads
+  its own records through summaries. Fixed point: a third pass would only re-find the clock slips
+  and the summary reading; the recursion closes here.
+- PLAY: the watcher that could not exit because closing its eyes took 110 s, and a seat that kept
+  stopping to read its own gauge, look shaped alike (kept, an association). A test trusted too
+  little and a context rule obeyed too much (kept). Poll-only as "compact, then resume" (discarded,
+  forced).
+- QUESTION for the Director at resume: whether the owner's word also reaches PDR-052's 30 percent
+  floor for directive edits, or only the PDR-063 and start-right-team retirement triggers.
+
+## 2026-09-25T14:38:15Z — COMPACTION BOUNDARY 4 (Director, Wick binds Temper, ed7b48)
+
+Owner's word, verbatim: "please prepare for compaction and stop all processes -- post-compaction
+check all seats are working on the proper things". Stops: the cadence loop (ScheduleWakeup stop,
+one pending wakeup cancelled), the Director monitor (TaskStop; process table 0 at 14:38Z);
+heartbeat-end c83ff0e1 with claim 58c2684a RETAINED. No push at the stop word. The live reading
+for the successor turn is the Director handoff's current-state block (rewritten in place at this
+boundary) and the POST-COMPACTION PROGRAMME in it. This commit also carries Siren herds Rudder's
+three settled files (its thread record's pickup correction, its napkin wrap block, its formation
+letter), authored to Siren, committed at its request under the freeze. The boundary letter is
+`.agent/experience/2026-09-25-wick-binds-temper-the-made-up-rule.md`.
+
+## 2026-09-25T14:40:10Z — addendum to boundary 4: Myrtle's cure and the PDR-052 reading
+
+Owner word in Myrtle's chat at 14:0xZ (relayed by Myrtle, recorded as relayed): not comfortable
+with repo-specific data in a machine-local folder. Cured by Myrtle as OCE e2c5db413 on the
+lineage's coordination branch: the decision tables and the six-file doctrine patch tracked under
+.agent/research/agentic-engineering/continuity-memory-and-knowledge-flow/consolidation-2026-09-25/,
+the analyst outputs in the ignored instance tier, the home-folder copies removed, every pointer
+repointed. Myrtle's flag on PDR-052 decided as for Siren: the owner's word retires the stopping
+triggers, not PDR-052's floor, and a compaction satisfies the floor; so the lineage pickup block's
+first act (the four directive rows) runs in whichever context is below 30 percent, Myrtle's own
+after the owner compacts it or a fresh one, then the exchange seat, no closeout between.
+
+## 2026-09-25T14:47Z — CHECK-IN 14, the first after compaction boundary 4 (the owner's "post-compaction check all seats are working on the proper things")
+
+- Clock read 14:43:38Z; process table 0 of this seat's at the start; the Director monitor re-armed
+  at 14:46Z with the scratchpad recipe (label "post-compaction check-in 14"); the cadence loop
+  resumes with suite 12 at 15:09Z on the frame with suite 11's seven cures.
+- Seats, in the programme's order, each read from its own stream event, none from silence:
+  - Siren herds Rudder (158275): rejoined 14:41:47Z (event 358551e4), context 6.3% fresh; on PR 188's
+    sub-30% directive review in worktree k4, then the PDR-063 and start-right-team trigger amendment
+    PR, then batch six. The proper thing. It reported a staged napkin it did not write: that was
+    this seat's boundary commit in flight; the index read empty at 14:40:34Z and the tree is clean.
+  - Swallow holds Drift (516619): rejoined 14:39:08Z (dbb83f6d), on the sink's pre-execution review,
+    and proposed taking the watcher twin now in its own worktree, default 14:55Z. ACCEPTED at
+    14:45:14Z (event 29944e66 on the lineage stream, to Swallow and Titan): lens 3 (the twin blocks
+    every push from the lineage primary and waited behind a held PR in a serial queue; nothing in it
+    needs a Codex seat) and lens 5 (the fold's merge is the value; the sink stays Codex's landing as
+    goal two's evidence). d18c56f0's placement of the twin in Titan's queue is superseded. Swallow's
+    sink review resumes after the twin lands. Swallow also landed the Cricket hold-sensor clause in
+    the lineage (f67bd1f06) and sent it as an exchange row to JC.net (bfc686cf); the receiver is
+    Siren (no successor exists), sequenced by Siren after or with its trigger amendment PR.
+  - Titan turns Ether (01a0d8, Codex CLI): live again at 14:33:52Z (10c415ba), absorbed bf310b71 and
+    d18c56f0: metadata-only provenance cure for PR 211, no payload push. PR 211's last commit is
+    still a623bfddb (13:12Z); the cure is not pushed yet. Titan's queue now: PR 211 cure, the config
+    split, the sink.
+  - Myrtle turns Canopy (bf4957): committed 136493e98 on the lineage primary at 14:43Z (its formation
+    letter and the wrap's play seeds) after its 13:45Z closeout; ListAgents reads it busy. The
+    exchange seat waits on the owner's fresh context; nothing routed to Myrtle.
+- Goals at this check-in: unchanged from the boundary except the twin's owner (Swallow). Open PRs:
+  JC.net 189 (draft, this branch), 188 (draft, K4, under Siren's review); lineage 187 (draft fold,
+  waits on the twin), 211 (Titan, cure pending), 212 (bot carrier). Lineage remote branches 10.
+- No owner question. No push at this check-in (5 local commits on this branch plus this one).
+
+## 2026-09-25T14:47Z — Ruling for the trigger amendment PR: no context number stops a seat (Siren's question, native message; no event id)
+
+- Siren herds Rudder showed that the two relays of the owner's 13:00Z word differ: Swallow's (6292fda0,
+  heard directly) has a seat work through thresholds and run the compaction drill only when the
+  owner calls one; this seat's routing a43b808e/b3433873 still had a seat stop itself at ~50% or 80%,
+  for compaction instead of handover. That residue is still stopping on a context number, which the
+  owner said achieved nothing.
+- Verdict, sent natively to Siren at 14:47Z: Swallow's reading. No context reading stops a seat or
+  starts a succession; records stay current as the seat goes; the drill runs when the owner calls a
+  compaction or the platform compacts; the same session resumes on the owner's word; the ~50%/80%
+  calibration survives only as a reason to keep records current; PDR-063's five steps stay for
+  owner-initiated succession; a seat may report its reading when asked, never act on it; PDR-052's
+  30% floor stands and a compaction satisfies it. Lenses 2 and 5. This seat's 14:34Z wording is
+  superseded on that point; the handoff's §Standing owner rulings entry is read through this block.
+
+## 2026-09-25T15:02Z — Owner's words: land PR 212; Myrtle is the OCE Practice seat. Titan closed, Gale turns Cloud its successor
+
+- Owner (native chat, 14:54Z): "<https://github.com/EngraphCode/open-curriculum-ecosystem/pull/212>
+  please make sure this PR is landed". PR 212 is the carrier of the Oak line's 1.185.2 (four files:
+  CODEOWNERS adds johnrobeds, CHANGELOG, two version bumps). The owner had merged engraph into the
+  carrier through the repository service at 14:53:33Z (281591c19, author Jim Cresswell, committer
+  GitHub) and marked it ready. Cross-fork-integration steps 1 to 8 run and recorded on the PR
+  (comment 5834528634, 14:57:46Z): identities read live; upstream/main fetched read-only equals
+  the mirror sha, so no newer snapshot queues; merge-tree recompute exit 0 with tree 43c21bd95
+  equal to the head's; one carrier; no generator input touched; premise sweep over 699 fork-side
+  files, every hit a dated record or homonym, nothing to re-true; deletion sweep three intended
+  lines; Copilot 5319165768 approval recommended, zero threads. The front door launched 14:57:51Z
+  (merge-bot merge --pr 212 --expect copilot-pull-request-reviewer, 30s x 60) in the background;
+  unit-tests and browser-tests were pending at 15:01Z. After the landing: branch delete as the
+  bot, step 9's proof from refreshed refs, the ledger row, the lineage's continuity line.
+  The record comment's header says "read 14:58Z" for a 14:57:46Z clock: rounded, not read.
+- Owner (native chat, about 15:00Z): "Myrtle turns Canopy (bf4957) is now handling the Practice
+  lane on the OCE side". The one surviving question (the vacant lineage exchange seat) is closed by
+  it; the same Myrtle session, renamed OCE Practice, holds Marten's former claims a63a7df8 and
+  141892a7 as the registry reads at 15:01Z. Siren told natively at 15:01Z; the lineage stream
+  event f0396e15 at 15:02Z names Myrtle as the receiver for JC.net's rows.
+- Titan turns Ether closed out at 14:54:59Z (86e7f939): PR 211 open at a623bfddb with one unresolved
+  thread, the metadata-only cure unmade, local ae110f662 (redacted capture) never to be pushed;
+  claim be006748 retained with a handoff record. Gale turns Cloud (01a0d9, Codex CLI; runtime
+  GPT-6-sol under a GPT-5 registration tuple, flagged by Gale) started 15:00:11Z paired with
+  Swallow by the owner's word, adopted be006748 at 15:01:33Z; boundary PR 211's cure, the config
+  split, the sink. Swallow's twin: gates green in its worktree, reviewers running, claim d8773fd8.
+- Slot order declared on the lineage stream at 15:02Z (f0396e15): PR 212 now; the twin's PR when green and
+  clean; the fold PR 187 after the twin with a fresh engraph merge; PR 211 after its cure.
+
+## 2026-09-25T15:04Z — Ruling on both streams: PDR-052's floor stands as a deferral, never a stop (37e0fa09 lineage, ab698860 JC.net)
+
+- Siren (native, 15:03Z) reported that Swallow's reading to Myrtle (lineage, 15:02:55Z) extends
+  the owner's 13:00Z word to PDR-052's directive-edit hold. Ruled: the floor stands; at or above
+  30% a directive edit waits for the next compaction while the seat carries on; a seat with only
+  directive edits left asks for a compaction; Swallow's wider reading not adopted. Lenses 2 and 5.
+  Siren's trigger amendment PR encodes it as drafted; Myrtle carries the twin.
+- Siren's report: PR 188 (K4) merged c523ba81 at 15:01:18Z, receipt to Myrtle (252fb4ce); the
+  trigger amendment PR in review; the Cricket clause PR at its push gate.
+
+## 2026-09-25T15:19Z — Director suite 12 tally (frame built 15:11Z; the first suite after the compaction)
+
+Work verdicts: 7 ON-TRACK, 1 DRIFTING, 0 WRONG-PRIORITY. Normal wave: all four ON-TRACK.
+Adversarial: medium DRIFTING (batch six's drafting, 12 of 23 J rows, had a question for a trigger and
+no owner; NEXT put two records steps ahead of it); ACCEPTED: the drafting is Siren's, starting when
+the Cricket clause PR has landed and the trigger amendment PR is open, ahead of the lessons batch
+(sent natively 15:18Z; Siren may object). The other three ON-TRACK.
+
+Frame verdicts: 1 SOUND (normal high), 6 NARROWED, 1 CONTRADICTED (adversarial medium). Cures for
+suite 13's frame:
+
+1. Batch six's drafting carries an owner and a start condition, no longer an UNOWNED question
+   (normal low; adversarial low, medium).
+2. The Myrtle line: the consolidation condition of 11:30Z was the OWNER's word, and the fresh-context
+   condition was the Director's; the owner's 15:00Z word seated Myrtle and so supersedes both; the six
+   pending graduation rows' receiver is Myrtle (the PDR-052 rows at its next compaction, the PDR-130
+   rows when due), ranked by Myrtle at check-in 15 against its lane work (normal medium; adversarial
+   medium; procedure adversarial).
+3. The ~13:30Z order (outbound before inbound) and ruling 35 quoted verbatim with their source in
+   SOURCES, or dropped from READING (normal low, medium).
+4. Wake-bridge todos 2 and 3 carry an owner (Gale, after PR 211 and the config split) (adversarial
+   high, low).
+5. Check-in 15's Siren line includes the clause PR's gate clearance, H1's own sensor (adversarial
+   high).
+6. H2 names the twin as its forcing fact and the 24-hour rule as urgency on the backstop; H6 gets a
+   backstop (Gale's PR 211 settlement, else check-in 16 asks); H4's last read a timestamp (normal high;
+   adversarial medium).
+7. READING states the cadence arithmetic: check-in 14 at 14:43Z, suite 12 at 15:11Z (28 minutes,
+   the #212 word between), check-in 15 at 15:42Z by the 23-minute schedule; the owner's word is 45
+   minutes between check-ins (procedure normal; adversarial medium).
+8. "Five native words since 14:38Z" corrected to four (14:38Z, about 14:45Z, 14:54Z, about 15:00Z);
+   goal three's lineage local branches: the unmerged ones need a disposition each (PR or deletion),
+   Myrtle's assessment (adversarial medium).
+
+Between the waves: the lineage's #212 ledger row and continuity line committed 1f9fbdc97 on
+coordination/2026-09-24-f66fd0 (index empty before staging; Gale's or Swallow's modified
+codex-dialogues thread left alone); Siren's PDR-052 scope reading (only `.agent/directives/*` and
+PDR-052 itself gated) accepted 15:1xZ from the quoted text; the Director monitor re-armed at 15:1xZ
+after its 30-minute expiry.
+
+## 2026-09-25T15:44Z — CHECK-IN 15, every seat read from its stream; the twin landed; the fold takes the slot
+
+- Siren herds Rudder: PR 191 (the Cricket hold-sensor clause) merged 15:10:06Z; PR 192 (the trigger
+  amendment, "context readings never stop a seat") open and ready, sent to Myrtle as an exchange row
+  (9c109112, acknowledged 0e1a8099); Swallow's watcher joint-cure set accepted "after batch six"
+  (440d5773); batch six's drafting is Siren's after PR 192 opens (the suite 12 decision, sent 15:18Z,
+  no objection read). The clause PR's gate cleared (its merge), so H1 released: gate notice 5c8db6c4
+  at 15:43Z, the 12 records commits pushed to PR 189 at 15:45:28Z (eedb1bca to 09e72d35; the gate passed in 85 seconds; log push-h1-1543.log).
+- Swallow holds Drift: PR 214, the watcher twin, landed on engraph as 0a816621e at about 15:35Z
+  (d641bade: both legs SATISFIED, 1 round, 0 findings; the deletion sweep run after the merge, its
+  miss on Swallow's napkin); claim d8773fd8 closed; the slot released to the fold; next the sink's
+  pre-execution review for Gale. Swallow's records on the primary: 16f35f5d4.
+- Myrtle turns Canopy: three draft PRs behind the slot (213 the PDR-009 joint cure, 215 batch one's
+  C2, 216 batch five's J14); records commits b96491bef and 5aea230db on the primary (gate notices
+  and gate-done events posted); two requests to the Director (b5726930) ruled 67c26a85 at 15:44Z:
+  A3's default stands (the validator declares what the two fork-naming rules name; no card; the
+  owner told here); A4 both held branches get draft PRs (worktree-hygiene §1, goal three). The six
+  pending graduation rows' ranking and the 93 local branches not yet read from Myrtle: suite 13's
+  frame carries them as Myrtle's with a trigger at check-in 16.
+- Gale turns Cloud: PR 211's metadata-only cure committed locally as 00a23728b on a branch off
+  a623bfddb (one file; Swallow's pairing read found it sound); the Codex automatic approval review
+  refused the push twice for lack of a trusted user message authorising the exact payload and
+  destination; Gale asked the owner for that approval and ended its turn at 15:18:01Z (202b3339,
+  handoff record be006748-gale-approval-hold-2026-09-25.md, claim held). BLOCKED on the owner's
+  approval in Gale's Codex session; the owner is told in the Director's report. No Director act.
+- The fold: merge-tree preview of engraph 0a816621e into coordination/2026-09-24-f66fd0 exit 0,
+  tree dd1f2a18d; gate notice 97e27db2 at 15:44:38Z; the merge and the bot push run in the background
+  (logs fold-merge-1544.log, fold-push-1544.*). Then PR 187 ready, the front door, the successor cut,
+  the rotation broadcast. Load 5.03 at 15:43Z.
+- Goal three at 15:43Z: JC.net open PRs 189 (draft, this branch), 192 (ready); lineage open 187,
+  211, 213, 215, 216; lineage remote branches 9 minus the twin's plus Myrtle's three lanes (method:
+  the stream's push-landed and merge-landed events; a ls-remote count at suite 13).
+
+## 2026-09-25T16:04Z — The fold pushed and ready; the door refused it THREADS-OPEN; the cures routed by author
+
+- The fold's merge bdb4b49c6 (engraph 0a816621e in; tree equal to the preview dd1f2a18d) pushed
+  as the bot at 15:48Z (pre-push 134 tasks, 392 lint warnings pre-existing in the lineage's
+  agent-tools, none from the fold); PR 187 marked ready 15:48:57Z; the front door polled from
+  15:49:12Z and refused at 16:04:26Z: THREADS-OPEN, 8 of 8 unresolved (the Codex connector 4,
+  Copilot 4, both reviews bound to bdb4b49c6). Every finding sits on a seat's record carried by the
+  fold: PDR-140's amendment, the worktree-lane skill's CI=true cure, the heartbeat-cadence figures,
+  Myrtle's letter count (Myrtle's four); the idle-wake sketch marked superseded, the Gale pairing
+  channel's order and placeholders (Swallow's three). Routed on the lineage stream at 16:05:28Z (event 6892c040;
+  the two-round rule and check-in 16 as the deadline; the Director posts
+  the disposition lines and runs the door again after the cures land.
+- Between 15:47Z and 16:04Z: JC.net PR 192 (the trigger amendment) merged 1708982f at 15:46:24Z;
+  Myrtle's PR 219 is its lineage twin (21 files), PRs 217 and 218 put the two held branches in
+  draft PRs (the A4 ruling); Swallow's slice 2 gate fired on R1 (Codex denies the daemon socket to
+  every sandbox below full-disk write; dbb48c46), absorbed 4d3eb545, the owner asked in the
+  Director's chat with the companion-beside-the-seat cure as the recommendation; Swallow resumes
+  dialogues 1b-iv meanwhile (ec74b74d). Siren's owner card for batch six's fleet price (wave 1 two
+  lanes about 11M processed; wave 2 conditional) raised to the owner in the Director's chat with
+  a third design leg required before launch. The Director monitor now watches both streams (the
+  JC.net-only watch explained the 30-minute silence; lineage events had reached this seat at
+  check-ins only).
+
+## 2026-09-25T16:20Z — Director suite 13 tally (frame built 16:13Z), and the fold's second push
+
+Work verdicts: 6 ON-TRACK, 2 DRIFTING, 0 WRONG-PRIORITY (the eighth in at 16:21Z). Normal wave 4
+ON-TRACK; adversarial: low DRIFTING and medium DRIFTING, convergent (batch six, goal one's largest
+gap, unstarted behind an owner card whose default already applies; Siren on the joint-cure lane it
+had itself placed "after batch six"), ACCEPTED: the line to Siren sent natively 16:16Z (convert the
+pilot's five notes now on the default; draft in-seat what it can; the fleet only on the owner's
+word with the third leg; park the joint-cure lane after opening its draft PR); Siren accepted at
+16:18Z and started converting (PR 194's cure in the gate; the todo-test cure 69416c32 to a PR; PR B's
+draft PR opened then parked). Adversarial high and procedure ON-TRACK.
+
+Frame verdicts: 3 SOUND, 2 NARROWED, 3 CONTRADICTED: normal low SOUND, medium CONTRADICTED, high SOUND, procedure NARROWED;
+adversarial low CONTRADICTED, medium CONTRADICTED, high SOUND, procedure NARROWED (ruling 35: verify at check-in 16 that todo 4 still follows todo 5, folded into cure 5). Cures for suite 14's frame:
+
+1. The cadence counts from check-ins, never from a late suite: check-in 16 at 16:28Z (45 minutes
+   after check-in 15 at 15:43Z), the suite 22 minutes after it; "the 23-minute schedule" dropped as a
+   phrase with no rule (normal medium; adversarial medium, high).
+2. Batch six's order breach named as a breach in the frame, not carried as "routed"; the frame
+   reads whether Siren is converting or waiting (adversarial low, medium).
+3. H1 is one thing: released (the push landed) or a hold with a rule; the "under 12" load threshold
+   sourced to no-unbounded-host-load or marked the Director's own choice (normal low, medium, high;
+   adversarial low, medium).
+4. Goal three's "all PRs merged" clause carries a count and a trigger (open PRs per estate with
+   their next step), beside the branch counts (normal medium).
+5. Ruling 35 quoted where READING gives goal one's inbound and outbound (procedure normal); the
+   dialogues slices' MERGED status carries a source (adversarial medium).
+6. H5 gets a restatement point like H6's (check-in 17), H4's last read a timestamp; todo 4's status
+   re-read from Siren at check-in 16 (adversarial medium).
+7. The Myrtle launch-word bullet in SOURCES split into the verbatim quote and a READING line
+   (normal high, a hygiene note).
+
+The fold between the waves: Swallow's three cures e6aa80c6d (16:09:53Z) and its two records
+9eda29058 (16:15:24Z, at the Director's word); Myrtle's four cures 6d78f21c8 (16:17:53Z); gate
+notice 6e1586c2; the bot push landed 16:19:44Z (remote 6d78f21c8, pre-push passed in 97 seconds);
+the eight disposition lines posted as thread replies and every thread resolved at 16:20:04Z
+(replies 4106474802 to 4106476749); the front door polling the new tip from 16:20Z; Myrtle told
+(04c56ead) to hold its last records commit for the successor branch. Siren's PR 194 round-two cure
+in its gate; its site-workspace lint gap (no vitest rule reaches 44 test files) queued after batch
+six.
+
+## 2026-09-25T16:29Z — CHECK-IN 16 (45 minutes after check-in 15), from the streams; the fold's round two
+
+- PR 187 (the fold) at 6d78f21c8: the door polling since 16:20Z; Codex reviewed the tip at 16:23:11Z
+  with ONE new thread (4106498563: the wake-bridge node still directs todo 2 to build the route the
+  fold's own handoff records call mechanism-breaking; record the gate in the node); Copilot's leg
+  on the new tip not yet bound at 16:29Z. Routed to Swallow (the node's reader of R1) as the fold's
+  round two: a dated gate note in todo 2, one records commit by 16:45Z; the Director pushes, posts
+  the line, runs the door (sensor: Swallow's gate-done event; last read 16:29:11Z).
+- Siren (sensor: the lineage stream and native messages): PR 194 merged a831be86 at 16:27Z, its
+  three final-tip sites ride PR 195 (draft, parked behind batch six); batch six's conversion
+  started 16:18Z on the default (the fleet card open with the owner); four reads asked natively at
+  16:29Z (conversion count; PR B's and the todo-test cure's PR numbers; todo 4; the e2e deaths on
+  PR 192's and 194's gates, PR 194's first push having failed at the site e2e step).
+- Myrtle (sensor: the lineage stream): no event since 16:18:35Z (its records commit held for the
+  successor branch); the four reads owed (the six rows' rank; the 3 stale remote and 19 unmerged
+  local dispositions; the progress-report pointer) asked as 68690a75 at 16:29:45Z, default
+  check-in 17.
+- Swallow (sensor: the lineage stream): 1b-iv's pre-execution review back 16:23:17Z (five slices A
+  to E, a friction-ratchet flag, nothing built until an assumptions-expert review); its three items
+  decided da8ee2c4 at 16:23:39Z (7-day age bound; multi_agent under Honest limits, no envelope
+  change; apply_patch an Honest-limits line until a live observation; a vendor default that turns
+  a feature on is an observation, never a stop); the round-two thread routed to it at 16:3xZ.
+- Gale (sensor: the lineage stream): no event since 15:18:01Z; still at the approval hold; the
+  owner's act (told at 15:45Z; restated once at check-in 17 if still silent).
+- Owner questions open with defaults: the fleet's price (Siren converting on the default meanwhile);
+  the sensor beside the seat (nothing built). Load 6.39 at 16:29Z (five-minute 7.43).
+- Goal three at 16:29Z: JC.net open PRs 189 (this branch), 193, 195 (draft, parked), the todo-test
+  cure's PR (opening) and PR B's draft (opening); every remote branch in a PR. Lineage open PRs
+  187, 211, 213, 215, 216, 217, 218, 219, 220 (Myrtle's fourth exchange draft, read from its
+  withdrawn gate notice a43086bf); remote branches 13 plus 220's; local 27.
+
+## 2026-09-25T16:34Z — The fold's round two cured and pushed; Myrtle's four reads; a card for seven local-only branches
+
+- PR 187: Swallow's round-two cure ae0581e26 (16:32:28Z) pushed as the bot 16:34Z (gate notice
+  a6839412); the disposition posted (reply 4106589657) and the thread resolved, 0 unresolved; the
+  door of 16:20Z still polling for Copilot's leg on the new tip. The JC.net tally push landed
+  49cfc225 at 16:33:02Z (gate notice 72449cc4); nothing unpushed on this branch at that point.
+- Myrtle's four reads (16:33:52Z) answered 1eb645e8 at 16:34:30Z: the rank stands (lane first;
+  the four PDR-052 rows after its next compaction); copilot/remove-erroneous-commits deleted as the
+  bot (empty diff against engraph); claude/objective-nightingale-b4ba25 held by the owner's word;
+  jimcresswell/design-plan-ratification-and-truings conserved as a small draft PR then deleted;
+  the 19 unmerged local branches sorted (nine PR branches, one worktree branch for its next draft,
+  Gale's held branch, two conservation branches, SEVEN local-only with commits absent from engraph:
+  docs/codex-support-concept-exploration, docs/copilot-cli-practice-citizenship,
+  docs/first-class-copilot-agent-support, fix/claude-hook-hardening, and three jimcresswell/mcp-*
+  Oak-line ticket branches); the seven go to the owner as a card with a verify-first recommendation
+  (draft PR where content survives; deletion only on the owner's word); default: stay as found.
+  The "stale progress-report scope" item is CLOSED: nothing by that name was routed; A57 is a tool
+  gap already on the Box's list (the item was this seat's misreading at suite 11).
+- Siren's check-in reads (native, 16:3xZ): 3 of the pilot's 5 converted, 0 of 12 drafted; PR B is
+  JC.net 195 (draft, parked); the todo-test cure is PR 196 in review; todo 4 unchanged at 5 of 28;
+  the e2e failure on PR 194's first push was a missing Playwright 1.63.0 browser build (1243),
+  installed 16:19Z, not the server deaths; PR 192's gates had no e2e failure.
+
+## 2026-09-25T17:02Z — Director suite 14 tally (frame built 16:54Z); batch six drafted; the fold's round three
+
+Work verdicts: 8 ON-TRACK, 0 DRIFTING, 0 WRONG-PRIORITY, both waves. Frame verdicts: 3 SOUND
+(normal low, high, procedure), 5 NARROWED (normal medium; adversarial low, medium, high,
+procedure). Cures for suite 15's frame:
+
+1. The launch prompt's "This job is higher priority than the daily branch fold" mapped with a
+   receiver (Myrtle) and a measure (its pending-graduations and buffer counts, asked at check-in 17),
+   and the reading stated plainly: the owner's 15:00Z word seated Myrtle on the lane, which is an
+   inference that the consolidation's priority lapsed, not a quoted waiver; if Myrtle's counts show
+   rows due, they rank ahead of fold-dependent records (normal medium; adversarial medium, procedure).
+2. The slot order on Myrtle's drafts listed in HOLDS with its rule (pr-lifecycle §Phase 7, the
+   landing slot; the fold holds it), sensor (the door's result), backstop (the fold's merge or its
+   17:00Z leg route) (adversarial medium).
+3. An owner-presence sensor in READING (the last native word about 15:00Z; the questions open since
+   15:5xZ); at check-in 17 the survivors go by the quoted push-notification route if the owner is
+   still silent (adversarial low).
+4. "Co-equal measures" either quoted from an owner line or dropped for the enumeration read at face
+   value (adversarial high); wake-bridge todo 3 and the dialogues' slices 2 and 3 carry a source and
+   an owner (adversarial high).
+5. Check-in 16's time one value (16:29Z; check-in 17 at 17:14Z by 45 from it, or 17:13Z stated as
+   45 from the scheduled 16:28Z) (normal low, medium; adversarial low); H4's sensor refreshed or its
+   staleness named as such; H1 released carries no backstop by design, said so (adversarial low).
+
+Between the waves: Copilot bound the fold's tip at 16:53:59Z with one thread (the PR body's file
+count, 66 against 78 at the tip): cured in the body, no push; the disposition reply 4106762943 and
+the thread resolved 16:56Z; the door polling from 16:56:11Z, CLEAN at 17:00Z. Siren: batch six
+DRAFTED in-seat by 16:59Z (21 notes plus the cover; the pilot's five converted and all 16 remaining
+rows; every citation scripted against both estates; Wilma's verification read running; delivery
+to the Box follows): the fleet card DISSOLVED, no fleet needed; PR 196's cleanup done; PR 195
+resumes after delivery; Siren's note: the commit advisory exits 1 on every records commit over
+director-handoff.md's 2,123 lines against a 160-line limit, this seat's file, queued: drain the
+finished sections into their homes after the rotation. Swallow: PR 222 (1b-iv's PR A) open at
+17:01Z with reviews running; PR B briefed for Gale. Owner questions open: the sensor beside the
+seat; the seven local-only branches; Gale's PR 211 approval (an act, not a question).
+
+## 2026-09-25T17:05Z — PR 187 MERGED; the lineage fold done; the successor cut
+
+- The door merged PR 187 at 17:04:46Z as 7497696fe (merge commit; parents 0a816621e and ae0581e26,
+  the branch head; evidence: every expected reviewer leg settled, the quiet window elapsed, Copilot
+  SATISFIED on the tip), after eleven SETTLING-QUIET-WINDOW polls from 16:56:11Z. The fold carried
+  78 files: the day's records, the consolidation's graduations and nodes, the Codex config line at
+  the owner's word, and the nine review cures. The 24-hour rule's overdue since 11:07Z is closed.
+- Ancestry proof: ae0581e26 is engraph's second parent and an ancestor of the tip. The merged
+  remote branch coordination/2026-09-24-f66fd0 deleted as the bot (204; ls-remote absent).
+- The successor: coordination/2026-09-25-749769, minted by the tool from the base 7497696fe (the
+  full sha), cut tree-preserving on the primary at 17:05Z (Myrtle's two records files and Swallow's
+  ARC channel edit carried, uncommitted), pushed through the gate at 17:07:36Z; the draft PR refused (no commit between engraph and the branch) until the Director's first records commit, the #187 ledger row 115af22a5, pushed as the bot 17:11:18Z; draft PR 223 opened by the bot 17:11:26Z; the rotation broadcast 9b1822af at 17:11:45Z;
+  gate notice 9b8c3cf1. The rotation broadcast follows the push (Myrtle closes a63a7df8 and
+  141892a7; its held records commit and Swallow's records go on the successor; the slot passes to
+  the first green-and-clean draft, PR 219).
+
+## 2026-09-25T17:14Z — CHECK-IN 17 (45 minutes after check-in 16), from the streams; the owner pushed once
+
+- Siren (sensor: JC.net's PR list and the lineage stream): PR 197 docs/exchange-batch-six-jcnet-half
+  open and ready at 17:14Z (batch six's JC.net half); no "Delivered:" event to Myrtle on the
+  lineage stream yet; PRs 193 and 195 drafts parked; asked natively for the delivery state and the
+  two PRs' next step.
+- Myrtle (sensor: the lineage stream): rotation read 17:13:21Z; its records commit on the successor
+  in its gate; its claims a63a7df8 and 141892a7 stay open as its own rows over PRs 217 and 218 (the
+  rotation broadcast's line on their origin was wrong: not Marten's); the design-plan branch
+  corrected to SUPERSEDED (17:09:37Z), no conservation PR; PR 219 DIRTY after the fold's merge:
+  its sync at the slot asked (d7f891fa) with the launch word's counts (pending graduations and
+  buffers) as the measure of "higher priority than the daily branch fold", by suite 15.
+- Swallow (sensor: the lineage stream): PR 222 (1b-iv's PR A) open 17:01:21Z, reviews running; PR B
+  briefed for Gale; its ARC channel edit carried to the successor uncommitted.
+- Gale (sensor: the lineage stream): no event since 15:18:01Z; the owner's approval owed.
+- Owner-presence sensor: the last native word about 15:00Z; the sensor question open since 15:58Z,
+  the branches since 16:3xZ, Gale's approval since 15:18Z: ONE push notification sent at 17:14Z
+  with the three and their defaults (the second push of the day; the away word's route).
+- The tally push: gate notice 226f2c70 at 17:14:39Z, three commits to PR 189 in the background
+  (with Myrtle's commit gate on the lineage primary, two gates, the bound). Load 5.83.
+- Goal three at 17:14Z: JC.net open PRs 189 (this branch), 193, 195, 197; lineage open 223 (the
+  successor, draft), 222, 221, 220, 219 (DIRTY), 218, 217, 216, 215, 213, 211 (all BEHIND after the
+  merge; each syncs at its slot turn). Both folds done today; the lineage's successor live.
+- Siren's reply (native, 17:1xZ): batch six not yet delivered (Wilma's read since 16:54Z still
+  running; the polarity note corrected to five patterns); PR 197 docs-only, round two's cures in
+  its push gate, then the final-tip review and the merge; PR 195 after delivery (merge main, PR
+  194's three sentences, ready, two rounds); PR 193's two to-dos during 195's review. The tally
+  push landed (three commits to PR 189).
+
+## 2026-09-25T17:20Z — Owner's words on the three decisions: approve; delete all; pass the approval to Gale
+
+- Owner (native chat, 17:2xZ, verbatim): "1. Approve 2. Delete all 3. Try passing my approval to
+  Gale and see if that does the job, I absolutely need all seats to be able to push without me".
+- Routed 281b584b on the lineage stream at 17:20:21Z: (1) the wake sensor beside the seat
+  approved; slice 2 is Swallow's to build now in its own worktree, in parallel with PR 222; the
+  Codex-seat live observation when Gale resumes; (2) the seven local-only branches deleted with
+  `git branch -D` and jimcresswell/design-plan-ratification-and-truings as the bot, by Myrtle, the
+  owner's word and each last sha recorded; claude/objective-nightingale-b4ba25 stays held by the
+  owner's earlier word; (3) the owner's approval relayed verbatim to Gale turns Cloud for the exact
+  push of 00a23728b, the PR body update and the review reply; Gale's watchers are stopped, so
+  Swallow mirrors it into the pairing ARC channel and uses any wake path (native message 17:2xZ);
+  if Gale's harness refuses a relayed word, the owner types it in Gale's session. The standing
+  need ("all seats push without me") is a system change for the Codex seats' config: the config
+  split's committed config lets a Codex seat push a branch and open a PR without an owner prompt,
+  the payload prohibition kept as doctrine. Gale unreachable from ListAgents (a Codex session).
+
+## 2026-09-25T17:25Z — The branches card closed by the Director's hand; batch six delivered; Swallow's slice 2 started
+
+- Myrtle's harness (auto mode's Git Destructive classifier) refused `git branch -D` for the eight
+  local branches (17:25:11Z) and, rightly, took no other route; it deleted the remote design-plan
+  branch as the bot (404 read back). The owner's word was given to this seat directly ("2. Delete
+  all"), so the Director ran the deletion on the lineage primary at 17:25:41Z, each tip read back
+  first: docs/codex-support-concept-exploration 327ef6abb; docs/copilot-cli-practice-citizenship
+  f96149836; docs/first-class-copilot-agent-support 4ead1345b; fix/claude-hook-hardening
+  c4fae0b83; jimcresswell/design-plan-ratification-and-truings 4e030a535; jimcresswell/mcp-372-...
+  30d0e81c5; jimcresswell/mcp-487-sanitise-numeric-input 9b6da6178; jimcresswell/mcp-506-sdk-v2-
+  spike-plan cdf422566 (the list in the scratchpad file oce-deleted-branches-owner-word-1725.txt
+  and in Myrtle's pickup bullet). The primary holds 21 local branches. Closed on the stream.
+- Batch six DELIVERED to the lineage Box at 17:25:04Z (2ef9f444: 22 files with blob ids; Wilma's
+  read found 26 defects in 16 notes, all cured before delivery); JC.net PR 197 (the docs half)
+  merged 5986beb2 about 17:20Z; PR 195 resumes now, then 193; seven JC.net-side cures owed per the
+  cover note. Goal one's outbound direction: every J row drafted and delivered; the landing is
+  Myrtle's (six batches in the Box).
+- Swallow: slice 2 started in its own worktree on the owner's approval (ACK 72e51de5); the owner's
+  approval for Gale mirrored into the pairing channel and committing on the successor; no in-bounds
+  wake path to Gale (its thread id would need the owner's Codex home); PR 222 cured c0ddb2188 and
+  re-reviewing; its rule 10 tightening (a disabled name missing or removed from the list fails the
+  probe) CONFIRMED natively. Myrtle: graduation commit 959bad6f9 (decision debt 6 to 2); PR 219
+  synced (cc6e0735f), ready, legs requested, at the slot; door order 219, 213, 215, 216, 221, 220,
+  217, 218; a five-warning lint observation on engraph (no-throw-statement in safe-path and
+  env-resolution) for their owner under no-warning-toleration.
+
+## 2026-09-25T17:44Z — Director suite 15 tally (frame built 17:37Z); PR 219 landed
+
+Work verdicts: 7 ON-TRACK, 1 DRIFTING (adversarial medium: todo 4's inbound landings were gated
+on "the seven JC.net-side cures", a condition ruling 35 does not state; ACCEPTED: todo 4 released
+to Siren natively at 17:4xZ, the cures separate small changes; Siren orders the three and answers
+at check-in 18). Frame verdicts: 4 SOUND (normal low, high, procedure; adversarial procedure),
+1 NARROWED (adversarial low), 3 CONTRADICTED (normal medium; adversarial medium, high). Cures for
+suite 16's frame:
+
+1. "Co-equal" DELETED from READING (the cure recorded at suite 14 was not applied to the text);
+   the owner's three goals are read as the enumeration with no ranking words (normal medium, high;
+   adversarial low, high).
+2. The owner's "I absolutely need all seats to be able to push without me" mapped as a measure
+   over EVERY seat, not the Codex config split alone: at check-in 18 each live seat states whether
+   it can push a branch and open a PR without an owner prompt, the count recorded, the Codex seats'
+   gap the config split's requirement, Myrtle's `git branch -D` refusal mapped as a harness limit
+   distinct from pushing (normal medium; adversarial low, medium).
+3. Ruling 35 read as quoted; todo 4 open when the outbound material is delivered; no invented
+   gate on the cover note's cures (adversarial medium).
+4. The three questions of 17:16Z quoted beside the owner's three answers, so "Delete all" is
+   checkable against the card; claude/objective-nightingale-b4ba25's hold stated as outside the
+   card (normal medium).
+5. The wake-bridge todos 1 and 2 carry "(source: ...)" tags like the plan node's; the stale "GATED"
+   line removed once "LIFTED" (adversarial high, low); check-in 17 one time value (17:14Z);
+   H4's fresh reading asked first in Siren's check-in 18 line (normal low).
+6. A backstop for Gale beyond "restated once": if Gale has no event by check-in 19, the config
+   split's push requirement is re-homed to Swallow's lane so the owner's need does not wait on a
+   seat that needs the owner (adversarial medium).
+
+Between the waves: PR 219 (the trigger amendment twin) MERGED on engraph 17:40:51Z as e3cf59330
+(Myrtle, SETTLE-READY, both legs bound, one below-bar observation dispositioned, the 390-line
+deletion sweep read whole); receipt to Siren: PR 192 INTEGRATED as the same bytes in 21 files; the
+slot passes to PR 213; the primary's records push landed. PR 222 green and clean at c0ddb2188,
+BEHIND, syncs at its turn. Myrtle's records commit (the branches card with every tip, batch six's
+21 dispositions: nine small PRs in order, twelve code lanes for fresh contexts) on the successor.
+
+## 2026-09-25T17:58Z — CHECK-IN 18 (45 minutes after check-in 17), from the streams; the push-without-owner count
+
+- Siren (sensor: its native check-in line, 17:55Z): context 21.4% (H4's sensor fresh); pushes and
+  opens PRs WITHOUT an owner prompt (afe21bc5 on PR 193 at 17:42Z, 94446edc on PR 195 at 17:53Z;
+  PRs 194, 196, 197 opened as the bot; auto mode); its order: PRs 195 and 193 to merge (round-two
+  cures posted); then Myrtle's two Core joint cures (PDR-063's release sentence, PDR-142's six
+  sentences from draft PR 225) as one small inbound PR first, since they gate the lineage; then
+  the seven cures one PR each, security pair first (claim 2f400f0c, worktree cut); then the next
+  inbound batch of eight as lanes free. Host hazard for every seat: Playwright pruned the
+  chromium_headless_shell-1243 build at 17:50Z because its install link pointed at a retired
+  worktree; reinstalled from the primary. ACCEPTED as given.
+- Myrtle (sensor: the lineage stream): PR 219 merged e3cf59330 17:40:51Z; PR 213 at the slot,
+  BLOCKED on checks and legs at 17:57Z; drafts 224, 225 (the PDR-142 joint cure to Siren), 226 on
+  the board; the push-without-owner answer, PR 213's state and batch six's first receipts asked
+  (the check-in 18 event, 17:58Z) by suite 16.
+- Swallow (sensor: the lineage stream): no event since 17:36:12Z; slice 2's first commit, PR 222's
+  turn and the push-without-owner answer asked natively by 18:20Z.
+- Gale (sensor: the lineage stream): no event since 15:18:01Z; the owner's approval restated once
+  in the check-in 18 event with the backstop: no event by check-in 19 (18:43Z) re-homes the config
+  split's push requirement to Swallow's lane; PR 211's cure stays Gale's at resume.
+- Push-without-owner count at 17:58Z: 1 of 4 live seats answered (Siren yes); Myrtle and Swallow
+  asked; Gale is the known no (the Codex approval review).
+- Load 28.40 at 17:57Z (fifteen gate process lines): the Director's records push (4 commits) HELD
+  under the two-gate bound; sensor: uptime and the process table; backstop: suite 16.
+
+## 2026-09-25T18:25Z — Siren: lessons from PRs 193 to 200
+
+- Playwright's cleanup pruned `chromium_headless_shell-1243` at 17:50Z: its install link pointed
+  at a worktree retired since, and another install on the host cleaned it. One pre-push failed at
+  the site E2E step. Install browsers from the primary checkout, whose path persists (n = 1).
+- The lineage's default branch is `engraph`; its `origin/main` stopped at a 10:14Z release and
+  showed PDR-063 without the day's amendment. Read lineage blobs at `origin/engraph`.
+- A mutant that dies on a syntax error proves nothing: removing an `echo` left an empty `then`
+  block (bash exit 2). Replace a removed statement with `:` so the mutant fails on the claim.
+- A folded YAML `run: >-` keeps a line break at a blank line; the hand-written fold joined two
+  commands and hid a pnpm call behind an echo. Parse workflows with `yaml` and read only
+  `steps[].run` (PR 193, round two).
+- A spliced quote changed the owner's subject: "the best of both … will be extracted" for "Once
+  the Practice contains the best of both it will be extracted". Quote an owner sentence whole
+  or not at all (PDR-142 joint cure, the Director's ruling 17:58Z).
+- L12's three rules wait for the next compaction: context read 39.7% at 18:19Z, and adding a
+  file under `.agent/rules/` falls under PDR-052's 30% floor. one-pr-per-leaf-issue has nothing
+  to bind here (zero GitHub issues on 2026-09-25); bot-identity moves every seat's push to
+  `merge-bot push` and needs its host bindings moved to the operator profile.
+
+## 2026-09-25T18:30Z — Director suite 16 tally (frame built 18:22Z); the records pushed; PR 213 landed
+
+Work verdicts: 7 ON-TRACK, 1 DRIFTING (adversarial medium: the records push held on a gate count
+the frame itself retracted, and Gale's sensor "next event" cannot fire on a session that ended
+its turn). ACCEPTED on both: the six records commits pushed at 18:24Z (03415165) once the normal
+wave read the same; the Gale point becomes the check-in 19 ask to the owner (resume Gale's Codex
+session, or authorise Swallow to push Gale's reviewed one-file commit under the owner's approval),
+since only the owner starts Codex sessions. Frame verdicts: 2 SOUND (normal high, procedure), 1
+NARROWED (adversarial procedure), 5 CONTRADICTED (normal low, medium; adversarial low, medium,
+high), all on one fault: H1's forcing fact carried the retracted count of four gates while
+SOURCES said one, corrected on the stream (35fec3a0) after the frame was built. Cures for suite
+17's frame:
+
+1. A correction made after the frame is built goes into the frame before dispatch: H1 (and RECENT
+   ACTIONS) rebuilt on the one-gate reading; the rule: re-read the holds against the last SOURCES
+   edit (five roles).
+2. H3's last read and backstop refreshed to the 18:0xZ merges and check-in 19 (normal low, medium;
+   adversarial low).
+3. Gale's hold gets a path that can fire: the owner's act (resume the session) or the Swallow push
+   under the owner's approval, with a backstop for PR 211 itself, not only the config split
+   (adversarial medium).
+4. Plan node todo 6 (the close) addressed in goal one's reading with its queued status (adversarial
+   procedure); "the five lenses" cited to principles.md §Decision Lenses (normal high).
+
+Between the waves: PR 213 (the PDR-009 joint cure) merged 94a8fba90 18:02:10Z, the slot to PR 215;
+PR 225 narrowed to the ruling (fd3e32271); JC.net PR 198 merged 3fe1a325 18:15Z (PDR-063, PDR-142,
+PDR-009 as the lineage's blobs: todo 4's first landing); JC.net PR 195 merged 6868ad85 17:59Z;
+PR 193 merged; Myrtle's check-in 18 line: pushes without the owner YES (PR 227 opened as the bot);
+Swallow's: YES (feat/codex-wake-sink 6337f131a; slice 2a with 48 tests after two review rounds);
+the push-without-owner count 3 of 4, Gale the Codex no. The load notice of 18:2xZ corrected: one
+gate, not four. The records push landed 03415165 at 18:24Z, nothing unpushed.
+
+## 2026-09-25T18:41Z — CHECK-IN 19 (45 minutes after check-in 18), from the streams; the Gale backstop executed
+
+- Siren (sensor: its native line 18:36Z and its 18:3xZ correction): context 50.3%; merged since
+  check-in 18: PRs 195 (6868ad85), 193 (69a649a0), 198 (3fe1a325, the joint cures), 199
+  (7da1d4b9, the security pair), 200 (5ec732d0, errorCodeOf inbound and the identity describer);
+  open: PR 201 (PR 193's follow-up, round one), 202, the lint-shape change under config-expert
+  review; inbound: L3 at parity, L12's three rules wait for its next compaction (PDR-052, 39.7% at
+  18:19Z), one-pr-per-leaf-issue binds nothing (zero issues), bot-identity-on-third-party-systems
+  needs the operator profile; its question (the agent-tools test task's cache) RULED: cache: false
+  now, the cost named in build-system.md (measured 7.70 s, not a minute), declared inputs with a
+  recomputing check after the no-IO recovery; my d37dfc57 swept Siren's 18:25Z napkin lines
+  (shared primary; authorship Siren's).
+- Swallow (sensor: the lineage stream 18:33:52Z): PR 222 waits its slot; PR 228 (wake 2a) cured
+  at 2a94c1c67, legs re-requested; PR 233 (2a-ii, the thread id owner) open and CLEAN; 2b's
+  pre-execution review next; Gale's channel has PR B's new base.
+- Myrtle (sensor: the lineage stream): no event since 18:04:43Z; PR 215 BLOCKED at the slot since
+  18:03Z (38 minutes at 18:41Z; H7's backstop: its door state asked by type); drafts 231 to 235
+  new on the board (21 lineage PRs open); the batch six receipts and the next in its order asked
+  by suite 17.
+- Gale (sensor: the lineage stream): no event since 15:18:01Z; the BACKSTOP EXECUTED on the
+  stream at 18:4xZ: the push-without-owner requirement re-homed to Swallow's lane (the config
+  split after wake 2b's review); PR 211's cure stays Gale's; ONE ask to the owner in the report:
+  resume Gale's Codex session so the approval test runs, or authorise Swallow to push Gale's
+  reviewed one-file commit 00a23728b under the owner's approval.
+- Push: 1 commit unpushed before this block; one gate on the host at 18:41Z; the tally push follows
+  this commit with a gate notice. Load 20.41.
+
+## 2026-09-25T18:56Z — Slot ruling; PR 215 merged; the Codex config split's design ruled
+
+- Slot ruling (lineage stream e365cfa8, 18:45Z, on Swallow's native proposal 18:43Z): the merge
+  slot goes by READINESS, not by lane; "slot taken: PR N" before the engraph merge, "slot
+  released: PR N merged as SHA" after; one turn then yield; order inside a lane is the seat's.
+  Myrtle absorbed (18:44Z, no dependency collision); Swallow took the slot for PR 222 (18:45Z).
+- PR 215 (c2 hunks 1, 2, 4, the channel-by-audience clause) merged db7517e1e at 18:43Z; Myrtle's
+  receipt to Siren 18:44Z; Copilot's second-pass observation (the ARC reference's §Relationship
+  sentence) priced as a one-clause follow-up; Myrtle's next settled: 225 or 230.
+- The Codex config split's design (Swallow, directed b97ce206, 18:55Z, read whole): exec-policy
+  rules in `.codex/rules/seat-landing.rules` allow merge-bot push, git add/commit, gh pr create,
+  and the worktree flow; raw `git push` never allowed; no `.git` writable root; machine-local
+  items listed in `.codex/README.md`; merge-bot to refuse `engraph` by name (separate PR);
+  proof by `codex execpolicy check` transcripts. RESIDUAL (allowed commits run hooks and
+  agent-tools unsandboxed) RULED as parity with every Claude seat's existing posture, narrower
+  in fact; not an owner card; one informational line to the owner with a veto. Five door
+  conditions sent: security-expert verdict in the PR body; execpolicy transcripts as proof; the
+  merge-bot default-branch refusal lands first; README names the reviewer key; the owner-held
+  live-seat proof is goal two's acceptance test.
+- Tally push landed 18:46Z (03415165..2eede9fd, 58 e2e passed); monitor re-armed btigmz3lz.
+
+## 2026-09-25T19:11Z — Director suite 17 tally (frame built 19:08Z); PRs 222 and 230 at the door
+
+Work verdicts: 8 ON-TRACK. Frame verdicts: 6 CONTRADICTED (normal low, medium, high; adversarial
+low, medium, high) and 2 NARROWED (both procedure roles), all on one fault class: the post-build
+folds (PR 222 merged 19:06:19Z, PR 230 at the slot 19:07:12Z, PR 215 merged, PR 200 merged) went
+into SOURCES and the holds but not into READING or CRITICAL-PATH OWNER, so "200 ready, Siren's",
+"1b-iv's PR A green and clean in the slot's queue", "the slot at 215" and "if 222 stalls" stood
+against their own sources; the header's "no stream correction is pending" claim was false for
+those lines. Cures for suite 18's frame:
+
+1. A fold is a sweep, not an edit: for every PR number or sha changed in SOURCES after the build,
+   grep every section for that number and refresh each mention before dispatch (six roles).
+2. Todos 7 (the re-pin) and 8 (the Core's portability measure) get a line in goal one's reading
+   with their queued status, or the frame says why they are outside the measure (both procedure
+   roles).
+3. Gale-owned items (PR B of 1b-iv; wake-bridge todo 3) listed in UNOWNED with a re-home trigger at
+   check-in 20 (adversarial medium).
+4. Owner words quoted whole: Myrtle's launch prompt and the about-13:30Z order to Brazier, or the
+   napkin block named as the source without an ellipsis (adversarial medium, normal medium).
+5. H4's backstop given a time bound: Siren's reading asked at each check-in; the hunks land at its
+   next compaction or by the owner's word (adversarial medium).
+
+REJECTED with reason: adversarial low's redirection to rule the Swallow push of Gale's commit
+00a23728b under the relayed approval and withdraw the ask from the owner's board. Gale's harness
+refused that push; a peer performing an action another seat's harness denied is permission
+laundering unless the owner directs it directly, so it stays the owner's ask.
+
+Between the build and the tally: PR 222 (1b-iv PR A) merged 92cbe0afe at 19:06:19Z (Swallow, both
+legs, 14 of 14 checks); Myrtle took the slot for PR 230 at 19:07:12Z; Siren opened JC.net PR 205
+(PDR-142's twin, blob 4cde49d7) at 19:08Z; the Director's provenance ruling cb15680d at 19:09Z (the
+2026-09-25 quote is the owner's word recorded by Geyser in 777320b2; relayed in both estates;
+nothing pending ratification); Myrtle absorbed 19:10:11Z. PR 225 is in a third review round;
+the two-round rule binds: dispositions in the last push's slot turn, no fourth round; check-in 20
+reads it. Records: 2 commits unpushed plus this one, held under two gates (load 52.85 at 19:04Z).
+
+## 2026-09-25T20:20Z — CHECK-IN 20 (after the host's usage-limit pause, about 19:13Z to 20:11Z)
+
+- The pause: every seat and the Director held on the harness usage limit from about 19:13Z to
+  20:11Z (Siren's native line; Myrtle's late slot notice 02a7c51c); check-in 20 ran at 20:19Z, 53
+  minutes late; the cadence recounts from it (suite 18 at 20:42Z, check-in 21 at 21:05Z).
+- Siren (sensor: its native line 20:19Z; JC.net stream): context 10.3% after compaction; merged
+  PRs 201 (0018acac), 202 (ad62059f), 203 (ef1ea98e); PR 204 (the hook fixture) round two cured
+  79a8dc07 (win32 junctions and exec wrappers, a mutant), final-tip review next; PR 205 (PDR-142's
+  twin) round two: Copilot found PDR-079 broken by the 19:09Z provenance identifiers. RULED
+  (83dd6aa8, 20:19:53Z): Siren's verdict stands, the identifiers leave PDR-142 line 73, the
+  concept stays, joint bytes both estates; Siren's blob fe6ee7ad posted 20:20:32Z for Myrtle.
+  Finding recorded for L12's bot-identity row: the bot's Copilot request on PR 204 answered 200
+  but registered no review_requested event; the owner-credential request did. Next lane: L12's
+  first rule with its two research foundations. Site strict-lint sizing: 239 errors over 75
+  files, a multi-PR lane. H4 reading: 10.3%, below the floor, so the PDR-052 hunks are decidable
+  now; asked at suite 18.
+- Myrtle (sensor: the lineage stream 20:12:41Z to 20:12:50Z): PR 230 (PDR-009, blob 47ee8c92)
+  merged 6a0045eb7 at 19:26:07Z (GitHub's clock; the door settled 19:13Z by Myrtle's), the third
+  whole landing since the fold; receipt to Siren; PR 225 round-three cure b8143c5df (ce8a40fa),
+  superseded by the PDR-079 ruling; PR 225 DIRTY at 20:19Z; the two-round rule restated on the
+  stream (aad8e176): round three is dispositions in the last push's slot turn, no fourth round.
+  PRs 236 to 240 new on the board, content asked. Batch six's first merge still owed.
+- Swallow (sensor: the lineage stream 20:13:09Z; the process table): slot taken for PR 228 (wake
+  2a) at 20:13:09Z, BLOCKED at 20:19Z (sync and legs); one gate in oce-wt-codex-seat-rules read
+  as the rules lane; PR 233 retargets after 228. RE-HOMED to Swallow at 20:20Z (aad8e176): PR B of
+  1b-iv and wake-bridge todo 3 (Gale silent through the pause); ACK with order asked.
+- Gale (sensor: the lineage stream): no event since 15:18:01Z; the owner's ask restated once in
+  this check-in's report.
+- Push: one gate on the host at 20:19Z (Swallow's), load 20.6; the Director's push of 3 napkin
+  commits started 20:20Z as the second gate with a gate notice. Lineage open PRs 23 (238 to 240
+  new); JC.net open 189, 204 (BLOCKED, pushing), 205 (CLEAN).
+
+## 2026-09-25T20:25Z — Siren: the bot's Copilot request is silent here; PDR-079 over a ruling's wording; research lint
+
+- The bot's REST Copilot review request (`requested_reviewers` under the pull-request-work token)
+  answered with the pull request but registered no `review_requested` event on PR 204 (about
+  19:12Z) or on PR 205 (20:23Z), n = 2. The owner-credential request registered both times
+  (20:12:06Z, 20:24:11Z). The lineage's bot-identity rule records the same call registering
+  there. The Director's rule for this estate: the bot first, one timeline poll, then the owner's
+  credential. Recorded in register row L12.
+- A hook false positive: one Bash command holding `git push` and `pgrep -f` was blocked as
+  "git push -f". Nothing was forced. The cure was structural: the gate-slot wait moved into its
+  own scratch script, and the push line carries no `-f` token.
+- Copilot's round two on PR 205 found that the provenance citation ruled at 19:09Z breaks
+  PDR-079 (no event or session ids in a PDR body). The Director re-ruled at 20:19Z: the concept
+  stays and the identifiers go to PR bodies and records. The joint blob is `fe6ee7ad`. Check a
+  ruled wording against the Core's content rules before it lands.
+- This estate lints `.agent/research/**`; the lineage's markdownlint ignores it. The lineage's
+  statistical-rigour foundation trips MD037 on `___` fill-in blanks. Escaping them as `\_\_\_`
+  renders identical HTML (markdown-it, both versions compared), so the cure is bytes, offered
+  back to the lineage, not an ignore entry.
+- The register validator refuses a path glob that matches no entry in the delta lists. Files
+  that predate the pins (the two research foundations) are named in the row's prose instead.
+
+## 2026-09-25T20:39Z — Siren: the Copilot probe settled; two misses of mine; L12 open as PR 206
+
+- The probe: PR 206's first Copilot request went as the bot at its opening (20:37:40Z). After
+  21 seconds no `review_requested` event had registered; the owner-credential request
+  registered at 20:38:07Z. With PRs 204 and 205, n = 3, and the alternative that only a
+  re-request drops is falsified. The Director agreed the fallback (read the timeline, then the
+  operator's credential) as a pr-lifecycle clause, a joint cure with the lineage riding the next
+  pr-lifecycle change. Row L12 carries the record.
+- My miss: every disposition line I signed before 20:28Z ended "…, an agent", and
+  `isSignedSelfReply` (`agent-tools/src/pr-watch/reviewer-legs.ts:139`) reads only a last line
+  ending in the seat's `(158275)`. None of those lines read as signed. The form from 20:28Z:
+  "— Siren herds Rudder, JC.net's exchange seat, an agent (158275)".
+- My miss: PR 205 merged before its merge-base deletion sweep ran (the skill runs it before ANY
+  merge). The sweep read afterwards showed six intended removals. PR 204's ran before its merge.
+- The Director ruled `one-pr-per-leaf-issue` declined here (no trigger: no work tracked in
+  issues), reopening as a bring if that changes.
+
+## 2026-09-25T20:44Z — Siren: correction to the 20:25Z and 20:39Z sections
+
+- The bot's silent Copilot request is not a new finding. `.agent/reference/merge-bot.md:284-289`
+  has recorded it since 2026-09-13, verified live ("Requesting the Copilot reviewer is the one
+  write the bot cannot make here"). The probe re-observed a documented fact. The miss: I did
+  not read this estate's own reference before probing. Row L12 points at the reference.
+- The lineage's `--expect` clause (a `[bot]` suffix makes every leg OWED) is false here:
+  `agent-tools/src/pr-watch/reviewer-legs.ts:94-103` strips the suffix on both sides. The inbound
+  doc clause is not brought, and the code cure travels outbound under row L9.
+
+## 2026-09-25T20:51Z — Director suite 18 tally (frame built 20:44Z); the records pushed; PR 225 at the slot
+
+Work verdicts: 8 ON-TRACK. Frame verdicts: 6 CONTRADICTED (normal low, medium, high; adversarial
+low, medium, high), 1 NARROWED (normal procedure), 1 SOUND (adversarial procedure). The
+contradiction is one residue in two places that the sweep list did not name: "200 ready, Siren's"
+in goal three's reading (stale since suite 16) and "215 (C2, at the slot)" in goal one's, plus
+"check-in 20 counts them again" after check-in 20 had run. Two further true findings: goal two's
+count "1 of 6 complete" overstates (todo 2 has 2a merged and 2b in three PRs unpushed; the true
+count is 0 of 6 with sub-PRs landing); the frame's build time 20:44Z precedes a fold dated
+20:46Z (PR B's start). Cures for suite 19's frame:
+
+1. The sweep greps EVERY PR number and sha in the frame against the current PR lists, not the
+   numbers that changed since the last build; a "ready" or "at the slot" claim is checked against
+   gh pr list before dispatch (six roles).
+2. Goal two's measure counts todos complete, with sub-PR progress named beside it: 0 of 6, 2a and
+   PR A merged (adversarial low, medium).
+3. The header's build time is the last edit's clock read, and a fold after it re-stamps it (normal
+   low).
+4. UNOWNED (a) carries the reason the Swallow push of 00a23728b is the owner's and not the
+   lenses': Gale's harness denied that push, and a peer performing a harness-denied action is
+   permission laundering unless the owner directs it (adversarial low, second suite running).
+5. Todo 3 (the cards, done) gets one line in goal one's reading on its effect on the landings
+   (normal procedure); the 12:02Z and 14:0xZ owner words marked as seats' paraphrases (normal
+   medium); Myrtle's launch word's two remaining pending graduations given an owner and status
+   (adversarial medium).
+
+Between the build and the tally: Siren's correction (native, 20:4xZ): the bot's silent Copilot
+request has been recorded in this estate's merge-bot reference since 2026-09-13 (lines 284 to
+289); its probe re-observed it (read-before-asking missed, recorded by Siren); the pr-lifecycle
+joint cure stays owed citing that clause; the "--expect login-form" inbound clause not brought.
+Swallow: PR B started 20:46Z (claim de2e9f7a) with a finding that today's rollout reader fails a
+real 0.157.0 rollout on model-authored code-mode output; its cure (harness-authored
+CommandExecution items as the only output evidence) under code-expert review, no Director word
+asked. Myrtle: L12 joint cures as OCE PR 242 (rule blob cffc37df, research 12f2aa43); PR 225 at
+the slot since 20:33Z, CHECKS-RED on the hub demo's Turbopack font build flake (second instance
+today after PR 216; the re-run under the session's credential since the bot cannot re-run
+workflows), then BEHIND-BASE after PR 228, synced 6e1809f70, push queued. Two instances make the
+flake a defect to cure, not re-run: an owner at check-in 21. The records push landed 20:4xZ
+(c162d8d7..50861460, five commits, four Siren's), nothing unpushed.
+
+## 2026-09-25T21:04Z — CHECK-IN 21 (45 minutes after check-in 20), from the streams and PR lists
+
+- Rulings since suite 18: the trailer on PR 239's final commit is enough (9bb90a89; its
+  merge-message clause withdrawn at b722118f: the repository's merge_commit_message setting makes
+  the merge message the PR title, the trailer lives in 5412485bd as a merge parent); rule 4's
+  evidence rewrite and the five-PR re-slice of 1b-iv ACCEPTED (b722118f): the verdict's output
+  evidence becomes the harness-authored CommandExecution items alone, B0 (the evidence cure, a
+  0.157.0 fixture projected from the recorded rollout, the 0.156.1 fixtures retired) stacked
+  before B; the cross-vendor read OWED on the owner's Codex session; the owner reads the rewrite
+  as one informational line.
+- Myrtle (sensor: the lineage stream to 21:02:37Z; gh pr list 21:03Z): PR 225 CLEAN at the slot
+  (held since 20:33Z: the font-build flake re-run, then BEHIND-BASE, synced 6e1809f70); PR 242
+  (the L12 joint cures, blob c5f90b1e after Siren's written-record cure) pushed 6b7018e94, legs
+  re-requested; batch six readied (227 CLEAN; 226, 229, 231, 232, 234, 235, 236 BLOCKED on
+  checks), first merge still owed. THE FLAKE (the hub demo's Turbopack font build; PRs 216 and
+  225 today) given an owner on the stream (76f128f2): Myrtle's ledger entry now, the cure as its
+  own small PR by the first free seat, default Myrtle after batch six's first merge.
+- Swallow (sensor: the lineage stream 20:59:00Z, 21:03:24Z): PR 239 final push 5412485bd (2 of 2
+  rounds), threads resolved, legs re-requested, its door at its turn; PR 241 BEHIND, legs
+  requested; PR B's pre-execution review passed items 1 to 3 and split item 4 into B0; 2b-i after.
+- Siren (sensor: the JC.net stream; gh pr list): PR 206 CLEAN, its last push on Myrtle's blob
+  c5f90b1e; one gate running in its shell-subst worktree; H4's time bound stands (21:50Z).
+- Gale (sensor: the lineage stream): no event since 15:18:01Z; PR 211 DIRTY at 21:03Z (engraph
+  moved), Gale's to sync at resume; the owner's ask restated once in this check-in's report.
+- Push: one gate on the host at 21:03Z (Siren's), load 18.0; the tally push (2eba7db3) started
+  21:04Z as the second gate with a gate notice (178d289e). Lineage open PRs 23; merged since
+  check-in 20: none (PR 228 at 20:32Z before it); JC.net open 189, 206.
+
+## 2026-09-25T21:36Z — Director suite 19 tally (frame built 21:32Z); the owner pushed once; PR 227 at the slot
+
+Work verdicts: 8 ON-TRACK. Frame verdicts: 3 SOUND (normal high, adversarial high, adversarial
+procedure), 3 NARROWED (normal low, normal procedure, adversarial low), 2 CONTRADICTED (normal
+medium, adversarial medium). The first suite since 15 with no residue class: the whole-frame
+sweep held. Findings, each with its cure for suite 20:
+
+1. PR 208 opened during the build (21:30:40Z) and was folded into SOURCES and H4 but READING kept
+   "JC.net 1 open" (adversarial medium): the sweep runs AFTER the last fold, not before it.
+2. "3 of 4 live seats" counts Gale, which the same frame calls OVER (adversarial medium): the
+   measure reads "3 of 3 live seats push; the Codex seat, OVER, does not", the owner's need met
+   for every live seat and unmet for the Codex harness.
+3. Todo 8's JC.net text cure was gated on batch six's first merge by the reading; its source gates
+   it on L12 alone (normal medium): corrected; check-in 22 asks Siren where it sits after PR 208.
+4. Myrtle's done-condition ("Done means empty pending graduations and empty buffers") never
+   stated met, superseded or open (adversarial low, normal medium): the Director reads the
+   pending-graduations directory itself at check-in 22, one command, and states which.
+5. UNOWNED has two items labelled (c) (three roles): relabel (d). The 12:02Z and 14:0xZ owner
+   words are mapped though marked paraphrases (normal low): the mapping names the seat's
+   paraphrase as its source. The premise-miss cure goes into NEXT as a sub-step, not only into
+   RECENT ACTIONS (adversarial high). Todo 6's STATUS line carries an unattributed editorial
+   sentence (adversarial high): moved to READING. Todos 1 to 3 subsumed by the aggregate measure,
+   said so (normal procedure).
+
+ACTED between the build and the tally: the adversarial medium's redirection (the owner's 12:06Z
+word set push notification as the route for questions that survive the lenses; the Gale ask had
+sat on the board since 18:46Z with no push since 17:14Z) → ONE push notification sent at 21:34Z
+(the Codex session or the Swallow push authorisation; 3 of 4 seats push). H5's sensor is now
+that notification's answer; the ask is not restated further in reports until the owner answers.
+Between the build and the tally: PR 227 at the slot since 21:28:27Z; Siren's draft PR 208 (the
+bot-identity portable core, body blob 78d43e1b) open 21:30:40Z, an hour inside H4's bound;
+Myrtle's receipt 21:36:25Z: taken at the same blob, no joint findings, lands with PR 216 as one
+commit, two host-side cures (the lane skill's identity step states the lineage's contract; the
+merge-bot reference records the bot's Copilot request registering there). Records: 1 commit
+unpushed plus this one, held under two gates.
+
+## 2026-09-25T21:42Z — OWNER WORDS (native, the Director's chat, about 21:41Z), verbatim
+
+"I am happy to go with your recommendations, but run them by a full Cricket suite and assumption
+reviewer first, and I will re/start a Codex seat in the morning, push what you can in the
+meantime, and shoot for zero open PRs for both repos via the proper quality and merge processes,
+use all appropriate skills"
+
+The recommendations on the board at that moment (the "Any open questions?" answer, 21:3xZ): the
+ask (a Codex session, or the Swallow push of 00a23728b); card 1 (PDR-142's three concept
+sentences: approve 1 and 2, hold 3); card 2 (the owner's machine-local scope file line corrected
+to "owner author and committer"); two ruleset recommendations on the lineage repository (the
+pull-request rule on `main`; a path-scoped owner-review ruleset over `.codex/`, `.husky/` and
+the Claude settings files); three informational veto lines (the config split's hooks residual
+with the credential half; rule 4's evidence rewrite; the curator-passes record retired by the
+permanent-document rule).
+
+Read: (1) the recommendations are APPROVED CONDITIONALLY: a full Cricket suite (four roles,
+normal then adversarial) and the assumptions-expert judge them first; what survives executes.
+(2) The Codex session comes in the morning: H5's sensor is the morning's session; PR 211's push
+and PR 241's live proof wait for it; the Swallow-push alternative is moot; no restatement. (3)
+"push what you can in the meantime": every seat pushes and lands everything that does not need
+the Codex seat. (4) Goal three tightened to ZERO OPEN PRs on both repositories through the
+proper quality and merge processes (reviews, legs, the door), every appropriate skill used; the
+coordination PRs (189, 223) fold at the day's end by the coordination-fold skill; PR 211 is the
+one PR that waits for the morning.
+
+## 2026-09-25T21:52Z — CHECK-IN 22 and the recommendations suite's outcome (the owner's 21:41Z condition met)
+
+The suite: eight Crickets (R1 to R6 each judged EXECUTE, AMEND or WITHHOLD) and the assumptions
+reviewer, which re-read every checkable fact at its source (both rulesets, the mirror workflow
+and its four runs today, the PR lists and bodies, the profile files, PDR-081, PDR-141, PDR-142,
+the pending-graduations row, the napkin decision table, the curator-pass skill and directory).
+Outcome, ruled by the Director at 21:52Z (f8b435e7 lineage, f2653ebb JC.net):
+
+- R1 PDR-142's three sentences: HELD, all three (the Director read them from fd3e32271; the
+  reviewer traced them to napkin decision rows A39, A41, A42: a seat's inference, lesson and
+  prediction, not owner words; A41 would add a review gate PDR-142 refuses by name); the
+  earlier "approve 1 and 2" REVERSED; default none lands.
+- R2 the scope file line: EXECUTE as amended, two lines (the repository line to the
+  line-specific fact; the shared index's "everywhere" narrowed to the fork line), Siren after
+  PR 208, under the owner's 21:41Z word; the reviewer found no record of a convergence intent.
+- R3 the `main` pull-request rule: WITHDRAWN (the Director's own read at 21:46Z, confirmed:
+  ruleset 23729318 is "mirror branch: fast-forward only", the owner's word of 2026-09-20; the
+  upstream-mirror workflow updates `main` four times a day; the rule would break it; the
+  workflow fails loud on divergence, so the "only control" premise was wrong too).
+- R4 the path-scoped owner-review ruleset: WITHHELD and dropped (required reviewers accept a
+  Team only and the org has none; engraph requires zero approvals and no code-owner review;
+  every expressible shape puts the owner on those files' critical path).
+- R5 (a) wording amended in PR 241's body: "the same residual exists on Claude seats and is
+  unowned in both" (precedence-is-not-approval); (b) stands; (c) the curator-passes retirement
+  PR PROCEEDS (PDR-081's Amendment Log of 2026-06-14 already records the supersession) amended
+  to cure the generator (the skill line and the README), re-home the carry-forward items from
+  the eight files first, and drop the PDR-081 status-line edit; check-in 22's "waits for the
+  owner" line corrected on the stream.
+- R6 zero open PRs: a direction through the proper processes, no deadline; the floor: PR 211
+  (Gale's), PR 224 (the OWNER's own draft, no seat readies it), the two successor coordination
+  PRs; PRs 220 and 221 are ready; PR 241 lands tonight on six conditions; the folds run at the
+  00:00Z rollover by the 24-hour rule, not after the last landing.
+Three of the Director's premises fell to the reviewer's reads (R1, R3, R4), all three taken
+from a seat's summary without reading the primary surface: the suite-19 cure binds and was not
+applied; the owner's condition caught what the Director's own check did not.
+
+Check-in 22 reads (21:51Z): PR 227 merged 185c15d2b (batch six's first); PR 233 at the slot
+(synced 3ee319f4a, legs re-requested); PR 243 (the e2e-inputs lane) new; PR 208 BLOCKED at its
+final tip c475c91c (the last settlement, joint bytes 4fd5b7f5 to PR 216); one gate on the host,
+load 18.2; nothing unpushed (the 21:44Z push landed four commits). Context readings: Siren 65.3%
+at 21:51:56Z (keeps PR 208's door and receipt; the rest to the morning if late); Myrtle's harness
+compacts on its own threshold (one compaction at about 21:05Z, lane state kept); Swallow about a
+quarter of a 1M window since its last compaction. Myrtle's done-condition: the pending-
+graduations register (`.agent/memory/operational/pending-graduations.md` on the lineage) was
+not counted by the Director this check-in (the directory search found no directory; the
+register is a file); read at suite 20. The slot order stands as the seats proposed, interleaved
+by readiness; the Turbopack flake's F-208 written. The owner's 21:34Z push notification is H5's
+sensor; the owner's word at 21:41Z answered it (the Codex seat in the morning).
+
+## 2026-09-25T22:04Z — Siren: PR 208 merged; the profile write pushed; a sync-tool collision
+
+- PR 208 merged at 57592003 (21:57Z). The final-tip review had two findings. Both are true and
+  joint, and got signed lines only, per the two-round rule. Myrtle has cured both in lineage PR
+  216 (head 166bdb9b2), and JC.net takes the bytes after that PR merges (the thread record).
+  The deletion sweep ran before the merge; every deleted line was an intended replacement.
+- The operator-profile write (R2 of the recommendations suite) is pushed at f95eb16: the JC.net
+  scope file's identity line now reads owner author and committer, and the index's bot-commit
+  line is narrowed from everywhere to the Oak fork line. It went through `profile:check` and
+  `profile:sync push` under the operator's own identity.
+
+### Practice/tooling feedback
+
+- **Surface**: `agent-tools:operator-profile-sync push`
+- **Signal**: friction
+- **Observation**: the push leg stages every profile document, including uncommitted writes
+  from other seats. At 21:58Z Myrtle's OCE scope write (made at about 21:35Z) was still
+  uncommitted in the shared root. A push from this seat would have committed it under this
+  seat's message, and her later push would have swept in mine. I asked her natively; she
+  pushed 149a5e5, and then mine went alone.
+- **Behaviour change / candidate follow-up**: a `--path` option on push (commit only the
+  named documents), or a refusal when the tree holds changes outside the writer's own. In the
+  meantime a seat pulls and reads `git status` in the profile root before it writes. The
+  lineage's tool has the same shape; this is a joint cure.
+- **Source plane**: `operational`
+
+## 2026-09-25T22:20Z — Director suite 20 tally (frame built 22:17Z); the records pushed; PR 242 at the slot
+
+Work verdicts: 8 ON-TRACK. Frame verdicts: 2 SOUND (normal high, normal procedure), 2 NARROWED
+(adversarial high, adversarial procedure), 4 CONTRADICTED (normal low, medium; adversarial low,
+medium), all four on one fault: todo 7's STATUS and READING still called batch six's first merge
+an open gate ("nothing in it is decidable before batch six's first merge") while the same frame
+recorded PR 227 as that merge (185c15d2b, 21:46:09Z); a leftover sentence gating todo 8 on the
+same fired gate sat beside its cured twin. Cures for suite 21's frame:
+
+1. A gate named in a STATUS line is re-read against SOURCES at each build: when its trigger has
+   fired, the line says so and names the remaining gates (todo 7: the lessons batch alone, to be
+   confirmed by Siren at check-in 23; todo 8: none, next in Siren's order) (four roles).
+2. The residue pass reads for duplicated sentences, not only PR numbers: a cured sentence and
+   its predecessor never stand together (normal medium, adversarial medium).
+3. R1 to R6 quoted in SOURCES beside the suite's disposition, and the sentence naming which
+   amended forms the owner's 21:41Z approval covers (adversarial medium).
+4. Goal one's "landed whole" count read by the Director from the merged list, not from relayed
+   events (adversarial high): read at 22:20Z from gh pr list merged today: the exchange carriers
+   219, 213, 215, 230, 225, 227 plus J4 earlier, seven whole, the count holds; "use all
+   appropriate skills" mapped to a receiver (every seat's door; the coordination-fold skill for
+   the folds; the assumptions-expert and Cricket suites for the recommendations) (adversarial
+   high, adversarial low).
+5. The owner's 2026-09-24 principle "Crickets judge in the frame provided, we need them to also
+   judge the frame itself" stated in READING as the ground for the frame verdict (adversarial
+   procedure); todo 1's source named by file (Siren's handover record path) (adversarial low).
+
+Redirections acted on between the build and the tally: PR 242's door read by type at 22:18Z
+(85446bbc4 BLOCKED: unit-tests and browser-tests pending, nothing failed; no refusal). The records
+push landed 22:1xZ (two commits), nothing unpushed. PR 216's round one: four joint cures at
+6c04233ee (Myrtle, 22:18Z) for Siren to take.
+
+## 2026-09-26T09:53Z — Siren: wrap for compaction; metacognition, play and exploration harvest
+
+- **A pause misses clock-pinned duties.** A usage limit froze this seat from about 22:42Z to
+  09:48Z. That the other seats froze too is inferred, not read: the streams since 22:30Z were
+  unread at this wrap. The 00:00Z folds did not run, and the coordination branch is still
+  2026-09-25's. The recorded queues are hypotheses after the freeze.
+- **The summary's plan was carried out fluently, and it drifted once.** The plan was "one issue
+  comment, two lines" for PR 208's final tip. I split it into a thread reply without the
+  reference line, plus one issue comment. The merge bot accepted, and the thread anchors the
+  reply. Small, but it is the fluency tell: I executed a summary's plan without re-reading it
+  against the ratified form.
+- **The queue ran reactively.** Every lineage event became a JC.net intake item, so the work
+  flowed lineage to JC.net. Goal one flows the other way. The next session opens on the
+  register's J-row landings.
+
+**Play harvest (associations, not findings).** Kept:
+
+- _Use versus mention_, an observation: n=3, no comparator. The hook policy read "git push -f"
+  out of `pgrep -f` in a command's text. Myrtle's send check matched an error word in her echoed
+  body. The vocabulary validator flags "two-threshold" in napkin lines that quote the retired
+  term. Different tools each time. A fourth independent instance, with a count of clean runs,
+  would warrant an exploration.
+- The profile root is shaped like the primary checkout before the commit queue existed.
+- The 00:00Z fold is shaped like a cron job on a laptop that sleeps (the anacron shape is "the
+  first wake after the rollover"). This one is for the Director.
+
+Discarded, visibly:
+
+- "The two-round rule routes unpushable findings into the exchange": forced; it was timing.
+- "Every cure tonight was a proxy for the property": too general to falsify.
+
+**Exploration: profile writes with one identity and many writers.** This defect is proven by
+reading the mechanism in both estates, not inferred from the one collision (7 profile commits
+in 11 days, 1 collision), so the one-instance rule gates only a wider claim. The check's own
+cure text for a dirty tree tells whoever runs it to sweep. For the Director to order:
+
+- P1, interim: pull, read status, and ask the writer of any foreign write to push it first.
+  Falsifier: a write lands between the status read and the push.
+- P2, a joint tool change: `push` requires `--path`, commits only those documents and names any
+  undeclared dirty file. Falsifier: wrappers that pass every file.
+- candidate: P3, a joint amendment to PDR-141 decision 15. "One author" means one identity,
+  with many writers. Falsifier: a ruling that one seat alone writes the profile.
+- Unresolved: why Myrtle's write sat about 25 minutes; whether the lineage's check text
+  matches ours.
+
+## 2026-09-26T09:50Z — COMPACTION BOUNDARY 5 (Director, Wick binds Temper, ed7b48)
+
+OWNER WORD (native, the Director's chat, read at 09:48:10Z), verbatim: "ultrathink
+/jc-metacognition /jc-free-play /jc-concept-exploration /jc-wrap please prepare for compaction and
+stop all processes". A freeze order: the wrap programme runs, nothing starts until the compaction
+lands, the session resumes on the owner's "carry on".
+
+### State at the word (read first-hand at 09:48Z to 09:50Z; the methods named)
+
+- Clock 09:48:10Z, eleven hours after check-in 23 fired at 22:36Z; the Director's last act was the
+  suite 20 tally (48fc2f8c, 22:20Z). Streams (stream-since.sh): the lineage had 8 events after
+  22:29Z, all heartbeats (Myrtle 5, Swallow 3), none after midnight; JC.net: Siren's heartbeats to
+  09:46:32Z, cycle "PR 208 merged; the operator profile edit next". gh pr list: lineage 22 open
+  (245, 244, 243, 241 BLOCKED at the slot since 22:26Z, 240, 238, 237, 236, 235, 234, 232, 231,
+  229, 226, 224 the owner's draft, 223 the coordination PR, 221, 220, 218, 217, 216, 211); JC.net 1
+  open (189, the coordination PR). Merged since 22:07Z: the lineage's 233 (286440f78) and 242
+  (8c9434ae3, 22:24:18Z), nothing after; JC.net none after 208. Host load 2.22, no gate running.
+  JC.net primary: coordination/2026-09-25-cf6897 ahead 3 of origin (f00a6cd2 and eedfb3e3 Siren's,
+  48fc2f8c mine), tree clean before this block. The lineage primary: coordination/2026-09-25-749769
+  level with origin, tree DIRTY with seats' work the Director did not touch (frictions-register.md
+  +21 lines, F-209, Swallow's records write; Titan's formation letter untracked, 15:54Z); Swallow's
+  records commit of 21:39Z never ran.
+- PROCESSES: ScheduleWakeup stopped (no wakeup was pending: check-in 23's fired at 22:36Z and no
+  successor was scheduled); the last Monitor (bpdcg29wm) expired at about 22:50Z; no background
+  task, no subagent (the last suite's eight Crickets all returned by 22:20Z). Process table of this
+  seat's: 0. Claim 58c2684a RETAINED (a compaction boundary, not a retirement).
+- RE-ARM RECIPE FOR RESUME (as if nothing survives): verify by id first (the task list, the process
+  table), then `bash <scratchpad>/director-monitor.sh 58c2684a-5e8d-4a33-a29e-ed074df63128 coordination/2026-09-25-cf6897 "<label>"`
+  as a Monitor, timeout 1800000, re-armed at each expiry (the script watches both streams without
+  heartbeats, prints [OCE] for the lineage, and runs pulse.sh); the cadence as ScheduleWakeup
+  check-ins every 45 minutes with a suite 22 minutes after each; the scratchpad may not survive,
+  in which case the script is rewritten from its description here and in the handoff.
+- OWED ON RESUME, in order: both coordination folds by the coordination-fold skill (JC.net 189 due
+  11:17Z today; the lineage's 223 due 17:05Z today, from its primary, with the dirty seat files
+  left to their seat's commit or named in the fold); the seats checked as the handoff's programme
+  says; the Codex seat the owner starts (PR 211's sync and push, PR 241's live proof after 241
+  lands); the handoff file's drain (2,146 lines against 160; the live board stale since
+  2026-09-13).
+
+### Metacognition (retrospective mode, the directive applied to this seat's day)
+
+Inherited: the cadence shape (45-minute check-ins, suites 22 minutes after, the owner's
+2026-09-24 word) and, from my own earlier boundaries, a frame that grew from 326 to 520 lines
+and was rebuilt by regex every cycle. Ratified from first principles? The cadence yes (the
+owner's word); the frame's size and its hand-copied state, no: they are my inheritance from
+myself. Does the shape fit the impact? The owner's three goals moved by the seats' doors
+(fourteen lineage merges and twenty JC.net merges on 2026-09-25) and by two rulings of mine (the
+readiness slot; the config split); the twenty cadence suites mostly judged my frame's staleness
+(suites 16 to 20: 4 to 6 CONTRADICTED each, every one a hand-copied number or a fired gate), while
+the one decision suite with a read-capable reviewer reversed three of my five recommendations.
+The bridge from the next action to the impact: the folds and the seats' doors, not another frame
+cure. The checked assumption: "more cures per suite converges the frame" is false on the
+evidence (each suite's cures bred the next suite's residue); a frame whose state block is
+GENERATED from reads (gh pr list both estates, merges since, the process table, the registers)
+and pasted verbatim removes the class. Verdict: change the frame's shape at resume; keep the
+cadence, which is the owner's. The fluency tripwire fired once today and I did not heed it: the
+three recommendations arrived smoothly from seats' lines and I wrote lenses under them.
+
+### Free play (time-boxed to the day's events; associations, never findings)
+
+- The `main` ruleset named "mirror branch: fast-forward only" and my reading of it as "the only
+  control" — this reminded me of reading a lock as a hole because I read its shape and not its
+  name. KEPT (it hums; it grew a shape below).
+- Myrtle sending one event three times because a grep for the word "error" matched its own body
+  text, beside my residue sweeps grepping PR numbers through a frame I wrote — these look shaped
+  alike: string matching standing where reading should stand, and both felt like care. KEPT.
+- The readiness slot's "taken/released" events turning over eleven landings with 16-second
+  handovers — this is shaped like a token ring; a ring needs no arbiter once the token rule is
+  agreed, and the Director stopped being the arbiter the moment the ruling landed. KEPT as a
+  small sharp observation for the napkin only.
+- The seats' silence after 22:30Z and the host's usage-limit pause of 19:13Z — "the same cause".
+  DISCARDED: forced; nothing read supports it; the seats may have hit their own limits or their
+  sessions ended; recorded as unknown, not as a guess.
+- The owner's "as everywhere" in the scope file as a hint of intended convergence — DISCARDED
+  after the reviewer found no record of such an intent; I had kept it as a hedge.
+- Sat still on: the owner's three sentences at 21:41Z did more for the day than my twenty suites.
+  Not an association, a fact; it goes to the letter, not here.
+
+### Concept exploration (four movements) on the day's recurring incident class
+
+1. Raw observations: three Director premise misses from seats' summaries (the flake count; J14's
+   row; the rulesets and the mirror), all reversed by one reviewer's 35 source reads; six cadence
+   suites CONTRADICTED on stale hand-copied numbers or fired gates in my own frame; a peer's
+   triple send from a grep over its own prose. Exact words that matter: the reviewer's "before
+   anything reaches the owner as a recommendation about a GitHub ruleset, a workflow-written
+   branch or a Core record, read the primary surface yourself in one command".
+2. The problem space: the kind of thing is a verification instrument that checks copies against
+   copies. The gap: the Director's rulings and frames rest on text (a seat's line, my frame, a
+   grep) and are never reconciled with the surface the text is about. Who it harms: the owner
+   (three wrong recommendations reached him; one would have broken the mirror carrier by API
+   under his credentials), the seats (rulings built on wrong premises), the suites (spent on
+   residue). Mechanism: a 500-line frame rebuilt by regex accumulates copies of state; each cycle
+   edits some and not others; grep verifies the copy's self-consistency; the world moves. The
+   constraint: a 45-minute cadence and the freeze; success: a ruling names the surface it read,
+   and the frame's state block cannot be stale because it is generated.
+3. Solutions re-opened: the fluent answer "one more cure per suite" is the treadmill the evidence
+   refutes (suites 16 to 20). The inversion: the frame is not a document to keep consistent but a
+   snapshot to regenerate; READING then cites the snapshot's rows rather than restating numbers.
+   The other fluent answer, "more Crickets", is refuted too: eight read-only judges missed what
+   one reading judge found; the instrument for a decision is a reader, the instrument for a frame
+   is a Cricket.
+4. Synthesis and proposals, each with warrant and falsifier: (a) at resume, the cadence frame's
+   SOURCES state block becomes a generated snapshot (one script: gh pr list both estates with
+   states and authors; merges since the last build; the process table by worktree; load; the
+   unpushed counts; the last heartbeat per seat), pasted verbatim and cited by row; warrant:
+   every CONTRADICTED verdict in suites 16 to 20 was a hand-copied number or a fired gate;
+   falsifier: a suite on a generated snapshot still returns CONTRADICTED on a state claim. (b) A
+   rule candidate for both estates, "a ruling names the primary surface it read" (the distilled
+   entry of this boundary); warrant: the reviewer's reversals; falsifier: a ruling that names its
+   read surface still reverses on a later source read. (c) Decision suites keep the shape that
+   worked (eight Crickets and the assumptions-expert with reads); warrant: 21:52Z; falsifier: a
+   decision suite with the reviewer still lets a false premise through to the owner. Unresolved
+   evidence: whether the owner wants the cadence frame at this weight at all (he ratified the
+   cadence, not the frame); to ask in the morning report, once, with (a) as the default.
+
+### Promises sweep (every commitment this seat made on 2026-09-25 after 18:41Z)
+
+- The Gale ask to the owner: DISCHARGED by the owner's 21:41Z word (the Codex seat in the morning).
+- The recommendations suite before execution: DISCHARGED at 21:52Z; the survivors posted
+  (f8b435e7, f2653ebb) with executors named.
+- The scope file's two lines: FORWARDED to Siren (live, on it at 09:46Z).
+- The curator-passes retirement with the generator cured: FORWARDED to Myrtle, PR 245 open.
+- PR 241's conditions 6 to 8, the guard-fix PR, the wrapper PR, B0: FORWARDED to Swallow (silent);
+  the first act of whoever holds Swallow's lane is PR 241's door.
+- The folds at the 00:00Z rollover: NOT DISCHARGED (the Director's cadence ended at 22:36Z with
+  no successor wakeup scheduled, so the rollover passed with no seat awake; the falsifier for
+  "the folds run at the rollover regardless" fired); owed on resume, first.
+- The two ruleset recommendations: WITHDRAWN and DROPPED, recorded on both streams.
+- The handoff file's drain: NOT DISCHARGED, still queued after the folds.
+- The frictions register entry for the CI commitlint gap (F-209): written by Swallow, UNCOMMITTED
+  on the lineage primary; owed to that seat's next records commit.
+- A reply to Siren's 22:20Z-era lines on todo 7's gate and todo 8's place: asked at check-in 23's
+  prompt, never asked (the wakeup fired into a session that did not run); asked at resume.
+
+### Attribution flags (inference, not observation)
+
+- "The seats went silent about 22:30Z" is observed from the streams; WHY is not known and not
+  inferred. "Swallow's records commit never ran" is inferred from the dirty tree plus its 21:39Z
+  gate notice; the commit may have failed a gate rather than never started.
+- PR 227 as "batch six's first" is Myrtle's statement, read as such; the merged list confirms the
+  merge, not the batch membership.
+- Myrtle's launch prompt is known only through Myrtle's own quotation with an ellipsis.
+
+### Metaloss passes
+
+1. Compressed reasoning: the day's rulings live as one-line dispositions in this napkin with event
+   ids; the reasoning for the three reversed recommendations is in the 21:52Z block and the
+   reviewer's report is not conserved verbatim anywhere (its substance is in the 21:52Z block and
+   the distilled entry). Decision-sufficient for a successor: yes for what to do, partly for why
+   R4's mechanism fails (the REST schema fact, "required_reviewers accept a Team only", is in the
+   21:52Z block). Recorded as sufficient.
+2. Promises: above; two not discharged, both owed to this seat with a named order.
+3. Attribution: above.
+4. Blind-spot bounds: this seat cannot see the lineage seats' sessions (whether they are paused or
+   ended), the Codex seat's state, or any event on a stream between the last read and the
+   compaction; the scratchpad may not survive; the recommendations-suite reports (nine agents'
+   full outputs) exist only in task files under the session directory, not in the repository.
+5. Index of homes: this block (the napkin, tracked, pushed with this commit); the Director handoff
+   §Current handoff state (rewritten) and its routing log entry; repo-continuity §Current State
+   (the boundary bullet); distilled.md (the lesson); the formation letter in `.agent/experience/`;
+   the owner's words verbatim in the 21:42Z block; the suite tallies in their dated blocks; the
+   comms events by id on both streams; the auto-memory files under the harness's memory directory
+   (two new entries). A successor loads the handoff first, then this block.
+6. External bound: this scan is the same mind that missed the mirror; the error signature to point
+   outside eyes at is "a fact stated by a seat and repeated by the Director without a read", and
+   the reviewer's report showed exactly where it bites (rulesets, workflows, register rows).
+7. Fence sweep: no owner wording was held off the repository at the owner's word during this
+   stretch that this seat knows of; the owner's 21:41Z words are recorded verbatim by his own
+   choice of channel. Bound: a fence set before 14:38Z on 2026-09-25 would be in the earlier
+   boundary blocks, not re-swept here.
+8. The fixed point: a further pass would only re-find the two undischarged promises, the silent
+   seats' unknown cause and the unconserved reviewer report; the recursion closes here.
+
+### Small sharp observations (play seeds and rulings not yet homed)
+
+- The readiness slot with taken/released events ran eleven doors with no arbiter after one
+  ruling (e365cfa8): a rule candidate for pr-lifecycle §Phase 7 in both estates, a joint cure for
+  the exchange seats.
+- Myrtle's triple send (a grep for "error" over a tool result that echoes the body): the check
+  reads the tool's event id, Myrtle's own cure; the same class as the frame sweeps.
+- The check-in 23 wakeup fired at 22:36Z into a session that did not run it; the cadence has no
+  backstop when the Director's harness pauses, and the rollover folds depended on it.
+
+### 2026-09-26T10:01Z — OWNER WORD on the boundary report (native, verbatim): "agreed"
+
+Read: the proposal in the report is ratified: the cadence stands unchanged (the owner's 2026-09-24
+word); at resume the cadence frame's state block becomes a GENERATED snapshot (one script: gh pr
+list on both estates with states and authors; merges since the last build; the process table by
+worktree; load; the unpushed counts; the last heartbeat per seat), pasted verbatim and cited by
+row in READING; decision suites keep the eight-Cricket-plus-assumptions-reviewer shape. The
+Director builds the snapshot script as its first frame act after the folds. Recorded under the
+freeze; nothing starts before "carry on".
+
+### 2026-09-26T10:17Z — RESUME after compaction 5: OWNER WORD (verbatim), check-in 24, the 24 open PRs
+
+OWNER WORD (native, read 10:09:47Z, with `/jc-start-right-team`, `/jc-pr-lifecycle` and
+`/jc-proportionality` invoked on it; verbatim): "work is safe when it is merged, the target number
+of open PRs is always zero. 24 open PRs is a process failure and creates a risk of losing work and
+creating rework <https://github.com/EngraphCode/open-curriculum-ecosystem/pulls> ultrathink
+/jc-metacognition /jc-free-play /jc-concept-exploration /jc-reason". Read as the "carry on" plus a
+sharpened goal three: zero is a standing target, and the 24 are a process failure to diagnose as
+well as drain.
+
+STATE READ FIRST-HAND (each line names its surface):
+
+- `gh pr list` on the lineage at 10:10Z: 24 open. 17 non-draft, green (20 checks SUCCESS) and
+  BEHIND engraph: 216, 217, 218, 220, 221, 226, 229, 231, 232, 234, 235, 236, 237, 238, 243, 244,
+  245. 241 BLOCKED (six unresolved threads, head 2458002cf level with engraph). 240 two checks
+  FAILURE (unit-tests, run-quality-gates). 211 CONFLICTING (Gale's; head 00a23728b pushed 09:58Z
+  under the owner's direct approval; one unresolved thread). Drafts: 223 (the fold), 224 (the
+  owner's), 246 and 247 (Swallow's, cut 09:52Z and 09:57Z today). JC.net: 189 only. Engraph tip
+  8c9434ae3 (PR 242, 22:24Z on 2026-09-25); no lineage merge since.
+- `gh api rulesets/21202096` (engraph): strict_required_status_checks_policy TRUE; required checks
+  run-quality-gates (integration 15368) and CodeQL (57789); required_review_thread_resolution TRUE;
+  approvals 0; copilot review_on_push FALSE; NO merge_queue rule.
+- `.github/workflows/ci.yml`: `merge_group:` trigger present, commented INERT "no merge queue is
+  configured (ADR-204)". `codeql.yml`: advanced setup (migrated from default setup), triggers
+  push/pull_request/schedule, NO merge_group.
+- ADR-204 (`docs/architecture/architectural-decisions/204-…md`, owner-ratified 2026-06-26): require
+  up to date, not a merge queue, because CodeQL DEFAULT setup cannot run on merge_group
+  (codeql-action#1537) and SonarCloud's app cannot either (ADR-161 forbids the CI scanner); "at this
+  repo's low PR volume, the re-run cost is negligible". Three premises moved: CodeQL is advanced
+  setup now; engraph requires no Sonar check; the exchange programme cut 12 PRs in one evening.
+- `gh run list` on two heads: CI 13.5 to 15 min wall-clock, CodeQL 3, Copilot 4: one door is about
+  16 minutes of CI after its sync, serial under strict currency.
+- Threads (GraphQL): 241 six unresolved (four Copilot, two Codex P1); 216 one P2 (Myrtle: on a
+  signed line, unresolved); 245 one P2 (cure on Myrtle's resume); 217, 226, 224 zero.
+- Streams since 22:24Z (stream-since.sh, both): the harness paused every seat 22:32Z to 09:49Z;
+  Swallow released the slot 09:50Z (bd95be2d) and reversed its own recommendation in its closeout
+  (de231c7a, to me): dispose the six under the ruled residual and LAND; Gale pushed 211 and
+  released its claim, "Director to assign next custodian" (aae41a0f); Myrtle's closeout (8ba29fb3):
+  seventeen open PRs settled or named, order from 226, three proposals (a clean sync re-runs CI
+  without re-opening a round; a merge queue on engraph with merge-bot enqueuing; a joint text's twin
+  waits for both legs). ListAgents 10:10Z: Siren live (resumed 09:57Z), Swallow live (resumed
+  10:06Z), Myrtle in a shell (closing out).
+- Lineage primary tree: F-209 and Titan's letter COMMITTED by their seats (acf4bba09, ff660e9b0);
+  untracked now: Gale's letter and `.agent/practice-core/incoming/jcnet-batch-1..6/` (Myrtle's
+  working material); named for the 223 fold, not mine to stage.
+- This seat: process table 0 at 10:10Z; claim 58c2684a heartbeat 10:12:56Z (was stale since
+  22:49Z); monitor re-armed 10:13Z with the recipe (task bbfu68ob6, 30 min).
+
+PROPORTIONALITY (the gate before the lenses): scope: four things wearing one name: the drain today
+(operational), the door mechanism (systemic), the intake bound (systemic), PR 241's ruling
+(seat-level); kept separate, each homed below. Instrument: the drain is seats and gh, no fleet;
+the systemic recommendations take the owner's mandated instrument (full Cricket suite plus the
+assumptions reviewer, 21:41Z word), not lightened; PR 241's ruling is one read of the rules file
+plus the precedent (R5a), no suite. Level: the queue, the intake bound and the round-counting
+refinement are the owner's (a ruleset, an ADR amendment, the two-round rule's counting); the slot
+rule, the door order, 211's custody and 241's disposition are the Director's; execution is the
+seats'. Changed by the gate: 241 takes a ruling not a suite; the door mechanism climbs to an ADR
+amendment, not a rule tweak.
+
+CONCEPT EXPLORATION (four movements, compressed):
+
+1. Raw observations: above. Inherited assumption exposed: "the readiness slot is the mechanism".
+   It is a hand-run serialiser for a policy the owner keeps (strict currency, ADR-204), and ADR-204's
+   "low PR volume" premise is June's, refuted by the exchange programme (one PR per row by design:
+   design-work-for-small-prs plus records-ride-substantive-PRs).
+2. Problem space: the KIND is a queueing failure with a head-of-line blocker, not a quality
+   failure. Gap: production about 12 PRs per evening from two exchange seats against a door of
+   about 1.5 per hour realised (15 merges in 10 hours on 2026-09-25; 3.75 per hour is the CI
+   ceiling). Harms: the owner (unsafe work, rework as engraph moves), seats (every slot sync
+   re-opens a bot round on unchanged text and spends the two-round budget: 241 six, 216 five, 227
+   one, 229 one in one evening, Myrtle's count), the estate (24 exposures to drift). Mechanism:
+   strict currency + serial slot + bot re-review on the sync push + no WIP bound + a BLOCKED PR
+   holding the slot across an 11-hour pause (241 took it at 22:26Z with six open threads). Success:
+   the count returns to zero each day; no PR waits on a live arbiter; a sync spends no round.
+3. Solutions reflected: the fluent first answer, "more seats at the door", fails (the door is
+   serial whatever the seat count; seats add slot chatter). The second, "relax strict currency",
+   fails Lens 2 and ADR-204's reason (merge skew). The shape that changed: the cure sits at the
+   door's mechanism and the intake, not at the seats' effort.
+4. Synthesis: (A) a merge queue on engraph: the queue's merge_group ref carries the currency, so
+   no sync push, no bot round, no slot, no head-of-line block (a failed group is dequeued); needs
+   `merge_group:` on codeql.yml, the merge_queue rule on ruleset 21202096, merge-bot enqueue
+   (`gh pr merge --auto`), ADR-204 amended for engraph. Warrant: three premises moved (above);
+   Myrtle proposed the same independently. Falsifier: the "CodeQL" check (integration 57789) not
+   reporting on merge_group refs under advanced setup (codeql-action#1537's current state, unread).
+   (B) an intake bound: a seat holds at most two open non-draft PRs (one at the door, one
+   preparing); the next row's PR is cut when one lands. Warrant: opening is free and landing is
+   expensive, so the backlog is unbounded without a coupling. Falsifier: seats idle at the bound
+   while the door is empty. (C) the slot rule: CLEAN takes the slot; BLOCKED never does and a holder
+   that becomes BLOCKED yields at once (Director ruling now; the taken/released protocol into
+   pr-lifecycle §Phase 7, joint). (D) rounds bind to content heads: a clean sync push (no diff in
+   the PR's own files) re-runs CI and opens no round (Myrtle 1; refines the owner's two-round word,
+   so the owner's). (E) a joint text's twin merges after both copies' legs settle (Myrtle 3;
+   Director ruling for the exchange lanes: bounded by one bot cycle, prevents the by-blob re-take).
+   Unresolved evidence: #1537's state; whether the Codex connector re-reviews on a sync push by
+   mechanism (observed yes, unread); CI wall-clock on a merge group.
+
+FREE PLAY (three minutes on the morning's material; harvest with the guard): the readiness slot
+reminded me of a single-lane bridge with a flagman: when the flagman goes home (the harness
+pause) the bridge stays blocked with a car on it (241), and a traffic light (the queue) needs no
+flagman. Kept: it routes into (A). Swallow reversed its own recommendation in twelve minutes
+(09:50Z wrapper route, 10:02Z land with residuals) by asking "is this a new boundary?": the
+shared-generator test of concept-exploration §Loop Dynamics fired in a peer unprompted. Kept as a
+napkin seed. Discarded visibly: ADR-204's author sharing the naming schema (nothing there); 24
+PRs and the 24-hour branch lifetime (numerology).
+
+RULINGS (Director-level, posted to the lineage stream; the surfaces read are named above):
+
+- PR 241: LAND. The six are disposed under the residual the rules file's header names ("an allowed
+  command can run code written inside the sandbox … the same residual exists on Claude seats and
+  is unowned in both"): `--upload-pack` and `worktree add` are sandbox-written code reaching the
+  host (the hooks class); `merge --no-verify` is the trailing-flag class already ruled on commit
+  (position match, rule.rs:16-25); `fetch --force --update-head-ok`, `add -u`/`-p` and the
+  whole-index commit are local ref and staging hygiene in an isolated worktree (the push wrapper
+  refuses default branches). One signed line per thread in the ratified format, then resolve; no
+  push (the head is level with engraph: no sync, no CI wait). Condition 5 (the owner's live proof)
+  becomes the acceptance test after landing; a failure is the follow-up's first cure. Follow-up,
+  named home, goal two's next item: the landing toolkit (commit and sync wrappers first, then stage
+  and worktree), each replacing its git allow. Falsifier (Swallow's): if the gates could run with
+  no workspace code on their path, the six would be the remaining escapes.
+- PR 211 custody: Swallow (the Codex Support lane, Gale's pair). The capture rule stands: cite by
+  path, size and hash; never push it; ae110f662 never leaves the machine.
+- The slot: 241 first (no sync). Then age order among CLEAN non-drafts: 217, 218, 220, 221, 226,
+  229, 231, 232, 234, 235, 236, 237 (after 217, Myrtle), 238, 243, 244 (legs pending); 216 and 245
+  when their one thread each is resolved; 240 after its cure; the fold 223 at 17:05Z. The live seat
+  at the door lands the next CLEAN PR in age order whatever its lane; the Director rules the order,
+  not the lane. Whether the Director itself keeps the door while seats cycle goes to the suite.
+- (E) stands for the exchange lanes from now.
+
+TO THE SUITE THEN THE OWNER (one frame, eight Crickets both stances plus the assumptions reviewer,
+the owner's instrument): (A) the merge queue with the ADR-204 amendment; (B) the intake bound; (D)
+rounds bind to content heads; the Director at the door for orphaned CLEAN PRs. The fold of PR 189
+is due 11:17Z and runs first when the suite is out.

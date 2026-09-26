@@ -138,3 +138,547 @@ cures); an owner card for register row C7; whether the Director accepts the node
   window". JC.net's seat and the lineage's seat author it in its own lane.
 - The node-status removal under the plan-node schema stands; statuses live in frames, from
   stated sources.
+
+## Resumed session, 2026-09-25 10:46Z onwards (Siren herds Rudder, 158275)
+
+This section supersedes §In flight and §Queue above where they differ. Recompute every fact.
+
+**Owner words today.**
+
+- To the Director at about 10:31Z, verbatim: "1. All JC.net Practice innovations integrated into
+  the OCE Practice 2. Codex brought up to first class Practice citizen status 3. All local and
+  remote branches deleted or in PRs, all PRs merged".
+- To the lineage's standby seat at about 11:00Z (lineage event of 11:06:26Z), verbatim: "We are
+  prioritising all JC.net Practice innovations being integrated into OCE, then we review. This is
+  a fixed process with an end, not an ongoing effort. Once the Practice contains the best of both
+  it will be extracted into an installable entity." It is not yet homed in the node: it goes in
+  §Rulings with the next exchange pull request.
+
+**The lineage's exchange seat is unheld.** Marten's session is over. Geyser rides Pewter
+(eeecbd) is on standby. Address lineage events to the seat.
+
+**Merged:** PR 187 (2b085f6f), the Cricket frame audit's joint cures F1 to F7. Receipt with the
+F1 and F5 to F7 bytes: lineage event 8ec17ddf.
+
+**Open pull requests of this seat:**
+
+- **PR 186, the K amendment twin** (worktree `k-twin`, head 339f69f3). Round one had two findings:
+  (b) and (c) scoped to the inline-prompt role (cured), and claim retention (Rejected, with
+  reason). Round two was requested. Then run the sweep, merge, and send the lineage a receipt with
+  the (b) and (c) bytes, which it takes.
+- **PR 188, K4, DRAFT** (worktree `k4`, head 4a41a83a). The `testing-strategy.md` hunks were
+  written at 30 to 38% context, past PDR-052's floor. A fresh session below 30% reads them in full
+  and cures them, then takes the PR out of draft and runs the review rounds. Only then does the
+  lineage get the final bytes (it was told in 20cc0c88). The lineage's intake branch waits on it.
+- **The filter-guard branch, draft pull request** (worktree `filter-guard`, 5ca00f52). It
+  conflicts with main in `validate-cited-scripts.ts`. It also carries three owed items in its
+  commit message:
+  - unfiltered calls resolved in their scope;
+  - the allow-list bypass removed;
+  - the semicolon unit row.
+
+**Answered to the lineage:**
+
+- 5aa3b314: the seed source. Subagent writes are the parent's, by Sif. The platform gate is signed
+  as a joint cure.
+- 26fc7185: the K amendment signed. J4 and J18 are recorded LANDED.
+- a969acc5: the Cricket answers.
+- 0c23f589: K4 timing and the retirement.
+
+**Queue, in order:**
+
+1. PR 186 to merge, then its receipt.
+2. PR 188's sub-30% directive review, then its rounds, merge and receipt.
+3. Batch six: the twelve compare rows (goal one, the owner's fixed process).
+4. The next exchange pull request. It carries:
+   - §Landings rows: J4 (lineage PRs 202, 203, 205), J18 (204, 206 to 209, with the three
+     departures in 2a33cf89), batch two INTEGRATED (199, 200), and K1 to K3(e) INTEGRATED (201);
+   - the owner's 11:00Z word as a ruling;
+   - the items listed under queue item 2 above.
+5. The five Cricket refinements (lineage event 989e10c8). JC.net writes them; the lineage follows.
+6. Four JC.net test files that call `vi.useFakeTimers`: inject a scheduler (PR 188's body lists
+   them).
+7. The seed platform gate: `CLAUDE_CODE_SESSION_ID` is read only on a Claude platform (joint, and
+   it bears on goal two).
+8. The owner-only append re-tighten: refuse or replace a pre-existing file whose mode admits
+   another account (2a33cf89).
+9. The ignore probe without `--no-index` (ff75b6d2).
+10. The filter-guard draft: rebase, the three owed items, then out of draft.
+11. The older items 3 to 10 above.
+
+**Claims** a30304be, 3d4b9361 and 2cdb5931 are this seat's, and are closed or handed over at
+retirement.
+
+## Wrap block, 2026-09-25 11:2xZ (the owner's word: prepare for compaction and stop all processes)
+
+**PR 186, round two** (Copilot review 5317041919, on 339f69f3): one finding, comment 4104010768.
+PDR-009's thin-wrapper prohibitions (about lines 132 to 134 and 336 to 340) forbid substantive
+content in any adapter. That conflicts with the inline-prompt copy. Round two binds: cure it in
+the last push, or reject it with a signed line.
+
+- Cure direction (a proposal, not yet drafted): state the thin-wrapper rule by its domain in both
+  places. An adapter adds no substantive instruction of its own. An inline-prompt role's copied
+  System prompt block is its template's text, compared with it.
+- The lineage's PDR-009 carries the same conflict, so the bytes go to it with the receipt, along
+  with the (b) and (c) cure.
+- Then run the merge-base sweep, merge, and send the receipt.
+
+**PR 188, residue for the sub-30% reviewer.** Below-bar items left untaken by choice:
+
+- The partial global-state lists in `never-disable-checks`, the starter templates and the Cursor
+  bugbot file stay as examples.
+- Item 1's bootstrapper wording stays, although its head clause already covers clock IO: it
+  settles the lineage reviewers' split.
+
+**A promise missing from the queue above:** as item 12, JC.net compares its own adapter check for
+the pointer-existence gap (lineage event 1440e0c3).
+
+**Queue order under the owner's 11:00Z word:**
+
+- Items 6 to 8 are JC.net defects, and bugs come first.
+- Item 9 (the ignore probe without `--no-index`) is an inbound gain. It comes after the review the
+  owner named.
+
+**Attribution.** None of these owner words was heard first-hand by this seat:
+
+- The owner's 11:00Z word is Geyser's recording (lineage event of 11:06:26Z).
+- The 10:31Z word is from the Director's napkin.
+- "Marten's session is over" and "Geyser is standby" are the Director's relays.
+
+**The filter-guard branch.** Its push was stopped at the owner's freeze word before any remote ref
+existed. It is still local only, and goal three owes it a pull request. Its draft body can be
+rebuilt from the commit message.
+
+**Check-in 10 (Director, 11:21Z).**
+
+1. The todo served is todo 5, verbatim: "The outbound note and material, delivered through the
+   join ceremony."
+   - Status by the register at main: outbound 0 of 21 LANDED, inbound 5 of 28.
+   - The lineage's merge-landed events show J4 (its PRs 202, 203, 205) and J18 (204, 206 to 209)
+     landed. The register does not yet record them (queue item 4).
+   - This session moved joint text (the K twin, the Cricket cures, K4) and answered the lineage.
+     It delivered no new rows.
+2. What holds this seat:
+   - The owner's freeze word at about 11:20Z. The rule is wrap §Use When: no subagent, monitor or
+     fleet starts until compaction lands. The sensor is owner chat, last read then.
+   - PR 188: PDR-052. The sensor is session-metadata, 43.3% at 11:22:40Z.
+   - PR 186: round two, above.
+3. The Cricket suite was not run, because the freeze word gates subagents. It runs once, on the
+   handover frame, after compaction and before any work.
+
+**Concept exploration: delivery is not landing.**
+
+- *Observations.*
+  - When the lineage's seat was held overnight, it landed batch two, K1 to K3(e), J4 (3 PRs) and
+    J18 (6 PRs), about one PR every 40 minutes.
+  - Since 10:35Z that seat is unheld, and its integration rate is zero.
+  - Batches three and five are acknowledged but not integrated, and J2 and J3 receipts are owed.
+  - The byte twins cost this seat about 15 minutes each (the K amendment, the Cricket cures). A
+    concept-note row costs the receiver several PRs of its own code.
+- *Problem.* Goal one is counted in landings in the lineage, not in deliveries. The constraint on
+  landings is the lineage's integration capacity. Drafting batch six adds inventory, which goes
+  stale as the lineage's head moves.
+- *What changed in this seat's view.* The fluent next step, "batch six next", serves delivery.
+  The owner's 11:00Z word ("integrated", "a fixed process with an end") names landing.
+- *Proposals.*
+  - **P1.** The owner seats the lineage's exchange seat; the Director has put the succession to
+    the owner. Warrant: the overnight rate against zero now. Falsifier: lineage landings continue
+    with no exchange seat held.
+  - **P2.** Triage batch six's twelve rows by disposition before drafting notes. Some cells
+    already name a closing outcome: J15 "already-present-verify-parity", J8 "decline until castr
+    has a corpus". Those close on a one-line receipt each. Warrant: the register cells. Falsifier:
+    the two-sided reads find that every row needs a full note.
+  - **P3.** For rows whose code is still near-identical in both estates, deliver exact bytes (the
+    twin pattern) with the concept note, so the receiver applies rather than rewrites. Warrant:
+    twin costs against J4's and J18's PR counts. Falsifier: the estates' code has diverged so far
+    that the bytes do not apply.
+  - **P4 (a question for the owner, through the Director, never acted on unasked).** Should the
+    donor seat integrate its own rows in the lineage through the join ceremony? Card C7's "land
+    it in both estates in one window" may already imply it.
+- *Unresolved:* whether any lineage seat other than the exchange seat lands exchange rows (Swallow
+  landed Codex work today, not exchange rows).
+
+**Re-arm after compaction.** Every process of this seat is stopped. The scratchpad scripts are:
+
+- `watch-comms.sh <estate primary> <session pid>`, once for each estate;
+- `heartbeat.sh <claim ids, comma-separated> <branch> "<label>"`;
+- `review-watch.sh <pr> <40-character head> 60`.
+
+If the scratchpad is gone, the napkin's RE-ARM RECIPE of 2026-09-24 carries the commands.
+
+**Claims kept for the open PRs:** a30304be, 3d4b9361 and 2cdb5931.
+
+- Pickup: this seat after compaction (the owner's card of 2026-09-24; today's word on it is with
+  the Director), or a named successor through `claims adopt`.
+- If no one adopts them, they expire at freshness, at about 15:20Z, and are archived stale.
+
+## Retrospective routing, 2026-09-25 11:44Z (Siren herds Rudder, 158275)
+
+The owner's "yes, please run a retro" produced
+`.agent/reports/agentic-engineering/2026-09-25-why-goal-one-read-zero-while-the-lineage-landed.md`.
+Its proposals make these entries (its proposal 3, applied to itself):
+
+- **Queue item 4 (the next exchange pull request) gains:**
+  - compound rows split into members at the unit a pull request lands (J18's observer and its
+    compare half; J9's seven doctrines), each member undrafted, delivered, landed or declined;
+  - a window row for each delivered post-pin concept (batch two's frame verdict and template
+    gains, batch three's gate slot and ownerless-lock reclaim, K1 to K3) and each lesson family;
+  - the count reported by member as undrafted, delivered, landed or declined (the Director's
+    10:36Z split);
+  - landings by the row texts: J4 whole (lineage 202, 203, 205); J9 part (194, 195, 197, 201;
+    four doctrines declined, receipt `c46a0e4b`); J10 part (199; PDR-082's channel bullet rides
+    the lineage's PR C2); J18 part (the observer, 204 and 206 to 209). Not J11: its landings rows
+    name jcnet.
+- **Batch six gains J18's compare half** (the reference notes and the session-continuation prompt).
+- **New queue item, the lessons batch (ruling 36), after PR 186 and PR 188, beside batch six:**
+  sweep the napkin, `distilled.md`, the pending graduations, the experience letters and the
+  reports; one window row per lesson family; deliver as a batch into the lineage's Box. It
+  carries the record's proposal 3: the retrospective skill's step 6 names each proposal's home by
+  path and quotes the entry made there.
+- **New work behind gate plan PRs B to F:** an advisory hook on content edits under
+  `.agent/directives/`, scoped to PDR-052's §Scope list. It prints session-metadata's live
+  reading, and at 30% or more names PDR-063's hand-over route. It does not refuse (register row
+  O1). This is the record's proposal 4.
+- **PR 188's directive review** needs a session below 30%. This session resumed at about 11%
+  after the owner's compaction; read session-metadata immediately before starting it.
+- **Joint cure, queued behind the smoke backstop** (lineage event `0d7ce353`, Swallow at the
+  Director's word, absorbed in `f9af143f`): both Cricket templates' output discipline gain "Refer
+  to every person and agent you name by name or with they/them; never infer a gender from a name
+  or a role." JC.net lands it first; the merged bytes go to the lineage's exchange seat.
+- **Batch six triaged** (2026-09-25, `.agent/reports/practice-transplant/batch-six-triage-2026-09-25.md`):
+  about 25 notes and 330 lines; J19, J23 and J18's prompt close with a line each; the J17 gate note
+  states the direction of the ratified `commit-as-the-full-local-gate` node. Drafting goes to a
+  fresh session or a fleet (this seat was at about 43% context when the triage landed).
+
+## Handover at rest, 2026-09-25 14:08Z (Siren herds Rudder, 158275; PDR-063, budget signal 4ce7af01)
+
+The owner is away (12:06:36Z word); the Director routes. This seat hands over past-peak (58.7% at
+13:48:28Z). Read `.agent/reports/agentic-engineering/2026-09-25-why-goal-one-read-zero-while-the-lineage-landed.md`
+first: it corrects goal one's count (J4 whole; J9, J10 and J18 in part; 12 rows undrafted; 5
+delivered and not integrated; the lessons stream unstarted).
+
+**Current edit state.**
+
+- PR 190 MERGED at 13:56:00Z as `5d4edebb`: the comms watcher polls (no fs.watch handle per pass),
+  and the coordination-home smoke has one 180 s hang backstop. Its branch is deleted and its worktree
+  retired. The restart notice went out on both streams (JC.net `20dd9627`, lineage `20385b9c`).
+  Its lineage twin is Titan turns Ether's (01a0d8), by the Director's routing (d18c56f0); this seat's
+  plan event is `09f9a852`.
+- PR 186 (the K amendment twin, worktree `k-twin`): MERGED at 14:07:29Z as `a9ed6463` after main (with PR 190) was merged into its branch; its round-two cure (1cf3a1c3) rides it. Branch deleted, worktree retired. The lineage has the receipt with PDR-009's two scoped sentences as a joint cure (`1592fa3d`).
+- PR 188 (K4, draft, worktree `k4`): held by PDR-052 for a session below 30%.
+- `fix/pnpm-filter-no-match` (worktree `filter-guard`): local only; owes a draft PR (goal three).
+
+**Decisions made.**
+
+- Poll-only over a held watch handle (test-expert, code-expert, architecture-expert-fred): a held
+  handle moves the blocking close to exit and can go deaf without an error.
+- PR 190's final-tip findings were rejected as cures in that PR, with signed lines, and queued below:
+  the latency wording (a wake waits for the pass in progress plus `pollMs`) and a regression guard.
+  The guard is structural, a restricted-import lint rule keeping fs.watch out of the collaboration-state
+  runtime, because a wall-clock "prompt exit" test is what testing-strategy forbids.
+
+**Queue for the successor, in order** (the check-in 12 suite's accepted order: goal one first).
+
+1. Goal one: batch six drafting from `.agent/reports/practice-transplant/batch-six-triage-2026-09-25.md`
+   (about 25 notes; J19, J23 and J18's prompt close with a line each), and the lessons batch (the
+   retrospective's proposal 2). Delivery never waits on a live lineage seat (ruling 35).
+2. Exchange joint cures (todo 5): the Cricket templates' no-inferred-gender line (lineage event
+   `0d7ce353`, absorbed `f9af143f`); the lineage's receipt of PDR-009's two sentences (`1592fa3d`)
+   to watch for; the seed platform gate, on which the lineage's seed branch waits.
+3. PR 190's routed review cures: the wait-seam rename (`waitForCommsChange` and siblings carry
+   change-wake names and dead path inputs), with the latency wording and the fs.watch import guard.
+4. Defects: the site's e2e server died twice in PR 190's gate (the PDF generator after "Launching
+   Puppeteer..." with exit 1 and no error logged; `e2e-global-setup.ts` gave up at its fixed 120 s),
+   Fred's lane; the TUI's `useLiveRefresh` re-subscribes on every render; the JC.net twins of the
+   lineage's tooling defects F-200 to F-207 (Myrtle turns Canopy's register in the lineage is the
+   source), one item by the Director's routing.
+5. PR 188's sub-30% directive review; the filter-guard draft PR; the older items in §Queue above.
+
+**Claims** carried for adoption with this record: a30304be (the seat), 3d4b9361 (K4), 2cdb5931
+(K4's widening). The comms watchers and the heartbeat stop with the closeout event.
+
+**Correction to the handover above, 14:34Z** (the owner's word to all seats, about 13:00Z in Swallow
+holds Drift's session, relayed by Swallow and then the Director, verbatim: "ALL seats need to STOP
+stopping mid session because of some ambiguous and made up "rules" about context. ALL you have
+achieved is stopping. Prepare for compaction then stop"). The handover is the prepared state for
+compaction, not a succession: this same session resumes after the owner compacts, keeping claims
+a30304be, 3d4b9361 and 2cdb5931. No context threshold sets a pickup default. First item at resume,
+before batch six: one small PR amending PDR-063's effectiveness-window and 80 percent triggers and
+the start-right-team skill's mid-cycle retirement triggers to that word (a budget signal means
+prepare for compaction and stop; the owner compacts; the same session resumes), with the same
+bytes for the lineage as an exchange row. Then batch six drafting and the lessons batch.
+
+## Resumed after compaction, 2026-09-25 15:00:08Z (Siren herds Rudder, 158275)
+
+Resumed on the owner's "carry on" (14:41Z rejoin, event 358551e4); context 6.3% after the
+compaction. Watchers, heartbeat and the peer-liveness poll re-armed.
+
+- PR 188 (K4): the sub-30% directive re-read ran at 11.6% (774517a9: three wording cures). Main
+  merged in at a9ed6463. Copilot round one gave one finding (item 12's heading), cured in 33c4e06d.
+  Round two on that tip had no findings. The merge waits on CI.
+- The Director's verdict on the two relays of the owner's word is Swallow's reading: no context
+  reading stops a seat or starts a succession. Records stay current; the drill runs only when the
+  owner calls a compaction; the same session resumes on the owner's word. PDR-052's floor stands,
+  and a compaction satisfies it.
+- Trigger amendment PR, branch `docs/context-never-stops-a-seat` (worktree
+  `context-never-stops`), claims 8c2a7569 and 4947b615. It changes PDR-063, PDR-052, PDR-064,
+  PDR-078, the Core CHANGELOG, start-right-team, the heartbeat rule and the session-metadata
+  advice strings. The checks are green and docs-adr-expert and Wilma are reviewing. PDR-063,
+  PDR-064, PDR-078 and compute.ts are byte-identical in the lineage. PDR-052, the skill and the
+  rule differ only outside the edited hunks.
+- Queued next: Swallow's Cricket clause (lineage f67bd1f06, event bfc686cf, the same bytes) as
+  its own small PR; then batch six drafting and the lessons batch.
+
+**Update, 15:04:35Z.**
+
+- PR 188 (K4) MERGED at 15:01:18Z as `c523ba81`. Its branch is deleted, its worktree retired, and
+  claims 3d4b9361 and 2cdb5931 are closed. The receipt went to the lineage (event 252fb4ce).
+- The owner's word, relayed by the Director: Myrtle turns Canopy (bf4957) is the lineage's
+  exchange seat and this seat's counterpart for every row (the trigger amendment twin, batch six,
+  the F-200 to F-207 twins). Myrtle acknowledged the PDR-009 joint cure (1592fa3d) and lands
+  blob bc4612df as one PR behind the lineage slot order.
+- The Director ruled for both estates (15:04:16Z) that PDR-052's floor stands as a deferral,
+  never a stop, and the amendment PR encodes it as drafted. This seat read 31.1% at 15:04:24Z,
+  so any further edit to PDR-052 waits for the next compaction. One candidate clause is held
+  there, from the ruling: a seat whose only remaining work is directive edits above the floor
+  says so and asks for a compaction.
+- Cricket clause PR: branch `docs/cricket-hold-release-sensor` (worktree `cricket-sensor`),
+  claim 39f0f4b5, commit 14ba003a, at its push gate.
+
+**Update, 15:22:25Z.**
+
+- PR 191 (the Cricket hold-release-sensor clause) MERGED at 15:09Z as `251cd984`. Its branch,
+  worktree and claim 39f0f4b5 are gone, and the receipt went to Swallow (lineage 7851b636).
+- PR 192 (the trigger amendment, "context readings never stop a seat") is OPEN at head `630be53e`,
+  with Copilot round one requested. It grew to 21 files after the docs-adr-expert and Wilma
+  reviews, on the Director's rulings:
+  - one PR for every stale surface;
+  - an owner-called compaction gets the drill, while a platform compaction gets none and the seat
+    re-arms and carries on;
+  - only `.agent/directives/*` and PDR-052 itself are gated by PDR-052.
+  The twin row went to Myrtle (lineage 9c109112). The claims are 8c2a7569, 4947b615, 3f9befe3
+  and 3b602eb1.
+- Queued for after the next compaction (PDR-052's self-applying clause; 31.1% at 15:04:24Z), as
+  one small commit and its own row to Myrtle: a seat whose only remaining work is directive edits
+  asks for a compaction; with no compaction coming, the seat names the queued edit in its next
+  report.
+- The watcher-twin joint-cure set (Swallow 15:16:19Z, ten findings) is accepted as one
+  JC.net-drafted PR (lineage 440d5773). It sits after batch six, with PR 190's routed cures.
+- Batch six: the Director placed it next (it is not directive work). A one-lane pilot is drafting
+  five half-B notes into the scratchpad (starter templates, merge-bot, polarity, tsconfig flags,
+  tdd-recipes). The rest of the fleet waits on its measured cost and a hand check of its output,
+  per the fleet-design rule.
+
+**Update, 15:51:19Z.**
+
+- PR 192 (context readings never stop a seat) MERGED at 15:46:24Z as `1708982f`, after three
+  Copilot rounds:
+  - round one's cures are in ef364ba4 (the floor judged on the exact figure; PDR-075, PDR-078
+    and PDR-117 wording);
+  - round two's are in b11cb9db (PDR-063's Context; PDR-117's rationale);
+  - the final-tip note was rejected with a signed line: every band is judged on the exact
+    figure.
+  The branch, worktree and four claims are closed. Myrtle has the receipt (61d90207) and takes
+  the twin from 1708982f.
+- The seed question (lineage 9f9e7b8f) is answered (f8c07846) and accepted by Myrtle: a
+  subagent's collaboration write is its parent's by design, and the three Claude seeds count
+  only on a Claude platform, in both resolvers. The lineage's seed branch carries the gate
+  test-first; JC.net twins it once that settles (queued).
+- Goal three, JC.net: the filter-guard branch is draft PR 193 (merge of main e5cc73a2; its two
+  remaining to-dos are in the body). Remote branches: the coordination branch (PR 189) and
+  `fix/pnpm-filter-no-match` (PR 193), both in PRs. Claim 1ae13bc0.
+- Batch six: the pilot (5 notes, 252,175 tokens) is in the scratchpad. Wilma's design review
+  asks for changes:
+  - drop B4 (batch three delivered it), N3 (it rides the lineage intake) and B1 (the gate node
+    pre-empts it);
+  - reduce N9 and B12, and reframe N1 against amended PDR-009;
+  - restate B8 and B9 under PDR-126;
+  - take SHAs and line numbers out of box notes into a citation ledger;
+  - use the batch 3 to 5 skeleton for machinery notes;
+  - deliver with lint in the lineage's configs, per-member receipts and register updates.
+  The assumptions review is pending; then a revised plan goes to the Director for owner
+  pricing.
+
+**Update, 16:17:19Z.**
+
+- PR 194 (watcher cadence wording): round two's two findings are cured in bf201137 (the
+  reference index says polled; the watchComms TSDoc says the first pass after each heartbeat
+  interval). The first push failed at the site end-to-end step of the pre-push gate; a retry
+  is running with the full log kept. A final-tip review follows the push.
+- PR B (`fix/watcher-joint-code-cures`, worktree watcher-code): the local commit is under
+  code-expert review; it opens after PR 194 merges and main is merged in.
+- The todo-test cure (Myrtle's no-skipped-tests finding, the joint shape of lineage reply
+  2d861b43): branch `fix/lint-refuses-todo-tests`, worktree warn-todo, commit 69416c32.
+  `vitest/warn-todo` runs at error in the strict config; unit rows for it.todo, test.todo,
+  describe.todo and the `{ todo: true }` option, one under the test-file rule layer, and an
+  it.each row. Config and test reviews are running. Claim ca1e90ae.
+- Found: the site workspace's lint config composes eslint-config-next only, so no vitest
+  skip, only or todo rule reaches its 44 test files. The cure is its own PR after this one.
+
+**Update, 16:43Z.**
+
+- PR 194 MERGED at 16:27Z as a831be86. Cleanup is done: the branch was deleted by API, the
+  worktree retired, the local branch deleted and four claims closed. The final tip's three true
+  findings (the agent-tools README's "every `--poll-ms`", the rule's liveness "every 30 s", "one
+  notification per event") have signed lines on the PR and ride PR 195. Lineage receipt:
+  70aa8a70. Swallow confirms the lineage twin carries the same three sentences.
+- PR 195 is PR B, a draft (head b4ba36a3, with the code review's four findings cured). By the
+  Director's order its next step, merging main and marking it ready, runs once batch six's drafts
+  are delivered. It then also takes PR 194's three sentences.
+- PR 196 is the todo-test cure. Round one had one finding (the no-IO plan's stale test path),
+  cured in fc2d642d; round two is requested. The config review was clean, and the test review's
+  cures are in 6d7281a5: `testRules` has an IO-free module, the file is renamed
+  `strict.integration.test.ts`, and the layer rows cover all three rules. Myrtle has the twin
+  notes (0a513742).
+- Batch six, in the Director's order (16:17Z: batch six first):
+  - the pilot's five notes are converted to box format;
+  - nine rows are drafted in-seat: N2, N7, N8, N10, N12, B8, B9, B10 and B11;
+  - still to draft: N1, N4, N5, N6, N9, N11 and B2.
+  Each note has a citation ledger (`path:line@sha` at JC.net 1708982f and lineage 0a816621e),
+  and a scripted pass proves every anchor is found. The drafts are in the scratchpad until
+  delivery.
+- JC.net defects found by drafting, queued:
+  - `validate-identity-naming.ts` prints `String(scan.error.cause)`, so an absolute path reaches
+    the CI log; this is a twin cure with the lineage;
+  - the site workspace and `tooling/eslint` compose no strict config, so no vitest skip, only or
+    todo rule reaches their tests;
+  - an inline `/* eslint <rule>: "off" */` comment passes `no-eslint-disable`.
+- Host: main's Playwright 1.63.0 needs `chromium_headless_shell-1243`. It was installed at about
+  16:19Z, after PR 194's first push failed at the site e2e step.
+
+**Update, 18:09Z.**
+
+- Merged: PR 196 (2c6e47ec), PR 197 (5986beb2), PR 195 (6868ad85, 17:59Z) and PR 193
+  (69a649a0, 18:04Z). Each has its branch deleted, worktree retired and claims closed.
+- PR 193's final tip had two true findings, signed Rejected-for-this-PR. The follow-up PR is
+  owed: shell-aware tokenising for command surfaces (quotes removed; comments and operators
+  only when unquoted; `sh -c` read as a command), and the failure guidance naming the
+  built-in exemption.
+- Batch six was delivered (event 2ef9f444); Myrtle acknowledged 22 of 22. Her
+  integrated-or-rejected receipts arrive per file.
+- Joint cures: PDR-063 (lineage blob fe5fcf75), PDR-142 (blob c1aff627, narrowed by the
+  Director's ruling at 17:58Z) and PDR-009's Forbidden-bullet wording (JC.net's blob
+  47ee8c92). They ride branch `docs/joint-cures-pdr-009-063-142` (worktree pdr-joint-cures,
+  claim 0ee86c02). PDR-142's three concept sentences wait for the owner's card, which the
+  Director raises.
+- The security pair: the secrets hooks warn when nothing is scanned, and the owner-only log
+  helper refuses without a uid. Committed at 3f643033 on `fix/secrets-scanner-warn-and-uid-refusal`
+  (worktree security-pair, claims 2f400f0c and 413e1021).
+- Still owed from the cover note: the hook fixture union; declared inputs for package tests
+  that read root files; the identity-naming describer with `errorCodeOf`;
+  `no-agent-substrate-access` to error; the merge-bot inbound clauses (these go through intake).
+- Then the next inbound batch of eight, in the register's order. Landing rows for the joint
+  cures go in with it.
+- Host: at 17:50Z Playwright pruned `chromium_headless_shell-1243`. It had been installed from
+  a worktree that was later retired, and one pre-push failed. It is reinstalled from the primary
+  checkout, whose path persists. The lineage's default branch is `engraph`, not `main`.
+
+**Update, 18:41Z.**
+
+- Merged since 18:09Z: PR 198 (3fe1a325; the joint cures PDR-063 fe5fcf75, PDR-142 c1aff627,
+  PDR-009 47ee8c92; the lineage takes the PDR-009 blob), PR 199 (7da1d4b9; the security pair)
+  and PR 200 (5ec732d0; `errorCodeOf` inbound, identity naming refuses through the describer).
+- Open:
+  - PR 201 (`fix/cited-scripts-shell-tokens`, worktree shell-tokens, claim 9b87a35e): command
+    surfaces read as the shell reads them. Round one is cured at 91fb33ed; round two is requested.
+  - PR 202 (`fix/agent-tools-test-uncached`, worktree test-cache, claim 25d32056):
+    `@engraph/agent-tools#test` runs uncached by the Director's ruling; a read trace found eleven
+    undeclared root reads (7.7 s per run).
+  - `fix/lint-shape-reaches-every-workspace` (worktree lint-shape, claim 79a18cd8, commit
+    c7458a24, pushing): the substrate rule at error, and `configs/test-shape.ts` shared by
+    `strict` and the plugin's own config. The site was taken out on the config review: it runs
+    ESLint 9, so a dependency on the plugin brings an unmet-peer warning.
+- Next lanes:
+  - The hook-fixture union. The plan-gate smoke writes its stub checker at
+    `agent-tools/dist/src/validators/plan-schema/check-plan-gate-drift.js` under the project, so
+    the union fixture must let each case choose its links; symlinking `agent-tools` there would
+    overwrite the real build.
+  - The site onto ESLint 10 and the Practice configs.
+  - The merge-bot inbound clauses.
+  - L12 (update, 21:30Z): rule one merged as PR 206 (086f39de); `one-pr-per-leaf-issue` declined by
+    the Director's ruling; `bot-identity-on-third-party-systems` is draft PR 208 (head 8966f554), a
+    portable core as one joint text. Commit and push identity bind to the lane set-up skill's
+    identity step (not the profile: PDR-141 decisions 4 and 5). The lineage adopts the same body
+    (blob 78d43e1b) with its PR 216's derivation block. L12's landing row goes in after PR 208
+    merges, not PARTIAL.
+  - L12 (update, 22:04Z): PR 208 merged at 57592003 (body blob 4fd5b7f5), so the landing row is
+    owed. The final-tip review's two findings are true and joint: the identify-as-agent Why
+    section still narrates the owner-credential frame, and the bot-identity review row names
+    REST only (the GraphQL `addPullRequestReview` and `submitPullRequestReview` mutations fall
+    through). Myrtle cured both in lineage PR 216 (head 166bdb9b2; files 493fa7c2 and
+    69bcb9f1; the sections are the discriminator paragraph and its two map rows, and the Why
+    section's first paragraph). JC.net takes those bytes in one small PR after PR 216 merges
+    and its merge SHA is on the stream.
+  - PR 216 round one (22:18Z, head 6c04233ee; blobs 1392d856 and 415b8304) adds four joint cures
+    for the same intake: the bot preflight reads the HTTP status (403 is the bot, 200 a human
+    credential, 401 or nothing a broken token; only a 403 continues); the Copilot-request
+    command has two forms, each bound to its credential; the marker's fact 3 has a bot form;
+    and the lane skill's step 2 identity check records a failed comparison. That last one is a
+    JC.net defect: this estate's loop exits 0 when the name differs but the email matches.
+    Take the bytes from PR 216's merge, not from an interim head.
+  - Curator-passes retirement (lineage PR 245, head fee8d2a68, 22:23Z): JC.net has the
+    curator-pass skill and the temp-files rule's curator clause, but no passes directory. After
+    PR 245 merges, take the skill's joint parts (step 6's last sentence and the never-list
+    bullet; whole-file blob 7f2857bc there), and compare the rule's clause with the lineage's
+    bytes. PDR-081's Cascade, Consequences and Forbids still describe the log as live; that
+    is a Core amendment named as a lineage follow-up.
+  - Deferred directive edit (PDR-052, 57.8% at 21:25Z): the lineage's
+    `cloud-environment-routing.md` back-link to the bot-identity rule, at the next sub-30% reading.
+  - The shell reader's known limits (PR 207's final line and the code review): a `case` arm's
+    pattern `)` inside `$( )` closes the scan early; hook files are read line by line, so a quoted
+    heredoc that shows a call in backticks would read as a citation. No surface carries either
+    today.
+  - L3: PDR-027 is ahead here (the 2026-09-12 seed entry, the `PRACTICE_` override name); the
+    twin-back is owed to the lineage.
+  - The hook fixture's docblock (`agent-tools/smoke-tests/claude-hook-command-fixture.ts`) still
+    says the bash 5.2 floor "rules out" older bash; the wrapper warns and runs the hook unlogged,
+    and the plan-gate hook never invokes bash (PR 204's final-tip line). The next change to that
+    file corrects it.
+
+## Wrap block, 2026-09-26 09:53Z (the owner's word: prepare for compaction and stop all processes)
+
+**What happened between blocks.** A usage limit paused this seat from about 22:42Z on
+2026-09-25 until about 09:48Z on 2026-09-26. Whether the other seats paused too is an inference,
+not an observation: the streams from 22:30Z on were not read before this wrap (the read was
+interrupted). What was observed is consistent with a fleet-wide pause. The 00:00Z folds did not run:
+`coordination/2026-09-25-cf6897` is still live, 3 commits ahead of its remote at this wrap (two
+of this seat's records commits, eedfb3e3 and f00a6cd2, and the Director's 48fc2f8c), plus this
+wrap's commit. Lineage PRs 216 and 245 were still open at 09:48Z; JC.net's only open PR is 189.
+
+**Landed since the 22:04Z update.** Nothing new on main. The profile write is at f95eb16 in the
+profile repository. The records commits are named above.
+
+**Next safe step after compaction.** Do not start from the intake list. First read the live
+state and send the Director one native message (the pause has made this queue a hypothesis).
+Then open on goal one: read the register's J rows (`bring`, `compare`) against their lineage
+landings, because tonight's queue ran reactively in the lineage-to-JC.net direction. The
+intakes from PR 216 (six cures) and PR 245 (the curator-pass skill) run when those PRs merge.
+
+**Grounded facts the next executor would re-derive.**
+
+- The profile sync push stages every existing and tracked profile document, and it does so in
+  both estates (`operator-profile-git-push.ts`, `stagingPaths` and `stageAndCommit`). Before
+  any profile write, pull and read `git status --short` in the root; if another seat's write
+  is there, ask its writer to push first.
+- JC.net's lane skill step 2 check
+  (`.agent/skills/set-up-worktree-lane/SKILL-CANONICAL.md`, the block after "matches the
+  primary") exits with the `user.email` comparison's status only. PR 216 cures it jointly.
+- PR 242's research blobs equal JC.net main, and its rule body equals JC.net's body (only
+  JC.net's frontmatter differs). JC.net owes nothing from PR 242.
+- Every host process of this seat is stopped: the heartbeat, both comms watchers, the
+  peer-liveness poll and the PR watch. Claim a30304be is kept but unrefreshed.
+
+**Re-arm recipe on "carry on"** (verify by task list and process table first; nothing
+survives a compaction). The scripts live in the session scratchpad:
+
+- `heartbeat.sh a30304be-4986-40f0-883b-fd518224472b coordination/<live branch> "<label>"`
+- `watch-comms.sh <JC.net primary> 39355` and `watch-comms.sh <lineage primary> 39355`
+- `peer-liveness-poll.sh 600`
+- 39355 was this session's supervisor process id at 22:12Z on 2026-09-25; re-read it before
+  re-arming, never reuse it blind.
+
+**The Director's line at the wrap** (native, about 09:5xZ on 2026-09-26): the scope file's two
+lines (done at f95eb16), then L12's landing row and "todo 8's text cure", or the compaction.
+This seat has not yet identified which todo 8 that is. Read the plan node's todos on resume
+before acting, and ask the Director if it is still ambiguous. The Director folds PR 189 on
+resume (due 11:17Z); no seat folds it.

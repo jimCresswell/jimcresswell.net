@@ -80,45 +80,125 @@ Every line answered first-hand, none inferred:
   out of phase, about 22 minutes after the others"); the owner's timer outranks the cricket skill's
   event-boundary default for this seat.
 
-## Current handoff state (2026-09-25T10:58Z; after the Director's third compaction; the live reading is this block, then the napkin from its 10:37Z block on)
+- OWNER WORD, 2026-09-25 about 11:30Z, in the Director's chat (native, no event id), verbatim:
+  "Myrtle turns Canopy (bf4957) takes the exchange seat, but not until they have completed their
+  dedicated consolidation session". Myrtle is the lineage's curator (OCE team start 11:26:10Z), so
+  the seat is the lineage's exchange seat, vacant since Marten mends Shadow stood down; relayed to
+  Myrtle natively at 11:31Z with Marten's handoff record named as the brief. Siren herds Rudder
+  resumed in the same session at 11:27Z on the owner's "yes, please run a retro" (a retrospective
+  on the two-day exchange arc, for the Director to commit).
+
+- OWNER WORD, 2026-09-25 about 11:40Z, in the Director's chat (native, no event id), verbatim:
+  "why do we need the ChatGPT desktop host? My interest is Codex CLI", and on the Director's
+  explanation that the Codex seats were started through the desktop app: "nope! They were both
+  started via the terminal with `codex`". So the Codex membership programme targets the Codex CLI
+  (a terminal TUI, `codex exec`); the wake bridge's node premise that a seat sits on the desktop
+  host is corrected; todo 1 drops its desktop legs and Titan's TUI runs are its evidence. Relayed to Swallow natively with the node's todo 1 wording as seat work (same bytes both
+  estates). Swallow's card A is closed; no owner action is pending.
+- DECIDED by the Director, 11:41Z, overturnable by a line: the lineage's overdue fold (OCE PR 187)
+  is the Director's to run once the host load allows a gate, with the gate announced and the sweep
+  coordinated with Myrtle and Swallow (the owner's launch word ranks Myrtle's consolidation above
+  the fold for Myrtle, not for the fold); Siren's P4 is dissolved by the word seating Myrtle and by
+  todo 5 (the donor delivers, the receiver lands).
+
+- OWNER WORD, 12:06Z on 2026-09-25, in the Director's chat (native, no event id), verbatim: "I will
+  be away from keyboard for a few hours. All questions go to you first, and any that genuinely
+  survive the decision matrix can come to me via push notification, but I don't expect there to be
+  many". So while the owner is away: every seat's question comes to the Director; the Director
+  decides by the lenses and PDR-063 (owner-absent: a declared deadline and a default); only a
+  question that survives all five lenses and is constitutively the owner's goes to the owner, by
+  PushNotification, never a card. Relayed to Siren, Swallow and Myrtle natively and broadcast on
+  both streams at 12:06Z.
+
+- OWNER WORD to ALL seats, 2026-09-25 about 13:00Z, given in Swallow's session and relayed by
+  Swallow at 14:33Z (recorded as relayed, consistent with the owner's compaction words of
+  2026-09-24), verbatim: "ALL seats need to STOP stopping mid session because of some ambiguous and
+  made up "rules" about context. ALL you have achieved is stopping. Prepare for compaction then
+  stop". So: no seat hands over on a context threshold; at a budget signal a seat prepares for
+  compaction (records committed, processes stopped, claim retained) and stops; the owner compacts;
+  the same session resumes on "carry on". PDR-063's effectiveness-window and 80% triggers and the
+  start-right-team skill's mid-cycle retirement triggers are amended to this word, as the same
+  bytes in both estates: JC.net's exchange seat at its resume, the lineage's seat as the twin. The
+  Director accepted two threshold handovers today (Swallow 51.3%, Siren 58.7%) under PDR-063; that
+  reading is retired.
+
+- 2026-09-25 17:2xZ (native, verbatim, answering the Director's three open decisions): "1. Approve
+  2. Delete all 3. Try passing my approval to Gale and see if that does the job, I absolutely need
+  all seats to be able to push without me". Read: the wake sensor beside the Codex seat is
+  approved (slice 2 built by Swallow); the eight branches on the card are deleted (Myrtle, the
+  owner's word and each last sha recorded); the owner's approval for Gale's PR 211 push is relayed
+  verbatim; every seat must be able to push without an owner prompt, which the Codex config split
+  must deliver.
+
+## Current handoff state (2026-09-26T09:48Z; COMPACTION BOUNDARY 5 of the Director seat; the live reading is this block, then the napkin's COMPACTION BOUNDARY 5 block)
 
 Written for a reader who was never here and may run on a different model. Where this block and
-the routing log disagree, the log's last entry is current. The owner's words are verbatim in the
-napkin's blocks headed "OWNER RULINGS by card" and in §Standing owner rulings above.
+the routing log disagree, the log's last entry is current. The owner's words are verbatim in
+§Standing owner rulings above and in the napkin's dated blocks.
 
-- THE OWNER'S LAST WORDS. 2026-09-25 morning, verbatim: "review progress. We want 1. All JC.net
-  Practice innovations integrated into the OCE Practice 2. Codex brought up to first class Practice
-  citizen status 3. All local and remote branches deleted or in PRs, all PRs merged"; "Review,
-  assess, report, stop"; then "Please continue". The assessment is the napkin's 10:37Z block: goal
-  one about a third landed (J4, J18, J11 in full, J9 partial; five rows delivered and not landed;
-  twelve undrafted); goal two 0 of 3 todos, gated on OCE PR 196; goal three mostly mechanical (OCE
-  holds 72 remote branches, 65 already merged into `engraph`).
-- ROLES. The Director is Wick binds Temper (ed7b48), on the primary checkout. JC.net's exchange
-  seat is Siren herds Rudder (158275), resumed 10:2xZ, working its handover record's queue with K4
-  first (its own re-order, 10:58Z), then batch six, the filter-guard branch's disposition and the
-  register's §Landings. The lineage's exchange seat is VACANT: Marten mends Shadow (74fc02) stood
-  down at the owner's word with its handoff record in the lineage's primary
-  (`.agent/state/collaboration/handoffs/74fc02-marten-mends-shadow-exchange-lane-handoff-2026-09-25.md`);
-  Geyser rides Pewter (eeecbd) is standby at the owner's "come up to speed and start no work", so
-  the succession is the owner's word, put to the owner in the Director's report. Swallow holds
-  Drift (516619) resumed 10:49Z on OCE PR 196 with Titan turns Ether (01a0d8, Codex) as partner;
-  the wake bridge's todo 1 opens at PR 196's merge. Luna stirs Radiance (01a0d3) closed out 10:34Z.
-- STATE. `main` is at `SHA: 3c4e4e22` (PR 185). The fold of `coordination/2026-09-24-7925bc` (PR
-  176) is in flight: main merged in as `SHA: cdee9fdf`, one settlement push carrying Copilot's three
-  true findings (this block, the continuity record's current entry, the README row). After its merge:
-  cut the successor from the fetched `origin/main` with the coordination tool, re-arm the
-  heartbeat with the new label, broadcast the rotation, then resume the cadence as check-in 10
-  with the suite 22 minutes after, on the fourteen-requirement frame.
-- OWED BY THE DIRECTOR. The lineage's coordination branch (`coordination/2026-09-24-f66fd0`, OCE
-  PR 187) was due 11:07Z with no seat to fold it; that fold and the lineage's exchange succession
-  are in the report to the owner. Marten's four closing items are answered in the napkin's fold
-  block (the successor's brief is the owner's; PR G and claims a63a7df8 and 141892a7 pass to the
-  successor, who opens draft PRs at pickup; Marten's napkin entry waits for it).
-- STANDING LESSONS OF THE LAST STRETCH, each in the napkin with its evidence: a card holds the
-  turn, so raise one only when no seat's deadline waits on the Director and put the questions in the
-  report text too; re-read every hold's sensor at dispatch before building a frame; a merge message
-  is written after the sha is resolved, from the log; a body line over 100 characters fails the
-  commit-msg hook.
+- BOUNDARY. At 09:48Z on 2026-09-26 the owner said "please prepare for compaction and stop all
+  processes" with the metacognition, free-play, concept-exploration and wrap skills invoked. The
+  cadence loop is stopped (ScheduleWakeup stop; no wakeup was pending), no Monitor is armed (the
+  last expired at about 22:50Z on 2026-09-25), no subagent runs; claim 58c2684a RETAINED; this
+  session resumes after the owner's compaction and "carry on". The freeze binds until then:
+  answering is in order, starting anything is not.
+- THE OWNER'S LAST WORDS (2026-09-25, native, verbatim in the napkin's 21:42Z block): "I am happy
+  to go with your recommendations, but run them by a full Cricket suite and assumption reviewer
+  first, and I will re/start a Codex seat in the morning, push what you can in the meantime, and
+  shoot for zero open PRs for both repos via the proper quality and merge processes, use all
+  appropriate skills". The condition was met at 21:52Z; the outcome is in the napkin's 21:52Z
+  block: PDR-142's three sentences HELD; the scope-file line EXECUTES as amended (Siren, two
+  lines); the `main` pull-request rule WITHDRAWN (main is the upstream mirror, fast-forward only
+  by the owner's 2026-09-20 word); the path-scoped owner-review ruleset WITHHELD; the veto lines
+  stand; zero open PRs a direction through the proper processes, no deadline.
+- SEATS AT THE BOUNDARY (read 09:48Z from both streams and gh pr list). Siren herds Rudder
+  (158275): LIVE, heartbeats at 09:42Z and 09:46Z, cycle "PR 208 merged; the operator profile edit
+  next" (the scope file's two lines under the owner's amended word); its context read 65.3% at
+  21:51Z on 2026-09-25. Swallow holds Drift (516619) and Myrtle turns Canopy (bf4957): SILENT
+  since about 22:30Z on 2026-09-25 (three and five heartbeats after 22:29Z, none after midnight);
+  PR 241 (Swallow, the Codex seat rules) took the slot at 22:26Z and never reached the door; no
+  lineage merge since PR 242 (8c9434ae3, 22:24Z). Gale turns Cloud (01a0d9, Codex): over since
+  15:18Z on 2026-09-25; the owner restarts a Codex seat in the morning (PR 211's push, PR 241's
+  live proof). The lineage primary (coordination/2026-09-25-749769) carries UNCOMMITTED seat work
+  the Director did not touch: `.agent/memory/operational/frictions-register.md` (+21 lines, F-209,
+  Swallow's) and `.agent/experience/2026-09-25-titan-turns-ether-formation-letter.md` (Titan's,
+  untracked); Swallow's records commit of 21:39Z never ran. Owed to Swallow's resume or successor.
+- GOALS AT THE BOUNDARY. Goal one: 7 of 23 J rows landed whole (J4, PRs 219, 213, 215, 230, 225,
+  227), batch six's first landed; L12 closed both directions (JC.net PRs 206 to 208; lineage PR
+  242). Goal two: 0 of 6 items complete; sub-PRs: 228 (2a), 222 (PR A), 233 (2a-ii) merged; PR 244
+  (B0) open; PR 241 at the slot, unlanded; the push-without-owner measure 3 of 3 live seats; the
+  Codex seat's cure waits on PR 241's door and the owner's morning session. Goal three: JC.net 1
+  open (189, the coordination PR, cut 11:17Z on 2026-09-25, its fold DUE at 11:17Z
+  today); the lineage 22 open (223 the coordination PR, cut 17:05Z on
+  2026-09-25, due 17:05Z today; 224 the owner's own draft; 211 Gale's; 19 ready PRs by readiness);
+  merged on 2026-09-25: JC.net 176, 186 to 188, 190 to 208; the lineage 196, 212, 214, 187, 219,
+  213, 215, 222, 230, 228, 225, 239, 227, 233, 242 (eleven through the readiness slot).
+- POST-COMPACTION PROGRAMME (the owner's standing word, "carry on"): read the clock; process table
+  0 of this seat's; ListAgents and both streams; read gh pr list on both estates and the merged
+  list since 22:24Z on 2026-09-25 yourself (never from a seat's line); check every seat: Siren (the
+  scope file's two lines, then L12's landing row and todo 8's text cure, or its compaction), the
+  lineage seats (if silent, the slot is free and PR 241's door is the first act of whoever holds
+  Swallow's lane; the uncommitted F-209 and Titan's letter go in that seat's next records commit),
+  the Codex seat the owner starts (PR 211's sync and push; PR 241's live proof after it lands);
+  then the two FOLDS by the coordination-fold skill, JC.net 189 from this primary and the lineage's
+  223 from its primary, records current, each due at its cut time plus 24 hours; re-arm one monitor
+  with the scratchpad recipe (`bash <scratchpad>/director-monitor.sh 58c2684a-5e8d-4a33-a29e-ed074df63128
+  coordination/2026-09-25-cf6897 "<label>"`, Monitor timeout 1800000, re-armed at each expiry; the
+  scratchpad is `<scratchpad>/`
+  and may not survive; the script watches both comms streams without heartbeats and runs the
+  pulse); resume the cadence as check-in 24 with the suite 22 minutes after, on a frame built as
+  the napkin's boundary block proposes (a generated state snapshot, the holds, the owner board);
+  no owner card unless one survives the lenses; a push notification only for a survivor. The
+  owner's "agreed" (10:01Z, 2026-09-26) ratifies the generated-snapshot frame: build the snapshot
+  script first, then the frame from it; the cadence itself unchanged.
+- STANDING LESSONS OF 2026-09-25, each in the napkin with evidence: a fact taken from a seat's
+  summary is not a read (three premise misses, all reversed by the assumptions reviewer's source
+  reads: the flake count, J14's row, the rulesets and the mirror); the clock is read in a separate
+  call before the writing call (the eighth instance); the whole-frame sweep runs after the last
+  fold and re-reads every named gate; a peer's harness-denied action is never another seat's to
+  do; PDR-052's floor gates directives and itself only; the readiness slot with "taken/released"
+  events turned over eleven landings at 16-second handovers; the recommendations-suite shape
+  (eight Crickets and a read-capable assumptions reviewer) is the instrument for decisions.
 
 ## Live board
 
@@ -2065,3 +2145,10 @@ ones the Director would put to the owner had the owner been present.
 - 2026-09-24 about 18:3xZ, to the Director, verbatim: "Tell everyone who is over the context limit to prepare for compaction, you all know the drill, you've seen it a hundred time"; "Then, some how, trigger compaction"; "Ask me any unknowns or questions now". Compaction itself is run by the owner in each session's terminal; the Director tells the seats to run the drill and reports ready.
 - 2026-09-24 card answers (via the Director): 15:33Z delete main-local-pre-sync-2026-08-12, delete the uncommitted worktrees outright, Marten continues past the line; 16:31Z Siren builds the gate semaphore after its queue, codex-queue-wake-bridge ratified as it stands, Marten takes the test-doctrine intake past the line; about 17:08Z Swallow continues past the line, Marten continues past its handover point; about 18:4xZ Siren resumes in the same session after compaction, C7 (PDR-005 bring by default; the gradient governs how, never whether) ratified as a concept, the Director runs its boundary drill and is compacted.
 - Standing lesson for every Director: an owner card holds the turn until answered; the cadence loop, the monitor and the heartbeat all stop with it. Raise a card only when no seat's deadline waits on the Director, after telling the seats the Director goes dark, and put the questions in the report text as well.
+- 2026-09-26T09:48Z: COMPACTION BOUNDARY 5 at the owner's word ("please prepare for compaction and
+  stop all processes", with the four cognition and wrap skills). The current-state block above is
+  rewritten for it; the napkin's COMPACTION BOUNDARY 5 block carries the reflections, the promises
+  sweep, the metaloss passes and the re-arm recipe. Processes: none armed. Claim 58c2684a retained.
+  Both coordination folds DUE today (JC.net 189 at 11:17Z, the lineage's 223 at 17:05Z), owed to
+  this seat's resume. The live board below is stale since 2026-09-13 and this file is 2,100 lines
+  against a 160 limit: the drain is this seat's first records act after the folds.
