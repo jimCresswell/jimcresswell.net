@@ -1417,3 +1417,22 @@ signed lines only; run the sweep and the door; release the slot; clean up.
 Then the lineage copy's ratification stamps as a one-file PR at a free WIP slot, carrying the
 three final-tip cures only if they are not procedure changes (a procedure change returns it to
 sketch). Then the order as recorded at the 09:09Z block, step 6.
+
+**Landed, 10:43:58Z:** lineage PR 260, the work-in-progress limit in pr-lifecycle §Phase 7, as
+SHA:71988aaa6. Settlement push SHA:33d225657 (the cures SHA:16a16ffae and SHA:d899b423e, the
+remote head and engraph at SHA:8af61ab82 merged, owner-authored); four signed lines; both legs
+tip-bound. Final-tip dispositions, as signed lines with no push:
+
+- Codex P1 4114998240 and Copilot 4114998517, ACCEPTED: the steps must leave out each
+  repository's coordination PR, and that PR may always open. The cure rides the next PR that
+  carries the bullet.
+- Copilot 4114998489, REJECTED: posting before reading across every stream on one host and one
+  clock means the later opener always counts the earlier one.
+
+Claim 0c6862e8 is closed, and the worktree, local branch and remote branch are deleted (the
+remote read back absent).
+
+**Next, pending the Director's word (asked at 10:4xZ):** one lineage PR with the runbook copy's
+stamps plus the three final-tip cures (bytes from JC.net SHA:eeaeef8c) and the WIP bullet's count
+cure; then the JC.net twin of the WIP clause with the same bullet bytes. The lineage stamp's
+ratified_where needs answer 10 recorded on the lineage coordination branch first.
