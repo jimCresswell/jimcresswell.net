@@ -2099,3 +2099,24 @@ written 22:19Z).**
     test and the stage-0 symlink read), and JC.net's non-blocking operator-profile read.
   - Both estates: `.agent/hooks/policy.json` in the agent-tools test task's cache inputs, a smoke
     test with a flagged fixture policy, and memoising the walk.
+
+**Lineage 272 open at round one; item 1a pushed; item 3 measured (block written 23:18Z).**
+
+- Lineage PR 272 (item 2, `fix/agent-tools-test-policy-input`, SHA:3499ccf12): the agent-tools
+  test task hashes `.agent/hooks/policy.json`. Round one: Copilot and Codex both found nothing.
+  - CI's `build` failed in the hub's Next build, inside `next/font/google` ("queries have exactly
+    one entry"). engraph passed at SHA:bfd9e07f0 nine minutes earlier, and 272 changes only one
+    test-task input. It is a first sighting, so the failed jobs were re-run (attempt 2).
+- Correction to the 22:59Z block: the turbo input gap is lineage-only as well. JC.net runs that
+  task uncached.
+- Item 1a (`fix/operator-profile-read-nonblocking`, SHA:8eba0173f, worktree `oce-wt-profile-read`,
+  lineage claim 3a98544d) is pushed through the gate, not yet opened.
+  - It takes JC.net's `operator-profile-read.ts` (same bytes bar the result package) and its
+    `readDocument` tests.
+  - A live probe on a fifo: the base read held past 2 s and pinned the process until a writer
+    opened the fifo; the cured read is refused at once.
+  - Two mutants, both killed. Pre-open code and security reviews are running. It opens as 3 of 3.
+- Item 3 measured: shellcheck 0.11.0 finds 17 findings in 7 of the lineage's 29 tracked shell
+  files: five husky hooks (SC2034 and SC1091), one sonar-secrets build script (SC2064) and one
+  vendored skill script (SC1090). The gate is six modules and tests (about 1,000 lines), plus the
+  pinned installer's CI step. The proposed split is two PRs: the script cures first, then the gate.
