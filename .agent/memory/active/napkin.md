@@ -1194,3 +1194,66 @@ operated limit of two. Live seats: the Director and Nova.
 NEXT: the distillation's first slice on this branch (checkpointed); check-in 38 at 13:17Z; suite
 33 at 13:39Z on a frame with the SOURCES cures; the retrospective's PR when the count is under the
 limit or the owner rules; the folds DUE at the UTC rollover.
+
+## 2026-09-27T13:2xZ — Director check-in 38; the count over the operated limit; 264 red on F-208's class
+
+Snapshot generated 13:17:18Z (floor 12:29Z). Clock read 13:17:18Z. Cadence arithmetic: check-in 37
+ran at 12:29Z, three minutes before its 12:32Z point, so this block sits on the 13:17Z wake; suite
+33 at 13:39Z; check-in 39 at about 14:02Z. Both streams read to 13:17Z. Suite 32's cures applied:
+the limit read as the seat formula; the card sent; the distillation done in slices; the SOURCES
+addendum for suite 33 prepared.
+
+THE COUNT (gh at 13:17Z, the snapshot): non-coordination open PRs across both estates 3, over the
+operated limit of 2 (suite 32's ruling until the owner answers the card): 250 (the owner's lane,
+draft, BLOCKED, three red checks and one thread; Myrtle closed out), 261 (Swallow's reader,
+BLOCKED at 02c9c7562 with four threads; Nova's fix push in her worktree, 16 files modified and 2
+untracked at the snapshot, no stream line since 12:40Z, heartbeat live at 13:17Z), 226 (Siren's
+twin, CLEAN at 8af432a5 with two threads, HELD at her word). Coordination PRs outside the count:
+264 (the lineage successor's draft at 0d47d3291 after Swallow's two closeout commits: unit-tests
+and run-quality-gates red on the hub build's Turbopack Google-font module resolution, F-208's
+class, the third instance after PR 225 on the 25th and PR 240 on the 26th; the failed jobs re-run
+at 13:2xZ under the owner's gh credential, the cure F-208's row records since the bot cannot
+re-run), 227 (JC.net's successor draft, CLEAN at e2961e38 with the distillation, the tallies and
+check-in 37). Landings since check-in 37: 225 (12:39:05Z). Opened since: 227 (12:42:50Z, outside
+the count). Ready list: none. Nothing opens while the count reads over the limit.
+
+LIVE SEATS: the Director and Nova (heartbeats 13:17Z); Siren paused (12:11Z); Myrtle (12:06Z) and
+Swallow (12:28Z) closed out. Host load 2.22 at 13:17Z.
+
+VERIFICATION. Heads with CI in flight: the lineage 1 (264's re-run, a coordination draft, the fold
+clause); JC.net 0. Slot-holder: none (Nova takes the slot for 261's fix push and door at her
+turn). Retired seats: two closed out and one paused, all on the owner's words; the seat count
+question is the card's second line.
+
+THE FOLDS: both 12:00Z folds done (262 as d6c9e582e; 225 as 3699c155d); the next DUE at the UTC
+rollover (00:00Z on 2026-09-28); 264 must be green by then: the re-run first, a records push
+re-triggers if red again, and a third red routes F-208's cure (the hub build's font resolution) to
+a seat as code work, Nova after 250 or the owner's word.
+
+THE WAITING-WORK LINE with ages and holds: 261 open 2 h 55 min, at its fix push (Nova); 226 open 1
+h 36 min, held; 250 open 24 h 39 min, the owner's lane; the retrospective's PR waits on the limit
+(its draft final in the scratchpad, 283 lines); Siren's items paused with her; goal two's items
+after 261 with a Codex-capable seat. Goal three: every remote branch on both estates is on an open
+PR or a default or coordination branch (lineage 6, JC.net 3); dirty worktrees:
+oce-wt-command-records (Nova's fix, 16 modified, 2 untracked) and oce-wt-user-value (Myrtle's at
+closeout, clean, its branch reading 136 behind its upstream pointer, to be read at Nova's lane
+two); both primaries clean apart from Siren's untracked letter on JC.net.
+
+THE DISTILLATION: done at 13:0xZ (consolidate-docs step 6: nine entries from the rotation's named
+sections into distilled.md, none pruned, the rotation archived with its pointers closed; pushed on
+227 at e2961e38). distilled.md at 284 lines is over its 200-line target; the pressure routes to
+step 9, graduation, at a free slot.
+
+THE OWNER CARD: two lines, unchanged, batched (the runbook re-ratification; the implementer count
+and the limit).
+
+The Director's defects since check-in 37: 264's red run (failed 12:48Z) was read only at this
+check-in: the snapshot's checks column is the only sensor on the coordination drafts' CI, so a
+watch line for the drafts' runs joins the monitor from arm 9; a transient index lock at one
+commit, retried after the wait.
+
+PROCESSES: the monitor re-armed as arm 9 at 13:2xZ under the new label (arm 8 reached its cap at
+13:12Z, a six-minute gap); the 261 merge wait; no subagents (suite 32 returned).
+
+NEXT: 264's re-run read; suite 33 at 13:39Z on a frame carrying the SOURCES addendum; Nova's 261
+fix push, dispositions and door; check-in 39 at about 14:02Z; the folds at the rollover.
