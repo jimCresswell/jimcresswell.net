@@ -175,7 +175,9 @@ landings 216, 217, 218 folded in.
 - Open at this block's writing: the owner card queue at zero; the retrospective at the first
   fold moment (12:00Z on 2026-09-27) that reads the count at or under the limit with the eight
   drain rows landed (drafted in the scratchpad from 09:5xZ, its PR at a free slot after 12:00Z);
-  both folds at the door; the handoff's second trim on the successor branch.
+  both folds at the door; the handoff's second trim on the successor branch (done 10:3xZ, da1158e2);
+  the distillation of `archive/napkin-2026-09-21-to-2026-09-27.md` into `distilled.md`
+  (consolidate-docs step 6) after the napkin's rotation of 10:3xZ, curator work at a free slot.
 
 ## The archive
 
