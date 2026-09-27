@@ -1962,3 +1962,40 @@ Next: 250's legs, then release the slot. Then the guard's lineage twin slice, in
 order. After it comes the J3 flow-back to JC.net under the same-bytes goal: the glob refusal,
 `diff-files`, `--deduplicate`, `--` before files, the exit-status gate tests, the lost-file
 refusal and the platform budget.
+
+**250's sync legs answered; PR 231 open (block written 20:23Z).**
+
+- 250's sync SHA:d2df9a558 passed its gate, and both legs reviewed it. Every finding took a signed
+  line only:
+  - Codex: the fresh results directory makes `worktree_clean` false. Rejected with a probe: git
+    lists no empty directory, even with `--untracked-files=all`.
+  - Copilot, three below the bar and true, listed in the body as follow-ups for the tool:
+    - a no-follow read of the canonical fixtures;
+    - refusing a fixture whose `skill_name` differs from its directory's basename (all sixteen
+      match);
+    - hashing the staged inputs themselves.
+  - Copilot, one over the bar and left open for the owner beside plan's case 3: the projected links
+    to `specify`'s shared references resolve to a path the projector never writes. The cure goes
+    with the two skills' reruns.
+  - The slot was released at 20:15:37Z. The door waits on the owner's ready-mark.
+- The guard twin, step 1: PR 231 is open (JC.net, 2 of 3) at SHA:9c4ed371.
+  - The pre-open code review widened the cure to git's own directory test: a valid HEAD of the
+    git directory's own, and `objects/` and `refs/` git can enter in the common directory.
+  - The pointer read is bounded at the cap plus one byte.
+  - A six-row live probe on the built hook: four plant shapes flip from allow to deny; a real
+    other repository allows; this repository denies.
+- A slip: 231's first push went out ungated. The new worktree had no `.husky/_`, because the failed
+  first install never ran husky's prepare. It was corrected on the stream at 20:20:16Z, and the full
+  gate ran green on that head before the PR opened. The lesson is in per-user memory.
+- Step 2, the lineage port, waits for 231 to land, then takes its own slot. The Director ruled at
+  20:2xZ for the whole mechanism, for the same-bytes goal: the walk, the probe, the bounded read,
+  the no-follow read, the move-aware content pair and the schema option.
+  - No lineage block sets `excludes_other_repositories`, and the body says so plainly.
+  - The fire and no-fire probe runs against a fixture policy, in a scratch checkout, that sets the
+    flag on one block. Its transcript rides the body.
+- The Director named this seat the fallback keeper of the rollover folds. If no Director line has
+  landed on either stream by 00:10Z on 2026-09-28, run the folds from the JC.net napkin block "THE
+  FOLD RECIPE AND STATE" (the coordination-fold skill; the lineage's 264 needs its sync, and JC.net's
+  227 is current).
+
+Next: 231's legs and door, then step 2 on the Director's ruling. After that comes the J3 flow-back.
