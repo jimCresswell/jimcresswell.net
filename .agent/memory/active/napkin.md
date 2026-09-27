@@ -7870,3 +7870,93 @@ a denied Read; the workspace mechanism being pinned). 260: Siren's cure staged f
 - **A head moved without a seat's push.** GitHub's update-branch on PR 260 (a merge of engraph)
   made a new head, and the Codex connector reviewed it with two new threads. The Director counted
   that review against no push budget; the cures ride the settlement push.
+
+## 2026-09-27T10:23Z — Director check-in 34 on the generated snapshot; 215 folded and rotated; the
+
+twin landed; the reader open; 254's third round (the Director)
+
+Snapshot generated 10:22Z (floor 09:34Z). Clock read 10:22:54Z. Both streams read to 10:23Z; the
+owner's second start word at 10:0xZ re-grounded this seat (a team-start report on both streams).
+Suite 28's cures applied here: the count reads open PRs only with reservations named beside it;
+the waiting-work line carries ages and slot-hold durations; the trigger reads by fold moment; goal
+three reads not clean while a local branch holds commits outside a PR; the goal-one measure drops
+244 (a goal-two PR).
+
+THE COUNT (first-hand from gh at the snapshot, 10:22Z, and the streams after): non-coordination
+open PRs across both estates 3 of 3 by open PRs: 250 (the owner's lane, draft, BEHIND, Myrtle's
+first commit 84fc8a0ea landed 09:43Z), 260 (Siren's, BLOCKED on four threads, the cure staged in
+oce-wt-wip-limit at two commits ahead, the push after 254's release), 261 (the command-record
+reader, draft, opened 10:22Z by Swallow in the slot reserved at 10:19Z after 224's merge; 27
+files, level with engraph). Reservations pending: none. Coordination PRs outside the count: 254
+(the lineage fold, at the door), 225 (JC.net's successor, cut 10:06Z). Landings since check-in 33:
+JC.net 215 at 10:04:50Z (SHA:cb4644c4, the fold) and 224 at 10:17:01Z (SHA:eeaeef8c, the runbook
+twin, register row J11 done in JC.net); the lineage none. Opened since: 224 (09:53Z), 225
+(10:11Z), 261 (10:22Z). The serialiser's first contested opening ran by the protocol without the
+Director: Siren reserved 09:48:14Z, found Swallow's earlier reservation, asked; Swallow withdrew
+09:48:55Z; the twin opened 09:54Z; the reader reserved afresh 10:19Z and opened 10:22Z.
+
+THE FOLDS. JC.net: 215 merged by the bot at 10:04:50Z as SHA:cb4644c4 at full condition after two
+settlement pushes (nine findings cured, three dispositions deferred); the successor
+coordination/2026-09-27-cb4644 cut at 10:06Z from that sha, tree-preserving, its first records
+commit SHA:b81066f9 (the three deferred dispositions, the plan's amendment note, the fold entry)
+pushed, draft PR 225 opened as the bot at 10:11Z, the rotation broadcast on both streams; Siren's
+records commit SHA:b2cfeecf pushed on it at 10:22Z; DUE at 12:00Z. The lineage: 254 at the door on
+SHA:c41d3ab3f after two settlement pushes (seven findings cured on the served documents and the
+dialogues record); a third round at 10:11Z (the Codex connector, two verified design findings: the
+reader's option matcher stops at a bare `--`; `GIT_COMMON_DIR` in the wrapper's scrub) took
+dispositions, the cures staged on the primary for the lineage successor's first commit and Swallow
+told (the reader PR's matcher binds now); 21 checks pass; the door re-run at 10:23Z. The rotation
+follows its merge.
+
+VERIFICATION. Heads with CI in flight: the lineage 1 (261's opening push), JC.net 1 (225 at
+b2cfeecf); no off-slot sync. Slot-holder: 254 (the Director) since 09:35:59Z, forty-seven minutes
+at this read, its two settlement rounds and a third review inside it (the fold's own budget, not a
+stall; the yield rule applies to a cure push, which is spent). Engraph's push CI on 245's merge:
+green (three workflows, read directly at 09:4xZ). Retired seats: none; all three busy on their
+lanes (Siren's twin landed and its cleanup running; Swallow's reader open with cycle 5 pending on
+the draft; Myrtle's user-value suite running under skill-evals). Load average 23.6 at 10:22Z under
+three seats' gates and Myrtle's evaluation runs; the two-gate bound held per seat.
+
+WAITING WORK, with ages (first commit to 10:22Z) and slot holds (opened to 10:22Z): the reader,
+now PR 261 (first commit 20:32Z on the 26th; 13 h 50 min from first commit to its PR; the draft
+holds its slot from 10:22Z); 260's cure (oce-wt-wip-limit, two commits ahead, the push waiting on
+254's release; 260 open 12 h 33 min, BLOCKED since 21:58Z on the 26th, eleven of those hours the
+overnight pause of this seat and Myrtle); 250 (open 21 h 44 min as the owner's lane, its first
+commit at 09:43Z; a lane, not a stall); the lineage copy's runbook stamps (a one-file PR at a free
+slot, Siren, not cut). No local branch holds commits outside a PR except 260's cure and Myrtle's
+lane worktree (four modified, two untracked, the skill-evals topic in progress); goal three reads
+not clean by those two, both in flight.
+
+THE RETROSPECTIVE TRIGGER: the ratified condition is judged at a fold moment; NOT MET until 12:00Z
+today (at 00:00Z row 245 had not landed). The record is drafted in the scratchpad (247 lines: the
+timeline from the forge's 55 merged rows, the causal stack, the counterfactual, credit, seven
+proposals with warrants and falsifiers, a bounded free-play pass), no worktree, no commit; its PR
+opens at a free slot at or after 12:00Z behind the seats' items. One proposal grounded fresh:
+eight of eight drain landings paid a Copilot round on a pure sync push (three also a Codex round),
+read from the timelines.
+
+LANE STATUS (Lane 1): 1 done; 2 at 254's door; 3 done; 4 running; 5 the handoff's second trim owed
+on the successor; 6 done; 7 drafted, NOT MET until 12:00Z. Lane 2 (Myrtle): 250's lane, step 0
+(three runner probes, a grader that passed on a denied Read, the workspace mechanism pinned) and
+the suite running. Lane 3 (Swallow): 261 open; cycle 5 consumes the estate's shell segmenter
+(hook-policy) and deletes the reader's own splitter, one shared defect cured at the owner, the
+security-expert review before the ready-mark (routed 10:1xZ, absorbed 10:16Z). Lane 4 (Siren): 224
+landed; 260's settlement after 254; then the guard twin, the register PR (with the goal-one
+audit), J2 and J3. Lanes 5 and 6 done.
+
+THE RULE AS OPERATED, item 2 amended at suite 28 and worked at 10:19Z: a reservation is followed
+at once by the branch's push and its draft PR, or withdrawn. The plan's amendment note of 10:0xZ
+carries it (on 225's branch, SHA:b81066f9).
+
+The Director's own defects since suite 28, named: the successor's draft PR could not open before
+its first commit (GitHub refuses a PR with no commits ahead of main); the order is commit, push,
+then open, and the fold skill's step 9 gains that sentence at its next touch. No reversal this
+window.
+
+PROCESSES of this seat: the monitor set (arm 2, cap about 10:26Z; re-armed under the label
+coordination/2026-09-27-cb4644 at the cap); the 254 door polling. Subagents: none.
+
+NEXT: 254's merge, the lineage successor cut from one resolved sha, its draft PR after its first
+records commit (the two staged design cures and the fold entry in the estate-coordination thread
+record), the rotation broadcast; suite 29 at about 10:45Z on a frame from this snapshot; check-in
+35 at about 11:08Z; the retrospective's PR after 12:00Z; the handoff's second trim.
