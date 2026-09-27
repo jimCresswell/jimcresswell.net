@@ -7371,8 +7371,9 @@ judged at 254's.
 
 The owner's word, 09:0xZ on 2026-09-27, verbatim: "prepare for compaction ultrathink
 /jc-metacognition /jc-free-play /jc-concept-exploration /jc-reason /jc-wrap then stop all
-processes". A freeze. It arrived with the harness's wake after an overnight pause of every seat
-(this seat's last act was the 21:53Z gate withdrawal; its suite 28 wakeup never fired; Siren's
+processes". A freeze. It arrived with the harness's wake after an overnight pause of this seat
+and Myrtle, their wakes lost (Siren's monitors ran all night; Swallow's state unknown, its stream
+silent; calibrated at 215's review, 09:40Z) (this seat's last act was the 21:53Z gate withdrawal; its suite 28 wakeup never fired; Siren's
 liveness ping of 22:39Z and Myrtle's 09:05:49Z line, "the leg wait's wake reached this seat only
 now", bound the pause). The wakeup loop is stopped; the monitor had expired at about 22:2xZ and
 with it the heartbeat pulse; this seat's process table reads zero by ps; no subagent runs; the two
@@ -7666,3 +7667,114 @@ records commit.
 The loss scan at 09:2xZ: the primary level with origin at SHA:f9eafd27, zero unpushed; this seat's
 three record files and Siren's thread file dirty; processes zero; no subagent; no wakeup; the
 monitor expired and not re-armed under the freeze.
+
+## 2026-09-27T09:39Z — Director check-in 33 on the generated snapshot; the resume; both folds at the door; the count three of three by reservation (the Director)
+
+Snapshot generated 09:34Z (floor 21:47Z on 2026-09-26). Clock read 09:36:52Z at the block's start
+and 09:39Z at its write. The owner's start word (`/jc-start-right-team` after `/compact`, 09:2xZ)
+resumed the Director; the same word reached Myrtle at 09:31Z and Siren and Swallow at 09:3xZ
+(their team-start reports, read on the streams). The Director's relay of it, sent natively at
+09:2xZ, was held by every seat until the owner's own word, which is the freeze rule as written.
+Both streams read to 09:37Z.
+
+THE COUNT (first-hand from gh at 09:24Z; the snapshot at 09:34Z): the lineage 3 open (250 the
+owner's lane, draft, BEHIND; 254 the coordination draft, readied 09:35:56Z; 260 Siren's, BLOCKED
+on four threads), JC.net 1 (215, readied 09:36:30Z). Non-coordination across both estates: 2 at
+the snapshot; Swallow reserved the third at 09:35:44Z ("WIP slot taken: 3 of 3" on a first-hand
+count at 09:33Z) for the command-record reader, whose PR opens with its push after cycle 3's owed
+review, the cycle 2 nits and one sync merge (Swallow's estimate about ninety minutes). Three of
+three by reservation. Landings since check-in 32: 245 at 09:06:12Z (SHA:a0996ac6b, Myrtle's door;
+the drain's eighth and last row). Opened since 21:47Z: 260 at 21:49:18Z (Siren, by the rule).
+
+THE FOLDS (DUE since 00:00Z; the fold moment fell inside the overnight pause; run at the resume by
+the DUE check). JC.net: two records commits (SHA:8c8f6042, the boundary 9 records with Siren's
+09:1xZ napkin block; SHA:3d590109, Siren's thread record and its letter, authorship named) pushed
+09:3xZ through one gate; the merge of main at SHA:81b90a73 (216, 217, 218; merge-tree clean before
+the merge) pushed as SHA:c58f113c through a second; 215's body written (§Scope records-class with
+the intake, the gravity line), readied 09:36:30Z, Copilot requested as the owner (the timeline's
+review_requested at 09:36:30Z), the merge-bot door polling with one expect. The lineage: the merge
+of engraph at SHA:a0996ac6b (fifteen landings since the cut; no conflict; the probe: only the
+branch's own twelve files differ from engraph) pushed as SHA:7546c39c9; 254's body written on the
+template (three design documents named as served documents, records-class, verification point
+merge), readied 09:35:56Z, Copilot requested, "slot taken" posted (777a22ec), the door polling
+with both expects. Each successor is cut from one resolved post-fold sha at its merge; the
+rotation broadcast names it; the monitor is re-armed under the new label.
+
+VERIFICATION. Heads with CI in flight: the lineage 1 (254), JC.net 1 (215); both folds, no
+off-slot sync. Engraph's push CI on 245's merge SHA:a0996ac6b: read through 254's checks at 09:4xZ
+(the analyses, SonarCloud, dependency-review and install green; the quality gates running).
+Slot-holder: 254 (the Director) from 09:35:59Z. Retired seats: none; all three live with
+heartbeats (Siren 09:35:53Z, Swallow 09:33:48Z, Myrtle 09:36:22Z).
+
+PR 260 (read first-hand at 09:34Z): four unresolved threads on head SHA:96d424d12: round two's two
+(Copilot at line 1751, the `gh pr list` thirty-PR undercount; Codex P1 at line 1752, serialise the
+reservation) and a third Codex review of the same head at 09:20:20Z (P1 at line 1765:
+worktree-hygiene §1 requires a draft PR by a worktree's first commit while the clause's
+prepare-locally sentence forbids opening one at the limit; P2 at line 1745: the bullet's owner
+attribution covers the Director's reading). The third review cost no push, so all four ride
+Siren's one settlement push. Ruling 1 as first posted (84041e59, 09:36Z: a seat-written exception
+sentence in worktree-hygiene §1) was REVERSED within twelve minutes on Siren's counter-verdict:
+the prepare-locally sentence was the Director's reading; the owner's words on both sides are
+absolute ("All useful work must be pushed and in a PR or merged ... This is always true",
+2026-09-26; worktree-hygiene §1 on the owner's word of 2026-08-03); a seat-written exception is
+what rules-have-no-exceptions forbids. The cure that lands: while the count is full a seat
+prepares without a worktree or a commit (reading, planning, reviewing a peer's PR, the cures that
+free the count); 260 stays one file; no card, the lenses resolving it (the owner's absolute words
+plus the limit's purpose, finishing before starting). Reopen condition: a seat measurably idle for
+more than a door turn with nothing to review or plan while the count is full makes it one card.
+Transition: the standing local commits (Siren's twin at SHA:a8979211, Swallow's reader at
+SHA:aacd69641) open at their slots as routed. Ruling 2: the owner's words as verbatim quotes; the
+steps marked "the Director's reading and this rule's review cures, reviewed at acceptance". Ruling
+3: "WIP slot reserved: <owner>/<name> <branch>" posted first, then the bounded count on every
+estate, then every estate's stream read for earlier reservations not yet open; a seat opens only
+while count plus reservations is under the limit, else withdraws. The Dependabot answer quoted
+with its step. Lesson, the same class as the five reversals of 2026-09-25/26: the Director read
+worktree-hygiene's text first-hand and missed its authority layer (the owner's word the
+absoluteness rests on); before writing an exception into any rule, read who granted the rule's
+absoluteness.
+
+THE RULE AS OPERATED, amended: item 2 (the reservation line is "WIP slot reserved" and precedes
+the count; the count query is bounded), item 9 (while the count is full a seat prepares without a
+worktree or a commit) and a new item 10 (the team lands each green Dependabot PR at its size turn;
+a red one is assessed, cure or close with a card). The plan report's amendment takes these three
+at the next fold-safe records commit on the successor branch.
+
+WAITING WORK (first-hand: the snapshot's WORKTREES and BRANCHES plus rev-list): Siren's runbook
+twin (jcnet-wt-runbook-twin, docs/exchange-j11-runbook-twin at SHA:a8979211, no origin branch;
+opens when 260 merges); Siren's 260 cure (oce-wt-wip-limit, behind 40 ahead 1, the cure staged,
+the push after 254's release); Swallow's reader (oce-wt-command-records,
+feat/codex-rollout-command-records, four commits, the slot reserved); Myrtle's lane
+(oce-wt-user-value, one behind the owner's head SHA:9a7ffdbaa; the first commit renames Clef to
+Student Support Experiments, the name in two files by Myrtle's read). No other branch or worktree
+outside a PR on either estate (lineage remote 6, none off a PR; JC.net remote 2, none off a PR).
+
+LANE STATUS (Lane 1, the Director): 1 done (the 189 fold, 2026-09-26); 2 done at 254's merge,
+pending; 3 done; 4 running (this block); 5 the handoff's second trim owed on the successor; 6 P7
+done in both estates (JC.net 214; engraph via 249); 7 the retrospective: its condition met at
+09:06Z (the count under the limit with the eight drain rows landed: 257, 259, 249, 217, 253, 246,
+256, 245); the Director authors it after the folds; its PR opens on the lineage behind every
+seat's waiting item (the reader, 260, the twin, 250's first commit).
+
+OWNER-APPROVED ACTS, done: the three local lineage branches deleted at 09:2xZ and read back absent
+(1deb86c4; nightingale's eight-line runner quoted in the event; the capture branch at ae110f662
+never pushed, its residual the never-published record alone); the statusline key renamed (09:1xZ);
+the Clef rename routed (Myrtle absorbed it at 09:3xZ); the runbook stamps routed (Siren,
+c664195c); Swallow's order confirmed (absorbed, b2cebe38); Dependabot item 10 posted on both
+streams.
+
+OBSERVATIONS (one instance each, not verdicts): a zero-byte `.git/index.lock` on the JC.net
+primary dated 07:21Z with no git process behind it, this seat and Myrtle paused, cleared after an lsof
+read, cause unknown (no seat reports a commit at that time). A reviewer round on an unchanged head
+(Codex at 09:20Z on SHA:96d424d12, eleven hours after round two on the same head): the connector
+reviews on its own clock as well as on pushes, so a PR waiting at the limit accrues threads
+without a push.
+
+PROCESSES of this seat: the monitor set (director-monitor.sh with the pulse and both watchers)
+armed 09:2xZ under the label boundary-9-resume, expiring about 09:55Z, re-armed at expiry; two
+merge-bot doors (254, 215) polling at 30 s. Load average 19.7 at 09:34Z under two full pre-push
+gates, both done by 09:36Z.
+
+NEXT: suite 28 at about 10:00Z on a frame from this snapshot (SOURCES: the two plan amendment
+notes verbatim, the lane status line, both trigger conditions, the card lines at zero open); the
+rotation broadcast at each fold's merge; the retrospective after both; the handoff's second trim;
+check-in 34 at about 10:20Z.

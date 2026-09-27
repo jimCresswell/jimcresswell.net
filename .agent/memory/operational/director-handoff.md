@@ -207,7 +207,8 @@ Every line answered first-hand, none inferred:
 ## Current handoff state (2026-09-27, COMPACTION BOUNDARY 9 at 09:06Z; pointer-biased by design)
 
 COMPACTION BOUNDARY 9 at 09:06Z on 2026-09-27, at the owner's word, which arrived with the wake after
-an overnight harness pause of every seat; the freeze binds until "carry on". The napkin's 09:06Z
+an overnight pause of this seat and Myrtle (wakes lost; Siren's monitors ran all night; Swallow's
+state unknown); the freeze bound until the owner's start word of 09:2xZ. The napkin's 09:06Z
 block is the live reading: the state (the count three at the limit; the folds of 215 and 254 DUE
 since 00:00Z), the seats, the card queue (twelve lines), the re-arm recipe and the owed-on-resume
 order. Processes: none of this seat's. Claim 58c2684a retained.
