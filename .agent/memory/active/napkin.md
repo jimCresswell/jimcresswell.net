@@ -2527,3 +2527,35 @@ by repository identity (230 landed; 231 cures at its door).
 NEXT: 231's door (Siren); J7 opened and landed (Siren); 250's door on the owner's ready-mark;
 suite 43 at 20:57Z; check-in 49 at about 21:20Z; the folds DUE at the UTC rollover (the recipe
 on this napkin; 264's sync first); Nova's return or the owner's word.
+
+## 2026-09-27T20:56Z — Director suite 43 tally: 250's ready-mark stays the owner's on its own open acceptance item; the "224 precedent" withdrawn
+
+Dispatched 20:5xZ on `suite-43-frame.md` (712 lines: the READING rebuilt from the 20:5xZ read,
+fields at dispatch, one question). Eight verdicts in by 20:54Z. Work: ON-TRACK 8. Frame: SOUND
+3, NARROWED 4, CONTRADICTED 1 (judgement-medium adversarial: the READING UPDATE attributed "A
+seat lands it on this word" to answer 3 of 09:1xZ on 2026-09-27; that answer was the
+2026-09-26 card's, about 10:50Z, given for PR 224; answer 3 of 09:1xZ was the order, "250 first
+(Recommended)"; the misattribution is corrected here and in the next frame).
+
+THE QUESTION (who may ready-mark PR 250): (a) seven of eight; the procedure normal role read
+(b) from answer 2 and treated line 58 as unratified draft text. The convergent deciding words:
+250's own body, line 39 "[ ] Actual outputs receive human review alongside grades" (unchecked)
+and line 54 "Human review, critical assertions, failures resolved: open", an acceptance item of
+the lane that only a human closes; answer 2 ("a first class PR ... part of the system") governs
+the count, not readiness; the 224 word covered 224 only; line 58 "The ready-mark stays the
+owner's" is body text of unread authorship, a corroborating status, not the deciding word. The
+19:2xZ drain schedule's "ready-marked under the PR 224 precedent" was the Director's own text
+and is withdrawn. RULING: (a); no seat ready-marks 250; the door runs when the owner's mark
+lands; the question closes and is not carried to another suite.
+
+REDIRECTIONS taken: 250 onto the ready list as the one item awaiting the owner's act, with its
+link and one status line (synced to engraph d0154fb5a at d2df9a558, green, both legs answered,
+five findings signed, the eval readings' human review open at body line 39, the ready-mark the
+owner's, one of the three slots); card line (b) becomes that action-moment line, not a question
+with a default; Nova's unpushed worktree (oce-wt-user-value: the sync merge 82aae23cd and nine
+modified files whose cures Siren's b0b2d181a covers) added to the card as goal-three residue
+awaiting her return or the owner's word; goal three's words quoted in the next frame's READING.
+
+STATE at 20:56Z: the count 2 of 3 (250 at the owner's ready-mark; 270 at its legs, Siren's);
+Siren's J3 flow-back shaping received with a request for an inbound register row (answered
+natively: the row rides her flow-back PR); check-in 49 at 21:20Z.
