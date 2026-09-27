@@ -142,12 +142,31 @@ describe('repositoryIdentity', () => {
   });
 
   it('names nothing for a git directory whose HEAD is neither a branch reference nor an object id', () => {
-    for (const head of ['', 'garbage\n', 'ref: heads/main\n', 'abc123\n']) {
+    for (const head of [
+      '',
+      'garbage\n',
+      'ref: heads/main\n',
+      'abc123\n',
+      // Git reads 255 bytes of HEAD, so `refs/` past that window is never seen.
+      `ref:${' '.repeat(247)}refs/heads/main\n`,
+      // Git skips only ASCII whitespace after `ref:`.
+      'ref:\u00a0refs/heads/main\n',
+    ]) {
       const planted = probeOver({
         gitEntries: { ...ESTATE_ENTRIES, '/r/docs/x': 'directory' },
         texts: { ...ESTATE_TEXTS, '/r/docs/x/.git/HEAD': head },
       });
       expect(repositoryIdentity('/r/docs/x/a.md', planted)).toBeUndefined();
+    }
+  });
+
+  it("names a git directory whose HEAD reference follows git's own whitespace", () => {
+    for (const head of ['ref:refs/heads/main\n', 'ref:\t refs/heads/main\n']) {
+      const spaced = probeOver({
+        gitEntries: ESTATE_ENTRIES,
+        texts: { ...ESTATE_TEXTS, '/o/.git/HEAD': head },
+      });
+      expect(repositoryIdentity('/o/src/a.ts', spaced)).toBe('/o/.git');
     }
   });
 

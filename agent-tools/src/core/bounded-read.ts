@@ -1,6 +1,7 @@
 /**
- * A read that never takes more than a cap's worth of bytes, however large the
- * source is or grows while it is read.
+ * A read that never takes more than a cap's worth of bytes plus one, the byte
+ * that tells a source over the cap from one at it, however large the source
+ * is or grows while it is read.
  *
  * @packageDocumentation
  */

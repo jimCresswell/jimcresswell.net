@@ -92,10 +92,14 @@ function commonOf(gitDirectory: string, probe: RepositoryProbe): string | undefi
 }
 
 /**
- * A `HEAD` git accepts: a reference under `refs/`, or a detached object id
- * (git's `validate_headref`).
+ * A `HEAD` git accepts (git's `validate_headref`): within the first
+ * {@link HEAD_WINDOW} bytes, `ref:` then ASCII whitespace then a reference
+ * under `refs/`, or a detached object id.
  */
-const VALID_HEAD = /^(?:ref:\s*refs\/|[0-9a-fA-F]{40})/u;
+const VALID_HEAD = /^(?:ref:[ \t\n\r]*refs\/|[0-9a-fA-F]{40})/u;
+
+/** The bytes of `HEAD` git reads to validate it; nothing past them counts. */
+const HEAD_WINDOW = 255;
 
 /**
  * Whether git itself would accept a git directory (git's `is_git_directory`):
@@ -108,7 +112,7 @@ function isGitDirectory(gitDirectory: string, common: string, probe: RepositoryP
   const head = probe.readText(join(gitDirectory, 'HEAD'));
   return (
     head.kind === 'text' &&
-    VALID_HEAD.test(head.text) &&
+    VALID_HEAD.test(head.text.slice(0, HEAD_WINDOW)) &&
     probe.searchableDirectory(join(common, 'objects')) &&
     probe.searchableDirectory(join(common, 'refs'))
   );
