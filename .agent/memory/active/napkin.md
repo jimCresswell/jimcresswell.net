@@ -2467,3 +2467,30 @@ her two doctrine worktrees hold local commits on `docs/fold-sweep-and-chmod-bits
 hers until the owner's word (card line (b)). The scripts named above live in the Director's session
 scratchpad (a temp surface outside the repository, gone with the session) and are conveniences,
 not the recipe; the recipe is the skill.
+
+## 2026-09-27T20:15Z — Director suite 42 tally: the fold recipe written and pushed; the timing stays the rollover; Siren the fallback keeper
+
+Dispatched 20:1xZ on `suite-42-frame.md` (687 lines: the READING rebuilt from the 19:48Z read,
+fields at dispatch, one question). Eight verdicts in by 20:14Z. Work: ON-TRACK 7, DRIFTING 1
+(judgement-high normal: the recipe sequenced fifth in NEXT). Frame: SOUND 3, NARROWED 5.
+
+THE QUESTION (the folds and the Director's continuity): (a) eight of eight, with "push now":
+the recipe and the fold state onto the napkin, the timing kept at the rollover. Deciding words:
+the owner's "Fold them twice a day" (rules out an early fold, which would also leave a third fold
+owed at the day-stamped rollover), important-state-not-in-temp-files, "work is safe when it is
+merged", PDR-117 clause 3. DONE at 20:10Z to 20:15Z: the block "THE FOLD RECIPE AND STATE" on
+the napkin; the coordination branch pushed at 87954ccc after one gate refusal (the
+machine-local-paths validator on the recipe's own scratchpad path, cured by naming the surface,
+not the path); Siren told natively that she is the fallback keeper (no Director line by 00:10Z).
+
+CORRECTIONS carried: "at the rollover and at midday" is the plan's UTC-date rule, not the
+owner's words; goal three's local branches stated at each check-in (JC.net: none merged into
+main outside the current branch; the lineage: none merged into engraph; the unmerged locals are
+Nova's two doctrine branches and 250's); P1 (the sync-lineage binding) re-ranked and seatless;
+Nova's "ahead 23" base named (her unpushed sync merge and the engraph history it carried; her
+nine modified files are the cures Siren's b0b2d181a covered); 250's ready-mark hold sourced to
+its own body (the owner's text: draft until complete; the eval readings' human review).
+
+STATE at 20:15Z: the count 1 of 3 (250 at its sync d2df9a558, legs then the slot released, its
+door on the owner's ready-mark); Siren's guard twin JC.net PR next (reserving 2 of 3); 227 at
+87954ccc; 264 BEHIND; check-in 48 at 20:35Z; suite 43 at 20:57Z.
