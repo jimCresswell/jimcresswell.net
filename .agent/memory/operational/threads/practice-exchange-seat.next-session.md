@@ -1834,3 +1834,23 @@ and compared empty files; the script refuses that case.
 
 The arc's tail has landed (226, 266, 228). The runbook copies now carry the same rollback, so the
 owner's re-ratification card can go; "for a drop" stays ledgered.
+
+**229 landed: the register true at main (17:26Z).** The Director's order at 17:14Z put the
+register PR first, then J3 and J2.
+
+- The queued row corrections (J2, J11, J13, J14, L12) had already landed with PR 210, read by
+  `git log -S` on each corrected phrase. So PR 229 carried only twelve §Landings rows, from PR
+  210's read (engraph 81e126e8e9) to engraph 96bb08963 and main 33514ec1:
+  - J13 settled on the lineage with #256;
+  - J11 gained six PARTIAL rows, three per estate;
+  - J19 (#234), J21 (#238) and J14's JC.net piece (PR 213) gained one row each.
+- Joint-cure PRs that land no row stayed out.
+- By the predicate, outbound reads 4 of 21 and inbound 6 of 28.
+- Copilot's only round: approval recommended, no findings.
+- Merged at 17:26:04Z as SHA:f88e2657. The branch, worktree and claim d3f6a57f are gone.
+
+The Director withdrew card line (a) at 17:14Z, so both runbook copies stay sketch with no card
+pending. Worth one question at the next message: does the re-ratification now wait for the
+runbook's next instance?
+
+Next: J3 into the lineage, test-first, at the next free slot; the two-sided survey is running.
