@@ -1547,3 +1547,64 @@ watch (re-armed 14:44Z); the 265 legs watch (to about 15:05Z); no subagents (sui
 NEXT: 265's settlement push one (Proposal 8's carrier and falsifier; the timeline bullet aligned
 with its table), then its legs and the door; suite 35 at about 15:09Z on a frame with suite 34's
 cures; check-in 41 at about 15:32Z; the folds at the UTC rollover.
+
+## 2026-09-27T15:1xZ — Director suite 35 tally; the Director lands its own retrospective PR under the approved plan's Lane 1 item 7; the card's counts recomputed; 226's hold named
+
+Dispatched 15:09Z on `suite-35-frame.md` (617 lines: suite 34's SOURCES with PDR-117's clauses 1
+and 3 verbatim, the Director's memory records of the 2026-09-14, 09-16 and 09-17 words quoted and
+marked, the arc, the two Consequence lines marked; READING from the 14:47Z snapshot with two ADDED
+blocks; one question). Eight verdicts in by 15:13Z. Work: ON-TRACK 8 of 8. Frame: SOUND 3,
+NARROWED 2, CONTRADICTED 3.
+
+THE QUESTION, the Director landing its own retrospective PR (the settlement pushes, the signed
+lines, the door): permitted, 8 of 8. The words that decide, as the roles ranked them: the
+owner-approved plan's Lane 1 item 7 (the retrospective trigger is the Director's lane, beside
+items 1 to 6, the folds the Director has run all day), the owner's answer 6 (the Director is the
+author; authorship only, its landing consequence the Director's), PDR-117 clause 3
+(decide-and-drive on what the lenses settle), and clause 1's own scope (it bars seizing a large
+remaining workload and dispatching implementer sub-agents; a two-file records PR with no follow-on
+lane is neither). Two roles read clause 1's "no successor coming" prong as not cleanly met (Nova
+frees after 250, Siren resumes) and carried the ruling on item 7 and clause 3 instead; the
+Director records the same: the source for the door act on 265 is Lane 1 item 7 with clause 3, not
+answer 6, and the extension from author to lifecycle is cited to that, never to the owner's
+answer.
+
+FRAME CURES for suite 36 (each names its role): (1) READING wrote "Under the 2026-09-14 word
+(round two is the last; a trivial cure rides the last push)"; SOURCES mark the second clause as
+the Director's text; push two's warrant is the Director's 2026-09-14 record plus the
+owner-confirmed 2026-09-17 shape, never an owner word (judgement-medium normal). (2) "no dirty
+worktree" is wrong: the snapshot reads the JC.net primary "untracked 1", Siren's letter
+(judgement-medium adversarial). (3) 226's hold named: Siren's active claim
+(respect-active-agent-claims; she paused on the owner's compaction word) and two real round-two
+findings that need cures, not signed lines; the hold is the claim, and only the owner reassigns it
+(judgement-low adversarial). (4) The opening condition was rewritten from consequence 6 ("behind
+every seat's waiting item") to suite 31's ruling ("a live seat's ready item, else the
+retrospective") without saying so; both the Director's (judgement-low adversarial). (5) The "no
+successor coming" prong tested by name in READING (judgement-high adversarial, procedure normal).
+(6) The monitor-arm and host-load figures carry their read method (judgement-high normal). (7) The
+card's counts with one method line each (judgement-medium adversarial), below. Rejected: procedure
+adversarial's "all three real contradicts two real": round one had three findings, round two two;
+different rounds, both stated.
+
+THE CARD'S SECOND LINE, counts recomputed with their methods: goal one's rows without a PR read
+eight, not ten (suite 29's first-hand read on the 27th of the register's outbound list against the
+merged list: J2 and J3 for Siren; J6, J7, J8, J16, J20 and J18's compare half as code rows for a
+freed implementer; the register's §Landings section at origin/main stops at 2026-09-24 pending
+Siren's register PR, so the register itself is not the surface). Goal two's remaining items read
+about a dozen, not fourteen (the 26th's plan list minus the five landings since: 244, 211, 246,
+247, 261). Goal one has had no implementer since Siren paused at 12:11Z; goal two has one seat,
+Nova, on 250 by the owner's "250 first". The line to the owner is unchanged in its question: do
+you want seats started, and on which goal. A THIRD LINE (c), from cure (3): 226 (JC.net, two
+files, two real round-two findings) is held under Siren's paused claim; reassign it to Nova after
+250's cures, or hold it for Siren's resume (the Director's default: hold; claims are respected).
+
+Siren's untracked letter in the JC.net primary: staged by path into the rollover fold's records
+commit, the precedent being the owner-approved Lane 1 item 2 (Gale's letter staged by path at the
+lineage fold); not before, not by anyone else's commit.
+
+STATE at 15:13Z: 265 at 83b25d0f7 (settlement push two of two landed 15:0xZ; two signed lines;
+unresolved threads 0; five checks pending; the bot's two comment reviews on the head; Copilot and
+the connector owed on it); the legs watch running; the door at green legs under a slot-taken line,
+with `merge-bot merge --pr 265 --expect copilot-pull-request-reviewer --expect
+chatgpt-codex-connector`. 250 with Nova's cure push. 264 BEHIND, 227 CLEAN with four local records
+commits. Check-in 41 at about 15:32Z; suite 36 at about 15:54Z; the folds at the UTC rollover.
