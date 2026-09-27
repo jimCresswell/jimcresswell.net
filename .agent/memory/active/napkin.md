@@ -2559,3 +2559,51 @@ awaiting her return or the owner's word; goal three's words quoted in the next f
 STATE at 20:56Z: the count 2 of 3 (250 at the owner's ready-mark; 270 at its legs, Siren's);
 Siren's J3 flow-back shaping received with a request for an inbound register row (answered
 natively: the row rides her flow-back PR); check-in 49 at 21:20Z.
+
+## 2026-09-27T21:20Z — Director check-in 49: the count 2 (3 with the J3 flow-back reserved); 250 on the ready list for the owner's act; 270 at its round-two cure
+
+THE FOUR NUMBERS (`checkin-49-raw.md`, 21:18Z): open non-coordination PRs 2 of 3 (lineage 250,
+the owner's draft at d2df9a558, both legs answered, three threads signed "Over-bar, open, not
+cured", the body's own recorded open failures, its door on the owner's ready-mark; lineage 270,
+J7, at its third push e60cb3f9c with unit-tests in flight, one Copilot round-two thread on
+absolute payload paths that this push cures, Siren's) plus Siren's 20:5xZ reservation for
+feat/exchange-j3-flow-back (JC.net; twelve modified files in its worktree, no commit yet);
+landings since check-in 48: 231 at 20:48:03Z (JC.net, 275e8df99); heads with CI in flight: 270
+at e60cb3f9c; slot-holder age: none held (270's door refused at 20:5xZ on windows-basic, the
+slot released). Remote branches outside a PR: none in either estate. Local branches: the
+lineage's feat/exchange-guard-repository-scope (Siren's guard port; eleven modified and ten
+untracked files in its worktree, no commit yet), siren/250-settlement (clean),
+feat/exchange-j7-path-scope (270's), codex/user-value-across-levels (250's branch in Nova's
+worktree: ahead one with her unpushed sync merge, behind 27, nine modified files whose cures
+Siren's b0b2d181a covers), docs/fold-sweep-and-chmod-bits (Nova's, both estates); JC.net's
+feat/exchange-j3-flow-back. Host load 12.75 with one gate running (Siren's e2e and smoke chain).
+JC.net primary at 1190243d on the remote (five records commits pushed at 20:58Z).
+
+RULINGS this window: suite 43 (the tally above): 250's ready-mark is the owner's on 250's own
+body; the Director's "224 precedent" withdrawn; no seat marks it; the question closed. Siren's
+inbound register row (the lineage's Result-based repository-paths module) rides her flow-back
+PR, status owed after the review.
+
+THE READY LIST (the owner's act): PR 250,
+<https://github.com/EngraphCode/open-curriculum-ecosystem/pull/250>, 388 files, the owner's
+draft: synced to engraph d0154fb5a at d2df9a558, checks green, both legs answered, five findings
+cured at b0b2d181a, three threads signed Over-bar and open (the plan skill's routing addition,
+14:54Z and 14:55Z; the plugin projection's relative links, 20:13Z), which the body records as
+open work; body line 39 "Actual outputs receive human review alongside grades" unchecked; the
+ready-mark yours; it holds one of the three slots. Everything else open is at a seat's door.
+
+NOVA: no line since 16:05:37Z (five hours and fourteen minutes).
+
+THE OWNER CARD (batched; unanswered): (b) 250: the action moment above (the eval readings'
+human review, then the ready-mark; a seat doors it on your mark); its lane passed to Siren by
+the dated default, which you may overturn; Nova's worktree on 250's branch carries her unpushed
+sync merge and nine modified files whose cures Siren landed, hers until her return or your word;
+(c) shellcheck as a lineage dependency (default CI and pre-push); (d) the bash floor (default
+none); (e) the vendored scripts (default cure ours, ask for the vendored); (f) goal two has no
+live seat, the owner starts one. FYI: the lineage-name guard scoped by repository identity (230
+and 231 landed); J7 (270) at its cures; 250 rebudgeted to 11 by the lane's recorded decision.
+
+NEXT: 270's legs and door, the J3 flow-back PR, the guard port (Siren); suite 44 at about 21:42Z;
+check-in 50 at about 22:05Z; the folds DUE at the UTC rollover (the recipe on this napkin; 264's
+sync first; the lineage estate-coordination thread record gains 265, 267, 268, 269 and 250,
+JC.net's 224 to 231); Nova's return or the owner's word.
