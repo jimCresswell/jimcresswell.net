@@ -188,11 +188,17 @@ policy decision taken entry by entry.
   where the file really is, following symbolic links, and a git directory
   counts only when git itself would accept it: a valid `HEAD` of its own, and
   `objects/` and `refs/` directories git can enter in its common directory.
-  The write-hook drops the group only for a
-  file it positively finds in another repository; a file in no repository, a
-  `.git` entry or `commondir` it cannot read, a path deeper than its climb, or
-  a path it could not place keeps the group
-  (`agent-tools/src/hook-policy/repository-identity.ts`). The whole-tree gates
+  The write-hook drops the group only for a file it positively finds in another
+  repository. Anything else keeps the group
+  (`agent-tools/src/hook-policy/repository-identity.ts`): a file in no
+  repository; a `.git` entry git would not accept, where the climb stops; a
+  `.git` entry or `commondir` it cannot read; a link on the path that leads
+  nowhere yet, since the write lands wherever it points; a file with another
+  hard link, which a path in any repository may share; a path deeper than its
+  climb; a path it could not place; or a session root whose own repository it
+  cannot tell. A move's source, and a Write's prior content, are read only as
+  regular files, never waiting on a pipe, and one request's reads share a byte
+  budget, so no request holds the hook past its timeout. The whole-tree gates
   read only this repository's tracked files, so the option never changes what
   they find.
 
