@@ -1902,3 +1902,60 @@ suite 37 at about 16:39Z on a frame with suite 36's cures (PDR-140 as a Practice
 quantified; the collision); check-in 43 at about 17:02Z; the second retrospective's final text and
 its opening at a freed slot; the folds at the UTC rollover (264's sync first; 227's fold commit
 with Siren's records already on the branch).
+
+## 2026-09-27T16:4xZ — Director suite 37 tally; 265's round five re-read per finding (the path finding over the bar, the window below); the record's route named; the free slot's bound
+
+Dispatched 16:39Z on `suite-37-frame.md` (699 lines: suite 36's SOURCES with PDR-140 cited as a
+Practice record in force and answer 7's scope narrowed, clause 4's exhaustion text and clause
+9(a)'s below-bar sentence verbatim, Swallow's line; READING from the 16:17Z snapshot with one
+ADDED block; two questions). Eight verdicts in by 16:44Z. Work: ON-TRACK 7, DRIFTING 1
+(judgement-medium adversarial: the free slot held for a silent seat with no rule named; 250 the
+starved consumer). Frame: SOUND 2, NARROWED 2, CONTRADICTED 4.
+
+QUESTION 1, 265's round five: every role read the no-push disposition as within PDR-140 clauses
+9(a) and 9(b) and the owner's 2026-09-14 ruling as clause 4 quotes it, and none read it as
+self-protection; five roles found the same defect in the reading: the two findings were placed
+below the bar by matching clause 9(a)'s category words, not by the per-finding reader-harm test
+suite 36's cure required. Applied now, per finding. (1) The cited plan report's path with no
+estate qualifier: the record lives on the lineage, the cited file lives in JC.net, and a reader
+who follows the path in the lineage finds nothing; a reader acting on the record is misled, so
+this finding is OVER the bar under 9(a)'s own test; under 9(b) the cure obligation survives and
+lands in a push that carries nothing else; with 265 merged, that push is the record's addendum
+(the additive amendment the retrospective skill prescribes: "New understanding later amends the
+record additively"), which is 9(a)'s "route to a register row" for a records-class artefact, and
+it now has an owner and a place in NEXT: the Director, in the tail's addendum PR, first item. (2)
+The counterfactual's comparison window (the 25th's door-day landings against the evening's
+openings, both called "the evening"): the conclusion it supports rests on §3's measured intervals,
+and no reader acts on the pairing; below the bar, rejection with rationale, which the signed line
+gave. The phrase "corrections owed to the record's addendum" on both lines was one label for two
+different routes; the distinction is recorded here. The self-judgement point stands: the Director
+adjudicated its own record's findings with no second reader; from the next records PR of its own,
+a below-bar call goes to a live seat for one line before the signed line.
+
+QUESTION 2, the two free slots: the frame's own order was stale at dispatch (Siren opened 266 at
+16:25:51Z before Nova opened anything, so goal one went first in practice, which is the arc's
+priority); the remaining free slot has been held for Nova's OCE doctrine PR on the Director's
+posted word (the 17:02Z bound), which names no rule beyond the Director's own anchor against
+thrash (PDR-117 clause 6) and PDR-117 clause 2 (a lane never idles). Nova's last heartbeat on the
+stream is 16:05:37Z and still names card line (d), withdrawn at 15:58Z; the Director pinged her by
+a directed message at 16:42Z (ACK-REQUESTED, ping-before-escalate): her state on the free slot and
+on 250's rebudget; silence to 17:02Z gives the slot to the second retrospective's record (ready,
+408 lines) and her OCE doctrine PR the next landing; 250 stays held until her word. The
+judgement-medium adversarial's redirection was already the posted bound; its "invented wait"
+reading is recorded: the bound is the Director's, twenty minutes, with the record as the fallback
+so no slot idles past a door turn. The label "records work" for Nova's doctrine PRs is the
+Director's reading: they carry Practice doctrine born on JC.net today (the fold skill's sweep
+sentences; the never-use-git chmod clause) into both estates, so they serve the alignment goal and
+goal one's direction, and rank behind the seat's own goal-one PR (266) but not behind the
+Director's record.
+
+FRAME CURES for suite 38: INTENT's "keep the count at three" replaced by the owner's words (the
+target is zero, three the ceiling; "aiming for zero while useful value is still created and
+merged"); the per-finding reader-harm test written for every below-bar call; the slot order
+restated live at dispatch, never carried from an earlier post; the source of any label on a seat's
+PR named; NEXT carries 265's addendum item with its owner.
+
+STATE at 16:44Z: the count 2 (250 held; 266 at Siren's settlement push, the slot-turn sync at
+16:43Z); one slot free under the 17:02Z bound; 264 with Swallow's records, 227 CLEAN with six
+local records commits; check-in 43 at 17:02Z; suite 38 at about 17:24Z; the folds at the UTC
+rollover.
