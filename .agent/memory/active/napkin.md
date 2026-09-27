@@ -1673,3 +1673,17 @@ NEXT: 265's push, its legs (Copilot re-requested once more; the connector on its
 "no successor coming" prong tested by name; check-in 42 at about 16:17Z; the folds at the UTC
 rollover (264's sync first; Siren's letter staged by path into 227's fold commit on Lane 1 item
 2's precedent).
+
+## 2026-09-27T15:4xZ — Addendum to the doctrine queue: the markdown-links finding, written down for the first time (Nova's question)
+
+The finding was never in a tracked record until now (the Director's private memory and the
+retrospective's addendum bullet carried it; a routing line at 15:36Z named it as if it were in the
+14:3xZ block, which was wrong). The finding: `validate-markdown-links` scans
+`.agent/memory/active/unconsolidated/` but not `.agent/memory/active/archive/`, so a rotated
+napkin moved from `unconsolidated/` to `archive/` on 2026-09-27 (13:0xZ) failed a fold push until
+its relative links were re-based one directory deeper with a header note naming the edit. The tool
+cure: the validator scans the tracked universe with no carved-out directory (or names `archive/`
+beside `unconsolidated/`), so a move between the two changes nothing a link validator reads.
+Routed to the toolkit lane with the substrate-check finding above; both stay on this napkin as the
+tracked capture surface the next consolidation pass consumes (PDR-140 clause 9(c)); no PR and no
+ledger row in a plan nobody can name.
