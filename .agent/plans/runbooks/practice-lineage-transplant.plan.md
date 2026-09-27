@@ -7,17 +7,20 @@ overview: >-
   to a newer generation of the same lineage, preserving the host's own
   divergence, with every mechanical step run by an instrument and every
   judgement step presented to the owner as one numbered list.
-status: sketch
-ratified_by: null
-ratified_date: null
-ratified_where: null
+status: ratified
+ratified_by: "Jim Cresswell"
+ratified_date: 2026-09-27
+ratified_where: >-
+  Owner card answered "Ratify both" on 2026-09-27 (the Director's boundary 9
+  card, answer 10, covering this copy and the lineage's), recorded in the
+  Director's napkin block of that boundary.
 impact_areas:
   - practice-and-estate
 tickets: []
 serves: best-of-each-practice
 depends_on: []
 owner_gates: []
-last_updated: 2026-09-26
+last_updated: 2026-09-27
 ---
 
 # Practice lineage transplant
@@ -33,15 +36,15 @@ plus its own local divergence. The cross-instance guidance this runbook distils 
 exploration of packaging the Practice is its sibling report. Neither is
 doctrine until ratified.
 
-**Returned to sketch, 2026-09-26.** The two-way exchange (register row J11)
-brought back fourteen cures found by the review of this runbook's lineage
-copy in lineage PR 258. They change what the operator does at preconditions
-2, 3 and 5, at steps 2, 5 and 10, and in the rollback. By the runbook
-template's rule, a procedure change returns a runbook to sketch, so the
-owner's ratification of 2026-09-12 is superseded until the owner ratifies
-again. That word was given in session 880ff9 (Cauldron herds Lustre): "Both
-nodes are ratified", captured on the napkin §Session 5. The lineage's copy
-is also at sketch, so one ratification covers both.
+**Returned to sketch 2026-09-26, ratified again 2026-09-27.** The two-way
+exchange (register row J11) brought back fourteen cures found by the review
+of this runbook's lineage copy in lineage PR 258. They change what the
+operator does at preconditions 2, 3 and 5, at steps 2, 5 and 10, and in the
+rollback. By the runbook template's rule, a procedure change returns a
+runbook to sketch, which superseded the owner's ratification of 2026-09-12
+(given in session 880ff9, Cauldron herds Lustre: "Both nodes are ratified",
+captured on the napkin §Session 5). The owner ratified this copy and the
+lineage's together on 2026-09-27: "Ratify both".
 
 ## When to run
 
