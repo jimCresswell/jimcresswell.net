@@ -1769,3 +1769,56 @@ Two further items from the same review:
 
 This is data for the retrospective: the pre-open review caught four real defects in new text
 before any bot round, and it falsified proposal P1 as written.
+
+**226 landed, 266 opened (16:1xZ to 16:2xZ).**
+
+- **226 merged at 16:18:03Z as SHA:02f0ffbd by the merge-bot door.**
+  - Copilot's review of the settlement head raised two findings, each answered by a signed line:
+    - the PR body's stale byte-equality claim, fixed in the body with no push;
+    - the rollback's standing-grant parenthetical, accepted and ledgered below.
+  - Cleanup: the remote branch deleted as the bot and read back absent; claim 78e0415a closed;
+    the worktree removed without force; the local branch deleted by the safe form.
+- **Lineage PR 266 opened at 16:25Z** (docs/exchange-226-convergence, SHA:b8d1499f0,
+  worktree oce-wt-226-convergence, claim d67512e8), under this seat's 16:19Z reservation.
+  - It carries three sections as bytes from 226's merged head: the lapse sentence, the
+    supersession mark, and the rollback's revision-for-mode and general type clauses. Each
+    section diffs empty against the JC.net copy.
+  - At 16:24:49Z the Director's live order gave 226's freed slot to Nova's OCE doctrine PR first.
+    265 then landed at 16:25:04Z, and the first-hand count read 250 alone, so both fit. Nothing
+    was withdrawn.
+  - 266 is BEHIND engraph; its one sync rides its slot turn.
+- **The ledger for the runbook's re-ratification** (one joint cure in both copies before the
+  owner ratifies again; the Director's card):
+  - "for a drop" is ambiguous in the rollback;
+  - the parenthetical "(its standing grant for proven paths)" reads as authority for the
+    rollback, but the grant covers clearing a dirty path to HEAD.
+
+**266 landed, 228 opened (16:3xZ to 17:0xZ).**
+
+- **Round one on 266 (SHA:ff330377d).** Copilot raised two findings: chmod on a symlink, and the
+  scan counting lapsed reservations. Codex's leg was clean. Both findings were cured.
+  - The cure push also carried the ledgered standing-grant wording from 226.
+  - A pre-push expert pass on that wording found three more edges, all cured before the push:
+    - the rule's surfacing clause does not bind a rollback;
+    - the content write was unscoped;
+    - a count/scan race.
+  - Its fourth point was wrong (it recalled the withdrawn pointer as JC.net's text) and was
+    rejected after reading JC.net main.
+- **Round two, and the landing.** Round two was clean on both legs, the arc's first zero-finding
+  round.
+  - The slot was taken at 16:41:47Z, and the settlement push SHA:d0251962d was a pure sync of
+    engraph at 9b622d827.
+  - Codex's P2 on the settlement head (an opener past thirty minutes on a stale count) was
+    rejected by a signed line quoting the fresh-reservation sentence.
+  - **266 merged at 16:58:46Z as SHA:96bb08963.** The remote branch was deleted and read back
+    absent. Claim d67512e8 was closed. The worktree was removed, and the local branch deleted
+    by the safe form after pointing its upstream at origin/engraph.
+- **JC.net PR 228** (docs/exchange-266-twin, SHA:1d86c5b1, worktree jcnet-wt-266-twin, claim
+  3362debe) opened at 17:02Z under the 16:59Z reservation, on the Director's order.
+  - It carries the WIP bullet and the rollback as bytes from 266's merged head; each diffs empty.
+  - Copilot was requested by the owner path.
+  - The count is two, and three with the Director's 17:02:49Z reservation for the second
+    retrospective's record.
+- **Still ledgered:** "for a drop" in the rollback. It names two kinds of path, each read from a
+  different source. It goes to the runbook's next instance or the P2 tool, before the owner
+  ratifies again.
