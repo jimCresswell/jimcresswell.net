@@ -2655,3 +2655,56 @@ follows the ready-mark by rule on both estates; read the timeline back after the
 
 STATE at 21:51Z: the count 2 of 3 (250 at the owner's ready-mark; 232 at its round-two legs,
 Siren's) plus the guard port reserved; 227 at c421f83d; 264 BEHIND; check-in 50 at 22:05Z.
+
+## 2026-09-27T22:06Z — Director check-in 50: the count 1 (3 with two reservations); 270 and 232 landed; the guard port and JC.net's guard-read cures next (Siren)
+
+THE FOUR NUMBERS (`checkin-50-raw.md`, 22:05Z): open non-coordination PRs 1 of 3 (lineage 250,
+the owner's draft, BEHIND after 270's merge, three threads signed Over-bar and open, its door on
+the owner's ready-mark; JC.net none) plus Siren's two reservations: the guard port
+(feat/exchange-guard-repository-scope, the lineage, 21:38Z, at its pre-open) and
+fix/guard-read-and-link-cures (JC.net, 22:01Z, "two live guard defects the port security pass
+found"), 3 of 3 when both open; landings since check-in 49: 270 (the lineage, 21:33:26Z,
+bd320b710, J7) and 232 (JC.net, 21:44:13Z, 45093dca, the J3 flow-back), both Siren's; heads
+with CI in flight: none; slot-holder age: none held. Remote branches outside a PR: none in either
+estate. Local branches: the lineage's feat/exchange-guard-repository-scope (Siren's, with
+commits, unmerged), siren/250-settlement, codex/user-value-across-levels and
+docs/fold-sweep-and-chmod-bits (Nova's, both estates); JC.net's fix/guard-read-and-link-cures
+(Siren's, no commit yet). Host load 7.01. JC.net primary at c421f83d on the remote plus the
+suite 44 tally (22a1785b) local, pushed with this block.
+
+GOAL ONE, the measure (the exchange register at this branch's head, §Landings): 13 of 23
+outbound rows carry a lineage landing (J1, J4, J9, J10, J11, J13, J14, J15, J17, J18, J19, J21,
+J22; whole with no partial residue: J4, J13, J14), plus J3 (269) and J7 (270) landed today and
+not yet written into §Landings (their entries ride Siren's next JC.net PR); rows with no lineage
+landing: J2, J5 (graduated into L9), J6, J8, J12, J16, J20, J23. Inbound (the lineage into
+JC.net): 232 carried J3's cures back and the repository-paths row (owed after the review).
+
+THE RETROSPECTIVE TRIGGER: fired and fulfilled (265, 267 with 268's addenda); the count
+condition (one open PR per estate, the coordination draft) does not hold: the lineage 250 and
+264, JC.net 227 only.
+
+RULINGS this window: suite 44 (the tally above): the Director runs both folds at the rollover;
+the lineage fold takes the slot at its time unless a synced holder waits for a leg; JC.net's
+fold contends with nothing (main strict false, the rules API at 21:5xZ); Copilot's request
+follows the ready-mark by rule on both estates.
+
+THE READY LIST (the owner's act): PR 250,
+<https://github.com/EngraphCode/open-curriculum-ecosystem/pull/250>, 388 files, the owner's
+draft, now BEHIND engraph by 270's merge (one sync at its slot word, by a seat, when the mark
+lands); the eval readings' human review open at body line 39; the ready-mark yours.
+
+NOVA: no line since 16:05:37Z (six hours).
+
+THE OWNER CARD (batched; unanswered): (b) 250: the action moment above; its lane passed to
+Siren by the dated default, which you may overturn; Nova's worktree on 250's branch carries her
+unpushed sync merge and nine modified files whose cures Siren landed, hers until her return or
+your word; (c) shellcheck as a lineage dependency (default CI and pre-push); (d) the bash floor
+(default none); (e) the vendored scripts (default cure ours, ask for the vendored); (f) goal two
+has no live seat, the owner starts one. FYI: the Director runs the coordination folds under the
+plan's Lane 1 (two of eight suite roles would route them to a seat; say the word if a seat
+should run them); J3 and J7 landed in the lineage (269, 270) and J3's cures flowed back (232);
+the guard port next; 250 rebudgeted to 11 by the lane's recorded decision.
+
+NEXT: the guard port PR and JC.net's guard-read cures (Siren); suite 45 at about 22:27Z;
+check-in 51 at about 22:50Z; the folds DUE at the UTC rollover (264's sync first, then 227; the
+recipe and its addenda on this napkin); Nova's return or the owner's word.
