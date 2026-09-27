@@ -1921,3 +1921,44 @@ PDR-140 clause 4:
 4. Push one settlement carrying the cures and dispositions, then the door.
 
 Steps 1 and 2 are body edits and may run during S1's rounds.
+
+**269 landed (20:00:27Z); 250's settlement and sync pushed (block written 20:05Z).** J3 slice 1
+merged as SHA:d0154fb5a by the two-leg door.
+
+- Round two on SHA:9937b0831:
+  - Codex's P2 was over the bar and cured: a file staged and then deleted from the working tree
+    was dropped and the gate passed. A check now refuses such a file by name; a repair skips it.
+  - Copilot's Windows note was cured: the chunk budget is now 12 KiB on win32, where pnpm launches
+    through the Node binary with a 32,767-unit command line. windows-basic passed on the new test.
+  - Its markdownlint-header note was rejected: every claim in the paragraph holds.
+  - The cures and the sync with engraph went in one settlement push, SHA:8731c4dc9.
+- On the settlement head, signed lines only:
+  - Copilot's "empty stage listing omits paths" was rejected: the stage read only removes symlinks.
+  - Its `#` note was rejected with a probe: markdownlint-cli2 reads a leading `#` as a comment.
+- The Codex leg was an unedited completion comment. The merge-bot reads that as the tip's leg (the
+  owner's ruling of 2026-09-16, `pr-watch/completion-comments.ts`); it refuses only an edited one.
+  The Director's evidence-reader row narrowed to the edited shape (267 and 268): a toolkit row,
+  not built now.
+- Cleanup: the branch is deleted by API, the worktree removed, the local ref deleted at its merged
+  tip, and claim 4eeba865 closed.
+
+250, from my worktree `oce-wt-250-settle` (Nova's `oce-wt-user-value` untouched):
+
+- The settlement push, SHA:b0b2d181a, cures the three skill-evals findings test-first:
+  - the loader refuses an outside skill directory before any read;
+  - the versions are captured at staging;
+  - a same-second run refuses a fresh results directory.
+- Three threads are resolved. The two plan-routing threads are signed Over-bar and left open: their
+  cure edits an evaluated skill and needs a rerun and a human read, which is the owner's item. The
+  body records the push and the reversed order.
+- The sync is SHA:d2df9a558. Its one conflict, `agent-tools/README.md`, kept both new sections.
+  It was pushing at 20:05Z, with legs on the sync head next. The door waits on the owner's
+  ready-mark.
+
+Two stream stamps were typed while the clock read ran in the same parallel block. Both are
+corrected on the stream, and the clock memory now says a read must be the only call in its block.
+
+Next: 250's legs, then release the slot. Then the guard's lineage twin slice, in the Director's
+order. After it comes the J3 flow-back to JC.net under the same-bytes goal: the glob refusal,
+`diff-files`, `--deduplicate`, `--` before files, the exit-status gate tests, the lost-file
+refusal and the platform budget.
