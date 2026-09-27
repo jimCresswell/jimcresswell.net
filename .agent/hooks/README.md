@@ -198,7 +198,7 @@ policy decision taken entry by entry.
   climb; a path it could not place; or a session root whose own repository it
   cannot tell. A move's source, and a Write's prior content, are read only as
   regular files, never waiting on a pipe, and one request's reads share a byte
-  budget, so no request holds the hook past its timeout. The whole-tree gates
+  budget, so no read holds the hook past its timeout. The whole-tree gates
   read only this repository's tracked files, so the option never changes what
   they find.
 

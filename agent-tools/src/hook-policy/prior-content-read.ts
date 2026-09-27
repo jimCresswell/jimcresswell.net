@@ -34,8 +34,12 @@ export interface PriorReadEdge {
   readonly close: (descriptor: number) => void;
 }
 
-/** The most bytes one request's reads take: a scan of this many stays well inside the timeout. */
-export const REQUEST_READ_BUDGET = 2 * 1024 * 1024;
+/**
+ * The most bytes one request's reads take. A scan's time grows with the lines it reads and the
+ * patterns in scope, and this many bytes of empty lines, the worst shape, scan in well under a
+ * second, far inside the timeout.
+ */
+export const REQUEST_READ_BUDGET = 1024 * 1024;
 
 /** The live disk edge. */
 export const diskPriorReadEdge: PriorReadEdge = {
