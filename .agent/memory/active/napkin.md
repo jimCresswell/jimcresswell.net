@@ -7852,3 +7852,21 @@ told on the stream, the designs being its implementation's specification. 215: s
 door polling again. 250: Myrtle's step 0, three probes of the host eval runner (a grader passed on
 a denied Read; the workspace mechanism being pinned). 260: Siren's cure staged for the push after
 254's release.
+
+## 2026-09-27T10:1xZ — Siren: the resume stretch; 224 landed under the reservation-first order
+
+- **JC.net's Copilot leg comes from the owner's request, never the bot's.** On PR 224 the bot's
+  `requested_reviewers` call for `copilot-pull-request-reviewer[bot]` returned 200 and listed only
+  the owner, and no Copilot request reached the timeline. The ruleset's `copilot_code_review`
+  did not fire for the bot-opened PR either. `gh pr edit <n> --add-reviewer @copilot` with the
+  operator's token (GH tokens unset) worked at once, the same path the timeline shows on PR 218.
+  Read the timeline after any leg request; a 200 is not a request.
+- **The Monitor cap is 30 minutes whatever `timeout_ms` asks.** Heartbeat Monitors armed with
+  3600000 expired at 30 minutes, and the heartbeat stopped with them. The expiry notice is the
+  only signal: re-arm on it, every time.
+- **The reservation-first order ran clean on its first use** (PR 260's staged text, operated by
+  the Director's ruling): reserve on both streams, the earlier reservation withdrawn by its seat,
+  recount, push, open at once. Four events, no crossed opening.
+- **A head moved without a seat's push.** GitHub's update-branch on PR 260 (a merge of engraph)
+  made a new head, and the Codex connector reviewed it with two new threads. The Director counted
+  that review against no push budget; the cures ride the settlement push.

@@ -1375,3 +1375,45 @@ is Myrtle's slot-released event.
   and at rule text it drafts.
 - Fixed point: a third pass would only re-find Swallow's unknown overnight state and the
   scratchpad-held PR bodies. The recursion closes here.
+
+## Resumed after compaction 5, 2026-09-27 09:3xZ onwards (Siren herds Rudder, 158275)
+
+The owner's `/jc-start-right-team` in this session lifted the freeze at 09:3xZ. The Director's
+relay of its own resume came first (09:2xZ) and was held, not obeyed: the lift is the owner's
+word in this session. Re-armed by the recipe; team-start reports on both streams.
+
+**Landed:** JC.net PR 224, the runbook twin (register row J11), merged 10:17:01Z as
+SHA:eeaeef8c. It carries the fourteen cures and the owner's ratification of 2026-09-27 ("Ratify
+both", answer 10 on the Director's boundary 9 card). Copilot's round one found one issue:
+`ratified_where` must resolve (plan-node-schema). It now names the Director's session and the
+napkin paragraph "OWNER ANSWERS at 09:1xZ on 2026-09-27", brought into the branch by a sync
+merge of main at SHA:cb4644c4. Round two was "Approval recommended". Claim 6e38aeab is closed,
+and the worktree, local branch and remote branch are deleted (the remote was read back absent).
+
+**Opened under the reservation-first order, the first run of PR 260's own text:** reserved
+09:48:14Z on both streams; Swallow's earlier 09:35Z reservation was withdrawn at 09:48:55Z on
+the Director's routing; count recounted at 09:51Z (two of three); pushed; opened at once.
+
+**PR 260, staged for its settlement push.** GitHub's update-branch merged engraph at
+SHA:a0996ac6b into the branch (remote head SHA:96d424d12). A third Codex review on that head
+added two threads, so four are open: 4112942475 (`--limit`), 4112946255 (serialise the
+reservation), 4114808296 (P1: local preparation against worktree-hygiene) and 4114808298 (P2:
+the owner's words apart from the Director's reading). The cure is committed locally as
+SHA:d899b423e on the round-two cure SHA:16a16ffae. The owner's words are verbatim quotes; the
+operating steps are marked as the Director's reading and the rule's review cures; the reservation
+comes first ("WIP slot reserved: <owner>/<name> <branch>"); the Dependabot answer is quoted;
+while the count is full a seat prepares without a worktree or a commit.
+The Director first ruled an exception in worktree-hygiene, then reversed it on this seat's
+warrant: the owner's absolute words on both sides ("All useful work must be pushed and in a PR
+or merged ... This is always true"; worktree-hygiene §1), and an exception in an owner-absolute
+rule is the owner's to grant. Its reopen condition is in check-in 33.
+The replies are drafted in the scratchpad's `replies-260-r2/`, with SYNC_SHA to fill in, and the
+PR body in `wip-body.md`.
+
+**Next safe step:** at 254's "slot released", take the slot and merge the remote head
+SHA:96d424d12 and any newer engraph into the local branch (the owner as author); push once as
+the bot; post the four signed lines and resolve; request both legs; findings on that head get
+signed lines only; run the sweep and the door; release the slot; clean up.
+Then the lineage copy's ratification stamps as a one-file PR at a free WIP slot, carrying the
+three final-tip cures only if they are not procedure changes (a procedure change returns it to
+sketch). Then the order as recorded at the 09:09Z block, step 6.
