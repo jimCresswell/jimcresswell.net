@@ -57,6 +57,16 @@ describe('parseSymlinkPaths', () => {
   it('names none when the index holds no symbolic link', () => {
     expect(parseSymlinkPaths('100644 aaaa 0\tREADME.md\u0000')).toStrictEqual(new Set());
   });
+
+  it('names only resolved entries, so an unmerged path whose stages differ in type is not one', () => {
+    // A type conflict mid-merge: the base and theirs are links, ours a regular file.
+    const stage = [
+      '120000 aaaa 1\tconflict.md',
+      '100644 bbbb 2\tconflict.md',
+      '120000 cccc 3\tconflict.md',
+    ].join('\u0000');
+    expect(parseSymlinkPaths(`${stage}\u0000`)).toStrictEqual(new Set());
+  });
 });
 
 describe('trackedCheckFiles', () => {
