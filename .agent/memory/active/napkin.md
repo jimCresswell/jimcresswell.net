@@ -2348,3 +2348,40 @@ starts one; FYI the lineage-name guard scoped by repository identity (PR 230 lan
 NEXT: 268's round one cured and its door; 227's fold at the rollover (this push carries the fold's
 merge and the records); 264's sync and fold; Siren's S1 then 250's path; suite 41 at 19:27Z;
 check-in 47 at about 19:50Z.
+
+## 2026-09-27T19:30Z — Director suite 41 tally: the 250 rebudget ruling held seven to one; the Copilot-only door stops until the evidence-reader row lands; 268 merged
+
+Dispatched 19:27Z on `suite-41-frame.md` (928 lines, fields at dispatch, two questions). Eight
+verdicts in by 19:30Z. Work: ON-TRACK 7, DRIFTING 1. Frame: SOUND 2, NARROWED 2, CONTRADICTED 4
+(the 2026-09-10 ruling paraphrased wider than its quoted scope; "all useful work pushed and in a
+PR" cited as an owner word without its source in the frame; PR 269 counted without a name; the
+READING block still the 17:02Z read).
+
+QUESTION 1 (250's rebudget number by the lane's recorded decision, about 12): doctrine-right 7,
+owner residue 1 (procedure adversarial). Deciding words the seven name: clause 4's "rebudget by
+recorded decision (one further settlement push)", clause 9(b)'s once per PR, answer 2's "part of
+the system", the tool's "raised by the owner" as its wording. RULING held, with the conditions
+sent to Siren at 19:2xZ: the section states this is 250's first and only rebudget and that most of
+the number absorbs the sync the gate misprices; the settlement push may go now, the sync at the
+slot word; the ready-mark stays the owner's; FYI on the card. Siren's 19:17Z line: steps 1 and 2
+done, the rebudget at 11, the gate reading warn.
+
+QUESTION 2 (the door on Copilot's leg with Codex's completion read from its edited comment): the
+substitute with conditions 5, stop until the toolkit row 3 (both judgement-high, procedure
+adversarial). RULING, the stricter: the two uses (267, 268) stand as the Director's own dated
+rulings with their conditions (the comment reads Completed, its commit equals the tip, no
+findings, a stream line names all three), not as the 2026-09-10 ruling, which as quoted covers a
+posted subagent review in lieu of a quota-skipped leg; no third use on any PR until the
+merge-bot's evidence reader accepts the summary comment's completed row when its commit equals
+the tip (routed to Siren after 269, else the toolkit lane).
+
+CORRECTIONS for suite 42: the READING block rebuilt from the latest read; PR 269 named (Siren's
+J3 slice 1, opened 19:12:47Z under her 19:09Z reservation; the root format and markdown gates read
+git's tracked tree; at its second push); "all useful work must be pushed and in a PR or merged"
+sourced to the owner's standing word as Myrtle's handoff relayed it (2026-09-26); no citation of
+a ruling without its quoted text.
+
+STATE at 19:30Z: the count 2 of 3 (250 at its rebudget; 269 at its round one); 268 merged
+19:24:32Z as fab177333, its branch and worktree gone with read-back; 227 current at 999ca0ca;
+264 BEHIND; Nova: no line; check-in 47 at 19:50Z; suite 42 at about 20:12Z; the folds at the
+rollover.
