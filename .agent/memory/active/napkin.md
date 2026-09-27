@@ -2607,3 +2607,51 @@ NEXT: 270's legs and door, the J3 flow-back PR, the guard port (Siren); suite 44
 check-in 50 at about 22:05Z; the folds DUE at the UTC rollover (the recipe on this napkin; 264's
 sync first; the lineage estate-coordination thread record gains 265, 267, 268, 269 and 250,
 JC.net's 224 to 231); Nova's return or the owner's word.
+
+## 2026-09-27T21:51Z — Director suite 44 tally: the Director runs the folds under the plan's Lane 1; the lineage fold takes the slot at its time unless a synced holder waits for a leg; JC.net's fold contends with nothing
+
+Dispatched 21:4xZ on `suite-44-frame.md` (731 lines: SOURCES carried from suite 43, one
+correction, the fold recipe verbatim, the READING rebuilt at 21:4xZ, fields at dispatch, one
+question in three parts). Eight verdicts in by 21:50Z. Work: ON-TRACK 7, DRIFTING 1 (procedure
+adversarial). Frame: SOUND 3, NARROWED 4, CONTRADICTED 1 (procedure adversarial: the Director's
+fold execution against PDR-117 clause 1).
+
+PART (i), who runs the folds: within the Director's seat, five of eight (the owner-approved
+plan's Lane 1 items 1 and 2 name the Director for both folds; PDR-117 clause 1 forbids seizing
+an implementer workload and dispatching implementer sub-agents, and excepts "a small piece of
+work with no successor coming"); route it to Siren, two (the high and procedure adversarial
+roles: "Any seat may run it" reads as delegation; Siren is a live implementer); unresolved,
+one. RULING: the Director runs both folds. The fold closes the Director's own records PR on the
+coordination branch, a bounded ten-step ceremony with no successor lane; today's two folds (262
+at 12:06Z, 225 at 12:39Z) ran the same way under the same plan; routing it to the only
+implementing seat would take her off 232 and the guard port for two ceremonies. Siren stays the
+fallback keeper. The dissent goes to the owner as an FYI line (the Director runs the
+coordination folds under the plan's Lane 1; say the word if a seat should run them instead).
+
+PART (ii), the fold against a seat's door: eight of eight on the quoted sentence "A coordination
+fold takes the slot at its time" (pr-lifecycle §Phase 7), with the exception the same text
+carries: a holder that has synced and is waiting for a per-tip reviewer leg is not an empty
+slot, so the fold follows its landing; a holder that needs a cure push yields. JC.net's fold
+contends with nothing. READ FIRST-HAND at 21:5xZ from the rules API: engraph
+strict_required_status_checks_policy true; main false (227 needs no sync and no serial slot);
+both rulesets carry a copilot_code_review rule, and both folds today drew Copilot's request one
+second after the ready-mark (225: 11:44:10Z ready, 11:44:11Z requested; 262: 11:39:25Z both),
+so the recipe's step 5 ("Copilot is auto-requested on the ready-mark") stands and the medium
+adversarial redirection to change it is refuted by the surface.
+
+PART (iii): no source ties the fold to 250's ready-mark or Nova's return, eight of eight.
+
+REDIRECTIONS taken: check-in 49 pushed at once (c421f83d, 21:4xZ, the low normal role); the
+rulesets read before applying the slot clause (above); the fallback keeper told the governing
+sentence on the stream (this tally's line). Not taken: the goal-one measure in the READING
+(register rows landed and left) goes into check-in 50, with the retrospective trigger's status.
+
+RECIPE ADDENDA (to THE FOLD RECIPE AND STATE, 20:10Z; corrections appended, not rewritten):
+(a) step 7, the lineage: at 00:00Z read the slot; a holder synced and waiting for a leg lands
+first, then the fold; a holder needing a cure yields; the fold otherwise takes the slot at its
+time. (b) steps 3 and 7, JC.net: no sync and no slot wait (main's ruleset reads strict false,
+21:5xZ); 227 folds at 00:00Z whatever state 232 is in. (c) step 5 confirmed: Copilot's request
+follows the ready-mark by rule on both estates; read the timeline back after the mark.
+
+STATE at 21:51Z: the count 2 of 3 (250 at the owner's ready-mark; 232 at its round-two legs,
+Siren's) plus the guard port reserved; 227 at c421f83d; 264 BEHIND; check-in 50 at 22:05Z.
