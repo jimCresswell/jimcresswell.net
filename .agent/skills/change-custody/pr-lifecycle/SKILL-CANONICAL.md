@@ -1539,7 +1539,11 @@ allow_squash_merge, allow_rebase_merge}'`; `allow_merge_commit` has
     reservations is under the limit; otherwise it withdraws its reservation
     on the stream and waits for the next free slot. The streams' order is
     the serialiser, as for the landing slot, and a reservation is followed at
-    once by its PR or its withdrawal. A coordination PR takes no reservation.
+    once by its PR or its withdrawal. A reservation lapses when its PR opens,
+    when its seat withdraws it, or thirty minutes after it was posted, so a
+    seat that stops mid-opening holds no slot for long; a seat still gating
+    at thirty minutes posts a fresh reservation and reads the count again. A
+    coordination PR takes no reservation.
   - A branch's first push is followed at once by its PR, never left
     standing: a pushed branch with no PR is unfinished work outside review.
   - The Director routes each external PR into the slot order to a named seat.

@@ -253,8 +253,11 @@ standing grant for proven paths): the content from `git show <pre-state
 tag>:<path>` for a host file, or from `git -C <source-checkout> show
 <pin>:<path>` for a drop, written to a fresh `mktemp` sibling and renamed
 over the path, never redirected into it; a symlink recreated with `ln -sfn`
-to the recorded target; the mode set with `chmod 755` or `chmod 644` to
-match the `100755` or `100644` that `git ls-tree` records. A path whose type
+to the target that the same revision records; the mode set with `chmod 755`
+or `chmod 644` to match the `100755` or `100644` that `git ls-tree` records
+at the same revision as the content (`git ls-tree <pre-state tag> --
+<path>`, or `git -C <source-checkout> ls-tree <pin> -- <path>` for a drop),
+never at `HEAD`, which holds the transplant's state. A path whose type
 differs between the current tree and the restore source (a file, a symlink,
 a directory, or a symlink that resolves to one) is surfaced with its proof,
 as the invariant requires, never written through: a rename or `ln -sfn`
