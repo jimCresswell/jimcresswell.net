@@ -136,17 +136,16 @@ Every line answered first-hand, none inferred:
 
 ## Current handoff state (2026-09-27, the resume after COMPACTION BOUNDARY 9; pointer-biased by design)
 
-The live reading is the napkin's newest Director block: check-in 33 (09:39Z) and the suite 28 tally
-(09:52Z) on 2026-09-27, after COMPACTION BOUNDARY 9 (09:06Z; the napkin's boundary block with its
-CORRECTION, OWNER ANSWERS and ADDENDUM; the freeze bound this seat and Myrtle overnight, wakes
-lost, while Siren's monitors ran and Swallow's state was unknown). State at the tally: the owner's
-start word of 09:2xZ resumed the Director and reached every seat by 09:36Z; two non-coordination
-PRs open (250 the owner's lane, 260) with the runbook twin opening in JC.net at 09:5xZ under the
-reservation-first order and the reader's draft behind it; the drain's eight rows landed (the last,
-245, at 09:06:12Z); both folds at the door (215 on its second settlement push, 254 on its first);
-the owner card queue at zero (the thirteen answers of 09:1xZ, in the napkin's OWNER ANSWERS
-section); the retrospective trigger NOT MET until the 12:00Z fold moment. Processes of this seat:
-the monitor set and the merge-bot doors. Claim 58c2684a retained.
+The live reading is the napkin's newest Director block: check-in 36 (11:47Z) and the suite 30
+tally (11:2xZ) on 2026-09-27, with the USAGE-LIMIT BOUNDARY block (11:5xZ) and the resume at
+12:0xZ on the owner's start word. State at the resume: three non-coordination PRs open across both
+estates (250 the owner's lane, 261 the reader, 226 Siren's WIP twin); 224, 260 and 263 landed
+(10:17:01Z, 10:43:58Z, 11:34:36Z); the drain's eight rows all landed by 09:06Z; the lineage fold
+262 merged at 12:06:40Z as d6c9e582e; JC.net's fold 225 at its settlement push 1 (three Copilot
+findings cured, one of them this file's paragraph); the owner card queue at one line (the runbook
+re-ratification; default: both copies stay sketch); the retrospective trigger MET at the 12:00Z
+fold moment, its PR after Siren's three items. Processes of this seat: the monitor (arm 6) and the
+merge-bot doors. Claim 58c2684a retained.
 
 Fold entry, 2026-09-27: PR 215 (coordination/2026-09-26-26ca4d) merged by the bot at 10:04:50Z as
 cb4644c4 at full condition after two settlement pushes (nine findings cured, three dispositions
@@ -180,7 +179,7 @@ landings 216, 217, 218 folded in.
   fold moment (12:00Z on 2026-09-27) that reads the count at or under the limit with the eight
   drain rows landed (drafted in the scratchpad from 09:5xZ, its PR at a free slot after 12:00Z);
   both folds at the door; the handoff's second trim on the successor branch (done 10:3xZ, da1158e2);
-  the distillation of `archive/napkin-2026-09-21-to-2026-09-27.md` into `distilled.md`
+  the distillation of `unconsolidated/napkin-2026-09-21-to-2026-09-27.md` into `distilled.md` (then the file moves to `archive/`)
   (consolidate-docs step 6) after the napkin's rotation of 10:3xZ, curator work at a free slot.
 
 ## The archive

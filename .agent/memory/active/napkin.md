@@ -1,9 +1,11 @@
 # Napkin (rotated 2026-09-27)
 
-Rotation note: every block before the Director's COMPACTION BOUNDARY 9 (09:06Z on 2026-09-27) is in
-`archive/napkin-2026-09-21-to-2026-09-27.md`, moved whole at the watermark commit da1158e2 on
-coordination/2026-09-27-cb4644; earlier archives are beside it. Blocks named by time in check-ins
-and frames before that boundary are read there. The live file continues below.
+Rotation note: every block before the Director's COMPACTION BOUNDARY 9 (09:06Z on 2026-09-27) is
+in `unconsolidated/napkin-2026-09-21-to-2026-09-27.md`, moved whole at the watermark commit
+da1158e2 on coordination/2026-09-27-cb4644 and filed as an unconsolidated rotation until its
+distillation (blocks written before 12:1xZ name it under `archive/`, where it was first filed);
+earlier archives are in `archive/`. Blocks named by time in check-ins and frames before that
+boundary are read there. The live file continues below.
 
 ## 2026-09-27T09:06Z — COMPACTION BOUNDARY 9 of the Director seat (Wick binds Temper, ed7b48)
 
