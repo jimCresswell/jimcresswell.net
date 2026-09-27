@@ -1854,3 +1854,23 @@ pending. Worth one question at the next message: does the re-ratification now wa
 runbook's next instance?
 
 Next: J3 into the lineage, test-first, at the next free slot; the two-sided survey is running.
+
+**J3 blocked by the guard; route 2 open as PR 230 (18:09Z).** J3 slice 1 could not write the
+lineage's result-package import into the lineage worktree: JC.net's `lineage-name` content block
+reads every path. The Director ruled route 2 (scope the guard) as seat work.
+
+- PR 230 (fix/content-guard-repository-scope, head SHA:af1aa40f8) adds an optional block flag,
+  `excludes_other_repositories`, set on `lineage-name` only. The write-hook drops the block for a
+  file positively found in another git repository, judged by the common git directory's identity
+  on disk (device and inode). Every JC.net worktree and every spelling of its path stays
+  guarded; every unknown keeps the block.
+- Pre-open passes: config-expert and security-expert, each APPROVE WITH NOTES after cures. The
+  security first pass found a real regression: a string compare of real paths read a
+  case-variant or firmlink spelling as another repository. Cured by identity.
+- Found in review and fixed in the same PR: main's anchored exemptions accepted a `..` climb
+  out of an exempt directory; `placePath` now resolves `..`.
+- Copilot requested at 18:09:43Z; the count is three of three.
+
+Next: settle 230 through the door. Then the primary's `agent-tools/dist` needs a rebuild with the
+fix (after main folds into the coordination branch) before J3 slice 1 can write its import.
+The lineage twin of the flag is owed as its own exchange slice.
