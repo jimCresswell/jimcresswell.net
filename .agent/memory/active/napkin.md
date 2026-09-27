@@ -1312,3 +1312,53 @@ Director operates three meanwhile).
 NEXT: 261's landing, then the retrospective's PR (the reservation line, the branch, the push, the
 draft PR, records-class); check-in 39 at 14:02Z; suite 34 at 14:24Z on a frame with the line
 struck; the monitor re-armed at 13:49Z with the drafts' CI watch; the folds at the UTC rollover.
+
+## 2026-09-27T14:0xZ — Director check-in 39; the count at three; 261's fix push in CI; both drafts green
+
+Snapshot generated 14:02:15Z (floor 13:17Z). Clock read 14:02:15Z. Cadence arithmetic: check-in 38
+on the 13:17Z wake plus 45 minutes is 14:02Z, on time; suite 34 at 14:24Z; check-in 40 at about
+14:47Z. Both streams read to 14:02Z. Suite 33's cures applied: the limit reads the owner's three
+until the card is answered; the reopen line struck from the owner-words list; the drafts' CI watch
+running (a five-minute poll; nothing printed, both green).
+
+THE COUNT (gh at 14:02Z, the snapshot): non-coordination open PRs across both estates 3, at the
+operated limit of 3: 250 (unchanged: the owner's lane, draft, BLOCKED, three red checks and one
+thread; Nova's lane two), 261 (Nova's named fix push landed at ffcc8f24c at 13:48Z, the cures in
+aa9ed4617, 809 tests, 47 files; unit-tests running; five threads read unresolved pending her
+signed lines; the door after both legs), 226 (Siren's twin, CLEAN, two threads, HELD at her word).
+Coordination PRs outside the count: 264 (CLEAN at 9520ceeb after the re-run and the F-208 row;
+seven files) and 227 (CLEAN at e2961e38 on the remote; check-in 38 and the suite 33 tally local,
+pushed with this block). Landings since check-in 38: none. Opened since: none. Ready list: none.
+The next opening: the retrospective's PR at 261's landing (the count then two; Nova's next item,
+250, is already open), by the prepared script: the reservation line first, a bounded count, the
+branch, the push, the draft PR as the bot.
+
+LIVE SEATS: the Director and Nova (heartbeats 14:01Z and 14:00Z); Siren paused (12:11Z); Myrtle
+and Swallow closed out. Host load 3.82 at 14:02Z.
+
+VERIFICATION. Heads with CI in flight: the lineage 1 (261's fix push, content); JC.net 0 at the
+snapshot (1 after this block's push, a coordination draft's records, the fold clause). Slot:
+Nova's for 261's door at green. The folds: DUE at the UTC rollover; both successors green.
+
+THE WAITING-WORK LINE with ages and holds: 261 open 3 h 40 min, at its legs after the fix push;
+226 open 2 h 21 min, held; 250 open 25 h 24 min, the owner's lane; the retrospective's PR at 261's
+landing; Siren's items paused with her; goal two's items after 261 with a Codex-capable seat. Goal
+three: every remote branch on both estates is on an open PR or a default or coordination branch
+(lineage 6, JC.net 3); dirty worktrees: oce-wt-command-records (Nova's, 7 modified and 1 untracked
+after her push, her signed-line and records work) and oce-wt-user-value (Myrtle's at closeout,
+clean, its branch 136 behind its upstream pointer, unread); the JC.net primary clean apart from
+Siren's untracked letter; the lineage primary clean.
+
+THE OWNER CARD: two lines, batched, unanswered: the runbook re-ratification (default: both copies
+stay sketch); the implementer count after two closeouts and a pause (the Director operates the
+owner's stated three meanwhile; falsifier (c) has fired).
+
+The Director's defects since check-in 38: suite 32's operated limit of two, reversed by suite 33
+(the Director's own reopen line taken as an owner word); one lineage commit refused by commitlint
+after its full gate (subject case; the check tool now runs before every commit there).
+
+PROCESSES: the monitor (arm 10, cap about 14:19Z); the drafts' CI watch (cap about 14:15Z); the
+261 merge wait; no subagents (suite 33 returned).
+
+NEXT: suite 34 at 14:24Z; 261's landing and the retrospective's PR; check-in 40 at about 14:47Z;
+the folds at the UTC rollover; graduation (step 9) at a free slot.
