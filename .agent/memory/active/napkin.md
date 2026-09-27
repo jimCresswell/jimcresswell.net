@@ -2320,3 +2320,31 @@ live hook carries the guard scoped by repository identity; J3's S1 resumes.
 CORRECTIONS for suite 41: no rule file or Director phrasing cited as an owner word; the frame's
 header refreshed with the fields; card line (f) quoted, not paraphrased; "undesirable" quoted as
 the owner wrote it.
+
+## 2026-09-27T19:06Z — Director check-in 46: the count 2; 230 landed; 268 open; the 250 default fired; main folded
+
+THE FOUR NUMBERS (`checkin-46-raw.md`, 19:05Z): open non-coordination PRs 2 of 3 (250 held; 268,
+the addenda, at its round one); landings since check-in 45: one (JC.net 230, the guard scope fix,
+18:41:28Z as f5f60ab9); heads with CI in flight: one (268); slot-holder age: none held. Remote
+branches outside a PR: none in either estate. Ready list: empty. JC.net primary: main f5f60ab9
+folded as 54de61b1, dist rebuilt 18:44Z, 22 commits ahead of the remote, pushed in this step.
+
+268 (c0534a975, two files, additive): opened 18:54Z after two pre-open passes (fifteen then seven
+findings, all cured); round one so far Copilot at line 478 (the pre-push gate total 55.17 against
+the re-run's round costs: the fourth round's cost moved from 15.2 to 15.58 between the two reads;
+the pre-push rounds were 16.43, 23.54, 15.2), cured in settlement push one with Codex's round.
+
+THE 250 DEFAULT FIRED at 19:05Z: Nova silent since 16:05:37Z, the 16:42Z and 18:45Z pings
+unanswered. 250's rebudget path passes to Siren after J3's S1 lands, from 250's remote head
+560016310 (the five findings: three code defects, two plan routing), the rebudget by recorded
+decision on the PR body's intake line, the sync alone, then one settlement push; Nova's worktrees
+untouched; the owner may overturn (card line (b), amended).
+
+THE OWNER CARD (batched; unanswered): (b) as above, now a decision taken; (c) shellcheck as a
+lineage dependency (default CI and pre-push); (d) the bash floor (default none); (e) the vendored
+scripts (default cure ours, ask for the vendored); (f) goal two has no live seat, the owner
+starts one; FYI the lineage-name guard scoped by repository identity (PR 230 landed), overturnable.
+
+NEXT: 268's round one cured and its door; 227's fold at the rollover (this push carries the fold's
+merge and the records); 264's sync and fold; Siren's S1 then 250's path; suite 41 at 19:27Z;
+check-in 47 at about 19:50Z.
