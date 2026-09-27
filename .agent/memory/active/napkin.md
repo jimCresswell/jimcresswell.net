@@ -1836,3 +1836,69 @@ the folds at the UTC rollover.
   both. The original guard (refuse any non-empty index) was right. Never loosen it; when the
   index holds a file this seat also edits, ask its owner, or compare `git diff --cached` content
   line by line.
+
+## 2026-09-27T16:1xZ — Director check-in 42; the count at three; Siren's 226 settlement pushed; Swallow's records commit crossed the Director's branch switch on the shared lineage primary; the second retrospective drafted
+
+Snapshot generated 16:17:19Z (floor 15:32Z). Cadence arithmetic: check-in 41 at 15:32Z plus 45
+minutes is 16:17Z, on time; suite 37 at about 16:39Z; check-in 43 at about 17:02Z. Both streams
+read to 16:17Z, the directed events first: two from Nova (her question on the doctrine edits,
+answered 15:46Z; her ACK a1ba2d6c of the one-slot veto: "OCE doctrine PR alone at 265's slot;
+JC.net twin committed a6197de4, joins at the next slot"), none unanswered.
+
+THE COUNT (gh at 16:17Z): non-coordination open PRs across both estates 3, at the operated limit
+of 3: 250 (the owner's lane; DIRTY, five threads, no CI on a conflicting head; Nova holds it on
+the 15:58Z ruling: the rebudget by her recorded decision, the sync alone first, then one
+settlement push; her ACK of that ruling not yet read on the stream), 226 (Siren's twin: her
+settlement push at 55d81dc9 pushed 16:11Z with two signed lines and Copilot requested; CLEAN, two
+threads read unresolved at the snapshot; her door next), 265 (the retrospective: the round-four
+late-cure push landed at 76195aa19 at 16:0xZ under the rebudget recorded on the PR by the gate's
+own line, budget 4, cost 49.83 of 80; Copilot's and the connector's reviews on the head at 16:11Z;
+round five, two Codex P2s at 16:11:39Z, both below the bar by PDR-140 clause 9(a)'s own words, a
+missing qualifier on a cited path and an imprecise comparison window in the counterfactual,
+dispositioned by signed Rejected lines with no push, the corrections owed to the record's
+addendum; three checks running; the door at green). Coordination PRs outside the count: 264
+(BEHIND; Swallow's reader-lane retrospective c86a9c3ff pushed on it at 16:07Z on the owner's word
+after his closeout, eight files, CI running) and 227 (CLEAN at 9e9381d4 on the remote; local ahead
+four: check-in 41, the markdown-links block, Siren's records commit carrying the suite 36 tally,
+and this block). Landings since check-in 41: none. Opened: none. Ready list: none.
+
+LIVE SEATS: the Director (arm 13 from 16:16Z), Nova (worktrees oce-wt-doctrine-fold-chmod and
+jcnet-wt-doctrine-fold-chmod on docs/fold-sweep-and-chmod-bits, both local, no origin branch, per
+the routing; oce-wt-user-value ahead 23 with nine modified files, 250's held sync and cures),
+Siren (resumed 15:57Z on the owner's carry-on word; 226's push 16:11Z), Swallow (returned 15:5xZ
+on the owner's word after closeout for one records commit, pushed 16:07Z on 264, then quiet). Host
+load 3.90 at 16:17Z.
+
+THE DIRECTOR'S DEFECT, a collision on the shared lineage primary: at 15:58:25Z the Director's
+settlement script switched the primary to 265's branch while Swallow's commit c86a9c3ff sat
+unpushed on the coordination branch (committed 15:56:18Z); his merge-bot push at 15:59Z pushed the
+Director's branch, level with its remote, and moved nothing; he waited for the primary's return
+and pushed at 16:07Z (his line 16:01Z: "no harm; nothing of yours was touched"). The cure from
+now: no branch switch on a shared primary for a settlement push; the Director's PR branches get
+their own worktree (oce-wt-retro for 265 if any further push is needed; none is planned), and a
+`git status` plus a reflog read before any switch. PDR-117's own worked instance (two committers
+on one tree collide) applies to the Director as to any seat.
+
+THE RETROSPECTIVE THE OWNER COMMISSIONED IN SIREN'S SESSION (the second of the day): drafted
+16:0xZ to 16:1xZ from a ledger of API reads (five PRs, fifteen reviewed heads, forty root threads,
+fifteen pushes), the five rivals read against their falsifiers, a blind pre-open pass run on 263's
+opening text as rival 5's test (fourteen defects, six of them the bots' later findings), six
+proposals with warrants, falsifiers and lanes; 381 lines in the scratchpad
+(`retro2/retro2-draft.md`), lint clean; a prose pass applied; a documentation review running; the
+per-round counts recomputed once after the prose pass caught a timestamp stumble (a review
+comment's commit id moves with the head, so rounds are attributed by comment time against the bot
+reviews, not by commit id). It opens at its place in the slot order (after Nova's OCE doctrine PR
+and Siren's lineage follow-up), reservation-first, by `open-retro2.sh`.
+
+THE OWNER CARD: (a) the runbook re-ratification (default: both copies stay sketch); (b) goal two
+has one seat, Nova, with about a dozen items; seats started for it? Lines (c) and (d) withdrawn at
+suite 36.
+
+PROCESSES: the monitor (arm 13); the drafts' CI watch (re-armed 16:16Z); the 265 legs watch (on
+76195aa19); the docs review of the second retrospective (a read-only subagent).
+
+NEXT: 265's two Rejected lines, then its door at green (the prepared script, slot-taken first);
+suite 37 at about 16:39Z on a frame with suite 36's cures (PDR-140 as a Practice record; the goals
+quantified; the collision); check-in 43 at about 17:02Z; the second retrospective's final text and
+its opening at a freed slot; the folds at the UTC rollover (264's sync first; 227's fold commit
+with Siren's records already on the branch).
