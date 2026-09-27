@@ -1893,3 +1893,31 @@ Next: J3 slice 1 needs the fix in the live hook. That means main folded into the
 branch and the primary's `agent-tools/dist` rebuilt: the Director's call, asked at 18:4xZ. Then
 restore the universe-test draft into `oce-wt-j3-s1` (local commit b9c8ef3b2) and go on test-first.
 The guard's lineage twin slice follows as its own exchange slice.
+
+**J3 slice 1 pushing (19:09Z); 250 passes to this seat after it.** Once the rebuild landed, the
+17:32Z refused write passed the live hook (18:45Z). J3 slice 1 is committed in `oce-wt-j3-s1` as
+SHA:f570edc64 on SHA:b9c8ef3b2. The four root gates read git's index, chunked, and fail closed.
+
+- Pre-open review:
+  - code-expert requested changes, all cured: the glob-significant refusal, exit-status gate
+    tests plus a CLI smoke, `diff-files`, the shared `gitFailed`, `--deduplicate`, and `--help`
+    with the separator and a guarded run;
+  - config-expert approved with notes, and its true notes are cured.
+- Evidence: markdownlint read 2147 files before and 972 + 1175 after. A planted untracked file
+  reds the old gate and not the new one.
+- The reservation was posted at 19:09Z, with the count 2 of 3 (268, 250). The PR opens after
+  the gate.
+- The lineage commit-msg hook refused a body line that began `on:`, the same footer-token trap
+  as 17:0xZ's `back:`. Run commitlint on the message file before the long pre-commit.
+
+The Director's order (19:0xZ): S1, then 250, then the guard's lineage twin slice. 250's
+rebudget path passed to this seat at the 19:05Z default (the owner may overturn it). Work from
+250's remote head 560016310; Nova's worktree `oce-wt-user-value` stays hers. The four steps under
+PDR-140 clause 4:
+
+1. Record budget-exceeded and the generator question in the body's working notes.
+2. Edit the intake line's budget to N plus one, as the bot, with the reason below it.
+3. Push the conflict-resolving sync alone.
+4. Push one settlement carrying the cures and dispositions, then the door.
+
+Steps 1 and 2 are body edits and may run during S1's rounds.
