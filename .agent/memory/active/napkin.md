@@ -2289,3 +2289,34 @@ NEXT: the addendum PR (pass, commit, reservation, push, open as the bot, ready-m
 check-in 46 at about 19:05Z; 227's two tally commits pushed at the next records push or the fold;
 the folds DUE at the UTC rollover (264's sync first); Nova's return, the owner's word, or the
 dated default at the fold.
+
+## 2026-09-27T18:49Z — Director suite 40 tally: the records volume cut; the 250 default brought forward; main folded and dist rebuilt
+
+Dispatched 18:42Z on `suite-40-frame.md` (859 lines, the six fields written at dispatch).
+Eight verdicts in by 18:49Z. Work: DRIFTING 5, ON-TRACK 3. Frame: CONTRADICTED 6 (the question
+cited "minimal ceremony" and the records rule as owner words against the frame's own
+disclaimer), SOUND 1, NARROWED 1.
+
+THE QUESTION (the Director's records volume): cut it, six of eight, on "work is safe when it is
+merged", "aiming for zero while useful value is still created and merged", "a fixed process with an
+end", the cost model's optimum above one line, PDR-140 clause 9(a)'s route to a register row and
+PDR-117 clause 1 ("the Director routes"). One role: keep the gating, fix the draft quality. RULING
+(the Director's own under clause 3): from this block on, check-in blocks carry the four numbers,
+the landings, the card and NEXT; tally blocks carry the counts, the convergent finding and the
+ruling; an addendum opens only for an over-bar cure or a tail the record's body promised; ledger
+rows stay rows; working notes are not pass-gated; records-class text is written from forge reads,
+never from tallies. The addendum in oce-wt-addendum carries an over-bar cure and the promised tail,
+so it opens on its second pass's OPEN verdict, and nothing more of its kind follows.
+
+250: the dated default brought forward (judgement-low adversarial: nothing forces the six-hour
+wait). If Nova has not answered the 18:45Z second ping by 19:05Z, 250's rebudget path passes to
+Siren after J3's S1 lands, from 250's remote head, her worktrees untouched; the owner may
+overturn.
+
+DONE this window at Siren's request: main f5f60ab9 (PR 230) merged into
+coordination/2026-09-27-3699c1 as 54de61b1 and agent-tools/dist rebuilt at 18:44Z, so every seat's
+live hook carries the guard scoped by repository identity; J3's S1 resumes.
+
+CORRECTIONS for suite 41: no rule file or Director phrasing cited as an owner word; the frame's
+header refreshed with the fields; card line (f) quoted, not paraphrased; "undesirable" quoted as
+the owner wrote it.
