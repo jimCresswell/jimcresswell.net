@@ -11,9 +11,10 @@ status: ratified
 ratified_by: "Jim Cresswell"
 ratified_date: 2026-09-27
 ratified_where: >-
-  Owner card answered "Ratify both" on 2026-09-27 (the Director's boundary 9
-  card, answer 10, covering this copy and the lineage's), recorded in the
-  Director's napkin block of that boundary.
+  Owner answer 10, "Ratify both", on 2026-09-27 to the Director's card (Wick
+  binds Temper, session ed7b48), covering this copy and the lineage's;
+  recorded verbatim in `.agent/memory/active/napkin.md`, the paragraph
+  "OWNER ANSWERS at 09:1xZ on 2026-09-27".
 impact_areas:
   - practice-and-estate
 tickets: []
