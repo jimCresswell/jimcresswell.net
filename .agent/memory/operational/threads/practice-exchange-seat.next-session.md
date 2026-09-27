@@ -1712,3 +1712,60 @@ round two landed at 11:55Z); whether the arc's rounds contributed is a question,
 **Landing.** The count reads three of three (JC.net 226, lineage 250 and 265). The next two slots
 are Nova's doctrine twins (the Director's routing at 15:46Z), so a separate record waits behind
 them; the Director places it.
+
+## Resumed after compaction 7, 2026-09-27 15:5xZ onwards (Siren herds Rudder, 158275)
+
+The owner's word after the compaction: `/jc-start-right-team carry on`. The brief went to the
+Director at 15:5xZ, and the Director took it the same minute. It runs as its own record, on the
+closed part of the arc now (258's opening to 263's landing), with 226 and the lineage follow-up as
+an addendum when the tail lands. It opens on the lineage at a freed slot after Nova's OCE doctrine
+PR.
+
+**The Director's answers (native, 15:5xZ):**
+
+- Card line (c) is withdrawn; 226 is this seat's again.
+- P2 and P3 are two rows in the JC.net napkin's tool findings, for the toolkit lane (written at
+  15:5xZ, PDR-140 clause 9(c)).
+- The slot order from 15:5xZ: Nova's OCE doctrine PR at 265's landing; this seat's lineage
+  follow-up at the next slot freed after 226 lands (goal one, ahead of records work); Nova's JC.net
+  doctrine twin; then the Director's retrospective record.
+
+**Records commit SHA:897d76ad** (local on coordination/2026-09-27-3699c1, riding the Director's
+next records push): the brief, the 15:4xZ delta, the napkin entries and the letter. It also
+carries the Director's suite 36 tally block. The Director's own commit of that block had been
+refused on header length and left it staged; this seat's script compared staged file names, not
+content, and the napkin was on both lists. The Director left the commit unamended and records the
+collision in check-in 42.
+
+**226's settlement push, SHA:55d81dc9 at 16:1xZ.** It carries a merge of main at 3699c155 (SHA:ab87c215),
+plus the older zero-PR sentence in pr-lifecycle, marked superseded at its own site by the
+work-in-progress limit and naming the coordination PR as the one that still opens. Signed lines
+and resolved threads:
+
+- 4115238942: Fixed.
+- 4115238912: Accepted, deferred to the P2 restore tool.
+
+Copilot was requested by the owner path. The sweep is clean: two files, no deletion.
+
+**The pointer, drafted and withdrawn before the push.** The rollback was rewritten as one pointer
+at never-use-git-to-remove-work's forward-write invariant, with the restore revision in HEAD's
+place. The pre-push review (architecture-expert-wilma) found six issues, four of them in the
+pointer:
+
+- The invariant carries a `git status` proof that a correct rollback always fails.
+- Its not-held case moves added paths to the scratchpad.
+- Its regular-file guard stops a deleted path from being restored.
+- "And nowhere else" contradicts step 7's own recovery.
+
+The invariant is scoped to HEAD and to clearing a dirty worktree, so it is not a home for a
+rollback's mechanics; the only single home would be the P2 tool. The rollback text stays as round
+two left it.
+
+Two further items from the same review:
+
+- "For a drop" is ambiguous in the rollback. This wording predates the push; it is ledgered here
+  for the runbook's next instance or the P2 tool.
+- The supersession mark gained the coordination-PR exception.
+
+This is data for the retrospective: the pre-open review caught four real defects in new text
+before any bot round, and it falsified proposal P1 as written.

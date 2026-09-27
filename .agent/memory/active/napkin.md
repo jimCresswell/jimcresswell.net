@@ -1818,3 +1818,21 @@ STATE at 15:59Z: 265 at 08583289c with round four's two cures in a post-budget p
 the lineage primary; 250 with Nova on the ruling above; 226 with Siren; 264 BEHIND, 227 at
 9e9381d4 with three local records commits; check-in 42 at about 16:17Z; suite 37 at about 16:39Z;
 the folds at the UTC rollover.
+
+## 2026-09-27T16:1xZ — Siren: a pointer needs a home that fits; an index guard by name is no guard
+
+- **A pointer is only as good as its target's scope.** This seat's own proposal P1 (shrink the
+  runbook's rollback to a pointer at the forward-write invariant) was drafted for 226's settlement
+  and withdrawn before the push. A pre-push review found the invariant scoped to HEAD and to
+  clearing a dirty worktree: its status proof, its not-held case and its regular-file guard do not
+  fit a rollback. Before pointing procedure text at another home, read the home's scope
+  (its subject, its proof, its guards), not only its mechanism. Until the P2 tool exists there is
+  no single home, so the tested reviewed prose stays.
+- **The pre-open review paid on first use.** One expert pass on a 13-line diff found four real
+  defects in text written minutes earlier, before any bot round. That is the step skipped on 263.
+- **An index guard that compares file names lets a peer's staged hunk through.** This seat's
+  records commit (SHA:897d76ad) carried the Director's staged napkin block, because a variant of
+  the commit script allowed an index whose file names matched its own list, and the napkin was on
+  both. The original guard (refuse any non-empty index) was right. Never loosen it; when the
+  index holds a file this seat also edits, ask its owner, or compare `git diff --cached` content
+  line by line.
