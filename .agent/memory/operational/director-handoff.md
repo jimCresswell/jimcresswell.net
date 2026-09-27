@@ -191,7 +191,7 @@ plan's third amendment, and main's landing 224 folded in.
   the lineage fold 262 merged at 12:06:40Z as d6c9e582e (successor coordination/2026-09-27-d6c9e5,
   draft PR 264); PR 225 folded 12:39:05Z as 3699c155d, the successor coordination/2026-09-27-3699c1 (its draft PR named in the rotation broadcast); the exchange thread record's opener refresh (Siren's, at her resume; 225's round-three deferral);
   the handoff's second trim on the successor branch (done 10:3xZ, da1158e2);
-  the distillation of `unconsolidated/napkin-2026-09-21-to-2026-09-27.md` into `distilled.md` (then the file moves to `archive/`)
+  the distillation of the 2026-09-21 to 2026-09-27 rotation into `distilled.md` (done 13:0xZ on 2026-09-27: nine entries, none pruned, the file archived; `distilled.md` over its 200-line target, the pressure routed to graduation, step 9)
   (consolidate-docs step 6) after the napkin's rotation of 10:3xZ, curator work at a free slot.
 
 ## The archive

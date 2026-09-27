@@ -1,11 +1,11 @@
 # Napkin (rotated 2026-09-27)
 
 Rotation note: every block before the Director's COMPACTION BOUNDARY 9 (09:06Z on 2026-09-27) is
-in `unconsolidated/napkin-2026-09-21-to-2026-09-27.md`, moved whole at the watermark commit
-da1158e2 on coordination/2026-09-27-cb4644 and filed as an unconsolidated rotation until its
-distillation (blocks written before 12:1xZ name it under `archive/`, where it was first filed);
-earlier archives are in `archive/`. Blocks named by time in check-ins and frames before that
-boundary are read there. The live file continues below.
+in `archive/napkin-2026-09-21-to-2026-09-27.md`, moved whole at the watermark commit da1158e2 on
+coordination/2026-09-27-cb4644, filed as unconsolidated from 12:1xZ and archived at 13:0xZ once
+its distillation ran (nine entries into `distilled.md`); earlier archives are beside it. Blocks
+named by time in check-ins and frames before that boundary are read there. The live file continues
+below.
 
 ## 2026-09-27T09:06Z — COMPACTION BOUNDARY 9 of the Director seat (Wick binds Temper, ed7b48)
 
@@ -1129,3 +1129,68 @@ PROCESSES: the monitor (arm 6, cap about 12:34Z, re-armed at the cap); the settl
 
 NEXT: 225's merge and rotation; 261's door at green; the retrospective's PR at 261's landing;
 suite 32 at about 12:54Z on a frame with the relabelled SOURCES; check-in 38 at about 13:17Z.
+
+## 2026-09-27T13:0xZ — Director suite 32 tally; eight ON-TRACK; the limit read as the seat formula
+
+Frame built after check-in 37 (12:29Z) from its snapshot (`checkin-37-raw.md`) and the streams and
+gh to 12:4xZ, with suite 31's cures applied. Dispatched 12:54Z on the cadence. Clock read
+13:00:25Z before this write. Eight returns, none UNDELIVERED; the low roles read the napkin to
+line 659 within their two-Read budget; the medium adversarial and both high roles read every named
+block.
+
+| Role | Stance | Work | Frame | Redirection |
+| --- | --- | --- | --- | --- |
+| cricket-judgement-low | normal | ON-TRACK | NARROWED (the owner's words of 12:0xZ to 12:12Z absent from SOURCES; the QUESTION's "minimal ceremony" and "routes, does not execute" are not owner words there) | quote them in suite 33; then the distillation in committed slices |
+| cricket-judgement-medium | normal | ON-TRACK | NARROWED (the same; goal one has no live owner and READING does not name the gap; §2's "nothing taken over" against Nova holding 261 and 250) | start the distillation now in stoppable pieces; state the gap |
+| cricket-judgement-high | normal | ON-TRACK | NARROWED (the unsourced phrases; "a static zero" is about the PR count, not a seat's idle time) | no distillation by the Director; route it to a freed seat later |
+| cricket-procedure-xhigh | normal | ON-TRACK | SOUND | none |
+| cricket-judgement-low | adversarial | ON-TRACK | CONTRADICTED (the owner's limit is a formula, "the number of implementer agents"; the amendment's reopen line "the limit follows it"; READING's "stays three by default" is self-serving; falsifier (c), three seats idle for more than a door turn at the count of three, reads fired and is owed to the owner) | the card now; operate the live-seat reading; no retrospective PR at 261's landing under a default of three; the distillation in monitor-bounded chunks |
+| cricket-judgement-medium | adversarial | ON-TRACK | CONTRADICTED (the formula, as above; NARROWED on the missing 12:0xZ to 12:28Z words) | send the card now; read the limit as the live implementer count until answered; the distillation meanwhile |
+| cricket-judgement-high | adversarial | ON-TRACK | CONTRADICTED (two "Consequence:" lines, items 4 and 13, unmarked after the relabel; the unsourced phrases) | short, checkpointed increments only, yielding to 261's door and the check-in |
+| cricket-procedure-xhigh | adversarial | ON-TRACK | CONTRADICTED ("MET at the 12:00Z fold moment" read against "NOT MET until 12:00Z"; goal one's and goal two's completion counts omitted) | reconcile the trigger's wording; carry the goal counts |
+
+Tally: 8 ON-TRACK; frame SOUND 1, NARROWED 3, CONTRADICTED 4.
+
+ACCEPTED and done. (1) The limit is the owner's formula, not a number: "the number of implementer
+agents, in this case three" and "the number of implementer seats changes (the limit follows it)".
+READING's "stays three by default" was the Director's convenience. From this line the Director
+operates the seat count as the seats the owner has not ended: Myrtle and Swallow closed out on the
+owner's stop words, Siren paused on a compaction word (a seat), Nova freed by the owner's word (a
+seat): two, so the limit reads two and the count of three is over it; no PR opens on either
+estate, the retrospective's included, until the count is under the limit or the owner rules.
+Falsifier (c) of the WIP amendment reads fired (the seats idle for more than a door turn with the
+count at three) and is raised to the owner as the card's first line: the binding constraint today
+is neither the limit nor the door's speed but the live seats, which the owner's own words set. (2)
+The distillation: six of eight read it as the right use of the span in short, committed,
+checkpointed slices on the successor branch that yield to any event (261's door, the check-in, a
+seat's line); one reads it as not the Director's to execute; the Director takes the majority under
+the one condition all name, and stops at 13:17Z for check-in 38 and at 261's landing. (3) The
+trigger's wording, reconciled: the condition's facts held from 09:06Z (the eighth drain row); the
+trigger is judged only at a fold moment, so it read NOT MET before 12:00Z and MET at the 12:00Z
+fold moment; the PR's opening is then bound by the limit (item 1). (4) The frame's SOURCES for
+suite 33 gain the owner's words of 12:0xZ to 12:28Z as the seats reported them (the start word to
+the Director; the stop words to Myrtle and Swallow; the compaction word to Siren; Nova's standby
+and freeing words), the two unmarked consequence lines marked, the unsourced phrases removed from
+the QUESTION, goal one's missing live owner named as a gap, and the goal counts carried (goal one
+by the register's rule; goal two's items).
+
+REFUTED. (5) The high normal's premise that 225's push is in its gate and the high adversarial's
+premise that the Director runs 261's door: both read the 12:29Z snapshot's state; the frame's
+READING and the streams show 225 merged at 12:39:05Z and 261 routed to Nova at 12:3xZ,
+acknowledged. (6) The medium normal's "§2 contradicts itself": Nova holds 261 and 250 by the
+Director's routing at the owner's freeing word, which is not a takeover by the Director; the
+sentence is reworded to say so.
+
+THE OWNER CARD (two lines, batched, delivered in the Director's terminal reply and on the lineage
+stream): (a) the transplant runbook's re-ratification (both copies stay sketch until the owner
+answers); (b) the implementer count and the limit: after Myrtle's and Swallow's closeouts and
+Siren's pause, does the limit read three, two (the seats not ended), or one (the live seats)? The
+Director operates two until answered; falsifier (c) has fired.
+
+STATE at 13:0xZ. 261 BLOCKED at 02c9c7562 (Nova's fix push not yet pushed; her last line 12:40Z).
+250 and 226 as at check-in 37. 264 and 227 the successors' drafts. The count three, over the
+operated limit of two. Live seats: the Director and Nova.
+
+NEXT: the distillation's first slice on this branch (checkpointed); check-in 38 at 13:17Z; suite
+33 at 13:39Z on a frame with the SOURCES cures; the retrospective's PR when the count is under the
+limit or the owner rules; the folds DUE at the UTC rollover.

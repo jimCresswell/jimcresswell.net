@@ -21,6 +21,16 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
+- **2026-09-27T12:4xZ, both 12:00Z folds done** (Wick binds Temper, ed7b48). The lineage's
+  coordination PR 262 merged at 12:06:40Z as d6c9e582e (one round; successor
+  coordination/2026-09-27-d6c9e5, draft PR 264); JC.net's PR 225 merged at 12:39:05Z as 3699c155d
+  (three rounds, two settlement pushes; successor coordination/2026-09-27-3699c1, draft PR 227,
+  this branch); both folded branches deleted local and remote. The seats: Myrtle closed out 12:06Z
+  and Swallow 12:28Z on the owner's word, Siren paused 12:11Z with a HOLD on JC.net PR 226, Nova
+  turns Penumbra (8a94ba) freed by the owner and routed to lineage PR 261 then PR 250. The count
+  three of three (250, 261, 226); the retrospective's PR opens at the slot 261's landing frees
+  (the Director's ruling of suite 31); the usage-limit boundary of 11:50Z and the resume of 12:0xZ
+  are in the napkin; the handoff's live block is current to check-in 37.
 - **2026-09-27T09:5xZ, the Director's resume** (Wick binds Temper, ed7b48) on the owner's start
   word of 09:2xZ, which reached every seat by 09:36Z. Since the boundary: 245 landed at 09:06:12Z
   (the drain's eighth row; two non-coordination PRs open, 250 the owner's lane and 260); the
