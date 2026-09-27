@@ -1959,3 +1959,68 @@ STATE at 16:44Z: the count 2 (250 held; 266 at Siren's settlement push, the slot
 16:43Z); one slot free under the 17:02Z bound; 264 with Swallow's records, 227 CLEAN with six
 local records commits; check-in 43 at 17:02Z; suite 38 at about 17:24Z; the folds at the UTC
 rollover.
+
+## 2026-09-27T17:0xZ — Director check-in 43; 266 landed; the count at one; Nova silent since 16:05Z; the second retrospective's PR opens at the free slot; Siren's JC.net twin reserved
+
+Snapshot generated 17:02:15Z (floor 16:17Z). Cadence arithmetic: check-in 42 at 16:17Z plus 45
+minutes is 17:02Z, on time; suite 38 at about 17:24Z; check-in 44 at about 17:47Z. Both streams
+read to 17:02Z, the directed events first: none to the Director since Nova's 15:46Z ACK; the
+Director's 16:42Z ping to her unanswered.
+
+THE COUNT (gh at 17:02Z): non-coordination open PRs across both estates 1, under the operated
+limit of 3: 250 (the owner's lane; Nova's, held). Landings since check-in 42: 226 (JC.net,
+55d81dc92, Siren's door), 265 (the lineage, 9b622d827 at 16:24:59Z, the Director's door; its
+branch deleted local and remote, read back absent), 266 (the lineage, 96bb08963 at 16:58:46Z,
+Siren's door: the follow-up carrying 226's final bytes; one round-one cure push after a pre-push
+expert pass found three real edges, then a zero-finding round two on both legs, the arc's first; a
+pure-sync settlement push; "the lineage's copy leads by round one's cures"). Opened since: 266
+(16:25Z). Reservations live: Siren's at 16:59:58Z for the JC.net twin of 266's cures
+(docs/exchange-266-twin, first push from her worktree at 17:00Z, goal one, closing the pair); the
+Director's at 17:0xZ for the second retrospective's record (the free slot's 17:02Z bound passed
+with Nova silent; the script's own bounded count then the branch, the commit gate, the push and
+the draft PR). Coordination PRs outside the count: 264 (mergeState UNKNOWN at the snapshot, GitHub
+recomputing after 266's merge; Swallow's records at c86a9c3ff; eight files) and 227 (CLEAN at
+9e9381d4 on the remote; local ahead six: check-in 41, the markdown-links block, Siren's two
+records commits carrying the suite 36 tally, check-in 42, the suite 37 tally; Siren's thread
+record modified in the working tree at the write, her uncommitted append, twenty-three lines).
+
+LIVE SEATS: the Director (arm 13); Siren (266 landed, the twin reserved and pushing); Nova SILENT:
+last heartbeat 16:05:37Z (fifty-seven minutes at the snapshot), last state line the same, the
+16:42Z directed ping (ACK-REQUESTED) unanswered at 17:02Z; her worktrees hold 250's held sync and
+cures (oce-wt-user-value, ahead 23, nine modified) and the two doctrine branches (both estates, no
+origin branch); silence is never liveness, so her lane is recorded as unattended from 16:05Z; the
+free slot her OCE doctrine PR was held for goes to the record by the posted bound; 250 stays held
+(nothing of hers is touched). Swallow quiet since 16:09Z. Host load 12.01 at 17:02Z (Siren's
+lineage commit gate and the door, the Director's snapshot), against 3.90 at 16:17Z.
+
+THE OWNER CARD, two lines batched, one widened: (a) the runbook re-ratification (default: both
+copies stay sketch; 266 and its twin carry the rollback as a pointer now); (b) seats: goal two has
+one seat, Nova, and she has been silent since 16:05Z with 250's rebudget path and two doctrine PRs
+prepared in her worktrees; do you want seats started for goal two, and does Nova's lane pass to
+another seat if she does not return (default: it waits for her; her worktrees are hers)?
+
+THE SECOND RETROSPECTIVE: opening at 17:0xZ as its own lineage PR by `open-retro2.sh` (the
+reservation line first; the count; the branch from engraph at 96bb08963; the report at
+`.agent/reports/agentic-engineering/retrospective-the-review-rounds-that-grew-2026-09-27.md` with
+its README line; the checked message; the commit gate; the push; the draft PR as the bot); its
+final text 408 lines after two pre-open reviews; its ready-mark, legs and door at its size turn
+(two files); the tail's addendum (226's and 266's landings, the JC.net twin, 265's path-qualifier
+cure, Siren's pre-push-pass datum) owed after the twin lands.
+
+TOOL ROWS added to the toolkit lane on this napkin (PDR-140 clause 9(c)): the review-cost gate
+priced 260's cure-carrying merge commit 33d225657 at zero as a sync while refusing 250's
+conflict-resolving sync merge as a settlement push (two faces of one sync test); the gate reads
+the FIRST `budget — N` match in the PR body (the intake line), so a rebudget edits that line; the
+gate's settlement cost crosses its budget on the round after the push that earns it, so on a
+concept whose every push draws a round it refuses nothing in time (258 and 263 read exhausted only
+in retrospect); GitHub moves a review comment's commit id to the current head, so per-round counts
+are attributed by comment time against the bot reviews (the snapshot and any ledger that bins by
+commit id over-counts the last head).
+
+PROCESSES: the monitor (arm 13, cap about 17:16Z); the drafts' CI watch (re-armed 16:47Z); the
+record's opening script (running); suite 38's wake (17:24Z).
+
+NEXT: the record's PR open, ready-marked, legs, door at its turn; Siren's JC.net twin at its turn;
+check-in 44 at about 17:47Z; suite 38 at 17:24Z; the folds DUE at the UTC rollover (264's sync
+first; 227's fold carrying the six records commits); Nova's return or the owner's word on her
+lane.
