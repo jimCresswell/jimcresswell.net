@@ -2708,3 +2708,45 @@ the guard port next; 250 rebudgeted to 11 by the lane's recorded decision.
 NEXT: the guard port PR and JC.net's guard-read cures (Siren); suite 45 at about 22:27Z;
 check-in 51 at about 22:50Z; the folds DUE at the UTC rollover (264's sync first, then 227; the
 recipe and its addenda on this napkin); Nova's return or the owner's word.
+
+## 2026-09-27T22:36Z — Director suite 45 tally: the rollover cadence is the Director's call (suite 46 dropped, the next suite after the folds); the door order is Siren's; the card gains a cast note
+
+Dispatched 22:2xZ on `suite-45-frame.md` (766 lines: SOURCES carried from suite 44, the suite
+44 rulings and the rulesets read first-hand added, the READING rebuilt at 22:2xZ, fields at
+dispatch, one question in three parts). Eight verdicts in by 22:35Z. Work: ON-TRACK 8. Frame:
+SOUND 4, NARROWED 3, CONTRADICTED 1 (judgement-medium adversarial: "the owner: no word since the
+12:0xZ start word" is false as written; the owner gave seat-relayed words to Nova at 12:12Z and
+to Siren before 15:49Z; the true line is "no word to the Director since 12:0xZ", used from here).
+
+PART (i), the cadence over the rollover: a departure from the plan's Lane 1 item 4 ("the suite
+22 minutes after each check-in"), which is the Director's own plan text approved at whole-plan
+grain, not an owner word; the Director's call, recorded here, not a card line (eight of eight;
+PDR-117 clause 3). Two roles added that a suite 46 on the recipe would re-ask suite 44's frame.
+RULING: suite 46 is dropped; check-in 51 at 22:50Z and check-in 52 at about 23:35Z (the
+pre-fold state) run; the next suite runs after both folds, on their outcome, as suite 46.
+
+PART (ii), Siren's door order: nothing for the Director to say, eight of eight; the words the
+frame offered both point the same way (233 is open and cured, so "finish before starting" and
+the 2026-09-16 defect word agree), main's ruleset is not strict so 233 waits on no slot, and the
+order is the executing seat's (PDR-117 clause 1). Siren's own record (6ff64ab2) already reads
+"233 open with four live guard cures; the port waits on it". One provenance cure taken: the
+"20:2xZ whole-mechanism ruling" is cited by its napkin block from here (check-in 48, RULINGS).
+
+PART (iii), the card: complete, six of eight (answer 2 "it doesn't constrain the system"; the
+WIP amendment's falsifier (c) needs three idle seats at the count of three, and neither holds);
+two roles asked for a cast line for goal one under PDR-117 clause 1's "surface the
+cast-replenish to the owner". TAKEN as a widening of line (f), not a new question: goal two has
+no live seat and goal one has one (Siren) with eight rows carrying no lineage landing; the owner
+starts seats.
+
+REDIRECTIONS taken: the deferral recorded (above); the eight rows of the 2026-09-26 19:24Z
+drain list verified merged by gh at 22:35Z (257 19:39Z, 259 19:56Z, 249 20:16Z, 217 20:37Z, 253
+20:58Z, 246 21:23Z, 256 21:45Z, all 2026-09-26; 245 09:06Z 2026-09-27); the retrospective
+trigger on that arc fired and was fulfilled (265); the count condition for a further trigger
+does not hold (250 and 264 open on the lineage). Not taken: the proportion note (four ceremony
+events in ninety minutes) is answered by the dropped suite.
+
+STATE at 22:36Z: the count 2 of 3 (250 at the owner's ready-mark; 233 at its legs, Siren's)
+plus the guard port reserved; 227 at c46b5756 on the remote with Siren's 6ff64ab2 local; 264
+BEHIND; the fold bodies drafted (`pr-264-fold-body.draft.md`, `pr-227-fold-body.draft.md`, sync
+tokens open); check-in 51 at 22:50Z.
