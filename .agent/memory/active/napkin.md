@@ -2024,3 +2024,64 @@ NEXT: the record's PR open, ready-marked, legs, door at its turn; Siren's JC.net
 check-in 44 at about 17:47Z; suite 38 at 17:24Z; the folds DUE at the UTC rollover (264's sync
 first; 227's fold carrying the six records commits); Nova's return or the owner's word on her
 lane.
+
+## 2026-09-27T17:31Z — Director suite 38 tally; 267's round two reclassified over the bar with the reader-harm test; five frame corrections; card line (b) gains a dated default
+
+Dispatched 17:24Z on `suite-38-frame.md` (723 lines: suite 37's SOURCES; READING from the
+17:02Z snapshot with three ADDED blocks to 17:2xZ; one question). Eight verdicts in by 17:31Z.
+Work: ON-TRACK 4 (judgement-low both stances, procedure both stances), DRIFTING 4
+(judgement-high both, judgement-medium both). Frame: SOUND 2, NARROWED 2, CONTRADICTED 4.
+
+THE CONVERGENT FINDING (eight of eight): the frame labelled 267's round-two finding (Codex, line
+323: proposal 3 names a lane, a prediction, a review date and a falsifier but no warrant) "a
+missing qualifier (below PDR-140 clause 9(a)'s bar)" and then planned settlement push two to cure
+it; 9(a) dispositions a below-bar finding by rejection with rationale or a route to a register row,
+never a push. The push had landed while the suite ran (267 at 35573e8c, 17:3xZ; the gate priced
+16.06 of 40, within; one signed Fixed line; Copilot re-requested). RULING: the label was wrong and
+the cure right. Reader-harm test: the record's section 7 heading states that each proposal
+carries its warrant, its falsifier and its PDR-130 lane; proposal 3's lane is the register (a
+clause added to PDR-140 clause 4); a reader filing that row acts on the heading's statement and
+files a rule change with no evidence stated. A statement the record makes about itself that is
+false for one proposal, acted on at the register, is over the bar under 9(a)'s first prong. The
+round-one cures (the gate's timeline; "each within its own count") were over the bar on the same
+test: a reader of the causal accounting would be misled. Reader-harm tests are stated per finding
+from this tally on (suite 37's cure, missed in the 17:2xZ block).
+
+THE QUESTION (Nova's lane): eight of eight read the stance as doctrine-right. Deciding words:
+PDR-117 clause 1's bar is a Director seizing a large workload "when the whole implementer cast
+relays at once", not met with Siren live; the 15:36Z answer "the budget is the owner's", so
+routing 250 to Siren lands nothing; respect-active-agent-claims for Nova's worktrees. Two roles
+(judgement-medium adversarial, procedure adversarial) read the card's default "it waits" against
+clause 3 ("idling for owner input is worse than deciding and correcting"): the default becomes a
+decision with a date, recorded in check-in 44's card: if Nova is silent at the rollover fold,
+250's rebudget path passes to Siren after J3's S1 lands, from 250's remote head, her doctrine
+worktrees untouched; the owner may overturn. The card says plainly that an unattended 250 holds one
+of three slots (answer 2: "part of the system").
+
+FRAME CORRECTIONS for suite 39 (each a role's READING line, verified against the frame):
+(1) "Nova's claim on the next freed slot lapsed under the twenty-minute rule": that rule frees a
+slot HOLDER; the ground for the 17:1xZ order is reservation-first (no reservation from Nova) and
+PDR-117 clause 2 (a lane never idles); the 17:1xZ stream line's wording is corrected here, not
+rewritten. (2) The question's "the owner's card unanswered since 09:1xZ" was false: the 09:1xZ
+batch closed with thirteen answers; lines (a) and (b) date from 13:4xZ and check-in 43. (3) "The
+16:21Z point": 16:05:37Z plus twenty minutes is 16:25:37Z. (4) "Goal two has one seat, Nova" and
+250 filed under goal two: unsourced; 250 is the owner's Appendix E skills lane, held by Nova per
+her own heartbeats; the owner named Void as the Codex member. (5) INTENT, NEXT and CRITICAL-PATH
+OWNER were appended to, not rewritten (they still read "land the twin"); suite 39's six fields are
+written fresh, the 15:58Z ruling to Nova quoted from `to-nova-1605.md`, Swallow's status
+reconciled with the 12:28Z closeout.
+
+ROUTED THIS WINDOW: Siren's "which item next" answered (the register PR first, as goal one's
+counting instrument; then J3, J2); 229 merged 17:26:04Z as f88e2657, the register true at main
+(outbound 4 of 21, inbound 6 of 28). J3 approved as four slices (S1 the tracked-tree prettier and
+markdownlint legs on the J4 seam, test-first, at the free slot now; S2 the tracked shell scripts
+shellcheck-clean by hand; S3 the shellcheck gate; S4 the bash floor). Three owner decisions to the
+card with Siren's defaults: shellcheck as a lineage system dependency on contributors' machines
+(default CI and pre-push); the bash floor for a team repo on stock macOS 3.2 (default none until
+ruled); the vendored and research scripts (default cure ours, ask for the vendored). Survey facts
+carried: shellcheck installed nowhere; `lint:shell` covers 12 of 29 tracked scripts by `bash -n`;
+the J4 seam present, unused by repo-check.
+
+STATE at 17:31Z: the count 2 (250 held; 267 at 35573e8c, round three owed, its door at green
+legs, no sync needed, engraph at 96bb08963); Siren's S1 reservation next; 264 and 227 drafts;
+check-in 44 at 17:47Z; suite 39 at about 18:09Z; the folds at the UTC rollover.
