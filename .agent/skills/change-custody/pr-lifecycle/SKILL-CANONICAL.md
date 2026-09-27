@@ -85,7 +85,11 @@ into the permanent record):
   LANDING** (owner, 2026-09-03, verbatim: "a secondary but important goal is
   always to work to reduce the total number of PRs to zero"; sharpened
   2026-09-06: "this never prevents PRs from being created, but it does mean
-  that landing work that is in a non-draft PR is a priority"). A non-draft
+  that landing work that is in a non-draft PR is a priority"; the first
+  clause of the 2026-09-06 words is superseded by the work-in-progress
+  limit, owner 2026-09-26: no PR other than a repository's coordination PR
+  opens while the count is at the limit, by Phase 7's work-in-progress
+  bullet). A non-draft
   PR is its seat's landing priority over starting the next unit; drafts are
   inventory a seat may hold; the count is reported at every wrap and acted
   on at every boundary — merged when green and clean, closed with its
