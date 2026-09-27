@@ -2120,3 +2120,27 @@ written 22:19Z).**
   files: five husky hooks (SC2034 and SC1091), one sonar-secrets build script (SC2064) and one
   vendored skill script (SC1090). The gate is six modules and tests (about 1,000 lines), plus the
   pinned installer's CI step. The proposed split is two PRs: the script cures first, then the gate.
+
+**272 landed; 273 (item 1a) open; the whole-path guard ruled next (block written 23:36Z).**
+
+- Lineage PR 272 merged as SHA:48f70d4ba at 23:34:56Z (both legs clean, CI green on the rerun).
+  Its branch (remote and local), worktree and claim are cleaned.
+- Lineage PR 273 (`fix/operator-profile-read-nonblocking`, SHA:60f1c658a, claim 3a98544d, 3 of 3
+  at its open; now 2 of 3 with 250) is at round one. Copilot found nothing; Codex is pending.
+  - Pre-open code review required four reader tests to name their host: on a host without
+    `O_NOFOLLOW` (the Windows leg), the first push's tests failed 4 of 25. Cured: 26 of 26 pass
+    with the host probe forced. A fake-fifo test now proves the non-blocking open (the
+    `O_NONBLOCK` mutant fails it), and the comments are narrowed to the final component.
+  - The second push's first try was refused at connection (a 403 to the bot). A receive-pack probe
+    read 200 a minute later, and the retry passed its gate.
+  - It is behind engraph by 272, so it syncs after the 00:00Z fold of 264, then door.
+- The Director ruled (23:3xZ, native message): 1a lands as is. Then the whole-path guard follows
+  as one moderate PR per estate: macOS `O_NOFOLLOW_ANY` after a `realpath` of the root, a Linux
+  `/proc/self/fd` readlink, and a narrowing-only check on Windows. It closes the pre-existing
+  gap both reviews found: a directory above a document swapped for a symlink after the listing
+  is followed. The L1 flow-back follows on converged bytes.
+  - Riders: the guard's JC.net half is the next substantive JC.net PR, and the register's J3
+    (#269, 232) and J7 (#270, #271) landings ride it.
+  - Order: the JC.net half first, since the lineage half builds on 273's reader. It also carries
+    273's test and comment cures back, so the two copies converge. Its design goes to security
+    review before any build.

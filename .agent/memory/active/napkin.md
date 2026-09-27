@@ -2801,3 +2801,66 @@ pushed, the fold bodies finalised, the thread-record entry drafted); the folds a
 sync first (the slot read; a synced holder waiting for a leg lands first), then 227; the
 successors, the rotation broadcasts, the monitor re-armed, the loss scan; the next suite after
 the folds; Nova's return or the owner's word.
+
+## 2026-09-27T23:36Z — Director check-in 52, the pre-fold state: the count 2; 271 and 272 landed; 273 open; both folds at 00:00Z
+
+THE FOUR NUMBERS (`checkin-52-raw.md`, 23:35Z): open non-coordination PRs 2 of 3 (lineage 250,
+the owner's draft, its door on the owner's ready-mark; lineage 273, "a profile document read
+never waits on a fifo", Siren's item 1a, opened 23:34:03Z, CI in flight); landings since
+check-in 51: 271 (22:57:18Z, bfd9e07f0, the guard port, exchange row J2's first landing) and
+272 (23:34:56Z, 48f70d4, the agent-tools test task hashes the hook policy it reads), both
+Siren's through the two-leg door; heads with CI in flight: 273; slot-holder age: none held.
+Remote branches outside a PR: the lineage's fix/agent-tools-test-policy-input (272's, merged
+seconds before the read; Siren deletes at her door); JC.net none. Local branches: the
+lineage's fix/operator-profile-read-nonblocking (273's), fix/agent-tools-test-policy-input
+(272's, to go), siren/250-settlement, codex/user-value-across-levels and
+docs/fold-sweep-and-chmod-bits (Nova's, both estates). Host load 10.84 (Siren's gates and
+CI). Since the 12:06Z fold: lineage 261, 265 to 272 (nine landed, 273 open); JC.net 226, 228
+to 233 (seven landed).
+
+THE FOLD STATE: JC.net 227 (`coordination/2026-09-27-3699c1`, draft, CLEAN, the remote at
+982b4348 plus Siren's two records commits 6f53a106 and b5045473 local, clean tree; main is not
+strict, so no slot and one convergence merge of main, then the push at the fold's step 4); the
+lineage 264 (`coordination/2026-09-27-d6c9e5`, draft, BEHIND engraph 48f70d4, the primary
+clean at 9522ecd89; the day entry on the estate-coordination thread record commits before the
+sync push; engraph is strict, so the slot is read at 00:00Z: 273 synced and waiting for a leg
+lands first, else the fold takes the slot). The fold bodies are drafted with the sync shas
+open; the successor bodies and rotation lines templated; the fold scripts syntax-checked; the
+rulesets read first-hand at 21:5xZ. Siren stays the fallback keeper at 00:10Z and does not
+touch 264 or 227 (her word, 22:59Z).
+
+SIREN'S ORDER, accepted natively (22:59Z to 23:3xZ): 2 the turbo cache input, lineage-only
+(landed as 272); 1a the non-blocking profile read (273, its Scope disclosing the directory-swap
+gap that predates it in both estates); then the whole-path guard as one moderate PR per estate
+(macOS O_NOFOLLOW_ANY after a realpath of the root, Linux /proc/self/fd, a narrowing-only
+check on Windows; its JC.net half carries the register's J3 and J7 landings); then the L1
+flow-back (operator profile, register row L1) on converged bytes after its divergence read;
+then 3 the shellcheck gate to the lineage on card line (c)'s default; then the flagged-fixture
+smoke test pair. The Director's clause: a live gate gap is known broken code, cured in its own
+small PR ahead of the flow-back.
+
+NOVA: no line since 16:05:37Z (seven and a half hours). The owner: no word to the Director
+since the 12:0xZ start word.
+
+THE READY LIST (the owner's act): PR 250,
+<https://github.com/EngraphCode/open-curriculum-ecosystem/pull/250>, 388 files, the owner's
+draft, BEHIND engraph; the eval readings' human review open at body line 39; the ready-mark
+yours.
+
+THE OWNER CARD (batched; unanswered): (b) 250: the action moment above; its lane passed to
+Siren by the dated default, which you may overturn; Nova's worktree on 250's branch carries her
+unpushed sync merge and nine modified files whose cures Siren landed, hers until her return or
+your word; (c) shellcheck as a lineage dependency (default CI and pre-push; Siren's item 3
+proceeds on it); (d) the bash floor (default none); (e) the vendored scripts (default cure
+ours, ask for the vendored); (f) goal two has no live seat and goal one has one (Siren) with
+seven rows carrying no lineage landing; the owner starts seats. FYI: the Director runs the
+coordination folds under the plan's Lane 1; the guard mechanism landed whole in both estates
+(230, 231, 233; 271); the directory-swap gap in the profile read is disclosed and its cure
+next in both estates; 250 rebudgeted to 11 by the lane's recorded decision.
+
+NEXT: the folds at 00:00Z (the lineage day entry committed, 264's slot read and sync, its
+push, body, ready-mark, two-leg door, successor; 227's convergence merge, push, body,
+ready-mark, Copilot door, successor); the rotation broadcasts; the monitor and the drafts watch
+re-armed on the new branches; the loss scan; check-in 53 on the successors; the next suite
+after the folds; 273's legs and door and the whole-path guard PRs (Siren); Nova's return or the
+owner's word.
