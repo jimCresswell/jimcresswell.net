@@ -1822,3 +1822,15 @@ before any bot round, and it falsified proposal P1 as written.
 - **Still ledgered:** "for a drop" in the rollback. It names two kinds of path, each read from a
   different source. It goes to the runbook's next instance or the P2 tool, before the owner
   ratifies again.
+
+**228 landed; the pair closed (17:06Z).** PR 228 merged at 17:06:19Z as SHA:33514ec1 after one
+round (Copilot: approval recommended, no findings). The remote branch was deleted and read back
+absent, claim 3362debe closed, the worktree removed and the local branch deleted by the safe form.
+
+Convergence, read first-hand at 17:07Z by a script that fails on an empty extraction: the WIP
+bullet (44 lines), the zero-PR sentence (13) and the rollback (28) are byte-identical on JC.net
+main and lineage engraph. The zsh one-liner tried first did not word-split its command variable
+and compared empty files; the script refuses that case.
+
+The arc's tail has landed (226, 266, 228). The runbook copies now carry the same rollback, so the
+owner's re-ratification card can go; "for a drop" stays ledgered.
