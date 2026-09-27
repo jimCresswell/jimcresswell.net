@@ -955,3 +955,101 @@ deleted local and remote, the monitor re-armed; suite 31; the retrospective's PR
 three items. The Director's monitor and heartbeat are stopped; a heartbeat from this seat after
 11:5xZ is not this seat. Two doctrine sentences and two findings wait in the scratchpad's
 `doctrine-pr-draft.md` (the fold sweep's lint; the projection check's read window).
+
+## 2026-09-27T12:1xZ — Siren: the sixth compaction wrap; procedure prose as a fuzzing target
+
+**Metacognition.** Yesterday's lesson ("run an operability pass or a pre-open reviewer for rule
+text") was recorded and not applied: PRs 263 and 226 opened with no pre-open review, and drew
+thirteen findings between them. A passive lesson lost to artefact gravity again. The budget claim
+"both review rounds are spent" was fluent and wrong: the settlement push at the slot turn exists
+whether or not a sync is needed, as this seat's own PR 260 had shown an hour earlier. The
+Director's reading corrected it.
+
+**Concept exploration: a review loop that grows.** Observations: the rollback drew seven real
+edge cases across four review rounds of two PRs (bytes only; type and mode; chmod bits and a
+clean tree; file and directory types; a symlink resolving to a directory; the revision for mode;
+symlinked ancestors). The WIP text drew about fourteen. Each cure added text, and each carried
+finding opened the other estate's twin with a fresh review budget. By loop dynamics the rounds
+did not shrink. Shared generator: a protocol written as prose, with no test. Grounded: no tool in
+agent-tools implements the forward-write invariant, and the hook policy blocks `git restore` in
+every form, whatever the tree state. Proposals, each with a falsifier:
+
+- P1: the runbook's rollback cites the invariant by one pointer, and the mechanics live once, in
+  `never-use-git-to-remove-work`. Falsifier: the pointer version draws a new rollback finding.
+- P2: a tested forward-write restore tool that the rule's standing grant and the runbook both
+  cite. Falsifier: the owner judges a rarely-run rollback not worth a tool (then instance 2's
+  instrument work takes it, by precondition 5).
+- P3: a WIP count and reserve tool. PR 260's own out-of-scope trigger has fired: about fourteen
+  findings, two operational slips, three amendments to the operated rule in one day. Falsifier:
+  the next five openings run clean by hand.
+
+**Play (associations, not findings).** Kept: the reviewers as a fuzzer for prose, each round one
+more sampled input with no shrinking; the reservation shaped like Lamport's bakery algorithm
+(take a ticket, wait for earlier tickets, a lease); uncommitted edits in the shared primary as
+costs laid on every peer's gate. Discarded visibly: the thirty-minute Monitor cap rhyming with the
+thirty-minute reservation lapse (coincidence); the freeze relay as a two-person rule (adds
+nothing); a guess at who pressed update-branch on PR 260 (an unknown, not a seed).
+
+**Grounded execution knowledge.**
+
+- Lint every write into the shared primary the moment it is made, with the gate's own command
+  (`pnpm agent-tools:repo-check markdownlint-tracked`). An unlinted append stopped the Director's
+  fold push at MD032.
+- Read the clock for each stream post; two posts here reused one `--now`.
+- On JC.net the bot's Copilot request does nothing; the owner's `gh pr edit --add-reviewer
+  @copilot` works. On the lineage the bot's request works.
+- A Monitor caps at thirty minutes whatever `timeout_ms` asks, heartbeats included.
+- JC.net reads a PR with unresolved threads as CLEAN, so a door there can land past open
+  findings. Hold a PR by word, not by thread state.
+
+## 2026-09-27T12:2xZ — Director suite 31 tally; eight ON-TRACK; the queue order is the Director's
+
+Frame built after check-in 36 (11:47Z) from the 11:47Z snapshot (`checkin-36-raw.md`) and the
+streams and gh to 12:1xZ, with suite 30's cures applied. Dispatched 12:1xZ, after the cadence's
+12:09Z by the fold ceremony (262's door and rotation; 225's settlement push). Clock read 12:21:48Z
+before this write. Eight returns, none UNDELIVERED; the low roles read the napkin within a
+two-Read budget (lines 661 to 1004 UNGROUNDED for them); the high roles read every named block.
+
+| Role | Stance | Work | Frame | Redirection |
+| --- | --- | --- | --- | --- |
+| cricket-judgement-low | normal | ON-TRACK | CONTRADICTED (answer 6's owner text is "The Director (Recommended)"; the queue placement is the Director's "Consequence:" line; the QUESTION presupposes a free slot the count denies) | answer from the count; relabel the placement as the Director's ruling |
+| cricket-judgement-medium | normal | ON-TRACK | CONTRADICTED (the same two; a slot held empty for a paused seat's items conflicts with "a static zero means no useful work is happening" and answer 12's Swallow-in-order) | the first freed slot to a live seat's ready item, else the retrospective |
+| cricket-judgement-high | normal | ON-TRACK | SOUND (the consequence label carried faithfully) | state that the count reads 3 of 3, so the order is moot until a slot frees |
+| cricket-procedure-xhigh | normal | ON-TRACK | SOUND (read the consequence as answer 6's own text) | none |
+| cricket-judgement-low | adversarial | ON-TRACK | CONTRADICTED (the attribution; the moot question) | rewrite the hold as the Director's ruling; when no live seat has a ready item, the draft takes the freed slot |
+| cricket-judgement-medium | adversarial | ON-TRACK | CONTRADICTED (the attribution; "We always strive for all PRs to be merged"; a closeout may change the seat count and so the limit, unverified) | relabel; the freed slot to Swallow's next item, else the retrospective; not held for Siren |
+| cricket-judgement-high | adversarial | ON-TRACK | CONTRADICTED (the attribution, in READING, check-in 36 and suite 30; the QUESTION debates a rule the owner never stated) | mark every "Consequence:" line in SOURCES as Director-authored |
+| cricket-procedure-xhigh | adversarial | ON-TRACK | SOUND ("even while she is paused" defensible but not grounded in answer 6's language, marked UNGROUNDED) | none |
+
+Tally: 8 ON-TRACK; frame SOUND 3, CONTRADICTED 5.
+
+ACCEPTED and done. (1) The attribution: answer 6 is the owner's "The Director" (the
+retrospective's author); "its PR opens on the lineage only behind every seat's waiting item" was
+the Director's consequence, written as an owner ruling in suite 30's item 1, check-in 36 and this
+frame. Corrected here: the placement is the Director's ruling, revisable by a stream line, no
+card. The three SOUND readings that took the consequence as the owner's text are refuted on the
+frame's own SOURCES (the answer verbatim, then "Consequence:"). (2) The ruling as revised from
+this line: while the count reads three of three no PR opens (the owner's rule); when a slot frees
+it goes to a live seat's ready item first (Swallow's next item today), and if no live seat has
+one, to the retrospective's PR; no slot is held empty for a paused seat's items, which cannot open
+(the owner: "a static zero means no useful work is happening"; "We always strive for all PRs to be
+merged"). The retrospective's draft stays in the scratchpad until then. (3) The QUESTION was moot
+on the frame's own count; the next frame asks it only when a slot is actually free. (4) The
+SOURCES for suite 32 mark every "Consequence:" line as Director-authored (the same conflation cost
+suites 28, 29 and 31 on answers 5 and 6).
+
+ACCEPTED for the card queue. (5) The medium adversarial's unverified point: the owner's limit
+follows the number of implementer seats; Myrtle's closeout at the owner's stop word may end a seat
+or pause it; the default until the owner says: the seat count stays three and the limit three. One
+batched line, non-blocking, beside the runbook re-ratification.
+
+STATE at 12:2xZ. 225 CLEAN at 447f3670 with zero threads, Copilot's tip-bound review pending, the
+bot's door polling. 264 open as the lineage's successor draft (coordination/2026-09-27-d6c9e5 at
+f69225ed1). 261: Swallow's single sync at his turn. 226: held at Siren's word. 250: draft; Myrtle
+closed out 12:06Z. Live seats: Swallow and the Director. This block is uncommitted by design: it
+carries across JC.net's successor cut and rides that branch's first records commit.
+
+NEXT: 225's merge and JC.net's rotation (the successor from one resolved sha; the fold entry on
+the handoff; the draft PR; the broadcast; the folded branch deleted; the monitor re-labelled);
+check-in 37 at 12:32Z (the wake set); suite 32 twenty-two minutes after on a frame with the
+relabelled SOURCES; the distillation at a free slot.

@@ -177,8 +177,11 @@ landings 216, 217, 218 folded in.
   copies to sketch by the template's line; re-ratify both copies once both carry the full rollback?
   default: both stay sketch until the owner answers, usable as sketch meanwhile); the retrospective at the first
   fold moment (12:00Z on 2026-09-27) that reads the count at or under the limit with the eight
-  drain rows landed (drafted in the scratchpad from 09:5xZ, its PR at a free slot after 12:00Z);
-  both folds at the door; the handoff's second trim on the successor branch (done 10:3xZ, da1158e2);
+  drain rows landed (drafted in the scratchpad from 09:5xZ; its PR takes a freed slot only when no live seat has a
+  ready item, the Director's ruling of suite 31, 12:2xZ);
+  the lineage fold 262 merged at 12:06:40Z as d6c9e582e (successor coordination/2026-09-27-d6c9e5,
+  draft PR 264); PR 225 at its last settlement push (round two's two cures), then its rotation;
+  the handoff's second trim on the successor branch (done 10:3xZ, da1158e2);
   the distillation of `unconsolidated/napkin-2026-09-21-to-2026-09-27.md` into `distilled.md` (then the file moves to `archive/`)
   (consolidate-docs step 6) after the napkin's rotation of 10:3xZ, curator work at a free slot.
 
