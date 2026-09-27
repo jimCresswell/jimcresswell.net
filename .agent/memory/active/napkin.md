@@ -1440,3 +1440,56 @@ residue, above.
 STATE at 14:29Z: 261 CLEAN at f47841aae, one check in flight, Nova's door polling; the
 retrospective's PR opens at its landing by `open-retro.sh`; 264 and 227 green; check-in 40 at
 about 14:47Z; suite 35 at about 15:09Z.
+
+## 2026-09-27T14:3xZ — Queued doctrine edits and tool findings, moved here from the Director's scratchpad; they ride a seat's next Practice PR per estate (suite 34: held for a seat)
+
+Moved verbatim from `doctrine-pr-draft.md` in the Director's session scratchpad, so the queue does not live in a temp file. Route: Nova after 250's cures, or Siren at her resume, whichever is first, at a slot no live seat's ready item needs; one Practice PR per estate, the same bytes in both. The numbered edits and the quoted insert text below are the Director's drafts, seat work under review, not ratified text.
+
+Queued doctrine PR, one per estate, two files each, at a free slot (the Director's, or routed to
+Siren as a joint text): 1. .agent/skills/coordination-fold/SKILL-CANONICAL.md, step 9: after "the
+primary now resides there." insert:    "The successor's draft PR opens only after its first
+records commit is pushed: GitHub refuses a    pull request with no commits ahead of the base
+(2026-09-27), so the order is commit, push, then    open as the bot. The folded branch is deleted
+at the cut, local by the safe form after    `git merge-base --is-ancestor` reads it merged and
+remote by the bot's API delete, each read back    absent (a remote branch is in a PR or deleted;
+GitHub's auto-delete of the merged head is not    relied on: both folded heads of 2026-09-27
+survived their merges)."    and drop "GitHub auto-deleting the merged head branch is expected, not
+loss." 2. .agent/rules/never-use-git-to-remove-work.md, the forward-write clause: "with `chmod` to
+the    recorded `100755` or `100644`" becomes "with `chmod` to the bits the recorded mode names
+(`755`    for `100755`, `644` for `100644`; chmod takes bits, not git's mode string)" (Copilot on
+PR 263,    2026-09-27). Same sentences both estates; the files differ elsewhere, so each estate's
+PR edits its own copy.
+
+**Third queued edit (2026-09-27 11:4xZ): the fold's sweep lints every dirty tracked file before the push**
+
+For `coordination-fold` precondition 2 (the working-tree survey), one sentence: before the push,
+run the estate's markdown lint over every dirty tracked file the survey found, because the
+pre-push gate's tracked-files lint reads the working tree, so a peer's uncommitted edit fails any
+seat's push; a failing file routes to its owner for the cure (never edited or reverted by the
+folding seat). Worked instance, 2026-09-27 11:31Z: the fold's push of
+coordination/2026-09-27-cb4644 (PR 225) failed markdownlint-tracked on MD032 at line 1425 of the
+exchange seat's thread record, her second append unlinted; routed natively, cured and committed by
+her as 5d9eb036 within eight minutes; the push retried under a fresh gate notice. Rides the next
+Practice PR per estate with the two step-9 sentences.
+
+**Finding for the toolkit lane (2026-09-27 11:4xZ): the comms-log render races concurrent sends**
+
+Not doctrine; a code finding. `collaboration-state -- comms send` appends its event and then
+renders `.agent/state/collaboration/shared-comms-log.md` from every event it reads. Two sends
+within the same second (one seat's parallel calls: a reservation and a gate notice at 11:38:06Z)
+each read the directory before the other's file landed, so both renders miss one event and the
+projection stays one event behind until the next send. The practice-substrate check in the JC.net
+pre-push gate recomputes the render and fails the push (`generated-read-model-drift`, blocking);
+PR 225's fold push failed twice on it (11:36Z, 11:39Z) with nothing wrong in the branch. Cure in
+the tool: render under a per-directory lock, or re-read and re-render after the write when the
+directory's newest file is not the one just written. Until then a seat pushing from the primary
+runs a render loop for the gate's duration. Owner of the cure: the Codex lane's landing toolkit
+(commit and sync wrappers) or a one-file agent-tools PR at a free slot; the Director routes.
+
+Correction, 11:4xZ (Siren's word): the two 11:38:06Z events were one seat's sequential sends that
+reused one `--now`, not parallel calls, so a render race is not shown. The mechanism that remains
+is the substrate check's read window: it reads every event file, then the projection; a send
+landing between those two reads (the fixed heartbeat cadence of two seats on the primary, about
+one event a minute) makes the compare fail with nothing stale a second later. Cure in the tool:
+the check re-evaluates once after a short delay before it declares drift; the render takes a lock
+as well. The render loop is no cure for that window; it only shortens a true stale state.
