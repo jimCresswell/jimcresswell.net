@@ -1493,3 +1493,57 @@ landing between those two reads (the fixed heartbeat cadence of two seats on the
 one event a minute) makes the compare fail with nothing stale a second later. Cure in the tool:
 the check re-evaluates once after a short delay before it declares drift; the render takes a lock
 as well. The render loop is no cure for that window; it only shortens a true stale state.
+
+## 2026-09-27T14:4xZ — Director check-in 40; 261 landed; the retrospective open as 265 with round one in; the count at three
+
+Snapshot generated 14:47:26Z (floor 14:02Z). Cadence arithmetic: check-in 39 at 14:02Z plus 45
+minutes is 14:47Z, on time; suite 35 at about 15:09Z; check-in 41 at about 15:32Z. Both streams
+read to 14:47Z; the monitor's arm 11 read.
+
+THE COUNT (gh at 14:47Z): non-coordination open PRs across both estates 3, at the operated limit
+of 3: 250 (the owner's lane; DIRTY and three red checks at the snapshot; Nova's CI cure push from
+worktree oce-wt-user-value under a gate notice at 14:46Z), 226 (Siren's twin, CLEAN, two threads,
+HELD at her word), 265 (the retrospective, opened 14:35:08Z at 47794e8ac by the prepared script
+after the reservation line and a first-hand count of two; marked ready 14:35Z with Copilot and the
+owner auto-requested; two files; round one in at 14:38Z: Codex P2 and Copilot both ask Proposal 8
+for a carrier and a falsifier, and Copilot reads the drain-timeline bullet's interval and count
+against the table it cites; unit-tests running). Coordination PRs outside the count: 264 (BEHIND
+engraph after 261's merge; the sync rides the rollover fold) and 227 (CLEAN at 74e9553d; local
+ahead two: the suite 34 tally and the doctrine queue). Landings since check-in 39: 261 MERGED
+14:30:03Z as 5a9a854ef (Nova; round four disposed by three cures in f47841aae and two rejections;
+slot released 14:30:20Z). Opened since: 265. Ready list: none.
+
+LIVE SEATS: the Director and Nova (heartbeats 14:46Z and 14:44Z); Siren paused (12:11Z); Myrtle
+and Swallow closed out. Host load 8.18 at 14:47Z (Nova's commit gate and CI-cure builds in her
+worktree, the retrospective's commit gate at 14:3xZ), against 3.82 at check-in 39; read again at
+suite 35.
+
+VERIFICATION. Heads with CI in flight: the lineage 2 (265's opening commit; 250's cure push
+landing); JC.net 0. Slot: released at 14:30Z; 265 takes it at green legs. The folds: DUE at the
+UTC rollover; 264 needs its sync; 227 green.
+
+THE WAITING-WORK LINE with ages and holds: 265 open 12 min, round one's two findings to cure in
+one settlement push (1 of 2); 226 open 2 h 52 min, held; 250 open 26 h 09 min, the owner's lane,
+Nova's cure in flight; the doctrine queue and the graduation held for a seat (suite 34); Siren's
+items paused with her. Goal three: every remote branch on both estates is on an open PR or a
+default or coordination branch; local branches not merged: the lineage's 250 and 265 branches
+(both on PRs), JC.net's 226 branch (on a PR, in Siren's worktree); dirty worktrees: none
+(oce-wt-user-value ahead one, clean, Nova's cure commit; the JC.net primary clean apart from
+Siren's untracked letter).
+
+THE OWNER CARD: line (a) the runbook re-ratification (default: both copies stay sketch); line (b)
+rewritten at suite 34: goal one has had no implementer since 12:11Z and goal two has one seat; do
+you want seats started, and on which goal; the Director operates the limit at three meanwhile.
+
+The Director's defects since check-in 39: a stream read filtered for prefixes the tool never
+prints (suite 34 tally); a commit header of 109 characters refused by the JC.net commit-msg hook,
+re-issued under 100; the opening script called the lineage's message check with a bare path (the
+tool takes `-F <file>`), so the check exited 2 unread and the commit-msg hook did the checking (it
+passed). Cure: the script's call form, before its next use.
+
+PROCESSES: the monitor (arm 11, cap about 14:45Z, re-arm at its notification); the drafts' CI
+watch (re-armed 14:44Z); the 265 legs watch (to about 15:05Z); no subagents (suite 34 returned).
+
+NEXT: 265's settlement push one (Proposal 8's carrier and falsifier; the timeline bullet aligned
+with its table), then its legs and the door; suite 35 at about 15:09Z on a frame with suite 34's
+cures; check-in 41 at about 15:32Z; the folds at the UTC rollover.
