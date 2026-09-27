@@ -2160,3 +2160,74 @@ NEXT: 227's records push under a gate notice now (twelve local commits); 267's r
 signed lines (a 9(b) push only for an over-bar finding), its door at green legs; Siren's guard PR
 then S1; suite 39 at about 18:09Z on fresh six fields; check-in 45 at about 18:27Z; the folds
 DUE at the UTC rollover (264's sync first; 227's fold); Nova's return or the owner's word.
+
+## 2026-09-27T18:14Z — Director suite 39 tally; 267 merged as 2522b8965 on Copilot's leg with Codex's completion read first-hand; the rebudget question split five to two; the guard ruling held six to one; round five's rule fixed
+
+Dispatched 18:04Z on `suite-39-frame.md` (817 lines: suite 38's SOURCES; the six fields written
+fresh at build time with three ADDED blocks after them; two questions). Eight verdicts in by
+18:12Z. Work: ON-TRACK 7, DRIFTING 1 (judgement-low adversarial: proportion, a two-file records PR
+at five reviewed heads). Frame: SOUND 2, NARROWED 4, CONTRADICTED 2 (judgement-medium and
+judgement-low adversarial: INTENT and NEXT still read "round four by signed lines" after ADDED (7)
+recorded round four cured; the fields were written before that round landed). Cure: the six
+fields are written at dispatch, after the last ADDED block, never at build.
+
+QUESTION 1 (the rebudget and the late cure on the Director's own record): doctrine-right 5
+(judgement-high both, judgement-medium both, procedure adversarial), not doctrine-right 2
+(judgement-low both), no answer 1 (procedure normal). The five: clause 4's rebudget "licenses the
+one settlement push that carries the pending mandatory cure", clause 9(b)'s "an over-bar finding
+arriving later still cures, in a push that carries nothing beyond that cure"; their reader-harm
+tests agree (a seat routing proposal 5 by the label; a fast-lane edit to PDR-117; a decision-policy
+change without the register's prediction and review date). The two: no reader acts in the hours
+before the addendum (the Director is the proposals' router), so below the bar and a Routed line;
+and the owner's 2026-09-14 word outranks 9(b)'s letter on the one PR whose thesis is that the
+letter never bounded the aggregate ("letter-licensed and word-wrong"). RULING: the question's
+"for some hours" frame was wrong; an addendum is additive and a merged record's body is
+permanent, so the reader of the label is every later seat, and the round-three cure stands as
+over the bar. The round-four push was licensed by 9(b) but caused by the Director's incomplete
+cure (one location, no grep), so the rounds grew from cure quality, not doctrine; the record's
+five heads and rebudget are proposal 3's own data. Fixed for round five and for every records PR
+from here (judgement-low adversarial's redirection, taken): after the rebudget, findings take
+signed lines only; an over-bar finding after that is the owner's word against clause 9(b) and goes
+on the card, never into a further push. 267 needed no round five: Codex's fifth run found nothing.
+
+QUESTION 2 (the guard-scope ruling): seat work under review 6 (judgement-medium both, judgement-low
+both, procedure adversarial; judgement-high adversarial leaning so on a thin source), owner 1
+(judgement-high normal: a hook mechanism is not wording; hold the merge for the owner's
+acknowledgment), no answer 1. Deciding words the six name: the block's own citation ("lineage
+residue off the live surfaces") and reappraisal (on a live surface name this estate instead); the
+exclude list already names policy.json itself; the owner's 2026-09-23 word (the memory
+`ratified-text-is-owner-text`: the owner ratifies concepts and rulings, wording that implements a
+ruling is seat work under review). RULING held: seat work under review; the FYI card line says the
+every-path reach is being narrowed to the repository root and invites the owner to overturn it.
+Conditions added and sent to Siren natively at 18:0xZ: the guard scopes to the root of the JC.net
+checkout the session writes in, taken from the worktree's own root at run time, never the
+primary's path (else jcnet-wt-* worktrees lose the guard); the probe shows fire in a JC.net
+worktree, fire in the primary, no-fire in a lineage worktree on the same bytes; the body quotes
+the block's citation and reappraisal lines. Corrections to the frame's own words: the block's text
+names no privacy; "the owner set the hook policy" is unsourced (its citation is a plan item).
+
+FRAME READINGS taken for suite 40: goal two has no live seat (Void ended 2026-09-26 15:41:16Z;
+Swallow closed 2026-09-27 12:28:42Z by intent; answer 12's "Swallow's lane" no longer applies) and
+the card carries that as its own line, separate from Nova's lane; P1 (the sync-lineage binding,
+re-ranked behind 246 on 2026-09-26) and P9 (the handoff drain's second trim) are open plan items
+the reading omitted; the old suite 38 ADDED block (the below-bar label) stays in SOURCES as
+history, marked as corrected; the guard block's reappraisal is quoted with quotation marks so a
+role does not read it as the Director's synthesis.
+
+THE DOOR: the merge-bot refused at 18:1xZ with UNCLASSIFIED-EVIDENCE (Codex OWED on the tip; its
+summary comment refused as "edited after creation"). Read first-hand: Codex's summary comment
+IC_kwDORdPTys8AAAABXSpb9w reads "Code Review, Completed 2026-09-27T17:52:17Z, commit 39923bc,
+trigger New commits"; Codex posts a review object only with findings; four earlier heads each
+drew one within five minutes, the fifth none in twenty-five. The line posted on the lineage
+stream, then the door on Copilot's leg: 267 MERGED 18:13:16Z as 2522b8965; the remote branch
+deleted by the bot and read back absent; the worktree oce-wt-retro2 removed and read back absent;
+the local branch deleted (merged, `-d`). TOOL ROW (toolkit lane): the merge-bot's evidence reader
+refuses Codex's no-findings completion because Codex records it by editing one comment; accept
+the summary comment's completed row when its commit matches the tip. A second row: the door
+script's `--max-polls 60` (30 minutes) exceeds the harness's ten-minute bound on a background
+command; 16 polls from now.
+
+STATE at 18:14Z: the count 1 of 3 (250 held); 264 and 227 drafts; Siren's guard PR in pre-open
+expert review, then S1; the addendum PR (the ledger in check-in 44) prepared next and opened at a
+free slot behind Siren's reservation; check-in 45 at 18:27Z; suite 40 at about 18:49Z; the folds
+DUE at the UTC rollover.
