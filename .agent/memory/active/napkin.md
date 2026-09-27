@@ -1687,3 +1687,134 @@ beside `unconsolidated/`), so a move between the two changes nothing a link vali
 Routed to the toolkit lane with the substrate-check finding above; both stay on this napkin as the
 tracked capture surface the next consolidation pass consumes (PDR-140 clause 9(c)); no PR and no
 ledger row in a plan nobody can name.
+
+## 2026-09-27T15:4xZ — Siren: commissioning a retrospective without anchoring it
+
+- **A commissioner's brief states the question, the observations and the rivals, never its own
+  conclusion.** This seat's wrap had already named a cause for the review cascade (procedure
+  written as prose); a brief carrying that as the finding would have the retrospective confirm it,
+  which is evidence theatre. The brief lists that cause as one of five rival hypotheses, each with
+  a falsifier (disproportion, the twin requirement, the per-PR budget, the fix-now ruling and the
+  skipped pre-open review are the others).
+- **Play (associations):** kept, the day's two retrospectives look like two of Lean's wastes, the
+  Director's twenty-four open PRs as inventory and this seat's review cascade as overprocessing;
+  kept as one observation only, the retrospective PR 265 itself took three review rounds;
+  discarded, "a retrospective is a mirror" (forced).
+
+## 2026-09-27T15:5xZ — Addendum to the tool findings: two instruments for procedure prose (Siren)
+
+Two rows beside the 14:3xZ block's tool findings and the 15:4xZ markdown-links finding, routed to
+the toolkit lane on the Director's word (15:5xZ, PDR-140 clause 9(c): this napkin is the tracked
+capture surface the next consolidation pass consumes). The warrant for both: procedure written as
+prose has no test, so review rounds sampled one edge case each; the transplant runbook's rollback
+drew seven across lineage PR 263 and JC.net PR 226, and the WIP clause about fourteen across PRs
+260, 263 and 226 (this seat's counts; the Director's retrospective recomputes them).
+
+- **P2, a tested forward-write restore tool.** One agent-tools command restores a path to a named
+  revision by never-use-git-to-remove-work's forward write: content and mode read from the same
+  revision (never HEAD by default), the leaf's type and every ancestor checked without following
+  symlinks, a fresh sibling temporary file renamed over the path, and a refusal on a dirty tree.
+  No such tool exists (a grep of agent-tools found none) and the hook policy blocks `git restore`
+  in every form. The runbook's rollback and the rule then name the tool, and its tests hold the
+  edge cases the reviewers found. Falsifier: the rollback and the rule's forward write run so
+  rarely that the tool's upkeep costs more than the prose did (proportion is the toolkit lane's
+  call).
+- **P3, a WIP count-and-reserve tool.** One command reads the forge count across both estates
+  (`--limit 1000`, each repository's coordination PR excluded), adds the earlier unlapsed
+  reservations whose PR is not open, and posts the reservation line only when the total is under
+  the limit. PR 260's own out-of-scope trigger ("if the count's manual read proves costly") has
+  fired: the reservation text drew findings in every round it was reviewed. Falsifier: two seats
+  reserve and open past the limit while both ran the tool.
+
+## 2026-09-27T15:5xZ — Director suite 36 tally; the post-budget cures on 265 stand; card line (d) withdrawn on PDR-140 clause 4's own text, the rebudget is Nova's recorded decision; Siren resumed with the owner's second retrospective brief; the slot order
+
+Dispatched 15:54Z on `suite-36-frame.md` (661 lines: suite 35's SOURCES plus PDR-140 clauses 4,
+9(a) and 9(b) verbatim, Nova's question and the Director's answer; READING from the 15:32Z
+snapshot with three ADDED blocks; two questions). Eight verdicts in by 15:5xZ. Work: ON-TRACK 5,
+DRIFTING 2 (judgement-low adversarial, judgement-medium normal), WRONG-PRIORITY 1 (procedure
+adversarial). Frame: SOUND 1, NARROWED 3, CONTRADICTED 4.
+
+QUESTION 1, the post-budget cures on 265 (round three's two arithmetic findings, then round four's
+two): right, 7 of 8. The deciding text every role named: PDR-140 clause 9(b), "an over-bar finding
+arriving later still cures, in a push that carries nothing beyond that cure", with 9(a)'s bar (a
+reader acting on the artefact would be misled); the 2026-09-14 record is the Director's memory of
+an owner word and its "cure-or-Rejected in the last push's slot turn" is the Director's text,
+silent on findings that arrive after the last push; the same shape stood 8 of 8 at suite 34 for
+Nova's push on 261. The procedure adversarial read CONTRADICTED on the round count and asked for
+the owner's ratification words for clause 9; the answer, from the primary text read after the
+suite: clause 4 itself carries the owner's 2026-09-14 ruling verbatim ("I don't want the number of
+rounds of PRs to go up") and reads it as "the rebudget licenses the one settlement push that
+carries the pending mandatory cure and the dispositions, never a further cure round after it … An
+over-bar finding found after that push keeps the cure path clauses 2 and 5 give it: one late-cure
+push carrying that cure and its disposition line". A Practice record in force needs no answer 7;
+the frame's parenthetical "ratified by the owner's answer 7" over-claimed (answer 7 ratified
+clause 4's last sentence as applied on PR 211) and is narrowed for suite 37 (judgement-high normal
+and adversarial). Round four's two findings were verified first-hand before the cure: the 55-row
+source recomputed with an explicit limit (55), and the overnight holder's heartbeat read from the
+lineage stream (168 beats from 21:53Z to 09:04Z, no gap over four minutes), so proposal 4's
+warrant was wrong as written and the proposal now cures the release predicate (the last state
+line's age, never the heartbeat) before naming the taker.
+
+QUESTION 2, card line (d): the roles split four to four (owner-only: judgement-low normal,
+judgement-high normal and adversarial, procedure normal, on never-disable-checks and "the owner's
+lane"; resolve now: judgement-low adversarial, judgement-medium normal and adversarial, procedure
+adversarial, on clause 9(b)'s once-per-PR rebudget naming no grantor, clause 4 putting a sync
+outside the budget, the owner's answer 2 making 250 no special class, and PDR-117 clause 3). The
+primary text decides, read verbatim after the suite: clause 4 calls budget exhaustion "the
+step-back moment — record budget-exceeded, run the generator question over the full raised set,
+and rebudget by recorded decision (one further settlement push with its reason in the working
+notes). The budget is a tripwire forcing that deliberate decision". The rebudget is the lane's
+recorded decision, not an owner grant; a budget line in the PR body is the gate's designed input,
+not a disabled check; answer 2 removes the "owner's lane" reading. RULING (reversing the
+Director's 15:36Z answer): card line (d) WITHDRAWN. Nova, 250's shepherd by the owner's routing,
+records budget-exceeded and the generator question over the five findings, declares the rebudget
+with a signed line citing clause 4 and answer 2, pushes the sync merge alone first (clause 4: a
+sync sits outside the budget), then the one settlement push carrying findings 1 to 3 test-first
+and the routing fix for 4 and 5 (or their signed lines naming Appendix E's open criterion), then
+signed lines only, the late-cure path for any later over-bar finding. Sent as a directed message
+at 15:58Z, ACK-REQUESTED. The owner corrects if the owner disagrees (PDR-117 clause 3).
+
+TOOL FINDING, routed to the toolkit lane on this napkin (PDR-140 clause 9(c)): the review-cost
+gate prices a conflict-resolving sync merge as a settlement push (PR 250, 82aae23cd refused at
+exit 3 as BUDGET-EXHAUSTED at 179.23 of 40), against clause 4's letter that "Pushes that change no
+reviewed content (a CI cure, a sync, a rebase) sit outside the budget". Cure in the tool: a merge
+commit whose tree equals the merge-tree of its parents, or whose diff against the merge-base is
+confined to conflict hunks, is priced as a sync.
+
+SIREN RESUMED at 15:5xZ after her compaction, carrying the owner's word given in her session
+before it, verbatim as she relayed it: "post compaction write the retrospective brief and pass it
+to the Director to carry out /jc-retrospective". The brief (a durable copy in her thread record,
+uncommitted): the arc of the review rounds on the transplant runbook's rollback and the WIP clause
+(lineage 258, 260, 263; JC.net 224, 226), the question why the rounds grew instead of shrinking
+and what that cost, five rival hypotheses each with a falsifier (her own reading is rival 1, a
+source to check), the thread ids per head, the counterfactual candidates, the costs to recompute.
+The Director's decisions, sent to her: its own record, not an addendum to 265; the closed part
+(258's opening to 263's landing) now, 226 and the lineage follow-up as an addendum when the tail
+lands; drafting begins after this tally. Her resume changes the board: card line (c) WITHDRAWN
+(226 is hers: one settlement push at the slot turn with a merge of main, the supersession mark and
+the rollback shrunk to a pointer at never-use-git's forward write, a pre-push expert pass first,
+then the door); goal one has its implementer back, so card line (b) narrows to goal two's seat
+count. Her instruments P2 (a tested forward-write restore tool) and P3 (a WIP count-and-reserve
+tool): two rows in this napkin's tool-findings block, routed to the toolkit lane, no PR (her
+default, accepted).
+
+THE SLOT ORDER from here (one slot frees per landing; every opening reservation-first): at 265's
+landing, Nova's OCE doctrine PR; at the next freed slot after 226 lands, Siren's lineage follow-up
+(226's final bytes into the lineage: goal one, the owner's priority, ahead of records work); then
+Nova's JC.net doctrine twin; then the second retrospective's record. The procedure normal's
+redirection (state progress toward the three goals and check the arc) is met by this order and
+carried into check-in 42.
+
+FRAME CURES for suite 37: PDR-140's parenthetical narrowed (a Practice record in force; answer 7
+ratifies clause 4's PR-211 application only); "Siren paused" replaced by her live state; the
+goals' progress quantified in READING; PDR-117 clause 2 and PDR-140 clause 9(c) quoted where
+cited; the reader-harm test for 9(a) stated per finding, not by a word ("citing").
+
+THE OWNER CARD now: (a) the runbook re-ratification (default: both copies stay sketch); (b) goal
+two has one seat, Nova, with about a dozen items; seats started for it? Lines (c) and (d)
+withdrawn.
+
+STATE at 15:59Z: 265 at 08583289c with round four's two cures in a post-budget push running from
+the lineage primary; 250 with Nova on the ruling above; 226 with Siren; 264 BEHIND, 227 at
+9e9381d4 with three local records commits; check-in 42 at about 16:17Z; suite 37 at about 16:39Z;
+the folds at the UTC rollover.

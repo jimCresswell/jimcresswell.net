@@ -1549,3 +1549,166 @@ notice.
   Point outside scrutiny at this seat's procedure prose and its budget claims.
 - Fixed point: a third pass would only re-find the classifier item and the Director's in-flight
   commit. The recursion closes here.
+
+## Boundary delta, 2026-09-27 15:4xZ (the seventh compaction word, a post-compaction step)
+
+The owner's word, verbatim: "prepare for compaction ultrathink /jc-metacognition /jc-free-play
+/jc-concept-exploration /jc-reason /jc-wrap then stop all processes, post compaction write the
+retrospective brief and pass it to the Director to carry out /jc-retrospective".
+
+**Since the 12:0xZ wrap:** JC.net PR 225 merged at 12:39:05Z. It folded this seat's 12:0xZ wrap
+block and 12:1xZ napkin block (commit 194ecf86), now in main at SHA:3699c155. Lineage PR 261
+merged at 14:30:03Z. The Director's retrospective of the drain is open as lineage PR 265
+(docs/retrospective-the-twenty-four-open-prs), a sibling of this one, not the same arc. PR 226 is
+still held at SHA:8af432a5, level with its remote and 12 commits behind main. The letter
+`2026-09-27-siren-herds-rudder-the-fuzzer-and-the-pointer.md` is untracked on the primary.
+
+**Order after the compaction:**
+
+0. The owner's post-compaction step, before anything else: write the retrospective brief from
+   primary sources and pass it to the Director natively, with a durable copy in this record.
+   Then hold for "carry on".
+1. On "carry on": the 12:0xZ block's order, steps 1 to 5 (226's settlement first; it is now 12
+   behind main, so its settlement push takes a merge of main).
+2. Commit the untracked letter with the next records commit.
+
+**The brief's frame (from this boundary's metacognition, to keep the retrospective from confirming
+this seat's own conclusion).** The question: why did the review rounds on the transplant
+runbook's rollback and the WIP clause grow instead of shrinking, and what did that cost? State
+this seat's hypothesis (procedure written as prose, untested) as one rival among five, each with a
+falsifier:
+
+- prose with no test, so reviewers sample one edge per round;
+- disproportion: edge cases in a rollback never yet run, where a ledger row was the proportionate
+  answer;
+- the byte-equal twin requirement doubled every carried cure;
+- the two-round budget binds per PR, not per concept, so carried findings reopened it;
+- the ruling to fix now rather than ledger, and this seat's skipped pre-open review.
+
+The arc's boundary: lineage PR 258's landing (2026-09-26 16:38:41Z) to PR 263's (11:34:36Z) is
+closed; JC.net PR 226 and the lineage follow-up are its open tail. The retrospective skill is for
+completed arcs, so the brief offers the Director both: run now on the closed part, or after the
+tail lands.
+
+**The brief's primary sources (an index, so the post-compaction seat needs no dead context):**
+
+- PRs: lineage 258 (the runbook born sketch), JC.net 224 (its twin), lineage 260 (the WIP
+  clause), lineage 263 (convergence and the rollback cure), JC.net 226 (the mirror, open, held);
+  lineage 265 is the Director's sibling retrospective.
+- Review threads, by PR and round. 260: 4112921701, 4112921720, 4112922894 (one); 4112942475,
+  4112946255 (two); 4114808296, 4114808298 (the review of GitHub's update-branch head);
+  4114998240, 4114998489, 4114998517 (the final tip). 263: 4115068769, 4115068791, 4115068803,
+  4115071282 (one); 4115106244, 4115106267, 4115112721, 4115112723 (two); 4115135812, 4115143194
+  (the settlement head). 224: 4114931836. 226: 4115214013, 4115214051 (one); 4115238912,
+  4115238942 (two, open).
+- The Director's rulings on the JC.net and lineage streams and natively: c664195c (the routing at
+  the resume); ruling 1 on 260 (the worktree-hygiene exception) and its reversal on this seat's
+  warrant; the "fix now" ruling on the rollback with the return to sketch; the settlement-push
+  reading on 263; suite 30's order; the card's corrected default (both stay sketch until the owner
+  answers).
+- Records: the napkin blocks of 09:1xZ (the overnight stall), 10:1xZ and 12:1xZ (the cascade's
+  exploration, proposals P1 to P3); this record's 09:3xZ and 12:0xZ blocks; the letters
+  `2026-09-27-siren-herds-rudder-the-night-watch.md` and `...-the-fuzzer-and-the-pointer.md`.
+- Cost: the team-wide usage-limit boundary at about 11:50Z (the Director's and Swallow's events of
+  11:50Z to 11:51Z); agent time by the `arc-metrics` run the runbook's measurements cite.
+
+**Metaloss, for this delta.** Promises: the brief to the Director (owed, step 0); everything in
+the 12:0xZ block's promises sweep stands, with one discharged (the records fold, 194ecf86).
+Attribution: that the owner's "retrospective" means this seat's offered arc, not PR 265's, is
+inference from this seat's offer at 12:1xZ ("a retrospective on the rollback cascade is
+available"); the brief names that reading, and the Director can merge the two. Index of homes:
+this block and the 12:0xZ block. Fixed point: a third pass would only re-find the retrospective's
+scope reading. The recursion closes here.
+
+## The retrospective brief, 2026-09-27 15:5xZ (sent to the Director on the owner's word)
+
+The owner's word, verbatim: "post compaction write the retrospective brief and pass it to the
+Director to carry out /jc-retrospective". This block is the durable copy of the brief sent natively
+to the Director (Wick binds Temper, ed7b48).
+
+**Scope reading (an inference, named).** "The retrospective" is read as the arc this seat offered
+at 12:1xZ ("a retrospective on the rollback cascade is available"), not the arc of lineage PR 265
+(the twenty-four open PRs). The two share PRs 260, 263 and 226: 265's §9 reads them as the WIP
+serialiser working, and this arc reads their review rounds. The Director may run this as its own
+record or fold it into 265's; 265 is past its review budget, so an addendum there reopens a round.
+
+**The question.** Why did the review rounds on the transplant runbook's rollback and on the WIP
+clause grow instead of shrinking, and what did that cost?
+
+**The arc, from the forge (read at 15:5xZ).** Threads are review comments with no
+`in_reply_to_id` (`gh api repos/<repo>/pulls/<n>/comments --paginate`); recompute before writing.
+
+| PR | estate | opened (UTC) | merged (UTC) | commits | threads |
+| --- | --- | --- | --- | --- | --- |
+| 258 | lineage | 2026-09-26T15:29:51Z | 2026-09-26T16:38:41Z, SHA:95518f880 | 4 | 15 |
+| 260 | lineage | 2026-09-26T21:49:18Z | 2026-09-27T10:43:58Z, SHA:71988aaa6 | 7 | 10 |
+| 224 | JC.net | 2026-09-27T09:53:57Z | 2026-09-27T10:17:01Z, SHA:eeaeef8c5 | 4 | 1 |
+| 263 | lineage | 2026-09-27T10:56:15Z | 2026-09-27T11:34:36Z, SHA:54b969b20 | 3 | 10 |
+| 226 | JC.net | 2026-09-27T11:41:01Z | open, held at SHA:8af432a5 | 2 | 4, two unanswered |
+
+**Boundary and timing.** The closed part runs from 258's opening to 263's landing; 226 and the
+lineage follow-up that matches 226's final bytes are the open tail. The skill is for completed
+arcs, so the Director chooses: run now on the closed part with the tail as an addendum, or run when
+the tail lands.
+
+**Five rival hypotheses, each with a falsifier.** The first is this seat's own reading and is one
+rival, not the finding. This seat authored 260, 224, 263 and 226, so its account is a source to
+check, not evidence.
+
+1. Prose with no test: a procedure written as prose has no test, so each round samples one edge
+   case and each cure adds text for the next round. Falsifier: the findings do not concentrate in
+   the procedural paragraphs (the rollback, the reservation steps), or the new defects per round
+   on those paragraphs fell round by round.
+2. Disproportion: the rollback has never run, so a ledger row ("harden at first use") was the
+   proportionate answer and each cure spent a round on a path with no user. Falsifier: a finding
+   names a failure that a first real run would hit and not recover from, at a cost above the
+   rounds spent.
+3. The byte-equal twin: the same-bytes requirement doubled every carried cure, each twin with a
+   fresh budget. Falsifier: the twins' rounds cost little against the originals' (thread counts,
+   open-to-merge), or the twins found real defects the originals missed, making the second copy a
+   second review rather than a duplicate cost.
+4. The per-PR budget: two rounds bind per PR, not per concept, so a concept carried through 258,
+   224, 263, 226 and the follow-up had no bound. Falsifier: each later PR's findings were defects
+   in that PR's own new text, not the concept's old gaps re-found, so a per-concept budget would
+   not have bounded them.
+5. The process choices: the Director's "fix now" ruling on the rollback (with the return to
+   sketch) where a ledger row was possible, and this seat's skipped pre-open review of rule text
+   (the lesson of 2026-09-26, recorded and not applied). Falsifier: a pre-open expert pass run now
+   on 263's opening text (SHA:737f26d04, SHA:a8d820a11) finds none of the defects the bots found
+   in later rounds; and the growth predates the ruling.
+
+**Counterfactual candidates.** 224, the arc's shortest segment (one thread, 23 minutes open to
+merge), carried text already reviewed; whether it counts as the cured process is for the
+retrospective to judge. The pre-open pass in rival 5's falsifier is a test that can be run now.
+
+**Cost, to recompute.** Rounds, threads and pushes per PR; open-to-merge per PR; the Director's
+rulings on the arc; agent time by `arc-metrics`; the owner's re-ratification, waiting while both
+runbook copies are sketch. The team-wide usage limit at about 11:50Z fell inside the arc (226's
+round two landed at 11:55Z); whether the arc's rounds contributed is a question, not a fact.
+
+**Primary sources.**
+
+- Threads by PR and the head the forge attaches them to. 258: SHA:df30d9e0c 4111832931,
+  4111839000, 4111839018, 4111839044, 4111839053, 4111839059, 4111839069; SHA:8926e3620
+  4111868128, 4111871714, 4111871729; SHA:00fc1504f 4111868132, 4111906688, 4111906693,
+  4111976887, 4111986742. 260: SHA:d5ac4c3a4 4112921701, 4112921720, 4112922894; SHA:96d424d12
+  4112942475, 4112946255, then 4114808296, 4114808298 eleven hours later on the same head;
+  SHA:33d225657 4114998240, 4114998489, 4114998517. 224: SHA:9503108dd 4114931836. 263:
+  SHA:737f26d04 and SHA:a8d820a11 4115068769, 4115068791, 4115068803, 4115071282, then
+  4115106244, 4115106267, 4115112721, 4115112723; SHA:eed1f6e44 4115135812, 4115143194. 226:
+  SHA:d0d1b9ac2 4115214013, 4115214051; SHA:8af432a5a 4115238912, 4115238942 (unanswered).
+- The Director's rulings, on the two streams and natively: c664195c (the routing at the resume);
+  ruling 1 on 260 (the worktree-hygiene exception) and its reversal on this seat's warrant; "fix
+  now" on the rollback with the return to sketch; the settlement-push reading on 263; suite 30's
+  order; the card's corrected default (both copies stay sketch until the owner answers). The
+  Director's check-in blocks carry the instants.
+- Records: the JC.net napkin at SHA:194ecf86, blocks "2026-09-27T09:1xZ", "10:1xZ" and "12:1xZ"
+  (the last holds proposals P1 to P3: the rollback as a pointer to the never-use-git-to-remove-work
+  invariant, a tested forward-write restore tool, a WIP count-and-reserve tool); this record's
+  09:3xZ, 12:0xZ and 15:4xZ blocks; the letters `2026-09-27-siren-herds-rudder-the-night-watch.md`
+  and `2026-09-27-siren-herds-rudder-the-fuzzer-and-the-pointer.md` (the second untracked until
+  the next records commit).
+
+**Landing.** The count reads three of three (JC.net 226, lineage 250 and 265). The next two slots
+are Nova's doctrine twins (the Director's routing at 15:46Z), so a separate record waits behind
+them; the Director places it.
