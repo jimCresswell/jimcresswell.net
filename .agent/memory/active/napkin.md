@@ -1362,3 +1362,81 @@ PROCESSES: the monitor (arm 10, cap about 14:19Z); the drafts' CI watch (cap abo
 
 NEXT: suite 34 at 14:24Z; 261's landing and the retrospective's PR; check-in 40 at about 14:47Z;
 the folds at the UTC rollover; graduation (step 9) at a free slot.
+
+## 2026-09-27T14:2xZ — Director suite 34 tally; Nova's second fix push on 261 stands on the owner's word; the doctrine edits held for a seat; the card's second line rewritten to the seat question
+
+Dispatched 14:24Z on `suite-34-frame.md` (588 lines: suite 33's SOURCES with the reopen line
+struck and the addendum; READING from the 14:02Z snapshot with three ADDED blocks at 14:07Z and
+14:24Z; two questions). Eight verdicts in by 14:29Z. Work: ON-TRACK 8 of 8. Frame: NARROWED 6,
+CONTRADICTED 2 (judgement-medium adversarial, judgement-high adversarial).
+
+QUESTION 2, Nova's second fix push on 261 after round four: ON-TRACK 8 of 8. Every role: the
+owner's word decides, not the Director's 13:1xZ one-push routing, which was the Director's reading
+and gives way. The owner words cited: 2026-09-16 (a defect found in review gets fixed now, never
+queued) and answer 7 (Ratify) on PDR-140 clause 4's late-cure application, with 2026-09-14 (after
+round two, cure-or-Rejected in the last push's slot turn) and the 2026-09-17 refinement (low-value
+last-round findings go to the plan ledger) as the bounds. The Director's primary-surface read of
+261's six threads (gh graphql, 14:2xZ) confirms the condition three roles named: the three cures
+in f47841aae are real defects in a guard that gates `--strict` evidence (a typeless harness part
+passed as observed evidence; `task_complete` ignored so post-completion evidence folded into the
+turn; an ssh option cluster with an attached login hid `git push`), each cured with test rows; the
+two rejections stand on a reproduction (the `{fd}` split prefix follows the prefix reading in
+wrapper mode) and a vendor-source read (codex-cli 0.157.1 function-tool outputs open with a
+harness header). One phrase in READING struck: "the round count rises by construction" conflicts
+with the owner's 2026-09-14 word that rounds never go up; the connector's review of f47841aae
+takes signed lines only, no third push, which is what Nova did (five signed lines 14:12Z, slot
+taken 14:21Z, the door polling).
+
+QUESTION 1, the Director carrying the queued doctrine edits and the graduation as bounded records
+PRs: HOLD, 7 of 8 (the procedure-xhigh normal read them permitted at 261's landing, on the frame's
+own PDR-117 gloss and an arithmetic that gives the freed slot to the doctrine PRs; the freed slot
+goes to the retrospective by suite 31's ruling, so its premise fails). The frame's gloss ("forbids
+seizing a large remaining workload, not a bounded records PR") was the Director's unsourced
+narrowing of a rule that constrains the Director, the same pattern reversed at suite 28; PDR-117's
+2026-07-06 amendment clause 1, read verbatim at origin/main after the suite: "Owner-launched PEERS
+implement; the Director routes and dispatches READ-ONLY reviewers only — never implementer
+sub-agents. The 'degenerate one-agent team' exception (where the coordinator role collapses into
+implementer) covers a coordinator doing a *small* piece of work with *no successor coming*. It
+does NOT license a Director to seize a large remaining workload when the whole implementer cast
+relays at once: in a rotating-cast pause with substantial work left, the doctrine-right move is to
+pause clean and surface the cast-replenish to the owner (launching peer sessions is
+constitutively-owner)." A successor is coming (Nova frees after 261 and 250's cures; Siren
+resumes), and substantial work is left (goal one's ten rows without a PR, goal two's about
+fourteen PRs), so the clause's own move applies: surface the cast-replenish to the owner. Ruling:
+the doctrine edits (`doctrine-pr-draft.md`) and the graduation route to Nova after 250's cures, or
+to Siren at her resume, whichever is first, and open only at a slot no live seat's ready item can
+use; the Director prepares nothing beyond the scratchpad draft. The approved plan's Lane 1 items 5
+and 6 (P9 riding the fold; P7's rule-file PR) remain the Director's as the owner approved them;
+they are not widened.
+
+THE CARD'S SECOND LINE REWRITTEN (judgement-medium adversarial's redirection, the binding fact):
+goal one, the owner's stated priority, has had no implementer since Siren paused at 12:11Z; goal
+two has one seat (Nova) with about fourteen PRs left; the count question ("three, two or one?") is
+secondary and the Director operates three. The line to the owner: do you want seats started, and
+on which goal; meanwhile Nova runs 261 then 250's cures and the Director operates the limit at
+three. Line (a), the runbook re-ratification, unchanged (default: both copies stay sketch).
+
+REDIRECTIONS NOT TAKEN, with reasons: (judgement-low normal) route 226's two round-two
+dispositions to Nova or the Director by signed lines: 226 is under Siren's active claim
+(respect-active-agent-claims, judgement-low adversarial's reading), the two findings are real and
+need cures, not signed lines, and Nova's lane is full; held for Siren's resume, or the owner's
+reassignment. (judgement-medium normal) Lane 1 item 6 as the warrant for Director-authored
+doctrine PRs: item 6 is P7's rule file, owner-approved as the Director's; it does not widen to the
+fold-skill doctrine edits, which are seat work.
+
+FRAME CURES for suite 35: PDR-117's clause 1 verbatim in SOURCES; the 2026-09-14, 2026-09-16 and
+2026-09-17 owner words quoted from the Director's memory files and marked as the Director's
+records of owner words, not first-hand; the two bare "Consequence:" lines at answers 4 and 13
+marked (the residue suite 32 named cured was not cured); the owner's arc ("We are prioritising all
+JC.net Practice innovations being integrated into OCE, then we review. This is a fixed process
+with an end") quoted in READING and mapped to goal one's state; "rises by construction" struck.
+
+THE DIRECTOR'S DEFECTS this cycle: a stream read at 14:24Z filtered the read tool's output for
+prefixes it never prints, and the empty result was read as "no gate-notice line" and written into
+the frame; Nova's gate notice (14:09:21Z) and gate done (14:12:58Z) were on the stream. Silence
+from a read is proven against a known event before it is written. The unmarked Consequence
+residue, above.
+
+STATE at 14:29Z: 261 CLEAN at f47841aae, one check in flight, Nova's door polling; the
+retrospective's PR opens at its landing by `open-retro.sh`; 264 and 227 green; check-in 40 at
+about 14:47Z; suite 35 at about 15:09Z.
