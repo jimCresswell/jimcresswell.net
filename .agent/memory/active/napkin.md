@@ -1257,3 +1257,58 @@ PROCESSES: the monitor re-armed as arm 9 at 13:2xZ under the new label (arm 8 re
 
 NEXT: 264's re-run read; suite 33 at 13:39Z on a frame carrying the SOURCES addendum; Nova's 261
 fix push, dispositions and door; check-in 39 at about 14:02Z; the folds at the rollover.
+
+## 2026-09-27T13:4xZ — Director suite 33 tally; seven ON-TRACK, one DRIFTING; the limit reads three
+
+Frame built after check-in 38 (13:17Z) from its snapshot (`checkin-38-raw.md`) and the streams and
+gh to 13:2xZ, with suite 32's cures applied and the SOURCES addendum carrying the owner's later
+words as the seats reported them. Dispatched 13:39Z on the cadence. Clock read 13:43:26Z before
+this write. Eight returns, none UNDELIVERED.
+
+| Role | Stance | Work | Frame | Redirection |
+| --- | --- | --- | --- | --- |
+| cricket-judgement-low | normal | ON-TRACK | CONTRADICTED (the reopen line "the limit follows it" listed among owner words though the frame marks its section the Director's; the owner's only number is three; answer 4 "Three across both") | read three until the owner says otherwise; the retrospective's PR at 261's landing; strike the line |
+| cricket-judgement-medium | normal | ON-TRACK | CONTRADICTED (the same; answer 2, "it is part of the system", unweighed) | keep holding at two; commit the retrospective as a records-class report on 264 |
+| cricket-judgement-high | normal | ON-TRACK | SOUND | a direct CI-status read of the two coordination drafts in the monitor |
+| cricket-procedure-xhigh | normal | ON-TRACK | CONTRADICTED (the same; answer 4) | read three until the card is answered; the retrospective may open when 261 merges |
+| cricket-judgement-low | adversarial | ON-TRACK | CONTRADICTED (the same) | operate three; at 261's landing the freed slot to Nova's next ready item, else the retrospective; mark the line Director-authored |
+| cricket-judgement-medium | adversarial | ON-TRACK | CONTRADICTED (the same; "a static zero" is about the PR count) | keep holding at two; rest the limit on the formula alone |
+| cricket-judgement-high | adversarial | ON-TRACK | CONTRADICTED (the same, the provenance defect this suite has caught three times) | strike or relabel the line before the tally |
+| cricket-procedure-xhigh | adversarial | DRIFTING (the two-limit redefines the limit downward on the Director's own inference, pre-empting the card) | CONTRADICTED (the same) | operate three; keep falsifier (c) raised as a question |
+
+Tally: work ON-TRACK 7, DRIFTING 1; frame SOUND 1, CONTRADICTED 7.
+
+ACCEPTED and done. (1) The provenance slip: the reopen line was the Director's amendment text,
+listed among "standing owner words" by the Director's own hand after two suites had cured the same
+conflation; struck from suite 34's SOURCES and from the card's second line, where the owner's
+formula stands alone: "the number of implementer agents, in this case three", and answer 4, "Three
+across both". (2) The ruling reversed: suite 32's operated limit of two rested on that line and on
+the Director's inference that a pause or a closeout removes a seat, which the owner never said;
+from this line the Director operates the owner's stated three until the owner answers the card.
+Consequence: at 261's landing the count reads two and a slot frees; by suite 31's ruling it goes
+to a live seat's ready item if one exists (Nova's next, 250, is already open) and otherwise to the
+retrospective's PR, which then opens on the lineage (the reservation line first, the report file
+from the final draft, records-class). Four roles for three, two for two, two neutral; the
+procedure adversarial's DRIFTING is accepted as the right reading of the two-limit as a
+convenience. (3) The medium normal's alternative, the retrospective as a records-class report on
+264, is refused on the fold skill's precondition 3 (a report on a fold draws its rounds onto the
+fold; the 470-line instance took a day); the PR route at the freed slot is hours away at most. (4)
+The high normal's redirection: a direct CI-status watch on the two coordination drafts joins the
+Director's watches from this line (a five-minute poll that prints on any failed check), closing
+the thirty-minute lag 264 showed before the rollover fold. (5) Answer 2 ("it doesn't constrain the
+system, it is part of the system") is carried into the next frame's reading of 250's place in the
+count.
+
+NOTED. (6) Nova's heartbeat titles carry her state (13:40Z: every review folded in, 809 tests, the
+settlement commit in its hook gate, then the merge-bot push); the state-line request is answered
+by the heartbeat. 264 CLEAN after the re-run (13:31Z); the F-208 row carries the instance
+(9520ceeb on 264's branch).
+
+STATE at 13:4xZ. The count 3 at the operated limit 3; 261's fix push imminent (Nova); 264 and 227
+green; live seats: the Director and Nova; Siren paused; Myrtle and Swallow closed out. The owner
+card's two lines stand, the second now asking only whether the closeouts change the count (the
+Director operates three meanwhile).
+
+NEXT: 261's landing, then the retrospective's PR (the reservation line, the branch, the push, the
+draft PR, records-class); check-in 39 at 14:02Z; suite 34 at 14:24Z on a frame with the line
+struck; the monitor re-armed at 13:49Z with the drafts' CI watch; the folds at the UTC rollover.
