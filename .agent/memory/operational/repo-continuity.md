@@ -21,6 +21,15 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
+- **2026-09-27T09:06Z, the Director's COMPACTION BOUNDARY 9** (Wick binds Temper, ed7b48), at the
+  owner's word after an overnight harness pause. On the 26th from 19:1xZ: the owner's WIP limit
+  (three non-coordination PRs across both estates) and cloud-PR intake words; the lineage drained
+  from nine to three with seven landings through the seats' door and one opening by the rule (260);
+  PR 250 became the owner's lane on its Appendix E; JC.net at its coordination draft only. The folds
+  of 215 and 254 are DUE since 00:00Z and fold at the resume. The napkin's 09:06Z block is the live
+  reading; the boundary records are uncommitted by the owner's precedent and go up first on the
+  resume.
+
 - **2026-09-26T16:32Z, the Director's COMPACTION BOUNDARY 8** (Wick binds Temper, ed7b48), at the
   owner's word. JC.net at its coordination draft only (215, DUE at the rollover); PRs 211 (the
   fold), 216, 218 and 217 merged since 15:28Z; the lineage at twelve open with the door turning

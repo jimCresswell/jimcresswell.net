@@ -7366,3 +7366,303 @@ NEXT: suite 28 about 22:09Z on this snapshot (its SOURCES quote the plan amendme
 the frame carries both trigger conditions and the corrected Lane status line); check-in 33 about
 22:32Z; the folds at 00:00Z with the count read at each merge instant and both trigger conditions
 judged at 254's.
+
+## 2026-09-27T09:06Z — COMPACTION BOUNDARY 9 of the Director seat (Wick binds Temper, ed7b48)
+
+The owner's word, 09:0xZ on 2026-09-27, verbatim: "prepare for compaction ultrathink
+/jc-metacognition /jc-free-play /jc-concept-exploration /jc-reason /jc-wrap then stop all
+processes". A freeze. It arrived with the harness's wake after an overnight pause of every seat
+(this seat's last act was the 21:53Z gate withdrawal; its suite 28 wakeup never fired; Siren's
+liveness ping of 22:39Z and Myrtle's 09:05:49Z line, "the leg wait's wake reached this seat only
+now", bound the pause). The wakeup loop is stopped; the monitor had expired at about 22:2xZ and
+with it the heartbeat pulse; this seat's process table reads zero by ps; no subagent runs; the two
+suite 27 waves had all returned. Nothing starts before the owner's "carry on".
+
+WORK SAFETY, verbatim: `git status --branch --short` reads `##
+coordination/2026-09-26-26ca4d...origin/coordination/2026-09-26-26ca4d` (level, HEAD SHA:f9eafd27,
+Siren's thread record on top of this seat's check-in 32 SHA:0bfbb375, pushed 21:5xZ through
+Siren's gate); zero unpushed commits. Uncommitted on the primary: the napkin (this block), the
+handoff's boundary line, the continuity bullet, left UNCOMMITTED by the owner's precedent of
+2026-09-26 (boundaries 7 and 8): the first act after "carry on" is their commit by pathspec with a
+gate notice and the push. Siren's thread record is dirty in the tree and is Siren's. One worktree
+of this seat (the primary).
+
+STATE AT THE BOUNDARY (gh at 09:05Z, first-hand). The lineage 4 open: 245 (45 files, CLEAN, at the
+slot: Myrtle's door running at 09:05Z, the release to follow, then Myrtle pauses); 250 (the
+owner's lane, draft at SHA:9a7ffdbaa, 21 files, untouched since 20:25Z); 254 (the coordination
+draft, DUE since 00:00Z, BEHIND); 260 (Siren's WIP-limit clause, 1 file, opened 21:49:18Z by the
+rule, BEHIND). JC.net 1: 215 (the coordination draft, CLEAN, DUE since 00:00Z). THE COUNT: three
+non-coordination across both estates (245, 250, 260), at the limit. Landings since 21:48Z: none
+(the pause). Since the owner's WIP-limit word (19:2xZ on the 26th): seven landed (257, 259, 249,
+217, 253, 246, 256), one opened (260), the count 9 to 3. READY LIST: 245 at the slot; 260 when its
+legs answer on a synced head; JC.net none. THE RETROSPECTIVE TRIGGER: the plan's quoted condition
+not met (the lineage reads four); the re-anchored condition (card line 11) reads met the moment
+245 lands, the count at or under three with the eight drain rows landed, and is judged at 254's
+fold moment at the resume. THE WAITING-WORK LINE: the lineage 1 (the command-record reader,
+Swallow, three commits from 20:32Z, cycle 3 in progress at the pause); JC.net 1 (the runbook twin,
+Siren, one commit at 19:29Z, next at the slot 245 frees); the guard twin and the register PR not
+yet cut.
+
+SEATS: Siren live at the wake (its ping 22:39Z; its records at SHA:f9eafd27; 260 open; the twin
+waiting; then the guard twin, the register PR, J2 and J3). Myrtle live (245's door running at
+09:05Z, then 250's lane by its posted shape, then goal one's code rows if free first; its records
+at d70e0410b and later). Swallow (last event 21:55Z; the reader in cycle 3; then goal one's code
+rows if free first; its records at 2088fd7f4). No seat was told to stop by this seat; the owner's
+word reaches each directly.
+
+OWNER CARD QUEUE (twelve lines, none blocking): (1) the late-cure leg ruling; (3) PR 224's
+provenance line; (4) 250 a lane on the owner's Appendix E, one slot held for about two seat-days,
+routed to Myrtle; (5) the operator's machine-local lineage `.claude/settings.local.json` line 4
+must read PRACTICE_STATUSLINE_LOG_FILE (fired at 253's landing, 20:58Z); (6) the Codex lane's
+remaining items; (7) three local unmerged lineage branches for the owner's hand; (8) the
+transplant runbook's re-ratification, both copies at sketch; (9) the wording PR, open as 260; (10)
+the Clef name, not gating, default kept as written; (11) ratify the retrospective trigger's
+re-anchor (the count at or under the limit and the eight drain rows landed, judged at a fold
+moment), default recorded as the Director's amendment with both conditions reported; (12) goal
+one's remaining rows after 250's lane, default routed as the standing order (Siren J2 and J3 after
+the twin and the register; the code rows to whichever of Myrtle or Swallow frees first).
+
+RE-ARM RECIPE: `<scratchpad>/director-monitor.sh 58c2684a-5e8d-4a33-a29e-ed074df63128
+coordination/2026-09-26-26ca4d "<label>"` as a Monitor, timeout 1800000 (it carries the heartbeat
+pulse, so a lapse in re-arming is a lapse in the pulse: re-arm at every expiry); the snapshot
+`<scratchpad>/snapshot.sh <iso floor>` (the floor is the last check-in's time, 21:47Z on the
+26th); the frame builder: the last frame's SOURCES (suite-27-frame.md lines 12 to 311) plus the
+plan report's two amendment notes quoted verbatim, READING and fields 2 to 5 rewritten, four roles
+per stance by the Agent tool, never a model override. If the scratchpad is gone, all three are
+rebuilt from these descriptions and the napkin's 11:06Z block of the 26th.
+
+OWED ON RESUME, in order: (1) the clock; the process table (zero of this seat's); ListAgents; both
+streams since 09:05Z; gh on both estates first-hand (245's landing; 260's legs). (2) Commit the
+boundary records by pathspec (the napkin, the handoff, the continuity record), gate notice, push;
+Siren's thread file only if Siren names it. (3) Re-arm the monitor. (4) The folds, DUE since
+00:00Z: 215 (JC.net, CLEAN) and 254 (the lineage, BEHIND: merge engraph in first), each by the
+coordination-fold skill, the count read first-hand at each merge instant, both trigger conditions
+judged at 254's; the successors cut from one resolved sha each; the rotation broadcast; the
+monitor re-armed under the new label. (5) Check-in 33 on a fresh snapshot (floor 21:47Z on the
+26th) with the count, the waiting-work line, the Lane status line, the trigger's status; suite 28
+22 minutes after, its SOURCES quoting the amendment notes verbatim. (6) The retrospective, if the
+re-anchored condition reads met at 254's fold moment: authored by the Director as Lane 1's item 7,
+its PR behind every seat's waiting item, home the lineage's `.agent/reports/agentic-engineering/`
+with a pointer in JC.net. (7) The handoff's second trim.
+
+METACOGNITION (retrospective mode). This window's shape (19:1xZ to 21:53Z on the 26th, then the
+pause): one resume; two owner words that reshaped the programme (the WIP limit of three across
+both estates; cloud-authored PRs as team intake); the drain from nine to three in two hours twenty
+through three seats and eight slot handovers with no Director word on the order; four check-ins
+and three suites (24 returns: 23 ON-TRACK, 1 DRIFTING; frames SOUND 8, NARROWED 8, CONTRADICTED
+8); PR 250 taken through the intake procedure end to end and then turned into a lane by the
+owner's own Appendix E; two orphaned browser trees stopped; a read-model race in the pre-push
+gate. The defects, named in order of cost: (a) the 224 answer widened to 250's ready-mark and
+reversed by the owner within five minutes (a single-PR word read as a precedent); (b) the Lane
+status line's "P7 not started" against the plan's own table, caught by six of eight roles (a
+status written from memory, not from the table the frame quoted); (c) two routings that opened
+PRs, reversed by the owner's word within three minutes (right under the rules of their minute);
+(d) a second wording PR recorded from a seat's line before the receipt landed, struck within
+minutes; (e) a stale CLEAN on 250 carried eight minutes after the owner's draft conversion; (f) a
+push re-run announced and started before reading the remote tip, when Siren's gate had already
+carried the commit (a full gate spent for nothing, stopped after a minute); (g) the heartbeat
+pulse tied to the monitor's 30-minute cap, dead through the idle stretch until a peer pinged. The
+judgement that held: the two owner words broadcast and absorbed within minutes; the Clef question
+sent to the owner and not guessed; no split of 250; the retrospective's PR put behind the seats'
+items; the leaked browsers stopped on the evidence; the redundant gate stopped on the evidence.
+The lesson under (a), (b) and (d) is one: a status or a scope written from a line in hand, not
+from the surface that binds it; the cure is the existing rule, read the primary surface before
+ruling, applied to the record's own claims as well as to rulings.
+
+FREE PLAY (kept and discarded). Kept: the drain's numbers as the limit's first datum: nine to
+three in 140 minutes with no opening, seven landings at a mean of nineteen minutes, the slot
+handed over eight times with the shortest gap seven seconds and the longest 47; the first opening
+by the letter of the rule at 21:46Z. Kept for the ledger: the waiting-work age as the limit's cost
+measure (the twin waited over two hours; if the median wait exceeds one door turn while a seat
+sits idle, that is the number to raise the limit by one on). Kept: a lane PR such as 250 that
+holds a slot for days is what Kanban calls a blocker; the owner packaged it, so the falsifier is a
+check-in where goal one's rows sit ready with a seat idle and both open slots held by long items;
+then a class of its own or a raised limit is the owner's card. Discarded: a per-seat WIP (the
+owner's is per team); a Director-run door (PDR-117).
+
+CONCEPT EXPLORATION (the WIP limit as a lead-time promise). With the door landing about three PRs
+an hour, a WIP of three bounds each PR's time in the queue to about an hour, which is what the
+owner's "work is safe when it is merged" needs in practice: a PR that waits an hour cannot drift
+far from its base, and a seat that cannot open waits with its next slice ready, so the intake is
+paced by landings rather than by authorship. The read of the day's evidence: the limit did not
+slow the seats, it re-ordered their attention from opening to finishing, and the count fell at the
+door's own pace. Falsifier: a day where the count sits at three with the door idle and seats idle;
+then the constraint is the door's speed, and the plan's Lane 3 verb (a mechanised door) returns.
+
+REASON (each decision with its warrant). The freeze at the owner's word: stop everything, start
+nothing, resume on "carry on" (the standing rule). The folds not run at the boundary: the freeze
+binds this seat and a fold is a Director ceremony with two gates; the DUE check reads them at the
+resume, whatever is open. The records uncommitted: the owner's precedent, twice followed without
+objection, reversible by a word. The retrospective conditional on the re-anchored condition: the
+Director's amendment, awaiting the owner's line, with the PR behind the seats' items so no slot is
+spent on the Director's own authority. The redundant gate stopped: the remote tip read first-hand
+carried the commit; a gate for nothing costs the host.
+
+PROMISES SWEEP (this seat's, in chat and on the streams): suite 28 and check-in 33, NOT run (the
+pause, then the freeze), owed on resume; the folds, owed on resume, DUE since 00:00Z; the
+retrospective, conditional; the handoff's second trim, owed; the card queue, twelve lines above
+and in this turn's report; the read-model race, recorded here as one observation (the pre-push
+gate's practice-substrate check found the shared comms log stale for one instant at 21:5xZ,
+passing alone a minute later; a second instance makes it a ledger item: the check renders before
+it compares, or tolerates events newer than its render); the wording PR's number (260) recorded;
+Siren's ping answered at 09:0xZ; the Clef card sent twice, not a third time; the standing order of
+card line 12 routed and absorbed by both seats. Zero silent drops found.
+
+ATTRIBUTION FLAGS (inference, not observation): that the harness paused every seat overnight (from
+the silence and Myrtle's 09:05Z line); that 245's door is running at 09:05Z (Myrtle's line); that
+260 reads BEHIND because 246 and 256 landed after its cut (the timestamps); that the read-model
+race was a comms write landing mid-check (the log read current a minute later).
+
+METALOSS PASSES. (1) Compressed reasoning: the 24 suite transcripts were read as their reports
+only; the drain's per-landing detail is on the lineage stream. (2) Promises: swept above. (3)
+Attribution: flagged above. (4) Blind-spot bounds: the seats' worktrees were last read at 21:47Z;
+Swallow's state after 21:55Z is unread; the owner's Appendix E was read at 9a7ffdbaa only. (5)
+Index of homes: this block; the napkin's blocks of the 26th from 19:29Z to 21:47Z; the handoff's
+rulings and pointer page; the continuity record's bullets; the plan report's two amendment notes;
+the four memory files of the 26th (the Bash-tool chain; the stream read; the WIP limit;
+cloud-authored PRs); the scratchpad (volatile). (6) External bound: the suites caught the P7 line,
+the 224 widening, the trigger's conflict with the regime, the waiting-work gap and the missing
+seat for goal one's rows; the seats caught the second wording PR and the stale CLEAN; the owner
+caught the two opening routings and the ready-mark; nothing caught the pulse's death but a peer's
+ping. (7) Fence sweep: no owner word was held off the repository this window; the Clef question
+waits with the owner. Exit: a third pass would only re-find the scratchpad's volatility and the
+unread Swallow state; the recursion closes here.
+
+CORRECTION at 09:09Z (read first-hand from gh after Siren's line of 09:0xZ): PR 245 merged at
+09:06:12Z as SHA:a0996ac6b through Myrtle's door, one minute after this block's state read. The
+count reads two non-coordination across both estates (250 the lane, 260 the wording PR); the eight
+drain rows of the 19:24Z list have all landed; the re-anchored retrospective condition reads MET
+now and is judged at 254's fold moment at the resume, card line 11 pending the owner's line. The
+slot is free; at the resume 260's door comes first unless 254's fold takes the slot, then the
+runbook twin at the WIP slot 245 freed, as ruled.
+
+## 2026-09-27T09:1xZ — Siren: the fifth compaction wrap; the overnight stall, and what it showed
+
+**Metacognition (19:17Z to 09:05Z).**
+
+- The most specific governing text wins. This seat proposed keeping the runbook twin `ratified`
+  from the plan schema's general "scope change" clause; the Director found the runbook template's
+  own line ("procedure changes return it to `sketch`"). Reading a primary surface is not reading
+  the most specific one: before a node-status ruling, search the node type's template.
+- A divergence claim against a moving target. This seat called the landing-slot bullet owed
+  while PR 249, at the slot, carried its convergence; corrected ten minutes later. Before calling
+  two estates' texts divergent, check in-flight PRs that touch the same file.
+- Prose procedures need an operability pass. PR 260 drew five valid findings in two rounds; three
+  were facts about the estate's own tools and rules (`gh pr create` needs the head pushed;
+  `gh pr list` pages at thirty; every repository-scoped call names `--repo`). The text was checked
+  against the owner's words, not run as a procedure. For rule text that binds every seat, a
+  pre-open reviewer pass (Wilma, the assumptions expert) is cheaper than a spent round.
+- Under a stall with the Director silent, the terminal report alone reached the owner about nine
+  hours later. One out-of-band notice (a state report, not a question) was the missing move.
+
+**The stall, explored (concept exploration).** From about 22:00Z to 09:05Z the Director and
+Myrtle were deaf (Swallow read busy, its lineage stream silent, its state unknown): Myrtle's wake on 245's leg wait was lost ("its wake did not reach this seat until your ping
+arrived with the owner's compaction word"), and the Director's heartbeat died with its monitor's
+30-minute expiry. Myrtle's background heartbeat ran all night, so the slot rule (heartbeat AND
+state lines stop, plus an unanswered ping) never freed the slot; 245 sat door-ready 11 hours and
+260 waited behind it. Proposals for the Director at the resume, each with its falsifier:
+
+- P1: the slot frees on 20 minutes of state-line silence plus an unanswered ping (10 more),
+  heartbeat notwithstanding (PDR-133). Falsifier: an attentive holder loses the slot mid-work.
+- P2: a swarm path. The next seat may run a door-ready PR's door (merge and release only) once
+  its holder lost the slot under P1; cleanup stays the holder's. Warrant: 257 landed under
+  Swallow's standing consent. Falsifier: a rescue door merges past an announced pending push.
+- P3: when the Director is the silent seat and the ping lapses, one out-of-band notice to the
+  owner. Falsifier: the owner does not want night notices.
+- P4 (observation): a lost task-completion wake; messages that did not wake idle seats.
+
+**Play (associations, not findings).** Kept: the heartbeat loop as a brick on a dead man's pedal
+(lease renewal by attention, joining P1); a kanban swarm path (P2); "narrate the last run" when
+writing a procedure (260's serialisation step lived in this seat's hands at 21:46Z, not in its
+text). Discarded visibly: WIP slots as lifts beside one staircase; an idle seat as a phone in a
+drawer; a heartbeat carrying the last absorbed event id (the overnight stream never moved).
+
+**Grounded execution knowledge.** Scratchpad scripts now take an explicit `ROOT` (`git -C`,
+`pnpm --dir`), never `cd`. `git merge-tree --write-tree` trial-merges a waiting branch at no cost.
+After a merge-bot push the local tracking ref stays stale; read the remote with `ls-remote`.
+
+OWNER ANSWERS at 09:1xZ on 2026-09-27 (the Director's thirteen questions, three batches, at the
+owner's word "give me all open questions and unknowns as user questions now please"; each answer
+is the selected option or the owner's own text, verbatim), with the consequence and the seat each
+binds at the resume:
+
+1. Clef: "Keep the word Clef out of the repo for now. We can call it Student Support Experiments".
+Consequence: the name is replaced by "Student Support Experiments" in PR 250's two notes on the
+lane (Myrtle, the lane's owner, first commit at the resume; no history rewrite: the earlier
+commits on the public branch keep the word, which the owner's word tolerates "for now"). Card line
+10 closed. 2. 250 and the limit: "It counts, and it is to be treated as a first class PR, not a
+separate blocker, it doesn't constrain the system, it is part of the system". Consequence: the
+reading stands; the intake runs on two slots while 250 is open and no seat treats 250 as a special
+class. Card line 4 closed. 3. The order: "250 first (Recommended)". Consequence: the standing
+order of card line 12 is the owner's: Myrtle takes 250 after 245 (landed 09:06Z); Siren takes J2
+and J3 after the twin and the register PR; the code rows to whichever of Myrtle or Swallow frees
+first. Card line 12 closed. 4. The count's scope: "Three across both (Recommended)". Consequence:
+the reading stands; the wording PR 260 says so. 5. The retrospective trigger's re-anchor: "Ratify
+(Recommended)". Consequence: the condition (the count at or under the limit and the eight drain
+rows landed, judged at a fold moment) is the owner's; it reads met now and is judged at 254's fold
+at the resume. Card line 11 closed. 6. The retrospective's author: "The Director (Recommended)".
+Consequence: the Director authors it as Lane 1's item 7 at the resume after the folds and check-in
+33; its PR opens on the lineage only behind every seat's waiting item; a pointer in JC.net by the
+exchange. 7. The late-cure leg ruling: "Ratify (Recommended)". Consequence: PDR-140 clause 4's
+last sentence as applied on PR 211 is the owner's; the handoff's standing ruling reads ratified.
+Card line 1 closed. 8. PR 224's private citations: "Ratify (Recommended)". Consequence: the seat's
+disposition stands; citations of the owner's private documents by filename are the owner's
+provenance with the private-upstream clause where the hygiene rule asks. Card line 3 closed. 9.
+The three local branches: "Delete all three (Recommended)". Consequence: the owner's explicit word
+is the authorisation the never-use-git-to-remove-work rule needs; the Director runs the three
+local force-deletes at the resume (claude/objective-nightingale-b4ba25;
+docs/codex-queue-probe-2026-09-25 with its private capture commit, never pushed;
+docs/codex-queue-probe-metadata-01a0d9), read back absent, on the lineage stream. Card line 7
+closed. 10. The runbook: "Ratify both (Recommended)". Consequence: both estates' copies go to
+status ratified with ratified_by the owner, ratified_date 2026-09-27 and ratified_where this card;
+Siren's JC.net twin carries its stamp when it opens; the lineage's copy takes a one-file docs PR
+at a free slot (Siren). Card line 8 closed. 11. The statusline key: "The Director renames it
+(Recommended)". DONE at 09:1xZ: line 4 of the operator's ignored lineage
+`.claude/settings.local.json` now reads PRACTICE_STATUSLINE_LOG_FILE, the JSON parses, the file
+still ignored; nothing else in it changed. Card line 5 closed. 12. Goal two's Codex items:
+"Swallow's lane, in order (Recommended)". Consequence: Swallow takes them after the command-record
+reader, one PR per item at free slots, interleaved with the goal-one code rows by the standing
+order. Card line 6 closed. 13. Dependabot: "Team lands green ones (Recommended)". Consequence:
+Dependabot PRs count toward the limit; the Director names each at the check-in that first sees it;
+a seat lands each green bump at its size turn and assesses a red one, cure or close, with a card
+if closing. The rule as operated gains item 10; the wording PR 260 gains one sentence if its round
+budget holds, else the next Practice PR on §Phase 7 carries it.
+
+The card queue after the answers: line 9 (the wording PR, open as 260) is the only line left, and
+it is a status, not a question. Zero open owner questions at this boundary.
+
+ADDENDUM at 09:2xZ (the owner's second word of the morning, verbatim: "260 has comments that need
+addressing. Prepare for compaction ultrathink /jc-metacognition /jc-free-play
+/jc-concept-exploration /jc-reason /jc-wrap then stop all processes"; the same freeze; this seat's
+processes already zero; the wrap programme ran at 09:06Z and this is its delta).
+
+PR 260 read first-hand at 09:20Z: head SHA:96d424d12, BLOCKED, not a draft. Round one (Copilot
+two, Codex one P1, 21:51Z to 21:52Z) was cured in Siren's settlement push at 21:56Z; the three
+threads read resolved and outdated. Round two on the synced head: Copilot at 21:58:55Z (line 1751:
+`gh pr list` defaults to the first thirty open PRs, so the count example can undercount a
+repository with more than thirty and produce a false "N of <limit>"), and Codex P1 at 22:00:17Z
+(line 1752: serialise the WIP-slot reservation before counting; when the count is one below the
+limit two seats can both read it and both open). Both unresolved, both substantive, both on the
+clause's letter. Under the two-round rule they are Siren's last settlement push before 260's door.
+
+ROUTING AT THE RESUME (Siren; on the lineage stream now for its resume read): the count read by a
+bounded query (GraphQL `pullRequests(states: OPEN) { totalCount }` per estate, or `gh pr list
+--limit` above any plausible count, minus the coordination drafts), on both estates; the
+reservation serialised as the door slot is: post "WIP slot taken: N of 3" FIRST, then re-read the
+stream for any reservation newer than the count read, and open only if the count plus the
+reservations still reads under the limit, else withdraw the line; both cures in the one push, or a
+Rejected disposition with reasons; then legs on the final tip and the door (260 first unless 254's
+fold takes the slot). The Director's operated rule (item 2 of the 19:2xZ event) gains the same two
+sentences at the next check-in.
+
+SEATS at 09:20Z: Siren paused 09:11Z (the slot free; 260 does not take it before "carry on"; claim
+0c6862e8 retained; the twin opens at the resume; JC.net records named, uncommitted). Swallow
+paused 09:17Z (records SHA:ea37a7782 on the lineage's coordination branch; no slot, no open PR;
+the reader at four local commits). Myrtle's records SHA:5b4acabec at 09:11Z (245 landed, the drain
+complete; Swallow's ledger rows carried with consent). The lineage's coordination branch moved to
+SHA:ea37a7782 or later; 254's fold at the resume merges engraph first and carries every seat's
+records commit.
+
+The loss scan at 09:2xZ: the primary level with origin at SHA:f9eafd27, zero unpushed; this seat's
+three record files and Siren's thread file dirty; processes zero; no subagent; no wakeup; the
+monitor expired and not re-armed under the freeze.

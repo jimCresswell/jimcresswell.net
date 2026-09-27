@@ -184,6 +184,15 @@ Every line answered first-hand, none inferred:
   name PRACTICE_STATUSLINE_LOG_FILE in place of OAK_STATUSLINE_LOG_FILE, or the statusline log
   stops (Siren, 13:10Z; the file is the operator's).
 
+- The owner's answers of 2026-09-27 09:1xZ (the Director's thirteen questions; the napkin's 09:06Z
+  block carries each verbatim): the WIP limit is three across both estates together; PR 250 counts
+  throughout as "a first class PR, not a separate blocker"; 250's lane comes before goal one's
+  remaining rows; the retrospective trigger's re-anchor is ratified and the Director authors the
+  retrospective; the late-cure leg ruling (PDR-140 clause 4) and PR 224's private-citation
+  disposition are ratified; the transplant runbook is ratified in both estates; the three local
+  lineage branches are deleted on the owner's word; goal two's Codex items ride Swallow's lane in
+  order; Dependabot PRs count and a seat lands each green one at its size turn; the word "Clef"
+  stays out of the repository for now and reads "Student Support Experiments".
 - The WIP limit (owner, 2026-09-26 19:2xZ, verbatim summary: "Each repo is allowed one
   coordination PR"; "The total number of allowed PRs not including coordination PRs is the number
   of implementer agents, in this case three"; "We always strive for all PRs to be merged"). The
@@ -195,20 +204,13 @@ Every line answered first-hand, none inferred:
   worked as normal (owner, 19:3xZ). The full words and the operated rule: the napkin's
   2026-09-26T19:29Z and 19:38Z blocks.
 
-## Current handoff state (2026-09-26, resumed 19:1xZ after COMPACTION BOUNDARY 8; pointer-biased by design)
+## Current handoff state (2026-09-27, COMPACTION BOUNDARY 9 at 09:06Z; pointer-biased by design)
 
-Resumed at the owner's start word (19:1xZ) after COMPACTION BOUNDARY 8 (16:32Z); the boundary
-records are on origin (SHA:fd448c0b). The napkin's latest dated check-in block is the live
-reading (the state, the count against the limit, the ready list, the waiting-work line, the card
-queue); the 19:29Z and 19:38Z blocks carry the owner's WIP-limit and cloud-PR words verbatim. PR 211 folded at 15:28:25Z as
-SHA:26ca4dab9; the primary resides on coordination/2026-09-26-26ca4d (draft PR 215, DUE at the
-rollover). Processes: none of this seat's. Claim 58c2684a retained.
-
-Written for a reader who was never here and may run on a different model. The live reading is
-the napkin's latest dated block (`.agent/memory/active/napkin.md`; on 2026-09-26 the check-in and
-suite-tally blocks from 11:28Z on, the 13:08Z boundary block, the 15:00Z check-in 27, and the
-blocks after them), then the continuity record's newest bullet, then this block. The owner's words are
-verbatim in the napkin's dated blocks and in §Standing owner rulings above.
+COMPACTION BOUNDARY 9 at 09:06Z on 2026-09-27, at the owner's word, which arrived with the wake after
+an overnight harness pause of every seat; the freeze binds until "carry on". The napkin's 09:06Z
+block is the live reading: the state (the count three at the limit; the folds of 215 and 254 DUE
+since 00:00Z), the seats, the card queue (twelve lines), the re-arm recipe and the owed-on-resume
+order. Processes: none of this seat's. Claim 58c2684a retained.
 
 - The programme: the approved plan of 2026-09-26, conserved verbatim as
   `.agent/reports/agentic-engineering/2026-09-26-the-estates-programme-plan.md`; its lanes are the
