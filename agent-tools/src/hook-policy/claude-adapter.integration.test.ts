@@ -316,6 +316,32 @@ describe('copilot-compat string route evaluation', () => {
     expect((await evaluate('.')).kind).toBe('deny-scoped-block');
   });
 
+  it("scans a moved file's whole content as entering its destination", async () => {
+    const move = (hunk: string) =>
+      `*** Begin Patch\n*** Update File: notes/source.md\n*** Move to: docs/moved.md\n${hunk}*** End Patch\n`;
+    const evaluate = (patch: string, cwd?: string) =>
+      copilotCompatStringRoute.evaluate(
+        contextFor(
+          { tool_name: 'Edit', tool_input: patch, ...(cwd === undefined ? {} : { cwd }) },
+          {
+            contentPatterns: [],
+            scopedBlocks: [OWN_MARKER_EVERYWHERE],
+            readPriorContent: (path) =>
+              path === '/repo/notes/source.md' ? 'carries own-marker' : null,
+          },
+        ),
+      );
+
+    expect((await evaluate(move(''), '/repo')).kind).toBe('deny-scoped-block');
+    // A move whose own hunk removes the marker carries it out, not in.
+    await expect(
+      evaluate(move('@@\n-carries own-marker\n+carries nothing\n'), '/repo'),
+    ).resolves.toStrictEqual({ kind: 'allow' });
+    // A source that cannot be read, or has no place to be read from, fails closed.
+    await expect(evaluate(move(''), '/elsewhere')).rejects.toThrow('move source');
+    await expect(evaluate(move(''))).rejects.toThrow('move source');
+  });
+
   it('places a relative path against an absolute cwd only; a relative cwd leaves it unplaced', () => {
     expect(placePath('docs/exempt/x.md', '/repo/nested')).toBe('/repo/nested/docs/exempt/x.md');
     expect(placePath('docs/exempt/x.md', '.')).toBe('docs/exempt/x.md');

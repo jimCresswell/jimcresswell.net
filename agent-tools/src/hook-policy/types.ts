@@ -83,6 +83,8 @@ export interface ContentChange {
   readonly priorContent: string;
   readonly filePath?: string;
   readonly priorFilePath?: string;
+  /** An `apply_patch` move's source file, whose whole content enters `filePath`. */
+  readonly movedFromPath?: string;
 }
 
 /**

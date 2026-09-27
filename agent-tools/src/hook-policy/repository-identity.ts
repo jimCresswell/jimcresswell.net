@@ -34,8 +34,11 @@ import { diskRepositoryProbe, type RepositoryProbe } from './repository-probe.js
 /** The most directories either climb visits; a deeper path names nothing, keeping the block. */
 const MAX_CLIMB = 256;
 
-/** The `gitdir: <path>` line of a worktree's or submodule's `.git` file. */
-const GITDIR_LINE = /^gitdir:[ \t]*(.+?)[ \t]*$/mu;
+/**
+ * A worktree's or submodule's `.git` file as git itself accepts it: the whole file is one
+ * `gitdir: <path>` line, so a file with anything more reads as malformed.
+ */
+const GITFILE = /^gitdir: ([^\r\n]+)[\r\n]*$/u;
 
 /**
  * The first directory, from `start` upward, that `found` names something for,
@@ -69,7 +72,7 @@ function realDirectoryOf(filePath: string, probe: RepositoryProbe): string | und
 /** The git directory a pointer file names, or `undefined` when it names none. */
 function pointedGitDirectory(directory: string, probe: RepositoryProbe): string | undefined {
   const reading = probe.readText(join(directory, '.git'));
-  const pointer = reading.kind === 'text' ? GITDIR_LINE.exec(reading.text)?.[1] : undefined;
+  const pointer = reading.kind === 'text' ? GITFILE.exec(reading.text)?.[1] : undefined;
   return pointer === undefined ? undefined : resolve(directory, pointer);
 }
 

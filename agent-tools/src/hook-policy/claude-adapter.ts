@@ -134,6 +134,7 @@ async function evaluateContentRoute(context: PolicyRouteContext): Promise<Policy
       ...change,
       filePath: placePath(change.filePath, cwd),
       priorFilePath: placePath(change.priorFilePath, cwd),
+      movedFromPath: placePath(change.movedFromPath, cwd),
     };
     const { newContent, priorContent } = resolveContentPair(placed, context.readPriorContent);
     return { newContent, priorContent, filePath: placed.filePath };

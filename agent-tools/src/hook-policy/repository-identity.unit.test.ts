@@ -97,6 +97,20 @@ describe('repositoryIdentity', () => {
     expect(repositoryIdentity('/b/x.md', unreadable)).toBeUndefined();
   });
 
+  it("names nothing for a .git file that is more than git's one gitdir line", () => {
+    for (const text of [
+      'junk\ngitdir: /o/.git\n',
+      'gitdir: /o/.git\njunk\n',
+      'gitdir:\t/o/.git\n',
+    ]) {
+      const malformed = probeOver({
+        gitEntries: { ...ESTATE_ENTRIES, '/b': 'file' },
+        texts: { ...ESTATE_TEXTS, '/b/.git': text },
+      });
+      expect(repositoryIdentity('/b/x.md', malformed)).toBeUndefined();
+    }
+  });
+
   it("names nothing when a worktree's commondir exists but cannot be read", () => {
     const locked = probeOver({
       gitEntries: ESTATE_ENTRIES,
