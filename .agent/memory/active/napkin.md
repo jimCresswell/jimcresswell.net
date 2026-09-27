@@ -1608,3 +1608,68 @@ the connector owed on it); the legs watch running; the door at green legs under 
 with `merge-bot merge --pr 265 --expect copilot-pull-request-reviewer --expect
 chatgpt-codex-connector`. 250 with Nova's cure push. 264 BEHIND, 227 CLEAN with four local records
 commits. Check-in 41 at about 15:32Z; suite 36 at about 15:54Z; the folds at the UTC rollover.
+
+## 2026-09-27T15:3xZ — Director check-in 41; the count at three; 250 blocked on its budget (card line d); 265's round three cured post-budget; Nova's question answered late
+
+Snapshot generated 15:32:16Z (floor 14:47Z). Clock read 15:36:08Z. Cadence arithmetic: check-in 40
+at 14:47Z plus 45 minutes is 15:32Z, on time; suite 36 at 15:54Z; check-in 42 at about 16:17Z.
+Both streams read to 15:33Z, the lineage's in full (twenty-four events since 14:47Z).
+
+THE COUNT (gh at 15:32Z): non-coordination open PRs across both estates 3, at the operated limit
+of 3: 250 (the owner's lane: Nova's two CI cures pushed at 560016310 at 14:49Z; the PR went DIRTY
+when 261 landed, one conflict in agent-tools/README.md; her owner-authored sync merge 82aae23cd is
+held locally because the review-cost gate reads the PR as BUDGET-EXHAUSTED at 179.23 of 40 and
+prices a conflict-resolving sync as a settlement push; five findings from the legs on 560016310,
+three real code defects and two on plan's routing; her ACK-REQUESTED question to the Director at
+14:57Z, answered 15:3xZ, below), 226 (Siren's twin, CLEAN with two real round-two findings, held
+under her paused claim), 265 (the retrospective: round three on 83b25d0f7 at 15:15Z, two Codex
+P2s, both arithmetic and both over the bar under PDR-140 clause 9(a), a reader citing the total or
+reconstructing the evening would be misled; the two-day bot-path total recomputed from gh,
+thirty-seven not thirty-three; the evening count placed after 260's opening; a post-budget cure
+push carrying nothing else under clause 9(b), running from the lineage primary at 15:3xZ;
+Copilot's leg on the head still owed). Coordination PRs outside the count: 264 (BEHIND engraph;
+Nova's records at c52b53f85 pushed 15:06Z; its sync rides the rollover fold) and 227 (CLEAN at
+9e9381d4; the four records commits pushed 15:18Z under a gate notice, gate green). Landings since
+check-in 40: none. Opened: none. Ready list: none.
+
+LIVE SEATS: the Director (heartbeat 15:30Z; monitor arm 12 from 15:15Z) and Nova (her gate lines
+15:04Z to 15:06Z; her worktree oce-wt-user-value ahead 23 with nine modified files, 250's held
+sync merge and cures). Siren paused; Myrtle and Swallow closed out. Host load from the snapshot's
+uptime line, read at the block's write.
+
+THE OWNER CARD, four lines batched: (a) the runbook re-ratification (default: both copies stay
+sketch); (b) goal one has had no implementer since 12:11Z, eight register rows without a PR; goal
+two has one seat with about a dozen items; seats started, and on which goal? (c) 226 held under
+Siren's paused claim: reassign to Nova after 250, or hold (default: hold); (d) NEW: PR 250's
+review-cost budget reads exhausted after its one settlement round; raise it to 4 by a budget line
+in its body, so the sync lands alone first (CI then runs on the Windows and Sonar cures) and one
+cure push carries the three code defects test-first plus plan's routing fix capped at USD 40, with
+the two routing findings taking signed lines if the owner prefers to read that change first?
+Nova's verdict, the Director's second opinion the same. Until the word nothing pushes on 250. The
+Director does not raise a gate's budget on a seat's or its own inference (never-disable-checks;
+no-verify-requires-fresh-authorisation).
+
+ROUTING: Nova, answered by a directed message at 15:3xZ (ACK-REQUESTED): the budget question is
+the owner's; prepare 250's three cures test-first unpushed; the queued doctrine edits (the
+napkin's 14:3xZ block) are hers now, one Practice PR per estate, same bytes, prepared in a
+worktree and opened with a reservation line at the slot 265's landing frees; the tool findings to
+the plan ledger. PDR-117 clause 2: a lane never idles.
+
+The Director's defects since check-in 40: Nova's directed question sat unanswered for thirty-six
+minutes; the monitor writes directed events to its output file, which the Director read only at
+the check-in; the cure from now: every wake reads the monitor output's new directed events first,
+before any other step. Two commit headers over 100 characters refused by the JC.net hook (a length
+check runs before every commit now). The snapshot prints "checks not green: none" for a PR whose
+rollup is empty (250 runs no CI while DIRTY), silence read as green; the tool prints "no checks"
+for an empty rollup from its next edit. A first directed send failed on option names (the tool is
+`comms direct` with the active-claims registry path); the second landed.
+
+PROCESSES: the monitor (arm 12, from 15:15Z); the drafts' CI watch (re-armed 15:15Z); the 265
+post-budget push (running); the 265 legs watch (bound reached 15:34Z without Copilot's leg;
+re-armed after the push); suite 36's wake at 15:54Z.
+
+NEXT: 265's push, its legs (Copilot re-requested once more; the connector on its own), the door by
+`door-265.sh` under a slot-taken line; suite 36 at 15:54Z on a frame with suite 35's cures and the
+"no successor coming" prong tested by name; check-in 42 at about 16:17Z; the folds at the UTC
+rollover (264's sync first; Siren's letter staged by path into 227's fold commit on Lane 1 item
+2's precedent).
