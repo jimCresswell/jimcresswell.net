@@ -2231,3 +2231,61 @@ STATE at 18:14Z: the count 1 of 3 (250 held); 264 and 227 drafts; Siren's guard 
 expert review, then S1; the addendum PR (the ledger in check-in 44) prepared next and opened at a
 free slot behind Siren's reservation; check-in 45 at 18:27Z; suite 40 at about 18:49Z; the folds
 DUE at the UTC rollover.
+
+## 2026-09-27T18:20Z — Director check-in 45: the count 2; 267 merged; Siren's guard PR 230 at its rounds; the addendum in pre-open review; the card carries goal two's seat gap
+
+From the generated snapshot at 18:19Z (`checkin-45-raw.md`), gh and the streams.
+
+THE FOUR NUMBERS: open non-coordination PRs 2 of 3 (250 held; JC.net 230, Siren's guard-scope
+fix, opened 18:09:57Z under her 18:07Z reservation, 13 files, one check in flight, two threads
+plus a code-scanning thread at her cure); landings since check-in 44: one (267 at 18:13:16Z as
+2522b8965); heads with CI in flight: one (230); slot-holder age: none held. JC.net open: 227
+(the draft, CLEAN, seven files), 230. Lineage open: 250 (five threads, unattended), 264 (the
+draft). Remote branches outside a PR: none in either estate. Ready list: empty.
+
+PR 267 landed on Copilot's leg after the merge-bot refused the door (UNCLASSIFIED-EVIDENCE: Codex
+OWED on the tip, its summary comment refused as edited); Codex's completion on 39923bc07 read
+first-hand from the comment (Completed 17:52:17Z, commit 39923bc, no findings, no review object);
+the read posted on the lineage stream before the door; the remote branch, the worktree and the
+local branch gone with read-back. Suite 39's tally (18:14Z) carries the rulings: the rebudget and
+late cure stand on the permanence of a merged body; from here, after a rebudget, findings take
+signed lines only and a later over-bar finding goes on the card as the owner's word against
+clause 9(b); the six fields are written at dispatch.
+
+THE ADDENDUM: both records' addendum sections written in the worktree oce-wt-addendum (branch
+docs/retrospectives-addendum-the-tail on engraph 2522b8965; 57 lines, two files; the first
+record's path qualifier and comparison window; the second's tail: 226 whole, 266 with Siren's
+pre-open datum, 228 and the byte-identical sections, 258's dispositions, this record's own rounds
+as proposal 3's data, the guard block as a J3 cost); a docs pre-open pass running (facts against
+each body); then the commit, a reservation at a free slot behind Siren's, the push, the PR as the
+bot, ready-mark, legs, door.
+
+SIREN: PR 230 "fix(hook-policy): skip the lineage-name block for files in another git" at its
+second push (the CodeQL race cure); the Director's 18:0xZ conditions sent (scope from the
+worktree's own root at run time; the probe on both sides; the body quotes the block's lines).
+Then J3's S1 from oce-wt-j3-s1.
+
+NOVA: silent since 16:05:37Z (two hours and fourteen minutes at this write). Worktrees
+unchanged: oce-wt-user-value ahead 23 with nine modified files; the two doctrine worktrees clean.
+
+THE OWNER CARD (batched; unanswered): (b) Nova's lane, the dated default as check-in 44 states it
+(silent at the rollover fold: 250's rebudget path to Siren after S1, from 250's remote head, her
+doctrine worktrees untouched; the owner may overturn; an unattended 250 holds one of three
+slots). (c) shellcheck as a lineage system dependency (default CI and pre-push). (d) the bash
+floor (default none until ruled). (e) the vendored and research scripts (default cure ours, ask
+for the vendored). (f) NEW, from suite 39: goal two has no live seat; Void (the owner's named
+Codex member) ended 2026-09-26 at 15:41:16Z, Swallow closed 2026-09-27 at 12:28:42Z by intent,
+so answer 12's "Swallow's lane" no longer applies; the plan's Lane 5 (the next Codex seat's first
+act, P3) and Lane 3's remainder wait on a seat the owner starts (PDR-117 clause 1). FYI: the
+lineage-name guard's every-path reach narrowed to the repository root by Siren's PR 230, concept
+unchanged, invite to overturn.
+
+CARRIED from suite 39's readings: P1 (the sync-lineage binding) re-ranked behind 246 on the 26th,
+no PR, no seat; P9 (the handoff drain) first pass done, the second trim owed on the next JC.net
+fold; the addendum ledger closes with the addendum PR.
+
+NEXT: the addendum PR (pass, commit, reservation, push, open as the bot, ready-mark, legs, door);
+230's rounds and door by Siren, then S1; suite 40 at about 18:42Z on fields written at dispatch;
+check-in 46 at about 19:05Z; 227's two tally commits pushed at the next records push or the fold;
+the folds DUE at the UTC rollover (264's sync first); Nova's return, the owner's word, or the
+dated default at the fold.
