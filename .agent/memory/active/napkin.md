@@ -1053,3 +1053,79 @@ NEXT: 225's merge and JC.net's rotation (the successor from one resolved sha; th
 the handoff; the draft PR; the broadcast; the folded branch deleted; the monitor re-labelled);
 check-in 37 at 12:32Z (the wake set); suite 32 twenty-two minutes after on a frame with the
 relabelled SOURCES; the distillation at a free slot.
+
+## 2026-09-27T12:3xZ — Director check-in 37; 262 folded, 225 at its last push; two closeouts, one standby
+
+Snapshot generated 12:29:49Z (floor 11:47Z). Clock read 12:29:49Z. Cadence arithmetic: check-in 36
+at 11:47Z plus 45 minutes is 12:32Z; this block two minutes early on the snapshot's run; suite 32
+at 12:54Z. Both streams read to 12:29Z. Suite 31's cures applied: the retrospective's queue order
+stated as the Director's ruling; the count read before any order question; the frames' consequence
+lines marked Director-authored.
+
+THE COUNT (gh at 12:29Z, the snapshot): non-coordination open PRs across both estates 3 of 3: 250
+(the owner's lane, draft, BLOCKED, 388 files after Myrtle's commit 4, three red checks
+(windows-basic, SonarCloud, SonarCloud Code Analysis) and one thread; Myrtle closed out 12:06Z on
+the owner's stop word with the red checks read: windows path separators; Sonar sha1 on git blob
+ids), 261 (Swallow's reader, BLOCKED with unit-tests running at 02c9c7562, the single sync plus
+the last settlement push at 12:20Z, both legs re-requested; four threads read unresolved at the
+snapshot, re-read at the door; Swallow closed out 12:28:57Z on the owner's word, the door handed
+to any live seat under ruling 3, claim f7d8f0de retained), 226 (Siren's WIP twin, CLEAN with two
+round-two threads, HELD at Siren's word; Siren paused 12:11Z at the owner's compaction word).
+Coordination PRs outside the count: 264 (the lineage successor's draft, CI running on Swallow's
+closeout records commit) and 225 (CLEAN at 447f3670 with round two's two threads, its last
+settlement push in the gate at 12:3xZ: the handoff's open list made current; Siren's settled wrap
+folded with her authorship named). Landings since check-in 36: 262 at 12:06:40Z (d6c9e582e).
+Opened since: 264 (12:13:54Z, the successor, outside the count). Ready list: none.
+
+LIVE SEATS: the Director alone; Nova turns Penumbra (8a94ba) registered at 12:11:24Z on standby at
+the owner's word ("get up to speed, no work yet"), acknowledged on the lineage stream with the
+reading list, nothing routed; Siren paused (12:11Z); Myrtle closed out (12:06Z); Swallow closed
+out (12:28:57Z). The implementer count after two closeouts is on the card queue; the limit stays
+three by default.
+
+VERIFICATION. Heads with CI in flight: the lineage 2 (261's sync-plus-content push, named as
+content; 264's records commit, the fold clause); JC.net 1 (225's settlement push 2). Slot-holder:
+none on the lineage after Swallow's release at 12:20:18Z; the Director takes it for 261's door
+when its legs and checks are green (a settled PR's door is any live seat's; the Director is the
+only live seat; one door poll is not a workload, PDR-117's line). Host load 5.89 at 12:29Z.
+
+THE FOLDS. 262 done (12:06:40Z; successor coordination/2026-09-27-d6c9e5; draft PR 264; the folded
+branch deleted local and remote). 225: round one's three cures in settlement push 1 (447f3670,
+signed and resolved); Copilot's tip-bound review requested once at 12:23Z (the
+SILENT-WAIT-NO-REVIEWER rule) and answered with round two's two findings; settlement push 2 (the
+last) in its gate; the door after; then the successor cut from one resolved sha, the fold entry on
+the handoff, the draft PR, the rotation broadcast, the folded branch deleted, the monitor
+re-labelled.
+
+THE WAITING-WORK LINE with ages: 225 at JC.net's door 48 min since its first push; 261 open 2 h 7
+min, at its door; 226 open 48 min, held; 250 open 23 h 51 min, the owner's lane. Behind them:
+Siren's items (paused), goal two's items (their seat closed out; the next Codex-capable seat), the
+retrospective's PR at the next freed slot (no live implementer has a ready item, so under suite
+31's ruling the slot 261's landing frees is the retrospective's), the distillation. Goal three:
+lineage remote 6 branches and JC.net 3, every one on an open PR or a default or coordination
+branch; dirty worktrees: oce-wt-command-records (Swallow's at closeout, its state in his records)
+and oce-wt-user-value (Myrtle's at closeout); the lineage primary clean after Swallow's records
+commit; the JC.net primary clean after settlement push 2 apart from Siren's untracked letter.
+
+THE RETROSPECTIVE TRIGGER: MET at the 12:00Z fold moment; the PR opens on the lineage at the slot
+261's landing frees (suite 31's ruling), from the scratchpad draft, the Director its author
+(answer 6).
+
+LANE STATUS: Lane 1: 1 to 6 done; 7: the trigger fired, the PR at 261's landing. Lanes 2, 3 and 4:
+their seats paused or closed out; their records carry their state. Lanes 5 and 6 done.
+
+THE OWNER CARD QUEUE (two lines, batched, none blocking): the runbook re-ratification (default:
+both copies stay sketch); the implementer count after Myrtle's and Swallow's closeouts (default:
+three).
+
+The Director's defects since check-in 36: the settlement push's first run stopped on the
+markdown-links validator (a moved file's links, re-based); one chain command blocked by the hook
+for a `test -f` token beside push text, its heredoc unwritten, a false start caught by the
+missing-file error; the chain's script form (set -euo pipefail) cures the class where a failed
+push let later steps run.
+
+PROCESSES: the monitor (arm 6, cap about 12:34Z, re-armed at the cap); the settlement chain for
+225 in the background; no subagents (suite 31 returned).
+
+NEXT: 225's merge and rotation; 261's door at green; the retrospective's PR at 261's landing;
+suite 32 at about 12:54Z on a frame with the relabelled SOURCES; check-in 38 at about 13:17Z.

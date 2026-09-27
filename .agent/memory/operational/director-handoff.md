@@ -141,8 +141,7 @@ tally (11:2xZ) on 2026-09-27, with the USAGE-LIMIT BOUNDARY block (11:5xZ) and t
 12:0xZ on the owner's start word. State at the resume: three non-coordination PRs open across both
 estates (250 the owner's lane, 261 the reader, 226 Siren's WIP twin); 224, 260 and 263 landed
 (10:17:01Z, 10:43:58Z, 11:34:36Z); the drain's eight rows all landed by 09:06Z; the lineage fold
-262 merged at 12:06:40Z as d6c9e582e; JC.net's fold 225 at its settlement push 1 (three Copilot
-findings cured, one of them this file's paragraph); the owner card queue at one line (the runbook
+262 merged at 12:06:40Z as d6c9e582e; JC.net's fold 225 merged at 12:39:05Z as 3699c155d (three rounds; six findings cured, one deferred); the owner card queue at one line (the runbook
 re-ratification; default: both copies stay sketch); the retrospective trigger MET at the 12:00Z
 fold moment, its PR after Siren's three items. Processes of this seat: the monitor (arm 6) and the
 merge-bot doors. Claim 58c2684a retained.
@@ -154,6 +153,16 @@ at 10:06Z from that sha, tree-preserving, DUE at 12:00Z. moved for the sites: no
 the Practice: the day's records (check-ins 28 to 33, suites 25 to 28, boundaries 8 and 9, the
 owner's thirteen answers, Siren's two wraps and letters), the plan's two amendments, and main's
 landings 216, 217, 218 folded in.
+
+Fold entry, 2026-09-27 (second): PR 225 (coordination/2026-09-27-cb4644) merged by the bot at
+12:39:05Z as 3699c155d at full condition after two settlement pushes (round one's three findings
+cured, round two's two cured, round three's one Accepted-deferred to the exchange seat's resume:
+her thread record's opener); the successor coordination/2026-09-27-3699c1 cut at 12:4xZ from that
+sha, tree-preserving, DUE at the UTC rollover. The push took four gate runs, none for the branch
+(a peer's unlinted append; the comms-log projection's read window twice; a moved file's links).
+moved for the sites: nothing. / moved for the Practice: the morning's records (check-ins 33 to 37,
+suites 28 to 31), the napkin's rotation filed as unconsolidated, the handoff's second trim, the
+plan's third amendment, and main's landing 224 folded in.
 
 - The programme: the approved plan of 2026-09-26, conserved verbatim as
   `.agent/reports/agentic-engineering/2026-09-26-the-estates-programme-plan.md`; its lanes are the
@@ -180,7 +189,7 @@ landings 216, 217, 218 folded in.
   drain rows landed (drafted in the scratchpad from 09:5xZ; its PR takes a freed slot only when no live seat has a
   ready item, the Director's ruling of suite 31, 12:2xZ);
   the lineage fold 262 merged at 12:06:40Z as d6c9e582e (successor coordination/2026-09-27-d6c9e5,
-  draft PR 264); PR 225 at its last settlement push (round two's two cures), then its rotation;
+  draft PR 264); PR 225 folded 12:39:05Z as 3699c155d, the successor coordination/2026-09-27-3699c1 (its draft PR named in the rotation broadcast); the exchange thread record's opener refresh (Siren's, at her resume; 225's round-three deferral);
   the handoff's second trim on the successor branch (done 10:3xZ, da1158e2);
   the distillation of `unconsolidated/napkin-2026-09-21-to-2026-09-27.md` into `distilled.md` (then the file moves to `archive/`)
   (consolidate-docs step 6) after the napkin's rotation of 10:3xZ, curator work at a free slot.
