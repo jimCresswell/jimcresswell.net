@@ -199,3 +199,15 @@ Appended as each row lands: row, estate, pull request, head read.
 | J21 | lineage | #232 (merged `4d50e3dfd0`, 2026-09-26T10:47:31Z; PARTIAL: the result package says what the type does and lists its whole API) | jcnet `57592003a8` |
 | J14 | lineage | #216 (merged `81e126e8e9`, 2026-09-26T10:50:00Z; the lane skill names the committer identity rule and carries no estate's identity values, and step 3 installs the browser the gates drive; the row is settled, and the pull request also carries L12's joint core on the lineage's side) | jcnet `57592003a8` |
 | L12 | jcnet | PR 209 (merged `0caa032799`, 2026-09-26T10:59:45Z; the bot-identity core takes the joint text of the lineage's #216, the body byte-identical below this estate's frontmatter, with its two joint hunks to identify-as-agent-under-shared-credentials; with PR 206, PR 208 and the declined one-pr-per-leaf-issue, the row is settled) | lineage `81e126e8e9` |
+| J19 | lineage | #234 (merged `cf6012ebc5`, 2026-09-26T11:13:48Z; PARTIAL: eleven pattern files take the polarity header the patterns README requires) | jcnet `33514ec196` |
+| J21 | lineage | #238 (merged `634c5ccde9`, 2026-09-26T11:14:32Z; PARTIAL: the eslint plugin's preset says what it enforces, and no-throw takes the owner's ruling) | jcnet `33514ec196` |
+| J14 | jcnet | PR 213 (merged `ee19708bf9`, 2026-09-26T12:37:54Z; the lane skill's step 3 installs the browser the gates drive, the last piece of the row in this estate) | lineage `96bb089632` |
+| J13 | lineage | #252 (merged `88bda7fa09`, 2026-09-26T15:57:38Z; PARTIAL: the adapter generator and the health probe name no estate value, the first of three slices) | jcnet `33514ec196` |
+| J11 | lineage | #258 (merged `95518f880b`, 2026-09-26T16:38:41Z; PARTIAL: the transplant runbook as a runbook node, born sketch, the first slice) | jcnet `33514ec196` |
+| J13 | lineage | #253 (merged `3377a3b1c7`, 2026-09-26T20:58:48Z; PARTIAL: the statusline family takes the Practice names, the second of three slices) | jcnet `33514ec196` |
+| J13 | lineage | #256 (merged `d5838af378`, 2026-09-26T21:45:08Z; the identity override takes the Practice name, the last of three slices with #252 and #253; the row is settled) | jcnet `33514ec196` |
+| J11 | jcnet | PR 224 (merged `eeaeef8c53`, 2026-09-27T10:17:01Z; PARTIAL: the runbook takes its lineage twin's fourteen cures and the owner's ratification) | lineage `96bb089632` |
+| J11 | lineage | #263 (merged `54b969b203`, 2026-09-27T11:34:36Z; PARTIAL: the runbook converges on this estate's copy, its rollback cured for type and mode, and back at sketch) | jcnet `33514ec196` |
+| J11 | jcnet | PR 226 (merged `02f0ffbd8e`, 2026-09-27T16:18:03Z; PARTIAL: the rollback reads mode at its restore revision and surfaces every type difference) | lineage `96bb089632` |
+| J11 | lineage | #266 (merged `96bb089632`, 2026-09-27T16:58:46Z; PARTIAL: the rollback converges on PR 226's bytes, with its own round one's cures) | jcnet `33514ec196` |
+| J11 | jcnet | PR 228 (merged `33514ec196`, 2026-09-27T17:06:19Z; PARTIAL: the rollback takes #266's round-one cures; the two estates' rollbacks byte-identical) | lineage `96bb089632` |
