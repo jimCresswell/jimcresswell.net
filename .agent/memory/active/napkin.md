@@ -2409,3 +2409,61 @@ NEXT: 269's legs and door (a Codex review object or the evidence-reader row; no 
 door); 250's settlement push, the sync at the slot word, its door on the owner's ready-mark;
 suite 42 at 20:12Z; check-in 48 at about 20:35Z; the folds DUE at the UTC rollover (264's sync
 first, both bodies, ready-marks, doors, successors).
+
+## 2026-09-27T20:10Z — THE FOLD RECIPE AND STATE for the UTC rollover (00:00Z 2026-09-28); Siren is the fallback keeper if no Director line lands by 00:10Z
+
+Written at suite 42's read (four roles: important-state-not-in-temp-files; "work is safe when it is
+merged"). The ceremony is `.agent/skills/coordination-fold/SKILL-CANONICAL.md` (preconditions 1 to 3,
+ceremony 3 to 10, the wrap 11); the owner's answer of 2026-09-26 ("Fold them twice a day") fixes
+two folds a day; the day-stamped branch names put one at the UTC rollover and one at midday.
+Any seat may run it; the steps in order, each estate:
+
+1. Preconditions: the primary on the live coordination branch (`git branch --show-current`); a
+   working-tree survey (`git status --short`), every dirty file classified with its owner, a peer's
+   file cured by the peer or left out by pathspec; the branch carries coordination-home state only.
+2. Records committed by explicit pathspec (the napkin, the thread records, the comms state the
+   substrate check renders); the commit header at most 100 characters, checked before staging.
+3. `git fetch origin <default>` then `git merge --no-edit origin/<default>` INTO the branch (the
+   lineage's default is `engraph`; JC.net's is `main`, already merged at 54de61b1). On the lineage
+   264 is BEHIND, so this merge is its sync.
+4. Push under a gate notice on the estate's stream, 600 s timeout, exit code read in-band
+   (JC.net: lint the dirty set first and run the comms render loop for the gate's duration; the
+   pattern is the scratchpad's `push-227-e.sh`; the lineage's gate has no render race).
+5. The PR body updated (§Scope names the records riding the branch as records-class with their
+   intake), then `gh pr ready N` as the bot (`token=$(pnpm --silent agent-tools merge-bot
+   mint-token --scope pull-request-work)`; `GH_TOKEN="$token" gh ...`); Copilot is auto-requested
+   on the ready-mark.
+6. The legs: JC.net expects Copilot; the lineage expects both vendors (`--expect
+   copilot-pull-request-reviewer --expect chatgpt-codex-connector`); the evidence reader accepts an
+   unedited Codex completion comment; a red check is cured, never bypassed.
+7. The door: "Slot taken" line; `pnpm --silent agent-tools merge-bot merge --pr N --expect ...
+   --json --interval 30 --max-polls 16` (sixteen polls fit the harness's ten-minute bound on a
+   background command); the remote branch deleted by the bot (`gh api -X DELETE
+   repos/<owner>/<repo>/git/refs/heads/<branch>`) and read back absent; "Slot released" line.
+8. The successor: ONE resolved post-fold sha (`git fetch origin <default>; BASE=$(git rev-parse
+   origin/<default>)`); `NAME=$(pnpm --silent agent-tools coordination successor-name --base
+   "$BASE")`; `git switch -c "$NAME" "$BASE"`; the seated block's fold entry and the thread
+   record's entry; push; the successor draft PR opened as the bot with the template body
+   (`successor-body-jc.tmpl`, `successor-body-oce.tmpl` in the scratchpad; the fold bodies
+   `pr-225-fold-body.md` and `pr-262-fold-body.md` are the models for step 5).
+9. Every branch-labelled surface refreshed: the monitor stopped and re-armed with the new branch
+   label (`director-monitor.sh <session-id> <branch> arm-N`); the rotation broadcast on both
+   streams (`rotation-jc.tmpl`, `rotation-oce.tmpl`); the loss scan (every branch and worktree in
+   a PR or deleted on the owner's word).
+10. The lineage's estate-coordination thread record gains today's entries (265, 267, 268, 269,
+    the row 250) at its fold; JC.net's thread record likewise (224 to 230).
+
+THE FOLD STATE at 20:10Z: JC.net 227 (`coordination/2026-09-27-3699c1`, draft, CLEAN, current
+with main f5f60ab9; remote 999ca0ca plus four local records commits pushed in this step); the
+lineage 264 (`coordination/2026-09-27-d6c9e5`, draft, BEHIND engraph d0154fb5a, eight files,
+Swallow's records c86a9c3ff and the Director's fold entries owed). Today's landings: the lineage
+261, 262, 265, 266, 267, 268, 269; JC.net 224, 225, 226, 228, 229, 230. Open: 250 (the owner's
+draft, rebudgeted, at its sync d2df9a558; its ready-mark stays the owner's by its own body's word,
+the eval readings' human review); nothing else. Nova's worktree oce-wt-user-value read first-hand
+at 20:0xZ: its "ahead 23" is her unpushed sync merge 82aae23cd (the one the gate refused) and the
+engraph history it carried; her nine modified files are the skill-evals cures, uncommitted, which
+Siren's b0b2d181a cured from the remote head; nothing unique of hers is at risk on that branch;
+her two doctrine worktrees hold local commits on `docs/fold-sweep-and-chmod-bits` (both estates),
+hers until the owner's word (card line (b)). The scripts named above live in the Director's session
+scratchpad (`/private/tmp/claude-502/.../ed7b489a-.../scratchpad/`) and are conveniences, not the
+recipe; the recipe is the skill.
