@@ -2385,3 +2385,27 @@ STATE at 19:30Z: the count 2 of 3 (250 at its rebudget; 269 at its round one); 2
 19:24:32Z as fab177333, its branch and worktree gone with read-back; 227 current at 999ca0ca;
 264 BEHIND; Nova: no line; check-in 47 at 19:50Z; suite 42 at about 20:12Z; the folds at the
 rollover.
+
+## 2026-09-27T19:49Z — Director check-in 47: the count 2; 268 landed; 269 at its door legs; 250 rebudgeted at 11
+
+THE FOUR NUMBERS (`checkin-47-raw.md`, 19:48Z): open non-coordination PRs 2 of 3 (250, the
+owner's draft, rebudgeted to 11 on its body by Siren's recorded decision, DIRTY, its settlement
+push next; 269, Siren's J3 slice 1, at 8731c4dc9 after its settlement push with the sync to
+engraph fab177333, no open threads, checks in flight, both legs requested, Siren holding the
+slot); landings since check-in 46: one (268, the addenda, 19:24:32Z as fab177333); heads with CI
+in flight: one (269); slot-holder age: 269 since 19:39:36Z. Remote branches outside a PR: none in
+either estate. Ready list: empty. JC.net primary two records commits ahead of the remote.
+
+NOVA: no line since 16:05:37Z; the 250 default fired at 19:05Z (check-in 46).
+
+THE OWNER CARD (batched; unanswered): (b) 250's path passed to Siren by the dated default; the
+owner may overturn; (c) shellcheck as a lineage dependency (default CI and pre-push); (d) the
+bash floor (default none); (e) the vendored scripts (default cure ours, ask for the vendored);
+(f) goal two has no live seat, the owner starts one. FYI: the lineage-name guard scoped by
+repository identity (230 landed); 250 rebudgeted to 11 by the lane's recorded decision with the
+arithmetic on its body, the ready-mark the owner's.
+
+NEXT: 269's legs and door (a Codex review object or the evidence-reader row; no Copilot-only
+door); 250's settlement push, the sync at the slot word, its door on the owner's ready-mark;
+suite 42 at 20:12Z; check-in 48 at about 20:35Z; the folds DUE at the UTC rollover (264's sync
+first, both bodies, ready-marks, doors, successors).
