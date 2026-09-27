@@ -1999,3 +1999,25 @@ refusal and the platform budget.
   227 is current).
 
 Next: 231's legs and door, then step 2 on the Director's ruling. After that comes the J3 flow-back.
+
+**231 landed (block written 20:49Z); 270 (J7) open; the J3 flow-back next.**
+
+- PR 231 merged as SHA:275e8df99 after one cure round.
+  - Copilot's round one found `VALID_HEAD` broader than git: git reads 255 bytes and skips only
+    ASCII whitespace. That was cured in SHA:6083904d, with its bound's comment.
+  - Round two recommended approval with no findings.
+  - The Copilot leg on JC.net needs `gh pr edit N --add-reviewer @copilot` as the operator; the
+    bot's request is a silent no-op there (per-user memory).
+  - Cleanup: branch, worktree, local ref and claim 60571693 are all gone.
+- Step 2 depends on J7. The lineage lacked JC.net's path-scope layer (register row J7), which 230's
+  adapter and evaluator hunks sit on. The Director approved J7 first. Lineage PR 270 is open at
+  SHA:a0f878157 with both legs requested.
+  - The six source files are byte-identical to JC.net's copies.
+  - The pre-open review's blocker is cured: the machine-local-path exemption of the policy file is
+    anchored (`./.agent/hooks/policy.json`).
+  - Two path-scope comments name JC.net-only things. Their neutral wording is routed to the J3
+    flow-back.
+- The local worktree `oce-wt-guard-port` holds a partial `git apply --reject` of 230's patch. It is
+  reproducible from the patch, and step 2 rebuilds on engraph after 270 lands.
+- Next, approved at 20:4xZ: the J3 flow-back to JC.net at 3 of 3. That is 269's cures into JC.net's
+  repo-check, plus the two neutral comments. The guard port opens behind 270.
