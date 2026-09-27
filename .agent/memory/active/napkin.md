@@ -679,3 +679,175 @@ with five tests, the reviews' fixes; 471 tests); cycle 5 next. 250: the first su
 probe (two review findings invalidated the instrument: the scaffold copied the rubric into the
 workspace; the runner's exit on threshold); the clean run started 10:32Z, step 1 authoring under
 way. The handoff's second trim committed and pushed (da1158e2). Both successors DUE at 12:00Z.
+
+## 2026-09-27T11:02Z — Director check-in 35 on the generated snapshot; 260 landed and 263 open at
+
+the slot; the napkin rotated; one card on the queue (the Director)
+
+Snapshot generated 11:02Z (floor 10:22Z). Clock read 11:02:07Z. Cadence arithmetic: check-in 34 at
+10:23Z plus 45 minutes is 11:08Z, this block six minutes early on the snapshot's own run; suite 30
+at 11:24Z (22 minutes after). Both streams read to 11:02Z. Suite 29's cures applied here: the
+count by open PRs with reservations beside it; ages and slot holds; a host-load line; CI-in-flight
+stated with its excuse; P1's status as the Director's reading; goal three names 250's uncommitted
+lane tree; goal one's rows carry next-owners; the trigger by fold moment.
+
+THE COUNT (first-hand from gh at 11:02Z, the snapshot): non-coordination open PRs across both
+estates 3 of 3 by open PRs: 250 (the owner's lane, draft; step 1 authoring under way, five
+acceptance runs from 11:00Z), 261 (the reader, draft, BEHIND after 260's merge; cycle 5 pushed at
+10:52Z as 8909f2efb, 40 files, three post-execution reviews then the security review before the
+ready-mark), 263 (Siren's, open 10:56:15Z, not a draft, BLOCKED on round one's four threads, at
+the slot from 10:56:33Z). Reservations pending: none. Coordination PRs outside the count: 225
+(JC.net, CLEAN, seven files, one dirty file on the primary) and 262 (the lineage, BEHIND after
+260). Landings since check-in 34: 254 at 10:23:20Z (the lineage fold, 8af61ab82) and 260 at
+10:43:58Z (the WIP clause, 71988aaa6, Siren's door after one settlement push and final-tip
+dispositions). Opened since: 261 (10:22Z), 262 (10:28Z), 263 (10:56Z), each by the rule with its
+reservation first. Ready list: none on either estate.
+
+VERIFICATION. Heads with CI in flight: the lineage 3 (261's cycle 5 push; 262's first records
+commit and the answers block, a coordination branch's records commits and so excused by the fold
+clause; 263's opening push); JC.net 0. Slot-holder: Siren on 263 for six minutes (round one's cure
+staged; the slot yields to 262's fold at 12:00Z if 263 has not landed, Siren's own line). Host
+load: 5.99 at 11:02Z, down from 23.6 at 10:22Z, the seats' gates done and Myrtle's two evaluation
+runs the main load. Retired seats: none; all three live.
+
+THE FOLDS. 215 folded (10:04:50Z) and 254 folded (10:23:20Z) at the resume; both successors are
+DUE at 12:00Z: 225 (JC.net) takes a merge of main at eeaeef8c (224) first; 262 (the lineage) a
+merge of engraph at 71988aaa6 (260); each then the body, the ready-mark, the legs, the door, the
+successor cut from one resolved sha, the folded branch deleted local and remote at the cut, the
+rotation broadcast. The folds take the slot at their time (263 yields if still open).
+
+THE NAPKIN ROTATED at 10:3xZ (commit a2ba4730 on 225's branch, after a false "done" line at 10:38Z
+corrected at 10:4xZ): every block before COMPACTION BOUNDARY 9 is whole in
+`archive/napkin-2026-09-21-to-2026-09-27.md`; the live file is 49 KB and readable by every Cricket
+role; the distillation into distilled.md (consolidate-docs step 6) is owed and on the handoff.
+Siren's appends resumed.
+
+PR 263, round one (Siren's ruling request at 10:5xZ, answered natively): two reviewers found the
+runbook's rollback unsafe (`git show <tag>:<path> > <path>` follows a symlink and restores no mode
+or type); the estate's own forward-write invariant is the cure; ruled: cure now in 263 and in
+JC.net's copy through the WIP twin PR; a procedure change returns both copies to sketch by the
+template's line; one batched card to the owner at the next contact with a default (re-ratify both
+copies? default: ratified when both land). The other two findings cured or answered by Siren
+without a ruling.
+
+THE WAITING-WORK LINE, with ages (first commit or opening to 11:02Z) and slot holds: 263 open 6
+min at the slot; 261 open 40 min as a draft (its first commit 20:32Z on the 26th, 14 h 30 min to
+now, the PR open since 10:22Z); 250 open 22 h 24 min as the owner's lane (Myrtle's lane tree:
+eight modified and nine untracked files, the skill-evals topic and step 1's canonicals in
+progress, committing on the lane); the WIP clause's JC.net twin (Siren, prepared from 260's
+settled bytes plus the runbook's rollback cure, at the next free slot); the guard twin, the
+register PR (with the goal-one audit), J2 and J3 behind it. Goal three: every remote branch on
+both estates is on an open PR or is a default or coordination branch (lineage 7 in all, JC.net 2,
+none off a PR); no local branch merged into a default branch remains (the folded pair deleted at
+10:4xZ and read back); local commits outside a PR: none (263 and 261 are open); uncommitted trees:
+250's lane and one dirty records file on each primary (the handoff's card line; the lineage
+napkin's appends), both in flight.
+
+GOAL ONE's next-owners (the owner's answer 3 and the standing order): the WIP twin, the guard
+twin, the register PR, J2 and J3 to Siren, one slot at a time; the code rows (J6, J7, J8, J16,
+J20, J18's compare half) to whichever of Myrtle or Swallow frees first, Myrtle after 250's lane,
+Swallow after the reader and goal two's items in order. Goal two: 261 open (cycle 5 done; the
+reviews; the security review; ready and legs); after it goal two's items in order. P1's status is
+the Director's reading from the drain's timelines (eight of eight landings paid a Copilot round on
+a pure sync), not a change to the ledger's row; it joins the retrospective's proposals.
+
+THE RETROSPECTIVE TRIGGER: NOT MET until the 12:00Z fold moment (judged at a fold moment; at
+00:00Z row 245 had not landed). The draft (247 lines) waits in the scratchpad; its PR opens at the
+first free slot at or after 12:00Z, after the folds take theirs.
+
+LANE STATUS (Lane 1): 1 done; 2 done (254 merged 10:23:20Z); 3 done; 4 running; 5 done (the
+handoff's second trim, da1158e2); 6 done; 7 drafted, NOT MET until 12:00Z. Lane 2 (Myrtle): 250's
+lane, step 0 done, step 1 running (the tool's second form after the first clean run's reading;
+five acceptance runs). Lane 3 (Swallow): 261 at cycle 5 pushed, the reviews running. Lane 4
+(Siren): 260 landed; 263 at the slot; the twin next. Lanes 5 and 6 done.
+
+THE OWNER CARD QUEUE: one line (line 1, batched, none blocking): the transplant runbook's rollback
+cure returns both copies to sketch; re-ratify both copies? default: ratified when both land.
+
+The Director's own defects since suite 29, named: the "rotation done and pushed" line of 10:38:54Z
+was false (the chain's index-lock test failed silently on a transient lock; the line named the
+unmoved head); corrected on the stream at 10:4xZ once the commit truly landed (a2ba4730), the
+third instance of the same chain class in one morning, and the cure is now mechanical: HEAD
+captured before and compared after, a sha named only when it is the new one and the remote shows
+it. Two doctrine sentences for the fold skill's step 9 are drafted for a one-file PR per estate at
+a free slot (the successor's PR opens after its first commit is pushed; the folded branch is
+deleted at the cut).
+
+PROCESSES of this seat: the monitor set (arm 4, cap about 11:26Z); no doors polling; no subagents
+(suite 29's eight returned).
+
+NEXT: suite 30 at about 11:24Z on a frame from this snapshot (the live napkin's blocks readable
+now); the 12:00Z folds of 225 and 262 with their rotations; the retrospective's PR at the first
+free slot after; check-in 36 at about 11:47Z.
+
+## 2026-09-27T11:2xZ — Director suite 30 tally; eight ON-TRACK; answer 6's order restored
+
+Frame built after check-in 35 (11:02Z) from the 11:02Z snapshot (`checkin-35-raw.md`) and the
+streams to 11:0xZ, with suite 29's cures applied (the count by open PRs with reservations beside
+it; ages and slot holds; a host-load line; CI-in-flight with its excuse; P1 as the Director's
+reading; the uncommitted lane tree; next-owners; the trigger by fold moment). Dispatched 11:13Z,
+eleven minutes before the cadence's 11:24Z, the frame complete and the 12:00Z folds following.
+Clock read 11:18:00Z before this write. Eight returns, none UNDELIVERED.
+
+| Role | Stance | Work | Frame | Redirection |
+| --- | --- | --- | --- | --- |
+| cricket-judgement-low | normal | ON-TRACK | NARROWED (NEXT's "the retrospective's PR at the first free slot after" against answer 6's order; the P9 row stale) | amend NEXT to the order; refresh the P9 row |
+| cricket-judgement-medium | normal | ON-TRACK | NARROWED (the same order; 263 took the slot before its legs answered; 261's CI-in-flight head excused without naming its content push; the card's default "ratified when both land" makes silence an owner act) | Siren's WIP twin takes the first free slot, the retrospective after every seat's waiting item; the default to "stays sketch until the owner answers" |
+| cricket-judgement-high | normal | ON-TRACK | NARROWED (goal three's uncommitted-trees line omits `oce-wt-command-records`, 8 modified, and `oce-wt-runbook-ratified`, 1 modified) | name every dirty worktree or state why it is excluded |
+| cricket-procedure-xhigh | normal | ON-TRACK | SOUND | none |
+| cricket-judgement-low | adversarial | ON-TRACK | CONTRADICTED (the retrospective's PR "at the first free slot at or after 12:00Z" against answer 6, "behind every seat's waiting item"; the 09:0xZ compaction words not mapped to acts) | place the retrospective behind every seat's waiting item, or ride it on 262's fold; map the compaction words |
+| cricket-judgement-medium | adversarial | ON-TRACK | CONTRADICTED (the order; four in-flight trees against "none" outside the count; the two fold-doctrine sentences as two new one-file PRs against the PR cost model) | restore the order in READING and NEXT; the doctrine sentences ride an existing Practice PR |
+| cricket-judgement-high | adversarial | ON-TRACK | CONTRADICTED (SOURCES carried answer 5's "reads met now and is judged at 254's fold" unsuperseded beside READING's NOT MET; J13 unnamed) | one SOURCES line reconciling answer 5 with suite 29's correction; state J13 complete |
+| cricket-procedure-xhigh | adversarial | ON-TRACK | CONTRADICTED (the trigger's status: the condition true at 11:02Z, judged only at 12:00Z, against SOURCES' unsuperseded consequence; the compaction words) | add suite 29's correction to SOURCES, or state the condition true and the trigger unfired until the fold moment |
+
+Tally: 8 ON-TRACK; frame SOUND 1, NARROWED 3, CONTRADICTED 4.
+
+ACCEPTED and done. (1) The retrospective's queue position: answer 6 (the owner, 09:1xZ: the
+retrospective's PR opens behind every seat's waiting item) governs; check-in 35's NEXT ("at the
+first free slot after the folds") dropped it, and this line restores it: after the 12:00Z folds
+the first free WIP slot goes to Siren's WIP twin, then the guard twin and the register PR, and the
+retrospective's PR opens only after them; the draft stays in the scratchpad meanwhile (its risk
+named at suite 29's item 11). The low adversarial's alternative, riding the draft on 262's fold,
+is refused: a report is a work product with its own review contract (the fold skill's precondition
+3), and a fold that carries one takes a day. (2) SOURCES in the suite 30 frame now carry the
+supersession line beside answer 5's recorded consequence (added 11:1xZ after the high adversarial
+return): the condition is true at 11:02Z (the eight rows landed; the count at the limit) and the
+trigger is judged only at a fold moment, so it is NOT MET until 12:00Z; suite 31's SOURCES inherit
+the line. (3) The card's default corrected in the handoff: both runbook copies stay sketch until
+the owner answers (silence is never an owner act); Siren told. (4) The two fold-doctrine sentences
+(the successor's PR opens after its first pushed commit; the folded branch deleted at the cut) and
+the never-use-git chmod-bits clause ride the next Practice PR per estate, not two one-file PRs
+(the owner's PR cost model, 2026-09-26): drafted in the scratchpad's `doctrine-pr-draft.md`,
+Siren's WIP twin the first carrier on JC.net, the lineage's next doctrine PR the other. (5) J13 is
+complete (delivered and integrated; the exchange-seat row in repo-continuity says so); the frame
+names it so from suite 31.
+
+ACCEPTED for check-in 36 and suite 31's frame. (6) Goal three's uncommitted-trees line names every
+dirty worktree: `oce-wt-command-records` (261's, 8 modified) and `oce-wt-runbook-ratified` (263's,
+1 modified) beside 250's lane and the primaries' records files, each as its PR's in-flight cycle
+work. (7) A CI-in-flight head that is a lane PR's content push is named as such, never excused by
+the fold clause (261's cycle 5 push at 10:52Z was content). (8) 263 took the slot at its opening
+(10:56Z), before its legs answered, outside the readiness clause's letter; no other PR was ready
+for the door then (261 was a draft), so the hold cost no turn; the clause stands unchanged and the
+yield at 11:55Z applies; no re-routing. (9) The P9 row refreshed: the handoff's second trim landed
+(da1158e2); the distillation of the napkin archive is the open item. (10) The 09:0xZ compaction
+words mapped: the owner's compaction word at 09:06Z (boundary 9 written, the freeze kept), the
+resume word at 09:2xZ (the resume ran: both folds, the rotations) and the same word at 10:0xZ (the
+re-grounding: live state re-read, a team-start report on both streams); nothing of the owner's is
+unmapped.
+
+STATE at 11:2xZ. 263 (Siren) at the slot: settlement push eed1f6e44 (the rollback's forward-write
+cure, chmod bits, the clean-tree precondition; the stamp fields null while a sketch), legs then
+the door; it yields to 262's fold at 11:55Z if the legs have not answered. 261 (Swallow) ready at
+a9e006557 (41 files, level with engraph), both legs requested 11:12Z, the door at its turn after
+263. 250 (Myrtle): the oak-specify eval suite exited 0 at 11:09Z and the oak-user-value suite
+exited 1 at 11:12Z, the reading under way. The count three of three; reservations none. Host load
+16.6 at 11:22Z (Siren's and Swallow's gates, Myrtle's runs). Monitor arm 4 stopped at its cap and
+arm 5 armed under the same label (branch cb4644 until the fold). JC.net primary: the check-in 35
+block, this tally and the handoff's card default uncommitted, committed next by pathspec; the
+exchange-seat thread record dirty (Siren's, checked for completeness at the fold's sweep).
+
+NEXT: check-in 36 at about 11:47Z (floor 11:02Z); the 12:00Z folds of 225 and 262 (each merges its
+base first: main at eeaeef8c or later, engraph at 71988aaa6 or later); suite 31 after check-in 36
+on a frame carrying items 5 to 10; the retrospective's PR behind Siren's three items; the
+distillation at a free slot.

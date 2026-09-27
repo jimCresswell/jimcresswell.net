@@ -172,7 +172,11 @@ landings 216, 217, 218 folded in.
   beside Myrtle from 12:42Z), Myrtle turns Canopy (the lineage exchange seat), Swallow holds Drift
   (the Codex lane), and from 14:4xZ Phobos wakes Void (01a0de; the owner's Codex team member, on
   the lineage). Their state is on the comms streams and in their thread records, never here.
-- Open at this block's writing: the owner card queue at zero; the retrospective at the first
+- Open at this block's writing: the owner card queue at one line (line 1, batched for the next
+  contact, none blocking: the transplant runbook's rollback step now uses the forward-write invariant
+  after two reviewers on PR 263 found `git show > path` unsafe, a procedure change that returns both
+  copies to sketch by the template's line; re-ratify both copies once both carry the full rollback?
+  default: both stay sketch until the owner answers, usable as sketch meanwhile); the retrospective at the first
   fold moment (12:00Z on 2026-09-27) that reads the count at or under the limit with the eight
   drain rows landed (drafted in the scratchpad from 09:5xZ, its PR at a free slot after 12:00Z);
   both folds at the door; the handoff's second trim on the successor branch (done 10:3xZ, da1158e2);
