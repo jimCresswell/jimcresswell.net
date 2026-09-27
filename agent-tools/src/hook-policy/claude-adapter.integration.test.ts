@@ -30,9 +30,22 @@ function contextFor(
     contentPatterns: undefined,
     scopedBlocks: undefined,
     readPriorContent: () => null,
+    isInOtherRepository: () => false,
     ...overrides,
   };
 }
+
+/** A block over every path, and the same block exempting files in other repositories. */
+const OWN_MARKER_EVERYWHERE: ScopedContentBlockGroup = {
+  concept: 'own-repository-only',
+  patterns: ['own-marker'],
+  include_paths: [''],
+  citation: 'repository-identity',
+};
+const OWN_REPOSITORY_ONLY: ScopedContentBlockGroup = {
+  ...OWN_MARKER_EVERYWHERE,
+  excludes_other_repositories: true,
+};
 
 /** A fully-populated synthetic snapshot for section-fallback tests. */
 function snapshotWith(overrides: Partial<PolicySnapshot> = {}): PolicySnapshot {
@@ -175,6 +188,45 @@ describe('content route evaluation', () => {
     ).resolves.toStrictEqual({ kind: 'allow' });
     const nested = await claudeContentRoute.evaluate(write(`${REPO_ROOT}/nested/docs/exempt/x.md`));
     expect(nested.kind).toBe('deny-scoped-block');
+    // A path that climbs back out of the exempt directory is read where it lands.
+    const escaped = await claudeContentRoute.evaluate(
+      write(`${REPO_ROOT}/docs/exempt/../../src/x.md`),
+    );
+    expect(escaped.kind).toBe('deny-scoped-block');
+  });
+
+  it('drops a block that exempts other repositories for the files the seam places in another', async () => {
+    const write = (filePath: string, blocks: readonly ScopedContentBlockGroup[]) =>
+      contextFor(
+        { tool_input: { file_path: filePath, content: 'adds own-marker' } },
+        {
+          contentPatterns: [],
+          scopedBlocks: blocks,
+          isInOtherRepository: (path) => path.startsWith('/elsewhere/'),
+        },
+      );
+
+    await expect(
+      claudeContentRoute.evaluate(write('/elsewhere/src/a.ts', [OWN_REPOSITORY_ONLY])),
+    ).resolves.toStrictEqual({ kind: 'allow' });
+    const own = await claudeContentRoute.evaluate(
+      write(`${REPO_ROOT}/src/a.ts`, [OWN_REPOSITORY_ONLY]),
+    );
+    expect(own.kind).toBe('deny-scoped-block');
+    const everywhere = await claudeContentRoute.evaluate(
+      write('/elsewhere/src/a.ts', [OWN_MARKER_EVERYWHERE]),
+    );
+    expect(everywhere.kind).toBe('deny-scoped-block');
+  });
+
+  it('asks the seam nothing for a payload path it could not place', async () => {
+    const patch = '*** Begin Patch\n*** Add File: src/a.ts\n+adds own-marker\n*** End Patch\n';
+    const context = contextFor(
+      { tool_name: 'Edit', tool_input: patch },
+      { contentPatterns: [], scopedBlocks: [OWN_REPOSITORY_ONLY], isInOtherRepository: () => true },
+    );
+
+    expect((await copilotCompatStringRoute.evaluate(context)).kind).toBe('deny-scoped-block');
   });
 
   it('resolves Write prior content through the injected reader', async () => {
@@ -269,6 +321,7 @@ describe('copilot-compat string route evaluation', () => {
     expect(placePath('docs/exempt/x.md', '.')).toBe('docs/exempt/x.md');
     expect(placePath('docs/exempt/x.md', undefined)).toBe('docs/exempt/x.md');
     expect(placePath('/elsewhere/x.md', '/repo')).toBe('/elsewhere/x.md');
+    expect(placePath('/repo/docs/exempt/../../src/x.md', '/repo')).toBe('/repo/src/x.md');
     expect(placePath(undefined, '/repo')).toBeUndefined();
   });
 
