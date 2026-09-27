@@ -14,16 +14,19 @@
  */
 
 import {
+  accessSync,
   closeSync,
+  constants,
   fstatSync,
   lstatSync,
   openSync,
-  readFileSync,
+  readSync,
   realpathSync,
   statSync,
 } from 'node:fs';
 import { join } from 'node:path';
 
+import { readAtMost } from '../core/bounded-read.js';
 import { errorCodeOf } from '../core/error-code.js';
 import {
   entryIsDescriptorFile,
@@ -48,12 +51,14 @@ export interface RepositoryProbe {
   readonly readText: (filePath: string) => FileReading;
   /** A path's real path (links followed, the disk's own letter case), or `null` when it does not exist. */
   readonly realPath: (filePath: string) => string | null;
-  /** A directory's identity on disk, or `null` when it is not a directory that can be read. */
+  /** A directory's identity on disk (device and inode), or `null` when it is no directory. */
   readonly identity: (directory: string) => string | null;
+  /** Whether a path is a directory git can enter: links followed, and searchable by this process. */
+  readonly searchableDirectory: (directory: string) => boolean;
 }
 
 /** The largest `.git`, `commondir` or `HEAD` file read; each is one short line in git's own. */
-const MAX_POINTER_BYTES = 64n * 1024n;
+const MAX_POINTER_BYTES = 64 * 1024;
 
 /** Whether a failed file-system call failed because the path does not exist. */
 function isMissing(error: unknown): boolean {
@@ -65,8 +70,10 @@ function isMissing(error: unknown): boolean {
  * Read a small regular file through one descriptor, so the file checked is the file read
  * (`core/no-follow-read.ts`: no final-link following, and on a host without `O_NOFOLLOW` the
  * path's own entry must be the file the descriptor holds). Anything else (a directory, a pipe,
- * a link, a file larger than a git pointer or `HEAD` ever is) reads as unreadable, so no read
- * can outlast the hook's timeout.
+ * a link, a file larger than a git pointer or `HEAD` ever is) reads as unreadable. The read
+ * takes at most the cap plus one byte from the descriptor, so a file another process grows
+ * after it was opened is refused, never read to its end, and no read outlasts the hook's
+ * timeout.
  */
 function readRegularFile(filePath: string): FileReading {
   let descriptor: number;
@@ -81,10 +88,15 @@ function readRegularFile(filePath: string): FileReading {
       stats.isFile() &&
       (HOST_ENFORCES_NO_FOLLOW ||
         entryIsDescriptorFile(lstatSync(filePath, { bigint: true, throwIfNoEntry: false }), stats));
-    if (!ours || stats.size > MAX_POINTER_BYTES) {
-      return { kind: 'unreadable' };
-    }
-    return { kind: 'text', text: readFileSync(descriptor, 'utf8') };
+    const bytes = ours
+      ? readAtMost(
+          (buffer, offset, length) => readSync(descriptor, buffer, offset, length, null),
+          MAX_POINTER_BYTES,
+        )
+      : undefined;
+    return bytes === undefined
+      ? { kind: 'unreadable' }
+      : { kind: 'text', text: Buffer.from(bytes).toString('utf8') };
   } catch {
     return { kind: 'unreadable' };
   } finally {
@@ -119,6 +131,14 @@ export const diskRepositoryProbe: RepositoryProbe = {
       return stats.isDirectory() ? `${String(stats.dev)}:${String(stats.ino)}` : null;
     } catch {
       return null;
+    }
+  },
+  searchableDirectory: (directory) => {
+    try {
+      accessSync(directory, constants.X_OK);
+      return statSync(directory).isDirectory();
+    } catch {
+      return false;
     }
   },
 };

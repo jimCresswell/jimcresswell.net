@@ -186,7 +186,9 @@ policy decision taken entry by entry.
   stay guarded wherever they sit on disk; two common directories are compared
   by identity on disk (device and inode), never by spelling. The walk starts
   where the file really is, following symbolic links, and a git directory
-  counts only when it holds a `HEAD`. The write-hook drops the group only for a
+  counts only when git itself would accept it: a valid `HEAD` of its own, and
+  `objects/` and `refs/` directories git can enter in its common directory.
+  The write-hook drops the group only for a
   file it positively finds in another repository; a file in no repository, a
   `.git` entry or `commondir` it cannot read, a path deeper than its climb, or
   a path it could not place keeps the group
