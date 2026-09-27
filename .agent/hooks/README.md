@@ -237,8 +237,9 @@ build, and its freshness is guaranteed at two points:
   guard source is unchanged), so committed guard-source changes are compiled.
 
 **Invariant:** after editing a hook-guard source file
-(`agent-tools/src/hook-policy/*.ts` or `policy-loader.ts`), run a build
-(`pnpm --filter @engraph/agent-tools build` or any `turbo build`) before
+(`agent-tools/src/hook-policy/*.ts`, `policy-loader.ts`, or any other source
+the dispatcher imports, such as `agent-tools/src/core/bounded-read.ts`), run a
+build (`pnpm --filter @engraph/agent-tools build` or any `turbo build`) before
 relying on the guard in the active session — until then the running hook
 executes the previously-compiled artefact. The failure direction is safe: a
 stale guard still blocks every already-published pattern; only a *newly added*

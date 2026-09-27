@@ -35,9 +35,10 @@ export interface PriorReadEdge {
 }
 
 /**
- * The most bytes one request's reads take. A scan's time grows with the lines it reads and the
- * patterns in scope, and this many bytes of empty lines, the worst shape, scan in well under a
- * second, far inside the timeout.
+ * The most bytes of content one request's reads return for scanning; each read also takes one
+ * byte past its file's reported size, to tell a file that grew. A scan's time grows with the
+ * lines it reads and the patterns in scope, and this many bytes of empty lines, the worst
+ * shape, scan in well under a second, far inside the timeout.
  */
 export const REQUEST_READ_BUDGET = 1024 * 1024;
 
@@ -56,7 +57,7 @@ export const diskPriorReadEdge: PriorReadEdge = {
  * A prior-content reader for one request.
  *
  * @param edge - The descriptor operations.
- * @param budgetBytes - The most bytes all of this reader's reads may take together.
+ * @param budgetBytes - The most bytes of content all of this reader's reads may return together.
  * @returns A reader giving a file's text, or `null` for anything but a regular
  *   file within what is left of the budget.
  */
