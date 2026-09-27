@@ -2074,3 +2074,28 @@ written 22:19Z).**
   - the turbo test inputs omit `policy.json`;
   - a smoke test with a flagged fixture policy;
   - memoising the walk within a request.
+
+**233 and 271 landed: the hook-policy layer matches in both estates (block written 22:59Z).**
+
+- JC.net PR 233 merged as SHA:67bc75ec, curing four live guard defects: a FIFO or device move
+  source, the size of large sources (one 1 MiB read budget per request), a dangling link, and a
+  hard link. Round one had one low finding (the budget's comment named no probe byte), cured.
+  Round two approved.
+- Lineage PR 271 (the guard port, step 2) merged as SHA:bfd9e07f0.
+  - It carries JC.net `main` at SHA:67bc75ec byte for byte in 22 of 24 files. The README and one
+    ADR-path fixture keep lineage text.
+  - windows-basic passed with the `posixPath` helper.
+  - Copilot's one finding was rejected with git's own verdict: git 2.50.1 accepts 40 hex followed
+    by junk as a detached HEAD and refuses 39, as `VALID_HEAD` does.
+  - Codex found nothing.
+  - Branches, worktrees, local refs and claims for both are cleaned up.
+- Correction to 233's body: its follow-up "`operator-profile-fs.ts` opens without `O_NONBLOCK`" is
+  lineage-only. JC.net's `operator-profile-read.ts` already opens non-blocking and proves a regular
+  file.
+- Owed:
+  - The register's §Landings lacks today's J3 (#269, JC.net 232) and J7 (#270, #271) rows; they ride
+    the next substantive JC.net PR.
+  - To the lineage: J3's next slice (the shellcheck gate, with the colon refusal, the repair-mode
+    test and the stage-0 symlink read), and JC.net's non-blocking operator-profile read.
+  - Both estates: `.agent/hooks/policy.json` in the agent-tools test task's cache inputs, a smoke
+    test with a flagged fixture policy, and memoising the walk.
