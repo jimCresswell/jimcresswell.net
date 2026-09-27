@@ -1,0 +1,120 @@
+/**
+ * The disk reads the repository walk makes ({@link RepositoryProbe}), and
+ * their live implementation.
+ *
+ * @remarks
+ * The walk itself (`repository-identity.ts`) is pure over this seam, so it is
+ * tested over literal layouts; the live reads here are proven by running the
+ * built hook against real checkouts. Every read answers without throwing, and
+ * every failure reads as an unknown the walk keeps the block for: a missing
+ * path as absent, anything else (a link where a file belongs, a pipe, a file
+ * larger than git ever writes there, a refused read) as unreadable or unknown.
+ *
+ * @packageDocumentation
+ */
+
+import {
+  closeSync,
+  constants,
+  fstatSync,
+  lstatSync,
+  openSync,
+  readFileSync,
+  realpathSync,
+  statSync,
+} from 'node:fs';
+import { join } from 'node:path';
+
+/** What reading a file gave: its text, no such file, or a file that could not be read. */
+type FileReading =
+  | { readonly kind: 'text'; readonly text: string }
+  | { readonly kind: 'absent' }
+  | { readonly kind: 'unreadable' };
+
+/** What `<directory>/.git` is: a git directory, a pointer file, nothing, or anything else. */
+type GitEntry = 'directory' | 'file' | 'absent' | 'unknown';
+
+/** The disk reads the walk makes, injectable so the walk is tested over literal layouts. */
+export interface RepositoryProbe {
+  /** What `<directory>/.git` is; `unknown` for any other kind of entry or a failed read. */
+  readonly gitEntry: (directory: string) => GitEntry;
+  /** A regular file's text, or why there is none. */
+  readonly readText: (filePath: string) => FileReading;
+  /** A path's real path (links followed, the disk's own letter case), or `null` when it does not exist. */
+  readonly realPath: (filePath: string) => string | null;
+  /** A directory's identity on disk, or `null` when it is not a directory that can be read. */
+  readonly identity: (directory: string) => string | null;
+}
+
+/** The largest `.git`, `commondir` or `HEAD` file read; each is one short line in git's own. */
+const MAX_POINTER_BYTES = 64 * 1024;
+
+/**
+ * Open for reading without following a final symbolic link or waiting on a pipe. Both flags
+ * are POSIX; a host without them opens plainly, and the descriptor checks below still apply.
+ */
+const { O_RDONLY, O_NOFOLLOW = 0, O_NONBLOCK = 0 } = constants;
+const READ_FLAGS = O_RDONLY | O_NOFOLLOW | O_NONBLOCK;
+
+/** Whether a failed file-system call failed because the path does not exist. */
+function isMissing(error: unknown): boolean {
+  return (
+    error instanceof Error && 'code' in error && ['ENOENT', 'ENOTDIR'].includes(String(error.code))
+  );
+}
+
+/**
+ * Read a small regular file through one descriptor, so the file checked is the file read.
+ * Anything else (a directory, a pipe, a link, a file larger than a git pointer or `HEAD` ever
+ * is) reads as unreadable, so no read can outlast the hook's timeout.
+ */
+function readRegularFile(filePath: string): FileReading {
+  let descriptor: number;
+  try {
+    descriptor = openSync(filePath, READ_FLAGS);
+  } catch (error) {
+    return isMissing(error) ? { kind: 'absent' } : { kind: 'unreadable' };
+  }
+  try {
+    const stats = fstatSync(descriptor);
+    if (!stats.isFile() || stats.size > MAX_POINTER_BYTES) {
+      return { kind: 'unreadable' };
+    }
+    return { kind: 'text', text: readFileSync(descriptor, 'utf8') };
+  } catch {
+    return { kind: 'unreadable' };
+  } finally {
+    closeSync(descriptor);
+  }
+}
+
+/** The live disk reads: `lstat`, one-descriptor file reads, native `realpath` and `stat`. */
+export const diskRepositoryProbe: RepositoryProbe = {
+  gitEntry: (directory) => {
+    try {
+      const stats = lstatSync(join(directory, '.git'));
+      if (stats.isDirectory()) {
+        return 'directory';
+      }
+      return stats.isFile() ? 'file' : 'unknown';
+    } catch (error) {
+      return isMissing(error) ? 'absent' : 'unknown';
+    }
+  },
+  readText: readRegularFile,
+  realPath: (filePath) => {
+    try {
+      return realpathSync.native(filePath);
+    } catch {
+      return null;
+    }
+  },
+  identity: (directory) => {
+    try {
+      const stats = statSync(directory, { bigint: true });
+      return stats.isDirectory() ? `${String(stats.dev)}:${String(stats.ino)}` : null;
+    } catch {
+      return null;
+    }
+  },
+};

@@ -11,8 +11,8 @@ import {
   isInOtherRepository,
   otherRepositoryTest,
   repositoryIdentity,
-  type RepositoryProbe,
 } from './repository-identity.js';
+import type { RepositoryProbe } from './repository-probe.js';
 
 /**
  * A probe over literal entries: `.git` kinds by directory, file texts, files

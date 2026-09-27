@@ -27,35 +27,12 @@
  * @packageDocumentation
  */
 
-import { lstatSync, readFileSync, realpathSync, statSync } from 'node:fs';
 import { dirname, isAbsolute, join, resolve } from 'node:path';
 
-/** What reading a file gave: its text, no such file, or a file that could not be read. */
-type FileReading =
-  | { readonly kind: 'text'; readonly text: string }
-  | { readonly kind: 'absent' }
-  | { readonly kind: 'unreadable' };
-
-/** What `<directory>/.git` is: a git directory, a pointer file, nothing, or anything else. */
-type GitEntry = 'directory' | 'file' | 'absent' | 'unknown';
-
-/** The disk reads the walk makes, injectable so the walk is tested over literal layouts. */
-export interface RepositoryProbe {
-  /** What `<directory>/.git` is; `unknown` for any other kind of entry or a failed read. */
-  readonly gitEntry: (directory: string) => GitEntry;
-  /** A regular file's text, or why there is none. */
-  readonly readText: (filePath: string) => FileReading;
-  /** A path's real path (links followed, the disk's own letter case), or `null` when it does not exist. */
-  readonly realPath: (filePath: string) => string | null;
-  /** A directory's identity on disk, or `null` when it is not a directory that can be read. */
-  readonly identity: (directory: string) => string | null;
-}
+import { diskRepositoryProbe, type RepositoryProbe } from './repository-probe.js';
 
 /** The most directories either climb visits; a deeper path names nothing, keeping the block. */
 const MAX_CLIMB = 256;
-
-/** The largest `.git`, `commondir` or `HEAD` file read; each is one short line in git's own. */
-const MAX_POINTER_BYTES = 64 * 1024;
 
 /** The `gitdir: <path>` line of a worktree's or submodule's `.git` file. */
 const GITDIR_LINE = /^gitdir:[ \t]*(.+?)[ \t]*$/mu;
@@ -171,60 +148,6 @@ export function isInOtherRepository(
   const fileIdentity = repositoryIdentity(filePath, probe);
   return fileIdentity !== undefined && fileIdentity !== ownIdentity;
 }
-
-/** Whether a failed file-system call failed because the path does not exist. */
-function isMissing(error: unknown): boolean {
-  return (
-    error instanceof Error && 'code' in error && ['ENOENT', 'ENOTDIR'].includes(String(error.code))
-  );
-}
-
-/**
- * Read a small regular file; anything else (a directory, a pipe, a link, a file larger than a
- * git pointer or `HEAD` ever is) reads as unreadable, so no read can outlast the hook's timeout.
- */
-function readRegularFile(filePath: string): FileReading {
-  try {
-    const stats = lstatSync(filePath);
-    if (!stats.isFile() || stats.size > MAX_POINTER_BYTES) {
-      return { kind: 'unreadable' };
-    }
-    return { kind: 'text', text: readFileSync(filePath, 'utf8') };
-  } catch (error) {
-    return isMissing(error) ? { kind: 'absent' } : { kind: 'unreadable' };
-  }
-}
-
-/** The live disk reads: `lstat`, `readFile`, native `realpath` and `stat`. */
-const diskRepositoryProbe: RepositoryProbe = {
-  gitEntry: (directory) => {
-    try {
-      const stats = lstatSync(join(directory, '.git'));
-      if (stats.isDirectory()) {
-        return 'directory';
-      }
-      return stats.isFile() ? 'file' : 'unknown';
-    } catch (error) {
-      return isMissing(error) ? 'absent' : 'unknown';
-    }
-  },
-  readText: readRegularFile,
-  realPath: (filePath) => {
-    try {
-      return realpathSync.native(filePath);
-    } catch {
-      return null;
-    }
-  },
-  identity: (directory) => {
-    try {
-      const stats = statSync(directory, { bigint: true });
-      return stats.isDirectory() ? `${String(stats.dev)}:${String(stats.ino)}` : null;
-    } catch {
-      return null;
-    }
-  },
-};
 
 /**
  * The hook's test for a file in another repository: "another" is judged
