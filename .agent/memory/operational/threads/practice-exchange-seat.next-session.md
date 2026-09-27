@@ -2044,3 +2044,33 @@ Next: 231's legs and door, then step 2 on the Director's ruling. After that come
   the next agent-tools port. `repo-check-files.ts` is at 250 lines, so its next edit splits it in
   both estates.
 - The guard port (step 2) opens after 270 lands.
+
+**270 and 232 landed; JC.net 233 open with four live guard cures; the port waits on it (block
+written 22:19Z).**
+
+- Lineage PR 270 (J7) merged as SHA:bd320b710, and JC.net PR 232 (the J3 flow-back) as
+  SHA:45093dca. Branches, worktrees, local refs and claims are all cleaned.
+  - 232's round one had two findings. The cure: only a stage-0 index entry counts as a symlink.
+    The rejection: an unstaged modification reads the working tree, as every gate leg does.
+  - Owed to the lineage with J3's next slice (the shellcheck gate): the leading-colon refusal, the
+    repair-mode test and the stage-0 symlink read.
+- The guard port (step 2) is built in `oce-wt-guard-port`, on `feat/exchange-guard-repository-scope`
+  (local only: SHA:176cb889 plus the merge of engraph, SHA:a3fe94345, with an uncommitted
+  host-neutral test change). Its pre-open reviews:
+  - config and code approved with notes;
+  - security requested changes, and found four defects live in JC.net `main` since 230.
+- JC.net PR 233 (`fix/guard-read-and-link-cures`, SHA:b23b8aa3, 2 of 3) cures them:
+  - a move source or Write prior is read through one non-blocking descriptor, regular files only,
+    with one 1 MiB budget per request;
+  - a dangling link and a hard link keep the block;
+  - a `posixPath` test helper, for the lineage's Windows leg;
+  - the complete README keep-the-block list.
+  The security re-verification approved with notes. The before-and-after probe is in the body.
+- Next: 233's two rounds and its door. Then rebuild the port's targets from JC.net `main`,
+  byte for byte, adding `path-scope.ts` and its test, whose neutral comments the code-expert asked
+  for. Then commit, push, open the port as 3 of 3, and run its rounds.
+- Follow-ups recorded in 233's body, for both estates:
+  - `operator-profile-fs.ts` opens without `O_NONBLOCK`;
+  - the turbo test inputs omit `policy.json`;
+  - a smoke test with a flagged fixture policy;
+  - memoising the walk within a request.
