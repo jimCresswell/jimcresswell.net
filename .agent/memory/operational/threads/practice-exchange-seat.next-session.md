@@ -2021,3 +2021,26 @@ Next: 231's legs and door, then step 2 on the Director's ruling. After that come
   reproducible from the patch, and step 2 rebuilds on engraph after 270 lands.
 - Next, approved at 20:4xZ: the J3 flow-back to JC.net at 3 of 3. That is 269's cures into JC.net's
   repo-check, plus the two neutral comments. The guard port opens behind 270.
+
+**270 settled; JC.net 232 (the J3 flow-back) open (block written 21:23Z).**
+
+- PR 270 (J7) is settled at SHA:e60cb3f9c.
+  - windows-basic failed on a POSIX literal in the `placePath` test. The cure in SHA:7e8163270
+    compares placed paths across hosts; windows-basic then passed.
+  - Copilot's round two found that `placePath` kept an absolute path's `..` segments. A Write to
+    `<root>/docs/exempt/../../src/x.md` claimed the anchored exemption; the live probe allowed it.
+    The cure takes JC.net's later `placePath`, byte-identical, and the probe now denies.
+  - Codex was clean on both heads, and Copilot recommended approval on SHA:e60cb3f9c.
+  - Next: CI and the Codex leg on that head, the sweep, the door, and cleanup.
+- JC.net PR 232 opened at SHA:1a321625, 3 of 3. It brings the J3 cures home, plus the
+  code-expert's cures:
+  - the shellcheck gate refuses a lost file;
+  - a leading `:` is refused;
+  - each read fails in git's own words;
+  - a test proves the repair modes repair.
+  The Copilot request was made as the operator; the timeline shows it.
+- Owed to the lineage, with J3's next slice (the shellcheck gate): the `:` refusal and the
+  repair-mode test, so the shared files match again. The two neutral path-scope comments go with
+  the next agent-tools port. `repo-check-files.ts` is at 250 lines, so its next edit splits it in
+  both estates.
+- The guard port (step 2) opens after 270 lands.
