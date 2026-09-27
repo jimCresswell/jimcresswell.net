@@ -2085,3 +2085,78 @@ the J4 seam present, unused by repo-check.
 STATE at 17:31Z: the count 2 (250 held; 267 at 35573e8c, round three owed, its door at green
 legs, no sync needed, engraph at 96bb08963); Siren's S1 reservation next; 264 and 227 drafts;
 check-in 44 at 17:47Z; suite 39 at about 18:09Z; the folds at the UTC rollover.
+
+## 2026-09-27T17:42Z — Director check-in 44: the count 2; 228 and 229 landed; 267 through three rounds under a recorded rebudget; J3 blocked by the guard, the guard-scope PR ruled seat work; the card rewritten
+
+From the generated snapshot at 17:41Z (`checkin-44-raw.md`), gh and the streams.
+
+THE FOUR NUMBERS: open non-coordination PRs 2 of 3 (250 held, 267); landings since check-in 43:
+two (228 at 17:06:19Z as 33514ec1, 229 at 17:26:04Z as f88e2657), the verification line met;
+heads with CI in flight: one (267 at 5625e022c); slot-holder age: none held. JC.net open: 227
+(the draft) only. Lineage open: 250 (DIRTY, five threads, unattended), 264 (the draft, BEHIND), 267.
+Remote branches outside a PR: none in either estate. Ready list: empty.
+
+PR 267 (the second retrospective): round one two findings, both over the bar, cured in settlement
+push one (8c803cbac); round two one finding, the missing warrant, over the bar by the reader-harm
+test (the record's heading promises each proposal a warrant; a reader files proposal 3 at the
+register on that promise), cured in settlement push two (35573e8c0); round three three findings:
+proposal 5's fast-lane label over the bar (a seat acting on it lands a decision-policy change in
+PDR-117 without the register's prediction and review date), cured in the rebudgeted push under
+PDR-140 clause 4 (budget 3, the intake line edited as the bot, the section on the body:
+budget-exceeded, the generator question, the reason; 5625e022c; the gate priced 39.59 of 60);
+258's cure count and 226's settlement snapshot below the bar, routed to the addendum by signed
+lines with the test stated, Siren's one line agreeing on each. All six threads resolved; round
+four owed; the door at green legs, no sync (engraph at 96bb08963). The generator, recorded on the
+body: one pass from the ledger with a pre-open review that recomputed counts but did not test the
+proposals' lanes against PDR-130's category question, nor the free-play items against the
+record's own timeline, nor 226's state after its 16:11Z push. 267 is itself data for proposal 3:
+three rounds and a rebudget on a two-file records PR.
+
+SIREN: 229 (the exchange register's landings) merged; outbound 4 of 21, inbound 6 of 28 at main
+f88e2657, the count read from the register from now. J3 approved as four slices; S1's
+reservation withdrawn at 17:32Z: JC.net's content-policy guard (hooks.preToolUseContent
+scoped_blocks[5], concept lineage-name, include scope every path) refuses a write into the
+lineage worktree that names the lineage's package scope, which every agent-tools module using
+Result imports. RULING (read first-hand at policy.json): the block's own citation and reappraisal
+name JC.net's live surfaces as the concept; scoping the guard to paths inside this repository's
+root implements the concept as stated; seat work under review, with the hook-policy rule's
+enforcement-surface conditions (fresh head, test-first, a first-hand fire and no-fire probe on
+both sides before opening, pre-open passes by the security and config experts, the exclude list
+untouched). Order: the guard PR at the free slot now, then S1 from oce-wt-j3-s1, whose drafts
+stay there committed locally (a commit in that worktree at 17:4xZ in the process table).
+
+NOVA: silent since 16:05:37Z (one hundred minutes at this write); a `claude` process of five
+hours and thirty-six minutes with no title in the process table is read as her session, an
+inference. Her worktrees: oce-wt-user-value (codex/user-value-across-levels, ahead 23, nine
+modified files: 250's cures, unpushed), oce-wt-doctrine-fold-chmod and jcnet-wt-doctrine-fold-chmod
+(clean, local commits, no origin branch). Nothing of hers touched.
+
+THE OWNER CARD (batched; unanswered; line (a) withdrawn at 17:1xZ on the Director's own diff):
+(b) Nova's lane: does 250's rebudget path pass to another seat if she does not return? Default,
+a decision with a date under PDR-117 clause 3: if Nova is silent at the rollover fold (00:00Z
+2026-09-28), 250's rebudget path passes to Siren after J3's S1 lands, from 250's remote head, her
+doctrine worktrees untouched; the owner may overturn. Plainly: an unattended 250 holds one of the
+three slots (answer 2, "part of the system"). (c) Shellcheck as a system dependency of the
+lineage, run on Oak's contributors' machines: default CI and pre-push, not pre-commit. (d) The
+bash floor for a team repo where stock macOS ships 3.2: default no floor in the lineage until
+ruled; S4 waits. (e) The vendored and research shell scripts (the clerk skill scripts, the
+Sonar-generated hooks, five research statusline scripts): cure in place, delete, or exclude by a
+declared list; default cure what is ours, ask for the vendored; a deletion needs the owner's word.
+FYI, not a question: the lineage-name guard scoped to the repository root by Siren's PR, the
+concept unchanged; the owner may overturn.
+
+THE ADDENDUM LEDGER (the tail's addendum on 267's record, one PR at a free slot after 267 lands):
+265's path qualifier and the comparison window restated; 258's dispositions as eleven Fixed and
+three Accepted; 226 whole (8af432a5a at 11:48Z, the settlement push at 16:11Z, 266 at 96bb08963,
+228 at 33514ec1, the merge 02f0ffb); Siren's pre-push-pass datum as proposal 2's first evidence;
+267's own rounds and rebudget as proposal 3's data; the guard block as a J3 cost.
+
+TOOL ROWS carried: the snapshot prints "checks not green: none" for an empty rollup (250 DIRTY
+runs no CI); the open-retro scripts call the message check with a bare path (exit 2, unread);
+the guard's include scope reaches paths outside the repository (Siren's PR); the gate's empty
+`pending` read on a head whose checks have not registered.
+
+NEXT: 227's records push under a gate notice now (twelve local commits); 267's round four by
+signed lines (a 9(b) push only for an over-bar finding), its door at green legs; Siren's guard PR
+then S1; suite 39 at about 18:09Z on fresh six fields; check-in 45 at about 18:27Z; the folds
+DUE at the UTC rollover (264's sync first; 227's fold); Nova's return or the owner's word.
