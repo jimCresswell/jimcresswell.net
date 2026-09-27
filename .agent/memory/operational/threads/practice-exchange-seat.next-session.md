@@ -1375,3 +1375,177 @@ is Myrtle's slot-released event.
   and at rule text it drafts.
 - Fixed point: a third pass would only re-find Swallow's unknown overnight state and the
   scratchpad-held PR bodies. The recursion closes here.
+
+## Resumed after compaction 5, 2026-09-27 09:3xZ onwards (Siren herds Rudder, 158275)
+
+The owner's `/jc-start-right-team` in this session lifted the freeze at 09:3xZ. The Director's
+relay of its own resume came first (09:2xZ) and was held, not obeyed: the lift is the owner's
+word in this session. Re-armed by the recipe; team-start reports on both streams.
+
+**Landed:** JC.net PR 224, the runbook twin (register row J11), merged 10:17:01Z as
+SHA:eeaeef8c. It carries the fourteen cures and the owner's ratification of 2026-09-27 ("Ratify
+both", answer 10 on the Director's boundary 9 card). Copilot's round one found one issue:
+`ratified_where` must resolve (plan-node-schema). It now names the Director's session and the
+napkin paragraph "OWNER ANSWERS at 09:1xZ on 2026-09-27", brought into the branch by a sync
+merge of main at SHA:cb4644c4. Round two was "Approval recommended". Claim 6e38aeab is closed,
+and the worktree, local branch and remote branch are deleted (the remote was read back absent).
+
+**Opened under the reservation-first order, the first run of PR 260's own text:** reserved
+09:48:14Z on both streams; Swallow's earlier 09:35Z reservation was withdrawn at 09:48:55Z on
+the Director's routing; count recounted at 09:51Z (two of three); pushed; opened at once.
+
+**PR 260, staged for its settlement push.** GitHub's update-branch merged engraph at
+SHA:a0996ac6b into the branch (remote head SHA:96d424d12). A third Codex review on that head
+added two threads, so four are open: 4112942475 (`--limit`), 4112946255 (serialise the
+reservation), 4114808296 (P1: local preparation against worktree-hygiene) and 4114808298 (P2:
+the owner's words apart from the Director's reading). The cure is committed locally as
+SHA:d899b423e on the round-two cure SHA:16a16ffae. The owner's words are verbatim quotes; the
+operating steps are marked as the Director's reading and the rule's review cures; the reservation
+comes first ("WIP slot reserved: <owner>/<name> <branch>"); the Dependabot answer is quoted;
+while the count is full a seat prepares without a worktree or a commit.
+The Director first ruled an exception in worktree-hygiene, then reversed it on this seat's
+warrant: the owner's absolute words on both sides ("All useful work must be pushed and in a PR
+or merged ... This is always true"; worktree-hygiene §1), and an exception in an owner-absolute
+rule is the owner's to grant. Its reopen condition is in check-in 33.
+The replies are drafted in the scratchpad's `replies-260-r2/`, with SYNC_SHA to fill in, and the
+PR body in `wip-body.md`.
+
+**Next safe step:** at 254's "slot released", take the slot and merge the remote head
+SHA:96d424d12 and any newer engraph into the local branch (the owner as author); push once as
+the bot; post the four signed lines and resolve; request both legs; findings on that head get
+signed lines only; run the sweep and the door; release the slot; clean up.
+Then the lineage copy's ratification stamps as a one-file PR at a free WIP slot, carrying the
+three final-tip cures only if they are not procedure changes (a procedure change returns it to
+sketch). Then the order as recorded at the 09:09Z block, step 6.
+
+**Landed, 10:43:58Z:** lineage PR 260, the work-in-progress limit in pr-lifecycle §Phase 7, as
+SHA:71988aaa6. Settlement push SHA:33d225657 (the cures SHA:16a16ffae and SHA:d899b423e, the
+remote head and engraph at SHA:8af61ab82 merged, owner-authored); four signed lines; both legs
+tip-bound. Final-tip dispositions, as signed lines with no push:
+
+- Codex P1 4114998240 and Copilot 4114998517, ACCEPTED: the steps must leave out each
+  repository's coordination PR, and that PR may always open. The cure rides the next PR that
+  carries the bullet.
+- Copilot 4114998489, REJECTED: posting before reading across every stream on one host and one
+  clock means the later opener always counts the earlier one.
+
+Claim 0c6862e8 is closed, and the worktree, local branch and remote branch are deleted (the
+remote read back absent).
+
+**Next, pending the Director's word (asked at 10:4xZ):** one lineage PR with the runbook copy's
+stamps plus the three final-tip cures (bytes from JC.net SHA:eeaeef8c) and the WIP bullet's count
+cure; then the JC.net twin of the WIP clause with the same bullet bytes. The lineage stamp's
+ratified_where needs answer 10 recorded on the lineage coordination branch first.
+
+## Wrap block, 2026-09-27 12:0xZ (the owner's sixth compaction word, after the usage-limit boundary)
+
+**Landed this window (09:3xZ to 11:50Z), each read back by gh:**
+
+- JC.net PR 224, the runbook twin: 10:17:01Z as SHA:eeaeef8c.
+- Lineage PR 260, the work-in-progress limit in pr-lifecycle §Phase 7: 10:43:58Z as
+  SHA:71988aaa6.
+- Lineage PR 263, the runbook converged on the fourteen cures, its rollback cured, and the WIP
+  count leaving out coordination PRs: 11:34:36Z as SHA:54b969b20.
+
+**Open: JC.net PR 226** (worktree jcnet-wt-wip-twin, branch docs/exchange-wip-twin-runbook-rollback,
+head SHA:8af432a5, level with its remote; claim 78e0415a). It carries the WIP bullet (the lineage's
+bytes at SHA:54b969b20 plus the thirty-minute lapse sentence) and the runbook copy's full rollback,
+back at sketch. Round one (Copilot) is cured in SHA:8af432a5 with signed lines. Round two
+(Copilot, 11:55:42Z) left two unresolved threads:
+
+- 4115238942: the new admission gate contradicts lines 84 to 88 of the same skill ("this never
+  prevents PRs from being created", owner 2026-09-06). A real doctrine clash. Cure: a marked
+  supersession note at that sentence (the WIP limit, owner 2026-09-26, bounds creation). Both
+  estates carry the sentence.
+- 4115238912: `mktemp` and `mv` follow symlinks in parent directories, so the leaf-only type check
+  can write outside the checkout. Real.
+
+**Hold 226 until its settlement push.** Its merge state reads CLEAN (JC.net does not require
+resolved threads), so a door would land it with the contradiction in it.
+
+**The window's insight (metacognition and concept exploration, warrants in the napkin block).**
+The rollback drew seven real filesystem edge cases in about two and a half hours: bytes only; type
+and mode; chmod bits and a clean tree; file and directory types; a symlink resolving to a
+directory; the revision for mode; symlinked ancestors. The WIP text drew about fourteen findings.
+Each is procedure written as prose with no test, so each review round sampled one more edge,
+and each cure's new text was new surface. Carried findings then opened the other estate's
+twin, whose review found more. By the loop-dynamics principle this loop grows rather than shrinks.
+No tool implements the forward-write invariant (grep of agent-tools found none), and the hook
+policy blocks `git restore` in every form, so git's own restore is not available.
+
+**Order after "carry on" (a hypothesis for the Director, not the plan):**
+
+1. Re-arm by the recipe below; read live state: both PR lists, 226's threads, whether 225 and 262
+   (at their doors at the usage-limit boundary) have landed, and the live coordination branches.
+2. One native message to the Director with verdicts:
+   - 226's settlement push: the supersession note for lines 84 to 88, and the runbook's rollback
+     shrunk to one pointer at the forward-write invariant, not another clause. The mechanics
+     then live once, in `never-use-git-to-remove-work`: its queued one-file doctrine PR per estate
+     takes the ancestors, the chmod bits and the revision.
+   - Instruments as the loop's exit: a tested forward-write restore tool, and a WIP count and
+     reserve tool (PR 260's own out-of-scope trigger, "if the count's manual read proves costly",
+     has fired). Ask whose lane.
+   - Which coordination branch takes this block and the napkin block.
+3. 226: the settlement push, signed lines on both threads, Copilot by the owner's path, the sweep,
+   then `merge-bot merge --pr 226 --expect copilot-pull-request-reviewer`; cleanup.
+4. The lineage follow-up at a free slot, reserve first: the WIP bullet's lapse sentence and
+   supersession note, and the runbook's rollback matching 226's final bytes. The draft in the
+   scratchpad's `lineage-followup.md` is superseded by 226's final text.
+5. Then the owner's re-ratification card (the Director's, once both copies carry the full
+   rollback; both stay sketch until the owner answers), and the order recorded at the 09:09Z
+   block, step 6.
+
+**Claims retained:** JC.net a30304be (the seat) and 78e0415a (PR 226). No lineage claim is held.
+
+**Re-arm recipe.** Nothing survives. The scripts are in the session scratchpad; each takes an
+explicit root. Monitors cap at 30 minutes whatever `timeout_ms` asks: re-arm on every expiry
+notice.
+
+- `watch-comms.sh <primary> 15907` as a Monitor per primary.
+- `ROOT=<JC.net primary> heartbeat.sh <claims> docs/exchange-wip-twin-runbook-rollback "<label>"`,
+  with the claims a30304be-4986-40f0-883b-fd518224472b and
+  78e0415a-7de4-4039-8695-642e6279948f, comma-joined.
+- `peer-liveness-poll.sh 600` from the JC.net primary.
+- JC.net Copilot: `gh pr edit <n> --repo jimCresswell/jimcresswell.net --add-reviewer @copilot`
+  with GH tokens unset. The bot's request does nothing there; on the lineage the bot's works.
+- `post-replies-jcnet.sh`, `delete-merged-jcnet.sh`, `mirror-open.sh` for JC.net;
+  `legs-lineage.sh`, `post-replies-lineage.sh`, `edit-title-body-lineage.sh`,
+  `delete-merged-lineage.sh` for the lineage.
+
+**Owed, beyond the order:**
+
+- The classifier ambiguity from PR 224's Copilot overview (step 2: a path can fit more than one
+  of the five classes). This seat's signed line on 224 promised it to the exchange's ledger; it is
+  recorded here now, for the next transplant instance or a first-matching-class-in-order cure,
+  both copies together.
+- A napkin block for this window: the insight, the play harvest, and two slips on the shared
+  primary (an unlinted append stopped the Director's fold push at MD032; two posts reused one
+  `--now`). It is written after the Director's in-flight commit lands, because the primary's index
+  held the Director's staged napkin at this block's writing.
+- Unchanged from the 09:09Z block: the lifetime paragraphs' two cures (JC.net first); the PDR-027
+  CLI-seed wording; the host-tagged PDR entries; PDR-027's amendment date; the castr cells; the
+  lessons batch; J11's later slices; the guard twin for Swallow.
+
+**Metaloss, for this block.**
+
+- Compressed reasoning: the pointer verdict for the rollback and the instrument proposals carry
+  their warrant above (seven edges, no tool, the hook policy); the full movements are in the
+  napkin block.
+- Promises: to the Director, the settlement of 226, the lineage follow-up and the instrument
+  proposal; on PR 263's threads, the cures ride the lineage follow-up; on PR 224, the classifier
+  (recorded above). None dropped.
+- Attribution: who pressed update-branch on PR 260 is unknown (the commit's author is the owner's
+  identity, the committer GitHub). The team-wide usage-limit boundary at 11:50Z is observed from
+  the Director's and Swallow's events. The staged set in the primary at 12:0xZ is inferred to be
+  the Director's boundary commit from its files (the handoff, the continuity record, the napkin).
+- Blind spots: the watcher truncates event bodies; Myrtle's and Swallow's lanes were read from
+  titles only.
+- Index of homes: this block; the napkin block owed above; the letter
+  `2026-09-27-siren-herds-rudder-the-fuzzer-and-the-pointer.md`; git (PR 226's branch at
+  SHA:8af432a5, pushed); the scratchpad (the scripts, the PR bodies, `lineage-followup.md`).
+- External bound and error signature: outside eyes caught what this seat's own reading missed
+  again this window: the reviewers on seven rollback edges and the zero-PR clash, and the
+  Director on the settlement push's budget ("Both review rounds are spent", said here, was wrong).
+  Point outside scrutiny at this seat's procedure prose and its budget claims.
+- Fixed point: a third pass would only re-find the classifier item and the Director's in-flight
+  commit. The recursion closes here.

@@ -429,3 +429,21 @@ landed. PR 250 is a lane under the owner's Appendix E (commit 9a7ffdbaa: four sk
 the PR draft until complete) and does not hold the trigger; it holds one of the three slots for
 the lane's duration. The arc is unchanged. Each check-in states the trigger's status under this
 condition.
+
+**Amendment note, 2026-09-27 10:0xZ (PR 260's review and suite 28).** The rule as operated gains
+three changes. Item 2: the opener posts "WIP slot reserved: <owner>/<name> <branch>" on the
+estate's stream FIRST, then reads a bounded first-hand count across both estates (GraphQL
+totalCount or `gh pr list --limit` above the count), then re-reads every estate's stream for
+earlier reservations not yet open, and opens only while count plus reservations is under the
+limit, else withdraws; a reservation is followed at once by the branch's push and its draft PR
+(the ready-mark when the work is complete), never held locally. Item 4 (the last clause): while
+the count is full a seat prepares without a worktree or a commit (reading, planning, reviewing a
+peer's PR, the cures that free the count); the prepare-locally reading was the Director's and
+the owner's words on both sides of it are absolute ("All useful work must be pushed and in a PR
+or merged ... This is always true"; worktree-hygiene §1), so no exception is written into either
+rule; reopen condition: a seat measurably idle for more than a door turn with nothing to review
+or plan while the count is full makes it one card. New item 6: Dependabot PRs count; a seat lands
+each green one at its size turn and assesses a red one (cure, or close with a card) (the owner's
+answer 13, 2026-09-27). Worked instance of item 2 as amended: 09:48Z on 2026-09-27, Siren
+reserved for the runbook twin, found Swallow's earlier reservation for the reader and asked;
+Swallow withdrew (the reader not yet pushed); the twin opened as JC.net PR 224 at 09:54Z.

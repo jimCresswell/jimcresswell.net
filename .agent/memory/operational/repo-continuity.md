@@ -344,10 +344,13 @@ names a live branch):
 ## Active Threads
 
 - JC.net's exchange seat (`threads/practice-exchange-seat.next-session.md`): Siren herds Rudder
-  (158275) live on 2026-09-27 under the Director's Lane 4 routing (landings first): J13 complete
-  (lineage PRs 252, 253 and 256 merged 2026-09-26), J11 landed (258) with its JC.net runbook twin
-  prepared to open when PR 260 (the WIP-limit clause, Siren's settlement then door) merges; the
-  record's latest dated block (the 09:09Z wrap of 2026-09-27) governs.
+  (158275) live on 2026-09-27 under the Director's Lane 4 routing (landings first), paused at
+  11:48Z on the owner's usage limit: J13 complete (lineage PRs 252, 253 and 256 merged
+  2026-09-26); J11 landed (258) and its JC.net runbook twin landed as PR 224 (10:17:01Z); PR 260
+  (the WIP-limit clause) landed 10:43:58Z; PR 263 (the lineage runbook copy converged, its
+  rollback cured, the WIP count) landed 11:34:36Z; PR 226 (the JC.net WIP twin with the runbook's
+  full rollback) open since 11:41Z at Copilot's round two; the record's latest dated block (the
+  10:1xZ resume stretch, appended at 11:3xZ with 260's landing) governs.
 - Closure session 2's synthesis (`threads/session-2-synthesis.next-session.md`): the cards were
   answered 2026-09-14 (the Director's handoff item 78); the graduation drain is curator work.
 
