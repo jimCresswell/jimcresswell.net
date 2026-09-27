@@ -2494,3 +2494,36 @@ its own body (the owner's text: draft until complete; the eval readings' human r
 STATE at 20:15Z: the count 1 of 3 (250 at its sync d2df9a558, legs then the slot released, its
 door on the owner's ready-mark); Siren's guard twin JC.net PR next (reserving 2 of 3); 227 at
 87954ccc; 264 BEHIND; check-in 48 at 20:35Z; suite 43 at 20:57Z.
+
+## 2026-09-27T20:35Z — Director check-in 48: the count 2 (3 with J7 reserved); 250 at its owner ready-mark; 231 CLEAN at its door; J7 next
+
+THE FOUR NUMBERS (`checkin-48-raw.md`, 20:35Z): open non-coordination PRs 2 of 3 (250, the
+owner's draft, synced to engraph d0154fb5a at d2df9a558, both legs answered, five findings
+signed by Siren, the door waiting on the owner's ready-mark; JC.net 231, Siren's guard cures,
+six files, CLEAN, no threads, its door hers) plus Siren's 20:26Z reservation for J7 (the
+hook-policy path scoping, the guard port's dependency); landings since check-in 47: none (269
+landed 19:5xZ, in check-in 47's window); heads with CI in flight: none; slot-holder age: none
+held. Remote branches outside a PR: none in either estate. Local branches: the lineage's
+feat/exchange-guard-repository-scope and feat/exchange-j7-path-scope (Siren's, fresh, no
+commits beyond engraph), docs/fold-sweep-and-chmod-bits (Nova's, both estates; JC.net's copy
+reads merged into main, so it carries no unique work; hers until the owner's word). JC.net
+primary at 87954ccc on the remote plus two local records commits.
+
+RULINGS this window (native, and on the lineage stream): the guard's lineage port carries the
+whole mechanism, same bytes, the probe on a fixture policy; J7 first as its own lineage PR at 3
+of 3, the port after 231 and J7 land. Two toolkit rows: a fresh worktree whose first install
+failed pushes ungated (231's first push, caught and gated through the slot before opening); the
+pre-open review widened the guard cure to git's own test.
+
+NOVA: no line since 16:05:37Z (four hours and thirty minutes).
+
+THE OWNER CARD (batched; unanswered): (b) 250's path passed to Siren by the dated default, the
+owner may overturn; (c) shellcheck as a lineage dependency (default CI and pre-push); (d) the
+bash floor (default none); (e) the vendored scripts (default cure ours, ask for the vendored);
+(f) goal two has no live seat, the owner starts one. FYI: 250 rebudgeted to 11 by the lane's
+recorded decision, its cures and sync pushed, its ready-mark yours; the lineage-name guard scoped
+by repository identity (230 landed; 231 cures at its door).
+
+NEXT: 231's door (Siren); J7 opened and landed (Siren); 250's door on the owner's ready-mark;
+suite 43 at 20:57Z; check-in 49 at about 21:20Z; the folds DUE at the UTC rollover (the recipe
+on this napkin; 264's sync first); Nova's return or the owner's word.
