@@ -1874,3 +1874,22 @@ reads every path. The Director ruled route 2 (scope the guard) as seat work.
 Next: settle 230 through the door. Then the primary's `agent-tools/dist` needs a rebuild with the
 fix (after main folds into the coordination branch) before J3 slice 1 can write its import.
 The lineage twin of the flag is owed as its own exchange slice.
+
+**230 landed: the guard scoped by repository identity (18:41Z).** PR 230 merged at 18:41:28Z as
+SHA:f5f60ab9 after two Copilot rounds and the settlement head.
+
+- Cures on the way:
+  - CodeQL's race: one-descriptor reads;
+  - moved content: an `apply_patch` move is now scanned in full against an empty destination
+    (the gap was on main too);
+  - git's one-line gitfile format;
+  - the no-follow open shared from `core/no-follow-read.ts` with the skills-adapter reader.
+- Two settlement-head findings (git's `objects/`/`refs/` check; a bounded pointer read) took
+  signed Below-bar lines. They are routed by the exchange node's §Review dispositions rows of
+  2026-09-27 to the guard's lineage twin slice, for both estates.
+- Branch, worktree and claim 79178f8e are gone. The count is one of three (lineage 250).
+
+Next: J3 slice 1 needs the fix in the live hook. That means main folded into the coordination
+branch and the primary's `agent-tools/dist` rebuilt: the Director's call, asked at 18:4xZ. Then
+restore the universe-test draft into `oce-wt-j3-s1` (local commit b9c8ef3b2) and go on test-first.
+The guard's lineage twin slice follows as its own exchange slice.
