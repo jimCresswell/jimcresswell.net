@@ -327,16 +327,19 @@ describe('copilot-compat string route evaluation', () => {
             contentPatterns: [],
             scopedBlocks: [OWN_MARKER_EVERYWHERE],
             readPriorContent: (path) =>
-              path === '/repo/notes/source.md' ? 'carries own-marker' : null,
+              path === '/repo/notes/source.md' ? 'own-marker one\nown-marker two' : null,
           },
         ),
       );
 
     expect((await evaluate(move(''), '/repo')).kind).toBe('deny-scoped-block');
-    // A move whose own hunk removes the marker carries it out, not in.
-    await expect(
-      evaluate(move('@@\n-carries own-marker\n+carries nothing\n'), '/repo'),
-    ).resolves.toStrictEqual({ kind: 'allow' });
+    // Deleting one of two occurrences leaves the other entering the destination.
+    const oneRemoved = await evaluate(move('@@\n-own-marker one\n'), '/repo');
+    expect(oneRemoved.kind).toBe('deny-scoped-block');
+    // The whole source is new at the destination, so even a hunk that removes every
+    // occurrence is refused: the guard never reconstructs a patch to find the marker gone.
+    const allRemoved = await evaluate(move('@@\n-own-marker one\n-own-marker two\n'), '/repo');
+    expect(allRemoved.kind).toBe('deny-scoped-block');
     // A source that cannot be read, or has no place to be read from, fails closed.
     await expect(evaluate(move(''), '/elsewhere')).rejects.toThrow('move source');
     await expect(evaluate(move(''))).rejects.toThrow('move source');

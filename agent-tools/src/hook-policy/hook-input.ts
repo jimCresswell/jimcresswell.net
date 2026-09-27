@@ -102,10 +102,13 @@ export function extractContentChanges(hookInput: unknown): readonly ContentChang
 /**
  * Resolve final new/prior content using an injected prior-content reader.
  *
- * A moved file's whole content enters its destination, so the source's text is
- * new there, less what the move's own hunks remove; the hunks alone would show
- * a pure move as no change at all. A source with no absolute place, or one that
- * cannot be read, throws: the guard fails closed rather than pass unread content.
+ * A moved file's whole content enters its destination, so the source's text and
+ * the move's added lines are all new there, against an empty prior: the hunks
+ * alone would show a pure move as no change at all, and a removed line must not
+ * mask an identical line that stays. The guard never applies the patch, so a
+ * move that also removes a marker is refused too (fail closed). A source with no
+ * absolute place, or one that cannot be read, throws rather than pass unread
+ * content.
  */
 export function resolveContentPair(
   change: ContentChange,
@@ -116,10 +119,7 @@ export function resolveContentPair(
     if (source === null) {
       throw new Error('apply_patch move source could not be placed and read; failing closed.');
     }
-    return {
-      newContent: [source, change.newContent].join('\n'),
-      priorContent: change.priorContent,
-    };
+    return { newContent: [source, change.newContent].join('\n'), priorContent: '' };
   }
   if (change.priorFilePath === undefined) {
     return { newContent: change.newContent, priorContent: change.priorContent };

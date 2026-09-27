@@ -15,7 +15,6 @@
 
 import {
   closeSync,
-  constants,
   fstatSync,
   lstatSync,
   openSync,
@@ -24,6 +23,13 @@ import {
   statSync,
 } from 'node:fs';
 import { join } from 'node:path';
+
+import { errorCodeOf } from '../core/error-code.js';
+import {
+  entryIsDescriptorFile,
+  HOST_ENFORCES_NO_FOLLOW,
+  NO_FOLLOW_READ_FLAGS,
+} from '../core/no-follow-read.js';
 
 /** What reading a file gave: its text, no such file, or a file that could not be read. */
 type FileReading =
@@ -47,37 +53,35 @@ export interface RepositoryProbe {
 }
 
 /** The largest `.git`, `commondir` or `HEAD` file read; each is one short line in git's own. */
-const MAX_POINTER_BYTES = 64 * 1024;
-
-/**
- * Open for reading without following a final symbolic link or waiting on a pipe. Both flags
- * are POSIX; a host without them opens plainly, and the descriptor checks below still apply.
- */
-const { O_RDONLY, O_NOFOLLOW = 0, O_NONBLOCK = 0 } = constants;
-const READ_FLAGS = O_RDONLY | O_NOFOLLOW | O_NONBLOCK;
+const MAX_POINTER_BYTES = 64n * 1024n;
 
 /** Whether a failed file-system call failed because the path does not exist. */
 function isMissing(error: unknown): boolean {
-  return (
-    error instanceof Error && 'code' in error && ['ENOENT', 'ENOTDIR'].includes(String(error.code))
-  );
+  const code = error instanceof Error ? errorCodeOf(error) : undefined;
+  return code === 'ENOENT' || code === 'ENOTDIR';
 }
 
 /**
- * Read a small regular file through one descriptor, so the file checked is the file read.
- * Anything else (a directory, a pipe, a link, a file larger than a git pointer or `HEAD` ever
- * is) reads as unreadable, so no read can outlast the hook's timeout.
+ * Read a small regular file through one descriptor, so the file checked is the file read
+ * (`core/no-follow-read.ts`: no final-link following, and on a host without `O_NOFOLLOW` the
+ * path's own entry must be the file the descriptor holds). Anything else (a directory, a pipe,
+ * a link, a file larger than a git pointer or `HEAD` ever is) reads as unreadable, so no read
+ * can outlast the hook's timeout.
  */
 function readRegularFile(filePath: string): FileReading {
   let descriptor: number;
   try {
-    descriptor = openSync(filePath, READ_FLAGS);
+    descriptor = openSync(filePath, NO_FOLLOW_READ_FLAGS);
   } catch (error) {
     return isMissing(error) ? { kind: 'absent' } : { kind: 'unreadable' };
   }
   try {
-    const stats = fstatSync(descriptor);
-    if (!stats.isFile() || stats.size > MAX_POINTER_BYTES) {
+    const stats = fstatSync(descriptor, { bigint: true });
+    const ours =
+      stats.isFile() &&
+      (HOST_ENFORCES_NO_FOLLOW ||
+        entryIsDescriptorFile(lstatSync(filePath, { bigint: true, throwIfNoEntry: false }), stats));
+    if (!ours || stats.size > MAX_POINTER_BYTES) {
       return { kind: 'unreadable' };
     }
     return { kind: 'text', text: readFileSync(descriptor, 'utf8') };
