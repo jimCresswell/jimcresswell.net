@@ -2465,5 +2465,5 @@ engraph history it carried; her nine modified files are the skill-evals cures, u
 Siren's b0b2d181a cured from the remote head; nothing unique of hers is at risk on that branch;
 her two doctrine worktrees hold local commits on `docs/fold-sweep-and-chmod-bits` (both estates),
 hers until the owner's word (card line (b)). The scripts named above live in the Director's session
-scratchpad (`/private/tmp/claude-502/.../ed7b489a-.../scratchpad/`) and are conveniences, not the
-recipe; the recipe is the skill.
+scratchpad (a temp surface outside the repository, gone with the session) and are conveniences,
+not the recipe; the recipe is the skill.
