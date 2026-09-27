@@ -346,11 +346,18 @@ describe('copilot-compat string route evaluation', () => {
   });
 
   it('places a relative path against an absolute cwd only; a relative cwd leaves it unplaced', () => {
-    expect(placePath('docs/exempt/x.md', '/repo/nested')).toBe('/repo/nested/docs/exempt/x.md');
+    // On Windows `resolve` places a path on a drive, so a placed path is compared with `/` separators.
+    expect(placePath('docs/exempt/x.md', '/repo/nested')?.replaceAll('\\', '/')).toMatch(
+      /^(?:[A-Za-z]:)?\/repo\/nested\/docs\/exempt\/x\.md$/u,
+    );
     expect(placePath('docs/exempt/x.md', '.')).toBe('docs/exempt/x.md');
     expect(placePath('docs/exempt/x.md', undefined)).toBe('docs/exempt/x.md');
-    expect(placePath('/elsewhere/x.md', '/repo')).toBe('/elsewhere/x.md');
-    expect(placePath('/repo/docs/exempt/../../src/x.md', '/repo')).toBe('/repo/src/x.md');
+    expect(placePath('/elsewhere/x.md', '/repo')?.replaceAll('\\', '/')).toMatch(
+      /^(?:[A-Za-z]:)?\/elsewhere\/x\.md$/u,
+    );
+    expect(placePath('/repo/docs/exempt/../../src/x.md', '/repo')?.replaceAll('\\', '/')).toMatch(
+      /^(?:[A-Za-z]:)?\/repo\/src\/x\.md$/u,
+    );
     expect(placePath(undefined, '/repo')).toBeUndefined();
   });
 
