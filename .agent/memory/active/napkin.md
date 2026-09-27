@@ -2750,3 +2750,54 @@ STATE at 22:36Z: the count 2 of 3 (250 at the owner's ready-mark; 233 at its leg
 plus the guard port reserved; 227 at c46b5756 on the remote with Siren's 6ff64ab2 local; 264
 BEHIND; the fold bodies drafted (`pr-264-fold-body.draft.md`, `pr-227-fold-body.draft.md`, sync
 tokens open); check-in 51 at 22:50Z.
+
+## 2026-09-27T22:51Z — Director check-in 51: the count 2; 233 landed; 271 (the guard port) open at round one and CI; the folds in seventy minutes
+
+THE FOUR NUMBERS (`checkin-51-raw.md`, 22:50Z): open non-coordination PRs 2 of 3 (lineage 250,
+the owner's draft, BEHIND, three threads signed Over-bar and open, its door on the owner's
+ready-mark; lineage 271, the guard port, "a scoped block may exempt files in another git
+repository", 24 files, opened 22:40:21Z, at round one with unit-tests and browser-tests in
+flight, Siren's); no reservation outstanding; landings since check-in 50: 233 (JC.net,
+22:31:52Z, 67bc75ec, four live guard cures), Siren's; heads with CI in flight: 271;
+slot-holder age: none held. Remote branches outside a PR: none in either estate. Local
+branches: the lineage's feat/exchange-guard-repository-scope (271's), siren/250-settlement,
+codex/user-value-across-levels and docs/fold-sweep-and-chmod-bits (Nova's, both estates). Host
+load 2.52. JC.net primary at c46b5756 on the remote plus two local records commits (Siren's
+6ff64ab2, the suite 45 tally 22fd1e16), pushed at the fold's step 4 or at check-in 52.
+Coordination drafts: 227 CLEAN with main (its state recomputing after 233's merge; main is not
+strict); 264 BEHIND engraph at 9522ecd89.
+
+GOAL ONE: 271 is the guard mechanism's lineage port, the first landing toward row J2 (the
+tracked-universe validators, the lineage-name guard among them); 13 of 23 rows by the register
+plus J3 and J7 today. Since the 12:06Z fold: lineage 261, 265 to 270 (seven landed, 271 open);
+JC.net 226, 228 to 233 (seven landed).
+
+RULINGS this window: suite 45 (the tally above): suite 46 dropped so no suite collides with
+the folds; check-in 52 at about 23:35Z is the pre-fold state; the next suite runs after both
+folds on their outcome; the door order was Siren's (233 first, then the port, as she ran it);
+card line (f) widened to both goals' seats.
+
+THE READY LIST (the owner's act): PR 250,
+<https://github.com/EngraphCode/open-curriculum-ecosystem/pull/250>, 388 files, the owner's
+draft, BEHIND engraph (one sync at its slot word, by a seat, when the mark lands); the eval
+readings' human review open at body line 39; the ready-mark yours.
+
+NOVA: no line since 16:05:37Z (six hours and forty-five minutes). The owner: no word to the
+Director since the 12:0xZ start word.
+
+THE OWNER CARD (batched; unanswered): (b) 250: the action moment above; its lane passed to
+Siren by the dated default, which you may overturn; Nova's worktree on 250's branch carries her
+unpushed sync merge and nine modified files whose cures Siren landed, hers until her return or
+your word; (c) shellcheck as a lineage dependency (default CI and pre-push); (d) the bash floor
+(default none); (e) the vendored scripts (default cure ours, ask for the vendored); (f) goal two
+has no live seat and goal one has one (Siren) with eight rows carrying no lineage landing; the
+owner starts seats. FYI: the Director runs the coordination folds under the plan's Lane 1 (say
+the word if a seat should run them); the guard mechanism landed whole in JC.net (230, 231,
+233) and its lineage port is open (271); J3 and J7 landed (269, 270, 232); 250 rebudgeted to
+11 by the lane's recorded decision.
+
+NEXT: 271's legs and door (Siren); check-in 52 at about 23:35Z (the pre-fold state: records
+pushed, the fold bodies finalised, the thread-record entry drafted); the folds at 00:00Z, 264's
+sync first (the slot read; a synced holder waiting for a leg lands first), then 227; the
+successors, the rotation broadcasts, the monitor re-armed, the loss scan; the next suite after
+the folds; Nova's return or the owner's word.
