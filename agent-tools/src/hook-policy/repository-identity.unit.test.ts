@@ -17,8 +17,9 @@ import type { RepositoryProbe } from './repository-probe.js';
 /**
  * A probe over literal entries: `.git` kinds by directory, file texts, files
  * that exist but cannot be read, real paths (a path maps to itself unless
- * listed; `null` means it does not exist), and identities (a directory is its
- * own identity unless listed).
+ * listed; `null` means it does not exist), identities (a directory is its own
+ * identity unless listed), and `missing`, the paths that are no searchable
+ * directory.
  */
 function probeOver(layout: {
   readonly gitEntries: Readonly<Record<string, 'directory' | 'file' | 'unknown'>>;
@@ -26,6 +27,7 @@ function probeOver(layout: {
   readonly unreadable?: readonly string[];
   readonly realPaths?: Readonly<Record<string, string | null>>;
   readonly identities?: Readonly<Record<string, string>>;
+  readonly missing?: readonly string[];
 }): RepositoryProbe {
   return {
     gitEntry: (directory) => layout.gitEntries[directory] ?? 'absent',
@@ -41,6 +43,7 @@ function probeOver(layout: {
       return real === undefined ? filePath : real;
     },
     identity: (directory) => layout.identities?.[directory] ?? directory,
+    searchableDirectory: (directory) => layout.missing?.includes(directory) !== true,
   };
 }
 
@@ -123,6 +126,69 @@ describe('repositoryIdentity', () => {
   it('names nothing for a git directory without a HEAD, which git itself would not accept', () => {
     const planted = probeOver({ gitEntries: { '/r/docs/x': 'directory' }, texts: ESTATE_TEXTS });
     expect(repositoryIdentity('/r/docs/x/a.md', planted)).toBeUndefined();
+  });
+
+  it('names nothing for a git directory that lacks objects/ or refs/, as git itself requires both', () => {
+    // A planted .git holding only HEAD, beneath a tracked path of this repository.
+    for (const lacking of ['/r/docs/x/.git/objects', '/r/docs/x/.git/refs']) {
+      const planted = probeOver({
+        gitEntries: { ...ESTATE_ENTRIES, '/r/docs/x': 'directory' },
+        texts: { ...ESTATE_TEXTS, '/r/docs/x/.git/HEAD': HEAD },
+        missing: [lacking],
+      });
+      expect(repositoryIdentity('/r/docs/x/a.md', planted)).toBeUndefined();
+      expect(isInOtherRepository('/r/docs/x/a.md', '/r/.git', planted)).toBe(false);
+    }
+  });
+
+  it('names nothing for a git directory whose HEAD is neither a branch reference nor an object id', () => {
+    for (const head of [
+      '',
+      'garbage\n',
+      'ref: heads/main\n',
+      'abc123\n',
+      // Git reads 255 bytes of HEAD, so `refs/` past that window is never seen.
+      `ref:${' '.repeat(247)}refs/heads/main\n`,
+      // Git skips only ASCII whitespace after `ref:`.
+      'ref:\u00a0refs/heads/main\n',
+    ]) {
+      const planted = probeOver({
+        gitEntries: { ...ESTATE_ENTRIES, '/r/docs/x': 'directory' },
+        texts: { ...ESTATE_TEXTS, '/r/docs/x/.git/HEAD': head },
+      });
+      expect(repositoryIdentity('/r/docs/x/a.md', planted)).toBeUndefined();
+    }
+  });
+
+  it("names a git directory whose HEAD reference follows git's own whitespace", () => {
+    for (const head of ['ref:refs/heads/main\n', 'ref:\t refs/heads/main\n']) {
+      const spaced = probeOver({
+        gitEntries: ESTATE_ENTRIES,
+        texts: { ...ESTATE_TEXTS, '/o/.git/HEAD': head },
+      });
+      expect(repositoryIdentity('/o/src/a.ts', spaced)).toBe('/o/.git');
+    }
+  });
+
+  it('names a git directory whose HEAD is a detached object id, as git does', () => {
+    const detached = probeOver({
+      gitEntries: ESTATE_ENTRIES,
+      texts: { ...ESTATE_TEXTS, '/o/.git/HEAD': `${'a1'.repeat(20)}\n` },
+    });
+    expect(repositoryIdentity('/o/src/a.ts', detached)).toBe('/o/.git');
+  });
+
+  it('names nothing for a worktree gitdir without its own HEAD, whatever its commondir names', () => {
+    const borrowed = probeOver({
+      gitEntries: { ...ESTATE_ENTRIES, '/r/docs/x': 'file' },
+      texts: {
+        ...ESTATE_TEXTS,
+        '/r/docs/x/.git': 'gitdir: /r/docs/fake\n',
+        '/r/docs/fake/commondir': '/o/.git\n',
+      },
+    });
+    expect(repositoryIdentity('/r/docs/x/a.md', borrowed)).toBeUndefined();
+    expect(isInOtherRepository('/r/docs/x/a.md', '/r/.git', borrowed)).toBe(false);
   });
 
   it('names nothing for a .git entry that is neither a directory nor a file', () => {
