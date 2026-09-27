@@ -7,14 +7,10 @@ overview: >-
   to a newer generation of the same lineage, preserving the host's own
   divergence, with every mechanical step run by an instrument and every
   judgement step presented to the owner as one numbered list.
-status: ratified
-ratified_by: "Jim Cresswell"
-ratified_date: 2026-09-27
-ratified_where: >-
-  Owner answer 10, "Ratify both", on 2026-09-27 to the Director's card (Wick
-  binds Temper, session ed7b48), covering this copy and the lineage's;
-  recorded verbatim in `.agent/memory/active/napkin.md`, the paragraph
-  "OWNER ANSWERS at 09:1xZ on 2026-09-27".
+status: sketch
+ratified_by: null
+ratified_date: null
+ratified_where: null
 impact_areas:
   - practice-and-estate
 tickets: []
@@ -37,15 +33,21 @@ plus its own local divergence. The cross-instance guidance this runbook distils 
 exploration of packaging the Practice is its sibling report. Neither is
 doctrine until ratified.
 
-**Returned to sketch 2026-09-26, ratified again 2026-09-27.** The two-way
-exchange (register row J11) brought back fourteen cures found by the review
-of this runbook's lineage copy in lineage PR 258. They change what the
-operator does at preconditions 2, 3 and 5, at steps 2, 5 and 10, and in the
-rollback. By the runbook template's rule, a procedure change returns a
-runbook to sketch, which superseded the owner's ratification of 2026-09-12
-(given in session 880ff9, Cauldron herds Lustre: "Both nodes are ratified",
-captured on the napkin §Session 5). The owner ratified this copy and the
-lineage's together on 2026-09-27: "Ratify both".
+**Returned to sketch 2026-09-26, ratified again 2026-09-27, returned to
+sketch the same day.** The two-way exchange (register row J11) brought back
+fourteen cures found by the review of this runbook's lineage copy in lineage
+PR 258. They change what the operator does at preconditions 2, 3 and 5, at
+steps 2, 5 and 10, and in the rollback. By the runbook template's rule, a
+procedure change returns a runbook to sketch, which superseded the owner's
+ratification of 2026-09-12 (given in session 880ff9, Cauldron herds Lustre:
+"Both nodes are ratified", captured on the napkin §Session 5). The owner
+ratified this copy and the lineage's together on 2026-09-27: "Ratify both",
+answer 10 to the Director's card, recorded verbatim in
+`.agent/memory/active/napkin.md`, the paragraph "OWNER ANSWERS at 09:1xZ on
+2026-09-27". The same day, the review of the lineage copy's convergence
+(lineage PR 263) found the rollback unsafe for a path's type and mode. Its
+cure, a procedure change, returned both copies to sketch until the owner
+ratifies again.
 
 ## When to run
 
@@ -243,13 +245,27 @@ the session's transcript at close, which must be zero.
 ## Rollback
 
 Steps 5 to 11 change shared state; every one is reversible per path from
-the pre-state tag and the pinned source, each restore writing the file:
-`git show <pre-state tag>:<path> > <path>` restores any host file, `git -C
-<source-checkout> show <pin>:<path> > <path>` restores any drop, and a path
-the transplant added, absent from the pre-state, is deleted in the same
-forward commit. The corrective pass is the PDR-005 default: correct forward
-on the manifest, never reset the branch. Step 7 has a specific recovery: if
-the guard locks the session out, restore the policy file with a tool the
+the pre-state tag and the pinned source. The rollback starts from a clean
+tree, as the transplant does (precondition 4), so no uncommitted edit is in
+its way. Each restore is a forward write that brings back content, type and
+mode together, by the invariant in `never-use-git-to-remove-work` (its
+standing grant for proven paths): the content from `git show <pre-state
+tag>:<path>` for a host file, or from `git -C <source-checkout> show
+<pin>:<path>` for a drop, written to a fresh `mktemp` sibling and renamed
+over the path, never redirected into it; a symlink recreated with `ln -sfn`
+to the target that the same revision records; the mode set with `chmod 755`
+or `chmod 644` to match the `100755` or `100644` that `git ls-tree` records
+at the same revision as the content (`git ls-tree <pre-state tag> --
+<path>`, or `git -C <source-checkout> ls-tree <pin> -- <path>` for a drop),
+never at `HEAD`, which holds the transplant's state. A path whose type
+differs between the current tree and the restore source (a file, a symlink,
+a directory, or a symlink that resolves to one) is surfaced with its proof,
+as the invariant requires, never written through: a rename or `ln -sfn`
+onto a directory, or through a symlink to one, lands inside it. A path the
+transplant added, absent from the pre-state, is deleted in the same forward
+commit. The corrective pass is the PDR-005 default: correct forward on the
+manifest, never reset the branch. Step 7 has a specific recovery: if the
+guard locks the session out, restore the policy file with a tool the
 matchers do not name, then re-run the sequence in order. Records written in
 step 12 are never rolled back.
 
