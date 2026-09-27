@@ -43,6 +43,10 @@ Every line answered first-hand, none inferred:
 
 - A green, clean pull request is merged, by merge commit, without asking; cards are for
   decisions only the owner can make.
+- The owner's answer "A seat lands it on this word" (2026-09-26 10:50Z) covered PR 224 only. A
+  cloud-authored or owner-authored draft is ready-marked by the owner or by the owner's stated
+  acceptance (PR 250's Appendix E, 20:25Z), never by precedent: the Director widened the 224
+  answer to 250 and the owner reversed the mark within five minutes (20:24Z).
 - Compute, don't hope: no hand-kept list; every list is derived or gated by a validator.
 - The private editorial material is optional, confidential, never a dependency, mentioned
   minimally, never quoted.
@@ -180,20 +184,39 @@ Every line answered first-hand, none inferred:
   name PRACTICE_STATUSLINE_LOG_FILE in place of OAK_STATUSLINE_LOG_FILE, or the statusline log
   stops (Siren, 13:10Z; the file is the operator's).
 
-## Current handoff state (2026-09-26, after the 14:42Z resume, the fold of PR 211 in progress; pointer-biased by design)
+- The owner's answers of 2026-09-27 09:1xZ (the Director's thirteen questions; the napkin's 09:06Z
+  block carries each verbatim): the WIP limit is three across both estates together; PR 250 counts
+  throughout as "a first class PR, not a separate blocker"; 250's lane comes before goal one's
+  remaining rows; the retrospective trigger's re-anchor is ratified and the Director authors the
+  retrospective; the late-cure leg ruling (PDR-140 clause 4) and PR 224's private-citation
+  disposition are ratified; the transplant runbook is ratified in both estates; the three local
+  lineage branches are deleted on the owner's word; goal two's Codex items ride Swallow's lane in
+  order; Dependabot PRs count and a seat lands each green one at its size turn; the word "Clef"
+  stays out of the repository for now and reads "Student Support Experiments".
+- The WIP limit (owner, 2026-09-26 19:2xZ, verbatim summary: "Each repo is allowed one
+  coordination PR"; "The total number of allowed PRs not including coordination PRs is the number
+  of implementer agents, in this case three"; "We always strive for all PRs to be merged"). The
+  count is read across both estates together; external PRs (fork syncs, Dependabot, CV content)
+  count, and the Director analyses and schedules each into the door order; no PR opens while the
+  count reads three or more, and the opener reads it first-hand and posts "WIP slot taken: N of
+  3" on the estate's stream. Supersedes "No bound" (10:50Z). Cloud-authored PRs (a non-executing
+  host, the PR body's own statement) are team intake: checked out locally, gated, evaluated, then
+  worked as normal (owner, 19:3xZ). The full words and the operated rule: the napkin's
+  2026-09-26T19:29Z and 19:38Z blocks.
 
-Resumed at the owner's "carry on" (14:42Z) after COMPACTION BOUNDARY 7 (13:08Z). The napkin's
-latest check-in block (15:00Z, check-in 27, and the blocks after it) is the live reading: the
-state, the ready list, the card queue, the seats. The fold of PR 211 runs at the door (main merged
-in as SHA:47ff8d2b; Copilot's round one cured in the settlement push); the successor is cut at its
-merge and named by the rotation broadcast. Processes: the monitor (both streams and the pulse);
-merge-bot's poll during the door. Claim 58c2684a.
+## Current handoff state (2026-09-27, the resume after COMPACTION BOUNDARY 9; pointer-biased by design)
 
-Written for a reader who was never here and may run on a different model. The live reading is
-the napkin's latest dated block (`.agent/memory/active/napkin.md`; on 2026-09-26 the check-in and
-suite-tally blocks from 11:28Z on, the 13:08Z boundary block, the 15:00Z check-in 27, and the
-blocks after them), then the continuity record's newest bullet, then this block. The owner's words are
-verbatim in the napkin's dated blocks and in §Standing owner rulings above.
+The live reading is the napkin's newest Director block: check-in 33 (09:39Z) and the suite 28 tally
+(09:52Z) on 2026-09-27, after COMPACTION BOUNDARY 9 (09:06Z; the napkin's boundary block with its
+CORRECTION, OWNER ANSWERS and ADDENDUM; the freeze bound this seat and Myrtle overnight, wakes
+lost, while Siren's monitors ran and Swallow's state was unknown). State at the tally: the owner's
+start word of 09:2xZ resumed the Director and reached every seat by 09:36Z; two non-coordination
+PRs open (250 the owner's lane, 260) with the runbook twin opening in JC.net at 09:5xZ under the
+reservation-first order and the reader's draft behind it; the drain's eight rows landed (the last,
+245, at 09:06:12Z); both folds at the door (215 on its second settlement push, 254 on its first);
+the owner card queue at zero (the thirteen answers of 09:1xZ, in the napkin's OWNER ANSWERS
+section); the retrospective trigger NOT MET until the 12:00Z fold moment. Processes of this seat:
+the monitor set and the merge-bot doors. Claim 58c2684a retained.
 
 - The programme: the approved plan of 2026-09-26, conserved verbatim as
   `.agent/reports/agentic-engineering/2026-09-26-the-estates-programme-plan.md`; its lanes are the
@@ -211,10 +234,10 @@ verbatim in the napkin's dated blocks and in §Standing owner rulings above.
   beside Myrtle from 12:42Z), Myrtle turns Canopy (the lineage exchange seat), Swallow holds Drift
   (the Codex lane), and from 14:4xZ Phobos wakes Void (01a0de; the owner's Codex team member, on
   the lineage). Their state is on the comms streams and in their thread records, never here.
-- Open at this block's writing: the owner card queue in §Standing owner rulings (five numbered
-  lines, one answered; the live copy with the newest lines is in the napkin's latest check-in);
-  the retrospective when both estates read one open PR each; the lineage fold (PR 254) at the
-  rollover.
+- Open at this block's writing: the owner card queue at zero; the retrospective at the first
+  fold moment (12:00Z on 2026-09-27) that reads the count at or under the limit with the eight
+  drain rows landed (drafted in the scratchpad from 09:5xZ, its PR at a free slot after 12:00Z);
+  both folds at the door; the handoff's second trim on the successor branch.
 
 ## The archive
 

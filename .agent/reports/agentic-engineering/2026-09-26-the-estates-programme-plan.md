@@ -172,7 +172,8 @@ session (the harness's question tool, about 10:50Z on 2026-09-26); the selected 
 verbatim in each item; the napkin's check-in 24 tally (the 11:0xZ block) records the four answers,
 and its check-in 25 block (about 11:37Z) records this report's path.
 
-1. **No intake bound** (selected: "No bound"). The seats keep cutting one PR per row; the door's
+1. **No intake bound** (selected: "No bound"; SUPERSEDED at 19:2xZ by the WIP limit, see the
+   amendment at the end). The seats keep cutting one PR per row; the door's
    pace and the count in every check-in are the only brakes.
 2. **The coordination drafts count toward zero and fold twice a day** (selected: "Fold them twice
    a day"): at the UTC rollover and at midday, each estate's coordination PR folds and a successor
@@ -362,3 +363,69 @@ P1 to P10 read against their falsifiers; recorded under the lineage's
   off the code-scanning app; the Director does not take the door under any backlog (PDR-117).
 - Reads of Practice text happen at `origin/engraph` and `origin/main`, never at a checkout on a
   coordination branch (today's PDR-142 misread).
+
+## Amendment 2026-09-26 19:2xZ: the WIP limit (the owner's word)
+
+The owner's word to the Director at about 19:2xZ, verbatim: "there are still 9 open Engraph OCE
+PRs, let's get that to zero, and let's try a WIP limit, at any time Engraph OCE and JC.net is
+allowed one coordination branch PR each, three other open PRs each between them. The goal remains
+zero, but obviously a static zero means no useful work is happening so that is undersireable, I am
+talking about aiming for zero while useful value is still created and merged. Sometimes an
+external process will create a PR, such as synching between the Oak and Engraph OCE forks, or
+adding some content to the CV -- those additional PRs absolutely do count towards the WIP limit,
+and must automatically be taken on by the Director, analysed, and made part of the marge schedule
+to be handled by this team. To summarise - Each repo is allowed one coordination PR - The total
+number of allowed PRs not including coordination PRs is the number of implementer agents, in this
+case three - We always strive for all PRs to be merged".
+
+**What it changes here.** §Decided item 1 ("No intake bound") is superseded. The door (Lane 0),
+the size order, the ready list and the seats' lanes stand. The intake is now bounded by the rule
+below, and every external PR becomes the Director's to analyse and schedule.
+
+**The rule as operated (the Director's reading; the wording lands in the Practice by a seat's
+PR).**
+
+1. The count: open PRs on both estates together, excluding one coordination PR per repo. The
+limit: three, the number of implementer seats (Siren, Myrtle, Swallow). At 19:24Z the count read
+nine, all lineage. 2. No PR opens on either estate while the count reads three or more.
+Immediately before opening, the opener reads the count first-hand from gh on both estates and
+posts "WIP slot taken: N of 3" on the estate's stream, the door slot's own serialiser. A branch
+pushes with its PR, never before (goal three: every remote branch is in a PR or deleted). 3.
+External PRs (fork syncs, Dependabot, CV content, the owner's own drafts) count. The Director
+analyses each at the check-in that first sees it (the snapshot's OPENED section) or at once on the
+monitor, and routes it into the door order to a named seat. 4. The seats finish before starting:
+while the count is at the limit, a seat's work is its door turn, the cures that free the count
+(threads, reconciles, regenerations), and the next slice prepared locally. 5. The wording:
+pr-lifecycle §Phase 7 beside the readiness slot, or a rule file by new-rule-vs-pdr-clause; one
+lineage PR at the first free slot, JC.net's twin by the exchange, same bytes.
+
+**The drain schedule at 19:2xZ** (assumption: no external PR and no seat opens outside the rule):
+the door order by changed files among ready PRs, 257 (Myrtle, at the slot), 259, 249, 253, 246,
+256; then 217 (its thread cured at 19:27Z, legs requested), 245 (its scripted reconcile as its one
+sync), 250 (the owner's draft: one regeneration commit for the user-value skill's eight missing
+adapter files, routed to Swallow, ready-marked under the PR 224 precedent). At about 23 minutes a
+landing with no gap, the count reaches three by about 21:40Z and the intake reopens one in for one
+out; the rest land by about 23:00Z; the fold of 254 at 00:00Z then reads zero to two others open.
+
+**Verification gains two numbers per check-in**: the count (both estates, coordination PRs
+excluded) and any breach, beside the landings and the opened-since count already read.
+
+**Falsifiers.** (a) A check-in reads the count above three with no external PR opened since the
+last: a seat opened without the read; the wording PR's first cure. (b) The door idles with a
+non-empty ready list: an unkept slot, not a limit problem. (c) Three seats idle for more than one
+door turn with the count at three: raise to the owner whether the limit or the door's speed is the
+binding constraint. (d) The count sits at zero for a full check-in with no slice prepared: the
+static zero the owner named as undesirable.
+
+**Reopen conditions.** The number of implementer seats changes (the limit follows it); the owner
+asks for the count per estate rather than across both.
+
+**Amendment note, 20:5xZ (suite 26).** The retrospective trigger (§The retrospective trigger)
+fired on "both estates read one open PR each", which under the WIP limit is the static zero the
+owner named as undesirable. Re-anchored: the retrospective runs at the first fold moment (12:00Z
+or 00:00Z) at which the non-coordination count across both estates reads at or under the limit and
+every row of the 19:24Z drain list other than 250 (257, 259, 249, 217, 253, 246, 256, 245) has
+landed. PR 250 is a lane under the owner's Appendix E (commit 9a7ffdbaa: four skills with evals,
+the PR draft until complete) and does not hold the trigger; it holds one of the three slots for
+the lane's duration. The arc is unchanged. Each check-in states the trigger's status under this
+condition.

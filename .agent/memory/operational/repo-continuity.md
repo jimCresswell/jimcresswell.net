@@ -21,6 +21,41 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
+- **2026-09-27T09:5xZ, the Director's resume** (Wick binds Temper, ed7b48) on the owner's start
+  word of 09:2xZ, which reached every seat by 09:36Z. Since the boundary: 245 landed at 09:06:12Z
+  (the drain's eighth row; two non-coordination PRs open, 250 the owner's lane and 260); the
+  owner's thirteen answers at 09:1xZ (the card queue at zero); the three local lineage branches
+  deleted and read back; both folds run at the resume by the DUE check (215 on its second
+  settlement push, 254 on its first, both at the door); the runbook twin opening in JC.net under
+  the reservation-first order, the reader's draft behind it; the retrospective trigger NOT MET
+  until the 12:00Z fold moment. The napkin's 09:39Z check-in and 09:52Z tally are the live
+  reading; the handoff's live block points at them.
+
+- **2026-09-27T09:06Z, the Director's COMPACTION BOUNDARY 9** (Wick binds Temper, ed7b48), at the
+  owner's word after an overnight harness pause. On the 26th from 19:1xZ: the owner's WIP limit
+  (three non-coordination PRs across both estates) and cloud-PR intake words; the lineage drained
+  from nine to three with seven landings through the seats' door and one opening by the rule (260);
+  PR 250 became the owner's lane on its Appendix E; JC.net at its coordination draft only. The folds
+  of 215 and 254 are DUE since 00:00Z and fold at the resume. The napkin's 09:06Z block is the live
+  reading; the boundary records are uncommitted by the owner's precedent and go up first on the
+  resume.
+
+- **2026-09-26T16:32Z, the Director's COMPACTION BOUNDARY 8** (Wick binds Temper, ed7b48), at the
+  owner's word. JC.net at its coordination draft only (215, DUE at the rollover); PRs 211 (the
+  fold), 216, 218 and 217 merged since 15:28Z; the lineage at twelve open with the door turning
+  (five landings since 14:42Z, five opened); the seats live and routed; the freeze binds this seat
+  until "carry on". The napkin's 16:32Z block is the live reading; the boundary records are
+  uncommitted by the owner's morning precedent and go up first on the resume.
+
+- **2026-09-26T15:28Z, the fold of PR 211 landed and the successor is cut** (the Director, Wick
+  binds Temper, ed7b48). PR 211 merged by the bot at 15:28:25Z as `SHA:26ca4dab9` (two Copilot
+  rounds cured in `SHA:dc42f15e` and `SHA:a36dc7db`; the late-cure leg's three findings disposed
+  without a push). The successor coordination branch is `coordination/2026-09-26-26ca4d`, cut from
+  that sha; the primary resides there and every continuity write from now goes there. The folded
+  branch is deleted, remote and local, read back absent. The lineage's coordination draft is PR 254;
+  both are DUE at the UTC rollover. The live reading is the napkin's 15:28Z fold block, then its
+  15:00Z check-in 27, then the Director handoff §Current handoff state.
+
 - **2026-09-26T15:08Z, the resume and the fold of PR 211** (the Director, Wick binds Temper,
   ed7b48). Resumed at the owner's "carry on" (14:42Z). The boundary records committed (SHA:81eab535)
   and main merged in (SHA:47ff8d2b: PRs 210, 212, 213 and 214); PR 211 ready at the door under the
@@ -308,7 +343,11 @@ names a live branch):
 
 ## Active Threads
 
-- JC.net's exchange seat (`threads/practice-exchange-seat.next-session.md`): Siren herds Rudder (158275) handed over at rest 2026-09-24 18:20Z under PDR-063; the next session lands queue item 1 (batch six, the compare rows) unless the Director asks for item 2 first.
+- JC.net's exchange seat (`threads/practice-exchange-seat.next-session.md`): Siren herds Rudder
+  (158275) live on 2026-09-27 under the Director's Lane 4 routing (landings first): J13 complete
+  (lineage PRs 252, 253 and 256 merged 2026-09-26), J11 landed (258) with its JC.net runbook twin
+  prepared to open when PR 260 (the WIP-limit clause, Siren's settlement then door) merges; the
+  record's latest dated block (the 09:09Z wrap of 2026-09-27) governs.
 - Closure session 2's synthesis (`threads/session-2-synthesis.next-session.md`): the cards were
   answered 2026-09-14 (the Director's handoff item 78); the graduation drain is curator work.
 
