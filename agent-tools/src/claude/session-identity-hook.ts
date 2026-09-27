@@ -200,8 +200,8 @@ function identityContext(input: {
   readonly envFileWritePlanned: boolean;
 }): string {
   const shellToolsLine = input.envFileWritePlanned
-    ? 'PRACTICE_AGENT_SESSION_ID_CLAUDE is appended to $CLAUDE_ENV_FILE; shells created after this write see it, and every Bash tool shell also carries CLAUDE_CODE_SESSION_ID, so shell tools (e.g. `pnpm agent-tools:agent-identity --format display`) resolve the same identity without --seed either way.'
-    : 'No $CLAUDE_ENV_FILE was provided, so nothing was written; shell tools (e.g. `pnpm agent-tools:agent-identity --format display`) resolve the same identity from CLAUDE_CODE_SESSION_ID, which the harness exports into every Bash tool shell.';
+    ? 'PRACTICE_AGENT_SESSION_ID_CLAUDE is appended to $CLAUDE_ENV_FILE; shells created after this write see it, and every Bash tool shell also carries CLAUDE_CODE_SESSION_ID, so shell tools (e.g. `pnpm agent-tools:agent-identity --platform claude-code --format display`) resolve the same identity without --seed either way.'
+    : 'No $CLAUDE_ENV_FILE was provided, so nothing was written; shell tools (e.g. `pnpm agent-tools:agent-identity --platform claude-code --format display`) resolve the same identity from CLAUDE_CODE_SESSION_ID, which the harness exports into every Bash tool shell.';
   return [
     '[Practice agent identity]',
     `Session identity (PDR-027): ${input.displayName}.`,
