@@ -134,17 +134,37 @@ async function evaluateContentRoute(context: PolicyRouteContext): Promise<Policy
       ...change,
       filePath: placePath(change.filePath, cwd),
       priorFilePath: placePath(change.priorFilePath, cwd),
+      movedFromPath: placePath(change.movedFromPath, cwd),
     };
     const { newContent, priorContent } = resolveContentPair(placed, context.readPriorContent);
     return { newContent, priorContent, filePath: placed.filePath };
   });
   const { patterns, blocks } = await resolveContentSections(context);
+  // The disk is asked which repository a file is in only when a block can use the answer.
+  const placedChanges = blocks.some((group) => group.excludes_other_repositories === true)
+    ? changes.map((change) => ({
+        ...change,
+        inOtherRepository: inOtherRepository(change, context),
+      }))
+    : changes;
   // The repo root anchors the blocks' root-anchored scopes; a path still relative here had
   // no working directory to be placed by and claims no anchored exemption (fail closed).
-  return evaluateContentChanges(changes, patterns, blocks, {
+  return evaluateContentChanges(placedChanges, patterns, blocks, {
     repoRoot: REPO_ROOT,
     relativeIsRepoRelative: false,
   });
+}
+
+/**
+ * Whether a change's file is in another repository. Only a placed path has a repository to
+ * ask about; an unplaced one keeps every block.
+ */
+function inOtherRepository(
+  change: { readonly filePath?: string },
+  context: PolicyRouteContext,
+): boolean {
+  const { filePath } = change;
+  return filePath !== undefined && isAbsolute(filePath) && context.isInOtherRepository(filePath);
 }
 
 /** The payload's working directory, when the harness supplies one. */
@@ -153,20 +173,25 @@ function payloadCwd(hookInput: unknown): string | undefined {
 }
 
 /**
- * A payload path placed in the file system: an absolute path as given; a relative one (the
- * `apply_patch` program's form) resolved against the payload's working directory when that
- * directory is absolute; otherwise left as it is, for the scoping to read as unplaced. A
- * relative working directory has no place of its own (it would be completed from the hook
- * process's directory, a global read), so it places nothing: fail closed.
+ * A payload path placed in the file system: an absolute path with its `.` and `..` segments
+ * resolved, so the scoping reads it where it lands, never inside a directory it climbs back
+ * out of; a relative one (the `apply_patch` program's form) resolved against the payload's
+ * working directory when that directory is absolute; otherwise left as it is, for the scoping
+ * to read as unplaced. A relative working directory has no place of its own (it would be
+ * completed from the hook process's directory, a global read), so it places nothing: fail
+ * closed.
  */
 export function placePath(
   filePath: string | undefined,
   cwd: string | undefined,
 ): string | undefined {
-  if (filePath === undefined || cwd === undefined || !isAbsolute(cwd) || isAbsolute(filePath)) {
-    return filePath;
+  if (filePath === undefined) {
+    return undefined;
   }
-  return resolve(cwd, filePath);
+  if (isAbsolute(filePath)) {
+    return resolve(filePath);
+  }
+  return cwd === undefined || !isAbsolute(cwd) ? filePath : resolve(cwd, filePath);
 }
 
 /** The Bash blocked-pattern route, covering all four recorded command containers. */

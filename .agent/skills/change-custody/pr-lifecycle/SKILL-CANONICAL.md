@@ -85,7 +85,11 @@ into the permanent record):
   LANDING** (owner, 2026-09-03, verbatim: "a secondary but important goal is
   always to work to reduce the total number of PRs to zero"; sharpened
   2026-09-06: "this never prevents PRs from being created, but it does mean
-  that landing work that is in a non-draft PR is a priority"). A non-draft
+  that landing work that is in a non-draft PR is a priority"; the first
+  clause of the 2026-09-06 words is superseded by the work-in-progress
+  limit, owner 2026-09-26: no PR other than a repository's coordination PR
+  opens while the count is at the limit, by Phase 7's work-in-progress
+  bullet). A non-draft
   PR is its seat's landing priority over starting the next unit; drafts are
   inventory a seat may hold; the count is reported at every wrap and acted
   on at every boundary — merged when green and clean, closed with its
@@ -1514,6 +1518,50 @@ allow_squash_merge, allow_rebase_merge}'`; `allow_merge_commit` has
   a push and each push is a review round. Worked instance (2026-09-06): one
   PR was knocked BEHIND twice in one evening by other seats' merges, and its
   round five came from a sync push, not a cure.
+- **The work-in-progress limit** (owner, 2026-09-26 and 2026-09-27; the
+  operating steps under it are the Director's reading and this rule's review
+  cures, reviewed at acceptance). The owner's words: "Each repo is allowed
+  one coordination PR"; "The total number of allowed PRs not including
+  coordination PRs is the number of implementer agents, in this case three",
+  counted across the team's repositories together ("Three across both");
+  external PRs "absolutely do count towards the WIP limit, and must
+  automatically be taken on by the Director, analysed"; PRs from hosts that
+  cannot run code "need to be checked out locally, evaluated, and then
+  worked on as normal by the team"; for Dependabot, "Team lands green ones".
+  The goal is "aiming for zero while useful value is still created and
+  merged", because "a static zero means no useful work is happening". The
+  operating steps:
+  - No PR other than a repository's one coordination PR opens while the count
+    is at the limit or over it. The reservation comes first: the opener posts
+    "WIP slot reserved: <owner>/<name> <branch>" on its repository's
+    coordination stream, then reads the count first-hand from the forge for
+    every repository (`gh pr list --repo <owner>/<name> --state open --limit
+    1000` on GitHub: the target always named, and a limit above the default
+    page of thirty), leaving out each repository's coordination PR, then reads
+    every repository's stream for reservations posted before its own that
+    had not lapsed when it read the count. It opens only while the count
+    plus those earlier reservations is under the limit; otherwise it
+    withdraws its reservation on the stream and waits for the next free
+    slot. The streams' order is
+    the serialiser, as for the landing slot, and a reservation is followed at
+    once by its PR or its withdrawal. A reservation lapses when its PR opens,
+    when its seat withdraws it, or thirty minutes after it was posted, so a
+    seat that stops mid-opening holds no slot for long; a seat still gating
+    at thirty minutes posts a fresh reservation and reads the count again. A
+    coordination PR takes no reservation.
+  - A branch's first push is followed at once by its PR, never left
+    standing: a pushed branch with no PR is unfinished work outside review.
+  - The Director routes each external PR into the slot order to a named seat.
+    A green dependency bump lands at its size turn; a red one is assessed,
+    then cured, or closed with a card to the owner.
+  - A PR from a non-executing host is gated locally on its head; its own
+    list of what remains for an execution-capable host becomes its todo, its
+    content is evaluated as a peer's PR, and its ready-mark is the owner's or
+    follows the owner's stated acceptance.
+  - While the count is full, a seat prepares without a worktree or a commit
+    (reading, planning, reviewing a peer's PR), because `worktree-hygiene`
+    allows no worktree to hold work without a PR; its landing turns and any
+    cure that frees the count come first.
 - **CI runs the test-merge with CURRENT main.** A mid-round main landing
   that moves a mirrored asset (a kit file vs a tracked copy under
   `public/`, or any tracked parity copy) can red a parity test on your
