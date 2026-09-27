@@ -198,11 +198,17 @@ Every line answered first-hand, none inferred:
   of implementer agents, in this case three"; "We always strive for all PRs to be merged"). The
   count is read across both estates together; external PRs (fork syncs, Dependabot, CV content)
   count, and the Director analyses and schedules each into the door order; no PR opens while the
-  count reads three or more, and the opener reads it first-hand and posts "WIP slot taken: N of
-  3" on the estate's stream. Supersedes "No bound" (10:50Z). Cloud-authored PRs (a non-executing
-  host, the PR body's own statement) are team intake: checked out locally, gated, evaluated, then
-  worked as normal (owner, 19:3xZ). The full words and the operated rule: the napkin's
-  2026-09-26T19:29Z and 19:38Z blocks.
+  count reads three or more. The opening order as reviewed on PR 260 and operated from 2026-09-27
+  (the Director's reading): the opener posts "WIP slot reserved: <owner>/<name> <branch>" on the
+  estate's stream FIRST, then reads a bounded first-hand count across both estates (GraphQL
+  totalCount or `gh pr list --limit` above the count), then re-reads every estate's stream for
+  earlier reservations not yet open, and opens only while count plus reservations is under the
+  limit, else withdraws; the branch is pushed with its draft PR at once, never held locally; while
+  the count is full a seat prepares without a worktree or a commit. Supersedes "No bound"
+  (10:50Z). Cloud-authored PRs (a non-executing host, the PR body's own statement) are team
+  intake: checked out locally, gated, evaluated, then worked as normal (owner, 19:3xZ). The full
+  words: the napkin's 2026-09-26T19:29Z and 19:38Z blocks; the operated rule as amended: the
+  2026-09-27T09:39Z and 09:52Z blocks.
 
 ## Current handoff state (2026-09-27, the resume after COMPACTION BOUNDARY 9; pointer-biased by design)
 
@@ -217,6 +223,14 @@ reservation-first order and the reader's draft behind it; the drain's eight rows
 the owner card queue at zero (the thirteen answers of 09:1xZ, in the napkin's OWNER ANSWERS
 section); the retrospective trigger NOT MET until the 12:00Z fold moment. Processes of this seat:
 the monitor set and the merge-bot doors. Claim 58c2684a retained.
+
+Fold entry, 2026-09-27: PR 215 (coordination/2026-09-26-26ca4d) merged by the bot at 10:04:50Z as
+cb4644c4 at full condition after two settlement pushes (nine findings cured, three dispositions
+deferred to this branch's first records commit); the successor coordination/2026-09-27-cb4644 cut
+at 10:06Z from that sha, tree-preserving, DUE at 12:00Z. moved for the sites: nothing. / moved for
+the Practice: the day's records (check-ins 28 to 33, suites 25 to 28, boundaries 8 and 9, the
+owner's thirteen answers, Siren's two wraps and letters), the plan's two amendments, and main's
+landings 216, 217, 218 folded in.
 
 - The programme: the approved plan of 2026-09-26, conserved verbatim as
   `.agent/reports/agentic-engineering/2026-09-26-the-estates-programme-plan.md`; its lanes are the
