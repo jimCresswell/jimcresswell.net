@@ -12,11 +12,10 @@
  * spelling, so a path spelt in another letter case, through a firmlink or
  * through a symbolic link names the one repository it reaches.
  *
- * The walk starts where the file really is (its real path, or its nearest
- * existing directory's for a new file, so a link on the way is followed to
- * where the write lands) and climbs to the nearest `.git` entry, reading the
- * disk only through the {@link RepositoryProbe} seam. A git directory counts
- * only when it holds a `HEAD`, as git itself requires.
+ * The walk starts where the file really is (links followed to where the write
+ * lands) and climbs to the nearest `.git` entry, reading the disk only through
+ * the {@link RepositoryProbe} seam. A git directory counts only when it holds a
+ * `HEAD`, as git itself requires.
  *
  * A file reads as in another repository only when its repository is found
  * and differs from this one's. A file in no repository, a `.git` entry that
@@ -54,6 +53,9 @@ export interface RepositoryProbe {
 
 /** The most directories either climb visits; a deeper path names nothing, keeping the block. */
 const MAX_CLIMB = 256;
+
+/** The largest `.git`, `commondir` or `HEAD` file read; each is one short line in git's own. */
+const MAX_POINTER_BYTES = 64 * 1024;
 
 /** The `gitdir: <path>` line of a worktree's or submodule's `.git` file. */
 const GITDIR_LINE = /^gitdir:[ \t]*(.+?)[ \t]*$/mu;
@@ -177,10 +179,14 @@ function isMissing(error: unknown): boolean {
   );
 }
 
-/** Read a regular file; anything else (a directory, a pipe, a link) reads as unreadable. */
+/**
+ * Read a small regular file; anything else (a directory, a pipe, a link, a file larger than a
+ * git pointer or `HEAD` ever is) reads as unreadable, so no read can outlast the hook's timeout.
+ */
 function readRegularFile(filePath: string): FileReading {
   try {
-    if (!lstatSync(filePath).isFile()) {
+    const stats = lstatSync(filePath);
+    if (!stats.isFile() || stats.size > MAX_POINTER_BYTES) {
       return { kind: 'unreadable' };
     }
     return { kind: 'text', text: readFileSync(filePath, 'utf8') };
