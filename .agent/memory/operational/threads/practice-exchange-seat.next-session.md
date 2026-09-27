@@ -1244,3 +1244,128 @@ posted on the lineage stream (5fd9fb72), then the branch pushed with its PR (hea
 through merge-bot with the full pre-push gate), both legs requested. The count now reads three:
 nothing else of this seat's opens until a landing. Claim 0c6862e8 carries it; the door at its
 turn takes one sync.
+
+**22:02Z, PR 260's two rounds.** Round one on SHA:d5ac4c3a4 (21:51Z to 21:52Z): three findings,
+all accepted and cured in SHA:c1143f1a3 (the count's `gh pr list` names `--repo`; "no useful
+work", the owner's word; Codex P1: the first push is followed at once by the PR, since `gh pr
+create` needs the head on the remote); signed replies posted and threads resolved; body updated.
+Round two on SHA:c1143f1a3 (21:58Z to 22:00Z): two findings, both accepted and held for the
+door's one sync push, the settlement push: Copilot, the count carries `--state open --limit
+1000` (the default page is thirty; cross-fork-integration already requires it); Codex P1, the
+opener re-reads the stream after posting and the later line for the same slot yields. Held cure
+committed locally as SHA:16a16ffae. At the door: merge origin/engraph onto it, one push, signed
+"Fixed in" lines on threads 4112942475 and 4112946255, legs; findings on that head get signed
+lines only. 260 is next at the slot after Myrtle's 245.
+
+**23:20Z, the team stalled behind idle sessions (observation, no action taken on others' lanes).**
+The Director's heartbeat stopped at 22:21Z and its session reads idle; a liveness ping (22:40Z)
+is unanswered. Myrtle holds the slot for 245 (taken 21:45Z), which is door-ready since 21:54Z
+(CI green, zero threads, both legs clean on ea3048097), but no merge-bot process runs and its
+session reads idle with a live heartbeat; a direct question (22:5xZ) is unanswered. No
+non-heartbeat event on either stream since about 21:50Z. The slot rules free a slot only when the
+holder's heartbeat and state lines both stop, and 245 is Myrtle's without a consent, so this seat
+holds. The likely mechanism: an idle session drains queued messages only at its next turn, so a
+seat whose monitors lapsed waits for a wake that never arrives. 260 waits next with its held cure
+SHA:16a16ffae; the 00:00Z fold is the Director's.
+
+## Wrap block, 2026-09-27 09:09Z (the owner's fifth compaction word)
+
+The owner's word, about 09:05Z, verbatim: "prepare for compaction ultrathink /jc-metacognition
+/jc-free-play /jc-concept-exploration /jc-reason /jc-wrap then stop all processes". It is a
+freeze: nothing starts before "carry on". The Director paused at boundary 9 (09:08:50Z, claim
+58c2684a retained); Myrtle landed 245 and runs its drill.
+
+**The overnight, first-hand.** The Director and Myrtle went deaf from about 22:00Z to 09:05Z;
+Swallow's session read busy all night with its lineage stream silent from 21:55Z, its state
+unknown to this seat.
+Myrtle: "the background wait on 245's legs completed at about 21:5xZ and its wake did not reach
+this seat until your ping arrived with the owner's compaction word". The Director: its heartbeat
+pulse ran inside its monitor script, and the monitor's 30-minute expiry at about 22:2xZ ended it
+with no wake left to re-arm it. The Director's reading that "the harness paused every seat
+overnight" is its inference; this seat was not paused (its monitors fired and were re-armed every
+30 minutes all night). 245 landed at 09:06:38Z as SHA:a0996ac6b.
+
+**Work safety at 09:09Z.**
+
+- JC.net primary: `## coordination/2026-09-26-26ca4d...origin/coordination/2026-09-26-26ca4d`,
+  level at SHA:f9eafd27. Uncommitted of this seat: this record (the blocks from 22:02Z on).
+  The branch is DUE since 00:00Z; its fold is the Director's at the resume. The napkin carries
+  this seat's 09:1xZ block after the Director's boundary block.
+- `jcnet-wt-runbook-twin`: `docs/exchange-j11-runbook-twin...origin/main [ahead 1]`, SHA:a8979211,
+  no remote branch by the WIP rule. Claim 6e38aeab.
+- `oce-wt-wip-limit`: `docs/pr-lifecycle-wip-limit...origin/engraph [ahead 3, behind 39]`; the
+  remote holds SHA:c1143f1a3; SHA:16a16ffae (the round-two held cure) is local, for the door's
+  settlement push. Claim 0c6862e8. PR 260 is next at the free lineage slot.
+
+**The order after "carry on"** (the reason pass; the Director's ruling holds where it differs):
+
+1. Re-arm by the recipe below; read live state (slot, count, both streams, the folds).
+2. Catch-up: one native message to the Director with the stall proposals P1 to P3 below, and the
+   question of which coordination branch takes this seat's records after the folds. Wait.
+3. PR 260's door, unless 254's fold takes the lineage slot first: merge origin/engraph onto
+   SHA:16a16ffae (owner as author), one merge-bot push (the settlement push), signed "Fixed in"
+   lines on threads 4112942475 (Copilot, the `--limit`) and 4112946255 (Codex P1, the
+   serialised slot) and resolve them, both legs, findings on that head get signed lines only,
+   the sweep, the door, cleanup.
+4. The records commit on the live coordination branch, in 260's CI wait.
+5. The runbook twin opens at the free WIP slot (the Director's 09:0xZ word): "WIP slot taken" on
+   JC.net's stream after a first-hand count, then push with its PR (body in the scratchpad,
+   `twin-body.md`), Copilot requested.
+6. Then, a slot at a time: the WIP clause's JC.net twin (from 260's settled bytes), the guard
+   twin (246's fix plus its two follow-ups), the register PR, J2 and J3.
+
+**Stall proposals, for the Director at the catch-up (concept exploration, warrants and
+falsifiers in the napkin block):** P1, the slot frees when the holder's state lines are silent
+for 20 minutes and a direct ping goes unanswered for 10 more, heartbeat notwithstanding (PDR-133:
+a heartbeat reads green through an absorption failure); P2, a door-ready PR whose holder lost the
+slot may have its door (merge and release only) run by the next seat under standing consent, the
+holder's cleanup left for its wake; P3, when the silent seat is the Director and the ping window
+lapses, one out-of-band notice to the owner (a state report, never a question); P4, observation
+only: a lost task-completion wake, and cross-session messages that did not wake idle seats.
+
+**Owed, unchanged:** the lifetime paragraphs' two wording cures (JC.net first); the PDR-027
+CLI-seed wording; the host-tagged PDR entries; PDR-027's amendment date; the castr cells; the
+lessons batch; J11's later slices; the three runbook final-tip cures back to the lineage.
+
+**Claims retained:** JC.net a30304be (the seat), 6e38aeab (the twin); lineage 0c6862e8 (260).
+
+**Re-arm recipe.** Nothing survives. The scripts are in the session scratchpad; each takes an
+explicit root, never `cd`.
+
+- `watch-comms.sh <primary> <session pid>` as a Monitor per primary (pid 15907 at this boundary).
+- `ROOT=<JC.net primary> heartbeat.sh <claims> <branch> "<label>"`, with the claims
+  a30304be-4986-40f0-883b-fd518224472b and 6e38aeab-6a71-4746-ba69-baafe8cdfd89.
+- `ROOT=<lineage primary> heartbeat.sh <claims> engraph "<label>"`, with the claim
+  0c6862e8-8c37-4772-8fa8-9d9fbf058e5a.
+- `peer-liveness-poll.sh 600` from the JC.net primary.
+- `ROOT=<worktree> legs-lineage.sh <pr>`, `post-replies-lineage.sh`, `edit-body-lineage.sh`,
+  `delete-merged-lineage.sh`, all with the credential preflight, GH tokens unset.
+- The door: `merge-bot merge --pr N --expect copilot-pull-request-reviewer --expect
+  chatgpt-codex-connector --json --interval 30 --max-polls 40` from the PR's worktree.
+
+Correction to the block above: 245 merged at 09:06:12Z by gh (the Director's read); 09:06:38Z
+is Myrtle's slot-released event.
+
+**Metaloss, for this block.**
+
+- Compressed reasoning: the order after the resume, the twin's status ruling (the runbook
+  template governs) and P1 to P4 each carry their warrant above or in the napkin's 09:1xZ block.
+- Promises: to Swallow, the guard twin (order step 6); to Myrtle, the lifetime paragraphs' two
+  cures (owed); to the Director, P1 to P3 at the catch-up; on PR 260, signed "Fixed in" lines on
+  threads 4112942475 and 4112946255 after the settlement push. None dropped.
+- Attribution: "the harness paused every seat overnight" is the Director's inference, and this
+  seat was not paused; "messages do not wake idle seats" is this seat's hypothesis (P4, with its
+  probe as falsifier); Swallow's overnight state is unknown. The first draft of this block and
+  the napkin said "every other seat" went deaf, an overclaim corrected before commit.
+- Blind spots: the watcher truncates lineage bodies (full bodies read from the comms directory
+  when acted on); this seat read nothing of Swallow's lane overnight.
+- Index of homes: this block; the napkin's 09:1xZ block; the letter
+  `2026-09-27-siren-herds-rudder-the-night-watch.md`; git (SHA:a8979211 in the twin worktree,
+  SHA:16a16ffae in the WIP worktree); the scratchpad's `twin-body.md` and `wip-body.md` (PR
+  bodies, rewritable from this block if lost).
+- External bound and error signature: outside eyes caught what this seat's own reading missed
+  three times this window (the Director on the template, Myrtle's receipt on 249's convergence,
+  the review bots on 260's operability). Point outside scrutiny at this seat's divergence claims
+  and at rule text it drafts.
+- Fixed point: a third pass would only re-find Swallow's unknown overnight state and the
+  scratchpad-held PR bodies. The recursion closes here.
