@@ -7778,3 +7778,77 @@ NEXT: suite 28 at about 10:00Z on a frame from this snapshot (SOURCES: the two p
 notes verbatim, the lane status line, both trigger conditions, the card lines at zero open); the
 rotation broadcast at each fold's merge; the retrospective after both; the handoff's second trim;
 check-in 34 at about 10:20Z.
+
+## 2026-09-27T09:52Z — Director suite 28 tally; the trigger reads NOT MET until 12:00Z; a
+
+reservation is not an open PR; the twin takes the slot (the Director)
+
+Frame built after check-in 33 (09:39Z) from the 09:34Z snapshot and the 09:4xZ reads, with suite
+27's cures applied (P7 done in both estates; the two amendment notes and the thirteen answers
+verbatim in SOURCES; both trigger conditions with their status; the card lines at zero). Clock
+read 09:51:55Z. Eight returns, none UNDELIVERED; the procedure seat judged only, in both stances.
+
+| Role | Stance | Work | Frame | Redirection |
+| --- | --- | --- | --- | --- |
+| cricket-judgement-low | normal | ON-TRACK | SOUND | read engraph's push CI at a0996ac6b directly, not through 254's checks |
+| cricket-judgement-medium | normal | ON-TRACK | CONTRADICTED (goal three "clean" with two local branches outside PRs; a reservation counted as an open PR) | push the reader as a draft in its reserved slot |
+| cricket-judgement-high | normal | ON-TRACK | SOUND | draft the retrospective in the scratchpad now, no worktree, no commit |
+| cricket-procedure-xhigh | normal | ON-TRACK | SOUND | none |
+| cricket-judgement-low | adversarial | ON-TRACK | CONTRADICTED (the trigger is judged only at a fold moment, and at 00:00Z row 245 had not landed; the 260 cure-hold's forcing fact unnamed) | restate NOT MET until 12:00Z; draft locally; open at or after 12:00Z |
+| cricket-judgement-medium | adversarial | ON-TRACK | CONTRADICTED (the trigger; goal three; the reservation) | count open PRs only; the free slot to Siren's ready twin |
+| cricket-judgement-high | adversarial | ON-TRACK | NARROWED (244, a goal-two PR, in the goal-one measure; the eight waiting goal-one rows against "a fixed process with an end") | re-audit the goal-one landed list against the register |
+| cricket-procedure-xhigh | adversarial | DRIFTING (waiting-work age: the twin 14 h, 250 in draft 13 h, 260 BLOCKED 11 h) | CONTRADICTED (the review gate deferred; age omitted; slot stall) | three numbers per check-in: waiting-item age, slot-hold duration, a liveness threshold with an owner query |
+
+Tally: 7 ON-TRACK, 1 DRIFTING; frame SOUND 3, NARROWED 1, CONTRADICTED 4.
+
+ACCEPTED and done. (1) Engraph's push CI at SHA:a0996ac6b read directly by run list: CI, Code
+Quality and CodeQL all success (the seat door's green line). (2) The trigger reads NOT MET: the
+ratified condition is judged at a fold moment; at 00:00Z the eighth row had not landed (245 at
+09:06:12Z); the first fold moment that can satisfy it is 12:00Z today. The retrospective is
+drafted in the scratchpad from now (no worktree, no commit, the item 9 shape) and its PR opens at
+or after 12:00Z at a free slot behind the seats' items; Lane 1 item 7 reads so. (3) A reservation
+is not an open PR: the count line reads open PRs only with reservations named beside it. The free
+slot went to Siren's ready twin (routed natively 09:4xZ): Siren reserved by the protocol at
+09:48:14Z, found Swallow's earlier reservation and asked; Swallow withdrew at 09:48:55Z (the
+reader not yet pushed); the twin's gate ran at 09:51Z with the ratification stamps as its second
+commit (SHA:9503108d); the reader's draft opens at the first merge of the twin or 260, cycles 3
+and 4 continuing locally as the transition. The first routing (the reader's draft now, 4bd5f011)
+was amended within four minutes to the twin-first order on the medium adversarial's value point;
+one crossed post, no act lost. (4) The rule as operated, item 2, gains: a reservation is followed
+at once by the branch's push and its draft PR, or withdrawn. (5) Goal three's line reads not clean
+while two local branches hold commits outside PRs (the reader, the twin until its push), the
+transition the ruling names. (6) The forcing fact for holding 260's cure push until 254's release:
+the ruleset's strict currency makes a sync push mandatory before the merge, so a cure push now and
+a sync push later are two review rounds against PDR-132's budget; one push carrying both is the
+budget's own shape. (7) The age of each waiting item and each slot-hold duration join the
+check-in's waiting-work line from check-in 34.
+
+ACCEPTED as routing. (8) The goal-one landed list against the register (244 is Lane 3's, goal two;
+the measure line copied suite 27's list) is the audit Siren's register PR carries; the measure
+line corrects at check-in 34.
+
+REJECTED, with the warrant. (9) "The review gate deferred indefinitely": the re-anchor was
+ratified by the owner (answer 5); the trigger's date is 12:00Z today, not open-ended. (10) An
+owner query at the liveness threshold: the threshold's action is the Director's routing (cycle the
+slot or reroute) under the standing brief (the owner is contacted only with questions surviving
+the lenses); the eleven to fourteen hour ages were the overnight pause of this seat and Myrtle,
+not door stalls; from the resume the twin waited thirty minutes for a slot and has one.
+
+The Director's own defects since check-in 33, named. (a) Four "Fixed in" lines posted on 215's
+threads against the pre-cure head after a silent chain stop (a header-length check that exited the
+chain before the commit), with the threads resolved and two of them unread: withdrawn by
+correction replies on each thread, the threads unresolved, then re-posted against the pushed head
+read back from the remote (SHA:9e2ae56f) with all four read. The lesson: a signed line follows a
+remote read-back of the sha it names, never a chain's exit code; and a chain that stops on a check
+prints the check's name before the next step (compute-dont-hope). (b) Two routings to Swallow
+inside four minutes (the draft-now, then the twin-first); the second the better order; Swallow had
+not acted.
+
+STATE at 09:52Z. 254: four findings (the Codex connector's P2 on the commit wrapper design's
+scrub, verified with Git 2.43.0; its P2 on the codex-dialogues record's fold timeline; Copilot's
+two on the sync-lineage note) cured in settlement push 1 (SHA:07ec9bbed, in its gate); Swallow
+told on the stream, the designs being its implementation's specification. 215: settlement push 1
+(SHA:9e2ae56f) pushed, four threads resolved with true signed lines, Copilot re-requested, the
+door polling again. 250: Myrtle's step 0, three probes of the host eval runner (a grader passed on
+a denied Read; the workspace mechanism being pinned). 260: Siren's cure staged for the push after
+254's release.

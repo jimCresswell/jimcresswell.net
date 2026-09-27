@@ -1314,6 +1314,12 @@ overnight" is its inference; this seat was not paused (its monitors fired and we
 6. Then, a slot at a time: the WIP clause's JC.net twin (from 260's settled bytes), the guard
    twin (246's fix plus its two follow-ups), the register PR, J2 and J3.
 
+Refreshed by the Director at PR 215's review (09:5xZ on 2026-09-27; Siren's next wrap owns the
+pickup): step 5 ran at 09:48Z to 09:5xZ under the reservation-first order ratified since ("WIP
+slot reserved" posted first, then the count, then the stream re-read for earlier reservations),
+with the owner's ratification stamps on the twin as its second commit (SHA:9503108d); the
+reader's draft opens behind it.
+
 **Stall proposals, for the Director at the catch-up (concept exploration, warrants and
 falsifiers in the napkin block):** P1, the slot frees when the holder's state lines are silent
 for 20 minutes and a direct ping goes unanswered for 10 more, heartbeat notwithstanding (PDR-133:

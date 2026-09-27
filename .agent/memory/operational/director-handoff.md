@@ -204,14 +204,19 @@ Every line answered first-hand, none inferred:
   worked as normal (owner, 19:3xZ). The full words and the operated rule: the napkin's
   2026-09-26T19:29Z and 19:38Z blocks.
 
-## Current handoff state (2026-09-27, COMPACTION BOUNDARY 9 at 09:06Z; pointer-biased by design)
+## Current handoff state (2026-09-27, the resume after COMPACTION BOUNDARY 9; pointer-biased by design)
 
-COMPACTION BOUNDARY 9 at 09:06Z on 2026-09-27, at the owner's word, which arrived with the wake after
-an overnight pause of this seat and Myrtle (wakes lost; Siren's monitors ran all night; Swallow's
-state unknown); the freeze bound until the owner's start word of 09:2xZ. The napkin's 09:06Z
-block is the live reading: the state (the count three at the limit; the folds of 215 and 254 DUE
-since 00:00Z), the seats, the card queue (twelve lines), the re-arm recipe and the owed-on-resume
-order. Processes: none of this seat's. Claim 58c2684a retained.
+The live reading is the napkin's newest Director block: check-in 33 (09:39Z) and the suite 28 tally
+(09:52Z) on 2026-09-27, after COMPACTION BOUNDARY 9 (09:06Z; the napkin's boundary block with its
+CORRECTION, OWNER ANSWERS and ADDENDUM; the freeze bound this seat and Myrtle overnight, wakes
+lost, while Siren's monitors ran and Swallow's state was unknown). State at the tally: the owner's
+start word of 09:2xZ resumed the Director and reached every seat by 09:36Z; two non-coordination
+PRs open (250 the owner's lane, 260) with the runbook twin opening in JC.net at 09:5xZ under the
+reservation-first order and the reader's draft behind it; the drain's eight rows landed (the last,
+245, at 09:06:12Z); both folds at the door (215 on its second settlement push, 254 on its first);
+the owner card queue at zero (the thirteen answers of 09:1xZ, in the napkin's OWNER ANSWERS
+section); the retrospective trigger NOT MET until the 12:00Z fold moment. Processes of this seat:
+the monitor set and the merge-bot doors. Claim 58c2684a retained.
 
 - The programme: the approved plan of 2026-09-26, conserved verbatim as
   `.agent/reports/agentic-engineering/2026-09-26-the-estates-programme-plan.md`; its lanes are the
@@ -229,10 +234,10 @@ order. Processes: none of this seat's. Claim 58c2684a retained.
   beside Myrtle from 12:42Z), Myrtle turns Canopy (the lineage exchange seat), Swallow holds Drift
   (the Codex lane), and from 14:4xZ Phobos wakes Void (01a0de; the owner's Codex team member, on
   the lineage). Their state is on the comms streams and in their thread records, never here.
-- Open at this block's writing: the owner card queue in §Standing owner rulings (five numbered
-  lines, one answered; the live copy with the newest lines is in the napkin's latest check-in);
-  the retrospective when both estates read one open PR each; the lineage fold (PR 254) at the
-  rollover.
+- Open at this block's writing: the owner card queue at zero; the retrospective at the first
+  fold moment (12:00Z on 2026-09-27) that reads the count at or under the limit with the eight
+  drain rows landed (drafted in the scratchpad from 09:5xZ, its PR at a free slot after 12:00Z);
+  both folds at the door; the handoff's second trim on the successor branch.
 
 ## The archive
 

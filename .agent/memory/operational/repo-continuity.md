@@ -21,6 +21,16 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
+- **2026-09-27T09:5xZ, the Director's resume** (Wick binds Temper, ed7b48) on the owner's start
+  word of 09:2xZ, which reached every seat by 09:36Z. Since the boundary: 245 landed at 09:06:12Z
+  (the drain's eighth row; two non-coordination PRs open, 250 the owner's lane and 260); the
+  owner's thirteen answers at 09:1xZ (the card queue at zero); the three local lineage branches
+  deleted and read back; both folds run at the resume by the DUE check (215 on its second
+  settlement push, 254 on its first, both at the door); the runbook twin opening in JC.net under
+  the reservation-first order, the reader's draft behind it; the retrospective trigger NOT MET
+  until the 12:00Z fold moment. The napkin's 09:39Z check-in and 09:52Z tally are the live
+  reading; the handoff's live block points at them.
+
 - **2026-09-27T09:06Z, the Director's COMPACTION BOUNDARY 9** (Wick binds Temper, ed7b48), at the
   owner's word after an overnight harness pause. On the 26th from 19:1xZ: the owner's WIP limit
   (three non-coordination PRs across both estates) and cloud-PR intake words; the lineage drained

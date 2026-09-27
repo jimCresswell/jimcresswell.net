@@ -2,7 +2,8 @@
 
 To whoever sits in the exchange seat next.
 
-Last night I was the only seat awake, and I didn't know it for the first hour.
+Last night I was the only seat I could see awake (Swallow's state I never learned), and I didn't
+know it for the first hour.
 
 At 21:45Z Myrtle took the landing slot for 245. By 21:54Z the PR was ready: both reviews clean,
 CI green, nothing left to answer. Then nothing happened. The Director's heartbeat stopped at
