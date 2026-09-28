@@ -10,10 +10,11 @@ import { describeGitChildEnd } from './push-git.js';
  * (`update-ref --no-deref -d <ref> <expected>`) of a ref the decision
  * planned, so a ref that moved after its proof is kept, never deleted, and a
  * symbolic ref is never followed to the ref it points at: `--no-deref`
- * deletes the symbolic ref itself, even one that appears between the listing
- * and the delete (the decision refuses symbolic refs it lists). git exits 1 when the ref is already gone,
- * when it has moved and when it cannot be locked, so a failed delete is
- * classified by re-reading the exact ref, never by git's text.
+ * deletes the symbolic ref itself, even one that appears between the read
+ * and the delete (the decision refuses the symbolic refs it reads). git
+ * exits 1 when the ref is already gone, when it has moved and when it cannot
+ * be locked, so a failed delete is classified by re-reading the exact ref,
+ * never by git's text.
  */
 
 /** Delete one planned ref by compare-and-swap, and report what it left. */
@@ -54,11 +55,12 @@ function sectionPattern(branch: string): string {
  * Remove `branch.<name>` from the repository config while no local branch
  * has the name, as `git branch -d` removes it with the branch.
  * `update-ref -d` leaves it, and a later branch of the same name would
- * silently inherit the old upstream. The local branch is read again just before the removal,
- * by its exact name, so a branch made since the proof keeps its section: the
- * window is git's own. No section is not a failure. Only the repository's
- * own file is read (`--local`), the one `--remove-section` writes: a section
- * in a global or included file is not the repository's.
+ * silently inherit the old upstream. The local branch is read again just
+ * before the removal, by its exact name, so a branch made since the proof
+ * keeps its section: the window is git's own. No section is not a failure.
+ * Only the repository's own file is read (`--local`), the one
+ * `--remove-section` writes: a section in a global or included file is not
+ * the repository's.
  */
 export async function removeBranchConfig(
   retire: RetireGit,

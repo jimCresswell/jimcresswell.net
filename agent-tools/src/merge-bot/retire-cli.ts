@@ -158,8 +158,9 @@ async function bindPort(
 
 /**
  * Nothing to retire: no name exists. Any section the branch still has in
- * the repository's config goes now, whether a failed removal or a hand-run
- * delete left it, so the re-run a failed removal advises finishes it.
+ * the repository's config goes, whether a failed removal or a hand-run
+ * delete left it, so the re-run a failed removal advises finishes it; a
+ * local branch made since the proof keeps its section.
  */
 async function retireAbsent(branch: string, port: RetireGitPort): Promise<RetireOutcome> {
   const config = await port.removeBranchConfig(branch);

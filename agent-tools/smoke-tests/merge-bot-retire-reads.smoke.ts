@@ -108,6 +108,32 @@ async function keepsTheSectionOfABranchMadeMidRun(): Promise<void> {
       "the new branch's section went",
     );
     assert.ok(refAt(rig, rig.work, `refs/heads/${BRANCH}`) !== undefined, 'the new branch went');
+    assert.deepEqual(
+      [
+        refAt(rig, rig.origin, `refs/heads/${BRANCH}`),
+        refAt(rig, rig.work, `refs/remotes/origin/${BRANCH}`),
+      ],
+      [undefined, undefined],
+      'the remote or tracking name survived',
+    );
+  });
+}
+
+/**
+ * The local branch's name is a symbolic ref in a loop with another, which
+ * `for-each-ref` does not list and git cannot say is symbolic (it exits 128,
+ * not 0 or 1): the run fails rather than read the name as not symbolic and
+ * retire the other two, and the loop stays.
+ */
+async function failsOnASymbolicLoop(): Promise<void> {
+  await withRig(async (rig) => {
+    mergedAndTracked(rig);
+    const local = `refs/heads/${BRANCH}`;
+    git(rig, rig.work, 'update-ref', '-d', local);
+    git(rig, rig.work, 'symbolic-ref', local, 'refs/heads/loop');
+    git(rig, rig.work, 'symbolic-ref', 'refs/heads/loop', local);
+    await expectFailed(rig, /is a symbolic ref/u);
+    assert.equal(git(rig, rig.work, 'symbolic-ref', '--no-recurse', local), 'refs/heads/loop');
   });
 }
 
@@ -188,10 +214,11 @@ async function failsOnAnOriginWithNoUrl(): Promise<void> {
 await retiresEachTipAtItsOwnSha();
 await leavesALookAlikeSection();
 await keepsTheSectionOfABranchMadeMidRun();
+await failsOnASymbolicLoop();
 await failsOnAMissingCommitObject();
 await failsWhenOriginHeadCannotBeRefreshed();
 await failsOnAnOriginWithTwoUrls();
 await failsOnAnOriginWithNoUrl();
 process.stdout.write(
-  'merge-bot retire reads smoke: OK (two tips at their own shas, two config sections kept, four failed reads)\n',
+  'merge-bot retire reads smoke: OK (two tips at their own shas, two config sections kept, five failed reads)\n',
 );

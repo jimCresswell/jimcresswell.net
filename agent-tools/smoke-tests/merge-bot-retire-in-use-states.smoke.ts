@@ -20,7 +20,8 @@ import { fakeGithub } from './merge-bot-retire-github-double';
  * which `merge-bot-retire-in-use.smoke.ts` does not hold. Every ref of the
  * branch reads as MERGED in every case, so a state the check missed would
  * delete it (exit 0), never refuse it as unmerged. A rebase that names the
- * branch, or a symbolic tracking ref, refuses (exit 3); a worktree whose
+ * branch, or a symbolic local or tracking ref (a dangling one included),
+ * refuses (exit 3); a worktree whose
  * state cannot be read fails the run (exit 1). Each case checks every ref of
  * the branch where it was, no token minted, and no rig path in the output
  * (a report names worktrees by basename only).
