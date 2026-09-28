@@ -136,10 +136,16 @@ Every line answered first-hand, none inferred:
 
 ## Current handoff state (2026-09-28 00:1xZ, the rollover folds in progress; pointer-biased by design)
 
-**Boundary 10, 2026-09-28 08:26Z (the owner's compaction word).** The live reading is the napkin's
-2026-09-28T08:26Z block: work safety verbatim, the state at the boundary, the seats (Siren frozen,
-Myrtle resumed on PR 250 at 08:22Z, Nova retired), this window's rulings with their homes, the
-card queue, the processes stopped, the re-arm recipe and the owed-on-resume order. The block
+**Resumed 2026-09-28 11:4xZ on the owner's "carry on".** The live reading is now the napkin's
+2026-09-28T10:22Z block (the owner's review) with the two 11:3xZ blocks after it (the owner's
+answers: Codex support deprioritised, PR 250 to Myrtle, suites before folds and at frame changes,
+Siren resumed, Nova back on JC.net's todo 8; the LinkedIn workspace as material to commit); the
+08:26Z boundary block below them is the frozen state, superseded where they differ.
+
+**Boundary 10, 2026-09-28 08:26Z (the owner's compaction word).** The reading at the boundary was
+the napkin's 2026-09-28T08:26Z block: work safety verbatim, the state at the boundary, the seats
+(Siren frozen, Myrtle on PR 250 from 08:22Z, Nova retired), that window's rulings with their homes,
+the card queue, the processes stopped, the re-arm recipe and the owed-on-resume order. The block
 below it is the 00:1xZ state, kept; the rollover folds landed (227 at 00:34:06Z as 87689ea1,
 264 at 02:46:51Z as 96b273d3) and the successors are 234 and 275, DUE at 12:00Z.
 

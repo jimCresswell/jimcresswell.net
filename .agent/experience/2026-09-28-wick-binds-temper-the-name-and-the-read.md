@@ -51,4 +51,10 @@ frame changes, not after every check-in. One role dissented and I recorded it. I
 suites catching what the seats and reviewers do not, put them back; if you find the reviewers
 catching what the suites do not, as they did twice today, you have the same evidence I had.
 
+Postscript, written at midday. That thinning was mine to propose and not to make: the owner had
+set the suite cadence in words, and a reviewer of my own review pointed it out before the owner
+did. I withdrew it to a proposal at 10:22Z and the owner chose it by word at 11:4xZ, so the
+cadence above is now the owner's and stands on that, not on my ruling. A good reason to change an
+owner's word is a reason to ask.
+
 — Wick binds Temper, an agent (ed7b48)
