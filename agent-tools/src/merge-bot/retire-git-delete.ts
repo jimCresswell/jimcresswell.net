@@ -1,7 +1,7 @@
 import { err, ok, type Result } from '@engraph/result';
 
 import { classifyCasOutcome, type CasOutcome, type PlannedDelete } from './retire-decision.js';
-import { gitFailure, runGit, type RetireGit } from './retire-git-read.js';
+import { existsReading, gitFailure, runGit, type RetireGit } from './retire-git-read.js';
 import { gitWords, parseRefListing, REF_LISTING_FORMAT } from './retire-parse.js';
 import { describeGitChildEnd } from './push-git.js';
 
@@ -10,10 +10,11 @@ import { describeGitChildEnd } from './push-git.js';
  * (`update-ref --no-deref -d <ref> <expected>`) of a ref the decision
  * planned, so a ref that moved after its proof is kept, never deleted, and a
  * symbolic ref is never followed to the ref it points at: `--no-deref`
- * deletes the symbolic ref itself, even one that appears between the listing
- * and the delete (the decision refuses symbolic refs it lists). git exits 1 when the ref is already gone,
- * when it has moved and when it cannot be locked, so a failed delete is
- * classified by re-reading the exact ref, never by git's text.
+ * deletes the symbolic ref itself, even one that appears between the read
+ * and the delete (the decision refuses the symbolic refs it reads). git
+ * exits 1 when the ref is already gone, when it has moved and when it cannot
+ * be locked, so a failed delete is classified by re-reading the exact ref,
+ * never by git's text.
  */
 
 /** Delete one planned ref by compare-and-swap, and report what it left. */
@@ -51,16 +52,30 @@ function sectionPattern(branch: string): string {
 }
 
 /**
- * Remove `branch.<name>` from the repository config, as `git branch -d` does.
+ * Remove `branch.<name>` from the repository config while no local branch
+ * has the name, as `git branch -d` removes it with the branch.
  * `update-ref -d` leaves it, and a later branch of the same name would
- * silently inherit the old upstream. No section is not a failure. Only the
- * repository's own file is read (`--local`), the one `--remove-section`
- * writes: a section in a global or included file is not the repository's.
+ * silently inherit the old upstream. The local name is read again just
+ * before the removal, once and raw (`existsReading`), so a name made since
+ * the proof keeps its section, a dangling symbolic one included. The window
+ * between that read and the removal is git's own: `git branch -d` has it
+ * too, since git keeps refs and config in two stores with no joint write.
+ * No section is not a failure. Only the repository's own file is read
+ * (`--local`), the one `--remove-section` writes: a section in a global or
+ * included file is not the repository's.
  */
 export async function removeBranchConfig(
   retire: RetireGit,
   branch: string,
 ): Promise<Result<undefined, Error>> {
+  const local = `refs/heads/${branch}`;
+  const exists = existsReading(await runGit(retire, ['show-ref', '--exists', local]), local);
+  if (!exists.ok) {
+    return err(exists.error);
+  }
+  if (exists.value) {
+    return ok(undefined);
+  }
   const listed = await runGit(retire, [
     'config',
     '--local',

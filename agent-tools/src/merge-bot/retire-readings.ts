@@ -6,10 +6,11 @@ import {
   isOnBase,
   listBranchRefs,
   probeRemoteBranch,
+  readSymbolicRefs,
   readDefaultBranch,
   type RetireGit,
 } from './retire-git-read.js';
-import { caseCollisionsOf } from './retire-parse.js';
+import { caseCollisionsOf, type ListedRef } from './retire-parse.js';
 import { worktreesUsing } from './retire-worktrees.js';
 
 /**
@@ -28,10 +29,12 @@ export async function gatherReadings(
   retire: RetireGit,
   branch: string,
 ): Promise<Result<RetireReadings, Error>> {
-  const listing = await listBranchRefs(retire);
-  if (!listing.ok) {
-    return listing;
+  const own = [`refs/heads/${branch}`, `refs/remotes/origin/${branch}`] as const;
+  const names = await readLocalNames(retire, own);
+  if (!names.ok) {
+    return names;
   }
+  const { listing, symbolic } = names.value;
   const inUse = await worktreesUsing(retire, branch);
   if (!inUse.ok) {
     return inUse;
@@ -44,10 +47,9 @@ export async function gatherReadings(
   if (!remoteSha.ok) {
     return remoteSha;
   }
-  const own = [`refs/heads/${branch}`, `refs/remotes/origin/${branch}`] as const;
   const tips = await provenTips(retire, base.value.sha, {
-    local: listing.value.get(own[0])?.sha,
-    tracking: listing.value.get(own[1])?.sha,
+    local: listing.get(own[0])?.sha,
+    tracking: listing.get(own[1])?.sha,
     remote: remoteSha.value,
   });
   if (!tips.ok) {
@@ -58,9 +60,27 @@ export async function gatherReadings(
     base: base.value,
     ...tips.value,
     inUseBy: inUse.value,
-    caseCollisions: caseCollisionsOf(listing.value, branch),
-    symbolic: own.filter((ref) => listing.value.get(ref)?.symref !== undefined),
+    caseCollisions: caseCollisionsOf(listing, branch),
+    symbolic,
   });
+}
+
+interface LocalNames {
+  readonly listing: ReadonlyMap<string, ListedRef>;
+  readonly symbolic: readonly string[];
+}
+
+/** Every local and tracking ref, and which of the branch's own names are symbolic: read before anything is fetched. */
+async function readLocalNames(
+  retire: RetireGit,
+  own: readonly string[],
+): Promise<Result<LocalNames, Error>> {
+  const listing = await listBranchRefs(retire);
+  if (!listing.ok) {
+    return listing;
+  }
+  const symbolic = await readSymbolicRefs(retire, own);
+  return symbolic.ok ? ok({ listing: listing.value, symbolic: symbolic.value }) : symbolic;
 }
 
 /** The remote branch's tip, its objects fetched to test, or undefined when the remote has no such branch. */

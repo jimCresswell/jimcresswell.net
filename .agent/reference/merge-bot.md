@@ -337,6 +337,12 @@ pnpm agent-tools merge-bot retire --branch <name>
 
 - Every proof runs before any delete. No read writes a ref the command may
   delete: a remote branch's objects arrive by an objects-only fetch.
+- Every read and write of the branch's names and commits runs with
+  replacement refs and grafts off (`GIT_NO_REPLACE_OBJECTS=1`,
+  `GIT_GRAFT_FILE=/dev/null`). Either can give a commit parents it does not
+  have, and a planted one would make an unmerged tip read as merged. The two
+  git reads before those, the `--branch` check's ref-format oracle and the
+  primary-checkout lookup, read no commit.
 - The remote branch goes first, as the bot, through GraphQL `updateRefs`
   with the proven sha as `beforeOid`. That is a compare-and-swap on the
   server, so a push landing after the proof is kept. The token is minted
@@ -351,7 +357,15 @@ pnpm agent-tools merge-bot retire --branch <name>
   absent, so a failure part-way leaves a state a re-run finishes. The
   branch's config section goes once the branch has no local ref, as
   `git branch -d` removes it; a section a failed removal left goes on the
-  re-run.
+  re-run. The local name is read again just before the removal, once and
+  raw (`show-ref --exists`, so a dangling symbolic name counts), and a name
+  made since the proof keeps its section. The window between that read and
+  the removal is git's own: `git branch -d` has it too, since git keeps refs
+  and config in two stores with no joint write.
+- The outcome reports each name as proven and as this run's own writes left
+  it. A name another writer makes after the proof is not in it: "absent"
+  means the name did not exist at the proof and this run deleted nothing
+  there.
 - It refuses (exit 3, nothing deleted):
   - a default branch;
   - a tip that is not on the default;

@@ -169,7 +169,54 @@ export async function fetchRemoteObjects(
     : err(gitFailure(`fetching the remote branch ${branch}'s objects`, fetched));
 }
 
-/** Every local and `origin` tracking ref, by exact full name, with the target of any symbolic one. */
+/**
+ * Which of `refs` are symbolic refs, read raw: `symbolic-ref --quiet` exits
+ * 0 for one (live, dangling or chained), 1 for a plain or a missing ref, and
+ * anything else is a failure. The listing cannot answer this (see
+ * `parseRefListing`). The decision refuses a symbolic ref of the branch's
+ * own: `git worktree list` names the branch an alias resolves to, so the
+ * in-use check cannot see a worktree on the alias, and a symbolic ref whose
+ * target is deleted first reads back as absent. On a case-insensitive
+ * filesystem a name that folds onto a symbolic ref reads symbolic too, which
+ * over-reports into a refusal.
+ */
+export async function readSymbolicRefs(
+  retire: RetireGit,
+  refs: readonly string[],
+): Promise<Result<readonly string[], Error>> {
+  const symbolic: string[] = [];
+  for (const ref of refs) {
+    const answer = symbolicReading(await runGit(retire, ['symbolic-ref', '--quiet', ref]), ref);
+    if (!answer.ok) {
+      return answer;
+    }
+    if (answer.value) {
+      symbolic.push(ref);
+    }
+  }
+  return ok(symbolic);
+}
+
+/** A raw `symbolic-ref --quiet` read of `ref` as an answer: exit 0 is symbolic, 1 is not, and anything else is a failure. */
+export function symbolicReading(result: GitCommandResult, ref: string): Result<boolean, Error> {
+  return result.status === 0 || result.status === 1
+    ? ok(result.status === 0)
+    : err(gitFailure(`asking whether ${ref} is a symbolic ref`, result));
+}
+
+/**
+ * A raw `show-ref --exists` read of `ref` as an answer. It reads the ref
+ * without resolving it, so exit 0 is a ref of that name, plain, packed or
+ * symbolic (its target gone or not); 2 is none; and anything else, a
+ * corrupt loose ref included, is a failure.
+ */
+export function existsReading(result: GitCommandResult, ref: string): Result<boolean, Error> {
+  return result.status === 0 || result.status === 2
+    ? ok(result.status === 0)
+    : err(gitFailure(`asking whether ${ref} exists`, result));
+}
+
+/** Every local and `origin` tracking ref, by exact full name. */
 export async function listBranchRefs(
   retire: RetireGit,
 ): Promise<Result<ReadonlyMap<string, ListedRef>, Error>> {

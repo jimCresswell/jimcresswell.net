@@ -64,27 +64,21 @@ describe('parseExactRemoteRef', () => {
 });
 
 describe('parseRefListing', () => {
-  it('maps every full refname to its object name, with no symref on a plain ref', () => {
+  it('maps every full refname to its object name', () => {
     const listing = parseRefListing(
-      `refs/heads/main ${SHA_A} \nrefs/remotes/origin/main ${SHA_B} \n`,
+      `refs/heads/main ${SHA_A}\nrefs/remotes/origin/main ${SHA_B}\n`,
     );
 
-    expect(listing.get('refs/heads/main')).toEqual({ sha: SHA_A, symref: undefined });
-    expect(listing.get('refs/remotes/origin/main')).toEqual({ sha: SHA_B, symref: undefined });
+    expect(listing.get('refs/heads/main')).toEqual({ sha: SHA_A });
+    expect(listing.get('refs/remotes/origin/main')).toEqual({ sha: SHA_B });
     expect(listing.size).toBe(2);
   });
 
-  it('reads the ref a symbolic ref points at', () => {
-    const listing = parseRefListing(`refs/heads/alias ${SHA_A} refs/heads/main\n`);
-
-    expect(listing.get('refs/heads/alias')).toEqual({ sha: SHA_A, symref: 'refs/heads/main' });
-  });
-
   it('keeps names exact, so two refs that differ only in case stay two', () => {
-    const listing = parseRefListing(`refs/heads/main ${SHA_A} \nrefs/heads/Main ${SHA_B} \n`);
+    const listing = parseRefListing(`refs/heads/main ${SHA_A}\nrefs/heads/Main ${SHA_B}\n`);
 
-    expect(listing.get('refs/heads/main')).toEqual({ sha: SHA_A, symref: undefined });
-    expect(listing.get('refs/heads/Main')).toEqual({ sha: SHA_B, symref: undefined });
+    expect(listing.get('refs/heads/main')).toEqual({ sha: SHA_A });
+    expect(listing.get('refs/heads/Main')).toEqual({ sha: SHA_B });
   });
 });
 

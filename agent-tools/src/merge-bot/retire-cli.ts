@@ -120,7 +120,12 @@ async function originMismatch(
     : ok(`origin names ${named}, not ${wanted}, the repository the bot would delete in`);
 }
 
-/** The injected port, or real git in the invoking repository with prompting turned off. */
+/**
+ * The injected port, or real git in the invoking repository with prompting
+ * turned off, and with replacement refs and grafts turned off: either can
+ * give a commit parents it does not have, and `merge-base` follows them, so a
+ * planted one would make an unmerged tip read as merged.
+ */
 function portFrom(input: RetireActionInput): Result<RetireGitPort, Error> {
   if (input.gitPort !== undefined) {
     return ok(input.gitPort);
@@ -133,6 +138,8 @@ function portFrom(input: RetireActionInput): Result<RetireGitPort, Error> {
     ...(input.baseEnv ?? process.env),
     GIT_TERMINAL_PROMPT: '0',
     GCM_INTERACTIVE: 'never',
+    GIT_NO_REPLACE_OBJECTS: '1',
+    GIT_GRAFT_FILE: '/dev/null',
   };
   return ok(gitRetirePort({ git: git.value, cwd: input.repoRoot, env }));
 }
@@ -158,8 +165,9 @@ async function bindPort(
 
 /**
  * Nothing to retire: no name exists. Any section the branch still has in
- * the repository's config goes now, whether a failed removal or a hand-run
- * delete left it, so the re-run a failed removal advises finishes it.
+ * the repository's config goes, whether a failed removal or a hand-run
+ * delete left it, so the re-run a failed removal advises finishes it; a
+ * local branch made since the proof keeps its section.
  */
 async function retireAbsent(branch: string, port: RetireGitPort): Promise<RetireOutcome> {
   const config = await port.removeBranchConfig(branch);
