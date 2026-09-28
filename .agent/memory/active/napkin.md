@@ -2966,3 +2966,35 @@ NEXT: 235's door, the reader row PR, 264's door with the fixed reader (Siren, th
 264's door); the lineage successor, its fold entry and rotation line; check-in 54 at about
 02:00Z; the next suite (46) after 264 lands, on the folds' outcome; Nova's return or the owner's
 word.
+
+## 2026-09-28T02:01Z — Director check-in 54: the count 3; 235 landed; 274 (the Codex reader cure) at round one; 264 waits on it
+
+THE FOUR NUMBERS (`checkin-54-raw.md`, 02:00Z): open non-coordination PRs 3 of 3 (lineage 250,
+the owner's draft, on THE READY LIST; lineage 273, the non-blocking profile read, BEHIND, syncing
+after 264; lineage 274, "fix(pr-watch): the connector's own edit of its summary is its report",
+13 files, Siren's, opened 01:4xZ, at round one with two threads and a red CodeQL check, her cures
+local); landings since check-in 53: 235 (01:27:17Z, ccc26615b, JC.net: the profile git runner's
+flag, the push refusal, the register's J3 and J7 landings); heads with CI in flight: 274;
+slot-holder age: the lineage slot reserved by 274 since 01:28:51Z. Remote branches outside a PR:
+none in either estate. Local branches: the lineage's fix/codex-edited-summary-reader (274's),
+fix/operator-profile-read-nonblocking (273's), fix/profile-git-no-links (235's twin in the
+making), siren/250-settlement, codex/user-value-across-levels and docs/fold-sweep-and-chmod-bits
+(Nova's, both estates). Host load 15.21 (Siren's gates and CI). The JC.net primary on
+coordination/2026-09-28-87689e (draft PR 234): check-in 53 and two seat records pushed at 02:0xZ
+(04c23458); this block local. The lineage primary on coordination/2026-09-27-d6c9e5 at
+1f97bfc2f, clean.
+
+264 (the lineage fold): CLEAN at 1f97bfc2f, Copilot's tip review "approval recommended, no
+findings" at 01:12:09Z, no open thread; held only on the merge-bot's Codex leg until 274 lands
+and its reader accepts Codex's edited summary comment; then 264's door runs with the fixed reader
+from Siren's worktree, the successor is cut and the rotation line follows.
+
+THE PULSE: restored at 01:1xZ; heartbeats at 01:59:23Z on both streams and both registries.
+
+NOVA: no line since 16:05:37Z on 2026-09-27 (ten hours). The owner: no word to the Director
+since the 12:0xZ start word of 2026-09-27. The card and the ready list stand as in check-in 53.
+
+NEXT: 274's cures, legs and door (Siren); 264's door with the fixed reader, the lineage
+successor, its fold entry and rotation line (the Director); 273's sync and door, 235's lineage
+twin, the sync-push-during-merge cure (Siren); check-in 55 at about 02:45Z; the next suite (46)
+after 264 lands; Nova's return or the owner's word.
