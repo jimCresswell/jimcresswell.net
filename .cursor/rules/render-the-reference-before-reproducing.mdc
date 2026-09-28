@@ -1,6 +1,6 @@
 ---
-description: Any work whose acceptance is "matches a reference" opens by rendering the reference and capturing it at the visual-regression harness viewport (ADR-022); every fidelity claim cites the captured reference, and comparison runs from the first buildable slice, never only at the end.
-globs: jcdotnet/app/**/*.{ts,tsx,css,html},jcdotnet/components/**/*.{ts,tsx,css,html}
+description: Any work whose acceptance is "matches a reference" opens by rendering the reference and capturing it at the visual-regression harness viewport (ADR-016); every fidelity claim cites the captured reference, and comparison runs from the first buildable slice, never only at the end.
+globs: jcdotnet/app/**/*.{ts,tsx,css},jcdotnet/components/**/*.{ts,tsx,css},jcdotnet/lib/**/*.tsx
 alwaysApply: false
 ---
 

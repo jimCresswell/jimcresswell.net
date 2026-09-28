@@ -83,11 +83,11 @@ edit it by hand.
 | `.agent/rules/never-use-git-to-remove-work.md` | core | — |
 | `.agent/rules/new-rule-vs-pdr-clause.md` | core | — |
 | `.agent/rules/no-conditional-tests.md` | situational | `surface:test-authoring` |
-| `.agent/rules/no-global-state-in-tests.md` | situational | `surface:**/*.test.*,jcdotnet/e2e/**/*,agent-tools/e2e-tests/**/*,**/smoke-tests/**/*,**/test-helpers/**/*,**/*setup.ts,**/tests/**/*,**/*fixture*.ts` |
+| `.agent/rules/no-global-state-in-tests.md` | situational | `surface:test-authoring — tests, smokes, test helpers, fixtures and setup files` |
 | `.agent/rules/no-hedging-vocabulary.md` | core | — |
 | `.agent/rules/no-moving-targets-in-permanent-docs.md` | core | — |
 | `.agent/rules/no-parallel-long-lived-branches.md` | core | — |
-| `.agent/rules/no-skipped-tests.md` | situational | `surface:**/*.test.*,jcdotnet/e2e/**/*,agent-tools/e2e-tests/**/*,**/vitest*.config*.ts,jcdotnet/playwright.config.ts` |
+| `.agent/rules/no-skipped-tests.md` | situational | `surface:test-authoring — tests, e2e specs and the Vitest and Playwright configs` |
 | `.agent/rules/no-speed-pressure.md` | core | — |
 | `.agent/rules/no-tombstones-for-removed-ideas.md` | core | — |
 | `.agent/rules/no-type-shortcuts.md` | situational | `surface:**/*.ts,**/*.tsx` |
@@ -128,7 +128,7 @@ edit it by hand.
 | `.agent/rules/skill-naming-and-description-quality.md` | situational | `ceremony:skill-authoring — Creating/renaming/editing any skill or its description; vendoring gate` |
 | `.agent/rules/source-is-typescript-esm-only.md` | situational | `surface:source-authoring` |
 | `.agent/rules/stage-by-explicit-pathspec.md` | situational | `ceremony:commit` |
-| `.agent/rules/strict-validation-at-boundary.md` | situational | `surface:**/*.ts,**/*.tsx,jcdotnet/content/**/*` |
+| `.agent/rules/strict-validation-at-boundary.md` | situational | `surface:boundary-data — TypeScript and authored content where external data enters` |
 | `.agent/rules/subagent-practice-core-protection.md` | situational | `surface:AGENTS.md,CLAUDE.md,.agent/practice-core/**/*,.agent/directives/**/*,.agent/rules/**/*` |
 | `.agent/rules/tdd-for-refactoring.md` | core | — |
 | `.agent/rules/test-immediate-fails.md` | situational | `surface:**/*.test.ts` |

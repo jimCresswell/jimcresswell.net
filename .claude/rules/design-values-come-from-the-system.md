@@ -1,7 +1,7 @@
 ---
 paths:
-  - jcdotnet/app/**/*.{ts,tsx,css,html}
-  - jcdotnet/components/**/*.{ts,tsx,css,html}
+  - jcdotnet/app/**/*.{ts,tsx,css}
+  - jcdotnet/components/**/*.{ts,tsx,css}
   - jcdotnet/lib/**/*.tsx
 ---
 

@@ -6,6 +6,7 @@ globs:
   - "**/*.css"
   - jcdotnet/components/**/*.tsx
   - jcdotnet/lib/**/*.tsx
+  - jcdotnet/app/**/*.tsx
 ---
 
 # Invoke Design System Reviewer
