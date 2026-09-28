@@ -3,7 +3,7 @@ prompt_id: session-continuation
 title: "Session Continuation"
 type: handoff
 status: active
-last_updated: 2026-09-24
+last_updated: 2026-09-28
 ---
 
 Ground first via `start-right-quick` or `start-right-thorough`.
@@ -34,6 +34,13 @@ Until that transplant closes, the earlier workstreams below are **parked**, not
 abandoned. Do not resume any of them by default.
 
 ## Parked threads (state as of 2026-08-12, reconciled)
+
+**LinkedIn update, 28 September 2026:** Jim has reopened this work and authorised a complete
+first draft plus a local repository workspace for non-sensitive material. Resume from
+[`linkedin/README.md`](../../linkedin/README.md) and the
+[current editorial prompt](editorial/linkedin-content-preparation.prompt.md). This supersedes
+the private-only working location and About-last sequence in the historical entry below.
+Sensitive material remains private; proposed copy is not approval for live changes.
 
 - **LinkedIn editorial pass** — owner-led, behind the private editorial boundary.
   The headline is owner-set and closed; **it is the only settled field**. Drafted
