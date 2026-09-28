@@ -1,6 +1,6 @@
 ---
 classification: situational
-description: Any work whose acceptance is "matches a reference" opens by rendering the reference and capturing it at the visual-regression harness viewport (ADR-022); every fidelity claim cites the captured reference, and comparison runs from the first buildable slice, never only at the end.
+description: Any work whose acceptance is "matches a reference" opens by rendering the reference and capturing it at the visual-regression harness viewport (ADR-016); every fidelity claim cites the captured reference, and comparison runs from the first buildable slice, never only at the end.
 trigger: surface:design — Beginning or reviewing work whose acceptance is likeness to a reference artefact
 globs:
   - jcdotnet/app/**/*.{ts,tsx,css}
@@ -27,7 +27,7 @@ artefact; or reviewing such work's fidelity claim.
    source — and look at it before building anything against it.
 2. Capture it at the harness viewport — the single fixed viewport the
    visual-regression harness owns (`HARNESS_VIEWPORT` in
-   `jcdotnet/visual-regression-harness/shared.ts`, ADR-022) — into the work's
+   `jcdotnet/visual-regression-harness/shared.ts`, ADR-016) — into the work's
    reference set. Playwright is the standard instrument for both capture and
    probes.
 3. Cite the captured reference in every "matches" claim. A likeness claim
@@ -51,7 +51,7 @@ last.
 ## Comparison is visual first (owner directive, 2026-08-10)
 
 Comparing a rebuild against its reference ALWAYS includes comparing
-IMAGES — capture both sides at the same canonical viewport and look at
+IMAGES — capture both sides at the same harness viewport and look at
 them — never markup, styling, or computed styles alone. The failure mode
 is recorded from the day the directive landed: a computed-style probe
 over matched selectors reported near-total equality while the rendered

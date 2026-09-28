@@ -39,10 +39,10 @@ value is written, and again at review.
    utilities it defines). Never a raw hex, px-literal scale value, ad-hoc
    font stack, or copied magic number.
 2. **Kit-internal literals are the definitions themselves** — values inside
-   the design system's own definitions (the `:root` and `.dark` custom
-   properties, the `@theme` block and the `@layer utilities` definitions in
-   `jcdotnet/app/globals.css`) are where literals live by design. This rule
-   does not reach into those definitions.
+   `jcdotnet/app/globals.css`, the site's one design-system sheet (its
+   `:root` and `.dark` custom properties, the `@theme` block, the utilities,
+   and the base and print layers), are where literals live by design. This
+   rule does not reach into that sheet.
 3. **A retained consumer literal is an owner decision, recorded** — the
    default disposition for an existing literal is replace-with-role; keeping
    one requires the owner's named word and a recorded disposition (the
@@ -64,8 +64,9 @@ compliant shape.
 
 ## Related Surfaces
 
-- `jcdotnet/app/globals.css` — the token definitions (`:root` and `.dark`
-  values and the `@theme` role mapping) every consumer surface resolves through.
+- `jcdotnet/app/globals.css` — the site's one design-system sheet: the token
+  definitions (`:root` and `.dark` values and the `@theme` role mapping)
+  consumer surfaces resolve through.
 - [`invoke-design-system-expert`](invoke-design-system-expert.md) — the
   reviewer dispatch that carries this axis.
 - [`no-moving-targets-in-permanent-docs`](no-moving-targets-in-permanent-docs.md)

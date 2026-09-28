@@ -5,6 +5,7 @@ trigger: surface:accessibility — Accessibility-touching change (rendered marku
 globs:
   - "**/*.tsx"
   - "**/*.css"
+  - jcdotnet/scripts/generate-pdf.ts
 ---
 
 # Invoke Accessibility Reviewer
