@@ -4213,3 +4213,52 @@ worktree, conserved in the private bundle; the owner can delete it in the termin
 card (J17's reading, the flow contract and Nova's lane, Myrtle's ruling-40 scope card, Nova's
 four held-out privacy items); the pre-fold suite about 23:2xZ; the rollover folds at 00:00Z;
 check-in 68 in about 45 minutes, on change.
+
+## 2026-09-28T18:2xZ — Director check-in 68, on change: the four cards answered; the held items taken one at a time; both estates at their coordination drafts only; the fold recipe proven
+
+THE FOUR NUMBERS (the snapshot at 18:19:18Z): open non-coordination PRs 0 of 3 on both estates;
+landings since check-in 67: JC.net 253 (b29ef39, 17:58:05Z, Nova's privacy routes and the
+third-party exception scoped) and 251 (be6b514, 18:08:18Z, Siren's retire symref-relist cure with
+the merge-base security fix); heads with CI in flight: none. Coordination drafts: JC.net 241
+(CLEAN, four files), lineage 283 (BEHIND, eight files; Myrtle's census a9c9d1bf8 rides it).
+Remote branches outside a PR: none in either estate at the 16:28Z read; the local
+docs/linkedin-workspace at 628e21c1 remains (Nova's permission layer refused the forced delete;
+she routed around nothing; the owner can delete it by hand).
+
+THE OWNER'S WORDS (the question tool, verbatim). At 17:5xZ on the cognitive passes: J17 "Confirm
+the reading (Recommended)" (the ratified gate node converges both estates in both directions;
+note 1 settles by citing the node; notes 4 and 8 keep their PRs); the count "Ratify the flow
+contract and Nova's lane (Recommended)" (four states and no fifth; the count in residue PRs;
+the two-fold failure signal; "owed" leaves the rule text; Nova on J6 and J8); ruling 40
+"Confirm: inbound stays in the node (Recommended)"; the LinkedIn held-outs "I need specifics",
+then "I want the specifics , here, now, one at a time", and the four items shown in the terminal
+from Nova's private custody record (nothing on any tracked surface): (a) "Change the location to
+United Kingdom, use the full author list of the paper"; (b) "Keep all eight out (Recommended)";
+(c) "Keep the sentence out (Recommended)"; (d) "Move it to the private sub-repo". Relayed to
+Nova at 18:1xZ and 18:2xZ: one forward commit on the public workspace carrying the paper's
+author list only, its own PR at her slot; the reference document copied into the private
+sub-repo by hash and the primary's untracked copy removed on the word, read back absent. The
+three census words relayed to Myrtle at 18:0xZ and posted on both streams (the trip-list word
+described, not quoted, after the send hook refused the verbatim body once).
+
+THE LANES. Myrtle: one JC.net PR from docs/exchange-flow-contract (the contract into the
+register's §Disposition vocabulary; J17's note-1 landing row citing the node; rulings 41 to 44
+verbatim; todo 6 under the contract; ruling 40's line cured), the 248 thread signed, then the
+lineage node's twin after the 00:00Z fold, then N1. Nova: the three-item privacy follow-up PR
+(the authorisation as its own section, one material list, the editor trigger) in review, then
+the author-list commit, then J6 and J8. Siren: 251 landed; J3's shellcheck slice next (a residue
+PR), then B1 to B4 one at a time, then the retire port inside L9's window. J3 is Siren's in the
+census's seat lines (Myrtle's question, answered 18:2xZ).
+
+THE FOLD RECIPE, proven on a scratch repository at 18:1xZ (primary-take-merged.sh in the
+scratchpad): the merge made and pushed from the proxy; in the primary a mixed reset to the
+merged sha, then only the merge-changed paths whose working-tree content still equals the old
+tip's are refreshed from the index by checkout-index on each named path; a foreign edit was
+kept, an unedited path refreshed, a merge-deleted path removed, an untracked file kept, the
+branch ref moved, and the successor switch then carried the foreign edit across. Recorded in the
+Director's memory beside the proxy-push recipe. The rollover fold of JC.net runs by it; the
+lineage's fold runs by the standard scripts.
+
+NEXT: check-in 69 about 19:20Z on change; the pre-fold suite about 23:2xZ; the rollover folds
+at 00:00Z (the lineage first if a synced holder is not at its legs; JC.net by the recipe); the
+seats' lanes above.
