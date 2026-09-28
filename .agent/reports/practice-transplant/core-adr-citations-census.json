@@ -8,11 +8,6 @@
     },
     {
       "file": ".agent/practice-core/CHANGELOG.md",
-      "adr": "ADR-150",
-      "count": 1
-    },
-    {
-      "file": ".agent/practice-core/CHANGELOG.md",
       "adr": "ADR-177",
       "count": 1
     },
@@ -25,31 +20,6 @@
       "file": ".agent/practice-core/CHANGELOG.md",
       "adr": "ADR-211",
       "count": 2
-    },
-    {
-      "file": ".agent/practice-core/CHANGELOG.md",
-      "adr": "ADR-216",
-      "count": 1
-    },
-    {
-      "file": ".agent/practice-core/CHANGELOG.md",
-      "adr": "ADR-221",
-      "count": 2
-    },
-    {
-      "file": ".agent/practice-core/decision-records/PDR-011-continuity-surfaces-and-surprise-pipeline.md",
-      "adr": "ADR-150",
-      "count": 7
-    },
-    {
-      "file": ".agent/practice-core/decision-records/PDR-018-planning-discipline.md",
-      "adr": "ADR-216",
-      "count": 2
-    },
-    {
-      "file": ".agent/practice-core/decision-records/PDR-038-stated-principles-require-structural-enforcement.md",
-      "adr": "ADR-200",
-      "count": 1
     },
     {
       "file": ".agent/practice-core/decision-records/PDR-051-vendor-agnostic-skills-standardisation.md",
@@ -77,21 +47,6 @@
       "count": 4
     },
     {
-      "file": ".agent/practice-core/decision-records/PDR-060-tooling-friction-is-first-class-user-feedback.md",
-      "adr": "ADR-131",
-      "count": 1
-    },
-    {
-      "file": ".agent/practice-core/decision-records/PDR-081-curator-role-and-substrate-care-lane.md",
-      "adr": "ADR-221",
-      "count": 1
-    },
-    {
-      "file": ".agent/practice-core/decision-records/PDR-099-change-rate-governor-is-a-reflection-trigger.md",
-      "adr": "ADR-131",
-      "count": 2
-    },
-    {
       "file": ".agent/practice-core/decision-records/PDR-099-change-rate-governor-is-a-reflection-trigger.md",
       "adr": "ADR-144",
       "count": 3
@@ -100,16 +55,6 @@
       "file": ".agent/practice-core/decision-records/PDR-100-decision-debt-as-a-first-class-pillar.md",
       "adr": "ADR-144",
       "count": 3
-    },
-    {
-      "file": ".agent/practice-core/decision-records/PDR-119-agent-memory-as-an-event-graph-with-renderers.md",
-      "adr": "ADR-200",
-      "count": 10
-    },
-    {
-      "file": ".agent/practice-core/decision-records/PDR-134-knowledge-strata-carriers-and-the-concept-layer.md",
-      "adr": "ADR-230",
-      "count": 1
     }
   ]
 }
