@@ -3454,3 +3454,287 @@ The owner: no word to the Director since the 12:0xZ start word of 2026-09-27. Th
 NEXT: 280's and 238's rounds and doors (Siren); check-in 63 at about 08:50Z; the pre-fold suite
 at about 11:15Z; the midday folds at 12:00Z with the recipe and its addenda (a) to (f); the
 owner's word.
+
+## 2026-09-28T08:26Z — COMPACTION BOUNDARY 10 of the Director seat (Wick binds Temper, ed7b48)
+
+The owner's word, 08:2xZ on 2026-09-28, verbatim: "prepare for compaction ultrathink
+/jc-metacognition /jc-free-play /jc-concept-exploration /jc-reason /jc-wrap then stop all
+processes". A freeze: nothing starts before the owner's "carry on". The five skills were invoked
+in the owner's order and read at their canonical files; the wrap runs non-terminally (the seat
+resumes on the word; the claim 58c2684a is held on both registries, fresh on the lineage until
+12:19:34Z; no closeout broadcast, no heartbeat-end). Every process of this seat is stopped at the
+end of this block and named below with its re-arm; the records of this boundary are written to
+disk, linted, and left UNCOMMITTED by the owner's precedent of boundaries 7 to 9: their commit by
+pathspec with a gate notice and the push is the first act after "carry on".
+
+WORK SAFETY, verbatim at 08:22Z. JC.net primary: `## coordination/2026-09-28-87689e...origin/coordination/2026-09-28-87689e`
+(level at fcc1ff90, check-in 62; draft PR 234 green on it). The lineage primary:
+`## coordination/2026-09-28-96b273...origin/coordination/2026-09-28-96b273` (level at c8b1c0c75;
+draft PR 275). Zero unpushed commits of this seat. Siren's worktrees hold her committed, unpushed
+settlement pushes for the doctrine pair (lineage 4a81861b4 and 9fa92fc68 in oce-wt-doctrine-pair2;
+JC.net 2d383990 and d7a0e352 in jcnet-wt-doctrine-pair2), frozen on the same word by her own line
+at 08:2xZ, her first act after "carry on". Nova's oce-wt-user-value read `ahead 1, behind 27` with
+nine modified files at 08:22Z; Myrtle's 08:22:02Z line says she replaced it with a fresh checkout
+of d2df9a558 with the nine files saved as a patch (her statement, not this seat's read; verify at
+the resume and confirm the patch's tracked home, which the ACK asked her to name).
+
+STATE AT THE BOUNDARY (gh at 08:22Z, first-hand). The count 3 of 3: lineage 250 (the owner's
+draft, now Myrtle's lane under the owner's own word to her, quoted in her event d9785c31; the
+ready-mark stays the owner's by ruling 6); lineage 280 (the second doctrine pair's lineage copy,
+at f92122177, BLOCKED on round two's two Codex threads, Siren's signed lines in, her settlement
+push committed unpushed); JC.net 238 (the pair's twin, CLEAN at e985a4597). Coordination drafts:
+275 (lineage) and 234 (JC.net), both DUE at the 12:00Z fold. Landings since the rollover: the
+lineage 274, 264, 273, 276, 277, 278, 279 (seven); JC.net 227, 235, 236, 237 (four). Remote
+branches outside a PR: none in either estate (the merged folded head coordination/2026-09-25-749769
+deleted at 05:3xZ; the lineage's `main` is the kept upstream mirror). No door holder; no CI of a
+non-coordination PR in flight except the pair's rounds.
+
+SEATS. Siren herds Rudder (158275): frozen on the owner's word, the pair's settlement pushes first
+on resume, then 280's and 238's doors, then her order (the L1 flow-back after its divergence read,
+the shellcheck gate on card line (c), the flagged-fixture smoke pair). Myrtle turns Canopy
+(bf4957): RESUMED at 08:22:02Z on the owner's word to her ("close your subagents. Fetch and
+analyse the comments and feedback on 250, I am raising the review limits because it has become
+complex"; "agreed, please plan the work and then carry it out"), her lane PR 250's owner item
+under the plan the owner approved; ACKed by this seat at 08:2xZ (lineage event 03438415) with
+three notes (inside 250's slot; the patch to a tracked home; the Director's freeze). Nova turns
+Penumbra (8a94ba): retired at 04:48Z, claim archived. No seat was told to stop by this seat.
+
+THIS WINDOW'S RULINGS AND THEIR HOMES (each grounded in a first-hand read named at its block):
+suite 47 (04:55Z block): the liveness broadcast; the pre-mark records pass as a dispatched
+read-only reviewer; check-ins kept at 45 minutes, the suites thinned to one pre-fold suite plus
+frame changes (a plan amendment note with the high adversarial dissent). Nova's doctrine commit
+routed and landed on both defaults (237, 279). Five review items from 279 (check-in 59): items 3
+and 4 landed with 237 and 279; item 5 deleted by this seat; items 1 and 2 are the pair 280 and
+238. The lineage's `main` kept (check-in 60). P1 settles at first green after a pure sync
+(check-in 60; its first live instance at check-in 61). The remote-branch rule homed in
+worktree-hygiene §1 and §6, reversing this seat's new-file routing on Wilma's read (check-in
+62). A found wanted branch is an arrival of the external-PR class (08:1xZ): its draft PR opens at
+once, counts, and the Director routes it; in 280 and 238 as Siren's two follow-on edits (the
+owed-counting clause removed; the limit's first step scoped to "a PR that starts new work"),
+confirmed right at 08:2xZ. Corrections: the retrospective trigger's count condition holds at or
+under the limit; falsifier (d) reads the cross-estate count.
+
+OWNER CARD QUEUE (batched, none blocking). (b) 250: now Myrtle's lane under the owner's word;
+the ready-mark stays the owner's on 250's own body (line 39, human review of the eval readings);
+Nova's superseded edits as a patch (Myrtle names the home). (c) shellcheck as a lineage
+dependency (Siren's default). (d) the bash floor. (e) the vendored scripts. (f) seats for goals
+one and two: goal one's remaining rows (L1's flow-back, the shellcheck gate, the smoke pair, then
+"then we review") sit with Siren; goal two's items beyond P1 have no seat. FYIs: the Director
+runs the folds under Lane 1; the guard re-scope; the pulse lapse of the night restored; found
+branches read as arrivals under the external-PR word (say if they should wait); the suite
+cadence thinned with the dissent recorded.
+
+THE MODES AT THIS BOUNDARY. Metacognition: two reversals this window were one class, a ruling
+made on a name instead of a read (the new-file home on a phrase grep; the worktree hold on a rule
+cited by filename), the sixth and seventh instances of read-the-primary-surface; the fluent
+arrival ("no rule carries the phrase, so a new file") was the tripwire missed; the structural
+cure is the home check by section headings before any doctrine routing, recorded in memory and
+in the letter. Free play, harvest: kept, the check-in block as a boundary block (every block
+already carries NEXT; the boundary adds only the recipe and the freeze); kept, Codex's
+unrequested run on 279's pure-synced tip posting two threads at 07:10Z, nine minutes after the
+push and before first green, as the first observation under the first-green ruling (caught by
+the threads-zero rule, not by a wait); discarded, visibly, the fold-as-boundary analogy (a fold
+cuts git state, a boundary cuts context; nothing operational followed). Concept exploration: the
+Director's state is six classes; the four numbers are a dated reading regenerated by the
+snapshot (recorded, never durable); rulings are durable and live in the blocks and in the
+doctrine they change; routing state lives on the streams and thread records and is pointed at;
+the recipe and the process ids live only in a boundary block; lessons live in memory and the
+letter until a second instance graduates them; the card is durable until answered. The check-ins
+over-carried the goal paragraph every block; from the resume the goal lines live in the boundary
+block and the handoff, and each check-in carries the four numbers, landings, rulings and NEXT
+only. Reason: leaving the records uncommitted follows the owner's precedent set with this seat
+present (boundaries 7 to 9), the disk survives a compaction, no peer pushes from the JC.net
+primary during the freeze (Siren pushes from her worktrees), and a push would spend minutes of
+gate and comms after the stop word; two-way, reversed by the resume's first commit.
+
+METALOSS PASSES. Compressed reasoning: every ruling's grounds are in its block with the surface
+named; decision-sufficient for a successor. Promises: Siren's edits answered (08:2xZ); Myrtle's
+ACK posted; the card FYI line recorded above; check-in 63 superseded by the freeze; the pre-fold
+suite and the 12:00Z folds owed on resume. Attribution inferences flagged: that the owner's
+compaction word reached Siren (her statement); Myrtle's quotation of the owner's word (her
+statement, plausible from the plan she cites); the replacement of Nova's worktree (her
+statement, unverified at 08:22Z). Blind-spot bounds: the monitors were read by title with
+selected bodies; suite 47's eight contexts are gone and survive only as the tally; the JC.net
+stream after 08:16Z was read only through arm 32's filter. Index of homes: this block; the
+continuity bullet (repo-continuity §Current State); the JC.net handoff's live block (a pointer);
+the lineage thread record's journal entry and the lineage handoff's pointer line; the letter
+under .agent/experience/; the per-user memory index. External bound: the outside eyes this
+window were Wilma's read and Copilot's finding, and both caught what this seat's own suites did
+not (the home; the contradiction), so a successor points external scrutiny at doctrine routing
+first. Fence sweep: today's tracked writes carry no fenced wording (grep at 08:2xZ, zero). A
+further pass would only re-find the two reversals; the recursion closes here.
+
+PROCESSES STOPPED AT THIS BLOCK (task id; command): the standalone pulse bi3awjdx4
+(`pulse.sh 58c2684a-5e8d-4a33-a29e-ed074df63128 coordination/2026-09-28-87689e "standalone-1"`);
+the monitor arm 32 b2z5951oo (`director-monitor.sh <claim> <branch> "arm-32"`, hourly cap); the
+drafts CI watch b0pmxjccf (`drafts-ci-watch.sh`, 29 minutes, PRs 275 and 234); the wakes
+b2evzv2s7 (08:50Z, check-in 63) and bmzybqmsb (11:05Z, the pre-fold suite). No subagent runs.
+
+RE-ARM RECIPE (verify by pgrep first; re-arm only what is absent). The pulse:
+`bash <scratchpad>/pulse.sh <claim-id> <branch> "<label>"` as its own background task (every
+240 s: a heartbeat-tagged `comms send` and a `claims heartbeat` on each estate's registry; it
+needs a claim under the id on BOTH registries, `claims open` again if one lapsed). The monitor:
+`bash <scratchpad>/director-monitor.sh <claim-id> <branch> "arm-N"` as a background task, the two
+`comms watch` loops under an hourly timeout, re-armed at each cap notification. The drafts
+watch: `bash <scratchpad>/drafts-ci-watch.sh` (29 minutes; edit its two PR numbers after a fold).
+The check-in wake: a background `until [ "$(date -u +%H%M)" -ge HHMM ]; do sleep 20; done`
+loop. The snapshot: `bash <scratchpad>/snapshot.sh 2026-09-28T00:00:00Z` (the floor is the day's
+rollover). The frame builder: the last frame's SOURCES (suite-47-frame.md lines 2 to 692) plus
+this block's rulings quoted, READING and fields rewritten, four roles per stance by the Agent
+tool, never a model override. If the scratchpad is gone, every script is rebuilt from these
+descriptions and boundary 9's (the 2026-09-27T09:06Z block); the fold scripts from the recipe
+(the napkin's 20:10Z block of 2026-09-27, addenda (a) to (f) in the suite 46 tally at 03:05Z).
+
+OWED ON RESUME, in order: (1) the clock; the process table (zero of this seat's); ListAgents;
+both streams since 08:2xZ; gh on both estates first-hand (280 and 238 landed or at their doors;
+250's head and Myrtle's push; any new PR). (2) Commit the boundary records by pathspec on both
+estates with a gate notice each and push: JC.net the napkin, repo-continuity, director-handoff
+and the letter; the lineage its thread record and handoff pointer. (3) Re-arm by the recipe;
+heartbeat the claim on both registries and read `heartbeat_at` back. (4) The folds if DUE
+(12:00Z): the recipe with the pre-mark records pass as a dispatched read-only reviewer after the
+convergence merge, figures recomputed by the Director first, the lineage fold taking the slot at
+its time unless a synced holder waits for a per-tip leg (Myrtle's 250 push may hold it). (5) The
+pre-fold suite only if the folds have not yet run. (6) Check-ins at 45 minutes, thinner as above.
+
+## 2026-09-28T10:22Z — THE OWNER'S REVIEW: intent, work, framing and direction, by the Director alone (Wick binds Temper, ed7b48)
+
+The owner's word, about 09:5xZ on 2026-09-28, verbatim: "you are the only agent back up for now.
+Please take this time to carry out a quiet, thorough review of intent, work, framing, and
+direction, use all appropriate cognitive skills" (through /jc-start-right-team). The freeze of the
+08:2xZ compaction word stands until "carry on": no process armed, nothing pushed, no broadcast; the
+review is the deliverable, and the report to the owner is its owner-facing form. One registry write
+at 10:14Z: the claim 58c2684a heartbeat on both registries, so the registries tell the truth about
+this seat.
+
+THE READS (10:00Z to 10:14Z, every one first-hand): the clock; the process table (none of this
+seat's); ListAgents (Siren and Myrtle idle; a session pr250-budget-review idle 21 h); both
+registries (Myrtle's claim cea45b59 still open after her 08:36Z closeout; Nova live at 08:23Z with
+no claim, frozen at 08:27Z); both streams since 08:10Z; gh open PRs (250, 280, 275 lineage; 238,
+234 JC.net); git on both primaries (JC.net ahead 1 by Siren's boundary commit 80ea39a9, this seat's
+boundary records uncommitted on both); the merged lists since 26 Sep classified; the register's
+landings table; PR 250's timeline and threads; 280's and 238's threads; the engraph ruleset's
+pull_request rule (required_review_thread_resolution true); Myrtle's 7cab2d602; the strategic node;
+the exchange plan's todos and rulings; the napkin's block composition by awk; the cognition skills
+at their canonical files; the metacognition directive.
+
+THE MODES. Metacognition (generative; the ask is a wide pointer): the inherited shape is the
+drain's apparatus, ratified piece by piece and never as an aggregate; measured against PDR-117's
+minimum action it fails (below); the fluent arrival "the apparatus is too heavy" was grounded in a
+count before it was written. Reason: the kind is evaluating and deciding, at system altitude; the
+problem is stated as gap, harm, mechanism, constraints and success in the report; every verdict
+carries its warrant and falsifier. Concept exploration (four movements on "what is the Director
+for, now?"): each instrument was added as a cure for a named loss and none removed when its
+pressure cleared; the cure is a smaller write, not a smaller read. Proportionality: scope kept to
+four separate things (the Director's apparatus, the doctrine pairs, the register, goal two's
+seat); instrument: four read-only reviewers on the draft, no fleet; level: the cadence and the
+seats are the owner's, the write volume and the doctrine-pair routing the Director's, flagged.
+Parallax frame, three cards: A the drain (a landing is success; blind to what the landing
+carries), B the fixed process with an end (rows, items, branches), C the Practice as a product
+being extracted (every doctrine byte authored in two estates is a byte to extract; "any new
+ritual" excluded). The seats operated in A since 26 Sep; the owner's words are B then C. Free
+play, bounded, harvest: KEPT, the owner is the fastest door in the estate (thirteen PRs in fifteen
+minutes on 26 Sep; 250 readied and synced by hand at 08:55Z today), so the ready list belongs in
+the first lines of every owner-facing message; KEPT, the register's staleness and the napkin's
+bulk share one generator, records written by hand after the event instead of derived from it;
+KEPT, "back up for now" reads as a deliberate one-seat restart, so the report ends with a seat
+allocation the owner can act on; DISCARDED, visibly, "ten compactions are a liveness signal like
+the pulse" (forced; nothing operational follows) and "records as the product" (the owner's own
+stated priority, not an insight).
+
+THE FINDINGS (the report carries the tables). Landings since 26 Sep 00:00Z: JC.net 24 (5 folds,
+12 doctrine and records, 7 tooling code), the lineage 54 (4 folds, 24 doctrine and records, 26
+tooling code), product code zero on both. The WIP clause amended by four PR pairs in three days
+with a fifth (280, 238) at round two on prose. Goal one: rows J4, J9, J13, J14 settled, nine
+partial, J3 and J7 landed since the register's last landings row (PR 228, 17:06Z 27 Sep): 269, 270,
+271 on the lineage and 230, 232 on JC.net name those rows; the register is stale again. Goal two:
+ten items landed, about twelve not, no seat since Swallow's closeout, last landing 274 at 02:27Z.
+Goal three: no remote branch outside a PR; local: superseded/250-local-sync-82aae23cd (one sync
+merge commit, never pushed) and siren/250-settlement (no unique commits; worktree
+oce-wt-250-settle). The napkin since its 27 Sep rotation: 63 blocks, 3588 lines, of which the
+Director's check-ins 30 blocks 1710 lines, suite tallies 20 blocks 1149 lines, folds and
+boundaries 6 blocks 464 lines; the three implementer seats 7 blocks 265 lines. PR 250: readied
+and synced by the owner at 08:55Z, level with engraph, four unresolved threads that are the
+owner's own item (the plan skill's routing gate; the projector's relative links resolving to the
+wrong directory, a real defect), Myrtle's pickup entry recorded and nothing pushed to the branch.
+
+THE FOUR READ-ONLY REVIEWS OF THE DRAFT (dispatched 10:1xZ; the Director is the only seat, so the
+coordinator-delegates rule collapses). Cricket judgement, mid power, high effort, adversarial:
+work ON-TRACK, frame NARROWED (todo 8's portability measure omitted before any package cut);
+adopted, verdict 5 names todos 5, 7 and 8. Cricket procedure, lowest power, xhigh effort,
+adversarial: work ON-TRACK, frame NARROWED (READING under-carried "a fixed process with an end"
+and "any new ritual"); adopted in the report's framing. Wilma, nine findings: (1) "any new
+ritual" misapplied, the strategic node says nothing is delayed because a package comes later, so
+verdict 2 became the existing new-rule-vs-pdr-clause test, not a class hold; (2) "suites at frame
+changes only, as ruled" was a self-citation over the owner's verbatim 45-minute suite word
+(director-handoff.md lines 74 to 80), so the thinning is withdrawn to a proposal and the report
+says so against this seat; (3) "the seats operated in the drain's frame" overstated, both frames
+are the owner's and the pairs mostly home owner rulings; (4) the WIP clause count corrected to
+three amendments of a one-day-old clause; (5) 250 not on the ready list (already cured); (6) the
+lineage landings split transposed by this seat's own rule, now 26 doctrine and 24 code; (7) the
+PDR-117 quote dropped ", worktrees" and the minimum-action link is the PDR's hypothesis; (8)
+"content already in engraph" false for the superseded branch; (9a) 278 filed under goal two;
+(9b) rejected, the 20 September retrospective exists on the lineage under
+.agent/reports/agentic-engineering/. The assumptions expert, ten findings, all adopted: the
+doctrine column is no proxy for "outside goal one" (sixteen of thirty-eight are register rows);
+the prefix classification is the author's choice, stated as a caveat; the harm of the Director's
+volume is the napkin over its rotation threshold and the fold sizes, not compaction (the owner's
+2026-09-25 word); an owner ruling earns a pair; the derived register waits on a row field and a
+consumer; todos 5, 7 and 8 open; verdict 6 as a verdict, not a menu; the superseded branch carries
+a conflict resolution in agent-tools' README that differs from the later syncs, to be proved
+superseded before deletion; goal two's last items 274 and P1 were Siren's in the night. Every
+correction was verified at its surface before adoption; the two the report carries against this
+seat are the suite cadence and the frame overstatement.
+
+THE VERDICTS SENT (the report is the record of their wording): (1) seat goal two now, or say it
+waits; (2) doctrine edits by the existing test, an owner ruling earns a pair, false-where-read
+cured now, true-where-read to a ledger row; (3) the Director writes on change, the 45-minute read
+stays, the suite cadence is the owner's to answer; (4) the register brought current by hand, a
+row line in every register PR as the cheap first step; (5) goal one's close is the next arc, the
+charter offered, todo 8 first; (6) 250 needs a seat, Myrtle's successor settles the four threads
+in one push; (7) the superseded local branch proved before it goes; (8) the card lines (c), (d),
+(e) stand. The freeze stands until "carry on".
+
+METACOGNITION AT THE CLOSE. The review's own reviewers caught two things this seat did not: an
+owner cadence changed by a seat's ruling (recorded in per-user memory as
+owner-cadence-words-change-only-by-owner-word) and a frame that read the seats' work as outside
+the owner's frame when the owner had set both frames. Both are the read-the-primary-surface
+class: a fluent conclusion written before the governing word was re-read. The report was sent
+with both corrections in it and named against this seat.
+
+NEXT (on the owner's word only): the answers to verdicts 1, 3, 6 and 7; then "carry on": the
+boundary records and this block committed by pathspec on both estates with a gate notice each
+and pushed; the pulse and monitor re-armed by the recipe; the 12:00Z folds with the pre-mark
+records pass; check-ins in the thinner write; suites at the cadence the owner answers.
+
+## 2026-09-28T11:3xZ — The owner's answers to the review: Codex support deprioritised; PR 250 to Myrtle, "quickly and well"; the open questions asked
+
+The owner's word, about 11:2xZ on 2026-09-28, verbatim: "I am deprioritising Codex support for
+now, we have made progress, we will come back to it later. Give 250 to Myrtle, let's get it
+landed quickly and well. Are there any open questions or unknowns before we plan next steps?"
+Verdict 1 of the 10:22Z review is answered (goal two parked; its nodes stay ratified and
+unseated; card line (f) closed; per-user memory codex-citizenship-parked-2026-09-28). Verdict 6
+is answered (250 to Myrtle). The routing posted at 11:31Z as lineage event
+decbef38-0a20-4ce9-9b42-cd9bfcb54a6b (ACK-REQUESTED) and by native message to her session
+(queued; her session was idle after her 08:36Z closeout): 250's state first-hand (the owner's
+ready-mark and web sync at 08:55Z, head 92db547bd, level with engraph, four unresolved threads
+the ruleset requires resolved, her worktree three behind), her own pickup entry in 7cab2d602,
+"quickly and well" as one settlement push, the door with both legs, the branch deleted at the
+merge; 250 takes the lineage slot first, Siren frozen; the superseded local branch proved after
+the landing. The freeze otherwise stands: the 12:00Z folds and the records commit wait on "carry
+on". The open questions and unknowns were answered to the owner in the reply that follows this
+block (the suite cadence; Siren's resumption; the folds at 12:00Z; goal one's close and todo 8;
+the unknowns: Nova's seat, Myrtle's wake, the register's true owed count, the lineage handoff's
+stale live block, the pr250-budget-review session).
+
+## 2026-09-28T11:3xZ — The owner's aside: a Codex agent's new LinkedIn content workspace in the checkout is legitimate material to commit
+
+The owner's word, about 11:3xZ on 2026-09-28, verbatim: "aside: note: a Codex agent will create a
+new LinkedIn content workspace in the checkout, it is legitimate and should be treated as
+material to commit". The Director's reading: a new untracked workspace under the checkout,
+written by a Codex seat, is wanted work, never stray; no loss scan, fold sweep, worktree-hygiene
+pass or records pass classifies it as orphaned or removes it; it is committed as material, by its
+author or by the seat the owner names, staged by explicit pathspec like everything else; if it
+opens a PR that PR counts toward the WIP limit as any arrival does and the Director routes it.
+One implication for the fold: the JC.net push gate reads the working tree, so a workspace mid-
+write at a fold push can fail the gate; the fold names it in its pre-push checks and carries it
+across the successor cut untouched. Posted on both streams for every seat.
