@@ -4347,3 +4347,47 @@ its door, then J3's slice C (the gate), then B1 with the 403 retry.
 NEXT: check-in 71 about 20:50Z on change; the pre-fold suite frame built at 23:00Z from the
 snapshot and the plan node's todos verbatim, the suite about 23:2xZ; the rollover folds at
 00:00Z.
+
+## 2026-09-28T20:5xZ — Director check-in 71, on change: Copilot's leg declared unavailable on both estates; the floor ruling reversed against this seat; the owner's word on the ui-design family; the count 3 of 3
+
+THE FOUR NUMBERS (the snapshot at 20:49:33Z): open non-coordination PRs 3 of 3 (JC.net 257,
+Nova's validator, green with zero threads, its door on a posted leg; lineage 290, Siren's J3
+slice 3, round two on 62e577d35 with a posted leg; lineage 291, Myrtle's N1 first slice, the
+rules index and adapters rendered from each rule's frontmatter, 284 files, its Windows leg's cure
+in flight); landings since check-in 70: none; heads with CI in flight: 290, 291. Coordination
+drafts: JC.net 241 (CLEAN; the branch's one unpushed records commit rides this push), lineage
+283. Ready list: 257.
+
+COPILOT'S LEG, declared unavailable at 20:4xZ on both estates on a first-hand read: its last
+reviews 19:30:52Z (lineage 289) and 19:31:21Z (JC.net 256); 290 (requested 19:52Z), 257
+(requested 19:54Z, removed and re-requested 20:24Z, "work started" both times) and 291 (opened
+20:11Z) unreviewed at 20:44Z. The 2026-09-10 ruling applies until Copilot's next review lands
+anywhere: a posted expert review of the diff at the named tip stands as the leg; the door with
+Codex's leg on the lineage, with the checks and the posted leg on JC.net; no further re-requests;
+a late Copilot review is read and cured forward; the 00:00Z folds run under it if it holds; the
+first seat to see a new Copilot review lifts it. Siren posted 290's leg at once and found one
+item over the bar (the hook wrapper's floor branch fell through under bash 3.2 with no command),
+cured at 62e577d35; Myrtle stopped her cure script inside the gate to strip its re-request line
+and re-ran it; Nova's 257 door follows.
+
+REVERSED, against this seat: the 18:3xZ ruling that kept the bash floor off the four
+apps/oak-curriculum-mcp-streamable-http scripts rested on an unread premise ("the production
+start script"). Read first-hand at origin/engraph 4a302b18c on Siren's evidence: the deployed
+entry is dist/server.js (vercel.json's Express preset, package.json's main); start-server.sh runs
+the local listener dist/index.js under pnpm start; the other three are developer-run, none in
+CI. C1 guards all four with the same bytes and lands no exemption; no owner card. The sixth
+read-the-primary-surface instance this window.
+
+THE OWNER'S WORD (the question tool, 20:5xZ, verbatim; the tool cut the last sentence): on the
+lineage-specific ui-design skill family Nova's docs review found (visual-comparison,
+visual-verification, ui-visual-design and its craft reference, the conversion playbook,
+claude-design-pipeline: an absent showcase, DDR citations, an absent fidelity-review package,
+Oak tokens): "Leave it until the review, the fundamental design skills need extracting from the
+context specific design skills. Ultimately the Practice serves any Practice repo, and some of
+those in". The family stays; Nova's residue PR keeps its two routed items; the findings go as
+one row into the exchange node's review ledger with the extraction concept named; the concept is
+in the Director's memory.
+
+NEXT: 257, 290 and 291 to their doors on posted legs; C1 and the residue PR at their slots; the
+pre-fold suite frame at 23:00Z, the suite about 23:2xZ; the rollover folds at 00:00Z under the
+Copilot ruling if it holds; check-in 72 about 21:35Z, on change.
