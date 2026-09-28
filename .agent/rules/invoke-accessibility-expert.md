@@ -4,7 +4,6 @@ description: Invoke accessibility-expert when changes touch rendered HTML, ARIA 
 trigger: surface:accessibility — Accessibility-touching change (rendered markup / semantics / interaction flow / WCAG / keyboard / focus / contrast / ARIA / motion / PDF accessibility / assistive technology)
 globs:
   - "**/*.tsx"
-  - "**/*.html"
   - "**/*.css"
 ---
 
