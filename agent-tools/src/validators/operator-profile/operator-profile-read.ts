@@ -1,38 +1,34 @@
 /**
  * Operator profile — reading one document. A document is opened read-only,
- * never through a symlink (`O_NOFOLLOW`) and never blocking on a fifo
- * (`O_NONBLOCK`); the descriptor is then proven to be a regular file, and on
- * a host without `O_NOFOLLOW` proven to be the very entry at the path (device
- * and inode), before it is read whole and closed. Each step has its own
- * Result and nothing here throws. The same fused open-verify-read shape as
- * the adapter generator's `read-regular-file.ts`, with this module's
- * injectable handle and close-failure Results. The error code helper lives
- * here because every filesystem refusal names one.
+ * never through a symlink at the document itself (`O_NOFOLLOW`) and never
+ * blocking on a fifo (`O_NONBLOCK`); the descriptor is then proven to be a
+ * regular file, and on a host without `O_NOFOLLOW` proven to be the very
+ * entry at the path (device and inode), before it is read whole and closed.
+ * Each step has its own Result and nothing here throws. The same fused
+ * open-verify-read shape as the adapter generator's `read-regular-file.ts`,
+ * with this module's injectable handle and close-failure Results.
+ *
+ * A directory above the document is not guarded by the open: one swapped
+ * for a link between the listing and the read is followed. That is the
+ * stated boundary, as the rule-surface, rule-sweep and declared-adapter
+ * readers state theirs: the Practice's own git never writes a link into the
+ * profile tree (its runner checks out with `core.symlinks=false`), and any
+ * other writer able to plant a link there can write a conforming document
+ * directly. The error code helper lives here so that the filesystem module,
+ * which imports this one, shares it.
  */
 
-import { type BigIntStats, constants } from 'node:fs';
+import { type BigIntStats } from 'node:fs';
 import { type FileHandle, lstat, open } from 'node:fs/promises';
 
 import { err, ok, type Result } from '@engraph/result';
 
+import { HOST_ENFORCES_NO_FOLLOW, NO_FOLLOW_READ_FLAGS } from '../../core/no-follow-read.js';
+
+/** The code a filesystem failure carries, or `unknown` when it carries none. */
 export function errorCode(cause: unknown): string {
   return cause instanceof Error && 'code' in cause ? String(cause.code) : 'unknown';
 }
-
-/**
- * `O_NOFOLLOW` and `O_NONBLOCK` where the platform defines them. Node types
- * both as always present; Windows has neither, so there the post-open
- * identity check below is the no-follow guard (Windows has no fifo to block
- * on).
- */
-const hostFlags: Partial<Record<'O_NOFOLLOW' | 'O_NONBLOCK', number>> = {
-  O_NOFOLLOW: constants.O_NOFOLLOW,
-  O_NONBLOCK: constants.O_NONBLOCK,
-};
-
-/** The open flags a document is read with: read-only, never through a symlink, never blocking. */
-const DOCUMENT_OPEN_FLAGS: number =
-  constants.O_RDONLY | (hostFlags.O_NOFOLLOW ?? 0) | (hostFlags.O_NONBLOCK ?? 0);
 
 /** What the identity check needs of a stat: regular-file flag, device and inode. */
 export type EntryIdentity = Pick<BigIntStats, 'isFile' | 'dev' | 'ino'>;
@@ -54,7 +50,7 @@ export interface ReadProbes {
 }
 
 const REAL_PROBES: ReadProbes = {
-  noFollowAtOpen: hostFlags.O_NOFOLLOW !== undefined,
+  noFollowAtOpen: HOST_ENFORCES_NO_FOLLOW,
   entryStat: (absolute) => lstat(absolute, { bigint: true }),
 };
 
@@ -67,13 +63,17 @@ const openReal: OpenDocument = async (absolute, flags) => {
 };
 
 /**
- * Read a document without following a symlink at its path. The layout has
- * already refused every symlink entry; opening with `O_NOFOLLOW` closes the
- * window between the listing and the read, so a link planted in between
- * fails (ELOOP) instead of reading a file outside the profile root.
+ * Read a document without following a symlink at the document itself. The
+ * layout has already refused every symlink entry; opening with `O_NOFOLLOW`
+ * closes that window at the document, so a link planted there between the
+ * listing and the read fails (ELOOP) instead of reading a file outside the
+ * profile root. A fifo or other special file planted there opens at once and
+ * is refused before any read. A directory above it is not guarded (see the
+ * module note).
  *
  * @param absolute - the document's absolute path
  * @param openDocument - opens the path (the filesystem by default)
+ * @param probes - the no-follow guard and path-entry probe (the host's by default)
  * @returns the document text, or the failure as a message (never a thrown error)
  */
 export async function readDocument(
@@ -83,7 +83,7 @@ export async function readDocument(
 ): Promise<Result<string, string>> {
   let opened: DocumentHandle;
   try {
-    opened = await openDocument(absolute, DOCUMENT_OPEN_FLAGS);
+    opened = await openDocument(absolute, NO_FOLLOW_READ_FLAGS);
   } catch (cause) {
     return err(unreadable(cause));
   }
@@ -110,8 +110,9 @@ export async function readDocument(
 /**
  * The descriptor must be a regular file; on a host without `O_NOFOLLOW` the
  * path's own entry must also be a regular file that is this very file (same
- * device and inode), so a link at the leaf, or a swap between the listing and
- * the open, is refused and never read through. Null when it is ours.
+ * device and inode), so a link at the document, or a swap of the document
+ * between the listing and the open, is refused and never read through. Null
+ * when it is ours.
  */
 async function verifyRegularFile(
   absolute: string,
