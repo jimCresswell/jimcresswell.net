@@ -4262,3 +4262,58 @@ lineage's fold runs by the standard scripts.
 NEXT: check-in 69 about 19:20Z on change; the pre-fold suite about 23:2xZ; the rollover folds
 at 00:00Z (the lineage first if a synced holder is not at its legs; JC.net by the recipe); the
 seats' lanes above.
+
+## 2026-09-28T19:2xZ — Director check-in 69, on change: the count 3 of 3; the owner's push word; PDR-052 holds three seats above the line; 255's third cure push; tooling notes
+
+THE FOUR NUMBERS (the snapshot at 19:19:05Z): open non-coordination PRs 3 of 3 (JC.net 255,
+Myrtle's flow contract into the register and the node, round three cured at 222eb70b6; JC.net
+256, Nova's rule-glob re-rooting, 25 files, its settlement push in the gate carrying five homes;
+lineage 289, Siren's J3 slice A, round one signed, round two requested); landings since check-in
+68: JC.net 254 (1a164ae, 18:54:35Z, the LinkedIn authorisation as its own section, one material
+list, the editor trigger); heads with CI in flight: 289. Coordination drafts: JC.net 241 (four
+files; Siren's records commit 292d1e03 rides this push), lineage 283 (BEHIND, eight files). Ready
+list: 255 green at the read, its settlement in review.
+
+THE OWNER'S WORDS (the question tool, verbatim): on the authorisation's "push" (18:3xZ): "The
+repo content is repo content, normal rules, commit, push, merge. Writing the content to linkedin
+is a separate activity with separate authority. Putting it in the repo is fine, linkedin
+publishing requires my request". Landed by Nova in 254's late-cure push (the handoff's clause
+cured) and cited by the prompt and the README.
+
+RULINGS THIS WINDOW, one line each: the seat-written Reach paragraph beside the authorisation
+lands marked as the file's reading, not the owner's text; both papers' full author lists as
+bibliographic attribution (the owner's item (a) concept applied to the sibling citation; the
+owner may overrule before the PR); the eight dead rule globs are a live defect, one PR (256),
+and the recurrence validator (a portability leg: every canonical rule glob matches a tracked
+path) is Nova's next PR before J6, named as an outbound of J2; rule bodies are ordinary work
+under PDR-052 (it gates .agent/directives/* only); J3 runs as three lineage PRs and the register's
+residue count reads 26; the bash floor stays off the lineage's four app scripts, path-keyed with
+its lifting condition; the vendored skill scripts excluded keyed on the lock; the icon generator's
+untracked spec is a priced ledger row on the site plan; the AGENT.md Cardinal Rule path joins the
+directive batch.
+
+PDR-052 HOLDS THE DIRECTIVE LINES: three directive edits recording the owner's author-list word
+(privacy.md's Private bullet and rule 2, secops.md's checkbox, AGENT.md line 90) need a seat
+below 30% of context; Nova reads 30.8%, Siren 52.2% (session-metadata), Myrtle about 35.7%; so
+they wait for a compaction, which the owner calls (told the owner in the terminal at 18:4xZ).
+Item (a)'s record edit is committed locally on its branch, unpushed, until then. Nova's two
+PDR-052 slips (edits at 33% and 60.8% recorded as passes on 249 and 253, the diffs re-read clean
+at 10.1%; and 254's later edits without the re-read) are on her PR bodies and napkin.
+
+RECORDED AGAINST A LANE: PR 255 took three Copilot rounds (18:45Z three threads, 18:58Z one,
+19:08Z two) and three cure pushes; round two's was the one late-cure push clause 9(b) allows,
+the third is past the bound, and the round sizes grew at round three (3, 1, 2). Myrtle told at
+19:2xZ: signed lines only from here, then the door. The findings were real and the cures right;
+the breach is the loop, not the text.
+
+TOOLING NOTES (capture-practice-tool-feedback): commitlint's footer parse caught three seats today
+(a body line opening with a token and a colon, or with "#NNN", parses as a footer); candidate
+cure, a check that names the offending body line before the gates run, on the tooling ledger for
+the first lane that touches the commit-message checker. Capture a push's full log to a file,
+never a tail (Nova, 256's first push exited 1 unread). session-metadata has no entry for Nova's
+model, so her PDR-052 figure is computed by hand and nothing prints the verdict against 30%.
+
+NEXT: 255, 256 and 289 to their doors; the validator PR and Siren's J3 B and C; the compaction
+the owner calls for the directive batch; the pre-fold suite about 23:2xZ; the rollover folds at
+00:00Z (the lineage by the scripts; JC.net by the take-merged recipe); check-in 70 about 20:05Z,
+on change.
