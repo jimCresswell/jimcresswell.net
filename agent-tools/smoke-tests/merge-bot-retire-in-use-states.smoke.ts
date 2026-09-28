@@ -181,6 +181,24 @@ async function refusesASymbolicTrackingRef(): Promise<void> {
   });
 }
 
+/**
+ * The local branch's name is a DANGLING symbolic ref (its target gone),
+ * which `for-each-ref` does not list, beside a merged remote and cached
+ * tracking ref. Read raw, it is symbolic: the run refuses, and the dangling
+ * ref stays, where a listing alone would retire the other two names.
+ */
+async function refusesADanglingSymbolicRef(): Promise<void> {
+  await withRig(async (rig) => {
+    mergedAndTracked(rig);
+    const local = `refs/heads/${BRANCH}`;
+    git(rig, rig.work, 'update-ref', '-d', local);
+    git(rig, rig.work, 'symbolic-ref', local, 'refs/heads/gone');
+    await expectKept(rig, 3, /symbolic/u);
+    assert.equal(git(rig, rig.work, 'symbolic-ref', local), 'refs/heads/gone');
+  });
+}
+
+await refusesADanglingSymbolicRef();
 await refusesABranchMidRebase();
 await refusesABranchMidApplyRebase();
 await refusesABranchARebaseWillUpdate();
@@ -188,5 +206,5 @@ await refusesASymbolicTrackingRef();
 await failsOnAnUnreadableStateFile();
 await failsOnAWorktreeThatCannotBeAsked();
 process.stdout.write(
-  'merge-bot retire in-use states smoke: OK (three rebases that name the branch, a symbolic tracking ref, two worktrees that cannot be read)\n',
+  'merge-bot retire in-use states smoke: OK (a dangling symbolic ref, three rebases that name the branch, a symbolic tracking ref, two worktrees that cannot be read)\n',
 );

@@ -101,32 +101,24 @@ export function parseExactRemoteRef(stdout: string, branch: string): RemoteRefRe
 /** One ref as `git for-each-ref` lists it. */
 export interface ListedRef {
   readonly sha: string;
-  /** The ref this one points at when it is symbolic; undefined for a plain ref. */
-  readonly symref: string | undefined;
 }
 
 /** The `for-each-ref` format {@link parseRefListing} reads. */
-export const REF_LISTING_FORMAT = '--format=%(refname) %(objectname) %(symref)';
+export const REF_LISTING_FORMAT = '--format=%(refname) %(objectname)';
 
 /**
  * Read `git for-each-ref` in {@link REF_LISTING_FORMAT} into a map from the
- * exact full refname to its object name and, for a symbolic ref, its target.
- * Lookups are case-sensitive by construction, whatever the filesystem folds.
- * A symbolic ref lists its TARGET's sha, which is why the target is read:
- * the decision refuses a symbolic ref of the branch's own, since
- * `git worktree list` names the branch an alias resolves to (so the in-use
- * check cannot see a worktree on the alias), and a symbolic ref whose target
- * is deleted first would read back as absent.
+ * exact full refname to its object name. Lookups are case-sensitive by
+ * construction, whatever the filesystem folds. The listing cannot say which
+ * refs are symbolic: it lists a symbolic ref at its target's sha, and does
+ * not list a dangling one at all, so that is read raw (`readSymbolicRefs`).
  */
 export function parseRefListing(stdout: string): ReadonlyMap<string, ListedRef> {
   const refs = new Map<string, ListedRef>();
   for (const line of stdout.split('\n')) {
-    const [refname, sha, symref] = line.split(' ');
+    const [refname, sha] = line.split(' ');
     if (refname !== undefined && refname !== '' && sha !== undefined && SHA_PATTERN.test(sha)) {
-      refs.set(refname, {
-        sha,
-        symref: symref === undefined || symref === '' ? undefined : symref,
-      });
+      refs.set(refname, { sha });
     }
   }
   return refs;

@@ -51,16 +51,27 @@ function sectionPattern(branch: string): string {
 }
 
 /**
- * Remove `branch.<name>` from the repository config, as `git branch -d` does.
+ * Remove `branch.<name>` from the repository config while no local branch
+ * has the name, as `git branch -d` removes it with the branch.
  * `update-ref -d` leaves it, and a later branch of the same name would
- * silently inherit the old upstream. No section is not a failure. Only the
- * repository's own file is read (`--local`), the one `--remove-section`
- * writes: a section in a global or included file is not the repository's.
+ * silently inherit the old upstream. The local branch is read again just before the removal,
+ * by its exact name, so a branch made since the proof keeps its section: the
+ * window is git's own. No section is not a failure. Only the repository's
+ * own file is read (`--local`), the one `--remove-section` writes: a section
+ * in a global or included file is not the repository's.
  */
 export async function removeBranchConfig(
   retire: RetireGit,
   branch: string,
 ): Promise<Result<undefined, Error>> {
+  const local = `refs/heads/${branch}`;
+  const reread = await runGit(retire, ['for-each-ref', REF_LISTING_FORMAT, local]);
+  if (reread.status !== 0) {
+    return err(gitFailure(`re-reading ${local} before its config removal`, reread));
+  }
+  if (parseRefListing(reread.stdout).has(local)) {
+    return ok(undefined);
+  }
   const listed = await runGit(retire, [
     'config',
     '--local',

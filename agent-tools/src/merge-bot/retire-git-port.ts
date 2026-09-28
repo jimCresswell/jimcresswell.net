@@ -22,7 +22,7 @@ export interface RetireGitPort {
   readonly inUseBy: (branch: string) => Promise<Result<readonly string[], Error>>;
   /** Delete one planned ref by compare-and-swap, and say what it left. */
   readonly deleteRef: (target: PlannedDelete) => Promise<Result<CasOutcome, Error>>;
-  /** Remove the branch's section from the repository's own config; none is not a failure. */
+  /** Remove the branch's section from the repository's own config while no local branch has its name; none is not a failure. */
   readonly removeBranchConfig: (branch: string) => Promise<Result<undefined, Error>>;
 }
 

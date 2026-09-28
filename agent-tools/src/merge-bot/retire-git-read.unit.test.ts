@@ -1,12 +1,13 @@
 import { assert, describe, expect, it } from 'vitest';
 
 import type { GitCommandResult } from './git-executor.js';
-import { probeReading } from './retire-git-read.js';
+import { probeReading, symbolicReading } from './retire-git-read.js';
 
 /**
- * The remote-branch probe's reading of git's answer, over literal results: a
- * failed read is a failure, never "absent", so a remote git could not reach
- * is never read as a branch already gone.
+ * git's answers read as the command's, over literal results. A failed read
+ * is a failure, never an answer: a remote git could not reach is never read
+ * as a branch already gone, and a name git could not ask about is never read
+ * as not symbolic.
  */
 
 const SHA = 'a'.repeat(40);
@@ -35,4 +36,27 @@ describe('probeReading', () => {
     assert(!reading.ok);
     expect(reading.error.message).toContain('reading the remote branch feat/x');
   });
+});
+
+describe('symbolicReading', () => {
+  it('reads exit 0 as symbolic and exit 1 as not', () => {
+    expect(symbolicReading(answered(0, 'refs/heads/gone\n'), 'refs/heads/feat/x')).toEqual({
+      ok: true,
+      value: true,
+    });
+    expect(symbolicReading(answered(1, ''), 'refs/heads/feat/x')).toEqual({
+      ok: true,
+      value: false,
+    });
+  });
+
+  it.each([2, 128])(
+    'reads exit %i as a failure naming the ref, never as not symbolic',
+    (status) => {
+      const reading = symbolicReading(answered(status, '', 'fatal: bad ref'), 'refs/heads/feat/x');
+
+      assert(!reading.ok);
+      expect(reading.error.message).toContain('refs/heads/feat/x');
+    },
+  );
 });
