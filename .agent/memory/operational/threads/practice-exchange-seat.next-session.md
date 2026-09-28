@@ -2226,3 +2226,36 @@ written 22:19Z).**
     None takes a slot in this seat's order.
 - Next: the twin of 235 (merge engraph; the reader comments to JC.net's bytes; the real-fifo
   smoke), then the twin of 236 (with the empty-root cure). The count is 1 of 3 (250).
+
+**276 and 277 landed; P1 under pre-open review (block written 04:46Z, 2026-09-28).**
+
+- Lineage PR 276 (the twin of JC.net's 235) merged as SHA:608f219ed at 03:46:54Z. The profile's
+  git never writes a link, the push refuses a document recorded as a link, and every prescribed
+  push names its message (`PUSH_COMMAND`).
+- Lineage PR 277 (the twin of JC.net's 236, with the routed empty-root cure) merged as
+  SHA:1ebe389f7 at 04:43:51Z after two rounds.
+  - Round one, both cured in SHA:4691a4a81. The merge guard runs before the profile check (a
+    frontmatter marker had been refused by count, with no cure). The marker scan reads only the
+    documents git still holds unmerged (a cleanly merged document holding a marker-like line had
+    blocked the push).
+  - Round two. Codex's finding is cured in SHA:1e014fe6c: a `conflict-marker-size` below seven
+    passed the guard, so each document is now searched at its own size, and an unset or
+    non-positive size reads as seven. Copilot's claim was refuted and rejected: it said the
+    smoke's first push could never reach the remote, but the push leg never fetches.
+  - The settlement head: Codex clean; Copilot's one item read the round-one body, rejected below
+    the bar by a signed line.
+- JC.net's copy of the profile push (236's code) lacks all of 277's cures: the guard before the
+  profile check, the unmerged-only scan, the per-document marker size, the empty-root probe, and
+  `PUSH_COMMAND` in the merge refusals. They flow back in the L1 carrier, after its divergence read.
+- P1 (the sync-lineage content binding) is built in the lineage worktree `oce-wt-content-binding`
+  (claim 1d0015e3), and not yet opened.
+  - The type review found nothing blocking, with four should-fix items: a list lookup in place of
+    the string-keyed record, a `PatchId` brand, the hasher's launch failure read as unproven, and
+    typed test overrides.
+  - Wilma's review has three blocking items: SKILL lines and `docs/engineering/merge-bot.md` still
+    say that every push opens a round, that every push re-requests, and that a completion comment
+    must name the tip. The request rule goes to one home, with the others pointing to it.
+  - The code and test reviews are still running.
+  - Vendor observation: GitHub's compare diff media type returned a whole 181 MB diff (11,707
+    files) with HTTP 200, not truncated; a diff past the gh seam's buffer reads as unproven.
+- The WIP count is 1 of 3 (250). Next: P1's cures, then open it, then the L1 flow-back.
