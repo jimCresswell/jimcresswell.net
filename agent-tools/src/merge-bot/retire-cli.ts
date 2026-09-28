@@ -22,8 +22,11 @@ import { exitCodeFor, writeRetireOutcome, type RetireOutcome } from './retire-re
 /**
  * The `merge-bot retire` action: parse, bind, read, decide, write, report.
  * The argv contract and the usage text are in `retire-args.ts`; the proof is
- * `retire-decision.ts`; the writes are `retire-execute.ts`; git is reached
- * only through `retire-git-port.ts`.
+ * `retire-decision.ts`; the writes are `retire-execute.ts`. Every read and
+ * write of the branch's names reaches git only through `retire-git-port.ts`.
+ * Two git reads come before it and are the merge bot's shared seams, not the
+ * port's: the `--branch` check's ref-format oracle (`branch-arg.ts`), and the
+ * identity's lookup of the primary checkout (`resolve-identity.ts`).
  *
  * Two bindings come before any read that could lead to a write. The branch is
  * never main, master or HEAD, in any case. And `origin`'s one configured URL
