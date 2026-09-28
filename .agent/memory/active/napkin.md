@@ -3164,3 +3164,66 @@ check-in 53.
 NEXT: 277's cures, legs and door, then P1's PR (Siren); suite 47 at about 04:42Z; check-in 58 at
 about 05:05Z; the midday folds at 12:00Z with the recipe and its addenda (a) to (f); Nova's return
 or the owner's word.
+
+## 2026-09-28T04:55Z — Director suite 47 tally, the liveness step: the broadcast landed at the deadline; Nova's doctrine commit routed as a PR; suites thinned, check-ins kept
+
+Dispatched 04:4xZ on `suite-47-frame.md` (721 lines: SOURCES carried from suite 46 with the fold
+record; suite 46's rulings, the liveness rules quoted and Nova's cross-check ADDED; the READING
+rebuilt at 04:4xZ; fields at dispatch; one question in three parts). Eight verdicts in by 04:52Z.
+Work: ON-TRACK 7, DRIFTING 1 (procedure normal: the hold on Nova's worktrees and branches cited
+the deletion rule by filename, not by a first-hand read). Frame: SOUND 3, NARROWED 4,
+CONTRADICTED 1 (medium adversarial: the frame held Nova's branches for the owner's word while the
+owner's standing word already disposes of useful committed work). Convergent finding (procedure
+both stances, medium adversarial): the frame's "L1", "the shellcheck gate" and "the smoke pair"
+are undefined in SOURCES; the next frame defines each with its source (Siren's messages of
+2026-09-27 and 2026-09-28, and card line (c)).
+
+PART (i), the liveness step: the ping "Liveness check: are you still active?" landed on both
+streams at 04:43:29Z with a four-minute deadline and drew no answer; the retirement broadcast
+landed on both streams at about 04:48Z; `claims archive-stale` on the lineage registry archived
+three stale claims (Nova's 8db99207 among them; the registry now two fresh, none stale); nothing
+of Nova's touched. The grounding the procedure normal role asked for, read first-hand at
+origin/main after the broadcast: `never-use-git-to-remove-work` governs the working tree ("the
+following commands are forbidden in any context where the working tree contains unstaged or
+in-flight edits — yours OR a peer agent's") and says of committed work "Once a change is
+committed, the normal git tools ... become available as forward-going operations". So the rule
+shields the nine modified files in Nova's oce-wt-user-value worktree (uncommitted edits to PR
+250's skill-evals code, beside a local merge of engraph at 82aae23cd the remote never took); it
+says nothing about her committed branch. That branch, docs/fold-sweep-and-chmod-bits on both
+estates (a6197de4 JC.net, f3cbd2fe0 the lineage, 2026-09-27 16:4xZ, on no remote), is one
+doctrine commit in two files: the deletion rule's chmod line (bits, not git's mode string) and
+the fold skill (lint every dirty tracked file before the push; the successor's PR opens after its
+first push; the folded branch deleted at the cut and read back absent). The same edits on both
+estates, hunk offsets apart; every claim in them matches this session's two folds. The owner's
+standing word governs it ("All useful work must be pushed and in a PR or merged"): routed to
+Siren as one PR per estate behind P1, each at a WIP slot. Card line (b) narrows to the user-value
+worktree and its nine files. The medium normal role's step (read her commit-queue intents before
+the broadcast) was the 04:4xZ cross-check's second surface: none.
+
+PART (ii), the pre-mark records pass: ruled (six roles) a dispatched read-only reviewer after the
+convergence merge, every figure recomputed by the Director from git and gh first; the Director
+cures its own fold PR and names PDR-117 clause 1's small-work exception at the cure. The
+procedure adversarial role's open point ("runs" the fold versus dispatches the pass) is answered
+by clause 1's own line, quoted in the frame: "dispatches READ-ONLY reviewers only".
+
+PART (iii), the cadence to 12:00Z: check-ins every 45 minutes kept (the high normal role's point
+stands: this cadence caught the pulse's own lapse at check-in 53); the suites thinned to one
+pre-fold suite at about 11:15Z plus one on a changed frame (277 lands, P1 opens, Nova answers,
+the owner writes). Recorded here as a plan amendment note against Lane 1 item 4 ("the suite 22
+minutes after each check-in"); dissent: the high adversarial role reads item 4 as approved plan
+text and would keep it. The Director's reading: suite 45 ruled the cadence the Director's call,
+and the owner's "minimal ceremony" word points the same way.
+
+CORRECTIONS. The check-ins since the 22:36Z block read the retrospective trigger's count
+condition as "not holding"; the ratified re-anchor (suite 26's note) reads "at or under the
+limit", which 2 of 3 satisfies. The trigger is one-shot and fulfilled (265, 267, 268); the
+"further trigger" gloss was the Director's and is dropped. Falsifier (d) ("the count sits at
+zero for a full check-in with no slice prepared") reads the cross-estate count, 2, so it does not
+fire on JC.net's own zero; JC.net's next slices are Nova's doctrine PR and the L1 flow-back.
+
+CARD LINE (f) widened: goal one's remaining rows (L1's flow-back, the shellcheck gate, the smoke
+pair, then "then we review") and goal two's fourteen items both sit with one live seat, Siren;
+the owner names whether a second seat starts or the order holds.
+
+NEXT: the routing message to Siren; check-in 58 at about 05:05Z with the push of check-in 57 and
+this tally; the pre-fold suite at about 11:15Z; the midday folds at 12:00Z.
