@@ -28,8 +28,9 @@ identified publicly (`.agent/directives/privacy.md` §Private editorial material
 Do not copy its repository URL, commit identifiers, raw source material,
 personal vulnerabilities or confidential draft history into public Git surfaces. The non-sensitive
 LinkedIn material listed in privacy.md's [LinkedIn workspace authorisation][linkedin-authorisation]
-belongs in the LinkedIn workspace. Only exact copy explicitly approved by Jim
-may be transferred to LinkedIn itself. Local preparation does not authorise a repository push.
+belongs in the LinkedIn workspace. Workspace content is repository content under the normal
+rules: commit, push and merge. Publishing to LinkedIn is a separate activity that needs Jim's
+request, and only exact copy he has approved may be transferred there.
 
 [linkedin-authorisation]: ../../directives/privacy.md#linkedin-workspace-authorisation--28-september-2026
 

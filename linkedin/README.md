@@ -39,9 +39,11 @@ attribution belongs with the research it supports.
 
 [linkedin-authorisation]: ../.agent/directives/privacy.md#linkedin-workspace-authorisation--28-september-2026
 
-Drafting, approval and live publication are separate states. Review exact wording with Jim
-before changing LinkedIn. Local preparation does not authorise a push, account-setting change,
-message, recommendation request or reader experiment.
+Drafting, approval and live publication are separate states. Workspace content is repository
+content under the normal rules: commit, push and merge. Changing LinkedIn is a separate activity
+that needs Jim's request, as the [authorisation][linkedin-authorisation] records; that covers
+copy, account settings, messages, recommendation requests and reader experiments. Review exact
+wording with Jim before any change there.
 
 ## Editorial authorities and related surfaces
 

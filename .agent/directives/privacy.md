@@ -73,18 +73,21 @@ LinkedIn material. That material belongs in [`linkedin/`](../../linkedin/README.
 profile content, general research, public bibliographic attribution and editorial analysis of the
 work. This supersedes the earlier blanket private-only rule for those materials. It does not
 authorise disclosure of personal vulnerabilities, private correspondence, account details,
-third-party activity records or sensitive source material. Exact approval is still required
-before transferring proposed copy to LinkedIn; local preparation is not publication or push
-authority. Preserve historical source records and keep confidential material in its existing home.
+third-party activity records or sensitive source material. Exact approval is still required before
+transferring proposed copy to LinkedIn. On the repository and LinkedIn, Jim's word of the same day:
+"The repo content is repo content, normal rules, commit, push, merge. Writing the content to
+linkedin is a separate activity with separate authority. Putting it in the repo is fine, linkedin
+publishing requires my request". Preserve historical source records and keep confidential material
+in its existing home.
 
-**Reach.** For `linkedin/` only, and only as far as each entry states, this authorisation qualifies
-two Private categories above: career breadth details, and third-party names for bibliographic
-attribution of published works (rule 2 likewise; colleagues, co-authors and recommenders still need
-consent). It changes where the listed material lives, not the confidentiality of private editorial
-material: §Private editorial material below applies inside `linkedin/` unchanged, so private
-material is never quoted, summarised or identified there. Every other category and rule in this file
-applies inside `linkedin/` unchanged, and secops.md's public-visibility audit covers `linkedin/`
-too.
+**Reach.** This file's reading of the authorisation: for `linkedin/` only, and only as far as each
+entry states, this authorisation qualifies two Private categories above: career breadth details, and
+third-party names for bibliographic attribution of published works (rule 2 likewise; colleagues,
+co-authors and recommenders still need consent). It changes where the listed material lives, not the
+confidentiality of private editorial material: §Private editorial material below applies inside
+`linkedin/` unchanged, so private material is never quoted, summarised or identified there. Every
+other category and rule in this file applies inside `linkedin/` unchanged, and secops.md's
+public-visibility audit covers `linkedin/` too.
 
 ## Private editorial material
 
