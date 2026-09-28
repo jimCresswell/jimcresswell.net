@@ -3227,3 +3227,40 @@ the owner names whether a second seat starts or the order holds.
 
 NEXT: the routing message to Siren; check-in 58 at about 05:05Z with the push of check-in 57 and
 this tally; the pre-fold suite at about 11:15Z; the midday folds at 12:00Z.
+
+## 2026-09-28T05:06Z — Director check-in 58: the count 1; 277 landed; P1 at its pre-open cures; Nova retired and her doctrine commit routed
+
+THE FOUR NUMBERS (`checkin-58-raw.md`, 05:05Z): open non-coordination PRs 1 of 3 (lineage 250,
+the owner's draft, BEHIND, its three threads the owner's, on THE READY LIST as before); landings
+since check-in 57: 277 (04:43:51Z, 1ebe389, the twin of 236, "the push after a conflicting pull
+concludes the merge"), Siren's, its branch, worktree and claim cleaned up by her; heads with CI
+in flight: none; slot-holder age: no holder on either estate since 277's merge. Remote branches
+outside a PR: none in either estate. Local branches not merged: the lineage's
+codex/user-value-across-levels (250), siren/250-settlement, feat/pr-watch-content-binding (P1,
+its worktree now clean, so its cures are committed), docs/fold-sweep-and-chmod-bits (Nova's,
+both estates, routed below). Host load 17.54 at the snapshot (Siren's gate and the snapshot's
+own reads). The JC.net primary on coordination/2026-09-28-87689e (draft PR 234) clean, ahead of
+the remote 91aec554 by four after this block (check-in 57, Siren's b978282e, the suite 47 tally
+b8027f7b, this); the lineage primary on coordination/2026-09-28-96b273 (draft PR 275) clean and
+current. Both registries' `heartbeat_at` 05:05:23Z; the standalone pulse alive.
+
+Since the rollover: the lineage landed 274, 264, 273, 276, 277 (five); JC.net 227, 235, 236
+(three). Goal one: rows J2, J3 and J7 with lineage landings on top of the register's thirteen;
+L1 (the operator-profile row) flows back after its divergence read. Goal two: as measured at
+check-in 56, no live seat. The retrospective trigger: one-shot, fulfilled (265, 267, 268); its
+count condition holds at 1 of 3 (the suite 47 correction).
+
+NOVA: retired at 04:48Z (the ping of 04:43:29Z unanswered; the broadcast on both streams; her
+stale lineage claim archived). Her one doctrine commit (both estates, never pushed) is routed to
+Siren as one PR per estate behind P1; Siren took it at about 04:58Z and reads both hunks against her
+own fold reads first. Her user-value worktree (nine modified files, a local merge the remote
+never took) stays untouched on card line (b). The owner: no word to the Director since the
+12:0xZ start word of 2026-09-27. The card (b) to (f) stands as in check-in 53 with (b) narrowed
+and (f) widened by the suite 47 tally.
+
+SIREN (her heartbeat 05:03:07Z): P1 curing its four pre-open reviews (code, with one blocker on
+the hasher, refused; test; type; Wilma); it opens after one gate, at the free slot.
+
+NEXT: P1's PR, then Nova's doctrine PRs (Siren); check-in 59 at about 05:50Z; the pre-fold suite
+at about 11:15Z; the midday folds at 12:00Z with the recipe and its addenda (a) to (f); the
+owner's word.
