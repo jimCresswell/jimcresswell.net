@@ -29,7 +29,9 @@ export type StatProbe = (target: string) => Promise<Pick<Stats, 'isDirectory' | 
 /**
  * What is at a path, read WITHOUT following links (`lstat`): a symlinked
  * root or scoped directory reports as a symlink, never as the directory it
- * points at, so nothing outside the profile root is ever listed through it.
+ * points at, so nothing outside the profile root is listed through a link
+ * present at the probe. An entry swapped for a link after the probe is not
+ * guarded (`listEntries` and the reader's module note give the boundary).
  * Genuine absence (ENOENT, the expected condition) is distinguished from an
  * operational failure such as EACCES, which is never reported as absence.
  *
