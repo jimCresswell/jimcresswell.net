@@ -3738,3 +3738,76 @@ opens a PR that PR counts toward the WIP limit as any arrival does and the Direc
 One implication for the fold: the JC.net push gate reads the working tree, so a workspace mid-
 write at a fold push can fail the gate; the fold names it in its pre-push checks and carries it
 across the successor cut untouched. Posted on both streams for every seat.
+
+## 2026-09-28T11:4xZ — The owner's answers by the question tool, verbatim; the acts that followed to 12:3xZ
+
+The owner asked at 11:3xZ: "please present all questions and unknowns as user questions". Two
+cards by the harness's question tool; each answer is the selected option, verbatim.
+
+First card (about 11:4xZ). Suites: "Pre-fold and frame changes (Recommended)" (one suite before
+each fold and one at every frame change; the 45-minute check-in read stays). Siren: "Resume her now
+(Recommended)". The folds and the records: "Carry on now (Recommended)". The charter for goal one's
+close: "Draft it after the folds (Recommended)". Second card (about 11:4xZ). Nova: "Yes, now". The
+LinkedIn workspace: "JC.net checkout; a Practice seat commits it". Myrtle: "Myrtle is working on it
+right now, you need to update your information" (she had ACKed 250 at 11:35:09Z; this seat's
+information was stale). The idle session pr250-budget-review: "That's Nova, I will rename now". A
+third question at 12:0xZ, whether the Codex agent had finished the LinkedIn workspace: "Possibly
+finished, I can't tell yet, keep it off the fold, and the Practice agents decide if any changes are
+needed before merging".
+
+THE ACTS (all first-hand, in order): 250 routed to Myrtle (11:31Z, lineage event decbef38; ACK
+11:35:09Z). Siren resumed on the owner's word at 11:36Z, ACK 11:40Z; the pair's settlement pushes
+11:47Z; the late-cure ruling 11:5xZ (one push per copy for two over-bar findings, the last push;
+event ecf21666 and its lineage twin); 238 landed 12:13:32Z (25e30f77), 280 landed 12:19:02Z
+(ab8976719); Siren's order confirmed 12:21Z (branch retire first as a pair, then J3 shellcheck,
+pr-watch, L1; #272's row rides the first exchange PR; events 856d1188, 14bb680e). Nova: team start
+11:37Z, routed 11:4xZ (events e8b34257, 83fc2039), ACK 11:45Z on JC.net; her branch question
+answered then corrected on the owner's 12:0xZ word (the workspace to its own branch and draft PR,
+copied from the primary, nothing removed there; events 363fc13c, 1d742ac0); her doctrine question
+answered (PDR-105 governs; PDR-079's identifier permission withdrawn by a dated amendment beside
+the gate; no owner word needed; event cd85231f); PR 239 opened at 12:28Z (todo 8's first slice,
+the count 2 of 3). The records committed on both primaries (508a7db1, 00839884e). The JC.net
+primary's push gate found blocked by the Codex agent's uncommitted edits (seven links to the
+untracked linkedin/ workspace fail validate-markdown-links); the Director pushes the fold's commits
+from a clean detached proxy worktree at the same shas, the primary's tree untouched (event
+401acdab). Suite 48 (the pre-fold suite) dispatched 11:4xZ, tallied below. The JC.net fold: the
+convergence merge of main b8284eb3 pushed at f60f3e7f (11:45Z); the records pass returned two
+over-bar cures (927f9075); marked ready as the bot 12:18:29Z, Copilot requested by the operator;
+round one three threads (one Fixed in push 1 of 2 at 6bcc9bc7, one Routed to Siren, one Rejected);
+round two one thread, this block and the tally below are its cure, push 2 of 2. The lineage fold:
+the convergence merge of engraph ab8976719 pushed at 3ea5b75a1 (12:2xZ); the records pass returned
+one over-bar cure, the thread record's resume entry (7eb6afba6), three below-bar items routed to
+Myrtle and Nova. Pronouns: the records pass on both folds named gendered pronouns for seats in this
+seat's writing; from this block the seats are named or take they/them (agents-default-no-gender).
+
+## 2026-09-28T11:5xZ — Director suite 48 tally, the pre-fold suite: the lineage slot order corrected to one mechanical rule; Nova's routing inside the owner's words
+
+The frame (`suite-48-frame.md`, SOURCES the owner's words of 09:5xZ to 11:4xZ verbatim, the suite
+44 and 46 rulings, the 2026-09-25 arc, todo 8, PDR-117; READING rebuilt at 11:4xZ; a three-part
+question on the fold order, Nova's routing and unmotivated holds), eight roles, both stances,
+dispatched together at 11:4xZ (the two waves in one dispatch, the frame identical, only the stance
+line differing; the skill's sequential waves were traded for the fold's clock). Work verdicts:
+ON-TRACK seven, DRIFTING one (the procedure seat, adversarial: NEXT names no consumer for the
+folds; rejected, the folds' consumers are the successor branches every seat writes on and the
+records' durability under the lifetime rule, plan Lane 1). Frame verdicts: SOUND one, NARROWED
+four, CONTRADICTED three.
+
+THE LOAD-BEARING FINDING (five roles, adopted before the tally): the lineage fold's hold was read
+wider than suite 44's rule, "waits for 280's door" while 280 was at its settlement push and not yet
+at its legs; the rule's clause is "unless a synced holder waits for a per-tip leg". The cure is one
+mechanical order, posted on the lineage stream at 11:4xZ (event d8994d05): a PR synced with
+engraph and at its per-tip legs (checks green or running, its reviewer legs requested, zero open
+threads) holds the slot until its door; among holders the first at its legs goes first; the fold
+takes the slot only when no synced holder is at its legs and yields again the moment one is; a
+red check or an open thread on the holder ends its hold. Read at the tally: 280's push 4a81861b4
+with checks running from 11:46Z and its legs requested per push, so the fold yields to 280
+through its door; 250 goes at its legs by the same rule; the fold syncs once after whichever
+lands. THE SECOND (three roles): "goal two parked" carried no owner quote; the owner's phrase is
+"deprioritising Codex support for now", and goal two is the owner's own words "Codex brought up
+to first class Practice citizen status", so the mapping is stated in the records, not assumed.
+THE THIRD (two roles): the WIP clause was cited by name and not quoted; the next frame quotes
+pr-lifecycle §Phase 7's clause with its file. THE FOURTH (two roles): the 250 and 280 order was
+written two ways in one frame; the one rule above replaces both sentences. Minor: the 2026-09-25
+arc and "Carry on now" sat in SOURCES without a READING line (two procedure seats). Nova's
+routing (question ii): eight of eight inside the owner's words, no PR opening at the count of
+three. Behaviour note: no procedure seat acted.
