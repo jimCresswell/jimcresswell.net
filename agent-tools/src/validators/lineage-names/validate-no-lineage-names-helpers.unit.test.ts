@@ -14,8 +14,9 @@ import {
 
 /**
  * Pure cells over injected blocks and in-memory files; no policy read, no
- * filesystem. The live policy's block is proven by the validator-level
- * integration cell beside this suite.
+ * filesystem. The live policy's block is proven where it is used: the gate
+ * refuses a missing, doubled, malformed or empty block on every run, and its CLI
+ * smoke runs it over the tracked tree.
  */
 
 const BLOCK: ScopedContentBlockGroup = {
@@ -23,7 +24,7 @@ const BLOCK: ScopedContentBlockGroup = {
   kind: 'literal',
   patterns: ['exampleorg'],
   include_paths: [''],
-  exclude_paths: ['records/', 'content/'],
+  exclude_paths: ['./records/', './content/cv.json'],
   citation: 'a cell fixture',
 };
 
