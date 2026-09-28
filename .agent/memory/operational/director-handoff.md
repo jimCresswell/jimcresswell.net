@@ -134,11 +134,25 @@ Every line answered first-hand, none inferred:
   words: the napkin's 2026-09-26T19:29Z and 19:38Z blocks; the operated rule as amended: the
   2026-09-27T09:39Z and 09:52Z blocks.
 
-## Current handoff state (2026-09-28 00:1xZ, the rollover folds in progress; pointer-biased by design)
+## Current handoff state (2026-09-28 12:2xZ, resumed on the owner's "carry on"; pointer-biased by design)
 
-The live reading is the napkin's newest Director block: check-in 52 (23:36Z on 2026-09-27, the
-pre-fold state) and the suite 45 tally (22:36Z), with the fold recipe (20:10Z) and its addenda
-(21:51Z). State at the folds: two non-coordination PRs open across both estates (250 the owner's
+**Resumed 2026-09-28 11:4xZ on the owner's "carry on".** The live reading is the napkin's
+2026-09-28T10:22Z block (the owner's review) and every Director block after it, read in order to
+the newest (the owner's words and answers: Codex support deprioritised, PR 250 to Myrtle, suites
+before folds and at frame changes, Siren resumed, Nova back on JC.net's todo 8, the LinkedIn
+workspace off the fold; then the folds and the suite tallies); the 08:26Z boundary block before
+them is the frozen state, superseded where they differ.
+
+**Boundary 10, 2026-09-28 08:26Z (the owner's compaction word).** The reading at the boundary was
+the napkin's 2026-09-28T08:26Z block: work safety verbatim, the state at the boundary, the seats
+(Siren frozen, Myrtle on PR 250 from 08:22Z, Nova retired), that window's rulings with their homes,
+the card queue, the processes stopped, the re-arm recipe and the owed-on-resume order. The block
+below it is the 00:1xZ state, kept; the rollover folds landed (227 at 00:34:06Z as 87689ea1,
+264 at 02:46:51Z as 96b273d3) and the successors are 234 and 275, DUE at 12:00Z.
+
+At the rollover (00:1xZ) the reading was the napkin's then-newest Director block: check-in 52
+(23:36Z on 2026-09-27, the pre-fold state) and the suite 45 tally (22:36Z), with the fold recipe
+(20:10Z) and its addenda (21:51Z); superseded by the paragraphs above. State at the rollover folds: two non-coordination PRs open across both estates (250 the owner's
 draft on THE READY LIST, 273 Siren's non-blocking profile read); the lineage landed 261 and 265 to
 272 since the 12:00Z fold and JC.net 226 and 228 to 233; both coordination drafts synced, pushed
 and ready-marked at 00:0xZ (264 at 7f6bb5f5f after one cured round, 227 at 97a0db5f2), their doors

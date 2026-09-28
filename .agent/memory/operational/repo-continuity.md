@@ -21,6 +21,19 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
+- **2026-09-28T08:26Z, the Director's COMPACTION BOUNDARY 10** (Wick binds Temper, ed7b48), at the
+  owner's word "prepare for compaction … then stop all processes". Since the rollover: the lineage
+  landed 274, 264, 273, 276, 277, 278 (P1, the sync-lineage content binding) and 279, JC.net 227,
+  235, 236 and 237 (Nova's fold and chmod doctrine on both defaults); Nova retired at 04:48Z; Myrtle
+  resumed at 08:22Z on the owner's word with PR 250's owner item as her lane; Siren frozen with the
+  second doctrine pair's settlement pushes committed unpushed (280, 238). The count 3 of 3 (250,
+  280, 238); both coordination drafts (275, 234) DUE at 12:00Z. The napkin's 08:26Z block carried
+  the re-arm recipe and the owed-on-resume order; the seat resumed at 11:4xZ on the owner's
+  "carry on", and the live reading from then is the napkin's 10:22Z block (the owner's review) and
+  every Director block after it, read in order to the newest (the owner's words and answers, the
+  folds, the suite tallies), which supersede the 08:26Z block where they differ; the boundary
+  records went up with the midday fold.
+
 - **2026-09-28T00:1xZ, the rollover folds in progress** (Wick binds Temper, ed7b48). Both
   coordination drafts synced, pushed and ready-marked at 00:0xZ: the lineage's PR 264
   (coordination/2026-09-27-d6c9e5, synced to engraph 48f70d4ba at 24d9a06f1, one Copilot round cured

@@ -19,7 +19,7 @@ gate_expiry_default: P21D
 depends_on: []
 owner_gates: []
 tickets: []
-last_updated: 2026-09-13
+last_updated: 2026-09-28
 ---
 
 # The content is the CV
@@ -29,7 +29,9 @@ last_updated: 2026-09-13
 The CV at `jimcresswell.net` reads as one person's professional identity, canonical and
 current: no variant copy, no claim without a fact behind it, every section written under
 the editorial directives. The LinkedIn profile is composed from the same evidence for its
-own audience, behind the private boundary, and never staged here.
+own audience. Jim’s 28 September 2026 direction places non-sensitive LinkedIn drafts, research
+and professional analysis in [`linkedin/`](../../../linkedin/README.md). Confidential material
+remains private, and proposed wording requires his approval before live application.
 
 ## User groups and value
 
@@ -49,8 +51,9 @@ it prove wrong.
 ## Success looks like
 
 The editorial questions the legacy corpus settled stay settled; the deferred doors
-(CONTENT-3) reopen only through a plan and a decision record; the LinkedIn work completes
-behind its boundary with nothing leaking into the public tree.
+(CONTENT-3) reopen only through a plan and a decision record; LinkedIn communicates the work
+clearly through its own composition, with a reviewable draft and no sensitive material entering
+the public tree.
 
 ## Delivery
 

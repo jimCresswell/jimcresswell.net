@@ -13,11 +13,11 @@
  * `.agent/hooks/policy.json`, the block the PreToolUse write-hook also reads,
  * so the commit and CI gate and the write-time guard match the same names and
  * exempt exactly the same files (the records: provenance, changelog, memory,
- * reports, plans, the transplant exploration; and the site's content
- * directory, where the lineage's organisation is a fact about the owner's
- * work). It is declared rather than derived because the chain cannot select
- * the lineage: it names the owner's own earlier repositories beside it, and
- * the organisation login appears in no provenance field.
+ * reports, plans, the transplant exploration; the site's content directory
+ * and the LinkedIn workspace, where the lineage's organisation is a fact about
+ * the owner's work). It is declared rather than derived because the chain
+ * cannot select the lineage: it names the owner's own earlier repositories
+ * beside it, and the organisation login appears in no provenance field.
  *
  * Matching is case-insensitive and literal: a lineage name is a name, not a
  * pattern, and a name in any letter case is the same leak. The block is
