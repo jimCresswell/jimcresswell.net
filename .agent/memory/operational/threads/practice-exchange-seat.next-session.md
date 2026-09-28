@@ -2330,3 +2330,26 @@ written 22:19Z).**
     over-bar finding after the merge reopens the hold question on that instance.
 - The JC.net twin (SHA:21b1b04c, unpushed) opens when 278 lands. Its body and open script are
   drafted. The WIP count is 3 of 3 (250, 278, 279).
+
+**278 landed; the doctrine twin opened as JC.net 237 (block written 06:52Z, 2026-09-28).**
+
+- Lineage PR 278 (P1, the content binding) merged at 06:46:27Z as SHA:b4a64115b. At its
+  settlement head both legs answered: Codex clean (06:34:16Z), Copilot one item. The item is
+  `@codex security review` as a further Codex trigger; no comment in either estate has ever
+  used it. A signed Below-bar line routes it to the next pr-watch PR, with the recorded
+  `mostBlockingLeg` and `liveRunReviewers` fix.
+  - Cleanup: the remote branch was deleted by API and read back absent, the worktree removed,
+    the local ref deleted after the ancestry proof, and claim 1d0015e3 closed.
+- JC.net PR 237, the twin of lineage 279, opened at SHA:21b1b04c after a first-hand count of 2
+  of 3, with no earlier reservation. Copilot was requested by operator add-reviewer at
+  06:51:17Z and read back in the timeline. The claim is 08dd2bfa. The count is now 3 of 3
+  (lineage 250 and 279, JC.net 237), and 279 merges with 237 after both copies' legs settle.
+- Two notes, for the next record commit:
+  - `queue-commit.sh` leaves its file staged when the commit fails (here, a 101-character
+    header). The retry then trips its own empty-index check, and every unstage form is
+    forbidden, so the staged file was committed by pathspec. Commitlint before the script,
+    always.
+  - One clock read ran in the same call as another command. The rule is a separate call.
+- Next, at a free slot: the Director's doctrine PR for items 1 and 2 (one per estate), and the
+  next pr-watch PR (the security trigger and the leg labels). Locally before then: the L1
+  flow-back's divergence read.
