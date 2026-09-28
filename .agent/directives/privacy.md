@@ -24,8 +24,9 @@ AI.
 - Career breadth details: specific roles, employers, and biographical items not already visible on
   the published site, outside the LinkedIn workspace authorisation below
 - Third-party names without explicit consent. Exception: under the LinkedIn workspace authorisation
-  below, published works by others may be cited by author; colleagues, co-authors and recommenders
-  still need their consent
+  below, published works by others may be cited by author as bibliographic attribution in
+  [`linkedin/`](../../linkedin/README.md); colleagues, co-authors and recommenders still need their
+  consent
 - Biographical details that narrow physical location beyond what is publicly known
 
 ### Public (version-controlled)
@@ -45,8 +46,8 @@ AI.
 2. **Third-party individuals must not be named in version-controlled files without explicit
    consent.** Reference them indirectly or store the detail in the private editorial repository.
    Under the LinkedIn workspace authorisation, citing another person’s published work by its
-   authors is permitted as bibliographic attribution; colleagues, co-authors and recommenders still
-   need their consent.
+   authors is permitted as bibliographic attribution in `linkedin/`; colleagues, co-authors and
+   recommenders still need their consent.
 
 3. **Biographical details that narrow physical location beyond "UK" require explicit approval.**
    Borough-level ("Hackney") is acceptable in published content. Year, ward, and party for political
