@@ -2419,3 +2419,120 @@ written 07:30Z, 2026-09-28).**
   operator add-reviewer, read back on the timeline). Watches are armed on both heads.
 - Next: round two, the settlement read, the sweeps, and the doors. The pair merges only after
   both copies' legs settle. Then cleanup, closing claims 5ffbf1ab and 07d423a8.
+
+## Boundary delta, 2026-09-28 08:22Z (the owner's compaction word, carry on given in it)
+
+The owner's word, verbatim: "prepare for compaction ultrathink /jc-metacognition /jc-free-play
+/jc-concept-exploration /jc-reason /jc-wrap then stop all processes, post compaction carry on".
+The resume word is inside the order: after the compaction, carry on without waiting.
+
+**State at the word (read 08:2xZ).**
+
+- The second doctrine pair has had two rounds, and its settlement push is owed. Both worktrees
+  are clean, level with their remote branches, and two commits ahead, unpushed by design:
+  - lineage `oce-wt-doctrine-pair2`: remote SHA:f92122177, local SHA:9fa92fc68 and
+    SHA:4a81861b4;
+  - JC.net `jcnet-wt-doctrine-pair2`: remote SHA:e985a459, local SHA:d7a0e352 and
+    SHA:2d383990.
+  - The branch in both is docs/remote-branch-rule-and-shared-primary-check. The bytes are
+    identical across the estates.
+- Round two's dispositions. The signed lines are drafted in the session scratchpad
+  (`doctrine2/r280b`, `doctrine2/r238b`); this list is the durable copy.
+  - 280 item 1 of 4 (Copilot 4119897814): the owed state contradicted `worktree-hygiene` §1 at a
+    full count. Over the bar; cured in SHA:4a81861b4 by the Director's ruling (08:1xZ).
+    - A found wanted branch is an arrival of the external-PR class. Its draft PR opens at once
+      at the assessment, it counts toward the limit, and the Director routes it ahead of any
+      new opening. The Director's sentence is verbatim in `pr-lifecycle` §Phase 7.
+    - Two edits follow from it, and the Director confirmed both at 08:2xZ: the owed counting
+      clause is removed, and the limit's first step reads "No PR that starts new work opens
+      while the count is at the limit or over it, other than a repository's one coordination
+      PR."
+  - 280 item 2 of 4 (Copilot 4119897886) and 238 item 1 of 1 (Copilot 4119906535): the fold's
+    failed-read branch returned 0. Over the bar; cured in SHA:9fa92fc68 and SHA:d7a0e352. The
+    branch now writes STOP to stderr and runs `false`. The block's status was read for each
+    probe result: 0 when the proof holds, 1 otherwise, and 1 on probe 128.
+  - 280 item 3 of 4 (Codex 4119901510): prettier skips `.agent/` in both estates, as the gate's
+    `prettier-tracked` does. Below the bar; Rejected. The body's "prettier passes" evidence
+    line is corrected.
+  - 280 item 4 of 4 (Codex 4119901516): §6's fetch fails loudly on a branch deleted
+    mid-assessment. Below the bar; Rejected, matching the first pair's ruling on a remote
+    branch already gone.
+- The WIP count is 3 of 3: lineage 250 (Myrtle resumed it at 08:22Z as the owner's item) and
+  280, and JC.net 238.
+- The Director froze on the same word. Its records went up on PR 234. Its heartbeat lapses until
+  the resume, and the midday folds run at the resume by the DUE check if it lands after 12:00Z.
+
+**Order after the compaction (carry on is given).**
+
+0. Read the clock alone. Check that no process of this seat runs. Read both streams, both PR
+   lists and any Director message.
+1. This block was committed locally at the word, with no push; the Director pushes the
+   coordination branch after its own resume. Check whether engraph or JC.net main moved
+   past each branch's base. If either did, merge it into the settlement push; the lineage merge
+   is amended to carry the owner as author.
+2. Post gate notices on both streams, at most two host gates, then push both worktrees with the
+   merge-bot push (operator environment, GH_TOKEN and GITHUB_TOKEN unset).
+3. Post the signed lines and resolve every thread (`post-replies-lineage.sh 280`,
+   `post-replies-jcnet.sh 238`, ROOT set to each primary). Update both bodies:
+   - the WIP bullet takes the Director's sentence, with no owed branch;
+   - round two's evidence goes in;
+   - the prettier line is corrected.
+4. Request the settlement legs: `legs-lineage.sh 280`, and the operator add-reviewer
+   `@copilot` on 238. Read both timelines, and arm review watches on the new full heads.
+   Findings on the settlement heads get signed lines only.
+5. Run the merge-base sweeps, then the doors: 280 expects Copilot and Codex, 238 Copilot only.
+   The pair merges only after both copies settle. Then clean up (API delete read back absent,
+   worktrees removed, local refs deleted after the ancestry proof) and close claims 5ffbf1ab
+   and 07d423a8.
+6. Then, in order:
+   - propose the `branch retire` instrument to the Director (below);
+   - the pr-watch slice at a free slot;
+   - the L1 flow-back.
+
+**Re-arm recipe (nothing survives a compaction).** The session pid is 15907; the scripts are in
+the session scratchpad.
+
+- Comms watchers: `bash watch-comms.sh <primary> 15907`, once for each primary, as 30-minute
+  Monitors, re-armed at expiry.
+- Heartbeat: `ROOT=<JC.net primary> bash heartbeat.sh a30304be-4986-40f0-883b-fd518224472b
+  coordination/2026-09-28-87689e "<label>"`.
+- Liveness: `cd <JC.net primary> && bash peer-liveness-poll.sh 600`.
+- Review watches: `review-watch-repo.sh <owner/repo> <pr> <full head> 60 '<bot login>'`.
+- Claims held: a30304be (the seat), 5ffbf1ab and 07d423a8 (the pair).
+
+**Reflections from the cognition passes.**
+
+- Metacognition: at round two's §1 conflict I reached for rules-have-no-exceptions clauses 4
+  and 5 (surface an owner question), not clause 2 (re-express the rule so the case falls inside
+  it). The owner's external-PR words sat a few lines above my read window. Before escalating a
+  clause conflict, read the whole governing clause, and look for the class that already carries
+  the case in the owner's words.
+- The owed construct drew a finding in each of three passes (round one, my own re-read, round
+  two) and ended by deletion, not a fourth cure.
+- A check cited as evidence has to have read the file: prettier reads nothing under `.agent/`.
+- Play seeds, as associations only:
+  - three values where the world is uncertain (the probe's 0, 2 and 128), two where a rule
+    wants no hiding place (in a PR, or deleted);
+  - the messenger's zero (`echo` returning success; a formatter "passing" a file it skipped).
+  - Discarded as forced: "adoption over speciation" and "same bytes, two worlds".
+- Concept exploration: fold step 9's block drew a finding in each of three passes, one untested
+  edge each time. The deletion proof has at least three consumers (fold step 9,
+  `worktree-hygiene` §6 and the post-merge cleanups). The proposal is a tested `branch retire`
+  instrument (probe, fetch, prove both tips, delete the local branch, API delete, read back
+  absent), with the two texts turned into pointers. Its falsifier: integration tests cannot
+  exercise the absent and failed-read cases against a local bare origin. A check-coverage map
+  (which gates read which paths) is not built now; its falsifier is a gate failure on a check a
+  seat believed it had run.
+
+**Metaloss.**
+
+- Compressed reasoning: the dispositions above carry their reasons.
+- Promises: the settlement push, the signed lines, the bodies, the doors, the cleanup, the
+  instrument proposal and the pr-watch slice, all in the order above. The Director holds the
+  owner card's FYI line.
+- Attribution: Myrtle's resume is read from its broadcast, not observed.
+- Blind spot: the watchers exclude heartbeat events.
+- Index of homes: this record, the two worktrees and the session scratchpad. The scratchpad's
+  drafts are conveniences; this block is the durable copy.
+- A third pass would only re-find the unpushed pair, which is named above, so the recursion
+  closes here.
