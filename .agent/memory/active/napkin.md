@@ -4391,3 +4391,58 @@ in the Director's memory.
 NEXT: 257, 290 and 291 to their doors on posted legs; C1 and the residue PR at their slots; the
 pre-fold suite frame at 23:00Z, the suite about 23:2xZ; the rollover folds at 00:00Z under the
 Copilot ruling if it holds; check-in 72 about 21:35Z, on change.
+
+## 2026-09-28T21:3xZ — Director check-in 72, on change: the Copilot lift withdrawn (an error review); 290 landed; the count 3 of 3; the card bar; item (a) complete
+
+THE FOUR NUMBERS (the snapshot at 21:33:35Z): open non-coordination PRs 3 of 3 (JC.net 257,
+Nova's validator, green with zero threads and both expert legs posted, waiting on a Copilot
+content review or the owner's hand, since the merge-bot refuses a JC.net door without its one
+configured vendor; lineage 291, Myrtle's N1, pure-synced to 146f14ab3 after 290's landing, four
+threads open, CI in flight; lineage C1, Siren's J3 slice 4a, the shellcheck gate, opening at
+21:32Z); landings since check-in 71: lineage 290 (1cccdfc, 21:26:15Z, J3 slice 3, the bash
+floor on every owned script, the four app scripts included, on the reversed ruling); heads with
+CI in flight: 291, C1. Coordination drafts: JC.net 241 (CLEAN), lineage 283. Host load average
+20 at the read, three seats' gates and CI in flight; the gate slot bounds full gates, no action.
+
+COPILOT: the 21:02Z lift was withdrawn at 21:04Z, against this seat: the 20:57:40Z review on 290
+was an error review ("Copilot encountered an error and was unable to review this pull request"),
+read by state and not by body; Siren read the body. The 20:4xZ ruling stands with two additions:
+an error review never satisfies a door's expectation and is not a lift; each open PR re-requested
+Copilot once (257 at 21:04:45Z; 291 on its cured tip; 290 on its synced tip). No content review
+from Copilot on either estate since 19:31Z at the 21:33Z read. The lineage doors run on Codex's
+leg with the posted expert reviews beside it (290 landed that way); JC.net has no door until
+Copilot returns, so 257 sits on the owner's ready list with its link. A merge-bot mechanism for
+a declared-unavailable vendor and for a present-but-empty review goes to Siren's lane after B1.
+
+THE CARD BAR (the owner, 20:5xZ, verbatim): "Why are you asking so many questions? I only want to
+see questions that survive the decision matrix applied with all appropriate cognitive skills".
+Recorded against this seat: eleven cards today, three of which the decision method settles
+alone (the meaning of "push"; two colour literals by platform contract; the design family, where
+the answer was a concept). From now a card reaches the owner only when a live value choice
+survives the method, as a synthesis with one amend option; routine dispositions the record or
+dominance settles are decided, recorded with their trace and named in the terminal note. The
+owner's completed word on the design skills (20:5xZ, verbatim): "My answer was cut off. The point
+I was making is that perhaps some skills belong in the Practice, and some belong as Practice
+extension skills, plug in innovation building blocks with skills that cover certain domains, such
+as UI design, API design, etc"; on both streams, in the Director's memory, and in Nova's review
+ledger row.
+
+DECIDED WITHOUT A CARD, with the trace on the stream or the seat's message: the two colour
+literals in layout.tsx and manifest.ts stay by platform contract, recorded in the design-values
+rule's Related Surfaces, and item 3's "the owner's word" wording cured to "a recorded
+disposition; the owner's word where the decision method leaves a live choice"; documentation-
+hygiene and privacy.md rule 2 govern different acts (bibliographic attribution of another's
+published work on every surface; naming a person beyond a citation), reconciled by one passage
+in rule 2 riding item (a), the owner's co-authors named in linkedin/ only; N6 opens on the
+lineage ahead of Nova's vendor-blocked JC.net PRs when a slot frees.
+
+THE SEATS: Nova compacted (8.9%) and completed item (a) herself on docs/linkedin-paper-authors
+(d839b5a6, f27ef253, 4a0e913f, f7362bfc; three security reads, PDR-052 read before each edit;
+privacy.md at 239 of 240 lines), unpushed until its slot; the residue PR built; N6 in build as
+local prep. Myrtle: 291's late cure and pure sync done, four threads to settle, the door on
+Codex's leg. Siren: 290 landed; C1 opening; then B1 with the 403 retry, then the door mechanism.
+
+NEXT: check-in 73 about 22:20Z on change; the pre-fold suite frame at 23:00Z from the snapshot
+and the plan node's todos verbatim, the suite about 23:2xZ; the rollover folds at 00:00Z under
+the Copilot ruling if it holds (the lineage on Codex's leg; JC.net's fold has no door without
+Copilot, so the owner's hand or the ruling's lift lands it).
