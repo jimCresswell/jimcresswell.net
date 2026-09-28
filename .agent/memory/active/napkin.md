@@ -3044,3 +3044,52 @@ NEXT: suite 46 now, on the folds' outcome; 273's sync and door, 236's legs and d
 lineage twin, the L1 flow-back after its divergence read, the shellcheck gate, the smoke pair
 (Siren); check-in 56 at about 03:35Z; the midday folds DUE at 12:00Z (the recipe and its addenda
 apply; both successors' bodies are the templates until then); Nova's return or the owner's word.
+
+## 2026-09-28T03:05Z — Director suite 46 tally, the post-fold review: the folds kept the recipe and the rulings with one rule break; the midday fold gains a pre-mark records pass and a corrected step 5
+
+Dispatched 02:5xZ on `suite-46-frame.md` (720 lines: SOURCES carried from suite 45, both folds as
+they ran, the pulse lapse and the window's rulings ADDED, the READING rebuilt at 02:5xZ, fields
+at dispatch, one question in three parts). Eight verdicts in by 03:04Z. Work: ON-TRACK 8. Frame:
+SOUND 3, NARROWED 5 (goal two without a measure; the retrospective trigger's status absent; the
+reader-harm lines not carried into the frame; P1 unnamed; suite 41's ruling cited, not quoted).
+
+PART (i), the folds against the recipe and the rulings: kept, eight of eight, with one rule break
+named by six: the third lineage push's chain masked an exit code behind a pipeline and signed two
+threads before the push landed (exit-codes-in-band-never-piped; the recipe's own step 4),
+corrected by a further line on each thread. Contested by three: the over-bar class of round
+three's two arithmetic findings on 264 (the reader-harm lines were written on the threads, not
+in the frame; "408 lines lighter" reads to two roles as a stale aside no reader acts on; PDR-140
+clause 4's late-cure path licensed the push either way). One role read 264 as never yielding its
+slot while 274 landed; the slot was released by line at 01:09Z with the door's refusal, a frame
+gap, not a break. RULING: the break stands recorded; the class calls stand as signed (the
+review-cost accounting and the counterfactual's cost comparison are read and acted on), with the
+lesson that the frame carries the reader-harm lines whenever it asks a suite to judge a cure.
+
+PART (ii), the Director's execution: within seat, eight of eight (the owner-approved plan's Lane
+1 names the Director for the folds; the settlement pushes were records cures on the fold's own
+PR; the reader cure, code, was routed to the seat; the pulse and the lineage claim are the seat's
+own liveness duty). One redirection taken: an in-fold content cure names PDR-117 clause 1's
+small-work exception at the point of the cure, or goes to the live seat when the fold's time
+allows.
+
+PART (iii), the midday fold's changes, ruled from the convergence: (d) a pre-ready-mark records
+pass over every file the fold carries, against the day's landings list (the snapshot) and each
+record's own arithmetic, with one reader-harm line per finding before any cure (eight of eight;
+every finding on both folds was a records inconsistency written at occurrence); (e) step 5
+corrected: Copilot's request is read from the timeline a minute after the mark, added by the
+operator on JC.net and re-requested as the bot on the lineage after every push (four); the
+recipe's addendum (c) "step 5 confirmed" is superseded; (f) the chain discipline restated for the
+fold: the commit header's length tested before any side effect, no pipeline in a chain that signs
+a thread, the signed line only after ls-remote shows the sha (three; rule compliance, not a new
+rule). Noted, not fold changes: the pulse script's home (a scratchpad file broke
+important-state-not-in-temp-files; its canonical shape is in the rule and the Director's memory;
+the monitor now fails loud by its output); P1 (a pure sync push requests nothing) is the standing
+cure for the re-request problem and is re-ranked at check-in 56; goal two's measure and the
+retrospective trigger's status return to the check-ins; 274 counts toward goal two.
+
+ROUTED to Siren for her next report, not a ruling: whether 250's three threads signed "Over-bar,
+open" are the body's own recorded open work (the owner's) or cures a seat can make after 273 and
+236 (one role's redirection).
+
+STATE at 03:05Z: the count 3 of 3 (250, 273, 236); the successors 275 and 234 DUE at 12:00Z;
+check-in 56 at 03:35Z.
