@@ -83,13 +83,14 @@ units, and the row takes its remainder's state.
 
 Refreshed by the lineage's exchange seat at each landing, decline or recount, with the heads it
 read; the Director's check-ins read this line, and the bar closes on N of N here. Goal one (this
-estate's J rows into the lineage), read on 2026-09-28 at jcnet `be6b5141be` and lineage
-`c5dbce46e6`: **1 of 26**. The 26 are the census's 20 residue pull requests, J3's two from the
-recount of 18:3xZ, and the charter's four acts (todo 6's amendment, the lessons row, the
-comparison row, the re-pin); the 1 is todo 6's amendment, PR 248, merged 2026-09-28T17:14:16Z.
-No residue pull request has merged since the census; the rows settled by this register's dated
-rows carry no pull request of their own and change no unit. The inbound direction's count opens
-with its own census (todo 4, ruling 44).
+estate's J rows into the lineage), read on 2026-09-28 at jcnet `efdcc23767` and lineage
+`7e4cf9b813`: **2 of 27**. The 27 are the census's 20 residue pull requests, J3's two from the
+recount of 18:3xZ, J6's one from the recount of 21:4xZ (four lineage pull requests, not three),
+and the charter's four acts (todo 6's amendment, the lessons row, the comparison row, the re-pin);
+the 2 are todo 6's amendment, PR 248, merged 2026-09-28T17:14:16Z, and N1's first slice, PR 291,
+merged 2026-09-28T23:43:15Z. One residue pull request has merged since the census; the rows
+settled by this register's dated rows carry no pull request of their own and change no unit. The
+inbound direction's count opens with its own census (todo 4, ruling 44).
 
 ## Rows from the lineage's delta (since `e477e62f7e`)
 
@@ -236,6 +237,7 @@ Appended as each row lands: row, estate, pull request, head read.
 | J22 | lineage | #235 (merged `770ae4de19`, 2026-09-26T10:43:00Z; PARTIAL: the build-system document's caching rule, with J17) | jcnet `57592003a8` |
 | J22 | lineage | #243 (merged `efdfebdb2e`, 2026-09-26T10:43:27Z; PARTIAL: the agent-tools end-to-end task declares the nine root files its script reads, #235's follow-up) | jcnet `57592003a8` |
 | J1 | lineage | #226 (merged `10cf025f86`, 2026-09-26T10:44:38Z; PARTIAL: the lockfile rebuild resolves the declarations cold, in an empty directory) | jcnet `57592003a8` |
+| J1 | lineage | #291 (merged `7e4cf9b813`, 2026-09-28T23:43:15Z; PARTIAL: N1's first slice, the declarations on 132 rules and the generators for the rules index and the Cursor, Claude and `.agents` rule adapters, the four hand-kept validator legs gone; the sub-agent generator and the health-probe parity follow as the second and third slices; the reader's block-sequence and quote-strip cures, the comma-list split, POSIX joins, three Sonar cures, the code-unit sort, the sweep's read-back and the reshaped tests return here as the same bytes) | jcnet `efdcc23767` |
 | J21 | lineage | #231 (merged `a58471b0c7`, 2026-09-26T10:45:28Z; PARTIAL: the unregistered max-files-per-dir rule deleted with its test) | jcnet `57592003a8` |
 | J9 | lineage | #220 (merged `0e2952ccc8`, 2026-09-26T10:47:06Z; no-skipped-tests as the `.todo` gate, a todo test failing the strict config; with #194, #195, #197, #201, #215 and #240, and the three the receipt `c46a0e4b` declined, the row is settled) | jcnet `57592003a8` |
 | J21 | lineage | #232 (merged `4d50e3dfd0`, 2026-09-26T10:47:31Z; PARTIAL: the result package says what the type does and lists its whole API) | jcnet `57592003a8` |
