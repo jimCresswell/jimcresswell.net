@@ -2202,3 +2202,27 @@ written 22:19Z).**
   UNCLASSIFIED-EVIDENCE. Code, test and security reviews ran before opening. The gap left: during a
   Codex run window, the door refuses instead of waiting. It is recorded in the node.
 - Next: 274's door with its own build, then 264's door with the same build, then 273's sync.
+
+**274, 236 and 273 landed; the lineage twins next (block written 03:07Z, 2026-09-28).**
+
+- Lineage PR 274 (the Codex reader cure) merged as SHA:8df6e73e at 02:27:05Z after two rounds (CodeQL
+  and Copilot, one finding each, cured). The Director's 264 fold landed on its reader.
+- JC.net PR 236 (the profile-sync merge cure) merged as SHA:f1bf9632 at 03:02:01Z.
+  - During a merge, the push refuses a document it touches that still holds a conflict marker
+    (seven or more marker characters), refuses a path outside the documents still unmerged,
+    and concludes the merge with the whole index. A real-git smoke proves it.
+  - Round one's two findings were cured: a failed merge probe is an error; longer markers count.
+  - The settlement-head item (an empty profile root mid-merge returns before the probe) is routed
+    to the lineage twin of 236 by a signed line, with the runner's missing exit status.
+- Lineage PR 273 merged as SHA:942a2ae22 at 03:06:08Z.
+  - Its round-two observation (no test proves the non-blocking open) is routed to the twin of 235,
+    which gains a real-fifo smoke of the reader. The stale fake-fifo lines in its body are corrected.
+- 250's three "Over-bar, open" threads are the body's own recorded open work and stay the owner's.
+  - Two (plan's canonical, lines 24 and 25) are the failure the body records as "Plan's case 3
+    fails in both arms", counted unresolved by Appendix E's criterion 5.
+  - The third (the plugin projection's relative links) is a projector cure a seat could write, but
+    it changes what two skills' suites see.
+  - Each cure needs its suite rerun and a fresh human read, the owner's human-review criterion.
+    None takes a slot in this seat's order.
+- Next: the twin of 235 (merge engraph; the reader comments to JC.net's bytes; the real-fifo
+  smoke), then the twin of 236 (with the empty-root cure). The count is 1 of 3 (250).
