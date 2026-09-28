@@ -176,6 +176,35 @@ export const TOKEN_SCOPES = {
   'branch-retire': {
     contents: 'write',
   },
+
+  /**
+   * Reading one repository's refs through GitHub: its id, its default
+   * branch's name and tip, and one branch ref, in one GraphQL query. No
+   * write of any kind: a token that only reads cannot delete or move a ref.
+   *
+   * ## Provenance, 2026-09-28
+   *
+   * A live probe in this repository, under a token minted with this row
+   * alone, through the production mint:
+   *
+   * - GitHub's mint response granted exactly `contents: read` and
+   *   `metadata: read`, for this one repository.
+   * - The GraphQL query `merge-bot retire` uses for its ref reads returned
+   *   the repository id, the default branch's name and tip, and the branch
+   *   ref, and `null` for a ref that does not exist.
+   * - GraphQL `updateRefs` itself, the mutation a remote delete sends, was
+   *   refused. The probe asked it to create a throwaway branch at main's tip
+   *   (a zero `beforeOid`). GitHub answered HTTP 200 with `updateRefs: null`
+   *   and a `FORBIDDEN` error, "Resource not accessible by integration", and
+   *   a read-back found no such ref.
+   *
+   * The refused write is the evidence for the grant. The repository is
+   * public, so the successful read alone would show nothing. A private
+   * repository (the lineage's port) probes this row again there.
+   */
+  'branch-read': {
+    contents: 'read',
+  },
 } as const satisfies Readonly<Record<string, TokenPermissionSet>>;
 
 /** The closed set of scope names, derived so there is one source. */

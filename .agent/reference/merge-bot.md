@@ -107,6 +107,7 @@ are defined in `agent-tools/src/merge-bot/token-scopes.ts`:
 | `code-scanning-alerts` | `security_events: read`                                       | reading code-scanning alerts                                                  |
 | `workflow-dispatch`    | `actions: write`                                              | dispatching a workflow; re-running a failed job                               |
 | `branch-retire`        | `contents: write`                                             | deleting a merged branch ref (what `merge-bot retire` mints itself)           |
+| `branch-read`          | `contents: read`                                              | reading a repository's default branch and a branch ref; no write of any kind  |
 
 That table is a **mirror**, kept inline because a reader choosing a scope
 needs the read/write levels in front of them. `token-scopes.ts` is
