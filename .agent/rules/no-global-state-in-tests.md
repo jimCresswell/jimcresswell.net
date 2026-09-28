@@ -1,12 +1,14 @@
 ---
 classification: situational
 description: Keep tests isolated from global-state mutation
-trigger: surface:**/*.test.*,jcdotnet/e2e/**/*,agent-tools/e2e-tests/**/*,**/smoke-tests/**/*
+trigger: surface:**/*.test.*,jcdotnet/e2e/**/*,agent-tools/e2e-tests/**/*,**/smoke-tests/**/*,**/test-helpers/**/*,**/*setup.ts
 globs:
   - "**/*.test.*"
   - jcdotnet/e2e/**/*
   - agent-tools/e2e-tests/**/*
   - "**/smoke-tests/**/*"
+  - "**/test-helpers/**/*"
+  - "**/*setup.ts"
 ---
 
 # No Global State Manipulation in Tests

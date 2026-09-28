@@ -5,6 +5,7 @@ trigger: surface:design — Authoring or reviewing a design value on a consumer 
 globs:
   - jcdotnet/app/**/*.{ts,tsx,css,html}
   - jcdotnet/components/**/*.{ts,tsx,css,html}
+  - jcdotnet/lib/**/*.tsx
 ---
 
 # Design Values Come From the System

@@ -5,6 +5,9 @@ trigger: surface:design — Issuing any assessment of visual work
 globs:
   - jcdotnet/app/**/*.{ts,tsx,css,html}
   - jcdotnet/components/**/*.{ts,tsx,css,html}
+  - jcdotnet/lib/**/*.tsx
+  - jcdotnet/lib/pdf-config.ts
+  - jcdotnet/scripts/generate-pdf.ts
 ---
 
 # Visual Verdicts Require Rendered Proof

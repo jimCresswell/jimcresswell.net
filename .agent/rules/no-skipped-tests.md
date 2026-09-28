@@ -1,11 +1,13 @@
 ---
 classification: situational
 description: Do not leave skipped tests in the tree
-trigger: surface:**/*.test.*,jcdotnet/e2e/**/*,agent-tools/e2e-tests/**/*
+trigger: surface:**/*.test.*,jcdotnet/e2e/**/*,agent-tools/e2e-tests/**/*,**/vitest*.config*.ts,jcdotnet/playwright.config.ts
 globs:
   - "**/*.test.*"
   - jcdotnet/e2e/**/*
   - agent-tools/e2e-tests/**/*
+  - "**/vitest*.config*.ts"
+  - jcdotnet/playwright.config.ts
 ---
 
 # No Skipped Tests

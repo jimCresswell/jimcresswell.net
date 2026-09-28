@@ -1,6 +1,6 @@
 ---
 description: Do not leave skipped tests in the tree
-globs: '**/*.test.*,jcdotnet/e2e/**/*,agent-tools/e2e-tests/**/*'
+globs: '**/*.test.*,jcdotnet/e2e/**/*,agent-tools/e2e-tests/**/*,**/vitest*.config*.ts,jcdotnet/playwright.config.ts'
 alwaysApply: false
 ---
 
