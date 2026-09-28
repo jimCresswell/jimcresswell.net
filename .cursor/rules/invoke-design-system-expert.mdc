@@ -1,6 +1,6 @@
 ---
 description: Invoke design-system-expert when changes touch design tokens, CSS custom properties, colour palettes, spacing scales, typography scales, motion, theming, or visual consistency in UI-shipping workspaces.
-globs: packages/design/**,**/*.css
+globs: '**/*.css,jcdotnet/components/**/*.tsx,jcdotnet/lib/**/*.tsx'
 alwaysApply: false
 ---
 

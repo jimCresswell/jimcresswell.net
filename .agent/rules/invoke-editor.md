@@ -3,10 +3,11 @@ classification: situational
 description: Route editorial and public-copy changes through the editor
 trigger: surface:public-facing copy, CV and front-page content, LinkedIn workspace drafts, structured-data descriptions, editorial docs
 globs:
-  - content/**/*
+  - jcdotnet/content/**/*
   - docs/editorial/**/*
-  - app/**/*
-  - lib/jsonld.ts
+  - jcdotnet/app/**/*
+  - jcdotnet/components/**/*.tsx
+  - jcdotnet/lib/jsonld.ts
   - linkedin/**/*
 ---
 
