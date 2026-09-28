@@ -4123,3 +4123,93 @@ recipe; check-in 67 in about 45 minutes, on change.
 - **A report is true to its reading, not to the world.** A listing that cannot see a dangling
   symbolic ref reports "no symbolic ref" truly. The cure was one reader per fact (the raw
   `symbolic-ref`), not a second reader reconciled against the first.
+
+## 2026-09-28T17:5xZ — Director: the owner's two non-binary answers worked through the cognitive skills (J17's gate doctrine by parallax decide; the register's "owed" by concept exploration); check-in 67
+
+THE OWNER'S WORDS (the question tool, answered by 17:4xZ, verbatim): J11 "Decline with the reason
+(Recommended)" (relayed to Myrtle; recorded as Not taken with the reason); J17 "Run it through
+the decision matrix, we don't choose between options, we create the best from what we know"; the
+count "What does owed mean? That sounds liked parked, which is forbidden for very good reason.
+Use the cognitive skills". Earlier, by the start-right-team skill: "please continue".
+
+J17 NOTE 1 THROUGH PARALLAX DECIDE (the decision method's disciplines: dominance, side
+constraints, reversibility). Evidence, first-hand: the lineage's AGENT.md at origin/engraph
+cdd5b0463 (§Commands): "The commit is the gate ... never run the gates separately, before, beside
+or after a commit (owner, 2026-09-14 ...)", "pnpm check is the aggregate the hooks and CI compose
+... not a command a seat runs by hand"; JC.net's AGENT.md at origin/main 22e97b52 (§Commands):
+"Run gates one at a time while iterating; pnpm check is the canonical full aggregate"; both
+estates carry no-unbounded-host-load item 6 in the same bytes (full gates bounded at two, ceiling
+three, by a mechanism); JC.net's ratified delivery node commit-as-the-full-local-gate (the owner's
+card of 2026-09-24): "move the full gate from push to commit, as the owner ruled for both
+estates", six PRs, A the gate slot (landed: .husky/pre-push acquires around pnpm check and the
+end-to-end suite), D the hook change whose words "the five homes of the 2026-09-14 ruling take"
+and which is "the same bytes in both estates", E the prose sweep, F the gates skills and PDR-008
+joint with the lineage; its §Estate status: the gate slot's concepts "travel outbound, for the
+lineage's seat to write in its own code". The batch-six triage (2026-09-25, line 17) already read
+this: the node "moves toward the lineage's doctrine, so the J17 gate note states that direction
+instead of asking". Options at comparable resolution: (1) converge the lineage on JC.net's
+runnable aggregate: rejected, it contradicts the owner's 2026-09-14 word, a side constraint, not
+a score; (2) keep the lineage's doctrine and decline the compare: rejected, it leaves the
+lineage without the bound the owner ruled for both estates (2026-09-07, 2026-09-20) and the two
+AGENT.md paragraphs contradicting each other across estates; (3) the ratified node's shape: the
+lineage's WORDS land in JC.net (D, E, F: "the commit is the gate; never run gates by hand", the
+same bytes) and JC.net's MECHANISM lands in the lineage (note 4, the gate slot in the lineage's
+own code; the bound holds a hand-run gate too, as defence in depth behind the rule, "by a
+mechanism, never a declaration"); (4) defer or collect information: nothing is missing, the
+ruling exists. Option 3 dominates on every material dimension (host safety, doctrine clarity, the
+alignment goal's same-bytes test) and is reversible PR by PR. VERDICT, validated as a reading of
+an existing ruling, not a new decision: J17 note 1 is CONVERGED BY THE RATIFIED NODE, in both
+directions; the census's card re-asked a question the owner settled on 2026-09-24, and this seat
+carded it without re-reading the triage's line 17 (recorded against this seat). Disposition for
+the register: note 1 settles by a §Landings row citing the node; note 4 (the gate slot) and note
+8 (warnings fail every gate) keep their PRs. World-return: the indicator is the five homes
+carrying the 2026-09-14 words byte-identically in both estates and a gate slot on the lineage;
+the defeater is a hand-run gate stall recurring after D lands; reopen then.
+
+"OWED" THROUGH CONCEPT EXPLORATION. Observations: the register's rule (§Disposition vocabulary)
+makes a row owed when it sits in the other estate's delta table with a non-excluding cell and
+landed only when a §Landings row for it lacks PARTIAL; after seven days the count reads 4 of 21
+with eleven PARTIAL rows; the no-hedging-vocabulary rule carries the owner's 2026-08-12 words
+that "parked" is a red flag for "a known and recognised problem ... labelled as not relevant or
+something we can live with", the harm memetic; PDR-068 names a buffer that "becomes a parking
+lot for what should already have landed". The inherited assumption exposed: that a register needs
+a pending state, and that "owed" is neutral bookkeeping. The problem, defined: the register's
+vocabulary encodes routing, not flow; "owed" and PARTIAL carry no owner, no position, no clock
+and no retirement condition, so a row can sit for a week and count as nothing while the register
+reads as healthy; PARTIAL hides progress (a row nine-tenths landed reads 0). Who it harms: the
+owner (a liability with no clock), the seats (a state that invites deferral), the estate (the
+label propagates). The fluent first answer, rejected: rename "owed" (a euphemism swap, the
+vocabulary rule's own warning). The synthesis, "the best from what we know": keep the register's
+coverage role and add a FLOW CONTRACT: (1) four states and no fifth: landed (proof), in flight
+(the PR number or the seat's named lane), queued (its position in the census order, the seat, and
+the horizon from the observed pace, all in the same breath), declined (the reason, the owner's
+word where the row is ratified); (2) units: the count reads in residue PRs (the census's 24),
+landed of total, so it moves daily; (3) the failure signal: a count that does not fall between
+two folds names the holder's verdict, the same back-pressure as the open-PR count (PDR-068), and
+a row queued across two folds with no movement is routed, never re-labelled; (4) "owed" leaves
+the rule text. And the material move: a queue with one seat is a queue; Nova's lane emptied at
+17:3xZ, so Nova joins the residue on its code rows (J6 the smoke runner, three PRs; J8
+corpus-analysis and workflow-build, two PRs; both independent of N1's generators, which Myrtle
+keeps with J2 and the partials), halving the horizon. Warrant: the owner's words and rules above.
+Falsifier: if the residue count does not fall over the next two folds under the contract, the
+pace, not the label, is the bottleneck, and the cure is seats, not vocabulary. Unresolved: whether
+the owner counts a row queued in the order as parked too; if so the only lawful queue is zero and
+the exchange needs every free seat now.
+
+CHECK-IN 67 (on change; the seats' first-hand reads, 17:1xZ to 17:4xZ): landings since check-in
+66: JC.net 248 (bff4cc68, 17:14:17Z, Myrtle's todo 6), 249 (405271e3, 17:15:57Z, Nova's secops
+exception), 250 (3aa724d7, Nova's lineage-names test cure), 252 (f0f2f1fc, Nova's LinkedIn batch
+2, one settlement round, the held-out privacy items excluded); lineage 288 (c5dbce46e, Myrtle's
+metacognition graduation). Open non-coordination: JC.net 251 (Siren's PR A, the retire
+symref-relist cure plus a security fix from PR B's pre-execution review: merge-base followed
+replacement refs and grafts, now off for every git read; round two requested at 442a2eba); the
+count 1 of 3. Siren's PR B splits into B1 to B4 on four GO-WITH-CONDITIONS reviews, one at a time
+after 251. Nova: the directive-and-template PR (privacy.md's bullet, the editor template, the
+AGENT.md and editorial-guidance routes) in build, then the residue code rows above on the owner's
+word. Myrtle: J11 recorded Not taken with the reason and sent to Siren for the register's row;
+the close-bar twin after the 00:00Z fold; J1's N1 next. The 628e21c1 branch: Nova's permission
+layer refused the forced delete and she routed around nothing; it stays at 628e21c1, in no
+worktree, conserved in the private bundle; the owner can delete it in the terminal. Next: the
+card (J17's reading, the flow contract and Nova's lane, Myrtle's ruling-40 scope card, Nova's
+four held-out privacy items); the pre-fold suite about 23:2xZ; the rollover folds at 00:00Z;
+check-in 68 in about 45 minutes, on change.
