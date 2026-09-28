@@ -53,6 +53,19 @@ describe('findAdrCitations', () => {
     expect(findAdrCitations(content).map((citation) => citation.adr)).toEqual(['ADR-12']);
   });
 
+  it('keys a number too large for an exact double as written, so two such ADRs stay distinct', () => {
+    expect(
+      findAdrCitations('ADR-9007199254740992 and ADR-0009007199254740993').map((c) => c.adr),
+    ).toEqual(['ADR-9007199254740992', 'ADR-9007199254740993']);
+  });
+
+  it('keys ADR-0, written with any number of zeros, as ADR-0', () => {
+    expect(findAdrCitations('ADR-0 and ADR-000').map((citation) => citation.adr)).toEqual([
+      'ADR-0',
+      'ADR-0',
+    ]);
+  });
+
   it.each([
     ['a PDR number', 'PDR-105'],
     ['a longer word', 'MADR-2'],
@@ -144,6 +157,20 @@ describe('compareToCensus', () => {
       `${PDR_A} ADR-9`,
       `${PDR_A} ADR-10`,
       `${PDR_B} ADR-1`,
+    ]);
+  });
+
+  it('orders ADR numbers too large for an exact double by their digits', () => {
+    const findings = compareToCensus(
+      [],
+      [
+        { file: PDR_A, adr: 'ADR-9007199254740993', count: 1 },
+        { file: PDR_A, adr: 'ADR-9007199254740992', count: 1 },
+      ],
+    );
+    expect(findings.map((finding) => finding.adr)).toEqual([
+      'ADR-9007199254740992',
+      'ADR-9007199254740993',
     ]);
   });
 

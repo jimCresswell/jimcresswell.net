@@ -87,6 +87,14 @@ export function isCorePath(relativePath: string): boolean {
   return relativePath.startsWith(CORE_PREFIX);
 }
 
+/**
+ * The digits without their leading zeros, kept as text: an ADR number past the
+ * exact range of a double must not collapse into its neighbour's key.
+ */
+function withoutLeadingZeros(digits: string): string {
+  return digits.replace(/^0+(?=\d)/u, '');
+}
+
 /** Every ADR citation in a document, in reading order. */
 export function findAdrCitations(content: string): AdrCitation[] {
   const citations: AdrCitation[] = [];
@@ -96,7 +104,7 @@ export function findAdrCitations(content: string): AdrCitation[] {
         line: index + 1,
         column: match.index + 1,
         text: match[0],
-        adr: `ADR-${String(Number.parseInt(match[1] ?? '', 10))}`,
+        adr: `ADR-${withoutLeadingZeros(match[1] ?? '')}`,
       });
     }
   }
@@ -119,11 +127,15 @@ export function countCitations(files: readonly ScanFile[]): CitationCount[] {
   return [...counts.values()];
 }
 
+/** Canonical ADR numbers in numeric order, compared as digit strings. */
+function byAdrNumber(a: string, b: string): number {
+  const left = a.slice('ADR-'.length);
+  const right = b.slice('ADR-'.length);
+  return left.length - right.length || (left < right ? -1 : left > right ? 1 : 0);
+}
+
 function byFileThenAdr(a: CensusFinding, b: CensusFinding): number {
-  return (
-    a.file.localeCompare(b.file) ||
-    Number.parseInt(a.adr.slice(4), 10) - Number.parseInt(b.adr.slice(4), 10)
-  );
+  return a.file.localeCompare(b.file) || byAdrNumber(a.adr, b.adr);
 }
 
 /** The divergence of one pair: none when the two counts agree, else one finding. */

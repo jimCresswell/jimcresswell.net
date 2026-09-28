@@ -131,7 +131,10 @@ function reportFindings(files: readonly ScanFile[], findings: readonly CensusFin
 }
 
 function main(): number {
-  const repoRoot = resolveRepoRoot(import.meta.url);
+  // projectDir is explicitly disabled: this validator reads the tree it runs
+  // inside. The CLAUDE_PROJECT_DIR leg would rebind a worktree invocation to
+  // the primary checkout and report the wrong estate green.
+  const repoRoot = resolveRepoRoot(import.meta.url, { projectDir: undefined });
   const core = readCore(repoRoot);
   if (!core.ok) {
     return refuse(core.error);
