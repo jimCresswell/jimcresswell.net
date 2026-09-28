@@ -4530,3 +4530,8 @@ NEXT: the lineage fold at 00:00Z by the scripts (yielding to 291 at its door, th
 the one rule); the JC.net fold by the proxy recipe to its door, Copilot requested by the
 operator at the ready-mark; check-in 75 after the folds with the ready list if either JC.net
 door is still without a content review.
+
+THE SIXTEENTH SEAT (the adversarial procedure seat, returned after the write): ON-TRACK; NARROWED on
+the midday cadence (NEXT names the successors DUE at 12:00Z, so the cadence is carried by the
+successor bodies) and the push word (mapped above). Final tally: ON-TRACK sixteen; SOUND four,
+NARROWED six, CONTRADICTED six.
