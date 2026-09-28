@@ -51,12 +51,29 @@ row's landing), `decline (reason)`, `records, not portable`, `graduated into <ro
 (an owner decision), `local` (host-specific by nature). A landing column carries the merged
 pull request once one exists.
 
-The exchange reports one number per direction, computed from these tables alone. A row is
-**owed** to an estate E when it sits in the other estate's delta table (J rows are owed to the
-lineage, L rows to `jcnet`) and its E-column cell does not begin with `decline`, `graduated
-into`, `origin`, `none`, `local` or `records, not portable`. An owed row has **landed** in E
-when §Landings holds a row with its id and Estate E whose Pull request cell lacks `PARTIAL`.
-Each direction reads as landed of owed, beside the `main` head the register was read at.
+The exchange reports one number per direction, computed from these tables, the residue census
+and the receiving estate's open pull requests, under the flow contract the owner ratified on
+2026-09-28 (the node's ruling 43). The residue census of 2026-09-28 sits in the lineage's tree
+at `.agent/reports/practice-exchange/goal-one-residue-census-2026-09-28.md` (the node's todo 6);
+the batch-six triage is `batch-six-triage-2026-09-25.md`, beside this file. A row sits in the
+other estate's delta table (J rows for the lineage, L rows for `jcnet`). Where its E-column
+cell begins with `decline`, `graduated into`, `origin`, `none`, `local` or `records, not
+portable`, it has no residue pull request in E and is outside E's count, declined where the
+cell says so. Otherwise it is in exactly one of four states, with no fifth: **landed** (the
+proof: a §Landings row with its id and Estate E whose Pull request cell lacks `PARTIAL` and
+does not begin `declined`), **in flight** (the open pull request's number on the receiving
+estate, or the seat's named lane), **queued** (its position in the census's order, the seat
+that takes it, and the horizon from the observed pace, all in the same breath) or **declined**
+(the reason; the owner's word where the row is ratified). A decline after the window, or a
+settlement by the triage's or a ruling's read with no pull request, is a dated §Landings row
+saying so; a decline's cell begins `declined`. The unit is the residue pull request as the
+census names it (24 for goal one, the census of 2026-09-28; the inbound direction's count waits
+on its own census, todo 4 after the review, ruling 44), and each direction reads as landed of
+total beside both estates' `main` heads the register was read at, so the count moves daily. A
+count that does not fall between two coordination folds is routed to the Director (the node's
+ruling 21) as a failure, never re-labelled; a row queued across two folds with no movement is
+routed the same way. `PARTIAL` on a landing names a remainder, a residue pull request the census
+names; the row takes its remainder's state.
 
 ## Rows from the lineage's delta (since `e477e62f7e`)
 
@@ -224,3 +241,10 @@ Appended as each row lands: row, estate, pull request, head read.
 | J7 | lineage | #270 (merged `bd320b710a`, 2026-09-27T21:33:26Z; PARTIAL: root-anchored path scopes, and payload paths placed against their cwd) | jcnet `67bc75ecb7` |
 | J3 | jcnet | PR 232 (merged `45093dca95`, 2026-09-27T21:44:13Z; PARTIAL: the tracked gates take #269's review cures, with two of this estate's own, the leading `:` refusal and a repair-mode test, which the lineage takes with the shellcheck slice) | lineage `48f70d4bab` |
 | J7 | lineage | #271 (merged `bfd9e07f0d`, 2026-09-27T22:57:18Z; PARTIAL: a scoped block may exempt files in another git repository, with bounded reads, the same bytes as this estate's PRs 230, 231 and 233 in 22 of 24 files, the package scope aside; the argument matcher's compare half stays open) | jcnet `67bc75ecb7` |
+| J22 | lineage | #272 (merged `48f70d4bab`, 2026-09-27T23:34:56Z; PARTIAL: the agent-tools test task hashes the hook policy it reads, a build-system input declaration in the line of #243) | jcnet `67bc75ecb7` |
+| J17 | lineage | no pull request, 2026-09-28: the batch-six triage's note 1, the gate-running doctrine, is converged by this estate's ratified node `commit-as-the-full-local-gate` (the owner's card of 2026-09-24): the lineage's words land here in that node's slices D, E and F (the hook change with the five homes, the prose sweep, the gates skills), and this estate's mechanism, the gate slot, lands in the lineage as the triage's note 4; the Director's reading, confirmed by the owner on 2026-09-28 (the node's ruling 42); PARTIAL: notes 4 and 8 keep their pull requests | jcnet `be6b5141be` |
+| J22 | lineage | no pull request, 2026-09-28: note 1's build-system half is converged by the same node (ruling 42); with #235 and #243 (note 2), #217 (note 12, the no-IO doctrine texts), #237 and #282 (note 13, the recipes and the workflow) and #272, the row is settled; the residue census of 2026-09-28 names no other remainder | jcnet `be6b5141be` |
+| J11 | lineage | declined in part, no pull request, 2026-09-28: the exchange instrument (this register's validator, its smoke and its root script) is Not taken by the lineage, the reason being that it validates this estate's register, which the lineage does not hold; the owner's word verbatim as relayed, "Decline with the reason (Recommended)" (the node's ruling 41); PARTIAL: the loss-scan instrument stays J11's one residue pull request | jcnet `be6b5141be` |
+| J15 | lineage | no pull request, 2026-09-28: settled by the batch-six triage's read (§J15) as the residue census of 2026-09-28 names it: of the row's 118 paths, two riders landed in #227, the third (the champion role's tsconfig block) rides J20's tsconfig pull request, and the rest is LOCAL, PARITY or another row's; ruling 40's clause (1) | jcnet `be6b5141be` |
+| J19 | lineage | no pull request, 2026-09-28: settled by the batch-six triage's read (§J19) as the residue census of 2026-09-28 names it: the six patterns are this estate's imports from the lineage, PARITY, and the polarity header landed in #234; ruling 40's clause (1) | jcnet `be6b5141be` |
+| J23 | lineage | no pull request, 2026-09-28: settled by the batch-six triage's read (§J23) as the residue census of 2026-09-28 names it: the five architecture decision records are site decisions, none deciding a Practice concept, so nothing twins; ruling 40's clause (1) | jcnet `be6b5141be` |
