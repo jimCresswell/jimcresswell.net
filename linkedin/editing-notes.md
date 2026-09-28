@@ -55,8 +55,10 @@ These points do not prevent reviewing the whole draft. Its open decisions are lo
 
 The [recorded LinkedIn profile](reference/current-profile-2026-09-27.md) and
 [website role data](../jcdotnet/content/entities.json) disagree in these specific ways. The draft
-follows the recorded LinkedIn dates/titles for the three entries below; that is a provisional editing basis,
-not a finding that every LinkedIn field is correct.
+follows the recorded LinkedIn dates for the three entries below, and the recorded titles for Code
+Science and FT Labs; its Obaith heading, “Independent Research”, is a proposed label in place of the
+recorded “Founder”. That is a provisional editing basis, not a finding that every LinkedIn field is
+correct.
 
 | Item         | Recorded LinkedIn                                                            | Website role data                                 | Local decision still needed                                                                  |
 | ------------ | ---------------------------------------------------------------------------- | ------------------------------------------------- | -------------------------------------------------------------------------------------------- |
