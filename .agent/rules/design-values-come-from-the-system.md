@@ -52,14 +52,11 @@ value is written, and again at review.
 
 ## Why This Rule Exists (Worked Instance)
 
-In the upstream lineage, the hub demo predated the design system and accumulated 27 raw hex values
-across its app and component sources (audited first-hand 2026-07-29; the
-true-up ticket carries the disposition work with replace-with-role as the
-owner-ruled default); each now needs an individual disposition — the exact
-drift this rule prevents at authoring time. The same day, the showcase
-absorb landed with a zero-hardcoded-values invariant and an enforcement
-instrument in its programme ticket's next-slice DoD, demonstrating the
-compliant shape.
+A demo application built before its design system accumulated raw hex values across its app and
+component sources. Each then needed an individual disposition, with replace-with-role as the
+default: the exact drift this rule prevents at authoring time. A surface absorbed after the system
+existed, carrying a zero-hardcoded-values invariant and an enforcement instrument from its first
+slice, shows the compliant shape.
 
 ## Related Surfaces
 
