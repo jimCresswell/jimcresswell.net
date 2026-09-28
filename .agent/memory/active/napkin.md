@@ -4446,3 +4446,29 @@ NEXT: check-in 73 about 22:20Z on change; the pre-fold suite frame at 23:00Z fro
 and the plan node's todos verbatim, the suite about 23:2xZ; the rollover folds at 00:00Z under
 the Copilot ruling if it holds (the lineage on Codex's leg; JC.net's fold has no door without
 Copilot, so the owner's hand or the ruling's lift lands it).
+
+## 2026-09-28T22:1xZ — Director check-in 73, on change: no landings; 291 at its door; C1 open as 292; Copilot still erroring; the count 3 of 3
+
+THE FOUR NUMBERS (the snapshot at 22:18:20Z): open non-coordination PRs 3 of 3 (lineage 291,
+Myrtle's N1, CLEAN with zero threads, at its door on Codex's leg with the posted expert review;
+lineage 292, Siren's C1, the pinned shellcheck gate over the tracked tree, opened 21:36:17Z, its
+round-one cures in flight; JC.net 257, Nova's validator, unchanged, waiting on a Copilot content
+review or the owner's hand); landings since check-in 72: none; heads with CI in flight: 292 and
+the lineage draft 283 (ten files after Nova's records commit e22a124cc). Coordination drafts:
+JC.net 241 (CLEAN; the branch's one unpushed records commit rides this push), lineage 283. Ready
+lists: 291 (lineage), 257 (JC.net). New worktree on JC.net: jcnet-wt-branch-read-scope, Siren's
+B1 in build, no remote branch yet.
+
+COPILOT: a second error review, on 291 at 21:36:45Z ("Copilot encountered an error and was unable
+to review this pull request"), read by body; no content review on either estate since 19:31Z. The
+20:4xZ ruling holds. The lineage doors run on Codex's leg; JC.net has none. N6 (Nova, ready at
+706b58a47) opens on the lineage when 291 or 292 lands.
+
+RECORDS PUSHED BY THE SEATS: Nova's e22a124cc on the lineage's coordination branch (the
+codex-dialogues plan step marked superseded by discovery; F-212 records the dist race).
+
+NEXT: the pre-fold suite frame at 23:00Z (the snapshot, the plan node's todos verbatim, the
+Copilot ruling as the door's state), the suite about 23:1xZ, both stances, identical frames;
+check-in 74 with the suite's tally; the rollover folds at 00:00Z: the lineage fold by the scripts
+on Codex's leg; JC.net's fold by the take-merged recipe up to its door, which has no vendor leg
+while Copilot errors, so it lands by the owner's hand or waits for the lift.
