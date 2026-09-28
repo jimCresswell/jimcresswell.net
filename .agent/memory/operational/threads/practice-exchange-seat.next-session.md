@@ -2280,3 +2280,30 @@ written 22:19Z).**
   when a slot frees, and merges only after both copies' legs settle (ruling 4).
 - The WIP count is 3 of 3 (250, 278, 279). Next: Codex on 278, then its round-one push; 279's
   round one.
+
+**278 at round two; 279 at its settlement head (block written 05:50Z, 2026-09-28).**
+
+- Lineage PR 278 (P1) is at SHA:a2bcd0b6d. Codex never started on open; a bot-posted
+  `@codex review` at 05:38Z drew its reaction in twelve seconds and a clean completion comment at
+  05:42Z. Copilot's two findings: the quota-hold cure, and the rejected content-read ordering, are
+  each replied with a signed line. The body carries round one, and round two is requested.
+  - A slip, caught before the commit: the round-one cure script replaced a test by slicing from
+    its start to the next anchor, which also deleted the test between them (the mixed-review
+    case). It was restored from HEAD. A slice between two anchors removes everything in between;
+    replace one named block, and read `git diff` before staging.
+- Lineage PR 279 is at its settlement head SHA:a8320853c.
+  - Round one: two findings, both cured in SHA:ce2c5c615. The folded branch's remote tip is
+    fetched before the proof (Copilot and Codex). The fold checks named files, not the gate's root
+    scripts by hand (Copilot). The same push carried the Director's items 3 (the default branch
+    by name) and 4 (no second item numbered 3).
+  - Round two: one finding, from both reviewers: `$FOLDED` was never assigned. Cured in
+    SHA:a8320853c. The legs are requested on the settlement head; its findings get signed lines
+    only.
+- The Director deleted the stale head coordination/2026-09-25-749769 (item 5). Items 1 and 2 go to
+  one doctrine PR per estate after 279's twin: an amendment to clause 5 of
+  `coordination-branch-24h-lifetime`, and a new rule quoting the owner's remote-branch words.
+- The JC.net twin is committed locally at SHA:21b1b04c: a sync merge of main (SHA:f1bf9632),
+  then one cure commit carrying the pre-open, round-one and round-two edits in the same bytes.
+  It is not pushed, and opens when 278 lands.
+- The WIP count is 3 of 3 (250, 278, 279). Next: 278's round two and door; the twin opens in the
+  freed slot; 279 and its twin merge together after both copies' legs settle.
