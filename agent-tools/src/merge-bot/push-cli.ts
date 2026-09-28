@@ -1,5 +1,6 @@
 import { ok, type Result } from '@engraph/result';
 
+import { DEFAULT_BRANCH_NAMES } from './branch-arg.js';
 import type { GitExecutor } from './git-executor.js';
 import { mintForConfig, type MintSeams } from './mint-for-config.js';
 import type { GithubApiFetch } from './mint-installation-token.js';
@@ -33,9 +34,6 @@ import {
  * refusals. Which is also why there is no force flag and no `--no-verify`
  * pass-through: a bypass would be built value, and this one is never built.
  */
-
-/** Branch names that never take a direct push; the never-commit-to-main rule as behaviour. */
-const DEFAULT_BRANCH_NAMES: ReadonlySet<string> = new Set(['main', 'master']);
 
 /** The action's composition surface; cli.ts forwards its own injection seams. */
 export interface PushActionInput {

@@ -106,6 +106,7 @@ are defined in `agent-tools/src/merge-bot/token-scopes.ts`:
 | `pull-request-merge`   | `pull_requests: write`, `contents: write`                     | the merge act alone (what `merge-bot merge` mints itself)                     |
 | `code-scanning-alerts` | `security_events: read`                                       | reading code-scanning alerts                                                  |
 | `workflow-dispatch`    | `actions: write`                                              | dispatching a workflow; re-running a failed job                               |
+| `branch-retire`        | `contents: write`                                             | deleting a merged branch ref (what `merge-bot retire` mints itself)           |
 
 That table is a **mirror**, kept inline because a reader choosing a scope
 needs the read/write levels in front of them. `token-scopes.ts` is
@@ -323,3 +324,42 @@ static credential helper reading that file — the child environment names
 only the file's path. Never argv, no force flags, no `--no-verify`, and
 pushes to the default branch refuse by name (see
 [`bot-identity-on-third-party-systems`](../rules/bot-identity-on-third-party-systems.md)).
+
+## Retiring a merged branch
+
+`merge-bot retire` deletes every name a merged branch has: the local
+branch, its cached `origin` tracking ref and the remote branch. It deletes
+them only once each is proven an ancestor of the remote default branch's tip:
+
+```bash
+pnpm agent-tools merge-bot retire --branch <name>
+```
+
+- Every proof runs before any delete. No read writes a ref the command may
+  delete: a remote branch's objects arrive by an objects-only fetch.
+- The remote branch goes first, as the bot, through GraphQL `updateRefs`
+  with the proven sha as `beforeOid`. That is a compare-and-swap on the
+  server, so a push landing after the proof is kept. The token is minted
+  only when a remote delete is due, with the `branch-retire` scope.
+- At the mint, GitHub must read the branch tip, and the default branch's
+  name and tip, in the bot's repository exactly as they were proven. This
+  binds the proofs to the repository the delete lands in, even when git's
+  traffic to `origin` is rewritten (`insteadOf`).
+- The remote delete's outcome is read back through GitHub, never taken from
+  GitHub's answer to the delete. The local names are deleted by
+  compare-and-swap (`update-ref --no-deref`) only once the remote reads back
+  absent, so a failure part-way leaves a state a re-run finishes.
+- It refuses (exit 3, nothing deleted):
+  - a default branch;
+  - a tip that is not on the default;
+  - a branch in use in any worktree (checked out, or named by a rebase or
+    bisect);
+  - a local or tracking ref that is symbolic;
+  - a name another ref matches when case is ignored;
+  - an `origin` that is not the bot identity's repository;
+  - a remote, or a default branch, that moved after its proof.
+- A failure (exit 1) reports each name as deleted, absent, kept (it moved),
+  failed (the delete did not take) or unknown. The origin URL itself is never
+  printed, only the repository parsed from it.
+- Whether a branch is wanted is the caller's judgement; the command checks
+  no pull request.

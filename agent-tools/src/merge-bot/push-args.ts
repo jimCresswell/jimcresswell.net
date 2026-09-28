@@ -1,7 +1,6 @@
 import { err, ok, type Result } from '@engraph/result';
 
-import type { PathExists } from '../core/path-exists.js';
-import { isLegalBranchName, realRefFormatOracle, type RefFormatOracle } from './ref-format.js';
+import { readBranchArg, type BranchArgSeams } from './branch-arg.js';
 
 /**
  * The argv contract for `merge-bot push`. Split from `push-cli.ts` to keep
@@ -63,63 +62,13 @@ const REFUSED_FLAGS: Readonly<Record<string, string>> = {
     'hooks run on every bot push — the pre-push gates are the point of pushing through this command',
 };
 
-/**
- * A value that reads as a flag is a forgotten `--branch` argument, never a
- * branch anyone meant to push: refuse it rather than cutting a remote branch
- * literally called `--json`. This guard is ours and it is about argv INTENT —
- * git's ref grammar has no opinion here (the oracle passes the full ref name
- * `refs/heads/--json`), and legality is its question, asked separately below.
- */
-function readsAsFlag(value: string): boolean {
-  return value.startsWith('-');
-}
-
-function isBranchName(value: string, oracle: RefFormatOracle): boolean {
-  return !readsAsFlag(value) && isLegalBranchName(value, oracle);
-}
-
 interface CollectedPushFlags {
   branch?: string;
   json: boolean;
 }
 
 /** The seams this parser will construct for itself when not supplied one. */
-export interface PushArgsSeams {
-  readonly refFormatOracle?: RefFormatOracle;
-  /** Existence probe for locating the git binary the default oracle asks. */
-  readonly pathExists?: PathExists;
-}
-
-/**
- * The oracle enters HERE (the default-seam pattern the rest of this command
- * uses) rather than at the parser's head, so parsing an argv with no
- * `--branch` never reaches for a git binary at all. Constructing it can FAIL —
- * a machine with no trusted git has no oracle to ask — and that failure is
- * returned, never thrown: this function's whole contract is its Result.
- */
-function consumeBranch(
-  state: CollectedPushFlags,
-  value: string | undefined,
-  seams: PushArgsSeams,
-): Result<undefined, Error> {
-  // A repeated --branch is refused rather than last-wins: WHICH branch a push
-  // lands on must never be decided by argv order.
-  if (state.branch !== undefined) {
-    return err(new Error('--branch given more than once — pass it exactly once'));
-  }
-  const oracle =
-    seams.refFormatOracle === undefined
-      ? realRefFormatOracle(seams.pathExists)
-      : ok(seams.refFormatOracle);
-  if (!oracle.ok) {
-    return err(oracle.error);
-  }
-  if (value === undefined || !isBranchName(value, oracle.value)) {
-    return err(new Error(`--branch needs a git branch name, got "${value ?? ''}"\n${PUSH_USAGE}`));
-  }
-  state.branch = value;
-  return ok(undefined);
-}
+export type PushArgsSeams = BranchArgSeams;
 
 export function parsePushArgs(
   rest: readonly string[],
@@ -139,10 +88,11 @@ export function parsePushArgs(
     if (flag !== '--branch') {
       return err(new Error(`unknown argument "${flag}"\n${PUSH_USAGE}`));
     }
-    const consumed = consumeBranch(state, rest[index + 1], seams);
-    if (!consumed.ok) {
-      return consumed;
+    const branch = readBranchArg(state.branch, rest[index + 1], seams, PUSH_USAGE);
+    if (!branch.ok) {
+      return branch;
     }
+    state.branch = branch.value;
     index += 1;
   }
   return ok({ branch: state.branch, json: state.json });
