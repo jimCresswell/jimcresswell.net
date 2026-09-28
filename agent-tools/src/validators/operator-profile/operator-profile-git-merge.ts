@@ -13,9 +13,18 @@ import { err, ok, type Result } from '@engraph/result';
 
 import { gitFailure, type GitRunner } from './operator-profile-git.js';
 
-/** Whether a merge is in progress: a conflicting pull leaves `MERGE_HEAD`. */
-function merging(run: GitRunner): boolean {
-  return run(['rev-parse', '-q', '--verify', 'MERGE_HEAD']).ok;
+/**
+ * Whether a merge is in progress: a conflicting pull leaves `MERGE_HEAD`.
+ * `rev-parse -q --verify` exits 1 with nothing on stderr when there is none;
+ * any other failure is an error, never "no merge", since the push would go
+ * on to stage and clear the record of a conflict it could not see.
+ */
+function merging(run: GitRunner): Result<boolean, string> {
+  const probe = run(['rev-parse', '-q', '--verify', 'MERGE_HEAD']);
+  if (probe.ok) {
+    return ok(true);
+  }
+  return probe.stderr === '' ? ok(false) : err(gitFailure('git rev-parse MERGE_HEAD', probe));
 }
 
 function lines(text: string): readonly string[] {
@@ -36,9 +45,10 @@ function mergedDocuments(
   return changed.ok ? ok(lines(changed.stdout)) : err(gitFailure('git diff', changed));
 }
 
-// The lines git writes to open and close a conflict. `=======` alone is also
-// a Markdown heading underline, so only the two ends are read.
-const CONFLICT_MARKER = '^(<<<<<<<|>>>>>>>)( |$)';
+// The lines git writes to open and close a conflict: seven marker characters
+// by default, more under a `conflict-marker-size` attribute. `=======` alone
+// is also a Markdown heading underline, so only the two ends are read.
+const CONFLICT_MARKER = '^(<{7,}|>{7,})( |$)';
 
 /**
  * The documents that still hold a conflict marker in the worktree. `git grep`
@@ -73,8 +83,9 @@ function markerRefusal(marked: readonly string[]): string {
  * @returns whether a merge is in progress, or the refusal naming each marked document
  */
 export function mergeGuard(run: GitRunner, paths: readonly string[]): Result<boolean, string> {
-  if (!merging(run)) {
-    return ok(false);
+  const inMerge = merging(run);
+  if (!inMerge.ok || !inMerge.value) {
+    return inMerge;
   }
   const merged = mergedDocuments(run, paths);
   if (!merged.ok) {

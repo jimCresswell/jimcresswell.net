@@ -109,6 +109,7 @@ function scripted(
     readonly prefix: readonly string[];
     readonly stdout?: string;
     readonly ok?: boolean;
+    readonly stderr?: string;
   }[],
 ): { readonly run: GitRunner; readonly calls: string[][] } {
   const calls: string[][] = [];
@@ -123,7 +124,7 @@ function scripted(
     return {
       ok: hit.ok ?? true,
       stdout: hit.stdout ?? '',
-      stderr: hit.ok === false ? 'refused' : '',
+      stderr: hit.stderr ?? (hit.ok === false ? 'refused' : ''),
     };
   };
   return { run, calls };
@@ -219,6 +220,13 @@ describe('pullProfile', () => {
   });
 });
 
+// No merge in progress: `rev-parse -q --verify MERGE_HEAD` exits 1, quietly.
+const NOT_MERGING = {
+  prefix: ['rev-parse', '-q', '--verify', 'MERGE_HEAD'],
+  ok: false,
+  stderr: '',
+} as const;
+
 describe('pushProfile', () => {
   const NOTHING_TRACKED = { prefix: ['ls-files'], stdout: '' } as const;
   const UPSTREAM = { prefix: ['rev-parse', '--abbrev-ref'], stdout: 'origin/main' } as const;
@@ -227,6 +235,7 @@ describe('pushProfile', () => {
 
   it('stages by pathspec, commits only those paths with the message, and pushes to the upstream', () => {
     const { run, calls } = scripted([
+      NOT_MERGING,
       NOTHING_TRACKED,
       { prefix: ['add'] },
       CHANGED,
@@ -275,6 +284,7 @@ describe('pushProfile', () => {
 
   it('stages a tracked document whose directory no longer exists, so a deletion is committed', () => {
     const { run, calls } = scripted([
+      NOT_MERGING,
       { prefix: ['ls-files'], stdout: 'index.md\nrepos/a--b.md' },
       { prefix: ['add'] },
       CHANGED,
@@ -301,6 +311,7 @@ describe('pushProfile', () => {
     // With core.symlinks=false a path the index holds as a link stays one when
     // its file is rewritten and staged; the push would commit a link.
     const { run } = scripted([
+      NOT_MERGING,
       {
         prefix: ['ls-files', '--stage'],
         stdout: '100644 1111111 0\tindex.md\u0000120000 2222222 0\trepos/a--b.md\u0000',
@@ -320,6 +331,7 @@ describe('pushProfile', () => {
 
   it('sets the upstream on the first push, on the one remote whatever its name', () => {
     const { run, calls } = scripted([
+      NOT_MERGING,
       NOTHING_TRACKED,
       { prefix: ['add'] },
       CHANGED,
@@ -336,6 +348,7 @@ describe('pushProfile', () => {
 
   it('refuses to guess between several remotes when no upstream is set', () => {
     const { run, calls } = scripted([
+      NOT_MERGING,
       NOTHING_TRACKED,
       { prefix: ['add'] },
       CHANGED,
@@ -351,6 +364,7 @@ describe('pushProfile', () => {
 
   it('still pushes commits an earlier push left local when there is nothing new to commit', () => {
     const { run, calls } = scripted([
+      NOT_MERGING,
       NOTHING_TRACKED,
       { prefix: ['add'] },
       { prefix: ['diff', '--cached', '--quiet'] },
@@ -367,6 +381,7 @@ describe('pushProfile', () => {
 
   it('sets the upstream even when there is nothing new to commit', () => {
     const { run, calls } = scripted([
+      NOT_MERGING,
       NOTHING_TRACKED,
       { prefix: ['add'] },
       { prefix: ['diff', '--cached', '--quiet'] },
@@ -382,6 +397,7 @@ describe('pushProfile', () => {
 
   it('reports in sync without committing or pushing when nothing changed and nothing is ahead', () => {
     const { run, calls } = scripted([
+      NOT_MERGING,
       NOTHING_TRACKED,
       { prefix: ['add'] },
       { prefix: ['diff', '--cached', '--quiet'] },
@@ -397,6 +413,7 @@ describe('pushProfile', () => {
   it('refuses to push a branch behind its remote and prescribes the pull, whether or not it committed', () => {
     const behind = { prefix: ['rev-list', '--left-right'], stdout: '1\t0' } as const;
     const clean = scripted([
+      NOT_MERGING,
       NOTHING_TRACKED,
       { prefix: ['add'] },
       { prefix: ['diff', '--cached', '--quiet'] },
@@ -407,6 +424,7 @@ describe('pushProfile', () => {
       'the branch is 1 commit behind the remote — run pnpm profile:sync pull, then push again',
     );
     const committed = scripted([
+      NOT_MERGING,
       NOTHING_TRACKED,
       { prefix: ['add'] },
       CHANGED,
@@ -422,6 +440,7 @@ describe('pushProfile', () => {
 
   it('stages only the paths given plus tracked ones, so an absent untracked directory is never a pathspec', () => {
     const { run, calls } = scripted([
+      NOT_MERGING,
       NOTHING_TRACKED,
       { prefix: ['add'] },
       CHANGED,
@@ -437,6 +456,7 @@ describe('pushProfile', () => {
 
   it('keeps the commit local and says so when the push fails', () => {
     const { run } = scripted([
+      NOT_MERGING,
       NOTHING_TRACKED,
       { prefix: ['add'] },
       CHANGED,
@@ -534,6 +554,20 @@ describe('pushProfile — during a merge', () => {
     expect(failure(pushProfile(run, 'seat: union', PROFILE_DOCUMENTS))).toBe(
       '.gitignore is still unmerged outside the profile documents — in the profile root resolve each and ' +
         'git add -- <path>, then pnpm profile:sync push',
+    );
+  });
+
+  it('reports a merge probe that fails to run as an error, never as no merge, and so never stages', () => {
+    const { run } = scripted([
+      {
+        prefix: ['rev-parse', '-q', '--verify', 'MERGE_HEAD'],
+        ok: false,
+        stderr: 'fatal: bad index',
+      },
+      { prefix: ['ls-files'], stdout: '' },
+    ]);
+    expect(failure(pushProfile(run, 'seat: union', PROFILE_DOCUMENTS))).toBe(
+      'git rev-parse MERGE_HEAD failed: fatal: bad index',
     );
   });
 
