@@ -136,11 +136,12 @@ Every line answered first-hand, none inferred:
 
 ## Current handoff state (2026-09-28 12:2xZ, resumed on the owner's "carry on"; pointer-biased by design)
 
-**Resumed 2026-09-28 11:4xZ on the owner's "carry on".** The live reading is now the napkin's
-2026-09-28T10:22Z block (the owner's review) with the two 11:3xZ blocks after it (the owner's
-answers: Codex support deprioritised, PR 250 to Myrtle, suites before folds and at frame changes,
-Siren resumed, Nova back on JC.net's todo 8; the LinkedIn workspace as material to commit); the
-08:26Z boundary block below them is the frozen state, superseded where they differ.
+**Resumed 2026-09-28 11:4xZ on the owner's "carry on".** The live reading is the napkin's
+2026-09-28T10:22Z block (the owner's review) and every Director block after it, read in order to
+the newest (the owner's words and answers: Codex support deprioritised, PR 250 to Myrtle, suites
+before folds and at frame changes, Siren resumed, Nova back on JC.net's todo 8, the LinkedIn
+workspace off the fold; then the folds and the suite tallies); the 08:26Z boundary block before
+them is the frozen state, superseded where they differ.
 
 **Boundary 10, 2026-09-28 08:26Z (the owner's compaction word).** The reading at the boundary was
 the napkin's 2026-09-28T08:26Z block: work safety verbatim, the state at the boundary, the seats

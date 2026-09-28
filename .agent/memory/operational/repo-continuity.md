@@ -29,9 +29,10 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
   second doctrine pair's settlement pushes committed unpushed (280, 238). The count 3 of 3 (250,
   280, 238); both coordination drafts (275, 234) DUE at 12:00Z. The napkin's 08:26Z block carried
   the re-arm recipe and the owed-on-resume order; the seat resumed at 11:4xZ on the owner's
-  "carry on", and the live reading from then is the napkin's 10:22Z block (the owner's review) with
-  the two 11:3xZ blocks after it (the owner's answers), which supersede the 08:26Z block where
-  they differ; the boundary records went up with the midday fold.
+  "carry on", and the live reading from then is the napkin's 10:22Z block (the owner's review) and
+  every Director block after it, read in order to the newest (the owner's words and answers, the
+  folds, the suite tallies), which supersede the 08:26Z block where they differ; the boundary
+  records went up with the midday fold.
 
 - **2026-09-28T00:1xZ, the rollover folds in progress** (Wick binds Temper, ed7b48). Both
   coordination drafts synced, pushed and ready-marked at 00:0xZ: the lineage's PR 264
