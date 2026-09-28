@@ -2181,3 +2181,24 @@ written 22:19Z).**
     guard and the bounded reads match; the argument matcher and several core files still differ
     (J7's compare half).
   - The 23:36Z block rode the Director's check-in commit SHA:613a7c07.
+
+**235 landed; lineage 274 (the Codex reader cure) open (block written 01:47Z, 2026-09-28).**
+
+- JC.net PR 235 merged by the door as SHA:ccc26615 at 01:27:17Z.
+  - Round two's one finding was cured in the settlement push SHA:2617c0d9.
+  - The door needs a Copilot review on the settlement head, so Copilot was requested there as the
+    operator. Its one body item was routed by a signed line to the lineage twin, which now carries
+    the corrected runner note (SHA:52f381a1f, local), and to JC.net's sync-push-during-merge PR,
+    which takes the converged bytes. The item: at an expected path, a pulled link's plain file
+    passes the check, and only the push leg refuses it.
+  - My three earlier thread replies opened with `**Above-bar, cured in …**`, which the tally's
+    marker grammar does not read. Their first lines now read `**Over-bar** · item N of M — Cured
+    in SHA:…`.
+  - The branch was deleted, the worktree removed, the local ref deleted after the ancestry proof,
+    and claim f6f44dc4 closed.
+- Lineage PR 274 (`fix/codex-edited-summary-reader`, SHA:c85d4d8e8, claim a7e4a354, WIP 3 of 3):
+  the door accepts a completion comment last edited by its own author and reads the summary's
+  completed Code Review row. With it, `pr state 264` reads SETTLE-READY; the engraph build reads
+  UNCLASSIFIED-EVIDENCE. Code, test and security reviews ran before opening. The gap left: during a
+  Codex run window, the door refuses instead of waiting. It is recorded in the node.
+- Next: 274's door with its own build, then 264's door with the same build, then 273's sync.
