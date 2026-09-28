@@ -3264,3 +3264,45 @@ the hasher, refused; test; type; Wilma); it opens after one gate, at the free sl
 NEXT: P1's PR, then Nova's doctrine PRs (Siren); check-in 59 at about 05:50Z; the pre-fold suite
 at about 11:15Z; the midday folds at 12:00Z with the recipe and its addenda (a) to (f); the
 owner's word.
+
+## 2026-09-28T05:51Z — Director check-in 59: the count 3; 278 (P1) and 279 (Nova's doctrine commit) open; a folded branch deleted; five review items routed
+
+THE FOUR NUMBERS (`checkin-59-raw.md`, 05:50Z): open non-coordination PRs 3 of 3 (lineage 250,
+the owner's draft, BEHIND, its three threads the owner's; 278, P1 "pr state binds a review to
+the head by content after a pure sync", 29 files, at a2bcd0b6d with round one cured and round
+two requested; 279, Nova's fold and chmod commit with Siren's pre-open cure and one round-two
+cure, four files, at its settlement head a8320853c with the legs requested), all Siren's;
+landings since check-in 58: none; heads with CI in flight: 278 and 279 (both gates released at
+05:49:50Z); slot-holder age: 278 the lineage door holder since its slot line at 05:08:25Z, 279
+behind it. Remote branches outside a PR: none in either estate after the Director deleted
+coordination/2026-09-25-749769 (PR 223's merged head, an ancestor of engraph) by the bot's REST
+delete, read back absent, surfaced by Siren from 279's review. Local branches not merged: the
+lineage's siren/250-settlement, feat/pr-watch-content-binding (278) and
+docs/fold-sweep-and-chmod-bits (279); JC.net's docs/fold-sweep-and-chmod-bits (279's twin,
+committed locally, waiting for a slot). Host load 7.04. The JC.net primary on
+coordination/2026-09-28-87689e (draft PR 234, green on 93e2ccc8) carries Siren's two records
+1259fb6a and 8b9aeb4a; this block pushes with them. The lineage primary on
+coordination/2026-09-28-96b273 (draft PR 275) clean. Both registries' `heartbeat_at` 05:49:50Z
+and later; the standalone pulse alive.
+
+Since the rollover: the lineage landed 274, 264, 273, 276, 277 (five); JC.net 227, 235, 236
+(three). Goal one: rows J2, J3 and J7 with lineage landings on top of the register's thirteen;
+L1 (the operator-profile row) flows back after its divergence read. Goal two: 278 is a goal-two
+row (the sync-lineage binding, P1); no live Codex seat. The retrospective trigger: one-shot,
+fulfilled; its count condition holds at 3 of 3.
+
+ROUTED (Siren's five items from 279's review, the surfaces read first): (5) the stale folded
+branch, deleted by the Director as above; (3) the lineage fold skill's four `origin/main`
+citations and (4) its duplicate "3." item ride 279 and its JC.net twin, same bytes; (1) the
+shared-primary write check (each writer lints its own primary write with the gate's command as
+it lands) as an amendment to coordination-branch-24h-lifetime clause 5, and (2) the owner's
+"a remote branch is in a PR or deleted" (2026-09-24) as a new rule file quoting the owner's
+words, together one doctrine PR per estate after 279's twin, at a slot. Siren's order: 278's
+door, 279 with its twin, then the doctrine PR.
+
+The owner: no word to the Director since the 12:0xZ start word of 2026-09-27. The card (b) to
+(f) stands as in check-in 58.
+
+NEXT: 278's and 279's legs and doors, 279's twin at the freed slot (Siren); check-in 60 at about
+06:35Z; the pre-fold suite at about 11:15Z; the midday folds at 12:00Z with the recipe and its
+addenda (a) to (f); the owner's word.
