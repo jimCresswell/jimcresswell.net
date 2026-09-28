@@ -2391,3 +2391,31 @@ written 07:30Z, 2026-09-28).**
   - `queue-commit.sh` leaves its file staged when its commit fails, and every unstage form is
     forbidden, so commitlint runs first, always.
   - One clock read shared a call with another command.
+
+**The second doctrine pair opened and through round one (block written 08:06Z, 2026-09-28).**
+
+- Wilma's two pre-open reads reshaped the pair. The owner's remote-branch rule moved into
+  `worktree-hygiene` §1 (the words) and §6 (the steps), and the new rule file was removed, on
+  the Director's ruling. The WIP gap became an ordering the Director ratified: a wanted branch
+  found with no PR takes the next free slot ahead of any new opening.
+- Lineage PR 280 opened at SHA:6df2979dd and JC.net PR 238 at SHA:ebca3fa8. The WIP count is 3
+  of 3 (lineage 250 and 280, JC.net 238).
+- Round one gave six findings, four distinct, each over the bar. Each is cured in both copies
+  with byte-identical edits, and each has a signed line and a resolved thread:
+  - the refspec fetch ran before the absent-remote path could apply (Codex and Copilot on 280,
+    Copilot on 238). Step 9 now probes with `git ls-remote --exit-code`: 0 fetches and proves
+    both tips, 2 prunes and proves the local tip only with no API delete, and anything else
+    stops the cut;
+  - the fold's survey named link and path validation that has no by-name form (Codex on 280).
+    The text now says so. A by-name mode for the link and machine-local-path validators is
+    routed to its own tool slice;
+  - `lint:fix` covers the linted workspaces' sources, not every tracked file (Copilot on 280);
+  - an owed branch counted against itself (Copilot on 238). The first cure left its own branch
+    out. A re-read before round two found that two owed branches over one free slot still
+    deadlocked, so a second commit orders them: an owed branch's opener counts only the owed
+    branches named before its own.
+- The round-one heads are lineage SHA:f92122177 and JC.net SHA:e985a459. Round two is requested:
+  Copilot and `@codex review` on 280 at 08:05:54Z, and Copilot on 238 at 08:05:24Z (the
+  operator add-reviewer, read back on the timeline). Watches are armed on both heads.
+- Next: round two, the settlement read, the sweeps, and the doors. The pair merges only after
+  both copies' legs settle. Then cleanup, closing claims 5ffbf1ab and 07d423a8.
