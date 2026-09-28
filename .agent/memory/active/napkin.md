@@ -3811,3 +3811,25 @@ written two ways in one frame; the one rule above replaces both sentences. Minor
 arc and "Carry on now" sat in SOURCES without a READING line (two procedure seats). Nova's
 routing (question ii): eight of eight inside the owner's words, no PR opening at the count of
 three. Behaviour note: no procedure seat acted.
+
+## 2026-09-28T13:1xZ — THE MIDDAY FOLD: PR 234 merged as 55942376 at 13:09:10Z; the successor coordination/2026-09-28-559423 cut from post-fold main
+
+The JC.net midday fold of 2026-09-28, run by the Director on the owner's "carry on" of 11:4xZ,
+after the pre-fold suite (48) and the pre-ready-mark records pass. The convergence merge of main
+b8284eb3 (PR 237's merge; the landings 235, 236, 237 since the 00:34Z cut) pushed at f60f3e7f;
+the records pass's two over-bar cures at 927f9075; marked ready as the bot at 12:18:29Z, Copilot
+requested by the operator at 12:18:31Z; round one three threads (Fixed in push 1 of 2 at 6bcc9bc7,
+Routed to Siren, Rejected); round two one thread (Fixed in push 2 of 2 at da3d80e8); the door on
+Copilot's leg; merged as 55942376 at 13:09:10Z; the remote branch deleted by the bot, read
+back absent. Every push of this fold went from the clean detached proxy worktree jcnet-wt-fold-push
+at the primary's own shas, because the Codex agent's uncommitted LinkedIn edits in the primary
+checkout fail the push gate's link validator (seven links to the untracked workspace); the
+primary's tree was never touched and those edits carried across the successor cut untouched, as
+the owner's word requires (off the fold; the seats decide changes before merge; Nova's lane).
+
+The successor coordination/2026-09-28-559423 was cut at 13:09:29Z from post-fold origin/main 55942376, tree-preservingly,
+the primary residing on it; this block is its first commit; its draft PR is opened at once as the bot and named in the rotation broadcast, DUE at the
+rollover fold (00:00Z 2026-09-29). The proxy worktree stays until main carries the LinkedIn
+workspace and the primary's tree is clean again, then goes; the pulse and the monitor re-pointed
+at the successor. The old branch deleted locally after the remote read-back. The count at the cut:
+2 of 3 (lineage 250 at its door after its pure sync; JC.net 240, the LinkedIn workspace draft). One toolkit row from Copilot on PR 239, routed by Nova at 12:38Z and acknowledged: validators that read their own tree resolve their root from the working directory and git, never from CLAUDE_PROJECT_DIR alone.
