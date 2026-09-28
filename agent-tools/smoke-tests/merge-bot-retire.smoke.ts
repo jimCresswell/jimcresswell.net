@@ -183,6 +183,33 @@ async function leavesASectionInAnIncludedFile(): Promise<void> {
   });
 }
 
+/**
+ * The local branch goes, and a branch named under it appears, while the
+ * command runs: the compare-and-swap fails, and its re-read, which also lists
+ * the longer ref, reads the branch absent, never kept at the longer ref's sha.
+ */
+async function ignoresALongerRefTheReReadLists(): Promise<void> {
+  await withRig(async (rig) => {
+    mergedBranch(rig, BRANCH);
+    trackLocally(rig, BRANCH);
+    const main = git(rig, rig.work, 'rev-parse', 'refs/remotes/origin/main');
+    const longer = `refs/heads/${BRANCH}/y`;
+    const github = fakeGithub(rig, {
+      afterUpdate: () => {
+        git(rig, rig.work, 'update-ref', '-d', `refs/heads/${BRANCH}`);
+        git(rig, rig.work, 'update-ref', longer, main);
+      },
+    });
+    const run = await retire(rig, BRANCH, github.fetchImpl);
+
+    assert.equal(run.exit, 0, run.err);
+    const outcome = outcomeOf(run);
+    assert.equal(outcome.kind, 'retired');
+    assert.equal(outcome.names?.local.state, 'absent');
+    assert.equal(refAt(rig, rig.work, longer), main, 'the longer ref went');
+  });
+}
+
 async function reportsNothingToRetire(): Promise<void> {
   await withRig(async (rig) => {
     const github = fakeGithub(rig);
@@ -202,5 +229,6 @@ await retiresWhenNamesVanishAtTheMint();
 await readsTheRemoteBackWhenTheDeleteErrs();
 await removesALeftConfigSection();
 await leavesASectionInAnIncludedFile();
+await ignoresALongerRefTheReReadLists();
 await reportsNothingToRetire();
-process.stdout.write('merge-bot retire smoke: OK (nine retire paths)\n');
+process.stdout.write('merge-bot retire smoke: OK (ten retire paths)\n');

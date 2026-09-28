@@ -13,7 +13,7 @@ import { runRetireAction, type RetireActionInput } from './retire-cli.js';
 import type { BranchArgSeams } from './branch-arg.js';
 import type { GitExecutor } from './git-executor.js';
 import type { TokenFileStore } from './push-git.js';
-import type { ReadOptionalFile } from './retire-worktrees.js';
+import type { RetireGitPort } from './retire-git-port.js';
 import type { GitRunner } from '../collaboration-state/coordination-home.js';
 import { resolveMintTokenConfig } from './resolve-config.js';
 import { permissionNamesFor, TOKEN_SCOPE_NAMES } from './token-scopes.js';
@@ -83,8 +83,8 @@ export interface MergeBotCliInput {
   readonly gitPath?: string;
   readonly baseEnv?: Readonly<Record<string, string | undefined>>;
   readonly tokenFiles?: TokenFileStore;
-  /** Retire-action seams: the worktree state-file reader, and the `--branch` check's oracle. */
-  readonly readOptionalFileImpl?: ReadOptionalFile;
+  /** Retire-action seams: git as the command asks of it, and the `--branch` check's oracle. */
+  readonly retireGitPort?: RetireGitPort;
   readonly branchArgSeams?: BranchArgSeams;
 }
 
@@ -162,7 +162,7 @@ function pushActionInputFrom(input: MergeBotCliInput): PushActionInput {
 function retireActionInputFrom(input: MergeBotCliInput): RetireActionInput {
   return {
     ...gitActionInputFrom(input),
-    readOptionalFileImpl: input.readOptionalFileImpl,
+    gitPort: input.retireGitPort,
     branchArgSeams: input.branchArgSeams,
   };
 }

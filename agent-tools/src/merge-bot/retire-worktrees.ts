@@ -1,3 +1,4 @@
+import { readFile } from 'node:fs/promises';
 import { basename } from 'node:path';
 
 import { err, ok, type Result } from '@engraph/result';
@@ -25,7 +26,21 @@ const WORKTREE_STATE_PATHS = [
  * exists and cannot be read. An unreadable state file is never read as "not
  * in use": that would let a delete through on a question left unanswered.
  */
-export type ReadOptionalFile = (path: string) => Promise<Result<string | undefined, Error>>;
+type ReadOptionalFile = (path: string) => Promise<Result<string | undefined, Error>>;
+
+/** The real state-file reader: a missing file is undefined; any other failure is a failure. */
+const readOptionalFile: ReadOptionalFile = async (path) => {
+  try {
+    return ok(await readFile(path, 'utf8'));
+  } catch (cause) {
+    const code = cause instanceof Error && 'code' in cause ? cause.code : undefined;
+    if (code === 'ENOENT' || code === 'ENOTDIR') {
+      return ok(undefined);
+    }
+    // The basename and the code only: a node error message carries the full path.
+    return err(new Error(`reading worktree state file ${basename(path)}: ${String(code)}`));
+  }
+};
 
 /**
  * The worktrees (by basename) using `branch`: checked out there, or named by
@@ -36,7 +51,6 @@ export type ReadOptionalFile = (path: string) => Promise<Result<string | undefin
 export async function worktreesUsing(
   retire: RetireGit,
   branch: string,
-  readFile: ReadOptionalFile,
 ): Promise<Result<readonly string[], Error>> {
   const listed = await runGit(retire, ['worktree', 'list', '--porcelain']);
   if (listed.status !== 0) {
@@ -47,7 +61,7 @@ export async function worktreesUsing(
     const inState =
       entry.branch === `refs/heads/${branch}`
         ? ok(true)
-        : await stateOfListedWorktree(retire, entry, branch, readFile);
+        : await stateOfListedWorktree(retire, entry, branch);
     if (!inState.ok) {
       return inState;
     }
@@ -69,7 +83,6 @@ async function stateOfListedWorktree(
   retire: RetireGit,
   entry: WorktreeEntry,
   branch: string,
-  readFile: ReadOptionalFile,
 ): Promise<Result<boolean, Error>> {
   if (entry.prunable) {
     return err(
@@ -92,7 +105,7 @@ async function stateOfListedWorktree(
   }
   const names = new Set([branch, `refs/heads/${branch}`]);
   for (const path of paths.stdout.split('\n').filter((line) => line !== '')) {
-    const content = await readFile(path);
+    const content = await readOptionalFile(path);
     if (!content.ok) {
       return content;
     }
