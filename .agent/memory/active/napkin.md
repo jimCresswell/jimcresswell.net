@@ -3354,3 +3354,50 @@ The owner: no word to the Director since the 12:0xZ start word of 2026-09-27. Th
 NEXT: 278's legs and door, then 279 with its twin at the freed slot, then the doctrine PR for
 items 1 and 2 (Siren); check-in 61 at about 07:20Z; the pre-fold suite at about 11:15Z; the
 midday folds at 12:00Z with the recipe and its addenda (a) to (f); the owner's word.
+
+## 2026-09-28T07:20Z — Director check-in 61: the count 2; 278 (P1) and 237 landed; 279 at the door on its pure sync, the binding's first live instance
+
+THE FOUR NUMBERS (`checkin-61-raw.md`, 07:20Z): open non-coordination PRs 2 of 3 (lineage 250,
+the owner's draft, its three threads the owner's; 279, Nova's doctrine commit, four files, at the
+lineage door on its pure sync f76b07153 of engraph, unit-tests in flight, two threads open,
+Siren's); landings since check-in 60: 278 (06:46:27Z, b4a64115b, P1 "pr state binds a review to
+the head by content after a pure sync") and JC.net 237 (07:01:30Z, b8284eb3, the twin of 279),
+both Siren's, their branches, worktrees and claims cleaned up; heads with CI in flight: 279;
+slot-holder age: 279 the lineage door holder since 06:59:35Z. Remote branches outside a PR:
+none in either estate. Local branches not merged: the lineage's siren/250-settlement,
+codex/user-value-across-levels and docs/fold-sweep-and-chmod-bits (279); JC.net none. Host
+load 3.20. The JC.net primary on coordination/2026-09-28-87689e (draft PR 234, green on
+df9bd2f9) carries Siren's record 335cf0f1; this block pushes with it. The lineage primary on
+coordination/2026-09-28-96b273 (draft PR 275) clean. Both registries' `heartbeat_at` 07:18:54Z
+and 07:19:54Z; the standalone pulse alive.
+
+Since the rollover: the lineage landed 274, 264, 273, 276, 277, 278 (six); JC.net 227, 235,
+236, 237 (four). Goal one: rows J2, J3 and J7 with lineage landings on top of the register's
+thirteen; L1 (the operator-profile row) flows back after its divergence read; the fold skill and
+the deletion rule now carry Nova's doctrine on JC.net main (237), the lineage copy at its door.
+Goal two: P1 landed (278). The retrospective trigger: one-shot, fulfilled; its count condition
+holds at 2 of 3.
+
+P1'S FIRST LIVE INSTANCE, read on 279's timeline and threads: the pure sync f76b07153 (committed
+07:01:19Z, merging b4a64115b, which touches none of 279's four files) drew no review_requested
+event, so the plan's verification line "review_requested events after sync commits: zero once
+P1 lands" reads zero on its first instance; the door refused BEHIND-BASE before the push and
+reruns on agent-tools built at the synced head. Codex ran unrequested on the synced tip and
+posted two threads at 07:10:23Z, nine minutes after the commit and before first green (a P1 on
+stage-by-explicit-pathspec, "Keep root fixers away from live peer edits"; a P2 on the fold
+skill, "Treat an auto-deleted remote as complete"): the case ruled at check-in 60 in its
+pre-merge form, caught by the door's threads-zero rule, not by any wait on the run. Their
+disposition is Siren's, by signed lines within 279's two-round bound (cure-or-Rejected in the
+last push's slot turn) or a 9(b) cure push if over the bar. One instance; recorded, not a rule.
+
+ROUTED ITEMS 3 AND 4 VERIFIED LANDED on JC.net main after 237: the fold skill reads
+`origin/<default>` in all four places and its list runs 1 to 11 with no duplicate. Items 1 and 2
+(the clause-5 amendment and the remote-branch rule file) remain one doctrine PR per estate,
+Siren's, after 279.
+
+The owner: no word to the Director since the 12:0xZ start word of 2026-09-27. The card (b) to
+(f) stands as in check-in 58.
+
+NEXT: 279's threads and door (Siren), then the doctrine PR for items 1 and 2; check-in 62 at
+about 08:05Z; the pre-fold suite at about 11:15Z; the midday folds at 12:00Z with the recipe and
+its addenda (a) to (f); the owner's word.
