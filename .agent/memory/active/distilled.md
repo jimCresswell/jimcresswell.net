@@ -199,3 +199,86 @@ reads the stream since the last post; a routing on a contested item is written a
 is one line. Source: napkin 2026-09-26 (15:00Z); routing:
 `directed-routing-requires-absorption-ack`, `read-before-asking`, the Director handoff §Standing
 lessons.
+
+## Owner instructions carry the scope of their moment (2026-08-12)
+
+Three owner statements in one session were extended past their moment: "drafted" read as settled, a
+passage-local "don't mention pupils" promoted into a standing copy rule, a comparison of two sources
+read as a voice-and-facts split. Before recording a correction as a rule, ask what specific thing it
+was about; generalising is the agent's convenience, not the owner's intent. Source: the outgoing
+napkin's 2026-08-12 session; routing: `one-instance-is-an-observation`,
+`ratified-text-is-owner-text`.
+
+## Watch channels by peer-entry counts and the directory, not file size (2026-08-12)
+
+A watcher keyed to a file's size woke on its own appends and missed a peer's new channel for
+seventeen minutes; the peer had announced it only by a canonical comms event. Key watchers to
+peer-entry counts and watch the rapid-comms directory so a new channel cannot blindside the seat;
+the canonical all-channels watcher is never substituted by a channel watcher. Source: the same
+session; routing: `comms-all-channels-watcher`.
+
+## A divergent inherited branch keeps its old pointer under a named branch before the sync (2026-08-12)
+
+Local `main` held two local-only commits from months earlier. The pointer was preserved as a dated
+branch, then `main` synced to `origin/main`; never move a ref over unexamined local-only commits.
+Source: the same session; routing: `never-use-git-to-remove-work`.
+
+## Transplant-day mistakes, four shapes (2026-09-12)
+
+Consequences of the chosen path (dangling adapters, a workspace count) were reported as errors:
+state them as state, not defect. An estimate paced agent work like hand work (26 to 40 hours) and
+the first hour delivered most of it mechanically: script first, estimate after. An importer grep
+matched path strings in comments and deleted eight files: match `from '…/<module>/`, and print
+before `rm`. A skill's self-description was read as its purpose against the owner's word that it was
+an upstream defect: a file's own description is not evidence when the owner says otherwise. Source:
+the outgoing napkin's transplant session; routing: `compute-dont-hope`,
+`read-the-primary-surface-before-ruling`.
+
+## Count from a tested instrument; records are not one-to-one with the thing counted (2026-09-15)
+
+One retrospective made three counting errors of one shape: peer messages recorded as user turns (417
+for 145), bot thread replies counted as reviews (123 for 133 after pagination), several content
+blocks carrying one message's usage (35.8M output for 8.35M). Each surface's records were not
+one-to-one with the thing counted. Count from a tested instrument with a cell per known error, not a
+one-off script. Source: the Director's Parallax signal, 2026-09-15; routing:
+`validators-must-recompute-not-just-record`.
+
+## Every review on a PR without an on-push ruleset was a request (2026-09-15)
+
+Twenty-one Copilot reviews on one PR were twenty-one requests under the owner's credential, one
+every ten to twelve minutes for four hours, while the pushes-are-the-rationed-unit decision sat in
+the estate. The loop was the seat's, not the platform's; a review round is spent by a request, and a
+pure sync push requests nothing. Source: the same signal; routing:
+`bot-identity-on-third-party-systems`, pr-lifecycle §Phase 7.
+
+## A seat cannot compact itself; the auto-compact window is a token count the estate can already read (2026-09-16)
+
+`/compact` is the user's command; no hook triggers a compaction or changes a running session's
+settings; `PreCompact` cannot block. The auto-compact threshold is a token window
+(`autoCompactWindow`, `/autocompact`, `--autocompact`, `CLAUDE_CODE_AUTO_COMPACT_WINDOW`), not a
+percentage. The percentage is in the estate's hands: the statusline payload carries
+`context_window.used_percentage`, and the adapter appends each payload to
+`PRACTICE_STATUSLINE_LOG_FILE` when set, so a trigger can be prototyped with an environment variable
+and a monitor before any code. Source: the Director's compaction question, 2026-09-16; routing:
+PDR-052, `recheck-context-at-the-directive-edit`.
+
+## Four test-and-quote lessons from PRs 193 to 200 (2026-09-25)
+
+A mutant that dies on a syntax error proves nothing: replace a removed statement with `:` so the
+mutant fails on the claim. A hand-folded YAML `run: >-` joined two commands and hid a call behind an
+echo: parse workflows with `yaml` and read only `steps[].run`. Playwright's cleanup pruned a browser
+whose install link pointed at a retired worktree: install browsers from the primary checkout. A
+spliced quote changed the owner's subject: quote an owner sentence whole or not at all. Source:
+Siren's lessons block, 2026-09-25; routing: `tests-prove-behaviour-no-exemptions`,
+`ratified-text-is-owner-text`.
+
+## A twin row starts from the other estate's bytes (2026-09-26)
+
+A row's text re-authored in the seat's own words cost a settlement push and a review round to
+converge with the bytes the other estate already carried; for the next row a rename-mapped diff
+against the estate's default branch came before any write and showed which files differed only by
+host content. Diff first; write only what differs by host; shared text travels as bytes. Also from
+the lane: read an identifier before writing it (a commit sha from nowhere caught before the send),
+and chain `git add` to `git commit` with `&&`, never `;`, because a rename staged by `git mv`
+matches no old-path pathspec and the add fails silently. Source: Siren's J13 lessons, 2026-09-26;
+routing: `oce-and-jcnet-practice-alignment-is-the-goal`, `bash-tool-chains-use-and-not-set-e`.
