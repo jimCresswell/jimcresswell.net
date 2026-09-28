@@ -415,7 +415,7 @@ describe('pushProfile', () => {
     ]);
     expect(pushProfile(run, 'seat: fact', ['index.md']).ok).toBe(true);
     expect(calls[1]).toEqual(['add', '--', 'index.md']);
-    expect(calls[3]?.slice(-2)).toEqual(['--', 'index.md']);
+    expect(calls.find((call) => call[0] === 'commit')?.slice(-2)).toEqual(['--', 'index.md']);
   });
 
   it('keeps the commit local and says so when the push fails', () => {
