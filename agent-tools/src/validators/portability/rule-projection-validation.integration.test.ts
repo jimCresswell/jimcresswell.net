@@ -54,6 +54,23 @@ describe('validateRuleProjections', () => {
     expect(again.issues).toEqual([]);
   });
 
+  it('returns the parsed canonical declarations in both modes, for the glob-resolution check', async () => {
+    const repo = bareRepo();
+    const expected = [
+      { name: 'alpha', classification: 'core', description: 'Alpha does a.' },
+      {
+        name: 'beta',
+        classification: 'situational',
+        description: 'Beta does b.',
+        trigger: 'surface:test-authoring',
+        globs: ['**/*.test.*'],
+      },
+    ];
+
+    expect((await validateRuleProjections(false, repo)).declarations).toStrictEqual(expected);
+    expect((await validateRuleProjections(true, repo)).declarations).toStrictEqual(expected);
+  });
+
   it('reports a hand-edited projection as drifted and restores it in fix mode', async () => {
     const repo = bareRepo();
     await validateRuleProjections(true, repo);
@@ -94,6 +111,7 @@ describe('validateRuleProjections', () => {
     expect(fix).toStrictEqual({
       issues: check.issues,
       canonicalRuleCount: 0,
+      declarations: [],
       written: [],
       removed: [],
     });
@@ -265,6 +283,7 @@ describe('validateRuleProjections', () => {
     expect(check.issues).toEqual([
       ".agent/rules/gamma.md: no frontmatter block (declare it in the rule's frontmatter)",
     ]);
+    expect(check.declarations).toStrictEqual([]);
     const fix = await validateRuleProjections(true, repo);
     expect(fix.written).toEqual([]);
     expect(repo.files.has('RULES_INDEX.md')).toBe(false);

@@ -3,8 +3,8 @@ classification: situational
 description: Every design value on a consumer surface resolves through the design system (token, role class, or custom property) — no hardcoded values; kit-internal literals are the definitions; retained consumer literals need the owner's named word with a recorded disposition.
 trigger: surface:design — Authoring or reviewing a design value on a consumer surface
 globs:
-  - jcdotnet/app/**/*.{ts,tsx,css,html}
-  - jcdotnet/components/**/*.{ts,tsx,css,html}
+  - jcdotnet/app/**/*.{ts,tsx,css}
+  - jcdotnet/components/**/*.{ts,tsx,css}
   - jcdotnet/lib/**/*.tsx
 ---
 
@@ -21,8 +21,8 @@ as ruling 20 in the Director sitting block of 2026-07-29, upstream lineage), rou
 through [`new-rule-vs-pdr-clause`](new-rule-vs-pdr-clause.md) at minting —
 a standing behavioural rule, not a PDR clause, because it binds every
 authoring/review act on consumer surfaces rather than a governance
-decision. It applies the site's token doctrine — the `:root` values and `@theme` role
-mapping in `jcdotnet/app/globals.css` — to the point of use.
+decision. It applies the site's token doctrine — the `:root` and `.dark` values and
+the `@theme` role mapping in `jcdotnet/app/globals.css` — to the point of use.
 
 ## Trigger
 
@@ -39,8 +39,10 @@ value is written, and again at review.
    utilities it defines). Never a raw hex, px-literal scale value, ad-hoc
    font stack, or copied magic number.
 2. **Kit-internal literals are the definitions themselves** — values inside
-   the design-system package's own sheets and token sources are where
-   literals live by design. This rule does not reach into the kit.
+   `jcdotnet/app/globals.css`, the site's one design-system sheet (its
+   `:root` and `.dark` custom properties, the `@theme` block, the utilities,
+   and the base and print layers), are where literals live by design. This
+   rule does not reach into that sheet.
 3. **A retained consumer literal is an owner decision, recorded** — the
    default disposition for an existing literal is replace-with-role; keeping
    one requires the owner's named word and a recorded disposition (the
@@ -51,7 +53,7 @@ value is written, and again at review.
 
 ## Why This Rule Exists (Worked Instance)
 
-The hub demo predated the design system and accumulated 27 raw hex values
+In the upstream lineage, the hub demo predated the design system and accumulated 27 raw hex values
 across its app and component sources (audited first-hand 2026-07-29; the
 true-up ticket carries the disposition work with replace-with-role as the
 owner-ruled default); each now needs an individual disposition — the exact
@@ -62,8 +64,9 @@ compliant shape.
 
 ## Related Surfaces
 
-- `jcdotnet/app/globals.css` — the token definitions (`:root` values and the
-  `@theme` role mapping) every consumer surface resolves through.
+- `jcdotnet/app/globals.css` — the site's one design-system sheet: the token
+  definitions (`:root` and `.dark` values and the `@theme` role mapping)
+  consumer surfaces resolve through.
 - [`invoke-design-system-expert`](invoke-design-system-expert.md) — the
   reviewer dispatch that carries this axis.
 - [`no-moving-targets-in-permanent-docs`](no-moving-targets-in-permanent-docs.md)
@@ -71,7 +74,6 @@ compliant shape.
 
 ## Enforcement
 
-Behavioural at authoring and review now; mechanical enforcement arrives with
-the showcase programme's zero-hardcoded-values instrument and extends
-per-surface as consumers converge. A rule-wide lint is deliberate follow-on
-work, not part of this rule's landing.
+Behavioural at authoring and review. No mechanical check for raw design
+values exists in this tree; a lint for them is deliberate follow-on work,
+not part of this rule's landing.

@@ -22,6 +22,7 @@ import { fileURLToPath } from 'node:url';
 
 import { isJsonObject } from '../../core/json.js';
 import { resolveRepoRoot } from '../../core/repo-root.js';
+import { listTrackedFiles } from '../../core/tracked-file-scan.js';
 import { readRegularFileTextNoFollow } from '../../skills-adapter-generate/read-regular-file.js';
 import { claudeCommandQuotingIssues } from './claude-hook-quoting.js';
 import {
@@ -45,6 +46,7 @@ import {
 } from './portability-fs.js';
 import { practiceSkillPermissionIssues } from './skill-census.js';
 import { reportPortabilityValidation } from './portability-report.js';
+import { ruleGlobResolutionIssues } from './rule-glob-resolution.js';
 import { validateRuleProjections } from './rule-projection-validation.js';
 import { realRuleProjectionFs } from './rule-projection-fs.js';
 import { readEntry } from './rule-surface-fs.js';
@@ -104,6 +106,23 @@ const projectionFs = realRuleProjectionFs(repoRoot);
 const ruleProjections = await validateRuleProjections(fixMode, projectionFs);
 issues.push(...ruleProjections.issues);
 writtenPaths.push(...ruleProjections.written);
+// Every declared rule glob must match a tracked file: a glob naming a root the tree does not
+// have renders exactly and loads its rule nowhere, and nothing else would report it.
+let globStats = '';
+try {
+  const trackedPaths = listTrackedFiles(repoRoot);
+  issues.push(...ruleGlobResolutionIssues(ruleProjections.declarations, trackedPaths));
+  const globCount = ruleProjections.declarations.reduce(
+    (count, declaration) =>
+      count + (declaration.classification === 'situational' ? declaration.globs.length : 0),
+    0,
+  );
+  globStats = `, ${globCount} rule globs resolved against ${trackedPaths.length} tracked files`;
+} catch (error) {
+  issues.push(
+    `Rule glob resolution failed: ${error instanceof Error ? error.message : 'Unknown failure listing the tracked files.'}`,
+  );
+}
 
 // The sub-agent adapters — the Cursor, Claude, Codex and Gemini files under each
 // platform's agents directory, and the `[agents."<name>"]` blocks of the Codex registry after its
@@ -170,7 +189,7 @@ const removedStats =
   removedProjections.length > 0
     ? `, ${removedProjections.length} stale files removed from the generated surfaces`
     : '';
-const stats = `${validatedCanonicalPaths.length} canonical skills, ${ruleStats}, ${subagentStats}${removedStats}`;
+const stats = `${validatedCanonicalPaths.length} canonical skills, ${ruleStats}${globStats}, ${subagentStats}${removedStats}`;
 
 export { reportPortabilityValidation } from './portability-report.js';
 
