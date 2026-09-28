@@ -101,9 +101,20 @@ critical-architectural-failure-shaped prior art for this rule.
 ## Enforcement
 
 The Edit/Write hook (`.agent/hooks/policy.json`) applies the
-related moving-targets prohibition at write-time. A
-structural-enforcement scanner that catches host-path leakage
-specifically inside `practice-core/` is the next reinforcing layer
-named in PDR-038's Author-time enforcement family. Until that
-scanner lands, this rule is the human-readable contract that
-authoring agents apply at write-time.
+related moving-targets prohibition at write-time.
+
+Two gates in `docs-validators:check` enforce parts of this rule:
+
+- `validate-core-adr-citations` enforces the ADR-identifier clause. It
+  refuses an ADR identifier written anywhere under `practice-core/`.
+  A census holds the debt that existed before the gate, one row per
+  file and ADR. Each cure lowers its row in the same change, and the
+  gate is strict once no row remains.
+- `validate-reference-direction` refuses a resolvable link from the
+  Core to anything outside it.
+
+The remaining clauses (host paths written as text, commit references,
+host-context sections) have no scanner yet. PDR-038 pairs every stated
+principle with a structural enforcement surface, so that scanner is
+their next layer. Until it lands, those clauses are the human-readable
+contract that authoring agents apply at write-time.
