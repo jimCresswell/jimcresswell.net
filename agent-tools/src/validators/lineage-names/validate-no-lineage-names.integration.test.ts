@@ -30,7 +30,7 @@ describe('the live lineage-name block', () => {
     expect(lineageNeedles(block).length).toBeGreaterThan(0);
   });
 
-  it('a synthetic manifest carrying a name is in scope; the records, the content directory and the LinkedIn workspace are exempt', async () => {
+  it('a synthetic manifest carrying a name is in scope; the records and the content directory are exempt', async () => {
     const block = await liveBlock();
     const needles = lineageNeedles(block);
     const carrying = (path: string): ScanFile => ({
@@ -48,7 +48,6 @@ describe('the live lineage-name block', () => {
         carrying('.agent/plans-legacy-2026-09/archive/x.plan.md'),
         carrying('docs/explorations/2026-09-12-x.md'),
         carrying('jcdotnet/content/entities.json'),
-        carrying('linkedin/profile-draft.md'),
       ],
       block,
       needles,
