@@ -1,4 +1,4 @@
-import { typeSafeHasOwn, typeSafeKeys } from '@engraph/type-helpers';
+import { typeSafeEntries, typeSafeHasOwn, typeSafeKeys } from '@engraph/type-helpers';
 
 /**
  * The bot token's permission policy: which GitHub App permissions each kind of
@@ -179,13 +179,13 @@ export const TOKEN_SCOPES = {
 
   /**
    * Reading one repository's refs through GitHub: its id, its default
-   * branch's name and tip, and one branch ref, in one GraphQL query. No
-   * write of any kind: a token that only reads cannot delete or move a ref.
+   * branch's name and tip, and one branch ref, in one GraphQL query. It
+   * requests no write of any kind.
    *
    * ## Provenance, 2026-09-28
    *
-   * A live probe in this repository, under a token minted with this row
-   * alone, through the production mint:
+   * A live probe in jimCresswell/jimcresswell.net, under a token minted with
+   * this row alone, through the production mint:
    *
    * - GitHub's mint response granted exactly `contents: read` and
    *   `metadata: read`, for this one repository.
@@ -199,8 +199,9 @@ export const TOKEN_SCOPES = {
    *   a read-back found no such ref.
    *
    * The refused write is the evidence for the grant. The repository is
-   * public, so the successful read alone would show nothing. A private
-   * repository (the lineage's port) probes this row again there.
+   * public, so the successful read alone would show nothing. A port to a
+   * private repository probes this row again there, where the read half
+   * becomes evidence too.
    */
   'branch-read': {
     contents: 'read',
@@ -230,7 +231,11 @@ export function isTokenScopeName(value: string): value is TokenScopeName {
   return typeSafeHasOwn(TOKEN_SCOPES, value);
 }
 
-/** The permission names a scope grants, for usage text. */
-export function permissionNamesFor(scope: TokenScopeName): readonly string[] {
-  return typeSafeKeys(TOKEN_SCOPES[scope]);
+/**
+ * The permissions a scope grants, each with its level (`contents: read`),
+ * for usage text: two scopes can share a permission name at different
+ * levels, so a name alone does not say which one writes.
+ */
+export function permissionLevelsFor(scope: TokenScopeName): readonly string[] {
+  return typeSafeEntries(TOKEN_SCOPES[scope]).map(([name, level]) => `${name}: ${level}`);
 }

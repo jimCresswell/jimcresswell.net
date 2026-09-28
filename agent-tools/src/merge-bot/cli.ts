@@ -16,7 +16,7 @@ import type { TokenFileStore } from './push-git.js';
 import type { RetireGitPort } from './retire-git-port.js';
 import type { GitRunner } from '../collaboration-state/coordination-home.js';
 import { resolveMintTokenConfig } from './resolve-config.js';
-import { permissionNamesFor, TOKEN_SCOPE_NAMES } from './token-scopes.js';
+import { permissionLevelsFor, TOKEN_SCOPE_NAMES } from './token-scopes.js';
 
 /**
  * CLI for the `merge-bot` topic (AIP-158, MCP-508).
@@ -101,7 +101,7 @@ const USAGE = `merge-bot mint-token --scope <${TOKEN_SCOPE_NAMES.join('|')}> [--
   --scope is REQUIRED and has no default: a token carries only the permissions
   its mint requests, so defaulting would make the most privileged scope the
   silent one. Scopes and what each permits are defined in token-scopes.ts.
-${TOKEN_SCOPE_NAMES.map((name) => `    ${name}: ${permissionNamesFor(name).join(', ')}\n`).join('')}
+${TOKEN_SCOPE_NAMES.map((name) => `    ${name}: ${permissionLevelsFor(name).join(', ')}\n`).join('')}
   A 403 reading "Resource not accessible by integration" means the wrong
   --scope, not a broken bot: an ungranted permission fails the mint with a 422.
   Other 403s (ruleset refusals, rate limits) are not scope problems.
