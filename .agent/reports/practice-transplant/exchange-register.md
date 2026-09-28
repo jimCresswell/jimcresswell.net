@@ -62,11 +62,12 @@ portable`, it has no residue pull request in E and is outside E's count, decline
 cell says so. Otherwise it is in exactly one of four states, with no fifth: **landed** (the
 proof: a §Landings row with its id and Estate E whose Pull request cell lacks `PARTIAL` and
 does not begin `declined`), **in flight** (the open pull request's number on the receiving
-estate, or the seat's named lane), **queued** (its position in the census's order, the seat
-that takes it, and the horizon from the observed pace, all in the same breath) or **declined**
-(the reason; the owner's word where the row is ratified). A decline after the window, or a
-settlement by the triage's or a ruling's read with no pull request, is a dated §Landings row
-saying so; a decline's cell begins `declined`. The unit is the residue pull request as the
+estate, or the seat's lane once started, its claim or gate notice on the stream; assigned work
+not yet started is queued), **queued** (its position in the census's order, the seat that takes
+it, and the horizon from the observed pace, all in the same breath) or **declined** (the reason;
+the owner's word where the row is ratified). A decline after the window, or a settlement by the
+triage's or a ruling's read with no pull request, is a dated §Landings row saying so; a decline's
+cell begins `declined`. The unit is the residue pull request as the
 census names it, recounted when a row's design read changes its slicing (26 for goal one: the
 census of 2026-09-28 read 24, and J3's design read the same day split its one slice into three
 on the Director's word of 18:3xZ; the inbound direction's count waits on its own census, todo 4
@@ -74,8 +75,9 @@ after the review, ruling 44), and each direction reads as landed of total beside
 `main` heads the register was read at, in the count line below, so the count moves daily. The
 remainder, total less landed, falls between two coordination folds, or the count is routed to
 the Director (the node's ruling 21) as a failure, never re-labelled; a row queued across two
-folds with no movement is routed the same way. `PARTIAL` on a landing names a remainder, a
-residue pull request the census names; the row takes its remainder's state.
+folds with no movement is routed the same way. `PARTIAL` on a landing marks the row as not yet
+settled: the annotation names what that pull request landed, the census names the remaining
+units, and the row takes its remainder's state.
 
 ### The count
 
