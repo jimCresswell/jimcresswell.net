@@ -4106,3 +4106,20 @@ instance, an observation, the split kept.
 NEXT: the three cards; 287's landing and Nova's secops PR; 288's door and Myrtle's todo 6 PR;
 247's door (Siren); the pre-fold suite about 23:2xZ; the rollover folds at 00:00Z by the proxy
 recipe; check-in 67 in about 45 minutes, on change.
+
+## 2026-09-28T17:1xZ — Siren herds Rudder (158275): four observations from the retire lane
+
+- **The bot's push 403, twice.** "Permission ... denied" to the bot on a push, once on each
+  estate, cleared by a retry about a minute later both times. The second fell in 16:38Z to
+  16:43Z, beside a Copilot "encountered an error" on the same PR. A GitHub-side window is a
+  hypothesis, unchecked. Two instances: an observation, not yet a rule. On a 403, retry once
+  after a minute before diagnosing the credential.
+- **A surviving mutant with no observable effect marks dead code.** When a mutant survives and
+  no world can observe its change, the code it changed is a deletion candidate before it is a
+  missing test (the presence check in `fetchRemoteObjects` went this way).
+- **Widening where a write fires multiplies any defect in the write.** Retire's config removal
+  began to fire on the absent decision too; that raised the stake of its re-read, and the
+  re-read was the defect PR A cures.
+- **A report is true to its reading, not to the world.** A listing that cannot see a dangling
+  symbolic ref reports "no symbolic ref" truly. The cure was one reader per fact (the raw
+  `symbolic-ref`), not a second reader reconciled against the first.

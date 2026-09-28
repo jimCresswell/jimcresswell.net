@@ -2603,3 +2603,102 @@ the session scratchpad.
     set. Two Codex threads had no drafted line.
   - The Director's session name now has a double dash: "Wick binds Temper (ed7b48) --
     Director".
+
+## Boundary delta, 2026-09-28 17:11Z (the owner's compaction word, carry on given in it)
+
+The owner's word, verbatim: "prepare for compaction ultrathink /jc-metacognition /jc-free-play
+/jc-concept-exploration /jc-reason /jc-wrap then carry on". It is non-terminal: the claims stay
+held, and the heartbeat and watchers keep running.
+
+**Since the 13:13Z block.**
+
+- PR 242 (`merge-bot retire`) merged at 15:55:52Z as SHA:e9b06f195. Its branch was then
+  retired by its own command.
+- PR 247 (retire reaches git through its own port; its tests stop pinning argv) merged at
+  17:01:25Z as SHA:168ce5936, after two Copilot rounds and a settlement. Its branch was retired
+  by the command from a worktree detached at main, and its worktree was removed.
+- The smokes worktree's commit was proven patch-equivalent (`git cherry` read "-"); the worktree
+  was removed and its ref deleted by compare-and-swap.
+- Promises delivered: todo 8's record rode 247 (the ack to Nova, 16:16Z); the note to Myrtle that
+  247 also edits the exchange node went at 16:31Z.
+
+**PR A: built, reviewed and cured; committed, not pushed.**
+
+- Worktree `jcnet-wt-retire-symref`, branch fix/retire-symref-relist: SHA:fa6028d1, a merge of
+  main after 247 (SHA:f9441d3d), and the review cures (SHA:ac450915). No PR yet: it opens at
+  this seat's next free slot.
+- The defect it fixes: `for-each-ref` does not list a dangling symbolic ref. A branch whose
+  local name was a dangling symbolic ref therefore had its other two names retired.
+  `symbolic-ref --quiet` is now the one reader of "symbolic" (exit 0 symbolic, 1 not, anything
+  else a failure), and it runs before any fetch. The config removal re-reads the local branch
+  by its exact name, and keeps the section of a branch made since the proof.
+- The post-build reviews:
+  - code-expert: GO, with two cures (a stale comment, and a smoke claim nothing asserted);
+  - test-expert: NO-GO on one finding, that nothing showed a failed symbolic read fails the
+    run.
+- The cures: a fifth failed-read smoke puts the local name in a symbolic loop (git exits 128)
+  and expects exit 1 with the loop left. The skip-on-failure mutant (A9) is killed. Both smokes,
+  292 unit tests, the type check and lint pass.
+- Accepted without a witness, to be stated in the PR body:
+  - the config re-read's failure path. Real git offers no cheap way to fail it; it is the same
+    class as `deletePlannedRef`'s re-read.
+  - a dangling symbolic ref made mid-run. It brings no config section of its own.
+- `gatherReadings` sits at complexity 8, the limit. The next reading added there is extracted
+  first.
+
+**PR B: designed, not built.** The draft is `retire/design-bind.md` v3 in the session scratchpad;
+this is the durable summary. The assumptions-expert verdict was "redesign now": GitHub becomes
+the only reader of the remote.
+
+- A new scope, `branch-read` (contents: read). A live probe proves it; the probe's refused-write
+  half is the one that proves the grant.
+- The local refusals are decided before any mint.
+- One objects-only fetch, by sha (verified on protocol v2, locally and on GitHub).
+- The delete path mints a second time (`branch-retire`) and re-reads before the
+  compare-and-swap.
+- The default's tracking-ref fetch and `set-head --auto` are dropped.
+- A witness smoke uses a second bare repository as the `insteadOf` target. The no-mint
+  assertions flip.
+- It needs a security re-review.
+
+**The count at this write:** 3 of 3 (JC.net 248, Myrtle's; JC.net 249, Nova's; lineage 288,
+Myrtle's). The coordination PRs are JC.net 241 and lineage 283.
+
+**The question for the Director, sent after this write.** Myrtle's census reads J5 as "graduated
+into L9". Does that change the lineage port of retire and the prose pointer pair? And does PR B
+come before the port and J3?
+
+**Order after the wrap (carry on is given).**
+
+1. Send the question above to the Director. Wait for the answer on the port and PR B, not on
+   PR A: PR A cures known defects, and a port made before it would copy them.
+2. Push PR A's branch so the bytes are safe, with a gate notice, and no PR while the count is
+   3 of 3. Open it at this seat's slot in the Director's one-per-seat order.
+3. Then, by the Director's answer: PR B built locally with a security re-review; or the lineage
+   port of retire, with #272 riding the first exchange PR; or J3 (`j3-prep.md` in the
+   scratchpad).
+
+**Re-arm recipe.** As in the 08:22Z block, with these changes: the heartbeat takes claims
+a30304be and 30dab0b7 and branch coordination/2026-09-28-559423 (or the live coordination branch
+after the rollover fold); the session pid is 15907.
+
+**Reflections from the cognition passes.**
+
+- One reader per fact. The listing's `%(symref)` and the raw `symbolic-ref` read disagreed on a
+  dangling ref; the cure removed one reader, not a reconciling check.
+- A report is true to the reading it came from, not to the world. Where a reading can miss a
+  thing, name the reading's basis in the report.
+- A surviving mutant whose change has no observable effect marks dead code: a deletion
+  candidate before it is a missing test.
+- Widening where a write fires multiplies any latent defect in the write. The config removal
+  now also fires on the absent decision, which raised the stake of its re-read.
+- The bot's push 403 has now been seen twice, on two estates, and a retry a minute later cleared
+  it each time. The 403s and Copilot's review error fell in 16:38Z to 16:43Z; a GitHub-side
+  window is a hypothesis, unchecked.
+
+**Metaloss.** Promises: the question to the Director, PR A's push and opening, then the order
+above; the two earlier promises are delivered. Attribution: the census reading of J5 is Myrtle's,
+read from the Director's napkin entry, not from the census itself. Blind spot: the watchers
+exclude heartbeats. Index of homes: this record, the worktree `jcnet-wt-retire-symref` and the
+session scratchpad (drafts only). A further pass would re-find only the unpushed branch, which
+is named above, so the recursion closes here.
