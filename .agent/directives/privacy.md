@@ -32,6 +32,8 @@ AI.
 - Published content: positioning paragraphs, capabilities, front page narrative
 - Technical architecture, code, tests, configuration
 - Plan files (written as if they will be public — see [secops.md](secops.md))
+- Owner-authorised non-sensitive LinkedIn drafts, research and professional evidence in
+  [`linkedin/`](../../linkedin/README.md), under the dated scope below
 
 ## Rules
 
@@ -57,6 +59,19 @@ AI.
    whenever a tool's scope is broader than tracked files.
 
 ## Private editorial material
+
+### LinkedIn workspace authorisation — 28 September 2026
+
+Jim authorised a local repository workspace for the first LinkedIn draft and all non-sensitive
+LinkedIn material. That material belongs in [`linkedin/`](../../linkedin/README.md): professional
+profile content, general research, public bibliographic attribution and editorial analysis of the
+work. This supersedes the earlier blanket private-only rule for those materials. It does not
+authorise disclosure of personal vulnerabilities, private correspondence, account details,
+third-party activity records or sensitive source material. Exact approval is still required
+before transferring proposed copy to LinkedIn; local preparation is not publication or push
+authority. Preserve historical source records and keep confidential material in its existing home.
+
+### Confidential source boundary
 
 Private editorial material — source packs, evidence, drafts and their history — may exist on a
 machine as an ignored nested repository under `.agent/reference-local/`. It is optional and
