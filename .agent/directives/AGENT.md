@@ -176,10 +176,11 @@ attention, readability, surface fit) and
 then apply the `editorial-voice` skill and the `editor` expert. Private
 editorial material, if present, is confidential and informs writing only
 ([privacy.md](./privacy.md) §Private editorial material); never quote, summarise
-or identify it on a public surface. Non-sensitive LinkedIn drafts, research and
-editorial analysis live in the [LinkedIn workspace](../../linkedin/README.md),
-under privacy.md's [LinkedIn workspace authorisation][linkedin-authorisation];
-private material stays in its existing home.
+or identify it on a public surface. The LinkedIn profile draft and the other
+non-sensitive LinkedIn material listed in privacy.md's
+[LinkedIn workspace authorisation][linkedin-authorisation] live in the
+[LinkedIn workspace](../../linkedin/README.md); private material stays in its
+existing home.
 
 [linkedin-authorisation]: ./privacy.md#linkedin-workspace-authorisation--28-september-2026
 
