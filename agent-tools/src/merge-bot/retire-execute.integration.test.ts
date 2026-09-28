@@ -20,12 +20,15 @@ import {
  * where one constant answer decides them. The remote delete: GitHub answers
  * every GraphQL call the same way for the run, and each case checks the
  * exit, the outcome kind and reason, and that the token reaches neither
- * output stream. The local deletes: git's port answers a failure where the
- * in-use check is read again, or where a compare-and-swap cannot run. The
- * outcomes that need GitHub or git to change between calls (a delete that
- * takes, one accepted that changes nothing, a read-back that fails, a
- * branch re-created after its delete, a ref moved after its proof), and
- * every check of where the refs are, run against real git in the smokes.
+ * output stream. The local deletes: git's port answers the in-use check,
+ * read again before them, as failed or as naming a worktree (a constant
+ * world standing for a worktree taken since the proof), or answers that a
+ * compare-and-swap cannot run; each case checks the report. The outcomes
+ * that need GitHub or git to change between calls (a delete that takes, one
+ * accepted that changes nothing, one GitHub refuses with an error, a
+ * read-back that fails, a branch re-created after its delete, a ref moved or
+ * taken after its proof), and every check of where the refs are, run against
+ * real git in the smokes.
  */
 
 async function retireRemote(graphql: unknown, json = true): ReturnType<typeof runRetire> {

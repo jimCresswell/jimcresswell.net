@@ -119,15 +119,35 @@ async function failsWhenOriginHeadCannotBeRefreshed(): Promise<void> {
 }
 
 /**
- * `origin` has a second URL. The first still names the bot's repository,
- * but fetch reads the first and a single config read the last, so a check
- * of one would not bind the other: the run fails before any read.
+ * `origin` has a second URL. Both name the bot's repository, so a check of
+ * one alone would pass and the run would delete; but fetch reads the first
+ * and a single config read the last, so a check of one would not bind the
+ * other: the run fails before any read.
  */
 async function failsOnAnOriginWithTwoUrls(): Promise<void> {
   await withRig(async (rig) => {
     mergedAndTracked(rig);
-    git(rig, rig.work, 'remote', 'set-url', '--add', 'origin', 'https://github.com/acme/other.git');
+    git(rig, rig.work, 'remote', 'set-url', '--add', 'origin', 'git@github.com:acme/widgets.git');
     await expectFailed(rig, /2 URLs/u);
+  });
+}
+
+/**
+ * A name with a dot: its config section is matched exactly, so a look-alike
+ * section (`feat/v1x2`, which an unescaped dot would match) is not taken for
+ * the branch's own, and the run retires with the look-alike left.
+ */
+async function leavesALookAlikeSection(): Promise<void> {
+  await withRig(async (rig) => {
+    const dotted = 'feat/v1.2';
+    mergedBranch(rig, dotted);
+    git(rig, rig.work, 'fetch', '-q', 'origin');
+    git(rig, rig.work, 'branch', '-q', '--no-track', dotted, `origin/${dotted}`);
+    git(rig, rig.work, 'config', 'branch.feat/v1x2.remote', 'origin');
+    const run = await retire(rig, dotted, fakeGithub(rig).fetchImpl);
+
+    assert.equal(run.exit, 0, `${run.out}${run.err}`);
+    assert.equal(git(rig, rig.work, 'config', '--get', 'branch.feat/v1x2.remote'), 'origin');
   });
 }
 
@@ -141,10 +161,11 @@ async function failsOnAnOriginWithNoUrl(): Promise<void> {
 }
 
 await retiresEachTipAtItsOwnSha();
+await leavesALookAlikeSection();
 await failsOnAMissingCommitObject();
 await failsWhenOriginHeadCannotBeRefreshed();
 await failsOnAnOriginWithTwoUrls();
 await failsOnAnOriginWithNoUrl();
 process.stdout.write(
-  'merge-bot retire reads smoke: OK (two tips at their own shas, four failed reads, nothing deleted)\n',
+  'merge-bot retire reads smoke: OK (two tips at their own shas, a look-alike config section kept, four failed reads)\n',
 );

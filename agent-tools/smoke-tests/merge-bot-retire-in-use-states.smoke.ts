@@ -58,6 +58,11 @@ function gitPath(rig: RetireRig, lane: string, name: string): string {
   return git(rig, lane, 'rev-parse', '--path-format=absolute', '--git-path', name);
 }
 
+/** Whether worktree `lane` has no branch out, so only git's rebase state can name the branch. */
+function isDetached(rig: RetireRig, lane: string): boolean {
+  return spawnSync(GIT, ['symbolic-ref', '-q', 'HEAD'], { cwd: lane, env: rig.env }).status !== 0;
+}
+
 /** A merged branch with a local copy and a cached tracking ref in the work clone. */
 function mergedAndTracked(rig: RetireRig): void {
   mergedBranch(rig, BRANCH);
@@ -82,6 +87,7 @@ async function refusesABranchMidRebase(): Promise<void> {
     git(rig, rig.work, 'worktree', 'add', '-q', lane, BRANCH);
     spawnSync(GIT, ['rebase', '-q', '-x', 'false', 'HEAD~1'], { cwd: lane, env: rig.env });
     assert.ok(existsSync(gitPath(rig, lane, 'rebase-merge/head-name')), 'the rebase did not stop');
+    assert.ok(isDetached(rig, lane), 'the lane has a branch out');
     await expectKept(rig, 3, /rebasing/u);
   });
 }
@@ -105,6 +111,7 @@ async function refusesABranchMidApplyRebase(): Promise<void> {
     git(rig, rig.work, 'worktree', 'add', '-q', lane, BRANCH);
     spawnSync(GIT, ['rebase', '-q', '--apply', 'origin/other'], { cwd: lane, env: rig.env });
     assert.ok(existsSync(gitPath(rig, lane, 'rebase-apply/head-name')), 'the rebase did not stop');
+    assert.ok(isDetached(rig, lane), 'the lane has a branch out');
     await expectKept(rig, 3, /applying/u);
   });
 }
@@ -127,6 +134,7 @@ async function refusesABranchARebaseWillUpdate(): Promise<void> {
     );
     const updates = readFileSync(gitPath(rig, lane, 'rebase-merge/update-refs'), 'utf8');
     assert.ok(updates.split('\n').includes(`refs/heads/${BRANCH}`), 'the rebase does not name it');
+    assert.ok(isDetached(rig, lane), 'the lane has a branch out');
     await expectKept(rig, 3, /stacked/u);
   });
 }

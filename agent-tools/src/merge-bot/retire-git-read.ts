@@ -62,8 +62,8 @@ export function gitFailure(question: string, result: GitCommandResult): Error {
  * The RAW configured URLs of `origin`, every one, in config order. Not
  * `git remote get-url`, which applies `insteadOf` rewriting: the front door
  * binds the configured name, and the mint-time read binds the proofs to that
- * repository by sha. git exits non-zero when the key is unset, which reads
- * as no URL.
+ * repository by sha. Any non-zero exit (the key unset, or a config git
+ * cannot read) reads as no URL, and the front door then fails the run.
  */
 export async function readOriginUrls(retire: RetireGit): Promise<Result<readonly string[], Error>> {
   const result = await runGit(retire, ['config', '--get-all', 'remote.origin.url']);

@@ -18,7 +18,6 @@ import { executePlan } from './retire-execute.js';
 import { gitRetirePort, type RetireGitPort } from './retire-git-port.js';
 import { githubRepoOf } from './retire-parse.js';
 import { exitCodeFor, writeRetireOutcome, type RetireOutcome } from './retire-report.js';
-import { readOptionalFile } from './retire-worktrees.js';
 
 /**
  * The `merge-bot retire` action: parse, bind, read, decide, write, report.
@@ -132,7 +131,7 @@ function portFrom(input: RetireActionInput): Result<RetireGitPort, Error> {
     GIT_TERMINAL_PROMPT: '0',
     GCM_INTERACTIVE: 'never',
   };
-  return ok(gitRetirePort({ git: git.value, cwd: input.repoRoot, env }, readOptionalFile));
+  return ok(gitRetirePort({ git: git.value, cwd: input.repoRoot, env }));
 }
 
 /** The port bound to the identity's repository, or the outcome that stops before any read. */

@@ -10,7 +10,7 @@ import {
   type RetireGit,
 } from './retire-git-read.js';
 import { caseCollisionsOf } from './retire-parse.js';
-import { worktreesUsing, type ReadOptionalFile } from './retire-worktrees.js';
+import { worktreesUsing } from './retire-worktrees.js';
 
 /**
  * Gather every reading the retire decision needs. The local listing comes
@@ -27,13 +27,12 @@ import { worktreesUsing, type ReadOptionalFile } from './retire-worktrees.js';
 export async function gatherReadings(
   retire: RetireGit,
   branch: string,
-  readFile: ReadOptionalFile,
 ): Promise<Result<RetireReadings, Error>> {
   const listing = await listBranchRefs(retire);
   if (!listing.ok) {
     return listing;
   }
-  const inUse = await worktreesUsing(retire, branch, readFile);
+  const inUse = await worktreesUsing(retire, branch);
   if (!inUse.ok) {
     return inUse;
   }

@@ -4,7 +4,7 @@ import type { CasOutcome, PlannedDelete, RetireReadings } from './retire-decisio
 import { deletePlannedRef, removeBranchConfig } from './retire-git-delete.js';
 import { readOriginUrls, type RetireGit } from './retire-git-read.js';
 import { gatherReadings } from './retire-readings.js';
-import { worktreesUsing, type ReadOptionalFile } from './retire-worktrees.js';
+import { worktreesUsing } from './retire-worktrees.js';
 
 /**
  * What `merge-bot retire` asks of git, in its own terms. The front door and
@@ -26,12 +26,12 @@ export interface RetireGitPort {
   readonly removeBranchConfig: (branch: string) => Promise<Result<undefined, Error>>;
 }
 
-/** The port over real git in one checkout, reading worktree state files through `readFile`. */
-export function gitRetirePort(retire: RetireGit, readFile: ReadOptionalFile): RetireGitPort {
+/** The port over real git in one checkout. */
+export function gitRetirePort(retire: RetireGit): RetireGitPort {
   return {
     originUrls: () => readOriginUrls(retire),
-    readings: (branch) => gatherReadings(retire, branch, readFile),
-    inUseBy: (branch) => worktreesUsing(retire, branch, readFile),
+    readings: (branch) => gatherReadings(retire, branch),
+    inUseBy: (branch) => worktreesUsing(retire, branch),
     deleteRef: (target) => deletePlannedRef(retire, target),
     removeBranchConfig: (branch) => removeBranchConfig(retire, branch),
   };
