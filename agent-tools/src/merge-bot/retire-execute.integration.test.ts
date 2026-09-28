@@ -1,30 +1,39 @@
+import { err, ok } from '@engraph/result';
 import { describe, expect, it } from 'vitest';
 
 import {
   BRANCH,
   GRAPHQL_ERROR,
-  mergedEverywhere,
+  LOCAL_REF,
+  LOCAL_WORLD,
   OTHER,
+  REMOTE_TIP,
+  REMOTE_WORLD,
   refRead,
   runRetire,
-  TIP,
   TOKEN,
+  type GitWorld,
 } from './test-helpers/retire-cli-double.js';
 
 /**
- * The remote delete's outcomes through the `merge-bot retire` front door,
- * where one GitHub answer decides them: GitHub answers every GraphQL call
- * the same way for the run. Each case checks the exit, the outcome kind and
- * reason, and that the token reaches neither output stream. The outcomes
- * that need GitHub to change between calls (a delete that takes, one that
- * is accepted and changes nothing, one GitHub refuses with an error, a
- * read-back that fails, a branch re-created after its delete), and every
- * check of where the refs are, run against real git in the smokes.
+ * The retire command's writes through the `merge-bot retire` front door,
+ * where one constant answer decides them. The remote delete: GitHub answers
+ * every GraphQL call the same way for the run, and each case checks the
+ * exit, the outcome kind and reason, and that the token reaches neither
+ * output stream. The local deletes: git's port answers the in-use check,
+ * read again before them, as failed or as naming a worktree (a constant
+ * world standing for a worktree taken since the proof), or answers that a
+ * compare-and-swap cannot run; each case checks the report. The outcomes
+ * that need GitHub or git to change between calls (a delete that takes, one
+ * accepted that changes nothing, one GitHub refuses with an error, a
+ * read-back that fails, a branch re-created after its delete, a ref moved or
+ * taken after its proof), and every check of where the refs are, run against
+ * real git in the smokes.
  */
 
 async function retireRemote(graphql: unknown, json = true): ReturnType<typeof runRetire> {
   const args = json ? ['--branch', BRANCH, '--json'] : ['--branch', BRANCH];
-  const run = await runRetire(args, mergedEverywhere(), { graphql });
+  const run = await runRetire(args, REMOTE_WORLD, { graphql });
   expect(`${run.out}${run.err}`).not.toContain(TOKEN);
   return run;
 }
@@ -39,7 +48,7 @@ describe('merge-bot retire, the remote delete', () => {
   });
 
   it("refuses with exit 3 when the bot's repository has another default branch", async () => {
-    const run = await retireRemote(refRead(TIP, 'trunk'));
+    const run = await retireRemote(refRead(REMOTE_TIP, 'trunk'));
 
     expect(run.exit).toBe(3);
     expect(JSON.parse(run.out)).toMatchObject({ kind: 'refused' });
@@ -54,7 +63,7 @@ describe('merge-bot retire, the remote delete', () => {
   });
 
   it('fails with exit 1 when GitHub answers the delete with a body it does not recognise and the branch reads back unchanged', async () => {
-    const run = await retireRemote(refRead(TIP));
+    const run = await retireRemote(refRead(REMOTE_TIP));
 
     expect(run.exit).toBe(1);
     expect(JSON.parse(run.out)).toMatchObject({ kind: 'failed' });
@@ -62,9 +71,44 @@ describe('merge-bot retire, the remote delete', () => {
   });
 
   it('keeps the token off both streams in human output after a mint', async () => {
-    const run = await retireRemote(refRead(TIP), false);
+    const run = await retireRemote(refRead(REMOTE_TIP), false);
 
     expect(run).toMatchObject({ exit: 1, minted: true, out: '' });
     expect(run.err).toContain('did not accept');
+  });
+});
+
+describe('merge-bot retire, the local deletes', () => {
+  it('keeps both local names, exit 1, when the in-use check read again before them fails', async () => {
+    const world: GitWorld = { ...LOCAL_WORLD, inUseBy: err(new Error('worktrees unread')) };
+    const run = await runRetire(['--branch', BRANCH, '--json'], world);
+
+    expect(run.exit).toBe(1);
+    expect(JSON.parse(run.out)).toMatchObject({
+      kind: 'partial',
+      names: { tracking: { state: 'not-reached' }, local: { state: 'not-reached' } },
+    });
+    expect(run.out).toContain('worktrees unread');
+  });
+
+  it('keeps both local names, exit 1, when a worktree began using the branch after its proof', async () => {
+    const world: GitWorld = { ...LOCAL_WORLD, inUseBy: ok(['late-lane']) };
+    const run = await runRetire(['--branch', BRANCH, '--json'], world);
+
+    expect(run.exit).toBe(1);
+    expect(JSON.parse(run.out)).toMatchObject({ kind: 'partial' });
+    expect(run.out).toContain('late-lane');
+  });
+
+  it('reports a local name unknown, exit 1, when its compare-and-swap cannot run', async () => {
+    const swaps = new Map(LOCAL_WORLD.swaps).set(LOCAL_REF, err(new Error('git would not run')));
+    const run = await runRetire(['--branch', BRANCH, '--json'], { ...LOCAL_WORLD, swaps });
+
+    expect(run.exit).toBe(1);
+    expect(JSON.parse(run.out)).toMatchObject({
+      kind: 'partial',
+      names: { local: { state: 'unknown' } },
+    });
+    expect(run.out).toContain('git would not run');
   });
 });

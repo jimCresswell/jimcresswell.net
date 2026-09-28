@@ -59,25 +59,23 @@ export function gitFailure(question: string, result: GitCommandResult): Error {
 }
 
 /**
- * The RAW configured URL of `origin`, which must be exactly one. Not
- * `git remote get-url`, which applies `insteadOf` rewriting: the check binds
- * the configured name, and the mint-time read binds the proofs to that
- * repository by sha. Several URLs are refused: fetch reads the first, and a
- * single `config --get` the last, so a check of one would not bind the other.
+ * The RAW configured URLs of `origin`, every one, in config order. Not
+ * `git remote get-url`, which applies `insteadOf` rewriting: the front door
+ * binds the configured name, and the mint-time read binds the proofs to that
+ * repository by sha. Any non-zero exit (the key unset, or a config git
+ * cannot read) reads as no URL, and the front door then fails the run.
  */
-export async function readOriginUrl(retire: RetireGit): Promise<Result<string, Error>> {
+export async function readOriginUrls(retire: RetireGit): Promise<Result<readonly string[], Error>> {
   const result = await runGit(retire, ['config', '--get-all', 'remote.origin.url']);
-  const urls = result.stdout.split('\n').filter((line) => line.trim() !== '');
-  const [url] = urls;
-  if (result.status !== 0 || url === undefined) {
-    return err(new Error('this checkout has no origin URL configured'));
+  if (result.status !== 0) {
+    return ok([]);
   }
-  if (urls.length > 1) {
-    return err(
-      new Error(`origin has ${urls.length} URLs configured; this command binds exactly one`),
-    );
-  }
-  return ok(url.trim());
+  return ok(
+    result.stdout
+      .split('\n')
+      .map((line) => line.trim())
+      .filter((line) => line !== ''),
+  );
 }
 
 /**
@@ -124,26 +122,34 @@ export async function readDefaultBranch(
   return reading;
 }
 
-/** The remote branch, read by its exact name; a failed read is a failure, never "absent". */
+/** A remote-branch probe as run, as a reading: a failed read is a failure, never "absent". */
+export function probeReading(
+  result: GitCommandResult,
+  branch: string,
+): Result<RemoteRefReading, Error> {
+  return result.status === 0
+    ? ok(parseExactRemoteRef(result.stdout, branch))
+    : err(gitFailure(`reading the remote branch ${branch}`, result));
+}
+
+/** The remote branch, read by its exact name. */
 export async function probeRemoteBranch(
   retire: RetireGit,
   branch: string,
 ): Promise<Result<RemoteRefReading, Error>> {
   const result = await runGit(retire, ['ls-remote', 'origin', `refs/heads/${branch}`], true);
-  if (result.status !== 0) {
-    return err(gitFailure(`reading the remote branch ${branch}`, result));
-  }
-  return ok(parseExactRemoteRef(result.stdout, branch));
+  return probeReading(result, branch);
 }
 
 /**
  * The remote branch's objects, with NO ref written (`--refmap=` and no
- * destination), then proof that the probed commit is here to test.
+ * destination). The probed commit's ancestry read follows, and a commit the
+ * fetch did not bring fails that read (git exits 128), so the run fails
+ * before any write without a presence check of its own.
  */
 export async function fetchRemoteObjects(
   retire: RetireGit,
   branch: string,
-  sha: string,
 ): Promise<Result<undefined, Error>> {
   const fetched = await runGit(
     retire,
@@ -158,13 +164,9 @@ export async function fetchRemoteObjects(
     ],
     true,
   );
-  if (fetched.status !== 0) {
-    return err(gitFailure(`fetching the remote branch ${branch}'s objects`, fetched));
-  }
-  const present = await runGit(retire, ['cat-file', '-e', `${sha}^{commit}`]);
-  return present.status === 0
+  return fetched.status === 0
     ? ok(undefined)
-    : err(gitFailure(`reading the remote tip ${sha}`, present));
+    : err(gitFailure(`fetching the remote branch ${branch}'s objects`, fetched));
 }
 
 /** Every local and `origin` tracking ref, by exact full name, with the target of any symbolic one. */

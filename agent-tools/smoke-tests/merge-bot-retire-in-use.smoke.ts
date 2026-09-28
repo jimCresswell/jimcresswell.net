@@ -32,7 +32,7 @@ function snapshot(rig: RetireRig, refs: readonly string[]): readonly (string | u
   return refs.flatMap((ref) => [refAt(rig, rig.origin, ref), refAt(rig, rig.work, ref)]);
 }
 
-/** Retire `branch`, and check exit 3, `refs` unchanged, no token minted, and the reason. */
+/** Retire `branch`, and check exit 3, `refs` unchanged, no token minted, the reason, and no rig path printed. */
 async function expectRefused(
   rig: RetireRig,
   branch: string,
@@ -48,6 +48,8 @@ async function expectRefused(
   assert.equal(github.mints(), 0, 'a token was minted for a refusal');
   // Under --json the refusal is the outcome object on stdout.
   assert.match(run.out, reason);
+  // A worktree is named by its basename: a report can be pasted into a tracked record.
+  assert.ok(!`${run.out}${run.err}`.includes(rig.root), 'the output carries a rig path');
 }
 
 const OWN_REFS = [`refs/heads/${BRANCH}`, `refs/remotes/origin/${BRANCH}`];

@@ -1,6 +1,4 @@
-import { removeBranchConfig, deletePlannedRef } from './retire-git-delete.js';
 import type { CasOutcome, PlannedDelete, RetirePlan } from './retire-decision.js';
-import { worktreesUsing } from './retire-worktrees.js';
 import {
   ABSENT,
   partialOutcome,
@@ -33,7 +31,7 @@ async function retireLocal(
   if (target === undefined) {
     return { report: ABSENT, problem: undefined };
   }
-  const deleted = await deletePlannedRef(seams.retire, target);
+  const deleted = await seams.git.deleteRef(target);
   if (!deleted.ok) {
     return { report: { state: 'unknown' }, problem: `${label}: ${deleted.error.message}` };
   }
@@ -72,7 +70,7 @@ async function localBranchTaken(
   if (plan.local === undefined) {
     return undefined;
   }
-  const inUse = await worktreesUsing(seams.retire, context.branch, seams.readFile);
+  const inUse = await seams.git.inUseBy(context.branch);
   if (!inUse.ok) {
     return `the in-use check before the local deletes failed: ${inUse.error.message}; the local names were kept; re-run`;
   }
@@ -95,7 +93,7 @@ async function configStep(
   if (local.report.state !== 'deleted' && local.report.state !== 'absent') {
     return undefined;
   }
-  const config = await removeBranchConfig(seams.retire, context.branch);
+  const config = await seams.git.removeBranchConfig(context.branch);
   return config.ok
     ? undefined
     : `branch.${context.branch}'s config was left: ${config.error.message}; re-run to remove it`;
