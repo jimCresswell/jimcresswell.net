@@ -120,7 +120,12 @@ async function originMismatch(
     : ok(`origin names ${named}, not ${wanted}, the repository the bot would delete in`);
 }
 
-/** The injected port, or real git in the invoking repository with prompting turned off. */
+/**
+ * The injected port, or real git in the invoking repository with prompting
+ * turned off, and with replacement refs and grafts turned off: either can
+ * give a commit parents it does not have, and `merge-base` follows them, so a
+ * planted one would make an unmerged tip read as merged.
+ */
 function portFrom(input: RetireActionInput): Result<RetireGitPort, Error> {
   if (input.gitPort !== undefined) {
     return ok(input.gitPort);
@@ -133,6 +138,8 @@ function portFrom(input: RetireActionInput): Result<RetireGitPort, Error> {
     ...(input.baseEnv ?? process.env),
     GIT_TERMINAL_PROMPT: '0',
     GCM_INTERACTIVE: 'never',
+    GIT_NO_REPLACE_OBJECTS: '1',
+    GIT_GRAFT_FILE: '/dev/null',
   };
   return ok(gitRetirePort({ git: git.value, cwd: input.repoRoot, env }));
 }

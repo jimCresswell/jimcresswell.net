@@ -337,6 +337,10 @@ pnpm agent-tools merge-bot retire --branch <name>
 
 - Every proof runs before any delete. No read writes a ref the command may
   delete: a remote branch's objects arrive by an objects-only fetch.
+- Every git read runs with replacement refs and grafts off
+  (`GIT_NO_REPLACE_OBJECTS=1`, `GIT_GRAFT_FILE=/dev/null`). Either can give a
+  commit parents it does not have, and a planted one would make an unmerged
+  tip read as merged.
 - The remote branch goes first, as the bot, through GraphQL `updateRefs`
   with the proven sha as `beforeOid`. That is a compare-and-swap on the
   server, so a push landing after the proof is kept. The token is minted
