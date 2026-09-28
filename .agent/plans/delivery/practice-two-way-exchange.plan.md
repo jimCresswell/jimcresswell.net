@@ -259,15 +259,16 @@ lineage's tree at `.agent/reports/practice-exchange/goal-one-residue-census-2026
     seat's named lane), queued (its position in the census's order, the seat, and the horizon
     from the observed pace, in the same breath) or declined (the reason; the owner's word where
     the row is ratified); the count reads in residue pull requests (the census's 24), landed of
-    total, beside both heads; a count that does not fall between two folds is routed as a
-    failure, never re-labelled, and a row queued across two folds with no movement is routed.
-    Nova's lane: Nova turns Penumbra (8a94ba) joins the residue on J6 (the smoke runner, three
-    pull requests) and J8 (corpus-analysis and workflow-build, two) after that seat's open pull
-    request here. The Director's order on the other seats, with the ratification: Siren herds
-    Rudder (158275), this estate's seat, on J3's shellcheck slice and on the register's settling
-    rows (J15, J19 and J23 citing the triage; J11's decline); the lineage's exchange seat,
-    Myrtle turns Canopy (bf4957), on J1's N1, J2 and the other partials (J10, J17's notes 4 and
-    8, J18, J21); the census's order otherwise stands.
+    total, beside both heads; a count that does not fall between two folds (the count that
+    falls is the remainder, total less landed) is routed as a failure, never re-labelled, and a
+    row queued across two folds with no movement is routed. Nova's lane: Nova turns Penumbra
+    (8a94ba) joins the residue on J6 (the smoke runner, three pull requests) and J8
+    (corpus-analysis and workflow-build, two) after that seat's open pull request here. The
+    Director's order on the other seats, with the ratification: Siren herds Rudder (158275),
+    this estate's seat, on J3's shellcheck slice and on the register's settling rows (J15, J19
+    and J23 citing the triage; J11's decline); the lineage's exchange seat, Myrtle turns Canopy
+    (bf4957), on J1's N1, J2 and the other partials (J10, J17's notes 4 and 8, J18, J21); the
+    census's order otherwise stands.
 44. Ruling 40's scope, on the fourth card: the selected option verbatim, "Confirm: inbound
     stays in the node (Recommended)". Ruling 40's line reads "outside goal one's close bar":
     the inbound direction (this estate's landings from the lineage) remains this node's todo 4,
@@ -447,14 +448,19 @@ entries composed whole and appended in one write.
    residue pull requests, landed of total (N of 26: the census's 20 residue pull requests, two
    more from J3's design read of 2026-09-28 18:3xZ, which split its one slice into three on the
    Director's word, and the four charter acts; the 4 rows landed before the census sit outside
-   it; the Director's check-ins carry N); a count that does not fall between two folds routed
-   as a failure, never re-labelled. Seats (ruling 43): the lineage's exchange seat on
-   J1's N1, J2 and the partials J10, J17 (notes 4 and 8), J18 and J21; Nova turns Penumbra on
-   J6 and J8; Siren herds Rudder on J3's shellcheck slice and the register's settling rows
-   (J15, J19 and J23 citing the triage; J11's decline); the census's order otherwise stands
-   (J16 rides J1's N1; J20 carries J15's rider). §Close's provenance, audit and Box steps, and
-   the doctrine amendments as register candidates, stay the node's, after the bar. Next act
-   after this amendment lands: the census's order, J1's N1 (the rule-generator slice) first.
+   it; the register's §The count carries N with the heads read, the Director's check-ins read
+   it); a remainder (total less landed) that does not fall between two folds routed as a
+   failure, never re-labelled. Seats (ruling 43): the lineage's exchange seat on J1's N1, J2
+   and the partials J10, J17 (notes 4 and 8), J18 and J21; Nova turns Penumbra on J6 and J8;
+   Siren herds Rudder on J3's three and the register's settling rows (J15, J19 and J23 citing
+   the triage; J11's decline); the census's order otherwise stands (J16 rides J1's N1; J20
+   carries J15's rider), and the rows the order names no seat for, J11's loss-scan and J20's
+   tsconfig flags with the warnings pull request shared with J17 and J21, are the lineage's
+   exchange seat's after its partials. The horizon, at the census's observed pace of nine
+   landings a day across the seats: about three days from the recount for the 25 remaining,
+   refreshed at each fold. §Close's provenance, audit and Box steps, and the doctrine
+   amendments as register candidates, stay the node's, after the bar. Next act after this
+   amendment lands: the census's order, J1's N1 (the rule-generator slice) first.
 7. The re-pin (mechanism step 1, before the register closes): the pins carry forty-character
    commit ids; the driver fails closed on a tracked list with no pin row before replacing any
    output; the machinery list is derived from the artefact inventory rather than written by

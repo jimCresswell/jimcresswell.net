@@ -71,11 +71,23 @@ census names it, recounted when a row's design read changes its slicing (26 for 
 census of 2026-09-28 read 24, and J3's design read the same day split its one slice into three
 on the Director's word of 18:3xZ; the inbound direction's count waits on its own census, todo 4
 after the review, ruling 44), and each direction reads as landed of total beside both estates'
-`main` heads the register was read at, so the count moves daily. A count that does not fall
-between two coordination folds is routed to the Director (the node's ruling 21) as a failure,
-never re-labelled; a row queued across two folds with no movement is routed the same way.
-`PARTIAL` on a landing names a remainder, a residue pull request the census names; the row takes
-its remainder's state.
+`main` heads the register was read at, in the count line below, so the count moves daily. The
+remainder, total less landed, falls between two coordination folds, or the count is routed to
+the Director (the node's ruling 21) as a failure, never re-labelled; a row queued across two
+folds with no movement is routed the same way. `PARTIAL` on a landing names a remainder, a
+residue pull request the census names; the row takes its remainder's state.
+
+### The count
+
+Refreshed by the lineage's exchange seat at each landing, decline or recount, with the heads it
+read; the Director's check-ins read this line, and the bar closes on N of N here. Goal one (this
+estate's J rows into the lineage), read on 2026-09-28 at jcnet `be6b5141be` and lineage
+`c5dbce46e6`: **1 of 26**. The 26 are the census's 20 residue pull requests, J3's two from the
+recount of 18:3xZ, and the charter's four acts (todo 6's amendment, the lessons row, the
+comparison row, the re-pin); the 1 is todo 6's amendment, PR 248, merged 2026-09-28T17:14:16Z.
+No residue pull request has merged since the census; the rows settled by this register's dated
+rows carry no pull request of their own and change no unit. The inbound direction's count opens
+with its own census (todo 4, ruling 44).
 
 ## Rows from the lineage's delta (since `e477e62f7e`)
 
