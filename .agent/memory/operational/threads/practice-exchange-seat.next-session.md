@@ -2307,3 +2307,26 @@ written 22:19Z).**
   It is not pushed, and opens when 278 lands.
 - The WIP count is 3 of 3 (250, 278, 279). Next: 278's round two and door; the twin opens in the
   freed slot; 279 and its twin merge together after both copies' legs settle.
+
+**278 at its settlement head; 279 settled on review (block written 06:31Z, 2026-09-28).**
+
+- Lineage PR 279 is settled on review at SHA:a8320853c. Its settlement items were answered by
+  signed lines: Codex's glob-named Markdown file (no such tracked file in either estate), and
+  Copilot's two overview notes (`origin/HEAD` freshness, routed to the next fold doctrine PR;
+  empty file lists). It waits for its JC.net twin (ruling 4).
+- Lineage PR 278 is at its settlement head SHA:a16249ec1. Round two's over-bar finding (Codex):
+  GitHub's pending `reviewRequests` never lists a bot reviewer (read live on 278 with a Copilot
+  request outstanding), so the requested-round hold never fired for either bot leg.
+  - The cure reads the rounds from the PR's history: review-request and ready-for-review events
+    (a fourth full harvest) and `@codex review` comments (`round-requests.ts`).
+  - A pre-execution code-expert review shaped it. Post-execution code, test and type reviews
+    found a type-only import cycle (depcruise refuses it), a schema that could drop a request
+    silently, and three test gaps. All were cured before the push; seventeen mutants are killed.
+- The Director's rulings (06:0xZ):
+  - The lineage's `main` stays: the owner's plan of 2026-09-26 names it the upstream mirror.
+  - P1 settles at first green after a pure sync. The door never waits for an unrequested Codex
+    run; a result after the merge is a post-merge finding, fixed forward.
+  - The reopen condition is in P1's design note: a Codex run on a pure-synced tip that lands an
+    over-bar finding after the merge reopens the hold question on that instance.
+- The JC.net twin (SHA:21b1b04c, unpushed) opens when 278 lands. Its body and open script are
+  drafted. The WIP count is 3 of 3 (250, 278, 279).
