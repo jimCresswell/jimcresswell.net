@@ -2353,3 +2353,41 @@ written 22:19Z).**
 - Next, at a free slot: the Director's doctrine PR for items 1 and 2 (one per estate), and the
   next pr-watch PR (the security trigger and the leg labels). Locally before then: the L1
   flow-back's divergence read.
+
+**279 and its twin 237 landed; P1's first live use; the second doctrine pair built (block
+written 07:30Z, 2026-09-28).**
+
+- JC.net PR 237 merged at 07:01:30Z as SHA:b8284eb3.
+  - Copilot's round one gave two items, both below the bar. The delete race needs a second
+    writer, and clause 5 leaves none after the cut. The firing-point wording is routed to the
+    next pair.
+- Lineage PR 279 merged at 07:25:22Z as SHA:1e3870b60, after a pure sync of engraph (the door
+  refused BEHIND-BASE).
+  - The door ran from 279's own worktree, on agent-tools built at the synced head, so it
+    carried P1. Copilot's review of SHA:a8320853c bound the synced head SHA:f76b07153 by content
+    (patch-id b8754ee664). The pure sync drew no new round: P1's first live use.
+  - An unrequested Codex run on the sync push landed two threads before the merge, and the
+    door's open-threads check held it. Item 1 is over the bar: the repo-wide fixers rewrite a
+    live peer file. Item 2 is below it: a remote branch already auto-deleted. Both are answered
+    by signed lines and routed to the next pair, because 237 had merged the same bytes and
+    279's rounds were spent.
+  - This is not the Director's reopen condition, which needs the result to land after the merge.
+    It is recorded as an observation.
+  - Cleanup for both is done: remote branches deleted by API and read back absent, worktrees
+    removed, local refs deleted after the ancestry proof, claims 27adb8d9 and 08dd2bfa closed.
+- The second doctrine pair is built in worktrees `oce-wt-doctrine-pair2` and
+  `jcnet-wt-doctrine-pair2`, on branch docs/remote-branch-rule-and-shared-primary-check.
+  - It carries clause 5 as the one home of the shared-primary write check, the owner's
+    remote-branch rule as a new rule file, and four routed items: the `origin/HEAD` refresh, the
+    single firing point, the fixers and a live peer file, and a remote branch already absent.
+  - The edits are byte-identical across the estates. The portability and sub-agent checks pass,
+    and a Wilma pre-open review is running. The claims are 5ffbf1ab (lineage) and 07d423a8
+    (JC.net). The WIP count is 1 of 3 (250), so the pair opens after its review.
+- The L1 flow-back's divergence read: the operator-profile code has diverged both ways
+  (lineage-only contract validator and argv module; JC.net-only sync-target and integration
+  suites; 17 files differ). So L1 ports 277's specific cures into JC.net's shape rather than
+  copying files. It is its own PR at a slot.
+- Process notes:
+  - `queue-commit.sh` leaves its file staged when its commit fails, and every unstage form is
+    forbidden, so commitlint runs first, always.
+  - One clock read shared a call with another command.
