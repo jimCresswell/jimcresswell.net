@@ -4,6 +4,22 @@ Changes to the Practice Core files, newest first. Each entry records the repo
 that made the change and what was changed. This file travels with the
 Practice Core package.
 
+## [jimcresswell.net] 2026-09-28 — the comms-event family's ADR citations named by concept
+
+- Six PDRs (PDR-050, PDR-074, PDR-075, PDR-077, PDR-078, PDR-119) named host
+  ADRs by number: 38 citations across the comms-event family (the mid-cycle
+  handoff record substrate, the tag namespace, auto-acceptance metadata, the
+  heartbeat lifecycle, rotation's class-tiered archive-move, and the threading
+  edge). Each citation now names the concept the ADR records, per PDR-079 as
+  amended; no sentence is removed. PDR-078's related entry, which said the
+  heartbeat decision was cited by identifier only, now says it is named by its
+  concept. The remaining debt in this estate's Core falls from 88 citations to
+  50.
+- PDR-079 gains the dated pointers in §PDR Portability Rule, §Mechanism,
+  §Notes, §Forbids and §Accepted Costs, so each section the amendment changed
+  points at its Amendment Log. Joint bytes with the lineage, where the pointers
+  landed first.
+
 ## [jimcresswell.net] 2026-09-28 — PDR-079 withdraws the ADR-identifier permission
 
 - PDR-079 §PDR Portability Rule allowed a PDR to name an ADR by its
