@@ -2851,3 +2851,42 @@ is named above, so the recursion closes here.
   - `persist-credentials: false` on the lineage's static-checks (an observation for that estate).
 - Next safe step: #292's round one (cure or reject by signed line); C2 after #292 lands; then B1
   when WIP allows.
+
+**21:37Z to 22:35Z: #292 rounds one and two cured; Codex asked at the tip for the door.**
+
+- Round one (on b9a2cd359): the stand-in leg's three items were cured in 0e56d38fd.
+  - A tracked `.tools` path is refused in any case and as a link (`/^\.tools(?:\/|$)/iu`), and
+    `.gitignore` ignores `.tools` with no slash.
+  - A directive after `then`, `do`, `{`, `(` or `;` is refused.
+  - A lost file is refused only when the gate would lint it, read from git's index
+    (`git cat-file blob :0:<file>`); a peer's staged deletion no longer blocks a pathspec commit.
+  - The gate's edges moved to `repo-check-shellcheck-runtime.ts` (the file was 255 lines).
+  - Codex's P1 (the installer fetches `.tar.gz`, the release ships `.tar.xz`) was Rejected: the
+    release ships both, and the four pins equal the `.tar.gz` digests in GitHub's release API.
+- Round two (on 0e56d38fd): Codex clean. The stand-in leg found two items, both re-run first-hand
+  and cured in 29e1e06e9.
+  - shellcheck honours a key glued to a quoted value (`source="x"disable=SC2086`); the pattern
+    now takes the key anywhere after `shellcheck`.
+  - Round one's index-read cure let a lost `#!/bin/bash` file through; a lost file is now also
+    refused when its index content has a refused shebang.
+- The README's first-run block now runs the installer before `pnpm lint`, which runs the gate.
+  It rode the round-two push.
+- A cure commit unbinds Codex's clean result (content binding is by patch-id), so `@codex review`
+  was asked at 29e1e06e9 (22:34:27Z) as the door's evidence. Any finding on it is cured or
+  Rejected by signed line; no third round.
+- Next safe step: the door on #292 (`--expect chatgpt-codex-connector`), then C2 (ADR-121's CI
+  entry, CONTRIBUTING, tooling.md, workflow.md, the README's first-push line). B1 waits for WIP.
+
+**22:35Z to 22:52Z: #292 landed; C2 built.**
+
+- Codex was clean at 29e1e06e9 (22:38:11Z). The door (Codex only) merged #292 at 22:48:51Z as
+  8ebd923a5, reading Codex's completion comment as the leg bound to the tip.
+- Cleanup: the remote branch was deleted as the bot and read back absent; the worktree and the
+  local branch were removed.
+- WIP is 2 of 3 (lineage 291, JC.net 257), so C2 opens once its pre-open reviews are in.
+- C2 (J3 slice 4b) is built in `oce-wt-j3-shellcheck-docs`, uncommitted:
+  - ADR-121: §Pinned system binaries (gitleaks and shellcheck; the downloads are provisioning,
+    inside ADR-161), the CI bullet, a change-log row, and the Updated date;
+  - CONTRIBUTING: a Setup step and a Common Issues bullet;
+  - tooling.md and workflow.md: one entry each.
+  - `check:docs` passes. The docs-adr and onboarding reviews are running.
