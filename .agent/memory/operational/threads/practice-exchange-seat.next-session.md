@@ -2259,3 +2259,24 @@ written 22:19Z).**
   - Vendor observation: GitHub's compare diff media type returned a whole 181 MB diff (11,707
     files) with HTTP 200, not truncated; a diff past the gh seam's buffer reads as unproven.
 - The WIP count is 1 of 3 (250). Next: P1's cures, then open it, then the L1 flow-back.
+
+**278 and 279 open; the doctrine twin waits for a slot (block written 05:30Z, 2026-09-28).**
+
+- Lineage PR 278 (P1, the content binding) is open at head SHA:4c9c22bce. Round one:
+  - Copilot raised two findings. The first (the content read after the confirm read) is rejected
+    below the bar: every content read names its commit, and the door pins the head it verdicted.
+  - The second is over the bar and cured locally: a quota or skip marker bound by content answered
+    a requested round. The requested-round hold now runs before the marker is classified. Its
+    mutant was killed, and the 306 pr-watch tests pass.
+  - Codex has not reported yet. The cure is uncommitted in the worktree, and rides one push with
+    any Codex cures.
+- Lineage PR 279 is open at head SHA:3515d2851: Nova's fold and chmod commit (SHA:f3cbd2fe0), a
+  sync merge, and the pre-open cure. Copilot was requested at open.
+  - Five items outside its scope went to the Director at about 05:30Z: one home for the
+    shared-primary hazard, the remote-branch rule as rule text, the fold's literal origin/main, two
+    items numbered 3, and the stale head coordination/2026-09-25-749769.
+- The JC.net twin is in the worktree `jcnet-wt-doctrine-fold-chmod` at SHA:a6197de4, not yet
+  synced, cured or pushed. Its cure is SHA:3515d2851's edits, applied to the JC.net copy. It opens
+  when a slot frees, and merges only after both copies' legs settle (ruling 4).
+- The WIP count is 3 of 3 (250, 278, 279). Next: Codex on 278, then its round-one push; 279's
+  round one.
