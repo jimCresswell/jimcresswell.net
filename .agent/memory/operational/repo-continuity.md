@@ -21,6 +21,36 @@ live, what is next. Refreshed by `session-handoff`; read at session resume.
 
 ## Current State
 
+- **2026-09-28T00:1xZ, the rollover folds in progress** (Wick binds Temper, ed7b48). Both
+  coordination drafts synced, pushed and ready-marked at 00:0xZ: the lineage's PR 264
+  (coordination/2026-09-27-d6c9e5, synced to engraph 48f70d4ba at 24d9a06f1, one Copilot round cured
+  at 7f6bb5f5f) and JC.net's PR 227 (coordination/2026-09-27-3699c1, synced to main 67bc75ec at
+  97a0db5f2, this branch); their doors run on their legs, then the successors are cut and named in
+  the rotation broadcasts. Since the 12:00Z folds: the lineage landed 261, 265 to 272 (the two
+  retrospectives with their addenda; the WIP reservation lapse; the tracked-tree gates, row J3; the
+  hook-policy path scopes, row J7; the guard port, row J2's first landing; the turbo cache input)
+  and JC.net landed 226, 228 to 233 (the rollback and the WIP bullet identical in both estates; the
+  register true at main; the lineage-name guard scoped by repository identity and cured; the J3
+  flow-back). Open non-coordination PRs: 250 (the owner's draft, on THE READY LIST for the owner's
+  human review of the eval readings and the ready-mark) and 273 (the non-blocking profile read,
+  Siren's); the count two of three. The seats: Siren herds Rudder (158275) the one implementing
+  seat on both estates, at 273's door then the profile git runner's `core.symlinks=false` twin
+  with the register's J3 and J7 landings, the L1 flow-back and the shellcheck gate; Nova turns
+  Penumbra (8a94ba) silent since 16:05:37Z, her lane on 250 passed to Siren by the Director's dated
+  default (card line (b)); Myrtle and Swallow closed out at midday. The owner card (batched, lines
+  (b) to (f)) and the live reading are the napkin's check-in 52 (23:36Z) and the suite 45 tally
+  (22:36Z); the fold recipe and its addenda are the napkin's 20:10Z and 21:51Z blocks.
+
+- **2026-09-27T12:4xZ, both 12:00Z folds done** (Wick binds Temper, ed7b48). The lineage's
+  coordination PR 262 merged at 12:06:40Z as d6c9e582e (one round; successor
+  coordination/2026-09-27-d6c9e5, draft PR 264); JC.net's PR 225 merged at 12:39:05Z as 3699c155d
+  (three rounds, two settlement pushes; successor coordination/2026-09-27-3699c1, draft PR 227,
+  this branch); both folded branches deleted local and remote. The seats: Myrtle closed out 12:06Z
+  and Swallow 12:28Z on the owner's word, Siren paused 12:11Z with a HOLD on JC.net PR 226, Nova
+  turns Penumbra (8a94ba) freed by the owner and routed to lineage PR 261 then PR 250. The count
+  three of three (250, 261, 226); the retrospective's PR opens at the slot 261's landing frees
+  (the Director's ruling of suite 31); the usage-limit boundary of 11:50Z and the resume of 12:0xZ
+  are in the napkin; the handoff's live block is current to check-in 37.
 - **2026-09-27T09:5xZ, the Director's resume** (Wick binds Temper, ed7b48) on the owner's start
   word of 09:2xZ, which reached every seat by 09:36Z. Since the boundary: 245 landed at 09:06:12Z
   (the drain's eighth row; two non-coordination PRs open, 250 the owner's lane and 260); the

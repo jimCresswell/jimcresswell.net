@@ -13,7 +13,12 @@ import {
   type PresenceProbe,
   type ProfileFileSystem,
 } from './operator-profile-fs.js';
-import { type DocumentHandle, type EntryIdentity, readDocument } from './operator-profile-read.js';
+import {
+  type DocumentHandle,
+  type EntryIdentity,
+  type ReadProbes,
+  readDocument,
+} from './operator-profile-read.js';
 import { type ProfileEntry } from './operator-profile-layout.js';
 import { existingProfilePaths, readProfileReport } from './operator-profile-root.js';
 
@@ -86,15 +91,18 @@ describe('presence — what is at a path, never following a link', () => {
 describe('listEntries — one level, never through a link, never a thrown error', () => {
   const directory: PresenceProbe = () => Promise.resolve(ok('directory'));
 
-  it('lists a scoped directory that is a symlink as empty, so nothing behind it is ever read', async () => {
+  it('lists a scoped directory that is a symlink as empty, so nothing behind it is ever listed', async () => {
     const linked: PresenceProbe = () => Promise.resolve(ok('symlink'));
-    const reads: string[] = [];
-    const lister = (dir: string) => {
-      reads.push(dir);
-      return Promise.resolve([]);
-    };
+    // The lister would answer an entry from behind the link; an empty
+    // listing proves nothing behind the link was listed.
+    const lister = () =>
+      Promise.resolve([
+        {
+          name: 'outside.md',
+          type: { isSymbolicLink: () => false, isDirectory: () => false, isFile: () => true },
+        },
+      ]);
     expect(unwrap(await listEntries(ROOT, 'repos', linked, lister))).toEqual([]);
-    expect(reads).toEqual([]);
   });
 
   it('turns a listing the platform refuses after the probe into an error, never a throw', async () => {
@@ -158,62 +166,50 @@ describe('entryKind', () => {
   });
 });
 
-/** A fake filesystem: a fixed listing, a fixed document text, and the reads it was asked for. */
-function fakeFileSystem(
-  entries: readonly ProfileEntry[],
-  text: string,
-): { readonly fs: ProfileFileSystem; readonly reads: string[] } {
-  const reads: string[] = [];
-  const fs: ProfileFileSystem = {
+/**
+ * A fake filesystem: the root lists its entries, and a document answers the
+ * text only at its own path under the root; any other path is absent.
+ */
+function fakeFileSystem(entries: readonly ProfileEntry[], text: string): ProfileFileSystem {
+  const documents = new Map(entries.map((entry) => [path.join(ROOT, entry.relPath), ok(text)]));
+  return {
     presence: () => Promise.resolve(ok('directory')),
     listEntries: (_root, dirName) => Promise.resolve(ok(dirName === undefined ? [...entries] : [])),
-    readDocument: (absolute) => {
-      reads.push(absolute);
-      return Promise.resolve(ok(text));
-    },
+    readDocument: (absolute) =>
+      Promise.resolve(documents.get(absolute) ?? err(`no document at ${absolute}`)),
     isGitRepository: () => Promise.resolve(ok(false)),
   };
-  return { fs, reads };
 }
 
 describe('readProfileReport — entries that are not regular files', () => {
   it('reads a regular index.md and reports it as one conforming document, carrying the text it read', async () => {
-    const { fs, reads } = fakeFileSystem(
-      [{ relPath: 'index.md', kind: 'file' }],
-      VALID_INDEX_DOCUMENT,
-    );
+    const fs = fakeFileSystem([{ relPath: 'index.md', kind: 'file' }], VALID_INDEX_DOCUMENT);
     expect(unwrap(await readProfileReport(ROOT, fs))).toMatchObject({
       documentCount: 1,
       documents: [{ relPath: 'index.md', content: VALID_INDEX_DOCUMENT }],
       failures: [],
     });
-    expect(reads).toEqual([path.join(ROOT, 'index.md')]);
   });
 
   it('refuses a profile root that is a symlink, never following it', async () => {
-    const { fs, reads } = fakeFileSystem(
-      [{ relPath: 'index.md', kind: 'file' }],
-      VALID_INDEX_DOCUMENT,
-    );
-    const linkedRoot: ProfileFileSystem = { ...fs, presence: () => Promise.resolve(ok('symlink')) };
-    const report = await readProfileReport(ROOT, linkedRoot);
-    expect(report).toEqual({
+    const linkedRoot: ProfileFileSystem = {
+      ...fakeFileSystem([{ relPath: 'index.md', kind: 'file' }], VALID_INDEX_DOCUMENT),
+      presence: () => Promise.resolve(ok('symlink')),
+    };
+    expect(await readProfileReport(ROOT, linkedRoot)).toEqual({
       ok: false,
       error: `${ROOT} is a symlink — the profile root is never followed`,
     });
-    expect(reads).toEqual([]);
   });
 
   it('refuses a symlinked index.md as not a regular file and never reads through it', async () => {
     // The fake would answer the read with a conforming document; a report
-    // that names no document and asked for no read proves the link was
-    // refused by kind, not read and validated.
-    const { fs, reads } = fakeFileSystem(
-      [{ relPath: 'index.md', kind: 'symlink' }],
-      VALID_INDEX_DOCUMENT,
-    );
+    // with no conforming document proves the link was refused by kind, not
+    // read and validated.
+    const fs = fakeFileSystem([{ relPath: 'index.md', kind: 'symlink' }], VALID_INDEX_DOCUMENT);
     expect(unwrap(await readProfileReport(ROOT, fs))).toMatchObject({
       documentCount: 0,
+      documents: [],
       failures: [
         {
           relPath: 'index.md',
@@ -223,13 +219,11 @@ describe('readProfileReport — entries that are not regular files', () => {
         },
       ],
     });
-    expect(reads).toEqual([]);
   });
 
   it("reports a document the reader refuses as that document's failure, never a thrown error", async () => {
-    const { fs } = fakeFileSystem([{ relPath: 'index.md', kind: 'file' }], VALID_INDEX_DOCUMENT);
     const refusing: ProfileFileSystem = {
-      ...fs,
+      ...fakeFileSystem([{ relPath: 'index.md', kind: 'file' }], VALID_INDEX_DOCUMENT),
       readDocument: () =>
         Promise.resolve(
           err(
@@ -245,6 +239,12 @@ describe('readProfileReport — entries that are not regular files', () => {
 
 describe('readDocument — reading without following a symlink', () => {
   const regular: EntryIdentity = { isFile: () => true, dev: 1n, ino: 42n };
+  // Every read names its host, so no test takes the runner's own probes; the
+  // arm without O_NOFOLLOW is driven by its own test below.
+  const noFollowHost: ReadProbes = {
+    noFollowAtOpen: true,
+    entryStat: () => Promise.resolve(regular),
+  };
   const handleOf = (
     text: string,
     closed: string[],
@@ -260,8 +260,10 @@ describe('readDocument — reading without following a symlink', () => {
 
   it('refuses a descriptor that is not a regular file (a fifo, a directory) and closes it', async () => {
     const closed: string[] = [];
-    const read = await readDocument('index.md', () =>
-      Promise.resolve(handleOf('text', closed, { isFile: () => false, dev: 1n, ino: 42n })),
+    const read = await readDocument(
+      'index.md',
+      () => Promise.resolve(handleOf('text', closed, { isFile: () => false, dev: 1n, ino: 42n })),
+      noFollowHost,
     );
     expect(read).toEqual({
       ok: false,
@@ -273,12 +275,15 @@ describe('readDocument — reading without following a symlink', () => {
 
   it('names a refused close beside a descriptor refusal', async () => {
     const refusal = Object.assign(new Error('EIO: i/o error'), { code: 'EIO' });
-    const read = await readDocument('index.md', () =>
-      Promise.resolve({
-        stat: () => Promise.resolve({ isFile: () => false, dev: 1n, ino: 42n }),
-        readFile: () => Promise.resolve('text'),
-        close: () => Promise.reject(refusal),
-      }),
+    const read = await readDocument(
+      'index.md',
+      () =>
+        Promise.resolve({
+          stat: () => Promise.resolve({ isFile: () => false, dev: 1n, ino: 42n }),
+          readFile: () => Promise.resolve('text'),
+          close: () => Promise.reject(refusal),
+        }),
+      noFollowHost,
     );
     expect(read).toEqual({
       ok: false,
@@ -312,19 +317,26 @@ describe('readDocument — reading without following a symlink', () => {
 
   it('reads the text through the opened handle and closes it', async () => {
     const closed: string[] = [];
-    const read = await readDocument('index.md', () => Promise.resolve(handleOf('text', closed)));
+    const read = await readDocument(
+      'index.md',
+      () => Promise.resolve(handleOf('text', closed)),
+      noFollowHost,
+    );
     expect(unwrap(read)).toBe('text');
     expect(closed).toEqual(['closed']);
   });
 
   it('names a close the platform refuses after a read as a close failure, never a throw', async () => {
     const refusal = Object.assign(new Error('EIO: i/o error'), { code: 'EIO' });
-    const read = await readDocument('index.md', () =>
-      Promise.resolve({
-        stat: () => Promise.resolve(regular),
-        readFile: () => Promise.resolve('text'),
-        close: () => Promise.reject(refusal),
-      }),
+    const read = await readDocument(
+      'index.md',
+      () =>
+        Promise.resolve({
+          stat: () => Promise.resolve(regular),
+          readFile: () => Promise.resolve('text'),
+          close: () => Promise.reject(refusal),
+        }),
+      noFollowHost,
     );
     expect(read).toEqual({
       ok: false,
@@ -335,14 +347,17 @@ describe('readDocument — reading without following a symlink', () => {
 
   it('contains a close that throws synchronously after a failed read and names both causes', async () => {
     const readRefusal = Object.assign(new Error('EACCES: permission denied'), { code: 'EACCES' });
-    const read = await readDocument('index.md', () =>
-      Promise.resolve({
-        stat: () => Promise.resolve(regular),
-        readFile: () => Promise.reject(readRefusal),
-        close: () => {
-          throw Object.assign(new Error('EBADF: bad file descriptor'), { code: 'EBADF' });
-        },
-      }),
+    const read = await readDocument(
+      'index.md',
+      () =>
+        Promise.resolve({
+          stat: () => Promise.resolve(regular),
+          readFile: () => Promise.reject(readRefusal),
+          close: () => {
+            throw Object.assign(new Error('EBADF: bad file descriptor'), { code: 'EBADF' });
+          },
+        }),
+      noFollowHost,
     );
     expect(read).toEqual({
       ok: false,
@@ -355,15 +370,18 @@ describe('readDocument — reading without following a symlink', () => {
     const readRefusal = Object.assign(new Error('EACCES: permission denied'), { code: 'EACCES' });
     const closeRefusal = Object.assign(new Error('EIO: i/o error'), { code: 'EIO' });
     const closed: string[] = [];
-    const read = await readDocument('index.md', () =>
-      Promise.resolve({
-        stat: () => Promise.resolve(regular),
-        readFile: () => Promise.reject(readRefusal),
-        close: () => {
-          closed.push('closed');
-          return Promise.reject(closeRefusal);
-        },
-      }),
+    const read = await readDocument(
+      'index.md',
+      () =>
+        Promise.resolve({
+          stat: () => Promise.resolve(regular),
+          readFile: () => Promise.reject(readRefusal),
+          close: () => {
+            closed.push('closed');
+            return Promise.reject(closeRefusal);
+          },
+        }),
+      noFollowHost,
     );
     expect(read).toEqual({
       ok: false,
@@ -375,7 +393,7 @@ describe('readDocument — reading without following a symlink', () => {
 
   it('turns an open the platform refuses (ELOOP on a symlink) into a message, never a throw', async () => {
     const refusal = Object.assign(new Error('ELOOP: too many symbolic links'), { code: 'ELOOP' });
-    const read = await readDocument('index.md', () => Promise.reject(refusal));
+    const read = await readDocument('index.md', () => Promise.reject(refusal), noFollowHost);
     expect(read).toEqual({
       ok: false,
       error:

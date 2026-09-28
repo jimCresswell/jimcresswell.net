@@ -35,6 +35,15 @@ export type GitRunner = (args: readonly string[]) => GitOutcome;
  * stdout) reads as a failed command carrying the spawn error's message,
  * and a trusted-git resolution that refuses is this function's error.
  *
+ * Every call runs with `core.symlinks=false`, so a symbolic link a pull
+ * delivers is checked out as a plain file holding the link's text, never
+ * as a link: the Practice's own git never writes a link into the profile
+ * tree. At an entry the layout does not expect, the check refuses that
+ * file by name; at an expected path it reads as the document its text
+ * makes it, and the push leg refuses any path the index still records as
+ * a link. Every call carries it, so the status and push legs read the tree
+ * the way the pull wrote it.
+ *
  * @param root - the profile root
  * @returns the runner, or why no git can run here
  */
@@ -46,7 +55,7 @@ export function createGitRunner(root: string): Result<GitRunner, string> {
     return err(`no trusted git binary: ${cause instanceof Error ? cause.message : String(cause)}`);
   }
   return ok((args) => {
-    const result = spawnSync(git, ['-C', root, ...args], {
+    const result = spawnSync(git, ['-c', 'core.symlinks=false', '-C', root, ...args], {
       encoding: 'utf8',
       stdio: ['ignore', 'pipe', 'pipe'],
     });

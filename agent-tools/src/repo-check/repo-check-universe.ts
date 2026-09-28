@@ -1,6 +1,3 @@
-import { parseNulSeparatedPaths, parseSymlinkPaths, withoutSymlinks } from './repo-check-files.js';
-import type { RepoCheckRuntime } from './repo-check-types.js';
-
 /**
  * The file universes the root gates read, both git's: the staged set for the
  * pre-commit hook and the tracked tree for the root gates. The names never
@@ -9,71 +6,75 @@ import type { RepoCheckRuntime } from './repo-check-types.js';
  * this module composes); each gate then reads what it needs of the files git
  * names.
  *
+ * @remarks
+ * Every read fails closed. A failed git read throws in git's own words, and a
+ * tracked listing that names no file throws too, since a gate that read
+ * nothing must never pass as if it checked everything.
+ *
  * @packageDocumentation
  */
 
-/** Ask git for a NUL-separated path list, failing loudly when git does. */
-function gitPaths(
-  runtime: RepoCheckRuntime,
-  args: readonly string[],
-  what: string,
-): readonly string[] {
-  const result = runtime.runCaptured('git', [...args, '-z']);
+import {
+  parseNulSeparatedPaths,
+  parseSymlinkPaths,
+  type TrackedTreeReading,
+} from './repo-check-files.js';
+import type { RepoCheckRuntime } from './repo-check-types.js';
+
+/** A git read's standard output; a failed read throws in git's own words. */
+function gitOutput(runtime: RepoCheckRuntime, args: readonly string[], what: string): string {
+  const result = runtime.runCaptured('git', args);
   if ((result.status ?? 1) !== 0) {
     throw new Error(
       result.stderr.trim() || `git ${args[0] ?? ''} failed while discovering ${what}`,
     );
   }
-  return parseNulSeparatedPaths(result.stdout);
+  return result.stdout;
 }
 
-/**
- * Repo-relative paths of index entries that are symbolic links (mode 120000,
- * e.g. the .claude/skills adapters pointing at .agents/skills external-skill
- * content). They carry no formattable content of their own: the linked target
- * is checked under its real path, and prettier refuses symlink paths outright.
- */
+/** Index entries that are symbolic links, read from their index modes. */
 function indexSymlinkPaths(runtime: RepoCheckRuntime): ReadonlySet<string> {
-  const result = runtime.runCaptured('git', ['ls-files', '--cached', '-s', '-z']);
-  if ((result.status ?? 1) !== 0) {
-    throw new Error(result.stderr.trim() || 'git ls-files failed while discovering symlinks');
-  }
-  return parseSymlinkPaths(result.stdout);
+  return parseSymlinkPaths(gitOutput(runtime, ['ls-files', '--cached', '-s', '-z'], 'symlinks'));
 }
 
-/** The files staged for the next commit (added, copied, modified, renamed). */
+/** The files staged for the next commit (added, copied, modified, renamed), without symlinks. */
 export function stagedFiles(runtime: RepoCheckRuntime): readonly string[] {
-  const names = gitPaths(
-    runtime,
-    ['diff', '--cached', '--name-only', '--diff-filter=ACMR'],
-    'staged files',
+  const names = parseNulSeparatedPaths(
+    gitOutput(
+      runtime,
+      ['diff', '--cached', '--name-only', '--diff-filter=ACMR', '-z'],
+      'staged files',
+    ),
   );
-  return withoutSymlinks(names, indexSymlinkPaths(runtime));
+  const symlinks = indexSymlinkPaths(runtime);
+  return names.filter((name) => !symlinks.has(name));
 }
 
 /**
- * Every tracked file: the repository's own answer to "what exists here", the
- * same on every checkout and in CI. A disk walk would instead lint whatever
- * this machine happens to carry (a generated read model, an editor's workspace
- * file) and prove the machine, not the repository.
+ * What git says about the tracked tree, in three reads:
  *
- * A tracked file deleted from the working tree, or replaced there by a
- * symlink, but not yet staged is still a regular index entry, so `ls-files`
- * names it and the tool would fail on a missing file or refuse the link.
- * Git's own unstaged-diff answer (deleted and type-changed paths) removes
- * those, so the list itself never comes from probing the disk.
+ * - `ls-files -z --deduplicate`: each tracked file once, even mid-merge;
+ * - `diff-files --name-only --diff-filter=DT -z`: tracked files deleted or
+ *   retyped in the working tree and not yet staged (the plumbing command never
+ *   detects renames, so a deletion is never read as half of one);
+ * - `ls-files --cached -s -z`: the symlinks, from the index modes.
+ *
+ * @throws When a read fails, or when git lists no tracked file (it read the
+ *   wrong place).
  */
-export function trackedFiles(runtime: RepoCheckRuntime): readonly string[] {
-  const names = gitPaths(runtime, ['ls-files'], 'tracked files');
-  const goneFromWorkingTree = new Set(
-    gitPaths(
+export function readTrackedTree(runtime: RepoCheckRuntime): TrackedTreeReading {
+  const tracked = parseNulSeparatedPaths(
+    gitOutput(runtime, ['ls-files', '-z', '--deduplicate'], 'tracked files'),
+  );
+  if (tracked.length === 0) {
+    throw new Error('git listed no tracked file; run the gate from the repository root');
+  }
+  const gone = parseNulSeparatedPaths(
+    gitOutput(
       runtime,
-      ['diff', '--name-only', '--diff-filter=DT'],
+      ['diff-files', '--name-only', '--diff-filter=DT', '-z'],
       'tracked files deleted or retyped in the working tree',
     ),
   );
-  return withoutSymlinks(
-    names.filter((name) => !goneFromWorkingTree.has(name)),
-    indexSymlinkPaths(runtime),
-  );
+  return { tracked, goneFromWorkingTree: new Set(gone), symlinks: indexSymlinkPaths(runtime) };
 }

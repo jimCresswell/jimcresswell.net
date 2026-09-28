@@ -1,0 +1,1002 @@
+diff --git a/agent-tools/src/core/no-follow-read.ts b/agent-tools/src/core/no-follow-read.ts
+index 5e26b3f8..01c72188 100644
+--- a/agent-tools/src/core/no-follow-read.ts
++++ b/agent-tools/src/core/no-follow-read.ts
+@@ -1,8 +1,10 @@
+ /**
+  * The no-follow open that the hook's pointer-file reads and the skills-adapter
+  * reader share: the open flags this host enforces, and the check that stands in
+- * for `O_NOFOLLOW` where the host has none; and the non-blocking open of the
+- * hook's prior-content read, which follows links but does not wait on a pipe.
++ * for `O_NOFOLLOW` where the host has none; the non-blocking open of the
++ * hook's prior-content read, which follows links but does not wait on a pipe;
++ * and the open-flag bits the operator-profile reader composes its per-host
++ * open from, macOS's whole-path `O_NOFOLLOW_ANY` among them.
+  *
+  * @remarks
+  * Node's fs constants type declares every flag on every platform, but on
+@@ -25,12 +27,46 @@ const hostFlags: Partial<Record<'O_NOFOLLOW' | 'O_NONBLOCK', number>> = {
+   O_NONBLOCK: constants.O_NONBLOCK,
+ };
+ 
++/**
++ * macOS's `O_NOFOLLOW_ANY` (`<sys/fcntl.h>`: "no symlinks allowed in path"):
++ * the open refuses a symbolic link at any component with `ELOOP`, not only
++ * the last. It exists from macOS 11, below the floor of the Node this estate
++ * pins; Node's constants do not carry it. The kernel refuses it together
++ * with `O_NOFOLLOW` (`EINVAL`), so a whole-path open drops `O_NOFOLLOW`.
++ */
++const O_NOFOLLOW_ANY = 0x2000_0000;
++
++/** The open-flag bits a read is composed from; a flag the host lacks is `undefined`. */
++export interface OpenFlagBits {
++  readonly readOnly: number;
++  readonly noFollow: number | undefined;
++  readonly nonBlock: number | undefined;
++  readonly noFollowAny: number;
++}
++
++/** This host's open-flag bits, as the runtime has them. */
++export const HOST_OPEN_FLAGS: OpenFlagBits = {
++  readOnly: constants.O_RDONLY,
++  noFollow: hostFlags.O_NOFOLLOW,
++  nonBlock: hostFlags.O_NONBLOCK,
++  noFollowAny: O_NOFOLLOW_ANY,
++};
++
++/** Read-only, no final-link following and no pipe blocking, where the bits have them. */
++export function finalComponentReadFlags(bits: OpenFlagBits): number {
++  return bits.readOnly | (bits.noFollow ?? 0) | (bits.nonBlock ?? 0);
++}
++
++/** Read-only, no link at any component (macOS only) and no pipe blocking. */
++export function wholePathReadFlags(bits: OpenFlagBits): number {
++  return bits.readOnly | bits.noFollowAny | (bits.nonBlock ?? 0);
++}
++
+ /** Whether this host refuses a symbolic-link final component at open. */
+ export const HOST_ENFORCES_NO_FOLLOW = hostFlags.O_NOFOLLOW !== undefined;
+ 
+ /** Read-only open flags, with no final-link following and no pipe blocking where the host has them. */
+-export const NO_FOLLOW_READ_FLAGS =
+-  constants.O_RDONLY | (hostFlags.O_NOFOLLOW ?? 0) | (hostFlags.O_NONBLOCK ?? 0);
++export const NO_FOLLOW_READ_FLAGS = finalComponentReadFlags(HOST_OPEN_FLAGS);
+ 
+ /** Read-only open flags that follow links but do not wait on a pipe, where the host has `O_NONBLOCK`. */
+ export const NON_BLOCKING_READ_FLAGS = constants.O_RDONLY | (hostFlags.O_NONBLOCK ?? 0);
+diff --git a/agent-tools/src/validators/operator-profile/operator-profile-fs.ts b/agent-tools/src/validators/operator-profile/operator-profile-fs.ts
+index dd5e6410..710be215 100644
+--- a/agent-tools/src/validators/operator-profile/operator-profile-fs.ts
++++ b/agent-tools/src/validators/operator-profile/operator-profile-fs.ts
+@@ -1,19 +1,26 @@
+ /**
+  * Operator profile — the filesystem primitives behind the root reader:
+- * probing presence without following links, listing a directory without
+- * following links, and reading a document without following a symlink.
++ * probing presence without following links, resolving the real root,
++ * listing a directory without following links, and the document reader of
++ * `operator-profile-read.ts`, bound here to the real filesystem and host.
+  * Absence is a first-class outcome, never an error; an unreadable path is an
+  * error, never absence; a symlink is a symlink, never what it points at.
+  */
+ 
+ import { type Dirent, type Stats } from 'node:fs';
+-import { lstat, readdir } from 'node:fs/promises';
++import { lstat, open, readdir, readlink, realpath } from 'node:fs/promises';
+ import path from 'node:path';
+ 
+ import { err, ok, type Result } from '@engraph/result';
+ 
++import { HOST_OPEN_FLAGS } from '../../core/no-follow-read.js';
+ import { type ProfileEntry, type ProfileEntryKind } from './operator-profile-layout.js';
+-import { errorCode, readDocument } from './operator-profile-read.js';
++import {
++  errorCode,
++  type OpenDocument,
++  readDocument,
++  type ReadHost,
++} from './operator-profile-read.js';
+ 
+ /** What is at a path, read without following links; `symlink` is never resolved. */
+ export type Presence = 'directory' | 'absent' | 'not-a-directory' | 'symlink';
+@@ -89,11 +96,13 @@ const readDirectoryReal: ReadDirectory = async (dir) =>
+ /**
+  * List one level of the profile root: the root itself, or one of its scoped
+  * directories. A scoped directory that is absent or not a directory lists
+- * as empty, and so does a scoped directory that is a symlink: the root
+- * listing reports the link itself as not regular, and nothing is ever
+- * listed through it. A listing the platform refuses after the probe (a
+- * permission change, a directory removed in between) is a failure, never a
+- * thrown error.
++ * as empty, and so does a scoped directory that is a symlink at the probe:
++ * the root listing reports the link itself as not regular. A directory
++ * swapped for a link after the probe is listed through, so names from
++ * outside the root can reach the report as unexpected entries; their
++ * content never does, since every read refuses a link at any component. A
++ * listing the platform refuses after the probe (a permission change, a
++ * directory removed in between) is a failure, never a thrown error.
+  *
+  * @param root - the profile root
+  * @param dirName - the scoped directory to list, or undefined for the root
+@@ -154,9 +163,33 @@ export async function isGitRepository(
+   }
+ }
+ 
++/** Resolves a path's links; `realpath` is one, tests inject a lookup. */
++export type RealPath = (target: string) => Promise<string>;
++
++/**
++ * The profile's real root: its parent resolved, its own name kept. A link in
++ * the root's ancestry (a system temp directory that is itself a link, say)
++ * is resolved once, knowingly; the root's own entry stays in every path
++ * read under it, so a root swapped for a link after its probe is refused at
++ * every read, never resolved into.
++ *
++ * @param root - the profile root, already probed as a directory
++ * @param resolve - resolves the parent's links
++ * @returns the real root, or the failure to resolve its parent
++ */
++export async function realRootOf(root: string, resolve: RealPath): Promise<Result<string, string>> {
++  const parent = path.dirname(root);
++  try {
++    return ok(path.join(await resolve(parent), path.basename(root)));
++  } catch (cause) {
++    return err(`cannot resolve ${parent}, the profile root's parent (${errorCode(cause)})`);
++  }
++}
++
+ /** The filesystem the root reader goes through; tests inject a fake. */
+ export interface ProfileFileSystem {
+   readonly presence: PresenceProbe;
++  readonly realRoot: (root: string) => Promise<Result<string, string>>;
+   readonly listEntries: (
+     root: string,
+     dirName: string | undefined,
+@@ -165,10 +198,20 @@ export interface ProfileFileSystem {
+   readonly isGitRepository: (root: string) => Promise<Result<boolean, string>>;
+ }
+ 
+-/** The real filesystem: `lstat`-bound presence, a no-follow listing and reader. */
++const openReal: OpenDocument = (absolute, flags) => open(absolute, flags);
++
++/** This process's host: the one reader of `process.platform`. */
++const REAL_READ_HOST: ReadHost = {
++  platform: process.platform,
++  flags: HOST_OPEN_FLAGS,
++  descriptorPath: (fd) => readlink(`/proc/self/fd/${String(fd)}`, { encoding: 'buffer' }),
++};
++
++/** The real filesystem: `lstat`-bound presence, a no-follow listing and a whole-path reader. */
+ export const REAL_PROFILE_FILE_SYSTEM: ProfileFileSystem = {
+   presence: (target) => presence(target),
++  realRoot: (root) => realRootOf(root, realpath),
+   listEntries: (root, dirName) => listEntries(root, dirName),
+-  readDocument: (absolute) => readDocument(absolute),
++  readDocument: (absolute) => readDocument(absolute, openReal, REAL_READ_HOST),
+   isGitRepository: (root) => isGitRepository(root),
+ };
+diff --git a/agent-tools/src/validators/operator-profile/operator-profile-read.ts b/agent-tools/src/validators/operator-profile/operator-profile-read.ts
+index c2acb887..76cb2d89 100644
+--- a/agent-tools/src/validators/operator-profile/operator-profile-read.ts
++++ b/agent-tools/src/validators/operator-profile/operator-profile-read.ts
+@@ -1,97 +1,95 @@
+ /**
+- * Operator profile — reading one document. A document is opened read-only,
+- * never through a symlink (`O_NOFOLLOW`) and never blocking on a fifo
+- * (`O_NONBLOCK`); the descriptor is then proven to be a regular file, and on
+- * a host without `O_NOFOLLOW` proven to be the very entry at the path (device
+- * and inode), before it is read whole and closed. Each step has its own
+- * Result and nothing here throws. The same fused open-verify-read shape as
+- * the adapter generator's `read-regular-file.ts`, with this module's
+- * injectable handle and close-failure Results. The error code helper lives
+- * here because every filesystem refusal names one.
++ * Operator profile — reading one document, never through a symbolic link at
++ * any component and never waiting on a fifo. The caller passes the
++ * document's path under the profile's real root, so every component the
++ * open walks is one the guard can see:
++ *
++ * - macOS opens with `O_NOFOLLOW_ANY`: the kernel refuses a link anywhere in
++ *   the path (`ELOOP`).
++ * - Linux opens with `O_NOFOLLOW` and then reads the descriptor's own path
++ *   from `/proc/self/fd`: a directory swapped for a link reaches a file whose
++ *   path differs from the one opened, and the read is refused.
++ * - Any other host has no whole-path primitive Node can reach, so it refuses
++ *   to read a profile rather than narrow the race to a small window.
++ *
++ * The descriptor is then proven to be a regular file before it is read whole
++ * and closed. Each step has its own Result and nothing here throws; the
++ * host, its open-flag bits and the open itself are all injected, so no test
++ * reaches a real filesystem.
+  */
+ 
+-import { type BigIntStats, constants } from 'node:fs';
+-import { type FileHandle, lstat, open } from 'node:fs/promises';
++import { type BigIntStats } from 'node:fs';
+ 
+ import { err, ok, type Result } from '@engraph/result';
+ 
++import { errorCodeOf } from '../../core/error-code.js';
++import {
++  finalComponentReadFlags,
++  type OpenFlagBits,
++  wholePathReadFlags,
++} from '../../core/no-follow-read.js';
++
++/** The code a failure carries, when core admits it as one, or `unknown`. */
+ export function errorCode(cause: unknown): string {
+-  return cause instanceof Error && 'code' in cause ? String(cause.code) : 'unknown';
++  return (cause instanceof Error ? errorCodeOf(cause) : undefined) ?? 'unknown';
+ }
+ 
+-/**
+- * `O_NOFOLLOW` and `O_NONBLOCK` where the platform defines them. Node types
+- * both as always present; Windows has neither, so there the post-open
+- * identity check below is the no-follow guard (Windows has no fifo to block
+- * on).
+- */
+-const hostFlags: Partial<Record<'O_NOFOLLOW' | 'O_NONBLOCK', number>> = {
+-  O_NOFOLLOW: constants.O_NOFOLLOW,
+-  O_NONBLOCK: constants.O_NONBLOCK,
+-};
+-
+-/** The open flags a document is read with: read-only, never through a symlink, never blocking. */
+-const DOCUMENT_OPEN_FLAGS: number =
+-  constants.O_RDONLY | (hostFlags.O_NOFOLLOW ?? 0) | (hostFlags.O_NONBLOCK ?? 0);
+-
+-/** What the identity check needs of a stat: regular-file flag, device and inode. */
+-export type EntryIdentity = Pick<BigIntStats, 'isFile' | 'dev' | 'ino'>;
+-
+ /** What a read needs of an open file; a `FileHandle` is one. */
+ export interface DocumentHandle {
+-  stat(options: { readonly bigint: true }): Promise<EntryIdentity>;
++  readonly fd: number;
++  stat(options: { readonly bigint: true }): Promise<Pick<BigIntStats, 'isFile'>>;
+   readFile(encoding: 'utf8'): Promise<string>;
+   close(): Promise<void>;
+ }
+ 
+-/**
+- * The host's no-follow guard and the path-entry probe; tests inject both to
+- * drive the arm a host without `O_NOFOLLOW` takes.
+- */
+-export interface ReadProbes {
+-  readonly noFollowAtOpen: boolean;
+-  readonly entryStat: (absolute: string) => Promise<EntryIdentity>;
++/** Opens a path with flags; the composition root binds the filesystem's. */
++export type OpenDocument = (absolute: string, flags: number) => Promise<DocumentHandle>;
++
++/** The host a read runs on: its platform, its open-flag bits, and how it names a descriptor's path. */
++export interface ReadHost {
++  readonly platform: NodeJS.Platform;
++  readonly flags: OpenFlagBits;
++  /** The kernel's path for an open descriptor, as bytes (Linux reads `/proc/self/fd/<fd>`). */
++  readonly descriptorPath: (fd: number) => Promise<Buffer>;
+ }
+ 
+-const REAL_PROBES: ReadProbes = {
+-  noFollowAtOpen: hostFlags.O_NOFOLLOW !== undefined,
+-  entryStat: (absolute) => lstat(absolute, { bigint: true }),
+-};
++const NOT_REGULAR =
++  'the path is not a regular file — a directory, a fifo or a special file is never a profile document';
+ 
+-/** Opens a path with flags; the filesystem one is the default, tests inject a fake. */
+-export type OpenDocument = (absolute: string, flags: number) => Promise<DocumentHandle>;
+-
+-const openReal: OpenDocument = async (absolute, flags) => {
+-  const handle: FileHandle = await open(absolute, flags);
+-  return handle;
+-};
++const REACHED_THROUGH_LINK =
++  'the document was reached through a symbolic link — a link anywhere under the profile root is never read through';
+ 
+ /**
+- * Read a document without following a symlink at its path. The layout has
+- * already refused every symlink entry; opening with `O_NOFOLLOW` closes the
+- * window between the listing and the read, so a link planted in between
+- * fails (ELOOP) instead of reading a file outside the profile root.
++ * Read a document at its path under the profile's real root, refusing a
++ * link at any component and never waiting on a fifo.
+  *
+- * @param absolute - the document's absolute path
+- * @param openDocument - opens the path (the filesystem by default)
++ * @param absolute - the document's path under the real root (`realRootOf`)
++ * @param openDocument - opens the path
++ * @param host - the platform, its open-flag bits and its descriptor-path reader
+  * @returns the document text, or the failure as a message (never a thrown error)
+  */
+ export async function readDocument(
+   absolute: string,
+-  openDocument: OpenDocument = openReal,
+-  probes: ReadProbes = REAL_PROBES,
++  openDocument: OpenDocument,
++  host: ReadHost,
+ ): Promise<Result<string, string>> {
++  const flags = openFlagsFor(host);
++  if (flags === undefined) {
++    return err(
++      `this host (${host.platform}) has no whole-path no-follow open — a profile document is read only on macOS and Linux`,
++    );
++  }
+   let opened: DocumentHandle;
+   try {
+-    opened = await openDocument(absolute, DOCUMENT_OPEN_FLAGS);
++    opened = await openDocument(absolute, flags);
+   } catch (cause) {
+     return err(unreadable(cause));
+   }
+   let text: string;
+   try {
+-    const identity = await verifyRegularFile(absolute, opened, probes);
+-    if (identity !== null) {
+-      return err(withCloseFailure(identity, await closeAfterFailure(opened)));
++    const refusal = await verifyOpened(absolute, opened, host);
++    if (refusal !== null) {
++      return err(withCloseFailure(refusal, await closeAfterFailure(opened)));
+     }
+     text = await opened.readFile('utf8');
+   } catch (cause) {
+@@ -107,29 +105,37 @@ export async function readDocument(
+   return ok(text);
+ }
+ 
++/** The open flags for this host's whole-path guard, or `undefined` where it has none. */
++function openFlagsFor(host: ReadHost): number | undefined {
++  switch (host.platform) {
++    case 'darwin':
++      return wholePathReadFlags(host.flags);
++    case 'linux':
++      return finalComponentReadFlags(host.flags);
++    default:
++      return undefined;
++  }
++}
++
+ /**
+- * The descriptor must be a regular file; on a host without `O_NOFOLLOW` the
+- * path's own entry must also be a regular file that is this very file (same
+- * device and inode), so a link at the leaf, or a swap between the listing and
+- * the open, is refused and never read through. Null when it is ours.
++ * The descriptor must be a regular file; on Linux its kernel path must also
++ * be, byte for byte, the path that was opened, so a directory swapped for a
++ * link between the listing and the open is refused. Null when it is ours.
+  */
+-async function verifyRegularFile(
++async function verifyOpened(
+   absolute: string,
+   opened: DocumentHandle,
+-  probes: ReadProbes,
++  host: ReadHost,
+ ): Promise<string | null> {
+   const viaHandle = await opened.stat({ bigint: true });
+   if (!viaHandle.isFile()) {
+-    return 'the path is not a regular file — a directory, a fifo or a special file is never a profile document';
++    return NOT_REGULAR;
+   }
+-  if (probes.noFollowAtOpen) {
++  if (host.platform !== 'linux') {
+     return null;
+   }
+-  const entry = await probes.entryStat(absolute);
+-  const same = entry.isFile() && entry.dev === viaHandle.dev && entry.ino === viaHandle.ino;
+-  return same
+-    ? null
+-    : 'the path entry is not the file that was opened — a symlink or a swapped entry is never read through';
++  const reached = await host.descriptorPath(opened.fd);
++  return reached.equals(Buffer.from(absolute)) ? null : REACHED_THROUGH_LINK;
+ }
+ 
+ /**
+diff --git a/agent-tools/src/validators/operator-profile/operator-profile-root.integration.test.ts b/agent-tools/src/validators/operator-profile/operator-profile-root.integration.test.ts
+index af4b4f80..53ecfd89 100644
+--- a/agent-tools/src/validators/operator-profile/operator-profile-root.integration.test.ts
++++ b/agent-tools/src/validators/operator-profile/operator-profile-root.integration.test.ts
+@@ -4,6 +4,7 @@ import { err, ok, unwrap } from '@engraph/result';
+ import { describe, expect, it } from 'vitest';
+ 
+ import { VALID_INDEX_DOCUMENT } from './operator-profile-fixtures.js';
++import { type OpenFlagBits } from '../../core/no-follow-read.js';
+ import {
+   entryKind,
+   isGitRepository,
+@@ -12,8 +13,15 @@ import {
+   presence,
+   type PresenceProbe,
+   type ProfileFileSystem,
++  type RealPath,
++  realRootOf,
+ } from './operator-profile-fs.js';
+-import { type DocumentHandle, type EntryIdentity, readDocument } from './operator-profile-read.js';
++import {
++  type DocumentHandle,
++  type OpenDocument,
++  readDocument,
++  type ReadHost,
++} from './operator-profile-read.js';
+ import { type ProfileEntry } from './operator-profile-layout.js';
+ import { existingProfilePaths, readProfileReport } from './operator-profile-root.js';
+ 
+@@ -88,13 +96,16 @@ describe('listEntries — one level, never through a link, never a thrown error'
+ 
+   it('lists a scoped directory that is a symlink as empty, so nothing behind it is ever read', async () => {
+     const linked: PresenceProbe = () => Promise.resolve(ok('symlink'));
+-    const reads: string[] = [];
+-    const lister = (dir: string) => {
+-      reads.push(dir);
+-      return Promise.resolve([]);
+-    };
++    // The lister would answer an entry from behind the link; an empty
++    // listing proves it was never asked.
++    const lister = () =>
++      Promise.resolve([
++        {
++          name: 'outside.md',
++          type: { isSymbolicLink: () => false, isDirectory: () => false, isFile: () => true },
++        },
++      ]);
+     expect(unwrap(await listEntries(ROOT, 'repos', linked, lister))).toEqual([]);
+-    expect(reads).toEqual([]);
+   });
+ 
+   it('turns a listing the platform refuses after the probe into an error, never a throw', async () => {
+@@ -158,62 +169,90 @@ describe('entryKind', () => {
+   });
+ });
+ 
+-/** A fake filesystem: a fixed listing, a fixed document text, and the reads it was asked for. */
+-function fakeFileSystem(
+-  entries: readonly ProfileEntry[],
+-  text: string,
+-): { readonly fs: ProfileFileSystem; readonly reads: string[] } {
+-  const reads: string[] = [];
+-  const fs: ProfileFileSystem = {
++describe("realRootOf — the parent resolved, the root's own entry kept", () => {
++  const LINKS = path.join('links');
++  const LINKED_ROOT = path.join(LINKS, 'profile');
++
++  it('resolves only the parent, so a root swapped for a link is never resolved into', async () => {
++    const lookup: Readonly<Record<string, string>> = {
++      [LINKS]: path.join('real'),
++      [LINKED_ROOT]: path.join('elsewhere'),
++    };
++    const resolve: RealPath = (target) => {
++      const real = lookup[target];
++      return real === undefined ? Promise.reject(new Error('unmapped')) : Promise.resolve(real);
++    };
++    expect(unwrap(await realRootOf(LINKED_ROOT, resolve))).toBe(path.join('real', 'profile'));
++  });
++
++  it('turns a parent it cannot resolve into an error, never a throw', async () => {
++    const eacces = Object.assign(new Error('denied'), { code: 'EACCES' });
++    expect(await realRootOf(LINKED_ROOT, () => Promise.reject(eacces))).toEqual({
++      ok: false,
++      error: `cannot resolve ${LINKS}, the profile root's parent (EACCES)`,
++    });
++  });
++});
++
++const REAL_ROOT = path.join('real-root');
++
++/**
++ * A fake filesystem: the root lists its entries, and a document answers the
++ * text, only under the real root; anything under another root is absent.
++ */
++function fakeFileSystem(entries: readonly ProfileEntry[], text: string): ProfileFileSystem {
++  const documents = new Set(entries.map((entry) => path.join(REAL_ROOT, entry.relPath)));
++  return {
+     presence: () => Promise.resolve(ok('directory')),
+-    listEntries: (_root, dirName) => Promise.resolve(ok(dirName === undefined ? [...entries] : [])),
+-    readDocument: (absolute) => {
+-      reads.push(absolute);
+-      return Promise.resolve(ok(text));
+-    },
++    realRoot: () => Promise.resolve(ok(REAL_ROOT)),
++    listEntries: (root, dirName) =>
++      Promise.resolve(ok(root === REAL_ROOT && dirName === undefined ? [...entries] : [])),
++    readDocument: (absolute) =>
++      Promise.resolve(documents.has(absolute) ? ok(text) : err(`no document at ${absolute}`)),
+     isGitRepository: () => Promise.resolve(ok(false)),
+   };
+-  return { fs, reads };
+ }
+ 
+ describe('readProfileReport — entries that are not regular files', () => {
+-  it('reads a regular index.md and reports it as one conforming document, carrying the text it read', async () => {
+-    const { fs, reads } = fakeFileSystem(
+-      [{ relPath: 'index.md', kind: 'file' }],
+-      VALID_INDEX_DOCUMENT,
+-    );
++  it('lists and reads under the real root, and reports a regular index.md as one conforming document', async () => {
++    const fs = fakeFileSystem([{ relPath: 'index.md', kind: 'file' }], VALID_INDEX_DOCUMENT);
+     expect(unwrap(await readProfileReport(ROOT, fs))).toMatchObject({
+       documentCount: 1,
+       documents: [{ relPath: 'index.md', content: VALID_INDEX_DOCUMENT }],
+       failures: [],
+     });
+-    expect(reads).toEqual([path.join(ROOT, 'index.md')]);
++  });
++
++  it('stops with the failure when the real root cannot be resolved', async () => {
++    const fs: ProfileFileSystem = {
++      ...fakeFileSystem([{ relPath: 'index.md', kind: 'file' }], VALID_INDEX_DOCUMENT),
++      realRoot: () => Promise.resolve(err('cannot resolve the parent (EACCES)')),
++    };
++    expect(await readProfileReport(ROOT, fs)).toEqual({
++      ok: false,
++      error: 'cannot resolve the parent (EACCES)',
++    });
+   });
+ 
+   it('refuses a profile root that is a symlink, never following it', async () => {
+-    const { fs, reads } = fakeFileSystem(
+-      [{ relPath: 'index.md', kind: 'file' }],
+-      VALID_INDEX_DOCUMENT,
+-    );
+-    const linkedRoot: ProfileFileSystem = { ...fs, presence: () => Promise.resolve(ok('symlink')) };
+-    const report = await readProfileReport(ROOT, linkedRoot);
+-    expect(report).toEqual({
++    const linkedRoot: ProfileFileSystem = {
++      ...fakeFileSystem([{ relPath: 'index.md', kind: 'file' }], VALID_INDEX_DOCUMENT),
++      presence: () => Promise.resolve(ok('symlink')),
++    };
++    expect(await readProfileReport(ROOT, linkedRoot)).toEqual({
+       ok: false,
+       error: `${ROOT} is a symlink — the profile root is never followed`,
+     });
+-    expect(reads).toEqual([]);
+   });
+ 
+   it('refuses a symlinked index.md as not a regular file and never reads through it', async () => {
+     // The fake would answer the read with a conforming document; a report
+-    // that names no document and asked for no read proves the link was
+-    // refused by kind, not read and validated.
+-    const { fs, reads } = fakeFileSystem(
+-      [{ relPath: 'index.md', kind: 'symlink' }],
+-      VALID_INDEX_DOCUMENT,
+-    );
++    // with no conforming document proves the link was refused by kind, not
++    // read and validated.
++    const fs = fakeFileSystem([{ relPath: 'index.md', kind: 'symlink' }], VALID_INDEX_DOCUMENT);
+     expect(unwrap(await readProfileReport(ROOT, fs))).toMatchObject({
+       documentCount: 0,
++      documents: [],
+       failures: [
+         {
+           relPath: 'index.md',
+@@ -223,13 +262,11 @@ describe('readProfileReport — entries that are not regular files', () => {
+         },
+       ],
+     });
+-    expect(reads).toEqual([]);
+   });
+ 
+   it("reports a document the reader refuses as that document's failure, never a thrown error", async () => {
+-    const { fs } = fakeFileSystem([{ relPath: 'index.md', kind: 'file' }], VALID_INDEX_DOCUMENT);
+     const refusing: ProfileFileSystem = {
+-      ...fs,
++      ...fakeFileSystem([{ relPath: 'index.md', kind: 'file' }], VALID_INDEX_DOCUMENT),
+       readDocument: () =>
+         Promise.resolve(
+           err(
+@@ -243,88 +280,175 @@ describe('readProfileReport — entries that are not regular files', () => {
+   });
+ });
+ 
+-describe('readDocument — reading without following a symlink', () => {
+-  const regular: EntryIdentity = { isFile: () => true, dev: 1n, ino: 42n };
+-  const handleOf = (
+-    text: string,
+-    closed: string[],
+-    identity: EntryIdentity = regular,
+-  ): DocumentHandle => ({
+-    stat: () => Promise.resolve(identity),
+-    readFile: () => Promise.resolve(text),
+-    close: () => {
+-      closed.push('closed');
+-      return Promise.resolve();
+-    },
+-  });
+-
+-  it('refuses a descriptor that is not a regular file (a fifo, a directory) and closes it', async () => {
++// Fixed, distinct fake bits for the reader's tests: each fake kernel keys on a
++// bit the test chose, so it discriminates the same way on every runner.
++const NON_BLOCK = 0x2;
++const NO_FOLLOW_ANY = 0x4;
++const BITS: OpenFlagBits = {
++  readOnly: 0,
++  noFollow: 0x1,
++  nonBlock: NON_BLOCK,
++  noFollowAny: NO_FOLLOW_ANY,
++};
++const regular = { isFile: () => true };
++const special = { isFile: () => false };
++const DOC = path.join('real-root', 'repos', 'a--b.md');
++const coded = (code: string) => Object.assign(new Error(`${code}: refused`), { code });
++
++const handleOf = (text: string, closed: string[], kind = regular): DocumentHandle => ({
++  fd: 7,
++  stat: () => Promise.resolve(kind),
++  readFile: () => Promise.resolve(text),
++  close: () => {
++    closed.push('closed');
++    return Promise.resolve();
++  },
++});
++const hostOn = (
++  platform: NodeJS.Platform,
++  descriptorPath: ReadHost['descriptorPath'] = () =>
++    Promise.reject(new Error('only a Linux read asks for a descriptor path')),
++): ReadHost => ({ platform, flags: BITS, descriptorPath });
++const darwin = hostOn('darwin');
++const linuxReaching = (reached: string) =>
++  hostOn('linux', () => Promise.resolve(Buffer.from(reached)));
++
++describe('readDocument — never through a link at any component, never waiting on a fifo', () => {
++  it('on macOS, refuses a document under a linked directory: the open carries no-link-at-any-component', async () => {
+     const closed: string[] = [];
+-    const read = await readDocument('index.md', () =>
+-      Promise.resolve(handleOf('text', closed, { isFile: () => false, dev: 1n, ino: 42n })),
+-    );
+-    expect(read).toEqual({
++    // A directory above the document is a link: the kernel refuses an open
++    // that carries the whole-path bit, and otherwise follows it outside.
++    const linkedAbove: OpenDocument = (_absolute, flags) =>
++      (flags & NO_FOLLOW_ANY) === NO_FOLLOW_ANY
++        ? Promise.reject(coded('ELOOP'))
++        : Promise.resolve(handleOf('OUTSIDE', closed));
++    expect(await readDocument(DOC, linkedAbove, darwin)).toEqual({
+       ok: false,
+       error:
+-        'the path is not a regular file — a directory, a fifo or a special file is never a profile document',
++        'cannot read the document (ELOOP) — a symlink or an unreadable file is never a profile document',
+     });
++  });
++
++  it('on macOS, reads a document whose path holds no link, and closes it', async () => {
++    const closed: string[] = [];
++    const read = await readDocument(DOC, () => Promise.resolve(handleOf('text', closed)), darwin);
++    expect(unwrap(read)).toBe('text');
+     expect(closed).toEqual(['closed']);
+   });
+ 
+-  it('names a refused close beside a descriptor refusal', async () => {
+-    const refusal = Object.assign(new Error('EIO: i/o error'), { code: 'EIO' });
+-    const read = await readDocument('index.md', () =>
+-      Promise.resolve({
+-        stat: () => Promise.resolve({ isFile: () => false, dev: 1n, ino: 42n }),
+-        readFile: () => Promise.resolve('text'),
+-        close: () => Promise.reject(refusal),
+-      }),
++  it('on Linux, refuses a document whose descriptor path is not the path opened', async () => {
++    const closed: string[] = [];
++    const read = await readDocument(
++      DOC,
++      () => Promise.resolve(handleOf('OUTSIDE', closed)),
++      linuxReaching(path.join('elsewhere', 'a--b.md')),
+     );
+     expect(read).toEqual({
+       ok: false,
+       error:
+-        'the path is not a regular file — a directory, a fifo or a special file is never a profile document; the close after it failed too (EIO)',
++        'the document was reached through a symbolic link — a link anywhere under the profile root is never read through',
+     });
++    expect(closed).toEqual(['closed']);
+   });
+ 
+-  it('on a host without O_NOFOLLOW, refuses a path entry that is not the opened file, and reads one that is', async () => {
++  it('on Linux, reads a document whose descriptor path is the path opened', async () => {
+     const closed: string[] = [];
+-    const swapped = await readDocument(
+-      'index.md',
++    const read = await readDocument(
++      DOC,
+       () => Promise.resolve(handleOf('text', closed)),
+-      {
+-        noFollowAtOpen: false,
+-        entryStat: () => Promise.resolve({ isFile: () => true, dev: 1n, ino: 7n }),
+-      },
++      linuxReaching(DOC),
+     );
+-    expect(swapped).toEqual({
++    expect(unwrap(read)).toBe('text');
++    expect(closed).toEqual(['closed']);
++  });
++
++  it('on Linux, refuses a document whose descriptor path cannot be read', async () => {
++    const closed: string[] = [];
++    const read = await readDocument(
++      DOC,
++      () => Promise.resolve(handleOf('text', closed)),
++      hostOn('linux', () => Promise.reject(coded('ENOENT'))),
++    );
++    expect(read).toEqual({
+       ok: false,
+       error:
+-        'the path entry is not the file that was opened — a symlink or a swapped entry is never read through',
++        'cannot read the document (ENOENT) — a symlink or an unreadable file is never a profile document',
+     });
+-    const same = await readDocument('index.md', () => Promise.resolve(handleOf('text', closed)), {
+-      noFollowAtOpen: false,
+-      entryStat: () => Promise.resolve(regular),
+-    });
+-    expect(unwrap(same)).toBe('text');
+-    expect(closed).toEqual(['closed', 'closed']);
++    expect(closed).toEqual(['closed']);
+   });
+ 
+-  it('reads the text through the opened handle and closes it', async () => {
+-    const closed: string[] = [];
+-    const read = await readDocument('index.md', () => Promise.resolve(handleOf('text', closed)));
+-    expect(unwrap(read)).toBe('text');
+-    expect(closed).toEqual(['closed']);
++  it.each(['darwin', 'linux'] as const)(
++    'on %s, opens a fifo without waiting for a writer, and refuses it before any read',
++    async (platform) => {
++      const closed: string[] = [];
++      // A fifo with no writer: an open without the non-blocking bit waits,
++      // which this fake reports as a refusal a test can see.
++      const fifo: OpenDocument = (_absolute, flags) =>
++        (flags & NON_BLOCK) === NON_BLOCK
++          ? Promise.resolve(handleOf('', closed, special))
++          : Promise.reject(coded('EWAITS'));
++      expect(
++        await readDocument(
++          DOC,
++          fifo,
++          hostOn(platform, () => Promise.resolve(Buffer.from(DOC))),
++        ),
++      ).toEqual({
++        ok: false,
++        error:
++          'the path is not a regular file — a directory, a fifo or a special file is never a profile document',
++      });
++      expect(closed).toEqual(['closed']);
++    },
++  );
++
++  it.each(['win32', 'freebsd'] as const)(
++    'on %s, which has no whole-path no-follow open, refuses a document it could have read',
++    async (platform) => {
++      const read = await readDocument(
++        DOC,
++        () => Promise.resolve(handleOf(VALID_INDEX_DOCUMENT, [])),
++        hostOn(platform),
++      );
++      expect(read).toEqual({
++        ok: false,
++        error: `this host (${platform}) has no whole-path no-follow open — a profile document is read only on macOS and Linux`,
++      });
++    },
++  );
++});
++
++describe('readDocument — a close that fails is named, never thrown', () => {
++  it('names a refused close beside a descriptor refusal', async () => {
++    const read = await readDocument(
++      DOC,
++      () =>
++        Promise.resolve({
++          fd: 7,
++          stat: () => Promise.resolve(special),
++          readFile: () => Promise.resolve('text'),
++          close: () => Promise.reject(coded('EIO')),
++        }),
++      darwin,
++    );
++    expect(read).toEqual({
++      ok: false,
++      error:
++        'the path is not a regular file — a directory, a fifo or a special file is never a profile document; the close after it failed too (EIO)',
++    });
+   });
+ 
+   it('names a close the platform refuses after a read as a close failure, never a throw', async () => {
+-    const refusal = Object.assign(new Error('EIO: i/o error'), { code: 'EIO' });
+-    const read = await readDocument('index.md', () =>
+-      Promise.resolve({
+-        stat: () => Promise.resolve(regular),
+-        readFile: () => Promise.resolve('text'),
+-        close: () => Promise.reject(refusal),
+-      }),
++    const read = await readDocument(
++      DOC,
++      () =>
++        Promise.resolve({
++          fd: 7,
++          stat: () => Promise.resolve(regular),
++          readFile: () => Promise.resolve('text'),
++          close: () => Promise.reject(coded('EIO')),
++        }),
++      darwin,
+     );
+     expect(read).toEqual({
+       ok: false,
+@@ -334,15 +458,18 @@ describe('readDocument — reading without following a symlink', () => {
+   });
+ 
+   it('contains a close that throws synchronously after a failed read and names both causes', async () => {
+-    const readRefusal = Object.assign(new Error('EACCES: permission denied'), { code: 'EACCES' });
+-    const read = await readDocument('index.md', () =>
+-      Promise.resolve({
+-        stat: () => Promise.resolve(regular),
+-        readFile: () => Promise.reject(readRefusal),
+-        close: () => {
+-          throw Object.assign(new Error('EBADF: bad file descriptor'), { code: 'EBADF' });
+-        },
+-      }),
++    const read = await readDocument(
++      DOC,
++      () =>
++        Promise.resolve({
++          fd: 7,
++          stat: () => Promise.resolve(regular),
++          readFile: () => Promise.reject(coded('EACCES')),
++          close: () => {
++            throw coded('EBADF');
++          },
++        }),
++      darwin,
+     );
+     expect(read).toEqual({
+       ok: false,
+@@ -352,18 +479,20 @@ describe('readDocument — reading without following a symlink', () => {
+   });
+ 
+   it('closes the handle once when the read fails, and names a refused close beside the read failure', async () => {
+-    const readRefusal = Object.assign(new Error('EACCES: permission denied'), { code: 'EACCES' });
+-    const closeRefusal = Object.assign(new Error('EIO: i/o error'), { code: 'EIO' });
+     const closed: string[] = [];
+-    const read = await readDocument('index.md', () =>
+-      Promise.resolve({
+-        stat: () => Promise.resolve(regular),
+-        readFile: () => Promise.reject(readRefusal),
+-        close: () => {
+-          closed.push('closed');
+-          return Promise.reject(closeRefusal);
+-        },
+-      }),
++    const read = await readDocument(
++      DOC,
++      () =>
++        Promise.resolve({
++          fd: 7,
++          stat: () => Promise.resolve(regular),
++          readFile: () => Promise.reject(coded('EACCES')),
++          close: () => {
++            closed.push('closed');
++            return Promise.reject(coded('EIO'));
++          },
++        }),
++      darwin,
+     );
+     expect(read).toEqual({
+       ok: false,
+@@ -372,14 +501,4 @@ describe('readDocument — reading without following a symlink', () => {
+     });
+     expect(closed).toEqual(['closed']);
+   });
+-
+-  it('turns an open the platform refuses (ELOOP on a symlink) into a message, never a throw', async () => {
+-    const refusal = Object.assign(new Error('ELOOP: too many symbolic links'), { code: 'ELOOP' });
+-    const read = await readDocument('index.md', () => Promise.reject(refusal));
+-    expect(read).toEqual({
+-      ok: false,
+-      error:
+-        'cannot read the document (ELOOP) — a symlink or an unreadable file is never a profile document',
+-    });
+-  });
+ });
+diff --git a/agent-tools/src/validators/operator-profile/operator-profile-root.ts b/agent-tools/src/validators/operator-profile/operator-profile-root.ts
+index 8c3519f3..f3766ebc 100644
+--- a/agent-tools/src/validators/operator-profile/operator-profile-root.ts
++++ b/agent-tools/src/validators/operator-profile/operator-profile-root.ts
+@@ -92,11 +92,17 @@ async function listProfileEntries(
+   return collected.ok ? ok(collected.value.flat()) : collected;
+ }
+ 
+-/** The root's entries, or `absent`, or the operational failure to report. */
++/** A present root: its real path, which every listing and read goes under, and its entries. */
++interface RootListing {
++  readonly realRoot: string;
++  readonly entries: readonly ProfileEntry[];
++}
++
++/** The root's real path and entries, or `absent`, or the operational failure to report. */
+ async function readRoot(
+   root: string,
+   fs: ProfileFileSystem,
+-): Promise<Result<readonly ProfileEntry[] | 'absent', string>> {
++): Promise<Result<RootListing | 'absent', string>> {
+   const there = await fs.presence(root);
+   if (!there.ok) {
+     return err(`${there.error} — an unreadable profile root is a failure, never absence`);
+@@ -109,8 +115,21 @@ async function readRoot(
+     case 'not-a-directory':
+       return err(`${root} exists but is not a directory`);
+     default:
+-      return listProfileEntries(root, fs);
++      return listRealRoot(root, fs);
++  }
++}
++
++/** The real root, resolved once, and the entries listed under it. */
++async function listRealRoot(
++  root: string,
++  fs: ProfileFileSystem,
++): Promise<Result<RootListing, string>> {
++  const realRoot = await fs.realRoot(root);
++  if (!realRoot.ok) {
++    return realRoot;
+   }
++  const entries = await listProfileEntries(realRoot.value, fs);
++  return entries.ok ? ok({ realRoot: realRoot.value, entries: entries.value }) : entries;
+ }
+ 
+ /** The findings the layout makes before any document is read. */
+@@ -136,12 +155,12 @@ type DocumentOutcome =
+   | { readonly kind: 'failed'; readonly failure: DocumentFailure };
+ 
+ async function documentOutcome(
+-  root: string,
++  realRoot: string,
+   expectation: ProfileDocumentExpectation,
+   fs: ProfileFileSystem,
+ ): Promise<DocumentOutcome> {
+   const { relPath } = expectation;
+-  const content = await fs.readDocument(path.join(root, relPath));
++  const content = await fs.readDocument(path.join(realRoot, relPath));
+   if (!content.ok) {
+     return { kind: 'failed', failure: { relPath, messages: [content.error] } };
+   }
+@@ -181,7 +200,9 @@ export async function existingProfilePaths(
+ }
+ 
+ /**
+- * Read a profile root in full: layout, documents and sync state.
++ * Read a profile root in full: layout, documents and sync state. The root's
++ * real path is resolved once, after its probe, and the layout is listed and
++ * every document read under it; the sync leg keeps the root as given.
+  *
+  * @param root - the profile root
+  * @param fs - the filesystem to read through (the real one by default)
+@@ -191,18 +212,18 @@ export async function readProfileReport(
+   root: string,
+   fs: ProfileFileSystem = REAL_PROFILE_FILE_SYSTEM,
+ ): Promise<Result<ProfileReport | 'absent', string>> {
+-  const entries = await readRoot(root, fs);
+-  if (!entries.ok) {
+-    return entries;
++  const listing = await readRoot(root, fs);
++  if (!listing.ok) {
++    return listing;
+   }
+-  if (entries.value === 'absent') {
++  if (listing.value === 'absent') {
+     return ok('absent');
+   }
+-  const layout = classifyProfileEntries(entries.value);
++  const layout = classifyProfileEntries(listing.value.entries);
+   const failures = layoutFailures(layout);
+   const documents: ConformingDocument[] = [];
+   for (const expectation of layout.documents) {
+-    const outcome = await documentOutcome(root, expectation, fs);
++    const outcome = await documentOutcome(listing.value.realRoot, expectation, fs);
+     if (outcome.kind === 'conforming') {
+       documents.push(outcome.document);
+     } else {
+diff --git a/agent-tools/src/validators/operator-profile/validate-operator-profile.ts b/agent-tools/src/validators/operator-profile/validate-operator-profile.ts
+index e451b577..49e1c2e8 100644
+--- a/agent-tools/src/validators/operator-profile/validate-operator-profile.ts
++++ b/agent-tools/src/validators/operator-profile/validate-operator-profile.ts
+@@ -19,6 +19,11 @@
+  * profile, and nothing may fail or warn on it. A PRESENT profile must
+  * conform: exit 1 names every document and every failure.
+  *
++ * A present profile's documents are read only on macOS and Linux (WSL
++ * included), whose kernels refuse a symbolic link at any component of the
++ * path; any other host, native Windows among them, reports each document as
++ * unreadable there (`operator-profile-read.ts`).
++ *
+  * `--emit <relPath>` (repeatable) prints a named document after a conforming
+  * check, from the same read the check validated, so a caller never reopens
+  * a path after the check (a file replaced by a link in between would
