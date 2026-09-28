@@ -134,17 +134,19 @@ Every line answered first-hand, none inferred:
   words: the napkin's 2026-09-26T19:29Z and 19:38Z blocks; the operated rule as amended: the
   2026-09-27T09:39Z and 09:52Z blocks.
 
-## Current handoff state (2026-09-27, the resume after COMPACTION BOUNDARY 9; pointer-biased by design)
+## Current handoff state (2026-09-28 00:1xZ, the rollover folds in progress; pointer-biased by design)
 
-The live reading is the napkin's newest Director block: check-in 36 (11:47Z) and the suite 30
-tally (11:2xZ) on 2026-09-27, with the USAGE-LIMIT BOUNDARY block (11:5xZ) and the resume at
-12:0xZ on the owner's start word. State at the resume: three non-coordination PRs open across both
-estates (250 the owner's lane, 261 the reader, 226 Siren's WIP twin); 224, 260 and 263 landed
-(10:17:01Z, 10:43:58Z, 11:34:36Z); the drain's eight rows all landed by 09:06Z; the lineage fold
-262 merged at 12:06:40Z as d6c9e582e; JC.net's fold 225 merged at 12:39:05Z as 3699c155d (three rounds; six findings cured, one deferred); the owner card queue at one line (the runbook
-re-ratification; default: both copies stay sketch); the retrospective trigger MET at the 12:00Z
-fold moment, its PR after Siren's three items. Processes of this seat: the monitor (arm 6) and the
-merge-bot doors. Claim 58c2684a retained.
+The live reading is the napkin's newest Director block: check-in 52 (23:36Z on 2026-09-27, the
+pre-fold state) and the suite 45 tally (22:36Z), with the fold recipe (20:10Z) and its addenda
+(21:51Z). State at the folds: two non-coordination PRs open across both estates (250 the owner's
+draft on THE READY LIST, 273 Siren's non-blocking profile read); the lineage landed 261 and 265 to
+272 since the 12:00Z fold and JC.net 226 and 228 to 233; both coordination drafts synced, pushed
+and ready-marked at 00:0xZ (264 at 7f6bb5f5f after one cured round, 227 at 97a0db5f2), their doors
+on their legs, the successors to be cut and named in the rotation broadcasts; the owner card at
+lines (b) to (f) (250's action moment and Nova's worktree, shellcheck, the bash floor, the vendored
+scripts, seats for both goals), none blocking; the retrospectives 265 and 267 landed with 268's
+addenda. Processes of this seat: the monitor (arm 20), the drafts CI watch, the fold scripts and
+the merge-bot doors. Claim 58c2684a retained.
 
 Fold entry, 2026-09-27: PR 215 (coordination/2026-09-26-26ca4d) merged by the bot at 10:04:50Z as
 cb4644c4 at full condition after two settlement pushes (nine findings cured, three dispositions
@@ -180,19 +182,14 @@ plan's third amendment, and main's landing 224 folded in.
   beside Myrtle from 12:42Z), Myrtle turns Canopy (the lineage exchange seat), Swallow holds Drift
   (the Codex lane), and from 14:4xZ Phobos wakes Void (01a0de; the owner's Codex team member, on
   the lineage). Their state is on the comms streams and in their thread records, never here.
-- Open at this block's writing: the owner card queue at one line (line 1, batched for the next
-  contact, none blocking: the transplant runbook's rollback step now uses the forward-write invariant
-  after two reviewers on PR 263 found `git show > path` unsafe, a procedure change that returns both
-  copies to sketch by the template's line; re-ratify both copies once both carry the full rollback?
-  default: both stay sketch until the owner answers, usable as sketch meanwhile); the retrospective at the first
-  fold moment (12:00Z on 2026-09-27) that reads the count at or under the limit with the eight
-  drain rows landed (drafted in the scratchpad from 09:5xZ; its PR takes a freed slot only when no live seat has a
-  ready item, the Director's ruling of suite 31, 12:2xZ);
-  the lineage fold 262 merged at 12:06:40Z as d6c9e582e (successor coordination/2026-09-27-d6c9e5,
-  draft PR 264); PR 225 folded 12:39:05Z as 3699c155d, the successor coordination/2026-09-27-3699c1 (its draft PR named in the rotation broadcast); the exchange thread record's opener refresh (Siren's, at her resume; 225's round-three deferral);
-  the handoff's second trim on the successor branch (done 10:3xZ, da1158e2);
-  the distillation of the 2026-09-21 to 2026-09-27 rotation into `distilled.md` (done 13:0xZ on 2026-09-27: nine entries, none pruned, the file archived; `distilled.md` over its 200-line target, the pressure routed to graduation, step 9)
-  (consolidate-docs step 6) after the napkin's rotation of 10:3xZ, curator work at a free slot.
+- Open at this block's writing: the two rollover folds at their doors (264 on the lineage, 227 on
+  JC.net), their successors owed with the fold entries and the rotation broadcasts; the owner card
+  lines (b) to (f), batched for the next contact, none blocking; 250 on THE READY LIST for the
+  owner's human review of the eval readings and the ready-mark; Nova's return or the owner's word on
+  her lane and worktrees; Siren's order (273's door; the profile git runner's `core.symlinks=false`
+  in both estates with the register's J3 and J7 landings; the L1 flow-back after its divergence
+  read; the shellcheck gate on card line (c)'s default; the flagged-fixture smoke pair); goal one at
+  13 of 23 rows by the register plus J2, J3 and J7 landed today; the next suite after the folds.
 
 ## The archive
 
