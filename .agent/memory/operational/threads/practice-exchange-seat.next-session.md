@@ -2803,3 +2803,51 @@ is named above, so the recursion closes here.
   open: a 403 after the gate reruns it; none has been seen yet.
 - Next safe step: on #290's rounds, cure or reject by signed line. When #290 lands, sync C1 by
   merge, run the gate over the synced tree, commit, push and open C1 (WIP permitting).
+
+**20:04Z to 21:37Z: #290 landed; C1 open as #292; B1's retry reviewed; Copilot out.**
+
+- Lineage #290 (J3 slice 3) merged at about 21:25Z as 1cccdfc1b.
+  - Copilot reviewed nothing after 19:31Z on either estate. The Director declared the leg
+    unavailable from 20:4xZ (the 2026-09-10 shape). Posted code-expert reviews stood as the leg in
+    both rounds.
+  - Round one found one item over the bar, cured in 62e577d35: under bash 3.2 the hook wrapper's
+    floor branch fell through into its body when given no command, because `exec` with no
+    arguments returns. Round two was GO. Codex was clean in both rounds.
+  - The first door refused BEHIND-BASE. A pure sync (c633ceae9) went up, then the door read
+    Codex's unedited completion comment as the leg, bound by content (patch-id c23b1d8a01).
+  - Copilot's 20:57:40Z "review" of #290 was an error notice with no content. The Director lifted
+    the ruling on it at 21:02Z and withdrew the lift at 21:04Z on this seat's first-hand read.
+    The rule now: an error review never satisfies a door and never lifts the ruling.
+- The Director reversed the 18:3xZ apps floor ruling at 20:27Z on this seat's evidence.
+  - The deployed entry is dist/server.js (the Express preset, package.json main). start-server.sh
+    runs the local listener, dist/index.js.
+  - Wilma's review had also found the exemption lacked the owner's authority (PDR-025, PDR-126)
+    and was wider than the ruling.
+  - So the four apps scripts take the guard and no exemption lands.
+- C1 (J3 slice 4a, the shellcheck gate) opened as lineage #292 at b9a2cd359 at 21:36Z. Legs:
+  Copilot requested, Codex asked, and a code-expert stand-in running.
+  - Five post-build reviews shaped it: security GO; code, config and test GO WITH CONDITIONS; and
+    Wilma. All their conditions were cured before the commit.
+  - The commit's own pre-commit ran the new gate green over 26 scripts.
+  - WIP is 3 of 3: 257, 291 and 292.
+  - C2 (4b) is ADR-121's entry and the onboarding docs.
+- B1 (JC.net, unpushed) gained 24df0ead (the retry) and 4685e96a (its review cures).
+  - The wait is 30 s.
+  - A kill is never read as a refusal.
+  - The help text names the retry.
+  - The wait and the fresh token per attempt are proven by behaviour.
+  - One `core/delay.ts` replaces three copies.
+  - 12 mutants are killed. The body is drafted in the scratchpad's `b1-retry/pr-body.md`.
+- New lane item, routed by the Director for after B1, lineage first, designed before it is built:
+  merge-bot names a declared-unavailable vendor and the posted expert review that stands as its
+  leg, and refuses an error review. The seed is the scratchpad's
+  `b1-retry/unavailable-vendor-seed.md`.
+- The J3 flow-back list to JC.net is the scratchpad's `j3-port/flow-back.md`, plus two later
+  items: the wrapper's `exit 1` and the lock-module text.
+- Owed:
+  - drain stdin in the secrets hooks' floor branch (both estates, the next hooks slice);
+  - the statusline generators write no guard (observation only; the gate refuses a regenerated
+    script);
+  - `persist-credentials: false` on the lineage's static-checks (an observation for that estate).
+- Next safe step: #292's round one (cure or reject by signed line); C2 after #292 lands; then B1
+  when WIP allows.
