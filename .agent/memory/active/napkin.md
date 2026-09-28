@@ -3093,3 +3093,45 @@ open" are the body's own recorded open work (the owner's) or cures a seat can ma
 
 STATE at 03:05Z: the count 3 of 3 (250, 273, 236); the successors 275 and 234 DUE at 12:00Z;
 check-in 56 at 03:35Z.
+
+## 2026-09-28T03:36Z — Director check-in 56: the count 2; 273 and 236 landed; 276 (the twin of 235) at round two; goal two measured; P1 re-ranked ahead of the L1 flow-back
+
+THE FOUR NUMBERS (`checkin-56-raw.md`, 03:35Z): open non-coordination PRs 2 of 3 (lineage 250,
+the owner's draft, on THE READY LIST, its three open threads the body's own recorded work by
+Siren's first-hand read of 03:1xZ; lineage 276, "the profile's git never writes a link into the
+tree", the twin of 235 with a real-fifo smoke, nine files, at round two with CI in flight,
+Siren's); landings since check-in 55: 236 (03:02:01Z, f1bf9632, JC.net, the push after a
+conflicting pull concludes the merge) and 273 (03:06:08Z, 942a2ae22, the non-blocking profile
+read), both Siren's; heads with CI in flight: 276; slot-holder age: the lineage slot 276's since
+03:15:03Z. Remote branches outside a PR: none in either estate. Local branches: the lineage's
+fix/profile-git-no-links (276's), fix/profile-push-during-merge (the twin of 236, ready locally),
+siren/250-settlement, codex/user-value-across-levels and docs/fold-sweep-and-chmod-bits (Nova's,
+both estates). Host load 4.87. The JC.net primary on coordination/2026-09-28-87689e (draft PR
+234) with the suite 46 tally, Siren's 3700d339 and this block local, pushed in this step; the
+lineage primary on coordination/2026-09-28-96b273 (draft PR 275), clean.
+
+GOAL TWO, the measure (the bridge node's todos and the exec-binding node's slices, by the merged
+list): landed 222 (PR A), 228 (2a), 233 (2a-ii), 241 (the seat-landing rules), 244 (B0), 211
+(the probe record), 247 (2b's design pin), 246 (the branch guard), 261 (the command-records
+reader) and 274 (the merge-bot reads the connector's own summary edit as its report); no PR yet:
+2b's three PRs, 2c, the bridge's todo 3 (the launch command and the start skill), exec-binding B,
+C and D, slice 2 (the live probe), slice 3 (doctrine), the landing toolkit, the credential
+narrowing, the live acceptance seat; no live seat (card line (f)). THE RETROSPECTIVE TRIGGER:
+fired and fulfilled (265, 267, 268); the count condition does not hold (250 and 276 open on the
+lineage).
+
+P1 RE-RANKED (the Director's routing): the sync-lineage binding (`syncLineage` on the PR state,
+`bindsTip` accepting a review bound to any head in the lineage of the tip, a pure sync push
+requesting nothing; the plan's Lane 3, seatless since Swallow's closeout) is the standing cure
+for the re-request problem both folds paid for (a Copilot round per sync under engraph's strict
+currency); it sits after the twin of 236 and ahead of the L1 flow-back in Siren's order, a
+moderate agent-tools PR with its unit test, JC.net taking the code by its next carrier.
+
+NOVA: no line since 16:05:37Z on 2026-09-27 (eleven and a half hours). The owner: no word to the
+Director since the 12:0xZ start word of 2026-09-27. The card (b) to (f) and the ready list stand
+as in check-in 53.
+
+NEXT: 276's legs and door, the twin of 236, P1, the L1 flow-back after its divergence read, the
+shellcheck gate, the smoke pair (Siren); check-in 57 at about 04:20Z; the next suite (47) at
+about 04:42Z; the midday folds at 12:00Z with the recipe, its addenda (a) to (f) and the
+successors' bodies; Nova's return or the owner's word.
