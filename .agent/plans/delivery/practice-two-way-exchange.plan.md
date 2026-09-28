@@ -432,7 +432,9 @@ entries composed whole and appended in one write.
    one's close and the review that follows it (ruling 44).
 5. The outbound note and material, delivered through the join ceremony.
 6. The close, on the owner's ratified bar (ruling 40), one pull request, prose-class, when the
-   bar is met: every J row of goal one landed by the register's rule (a §Landings row without
+   bar is met: every J row inside the register's count (§Disposition vocabulary: a lineage cell
+   not beginning `decline`, `graduated into`, `origin`, `none`, `local` or `records, not
+   portable`; ruling 40's "owed" rows) landed by the register's rule (a §Landings row without
    `PARTIAL`) or declined by the lineage with its reason (a PARTIAL whose remainder the triage
    classes LOCAL or PARITY landed by a §Landings row citing the triage); todo 8 on both estates
    (its text cure and its validator); the lessons batch and the sub-agent comparison as
