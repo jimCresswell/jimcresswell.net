@@ -81,7 +81,7 @@ critical-architectural-failure-shaped prior art for this rule.
 
 | Impulse | Wrong move | Right move |
 |---|---|---|
-| "Cite the ADR that adopts this PDR" | `[PDR-009 (Canonical-First Cross-Platform Architecture)](../practice-core/decision-records/PDR-009-canonical-first-cross-platform-architecture.md)` inside a PDR | Record the host adoption in the bridge index and the host's ADR surface; the PDR mentions it abstractly as "(host adoption)" if at all |
+| "Cite the ADR that adopts or records this" | An ADR number (`ADR-150`) or a link to a host ADR inside a Core file | Name the concept the ADR records ("the host's continuity-surfaces decision") and record the pairing in the bridge index; when curing an existing citation, keep the sentence and replace only the number |
 | "Reference the host README" | `[Host README](../../../README.md)` | Reference the stable bridge index `.agent/practice-index.md`; the bridge index points outward |
 | "Note this only applies in this repo" | `## Host context note` inside the PDR | Move the note to the host adapter or the host's ADR; the PDR stays repo-independent |
 | "Cite the implementing commit" | `commit abc1234 implemented X` | Date + structural concept; commit SHAs do not belong in any permanent-doc surface (see `no-moving-targets-in-permanent-docs.md`) |
@@ -106,10 +106,12 @@ related moving-targets prohibition at write-time.
 Two gates in `docs-validators:check` enforce parts of this rule:
 
 - `validate-core-adr-citations` enforces the ADR-identifier clause. It
-  refuses an ADR identifier written anywhere under `practice-core/`.
-  A census holds the debt that existed before the gate, one row per
-  file and ADR. Each cure lowers its row in the same change, and the
-  gate is strict once no row remains.
+  refuses an ADR identifier written anywhere under `practice-core/`:
+  `ADR`, a hyphen, dash or space, then digits, in any letter case. Each
+  finding prints its `path:line:column` and the citation as written.
+  The cure names the concept the ADR records in place of the number and
+  keeps the sentence (PDR-079). Run it alone with
+  `pnpm --filter @engraph/agent-tools validate-core-adr-citations`.
 - `validate-reference-direction` refuses a resolvable link from the
   Core to anything outside it.
 
