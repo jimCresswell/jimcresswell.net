@@ -15,6 +15,7 @@ import {
 } from '../src/repo-check/repo-check';
 import { readCheckLegs } from '../src/repo-check/repo-check-check-legs';
 import { normaliseSpawnResult } from '../src/repo-check/repo-check-runtime';
+import { readTrackedTree } from '../src/repo-check/repo-check-universe';
 
 interface CommandCall {
   readonly command: string;
@@ -56,8 +57,8 @@ function gateRuntime(input: {
   const inheritedCalls: CommandCall[] = [];
   const answers: ReadonlyMap<string, GitAnswer> = new Map([
     ['diff --cached --name-only --diff-filter=ACMR -z', input.staged ?? {}],
-    ['ls-files -z', input.tracked ?? {}],
-    ['diff --name-only --diff-filter=DT -z', input.goneFromWorkingTree ?? {}],
+    ['ls-files -z --deduplicate', input.tracked ?? {}],
+    ['diff-files --name-only --diff-filter=DT -z', input.goneFromWorkingTree ?? {}],
     ['ls-files --cached -s -z', input.lsFiles ?? {}],
   ]);
 
@@ -109,6 +110,7 @@ describe('repo-check staged scanners', () => {
           'prettier',
           '--check',
           '--ignore-unknown',
+          '--',
           'docs/staged-clean.md',
           'agent-tools/src/repo-check/repo-check.ts',
         ],
@@ -153,7 +155,7 @@ describe('repo-check staged scanners', () => {
     expect(inheritedCalls).toStrictEqual([
       {
         command: 'pnpm',
-        args: ['exec', 'prettier', '--check', '--ignore-unknown', 'docs/staged-bad.md'],
+        args: ['exec', 'prettier', '--check', '--ignore-unknown', '--', 'docs/staged-bad.md'],
       },
     ]);
   });
@@ -178,7 +180,7 @@ describe('repo-check staged scanners', () => {
     expect(inheritedCalls).toStrictEqual([
       {
         command: 'pnpm',
-        args: ['exec', 'markdownlint-cli2', '--no-globs', 'docs/staged-clean.md'],
+        args: ['exec', 'markdownlint-cli2', '--no-globs', '--', 'docs/staged-clean.md'],
       },
     ]);
   });
@@ -204,148 +206,47 @@ describe('repo-check staged scanners', () => {
     expect(inheritedCalls).toStrictEqual([
       {
         command: 'pnpm',
-        args: ['exec', 'markdownlint-cli2', '--no-globs', 'docs/staged-bad.md'],
+        args: ['exec', 'markdownlint-cli2', '--no-globs', '--', 'docs/staged-bad.md'],
       },
     ]);
   });
 });
 
-describe('repo-check tracked gates', () => {
-  // The universe is the tracked tree: an ambient file on the disk (a
-  // generated read model, an editor's workspace file) is never linted
-  // because git never names it: the runtime seam carries no filesystem
-  // probe, and the git argv pinned below is the only universe query. The
-  // gate proves the repository, not the machine.
-  const tracked = { stdout: 'README.md\0docs/a.md\0agent-tools/src/x.ts\0.claude/skills/clerk\0' };
-  const lsFiles = {
-    stdout: [
-      '100644 aaaa 0\tREADME.md',
-      '100644 bbbb 0\tdocs/a.md',
-      '100644 cccc 0\tagent-tools/src/x.ts',
-      '120000 dddd 0\t.claude/skills/clerk',
-      '',
-    ].join(NUL),
-  };
-
-  it('checks Prettier over every tracked non-symlink file, asking git rather than the disk', async () => {
-    const { capturedCalls, inheritedCalls, runtime } = gateRuntime({ tracked, lsFiles });
-
-    await expect(runPrettierTracked('check', runtime)).resolves.toBe(0);
-
-    expect(capturedCalls).toStrictEqual([
-      { command: 'git', args: ['ls-files', '-z'] },
-      { command: 'git', args: ['diff', '--name-only', '--diff-filter=DT', '-z'] },
-      { command: 'git', args: ['ls-files', '--cached', '-s', '-z'] },
-    ]);
-    expect(inheritedCalls).toStrictEqual([
-      {
-        command: 'pnpm',
-        args: [
-          'exec',
-          'prettier',
-          '--check',
-          '--ignore-unknown',
-          'README.md',
-          'docs/a.md',
-          'agent-tools/src/x.ts',
-        ],
-      },
-    ]);
-  });
-
-  it('excludes tracked files deleted or retyped in the working tree, asking git rather than the disk', async () => {
-    // A local deletion, or a regular file replaced by a symlink, not yet
-    // staged is still a regular index entry, so `ls-files` names it; handing
-    // that name to Prettier fails on a missing file or a refused link. Git's
-    // own unstaged diff (deleted and type-changed) is the exclusion, never a
-    // filesystem probe.
-    const { inheritedCalls, runtime } = gateRuntime({
-      tracked,
-      goneFromWorkingTree: { stdout: 'docs/a.md\0README.md\0' },
-      lsFiles,
+describe('repo-check tracked tree', () => {
+  // The gates' behaviour over the tracked tree is proven by exit status in
+  // src/repo-check/repo-check-gates.integration.test.ts, which fails only the
+  // tracked listing; these prove each of the three reads fails closed, in the
+  // words the gates report.
+  it("fails in git's own words when listing the tracked files fails", () => {
+    const { runtime } = gateRuntime({
+      tracked: { status: 128, stderr: 'fatal: not a git repository' },
     });
-
-    await expect(runPrettierTracked('check', runtime)).resolves.toBe(0);
-
-    expect(inheritedCalls[0]?.args).toStrictEqual([
-      'exec',
-      'prettier',
-      '--check',
-      '--ignore-unknown',
-      'agent-tools/src/x.ts',
-    ]);
+    expect(() => readTrackedTree(runtime)).toThrow('fatal: not a git repository');
   });
 
-  it('writes with the cache in repair mode', async () => {
-    const { inheritedCalls, runtime } = gateRuntime({ tracked, lsFiles });
-
-    await expect(runPrettierTracked('write', runtime)).resolves.toBe(0);
-
-    expect(inheritedCalls[0]?.args.slice(0, 5)).toStrictEqual([
-      'exec',
-      'prettier',
-      '--write',
-      '--cache',
-      '--ignore-unknown',
-    ]);
+  it('refuses a listing that names no tracked file, naming the remedy', () => {
+    const { runtime } = gateRuntime({ tracked: { stdout: '' } });
+    expect(() => readTrackedTree(runtime)).toThrow(
+      'git listed no tracked file; run the gate from the repository root',
+    );
   });
 
-  it('lints Markdownlint over only the tracked Markdown files, with the config globs off', async () => {
-    const { inheritedCalls, runtime } = gateRuntime({ tracked, lsFiles });
-
-    await expect(runMarkdownlintTracked('check', runtime)).resolves.toBe(0);
-
-    expect(inheritedCalls).toStrictEqual([
-      {
-        command: 'pnpm',
-        args: ['exec', 'markdownlint-cli2', '--no-globs', 'README.md', 'docs/a.md'],
-      },
-    ]);
+  it("fails in git's own words when reading the working tree's unstaged deletions fails", () => {
+    const { runtime } = gateRuntime({
+      tracked: { stdout: `docs/a.md${NUL}` },
+      goneFromWorkingTree: { status: 129, stderr: 'error: unknown option' },
+    });
+    expect(() => readTrackedTree(runtime)).toThrow('error: unknown option');
   });
 
-  it('adds --fix in repair mode', async () => {
-    const { inheritedCalls, runtime } = gateRuntime({ tracked, lsFiles });
-
-    await expect(runMarkdownlintTracked('fix', runtime)).resolves.toBe(0);
-
-    expect(inheritedCalls[0]?.args).toStrictEqual([
-      'exec',
-      'markdownlint-cli2',
-      '--no-globs',
-      '--fix',
-      'README.md',
-      'docs/a.md',
-    ]);
-  });
-
-  it('propagates the tool exit code', async () => {
-    const { runtime } = gateRuntime({ tracked, lsFiles, inheritedExitCode: 1 });
-
+  it("fails in git's own words when reading the index modes fails, and the gates check nothing", async () => {
+    const { runtime } = gateRuntime({
+      tracked: { stdout: `docs/a.md${NUL}` },
+      lsFiles: { status: 128, stderr: 'fatal: index file corrupt' },
+    });
+    expect(() => readTrackedTree(runtime)).toThrow('fatal: index file corrupt');
     await expect(runPrettierTracked('check', runtime)).resolves.toBe(1);
-  });
-
-  it("fails loudly with git's own message when the tracked-tree query fails", async () => {
-    const { inheritedCalls, runtime } = gateRuntime({
-      tracked: { status: 128, stderr: 'fatal: not a git repository\n' },
-      lsFiles,
-    });
-
-    await expect(runPrettierTracked('check', runtime)).rejects.toThrow(
-      'fatal: not a git repository',
-    );
-    expect(inheritedCalls).toStrictEqual([]);
-  });
-
-  it("fails loudly with git's own message when the symlink query fails", async () => {
-    const { inheritedCalls, runtime } = gateRuntime({
-      tracked,
-      lsFiles: { status: 128, stderr: 'fatal: index file corrupt\n' },
-    });
-
-    await expect(runMarkdownlintTracked('check', runtime)).rejects.toThrow(
-      'fatal: index file corrupt',
-    );
-    expect(inheritedCalls).toStrictEqual([]);
+    await expect(runMarkdownlintTracked('check', runtime)).resolves.toBe(1);
   });
 });
 

@@ -14,8 +14,9 @@
  *
  * The walk starts where the file really is (links followed to where the write
  * lands) and climbs to the nearest `.git` entry, reading the disk only through
- * the {@link RepositoryProbe} seam. A git directory counts only when it holds a
- * `HEAD`, as git itself requires.
+ * the {@link RepositoryProbe} seam. A git directory counts only when git itself
+ * would accept it: a valid `HEAD` in the git directory itself, and `objects/`
+ * and `refs/` directories git can enter in its common directory.
  *
  * A file reads as in another repository only when its repository is found
  * and differs from this one's. A file in no repository, a `.git` entry that
@@ -60,13 +61,33 @@ function climb<T>(start: string, found: (directory: string) => T | undefined): T
   return undefined;
 }
 
-/** The directory where a file really is: its own real path's, or its nearest existing directory's. */
-function realDirectoryOf(filePath: string, probe: RepositoryProbe): string | undefined {
-  const real = probe.realPath(filePath);
+/**
+ * Where a path really is: its real path; `null` when nothing is there; or `undefined` when an
+ * entry is there that leads nowhere (a link to a path not made yet), which places nothing.
+ */
+function placeOf(path: string, probe: RepositoryProbe): string | null | undefined {
+  const real = probe.realPath(path);
   if (real !== null) {
-    return dirname(real);
+    return real;
   }
-  return climb(dirname(filePath), (directory) => probe.realPath(directory) ?? undefined);
+  return probe.entryExists(path) ? undefined : null;
+}
+
+/**
+ * The directory where a file really is: its own real path's, or its nearest existing
+ * directory's. A link on the way that leads nowhere places nothing, since the write would
+ * land wherever the link points once that is made; nor does a file with another hard link,
+ * whose content any of its paths, in any repository, may name.
+ */
+function realDirectoryOf(filePath: string, probe: RepositoryProbe): string | undefined {
+  const place = placeOf(filePath, probe);
+  if (place !== null) {
+    return place === undefined || probe.sharedFile(place) ? undefined : dirname(place);
+  }
+  return climb(dirname(filePath), (directory) => {
+    const found = placeOf(directory, probe);
+    return found === null ? undefined : { found };
+  })?.found;
 }
 
 /** The git directory a pointer file names, or `undefined` when it names none. */
@@ -90,12 +111,43 @@ function commonOf(gitDirectory: string, probe: RepositoryProbe): string | undefi
   return pointer.length === 0 ? undefined : resolve(gitDirectory, pointer);
 }
 
+/**
+ * A `HEAD` git accepts (git's `validate_headref`): within the first
+ * {@link HEAD_WINDOW} bytes, `ref:` then ASCII whitespace then a reference
+ * under `refs/`, or a detached object id.
+ */
+const VALID_HEAD = /^(?:ref:[ \t\n\r]*refs\/|[0-9a-fA-F]{40})/u;
+
+/** The bytes of `HEAD` git reads to validate it; nothing past them counts. */
+const HEAD_WINDOW = 255;
+
+/**
+ * Whether git itself would accept a git directory (git's `is_git_directory`):
+ * its own `HEAD` is valid, and its common directory holds `objects/` and
+ * `refs/` directories git can enter. A `.git` holding only a `HEAD`, or a
+ * worktree gitdir borrowing another repository through `commondir` without a
+ * `HEAD` of its own, is no repository.
+ */
+function isGitDirectory(gitDirectory: string, common: string, probe: RepositoryProbe): boolean {
+  const head = probe.readText(join(gitDirectory, 'HEAD'));
+  return (
+    head.kind === 'text' &&
+    VALID_HEAD.test(head.text.slice(0, HEAD_WINDOW)) &&
+    probe.searchableDirectory(join(common, 'objects')) &&
+    probe.searchableDirectory(join(common, 'refs'))
+  );
+}
+
 /** The identity of the repository whose `.git` entry sits in `directory`, if it is a valid one. */
 function identityAt(directory: string, entry: 'directory' | 'file', probe: RepositoryProbe) {
   const gitDirectory =
     entry === 'directory' ? join(directory, '.git') : pointedGitDirectory(directory, probe);
   const common = gitDirectory === undefined ? undefined : commonOf(gitDirectory, probe);
-  if (common === undefined || probe.readText(join(common, 'HEAD')).kind !== 'text') {
+  if (
+    gitDirectory === undefined ||
+    common === undefined ||
+    !isGitDirectory(gitDirectory, common, probe)
+  ) {
     return undefined;
   }
   return probe.identity(common) ?? undefined;

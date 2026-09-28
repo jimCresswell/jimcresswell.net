@@ -7,7 +7,7 @@ import type { RepoCheckCommandResult } from './repo-check-types.js';
 /**
  * The shellcheck gate's composition root, driven through its injected
  * runtime. The installer read, the repo-scoped binary's presence, the version
- * probe, git's tracked files, the file reads, the lint run and the two output
+ * probe, git's tracked tree, the file reads, the lint run and the two output
  * streams are simple fakes, so these tests prove the wiring: which shellcheck
  * is probed and run, what reaches the lint, what is written, and the status
  * returned. What a probe, a path or a script maps to is the pure
@@ -53,6 +53,8 @@ interface GateFixture {
   readonly installer?: string;
   readonly probe?: RepoCheckCommandResult;
   readonly tree?: ReadonlyMap<string, string>;
+  /** Tracked files the working tree has lost with the change unstaged. */
+  readonly gone?: readonly string[];
   readonly lintStatus?: number;
   readonly repoShellcheck?: boolean;
 }
@@ -77,7 +79,11 @@ function gateRuntime(fixture: GateFixture = {}) {
       probes.push(command);
       return fixture.probe ?? PROBE_0_11_0;
     },
-    trackedFiles: () => [...tree.keys()],
+    trackedTree: () => ({
+      tracked: [...tree.keys(), ...(fixture.gone ?? [])],
+      goneFromWorkingTree: new Set(fixture.gone),
+      symlinks: new Set<string>(),
+    }),
     readHead: (file, bytes) => (tree.get(file) ?? '').slice(0, bytes),
     readText: (file) => tree.get(file) ?? '',
     runEnv: (args) => {
@@ -213,6 +219,18 @@ describe('runShellcheckTracked', () => {
       expect.stringMatching(
         /^repo-check shellcheck-tracked: the shellcheck on PATH is shellcheck 0\.9\.0,/u,
       ),
+    ]);
+  });
+
+  it('fails without linting a tracked file the working tree has lost with the change unstaged, naming it', async () => {
+    // `git add bin/lost; rm bin/lost`: a commit carries a script the gate cannot read.
+    const { runtime, lintRuns, failures } = gateRuntime({ gone: ['bin/lost'] });
+
+    await expect(runShellcheckTracked(runtime)).resolves.toBe(1);
+
+    expect(lintRuns).toStrictEqual([]);
+    expect(failures).toStrictEqual([
+      expect.stringMatching(/^repo-check shellcheck-tracked: .*cannot read: bin\/lost\. Stage/u),
     ]);
   });
 

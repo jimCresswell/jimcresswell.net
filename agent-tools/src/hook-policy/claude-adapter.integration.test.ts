@@ -11,6 +11,7 @@ import {
 import type { PolicyRouteContext } from './dispatcher.js';
 import { REPO_ROOT } from './policy-loader.js';
 import type { PolicySnapshot } from './policy-snapshot.js';
+import { posixPath } from './test-helpers/posix-path.js';
 import type { ScopedContentBlockGroup } from './types.js';
 
 /** Names of the production routes whose match predicate accepts the payload. */
@@ -202,7 +203,7 @@ describe('content route evaluation', () => {
         {
           contentPatterns: [],
           scopedBlocks: blocks,
-          isInOtherRepository: (path) => path.startsWith('/elsewhere/'),
+          isInOtherRepository: (path) => posixPath(path).startsWith('/elsewhere/'),
         },
       );
 
@@ -327,7 +328,7 @@ describe('copilot-compat string route evaluation', () => {
             contentPatterns: [],
             scopedBlocks: [OWN_MARKER_EVERYWHERE],
             readPriorContent: (path) =>
-              path === '/repo/notes/source.md' ? 'own-marker one\nown-marker two' : null,
+              posixPath(path) === '/repo/notes/source.md' ? 'own-marker one\nown-marker two' : null,
           },
         ),
       );
@@ -346,11 +347,18 @@ describe('copilot-compat string route evaluation', () => {
   });
 
   it('places a relative path against an absolute cwd only; a relative cwd leaves it unplaced', () => {
-    expect(placePath('docs/exempt/x.md', '/repo/nested')).toBe('/repo/nested/docs/exempt/x.md');
+    // On Windows `resolve` places a path on a drive, so a placed path is compared with `/` separators.
+    expect(placePath('docs/exempt/x.md', '/repo/nested')?.replaceAll('\\', '/')).toMatch(
+      /^(?:[A-Za-z]:)?\/repo\/nested\/docs\/exempt\/x\.md$/u,
+    );
     expect(placePath('docs/exempt/x.md', '.')).toBe('docs/exempt/x.md');
     expect(placePath('docs/exempt/x.md', undefined)).toBe('docs/exempt/x.md');
-    expect(placePath('/elsewhere/x.md', '/repo')).toBe('/elsewhere/x.md');
-    expect(placePath('/repo/docs/exempt/../../src/x.md', '/repo')).toBe('/repo/src/x.md');
+    expect(placePath('/elsewhere/x.md', '/repo')?.replaceAll('\\', '/')).toMatch(
+      /^(?:[A-Za-z]:)?\/elsewhere\/x\.md$/u,
+    );
+    expect(placePath('/repo/docs/exempt/../../src/x.md', '/repo')?.replaceAll('\\', '/')).toMatch(
+      /^(?:[A-Za-z]:)?\/repo\/src\/x\.md$/u,
+    );
     expect(placePath(undefined, '/repo')).toBeUndefined();
   });
 

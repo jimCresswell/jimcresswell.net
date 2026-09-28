@@ -155,6 +155,15 @@ Each direction reads as landed of owed, beside the `main` head the register was 
 | O2 | "Two instances before extraction" applies sometimes and never overrides innovation work | amend `consolidate-at-second-consumer` | same | same | the same aside |
 | O3 | Innovation's value is discovery and knowledge creation; it never requires a proven need | amend the warrant clauses that demand a need (the reason skill's stop gate, PDR-130's lanes) | same | same | the same aside |
 
+## Rows outside the pinned windows
+
+Concepts where the estates differ in paths neither delta list names, because the difference
+predates both pins.
+
+| Row | Concept | jcnet | lineage | castr | Source |
+| --- | --- | --- | --- | --- | --- |
+| L33 | The Result-based git path reads of `agent-tools/src/core/repository-paths.ts` (250 lines: `parseTrackedFiles`, `gitFailed`, `toGitRunOutput`, `GitReadFailure`, `describeGitReadFailure`), where this estate carries the older 103-line module (`collectTrackedPaths`, `collectIgnoredPaths`, with six consumers, and the shellcheck gate reading the throwing `readTrackedTree`) | bring, after the review unless the owner brings it forward. Until it lands, the repo-check universe keeps this estate's throwing shape, which the shellcheck gate reads, with the same reads as the lineage's (`--deduplicate`, and `diff-files` for porcelain `diff`). At its landing the universe and the gates reach the same bytes | origin | not assessed | the J3 flow-back to this estate (2026-09-27), whose universe could not reach the lineage's bytes without it |
+
 ## Landings
 
 Appended as each row lands: row, estate, pull request, head read.
