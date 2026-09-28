@@ -71,8 +71,14 @@ const config: KnipConfig = {
         // post-run drivers need no pattern: their package scripts run them as
         // `tsx src/...` from the workspace directory, which knip reads as entries.
         'src/corpus-analysis/workflows/*.workflow.ts',
-        'smoke-tests/**/*.ts',
+        // Smoke checks: the smoke runner (`src/bin/run-smoke-tests.ts`)
+        // discovers and spawns every `smoke-tests/*.smoke.ts`, so no import or
+        // package script names them; each is an entry so what it imports from
+        // `src/` is traced.
+        'smoke-tests/*.smoke.ts',
       ],
+      // smoke-tests/ is inside the project so a dead smoke helper file or
+      // export is reported.
       project: ['src/**/*.{ts,tsx,css}', 'tests/**/*.ts', 'smoke-tests/**/*.ts'],
       // The refounding leaf modules survive only because plan-state imports
       // them; their wider export surface is unused here. Retire this ignore
