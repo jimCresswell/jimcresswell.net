@@ -90,7 +90,9 @@ async function retiresEachTipAtItsOwnSha(): Promise<void> {
  * No local branch at the proof; a writer checks one out, with its upstream,
  * while the remote delete runs. The config section is read again just
  * before its removal, as `git branch -d` reads the branch before its own:
- * the new branch keeps its section, and the other names still go.
+ * the new branch keeps its section, and the other names still go. The
+ * outcome reports each name as proven: the local name was absent at the
+ * proof, and a name another writer makes after it is not this run's.
  */
 async function keepsTheSectionOfABranchMadeMidRun(): Promise<void> {
   await withRig(async (rig) => {
@@ -116,6 +118,26 @@ async function keepsTheSectionOfABranchMadeMidRun(): Promise<void> {
       [undefined, undefined],
       'the remote or tracking name survived',
     );
+  });
+}
+
+/**
+ * A section left by an earlier run, and no local name at the proof; a writer
+ * makes the name a dangling symbolic ref during the remote delete, which the
+ * listing omits. The raw read finds it, so the section stays with it.
+ */
+async function keepsTheSectionOfADanglingNameMadeMidRun(): Promise<void> {
+  await withRig(async (rig) => {
+    mergedBranch(rig, BRANCH);
+    git(rig, rig.work, 'fetch', '-q', 'origin');
+    git(rig, rig.work, 'config', `branch.${BRANCH}.remote`, 'origin');
+    const local = `refs/heads/${BRANCH}`;
+    const onMint = () => git(rig, rig.work, 'symbolic-ref', local, 'refs/heads/gone');
+    const run = await retire(rig, BRANCH, fakeGithub(rig, { onMint }).fetchImpl);
+
+    assert.equal(run.exit, 0, run.err);
+    assert.equal(git(rig, rig.work, 'config', '--get', `branch.${BRANCH}.remote`), 'origin');
+    assert.equal(git(rig, rig.work, 'symbolic-ref', local), 'refs/heads/gone');
   });
 }
 
@@ -214,11 +236,12 @@ async function failsOnAnOriginWithNoUrl(): Promise<void> {
 await retiresEachTipAtItsOwnSha();
 await leavesALookAlikeSection();
 await keepsTheSectionOfABranchMadeMidRun();
+await keepsTheSectionOfADanglingNameMadeMidRun();
 await failsOnASymbolicLoop();
 await failsOnAMissingCommitObject();
 await failsWhenOriginHeadCannotBeRefreshed();
 await failsOnAnOriginWithTwoUrls();
 await failsOnAnOriginWithNoUrl();
 process.stdout.write(
-  'merge-bot retire reads smoke: OK (two tips at their own shas, two config sections kept, five failed reads)\n',
+  'merge-bot retire reads smoke: OK (two tips at their own shas, three config sections kept, five failed reads)\n',
 );

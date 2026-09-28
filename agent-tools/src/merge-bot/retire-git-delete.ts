@@ -1,7 +1,7 @@
 import { err, ok, type Result } from '@engraph/result';
 
 import { classifyCasOutcome, type CasOutcome, type PlannedDelete } from './retire-decision.js';
-import { gitFailure, runGit, type RetireGit } from './retire-git-read.js';
+import { gitFailure, readSymbolicRefs, runGit, type RetireGit } from './retire-git-read.js';
 import { gitWords, parseRefListing, REF_LISTING_FORMAT } from './retire-parse.js';
 import { describeGitChildEnd } from './push-git.js';
 
@@ -55,8 +55,8 @@ function sectionPattern(branch: string): string {
  * Remove `branch.<name>` from the repository config while no local branch
  * has the name, as `git branch -d` removes it with the branch.
  * `update-ref -d` leaves it, and a later branch of the same name would
- * silently inherit the old upstream. The local branch is read again just
- * before the removal, by its exact name, so a branch made since the proof
+ * silently inherit the old upstream. The local name is read again just
+ * before the removal (`localNameExists`), so a name made since the proof
  * keeps its section: the window is git's own. No section is not a failure.
  * Only the repository's own file is read (`--local`), the one
  * `--remove-section` writes: a section in a global or included file is not
@@ -66,12 +66,11 @@ export async function removeBranchConfig(
   retire: RetireGit,
   branch: string,
 ): Promise<Result<undefined, Error>> {
-  const local = `refs/heads/${branch}`;
-  const reread = await runGit(retire, ['for-each-ref', REF_LISTING_FORMAT, local]);
-  if (reread.status !== 0) {
-    return err(gitFailure(`re-reading ${local} before its config removal`, reread));
+  const exists = await localNameExists(retire, `refs/heads/${branch}`);
+  if (!exists.ok) {
+    return err(exists.error);
   }
-  if (parseRefListing(reread.stdout).has(local)) {
+  if (exists.value) {
     return ok(undefined);
   }
   const listed = await runGit(retire, [
@@ -91,4 +90,21 @@ export async function removeBranchConfig(
   return removed.status === 0
     ? ok(undefined)
     : err(gitFailure(`removing branch.${branch}'s config`, removed));
+}
+
+/**
+ * Whether `local` names a ref now, by the exact name: listed, or symbolic by
+ * the raw read, which also finds a symbolic name whose target is gone (the
+ * listing omits it). A read git cannot answer is a failure, never "no".
+ */
+async function localNameExists(retire: RetireGit, local: string): Promise<Result<boolean, Error>> {
+  const listed = await runGit(retire, ['for-each-ref', REF_LISTING_FORMAT, local]);
+  if (listed.status !== 0) {
+    return err(gitFailure(`re-reading ${local} before its config removal`, listed));
+  }
+  if (parseRefListing(listed.stdout).has(local)) {
+    return ok(true);
+  }
+  const symbolic = await readSymbolicRefs(retire, [local]);
+  return symbolic.ok ? ok(symbolic.value.length > 0) : symbolic;
 }

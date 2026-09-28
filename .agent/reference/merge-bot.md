@@ -355,7 +355,12 @@ pnpm agent-tools merge-bot retire --branch <name>
   absent, so a failure part-way leaves a state a re-run finishes. The
   branch's config section goes once the branch has no local ref, as
   `git branch -d` removes it; a section a failed removal left goes on the
-  re-run.
+  re-run. The local name is read again just before the removal, a dangling
+  symbolic name included, and a name made since the proof keeps its section.
+- The outcome reports each name as proven and as this run's own writes left
+  it. A name another writer makes after the proof is not in it: "absent"
+  means the name did not exist at the proof and this run deleted nothing
+  there.
 - It refuses (exit 3, nothing deleted):
   - a default branch;
   - a tip that is not on the default;
