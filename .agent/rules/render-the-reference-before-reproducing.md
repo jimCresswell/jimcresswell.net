@@ -62,8 +62,10 @@ localise; only the rendered pair decides.
 
 ## Related Surfaces
 
+- [ADR-016 — review-oriented visual regression harness](../../docs/architecture/decision-records/016-review-oriented-visual-regression-harness.md)
+  — the harness: the WHERE of every capture.
 - [ADR-022 — rendering risk needs blocking visual proof](../../docs/architecture/decision-records/022-rendering-risk-needs-blocking-visual-proof.md)
-  and the visual-regression harness: the WHERE of every capture.
+  — why a rendering-risk change needs blocking visual proof.
 - [The Claude Design conversion playbook](../reference/claude-design-conversion-playbook.md)
   §"Reference first" — this rule's application inside that pipeline.
 - [`claude-design-pipeline` SKILL](../skills/domain-craft/ui-design/claude-design-pipeline/SKILL-CANONICAL.md)

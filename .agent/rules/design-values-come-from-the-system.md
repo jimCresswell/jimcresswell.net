@@ -39,34 +39,35 @@ value is written, and again at review.
    utilities it defines). Never a raw hex, px-literal scale value, ad-hoc
    font stack, or copied magic number.
 2. **Kit-internal literals are the definitions themselves** — values inside
-   `jcdotnet/app/globals.css`, the site's one design-system sheet (its
-   `:root` and `.dark` custom properties, the `@theme` block, the utilities,
-   and the base and print layers), are where literals live by design. This
-   rule does not reach into that sheet.
-3. **A retained consumer literal is an owner decision, recorded** — the
-   default disposition for an existing literal is replace-with-role; keeping
-   one requires the owner's named word and a recorded disposition (the
-   fidelity-register pattern).
+   `jcdotnet/app/globals.css`, the site's one design-system sheet, are where
+   literals live by design. This rule does not reach into that sheet.
+3. **A retained consumer literal is a recorded disposition** — the default
+   disposition for an existing literal is replace-with-role; keeping one
+   requires a recorded disposition, and the owner's word where the decision
+   method leaves a live choice. Kept literals are recorded under Related
+   Surfaces below.
 4. **Reviews test this as an axis**: a consumer-surface diff introducing a
    design literal is a finding regardless of how faithful the literal is —
    fidelity belongs in the token, not at the call site.
 
 ## Why This Rule Exists (Worked Instance)
 
-In the upstream lineage, the hub demo predated the design system and accumulated 27 raw hex values
-across its app and component sources (audited first-hand 2026-07-29; the
-true-up ticket carries the disposition work with replace-with-role as the
-owner-ruled default); each now needs an individual disposition — the exact
-drift this rule prevents at authoring time. The same day, the showcase
-absorb landed with a zero-hardcoded-values invariant and an enforcement
-instrument in its programme ticket's next-slice DoD, demonstrating the
-compliant shape.
+A demo application built before its design system accumulated raw hex values across its app and
+component sources. Each then needed an individual disposition, with replace-with-role as the
+default: the exact drift this rule prevents at authoring time. A surface absorbed after the system
+existed, carrying a zero-hardcoded-values invariant and an enforcement instrument from its first
+slice, shows the compliant shape.
 
 ## Related Surfaces
 
 - `jcdotnet/app/globals.css` — the site's one design-system sheet: the token
   definitions (`:root` and `.dark` values and the `@theme` role mapping)
   consumer surfaces resolve through.
+- Kept literals, by platform contract (decided by the decision method,
+  28 September 2026): `jcdotnet/app/layout.tsx` (the viewport `themeColor`)
+  and `jcdotnet/app/manifest.ts` (`background_color` and `theme_color`) carry
+  the `:root` and `.dark` backgrounds, `#faf9f7` and `#1c1917`, as literal
+  colours, because platform metadata cannot resolve a custom property.
 - [`invoke-design-system-expert`](invoke-design-system-expert.md) — the
   reviewer dispatch that carries this axis.
 - [`no-moving-targets-in-permanent-docs`](no-moving-targets-in-permanent-docs.md)
