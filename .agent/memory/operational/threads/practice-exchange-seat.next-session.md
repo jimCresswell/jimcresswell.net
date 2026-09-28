@@ -2702,3 +2702,34 @@ read from the Director's napkin entry, not from the census itself. Blind spot: t
 exclude heartbeats. Index of homes: this record, the worktree `jcnet-wt-retire-symref` and the
 session scratchpad (drafts only). A further pass would re-find only the unpushed branch, which
 is named above, so the recursion closes here.
+
+**After the wrap, 17:15Z to 17:46Z (carry on).**
+
+- The Director confirmed the order (17:4xZ):
+  1. PR 251 (PR A);
+  2. PR B before any port, so the lineage takes the command once;
+  3. the retire port riding L9's reconvergence window as this estate's unique module, with #272
+     on the first exchange PR;
+  4. J3's shellcheck slice before the pr-watch and L9 work.
+- PR 251 (fix/retire-symref-relist) opened at 17:22Z as the third slot. Copilot round one (on
+  SHA:ac450915) had two items: a dangling name made mid-run, and the outcome's basis. Both were
+  cured in SHA:442a2eba, signed and resolved; round two was requested at 17:44:39Z.
+- PR 251 also carries SHA:ac51d536, a security fix for the merged retire. `merge-base` followed
+  replacement refs and grafts, so a planted one could make an unmerged tip read as merged.
+  Every git read now runs with `GIT_NO_REPLACE_OBJECTS=1` and `GIT_GRAFT_FILE=/dev/null`; the
+  first does not turn grafts off. Both mutants are killed.
+- PR B's four pre-execution reviews (security, code, architecture, test) were all GO WITH
+  CONDITIONS. They split it into B1 (the scope and probe), B2 (the local pre-decision), B3 (the
+  objects-only fetch by sha) and B4 (the reader swap). The design is v5 in the scratchpad's
+  `retire/design-bind.md`; the durable summary will ride B1's body.
+- Owed rows in the register's §Landings, riding this seat's next exchange PR: #272 (J22,
+  partial), and J11 (the lineage declined the exchange instrument, on the owner's word
+  "Decline with the reason (Recommended)", relayed at 17:4xZ; Myrtle's c69c53fb, acknowledged at
+  17:46Z).
+- A deviation: at 17:15Z this seat removed a stale `.git/index.lock` in the primary with no
+  owner word. The commit skill (§Foreign index lock, owner direction 2026-05-03) forbids that.
+  Nova caught it, and it is recorded on the stream (53d9918a). From now on a lock stops the
+  attempt and goes to the owner through the Director, untouched.
+- The review watch was mis-armed at 17:22Z: its fifth argument skips the seat's own bot, and
+  Copilot's login was passed there, so round one never showed. It is re-armed as a Monitor with
+  the bot's login.
