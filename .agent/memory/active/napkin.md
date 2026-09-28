@@ -2864,3 +2864,29 @@ ready-mark, Copilot door, successor); the rotation broadcasts; the monitor and t
 re-armed on the new branches; the loss scan; check-in 53 on the successors; the next suite
 after the folds; 273's legs and door and the whole-path guard PRs (Siren); Nova's return or the
 owner's word.
+
+## 2026-09-28T00:35Z — THE FOLD: PR 227 merged as 87689ea1 at 00:34:06Z; the successor coordination/2026-09-28-87689e cut; DUE at the midday fold
+
+Fold entry, 2026-09-28: PR 227 (coordination/2026-09-27-3699c1) merged by the bot at 00:34:06Z
+as 87689ea1f at full condition after two rounds and one settlement push (round one: the resume
+path stale against the day's records, over the bar, cured at 3f377580 with a new top entry in
+the continuity index and the handoff's live block rewritten in place; round two: two findings
+naming the whole-path guard as the queued next item, Rejected with rationale, since the
+re-scope to `core.symlinks=false` was ruled natively at 00:1xZ after the cited lines were
+written; the exchange seat's thread record refreshes its continuation at her next write here).
+The convergence merge of main at 67bc75ec (PR 233's merge) at 00:0xZ, no conflict; the probe
+listed the branch's own eight record files. Copilot's request did not follow the bot's
+ready-mark on this estate (it did on the lineage); the operator's add-reviewer at 00:07:38Z and
+again at 00:29:25Z after the cure push drew both rounds; the recipe's addendum (c) is corrected
+by this entry: on JC.net, read the timeline a minute after the mark and add the reviewer as the
+operator when Copilot is not requested. The remote branch deleted by the bot and read back
+absent; the local branch deleted after the cut. The successor coordination/2026-09-28-87689e
+cut at 00:34Z from 87689ea1f (main's tip, one resolved sha), tree-preserving, the primary
+residing on it; its draft PR is named in the rotation broadcast; DUE at the midday fold
+(12:00Z on 2026-09-28). moved for the sites: nothing. / moved for the Practice: the day's
+records (check-ins 41 to 52, suites 34 to 45, the fold recipe and its addenda, the owner card
+and the ready list, Siren's landing records, thread record and experience record, the distilled
+record, the handoff's live block, the exchange plan node's two routed findings) and main's
+landings 226, 228 to 233 folded in. The lineage's fold, PR 264, is at its door on 74e89d2da
+(two rounds cured in two settlement pushes: the continuity index's 261 row; the day entry's J2
+sentence); its entry follows on this branch when it lands.
