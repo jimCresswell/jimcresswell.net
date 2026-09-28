@@ -2998,3 +2998,49 @@ NEXT: 274's cures, legs and door (Siren); 264's door with the fixed reader, the 
 successor, its fold entry and rotation line (the Director); 273's sync and door, 235's lineage
 twin, the sync-push-during-merge cure (Siren); check-in 55 at about 02:45Z; the next suite (46)
 after 264 lands; Nova's return or the owner's word.
+
+## 2026-09-28T02:52Z — Director check-in 55: both rollover folds landed (227 at 00:34Z, 264 at 02:46Z); the successors 234 and 275; the count 3
+
+THE FOUR NUMBERS (`checkin-55-raw.md`, 02:51Z): open non-coordination PRs 3 of 3 (lineage 250,
+the owner's draft, on THE READY LIST; lineage 273, the non-blocking profile read, its sync merge
+of engraph local in Siren's worktree, ahead 21; JC.net 236, "the push after a conflicting pull
+concludes the merge", six files, the sync-push-during-merge cure, opened 02:5xZ at round one with
+two threads, Siren's); landings since check-in 54: 274 (02:27:05Z, 8df6e73e, the Codex reader
+cure: the connector's own edit of its summary is its report) and 264 (02:46:51Z, 96b273d30, the
+lineage fold); heads with CI in flight: 275 (the lineage successor draft); slot-holder age: the
+lineage slot released at 02:47Z, 273's next. Remote branches outside a PR: none in either estate.
+Local branches: the lineage's fix/operator-profile-read-nonblocking (273's), fix/profile-git-no-links
+(235's twin in the making), siren/250-settlement, codex/user-value-across-levels and
+docs/fold-sweep-and-chmod-bits (Nova's, both estates); JC.net's fix/profile-push-during-merge
+(236's). Host load 23.51 (Siren's gates, the fold gates and CI). The JC.net primary on
+coordination/2026-09-28-87689e (draft PR 234) with check-in 54 and this block local, pushed in
+this step; the lineage primary on coordination/2026-09-28-96b273 (draft PR 275) at c8b1c0c75,
+clean.
+
+THE FOLDS, done: 264 (coordination/2026-09-27-d6c9e5) merged by the bot at 02:46:51Z as
+96b273d30 at full condition after three rounds and three settlement pushes under one rebudget
+recorded on the body (round one Copilot's stale 261 row; round two Codex's contradictory J2
+sentence; round three Codex's two arithmetic findings on the lane's records, verified first-hand),
+its door held from 01:09Z on the Codex evidence shape until 274 landed the reader cure and the
+branch synced to 8df6e73e at 7b824b45f (the door then read both legs SATISFIED on the tip, the
+completion comment accepted); the remote branch deleted and read back absent; the local branch
+deleted after the cut; the successor coordination/2026-09-28-96b273 cut at 02:47Z from 96b273d30,
+its first commit the fold entry on the estate-coordination thread record (after the day entry),
+published as draft PR 275, DUE at the midday fold; the rotation line posted. 227 as the fold entry
+of 00:35Z (the successor 234). Defects of the folds: the JC.net rotation line's second sha token
+(corrected); the third lineage push's signed lines posted before the push (corrected on both
+threads); Copilot's request needing the operator's hand on JC.net and a bot re-request per push
+on the lineage; the fold script's "the the" in its lineage titles.
+
+GOAL ONE since the 12:06Z fold of 2026-09-27: the lineage landed 261, 265 to 274 (ten); JC.net
+226, 228 to 235 (eight); rows J2, J3 and J7 have lineage landings on top of the register's
+thirteen, J3's and J7's now written into §Landings by 235.
+
+NOVA: no line since 16:05:37Z on 2026-09-27 (ten hours and forty minutes). The owner: no word to
+the Director since the 12:0xZ start word of 2026-09-27. The card and the ready list stand as in
+check-in 53, with one FYI closed: the lineage fold is no longer held.
+
+NEXT: suite 46 now, on the folds' outcome; 273's sync and door, 236's legs and door, 235's
+lineage twin, the L1 flow-back after its divergence read, the shellcheck gate, the smoke pair
+(Siren); check-in 56 at about 03:35Z; the midday folds DUE at 12:00Z (the recipe and its addenda
+apply; both successors' bodies are the templates until then); Nova's return or the owner's word.
