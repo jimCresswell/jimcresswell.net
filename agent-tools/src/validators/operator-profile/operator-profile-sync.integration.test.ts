@@ -236,8 +236,20 @@ describe('pushProfile', () => {
       { prefix: ['push', '--quiet'] },
     ]);
     expect(unwrap(pushProfile(run, 'seat: fact', PROFILE_PATHSPECS))).toBe('committed and pushed');
-    expect(calls[0]).toEqual(['ls-files', '--', 'index.md', 'repos', 'machines']);
-    expect(calls[1]).toEqual(['add', '--', 'index.md', 'repos', 'machines']);
+    expect(calls.find((call) => call[0] === 'ls-files')).toEqual([
+      'ls-files',
+      '--',
+      'index.md',
+      'repos',
+      'machines',
+    ]);
+    expect(calls.find((call) => call[0] === 'add')).toEqual([
+      'add',
+      '--',
+      'index.md',
+      'repos',
+      'machines',
+    ]);
     expect(calls.find((call) => call[0] === 'diff')).toEqual([
       'diff',
       '--cached',
@@ -272,7 +284,12 @@ describe('pushProfile', () => {
       { prefix: ['push', '--quiet'] },
     ]);
     expect(pushProfile(run, 'seat: fact', ['index.md']).ok).toBe(true);
-    expect(calls[1]).toEqual(['add', '--', 'index.md', 'repos/a--b.md']);
+    expect(calls.find((call) => call[0] === 'add')).toEqual([
+      'add',
+      '--',
+      'index.md',
+      'repos/a--b.md',
+    ]);
     expect(calls.find((call) => call[0] === 'commit')?.slice(-3)).toEqual([
       '--',
       'index.md',
@@ -414,7 +431,7 @@ describe('pushProfile', () => {
       { prefix: ['push', '--quiet'] },
     ]);
     expect(pushProfile(run, 'seat: fact', ['index.md']).ok).toBe(true);
-    expect(calls[1]).toEqual(['add', '--', 'index.md']);
+    expect(calls.find((call) => call[0] === 'add')).toEqual(['add', '--', 'index.md']);
     expect(calls.find((call) => call[0] === 'commit')?.slice(-2)).toEqual(['--', 'index.md']);
   });
 
@@ -430,6 +447,105 @@ describe('pushProfile', () => {
     ]);
     expect(failure(pushProfile(run, 'seat: fact', PROFILE_PATHSPECS))).toContain(
       'the commits are local',
+    );
+  });
+});
+
+// A fake git in the middle of a merge, with git's own rules: a commit that
+// names paths is partial, and is refused while `MERGE_HEAD` exists; `grep`
+// searches only the paths it is given. A command it does not answer fails,
+// as `scripted` does.
+interface MergeState {
+  readonly merged?: readonly string[];
+  readonly marked?: readonly string[];
+  readonly unmerged?: readonly string[];
+  readonly resolutionChanged: boolean;
+}
+
+function mergingGit(state: MergeState): GitRunner {
+  const answer = (stdout = '', ok = true, stderr = '') => ({ ok, stdout, stderr });
+  const pathsOf = (args: readonly string[]) => args.slice(args.indexOf('--') + 1);
+  const diff: GitRunner = (args) => {
+    if (args.includes('MERGE_HEAD')) {
+      return answer((state.merged ?? ['repos/a--b.md']).join('\n'));
+    }
+    if (args.includes('--diff-filter=U')) {
+      return answer((state.unmerged ?? []).join('\n'));
+    }
+    return answer('', !state.resolutionChanged);
+  };
+  const grep: GitRunner = (args) => {
+    const hits = (state.marked ?? []).filter((path) => pathsOf(args).includes(path));
+    return hits.length === 0 ? answer('', false) : answer(hits.join('\n'));
+  };
+  const byCommand: Readonly<Record<string, GitRunner>> = {
+    'rev-parse': (args) =>
+      args.includes('MERGE_HEAD') ? answer('f'.repeat(40)) : answer('origin/main'),
+    diff,
+    grep,
+    commit: (args) =>
+      args.includes('--')
+        ? answer('', false, 'fatal: cannot do a partial commit during a merge.')
+        : answer(),
+    'rev-list': () => answer('0\t2'),
+    'ls-files': () => answer(),
+    add: () => answer(),
+    push: () => answer(),
+  };
+  return (args) =>
+    byCommand[args[0] ?? '']?.(args) ?? answer('', false, `unscripted: ${args.join(' ')}`);
+}
+
+describe('pushProfile — during a merge', () => {
+  const PROFILE_DOCUMENTS = ['index.md', 'repos/a--b.md', 'repos/fence.md'];
+
+  it.each([
+    ['changes the documents', true],
+    ['leaves the documents as they were', false],
+  ])(
+    'during a merge, commits the whole index and concludes the merge when the resolution %s',
+    (_name, resolutionChanged) => {
+      expect(
+        unwrap(pushProfile(mergingGit({ resolutionChanged }), 'seat: union', PROFILE_DOCUMENTS)),
+      ).toBe('committed and pushed');
+    },
+  );
+
+  it.each([
+    [['repos/a--b.md'], 'repos/a--b.md still holds'],
+    [['index.md', 'repos/a--b.md'], 'index.md, repos/a--b.md still hold'],
+  ])(
+    'during a merge, refuses documents the merge touches that still hold a conflict marker, naming each and the cure: %j',
+    (marked, named) => {
+      const run = mergingGit({ merged: marked, marked, resolutionChanged: true });
+      expect(failure(pushProfile(run, 'seat: union', PROFILE_DOCUMENTS))).toBe(
+        `${named} a conflict marker — resolve by union (both sides kept in time order, the later updated date wins), then pnpm profile:sync push`,
+      );
+    },
+  );
+
+  it('during a merge, a marker-like line in a document the merge does not touch never blocks the push', () => {
+    const run = mergingGit({ marked: ['repos/fence.md'], resolutionChanged: true });
+    expect(unwrap(pushProfile(run, 'seat: union', PROFILE_DOCUMENTS))).toBe('committed and pushed');
+  });
+
+  it('during a merge, refuses a path still unmerged outside the documents, naming it and the cure', () => {
+    const run = mergingGit({ unmerged: ['.gitignore'], resolutionChanged: true });
+    expect(failure(pushProfile(run, 'seat: union', PROFILE_DOCUMENTS))).toBe(
+      '.gitignore is still unmerged outside the profile documents — in the profile root resolve each and ' +
+        'git add -- <path>, then pnpm profile:sync push',
+    );
+  });
+
+  it('during a merge, reports a marker search that fails to run as an error, never as no markers', () => {
+    const { run } = scripted([
+      { prefix: ['rev-parse', '-q', '--verify', 'MERGE_HEAD'] },
+      { prefix: ['diff', '--name-only', 'HEAD', 'MERGE_HEAD'], stdout: 'repos/a--b.md' },
+      { prefix: ['grep'], ok: false },
+      { prefix: ['ls-files'], stdout: '' },
+    ]);
+    expect(failure(pushProfile(run, 'seat: union', PROFILE_PATHSPECS))).toBe(
+      'git grep failed: refused',
     );
   });
 });
