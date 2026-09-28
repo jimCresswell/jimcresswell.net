@@ -1,9 +1,11 @@
 /**
  * Operator profile — the filesystem primitives behind the root reader:
  * probing presence without following links, listing a directory without
- * following links, and reading a document without following a symlink.
+ * following links, and the document reader of `operator-profile-read.ts`.
  * Absence is a first-class outcome, never an error; an unreadable path is an
- * error, never absence; a symlink is a symlink, never what it points at.
+ * error, never absence; a symlink found at a probed or listed entry is a
+ * symlink, never what it points at. A directory swapped for a link after
+ * its probe is not guarded (the reader's module note gives the boundary).
  */
 
 import { type Dirent, type Stats } from 'node:fs';
@@ -89,11 +91,12 @@ const readDirectoryReal: ReadDirectory = async (dir) =>
 /**
  * List one level of the profile root: the root itself, or one of its scoped
  * directories. A scoped directory that is absent or not a directory lists
- * as empty, and so does a scoped directory that is a symlink: the root
- * listing reports the link itself as not regular, and nothing is ever
- * listed through it. A listing the platform refuses after the probe (a
- * permission change, a directory removed in between) is a failure, never a
- * thrown error.
+ * as empty, and so does a scoped directory that is a symlink at its probe:
+ * the root listing reports the link itself as not regular. A directory
+ * swapped for a link after its probe is listed through, within the
+ * boundary the reader's module note states. A listing the platform refuses
+ * after the probe (a permission change, a directory removed in between) is
+ * a failure, never a thrown error.
  *
  * @param root - the profile root
  * @param dirName - the scoped directory to list, or undefined for the root
