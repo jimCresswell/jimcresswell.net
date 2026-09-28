@@ -4317,3 +4317,33 @@ NEXT: 255, 256 and 289 to their doors; the validator PR and Siren's J3 B and C; 
 the owner calls for the directive batch; the pre-fold suite about 23:2xZ; the rollover folds at
 00:00Z (the lineage by the scripts; JC.net by the take-merged recipe); check-in 70 about 20:05Z,
 on change.
+
+## 2026-09-28T20:0xZ — Director check-in 70, on change: three landings; the count 2 of 3; the validator open; J3 at its third slice
+
+THE FOUR NUMBERS (the snapshot at 20:03:51Z): open non-coordination PRs 2 of 3 (JC.net 257,
+Nova's rule-glob recurrence validator, 27 files, green with zero threads at the read, its review
+running; lineage 290, Siren's J3 slice 3, the script cures, BEHIND with unit tests in flight);
+landings since check-in 69: JC.net 255 (a9aa00d, 19:23:36Z, the flow contract and seven landing
+rows, round four as signed lines) and 256 (243add1, 19:33:23Z, the eight rules' globs re-rooted,
+32 patterns live); lineage 289 (4a302b1, 19:45:24Z, J3 slice 2, the leading-colon glob cure);
+heads with CI in flight: 290. Coordination drafts: JC.net 241 (CLEAN, four files), lineage 283
+(eight files); both primaries level with their remotes. Ready list: 257.
+
+RULINGS THIS WINDOW, one line each: Myrtle's N1 opens as soon as it is built and reviewed, the
+twin ruling PR after the 00:00Z fold (a PR blocked on a clock never holds a built one); the
+bot-push 403 on the fourth push (four seats today) is a pattern, cured once inside merge-bot push
+as a bounded retry on the cause the refusal body names, riding Siren's B1 in both estates; Nova's
+matcher departure for the validator stands (two dialects, not a second consumer), with the
+stability index read for the pinned Node range and the dialect pinned by tests; the two
+design-harness residues (an eval script's broken import of an absent showcase; the playbook's
+"canonical measurement widths") are one small PR of Nova's after 257. PR 255's round four took
+signed lines and the door, as ruled.
+
+THE SEATS: Nova: 257 to its door, the residues PR, then item (a) with the directive batch when a
+seat reads below PDR-052's line (still none: 30.8, 35.7 and 52.2 percent), then J6. Myrtle: N1's
+first slice in build (the rule-declarations generator), the twin after the fold. Siren: 290 to
+its door, then J3's slice C (the gate), then B1 with the 403 retry.
+
+NEXT: check-in 71 about 20:50Z on change; the pre-fold suite frame built at 23:00Z from the
+snapshot and the plan node's todos verbatim, the suite about 23:2xZ; the rollover folds at
+00:00Z.
