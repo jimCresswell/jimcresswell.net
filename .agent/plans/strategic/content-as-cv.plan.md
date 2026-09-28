@@ -29,9 +29,12 @@ last_updated: 2026-09-28
 The CV at `jimcresswell.net` reads as one person's professional identity, canonical and
 current: no variant copy, no claim without a fact behind it, every section written under
 the editorial directives. The LinkedIn profile is composed from the same evidence for its
-own audience. Jim’s 28 September 2026 direction places non-sensitive LinkedIn drafts, research
-and professional analysis in [`linkedin/`](../../../linkedin/README.md). Confidential material
-remains private, and proposed wording requires his approval before live application.
+own audience. Jim’s 28 September 2026 direction places the non-sensitive LinkedIn material
+listed in privacy.md's [LinkedIn workspace authorisation][linkedin-authorisation] in
+[`linkedin/`](../../../linkedin/README.md). Confidential material remains private, and proposed
+wording requires his approval before live application.
+
+[linkedin-authorisation]: ../../directives/privacy.md#linkedin-workspace-authorisation--28-september-2026
 
 ## User groups and value
 

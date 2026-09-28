@@ -17,10 +17,9 @@ composition, attention, readability, section weight and platform fit.
 
 Private editorial material, if present, may inform choices ([privacy.md](./privacy.md) §Private
 editorial material). Never quote, summarise or identify private material on a public surface.
-Non-sensitive LinkedIn drafts, research and editorial analysis live in the
-[LinkedIn workspace](../../linkedin/README.md), under privacy.md's
-[LinkedIn workspace authorisation][linkedin-authorisation]; private material stays in its
-existing home.
+The LinkedIn profile draft and the other non-sensitive LinkedIn material listed in privacy.md's
+[LinkedIn workspace authorisation][linkedin-authorisation] live in the
+[LinkedIn workspace](../../linkedin/README.md); private material stays in its existing home.
 
 [linkedin-authorisation]: ./privacy.md#linkedin-workspace-authorisation--28-september-2026
 

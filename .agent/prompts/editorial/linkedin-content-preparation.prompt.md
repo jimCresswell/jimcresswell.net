@@ -26,10 +26,12 @@ Private editorial material, if present, informs this work and is never quoted or
 identified publicly (`.agent/directives/privacy.md` §Private editorial material).
 
 Do not copy its repository URL, commit identifiers, raw source material,
-personal vulnerabilities or confidential draft history into public Git surfaces. Non-sensitive
-professional drafts, research and editorial analysis belong in the LinkedIn workspace under
-the dated owner authorisation in `privacy.md`. Only exact copy explicitly approved by Jim
+personal vulnerabilities or confidential draft history into public Git surfaces. The non-sensitive
+LinkedIn material listed in privacy.md's [LinkedIn workspace authorisation][linkedin-authorisation]
+belongs in the LinkedIn workspace. Only exact copy explicitly approved by Jim
 may be transferred to LinkedIn itself. Local preparation does not authorise a repository push.
+
+[linkedin-authorisation]: ../../directives/privacy.md#linkedin-workspace-authorisation--28-september-2026
 
 ## Editorial task
 

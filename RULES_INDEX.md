@@ -62,7 +62,7 @@ edit it by hand.
 | `.agent/rules/invoke-design-system-expert.md` | situational | `surface:design — Design token / theming / CSS custom property / global CSS / colour palette / spacing / typography / motion / layout rhythm / breakpoint / multi-surface (page and PDF) styling / shared-component styling / visual-consistency change` |
 | `.agent/rules/invoke-doc-and-onboarding-experts-on-significant-changes.md` | situational | `ceremony:significant-doc-change — Doctrine, rule, ADR, PDR, reference, engineering or governance doc added, removed, renamed, rewritten or restructured; onboarding entry point changed; command, skill or agent renamed across files` |
 | `.agent/rules/invoke-docs-adr-expert.md` | situational | `surface:docs/, ADRs, EDRs, READMEs, .agent/ documentation, permanent narrative surfaces` |
-| `.agent/rules/invoke-editor.md` | situational | `surface:public-facing copy, CV and front-page content, structured-data descriptions, editorial docs` |
+| `.agent/rules/invoke-editor.md` | situational | `surface:public-facing copy, CV and front-page content, LinkedIn workspace drafts, structured-data descriptions, editorial docs` |
 | `.agent/rules/invoke-pkg-expert.md` | situational | `surface:jcdotnet/content/entities.json, the graph and JSON-LD modules in jcdotnet/lib/, JSON-LD emission, Schema.org types, @id conventions, graph-backed metadata` |
 | `.agent/rules/invoke-react-component-expert.md` | situational | `surface:react-component — React component edit (hooks, render performance, prop API, composition, client or server boundaries, hydration, lifecycle)` |
 | `.agent/rules/invoke-security-expert.md` | situational | `surface:headers, CSP, secrets, env loading, middleware, proxy, dependencies, auth, public attack surface` |

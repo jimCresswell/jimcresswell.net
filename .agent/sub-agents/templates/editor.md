@@ -34,6 +34,7 @@ Before reviewing, read and internalise:
 | `jcdotnet/content/cv.content.json`          | Current CV content (positioning, experience, capabilities, education)          |
 | `jcdotnet/content/frontpage.content.json`   | Current front page narrative                                                   |
 | `jcdotnet/content/entities.json`            | The entity graph: `knowsAbout`, `hasOccupation` and the other structured-data descriptions |
+| `linkedin/README.md`                        | The LinkedIn workspace: the current draft, its working material and limits — read for any LinkedIn review |
 
 Private editorial material, if present, may inform the review (`.agent/directives/privacy.md`
 §Private editorial material). Do not identify, quote or summarise private material in public
