@@ -4059,3 +4059,50 @@ NEXT: the card (the 628e21c1 branch; the second LinkedIn batch's state); Myrtle'
 6; Siren's git-port PR at its door; Nova's secops and integration-test PRs; the pre-fold suite
 about 23:2xZ; the rollover folds at 00:00Z by the recipe above; check-in 66 in about 45 minutes,
 on change.
+
+## 2026-09-28T17:0xZ — Director check-in 66, on change: the owner's "please continue" and two answers; the residue census read (4 of 21, 20 PRs); the slot rule one per seat; three cards batched
+
+THE FOUR NUMBERS (as the seats read them at 16:43Z; the next snapshot at check-in 67): open
+non-coordination PRs 3 of 3 (JC.net 247, Siren's retire git-port; lineage 287, Nova's last todo 8
+twin, synced, CI rerunning; lineage 288, Myrtle's metacognition graduation draft, opened 16:32Z
+on this seat's routing); landings since check-in 65: none read; heads with CI in flight: 287;
+waiting, pushed as branches without a PR: Nova's secops PR (b722bbd3) and lineage-names test PR
+(b6a7e12b), Myrtle's todo 6 (9db69a0e on JC.net's docs/exchange-node-todo-6-close) and the
+lineage node's close-bar twin (docs/exchange-node-close-bar). Coordination drafts: JC.net 241,
+lineage 283 (Myrtle's census commit a9c9d1bf8 rides it).
+
+THE OWNER'S WORDS (verbatim): "please continue" (the start-right-team skill, about 16:4xZ, on
+this seat); by the question tool, answered by 16:4xZ: the 628e21c1 branch "Delete it by the
+forced path (Recommended)"; the second LinkedIn batch "Finished; Nova commits it now
+(Recommended)". Both relayed to Nova at 17:0xZ: the forced delete with a read-back and a stream
+line; the batch diffed against main with every rebuild cure kept, committed by pathspec on a
+branch and pushed now, its PR at Nova's slot.
+
+THE CENSUS (Myrtle, a9c9d1bf8, stream event f046f20a), read: 21 rows owed by the register's own
+rule, not 22 (J5 reads "graduated into L9"; the charter's count of seven unlanded rows included
+it); settled 4 (J4, J9, J13, J14); partial 11; no landing 6 (J2, J6, J8, J16, J20, J23); the
+count beside the heads 4 of 21. The residue is 20 PRs (J1 5, J2 2, J3 1, J6 3, J8 2, J10 1, J11
+1, J17 2, J18 1, J20 1, J21 1), 24 with todo 6, the lessons, the comparison and the re-pin,
+under the reopen bound of thirty; J15, J19 and J23 settle by §Landings rows citing the triage;
+J22 is settled by 217, 237, 282 and JC.net's 243; J7, J15's rider and J16 ride other rows'
+PRs. Three cards for the owner, none a PR, batched after this write: J11's exchange instrument
+(the lineage's read: decline, it validates the second estate's register; the row is
+owner-ratified so the decline is the owner's word), J17's gate-running doctrine (note 1:
+converge or decline by the owner's 2026-09-14 word), and the count (21 owed).
+
+RULINGS THIS WINDOW: the slot order while the count sits at three is one open non-coordination
+PR per seat, a seat's next opening when its own lands, nobody taking another seat's slot (Nova:
+287, secops, lineage-names, the LinkedIn batch; Myrtle: 288 to its door now, todo 6, the
+close-bar twin after the fold carries the census path onto engraph, J1's N1; Siren: 247, the
+lineage port of retire, then her order). The charter's "before any new landing lane" binds the
+residue rows, not 288.
+
+CORRECTIONS against this seat: routing Myrtle's held edit to a draft PR at 0 of 3 put it into a
+slot ahead of her charter lane; cured by the one-per-seat rule with 288 landing first. A combined
+call (the records cures, the napkin append, the commit and the proxy push) was blocked by the hook
+on a checkout pattern that none of its parts carries alone; split into two calls both passed; one
+instance, an observation, the split kept.
+
+NEXT: the three cards; 287's landing and Nova's secops PR; 288's door and Myrtle's todo 6 PR;
+247's door (Siren); the pre-fold suite about 23:2xZ; the rollover folds at 00:00Z by the proxy
+recipe; check-in 67 in about 45 minutes, on change.
